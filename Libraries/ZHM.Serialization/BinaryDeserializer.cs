@@ -14,7 +14,12 @@ namespace ZHM.Serialization
         public static bool IsBinaryResource(Stream p_Stream)
         {
             using var s_Reader = new ZHMStream(p_Stream, Endianness.LittleEndian, false);
-            return s_Reader.ReadUInt32() == BinaryResourceMagic;
+            
+            var s_HasValidMagic = s_Reader.ReadUInt32() == BinaryResourceMagic;
+            
+            s_Reader.Seek(-4, SeekOrigin.Current);
+            
+            return s_HasValidMagic;
         }
 
         private static readonly Dictionary<uint, ISegmentParser> SegmentParsers = new Dictionary<uint, ISegmentParser>()
