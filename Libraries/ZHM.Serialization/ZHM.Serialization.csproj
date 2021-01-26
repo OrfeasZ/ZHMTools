@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <OutputPath>$(SolutionDir)_build\$(Configuration)\bin\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)_build\$(Configuration)\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
