@@ -77,10 +77,13 @@ void ProcessTypeIds(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceStrea
 
 void PrintHelp()
 {
-	printf("Usage: ResourceParser.exe <resource-path> <resource-type>\n");
+	printf("Usage: ResourceParser.exe <resource-path> <resource-type> [options]\n");
 	printf("\n");
 	printf("resource-type can be one of:\n");
 	printf("\tTEMP\n");
+	printf("\n");
+	printf("Options:\n");
+	printf("\t--simple\tGenerates simpler JSON output, omitting any type metadata.\n");
 }
 
 enum class ResourceType
@@ -90,17 +93,23 @@ enum class ResourceType
 };
 
 template<typename T>
-std::string ResourceToJson(void* p_ResourceData)
+std::string ResourceToJson(void* p_ResourceData, bool p_Simple)
 {
 	auto* s_Resource = static_cast<T*>(p_ResourceData);
-	const auto s_Json = T::ToJson(s_Resource);
 
+	if (p_Simple)
+	{
+		const auto s_Json = T::ToSimpleJson(s_Resource);
+		return s_Json.dump();
+	}
+	
+	const auto s_Json = T::ToJson(s_Resource);
 	return s_Json.dump();
 }
 
 int main(int argc, char** argv)
 {
-	if (argc != 3)
+	if (argc < 3)
 	{
 		PrintHelp();
 		return 1;
@@ -108,6 +117,7 @@ int main(int argc, char** argv)
 
 	const std::string s_ResourcePathStr(argv[1]);
 	const std::string s_ResourceTypeStr(argv[2]);
+	bool s_SimpleJson = argc >= 4 && std::string(argv[3]) == "--simple";
 
 	ResourceType s_ResourceType = ResourceType::Unknown;
 
@@ -199,7 +209,7 @@ int main(int argc, char** argv)
 	switch (s_ResourceType)
 	{
 	case ResourceType::Template:
-		s_JsonDump = ResourceToJson<STemplateEntityFactory>(s_ResourceData);
+		s_JsonDump = ResourceToJson<STemplateEntityFactory>(s_ResourceData, s_SimpleJson);
 		break;
 	}
 	
