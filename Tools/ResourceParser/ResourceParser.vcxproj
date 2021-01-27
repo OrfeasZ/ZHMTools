@@ -101,6 +101,7 @@
     <ClCompile Include="Src\Generated\ZHMGen.cpp" />
     <ClCompile Include="Src\Generated\ZHMProperties.cpp" />
     <ClCompile Include="Src\ResourceParser.cpp" />
+    <ClCompile Include="Src\ZHM\ZHMCustomTypes.cpp" />
     <ClCompile Include="Src\ZHM\ZHMPrimitives.cpp" />
     <ClCompile Include="Src\ZHM\ZHMTypeInfo.cpp" />
   </ItemGroup>
@@ -109,9 +110,11 @@
     <ClInclude Include="Src\Generated\ZHMGen.h" />
     <ClInclude Include="Src\Generated\ZHMProperties.h" />
     <ClInclude Include="Src\External\json.hpp" />
+    <ClInclude Include="Src\Util\Base64.h" />
     <ClInclude Include="Src\Util\BinaryStream.h" />
     <ClInclude Include="Src\Util\PortableIntrinsics.h" />
     <ClInclude Include="Src\ZHM\TArray.h" />
+    <ClInclude Include="Src\ZHM\ZHMCustomTypes.h" />
     <ClInclude Include="Src\ZHM\ZHMPrimitives.h" />
     <ClInclude Include="Src\ZHM\ZHMTypeInfo.h" />
     <ClInclude Include="Src\ZHM\ZObject.h" />

@@ -2,7 +2,51 @@
 #include <filesystem>
 
 #include <Generated/ZHMGen.h>
+#include <ZHM/ZHMCustomTypes.h>
 #include <Util/BinaryStream.h>
+
+class IResourceConverter
+{
+public:
+	virtual std::string ToJson(void* p_ResourceData, bool p_Simple) = 0;
+};
+
+template<typename T>
+class ResourceConverter : public IResourceConverter
+{
+public:
+	std::string ToJson(void* p_ResourceData, bool p_Simple) override
+	{
+		auto* s_Resource = static_cast<T*>(p_ResourceData);
+
+		if (p_Simple)
+		{
+			const auto s_Json = T::ToSimpleJson(s_Resource);
+			return s_Json.dump();
+		}
+
+		const auto s_Json = T::ToJson(s_Resource);
+		return s_Json.dump();
+	}
+};
+
+// Supported resource types need to be registered here.
+static std::unordered_map<std::string, IResourceConverter*> g_ResourceConverters = {
+	{ "TEMP", new ResourceConverter<STemplateEntityFactory>() },
+	//{ "TBLU", new ResourceConverter<STemplateEntityBlueprint>() },
+	//{ "AIRG", new ResourceConverter<SReasoningGrid>() },
+	//{ "ASVA", new ResourceConverter<TArray<SPackedAnimSetEntry>>() },
+	{ "ATMD", new ResourceConverter<ZAMDTake>() },
+	//{ "CBLU", new ResourceConverter<SCppEntityBlueprint>() },
+	{ "CPPT", new ResourceConverter<SCppEntity>() },
+	//{ "CRMD", new ResourceConverter<SCrowdMapData>() },
+	{ "DSWB", new ResourceConverter<SAudioSwitchBlueprintData>() },
+	{ "ECPB", new ResourceConverter<SExtendedCppEntityBlueprint>() },
+	{ "GFXF", new ResourceConverter<SScaleformGFxResource>() },
+	{ "GIDX", new ResourceConverter<SGlobalResourceIndex>() },
+	{ "VIDB", new ResourceConverter<SVideoDatabaseData>() },
+	{ "WSGB", new ResourceConverter<SAudioSwitchBlueprintData>() },
+};
 
 void ProcessRelocations(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceStream)
 {
@@ -85,31 +129,13 @@ void PrintHelp()
 	
 	printf("\n");
 	printf("resource-type can be one of:\n");
-	printf("\tTEMP\n");
+
+	for (auto& s_Pair : g_ResourceConverters)
+		printf("\t%s\n", s_Pair.first.c_str());
+	
 	printf("\n");
 	printf("Options:\n");
 	printf("\t--simple\tGenerates simpler JSON output, omitting any type metadata.\n");
-}
-
-enum class ResourceType
-{
-	Template,
-	Unknown,
-};
-
-template<typename T>
-std::string ResourceToJson(void* p_ResourceData, bool p_Simple)
-{
-	auto* s_Resource = static_cast<T*>(p_ResourceData);
-
-	if (p_Simple)
-	{
-		const auto s_Json = T::ToSimpleJson(s_Resource);
-		return s_Json.dump();
-	}
-	
-	const auto s_Json = T::ToJson(s_Resource);
-	return s_Json.dump();
 }
 
 int main(int argc, char** argv)
@@ -124,12 +150,14 @@ int main(int argc, char** argv)
 	const std::string s_ResourceTypeStr(argv[2]);
 	bool s_SimpleJson = argc >= 4 && std::string(argv[3]) == "--simple";
 
-	ResourceType s_ResourceType = ResourceType::Unknown;
+	IResourceConverter* s_ResourceConverter = nullptr;
 
-	if (s_ResourceTypeStr == "TEMP")
-		s_ResourceType = ResourceType::Template;
+	auto s_ResourceConverterIt = g_ResourceConverters.find(s_ResourceTypeStr);
 
-	if (s_ResourceType == ResourceType::Unknown)
+	if (s_ResourceConverterIt != g_ResourceConverters.end())
+		s_ResourceConverter = s_ResourceConverterIt->second;
+	
+	if (s_ResourceConverter == nullptr)
 	{
 		PrintHelp();
 		return 1;
@@ -206,17 +234,9 @@ int main(int argc, char** argv)
 		}
 	}
 
-	// Everything should be properly reconstructed in memory now so we
-	// can just cast it to the appropriate type and we're good to go!
-
-	std::string s_JsonDump;
-
-	switch (s_ResourceType)
-	{
-	case ResourceType::Template:
-		s_JsonDump = ResourceToJson<STemplateEntityFactory>(s_ResourceData, s_SimpleJson);
-		break;
-	}
+	// Everything should be properly reconstructed in memory by now
+	// so just cast and convert this type to json.
+	std::string s_JsonDump = s_ResourceConverter->ToJson(s_ResourceData, s_SimpleJson);
 	
 	printf(s_JsonDump.c_str());
 	printf("\n");
