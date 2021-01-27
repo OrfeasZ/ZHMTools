@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <cstdlib>
 
+#include <Util/PortableIntrinsics.h>
+
 template<typename T>
 class TArray
 {
@@ -30,13 +32,14 @@ public:
 
 		if (m_pBegin == nullptr)
 		{
-			m_pBegin = reinterpret_cast<T*>(malloc(sizeof(T) * p_Size));
+			m_pBegin = static_cast<T*>(c_aligned_alloc(sizeof(T) * p_Size, alignof(T)));
 			m_pEnd = m_pBegin + p_Size;
 			m_pAllocationEnd = m_pEnd;
 			return;
 		}
 
-		m_pBegin = reinterpret_cast<T*>(realloc(m_pBegin, sizeof(T) * p_Size));
+		// TODO: Redo this without realloc and proper alignment.
+		m_pBegin = static_cast<T*>(realloc(m_pBegin, sizeof(T) * p_Size));
 		m_pEnd = m_pBegin + p_Size;
 		m_pAllocationEnd = m_pEnd;
 	}

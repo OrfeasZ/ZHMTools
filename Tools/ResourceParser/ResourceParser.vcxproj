@@ -110,6 +110,7 @@
     <ClInclude Include="Src\Generated\ZHMProperties.h" />
     <ClInclude Include="Src\External\json.hpp" />
     <ClInclude Include="Src\Util\BinaryStream.h" />
+    <ClInclude Include="Src\Util\PortableIntrinsics.h" />
     <ClInclude Include="Src\ZHM\TArray.h" />
     <ClInclude Include="Src\ZHM\ZHMPrimitives.h" />
     <ClInclude Include="Src\ZHM\ZHMTypeInfo.h" />

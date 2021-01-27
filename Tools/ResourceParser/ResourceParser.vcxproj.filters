@@ -65,5 +65,8 @@
     <ClInclude Include="Src\Generated\ZHMEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Util\PortableIntrinsics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

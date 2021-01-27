@@ -77,7 +77,12 @@ void ProcessTypeIds(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceStrea
 
 void PrintHelp()
 {
+#if _WIN32
 	printf("Usage: ResourceParser.exe <resource-path> <resource-type> [options]\n");
+#else
+	printf("Usage: ./ResourceParser <resource-path> <resource-type> [options]\n");
+#endif
+	
 	printf("\n");
 	printf("resource-type can be one of:\n");
 	printf("\tTEMP\n");
@@ -165,11 +170,11 @@ int main(int argc, char** argv)
 	s_Stream.Skip(1);
 
 	// For some reason this size is encoded in big endian.
-	const auto s_DataSize = _byteswap_ulong(s_Stream.Read<uint32_t>());
+	const auto s_DataSize = c_byteswap_ulong(s_Stream.Read<uint32_t>());
 
 	s_Stream.Skip(4);
 
-	void* s_ResourceData = _aligned_malloc(s_DataSize, s_Alignment);
+	void* s_ResourceData = c_aligned_alloc(s_DataSize, s_Alignment);
 	s_Stream.ReadBytes(s_ResourceData, s_DataSize);
 
 	// TODO: Fix. This is actually wrong because size could be bigger due to alignment.
@@ -215,6 +220,9 @@ int main(int argc, char** argv)
 	
 	printf(s_JsonDump.c_str());
 	printf("\n");
+
+	free(s_FileData);
+	c_aligned_free(s_ResourceData);
 
 	return 0;
 }
