@@ -33,7 +33,7 @@ inline void c_aligned_free(void* p_Memory)
 
 inline uint32_t c_byteswap_ulong(uint32_t p_Value)
 {
-#if _MSC_VER213
+#if _MSC_VER
 	return _byteswap_ulong(p_Value);
 #else
 	return ((p_Value >> 24) & 0x000000FF) | 
