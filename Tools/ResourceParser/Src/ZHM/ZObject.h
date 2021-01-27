@@ -9,6 +9,7 @@ class ZObjectRef
 {
 public:
 	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
 	
 public:
 	// This member (m_pTypeID) is normally an STypeID pointer, but we use our custom

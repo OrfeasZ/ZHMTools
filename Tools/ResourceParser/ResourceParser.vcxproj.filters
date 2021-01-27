@@ -30,6 +30,9 @@
     <ClCompile Include="Src\ZHM\ZHMTypeInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Generated\ZHMEnums.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Generated\ZHMProperties.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Util\BinaryStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Generated\ZHMEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

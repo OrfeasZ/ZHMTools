@@ -16,6 +16,16 @@ nlohmann::json ZObjectRef::ToJson(void* p_Object)
 	return s_Json;
 }
 
+nlohmann::json ZObjectRef::ToSimpleJson(void* p_Object)
+{
+	auto s_Object = static_cast<ZObjectRef*>(p_Object);
+	
+	if (s_Object->m_pTypeID == nullptr)
+		return nlohmann::json(nullptr);
+
+	return s_Object->m_pTypeID->ToSimpleJson(s_Object->m_pData);
+}
+
 void ZHMTypeInfo::RegisterPrimitiveTypes()
 {
 	new ZHMTypeInfo("int8",
