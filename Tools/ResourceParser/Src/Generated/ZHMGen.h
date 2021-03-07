@@ -12,608 +12,52 @@
 
 class ZHMTypeInfo;
 
-// 0x0000000142AA1B30 (Size: 0x4)
-enum class _EUIOptionKey
+// 0x0000000142AB2380 (Size: 0x4)
+enum class EActionRadialArcIconType
 {
-	UI_OPTION_GAME_VIBRATION = 100,
-	UI_OPTION_GAME_ADAPTIVE_FEEDBACK = 110,
-	UI_OPTION_GAME_AIM_ASSIST = 200,
-	UI_OPTION_GAME_AIM_CAUSAL = 210,
-	UI_OPTION_GAME_INVERT_INVENTORY_EMOTE = 220,
-	UI_OPTION_GAME_INVERT_X = 300,
-	UI_OPTION_GAME_INVERT_MOUSE_X = 301,
-	UI_OPTION_GAME_INVERT_MOUSE_Y = 302,
-	UI_OPTION_GAME_INVERT_Y = 310,
-	UI_OPTION_GAME_CONTROL_SCHEME = 311,
-	UI_OPTION_GAME_FAST_TARGET = 312,
-	UI_OPTION_GAME_DIFFICULTY = 321,
-	UI_OPTION_GAME_TRIGGER_SHOOT = 330,
-	UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA = 332,
-	UI_OPTION_GAME_LEFT_HANDED_CONTROLS = 333,
-	UI_OPTION_GAME_CAMERA_SENSITIVITY_HORZ = 334,
-	UI_OPTION_GAME_CAMERA_SENSITIVITY_VERT = 335,
-	UI_OPTION_GAME_MOUSE_SENSITIVITY = 336,
-	UI_OPTION_GAME_AIM_SENSITIVITY = 337,
-	UI_OPTION_GAME_CAMERA_SENSITIVITY = 338,
-	UI_OPTION_GAME_INSTINCT_PATHS = 340,
-	UI_OPTION_GAME_INSTINCT_NPCGLOW = 342,
-	UI_OPTION_GAME_HINTS_TUTORIAL = 346,
-	UI_OPTION_GAME_HINTS_INSTINCT = 348,
-	UI_OPTION_GAME_LANG_AUDIO = 350,
-	UI_OPTION_GAME_LANG_TEXT = 351,
-	UI_OPTION_GAME_COVER_TOGGLE = 352,
-	UI_OPTION_GAME_FIXED_MAP = 353,
-	UI_OPTION_GAME_MAP_SHOW_NORTH_INDICATOR = 354,
-	UI_OPTION_GAME_AID_OPPORTUNITIES = 360,
-	UI_OPTION_GAME_AID_INSTINCT = 361,
-	UI_OPTION_GAME_AID_MINI_MAP = 362,
-	UI_OPTION_GAME_AID_NPC_ICONS = 363,
-	UI_OPTION_GAME_AID_ATTENTION = 364,
-	UI_OPTION_GAME_AID_VITAL_INFO = 365,
-	UI_OPTION_GAME_AID_INTERACTION_H = 366,
-	UI_OPTION_GAME_AID_OBJECTIVES = 367,
-	UI_OPTION_GAME_AID_WEAPON_HUD = 368,
-	UI_OPTION_GAME_AID_CHALLENGEDESCRIPTION = 369,
-	UI_OPTION_GAME_MINI_MAP_SHOW_NPCS = 370,
-	UI_OPTION_GAME_AID_TARGET_INFO = 371,
-	UI_OPTION_GAME_AID_CHALLENGE_HUD = 372,
-	UI_OPTION_GAME_MINI_MAP_SHOW_TARGETS = 373,
-	UI_OPTION_GAME_CHALLENGES_FILTER = 374,
-	UI_OPTION_GAME_AID_MISSION_TIMER = 375,
-	UI_OPTION_GAME_DIFFICULTY_LEVEL_HUD = 376,
-	UI_OPTION_GAME_AID_GLOBAL_HINTS = 377,
-	UI_OPTION_GAME_SCORE_HUD = 378,
-	UI_OPTION_GAME_AID_LVA = 379,
-	UI_OPTION_GAME_AID_PICTURE_IN_PICTURE = 380,
-	UI_OPTION_GAME_AID_INTERACTION_PROMPT = 381,
-	UI_OPTION_GAME_AID_SA_HUD = 382,
-	UI_OPTION_GAME_AID_RELOAD_HUD = 383,
-	UI_OPTION_GAME_AID_CAMERA_GRID = 384,
-	UI_OPTION_GAME_AID_AIM_TOGGLE = 385,
-	UI_OPTION_GAME_AID_OBJECTIVES_VR = 386,
-	UI_OPTION_GAME_AUTOSAVE = 390,
-	UI_OPTION_GAME_AUTOSAVE_VR = 391,
-	UI_OPTION_GAME_AUTOSAVE_HUD = 400,
-	UI_OPTION_SOUND_VOLUME_MASTER = 1010,
-	UI_OPTION_SOUND_VOLUME_EFFECTS = 1020,
-	UI_OPTION_SOUND_VOLUME_MUSIC = 1030,
-	UI_OPTION_SOUND_VOLUME_DIALOGUE = 1040,
-	UI_OPTION_SOUND_MUTE_MICROPHONE = 1050,
-	UI_OPTION_SOUND_MUTE_OTHER_PLAYER = 1060,
-	UI_OPTION_SOUND_OUTPUTMODE = 1200,
-	UI_OPTION_SOUND_SIMULATION_QUALITY = 1210,
-	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE = 1220,
-	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE_VR = 1221,
-	UI_OPTION_GRAPHICS_SUBTITLES = 2000,
-	UI_OPTION_GRAPHICS_SUBTITLES_SIZE = 2001,
-	UI_OPTION_GRAPHICS_SUBTITLES_VR = 2010,
-	UI_OPTION_GRAPHICS_SUBTITLES_SIZE_VR = 2011,
-	UI_OPTION_GRAPHICS_SAFE_AREA_X = 2210,
-	UI_OPTION_GRAPHICS_SAFE_AREA_Y = 2220,
-	UI_OPTION_GSM_AUTHORITY_BEGIN_MARKER = 2221,
-	UI_OPTION_DISPLAY_RESOLUTION = 2230,
-	UI_OPTION_DISPLAY_REFRESHRATE = 2240,
-	UI_OPTION_DISPLAY_FULLSCREEN = 2250,
-	UI_OPTION_DISPLAY_EXCLUSIVE = 2260,
-	UI_OPTION_DISPLAY_VSYNC = 2270,
-	UI_OPTION_DISPLAY_MONITOR = 2280,
-	UI_OPTION_DISPLAY_QUALITY = 2290,
-	UI_OPTION_DISPLAY_ASPECT = 2300,
-	UI_OPTION_DISPLAY_STEREOSCOPIC = 2310,
-	UI_OPTION_DISPLAY_STEREO_DEPTH = 2320,
-	UI_OPTION_DISPLAY_STEREO_STRENGTH = 2330,
-	UI_OPTION_GRAPHICS_QUALITY = 2600,
-	UI_OPTION_GRAPHICS_SHADOW_QUALITY = 2610,
-	UI_OPTION_GRAPHICS_SHADOW_RESOLUTION = 2620,
-	UI_OPTION_GRAPHICS_TEXTURE_QUALITY = 2630,
-	UI_OPTION_GRAPHICS_TEXTURE_FILTER = 2640,
-	UI_OPTION_GRAPHICS_ASSAO_QUALITY = 2650,
-	UI_OPTION_GRAPHICS_VSYNC = 2660,
-	UI_OPTION_GRAPHICS_TESSELLATION = 2680,
-	UI_OPTION_GRAPHICS_MIRRORS = 2690,
-	UI_OPTION_GRAPHICS_LOD = 2710,
-	UI_OPTION_GRAPHICS_MOTIONBLUR = 2720,
-	UI_OPTION_GRAPHICS_BOKEH = 2740,
-	UI_OPTION_GRAPHICS_REFLECTION_QUALITY = 2742,
-	UI_OPTION_GRAPHICS_MOTION_BLUR = 2743,
-	UI_OPTION_GRAPHICS_DYNAMIC_SHARPENING = 2744,
-	UI_OPTION_GRAPHICS_SIMULATION_QUALITY = 2745,
-	UI_OPTION_GRAPHICS_SSR = 2746,
-	UI_OPTION_GRAPHICS_VRS = 2747,
-	UI_OPTION_GRAPHICS_SUPER_SAMPLING = 2750,
-	UI_OPTION_GRAPHICS_GAMMA = 2760,
-	UI_OPTION_GRAPHICS_FRAMERATE_LIMIT = 2770,
-	UI_OPTION_GRAPHICS_HDR = 2771,
-	UI_OPTION_GSM_AUTHORITY_END_MARKER = 2771,
-	UI_OPTION_GRAPHICS_HDR_GAMMA = 2772,
-	UI_OPTION_GRAPHICS_RENDERING_QUALITY = 2773,
-	UI_OPTION_GRAPHICS_NEUTRAL_LUT_BLEND = 2774,
-	UI_OPTION_GRAPHICS_DIFFUSE_COLOR_CLAMP = 2775,
-	UI_OPTION_VR_BLINDERS_ENABLED = 3000,
-	UI_OPTION_VR_BLINDERS_STRENGTH = 3001,
-	UI_OPTION_VR_TURN_MODE = 3002,
-	UI_OPTION_VR_HEAD_BASED_MOVEMENT = 3003,
-	UI_OPTION_VR_FADE_ON_COLLISION = 3004,
-	UI_OPTION_VR_TURN_RATE = 3005,
-	UI_OPTION_VR_TURN_SPEED = 3006,
-	UI_OPTION_VR_MINIMUM_REPROJECTION_COLOR = 3007,
-	UI_OPTION_VR_LEFT_HAND_FOLLOW_RIGHT = 3008,
+	EARAIT_NoIcon = 0,
+	EARAIT_Locked = 1,
+	EARAIT_NeedTool = 2,
+	EARAIT_IsRunning = 3,
+	EARAIT_Crowbar = 4,
+	EARAIT_Wrench = 5,
+	EARAIT_Card = 6,
+	EARAIT_Lockpick = 7,
+	EARAIT_Screwdriver = 8,
+	EARAIT_AmmoBullet = 9,
+	EARAIT_Flower = 10,
+	EARAIT_ChemicalTube = 11,
+	EARAIT_Golfball = 12,
+	EARAIT_Keypad = 13,
+	EARAIT_Key = 14,
+	EARAIT_Coin = 15,
+	EARAIT_Poison = 16,
+	EARAIT_Exsplosive = 17,
 };
 
-// 0x0000000142A926C0 (Size: 0x4)
-enum class EVRConfigCameraRotationAllowed
+// 0x0000000142B01628 (Size: 0x4)
+enum class EPhysicsObjectType
 {
-	EVRCCRA_RotationEnabled = 0,
-	EVRCCRA_RotationDisabled = 1,
-	EVRCCRA_KeepCurrent = 2,
+	EPHYSICSOBJECTTYPE_UNKNOWN = 0,
+	EPHYSICSOBJECTTYPE_DYNAMIC = 1,
+	EPHYSICSOBJECTTYPE_KINEMATIC = 2,
+	EPHYSICSOBJECTTYPE_STATIC = 3,
 };
 
-// 0x000000014210D858 (Size: 0x8)
-class IComponentInterface
+// 0x0000000142A9CA10 (Size: 0x4)
+enum class EGameEventType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
+	GET_GameplayStart = 0,
+	GET_GameplayStop = 1,
+	GET_IntroCutStart = 2,
+	GET_IntroCutEnd = 3,
+	GET_ProfilingStart = 4,
+	GET_SavegameRestored = 5,
+	GET_PlayingAfterLoad = 6,
+	GET_COUNT = 7,
 };
 
-// 0x0000000142A93998 (Size: 0x8)
-class IActorPickerFilter :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x000000014210A8D8 (Size: 0x10)
-class float4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 x; // 0x0
-	float32 y; // 0x4
-	float32 z; // 0x8
-	float32 w; // 0xC
-};
-
-// 0x0000000143E5FA80 (Size: 0x40)
-class SCollidingParticle
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float4 m_vPosition; // 0x0
-	float4 m_vVelocity; // 0x10
-	float4 m_vNewVelocity; // 0x20
-	uint32 m_nColor; // 0x30
-	float32 m_fSize; // 0x34
-};
-
-// 0x0000000142A7B270 (Size: 0x4)
-enum class CrowdReactionAIEventType
-{
-	CROWDAIEVENT_NONE = 0,
-	CROWDAIEVENT_CURIOUS = 1,
-	CROWDAIEVENT_ALERTED = 2,
-	CROWDAIEVENT_BLAME_FOR_WEAPON = 3,
-	CROWDAIEVENT_BLAME_FOR_KILL = 4,
-};
-
-// 0x0000000142AF48D0 (Size: 0x1)
-enum class EMaterialRegistrationState
-{
-	eMRS_None = 0,
-	eMRS_Pending = 1,
-	eMRS_Success = 2,
-	eMRS_Failed = 3,
-};
-
-// 0x0000000142A8BBE0 (Size: 0x4)
-enum class ESituationStateChangeReason
-{
-	eSSCR_NONE = 0,
-	eSSCR_C_DIED = 16,
-	eSSCR_C_DEACTIVATED = 32,
-	eSSCR_C_CONTROLLED = 64,
-	eSSCR_C_CLOSE_COMBAT = 128,
-	eSSCR_C_HERO_ACTION = 256,
-	eSSCR_C_PACIFIED = 512,
-	eSSCR_CL_CHILD_DRAMA = 1024,
-	eSSCR_CL_OTHER_DRAMA = 2048,
-	eSSCR_CL_SYSTEMIC = 4096,
-	eSSCR_S_DISABLED = 8192,
-	eSSCR_S_DONE = 16384,
-	eSSCR_S_TERMINATED = 32768,
-	eSSCR_S_STARTED = 65536,
-	eSSCR_S_RESUMING = 131072,
-	eSSCR_S_UNPAUSE = 262144,
-	eSSCR_R_RESOURCE_UNAVAILABLE = 524288,
-	eSSCR_PAUSED_FROM_PLAYING = 1048576,
-	eSSCR_PAUSED_FROM_RESUMING = 2097152,
-};
-
-// 0x0000000142AE2228 (Size: 0x4)
-enum class TeleportActionType
-{
-	STAY = 0,
-	TELEPORT = 1,
-	LEAVE_CROWD = 2,
-};
-
-// 0x0000000142A82EB0 (Size: 0x4)
-enum class EActorAIState
-{
-	eAAIS_None = 0,
-	eAAIS_Distracted = 1,
-	eAAIS_PotentialThreat = 2,
-	eAAIS_PotentialThreatDistracted = 3,
-	eAAIS_PotentialThreatDisabled = 4,
-	eAAIS_Aggressive = 5,
-	eAAIS_EscortingOut = 6,
-	eAAIS_Fleeing = 7,
-	eAAIS_Unconscious = 8,
-	eAAIS_Stunned = 9,
-	eAAIS_Grenade = 10,
-	eAAIS_DisabledInCombat = 11,
-	eAAIS_Disabled = 12,
-	eAAIS_Max = 13,
-};
-
-// 0x0000000142A79EA8 (Size: 0x4)
-enum class EMorphemeEventId
-{
-	eDE_None = 0,
-	eDE_UnholsterWeapon = 18,
-	eDE_HolsterWeapon = 19,
-	eDE_FireWeapon = 20,
-	eDE_AttachWeapon = 21,
-	eDE_DetachWeapon = 22,
-	eDE_LegR = 100,
-	eDE_LegL = 101,
-	eDE_TransitionEnd_LegR = 200,
-	eDE_TransitionEnd_LegL = 201,
-	eDE_Finish = 255,
-	eDE_InterpolationStart = 300,
-	eDE_InterpolationEnd = 301,
-	eDE_TransitionSignal = 400,
-	eDE_TransitionEnd = 500,
-	eDE_DisableNPCHitmanCollision = 700,
-	eDE_EnableNPCHitmanCollision = 701,
-	eDE_EnableRagdollRangeStart = 800,
-	eDE_EnableRagdollRangeEnd = 801,
-	eDE_StartBlendingOut = 850,
-	eDE_FinishBlendingOut = 851,
-	eDE_StartOrientationBlend = 860,
-	eDE_FinishOrientationBlend = 861,
-	eDE_RecoveryPowerRagdollEnd = 862,
-	eDE_RecoveryBlendEnd = 863,
-	eDE_ImpactFinished = 900,
-	eDE_ActFinished = 1000,
-	eDE_ActFinishedWhenMoving = 1001,
-	eDE_ActReached = 1005,
-	eDE_ActLoop = 1050,
-	eDE_ActFullbodyStartMarker = 1090,
-	eDE_ActFullbodyEndMarker = 1091,
-	eDE_ReactionFinished = 1100,
-	eDE_StandToCrouch = 1500,
-	eDE_CrouchToStand = 1501,
-	eDE_OffHandIKEnable = 1600,
-	eDE_OffHandIKDisable = 1601,
-	eDE_StandToMoveRotationToTranslation = 1700,
-	eDE_MoveToStandTranslationToRotation = 1701,
-	eDE_HeadIKEnable = 1800,
-	eDE_HeadIKDisable = 1801,
-	eDE_WindowLeaningEnable = 2000,
-	eDE_WindowLeaningDisable = 2001,
-	eDE_PreventDeathAnimations = 2002,
-	eDE_AllowDeathAnimations = 2003,
-	eDE_HeadControlEnable = 2010,
-	eDE_HeadControlDisable = 2011,
-	eDE_CombatActEndMarker = 3000,
-	eDE_CombatAim = 3100,
-	eDE_CombatEnableRightHandIK = 3010,
-	eDE_CombatEnableLeftHandIK = 3011,
-	eDE_CombatEndEnableIK = 3015,
-	eDE_CombatStartDisableIK = 3020,
-	eDE_CombatEndDisableIK = 3025,
-	eDE_CombatEnableShoot = 3030,
-	eDE_CombatDisableShoot = 3040,
-	eDE_CombatEnableBlindShoot = 3050,
-	eDE_CombatDisableBlindShoot = 3060,
-	eDE_CombatUnholsterGrenade = 3070,
-	eDE_CombatThrowGrenade = 3080,
-	eDE_ActBehaviorEventStart = 4000,
-	eDE_ActItemPickup = 4001,
-	eDE_ActItemDrop = 4002,
-	eDE_AmbientItemUseMarker = 4010,
-	eDE_ActBehaviorEventEnd = 4999,
-	eDE_Act_LeadIn_Marker = 10301,
-	eDE_Act_UB_BlendIn_End = 10050,
-	eDE_Act_FB_BlendIn_Start = 10051,
-	eDE_Act_FB_BlendIn_End = 10052,
-	eDE_Act_FB_BlendOut_End = 10053,
-};
-
-// 0x0000000142AB1E50 (Size: 0x4)
-enum class ECrossHairType
-{
-	CROSSHAIR_NONE = 0,
-	CROSSHAIR_PISTOL = 1,
-	CROSSHAIR_REVOLVER = 2,
-	CROSSHAIR_SMG = 3,
-	CROSSHAIR_RIFLE = 4,
-	CROSSHAIR_SHOTGUN = 5,
-	CROSSHAIR_SNIPER = 6,
-	CROSSHAIR_HARDBALLER = 7,
-	CROSSHAIR_UNAIMED = 8,
-	CROSSHAIR_POINTER = 9,
-	CROSSHAIR_WORLDCENTERMARKER = 10,
-	CROSSHAIR_BLINDFIRE = 11,
-	CROSSHAIR_RANGEINDICATOR = 12,
-	CROSSHAIR_DOT = 13,
-};
-
-// 0x0000000142AE3330 (Size: 0x20)
-class SEntityTemplateReference
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint64 entityID; // 0x0
-	int32 externalSceneIndex; // 0x8
-	int32 entityIndex; // 0xC
-	ZString exposedEntity; // 0x10
-};
-
-// 0x0000000142AE34C8 (Size: 0x18)
-class SEntityTemplateProperty
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 nPropertyID; // 0x0
-	ZVariant value; // 0x8
-};
-
-// 0x0000000142AE34F8 (Size: 0x4)
-enum class EVirtualPlatformID
-{
-	DEFAULT = 0,
-	PC = 256,
-	PC_ENHANCED = 257,
-	PS4 = 512,
-	PS4_PRO = 513,
-	XBONE = 768,
-	XBONE_X = 769,
-	STADIA = 1024,
-	PS5 = 1280,
-	XBSCARLETT = 1536,
-	XBSCARLETT_ANACONDA = 1537,
-	VR = 65536,
-	VR_PC = 65792,
-	VR_PS4 = 66048,
-	VR_PS4_PRO = 66049,
-	VR_PS5 = 66816,
-	__SUB = 255,
-	__BASE = 65280,
-	__SYSTEM = 16711680,
-};
-
-// 0x0000000142AE3510 (Size: 0x20)
-class SEntityTemplatePlatformSpecificProperty
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SEntityTemplateProperty propertyValue; // 0x0
-	EVirtualPlatformID platform; // 0x18
-	bool postInit; // 0x1C
-};
-
-// 0x0000000142AE35E8 (Size: 0x70)
-class STemplateFactorySubEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SEntityTemplateReference logicalParent; // 0x0
-	int32 entityTypeResourceIndex; // 0x20
-	TArray<SEntityTemplateProperty> propertyValues; // 0x28
-	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x40
-	TArray<SEntityTemplatePlatformSpecificProperty> platformSpecificPropertyValues; // 0x58
-};
-
-// 0x0000000142A8FE70 (Size: 0x10)
-class SRotateEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-	float32 m_fXAxisSpeed; // 0x4
-	float32 m_fYAxisSpeed; // 0x8
-	float32 m_fZAxisSpeed; // 0xC
-};
-
-// 0x0000000142A95E90 (Size: 0x4)
-enum class SniperControllerConditionType
-{
-	SCCT_Enabled = 0,
-	SCCT_PrecisionAim = 1,
-};
-
-// 0x00000001422CA508 (Size: 0x4)
-enum class EAnimSetType
-{
-	EAST_UNDEFINED = 0,
-	EAST_DEFAULT = 1,
-	EAST_PISTOL = 2,
-	EAST_REVOLVER = 3,
-	EAST_SMG = 4,
-	EAST_SNIPER = 5,
-	EAST_ASSULT = 6,
-	EAST_SHOTGUN = 7,
-	EAST_BODYBAG = 8,
-	EAST_GLASS = 9,
-	EAST_WHISKYGLASS = 10,
-	EAST_WINEGLASS = 11,
-	EAST_CHAMPAGNEGLASS = 12,
-	EAST_PHONE = 13,
-	EAST_BOX = 14,
-	EAST_PLATE = 15,
-	EAST_SMALLOBJ = 16,
-	EAST_SUITCASE = 17,
-	EAST_TRAY = 18,
-	EAST_TROLLY = 19,
-	EAST_FLASHLIGHT = 20,
-	EAST_CARRY_1HANDEDWEAPON = 21,
-	EAST_CARRY_2HANDEDWEAPON = 22,
-	EAST_CARRY_RAKE = 23,
-	EAST_CARRY_WEAPON_ITEM = 24,
-	EAST_CARRY_BRICK_MINE = 25,
-	EAST_CARRY_PROXY_MINE = 26,
-	EAST_CARRY_LEAD_PIPES = 27,
-	EAST_CARRY_TUBE = 28,
-	EAST_CARRY_UMBRELLA = 29,
-};
-
-// 0x0000000142A8BBF8 (Size: 0x50)
-class ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7A8E8 (Size: 0x80)
-class ZCombatOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E62FB8 (Size: 0x10)
-class SUIGridCellPosition
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 nColumnIndex; // 0x0
-	int32 nRowIndex; // 0x4
-	int32 nColumnSpan; // 0x8
-	int32 nRowSpan; // 0xC
-};
-
-// 0x0000000142A7B710 (Size: 0x4)
-enum class EBaseMovementType
-{
-	eMovementNone = -1,
-	eMovementDead = 0,
-	eMovementNewFullBody = 1,
-	eMovementAgility = 2,
-	eMovementAlign = 3,
-	eMovementCover = 4,
-	eMovementDrainPipe = 5,
-	eMovementLadder = 6,
-	eMovementPullVictimFromWindow = 7,
-	eMovementFiberWireKill = 8,
-	eMovementDumpBody = 9,
-	eMovementThrowBodyOverRail = 10,
-	eMovementDumpBodyOverLedge = 11,
-	eMovementOperateCPDoor = 12,
-	eMovementDisguiseSafeZone = 13,
-	eMovementHideInCloset = 14,
-	eMovementTakeDown = 15,
-	eMovementCloseCombat = 16,
-	eMovementRecoveryFinisher = 17,
-	eMovementContextAction = 18,
-	eMovementSubaction = 19,
-	eMovementGrabVictim = 20,
-	eMovementPushVictimThroughWindowAndRail = 21,
-	eMovementContextKill = 22,
-	eMovementKickVictimOverLedge = 23,
-	eMovementDragBody = 24,
-	eMovementTakeClothes = 25,
-	eMovementCoupDeGrace = 26,
-	eMovementThrow = 27,
-	eMovementPlace = 28,
-	eMovementSurrender = 29,
-	eMovementFrisk = 30,
-	eMovementShowItem = 31,
-	eMovementPeek = 32,
-	eMovementFocusedInteraction = 33,
-	eMovementSilentTakedown = 34,
-	eMovementSnapNeck = 35,
-	eMovementLocomotion = 36,
-	eMovementLast = 37,
-	eMovementPickupItem = 38,
-};
-
-// 0x0000000142A927F8 (Size: 0x4)
-enum class EThrowType
-{
-	THROW_NONE = 0,
-	THROW_COIN = 1,
-	THROW_NORMAL = 2,
-	THROW_HEAVY = 3,
-	THROW_KNOCKDOWN_LIGHT = 4,
-	THROW_KNOCKDOWN_HEAVY = 5,
-	THROW_PACIFY_LIGHT = 6,
-	THROW_PACIFY_HEAVY = 7,
-	THROW_DEADLY_LIGHT = 8,
-	THROW_DEADLY_HEAVY = 9,
-};
-
-// 0x0000000142AA2200 (Size: 0x8)
-class SUIBreadcrumbDataSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fProgress; // 0x0
-	int32 m_nState; // 0x4
-};
-
-// 0x0000000142AEED50 (Size: 0x4)
-enum class ECoordinateSpace
-{
-	CSPACE_INVALID = 0,
-	CSPACE_OBJECT_TO_WORLD = 1,
-	CSPACE_OBJECT_TO_PARENT = 2,
-	CSPACE_SEQUENCE_ORIGIN = 3,
-	CSPACE_CHARACTER_RELATIVE = 4,
-};
-
-// 0x0000000142A942B0 (Size: 0x4)
+// 0x0000000142AA1070 (Size: 0x4)
 enum class ECompiledConditionType
 {
 	CT_IsCurrent = 0,
@@ -777,7 +221,7 @@ enum class ECompiledConditionType
 	CT_IsAccidentBystandingGuardSearching = 158,
 };
 
-// 0x0000000142A79ED8 (Size: 0x8)
+// 0x0000000142A86C38 (Size: 0x8)
 class ZBehaviorTreeVariable
 {
 public:
@@ -787,7 +231,7 @@ public:
 
 };
 
-// 0x0000000142A942C8 (Size: 0x10)
+// 0x0000000142AA1088 (Size: 0x10)
 class SConditionBase
 {
 public:
@@ -800,8 +244,8 @@ public:
 	ZBehaviorTreeVariable assignTo; // 0x8
 };
 
-// 0x0000000142A9ADB0 (Size: 0x18)
-class SCondition_RemoveSituationsWithDesiredNumberOfCombatants :
+// 0x0000000142AA8850 (Size: 0x18)
+class SCondition_GetRandomFightTarget :
 	public SConditionBase
 {
 public:
@@ -809,141 +253,78 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable m_CombatSituations; // 0x10
+	ZBehaviorTreeVariable combatPosition; // 0x10
 };
 
-// 0x0000000142A82FD8 (Size: 0x4)
-enum class ECautiousDisturbanceState
+// 0x0000000142A9F498 (Size: 0x4)
+enum class EVRConfigHeadAnchorMode
 {
-	eCDS_Pending = 0,
-	eCDS_Expired = 1,
-	eCDS_Handled = 2,
-	eCDS_GetHelpGroup = 3,
-	eCDS_InvestigationGroup = 4,
-	eCDS_InvestigateAfterExplosion = 5,
-	eCDS_Ignored = 6,
-	eCDS_NoInvestigator = 7,
-	eCDS_Similar = 8,
-	eCDS_ManHunt = 9,
-	eCDS_CombatSuppressGunshots = 10,
+	EVRCHAM_HeadBone = 0,
+	EVRCHAM_CapsuleBased = 1,
+	EVRCHAM_CapsuleGrid = 2,
+	EVRCHAM_LockPosition = 3,
+	EVRCHAM_KeepCurrent = 4,
 };
 
-// 0x0000000142A82FC0 (Size: 0x4)
-enum class EDisturbanceType
-{
-	DT_Generic = 0,
-	DT_SeeWeapon = 1,
-	DT_BodyNeedsBagging = 2,
-	DT_SoundCloseCombat = 3,
-	DT_SoundGunSilenced = 4,
-	DT_SoundBulletImpact = 5,
-	DT_SoundNeckBreak = 6,
-	DT_SoundSpeakPain = 7,
-	DT_SoundGunshot = 8,
-	DT_SoundExplosion = 9,
-	DT_SeeExplosion = 10,
-	DT_DeadBody = 11,
-	DT_HitmanNearDeadBody = 12,
-	DT_HitmanNearPacifiedBody = 13,
-	DT_SeeTakeKeyCard = 14,
-	DT_SeeTakeSecurityTape = 15,
-	DT_SeeChangeOutfit = 16,
-	DT_SeeTrespasser = 17,
-	DT_SeeBrokenDisguise = 18,
-	DT_SeeIllegalWeapon = 19,
-	DT_SeeDraggingBody = 20,
-	DT_SeeDeath = 21,
-	DT_SeeKilling = 22,
-	DT_UnconsciousVictim = 23,
-	DT_HuntTarget = 24,
-	DT_CrowdAlerted = 25,
-	DT_SeeGunshotVictim = 26,
-	DT_SoundThrownItem = 27,
-	DT_SoundThrownItemSeenThrowing = 28,
-	DT_HitByItemOrCoin = 29,
-	DT_PrivateAreaViolated = 30,
-	DT_SetpieceInteraction = 31,
-	DT_IllegalAction = 32,
-	DT_KnockdownMelee = 33,
-	DT_KnockdownThrow = 34,
-	DT_BumpedTooMuch = 35,
-	DT_Murder = 36,
-	DT_Strangle = 37,
-	DT_GotShot = 38,
-	DT_MurderAttempt = 39,
-	DT_LongTermMemory = 40,
-	DT_Accident = 41,
-	DT_MAX = 42,
-};
-
-// 0x0000000142A79FF8 (Size: 0x8)
-class ZGameTime
+// 0x0000000142117658 (Size: 0x10)
+class float4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	int64 m_nTicks; // 0x0
+	float32 x; // 0x0
+	float32 y; // 0x4
+	float32 z; // 0x8
+	float32 w; // 0xC
 };
 
-// 0x0000000142A94D50 (Size: 0x20)
-class SDisturbanceSaveData
+// 0x00000001421176B8 (Size: 0x40)
+class SMatrix
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	int32 m_object; // 0x0
-	EDisturbanceType m_type; // 0x4
-	ECautiousDisturbanceState m_state; // 0x8
-	ZGameTime m_started; // 0x10
-	int32 m_pInvestigateGroup; // 0x18
-	bool m_bLockOnHitmanPosition; // 0x1C
+	float4 XAxis; // 0x0
+	float4 YAxis; // 0x10
+	float4 ZAxis; // 0x20
+	float4 Trans; // 0x30
 };
 
-// 0x0000000142AE2168 (Size: 0x4)
-enum class ECrowdFlowCandidates
+// 0x0000000142A9F4C8 (Size: 0x70)
+class SVRConfigCameraComponent
 {
-	NONE = 0,
-	EVERYONE = 1,
-	SPAWNED_ON_FLOW = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EVRConfigHeadAnchorMode m_eHeadAnchorMode; // 0x0
+	uint32 m_uRecenterRequestCounter; // 0x4
+	float32 m_fVRUserInputWeight; // 0x8
+	float32 m_fGridSize; // 0xC
+	float32 m_fCapsuleHeadAttacherOffset; // 0x10
+	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x14
+	float32 m_fHeadBoneAttacherOffset; // 0x18
+	float4 m_vAnchorPosOffset; // 0x20
+	SMatrix m_mAnchorRotOffset; // 0x30
 };
 
-// 0x0000000142A98310 (Size: 0x4)
-enum class ECharacterSubcontrollerType
+// 0x000000014211A5D8 (Size: 0x8)
+class IComponentInterface
 {
-	eSCT_IDGenerator = 0,
-	eSCT_Debugger = 1,
-	eSCT_Time = 2,
-	eSCT_Tags = 3,
-	eSCT_Descriptors = 4,
-	eSCT_ActionRequest = 5,
-	eSCT_Events = 6,
-	eSCT_Animator = 7,
-	eSCT_Motor = 8,
-	eSCT_Inventory = 9,
-	eSCT_FlavorIdle = 10,
-	eSCT_Lookat = 11,
-	eSCT_AimAssistant = 12,
-	eSCT_CharacterCollector = 13,
-	eSCT_SwipeMechanic = 14,
-	eSCT_OpenDoor = 15,
-	eSCT_Fullbody = 16,
-	eSCT_Aim = 17,
-	eSCT_PrecisionShot = 18,
-	eSCT_Marking = 19,
-	eSCT_Grip = 20,
-	eSCT_Suitcase = 21,
-	eSCT_VRConfig = 22,
-	eSCT_Hands = 23,
-	eSCT_StickingItems = 24,
-	eSCT_Fiberwire = 25,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
 };
 
-// 0x0000000142A7BE08 (Size: 0x8)
-class ICharacterSpeakController :
+// 0x0000000142AB0CC0 (Size: 0x20)
+class ZMapTrackerListProvider :
 	public IComponentInterface
 {
 public:
@@ -953,54 +334,181 @@ public:
 
 };
 
-// 0x0000000142A99B48 (Size: 0x4)
-enum class EItemGripType
+// 0x0000000143CEC330 (Size: 0x4)
+enum class eParticleEmitterMeshEntity_SpawnModes
 {
-	IGT_Empty = 0,
-	IGT_Suitcase = 1,
-	IGT_Suitcase_Big = 2,
-	IGT_Firearm_Pistol = 3,
-	IGT_Firearm_Pistol_Stealth = 4,
-	IGT_Firearm_AssaultRifle_Bullpup = 5,
-	IGT_Firearm_AssaultRifle_Carbine = 6,
-	IGT_Firearm_Shotgun = 7,
-	IGT_Firearm_SMG = 8,
-	IGT_Firearm_SMG02 = 9,
-	IGT_Firearm_SniperRifle = 10,
-	IGT_Firearm_SniperRifle02 = 11,
-	IGT_Firearm_Dartgun = 12,
-	IGT_Melee_1H_Baton = 13,
-	IGT_Melee_1H_Cleaver = 14,
-	IGT_Melee_1H_Hammer = 15,
-	IGT_Melee_1H_Knife = 16,
-	IGT_Melee_1H_Rock = 17,
-	IGT_Melee_1H_Screwdriver = 18,
-	IGT_Melee_1H_Stick = 19,
-	IGT_Melee_1H_Sword = 20,
-	IGT_Melee_1H_FireExtinguisher = 21,
-	IGT_Melee_1H_Bust = 22,
-	IGT_Melee_1H_Crowbar = 23,
-	IGT_Melee_1H_Syringe = 24,
-	IGT_Melee_2H_Axe = 25,
-	IGT_Melee_2H_Stick = 26,
-	IGT_Melee_2H_Sword = 27,
-	IGT_Gadget_Fiberwire = 28,
-	IGT_Gadget_Coin = 29,
-	IGT_Gadget_Vial = 30,
-	IGT_Gadget_C4 = 31,
-	IGT_Gadget_Detonator = 32,
-	IGT_Gadget_Grenade_ThickGrip = 33,
-	IGT_Gadget_Grenade_ThinGrip = 34,
-	IGT_Gadget_Mine = 35,
-	IGT_Gadget_Remote = 36,
-	IGT_Prop_1H = 37,
-	IGT_Prop_1H_Duck = 38,
-	IGT_Prop_1h_Phone = 39,
-	IGT_None = 40,
+	MESH_SPAWNMODE_VERTEX = 0,
+	MESH_SPAWNMODE_EDGE = 1,
+	MESH_SPAWNMODE_FACE = 2,
 };
 
-// 0x0000000142A9AD08 (Size: 0x18)
-class SCondition_IsAccidentVictimDisposable :
+// 0x0000000142AA59D0 (Size: 0x4)
+enum class EFocusBarState
+{
+	FOCUS_BAR_NORMAL = 0,
+	FOCUS_BAR_INSTINCT = 1,
+	FOCUS_BAR_BURNING = 2,
+};
+
+// 0x00000001422D6EB8 (Size: 0x1)
+enum class ERenderGlowTypes
+{
+	ERENDERGLOWTYPE_NONE = 0,
+	ERENDERGLOWTYPE_ENEMIES = 1,
+	ERENDERGLOWTYPE_ALLIES = 2,
+	ERENDERGLOWTYPE_CIVILIAN = 3,
+	ERENDERGLOWTYPE_ITEMS = 4,
+	ERENDERGLOWTYPE_STASHED_ITEMS = 5,
+	ERENDERGLOWTYPE_SETPIECE = 6,
+	ERENDERGLOWTYPE_BACKGROUND = 7,
+	ERENDERGLOWTYPE_CONTRACT_TARGET = 8,
+	ERENDERGLOWTYPE_CONTRACT_TARGET_NON_CRITICAL = 9,
+	ERENDERGLOWTYPE_CONTRACT_TARGET_SPECIAL = 10,
+	ERENDERGLOWTYPE_OBJECTIVES = 11,
+	ERENDERGLOWTYPE_ENFORCER = 12,
+	ERENDERGLOWTYPE_LTMEMORY = 13,
+	ERENDERGLOWTYPE_TAGGED = 14,
+	ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED = 15,
+	ERENDERGLOWTYPE_TAGFOCUS_TAGGED = 16,
+	ERENDERGLOWTYPE_BACKGROUNDUNMASKED = 17,
+	ERENDERGLOWTYPE_INTERACTION = 18,
+	ERENDERGLOWTYPE_INTERACTION_SELECTED = 19,
+	ERENDERGLOWTYPE_INTERACTION_DESELECTED = 20,
+	ERENDERGLOWTYPE_PLAYER_LVA = 21,
+	ERENDERGLOWTYPE_PLAYER_LVA_SEEN = 22,
+	ERENDERGLOWTYPE_VS_OPPONENT = 23,
+	ERENDERGLOWTYPE_TRAVERSAL = 24,
+	ERENDERGLOWTYPE_EMISSIVE_UI = 25,
+	ERENDERGLOWTYPE_EMISSIVE_UI_IGNORE_DEPTH = 26,
+	ERENDERGLOWTYPE_OPPONENT = 27,
+	ERENDERGLOWTYPE_CAMERA = 28,
+};
+
+// 0x0000000142AA7BA8 (Size: 0x10)
+class SCondition_IsSeasonTwoCombatEnabled :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABF750 (Size: 0x4)
+enum class ESoundCollisionObjectType
+{
+	StaticRigidBody = 0,
+	DynamicRigidBody = 1,
+	Ragdoll = 2,
+};
+
+// 0x0000000142AA55B0 (Size: 0x4)
+enum class EGSEvent
+{
+	GSEvent_StrayBullet = 0,
+	GSEvent_TookDamage = 1,
+	GSEvent_UsedCover = 2,
+	GSEvent_UsedRun = 3,
+	GSEvent_UsedEliminate = 4,
+	GSEvent_UsedChokeOut = 5,
+	GSEvent_UsedKnockOutByHand = 6,
+	GSEvent_Pacified = 7,
+	GSEvent_TargetPacified = 8,
+	GSEvent_Recover = 9,
+	GSEvent_CaughtArmed = 10,
+	GSEvent_BodyFound = 11,
+	GSEvent_InvestigateCurious = 12,
+	GSEvent_NPCKilled = 13,
+	GSEvent_KilledNPCHidden = 14,
+	GSEvent_InvestigateCautious = 15,
+	GSEvent_PrecisionAimedKill = 16,
+	GSEvent_BlendInActivated = 17,
+	GSEvent_PropKill = 18,
+	GSEvent_SpottedThroughDisguise = 19,
+	GSEvent_TakeOutNonLethal = 20,
+	GSEvent_TargetKilled = 21,
+	GSEvent_NonTargetKilled = 22,
+	GSEvent_AllTargetsKilled = 23,
+	GSEvent_AccidentKill = 24,
+	GSEvent_ObjectiveUpdate = 25,
+	GSEvent_TargetAccidentKill = 26,
+	GSEvent_ObjectiveActivate = 27,
+	GSEvent_Headshot = 28,
+	GSEvent_Fiberwire = 29,
+	GSEvent_UsedEliminateSilent = 30,
+	GSEvent_ItemFound = 31,
+	GSEvent_ItemStashed = 32,
+	GSEvent_BodyBagPlaced = 33,
+	GSEvent_Projectile_HeadShot = 34,
+	GSEvent_Projectile_BodyShot = 35,
+	GSEvent_Projectile_Crowd_HeadShot = 36,
+	GSEvent_Projectile_Crowd_BodyShot = 37,
+	GSEvent_Projectile_Missed = 38,
+	GSEvent_Projectile_MultiKillTargets = 39,
+};
+
+// 0x0000000142A88290 (Size: 0x4)
+enum class EGSKillSituation
+{
+	GSKILLSITUATION_UNKNOWN = 0,
+	GSKILLSITUATION_CLOSECOMBAT = 1,
+	GSKILLSITUATION_SILENT = 2,
+	GSKILLSITUATION_ENVIRONMENT = 3,
+	GSKILLSITUATION_ACTION = 4,
+	GSKILLSITUATION_DEADLYTHROW = 5,
+	GSKILLSITUATION_PULLTHROUGHWINDOW = 6,
+	GSKILLSITUATION_PUSHOVERRAILING = 7,
+	GSKILLSITUATION_PACIFY = 8,
+	GSKILLSITUATION_FIBERWIRE = 9,
+};
+
+// 0x0000000142ABD860 (Size: 0x3)
+class SPhysicsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsInPhysicsWorld; // 0x0
+	bool m_bIsKinematicBody; // 0x1
+	bool m_bIsVisible; // 0x2
+};
+
+// 0x0000000142B19138 (Size: 0x8)
+class IPureWaterReflectable
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABEDD8 (Size: 0x4)
+enum class EItemMeleeDamageBehavior
+{
+	EIMDB_Undefined = 0,
+	EIMDB_Bouncing = 1,
+	EIMDB_Slashing = 2,
+	EIMDB_Sticking = 3,
+};
+
+// 0x0000000142AA83A0 (Size: 0x18)
+class SCondition_AreVisibleWeaponsSuspicious :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000142AA81A8 (Size: 0x28)
+class SCondition_HasConfiguredSpeak :
 	public SConditionBase
 {
 public:
@@ -1009,89 +517,11 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	ZBehaviorTreeVariable target; // 0x10
+	ZString speak; // 0x18
 };
 
-// 0x0000000142A8D2C8 (Size: 0x4)
-enum class EHeroGameState
-{
-	eHGS_Reserved_QueryALL = 0,
-	eHGS_Reserved_QueryAny = 1,
-	eHGS_InstinctModeActive = 2,
-	eHGS_IsHardToSee = 3,
-	eHGS_Sneaking = 4,
-	eHGS_InSequence = 5,
-	eHGS_InCloseCombat = 6,
-	eHGS_ItemHandlingActive = 7,
-	eHGS_CamSwitched = 8,
-	eHGS_SniperMode = 9,
-	eHGS_OTSMode = 10,
-	eHGS_DualWielding = 11,
-	eHGS_PreciseAim = 12,
-	eHGS_ActivatingAltFire = 13,
-	eHGS_FiredLastFrFocusBurnRate = 14,
-	eHGS_FiredLastFrFocusGainValue = 15,
-	eHGS_BurningFocus = 16,
-	eHGS_InsideCloset = 17,
-	eHGS_Peeking = 18,
-	eHGS_FocusedInteraction = 19,
-	eHGS_HoldsUtility = 20,
-	eHGS_FacingRight = 21,
-	eHGS_ThrowAiming = 22,
-	eHGS_PlaceItemAiming = 23,
-	eHGS_Reloading = 24,
-	eHGS_FiberWirePrimedAndReady = 25,
-	eHGS_OperatingDoorVRHandPush = 26,
-	eHGS_MvAgility = 27,
-	eHGS_MvCover = 28,
-	eHGS_MvDragging = 29,
-	eHGS_MvDrainPipe = 30,
-	eHGS_MvLedgeWalk = 31,
-	eHGS_MvLedgeHang = 32,
-	eHGS_MvLocomotion = 33,
-	eHGS_MvCloseCombat = 34,
-	eHGS_MvSurrendering = 35,
-	eHGS_MvFriskComplying = 36,
-	eHGS_MvShowItem = 37,
-	eHGS_MvThrow = 38,
-	eHGS_MvFiberWireKill = 39,
-	eHGS_MvAlign = 40,
-	eHGS_MvTakedown = 41,
-	eHGS_MvSubAction = 42,
-	eHGS_MvNewFullBody = 43,
-	eHGS_MvDisguiseSafeZone = 44,
-	eHGS_MvPlaceItem = 45,
-	eHGS_NUM = 46,
-};
-
-// 0x0000000142AA5200 (Size: 0x4)
-enum class EMarkerInclusionMode
-{
-	MIM_DEFAULT = 0,
-	MIM_IF_FORCE_INCLUDED_ONLY = 1,
-};
-
-// 0x00000001422CA000 (Size: 0x4)
-enum class eAmmoType
-{
-	eAmmoGun = 0,
-	eAmmoRevolver = 1,
-	eAmmoSMG = 2,
-	eAmmoRifle = 3,
-	eAmmoShotgun = 4,
-	eAmmoSniper = 5,
-	eAmmoMG = 6,
-	eAmmoRPG = 7,
-	eAmmoFake = 8,
-	eAmmoHarmless = 9,
-	eAmmoLightPistol = 10,
-	eAmmoDartTranquilizer = 11,
-	eAmmoShotgunBeanbag = 12,
-	eUnknownAmmoType = 13,
-};
-
-// 0x0000000142A89F40 (Size: 0x8)
-class IHM5GameMonitor :
-	public IComponentInterface
+// 0x0000000142AA4560 (Size: 0x1)
+class SActorSoundDefs
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1100,385 +530,7 @@ public:
 
 };
 
-// 0x0000000142AF30E8 (Size: 0x4)
-enum class EDisconnectReason
-{
-	eNOTIFICATION = 0,
-	eCONNECTION_LOST = 1,
-	eNETWORK_STATE = 2,
-};
-
-// 0x0000000142AB31E0 (Size: 0x4)
-enum class EIntelStage
-{
-	eIT_MAIN = 0,
-	eIT_STAGE = 1,
-	eIT_HINT = 2,
-};
-
-// 0x0000000142A980A0 (Size: 0x4)
-enum class ETakeDownState
-{
-	eTD_Cover = 0,
-	eTD_Locomotion = 1,
-	eTD_ChokeLoop = 2,
-	eTD_ChokeFinish = 3,
-	eTD_Deactivating = 4,
-	eTD_Unknown = 5,
-};
-
-// 0x0000000143E61920 (Size: 0x4)
-enum class ESequencePreviewState
-{
-	PREVIEW_STOPPED = 0,
-	PREVIEW_PLAYING = 1,
-	PREVIEW_PAUSED = 2,
-};
-
-// 0x0000000142A98250 (Size: 0x4)
-enum class ECharacterStateTransitionAttempt
-{
-	eSM_TA_IfDestinationCan = 0,
-	eSM_TA_IfDestinationCanAndWants = 1,
-	eSM_TA_IfDestinationCanAndOriginDoesNotWant = 2,
-	eSM_TA_IfDestinationCanAndWantsOriginDoesNotWant = 3,
-	eSM_TA_IfDestinationCanAndOriginCanNot = 4,
-};
-
-// 0x0000000142A8BB80 (Size: 0x4)
-enum class ESituationType
-{
-	AIST_Any = 0,
-	AIST_DetectedInPrivate = 1,
-	AIST_HandleDistraction = 2,
-	AIST_Spectator = 3,
-	AIST_InvestigateWeapon = 4,
-	AIST_GuardBody = 5,
-	AIST_Entourage = 6,
-	AIST_HandleTrespassing = 7,
-	AIST_DeadBody = 8,
-	AIST_InvestigateCautious = 9,
-	AIST_Sentry = 10,
-	AIST_HandleDisguise = 11,
-	AIST_SC_Curious = 12,
-	AIST_SC_Alerted = 13,
-	AIST_SC_Combat = 14,
-	AIST_SniperCombat = 15,
-	AIST_Arrest = 16,
-	AIST_StandOff = 17,
-	AIST_RecoverUnconscious = 18,
-	AIST_AvoidExplosion = 19,
-	AIST_Evacuate = 20,
-	AIST_ProtoCombat = 21,
-	AIST_DangerousArea = 22,
-	AIST_CloseCombat = 23,
-	AIST_Infected = 24,
-	ESituationType_Count = 25,
-};
-
-// 0x0000000142A9B908 (Size: 0x1C)
-class SCondition_TargetsNotInSituation :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ESituationType type; // 0x10
-	ZBehaviorTreeVariable targets; // 0x14
-};
-
-// 0x0000000142A96340 (Size: 0x4)
-enum class EInventoryConfigItemHandling
-{
-	EICIH_Allow = 0,
-	EICIH_Store = 1,
-	EICIH_InstaStore = 2,
-	EICIH_Drop = 3,
-	EICIH_DropOrStore = 4,
-	EICIH_DropAndPickup = 5,
-	EICIH_DoNothing = 6,
-};
-
-// 0x0000000142A95F50 (Size: 0x4)
-enum class ECameraControls
-{
-	eCameraControlsNormal = 0,
-	eCameraControlsOTS = 1,
-};
-
-// 0x0000000142A88C70 (Size: 0x8)
-class IMorphemeEventConsumer
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A98910 (Size: 0x4)
-enum class ERatingTitle
-{
-	ERatingTitle_SilentAssassin = 0,
-	ERatingTitle_PerfectAssassin = 1,
-	ERatingTitle_Ninja = 2,
-	ERatingTitle_GloryBlazer = 3,
-	ERatingTitle_Eraser = 4,
-	ERatingTitle_Exhibitionist = 5,
-	ERatingTitle_Trickster = 6,
-	ERatingTitle_Chameleon = 7,
-	ERatingTitle_Spider = 8,
-	ERatingTitle_Angel = 9,
-	ERatingTitle_COUNT = 10,
-};
-
-// 0x0000000143CDEF78 (Size: 0x8)
-class IParticleHeirEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CA490 (Size: 0x4)
-enum class EAIEventType
-{
-	AIET_None = 0,
-	AIET_Ignore = 1,
-	AIET_PreventAutoPurge = 2,
-	AIET_ShootTarget = 3,
-	AIET_Hunting = 4,
-	AIET_Order_Target = 5,
-	AIET_END_BOOLEAN_EVENTS = 6,
-	AIET_LookedAt = 7,
-	AIET_Killer = 8,
-	AIET_Strangler = 9,
-	AIET_Suspicious = 10,
-	AIET_KnownBody = 11,
-	AIET_KnownBodyIsFoundOutsideNavmeshAndIgnored = 12,
-	AIET_KnownBodyIsHandled = 13,
-	AIET_KnownBodybag = 14,
-	AIET_KnownBodybagIsHandled = 15,
-	AIET_Dead = 16,
-	AIET_DisguiseSuspicious = 17,
-	AIET_DamagingMe = 18,
-	AIET_KnownInCloset = 19,
-	AIET_KnownInNpcUnreachableArea = 20,
-	AIET_Sense = 21,
-	AIET_HasBeenInCombat = 22,
-	AIET_ReportedByCamera = 23,
-	AIET_SOUNDEVENTS_LOW_LOUDNESS_BEGIN = 24,
-	AIET_SoundFootsteps = 25,
-	AIET_SoundThrownItemCollision = 26,
-	AIET_SoundGunSilenced = 27,
-	AIET_SoundHitmanGunSilenced = 28,
-	AIET_SoundLegalGunSilenced = 29,
-	AIET_SoundLegalHitmanGunSilenced = 30,
-	AIET_SoundEmptyGun = 31,
-	AIET_SoundCCBreakNeck = 32,
-	AIET_SoundCCChoke = 33,
-	AIET_SoundCCFiberwire = 34,
-	AIET_SoundBulletImpact = 35,
-	AIET_SoundLegalBulletImpact = 36,
-	AIET_SoundSpeakWarning = 37,
-	AIET_SoundSpeakAngry = 38,
-	AIET_SOUNDEVENTS_NORMAL_LOUDNESS_BEGIN = 39,
-	AIET_SoundRadio = 40,
-	AIET_SoundAlarm = 41,
-	AIET_SoundSpeakPainBehind = 42,
-	AIET_SoundCloseCombat = 43,
-	AIET_SoundSpeakPain = 44,
-	AIET_SoundSetpiece = 45,
-	AIET_SOUNDEVENTS_LOUD_LOUDNESS_BEGIN = 46,
-	AIET_SoundSpeakHelp = 47,
-	AIET_SoundSpeakHelpLoud = 48,
-	AIET_SoundGunShot = 49,
-	AIET_SoundHitmanGunShot = 50,
-	AIET_SoundLegalGunShot = 51,
-	AIET_SoundLegalHitmanGunShot = 52,
-	AIET_SoundExplosion = 53,
-	AIET_SoundAccident = 54,
-	AIET_SoundCurious = 55,
-	AIET_SoundCuriousItem = 56,
-	AIET_SoundInteresting = 57,
-	AIET_SoundCrowdCurious = 58,
-	AIET_SoundCrowdAlerted = 59,
-	AIET_SoundCrowdWantsArrest = 60,
-	AIET_SoundCrowdWantsArrestKiller = 61,
-	AIET_SOUNDEVENTS_END = 62,
-	AIET_SightReaction = 63,
-	AIET_SightInvestigation = 64,
-	AIET_PerceptibleEntityAware = 65,
-	AIET_InSight = 66,
-	AIET_SlowMovementInVegetationInSight = 67,
-	AIET_MediumMovementInVegetationInSight = 68,
-	AIET_FastMovementInVegetationInSight = 69,
-	AIET_VisualSetpiece = 70,
-	AIET_DirectSetpiece = 71,
-	AIET_Sick = 72,
-	AIET_MyFlashGrenadeExploded = 73,
-	AIET_StunnedByFlashGrenade = 74,
-	AIET_WasSlapped = 75,
-	AIET_Attention_Stage_1 = 76,
-	AIET_Attention_Stage_2 = 77,
-	AIET_AttentionFading = 78,
-	AIET_FullAttention = 79,
-	AIET_FullDisguiseAttention = 80,
-	AIET_ReactedTo = 81,
-	AIET_ReactTarget = 82,
-	AIET_ReactSuppressed = 83,
-	AIET_StanddownHolster = 84,
-	AIET_ForcedIllegal = 85,
-	AIET_HitByItem = 86,
-	AIET_HitByCoin = 87,
-	AIET_LTHitByItemOrCoin = 88,
-	AIET_HitByItemOrCoinTwice = 89,
-	AIET_HitByThis = 90,
-	AIET_SeenInAccident = 91,
-	AIET_Trespassing_Strike_1 = 92,
-	AIET_Trespassing_Strike_2 = 93,
-	AIET_Trespassing_Strike_3 = 94,
-	AIET_DistractedByMovementInVegetation_Once = 95,
-	AIET_DistractedByMovementInVegetation_Twice = 96,
-	AIET_Investigate_Strike_1 = 97,
-	AIET_Investigate_Strike_2 = 98,
-	AIET_DisguiseEnforcer = 99,
-	AIET_Suspect = 100,
-	AIET_InSentryZone = 101,
-	AIET_MySentryZone = 102,
-	AIET_TriggerAlarm = 103,
-	AIET_LockdownIntruder = 104,
-	AIET_AccuseUnconscious = 105,
-	AIET_HasKnockMeDown = 106,
-	AIET_HasKnockSomeoneDown = 107,
-	AIET_InMyPrivateArea = 108,
-	AIET_KnownNaked = 109,
-	AIET_KnownDraggingBodybag = 110,
-	AIET_InvestigateOrder = 111,
-	AIET_ReactedSurprised = 112,
-	AIET_ReportGotShot = 113,
-	AIET_HasReportedDeadBodySituation = 114,
-	AIET_Social_TooClose = 115,
-	AIET_Social_Privacy = 116,
-	AIET_Social_Silly = 117,
-	AIET_ReactedToSituation = 118,
-	AIET_SeeAttached = 119,
-	AIET_WasInvisible = 120,
-	AIET_BlameHitman = 121,
-	AIET_BlamedByUnconscious = 122,
-	AIET_DontCareAboutBlaming = 123,
-	AIET_Combat_PropagatedBy = 124,
-	AIET_Combat_WithinPropagationField = 125,
-	AIET_Combat_MarkedAsDiscardable = 126,
-	AIET_Combat_AttackWitness = 127,
-	AIET_Combat_HomingAttackOrigin = 128,
-	AIET_Combat_VIPWasAttackedFromPosition = 129,
-	AIET_ReactedToSniperKnowledge = 130,
-	AIET_SniperCombatTarget = 131,
-	AIET_SniperCombatAimTarget = 132,
-	AIET_CantReachTarget = 133,
-	AIET_HuntingSniper = 134,
-	AIET_NeedCover = 135,
-	AIET_WaitingForSniper = 136,
-	AIET_HeardSniperShooting = 137,
-	AIET_KnownHidden = 138,
-	AIET_SituationTarget = 139,
-	AIET_TalkingToHitman = 140,
-	AIET_SuspiciousAction = 141,
-	AIET_RadioCallHelpingActor = 142,
-	AIET_WeaponContextKnown = 143,
-	AIET_IdleStandDown = 144,
-	AIET_IgnoreInvestigation = 145,
-	AIET_NewDisguiseTarget = 146,
-	AIET_SocialTarget = 147,
-	AIET_SecurityCamBroken = 148,
-	AIET_HeWoundedMeLongDistance = 149,
-	AIET_HeWoundedMeShortDistance = 150,
-	AIET_HeWoundedMeCC = 151,
-	AIET_HeAimedAtMe = 152,
-	AIET_BumpedIntoMe = 153,
-	AIET_ReactToDistraction = 154,
-	AIET_MovingToTarget = 155,
-	AIET_ReachedTarget = 156,
-	AIET_DistractionChainPart = 157,
-	AIET_NewDistractionChainPart = 158,
-	AIET_ChainFixed = 159,
-	AIET_SurprisePlayed = 160,
-	AIET_NewDistraction = 161,
-	AIET_WasSilly = 162,
-	AIET_Distraction_My_Leader = 163,
-	AIET_Distraction_My_Assistant = 164,
-	AIET_Distraction_Was_My_Assistant = 165,
-	AIET_AssitingWithSuitcase = 166,
-	AIET_SuitcaseAssistanceFaceToFace = 167,
-	AIET_SuitcaseAssistanceRadio = 168,
-	AIET_SC_CombatPosition = 169,
-	AIET_SC_CombatPositionMove = 170,
-	AIET_SC_CombatPositionFight = 171,
-	AIET_SC_PreventMovingThere = 172,
-	AIET_SC_JumpyReaction = 173,
-	AIET_DISTRACTION_TYPES_START = 174,
-	AIET_SeeInCoverDistraction = 175,
-	AIET_SeeSneakingDistraction = 176,
-	AIET_SeeStunnedDistraction = 177,
-	AIET_SeeSickDistraction = 178,
-	AIET_LegalItemDroppedDistraction = 179,
-	AIET_IllegalItemDroppedDistraction = 180,
-	AIET_BumpedDistraction = 181,
-	AIET_SightReactionDistraction = 182,
-	AIET_SightInvestigationDistraction = 183,
-	AIET_HearItemImpactDistraction = 184,
-	AIET_SeeCuriousPerceptibleDistraction = 185,
-	AIET_SeeCuriousItemDistraction = 186,
-	AIET_SeeFlyingItemDistraction = 187,
-	AIET_SeeThrowingDistraction = 188,
-	AIET_HitBySomethingDistraction = 189,
-	AIET_HearFootstepsDistraction = 190,
-	AIET_SeeAgility = 191,
-	AIET_SeeAgility_Vault = 192,
-	AIET_SeeAgility_Window = 193,
-	AIET_SeeHidding = 194,
-	AIET_HearStrangeSound = 195,
-	AIET_HearAlarm = 196,
-	AIET_HearRadio = 197,
-	AIET_HearAngry = 198,
-	AIET_HearHelp = 199,
-	AIET_HearAccident = 200,
-	AIET_HearCuriousCrowd = 201,
-	AIET_HearBulletImpact = 202,
-	AIET_HearPain = 203,
-	AIET_HearCuriousSound = 204,
-	AIET_HearCuriousItemSound = 205,
-	AIET_SecurityCameraBroken = 206,
-	AIET_SetpieceDistractionDefault = 207,
-	AIET_SeeItemTossDistraction = 208,
-	AIET_SetpieceDistractionDoor = 209,
-	AIET_SetpieceDistractionExperimental1 = 210,
-	AIET_SetpieceDistractionExperimental2 = 211,
-	AIET_SeeSuitcaseDistraction = 212,
-	AIET_Distraction_Silly = 213,
-	AIET_Distraction_TooClose = 214,
-	AIET_Distraction_Privacy = 215,
-	AIET_Distraction_MovementInVegetationBrief = 216,
-	AIET_Distraction_MovementInVegetationCurious = 217,
-	AIET_DISTRACTION_TYPES_END = 218,
-	AIET_ARREST_REASONS_START = 219,
-	AIET_ArrestReason_IllegalItem = 220,
-	AIET_ArrestReason_DragBody = 221,
-	AIET_ArrestReason_KnockDown = 222,
-	AIET_ARREST_REASONS_END = 223,
-	AIET_END_NORMAL_EVENTS = 224,
-	AIET_DEBUG_EVENTS_START = 225,
-	AIET_Debug_ThrowFlashbangHere = 226,
-	AIET_DEBUG_EVENTS_END = 227,
-};
-
-// 0x00000001422CA4A8 (Size: 0x4)
+// 0x00000001422D7228 (Size: 0x4)
 enum class EAISharedEventType
 {
 	AISET_None = 0,
@@ -1914,7 +966,427 @@ enum class EAISharedEventType
 	AISET_DYNAMIC_ENFORCER_ARREST_REASON_END = 430,
 };
 
-// 0x0000000142A9B170 (Size: 0x20)
+// 0x0000000142A9A6B8 (Size: 0x8)
+class SGetHelpOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAISharedEventType m_helpType; // 0x0
+	uint32 m_rInitialGuard; // 0x4
+};
+
+// 0x0000000143E6C9F8 (Size: 0x1)
+enum class ETessellationMode
+{
+	TESSELLATIONMODE_FLAT = 0,
+	TESSELLATIONMODE_PHONG = 1,
+};
+
+// 0x0000000142AA7ED8 (Size: 0x18)
+class SCondition_IsDistractionTargetBeingHandled :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable distractionTarget; // 0x10
+};
+
+// 0x0000000142B01868 (Size: 0x1)
+enum class ECameraCollisionMode
+{
+	ECAMERACOLLISIONMODE_COLLIDE_ALWAYS = 0,
+	ECAMERACOLLISIONMODE_CAMERA_OBSTACLE = 1,
+	ECAMERACOLLISIONMODE_COLLIDE_NEVER = 2,
+	ECAMERACOLLISIONMODE_COLLIDE_DEFAULT = 3,
+};
+
+// 0x0000000143E6ED68 (Size: 0x8)
+class SVoidSignalEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bSignaling; // 0x0
+	float32 m_fFiredAtTime; // 0x4
+};
+
+// 0x0000000142A862A0 (Size: 0x8)
+class IHM5BaseCharacter :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA98D8 (Size: 0x4)
+enum class EBystanderPointType
+{
+	BPT_Scared = 0,
+	BPT_Alerted = 1,
+};
+
+// 0x0000000142AA1270 (Size: 0x20)
+class SActorProviderDirectSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aActors; // 0x0
+	bool m_bRunning; // 0x18
+};
+
+// 0x0000000142ABD9F8 (Size: 0xC)
+class STimerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nInterval; // 0x0
+	bool m_bEnabled; // 0x4
+	float32 m_fTimeToNextEvent; // 0x8
+};
+
+// 0x0000000142A86BB8 (Size: 0x4)
+enum class EKnownEntityType
+{
+	KET_UNKNOWN = 0,
+	KET_HITMAN = 1,
+	KET_ACTOR = 2,
+	KET_ITEM = 3,
+	KET_LOCATION = 4,
+	KET_OBJECT = 5,
+	KET_COVER = 6,
+	KET_PERCEPTIBLE = 7,
+	KET_TEMPCROWDBODY = 8,
+};
+
+// 0x0000000142AA80B8 (Size: 0x1C)
+class SCondition_IsOfType :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EKnownEntityType type; // 0x18
+};
+
+// 0x00000001422D7A60 (Size: 0x8)
+class ISoundAmbienceElement :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA3C90 (Size: 0x4)
+enum class EWeaponUpgradeIcon
+{
+	WEAPON_UPGRADE_ICON_NONE = 0,
+	WEAPON_UPGRADE_ICON_SILENCER = 1,
+	WEAPON_UPGRADE_ICON_RED_DOT_SIGHT = 2,
+	WEAPON_UPGRADE_ICON_AMMUNITION = 3,
+	WEAPON_UPGRADE_ICON_MAGAZINE = 4,
+	WEAPON_UPGRADE_ICON_EXTCLIP = 5,
+	WEAPON_UPGRADE_ICON_SHELLS = 6,
+	WEAPON_UPGRADE_ICON_SLIDE = 7,
+	WEAPON_UPGRADE_ICON_BOLT = 8,
+	WEAPON_UPGRADE_ICON_BARREL = 9,
+	WEAPON_UPGRADE_ICON_HAMMER = 10,
+	WEAPON_UPGRADE_ICON_CHUTE = 11,
+	WEAPON_UPGRADE_ICON_DUALWIELD = 12,
+	WEAPON_UPGRADE_ICON_MAGNUM = 13,
+	WEAPON_UPGRADE_ICON_STOCK = 14,
+};
+
+// 0x0000000142A88320 (Size: 0x4)
+enum class EWeaponSpecialSituation
+{
+	WSS_NORMAL = 0,
+	WSS_BAREHANDS = 1,
+	WSS_EXPLOSION = 2,
+	WSS_ACCIDENT = 3,
+	WSS_NPC_FRIENDLY_FIRE = 4,
+	WSS_EXECUTE_PISTOL = 5,
+	WSS_ANY_WEAPON = 6,
+	WSS_INVISIBLE = 7,
+};
+
+// 0x0000000142AA4CE0 (Size: 0x4)
+enum class ECustomSoundDefType
+{
+	eCSDT_Distraction_InvestigationAck = 0,
+	eCSDT_Distraction_InvestigationInvestigate = 1,
+	eCSDT_Distraction_InvestigationStnd = 2,
+};
+
+// 0x0000000142AA0AB0 (Size: 0x4)
+enum class EAIModifierScope
+{
+	AIMS_Volume = 0,
+	AIMS_Behavior = 1,
+	AIMS_Role = 2,
+	AIMS_Item = 3,
+	AIMS_Situation = 4,
+	AIMS_Outfit = 5,
+	AIMS_Override = 6,
+	AIMS_Status = 7,
+};
+
+// 0x00000001422D7210 (Size: 0x4)
+enum class EAIEventType
+{
+	AIET_None = 0,
+	AIET_Ignore = 1,
+	AIET_PreventAutoPurge = 2,
+	AIET_ShootTarget = 3,
+	AIET_Hunting = 4,
+	AIET_Order_Target = 5,
+	AIET_END_BOOLEAN_EVENTS = 6,
+	AIET_LookedAt = 7,
+	AIET_Killer = 8,
+	AIET_Strangler = 9,
+	AIET_Suspicious = 10,
+	AIET_KnownBody = 11,
+	AIET_KnownBodyIsFoundOutsideNavmeshAndIgnored = 12,
+	AIET_KnownBodyIsHandled = 13,
+	AIET_KnownBodybag = 14,
+	AIET_KnownBodybagIsHandled = 15,
+	AIET_Dead = 16,
+	AIET_DisguiseSuspicious = 17,
+	AIET_DamagingMe = 18,
+	AIET_KnownInCloset = 19,
+	AIET_KnownInNpcUnreachableArea = 20,
+	AIET_Sense = 21,
+	AIET_HasBeenInCombat = 22,
+	AIET_ReportedByCamera = 23,
+	AIET_SOUNDEVENTS_LOW_LOUDNESS_BEGIN = 24,
+	AIET_SoundFootsteps = 25,
+	AIET_SoundThrownItemCollision = 26,
+	AIET_SoundGunSilenced = 27,
+	AIET_SoundHitmanGunSilenced = 28,
+	AIET_SoundLegalGunSilenced = 29,
+	AIET_SoundLegalHitmanGunSilenced = 30,
+	AIET_SoundEmptyGun = 31,
+	AIET_SoundCCBreakNeck = 32,
+	AIET_SoundCCChoke = 33,
+	AIET_SoundCCFiberwire = 34,
+	AIET_SoundBulletImpact = 35,
+	AIET_SoundLegalBulletImpact = 36,
+	AIET_SoundSpeakWarning = 37,
+	AIET_SoundSpeakAngry = 38,
+	AIET_SOUNDEVENTS_NORMAL_LOUDNESS_BEGIN = 39,
+	AIET_SoundRadio = 40,
+	AIET_SoundAlarm = 41,
+	AIET_SoundSpeakPainBehind = 42,
+	AIET_SoundCloseCombat = 43,
+	AIET_SoundSpeakPain = 44,
+	AIET_SoundSetpiece = 45,
+	AIET_SOUNDEVENTS_LOUD_LOUDNESS_BEGIN = 46,
+	AIET_SoundSpeakHelp = 47,
+	AIET_SoundSpeakHelpLoud = 48,
+	AIET_SoundGunShot = 49,
+	AIET_SoundHitmanGunShot = 50,
+	AIET_SoundLegalGunShot = 51,
+	AIET_SoundLegalHitmanGunShot = 52,
+	AIET_SoundExplosion = 53,
+	AIET_SoundAccident = 54,
+	AIET_SoundCurious = 55,
+	AIET_SoundCuriousItem = 56,
+	AIET_SoundInteresting = 57,
+	AIET_SoundCrowdCurious = 58,
+	AIET_SoundCrowdAlerted = 59,
+	AIET_SoundCrowdWantsArrest = 60,
+	AIET_SoundCrowdWantsArrestKiller = 61,
+	AIET_SOUNDEVENTS_END = 62,
+	AIET_SightReaction = 63,
+	AIET_SightInvestigation = 64,
+	AIET_PerceptibleEntityAware = 65,
+	AIET_InSight = 66,
+	AIET_SlowMovementInVegetationInSight = 67,
+	AIET_MediumMovementInVegetationInSight = 68,
+	AIET_FastMovementInVegetationInSight = 69,
+	AIET_VisualSetpiece = 70,
+	AIET_DirectSetpiece = 71,
+	AIET_Sick = 72,
+	AIET_MyFlashGrenadeExploded = 73,
+	AIET_StunnedByFlashGrenade = 74,
+	AIET_WasSlapped = 75,
+	AIET_Attention_Stage_1 = 76,
+	AIET_Attention_Stage_2 = 77,
+	AIET_AttentionFading = 78,
+	AIET_FullAttention = 79,
+	AIET_FullDisguiseAttention = 80,
+	AIET_ReactedTo = 81,
+	AIET_ReactTarget = 82,
+	AIET_ReactSuppressed = 83,
+	AIET_StanddownHolster = 84,
+	AIET_ForcedIllegal = 85,
+	AIET_HitByItem = 86,
+	AIET_HitByCoin = 87,
+	AIET_LTHitByItemOrCoin = 88,
+	AIET_HitByItemOrCoinTwice = 89,
+	AIET_HitByThis = 90,
+	AIET_SeenInAccident = 91,
+	AIET_Trespassing_Strike_1 = 92,
+	AIET_Trespassing_Strike_2 = 93,
+	AIET_Trespassing_Strike_3 = 94,
+	AIET_DistractedByMovementInVegetation_Once = 95,
+	AIET_DistractedByMovementInVegetation_Twice = 96,
+	AIET_Investigate_Strike_1 = 97,
+	AIET_Investigate_Strike_2 = 98,
+	AIET_DisguiseEnforcer = 99,
+	AIET_Suspect = 100,
+	AIET_InSentryZone = 101,
+	AIET_MySentryZone = 102,
+	AIET_TriggerAlarm = 103,
+	AIET_LockdownIntruder = 104,
+	AIET_AccuseUnconscious = 105,
+	AIET_HasKnockMeDown = 106,
+	AIET_HasKnockSomeoneDown = 107,
+	AIET_InMyPrivateArea = 108,
+	AIET_KnownNaked = 109,
+	AIET_KnownDraggingBodybag = 110,
+	AIET_InvestigateOrder = 111,
+	AIET_ReactedSurprised = 112,
+	AIET_ReportGotShot = 113,
+	AIET_HasReportedDeadBodySituation = 114,
+	AIET_Social_TooClose = 115,
+	AIET_Social_Privacy = 116,
+	AIET_Social_Silly = 117,
+	AIET_ReactedToSituation = 118,
+	AIET_SeeAttached = 119,
+	AIET_WasInvisible = 120,
+	AIET_BlameHitman = 121,
+	AIET_BlamedByUnconscious = 122,
+	AIET_DontCareAboutBlaming = 123,
+	AIET_Combat_PropagatedBy = 124,
+	AIET_Combat_WithinPropagationField = 125,
+	AIET_Combat_MarkedAsDiscardable = 126,
+	AIET_Combat_AttackWitness = 127,
+	AIET_Combat_HomingAttackOrigin = 128,
+	AIET_Combat_VIPWasAttackedFromPosition = 129,
+	AIET_ReactedToSniperKnowledge = 130,
+	AIET_SniperCombatTarget = 131,
+	AIET_SniperCombatAimTarget = 132,
+	AIET_CantReachTarget = 133,
+	AIET_HuntingSniper = 134,
+	AIET_NeedCover = 135,
+	AIET_WaitingForSniper = 136,
+	AIET_HeardSniperShooting = 137,
+	AIET_KnownHidden = 138,
+	AIET_SituationTarget = 139,
+	AIET_TalkingToHitman = 140,
+	AIET_SuspiciousAction = 141,
+	AIET_RadioCallHelpingActor = 142,
+	AIET_WeaponContextKnown = 143,
+	AIET_IdleStandDown = 144,
+	AIET_IgnoreInvestigation = 145,
+	AIET_NewDisguiseTarget = 146,
+	AIET_SocialTarget = 147,
+	AIET_SecurityCamBroken = 148,
+	AIET_HeWoundedMeLongDistance = 149,
+	AIET_HeWoundedMeShortDistance = 150,
+	AIET_HeWoundedMeCC = 151,
+	AIET_HeAimedAtMe = 152,
+	AIET_BumpedIntoMe = 153,
+	AIET_ReactToDistraction = 154,
+	AIET_MovingToTarget = 155,
+	AIET_ReachedTarget = 156,
+	AIET_DistractionChainPart = 157,
+	AIET_NewDistractionChainPart = 158,
+	AIET_ChainFixed = 159,
+	AIET_SurprisePlayed = 160,
+	AIET_NewDistraction = 161,
+	AIET_WasSilly = 162,
+	AIET_Distraction_My_Leader = 163,
+	AIET_Distraction_My_Assistant = 164,
+	AIET_Distraction_Was_My_Assistant = 165,
+	AIET_AssitingWithSuitcase = 166,
+	AIET_SuitcaseAssistanceFaceToFace = 167,
+	AIET_SuitcaseAssistanceRadio = 168,
+	AIET_SC_CombatPosition = 169,
+	AIET_SC_CombatPositionMove = 170,
+	AIET_SC_CombatPositionFight = 171,
+	AIET_SC_PreventMovingThere = 172,
+	AIET_SC_JumpyReaction = 173,
+	AIET_DISTRACTION_TYPES_START = 174,
+	AIET_SeeInCoverDistraction = 175,
+	AIET_SeeSneakingDistraction = 176,
+	AIET_SeeStunnedDistraction = 177,
+	AIET_SeeSickDistraction = 178,
+	AIET_LegalItemDroppedDistraction = 179,
+	AIET_IllegalItemDroppedDistraction = 180,
+	AIET_BumpedDistraction = 181,
+	AIET_SightReactionDistraction = 182,
+	AIET_SightInvestigationDistraction = 183,
+	AIET_HearItemImpactDistraction = 184,
+	AIET_SeeCuriousPerceptibleDistraction = 185,
+	AIET_SeeCuriousItemDistraction = 186,
+	AIET_SeeFlyingItemDistraction = 187,
+	AIET_SeeThrowingDistraction = 188,
+	AIET_HitBySomethingDistraction = 189,
+	AIET_HearFootstepsDistraction = 190,
+	AIET_SeeAgility = 191,
+	AIET_SeeAgility_Vault = 192,
+	AIET_SeeAgility_Window = 193,
+	AIET_SeeHidding = 194,
+	AIET_HearStrangeSound = 195,
+	AIET_HearAlarm = 196,
+	AIET_HearRadio = 197,
+	AIET_HearAngry = 198,
+	AIET_HearHelp = 199,
+	AIET_HearAccident = 200,
+	AIET_HearCuriousCrowd = 201,
+	AIET_HearBulletImpact = 202,
+	AIET_HearPain = 203,
+	AIET_HearCuriousSound = 204,
+	AIET_HearCuriousItemSound = 205,
+	AIET_SecurityCameraBroken = 206,
+	AIET_SetpieceDistractionDefault = 207,
+	AIET_SeeItemTossDistraction = 208,
+	AIET_SetpieceDistractionDoor = 209,
+	AIET_SetpieceDistractionExperimental1 = 210,
+	AIET_SetpieceDistractionExperimental2 = 211,
+	AIET_SeeSuitcaseDistraction = 212,
+	AIET_Distraction_Silly = 213,
+	AIET_Distraction_TooClose = 214,
+	AIET_Distraction_Privacy = 215,
+	AIET_Distraction_MovementInVegetationBrief = 216,
+	AIET_Distraction_MovementInVegetationCurious = 217,
+	AIET_DISTRACTION_TYPES_END = 218,
+	AIET_ARREST_REASONS_START = 219,
+	AIET_ArrestReason_IllegalItem = 220,
+	AIET_ArrestReason_DragBody = 221,
+	AIET_ArrestReason_KnockDown = 222,
+	AIET_ARREST_REASONS_END = 223,
+	AIET_END_NORMAL_EVENTS = 224,
+	AIET_DEBUG_EVENTS_START = 225,
+	AIET_Debug_ThrowFlashbangHere = 226,
+	AIET_DEBUG_EVENTS_END = 227,
+};
+
+// 0x0000000142AA7F98 (Size: 0x20)
 class SCondition_IsSharedOlder :
 	public SConditionBase
 {
@@ -1928,64 +1400,100 @@ public:
 	EAISharedEventType stype; // 0x1C
 };
 
-// 0x0000000142A7B598 (Size: 0x4)
-enum class EWeaponSpecialSituation
+// 0x0000000142AA5730 (Size: 0x4)
+enum class ERatingTitle
 {
-	WSS_NORMAL = 0,
-	WSS_BAREHANDS = 1,
-	WSS_EXPLOSION = 2,
-	WSS_ACCIDENT = 3,
-	WSS_NPC_FRIENDLY_FIRE = 4,
-	WSS_EXECUTE_PISTOL = 5,
-	WSS_ANY_WEAPON = 6,
-	WSS_INVISIBLE = 7,
+	ERatingTitle_SilentAssassin = 0,
+	ERatingTitle_PerfectAssassin = 1,
+	ERatingTitle_Ninja = 2,
+	ERatingTitle_GloryBlazer = 3,
+	ERatingTitle_Eraser = 4,
+	ERatingTitle_Exhibitionist = 5,
+	ERatingTitle_Trickster = 6,
+	ERatingTitle_Chameleon = 7,
+	ERatingTitle_Spider = 8,
+	ERatingTitle_Angel = 9,
+	ERatingTitle_COUNT = 10,
 };
 
-// 0x0000000142A97EC0 (Size: 0x4)
-enum class ECustomSoundDefType
-{
-	eCSDT_Distraction_InvestigationAck = 0,
-	eCSDT_Distraction_InvestigationInvestigate = 1,
-	eCSDT_Distraction_InvestigationStnd = 2,
-};
-
-// 0x0000000142A93CF0 (Size: 0x4)
-enum class EAIModifierScope
-{
-	AIMS_Volume = 0,
-	AIMS_Behavior = 1,
-	AIMS_Role = 2,
-	AIMS_Item = 3,
-	AIMS_Situation = 4,
-	AIMS_Outfit = 5,
-	AIMS_Override = 6,
-	AIMS_Status = 7,
-};
-
-// 0x0000000142A98850 (Size: 0x4)
-enum class ELastSoundTension
-{
-	EST_Unknown = 0,
-	EST_Ambient = 1,
-	EST_Yellow = 2,
-	EST_Orange = 3,
-	EST_Red = 4,
-};
-
-// 0x00000001422C8E88 (Size: 0xC)
-class SColorRGB
+// 0x0000000143CEBED8 (Size: 0x8)
+class IParticleHeirEntity :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	float32 r; // 0x0
-	float32 g; // 0x4
-	float32 b; // 0x8
 };
 
-// 0x000000014210A908 (Size: 0x8)
+// 0x0000000142A95A00 (Size: 0x8)
+class IMorphemeEventConsumer
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA2D10 (Size: 0x4)
+enum class ECameraControls
+{
+	eCameraControlsNormal = 0,
+	eCameraControlsOTS = 1,
+};
+
+// 0x0000000142A882C0 (Size: 0x4)
+enum class EGSExplodingPropType
+{
+	eGSExplodingProp_Unknown = 0,
+	eGSExplodingProp_Barrel = 1,
+	eGSExplodingProp_PetrolCan = 2,
+	eGSExplodingProp_GasCanister = 3,
+	eGSExplodingProp_GasTank = 4,
+	eGSExplodingProp_Mine = 5,
+	eGSExplodingProp_Pig = 6,
+	eGSExplodingProp_Pigeon = 7,
+	eGSExplodingProp_FireworksBox = 8,
+	eGSExplodingProp_Car = 9,
+};
+
+// 0x00000001422D77F0 (Size: 0x8)
+class IAmmoProperties :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB1158 (Size: 0x8)
+class IMenuController :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEE3D0 (Size: 0x8)
+class SAudioEmitterSwitchSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nGroupId; // 0x0
+	uint32 m_nStateId; // 0x4
+};
+
+// 0x0000000142117688 (Size: 0x8)
 class SVector2
 {
 public:
@@ -1997,7 +1505,1824 @@ public:
 	float32 y; // 0x4
 };
 
-// 0x000000014210A8F0 (Size: 0xC)
+// 0x0000000142AA40D0 (Size: 0x10)
+class SMathDistanceSaveData_SVector2
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector2 m_fA; // 0x0
+	SVector2 m_fB; // 0x8
+};
+
+// 0x00000001422D6F00 (Size: 0x20)
+class SItemStorageSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_Storage; // 0x0
+	TArray<uint32> m_ContainedItems; // 0x8
+};
+
+// 0x0000000142AA8940 (Size: 0x1C)
+class SCondition_IsDistanceFromKnownToActualLessThan :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable knownEntity; // 0x10
+	float32 distance; // 0x18
+};
+
+// 0x0000000142A87198 (Size: 0x4)
+enum class eItemType
+{
+	eCC_FireExtinguisher_01 = 0,
+	eCC_Knife = 10,
+	eCC_Axe = 20,
+	eCC_PetrolCan = 30,
+	eCC_Shovel = 40,
+	eCC_Hammer = 50,
+	eCC_Cleaver = 60,
+	eCC_AntitankMine = 70,
+	eCC_C4Brick = 80,
+	eCC_RemoteExplosive = 90,
+	eDetonator = 100,
+	eCC_Wrench = 110,
+	eCC_Dildo = 120,
+	eCC_Bottle = 130,
+	eCC_Saw = 140,
+	eCC_Screwdriver = 150,
+	eCC_MetalPipe = 160,
+	eCC_Gavel = 170,
+	eCC_Radio = 180,
+	eCC_Bong = 190,
+	eCC_Statue_Bust_A = 200,
+	eGun_44AutoMag = 210,
+	eGun_44AutoMagSilenced = 220,
+	eGun_Derringer = 230,
+	eGun_Glock = 240,
+	eGun_GlockDirty = 250,
+	eGun_GlockSilenced = 260,
+	eGun_HardBaller_01 = 270,
+	eGun_HardBallerSilenced = 280,
+	eGun_Sig226 = 290,
+	eGun_Sig226Silenced = 300,
+	eGun_Sphinx3000 = 310,
+	eGun_Taurus24_7 = 320,
+	eGun_Taurus24_7Silenced = 330,
+	eGun_Spotter = 340,
+	eOther_MG = 350,
+	eOther_RPG = 360,
+	eRevolver_PoliceRevolver = 370,
+	eRevolver_Snubnosed = 380,
+	eRevolver_Taurus = 390,
+	eRifle_HK416 = 400,
+	eRifle_HK416Scope = 410,
+	eRifle_HK416Silenced = 420,
+	eRifle_PumpRifle = 430,
+	eRifle_SG552 = 440,
+	eRifle_SG552Scope = 450,
+	eShotgun_M500 = 460,
+	eShotgun_M500New = 470,
+	eSMG_HK_UMP = 480,
+	eSMG_HK_UMPFlashlight = 490,
+	eSMG_HK_UMPScope = 500,
+	eSMG_HK_UMPSilenced = 510,
+	eSMG_TMP = 520,
+	eSniper_AS50 = 530,
+	eSniper_Remington700 = 540,
+	eSniper_SakoTRG = 550,
+	eSniper_SakoTRGSilenced = 560,
+	eItemAmmo = 570,
+	eCC_FiberWire = 580,
+	eOther_ZippoLighter = 590,
+	eOther_Keycard_A = 600,
+	eOther_SecurityTape = 610,
+	eCC_PowerCord = 620,
+	eCC_PoliceBaton = 630,
+	eCC_Scissor = 640,
+	eOther_ContractEnvelope = 650,
+	eItemIrrelevantWeapon = 660,
+	eCC_BaseballBat = 670,
+	eCC_GlassShiv = 680,
+	eCC_PoolCue = 690,
+	eCC_Rake = 700,
+	eCC_ToyCar = 710,
+	eCC_Crutch = 720,
+	eCC_Guitar = 730,
+	eCC_Iron = 740,
+	eRifle_Beretta_ARX160 = 760,
+	eShotgun_Spas12 = 800,
+	eShotgun_Spas12_Compact = 810,
+	eShotgun_Silenced = 830,
+	eSMG_AK74u = 860,
+	eSMG_STK = 880,
+	eDLC_TEST_FireArm_01 = 900,
+	eDLC_TEST_FireArm_02 = 901,
+	eDLC_TEST_Prop_01 = 902,
+	eDLC_TEST_Prop_02 = 903,
+	eHotSauceBarrel = 910,
+	eOther_GenericPickup = 920,
+	eCC_SledgeHammer = 921,
+	eCC_Katana = 922,
+	eCC_Brick = 923,
+	cCC_Book_A = 924,
+	eSyringe_Lethal = 931,
+	eSyringe_Sedative = 932,
+	eSyringe_Emetic = 933,
+	eSuitcase = 934,
+	eOther_Camera = 940,
+	eUnknownItemType = 1337,
+};
+
+// 0x0000000142AFD178 (Size: 0x178)
+class ZWebSocketManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A1D8 (Size: 0x4)
+enum class EDebugExclusionLayerState
+{
+	DEBUGELSTATE_UNBLOCKED = 0,
+	DEBUGELSTATE_BLOCKED = 1,
+	DEBUGELSTATE_UNKNOWN = 2,
+};
+
+// 0x0000000142AB9FF8 (Size: 0x4)
+enum class EOnlinTest
+{
+	eHELLO = 0,
+	eWORLD = 1,
+};
+
+// 0x0000000142AA1000 (Size: 0x10)
+class SBehaviorTreeInputPinCondition
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sName; // 0x0
+};
+
+// 0x0000000143E6C418 (Size: 0x1)
+enum class EParticleColorUsage
+{
+	REPLACE_PARTICLE_COLOR = 0,
+	LEAVE_PARTICLE_COLOR = 1,
+};
+
+// 0x0000000142AACDA0 (Size: 0x4)
+enum class eContractSessionStartError
+{
+	ERROR_NONE = 0,
+	ERROR_MISSING_CONTENT = 1,
+	ERROR_SERVER_UNREACHABLE = 2,
+	ERROR_SERVER_ERROR = 3,
+	ERROR_CONTRACT_NOT_PLAYABLE_YET = 4,
+	ERROR_CONTRACT_NOT_PLAYABLE_ANYMORE = 5,
+	ERROR_CANCELED = 6,
+	ERROR_ALREADY_STARTING = 7,
+	ERROR_UNKNOWN = 8,
+};
+
+// 0x00000001422D6F18 (Size: 0x4)
+enum class EDeathContext
+{
+	eDC_UNDEFINED = 0,
+	eDC_NOT_HERO = 1,
+	eDC_HIDDEN = 2,
+	eDC_ACCIDENT = 3,
+	eDC_MURDER = 4,
+};
+
+// 0x00000001422D6F30 (Size: 0x28)
+class SItemWeaponSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_magazineBulletsByAmmoType; // 0x0
+	uint32 m_nExtraMagazineBullets; // 0x18
+	EDeathContext m_ePendingDeathContext; // 0x1C
+	EDeathContext m_eDeathContext; // 0x20
+};
+
+// 0x0000000142AB21E0 (Size: 0x4)
+enum class EViewportLock
+{
+	VPL_None = 0,
+	VPL_Rectangular = 1,
+	VPL_Rectangular_AvoidMinimapOverlap = 2,
+};
+
+// 0x00000001422D6F48 (Size: 0x4)
+enum class eWeaponType
+{
+	WT_HANDGUN = 0,
+	WT_SLOWGUN = 1,
+	WT_ASSAULTRIFLE = 2,
+	WT_SMG = 3,
+	WT_SNIPER = 4,
+	WT_RPG = 5,
+	WT_KNIFE = 6,
+	WT_SHOTGUN = 7,
+	WT_SPOTTER = 8,
+};
+
+// 0x0000000142AA1150 (Size: 0x4)
+enum class EAccidentScaleContext
+{
+	eASC_Standard = 0,
+	eASC_Unsafe = 1,
+	eASC_Dangerous = 2,
+};
+
+// 0x0000000142AF0730 (Size: 0x4)
+enum class EEngineModeId
+{
+	EngineMode_Invalid = -1,
+	EngineMode_SinglePlayer = 0,
+	EngineMode_SplitScreen = 1,
+	EngineMode_Multiplayer = 2,
+	EngineMode_Max = 3,
+};
+
+// 0x0000000142B01688 (Size: 0x4)
+class SDestructibleInteractionHandlerData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fSettleTime; // 0x0
+};
+
+// 0x0000000142A9CAA8 (Size: 0x4)
+enum class EDamageEvent
+{
+	eDE_UNDEFINED = 0,
+	eDE_InCloset = 1,
+	eDE_Subdue = 2,
+	eDE_CloseCombat = 4,
+	eDE_PushOver = 16,
+	eDE_KickDownStairs = 32,
+	eDE_DeadlyThrow = 64,
+	eDE_Shoot = 128,
+	eDE_Sedated = 256,
+	eDE_InstantTakeDown = 512,
+	eDE_CoupDeGrace = 1024,
+	eDE_ContextKill = 2048,
+	eDE_Garotte = 4096,
+	eDE_Poison = 8192,
+	eDE_Electric = 16384,
+	eDE_SuspendedObject = 32768,
+	eDE_Burn = 65536,
+	eDE_Drop = 131072,
+	eDE_Drown = 262144,
+};
+
+// 0x00000001422D7288 (Size: 0x4)
+enum class EAnimSetType
+{
+	EAST_UNDEFINED = 0,
+	EAST_DEFAULT = 1,
+	EAST_PISTOL = 2,
+	EAST_REVOLVER = 3,
+	EAST_SMG = 4,
+	EAST_SNIPER = 5,
+	EAST_ASSULT = 6,
+	EAST_SHOTGUN = 7,
+	EAST_BODYBAG = 8,
+	EAST_GLASS = 9,
+	EAST_WHISKYGLASS = 10,
+	EAST_WINEGLASS = 11,
+	EAST_CHAMPAGNEGLASS = 12,
+	EAST_PHONE = 13,
+	EAST_BOX = 14,
+	EAST_PLATE = 15,
+	EAST_SMALLOBJ = 16,
+	EAST_SUITCASE = 17,
+	EAST_TRAY = 18,
+	EAST_TROLLY = 19,
+	EAST_FLASHLIGHT = 20,
+	EAST_CARRY_1HANDEDWEAPON = 21,
+	EAST_CARRY_2HANDEDWEAPON = 22,
+	EAST_CARRY_RAKE = 23,
+	EAST_CARRY_WEAPON_ITEM = 24,
+	EAST_CARRY_BRICK_MINE = 25,
+	EAST_CARRY_PROXY_MINE = 26,
+	EAST_CARRY_LEAD_PIPES = 27,
+	EAST_CARRY_TUBE = 28,
+	EAST_CARRY_UMBRELLA = 29,
+};
+
+// 0x0000000142ABEE50 (Size: 0x4)
+enum class EMassImpulseType
+{
+	eMIT_None = 0,
+	eMIT_Explosion = 1,
+	eMIT_ShockWave = 2,
+	eMIT_ShockWaveNoExplosion = 3,
+};
+
+// 0x0000000142AA88E0 (Size: 0x24)
+class SCondition_MaxActualDistance :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a0; // 0x10
+	ZBehaviorTreeVariable a1; // 0x18
+	float32 fDistance; // 0x20
+};
+
+// 0x0000000142A9A040 (Size: 0xD8)
+class ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A4C0 (Size: 0x198)
+class ZTriggerAlarmGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86D58 (Size: 0x8)
+class ZGameTime
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int64 m_nTicks; // 0x0
+};
+
+// 0x0000000142A8FD88 (Size: 0x18)
+class SAIEventSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAIEventType m_eType; // 0x0
+	bool m_bHandled; // 0x4
+	ZGameTime m_nStart; // 0x8
+	ZGameTime m_nEnd; // 0x10
+};
+
+// 0x0000000142A8FDB8 (Size: 0x80)
+class SKnownEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nSharedIndex; // 0x0
+	TArray<SAIEventSaveData> m_aEvents; // 0x8
+	uint32 m_nBooleanEvents; // 0x20
+	uint32 m_nBooleanEventsHandled; // 0x24
+	SMatrix m_knownWorldMatrix; // 0x30
+	ZGameTime m_tLastWorldMatrixUpdate; // 0x70
+	uint16 m_nGoals; // 0x78
+};
+
+// 0x0000000142A8FE18 (Size: 0x60)
+class SActorGoalSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<int32> m_aEntities; // 0x0
+	TArray<bool> m_aHandled; // 0x18
+	TArray<bool> m_aIsCurrent; // 0x30
+	TArray<float32> m_fExpiredTime; // 0x48
+};
+
+// 0x0000000142A8FCC8 (Size: 0x4)
+enum class EAIGoal
+{
+	AIG_Kill = 0,
+	AIG_Arrest = 1,
+	AIG_FightSniper = 2,
+	AIG_HelpCivilian = 3,
+	AIG_HelpCivilianWeapon = 4,
+	AIG_Investigate = 5,
+	AIG_InvestigateDisguise = 6,
+	AIG_StandOffInvestigateDisguise = 7,
+	AIG_InvestigateDeadBody = 8,
+	AIG_HandleTrespasser = 9,
+	AIG_InvestigateCautious = 10,
+	AIG_HandleDistraction = 11,
+	AIG_AssistDistraction = 12,
+	AIG_GuardAssistDistraction = 13,
+	AIG_HandleSuitcase = 14,
+	AIG_InvestigateWeapon = 15,
+	AIG_DetectedInPrivate = 16,
+	AIG_RecoverUnconscious = 17,
+	AIG_RecoverUnconsciousAlerted = 18,
+	AIG_DeliverWeapon = 19,
+	AIG_AvoidExplosion = 20,
+	AIG_Hunt = 21,
+	AIG_Frisk = 22,
+	AIG_GuardBody = 23,
+	AIG_DragBody = 24,
+	AIG_LookAtAccident = 25,
+	AIG_Sentry = 26,
+	AIG_HelpGeneric = 27,
+	AIG_Evacuate = 28,
+	AIG_Entourage = 29,
+	AIG_AvoidDangerousArea = 30,
+	AIG_Spectator = 31,
+	AIG_Infected = 32,
+	AIG_SC_Combat = 33,
+	AIG_SC_Alerted = 34,
+	AIG_None = 35,
+};
+
+// 0x00000001422D7250 (Size: 0x4)
+enum class EGameTension
+{
+	EGT_Undefined = 0,
+	EGT_Ambient = 1,
+	EGT_Agitated = 2,
+	EGT_Searching = 3,
+	EGT_AlertedLow = 4,
+	EGT_AlertedHigh = 5,
+	EGT_Hunting = 6,
+	EGT_Arrest = 7,
+	EGT_Combat = 8,
+};
+
+// 0x0000000142A8FBE8 (Size: 0x98)
+class SKnowledgeSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SKnownEntitySaveData> m_aKnownEntities; // 0x0
+	TArray<EAIGoal> m_aGoalKeys; // 0x18
+	TArray<SActorGoalSaveData> m_aGoals; // 0x30
+	float32 m_fHMAttention; // 0x48
+	float32 m_fHMAttentionLastUpdate; // 0x4C
+	float32 m_fHMDisguiseAttention; // 0x50
+	float32 m_fHMTrespassingAttention; // 0x54
+	float32 m_fHMLastTrespassingAttentionMax; // 0x58
+	ZGameTime m_tLastTrespassingAttentionGain; // 0x60
+	ZGameTime m_tLastAttentionEvaluate; // 0x68
+	float32 m_fHMWeaponAttention; // 0x70
+	float32 m_fHMWeaponAttentionChange; // 0x74
+	EGameTension m_eGameTension; // 0x78
+	ZGameTime m_tAmbientStartTime; // 0x80
+	ZGameTime m_tExpiredAIModifierSuppressSocialGreeting; // 0x88
+	uint32 m_behaviorModifiers; // 0x90
+};
+
+// 0x0000000142AEE5E0 (Size: 0x4)
+enum class ReverbFidelity
+{
+	Low = 0,
+	Medium = 1,
+	High = 2,
+};
+
+// 0x0000000142ABDA88 (Size: 0x4)
+enum class ETimerEntityCommandType
+{
+	ETECT_Add = 0,
+	ETECT_Remove = 1,
+	ETECT_Reset = 2,
+};
+
+// 0x0000000142ABDAA0 (Size: 0xC)
+class STimerEntityCommandSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ETimerEntityCommandType m_eType; // 0x0
+	uint32 m_rEntity; // 0x4
+	float32 m_fInterval; // 0x8
+};
+
+// 0x0000000142ABDAB8 (Size: 0xC)
+class STimerEntityStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	float32 m_fNextEventTime; // 0x4
+	bool m_bPending; // 0x8
+};
+
+// 0x0000000142ABDB00 (Size: 0x48)
+class SGameTimersSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<STimerEntityCommandSaveData> m_aTimerEntityCommands; // 0x0
+	TArray<STimerEntityStateSaveData> m_aTimerEntityState; // 0x18
+	TArray<uint32> m_aPendingTimers; // 0x30
+};
+
+// 0x0000000143E6E778 (Size: 0x8)
+class ISoundAmbienceController :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB11D0 (Size: 0x8)
+class IUIMapExporter :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B01808 (Size: 0x1)
+enum class ECharacterCollidableLayer
+{
+	CCL_DYNAMIC = 0,
+	CCL_DYNAMIC_TRANSPARENT = 1,
+	CCL_DYNAMIC_NO_COLLISION = 2,
+	CCL_DYNAMIC_NO_COLLISION_TRANSPARENT = 3,
+	CCL_UNUSED_LAST = 4,
+};
+
+// 0x0000000142AACB90 (Size: 0x4)
+enum class EDifficultyLevel
+{
+	eDL_NO_FLAGS = 0,
+	eDL_EASY = 1,
+	eDL_NORMAL = 2,
+	eDL_HARD = 4,
+	eDL_VERY_HARD = 8,
+	eDL_ALL_FLAGS = 15,
+};
+
+// 0x0000000142A873D8 (Size: 0x4)
+enum class EAnimationPose
+{
+	AP_Undefined = 0,
+	AP_Standing = 1,
+	AP_SittingChair = 2,
+	AP_SittingGround = 3,
+	AP_LyingGround = 4,
+	AP_Crouching = 5,
+	AP_SittingBench = 6,
+	AP_SittingChairTable = 7,
+};
+
+// 0x0000000142AA4990 (Size: 0x4)
+enum class EActorLookAtStopReason
+{
+	eSR_Unknown = 0,
+	eSR_Disabled = 1,
+	eSR_DurationExpired = 2,
+	eSR_OutOfRange = 3,
+	eSR_OutOfSight = 4,
+	eSR_OutOfRemainingPathDistance = 5,
+	eSR_Interrupted = 6,
+	eSR_TargetRemoved = 7,
+	eSR_HigherPriorityProfile = 8,
+	eSR_HideInPlainSight = 9,
+};
+
+// 0x0000000143E6ED50 (Size: 0x18)
+class SStepCounterEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_nIndex; // 0x0
+	int32 m_nLoopIndex; // 0x4
+	bool m_bFirst; // 0x8
+	bool m_bEnabled; // 0x9
+	float32 m_nCountFrom; // 0xC
+	float32 m_nCountTo; // 0x10
+	float32 m_nStepSize; // 0x14
+};
+
+// 0x0000000142B016E8 (Size: 0x4)
+enum class ERuntimeMemoryAllocationState
+{
+	eRMAS_NeverAllocated = 0,
+	eRMAS_Allocated = 1,
+	eRMAS_Released = 2,
+};
+
+// 0x0000000142AEF0E8 (Size: 0x4)
+enum class CrowdRegionType
+{
+	CROWDSPHERE_NONE = 0,
+	CROWDSPHERE_SAFE = 1,
+	CROWDSPHERE_POI = 2,
+	CROWDSPHERE_AVOID = 3,
+	CROWDSPHERE_RELOCATE = 4,
+	CROWDSPHERE_STOP = 5,
+	CROWDSPHERE_ALERT = 6,
+	CROWDSPHERE_SCARE = 7,
+	CROWDSPHERE_GETDOWN = 8,
+	CROWDSPHERE_DIE = 9,
+};
+
+// 0x0000000142AA5190 (Size: 0x4)
+enum class ECharacterIdleHandlerFullbodyType
+{
+	ecIHFBT_DisguisedIdle = 0,
+	ecIHFBT_Event = 1,
+};
+
+// 0x0000000142A97738 (Size: 0x4)
+enum class EHM5SoundFootwearType
+{
+	EFWT_UNDEFINED = 0,
+	EFWT_BAREFOOT = 1,
+	EFWT_SLIPPERS = 2,
+	EFWT_DISPOSABLE_SLIPPERS = 3,
+	EFWT_SANDALS = 4,
+	EFWT_SNEAKERS = 5,
+	EFWT_SNEAKERS_METALLEG = 6,
+	EFWT_LEATHER = 7,
+	EFWT_FEMALE_LEATHER = 8,
+	EFWT_BOOTS = 9,
+	EFWT_COWBOY_BOOTS = 10,
+	EFWT_FEMALE_COWBOY_BOOTS = 11,
+	EFWT_RUBBER_BOOTS = 12,
+	EFWT_HIGH_HEELS = 13,
+	EFWT_LEATHER_KEYS = 14,
+	EFWT_SWAT_BOOTS = 15,
+};
+
+// 0x0000000142AF0688 (Size: 0x4)
+enum class EExtendedPropertyType
+{
+	TYPE_RESOURCEPTR = 0,
+	TYPE_INT32 = 1,
+	TYPE_UINT32 = 2,
+	TYPE_FLOAT = 3,
+	TYPE_STRING = 4,
+	TYPE_BOOL = 5,
+	TYPE_ENTITYREF = 6,
+	TYPE_VARIANT = 7,
+};
+
+// 0x0000000142AF06A0 (Size: 0x20)
+class SExtendedCppEntityProperty
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString propertyName; // 0x0
+	EExtendedPropertyType propertyType; // 0x10
+	bool rtEditable; // 0x14
+	uint64 extraData; // 0x18
+};
+
+// 0x0000000142AF06D0 (Size: 0x18)
+class SExtendedCppEntityBlueprint
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SExtendedCppEntityProperty> properties; // 0x0
+};
+
+// 0x0000000143CEC2E0 (Size: 0x1)
+enum class EParticleSpritePivotLocation
+{
+	CENTER_PIVOT = 0,
+	BOTTOM_PIVOT = 1,
+	TOP_PIVOT = 2,
+};
+
+// 0x0000000142A9A7D8 (Size: 0x1A0)
+class ZEvacuateTrespassGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9F450 (Size: 0x4)
+enum class EVRConfigAnimationMode
+{
+	EVRCAM_FullAnimation = 0,
+	EVRCAM_FullAnimationFreeze = 1,
+	EVRCAM_HideAnimation = 2,
+	EVRCAM_HideUpperBodyAnimation = 3,
+	EVRCAM_RemoveGroundMotion = 4,
+	EVRCAM_RemoveFullBodyAndGroundMotion = 5,
+	EVRCAM_KeepCurrentMode = 6,
+};
+
+// 0x0000000142A9A220 (Size: 0x50)
+class ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A6A0 (Size: 0x70)
+class ZGetHelpOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7300 (Size: 0x4)
+enum class ERegionMask
+{
+	eRM_None = 1,
+	eRM_LowCover = 2,
+	eRM_HighCover = 4,
+	eRM_Stairs = 8,
+	eRM_Separator = 16,
+	eRM_User_1 = 32,
+	eRM_User_2 = 64,
+	eRM_User_3 = 128,
+	eRM_User_4 = 256,
+	eRM_User_5 = 512,
+	eRM_User_6 = 1024,
+	eRM_User_7 = 2048,
+	eRM_User_8 = 4096,
+};
+
+// 0x0000000142AA5D90 (Size: 0x4)
+enum class EHM5SoundRicochetType
+{
+	ESRT_VARIATION1 = 0,
+	ESRT_VARIATION2 = 1,
+};
+
+// 0x0000000143F1E360 (Size: 0x4)
+enum class ECollidableShape
+{
+	ECOLLIDABLESHAPE_SPHERE = 0,
+	ECOLLIDABLESHAPE_CAPSULE = 1,
+	ECOLLIDABLESHAPE_BOX = 2,
+};
+
+// 0x0000000142AA4440 (Size: 0x4)
+enum class EClipSpawnAxis
+{
+	eCSA_XPos = 0,
+	eCSA_XNeg = 1,
+	eCSA_YPos = 2,
+	eCSA_YNeg = 3,
+	eCSA_ZPos = 4,
+	eCSA_ZNeg = 5,
+};
+
+// 0x0000000142A86A38 (Size: 0x4)
+enum class EAnimSetState
+{
+	EASES_DEFAULT = 0,
+	EASES_AMBIENT_ARMED = 1,
+	EASES_AMBIENT_VIP_ESCORT = 2,
+	EASES_AMBIENT_HERO_ESCORT = 3,
+	EASES_COMBAT_EVACUATE = 4,
+	EASES_COMBAT_EVACUATE_VIP_SOLO = 5,
+	EASES_SICK = 6,
+	EASES_INFECTED = 7,
+};
+
+// 0x0000000142AA30E0 (Size: 0x4)
+enum class EItemRequirement
+{
+	eIR_NoRequirement = 0,
+	eIR_RequireEmpty = 1,
+	eIR_RequireItem = 2,
+	eIR_RequireNoBigItem = 3,
+};
+
+// 0x0000000142A9A7A8 (Size: 0x4)
+class SSentryOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rSentryZone; // 0x0
+};
+
+// 0x0000000142AA8340 (Size: 0x1C)
+class SCondition_AreVisibleItemsIllegal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
+};
+
+// 0x00000001421176A0 (Size: 0x10)
+class SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 x; // 0x0
+	float32 y; // 0x4
+	float32 z; // 0x8
+	float32 w; // 0xC
+};
+
+// 0x0000000142AA4190 (Size: 0x24)
+class SMathLerpSaveData_SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 m_A; // 0x0
+	SVector4 m_B; // 0x10
+	float32 m_fT; // 0x20
+};
+
+// 0x0000000142AA28E8 (Size: 0x30)
+class SMathLerpsSaveData_SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
+};
+
+// 0x00000001422D72F8 (Size: 0x4)
+enum class EHM5GameInputFlag
+{
+	eGameInputActionPerform = 0,
+	eGameInputActionPickup = 1,
+	eGameInputActionAbort = 2,
+	eGameInputActionDoor = 3,
+	eGameInputWeaponZoomIn = 4,
+	eGameInputWeaponZoomOut = 5,
+	eGameInputActionShoot = 6,
+	eGameInputActionPrecisionShoot = 7,
+	eGameInputAimOTS = 8,
+	eGameInputCoverAction = 9,
+	eGameInputCoverAlternativeAction = 10,
+	eGameInputInventoryAccept = 11,
+	eGameInputEquipShortRange = 12,
+	eGameInputEquipLongRange = 13,
+	eGameInputHolsterItem = 14,
+	eGameInputDropItem = 15,
+	eGameInputTogglePlacement = 16,
+	eGameInputActivatePropQuick = 17,
+	eGameInputActivateProp = 18,
+	eGameInputActivatePropHold = 19,
+	eGameInputActivatePropSecondary = 20,
+	eGameInputActivatePropInterruptibleStart = 21,
+	eGameInputActivatePropInterruptibleEnd = 22,
+	eGameInputConcealRetrieve = 23,
+	eGameInputGuideAction = 24,
+	eGameInputGuideActionHold = 25,
+	eGameInputGuideActionSecondary = 26,
+	eGameInputGuideEnterWindow = 27,
+	eGameInputGuideSneakPastWindow = 28,
+	eGameInputGuideSneakPastWindowHold = 29,
+	eGameInputGuideKill = 30,
+	eGameInputSlideLadder = 31,
+	eGameInputCloseCombat = 32,
+	eGameInputFiberwire = 33,
+	eGameInputCloseCombatCounter = 34,
+	eGameInputCloseCombatTakeDown = 35,
+	eGameInputCloseCombatSnapNeck = 36,
+	eGameInputSurrender = 37,
+	eGameInputShowItem = 38,
+	eGameInputReload = 39,
+	eGameInputTakeDisguise = 40,
+	eGameInputDragDropBody = 41,
+	eGameInputDumpBody = 42,
+	eGameInputSneakToggle = 43,
+	eGameInputCamSwitch = 44,
+	eGameInputActivateRun = 45,
+	eGameInputActivateWalkSlow = 46,
+	eGameInputInstinctMode = 47,
+	eGameInputContractTargetTag = 48,
+	eGameInputThrow = 49,
+	eGameInputCloseCombatChainHigh = 50,
+	eGameInputCloseCombatChainLow = 51,
+	eGameInputCloseCombatChainCounter = 52,
+	eGameInputSkipCutSequence = 53,
+	eGameInputCloseCombatChokeStart = 54,
+	eGameInputCloseCombatChoke = 55,
+	eGameInputFocusedInteractionFaceUp = 56,
+	eGameInputFocusedInteractionFaceLeft = 57,
+	eGameInputFocusedInteractionFaceDown = 58,
+	eGameInputFocusedInteractionLeftStickAnalog = 59,
+	eGameInputRemoteAction = 60,
+	eGameInputChangeAmmoNext = 61,
+	eGameInputChangeAmmoPrevious = 62,
+	eGameInputDefault = 63,
+	eGameInputActionsNUM = 64,
+};
+
+// 0x0000000142AB1510 (Size: 0x4)
+enum class EActionPromptState
+{
+	eActionPromptState_Disabled = 0,
+	eActionPromptState_Enabled = 1,
+	eActionPromptState_Activated = 2,
+	eActionPromptState_Held = 3,
+};
+
+// 0x0000000142AAF368 (Size: 0x60)
+class SHUDPromptDisplayInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bActive; // 0x0
+	EActionPromptState m_eState; // 0x4
+	int32 m_nIconId; // 0x8
+	int32 m_eTypeId; // 0xC
+	float32 m_fProgress; // 0x10
+	float32 m_fDistance; // 0x14
+	bool m_bShowWarning; // 0x18
+	bool m_bNoActionAvailable; // 0x19
+	ZString m_sLabel; // 0x20
+	ZString m_sDescription; // 0x30
+	ZString m_sGlyph; // 0x40
+	float32 m_fOpacity; // 0x50
+	bool m_bIllegalItem; // 0x54
+	bool m_bSuspiciousItem; // 0x55
+	bool m_bDropTempHolsterableItems; // 0x56
+	int32 m_nFontSize; // 0x58
+};
+
+// 0x0000000142AB6BB8 (Size: 0x4)
+enum class EPostProcessorComponentType
+{
+	MRP_LOOKAT = 1,
+	MRP_AIM = 2,
+	MRP_LEDGEFEETLOCK = 16,
+	MRP_LEDGEHANG = 32,
+	MRP_IMPACT = 1024,
+	MRP_BLINDFIRE = 2048,
+};
+
+// 0x0000000142A9ED60 (Size: 0x4)
+enum class EActorPerceptionSensitivity
+{
+	APS_AMBIENT_DEAFBLIND = 0,
+	APS_AMBIENT_SLEEPING = 1,
+	APS_AMBIENT_PREOCCUPIED = 2,
+	APS_AMBIENT = 3,
+	APS_ALERT_LOW = 4,
+	APS_ALERT = 5,
+	APS_COMBAT = 6,
+	APS_SPIDER_SENSE = 7,
+};
+
+// 0x0000000143E6E880 (Size: 0x4)
+enum class ESequencePreviewState
+{
+	PREVIEW_STOPPED = 0,
+	PREVIEW_PLAYING = 1,
+	PREVIEW_PAUSED = 2,
+};
+
+// 0x0000000142AA4EC0 (Size: 0x4)
+enum class ETakeDownState
+{
+	eTD_Cover = 0,
+	eTD_Locomotion = 1,
+	eTD_ChokeLoop = 2,
+	eTD_ChokeFinish = 3,
+	eTD_Deactivating = 4,
+	eTD_Unknown = 5,
+};
+
+// 0x0000000142AA5070 (Size: 0x4)
+enum class ECharacterStateTransitionAttempt
+{
+	eSM_TA_IfDestinationCan = 0,
+	eSM_TA_IfDestinationCanAndWants = 1,
+	eSM_TA_IfDestinationCanAndOriginDoesNotWant = 2,
+	eSM_TA_IfDestinationCanAndWantsOriginDoesNotWant = 3,
+	eSM_TA_IfDestinationCanAndOriginCanNot = 4,
+};
+
+// 0x0000000142AA8148 (Size: 0x18)
+class SCondition_IsActorDeafBlind :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_Actors; // 0x10
+};
+
+// 0x0000000142AF0700 (Size: 0x4)
+enum class ECppTypeFlags
+{
+	EDITOR_ONLY = 1,
+	EDITOR_ONLY_CRITICAL = 2,
+	RESETABLE = 4,
+	RESETABLE_COND = 8,
+	RESETABLE_STATIC = 16,
+};
+
+// 0x0000000142AA5C70 (Size: 0x4)
+enum class ESynchronisedActionState
+{
+	eSAS_INACTIVE = 0,
+	eSAS_WAITING_TO_EXECUTE = 1,
+	eSAS_COOLINGDOWN = 2,
+};
+
+// 0x0000000142AA3100 (Size: 0x4)
+enum class EInventoryConfigItemHandling
+{
+	EICIH_Allow = 0,
+	EICIH_Store = 1,
+	EICIH_InstaStore = 2,
+	EICIH_Drop = 3,
+	EICIH_DropOrStore = 4,
+	EICIH_DropAndPickup = 5,
+	EICIH_DoNothing = 6,
+};
+
+// 0x0000000142A9A1C0 (Size: 0x4)
+enum class ESituationType
+{
+	AIST_Any = 0,
+	AIST_DetectedInPrivate = 1,
+	AIST_HandleDistraction = 2,
+	AIST_Spectator = 3,
+	AIST_InvestigateWeapon = 4,
+	AIST_GuardBody = 5,
+	AIST_Entourage = 6,
+	AIST_HandleTrespassing = 7,
+	AIST_DeadBody = 8,
+	AIST_InvestigateCautious = 9,
+	AIST_Sentry = 10,
+	AIST_HandleDisguise = 11,
+	AIST_SC_Curious = 12,
+	AIST_SC_Alerted = 13,
+	AIST_SC_Combat = 14,
+	AIST_SniperCombat = 15,
+	AIST_Arrest = 16,
+	AIST_StandOff = 17,
+	AIST_RecoverUnconscious = 18,
+	AIST_AvoidExplosion = 19,
+	AIST_Evacuate = 20,
+	AIST_ProtoCombat = 21,
+	AIST_DangerousArea = 22,
+	AIST_CloseCombat = 23,
+	AIST_Infected = 24,
+	ESituationType_Count = 25,
+};
+
+// 0x0000000142AA8730 (Size: 0x1C)
+class SCondition_TargetsNotInSituation :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ESituationType type; // 0x10
+	ZBehaviorTreeVariable targets; // 0x14
+};
+
+// 0x0000000142A86F70 (Size: 0x4)
+enum class ECollidableLayer
+{
+	eCollLayer_COLLIDE_WITH_ALL = 0,
+	eCollLayer_STATIC_COLLIDABLES_ONLY = 1,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY = 2,
+	eCollLayer_STAIRS = 3,
+	eCollLayer_SHOT_ONLY_COLLISION = 4,
+	eCollLayer_DYNAMIC_TRASH_COLLIDABLES = 5,
+	eCollLayer_KINEMATIC_COLLIDABLES_ONLY = 6,
+	eCollLayer_STATIC_COLLIDABLES_ONLY_TRANSPARENT = 7,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_TRANSPARENT = 8,
+	eCollLayer_KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT = 9,
+	eCollLayer_STAIRS_STEPS = 10,
+	eCollLayer_STAIRS_SLOPE = 11,
+	eCollLayer_HERO_PROXY = 12,
+	eCollLayer_ACTOR_PROXY = 13,
+	eCollLayer_HERO_VR = 14,
+	eCollLayer_CLIP = 15,
+	eCollLayer_ACTOR_RAGDOLL = 16,
+	eCollLayer_CROWD_RAGDOLL = 17,
+	eCollLayer_LEDGE_ANCHOR = 18,
+	eCollLayer_ACTOR_DYN_BODY = 19,
+	eCollLayer_HERO_DYN_BODY = 20,
+	eCollLayer_ITEMS = 21,
+	eCollLayer_WEAPONS = 22,
+	eCollLayer_COLLISION_VOLUME_HITMAN_ON = 23,
+	eCollLayer_COLLISION_VOLUME_HITMAN_OFF = 24,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER = 25,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER_TRANSPARENT = 26,
+	eCollLayer_COLLIDE_WITH_STATIC_ONLY = 27,
+	eCollLayer_AI_VISION_BLOCKER = 28,
+	eCollLayer_AI_VISION_BLOCKER_AMBIENT_ONLY = 29,
+	eCollayer_UNUSED_LAST = 30,
+};
+
+// 0x0000000142117950 (Size: 0x10)
+class ZGuid
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 _a; // 0x0
+	uint16 _b; // 0x4
+	uint16 _c; // 0x6
+	uint8 _d; // 0x8
+	uint8 _e; // 0x9
+	uint8 _f; // 0xA
+	uint8 _g; // 0xB
+	uint8 _h; // 0xC
+	uint8 _i; // 0xD
+	uint8 _j; // 0xE
+	uint8 _k; // 0xF
+};
+
+// 0x0000000142AB9EC0 (Size: 0x20)
+class SActivity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZGuid id; // 0x0
+	ZString activityId; // 0x10
+};
+
+// 0x0000000142AB9F08 (Size: 0x38)
+class SActivityExits
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SActivity activity; // 0x0
+	TArray<ZString> exits; // 0x20
+};
+
+// 0x0000000142A882A8 (Size: 0x4)
+enum class EGSKillVictim
+{
+	GSKILLVICTIM_UNKNOWN = 0,
+	GSKILLVICTIM_CIVILIAN = 1,
+	GSKILLVICTIM_GUARD = 2,
+	GSKILLVICTIM_TARGET = 3,
+};
+
+// 0x0000000142AEDFB0 (Size: 0x8)
+class ISoundAmbienceGroup :
+	public ISoundAmbienceElement
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA4250 (Size: 0x24)
+class SMathMultiplyDivideSaveData_SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 m_fA; // 0x0
+	SVector4 m_fB; // 0x10
+	bool m_bDivide; // 0x20
+};
+
+// 0x0000000142AA26F0 (Size: 0x30)
+class SMathMultipliesSaveData_SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
+};
+
+// 0x0000000142AB2188 (Size: 0x8)
+class S25DProjectionSettingsCurveEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 fDistance; // 0x0
+	float32 fValue; // 0x4
+};
+
+// 0x0000000142AF0748 (Size: 0x4)
+enum class EGameModeId
+{
+	GameMode_Invalid = -1,
+	GameMode_Normal = 0,
+	GameMode_Sniper = 1,
+	GameMode_Versus = 2,
+	GameMode_Max = 3,
+};
+
+// 0x0000000142AA7B30 (Size: 0x18)
+class SCondition_IsAccidentVictimDisposable :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+};
+
+// 0x0000000142AB2020 (Size: 0x4)
+enum class EMarkerInclusionMode
+{
+	MIM_DEFAULT = 0,
+	MIM_IF_FORCE_INCLUDED_ONLY = 1,
+};
+
+// 0x0000000142A98C78 (Size: 0x4)
+enum class EHeroGameState
+{
+	eHGS_Reserved_QueryALL = 0,
+	eHGS_Reserved_QueryAny = 1,
+	eHGS_InstinctModeActive = 2,
+	eHGS_IsHardToSee = 3,
+	eHGS_Sneaking = 4,
+	eHGS_InSequence = 5,
+	eHGS_InCloseCombat = 6,
+	eHGS_ItemHandlingActive = 7,
+	eHGS_CamSwitched = 8,
+	eHGS_SniperMode = 9,
+	eHGS_OTSMode = 10,
+	eHGS_DualWielding = 11,
+	eHGS_PreciseAim = 12,
+	eHGS_ActivatingAltFire = 13,
+	eHGS_FiredLastFrFocusBurnRate = 14,
+	eHGS_FiredLastFrFocusGainValue = 15,
+	eHGS_BurningFocus = 16,
+	eHGS_InsideCloset = 17,
+	eHGS_Peeking = 18,
+	eHGS_FocusedInteraction = 19,
+	eHGS_HoldsUtility = 20,
+	eHGS_FacingRight = 21,
+	eHGS_ThrowAiming = 22,
+	eHGS_PlaceItemAiming = 23,
+	eHGS_Reloading = 24,
+	eHGS_FiberWirePrimedAndReady = 25,
+	eHGS_OperatingDoorVRHandPush = 26,
+	eHGS_MvAgility = 27,
+	eHGS_MvCover = 28,
+	eHGS_MvDragging = 29,
+	eHGS_MvDrainPipe = 30,
+	eHGS_MvLedgeWalk = 31,
+	eHGS_MvLedgeHang = 32,
+	eHGS_MvLocomotion = 33,
+	eHGS_MvCloseCombat = 34,
+	eHGS_MvSurrendering = 35,
+	eHGS_MvFriskComplying = 36,
+	eHGS_MvShowItem = 37,
+	eHGS_MvThrow = 38,
+	eHGS_MvFiberWireKill = 39,
+	eHGS_MvAlign = 40,
+	eHGS_MvTakedown = 41,
+	eHGS_MvSubAction = 42,
+	eHGS_MvNewFullBody = 43,
+	eHGS_MvDisguiseSafeZone = 44,
+	eHGS_MvPlaceItem = 45,
+	eHGS_NUM = 46,
+};
+
+// 0x0000000143E6CA10 (Size: 0x1)
+enum class ETessellationFactorMode
+{
+	TESSELLATIONFACTORMODE_FIXED = 0,
+	TESSELLATIONFACTORMODE_OBJECT = 1,
+	TESSELLATIONFACTORMODE_TRIANGLE = 2,
+};
+
+// 0x0000000142AA5250 (Size: 0x4)
+enum class ETargetType
+{
+	eTDS_None = 0,
+	eTDS_LookAtTarget = 1,
+	eTDS_Spatial = 2,
+	eTDS_Linked = 3,
+};
+
+// 0x0000000142AA84C0 (Size: 0x1C)
+class SCondition_SuspiciousItemPickedUp :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
+};
+
+// 0x0000000142AA5D30 (Size: 0x4)
+enum class EHM5SoundFootstepStance
+{
+	EFSS_SNEAK = 0,
+	EFSS_SNEAKRUN = 1,
+	EFSS_WALKSLOWLY = 2,
+	EFSS_WALK = 3,
+	EFSS_RUN = 4,
+	EFSS_ANY = 5,
+};
+
+// 0x0000000142AA8B60 (Size: 0x4)
+enum class EGestureCategory
+{
+	EGC_None = 0,
+	EGC_AmbientDialog = 1,
+	EGC_TrespassWarn1 = 2,
+	EGC_TrespassWarn2 = 3,
+	EGC_TrespassWarn3 = 4,
+	EGC_StopWarn = 5,
+};
+
+// 0x0000000142AA8058 (Size: 0x18)
+class SCondition_CurrentSetpieceVisualDistractions :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+};
+
+// 0x0000000142AA82F8 (Size: 0x20)
+class SCondition_IsItemSuspiciousOnHitman :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+	ZBehaviorTreeVariable actor; // 0x18
+};
+
+// 0x0000000142AA2CB0 (Size: 0x4)
+enum class ECameraShakerChannel
+{
+	eCameraShakerChannel_Default = 0,
+	eCameraShakerChannle_Locomotion = 1,
+	eCameraShakerChannel_Ambient = 2,
+	eCameraShakerChannel_Weapon = 3,
+	eCameraShakerChannel_CloseCombat = 4,
+	eCameraShakerChannel_Num = 5,
+};
+
+// 0x00000001422D7150 (Size: 0x4)
+enum class EItemLocation
+{
+	eIL_Anywhere = 0,
+	eIL_Inventory = 1,
+	eIL_RightHand = 2,
+	eIL_LeftHand = 3,
+	eIL_FreeBone = 4,
+	eIL_Count = 5,
+};
+
+// 0x0000000142A98230 (Size: 0x8)
+class IPriorityNode :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABEFE8 (Size: 0x4)
+enum class eWeaponOperation
+{
+	WO_SEMI_AUTO = 0,
+	WO_FULL_AUTO = 1,
+};
+
+// 0x0000000142AEDDE8 (Size: 0x8)
+class SMusicGridData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fGridDurationSec; // 0x0
+	float32 m_fGridOffsetSec; // 0x4
+};
+
+// 0x0000000142A9A760 (Size: 0x60)
+class ZRepositionOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A880B0 (Size: 0x1)
+enum class ERayDetailLevel
+{
+	RAYDETAILS_NONE = 0,
+	RAYDETAILS_BONES = 1,
+	RAYDETAILS_MESH = 2,
+};
+
+// 0x0000000143E6C9E0 (Size: 0x40)
+class SCollidingParticle
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float4 m_vPosition; // 0x0
+	float4 m_vVelocity; // 0x10
+	float4 m_vNewVelocity; // 0x20
+	uint32 m_nColor; // 0x30
+	float32 m_fSize; // 0x34
+};
+
+// 0x0000000142A9F480 (Size: 0x4)
+enum class EVRConfigCameraRotationAllowed
+{
+	EVRCCRA_RotationEnabled = 0,
+	EVRCCRA_RotationDisabled = 1,
+	EVRCCRA_KeepCurrent = 2,
+};
+
+// 0x0000000142A9F6F0 (Size: 0x8)
+class IActorPickerFilter :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A95198 (Size: 0x8)
+class IEntityGroupTargetProxy :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAE950 (Size: 0x4)
+enum class _EUIOptionKey
+{
+	UI_OPTION_GAME_VIBRATION = 100,
+	UI_OPTION_GAME_ADAPTIVE_FEEDBACK = 110,
+	UI_OPTION_GAME_AIM_ASSIST = 200,
+	UI_OPTION_GAME_AIM_CAUSAL = 210,
+	UI_OPTION_GAME_INVERT_INVENTORY_EMOTE = 220,
+	UI_OPTION_GAME_INVERT_X = 300,
+	UI_OPTION_GAME_INVERT_MOUSE_X = 301,
+	UI_OPTION_GAME_INVERT_MOUSE_Y = 302,
+	UI_OPTION_GAME_INVERT_Y = 310,
+	UI_OPTION_GAME_CONTROL_SCHEME = 311,
+	UI_OPTION_GAME_FAST_TARGET = 312,
+	UI_OPTION_GAME_DIFFICULTY = 321,
+	UI_OPTION_GAME_TRIGGER_SHOOT = 330,
+	UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA = 332,
+	UI_OPTION_GAME_LEFT_HANDED_CONTROLS = 333,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY_HORZ = 334,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY_VERT = 335,
+	UI_OPTION_GAME_MOUSE_SENSITIVITY = 336,
+	UI_OPTION_GAME_AIM_SENSITIVITY = 337,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY = 338,
+	UI_OPTION_GAME_INSTINCT_PATHS = 340,
+	UI_OPTION_GAME_INSTINCT_NPCGLOW = 342,
+	UI_OPTION_GAME_HINTS_TUTORIAL = 346,
+	UI_OPTION_GAME_HINTS_INSTINCT = 348,
+	UI_OPTION_GAME_LANG_AUDIO = 350,
+	UI_OPTION_GAME_LANG_TEXT = 351,
+	UI_OPTION_GAME_COVER_TOGGLE = 352,
+	UI_OPTION_GAME_FIXED_MAP = 353,
+	UI_OPTION_GAME_MAP_SHOW_NORTH_INDICATOR = 354,
+	UI_OPTION_GAME_AID_OPPORTUNITIES = 360,
+	UI_OPTION_GAME_AID_INSTINCT = 361,
+	UI_OPTION_GAME_AID_MINI_MAP = 362,
+	UI_OPTION_GAME_AID_NPC_ICONS = 363,
+	UI_OPTION_GAME_AID_ATTENTION = 364,
+	UI_OPTION_GAME_AID_VITAL_INFO = 365,
+	UI_OPTION_GAME_AID_INTERACTION_H = 366,
+	UI_OPTION_GAME_AID_OBJECTIVES = 367,
+	UI_OPTION_GAME_AID_WEAPON_HUD = 368,
+	UI_OPTION_GAME_AID_CHALLENGEDESCRIPTION = 369,
+	UI_OPTION_GAME_MINI_MAP_SHOW_NPCS = 370,
+	UI_OPTION_GAME_AID_TARGET_INFO = 371,
+	UI_OPTION_GAME_AID_CHALLENGE_HUD = 372,
+	UI_OPTION_GAME_MINI_MAP_SHOW_TARGETS = 373,
+	UI_OPTION_GAME_CHALLENGES_FILTER = 374,
+	UI_OPTION_GAME_AID_MISSION_TIMER = 375,
+	UI_OPTION_GAME_DIFFICULTY_LEVEL_HUD = 376,
+	UI_OPTION_GAME_AID_GLOBAL_HINTS = 377,
+	UI_OPTION_GAME_SCORE_HUD = 378,
+	UI_OPTION_GAME_AID_LVA = 379,
+	UI_OPTION_GAME_AID_PICTURE_IN_PICTURE = 380,
+	UI_OPTION_GAME_AID_INTERACTION_PROMPT = 381,
+	UI_OPTION_GAME_AID_SA_HUD = 382,
+	UI_OPTION_GAME_AID_RELOAD_HUD = 383,
+	UI_OPTION_GAME_AID_CAMERA_GRID = 384,
+	UI_OPTION_GAME_AID_AIM_TOGGLE = 385,
+	UI_OPTION_GAME_AID_OBJECTIVES_VR = 386,
+	UI_OPTION_GAME_AID_WEAPON_HUD_VR = 387,
+	UI_OPTION_GAME_AID_RELOAD_HUD_VR = 388,
+	UI_OPTION_GAME_AUTOSAVE = 390,
+	UI_OPTION_GAME_AUTOSAVE_VR = 391,
+	UI_OPTION_GAME_AUTOSAVE_HUD = 400,
+	UI_OPTION_SOUND_VOLUME_MASTER = 1010,
+	UI_OPTION_SOUND_VOLUME_EFFECTS = 1020,
+	UI_OPTION_SOUND_VOLUME_MUSIC = 1030,
+	UI_OPTION_SOUND_VOLUME_DIALOGUE = 1040,
+	UI_OPTION_SOUND_MUTE_MICROPHONE = 1050,
+	UI_OPTION_SOUND_MUTE_OTHER_PLAYER = 1060,
+	UI_OPTION_SOUND_OUTPUTMODE = 1200,
+	UI_OPTION_SOUND_SIMULATION_QUALITY = 1210,
+	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE = 1220,
+	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE_VR = 1221,
+	UI_OPTION_GRAPHICS_SUBTITLES = 2000,
+	UI_OPTION_GRAPHICS_SUBTITLES_SIZE = 2001,
+	UI_OPTION_GRAPHICS_SUBTITLES_VR = 2010,
+	UI_OPTION_GRAPHICS_SUBTITLES_SIZE_VR = 2011,
+	UI_OPTION_GRAPHICS_SAFE_AREA_X = 2210,
+	UI_OPTION_GRAPHICS_SAFE_AREA_Y = 2220,
+	UI_OPTION_GSM_AUTHORITY_BEGIN_MARKER = 2221,
+	UI_OPTION_DISPLAY_RESOLUTION = 2230,
+	UI_OPTION_DISPLAY_REFRESHRATE = 2240,
+	UI_OPTION_DISPLAY_FULLSCREEN = 2250,
+	UI_OPTION_DISPLAY_EXCLUSIVE = 2260,
+	UI_OPTION_DISPLAY_VSYNC = 2270,
+	UI_OPTION_DISPLAY_MONITOR = 2280,
+	UI_OPTION_DISPLAY_QUALITY = 2290,
+	UI_OPTION_DISPLAY_ASPECT = 2300,
+	UI_OPTION_DISPLAY_STEREOSCOPIC = 2310,
+	UI_OPTION_DISPLAY_STEREO_DEPTH = 2320,
+	UI_OPTION_DISPLAY_STEREO_STRENGTH = 2330,
+	UI_OPTION_GRAPHICS_QUALITY = 2600,
+	UI_OPTION_GRAPHICS_SHADOW_QUALITY = 2610,
+	UI_OPTION_GRAPHICS_SHADOW_RESOLUTION = 2620,
+	UI_OPTION_GRAPHICS_TEXTURE_QUALITY = 2630,
+	UI_OPTION_GRAPHICS_TEXTURE_FILTER = 2640,
+	UI_OPTION_GRAPHICS_ASSAO_QUALITY = 2650,
+	UI_OPTION_GRAPHICS_VSYNC = 2660,
+	UI_OPTION_GRAPHICS_TESSELLATION = 2680,
+	UI_OPTION_GRAPHICS_MIRRORS = 2690,
+	UI_OPTION_GRAPHICS_LOD = 2710,
+	UI_OPTION_GRAPHICS_MOTIONBLUR = 2720,
+	UI_OPTION_GRAPHICS_BOKEH = 2740,
+	UI_OPTION_GRAPHICS_REFLECTION_QUALITY = 2742,
+	UI_OPTION_GRAPHICS_MOTION_BLUR = 2743,
+	UI_OPTION_GRAPHICS_DYNAMIC_SHARPENING = 2744,
+	UI_OPTION_GRAPHICS_SIMULATION_QUALITY = 2745,
+	UI_OPTION_GRAPHICS_SSR = 2746,
+	UI_OPTION_GRAPHICS_VRS = 2747,
+	UI_OPTION_GRAPHICS_SUPER_SAMPLING = 2750,
+	UI_OPTION_GRAPHICS_GAMMA = 2760,
+	UI_OPTION_GRAPHICS_FRAMERATE_LIMIT = 2770,
+	UI_OPTION_GRAPHICS_HDR = 2771,
+	UI_OPTION_GSM_AUTHORITY_END_MARKER = 2771,
+	UI_OPTION_GRAPHICS_HDR_GAMMA = 2772,
+	UI_OPTION_GRAPHICS_RENDERING_QUALITY = 2773,
+	UI_OPTION_GRAPHICS_NEUTRAL_LUT_BLEND = 2774,
+	UI_OPTION_GRAPHICS_DIFFUSE_COLOR_CLAMP = 2775,
+	UI_OPTION_VR_BLINDERS_ENABLED = 3000,
+	UI_OPTION_VR_BLINDERS_STRENGTH = 3001,
+	UI_OPTION_VR_TURN_MODE = 3002,
+	UI_OPTION_VR_HEAD_BASED_MOVEMENT = 3003,
+	UI_OPTION_VR_FADE_ON_COLLISION = 3004,
+	UI_OPTION_VR_TURN_RATE = 3005,
+	UI_OPTION_VR_TURN_SPEED = 3006,
+	UI_OPTION_VR_MINIMUM_REPROJECTION_COLOR = 3007,
+	UI_OPTION_VR_LEFT_HAND_FOLLOW_RIGHT = 3008,
+	UI_OPTION_VR_SAFE_AREA_ENABLED = 3009,
+};
+
+// 0x0000000142AA3080 (Size: 0x4)
+enum class EBoolStateRequirement
+{
+	eBSR_Any = 0,
+	eBSR_RequireTrue = 1,
+	eBSR_RequireFalse = 2,
+};
+
+// 0x0000000142AB2770 (Size: 0x4)
+enum class EIntelType
+{
+	eIT_DATA = 0,
+	eIT_OPPORTUNITY = 1,
+	eIT_BACKGROUND = 2,
+	eIT_HANDLER = 3,
+	eIT_UNDEFINED = 4,
+};
+
+// 0x0000000142A86F88 (Size: 0x4)
+enum class ERayLayer
+{
+	eRayLayer_COLLIDE_WITH_ALL = 0,
+	eRayLayer_CAMERA_COLI = 1,
+	eRayLayer_CAMERA_COLI_CAMERA_OBSTACE_ONLY = 2,
+	eRayLayer_HERO_FIRE = 3,
+	eRayLayer_ACTOR_FIRE = 4,
+	eRayLayer_ACTOR_LINE_OF_FIRE = 5,
+	eRayLayer_FOOTSTEPS_COLI = 7,
+	eRayLayer_BLOODSPLATDECAL_COLI = 8,
+	eRayLayer_COLLIDE_WITH_STATIC = 9,
+	eRayLayer_COLLIDE_WITH_STATIC_EXCL_TRANSPARENT = 10,
+	eRayLayer_PARTICLES = 11,
+	eRayLayer_COVERSEARCH = 12,
+	eRayLayer_ACTOR_VISIBILITY = 13,
+	eRayLayer_ACTOR_VISIBILITY_AMBIENT = 14,
+	eRayLayer_PICKUP = 16,
+	eRayLayer_HERO_PROXY = 17,
+	eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE = 19,
+	eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE_EXCL_TRANSPARENT = 20,
+	eRayLayer_HERO_PROXY_NO_VOLUMES = 22,
+	eRayLayer_PHYSICS_MANIPULATOR = 23,
+	eRayLayer_UNUSED_LAST = 24,
+};
+
+// 0x0000000142A9A778 (Size: 0x2)
+class SRepositionOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bStrafe; // 0x0
+	bool m_bAimAtTarget; // 0x1
+};
+
+// 0x0000000142B00248 (Size: 0x4)
+enum class EMultiplayerLobbyRequestType
+{
+	LOBBY_REQUEST_VOID = 0,
+	LOBBY_REQUEST_IDLE = 1,
+	LOBBY_REQUEST_CREATE = 2,
+	LOBBY_REQUEST_CREATE_LOCALHOST = 3,
+	LOBBY_REQUEST_JOIN = 4,
+};
+
+// 0x0000000142A9A1F0 (Size: 0x4)
+enum class EExclusionLayer
+{
+	EL_NONE = 0,
+	EL_STORY = 1,
+	EL_AMBIENT = 2,
+};
+
+// 0x0000000142A98DD8 (Size: 0x6)
+class SSecuritySystemCameraSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint16 m_nEscalation; // 0x0
+	bool m_bIsFunctional; // 0x2
+	bool m_bHasEnteredOnce; // 0x3
+	bool m_bWasInvestigated; // 0x4
+	bool m_bDestroyed; // 0x5
+};
+
+// 0x0000000142AEE4D8 (Size: 0x1)
+enum class AudioEventCullingBehavior
+{
+	AutoSendStop = 0,
+	AutoSendStopAfterTriggered = 1,
+	NoAutoSendStop = 2,
+	NoDistanceCulling = 3,
+};
+
+// 0x0000000142A8FF00 (Size: 0x4)
+enum class EConversationRole
+{
+	eCR_Leader = 0,
+	eCR_Assistant = 1,
+};
+
+// 0x0000000142117670 (Size: 0xC)
 class SVector3
 {
 public:
@@ -2010,55 +3335,34 @@ public:
 	float32 z; // 0x8
 };
 
-// 0x0000000143E60ED0 (Size: 0x88)
-class SPostfilterParametersSaveData
+// 0x0000000142ABD8A8 (Size: 0x20)
+class SSpatialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	uint32 m_rEntity; // 0x0
-	bool m_bDepthOfFieldEnabled; // 0x4
-	float32 m_fDepthOfFieldBlurriness; // 0x8
-	bool m_bRadialBlurEnabled; // 0xC
-	float32 m_fRadialBlurriness; // 0x10
-	SVector2 m_vRadialBlurCenter; // 0x14
-	float32 m_fRadialBlurStart; // 0x1C
-	bool m_bSpatialBlurEnabled; // 0x20
-	float32 m_fSpatialBlurriness; // 0x24
-	SVector3 m_vSpatialBlurCenter; // 0x28
-	float32 m_fSpatialBlurStart; // 0x34
-	float32 m_fSpatialBlurFade; // 0x38
-	bool m_bDistortionWobbleEnabled; // 0x3C
-	float32 m_fDistortionWobbleScale; // 0x40
-	SVector2 m_vDistortionWobbleWaveLength; // 0x44
-	SVector2 m_vDistortionWobbleSpeed; // 0x4C
-	bool m_bDistortionWobbleUseRealTime; // 0x54
-	bool m_bHDRActive; // 0x55
-	bool m_bHDREnabled; // 0x56
-	SVector2 m_vHDRAdaptationSpeed; // 0x58
-	SVector2 m_vHDRAdaptationLuminanceMinMax; // 0x60
-	SVector2 m_vHDRAdaptationMiddleGrayMinMax; // 0x68
-	float32 m_fHDRWhitePoint; // 0x70
-	float32 m_fHDRBrightPassThreshold; // 0x74
-	float32 m_fHDRBrightPassMaxPercentage; // 0x78
-	SColorRGB m_HDRColorTint; // 0x7C
+	bool m_bVisible; // 0x0
+	SVector3 m_vPosition; // 0x4
+	SVector4 m_vQuaternionRotation; // 0x10
 };
 
-// 0x0000000142A82EE0 (Size: 0x18)
-class SEventHistorySaveData
+// 0x0000000142AA8220 (Size: 0x1C)
+class SCondition_HasGoalOnTarget :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<ZGameTime> m_aOccurences; // 0x0
+	ZBehaviorTreeVariable target; // 0x10
+	EAIGoal type; // 0x18
 };
 
-// 0x00000001422C9C40 (Size: 0x8)
-class IKeywordProvider :
+// 0x0000000142ABD998 (Size: 0x8)
+class ITimerEventListener :
 	public IComponentInterface
 {
 public:
@@ -2068,8 +3372,134 @@ public:
 
 };
 
-// 0x00000001422C9C70 (Size: 0x8)
-class IKeywordHolder :
+// 0x0000000142B001E8 (Size: 0x4)
+enum class EReplicaMode
+{
+	E_RM_STATIC_OBJECT = 0,
+	E_RM_DYNAMIC = 1,
+};
+
+// 0x0000000142AACDB8 (Size: 0x8)
+class IContractEvaluationContextListener
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAC7C0 (Size: 0x268)
+class ZChallengesManager :
+	public IComponentInterface,
+	public IContractEvaluationContextListener
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA44C0 (Size: 0x4)
+enum class EDetachUsage
+{
+	EDU_NEVER = 0,
+	EDU_ALWAYS = 1,
+	EDU_RAGDOLL_ONLY = 2,
+};
+
+// 0x0000000142AA7B78 (Size: 0x1C)
+class SCondition_CanArrestReasonEscalateTo :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable targets; // 0x10
+	EAIEventType reason; // 0x18
+};
+
+// 0x00000001422D6F60 (Size: 0x8)
+class ZRuntimeResourceID
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_IDHigh; // 0x0
+	uint32 m_IDLow; // 0x4
+};
+
+// 0x0000000142AB1A40 (Size: 0xA0)
+class SWeaponStatusUIData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZRuntimeResourceID icon; // 0x0
+	ZRuntimeResourceID containedIcon; // 0x8
+	ZString sWeaponName; // 0x10
+	ZString sContainedItemName; // 0x20
+	int32 nWeaponType; // 0x30
+	int32 nItemHUDType; // 0x34
+	int32 nAmmoRemaining; // 0x38
+	int32 nAmmoTotal; // 0x3C
+	int32 nAmmoInClip; // 0x40
+	bool bSilenced; // 0x44
+	bool bIsFirearm; // 0x45
+	bool bHolstered; // 0x46
+	bool bCannotBeHolstered; // 0x47
+	bool bHasItemToShow; // 0x48
+	bool bSuspicious; // 0x49
+	bool bIllegal; // 0x4A
+	bool bCanReload; // 0x4B
+	bool bIsReloading; // 0x4C
+	float32 fReloadDuration; // 0x50
+	bool bInfiniteAmmo; // 0x54
+	bool bIsContainer; // 0x55
+	bool bContainsItem; // 0x56
+	int32 nContainedItemHUDType; // 0x58
+	bool bContainedItemIllegal; // 0x5C
+	bool bContainedItemSuspicious; // 0x5D
+	bool bContainedItemDetectedDuringFrisk; // 0x5E
+	float32 fLastBulletFiredTime; // 0x60
+	float32 fTimeBetweenBullets; // 0x64
+	TArray<ZString> aPerks; // 0x68
+	TArray<ZString> aAmmoTypes; // 0x80
+	uint32 nCurrentAmmoType; // 0x98
+};
+
+// 0x0000000142B017D8 (Size: 0x1)
+enum class EDestructibleInteractionType
+{
+	eDIT_SHOT = 0,
+	eDIT_EXPLOSION = 1,
+	eDIT_COLLISION = 2,
+	eDIT_FRACTURE_AND_DETACH_ALL = 3,
+	eDIT_OUT_OF_WORLD = 4,
+	eDIT_COUNT = 5,
+};
+
+// 0x0000000142AA4930 (Size: 0x4)
+enum class EActorLookAtTargetType
+{
+	eALAT_Invalid = 0,
+	eALAT_PositionTarget = 1,
+	eALAT_KnownEntityType = 2,
+	eALAT_PointOfInterest = 3,
+	eALAT_Hero = 4,
+	eALAT_Screenplay = 5,
+	eALAPT_Max = 6,
+};
+
+// 0x0000000142AA6368 (Size: 0x8)
+class IActorPickerEffect :
 	public IComponentInterface
 {
 public:
@@ -2079,38 +3509,66 @@ public:
 
 };
 
-// 0x00000001422C9C10 (Size: 0x10)
-class IItem :
-	public IKeywordProvider,
-	public IKeywordHolder
+// 0x0000000142AA5370 (Size: 0x4)
+enum class ECharacterAnimEvent
+{
+	eCAE_ReloadStarted = 699,
+	eCAE_ReloadedClip = 700,
+	eCAE_ReloadCompleted = 701,
+	eCAE_ReloadedOneBullet = 711,
+	eCAE_ReloadUpdate = 702,
+	eCAE_ReloadSwapRHandAttacher = 703,
+	eCAE_ReloadResetRHandSwap = 704,
+	eCAE_ChangeAmmoCompleted = 712,
+	eCAE_UnholsterAttachL = 9010,
+	eCAE_UnholsterCompletedL = 9011,
+	eCAE_UnholsterAttachR = 9012,
+	eCAE_UnholsterCompletedR = 9013,
+	eCAE_HolsterDetachL = 9020,
+	eCAE_HolsterCompletedL = 9021,
+	eCAE_HolsterDetachR = 9022,
+	eCAE_HolsterCompletedR = 9023,
+	eCAE_PickupActivate = 9030,
+	eCAE_PickupCompleted = 9031,
+	eCAE_SwipeActivate = 9030,
+	eCAE_SwipeCompleted = 9031,
+	eCAE_InteractionActivate = 5001,
+	eCAE_InteractionCompleted = 5000,
+	eCAE_SwapHandsRtoL = 9040,
+	eCAE_SwapHandsRtoLCompleted = 9041,
+	eCAE_SwapHandsLtoR = 9042,
+	eCAE_SwapHandsLtoRCompleted = 9043,
+	eCAE_OpenDoorActivate = 9051,
+	eCAE_OpenDoorCompleted = 9050,
+	eCAE_FlavorIdleCompleted = 9060,
+	eCAE_AssembleContainerAttach = 9074,
+	eCAE_AssemblePlaceAlignCompleted = 9070,
+	eCAE_AssembleAttach = 9071,
+	eCAE_AssembleEarlyOut = 9075,
+	eCAE_AssembleToSneak = 9073,
+	eCAE_AssembleCompleted = 9072,
+	eCAE_HandIKEnableLeft = 10000,
+	eCAE_HandIKDisableLeft = 10001,
+	eCAE_HandIKEnableRight = 10002,
+	eCAE_HandIKDisableRight = 10003,
+	eCAE_EarlyExit = 50,
+};
+
+// 0x0000000142AF0478 (Size: 0x28)
+class SEntityTemplatePropertyAlias
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	ZString sAliasName; // 0x0
+	int32 entityID; // 0x10
+	ZString sPropertyName; // 0x18
 };
 
-// 0x0000000142AE15A0 (Size: 0x4)
-enum class ESoundGateFlags
-{
-	SOUNDGATE_FLAGS_AMBIENCE = 1,
-	SOUNDGATE_FLAGS_OCCLUSION = 2,
-	SOUNDGATE_FLAGS_ALL = 255,
-};
-
-// 0x0000000142A99EE0 (Size: 0x140)
-class ZInteractionData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE25D8 (Size: 0x8)
-class IRemapCurveEntity :
+// 0x0000000142AA6EB8 (Size: 0x8)
+class IScreenplayRole :
 	public IComponentInterface
 {
 public:
@@ -2120,22 +3578,276 @@ public:
 
 };
 
-// 0x0000000142AF47F8 (Size: 0x1)
-enum class EDefaultCollidableLayer
+// 0x00000001422D6E80 (Size: 0x4)
+enum class EDeathType
 {
-	DCL_STATIC = 0,
-	DCL_KINEMATIC = 1,
-	DCL_KINEMATIC_TRANSPARENT = 2,
-	DCL_DYNAMIC = 3,
-	DCL_DYNAMIC_TRANSPARENT = 4,
-	DCL_COLLIDE_ALL = 5,
-	DCL_STATIC_TRANSPARENT = 6,
-	DCL_COLLIDE_STATIC_ONLY = 7,
-	DCL_DYNAMIC_NO_CHARACTER = 8,
-	DCL_UNUSED_LAST = 9,
+	eDT_UNDEFINED = 0,
+	eDT_PACIFY = 1,
+	eDT_KILL = 2,
+	eDT_BLOODY_KILL = 3,
 };
 
-// 0x0000000142A96010 (Size: 0x4)
+// 0x0000000142AA7C20 (Size: 0x18)
+class SCondition_CombatSituationsThatCanDiscardCombatants :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_CombatSituations; // 0x10
+};
+
+// 0x0000000142AA54F0 (Size: 0x4)
+enum class EHitmanPermissionFlag
+{
+	eHPFlag_InventorySelect = 0,
+	eHPFlag_CanHolsterItem = 1,
+	eHPFlag_CanDropItem = 2,
+	eHPFlag_CanDualWield = 3,
+	eHPFlag_CameraControl = 4,
+	eHPFlag_MovementControl = 5,
+	eHPFlag_AimControl = 6,
+	eHPFlag_CanOpenNotebook = 7,
+	eHPFlag_CanOpenPauseMenu = 8,
+	eHPFlag_PermissionsNUM = 9,
+};
+
+// 0x0000000142AA48D0 (Size: 0x4)
+enum class EParticleDecalSpawnEntity_Constraints
+{
+	FACTOR_AND_RANDOMIZE = 0,
+	SIZE_RANGE = 1,
+};
+
+// 0x000000014211A620 (Size: 0x10)
+class ZDynamicObject
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZVariant m_value; // 0x0
+};
+
+// 0x0000000142AA3D68 (Size: 0x20)
+class SChallengeSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sId; // 0x0
+	ZDynamicObject m_State; // 0x10
+};
+
+// 0x0000000142A99638 (Size: 0x38)
+class SDrama2ActorSaveState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rSequence; // 0x4
+	uint32 m_rBehavior; // 0x8
+	uint32 m_rCurrentSpeakEntity; // 0xC
+	uint32 m_rScreenplay; // 0x10
+	ZString m_sMatchName; // 0x18
+	ZGameTime m_tActorSpeakEnd; // 0x28
+	bool m_bIsDone; // 0x30
+	bool m_bIsPaused; // 0x31
+	bool m_bIsSpeaking; // 0x32
+	bool m_bOwnsCurrentBehavior; // 0x33
+	bool m_bActive; // 0x34
+	bool m_bRequired; // 0x35
+};
+
+// 0x0000000142A998C0 (Size: 0x4)
+enum class EMatchOverCondition
+{
+	CompletedNormally = 0,
+	OpponentsDisconnected = 1,
+	OpponentsAbandoned = 2,
+};
+
+// 0x0000000142AA4B60 (Size: 0x4)
+enum class EDialogueLine
+{
+	Hello = 0,
+	MoveAlong = 1,
+	WhatsGoingOn = 2,
+	DropWeapon01 = 3,
+	DropWeapon02 = 4,
+	DropWeapon03 = 5,
+	DropWeapon04 = 6,
+	DropWeaponSecondWarning = 7,
+	Comply01 = 8,
+	Comply02 = 9,
+	YouAskedForIt = 10,
+	DropWeapon_Single01 = 11,
+	DropWeapon_Double01 = 12,
+	DropWeapon_Multiple01 = 13,
+	DropWeapon_Comply_Single01 = 14,
+	DropWeapon_Comply_Double01 = 15,
+	DropWeapon_Comply_Multiple01 = 16,
+	DropWeapon_RunAway01 = 17,
+	DropWeapon_RunAway_Comply01 = 18,
+	DropWeapon_Escalate_Single01 = 19,
+	DropWeapon_Escalate_Double01 = 20,
+	DropWeapon_Escalate_Multiple01 = 21,
+};
+
+// 0x0000000143CEBCC8 (Size: 0x8)
+class IParticleModifierEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA1F98 (Size: 0x4)
+enum class EHM5SoundCloseCombatEvent
+{
+	ECCE_PUNCH_FACE = 0,
+	ECCE_PUNCH_BODY = 1,
+	ECCE_ATTACK_ELBOW = 2,
+	ECCE_ATTACK_KNEE = 3,
+	ECCE_ATTACK_KICK = 4,
+	ECCE_SWOOSH_SHORT = 5,
+	ECCE_SWOOSH_LONG = 6,
+	ECCE_CLOTH_SWOOSH = 7,
+	ECCE_CLOTH_RUSTLE = 8,
+	ECCE_CLOTH_STRETCH = 9,
+	ECCE_GRAB = 10,
+	ECCE_BONE_BREAK = 11,
+	ECCE_NECK_SNAP = 12,
+	ECCE_BODY_FALL = 13,
+	ECCE_SKULL_CRACK = 14,
+	ECCE_ANY = 15,
+};
+
+// 0x0000000142AA7C38 (Size: 0x18)
+class SCondition_CombatSituationsStandingDown :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_CombatSituations; // 0x10
+};
+
+// 0x0000000142AF0418 (Size: 0x4)
+enum class EVirtualPlatformID
+{
+	DEFAULT = 0,
+	PC = 256,
+	PC_ENHANCED = 257,
+	PS4 = 512,
+	PS4_PRO = 513,
+	XBONE = 768,
+	XBONE_X = 769,
+	STADIA = 1024,
+	PS5 = 1280,
+	XBSCARLETT = 1536,
+	XBSCARLETT_ANACONDA = 1537,
+	VR = 65536,
+	VR_PC = 65792,
+	VR_PS4 = 66048,
+	VR_PS4_PRO = 66049,
+	VR_PS5 = 66816,
+	__SUB = 255,
+	__BASE = 65280,
+	__SYSTEM = 16711680,
+};
+
+// 0x00000001422D6D80 (Size: 0x4)
+enum class eAmmoType
+{
+	eAmmoGun = 0,
+	eAmmoRevolver = 1,
+	eAmmoSMG = 2,
+	eAmmoRifle = 3,
+	eAmmoShotgun = 4,
+	eAmmoSniper = 5,
+	eAmmoMG = 6,
+	eAmmoRPG = 7,
+	eAmmoFake = 8,
+	eAmmoHarmless = 9,
+	eAmmoLightPistol = 10,
+	eAmmoDartTranquilizer = 11,
+	eAmmoShotgunBeanbag = 12,
+	eUnknownAmmoType = 13,
+};
+
+// 0x0000000142A9D420 (Size: 0x14)
+class SSpatialMoverEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fSpeed; // 0x0
+	SVector3 m_vPosition; // 0x4
+	bool m_bEnabled; // 0x10
+	bool m_bBackwards; // 0x11
+	bool m_bIsFrameUpdateRegistered; // 0x12
+};
+
+// 0x0000000143E6C368 (Size: 0x1)
+enum class EValueUpdateStrategy
+{
+	UPDATE_STRATEGY_REPLACE = 0,
+	UPDATE_STRATEGY_ADD_TO = 1,
+	UPDATE_STRATEGY_MULTIPLY = 2,
+};
+
+// 0x0000000142AB1E78 (Size: 0x2)
+class SLayerBehaviorConfiguration
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bTrigger; // 0x0
+	bool m_bCollector; // 0x1
+};
+
+// 0x0000000142AA4C80 (Size: 0x4)
+enum class EOnlineEventInvestigationType
+{
+	OEIT_Generic = 0,
+	OEIT_HearBulletImpact = 1,
+	OEIT_HearFootsteps = 2,
+	OEIT_CarAlarm = 3,
+	OEIT_HearBark = 4,
+	OEIT_HearPain = 5,
+	OEIT_HearRadio = 6,
+	OEIT_HearItemToss = 7,
+	OEIT_SeeItemToss = 8,
+	OEIT_HearAccident = 9,
+	OEIT_CuriousSound = 10,
+	OEIT_CuriousItemSound = 11,
+	OEIT_SeeWeapon = 12,
+	OEIT_SeeItem = 13,
+	OEIT_Perceptible = 14,
+	OEIT_Toss = 15,
+	OEIT_CrowdCurious = 16,
+	OEIT_CameraDefect = 17,
+};
+
+// 0x0000000142AA2DD0 (Size: 0x4)
 enum class EAgilityState
 {
 	eAgState_JumpToHangFromLocomotion = 0,
@@ -2176,135 +3888,9 @@ enum class EAgilityState
 	eAgState_Unknown = 35,
 };
 
-// 0x0000000142A96028 (Size: 0x4)
-enum class ECameraOffset_old
-{
-	eCameraOffset_Center = 0,
-	eCameraOffset_Left = 1,
-	eCameraOffset_Right = 2,
-};
-
-// 0x0000000142A8E178 (Size: 0x18)
-class SMovementAgilitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rLedgeGuide; // 0x0
-	float32 m_fFaceLeftRightTarget; // 0x4
-	EAgilityState m_ePrevAgilityState; // 0x8
-	EAgilityState m_eAgilityState; // 0xC
-	uint32 m_nActiveAnimNode; // 0x10
-	ECameraOffset_old m_eCameraOffset; // 0x14
-};
-
-// 0x0000000142A9AEE8 (Size: 0x18)
-class SCondition_IsNotCurrentDistractionTarget :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-};
-
-// 0x000000014210A938 (Size: 0x40)
-class SMatrix
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float4 XAxis; // 0x0
-	float4 YAxis; // 0x10
-	float4 ZAxis; // 0x20
-	float4 Trans; // 0x30
-};
-
-// 0x0000000142A83008 (Size: 0x18)
-class SAIEventSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAIEventType m_eType; // 0x0
-	bool m_bHandled; // 0x4
-	ZGameTime m_nStart; // 0x8
-	ZGameTime m_nEnd; // 0x10
-};
-
-// 0x0000000142A83038 (Size: 0x80)
-class SKnownEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_nSharedIndex; // 0x0
-	TArray<SAIEventSaveData> m_aEvents; // 0x8
-	uint32 m_nBooleanEvents; // 0x20
-	uint32 m_nBooleanEventsHandled; // 0x24
-	SMatrix m_knownWorldMatrix; // 0x30
-	ZGameTime m_tLastWorldMatrixUpdate; // 0x70
-	uint16 m_nGoals; // 0x78
-};
-
-// 0x0000000142A9A5E8 (Size: 0x4)
-class SActorStandInSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000142A94788 (Size: 0x30)
-class SDynamicEnforcerCandidateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-	float4 m_vPosition; // 0x10
-	EAISharedEventType m_eType; // 0x20
-	float32 m_fRadius; // 0x24
-};
-
-// 0x0000000142A92130 (Size: 0x18)
-class SDynamicEnforcerServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
-};
-
-// 0x0000000142A99808 (Size: 0x4)
-enum class EKeywordSetBehavior
-{
-	EKWSB_All = 0,
-	EKWSB_None = 1,
-	EKWSB_Any = 2,
-	EKWSB_No = 3,
-};
-
-// 0x0000000142A90390 (Size: 0x8)
-class IOrderedEntity :
-	public IComponentInterface
+// 0x0000000142117938 (Size: 0x10)
+class ZRepositoryID :
+	public ZGuid
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2313,19 +3899,68 @@ public:
 
 };
 
-// 0x0000000143CDF3A8 (Size: 0x4)
-enum class eParticleEmitterBoxEntity_SpawnModes
+// 0x0000000142AACD28 (Size: 0x60)
+class SInventoryItem
 {
-	BOX_SPAWNMODE_INSIDE = 0,
-	BOX_SPAWNMODE_EDGE = 1,
-	BOX_SPAWNMODE_FACE = 2,
-	BOX_SPAWNMODE_ELLIPSOID_INSIDE = 3,
-	BOX_SPAWNMODE_ELLIPSOID = 4,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sInstanceId; // 0x0
+	ZString sUnlockableId; // 0x10
+	ZRepositoryID repositoryId; // 0x20
+	TArray<ZRepositoryID> aRepositoryAssetIds; // 0x30
+	TArray<ZRepositoryID> aModifierIds; // 0x48
 };
 
-// 0x0000000142A8C138 (Size: 0x60)
-class ZRepositionOrder :
-	public ZSituationOrder
+// 0x0000000142AACD40 (Size: 0x70)
+class SContainerItemInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sContainerInstanceId; // 0x0
+	SInventoryItem m_concealedItem; // 0x10
+};
+
+// 0x0000000142AA3DC0 (Size: 0x90)
+class SInventoryInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SInventoryItem> m_aPockets; // 0x0
+	SInventoryItem m_CarriedItem; // 0x18
+	TArray<SContainerItemInfo> m_aContainerItems; // 0x78
+};
+
+// 0x0000000142A9F510 (Size: 0x4)
+enum class EVRConfigCinemaMode
+{
+	EVRCCM_CinemaModeEnabled60FPS = 0,
+	EVRCCM_CinemaModeEnabled = 1,
+	EVRCCM_CinemaModeDisabled = 2,
+	EVRCCM_KeepCurrent = 3,
+};
+
+// 0x0000000142A97798 (Size: 0x4)
+enum class EOutfitType
+{
+	eOT_None = 0,
+	eOT_Suit = 1,
+	eOT_Guard = 2,
+	eOT_Worker = 3,
+	eOT_Waiter = 4,
+	eOT_LucasGrey = 5,
+};
+
+// 0x0000000142AA2288 (Size: 0x60)
+class ZRayQueryInput
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2334,96 +3969,7 @@ public:
 
 };
 
-// 0x0000000142A7B328 (Size: 0x1)
-enum class ERayDetailLevel
-{
-	RAYDETAILS_NONE = 0,
-	RAYDETAILS_BONES = 1,
-	RAYDETAILS_MESH = 2,
-};
-
-// 0x0000000142A9B560 (Size: 0x18)
-class SCondition_AreVisibleWeaponsIllegal :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142A8DC78 (Size: 0x38)
-class SDrama2ActorSaveState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-	uint32 m_rSequence; // 0x4
-	uint32 m_rBehavior; // 0x8
-	uint32 m_rCurrentSpeakEntity; // 0xC
-	uint32 m_rScreenplay; // 0x10
-	ZString m_sMatchName; // 0x18
-	ZGameTime m_tActorSpeakEnd; // 0x28
-	bool m_bIsDone; // 0x30
-	bool m_bIsPaused; // 0x31
-	bool m_bIsSpeaking; // 0x32
-	bool m_bOwnsCurrentBehavior; // 0x33
-	bool m_bActive; // 0x34
-	bool m_bRequired; // 0x35
-};
-
-// 0x0000000142A8DEE8 (Size: 0x4)
-enum class EMatchOverCondition
-{
-	CompletedNormally = 0,
-	OpponentsDisconnected = 1,
-	OpponentsAbandoned = 2,
-};
-
-// 0x0000000142A97D40 (Size: 0x4)
-enum class EDialogueLine
-{
-	Hello = 0,
-	MoveAlong = 1,
-	WhatsGoingOn = 2,
-	DropWeapon01 = 3,
-	DropWeapon02 = 4,
-	DropWeapon03 = 5,
-	DropWeapon04 = 6,
-	DropWeaponSecondWarning = 7,
-	Comply01 = 8,
-	Comply02 = 9,
-	YouAskedForIt = 10,
-	DropWeapon_Single01 = 11,
-	DropWeapon_Double01 = 12,
-	DropWeapon_Multiple01 = 13,
-	DropWeapon_Comply_Single01 = 14,
-	DropWeapon_Comply_Double01 = 15,
-	DropWeapon_Comply_Multiple01 = 16,
-	DropWeapon_RunAway01 = 17,
-	DropWeapon_RunAway_Comply01 = 18,
-	DropWeapon_Escalate_Single01 = 19,
-	DropWeapon_Escalate_Double01 = 20,
-	DropWeapon_Escalate_Multiple01 = 21,
-};
-
-// 0x0000000143CDED68 (Size: 0x8)
-class IParticleModifierEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A99630 (Size: 0x4)
+// 0x0000000142AA6450 (Size: 0x4)
 enum class EDifficultyParameter
 {
 	EDP_Invalid = 0,
@@ -2587,53 +4133,8 @@ enum class EDifficultyParameter
 	EDP_COUNT = 158,
 };
 
-// 0x0000000142A9B9E0 (Size: 0x24)
-class SCondition_IsSituationOlderThanSharedEvent :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-	ZBehaviorTreeVariable entity; // 0x18
-	EAISharedEventType eSharedEvent; // 0x20
-};
-
-// 0x0000000142AF49E8 (Size: 0x4)
-enum class EClothStretchConstrainType
-{
-	eClothBendConstrainType_Anchor = 0,
-	eClothBendConstrainType_LRA = 1,
-	eClothBendConstrainType_None = 2,
-};
-
-// 0x0000000143E60EE8 (Size: 0x28)
-class SRenderMaterialSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	TArray<uint8> m_aDynamicParametersData; // 0x8
-	bool m_bActive; // 0x20
-};
-
-// 0x0000000142A98CD0 (Size: 0x4)
-enum class ESniperScoreMessageType
-{
-	ESSMT_STYLE_DEFAULT = 0,
-	ESSMT_STYLE_SCORE = 1,
-	ESSMT_STYLE_PENALTY = 2,
-	ESSMT_STYLE_STREAK = 3,
-	ESSMT_STYLE_CIVKILL = 4,
-};
-
-// 0x00000001422CAD58 (Size: 0x8)
-class IItemContainer :
+// 0x0000000142A96EF8 (Size: 0x8)
+class IHM5AttentionDevice :
 	public IComponentInterface
 {
 public:
@@ -2643,7 +4144,4447 @@ public:
 
 };
 
-// 0x0000000142AE3570 (Size: 0x30)
+// 0x0000000142A9A2E0 (Size: 0x3D0)
+class ZCautiousInvestigateGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABEDA8 (Size: 0x4)
+enum class EEquipAbility
+{
+	EA_EQUIP_IN_HANDS = 0,
+	EA_CANNOT_BE_EQUIPPED = 1,
+};
+
+// 0x00000001422D79E8 (Size: 0x3)
+class SContextActionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+	bool m_bTriggered; // 0x1
+	bool m_bShouldShow; // 0x2
+};
+
+// 0x0000000142A88308 (Size: 0x4)
+enum class EAISituationEvent
+{
+	AISE_Any = 0,
+	AISE_ActorJoined = 1,
+	AISE_ActorLeft = 2,
+	AISE_Data = 3,
+};
+
+// 0x0000000142AA8310 (Size: 0x18)
+class SCondition_IsInSniperIsland :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a0; // 0x10
+};
+
+// 0x0000000142AAAB28 (Size: 0x4)
+enum class ESmartWaitCondition
+{
+	SWC_Time = 0,
+	SWC_Distance = 1,
+	SWC_Executing = 2,
+	SWC_Executed = 3,
+};
+
+// 0x0000000142AFA570 (Size: 0x4)
+enum class ERegionId
+{
+	RegionId_Default = 0,
+	RegionId_Japan = 1,
+	RegionId_Asia = 2,
+};
+
+// 0x0000000142A874B0 (Size: 0x70)
+class ZGuardPointOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A8FBB8 (Size: 0x50)
+class SActorThrowSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rItem; // 0x0
+	float4 m_vStartPosition; // 0x10
+	float4 m_vEndPosition; // 0x20
+	float4 m_vItemVelocity; // 0x30
+	float32 m_fDistance; // 0x40
+};
+
+// 0x0000000142A9CD20 (Size: 0x4)
+enum class EVolumeTriggerEntityTypeFlags
+{
+	VTET_Hitman = 1,
+	VTET_ActorAlive = 2,
+	VTET_ActorDead = 4,
+	VTET_ActorPacified = 8,
+	VTET_ThrownItem = 16,
+	VTET_Spatial = 32,
+	VTET_SoundSweetener = 64,
+	VTET_ExplodeableItem = 128,
+	VTET_Item = 256,
+	VTET_SpatialVisible = 512,
+};
+
+// 0x0000000142AB1DD8 (Size: 0x18)
+class SIntelListDisplayInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 index; // 0x0
+	bool active; // 0x4
+	bool newInfo; // 0x5
+	ZString label; // 0x8
+};
+
+// 0x0000000142A9B648 (Size: 0x98)
+class ZCharacterStateBase :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA1410 (Size: 0x4)
+enum class EActorBumpType
+{
+	EABT_NONE = 0,
+	EABT_UPPERBODY = 1,
+	EABT_HEAD = 2,
+};
+
+// 0x0000000142AF07C0 (Size: 0x8)
+class IEngineMode :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6DE90 (Size: 0x4)
+enum class ESaveType
+{
+	ESaveType_AutoSave = 0,
+	ESaveType_QuickSave = 1,
+	ESaveType_SystemData = 2,
+	ESaveType_LocalProfile = 3,
+};
+
+// 0x0000000142AFA558 (Size: 0x4)
+enum class ELocale
+{
+	Locale_En = 0,
+	Locale_Fr = 1,
+	Locale_It = 2,
+	Locale_De = 3,
+	Locale_Es = 4,
+	Locale_Ru = 5,
+	Locale_Mx = 6,
+	Locale_Br = 7,
+	Locale_Pl = 8,
+	Locale_Cn = 9,
+	Locale_Jp = 10,
+	Locale_Tc = 11,
+};
+
+// 0x0000000142ABEC58 (Size: 0x4)
+enum class EImpactEffectsOptions
+{
+	eIE_None = 0,
+	eIE_BloodSplatter = 1,
+	eIE_Decals = 2,
+	eIE_MaterialImpactEffects = 4,
+	eIE_AmmoImpactEffect = 8,
+	eIE_All = 16,
+};
+
+// 0x0000000142A99128 (Size: 0x4)
+enum class EDramaStateFlag
+{
+	eDSF_DEFAULT = 0,
+	eDSF_ENABLED = 1,
+	eDSF_CAST = 2,
+	eDSF_RESUMING = 4,
+	eDSF_RUNNING = 8,
+	eDSF_DONE = 16,
+	eDSF_TERMINATED = 32,
+};
+
+// 0x0000000142A8FC00 (Size: 0x4)
+enum class EActorState
+{
+	AS_DEACTIVATED = 0,
+	AS_ALIVE = 1,
+	AS_DYING = 2,
+	AS_DEAD = 3,
+	AS_DISABLED = 4,
+};
+
+// 0x0000000142A95F70 (Size: 0x4)
+enum class ESoundChannelGroup
+{
+	ESCG_NONE = 0,
+	SND_Default = 1,
+	SND_Phys_Rigidbody = 2,
+	SND_Phys_Shatter = 3,
+	SND_Wpn_HM = 4,
+	SND_Wpn_HM_Shot = 5,
+	SND_Wpn_NPC = 6,
+	SND_Wpn_Impacts = 7,
+	SND_Wpn_Flybys = 8,
+	SND_Characters = 9,
+	SND_Ambience = 10,
+	SND_Props = 11,
+	SND_Prop_Item = 12,
+	SND_FS_HM = 13,
+	SND_FS_NPC = 14,
+	SND_VisualFX = 15,
+	SND_VisualFX_ShotActivate = 16,
+	SND_VisualFX_Explosions = 17,
+	SND_Diag_HM = 18,
+	SND_Diag_NPC = 19,
+	SND_CS_Ingame = 20,
+	SND_CS_PreRend = 21,
+	SND_Music_Env = 22,
+	SND_MusicNonEnv = 23,
+	SND_SpecialFX_CC = 24,
+	SND_SpecialFX_Jumps = 25,
+	SND_SpecialFX_Closet = 26,
+	SND_SpecialFX_Vent = 27,
+	SND_SpecialFX_Instinct = 28,
+	SND_SpecialFX_Disguise = 29,
+	SND_SpecialFX_Agility = 30,
+	SND_Stingers_SFX = 31,
+	SND_GUI = 32,
+	SND_Test = 33,
+	ANIM_HM_Generic = 34,
+	ANIM_HM_Loco = 35,
+	ANIM_HM_Agility = 36,
+	ANIM_HM_Suit_Flap = 37,
+	ANIM_HM_Suit_Release = 38,
+	ANIM_HM_Suit_Slide = 39,
+	ANIM_HM_Suit_LandImpact = 40,
+	ANIM_HM_Suit_Grab = 41,
+	ANIM_HM_Suit_Roll = 42,
+	ANIM_HM_Suit_Swoosh_Body = 43,
+	ANIM_HM_Suit_Swoosh_Fast = 44,
+	ANIM_HM_CC_Impacts = 45,
+	ANIM_HM_CC_Movement = 46,
+	ANIM_NPC_Generic = 47,
+	ANIM_NPC_Loco = 48,
+	ANIM_NPC_CC_Impacts = 49,
+	ANIM_NPC_CC_Movement = 50,
+	SND_Wpn_HM_Tail = 51,
+	SND_Wpn_NPC_Tail = 52,
+	SND_Diag_NPC_Crowd = 53,
+	SND_Phys_RigidBody_Ragdoll = 54,
+	SND_Diag_VO = 55,
+	SND_GUI_Menu = 56,
+	SND_Props_Doors = 57,
+	SND_Wpn_HM_Handguns = 58,
+	SND_Wpn_HM_Revolvers = 59,
+	SND_Wpn_HM_Rifles = 60,
+	SND_Wpn_HM_Shotguns = 61,
+	SND_Wpn_HM_Smgs = 62,
+	SND_Wpn_HM_Snipers = 63,
+	SND_Wpn_HM_Other = 64,
+	SND_Wpn_NPC_Handguns = 65,
+	SND_Wpn_NPC_Revolvers = 66,
+	SND_Wpn_NPC_Rifles = 67,
+	SND_Wpn_NPC_Shotguns = 68,
+	SND_Wpn_NPC_Smgs = 69,
+	SND_Wpn_NPC_Snipers = 70,
+	SND_Wpn_NPC_Other = 71,
+	SND_Diag_NPC_Oneliner = 72,
+	SND_Moments = 73,
+};
+
+// 0x0000000142A97780 (Size: 0x4)
+enum class EOutfitAICategory
+{
+	OAC_Undefined = 0,
+	OAC_Fallback = 1,
+	OAC_47Suit = 2,
+	OAC_47TRAINING = 3,
+	OAC_47MARRAKESH = 4,
+	OAC_47SAPIENZA = 5,
+	OAC_47BANGKOK = 6,
+	OAC_47COLORADO = 7,
+	OAC_47HOKKAIDO = 8,
+	OAC_47PREORDER = 9,
+	OAC_47COLUMBIA = 10,
+	OAC_47ISLAND = 11,
+	OAC_47MUMBAI = 12,
+	OAC_47NEWZEALAND = 13,
+	OAC_47STARTCLASSY = 14,
+	OAC_47STARTOUTFIT = 15,
+	OAC_47SUBURBIA = 16,
+	OAC_Bodyguard = 17,
+	OAC_CameraMan = 18,
+	OAC_Chef = 19,
+	OAC_Cleaner = 20,
+	OAC_Cop = 21,
+	OAC_Crew = 22,
+	OAC_DaSilva = 23,
+	OAC_Gardner = 24,
+	OAC_Hazmat = 25,
+	OAC_HouseStaff = 26,
+	OAC_Maintenance = 27,
+	OAC_Officer = 28,
+	OAC_Priest = 29,
+	OAC_Printer = 30,
+	OAC_Scientist = 31,
+	OAC_Security = 32,
+	OAC_Sheik = 33,
+	OAC_Stylist = 34,
+	OAC_Waiter = 35,
+	OAC_Busker = 36,
+	OAC_Caddie = 37,
+	OAC_ChurchStaff = 38,
+	OAC_Cyclist = 39,
+	OAC_Filmcrew = 40,
+	OAC_Fortune = 41,
+	OAC_Hippie = 42,
+	OAC_Investor = 43,
+	OAC_KGB = 44,
+	OAC_Lawyer = 45,
+	OAC_Kruger = 46,
+	OAC_Masseur = 47,
+	OAC_Mechanic = 48,
+	OAC_Norfolk = 49,
+	OAC_Plague = 50,
+	OAC_Psych = 51,
+	OAC_Shopkeep = 52,
+	OAC_Soldier = 53,
+	OAC_Tux = 54,
+	OAC_Vampire = 55,
+	OAC_YachtCrew = 56,
+	OAC_Exterminator = 57,
+	OAC_SoundCrew = 58,
+	OAC_Intern = 59,
+	OAC_Stalker = 60,
+	OAC_Scarecrow = 61,
+	OAC_Hacker = 62,
+	OAC_SpecOps = 63,
+	OAC_Berg = 64,
+	OAC_Morgue = 65,
+	OAC_Surgeon = 66,
+	OAC_Doctor = 67,
+	OAC_Director = 68,
+	OAC_Ninja = 69,
+	OAC_Baseball = 70,
+	OAC_KillBill = 71,
+	OAC_Pilot = 72,
+	OAC_Yoga = 73,
+	OAC_Mummy = 74,
+	OAC_Cowboy = 75,
+	OAC_Staff = 76,
+	OAC_Santa = 77,
+	OAC_MambaCrew = 78,
+	OAC_Delivery = 79,
+	OAC_GOTY_Clown = 80,
+	OAC_GOTY_Cowboy = 81,
+	OAC_GOTY_DarkSniper = 82,
+	OAC_Driver = 83,
+	OAC_Driverpale = 84,
+	OAC_Eventstff = 85,
+	OAC_Flrdaman = 86,
+	OAC_Food = 87,
+	OAC_Journal = 88,
+	OAC_Krnstdtengnr = 89,
+	OAC_Krnstdtsec = 90,
+	OAC_Ktchstff = 91,
+	OAC_Lee = 92,
+	OAC_Mascot = 93,
+	OAC_Medic = 94,
+	OAC_Mendez = 95,
+	OAC_Musician = 96,
+	OAC_Racecoord = 97,
+	OAC_Racemarsh = 98,
+	OAC_Thug = 99,
+	OAC_Worker = 100,
+	OAC_Research = 101,
+	OAC_Tatoo = 102,
+	OAC_Shaman = 103,
+	OAC_Artist = 104,
+	OAC_Barber = 105,
+	OAC_DJ = 106,
+	OAC_Kshmrn = 107,
+	OAC_Master = 108,
+	OAC_Burial = 109,
+	OAC_Ravenmaster = 110,
+	OAC_Sentinel = 111,
+	OAC_Blake = 112,
+	OAC_Actor = 113,
+	OAC_Architect = 114,
+	OAC_Arkian = 115,
+	OAC_Arkptrn = 116,
+	OAC_Bbq = 117,
+	OAC_Bollycrew = 118,
+	OAC_Cavegd = 119,
+	OAC_Civilian = 120,
+	OAC_Cavewkr = 121,
+	OAC_Clothsale = 122,
+	OAC_Counsellor = 123,
+	OAC_Cowboyhat = 124,
+	OAC_Custdn = 125,
+	OAC_Dancer = 126,
+	OAC_Dbbwll = 127,
+	OAC_Deadjanus = 128,
+	OAC_Driverch = 129,
+	OAC_Driversa = 130,
+	OAC_Driveruk = 131,
+	OAC_Driverus = 132,
+	OAC_Druglabwkr = 133,
+	OAC_Elite = 134,
+	OAC_Fakemlstrm = 135,
+	OAC_Farm = 136,
+	OAC_Fieldgrd = 137,
+	OAC_Headmaster = 138,
+	OAC_Knight = 139,
+	OAC_Laundrywkr = 140,
+	OAC_Lndrygrd = 141,
+	OAC_Mailman = 142,
+	OAC_Mansiongd = 143,
+	OAC_Mech_Miami = 144,
+	OAC_Mechch = 145,
+	OAC_Mechit = 146,
+	OAC_Mechkrnstdt = 147,
+	OAC_Mechsa = 148,
+	OAC_Mechuk = 149,
+	OAC_Mechus = 150,
+	OAC_Metalwkr = 151,
+	OAC_Militiasec = 152,
+	OAC_Mime = 153,
+	OAC_Moviemnstr = 154,
+	OAC_Mumbaiserv = 155,
+	OAC_Mumbsec = 156,
+	OAC_Nitiate = 157,
+	OAC_Nurse = 158,
+	OAC_Orson = 159,
+	OAC_Parka = 160,
+	OAC_Politicasst = 161,
+	OAC_Politician = 162,
+	OAC_Priest_VP = 163,
+	OAC_Queensgrd = 164,
+	OAC_Queenthug = 165,
+	OAC_Rangangrd = 166,
+	OAC_Rangansec = 167,
+	OAC_Realstbroke = 168,
+	OAC_Resident = 169,
+	OAC_Resortstaff = 170,
+	OAC_Sitewkr = 171,
+	OAC_Snowtrek = 172,
+	OAC_Subwkr = 173,
+	OAC_Suit = 174,
+	OAC_Tailor = 175,
+	OAC_Teaserv = 176,
+	OAC_Terminus = 177,
+	OAC_Trainserv = 178,
+	OAC_Villagegd = 179,
+	OAC_Winter = 180,
+	OAC_Wiseman = 181,
+	OAC_Investbanker = 182,
+	OAC_Bankteller = 183,
+	OAC_Robber = 184,
+	OAC_TechCrew = 185,
+	OAC_Attendant = 186,
+	OAC_Critic = 187,
+	OAC_FamilyGrd = 188,
+	OAC_PrivateEye = 189,
+	OAC_Undertaker = 190,
+	OAC_Photographer = 191,
+	OAC_LawyerBd = 192,
+	OAC_Biker = 193,
+	OAC_DeliveryFox = 194,
+	OAC_Dealer = 195,
+	OAC_ClubOwner = 196,
+	OAC_Bartender = 197,
+	OAC_ClubStaff = 198,
+	OAC_ClubTech = 199,
+	OAC_Herald = 200,
+	OAC_Gaucho = 201,
+	OAC_WineMkr = 202,
+	OAC_Fixer = 203,
+	OAC_Sommelier = 204,
+};
+
+// 0x0000000142AA1170 (Size: 0x18)
+class SCondition_FindStashPointsForItem :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+};
+
+// 0x0000000142ABD5F8 (Size: 0x4)
+enum class EFSMStateStatus
+{
+	eInactive = 0,
+	eActive = 1,
+	eCompleted = 2,
+	eFailed = 3,
+	eInterrupted = 4,
+};
+
+// 0x0000000142A86D40 (Size: 0x18)
+class SFSMSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EFSMStateStatus m_eStateStatus; // 0x0
+	int32 m_state; // 0x4
+	int32 m_prevState; // 0x8
+	ZGameTime m_tCurrentStateEnterTime; // 0x10
+};
+
+// 0x0000000142A8FD40 (Size: 0x4)
+enum class EDisturbanceType
+{
+	DT_Generic = 0,
+	DT_SeeWeapon = 1,
+	DT_BodyNeedsBagging = 2,
+	DT_SoundCloseCombat = 3,
+	DT_SoundGunSilenced = 4,
+	DT_SoundBulletImpact = 5,
+	DT_SoundNeckBreak = 6,
+	DT_SoundSpeakPain = 7,
+	DT_SoundGunshot = 8,
+	DT_SoundExplosion = 9,
+	DT_SeeExplosion = 10,
+	DT_DeadBody = 11,
+	DT_HitmanNearDeadBody = 12,
+	DT_HitmanNearPacifiedBody = 13,
+	DT_SeeTakeKeyCard = 14,
+	DT_SeeTakeSecurityTape = 15,
+	DT_SeeChangeOutfit = 16,
+	DT_SeeTrespasser = 17,
+	DT_SeeBrokenDisguise = 18,
+	DT_SeeIllegalWeapon = 19,
+	DT_SeeDraggingBody = 20,
+	DT_SeeDeath = 21,
+	DT_SeeKilling = 22,
+	DT_UnconsciousVictim = 23,
+	DT_HuntTarget = 24,
+	DT_CrowdAlerted = 25,
+	DT_SeeGunshotVictim = 26,
+	DT_SoundThrownItem = 27,
+	DT_SoundThrownItemSeenThrowing = 28,
+	DT_HitByItemOrCoin = 29,
+	DT_PrivateAreaViolated = 30,
+	DT_SetpieceInteraction = 31,
+	DT_IllegalAction = 32,
+	DT_KnockdownMelee = 33,
+	DT_KnockdownThrow = 34,
+	DT_BumpedTooMuch = 35,
+	DT_Murder = 36,
+	DT_Strangle = 37,
+	DT_GotShot = 38,
+	DT_MurderAttempt = 39,
+	DT_LongTermMemory = 40,
+	DT_Accident = 41,
+	DT_MAX = 42,
+};
+
+// 0x0000000142A9A3E8 (Size: 0x90)
+class SGetHelpGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float4 m_vLastKnownTargetPosition; // 0x0
+	uint16 m_rReturnNode; // 0x10
+	TArray<uint16> m_blocked; // 0x18
+	bool m_bReportingToHitman; // 0x30
+	bool m_bStartedReportDialog; // 0x31
+	bool m_bMultipleBodies; // 0x32
+	bool m_bGetHelpOrderCompleted; // 0x33
+	bool m_bDoneReporting; // 0x34
+	ZGameTime m_tGetHelpCompleted; // 0x38
+	SFSMSaveData m_fsmState; // 0x40
+	EDisturbanceType m_type; // 0x58
+	uint32 m_target; // 0x5C
+	uint32 m_pReporter; // 0x60
+	uint32 m_pGuard; // 0x64
+	uint32 m_IllegalItem; // 0x68
+	TArray<uint32> m_additionalGuards; // 0x70
+};
+
+// 0x0000000142A87438 (Size: 0x4)
+enum class EBooleanOption
+{
+	BO_Off = 0,
+	BO_On = 1,
+	BO_Default = 2,
+};
+
+// 0x0000000142A9A208 (Size: 0x4)
+enum class ESituationStateChangeReason
+{
+	eSSCR_NONE = 0,
+	eSSCR_C_DIED = 16,
+	eSSCR_C_DEACTIVATED = 32,
+	eSSCR_C_CONTROLLED = 64,
+	eSSCR_C_CLOSE_COMBAT = 128,
+	eSSCR_C_HERO_ACTION = 256,
+	eSSCR_C_PACIFIED = 512,
+	eSSCR_CL_CHILD_DRAMA = 1024,
+	eSSCR_CL_OTHER_DRAMA = 2048,
+	eSSCR_CL_SYSTEMIC = 4096,
+	eSSCR_S_DISABLED = 8192,
+	eSSCR_S_DONE = 16384,
+	eSSCR_S_TERMINATED = 32768,
+	eSSCR_S_STARTED = 65536,
+	eSSCR_S_RESUMING = 131072,
+	eSSCR_S_UNPAUSE = 262144,
+	eSSCR_R_RESOURCE_UNAVAILABLE = 524288,
+	eSSCR_PAUSED_FROM_PLAYING = 1048576,
+	eSSCR_PAUSED_FROM_RESUMING = 2097152,
+};
+
+// 0x0000000142B017F0 (Size: 0x1)
+enum class EMaterialRegistrationState
+{
+	eMRS_None = 0,
+	eMRS_Pending = 1,
+	eMRS_Success = 2,
+	eMRS_Failed = 3,
+};
+
+// 0x0000000142A87FF8 (Size: 0x4)
+enum class CrowdReactionAIEventType
+{
+	CROWDAIEVENT_NONE = 0,
+	CROWDAIEVENT_CURIOUS = 1,
+	CROWDAIEVENT_ALERTED = 2,
+	CROWDAIEVENT_BLAME_FOR_WEAPON = 3,
+	CROWDAIEVENT_BLAME_FOR_KILL = 4,
+};
+
+// 0x0000000142AA6B20 (Size: 0x4)
+enum class EVRConfigRotationType
+{
+	EVRCRT_None = 0,
+	EVRCRT_Lock = 1,
+	EVRCRT_Offset = 2,
+};
+
+// 0x0000000142AA8760 (Size: 0x1C)
+class SCondition_ActorsNotInSituation :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ESituationType type; // 0x10
+	ZBehaviorTreeVariable actors; // 0x14
+};
+
+// 0x0000000142A8FD58 (Size: 0x4)
+enum class ECautiousDisturbanceState
+{
+	eCDS_Pending = 0,
+	eCDS_Expired = 1,
+	eCDS_Handled = 2,
+	eCDS_GetHelpGroup = 3,
+	eCDS_InvestigationGroup = 4,
+	eCDS_InvestigateAfterExplosion = 5,
+	eCDS_Ignored = 6,
+	eCDS_NoInvestigator = 7,
+	eCDS_Similar = 8,
+	eCDS_ManHunt = 9,
+	eCDS_CombatSuppressGunshots = 10,
+};
+
+// 0x0000000142AA4E00 (Size: 0x4)
+enum class ECCNodeType
+{
+	eCCNodeType_Counter = 0,
+	eCCNodeType_ExecutePistol = 1,
+	eCCNodeType_React = 2,
+	eCCNodeType_SilentTakeDownEnd = 3,
+	eCCNodeType_SilentKill = 4,
+	eCCNodeType_SlitThroat1H = 5,
+	eCCNodeType_Swing1H = 6,
+	eCCNodeType_Bash1H = 7,
+	eCCNodeType_Stab1H = 8,
+	eCCNodeType_Syringe1H = 9,
+	eCCNodeType_Strangle1H = 10,
+	eCCNodeType_Smash1H = 11,
+	eCCNodeType_Swing2H = 12,
+	eCCNodeType_Stab2H = 13,
+	eCCNodeType_Bash2H = 14,
+	eCCNodeType_Strangle2H = 15,
+	eCCNodeType_Axe = 16,
+	eCCNodeType_Sword1H = 17,
+	eCCNodeType_AttackChain = 18,
+	eCCNodeType_AttackChainCivilian = 19,
+	eCCNodeType_AttackChainHeavy = 20,
+	eCCNodeType_FailChain = 21,
+	eCCNodeType_FinishChainHigh = 22,
+	eCCNodeType_FinishChainLow = 23,
+	eCCNodeType_FinishChainKill = 24,
+	eCCNodeType_StairsChain = 25,
+	eCCNodeType_CounterChain = 26,
+	eCCNodeType_AttackIdle = 27,
+	eCCNodeType_AttackPassify = 28,
+	eCCNodeType_FailChainPush = 29,
+	eCCNodeType_Count = 30,
+};
+
+// 0x0000000143E6FD98 (Size: 0x4)
+enum class EFontFlags
+{
+	FV_Original = 16,
+	FV_NoAutoFit = 32,
+	FV_Normal = 0,
+	FV_Italic = 1,
+	FV_Bold = 2,
+	FV_BoldItalic = 3,
+	FV_FauxItalic = 4,
+	FV_FauxBold = 8,
+	FV_FauxBoldItalic = 12,
+};
+
+// 0x0000000142A8FC48 (Size: 0x4)
+enum class EDeathBehavior
+{
+	eDB_IMPACT_ANIM = 0,
+	eDB_NO_IMPACT_ANIM = 1,
+	eDB_NO_VELOCITY = 2,
+	eDB_NO_RAGDOLL = 3,
+};
+
+// 0x0000000142A99300 (Size: 0x4)
+enum class EDramaEventAction
+{
+	eDEA_NONE = 0,
+	eDEA_TERMINATE_DRAMA = 1,
+	eDEA_DONE_DRAMA = 2,
+	eDEA_STOP_BEHAVIOR = 4,
+	eDEA_DONT_STOP_SPEAK = 8,
+	eDEA_RESET_CASTING = 16,
+	eDEA_RESET_STATE = 32,
+};
+
+// 0x0000000142AA7EF0 (Size: 0x20)
+class SCondition_IsCurrent :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAIEventType type; // 0x18
+	int32 nAndUnhandled; // 0x1C
+};
+
+// 0x0000000142AB1FC0 (Size: 0x4)
+enum class EAutoScanMode
+{
+	ASM_GEOMETRY = 0,
+	ASM_VOLUMEBOX = 1,
+};
+
+// 0x0000000142ABD610 (Size: 0x4)
+enum class EFSMInternalEvent
+{
+	eFSMEvent_Completed = 0,
+	eFSMEvent_Failed = 1,
+	eFSMEvent_Choice = 2,
+	eFSMEvent_Max = 3,
+};
+
+// 0x0000000142A8FEE8 (Size: 0x4)
+enum class EConversationID
+{
+	eCI_GuardCivilian_Distraction_Investigation = 0,
+	eCI_HearBulletImpact_Distraction_Investigation = 1,
+	eCI_HearItemImpact_Distraction_Investigation = 2,
+	eCI_HearCarAlarm_Distraction_Investigation = 3,
+	eCI_SeeItemToss_Distraction_Investigation = 4,
+	eCI_HearRadio_Distraction_Investigation = 5,
+	eCI_HearPain_Distraction_Investigation = 6,
+	eCI_HearAccident_Distraction_Investigation = 7,
+	eCI_HearCuriousItemSound_Distraction_Investigation = 8,
+	eCI_HearCuriousSound_Distraction_Investigation = 9,
+	eCI_SeeSuspiciousPerceptible_Distraction_Investigation = 10,
+	eCI_SeeInterestingItem_Distraction_Investigation = 11,
+	eCI_HearFootSteps_Distraction_Investigation = 12,
+	eCI_HearAngryDialog_Distraction_Investigation = 13,
+	eCI_HearHelpDialog_Distraction_Investigation = 14,
+	eCI_HearWarning_Distraction_Investigation = 15,
+	eCI_SightInvestigation_Distraction_Investigation = 16,
+	eCI_HearBulletImpact_Distraction_StandDown = 17,
+	eCI_HearItemImpact_Distraction_StandDown = 18,
+	eCI_HearCarAlarm_Distraction_StandDown = 19,
+	eCI_SeeItemToss_Distraction_StandDown = 20,
+	eCI_HearRadio_Distraction_StandDown = 21,
+	eCI_HearPain_Distraction_StandDown = 22,
+	eCI_HearAccident_Distraction_StandDown = 23,
+	eCI_HearCuriousItemSound_Distraction_StandDown = 24,
+	eCI_HearCuriousSound_Distraction_StandDown = 25,
+	eCI_SeeSuspiciousPerceptible_Distraction_StandDown = 26,
+	eCI_SeeInterestingItem_Distraction_StandDown = 27,
+	eCI_HearFootSteps_Distraction_StandDown = 28,
+	eCI_HearAngryDialog_Distraction_StandDown = 29,
+	eCI_HearHelpDialog_Distraction_StandDown = 30,
+	eCI_HearWarning_Distraction_StandDown = 31,
+	eCI_SightInvestigation_Distraction_StandDown = 32,
+	eCI_Suitcase_Distraction_DeliverToGuard = 33,
+	eCI_Suitcase_Distraction_RadioRequestHelp = 34,
+	eCI_Count = 35,
+};
+
+// 0x0000000142AA2F60 (Size: 0x4)
+enum class ESubcontrollerInventorySlot
+{
+	eSIS_Invalid = 0,
+	eSIS_LeftHand = 1,
+	eSIS_RightHand = 2,
+};
+
+// 0x0000000142A9CAF0 (Size: 0x4)
+enum class ERANDOM_DISTRIBUTION
+{
+	RND_UNIFORM = 0,
+	RND_SAWTOOTH = 1,
+};
+
+// 0x0000000142A88480 (Size: 0x4)
+enum class EActionType
+{
+	AT_INVALID = 0,
+	AT_OPENDOOR = 1,
+	AT_CLOSEDOOR = 2,
+	AT_PICKUP = 4,
+	AT_GENERIC = 8,
+	AT_REMOTE = 16,
+	AT_OUTFIT = 32,
+	AT_CLOTHBUNDLE = 64,
+	AT_DRAGBODY = 128,
+	AT_RETRIEVE_ITEM_FROM_CONTAINER = 256,
+	AT_HERO_MOVEMENT = 1024,
+	AT_SWAPITEM = 2048,
+	AT_DUMPBODY = 4096,
+	AT_COUP_DE_GRACE = 8192,
+	AT_INTERACTION_GROUP = 16384,
+	AT_USE_NORMAL = 32768,
+	AT_STASHPOINT_PICKUP = 65536,
+	AT_ENTERCLOSET = 131072,
+	AT_EXITCLOSET = 262144,
+	AT_ENTERSAFEZONE = 524288,
+	AT_EXITSAFEZONE = 1048576,
+	AT_CANCEL = 2097152,
+	AT_CONTAINERFLUSHBODY = 4194304,
+	AT_PLACE_ITEM_IN_CONTAINER = 16777216,
+	AT_USE_DOWN = 33554432,
+	AT_USE_HOLD = 67108864,
+	AT_CONTEXTACTION = 134217728,
+	AT_INTERRUPTIBLE_TAP = 268435456,
+	AT_ITEMCONTAINER = 536870912,
+	AT_USE_QUICK = 1073741824,
+	AT_ITEM_INTERACTION = -2147483648,
+};
+
+// 0x0000000142AA44E0 (Size: 0x2)
+class SShotListenerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+	bool m_bNPCShotProcessed; // 0x1
+};
+
+// 0x0000000142AA2728 (Size: 0x30)
+class SShotListenersSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SShotListenerSaveData> m_aData; // 0x18
+};
+
+// 0x0000000142A9A790 (Size: 0x60)
+class ZSentryOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8670 (Size: 0x20)
+class SCondition_MinSharedEventAge :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAISharedEventType type; // 0x18
+	float32 age; // 0x1C
+};
+
+// 0x0000000143E6DE78 (Size: 0x10)
+class SVariantStruct
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZVariant m_Data; // 0x0
+};
+
+// 0x0000000142A99058 (Size: 0x4)
+enum class EDebugSpatialInfoVerbosity
+{
+	EDSIV_Overview = 0,
+	EDSIV_HierachicalView = 1,
+	EDSIV_Full = 2,
+};
+
+// 0x0000000142AF0718 (Size: 0x4)
+enum class EPlayMode
+{
+	PLAYMODE_STOPPED = 1,
+	PLAYMODE_PAUSED = 2,
+	PLAYMODE_PLAYING = 3,
+};
+
+// 0x0000000142AB6C30 (Size: 0x4)
+enum class EIKEndEffector
+{
+	BEE_Pelvis = 0,
+	BEE_SpineOrigin = 1,
+	BEE_SpineEnd = 2,
+	BEE_Head = 3,
+	BEE_LeftUpperArm = 4,
+	BEE_RightUpperArm = 5,
+	BEE_LeftForeArm = 6,
+	BEE_RightForeArm = 7,
+	BEE_LeftHand = 8,
+	BEE_LeftHandThumb = 9,
+	BEE_LeftHandIndex = 10,
+	BEE_LeftHandMiddle = 11,
+	BEE_LeftHandRing = 12,
+	BEE_LeftHandPinky = 13,
+	BEE_RightHand = 14,
+	BEE_RightHandThumb = 15,
+	BEE_RightHandIndex = 16,
+	BEE_RightHandMiddle = 17,
+	BEE_RightHandRing = 18,
+	BEE_RightHandPinky = 19,
+	BEE_LeftFoot = 20,
+	BEE_RightFoot = 21,
+	BEE_LeftToe = 22,
+	BEE_RightToe = 23,
+	BEE_Count = 24,
+};
+
+// 0x0000000142A86BD0 (Size: 0x8)
+class IActListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA80A0 (Size: 0x20)
+class SCondition_IsEqual :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a; // 0x10
+	ZBehaviorTreeVariable b; // 0x18
+};
+
+// 0x0000000142AA0FE0 (Size: 0x18)
+class SBehaviorTreeEntityReference
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bList; // 0x0
+	ZString m_sName; // 0x8
+};
+
+// 0x0000000142AA1050 (Size: 0x30)
+class SBehaviorTreeInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SBehaviorTreeEntityReference> m_references; // 0x0
+	TArray<SBehaviorTreeInputPinCondition> m_inputPinConditions; // 0x18
+};
+
+// 0x0000000142A9D370 (Size: 0x4)
+enum class EHintMessageType
+{
+	EHintMessageType_Hint = 0,
+	EHintMessageType_InstinctHint = 1,
+	EHintMessageType_InstinctPrompt = 2,
+	EHintMessageType_Tutorial = 3,
+};
+
+// 0x0000000142AA5B50 (Size: 0x4)
+enum class EHUDMessageStatus
+{
+	HUD_MESSAGE_UNUSED = 0,
+	HUD_MESSAGE_ATTACH = 1,
+	HUD_MESSAGE_FADEIN = 2,
+	HUD_MESSAGE_DISPLAY = 3,
+	HUD_MESSAGE_FADEOUT = 4,
+};
+
+// 0x0000000142A8FD10 (Size: 0x4)
+enum class EActorRole
+{
+	eActorRole_Default = 0,
+	eActorRole_Bodyguard = 1,
+	eActorRole_VIP = 2,
+};
+
+// 0x0000000142AA8100 (Size: 0x1C)
+class SCondition_IsOfActorRole :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EActorRole eRole; // 0x18
+};
+
+// 0x0000000142AEF498 (Size: 0x8)
+class IMiddleGrayCurveEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6D740 (Size: 0x4)
+enum class ERequirementId
+{
+	EREQUIREMENT_INVALID = 0,
+	EREQUIREMENT_TOKEN_OUTFIT_LEGACY_HERO_REQUIEMSUIT = 1,
+	EREQUIREMENT_FIREARMS_HERO_PISTOL_TACTICAL_015_SU_SKIN05 = 2,
+	EREQUIREMENT_PROP_DEVICE_SONYPREORDER_WHITE_RUBBERDUCK_REMOTE_EXPLOSIVE = 3,
+	EREQUIREMENT_GOTY_PATIENT_ZERO = 4,
+	EREQUIREMENT_GOTY_TOKEN_OUTFIT_PARIS_CLOWN = 5,
+	EREQUIREMENT_GOTY_TOKEN_OUTFIT_HOKKAIDO_COWBOY = 6,
+	EREQUIREMENT_GOTY_TOKEN_OUTFIT_MARRAKESH_DARK_SNIPER = 7,
+	EREQUIREMENT_ANNIVERSARY_OUTFITS = 8,
+	EREQUIREMENT_LOCATION_NEWZEALAND = 9,
+	EREQUIREMENT_S2_EXECUTIVE_PACK = 10,
+	EREQUIREMENT_S2_COLLECTORS_PACK = 11,
+	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM1 = 12,
+	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2 = 13,
+	EREQUIREMENT_PROP_CONTAINER_SUITCASE_ICA_STA_STADIA = 14,
+	EREQUIREMENT_PROP_DEVICE_ICA_RUBBERDUCK_REMOTE_EXPLOSIVE_STA_STADIA = 15,
+	EREQUIREMENT_H1_LEGACY_STANDARD = 16,
+	EREQUIREMENT_H1_LEGACY_EXPANSION = 17,
+	EREQUIREMENT_H2_LEGACY_STANDARD = 18,
+	EREQUIREMENT_H2_LEGACY_EXPANSION = 19,
+	EREQUIREMENT_H3_EXPANSION = 20,
+	EREQUIREMENT_LOCATION_GOLDEN = 21,
+	EREQUIREMENT_LOCATION_ANCESTRAL = 22,
+	EREQUIREMENT_LOCATION_EDGY = 23,
+	EREQUIREMENT_LOCATION_WET = 24,
+	EREQUIREMENT_LOCATION_ELEGANT = 25,
+	EREQUIREMENT_LOCATION_TRAPPED = 26,
+	EREQUIREMENT_PLATFORM_ORBIS = 27,
+	EREQUIREMENT_PLATFORM_PS5 = 28,
+	EREQUIREMENT_PLATFORM_GDK = 29,
+	EREQUIREMENT_PLATFORM_EPIC = 30,
+	EREQUIREMENT_PLATFORM_STEAM = 31,
+	EREQUIREMENT_PLATFORM_GGP = 32,
+	EREQUIREMENT_H3_PREORDER = 33,
+	EREQUIREMENT_PLATFORM_IZUMO = 34,
+};
+
+// 0x0000000142A9A640 (Size: 0x70)
+class ZFleeOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB2268 (Size: 0x8)
+class SComboDeviceBinding
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 type; // 0x0
+	uint32 button; // 0x4
+};
+
+// 0x0000000142A9E2B8 (Size: 0x4)
+enum class ECombatZoneState
+{
+	CZS_Inactive = 0,
+	CZS_Triggered = 1,
+	CZS_Engaged = 2,
+};
+
+// 0x0000000142A9F588 (Size: 0x4)
+enum class EVRIKElementMode
+{
+	EVRIKEM_Enabled = 0,
+	EVRIKEM_Disabled = 1,
+	EVRIKEM_KeepCurrent = 2,
+};
+
+// 0x0000000142A883C0 (Size: 0x4)
+enum class EObjectiveType
+{
+	OBJECTIVE_PRIMARY = 0,
+	OBJECTIVE_SECONDARY = 1,
+	OBJECTIVE_TERTIARY = 2,
+};
+
+// 0x0000000142AA3CF0 (Size: 0x4)
+enum class EWeaponUpgradeUse
+{
+	eWUU_PrimaryOnly = 0,
+	eWUU_SecondaryOnly = 1,
+	eWUU_AllFireModes = 2,
+};
+
+// 0x0000000142A98038 (Size: 0x4)
+enum class ECheatGroup
+{
+	eCGNone = 0,
+	eCGPistols = 1,
+	eCGSMGs = 2,
+	eCGAssaultRifles = 3,
+	eCGShotguns = 4,
+	eCGSniper = 5,
+	eCGExotics = 6,
+	eCGDevices = 7,
+};
+
+// 0x0000000142AA3AB8 (Size: 0x4)
+enum class ECCEmitterEffect
+{
+	eCCEmitterEffect_None = 0,
+	eCCEmitterEffect_Stab = 1,
+	eCCEmitterEffect_Blunt1H = 2,
+	eCCEmitterEffect_Blunt2H = 3,
+	eCCEmitterEffect_Slash1H = 4,
+	eCCEmitterEffect_Shatter = 5,
+	eCCEmitterEffect_AxeCleave = 6,
+	eCCEmitterEffect_AxePull = 7,
+	eCCEmitterEffect_AxeSlitThroat = 8,
+	eCCEmitterEffect_SlitThroat = 9,
+	eCCEmitterEffect_FacePunch = 10,
+	eCCEmitterEffect_Blood = 11,
+};
+
+// 0x0000000142A874E0 (Size: 0x60)
+class ZPatrolOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A598 (Size: 0xA0)
+class ZActOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001421176D0 (Size: 0x24)
+class SMatrix33
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 XAxis; // 0x0
+	SVector3 YAxis; // 0xC
+	SVector3 ZAxis; // 0x18
+};
+
+// 0x0000000142B00278 (Size: 0x4)
+enum class EReplicaOperation
+{
+	E_Created = 0,
+	E_Destroyed = 1,
+};
+
+// 0x0000000142A86408 (Size: 0x8)
+class IControllableCharacter :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA58B0 (Size: 0x4)
+enum class ECommunicationBarState
+{
+	COMMUNICATION_BAR_NONE = 0,
+	COMMUNICATION_BAR_CLEAR = 1,
+	COMMUNICATION_BAR_SEARCHING = 2,
+	COMMUNICATION_BAR_SUSPICIOUS = 3,
+	COMMUNICATION_BAR_HUNTING = 4,
+	COMMUNICATION_BAR_HOSTILE = 5,
+	COMMUNICATION_BAR_BLOOD_FOUND = 6,
+	COMMUNICATION_BAR_BODY_FOUND = 7,
+	COMMUNICATION_BAR_GUARDS_ALERTED = 8,
+	COMMUNICATION_BAR_BACKUP_ARRIVED = 9,
+};
+
+// 0x0000000142AA57F0 (Size: 0x4)
+enum class EButtonDisplay
+{
+	BUTTON_DISPLAY_AT_OPENDOOR = 0,
+	BUTTON_DISPLAY_AT_PICKUP = 1,
+	BUTTON_DISPLAY_AT_STARTDIALOG = 2,
+	BUTTON_DISPLAY_AT_RESET = 3,
+	BUTTON_DISPLAY_AT_OUTFIT = 4,
+	BUTTON_DISPLAY_AT_CLOTHBUNDLE = 5,
+	BUTTON_DISPLAY_AT_DRAGBODY = 6,
+	BUTTON_DISPLAY_AT_SWITCHBOX = 7,
+	BUTTON_DISPLAY_AT_SWAPITEM = 8,
+	BUTTON_DISPLAY_AT_DUMPBODY = 9,
+	BUTTON_DISPLAY_AT_OPENLID = 10,
+	BUTTON_DISPLAY_AT_CHECKPOINTDOOR = 11,
+	BUTTON_DISPLAY_AT_SIMPLE = 12,
+	BUTTON_DISPLAY_AT_ENTERCLOSET = 13,
+	BUTTON_DISPLAY_AT_EXITCLOSET = 14,
+	BUTTON_DISPLAY_AT_ENTERSAFEZONE = 15,
+	BUTTON_DISPLAY_AT_EXITSAFEZONE = 16,
+	BUTTON_DISPLAY_AT_DISABLEFUSEBOX = 17,
+	BUTTON_DISPLAY_AT_CONTAINERFLUSHBODY = 18,
+	BUTTON_DISPLAY_AT_CONTEXTACTION = 19,
+	BUTTON_DISPLAY_AT_HEALTHSTATION = 20,
+	BUTTON_DISPLAY_AT_KEYCARDREADER = 21,
+	BUTTON_DISPLAY_AT_ITEMCONTAINER = 22,
+	BUTTON_DISPLAY_AT_USE_QUICK = 23,
+	BUTTON_DISPLAY_AT_USE = 24,
+	BUTTON_DISPLAY_RELOAD = 25,
+	BUTTON_DISPLAY_HOLSTER = 26,
+	BUTTON_DISPLAY_CHANGE_WEAPON_MODE = 27,
+	BUTTON_DISPLAY_REMOTE_DETONATE = 28,
+	BUTTON_DISPLAY_INVENTORY_ACCEPT = 29,
+	BUTTON_DISPLAY_INVENTORY_CANCEL = 30,
+	BUTTON_DISPLAY_HINTMESSAGE_CONTINUE = 31,
+	BUTTON_DISPLAY_CLOSECOMBAT_TAKEDOWN = 32,
+	BUTTON_DISPLAY_CLOSECOMBAT_COUNTERATTACK = 33,
+	BUTTON_DISPLAY_CLOSECOMBAT_SILENT = 34,
+	BUTTON_DISPLAY_CLOSECOMBAT_SNAPNECK = 35,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHOKE = 36,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHOKE_TARGET = 37,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_HIT = 38,
+	BUTTON_DISPLAY_PISTOL_FINISHER = 39,
+	BUTTON_DISPLAY_PEEK_VENT = 40,
+	BUTTON_DISPLAY_PEEK_CLOSET = 41,
+	BUTTON_DISPLAY_CLIMB_LADDER = 42,
+	BUTTON_DISPLAY_SLIDE_LADDER = 43,
+	BUTTON_DISPLAY_LEDGE = 44,
+	BUTTON_DISPLAY_LEDGE_STEPON = 45,
+	BUTTON_DISPLAY_LEDGEJUMP = 46,
+	BUTTON_DISPLAY_LEDGE_PULL_UP = 47,
+	BUTTON_DISPLAY_LEDGE_CLIMB_DOWN = 48,
+	BUTTON_DISPLAY_LEDGE_DROP_DOWN = 49,
+	BUTTON_DISPLAY_WINDOW = 50,
+	BUTTON_DISPLAY_WINDOWSNEAK = 51,
+	BUTTON_DISPLAY_PULLVICTIM = 52,
+	BUTTON_DISPLAY_PUSHVICTIM = 53,
+	BUTTON_DISPLAY_SURRENDER = 54,
+	BUTTON_DISPLAY_COVERTOCOVER = 55,
+	BUTTON_DISPLAY_COVERCORNER = 56,
+	BUTTON_DISPLAY_COVEREXITFORWARD = 57,
+	BUTTON_DISPLAY_COVERSCALEEXIT = 58,
+	BUTTON_DISPLAY_TAKEDISGUISE = 59,
+	BUTTON_DISPLAY_DROPBODY = 60,
+	BUTTON_DISPLAY_ABORT_CHECKPOINTDOOR = 61,
+	BUTTON_DISPLAY_QUICKSWAP = 62,
+	BUTTON_DISPLAY_OPERATE_LEVER = 63,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_HIGH = 64,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_LOW = 65,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_COUNTER = 66,
+	BUTTON_DISPLAY_FIBERWIRE_KILL = 67,
+	BUTTON_DISPLAY_DROP_ITEM = 68,
+	BUTTON_DISPLAY_ABORT_MINIGAME = 69,
+	BUTTON_DISPLAY_CONTRACT_MARK = 70,
+	BUTTON_DISPLAY_CONTRACT_UNMARK = 71,
+	BUTTON_DISPLAY_COMPLY = 72,
+	BUTTON_DISPLAY_MAX = 73,
+};
+
+// 0x0000000142AA14B0 (Size: 0x38)
+class SCrowdBodySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_pCorpseBodybagEntity; // 0x0
+	uint32 m_rCrowdEntity; // 0x4
+	uint16 m_iActorIndex; // 0x8
+	uint32 m_rPerceptibleEntity; // 0xC
+	TArray<uint32> m_aKnownBy; // 0x10
+	ZGameTime m_tStart; // 0x28
+	bool m_bManaged; // 0x30
+	int32 m_rBagSharedKnowledge; // 0x34
+};
+
+// 0x0000000142AEF148 (Size: 0x4)
+enum class TeleportActionType
+{
+	STAY = 0,
+	TELEPORT = 1,
+	LEAVE_CROWD = 2,
+};
+
+// 0x0000000142A8FC30 (Size: 0x4)
+enum class EActorAIState
+{
+	eAAIS_None = 0,
+	eAAIS_Distracted = 1,
+	eAAIS_PotentialThreat = 2,
+	eAAIS_PotentialThreatDistracted = 3,
+	eAAIS_PotentialThreatDisabled = 4,
+	eAAIS_Aggressive = 5,
+	eAAIS_EscortingOut = 6,
+	eAAIS_Fleeing = 7,
+	eAAIS_Unconscious = 8,
+	eAAIS_Stunned = 9,
+	eAAIS_Grenade = 10,
+	eAAIS_DisabledInCombat = 11,
+	eAAIS_Disabled = 12,
+	eAAIS_Max = 13,
+};
+
+// 0x0000000142A86C08 (Size: 0x4)
+enum class EMorphemeEventId
+{
+	eDE_None = 0,
+	eDE_UnholsterWeapon = 18,
+	eDE_HolsterWeapon = 19,
+	eDE_FireWeapon = 20,
+	eDE_AttachWeapon = 21,
+	eDE_DetachWeapon = 22,
+	eDE_LegR = 100,
+	eDE_LegL = 101,
+	eDE_TransitionEnd_LegR = 200,
+	eDE_TransitionEnd_LegL = 201,
+	eDE_Finish = 255,
+	eDE_InterpolationStart = 300,
+	eDE_InterpolationEnd = 301,
+	eDE_TransitionSignal = 400,
+	eDE_TransitionEnd = 500,
+	eDE_DisableNPCHitmanCollision = 700,
+	eDE_EnableNPCHitmanCollision = 701,
+	eDE_EnableRagdollRangeStart = 800,
+	eDE_EnableRagdollRangeEnd = 801,
+	eDE_StartBlendingOut = 850,
+	eDE_FinishBlendingOut = 851,
+	eDE_StartOrientationBlend = 860,
+	eDE_FinishOrientationBlend = 861,
+	eDE_RecoveryPowerRagdollEnd = 862,
+	eDE_RecoveryBlendEnd = 863,
+	eDE_ImpactFinished = 900,
+	eDE_ActFinished = 1000,
+	eDE_ActFinishedWhenMoving = 1001,
+	eDE_ActReached = 1005,
+	eDE_ActLoop = 1050,
+	eDE_ActFullbodyStartMarker = 1090,
+	eDE_ActFullbodyEndMarker = 1091,
+	eDE_ReactionFinished = 1100,
+	eDE_StandToCrouch = 1500,
+	eDE_CrouchToStand = 1501,
+	eDE_OffHandIKEnable = 1600,
+	eDE_OffHandIKDisable = 1601,
+	eDE_StandToMoveRotationToTranslation = 1700,
+	eDE_MoveToStandTranslationToRotation = 1701,
+	eDE_HeadIKEnable = 1800,
+	eDE_HeadIKDisable = 1801,
+	eDE_WindowLeaningEnable = 2000,
+	eDE_WindowLeaningDisable = 2001,
+	eDE_PreventDeathAnimations = 2002,
+	eDE_AllowDeathAnimations = 2003,
+	eDE_HeadControlEnable = 2010,
+	eDE_HeadControlDisable = 2011,
+	eDE_CombatActEndMarker = 3000,
+	eDE_CombatAim = 3100,
+	eDE_CombatEnableRightHandIK = 3010,
+	eDE_CombatEnableLeftHandIK = 3011,
+	eDE_CombatEndEnableIK = 3015,
+	eDE_CombatStartDisableIK = 3020,
+	eDE_CombatEndDisableIK = 3025,
+	eDE_CombatEnableShoot = 3030,
+	eDE_CombatDisableShoot = 3040,
+	eDE_CombatEnableBlindShoot = 3050,
+	eDE_CombatDisableBlindShoot = 3060,
+	eDE_CombatUnholsterGrenade = 3070,
+	eDE_CombatThrowGrenade = 3080,
+	eDE_ActBehaviorEventStart = 4000,
+	eDE_ActItemPickup = 4001,
+	eDE_ActItemDrop = 4002,
+	eDE_AmbientItemUseMarker = 4010,
+	eDE_ActBehaviorEventEnd = 4999,
+	eDE_Act_LeadIn_Marker = 10301,
+	eDE_Act_UB_BlendIn_End = 10050,
+	eDE_Act_FB_BlendIn_Start = 10051,
+	eDE_Act_FB_BlendIn_End = 10052,
+	eDE_Act_FB_BlendOut_End = 10053,
+};
+
+// 0x0000000142AA86A0 (Size: 0x14)
+class SCondition_InSituation :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ESituationType type; // 0x10
+};
+
+// 0x0000000142ABEFD0 (Size: 0x4)
+enum class EHM5SoundBulletType
+{
+	ESBT_SMALL = 0,
+	ESBT_MEDIUM = 1,
+	ESBT_LARGE = 2,
+	ESBT_GORGEOUS = 3,
+	ESBT_ANY = 4,
+};
+
+// 0x0000000142AEFF38 (Size: 0x4)
+enum class EContinuity
+{
+	C0 = 0,
+	C1 = 1,
+	C2 = 2,
+};
+
+// 0x0000000142AA5DF0 (Size: 0x4)
+enum class EControllerButton
+{
+	BUTTON_NONE = 0,
+	BUTTON_CROSS = 1,
+	BUTTON_TRIANGLE = 2,
+	BUTTON_SQUARE = 3,
+	BUTTON_CIRCLE = 4,
+	BUTTON_UP = 5,
+	BUTTON_RIGHT = 6,
+	BUTTON_DOWN = 7,
+	BUTTON_LEFT = 8,
+	BUTTON_R1 = 9,
+	BUTTON_R2 = 10,
+	BUTTON_R3 = 11,
+	BUTTON_R_STICK = 12,
+	BUTTON_L1 = 13,
+	BUTTON_L2 = 14,
+	BUTTON_L3 = 15,
+	BUTTON_L_STICK = 16,
+	BUTTON_START = 17,
+	BUTTON_SELECT = 18,
+	BUTTON_UP_DOWN = 19,
+	BUTTON_LEFT_RIGHT = 20,
+	BUTTON_LEFT_RIGHT_UP_DOWN = 21,
+	BUTTON_L1_R1 = 22,
+	BUTTON_L2_R2 = 23,
+	BUTTON_KEYBOARD = 24,
+	BUTTON_ESCAPE = 25,
+};
+
+// 0x0000000142AA4540 (Size: 0x4)
+enum class ESoundMaterialType
+{
+	eGeneric = 0,
+	eFlesh = 1,
+	eSilent = 2,
+};
+
+// 0x0000000142A95538 (Size: 0x4)
+class SMovementLadderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rLadder; // 0x0
+};
+
+// 0x0000000142A9D3E0 (Size: 0x4)
+enum class EScreenAnchor
+{
+	SCREEN_ANCHOR_TOP_LEFT = 0,
+	SCREEN_ANCHOR_TOP_CENTER = 1,
+	SCREEN_ANCHOR_TOP_RIGHT = 2,
+	SCREEN_ANCHOR_MIDDLE_LEFT = 3,
+	SCREEN_ANCHOR_MIDDLE_CENTER = 4,
+	SCREEN_ANCHOR_MIDDLE_RIGHT = 5,
+	SCREEN_ANCHOR_BOTTOM_LEFT = 6,
+	SCREEN_ANCHOR_BOTTOM_CENTER = 7,
+	SCREEN_ANCHOR_BOTTOM_RIGHT = 8,
+};
+
+// 0x0000000142AA1470 (Size: 0x28)
+class SAIModifierServiceActorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActorRef; // 0x0
+	bool m_bNeedsVolumeUpdate; // 0x4
+	bool m_bNeedsKnowledgeUpdate; // 0x5
+	uint32 m_uiModVolume; // 0x8
+	uint32 m_uiModBehavior; // 0xC
+	uint32 m_uiModRole; // 0x10
+	uint32 m_uiModItem; // 0x14
+	uint32 m_uiModSituation; // 0x18
+	uint32 m_uiModOutfit; // 0x1C
+	uint32 m_uiModOverride; // 0x20
+	uint32 m_uiModStatus; // 0x24
+};
+
+// 0x0000000142A9EED8 (Size: 0x20)
+class SAIModifierServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bFullVolumeUpdate; // 0x0
+	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
+};
+
+// 0x0000000142A96D90 (Size: 0x8)
+class ISoundGateController
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7B18 (Size: 0x1C)
+class SCondition_IsAccidentScaleContext :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+	EAccidentScaleContext scaleContextType; // 0x18
+};
+
+// 0x0000000142AEE618 (Size: 0x2)
+class ZDialogEventItemTypedIndex
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA5550 (Size: 0x4)
+enum class eHitmanPermissionReason
+{
+	eHPReason_MovementContext = 1,
+	eHPReason_ItemHandlingInProcess = 2,
+	eHPReason_SniperMode = 4,
+	eHPReason_CrippleBox = 8,
+	eHPReason_LevelDesign = 16,
+	eHPReason_PlayerInput = 32,
+	eHPReason_InstinctBlendIn = 64,
+	eHPReason_FocusInteraction = 128,
+	eHPReason_NUM = 7,
+	eHPReason_ALLReasons = -1,
+};
+
+// 0x0000000142A873A8 (Size: 0x4)
+enum class EActorAnimationOrder
+{
+	AAO_None = 0,
+	AAO_Stand = 1,
+	AAO_Move = 2,
+	AAO_React = 3,
+	AAO_Act = 4,
+	AAO_MoveToAct = 5,
+	AAO_MoveToCover = 6,
+	AAO_ShootFromCover = 7,
+	AAO_PeekFromCover = 8,
+	AAO_Death = 9,
+	AAO_Impact = 10,
+	AAO_Controlled = 11,
+};
+
+// 0x00000001422D6C30 (Size: 0x8)
+class IItemWeapon :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEF0A0 (Size: 0x4)
+enum class ESpeed
+{
+	eSpeed_Idle = 0,
+	eSpeed_Slow = 1,
+	eSpeed_Normal = 2,
+	eSpeed_Fast = 3,
+	eSpeed_Sprint = 4,
+};
+
+// 0x0000000143CEBBF0 (Size: 0x8)
+class ICubemapProbeEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7CF8 (Size: 0x18)
+class SCondition_IsCurrentDistractionTarget :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+};
+
+// 0x0000000143CEC1C8 (Size: 0x1)
+enum class ESeamFixMode
+{
+	SEAMFIX_NONE = 0,
+	SEAMFIX_X = 1,
+	SEAMFIX_Y = 2,
+	SEAMFIX_Z = 4,
+	SEAMFIX_XZ = 5,
+	SEAMFIX_XY = 3,
+	SEAMFIX_XYZ = 7,
+	SEAMFIX_YZ = 6,
+};
+
+// 0x0000000142AEE4A8 (Size: 0x4)
+enum class ESoundGateType
+{
+	SOUNDGATE_TYPE_ROUND = 0,
+	SOUNDGATE_TYPE_SHARPCORNERS = 1,
+};
+
+// 0x0000000142AA11D0 (Size: 0x4)
+enum class EAIModifiers
+{
+	AIM_Invalid = 0,
+	AIM_IgnoreLowNoise = 1,
+	AIM_IgnoreHitmanPropToss = 2,
+	AIM_IgnoreAnnoyingHitman = 4,
+	AIM_IgnoreSneakyHitman = 8,
+	AIM_IgnoreAgileHitman = 16,
+	AIM_IgnoreSillyHitman = 30,
+	AIM_PreferredInvestigator = 32,
+	AIM_AccidentShy = 64,
+	AIM_PreferredAccidentInvestigator = 128,
+	AIM_BlockFiberWireInteraction = 256,
+	AIM_BlockCloseCombatInteraction = 512,
+	AIM_BlockDragBodyInteraction = 1024,
+	AIM_BlockAllInteractions = 1792,
+	AIM_IgnoreDistractions = 2048,
+	AIM_IgnoreTrespassing = 4096,
+	AIM_IgnoreWeapons = 8192,
+	AIM_IgnoreLockdown = 16384,
+	AIM_DisableHelpCivilian = 32768,
+	AIM_WantsPrivacy = 65536,
+	AIM_ConversationHelper = 131072,
+	AIM_ConversationHelperFast = 262144,
+	AIM_OneHitpoint = 524288,
+	AIM_BlockDeadlyThrow = 1048576,
+	AIM_SuppressSocialGreeting = 2097152,
+	AIM_NeverInvestigateAccidents = 4194304,
+	AIM_BlockDeath = 8388608,
+	AIM_IgnoreDeadBody = 16777216,
+	AIM_NeverSpectate = 33554432,
+	AIM_DisableDeadBodySensor = 67108864,
+	AIM_DeafAndBlind = 134217728,
+};
+
+// 0x0000000142A9F630 (Size: 0x30)
+class SSniperScoringEvent
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_iPoints; // 0x0
+	int32 m_iPlayer; // 0x4
+	ZString m_sName; // 0x8
+	ZString m_sText; // 0x18
+	int32 m_iType; // 0x28
+	uint8 m_iScoringMachine; // 0x2C
+};
+
+// 0x0000000143F1E140 (Size: 0x20)
+class ZAMDEvent
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nEventID; // 0x0
+	float32 m_fStartFraction; // 0x4
+	float32 m_fDuration; // 0x8
+	ZVariant m_customData; // 0x10
+};
+
+// 0x0000000143F1E170 (Size: 0x28)
+class ZAMDEventTrack
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sName; // 0x0
+	TArray<ZAMDEvent> m_events; // 0x10
+};
+
+// 0x0000000143F1E1A0 (Size: 0x30)
+class ZAMDTake
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
+	ZVariant m_customData; // 0x18
+	int32 m_nSyncTrackIndex; // 0x28
+};
+
+// 0x0000000142AA4BC0 (Size: 0x4)
+enum class EAIFormationMemberSpeed
+{
+	eFMS_Slow = 0,
+	eFMS_Normal = 1,
+	eFMS_Fast = 2,
+};
+
+// 0x0000000142A9C4B0 (Size: 0x8)
+class IScreenplayListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABEFB8 (Size: 0x4)
+enum class EItemPoisonType
+{
+	POISONTYPE_NONE = 0,
+	POISONTYPE_LETHAL = 1,
+	POISONTYPE_SEDATIVE = 2,
+	POISONTYPE_EMETIC = 3,
+};
+
+// 0x0000000142A880C8 (Size: 0x4)
+enum class ECollidablesType
+{
+	ECST_STATIC_AND_DYNAMIC = 0,
+	ECST_STATIC_ONLY = 1,
+	ECST_DYNAMIC_ONLY = 2,
+};
+
+// 0x0000000143E6C440 (Size: 0x4)
+enum class EParticleModifierImpulseDirections
+{
+	TARGET_ZAXIS_DIRECTION = 0,
+	TOWARDS_TARGET_PIVOT = 1,
+	AWAY_FROM_TARGET_PIVOT = 2,
+};
+
+// 0x0000000142AA12E0 (Size: 0x4)
+enum class EScreenplayTriggerEvent
+{
+	STT_ReportCrime = 0,
+	STT_ReportCrimeToHitman = 1,
+	STT_ReportCrimeMoveBack = 2,
+};
+
+// 0x0000000142A996E0 (Size: 0x4)
+class SItemActionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rItem; // 0x0
+};
+
+// 0x0000000142A9F558 (Size: 0x4)
+enum class eVRFadeType
+{
+	FadeToGame = 0,
+	FadeToBlack = 1,
+	FadeToGame_HighPriority = 2,
+	FadeToBlack_HighPriority = 3,
+	CutToGame = 4,
+	CutToBlack = 5,
+	KeepCurrent = 6,
+};
+
+// 0x0000000142AA4F20 (Size: 0x4)
+enum class ETakeDownAnim
+{
+	eCoverLowOverNarrowCloseFront = 0,
+	eCoverLowOverNarrowCloseBack = 1,
+	eCoverLowOverNarrowFarFront = 2,
+	eCoverLowOverNarrowFarBack = 3,
+	eCoverLowOverWideFront = 4,
+	eCoverLowOverWideBack = 5,
+	eCoverLowCornerFront = 6,
+	eCoverLowCornerBack = 7,
+	eCoverHighCornerFront = 8,
+	eCoverHighCornerBack = 9,
+	eLocomotionBack = 10,
+	eLocomotionFallback = 11,
+	eLocomotionChair = 12,
+	eChokeGroundLoop = 13,
+	eChokeGroundEndPacify = 14,
+	eChokeGroundEndKill = 15,
+	eChokeGroundFallBackLoop = 16,
+	eChokeGroundFallBackEndPacify = 17,
+	eChokeGroundFallBackEndKill = 18,
+	eChokeChairLoop = 19,
+	eChokeChairEndPacify = 20,
+	eChokeChairEndKill = 21,
+	eChokeChairEndLeft90 = 22,
+	eChokeChairEndLeft45 = 23,
+	eChokeChairEndFront = 24,
+	eChokeChairEndRight45 = 25,
+	eChokeChairEndRight90 = 26,
+	eTakeDownAnimLast = 27,
+};
+
+// 0x0000000142AA6610 (Size: 0x4)
+enum class EUIActionGroupIcon
+{
+	EUIAGI_NoIcon = 0,
+	EUIAGI_GenericTool = 1,
+	EUIAGI_Crowbar = 2,
+	EUIAGI_Wrench = 3,
+	EUIAGI_Screwdriver = 4,
+	EUIAGI_ExplosiveDevice = 5,
+	EUIAGI_Poison = 6,
+	EUIAGI_Coin = 7,
+	EUIAGI_Lockpick = 8,
+	EUIAGI_LockpickElectic = 9,
+	EUIAGI_Card = 10,
+	EUIAGI_Key = 11,
+	EUIAGI_Password = 12,
+	EUIAGI_SAPIENZA_GolfBall = 13,
+	EUIAGI_SAPIENZA_ChemicalTube = 14,
+	EUIAGI_SAPIENZA_FlowBouquet = 15,
+	EUIAGI_SAPIENZA_Ammunitions = 16,
+	EUIAGI_RatFood = 17,
+	EUIAGI_Gunpowder = 18,
+	EUIAGI_Cannonball = 19,
+	EUIAGI_FuguFish = 20,
+	EUIAGI_CakeTopper = 21,
+	EUIAGI_Knife = 22,
+	EUIAGI_SpaghettiCan = 23,
+	EUIAGI_MAX = 24,
+};
+
+// 0x0000000142ABED18 (Size: 0x4)
+enum class ESilenceRating
+{
+	eSR_NotSilenced = 0,
+	eSR_Silenced = 1,
+	eSR_SuperSilenced = 2,
+	eSR_CompletelySilenced = 3,
+};
+
+// 0x0000000142AED6E0 (Size: 0x8)
+class IAudioVolumetricGeom :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B001D0 (Size: 0x4)
+enum class GameLobbyState
+{
+	GLS_None = 0,
+	GLS_InHud = 1,
+	GLS_CreatingLobby = 2,
+	GLS_JoiningLobby = 3,
+	GLS_ConnectToLobby = 4,
+	GLS_ConnectingLobby = 5,
+	GLS_InLobby = 6,
+	GLS_LeavingLobby = 7,
+	GLS_InGame = 8,
+};
+
+// 0x0000000142117920 (Size: 0x20)
+class ZGuidString
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B01820 (Size: 0x1)
+enum class EFilterMaskBit
+{
+	eFilterMaskBit_ObjectCollision = 0,
+	eFilterMaskBit_OpaqueCollision = 1,
+	eFilterMaskBit_UNUSED_LAST = 2,
+};
+
+// 0x0000000142A97828 (Size: 0x3)
+class SRemoteControlReceiverSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+	bool m_bReceiverActivated; // 0x1
+	bool m_bDestroyed; // 0x2
+};
+
+// 0x0000000142B01598 (Size: 0x1)
+enum class ECollisionPriority
+{
+	ECOLLISIONPRIORITY_LOW = 0,
+	ECOLLISIONPRIORITY_NORMAL = 1,
+	ECOLLISIONPRIORITY_HIGH = 2,
+	ECOLLISIONPRIORITY_CRITICAL = 3,
+};
+
+// 0x0000000142A9DA18 (Size: 0x8)
+class IActorProviderFilter
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB66C0 (Size: 0x4)
+enum class ELedgeDismountBehavior
+{
+	eLDB_DontCare = 0,
+	eLDB_Stand = 1,
+	eLDB_Crouch = 2,
+};
+
+// 0x0000000142AA3AA0 (Size: 0x4)
+enum class ECCDecalEffect
+{
+	eCCDecalEffect_None = 0,
+	eCCDecalEffect_Stab = 1,
+	eCCDecalEffect_Blunt1H = 2,
+	eCCDecalEffect_Blunt2H = 3,
+	eCCDecalEffect_Slash1H = 4,
+	eCCDecalEffect_Shatter = 5,
+	eCCDecalEffect_AxeCleave = 6,
+	eCCDecalEffect_AxePull = 7,
+	eCCDecalEffect_AxeSlitThroat = 8,
+	eCCDecalEffect_SlitThroat = 9,
+	eCCDecalEffect_FacePunch = 10,
+	eCCDecalEffect_Bruise = 11,
+};
+
+// 0x0000000142AF15F8 (Size: 0x8)
+class IUIMovie :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8820 (Size: 0x18)
+class SCondition_CanJoinSituation :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+};
+
+// 0x0000000142AA4D40 (Size: 0x4)
+enum class ESpeechPriority
+{
+	SP_AMBIENT = 0,
+	SP_ALERTED = 1,
+	SP_PAIN = 2,
+	SP_ALERTED_IMPORTANT = 3,
+	SP_COMBAT = 4,
+	SP_COMBAT_IMPORTANT = 5,
+	SP_DEATH = 6,
+	SP_MAX = 7,
+	SP_COUNT__ = 8,
+};
+
+// 0x0000000142A97A50 (Size: 0x8)
+class S3rdPersonCameraSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fAngleYaw; // 0x0
+	float32 m_fAnglePitch; // 0x4
+};
+
+// 0x0000000142AA3DA0 (Size: 0x18)
+class SChallengesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
+};
+
+// 0x00000001422D6E38 (Size: 0x4)
+enum class ECCWeaponAnimSet
+{
+	AS_SLIT_THROAT_1H = 0,
+	AS_SWING_1H = 1,
+	AS_BASH_1H = 2,
+	AS_STAB_1H = 3,
+	AS_SYRINGE_1H = 4,
+	AS_SMASH_1H = 5,
+	AS_STRANGLE = 6,
+	AS_SWING_2H = 7,
+	AS_BASH_2H = 8,
+	AS_STAB_2H = 9,
+	AS_STRANGLE_2H = 10,
+	AS_SWORD_1H = 11,
+	AS_AXE = 12,
+};
+
+// 0x0000000142A86C20 (Size: 0x4)
+enum class ECompiledBehaviorType
+{
+	BT_ConditionScope = 0,
+	BT_Random = 1,
+	BT_Match = 2,
+	BT_Sequence = 3,
+	BT_BEHAVIORS_BEGIN = 4,
+	BT_Dummy = 4,
+	BT_Dummy2 = 5,
+	BT_Error = 6,
+	BT_Wait = 7,
+	BT_WaitForStanding = 8,
+	BT_WaitBasedOnDistanceToTarget = 9,
+	BT_WaitForItemHandled = 10,
+	BT_AbandonOrder = 11,
+	BT_CompleteOrder = 12,
+	BT_PlayAct = 13,
+	BT_ConfiguredAct = 14,
+	BT_PlayReaction = 15,
+	BT_SimpleReaction = 16,
+	BT_SituationAct = 17,
+	BT_SituationApproach = 18,
+	BT_SituationGetHelp = 19,
+	BT_SituationFace = 20,
+	BT_SituationConversation = 21,
+	BT_Holster = 22,
+	BT_SpeakWait = 23,
+	BT_SpeakWaitWithFallbackIfAlone = 24,
+	BT_ConfiguredSpeak = 25,
+	BT_ConditionedConfiguredSpeak = 26,
+	BT_ConditionedConfiguredAct = 27,
+	BT_SpeakCustomOrDefaultDistractionAckSoundDef = 28,
+	BT_SpeakCustomOrDefaultDistractionInvestigationSoundDef = 29,
+	BT_SpeakCustomOrDefaultDistractionStndSoundDef = 30,
+	BT_Pickup = 31,
+	BT_Drop = 32,
+	BT_PlayConversation = 33,
+	BT_PlayAnimation = 34,
+	BT_MoveToLocation = 35,
+	BT_MoveToTargetKnownPosition = 36,
+	BT_MoveToTargetActualPosition = 37,
+	BT_MoveToInteraction = 38,
+	BT_MoveToNPC = 39,
+	BT_FollowTargetKnownPosition = 40,
+	BT_FollowTargetActualPosition = 41,
+	BT_PickUpItem = 42,
+	BT_GrabItem = 43,
+	BT_PutDownItem = 44,
+	BT_Search = 45,
+	BT_LimitedSearch = 46,
+	BT_MoveTo = 47,
+	BT_Reposition = 48,
+	BT_SituationMoveTo = 49,
+	BT_FormationMove = 50,
+	BT_SituationJumpTo = 51,
+	BT_AmbientWalk = 52,
+	BT_AmbientStand = 53,
+	BT_CrowdAmbientStand = 54,
+	BT_AmbientItemUse = 55,
+	BT_AmbientLook = 56,
+	BT_Act = 57,
+	BT_Patrol = 58,
+	BT_MoveToPosition = 59,
+	BT_AlertedStand = 60,
+	BT_AlertedDebug = 61,
+	BT_AttentionToPerson = 62,
+	BT_StunnedByFlashGrenade = 63,
+	BT_CuriousIdle = 64,
+	BT_InvestigateWeapon = 65,
+	BT_DeliverWeapon = 66,
+	BT_RecoverUnconscious = 67,
+	BT_GetOutfit = 68,
+	BT_RadioCall = 69,
+	BT_EscortOut = 70,
+	BT_StashItem = 71,
+	BT_CautiousSearchPosition = 72,
+	BT_LockdownWarning = 73,
+	BT_WakeUpUnconscious = 74,
+	BT_DeadBodyInvestigate = 75,
+	BT_GuardDeadBody = 76,
+	BT_DragDeadBody = 77,
+	BT_CuriousBystander = 78,
+	BT_DeadBodyBystander = 79,
+	BT_StandOffArrest = 80,
+	BT_StandOffReposition = 81,
+	BT_StandAndAim = 82,
+	BT_CloseCombat = 83,
+	BT_MoveToCloseCombat = 84,
+	BT_MoveAwayFromCloseCombat = 85,
+	BT_CoverFightSeasonTwo = 86,
+	BT_ShootFromPosition = 87,
+	BT_StandAndShoot = 88,
+	BT_CheckLastPosition = 89,
+	BT_ProtoSearchIdle = 90,
+	BT_ProtoApproachSearchArea = 91,
+	BT_ProtoSearchPosition = 92,
+	BT_ShootTarget = 93,
+	BT_TriggerAlarm = 94,
+	BT_MoveInCover = 95,
+	BT_MoveToCover = 96,
+	BT_HomeAttackOrigin = 97,
+	BT_Shoot = 98,
+	BT_Aim = 99,
+	BT_MoveToRandomNeighbourNode = 100,
+	BT_MoveToRandomNeighbourNodeAiming = 101,
+	BT_MoveToAndPlayCombatPositionAct = 102,
+	BT_MoveToAimingAndPlayCombatPositionAct = 103,
+	BT_PlayJumpyReaction = 104,
+	BT_JumpyInvestigation = 105,
+	BT_AgitatedPatrol = 106,
+	BT_AgitatedGuard = 107,
+	BT_HeroEscort = 108,
+	BT_Escort = 109,
+	BT_ControlledFormationMove = 110,
+	BT_EscortSearch = 111,
+	BT_LeadEscort = 112,
+	BT_LeadEscort2 = 113,
+	BT_AimReaction = 114,
+	BT_FollowHitman = 115,
+	BT_RideTheLightning = 116,
+	BT_Scared = 117,
+	BT_Flee = 118,
+	BT_AgitatedBystander = 119,
+	BT_SentryFrisk = 120,
+	BT_SentryIdle = 121,
+	BT_SentryWarning = 122,
+	BT_SentryCheckItem = 123,
+	BT_VIPScared = 124,
+	BT_VIPSafeRoomTrespasser = 125,
+	BT_DefendVIP = 126,
+	BT_CautiousVIP = 127,
+	BT_CautiousGuardVIP = 128,
+	BT_InfectedConfused = 129,
+	BT_EnterInfected = 130,
+	BT_CureInfected = 131,
+	BT_SickActInfected = 132,
+	BT_Smart = 133,
+	BT_Controlled = 134,
+	BT_SpeakTest = 135,
+	BT_Conversation = 136,
+	BT_RunToHelp = 137,
+	BT_WaitForDialog = 138,
+	BT_WaitForConfiguredAct = 139,
+	BT_TestFlashbangGrenadeThrow = 140,
+	BT_BEHAVIORS_END = 141,
+	BT_COMMANDS_BEGIN = 142,
+	BT_RenewEvent = 142,
+	BT_ExpireEvent = 143,
+	BT_ExpireEvents = 144,
+	BT_SetEventHandled = 145,
+	BT_RenewSharedEvent = 146,
+	BT_ExpireSharedEvent = 147,
+	BT_ExpireAllEvents = 148,
+	BT_CreateOrJoinSituation = 149,
+	BT_JoinSituation = 150,
+	BT_ForceActorToJoinSituation = 151,
+	BT_JoinSituationWithActor = 152,
+	BT_LeaveSituation = 153,
+	BT_Escalate = 154,
+	BT_GotoPhase = 155,
+	BT_RenewGoal = 156,
+	BT_ExpireGoal = 157,
+	BT_RenewGoalOf = 158,
+	BT_ExpireGoalOf = 159,
+	BT_SetTension = 160,
+	BT_TriggerSpotted = 161,
+	BT_CopyKnownLocation = 162,
+	BT_UpdateKnownLocation = 163,
+	BT_TransferKnownObjectPositions = 164,
+	BT_WitnessAttack = 165,
+	BT_Speak = 166,
+	BT_StartDynamicEnforcer = 167,
+	BT_StopDynamicEnforcer = 168,
+	BT_StartRangeBasedDynamicEnforcer = 169,
+	BT_StopRangeBasedDynamicEnforcerForLocation = 170,
+	BT_StopRangeBasedDynamicEnforcer = 171,
+	BT_SetDistracted = 172,
+	BT_IgnoreAllDistractionsExceptTheNewest = 173,
+	BT_IgnoreDistractions = 174,
+	BT_PerceptibleEntityNotifyWillReact = 175,
+	BT_PerceptibleEntityNotifyReacted = 176,
+	BT_PerceptibleEntityNotifyInvestigating = 177,
+	BT_PerceptibleEntityNotifyInvestigated = 178,
+	BT_PerceptibleEntityNotifyTerminate = 179,
+	BT_LeaveDistractionAssistantRole = 180,
+	BT_LeaveDistractionAssitingGuardRole = 181,
+	BT_RequestSuitcaseAssistanceOverRadio = 182,
+	BT_RequestSuitcaseAssistanceFaceToFace = 183,
+	BT_ExpireArrestReasons = 184,
+	BT_SetDialogSwitch_NPCID = 185,
+	BT_InfectedAssignToFollowPlayer = 186,
+	BT_InfectedRemoveFromFollowPlayer = 187,
+	BT_Log = 188,
+	BT_COMMANDS_END = 189,
+	BT_Invalid = 190,
+};
+
+// 0x0000000142ABEDC0 (Size: 0x4)
+enum class EItemHUDType
+{
+	EIHT_None = 0,
+	EIHT_GhostItem = 1,
+	EIHT_OutbreakHealingItem = 2,
+};
+
+// 0x0000000142AC00A8 (Size: 0x4)
+enum class EIntelTensionLevel
+{
+	eITL_Undefined = 0,
+	eITL_Ambient = 1,
+	eITL_Agitated = 2,
+	eITL_Searching = 3,
+	eITL_AlertedLow = 4,
+	eITL_AlertedHigh = 5,
+	eITL_Hunting = 6,
+	eITL_Arrest = 7,
+	eITL_Combat = 8,
+};
+
+// 0x0000000142AA1A98 (Size: 0x4)
+enum class ESentryActionPrompt
+{
+	eSAP_None = 0,
+	eSAP_Frisk = 1,
+	eSAP_ShowItem = 2,
+	eSAP_Max = 3,
+};
+
+// 0x0000000142AA7A58 (Size: 0x18)
+class SBehaviorTreeEvaluationLogEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nBehaviorTreeIndex; // 0x0
+	uint64 m_nConditionOffset; // 0x8
+	bool m_bResult; // 0x10
+};
+
+// 0x00000001422D5D80 (Size: 0x10)
+class ZResourceID
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_uri; // 0x0
+};
+
+// 0x0000000142AA7AA0 (Size: 0x30)
+class SBehaviorTreeEvaluationLog
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<ZResourceID> m_BehaviorTrees; // 0x0
+	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
+};
+
+// 0x0000000142AB2500 (Size: 0x4)
+enum class EInteractionInputType
+{
+	EIIT_UNKNOWN = 0,
+	EIIT_PRESS = 1,
+	EIIT_HOLD = 2,
+	EIIT_HOLD_DOWN = 3,
+	EIIT_REPEAT = 4,
+	EIIT_GUIDE = 5,
+};
+
+// 0x0000000142AA5EB0 (Size: 0x4)
+enum class EBIEventTypes
+{
+	eBIL_HM_HitNPC = 0,
+	eBIL_HM_HitNPCKilled = 1,
+	eBIL_HM_HitNPCHeadShot = 2,
+	eBIL_HM_HitNPCCloseCombatShot = 3,
+	eBIL_NPC_HitHM = 4,
+	eBIL_Geometry = 5,
+};
+
+// 0x0000000142AA46C0 (Size: 0x48)
+class STargetInfoObjectiveCondition
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString header; // 0x0
+	ZString title; // 0x10
+	ZString icon; // 0x20
+	ZString type; // 0x30
+	bool hardCondition; // 0x40
+};
+
+// 0x0000000142AA46F8 (Size: 0x58)
+class STargetInfoDisplayData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString npcName; // 0x0
+	ZString disguiseName; // 0x10
+	ZString objectiveType; // 0x20
+	TArray<STargetInfoObjectiveCondition> objectiveConditions; // 0x30
+	int32 fX; // 0x48
+	int32 fY; // 0x4C
+	float32 fAlpha; // 0x50
+	bool bIsTarget; // 0x54
+};
+
+// 0x0000000142AA4718 (Size: 0x18)
+class STargetInfoDisplayData_Dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<STargetInfoDisplayData> __dummy; // 0x0
+};
+
+// 0x0000000142AAF320 (Size: 0x48)
+class SIntelDisplayInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 index; // 0x0
+	bool selected; // 0x4
+	bool active; // 0x5
+	ZString headline; // 0x8
+	ZString bodyheadline; // 0x18
+	ZString text; // 0x28
+	ZString img; // 0x38
+};
+
+// 0x0000000142AA3D48 (Size: 0x10)
+class SSoundAmbienceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rCurrentAmbience; // 0x0
+	uint32 m_rCurrentGate; // 0x4
+	float32 m_fTransitionAmount; // 0x8
+	bool m_bEnteredFromSide0; // 0xC
+	bool m_bInTransition; // 0xD
+};
+
+// 0x0000000142AA56D0 (Size: 0x4)
+enum class ERatingTitleRequirement
+{
+	ERatingTitleRequirement_Optional = 0,
+	ERatingTitleRequirement_Required = 1,
+	ERatingTitleRequirement_Fails = 2,
+};
+
+// 0x0000000142AA7EA8 (Size: 0x10)
+class SCondition_SuitcaseAssistanceRequesterRadio :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABF770 (Size: 0x110)
+class ZSoundCollisionInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA5490 (Size: 0x4)
+enum class EVRIKElement
+{
+	EVRIKE_LeftHand = 0,
+	EVRIKE_RightHand = 1,
+	EVRIKE_Pelvis = 2,
+	EVRIKE_Spine = 3,
+};
+
+// 0x0000000143E6F970 (Size: 0x8)
+class ZGfxValueWrapper
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86A20 (Size: 0x4)
+enum class EActorEmotionState
+{
+	AES_Ambient = 0,
+	AES_Alerted = 1,
+	AES_Scared = 2,
+	AES_Hunt = 3,
+	AES_Combat = 4,
+	AES_None = 268435455,
+};
+
+// 0x0000000142A87000 (Size: 0x38)
+class SAnimatedActorReactOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 m_vFaceTarget; // 0x0
+	SVector3 m_vLookAtTarget; // 0xC
+	uint32 m_rChildNetworkEntity; // 0x18
+	EActorEmotionState m_targetEmotionState; // 0x1C
+	bool m_bDeadbody; // 0x20
+	bool m_bExplosion; // 0x21
+	bool m_bTrespassing; // 0x22
+	bool m_bDropCarriedItems; // 0x23
+	bool m_bFaceTargetSet; // 0x24
+	bool m_bLookAtTargetSet; // 0x25
+	ZString m_sAct; // 0x28
+};
+
+// 0x0000000143E6DEA8 (Size: 0xA8)
+class SSaveGameMetaData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint8 nSlot; // 0x0
+	ESaveType eSaveType; // 0x4
+	int32 eDifficultyLevel; // 0x8
+	ZString sContractId; // 0x10
+	ZString sContractTitle; // 0x20
+	ZString sContractType; // 0x30
+	ZString sLocationId; // 0x40
+	ZString sContractSessionId; // 0x50
+	ZString sLastEventToken; // 0x60
+	bool bIsOnline; // 0x70
+	bool bIsVR; // 0x71
+	TArray<uint32> aScreenShot; // 0x78
+	TArray<ERequirementId> aRequirements; // 0x90
+};
+
+// 0x0000000143E6D7E0 (Size: 0xC0)
+class SSaveGameHeader
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 nFourCC; // 0x0
+	uint32 nVersion; // 0x4
+	uint32 nCrc32; // 0x8
+	uint32 nSize; // 0xC
+	int64 nTimeStamp; // 0x10
+	SSaveGameMetaData MetaData; // 0x18
+};
+
+// 0x0000000142AA5910 (Size: 0x4)
+enum class EMeBarState
+{
+	ME_BAR_NONE = 0,
+	ME_BAR_TRESPASSING = 1,
+	ME_BAR_DEEPTRESPASSING = 2,
+	ME_BAR_VISIBLY_ARMED = 3,
+	ME_BAR_CHANGING_DISGUISE = 4,
+	ME_BAR_DISGUISE_BLOWN = 5,
+	ME_BAR_DISGUISE_SUSPICIOUS = 6,
+	ME_BAR_NEAR_BODY = 7,
+};
+
+// 0x0000000142AEF528 (Size: 0x8)
+class IFloat3CurvesEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA4E60 (Size: 0x4)
+enum class ECCNodeSubtype
+{
+	eCCNodeSubtype_Left = 0,
+	eCCNodeSubtype_Right = 1,
+	eCCNodeSubtype_Front = 2,
+	eCCNodeSubtype_Back = 3,
+	eCCNodeSubtype_StairsAbove = 4,
+	eCCNodeSubtype_StairsBelow = 5,
+	eCCNodeSubtype_StairsAbove_Back = 6,
+	eCCNodeSubtype_StairsBelow_Back = 7,
+	eCCNodeSubtype_Front_Back = 8,
+	eCCNodeSubtype_Count = 9,
+};
+
+// 0x0000000142B01850 (Size: 0x1)
+enum class EAsyncRaycastsGroup
+{
+	eAsyncRaycasts_Gameplay = 0,
+	eAsyncRaycasts_ParticlesSoundCloth = 1,
+	eAsyncRaycasts_UNUSED_LAST = 2,
+};
+
+// 0x0000000142A9D388 (Size: 0x4)
+enum class EHintMessageSoundType
+{
+	EHintMessageSound_None = 0,
+	EHintMessageSound_GeneralHint = 1,
+	EHintMessageSound_UsefulItem = 2,
+	EHintMessageSound_NeedsItem = 3,
+	EHintMessageSound_ObjectiveExit = 4,
+	EHintMessageSound_Target = 5,
+	EHintMessageSound_AccidentKill = 6,
+	EHintMessageSound_Trespassing = 7,
+	EHintMessageSound_CanBeTurnedOn = 8,
+	EHintMessageSound_CanBeTurnedOff = 9,
+	EHintMessageSound_Agility = 10,
+};
+
+// 0x0000000142B02568 (Size: 0x4)
+enum class ERayType
+{
+	ERAY_CLOSESTHIT_SIMPLE = 0,
+	ERAY_CLOSESTHIT_DETAILED = 1,
+};
+
+// 0x00000001422D6B70 (Size: 0x8)
+class IKeywordProvider :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D6B88 (Size: 0x8)
+class IKeywordHolder :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D6B58 (Size: 0x10)
+class IItem :
+	public IKeywordProvider,
+	public IKeywordHolder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEE4C0 (Size: 0x4)
+enum class ESoundGateFlags
+{
+	SOUNDGATE_FLAGS_AMBIENCE = 1,
+	SOUNDGATE_FLAGS_OCCLUSION = 2,
+	SOUNDGATE_FLAGS_ALL = 255,
+};
+
+// 0x0000000142AA8688 (Size: 0x20)
+class SCondition_MaxSharedEventAge :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAISharedEventType type; // 0x18
+	float32 age; // 0x1C
+};
+
+// 0x0000000143E6DDA0 (Size: 0xC)
+class SGateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	bool m_bIsOpen; // 0x4
+	float32 m_fOpenFraction; // 0x8
+};
+
+// 0x0000000142AB24A0 (Size: 0x4)
+enum class EInteractionIndicatorState
+{
+	EIIS_AVAILABLE = 0,
+	EIIS_COLLAPSED = 1,
+	EIIS_ACTIVATING = 2,
+	EIIS_NOTAVAILABLE = 3,
+};
+
+// 0x0000000142AA0B60 (Size: 0x4)
+enum class EActorLookAtPriority
+{
+	eALAPriority_Ambient = 0,
+	eALAPriority_AmbientHigh = 1,
+	eALAPriority_Alert = 2,
+	eALAPriority_AlertHigh = 3,
+	eALAPriority_Hunt = 4,
+	eALAPriority_HuntHigh = 5,
+	eALAPriority_Combat = 6,
+	eALAPriority_CombatHigh = 7,
+};
+
+// 0x0000000143CEBF20 (Size: 0x8)
+class IBoxReflectionEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA5430 (Size: 0x1)
+enum class ECharacterAnimEventState
+{
+	eES_None = 0,
+	eES_Pending = 1,
+	eES_Completed = 2,
+	eES_TimedOut = 3,
+};
+
+// 0x0000000142A882F0 (Size: 0x4)
+enum class EAISituation
+{
+	AIS_GENERIC = 0,
+	AIS_SPECIAL = 1,
+	AIS_SENSOR = 2,
+	AIS_TRESPASSING = 3,
+	AIS_STANDOFF = 4,
+	AIS_SMUGGLE = 5,
+	AIS_GET_HELP = 6,
+	AIS_CONVERSTION_GROUP = 7,
+	AIS_PROTO_COMBAT = 8,
+	AIS_SENTRY = 9,
+	AIS_LEAD_ESCORT = 10,
+	AIS_INVESTIGATE_WEAPON = 11,
+	AIS_INVESTIGATE_STANDING = 12,
+	AIS_INVESTIGATE_CURIOUS = 13,
+	AIS_INVESTIGATE_CAUTIOUS = 14,
+	AIS_HERO_ESCORT = 15,
+	AIS_EVACUATE = 16,
+	AIS_ESCORT = 17,
+	AIS_ENTOURAGE = 18,
+	AIS_DRAMA = 19,
+	AIS_DISGUISE = 20,
+	AIS_DEAD_BODY = 21,
+	AIS_COMBAT = 22,
+	AIS_CLOSE_COMBAT = 23,
+	AIS_AVOID_EXPLOSION = 24,
+	AIS_ACCIDENT = 25,
+	AIS_PRIVATE = 26,
+	AIS_GUARD_BODY = 27,
+	AIS_RECOVER_UNC = 28,
+	AIS_SNIPER = 29,
+};
+
+// 0x0000000142AA82C8 (Size: 0x20)
+class SCondition_IsItemLegalOnHitman :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+	ZBehaviorTreeVariable actor; // 0x18
+};
+
+// 0x00000001421171A8 (Size: 0x8)
+class IFreeCameraControl
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA9B90 (Size: 0x4)
+class SSpeakEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fSeekPosition; // 0x0
+};
+
+// 0x0000000142AACEF8 (Size: 0x18)
+class IContractModule
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA99B0 (Size: 0x4)
+enum class EWaypointRotationAlignment
+{
+	RA_NONE = 0,
+	RA_LOOSE = 1,
+	RA_EXACT = 2,
+};
+
+// 0x0000000142A991B0 (Size: 0x4)
+enum class EScreenPlayState
+{
+	State_Stopped = 0,
+	State_Running = 1,
+	State_Resuming = 2,
+	State_Pausing = 3,
+	State_Paused = 4,
+	State_Done = 5,
+	State_Terminated = 6,
+};
+
+// 0x0000000143CEB9A8 (Size: 0x8)
+class ILightEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A992E8 (Size: 0x4)
+enum class EDramaSituationDescriptors
+{
+	eDSD_NONE = 0,
+	eDSD_HERO = 1,
+	eDSD_CONVERSATION = 2,
+	eDSD_DISTRACTION = 4,
+	eDSD_URGENT = 8,
+	eDSD_SICK = 16,
+	eDSD_DEATH = 32,
+	eDSD_ALERT = 64,
+	eDSD_PARANOID = 128,
+	eDSD_SCARY = 256,
+	eDSD_TRIVIAL = 512,
+	eDSD_PREOCCUPIED = 1024,
+	eDSD_PRIVATE = 2048,
+};
+
+// 0x0000000142B01880 (Size: 0x1)
+enum class ERagdollPart
+{
+	ERAGDOLLPART_NONE = 0,
+	ERAGDOLLPART_BODY = 1,
+	ERAGDOLLPART_HEAD = 2,
+	ERAGDOLLPART_HAND = 3,
+	ERAGDOLLPART_FOOT = 4,
+};
+
+// 0x0000000142AC00F0 (Size: 0x1)
+enum class EOpportunityState
+{
+	OS_TRACKED = 1,
+	OS_ENABLED = 2,
+	OS_UNLOCKED = 4,
+	OS_REVEAL_PENDING = 8,
+};
+
+// 0x0000000142AA3EB0 (Size: 0x4)
+enum class EOutbreakInfectionStage
+{
+	eOIS_Stage1 = 0,
+	eOIS_Stage2 = 1,
+	eOIS_Stage3 = 2,
+};
+
+// 0x0000000142AA8088 (Size: 0x18)
+class SCondition_IsNull :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable ref; // 0x10
+};
+
+// 0x0000000142A88500 (Size: 0x4)
+enum class eActionRewardType
+{
+	AR_None = 0,
+	AR_QuestItem = 1,
+	AR_Keycard = 2,
+	AR_Key = 3,
+};
+
+// 0x0000000142AA8400 (Size: 0x1C)
+class SCondition_OnlyLegalItemsDropped :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
+};
+
+// 0x0000000142AFA900 (Size: 0x20)
+class SBoneTransformSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 mQuaterion; // 0x0
+	SVector4 mTranslation; // 0x10
+};
+
+// 0x0000000142AFFFF0 (Size: 0x4)
+enum class ENetworkSystemID
+{
+	NSID_UNDEFINED = 0,
+	NSID_NETWORK_CORE_SYSTEMS_BEGIN = 1,
+	NSID_DEBUG_SWAP_PLAYER_RPC = 1,
+	NSID_ROUNTTRIPTEST_REQUEST_RPC = 2,
+	NSID_ROUNTTRIPTEST_RESOLVE_RPC = 3,
+	NSID_CONNECTION_LOCALLY_DEREFERENCE_UPDATE_RPC = 4,
+	NSID_CONNECTION_READY_FOR_REPLICATION_RPC = 5,
+	NSID_NETPLAYER_LOGIN_RPC = 6,
+	NSID_NETPLAYER_LOGIN_COLOR_SELECTION_RPC = 7,
+	NSID_NETPLAYER_REPLICA = 8,
+	NSID_NETGAME_REPLICA = 9,
+	NSID_PLAYERREGISTRY_REPLICA = 10,
+	NSID_NETPLAYER_CONTROLLER_REPLICA = 11,
+	NSID_SYNCH_POINT_PLAYER_REPLICA = 12,
+	NSID_SYNCH_POINT_REPLICA = 13,
+	NSID_GAME_CHAT_RPC = 14,
+	NSID_NETWORK_CORE_SYSTEMS_END = 15,
+	NSID_NETWORK_SYNCHRONOUS_MULTIPLAYER_BEGIN = 16,
+	NSID_PLAYER_INPUT_RPC = 16,
+	NSID_PLAYER_INPUT_REPLICA = 17,
+	NSID_GENERAL_ENTITY_PROPERTY_REPLICA = 18,
+	NSID_ANIMATED_ACTOR_RPC = 19,
+	NSID_CAMERA_REPLICA = 20,
+	NSID_GENERAL_PIN_SIGNAL_RPC = 21,
+	NSID_PIN_SIGNAL_RPC = 22,
+	NSID_NPC_DIALOGUE_RPC = 23,
+	NSID_GAME_STATE_REPLICA = 24,
+	NSID_HERO_STATE_REPLICA = 25,
+	NSID_NPC_STATE_REPLICA = 26,
+	NSID_ANIMATION_REPLICA = 27,
+	NSID_DESTRUCTIBLE_INTERACTIONS_RPC = 28,
+	NSID_ACT_REQUEST_RPC = 29,
+	NSID_CHARACTERSPEAK_REPLICA = 30,
+	NSID_ITEM_WEAPON_RPC = 31,
+	NSID_ITEM_REPLICA = 32,
+	NSID_ACCESSORY_ITEM_REPLICA = 33,
+	NSID_BULLET_IMPACT_RPC = 34,
+	NSID_NETWORKED_TIME_CONTROL_RPC = 35,
+	NSID_REQUEST_ACTION_SYCHRONIZATION_RPC = 36,
+	NSID_PHYSICS_SYSTEM_REPLICA = 37,
+	NSID_PHYSICS_OBJECT_REPLICA = 38,
+	NSID_WATER_SPLASH_GENERATOR_RPC = 39,
+	NSID_PROJECTILE_HIT_INFO_RPC = 40,
+	NSID_PROJECTILE_HIT_EVENT_RPC = 41,
+	NSID_INTERACTION_SUBACTION_EXECUTE_REQUEST = 42,
+	NSID_INTERACTION_SUBACTION_EXECUTE_RESOLVE = 43,
+	NSID_INTERACTION_SUBACTION_EXECUTE_SIGNAL_RESOLVE = 44,
+	NSID_INTERACTION_INPUT_REQUEST_RESOLVE = 45,
+	NSID_SUBCONTROLLER_REPLICA = 46,
+	NSID_CONTRACT_EVENT_REPLICA = 47,
+	NSID_NETWORK_SYNCHRONOUS_MULTIPLAYER_END = 48,
+	NSID_SNIPERS_CHALLENGE_SCORING_EVENT_REPLICA = 49,
+	NSID_CHARACTER_GHOST_REPLICA = 50,
+	NSID_PIP_GHOST_REPLICA = 51,
+	NSID_SPATIAL_GHOST_REPLICA = 52,
+	NSID_VS_TARGET_PICKER_REPLICA = 53,
+	NSID_VS_KILL_RPC = 54,
+	NSID_VS_KILL_CONFIRM_RPC = 55,
+	NSID_VS_CLIENT_DEAD_RPC = 56,
+	NSID_VS_SETUP_SYNC_REPLICA = 57,
+	NSID_VS_PIN_SIGNAL_RPC = 58,
+	NSID_VS_ENTITY_PROPERTY_REPLICA = 59,
+	NSID_VS_GENERIC_EVENT_RPC = 60,
+	NSID_VS_PENALTY_KILL_RPC = 61,
+	NSID_VS_ITEM_PICKUP_REQUEST_RPC = 62,
+	NSID_VS_ITEM_PICKUP_RESPONSE_RPC = 63,
+	NSID_VS_OUTFIT_PICK_REQUEST_RPC = 64,
+	NSID_VS_OUTFIT_PICK_RESPONSE_RPC = 65,
+	NSID_VS_PICKUP_SPAWNER_REPLICA = 66,
+	NSID_VS_KILL_EVENT_RPC = 67,
+	NSID_VS_PRE_SCORE_TIMER_RPC = 68,
+	NSID_VS_TARGET_PACIFY_RPC = 69,
+	NSID_VS_CONFIRM_TARGET_PACIFY_RPC = 70,
+	NSID_VS_TARGET_PACIFIED_CONFIRMED_RPC = 71,
+	NSID_MAX = 72,
+};
+
+// 0x0000000143E70E58 (Size: 0x4)
+class ZCrowdGridPoint
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int16 m_nHeightOffset; // 0x0
+	uint8 m_nOnNavGrid; // 0x2
+};
+
+// 0x0000000142A9D3F8 (Size: 0x4)
+enum class ETextAlignment
+{
+	TEXT_ALIGN_LEFT = 0,
+	TEXT_ALIGN_CENTER = 1,
+	TEXT_ALIGN_RIGHT = 2,
+};
+
+// 0x0000000142AA2BF0 (Size: 0x8)
+class SLampCoreSaveState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fDiffusePower; // 0x0
+	bool m_bSwitchState; // 0x4
+};
+
+// 0x0000000142AA2798 (Size: 0x30)
+class SLampCoreSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SLampCoreSaveState> m_aData; // 0x18
+};
+
+// 0x0000000142ABED78 (Size: 0x4)
+enum class eItemSize
+{
+	ITEMSIZE_SMALL = 0,
+	ITEMSIZE_MEDIUM = 1,
+	ITEMSIZE_LARGE = 2,
+};
+
+// 0x0000000142A9FAC8 (Size: 0x8)
+class ISoundMaterialDescriptor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7BD8 (Size: 0x18)
+class SCondition_RemoveSituationsWithDesiredNumberOfCombatants :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_CombatSituations; // 0x10
+};
+
+// 0x0000000142AA1B10 (Size: 0x20)
+class SDisturbanceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_object; // 0x0
+	EDisturbanceType m_type; // 0x4
+	ECautiousDisturbanceState m_state; // 0x8
+	ZGameTime m_started; // 0x10
+	int32 m_pInvestigateGroup; // 0x18
+	bool m_bLockOnHitmanPosition; // 0x1C
+};
+
+// 0x0000000142AEF088 (Size: 0x4)
+enum class ECrowdFlowCandidates
+{
+	NONE = 0,
+	EVERYONE = 1,
+	SPAWNED_ON_FLOW = 2,
+};
+
+// 0x0000000142AA5130 (Size: 0x4)
+enum class ECharacterSubcontrollerType
+{
+	eSCT_IDGenerator = 0,
+	eSCT_Debugger = 1,
+	eSCT_Time = 2,
+	eSCT_Tags = 3,
+	eSCT_Descriptors = 4,
+	eSCT_ActionRequest = 5,
+	eSCT_Events = 6,
+	eSCT_Animator = 7,
+	eSCT_Motor = 8,
+	eSCT_Inventory = 9,
+	eSCT_FlavorIdle = 10,
+	eSCT_Lookat = 11,
+	eSCT_AimAssistant = 12,
+	eSCT_CharacterCollector = 13,
+	eSCT_SwipeMechanic = 14,
+	eSCT_OpenDoor = 15,
+	eSCT_Fullbody = 16,
+	eSCT_Aim = 17,
+	eSCT_PrecisionShot = 18,
+	eSCT_Marking = 19,
+	eSCT_Grip = 20,
+	eSCT_Suitcase = 21,
+	eSCT_VRConfig = 22,
+	eSCT_Hands = 23,
+	eSCT_StickingItems = 24,
+	eSCT_Fiberwire = 25,
+};
+
+// 0x0000000142ABEDF0 (Size: 0x4)
+enum class EThrownCollisionSoundLoudness
+{
+	eLoudness_Default = 0,
+	eLoudness_Low = 1,
+	eLoudness_Normal = 2,
+	eLoudness_Loud = 3,
+};
+
+// 0x0000000142A9A418 (Size: 0x50)
+class SInvestigateWeaponGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rTarget; // 0x0
+	uint32 m_rReporter; // 0x4
+	uint32 m_rInvestigator; // 0x8
+	uint32 m_rGuard; // 0xC
+	bool m_ReporterIsVIPWithAmbientEscort; // 0x10
+	SFSMSaveData m_fsmState; // 0x18
+	ZGameTime m_tLastGuardSearch; // 0x30
+	TArray<uint32> m_aUnconsciousGuards; // 0x38
+};
+
+// 0x0000000142A9E388 (Size: 0x4)
+enum class EGuardPointType
+{
+	GPT_Hold = 0,
+	GPT_Combat = 1,
+	GPT_CombatAndHold = 2,
+	GPT_VIPSafeRoom = 3,
+};
+
+// 0x0000000142AB1B80 (Size: 0x14)
+class SAttentionHUDUIElement
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 fAngle; // 0x0
+	float32 fAttention; // 0x4
+	float32 fAlpha; // 0x8
+	float32 fRadius; // 0xC
+	int32 nColor; // 0x10
+};
+
+// 0x0000000142AA7F80 (Size: 0x20)
+class SCondition_MaxAge :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAIEventType type; // 0x18
+	float32 age; // 0x1C
+};
+
+// 0x0000000142AB23E0 (Size: 0x4)
+enum class EUIBusyOperationId
+{
+	eOperationId_GameSave = 0,
+	eOperationId_MenuTransition = 1,
+	eOperationId_ManuallyTriggered = 2,
+	eOperationId_TriggerBootFlow = 3,
+	eOperationId_SaveContract = 4,
+	eOperationId_StartContract = 5,
+	eOperationId_SessionStart = 6,
+	eOperationId_ReportContract = 7,
+	eOperationId_ConnectionFlow = 8,
+	eOperationId_LoadingTransitionDelayed = 9,
+	eOperationId_SaveSuccess = 10,
+	eOperationId_SaveFailed = 11,
+	eOperationId_SessionReconnect = 12,
+	eOperationId_NetSynchedMenuPause = 13,
+	eOperationId_NetSynchedMenuRestart = 14,
+	eOperationId_NetSynchedMenuReplan = 15,
+	eOperationId_StartingMultiplayerSession = 16,
+	eOperationId_HandlingMultiplayerRequest = 17,
+	eOperationId_PoorConnectivity = 18,
+	eOperationId_DefaultLoadout = 19,
+	eOperationId_OpeningShop = 20,
+	eOperationId_Max = 20,
+	eOperationId_Custom_01 = 21,
+	eOperationId_Custom_Begin = 21,
+	eOperationId_Custom_02 = 22,
+	eOperationId_Custom_03 = 23,
+	eOperationId_Custom_04 = 24,
+	eOperationId_Custom_05 = 25,
+	eOperationId_Custom_06 = 26,
+	eOperationId_Custom_07 = 27,
+	eOperationId_Custom_08 = 28,
+	eOperationId_Custom_09 = 29,
+	eOperationId_Custom_10 = 30,
+	eOperationId_Custom_11 = 31,
+	eOperationId_Custom_12 = 32,
+	eOperationId_Custom_13 = 33,
+	eOperationId_Custom_14 = 34,
+	eOperationId_Custom_15 = 35,
+	eOperationId_Custom_16 = 36,
+	eOperationId_Custom_17 = 37,
+	eOperationId_Custom_18 = 38,
+	eOperationId_Custom_19 = 39,
+	eOperationId_Custom_20 = 40,
+	eOperationId_Custom_21 = 41,
+	eOperationId_Custom_22 = 42,
+	eOperationId_Custom_23 = 43,
+	eOperationId_Custom_24 = 44,
+	eOperationId_Custom_25 = 45,
+	eOperationId_Custom_End = 46,
+	eOperationId_None = 47,
+};
+
+// 0x0000000142AA0590 (Size: 0x8)
+class IGamePostfilterControllerEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AF16E8 (Size: 0x4)
+enum class ESmoothingMode
+{
+	ESM_LINEAR = 0,
+	ESM_EXPONENTIAL = 1,
+};
+
+// 0x0000000142AF0250 (Size: 0x20)
+class SEntityTemplateReference
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint64 entityID; // 0x0
+	int32 externalSceneIndex; // 0x8
+	int32 entityIndex; // 0xC
+	ZString exposedEntity; // 0x10
+};
+
+// 0x0000000142AF03E8 (Size: 0x18)
+class SEntityTemplateProperty
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 nPropertyID; // 0x0
+	ZVariant value; // 0x8
+};
+
+// 0x0000000142AF0430 (Size: 0x20)
+class SEntityTemplatePlatformSpecificProperty
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SEntityTemplateProperty propertyValue; // 0x0
+	EVirtualPlatformID platform; // 0x18
+	bool postInit; // 0x1C
+};
+
+// 0x0000000142AF0508 (Size: 0x70)
+class STemplateFactorySubEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SEntityTemplateReference logicalParent; // 0x0
+	int32 entityTypeResourceIndex; // 0x20
+	TArray<SEntityTemplateProperty> propertyValues; // 0x28
+	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x40
+	TArray<SEntityTemplatePlatformSpecificProperty> platformSpecificPropertyValues; // 0x58
+};
+
+// 0x0000000142A9CC28 (Size: 0x10)
+class SRotateEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+	float32 m_fXAxisSpeed; // 0x4
+	float32 m_fYAxisSpeed; // 0x8
+	float32 m_fZAxisSpeed; // 0xC
+};
+
+// 0x0000000142AA2C50 (Size: 0x4)
+enum class SniperControllerConditionType
+{
+	SCCT_Enabled = 0,
+	SCCT_PrecisionAim = 1,
+};
+
+// 0x0000000142AB1F00 (Size: 0x4)
+enum class EMapType
+{
+	E_MAPTYPE_Minimap = 0,
+	E_MAPTYPE_MainMap = 1,
+	E_MAPTYPE_MenuMap = 2,
+};
+
+// 0x0000000142AA1548 (Size: 0x30)
+class SDynamicEnforcerCandidateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	float4 m_vPosition; // 0x10
+	EAISharedEventType m_eType; // 0x20
+	float32 m_fRadius; // 0x24
+};
+
+// 0x0000000142A9EEF0 (Size: 0x18)
+class SDynamicEnforcerServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
+};
+
+// 0x0000000142AA6628 (Size: 0x4)
+enum class EKeywordSetBehavior
+{
+	EKWSB_All = 0,
+	EKWSB_None = 1,
+	EKWSB_Any = 2,
+	EKWSB_No = 3,
+};
+
+// 0x0000000142AA7410 (Size: 0x4)
+class SActorStandInSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA5790 (Size: 0x4)
+enum class ERatingCategory
+{
+	ERatingCategory_Invalid = 0,
+	ERatingCategory_Flawless = 1,
+	ERatingCategory_Violence = 2,
+	ERatingCategory_Cunning = 3,
+	ERatingCategory_Noise = 4,
+	ERatingCategory_COUNT = 5,
+};
+
+// 0x0000000142ABEE08 (Size: 0x4)
+enum class eItemRarity
+{
+	ITEMRARITY_COMMON = 0,
+	ITEMRARITY_UNCOMMON = 1,
+	ITEMRARITY_RARE = 2,
+};
+
+// 0x0000000142A98CF8 (Size: 0x3)
+class SDynamicRayCastEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+	bool m_bIsRayIntersecting; // 0x1
+	bool m_bIsCurrentlyEnabled; // 0x2
+};
+
+// 0x00000001422D7518 (Size: 0x4)
+enum class eHolsterAbility
+{
+	eUndecided = 0,
+	eHolsteringAllowed = 1,
+	eHolsterTemporarilyOnly = 2,
+	eHolsterSecondaryOnly = 3,
+	eHolsterQuestStorage = 4,
+	eCanNotBeHolstered = 5,
+};
+
+// 0x0000000142AA7C08 (Size: 0x18)
+class SCondition_CombatSituationsWithDesiredNumberOfCombatants :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_CombatSituations; // 0x10
+};
+
+// 0x0000000142A9EC60 (Size: 0x4)
+enum class EPlaceableType
+{
+	PLACEABLE_NOT = 0,
+	PLACEABLE_FULL_PHYSICS = 1,
+	PLACEABLE_SLEEP_PHYSICS = 2,
+	PLACEABLE_NO_PHYSICS = 3,
+	PLACEABLE_ATTACH = 4,
+};
+
+// 0x00000001422D5D98 (Size: 0x18)
+class ZRuntimePinConDesc
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint64 m_nFromEntityID; // 0x0
+	uint64 m_nToEntityID; // 0x8
+	uint32 m_nFromPinID; // 0x10
+	uint32 m_nToPinID; // 0x14
+};
+
+// 0x0000000142AA8250 (Size: 0x20)
+class SCondition_MaxActorsWithGoal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAIGoal type; // 0x10
+	ZBehaviorTreeVariable target; // 0x14
+	int32 maxActors; // 0x1C
+};
+
+// 0x0000000142AA0F00 (Size: 0x4)
+enum class EMoveEndState
+{
+	MES_Moving = 0,
+	MES_Stopping = 1,
+	MES_Standing = 2,
+};
+
+// 0x00000001422D5C08 (Size: 0xC)
+class SColorRGB
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 r; // 0x0
+	float32 g; // 0x4
+	float32 b; // 0x8
+};
+
+// 0x0000000143E6DE30 (Size: 0x88)
+class SPostfilterParametersSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	bool m_bDepthOfFieldEnabled; // 0x4
+	float32 m_fDepthOfFieldBlurriness; // 0x8
+	bool m_bRadialBlurEnabled; // 0xC
+	float32 m_fRadialBlurriness; // 0x10
+	SVector2 m_vRadialBlurCenter; // 0x14
+	float32 m_fRadialBlurStart; // 0x1C
+	bool m_bSpatialBlurEnabled; // 0x20
+	float32 m_fSpatialBlurriness; // 0x24
+	SVector3 m_vSpatialBlurCenter; // 0x28
+	float32 m_fSpatialBlurStart; // 0x34
+	float32 m_fSpatialBlurFade; // 0x38
+	bool m_bDistortionWobbleEnabled; // 0x3C
+	float32 m_fDistortionWobbleScale; // 0x40
+	SVector2 m_vDistortionWobbleWaveLength; // 0x44
+	SVector2 m_vDistortionWobbleSpeed; // 0x4C
+	bool m_bDistortionWobbleUseRealTime; // 0x54
+	bool m_bHDRActive; // 0x55
+	bool m_bHDREnabled; // 0x56
+	SVector2 m_vHDRAdaptationSpeed; // 0x58
+	SVector2 m_vHDRAdaptationLuminanceMinMax; // 0x60
+	SVector2 m_vHDRAdaptationMiddleGrayMinMax; // 0x68
+	float32 m_fHDRWhitePoint; // 0x70
+	float32 m_fHDRBrightPassThreshold; // 0x74
+	float32 m_fHDRBrightPassMaxPercentage; // 0x78
+	SColorRGB m_HDRColorTint; // 0x7C
+};
+
+// 0x0000000142AA5670 (Size: 0x4)
+enum class ELastSoundTension
+{
+	EST_Unknown = 0,
+	EST_Ambient = 1,
+	EST_Yellow = 2,
+	EST_Orange = 3,
+	EST_Red = 4,
+};
+
+// 0x0000000142A8FC60 (Size: 0x18)
+class SEventHistorySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<ZGameTime> m_aOccurences; // 0x0
+};
+
+// 0x0000000142A9A0A0 (Size: 0x378)
+class ZManhuntGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143F1E660 (Size: 0x1)
+class SSerializedValue
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABEF28 (Size: 0x4)
+enum class EInventoryStorageType
+{
+	EIST_None = 0,
+	EIST_Bag = 1,
+	EIST_RightHand = 2,
+	EIST_LeftHand = 3,
+	EIST_Back = 4,
+	EIST_Support = 5,
+	EIST_Quest = 6,
+	EIST_Temporary = 7,
+	EIST_Debug = 8,
+};
+
+// 0x0000000142AC1348 (Size: 0x8)
+class IValueVector3Get :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D5D08 (Size: 0x60)
+class ZEntityPath
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEE5F8 (Size: 0x4)
+enum class EDialogEventEndReason
+{
+	EDialogEvent_Completed = 0,
+	EDialogEvent_Stopped = 1,
+};
+
+// 0x0000000142A91928 (Size: 0x8)
+class IRenderPostfilterParametersEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA0F60 (Size: 0x4)
+enum class EStandRepositionStrategy
+{
+	SRS_InPlaceRepositioning = 0,
+	SRS_NoRepositioning = 1,
+};
+
+// 0x0000000142ABF738 (Size: 0x4)
+enum class ESoundCollisionType
+{
+	Impact = 0,
+	Rolling = 1,
+	Sliding = 2,
+};
+
+// 0x0000000142A90ED0 (Size: 0x4)
+enum class EStashpointContainedEntityType
+{
+	PICKUP_NONE = 0,
+	PICKUP_ITEMS = 1,
+	PICKUP_OUTFIT = 2,
+	PICKUP_PICKEDUP = 3,
+};
+
+// 0x0000000142AA6D08 (Size: 0x140)
+class ZInteractionData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA2DE8 (Size: 0x4)
+enum class ECameraOffset_old
+{
+	eCameraOffset_Center = 0,
+	eCameraOffset_Left = 1,
+	eCameraOffset_Right = 2,
+};
+
+// 0x0000000142A9AEE8 (Size: 0x18)
+class SMovementAgilitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rLedgeGuide; // 0x0
+	float32 m_fFaceLeftRightTarget; // 0x4
+	EAgilityState m_ePrevAgilityState; // 0x8
+	EAgilityState m_eAgilityState; // 0xC
+	uint32 m_nActiveAnimNode; // 0x10
+	ECameraOffset_old m_eCameraOffset; // 0x14
+};
+
+// 0x0000000142AA7D10 (Size: 0x18)
+class SCondition_IsNotCurrentDistractionTarget :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+};
+
+// 0x0000000142B01718 (Size: 0x1)
+enum class EDefaultCollidableLayer
+{
+	DCL_STATIC = 0,
+	DCL_KINEMATIC = 1,
+	DCL_KINEMATIC_TRANSPARENT = 2,
+	DCL_DYNAMIC = 3,
+	DCL_DYNAMIC_TRANSPARENT = 4,
+	DCL_COLLIDE_ALL = 5,
+	DCL_STATIC_TRANSPARENT = 6,
+	DCL_COLLIDE_STATIC_ONLY = 7,
+	DCL_DYNAMIC_NO_CHARACTER = 8,
+	DCL_UNUSED_LAST = 9,
+};
+
+// 0x0000000142B015F8 (Size: 0x4)
+class SClothVertex
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint16 m_nColumn; // 0x0
+	uint16 m_nRow; // 0x2
+};
+
+// 0x0000000142A86FA0 (Size: 0x18)
+class SActorManagerReferencableData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<ESituationType> m_aSituationTypes; // 0x0
+};
+
+// 0x0000000142A88278 (Size: 0x4)
+enum class EKillType
+{
+	EKillType_Undefined = 0,
+	EKillType_Throw = 1,
+	EKillType_Fiberwire = 2,
+	EKillType_PistolExecute = 3,
+	EKillType_ItemTakeOutFront = 4,
+	EKillType_ItemTakeOutBack = 5,
+	EKillType_ChokeOut = 6,
+	EKillType_SnapNeck = 7,
+	EKillType_KnockOut = 8,
+	EKillType_Push = 9,
+	EKillType_Pull = 10,
+};
+
+// 0x00000001422D7AD8 (Size: 0x8)
+class IPhysicsAccessor :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABD9B0 (Size: 0x8)
+class IStaticPhysics :
+	public IPhysicsAccessor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D6028 (Size: 0x8)
+class ZEntityRef
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6CA58 (Size: 0x4)
+enum class EVRRenderingMode
+{
+	VR_RENDER_MODE_2D_SCREEN = 0,
+	VR_RENDER_MODE_STEREO_3D = 1,
+};
+
+// 0x0000000142A91910 (Size: 0x8)
+class IRenderPostfilterControllerEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA50D0 (Size: 0x4)
+enum class ECharacterFullBodyStateType
+{
+	eSM_FB_OldMovementPlaceholder = 0,
+	eSM_FB_Slave = 1,
+	eSM_FB_Locomotion = 2,
+	eSM_FB_CloseCombat = 3,
+	eSM_FB_FlavorIdle = 4,
+	eSM_FB_Sniping = 5,
+	eSM_FB_AssemblePutOnTheFloor = 6,
+	eSM_FB_AssembleAlignContainer = 7,
+	eSM_FB_AssembleRetrieve = 8,
+	eSM_FB_AssembleStore = 11,
+};
+
+// 0x0000000142AA3660 (Size: 0x4)
+enum class EHUDIconType
+{
+	HUD_ICON_NONE = 0,
+	HUD_ICON_ALARM_TIMER = 1,
+	HUD_ICON_CLOSECOMBAT = 2,
+	HUD_ICON_BREADCRUMB = 3,
+	HUD_ICON_EXIT = 4,
+	HUD_ICON_OBJECTIVE = 5,
+	HUD_ICON_TARGET = 6,
+	HUD_ICON_TUTORIAL_ARROW = 7,
+};
+
+// 0x0000000142AEF4C8 (Size: 0x8)
+class IColorCorrectionCurvesEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9B660 (Size: 0x4)
+enum class ECharacterActionSyncRequests
+{
+	eSM_ASR_Reload = 1,
+	eSM_ASR_SwapItemHandL = 2,
+	eSM_ASR_SwapItemHandR = 4,
+};
+
+// 0x0000000142AA8610 (Size: 0x14)
+class SCondition_SharedEventCurrent :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAISharedEventType type; // 0x10
+};
+
+// 0x0000000142AA49F0 (Size: 0x4)
+enum class EActBodyType
+{
+	ABT_UpperBodyOnly = 0,
+	ABT_FullBodyWithLeadIn = 1,
+	ABT_FullBodyOnly = 2,
+};
+
+// 0x0000000142AC00D8 (Size: 0x4)
+enum class EOpportunityRevealState
+{
+	ORS_REVEALING = 1,
+	ORS_HINT = 2,
+	ORS_DISTANCE = 4,
+	ORS_RANGE_FLAGS = 6,
+	ORS_REVEALED = 8,
+	ORS_REVEAL_FLAGS = 9,
+	ORS_BYPASS_MENU = 16,
+};
+
+// 0x0000000142A88260 (Size: 0x4)
+enum class EGSBodyPart
+{
+	GSBODYPART_UNKNOWN = 0,
+	GSBODYPART_HEAD = 1,
+	GSBODYPART_TORSO = 2,
+	GSBODYPART_ARM = 3,
+	GSBODYPART_LEG = 4,
+};
+
+// 0x0000000142AA1430 (Size: 0x38)
+class SDeadBodyInfoSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rGuard; // 0x4
+	TArray<uint32> m_knownByActors; // 0x8
+	ZGameTime m_tKnownSince; // 0x20
+	ZGameTime m_tInvestigatedSince; // 0x28
+	bool m_bGuarded; // 0x30
+	bool m_bBodyInvestigated; // 0x31
+	bool m_bHidden; // 0x32
+	bool m_bDeadByAccident; // 0x33
+	bool m_bDeadByUnnoticed; // 0x34
+	bool m_bHitmanSuspectedInCurrentOutfit; // 0x35
+	bool m_bDeadByExplosion; // 0x36
+	bool m_IsFoundOutsideNavmeshAndIgnored; // 0x37
+};
+
+// 0x0000000142A9EEC0 (Size: 0x20)
+class SDeadBodySensorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
+	int32 m_nBodyIndex; // 0x18
+};
+
+// 0x0000000142A9A070 (Size: 0x10)
+class SCheckLastPositionGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_pLeader; // 0x0
+	uint32 m_pAssistant; // 0x4
+	uint16 m_nLeaderTargetNodeIndex; // 0x8
+	bool m_bLeaderOrderAssigned; // 0xA
+	bool m_bAssistantOrderAssigned; // 0xB
+	bool m_bSearchCompleted; // 0xC
+};
+
+// 0x0000000142AA1360 (Size: 0x4)
+enum class EActorSecondaryIconState
+{
+	eSIS_Clear = 0,
+	eSIS_Infected = 1,
+	eSIS_Infected_Stage1 = 2,
+	eSIS_Infected_Stage2 = 3,
+	eSIS_Infected_Stage3 = 4,
+};
+
+// 0x0000000142A8FCA8 (Size: 0x4)
+enum class EActorEventTypes
+{
+	eAET_OnAlive = 0,
+	eAET_OnPacified = 1,
+	eAET_OnMurdered = 2,
+	eAET_OnAccidentDeath = 3,
+	eAET_OnUnnoticableKill = 4,
+	eAET_OnBodyNoticed = 5,
+	eAET_OnBodyBagged = 6,
+	eAET_OnDying = 7,
+	eAET_OnDead = 8,
+	eAET_OnBodyHidden = 9,
+	eAET_OnBodyFlushed = 10,
+	eAET_OnBodyDumped = 11,
+	eAET_OnDelete = 12,
+};
+
+// 0x0000000142AA7E90 (Size: 0x18)
+class SCondition_IsValidForSuitcaseAssistance :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable npc; // 0x10
+};
+
+// 0x0000000142ABEF88 (Size: 0x40)
+class SItemInstanceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZRepositoryID m_repositoryId; // 0x0
+	uint64 m_nEntityID; // 0x10
+	ZString m_sOnlineInstanceId; // 0x18
+	TArray<ZRepositoryID> m_aItemModifierIds; // 0x28
+};
+
+// 0x0000000142ABEBB0 (Size: 0x18)
+class SWorldInventoryInstanceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SItemInstanceSaveData> m_aItemInstanceSaveData; // 0x0
+};
+
+// 0x0000000142AA3320 (Size: 0x4)
+enum class EVRConfigCustomEvent
+{
+	EVRCCE_ClosetInside = 0,
+	EVRCCE_ClosetExiting = 1,
+	EVRCCE_DrainPipeMounted = 2,
+	EVRCCE_DrainPipeStartedDismounting = 3,
+	EVRCCE_LadderMounted = 4,
+	EVRCCE_LadderStartedDismounting = 5,
+	EVRCCE_LedgeChange = 6,
+	EVRCCE_LedgeShimmyStart = 7,
+	EVRCCE_LedgeShimmyStop = 8,
+	EVRCCE_PeekEntered = 9,
+	EVRCCE_PeekStartedExiting = 10,
+	EVRCCE_FriskStartedTurning = 11,
+	EVRCCE_FriskEndedTurning = 12,
+	EVRCCE_ShowItemStartedTurning = 13,
+	EVRCCE_ShowItemEndedTurning = 14,
+	EVRCCE_SubactionAnimationStarted = 15,
+	EVRCCE_SubactionAnimation_Hide = 16,
+	EVRCCE_FocussedInteractionEntered = 17,
+	EVRCCE_FocussedInteractionStartedExiting = 18,
+	EVRCCE_DisguiseSafeZoneEntered = 19,
+	EVRCCE_DisguiseSafeZoneStartedExiting = 20,
+	EVRCCE_SniperModeEnter = 21,
+	EVRCCE_SniperModeEntered = 22,
+	EVRCCE_SniperModeExit = 23,
+	EVRCCE_SniperModeExited = 24,
+	EVRCCE_VictimMovement0 = 25,
+	EVRCCE_VictimMovement1 = 26,
+	EVRCCE_VictimMovement2 = 27,
+	EVRCCE_VictimMovement3 = 28,
+	EVRCCE_VictimMovementRemoveControl = 29,
+	EVRCCE_AgilityLowVault = 30,
+	EVRCCE_AgilityHighVault = 31,
+	EVRCCE_AgilityRemoveControl = 32,
+	EVRCCE_FiberwireStartPriming = 33,
+	EVRCCE_FiberwireStopPriming = 34,
+	EVRCCE_ToiletDrownEntered = 35,
+	EVRCCE_ToiletDrownExited = 36,
+	EVRCCE_CloseCombatStartPriming = 37,
+	EVRCCE_CloseCombatStopPriming = 38,
+	EVRCCE_SilentTakedownEnterActivationArea = 39,
+	EVRCCE_SilentTakedownExitActivationArea = 40,
+	EVRCCE_SilentTakedownInstaPacification = 41,
+	EVRCCE_SnapNeckEnterActivationArea = 42,
+	EVRCCE_SnapNeckExitActivationArea = 43,
+	EVRCCE_TeleportStart = 44,
+	EVRCCE_TeleportEnd = 45,
+};
+
+// 0x0000000142B00260 (Size: 0x4)
+enum class EMultiplayerNetworkState
+{
+	Base = 0,
+	Idle = 1,
+	Searching = 2,
+	Connecting = 3,
+	Joining = 4,
+	Creating = 5,
+	Connected = 6,
+	Disconnecting = 7,
+	Count = 8,
+};
+
+// 0x0000000142A884E0 (Size: 0x4)
+enum class EBoolCheckType
+{
+	eBCT_IGNORE = 0,
+	eBCT_TRUE = 1,
+	eBCT_FALSE = 2,
+};
+
+// 0x0000000143E6EE78 (Size: 0x8)
+class ICameraController :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A8FD28 (Size: 0x4)
+enum class EActorFaction
+{
+	eActorFaction_Default = 0,
+	eActorFaction_VIP_1 = 1,
+	eActorFaction_VIP_2 = 2,
+	eActorFaction_VIP_3 = 3,
+	eActorFaction_VIP_4 = 4,
+	eActorFaction_VIP_5 = 5,
+	eActorFaction_VIP_6 = 6,
+	eActorFaction_VIP_7 = 7,
+};
+
+// 0x0000000142AEE5C8 (Size: 0x1)
+enum class SoundPlayState
+{
+	ePlaying = 0,
+	eLoopBreaking = 1,
+	eStopping = 2,
+};
+
+// 0x0000000142AA5A30 (Size: 0x4)
+enum class EPushNotificationType
+{
+	PUSH_NOTIFICATION_OBJECTIVE = 0,
+	PUSH_NOTIFICATION_DISGUISE = 1,
+	PUSH_NOTIFICATION_CONTRACT = 2,
+	PUSH_NOTIFICATION_CHALLENGE = 3,
+	PUSH_NOTIFICATION_RATING = 4,
+	PUSH_NOTIFICATION_SPECIAL_RATING_UNLOCKED = 5,
+	PUSH_NOTIFICATION_CONTRACT_PICKED_UP = 6,
+	PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED = 7,
+	PUSH_NOTIFICATION_SCORE_COMPARISON = 8,
+};
+
+// 0x0000000142AB49E0 (Size: 0x4)
+enum class ECausalGraphTraversal
+{
+	eCGT_NONE = 0,
+	eCGT_INPUT = 1,
+	eCGT_OUTPUT = 2,
+	eCGT_BOTH = 3,
+};
+
+// 0x0000000142AA3ED0 (Size: 0x8)
+class SActorSpreadTransitionOperatorMaterialActorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_Actor; // 0x0
+	float32 m_fOpacity; // 0x4
+};
+
+// 0x0000000143E6CAA0 (Size: 0x4)
+enum class EVRRenderDeviceType
+{
+	RENDER_VR_DEVICE_TYPE_DUMMY = 0,
+	RENDER_VR_DEVICE_TYPE_OCULUS = 1,
+	RENDER_VR_DEVICE_TYPE_PSVR = 2,
+	RENDER_VR_DEVICE_TYPE_COUNT = 3,
+};
+
+// 0x0000000142AA3118 (Size: 0x4)
+enum class EInventoryConfigFormerEquippedItems
+{
+	EICFEI_Equip = 0,
+	EICFEI_EquipOrPickup = 1,
+	EICFEI_Forget = 2,
+};
+
+// 0x0000000142B017C0 (Size: 0x4)
+enum class EDamageResponse
+{
+	eDR_Fractured = 0,
+	eDR_Detached = 1,
+	eDR_Destroyed = 2,
+	eDR_Collided = 3,
+	eDR_Count = 4,
+};
+
+// 0x0000000143E6DE60 (Size: 0x20)
+class SEntityPath
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint64 m_nOwnerID; // 0x0
+	TArray<uint64> m_aEntityPath; // 0x8
+};
+
+// 0x0000000142AA7D28 (Size: 0x1C)
+class SCondition_IsHighestPriorityTypeToInvestigate :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+	EAIEventType distractionType; // 0x18
+};
+
+// 0x0000000142A9A1A8 (Size: 0x4)
+enum class ESituationJoinReason
+{
+	AISJR_Default = 0,
+	AISJR_HeardSound = 1,
+	AISJR_Alarm = 2,
+	AISJR_HitmanStrange = 3,
+	AISJR_HitmanIllegal = 4,
+	AISJR_Assist = 5,
+	AISJR_AssistingGuard = 6,
+	AISJR_Propagate = 7,
+	AISJR_ResumeSituation = 8,
+	AISJR_Spawned = 9,
+	AISJR_HelpCivilian = 10,
+	AISJR_Escalating = 11,
+	AISJR_DeadBody = 12,
+	AISJR_Accident = 13,
+	AISJR_StandDown = 14,
+	AISJR_Report = 15,
+	AISJR_ForcedToHold = 16,
+	AISJR_Wounded = 17,
+	AISJR_SC_HeardBulletImpact = 18,
+	AISJR_SC_HeardSetPiece = 19,
+};
+
+// 0x0000000142AA3130 (Size: 0x4)
+enum class EInventoryConfigCustomRule
+{
+	EICCR_None = 0,
+	EICCR_Surrender = 1,
+	EICCR_TempDropLeftHandItem = 2,
+};
+
+// 0x0000000142AAAB10 (Size: 0x4)
+enum class ESmartBehaviorOrder
+{
+	SBO_Stand = 0,
+	SBO_Move = 1,
+	SBO_React = 2,
+	SBO_Act = 3,
+	SBO_MoveToAct = 4,
+	SBO_MoveToCover = 5,
+	SBO_ShootFromCover = 6,
+	SBO_Death = 7,
+	SBO_Teleport = 8,
+};
+
+// 0x0000000142AA6280 (Size: 0x8)
+class IScreenplayContext :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A99110 (Size: 0x4)
+enum class EScreenplayStateFlag
+{
+	eSSF_DEFAULT = 0,
+	eSSF_ENABLED = 1,
+	eSSF_CAST = 2,
+	eSSF_RESUMING = 4,
+	eSSF_RUNNING = 8,
+	eSSF_DONE = 16,
+	eSSF_TERMINATED = 32,
+};
+
+// 0x0000000142B00218 (Size: 0x4)
+enum class ENetPlayerEvent
+{
+	Login = 0,
+	Logout = 1,
+	NewHost = 2,
+};
+
+// 0x0000000142A864C8 (Size: 0x8)
+class ICharacterCoreInventoryState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A864B0 (Size: 0x8)
+class ICharacterInventoryState :
+	public ICharacterCoreInventoryState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB0798 (Size: 0x4)
+class SZHUDIgnoreVisibilitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 alpha; // 0x0
+};
+
+// 0x0000000142A97F78 (Size: 0x8)
+class SGameCamProfileEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsEnabled; // 0x0
+	uint32 m_rHero; // 0x4
+};
+
+// 0x0000000142AF0490 (Size: 0x30)
 class SEntityTemplateExposedEntity
 {
 public:
@@ -2656,30 +8597,57 @@ public:
 	TArray<SEntityTemplateReference> aTargets; // 0x18
 };
 
-// 0x0000000142AA3978 (Size: 0x4)
-class SZHUDIgnoreVisibilitySaveData
+// 0x0000000142AA5AF0 (Size: 0x4)
+enum class ESniperScoreMessageType
+{
+	ESSMT_STYLE_DEFAULT = 0,
+	ESSMT_STYLE_SCORE = 1,
+	ESSMT_STYLE_PENALTY = 2,
+	ESSMT_STYLE_STREAK = 3,
+	ESSMT_STYLE_CIVKILL = 4,
+};
+
+// 0x00000001422D7AA8 (Size: 0x8)
+class IItemContainer :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	float32 alpha; // 0x0
 };
 
-// 0x0000000142A8B1E8 (Size: 0x8)
-class SGameCamProfileEntitySaveData
+// 0x00000001422D74E0 (Size: 0x4)
+enum class EAttachLocation
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsEnabled; // 0x0
-	uint32 m_rHero; // 0x4
+	eALRightHand = 0,
+	eALLeftHand = 1,
+	eALFreeBone = 2,
+	eALBack = 3,
+	eALRifle = 4,
+	eALAttachCount = 5,
+	eALUndefined = 6,
 };
 
-// 0x0000000142AE3378 (Size: 0x4)
+// 0x0000000142AA5C10 (Size: 0x4)
+enum class EInformationBarMessage
+{
+	eIBM_Clear = 0,
+	eIBM_LastEnemyKilledCP = 1,
+	eIBM_InvestigateStand = 2,
+	eIBM_BodyFound = 3,
+	eIBM_Suspicious = 4,
+	eIBM_DisguiseBlown = 5,
+	eIBM_Hunt = 6,
+	eIBM_Exposed = 7,
+	eIBM_LandMineArmed = 8,
+	eIBM_RadioOn = 9,
+	eIBM_Trespassing = 10,
+	eIBM_NUM = 11,
+};
+
+// 0x0000000142AF0298 (Size: 0x4)
 enum class EEngineFrameUpdatePriority
 {
 	eFUP_AILogger = 0,
@@ -2808,77 +8776,36 @@ enum class EEngineFrameUpdatePriority
 	eFrameUpdatePriority_OutfitStreamingManager = 1001,
 };
 
-// 0x0000000142A98DF0 (Size: 0x4)
-enum class EInformationBarMessage
-{
-	eIBM_Clear = 0,
-	eIBM_LastEnemyKilledCP = 1,
-	eIBM_InvestigateStand = 2,
-	eIBM_BodyFound = 3,
-	eIBM_Suspicious = 4,
-	eIBM_DisguiseBlown = 5,
-	eIBM_Hunt = 6,
-	eIBM_Exposed = 7,
-	eIBM_LandMineArmed = 8,
-	eIBM_RadioOn = 9,
-	eIBM_Trespassing = 10,
-	eIBM_NUM = 11,
-};
-
-// 0x00000001422CA760 (Size: 0x4)
-enum class EAttachLocation
-{
-	eALRightHand = 0,
-	eALLeftHand = 1,
-	eALFreeBone = 2,
-	eALBack = 3,
-	eALRifle = 4,
-	eALAttachCount = 5,
-	eALUndefined = 6,
-};
-
-// 0x0000000142AF4960 (Size: 0x1)
-enum class ERagdollPart
-{
-	ERAGDOLLPART_NONE = 0,
-	ERAGDOLLPART_BODY = 1,
-	ERAGDOLLPART_HEAD = 2,
-	ERAGDOLLPART_HAND = 3,
-	ERAGDOLLPART_FOOT = 4,
-};
-
-// 0x0000000142AB3210 (Size: 0x1)
-enum class EOpportunityState
-{
-	OS_TRACKED = 1,
-	OS_ENABLED = 2,
-	OS_UNLOCKED = 4,
-	OS_REVEAL_PENDING = 8,
-};
-
-// 0x0000000142A91C18 (Size: 0x4)
-class SHeroEscortSituationActors
+// 0x0000000142AB1230 (Size: 0x8)
+class IWorldMapMarker
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142A97C80 (Size: 0x1)
-enum class EOrderCompletionStatus
+// 0x0000000142A9A058 (Size: 0x100)
+class ZAttentionToPersonGroup :
+	public ZSituationGroup
 {
-	OCS_Undetermined = 0,
-	OCS_Succeeded = 1,
-	OCS_Interrupted = 2,
-	OCS_Blocked = 3,
-	OCS_Failed = 4,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
 };
 
-// 0x0000000143CDEA78 (Size: 0x8)
-class IRoomEntity :
+// 0x0000000142A9F4B0 (Size: 0x4)
+enum class EVRConfigCapsuleGridSize
+{
+	EVRCCGS_RegularGrid = 0,
+	EVRCCGS_SmallGrid = 1,
+};
+
+// 0x0000000142AA01D0 (Size: 0x8)
+class IRenderMaterialOverrideAssociation :
 	public IComponentInterface
 {
 public:
@@ -2888,113 +8815,20 @@ public:
 
 };
 
-// 0x0000000142A8F9F8 (Size: 0x4)
-enum class ERoleEvent
-{
-	eRE_NONE = 0,
-	eRE_CAST = 1,
-	eRE_CLEAR = 2,
-	eRE_ENTER_DRAMA = 3,
-	eRE_REENTER_DRAMA = 4,
-	eRE_LEAVE_DRAMA = 5,
-	eRE_NEW_DRAMA = 6,
-	eRE_PAUSED = 7,
-	eRE_RESUMING = 8,
-	eRE_RUNNING = 9,
-};
-
-// 0x0000000142A98BB0 (Size: 0x4)
-enum class EFocusBarState
-{
-	FOCUS_BAR_NORMAL = 0,
-	FOCUS_BAR_INSTINCT = 1,
-	FOCUS_BAR_BURNING = 2,
-};
-
-// 0x00000001422CA138 (Size: 0x1)
-enum class ERenderGlowTypes
-{
-	ERENDERGLOWTYPE_NONE = 0,
-	ERENDERGLOWTYPE_ENEMIES = 1,
-	ERENDERGLOWTYPE_ALLIES = 2,
-	ERENDERGLOWTYPE_CIVILIAN = 3,
-	ERENDERGLOWTYPE_ITEMS = 4,
-	ERENDERGLOWTYPE_STASHED_ITEMS = 5,
-	ERENDERGLOWTYPE_SETPIECE = 6,
-	ERENDERGLOWTYPE_BACKGROUND = 7,
-	ERENDERGLOWTYPE_CONTRACT_TARGET = 8,
-	ERENDERGLOWTYPE_CONTRACT_TARGET_NON_CRITICAL = 9,
-	ERENDERGLOWTYPE_CONTRACT_TARGET_SPECIAL = 10,
-	ERENDERGLOWTYPE_OBJECTIVES = 11,
-	ERENDERGLOWTYPE_ENFORCER = 12,
-	ERENDERGLOWTYPE_LTMEMORY = 13,
-	ERENDERGLOWTYPE_TAGGED = 14,
-	ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED = 15,
-	ERENDERGLOWTYPE_TAGFOCUS_TAGGED = 16,
-	ERENDERGLOWTYPE_BACKGROUNDUNMASKED = 17,
-	ERENDERGLOWTYPE_INTERACTION = 18,
-	ERENDERGLOWTYPE_INTERACTION_SELECTED = 19,
-	ERENDERGLOWTYPE_INTERACTION_DESELECTED = 20,
-	ERENDERGLOWTYPE_PLAYER_LVA = 21,
-	ERENDERGLOWTYPE_PLAYER_LVA_SEEN = 22,
-	ERENDERGLOWTYPE_VS_OPPONENT = 23,
-	ERENDERGLOWTYPE_TRAVERSAL = 24,
-	ERENDERGLOWTYPE_EMISSIVE_UI = 25,
-	ERENDERGLOWTYPE_EMISSIVE_UI_IGNORE_DEPTH = 26,
-	ERENDERGLOWTYPE_OPPONENT = 27,
-	ERENDERGLOWTYPE_CAMERA = 28,
-};
-
-// 0x0000000142AB1D60 (Size: 0x1)
-class SItemSpawnerSaveData
+// 0x0000000142A9CD50 (Size: 0x2)
+class SVolumeTriggerListenerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	bool m_bItemUpdateTransformChange; // 0x0
+	bool m_bColliding; // 0x0
+	bool m_bInternalEnabled; // 0x1
 };
 
-// 0x00000001422CA1E0 (Size: 0x8)
-class ZRuntimeResourceID
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_IDHigh; // 0x0
-	uint32 m_IDLow; // 0x4
-};
-
-// 0x0000000142AAD0B8 (Size: 0x18)
-class SContractConfigResourceEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString Id; // 0x0
-	ZRuntimeResourceID ContractRid; // 0x10
-};
-
-// 0x0000000142A97310 (Size: 0xC)
-class SMathLerpSaveData_float32
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_A; // 0x0
-	float32 m_B; // 0x4
-	float32 m_fT; // 0x8
-};
-
-// 0x0000000142A95A80 (Size: 0x30)
-class SMathLerpsSaveData_float32
+// 0x0000000142AA2610 (Size: 0x30)
+class SVolumeTriggersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3002,68 +8836,23 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_float32> m_aData; // 0x18
+	TArray<SVolumeTriggerListenerSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142A92EA0 (Size: 0x8)
-class IAnimPlayerEntity
+// 0x0000000142A88560 (Size: 0x8)
+class SPerceptibleCrowdBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	uint32 m_rCombatZone; // 0x0
+	int32 m_rSharedKnowledge; // 0x4
 };
 
-// 0x0000000142A94470 (Size: 0x4)
-enum class EAILegalType
-{
-	AILT_Weapon = 0,
-	AILT_Shooting = 1,
-	AILT_Aiming = 2,
-	AILT_CloseCombat = 3,
-	AILT_ChangeOutfit = 4,
-	AILT_Count = 5,
-};
-
-// 0x0000000142AF0358 (Size: 0x60)
-class ZHttpUrl
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE34E0 (Size: 0x38)
-class SEntityTemplatePropertyOverride
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SEntityTemplateReference propertyOwner; // 0x0
-	SEntityTemplateProperty propertyValue; // 0x20
-};
-
-// 0x0000000142AF32B0 (Size: 0x4)
-enum class GameLobbyState
-{
-	GLS_None = 0,
-	GLS_InHud = 1,
-	GLS_CreatingLobby = 2,
-	GLS_JoiningLobby = 3,
-	GLS_ConnectToLobby = 4,
-	GLS_ConnectingLobby = 5,
-	GLS_InLobby = 6,
-	GLS_LeavingLobby = 7,
-	GLS_InGame = 8,
-};
-
-// 0x0000000142AE07C0 (Size: 0x8)
-class IAudioVolumetricGeom :
+// 0x00000001422D7B50 (Size: 0x8)
+class ICharacterIllegalInteractionsState :
 	public IComponentInterface
 {
 public:
@@ -3073,89 +8862,90 @@ public:
 
 };
 
-// 0x0000000142A926D8 (Size: 0x4)
-enum class EVRConfigHeadAnchorMode
-{
-	EVRCHAM_HeadBone = 0,
-	EVRCHAM_CapsuleBased = 1,
-	EVRCHAM_CapsuleGrid = 2,
-	EVRCHAM_LockPosition = 3,
-	EVRCHAM_KeepCurrent = 4,
-};
-
-// 0x0000000142A94240 (Size: 0x10)
-class SBehaviorTreeInputPinCondition
+// 0x0000000142A88BA8 (Size: 0x8)
+class ICharacterSpeakController :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZString m_sName; // 0x0
 };
 
-// 0x0000000143E5F4B8 (Size: 0x1)
-enum class EParticleColorUsage
+// 0x0000000142AA6968 (Size: 0x4)
+enum class EItemGripType
 {
-	REPLACE_PARTICLE_COLOR = 0,
-	LEAVE_PARTICLE_COLOR = 1,
+	IGT_Empty = 0,
+	IGT_Suitcase = 1,
+	IGT_Suitcase_Big = 2,
+	IGT_Firearm_Pistol = 3,
+	IGT_Firearm_Pistol_Stealth = 4,
+	IGT_Firearm_AssaultRifle_Bullpup = 5,
+	IGT_Firearm_AssaultRifle_Carbine = 6,
+	IGT_Firearm_Shotgun = 7,
+	IGT_Firearm_SMG = 8,
+	IGT_Firearm_SMG02 = 9,
+	IGT_Firearm_SniperRifle = 10,
+	IGT_Firearm_SniperRifle02 = 11,
+	IGT_Firearm_Dartgun = 12,
+	IGT_Melee_1H_Baton = 13,
+	IGT_Melee_1H_Cleaver = 14,
+	IGT_Melee_1H_Hammer = 15,
+	IGT_Melee_1H_Knife = 16,
+	IGT_Melee_1H_Rock = 17,
+	IGT_Melee_1H_Screwdriver = 18,
+	IGT_Melee_1H_Stick = 19,
+	IGT_Melee_1H_Sword = 20,
+	IGT_Melee_1H_FireExtinguisher = 21,
+	IGT_Melee_1H_Bust = 22,
+	IGT_Melee_1H_Crowbar = 23,
+	IGT_Melee_1H_Syringe = 24,
+	IGT_Melee_2H_Axe = 25,
+	IGT_Melee_2H_Stick = 26,
+	IGT_Melee_2H_Sword = 27,
+	IGT_Gadget_Fiberwire = 28,
+	IGT_Gadget_Coin = 29,
+	IGT_Gadget_Vial = 30,
+	IGT_Gadget_C4 = 31,
+	IGT_Gadget_Detonator = 32,
+	IGT_Gadget_Grenade_ThickGrip = 33,
+	IGT_Gadget_Grenade_ThinGrip = 34,
+	IGT_Gadget_Mine = 35,
+	IGT_Gadget_Remote = 36,
+	IGT_Prop_1H = 37,
+	IGT_Prop_1H_Duck = 38,
+	IGT_Prop_1h_Phone = 39,
+	IGT_None = 40,
 };
 
-// 0x0000000142A9FF70 (Size: 0x4)
-enum class eContractSessionStartError
+// 0x0000000142AA0FC0 (Size: 0x4)
+enum class ECoverPosition
 {
-	ERROR_NONE = 0,
-	ERROR_MISSING_CONTENT = 1,
-	ERROR_SERVER_UNREACHABLE = 2,
-	ERROR_SERVER_ERROR = 3,
-	ERROR_CONTRACT_NOT_PLAYABLE_YET = 4,
-	ERROR_CONTRACT_NOT_PLAYABLE_ANYMORE = 5,
-	ERROR_CANCELED = 6,
-	ERROR_ALREADY_STARTING = 7,
-	ERROR_UNKNOWN = 8,
+	COVER_POSITION_NONE = 0,
+	COVER_POSITION_LEFT = 1,
+	COVER_POSITION_RIGHT = 2,
+	COVER_POSITION_MIDDLE = 3,
 };
 
-// 0x00000001422CA198 (Size: 0x4)
-enum class EDeathContext
-{
-	eDC_UNDEFINED = 0,
-	eDC_NOT_HERO = 1,
-	eDC_HIDDEN = 2,
-	eDC_ACCIDENT = 3,
-	eDC_MURDER = 4,
-};
-
-// 0x00000001422CA1B0 (Size: 0x28)
-class SItemWeaponSaveData
+// 0x0000000142A9A628 (Size: 0xC)
+class SFaceOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<uint32> m_magazineBulletsByAmmoType; // 0x0
-	uint32 m_nExtraMagazineBullets; // 0x18
-	EDeathContext m_ePendingDeathContext; // 0x1C
-	EDeathContext m_eDeathContext; // 0x20
+	bool m_bLookAt; // 0x0
+	bool m_bAimAt; // 0x1
+	bool m_bUpdateKnownPosition; // 0x2
+	bool m_bStopActFast; // 0x3
+	float32 m_fDuration; // 0x4
+	float32 m_fDurationVariance; // 0x8
 };
 
-// 0x0000000142AAD118 (Size: 0x4)
-enum class EOnlinTest
-{
-	eHELLO = 0,
-	eWORLD = 1,
-};
-
-// 0x0000000142A97BD0 (Size: 0x4)
-enum class EActBodyType
-{
-	ABT_UpperBodyOnly = 0,
-	ABT_FullBodyWithLeadIn = 1,
-	ABT_FullBodyOnly = 2,
-};
-
-// 0x0000000142A9B068 (Size: 0x18)
-class SCondition_IsValidForSuitcaseAssistance :
+// 0x0000000142AA84A8 (Size: 0x1C)
+class SCondition_IllegalItemPickedUp :
 	public SConditionBase
 {
 public:
@@ -3163,151 +8953,57 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable npc; // 0x10
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
 };
 
-// 0x0000000142A82F28 (Size: 0x4)
-enum class EActorEventTypes
+// 0x0000000142AB2440 (Size: 0x4)
+enum class EUIBusyState
 {
-	eAET_OnAlive = 0,
-	eAET_OnPacified = 1,
-	eAET_OnMurdered = 2,
-	eAET_OnAccidentDeath = 3,
-	eAET_OnUnnoticableKill = 4,
-	eAET_OnBodyNoticed = 5,
-	eAET_OnBodyBagged = 6,
-	eAET_OnDying = 7,
-	eAET_OnDead = 8,
-	eAET_OnBodyHidden = 9,
-	eAET_OnBodyFlushed = 10,
-	eAET_OnBodyDumped = 11,
-	eAET_OnDelete = 12,
+	eBusyState_Saving = 0,
+	eBusyState_Saving_Failed = 1,
+	eBusyState_Saving_Success = 2,
+	eBusyState_Online_Connecting = 3,
+	eBusyState_Loading = 4,
+	eBusyState_Fetching = 5,
+	eBusyState_None = 6,
 };
 
-// 0x0000000142A94410 (Size: 0x4)
-enum class EAIModifiers
+// 0x0000000142AA5970 (Size: 0x4)
+enum class EBulletType
 {
-	AIM_Invalid = 0,
-	AIM_IgnoreLowNoise = 1,
-	AIM_IgnoreHitmanPropToss = 2,
-	AIM_IgnoreAnnoyingHitman = 4,
-	AIM_IgnoreSneakyHitman = 8,
-	AIM_IgnoreAgileHitman = 16,
-	AIM_IgnoreSillyHitman = 30,
-	AIM_PreferredInvestigator = 32,
-	AIM_AccidentShy = 64,
-	AIM_PreferredAccidentInvestigator = 128,
-	AIM_BlockFiberWireInteraction = 256,
-	AIM_BlockCloseCombatInteraction = 512,
-	AIM_BlockDragBodyInteraction = 1024,
-	AIM_BlockAllInteractions = 1792,
-	AIM_IgnoreDistractions = 2048,
-	AIM_IgnoreTrespassing = 4096,
-	AIM_IgnoreWeapons = 8192,
-	AIM_IgnoreLockdown = 16384,
-	AIM_DisableHelpCivilian = 32768,
-	AIM_WantsPrivacy = 65536,
-	AIM_ConversationHelper = 131072,
-	AIM_ConversationHelperFast = 262144,
-	AIM_OneHitpoint = 524288,
-	AIM_BlockDeadlyThrow = 1048576,
-	AIM_SuppressSocialGreeting = 2097152,
-	AIM_NeverInvestigateAccidents = 4194304,
-	AIM_BlockDeath = 8388608,
-	AIM_IgnoreDeadBody = 16777216,
-	AIM_NeverSpectate = 33554432,
-	AIM_DisableDeadBodySensor = 67108864,
-	AIM_DeafAndBlind = 134217728,
+	BULLET_TYPE_NONE = 0,
+	BULLET_TYPE_GUN = 1,
+	BULLET_TYPE_REVOLVER = 2,
+	BULLET_TYPE_SMG = 3,
+	BULLET_TYPE_MG = 4,
+	BULLET_TYPE_RIFLE = 5,
+	BULLET_TYPE_SHOTGUN = 6,
+	BULLET_TYPE_SNIPER = 7,
+	BULLET_TYPE_RPG = 8,
 };
 
-// 0x0000000142AE1588 (Size: 0x4)
-enum class ESoundGateType
+// 0x0000000142B00670 (Size: 0x4)
+enum class EPathFinderBoxType
 {
-	SOUNDGATE_TYPE_ROUND = 0,
-	SOUNDGATE_TYPE_SHARPCORNERS = 1,
+	PFBT_INCLUDE_MESH_COLLISION = 0,
+	PFBT_EXCLUDE_MESH_COLLISION = 1,
+	PFBT_CREATE_MESH_COLLISION = 2,
+	PFBT_REGION = 3,
+	PFBT_INCLUDE_PORTALS = 4,
+	PFBT_EXCLUDE_PORTALS = 5,
+	PFBT_IGNORE = 6,
 };
 
-// 0x0000000142A8B2A8 (Size: 0x4)
-enum class ECheatGroup
+// 0x0000000142B01610 (Size: 0x4)
+enum class EMotionType
 {
-	eCGNone = 0,
-	eCGPistols = 1,
-	eCGSMGs = 2,
-	eCGAssaultRifles = 3,
-	eCGShotguns = 4,
-	eCGSniper = 5,
-	eCGExotics = 6,
-	eCGDevices = 7,
+	MOTION_LOCKED = 0,
+	MOTION_LIMITED = 1,
+	MOTION_FREE = 2,
 };
 
-// 0x0000000142A9B470 (Size: 0x14)
-class SCondition_IsAIModified :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAIModifiers modifier; // 0x10
-};
-
-// 0x0000000142A983D0 (Size: 0x4)
-enum class ECharacterIdleHandlerUpperBodyType
-{
-	eCIHUBT_NothingToDoEmptySingleHand = 0,
-	eCIHUBT_NothingToDoEmptyHands = 1,
-	eCIHUBT_Event = 2,
-	eCIHUBT_Custom = 3,
-};
-
-// 0x0000000142AA5428 (Size: 0x10)
-class SOptionValueSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZVariant m_Value; // 0x0
-};
-
-// 0x0000000142A82F60 (Size: 0x4)
-enum class EActorType
-{
-	eAT_Civilian = 0,
-	eAT_Guard = 1,
-	eAT_Hitman = 2,
-	eAT_Last = 3,
-};
-
-// 0x0000000143E60E88 (Size: 0x38)
-class SPersistentEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint64 m_nResourceId; // 0x0
-	TArray<uint64> m_aEntityIDs; // 0x8
-	TArray<ZString> m_aEntityNames; // 0x20
-};
-
-// 0x0000000143E60D48 (Size: 0x48)
-class SPersistentEntitySaveDataList
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SPersistentEntitySaveData> m_aEntityDatas; // 0x0
-	TArray<uint64> m_mDynamicObjectIDGenerationKeys; // 0x18
-	TArray<uint64> m_mDynamicObjectIDGenerationValues; // 0x30
-};
-
-// 0x0000000142A94A20 (Size: 0x40)
+// 0x0000000142AA17E0 (Size: 0x40)
 class SExactCompressedGridFloatField
 {
 public:
@@ -3322,7 +9018,7 @@ public:
 	TArray<float32> m_aValues; // 0x28
 };
 
-// 0x0000000142AB3180 (Size: 0x40)
+// 0x0000000142AC0060 (Size: 0x40)
 class SIntelData
 {
 public:
@@ -3336,15 +9032,15 @@ public:
 	ZString m_sImage; // 0x30
 };
 
-// 0x0000000142AF46F0 (Size: 0x4)
-enum class EMotionType
+// 0x0000000142B015B0 (Size: 0x1)
+enum class ECCDUsage
 {
-	MOTION_LOCKED = 0,
-	MOTION_LIMITED = 1,
-	MOTION_FREE = 2,
+	ECCDUSAGE_DISABLED = 0,
+	ECCDUSAGE_AGAINST_STATIC = 1,
+	ECCDUSAGE_AGAINST_STATIC_DYNAMIC = 2,
 };
 
-// 0x0000000142A8E1A8 (Size: 0x4)
+// 0x0000000142A9AF18 (Size: 0x4)
 enum class ECharacterStateTags
 {
 	eSM_ST_UsingFullBody = 1,
@@ -3368,81 +9064,115 @@ enum class ECharacterStateTags
 	eSM_ST_UsingItemRight = 131072,
 };
 
-// 0x0000000142AF4690 (Size: 0x1)
-enum class ECCDUsage
-{
-	ECCDUSAGE_DISABLED = 0,
-	ECCDUSAGE_AGAINST_STATIC = 1,
-	ECCDUSAGE_AGAINST_STATIC_DYNAMIC = 2,
-};
-
-// 0x0000000142A93770 (Size: 0x8)
-class IGamePostfilterControllerEntity :
-	public IComponentInterface
+// 0x00000001422D5C20 (Size: 0x10)
+class SColorRGBA
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	float32 r; // 0x0
+	float32 g; // 0x4
+	float32 b; // 0x8
+	float32 a; // 0xC
 };
 
-// 0x0000000142AA55C0 (Size: 0x4)
-enum class EUIBusyOperationId
+// 0x0000000142ABEE38 (Size: 0x4)
+enum class EAmmoBehaviourConfigType
 {
-	eOperationId_GameSave = 0,
-	eOperationId_MenuTransition = 1,
-	eOperationId_ManuallyTriggered = 2,
-	eOperationId_TriggerBootFlow = 3,
-	eOperationId_SaveContract = 4,
-	eOperationId_StartContract = 5,
-	eOperationId_SessionStart = 6,
-	eOperationId_ReportContract = 7,
-	eOperationId_ConnectionFlow = 8,
-	eOperationId_LoadingTransitionDelayed = 9,
-	eOperationId_SaveSuccess = 10,
-	eOperationId_SaveFailed = 11,
-	eOperationId_SessionReconnect = 12,
-	eOperationId_NetSynchedMenuPause = 13,
-	eOperationId_NetSynchedMenuRestart = 14,
-	eOperationId_NetSynchedMenuReplan = 15,
-	eOperationId_StartingMultiplayerSession = 16,
-	eOperationId_HandlingMultiplayerRequest = 17,
-	eOperationId_PoorConnectivity = 18,
-	eOperationId_DefaultLoadout = 19,
-	eOperationId_Max = 19,
-	eOperationId_Custom_01 = 20,
-	eOperationId_Custom_Begin = 20,
-	eOperationId_Custom_02 = 21,
-	eOperationId_Custom_03 = 22,
-	eOperationId_Custom_04 = 23,
-	eOperationId_Custom_05 = 24,
-	eOperationId_Custom_06 = 25,
-	eOperationId_Custom_07 = 26,
-	eOperationId_Custom_08 = 27,
-	eOperationId_Custom_09 = 28,
-	eOperationId_Custom_10 = 29,
-	eOperationId_Custom_11 = 30,
-	eOperationId_Custom_12 = 31,
-	eOperationId_Custom_13 = 32,
-	eOperationId_Custom_14 = 33,
-	eOperationId_Custom_15 = 34,
-	eOperationId_Custom_16 = 35,
-	eOperationId_Custom_17 = 36,
-	eOperationId_Custom_18 = 37,
-	eOperationId_Custom_19 = 38,
-	eOperationId_Custom_20 = 39,
-	eOperationId_Custom_21 = 40,
-	eOperationId_Custom_22 = 41,
-	eOperationId_Custom_23 = 42,
-	eOperationId_Custom_24 = 43,
-	eOperationId_Custom_25 = 44,
-	eOperationId_Custom_End = 45,
-	eOperationId_None = 46,
+	eAB_None = 0,
+	eAB_Explosive = 1,
+	eAB_Penetration = 2,
 };
 
-// 0x0000000142A9B158 (Size: 0x20)
-class SCondition_MaxAge :
+// 0x0000000142AA2068 (Size: 0x4)
+enum class EHM5SoundFootstepEvent
+{
+	EFSE_START = 0,
+	EFSE_STOP = 1,
+	EFSE_LEFT = 2,
+	EFSE_RIGHT = 3,
+	EFSE_TURN = 4,
+	EFSE_SLIDE = 5,
+	EFSE_JUMP = 6,
+	EFSE_LAND = 7,
+};
+
+// 0x0000000143E6DDB8 (Size: 0x1C)
+class SLightSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	SColorRGB m_DiffuseColor; // 0x4
+	float32 m_fDiffusePower; // 0x10
+	float32 m_fAspectXByY_Actual; // 0x14
+	bool m_bVisible; // 0x18
+};
+
+// 0x0000000142AF0400 (Size: 0x38)
+class SEntityTemplatePropertyOverride
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SEntityTemplateReference propertyOwner; // 0x0
+	SEntityTemplateProperty propertyValue; // 0x20
+};
+
+// 0x0000000142AF0628 (Size: 0x58)
+class STemplateEntityFactory
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 subType; // 0x0
+	int32 blueprintIndexInResourceHeader; // 0x4
+	int32 rootEntityIndex; // 0x8
+	TArray<STemplateFactorySubEntity> subEntities; // 0x10
+	TArray<SEntityTemplatePropertyOverride> propertyOverrides; // 0x28
+	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x40
+};
+
+// 0x0000000142A88460 (Size: 0x4)
+enum class EHUDElement
+{
+	HUD_ELEMENT_NONE = 0,
+	HUD_ELEMENT_MINIMAP = 1,
+	HUD_ELEMENT_DISGUISE = 2,
+	HUD_ELEMENT_WEAPON_DISPLAY = 4,
+	HUD_ELEMENT_FOCUS_BAR = 8,
+	HUD_ELEMENT_RETICULES = 16,
+	HUD_ELEMENT_WEAPON_SELECTOR = 32,
+	HUD_ELEMENT_SPECIAL_BAR = 64,
+	HUD_ELEMENT_TEXT_MESSAGES = 128,
+	HUD_ELEMENT_CONTRACT_MARKS = 256,
+	HUD_ELEMENT_RATING_UPDATE = 512,
+	HUD_ELEMENT_RANKING = 1024,
+	HUD_ELEMENT_CHALLENGES = 2048,
+	HUD_ELEMENT_CUSTOM_TEXTS = 4096,
+	HUD_ELEMENT_ACTION_BUTTONS = 8192,
+	HUD_ELEMENT_ATTENTION_PEAKS = 16384,
+	HUD_ELEMENT_RATING_TRACKER = 32768,
+	HUD_ELEMENT_TARGET_TRACKER = 65536,
+	HUD_ELEMENT_HINTS = 131072,
+	HUD_ELEMENT_CONTRACT_SCORING = 262144,
+	HUD_ELEMENT_TUTORIAL = 524288,
+	HUD_ELEMENT_HEALTH_BAR = 1048576,
+	HUD_ELEMENT_OBJECTIVES = 2097152,
+	HUD_ALL_ELEMENTS = 8388607,
+};
+
+// 0x0000000142AA7E60 (Size: 0x10)
+class SCondition_FindSuitcaseAssitanceForSentry :
 	public SConditionBase
 {
 public:
@@ -3450,122 +9180,152 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable entity; // 0x10
-	EAIEventType type; // 0x18
-	float32 age; // 0x1C
 };
 
-// 0x0000000142A79768 (Size: 0x8)
-class ICharacterCoreInventoryState :
-	public IComponentInterface
+// 0x0000000142AA5E50 (Size: 0x4)
+enum class EButtonPressType
+{
+	BUTTON_PRESS = 0,
+	BUTTON_HOLD = 1,
+	BUTTON_REPEAT = 2,
+	BUTTON_TAP = 3,
+	BUTTON_ROTATE_CCW = 4,
+	BUTTON_PRESS_TYPE_MAX = 5,
+};
+
+// 0x0000000142AA40F0 (Size: 0x18)
+class SMathDistanceSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	SVector3 m_fA; // 0x0
+	SVector3 m_fB; // 0xC
 };
 
-// 0x0000000142A915C8 (Size: 0x4)
-enum class EGuardPointType
+// 0x0000000143E6CA70 (Size: 0x4)
+enum class ERenderVRTrackingID
 {
-	GPT_Hold = 0,
-	GPT_Combat = 1,
-	GPT_CombatAndHold = 2,
-	GPT_VIPSafeRoom = 3,
+	RENDER_VR_TRACK_HEAD = 16,
+	RENDER_VR_TRACK_EYE_LEFT = 17,
+	RENDER_VR_TRACK_EYE_RIGHT = 18,
+	RENDER_VR_TRACK_HAND_LEFT = 19,
+	RENDER_VR_TRACK_HAND_RIGHT = 20,
 };
 
-// 0x0000000142AB0718 (Size: 0x4)
-enum class EFSMStateStatus
-{
-	eInactive = 0,
-	eActive = 1,
-	eCompleted = 2,
-	eFailed = 3,
-	eInterrupted = 4,
-};
-
-// 0x0000000142A79FE0 (Size: 0x18)
-class SFSMSaveData
+// 0x0000000142A9A6D0 (Size: 0x8)
+class SGuardPointOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	EFSMStateStatus m_eStateStatus; // 0x0
-	int32 m_state; // 0x4
-	int32 m_prevState; // 0x8
-	ZGameTime m_tCurrentStateEnterTime; // 0x10
+	uint32 m_guardPoint; // 0x0
+	bool m_walkOnly; // 0x4
 };
 
-// 0x0000000142A8BDF0 (Size: 0x50)
-class SInvestigateWeaponGroupSaveData
+// 0x0000000143E6DEC0 (Size: 0x28)
+class SSavableData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	uint32 m_rTarget; // 0x0
-	uint32 m_rReporter; // 0x4
-	uint32 m_rInvestigator; // 0x8
-	uint32 m_rGuard; // 0xC
-	bool m_ReporterIsVIPWithAmbientEscort; // 0x10
-	SFSMSaveData m_fsmState; // 0x18
-	ZGameTime m_tLastGuardSearch; // 0x30
-	TArray<uint32> m_aUnconsciousGuards; // 0x38
+	ZVariant m_EntitiesData; // 0x0
+	ZVariant m_Data; // 0x10
+	uint32 m_nId; // 0x20
 };
 
-// 0x0000000142AA4D60 (Size: 0x14)
-class SAttentionHUDUIElement
+// 0x0000000142AA2D90 (Size: 0x4)
+enum class ECameraState
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 fAngle; // 0x0
-	float32 fAttention; // 0x4
-	float32 fAlpha; // 0x8
-	float32 fRadius; // 0xC
-	int32 nColor; // 0x10
+	eCamSneakStand = 0,
+	eCamSneakWalk = 1,
+	eCamSneakRoadyRun = 2,
+	eCamNormalStand = 3,
+	eCamNormalWalk = 4,
+	eCamNormalRun = 5,
+	eCamLocomotion = 6,
+	eCamCrowdStand = 7,
+	eCamCrowdWalk = 8,
+	eCamCrowdRun = 9,
+	eCamCrowdSneakStand = 10,
+	eCamCrowdSneakWalk = 11,
+	eCamCrowdSneakRoadyRun = 12,
+	eCamCrowdLocomotion = 13,
+	eCamDead = 14,
+	eCamLadder = 15,
+	eCamDrainPipe = 16,
+	eCamDrag = 17,
+	eCamSBTag = 18,
+	eCamSBTagOTS = 19,
+	eCamCloseCombat = 20,
+	eCamFiberWire = 21,
+	eCamWindowPull = 22,
+	eCamRailPush = 23,
+	eCamLedgeKick = 24,
+	eCamLedgePull = 25,
+	eCamLedgeHang = 26,
+	eCamLedgeWalk = 27,
+	eCamLedgeWalkOTS = 28,
+	eCamCoverLow = 29,
+	eCamCoverMedium = 30,
+	eCamCoverHigh = 31,
+	eCamCoverLowOTS = 32,
+	eCamCoverHighOTS = 33,
+	eCamCoverLowScope = 34,
+	eCamCoverHighScope = 35,
+	eCamCoverLowTakedownOver = 36,
+	eCamCoverLowTakedownCorner = 37,
+	eCamCoverHighTakedownCorner = 38,
+	eCamTakeDisguise = 39,
+	eCamOTS = 40,
+	eCamOTSHigh = 41,
+	eCamOTSLow = 42,
+	eCamUnAimedShooting = 43,
+	eCamUnAimedShootingHigh = 44,
+	eCamUnAimedShootingLow = 45,
+	eCamScope = 46,
+	eCamScopeHigh = 47,
+	eCamScopeLow = 48,
+	eCamVaultLow = 49,
+	eCamVaultHigh = 50,
+	eCamTakedown = 51,
+	eCamTakedownChair = 52,
+	eCamLockedSniping = 53,
+	eCamLockedSnipingScope = 54,
+	eCamLockedSnipingScopeHigh = 55,
+	eCamLockedSnipingScopeLow = 56,
+	eCamContainerAssemble = 57,
+	eCamNumProfiles = 58,
+	eCamAll = 59,
 };
 
-// 0x0000000142A8FCF0 (Size: 0x4)
-enum class EDamageEvent
+// 0x0000000142B01838 (Size: 0x1)
+enum class ECollisionNotifyGroup
 {
-	eDE_UNDEFINED = 0,
-	eDE_InCloset = 1,
-	eDE_Subdue = 2,
-	eDE_CloseCombat = 4,
-	eDE_PushOver = 16,
-	eDE_KickDownStairs = 32,
-	eDE_DeadlyThrow = 64,
-	eDE_Shoot = 128,
-	eDE_Sedated = 256,
-	eDE_InstantTakeDown = 512,
-	eDE_CoupDeGrace = 1024,
-	eDE_ContextKill = 2048,
-	eDE_Garotte = 4096,
-	eDE_Poison = 8192,
-	eDE_Electric = 16384,
-	eDE_SuspendedObject = 32768,
-	eDE_Burn = 65536,
-	eDE_Drop = 131072,
-	eDE_Drown = 262144,
+	eCollisionNotifyGroup_Default = 0,
+	eCollisionNotifyGroup_CollisionListener = 1,
+	eCollisionNotifyGroup_PhysicsEntity = 2,
+	eCollisionNotifyGroup_DontNotify = 3,
+	eCollisionNotifyGroup_ForceNotify = 4,
 };
 
-// 0x0000000142A94CD8 (Size: 0x4)
-enum class ESentryActionPrompt
+// 0x0000000142A873C0 (Size: 0x4)
+enum class EMoveSpeed
 {
-	eSAP_None = 0,
-	eSAP_Frisk = 1,
-	eSAP_ShowItem = 2,
-	eSAP_Max = 3,
+	MS_Sneaking = 0,
+	MS_Walking = 1,
+	MS_Jogging = 2,
+	MS_Sprinting = 3,
+	MS_Flash = 4,
 };
 
-// 0x0000000142AF38D8 (Size: 0x8)
+// 0x0000000142B007F8 (Size: 0x8)
 class ICollisionShapeProvider :
 	public IComponentInterface
 {
@@ -3576,212 +9336,91 @@ public:
 
 };
 
-// 0x0000000142A7A660 (Size: 0x4)
-enum class EMoveSpeed
-{
-	MS_Sneaking = 0,
-	MS_Walking = 1,
-	MS_Jogging = 2,
-	MS_Sprinting = 3,
-	MS_Flash = 4,
-};
-
-// 0x0000000142AF4918 (Size: 0x1)
-enum class ECollisionNotifyGroup
-{
-	eCollisionNotifyGroup_Default = 0,
-	eCollisionNotifyGroup_CollisionListener = 1,
-	eCollisionNotifyGroup_PhysicsEntity = 2,
-	eCollisionNotifyGroup_DontNotify = 3,
-	eCollisionNotifyGroup_ForceNotify = 4,
-};
-
-// 0x0000000142A8BA00 (Size: 0xD8)
-class ZSituationGroup
+// 0x00000001422D72A8 (Size: 0x4)
+class SActorVisibilityConditionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	uint32 m_pActor; // 0x0
 };
 
-// 0x0000000142A8C1B0 (Size: 0x1A0)
-class ZEvacuateTrespassGroup :
-	public ZSituationGroup
+// 0x0000000142A9F5B8 (Size: 0x4)
+enum class EThrowType
+{
+	THROW_NONE = 0,
+	THROW_COIN = 1,
+	THROW_NORMAL = 2,
+	THROW_HEAVY = 3,
+	THROW_KNOCKDOWN_LIGHT = 4,
+	THROW_KNOCKDOWN_HEAVY = 5,
+	THROW_PACIFY_LIGHT = 6,
+	THROW_PACIFY_HEAVY = 7,
+	THROW_DEADLY_LIGHT = 8,
+	THROW_DEADLY_HEAVY = 9,
+};
+
+// 0x0000000142AAF020 (Size: 0x8)
+class SUIBreadcrumbDataSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	float32 m_fProgress; // 0x0
+	int32 m_nState; // 0x4
 };
 
-// 0x0000000142A92690 (Size: 0x4)
-enum class EVRConfigAnimationMode
+// 0x0000000142AFBC70 (Size: 0x4)
+enum class ECoordinateSpace
 {
-	EVRCAM_FullAnimation = 0,
-	EVRCAM_FullAnimationFreeze = 1,
-	EVRCAM_HideAnimation = 2,
-	EVRCAM_HideUpperBodyAnimation = 3,
-	EVRCAM_RemoveGroundMotion = 4,
-	EVRCAM_RemoveFullBodyAndGroundMotion = 5,
-	EVRCAM_KeepCurrentMode = 6,
+	CSPACE_INVALID = 0,
+	CSPACE_OBJECT_TO_WORLD = 1,
+	CSPACE_OBJECT_TO_PARENT = 2,
+	CSPACE_SEQUENCE_ORIGIN = 3,
+	CSPACE_CHARACTER_RELATIVE = 4,
 };
 
-// 0x0000000142AE1E38 (Size: 0x4)
-enum class EGait
+// 0x0000000142AA52B0 (Size: 0x4)
+enum class ECameraAssistanceMode
 {
-	eGait_Normal = 0,
-	eGait_Reposition = 1,
-	eGait_Alert = 2,
-	eGait_Scared = 3,
-	eGait_Prone = 4,
-	eGait_Dead = 5,
-	eGait_Angry = 6,
-	eGait_Applause = 7,
-	eGait_BeatUp_000cm_01_Dual_A = 8,
-	eGait_BeatUp_000cm_01_Dual_B = 9,
-	eGait_BeatUp_000cm_02_Dual_A = 10,
-	eGait_BeatUp_000cm_02_Dual_B = 11,
-	eGait_BeatUp_Wall_Dual_A = 12,
-	eGait_BeatUp_Wall_Dual_B = 13,
-	eGait_Chatting = 14,
-	eGait_Cheer = 15,
-	eGait_Clap = 16,
-	eGait_Climb_Up_Fall = 17,
-	eGait_Concerned = 18,
-	eGait_Couples_A = 19,
-	eGait_Couples_B = 20,
-	eGait_Couples_C = 21,
-	eGait_Dance_Drunk = 22,
-	eGait_Dance_Dual_A = 23,
-	eGait_Dance_Dual_B = 24,
-	eGait_Dance_Party = 25,
-	eGait_Dance_Party_A = 26,
-	eGait_Dance_Party_B = 27,
-	eGait_Dance_Party_C = 28,
-	eGait_Dance_Party_D = 29,
-	eGait_Dance_Party_E = 30,
-	eGait_Dance_Party_F = 31,
-	eGait_Dance_Rave = 32,
-	eGait_Dance_Rave_A = 33,
-	eGait_Dance_Rave_B = 34,
-	eGait_Dance_Rave_C = 35,
-	eGait_Dance_Rave_D = 36,
-	eGait_Dance_Rave_E = 37,
-	eGait_Dance_Rave_F = 38,
-	eGait_Dance_Rave_Zone_Out_A = 39,
-	eGait_Dance_Rave_Zone_Out_B = 40,
-	eGait_Dance_Rave_Zone_Out_C = 41,
-	eGait_Dance_Rave_Zone_Out_D = 42,
-	eGait_Dance_Rave_Zone_Out_E = 43,
-	eGait_Dance_Rave_Zone_Out_F = 44,
-	eGait_Dance_Rave_Zone_Out_G = 45,
-	eGait_Dance_Rave_Zone_Out_H = 46,
-	eGait_Excited = 47,
-	eGait_Fanatic_Fans = 48,
-	eGait_Freeze_A = 49,
-	eGait_Freeze_B = 50,
-	eGait_Freeze_C = 51,
-	eGait_Freeze_Lean_Wall = 52,
-	eGait_Haggle = 53,
-	eGait_Interested = 54,
-	eGait_Jeer = 55,
-	eGait_Lean_Rail = 56,
-	eGait_Lean_Wall = 57,
-	eGait_Lie_WritheInPain = 58,
-	eGait_LookAt_Race_A = 59,
-	eGait_LookAt_Race_B = 60,
-	eGait_LookUp_Excited = 61,
-	eGait_Mingle = 62,
-	eGait_Mingle_120cm = 63,
-	eGait_Mingle_Drunk = 64,
-	eGait_Mingle_Rave_A = 65,
-	eGait_Mingle_Rave_B = 66,
-	eGait_Mingle_Rave_C = 67,
-	eGait_Mingle_Mumbai_A = 68,
-	eGait_Mingle_Mumbai_B = 69,
-	eGait_Mingle_Race = 70,
-	eGait_Mingle_Race_Rail = 71,
-	eGait_Mingle_Wall = 72,
-	eGait_Pacing_Angry = 73,
-	eGait_Party = 74,
-	eGait_Protest = 75,
-	eGait_Push_Gate = 76,
-	eGait_Rally = 77,
-	eGait_Reaction_TearGas = 78,
-	eGait_Shocked = 79,
-	eGait_Shop = 80,
-	eGait_Sit_020cm = 81,
-	eGait_Sit_040cm = 82,
-	eGait_Sit_100cm = 83,
-	eGait_Sit_ChairBasic = 84,
-	eGait_Sit_ChairBasic_LeanForward = 85,
-	eGait_Sit_Chair_Rave_A = 86,
-	eGait_Sit_Chair_Rave_B = 87,
-	eGait_Sit_Chair_Rave_C = 88,
-	eGait_Sit_Ground_Hungover = 89,
-	eGait_Squat_Relaxed = 90,
-	eGait_Squat_Sorting = 91,
-	eGait_Throw_Rice = 92,
-	eGait_Wait_Excited = 93,
-	eGait_Wait_InLine = 94,
-	eGait_WarmHands_100cm = 95,
-	eGait_Wave_Mexican = 96,
-	eGait_Yell_Up = 97,
-	eGait_Custom0 = 98,
-	eGait_Custom1 = 99,
-	eGait_Custom2 = 100,
-	eGait_Custom3 = 101,
-	eGait_Custom4 = 102,
-	eGait_Custom5 = 103,
-	eGait_Custom6 = 104,
-	eGait_Custom7 = 105,
-	eGait_Custom8 = 106,
-	eGait_Custom9 = 107,
+	eCAM_None = 0,
+	eCAM_TrackAssist = 1,
+	eCAM_AutoTrackTarget = 2,
 };
 
-// 0x0000000142A96260 (Size: 0x4)
-enum class ECharacterIdlePriority
-{
-	eCIP_Irrelevant = 0,
-	eCIP_VeryLow = 1,
-	eCIP_QuiteLow = 2,
-	eCIP_Low = 3,
-	eCIP_MediumLow = 4,
-	eCIP_Medium = 5,
-	eCIP_MediumHigh = 6,
-	eCIP_High = 7,
-	eCIP_QuiteHigh = 8,
-	eCIP_VeryHigh = 9,
-	eCIP_Urgent = 10,
-};
-
-// 0x0000000142AA4F08 (Size: 0x20)
-class SInventoryUISlotSlim
+// 0x0000000142ABDA10 (Size: 0x14)
+class SRandomTimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZVariant icon; // 0x0
-	ZVariant containedIcon; // 0x10
+	bool m_bEnabled; // 0x0
+	bool m_bRegistered; // 0x1
+	float32 m_fMinTime; // 0x4
+	float32 m_fMaxTime; // 0x8
+	float32 m_fProbability; // 0xC
+	int32 m_nRemaining; // 0x10
 };
 
-// 0x0000000142A98A30 (Size: 0x4)
-enum class EButtonState
+// 0x0000000142ABB418 (Size: 0x4)
+enum class ERegistrationState
 {
-	BUTTON_STATE_DISABLED = -1,
-	BUTTON_STATE_NONE = 0,
-	BUTTON_STATE_ENABLED = 1,
-	BUTTON_STATE_PRESSED = 2,
-	BUTTON_STATE_BLINKING = 3,
+	eINITIAL = 0,
+	eNOP = 1,
+	ePENDING = 2,
+	eCANCELLED_REMOTELY = 3,
+	eCANCELLED_LOCALLY = 4,
+	eFOUNDMATCH = 5,
 };
 
-// 0x0000000143E5FC18 (Size: 0x8)
-class IGIProbeEntity :
+// 0x0000000142A96D00 (Size: 0x8)
+class IHM5GameMonitor :
 	public IComponentInterface
 {
 public:
@@ -3791,52 +9430,35 @@ public:
 
 };
 
-// 0x0000000142A82E38 (Size: 0x50)
-class SActorThrowSaveData
+// 0x0000000142B00008 (Size: 0x4)
+enum class EDisconnectReason
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rItem; // 0x0
-	float4 m_vStartPosition; // 0x10
-	float4 m_vEndPosition; // 0x20
-	float4 m_vItemVelocity; // 0x30
-	float32 m_fDistance; // 0x40
+	eNOTIFICATION = 0,
+	eCONNECTION_LOST = 1,
+	eNETWORK_STATE = 2,
 };
 
-// 0x0000000142AA4FB8 (Size: 0x18)
-class SIntelListDisplayInfo
+// 0x0000000142AC00C0 (Size: 0x4)
+enum class EIntelStage
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 index; // 0x0
-	bool active; // 0x4
-	bool newInfo; // 0x5
-	ZString label; // 0x8
+	eIT_MAIN = 0,
+	eIT_STAGE = 1,
+	eIT_HINT = 2,
 };
 
-// 0x0000000142A8FF68 (Size: 0x4)
-enum class EVolumeTriggerEntityTypeFlags
+// 0x0000000142AA53D0 (Size: 0x4)
+enum class ECharacterAnimChildNetworkSlot
 {
-	VTET_Hitman = 1,
-	VTET_ActorAlive = 2,
-	VTET_ActorDead = 4,
-	VTET_ActorPacified = 8,
-	VTET_ThrownItem = 16,
-	VTET_Spatial = 32,
-	VTET_SoundSweetener = 64,
-	VTET_ExplodeableItem = 128,
-	VTET_Item = 256,
-	VTET_SpatialVisible = 512,
+	eCACNS_None = 0,
+	eCACNS_FlavorIdle_FB = 1,
+	eCACNS_FlavorIdle_RH = 2,
+	eCACNS_FlavorIdle_LH = 3,
+	eCACNS_Interaction_RH = 4,
+	eCACNS_Interaction_LH = 5,
 };
 
-// 0x0000000142A8E8D8 (Size: 0x98)
-class ZCharacterStateBase :
+// 0x0000000142A864F8 (Size: 0x8)
+class ICharacterShowItemState :
 	public IComponentInterface
 {
 public:
@@ -3846,621 +9468,7 @@ public:
 
 };
 
-// 0x0000000143E63C90 (Size: 0x20)
-class STypeReference
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sEntityID; // 0x0
-	ZString sTypeArgName; // 0x10
-};
-
-// 0x0000000143E63CA8 (Size: 0x50)
-class SExposedTypeInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sName; // 0x0
-	ZString sDisplayName; // 0x10
-	ZString sHelpText; // 0x20
-	STypeReference target; // 0x30
-};
-
-// 0x0000000142AA50E0 (Size: 0x4)
-enum class EMapType
-{
-	E_MAPTYPE_Minimap = 0,
-	E_MAPTYPE_MainMap = 1,
-	E_MAPTYPE_MenuMap = 2,
-};
-
-// 0x0000000143E5FAB0 (Size: 0x1)
-enum class ETessellationFactorMode
-{
-	TESSELLATIONFACTORMODE_FIXED = 0,
-	TESSELLATIONFACTORMODE_OBJECT = 1,
-	TESSELLATIONFACTORMODE_TRIANGLE = 2,
-};
-
-// 0x0000000142A98430 (Size: 0x4)
-enum class ETargetType
-{
-	eTDS_None = 0,
-	eTDS_LookAtTarget = 1,
-	eTDS_Spatial = 2,
-	eTDS_Linked = 3,
-};
-
-// 0x0000000142A9B698 (Size: 0x1C)
-class SCondition_SuspiciousItemPickedUp :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000143E60F00 (Size: 0x20)
-class SEntityPath
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint64 m_nOwnerID; // 0x0
-	TArray<uint64> m_aEntityPath; // 0x8
-};
-
-// 0x0000000142A96358 (Size: 0x4)
-enum class EInventoryConfigFormerEquippedItems
-{
-	EICFEI_Equip = 0,
-	EICFEI_EquipOrPickup = 1,
-	EICFEI_Forget = 2,
-};
-
-// 0x0000000142AF48A0 (Size: 0x4)
-enum class EDamageResponse
-{
-	eDR_Fractured = 0,
-	eDR_Detached = 1,
-	eDR_Destroyed = 2,
-	eDR_Collided = 3,
-	eDR_Count = 4,
-};
-
-// 0x0000000142AE21C8 (Size: 0x4)
-enum class CrowdRegionType
-{
-	CROWDSPHERE_NONE = 0,
-	CROWDSPHERE_SAFE = 1,
-	CROWDSPHERE_POI = 2,
-	CROWDSPHERE_AVOID = 3,
-	CROWDSPHERE_RELOCATE = 4,
-	CROWDSPHERE_STOP = 5,
-	CROWDSPHERE_ALERT = 6,
-	CROWDSPHERE_SCARE = 7,
-	CROWDSPHERE_GETDOWN = 8,
-	CROWDSPHERE_DIE = 9,
-};
-
-// 0x0000000142AF47C8 (Size: 0x4)
-enum class ERuntimeMemoryAllocationState
-{
-	eRMAS_NeverAllocated = 0,
-	eRMAS_Allocated = 1,
-	eRMAS_Released = 2,
-};
-
-// 0x0000000142A8BB68 (Size: 0x4)
-enum class ESituationJoinReason
-{
-	AISJR_Default = 0,
-	AISJR_HeardSound = 1,
-	AISJR_Alarm = 2,
-	AISJR_HitmanStrange = 3,
-	AISJR_HitmanIllegal = 4,
-	AISJR_Assist = 5,
-	AISJR_AssistingGuard = 6,
-	AISJR_Propagate = 7,
-	AISJR_ResumeSituation = 8,
-	AISJR_Spawned = 9,
-	AISJR_HelpCivilian = 10,
-	AISJR_Escalating = 11,
-	AISJR_DeadBody = 12,
-	AISJR_Accident = 13,
-	AISJR_StandDown = 14,
-	AISJR_Report = 15,
-	AISJR_ForcedToHold = 16,
-	AISJR_Wounded = 17,
-	AISJR_SC_HeardBulletImpact = 18,
-	AISJR_SC_HeardSetPiece = 19,
-};
-
-// 0x0000000142A7A678 (Size: 0x4)
-enum class EAnimationPose
-{
-	AP_Undefined = 0,
-	AP_Standing = 1,
-	AP_SittingChair = 2,
-	AP_SittingGround = 3,
-	AP_LyingGround = 4,
-	AP_Crouching = 5,
-	AP_SittingBench = 6,
-	AP_SittingChairTable = 7,
-};
-
-// 0x0000000142A97B70 (Size: 0x4)
-enum class EActorLookAtStopReason
-{
-	eSR_Unknown = 0,
-	eSR_Disabled = 1,
-	eSR_DurationExpired = 2,
-	eSR_OutOfRange = 3,
-	eSR_OutOfSight = 4,
-	eSR_OutOfRemainingPathDistance = 5,
-	eSR_Interrupted = 6,
-	eSR_TargetRemoved = 7,
-	eSR_HigherPriorityProfile = 8,
-	eSR_HideInPlainSight = 9,
-};
-
-// 0x0000000142A9FD60 (Size: 0x4)
-enum class EDifficultyLevel
-{
-	eDL_NO_FLAGS = 0,
-	eDL_EASY = 1,
-	eDL_NORMAL = 2,
-	eDL_HARD = 4,
-	eDL_VERY_HARD = 8,
-	eDL_ALL_FLAGS = 15,
-};
-
-// 0x0000000142AF48E8 (Size: 0x1)
-enum class ECharacterCollidableLayer
-{
-	CCL_DYNAMIC = 0,
-	CCL_DYNAMIC_TRANSPARENT = 1,
-	CCL_DYNAMIC_NO_COLLISION = 2,
-	CCL_DYNAMIC_NO_COLLISION_TRANSPARENT = 3,
-	CCL_UNUSED_LAST = 4,
-};
-
-// 0x0000000142AA4398 (Size: 0x8)
-class IUIMapExporter :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE16A8 (Size: 0x1)
-enum class SoundPlayState
-{
-	ePlaying = 0,
-	eLoopBreaking = 1,
-	eStopping = 2,
-};
-
-// 0x0000000142A98C10 (Size: 0x4)
-enum class EPushNotificationType
-{
-	PUSH_NOTIFICATION_OBJECTIVE = 0,
-	PUSH_NOTIFICATION_DISGUISE = 1,
-	PUSH_NOTIFICATION_CONTRACT = 2,
-	PUSH_NOTIFICATION_CHALLENGE = 3,
-	PUSH_NOTIFICATION_RATING = 4,
-	PUSH_NOTIFICATION_SPECIAL_RATING_UNLOCKED = 5,
-	PUSH_NOTIFICATION_CONTRACT_PICKED_UP = 6,
-	PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED = 7,
-	PUSH_NOTIFICATION_SCORE_COMPARISON = 8,
-};
-
-// 0x0000000142AA7BC0 (Size: 0x4)
-enum class ECausalGraphTraversal
-{
-	eCGT_NONE = 0,
-	eCGT_INPUT = 1,
-	eCGT_OUTPUT = 2,
-	eCGT_BOTH = 3,
-};
-
-// 0x0000000142AF4948 (Size: 0x1)
-enum class ECameraCollisionMode
-{
-	ECAMERACOLLISIONMODE_COLLIDE_ALWAYS = 0,
-	ECAMERACOLLISIONMODE_CAMERA_OBSTACLE = 1,
-	ECAMERACOLLISIONMODE_COLLIDE_NEVER = 2,
-	ECAMERACOLLISIONMODE_COLLIDE_DEFAULT = 3,
-};
-
-// 0x0000000143E61E08 (Size: 0x8)
-class SVoidSignalEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bSignaling; // 0x0
-	float32 m_fFiredAtTime; // 0x4
-};
-
-// 0x0000000142A94008 (Size: 0x10)
-class SActorIKControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fRightHandWeight; // 0x0
-	float32 m_fLeftHandWeight; // 0x4
-	float32 m_fRightHandTargetWeight; // 0x8
-	float32 m_fLeftHandTargetWeight; // 0xC
-};
-
-// 0x0000000142A9CAA8 (Size: 0x4)
-enum class EBystanderPointType
-{
-	BPT_Scared = 0,
-	BPT_Alerted = 1,
-};
-
-// 0x0000000142A944B0 (Size: 0x20)
-class SActorProviderDirectSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aActors; // 0x0
-	bool m_bRunning; // 0x18
-};
-
-// 0x0000000142AB2870 (Size: 0x4)
-enum class ESoundCollisionObjectType
-{
-	StaticRigidBody = 0,
-	DynamicRigidBody = 1,
-	Ragdoll = 2,
-};
-
-// 0x0000000142A9AD80 (Size: 0x10)
-class SCondition_IsSeasonTwoCombatEnabled :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9AED0 (Size: 0x18)
-class SCondition_IsCurrentDistractionTarget :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-};
-
-// 0x0000000143CDF268 (Size: 0x1)
-enum class ESeamFixMode
-{
-	SEAMFIX_NONE = 0,
-	SEAMFIX_X = 1,
-	SEAMFIX_Y = 2,
-	SEAMFIX_Z = 4,
-	SEAMFIX_XZ = 5,
-	SEAMFIX_XY = 3,
-	SEAMFIX_XYZ = 7,
-	SEAMFIX_YZ = 6,
-};
-
-// 0x0000000142A99090 (Size: 0x4)
-enum class EBIEventTypes
-{
-	eBIL_HM_HitNPC = 0,
-	eBIL_HM_HitNPCKilled = 1,
-	eBIL_HM_HitNPCHeadShot = 2,
-	eBIL_HM_HitNPCCloseCombatShot = 3,
-	eBIL_NPC_HitHM = 4,
-	eBIL_Geometry = 5,
-};
-
-// 0x0000000142AA56E0 (Size: 0x4)
-enum class EInteractionInputType
-{
-	EIIT_UNKNOWN = 0,
-	EIIT_PRESS = 1,
-	EIIT_HOLD = 2,
-	EIIT_HOLD_DOWN = 3,
-	EIIT_REPEAT = 4,
-	EIIT_GUIDE = 5,
-};
-
-// 0x0000000142A9AC30 (Size: 0x18)
-class SBehaviorTreeEvaluationLogEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nBehaviorTreeIndex; // 0x0
-	uint64 m_nConditionOffset; // 0x8
-	bool m_bResult; // 0x10
-};
-
-// 0x00000001422C9000 (Size: 0x10)
-class ZResourceID
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_uri; // 0x0
-};
-
-// 0x0000000142A9AC78 (Size: 0x30)
-class SBehaviorTreeEvaluationLog
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<ZResourceID> m_BehaviorTrees; // 0x0
-	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
-};
-
-// 0x0000000142A978A0 (Size: 0x48)
-class STargetInfoObjectiveCondition
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString header; // 0x0
-	ZString title; // 0x10
-	ZString icon; // 0x20
-	ZString type; // 0x30
-	bool hardCondition; // 0x40
-};
-
-// 0x0000000142A978D8 (Size: 0x58)
-class STargetInfoDisplayData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString npcName; // 0x0
-	ZString disguiseName; // 0x10
-	ZString objectiveType; // 0x20
-	TArray<STargetInfoObjectiveCondition> objectiveConditions; // 0x30
-	int32 fX; // 0x48
-	int32 fY; // 0x4C
-	float32 fAlpha; // 0x50
-	bool bIsTarget; // 0x54
-};
-
-// 0x0000000142A978F8 (Size: 0x18)
-class STargetInfoDisplayData_Dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<STargetInfoDisplayData> __dummy; // 0x0
-};
-
-// 0x0000000142AA2500 (Size: 0x48)
-class SIntelDisplayInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 index; // 0x0
-	bool selected; // 0x4
-	bool active; // 0x5
-	ZString headline; // 0x8
-	ZString bodyheadline; // 0x18
-	ZString text; // 0x28
-	ZString img; // 0x38
-};
-
-// 0x0000000142A7B520 (Size: 0x4)
-enum class EGSKillVictim
-{
-	GSKILLVICTIM_UNKNOWN = 0,
-	GSKILLVICTIM_CIVILIAN = 1,
-	GSKILLVICTIM_GUARD = 2,
-	GSKILLVICTIM_TARGET = 3,
-};
-
-// 0x00000001422CACF8 (Size: 0x8)
-class ISoundAmbienceElement :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE1090 (Size: 0x8)
-class ISoundAmbienceGroup :
-	public ISoundAmbienceElement
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA4FD8 (Size: 0x18)
-class SIntelListDisplayInfoArray_dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SIntelListDisplayInfo> dummy; // 0x0
-};
-
-// 0x0000000142A94520 (Size: 0x4)
-enum class EScreenplayTriggerEvent
-{
-	STT_ReportCrime = 0,
-	STT_ReportCrimeToHitman = 1,
-	STT_ReportCrimeMoveBack = 2,
-};
-
-// 0x0000000142AB31C8 (Size: 0x4)
-enum class EIntelTensionLevel
-{
-	eITL_Undefined = 0,
-	eITL_Ambient = 1,
-	eITL_Agitated = 2,
-	eITL_Searching = 3,
-	eITL_AlertedLow = 4,
-	eITL_AlertedHigh = 5,
-	eITL_Hunting = 6,
-	eITL_Arrest = 7,
-	eITL_Combat = 8,
-};
-
-// 0x0000000142A8BB98 (Size: 0x4)
-enum class ESituationAvailability
-{
-	ESA_AMBIENCE = 0,
-	ESA_AMBIENCE_RESV = 10000,
-	ESA_OVR_STANDING = 20000,
-	ESA_OVR_CURIOUS = 30000,
-	ESA_OVR_SENTRY = 40000,
-	ESA_OVR_CAUTIOUS = 50000,
-	ESA_OVR_COMBAT = 60000,
-	ESA_OVR_ALL = 70000,
-};
-
-// 0x0000000142AF5E60 (Size: 0x4)
-enum class ESaveLoadStatus
-{
-	ESaveLoadStatus_OK = 0,
-	ESaveLoadStatus_PROCESSING = 1,
-	ESaveLoadStatus_MISSING = 2,
-	ESaveLoadStatus_ERROR_NODISKSPACE = 3,
-	ESaveLoadStatus_ERROR_DEVICEREMOVED = 4,
-	ESaveLoadStatus_ERROR_CORRUPT = 5,
-	ESaveLoadStatus_ERROR_VERSION = 6,
-	ESaveLoadStatus_ERROR_TAMPERED = 7,
-	ESaveLoadStatus_ERROR_SAVING = 8,
-	ESaveLoadStatus_ERROR_FATAL = 9,
-	ESaveLoadStatus_ERROR_ONLINE = 10,
-	ESaveLoadStatus_ERROR_REQUIREMENTCHECK = 11,
-	ESaveLoadStatus_ERROR_VRMODE = 12,
-	ESaveLoadStatus_ERROR_INVALIDATED = 13,
-};
-
-// 0x000000014210A920 (Size: 0x10)
-class SVector4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 x; // 0x0
-	float32 y; // 0x4
-	float32 z; // 0x8
-	float32 w; // 0xC
-};
-
-// 0x0000000142A97430 (Size: 0x24)
-class SMathMultiplyDivideSaveData_SVector4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 m_fA; // 0x0
-	SVector4 m_fB; // 0x10
-	bool m_bDivide; // 0x20
-};
-
-// 0x0000000142A8C090 (Size: 0x8)
-class SGetHelpOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAISharedEventType m_helpType; // 0x0
-	uint32 m_rInitialGuard; // 0x4
-};
-
-// 0x0000000142A97740 (Size: 0x1)
-class SActorSoundDefs
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E5FA98 (Size: 0x1)
-enum class ETessellationMode
-{
-	TESSELLATIONMODE_FLAT = 0,
-	TESSELLATIONMODE_PHONG = 1,
-};
-
-// 0x0000000142A9B0B0 (Size: 0x18)
-class SCondition_IsDistractionTargetBeingHandled :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable distractionTarget; // 0x10
-};
-
-// 0x0000000142A82D70 (Size: 0x4)
+// 0x0000000142A8FAF0 (Size: 0x4)
 enum class EActorVoiceVariation
 {
 	eAVV_Undefined = 0,
@@ -5025,38 +10033,79 @@ enum class EActorVoiceVariation
 	eAVV_ZAYDAN = 559,
 };
 
-// 0x0000000142A79798 (Size: 0x8)
-class ICharacterShowItemState :
-	public IComponentInterface
+// 0x0000000142A882D8 (Size: 0x4)
+enum class EStealthSituation
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
+	SS_DISGUISE_TAKEN = 0,
+	SS_DISGUISE_TRESPASSING = 1,
+	SS_DISGUISE_ILLEGAL_ACTION = 2,
+	SS_DISGUISE_REMOVED = 3,
+	SS_DISGUISE_INVESTIGATED = 4,
+	SS_DISGUISE_BLOWN = 5,
+	SS_HIDE_IN_CLOSET_FIRSTTIME = 6,
+	SS_HIDE_IN_CLOSET = 7,
+	SS_DOOR_START_LOCKPICKING = 8,
+	SS_DOOR_CANCEL_LOCKPICKING = 9,
+	SS_LANDMINE_ARMED = 10,
+	SS_RADIO_ON = 11,
+	SS_VENT_ENTER = 12,
+	SS_VENT_EXIT = 13,
+	SS_BLEND_IN_ACTIVATED = 14,
+	SS_BODY_DISCOVERED = 15,
+	SS_INVESTIGATE_GUNSHOT = 16,
+	SS_INVESTIGATE_NOISE = 17,
+	SS_INVESTIGATE_EXPLOSION = 18,
+	SS_FUSEBOX_DISABLE_UNIQUE = 19,
+	SS_FUSEBOX_DISABLE = 20,
+	SS_INVESTIGATING_FUSEBOX = 21,
+	SS_FUSEBOX_FIXED = 22,
+	SS_KEYCARD_PICKUP = 23,
+	SS_KEYCARD_USE = 24,
+	SS_BODY_PUT_IN_CONTAINER = 25,
+	SS_BODY_DRAGGING_SEEN = 26,
+	SS_BODY_OVER_RAIL = 27,
+	SS_BODY_OVER_LEDGE = 28,
+	SS_USE_HEALTH_STATION = 29,
+	SS_HITMAN_SPOTTED = 30,
+	SS_HITMAN_HIDDEN = 31,
+	SS_HITMAN_ENTERED_COMBAT = 32,
+	SS_TRESPASSING = 33,
+	SS_SECURITYTAPE_PICKUP = 34,
+	SS_NEWOBJECTIVE = 35,
+	SS_FOCUSADDED = 36,
+	SS_FOCUSFULL = 37,
+	SS_FOCUSEMPTY = 38,
+	SS_STARTED_SPRINTING = 39,
+	SS_STARTED_SNEAKING = 40,
+	SS_TOOK_COVER = 41,
+	SS_INVESTIGATE_CURIOUS = 42,
+	SS_GENERIC_PICKUP = 43,
+	SS_ATTENTION_ON = 44,
+	SS_ATTENTION_OFF = 45,
+	SS_DEADBODY_SEEN = 46,
+	SS_TARGET_EVACUATES = 47,
+	SS_UNKNOWN_BODY_SPOTTED = 48,
 };
 
-// 0x0000000142A985B0 (Size: 0x4)
-enum class ECharacterAnimChildNetworkSlot
+// 0x0000000142AEE5B0 (Size: 0x4)
+enum class EAudioVolumetricMixingMode
 {
-	eCACNS_None = 0,
-	eCACNS_FlavorIdle_FB = 1,
-	eCACNS_FlavorIdle_RH = 2,
-	eCACNS_FlavorIdle_LH = 3,
-	eCACNS_Interaction_RH = 4,
-	eCACNS_Interaction_LH = 5,
+	AUDIO_VOLUMETRIC_MIXING_MAX_ALL = 0,
+	AUDIO_VOLUMETRIC_MIXING_MAX_3D = 1,
+	AUDIO_VOLUMETRIC_MIXING_ADD = 2,
 };
 
-// 0x0000000142A976A0 (Size: 0x4)
-enum class EDetachUsage
+// 0x0000000142AFBB90 (Size: 0x4)
+enum class ESyncEvent
 {
-	EDU_NEVER = 0,
-	EDU_ALWAYS = 1,
-	EDU_RAGDOLL_ONLY = 2,
+	eSyncEvent_None = 0,
+	eSyncEvent_LeftFoot = 100,
+	eSyncEvent_RightFoot = 200,
+	eSyncEvent_BothFeet = 300,
 };
 
-// 0x0000000142A9AD50 (Size: 0x1C)
-class SCondition_CanArrestReasonEscalateTo :
+// 0x0000000142AA82E0 (Size: 0x20)
+class SCondition_IsItemIllegalOnHitman :
 	public SConditionBase
 {
 public:
@@ -5064,1037 +10113,52 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable targets; // 0x10
-	EAIEventType reason; // 0x18
+	ZBehaviorTreeVariable item; // 0x10
+	ZBehaviorTreeVariable actor; // 0x18
 };
 
-// 0x0000000142A9FF88 (Size: 0x8)
-class IContractEvaluationContextListener
+// 0x0000000142AA4230 (Size: 0x1C)
+class SMathMultiplyDivideSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	SVector3 m_fA; // 0x0
+	SVector3 m_fB; // 0xC
+	bool m_bDivide; // 0x18
 };
 
-// 0x0000000142A9F998 (Size: 0x268)
-class ZChallengesManager :
-	public IComponentInterface,
-	public IContractEvaluationContextListener
+// 0x0000000142AA26B8 (Size: 0x30)
+class SMathMultipliesSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
 };
 
-// 0x0000000142AA4C20 (Size: 0xA0)
-class SWeaponStatusUIData
+// 0x0000000142AF0760 (Size: 0x4)
+enum class ETeamModeId
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZRuntimeResourceID icon; // 0x0
-	ZRuntimeResourceID containedIcon; // 0x8
-	ZString sWeaponName; // 0x10
-	ZString sContainedItemName; // 0x20
-	int32 nWeaponType; // 0x30
-	int32 nItemHUDType; // 0x34
-	int32 nAmmoRemaining; // 0x38
-	int32 nAmmoTotal; // 0x3C
-	int32 nAmmoInClip; // 0x40
-	bool bSilenced; // 0x44
-	bool bIsFirearm; // 0x45
-	bool bHolstered; // 0x46
-	bool bCannotBeHolstered; // 0x47
-	bool bHasItemToShow; // 0x48
-	bool bSuspicious; // 0x49
-	bool bIllegal; // 0x4A
-	bool bCanReload; // 0x4B
-	bool bIsReloading; // 0x4C
-	float32 fReloadDuration; // 0x50
-	bool bInfiniteAmmo; // 0x54
-	bool bIsContainer; // 0x55
-	bool bContainsItem; // 0x56
-	int32 nContainedItemHUDType; // 0x58
-	bool bContainedItemIllegal; // 0x5C
-	bool bContainedItemSuspicious; // 0x5D
-	bool bContainedItemDetectedDuringFrisk; // 0x5E
-	float32 fLastBulletFiredTime; // 0x60
-	float32 fTimeBetweenBullets; // 0x64
-	TArray<ZString> aPerks; // 0x68
-	TArray<ZString> aAmmoTypes; // 0x80
-	uint32 nCurrentAmmoType; // 0x98
-};
-
-// 0x0000000142AF48B8 (Size: 0x1)
-enum class EDestructibleInteractionType
-{
-	eDIT_SHOT = 0,
-	eDIT_EXPLOSION = 1,
-	eDIT_COLLISION = 2,
-	eDIT_FRACTURE_AND_DETACH_ALL = 3,
-	eDIT_OUT_OF_WORLD = 4,
-	eDIT_COUNT = 5,
-};
-
-// 0x0000000142AB20D8 (Size: 0x4)
-enum class EItemPoisonType
-{
-	POISONTYPE_NONE = 0,
-	POISONTYPE_LETHAL = 1,
-	POISONTYPE_SEDATIVE = 2,
-	POISONTYPE_EMETIC = 3,
-};
-
-// 0x0000000142A951D8 (Size: 0x4)
-enum class EHM5SoundCloseCombatEvent
-{
-	ECCE_PUNCH_FACE = 0,
-	ECCE_PUNCH_BODY = 1,
-	ECCE_ATTACK_ELBOW = 2,
-	ECCE_ATTACK_KNEE = 3,
-	ECCE_ATTACK_KICK = 4,
-	ECCE_SWOOSH_SHORT = 5,
-	ECCE_SWOOSH_LONG = 6,
-	ECCE_CLOTH_SWOOSH = 7,
-	ECCE_CLOTH_RUSTLE = 8,
-	ECCE_CLOTH_STRETCH = 9,
-	ECCE_GRAB = 10,
-	ECCE_BONE_BREAK = 11,
-	ECCE_NECK_SNAP = 12,
-	ECCE_BODY_FALL = 13,
-	ECCE_SKULL_CRACK = 14,
-	ECCE_ANY = 15,
-};
-
-// 0x0000000142A9AE10 (Size: 0x18)
-class SCondition_CombatSituationsStandingDown :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_CombatSituations; // 0x10
-};
-
-// 0x0000000142A92750 (Size: 0x4)
-enum class EVRConfigCinemaMode
-{
-	EVRCCM_CinemaModeEnabled60FPS = 0,
-	EVRCCM_CinemaModeEnabled = 1,
-	EVRCCM_CinemaModeDisabled = 2,
-	EVRCCM_KeepCurrent = 3,
-};
-
-// 0x0000000142AB1E80 (Size: 0x4)
-enum class EItemModifierType
-{
-	MODIFIER_NONE = 0,
-	MODIFIER_THROW = 1,
-	MODIFIER_CARRY = 2,
-	MODIFIER_AMMO = 3,
-	MODIFIER_PRECISION = 4,
-	MODIFIER_DAMAGE = 5,
-	MODIFIER_IMPACT = 6,
-	MODIFIER_EXPLOSIVE = 7,
-	MODIFIER_RANGE = 8,
-	MODIFIER_ZOOM = 9,
-	MODIFIER_SUPPRESSOR = 10,
-	MODIFIER_RECOIL = 11,
-	MODIFIER_RATEOFFIRE = 12,
-	MODIFIER_SCOPEBOBBING = 13,
-	MODIFIER_MUZZLEVELOCITY = 14,
-	MODIFIER_KNOCKDOWN = 15,
-	MODIFIER_FULLAUTO = 16,
-	MODIFIER_PRECISIONSHOT = 17,
-	MODIFIER_SCOPETIMESLOWDOWN = 18,
-	MODIFIER_STYLE = 19,
-	MODIFIER_RELOAD = 20,
-	MODIFIER_THRESHOLD = 21,
-	MODIFIER_PERK = 22,
-	MODIFIER_MAGAZINE = 23,
-	MODIFIER_BURST = 24,
-};
-
-// 0x0000000142A8E130 (Size: 0x8)
-class SMovementDisguiseSafeZoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rSafeZone; // 0x0
-	uint32 m_nSafeZoneAnimNode; // 0x4
-};
-
-// 0x0000000142A9B830 (Size: 0x20)
-class SCondition_MaxSharedEventExpired :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAISharedEventType type; // 0x18
-	float32 time; // 0x1C
-};
-
-// 0x0000000142A99460 (Size: 0x8)
-class IScreenplayContext :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9DCE0 (Size: 0x4)
-enum class ESmartBehaviorOrder
-{
-	SBO_Stand = 0,
-	SBO_Move = 1,
-	SBO_React = 2,
-	SBO_Act = 3,
-	SBO_MoveToAct = 4,
-	SBO_MoveToCover = 5,
-	SBO_ShootFromCover = 6,
-	SBO_Death = 7,
-	SBO_Teleport = 8,
-};
-
-// 0x0000000142A8D760 (Size: 0x4)
-enum class EScreenplayStateFlag
-{
-	eSSF_DEFAULT = 0,
-	eSSF_ENABLED = 1,
-	eSSF_CAST = 2,
-	eSSF_RESUMING = 4,
-	eSSF_RUNNING = 8,
-	eSSF_DONE = 16,
-	eSSF_TERMINATED = 32,
-};
-
-// 0x0000000142A7A228 (Size: 0x4)
-enum class ERayLayer
-{
-	eRayLayer_COLLIDE_WITH_ALL = 0,
-	eRayLayer_CAMERA_COLI = 1,
-	eRayLayer_CAMERA_COLI_CAMERA_OBSTACE_ONLY = 2,
-	eRayLayer_HERO_FIRE = 3,
-	eRayLayer_ACTOR_FIRE = 4,
-	eRayLayer_ACTOR_LINE_OF_FIRE = 5,
-	eRayLayer_FOOTSTEPS_COLI = 7,
-	eRayLayer_BLOODSPLATDECAL_COLI = 8,
-	eRayLayer_COLLIDE_WITH_STATIC = 9,
-	eRayLayer_COLLIDE_WITH_STATIC_EXCL_TRANSPARENT = 10,
-	eRayLayer_PARTICLES = 11,
-	eRayLayer_COVERSEARCH = 12,
-	eRayLayer_ACTOR_VISIBILITY = 13,
-	eRayLayer_ACTOR_VISIBILITY_AMBIENT = 14,
-	eRayLayer_PICKUP = 16,
-	eRayLayer_HERO_PROXY = 17,
-	eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE = 19,
-	eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE_EXCL_TRANSPARENT = 20,
-	eRayLayer_HERO_PROXY_NO_VOLUMES = 22,
-	eRayLayer_PHYSICS_MANIPULATOR = 23,
-	eRayLayer_UNUSED_LAST = 24,
-};
-
-// 0x0000000142A8C150 (Size: 0x2)
-class SRepositionOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bStrafe; // 0x0
-	bool m_bAimAtTarget; // 0x1
-};
-
-// 0x0000000142AF3328 (Size: 0x4)
-enum class EMultiplayerLobbyRequestType
-{
-	LOBBY_REQUEST_VOID = 0,
-	LOBBY_REQUEST_IDLE = 1,
-	LOBBY_REQUEST_CREATE = 2,
-	LOBBY_REQUEST_CREATE_LOCALHOST = 3,
-	LOBBY_REQUEST_JOIN = 4,
-};
-
-// 0x0000000142A8BBC8 (Size: 0x4)
-enum class EExclusionLayer
-{
-	EL_NONE = 0,
-	EL_STORY = 1,
-	EL_AMBIENT = 2,
-};
-
-// 0x0000000142A98E50 (Size: 0x4)
-enum class ESynchronisedActionState
-{
-	eSAS_INACTIVE = 0,
-	eSAS_WAITING_TO_EXECUTE = 1,
-	eSAS_COOLINGDOWN = 2,
-};
-
-// 0x0000000142AE37E0 (Size: 0x4)
-enum class ECppTypeFlags
-{
-	EDITOR_ONLY = 1,
-	EDITOR_ONLY_CRITICAL = 2,
-	RESETABLE = 4,
-	RESETABLE_COND = 8,
-	RESETABLE_STATIC = 16,
-};
-
-// 0x0000000142A9B320 (Size: 0x18)
-class SCondition_IsActorDeafBlind :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_Actors; // 0x10
-};
-
-// 0x0000000142AA98A0 (Size: 0x4)
-enum class ELedgeDismountBehavior
-{
-	eLDB_DontCare = 0,
-	eLDB_Stand = 1,
-	eLDB_Crouch = 2,
-};
-
-// 0x0000000142A94200 (Size: 0x4)
-enum class ECoverPosition
-{
-	COVER_POSITION_NONE = 0,
-	COVER_POSITION_LEFT = 1,
-	COVER_POSITION_RIGHT = 2,
-	COVER_POSITION_MIDDLE = 3,
-};
-
-// 0x000000014210ABD0 (Size: 0x10)
-class ZGuid
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 _a; // 0x0
-	uint16 _b; // 0x4
-	uint16 _c; // 0x6
-	uint8 _d; // 0x8
-	uint8 _e; // 0x9
-	uint8 _f; // 0xA
-	uint8 _g; // 0xB
-	uint8 _h; // 0xC
-	uint8 _i; // 0xD
-	uint8 _j; // 0xE
-	uint8 _k; // 0xF
-};
-
-// 0x000000014210ABB8 (Size: 0x10)
-class ZRepositoryID :
-	public ZGuid
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AACFE0 (Size: 0x20)
-class SActivity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZGuid id; // 0x0
-	ZString activityId; // 0x10
-};
-
-// 0x0000000142AAD028 (Size: 0x38)
-class SActivityExits
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SActivity activity; // 0x0
-	TArray<ZString> exits; // 0x20
-};
-
-// 0x0000000142A7A210 (Size: 0x4)
-enum class ECollidableLayer
-{
-	eCollLayer_COLLIDE_WITH_ALL = 0,
-	eCollLayer_STATIC_COLLIDABLES_ONLY = 1,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY = 2,
-	eCollLayer_STAIRS = 3,
-	eCollLayer_SHOT_ONLY_COLLISION = 4,
-	eCollLayer_DYNAMIC_TRASH_COLLIDABLES = 5,
-	eCollLayer_KINEMATIC_COLLIDABLES_ONLY = 6,
-	eCollLayer_STATIC_COLLIDABLES_ONLY_TRANSPARENT = 7,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_TRANSPARENT = 8,
-	eCollLayer_KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT = 9,
-	eCollLayer_STAIRS_STEPS = 10,
-	eCollLayer_STAIRS_SLOPE = 11,
-	eCollLayer_HERO_PROXY = 12,
-	eCollLayer_ACTOR_PROXY = 13,
-	eCollLayer_HERO_VR = 14,
-	eCollLayer_CLIP = 15,
-	eCollLayer_ACTOR_RAGDOLL = 16,
-	eCollLayer_CROWD_RAGDOLL = 17,
-	eCollLayer_LEDGE_ANCHOR = 18,
-	eCollLayer_ACTOR_DYN_BODY = 19,
-	eCollLayer_HERO_DYN_BODY = 20,
-	eCollLayer_ITEMS = 21,
-	eCollLayer_WEAPONS = 22,
-	eCollLayer_COLLISION_VOLUME_HITMAN_ON = 23,
-	eCollLayer_COLLISION_VOLUME_HITMAN_OFF = 24,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER = 25,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER_TRANSPARENT = 26,
-	eCollLayer_COLLIDE_WITH_STATIC_ONLY = 27,
-	eCollLayer_AI_VISION_BLOCKER = 28,
-	eCollLayer_AI_VISION_BLOCKER_AMBIENT_ONLY = 29,
-	eCollayer_UNUSED_LAST = 30,
-};
-
-// 0x0000000142AA98B8 (Size: 0x4)
-enum class ELedgeDismountDirection
-{
-	eLDD_DontCare = 0,
-	eLDD_FaceLedge = 1,
-	eLDD_FaceLeft = 2,
-	eLDD_FaceRight = 3,
-	eLDD_Turn180 = 4,
-};
-
-// 0x0000000142AB41B0 (Size: 0x8)
-class SValueBoolDelayedEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bValue; // 0x0
-	bool m_bWaitingValue; // 0x1
-	float32 m_fTimeToNextEvent; // 0x4
-};
-
-// 0x0000000142A9B4E8 (Size: 0x18)
-class SCondition_IsInSniperIsland :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a0; // 0x10
-};
-
-// 0x0000000142A9DCF8 (Size: 0x4)
-enum class ESmartWaitCondition
-{
-	SWC_Time = 0,
-	SWC_Distance = 1,
-	SWC_Executing = 2,
-	SWC_Executed = 3,
-};
-
-// 0x0000000142AED650 (Size: 0x4)
-enum class ERegionId
-{
-	RegionId_Default = 0,
-	RegionId_Japan = 1,
-	RegionId_Asia = 2,
-};
-
-// 0x0000000142A997F0 (Size: 0x4)
-enum class EUIActionGroupIcon
-{
-	EUIAGI_NoIcon = 0,
-	EUIAGI_GenericTool = 1,
-	EUIAGI_Crowbar = 2,
-	EUIAGI_Wrench = 3,
-	EUIAGI_Screwdriver = 4,
-	EUIAGI_ExplosiveDevice = 5,
-	EUIAGI_Poison = 6,
-	EUIAGI_Coin = 7,
-	EUIAGI_Lockpick = 8,
-	EUIAGI_LockpickElectic = 9,
-	EUIAGI_Card = 10,
-	EUIAGI_Key = 11,
-	EUIAGI_Password = 12,
-	EUIAGI_SAPIENZA_GolfBall = 13,
-	EUIAGI_SAPIENZA_ChemicalTube = 14,
-	EUIAGI_SAPIENZA_FlowBouquet = 15,
-	EUIAGI_SAPIENZA_Ammunitions = 16,
-	EUIAGI_RatFood = 17,
-	EUIAGI_Gunpowder = 18,
-	EUIAGI_Cannonball = 19,
-	EUIAGI_FuguFish = 20,
-	EUIAGI_CakeTopper = 21,
-	EUIAGI_Knife = 22,
-	EUIAGI_SpaghettiCan = 23,
-	EUIAGI_MAX = 24,
-};
-
-// 0x0000000142AB1E38 (Size: 0x4)
-enum class ESilenceRating
-{
-	eSR_NotSilenced = 0,
-	eSR_Silenced = 1,
-	eSR_SuperSilenced = 2,
-	eSR_CompletelySilenced = 3,
-};
-
-// 0x0000000142A90620 (Size: 0x4)
-enum class EScreenAnchor
-{
-	SCREEN_ANCHOR_TOP_LEFT = 0,
-	SCREEN_ANCHOR_TOP_CENTER = 1,
-	SCREEN_ANCHOR_TOP_RIGHT = 2,
-	SCREEN_ANCHOR_MIDDLE_LEFT = 3,
-	SCREEN_ANCHOR_MIDDLE_CENTER = 4,
-	SCREEN_ANCHOR_MIDDLE_RIGHT = 5,
-	SCREEN_ANCHOR_BOTTOM_LEFT = 6,
-	SCREEN_ANCHOR_BOTTOM_CENTER = 7,
-	SCREEN_ANCHOR_BOTTOM_RIGHT = 8,
-};
-
-// 0x0000000142A946B0 (Size: 0x28)
-class SAIModifierServiceActorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActorRef; // 0x0
-	bool m_bNeedsVolumeUpdate; // 0x4
-	bool m_bNeedsKnowledgeUpdate; // 0x5
-	uint32 m_uiModVolume; // 0x8
-	uint32 m_uiModBehavior; // 0xC
-	uint32 m_uiModRole; // 0x10
-	uint32 m_uiModItem; // 0x14
-	uint32 m_uiModSituation; // 0x18
-	uint32 m_uiModOutfit; // 0x1C
-	uint32 m_uiModOverride; // 0x20
-	uint32 m_uiModStatus; // 0x24
-};
-
-// 0x0000000142A92118 (Size: 0x20)
-class SAIModifierServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bFullVolumeUpdate; // 0x0
-	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
-};
-
-// 0x0000000142AA1B10 (Size: 0x4)
-enum class EGameUIMenu
-{
-	eUIMenu_IntroMenu = 0,
-	eUIMenu_PauseMenu = 1,
-	eUIMenu_PhoneMenu = 2,
-	eUIMenu_MapMenu = 3,
-	eUIMenu_ModalDialogMenu = 4,
-	eUIMenu_GameplayMenu = 5,
-	eUIMenu_InventorySelectorMenu = 6,
-	eUIMenu_ActionSelectorMenu = 7,
-	eUIMenu_ActionSelectorInventoryMenu = 8,
-	eUIMenu_IntelSelectorMenu = 9,
-	eUIMenu_NotebookMenu = 10,
-	eUIMenu_LogbookMenu = 11,
-	eUIMenu_TutorialMenu = 12,
-	eUIMenu_SplashHintMenu = 13,
-	eUIMenu_EmoteMenu = 14,
-	eUIMenu_Count = 15,
-};
-
-// 0x0000000142A970B0 (Size: 0x8)
-class SActorSpreadTransitionOperatorMaterialActorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_Actor; // 0x0
-	float32 m_fOpacity; // 0x4
-};
-
-// 0x0000000142A8DED0 (Size: 0x18)
-class SActorSpreadTransitionOperatorMaterialSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SActorSpreadTransitionOperatorMaterialActorSaveData> m_aActorMaterialOverrides; // 0x0
-};
-
-// 0x0000000143E5F408 (Size: 0x1)
-enum class EValueUpdateStrategy
-{
-	UPDATE_STRATEGY_REPLACE = 0,
-	UPDATE_STRATEGY_ADD_TO = 1,
-	UPDATE_STRATEGY_MULTIPLY = 2,
-};
-
-// 0x0000000142A90660 (Size: 0x14)
-class SSpatialMoverEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fSpeed; // 0x0
-	SVector3 m_vPosition; // 0x4
-	bool m_bEnabled; // 0x10
-	bool m_bBackwards; // 0x11
-	bool m_bIsFrameUpdateRegistered; // 0x12
-};
-
-// 0x0000000142AA5058 (Size: 0x2)
-class SLayerBehaviorConfiguration
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bTrigger; // 0x0
-	bool m_bCollector; // 0x1
-};
-
-// 0x0000000142A97E60 (Size: 0x4)
-enum class EOnlineEventInvestigationType
-{
-	OEIT_Generic = 0,
-	OEIT_HearBulletImpact = 1,
-	OEIT_HearFootsteps = 2,
-	OEIT_CarAlarm = 3,
-	OEIT_HearBark = 4,
-	OEIT_HearPain = 5,
-	OEIT_HearRadio = 6,
-	OEIT_HearItemToss = 7,
-	OEIT_SeeItemToss = 8,
-	OEIT_HearAccident = 9,
-	OEIT_CuriousSound = 10,
-	OEIT_CuriousItemSound = 11,
-	OEIT_SeeWeapon = 12,
-	OEIT_SeeItem = 13,
-	OEIT_Perceptible = 14,
-	OEIT_Toss = 15,
-	OEIT_CrowdCurious = 16,
-	OEIT_CameraDefect = 17,
-};
-
-// 0x0000000142A82EC8 (Size: 0x4)
-enum class EDeathBehavior
-{
-	eDB_IMPACT_ANIM = 0,
-	eDB_NO_IMPACT_ANIM = 1,
-	eDB_NO_VELOCITY = 2,
-	eDB_NO_RAGDOLL = 3,
-};
-
-// 0x0000000143E62E20 (Size: 0x4)
-enum class EFontFlags
-{
-	FV_Original = 16,
-	FV_NoAutoFit = 32,
-	FV_Normal = 0,
-	FV_Italic = 1,
-	FV_Bold = 2,
-	FV_BoldItalic = 3,
-	FV_FauxItalic = 4,
-	FV_FauxBold = 8,
-	FV_FauxBoldItalic = 12,
-};
-
-// 0x0000000142A9A720 (Size: 0x8)
-class IActorProvider
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB4630 (Size: 0x4)
-enum class ETargetPrintDestination
-{
-	eTPD_Screen = 0,
-	eTPD_TraceViewer = 1,
-};
-
-// 0x0000000142A984F0 (Size: 0x4)
-enum class EAimAssistActivationState
-{
-	eAAAS_Activated = 0,
-	eAAAS_Activating = 1,
-	eAAAS_Deactivated = 2,
-	eAAAS_Deactivating = 3,
-};
-
-// 0x0000000142A8E8F0 (Size: 0x4)
-enum class ECharacterActionSyncRequests
-{
-	eSM_ASR_Reload = 1,
-	eSM_ASR_SwapItemHandL = 2,
-	eSM_ASR_SwapItemHandR = 4,
-};
-
-// 0x0000000142AE25A8 (Size: 0x8)
-class IColorCorrectionCurvesEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7B6F8 (Size: 0x4)
-enum class EActionType
-{
-	AT_INVALID = 0,
-	AT_OPENDOOR = 1,
-	AT_CLOSEDOOR = 2,
-	AT_PICKUP = 4,
-	AT_GENERIC = 8,
-	AT_REMOTE = 16,
-	AT_OUTFIT = 32,
-	AT_CLOTHBUNDLE = 64,
-	AT_DRAGBODY = 128,
-	AT_RETRIEVE_ITEM_FROM_CONTAINER = 256,
-	AT_HERO_MOVEMENT = 1024,
-	AT_SWAPITEM = 2048,
-	AT_DUMPBODY = 4096,
-	AT_COUP_DE_GRACE = 8192,
-	AT_INTERACTION_GROUP = 16384,
-	AT_USE_NORMAL = 32768,
-	AT_STASHPOINT_PICKUP = 65536,
-	AT_ENTERCLOSET = 131072,
-	AT_EXITCLOSET = 262144,
-	AT_ENTERSAFEZONE = 524288,
-	AT_EXITSAFEZONE = 1048576,
-	AT_CANCEL = 2097152,
-	AT_CONTAINERFLUSHBODY = 4194304,
-	AT_PLACE_ITEM_IN_CONTAINER = 16777216,
-	AT_USE_DOWN = 33554432,
-	AT_USE_HOLD = 67108864,
-	AT_CONTEXTACTION = 134217728,
-	AT_INTERRUPTIBLE_TAP = 268435456,
-	AT_ITEMCONTAINER = 536870912,
-	AT_USE_QUICK = 1073741824,
-	AT_ITEM_INTERACTION = -2147483648,
-};
-
-// 0x0000000142A968A0 (Size: 0x4)
-enum class EHUDIconType
-{
-	HUD_ICON_NONE = 0,
-	HUD_ICON_ALARM_TIMER = 1,
-	HUD_ICON_CLOSECOMBAT = 2,
-	HUD_ICON_BREADCRUMB = 3,
-	HUD_ICON_EXIT = 4,
-	HUD_ICON_OBJECTIVE = 5,
-	HUD_ICON_TARGET = 6,
-	HUD_ICON_TUTORIAL_ARROW = 7,
-};
-
-// 0x0000000142AE3360 (Size: 0x4)
-enum class ENamedGameEvents
-{
-	eEvent_IntroCutStart = 0,
-	eEvent_PlayingAfterLoad = 1,
-	eEvent_SetModePlaying = 2,
-	eNumNamedGameEvents = 3,
-};
-
-// 0x0000000142A93320 (Size: 0x8)
-class IAISoundEventModifier :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A96C98 (Size: 0x4)
-enum class ECCEmitterEffect
-{
-	eCCEmitterEffect_None = 0,
-	eCCEmitterEffect_Stab = 1,
-	eCCEmitterEffect_Blunt1H = 2,
-	eCCEmitterEffect_Blunt2H = 3,
-	eCCEmitterEffect_Slash1H = 4,
-	eCCEmitterEffect_Shatter = 5,
-	eCCEmitterEffect_AxeCleave = 6,
-	eCCEmitterEffect_AxePull = 7,
-	eCCEmitterEffect_AxeSlitThroat = 8,
-	eCCEmitterEffect_SlitThroat = 9,
-	eCCEmitterEffect_FacePunch = 10,
-	eCCEmitterEffect_Blood = 11,
-};
-
-// 0x0000000142A7A780 (Size: 0x60)
-class ZPatrolOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF3358 (Size: 0x4)
-enum class EReplicaOperation
-{
-	E_Created = 0,
-	E_Destroyed = 1,
-};
-
-// 0x000000014210A950 (Size: 0x24)
-class SMatrix33
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 XAxis; // 0x0
-	SVector3 YAxis; // 0xC
-	SVector3 ZAxis; // 0x18
-};
-
-// 0x0000000142A8BF70 (Size: 0xA0)
-class ZActOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA53C0 (Size: 0x4)
-enum class EViewportLock
-{
-	VPL_None = 0,
-	VPL_Rectangular = 1,
-	VPL_Rectangular_AvoidMinimapOverlap = 2,
+	TeamMode_Coop = 0,
+	TeamMode_Versus = 1,
 };
 
-// 0x0000000142A97390 (Size: 0x1C)
-class SMathLerpSaveData_SColorRGB
+// 0x0000000142AFBB18 (Size: 0x4)
+enum class EAnimBlendMode
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SColorRGB m_A; // 0x0
-	SColorRGB m_B; // 0xC
-	float32 m_fT; // 0x18
-};
-
-// 0x0000000142AE3348 (Size: 0x4)
-enum class EActivationPriority
-{
-	eActivatable_First = 0,
-	eActivatable_PlayModeAddedPhysics = 1,
-	eActivatable_DestructiblePhysics = 2,
-	eActivatable_PhysicsWind = 3,
-	eActivatable_Physics = 4,
-	eActivatable_PhysicsDone = 5,
-	eActivatable_Keywords = 6,
-	eActivatable_EventChannel = 7,
-	eActivatable_Items = 8,
-	eActivatable_Actor = 9,
-	eActivatable_Hitman = 10,
-	eActivatable_AnimPlayer = 11,
-	eActivatable_Sequence = 12,
-	eActivatable_SpawnPoint = 13,
-	eActivatable_CoverPlane = 14,
-	eActivatable_GuardPoint = 15,
-	eActivatable_Guide = 16,
-	eActivatable_CombatAct = 17,
-	eActivatable_CombatAttractor = 18,
-	eActivatable_SequenceController = 19,
-	eActivatable_KnownEntityAspects = 20,
-	eActivatable_AIReasoningGrid = 21,
-	eActivatable_HM5Zone = 22,
-	eActivatable_Crowds = 23,
-	eActivatable_ChildNetworkAct = 24,
-	eActivatable_Door = 25,
-	eActivatable_UI_Setup = 26,
-	eActivatable_NormalGameplay = 27,
-	eActivatable_NormalGameplay_Condition = 28,
-	eActivatable_NormalGameplay_Values = 29,
-	eActivatable_NormalGameplay_State = 30,
-	eActivatable_HeroSpawns = 31,
-	eActivatable_UI = 32,
-	eActivatable_Locomotion = 33,
-	eActivatable_Timers = 34,
-	eActivatable_AreaTriggers = 35,
-	eActivatable_Default = 36,
-	eActivatable_GameEventListener = 37,
-	eLAST_ACTIVATION_PRIORITY = 38,
-};
-
-// 0x0000000142AE15D0 (Size: 0x1)
-enum class AudioCurve
-{
-	AudioCurve_Log3 = 0,
-	AudioCurve_Sine = 1,
-	AudioCurve_Log1 = 2,
-	AudioCurve_InvSCurve = 3,
-	AudioCurve_Linear = 4,
-	AudioCurve_SCurve = 5,
-	AudioCurve_Exp1 = 6,
-	AudioCurve_SineRecip = 7,
-	AudioCurve_Exp3 = 8,
-	AudioCurve_LastFadeCurve = 9,
-	AudioCurve_Constant = 10,
-};
-
-// 0x0000000143E60F30 (Size: 0x4)
-enum class ESaveType
-{
-	ESaveType_AutoSave = 0,
-	ESaveType_QuickSave = 1,
-	ESaveType_SystemData = 2,
-	ESaveType_LocalProfile = 3,
-};
-
-// 0x0000000142AE38A0 (Size: 0x8)
-class IEngineMode :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A82F48 (Size: 0x4)
-enum class EAIGoal
-{
-	AIG_Kill = 0,
-	AIG_Arrest = 1,
-	AIG_FightSniper = 2,
-	AIG_HelpCivilian = 3,
-	AIG_HelpCivilianWeapon = 4,
-	AIG_Investigate = 5,
-	AIG_InvestigateDisguise = 6,
-	AIG_StandOffInvestigateDisguise = 7,
-	AIG_InvestigateDeadBody = 8,
-	AIG_HandleTrespasser = 9,
-	AIG_InvestigateCautious = 10,
-	AIG_HandleDistraction = 11,
-	AIG_AssistDistraction = 12,
-	AIG_GuardAssistDistraction = 13,
-	AIG_HandleSuitcase = 14,
-	AIG_InvestigateWeapon = 15,
-	AIG_DetectedInPrivate = 16,
-	AIG_RecoverUnconscious = 17,
-	AIG_RecoverUnconsciousAlerted = 18,
-	AIG_DeliverWeapon = 19,
-	AIG_AvoidExplosion = 20,
-	AIG_Hunt = 21,
-	AIG_Frisk = 22,
-	AIG_GuardBody = 23,
-	AIG_DragBody = 24,
-	AIG_LookAtAccident = 25,
-	AIG_Sentry = 26,
-	AIG_HelpGeneric = 27,
-	AIG_Evacuate = 28,
-	AIG_Entourage = 29,
-	AIG_AvoidDangerousArea = 30,
-	AIG_Spectator = 31,
-	AIG_Infected = 32,
-	AIG_SC_Combat = 33,
-	AIG_SC_Alerted = 34,
-	AIG_None = 35,
-};
-
-// 0x0000000142A8C978 (Size: 0x8)
-class ISecuritySystemDevice :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B938 (Size: 0x1C)
-class SCondition_ActorsNotInSituation :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ESituationType type; // 0x10
-	ZBehaviorTreeVariable actors; // 0x14
-};
-
-// 0x0000000142A79B10 (Size: 0x20)
-class ZHM5SequenceSkipManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
+	EAnimBlendMode_InterpAttInterpPos = 0,
+	EAnimBlendMode_InterpAttAddPos = 1,
+	EAnimBlendMode_AddAttLeavePos = 2,
+	EAnimBlendMode_AddAttAddPos = 3,
 };
 
-// 0x0000000142A905E0 (Size: 0x4)
+// 0x0000000142A9D3A0 (Size: 0x4)
 enum class EControlButtonName
 {
 	eCN_ABORT = 0,
@@ -6139,7 +10203,7 @@ enum class EControlButtonName
 	eCN_NO_ICON = 39,
 };
 
-// 0x00000001422CADB8 (Size: 0x8)
+// 0x00000001422D7B20 (Size: 0x8)
 class ITriggerVolume :
 	public IComponentInterface
 {
@@ -6150,18 +10214,8 @@ public:
 
 };
 
-// 0x0000000142A82D40 (Size: 0x4)
-enum class EActorGroup
-{
-	eAG_Group_A = 0,
-	eAG_Group_B = 1,
-	eAG_Group_C = 2,
-	eAG_Group_D = 3,
-	eAG_Count = 4,
-};
-
-// 0x0000000142A9B308 (Size: 0x18)
-class SCondition_IsActorRoleVIP :
+// 0x0000000142AA8268 (Size: 0x14)
+class SCondition_HasTension :
 	public SConditionBase
 {
 public:
@@ -6169,58 +10223,20 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable actor; // 0x10
+	EGameTension tension; // 0x10
 };
 
-// 0x00000001422C8F48 (Size: 0x28)
-class ZComponentCreator
+// 0x0000000142AA7AD0 (Size: 0x4)
+enum class EBehaviorTreeVariableType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sComponentName; // 0x0
-	TArray<ZVariant> m_aArgs; // 0x10
+	BTVT_Invalid = -1,
+	BTVT_SceneReference = 0,
+	BTVT_Contextual = 1,
+	BTVT_Dynamic = 2,
+	BTVT_NumTypes = 3,
 };
 
-// 0x0000000142AEEC70 (Size: 0x4)
-enum class ESyncEvent
-{
-	eSyncEvent_None = 0,
-	eSyncEvent_LeftFoot = 100,
-	eSyncEvent_RightFoot = 200,
-	eSyncEvent_BothFeet = 300,
-};
-
-// 0x0000000142A9B4B8 (Size: 0x20)
-class SCondition_IsItemIllegalOnHitman :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-	ZBehaviorTreeVariable actor; // 0x18
-};
-
-// 0x00000001422C8EA0 (Size: 0x10)
-class SColorRGBA
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 r; // 0x0
-	float32 g; // 0x4
-	float32 b; // 0x8
-	float32 a; // 0xC
-};
-
-// 0x0000000142A973B0 (Size: 0x24)
+// 0x0000000142AA41D0 (Size: 0x24)
 class SMathLerpSaveData_SColorRGBA
 {
 public:
@@ -6233,272 +10249,80 @@ public:
 	float32 m_fT; // 0x20
 };
 
-// 0x0000000142A95B98 (Size: 0x30)
-class SMathLerpsSaveData_SColorRGBA
+// 0x0000000142A8FCF8 (Size: 0x4)
+enum class EActorRank
+{
+	AR_Default = 0,
+	AR_Elite = 1,
+	AR_Cop = 2,
+	AR_Goon = 3,
+};
+
+// 0x0000000142AA4170 (Size: 0x1C)
+class SMathLerpSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
+	SVector3 m_A; // 0x0
+	SVector3 m_B; // 0xC
+	float32 m_fT; // 0x18
 };
 
-// 0x0000000142A97E00 (Size: 0x4)
-enum class EActorAIDot
+// 0x0000000142AA7140 (Size: 0x4)
+enum class EPersistentBoolDataSyncType
 {
-	eAAID_None = 0,
-	eAAID_Distracted = 1,
-	eAAID_PotentialThreat = 2,
-	eAAID_PotentialThreatDistracted = 3,
-	eAAID_Aggressive = 4,
-	eAAID_EscortingOut = 5,
-	eAAID_Fleeing = 6,
-	eAAID_Unconscious = 7,
-	eAAID_Stunned = 8,
-	eAAID_Grenade = 9,
-	eAAID_PotentialThreatDisabled = 100,
+	ePBDST_None = 0,
+	ePBDST_ServerAuthoritative = 1,
+	ePBDST_Full = 2,
 };
 
-// 0x0000000142A9B548 (Size: 0x18)
-class SCondition_AreVisibleWeaponsLegal :
-	public SConditionBase
+// 0x0000000142B02DB8 (Size: 0x4)
+enum class ESaveLoadStatus
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
+	ESaveLoadStatus_OK = 0,
+	ESaveLoadStatus_PROCESSING = 1,
+	ESaveLoadStatus_MISSING = 2,
+	ESaveLoadStatus_ERROR_NODISKSPACE = 3,
+	ESaveLoadStatus_ERROR_DEVICEREMOVED = 4,
+	ESaveLoadStatus_ERROR_CORRUPT = 5,
+	ESaveLoadStatus_ERROR_VERSION = 6,
+	ESaveLoadStatus_ERROR_TAMPERED = 7,
+	ESaveLoadStatus_ERROR_SAVING = 8,
+	ESaveLoadStatus_ERROR_FATAL = 9,
+	ESaveLoadStatus_ERROR_ONLINE = 10,
+	ESaveLoadStatus_ERROR_REQUIREMENTCHECK = 11,
+	ESaveLoadStatus_ERROR_VRMODE = 12,
+	ESaveLoadStatus_ERROR_INVALIDATED = 13,
 };
 
-// 0x0000000142A89FE8 (Size: 0x8)
-class ISoundGateController
+// 0x0000000142A99160 (Size: 0x4)
+enum class ESituationAvailability
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
+	ESA_AMBIENCE = 0,
+	ESA_AMBIENCE_RESV = 10000,
+	ESA_OVR_STANDING = 20000,
+	ESA_OVR_CURIOUS = 30000,
+	ESA_OVR_SENTRY = 40000,
+	ESA_OVR_CAUTIOUS = 50000,
+	ESA_OVR_COMBAT = 60000,
+	ESA_OVR_ALL = 70000,
 };
 
-// 0x0000000142A88B68 (Size: 0x8)
-class IHM5Door :
-	public ISoundGateController
+// 0x0000000142AA4AA0 (Size: 0x1)
+enum class EOrderCompletionStatus
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
+	OCS_Undetermined = 0,
+	OCS_Succeeded = 1,
+	OCS_Interrupted = 2,
+	OCS_Blocked = 3,
+	OCS_Failed = 4,
 };
 
-// 0x0000000142A988B0 (Size: 0x4)
-enum class ERatingTitleRequirement
-{
-	ERatingTitleRequirement_Optional = 0,
-	ERatingTitleRequirement_Required = 1,
-	ERatingTitleRequirement_Fails = 2,
-};
-
-// 0x0000000142A96F28 (Size: 0x10)
-class SSoundAmbienceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rCurrentAmbience; // 0x0
-	uint32 m_rCurrentGate; // 0x4
-	float32 m_fTransitionAmount; // 0x8
-	bool m_bEnteredFromSide0; // 0xC
-	bool m_bInTransition; // 0xD
-};
-
-// 0x0000000142AA5448 (Size: 0x8)
-class SComboDeviceBinding
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 type; // 0x0
-	uint32 button; // 0x4
-};
-
-// 0x0000000142A8C018 (Size: 0x70)
-class ZFleeOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A914F8 (Size: 0x4)
-enum class ECombatZoneState
-{
-	CZS_Inactive = 0,
-	CZS_Triggered = 1,
-	CZS_Engaged = 2,
-};
-
-// 0x0000000142A927C8 (Size: 0x4)
-enum class EVRIKElementMode
-{
-	EVRIKEM_Enabled = 0,
-	EVRIKEM_Disabled = 1,
-	EVRIKEM_KeepCurrent = 2,
-};
-
-// 0x0000000142A7B638 (Size: 0x4)
-enum class EObjectiveType
-{
-	OBJECTIVE_PRIMARY = 0,
-	OBJECTIVE_SECONDARY = 1,
-	OBJECTIVE_TERTIARY = 2,
-};
-
-// 0x0000000142A976C0 (Size: 0x2)
-class SShotListenerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-	bool m_bNPCShotProcessed; // 0x1
-};
-
-// 0x0000000142A96ED0 (Size: 0x4)
-enum class EWeaponUpgradeUse
-{
-	eWUU_PrimaryOnly = 0,
-	eWUU_SecondaryOnly = 1,
-	eWUU_AllFireModes = 2,
-};
-
-// 0x0000000142A93AC8 (Size: 0x18)
-class SLockdownManagerAIZoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZGameTime m_tExpiry; // 0x0
-	ZGameTime m_tExpiryHeroOutside; // 0x8
-	uint32 m_rZone; // 0x10
-};
-
-// 0x0000000142AA5260 (Size: 0x4)
-enum class EMarkerClipAlgorithm
-{
-	MCA_NONE = 0,
-	MCA_SIMPLE = 1,
-	MCA_ADVANCED = 2,
-};
-
-// 0x0000000142A795B8 (Size: 0x8)
-class IBoneCollidable
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CA4D0 (Size: 0x4)
-enum class EGameTension
-{
-	EGT_Undefined = 0,
-	EGT_Ambient = 1,
-	EGT_Agitated = 2,
-	EGT_Searching = 3,
-	EGT_AlertedLow = 4,
-	EGT_AlertedHigh = 5,
-	EGT_Hunting = 6,
-	EGT_Arrest = 7,
-	EGT_Combat = 8,
-};
-
-// 0x0000000142A79DA0 (Size: 0x10)
-class SActorInventoryItemSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rItem; // 0x0
-	EAttachLocation m_eAttachLocation; // 0x4
-	EGameTension m_eMaxTension; // 0x8
-	bool m_bLeftHand; // 0xC
-	bool m_bWeapon; // 0xD
-	bool m_bGrenade; // 0xE
-};
-
-// 0x0000000142A79DD0 (Size: 0x18)
-class SActorInventorySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
-};
-
-// 0x0000000142A94540 (Size: 0x4)
-class SActorProxySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000142A79E58 (Size: 0x4)
-enum class EKnownEntityType
-{
-	KET_UNKNOWN = 0,
-	KET_HITMAN = 1,
-	KET_ACTOR = 2,
-	KET_ITEM = 3,
-	KET_LOCATION = 4,
-	KET_OBJECT = 5,
-	KET_COVER = 6,
-	KET_PERCEPTIBLE = 7,
-	KET_TEMPCROWDBODY = 8,
-};
-
-// 0x0000000142A92870 (Size: 0x30)
-class SSniperScoringEvent
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_iPoints; // 0x0
-	int32 m_iPlayer; // 0x4
-	ZString m_sName; // 0x8
-	ZString m_sText; // 0x18
-	int32 m_iType; // 0x28
-	uint8 m_iScoringMachine; // 0x2C
-};
-
-// 0x0000000142A8CE88 (Size: 0x8)
-class IScreenplayListener :
+// 0x0000000143CEB9D8 (Size: 0x8)
+class IRoomEntity :
 	public IComponentInterface
 {
 public:
@@ -6508,1263 +10332,15 @@ public:
 
 };
 
-// 0x0000000142A97DA0 (Size: 0x4)
-enum class EAIFormationMemberSpeed
+// 0x0000000142A9D468 (Size: 0x4)
+enum class EEntityOrdering
 {
-	eFMS_Slow = 0,
-	eFMS_Normal = 1,
-	eFMS_Fast = 2,
+	EO_LOW = 0,
+	EO_NORMAL = 1,
+	EO_HIGH = 2,
 };
 
-// 0x0000000143F111C0 (Size: 0x20)
-class ZAMDEvent
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nEventID; // 0x0
-	float32 m_fStartFraction; // 0x4
-	float32 m_fDuration; // 0x8
-	ZVariant m_customData; // 0x10
-};
-
-// 0x0000000143F111F0 (Size: 0x28)
-class ZAMDEventTrack
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sName; // 0x0
-	TArray<ZAMDEvent> m_events; // 0x10
-};
-
-// 0x0000000143F11220 (Size: 0x30)
-class ZAMDTake
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
-	ZVariant m_customData; // 0x18
-	int32 m_nSyncTrackIndex; // 0x28
-};
-
-// 0x00000001422C9D00 (Size: 0x8)
-class ZEntityRef
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CAD70 (Size: 0x8)
-class IPhysicsAccessor :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB0AD0 (Size: 0x8)
-class IStaticPhysics :
-	public IPhysicsAccessor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E5FAF8 (Size: 0x4)
-enum class EVRRenderingMode
-{
-	VR_RENDER_MODE_2D_SCREEN = 0,
-	VR_RENDER_MODE_STEREO_3D = 1,
-};
-
-// 0x0000000142A982B0 (Size: 0x4)
-enum class ECharacterFullBodyStateType
-{
-	eSM_FB_OldMovementPlaceholder = 0,
-	eSM_FB_Slave = 1,
-	eSM_FB_Locomotion = 2,
-	eSM_FB_CloseCombat = 3,
-	eSM_FB_FlavorIdle = 4,
-	eSM_FB_Sniping = 5,
-	eSM_FB_AssemblePutOnTheFloor = 6,
-	eSM_FB_AssembleAlignContainer = 7,
-	eSM_FB_AssembleRetrieve = 8,
-	eSM_FB_AssembleStore = 11,
-};
-
-// 0x0000000142AA3F30 (Size: 0x100)
-class SInventoryUISlot
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString label; // 0x0
-	ZString containedLabel; // 0x10
-	ZString description; // 0x20
-	TArray<ZString> perks; // 0x30
-	bool silencer; // 0x48
-	int32 count; // 0x4C
-	int32 ammo; // 0x50
-	ZRepositoryID id; // 0x58
-	ZString weaponCategory; // 0x68
-	int32 nAmmoRemaining; // 0x78
-	int32 nAmmoTotal; // 0x7C
-	int32 nAmmoInClip; // 0x80
-	int32 nWeaponType; // 0x84
-	int32 nItemHUDType; // 0x88
-	ZString itemCategory; // 0x90
-	ZString itemCategoryLKey; // 0xA0
-	ZString inventoryCategoryIcon; // 0xB0
-	bool isDroppable; // 0xC0
-	bool isContainer; // 0xC1
-	bool containsItem; // 0xC2
-	int32 nContainedItemHUDType; // 0xC4
-	bool bContainedItemIllegal; // 0xC8
-	bool bContainedItemSuspicious; // 0xC9
-	bool bContainedItemDetectedDuringFrisk; // 0xCA
-	bool detectedDuringFrisk; // 0xCB
-	TArray<ZString> actionAndKillTypes; // 0xD0
-	bool suspicious; // 0xE8
-	bool illegal; // 0xE9
-	bool canReload; // 0xEA
-	ZString sPoisonType; // 0xF0
-};
-
-// 0x0000000142AA4F60 (Size: 0x30)
-class SInventoryUICache
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SInventoryUISlot> mainslots; // 0x0
-	TArray<SInventoryUISlot> otherslots; // 0x18
-};
-
-// 0x0000000142A965C0 (Size: 0x4)
-enum class ECharacterUpperBodyStateType
-{
-	eSM_UB_EmptyHanded = 0,
-	eSM_UB_Unholster = 1,
-	eSM_UB_Hold = 2,
-	eSM_UB_Reload = 3,
-	eSM_UB_Holster = 4,
-	eSM_UB_Conceal = 5,
-	eSM_UB_SwapItemHand = 6,
-	eSM_UB_Aiming = 7,
-	eSM_UB_Pickup = 8,
-	eSM_UB_InteractionSwipe = 9,
-	eSM_UB_Interaction = 10,
-	eSM_UB_Slave = 11,
-	eSM_UB_OpenDoor = 12,
-	eSM_UB_FlavorIdle = 13,
-	eSM_UB_ChangeAmmo = 14,
-	eSM_UB_Assemble = 15,
-	eSM_UB_Fiberwire = 16,
-	eSM_UB_PrimeTwoHanded = 17,
-	eSM_UB_SnapNeck = 18,
-};
-
-// 0x00000001422CA8F0 (Size: 0xC)
-class SAccessoryItemSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	uint32 m_nBoneId; // 0x4
-	bool m_bAttached; // 0x8
-	bool m_bVisible; // 0x9
-};
-
-// 0x0000000142A83168 (Size: 0x4)
-enum class EConversationID
-{
-	eCI_GuardCivilian_Distraction_Investigation = 0,
-	eCI_HearBulletImpact_Distraction_Investigation = 1,
-	eCI_HearItemImpact_Distraction_Investigation = 2,
-	eCI_HearCarAlarm_Distraction_Investigation = 3,
-	eCI_SeeItemToss_Distraction_Investigation = 4,
-	eCI_HearRadio_Distraction_Investigation = 5,
-	eCI_HearPain_Distraction_Investigation = 6,
-	eCI_HearAccident_Distraction_Investigation = 7,
-	eCI_HearCuriousItemSound_Distraction_Investigation = 8,
-	eCI_HearCuriousSound_Distraction_Investigation = 9,
-	eCI_SeeSuspiciousPerceptible_Distraction_Investigation = 10,
-	eCI_SeeInterestingItem_Distraction_Investigation = 11,
-	eCI_HearFootSteps_Distraction_Investigation = 12,
-	eCI_HearAngryDialog_Distraction_Investigation = 13,
-	eCI_HearHelpDialog_Distraction_Investigation = 14,
-	eCI_HearWarning_Distraction_Investigation = 15,
-	eCI_SightInvestigation_Distraction_Investigation = 16,
-	eCI_HearBulletImpact_Distraction_StandDown = 17,
-	eCI_HearItemImpact_Distraction_StandDown = 18,
-	eCI_HearCarAlarm_Distraction_StandDown = 19,
-	eCI_SeeItemToss_Distraction_StandDown = 20,
-	eCI_HearRadio_Distraction_StandDown = 21,
-	eCI_HearPain_Distraction_StandDown = 22,
-	eCI_HearAccident_Distraction_StandDown = 23,
-	eCI_HearCuriousItemSound_Distraction_StandDown = 24,
-	eCI_HearCuriousSound_Distraction_StandDown = 25,
-	eCI_SeeSuspiciousPerceptible_Distraction_StandDown = 26,
-	eCI_SeeInterestingItem_Distraction_StandDown = 27,
-	eCI_HearFootSteps_Distraction_StandDown = 28,
-	eCI_HearAngryDialog_Distraction_StandDown = 29,
-	eCI_HearHelpDialog_Distraction_StandDown = 30,
-	eCI_HearWarning_Distraction_StandDown = 31,
-	eCI_SightInvestigation_Distraction_StandDown = 32,
-	eCI_Suitcase_Distraction_DeliverToGuard = 33,
-	eCI_Suitcase_Distraction_RadioRequestHelp = 34,
-	eCI_Count = 35,
-};
-
-// 0x0000000142A961A0 (Size: 0x4)
-enum class ESubcontrollerInventorySlot
-{
-	eSIS_Invalid = 0,
-	eSIS_LeftHand = 1,
-	eSIS_RightHand = 2,
-};
-
-// 0x0000000142A96320 (Size: 0x4)
-enum class EItemRequirement
-{
-	eIR_NoRequirement = 0,
-	eIR_RequireEmpty = 1,
-	eIR_RequireItem = 2,
-	eIR_RequireNoBigItem = 3,
-};
-
-// 0x0000000142A8C180 (Size: 0x4)
-class SSentryOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rSentryZone; // 0x0
-};
-
-// 0x0000000142A9B518 (Size: 0x1C)
-class SCondition_AreVisibleItemsIllegal :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000142A97370 (Size: 0x24)
-class SMathLerpSaveData_SVector4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 m_A; // 0x0
-	SVector4 m_B; // 0x10
-	float32 m_fT; // 0x20
-};
-
-// 0x0000000142A95B28 (Size: 0x30)
-class SMathLerpsSaveData_SVector4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
-};
-
-// 0x00000001422CA578 (Size: 0x4)
-enum class EHM5GameInputFlag
-{
-	eGameInputActionPerform = 0,
-	eGameInputActionPickup = 1,
-	eGameInputActionAbort = 2,
-	eGameInputActionDoor = 3,
-	eGameInputWeaponZoomIn = 4,
-	eGameInputWeaponZoomOut = 5,
-	eGameInputActionShoot = 6,
-	eGameInputActionPrecisionShoot = 7,
-	eGameInputAimOTS = 8,
-	eGameInputCoverAction = 9,
-	eGameInputCoverAlternativeAction = 10,
-	eGameInputInventoryAccept = 11,
-	eGameInputEquipShortRange = 12,
-	eGameInputEquipLongRange = 13,
-	eGameInputHolsterItem = 14,
-	eGameInputDropItem = 15,
-	eGameInputTogglePlacement = 16,
-	eGameInputActivatePropQuick = 17,
-	eGameInputActivateProp = 18,
-	eGameInputActivatePropHold = 19,
-	eGameInputActivatePropSecondary = 20,
-	eGameInputActivatePropInterruptibleStart = 21,
-	eGameInputActivatePropInterruptibleEnd = 22,
-	eGameInputConcealRetrieve = 23,
-	eGameInputGuideAction = 24,
-	eGameInputGuideActionHold = 25,
-	eGameInputGuideActionSecondary = 26,
-	eGameInputGuideEnterWindow = 27,
-	eGameInputGuideSneakPastWindow = 28,
-	eGameInputGuideSneakPastWindowHold = 29,
-	eGameInputGuideKill = 30,
-	eGameInputSlideLadder = 31,
-	eGameInputCloseCombat = 32,
-	eGameInputFiberwire = 33,
-	eGameInputCloseCombatCounter = 34,
-	eGameInputCloseCombatTakeDown = 35,
-	eGameInputCloseCombatSnapNeck = 36,
-	eGameInputSurrender = 37,
-	eGameInputShowItem = 38,
-	eGameInputReload = 39,
-	eGameInputTakeDisguise = 40,
-	eGameInputDragDropBody = 41,
-	eGameInputDumpBody = 42,
-	eGameInputSneakToggle = 43,
-	eGameInputCamSwitch = 44,
-	eGameInputActivateRun = 45,
-	eGameInputActivateWalkSlow = 46,
-	eGameInputInstinctMode = 47,
-	eGameInputContractTargetTag = 48,
-	eGameInputThrow = 49,
-	eGameInputCloseCombatChainHigh = 50,
-	eGameInputCloseCombatChainLow = 51,
-	eGameInputCloseCombatChainCounter = 52,
-	eGameInputSkipCutSequence = 53,
-	eGameInputCloseCombatChokeStart = 54,
-	eGameInputCloseCombatChoke = 55,
-	eGameInputFocusedInteractionFaceUp = 56,
-	eGameInputFocusedInteractionFaceLeft = 57,
-	eGameInputFocusedInteractionFaceDown = 58,
-	eGameInputFocusedInteractionLeftStickAnalog = 59,
-	eGameInputRemoteAction = 60,
-	eGameInputChangeAmmoNext = 61,
-	eGameInputChangeAmmoPrevious = 62,
-	eGameInputDefault = 63,
-	eGameInputActionsNUM = 64,
-};
-
-// 0x0000000142A88B50 (Size: 0x4)
-enum class ECharacterActionRequests
-{
-	eSM_AR_None = 0,
-	eSM_AR_ReloadR = 1,
-	eSM_AR_ReloadL = 2,
-	eSM_AR_ShootR = 3,
-	eSM_AR_ShootL = 4,
-	eSM_AR_SwapHands = 5,
-	eSM_AR_HolsterR = 6,
-	eSM_AR_HolsterL = 7,
-	eSM_AR_UnholsterR = 8,
-	eSM_AR_UnholsterL = 9,
-	eSM_AR_PickupItemR = 10,
-	eSM_AR_PickupItemL = 11,
-	eSM_AR_InteractionR = 12,
-	eSM_AR_InteractionL = 13,
-	eSM_AR_InteractionSwipe = 14,
-	eSM_AR_InteractionSwipeR = 15,
-	eSM_AR_InteractionSwipeL = 16,
-	eSM_AR_OpenDoor = 17,
-	eSM_AR_OpenDoorR = 18,
-	eSM_AR_OpenDoorL = 19,
-	eSM_AR_CloseCombat = 20,
-	eSM_AR_Movement = 21,
-	eSM_AR_Pretend = 22,
-	eSM_AR_Sniping = 23,
-	eSM_AR_EndSniping = 24,
-	eSM_AR_RetrieveFromSuitcase = 25,
-	eSM_AR_Marking = 26,
-	eSM_AR_ChangeAmmo = 27,
-	eSM_AR_Assemble = 28,
-	eSM_AR_Assemble_UnequippedContainer = 29,
-	eSM_AR_Disassemble = 30,
-	eSM_AR_Disassemble_PickingUp = 31,
-	eSM_AR_AssembleUB = 32,
-	eSM_AR_DisassembleUB = 33,
-	eSM_AR_Cancel = 34,
-	eSM_AR_Sprint = 35,
-	eSM_AR_CloseHandR = 36,
-	eSM_AR_CloseHandL = 37,
-};
-
-// 0x0000000142A8CF60 (Size: 0x8)
-class IDramaListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB0B18 (Size: 0xC)
-class STimerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_nInterval; // 0x0
-	bool m_bEnabled; // 0x4
-	float32 m_fTimeToNextEvent; // 0x8
-};
-
-// 0x0000000142AB0B60 (Size: 0x30)
-class STimerEntitiesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<STimerEntitySaveData> m_aData; // 0x18
-};
-
-// 0x000000014210ABA0 (Size: 0x20)
-class ZGuidString
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF4900 (Size: 0x1)
-enum class EFilterMaskBit
-{
-	eFilterMaskBit_ObjectCollision = 0,
-	eFilterMaskBit_OpaqueCollision = 1,
-	eFilterMaskBit_UNUSED_LAST = 2,
-};
-
-// 0x0000000142A8AA98 (Size: 0x3)
-class SRemoteControlReceiverSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-	bool m_bReceiverActivated; // 0x1
-	bool m_bDestroyed; // 0x2
-};
-
-// 0x0000000142A97330 (Size: 0x14)
-class SMathLerpSaveData_SVector2
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector2 m_A; // 0x0
-	SVector2 m_B; // 0x8
-	float32 m_fT; // 0x10
-};
-
-// 0x0000000142A95AB8 (Size: 0x30)
-class SMathLerpsSaveData_SVector2
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_SVector2> m_aData; // 0x18
-};
-
-// 0x0000000142A97CE0 (Size: 0x4)
-enum class EDeathAnimationType
-{
-	DAT_None = 0,
-	DAT_SingleShot = 1,
-	DAT_BurstShot = 2,
-	DAT_HeavyShot = 3,
-	DAT_Unknown = 4,
-};
-
-// 0x0000000142A8BB48 (Size: 0x48)
-class SSituationGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sClassTypeName; // 0x0
-	uint32 m_nSituation; // 0x10
-	TArray<uint32> m_aActors; // 0x18
-	int32 m_nGroupID; // 0x30
-	ZVariant m_CustomData; // 0x38
-};
-
-// 0x0000000142A9CB80 (Size: 0x4)
-enum class EWaypointRotationAlignment
-{
-	RA_NONE = 0,
-	RA_LOOSE = 1,
-	RA_EXACT = 2,
-};
-
-// 0x00000001422CAC68 (Size: 0x3)
-class SContextActionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-	bool m_bTriggered; // 0x1
-	bool m_bShouldShow; // 0x2
-};
-
-// 0x0000000142A7B580 (Size: 0x4)
-enum class EAISituationEvent
-{
-	AISE_Any = 0,
-	AISE_ActorJoined = 1,
-	AISE_ActorLeft = 2,
-	AISE_Data = 3,
-};
-
-// 0x0000000142AB1EC8 (Size: 0x4)
-enum class EEquipAbility
-{
-	EA_EQUIP_IN_HANDS = 0,
-	EA_CANNOT_BE_EQUIPPED = 1,
-};
-
-// 0x0000000142A8BCB8 (Size: 0x3D0)
-class ZCautiousInvestigateGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8A138 (Size: 0x8)
-class IHM5AttentionDevice :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A98040 (Size: 0x4)
-enum class ECCNodeSubtype
-{
-	eCCNodeSubtype_Left = 0,
-	eCCNodeSubtype_Right = 1,
-	eCCNodeSubtype_Front = 2,
-	eCCNodeSubtype_Back = 3,
-	eCCNodeSubtype_StairsAbove = 4,
-	eCCNodeSubtype_StairsBelow = 5,
-	eCCNodeSubtype_StairsAbove_Back = 6,
-	eCCNodeSubtype_StairsBelow_Back = 7,
-	eCCNodeSubtype_Front_Back = 8,
-	eCCNodeSubtype_Count = 9,
-};
-
-// 0x0000000143E607E0 (Size: 0x4)
-enum class ERequirementId
-{
-	EREQUIREMENT_INVALID = 0,
-	EREQUIREMENT_TOKEN_OUTFIT_LEGACY_HERO_REQUIEMSUIT = 1,
-	EREQUIREMENT_FIREARMS_HERO_PISTOL_TACTICAL_015_SU_SKIN05 = 2,
-	EREQUIREMENT_PROP_DEVICE_SONYPREORDER_WHITE_RUBBERDUCK_REMOTE_EXPLOSIVE = 3,
-	EREQUIREMENT_GOTY_PATIENT_ZERO = 4,
-	EREQUIREMENT_GOTY_TOKEN_OUTFIT_PARIS_CLOWN = 5,
-	EREQUIREMENT_GOTY_TOKEN_OUTFIT_HOKKAIDO_COWBOY = 6,
-	EREQUIREMENT_GOTY_TOKEN_OUTFIT_MARRAKESH_DARK_SNIPER = 7,
-	EREQUIREMENT_ANNIVERSARY_OUTFITS = 8,
-	EREQUIREMENT_LOCATION_NEWZEALAND = 9,
-	EREQUIREMENT_S2_EXECUTIVE_PACK = 10,
-	EREQUIREMENT_S2_COLLECTORS_PACK = 11,
-	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM1 = 12,
-	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2 = 13,
-	EREQUIREMENT_PROP_CONTAINER_SUITCASE_ICA_STA_STADIA = 14,
-	EREQUIREMENT_PROP_DEVICE_ICA_RUBBERDUCK_REMOTE_EXPLOSIVE_STA_STADIA = 15,
-	EREQUIREMENT_H1_LEGACY_STANDARD = 16,
-	EREQUIREMENT_H1_LEGACY_EXPANSION = 17,
-	EREQUIREMENT_H2_LEGACY_STANDARD = 18,
-	EREQUIREMENT_H2_LEGACY_EXPANSION = 19,
-	EREQUIREMENT_H3_EXPANSION = 20,
-	EREQUIREMENT_LOCATION_GOLDEN = 21,
-	EREQUIREMENT_LOCATION_ANCESTRAL = 22,
-	EREQUIREMENT_LOCATION_EDGY = 23,
-	EREQUIREMENT_LOCATION_WET = 24,
-	EREQUIREMENT_LOCATION_ELEGANT = 25,
-	EREQUIREMENT_LOCATION_TRAPPED = 26,
-	EREQUIREMENT_PLATFORM_ORBIS = 27,
-	EREQUIREMENT_PLATFORM_PS5 = 28,
-	EREQUIREMENT_PLATFORM_GDK = 29,
-	EREQUIREMENT_PLATFORM_EPIC = 30,
-	EREQUIREMENT_PLATFORM_STEAM = 31,
-	EREQUIREMENT_PLATFORM_GGP = 32,
-	EREQUIREMENT_H3_PREORDER = 33,
-};
-
-// 0x0000000143E60F48 (Size: 0xA8)
-class SSaveGameMetaData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint8 nSlot; // 0x0
-	ESaveType eSaveType; // 0x4
-	int32 eDifficultyLevel; // 0x8
-	ZString sContractId; // 0x10
-	ZString sContractTitle; // 0x20
-	ZString sContractType; // 0x30
-	ZString sLocationId; // 0x40
-	ZString sContractSessionId; // 0x50
-	ZString sLastEventToken; // 0x60
-	bool bIsOnline; // 0x70
-	bool bIsVR; // 0x71
-	TArray<uint32> aScreenShot; // 0x78
-	TArray<ERequirementId> aRequirements; // 0x90
-};
-
-// 0x0000000143E60880 (Size: 0xC0)
-class SSaveGameHeader
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 nFourCC; // 0x0
-	uint32 nVersion; // 0x4
-	uint32 nCrc32; // 0x8
-	uint32 nSize; // 0xC
-	int64 nTimeStamp; // 0x10
-	SSaveGameMetaData MetaData; // 0x18
-};
-
-// 0x0000000142A79CC0 (Size: 0x4)
-enum class EActorEmotionState
-{
-	AES_Ambient = 0,
-	AES_Alerted = 1,
-	AES_Scared = 2,
-	AES_Hunt = 3,
-	AES_Combat = 4,
-	AES_None = 268435455,
-};
-
-// 0x0000000142A7A2A0 (Size: 0x38)
-class SAnimatedActorReactOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 m_vFaceTarget; // 0x0
-	SVector3 m_vLookAtTarget; // 0xC
-	uint32 m_rChildNetworkEntity; // 0x18
-	EActorEmotionState m_targetEmotionState; // 0x1C
-	bool m_bDeadbody; // 0x20
-	bool m_bExplosion; // 0x21
-	bool m_bTrespassing; // 0x22
-	bool m_bDropCarriedItems; // 0x23
-	bool m_bFaceTargetSet; // 0x24
-	bool m_bLookAtTargetSet; // 0x25
-	ZString m_sAct; // 0x28
-};
-
-// 0x0000000142A98AF0 (Size: 0x4)
-enum class EMeBarState
-{
-	ME_BAR_NONE = 0,
-	ME_BAR_TRESPASSING = 1,
-	ME_BAR_DEEPTRESPASSING = 2,
-	ME_BAR_VISIBLY_ARMED = 3,
-	ME_BAR_CHANGING_DISGUISE = 4,
-	ME_BAR_DISGUISE_BLOWN = 5,
-	ME_BAR_DISGUISE_SUSPICIOUS = 6,
-	ME_BAR_NEAR_BODY = 7,
-};
-
-// 0x0000000142AA51A0 (Size: 0x4)
-enum class EAutoScanMode
-{
-	ASM_GEOMETRY = 0,
-	ASM_VOLUMEBOX = 1,
-};
-
-// 0x0000000142AB0730 (Size: 0x4)
-enum class EFSMInternalEvent
-{
-	eFSMEvent_Completed = 0,
-	eFSMEvent_Failed = 1,
-	eFSMEvent_Choice = 2,
-	eFSMEvent_Max = 3,
-};
-
-// 0x0000000142A94390 (Size: 0x4)
-enum class EAccidentScaleContext
-{
-	eASC_Standard = 0,
-	eASC_Unsafe = 1,
-	eASC_Dangerous = 2,
-};
-
-// 0x0000000142AE3810 (Size: 0x4)
-enum class EEngineModeId
-{
-	EngineMode_Invalid = -1,
-	EngineMode_SinglePlayer = 0,
-	EngineMode_SplitScreen = 1,
-	EngineMode_Multiplayer = 2,
-	EngineMode_Max = 3,
-};
-
-// 0x0000000142AF4768 (Size: 0x4)
-class SDestructibleInteractionHandlerData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fSettleTime; // 0x0
-};
-
-// 0x0000000142A94650 (Size: 0x4)
-enum class EActorBumpType
-{
-	EABT_NONE = 0,
-	EABT_UPPERBODY = 1,
-	EABT_HEAD = 2,
-};
-
-// 0x0000000142A92798 (Size: 0x4)
-enum class eVRFadeType
-{
-	FadeToGame = 0,
-	FadeToBlack = 1,
-	FadeToGame_HighPriority = 2,
-	FadeToBlack_HighPriority = 3,
-	CutToGame = 4,
-	CutToBlack = 5,
-	KeepCurrent = 6,
-};
-
-// 0x0000000142A98100 (Size: 0x4)
-enum class ETakeDownAnim
-{
-	eCoverLowOverNarrowCloseFront = 0,
-	eCoverLowOverNarrowCloseBack = 1,
-	eCoverLowOverNarrowFarFront = 2,
-	eCoverLowOverNarrowFarBack = 3,
-	eCoverLowOverWideFront = 4,
-	eCoverLowOverWideBack = 5,
-	eCoverLowCornerFront = 6,
-	eCoverLowCornerBack = 7,
-	eCoverHighCornerFront = 8,
-	eCoverHighCornerBack = 9,
-	eLocomotionBack = 10,
-	eLocomotionFallback = 11,
-	eLocomotionChair = 12,
-	eChokeGroundLoop = 13,
-	eChokeGroundEndPacify = 14,
-	eChokeGroundEndKill = 15,
-	eChokeGroundFallBackLoop = 16,
-	eChokeGroundFallBackEndPacify = 17,
-	eChokeGroundFallBackEndKill = 18,
-	eChokeChairLoop = 19,
-	eChokeChairEndPacify = 20,
-	eChokeChairEndKill = 21,
-	eChokeChairEndLeft90 = 22,
-	eChokeChairEndLeft45 = 23,
-	eChokeChairEndFront = 24,
-	eChokeChairEndRight45 = 25,
-	eChokeChairEndRight90 = 26,
-	eTakeDownAnimLast = 27,
-};
-
-// 0x0000000142A8DD08 (Size: 0x4)
-class SItemActionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rItem; // 0x0
-};
-
-// 0x0000000143E5F428 (Size: 0x1)
-enum class ECollisionResponse
-{
-	REFLECT_VELOCITY = 0,
-	SLIDE_ON = 1,
-	STAY_AT_COLLISION_POINT = 2,
-	CUSTOM = 3,
-};
-
-// 0x0000000142A97FE0 (Size: 0x4)
-enum class ECCNodeType
-{
-	eCCNodeType_Counter = 0,
-	eCCNodeType_ExecutePistol = 1,
-	eCCNodeType_React = 2,
-	eCCNodeType_SilentTakeDownEnd = 3,
-	eCCNodeType_SilentKill = 4,
-	eCCNodeType_SlitThroat1H = 5,
-	eCCNodeType_Swing1H = 6,
-	eCCNodeType_Bash1H = 7,
-	eCCNodeType_Stab1H = 8,
-	eCCNodeType_Syringe1H = 9,
-	eCCNodeType_Strangle1H = 10,
-	eCCNodeType_Smash1H = 11,
-	eCCNodeType_Swing2H = 12,
-	eCCNodeType_Stab2H = 13,
-	eCCNodeType_Bash2H = 14,
-	eCCNodeType_Strangle2H = 15,
-	eCCNodeType_Axe = 16,
-	eCCNodeType_Sword1H = 17,
-	eCCNodeType_AttackChain = 18,
-	eCCNodeType_AttackChainCivilian = 19,
-	eCCNodeType_AttackChainHeavy = 20,
-	eCCNodeType_FailChain = 21,
-	eCCNodeType_FinishChainHigh = 22,
-	eCCNodeType_FinishChainLow = 23,
-	eCCNodeType_FinishChainKill = 24,
-	eCCNodeType_StairsChain = 25,
-	eCCNodeType_CounterChain = 26,
-	eCCNodeType_AttackIdle = 27,
-	eCCNodeType_AttackPassify = 28,
-	eCCNodeType_FailChainPush = 29,
-	eCCNodeType_Count = 30,
-};
-
-// 0x0000000142A98730 (Size: 0x4)
-enum class eHitmanPermissionReason
-{
-	eHPReason_MovementContext = 1,
-	eHPReason_ItemHandlingInProcess = 2,
-	eHPReason_SniperMode = 4,
-	eHPReason_CrippleBox = 8,
-	eHPReason_LevelDesign = 16,
-	eHPReason_PlayerInput = 32,
-	eHPReason_InstinctBlendIn = 64,
-	eHPReason_FocusInteraction = 128,
-	eHPReason_NUM = 7,
-	eHPReason_ALLReasons = -1,
-};
-
-// 0x0000000142A9ACF0 (Size: 0x1C)
-class SCondition_IsAccidentScaleContext :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-	EAccidentScaleContext scaleContextType; // 0x18
-};
-
-// 0x0000000142AE16F8 (Size: 0x2)
-class ZDialogEventItemTypedIndex
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA3EA0 (Size: 0x20)
-class ZMapTrackerListProvider :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A92708 (Size: 0x70)
-class SVRConfigCameraComponent
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EVRConfigHeadAnchorMode m_eHeadAnchorMode; // 0x0
-	uint32 m_uRecenterRequestCounter; // 0x4
-	float32 m_fVRUserInputWeight; // 0x8
-	float32 m_fGridSize; // 0xC
-	float32 m_fCapsuleHeadAttacherOffset; // 0x10
-	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x14
-	float32 m_fHeadBoneAttacherOffset; // 0x18
-	float4 m_vAnchorPosOffset; // 0x20
-	SMatrix m_mAnchorRotOffset; // 0x30
-};
-
-// 0x0000000142A9BA28 (Size: 0x18)
-class SCondition_GetRandomFightTarget :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable combatPosition; // 0x10
-};
-
-// 0x0000000142A8FC58 (Size: 0x4)
-enum class EGameEventType
-{
-	GET_GameplayStart = 0,
-	GET_GameplayStop = 1,
-	GET_IntroCutStart = 2,
-	GET_IntroCutEnd = 3,
-	GET_ProfilingStart = 4,
-	GET_SavegameRestored = 5,
-	GET_PlayingAfterLoad = 6,
-	GET_COUNT = 7,
-};
-
-// 0x0000000142AF4708 (Size: 0x4)
-enum class EPhysicsObjectType
-{
-	EPHYSICSOBJECTTYPE_UNKNOWN = 0,
-	EPHYSICSOBJECTTYPE_DYNAMIC = 1,
-	EPHYSICSOBJECTTYPE_KINEMATIC = 2,
-	EPHYSICSOBJECTTYPE_STATIC = 3,
-};
-
-// 0x0000000143CDF3D0 (Size: 0x4)
-enum class eParticleEmitterMeshEntity_SpawnModes
-{
-	MESH_SPAWNMODE_VERTEX = 0,
-	MESH_SPAWNMODE_EDGE = 1,
-	MESH_SPAWNMODE_FACE = 2,
-};
-
-// 0x0000000142AB3718 (Size: 0xC)
-class SHintEntrySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsValid; // 0x0
-	uint32 m_hint; // 0x4
-	uint32 m_context; // 0x8
-};
-
-// 0x0000000142A97620 (Size: 0x4)
-enum class EClipSpawnAxis
-{
-	eCSA_XPos = 0,
-	eCSA_XNeg = 1,
-	eCSA_YPos = 2,
-	eCSA_YNeg = 3,
-	eCSA_ZPos = 4,
-	eCSA_ZNeg = 5,
-};
-
-// 0x0000000142A79CD8 (Size: 0x4)
-enum class EAnimSetState
-{
-	EASES_DEFAULT = 0,
-	EASES_AMBIENT_ARMED = 1,
-	EASES_AMBIENT_VIP_ESCORT = 2,
-	EASES_AMBIENT_HERO_ESCORT = 3,
-	EASES_COMBAT_EVACUATE = 4,
-	EASES_COMBAT_EVACUATE_VIP_SOLO = 5,
-	EASES_SICK = 6,
-	EASES_INFECTED = 7,
-};
-
-// 0x0000000142A8C0A8 (Size: 0x8)
-class SGuardPointOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_guardPoint; // 0x0
-	bool m_walkOnly; // 0x4
-};
-
-// 0x0000000142AB0BA8 (Size: 0x4)
-enum class ETimerEntityCommandType
-{
-	ETECT_Add = 0,
-	ETECT_Remove = 1,
-	ETECT_Reset = 2,
-};
-
-// 0x0000000142AB0BC0 (Size: 0xC)
-class STimerEntityCommandSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ETimerEntityCommandType m_eType; // 0x0
-	uint32 m_rEntity; // 0x4
-	float32 m_fInterval; // 0x8
-};
-
-// 0x0000000143E60F60 (Size: 0x28)
-class SSavableData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZVariant m_EntitiesData; // 0x0
-	ZVariant m_Data; // 0x10
-	uint32 m_nId; // 0x20
-};
-
-// 0x0000000142A95FD0 (Size: 0x4)
-enum class ECameraState
-{
-	eCamSneakStand = 0,
-	eCamSneakWalk = 1,
-	eCamSneakRoadyRun = 2,
-	eCamNormalStand = 3,
-	eCamNormalWalk = 4,
-	eCamNormalRun = 5,
-	eCamLocomotion = 6,
-	eCamCrowdStand = 7,
-	eCamCrowdWalk = 8,
-	eCamCrowdRun = 9,
-	eCamCrowdSneakStand = 10,
-	eCamCrowdSneakWalk = 11,
-	eCamCrowdSneakRoadyRun = 12,
-	eCamCrowdLocomotion = 13,
-	eCamDead = 14,
-	eCamLadder = 15,
-	eCamDrainPipe = 16,
-	eCamDrag = 17,
-	eCamSBTag = 18,
-	eCamSBTagOTS = 19,
-	eCamCloseCombat = 20,
-	eCamFiberWire = 21,
-	eCamWindowPull = 22,
-	eCamRailPush = 23,
-	eCamLedgeKick = 24,
-	eCamLedgePull = 25,
-	eCamLedgeHang = 26,
-	eCamLedgeWalk = 27,
-	eCamLedgeWalkOTS = 28,
-	eCamCoverLow = 29,
-	eCamCoverMedium = 30,
-	eCamCoverHigh = 31,
-	eCamCoverLowOTS = 32,
-	eCamCoverHighOTS = 33,
-	eCamCoverLowScope = 34,
-	eCamCoverHighScope = 35,
-	eCamCoverLowTakedownOver = 36,
-	eCamCoverLowTakedownCorner = 37,
-	eCamCoverHighTakedownCorner = 38,
-	eCamTakeDisguise = 39,
-	eCamOTS = 40,
-	eCamOTSHigh = 41,
-	eCamOTSLow = 42,
-	eCamUnAimedShooting = 43,
-	eCamUnAimedShootingHigh = 44,
-	eCamUnAimedShootingLow = 45,
-	eCamScope = 46,
-	eCamScopeHigh = 47,
-	eCamScopeLow = 48,
-	eCamVaultLow = 49,
-	eCamVaultHigh = 50,
-	eCamTakedown = 51,
-	eCamTakedownChair = 52,
-	eCamLockedSniping = 53,
-	eCamLockedSnipingScope = 54,
-	eCamLockedSnipingScopeHigh = 55,
-	eCamLockedSnipingScopeLow = 56,
-	eCamContainerAssemble = 57,
-	eCamNumProfiles = 58,
-	eCamAll = 59,
-};
-
-// 0x0000000142A95EF0 (Size: 0x4)
-enum class ECameraShakerChannel
-{
-	eCameraShakerChannel_Default = 0,
-	eCameraShakerChannle_Locomotion = 1,
-	eCameraShakerChannel_Ambient = 2,
-	eCameraShakerChannel_Weapon = 3,
-	eCameraShakerChannel_CloseCombat = 4,
-	eCameraShakerChannel_Num = 5,
-};
-
-// 0x0000000142A9B230 (Size: 0x18)
-class SCondition_CurrentSetpieceVisualDistractions :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-};
-
-// 0x0000000142A9B4D0 (Size: 0x20)
-class SCondition_IsItemSuspiciousOnHitman :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-	ZBehaviorTreeVariable actor; // 0x18
-};
-
-// 0x0000000142AA5680 (Size: 0x4)
-enum class EInteractionIndicatorState
-{
-	EIIS_AVAILABLE = 0,
-	EIIS_COLLAPSED = 1,
-	EIIS_ACTIVATING = 2,
-	EIIS_NOTAVAILABLE = 3,
-};
-
-// 0x0000000142AE2578 (Size: 0x8)
-class IMiddleGrayCurveEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A93DA0 (Size: 0x4)
-enum class EActorLookAtPriority
-{
-	eALAPriority_Ambient = 0,
-	eALAPriority_AmbientHigh = 1,
-	eALAPriority_Alert = 2,
-	eALAPriority_AlertHigh = 3,
-	eALAPriority_Hunt = 4,
-	eALAPriority_HuntHigh = 5,
-	eALAPriority_Combat = 6,
-	eALAPriority_CombatHigh = 7,
-};
-
-// 0x0000000142A98610 (Size: 0x1)
-enum class ECharacterAnimEventState
-{
-	eES_None = 0,
-	eES_Pending = 1,
-	eES_Completed = 2,
-	eES_TimedOut = 3,
-};
-
-// 0x0000000143CDEFC0 (Size: 0x8)
-class IBoxReflectionEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A94330 (Size: 0x4)
-enum class EAccidentDeathContext
-{
-	eADC_DeathByAccident = 0,
-	eADC_DeathBySniper = 1,
-	eADC_DeathByPoison = 2,
-	eADC_DeathByShot = 3,
-};
-
-// 0x0000000142A89E80 (Size: 0x8)
-class IInputListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A795A0 (Size: 0x8)
-class IMorphemeCutSequenceAnimatable
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8D848 (Size: 0x30)
+// 0x0000000142A99210 (Size: 0x30)
 class SDrama2ActorCollectionSaveData
 {
 public:
@@ -7776,7 +10352,7 @@ public:
 	TArray<SDrama2ActorSaveState> m_aStates; // 0x18
 };
 
-// 0x0000000142A920E8 (Size: 0x38)
+// 0x0000000142A9EEA8 (Size: 0x38)
 class SDramaActorSaveState
 {
 public:
@@ -7796,7 +10372,7 @@ public:
 	bool m_bIsSpeaking; // 0x32
 };
 
-// 0x0000000142A8D8C0 (Size: 0x30)
+// 0x0000000142A99288 (Size: 0x30)
 class SDramaActorCollectionSaveData
 {
 public:
@@ -7808,7 +10384,7 @@ public:
 	TArray<SDramaActorSaveState> m_aStates; // 0x18
 };
 
-// 0x0000000142A8D818 (Size: 0x10)
+// 0x0000000142A991E0 (Size: 0x10)
 class SDrama2SituationSaveData
 {
 public:
@@ -7825,7 +10401,7 @@ public:
 	bool m_bIsTerminated; // 0xF
 };
 
-// 0x0000000142A8D878 (Size: 0x30)
+// 0x0000000142A99240 (Size: 0x30)
 class SDrama2SituationCollectionSaveData
 {
 public:
@@ -7837,7 +10413,7 @@ public:
 	TArray<SDrama2SituationSaveData> m_aStates; // 0x18
 };
 
-// 0x0000000142A91768 (Size: 0x10)
+// 0x0000000142A9E528 (Size: 0x10)
 class SDramaSituationSaveData
 {
 public:
@@ -7852,7 +10428,7 @@ public:
 	bool m_bProvidersStarted; // 0xC
 };
 
-// 0x0000000142A8D8D8 (Size: 0x30)
+// 0x0000000142A992A0 (Size: 0x30)
 class SDramaSituationCollectionSaveData
 {
 public:
@@ -7864,19 +10440,7 @@ public:
 	TArray<SDramaSituationSaveData> m_aStates; // 0x18
 };
 
-// 0x0000000142A8D7E8 (Size: 0x4)
-enum class EScreenPlayState
-{
-	State_Stopped = 0,
-	State_Running = 1,
-	State_Resuming = 2,
-	State_Pausing = 3,
-	State_Paused = 4,
-	State_Done = 5,
-	State_Terminated = 6,
-};
-
-// 0x0000000142A8D800 (Size: 0xC)
+// 0x0000000142A991C8 (Size: 0xC)
 class SDrama2SetupSaveData
 {
 public:
@@ -7889,7 +10453,7 @@ public:
 	uint32 m_rSituation; // 0x8
 };
 
-// 0x0000000142A8D8A8 (Size: 0x30)
+// 0x0000000142A99270 (Size: 0x30)
 class SDrama2SetupCollectionSaveData
 {
 public:
@@ -7901,7 +10465,19 @@ public:
 	TArray<SDrama2SetupSaveData> m_aStates; // 0x18
 };
 
-// 0x0000000142AA3F48 (Size: 0x28)
+// 0x0000000142AB1D28 (Size: 0x20)
+class SInventoryUISlotSlim
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZVariant icon; // 0x0
+	ZVariant containedIcon; // 0x10
+};
+
+// 0x0000000142AB0D68 (Size: 0x28)
 class SInventoryUI
 {
 public:
@@ -7915,7 +10491,7 @@ public:
 	bool isActionInventory; // 0x20
 };
 
-// 0x0000000142A98D90 (Size: 0x4)
+// 0x0000000142AA5BB0 (Size: 0x4)
 enum class ECommunicationBarMessage
 {
 	ECBM_Unknown = 0,
@@ -7943,7 +10519,7 @@ enum class ECommunicationBarMessage
 	ECBM_UnconsciousWitness = 22,
 };
 
-// 0x0000000142A9A600 (Size: 0x8)
+// 0x0000000142AA7428 (Size: 0x8)
 class SActorBoneAttachSaveData
 {
 public:
@@ -7955,7 +10531,7 @@ public:
 	bool m_bIsAttached; // 0x4
 };
 
-// 0x0000000142A95BD0 (Size: 0x30)
+// 0x0000000142AA2990 (Size: 0x30)
 class SActorBoneAttachmentsSaveData
 {
 public:
@@ -7967,21 +10543,727 @@ public:
 	TArray<SActorBoneAttachSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142AF3340 (Size: 0x4)
-enum class EMultiplayerNetworkState
+// 0x0000000142A86300 (Size: 0x8)
+class IMorphemeCutSequenceAnimatable
 {
-	Base = 0,
-	Idle = 1,
-	Searching = 2,
-	Connecting = 3,
-	Joining = 4,
-	Creating = 5,
-	Connected = 6,
-	Disconnecting = 7,
-	Count = 8,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
 };
 
-// 0x00000001422CA0E8 (Size: 0x4)
+// 0x0000000142AA10F0 (Size: 0x4)
+enum class EAccidentDeathContext
+{
+	eADC_DeathByAccident = 0,
+	eADC_DeathBySniper = 1,
+	eADC_DeathByPoison = 2,
+	eADC_DeathByShot = 3,
+};
+
+// 0x0000000142A96CE8 (Size: 0x8)
+class IInputListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB2248 (Size: 0x10)
+class SOptionValueSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZVariant m_Value; // 0x0
+};
+
+// 0x0000000142A8FCE0 (Size: 0x4)
+enum class EActorType
+{
+	eAT_Civilian = 0,
+	eAT_Guard = 1,
+	eAT_Hitman = 2,
+	eAT_Last = 3,
+};
+
+// 0x0000000142AEDF80 (Size: 0x4)
+enum class EDialogEventItemType
+{
+	eDEIT_WavFile = 1,
+	eDEIT_RandomContainer = 2,
+	eDEIT_SwitchContainer = 3,
+	eDEIT_SequenceContainer = 4,
+	eDEIT_Invalid = 15,
+};
+
+// 0x0000000143E6FDB0 (Size: 0x28)
+class SFontDefinition
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sFontId; // 0x0
+	ZString sFontName; // 0x10
+	EFontFlags eFontFlags; // 0x20
+	float32 fScaleFactor; // 0x24
+};
+
+// 0x0000000143E6FDE0 (Size: 0x28)
+class SFontLibraryDefinition
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sFontLocaleID; // 0x0
+	TArray<SFontDefinition> m_aFontDefinitions; // 0x10
+};
+
+// 0x0000000142A98CA0 (Size: 0x4)
+enum class EVictimMovementType
+{
+	eVictimMovementNone = -1,
+	eVictimMovementPullVictimFromWindow = 0,
+	eVictimMovementThrowBodyOverRail = 1,
+	eVictimMovementDumpBodyOverLedge = 2,
+	eVictimMovementTakeDown = 3,
+	eVictimMovementRecoveryFinisher = 4,
+	eVictimMovementGrabVictim = 5,
+	eVictimMovementPushVictimThroughWindowAndRail = 6,
+	eVictimMovementContextKill = 7,
+	eVictimMovementKickVictimOverLedge = 8,
+	eVictimMovementCoupDeGrace = 9,
+	eVictimMovementCloseCombat = 10,
+	eVictimMovementLast = 11,
+};
+
+// 0x0000000142AEE4F0 (Size: 0x1)
+enum class AudioCurve
+{
+	AudioCurve_Log3 = 0,
+	AudioCurve_Sine = 1,
+	AudioCurve_Log1 = 2,
+	AudioCurve_InvSCurve = 3,
+	AudioCurve_Linear = 4,
+	AudioCurve_SCurve = 5,
+	AudioCurve_Exp1 = 6,
+	AudioCurve_SineRecip = 7,
+	AudioCurve_Exp3 = 8,
+	AudioCurve_LastFadeCurve = 9,
+	AudioCurve_Constant = 10,
+};
+
+// 0x0000000142AF0268 (Size: 0x4)
+enum class EActivationPriority
+{
+	eActivatable_First = 0,
+	eActivatable_PlayModeAddedPhysics = 1,
+	eActivatable_DestructiblePhysics = 2,
+	eActivatable_PhysicsWind = 3,
+	eActivatable_Physics = 4,
+	eActivatable_PhysicsDone = 5,
+	eActivatable_Keywords = 6,
+	eActivatable_EventChannel = 7,
+	eActivatable_Items = 8,
+	eActivatable_Actor = 9,
+	eActivatable_Hitman = 10,
+	eActivatable_AnimPlayer = 11,
+	eActivatable_Sequence = 12,
+	eActivatable_SpawnPoint = 13,
+	eActivatable_CoverPlane = 14,
+	eActivatable_GuardPoint = 15,
+	eActivatable_Guide = 16,
+	eActivatable_CombatAct = 17,
+	eActivatable_CombatAttractor = 18,
+	eActivatable_SequenceController = 19,
+	eActivatable_KnownEntityAspects = 20,
+	eActivatable_AIReasoningGrid = 21,
+	eActivatable_HM5Zone = 22,
+	eActivatable_Crowds = 23,
+	eActivatable_ChildNetworkAct = 24,
+	eActivatable_Door = 25,
+	eActivatable_UI_Setup = 26,
+	eActivatable_NormalGameplay = 27,
+	eActivatable_NormalGameplay_Condition = 28,
+	eActivatable_NormalGameplay_Values = 29,
+	eActivatable_NormalGameplay_State = 30,
+	eActivatable_HeroSpawns = 31,
+	eActivatable_UI = 32,
+	eActivatable_Locomotion = 33,
+	eActivatable_Timers = 34,
+	eActivatable_AreaTriggers = 35,
+	eActivatable_Default = 36,
+	eActivatable_GameEventListener = 37,
+	eLAST_ACTIVATION_PRIORITY = 38,
+};
+
+// 0x0000000142B019C0 (Size: 0x4)
+enum class EClothBendConstrainType
+{
+	eClothBendConstrainType_Stick = 0,
+	eClothBendConstrainType_Triangle = 1,
+};
+
+// 0x0000000142AA0218 (Size: 0x8)
+class IBoneAttachEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A958C8 (Size: 0x8)
+class IDynamicAttachment :
+	public IBoneAttachEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA18C0 (Size: 0x8)
+class SCautiousVIPGroupState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZGameTime m_tMove; // 0x0
+};
+
+// 0x0000000142A9A358 (Size: 0x30)
+class SCautiousVIPGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_vip; // 0x0
+	SFSMSaveData m_fsmState; // 0x8
+	SCautiousVIPGroupState m_stateData; // 0x20
+	int32 m_vipTargetNode; // 0x28
+	int32 m_occupancyNode; // 0x2C
+};
+
+// 0x0000000142AA5A90 (Size: 0x4)
+enum class EHUDIconFlags
+{
+	HUD_ICON_FLAG_POSITION = 1,
+	HUD_ICON_FLAG_VALUE = 2,
+	HUD_ICON_FLAG_SCALE = 4,
+	HUD_ICON_FLAG_TEXT = 8,
+};
+
+// 0x0000000142AA4B00 (Size: 0x4)
+enum class EDeathAnimationType
+{
+	DAT_None = 0,
+	DAT_SingleShot = 1,
+	DAT_BurstShot = 2,
+	DAT_HeavyShot = 3,
+	DAT_Unknown = 4,
+};
+
+// 0x0000000142A9A188 (Size: 0x48)
+class SSituationGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sClassTypeName; // 0x0
+	uint32 m_nSituation; // 0x10
+	TArray<uint32> m_aActors; // 0x18
+	int32 m_nGroupID; // 0x30
+	ZVariant m_CustomData; // 0x38
+};
+
+// 0x0000000142AA4150 (Size: 0x14)
+class SMathLerpSaveData_SVector2
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector2 m_A; // 0x0
+	SVector2 m_B; // 0x8
+	float32 m_fT; // 0x10
+};
+
+// 0x0000000142AA2878 (Size: 0x30)
+class SMathLerpsSaveData_SVector2
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathLerpSaveData_SVector2> m_aData; // 0x18
+};
+
+// 0x0000000142AACF10 (Size: 0x8)
+class ZPlanningObjectiveInfoBuilder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B01700 (Size: 0x1)
+enum class ERestitutionCombineMode
+{
+	ERestitutionCombineMode_AVERAGE = 0,
+	ERestitutionCombineMode_MIN = 1,
+	ERestitutionCombineMode_MULTIPLY = 2,
+	ERestitutionCombineMode_MAX = 3,
+};
+
+// 0x0000000142AEED58 (Size: 0x4)
+enum class EGait
+{
+	eGait_Normal = 0,
+	eGait_Reposition = 1,
+	eGait_Alert = 2,
+	eGait_Scared = 3,
+	eGait_Prone = 4,
+	eGait_Dead = 5,
+	eGait_Angry = 6,
+	eGait_Applause = 7,
+	eGait_BeatUp_000cm_01_Dual_A = 8,
+	eGait_BeatUp_000cm_01_Dual_B = 9,
+	eGait_BeatUp_000cm_02_Dual_A = 10,
+	eGait_BeatUp_000cm_02_Dual_B = 11,
+	eGait_BeatUp_Wall_Dual_A = 12,
+	eGait_BeatUp_Wall_Dual_B = 13,
+	eGait_Chatting = 14,
+	eGait_Cheer = 15,
+	eGait_Clap = 16,
+	eGait_Climb_Up_Fall = 17,
+	eGait_Concerned = 18,
+	eGait_Couples_A = 19,
+	eGait_Couples_B = 20,
+	eGait_Couples_C = 21,
+	eGait_Dance_Drunk = 22,
+	eGait_Dance_Dual_A = 23,
+	eGait_Dance_Dual_B = 24,
+	eGait_Dance_Party = 25,
+	eGait_Dance_Party_A = 26,
+	eGait_Dance_Party_B = 27,
+	eGait_Dance_Party_C = 28,
+	eGait_Dance_Party_D = 29,
+	eGait_Dance_Party_E = 30,
+	eGait_Dance_Party_F = 31,
+	eGait_Dance_Rave = 32,
+	eGait_Dance_Rave_A = 33,
+	eGait_Dance_Rave_B = 34,
+	eGait_Dance_Rave_C = 35,
+	eGait_Dance_Rave_D = 36,
+	eGait_Dance_Rave_E = 37,
+	eGait_Dance_Rave_F = 38,
+	eGait_Dance_Rave_Zone_Out_A = 39,
+	eGait_Dance_Rave_Zone_Out_B = 40,
+	eGait_Dance_Rave_Zone_Out_C = 41,
+	eGait_Dance_Rave_Zone_Out_D = 42,
+	eGait_Dance_Rave_Zone_Out_E = 43,
+	eGait_Dance_Rave_Zone_Out_F = 44,
+	eGait_Dance_Rave_Zone_Out_G = 45,
+	eGait_Dance_Rave_Zone_Out_H = 46,
+	eGait_Excited = 47,
+	eGait_Fanatic_Fans = 48,
+	eGait_Freeze_A = 49,
+	eGait_Freeze_B = 50,
+	eGait_Freeze_C = 51,
+	eGait_Freeze_Lean_Wall = 52,
+	eGait_Haggle = 53,
+	eGait_Interested = 54,
+	eGait_Jeer = 55,
+	eGait_Lean_Rail = 56,
+	eGait_Lean_Wall = 57,
+	eGait_Lie_WritheInPain = 58,
+	eGait_LookAt_Race_A = 59,
+	eGait_LookAt_Race_B = 60,
+	eGait_LookUp_Excited = 61,
+	eGait_Mingle = 62,
+	eGait_Mingle_120cm = 63,
+	eGait_Mingle_Drunk = 64,
+	eGait_Mingle_Rave_A = 65,
+	eGait_Mingle_Rave_B = 66,
+	eGait_Mingle_Rave_C = 67,
+	eGait_Mingle_Mumbai_A = 68,
+	eGait_Mingle_Mumbai_B = 69,
+	eGait_Mingle_Race = 70,
+	eGait_Mingle_Race_Rail = 71,
+	eGait_Mingle_Wall = 72,
+	eGait_Pacing_Angry = 73,
+	eGait_Party = 74,
+	eGait_Protest = 75,
+	eGait_Push_Gate = 76,
+	eGait_Rally = 77,
+	eGait_Reaction_TearGas = 78,
+	eGait_Shocked = 79,
+	eGait_Shop = 80,
+	eGait_Sit_020cm = 81,
+	eGait_Sit_040cm = 82,
+	eGait_Sit_100cm = 83,
+	eGait_Sit_ChairBasic = 84,
+	eGait_Sit_ChairBasic_LeanForward = 85,
+	eGait_Sit_Chair_Rave_A = 86,
+	eGait_Sit_Chair_Rave_B = 87,
+	eGait_Sit_Chair_Rave_C = 88,
+	eGait_Sit_Ground_Hungover = 89,
+	eGait_Squat_Relaxed = 90,
+	eGait_Squat_Sorting = 91,
+	eGait_Throw_Rice = 92,
+	eGait_Wait_Excited = 93,
+	eGait_Wait_InLine = 94,
+	eGait_WarmHands_100cm = 95,
+	eGait_Wave_Mexican = 96,
+	eGait_Yell_Up = 97,
+	eGait_Custom0 = 98,
+	eGait_Custom1 = 99,
+	eGait_Custom2 = 100,
+	eGait_Custom3 = 101,
+	eGait_Custom4 = 102,
+	eGait_Custom5 = 103,
+	eGait_Custom6 = 104,
+	eGait_Custom7 = 105,
+	eGait_Custom8 = 106,
+	eGait_Custom9 = 107,
+};
+
+// 0x0000000142AA3020 (Size: 0x4)
+enum class ECharacterIdlePriority
+{
+	eCIP_Irrelevant = 0,
+	eCIP_VeryLow = 1,
+	eCIP_QuiteLow = 2,
+	eCIP_Low = 3,
+	eCIP_MediumLow = 4,
+	eCIP_Medium = 5,
+	eCIP_MediumHigh = 6,
+	eCIP_High = 7,
+	eCIP_QuiteHigh = 8,
+	eCIP_VeryHigh = 9,
+	eCIP_Urgent = 10,
+};
+
+// 0x0000000142AA6D80 (Size: 0x4)
+enum class EDisposalType
+{
+	DISPOSAL_UNDEFINED = 0,
+	DISPOSAL_NOTHING = 1,
+	DISPOSAL_HOLSTER = 2,
+	DISPOSAL_HIDE = 3,
+	DISPOSAL_PLACE = 4,
+	DISPOSAL_DROP = 5,
+	DISPOSAL_DROP_HIDE = 6,
+	DISPOSAL_DESTROY = 7,
+	DISPOSAL_COUNT = 8,
+};
+
+// 0x0000000142AA0DE8 (Size: 0xC)
+class SAnimatedActorStandOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 m_vFacingDirection; // 0x0
+};
+
+// 0x0000000142AA7AB8 (Size: 0x4)
+enum class EDynamicVariableType
+{
+	DV_Invalid = -1,
+	DV_Me = 0,
+	DV_Hitman = 1,
+	DV_InSight = 2,
+	DV_RecentlyInSight = 3,
+	DV_Sounds = 4,
+	DV_NumVariables = 5,
+};
+
+// 0x0000000142A9C438 (Size: 0x8)
+class IRoleEventSource :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA5850 (Size: 0x4)
+enum class EButtonState
+{
+	BUTTON_STATE_DISABLED = -1,
+	BUTTON_STATE_NONE = 0,
+	BUTTON_STATE_ENABLED = 1,
+	BUTTON_STATE_PRESSED = 2,
+	BUTTON_STATE_BLINKING = 3,
+};
+
+// 0x0000000142B015C8 (Size: 0x1)
+enum class ECOMUsage
+{
+	ECOMUSAGE_AUTOCOMPUTE = 0,
+	ECOMUSAGE_PIVOT = 1,
+};
+
+// 0x0000000142A88498 (Size: 0x4)
+enum class EBaseMovementType
+{
+	eMovementNone = -1,
+	eMovementDead = 0,
+	eMovementNewFullBody = 1,
+	eMovementAgility = 2,
+	eMovementAlign = 3,
+	eMovementCover = 4,
+	eMovementDrainPipe = 5,
+	eMovementLadder = 6,
+	eMovementPullVictimFromWindow = 7,
+	eMovementFiberWireKill = 8,
+	eMovementDumpBody = 9,
+	eMovementThrowBodyOverRail = 10,
+	eMovementDumpBodyOverLedge = 11,
+	eMovementOperateCPDoor = 12,
+	eMovementDisguiseSafeZone = 13,
+	eMovementHideInCloset = 14,
+	eMovementTakeDown = 15,
+	eMovementCloseCombat = 16,
+	eMovementRecoveryFinisher = 17,
+	eMovementContextAction = 18,
+	eMovementSubaction = 19,
+	eMovementGrabVictim = 20,
+	eMovementPushVictimThroughWindowAndRail = 21,
+	eMovementContextKill = 22,
+	eMovementKickVictimOverLedge = 23,
+	eMovementDragBody = 24,
+	eMovementTakeClothes = 25,
+	eMovementCoupDeGrace = 26,
+	eMovementThrow = 27,
+	eMovementPlace = 28,
+	eMovementSurrender = 29,
+	eMovementFrisk = 30,
+	eMovementShowItem = 31,
+	eMovementPeek = 32,
+	eMovementFocusedInteraction = 33,
+	eMovementSilentTakedown = 34,
+	eMovementSnapNeck = 35,
+	eMovementLocomotion = 36,
+	eMovementLast = 37,
+	eMovementPickupItem = 38,
+};
+
+// 0x0000000143E70DE0 (Size: 0x30)
+class SCrowdFlowChannel
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint8> m_aFlowVectorIndex; // 0x0
+	TArray<uint16> m_aFlowCost; // 0x18
+};
+
+// 0x0000000142AA8880 (Size: 0x24)
+class SCondition_MinDistance :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a0; // 0x10
+	ZBehaviorTreeVariable a1; // 0x18
+	float32 a2; // 0x20
+};
+
+// 0x0000000142B017A8 (Size: 0x4)
+enum class EConstraintType
+{
+	ECONSTRAINTTYPE_UNKNOWN = 0,
+	ECONSTRAINTTYPE_BALL_AND_SOCKET = 1,
+	ECONSTRAINTTYPE_HINGE = 2,
+	ECONSTRAINTTYPE_FIXED = 3,
+	ECONSTRAINTTYPE_DISTANCE = 4,
+	ECONSTRAINTTYPE_D6 = 5,
+};
+
+// 0x0000000142ABED60 (Size: 0x4)
+enum class EItemModifierType
+{
+	MODIFIER_NONE = 0,
+	MODIFIER_THROW = 1,
+	MODIFIER_CARRY = 2,
+	MODIFIER_AMMO = 3,
+	MODIFIER_PRECISION = 4,
+	MODIFIER_DAMAGE = 5,
+	MODIFIER_IMPACT = 6,
+	MODIFIER_EXPLOSIVE = 7,
+	MODIFIER_RANGE = 8,
+	MODIFIER_ZOOM = 9,
+	MODIFIER_SUPPRESSOR = 10,
+	MODIFIER_RECOIL = 11,
+	MODIFIER_RATEOFFIRE = 12,
+	MODIFIER_SCOPEBOBBING = 13,
+	MODIFIER_MUZZLEVELOCITY = 14,
+	MODIFIER_KNOCKDOWN = 15,
+	MODIFIER_FULLAUTO = 16,
+	MODIFIER_PRECISIONSHOT = 17,
+	MODIFIER_SCOPETIMESLOWDOWN = 18,
+	MODIFIER_STYLE = 19,
+	MODIFIER_RELOAD = 20,
+	MODIFIER_THRESHOLD = 21,
+	MODIFIER_PERK = 22,
+	MODIFIER_MAGAZINE = 23,
+	MODIFIER_BURST = 24,
+};
+
+// 0x0000000142A9AEA0 (Size: 0x8)
+class SMovementDisguiseSafeZoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rSafeZone; // 0x0
+	uint32 m_nSafeZoneAnimNode; // 0x4
+};
+
+// 0x00000001422D6CD8 (Size: 0x8)
+class IParticleEmitterEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABED90 (Size: 0x4)
+enum class eItemHands
+{
+	IH_NONE = 0,
+	IH_ONEHANDED = 1,
+	IH_TWOHANDED = 2,
+};
+
+// 0x0000000142A9A310 (Size: 0x200)
+class ZCautiousSearchGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D6F78 (Size: 0x4)
+enum class EWeaponAnimationCategory
+{
+	eWAC_Undefined = 0,
+	eWAC_Pistol = 1,
+	eWAC_Revolver = 2,
+	eWAC_SMG_2H = 3,
+	eWAC_SMG_1H = 4,
+	eWAC_Rifle = 5,
+	eWAC_Sniper = 6,
+	eWAC_Shotgun_Pump = 7,
+	eWAC_Shotgun_Semi = 8,
+};
+
+// 0x0000000142AA1230 (Size: 0x4)
+enum class EAILegalType
+{
+	AILT_Weapon = 0,
+	AILT_Shooting = 1,
+	AILT_Aiming = 2,
+	AILT_CloseCombat = 3,
+	AILT_ChangeOutfit = 4,
+	AILT_Count = 5,
+};
+
+// 0x0000000142AA3380 (Size: 0x4)
+enum class ECharacterUpperBodyStateType
+{
+	eSM_UB_EmptyHanded = 0,
+	eSM_UB_Unholster = 1,
+	eSM_UB_Hold = 2,
+	eSM_UB_Reload = 3,
+	eSM_UB_Holster = 4,
+	eSM_UB_Conceal = 5,
+	eSM_UB_SwapItemHand = 6,
+	eSM_UB_Aiming = 7,
+	eSM_UB_Pickup = 8,
+	eSM_UB_InteractionSwipe = 9,
+	eSM_UB_Interaction = 10,
+	eSM_UB_Slave = 11,
+	eSM_UB_OpenDoor = 12,
+	eSM_UB_FlavorIdle = 13,
+	eSM_UB_ChangeAmmo = 14,
+	eSM_UB_Assemble = 15,
+	eSM_UB_Fiberwire = 16,
+	eSM_UB_PrimeTwoHanded = 17,
+	eSM_UB_SnapNeck = 18,
+};
+
+// 0x00000001422D7670 (Size: 0xC)
+class SAccessoryItemSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	uint32 m_nBoneId; // 0x4
+	bool m_bAttached; // 0x8
+	bool m_bVisible; // 0x9
+};
+
+// 0x0000000142AB46A8 (Size: 0x8)
+class SKeywordSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_HolderSaveableId; // 0x0
+	int32 m_KeywordID; // 0x4
+};
+
+// 0x00000001422D6E68 (Size: 0x4)
 enum class EActorSoundDefs
 {
 	_NoSound = 0,
@@ -8411,7 +11693,7 @@ enum class EActorSoundDefs
 	Gen_SocialAck = 424,
 };
 
-// 0x0000000142A9AFD8 (Size: 0x18)
+// 0x0000000142AA7E00 (Size: 0x18)
 class SCondition_HasCustomDistractionAckSoundDef :
 	public SConditionBase
 {
@@ -8423,330 +11705,8 @@ public:
 	ZBehaviorTreeVariable entity; // 0x10
 };
 
-// 0x0000000142AA7888 (Size: 0x8)
-class SKeywordSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_HolderSaveableId; // 0x0
-	int32 m_KeywordID; // 0x4
-};
-
-// 0x0000000142A79EC0 (Size: 0x4)
-enum class ECompiledBehaviorType
-{
-	BT_ConditionScope = 0,
-	BT_Random = 1,
-	BT_Match = 2,
-	BT_Sequence = 3,
-	BT_BEHAVIORS_BEGIN = 4,
-	BT_Dummy = 4,
-	BT_Dummy2 = 5,
-	BT_Error = 6,
-	BT_Wait = 7,
-	BT_WaitForStanding = 8,
-	BT_WaitBasedOnDistanceToTarget = 9,
-	BT_WaitForItemHandled = 10,
-	BT_AbandonOrder = 11,
-	BT_CompleteOrder = 12,
-	BT_PlayAct = 13,
-	BT_ConfiguredAct = 14,
-	BT_PlayReaction = 15,
-	BT_SimpleReaction = 16,
-	BT_SituationAct = 17,
-	BT_SituationApproach = 18,
-	BT_SituationGetHelp = 19,
-	BT_SituationFace = 20,
-	BT_SituationConversation = 21,
-	BT_Holster = 22,
-	BT_SpeakWait = 23,
-	BT_SpeakWaitWithFallbackIfAlone = 24,
-	BT_ConfiguredSpeak = 25,
-	BT_ConditionedConfiguredSpeak = 26,
-	BT_ConditionedConfiguredAct = 27,
-	BT_SpeakCustomOrDefaultDistractionAckSoundDef = 28,
-	BT_SpeakCustomOrDefaultDistractionInvestigationSoundDef = 29,
-	BT_SpeakCustomOrDefaultDistractionStndSoundDef = 30,
-	BT_Pickup = 31,
-	BT_Drop = 32,
-	BT_PlayConversation = 33,
-	BT_PlayAnimation = 34,
-	BT_MoveToLocation = 35,
-	BT_MoveToTargetKnownPosition = 36,
-	BT_MoveToTargetActualPosition = 37,
-	BT_MoveToInteraction = 38,
-	BT_MoveToNPC = 39,
-	BT_FollowTargetKnownPosition = 40,
-	BT_FollowTargetActualPosition = 41,
-	BT_PickUpItem = 42,
-	BT_GrabItem = 43,
-	BT_PutDownItem = 44,
-	BT_Search = 45,
-	BT_LimitedSearch = 46,
-	BT_MoveTo = 47,
-	BT_Reposition = 48,
-	BT_SituationMoveTo = 49,
-	BT_FormationMove = 50,
-	BT_SituationJumpTo = 51,
-	BT_AmbientWalk = 52,
-	BT_AmbientStand = 53,
-	BT_CrowdAmbientStand = 54,
-	BT_AmbientItemUse = 55,
-	BT_AmbientLook = 56,
-	BT_Act = 57,
-	BT_Patrol = 58,
-	BT_MoveToPosition = 59,
-	BT_AlertedStand = 60,
-	BT_AlertedDebug = 61,
-	BT_AttentionToPerson = 62,
-	BT_StunnedByFlashGrenade = 63,
-	BT_CuriousIdle = 64,
-	BT_InvestigateWeapon = 65,
-	BT_DeliverWeapon = 66,
-	BT_RecoverUnconscious = 67,
-	BT_GetOutfit = 68,
-	BT_RadioCall = 69,
-	BT_EscortOut = 70,
-	BT_StashItem = 71,
-	BT_CautiousSearchPosition = 72,
-	BT_LockdownWarning = 73,
-	BT_WakeUpUnconscious = 74,
-	BT_DeadBodyInvestigate = 75,
-	BT_GuardDeadBody = 76,
-	BT_DragDeadBody = 77,
-	BT_CuriousBystander = 78,
-	BT_DeadBodyBystander = 79,
-	BT_StandOffArrest = 80,
-	BT_StandOffReposition = 81,
-	BT_StandAndAim = 82,
-	BT_CloseCombat = 83,
-	BT_MoveToCloseCombat = 84,
-	BT_MoveAwayFromCloseCombat = 85,
-	BT_CoverFightSeasonTwo = 86,
-	BT_ShootFromPosition = 87,
-	BT_StandAndShoot = 88,
-	BT_CheckLastPosition = 89,
-	BT_ProtoSearchIdle = 90,
-	BT_ProtoApproachSearchArea = 91,
-	BT_ProtoSearchPosition = 92,
-	BT_ShootTarget = 93,
-	BT_TriggerAlarm = 94,
-	BT_MoveInCover = 95,
-	BT_MoveToCover = 96,
-	BT_HomeAttackOrigin = 97,
-	BT_Shoot = 98,
-	BT_Aim = 99,
-	BT_MoveToRandomNeighbourNode = 100,
-	BT_MoveToRandomNeighbourNodeAiming = 101,
-	BT_MoveToAndPlayCombatPositionAct = 102,
-	BT_MoveToAimingAndPlayCombatPositionAct = 103,
-	BT_PlayJumpyReaction = 104,
-	BT_JumpyInvestigation = 105,
-	BT_AgitatedPatrol = 106,
-	BT_AgitatedGuard = 107,
-	BT_HeroEscort = 108,
-	BT_Escort = 109,
-	BT_ControlledFormationMove = 110,
-	BT_EscortSearch = 111,
-	BT_LeadEscort = 112,
-	BT_LeadEscort2 = 113,
-	BT_AimReaction = 114,
-	BT_FollowHitman = 115,
-	BT_RideTheLightning = 116,
-	BT_Scared = 117,
-	BT_Flee = 118,
-	BT_AgitatedBystander = 119,
-	BT_SentryFrisk = 120,
-	BT_SentryIdle = 121,
-	BT_SentryWarning = 122,
-	BT_SentryCheckItem = 123,
-	BT_VIPScared = 124,
-	BT_VIPSafeRoomTrespasser = 125,
-	BT_DefendVIP = 126,
-	BT_CautiousVIP = 127,
-	BT_CautiousGuardVIP = 128,
-	BT_InfectedConfused = 129,
-	BT_EnterInfected = 130,
-	BT_CureInfected = 131,
-	BT_SickActInfected = 132,
-	BT_Smart = 133,
-	BT_Controlled = 134,
-	BT_SpeakTest = 135,
-	BT_Conversation = 136,
-	BT_RunToHelp = 137,
-	BT_WaitForDialog = 138,
-	BT_WaitForConfiguredAct = 139,
-	BT_TestFlashbangGrenadeThrow = 140,
-	BT_BEHAVIORS_END = 141,
-	BT_COMMANDS_BEGIN = 142,
-	BT_RenewEvent = 142,
-	BT_ExpireEvent = 143,
-	BT_ExpireEvents = 144,
-	BT_SetEventHandled = 145,
-	BT_RenewSharedEvent = 146,
-	BT_ExpireSharedEvent = 147,
-	BT_ExpireAllEvents = 148,
-	BT_CreateOrJoinSituation = 149,
-	BT_JoinSituation = 150,
-	BT_ForceActorToJoinSituation = 151,
-	BT_JoinSituationWithActor = 152,
-	BT_LeaveSituation = 153,
-	BT_Escalate = 154,
-	BT_GotoPhase = 155,
-	BT_RenewGoal = 156,
-	BT_ExpireGoal = 157,
-	BT_RenewGoalOf = 158,
-	BT_ExpireGoalOf = 159,
-	BT_SetTension = 160,
-	BT_TriggerSpotted = 161,
-	BT_CopyKnownLocation = 162,
-	BT_UpdateKnownLocation = 163,
-	BT_TransferKnownObjectPositions = 164,
-	BT_WitnessAttack = 165,
-	BT_Speak = 166,
-	BT_StartDynamicEnforcer = 167,
-	BT_StopDynamicEnforcer = 168,
-	BT_StartRangeBasedDynamicEnforcer = 169,
-	BT_StopRangeBasedDynamicEnforcerForLocation = 170,
-	BT_StopRangeBasedDynamicEnforcer = 171,
-	BT_SetDistracted = 172,
-	BT_IgnoreAllDistractionsExceptTheNewest = 173,
-	BT_IgnoreDistractions = 174,
-	BT_PerceptibleEntityNotifyWillReact = 175,
-	BT_PerceptibleEntityNotifyReacted = 176,
-	BT_PerceptibleEntityNotifyInvestigating = 177,
-	BT_PerceptibleEntityNotifyInvestigated = 178,
-	BT_PerceptibleEntityNotifyTerminate = 179,
-	BT_LeaveDistractionAssistantRole = 180,
-	BT_LeaveDistractionAssitingGuardRole = 181,
-	BT_RequestSuitcaseAssistanceOverRadio = 182,
-	BT_RequestSuitcaseAssistanceFaceToFace = 183,
-	BT_ExpireArrestReasons = 184,
-	BT_SetDialogSwitch_NPCID = 185,
-	BT_InfectedAssignToFollowPlayer = 186,
-	BT_InfectedRemoveFromFollowPlayer = 187,
-	BT_Log = 188,
-	BT_COMMANDS_END = 189,
-	BT_Invalid = 190,
-};
-
-// 0x00000001422CA0B8 (Size: 0x4)
-enum class ECCWeaponAnimSet
-{
-	AS_SLIT_THROAT_1H = 0,
-	AS_SWING_1H = 1,
-	AS_BASH_1H = 2,
-	AS_STAB_1H = 3,
-	AS_SYRINGE_1H = 4,
-	AS_SMASH_1H = 5,
-	AS_STRANGLE = 6,
-	AS_SWING_2H = 7,
-	AS_BASH_2H = 8,
-	AS_STAB_2H = 9,
-	AS_STRANGLE_2H = 10,
-	AS_SWORD_1H = 11,
-	AS_AXE = 12,
-};
-
-// 0x0000000142A82F90 (Size: 0x4)
-enum class EActorRole
-{
-	eActorRole_Default = 0,
-	eActorRole_Bodyguard = 1,
-	eActorRole_VIP = 2,
-};
-
-// 0x0000000142A97F20 (Size: 0x4)
-enum class ESpeechPriority
-{
-	SP_AMBIENT = 0,
-	SP_ALERTED = 1,
-	SP_PAIN = 2,
-	SP_ALERTED_IMPORTANT = 3,
-	SP_COMBAT = 4,
-	SP_COMBAT_IMPORTANT = 5,
-	SP_DEATH = 6,
-	SP_MAX = 7,
-	SP_COUNT__ = 8,
-};
-
-// 0x0000000142A8ACC0 (Size: 0x8)
-class S3rdPersonCameraSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fAngleYaw; // 0x0
-	float32 m_fAnglePitch; // 0x4
-};
-
-// 0x0000000142A98F10 (Size: 0x4)
-enum class EHM5SoundFootstepStance
-{
-	EFSS_SNEAK = 0,
-	EFSS_SNEAKRUN = 1,
-	EFSS_WALKSLOWLY = 2,
-	EFSS_WALK = 3,
-	EFSS_RUN = 4,
-	EFSS_ANY = 5,
-};
-
-// 0x0000000142A9BD38 (Size: 0x4)
-enum class EGestureCategory
-{
-	EGC_None = 0,
-	EGC_AmbientDialog = 1,
-	EGC_TrespassWarn1 = 2,
-	EGC_TrespassWarn2 = 3,
-	EGC_TrespassWarn3 = 4,
-	EGC_StopWarn = 5,
-};
-
-// 0x0000000142A98D30 (Size: 0x4)
-enum class EHUDMessageStatus
-{
-	HUD_MESSAGE_UNUSED = 0,
-	HUD_MESSAGE_ATTACH = 1,
-	HUD_MESSAGE_FADEIN = 2,
-	HUD_MESSAGE_DISPLAY = 3,
-	HUD_MESSAGE_FADEOUT = 4,
-};
-
-// 0x0000000142A96C80 (Size: 0x4)
-enum class ECCDecalEffect
-{
-	eCCDecalEffect_None = 0,
-	eCCDecalEffect_Stab = 1,
-	eCCDecalEffect_Blunt1H = 2,
-	eCCDecalEffect_Blunt2H = 3,
-	eCCDecalEffect_Slash1H = 4,
-	eCCDecalEffect_Shatter = 5,
-	eCCDecalEffect_AxeCleave = 6,
-	eCCDecalEffect_AxePull = 7,
-	eCCDecalEffect_AxeSlitThroat = 8,
-	eCCDecalEffect_SlitThroat = 9,
-	eCCDecalEffect_FacePunch = 10,
-	eCCDecalEffect_Bruise = 11,
-};
-
-// 0x0000000142AE46D8 (Size: 0x8)
-class IUIMovie :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B9F8 (Size: 0x18)
-class SCondition_CanJoinSituation :
+// 0x0000000142AA86E8 (Size: 0x18)
+class SCondition_SituationHuntTarget :
 	public SConditionBase
 {
 public:
@@ -8757,50 +11717,53 @@ public:
 	ZBehaviorTreeVariable situation; // 0x10
 };
 
-// 0x0000000142A8D778 (Size: 0x4)
-enum class EDramaStateFlag
+// 0x0000000142A9C7B0 (Size: 0x4)
+enum class ERoleEvent
 {
-	eDSF_DEFAULT = 0,
-	eDSF_ENABLED = 1,
-	eDSF_CAST = 2,
-	eDSF_RESUMING = 4,
-	eDSF_RUNNING = 8,
-	eDSF_DONE = 16,
-	eDSF_TERMINATED = 32,
+	eRE_NONE = 0,
+	eRE_CAST = 1,
+	eRE_CLEAR = 2,
+	eRE_ENTER_DRAMA = 3,
+	eRE_REENTER_DRAMA = 4,
+	eRE_LEAVE_DRAMA = 5,
+	eRE_NEW_DRAMA = 6,
+	eRE_PAUSED = 7,
+	eRE_RESUMING = 8,
+	eRE_RUNNING = 9,
 };
 
-// 0x0000000142A82E80 (Size: 0x4)
-enum class EActorState
+// 0x0000000142B01908 (Size: 0x4)
+enum class EClothStretchConstrainType
 {
-	AS_DEACTIVATED = 0,
-	AS_ALIVE = 1,
-	AS_DYING = 2,
-	AS_DEAD = 3,
-	AS_DISABLED = 4,
+	eClothBendConstrainType_Anchor = 0,
+	eClothBendConstrainType_LRA = 1,
+	eClothBendConstrainType_None = 2,
 };
 
-// 0x00000001422C9FB8 (Size: 0x8)
-class IMetricValue
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422C8F88 (Size: 0x60)
-class ZEntityPath
+// 0x0000000143E6DE48 (Size: 0x28)
+class SRenderMaterialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	uint32 m_rEntity; // 0x0
+	TArray<uint8> m_aDynamicParametersData; // 0x8
+	bool m_bActive; // 0x20
 };
 
-// 0x0000000142A797E0 (Size: 0x8)
-class ICharacterLocationState :
+// 0x0000000142AF0280 (Size: 0x4)
+enum class ENamedGameEvents
+{
+	eEvent_IntroCutStart = 0,
+	eEvent_PlayingAfterLoad = 1,
+	eEvent_SetModePlaying = 2,
+	eNumNamedGameEvents = 3,
+};
+
+// 0x0000000142AA0170 (Size: 0x8)
+class IAISoundEventModifier :
 	public IComponentInterface
 {
 public:
@@ -8810,176 +11773,8 @@ public:
 
 };
 
-// 0x0000000142AE16D8 (Size: 0x4)
-enum class EDialogEventEndReason
-{
-	EDialogEvent_Completed = 0,
-	EDialogEvent_Stopped = 1,
-};
-
-// 0x0000000142A9BA58 (Size: 0x24)
-class SCondition_MinDistance :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a0; // 0x10
-	ZBehaviorTreeVariable a1; // 0x18
-	float32 a2; // 0x20
-};
-
-// 0x0000000143E63ED8 (Size: 0x4)
-class ZCrowdGridPoint
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int16 m_nHeightOffset; // 0x0
-	uint8 m_nOnNavGrid; // 0x2
-};
-
-// 0x0000000143E63E60 (Size: 0x30)
-class SCrowdFlowChannel
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint8> m_aFlowVectorIndex; // 0x0
-	TArray<uint16> m_aFlowCost; // 0x18
-};
-
-// 0x0000000142AF4888 (Size: 0x4)
-enum class EConstraintType
-{
-	ECONSTRAINTTYPE_UNKNOWN = 0,
-	ECONSTRAINTTYPE_BALL_AND_SOCKET = 1,
-	ECONSTRAINTTYPE_HINGE = 2,
-	ECONSTRAINTTYPE_FIXED = 3,
-	ECONSTRAINTTYPE_DISTANCE = 4,
-	ECONSTRAINTTYPE_D6 = 5,
-};
-
-// 0x0000000143E5F4E0 (Size: 0x4)
-enum class EParticleModifierImpulseDirections
-{
-	TARGET_ZAXIS_DIRECTION = 0,
-	TOWARDS_TARGET_PIVOT = 1,
-	AWAY_FROM_TARGET_PIVOT = 2,
-};
-
-// 0x0000000142A7B340 (Size: 0x4)
-enum class ECollidablesType
-{
-	ECST_STATIC_AND_DYNAMIC = 0,
-	ECST_STATIC_ONLY = 1,
-	ECST_DYNAMIC_ONLY = 2,
-};
-
-// 0x0000000142A98970 (Size: 0x4)
-enum class ERatingCategory
-{
-	ERatingCategory_Invalid = 0,
-	ERatingCategory_Flawless = 1,
-	ERatingCategory_Violence = 2,
-	ERatingCategory_Cunning = 3,
-	ERatingCategory_Noise = 4,
-	ERatingCategory_COUNT = 5,
-};
-
-// 0x0000000142A98790 (Size: 0x4)
-enum class EGSEvent
-{
-	GSEvent_StrayBullet = 0,
-	GSEvent_TookDamage = 1,
-	GSEvent_UsedCover = 2,
-	GSEvent_UsedRun = 3,
-	GSEvent_UsedEliminate = 4,
-	GSEvent_UsedChokeOut = 5,
-	GSEvent_UsedKnockOutByHand = 6,
-	GSEvent_Pacified = 7,
-	GSEvent_TargetPacified = 8,
-	GSEvent_Recover = 9,
-	GSEvent_CaughtArmed = 10,
-	GSEvent_BodyFound = 11,
-	GSEvent_InvestigateCurious = 12,
-	GSEvent_NPCKilled = 13,
-	GSEvent_KilledNPCHidden = 14,
-	GSEvent_InvestigateCautious = 15,
-	GSEvent_PrecisionAimedKill = 16,
-	GSEvent_BlendInActivated = 17,
-	GSEvent_PropKill = 18,
-	GSEvent_SpottedThroughDisguise = 19,
-	GSEvent_TakeOutNonLethal = 20,
-	GSEvent_TargetKilled = 21,
-	GSEvent_NonTargetKilled = 22,
-	GSEvent_AllTargetsKilled = 23,
-	GSEvent_AccidentKill = 24,
-	GSEvent_ObjectiveUpdate = 25,
-	GSEvent_TargetAccidentKill = 26,
-	GSEvent_ObjectiveActivate = 27,
-	GSEvent_Headshot = 28,
-	GSEvent_Fiberwire = 29,
-	GSEvent_UsedEliminateSilent = 30,
-	GSEvent_ItemFound = 31,
-	GSEvent_ItemStashed = 32,
-	GSEvent_BodyBagPlaced = 33,
-	GSEvent_Projectile_HeadShot = 34,
-	GSEvent_Projectile_BodyShot = 35,
-	GSEvent_Projectile_Crowd_HeadShot = 36,
-	GSEvent_Projectile_Crowd_BodyShot = 37,
-	GSEvent_Projectile_Missed = 38,
-	GSEvent_Projectile_MultiKillTargets = 39,
-};
-
-// 0x0000000142A7B508 (Size: 0x4)
-enum class EGSKillSituation
-{
-	GSKILLSITUATION_UNKNOWN = 0,
-	GSKILLSITUATION_CLOSECOMBAT = 1,
-	GSKILLSITUATION_SILENT = 2,
-	GSKILLSITUATION_ENVIRONMENT = 3,
-	GSKILLSITUATION_ACTION = 4,
-	GSKILLSITUATION_DEADLYTHROW = 5,
-	GSKILLSITUATION_PULLTHROUGHWINDOW = 6,
-	GSKILLSITUATION_PUSHOVERRAILING = 7,
-	GSKILLSITUATION_PACIFY = 8,
-	GSKILLSITUATION_FIBERWIRE = 9,
-};
-
-// 0x0000000142A82FA8 (Size: 0x4)
-enum class EActorFaction
-{
-	eActorFaction_Default = 0,
-	eActorFaction_VIP_1 = 1,
-	eActorFaction_VIP_2 = 2,
-	eActorFaction_VIP_3 = 3,
-	eActorFaction_VIP_4 = 4,
-	eActorFaction_VIP_5 = 5,
-	eActorFaction_VIP_6 = 6,
-	eActorFaction_VIP_7 = 7,
-};
-
-// 0x0000000142A8D938 (Size: 0x4)
-enum class EDramaEventAction
-{
-	eDEA_NONE = 0,
-	eDEA_TERMINATE_DRAMA = 1,
-	eDEA_DONE_DRAMA = 2,
-	eDEA_STOP_BEHAVIOR = 4,
-	eDEA_DONT_STOP_SPEAK = 8,
-	eDEA_RESET_CASTING = 16,
-	eDEA_RESET_STATE = 32,
-};
-
-// 0x0000000142A93278 (Size: 0x8)
-class IRenderMaterialOverrideAssociation :
+// 0x0000000142A86318 (Size: 0x8)
+class ITransitionTarget :
 	public IComponentInterface
 {
 public:
@@ -8989,39 +11784,57 @@ public:
 
 };
 
-// 0x0000000142A8FF98 (Size: 0x2)
-class SVolumeTriggerListenerSaveData
+// 0x0000000142AA5CD0 (Size: 0x4)
+enum class EHM5SoundFootstepEmitterTarget
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bColliding; // 0x0
-	bool m_bInternalEnabled; // 0x1
+	EFSAT_MAIN = 0,
+	EFSAT_NPC = 1,
 };
 
-// 0x0000000142A95850 (Size: 0x30)
-class SVolumeTriggersSaveData
+// 0x0000000142B02DA0 (Size: 0x4)
+enum class EUbitusRequest
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SVolumeTriggerListenerSaveData> m_aData; // 0x18
+	EUR_DEVICE_LANGUAGE = 0,
+	EUR_DEVICE_MODE = 16,
+	EUR_NETWORK_SERVICE_ACCOUNT_ID = 48,
+	EUR_ACCOUNT_AUTHORIZATION_CODE = 64,
+	EUR_ACCOUNT_AUTHORIZATION_TOKEN = 80,
+	EUR_NETWORK_SERVICE_ACCOUNT_TOKEN = 96,
+	EUR_NICKNAME = 112,
+	EUR_FRIEND_LIST = 128,
+	EUR_BLOCKED_USER_LIST = 144,
+	EUR_PROFILE_LIST = 160,
+	EUR_ESHOP_INFO = 176,
+	EUR_FREE_COMMUNICATION_AVAILABLE = 192,
+	EUR_DLC_PURCHASE_STATUS = 208,
+	EUR_PAUSE_GAME = 32800,
+	EUR_RESUME_GAME = 32801,
+	EUR_ESHOP_CLOSED = 1226,
 };
 
-// 0x0000000142A926F0 (Size: 0x4)
-enum class EVRConfigCapsuleGridSize
+// 0x0000000142AA2FC0 (Size: 0x4)
+enum class ECharacterEvent
 {
-	EVRCCGS_RegularGrid = 0,
-	EVRCCGS_SmallGrid = 1,
+	eCIET_PickUp = 0,
+	eCIET_LadderEnded = 1,
+	eCIET_AgilityEnded = 2,
+	eCIET_CCEnded = 3,
+	eCIET_Disguised = 4,
+	eCIET_HideBody = 5,
+	eCIET_WalkingOnStairs = 6,
+	eCIET_Sniping_Congratulate = 7,
+	eCIET_Sniping_Acknowledge = 8,
+	eCIET_FlavorIdleEnded = 9,
+	eCIET_StartedMoving = 10,
+	eCIET_StoppedMoving = 11,
+	eCIET_DragBody = 12,
+	eCIET_Takedown = 13,
+	eCIET_Damaged = 14,
+	eCIET_None = 34,
 };
 
-// 0x0000000142A9AF18 (Size: 0x1C)
-class SCondition_IsHighestPriorityTypeToInvestigateFor :
+// 0x0000000142AA8298 (Size: 0x14)
+class SCondition_IsAIModified :
 	public SConditionBase
 {
 public:
@@ -9029,11 +11842,332 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable otherNPC; // 0x10
-	EAIEventType distractionType; // 0x18
+	EAIModifiers modifier; // 0x10
 };
 
-// 0x0000000142A9B530 (Size: 0x1C)
+// 0x0000000142AA51F0 (Size: 0x4)
+enum class ECharacterIdleHandlerUpperBodyType
+{
+	eCIHUBT_NothingToDoEmptySingleHand = 0,
+	eCIHUBT_NothingToDoEmptyHands = 1,
+	eCIHUBT_Event = 2,
+	eCIHUBT_Custom = 3,
+};
+
+// 0x0000000142AA32C0 (Size: 0x4)
+enum class ECharacterBodyType
+{
+	eCT_MaleRegular = 0,
+	eCT_FemaleRegular = 1,
+	eCT_Male47 = 2,
+	eCT_Undefined = 3,
+};
+
+// 0x0000000142AA8070 (Size: 0x18)
+class SCondition_CurrentSetpieceSoundDistractions :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+};
+
+// 0x0000000142AA5310 (Size: 0x4)
+enum class EAimAssistActivationState
+{
+	eAAAS_Activated = 0,
+	eAAAS_Activating = 1,
+	eAAAS_Deactivated = 2,
+	eAAAS_Deactivating = 3,
+};
+
+// 0x0000000142AA88C8 (Size: 0x24)
+class SCondition_MinActualDistance2D :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_From; // 0x10
+	ZBehaviorTreeVariable m_To; // 0x18
+	float32 m_Distance; // 0x20
+};
+
+// 0x0000000142AA0728 (Size: 0x8)
+class IActorSpreadTransitionOperator :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA81C0 (Size: 0x28)
+class SCondition_IsConfiguredConditionTrue :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+	ZString condition; // 0x18
+};
+
+// 0x0000000142AB66D8 (Size: 0x4)
+enum class ELedgeDismountDirection
+{
+	eLDD_DontCare = 0,
+	eLDD_FaceLedge = 1,
+	eLDD_FaceLeft = 2,
+	eLDD_FaceRight = 3,
+	eLDD_Turn180 = 4,
+};
+
+// 0x0000000142AC1090 (Size: 0x8)
+class SValueBoolDelayedEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bValue; // 0x0
+	bool m_bWaitingValue; // 0x1
+	float32 m_fTimeToNextEvent; // 0x4
+};
+
+// 0x0000000142AC1510 (Size: 0x4)
+enum class ETargetPrintDestination
+{
+	eTPD_Screen = 0,
+	eTPD_TraceViewer = 1,
+};
+
+// 0x0000000142AA7548 (Size: 0x8)
+class IActorProvider
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AF0670 (Size: 0x20)
+class SCppEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 blueprintIndexInResourceHeader; // 0x0
+	TArray<SEntityTemplateProperty> propertyValues; // 0x8
+};
+
+// 0x0000000142A958E0 (Size: 0x4)
+enum class ECharacterActionRequests
+{
+	eSM_AR_None = 0,
+	eSM_AR_ReloadR = 1,
+	eSM_AR_ReloadL = 2,
+	eSM_AR_ShootR = 3,
+	eSM_AR_ShootL = 4,
+	eSM_AR_SwapHands = 5,
+	eSM_AR_HolsterR = 6,
+	eSM_AR_HolsterL = 7,
+	eSM_AR_UnholsterR = 8,
+	eSM_AR_UnholsterL = 9,
+	eSM_AR_PickupItemR = 10,
+	eSM_AR_PickupItemL = 11,
+	eSM_AR_InteractionR = 12,
+	eSM_AR_InteractionL = 13,
+	eSM_AR_InteractionSwipe = 14,
+	eSM_AR_InteractionSwipeR = 15,
+	eSM_AR_InteractionSwipeL = 16,
+	eSM_AR_OpenDoor = 17,
+	eSM_AR_OpenDoorR = 18,
+	eSM_AR_OpenDoorL = 19,
+	eSM_AR_CloseCombat = 20,
+	eSM_AR_Movement = 21,
+	eSM_AR_Pretend = 22,
+	eSM_AR_Sniping = 23,
+	eSM_AR_EndSniping = 24,
+	eSM_AR_RetrieveFromSuitcase = 25,
+	eSM_AR_Marking = 26,
+	eSM_AR_ChangeAmmo = 27,
+	eSM_AR_Assemble = 28,
+	eSM_AR_Assemble_UnequippedContainer = 29,
+	eSM_AR_Disassemble = 30,
+	eSM_AR_Disassemble_PickingUp = 31,
+	eSM_AR_AssembleUB = 32,
+	eSM_AR_DisassembleUB = 33,
+	eSM_AR_Cancel = 34,
+	eSM_AR_Sprint = 35,
+	eSM_AR_CloseHandR = 36,
+	eSM_AR_CloseHandL = 37,
+};
+
+// 0x0000000142A980E0 (Size: 0x8)
+class IDramaListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143CEC308 (Size: 0x4)
+enum class eParticleEmitterBoxEntity_SpawnModes
+{
+	BOX_SPAWNMODE_INSIDE = 0,
+	BOX_SPAWNMODE_EDGE = 1,
+	BOX_SPAWNMODE_FACE = 2,
+	BOX_SPAWNMODE_ELLIPSOID_INSIDE = 3,
+	BOX_SPAWNMODE_ELLIPSOID = 4,
+};
+
+// 0x0000000142A9D190 (Size: 0x8)
+class IOrderedEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEEFE0 (Size: 0x20)
+class SCrowdPoseBoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 mQuaterion; // 0x0
+	SVector4 mTranslation; // 0x10
+};
+
+// 0x0000000142B00200 (Size: 0x4)
+enum class EDetectedNatType
+{
+	NAT_UNSET = 0,
+	NAT_1 = 1,
+	NAT_2 = 2,
+	NAT_3 = 3,
+};
+
+// 0x0000000142A95850 (Size: 0x8)
+class IHM5HMStateSoundController :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AC1378 (Size: 0x8)
+class IValueColorRGBGet :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABD7A0 (Size: 0x10)
+class SGeomScaleSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 m_vPrimitiveScale; // 0x0
+};
+
+// 0x0000000142ABED30 (Size: 0x4)
+enum class ECrossHairType
+{
+	CROSSHAIR_NONE = 0,
+	CROSSHAIR_PISTOL = 1,
+	CROSSHAIR_REVOLVER = 2,
+	CROSSHAIR_SMG = 3,
+	CROSSHAIR_RIFLE = 4,
+	CROSSHAIR_SHOTGUN = 5,
+	CROSSHAIR_SNIPER = 6,
+	CROSSHAIR_HARDBALLER = 7,
+	CROSSHAIR_UNAIMED = 8,
+	CROSSHAIR_POINTER = 9,
+	CROSSHAIR_WORLDCENTERMARKER = 10,
+	CROSSHAIR_BLINDFIRE = 11,
+	CROSSHAIR_RANGEINDICATOR = 12,
+	CROSSHAIR_DOT = 13,
+};
+
+// 0x0000000142AB2080 (Size: 0x4)
+enum class EMarkerClipAlgorithm
+{
+	MCA_NONE = 0,
+	MCA_SIMPLE = 1,
+	MCA_ADVANCED = 2,
+};
+
+// 0x0000000142A86330 (Size: 0x8)
+class IBoneCollidable
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABED48 (Size: 0x4)
+enum class eBurstPatternType
+{
+	eEBP_None = 0,
+	eEBP_Circular3Rings = 1,
+	eEBP_Box = 2,
+};
+
+// 0x0000000142B01898 (Size: 0x4)
+enum class EQueryMaskType
+{
+	eQueryMaskType_CameraCollision = 1,
+	eQueryMaskType_CameraObstacle = 2,
+	eQueryMaskType_ExplosionRelevant = 4,
+};
+
+// 0x0000000142A98428 (Size: 0x8)
+class ISecuritySystemDevice :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8358 (Size: 0x1C)
 class SCondition_AreVisibleItemsSuspicious :
 	public SConditionBase
 {
@@ -9046,7 +12180,20 @@ public:
 	int32 includeWeapons; // 0x18
 };
 
-// 0x0000000142A8E618 (Size: 0x4)
+// 0x0000000142AA7D40 (Size: 0x1C)
+class SCondition_IsHighestPriorityTypeToInvestigateFor :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable otherNPC; // 0x10
+	EAIEventType distractionType; // 0x18
+};
+
+// 0x0000000142A9B388 (Size: 0x4)
 enum class ECharacterResourceType
 {
 	eSMT_Invalid = 0,
@@ -9055,7 +12202,260 @@ enum class ECharacterResourceType
 	eSMT_LeftHand = 3,
 };
 
-// 0x0000000142A82FF0 (Size: 0x4)
+// 0x00000001422D6FC8 (Size: 0xC)
+class SWeaponCustomControlSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rItem; // 0x4
+	bool m_bTargetRegistered; // 0x8
+};
+
+// 0x0000000142AA7F68 (Size: 0x20)
+class SCondition_MinAge :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAIEventType type; // 0x18
+	float32 age; // 0x1C
+};
+
+// 0x0000000143E6C388 (Size: 0x1)
+enum class ECollisionResponse
+{
+	REFLECT_VELOCITY = 0,
+	SLIDE_ON = 1,
+	STAY_AT_COLLISION_POINT = 2,
+	CUSTOM = 3,
+};
+
+// 0x0000000142A9A400 (Size: 0x1D8)
+class ZInvestigateWeaponGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEF010 (Size: 0x18)
+class SCrowdPoseSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
+};
+
+// 0x0000000142AEF040 (Size: 0x20)
+class SCrowdPoseCollectionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint64 m_id; // 0x0
+	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
+};
+
+// 0x0000000142AA4DA0 (Size: 0x4)
+enum class ECharSetCharacterType
+{
+	ECSCT_Actor = 0,
+	ECSCT_Nude = 1,
+	ECSCT_HeroA = 2,
+};
+
+// 0x0000000142AA0BE8 (Size: 0x18)
+class SEventSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAISharedEventType m_nType; // 0x0
+	ZGameTime m_nStart; // 0x8
+	ZGameTime m_nEnd; // 0x10
+};
+
+// 0x0000000142AA85F8 (Size: 0x1C)
+class SCondition_IsSharedEventCurrent :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAISharedEventType type; // 0x18
+};
+
+// 0x0000000142A8FAC0 (Size: 0x4)
+enum class EActorGroup
+{
+	eAG_Group_A = 0,
+	eAG_Group_B = 1,
+	eAG_Group_C = 2,
+	eAG_Group_D = 3,
+	eAG_Count = 4,
+};
+
+// 0x0000000142AA8130 (Size: 0x18)
+class SCondition_IsActorRoleVIP :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x00000001422D5CC8 (Size: 0x28)
+class ZComponentCreator
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sComponentName; // 0x0
+	TArray<ZVariant> m_aArgs; // 0x10
+};
+
+// 0x0000000142AA5610 (Size: 0x4)
+enum class EGameEventArgType
+{
+	GE_ARGS_KILL = 0,
+	GE_ARGS_PRIORITYKILL = 1,
+	GE_ARGS_SITUATION = 2,
+	GE_ARGS_INVENTORY = 3,
+	GE_ARGS_EXPLODINGPROP = 4,
+	GE_ARGS_EVENT = 5,
+	GE_ARGS_CHECKPOINTEVENT = 6,
+	GE_ARGS_AI_SITUATION = 7,
+};
+
+// 0x0000000142AEEEC0 (Size: 0x8)
+class IRenderGraphNodeProducer :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8370 (Size: 0x18)
+class SCondition_AreVisibleWeaponsLegal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000142AA4C20 (Size: 0x4)
+enum class EActorAIDot
+{
+	eAAID_None = 0,
+	eAAID_Distracted = 1,
+	eAAID_PotentialThreat = 2,
+	eAAID_PotentialThreatDistracted = 3,
+	eAAID_Aggressive = 4,
+	eAAID_EscortingOut = 5,
+	eAAID_Fleeing = 6,
+	eAAID_Unconscious = 7,
+	eAAID_Stunned = 8,
+	eAAID_Grenade = 9,
+	eAAID_PotentialThreatDisabled = 100,
+};
+
+// 0x0000000142A958F8 (Size: 0x8)
+class IHM5Door :
+	public ISoundGateController
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA2958 (Size: 0x30)
+class SMathLerpsSaveData_SColorRGBA
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
+};
+
+// 0x0000000142A998A8 (Size: 0x18)
+class SActorSpreadTransitionOperatorMaterialSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SActorSpreadTransitionOperatorMaterialActorSaveData> m_aActorMaterialOverrides; // 0x0
+};
+
+// 0x0000000142AAE930 (Size: 0x4)
+enum class EGameUIMenu
+{
+	eUIMenu_IntroMenu = 0,
+	eUIMenu_PauseMenu = 1,
+	eUIMenu_PhoneMenu = 2,
+	eUIMenu_MapMenu = 3,
+	eUIMenu_ModalDialogMenu = 4,
+	eUIMenu_GameplayMenu = 5,
+	eUIMenu_InventorySelectorMenu = 6,
+	eUIMenu_ActionSelectorMenu = 7,
+	eUIMenu_ActionSelectorInventoryMenu = 8,
+	eUIMenu_IntelSelectorMenu = 9,
+	eUIMenu_NotebookMenu = 10,
+	eUIMenu_LogbookMenu = 11,
+	eUIMenu_TutorialMenu = 12,
+	eUIMenu_SplashHintMenu = 13,
+	eUIMenu_EmoteMenu = 14,
+	eUIMenu_Count = 15,
+};
+
+// 0x0000000142B00230 (Size: 0x1)
+enum class ENetRole
+{
+	None = 0,
+	Master = 1,
+	Client = 2,
+};
+
+// 0x0000000142A8FD70 (Size: 0x4)
 enum class EActorCCPreset
 {
 	ACCP_CivilianFemale = 0,
@@ -9067,203 +12467,15 @@ enum class EActorCCPreset
 	ACCP_None = 6,
 };
 
-// 0x0000000142A83180 (Size: 0x4)
-enum class EConversationRole
+// 0x0000000142B015E0 (Size: 0x4)
+enum class EClothColliderFilter
 {
-	eCR_Leader = 0,
-	eCR_Assistant = 1,
+	EClothColliderFilter_Environment = 0,
+	EClothColliderFilter_Character = 1,
+	EClothColliderFilter_Character_Environment = 2,
 };
 
-// 0x0000000142AE15B8 (Size: 0x1)
-enum class AudioEventCullingBehavior
-{
-	AutoSendStop = 0,
-	AutoSendStopAfterTriggered = 1,
-	NoAutoSendStop = 2,
-	NoDistanceCulling = 3,
-};
-
-// 0x0000000142AA9DF8 (Size: 0x4)
-enum class EIKEndEffector
-{
-	BEE_Pelvis = 0,
-	BEE_SpineOrigin = 1,
-	BEE_SpineEnd = 2,
-	BEE_Head = 3,
-	BEE_LeftUpperArm = 4,
-	BEE_RightUpperArm = 5,
-	BEE_LeftForeArm = 6,
-	BEE_RightForeArm = 7,
-	BEE_LeftHand = 8,
-	BEE_LeftHandThumb = 9,
-	BEE_LeftHandIndex = 10,
-	BEE_LeftHandMiddle = 11,
-	BEE_LeftHandRing = 12,
-	BEE_LeftHandPinky = 13,
-	BEE_RightHand = 14,
-	BEE_RightHandThumb = 15,
-	BEE_RightHandIndex = 16,
-	BEE_RightHandMiddle = 17,
-	BEE_RightHandRing = 18,
-	BEE_RightHandPinky = 19,
-	BEE_LeftFoot = 20,
-	BEE_RightFoot = 21,
-	BEE_LeftToe = 22,
-	BEE_RightToe = 23,
-	BEE_Count = 24,
-};
-
-// 0x0000000142AE37F8 (Size: 0x4)
-enum class EPlayMode
-{
-	PLAYMODE_STOPPED = 1,
-	PLAYMODE_PAUSED = 2,
-	PLAYMODE_PLAYING = 3,
-};
-
-// 0x0000000142AB1F58 (Size: 0x4)
-enum class EAmmoBehaviourConfigType
-{
-	eAB_None = 0,
-	eAB_Explosive = 1,
-	eAB_Penetration = 2,
-};
-
-// 0x0000000142AF4678 (Size: 0x1)
-enum class ECollisionPriority
-{
-	ECOLLISIONPRIORITY_LOW = 0,
-	ECOLLISIONPRIORITY_NORMAL = 1,
-	ECOLLISIONPRIORITY_HIGH = 2,
-	ECOLLISIONPRIORITY_CRITICAL = 3,
-};
-
-// 0x0000000142AF3310 (Size: 0x1)
-enum class ENetRole
-{
-	None = 0,
-	Master = 1,
-	Client = 2,
-};
-
-// 0x0000000142A90638 (Size: 0x4)
-enum class ETextAlignment
-{
-	TEXT_ALIGN_LEFT = 0,
-	TEXT_ALIGN_CENTER = 1,
-	TEXT_ALIGN_RIGHT = 2,
-};
-
-// 0x0000000142A97720 (Size: 0x4)
-enum class ESoundMaterialType
-{
-	eGeneric = 0,
-	eFlesh = 1,
-	eSilent = 2,
-};
-
-// 0x0000000142A97AB0 (Size: 0x4)
-enum class EParticleDecalSpawnEntity_Constraints
-{
-	FACTOR_AND_RANDOMIZE = 0,
-	SIZE_RANGE = 1,
-};
-
-// 0x000000014210D8A0 (Size: 0x10)
-class ZDynamicObject
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZVariant m_value; // 0x0
-};
-
-// 0x0000000142A96F48 (Size: 0x20)
-class SChallengeSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sId; // 0x0
-	ZDynamicObject m_State; // 0x10
-};
-
-// 0x0000000142A8FD38 (Size: 0x4)
-enum class ERANDOM_DISTRIBUTION
-{
-	RND_UNIFORM = 0,
-	RND_SAWTOOTH = 1,
-};
-
-// 0x0000000142A8BA30 (Size: 0x10)
-class SCheckLastPositionGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_pLeader; // 0x0
-	uint32 m_pAssistant; // 0x4
-	uint16 m_nLeaderTargetNodeIndex; // 0x8
-	bool m_bLeaderOrderAssigned; // 0xA
-	bool m_bAssistantOrderAssigned; // 0xB
-	bool m_bSearchCompleted; // 0xC
-};
-
-// 0x0000000142A945A0 (Size: 0x4)
-enum class EActorSecondaryIconState
-{
-	eSIS_Clear = 0,
-	eSIS_Infected = 1,
-	eSIS_Infected_Stage1 = 2,
-	eSIS_Infected_Stage2 = 3,
-	eSIS_Infected_Stage3 = 4,
-};
-
-// 0x0000000142A7A648 (Size: 0x4)
-enum class EActorAnimationOrder
-{
-	AAO_None = 0,
-	AAO_Stand = 1,
-	AAO_Move = 2,
-	AAO_React = 3,
-	AAO_Act = 4,
-	AAO_MoveToAct = 5,
-	AAO_MoveToCover = 6,
-	AAO_ShootFromCover = 7,
-	AAO_PeekFromCover = 8,
-	AAO_Death = 9,
-	AAO_Impact = 10,
-	AAO_Controlled = 11,
-};
-
-// 0x00000001422C9D48 (Size: 0x8)
-class IItemWeapon :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE2180 (Size: 0x4)
-enum class ESpeed
-{
-	eSpeed_Idle = 0,
-	eSpeed_Slow = 1,
-	eSpeed_Normal = 2,
-	eSpeed_Fast = 3,
-	eSpeed_Sprint = 4,
-};
-
-// 0x0000000142A9FAF8 (Size: 0x4)
+// 0x0000000142AAC928 (Size: 0x4)
 enum class EVsGenericEvent
 {
 	eVSGE_MATCH_WON = 0,
@@ -9289,7 +12501,7 @@ enum class EVsGenericEvent
 	eVSGE_MAX = 20,
 };
 
-// 0x0000000142A9AF30 (Size: 0x1C)
+// 0x0000000142AA7D58 (Size: 0x1C)
 class SCondition_IsHighestPriorityTypeToReact :
 	public SConditionBase
 {
@@ -9302,102 +12514,8 @@ public:
 	EAIEventType distractionType; // 0x18
 };
 
-// 0x0000000142AB1EF8 (Size: 0x4)
-enum class EItemMeleeDamageBehavior
-{
-	EIMDB_Undefined = 0,
-	EIMDB_Bouncing = 1,
-	EIMDB_Slashing = 2,
-	EIMDB_Sticking = 3,
-};
-
-// 0x0000000142AB0980 (Size: 0x3)
-class SPhysicsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsInPhysicsWorld; // 0x0
-	bool m_bIsKinematicBody; // 0x1
-	bool m_bIsVisible; // 0x2
-};
-
-// 0x0000000142A9B578 (Size: 0x18)
-class SCondition_AreVisibleWeaponsSuspicious :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142B0C1D8 (Size: 0x8)
-class IPureWaterReflectable
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B380 (Size: 0x28)
-class SCondition_HasConfiguredSpeak :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-	ZString speak; // 0x18
-};
-
-// 0x0000000142AF5648 (Size: 0x4)
-enum class ERayType
-{
-	ERAY_CLOSESTHIT_SIMPLE = 0,
-	ERAY_CLOSESTHIT_DETAILED = 1,
-};
-
-// 0x0000000142AE47C8 (Size: 0x4)
-enum class ESmoothingMode
-{
-	ESM_LINEAR = 0,
-	ESM_EXPONENTIAL = 1,
-};
-
-// 0x0000000142AE3840 (Size: 0x4)
-enum class ETeamModeId
-{
-	TeamMode_Coop = 0,
-	TeamMode_Versus = 1,
-};
-
-// 0x0000000142AEEBF8 (Size: 0x4)
-enum class EAnimBlendMode
-{
-	EAnimBlendMode_InterpAttInterpPos = 0,
-	EAnimBlendMode_InterpAttAddPos = 1,
-	EAnimBlendMode_AddAttLeavePos = 2,
-	EAnimBlendMode_AddAttAddPos = 3,
-};
-
-// 0x0000000142AF32C8 (Size: 0x4)
-enum class EReplicaMode
-{
-	E_RM_STATIC_OBJECT = 0,
-	E_RM_DYNAMIC = 1,
-};
-
-// 0x0000000142AB0AB8 (Size: 0x8)
-class ITimerEventListener :
+// 0x0000000142A88B90 (Size: 0x8)
+class ICrowdAIActor :
 	public IComponentInterface
 {
 public:
@@ -9407,2797 +12525,21 @@ public:
 
 };
 
-// 0x0000000142AB09C8 (Size: 0x20)
-class SSpatialSaveData
+// 0x0000000142A9A238 (Size: 0x30)
+class SAgitatedBystanderOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	bool m_bVisible; // 0x0
-	SVector3 m_vPosition; // 0x4
-	SVector4 m_vQuaternionRotation; // 0x10
+	uint32 m_rBystanderPoint; // 0x0
+	float4 m_vCover; // 0x10
+	float4 m_vCoverDir; // 0x20
 };
 
-// 0x0000000142A9B3F8 (Size: 0x1C)
-class SCondition_HasGoalOnTarget :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-	EAIGoal type; // 0x18
-};
-
-// 0x0000000142A9ACA8 (Size: 0x4)
-enum class EBehaviorTreeVariableType
-{
-	BTVT_Invalid = -1,
-	BTVT_SceneReference = 0,
-	BTVT_Contextual = 1,
-	BTVT_Dynamic = 2,
-	BTVT_NumTypes = 3,
-};
-
-// 0x0000000142A9B440 (Size: 0x14)
-class SCondition_HasTension :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EGameTension tension; // 0x10
-};
-
-// 0x0000000142AF30D0 (Size: 0x4)
-enum class ENetworkSystemID
-{
-	NSID_UNDEFINED = 0,
-	NSID_NETWORK_CORE_SYSTEMS_BEGIN = 1,
-	NSID_DEBUG_SWAP_PLAYER_RPC = 1,
-	NSID_ROUNTTRIPTEST_REQUEST_RPC = 2,
-	NSID_ROUNTTRIPTEST_RESOLVE_RPC = 3,
-	NSID_CONNECTION_LOCALLY_DEREFERENCE_UPDATE_RPC = 4,
-	NSID_CONNECTION_READY_FOR_REPLICATION_RPC = 5,
-	NSID_NETPLAYER_LOGIN_RPC = 6,
-	NSID_NETPLAYER_LOGIN_COLOR_SELECTION_RPC = 7,
-	NSID_NETPLAYER_REPLICA = 8,
-	NSID_NETGAME_REPLICA = 9,
-	NSID_PLAYERREGISTRY_REPLICA = 10,
-	NSID_NETPLAYER_CONTROLLER_REPLICA = 11,
-	NSID_SYNCH_POINT_PLAYER_REPLICA = 12,
-	NSID_SYNCH_POINT_REPLICA = 13,
-	NSID_GAME_CHAT_RPC = 14,
-	NSID_NETWORK_CORE_SYSTEMS_END = 15,
-	NSID_NETWORK_SYNCHRONOUS_MULTIPLAYER_BEGIN = 16,
-	NSID_PLAYER_INPUT_RPC = 16,
-	NSID_PLAYER_INPUT_REPLICA = 17,
-	NSID_GENERAL_ENTITY_PROPERTY_REPLICA = 18,
-	NSID_ANIMATED_ACTOR_RPC = 19,
-	NSID_CAMERA_REPLICA = 20,
-	NSID_GENERAL_PIN_SIGNAL_RPC = 21,
-	NSID_PIN_SIGNAL_RPC = 22,
-	NSID_NPC_DIALOGUE_RPC = 23,
-	NSID_GAME_STATE_REPLICA = 24,
-	NSID_HERO_STATE_REPLICA = 25,
-	NSID_NPC_STATE_REPLICA = 26,
-	NSID_ANIMATION_REPLICA = 27,
-	NSID_DESTRUCTIBLE_INTERACTIONS_RPC = 28,
-	NSID_ACT_REQUEST_RPC = 29,
-	NSID_CHARACTERSPEAK_REPLICA = 30,
-	NSID_ITEM_WEAPON_RPC = 31,
-	NSID_ITEM_REPLICA = 32,
-	NSID_ACCESSORY_ITEM_REPLICA = 33,
-	NSID_BULLET_IMPACT_RPC = 34,
-	NSID_NETWORKED_TIME_CONTROL_RPC = 35,
-	NSID_REQUEST_ACTION_SYCHRONIZATION_RPC = 36,
-	NSID_PHYSICS_SYSTEM_REPLICA = 37,
-	NSID_PHYSICS_OBJECT_REPLICA = 38,
-	NSID_WATER_SPLASH_GENERATOR_RPC = 39,
-	NSID_PROJECTILE_HIT_INFO_RPC = 40,
-	NSID_PROJECTILE_HIT_EVENT_RPC = 41,
-	NSID_INTERACTION_SUBACTION_EXECUTE_REQUEST = 42,
-	NSID_INTERACTION_SUBACTION_EXECUTE_RESOLVE = 43,
-	NSID_INTERACTION_SUBACTION_EXECUTE_SIGNAL_RESOLVE = 44,
-	NSID_INTERACTION_INPUT_REQUEST_RESOLVE = 45,
-	NSID_SUBCONTROLLER_REPLICA = 46,
-	NSID_CONTRACT_EVENT_REPLICA = 47,
-	NSID_NETWORK_SYNCHRONOUS_MULTIPLAYER_END = 48,
-	NSID_SNIPERS_CHALLENGE_SCORING_EVENT_REPLICA = 49,
-	NSID_CHARACTER_GHOST_REPLICA = 50,
-	NSID_PIP_GHOST_REPLICA = 51,
-	NSID_SPATIAL_GHOST_REPLICA = 52,
-	NSID_VS_TARGET_PICKER_REPLICA = 53,
-	NSID_VS_KILL_RPC = 54,
-	NSID_VS_KILL_CONFIRM_RPC = 55,
-	NSID_VS_CLIENT_DEAD_RPC = 56,
-	NSID_VS_SETUP_SYNC_REPLICA = 57,
-	NSID_VS_PIN_SIGNAL_RPC = 58,
-	NSID_VS_ENTITY_PROPERTY_REPLICA = 59,
-	NSID_VS_GENERIC_EVENT_RPC = 60,
-	NSID_VS_PENALTY_KILL_RPC = 61,
-	NSID_VS_ITEM_PICKUP_REQUEST_RPC = 62,
-	NSID_VS_ITEM_PICKUP_RESPONSE_RPC = 63,
-	NSID_VS_OUTFIT_PICK_REQUEST_RPC = 64,
-	NSID_VS_OUTFIT_PICK_RESPONSE_RPC = 65,
-	NSID_VS_PICKUP_SPAWNER_REPLICA = 66,
-	NSID_VS_KILL_EVENT_RPC = 67,
-	NSID_VS_PRE_SCORE_TIMER_RPC = 68,
-	NSID_VS_TARGET_PACIFY_RPC = 69,
-	NSID_VS_CONFIRM_TARGET_PACIFY_RPC = 70,
-	NSID_VS_TARGET_PACIFIED_CONFIRMED_RPC = 71,
-	NSID_MAX = 72,
-};
-
-// 0x0000000142A97090 (Size: 0x4)
-enum class EOutbreakInfectionStage
-{
-	eOIS_Stage1 = 0,
-	eOIS_Stage2 = 1,
-	eOIS_Stage3 = 2,
-};
-
-// 0x0000000142AF4978 (Size: 0x4)
-enum class EQueryMaskType
-{
-	eQueryMaskType_CameraCollision = 1,
-	eQueryMaskType_CameraObstacle = 2,
-	eQueryMaskType_ExplosionRelevant = 4,
-};
-
-// 0x0000000142AB1E68 (Size: 0x4)
-enum class eBurstPatternType
-{
-	eEBP_None = 0,
-	eEBP_Circular3Rings = 1,
-	eEBP_Box = 2,
-};
-
-// 0x0000000142AAE538 (Size: 0x4)
-enum class ERegistrationState
-{
-	eINITIAL = 0,
-	eNOP = 1,
-	ePENDING = 2,
-	eCANCELLED_REMOTELY = 3,
-	eCANCELLED_LOCALLY = 4,
-	eFOUNDMATCH = 5,
-};
-
-// 0x0000000142A98370 (Size: 0x4)
-enum class ECharacterIdleHandlerFullbodyType
-{
-	ecIHFBT_DisguisedIdle = 0,
-	ecIHFBT_Event = 1,
-};
-
-// 0x0000000142A8A9A8 (Size: 0x4)
-enum class EHM5SoundFootwearType
-{
-	EFWT_UNDEFINED = 0,
-	EFWT_BAREFOOT = 1,
-	EFWT_SLIPPERS = 2,
-	EFWT_DISPOSABLE_SLIPPERS = 3,
-	EFWT_SANDALS = 4,
-	EFWT_SNEAKERS = 5,
-	EFWT_SNEAKERS_METALLEG = 6,
-	EFWT_LEATHER = 7,
-	EFWT_FEMALE_LEATHER = 8,
-	EFWT_BOOTS = 9,
-	EFWT_COWBOY_BOOTS = 10,
-	EFWT_FEMALE_COWBOY_BOOTS = 11,
-	EFWT_RUBBER_BOOTS = 12,
-	EFWT_HIGH_HEELS = 13,
-	EFWT_LEATHER_KEYS = 14,
-	EFWT_SWAT_BOOTS = 15,
-};
-
-// 0x0000000142A96200 (Size: 0x4)
-enum class ECharacterEvent
-{
-	eCIET_PickUp = 0,
-	eCIET_LadderEnded = 1,
-	eCIET_AgilityEnded = 2,
-	eCIET_CCEnded = 3,
-	eCIET_Disguised = 4,
-	eCIET_HideBody = 5,
-	eCIET_WalkingOnStairs = 6,
-	eCIET_Sniping_Congratulate = 7,
-	eCIET_Sniping_Acknowledge = 8,
-	eCIET_FlavorIdleEnded = 9,
-	eCIET_StartedMoving = 10,
-	eCIET_StoppedMoving = 11,
-	eCIET_DragBody = 12,
-	eCIET_Takedown = 13,
-	eCIET_Damaged = 14,
-	eCIET_None = 34,
-};
-
-// 0x0000000142AB31F8 (Size: 0x4)
-enum class EOpportunityRevealState
-{
-	ORS_REVEALING = 1,
-	ORS_HINT = 2,
-	ORS_DISTANCE = 4,
-	ORS_RANGE_FLAGS = 6,
-	ORS_REVEALED = 8,
-	ORS_REVEAL_FLAGS = 9,
-	ORS_BYPASS_MENU = 16,
-};
-
-// 0x0000000142AA46F0 (Size: 0x4)
-enum class EActionPromptState
-{
-	eActionPromptState_Disabled = 0,
-	eActionPromptState_Enabled = 1,
-	eActionPromptState_Activated = 2,
-	eActionPromptState_Held = 3,
-};
-
-// 0x0000000142A962C0 (Size: 0x4)
-enum class EBoolStateRequirement
-{
-	eBSR_Any = 0,
-	eBSR_RequireTrue = 1,
-	eBSR_RequireFalse = 2,
-};
-
-// 0x0000000142AA5948 (Size: 0x4)
-enum class EIntelType
-{
-	eIT_DATA = 0,
-	eIT_OPPORTUNITY = 1,
-	eIT_BACKGROUND = 2,
-	eIT_HANDLER = 3,
-	eIT_UNDEFINED = 4,
-};
-
-// 0x0000000143CDEA48 (Size: 0x8)
-class ILightEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E60D98 (Size: 0x8)
-class SBoneAttachSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	bool m_bIsAttached; // 0x4
-};
-
-// 0x0000000142AF3750 (Size: 0x4)
-enum class EPathFinderBoxType
-{
-	PFBT_INCLUDE_MESH_COLLISION = 0,
-	PFBT_EXCLUDE_MESH_COLLISION = 1,
-	PFBT_CREATE_MESH_COLLISION = 2,
-	PFBT_REGION = 3,
-	PFBT_INCLUDE_PORTALS = 4,
-	PFBT_EXCLUDE_PORTALS = 5,
-	PFBT_IGNORE = 6,
-};
-
-// 0x0000000142A97410 (Size: 0x1C)
-class SMathMultiplyDivideSaveData_SVector3
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 m_fA; // 0x0
-	SVector3 m_fB; // 0xC
-	bool m_bDivide; // 0x18
-};
-
-// 0x0000000142A958F8 (Size: 0x30)
-class SMathMultipliesSaveData_SVector3
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
-};
-
-// 0x0000000143E5FB40 (Size: 0x4)
-enum class EVRRenderDeviceType
-{
-	RENDER_VR_DEVICE_TYPE_DUMMY = 0,
-	RENDER_VR_DEVICE_TYPE_OCULUS = 1,
-	RENDER_VR_DEVICE_TYPE_PSVR = 2,
-	RENDER_VR_DEVICE_TYPE_COUNT = 3,
-};
-
-// 0x0000000142A7B758 (Size: 0x4)
-enum class EBoolCheckType
-{
-	eBCT_IGNORE = 0,
-	eBCT_TRUE = 1,
-	eBCT_FALSE = 2,
-};
-
-// 0x0000000142A7A6D8 (Size: 0x4)
-enum class EBooleanOption
-{
-	BO_Off = 0,
-	BO_On = 1,
-	BO_Default = 2,
-};
-
-// 0x0000000142A8BDC0 (Size: 0x90)
-class SGetHelpGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float4 m_vLastKnownTargetPosition; // 0x0
-	uint16 m_rReturnNode; // 0x10
-	TArray<uint16> m_blocked; // 0x18
-	bool m_bReportingToHitman; // 0x30
-	bool m_bStartedReportDialog; // 0x31
-	bool m_bMultipleBodies; // 0x32
-	bool m_bGetHelpOrderCompleted; // 0x33
-	bool m_bDoneReporting; // 0x34
-	ZGameTime m_tGetHelpCompleted; // 0x38
-	SFSMSaveData m_fsmState; // 0x40
-	EDisturbanceType m_type; // 0x58
-	uint32 m_target; // 0x5C
-	uint32 m_pReporter; // 0x60
-	uint32 m_pGuard; // 0x64
-	uint32 m_IllegalItem; // 0x68
-	TArray<uint32> m_additionalGuards; // 0x70
-};
-
-// 0x0000000142AED9E0 (Size: 0x20)
-class SBoneTransformSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 mQuaterion; // 0x0
-	SVector4 mTranslation; // 0x10
-};
-
-// 0x0000000142A9B5D8 (Size: 0x1C)
-class SCondition_OnlyLegalItemsDropped :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000142A9B260 (Size: 0x18)
-class SCondition_IsNull :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable ref; // 0x10
-};
-
-// 0x0000000142A7B790 (Size: 0x4)
-enum class eActionRewardType
-{
-	AR_None = 0,
-	AR_QuestItem = 1,
-	AR_Keycard = 2,
-	AR_Key = 3,
-};
-
-// 0x0000000142A98EB0 (Size: 0x4)
-enum class EHM5SoundFootstepEmitterTarget
-{
-	EFSAT_MAIN = 0,
-	EFSAT_NPC = 1,
-};
-
-// 0x0000000142A93308 (Size: 0x8)
-class IBoneAttachEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A88B38 (Size: 0x8)
-class IDynamicAttachment :
-	public IBoneAttachEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF4AA0 (Size: 0x4)
-enum class EClothBendConstrainType
-{
-	eClothBendConstrainType_Stick = 0,
-	eClothBendConstrainType_Triangle = 1,
-};
-
-// 0x0000000142A94B00 (Size: 0x8)
-class SCautiousVIPGroupState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZGameTime m_tMove; // 0x0
-};
-
-// 0x0000000142A8BD30 (Size: 0x30)
-class SCautiousVIPGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_vip; // 0x0
-	SFSMSaveData m_fsmState; // 0x8
-	SCautiousVIPGroupState m_stateData; // 0x20
-	int32 m_vipTargetNode; // 0x28
-	int32 m_occupancyNode; // 0x2C
-};
-
-// 0x0000000142A916B8 (Size: 0x1)
-class SAIVisionBlockerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-};
-
-// 0x0000000142A98C70 (Size: 0x4)
-enum class EHUDIconFlags
-{
-	HUD_ICON_FLAG_POSITION = 1,
-	HUD_ICON_FLAG_VALUE = 2,
-	HUD_ICON_FLAG_SCALE = 4,
-	HUD_ICON_FLAG_TEXT = 8,
-};
-
-// 0x0000000142AB1D78 (Size: 0x4)
-enum class EImpactEffectsOptions
-{
-	eIE_None = 0,
-	eIE_BloodSplatter = 1,
-	eIE_Decals = 2,
-	eIE_MaterialImpactEffects = 4,
-	eIE_AmmoImpactEffect = 8,
-	eIE_All = 16,
-};
-
-// 0x0000000142AED638 (Size: 0x4)
-enum class ELocale
-{
-	Locale_En = 0,
-	Locale_Fr = 1,
-	Locale_It = 2,
-	Locale_De = 3,
-	Locale_Es = 4,
-	Locale_Ru = 5,
-	Locale_Mx = 6,
-	Locale_Br = 7,
-	Locale_Pl = 8,
-	Locale_Cn = 9,
-	Locale_Jp = 10,
-	Locale_Tc = 11,
-};
-
-// 0x0000000142A952A8 (Size: 0x4)
-enum class EHM5SoundFootstepEvent
-{
-	EFSE_START = 0,
-	EFSE_STOP = 1,
-	EFSE_LEFT = 2,
-	EFSE_RIGHT = 3,
-	EFSE_TURN = 4,
-	EFSE_SLIDE = 5,
-	EFSE_JUMP = 6,
-	EFSE_LAND = 7,
-};
-
-// 0x0000000142AF47E0 (Size: 0x1)
-enum class ERestitutionCombineMode
-{
-	ERestitutionCombineMode_AVERAGE = 0,
-	ERestitutionCombineMode_MIN = 1,
-	ERestitutionCombineMode_MULTIPLY = 2,
-	ERestitutionCombineMode_MAX = 3,
-};
-
-// 0x0000000142AA00E0 (Size: 0x8)
-class ZPlanningObjectiveInfoBuilder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA5560 (Size: 0x4)
-enum class EActionRadialArcIconType
-{
-	EARAIT_NoIcon = 0,
-	EARAIT_Locked = 1,
-	EARAIT_NeedTool = 2,
-	EARAIT_IsRunning = 3,
-	EARAIT_Crowbar = 4,
-	EARAIT_Wrench = 5,
-	EARAIT_Card = 6,
-	EARAIT_Lockpick = 7,
-	EARAIT_Screwdriver = 8,
-	EARAIT_AmmoBullet = 9,
-	EARAIT_Flower = 10,
-	EARAIT_ChemicalTube = 11,
-	EARAIT_Golfball = 12,
-	EARAIT_Keypad = 13,
-	EARAIT_Key = 14,
-	EARAIT_Coin = 15,
-	EARAIT_Poison = 16,
-	EARAIT_Exsplosive = 17,
-};
-
-// 0x0000000143F111A8 (Size: 0x18)
-class SBoneScalesList
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SVector3> m_aBoneScales; // 0x0
-};
-
-// 0x0000000142AE1690 (Size: 0x4)
-enum class EAudioVolumetricMixingMode
-{
-	AUDIO_VOLUMETRIC_MIXING_MAX_ALL = 0,
-	AUDIO_VOLUMETRIC_MIXING_MAX_3D = 1,
-	AUDIO_VOLUMETRIC_MIXING_ADD = 2,
-};
-
-// 0x0000000142A98FD0 (Size: 0x4)
-enum class EControllerButton
-{
-	BUTTON_NONE = 0,
-	BUTTON_CROSS = 1,
-	BUTTON_TRIANGLE = 2,
-	BUTTON_SQUARE = 3,
-	BUTTON_CIRCLE = 4,
-	BUTTON_UP = 5,
-	BUTTON_RIGHT = 6,
-	BUTTON_DOWN = 7,
-	BUTTON_LEFT = 8,
-	BUTTON_R1 = 9,
-	BUTTON_R2 = 10,
-	BUTTON_R3 = 11,
-	BUTTON_R_STICK = 12,
-	BUTTON_L1 = 13,
-	BUTTON_L2 = 14,
-	BUTTON_L3 = 15,
-	BUTTON_L_STICK = 16,
-	BUTTON_START = 17,
-	BUTTON_SELECT = 18,
-	BUTTON_UP_DOWN = 19,
-	BUTTON_LEFT_RIGHT = 20,
-	BUTTON_LEFT_RIGHT_UP_DOWN = 21,
-	BUTTON_L1_R1 = 22,
-	BUTTON_L2_R2 = 23,
-	BUTTON_KEYBOARD = 24,
-	BUTTON_ESCAPE = 25,
-};
-
-// 0x0000000142A9BB18 (Size: 0x1C)
-class SCondition_IsDistanceFromKnownToActualLessThan :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable knownEntity; // 0x10
-	float32 distance; // 0x18
-};
-
-// 0x00000001422CA180 (Size: 0x20)
-class SItemStorageSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_Storage; // 0x0
-	TArray<uint32> m_ContainedItems; // 0x8
-};
-
-// 0x0000000142A7A438 (Size: 0x4)
-enum class eItemType
-{
-	eCC_FireExtinguisher_01 = 0,
-	eCC_Knife = 10,
-	eCC_Axe = 20,
-	eCC_PetrolCan = 30,
-	eCC_Shovel = 40,
-	eCC_Hammer = 50,
-	eCC_Cleaver = 60,
-	eCC_AntitankMine = 70,
-	eCC_C4Brick = 80,
-	eCC_RemoteExplosive = 90,
-	eDetonator = 100,
-	eCC_Wrench = 110,
-	eCC_Dildo = 120,
-	eCC_Bottle = 130,
-	eCC_Saw = 140,
-	eCC_Screwdriver = 150,
-	eCC_MetalPipe = 160,
-	eCC_Gavel = 170,
-	eCC_Radio = 180,
-	eCC_Bong = 190,
-	eCC_Statue_Bust_A = 200,
-	eGun_44AutoMag = 210,
-	eGun_44AutoMagSilenced = 220,
-	eGun_Derringer = 230,
-	eGun_Glock = 240,
-	eGun_GlockDirty = 250,
-	eGun_GlockSilenced = 260,
-	eGun_HardBaller_01 = 270,
-	eGun_HardBallerSilenced = 280,
-	eGun_Sig226 = 290,
-	eGun_Sig226Silenced = 300,
-	eGun_Sphinx3000 = 310,
-	eGun_Taurus24_7 = 320,
-	eGun_Taurus24_7Silenced = 330,
-	eGun_Spotter = 340,
-	eOther_MG = 350,
-	eOther_RPG = 360,
-	eRevolver_PoliceRevolver = 370,
-	eRevolver_Snubnosed = 380,
-	eRevolver_Taurus = 390,
-	eRifle_HK416 = 400,
-	eRifle_HK416Scope = 410,
-	eRifle_HK416Silenced = 420,
-	eRifle_PumpRifle = 430,
-	eRifle_SG552 = 440,
-	eRifle_SG552Scope = 450,
-	eShotgun_M500 = 460,
-	eShotgun_M500New = 470,
-	eSMG_HK_UMP = 480,
-	eSMG_HK_UMPFlashlight = 490,
-	eSMG_HK_UMPScope = 500,
-	eSMG_HK_UMPSilenced = 510,
-	eSMG_TMP = 520,
-	eSniper_AS50 = 530,
-	eSniper_Remington700 = 540,
-	eSniper_SakoTRG = 550,
-	eSniper_SakoTRGSilenced = 560,
-	eItemAmmo = 570,
-	eCC_FiberWire = 580,
-	eOther_ZippoLighter = 590,
-	eOther_Keycard_A = 600,
-	eOther_SecurityTape = 610,
-	eCC_PowerCord = 620,
-	eCC_PoliceBaton = 630,
-	eCC_Scissor = 640,
-	eOther_ContractEnvelope = 650,
-	eItemIrrelevantWeapon = 660,
-	eCC_BaseballBat = 670,
-	eCC_GlassShiv = 680,
-	eCC_PoolCue = 690,
-	eCC_Rake = 700,
-	eCC_ToyCar = 710,
-	eCC_Crutch = 720,
-	eCC_Guitar = 730,
-	eCC_Iron = 740,
-	eRifle_Beretta_ARX160 = 760,
-	eShotgun_Spas12 = 800,
-	eShotgun_Spas12_Compact = 810,
-	eShotgun_Silenced = 830,
-	eSMG_AK74u = 860,
-	eSMG_STK = 880,
-	eDLC_TEST_FireArm_01 = 900,
-	eDLC_TEST_FireArm_02 = 901,
-	eDLC_TEST_Prop_01 = 902,
-	eDLC_TEST_Prop_02 = 903,
-	eHotSauceBarrel = 910,
-	eOther_GenericPickup = 920,
-	eCC_SledgeHammer = 921,
-	eCC_Katana = 922,
-	eCC_Brick = 923,
-	cCC_Book_A = 924,
-	eSyringe_Lethal = 931,
-	eSyringe_Sedative = 932,
-	eSyringe_Emetic = 933,
-	eSuitcase = 934,
-	eOther_Camera = 940,
-	eUnknownItemType = 1337,
-};
-
-// 0x0000000142A96500 (Size: 0x4)
-enum class ECharacterBodyType
-{
-	eCT_MaleRegular = 0,
-	eCT_FemaleRegular = 1,
-	eCT_Male47 = 2,
-	eCT_Undefined = 3,
-};
-
-// 0x0000000142A9B248 (Size: 0x18)
-class SCondition_CurrentSetpieceSoundDistractions :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-};
-
-// 0x0000000142A954C8 (Size: 0x60)
-class ZRayQueryInput
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8AA08 (Size: 0x4)
-enum class EOutfitType
-{
-	eOT_None = 0,
-	eOT_Suit = 1,
-	eOT_Guard = 2,
-	eOT_Worker = 3,
-	eOT_Waiter = 4,
-	eOT_LucasGrey = 5,
-};
-
-// 0x0000000142A9A4D8 (Size: 0x4)
-enum class ERegionMask
-{
-	eRM_None = 1,
-	eRM_LowCover = 2,
-	eRM_HighCover = 4,
-	eRM_Stairs = 8,
-	eRM_Separator = 16,
-	eRM_User_1 = 32,
-	eRM_User_2 = 64,
-	eRM_User_3 = 128,
-	eRM_User_4 = 256,
-	eRM_User_5 = 512,
-	eRM_User_6 = 1024,
-	eRM_User_7 = 2048,
-	eRM_User_8 = 4096,
-};
-
-// 0x0000000142A8C078 (Size: 0x70)
-class ZGetHelpOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A987F0 (Size: 0x4)
-enum class EGameEventArgType
-{
-	GE_ARGS_KILL = 0,
-	GE_ARGS_PRIORITYKILL = 1,
-	GE_ARGS_SITUATION = 2,
-	GE_ARGS_INVENTORY = 3,
-	GE_ARGS_EXPLODINGPROP = 4,
-	GE_ARGS_EVENT = 5,
-	GE_ARGS_CHECKPOINTEVENT = 6,
-	GE_ARGS_AI_SITUATION = 7,
-};
-
-// 0x0000000142A8A9F0 (Size: 0x4)
-enum class EOutfitAICategory
-{
-	OAC_Undefined = 0,
-	OAC_Fallback = 1,
-	OAC_47Suit = 2,
-	OAC_47TRAINING = 3,
-	OAC_47MARRAKESH = 4,
-	OAC_47SAPIENZA = 5,
-	OAC_47BANGKOK = 6,
-	OAC_47COLORADO = 7,
-	OAC_47HOKKAIDO = 8,
-	OAC_47PREORDER = 9,
-	OAC_47COLUMBIA = 10,
-	OAC_47ISLAND = 11,
-	OAC_47MUMBAI = 12,
-	OAC_47NEWZEALAND = 13,
-	OAC_47STARTCLASSY = 14,
-	OAC_47STARTOUTFIT = 15,
-	OAC_47SUBURBIA = 16,
-	OAC_Bodyguard = 17,
-	OAC_CameraMan = 18,
-	OAC_Chef = 19,
-	OAC_Cleaner = 20,
-	OAC_Cop = 21,
-	OAC_Crew = 22,
-	OAC_DaSilva = 23,
-	OAC_Gardner = 24,
-	OAC_Hazmat = 25,
-	OAC_HouseStaff = 26,
-	OAC_Maintenance = 27,
-	OAC_Officer = 28,
-	OAC_Priest = 29,
-	OAC_Printer = 30,
-	OAC_Scientist = 31,
-	OAC_Security = 32,
-	OAC_Sheik = 33,
-	OAC_Stylist = 34,
-	OAC_Waiter = 35,
-	OAC_Busker = 36,
-	OAC_Caddie = 37,
-	OAC_ChurchStaff = 38,
-	OAC_Cyclist = 39,
-	OAC_Filmcrew = 40,
-	OAC_Fortune = 41,
-	OAC_Hippie = 42,
-	OAC_Investor = 43,
-	OAC_KGB = 44,
-	OAC_Lawyer = 45,
-	OAC_Kruger = 46,
-	OAC_Masseur = 47,
-	OAC_Mechanic = 48,
-	OAC_Norfolk = 49,
-	OAC_Plague = 50,
-	OAC_Psych = 51,
-	OAC_Shopkeep = 52,
-	OAC_Soldier = 53,
-	OAC_Tux = 54,
-	OAC_Vampire = 55,
-	OAC_YachtCrew = 56,
-	OAC_Exterminator = 57,
-	OAC_SoundCrew = 58,
-	OAC_Intern = 59,
-	OAC_Stalker = 60,
-	OAC_Scarecrow = 61,
-	OAC_Hacker = 62,
-	OAC_SpecOps = 63,
-	OAC_Berg = 64,
-	OAC_Morgue = 65,
-	OAC_Surgeon = 66,
-	OAC_Doctor = 67,
-	OAC_Director = 68,
-	OAC_Ninja = 69,
-	OAC_Baseball = 70,
-	OAC_KillBill = 71,
-	OAC_Pilot = 72,
-	OAC_Yoga = 73,
-	OAC_Mummy = 74,
-	OAC_Cowboy = 75,
-	OAC_Staff = 76,
-	OAC_Santa = 77,
-	OAC_MambaCrew = 78,
-	OAC_Delivery = 79,
-	OAC_GOTY_Clown = 80,
-	OAC_GOTY_Cowboy = 81,
-	OAC_GOTY_DarkSniper = 82,
-	OAC_Driver = 83,
-	OAC_Driverpale = 84,
-	OAC_Eventstff = 85,
-	OAC_Flrdaman = 86,
-	OAC_Food = 87,
-	OAC_Journal = 88,
-	OAC_Krnstdtengnr = 89,
-	OAC_Krnstdtsec = 90,
-	OAC_Ktchstff = 91,
-	OAC_Lee = 92,
-	OAC_Mascot = 93,
-	OAC_Medic = 94,
-	OAC_Mendez = 95,
-	OAC_Musician = 96,
-	OAC_Racecoord = 97,
-	OAC_Racemarsh = 98,
-	OAC_Thug = 99,
-	OAC_Worker = 100,
-	OAC_Research = 101,
-	OAC_Tatoo = 102,
-	OAC_Shaman = 103,
-	OAC_Artist = 104,
-	OAC_Barber = 105,
-	OAC_DJ = 106,
-	OAC_Kshmrn = 107,
-	OAC_Master = 108,
-	OAC_Burial = 109,
-	OAC_Ravenmaster = 110,
-	OAC_Sentinel = 111,
-	OAC_Blake = 112,
-	OAC_Actor = 113,
-	OAC_Architect = 114,
-	OAC_Arkian = 115,
-	OAC_Arkptrn = 116,
-	OAC_Bbq = 117,
-	OAC_Bollycrew = 118,
-	OAC_Cavegd = 119,
-	OAC_Civilian = 120,
-	OAC_Cavewkr = 121,
-	OAC_Clothsale = 122,
-	OAC_Counsellor = 123,
-	OAC_Cowboyhat = 124,
-	OAC_Custdn = 125,
-	OAC_Dancer = 126,
-	OAC_Dbbwll = 127,
-	OAC_Deadjanus = 128,
-	OAC_Driverch = 129,
-	OAC_Driversa = 130,
-	OAC_Driveruk = 131,
-	OAC_Driverus = 132,
-	OAC_Druglabwkr = 133,
-	OAC_Elite = 134,
-	OAC_Fakemlstrm = 135,
-	OAC_Farm = 136,
-	OAC_Fieldgrd = 137,
-	OAC_Headmaster = 138,
-	OAC_Knight = 139,
-	OAC_Laundrywkr = 140,
-	OAC_Lndrygrd = 141,
-	OAC_Mailman = 142,
-	OAC_Mansiongd = 143,
-	OAC_Mech_Miami = 144,
-	OAC_Mechch = 145,
-	OAC_Mechit = 146,
-	OAC_Mechkrnstdt = 147,
-	OAC_Mechsa = 148,
-	OAC_Mechuk = 149,
-	OAC_Mechus = 150,
-	OAC_Metalwkr = 151,
-	OAC_Militiasec = 152,
-	OAC_Mime = 153,
-	OAC_Moviemnstr = 154,
-	OAC_Mumbaiserv = 155,
-	OAC_Mumbsec = 156,
-	OAC_Nitiate = 157,
-	OAC_Nurse = 158,
-	OAC_Orson = 159,
-	OAC_Parka = 160,
-	OAC_Politicasst = 161,
-	OAC_Politician = 162,
-	OAC_Priest_VP = 163,
-	OAC_Queensgrd = 164,
-	OAC_Queenthug = 165,
-	OAC_Rangangrd = 166,
-	OAC_Rangansec = 167,
-	OAC_Realstbroke = 168,
-	OAC_Resident = 169,
-	OAC_Resortstaff = 170,
-	OAC_Sitewkr = 171,
-	OAC_Snowtrek = 172,
-	OAC_Subwkr = 173,
-	OAC_Suit = 174,
-	OAC_Tailor = 175,
-	OAC_Teaserv = 176,
-	OAC_Terminus = 177,
-	OAC_Trainserv = 178,
-	OAC_Villagegd = 179,
-	OAC_Winter = 180,
-	OAC_Wiseman = 181,
-	OAC_Investbanker = 182,
-	OAC_Bankteller = 183,
-	OAC_Robber = 184,
-	OAC_TechCrew = 185,
-	OAC_Attendant = 186,
-	OAC_Critic = 187,
-	OAC_FamilyGrd = 188,
-	OAC_PrivateEye = 189,
-	OAC_Undertaker = 190,
-	OAC_Photographer = 191,
-	OAC_LawyerBd = 192,
-	OAC_Biker = 193,
-	OAC_DeliveryFox = 194,
-	OAC_Dealer = 195,
-	OAC_ClubOwner = 196,
-	OAC_Bartender = 197,
-	OAC_ClubStaff = 198,
-	OAC_ClubTech = 199,
-	OAC_Herald = 200,
-	OAC_Gaucho = 201,
-	OAC_WineMkr = 202,
-	OAC_Fixer = 203,
-	OAC_Sommelier = 204,
-};
-
-// 0x0000000142A891E0 (Size: 0x4)
-enum class ESoundChannelGroup
-{
-	ESCG_NONE = 0,
-	SND_Default = 1,
-	SND_Phys_Rigidbody = 2,
-	SND_Phys_Shatter = 3,
-	SND_Wpn_HM = 4,
-	SND_Wpn_HM_Shot = 5,
-	SND_Wpn_NPC = 6,
-	SND_Wpn_Impacts = 7,
-	SND_Wpn_Flybys = 8,
-	SND_Characters = 9,
-	SND_Ambience = 10,
-	SND_Props = 11,
-	SND_Prop_Item = 12,
-	SND_FS_HM = 13,
-	SND_FS_NPC = 14,
-	SND_VisualFX = 15,
-	SND_VisualFX_ShotActivate = 16,
-	SND_VisualFX_Explosions = 17,
-	SND_Diag_HM = 18,
-	SND_Diag_NPC = 19,
-	SND_CS_Ingame = 20,
-	SND_CS_PreRend = 21,
-	SND_Music_Env = 22,
-	SND_MusicNonEnv = 23,
-	SND_SpecialFX_CC = 24,
-	SND_SpecialFX_Jumps = 25,
-	SND_SpecialFX_Closet = 26,
-	SND_SpecialFX_Vent = 27,
-	SND_SpecialFX_Instinct = 28,
-	SND_SpecialFX_Disguise = 29,
-	SND_SpecialFX_Agility = 30,
-	SND_Stingers_SFX = 31,
-	SND_GUI = 32,
-	SND_Test = 33,
-	ANIM_HM_Generic = 34,
-	ANIM_HM_Loco = 35,
-	ANIM_HM_Agility = 36,
-	ANIM_HM_Suit_Flap = 37,
-	ANIM_HM_Suit_Release = 38,
-	ANIM_HM_Suit_Slide = 39,
-	ANIM_HM_Suit_LandImpact = 40,
-	ANIM_HM_Suit_Grab = 41,
-	ANIM_HM_Suit_Roll = 42,
-	ANIM_HM_Suit_Swoosh_Body = 43,
-	ANIM_HM_Suit_Swoosh_Fast = 44,
-	ANIM_HM_CC_Impacts = 45,
-	ANIM_HM_CC_Movement = 46,
-	ANIM_NPC_Generic = 47,
-	ANIM_NPC_Loco = 48,
-	ANIM_NPC_CC_Impacts = 49,
-	ANIM_NPC_CC_Movement = 50,
-	SND_Wpn_HM_Tail = 51,
-	SND_Wpn_NPC_Tail = 52,
-	SND_Diag_NPC_Crowd = 53,
-	SND_Phys_RigidBody_Ragdoll = 54,
-	SND_Diag_VO = 55,
-	SND_GUI_Menu = 56,
-	SND_Props_Doors = 57,
-	SND_Wpn_HM_Handguns = 58,
-	SND_Wpn_HM_Revolvers = 59,
-	SND_Wpn_HM_Rifles = 60,
-	SND_Wpn_HM_Shotguns = 61,
-	SND_Wpn_HM_Smgs = 62,
-	SND_Wpn_HM_Snipers = 63,
-	SND_Wpn_HM_Other = 64,
-	SND_Wpn_NPC_Handguns = 65,
-	SND_Wpn_NPC_Revolvers = 66,
-	SND_Wpn_NPC_Rifles = 67,
-	SND_Wpn_NPC_Shotguns = 68,
-	SND_Wpn_NPC_Smgs = 69,
-	SND_Wpn_NPC_Snipers = 70,
-	SND_Wpn_NPC_Other = 71,
-	SND_Diag_NPC_Oneliner = 72,
-	SND_Moments = 73,
-};
-
-// 0x0000000142AEEAF0 (Size: 0x8)
-class ISequenceTrack :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A93E28 (Size: 0x18)
-class SEventSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAISharedEventType m_nType; // 0x0
-	ZGameTime m_nStart; // 0x8
-	ZGameTime m_nEnd; // 0x10
-};
-
-// 0x0000000142A93E60 (Size: 0x80)
-class SSharedKnowledgeSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	ZRepositoryID m_OutfitId; // 0x8
-	SMatrix m_ActualMatrix; // 0x20
-	TArray<SEventSaveData> m_aEvents; // 0x60
-};
-
-// 0x0000000142A98490 (Size: 0x4)
-enum class ECameraAssistanceMode
-{
-	eCAM_None = 0,
-	eCAM_TrackAssist = 1,
-	eCAM_AutoTrackTarget = 2,
-};
-
-// 0x0000000143E5FB10 (Size: 0x4)
-enum class ERenderVRTrackingID
-{
-	RENDER_VR_TRACK_HEAD = 16,
-	RENDER_VR_TRACK_EYE_LEFT = 17,
-	RENDER_VR_TRACK_EYE_RIGHT = 18,
-	RENDER_VR_TRACK_HAND_LEFT = 19,
-	RENDER_VR_TRACK_HAND_RIGHT = 20,
-};
-
-// 0x0000000142A99D00 (Size: 0x4)
-enum class EVRConfigRotationType
-{
-	EVRCRT_None = 0,
-	EVRCRT_Lock = 1,
-	EVRCRT_Offset = 2,
-};
-
-// 0x00000001422CA1C8 (Size: 0x4)
-enum class eWeaponType
-{
-	WT_HANDGUN = 0,
-	WT_SLOWGUN = 1,
-	WT_ASSAULTRIFLE = 2,
-	WT_SMG = 3,
-	WT_SNIPER = 4,
-	WT_RPG = 5,
-	WT_KNIFE = 6,
-	WT_SHOTGUN = 7,
-	WT_SPOTTER = 8,
-};
-
-// 0x0000000142A79690 (Size: 0x8)
-class IControllableCharacter :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A98A90 (Size: 0x4)
-enum class ECommunicationBarState
-{
-	COMMUNICATION_BAR_NONE = 0,
-	COMMUNICATION_BAR_CLEAR = 1,
-	COMMUNICATION_BAR_SEARCHING = 2,
-	COMMUNICATION_BAR_SUSPICIOUS = 3,
-	COMMUNICATION_BAR_HUNTING = 4,
-	COMMUNICATION_BAR_HOSTILE = 5,
-	COMMUNICATION_BAR_BLOOD_FOUND = 6,
-	COMMUNICATION_BAR_BODY_FOUND = 7,
-	COMMUNICATION_BAR_GUARDS_ALERTED = 8,
-	COMMUNICATION_BAR_BACKUP_ARRIVED = 9,
-};
-
-// 0x0000000142A946F0 (Size: 0x38)
-class SCrowdBodySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_pCorpseBodybagEntity; // 0x0
-	uint32 m_rCrowdEntity; // 0x4
-	uint16 m_iActorIndex; // 0x8
-	uint32 m_rPerceptibleEntity; // 0xC
-	TArray<uint32> m_aKnownBy; // 0x10
-	ZGameTime m_tStart; // 0x28
-	bool m_bManaged; // 0x30
-	int32 m_rBagSharedKnowledge; // 0x34
-};
-
-// 0x0000000142A989D0 (Size: 0x4)
-enum class EButtonDisplay
-{
-	BUTTON_DISPLAY_AT_OPENDOOR = 0,
-	BUTTON_DISPLAY_AT_PICKUP = 1,
-	BUTTON_DISPLAY_AT_STARTDIALOG = 2,
-	BUTTON_DISPLAY_AT_RESET = 3,
-	BUTTON_DISPLAY_AT_OUTFIT = 4,
-	BUTTON_DISPLAY_AT_CLOTHBUNDLE = 5,
-	BUTTON_DISPLAY_AT_DRAGBODY = 6,
-	BUTTON_DISPLAY_AT_SWITCHBOX = 7,
-	BUTTON_DISPLAY_AT_SWAPITEM = 8,
-	BUTTON_DISPLAY_AT_DUMPBODY = 9,
-	BUTTON_DISPLAY_AT_OPENLID = 10,
-	BUTTON_DISPLAY_AT_CHECKPOINTDOOR = 11,
-	BUTTON_DISPLAY_AT_SIMPLE = 12,
-	BUTTON_DISPLAY_AT_ENTERCLOSET = 13,
-	BUTTON_DISPLAY_AT_EXITCLOSET = 14,
-	BUTTON_DISPLAY_AT_ENTERSAFEZONE = 15,
-	BUTTON_DISPLAY_AT_EXITSAFEZONE = 16,
-	BUTTON_DISPLAY_AT_DISABLEFUSEBOX = 17,
-	BUTTON_DISPLAY_AT_CONTAINERFLUSHBODY = 18,
-	BUTTON_DISPLAY_AT_CONTEXTACTION = 19,
-	BUTTON_DISPLAY_AT_HEALTHSTATION = 20,
-	BUTTON_DISPLAY_AT_KEYCARDREADER = 21,
-	BUTTON_DISPLAY_AT_ITEMCONTAINER = 22,
-	BUTTON_DISPLAY_AT_USE_QUICK = 23,
-	BUTTON_DISPLAY_AT_USE = 24,
-	BUTTON_DISPLAY_RELOAD = 25,
-	BUTTON_DISPLAY_HOLSTER = 26,
-	BUTTON_DISPLAY_CHANGE_WEAPON_MODE = 27,
-	BUTTON_DISPLAY_REMOTE_DETONATE = 28,
-	BUTTON_DISPLAY_INVENTORY_ACCEPT = 29,
-	BUTTON_DISPLAY_INVENTORY_CANCEL = 30,
-	BUTTON_DISPLAY_HINTMESSAGE_CONTINUE = 31,
-	BUTTON_DISPLAY_CLOSECOMBAT_TAKEDOWN = 32,
-	BUTTON_DISPLAY_CLOSECOMBAT_COUNTERATTACK = 33,
-	BUTTON_DISPLAY_CLOSECOMBAT_SILENT = 34,
-	BUTTON_DISPLAY_CLOSECOMBAT_SNAPNECK = 35,
-	BUTTON_DISPLAY_CLOSECOMBAT_CHOKE = 36,
-	BUTTON_DISPLAY_CLOSECOMBAT_CHOKE_TARGET = 37,
-	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_HIT = 38,
-	BUTTON_DISPLAY_PISTOL_FINISHER = 39,
-	BUTTON_DISPLAY_PEEK_VENT = 40,
-	BUTTON_DISPLAY_PEEK_CLOSET = 41,
-	BUTTON_DISPLAY_CLIMB_LADDER = 42,
-	BUTTON_DISPLAY_SLIDE_LADDER = 43,
-	BUTTON_DISPLAY_LEDGE = 44,
-	BUTTON_DISPLAY_LEDGE_STEPON = 45,
-	BUTTON_DISPLAY_LEDGEJUMP = 46,
-	BUTTON_DISPLAY_LEDGE_PULL_UP = 47,
-	BUTTON_DISPLAY_LEDGE_CLIMB_DOWN = 48,
-	BUTTON_DISPLAY_LEDGE_DROP_DOWN = 49,
-	BUTTON_DISPLAY_WINDOW = 50,
-	BUTTON_DISPLAY_WINDOWSNEAK = 51,
-	BUTTON_DISPLAY_PULLVICTIM = 52,
-	BUTTON_DISPLAY_PUSHVICTIM = 53,
-	BUTTON_DISPLAY_SURRENDER = 54,
-	BUTTON_DISPLAY_COVERTOCOVER = 55,
-	BUTTON_DISPLAY_COVERCORNER = 56,
-	BUTTON_DISPLAY_COVEREXITFORWARD = 57,
-	BUTTON_DISPLAY_COVERSCALEEXIT = 58,
-	BUTTON_DISPLAY_TAKEDISGUISE = 59,
-	BUTTON_DISPLAY_DROPBODY = 60,
-	BUTTON_DISPLAY_ABORT_CHECKPOINTDOOR = 61,
-	BUTTON_DISPLAY_QUICKSWAP = 62,
-	BUTTON_DISPLAY_OPERATE_LEVER = 63,
-	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_HIGH = 64,
-	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_LOW = 65,
-	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_COUNTER = 66,
-	BUTTON_DISPLAY_FIBERWIRE_KILL = 67,
-	BUTTON_DISPLAY_DROP_ITEM = 68,
-	BUTTON_DISPLAY_ABORT_MINIGAME = 69,
-	BUTTON_DISPLAY_CONTRACT_MARK = 70,
-	BUTTON_DISPLAY_CONTRACT_UNMARK = 71,
-	BUTTON_DISPLAY_COMPLY = 72,
-	BUTTON_DISPLAY_MAX = 73,
-};
-
-// 0x0000000142A97B10 (Size: 0x4)
-enum class EActorLookAtTargetType
-{
-	eALAT_Invalid = 0,
-	eALAT_PositionTarget = 1,
-	eALAT_KnownEntityType = 2,
-	eALAT_PointOfInterest = 3,
-	eALAT_Hero = 4,
-	eALAT_Screenplay = 5,
-	eALAPT_Max = 6,
-};
-
-// 0x0000000142A99548 (Size: 0x8)
-class IActorPickerEffect :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB0BD8 (Size: 0xC)
-class STimerEntityStateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	float32 m_fNextEventTime; // 0x4
-	bool m_bPending; // 0x8
-};
-
-// 0x0000000142AB0C20 (Size: 0x48)
-class SGameTimersSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<STimerEntityCommandSaveData> m_aTimerEntityCommands; // 0x0
-	TArray<STimerEntityStateSaveData> m_aTimerEntityState; // 0x18
-	TArray<uint32> m_aPendingTimers; // 0x30
-};
-
-// 0x0000000143E61818 (Size: 0x8)
-class ISoundAmbienceController :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A83098 (Size: 0x60)
-class SActorGoalSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<int32> m_aEntities; // 0x0
-	TArray<bool> m_aHandled; // 0x18
-	TArray<bool> m_aIsCurrent; // 0x30
-	TArray<float32> m_fExpiredTime; // 0x48
-};
-
-// 0x0000000142A82E68 (Size: 0x98)
-class SKnowledgeSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SKnownEntitySaveData> m_aKnownEntities; // 0x0
-	TArray<EAIGoal> m_aGoalKeys; // 0x18
-	TArray<SActorGoalSaveData> m_aGoals; // 0x30
-	float32 m_fHMAttention; // 0x48
-	float32 m_fHMAttentionLastUpdate; // 0x4C
-	float32 m_fHMDisguiseAttention; // 0x50
-	float32 m_fHMTrespassingAttention; // 0x54
-	float32 m_fHMLastTrespassingAttentionMax; // 0x58
-	ZGameTime m_tLastTrespassingAttentionGain; // 0x60
-	ZGameTime m_tLastAttentionEvaluate; // 0x68
-	float32 m_fHMWeaponAttention; // 0x70
-	float32 m_fHMWeaponAttentionChange; // 0x74
-	EGameTension m_eGameTension; // 0x78
-	ZGameTime m_tAmbientStartTime; // 0x80
-	ZGameTime m_tExpiredAIModifierSuppressSocialGreeting; // 0x88
-	uint32 m_behaviorModifiers; // 0x90
-};
-
-// 0x0000000142AE16C0 (Size: 0x4)
-enum class ReverbFidelity
-{
-	Low = 0,
-	Medium = 1,
-	High = 2,
-};
-
-// 0x0000000142AB08C0 (Size: 0x10)
-class SGeomScaleSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 m_vPrimitiveScale; // 0x0
-};
-
-// 0x0000000142AB4498 (Size: 0x8)
-class IValueColorRGBGet :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A88AC0 (Size: 0x8)
-class IHM5HMStateSoundController :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF32E0 (Size: 0x4)
-enum class EDetectedNatType
-{
-	NAT_UNSET = 0,
-	NAT_1 = 1,
-	NAT_2 = 2,
-	NAT_3 = 3,
-};
-
-// 0x0000000142A905C8 (Size: 0x4)
-enum class EHintMessageSoundType
-{
-	EHintMessageSound_None = 0,
-	EHintMessageSound_GeneralHint = 1,
-	EHintMessageSound_UsefulItem = 2,
-	EHintMessageSound_NeedsItem = 3,
-	EHintMessageSound_ObjectiveExit = 4,
-	EHintMessageSound_Target = 5,
-	EHintMessageSound_AccidentKill = 6,
-	EHintMessageSound_Trespassing = 7,
-	EHintMessageSound_CanBeTurnedOn = 8,
-	EHintMessageSound_CanBeTurnedOff = 9,
-	EHintMessageSound_Agility = 10,
-};
-
-// 0x0000000142AF4930 (Size: 0x1)
-enum class EAsyncRaycastsGroup
-{
-	eAsyncRaycasts_Gameplay = 0,
-	eAsyncRaycasts_ParticlesSoundCloth = 1,
-	eAsyncRaycasts_UNUSED_LAST = 2,
-};
-
-// 0x0000000142A7A768 (Size: 0xE8)
-class ZPatrolGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8E190 (Size: 0x4)
-class SMovementDrainPipeSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rDrainPipe; // 0x0
-};
-
-// 0x0000000142AE3768 (Size: 0x4)
-enum class EExtendedPropertyType
-{
-	TYPE_RESOURCEPTR = 0,
-	TYPE_INT32 = 1,
-	TYPE_UINT32 = 2,
-	TYPE_FLOAT = 3,
-	TYPE_STRING = 4,
-	TYPE_BOOL = 5,
-	TYPE_ENTITYREF = 6,
-	TYPE_VARIANT = 7,
-};
-
-// 0x0000000142AE3780 (Size: 0x20)
-class SExtendedCppEntityProperty
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString propertyName; // 0x0
-	EExtendedPropertyType propertyType; // 0x10
-	bool rtEditable; // 0x14
-	uint64 extraData; // 0x18
-};
-
-// 0x0000000142AE37B0 (Size: 0x18)
-class SExtendedCppEntityBlueprint
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SExtendedCppEntityProperty> properties; // 0x0
-};
-
-// 0x0000000143CDF380 (Size: 0x1)
-enum class EParticleSpritePivotLocation
-{
-	CENTER_PIVOT = 0,
-	BOTTOM_PIVOT = 1,
-	TOP_PIVOT = 2,
-};
-
-// 0x0000000142A8F610 (Size: 0x8)
-class IRoleEventSource :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A94028 (Size: 0xC)
-class SAnimatedActorStandOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 m_vFacingDirection; // 0x0
-};
-
-// 0x0000000142A9AC90 (Size: 0x4)
-enum class EDynamicVariableType
-{
-	DV_Invalid = -1,
-	DV_Me = 0,
-	DV_Hitman = 1,
-	DV_InSight = 2,
-	DV_RecentlyInSight = 3,
-	DV_Sounds = 4,
-	DV_NumVariables = 5,
-};
-
-// 0x0000000142AA2548 (Size: 0x60)
-class SHUDPromptDisplayInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bActive; // 0x0
-	EActionPromptState m_eState; // 0x4
-	int32 m_nIconId; // 0x8
-	int32 m_eTypeId; // 0xC
-	float32 m_fProgress; // 0x10
-	float32 m_fDistance; // 0x14
-	bool m_bShowWarning; // 0x18
-	bool m_bNoActionAvailable; // 0x19
-	ZString m_sLabel; // 0x20
-	ZString m_sDescription; // 0x30
-	ZString m_sGlyph; // 0x40
-	float32 m_fOpacity; // 0x50
-	bool m_bIllegalItem; // 0x54
-	bool m_bSuspiciousItem; // 0x55
-	bool m_bDropTempHolsterableItems; // 0x56
-	int32 m_nFontSize; // 0x58
-};
-
-// 0x0000000142AA9D80 (Size: 0x4)
-enum class EPostProcessorComponentType
-{
-	MRP_LOOKAT = 1,
-	MRP_AIM = 2,
-	MRP_LEDGEFEETLOCK = 16,
-	MRP_LEDGEHANG = 32,
-	MRP_IMPACT = 1024,
-	MRP_BLINDFIRE = 2048,
-};
-
-// 0x0000000143F113E0 (Size: 0x4)
-enum class ECollidableShape
-{
-	ECOLLIDABLESHAPE_SPHERE = 0,
-	ECOLLIDABLESHAPE_CAPSULE = 1,
-	ECOLLIDABLESHAPE_BOX = 2,
-};
-
-// 0x0000000142A98F70 (Size: 0x4)
-enum class EHM5SoundRicochetType
-{
-	ESRT_VARIATION1 = 0,
-	ESRT_VARIATION2 = 1,
-};
-
-// 0x0000000142A97350 (Size: 0x1C)
-class SMathLerpSaveData_SVector3
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 m_A; // 0x0
-	SVector3 m_B; // 0xC
-	float32 m_fT; // 0x18
-};
-
-// 0x0000000142A9A318 (Size: 0x4)
-enum class EPersistentBoolDataSyncType
-{
-	ePBDST_None = 0,
-	ePBDST_ServerAuthoritative = 1,
-	ePBDST_Full = 2,
-};
-
-// 0x0000000142AB1EE0 (Size: 0x4)
-enum class EItemHUDType
-{
-	EIHT_None = 0,
-	EIHT_GhostItem = 1,
-	EIHT_OutbreakHealingItem = 2,
-};
-
-// 0x0000000142A99F58 (Size: 0x4)
-enum class EDisposalType
-{
-	DISPOSAL_UNDEFINED = 0,
-	DISPOSAL_NOTHING = 1,
-	DISPOSAL_HOLSTER = 2,
-	DISPOSAL_HIDE = 3,
-	DISPOSAL_PLACE = 4,
-	DISPOSAL_DROP = 5,
-	DISPOSAL_DROP_HIDE = 6,
-	DISPOSAL_DESTROY = 7,
-	DISPOSAL_COUNT = 8,
-};
-
-// 0x0000000142A9ADE0 (Size: 0x18)
-class SCondition_CombatSituationsWithDesiredNumberOfCombatants :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_CombatSituations; // 0x10
-};
-
-// 0x00000001422CA798 (Size: 0x4)
-enum class eHolsterAbility
-{
-	eUndecided = 0,
-	eHolsteringAllowed = 1,
-	eHolsterTemporarilyOnly = 2,
-	eHolsterSecondaryOnly = 3,
-	eHolsterQuestStorage = 4,
-	eCanNotBeHolstered = 5,
-};
-
-// 0x0000000143E62E38 (Size: 0x28)
-class SFontDefinition
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sFontId; // 0x0
-	ZString sFontName; // 0x10
-	EFontFlags eFontFlags; // 0x20
-	float32 fScaleFactor; // 0x24
-};
-
-// 0x0000000143E62E68 (Size: 0x28)
-class SFontLibraryDefinition
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sFontLocaleID; // 0x0
-	TArray<SFontDefinition> m_aFontDefinitions; // 0x10
-};
-
-// 0x0000000142AE1060 (Size: 0x4)
-enum class EDialogEventItemType
-{
-	eDEIT_WavFile = 1,
-	eDEIT_RandomContainer = 2,
-	eDEIT_SwitchContainer = 3,
-	eDEIT_SequenceContainer = 4,
-	eDEIT_Invalid = 15,
-};
-
-// 0x0000000142A9B6E0 (Size: 0x18)
-class SCondition_Owner :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-};
-
-// 0x0000000142A82F78 (Size: 0x4)
-enum class EActorRank
-{
-	AR_Default = 0,
-	AR_Elite = 1,
-	AR_Cop = 2,
-	AR_Goon = 3,
-};
-
-// 0x0000000142A91FA0 (Size: 0x4)
-enum class EActorPerceptionSensitivity
-{
-	APS_AMBIENT_DEAFBLIND = 0,
-	APS_AMBIENT_SLEEPING = 1,
-	APS_AMBIENT_PREOCCUPIED = 2,
-	APS_AMBIENT = 3,
-	APS_ALERT_LOW = 4,
-	APS_ALERT = 5,
-	APS_COMBAT = 6,
-	APS_SPIDER_SENSE = 7,
-};
-
-// 0x0000000142A96370 (Size: 0x4)
-enum class EInventoryConfigCustomRule
-{
-	EICCR_None = 0,
-	EICCR_Surrender = 1,
-	EICCR_TempDropLeftHandItem = 2,
-};
-
-// 0x0000000142AB2858 (Size: 0x4)
-enum class ESoundCollisionType
-{
-	Impact = 0,
-	Rolling = 1,
-	Sliding = 2,
-};
-
-// 0x0000000142A84140 (Size: 0x4)
-enum class EStashpointContainedEntityType
-{
-	PICKUP_NONE = 0,
-	PICKUP_ITEMS = 1,
-	PICKUP_OUTFIT = 2,
-	PICKUP_PICKEDUP = 3,
-};
-
-// 0x0000000142A8BBB0 (Size: 0x4)
-enum class EDebugExclusionLayerState
-{
-	DEBUGELSTATE_UNBLOCKED = 0,
-	DEBUGELSTATE_BLOCKED = 1,
-	DEBUGELSTATE_UNKNOWN = 2,
-};
-
-// 0x0000000142A8D348 (Size: 0x3)
-class SDynamicRayCastEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-	bool m_bIsRayIntersecting; // 0x1
-	bool m_bIsCurrentlyEnabled; // 0x2
-};
-
-// 0x0000000142AB1F28 (Size: 0x4)
-enum class eItemRarity
-{
-	ITEMRARITY_COMMON = 0,
-	ITEMRARITY_UNCOMMON = 1,
-	ITEMRARITY_RARE = 2,
-};
-
-// 0x0000000142A9B878 (Size: 0x14)
-class SCondition_InSituation :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ESituationType type; // 0x10
-};
-
-// 0x0000000142AB20F0 (Size: 0x4)
-enum class EHM5SoundBulletType
-{
-	ESBT_SMALL = 0,
-	ESBT_MEDIUM = 1,
-	ESBT_LARGE = 2,
-	ESBT_GORGEOUS = 3,
-	ESBT_ANY = 4,
-};
-
-// 0x0000000142A8C7B0 (Size: 0x8)
-class IPriorityNode :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CA3D0 (Size: 0x4)
-enum class EItemLocation
-{
-	eIL_Anywhere = 0,
-	eIL_Inventory = 1,
-	eIL_RightHand = 2,
-	eIL_LeftHand = 3,
-	eIL_FreeBone = 4,
-	eIL_Count = 5,
-};
-
-// 0x0000000142AB1E98 (Size: 0x4)
-enum class eItemSize
-{
-	ITEMSIZE_SMALL = 0,
-	ITEMSIZE_MEDIUM = 1,
-	ITEMSIZE_LARGE = 2,
-};
-
-// 0x0000000142A99030 (Size: 0x4)
-enum class EButtonPressType
-{
-	BUTTON_PRESS = 0,
-	BUTTON_HOLD = 1,
-	BUTTON_REPEAT = 2,
-	BUTTON_TAP = 3,
-	BUTTON_ROTATE_CCW = 4,
-	BUTTON_PRESS_TYPE_MAX = 5,
-};
-
-// 0x0000000142A8BD48 (Size: 0x1D0)
-class ZDetectedInPrivateGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9AFA8 (Size: 0x18)
-class SCondition_IsSameDistractionTypeAsTheCurrentOne :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable distraction; // 0x10
-};
-
-// 0x0000000142A79510 (Size: 0x8)
-class ITransitionSource :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CA1F8 (Size: 0x4)
-enum class EWeaponAnimationCategory
-{
-	eWAC_Undefined = 0,
-	eWAC_Pistol = 1,
-	eWAC_Revolver = 2,
-	eWAC_SMG_2H = 3,
-	eWAC_SMG_1H = 4,
-	eWAC_Rifle = 5,
-	eWAC_Sniper = 6,
-	eWAC_Shotgun_Pump = 7,
-	eWAC_Shotgun_Semi = 8,
-};
-
-// 0x0000000142AE4870 (Size: 0x8)
-class IBoundedPlaneEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF46C0 (Size: 0x4)
-enum class EClothColliderFilter
-{
-	EClothColliderFilter_Environment = 0,
-	EClothColliderFilter_Character = 1,
-	EClothColliderFilter_Character_Environment = 2,
-};
-
-// 0x0000000142A96E70 (Size: 0x4)
-enum class EWeaponUpgradeIcon
-{
-	WEAPON_UPGRADE_ICON_NONE = 0,
-	WEAPON_UPGRADE_ICON_SILENCER = 1,
-	WEAPON_UPGRADE_ICON_RED_DOT_SIGHT = 2,
-	WEAPON_UPGRADE_ICON_AMMUNITION = 3,
-	WEAPON_UPGRADE_ICON_MAGAZINE = 4,
-	WEAPON_UPGRADE_ICON_EXTCLIP = 5,
-	WEAPON_UPGRADE_ICON_SHELLS = 6,
-	WEAPON_UPGRADE_ICON_SLIDE = 7,
-	WEAPON_UPGRADE_ICON_BOLT = 8,
-	WEAPON_UPGRADE_ICON_BARREL = 9,
-	WEAPON_UPGRADE_ICON_HAMMER = 10,
-	WEAPON_UPGRADE_ICON_CHUTE = 11,
-	WEAPON_UPGRADE_ICON_DUALWIELD = 12,
-	WEAPON_UPGRADE_ICON_MAGNUM = 13,
-	WEAPON_UPGRADE_ICON_STOCK = 14,
-};
-
-// 0x0000000142A986D0 (Size: 0x4)
-enum class EHitmanPermissionFlag
-{
-	eHPFlag_InventorySelect = 0,
-	eHPFlag_CanHolsterItem = 1,
-	eHPFlag_CanDropItem = 2,
-	eHPFlag_CanDualWield = 3,
-	eHPFlag_CameraControl = 4,
-	eHPFlag_MovementControl = 5,
-	eHPFlag_AimControl = 6,
-	eHPFlag_CanOpenNotebook = 7,
-	eHPFlag_CanOpenPauseMenu = 8,
-	eHPFlag_PermissionsNUM = 9,
-};
-
-// 0x0000000142AE20C0 (Size: 0x20)
-class SCrowdPoseBoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 mQuaterion; // 0x0
-	SVector4 mTranslation; // 0x10
-};
-
-// 0x0000000142AE20F0 (Size: 0x18)
-class SCrowdPoseSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
-};
-
-// 0x0000000142AE2120 (Size: 0x20)
-class SCrowdPoseCollectionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint64 m_id; // 0x0
-	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
-};
-
-// 0x0000000142A8BDD8 (Size: 0x1D8)
-class ZInvestigateWeaponGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A97F80 (Size: 0x4)
-enum class ECharSetCharacterType
-{
-	ECSCT_Actor = 0,
-	ECSCT_Nude = 1,
-	ECSCT_HeroA = 2,
-};
-
-// 0x0000000142A84BB0 (Size: 0x8)
-class IRenderPostfilterParametersEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A941A0 (Size: 0x4)
-enum class EStandRepositionStrategy
-{
-	SRS_InPlaceRepositioning = 0,
-	SRS_NoRepositioning = 1,
-};
-
-// 0x0000000142A91EA0 (Size: 0x4)
-enum class EPlaceableType
-{
-	PLACEABLE_NOT = 0,
-	PLACEABLE_FULL_PHYSICS = 1,
-	PLACEABLE_SLEEP_PHYSICS = 2,
-	PLACEABLE_NO_PHYSICS = 3,
-	PLACEABLE_ATTACH = 4,
-};
-
-// 0x0000000142A9B428 (Size: 0x20)
-class SCondition_MaxActorsWithGoal :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAIGoal type; // 0x10
-	ZBehaviorTreeVariable target; // 0x14
-	int32 maxActors; // 0x1C
-};
-
-// 0x00000001422C9018 (Size: 0x18)
-class ZRuntimePinConDesc
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint64 m_nFromEntityID; // 0x0
-	uint64 m_nToEntityID; // 0x8
-	uint32 m_nFromPinID; // 0x10
-	uint32 m_nToPinID; // 0x14
-};
-
-// 0x0000000142A94140 (Size: 0x4)
-enum class EMoveEndState
-{
-	MES_Moving = 0,
-	MES_Stopping = 1,
-	MES_Standing = 2,
-};
-
-// 0x0000000142A98B50 (Size: 0x4)
-enum class EBulletType
-{
-	BULLET_TYPE_NONE = 0,
-	BULLET_TYPE_GUN = 1,
-	BULLET_TYPE_REVOLVER = 2,
-	BULLET_TYPE_SMG = 3,
-	BULLET_TYPE_MG = 4,
-	BULLET_TYPE_RIFLE = 5,
-	BULLET_TYPE_SHOTGUN = 6,
-	BULLET_TYPE_SNIPER = 7,
-	BULLET_TYPE_RPG = 8,
-};
-
-// 0x0000000142A96560 (Size: 0x4)
-enum class EVRConfigCustomEvent
-{
-	EVRCCE_ClosetInside = 0,
-	EVRCCE_ClosetExiting = 1,
-	EVRCCE_DrainPipeMounted = 2,
-	EVRCCE_DrainPipeStartedDismounting = 3,
-	EVRCCE_LadderMounted = 4,
-	EVRCCE_LadderStartedDismounting = 5,
-	EVRCCE_LedgeChange = 6,
-	EVRCCE_LedgeShimmyStart = 7,
-	EVRCCE_LedgeShimmyStop = 8,
-	EVRCCE_PeekEntered = 9,
-	EVRCCE_PeekStartedExiting = 10,
-	EVRCCE_FriskStartedTurning = 11,
-	EVRCCE_FriskEndedTurning = 12,
-	EVRCCE_ShowItemStartedTurning = 13,
-	EVRCCE_ShowItemEndedTurning = 14,
-	EVRCCE_SubactionAnimationStarted = 15,
-	EVRCCE_SubactionAnimation_Hide = 16,
-	EVRCCE_FocussedInteractionEntered = 17,
-	EVRCCE_FocussedInteractionStartedExiting = 18,
-	EVRCCE_DisguiseSafeZoneEntered = 19,
-	EVRCCE_DisguiseSafeZoneStartedExiting = 20,
-	EVRCCE_SniperModeEnter = 21,
-	EVRCCE_SniperModeEntered = 22,
-	EVRCCE_SniperModeExit = 23,
-	EVRCCE_SniperModeExited = 24,
-	EVRCCE_VictimMovement0 = 25,
-	EVRCCE_VictimMovement1 = 26,
-	EVRCCE_VictimMovement2 = 27,
-	EVRCCE_VictimMovement3 = 28,
-	EVRCCE_VictimMovementRemoveControl = 29,
-	EVRCCE_AgilityLowVault = 30,
-	EVRCCE_AgilityHighVault = 31,
-	EVRCCE_AgilityRemoveControl = 32,
-	EVRCCE_FiberwireStartPriming = 33,
-	EVRCCE_FiberwireStopPriming = 34,
-	EVRCCE_ToiletDrownEntered = 35,
-	EVRCCE_ToiletDrownExited = 36,
-	EVRCCE_CloseCombatStartPriming = 37,
-	EVRCCE_CloseCombatStopPriming = 38,
-	EVRCCE_SilentTakedownEnterActivationArea = 39,
-	EVRCCE_SilentTakedownExitActivationArea = 40,
-	EVRCCE_SilentTakedownInstaPacification = 41,
-	EVRCCE_SnapNeckEnterActivationArea = 42,
-	EVRCCE_SnapNeckExitActivationArea = 43,
-	EVRCCE_TeleportStart = 44,
-	EVRCCE_TeleportEnd = 45,
-};
-
-// 0x0000000143E60E58 (Size: 0x1C)
-class SLightSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	SColorRGB m_DiffuseColor; // 0x4
-	float32 m_fDiffusePower; // 0x10
-	float32 m_fAspectXByY_Actual; // 0x14
-	bool m_bVisible; // 0x18
-};
-
-// 0x0000000142A9B038 (Size: 0x10)
-class SCondition_FindSuitcaseAssitanceForSentry :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7B6D8 (Size: 0x4)
-enum class EHUDElement
-{
-	HUD_ELEMENT_NONE = 0,
-	HUD_ELEMENT_MINIMAP = 1,
-	HUD_ELEMENT_DISGUISE = 2,
-	HUD_ELEMENT_WEAPON_DISPLAY = 4,
-	HUD_ELEMENT_FOCUS_BAR = 8,
-	HUD_ELEMENT_RETICULES = 16,
-	HUD_ELEMENT_WEAPON_SELECTOR = 32,
-	HUD_ELEMENT_SPECIAL_BAR = 64,
-	HUD_ELEMENT_TEXT_MESSAGES = 128,
-	HUD_ELEMENT_CONTRACT_MARKS = 256,
-	HUD_ELEMENT_RATING_UPDATE = 512,
-	HUD_ELEMENT_RANKING = 1024,
-	HUD_ELEMENT_CHALLENGES = 2048,
-	HUD_ELEMENT_CUSTOM_TEXTS = 4096,
-	HUD_ELEMENT_ACTION_BUTTONS = 8192,
-	HUD_ELEMENT_ATTENTION_PEAKS = 16384,
-	HUD_ELEMENT_RATING_TRACKER = 32768,
-	HUD_ELEMENT_TARGET_TRACKER = 65536,
-	HUD_ELEMENT_HINTS = 131072,
-	HUD_ELEMENT_CONTRACT_SCORING = 262144,
-	HUD_ELEMENT_TUTORIAL = 524288,
-	HUD_ELEMENT_HEALTH_BAR = 1048576,
-	HUD_ELEMENT_OBJECTIVES = 2097152,
-	HUD_ALL_ELEMENTS = 8388607,
-};
-
-// 0x0000000142AA3F60 (Size: 0x28)
-class IUIMapSpaceProvider :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BE98 (Size: 0x198)
-class ZTriggerAlarmGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9BAB8 (Size: 0x24)
-class SCondition_MaxActualDistance :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a0; // 0x10
-	ZBehaviorTreeVariable a1; // 0x18
-	float32 fDistance; // 0x20
-};
-
-// 0x0000000142AB1F70 (Size: 0x4)
-enum class EMassImpulseType
-{
-	eMIT_None = 0,
-	eMIT_Explosion = 1,
-	eMIT_ShockWave = 2,
-	eMIT_ShockWaveNoExplosion = 3,
-};
-
-// 0x0000000142AB2108 (Size: 0x4)
-enum class eWeaponOperation
-{
-	WO_SEMI_AUTO = 0,
-	WO_FULL_AUTO = 1,
-};
-
-// 0x0000000142AE0EC8 (Size: 0x8)
-class SMusicGridData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fGridDurationSec; // 0x0
-	float32 m_fGridOffsetSec; // 0x4
-};
-
-// 0x0000000142A95930 (Size: 0x30)
-class SMathMultipliesSaveData_SVector4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
-};
-
-// 0x0000000142AA5368 (Size: 0x8)
-class S25DProjectionSettingsCurveEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 fDistance; // 0x0
-	float32 fValue; // 0x4
-};
-
-// 0x0000000142A96FF0 (Size: 0x18)
-class SActorSpreadControllerCandidateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_CandidateActor; // 0x0
-	ZGameTime m_CandidateTime; // 0x8
-	bool m_bValidCandidate; // 0x10
-};
-
-// 0x0000000142AE3828 (Size: 0x4)
-enum class EGameModeId
-{
-	GameMode_Invalid = -1,
-	GameMode_Normal = 0,
-	GameMode_Sniper = 1,
-	GameMode_Versus = 2,
-	GameMode_Max = 3,
-};
-
-// 0x0000000142AA5620 (Size: 0x4)
-enum class EUIBusyState
-{
-	eBusyState_Saving = 0,
-	eBusyState_Saving_Failed = 1,
-	eBusyState_Saving_Success = 2,
-	eBusyState_Online_Connecting = 3,
-	eBusyState_Loading = 4,
-	eBusyState_Fetching = 5,
-	eBusyState_None = 6,
-};
-
-// 0x0000000142AE3018 (Size: 0x4)
-enum class EContinuity
-{
-	C0 = 0,
-	C1 = 1,
-	C2 = 2,
-};
-
-// 0x0000000142AB0950 (Size: 0x30)
-class SPhysicsListSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntityRefs; // 0x0
-	TArray<SPhysicsSaveData> m_aEntityDatas; // 0x18
-};
-
-// 0x0000000142AB1F10 (Size: 0x4)
-enum class EThrownCollisionSoundLoudness
-{
-	eLoudness_Default = 0,
-	eLoudness_Low = 1,
-	eLoudness_Normal = 2,
-	eLoudness_Loud = 3,
-};
-
-// 0x0000000142AE3558 (Size: 0x28)
-class SEntityTemplatePropertyAlias
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sAliasName; // 0x0
-	int32 entityID; // 0x10
-	ZString sPropertyName; // 0x18
-};
-
-// 0x0000000142A98550 (Size: 0x4)
-enum class ECharacterAnimEvent
-{
-	eCAE_ReloadStarted = 699,
-	eCAE_ReloadedClip = 700,
-	eCAE_ReloadCompleted = 701,
-	eCAE_ReloadedOneBullet = 711,
-	eCAE_ReloadUpdate = 702,
-	eCAE_ReloadSwapRHandAttacher = 703,
-	eCAE_ReloadResetRHandSwap = 704,
-	eCAE_ChangeAmmoCompleted = 712,
-	eCAE_UnholsterAttachL = 9010,
-	eCAE_UnholsterCompletedL = 9011,
-	eCAE_UnholsterAttachR = 9012,
-	eCAE_UnholsterCompletedR = 9013,
-	eCAE_HolsterDetachL = 9020,
-	eCAE_HolsterCompletedL = 9021,
-	eCAE_HolsterDetachR = 9022,
-	eCAE_HolsterCompletedR = 9023,
-	eCAE_PickupActivate = 9030,
-	eCAE_PickupCompleted = 9031,
-	eCAE_SwipeActivate = 9030,
-	eCAE_SwipeCompleted = 9031,
-	eCAE_InteractionActivate = 5001,
-	eCAE_InteractionCompleted = 5000,
-	eCAE_SwapHandsRtoL = 9040,
-	eCAE_SwapHandsRtoLCompleted = 9041,
-	eCAE_SwapHandsLtoR = 9042,
-	eCAE_SwapHandsLtoRCompleted = 9043,
-	eCAE_OpenDoorActivate = 9051,
-	eCAE_OpenDoorCompleted = 9050,
-	eCAE_FlavorIdleCompleted = 9060,
-	eCAE_AssembleContainerAttach = 9074,
-	eCAE_AssemblePlaceAlignCompleted = 9070,
-	eCAE_AssembleAttach = 9071,
-	eCAE_AssembleEarlyOut = 9075,
-	eCAE_AssembleToSneak = 9073,
-	eCAE_AssembleCompleted = 9072,
-	eCAE_HandIKEnableLeft = 10000,
-	eCAE_HandIKDisableLeft = 10001,
-	eCAE_HandIKEnableRight = 10002,
-	eCAE_HandIKDisableRight = 10003,
-	eCAE_EarlyExit = 50,
-};
-
-// 0x0000000142A9A090 (Size: 0x8)
-class IScreenplayRole :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CA100 (Size: 0x4)
-enum class EDeathType
-{
-	eDT_UNDEFINED = 0,
-	eDT_PACIFY = 1,
-	eDT_KILL = 2,
-	eDT_BLOODY_KILL = 3,
-};
-
-// 0x0000000142A9BAE8 (Size: 0x28)
-class SCondition_ActualInsideSlice :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a0; // 0x10
-	ZBehaviorTreeVariable a1; // 0x18
-	float32 fAngle; // 0x20
-	float32 fConeWidth; // 0x24
-};
-
-// 0x0000000142A8D558 (Size: 0x4)
-class SGetIActorPositionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_StoredActor; // 0x0
-};
-
-// 0x0000000142AF46A8 (Size: 0x1)
-enum class ECOMUsage
-{
-	ECOMUSAGE_AUTOCOMPUTE = 0,
-	ECOMUSAGE_PIVOT = 1,
-};
-
-// 0x0000000142AB0B30 (Size: 0x14)
-class SRandomTimerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-	bool m_bRegistered; // 0x1
-	float32 m_fMinTime; // 0x4
-	float32 m_fMaxTime; // 0x8
-	float32 m_fProbability; // 0xC
-	int32 m_nRemaining; // 0x10
-};
-
-// 0x0000000142AB0B90 (Size: 0x30)
-class SRandomTimerEntitiesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
-};
-
-// 0x0000000142AF32F8 (Size: 0x4)
-enum class ENetPlayerEvent
-{
-	Login = 0,
-	Logout = 1,
-	NewHost = 2,
-};
-
-// 0x0000000142A79750 (Size: 0x8)
-class ICharacterInventoryState :
-	public ICharacterCoreInventoryState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B080 (Size: 0x10)
-class SCondition_SuitcaseAssistanceRequesterRadio :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB2890 (Size: 0x110)
-class ZSoundCollisionInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A98670 (Size: 0x4)
-enum class EVRIKElement
-{
-	EVRIKE_LeftHand = 0,
-	EVRIKE_RightHand = 1,
-	EVRIKE_Pelvis = 2,
-	EVRIKE_Spine = 3,
-};
-
-// 0x0000000143E62A10 (Size: 0x8)
-class ZGfxValueWrapper
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB4468 (Size: 0x8)
-class IValueVector3Get :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB2048 (Size: 0x4)
-enum class EInventoryStorageType
-{
-	EIST_None = 0,
-	EIST_Bag = 1,
-	EIST_RightHand = 2,
-	EIST_LeftHand = 3,
-	EIST_Back = 4,
-	EIST_Support = 5,
-	EIST_Quest = 6,
-	EIST_Temporary = 7,
-	EIST_Debug = 8,
-};
-
-// 0x0000000142A8BCE8 (Size: 0x200)
-class ZCautiousSearchGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422C9BC8 (Size: 0x8)
-class IParticleEmitterEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB1EB0 (Size: 0x4)
-enum class eItemHands
-{
-	IH_NONE = 0,
-	IH_ONEHANDED = 1,
-	IH_TWOHANDED = 2,
-};
-
-// 0x0000000142A7B538 (Size: 0x4)
-enum class EGSExplodingPropType
-{
-	eGSExplodingProp_Unknown = 0,
-	eGSExplodingProp_Barrel = 1,
-	eGSExplodingProp_PetrolCan = 2,
-	eGSExplodingProp_GasCanister = 3,
-	eGSExplodingProp_GasTank = 4,
-	eGSExplodingProp_Mine = 5,
-	eGSExplodingProp_Pig = 6,
-	eGSExplodingProp_Pigeon = 7,
-	eGSExplodingProp_FireworksBox = 8,
-	eGSExplodingProp_Car = 9,
-};
-
-// 0x0000000142AA7858 (Size: 0x8)
-class IKeywordCalculatorProxy :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7B550 (Size: 0x4)
-enum class EStealthSituation
-{
-	SS_DISGUISE_TAKEN = 0,
-	SS_DISGUISE_TRESPASSING = 1,
-	SS_DISGUISE_ILLEGAL_ACTION = 2,
-	SS_DISGUISE_REMOVED = 3,
-	SS_DISGUISE_INVESTIGATED = 4,
-	SS_DISGUISE_BLOWN = 5,
-	SS_HIDE_IN_CLOSET_FIRSTTIME = 6,
-	SS_HIDE_IN_CLOSET = 7,
-	SS_DOOR_START_LOCKPICKING = 8,
-	SS_DOOR_CANCEL_LOCKPICKING = 9,
-	SS_LANDMINE_ARMED = 10,
-	SS_RADIO_ON = 11,
-	SS_VENT_ENTER = 12,
-	SS_VENT_EXIT = 13,
-	SS_BLEND_IN_ACTIVATED = 14,
-	SS_BODY_DISCOVERED = 15,
-	SS_INVESTIGATE_GUNSHOT = 16,
-	SS_INVESTIGATE_NOISE = 17,
-	SS_INVESTIGATE_EXPLOSION = 18,
-	SS_FUSEBOX_DISABLE_UNIQUE = 19,
-	SS_FUSEBOX_DISABLE = 20,
-	SS_INVESTIGATING_FUSEBOX = 21,
-	SS_FUSEBOX_FIXED = 22,
-	SS_KEYCARD_PICKUP = 23,
-	SS_KEYCARD_USE = 24,
-	SS_BODY_PUT_IN_CONTAINER = 25,
-	SS_BODY_DRAGGING_SEEN = 26,
-	SS_BODY_OVER_RAIL = 27,
-	SS_BODY_OVER_LEDGE = 28,
-	SS_USE_HEALTH_STATION = 29,
-	SS_HITMAN_SPOTTED = 30,
-	SS_HITMAN_HIDDEN = 31,
-	SS_HITMAN_ENTERED_COMBAT = 32,
-	SS_TRESPASSING = 33,
-	SS_SECURITYTAPE_PICKUP = 34,
-	SS_NEWOBJECTIVE = 35,
-	SS_FOCUSADDED = 36,
-	SS_FOCUSFULL = 37,
-	SS_FOCUSEMPTY = 38,
-	SS_STARTED_SPRINTING = 39,
-	SS_STARTED_SNEAKING = 40,
-	SS_TOOK_COVER = 41,
-	SS_INVESTIGATE_CURIOUS = 42,
-	SS_GENERIC_PICKUP = 43,
-	SS_ATTENTION_ON = 44,
-	SS_ATTENTION_OFF = 45,
-	SS_DEADBODY_SEEN = 46,
-	SS_TARGET_EVACUATES = 47,
-	SS_UNKNOWN_BODY_SPOTTED = 48,
-};
-
-// 0x00000001422C9BF8 (Size: 0x8)
-class IItemBase :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B4A0 (Size: 0x20)
-class SCondition_IsItemLegalOnHitman :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-	ZBehaviorTreeVariable actor; // 0x18
-};
-
-// 0x0000000142A7B568 (Size: 0x4)
-enum class EAISituation
-{
-	AIS_GENERIC = 0,
-	AIS_SPECIAL = 1,
-	AIS_SENSOR = 2,
-	AIS_TRESPASSING = 3,
-	AIS_STANDOFF = 4,
-	AIS_SMUGGLE = 5,
-	AIS_GET_HELP = 6,
-	AIS_CONVERSTION_GROUP = 7,
-	AIS_PROTO_COMBAT = 8,
-	AIS_SENTRY = 9,
-	AIS_LEAD_ESCORT = 10,
-	AIS_INVESTIGATE_WEAPON = 11,
-	AIS_INVESTIGATE_STANDING = 12,
-	AIS_INVESTIGATE_CURIOUS = 13,
-	AIS_INVESTIGATE_CAUTIOUS = 14,
-	AIS_HERO_ESCORT = 15,
-	AIS_EVACUATE = 16,
-	AIS_ESCORT = 17,
-	AIS_ENTOURAGE = 18,
-	AIS_DRAMA = 19,
-	AIS_DISGUISE = 20,
-	AIS_DEAD_BODY = 21,
-	AIS_COMBAT = 22,
-	AIS_CLOSE_COMBAT = 23,
-	AIS_AVOID_EXPLOSION = 24,
-	AIS_ACCIDENT = 25,
-	AIS_PRIVATE = 26,
-	AIS_GUARD_BODY = 27,
-	AIS_RECOVER_UNC = 28,
-	AIS_SNIPER = 29,
-};
-
-// 0x0000000142A94670 (Size: 0x38)
-class SDeadBodyInfoSaveData
+// 0x0000000142A98EA0 (Size: 0x4)
+class SActorAccessoryItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12205,341 +12547,9 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	uint32 m_rActor; // 0x0
-	uint32 m_rGuard; // 0x4
-	TArray<uint32> m_knownByActors; // 0x8
-	ZGameTime m_tKnownSince; // 0x20
-	ZGameTime m_tInvestigatedSince; // 0x28
-	bool m_bGuarded; // 0x30
-	bool m_bBodyInvestigated; // 0x31
-	bool m_bHidden; // 0x32
-	bool m_bDeadByAccident; // 0x33
-	bool m_bDeadByUnnoticed; // 0x34
-	bool m_bHitmanSuspectedInCurrentOutfit; // 0x35
-	bool m_bDeadByExplosion; // 0x36
-	bool m_IsFoundOutsideNavmeshAndIgnored; // 0x37
 };
 
-// 0x0000000142A92100 (Size: 0x20)
-class SDeadBodySensorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
-	int32 m_nBodyIndex; // 0x18
-};
-
-// 0x0000000142A7B4D8 (Size: 0x4)
-enum class EGSBodyPart
-{
-	GSBODYPART_UNKNOWN = 0,
-	GSBODYPART_HEAD = 1,
-	GSBODYPART_TORSO = 2,
-	GSBODYPART_ARM = 3,
-	GSBODYPART_LEG = 4,
-};
-
-// 0x0000000142A7A240 (Size: 0x18)
-class SActorManagerReferencableData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<ESituationType> m_aSituationTypes; // 0x0
-};
-
-// 0x0000000142AF46D8 (Size: 0x4)
-class SClothVertex
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint16 m_nColumn; // 0x0
-	uint16 m_nRow; // 0x2
-};
-
-// 0x0000000142A7B4F0 (Size: 0x4)
-enum class EKillType
-{
-	EKillType_Undefined = 0,
-	EKillType_Throw = 1,
-	EKillType_Fiberwire = 2,
-	EKillType_PistolExecute = 3,
-	EKillType_ItemTakeOutFront = 4,
-	EKillType_ItemTakeOutBack = 5,
-	EKillType_ChokeOut = 6,
-	EKillType_SnapNeck = 7,
-	EKillType_KnockOut = 8,
-	EKillType_Push = 9,
-	EKillType_Pull = 10,
-};
-
-// 0x0000000142A8D6A8 (Size: 0x4)
-enum class EDebugSpatialInfoVerbosity
-{
-	EDSIV_Overview = 0,
-	EDSIV_HierachicalView = 1,
-	EDSIV_Full = 2,
-};
-
-// 0x0000000142A9B278 (Size: 0x20)
-class SCondition_IsEqual :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a; // 0x10
-	ZBehaviorTreeVariable b; // 0x18
-};
-
-// 0x0000000142A79E70 (Size: 0x8)
-class IActListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A905B0 (Size: 0x4)
-enum class EHintMessageType
-{
-	EHintMessageType_Hint = 0,
-	EHintMessageType_InstinctHint = 1,
-	EHintMessageType_InstinctPrompt = 2,
-	EHintMessageType_Tutorial = 3,
-};
-
-// 0x0000000142A94220 (Size: 0x18)
-class SBehaviorTreeEntityReference
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bList; // 0x0
-	ZString m_sName; // 0x8
-};
-
-// 0x0000000142A94290 (Size: 0x30)
-class SBehaviorTreeInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SBehaviorTreeEntityReference> m_references; // 0x0
-	TArray<SBehaviorTreeInputPinCondition> m_inputPinConditions; // 0x18
-};
-
-// 0x0000000142A8D920 (Size: 0x4)
-enum class EDramaSituationDescriptors
-{
-	eDSD_NONE = 0,
-	eDSD_HERO = 1,
-	eDSD_CONVERSATION = 2,
-	eDSD_DISTRACTION = 4,
-	eDSD_URGENT = 8,
-	eDSD_SICK = 16,
-	eDSD_DEATH = 32,
-	eDSD_ALERT = 64,
-	eDSD_PARANOID = 128,
-	eDSD_SCARY = 256,
-	eDSD_TRIVIAL = 512,
-	eDSD_PREOCCUPIED = 1024,
-	eDSD_PRIVATE = 2048,
-};
-
-// 0x0000000142A8D2F0 (Size: 0x4)
-enum class EVictimMovementType
-{
-	eVictimMovementNone = -1,
-	eVictimMovementPullVictimFromWindow = 0,
-	eVictimMovementThrowBodyOverRail = 1,
-	eVictimMovementDumpBodyOverLedge = 2,
-	eVictimMovementTakeDown = 3,
-	eVictimMovementRecoveryFinisher = 4,
-	eVictimMovementGrabVictim = 5,
-	eVictimMovementPushVictimThroughWindowAndRail = 6,
-	eVictimMovementContextKill = 7,
-	eVictimMovementKickVictimOverLedge = 8,
-	eVictimMovementCoupDeGrace = 9,
-	eVictimMovementCloseCombat = 10,
-	eVictimMovementLast = 11,
-};
-
-// 0x0000000142A906A8 (Size: 0x4)
-enum class EEntityOrdering
-{
-	EO_LOW = 0,
-	EO_NORMAL = 1,
-	EO_HIGH = 2,
-};
-
-// 0x0000000142AF4738 (Size: 0x20)
-class SDestructibleRuntimeConnnection
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint16 m_nPieceIndex; // 0x0
-	TArray<uint16> m_aConnections; // 0x8
-};
-
-// 0x0000000142AA24A0 (Size: 0x8)
-class IUIDataListener
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143F11580 (Size: 0x30)
-class SGWaypoint
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint16 nNeighbor0; // 0x0
-	uint16 nNeighbor1; // 0x2
-	uint16 nNeighbor2; // 0x4
-	uint16 nNeighbor3; // 0x6
-	uint16 nNeighbor4; // 0x8
-	uint16 nNeighbor5; // 0xA
-	uint16 nNeighbor6; // 0xC
-	uint16 nNeighbor7; // 0xE
-	float4 vPos; // 0x10
-	uint32 nVisionDataOffset; // 0x20
-	int16 nLayerIndex; // 0x24
-};
-
-// 0x00000001422C8EF0 (Size: 0x20)
-class ZBitArray
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint8> m_aBytes; // 0x0
-	uint32 m_nSize; // 0x18
-};
-
-// 0x0000000143F11568 (Size: 0x30)
-class SGProperties
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float4 vMin; // 0x0
-	float4 vMax; // 0x10
-	int32 nGridWidth; // 0x20
-	float32 fGridSpacing; // 0x24
-	int32 nVisibilityRange; // 0x28
-};
-
-// 0x0000000142B0E278 (Size: 0xD0)
-class SReasoningGrid
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SGWaypoint> m_WaypointList; // 0x0
-	ZBitArray m_LowVisibilityBits; // 0x18
-	ZBitArray m_HighVisibilityBits; // 0x38
-	SGProperties m_Properties; // 0x60
-	uint32 m_nNodeCount; // 0x90
-	TArray<uint8> m_pVisibilityData; // 0x98
-	ZBitArray m_deadEndData; // 0xB0
-};
-
-// 0x0000000142AF45E8 (Size: 0x8)
-class IParticleEmitterSourcesProvider :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8A400 (Size: 0x18)
-class SDoorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_nDoorState; // 0x0
-	float32 m_fAnimPercent; // 0x4
-	float32 m_fTargetAnimPercent; // 0x8
-	ZGameTime m_tOpenTime; // 0x10
-};
-
-// 0x0000000143E60810 (Size: 0x10)
-class SLoadRuntimeResourceResult
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sFilePath; // 0x0
-};
-
-// 0x0000000142A7A288 (Size: 0x2C)
-class SAnimatedActorActOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bOverrideExistingAct; // 0x0
-	uint32 m_nForcedAnimationNode; // 0x4
-	uint32 m_rChildNetworkAct; // 0x8
-	uint32 m_rListener; // 0xC
-	SVector3 m_vOriginPosition; // 0x10
-	SVector4 m_vOriginQuaternion; // 0x1C
-};
-
-// 0x0000000142AA7C30 (Size: 0x8)
-class ICausalNode :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7B5B0 (Size: 0x20)
+// 0x0000000142A88338 (Size: 0x20)
 class SGameStatsWeapon
 {
 public:
@@ -12553,30 +12563,22 @@ public:
 	eAmmoType m_eAmmoType; // 0x18
 };
 
-// 0x0000000142A8D4F0 (Size: 0x4)
-class SActorAccessoryItemActionSaveData
+// 0x0000000143CEB0D0 (Size: 0x10)
+class SGUIViewPort
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	uint32 m_rActor; // 0x0
+	uint32 x; // 0x0
+	uint32 y; // 0x4
+	uint32 h; // 0x8
+	uint32 w; // 0xC
 };
 
-// 0x0000000142AA4D98 (Size: 0x18)
-class SAttentionHUDUIElementArray_Dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SAttentionHUDUIElement> dummy; // 0x0
-};
-
-// 0x0000000142A9FA18 (Size: 0x428)
-class ZOnlineSaveManager :
+// 0x00000001422D6768 (Size: 0x8)
+class IEnableConditionListener :
 	public IComponentInterface
 {
 public:
@@ -12586,9 +12588,9 @@ public:
 
 };
 
-// 0x0000000142A8BC28 (Size: 0x128)
-class ZAccidentObserversGroup :
-	public ZSituationGroup
+// 0x0000000142AC1360 (Size: 0x8)
+class IValueVector2Get :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12597,8 +12599,32 @@ public:
 
 };
 
-// 0x0000000142A9B2F0 (Size: 0x10)
-class SCondition_IsActorRoleBodyguard :
+// 0x0000000143E6D7C8 (Size: 0x38)
+class SSaveGameData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nVersion; // 0x0
+	TArray<SSavableData> m_aSavableObjectsData; // 0x8
+	TArray<SEntityPath> m_aEntityPaths; // 0x20
+};
+
+// 0x0000000142A9A670 (Size: 0x70)
+class ZFormationMoveOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA87A8 (Size: 0x18)
+class SCondition_IsOrderInvalid :
 	public SConditionBase
 {
 public:
@@ -12606,10 +12632,167 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	ZBehaviorTreeVariable situation; // 0x10
 };
 
-// 0x0000000142AB4738 (Size: 0x30)
-class SColorRGBSaveData
+// 0x0000000142A86B00 (Size: 0x10)
+class SActorInventoryItemSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rItem; // 0x0
+	EAttachLocation m_eAttachLocation; // 0x4
+	EGameTension m_eMaxTension; // 0x8
+	bool m_bLeftHand; // 0xC
+	bool m_bWeapon; // 0xD
+	bool m_bGrenade; // 0xE
+};
+
+// 0x0000000142B01658 (Size: 0x20)
+class SDestructibleRuntimeConnnection
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint16 m_nPieceIndex; // 0x0
+	TArray<uint16> m_aConnections; // 0x8
+};
+
+// 0x0000000142AA7C80 (Size: 0x14)
+class SCondition_IsDifficultyGreaterOrEqual :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 difficultyLevel; // 0x10
+};
+
+// 0x0000000142AA1250 (Size: 0x4)
+class SActorProviderApproachSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rCastActor; // 0x0
+};
+
+// 0x0000000142AF07A0 (Size: 0x8)
+class ZAutoNullEntityRef
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB1A70 (Size: 0x10)
+class SItemOnBackUIData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZRuntimeResourceID icon; // 0x0
+	int32 nItemHUDType; // 0x8
+	bool bHasItemToShow; // 0xC
+	bool bSuspicious; // 0xD
+	bool bIllegal; // 0xE
+};
+
+// 0x0000000142AACD88 (Size: 0x40)
+class SOnlineSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sName; // 0x0
+	int64 m_nTimeStamp; // 0x10
+	bool m_bIsOnline; // 0x18
+	ZString m_sContractSessionId; // 0x20
+	ZString m_sLastEventToken; // 0x30
+};
+
+// 0x0000000142A8FB40 (Size: 0x18)
+class SLongTermMemorySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZRepositoryID m_sOutfit; // 0x0
+	uint8 m_Memory; // 0x10
+};
+
+// 0x0000000142AA7F50 (Size: 0x20)
+class SCondition_MaxExpired :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAIEventType type; // 0x18
+	float32 time; // 0x1C
+};
+
+// 0x0000000142A9A5E0 (Size: 0x20)
+class SCombatOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float4 m_vPos; // 0x0
+	uint32 m_coverPlane; // 0x10
+	uint32 m_rInteraction; // 0x14
+};
+
+// 0x0000000142AC05F8 (Size: 0xC)
+class SHintEntrySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsValid; // 0x0
+	uint32 m_hint; // 0x4
+	uint32 m_context; // 0x8
+};
+
+// 0x0000000142AC0628 (Size: 0x30)
+class SHintManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SHintEntrySaveData m_activeHint; // 0x0
+	TArray<SHintEntrySaveData> m_aQueue; // 0x10
+	bool m_bIsRunning; // 0x28
+};
+
+// 0x0000000142AA28B0 (Size: 0x30)
+class SMathLerpsSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12617,34 +12800,37 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	TArray<uint32> m_aEntities; // 0x0
-	TArray<SColorRGB> m_aData; // 0x18
+	TArray<SMathLerpSaveData_SVector3> m_aData; // 0x18
 };
 
-// 0x0000000142AB46C0 (Size: 0x30)
-class SValueIntSaveData
+// 0x00000001422D79D0 (Size: 0x28)
+class STrackDollyControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<int32> m_aData; // 0x18
+	uint32 m_rTrackEntity; // 0x0
+	float32 m_fTrackPosition; // 0x4
+	bool m_bIsDollyAttached; // 0x8
+	SVector3 m_vDollyPosition; // 0xC
+	SVector4 m_vDollyRotation; // 0x18
 };
 
-// 0x0000000142AB4690 (Size: 0x30)
-class SValueBoolsSaveData
+// 0x0000000142AA8580 (Size: 0x18)
+class SCondition_HasCustomInvestigationAckSoundDef :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<bool> m_aData; // 0x18
+	ZBehaviorTreeVariable entity; // 0x10
 };
 
-// 0x0000000142AB46A8 (Size: 0x30)
+// 0x0000000142AC1588 (Size: 0x30)
 class SValueFloatSaveData
 {
 public:
@@ -12656,117 +12842,8 @@ public:
 	TArray<float32> m_aData; // 0x18
 };
 
-// 0x0000000142AB46D8 (Size: 0x8)
-class SStateControllerSaveDataStruct
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_nIndex; // 0x0
-	bool m_bEnabled; // 0x4
-};
-
-// 0x0000000142AB4708 (Size: 0x30)
-class SStateControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SStateControllerSaveDataStruct> m_aData; // 0x18
-};
-
-// 0x0000000142AB40C0 (Size: 0xF0)
-class SValueSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SValueBoolsSaveData m_ValueBool; // 0x0
-	SValueFloatSaveData m_ValueFloat; // 0x30
-	SValueIntSaveData m_ValueInt; // 0x60
-	SStateControllerSaveData m_StateController; // 0x90
-	SColorRGBSaveData m_ValueColorRGB; // 0xC0
-};
-
-// 0x00000001422CA748 (Size: 0x4)
-class SHeroItemActionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rItem; // 0x0
-};
-
-// 0x0000000142A8A990 (Size: 0x34)
-class SBodyPartDamageMultipliers
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fHeadDamageMultiplier; // 0x0
-	float32 m_fFaceDamageMultiplier; // 0x4
-	float32 m_fArmDamageMultiplier; // 0x8
-	float32 m_fLArmDamageScalar; // 0xC
-	float32 m_fRArmDamageScalar; // 0x10
-	float32 m_fHandDamageMultiplier; // 0x14
-	float32 m_fLHandDamageScalar; // 0x18
-	float32 m_fRHandDamageScalar; // 0x1C
-	float32 m_fLegDamageMultiplier; // 0x20
-	float32 m_fLLegDamageScalar; // 0x24
-	float32 m_fRLegDamageScalar; // 0x28
-	float32 m_fTorsoDamageMultiplier; // 0x2C
-	bool m_bApplyLeftRightScalars; // 0x30
-};
-
-// 0x0000000142A9BCA8 (Size: 0x8)
-class SConversationEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EConversationRole m_role; // 0x0
-	EActorSoundDefs m_sound; // 0x4
-};
-
-// 0x0000000142A9BCD8 (Size: 0x20)
-class SConversationPart
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_chance; // 0x0
-	TArray<SConversationEntry> m_entries; // 0x8
-};
-
-// 0x0000000142AA4850 (Size: 0x18)
-class SVideoDatabaseEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString VideoId; // 0x0
-	ZRuntimeResourceID RuntimeLocalizedVideoRid; // 0x10
-};
-
-// 0x0000000142A8BA48 (Size: 0x158)
-class ZCheckLastPositionGroup :
+// 0x0000000142A9A280 (Size: 0x1C0)
+class ZAvoidDangerousAreaGroup :
 	public ZSituationGroup
 {
 public:
@@ -12776,78 +12853,7 @@ public:
 
 };
 
-// 0x0000000142A970F0 (Size: 0x4)
-class SActorKeywordProxySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000142A957A8 (Size: 0x30)
-class SActorKeywordProxiesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SActorKeywordProxySaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A93E80 (Size: 0x48)
-class SSituationMemberSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-	ESituationJoinReason m_eJoinReason; // 0x4
-	bool m_bIsOrderValid; // 0x8
-	ZVariant m_OrderData; // 0x10
-	ZVariant m_PendingOrderData; // 0x20
-	uint32 m_rDramaRole; // 0x30
-	ZVariant m_CustomData; // 0x38
-};
-
-// 0x0000000142A93ED0 (Size: 0x68)
-class SSituationSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rSituation; // 0x0
-	ESituationType m_eType; // 0x4
-	int32 m_nTargetSharedEntity; // 0x8
-	ZVariant m_Data; // 0x10
-	TArray<SSituationMemberSaveData> m_aMemberData; // 0x20
-	TArray<SSituationGroupSaveData> m_aGroupData; // 0x38
-	int32 m_nNextGroupID; // 0x50
-	ZGameTime m_situationStartTime; // 0x58
-	bool m_bSituationEnded; // 0x60
-};
-
-// 0x0000000142A9B638 (Size: 0x18)
-class SCondition_IllegalWeaponPickedUp :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142AA3840 (Size: 0x4)
+// 0x0000000142AB0660 (Size: 0x4)
 class SHUDTimerControllerSaveData
 {
 public:
@@ -12858,37 +12864,19 @@ public:
 	uint32 m_pCurrentInstance; // 0x0
 };
 
-// 0x0000000142A8BE80 (Size: 0x38)
-class SSentryGroupSaveData
+// 0x0000000142AA1C78 (Size: 0x18)
+class SSituationConversationGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	uint32 m_rTarget; // 0x0
-	uint32 m_pLeader; // 0x4
-	uint32 m_rSentryZone; // 0x8
-	ZGameTime m_tLastEscalateOrder; // 0x10
-	SFSMSaveData m_fsmState; // 0x18
-	ESentryActionPrompt m_eActionPrompt; // 0x30
-	bool m_bRequestedAction; // 0x34
-	bool m_bShowingWarning; // 0x35
+	TArray<uint32> m_members; // 0x0
 };
 
-// 0x0000000142AE2150 (Size: 0x18)
-class SCrowdDeadPoseRepositorySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
-};
-
-// 0x0000000142A9B0F8 (Size: 0x20)
-class SCondition_IsExpired :
+// 0x0000000142AA8718 (Size: 0x1C)
+class SCondition_SituationFromTarget :
 	public SConditionBase
 {
 public:
@@ -12896,77 +12884,24 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable target; // 0x10
-	EAIEventType type; // 0x18
-	float32 tTime; // 0x1C
+	ESituationType type; // 0x10
+	ZBehaviorTreeVariable targets; // 0x14
 };
 
-// 0x0000000142AE3540 (Size: 0x70)
-class SExternalEntityTemplatePinConnection
+// 0x0000000142AA4110 (Size: 0x20)
+class SMathDistanceSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	SEntityTemplateReference fromEntity; // 0x0
-	SEntityTemplateReference toEntity; // 0x20
-	ZString fromPinName; // 0x40
-	ZString toPinName; // 0x50
-	ZVariant constantPinValue; // 0x60
+	SVector4 m_fA; // 0x0
+	SVector4 m_fB; // 0x10
 };
 
-// 0x0000000142AE3528 (Size: 0x38)
-class SEntityTemplatePinConnection
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 fromID; // 0x0
-	int32 toID; // 0x4
-	ZString fromPinName; // 0x8
-	ZString toPinName; // 0x18
-	ZVariant constantPinValue; // 0x28
-};
-
-// 0x0000000142A92178 (Size: 0x48)
-class SCrowdServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SCrowdBodySaveData> m_aDeadBodies; // 0x0
-	TArray<uint32> m_aPerceptiblePool; // 0x18
-	TArray<uint32> m_aPerceptibleActors; // 0x30
-};
-
-// 0x0000000142AE4630 (Size: 0x20)
-class SRenderVideoPlayerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bPlaying; // 0x0
-	bool m_bPaused; // 0x1
-	bool m_bLooping; // 0x2
-	bool m_bUseAlpha; // 0x3
-	bool m_bFirstFrame; // 0x4
-	bool m_bRunning; // 0x5
-	bool m_bVideoError; // 0x6
-	bool m_bShouldBeStopped; // 0x7
-	ZGameTime m_LastVisible; // 0x8
-	ZGameTime m_StartTime; // 0x10
-	ZGameTime m_RunTime; // 0x18
-};
-
-// 0x0000000142A9B218 (Size: 0x10)
-class SCondition_IsDebugBuild :
+// 0x0000000142AA7BF0 (Size: 0x18)
+class SCondition_RemoveCombatSituationsStandingDown :
 	public SConditionBase
 {
 public:
@@ -12974,66 +12909,220 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	ZBehaviorTreeVariable m_CombatSituations; // 0x10
 };
 
-// 0x0000000142A94DA8 (Size: 0x40)
-class SCompressedGridFloatField
+// 0x0000000142AB9EF0 (Size: 0x38)
+class SActivityObjective
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	bool m_bIsSparse; // 0x0
-	uint32 m_nFieldSize; // 0x4
-	float32 m_fInitialValue; // 0x8
-	uint32 m_nGridCRC; // 0xC
-	TArray<uint16> m_aIndices; // 0x10
-	TArray<uint8> m_aValues; // 0x28
+	SActivity activity; // 0x0
+	TArray<SActivity> opportunities; // 0x20
 };
 
-// 0x0000000142A8BE50 (Size: 0x28)
-class SRecoverUnconsciousGroupSaveData
+// 0x0000000142AB9F38 (Size: 0x70)
+class SActivityDefinition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	SFSMSaveData m_fsmState; // 0x0
-	uint32 m_rVictim; // 0x18
-	uint32 m_rWaker; // 0x1C
-	float32 m_fTimer; // 0x20
-	bool m_bEscalate; // 0x24
-	bool m_bWokenUpInTheGroup; // 0x25
-	bool m_bFastWakeUp; // 0x26
+	SActivity activity; // 0x0
+	TArray<SActivityObjective> objectives; // 0x20
+	SActivityExits exits; // 0x38
 };
 
-// 0x0000000142A7A010 (Size: 0x70)
-class SEscortOutBehaviorSaveData
+// 0x0000000142A918C8 (Size: 0x8)
+class ZPostfilterGraphBaseNode
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	int32 m_nSituation; // 0x0
-	bool m_bConversationHelperPaused; // 0x4
-	SFSMSaveData m_fsm; // 0x8
-	float4 m_vExitPosition; // 0x20
-	ZGameTime m_tWarningTime; // 0x30
-	bool m_bHardWarning; // 0x38
-	int32 m_nWarningCount; // 0x3C
-	ZGameTime m_tEscortStateSilenceTime; // 0x40
-	ZGameTime m_tWaitHitmanToComplyWarningTime; // 0x48
-	ZGameTime m_tWaitHitmanToComplyStateTime; // 0x50
-	ZGameTime m_tLastLookBack; // 0x58
-	bool m_bReachedExitPosition; // 0x60
-	bool m_bShowExitWarningEnded; // 0x61
-	bool m_bJustShowExit; // 0x62
 };
 
-// 0x0000000142AA2488 (Size: 0x8)
+// 0x0000000142A9EC20 (Size: 0x1)
+class SDangerousAreaSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bDangerous; // 0x0
+};
+
+// 0x0000000142AA8448 (Size: 0x18)
+class SCondition_OnlyLegalWeaponsPickedUp :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000143CEBDE8 (Size: 0x8)
+class IParticleControllerEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A977D8 (Size: 0x36)
+class SHM5CrippleBoxSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bInSequence; // 0x0
+	bool m_bAllowBaseMovements; // 0x1
+	bool m_bSequenceAllowCamera; // 0x2
+	bool m_bLedges; // 0x3
+	bool m_bCover; // 0x4
+	bool m_bTakeClothes; // 0x5
+	bool m_bLadder; // 0x6
+	bool m_bPullVictimFromWindow; // 0x7
+	bool m_bFiberWireKill; // 0x8
+	bool m_bClimbWindow; // 0x9
+	bool m_bThrowBodyOverRail; // 0xA
+	bool m_bDumpBody; // 0xB
+	bool m_bOperateCPDoor; // 0xC
+	bool m_bHideInCloset; // 0xD
+	bool m_bCloseCombat; // 0xE
+	bool m_bGrabVictim; // 0xF
+	bool m_bPushVictimThroughWindowAndRail; // 0x10
+	bool m_bKickVictimOverLedge; // 0x11
+	bool m_bPickupItem; // 0x12
+	bool m_bDropItem; // 0x13
+	bool m_bDragBody; // 0x14
+	bool m_bThrowItem; // 0x15
+	bool m_bPlaceItem; // 0x16
+	bool m_bUseDeathAnimation; // 0x17
+	bool m_bLimitedAmmo; // 0x18
+	bool m_bRun; // 0x19
+	bool m_bTurn; // 0x1A
+	bool m_bSneak; // 0x1B
+	bool m_bNoSnapSneak; // 0x1C
+	bool m_bStandUp; // 0x1D
+	bool m_bFastWalk; // 0x1E
+	bool m_bMovementAllowed; // 0x1F
+	bool m_bIdleAnimationsAllowed; // 0x20
+	bool m_bItems; // 0x21
+	bool m_bCanHolsterItems; // 0x22
+	bool m_bCoverTakedown; // 0x23
+	bool m_bCoverScale; // 0x24
+	bool m_bCoverToCover; // 0x25
+	bool m_bCloseCombatSnapNeck; // 0x26
+	bool m_bCloseCombatChoke; // 0x27
+	bool m_bCloseCombatPistolFinish; // 0x28
+	bool m_bCloseCombatProps; // 0x29
+	bool m_bCloseCombatStandart; // 0x2A
+	bool m_bCloseCombatFakeSwing; // 0x2B
+	bool m_bGameCameraAutoAlign; // 0x2C
+	bool m_bCameraSide; // 0x2D
+	bool m_bInstinct; // 0x2E
+	bool m_bBlindFire; // 0x2F
+	bool m_bAim; // 0x30
+	bool m_bHairTrigger; // 0x31
+	bool m_bFire; // 0x32
+	bool m_bOpenLogbook; // 0x33
+	bool m_bOpenPauseMenu; // 0x34
+	bool m_bActivatedByPinSignal; // 0x35
+};
+
+// 0x0000000142AA88F8 (Size: 0x24)
+class SCondition_MaxActualDistance2D :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_From; // 0x10
+	ZBehaviorTreeVariable m_To; // 0x18
+	float32 m_Distance; // 0x20
+};
+
+// 0x0000000142A88078 (Size: 0x14)
+class SCrowdReactionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nNumPacify; // 0x0
+	uint32 m_nNumShotsFired; // 0x4
+	uint32 m_nNumDeaths; // 0x8
+	uint32 m_nNumScared; // 0xC
+	bool m_bWarzoneSpawned; // 0x10
+};
+
+// 0x0000000142AA7C98 (Size: 0x14)
+class SCondition_IsDifficultyLessOrEqual :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 difficultyLevel; // 0x10
+};
+
+// 0x0000000142A9AEB8 (Size: 0x8)
+class SMovementDragBodySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rDraggedActor; // 0x0
+	uint32 m_nGrabBoneID; // 0x4
+};
+
+// 0x0000000142AA4130 (Size: 0xC)
+class SMathLerpSaveData_float32
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_A; // 0x0
+	float32 m_B; // 0x4
+	float32 m_fT; // 0x8
+};
+
+// 0x0000000142A9A6E8 (Size: 0x70)
+class ZJumpToOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAF2A8 (Size: 0x8)
 class INotificationCategoryDefinition :
 	public IComponentInterface
 {
@@ -13044,7 +13133,7 @@ public:
 
 };
 
-// 0x0000000142AE3588 (Size: 0x18)
+// 0x0000000142AF04A8 (Size: 0x18)
 class SEntityTemplateEntitySubset
 {
 public:
@@ -13055,7 +13144,7 @@ public:
 	TArray<int32> entities; // 0x0
 };
 
-// 0x0000000142A82E20 (Size: 0x60)
+// 0x0000000142A8FBA0 (Size: 0x60)
 class SActorDamageControlSaveData
 {
 public:
@@ -13091,49 +13180,2896 @@ public:
 	float32 fAgilityElementUncosciousTime; // 0x58
 };
 
-// 0x0000000142A8B978 (Size: 0x14)
-class SCombatSituationMemberSaveData
+// 0x0000000142AA65A8 (Size: 0x8)
+class IHM5ActionDevice :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	float32 m_fDistanceToTarget; // 0x0
-	float32 m_fDistanceFieldValue; // 0x4
-	EDisturbanceType m_civilianJoinReason; // 0x8
-	bool m_bIsPreferredToFire; // 0xC
-	bool m_bDialogPreventShooting; // 0xD
-	bool m_bCanFlee; // 0xE
-	bool m_bCantFleeNoPath; // 0xF
-	bool m_bReportedToGuard; // 0x10
-	bool m_bStandAndShoot; // 0x11
 };
 
-// 0x0000000142AA4770 (Size: 0x18)
-class SHUDPromptDisplayInfoArray_Dummy
+// 0x0000000142AA8568 (Size: 0x18)
+class SCondition_GetItemDroppedBy :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
+	ZBehaviorTreeVariable character; // 0x10
 };
 
-// 0x0000000142AA23C8 (Size: 0x10)
-class SHudMissionTimerControllerData
+// 0x0000000142B01220 (Size: 0x8)
+class SClothWireEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZGameTime m_fScoreGameTimeStart; // 0x0
-	bool m_bWasIntroCutFired; // 0x8
+	float32 m_fWireLength; // 0x0
+	bool m_bAttachToAnchorTransform; // 0x4
+	bool m_bSimulationEnabled; // 0x5
+	bool m_bVisible; // 0x6
 };
 
-// 0x0000000142A94D70 (Size: 0x38)
+// 0x0000000143E6DDD0 (Size: 0x14)
+class SParticleEmitterSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	bool m_bIsActivated; // 0x4
+	bool m_bIsVisible; // 0x5
+	float32 m_fEmissionTimeLeft; // 0x8
+	float32 m_fEmissionTimeFraction; // 0xC
+	float32 m_fEmissionCntLeft; // 0x10
+};
+
+// 0x0000000143E6DCF8 (Size: 0x8)
+class SBoneAttachSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	bool m_bIsAttached; // 0x4
+};
+
+// 0x0000000143E6D788 (Size: 0x90)
+class SGameplayRenderablesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SLightSaveData> m_aLightData; // 0x0
+	TArray<SRenderMaterialSaveData> m_aMaterialData; // 0x18
+	TArray<SParticleEmitterSaveData> m_aParticleData; // 0x30
+	TArray<SBoneAttachSaveData> m_aBoneAttachData; // 0x48
+	TArray<SPostfilterParametersSaveData> m_aPostFilterParametersData; // 0x60
+	TArray<SGateSaveData> m_aGateData; // 0x78
+};
+
+// 0x0000000142AA45E0 (Size: 0x1)
+class SDoorSoundDefs
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA4330 (Size: 0x8)
+class SItsATrapSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+	float32 m_fTimer; // 0x4
+};
+
+// 0x0000000142A8FB58 (Size: 0x20)
+class SActorBoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 mQuaterion; // 0x0
+	SVector4 mTranslation; // 0x10
+};
+
+// 0x0000000142A95550 (Size: 0x1)
+class SMovementLocomotionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsSneaking; // 0x0
+};
+
+// 0x0000000142AA0C20 (Size: 0x80)
+class SSharedKnowledgeSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEntity; // 0x0
+	ZRepositoryID m_OutfitId; // 0x8
+	SMatrix m_ActualMatrix; // 0x20
+	TArray<SEventSaveData> m_aEvents; // 0x60
+};
+
+// 0x0000000142AA0C40 (Size: 0x48)
+class SSituationMemberSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	ESituationJoinReason m_eJoinReason; // 0x4
+	bool m_bIsOrderValid; // 0x8
+	ZVariant m_OrderData; // 0x10
+	ZVariant m_PendingOrderData; // 0x20
+	uint32 m_rDramaRole; // 0x30
+	ZVariant m_CustomData; // 0x38
+};
+
+// 0x0000000142AA0C90 (Size: 0x68)
+class SSituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rSituation; // 0x0
+	ESituationType m_eType; // 0x4
+	int32 m_nTargetSharedEntity; // 0x8
+	ZVariant m_Data; // 0x10
+	TArray<SSituationMemberSaveData> m_aMemberData; // 0x20
+	TArray<SSituationGroupSaveData> m_aGroupData; // 0x38
+	int32 m_nNextGroupID; // 0x50
+	ZGameTime m_situationStartTime; // 0x58
+	bool m_bSituationEnded; // 0x60
+};
+
+// 0x0000000142A9A4F0 (Size: 0x48)
+class SCautiousSituationMemberSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZGameTime m_tLastDisturbance; // 0x0
+	ZGameTime m_tLastSearchCalc; // 0x8
+	ZGameTime m_tLastInfluenceCalc; // 0x10
+	ZGameTime m_tLastSearchCompleted; // 0x18
+	ZGameTime m_tLastInvestigationCompleted; // 0x20
+	ZGameTime m_tTimeIdling; // 0x28
+	uint32 m_pGuardDutyPoint; // 0x30
+	int32 m_nBulletImpactsHeard; // 0x34
+	int32 m_nPatrolWaypointIndex; // 0x38
+	uint32 m_nPatrolWaypointSubIndex; // 0x3C
+	bool m_bBanterCandidate; // 0x40
+	bool m_bCivOccupant; // 0x41
+	bool m_bRecievingNewHuntTarget; // 0x42
+	bool m_bLockdownEnforcer; // 0x43
+};
+
+// 0x0000000142A9A580 (Size: 0x30)
+class SSniperCombatGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SFSMSaveData m_fsmState; // 0x0
+	int32 m_target; // 0x18
+	bool m_bFailed; // 0x1C
+	ZGameTime m_tEscapeTime; // 0x20
+	ZGameTime m_tLastTauntTime; // 0x28
+};
+
+// 0x0000000142A9AED0 (Size: 0x50)
+class SMovementCoverSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rCoverPlane; // 0x0
+	uint32 m_nCoverAnimNodeID; // 0x4
+	bool m_bLeftSideFacing; // 0x8
+	bool m_bCrouched; // 0x9
+	SMatrix m_mPositionInCover; // 0x10
+};
+
+// 0x0000000142B01AC0 (Size: 0x8)
+class ITriggerPhysics :
+	public IPhysicsAccessor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AF0310 (Size: 0x10)
+class ZEntityID
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sStr; // 0x0
+};
+
+// 0x0000000142B1B210 (Size: 0x20)
+class ZGridFloatField
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fInitialValue; // 0x4
+	TArray<float32> m_field; // 0x8
+};
+
+// 0x0000000142AEED70 (Size: 0x10)
+class SCrowdActivitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+	EGait m_eGait; // 0x4
+	float32 m_nMaxEnterDelaySec; // 0x8
+	float32 m_nMaxLeaveDelaySec; // 0xC
+};
+
+// 0x0000000142A9AA00 (Size: 0x40)
+class SSituationOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sClassTypeName; // 0x0
+	EAISharedEventType m_eType; // 0x10
+	int32 m_nTarget; // 0x14
+	bool m_bHasPosition; // 0x18
+	float4 m_vPosition; // 0x20
+	ZVariant m_CustomData; // 0x30
+};
+
+// 0x0000000142A95150 (Size: 0x8)
+class IDramaResource :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A430 (Size: 0x120)
+class ZObserversGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAF2F0 (Size: 0x8)
+class IUIControlEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AF0580 (Size: 0xA8)
+class STemplateBlueprintSubEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SEntityTemplateReference logicalParent; // 0x0
+	int32 entityTypeResourceIndex; // 0x20
+	uint64 entityId; // 0x28
+	bool editorOnly; // 0x30
+	ZString entityName; // 0x38
+	TArray<SEntityTemplatePropertyAlias> propertyAliases; // 0x48
+	TArray<SEntityTemplateExposedEntity> exposedEntities; // 0x60
+	TArray<TPair<ZString,int32>> exposedInterfaces; // 0x78
+	TArray<TPair<ZString,SEntityTemplateEntitySubset>> entitySubsets; // 0x90
+};
+
+// 0x0000000143E6D770 (Size: 0x10)
+class SLoadRuntimeResourceResult
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sFilePath; // 0x0
+};
+
+// 0x00000001422D7B08 (Size: 0x8)
+class IDynamicPhysics :
+	public IPhysicsAccessor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B01640 (Size: 0x90)
+class SDestructiblePieceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SMatrix m_mTransform; // 0x0
+	TArray<uint16> m_aIndices; // 0x40
+	float32 m_fMass; // 0x58
+	EPhysicsObjectType m_ePhysicsType; // 0x5C
+	bool m_bIsAwake; // 0x60
+	float4 m_fLinearVelocity; // 0x70
+	float4 m_fAngularVelocity; // 0x80
+};
+
+// 0x0000000142B01670 (Size: 0x8)
+class SDestructibleRuntimeDamage
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint16 m_nPieceIndex; // 0x0
+	float32 m_fDamage; // 0x4
+};
+
+// 0x0000000142B01370 (Size: 0x60)
+class SDestructibleObjectSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SDestructibleInteractionHandlerData m_interactionData; // 0x0
+	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
+	TArray<SDestructibleRuntimeConnnection> m_aConnectionData; // 0x20
+	TArray<SDestructibleRuntimeDamage> m_aDamageData; // 0x38
+	uint16 m_nNumAnchors; // 0x50
+	ERuntimeMemoryAllocationState m_eRuntimeMemoryAllocationState; // 0x54
+	EPhysicsObjectType m_eSystemPhysicsType; // 0x58
+	bool m_bHasSystemBeenDetached; // 0x5C
+	bool m_bHasSystemBeenFractured; // 0x5D
+	bool m_bPhysicsEnabled; // 0x5E
+	bool m_bDestructionEnabled; // 0x5F
+};
+
+// 0x0000000142AB1DB8 (Size: 0x18)
+class SIntelDisplayInfoArray_dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SIntelDisplayInfo> dummy; // 0x0
+};
+
+// 0x0000000142AA86B8 (Size: 0x20)
+class SCondition_IsActorInSituation :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+	ZBehaviorTreeVariable situation; // 0x18
+};
+
+// 0x0000000142A9EF20 (Size: 0x20)
+class SManHuntServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint16> m_rGuardNodes; // 0x0
+	uint16 m_rInitialNode; // 0x18
+	float32 m_fGuardSightRange; // 0x1C
+};
+
+// 0x0000000142AFBCD8 (Size: 0x8)
+class IMorphemeCutSequenceAnimationEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAC7F0 (Size: 0x70)
+class ZChoiceManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9C880 (Size: 0x1)
+class SEventChannelSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+};
+
+// 0x0000000142AA3AD0 (Size: 0x8)
+class SCCEffectSet
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ECCDecalEffect m_eDecalEffect; // 0x0
+	ECCEmitterEffect m_eEmitterEffect; // 0x4
+};
+
+// 0x0000000143E70C10 (Size: 0x20)
+class STypeReference
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sEntityID; // 0x0
+	ZString sTypeArgName; // 0x10
+};
+
+// 0x0000000142AA83E8 (Size: 0x18)
+class SCondition_SuspiciousWeaponDropped :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000142A95338 (Size: 0xC)
+class SHeroStandInSaveState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rHero; // 0x0
+	uint32 m_rCurrentSpeakEntity; // 0x4
+	bool m_bPaused; // 0x8
+};
+
+// 0x00000001422D5E90 (Size: 0x8)
+class IHM5ActionEntityListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AC1570 (Size: 0x30)
+class SValueBoolsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<bool> m_aData; // 0x18
+};
+
+// 0x0000000142A95F40 (Size: 0x8)
+class ZResourcePtr
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9EBD8 (Size: 0x20)
+class SBodybagBoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 mQuaterion; // 0x0
+	SVector4 mTranslation; // 0x10
+};
+
+// 0x0000000142A9E428 (Size: 0x1)
+class SAIPerceptibleEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bPerceptibleEnabled; // 0x0
+};
+
+// 0x0000000142AB0D80 (Size: 0x28)
+class IUIMapSpaceProvider :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB0CD8 (Size: 0x30)
+class IUIMapProvider :
+	public IUIMapSpaceProvider,
+	public IUIMapExporter
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A568 (Size: 0x1F0)
+class ZSniperCombatGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A95218 (Size: 0x40)
+class SClothBundleSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 m_vPosition; // 0x0
+	SVector4 m_vQuaternion; // 0xC
+	ZRepositoryID m_OutfitID; // 0x20
+	int32 m_nOutfitVariation; // 0x30
+	int32 m_nOutfitCharset; // 0x34
+	bool bSpawnedByHitman; // 0x38
+};
+
+// 0x0000000142AEF070 (Size: 0x18)
+class SCrowdDeadPoseRepositorySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
+};
+
+// 0x0000000142AA7F20 (Size: 0x20)
+class SCondition_IsExpired :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+	EAIEventType type; // 0x18
+	float32 tTime; // 0x1C
+};
+
+// 0x00000001422D6010 (Size: 0x8)
+class ISavableEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8790 (Size: 0x1C)
+class SCondition_MaxSituationAge :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+	float32 fMaxAge; // 0x18
+};
+
+// 0x0000000142AA82B0 (Size: 0x14)
+class SCondition_IsLegal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAILegalType legalType; // 0x10
+};
+
+// 0x0000000142A97720 (Size: 0x34)
+class SBodyPartDamageMultipliers
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fHeadDamageMultiplier; // 0x0
+	float32 m_fFaceDamageMultiplier; // 0x4
+	float32 m_fArmDamageMultiplier; // 0x8
+	float32 m_fLArmDamageScalar; // 0xC
+	float32 m_fRArmDamageScalar; // 0x10
+	float32 m_fHandDamageMultiplier; // 0x14
+	float32 m_fLHandDamageScalar; // 0x18
+	float32 m_fRHandDamageScalar; // 0x1C
+	float32 m_fLegDamageMultiplier; // 0x20
+	float32 m_fLLegDamageScalar; // 0x24
+	float32 m_fRLegDamageScalar; // 0x28
+	float32 m_fTorsoDamageMultiplier; // 0x2C
+	bool m_bApplyLeftRightScalars; // 0x30
+};
+
+// 0x0000000142AC1618 (Size: 0x30)
+class SColorRGBSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SColorRGB> m_aData; // 0x18
+};
+
+// 0x0000000142AC15A0 (Size: 0x30)
+class SValueIntSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<int32> m_aData; // 0x18
+};
+
+// 0x0000000142AC15B8 (Size: 0x8)
+class SStateControllerSaveDataStruct
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nIndex; // 0x0
+	bool m_bEnabled; // 0x4
+};
+
+// 0x0000000142AC15E8 (Size: 0x30)
+class SStateControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SStateControllerSaveDataStruct> m_aData; // 0x18
+};
+
+// 0x0000000142AC0FA0 (Size: 0xF0)
+class SValueSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SValueBoolsSaveData m_ValueBool; // 0x0
+	SValueFloatSaveData m_ValueFloat; // 0x30
+	SValueIntSaveData m_ValueInt; // 0x60
+	SStateControllerSaveData m_StateController; // 0x90
+	SColorRGBSaveData m_ValueColorRGB; // 0xC0
+};
+
+// 0x00000001422D74C8 (Size: 0x4)
+class SHeroItemActionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rItem; // 0x0
+};
+
+// 0x0000000142A9EC08 (Size: 0x58)
+class SBodybagSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 m_vLinkedPosition; // 0x0
+	SVector4 m_vLinkedQuaternionRotation; // 0xC
+	TArray<SBodybagBoneSaveData> m_aBones; // 0x20
+	TArray<uint32> m_aBoneIndices; // 0x38
+	uint32 m_rDeadActor; // 0x50
+	bool m_IsInMorgue; // 0x54
+};
+
+// 0x0000000142AEE3E8 (Size: 0x8)
+class SAudioEmitterStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nGroupId; // 0x0
+	uint32 m_nStateId; // 0x4
+};
+
+// 0x0000000142AF0448 (Size: 0x38)
+class SEntityTemplatePinConnection
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 fromID; // 0x0
+	int32 toID; // 0x4
+	ZString fromPinName; // 0x8
+	ZString toPinName; // 0x18
+	ZVariant constantPinValue; // 0x28
+};
+
+// 0x0000000142AB9FB0 (Size: 0x50)
+class SEnvironmentConfigResourceEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString Name; // 0x0
+	ZResourceID ContractsDatastoreRid; // 0x10
+	ZResourceID UnlockablesDatastoreRid; // 0x20
+	ZResourceID BlobsDatastoreRid; // 0x30
+	ZResourceID ActivityDatastoreRid; // 0x40
+};
+
+// 0x0000000142AB9FE0 (Size: 0x18)
+class SEnvironmentConfigResource
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
+};
+
+// 0x0000000142A9A820 (Size: 0x78)
+class SEvacuateVIPGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SFSMSaveData m_fsmState; // 0x0
+	uint32 m_rVIP; // 0x18
+	uint32 m_rVIPActor; // 0x1C
+	uint32 m_rEvacuationNode; // 0x20
+	uint32 m_rSafeRoomNode; // 0x24
+	uint32 m_rCompromisedEvacNode; // 0x28
+	TArray<uint32> m_assignedBodyguards; // 0x30
+	ZGameTime m_tEvacuationStart; // 0x48
+	ZGameTime m_tCornered; // 0x50
+	ZGameTime m_tTacticalPoint; // 0x58
+	ZGameTime m_tSafeRoom; // 0x60
+	ZGameTime m_tSafeRoomStandDown; // 0x68
+	bool m_bInitialFlee; // 0x70
+	bool m_safeRoomVIPSentActingStarted; // 0x71
+	bool m_isSetupPhaseComplete; // 0x72
+};
+
+// 0x0000000142A86FE8 (Size: 0x2C)
+class SAnimatedActorActOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bOverrideExistingAct; // 0x0
+	uint32 m_nForcedAnimationNode; // 0x4
+	uint32 m_rChildNetworkAct; // 0x8
+	uint32 m_rListener; // 0xC
+	SVector3 m_vOriginPosition; // 0x10
+	SVector4 m_vOriginQuaternion; // 0x1C
+};
+
+// 0x0000000142AB4A50 (Size: 0x8)
+class ICausalNode :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7D70 (Size: 0x10)
+class SCondition_HasBystanderSomethingElseToInvestigate :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6CAC0 (Size: 0x1)
+class IRenderCompositorEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7BC0 (Size: 0x18)
+class SCondition_IsRealCombatSituation :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_CombatSituations; // 0x10
+};
+
+// 0x0000000143CEBF68 (Size: 0x8)
+class IParticleRenderEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB21A8 (Size: 0x18)
+class SWorldSpaceSettings
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 fCloseupDistance; // 0x0
+	float32 fScale; // 0x4
+	bool bDynamicScale; // 0x8
+	float32 fDynamicScaleAlpha; // 0xC
+	float32 fDynamicScaleNearDistance; // 0x10
+	float32 fDynamicScaleBlendRange; // 0x14
+};
+
+// 0x0000000142AA7250 (Size: 0x80)
+class S25DProjectionSettings
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 fNearDistance; // 0x0
+	float32 fFarDistance; // 0x4
+	float32 fNearScale; // 0x8
+	float32 fFarScale; // 0xC
+	float32 fNearFov; // 0x10
+	float32 fFarFov; // 0x14
+	float32 fNearScaleFov; // 0x18
+	float32 fFarScaleFov; // 0x1C
+	float32 fScaleFactor; // 0x20
+	float32 fNearAlpha; // 0x24
+	float32 fFarAlpha; // 0x28
+	float32 fAlphaFactor; // 0x2C
+	TArray<S25DProjectionSettingsCurveEntry> aScaleCurve; // 0x30
+	TArray<S25DProjectionSettingsCurveEntry> aAlphaCurve; // 0x48
+	EViewportLock eViewportLock; // 0x60
+	float32 fViewportGutter; // 0x64
+	SWorldSpaceSettings sWorldSpaceSettings; // 0x68
+};
+
+// 0x0000000142AA40B0 (Size: 0x4)
+class SItemKeywordProxySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rItem; // 0x0
+};
+
+// 0x0000000142AA8388 (Size: 0x18)
+class SCondition_AreVisibleWeaponsIllegal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000142AA7DB8 (Size: 0x18)
+class SCondition_IsDistractionInterruptableByNewOcurrences :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable distraction; // 0x10
+};
+
+// 0x0000000142A9ECE0 (Size: 0x18)
+class SVIPEvacuationNodeSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fPenaltyMultiplier; // 0x0
+	float32 m_fPenaltyDuration; // 0x4
+	ZGameTime m_tPenalty; // 0x8
+	bool m_bIsEnabled; // 0x10
+	bool m_compromisedOnEnter; // 0x11
+};
+
+// 0x0000000142AC0918 (Size: 0x10)
+class ZDialogConditionTarget :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA4210 (Size: 0x14)
+class SMathMultiplyDivideSaveData_SVector2
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector2 m_fA; // 0x0
+	SVector2 m_fB; // 0x8
+	bool m_bDivide; // 0x10
+};
+
+// 0x0000000142AAC808 (Size: 0x78)
+class ZContractEventsManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A3D0 (Size: 0xA90)
+class ZGetHelpGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB9C78 (Size: 0x30)
+class ZOnlineSocialManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB0D50 (Size: 0x100)
+class SInventoryUISlot
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString label; // 0x0
+	ZString containedLabel; // 0x10
+	ZString description; // 0x20
+	TArray<ZString> perks; // 0x30
+	bool silencer; // 0x48
+	int32 count; // 0x4C
+	int32 ammo; // 0x50
+	ZRepositoryID id; // 0x58
+	ZString weaponCategory; // 0x68
+	int32 nAmmoRemaining; // 0x78
+	int32 nAmmoTotal; // 0x7C
+	int32 nAmmoInClip; // 0x80
+	int32 nWeaponType; // 0x84
+	int32 nItemHUDType; // 0x88
+	ZString itemCategory; // 0x90
+	ZString itemCategoryLKey; // 0xA0
+	ZString inventoryCategoryIcon; // 0xB0
+	bool isDroppable; // 0xC0
+	bool isContainer; // 0xC1
+	bool containsItem; // 0xC2
+	int32 nContainedItemHUDType; // 0xC4
+	bool bContainedItemIllegal; // 0xC8
+	bool bContainedItemSuspicious; // 0xC9
+	bool bContainedItemDetectedDuringFrisk; // 0xCA
+	bool detectedDuringFrisk; // 0xCB
+	TArray<ZString> actionAndKillTypes; // 0xD0
+	bool suspicious; // 0xE8
+	bool illegal; // 0xE9
+	bool canReload; // 0xEA
+	ZString sPoisonType; // 0xF0
+};
+
+// 0x0000000142ABD8D8 (Size: 0x1)
+class SVisibilitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsVisible; // 0x0
+};
+
+// 0x0000000142A86348 (Size: 0x8)
+class ICrowdCoreProvider :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEF468 (Size: 0x8)
+class IFloatCurveEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B01A08 (Size: 0x8)
+class IBaseConstraint :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA00E0 (Size: 0x8)
+class IConditionalTextLine :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A808 (Size: 0x340)
+class ZEvacuateVIPGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9E370 (Size: 0x20)
+class SCombatZoneEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsInLockdown; // 0x0
+	bool m_bIsFalseAlarm; // 0x1
+	ECombatZoneState m_nState; // 0x4
+	ZGameTime m_tLockdownTime; // 0x8
+	ZGameTime m_tTriggerTime; // 0x10
+	ZGameTime m_tEngageTime; // 0x18
+};
+
+// 0x0000000143F1E4E8 (Size: 0x30)
+class SGProperties
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float4 vMin; // 0x0
+	float4 vMax; // 0x10
+	int32 nGridWidth; // 0x20
+	float32 fGridSpacing; // 0x24
+	int32 nVisibilityRange; // 0x28
+};
+
+// 0x0000000142AA14F0 (Size: 0x10)
+class SCuriousEventSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZGameTime m_tExpiresAt; // 0x0
+	int32 m_nKnowledgeIndex; // 0x8
+};
+
+// 0x0000000142AA1528 (Size: 0x18)
+class SCuriousEventServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SCuriousEventSaveData> m_aCuriousEvents; // 0x0
+};
+
+// 0x0000000142AA7FF8 (Size: 0x28)
+class SCondition_IntRuntimeParamEqualsTo :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sParamName; // 0x10
+	int32 nValue; // 0x20
+};
+
+// 0x0000000142AF07D8 (Size: 0x8)
+class IGameMode :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A95880 (Size: 0x8)
+class IMorphemeEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A99E20 (Size: 0x8)
+class SGuardBodySituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bBystanderFieldsFailed; // 0x0
+	bool m_bLastGetHelpGroupFailed; // 0x1
+	bool m_bSomeoneCanSeeBody; // 0x2
+	bool m_bSomeoneHandledBodybag; // 0x3
+	int32 m_pGetHelpGroup; // 0x4
+};
+
+// 0x0000000142AA15E8 (Size: 0x30)
+class STargetTrackingSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_sharedTarget; // 0x0
+	float4 m_position; // 0x10
+	ZGameTime m_time; // 0x20
+};
+
+// 0x0000000142A9EF50 (Size: 0x18)
+class STargetTrackingServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<STargetTrackingSaveData> m_aTrackedTargets; // 0x0
+};
+
+// 0x0000000142AA4460 (Size: 0x2)
+class SCollisionControllerAspectSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bCollideHitman; // 0x0
+	bool m_bCollideCamera; // 0x1
+};
+
+// 0x0000000142AA2808 (Size: 0x30)
+class SCollisionControllerAspectsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
+};
+
+// 0x0000000142A9A5B0 (Size: 0x40)
+class SActOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sAct; // 0x0
+	float32 m_fDuration; // 0x10
+	uint32 m_rChildNetworkEntity; // 0x14
+	float4 m_faceTarget; // 0x20
+	bool m_bBlendOutImmediatelyUponTimeout; // 0x30
+	bool m_bDropCarriedItems; // 0x31
+	bool m_bStopCurrentActFast; // 0x32
+};
+
+// 0x0000000142AAEB10 (Size: 0x1)
+class SContractObjectiveHudHintEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bVisible; // 0x0
+};
+
+// 0x0000000142A9A538 (Size: 0x1260)
+class ZInvestigateDisguiseGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86480 (Size: 0x8)
+class ICharacterMovementState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86630 (Size: 0x8)
+class IVariationResourceEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB1E18 (Size: 0x18)
+class SMapMarkerData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SVector2> pathPoints; // 0x0
+};
+
+// 0x0000000143F1E5A0 (Size: 0x40)
+class SGBufferSample
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 normal; // 0x0
+	SVector3 diffuse; // 0xC
+	SVector3 specular; // 0x18
+	SVector3 accumulatedLight; // 0x24
+	float32 glossiness; // 0x30
+	float32 translucency; // 0x34
+	float32 ao; // 0x38
+	uint32 shadingModel; // 0x3C
+};
+
+// 0x0000000142AA9860 (Size: 0x18)
+class SRememberActorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_Actors; // 0x0
+};
+
+// 0x0000000142A86D70 (Size: 0x70)
+class SEscortOutBehaviorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nSituation; // 0x0
+	bool m_bConversationHelperPaused; // 0x4
+	SFSMSaveData m_fsm; // 0x8
+	float4 m_vExitPosition; // 0x20
+	ZGameTime m_tWarningTime; // 0x30
+	bool m_bHardWarning; // 0x38
+	int32 m_nWarningCount; // 0x3C
+	ZGameTime m_tEscortStateSilenceTime; // 0x40
+	ZGameTime m_tWaitHitmanToComplyWarningTime; // 0x48
+	ZGameTime m_tWaitHitmanToComplyStateTime; // 0x50
+	ZGameTime m_tLastLookBack; // 0x58
+	bool m_bReachedExitPosition; // 0x60
+	bool m_bShowExitWarningEnded; // 0x61
+	bool m_bJustShowExit; // 0x62
+};
+
+// 0x0000000142A9A478 (Size: 0x28)
+class SRecoverUnconsciousGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SFSMSaveData m_fsmState; // 0x0
+	uint32 m_rVictim; // 0x18
+	uint32 m_rWaker; // 0x1C
+	float32 m_fTimer; // 0x20
+	bool m_bEscalate; // 0x24
+	bool m_bWokenUpInTheGroup; // 0x25
+	bool m_bFastWakeUp; // 0x26
+};
+
+// 0x0000000142AA1B68 (Size: 0x40)
+class SCompressedGridFloatField
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsSparse; // 0x0
+	uint32 m_nFieldSize; // 0x4
+	float32 m_fInitialValue; // 0x8
+	uint32 m_nGridCRC; // 0xC
+	TArray<uint16> m_aIndices; // 0x10
+	TArray<uint8> m_aValues; // 0x28
+};
+
+// 0x0000000142AA88B0 (Size: 0x24)
+class SCondition_MinActualDistance :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a0; // 0x10
+	ZBehaviorTreeVariable a1; // 0x18
+	float32 a2; // 0x20
+};
+
+// 0x00000001422D7500 (Size: 0x4)
+class SHeroItemAttachmentSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rItem; // 0x0
+};
+
+// 0x0000000142AA7EC0 (Size: 0x10)
+class SCondition_SuitcaseAssistanceRequesterFaceToFace :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A88B78 (Size: 0x8)
+class ISequenceAudioPlayer :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A91958 (Size: 0x8)
+class IArticulatedPhysicsAccessor :
+	public IDynamicPhysics
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AFBA10 (Size: 0x8)
+class ISequenceTrack :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D7A78 (Size: 0x8)
+class IItemOwner :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA2680 (Size: 0x30)
+class SMathMultipliesSaveData_SVector2
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
+};
+
+// 0x0000000142AA8460 (Size: 0x18)
+class SCondition_IllegalWeaponPickedUp :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000142AB1E98 (Size: 0x1)
+class SSpaceCollectionBehaviorConfiguration
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bInclusive; // 0x0
+};
+
+// 0x0000000142AA7B00 (Size: 0x1C)
+class SCondition_IsAccidentDeathContext :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+	EAccidentDeathContext deathContextType; // 0x18
+};
+
+// 0x0000000142A87660 (Size: 0x8)
+class IEscortOutSituation
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8280 (Size: 0x14)
+class SCondition_HasTensionOrHigher :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EGameTension tension; // 0x10
+};
+
+// 0x0000000142AB9F80 (Size: 0x18)
+class SBlobsConfigResourceEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString Id; // 0x0
+	ZRuntimeResourceID BlobRid; // 0x10
+};
+
+// 0x0000000142A951E0 (Size: 0x8)
+class IProjectile :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A951C8 (Size: 0x8)
+class IHM5Projectile :
+	public IProjectile
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9FB58 (Size: 0x8)
+class IContextPropertyEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA05C0 (Size: 0x8)
+class IParticleColliderEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86360 (Size: 0x8)
+class IFutureCameraState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8418 (Size: 0x1C)
+class SCondition_IllegalItemDropped :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
+};
+
+// 0x0000000142A99E08 (Size: 0xC)
+class SGuardBodySituationMemberSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bSearchingForMorgue; // 0x0
+	bool m_IsExitingSuccessfulBehavior; // 0x1
+	uint32 m_rDeadBody; // 0x4
+	uint32 m_rBodybag; // 0x8
+};
+
+// 0x0000000142B01250 (Size: 0x8)
+class IBallAndSocketConstraint :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B002F0 (Size: 0x8)
+class INetRelevancy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A874F8 (Size: 0x80)
+class ZAgitatedBystanderOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA41F0 (Size: 0xC)
+class SMathMultiplyDivideSaveData_float32
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fA; // 0x0
+	float32 m_fB; // 0x4
+	bool m_bDivide; // 0x8
+};
+
+// 0x0000000142A86A08 (Size: 0x8)
+class SActorAnimSetVariationIndexSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rAnimationSetDefinition; // 0x0
+	int32 m_nIndex; // 0x4
+};
+
+// 0x0000000142A86498 (Size: 0x8)
+class ICharacterCombatState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6C848 (Size: 0x40)
+class IGateEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B01490 (Size: 0x8)
+class IDestructionEffectInterface :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AFA930 (Size: 0x38)
+class SAnimPlayerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector4 mTrajectoryQuaterion; // 0x0
+	SVector4 mTrajectoryTranslation; // 0x10
+	TArray<SBoneTransformSaveData> m_aBones; // 0x20
+};
+
+// 0x0000000142AA3F10 (Size: 0x4)
+class SActorKeywordProxySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA2568 (Size: 0x30)
+class SActorKeywordProxiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SActorKeywordProxySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142A9A088 (Size: 0x158)
+class ZCheckLastPositionGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA86D0 (Size: 0x18)
+class SCondition_SituationTarget :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+};
+
+// 0x0000000142ABD908 (Size: 0xC)
+class SConditionalTimerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nInterval; // 0x0
+	int32 m_nRemaining; // 0x4
+	bool m_bActive; // 0x8
+	bool m_bValue; // 0x9
+};
+
+// 0x0000000142A86570 (Size: 0x8)
+class ICharacterCameraState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E70C28 (Size: 0x50)
+class SExposedTypeInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sName; // 0x0
+	ZString sDisplayName; // 0x10
+	ZString sHelpText; // 0x20
+	STypeReference target; // 0x30
+};
+
+// 0x0000000142A9A268 (Size: 0x28)
+class SAccidentObserversGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_target; // 0x0
+	TArray<uint32> m_aWaitingObservers; // 0x8
+	EAccidentScaleContext m_accidentScaleContext; // 0x20
+};
+
+// 0x00000001422D5DD0 (Size: 0x8)
+class ZTime
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint64 m_nValue; // 0x0
+};
+
+// 0x0000000142AFBB30 (Size: 0x8)
+class SGaitTransitionEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EGait m_gait; // 0x0
+	ESpeed m_speed; // 0x4
+};
+
+// 0x00000001421176E8 (Size: 0x30)
+class SMatrix43
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 XAxis; // 0x0
+	SVector3 YAxis; // 0xC
+	SVector3 ZAxis; // 0x18
+	SVector3 Trans; // 0x24
+};
+
+// 0x0000000142AA7C50 (Size: 0x18)
+class SCondition_HasCombatFightOrder :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable m_CombatSituation; // 0x10
+};
+
+// 0x0000000142AEE388 (Size: 0x20)
+class SAudioMemoryMonitorEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 shortId; // 0x0
+	uint32 size; // 0x4
+	TArray<ZResourceID> references; // 0x8
+};
+
+// 0x0000000142AA8868 (Size: 0x18)
+class SCondition_IsCombatPositionActReady :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable combatPosition; // 0x10
+};
+
+// 0x0000000142A988D8 (Size: 0x8)
+class IDramaFlowControl :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AFD278 (Size: 0x60)
+class ZHttpUrl
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAF2C0 (Size: 0x8)
+class IUIDataListener
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8928 (Size: 0x1C)
+class SCondition_MaxDistanceToKnownPosition :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a; // 0x10
+	float32 fMaxDistance; // 0x18
+};
+
+// 0x0000000142AA8838 (Size: 0x18)
+class SCondition_InfectedMayFollowPlayer :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+};
+
+// 0x0000000142A9A7C0 (Size: 0xC)
+class SEvacuateSituationMemberSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_pGuardDutyPoint; // 0x0
+	int32 m_nPatrolWaypointIndex; // 0x4
+	uint32 m_nPatrolWaypointSubIndex; // 0x8
+};
+
+// 0x0000000142AB9E78 (Size: 0x20)
+class SOnlineEvent
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sName; // 0x0
+	ZDynamicObject data; // 0x10
+};
+
+// 0x0000000142A9A658 (Size: 0x8)
+class SFleeOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EDisturbanceType m_eHelpReason; // 0x0
+	uint16 m_nGridNodeIndex; // 0x4
+	bool m_bFleeForHelp; // 0x6
+};
+
+// 0x0000000142AF0460 (Size: 0x70)
+class SExternalEntityTemplatePinConnection
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SEntityTemplateReference fromEntity; // 0x0
+	SEntityTemplateReference toEntity; // 0x20
+	ZString fromPinName; // 0x40
+	ZString toPinName; // 0x50
+	ZVariant constantPinValue; // 0x60
+};
+
+// 0x0000000142AF05E0 (Size: 0xC8)
+class STemplateEntityBlueprint
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 subType; // 0x0
+	int32 rootEntityIndex; // 0x4
+	TArray<STemplateBlueprintSubEntity> subEntities; // 0x8
+	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x20
+	TArray<SEntityTemplatePinConnection> pinConnections; // 0x38
+	TArray<SEntityTemplatePinConnection> inputPinForwardings; // 0x50
+	TArray<SEntityTemplatePinConnection> outputPinForwardings; // 0x68
+	TArray<SEntityTemplateReference> overrideDeletes; // 0x80
+	TArray<SExternalEntityTemplatePinConnection> pinConnectionOverrides; // 0x98
+	TArray<SExternalEntityTemplatePinConnection> pinConnectionOverrideDeletes; // 0xB0
+};
+
+// 0x0000000142A990B0 (Size: 0x2)
+class SDramaControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsStartCondValid; // 0x0
+	bool m_bIsEnableCondValid; // 0x1
+};
+
+// 0x0000000142AF1550 (Size: 0x20)
+class SRenderVideoPlayerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bPlaying; // 0x0
+	bool m_bPaused; // 0x1
+	bool m_bLooping; // 0x2
+	bool m_bUseAlpha; // 0x3
+	bool m_bFirstFrame; // 0x4
+	bool m_bRunning; // 0x5
+	bool m_bVideoError; // 0x6
+	bool m_bShouldBeStopped; // 0x7
+	ZGameTime m_LastVisible; // 0x8
+	ZGameTime m_StartTime; // 0x10
+	ZGameTime m_RunTime; // 0x18
+};
+
+// 0x0000000142AA8040 (Size: 0x10)
+class SCondition_IsDebugBuild :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E70BB0 (Size: 0x50)
+class SEntityPropertyDescriptor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sName; // 0x0
+	ZResourceID type; // 0x10
+	bool bIsHidden; // 0x20
+	TMap<ZString,ZString> attributes; // 0x28
+};
+
+// 0x0000000142AA8238 (Size: 0x14)
+class SCondition_HasUnhandledGoal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAIGoal type; // 0x10
+};
+
+// 0x0000000142AA8BC8 (Size: 0xC)
+class SActorDynamicTemplateHandlerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rItem; // 0x4
+	uint32 m_rSetpiece; // 0x8
+};
+
+// 0x0000000142AA27D0 (Size: 0x30)
+class SVIPEvacuationNodesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
+};
+
+// 0x00000001422D5DB0 (Size: 0x30)
+class ZScopedRuntimePinConDesc
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint64> m_aScopePath; // 0x0
+	ZRuntimePinConDesc m_PinConDesc; // 0x18
+};
+
+// 0x0000000143E6E7C0 (Size: 0x18)
+class SSequenceTrackSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rTrackEntity; // 0x0
+	ZVariant m_CustomTrackData; // 0x8
+};
+
+// 0x0000000142A9F798 (Size: 0x8)
+class IValueIntSaveable :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A98008 (Size: 0x2)
+class SAimAssistObjectSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bHasBeenStarted; // 0x0
+	bool m_bWasAimAssistActivated; // 0x1
+};
+
+// 0x0000000142A98080 (Size: 0x8)
+class IGlobalRumbleController :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA85B0 (Size: 0x18)
+class SCondition_IsSuitcase :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable items; // 0x10
+};
+
+// 0x0000000142AA87D8 (Size: 0x1C)
+class SCondition_HasPendingOrder :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+	EAISharedEventType eOrder; // 0x18
+};
+
+// 0x0000000142AA3DD8 (Size: 0x40)
+class SAgencyPickupInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZRepositoryID m_AgencyPickupId; // 0x0
+	TArray<ZRepositoryID> m_aItemIds; // 0x10
+	TArray<ZRepositoryID> m_aModifierIds; // 0x28
+};
+
+// 0x00000001422D6C18 (Size: 0x8)
+class IEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8640 (Size: 0x20)
+class SCondition_MinSharedEventExpired :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAISharedEventType type; // 0x18
+	float32 time; // 0x1C
+};
+
+// 0x0000000143E6CB48 (Size: 0x8)
+class IDeferredParticlesEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E70BF8 (Size: 0x40)
+class SExposedEntityTypeDescriptor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sName; // 0x0
+	TArray<ZResourceID> types; // 0x10
+	TArray<ZString> aSupportedTypes; // 0x28
+};
+
+// 0x0000000142AA81F0 (Size: 0x20)
+class SCondition_HasSameOutfit :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a0; // 0x10
+	ZBehaviorTreeVariable a1; // 0x18
+};
+
+// 0x0000000142AA2648 (Size: 0x30)
+class SMathMultipliesSaveData_float32
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathMultiplyDivideSaveData_float32> m_aData; // 0x18
+};
+
+// 0x0000000142AA8430 (Size: 0x1C)
+class SCondition_SuspiciousItemDropped :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
+};
+
+// 0x0000000142A876C0 (Size: 0x8)
+class IHumanBody
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A875D0 (Size: 0x188)
+class ZRecoverUnconsciousGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A448 (Size: 0x28)
+class SObserversGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_target; // 0x0
+	TArray<uint32> m_aWaitingObservers; // 0x8
+	float32 m_observerDistanceMax; // 0x20
+};
+
+// 0x0000000142A9D0D0 (Size: 0x8)
+class IValueFloatListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA0888 (Size: 0x18)
+class SLockdownManagerAIZoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZGameTime m_tExpiry; // 0x0
+	ZGameTime m_tExpiryHeroOutside; // 0x8
+	uint32 m_rZone; // 0x10
+};
+
+// 0x0000000142A9EF38 (Size: 0x48)
+class SCrowdServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SCrowdBodySaveData> m_aDeadBodies; // 0x0
+	TArray<uint32> m_aPerceptiblePool; // 0x18
+	TArray<uint32> m_aPerceptibleActors; // 0x30
+};
+
+// 0x0000000142A9A9E8 (Size: 0x78)
+class SEvacuateSituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SFSMSaveData m_fsmState; // 0x0
+	ZGameTime m_tLastSeriousSituation; // 0x18
+	ZGameTime m_tLastThreat; // 0x20
+	int32 m_tresspassGroup; // 0x28
+	TArray<int32> m_evacuateGroups; // 0x30
+	TArray<uint32> m_activeSafeRooms; // 0x48
+	TArray<uint32> m_vipsUnderFire; // 0x60
+};
+
+// 0x0000000142ABD950 (Size: 0xC)
+class SProgressTimerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nInterval; // 0x0
+	int32 m_nRemaining; // 0x4
+	bool m_bValue; // 0x8
+};
+
+// 0x00000001422D6C00 (Size: 0x8)
+class IColliderController :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEE3B8 (Size: 0x8)
+class SAudioEmitterRTPCSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nParamId; // 0x0
+	float32 m_fValue; // 0x4
+};
+
+// 0x0000000142AFD1D8 (Size: 0xB8)
+class ZOnlineEventsClient :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A87540 (Size: 0x50)
+class ZGenericOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AFA5A0 (Size: 0x60)
+class SLocalizedVideoData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<ZString> AudioLanguages; // 0x0
+	TArray<ZRuntimeResourceID> VideoRidsPerAudioLanguage; // 0x18
+	TArray<ZString> SubtitleLanguages; // 0x30
+	TArray<ZString> SubtitleMarkupsPerLanguage; // 0x48
+};
+
+// 0x0000000142A918E0 (Size: 0x8)
+class IGenericMassImpulseReceiver :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A97190 (Size: 0x18)
+class SDoorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nDoorState; // 0x0
+	float32 m_fAnimPercent; // 0x4
+	float32 m_fTargetAnimPercent; // 0x8
+	ZGameTime m_tOpenTime; // 0x10
+};
+
+// 0x0000000142B01508 (Size: 0x8)
+class IParticleEmitterSourcesProvider :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A388 (Size: 0x28)
+class SDetectedInPrivateGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SFSMSaveData m_fsmState; // 0x0
+	float32 m_fTimeWaiting; // 0x18
+	uint32 m_rLead; // 0x1C
+	bool m_bDisbanded; // 0x20
+	bool m_bFirstWait; // 0x21
+	int32 m_target; // 0x24
+};
+
+// 0x0000000142A87690 (Size: 0x8)
+class ISituation
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143F1E500 (Size: 0x30)
+class SGWaypoint
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint16 nNeighbor0; // 0x0
+	uint16 nNeighbor1; // 0x2
+	uint16 nNeighbor2; // 0x4
+	uint16 nNeighbor3; // 0x6
+	uint16 nNeighbor4; // 0x8
+	uint16 nNeighbor5; // 0xA
+	uint16 nNeighbor6; // 0xC
+	uint16 nNeighbor7; // 0xE
+	float4 vPos; // 0x10
+	uint32 nVisionDataOffset; // 0x20
+	int16 nLayerIndex; // 0x24
+};
+
+// 0x00000001422D6ED0 (Size: 0x50)
+class SItemSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SVector3 m_vPosition; // 0x0
+	SVector4 m_vRotation; // 0xC
+	bool m_bShowItem; // 0x1C
+	bool m_bEnablePickup; // 0x1D
+	bool m_bKinematic; // 0x1E
+	bool m_bSleeping; // 0x1F
+	bool m_bIsPerceptible; // 0x20
+	bool m_bDestroyed; // 0x21
+	SVector3 m_vVelocity; // 0x24
+	uint32 m_rTransformParent; // 0x30
+	uint32 m_rSpawner; // 0x34
+	uint32 m_rOwner; // 0x38
+	uint32 m_rHoldingContainer; // 0x3C
+	uint32 m_pPreviousOwner; // 0x40
+	bool m_bTurnedOn; // 0x44
+	bool m_bEverOwnedByHitman; // 0x45
+	bool m_bWasPlacedAndAttached; // 0x46
+	bool m_bObjectInPhysicsWorld; // 0x47
+	int32 m_nQuantity; // 0x48
+	ERenderGlowTypes m_eGlowType; // 0x4C
+};
+
+// 0x0000000142A98F08 (Size: 0x4)
+class SGetIActorPositionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_StoredActor; // 0x0
+};
+
+// 0x0000000142AA8910 (Size: 0x28)
+class SCondition_ActualInsideSlice :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a0; // 0x10
+	ZBehaviorTreeVariable a1; // 0x18
+	float32 fAngle; // 0x20
+	float32 fConeWidth; // 0x24
+};
+
+// 0x0000000143CEBE60 (Size: 0x8)
+class IBoneWeightManagerEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6DCC0 (Size: 0x30)
+class SSavableEntitiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SVariantStruct> m_aEntityData; // 0x18
+};
+
+// 0x0000000142AA8700 (Size: 0x20)
+class SCondition_IsSituationTarget :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+	ZBehaviorTreeVariable target; // 0x18
+};
+
+// 0x0000000142B19110 (Size: 0x8)
+class IPureWaterFunctionEntity :
+	public IPureWaterReflectable
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB2100 (Size: 0x8)
+class STrackerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rTracker; // 0x0
+	bool m_bIsVisible; // 0x4
+	bool m_bIsEnabled; // 0x5
+	bool m_bSpatialVisibility; // 0x6
+};
+
+// 0x0000000142AB0978 (Size: 0x18)
+class STrackerManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
+};
+
+// 0x0000000142AA7B90 (Size: 0x1C)
+class SCondition_IsHighestSeverityReasonToArrest :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable targets; // 0x10
+	EAIEventType reason; // 0x18
+};
+
+// 0x0000000142AA0740 (Size: 0x8)
+class IValueIntSet :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A8C8 (Size: 0xC)
+class SHandleDistractionSituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_pLeader; // 0x0
+	uint32 m_pAssistant; // 0x4
+	uint32 m_pPreliminaryLeader; // 0x8
+};
+
+// 0x0000000142A9D640 (Size: 0x8)
+class IJumpPointAction :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8538 (Size: 0x20)
+class SCondition_IsOwner :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+	ZBehaviorTreeVariable character; // 0x18
+};
+
+// 0x0000000142AA1B30 (Size: 0x38)
 class SCautiousHuntSaveData
 {
 public:
@@ -13154,43 +16090,62 @@ public:
 	bool m_bRuleActive; // 0x36
 };
 
-// 0x0000000142AB2018 (Size: 0x8)
-class SInventoryControllerItemSaveData
+// 0x0000000142A88A88 (Size: 0x8)
+class IValueFloat :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	uint32 m_rItemEntity; // 0x0
-	uint32 m_nAmmo; // 0x4
 };
 
-// 0x0000000142AB2060 (Size: 0x20)
-class SInventoryControllerSlotSaveData
+// 0x0000000142AA1588 (Size: 0x8)
+class SHelpingActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
-	EInventoryStorageType m_eStorageType; // 0x18
+	int32 m_HelpTargetKnowledgeIndex; // 0x0
+	uint32 m_rActor; // 0x4
 };
 
-// 0x0000000142A9B350 (Size: 0x18)
-class SCondition_IsActorConscious :
-	public SConditionBase
+// 0x0000000142A9BE50 (Size: 0x8)
+class IEventChannel :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable m_Actors; // 0x10
 };
 
-// 0x0000000142A7B228 (Size: 0x40)
+// 0x0000000142A9D4A8 (Size: 0x80)
+class SDecalSpawnSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bWasSpawned; // 0x0
+	float4 m_vPosition; // 0x10
+	float4 m_vNormal; // 0x20
+	float4 m_vDirection; // 0x30
+	float4 m_vSize; // 0x40
+	SColorRGB m_Color; // 0x50
+	float32 m_fAlpha; // 0x5C
+	float32 m_fAngle; // 0x60
+	SVector2 m_vUVOffset; // 0x64
+	SVector2 m_vTiling; // 0x6C
+	uint32 m_rBlockingSpatialEntity; // 0x74
+};
+
+// 0x0000000142A87FB0 (Size: 0x40)
 class SRunningCrowdAIEventSaveData
 {
 public:
@@ -13208,19 +16163,977 @@ public:
 	bool m_IsInvestigated; // 0x30
 };
 
-// 0x0000000142A94730 (Size: 0x10)
-class SCuriousEventSaveData
+// 0x0000000142A958B0 (Size: 0x8)
+class IBodybagEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZGameTime m_tExpiresAt; // 0x0
-	int32 m_nKnowledgeIndex; // 0x8
 };
 
-// 0x0000000142A8BEB0 (Size: 0x30)
+// 0x0000000142B01A90 (Size: 0x8)
+class ICollisionManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86270 (Size: 0x8)
+class ITransitionSource :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7DD0 (Size: 0x18)
+class SCondition_IsSameDistractionTypeAsTheCurrentOne :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable distraction; // 0x10
+};
+
+// 0x0000000142ABEEF8 (Size: 0x8)
+class SInventoryControllerItemSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rItemEntity; // 0x0
+	uint32 m_nAmmo; // 0x4
+};
+
+// 0x0000000142AA80D0 (Size: 0x1C)
+class SCondition_IsOfActorType :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EActorType type; // 0x18
+};
+
+// 0x0000000142A971C0 (Size: 0x30)
+class SDoorsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SDoorSaveData> m_aData; // 0x18
+};
+
+// 0x0000000142A9ED20 (Size: 0x30)
+class SPrivateAreaSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsInside; // 0x0
+	bool m_nHasEntered; // 0x1
+	bool m_bHasExited; // 0x2
+	bool m_bSpotted; // 0x3
+	float4 m_vHitmanEnterPosition; // 0x10
+	float4 m_vHitmanExitPosition; // 0x20
+};
+
+// 0x0000000142AA8190 (Size: 0x28)
+class SCondition_HasConfiguredAct :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+	ZString act; // 0x18
+};
+
+// 0x0000000142A9C330 (Size: 0x8)
+class IRoleListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B00518 (Size: 0x1)
+class SPFObstactleSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+};
+
+// 0x0000000142A9A460 (Size: 0x4)
+class SPatrolGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 m_nRouteID; // 0x0
+};
+
+// 0x0000000142AF0388 (Size: 0x8)
+class IPrimitivesListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB9C30 (Size: 0xB0)
+class ZEntitlementManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABFEC8 (Size: 0x10)
+class SIntelSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rCurrentStage; // 0x0
+	float32 m_fHandlerAudioPlayPosition; // 0x4
+	bool m_bTracked; // 0x8
+	bool m_bUnlocked; // 0x9
+	bool m_bRegistered; // 0xA
+	bool m_bIsLastTriggered; // 0xB
+	bool m_bIsHandlerAudioPlaying; // 0xC
+};
+
+// 0x0000000142AB9F68 (Size: 0x18)
+class SActivities
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SActivityDefinition> Activities; // 0x0
+};
+
+// 0x00000001422D5FF8 (Size: 0x8)
+class IFirearm :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB9E60 (Size: 0x8)
+class IOnlineConfigurationListener
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A610 (Size: 0x70)
+class ZFaceOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA22D8 (Size: 0x8)
+class SActorTagSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bSeen; // 0x0
+	bool m_bTagged; // 0x1
+	uint32 m_rActorRef; // 0x4
+};
+
+// 0x0000000142A97D68 (Size: 0x28)
+class SActorTagManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bContractsCreationMode; // 0x0
+	int32 m_nTagCount; // 0x4
+	int32 m_nMaxTagCount; // 0x8
+	bool m_bTaggingEnabled; // 0xC
+	TArray<SActorTagSaveData> m_aActorTagData; // 0x10
+};
+
+// 0x0000000142A9EBB0 (Size: 0x3)
+class SSCCuriousConfiguration
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_CanGuardsInvestigate; // 0x0
+	bool m_CanCiviliansInvestigate; // 0x1
+	bool m_CanVIPsInvestigate; // 0x2
+};
+
+// 0x0000000142AA8BF8 (Size: 0x4)
+class SActorDynamicTemplateManipulatorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x00000001422D7B38 (Size: 0x8)
+class IItemAmmo :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6E700 (Size: 0x8)
+class IEntityGroup :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7CC8 (Size: 0x14)
+class SCondition_CanReactToDistractionType :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAIEventType distractionType; // 0x10
+};
+
+// 0x0000000142AC0090 (Size: 0x18)
+class SIntelDataArray_dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SIntelData> dummy; // 0x0
+};
+
+// 0x0000000142AA7CB0 (Size: 0x1C)
+class SCondition_CanDistractionEscalateTo :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+	EAIEventType newDistraction; // 0x18
+};
+
+// 0x0000000142AFB980 (Size: 0x8)
+class ISequenceValueSource :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A87678 (Size: 0x8)
+class IChildNetworkEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAC840 (Size: 0x428)
+class ZOnlineSaveManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABD830 (Size: 0x30)
+class SPhysicsListSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntityRefs; // 0x0
+	TArray<SPhysicsSaveData> m_aEntityDatas; // 0x18
+};
+
+// 0x0000000142AA8550 (Size: 0x20)
+class SCondition_IsPreviousOwner :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+	ZBehaviorTreeVariable character; // 0x18
+};
+
+// 0x0000000142A9C858 (Size: 0x8)
+class SScreenplayRole2HeroSaveState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rCurrentSpeakEntity; // 0x0
+	bool m_bPaused; // 0x4
+};
+
+// 0x0000000142A98068 (Size: 0x8)
+class IUIAction :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB1590 (Size: 0x18)
+class SHUDPromptDisplayInfoArray_Dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
+};
+
+// 0x0000000142A99FB8 (Size: 0x14)
+class SCombatSituationMemberSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fDistanceToTarget; // 0x0
+	float32 m_fDistanceFieldValue; // 0x4
+	EDisturbanceType m_civilianJoinReason; // 0x8
+	bool m_bIsPreferredToFire; // 0xC
+	bool m_bDialogPreventShooting; // 0xD
+	bool m_bCanFlee; // 0xE
+	bool m_bCantFleeNoPath; // 0xF
+	bool m_bReportedToGuard; // 0x10
+	bool m_bStandAndShoot; // 0x11
+};
+
+// 0x0000000143CEBAE8 (Size: 0x8)
+class IParticleShaderParametersEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AACA88 (Size: 0x1)
+class SExitsActiveSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bIsActive; // 0x0
+};
+
+// 0x0000000142A86528 (Size: 0x8)
+class ICharacterArrestState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B190F8 (Size: 0x8)
+class IPureWaterDisturbanceEntity :
+	public IPureWaterReflectable
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A863D8 (Size: 0x8)
+class ITransitionCondition :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9C660 (Size: 0x4)
+class SEscortSituation2Actors
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142A9FF48 (Size: 0x8)
+class IAnimPlayerEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA2840 (Size: 0x30)
+class SMathLerpsSaveData_float32
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathLerpSaveData_float32> m_aData; // 0x18
+};
+
+// 0x0000000142A9BC40 (Size: 0x8)
+class IValueEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7E78 (Size: 0x10)
+class SCondition_FindSuitcaseAssitanceForCivilian :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86FB8 (Size: 0x18)
+class SAnimatedActorOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EActorAnimationOrder m_eOrderType; // 0x0
+	ZVariant m_OrderData; // 0x8
+};
+
+// 0x0000000142AA85E0 (Size: 0x18)
+class SCondition_IsVisiblyPerceptible :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable items; // 0x10
+};
+
+// 0x0000000142AA87C0 (Size: 0x1C)
+class SCondition_HasOrder :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+	EAISharedEventType eOrder; // 0x18
+};
+
+// 0x0000000142A88A70 (Size: 0x8)
+class IValueIntGet :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB45A0 (Size: 0x30)
+class SGameKeywordManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SKeywordSaveData> m_aKeywordsData; // 0x0
+	TArray<ZString> m_aKeywordStringData; // 0x18
+};
+
+// 0x0000000143E6FF30 (Size: 0x10)
+class SUIGridCellPosition
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 nColumnIndex; // 0x0
+	int32 nRowIndex; // 0x4
+	int32 nColumnSpan; // 0x8
+	int32 nRowSpan; // 0xC
+};
+
+// 0x0000000142AEF100 (Size: 0x40)
+class SRegionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nIndex; // 0x0
+	CrowdRegionType m_eType; // 0x4
+	float4 m_vCenter; // 0x10
+	float32 m_nDirection; // 0x20
+	float32 m_nRadius; // 0x24
+	uint32 m_nAngle; // 0x28
+	float32 m_nLifetime; // 0x2C
+	float32 m_nAge; // 0x30
+	uint8 m_nGroupID; // 0x34
+	int16 m_nObstacleActorIndex; // 0x36
+};
+
+// 0x0000000142A9A5F8 (Size: 0x18)
+class SEscortOutOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<float4> m_aExitPoints; // 0x0
+};
+
+// 0x0000000142AA25D8 (Size: 0x30)
+class SItemsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SItemSaveData> m_aData; // 0x18
+};
+
+// 0x0000000142AA8898 (Size: 0x24)
+class SCondition_MaxDistance :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable a0; // 0x10
+	ZBehaviorTreeVariable a1; // 0x18
+	float32 a2; // 0x20
+};
+
+// 0x0000000142AB14D0 (Size: 0x18)
+class SActionRadialArcDisplayInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool hidden; // 0x0
+	bool locked; // 0x1
+	bool active; // 0x2
+	bool illegal; // 0x3
+	int32 icon; // 0x4
+	ZString label; // 0x8
+};
+
+// 0x0000000142AACEC0 (Size: 0x48)
+class ZContractEvaluationContext
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABEEE0 (Size: 0x8)
+class SStoredSlotSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_iStoredInventorySlotIndex; // 0x0
+	uint8 m_iStoreReason; // 0x4
+	bool m_bItemsStored; // 0x5
+};
+
+// 0x0000000142ABEF40 (Size: 0x20)
+class SInventoryControllerSlotSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
+	EInventoryStorageType m_eStorageType; // 0x18
+};
+
+// 0x0000000142A9B588 (Size: 0xB8)
+class SInventoryControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
+	uint32 m_nEquippedItemIndex; // 0x18
+	uint32 m_nMostRecentItemIndex; // 0x1C
+	SStoredSlotSaveData m_StoredSlot; // 0x20
+	TArray<SInventoryControllerSlotSaveData> m_aSlots; // 0x28
+	TArray<uint32> m_aPendingPickupItems; // 0x40
+	uint32 m_nAmmoCountGun; // 0x58
+	uint32 m_nAmmoCountRevolver; // 0x5C
+	uint32 m_nAmmoCountSMG; // 0x60
+	uint32 m_nAmmoCountRifle; // 0x64
+	uint32 m_nAmmoCountShotgun; // 0x68
+	uint32 m_nAmmoCountSniper; // 0x6C
+	uint32 m_nAmmoCountMG; // 0x70
+	uint32 m_nAmmoCountRPG; // 0x74
+	uint32 m_nAmmoCountFake; // 0x78
+	uint32 m_nAmmoCountLightPistol; // 0x7C
+	uint32 m_nAmmoCountDartTranquilizer; // 0x80
+	uint32 m_nAmmoCountAmmoShotgunBeanbag; // 0x84
+	TArray<ZRepositoryID> m_aAmmoIds; // 0x88
+	TArray<uint32> m_aAmmoCounts; // 0xA0
+};
+
+// 0x0000000142A9E910 (Size: 0x4)
+class SEscortSituationActors
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142A8FF20 (Size: 0x18)
+class SLockdownManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SLockdownManagerAIZoneSaveData> m_aAIZones; // 0x0
+};
+
+// 0x0000000142AEE400 (Size: 0x10)
+class SAudioEmitterSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rEmitter; // 0x0
+	uint32 m_nNumberOfEvents; // 0x4
+	uint32 m_nNumberOfRTPCs; // 0x8
+	uint32 m_nNumberOfSwitches; // 0xC
+};
+
+// 0x0000000142AEE3A0 (Size: 0x18)
+class SAudioEmitterEventSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_nEventId; // 0x0
+	bool m_bPaused; // 0x4
+	uint32 m_nFlags; // 0x8
+	uint32 m_rEventSender; // 0xC
+	int32 m_nSeekPosition; // 0x10
+	uint8 m_nPlayState; // 0x14
+};
+
+// 0x0000000142AEDF68 (Size: 0xA8)
+class SAudioSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SAudioEmitterSaveData> m_aEmitters; // 0x0
+	TArray<SAudioEmitterEventSaveData> m_aEmitterEvents; // 0x18
+	TArray<SAudioEmitterRTPCSaveData> m_aEmitterRTPCs; // 0x30
+	TArray<SAudioEmitterSwitchSaveData> m_aEmitterSwitches; // 0x48
+	TArray<SAudioEmitterStateSaveData> m_aGlobalStates; // 0x60
+	TArray<SAudioEmitterRTPCSaveData> m_aGlobalRTPCs; // 0x78
+	TArray<uint32> m_aEventsEnabledAfterInit; // 0x90
+};
+
+// 0x0000000142AA7348 (Size: 0x8)
+class IAudioToggleEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A7F0 (Size: 0x30)
+class SEvacuateTrespassGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SFSMSaveData m_fsmState; // 0x0
+	int32 m_target; // 0x18
+	uint32 m_safeRoomNode; // 0x1C
+	uint32 m_leader; // 0x20
+	uint32 m_assistant; // 0x24
+	bool m_escalate; // 0x28
+	bool m_completed; // 0x29
+	bool m_standDown; // 0x2A
+	int32 m_warningCount; // 0x2C
+};
+
+// 0x00000001422D6BA0 (Size: 0x40)
+class ZUIDataProvider
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9ED40 (Size: 0x88)
+class SSentryZoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZGameTime m_tGreetingCooldown; // 0x0
+	ZGameTime m_tLoiteringCooldown; // 0x8
+	int32 m_nWarningCount; // 0x10
+	bool m_bShowingWarning; // 0x14
+	bool bLeftThroughWarningZone; // 0x15
+	bool bEnteredThroughEntranceZone; // 0x16
+	bool bInEntranceZone; // 0x17
+	bool bInWarningZone; // 0x18
+	bool bInGreetingZone; // 0x19
+	bool bInReFriskZone; // 0x1A
+	bool m_bInRequiredDisguise; // 0x1B
+	bool m_bInFriskExemptDisguise; // 0x1C
+	bool m_bHasRequiredItem; // 0x1D
+	bool m_bCanShowActionPrompt; // 0x1E
+	bool m_bTargetInAnyZone; // 0x1F
+	bool m_bSituationActive; // 0x20
+	bool m_bFrisked; // 0x21
+	bool m_bItemChecked; // 0x22
+	bool m_bGreeted; // 0x23
+	bool m_bGreetedInstruction; // 0x24
+	bool m_bGreetedLoitering; // 0x25
+	bool m_bGreetedUnexpected; // 0x26
+	bool m_bInFriskWarningZone; // 0x27
+	TArray<bool> m_aDisguisesAllowedDisabled; // 0x28
+	TArray<bool> m_aDisguisesFriskExemptDisabled; // 0x40
+	TArray<bool> m_aDisguisesDontEscalateOnLineCrossingDisabled; // 0x58
+	TArray<uint32> m_ItemsDroppedInZone; // 0x70
+};
+
+// 0x0000000142AB2848 (Size: 0x10)
+class ZWorldMapMetaData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8010 (Size: 0x10)
+class SCondition_IsNewArrestEnabled :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A87E78 (Size: 0x10)
+class IUIEventPins :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x8
+};
+
+// 0x0000000142AA7C68 (Size: 0x14)
+class SCondition_IsDifficultyEqual :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	int32 difficultyLevel; // 0x10
+};
+
+// 0x0000000142A98EE0 (Size: 0x8)
+class SActorItemActionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rItem; // 0x4
+};
+
+// 0x0000000142A9A4D8 (Size: 0x30)
 class STriggerAlarmGroupSaveData
 {
 public:
@@ -13235,19 +17148,8 @@ public:
 	bool m_bTriggeredAlarm; // 0x28
 };
 
-// 0x00000001422C9CD0 (Size: 0x8)
-class IBoolConditionListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9ACD8 (Size: 0x1C)
-class SCondition_IsAccidentDeathContext :
+// 0x0000000142AA7FB0 (Size: 0x18)
+class SCondition_HasLongTermMemory :
 	public SConditionBase
 {
 public:
@@ -13255,12 +17157,11 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable target; // 0x10
-	EAccidentDeathContext deathContextType; // 0x18
+	ZBehaviorTreeVariable m_Targets; // 0x10
 };
 
-// 0x0000000142A9B458 (Size: 0x14)
-class SCondition_HasTensionOrHigher :
+// 0x0000000142AA7FC8 (Size: 0x10)
+class SCondition_Breakpoint :
 	public SConditionBase
 {
 public:
@@ -13268,55 +17169,9 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	EGameTension tension; // 0x10
 };
 
-// 0x0000000142A7A900 (Size: 0x8)
-class IEscortOutSituation
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AAD0A0 (Size: 0x18)
-class SBlobsConfigResourceEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString Id; // 0x0
-	ZRuntimeResourceID BlobRid; // 0x10
-};
-
-// 0x0000000142A887C0 (Size: 0x1)
-class SMovementLocomotionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsSneaking; // 0x0
-};
-
-// 0x0000000142A79CA8 (Size: 0x8)
-class SActorAnimSetVariationIndexSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rAnimationSetDefinition; // 0x0
-	int32 m_nIndex; // 0x4
-};
-
-// 0x0000000142A79D08 (Size: 0x48)
+// 0x0000000142A86A68 (Size: 0x48)
 class SActorAnimSetSaveData
 {
 public:
@@ -13334,19 +17189,18 @@ public:
 	TArray<SActorAnimSetVariationIndexSaveData> m_aReactVariationIndecies; // 0x30
 };
 
-// 0x0000000142A82DC0 (Size: 0x18)
-class SLongTermMemorySaveData
+// 0x0000000142A86B30 (Size: 0x18)
+class SActorInventorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZRepositoryID m_sOutfit; // 0x0
-	uint8 m_Memory; // 0x10
+	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
 };
 
-// 0x0000000142A82E50 (Size: 0x40)
+// 0x0000000142A8FBD0 (Size: 0x40)
 class SActorDynamicTemplateSaveData
 {
 public:
@@ -13365,19 +17219,7 @@ public:
 	uint32 m_rInstance; // 0x38
 };
 
-// 0x0000000142A82DD8 (Size: 0x20)
-class SActorBoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 mQuaterion; // 0x0
-	SVector4 mTranslation; // 0x10
-};
-
-// 0x0000000142A82E08 (Size: 0x40)
+// 0x0000000142A8FB88 (Size: 0x40)
 class SActorRagdollPoseSaveData
 {
 public:
@@ -13390,7 +17232,7 @@ public:
 	TArray<uint32> m_aBoneIndices; // 0x28
 };
 
-// 0x0000000142A82F10 (Size: 0x370)
+// 0x0000000142A8FC90 (Size: 0x370)
 class SActorSaveData
 {
 public:
@@ -13455,2081 +17297,7 @@ public:
 	bool m_BehaviorSelectDisabled; // 0x369
 };
 
-// 0x0000000142A93EF0 (Size: 0x38)
-class SCombatMetricsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_CombatProgress; // 0x0
-	TArray<uint32> m_DeadVIPsOrContractTargets; // 0x8
-	TArray<uint32> m_DiscoveredVIPOrContractTargetBodies; // 0x20
-};
-
-// 0x0000000142A94490 (Size: 0x4)
-class SActorProviderApproachSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rCastActor; // 0x0
-};
-
-// 0x0000000143F11620 (Size: 0x40)
-class SGBufferSample
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 normal; // 0x0
-	SVector3 diffuse; // 0xC
-	SVector3 specular; // 0x18
-	SVector3 accumulatedLight; // 0x24
-	float32 glossiness; // 0x30
-	float32 translucency; // 0x34
-	float32 ao; // 0x38
-	uint32 shadingModel; // 0x3C
-};
-
-// 0x0000000142AB2000 (Size: 0x8)
-class SStoredSlotSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_iStoredInventorySlotIndex; // 0x0
-	uint8 m_iStoreReason; // 0x4
-	bool m_bItemsStored; // 0x5
-};
-
-// 0x0000000142A93038 (Size: 0x8)
-class IAnimlayerSubactionInterface :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B3B0 (Size: 0x18)
-class SCondition_CausedBy :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable causalnode; // 0x10
-};
-
-// 0x0000000142A79570 (Size: 0x8)
-class IBaseCharacter :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B1D0 (Size: 0x28)
-class SCondition_IntRuntimeParamEqualsTo :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sParamName; // 0x10
-	int32 nValue; // 0x20
-};
-
-// 0x0000000142A91CC8 (Size: 0x4)
-class SLeadEscortSituationActors
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000143E63C60 (Size: 0x38)
-class SExposedEntityDescriptor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sName; // 0x0
-	ZString sDisplayName; // 0x10
-	ZString sHelpText; // 0x20
-	bool bIsArray; // 0x30
-	bool bIsHidden; // 0x31
-};
-
-// 0x0000000142A8BC58 (Size: 0x1C0)
-class ZAvoidDangerousAreaGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8C3C0 (Size: 0x78)
-class SEvacuateSituationSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SFSMSaveData m_fsmState; // 0x0
-	ZGameTime m_tLastSeriousSituation; // 0x18
-	ZGameTime m_tLastThreat; // 0x20
-	int32 m_tresspassGroup; // 0x28
-	TArray<int32> m_evacuateGroups; // 0x30
-	TArray<uint32> m_activeSafeRooms; // 0x48
-	TArray<uint32> m_vipsUnderFire; // 0x60
-};
-
-// 0x0000000142A9AF48 (Size: 0x10)
-class SCondition_HasBystanderSomethingElseToInvestigate :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8F508 (Size: 0x8)
-class IRoleListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF35F8 (Size: 0x1)
-class SPFObstactleSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-};
-
-// 0x0000000142A9B368 (Size: 0x28)
-class SCondition_HasConfiguredAct :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-	ZString act; // 0x18
-};
-
-// 0x0000000142AA52E0 (Size: 0x8)
-class STrackerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rTracker; // 0x0
-	bool m_bIsVisible; // 0x4
-	bool m_bIsEnabled; // 0x5
-	bool m_bSpatialVisibility; // 0x6
-};
-
-// 0x0000000142AA3B58 (Size: 0x18)
-class STrackerManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
-};
-
-// 0x0000000142AB2568 (Size: 0x8)
-class IGameSoundManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143CDEB88 (Size: 0x8)
-class IParticleShaderParametersEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9FC58 (Size: 0x1)
-class SExitsActiveSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsActive; // 0x0
-};
-
-// 0x0000000142A97640 (Size: 0x2)
-class SCollisionControllerAspectSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bCollideHitman; // 0x0
-	bool m_bCollideCamera; // 0x1
-};
-
-// 0x0000000142A95A48 (Size: 0x30)
-class SCollisionControllerAspectsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
-};
-
-// 0x00000001422C9030 (Size: 0x30)
-class ZScopedRuntimePinConDesc
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint64> m_aScopePath; // 0x0
-	ZRuntimePinConDesc m_PinConDesc; // 0x18
-};
-
-// 0x0000000143E61860 (Size: 0x18)
-class SSequenceTrackSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rTrackEntity; // 0x0
-	ZVariant m_CustomTrackData; // 0x8
-};
-
-// 0x0000000142A92948 (Size: 0x8)
-class IValueIntSaveable :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB4558 (Size: 0x8)
-class IValueColorRGBSet :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A885A8 (Size: 0xC)
-class SHeroStandInSaveState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rHero; // 0x0
-	uint32 m_rCurrentSpeakEntity; // 0x4
-	bool m_bPaused; // 0x8
-};
-
-// 0x0000000142A8BC88 (Size: 0x1E8)
-class ZCautiousBackupGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B500 (Size: 0x1C)
-class SCondition_AreVisibleItemsLegal :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000142A8B2C0 (Size: 0x8)
-class IRemoteControlEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8F990 (Size: 0x4)
-class SHeroEscortSituation2Actors
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000142A9B7A0 (Size: 0x18)
-class SCondition_IsNotSuitcase :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable items; // 0x10
-};
-
-// 0x0000000143E61F18 (Size: 0x8)
-class ICameraController :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E61788 (Size: 0x8)
-class ISequenceTrackGroup :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9F9C8 (Size: 0x70)
-class ZChoiceManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AEEDB8 (Size: 0x8)
-class IMorphemeCutSequenceAnimationEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B608 (Size: 0x1C)
-class SCondition_SuspiciousItemDropped :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000142A9AE40 (Size: 0x14)
-class SCondition_IsDifficultyEqual :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 difficultyLevel; // 0x10
-};
-
-// 0x0000000142A8A4C8 (Size: 0x8)
-class SChairSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-	bool m_bAttached; // 0x4
-};
-
-// 0x0000000142A9B590 (Size: 0x18)
-class SCondition_OnlyLegalWeaponsDropped :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142A79540 (Size: 0x8)
-class ICharacterTransformState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8ECF8 (Size: 0x8)
-class IEventChannel :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA5078 (Size: 0x1)
-class SSpaceCollectionBehaviorConfiguration
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bInclusive; // 0x0
-};
-
-// 0x0000000142A9AD98 (Size: 0x18)
-class SCondition_IsRealCombatSituation :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_CombatSituations; // 0x10
-};
-
-// 0x0000000142A9B188 (Size: 0x18)
-class SCondition_HasLongTermMemory :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_Targets; // 0x10
-};
-
-// 0x0000000143E5FBE8 (Size: 0x8)
-class IDeferredParticlesEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BF58 (Size: 0x30)
-class SSniperCombatGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SFSMSaveData m_fsmState; // 0x0
-	int32 m_target; // 0x18
-	bool m_bFailed; // 0x1C
-	ZGameTime m_tEscapeTime; // 0x20
-	ZGameTime m_tLastTauntTime; // 0x28
-};
-
-// 0x0000000143CDEF00 (Size: 0x8)
-class IBoneWeightManagerEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E60F18 (Size: 0x10)
-class SVariantStruct
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZVariant m_Data; // 0x0
-};
-
-// 0x0000000143E60D60 (Size: 0x30)
-class SSavableEntitiesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SVariantStruct> m_aEntityData; // 0x18
-};
-
-// 0x00000001422C9C28 (Size: 0x8)
-class IFirearm :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B710 (Size: 0x20)
-class SCondition_IsOwner :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-	ZBehaviorTreeVariable character; // 0x18
-};
-
-// 0x0000000142AF4330 (Size: 0x8)
-class IBallAndSocketConstraint :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE34B0 (Size: 0x8)
-class IPrimitivesProvider :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A97510 (Size: 0x8)
-class SItsATrapSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-	float32 m_fTimer; // 0x4
-};
-
-// 0x0000000142A959A0 (Size: 0x30)
-class STrapsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SItsATrapSaveData> m_aData; // 0x18
-};
-
-// 0x0000000142AA46B0 (Size: 0x18)
-class SActionRadialArcDisplayInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool hidden; // 0x0
-	bool locked; // 0x1
-	bool active; // 0x2
-	bool illegal; // 0x3
-	int32 icon; // 0x4
-	ZString label; // 0x8
-};
-
-// 0x0000000142A9BA70 (Size: 0x24)
-class SCondition_MaxDistance :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a0; // 0x10
-	ZBehaviorTreeVariable a1; // 0x18
-	float32 a2; // 0x20
-};
-
-// 0x0000000142AAD0D0 (Size: 0x50)
-class SEnvironmentConfigResourceEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString Name; // 0x0
-	ZResourceID ContractsDatastoreRid; // 0x10
-	ZResourceID UnlockablesDatastoreRid; // 0x20
-	ZResourceID BlobsDatastoreRid; // 0x30
-	ZResourceID ActivityDatastoreRid; // 0x40
-};
-
-// 0x0000000142AAD100 (Size: 0x18)
-class SEnvironmentConfigResource
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
-};
-
-// 0x0000000142A9AE88 (Size: 0x1C)
-class SCondition_CanDistractionEscalateTo :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-	EAIEventType newDistraction; // 0x18
-};
-
-// 0x0000000142AB31B0 (Size: 0x18)
-class SIntelDataArray_dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SIntelData> dummy; // 0x0
-};
-
-// 0x0000000142A9AEA0 (Size: 0x14)
-class SCondition_CanReactToDistractionType :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAIEventType distractionType; // 0x10
-};
-
-// 0x0000000142AE38B8 (Size: 0x8)
-class IGameMode :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142B0C1B0 (Size: 0x8)
-class IPureWaterFunctionEntity :
-	public IPureWaterReflectable
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7A8B8 (Size: 0x70)
-class ZApproachOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B410 (Size: 0x14)
-class SCondition_HasUnhandledGoal :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAIGoal type; // 0x10
-};
-
-// 0x0000000142A7A870 (Size: 0x188)
-class ZRecoverUnconsciousGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E60E70 (Size: 0x14)
-class SParticleEmitterSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	bool m_bIsActivated; // 0x4
-	bool m_bIsVisible; // 0x5
-	float32 m_fEmissionTimeLeft; // 0x8
-	float32 m_fEmissionTimeFraction; // 0xC
-	float32 m_fEmissionCntLeft; // 0x10
-};
-
-// 0x0000000142AA2410 (Size: 0x1)
-class SHUDPIPControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bPiPEnabled; // 0x0
-};
-
-// 0x0000000142A915B0 (Size: 0x20)
-class SCombatZoneEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsInLockdown; // 0x0
-	bool m_bIsFalseAlarm; // 0x1
-	ECombatZoneState m_nState; // 0x4
-	ZGameTime m_tLockdownTime; // 0x8
-	ZGameTime m_tTriggerTime; // 0x10
-	ZGameTime m_tEngageTime; // 0x18
-};
-
-// 0x0000000142A94768 (Size: 0x18)
-class SCuriousEventServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SCuriousEventSaveData> m_aCuriousEvents; // 0x0
-};
-
-// 0x0000000142A8BFE8 (Size: 0x70)
-class ZFaceOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9AD68 (Size: 0x1C)
-class SCondition_IsHighestSeverityReasonToArrest :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable targets; // 0x10
-	EAIEventType reason; // 0x18
-};
-
-// 0x0000000142A7A978 (Size: 0x8)
-class IWaypoint :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA7460 (Size: 0x8)
-class IKeywordHolderListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE3880 (Size: 0x8)
-class ZAutoNullEntityRef
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA4C50 (Size: 0x10)
-class SItemOnBackUIData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZRuntimeResourceID icon; // 0x0
-	int32 nItemHUDType; // 0x8
-	bool bHasItemToShow; // 0xC
-	bool bSuspicious; // 0xD
-	bool bIllegal; // 0xE
-};
-
-// 0x0000000142AF0258 (Size: 0x178)
-class ZWebSocketManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A973F0 (Size: 0x14)
-class SMathMultiplyDivideSaveData_SVector2
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector2 m_fA; // 0x0
-	SVector2 m_fB; // 0x8
-	bool m_bDivide; // 0x10
-};
-
-// 0x0000000142A958C0 (Size: 0x30)
-class SMathMultipliesSaveData_SVector2
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
-};
-
-// 0x0000000142A8C0C0 (Size: 0x70)
-class ZJumpToOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8E148 (Size: 0x8)
-class SMovementDragBodySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rDraggedActor; // 0x0
-	uint32 m_nGrabBoneID; // 0x4
-};
-
-// 0x0000000142A9B9B0 (Size: 0x1C)
-class SCondition_HasPendingOrder :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-	EAISharedEventType eOrder; // 0x18
-};
-
-// 0x0000000142A9B788 (Size: 0x18)
-class SCondition_IsSuitcase :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable items; // 0x10
-};
-
-// 0x0000000142A9FEF8 (Size: 0x60)
-class SInventoryItem
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sInstanceId; // 0x0
-	ZString sUnlockableId; // 0x10
-	ZRepositoryID repositoryId; // 0x20
-	TArray<ZRepositoryID> aRepositoryAssetIds; // 0x30
-	TArray<ZRepositoryID> aModifierIds; // 0x48
-};
-
-// 0x0000000142A9FF10 (Size: 0x70)
-class SContainerItemInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sContainerInstanceId; // 0x0
-	SInventoryItem m_concealedItem; // 0x10
-};
-
-// 0x0000000142A96FA0 (Size: 0x90)
-class SInventoryInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SInventoryItem> m_aPockets; // 0x0
-	SInventoryItem m_CarriedItem; // 0x18
-	TArray<SContainerItemInfo> m_aContainerItems; // 0x78
-};
-
-// 0x0000000142A96FB8 (Size: 0x40)
-class SAgencyPickupInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZRepositoryID m_AgencyPickupId; // 0x0
-	TArray<ZRepositoryID> m_aItemIds; // 0x10
-	TArray<ZRepositoryID> m_aModifierIds; // 0x28
-};
-
-// 0x00000001422CAD28 (Size: 0x8)
-class IActorProxy :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A79600 (Size: 0x8)
-class IFutureCameraState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B5F0 (Size: 0x1C)
-class SCondition_IllegalItemDropped :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000142A8BD18 (Size: 0x1F0)
-class ZCautiousVIPGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA1CF0 (Size: 0x1)
-class SContractObjectiveHudHintEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bVisible; // 0x0
-};
-
-// 0x0000000142A8BF88 (Size: 0x40)
-class SActOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sAct; // 0x0
-	float32 m_fDuration; // 0x10
-	uint32 m_rChildNetworkEntity; // 0x14
-	float4 m_faceTarget; // 0x20
-	bool m_bBlendOutImmediatelyUponTimeout; // 0x30
-	bool m_bDropCarriedItems; // 0x31
-	bool m_bStopCurrentActFast; // 0x32
-};
-
-// 0x0000000142AB0AA0 (Size: 0xA8)
-class STimerManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	STimerEntitiesSaveData m_TimersData; // 0x0
-	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
-	SGameTimersSaveData m_GameTimersData; // 0x60
-};
-
-// 0x0000000142A8C030 (Size: 0x8)
-class SFleeOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EDisturbanceType m_eHelpReason; // 0x0
-	uint16 m_nGridNodeIndex; // 0x4
-	bool m_bFleeForHelp; // 0x6
-};
-
-// 0x0000000142AACF98 (Size: 0x20)
-class SOnlineEvent
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sName; // 0x0
-	ZDynamicObject data; // 0x10
-};
-
-// 0x0000000142A8C198 (Size: 0xC)
-class SEvacuateSituationMemberSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_pGuardDutyPoint; // 0x0
-	int32 m_nPatrolWaypointIndex; // 0x4
-	uint32 m_nPatrolWaypointSubIndex; // 0x8
-};
-
-// 0x000000014210A968 (Size: 0x30)
-class SMatrix43
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 XAxis; // 0x0
-	SVector3 YAxis; // 0xC
-	SVector3 ZAxis; // 0x18
-	SVector3 Trans; // 0x24
-};
-
-// 0x0000000142A9AE28 (Size: 0x18)
-class SCondition_HasCombatFightOrder :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_CombatSituation; // 0x10
-};
-
-// 0x0000000142A8BE68 (Size: 0x1B0)
-class ZSentryGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7A960 (Size: 0x8)
-class IHumanBody
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422C9D18 (Size: 0x8)
-class IColliderController :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF02B8 (Size: 0xB8)
-class ZOnlineEventsClient :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE1498 (Size: 0x8)
-class SAudioEmitterRTPCSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nParamId; // 0x0
-	float32 m_fValue; // 0x4
-};
-
-// 0x0000000142AA4FF8 (Size: 0x18)
-class SMapMarkerData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SVector2> pathPoints; // 0x0
-};
-
-// 0x0000000142A79948 (Size: 0x8)
-class IVariationResourceEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A88B20 (Size: 0x8)
-class IBodybagEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B338 (Size: 0x18)
-class SCondition_IsActorAlive :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_Actors; // 0x10
-};
-
-// 0x0000000142A884B8 (Size: 0x8)
-class SHeroCameraStandInSaveState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rHero; // 0x0
-	bool m_bPaused; // 0x4
-};
-
-// 0x0000000143E5FC00 (Size: 0x8)
-class IFogBoxEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF4558 (Size: 0x8)
-class ICollisionShapeListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B290 (Size: 0x1C)
-class SCondition_IsOfType :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EKnownEntityType type; // 0x18
-};
-
-// 0x0000000142AB47B0 (Size: 0x18)
-class SWaveformGeneratorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fTime; // 0x0
-	float32 m_fFrequency; // 0x4
-	float32 m_fOffset; // 0x8
-	float32 m_fScale; // 0xC
-	float32 m_fStartTime; // 0x10
-	uint32 m_nCount; // 0x14
-};
-
-// 0x0000000142AB40D8 (Size: 0x30)
-class SWaveformGeneratorManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aGenerators; // 0x0
-	TArray<SWaveformGeneratorSaveData> m_aGeneratorData; // 0x18
-};
-
-// 0x0000000142A8FAA0 (Size: 0x8)
-class SScreenplayRole2HeroSaveState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rCurrentSpeakEntity; // 0x0
-	bool m_bPaused; // 0x4
-};
-
-// 0x0000000142A9B728 (Size: 0x20)
-class SCondition_IsPreviousOwner :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-	ZBehaviorTreeVariable character; // 0x18
-};
-
-// 0x0000000142A943B0 (Size: 0x18)
-class SCondition_FindStashPointsForItem :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-};
-
-// 0x0000000142A9B860 (Size: 0x20)
-class SCondition_MaxSharedEventAge :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAISharedEventType type; // 0x18
-	float32 age; // 0x1C
-};
-
-// 0x0000000142A947C8 (Size: 0x8)
-class SHelpingActorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_HelpTargetKnowledgeIndex; // 0x0
-	uint32 m_rActor; // 0x4
-};
-
-// 0x0000000142A92148 (Size: 0x18)
-class SGetHelpServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SHelpingActorSaveData> m_aHelpingActors; // 0x0
-};
-
-// 0x0000000142B0E2B0 (Size: 0x20)
-class ZGridFloatField
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fInitialValue; // 0x4
-	TArray<float32> m_field; // 0x8
-};
-
-// 0x0000000142A9B2C0 (Size: 0x1C)
-class SCondition_IsOfActorRank :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EActorRank rank; // 0x18
-};
-
-// 0x0000000142A8BE38 (Size: 0x4)
-class SPatrolGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_nRouteID; // 0x0
-};
-
-// 0x0000000142AE3468 (Size: 0x8)
-class IPrimitivesListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B020 (Size: 0x18)
-class SCondition_PerceptibleEntityEndAfterMoveTo :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-};
-
-// 0x0000000142A9B800 (Size: 0x1C)
-class SCondition_IsSharedEventExpired :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAISharedEventType type; // 0x18
-};
-
-// 0x0000000142A9AD38 (Size: 0x10)
-class SCondition_AreBehaviorsDisabled :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7B0D8 (Size: 0x10)
-class IUIEventPins :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x8
-};
-
-// 0x0000000143E5FB60 (Size: 0x1)
-class IRenderCompositorEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9AF78 (Size: 0x18)
-class SCondition_ShouldDistractionDiscardNewOcurrences :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable distraction; // 0x10
-};
-
-// 0x0000000142A8BFD0 (Size: 0x18)
-class SEscortOutOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<float4> m_aExitPoints; // 0x0
-};
-
-// 0x00000001422CA150 (Size: 0x50)
-class SItemSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 m_vPosition; // 0x0
-	SVector4 m_vRotation; // 0xC
-	bool m_bShowItem; // 0x1C
-	bool m_bEnablePickup; // 0x1D
-	bool m_bKinematic; // 0x1E
-	bool m_bSleeping; // 0x1F
-	bool m_bIsPerceptible; // 0x20
-	bool m_bDestroyed; // 0x21
-	SVector3 m_vVelocity; // 0x24
-	uint32 m_rTransformParent; // 0x30
-	uint32 m_rSpawner; // 0x34
-	uint32 m_rOwner; // 0x38
-	uint32 m_rHoldingContainer; // 0x3C
-	uint32 m_pPreviousOwner; // 0x40
-	bool m_bTurnedOn; // 0x44
-	bool m_bEverOwnedByHitman; // 0x45
-	bool m_bWasPlacedAndAttached; // 0x46
-	bool m_bObjectInPhysicsWorld; // 0x47
-	int32 m_nQuantity; // 0x48
-	ERenderGlowTypes m_eGlowType; // 0x4C
-};
-
-// 0x0000000142A95818 (Size: 0x30)
-class SItemsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SItemSaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A9B7B8 (Size: 0x18)
-class SCondition_IsVisiblyPerceptible :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable items; // 0x10
-};
-
-// 0x0000000142A8BDA8 (Size: 0xA90)
-class ZGetHelpGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A95518 (Size: 0x8)
-class SActorTagSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bSeen; // 0x0
-	bool m_bTagged; // 0x1
-	uint32 m_rActorRef; // 0x4
-};
-
-// 0x0000000142A8C1C8 (Size: 0x30)
-class SEvacuateTrespassGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SFSMSaveData m_fsmState; // 0x0
-	int32 m_target; // 0x18
-	uint32 m_safeRoomNode; // 0x1C
-	uint32 m_leader; // 0x20
-	uint32 m_assistant; // 0x24
-	bool m_escalate; // 0x28
-	bool m_completed; // 0x29
-	bool m_standDown; // 0x2A
-	int32 m_warningCount; // 0x2C
-};
-
-// 0x0000000142A7BCE8 (Size: 0x8)
-class IValueIntGet :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B6B0 (Size: 0x18)
-class SCondition_ThrownBy :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-};
-
-// 0x0000000142A9B3E0 (Size: 0x14)
-class SCondition_HasGoal :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAIGoal type; // 0x10
-};
-
-// 0x0000000142A9B1E8 (Size: 0x10)
-class SCondition_IsNewArrestEnabled :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A84158 (Size: 0x38)
-class SStashPointSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_arItems; // 0x0
-	uint32 m_pSuitcase; // 0x18
-	uint32 m_pMainItem; // 0x1C
-	EStashpointContainedEntityType m_eContainedType; // 0x20
-	ZRepositoryID m_MainItemID; // 0x28
-};
-
-// 0x0000000142A7A9A8 (Size: 0x8)
-class ISpeakEventListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422C9D30 (Size: 0x8)
-class IEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8B7C8 (Size: 0xC)
-class SGuardBodySituationMemberSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bSearchingForMorgue; // 0x0
-	bool m_IsExitingSuccessfulBehavior; // 0x1
-	uint32 m_rDeadBody; // 0x4
-	uint32 m_rBodybag; // 0x8
-};
-
-// 0x00000001422CAA70 (Size: 0x8)
-class IAmmoProperties :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA4320 (Size: 0x8)
-class IMenuController :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A972B0 (Size: 0x10)
-class SMathDistanceSaveData_SVector2
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector2 m_fA; // 0x0
-	SVector2 m_fB; // 0x8
-};
-
-// 0x0000000142AE14B0 (Size: 0x8)
-class SAudioEmitterSwitchSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nGroupId; // 0x0
-	uint32 m_nStateId; // 0x4
-};
-
-// 0x0000000142A9B488 (Size: 0x14)
-class SCondition_IsLegal :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAILegalType legalType; // 0x10
-};
-
-// 0x0000000142A9B968 (Size: 0x1C)
-class SCondition_MaxSituationAge :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-	float32 fMaxAge; // 0x18
-};
-
-// 0x00000001422C9C58 (Size: 0x8)
-class ISavableEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A96CB0 (Size: 0x8)
-class SCCEffectSet
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ECCDecalEffect m_eDecalEffect; // 0x0
-	ECCEmitterEffect m_eEmitterEffect; // 0x4
-};
-
-// 0x0000000142A9B818 (Size: 0x20)
-class SCondition_MinSharedEventExpired :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAISharedEventType type; // 0x18
-	float32 time; // 0x1C
-};
-
-// 0x0000000142A9B398 (Size: 0x28)
-class SCondition_IsConfiguredConditionTrue :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-	ZString condition; // 0x18
-};
-
-// 0x0000000142A93800 (Size: 0x8)
-class IActorSpreadTransitionOperator :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E5FC30 (Size: 0x8)
-class IHighResCutsceneEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BD78 (Size: 0x1E8)
-class ZFriskSuspectGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8B2F0 (Size: 0x8)
-class IGlobalRumbleController :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A88AF0 (Size: 0x8)
-class IMorphemeEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8B7E0 (Size: 0x8)
-class SGuardBodySituationSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bBystanderFieldsFailed; // 0x0
-	bool m_bLastGetHelpGroupFailed; // 0x1
-	bool m_bSomeoneCanSeeBody; // 0x2
-	bool m_bSomeoneHandledBodybag; // 0x3
-	int32 m_pGetHelpGroup; // 0x4
-};
-
-// 0x0000000142A94828 (Size: 0x30)
-class STargetTrackingSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_sharedTarget; // 0x0
-	float4 m_position; // 0x10
-	ZGameTime m_time; // 0x20
-};
-
-// 0x0000000142A92190 (Size: 0x18)
-class STargetTrackingServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<STargetTrackingSaveData> m_aTrackedTargets; // 0x0
-};
-
-// 0x0000000142A9BB00 (Size: 0x1C)
-class SCondition_MaxDistanceToKnownPosition :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a; // 0x10
-	float32 fMaxDistance; // 0x18
-};
-
-// 0x00000001422CA7D0 (Size: 0x28)
-class SLevelReferenceableEntitieSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sSceneResource; // 0x0
-	TArray<ZString> m_aAdditionalBrickResources; // 0x10
-};
-
-// 0x0000000142A97290 (Size: 0x4)
-class SItemKeywordProxySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rItem; // 0x0
-};
-
-// 0x0000000142A957E0 (Size: 0x30)
-class SItemKeywordProxiesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SItemKeywordProxySaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A934D0 (Size: 0x8)
+// 0x0000000142AA03F8 (Size: 0x8)
 class IActorSpreadEvaluator :
 	public IComponentInterface
 {
@@ -15540,7 +17308,7 @@ public:
 
 };
 
-// 0x000000014210A980 (Size: 0x40)
+// 0x0000000142117700 (Size: 0x40)
 class SMatrix44
 {
 public:
@@ -15566,1980 +17334,20 @@ public:
 	float32 m44; // 0x3C
 };
 
-// 0x0000000142AF43F0 (Size: 0x8)
-class IHingeConstraint :
-	public IComponentInterface
+// 0x0000000142AA3E10 (Size: 0x18)
+class SActorSpreadControllerCandidateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	uint32 m_CandidateActor; // 0x0
+	ZGameTime m_CandidateTime; // 0x8
+	bool m_bValidCandidate; // 0x10
 };
 
-// 0x0000000142AACF80 (Size: 0x8)
-class IOnlineConfigurationListener
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A95E30 (Size: 0x8)
-class SLampCoreSaveState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fDiffusePower; // 0x0
-	bool m_bSwitchState; // 0x4
-};
-
-// 0x0000000142A959D8 (Size: 0x30)
-class SLampCoreSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SLampCoreSaveState> m_aData; // 0x18
-};
-
-// 0x0000000142A9B0E0 (Size: 0x18)
-class SCondition_Current :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAIEventType type; // 0x10
-	int32 nAndUnhandled; // 0x14
-};
-
-// 0x0000000142A9BA10 (Size: 0x18)
-class SCondition_InfectedMayFollowPlayer :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-};
-
-// 0x0000000142A90330 (Size: 0x8)
-class IValueFloatListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BE20 (Size: 0x28)
-class SObserversGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_target; // 0x0
-	TArray<uint32> m_aWaitingObservers; // 0x8
-	float32 m_observerDistanceMax; // 0x20
-};
-
-// 0x0000000142A79720 (Size: 0x8)
-class ICharacterCombatState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A973D0 (Size: 0xC)
-class SMathMultiplyDivideSaveData_float32
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fA; // 0x0
-	float32 m_fB; // 0x4
-	bool m_bDivide; // 0x8
-};
-
-// 0x0000000143E5F8E8 (Size: 0x40)
-class IGateEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF4570 (Size: 0x8)
-class IDestructionEffectInterface :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7A798 (Size: 0x80)
-class ZAgitatedBystanderOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A92D50 (Size: 0x8)
-class IContextPropertyEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A936E0 (Size: 0x8)
-class IParticleColliderEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE14E0 (Size: 0x10)
-class SAudioEmitterSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEmitter; // 0x0
-	uint32 m_nNumberOfEvents; // 0x4
-	uint32 m_nNumberOfRTPCs; // 0x8
-	uint32 m_nNumberOfSwitches; // 0xC
-};
-
-// 0x0000000142AE1480 (Size: 0x18)
-class SAudioEmitterEventSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nEventId; // 0x0
-	bool m_bPaused; // 0x4
-	uint32 m_nFlags; // 0x8
-	uint32 m_rEventSender; // 0xC
-	int32 m_nSeekPosition; // 0x10
-	uint8 m_nPlayState; // 0x14
-};
-
-// 0x0000000142AE14C8 (Size: 0x8)
-class SAudioEmitterStateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nGroupId; // 0x0
-	uint32 m_nStateId; // 0x4
-};
-
-// 0x0000000142AE1048 (Size: 0xA8)
-class SAudioSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SAudioEmitterSaveData> m_aEmitters; // 0x0
-	TArray<SAudioEmitterEventSaveData> m_aEmitterEvents; // 0x18
-	TArray<SAudioEmitterRTPCSaveData> m_aEmitterRTPCs; // 0x30
-	TArray<SAudioEmitterSwitchSaveData> m_aEmitterSwitches; // 0x48
-	TArray<SAudioEmitterStateSaveData> m_aGlobalStates; // 0x60
-	TArray<SAudioEmitterRTPCSaveData> m_aGlobalRTPCs; // 0x78
-	TArray<uint32> m_aEventsEnabledAfterInit; // 0x90
-};
-
-// 0x0000000142A95888 (Size: 0x30)
-class SMathMultipliesSaveData_float32
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathMultiplyDivideSaveData_float32> m_aData; // 0x18
-};
-
-// 0x0000000142A9B3C8 (Size: 0x20)
-class SCondition_HasSameOutfit :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a0; // 0x10
-	ZBehaviorTreeVariable a1; // 0x18
-};
-
-// 0x0000000142AF43C0 (Size: 0x8)
-class IFixedConstraint :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143F116E0 (Size: 0x1)
-class SSerializedValue
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BA60 (Size: 0x378)
-class ZManhuntGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9AE70 (Size: 0x14)
-class SCondition_IsDifficultyLessOrEqual :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 difficultyLevel; // 0x10
-};
-
-// 0x0000000142B0C198 (Size: 0x8)
-class IPureWaterDisturbanceEntity :
-	public IPureWaterReflectable
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9A520 (Size: 0x8)
-class IAudioToggleEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B668 (Size: 0x1C)
-class SCondition_OnlyLegalItemsPickedUp :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000142AF4390 (Size: 0x8)
-class IDistanceConstraint :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8F6A0 (Size: 0x8)
-class IEditorUpdateSupplier :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B920 (Size: 0x1C)
-class SCondition_SituationFromActors :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ESituationType type; // 0x10
-	ZBehaviorTreeVariable actors; // 0x14
-};
-
-// 0x00000001422C9E98 (Size: 0x8)
-class IBoolCondition :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A83ED8 (Size: 0x8)
-class IRenderMaterialEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB20A8 (Size: 0x40)
-class SItemInstanceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZRepositoryID m_repositoryId; // 0x0
-	uint64 m_nEntityID; // 0x10
-	ZString m_sOnlineInstanceId; // 0x18
-	TArray<ZRepositoryID> m_aItemModifierIds; // 0x28
-};
-
-// 0x0000000142AE35A0 (Size: 0x18)
-class SCppEntitySubsetInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString name; // 0x0
-	uint32 flags; // 0x10
-};
-
-// 0x0000000142A999A8 (Size: 0x8)
-class IHM5WeaponInventory
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA9A78 (Size: 0x20)
-class ZAnimationBonePose :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A99788 (Size: 0x8)
-class IHM5ActionDevice :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B740 (Size: 0x18)
-class SCondition_GetItemDroppedBy :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable character; // 0x10
-};
-
-// 0x0000000143E63C78 (Size: 0x40)
-class SExposedEntityTypeDescriptor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sName; // 0x0
-	TArray<ZResourceID> types; // 0x10
-	TArray<ZString> aSupportedTypes; // 0x28
-};
-
-// 0x0000000142A7BB98 (Size: 0x1)
-class SPIPMessageManagerProxySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-};
-
-// 0x0000000142A88AD8 (Size: 0x8)
-class IEventConsumerCollection
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9BAD0 (Size: 0x24)
-class SCondition_MaxActualDistance2D :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_From; // 0x10
-	ZBehaviorTreeVariable m_To; // 0x18
-	float32 m_Distance; // 0x20
-};
-
-// 0x00000001422CAD10 (Size: 0x8)
-class IItemOwner :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB39F0 (Size: 0xC)
-class SCharacterSpeakEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fSeekPosition; // 0x0
-	uint32 m_nRandomSelectionSeed; // 0x4
-	bool m_bWereSubtitlesSeen; // 0x8
-};
-
-// 0x0000000142AA5A20 (Size: 0x10)
-class ZWorldMapMetaData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7BDD8 (Size: 0x8)
-class ISequenceAudioPlayer :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B098 (Size: 0x10)
-class SCondition_SuitcaseAssistanceRequesterFaceToFace :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B8F0 (Size: 0x1C)
-class SCondition_SituationFromTarget :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ESituationType type; // 0x10
-	ZBehaviorTreeVariable targets; // 0x14
-};
-
-// 0x0000000142A972F0 (Size: 0x20)
-class SMathDistanceSaveData_SVector4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 m_fA; // 0x0
-	SVector4 m_fB; // 0x10
-};
-
-// 0x0000000142A9ADC8 (Size: 0x18)
-class SCondition_RemoveCombatSituationsStandingDown :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_CombatSituations; // 0x10
-};
-
-// 0x0000000142A89E50 (Size: 0x8)
-class ILocationSurface :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BC10 (Size: 0x30)
-class SAgitatedBystanderOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rBystanderPoint; // 0x0
-	float4 m_vCover; // 0x10
-	float4 m_vCoverDir; // 0x20
-};
-
-// 0x0000000142AB4480 (Size: 0x8)
-class IValueVector2Get :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422C9128 (Size: 0x8)
-class IEnableConditionListener :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CADA0 (Size: 0x8)
-class IDynamicPhysics :
-	public IPhysicsAccessor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A84B68 (Size: 0x8)
-class IShatterSystem :
-	public IDynamicPhysics
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B5A8 (Size: 0x18)
-class SCondition_IllegalWeaponDropped :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142A8BC40 (Size: 0x28)
-class SAccidentObserversGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_target; // 0x0
-	TArray<uint32> m_aWaitingObservers; // 0x8
-	EAccidentScaleContext m_accidentScaleContext; // 0x20
-};
-
-// 0x00000001422C9050 (Size: 0x8)
-class ZTime
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint64 m_nValue; // 0x0
-};
-
-// 0x0000000142AEEC10 (Size: 0x8)
-class SGaitTransitionEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EGait m_gait; // 0x0
-	ESpeed m_speed; // 0x4
-};
-
-// 0x0000000142A9BDD0 (Size: 0x4)
-class SActorDynamicTemplateManipulatorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000142A95738 (Size: 0x30)
-class SActorStandInEntitiesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SActorStandInSaveData> m_aData; // 0x18
-};
-
-// 0x0000000142AB3A38 (Size: 0x10)
-class ZDialogConditionTarget :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A91F20 (Size: 0x18)
-class SVIPEvacuationNodeSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fPenaltyMultiplier; // 0x0
-	float32 m_fPenaltyDuration; // 0x4
-	ZGameTime m_tPenalty; // 0x8
-	bool m_bIsEnabled; // 0x10
-	bool m_compromisedOnEnter; // 0x11
-};
-
-// 0x0000000142A9AF90 (Size: 0x18)
-class SCondition_IsDistractionInterruptableByNewOcurrences :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable distraction; // 0x10
-};
-
-// 0x0000000142A8E818 (Size: 0xB8)
-class SInventoryControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
-	uint32 m_nEquippedItemIndex; // 0x18
-	uint32 m_nMostRecentItemIndex; // 0x1C
-	SStoredSlotSaveData m_StoredSlot; // 0x20
-	TArray<SInventoryControllerSlotSaveData> m_aSlots; // 0x28
-	TArray<uint32> m_aPendingPickupItems; // 0x40
-	uint32 m_nAmmoCountGun; // 0x58
-	uint32 m_nAmmoCountRevolver; // 0x5C
-	uint32 m_nAmmoCountSMG; // 0x60
-	uint32 m_nAmmoCountRifle; // 0x64
-	uint32 m_nAmmoCountShotgun; // 0x68
-	uint32 m_nAmmoCountSniper; // 0x6C
-	uint32 m_nAmmoCountMG; // 0x70
-	uint32 m_nAmmoCountRPG; // 0x74
-	uint32 m_nAmmoCountFake; // 0x78
-	uint32 m_nAmmoCountLightPistol; // 0x7C
-	uint32 m_nAmmoCountDartTranquilizer; // 0x80
-	uint32 m_nAmmoCountAmmoShotgunBeanbag; // 0x84
-	TArray<ZRepositoryID> m_aAmmoIds; // 0x88
-	TArray<uint32> m_aAmmoCounts; // 0xA0
-};
-
-// 0x0000000142A7B258 (Size: 0x18)
-class SCrowdAIEventSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SRunningCrowdAIEventSaveData> m_RunningEvents; // 0x0
-};
-
-// 0x0000000142AB09F8 (Size: 0x1)
-class SVisibilitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsVisible; // 0x0
-};
-
-// 0x0000000142A9B128 (Size: 0x20)
-class SCondition_MaxExpired :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAIEventType type; // 0x18
-	float32 time; // 0x1C
-};
-
-// 0x0000000142AF4B70 (Size: 0x8)
-class ICollisionManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A93068 (Size: 0x8)
-class IConditionalTextLine :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8C1E0 (Size: 0x340)
-class ZEvacuateVIPGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE3A28 (Size: 0x18)
-class SFooStruct
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_eTest; // 0x0
-	ZString m_sOther; // 0x8
-};
-
-// 0x0000000142A9B1B8 (Size: 0x14)
-class SCondition_Trigger :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool bTriggered; // 0x10
-};
-
-// 0x0000000143E60868 (Size: 0x38)
-class SSaveGameData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nVersion; // 0x0
-	TArray<SSavableData> m_aSavableObjectsData; // 0x8
-	TArray<SEntityPath> m_aEntityPaths; // 0x20
-};
-
-// 0x0000000142A9F9E0 (Size: 0x78)
-class ZContractEventsManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA4F98 (Size: 0x18)
-class SIntelDisplayInfoArray_dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SIntelDisplayInfo> dummy; // 0x0
-};
-
-// 0x0000000142AF4720 (Size: 0x90)
-class SDestructiblePieceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SMatrix m_mTransform; // 0x0
-	TArray<uint16> m_aIndices; // 0x40
-	float32 m_fMass; // 0x58
-	EPhysicsObjectType m_ePhysicsType; // 0x5C
-	bool m_bIsAwake; // 0x60
-	float4 m_fLinearVelocity; // 0x70
-	float4 m_fAngularVelocity; // 0x80
-};
-
-// 0x0000000142AF4750 (Size: 0x8)
-class SDestructibleRuntimeDamage
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint16 m_nPieceIndex; // 0x0
-	float32 m_fDamage; // 0x4
-};
-
-// 0x0000000142AF4450 (Size: 0x60)
-class SDestructibleObjectSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SDestructibleInteractionHandlerData m_interactionData; // 0x0
-	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
-	TArray<SDestructibleRuntimeConnnection> m_aConnectionData; // 0x20
-	TArray<SDestructibleRuntimeDamage> m_aDamageData; // 0x38
-	uint16 m_nNumAnchors; // 0x50
-	ERuntimeMemoryAllocationState m_eRuntimeMemoryAllocationState; // 0x54
-	EPhysicsObjectType m_eSystemPhysicsType; // 0x58
-	bool m_bHasSystemBeenDetached; // 0x5C
-	bool m_bHasSystemBeenFractured; // 0x5D
-	bool m_bPhysicsEnabled; // 0x5E
-	bool m_bDestructionEnabled; // 0x5F
-};
-
-// 0x0000000142A8AA48 (Size: 0x36)
-class SHM5CrippleBoxSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bInSequence; // 0x0
-	bool m_bAllowBaseMovements; // 0x1
-	bool m_bSequenceAllowCamera; // 0x2
-	bool m_bLedges; // 0x3
-	bool m_bCover; // 0x4
-	bool m_bTakeClothes; // 0x5
-	bool m_bLadder; // 0x6
-	bool m_bPullVictimFromWindow; // 0x7
-	bool m_bFiberWireKill; // 0x8
-	bool m_bClimbWindow; // 0x9
-	bool m_bThrowBodyOverRail; // 0xA
-	bool m_bDumpBody; // 0xB
-	bool m_bOperateCPDoor; // 0xC
-	bool m_bHideInCloset; // 0xD
-	bool m_bCloseCombat; // 0xE
-	bool m_bGrabVictim; // 0xF
-	bool m_bPushVictimThroughWindowAndRail; // 0x10
-	bool m_bKickVictimOverLedge; // 0x11
-	bool m_bPickupItem; // 0x12
-	bool m_bDropItem; // 0x13
-	bool m_bDragBody; // 0x14
-	bool m_bThrowItem; // 0x15
-	bool m_bPlaceItem; // 0x16
-	bool m_bUseDeathAnimation; // 0x17
-	bool m_bLimitedAmmo; // 0x18
-	bool m_bRun; // 0x19
-	bool m_bTurn; // 0x1A
-	bool m_bSneak; // 0x1B
-	bool m_bNoSnapSneak; // 0x1C
-	bool m_bStandUp; // 0x1D
-	bool m_bFastWalk; // 0x1E
-	bool m_bMovementAllowed; // 0x1F
-	bool m_bIdleAnimationsAllowed; // 0x20
-	bool m_bItems; // 0x21
-	bool m_bCanHolsterItems; // 0x22
-	bool m_bCoverTakedown; // 0x23
-	bool m_bCoverScale; // 0x24
-	bool m_bCoverToCover; // 0x25
-	bool m_bCloseCombatSnapNeck; // 0x26
-	bool m_bCloseCombatChoke; // 0x27
-	bool m_bCloseCombatPistolFinish; // 0x28
-	bool m_bCloseCombatProps; // 0x29
-	bool m_bCloseCombatStandart; // 0x2A
-	bool m_bCloseCombatFakeSwing; // 0x2B
-	bool m_bGameCameraAutoAlign; // 0x2C
-	bool m_bCameraSide; // 0x2D
-	bool m_bInstinct; // 0x2E
-	bool m_bBlindFire; // 0x2F
-	bool m_bAim; // 0x30
-	bool m_bHairTrigger; // 0x31
-	bool m_bFire; // 0x32
-	bool m_bOpenLogbook; // 0x33
-	bool m_bOpenPauseMenu; // 0x34
-	bool m_bActivatedByPinSignal; // 0x35
-};
-
-// 0x0000000143CDEE88 (Size: 0x8)
-class IParticleControllerEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A79648 (Size: 0x8)
-class ITransitionCondition :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9BDA0 (Size: 0xC)
-class SActorDynamicTemplateHandlerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-	uint32 m_rItem; // 0x4
-	uint32 m_rSetpiece; // 0x8
-};
-
-// 0x0000000142AB44E0 (Size: 0x8)
-class IValueVector2Set :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CADD0 (Size: 0x8)
-class IItemAmmo :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A95968 (Size: 0x30)
-class SShotListenersSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SShotListenerSaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A8C168 (Size: 0x60)
-class ZSentryOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B848 (Size: 0x20)
-class SCondition_MinSharedEventAge :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAISharedEventType type; // 0x18
-	float32 age; // 0x1C
-};
-
-// 0x0000000142A795D0 (Size: 0x8)
-class ICrowdCoreProvider :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A977C0 (Size: 0x1)
-class SDoorSoundDefs
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B650 (Size: 0x18)
-class SCondition_SuspiciousWeaponPickedUp :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142AA7780 (Size: 0x30)
-class SGameKeywordManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SKeywordSaveData> m_aKeywordsData; // 0x0
-	TArray<ZString> m_aKeywordStringData; // 0x18
-};
-
-// 0x0000000142A8C1F8 (Size: 0x78)
-class SEvacuateVIPGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SFSMSaveData m_fsmState; // 0x0
-	uint32 m_rVIP; // 0x18
-	uint32 m_rVIPActor; // 0x1C
-	uint32 m_rEvacuationNode; // 0x20
-	uint32 m_rSafeRoomNode; // 0x24
-	uint32 m_rCompromisedEvacNode; // 0x28
-	TArray<uint32> m_assignedBodyguards; // 0x30
-	ZGameTime m_tEvacuationStart; // 0x48
-	ZGameTime m_tCornered; // 0x50
-	ZGameTime m_tTacticalPoint; // 0x58
-	ZGameTime m_tSafeRoom; // 0x60
-	ZGameTime m_tSafeRoomStandDown; // 0x68
-	bool m_bInitialFlee; // 0x70
-	bool m_safeRoomVIPSentActingStarted; // 0x71
-	bool m_isSetupPhaseComplete; // 0x72
-};
-
-// 0x0000000142A83DE8 (Size: 0x8)
-class IBulletImpactListener
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AEEA48 (Size: 0x8)
-class ISequenceItem :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7BD00 (Size: 0x8)
-class IValueFloat :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7B368 (Size: 0x1)
-class SDisguiseZoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-};
-
-// 0x0000000142A7B7F0 (Size: 0x8)
-class SPerceptibleCrowdBodySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rCombatZone; // 0x0
-	int32 m_rSharedKnowledge; // 0x4
-};
-
-// 0x0000000142A7A270 (Size: 0x2C)
-class SAnimatedActorMoveOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bPrecisePositioning; // 0x0
-	bool m_bPreciseOrientation; // 0x1
-	bool m_bIgnoreEndCollision; // 0x2
-	bool m_bForcedEnpointSet; // 0x3
-	float32 m_fStopMoveDistance; // 0x4
-	SVector3 m_vWaypoint; // 0x8
-	SVector3 m_vForcedEndpoint; // 0x14
-	SVector3 m_vFacingDirection; // 0x20
-};
-
-// 0x0000000142A8B278 (Size: 0x2)
-class SAimAssistObjectSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bHasBeenStarted; // 0x0
-	bool m_bWasAimAssistActivated; // 0x1
-};
-
-// 0x0000000142A9BB30 (Size: 0x1C)
-class SCondition_IsDistanceFromKnownToActualGreaterThan :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable knownEntity; // 0x10
-	float32 distance; // 0x18
-};
-
-// 0x0000000142A84BC8 (Size: 0x8)
-class IArticulatedPhysicsAccessor :
-	public IDynamicPhysics
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9BA88 (Size: 0x24)
-class SCondition_MinActualDistance :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable a0; // 0x10
-	ZBehaviorTreeVariable a1; // 0x18
-	float32 a2; // 0x20
-};
-
-// 0x0000000142AF2EB8 (Size: 0x108)
-class ZGameLobbyManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B6C8 (Size: 0x18)
-class SCondition_GetItemBeingThrownBy :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable character; // 0x10
-};
-
-// 0x0000000142AE3168 (Size: 0x30)
-class ZEntitySingletonManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A90880 (Size: 0x8)
-class IJumpPointAction :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA24D0 (Size: 0x8)
-class IUIControlEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A963A8 (Size: 0x30)
-class SInventoryMovementConfig
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EInventoryConfigItemHandling m_eItemHandlingRightHand; // 0x0
-	EInventoryConfigItemHandling m_eItemHandlingLeftHand; // 0x4
-	EInventoryConfigFormerEquippedItems m_eFormerEquippedItems; // 0x8
-	EInventoryConfigCustomRule m_eCustomRule; // 0xC
-	bool m_bDropBackHolsteredItem; // 0x10
-	bool m_bSlowAnimation; // 0x11
-	bool m_bForceInstantInventoryChange; // 0x12
-	bool m_bCancelIfInventoryInUse; // 0x13
-	bool m_bSafeDrop; // 0x14
-	float4 m_vSafeDropPosition; // 0x20
-};
-
-// 0x0000000142AEEB80 (Size: 0x8)
-class IAnimResourceEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA46D0 (Size: 0x18)
-class SActionRadialArcDisplayInfoArray_dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SActionRadialArcDisplayInfo> dummy; // 0x0
-};
-
-// 0x0000000142A797F8 (Size: 0x8)
-class ICharacterCameraState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB0A28 (Size: 0xC)
-class SConditionalTimerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_nInterval; // 0x0
-	int32 m_nRemaining; // 0x4
-	bool m_bActive; // 0x8
-	bool m_bValue; // 0x9
-};
-
-// 0x0000000142AB2FE8 (Size: 0x10)
-class SIntelSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rCurrentStage; // 0x0
-	float32 m_fHandlerAudioPlayPosition; // 0x4
-	bool m_bTracked; // 0x8
-	bool m_bUnlocked; // 0x9
-	bool m_bRegistered; // 0xA
-	bool m_bIsLastTriggered; // 0xB
-	bool m_bIsHandlerAudioPlaying; // 0xC
-};
-
-// 0x0000000142AACD50 (Size: 0xB0)
-class ZEntitlementManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AAD010 (Size: 0x38)
-class SActivityObjective
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SActivity activity; // 0x0
-	TArray<SActivity> opportunities; // 0x20
-};
-
-// 0x0000000142AAD058 (Size: 0x70)
-class SActivityDefinition
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SActivity activity; // 0x0
-	TArray<SActivityObjective> objectives; // 0x20
-	SActivityExits exits; // 0x38
-};
-
-// 0x0000000142AAD088 (Size: 0x18)
-class SActivities
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SActivityDefinition> Activities; // 0x0
-};
-
-// 0x0000000142A7A948 (Size: 0x8)
-class ISceneEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7B838 (Size: 0x18)
-class STrespassingRuleEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<bool> m_aAllowedProfessionsDisabled; // 0x0
-};
-
-// 0x0000000142A9B620 (Size: 0x18)
-class SCondition_OnlyLegalWeaponsPickedUp :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142AA00B0 (Size: 0x8)
-class IContractObjective
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A84B50 (Size: 0x8)
-class IGenericMassImpulseReceiver :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143CDEFF0 (Size: 0x8)
-class IParticleRenderEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E63C48 (Size: 0x48)
-class SEntityPinDescriptor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString sName; // 0x0
-	ZString sDisplayName; // 0x10
-	ZResourceID type; // 0x20
-	ZString sHelpText; // 0x30
-	bool bIsPlaceholder; // 0x40
-	bool bIsHidden; // 0x41
-};
-
-// 0x0000000142AF4BA0 (Size: 0x8)
-class ITriggerPhysics :
-	public IPhysicsAccessor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8B2D8 (Size: 0x8)
-class IUIAction :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B980 (Size: 0x18)
-class SCondition_IsOrderInvalid :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-};
-
-// 0x0000000142A8C048 (Size: 0x70)
-class ZFormationMoveOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A91F80 (Size: 0x88)
-class SSentryZoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZGameTime m_tGreetingCooldown; // 0x0
-	ZGameTime m_tLoiteringCooldown; // 0x8
-	int32 m_nWarningCount; // 0x10
-	bool m_bShowingWarning; // 0x14
-	bool bLeftThroughWarningZone; // 0x15
-	bool bEnteredThroughEntranceZone; // 0x16
-	bool bInEntranceZone; // 0x17
-	bool bInWarningZone; // 0x18
-	bool bInGreetingZone; // 0x19
-	bool bInReFriskZone; // 0x1A
-	bool m_bInRequiredDisguise; // 0x1B
-	bool m_bInFriskExemptDisguise; // 0x1C
-	bool m_bHasRequiredItem; // 0x1D
-	bool m_bCanShowActionPrompt; // 0x1E
-	bool m_bTargetInAnyZone; // 0x1F
-	bool m_bSituationActive; // 0x20
-	bool m_bFrisked; // 0x21
-	bool m_bItemChecked; // 0x22
-	bool m_bGreeted; // 0x23
-	bool m_bGreetedInstruction; // 0x24
-	bool m_bGreetedLoitering; // 0x25
-	bool m_bGreetedUnexpected; // 0x26
-	bool m_bInFriskWarningZone; // 0x27
-	TArray<bool> m_aDisguisesAllowedDisabled; // 0x28
-	TArray<bool> m_aDisguisesFriskExemptDisabled; // 0x40
-	TArray<bool> m_aDisguisesDontEscalateOnLineCrossingDisabled; // 0x58
-	TArray<uint32> m_ItemsDroppedInZone; // 0x70
-};
-
-// 0x00000001422C9CA0 (Size: 0x40)
-class ZUIDataProvider
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B110 (Size: 0x20)
-class SCondition_MinExpired :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAIEventType type; // 0x18
-	float32 time; // 0x1C
-};
-
-// 0x0000000142A7A7E0 (Size: 0x50)
-class ZGenericOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8C3D8 (Size: 0x40)
-class SSituationOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sClassTypeName; // 0x0
-	EAISharedEventType m_eType; // 0x10
-	int32 m_nTarget; // 0x14
-	bool m_bHasPosition; // 0x18
-	float4 m_vPosition; // 0x20
-	ZVariant m_CustomData; // 0x30
-};
-
-// 0x0000000142A883C0 (Size: 0x8)
-class IDramaResource :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BE08 (Size: 0x120)
-class ZObserversGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A93518 (Size: 0x8)
-class IHM5ForceMovementCallBack :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF4300 (Size: 0x8)
-class SClothWireEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fWireLength; // 0x0
-	bool m_bAttachToAnchorTransform; // 0x4
-	bool m_bSimulationEnabled; // 0x5
-	bool m_bVisible; // 0x6
-};
-
-// 0x0000000142A95A10 (Size: 0x30)
-class SVIPEvacuationNodesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A8A430 (Size: 0x30)
-class SDoorsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SDoorSaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A95770 (Size: 0x30)
-class SActorProxiesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SActorProxySaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A95AF0 (Size: 0x30)
-class SMathLerpsSaveData_SVector3
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_SVector3> m_aData; // 0x18
-};
-
-// 0x0000000142A95B60 (Size: 0x30)
-class SMathLerpsSaveData_SColorRGB
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_SColorRGB> m_aData; // 0x18
-};
-
-// 0x000000014210A428 (Size: 0x8)
-class IFreeCameraControl
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA00C8 (Size: 0x18)
-class IContractModule
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9CD60 (Size: 0x4)
-class SSpeakEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 m_fSeekPosition; // 0x0
-};
-
-// 0x0000000142A8BF40 (Size: 0x1F0)
-class ZSniperCombatGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CAC50 (Size: 0x28)
-class STrackDollyControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rTrackEntity; // 0x0
-	float32 m_fTrackPosition; // 0x4
-	bool m_bIsDollyAttached; // 0x8
-	SVector3 m_vDollyPosition; // 0xC
-	SVector4 m_vDollyRotation; // 0x18
-};
-
-// 0x0000000142A84B38 (Size: 0x8)
-class ZPostfilterGraphBaseNode
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7A750 (Size: 0x70)
-class ZGuardPointOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF4360 (Size: 0x8)
-class ID6Constraint :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AEDA10 (Size: 0x38)
-class SAnimPlayerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 mTrajectoryQuaterion; // 0x0
-	SVector4 mTrajectoryTranslation; // 0x10
-	TArray<SBoneTransformSaveData> m_aBones; // 0x20
-};
-
-// 0x0000000143E617A0 (Size: 0x8)
-class IEntityGroup :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE1FA0 (Size: 0x8)
-class IRenderGraphNodeProducer :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8DDE0 (Size: 0x90)
+// 0x0000000142A997B8 (Size: 0x90)
 class SActorSpreadControllerSaveData
 {
 public:
@@ -17561,8 +17369,26 @@ public:
 	ZGameTime m_PlayerCandidateTime; // 0x88
 };
 
-// 0x0000000142A9AD20 (Size: 0x18)
-class SCondition_IsAccidentBystandingGuardSearching :
+// 0x0000000142A86FD0 (Size: 0x2C)
+class SAnimatedActorMoveOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bPrecisePositioning; // 0x0
+	bool m_bPreciseOrientation; // 0x1
+	bool m_bIgnoreEndCollision; // 0x2
+	bool m_bForcedEnpointSet; // 0x3
+	float32 m_fStopMoveDistance; // 0x4
+	SVector3 m_vWaypoint; // 0x8
+	SVector3 m_vForcedEndpoint; // 0x14
+	SVector3 m_vFacingDirection; // 0x20
+};
+
+// 0x0000000142AA8160 (Size: 0x18)
+class SCondition_IsActorAlive :
 	public SConditionBase
 {
 public:
@@ -17570,27 +17396,58 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable target; // 0x10
+	ZBehaviorTreeVariable m_Actors; // 0x10
 };
 
-// 0x0000000142A88488 (Size: 0x40)
-class SClothBundleSaveData
+// 0x0000000142A95230 (Size: 0x4)
+class SClothBundleSpawnSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	SVector3 m_vPosition; // 0x0
-	SVector4 m_vQuaternion; // 0xC
-	ZRepositoryID m_OutfitID; // 0x20
-	int32 m_nOutfitVariation; // 0x30
-	int32 m_nOutfitCharset; // 0x34
-	bool bSpawnedByHitman; // 0x38
+	uint32 m_rClothbundle; // 0x0
 };
 
-// 0x0000000142A84B98 (Size: 0x8)
-class IRenderPostfilterControllerEntity :
+// 0x0000000142AA7E30 (Size: 0x18)
+class SCondition_PerceptibleEntityEndAfterReact :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+};
+
+// 0x0000000142AA8748 (Size: 0x1C)
+class SCondition_SituationFromActors :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ESituationType type; // 0x10
+	ZBehaviorTreeVariable actors; // 0x14
+};
+
+// 0x0000000142A874C8 (Size: 0xE8)
+class ZPatrolGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AF03D0 (Size: 0x8)
+class IPrimitivesProvider :
 	public IComponentInterface
 {
 public:
@@ -17600,20 +17457,90 @@ public:
 
 };
 
-// 0x0000000142A9B8A8 (Size: 0x18)
-class SCondition_SituationTarget :
-	public SConditionBase
+// 0x0000000143E6DDE8 (Size: 0x38)
+class SPersistentEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable situation; // 0x10
+	uint64 m_nResourceId; // 0x0
+	TArray<uint64> m_aEntityIDs; // 0x8
+	TArray<ZString> m_aEntityNames; // 0x20
 };
 
-// 0x00000001422CA248 (Size: 0xC)
-class SWeaponCustomControlSaveData
+// 0x0000000142A9EF08 (Size: 0x18)
+class SGetHelpServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SHelpingActorSaveData> m_aHelpingActors; // 0x0
+};
+
+// 0x0000000143E70BE0 (Size: 0x38)
+class SExposedEntityDescriptor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sName; // 0x0
+	ZString sDisplayName; // 0x10
+	ZString sHelpText; // 0x20
+	bool bIsArray; // 0x30
+	bool bIsHidden; // 0x31
+};
+
+// 0x00000001422D7550 (Size: 0x28)
+class SLevelReferenceableEntitieSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString m_sSceneResource; // 0x0
+	TArray<ZString> m_aAdditionalBrickResources; // 0x10
+};
+
+// 0x0000000142A90BF0 (Size: 0x8)
+class IBulletImpactListener
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AFB968 (Size: 0x8)
+class ISequenceItem :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AACEE0 (Size: 0x8)
+class IContractObjective
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9EA88 (Size: 0x4)
+class SLeadEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17621,69 +17548,10 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	uint32 m_rActor; // 0x0
-	uint32 m_rItem; // 0x4
-	bool m_bTargetRegistered; // 0x8
 };
 
-// 0x0000000142A9B140 (Size: 0x20)
-class SCondition_MinAge :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAIEventType type; // 0x18
-	float32 age; // 0x1C
-};
-
-// 0x0000000142A8C000 (Size: 0xC)
-class SFaceOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bLookAt; // 0x0
-	bool m_bAimAt; // 0x1
-	bool m_bUpdateKnownPosition; // 0x2
-	bool m_bStopActFast; // 0x3
-	float32 m_fDuration; // 0x4
-	float32 m_fDurationVariance; // 0x8
-};
-
-// 0x0000000142A9B680 (Size: 0x1C)
-class SCondition_IllegalItemPickedUp :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-	int32 includeWeapons; // 0x18
-};
-
-// 0x0000000143CDE170 (Size: 0x10)
-class SGUIViewPort
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 x; // 0x0
-	uint32 y; // 0x4
-	uint32 h; // 0x8
-	uint32 w; // 0xC
-};
-
-// 0x0000000142A8C120 (Size: 0x1)
-class SPatrolOrderSaveData
+// 0x0000000142A95868 (Size: 0x8)
+class IEventConsumerCollection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17692,52 +17560,72 @@ public:
 
 };
 
-// 0x0000000142A891B0 (Size: 0x8)
-class ZResourcePtr
+// 0x0000000142AC1690 (Size: 0x18)
+class SWaveformGeneratorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	float32 m_fTime; // 0x0
+	float32 m_fFrequency; // 0x4
+	float32 m_fOffset; // 0x8
+	float32 m_fScale; // 0xC
+	float32 m_fStartTime; // 0x10
+	uint32 m_nCount; // 0x14
 };
 
-// 0x0000000142A90C70 (Size: 0x8)
-class IActorProviderFilter
+// 0x0000000142AC0FB8 (Size: 0x30)
+class SWaveformGeneratorManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
+	TArray<uint32> m_aGenerators; // 0x0
+	TArray<SWaveformGeneratorSaveData> m_aGeneratorData; // 0x18
 };
 
-// 0x0000000142A9B890 (Size: 0x20)
-class SCondition_IsActorInSituation :
-	public SConditionBase
+// 0x0000000142AA41B0 (Size: 0x1C)
+class SMathLerpSaveData_SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable actor; // 0x10
-	ZBehaviorTreeVariable situation; // 0x18
+	SColorRGB m_A; // 0x0
+	SColorRGB m_B; // 0xC
+	float32 m_fT; // 0x18
 };
 
-// 0x0000000142A9B8C0 (Size: 0x18)
-class SCondition_SituationHuntTarget :
-	public SConditionBase
+// 0x0000000142AA2920 (Size: 0x30)
+class SMathLerpsSaveData_SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable situation; // 0x10
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathLerpSaveData_SColorRGB> m_aData; // 0x18
 };
 
-// 0x0000000142AA4888 (Size: 0x18)
+// 0x0000000142AB1670 (Size: 0x18)
+class SVideoDatabaseEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString VideoId; // 0x0
+	ZRuntimeResourceID RuntimeLocalizedVideoRid; // 0x10
+};
+
+// 0x0000000142AB16A8 (Size: 0x18)
 class SVideoDatabaseData
 {
 public:
@@ -17748,725 +17636,7 @@ public:
 	TArray<SVideoDatabaseEntry> Videos; // 0x0
 };
 
-// 0x0000000142A833B0 (Size: 0x8)
-class IBoneAnimator
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9CA30 (Size: 0x18)
-class SRememberActorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint32> m_Actors; // 0x0
-};
-
-// 0x0000000142A88AA8 (Size: 0x8)
-class ICloset :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143CDEC90 (Size: 0x8)
-class ICubemapProbeEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E60E40 (Size: 0xC)
-class SGateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rEntity; // 0x0
-	bool m_bIsOpen; // 0x4
-	float32 m_fOpenFraction; // 0x8
-};
-
-// 0x0000000142A7A918 (Size: 0x8)
-class IChildNetworkEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422C8FA8 (Size: 0x18)
-class ZER64
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint64 m_nEntityID; // 0x0
-	ZString m_sExposedEntity; // 0x8
-};
-
-// 0x00000001422C8FD8 (Size: 0x30)
-class ZScopedER64
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZER64 m_er64; // 0x0
-	TArray<uint64> m_aScopePath; // 0x18
-};
-
-// 0x0000000142AE4888 (Size: 0x8)
-class ITriggerListener
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A90450 (Size: 0x8)
-class IPlaneEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9BA40 (Size: 0x18)
-class SCondition_IsCombatPositionActReady :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable combatPosition; // 0x10
-};
-
-// 0x0000000142A9AE58 (Size: 0x14)
-class SCondition_IsDifficultyGreaterOrEqual :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 difficultyLevel; // 0x10
-};
-
-// 0x0000000142A906E8 (Size: 0x80)
-class SDecalSpawnSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bWasSpawned; // 0x0
-	float4 m_vPosition; // 0x10
-	float4 m_vNormal; // 0x20
-	float4 m_vDirection; // 0x30
-	float4 m_vSize; // 0x40
-	SColorRGB m_Color; // 0x50
-	float32 m_fAlpha; // 0x5C
-	float32 m_fAngle; // 0x60
-	SVector2 m_vUVOffset; // 0x64
-	SVector2 m_vTiling; // 0x6C
-	uint32 m_rBlockingSpatialEntity; // 0x74
-};
-
-// 0x0000000142A9AFF0 (Size: 0x18)
-class SCondition_HasCustomDistractionStndSoundDef :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-};
-
-// 0x0000000142A9AFC0 (Size: 0x10)
-class SCondition_IsDistracted :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B5C0 (Size: 0x18)
-class SCondition_SuspiciousWeaponDropped :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable actor; // 0x10
-};
-
-// 0x0000000142AE1468 (Size: 0x20)
-class SAudioMemoryMonitorEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 shortId; // 0x0
-	uint32 size; // 0x4
-	TArray<ZResourceID> references; // 0x8
-};
-
-// 0x0000000142AE33F0 (Size: 0x10)
-class ZEntityID
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sStr; // 0x0
-};
-
-// 0x0000000142AE3390 (Size: 0x20)
-class ZEntityReference
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZEntityID m_EntityID; // 0x0
-	ZString m_sExposedEntity; // 0x10
-};
-
-// 0x00000001422CADE8 (Size: 0x8)
-class ICharacterIllegalInteractionsState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A99580 (Size: 0x8)
-class ILookAtTriggerEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B9C8 (Size: 0x1C)
-class SCondition_SituationIsType :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-	ESituationType type; // 0x18
-};
-
-// 0x0000000142A9B0C8 (Size: 0x20)
-class SCondition_IsCurrent :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAIEventType type; // 0x18
-	int32 nAndUnhandled; // 0x1C
-};
-
-// 0x0000000142A7BDF0 (Size: 0x8)
-class ICrowdAIActor :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA4C38 (Size: 0x10)
-class SItemLeftHandUIData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZRuntimeResourceID icon; // 0x0
-	int32 nItemHUDType; // 0x8
-	bool bHasItemToShow; // 0xC
-	bool bSuspicious; // 0xD
-	bool bIllegal; // 0xE
-};
-
-// 0x0000000142A8BFB8 (Size: 0x20)
-class SCombatOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float4 m_vPos; // 0x0
-	uint32 m_coverPlane; // 0x10
-	uint32 m_rInteraction; // 0x14
-};
-
-// 0x0000000142AA43F8 (Size: 0x8)
-class IWorldMapMarker
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BA18 (Size: 0x100)
-class ZAttentionToPersonGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B998 (Size: 0x1C)
-class SCondition_HasOrder :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-	EAISharedEventType eOrder; // 0x18
-};
-
-// 0x0000000143E61470 (Size: 0x80)
-class STrajectoryTrackSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SMatrix m_vOriginalEntityTransform; // 0x0
-	SMatrix m_vTargetStartTransform; // 0x40
-};
-
-// 0x0000000142A9B200 (Size: 0x10)
-class SCondition_IsCombatDisabled :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A79630 (Size: 0x8)
-class ICharacterCollision :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BF10 (Size: 0x1260)
-class ZInvestigateDisguiseGroup :
-	public ZSituationGroup
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A90CA0 (Size: 0x8)
-class IShootTargetEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AA3EB8 (Size: 0x30)
-class IUIMapProvider :
-	public IUIMapSpaceProvider,
-	public IUIMapExporter
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A92160 (Size: 0x20)
-class SManHuntServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<uint16> m_rGuardNodes; // 0x0
-	uint16 m_rInitialNode; // 0x18
-	float32 m_fGuardSightRange; // 0x1C
-};
-
-// 0x0000000142A9B6F8 (Size: 0x18)
-class SCondition_PreviousOwner :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable item; // 0x10
-};
-
-// 0x0000000142A831A0 (Size: 0x18)
-class SLockdownManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SLockdownManagerAIZoneSaveData> m_aAIZones; // 0x0
-};
-
-// 0x0000000142AACD98 (Size: 0x30)
-class ZOnlineSocialManager :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9FF58 (Size: 0x40)
-class SOnlineSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZString m_sName; // 0x0
-	int64 m_nTimeStamp; // 0x10
-	bool m_bIsOnline; // 0x18
-	ZString m_sContractSessionId; // 0x20
-	ZString m_sLastEventToken; // 0x30
-};
-
-// 0x0000000142A887A8 (Size: 0x4)
-class SMovementLadderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rLadder; // 0x0
-};
-
-// 0x0000000142AB4528 (Size: 0x8)
-class IValueVector3Set :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BEC8 (Size: 0x48)
-class SCautiousSituationMemberSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZGameTime m_tLastDisturbance; // 0x0
-	ZGameTime m_tLastSearchCalc; // 0x8
-	ZGameTime m_tLastInfluenceCalc; // 0x10
-	ZGameTime m_tLastSearchCompleted; // 0x18
-	ZGameTime m_tLastInvestigationCompleted; // 0x20
-	ZGameTime m_tTimeIdling; // 0x28
-	uint32 m_pGuardDutyPoint; // 0x30
-	int32 m_nBulletImpactsHeard; // 0x34
-	int32 m_nPatrolWaypointIndex; // 0x38
-	uint32 m_nPatrolWaypointSubIndex; // 0x3C
-	bool m_bBanterCandidate; // 0x40
-	bool m_bCivOccupant; // 0x41
-	bool m_bRecievingNewHuntTarget; // 0x42
-	bool m_bLockdownEnforcer; // 0x43
-};
-
-// 0x0000000142A9B758 (Size: 0x18)
-class SCondition_HasCustomInvestigationAckSoundDef :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-};
-
-// 0x0000000142A796F0 (Size: 0x8)
-class ICharacterMovementState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE21E0 (Size: 0x40)
-class SRegionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nIndex; // 0x0
-	CrowdRegionType m_eType; // 0x4
-	float4 m_vCenter; // 0x10
-	float32 m_nDirection; // 0x20
-	float32 m_nRadius; // 0x24
-	uint32 m_nAngle; // 0x28
-	float32 m_nLifetime; // 0x2C
-	float32 m_nAge; // 0x30
-	uint8 m_nGroupID; // 0x34
-	int16 m_nObstacleActorIndex; // 0x36
-};
-
-// 0x0000000142AE2608 (Size: 0x8)
-class IFloat3CurvesEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AD5AB0 (Size: 0x1)
-class BoneId
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000143E60828 (Size: 0x90)
-class SGameplayRenderablesSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SLightSaveData> m_aLightData; // 0x0
-	TArray<SRenderMaterialSaveData> m_aMaterialData; // 0x18
-	TArray<SParticleEmitterSaveData> m_aParticleData; // 0x30
-	TArray<SBoneAttachSaveData> m_aBoneAttachData; // 0x48
-	TArray<SPostfilterParametersSaveData> m_aPostFilterParametersData; // 0x60
-	TArray<SGateSaveData> m_aGateData; // 0x78
-};
-
-// 0x0000000142A91F60 (Size: 0x30)
-class SPrivateAreaSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsInside; // 0x0
-	bool m_nHasEntered; // 0x1
-	bool m_bHasExited; // 0x2
-	bool m_bSpotted; // 0x3
-	float4 m_vHitmanEnterPosition; // 0x10
-	float4 m_vHitmanExitPosition; // 0x20
-};
-
-// 0x0000000142AA5388 (Size: 0x18)
-class SWorldSpaceSettings
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 fCloseupDistance; // 0x0
-	float32 fScale; // 0x4
-	bool bDynamicScale; // 0x8
-	float32 fDynamicScaleAlpha; // 0xC
-	float32 fDynamicScaleNearDistance; // 0x10
-	float32 fDynamicScaleBlendRange; // 0x14
-};
-
-// 0x0000000142A7A930 (Size: 0x8)
-class ISituation
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9FC10 (Size: 0x1)
-class SExitSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bEnabled; // 0x0
-};
-
-// 0x0000000142AB3748 (Size: 0x30)
-class SHintManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SHintEntrySaveData m_activeHint; // 0x0
-	TArray<SHintEntrySaveData> m_aQueue; // 0x10
-	bool m_bIsRunning; // 0x28
-};
-
-// 0x0000000142AF4AE8 (Size: 0x8)
-class IBaseConstraint :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE2548 (Size: 0x8)
-class IFloatCurveEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AB0A70 (Size: 0xC)
-class SProgressTimerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 m_nInterval; // 0x0
-	int32 m_nRemaining; // 0x4
-	bool m_bValue; // 0x8
-};
-
-// 0x0000000142A935F0 (Size: 0x8)
-class IValueIntSet :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8BC70 (Size: 0x40)
+// 0x0000000142A9A298 (Size: 0x40)
 class SAvoidDangerousAreaGroupSaveData
 {
 public:
@@ -18481,8 +17651,23 @@ public:
 	bool m_bWaitUntilDangerEnds; // 0x34
 };
 
-// 0x0000000142A79588 (Size: 0x8)
-class ITransitionTarget :
+// 0x0000000142A90EE8 (Size: 0x38)
+class SStashPointSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_arItems; // 0x0
+	uint32 m_pSuitcase; // 0x18
+	uint32 m_pMainItem; // 0x1C
+	EStashpointContainedEntityType m_eContainedType; // 0x20
+	ZRepositoryID m_MainItemID; // 0x28
+};
+
+// 0x0000000142A87708 (Size: 0x8)
+class ISpeakEventListener :
 	public IComponentInterface
 {
 public:
@@ -18492,294 +17677,8 @@ public:
 
 };
 
-// 0x0000000143E61DD8 (Size: 0x2)
-class SLightFlickerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bLightOn; // 0x0
-	bool m_bFlickerOn; // 0x1
-};
-
-// 0x0000000142A797B0 (Size: 0x8)
-class ICharacterArrestState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9BAA0 (Size: 0x24)
-class SCondition_MinActualDistance2D :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_From; // 0x10
-	ZBehaviorTreeVariable m_To; // 0x18
-	float32 m_Distance; // 0x20
-};
-
-// 0x0000000142A7BDC0 (Size: 0x8)
-class ISequenceTarget
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE3708 (Size: 0x58)
-class STemplateEntityFactory
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 subType; // 0x0
-	int32 blueprintIndexInResourceHeader; // 0x4
-	int32 rootEntityIndex; // 0x8
-	TArray<STemplateFactorySubEntity> subEntities; // 0x10
-	TArray<SEntityTemplatePropertyOverride> propertyOverrides; // 0x28
-	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x40
-};
-
-// 0x0000000142A9AEB8 (Size: 0x18)
-class SCondition_CanInvestigateDistraction :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-};
-
-// 0x0000000142AA0090 (Size: 0x48)
-class ZContractEvaluationContext
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A79780 (Size: 0x8)
-class ICharacterFriskingState :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B7D0 (Size: 0x1C)
-class SCondition_IsSharedEventCurrent :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EAISharedEventType type; // 0x18
-};
-
-// 0x0000000142A9AF00 (Size: 0x1C)
-class SCondition_IsHighestPriorityTypeToInvestigate :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable target; // 0x10
-	EAIEventType distractionType; // 0x18
-};
-
-// 0x0000000142AEEA60 (Size: 0x8)
-class ISequenceValueSource :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A91B50 (Size: 0x4)
-class SEscortSituationActors
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000142A9A428 (Size: 0x80)
-class S25DProjectionSettings
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	float32 fNearDistance; // 0x0
-	float32 fFarDistance; // 0x4
-	float32 fNearScale; // 0x8
-	float32 fFarScale; // 0xC
-	float32 fNearFov; // 0x10
-	float32 fFarFov; // 0x14
-	float32 fNearScaleFov; // 0x18
-	float32 fFarScaleFov; // 0x1C
-	float32 fScaleFactor; // 0x20
-	float32 fNearAlpha; // 0x24
-	float32 fFarAlpha; // 0x28
-	float32 fAlphaFactor; // 0x2C
-	TArray<S25DProjectionSettingsCurveEntry> aScaleCurve; // 0x30
-	TArray<S25DProjectionSettingsCurveEntry> aAlphaCurve; // 0x48
-	EViewportLock eViewportLock; // 0x60
-	float32 fViewportGutter; // 0x64
-	SWorldSpaceSettings sWorldSpaceSettings; // 0x68
-};
-
-// 0x0000000142A9A9C0 (Size: 0x8)
-class IDramaPriorityModifier :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7A828 (Size: 0x70)
-class ZEscortOutOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B8D8 (Size: 0x20)
-class SCondition_IsSituationTarget :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-	ZBehaviorTreeVariable target; // 0x18
-};
-
-// 0x0000000142AB0C40 (Size: 0x8)
-class STokenID
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_iValue; // 0x0
-	bool m_bValid; // 0x4
-};
-
-// 0x0000000142A9B2D8 (Size: 0x1C)
-class SCondition_IsOfActorRole :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-	EActorRole eRole; // 0x18
-};
-
-// 0x0000000142A88450 (Size: 0x8)
-class IProjectile :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B7E8 (Size: 0x14)
-class SCondition_SharedEventCurrent :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EAISharedEventType type; // 0x10
-};
-
-// 0x0000000142A8C0F0 (Size: 0x80)
-class ZMoveToOrder :
-	public ZSituationOrder
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AF4B88 (Size: 0x8)
-class IKinematicLinkedPhysicsEntity :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x00000001422CAD40 (Size: 0x8)
-class IActor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE1E50 (Size: 0x10)
-class SCrowdActivitySaveData
+// 0x0000000142A880F0 (Size: 0x1)
+class SDisguiseZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18787,39 +17686,10 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	bool m_bEnabled; // 0x0
-	EGait m_eGait; // 0x4
-	float32 m_nMaxEnterDelaySec; // 0x8
-	float32 m_nMaxLeaveDelaySec; // 0xC
 };
 
-// 0x0000000142A91DF0 (Size: 0x3)
-class SSCCuriousConfiguration
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_CanGuardsInvestigate; // 0x0
-	bool m_CanCiviliansInvestigate; // 0x1
-	bool m_CanVIPsInvestigate; // 0x2
-};
-
-// 0x0000000142A8C2A0 (Size: 0xC)
-class SHandleDistractionSituationSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_pLeader; // 0x0
-	uint32 m_pAssistant; // 0x4
-	uint32 m_pPreliminaryLeader; // 0x8
-};
-
-// 0x00000001422CAD88 (Size: 0x8)
-class IAccessoryItem :
+// 0x0000000142A95838 (Size: 0x8)
+class ICloset :
 	public IComponentInterface
 {
 public:
@@ -18829,7 +17699,18 @@ public:
 
 };
 
-// 0x0000000142A9B770 (Size: 0x18)
+// 0x00000001422D6D20 (Size: 0x8)
+class IBoolCondition :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8598 (Size: 0x18)
 class SCondition_BeingPickedUpBy :
 	public SConditionBase
 {
@@ -18841,8 +17722,9 @@ public:
 	ZBehaviorTreeVariable item; // 0x10
 };
 
-// 0x0000000142A92C00 (Size: 0x8)
-class ISoundMaterialDescriptor
+// 0x0000000142AA7B60 (Size: 0x10)
+class SCondition_AreBehaviorsDisabled :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18851,8 +17733,56 @@ public:
 
 };
 
-// 0x00000001422C9F10 (Size: 0x8)
-class IHM5ActionEntityListener :
+// 0x0000000142ABDA40 (Size: 0x30)
+class STimerEntitiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<STimerEntitySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142ABDA70 (Size: 0x30)
+class SRandomTimerEntitiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142ABD980 (Size: 0xA8)
+class STimerManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	STimerEntitiesSaveData m_TimersData; // 0x0
+	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
+	SGameTimersSaveData m_GameTimersData; // 0x60
+};
+
+// 0x0000000142AACA40 (Size: 0x1)
+class SExitSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+};
+
+// 0x0000000142B01280 (Size: 0x8)
+class ID6Constraint :
 	public IComponentInterface
 {
 public:
@@ -18862,78 +17792,8 @@ public:
 
 };
 
-// 0x0000000142A9B1A0 (Size: 0x10)
-class SCondition_Breakpoint :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B950 (Size: 0x1C)
-class SCondition_MinSituationAge :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable situation; // 0x10
-	float32 fMinAge; // 0x18
-};
-
-// 0x0000000142A884A0 (Size: 0x4)
-class SClothBundleSpawnSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rClothbundle; // 0x0
-};
-
-// 0x0000000142A9B008 (Size: 0x18)
-class SCondition_PerceptibleEntityEndAfterReact :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable entity; // 0x10
-};
-
-// 0x0000000142A972D0 (Size: 0x18)
-class SMathDistanceSaveData_SVector3
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 m_fA; // 0x0
-	SVector3 m_fB; // 0xC
-};
-
-// 0x0000000142AB1CD0 (Size: 0x18)
-class SWorldInventoryInstanceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	TArray<SItemInstanceSaveData> m_aItemInstanceSaveData; // 0x0
-};
-
-// 0x0000000143E5F9A8 (Size: 0x8)
-class IBoneWeightEntity :
+// 0x00000001422D6BD0 (Size: 0x8)
+class IBoolConditionListener :
 	public IComponentInterface
 {
 public:
@@ -18943,8 +17803,637 @@ public:
 
 };
 
-// 0x0000000142A9B2A8 (Size: 0x1C)
-class SCondition_IsOfActorType :
+// 0x0000000142AA8478 (Size: 0x18)
+class SCondition_SuspiciousWeaponPickedUp :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000143E70BC8 (Size: 0x48)
+class SEntityPinDescriptor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString sName; // 0x0
+	ZString sDisplayName; // 0x10
+	ZResourceID type; // 0x20
+	ZString sHelpText; // 0x30
+	bool bIsPlaceholder; // 0x40
+	bool bIsHidden; // 0x41
+};
+
+// 0x00000001422D7A90 (Size: 0x8)
+class IActorProxy :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA83B8 (Size: 0x18)
+class SCondition_OnlyLegalWeaponsDropped :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000142AA67C8 (Size: 0x8)
+class IHM5WeaponInventory
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AF04C0 (Size: 0x18)
+class SCppEntitySubsetInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString name; // 0x0
+	uint32 flags; // 0x10
+};
+
+// 0x0000000142AB6898 (Size: 0x20)
+class ZAnimationBonePose :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86858 (Size: 0x8)
+class IHM5CCPostFilterManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A862B8 (Size: 0x8)
+class ICharacterTransformState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8508 (Size: 0x18)
+class SCondition_Owner :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+};
+
+// 0x0000000142AA8328 (Size: 0x1C)
+class SCondition_AreVisibleItemsLegal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
+};
+
+// 0x0000000142A87FE0 (Size: 0x18)
+class SCrowdAIEventSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SRunningCrowdAIEventSaveData> m_RunningEvents; // 0x0
+};
+
+// 0x0000000142AA85C8 (Size: 0x18)
+class SCondition_IsNotSuitcase :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable items; // 0x10
+};
+
+// 0x0000000143E6CB90 (Size: 0x8)
+class IHighResCutsceneEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E6E6E8 (Size: 0x8)
+class ISequenceTrackGroup :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB1BB8 (Size: 0x18)
+class SAttentionHUDUIElementArray_Dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SAttentionHUDUIElement> dummy; // 0x0
+};
+
+// 0x0000000142A876A8 (Size: 0x8)
+class ISceneEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A885A8 (Size: 0x18)
+class STrespassingRuleEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<bool> m_aAllowedProfessionsDisabled; // 0x0
+};
+
+// 0x0000000142A88B60 (Size: 0x8)
+class ISequenceTarget
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000143E70CD0 (Size: 0x140)
+class SEntityTypeDescriptor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString typeName; // 0x0
+	bool anyPlatformSpecificPropertiesRecursive; // 0x10
+	TMultiMap<ZString,ZString> attributeOverrides; // 0x18
+	TMultiMap<ZString,SExposedTypeInfo> exposedTypes; // 0x40
+	ZResourceID typeSourceTemplate; // 0x68
+	ZResourceID runtimeType; // 0x78
+	ZResourceID runtimeBlueprint; // 0x88
+	TArray<ZString> supportedTypes; // 0x98
+	TArray<SEntityPropertyDescriptor> properties; // 0xB0
+	TArray<SEntityPinDescriptor> inputPins; // 0xC8
+	TArray<SEntityPinDescriptor> outputPins; // 0xE0
+	TArray<SExposedEntityDescriptor> exposedEntities; // 0xF8
+	TArray<ZResourceID> referencedEntityTypes; // 0x110
+	TArray<SExposedEntityTypeDescriptor> exposedEntitiesTypes; // 0x128
+};
+
+// 0x0000000142AA84F0 (Size: 0x18)
+class SCondition_GetItemBeingThrownBy :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable character; // 0x10
+};
+
+// 0x0000000142A86390 (Size: 0x8)
+class ICharacterCollision :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9FE88 (Size: 0x8)
+class IAnimlayerSubactionInterface :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA84D8 (Size: 0x18)
+class SCondition_ThrownBy :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+};
+
+// 0x0000000142A9A2B0 (Size: 0x1E8)
+class ZCautiousBackupGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB4678 (Size: 0x8)
+class IKeywordCalculatorProxy :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AC13C0 (Size: 0x8)
+class IValueVector2Set :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A88908 (Size: 0x1)
+class SPIPMessageManagerProxySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+};
+
+// 0x0000000142AE29D0 (Size: 0x1)
+class BoneId
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A87648 (Size: 0x80)
+class ZCombatOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AC1408 (Size: 0x8)
+class IValueVector3Set :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A98050 (Size: 0x8)
+class IRemoteControlEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9D130 (Size: 0x8)
+class IPlaneEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A90EA8 (Size: 0x4)
+class SActorAliveConditionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA63A0 (Size: 0x8)
+class ILookAtTriggerEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABDB20 (Size: 0x8)
+class STokenID
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_iValue; // 0x0
+	bool m_bValid; // 0x4
+};
+
+// 0x0000000142A9A250 (Size: 0x128)
+class ZAccidentObserversGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8118 (Size: 0x10)
+class SCondition_IsActorRoleBodyguard :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8AD0 (Size: 0x8)
+class SConversationEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EConversationRole m_role; // 0x0
+	EActorSoundDefs m_sound; // 0x4
+};
+
+// 0x0000000142AF1790 (Size: 0x8)
+class IBoundedPlaneEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA0458 (Size: 0xA8)
+class ZStateEarlyoutBase :
+	public ZCharacterStateBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AFBAA0 (Size: 0x8)
+class IAnimResourceEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB9F98 (Size: 0x18)
+class SContractConfigResourceEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZString Id; // 0x0
+	ZRuntimeResourceID ContractRid; // 0x10
+};
+
+// 0x0000000142ABEC40 (Size: 0x1)
+class SItemSpawnerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bItemUpdateTransformChange; // 0x0
+};
+
+// 0x0000000142A862D0 (Size: 0x8)
+class IBaseCharacter :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA81D8 (Size: 0x18)
+class SCondition_CausedBy :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable causalnode; // 0x10
+};
+
+// 0x0000000142AF17A8 (Size: 0x8)
+class ITriggerListener
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A96C58 (Size: 0x8)
+class ILocationSurface :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB1A58 (Size: 0x10)
+class SItemLeftHandUIData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZRuntimeResourceID icon; // 0x0
+	int32 nItemHUDType; // 0x8
+	bool bHasItemToShow; // 0xC
+	bool bSuspicious; // 0xD
+	bool bIllegal; // 0xE
+};
+
+// 0x0000000143F1E128 (Size: 0x18)
+class SBoneScalesList
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SVector3> m_aBoneScales; // 0x0
+};
+
+// 0x00000001422D5D28 (Size: 0x18)
+class ZER64
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint64 m_nEntityID; // 0x0
+	ZString m_sExposedEntity; // 0x8
+};
+
+// 0x0000000142AF0948 (Size: 0x18)
+class SFooStruct
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_eTest; // 0x0
+	ZString m_sOther; // 0x8
+};
+
+// 0x0000000142AA8520 (Size: 0x18)
+class SCondition_PreviousOwner :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable item; // 0x10
+};
+
+// 0x0000000142A97258 (Size: 0x8)
+class SChairSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+	bool m_bAttached; // 0x4
+};
+
+// 0x0000000142AA7F38 (Size: 0x20)
+class SCondition_MinExpired :
 	public SConditionBase
 {
 public:
@@ -18953,12 +18442,13 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	ZBehaviorTreeVariable entity; // 0x10
-	EActorType type; // 0x18
+	EAIEventType type; // 0x18
+	float32 time; // 0x1C
 };
 
-// 0x0000000142A93440 (Size: 0x8)
-class IBoxVolumeEntity :
-	public ITriggerVolume
+// 0x0000000142B012E0 (Size: 0x8)
+class IFixedConstraint :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18967,8 +18457,59 @@ public:
 
 };
 
-// 0x0000000142AF33D0 (Size: 0x8)
-class INetRelevancy
+// 0x0000000142AA0CB0 (Size: 0x38)
+class SCombatMetricsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_CombatProgress; // 0x0
+	TArray<uint32> m_DeadVIPsOrContractTargets; // 0x8
+	TArray<uint32> m_DiscoveredVIPOrContractTargetBodies; // 0x20
+};
+
+// 0x0000000142A9AF00 (Size: 0x4)
+class SMovementDrainPipeSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rDrainPipe; // 0x0
+};
+
+// 0x0000000142AA8658 (Size: 0x20)
+class SCondition_MaxSharedEventExpired :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAISharedEventType type; // 0x18
+	float32 time; // 0x1C
+};
+
+// 0x0000000143E6ED38 (Size: 0x2)
+class SLightFlickerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bLightOn; // 0x0
+	bool m_bFlickerOn; // 0x1
+};
+
+// 0x0000000142AA7DE8 (Size: 0x10)
+class SCondition_IsDistracted :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18977,34 +18518,61 @@ public:
 
 };
 
-// 0x0000000142A96F80 (Size: 0x18)
-class SChallengesSaveData
+// 0x0000000142AA24F8 (Size: 0x30)
+class SActorStandInEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SActorStandInSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142A8BD60 (Size: 0x28)
-class SDetectedInPrivateGroupSaveData
+// 0x0000000142AA7F08 (Size: 0x18)
+class SCondition_Current :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	SFSMSaveData m_fsmState; // 0x0
-	float32 m_fTimeWaiting; // 0x18
-	uint32 m_rLead; // 0x1C
-	bool m_bDisbanded; // 0x20
-	bool m_bFirstWait; // 0x21
-	int32 m_target; // 0x24
+	EAIEventType type; // 0x10
+	int32 nAndUnhandled; // 0x14
 };
 
-// 0x00000001422C8ED0 (Size: 0x20)
+// 0x00000001422D5C70 (Size: 0x20)
+class ZBitArray
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint8> m_aBytes; // 0x0
+	uint32 m_nSize; // 0x18
+};
+
+// 0x0000000142B1B1D8 (Size: 0xD0)
+class SReasoningGrid
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SGWaypoint> m_WaypointList; // 0x0
+	ZBitArray m_LowVisibilityBits; // 0x18
+	ZBitArray m_HighVisibilityBits; // 0x38
+	SGProperties m_Properties; // 0x60
+	uint32 m_nNodeCount; // 0x90
+	TArray<uint8> m_pVisibilityData; // 0x98
+	ZBitArray m_deadEndData; // 0xB0
+};
+
+// 0x00000001422D5C50 (Size: 0x20)
 class SDynamicObjectKeyValuePair
 {
 public:
@@ -19016,8 +18584,8 @@ public:
 	ZDynamicObject value; // 0x10
 };
 
-// 0x0000000142A9AF60 (Size: 0x18)
-class SCondition_IsDistractionNewerThanCurrentOne :
+// 0x0000000142AA8490 (Size: 0x1C)
+class SCondition_OnlyLegalItemsPickedUp :
 	public SConditionBase
 {
 public:
@@ -19025,109 +18593,12 @@ public:
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	ZBehaviorTreeVariable distraction; // 0x10
+	ZBehaviorTreeVariable actor; // 0x10
+	int32 includeWeapons; // 0x18
 };
 
-// 0x0000000142A99EF8 (Size: 0xA0)
-class ZInteractionGuideData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142AE3750 (Size: 0x20)
-class SCppEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	int32 blueprintIndexInResourceHeader; // 0x0
-	TArray<SEntityTemplateProperty> propertyValues; // 0x8
-};
-
-// 0x0000000142A9ADF8 (Size: 0x18)
-class SCondition_CombatSituationsThatCanDiscardCombatants :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	ZBehaviorTreeVariable m_CombatSituations; // 0x10
-};
-
-// 0x0000000142A8E160 (Size: 0x50)
-class SMovementCoverSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rCoverPlane; // 0x0
-	uint32 m_nCoverAnimNodeID; // 0x4
-	bool m_bLeftSideFacing; // 0x8
-	bool m_bCrouched; // 0x9
-	SMatrix m_mPositionInCover; // 0x10
-};
-
-// 0x0000000142A935C0 (Size: 0xA8)
-class ZStateEarlyoutBase :
-	public ZCharacterStateBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A9B050 (Size: 0x10)
-class SCondition_FindSuitcaseAssitanceForCivilian :
-	public SConditionBase
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A7A258 (Size: 0x18)
-class SAnimatedActorOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	EActorAnimationOrder m_eOrderType; // 0x0
-	ZVariant m_OrderData; // 0x8
-};
-
-// 0x0000000142A8AFD8 (Size: 0x28)
-class SActorTagManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bContractsCreationMode; // 0x0
-	int32 m_nTagCount; // 0x4
-	int32 m_nMaxTagCount; // 0x8
-	bool m_bTaggingEnabled; // 0xC
-	TArray<SActorTagSaveData> m_aActorTagData; // 0x10
-};
-
-// 0x0000000142A79AF8 (Size: 0x8)
-class IHM5CCPostFilterManager :
+// 0x0000000142B012B0 (Size: 0x8)
+class IDistanceConstraint :
 	public IComponentInterface
 {
 public:
@@ -19137,8 +18608,67 @@ public:
 
 };
 
-// 0x00000001422C9CB8 (Size: 0x8)
-class IAIGameplayConcept :
+// 0x0000000142AA1300 (Size: 0x4)
+class SActorProxySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA2530 (Size: 0x30)
+class SActorProxiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SActorProxySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142AA25A0 (Size: 0x30)
+class SItemKeywordProxiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SItemKeywordProxySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142AA2760 (Size: 0x30)
+class STrapsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SItsATrapSaveData> m_aData; // 0x18
+};
+
+// 0x0000000142AA8208 (Size: 0x14)
+class SCondition_HasGoal :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EAIGoal type; // 0x10
+};
+
+// 0x0000000142A86870 (Size: 0x20)
+class ZHM5SequenceSkipManager :
 	public IComponentInterface
 {
 public:
@@ -19148,50 +18678,45 @@ public:
 
 };
 
-// 0x0000000142AED680 (Size: 0x60)
-class SLocalizedVideoData
+// 0x0000000143E6DCA8 (Size: 0x48)
+class SPersistentEntitySaveDataList
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<ZString> AudioLanguages; // 0x0
-	TArray<ZRuntimeResourceID> VideoRidsPerAudioLanguage; // 0x18
-	TArray<ZString> SubtitleLanguages; // 0x30
-	TArray<ZString> SubtitleMarkupsPerLanguage; // 0x48
+	TArray<SPersistentEntitySaveData> m_aEntityDatas; // 0x0
+	TArray<uint64> m_mDynamicObjectIDGenerationKeys; // 0x18
+	TArray<uint64> m_mDynamicObjectIDGenerationValues; // 0x30
 };
 
-// 0x0000000142A94EB8 (Size: 0x18)
-class SSituationConversationGroupSaveData
+// 0x0000000142AA8178 (Size: 0x18)
+class SCondition_IsActorConscious :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	TArray<uint32> m_members; // 0x0
+	ZBehaviorTreeVariable m_Actors; // 0x10
 };
 
-// 0x0000000143E61DF0 (Size: 0x18)
-class SStepCounterEntitySaveData
+// 0x0000000142AA8B00 (Size: 0x20)
+class SConversationPart
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	float32 m_nIndex; // 0x0
-	int32 m_nLoopIndex; // 0x4
-	bool m_bFirst; // 0x8
-	bool m_bEnabled; // 0x9
-	float32 m_nCountFrom; // 0xC
-	float32 m_nCountTo; // 0x10
-	float32 m_nStepSize; // 0x14
+	float32 m_chance; // 0x0
+	TArray<SConversationEntry> m_entries; // 0x8
 };
 
-// 0x0000000142A88408 (Size: 0x8)
-class IEntityGroupTargetProxy :
+// 0x0000000142AA77E8 (Size: 0x8)
+class IDramaPriorityModifier :
 	public IComponentInterface
 {
 public:
@@ -19201,57 +18726,7 @@ public:
 
 };
 
-// 0x0000000142A91668 (Size: 0x1)
-class SAIPerceptibleEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bPerceptibleEnabled; // 0x0
-};
-
-// 0x0000000142A91E18 (Size: 0x20)
-class SBodybagBoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector4 mQuaterion; // 0x0
-	SVector4 mTranslation; // 0x10
-};
-
-// 0x0000000142A91E48 (Size: 0x58)
-class SBodybagSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	SVector3 m_vLinkedPosition; // 0x0
-	SVector4 m_vLinkedQuaternionRotation; // 0xC
-	TArray<SBodybagBoneSaveData> m_aBones; // 0x20
-	TArray<uint32> m_aBoneIndices; // 0x38
-	uint32 m_rDeadActor; // 0x50
-	bool m_IsInMorgue; // 0x54
-};
-
-// 0x0000000142A91E60 (Size: 0x1)
-class SDangerousAreaSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bDangerous; // 0x0
-};
-
-// 0x0000000142A88618 (Size: 0x78)
+// 0x0000000142A953A8 (Size: 0x78)
 class SHitmanSaveData
 {
 public:
@@ -19273,95 +18748,8 @@ public:
 	bool m_bIsChangingClothes; // 0x71
 };
 
-// 0x0000000142A79528 (Size: 0x8)
-class IHM5BaseCharacter :
-	public IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A88438 (Size: 0x8)
-class IHM5Projectile :
-	public IProjectile
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-};
-
-// 0x0000000142A8D428 (Size: 0x6)
-class SSecuritySystemCameraSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint16 m_nEscalation; // 0x0
-	bool m_bIsFunctional; // 0x2
-	bool m_bHasEnteredOnce; // 0x3
-	bool m_bWasInvestigated; // 0x4
-	bool m_bDestroyed; // 0x5
-};
-
-// 0x0000000142A7B2F0 (Size: 0x14)
-class SCrowdReactionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_nNumPacify; // 0x0
-	uint32 m_nNumShotsFired; // 0x4
-	uint32 m_nNumDeaths; // 0x8
-	uint32 m_nNumScared; // 0xC
-	bool m_bWarzoneSpawned; // 0x10
-};
-
-// 0x0000000142A8D530 (Size: 0x8)
-class SActorItemActionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_rActor; // 0x0
-	uint32 m_rItem; // 0x4
-};
-
-// 0x00000001422CA528 (Size: 0x4)
-class SActorVisibilityConditionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	uint32 m_pActor; // 0x0
-};
-
-// 0x0000000142A8D700 (Size: 0x2)
-class SDramaControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
-
-	bool m_bIsStartCondValid; // 0x0
-	bool m_bIsEnableCondValid; // 0x1
-};
-
-// 0x0000000142A8F8A8 (Size: 0x4)
-class SEscortSituation2Actors
+// 0x0000000142A9E9D8 (Size: 0x4)
+class SHeroEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19371,8 +18759,21 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142A8CE58 (Size: 0x8)
-class IDramaFlowControl :
+// 0x0000000142AC08D0 (Size: 0xC)
+class SCharacterSpeakEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fSeekPosition; // 0x0
+	uint32 m_nRandomSelectionSeed; // 0x4
+	bool m_bWereSubtitlesSeen; // 0x8
+};
+
+// 0x0000000143E6CB60 (Size: 0x8)
+class IFogBoxEntity :
 	public IComponentInterface
 {
 public:
@@ -19382,7 +18783,19 @@ public:
 
 };
 
-// 0x0000000142A8F790 (Size: 0x8)
+// 0x0000000142AA7DA0 (Size: 0x18)
+class SCondition_ShouldDistractionDiscardNewOcurrences :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable distraction; // 0x10
+};
+
+// 0x0000000142A9B6D8 (Size: 0x8)
 class ISituationListener :
 	public IComponentInterface
 {
@@ -19393,29 +18806,599 @@ public:
 
 };
 
-// 0x0000000142A8FAC8 (Size: 0x1)
-class SEventChannelSaveData
+// 0x0000000142AA8778 (Size: 0x1C)
+class SCondition_MinSituationAge :
+	public SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	bool m_bEnabled; // 0x0
+	ZBehaviorTreeVariable situation; // 0x10
+	float32 fMinAge; // 0x18
 };
 
-// 0x00000001422CA780 (Size: 0x4)
-class SHeroItemAttachmentSaveData
+// 0x0000000142A9A340 (Size: 0x1F0)
+class ZCautiousVIPGroup :
+	public ZSituationGroup
 {
 public:
 	static ZHMTypeInfo TypeInfo;
 	static nlohmann::json ToJson(void* p_Object);
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
-	uint32 m_rItem; // 0x0
 };
 
-// 0x0000000142A8D460 (Size: 0x2)
+// 0x0000000142B01AA8 (Size: 0x8)
+class IKinematicLinkedPhysicsEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AF0088 (Size: 0x30)
+class ZEntitySingletonManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AFFDD8 (Size: 0x108)
+class ZGameLobbyManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A86558 (Size: 0x8)
+class ICharacterLocationState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142B01310 (Size: 0x8)
+class IHingeConstraint :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8808 (Size: 0x24)
+class SCondition_IsSituationOlderThanSharedEvent :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+	ZBehaviorTreeVariable entity; // 0x18
+	EAISharedEventType eSharedEvent; // 0x20
+};
+
+// 0x0000000142A95248 (Size: 0x8)
+class SHeroCameraStandInSaveState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rHero; // 0x0
+	bool m_bPaused; // 0x4
+};
+
+// 0x0000000142B01478 (Size: 0x8)
+class ICollisionShapeListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9C510 (Size: 0x8)
+class IEditorUpdateSupplier :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A748 (Size: 0x1)
+class SPatrolOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A490 (Size: 0x1B0)
+class ZSentryGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A918F8 (Size: 0x8)
+class IShatterSystem :
+	public IDynamicPhysics
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7E48 (Size: 0x18)
+class SCondition_PerceptibleEntityEndAfterMoveTo :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+};
+
+// 0x0000000142AB1DF8 (Size: 0x18)
+class SIntelListDisplayInfoArray_dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SIntelListDisplayInfo> dummy; // 0x0
+};
+
+// 0x0000000142AB4280 (Size: 0x8)
+class IKeywordHolderListener :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9DA60 (Size: 0x8)
+class IShootTargetEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A4A8 (Size: 0x38)
+class SSentryGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	uint32 m_rTarget; // 0x0
+	uint32 m_pLeader; // 0x4
+	uint32 m_rSentryZone; // 0x8
+	ZGameTime m_tLastEscalateOrder; // 0x10
+	SFSMSaveData m_fsmState; // 0x18
+	ESentryActionPrompt m_eActionPrompt; // 0x30
+	bool m_bRequestedAction; // 0x34
+	bool m_bShowingWarning; // 0x35
+};
+
+// 0x0000000142AA7B48 (Size: 0x18)
+class SCondition_IsAccidentBystandingGuardSearching :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
+};
+
+// 0x0000000142AA0278 (Size: 0x8)
+class IBoxVolumeEntity :
+	public ITriggerVolume
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A90D10 (Size: 0x8)
+class IRenderMaterialEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A90130 (Size: 0x8)
+class IBoneAnimator
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A876D8 (Size: 0x8)
+class IWaypoint :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142ABF448 (Size: 0x8)
+class IGameSoundManager :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D7AC0 (Size: 0x8)
+class IActor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8628 (Size: 0x1C)
+class SCondition_IsSharedEventExpired :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EAISharedEventType type; // 0x18
+};
+
+// 0x0000000142A9A3A0 (Size: 0x1E8)
+class ZFriskSuspectGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A9A370 (Size: 0x1D0)
+class ZDetectedInPrivateGroup :
+	public ZSituationGroup
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB14F0 (Size: 0x18)
+class SActionRadialArcDisplayInfoArray_dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SActionRadialArcDisplayInfo> dummy; // 0x0
+};
+
+// 0x0000000142A864E0 (Size: 0x8)
+class ICharacterFriskingState :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8958 (Size: 0x1C)
+class SCondition_IsDistanceFromKnownToActualGreaterThan :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable knownEntity; // 0x10
+	float32 distance; // 0x18
+};
+
+// 0x0000000142AA3168 (Size: 0x30)
+class SInventoryMovementConfig
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	EInventoryConfigItemHandling m_eItemHandlingRightHand; // 0x0
+	EInventoryConfigItemHandling m_eItemHandlingLeftHand; // 0x4
+	EInventoryConfigFormerEquippedItems m_eFormerEquippedItems; // 0x8
+	EInventoryConfigCustomRule m_eCustomRule; // 0xC
+	bool m_bDropBackHolsteredItem; // 0x10
+	bool m_bSlowAnimation; // 0x11
+	bool m_bForceInstantInventoryChange; // 0x12
+	bool m_bCancelIfInventoryInUse; // 0x13
+	bool m_bSafeDrop; // 0x14
+	float4 m_vSafeDropPosition; // 0x20
+};
+
+// 0x0000000142A9A718 (Size: 0x80)
+class ZMoveToOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AC1438 (Size: 0x8)
+class IValueColorRGBSet :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA6D20 (Size: 0xA0)
+class ZInteractionGuideData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A87588 (Size: 0x70)
+class ZEscortOutOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA7D88 (Size: 0x18)
+class SCondition_IsDistractionNewerThanCurrentOne :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable distraction; // 0x10
+};
+
+// 0x0000000142AA83D0 (Size: 0x18)
+class SCondition_IllegalWeaponDropped :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable actor; // 0x10
+};
+
+// 0x0000000142AF02B0 (Size: 0x20)
+class ZEntityReference
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZEntityID m_EntityID; // 0x0
+	ZString m_sExposedEntity; // 0x10
+};
+
+// 0x0000000143E6C908 (Size: 0x8)
+class IBoneWeightEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AB1D80 (Size: 0x30)
+class SInventoryUICache
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	TArray<SInventoryUISlot> mainslots; // 0x0
+	TArray<SInventoryUISlot> otherslots; // 0x18
+};
+
+// 0x0000000142AA7FE0 (Size: 0x14)
+class SCondition_Trigger :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool bTriggered; // 0x10
+};
+
+// 0x0000000142AAF1E8 (Size: 0x10)
+class SHudMissionTimerControllerData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZGameTime m_fScoreGameTimeStart; // 0x0
+	bool m_bWasIntroCutFired; // 0x8
+};
+
+// 0x00000001422D7AF0 (Size: 0x8)
+class IAccessoryItem :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x00000001422D6B40 (Size: 0x8)
+class IItemBase :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AAF230 (Size: 0x1)
+class SHUDPIPControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bPiPEnabled; // 0x0
+};
+
+// 0x00000001422D5D58 (Size: 0x30)
+class ZScopedER64
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZER64 m_er64; // 0x0
+	TArray<uint64> m_aScopePath; // 0x18
+};
+
+// 0x0000000142A87618 (Size: 0x70)
+class ZApproachOrder :
+	public ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AEF4F8 (Size: 0x8)
+class IRemapCurveEntity :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA03B0 (Size: 0x8)
+class IHM5ForceMovementCallBack :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142A98E10 (Size: 0x2)
 class SSecuritySystemRecorderSaveData
 {
 public:
@@ -19427,8 +19410,32 @@ public:
 	bool m_bIsFunctional; // 0x1
 };
 
-// 0x0000000142A8EB00 (Size: 0x8)
-class IValueEntity
+// 0x0000000143E6E3D0 (Size: 0x80)
+class STrajectoryTrackSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	SMatrix m_vOriginalEntityTransform; // 0x0
+	SMatrix m_vTargetStartTransform; // 0x40
+};
+
+// 0x0000000142A9E478 (Size: 0x1)
+class SAIVisionBlockerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	bool m_bEnabled; // 0x0
+};
+
+// 0x0000000143E6CB78 (Size: 0x8)
+class IGIProbeEntity :
+	public IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19437,8 +19444,92 @@ public:
 
 };
 
-// 0x0000000142A84118 (Size: 0x4)
-class SActorAliveConditionSaveData
+// 0x00000001422D6BB8 (Size: 0x8)
+class IAIGameplayConcept :
+	public IComponentInterface
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA80E8 (Size: 0x1C)
+class SCondition_IsOfActorRank :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+	EActorRank rank; // 0x18
+};
+
+// 0x00000001422D5F50 (Size: 0x8)
+class IMetricValue
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA8028 (Size: 0x10)
+class SCondition_IsCombatDisabled :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+};
+
+// 0x0000000142AA0DC8 (Size: 0x10)
+class SActorIKControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	float32 m_fRightHandWeight; // 0x0
+	float32 m_fLeftHandWeight; // 0x4
+	float32 m_fRightHandTargetWeight; // 0x8
+	float32 m_fLeftHandTargetWeight; // 0xC
+};
+
+// 0x0000000142AA7E18 (Size: 0x18)
+class SCondition_HasCustomDistractionStndSoundDef :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable entity; // 0x10
+};
+
+// 0x0000000142AA87F0 (Size: 0x1C)
+class SCondition_SituationIsType :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable situation; // 0x10
+	ESituationType type; // 0x18
+};
+
+// 0x0000000142A9C748 (Size: 0x4)
+class SHeroEscortSituation2Actors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19446,5 +19537,17 @@ public:
 	static nlohmann::json ToSimpleJson(void* p_Object);
 
 	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA7CE0 (Size: 0x18)
+class SCondition_CanInvestigateDistraction :
+	public SConditionBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static nlohmann::json ToJson(void* p_Object);
+	static nlohmann::json ToSimpleJson(void* p_Object);
+
+	ZBehaviorTreeVariable target; // 0x10
 };
 
