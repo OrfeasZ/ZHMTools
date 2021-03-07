@@ -33,7 +33,7 @@ public:
 // Supported resource types need to be registered here.
 static std::unordered_map<std::string, IResourceConverter*> g_ResourceConverters = {
 	{ "TEMP", new ResourceConverter<STemplateEntityFactory>() },
-	//{ "TBLU", new ResourceConverter<STemplateEntityBlueprint>() },
+	{ "TBLU", new ResourceConverter<STemplateEntityBlueprint>() },
 	//{ "AIRG", new ResourceConverter<SReasoningGrid>() },
 	//{ "ASVA", new ResourceConverter<TArray<SPackedAnimSetEntry>>() },
 	{ "ATMD", new ResourceConverter<ZAMDTake>() },
