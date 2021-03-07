@@ -113,7 +113,11 @@
     <ClInclude Include="Src\Util\Base64.h" />
     <ClInclude Include="Src\Util\BinaryStream.h" />
     <ClInclude Include="Src\Util\PortableIntrinsics.h" />
+    <ClInclude Include="Src\ZHM\Hash.h" />
     <ClInclude Include="Src\ZHM\TArray.h" />
+    <ClInclude Include="Src\ZHM\THashMap.h" />
+    <ClInclude Include="Src\ZHM\TMap.h" />
+    <ClInclude Include="Src\ZHM\TPair.h" />
     <ClInclude Include="Src\ZHM\ZHMCustomTypes.h" />
     <ClInclude Include="Src\ZHM\ZHMPrimitives.h" />
     <ClInclude Include="Src\ZHM\ZHMTypeInfo.h" />

@@ -6,10 +6,29 @@
 #include <string_view>
 
 #include <Util/PortableIntrinsics.h>
+#include <External/json.hpp>
 
 class ZString
 {
 public:
+	static nlohmann::json ToJson(void* p_Object)
+	{
+		auto s_Object = static_cast<ZString*>(p_Object);
+
+		nlohmann::json s_Json = s_Object->c_str();
+
+		return s_Json;
+	}
+
+	static nlohmann::json ToSimpleJson(void* p_Object)
+	{
+		auto s_Object = static_cast<ZString*>(p_Object);
+
+		nlohmann::json s_Json = s_Object->c_str();
+
+		return s_Json;
+	}
+	
 	inline ZString() :
 		m_nLength(0x80000000),
 		m_pChars(const_cast<char*>(""))

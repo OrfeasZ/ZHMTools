@@ -1,11 +1,18 @@
 #pragma once
 
 #include <cstdint>
-#include <cstdlib>
 
-#include <Util/PortableIntrinsics.h>
+template <class T>
+class TIterator
+{
+protected:
+	TIterator(T* p_Current) : m_pCurrent(p_Current) {}
+	
+public:
+	T* m_pCurrent;
+};
 
-template<typename T>
+template <class T>
 class TArray
 {
 public:
@@ -32,14 +39,13 @@ public:
 
 		if (m_pBegin == nullptr)
 		{
-			m_pBegin = static_cast<T*>(c_aligned_alloc(sizeof(T) * p_Size, alignof(T)));
+			m_pBegin = reinterpret_cast<T*>(malloc(sizeof(T) * p_Size));
 			m_pEnd = m_pBegin + p_Size;
 			m_pAllocationEnd = m_pEnd;
 			return;
 		}
 
-		// TODO: Redo this without realloc and proper alignment.
-		m_pBegin = static_cast<T*>(realloc(m_pBegin, sizeof(T) * p_Size));
+		m_pBegin = reinterpret_cast<T*>(realloc(m_pBegin, sizeof(T) * p_Size));
 		m_pEnd = m_pBegin + p_Size;
 		m_pAllocationEnd = m_pEnd;
 	}
@@ -53,7 +59,7 @@ public:
 
 		if (!fitsInline() || !hasInlineFlag())
 			free(m_pBegin);
-
+		
 		m_pBegin = m_pEnd = m_pAllocationEnd = nullptr;
 	}
 
@@ -61,7 +67,7 @@ public:
 	{
 		if (fitsInline() && hasInlineFlag())
 			return m_nInlineCount;
-
+		
 		return (reinterpret_cast<uintptr_t>(m_pEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / sizeof(T);
 	}
 
@@ -82,7 +88,7 @@ public:
 	{
 		if (fitsInline() && hasInlineFlag())
 			return reinterpret_cast<T*>(&m_pBegin);
-
+		
 		return m_pBegin;
 	}
 
@@ -97,7 +103,7 @@ public:
 	inline T* begin() const
 	{
 		if (fitsInline() && hasInlineFlag())
-			return (T*)(&m_pBegin);
+			return (T*) (&m_pBegin);
 
 		return m_pBegin;
 	}

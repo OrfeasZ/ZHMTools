@@ -15,4 +15,7 @@ typedef double float64;
 
 #include "TArray.h"
 #include "ZString.h"
+#include "TMap.h"
+#include "THashMap.h"
+#include "TPair.h"
 #include "ZObject.h"
