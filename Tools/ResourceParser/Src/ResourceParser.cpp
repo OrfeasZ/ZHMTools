@@ -100,12 +100,12 @@ void ProcessTypeIds(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceStrea
 		const auto s_TypeName = p_SegmentStream.ReadString();
 		
 		if (s_Unknown != -1)
-			printf("[WARNING] Found TypeIdInfo with an unknown value that wasn't -1 (is %d).\n", s_Unknown);
+			fprintf(stderr, "[WARNING] Found TypeIdInfo with an unknown value that wasn't -1 (is %d).\n", s_Unknown);
 
 		auto* s_Type = ZHMTypeInfo::GetTypeByName(s_TypeName);
 
 		if (s_Type == nullptr)
-			printf("[WARNING] Could not find TypeInfo for type '%s'.\n", s_TypeName.c_str());
+			fprintf(stderr, "[WARNING] Could not find TypeInfo for type '%s'.\n", s_TypeName.c_str());
 
 		s_Types[s_Index] = s_Type;
 	}
@@ -167,7 +167,7 @@ int main(int argc, char** argv)
 
 	if (!is_regular_file(s_FilePath))
 	{
-		printf("Could not find the file you specified.\n");
+		fprintf(stderr, "Could not find the file you specified.\n");
 		return 1;
 	}
 
@@ -186,7 +186,7 @@ int main(int argc, char** argv)
 	// We expect the first 4 bytes to be the magic value "BIN1".
 	if (s_Stream.Read<uint32_t>() != '1NIB')
 	{
-		printf("The file you specified is not a binary resource.\n");
+		fprintf(stderr, "The file you specified is not a binary resource.\n");
 		return 1;
 	}
 
@@ -228,7 +228,7 @@ int main(int argc, char** argv)
 		// TODO: Runtime Resource ID and Resource Ptr
 
 		default:
-			printf("[WARNING] Found unrecognized segment (%x). Skipping.\n", s_SegmentType);
+			fprintf(stderr, "[WARNING] Found unrecognized segment (%x). Skipping.\n", s_SegmentType);
 			s_Stream.Skip(s_SegmentSize);
 			break;
 		}
