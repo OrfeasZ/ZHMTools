@@ -93,7 +93,7 @@ void ProcessTypeIds(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceStrea
 
 	for (uint32_t i = 0; i < s_TypeIdCount; ++i)
 	{
-		p_SegmentStream.AlignReadTo(4);
+		//p_SegmentStream.AlignReadTo(4);
 
 		const auto s_Index = p_SegmentStream.Read<uint32_t>();
 		const auto s_Unknown = p_SegmentStream.Read<int32_t>();
