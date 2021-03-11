@@ -72,6 +72,8 @@ void ProcessRelocations(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceS
 
 void ProcessTypeIds(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceStream)
 {
+	uintptr_t s_StartOffset = p_SegmentStream.Position();
+	
 	std::unordered_map<uint32_t, uint32_t> s_TypeIdsToPatch;
 
 	const auto s_TypeIdsToPatchCount = p_SegmentStream.Read<uint32_t>();
@@ -93,7 +95,14 @@ void ProcessTypeIds(BinaryStream& p_SegmentStream, BinaryStream& p_ResourceStrea
 
 	for (uint32_t i = 0; i < s_TypeIdCount; ++i)
 	{
-		//p_SegmentStream.AlignReadTo(4);
+		// Align to 4 bytes within the segment.
+		auto s_CurrentPosition = p_SegmentStream.Position() - s_StartOffset;
+
+		if (s_CurrentPosition % 4 != 0)
+		{
+			const auto s_BytesToSkip = 4 - (s_CurrentPosition % 4);
+			p_SegmentStream.Skip(s_BytesToSkip);
+		}
 
 		const auto s_Index = p_SegmentStream.Read<uint32_t>();
 		const auto s_Unknown = p_SegmentStream.Read<int32_t>();
