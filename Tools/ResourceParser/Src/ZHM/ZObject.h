@@ -1,6 +1,6 @@
 #pragma once
 
-#include <External/json.hpp>
+#include <ostream>
 
 class ZHMTypeInfo;
 class ZString;
@@ -8,8 +8,8 @@ class ZString;
 class ZObjectRef
 {
 public:
-	static nlohmann::json ToJson(void* p_Object);
-	static nlohmann::json ToSimpleJson(void* p_Object);
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	
 public:
 	// This member (m_pTypeID) is normally an STypeID pointer, but we use our custom

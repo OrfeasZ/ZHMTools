@@ -138,22 +138,16 @@ public:
 	typedef const TBinaryTreeIterator<value_type> const_iterator;
 
 public:
-	static nlohmann::json ToJson(void* p_Object)
+	static void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		nlohmann::json s_Json;
-
-		auto s_Object = static_cast<TMap<T, Z>*>(p_Object);
-
-		return s_Json;
+		// TODO
+		p_Stream << "null";
 	}
 
-	static nlohmann::json ToSimpleJson(void* p_Object)
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
-		nlohmann::json s_Json;
-
-		auto s_Object = static_cast<TMap<T, Z>*>(p_Object);
-
-		return s_Json;
+		// TODO
+		p_Stream << "null";
 	}
 
 public:
@@ -212,21 +206,15 @@ template <class TKeyType, class TValueType>
 class TMultiMap : public TMap<TKeyType, TValueType>
 {
 public:
-	static nlohmann::json ToJson(void* p_Object)
+	static void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		nlohmann::json s_Json;
-
-		auto s_Object = static_cast<TMultiMap<TKeyType, TValueType>*>(p_Object);
-
-		return s_Json;
+		// TODO
+		p_Stream << "null";
 	}
 
-	static nlohmann::json ToSimpleJson(void* p_Object)
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
-		nlohmann::json s_Json;
-
-		auto s_Object = static_cast<TMultiMap<TKeyType, TValueType>*>(p_Object);
-
-		return s_Json;
+		// TODO
+		p_Stream << "null";
 	}
 };

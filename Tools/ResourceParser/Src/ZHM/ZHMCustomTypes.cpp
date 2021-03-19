@@ -2,254 +2,295 @@
 
 #include "Util/Base64.h"
 
-ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", SAudioSwitchBlueprintData::ToJson, SAudioSwitchBlueprintData::ToSimpleJson);
+ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", SAudioSwitchBlueprintData::WriteJson, SAudioSwitchBlueprintData::WriteSimpleJson);
 
-nlohmann::json SAudioSwitchBlueprintData::ToJson(void* p_Object)
+void SAudioSwitchBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
+	auto s_Object = static_cast<SAudioSwitchBlueprintData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_sGroupName") << ":{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":" << JsonStr(s_Object->m_sGroupName) << "},";
+
+	p_Stream << JsonStr("m_aSwitches") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aSwitches.size(); ++i)
+	{
+		auto& s_Item = s_Object->m_aSwitches[i];
+
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":" << JsonStr(s_Item) << "}";
+
+		if (i < s_Object->m_aSwitches.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	
+	p_Stream << "}";
+}
+
+void SAudioSwitchBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SAudioSwitchBlueprintData*>(p_Object);
 
-	s_Json["m_sGroupName"] = { { "$type", "ZString" }, { "$val", s_Object->m_sGroupName.c_str() } };
+	p_Stream << JsonStr("m_sGroupName") << ":" << JsonStr(s_Object->m_sGroupName) << ",";
+	
+	p_Stream << JsonStr("m_aSwitches") << ":[";
 
+	for (size_t i = 0; i < s_Object->m_aSwitches.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_aSwitches[i];
 
-		for (auto& s_Item : s_Object->m_aSwitches)
-		{
-			s_JsonArray.push_back({ { "$type", "ZString" }, { "$val", s_Item.c_str() } });
-		}
+		p_Stream << JsonStr(s_Item);
 
-		s_Json["m_aSwitches"] = s_JsonArray;
+		if (i < s_Object->m_aSwitches.size() - 1)
+			p_Stream << ",";
 	}
+	
+	p_Stream << "]";
 
-	return s_Json;
+	p_Stream << "}";
 }
 
-nlohmann::json SAudioSwitchBlueprintData::ToSimpleJson(void* p_Object)
+ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", SScaleformGFxResource::WriteJson, SScaleformGFxResource::WriteSimpleJson);
+
+void SScaleformGFxResource::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
-
-	auto s_Object = static_cast<SAudioSwitchBlueprintData*>(p_Object);
-
-	s_Json["m_sGroupName"] = s_Object->m_sGroupName.c_str();
-
-	{
-		auto s_JsonArray = nlohmann::json::array();
-
-		for (auto& s_Item : s_Object->m_aSwitches)
-		{
-			s_JsonArray.push_back(nlohmann::json(s_Item.c_str()));
-		}
-
-		s_Json["m_aSwitches"] = s_JsonArray;
-	}
-
-	return s_Json;
-}
-
-ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", SScaleformGFxResource::ToJson, SScaleformGFxResource::ToSimpleJson);
-
-nlohmann::json SScaleformGFxResource::ToJson(void* p_Object)
-{
-	nlohmann::json s_Json;
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
 	std::string s_SwfData(s_Object->m_pSwfData, s_Object->m_pSwfData + s_Object->m_nSwfDataSize);
-	s_Json["m_pSwfData"] = { { "$type", "base64" }, { "$val", Base64::Encode(s_SwfData) } };
-	
+
+	p_Stream << JsonStr("m_pSwfData") << ":{" << JsonStr("$type") << ":" << JsonStr("base64") << "," << JsonStr("$val") << ":" << JsonStr(Base64::Encode(s_SwfData)) << "},";
+
+	p_Stream << JsonStr("m_pAdditionalFileNames") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_pAdditionalFileNames.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_pAdditionalFileNames[i];
 
-		for (auto& s_Item : s_Object->m_pAdditionalFileNames)
-		{
-			s_JsonArray.push_back({ { "$type", "ZString" }, { "$val", s_Item.c_str() } });
-		}
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":" << JsonStr(s_Item) << "}";
 
-		s_Json["m_pAdditionalFileNames"] = s_JsonArray;
+		if (i < s_Object->m_pAdditionalFileNames.size() - 1)
+			p_Stream << ",";
 	}
 
+	p_Stream << "],";
+
+	p_Stream << JsonStr("m_pAdditionalFileData") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_pAdditionalFileData.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_pAdditionalFileData[i];
 
-		for (auto& s_Item : s_Object->m_pAdditionalFileData)
-		{
-			std::string s_Data(s_Item.begin(), s_Item.end());
-			s_JsonArray.push_back({ { "$type", "base64" }, { "$val", Base64::Encode(s_Data) } });
-		}
+		std::string s_Data(s_Item.begin(), s_Item.end());
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("base64") << "," << JsonStr("$val") << ":" << JsonStr(Base64::Encode(s_Data)) << "}";
 
-		s_Json["m_pAdditionalFileData"] = s_JsonArray;
+		if (i < s_Object->m_pAdditionalFileData.size() - 1)
+			p_Stream << ",";
 	}
 
-	return s_Json;
+	p_Stream << "]";
+
+	p_Stream << "}";
 }
 
-nlohmann::json SScaleformGFxResource::ToSimpleJson(void* p_Object)
+void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
 	std::string s_SwfData(s_Object->m_pSwfData, s_Object->m_pSwfData + s_Object->m_nSwfDataSize);
-	s_Json["m_pSwfData"] = Base64::Encode(s_SwfData);
+	p_Stream << JsonStr("m_pSwfData") << ":" << JsonStr(Base64::Encode(s_SwfData)) << ",";
 
+	p_Stream << JsonStr("m_pAdditionalFileNames") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_pAdditionalFileNames.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_pAdditionalFileNames[i];
 
-		for (auto& s_Item : s_Object->m_pAdditionalFileNames)
-		{
-			s_JsonArray.push_back(nlohmann::json(s_Item.c_str()));
-		}
+		p_Stream << JsonStr(s_Item);
 
-		s_Json["m_pAdditionalFileNames"] = s_JsonArray;
+		if (i < s_Object->m_pAdditionalFileNames.size() - 1)
+			p_Stream << ",";
 	}
+
+	p_Stream << "],";
+
+	p_Stream << JsonStr("m_pAdditionalFileData") << ":[";
 	
+	for (size_t i = 0; i < s_Object->m_pAdditionalFileData.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_pAdditionalFileData[i];
 
-		for (auto& s_Item : s_Object->m_pAdditionalFileData)
-		{
-			std::string s_Data(s_Item.begin(), s_Item.end());
-			s_JsonArray.push_back(nlohmann::json(Base64::Encode(s_Data)));
-		}
+		std::string s_Data(s_Item.begin(), s_Item.end());
+		p_Stream << JsonStr(Base64::Encode(s_Data));
 
-		s_Json["m_pAdditionalFileData"] = s_JsonArray;
+		if (i < s_Object->m_pAdditionalFileData.size() - 1)
+			p_Stream << ",";
 	}
 
-	return s_Json;
+	p_Stream << "]";
+
+	p_Stream << "}";
 }
 
-ZHMTypeInfo SGlobalResourceIndexItem::TypeInfo = ZHMTypeInfo("SGlobalResourceIndexItem", SGlobalResourceIndexItem::ToJson, SGlobalResourceIndexItem::ToSimpleJson);
+ZHMTypeInfo SGlobalResourceIndexItem::TypeInfo = ZHMTypeInfo("SGlobalResourceIndexItem", SGlobalResourceIndexItem::WriteJson, SGlobalResourceIndexItem::WriteSimpleJson);
 
-nlohmann::json SGlobalResourceIndexItem::ToJson(void* p_Object)
+void SGlobalResourceIndexItem::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SGlobalResourceIndexItem*>(p_Object);
 
-	s_Json["m_sName"] = { { "$type", "ZString" }, { "$val", s_Object->m_sName.c_str() } };
+	p_Stream << JsonStr("m_sName") << ":{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":" << JsonStr(s_Object->m_sName) << "},";
 
+	p_Stream << JsonStr("m_aResourceIndices") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aResourceIndices.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_aResourceIndices[i];
 
-		for (auto& s_Item : s_Object->m_aResourceIndices)
-		{
-			s_JsonArray.push_back({ { "$type", "uint32" }, { "$val", s_Item } });
-		}
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":" << s_Item << "}";
 
-		s_Json["m_aResourceIndices"] = s_JsonArray;
+		if (i < s_Object->m_aResourceIndices.size() - 1)
+			p_Stream << ",";
 	}
 
-	return s_Json;
+	p_Stream << "]";
+
+	p_Stream << "}";
 }
 
-nlohmann::json SGlobalResourceIndexItem::ToSimpleJson(void* p_Object)
+void SGlobalResourceIndexItem::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SGlobalResourceIndexItem*>(p_Object);
 
-	s_Json["m_sName"] = s_Object->m_sName.c_str();
+	p_Stream << JsonStr("m_sName") << ":" << JsonStr(s_Object->m_sName) << ",";
 
+	p_Stream << JsonStr("m_aResourceIndices") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aResourceIndices.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_aResourceIndices[i];
 
-		for (auto& s_Item : s_Object->m_aResourceIndices)
-		{
-			s_JsonArray.push_back(nlohmann::json(s_Item));
-		}
+		p_Stream << s_Item;
 
-		s_Json["m_aResourceIndices"] = s_JsonArray;
+		if (i < s_Object->m_aResourceIndices.size() - 1)
+			p_Stream << ",";
 	}
-	
-	return s_Json;
+
+	p_Stream << "]";
+
+	p_Stream << "}";
 }
 
-ZHMTypeInfo SGlobalResourceIndex::TypeInfo = ZHMTypeInfo("SGlobalResourceIndex", SGlobalResourceIndex::ToJson, SGlobalResourceIndex::ToSimpleJson);
+ZHMTypeInfo SGlobalResourceIndex::TypeInfo = ZHMTypeInfo("SGlobalResourceIndex", SGlobalResourceIndex::WriteJson, SGlobalResourceIndex::WriteSimpleJson);
 
-nlohmann::json SGlobalResourceIndex::ToJson(void* p_Object)
+void SGlobalResourceIndex::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
+	p_Stream << "{";
+
+	auto s_Object = static_cast<SGlobalResourceIndex*>(p_Object);
+	
+	p_Stream << JsonStr("m_aItems") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aItems.size(); ++i)
+	{
+		auto& s_Item = s_Object->m_aItems[i];
+
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+
+		SGlobalResourceIndexItem::WriteJson(&s_Item, p_Stream);
+		
+		p_Stream << "}";
+
+		if (i < s_Object->m_aItems.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SGlobalResourceIndex::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SGlobalResourceIndex*>(p_Object);
 
+	p_Stream << JsonStr("m_aItems") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aItems.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_aItems[i];
 
-		for (auto& s_Item : s_Object->m_aItems)
-		{
-			s_JsonArray.push_back({ { "$type", "SGlobalResourceIndexItem" }, { "$val", SGlobalResourceIndexItem::ToJson(&s_Item) } });
-		}
+		SGlobalResourceIndexItem::WriteSimpleJson(&s_Item, p_Stream);
 
-		s_Json["m_aItems"] = s_JsonArray;
+		if (i < s_Object->m_aItems.size() - 1)
+			p_Stream << ",";
 	}
 
-	return s_Json;
+	p_Stream << "]";
+
+	p_Stream << "}";
 }
 
-nlohmann::json SGlobalResourceIndex::ToSimpleJson(void* p_Object)
+ZHMTypeInfo SAudioStateBlueprintData::TypeInfo = ZHMTypeInfo("SAudioStateBlueprintData", SAudioStateBlueprintData::WriteJson, SAudioStateBlueprintData::WriteSimpleJson);
+
+void SAudioStateBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
-
-	auto s_Object = static_cast<SGlobalResourceIndex*>(p_Object);
-
-	{
-		auto s_JsonArray = nlohmann::json::array();
-
-		for (auto& s_Item : s_Object->m_aItems)
-		{
-			s_JsonArray.push_back(SGlobalResourceIndexItem::ToSimpleJson(&s_Item));
-		}
-
-		s_Json["m_aItems"] = s_JsonArray;
-	}
-	
-	return s_Json;
-}
-
-ZHMTypeInfo SAudioStateBlueprintData::TypeInfo = ZHMTypeInfo("SAudioStateBlueprintData", SAudioStateBlueprintData::ToJson, SAudioStateBlueprintData::ToSimpleJson);
-
-nlohmann::json SAudioStateBlueprintData::ToJson(void* p_Object)
-{
-	nlohmann::json s_Json;
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SAudioStateBlueprintData*>(p_Object);
 
-	s_Json["m_sGroupName"] = { { "$type", "ZString" }, { "$val", s_Object->m_sGroupName.c_str() } };
+	p_Stream << JsonStr("m_sGroupName") << ":{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":" << JsonStr(s_Object->m_sGroupName) << "},";
 
+	p_Stream << JsonStr("m_aStates") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aStates.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_aStates[i];
 
-		for (auto& s_Item : s_Object->m_aStates)
-		{
-			s_JsonArray.push_back({ { "$type", "ZString" }, { "$val", s_Item.c_str() } });
-		}
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":" << JsonStr(s_Item) << "}";
 
-		s_Json["m_aStates"] = s_JsonArray;
+		if (i < s_Object->m_aStates.size() - 1)
+			p_Stream << ",";
 	}
 
-	return s_Json;
+	p_Stream << "]";
+
+	p_Stream << "}";
 }
 
-nlohmann::json SAudioStateBlueprintData::ToSimpleJson(void* p_Object)
+void SAudioStateBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
-	nlohmann::json s_Json;
+	p_Stream << "{";
 
 	auto s_Object = static_cast<SAudioStateBlueprintData*>(p_Object);
 
-	s_Json["m_sGroupName"] = s_Object->m_sGroupName.c_str();
+	p_Stream << JsonStr("m_sGroupName") << ":" << JsonStr(s_Object->m_sGroupName) << ",";
 
+	p_Stream << JsonStr("m_aStates") << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aStates.size(); ++i)
 	{
-		auto s_JsonArray = nlohmann::json::array();
+		auto& s_Item = s_Object->m_aStates[i];
 
-		for (auto& s_Item : s_Object->m_aStates)
-		{
-			s_JsonArray.push_back(nlohmann::json(s_Item.c_str()));
-		}
+		p_Stream << JsonStr(s_Item);
 
-		s_Json["m_aStates"] = s_JsonArray;
+		if (i < s_Object->m_aStates.size() - 1)
+			p_Stream << ",";
 	}
 
-	return s_Json;
+	p_Stream << "]";
+
+	p_Stream << "}";
 }

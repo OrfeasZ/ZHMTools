@@ -1,5 +1,6 @@
 #include <fstream>
 #include <filesystem>
+#include <iostream>
 
 #include <Generated/ZHMGen.h>
 #include <ZHM/ZHMCustomTypes.h>
@@ -8,25 +9,24 @@
 class IResourceConverter
 {
 public:
-	virtual std::string ToJson(void* p_ResourceData, bool p_Simple) = 0;
+	virtual void WriteJson(void* p_ResourceData, bool p_Simple, std::ostream& p_Stream) = 0;
 };
 
 template<typename T>
 class ResourceConverter : public IResourceConverter
 {
 public:
-	std::string ToJson(void* p_ResourceData, bool p_Simple) override
+	void WriteJson(void* p_ResourceData, bool p_Simple, std::ostream& p_Stream) override
 	{
 		auto* s_Resource = static_cast<T*>(p_ResourceData);
 
 		if (p_Simple)
 		{
-			const auto s_Json = T::ToSimpleJson(s_Resource);
-			return s_Json.dump();
+			T::WriteSimpleJson(s_Resource, p_Stream);
+			return;
 		}
 
-		const auto s_Json = T::ToJson(s_Resource);
-		return s_Json.dump();
+		T::WriteJson(s_Resource, p_Stream);
 	}
 };
 
@@ -245,10 +245,10 @@ int main(int argc, char** argv)
 
 	// Everything should be properly reconstructed in memory by now
 	// so just cast and convert this type to json.
-	std::string s_JsonDump = s_ResourceConverter->ToJson(s_ResourceData, s_SimpleJson);
+	std::cout << std::boolalpha;
+	s_ResourceConverter->WriteJson(s_ResourceData, s_SimpleJson, std::cout);
 	
-	printf(s_JsonDump.c_str());
-	printf("\n");
+	std::cout << std::endl;
 
 	free(s_FileData);
 	c_aligned_free(s_ResourceData);

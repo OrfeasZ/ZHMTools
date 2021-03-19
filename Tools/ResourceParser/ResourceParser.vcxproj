@@ -104,6 +104,7 @@
     <ClCompile Include="Src\ZHM\ZHMCustomTypes.cpp" />
     <ClCompile Include="Src\ZHM\ZHMPrimitives.cpp" />
     <ClCompile Include="Src\ZHM\ZHMTypeInfo.cpp" />
+    <ClCompile Include="Src\ZHM\ZString.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Generated\ZHMEnums.h" />

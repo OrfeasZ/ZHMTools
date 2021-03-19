@@ -1,48 +1,51 @@
 #pragma once
 
-#include <External/json.hpp>
 #include <type_traits>
 
 template <typename T, typename Z>
 class TPair
 {
 public:
-	static nlohmann::json ToJson(void* p_Object)
+	static void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		nlohmann::json s_Json;
-
 		auto s_Object = static_cast<TPair<T, Z>*>(p_Object);
 
+		p_Stream << "{" << JsonStr("first") << ":";
+		
 		if constexpr (std::is_fundamental_v<T>)
-			s_Json["first"] = s_Object->first;
+			p_Stream << s_Object->first;
 		else
-			s_Json["first"] = T::ToJson(&s_Object->first);
+			T::WriteJson(&s_Object->first, p_Stream);
 
+		p_Stream << "," << JsonStr("second") << ":";
+		
 		if constexpr (std::is_fundamental_v<Z>)
-			s_Json["second"] = s_Object->second;
+			p_Stream << s_Object->second;
 		else
-			s_Json["second"] = T::ToJson(&s_Object->second);
+			T::WriteJson(&s_Object->second, p_Stream);
 
-		return s_Json;
+		p_Stream << "}";
 	}
 	
-	static nlohmann::json ToSimpleJson(void* p_Object)
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
-		nlohmann::json s_Json = nlohmann::json::array();
-
 		auto s_Object = static_cast<TPair<T, Z>*>(p_Object);
 
+		p_Stream << "[";
+
 		if constexpr(std::is_fundamental_v<T>)
-			s_Json.push_back(s_Object->first);
+			p_Stream << s_Object->first;
 		else
-			s_Json.push_back(T::ToJson(&s_Object->first));
+			T::WriteSimpleJson(&s_Object->first, p_Stream);
+
+		p_Stream << ",";
 
 		if constexpr (std::is_fundamental_v<Z>)
-			s_Json.push_back(s_Object->second);
+			p_Stream << s_Object->second;
 		else
-			s_Json.push_back(Z::ToJson(&s_Object->second));
+			Z::WriteSimpleJson(&s_Object->second, p_Stream);
 
-		return s_Json;
+		p_Stream << "]";
 	}
 	
 public:

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <unordered_map>
-#include <External/json.hpp>
+#include "ZString.h"
 
-typedef nlohmann::json(*TypeToJson_t)(void*);
+typedef void(*WriteTypeAsJson_t)(void*, std::ostream&);
 
 class ZHMTypeInfo
 {
@@ -21,10 +21,10 @@ public:
 	static ZHMTypeInfo* GetTypeByName(const std::string& p_Name);
 	
 public:
-	ZHMTypeInfo(const char* p_TypeName, TypeToJson_t p_ToJson, TypeToJson_t p_ToSimpleJson) :
+	ZHMTypeInfo(const char* p_TypeName, WriteTypeAsJson_t p_WriteJson, WriteTypeAsJson_t p_WriteSimpleJson) :
 		m_Name(p_TypeName),
-		m_ToJson(p_ToJson),
-		m_ToSimpleJson(p_ToSimpleJson)
+		m_WriteJson(p_WriteJson),
+		m_WriteSimpleJson(p_WriteSimpleJson)
 	{
 		if (g_TypeRegistry == nullptr)
 			g_TypeRegistry = new std::unordered_map<std::string, ZHMTypeInfo*>();
@@ -32,10 +32,10 @@ public:
 		(*g_TypeRegistry)[p_TypeName] = this;
 	}
 	
-	ZHMTypeInfo(const char* p_TypeName, TypeToJson_t p_ToJson) :
+	ZHMTypeInfo(const char* p_TypeName, WriteTypeAsJson_t p_WriteJson) :
 		m_Name(p_TypeName),
-		m_ToJson(p_ToJson),
-		m_ToSimpleJson(p_ToJson)
+		m_WriteJson(p_WriteJson),
+		m_WriteSimpleJson(p_WriteJson)
 	{
 		if (g_TypeRegistry == nullptr)
 			g_TypeRegistry = new std::unordered_map<std::string, ZHMTypeInfo*>();
@@ -43,14 +43,14 @@ public:
 		(*g_TypeRegistry)[p_TypeName] = this;
 	}
 
-	nlohmann::json ToJson(void* p_Object)
+	void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		return m_ToJson(p_Object);
+		return m_WriteJson(p_Object, p_Stream);
 	}
 
-	nlohmann::json ToSimpleJson(void* p_Object)
+	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
-		return m_ToSimpleJson(p_Object);
+		return m_WriteSimpleJson(p_Object, p_Stream);
 	}
 
 	std::string TypeName() const
@@ -60,6 +60,6 @@ public:
 
 private:
 	std::string m_Name;
-	TypeToJson_t m_ToJson;
-	TypeToJson_t m_ToSimpleJson;
+	WriteTypeAsJson_t m_WriteJson;
+	WriteTypeAsJson_t m_WriteSimpleJson;
 };
