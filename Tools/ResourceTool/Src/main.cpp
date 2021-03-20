@@ -48,8 +48,81 @@ void PrintHelp()
 	printf("\t--simple\tUse when the input JSON file is generated using the \"--simple\" option when converting.\n");
 }
 
+int TryConvertFile(const std::string& p_FilePath)
+{
+	const auto s_InputPath = std::filesystem::path(p_FilePath);
+
+	if (!is_regular_file(s_InputPath))
+	{
+		fprintf(stderr, "[ERROR] Could not find the file you specified.\n");
+		return 1;
+	}
+	
+	auto s_Extension = s_InputPath.extension().string();
+	std::string s_PossibleResourceType = s_Extension.substr(1);
+	std::string s_OutputPathStr = p_FilePath + ".json";
+	bool s_Convert = true;
+
+	if (s_Extension == ".json" && p_FilePath.size() > 10 && p_FilePath[p_FilePath.size() - 10] == '.')
+	{
+		s_PossibleResourceType = p_FilePath.substr(p_FilePath.size() - 9, 4);
+		s_OutputPathStr = p_FilePath.substr(0, p_FilePath.size() - 5);
+		s_Convert = false;
+	}
+	
+	auto s_ResourceIt = g_Resources.find(s_PossibleResourceType);
+
+	if (s_ResourceIt == g_Resources.end())
+	{
+		fprintf(stderr, "[ERROR] Could not identify the type of resource you are trying to convert / generate. Make sure that the file extension is the same as the resource type (eg. XXXX.TBLU) or is prefixed by the resource type in the case of json files (eg. XXXX.TBLU.json).\n");
+		return 1;
+	}
+
+	auto s_Resource = s_ResourceIt->second;	
+
+	const auto s_OutputPath = std::filesystem::path(s_OutputPathStr);
+
+	if (is_directory(s_OutputPath))
+	{
+		fprintf(stderr, "[ERROR] Output path cannot be a directory.\n");
+		return 1;
+	}
+
+	try
+	{
+		if (s_Convert)
+		{
+			if (!ResourceToJson(s_InputPath, s_OutputPath, s_Resource.Converter, true))
+			{
+				return 1;
+			}
+		}
+		else
+		{
+			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_Resource.Generator, true))
+			{
+				return 1;
+			}
+		}
+	}
+	catch (std::exception& p_Exception)
+	{
+		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
+		return 1;
+	}
+
+	return 0;
+}
+
 int main(int argc, char** argv)
 {
+	// Special case for dropping a file on the app.
+	if (argc == 2)
+	{
+		const std::string s_FileToConvert(argv[1]);
+		return TryConvertFile(s_FileToConvert);
+	}
+	
 	if (argc < 5)
 	{
 		PrintHelp();
