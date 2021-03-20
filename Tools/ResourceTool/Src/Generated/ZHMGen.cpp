@@ -315,7 +315,8 @@ void SActBehaviorEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SActBehaviorEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_ActStartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActBehaviorEntitySaveData, m_ActStartTime));}
+	m_ActStartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActBehaviorEntitySaveData, m_ActStartTime));
+}
 
 ZHMTypeInfo SActorProviderDirectSaveData::TypeInfo = ZHMTypeInfo("SActorProviderDirectSaveData", sizeof(SActorProviderDirectSaveData), alignof(SActorProviderDirectSaveData), SActorProviderDirectSaveData::WriteJson, SActorProviderDirectSaveData::WriteSimpleJson, SActorProviderDirectSaveData::FromSimpleJson);
 
@@ -389,7 +390,8 @@ void SActorProviderDirectSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SActorProviderDirectSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorProviderDirectSaveData, m_aActors));}
+	m_aActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorProviderDirectSaveData, m_aActors));
+}
 
 ZHMTypeInfo float4::TypeInfo = ZHMTypeInfo("float4", sizeof(float4), alignof(float4), float4::WriteJson, float4::WriteSimpleJson, float4::FromSimpleJson);
 
@@ -609,7 +611,9 @@ void SCrowdActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SCrowdActorSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdActorSaveData, m_vPosition));	m_vForward.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdActorSaveData, m_vForward));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdActorSaveData, m_vPosition));
+	m_vForward.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdActorSaveData, m_vForward));
+}
 
 ZHMTypeInfo SCollidingParticle::TypeInfo = ZHMTypeInfo("SCollidingParticle", sizeof(SCollidingParticle), alignof(SCollidingParticle), SCollidingParticle::WriteJson, SCollidingParticle::WriteSimpleJson, SCollidingParticle::FromSimpleJson);
 
@@ -709,7 +713,10 @@ void SCollidingParticle::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SCollidingParticle::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vPosition));	m_vVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vVelocity));	m_vNewVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vNewVelocity));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vPosition));
+	m_vVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vVelocity));
+	m_vNewVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vNewVelocity));
+}
 
 ZHMTypeInfo SAudioEmitterSwitchSaveData::TypeInfo = ZHMTypeInfo("SAudioEmitterSwitchSaveData", sizeof(SAudioEmitterSwitchSaveData), alignof(SAudioEmitterSwitchSaveData), SAudioEmitterSwitchSaveData::WriteJson, SAudioEmitterSwitchSaveData::WriteSimpleJson, SAudioEmitterSwitchSaveData::FromSimpleJson);
 
@@ -873,7 +880,9 @@ void SMathDistanceSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_
 
 void SMathDistanceSaveData_SVector2::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector2, m_fA));	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector2, m_fB));}
+	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector2, m_fA));
+	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector2, m_fB));
+}
 
 ZHMTypeInfo SItemStorageSaveData::TypeInfo = ZHMTypeInfo("SItemStorageSaveData", sizeof(SItemStorageSaveData), alignof(SItemStorageSaveData), SItemStorageSaveData::WriteJson, SItemStorageSaveData::WriteSimpleJson, SItemStorageSaveData::FromSimpleJson);
 
@@ -947,7 +956,8 @@ void SItemStorageSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SItemStorageSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_ContainedItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemStorageSaveData, m_ContainedItems));}
+	m_ContainedItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemStorageSaveData, m_ContainedItems));
+}
 
 ZHMTypeInfo SBehaviorTreeInputPinCondition::TypeInfo = ZHMTypeInfo("SBehaviorTreeInputPinCondition", sizeof(SBehaviorTreeInputPinCondition), alignof(SBehaviorTreeInputPinCondition), SBehaviorTreeInputPinCondition::WriteJson, SBehaviorTreeInputPinCondition::WriteSimpleJson, SBehaviorTreeInputPinCondition::FromSimpleJson);
 
@@ -987,7 +997,8 @@ void SBehaviorTreeInputPinCondition::FromSimpleJson(simdjson::ondemand::value p_
 
 void SBehaviorTreeInputPinCondition::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInputPinCondition, m_sName));}
+	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInputPinCondition, m_sName));
+}
 
 ZHMTypeInfo SItemWeaponSaveData::TypeInfo = ZHMTypeInfo("SItemWeaponSaveData", sizeof(SItemWeaponSaveData), alignof(SItemWeaponSaveData), SItemWeaponSaveData::WriteJson, SItemWeaponSaveData::WriteSimpleJson, SItemWeaponSaveData::FromSimpleJson);
 
@@ -1085,7 +1096,8 @@ void SItemWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SItemWeaponSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_magazineBulletsByAmmoType.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemWeaponSaveData, m_magazineBulletsByAmmoType));}
+	m_magazineBulletsByAmmoType.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemWeaponSaveData, m_magazineBulletsByAmmoType));
+}
 
 ZHMTypeInfo ISequenceTarget::TypeInfo = ZHMTypeInfo("ISequenceTarget", sizeof(ISequenceTarget), alignof(ISequenceTarget), ISequenceTarget::WriteJson, ISequenceTarget::WriteSimpleJson, ISequenceTarget::FromSimpleJson);
 
@@ -1155,7 +1167,8 @@ void ZResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 void ZResourceID::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_uri.Serialize(p_Serializer, p_OwnOffset + offsetof(ZResourceID, m_uri));}
+	m_uri.Serialize(p_Serializer, p_OwnOffset + offsetof(ZResourceID, m_uri));
+}
 
 ZHMTypeInfo SEnvironmentConfigResourceEntry::TypeInfo = ZHMTypeInfo("SEnvironmentConfigResourceEntry", sizeof(SEnvironmentConfigResourceEntry), alignof(SEnvironmentConfigResourceEntry), SEnvironmentConfigResourceEntry::WriteJson, SEnvironmentConfigResourceEntry::WriteSimpleJson, SEnvironmentConfigResourceEntry::FromSimpleJson);
 
@@ -1259,7 +1272,12 @@ void SEnvironmentConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p
 
 void SEnvironmentConfigResourceEntry::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	Name.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, Name));	ContractsDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, ContractsDatastoreRid));	UnlockablesDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, UnlockablesDatastoreRid));	BlobsDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, BlobsDatastoreRid));	ActivityDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, ActivityDatastoreRid));}
+	Name.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, Name));
+	ContractsDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, ContractsDatastoreRid));
+	UnlockablesDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, UnlockablesDatastoreRid));
+	BlobsDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, BlobsDatastoreRid));
+	ActivityDatastoreRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResourceEntry, ActivityDatastoreRid));
+}
 
 ZHMTypeInfo SEnvironmentConfigResource::TypeInfo = ZHMTypeInfo("SEnvironmentConfigResource", sizeof(SEnvironmentConfigResource), alignof(SEnvironmentConfigResource), SEnvironmentConfigResource::WriteJson, SEnvironmentConfigResource::WriteSimpleJson, SEnvironmentConfigResource::FromSimpleJson);
 
@@ -1323,7 +1341,8 @@ void SEnvironmentConfigResource::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SEnvironmentConfigResource::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	Environments.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResource, Environments));}
+	Environments.Serialize(p_Serializer, p_OwnOffset + offsetof(SEnvironmentConfigResource, Environments));
+}
 
 ZHMTypeInfo SSniperScoringEvent::TypeInfo = ZHMTypeInfo("SSniperScoringEvent", sizeof(SSniperScoringEvent), alignof(SSniperScoringEvent), SSniperScoringEvent::WriteJson, SSniperScoringEvent::WriteSimpleJson, SSniperScoringEvent::FromSimpleJson);
 
@@ -1423,7 +1442,9 @@ void SSniperScoringEvent::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SSniperScoringEvent::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperScoringEvent, m_sName));	m_sText.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperScoringEvent, m_sText));}
+	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperScoringEvent, m_sName));
+	m_sText.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperScoringEvent, m_sText));
+}
 
 ZHMTypeInfo ZAMDEvent::TypeInfo = ZHMTypeInfo("ZAMDEvent", sizeof(ZAMDEvent), alignof(ZAMDEvent), ZAMDEvent::WriteJson, ZAMDEvent::WriteSimpleJson, ZAMDEvent::FromSimpleJson);
 
@@ -1503,7 +1524,8 @@ void ZAMDEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 void ZAMDEvent::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_customData.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDEvent, m_customData));}
+	m_customData.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDEvent, m_customData));
+}
 
 ZHMTypeInfo ZAMDEventTrack::TypeInfo = ZHMTypeInfo("ZAMDEventTrack", sizeof(ZAMDEventTrack), alignof(ZAMDEventTrack), ZAMDEventTrack::WriteJson, ZAMDEventTrack::WriteSimpleJson, ZAMDEventTrack::FromSimpleJson);
 
@@ -1579,7 +1601,9 @@ void ZAMDEventTrack::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void ZAMDEventTrack::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDEventTrack, m_sName));	m_events.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDEventTrack, m_events));}
+	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDEventTrack, m_sName));
+	m_events.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDEventTrack, m_events));
+}
 
 ZHMTypeInfo ZAMDTake::TypeInfo = ZHMTypeInfo("ZAMDTake", sizeof(ZAMDTake), alignof(ZAMDTake), ZAMDTake::WriteJson, ZAMDTake::WriteSimpleJson, ZAMDTake::FromSimpleJson);
 
@@ -1671,7 +1695,9 @@ void ZAMDTake::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 
 void ZAMDTake::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_eventTracks.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDTake, m_eventTracks));	m_customData.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDTake, m_customData));}
+	m_eventTracks.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDTake, m_eventTracks));
+	m_customData.Serialize(p_Serializer, p_OwnOffset + offsetof(ZAMDTake, m_customData));
+}
 
 ZHMTypeInfo SDestructibleInteractionHandlerData::TypeInfo = ZHMTypeInfo("SDestructibleInteractionHandlerData", sizeof(SDestructibleInteractionHandlerData), alignof(SDestructibleInteractionHandlerData), SDestructibleInteractionHandlerData::WriteJson, SDestructibleInteractionHandlerData::WriteSimpleJson, SDestructibleInteractionHandlerData::FromSimpleJson);
 
@@ -1973,7 +1999,10 @@ void SGameTimersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SGameTimersSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aTimerEntityCommands.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameTimersSaveData, m_aTimerEntityCommands));	m_aTimerEntityState.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameTimersSaveData, m_aTimerEntityState));	m_aPendingTimers.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameTimersSaveData, m_aPendingTimers));}
+	m_aTimerEntityCommands.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameTimersSaveData, m_aTimerEntityCommands));
+	m_aTimerEntityState.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameTimersSaveData, m_aTimerEntityState));
+	m_aPendingTimers.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameTimersSaveData, m_aPendingTimers));
+}
 
 ZHMTypeInfo SMatrix::TypeInfo = ZHMTypeInfo("SMatrix", sizeof(SMatrix), alignof(SMatrix), SMatrix::WriteJson, SMatrix::WriteSimpleJson, SMatrix::FromSimpleJson);
 
@@ -2065,7 +2094,11 @@ void SMatrix::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 
 void SMatrix::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	XAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, XAxis));	YAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, YAxis));	ZAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, ZAxis));	Trans.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, Trans));}
+	XAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, XAxis));
+	YAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, YAxis));
+	ZAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, ZAxis));
+	Trans.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix, Trans));
+}
 
 ZHMTypeInfo SAIEventSaveData::TypeInfo = ZHMTypeInfo("SAIEventSaveData", sizeof(SAIEventSaveData), alignof(SAIEventSaveData), SAIEventSaveData::WriteJson, SAIEventSaveData::WriteSimpleJson, SAIEventSaveData::FromSimpleJson);
 
@@ -2149,7 +2182,9 @@ void SAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 void SAIEventSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_nStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SAIEventSaveData, m_nStart));	m_nEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SAIEventSaveData, m_nEnd));}
+	m_nStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SAIEventSaveData, m_nStart));
+	m_nEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SAIEventSaveData, m_nEnd));
+}
 
 ZHMTypeInfo SKnownEntitySaveData::TypeInfo = ZHMTypeInfo("SKnownEntitySaveData", sizeof(SKnownEntitySaveData), alignof(SKnownEntitySaveData), SKnownEntitySaveData::WriteJson, SKnownEntitySaveData::WriteSimpleJson, SKnownEntitySaveData::FromSimpleJson);
 
@@ -2293,7 +2328,10 @@ void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SKnownEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnownEntitySaveData, m_aEvents));	m_knownWorldMatrix.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnownEntitySaveData, m_knownWorldMatrix));	m_tLastWorldMatrixUpdate.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnownEntitySaveData, m_tLastWorldMatrixUpdate));}
+	m_aEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnownEntitySaveData, m_aEvents));
+	m_knownWorldMatrix.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnownEntitySaveData, m_knownWorldMatrix));
+	m_tLastWorldMatrixUpdate.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnownEntitySaveData, m_tLastWorldMatrixUpdate));
+}
 
 ZHMTypeInfo SActorGoalSaveData::TypeInfo = ZHMTypeInfo("SActorGoalSaveData", sizeof(SActorGoalSaveData), alignof(SActorGoalSaveData), SActorGoalSaveData::WriteJson, SActorGoalSaveData::WriteSimpleJson, SActorGoalSaveData::FromSimpleJson);
 
@@ -2457,7 +2495,11 @@ void SActorGoalSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SActorGoalSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_aEntities));	m_aHandled.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_aHandled));	m_aIsCurrent.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_aIsCurrent));	m_fExpiredTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_fExpiredTime));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_aEntities));
+	m_aHandled.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_aHandled));
+	m_aIsCurrent.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_aIsCurrent));
+	m_fExpiredTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorGoalSaveData, m_fExpiredTime));
+}
 
 ZHMTypeInfo SKnowledgeSaveData::TypeInfo = ZHMTypeInfo("SKnowledgeSaveData", sizeof(SKnowledgeSaveData), alignof(SKnowledgeSaveData), SKnowledgeSaveData::WriteJson, SKnowledgeSaveData::WriteSimpleJson, SKnowledgeSaveData::FromSimpleJson);
 
@@ -2763,7 +2805,14 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SKnowledgeSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aKnownEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_aKnownEntities));	m_aGoalKeys.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_aGoalKeys));	m_aGoals.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_aGoals));	m_tLastTrespassingAttentionGain.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tLastTrespassingAttentionGain));	m_tLastAttentionEvaluate.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tLastAttentionEvaluate));	m_tAmbientStartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tAmbientStartTime));	m_tExpiredAIModifierSuppressSocialGreeting.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tExpiredAIModifierSuppressSocialGreeting));}
+	m_aKnownEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_aKnownEntities));
+	m_aGoalKeys.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_aGoalKeys));
+	m_aGoals.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_aGoals));
+	m_tLastTrespassingAttentionGain.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tLastTrespassingAttentionGain));
+	m_tLastAttentionEvaluate.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tLastAttentionEvaluate));
+	m_tAmbientStartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tAmbientStartTime));
+	m_tExpiredAIModifierSuppressSocialGreeting.Serialize(p_Serializer, p_OwnOffset + offsetof(SKnowledgeSaveData, m_tExpiredAIModifierSuppressSocialGreeting));
+}
 
 ZHMTypeInfo SMovementDrainPipeSaveData::TypeInfo = ZHMTypeInfo("SMovementDrainPipeSaveData", sizeof(SMovementDrainPipeSaveData), alignof(SMovementDrainPipeSaveData), SMovementDrainPipeSaveData::WriteJson, SMovementDrainPipeSaveData::WriteSimpleJson, SMovementDrainPipeSaveData::FromSimpleJson);
 
@@ -2879,7 +2928,8 @@ void SExtendedCppEntityProperty::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SExtendedCppEntityProperty::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	propertyName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExtendedCppEntityProperty, propertyName));}
+	propertyName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExtendedCppEntityProperty, propertyName));
+}
 
 ZHMTypeInfo SExtendedCppEntityBlueprint::TypeInfo = ZHMTypeInfo("SExtendedCppEntityBlueprint", sizeof(SExtendedCppEntityBlueprint), alignof(SExtendedCppEntityBlueprint), SExtendedCppEntityBlueprint::WriteJson, SExtendedCppEntityBlueprint::WriteSimpleJson, SExtendedCppEntityBlueprint::FromSimpleJson);
 
@@ -2943,7 +2993,8 @@ void SExtendedCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SExtendedCppEntityBlueprint::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	properties.Serialize(p_Serializer, p_OwnOffset + offsetof(SExtendedCppEntityBlueprint, properties));}
+	properties.Serialize(p_Serializer, p_OwnOffset + offsetof(SExtendedCppEntityBlueprint, properties));
+}
 
 ZHMTypeInfo BoneId::TypeInfo = ZHMTypeInfo("BoneId", sizeof(BoneId), alignof(BoneId), BoneId::WriteJson, BoneId::WriteSimpleJson, BoneId::FromSimpleJson);
 
@@ -3045,7 +3096,9 @@ void SSavableData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 void SSavableData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_EntitiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableData, m_EntitiesData));	m_Data.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableData, m_Data));}
+	m_EntitiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableData, m_EntitiesData));
+	m_Data.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableData, m_Data));
+}
 
 ZHMTypeInfo SSaveGameMetaData::TypeInfo = ZHMTypeInfo("SSaveGameMetaData", sizeof(SSaveGameMetaData), alignof(SSaveGameMetaData), SSaveGameMetaData::WriteJson, SSaveGameMetaData::WriteSimpleJson, SSaveGameMetaData::FromSimpleJson);
 
@@ -3273,7 +3326,15 @@ void SSaveGameMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SSaveGameMetaData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sContractId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractId));	sContractTitle.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractTitle));	sContractType.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractType));	sLocationId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sLocationId));	sContractSessionId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractSessionId));	sLastEventToken.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sLastEventToken));	aScreenShot.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, aScreenShot));	aRequirements.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, aRequirements));}
+	sContractId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractId));
+	sContractTitle.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractTitle));
+	sContractType.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractType));
+	sLocationId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sLocationId));
+	sContractSessionId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractSessionId));
+	sLastEventToken.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sLastEventToken));
+	aScreenShot.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, aScreenShot));
+	aRequirements.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, aRequirements));
+}
 
 ZHMTypeInfo SGuardPointOrderSaveData::TypeInfo = ZHMTypeInfo("SGuardPointOrderSaveData", sizeof(SGuardPointOrderSaveData), alignof(SGuardPointOrderSaveData), SGuardPointOrderSaveData::WriteJson, SGuardPointOrderSaveData::WriteSimpleJson, SGuardPointOrderSaveData::FromSimpleJson);
 
@@ -3541,7 +3602,9 @@ void SActivity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 void SActivity::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	id.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivity, id));	activityId.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivity, activityId));}
+	id.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivity, id));
+	activityId.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivity, activityId));
+}
 
 ZHMTypeInfo SActivityExits::TypeInfo = ZHMTypeInfo("SActivityExits", sizeof(SActivityExits), alignof(SActivityExits), SActivityExits::WriteJson, SActivityExits::WriteSimpleJson, SActivityExits::FromSimpleJson);
 
@@ -3619,7 +3682,9 @@ void SActivityExits::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SActivityExits::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	activity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityExits, activity));	exits.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityExits, exits));}
+	activity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityExits, activity));
+	exits.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityExits, exits));
+}
 
 ZHMTypeInfo ZSituationOrder::TypeInfo = ZHMTypeInfo("ZSituationOrder", sizeof(ZSituationOrder), alignof(ZSituationOrder), ZSituationOrder::WriteJson, ZSituationOrder::WriteSimpleJson, ZSituationOrder::FromSimpleJson);
 
@@ -3731,7 +3796,8 @@ void SCppEntitySubsetInfo::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SCppEntitySubsetInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	name.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntitySubsetInfo, name));}
+	name.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntitySubsetInfo, name));
+}
 
 ZHMTypeInfo SCppEntityBlueprint::TypeInfo = ZHMTypeInfo("SCppEntityBlueprint", sizeof(SCppEntityBlueprint), alignof(SCppEntityBlueprint), SCppEntityBlueprint::WriteJson, SCppEntityBlueprint::WriteSimpleJson, SCppEntityBlueprint::FromSimpleJson);
 
@@ -3823,7 +3889,9 @@ void SCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SCppEntityBlueprint::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	typeName.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, typeName));	subsets.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, subsets));}
+	typeName.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, typeName));
+	subsets.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, subsets));
+}
 
 ZHMTypeInfo SMusicGridData::TypeInfo = ZHMTypeInfo("SMusicGridData", sizeof(SMusicGridData), alignof(SMusicGridData), SMusicGridData::WriteJson, SMusicGridData::WriteSimpleJson, SMusicGridData::FromSimpleJson);
 
@@ -4023,7 +4091,8 @@ void SObjetiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SObjetiveSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_SaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SObjetiveSaveData, m_SaveData));}
+	m_SaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SObjetiveSaveData, m_SaveData));
+}
 
 ZHMTypeInfo SDestructiblePieceSaveData::TypeInfo = ZHMTypeInfo("SDestructiblePieceSaveData", sizeof(SDestructiblePieceSaveData), alignof(SDestructiblePieceSaveData), SDestructiblePieceSaveData::WriteJson, SDestructiblePieceSaveData::WriteSimpleJson, SDestructiblePieceSaveData::FromSimpleJson);
 
@@ -4169,7 +4238,11 @@ void SDestructiblePieceSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SDestructiblePieceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_mTransform.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_mTransform));	m_aIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_aIndices));	m_fLinearVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_fLinearVelocity));	m_fAngularVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_fAngularVelocity));}
+	m_mTransform.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_mTransform));
+	m_aIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_aIndices));
+	m_fLinearVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_fLinearVelocity));
+	m_fAngularVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructiblePieceSaveData, m_fAngularVelocity));
+}
 
 ZHMTypeInfo SDestructibleRuntimeConnnection::TypeInfo = ZHMTypeInfo("SDestructibleRuntimeConnnection", sizeof(SDestructibleRuntimeConnnection), alignof(SDestructibleRuntimeConnnection), SDestructibleRuntimeConnnection::WriteJson, SDestructibleRuntimeConnnection::WriteSimpleJson, SDestructibleRuntimeConnnection::FromSimpleJson);
 
@@ -4243,7 +4316,8 @@ void SDestructibleRuntimeConnnection::FromSimpleJson(simdjson::ondemand::value p
 
 void SDestructibleRuntimeConnnection::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aConnections.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleRuntimeConnnection, m_aConnections));}
+	m_aConnections.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleRuntimeConnnection, m_aConnections));
+}
 
 ZHMTypeInfo SDestructibleRuntimeDamage::TypeInfo = ZHMTypeInfo("SDestructibleRuntimeDamage", sizeof(SDestructibleRuntimeDamage), alignof(SDestructibleRuntimeDamage), SDestructibleRuntimeDamage::WriteJson, SDestructibleRuntimeDamage::WriteSimpleJson, SDestructibleRuntimeDamage::FromSimpleJson);
 
@@ -4531,7 +4605,11 @@ void SDestructibleObjectSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SDestructibleObjectSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_interactionData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_interactionData));	m_aDestructiblePieces.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_aDestructiblePieces));	m_aConnectionData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_aConnectionData));	m_aDamageData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_aDamageData));}
+	m_interactionData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_interactionData));
+	m_aDestructiblePieces.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_aDestructiblePieces));
+	m_aConnectionData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_aConnectionData));
+	m_aDamageData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDestructibleObjectSaveData, m_aDamageData));
+}
 
 ZHMTypeInfo SIntelDisplayInfo::TypeInfo = ZHMTypeInfo("SIntelDisplayInfo", sizeof(SIntelDisplayInfo), alignof(SIntelDisplayInfo), SIntelDisplayInfo::WriteJson, SIntelDisplayInfo::WriteSimpleJson, SIntelDisplayInfo::FromSimpleJson);
 
@@ -4643,7 +4721,11 @@ void SIntelDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SIntelDisplayInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	headline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, headline));	bodyheadline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, bodyheadline));	text.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, text));	img.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, img));}
+	headline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, headline));
+	bodyheadline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, bodyheadline));
+	text.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, text));
+	img.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfo, img));
+}
 
 ZHMTypeInfo SIntelDisplayInfoArray_dummy::TypeInfo = ZHMTypeInfo("SIntelDisplayInfoArray_dummy", sizeof(SIntelDisplayInfoArray_dummy), alignof(SIntelDisplayInfoArray_dummy), SIntelDisplayInfoArray_dummy::WriteJson, SIntelDisplayInfoArray_dummy::WriteSimpleJson, SIntelDisplayInfoArray_dummy::FromSimpleJson);
 
@@ -4707,7 +4789,8 @@ void SIntelDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SIntelDisplayInfoArray_dummy::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfoArray_dummy, dummy));}
+	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDisplayInfoArray_dummy, dummy));
+}
 
 ZHMTypeInfo SVector3::TypeInfo = ZHMTypeInfo("SVector3", sizeof(SVector3), alignof(SVector3), SVector3::WriteJson, SVector3::WriteSimpleJson, SVector3::FromSimpleJson);
 
@@ -4919,7 +5002,9 @@ void SSpatialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 void SSpatialSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vPosition));	m_vQuaternionRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vQuaternionRotation));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vPosition));
+	m_vQuaternionRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vQuaternionRotation));
+}
 
 ZHMTypeInfo ZRuntimeResourceID::TypeInfo = ZHMTypeInfo("ZRuntimeResourceID", sizeof(ZRuntimeResourceID), alignof(ZRuntimeResourceID), ZRuntimeResourceID::WriteJson, ZRuntimeResourceID::WriteSimpleJson, ZRuntimeResourceID::FromSimpleJson);
 
@@ -5423,7 +5508,13 @@ void SWeaponStatusUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SWeaponStatusUIData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, icon));	containedIcon.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, containedIcon));	sWeaponName.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, sWeaponName));	sContainedItemName.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, sContainedItemName));	aPerks.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, aPerks));	aAmmoTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, aAmmoTypes));}
+	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, icon));
+	containedIcon.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, containedIcon));
+	sWeaponName.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, sWeaponName));
+	sContainedItemName.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, sContainedItemName));
+	aPerks.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, aPerks));
+	aAmmoTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SWeaponStatusUIData, aAmmoTypes));
+}
 
 ZHMTypeInfo SVRConfigCameraComponent::TypeInfo = ZHMTypeInfo("SVRConfigCameraComponent", sizeof(SVRConfigCameraComponent), alignof(SVRConfigCameraComponent), SVRConfigCameraComponent::WriteJson, SVRConfigCameraComponent::WriteSimpleJson, SVRConfigCameraComponent::FromSimpleJson);
 
@@ -5567,7 +5658,9 @@ void SVRConfigCameraComponent::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SVRConfigCameraComponent::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vAnchorPosOffset.Serialize(p_Serializer, p_OwnOffset + offsetof(SVRConfigCameraComponent, m_vAnchorPosOffset));	m_mAnchorRotOffset.Serialize(p_Serializer, p_OwnOffset + offsetof(SVRConfigCameraComponent, m_mAnchorRotOffset));}
+	m_vAnchorPosOffset.Serialize(p_Serializer, p_OwnOffset + offsetof(SVRConfigCameraComponent, m_vAnchorPosOffset));
+	m_mAnchorRotOffset.Serialize(p_Serializer, p_OwnOffset + offsetof(SVRConfigCameraComponent, m_mAnchorRotOffset));
+}
 
 ZHMTypeInfo IMorphemeEventConsumer::TypeInfo = ZHMTypeInfo("IMorphemeEventConsumer", sizeof(IMorphemeEventConsumer), alignof(IMorphemeEventConsumer), IMorphemeEventConsumer::WriteJson, IMorphemeEventConsumer::WriteSimpleJson, IMorphemeEventConsumer::FromSimpleJson);
 
@@ -5657,7 +5750,9 @@ void SCrowdPoseBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SCrowdPoseBoneSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseBoneSaveData, mQuaterion));	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseBoneSaveData, mTranslation));}
+	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseBoneSaveData, mQuaterion));
+	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseBoneSaveData, mTranslation));
+}
 
 ZHMTypeInfo SCrowdPoseSaveData::TypeInfo = ZHMTypeInfo("SCrowdPoseSaveData", sizeof(SCrowdPoseSaveData), alignof(SCrowdPoseSaveData), SCrowdPoseSaveData::WriteJson, SCrowdPoseSaveData::WriteSimpleJson, SCrowdPoseSaveData::FromSimpleJson);
 
@@ -5721,7 +5816,8 @@ void SCrowdPoseSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SCrowdPoseSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseSaveData, m_aBones));}
+	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseSaveData, m_aBones));
+}
 
 ZHMTypeInfo SCrowdPoseCollectionSaveData::TypeInfo = ZHMTypeInfo("SCrowdPoseCollectionSaveData", sizeof(SCrowdPoseCollectionSaveData), alignof(SCrowdPoseCollectionSaveData), SCrowdPoseCollectionSaveData::WriteJson, SCrowdPoseCollectionSaveData::WriteSimpleJson, SCrowdPoseCollectionSaveData::FromSimpleJson);
 
@@ -5797,7 +5893,8 @@ void SCrowdPoseCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SCrowdPoseCollectionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aPoses.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseCollectionSaveData, m_aPoses));}
+	m_aPoses.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdPoseCollectionSaveData, m_aPoses));
+}
 
 ZHMTypeInfo SCrowdDeadPoseRepositorySaveData::TypeInfo = ZHMTypeInfo("SCrowdDeadPoseRepositorySaveData", sizeof(SCrowdDeadPoseRepositorySaveData), alignof(SCrowdDeadPoseRepositorySaveData), SCrowdDeadPoseRepositorySaveData::WriteJson, SCrowdDeadPoseRepositorySaveData::WriteSimpleJson, SCrowdDeadPoseRepositorySaveData::FromSimpleJson);
 
@@ -5861,7 +5958,8 @@ void SCrowdDeadPoseRepositorySaveData::FromSimpleJson(simdjson::ondemand::value 
 
 void SCrowdDeadPoseRepositorySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aPoseCollections.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdDeadPoseRepositorySaveData, m_aPoseCollections));}
+	m_aPoseCollections.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdDeadPoseRepositorySaveData, m_aPoseCollections));
+}
 
 ZHMTypeInfo ZDynamicObject::TypeInfo = ZHMTypeInfo("ZDynamicObject", sizeof(ZDynamicObject), alignof(ZDynamicObject), ZDynamicObject::WriteJson, ZDynamicObject::WriteSimpleJson, ZDynamicObject::FromSimpleJson);
 
@@ -5905,7 +6003,8 @@ void ZDynamicObject::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void ZDynamicObject::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_value.Serialize(p_Serializer, p_OwnOffset + offsetof(ZDynamicObject, m_value));}
+	m_value.Serialize(p_Serializer, p_OwnOffset + offsetof(ZDynamicObject, m_value));
+}
 
 ZHMTypeInfo SChallengeSaveData::TypeInfo = ZHMTypeInfo("SChallengeSaveData", sizeof(SChallengeSaveData), alignof(SChallengeSaveData), SChallengeSaveData::WriteJson, SChallengeSaveData::WriteSimpleJson, SChallengeSaveData::FromSimpleJson);
 
@@ -5961,7 +6060,9 @@ void SChallengeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SChallengeSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sId.Serialize(p_Serializer, p_OwnOffset + offsetof(SChallengeSaveData, m_sId));	m_State.Serialize(p_Serializer, p_OwnOffset + offsetof(SChallengeSaveData, m_State));}
+	m_sId.Serialize(p_Serializer, p_OwnOffset + offsetof(SChallengeSaveData, m_sId));
+	m_State.Serialize(p_Serializer, p_OwnOffset + offsetof(SChallengeSaveData, m_State));
+}
 
 ZHMTypeInfo STimerEntitySaveData::TypeInfo = ZHMTypeInfo("STimerEntitySaveData", sizeof(STimerEntitySaveData), alignof(STimerEntitySaveData), STimerEntitySaveData::WriteJson, STimerEntitySaveData::WriteSimpleJson, STimerEntitySaveData::FromSimpleJson);
 
@@ -6123,7 +6224,9 @@ void STimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void STimerEntitiesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerEntitiesSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerEntitiesSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerEntitiesSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerEntitiesSaveData, m_aData));
+}
 
 ZHMTypeInfo SRandomTimerEntitySaveData::TypeInfo = ZHMTypeInfo("SRandomTimerEntitySaveData", sizeof(SRandomTimerEntitySaveData), alignof(SRandomTimerEntitySaveData), SRandomTimerEntitySaveData::WriteJson, SRandomTimerEntitySaveData::WriteSimpleJson, SRandomTimerEntitySaveData::FromSimpleJson);
 
@@ -6321,7 +6424,9 @@ void SRandomTimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SRandomTimerEntitiesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SRandomTimerEntitiesSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SRandomTimerEntitiesSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SRandomTimerEntitiesSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SRandomTimerEntitiesSaveData, m_aData));
+}
 
 ZHMTypeInfo STimerManagerSaveData::TypeInfo = ZHMTypeInfo("STimerManagerSaveData", sizeof(STimerManagerSaveData), alignof(STimerManagerSaveData), STimerManagerSaveData::WriteJson, STimerManagerSaveData::WriteSimpleJson, STimerManagerSaveData::FromSimpleJson);
 
@@ -6397,7 +6502,10 @@ void STimerManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void STimerManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_TimersData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_TimersData));	m_RandomTimersData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_RandomTimersData));	m_GameTimersData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_GameTimersData));}
+	m_TimersData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_TimersData));
+	m_RandomTimersData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_RandomTimersData));
+	m_GameTimersData.Serialize(p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_GameTimersData));
+}
 
 ZHMTypeInfo SGateSaveData::TypeInfo = ZHMTypeInfo("SGateSaveData", sizeof(SGateSaveData), alignof(SGateSaveData), SGateSaveData::WriteJson, SGateSaveData::WriteSimpleJson, SGateSaveData::FromSimpleJson);
 
@@ -6525,7 +6633,9 @@ void SEntityTemplatePropertyAlias::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SEntityTemplatePropertyAlias::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sAliasName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, sAliasName));	sPropertyName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, sPropertyName));}
+	sAliasName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, sAliasName));
+	sPropertyName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, sPropertyName));
+}
 
 ZHMTypeInfo SDrama2ActorSaveState::TypeInfo = ZHMTypeInfo("SDrama2ActorSaveState", sizeof(SDrama2ActorSaveState), alignof(SDrama2ActorSaveState), SDrama2ActorSaveState::WriteJson, SDrama2ActorSaveState::WriteSimpleJson, SDrama2ActorSaveState::FromSimpleJson);
 
@@ -6713,7 +6823,9 @@ void SDrama2ActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SDrama2ActorSaveState::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sMatchName.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorSaveState, m_sMatchName));	m_tActorSpeakEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorSaveState, m_tActorSpeakEnd));}
+	m_sMatchName.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorSaveState, m_sMatchName));
+	m_tActorSpeakEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorSaveState, m_tActorSpeakEnd));
+}
 
 ZHMTypeInfo SHUDPromptDisplayInfo::TypeInfo = ZHMTypeInfo("SHUDPromptDisplayInfo", sizeof(SHUDPromptDisplayInfo), alignof(SHUDPromptDisplayInfo), SHUDPromptDisplayInfo::WriteJson, SHUDPromptDisplayInfo::WriteSimpleJson, SHUDPromptDisplayInfo::FromSimpleJson);
 
@@ -6933,7 +7045,10 @@ void SHUDPromptDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SHUDPromptDisplayInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sLabel.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sLabel));	m_sDescription.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sDescription));	m_sGlyph.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sGlyph));}
+	m_sLabel.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sLabel));
+	m_sDescription.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sDescription));
+	m_sGlyph.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sGlyph));
+}
 
 ZHMTypeInfo SStepCounterEntitySaveData::TypeInfo = ZHMTypeInfo("SStepCounterEntitySaveData", sizeof(SStepCounterEntitySaveData), alignof(SStepCounterEntitySaveData), SStepCounterEntitySaveData::WriteJson, SStepCounterEntitySaveData::WriteSimpleJson, SStepCounterEntitySaveData::FromSimpleJson);
 
@@ -7085,7 +7200,8 @@ void SLoadRuntimeResourceResult::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SLoadRuntimeResourceResult::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sFilePath.Serialize(p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, sFilePath));}
+	sFilePath.Serialize(p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, sFilePath));
+}
 
 ZHMTypeInfo SHeroEscortSituation2Actors::TypeInfo = ZHMTypeInfo("SHeroEscortSituation2Actors", sizeof(SHeroEscortSituation2Actors), alignof(SHeroEscortSituation2Actors), SHeroEscortSituation2Actors::WriteJson, SHeroEscortSituation2Actors::WriteSimpleJson, SHeroEscortSituation2Actors::FromSimpleJson);
 
@@ -7217,7 +7333,8 @@ void SSpatialMoverEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SSpatialMoverEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SSpatialMoverEntitySaveData, m_vPosition));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SSpatialMoverEntitySaveData, m_vPosition));
+}
 
 ZHMTypeInfo SLayerBehaviorConfiguration::TypeInfo = ZHMTypeInfo("SLayerBehaviorConfiguration", sizeof(SLayerBehaviorConfiguration), alignof(SLayerBehaviorConfiguration), SLayerBehaviorConfiguration::WriteJson, SLayerBehaviorConfiguration::WriteSimpleJson, SLayerBehaviorConfiguration::FromSimpleJson);
 
@@ -7439,7 +7556,12 @@ void SInventoryItem::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SInventoryItem::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sInstanceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, sInstanceId));	sUnlockableId.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, sUnlockableId));	repositoryId.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, repositoryId));	aRepositoryAssetIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, aRepositoryAssetIds));	aModifierIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, aModifierIds));}
+	sInstanceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, sInstanceId));
+	sUnlockableId.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, sUnlockableId));
+	repositoryId.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, repositoryId));
+	aRepositoryAssetIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, aRepositoryAssetIds));
+	aModifierIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryItem, aModifierIds));
+}
 
 ZHMTypeInfo SContainerItemInfo::TypeInfo = ZHMTypeInfo("SContainerItemInfo", sizeof(SContainerItemInfo), alignof(SContainerItemInfo), SContainerItemInfo::WriteJson, SContainerItemInfo::WriteSimpleJson, SContainerItemInfo::FromSimpleJson);
 
@@ -7495,7 +7617,9 @@ void SContainerItemInfo::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SContainerItemInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sContainerInstanceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SContainerItemInfo, m_sContainerInstanceId));	m_concealedItem.Serialize(p_Serializer, p_OwnOffset + offsetof(SContainerItemInfo, m_concealedItem));}
+	m_sContainerInstanceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SContainerItemInfo, m_sContainerInstanceId));
+	m_concealedItem.Serialize(p_Serializer, p_OwnOffset + offsetof(SContainerItemInfo, m_concealedItem));
+}
 
 ZHMTypeInfo SInventoryInfo::TypeInfo = ZHMTypeInfo("SInventoryInfo", sizeof(SInventoryInfo), alignof(SInventoryInfo), SInventoryInfo::WriteJson, SInventoryInfo::WriteSimpleJson, SInventoryInfo::FromSimpleJson);
 
@@ -7611,7 +7735,10 @@ void SInventoryInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SInventoryInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aPockets.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_aPockets));	m_CarriedItem.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_CarriedItem));	m_aContainerItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_aContainerItems));}
+	m_aPockets.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_aPockets));
+	m_CarriedItem.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_CarriedItem));
+	m_aContainerItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_aContainerItems));
+}
 
 ZHMTypeInfo ZRayQueryInput::TypeInfo = ZHMTypeInfo("ZRayQueryInput", sizeof(ZRayQueryInput), alignof(ZRayQueryInput), ZRayQueryInput::WriteJson, ZRayQueryInput::WriteSimpleJson, ZRayQueryInput::FromSimpleJson);
 
@@ -7805,7 +7932,10 @@ void SActorThrowSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SActorThrowSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vStartPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorThrowSaveData, m_vStartPosition));	m_vEndPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorThrowSaveData, m_vEndPosition));	m_vItemVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorThrowSaveData, m_vItemVelocity));}
+	m_vStartPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorThrowSaveData, m_vStartPosition));
+	m_vEndPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorThrowSaveData, m_vEndPosition));
+	m_vItemVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorThrowSaveData, m_vItemVelocity));
+}
 
 ZHMTypeInfo SIntelListDisplayInfo::TypeInfo = ZHMTypeInfo("SIntelListDisplayInfo", sizeof(SIntelListDisplayInfo), alignof(SIntelListDisplayInfo), SIntelListDisplayInfo::WriteJson, SIntelListDisplayInfo::WriteSimpleJson, SIntelListDisplayInfo::FromSimpleJson);
 
@@ -7881,7 +8011,8 @@ void SIntelListDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SIntelListDisplayInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	label.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelListDisplayInfo, label));}
+	label.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelListDisplayInfo, label));
+}
 
 ZHMTypeInfo SAgencyPickupInfo::TypeInfo = ZHMTypeInfo("SAgencyPickupInfo", sizeof(SAgencyPickupInfo), alignof(SAgencyPickupInfo), SAgencyPickupInfo::WriteJson, SAgencyPickupInfo::WriteSimpleJson, SAgencyPickupInfo::FromSimpleJson);
 
@@ -7997,7 +8128,10 @@ void SAgencyPickupInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SAgencyPickupInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_AgencyPickupId.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgencyPickupInfo, m_AgencyPickupId));	m_aItemIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgencyPickupInfo, m_aItemIds));	m_aModifierIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgencyPickupInfo, m_aModifierIds));}
+	m_AgencyPickupId.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgencyPickupInfo, m_AgencyPickupId));
+	m_aItemIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgencyPickupInfo, m_aItemIds));
+	m_aModifierIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgencyPickupInfo, m_aModifierIds));
+}
 
 ZHMTypeInfo SSoundAmbienceSaveData::TypeInfo = ZHMTypeInfo("SSoundAmbienceSaveData", sizeof(SSoundAmbienceSaveData), alignof(SSoundAmbienceSaveData), SSoundAmbienceSaveData::WriteJson, SSoundAmbienceSaveData::WriteSimpleJson, SSoundAmbienceSaveData::FromSimpleJson);
 
@@ -8149,7 +8283,8 @@ void SChallengesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SChallengesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_mChallengeStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SChallengesSaveData, m_mChallengeStates));}
+	m_mChallengeStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SChallengesSaveData, m_mChallengeStates));
+}
 
 ZHMTypeInfo SLevelSaveData::TypeInfo = ZHMTypeInfo("SLevelSaveData", sizeof(SLevelSaveData), alignof(SLevelSaveData), SLevelSaveData::WriteJson, SLevelSaveData::WriteSimpleJson, SLevelSaveData::FromSimpleJson);
 
@@ -8497,7 +8632,22 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SLevelSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sScene.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sScene));	m_sLocationId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sLocationId));	m_sContractId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sContractId));	m_sContractSessionId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sContractSessionId));	m_sLastEventToken.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sLastEventToken));	m_EnabledEntranceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_EnabledEntranceId));	m_StartupDisguiseId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_StartupDisguiseId));	m_contractData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_contractData));	m_trackedOpportunity.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_trackedOpportunity));	m_aStartupInventory.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aStartupInventory));	m_aStartupAgencyPickupSelection.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aStartupAgencyPickupSelection));	m_aObjectives.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aObjectives));	m_aGameChangers.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aGameChangers));	m_SoundAmbienceData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_SoundAmbienceData));	m_ChallengesSaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_ChallengesSaveData));}
+	m_sScene.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sScene));
+	m_sLocationId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sLocationId));
+	m_sContractId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sContractId));
+	m_sContractSessionId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sContractSessionId));
+	m_sLastEventToken.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_sLastEventToken));
+	m_EnabledEntranceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_EnabledEntranceId));
+	m_StartupDisguiseId.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_StartupDisguiseId));
+	m_contractData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_contractData));
+	m_trackedOpportunity.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_trackedOpportunity));
+	m_aStartupInventory.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aStartupInventory));
+	m_aStartupAgencyPickupSelection.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aStartupAgencyPickupSelection));
+	m_aObjectives.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aObjectives));
+	m_aGameChangers.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_aGameChangers));
+	m_SoundAmbienceData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_SoundAmbienceData));
+	m_ChallengesSaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_ChallengesSaveData));
+}
 
 ZHMTypeInfo SFSMSaveData::TypeInfo = ZHMTypeInfo("SFSMSaveData", sizeof(SFSMSaveData), alignof(SFSMSaveData), SFSMSaveData::WriteJson, SFSMSaveData::WriteSimpleJson, SFSMSaveData::FromSimpleJson);
 
@@ -8577,7 +8727,8 @@ void SFSMSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 void SFSMSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tCurrentStateEnterTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SFSMSaveData, m_tCurrentStateEnterTime));}
+	m_tCurrentStateEnterTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SFSMSaveData, m_tCurrentStateEnterTime));
+}
 
 ZHMTypeInfo SGetHelpGroupSaveData::TypeInfo = ZHMTypeInfo("SGetHelpGroupSaveData", sizeof(SGetHelpGroupSaveData), alignof(SGetHelpGroupSaveData), SGetHelpGroupSaveData::WriteJson, SGetHelpGroupSaveData::WriteSimpleJson, SGetHelpGroupSaveData::FromSimpleJson);
 
@@ -8853,7 +9004,12 @@ void SGetHelpGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SGetHelpGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vLastKnownTargetPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_vLastKnownTargetPosition));	m_blocked.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_blocked));	m_tGetHelpCompleted.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_tGetHelpCompleted));	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_fsmState));	m_additionalGuards.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_additionalGuards));}
+	m_vLastKnownTargetPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_vLastKnownTargetPosition));
+	m_blocked.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_blocked));
+	m_tGetHelpCompleted.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_tGetHelpCompleted));
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_fsmState));
+	m_additionalGuards.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpGroupSaveData, m_additionalGuards));
+}
 
 ZHMTypeInfo SActorDynamicTemplateManipulatorSaveData::TypeInfo = ZHMTypeInfo("SActorDynamicTemplateManipulatorSaveData", sizeof(SActorDynamicTemplateManipulatorSaveData), alignof(SActorDynamicTemplateManipulatorSaveData), SActorDynamicTemplateManipulatorSaveData::WriteJson, SActorDynamicTemplateManipulatorSaveData::WriteSimpleJson, SActorDynamicTemplateManipulatorSaveData::FromSimpleJson);
 
@@ -8937,7 +9093,8 @@ void SCautiousVIPGroupState::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SCautiousVIPGroupState::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tMove.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousVIPGroupState, m_tMove));}
+	m_tMove.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousVIPGroupState, m_tMove));
+}
 
 ZHMTypeInfo SActorKeywordProxySaveData::TypeInfo = ZHMTypeInfo("SActorKeywordProxySaveData", sizeof(SActorKeywordProxySaveData), alignof(SActorKeywordProxySaveData), SActorKeywordProxySaveData::WriteJson, SActorKeywordProxySaveData::WriteSimpleJson, SActorKeywordProxySaveData::FromSimpleJson);
 
@@ -9041,7 +9198,8 @@ void SHUDPromptDisplayInfoArray_Dummy::FromSimpleJson(simdjson::ondemand::value 
 
 void SHUDPromptDisplayInfoArray_Dummy::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfoArray_Dummy, dummy));}
+	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfoArray_Dummy, dummy));
+}
 
 ZHMTypeInfo SCombatSituationMemberSaveData::TypeInfo = ZHMTypeInfo("SCombatSituationMemberSaveData", sizeof(SCombatSituationMemberSaveData), alignof(SCombatSituationMemberSaveData), SCombatSituationMemberSaveData::WriteJson, SCombatSituationMemberSaveData::WriteSimpleJson, SCombatSituationMemberSaveData::FromSimpleJson);
 
@@ -9221,7 +9379,8 @@ void SVariantStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SVariantStruct::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_Data.Serialize(p_Serializer, p_OwnOffset + offsetof(SVariantStruct, m_Data));}
+	m_Data.Serialize(p_Serializer, p_OwnOffset + offsetof(SVariantStruct, m_Data));
+}
 
 ZHMTypeInfo SBehaviorTreeEntityReference::TypeInfo = ZHMTypeInfo("SBehaviorTreeEntityReference", sizeof(SBehaviorTreeEntityReference), alignof(SBehaviorTreeEntityReference), SBehaviorTreeEntityReference::WriteJson, SBehaviorTreeEntityReference::WriteSimpleJson, SBehaviorTreeEntityReference::FromSimpleJson);
 
@@ -9273,7 +9432,8 @@ void SBehaviorTreeEntityReference::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SBehaviorTreeEntityReference::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEntityReference, m_sName));}
+	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEntityReference, m_sName));
+}
 
 ZHMTypeInfo SBehaviorTreeInfo::TypeInfo = ZHMTypeInfo("SBehaviorTreeInfo", sizeof(SBehaviorTreeInfo), alignof(SBehaviorTreeInfo), SBehaviorTreeInfo::WriteJson, SBehaviorTreeInfo::WriteSimpleJson, SBehaviorTreeInfo::FromSimpleJson);
 
@@ -9373,7 +9533,9 @@ void SBehaviorTreeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SBehaviorTreeInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_references.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, m_references));	m_inputPinConditions.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, m_inputPinConditions));}
+	m_references.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, m_references));
+	m_inputPinConditions.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, m_inputPinConditions));
+}
 
 ZHMTypeInfo SShotListenerSaveData::TypeInfo = ZHMTypeInfo("SShotListenerSaveData", sizeof(SShotListenerSaveData), alignof(SShotListenerSaveData), SShotListenerSaveData::WriteJson, SShotListenerSaveData::WriteSimpleJson, SShotListenerSaveData::FromSimpleJson);
 
@@ -9617,7 +9779,10 @@ void SMatrix33::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 void SMatrix33::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	XAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix33, XAxis));	YAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix33, YAxis));	ZAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix33, ZAxis));}
+	XAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix33, XAxis));
+	YAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix33, YAxis));
+	ZAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix33, ZAxis));
+}
 
 ZHMTypeInfo SCrowdBodySaveData::TypeInfo = ZHMTypeInfo("SCrowdBodySaveData", sizeof(SCrowdBodySaveData), alignof(SCrowdBodySaveData), SCrowdBodySaveData::WriteJson, SCrowdBodySaveData::WriteSimpleJson, SCrowdBodySaveData::FromSimpleJson);
 
@@ -9767,7 +9932,9 @@ void SCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SCrowdBodySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aKnownBy.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdBodySaveData, m_aKnownBy));	m_tStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdBodySaveData, m_tStart));}
+	m_aKnownBy.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdBodySaveData, m_aKnownBy));
+	m_tStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdBodySaveData, m_tStart));
+}
 
 ZHMTypeInfo ZEntityRef::TypeInfo = ZHMTypeInfo("ZEntityRef", sizeof(ZEntityRef), alignof(ZEntityRef), ZEntityRef::WriteJson, ZEntityRef::WriteSimpleJson, ZEntityRef::FromSimpleJson);
 
@@ -9893,7 +10060,9 @@ void SValueIntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SValueIntSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueIntSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueIntSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueIntSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueIntSaveData, m_aData));
+}
 
 ZHMTypeInfo SMovementLadderSaveData::TypeInfo = ZHMTypeInfo("SMovementLadderSaveData", sizeof(SMovementLadderSaveData), alignof(SMovementLadderSaveData), SMovementLadderSaveData::WriteJson, SMovementLadderSaveData::WriteSimpleJson, SMovementLadderSaveData::FromSimpleJson);
 
@@ -10169,7 +10338,8 @@ void SAIModifierServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SAIModifierServiceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SAIModifierServiceSaveData, m_aActors));}
+	m_aActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SAIModifierServiceSaveData, m_aActors));
+}
 
 ZHMTypeInfo ISoundGateController::TypeInfo = ZHMTypeInfo("ISoundGateController", sizeof(ISoundGateController), alignof(ISoundGateController), ISoundGateController::WriteJson, ISoundGateController::WriteSimpleJson, ISoundGateController::FromSimpleJson);
 
@@ -10421,7 +10591,9 @@ void SActivityObjective::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SActivityObjective::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	activity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityObjective, activity));	opportunities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityObjective, opportunities));}
+	activity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityObjective, activity));
+	opportunities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityObjective, opportunities));
+}
 
 ZHMTypeInfo SActivityDefinition::TypeInfo = ZHMTypeInfo("SActivityDefinition", sizeof(SActivityDefinition), alignof(SActivityDefinition), SActivityDefinition::WriteJson, SActivityDefinition::WriteSimpleJson, SActivityDefinition::FromSimpleJson);
 
@@ -10517,7 +10689,10 @@ void SActivityDefinition::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SActivityDefinition::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	activity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityDefinition, activity));	objectives.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityDefinition, objectives));	exits.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityDefinition, exits));}
+	activity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityDefinition, activity));
+	objectives.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityDefinition, objectives));
+	exits.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivityDefinition, exits));
+}
 
 ZHMTypeInfo SActivities::TypeInfo = ZHMTypeInfo("SActivities", sizeof(SActivities), alignof(SActivities), SActivities::WriteJson, SActivities::WriteSimpleJson, SActivities::FromSimpleJson);
 
@@ -10581,7 +10756,8 @@ void SActivities::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 void SActivities::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	Activities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivities, Activities));}
+	Activities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActivities, Activities));
+}
 
 ZHMTypeInfo SEntityTemplateReference::TypeInfo = ZHMTypeInfo("SEntityTemplateReference", sizeof(SEntityTemplateReference), alignof(SEntityTemplateReference), SEntityTemplateReference::WriteJson, SEntityTemplateReference::WriteSimpleJson, SEntityTemplateReference::FromSimpleJson);
 
@@ -10657,7 +10833,8 @@ void SEntityTemplateReference::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SEntityTemplateReference::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	exposedEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateReference, exposedEntity));}
+	exposedEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateReference, exposedEntity));
+}
 
 ZHMTypeInfo SEntityTemplateProperty::TypeInfo = ZHMTypeInfo("SEntityTemplateProperty", sizeof(SEntityTemplateProperty), alignof(SEntityTemplateProperty), SEntityTemplateProperty::WriteJson, SEntityTemplateProperty::WriteSimpleJson, SEntityTemplateProperty::FromSimpleJson);
 
@@ -10723,7 +10900,8 @@ void SEntityTemplateProperty::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SEntityTemplateProperty::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	value.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateProperty, value));}
+	value.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateProperty, value));
+}
 
 ZHMTypeInfo SEntityTemplatePlatformSpecificProperty::TypeInfo = ZHMTypeInfo("SEntityTemplatePlatformSpecificProperty", sizeof(SEntityTemplatePlatformSpecificProperty), alignof(SEntityTemplatePlatformSpecificProperty), SEntityTemplatePlatformSpecificProperty::WriteJson, SEntityTemplatePlatformSpecificProperty::WriteSimpleJson, SEntityTemplatePlatformSpecificProperty::FromSimpleJson);
 
@@ -10791,7 +10969,8 @@ void SEntityTemplatePlatformSpecificProperty::FromSimpleJson(simdjson::ondemand:
 
 void SEntityTemplatePlatformSpecificProperty::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	propertyValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePlatformSpecificProperty, propertyValue));}
+	propertyValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePlatformSpecificProperty, propertyValue));
+}
 
 ZHMTypeInfo STemplateFactorySubEntity::TypeInfo = ZHMTypeInfo("STemplateFactorySubEntity", sizeof(STemplateFactorySubEntity), alignof(STemplateFactorySubEntity), STemplateFactorySubEntity::WriteJson, STemplateFactorySubEntity::WriteSimpleJson, STemplateFactorySubEntity::FromSimpleJson);
 
@@ -10955,7 +11134,11 @@ void STemplateFactorySubEntity::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void STemplateFactorySubEntity::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	logicalParent.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, logicalParent));	propertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, propertyValues));	postInitPropertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, postInitPropertyValues));	platformSpecificPropertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, platformSpecificPropertyValues));}
+	logicalParent.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, logicalParent));
+	propertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, propertyValues));
+	postInitPropertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, postInitPropertyValues));
+	platformSpecificPropertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateFactorySubEntity, platformSpecificPropertyValues));
+}
 
 ZHMTypeInfo SEntityTemplatePropertyOverride::TypeInfo = ZHMTypeInfo("SEntityTemplatePropertyOverride", sizeof(SEntityTemplatePropertyOverride), alignof(SEntityTemplatePropertyOverride), SEntityTemplatePropertyOverride::WriteJson, SEntityTemplatePropertyOverride::WriteSimpleJson, SEntityTemplatePropertyOverride::FromSimpleJson);
 
@@ -11015,7 +11198,9 @@ void SEntityTemplatePropertyOverride::FromSimpleJson(simdjson::ondemand::value p
 
 void SEntityTemplatePropertyOverride::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	propertyOwner.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyOverride, propertyOwner));	propertyValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyOverride, propertyValue));}
+	propertyOwner.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyOverride, propertyOwner));
+	propertyValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyOverride, propertyValue));
+}
 
 ZHMTypeInfo STemplateEntityFactory::TypeInfo = ZHMTypeInfo("STemplateEntityFactory", sizeof(STemplateEntityFactory), alignof(STemplateEntityFactory), STemplateEntityFactory::WriteJson, STemplateEntityFactory::WriteSimpleJson, STemplateEntityFactory::FromSimpleJson);
 
@@ -11185,7 +11370,10 @@ void STemplateEntityFactory::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void STemplateEntityFactory::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	subEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityFactory, subEntities));	propertyOverrides.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityFactory, propertyOverrides));	externalSceneTypeIndicesInResourceHeader.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityFactory, externalSceneTypeIndicesInResourceHeader));}
+	subEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityFactory, subEntities));
+	propertyOverrides.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityFactory, propertyOverrides));
+	externalSceneTypeIndicesInResourceHeader.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityFactory, externalSceneTypeIndicesInResourceHeader));
+}
 
 ZHMTypeInfo SColorRGB::TypeInfo = ZHMTypeInfo("SColorRGB", sizeof(SColorRGB), alignof(SColorRGB), SColorRGB::WriteJson, SColorRGB::WriteSimpleJson, SColorRGB::FromSimpleJson);
 
@@ -11341,7 +11529,8 @@ void SLightSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SLightSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_DiffuseColor.Serialize(p_Serializer, p_OwnOffset + offsetof(SLightSaveData, m_DiffuseColor));}
+	m_DiffuseColor.Serialize(p_Serializer, p_OwnOffset + offsetof(SLightSaveData, m_DiffuseColor));
+}
 
 ZHMTypeInfo SItemActionSaveData::TypeInfo = ZHMTypeInfo("SItemActionSaveData", sizeof(SItemActionSaveData), alignof(SItemActionSaveData), SItemActionSaveData::WriteJson, SItemActionSaveData::WriteSimpleJson, SItemActionSaveData::FromSimpleJson);
 
@@ -11533,7 +11722,9 @@ void SDramaActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SDramaActorSaveState::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sMatchName.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorSaveState, m_sMatchName));	m_tActorSpeakEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorSaveState, m_tActorSpeakEnd));}
+	m_sMatchName.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorSaveState, m_sMatchName));
+	m_tActorSpeakEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorSaveState, m_tActorSpeakEnd));
+}
 
 ZHMTypeInfo STrackerEntitySaveData::TypeInfo = ZHMTypeInfo("STrackerEntitySaveData", sizeof(STrackerEntitySaveData), alignof(STrackerEntitySaveData), STrackerEntitySaveData::WriteJson, STrackerEntitySaveData::WriteSimpleJson, STrackerEntitySaveData::FromSimpleJson);
 
@@ -11673,7 +11864,8 @@ void STrackerManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void STrackerManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aTrackerData.Serialize(p_Serializer, p_OwnOffset + offsetof(STrackerManagerSaveData, m_aTrackerData));}
+	m_aTrackerData.Serialize(p_Serializer, p_OwnOffset + offsetof(STrackerManagerSaveData, m_aTrackerData));
+}
 
 ZHMTypeInfo SRemoteControlReceiverSaveData::TypeInfo = ZHMTypeInfo("SRemoteControlReceiverSaveData", sizeof(SRemoteControlReceiverSaveData), alignof(SRemoteControlReceiverSaveData), SRemoteControlReceiverSaveData::WriteJson, SRemoteControlReceiverSaveData::WriteSimpleJson, SRemoteControlReceiverSaveData::FromSimpleJson);
 
@@ -12175,7 +12367,10 @@ void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 void SItemSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vPosition));	m_vRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vRotation));	m_vVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vVelocity));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vPosition));
+	m_vRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vRotation));
+	m_vVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vVelocity));
+}
 
 ZHMTypeInfo SCautiousSituationMemberSaveData::TypeInfo = ZHMTypeInfo("SCautiousSituationMemberSaveData", sizeof(SCautiousSituationMemberSaveData), alignof(SCautiousSituationMemberSaveData), SCautiousSituationMemberSaveData::WriteJson, SCautiousSituationMemberSaveData::WriteSimpleJson, SCautiousSituationMemberSaveData::FromSimpleJson);
 
@@ -12395,7 +12590,13 @@ void SCautiousSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value 
 
 void SCautiousSituationMemberSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tLastDisturbance.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastDisturbance));	m_tLastSearchCalc.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastSearchCalc));	m_tLastInfluenceCalc.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastInfluenceCalc));	m_tLastSearchCompleted.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastSearchCompleted));	m_tLastInvestigationCompleted.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastInvestigationCompleted));	m_tTimeIdling.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tTimeIdling));}
+	m_tLastDisturbance.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastDisturbance));
+	m_tLastSearchCalc.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastSearchCalc));
+	m_tLastInfluenceCalc.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastInfluenceCalc));
+	m_tLastSearchCompleted.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastSearchCompleted));
+	m_tLastInvestigationCompleted.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tLastInvestigationCompleted));
+	m_tTimeIdling.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousSituationMemberSaveData, m_tTimeIdling));
+}
 
 ZHMTypeInfo SCrowdFlowChannel::TypeInfo = ZHMTypeInfo("SCrowdFlowChannel", sizeof(SCrowdFlowChannel), alignof(SCrowdFlowChannel), SCrowdFlowChannel::WriteJson, SCrowdFlowChannel::WriteSimpleJson, SCrowdFlowChannel::FromSimpleJson);
 
@@ -12491,7 +12692,9 @@ void SCrowdFlowChannel::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SCrowdFlowChannel::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aFlowVectorIndex.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, m_aFlowVectorIndex));	m_aFlowCost.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, m_aFlowCost));}
+	m_aFlowVectorIndex.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, m_aFlowVectorIndex));
+	m_aFlowCost.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, m_aFlowCost));
+}
 
 ZHMTypeInfo SDrama2SetupSaveData::TypeInfo = ZHMTypeInfo("SDrama2SetupSaveData", sizeof(SDrama2SetupSaveData), alignof(SDrama2SetupSaveData), SDrama2SetupSaveData::WriteJson, SDrama2SetupSaveData::WriteSimpleJson, SDrama2SetupSaveData::FromSimpleJson);
 
@@ -12653,7 +12856,9 @@ void SDrama2SetupCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void SDrama2SetupCollectionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SetupCollectionSaveData, m_aEntities));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SetupCollectionSaveData, m_aStates));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SetupCollectionSaveData, m_aEntities));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SetupCollectionSaveData, m_aStates));
+}
 
 ZHMTypeInfo SBehaviorTreeEvaluationLogEntry::TypeInfo = ZHMTypeInfo("SBehaviorTreeEvaluationLogEntry", sizeof(SBehaviorTreeEvaluationLogEntry), alignof(SBehaviorTreeEvaluationLogEntry), SBehaviorTreeEvaluationLogEntry::WriteJson, SBehaviorTreeEvaluationLogEntry::WriteSimpleJson, SBehaviorTreeEvaluationLogEntry::FromSimpleJson);
 
@@ -12817,7 +13022,9 @@ void SBehaviorTreeEvaluationLog::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SBehaviorTreeEvaluationLog::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_BehaviorTrees.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, m_BehaviorTrees));	m_Entries.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, m_Entries));}
+	m_BehaviorTrees.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, m_BehaviorTrees));
+	m_Entries.Serialize(p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, m_Entries));
+}
 
 ZHMTypeInfo STargetInfoObjectiveCondition::TypeInfo = ZHMTypeInfo("STargetInfoObjectiveCondition", sizeof(STargetInfoObjectiveCondition), alignof(STargetInfoObjectiveCondition), STargetInfoObjectiveCondition::WriteJson, STargetInfoObjectiveCondition::WriteSimpleJson, STargetInfoObjectiveCondition::FromSimpleJson);
 
@@ -12905,7 +13112,11 @@ void STargetInfoObjectiveCondition::FromSimpleJson(simdjson::ondemand::value p_D
 
 void STargetInfoObjectiveCondition::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	header.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, header));	title.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, title));	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, icon));	type.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, type));}
+	header.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, header));
+	title.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, title));
+	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, icon));
+	type.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoObjectiveCondition, type));
+}
 
 ZHMTypeInfo STargetInfoDisplayData::TypeInfo = ZHMTypeInfo("STargetInfoDisplayData", sizeof(STargetInfoDisplayData), alignof(STargetInfoDisplayData), STargetInfoDisplayData::WriteJson, STargetInfoDisplayData::WriteSimpleJson, STargetInfoDisplayData::FromSimpleJson);
 
@@ -13053,7 +13264,11 @@ void STargetInfoDisplayData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void STargetInfoDisplayData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	npcName.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, npcName));	disguiseName.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, disguiseName));	objectiveType.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, objectiveType));	objectiveConditions.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, objectiveConditions));}
+	npcName.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, npcName));
+	disguiseName.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, disguiseName));
+	objectiveType.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, objectiveType));
+	objectiveConditions.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData, objectiveConditions));
+}
 
 ZHMTypeInfo STargetInfoDisplayData_Dummy::TypeInfo = ZHMTypeInfo("STargetInfoDisplayData_Dummy", sizeof(STargetInfoDisplayData_Dummy), alignof(STargetInfoDisplayData_Dummy), STargetInfoDisplayData_Dummy::WriteJson, STargetInfoDisplayData_Dummy::WriteSimpleJson, STargetInfoDisplayData_Dummy::FromSimpleJson);
 
@@ -13117,7 +13332,8 @@ void STargetInfoDisplayData_Dummy::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void STargetInfoDisplayData_Dummy::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	__dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData_Dummy, __dummy));}
+	__dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetInfoDisplayData_Dummy, __dummy));
+}
 
 ZHMTypeInfo SClothBundleSpawnSaveData::TypeInfo = ZHMTypeInfo("SClothBundleSpawnSaveData", sizeof(SClothBundleSpawnSaveData), alignof(SClothBundleSpawnSaveData), SClothBundleSpawnSaveData::WriteJson, SClothBundleSpawnSaveData::WriteSimpleJson, SClothBundleSpawnSaveData::FromSimpleJson);
 
@@ -13541,7 +13757,9 @@ void SActorAnimSetSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SActorAnimSetSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aLocoVariationIndecies.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorAnimSetSaveData, m_aLocoVariationIndecies));	m_aReactVariationIndecies.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorAnimSetSaveData, m_aReactVariationIndecies));}
+	m_aLocoVariationIndecies.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorAnimSetSaveData, m_aLocoVariationIndecies));
+	m_aReactVariationIndecies.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorAnimSetSaveData, m_aReactVariationIndecies));
+}
 
 ZHMTypeInfo SActorInventoryItemSaveData::TypeInfo = ZHMTypeInfo("SActorInventoryItemSaveData", sizeof(SActorInventoryItemSaveData), alignof(SActorInventoryItemSaveData), SActorInventoryItemSaveData::WriteJson, SActorInventoryItemSaveData::WriteSimpleJson, SActorInventoryItemSaveData::FromSimpleJson);
 
@@ -13705,7 +13923,8 @@ void SActorInventorySaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SActorInventorySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorInventorySaveData, m_aItems));}
+	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorInventorySaveData, m_aItems));
+}
 
 ZHMTypeInfo SLongTermMemorySaveData::TypeInfo = ZHMTypeInfo("SLongTermMemorySaveData", sizeof(SLongTermMemorySaveData), alignof(SLongTermMemorySaveData), SLongTermMemorySaveData::WriteJson, SLongTermMemorySaveData::WriteSimpleJson, SLongTermMemorySaveData::FromSimpleJson);
 
@@ -13761,7 +13980,8 @@ void SLongTermMemorySaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SLongTermMemorySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SLongTermMemorySaveData, m_sOutfit));}
+	m_sOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SLongTermMemorySaveData, m_sOutfit));
+}
 
 ZHMTypeInfo SActorDamageControlSaveData::TypeInfo = ZHMTypeInfo("SActorDamageControlSaveData", sizeof(SActorDamageControlSaveData), alignof(SActorDamageControlSaveData), SActorDamageControlSaveData::WriteJson, SActorDamageControlSaveData::WriteSimpleJson, SActorDamageControlSaveData::FromSimpleJson);
 
@@ -14105,7 +14325,8 @@ void SActorDamageControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SActorDamageControlSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_accuseUnconsciousOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDamageControlSaveData, m_accuseUnconsciousOutfit));}
+	m_accuseUnconsciousOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDamageControlSaveData, m_accuseUnconsciousOutfit));
+}
 
 ZHMTypeInfo SActorDynamicTemplateSaveData::TypeInfo = ZHMTypeInfo("SActorDynamicTemplateSaveData", sizeof(SActorDynamicTemplateSaveData), alignof(SActorDynamicTemplateSaveData), SActorDynamicTemplateSaveData::WriteJson, SActorDynamicTemplateSaveData::WriteSimpleJson, SActorDynamicTemplateSaveData::FromSimpleJson);
 
@@ -14249,7 +14470,10 @@ void SActorDynamicTemplateSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SActorDynamicTemplateSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDynamicTemplateSaveData, m_sName));	m_nTimeLimit.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDynamicTemplateSaveData, m_nTimeLimit));	m_nTimeRemoveLimit.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDynamicTemplateSaveData, m_nTimeRemoveLimit));}
+	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDynamicTemplateSaveData, m_sName));
+	m_nTimeLimit.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDynamicTemplateSaveData, m_nTimeLimit));
+	m_nTimeRemoveLimit.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorDynamicTemplateSaveData, m_nTimeRemoveLimit));
+}
 
 ZHMTypeInfo SEventHistorySaveData::TypeInfo = ZHMTypeInfo("SEventHistorySaveData", sizeof(SEventHistorySaveData), alignof(SEventHistorySaveData), SEventHistorySaveData::WriteJson, SEventHistorySaveData::WriteSimpleJson, SEventHistorySaveData::FromSimpleJson);
 
@@ -14313,7 +14537,8 @@ void SEventHistorySaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SEventHistorySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aOccurences.Serialize(p_Serializer, p_OwnOffset + offsetof(SEventHistorySaveData, m_aOccurences));}
+	m_aOccurences.Serialize(p_Serializer, p_OwnOffset + offsetof(SEventHistorySaveData, m_aOccurences));
+}
 
 ZHMTypeInfo SActorBoneSaveData::TypeInfo = ZHMTypeInfo("SActorBoneSaveData", sizeof(SActorBoneSaveData), alignof(SActorBoneSaveData), SActorBoneSaveData::WriteJson, SActorBoneSaveData::WriteSimpleJson, SActorBoneSaveData::FromSimpleJson);
 
@@ -14373,7 +14598,9 @@ void SActorBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SActorBoneSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneSaveData, mQuaterion));	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneSaveData, mTranslation));}
+	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneSaveData, mQuaterion));
+	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneSaveData, mTranslation));
+}
 
 ZHMTypeInfo SActorRagdollPoseSaveData::TypeInfo = ZHMTypeInfo("SActorRagdollPoseSaveData", sizeof(SActorRagdollPoseSaveData), alignof(SActorRagdollPoseSaveData), SActorRagdollPoseSaveData::WriteJson, SActorRagdollPoseSaveData::WriteSimpleJson, SActorRagdollPoseSaveData::FromSimpleJson);
 
@@ -14487,7 +14714,10 @@ void SActorRagdollPoseSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SActorRagdollPoseSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vBodyVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorRagdollPoseSaveData, m_vBodyVelocity));	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorRagdollPoseSaveData, m_aBones));	m_aBoneIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorRagdollPoseSaveData, m_aBoneIndices));}
+	m_vBodyVelocity.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorRagdollPoseSaveData, m_vBodyVelocity));
+	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorRagdollPoseSaveData, m_aBones));
+	m_aBoneIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorRagdollPoseSaveData, m_aBoneIndices));
+}
 
 ZHMTypeInfo SActorSaveData::TypeInfo = ZHMTypeInfo("SActorSaveData", sizeof(SActorSaveData), alignof(SActorSaveData), SActorSaveData::WriteJson, SActorSaveData::WriteSimpleJson, SActorSaveData::FromSimpleJson);
 
@@ -15323,7 +15553,25 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SActorSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_vPosition));	m_vQuaternion.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_vQuaternion));	m_Inventory.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_Inventory));	m_AnimSet.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_AnimSet));	m_ThrowHandler.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_ThrowHandler));	m_CurrentBehaviorState.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_CurrentBehaviorState));	m_aCurrentBehaviorEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aCurrentBehaviorEntities));	m_aBehaviorEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aBehaviorEntities));	m_KnowledgeData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_KnowledgeData));	m_OutfitRepositoryId.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_OutfitRepositoryId));	m_tSequenceEndTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_tSequenceEndTime));	m_ActorDamageControlData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_ActorDamageControlData));	m_AnimatedActorOrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_AnimatedActorOrderData));	m_aDynamicTemplates.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aDynamicTemplates));	m_sEndOrientation.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_sEndOrientation));	m_bumpsHistory.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_bumpsHistory));	m_RagdollPose.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_RagdollPose));	m_aLongTermMemorySaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aLongTermMemorySaveData));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_vPosition));
+	m_vQuaternion.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_vQuaternion));
+	m_Inventory.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_Inventory));
+	m_AnimSet.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_AnimSet));
+	m_ThrowHandler.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_ThrowHandler));
+	m_CurrentBehaviorState.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_CurrentBehaviorState));
+	m_aCurrentBehaviorEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aCurrentBehaviorEntities));
+	m_aBehaviorEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aBehaviorEntities));
+	m_KnowledgeData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_KnowledgeData));
+	m_OutfitRepositoryId.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_OutfitRepositoryId));
+	m_tSequenceEndTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_tSequenceEndTime));
+	m_ActorDamageControlData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_ActorDamageControlData));
+	m_AnimatedActorOrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_AnimatedActorOrderData));
+	m_aDynamicTemplates.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aDynamicTemplates));
+	m_sEndOrientation.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_sEndOrientation));
+	m_bumpsHistory.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_bumpsHistory));
+	m_RagdollPose.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_RagdollPose));
+	m_aLongTermMemorySaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSaveData, m_aLongTermMemorySaveData));
+}
 
 ZHMTypeInfo SEntityPath::TypeInfo = ZHMTypeInfo("SEntityPath", sizeof(SEntityPath), alignof(SEntityPath), SEntityPath::WriteJson, SEntityPath::WriteSimpleJson, SEntityPath::FromSimpleJson);
 
@@ -15397,7 +15645,8 @@ void SEntityPath::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 void SEntityPath::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntityPath.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPath, m_aEntityPath));}
+	m_aEntityPath.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPath, m_aEntityPath));
+}
 
 ZHMTypeInfo SSaveGameData::TypeInfo = ZHMTypeInfo("SSaveGameData", sizeof(SSaveGameData), alignof(SSaveGameData), SSaveGameData::WriteJson, SSaveGameData::WriteSimpleJson, SSaveGameData::FromSimpleJson);
 
@@ -15509,7 +15758,9 @@ void SSaveGameData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 void SSaveGameData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aSavableObjectsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameData, m_aSavableObjectsData));	m_aEntityPaths.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameData, m_aEntityPaths));}
+	m_aSavableObjectsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameData, m_aSavableObjectsData));
+	m_aEntityPaths.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameData, m_aEntityPaths));
+}
 
 ZHMTypeInfo SMovementDisguiseSafeZoneSaveData::TypeInfo = ZHMTypeInfo("SMovementDisguiseSafeZoneSaveData", sizeof(SMovementDisguiseSafeZoneSaveData), alignof(SMovementDisguiseSafeZoneSaveData), SMovementDisguiseSafeZoneSaveData::WriteJson, SMovementDisguiseSafeZoneSaveData::WriteSimpleJson, SMovementDisguiseSafeZoneSaveData::FromSimpleJson);
 
@@ -15787,7 +16038,8 @@ void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SDisturbanceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_started.Serialize(p_Serializer, p_OwnOffset + offsetof(SDisturbanceSaveData, m_started));}
+	m_started.Serialize(p_Serializer, p_OwnOffset + offsetof(SDisturbanceSaveData, m_started));
+}
 
 ZHMTypeInfo SZHUDIgnoreVisibilitySaveData::TypeInfo = ZHMTypeInfo("SZHUDIgnoreVisibilitySaveData", sizeof(SZHUDIgnoreVisibilitySaveData), alignof(SZHUDIgnoreVisibilitySaveData), SZHUDIgnoreVisibilitySaveData::WriteJson, SZHUDIgnoreVisibilitySaveData::WriteSimpleJson, SZHUDIgnoreVisibilitySaveData::FromSimpleJson);
 
@@ -15967,7 +16219,9 @@ void SEntityTemplateExposedEntity::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SEntityTemplateExposedEntity::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateExposedEntity, sName));	aTargets.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateExposedEntity, aTargets));}
+	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateExposedEntity, sName));
+	aTargets.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateExposedEntity, aTargets));
+}
 
 ZHMTypeInfo SLightFlickerEntitySaveData::TypeInfo = ZHMTypeInfo("SLightFlickerEntitySaveData", sizeof(SLightFlickerEntitySaveData), alignof(SLightFlickerEntitySaveData), SLightFlickerEntitySaveData::WriteJson, SLightFlickerEntitySaveData::WriteSimpleJson, SLightFlickerEntitySaveData::FromSimpleJson);
 
@@ -16167,7 +16421,9 @@ void SMathLerpSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SMathLerpSaveData_SColorRGBA::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGBA, m_A));	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGBA, m_B));}
+	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGBA, m_A));
+	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGBA, m_B));
+}
 
 ZHMTypeInfo SMathLerpsSaveData_SColorRGBA::TypeInfo = ZHMTypeInfo("SMathLerpsSaveData_SColorRGBA", sizeof(SMathLerpsSaveData_SColorRGBA), alignof(SMathLerpsSaveData_SColorRGBA), SMathLerpsSaveData_SColorRGBA::WriteJson, SMathLerpsSaveData_SColorRGBA::WriteSimpleJson, SMathLerpsSaveData_SColorRGBA::FromSimpleJson);
 
@@ -16265,7 +16521,9 @@ void SMathLerpsSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SMathLerpsSaveData_SColorRGBA::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGBA, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGBA, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGBA, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGBA, m_aData));
+}
 
 ZHMTypeInfo SFriskSuspectGroupSaveData::TypeInfo = ZHMTypeInfo("SFriskSuspectGroupSaveData", sizeof(SFriskSuspectGroupSaveData), alignof(SFriskSuspectGroupSaveData), SFriskSuspectGroupSaveData::WriteJson, SFriskSuspectGroupSaveData::WriteSimpleJson, SFriskSuspectGroupSaveData::FromSimpleJson);
 
@@ -16497,7 +16755,10 @@ void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SFriskSuspectGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SFriskSuspectGroupSaveData, m_fsmState));	m_tHitmanGreet.Serialize(p_Serializer, p_OwnOffset + offsetof(SFriskSuspectGroupSaveData, m_tHitmanGreet));	m_tWaitToComplyTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SFriskSuspectGroupSaveData, m_tWaitToComplyTime));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SFriskSuspectGroupSaveData, m_fsmState));
+	m_tHitmanGreet.Serialize(p_Serializer, p_OwnOffset + offsetof(SFriskSuspectGroupSaveData, m_tHitmanGreet));
+	m_tWaitToComplyTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SFriskSuspectGroupSaveData, m_tWaitToComplyTime));
+}
 
 ZHMTypeInfo STypeReference::TypeInfo = ZHMTypeInfo("STypeReference", sizeof(STypeReference), alignof(STypeReference), STypeReference::WriteJson, STypeReference::WriteSimpleJson, STypeReference::FromSimpleJson);
 
@@ -16549,7 +16810,9 @@ void STypeReference::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void STypeReference::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sEntityID.Serialize(p_Serializer, p_OwnOffset + offsetof(STypeReference, sEntityID));	sTypeArgName.Serialize(p_Serializer, p_OwnOffset + offsetof(STypeReference, sTypeArgName));}
+	sEntityID.Serialize(p_Serializer, p_OwnOffset + offsetof(STypeReference, sEntityID));
+	sTypeArgName.Serialize(p_Serializer, p_OwnOffset + offsetof(STypeReference, sTypeArgName));
+}
 
 ZHMTypeInfo SExposedTypeInfo::TypeInfo = ZHMTypeInfo("SExposedTypeInfo", sizeof(SExposedTypeInfo), alignof(SExposedTypeInfo), SExposedTypeInfo::WriteJson, SExposedTypeInfo::WriteSimpleJson, SExposedTypeInfo::FromSimpleJson);
 
@@ -16629,7 +16892,11 @@ void SExposedTypeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 void SExposedTypeInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, sName));	sDisplayName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, sDisplayName));	sHelpText.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, sHelpText));	target.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, target));}
+	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, sName));
+	sDisplayName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, sDisplayName));
+	sHelpText.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, sHelpText));
+	target.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedTypeInfo, target));
+}
 
 ZHMTypeInfo SDynamicEnforcerCandidateSaveData::TypeInfo = ZHMTypeInfo("SDynamicEnforcerCandidateSaveData", sizeof(SDynamicEnforcerCandidateSaveData), alignof(SDynamicEnforcerCandidateSaveData), SDynamicEnforcerCandidateSaveData::WriteJson, SDynamicEnforcerCandidateSaveData::WriteSimpleJson, SDynamicEnforcerCandidateSaveData::FromSimpleJson);
 
@@ -16709,7 +16976,8 @@ void SDynamicEnforcerCandidateSaveData::FromSimpleJson(simdjson::ondemand::value
 
 void SDynamicEnforcerCandidateSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicEnforcerCandidateSaveData, m_vPosition));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicEnforcerCandidateSaveData, m_vPosition));
+}
 
 ZHMTypeInfo SDynamicEnforcerServiceSaveData::TypeInfo = ZHMTypeInfo("SDynamicEnforcerServiceSaveData", sizeof(SDynamicEnforcerServiceSaveData), alignof(SDynamicEnforcerServiceSaveData), SDynamicEnforcerServiceSaveData::WriteJson, SDynamicEnforcerServiceSaveData::WriteSimpleJson, SDynamicEnforcerServiceSaveData::FromSimpleJson);
 
@@ -16773,7 +17041,8 @@ void SDynamicEnforcerServiceSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 void SDynamicEnforcerServiceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicEnforcerServiceSaveData, m_aCandidates));}
+	m_aCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicEnforcerServiceSaveData, m_aCandidates));
+}
 
 ZHMTypeInfo SActorStandInSaveData::TypeInfo = ZHMTypeInfo("SActorStandInSaveData", sizeof(SActorStandInSaveData), alignof(SActorStandInSaveData), SActorStandInSaveData::WriteJson, SActorStandInSaveData::WriteSimpleJson, SActorStandInSaveData::FromSimpleJson);
 
@@ -17325,7 +17594,15 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SPostfilterParametersSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vRadialBlurCenter.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vRadialBlurCenter));	m_vSpatialBlurCenter.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vSpatialBlurCenter));	m_vDistortionWobbleWaveLength.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vDistortionWobbleWaveLength));	m_vDistortionWobbleSpeed.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vDistortionWobbleSpeed));	m_vHDRAdaptationSpeed.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vHDRAdaptationSpeed));	m_vHDRAdaptationLuminanceMinMax.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vHDRAdaptationLuminanceMinMax));	m_vHDRAdaptationMiddleGrayMinMax.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vHDRAdaptationMiddleGrayMinMax));	m_HDRColorTint.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_HDRColorTint));}
+	m_vRadialBlurCenter.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vRadialBlurCenter));
+	m_vSpatialBlurCenter.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vSpatialBlurCenter));
+	m_vDistortionWobbleWaveLength.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vDistortionWobbleWaveLength));
+	m_vDistortionWobbleSpeed.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vDistortionWobbleSpeed));
+	m_vHDRAdaptationSpeed.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vHDRAdaptationSpeed));
+	m_vHDRAdaptationLuminanceMinMax.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vHDRAdaptationLuminanceMinMax));
+	m_vHDRAdaptationMiddleGrayMinMax.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_vHDRAdaptationMiddleGrayMinMax));
+	m_HDRColorTint.Serialize(p_Serializer, p_OwnOffset + offsetof(SPostfilterParametersSaveData, m_HDRColorTint));
+}
 
 ZHMTypeInfo SMovementAgilitySaveData::TypeInfo = ZHMTypeInfo("SMovementAgilitySaveData", sizeof(SMovementAgilitySaveData), alignof(SMovementAgilitySaveData), SMovementAgilitySaveData::WriteJson, SMovementAgilitySaveData::WriteSimpleJson, SMovementAgilitySaveData::FromSimpleJson);
 
@@ -17487,7 +17764,8 @@ void SActorManagerReferencableData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SActorManagerReferencableData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aSituationTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorManagerReferencableData, m_aSituationTypes));}
+	m_aSituationTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorManagerReferencableData, m_aSituationTypes));
+}
 
 ZHMTypeInfo SClothVertex::TypeInfo = ZHMTypeInfo("SClothVertex", sizeof(SClothVertex), alignof(SClothVertex), SClothVertex::WriteJson, SClothVertex::WriteSimpleJson, SClothVertex::FromSimpleJson);
 
@@ -17647,7 +17925,10 @@ void SSituationOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SSituationOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sClassTypeName.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationOrderSaveData, m_sClassTypeName));	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationOrderSaveData, m_vPosition));	m_CustomData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationOrderSaveData, m_CustomData));}
+	m_sClassTypeName.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationOrderSaveData, m_sClassTypeName));
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationOrderSaveData, m_vPosition));
+	m_CustomData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationOrderSaveData, m_CustomData));
+}
 
 ZHMTypeInfo SEscortSituation2Actors::TypeInfo = ZHMTypeInfo("SEscortSituation2Actors", sizeof(SEscortSituation2Actors), alignof(SEscortSituation2Actors), SEscortSituation2Actors::WriteJson, SEscortSituation2Actors::WriteSimpleJson, SEscortSituation2Actors::FromSimpleJson);
 
@@ -18151,7 +18432,12 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SEscortSituation2SaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_vLastPosition));	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aAddedActors));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aStates));	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aEscortActs));	m_aSearchActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aSearchActs));}
+	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_vLastPosition));
+	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aAddedActors));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aStates));
+	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aEscortActs));
+	m_aSearchActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituation2SaveData, m_aSearchActs));
+}
 
 ZHMTypeInfo SDeadBodyInfoSaveData::TypeInfo = ZHMTypeInfo("SDeadBodyInfoSaveData", sizeof(SDeadBodyInfoSaveData), alignof(SDeadBodyInfoSaveData), SDeadBodyInfoSaveData::WriteJson, SDeadBodyInfoSaveData::WriteSimpleJson, SDeadBodyInfoSaveData::FromSimpleJson);
 
@@ -18365,7 +18651,10 @@ void SDeadBodyInfoSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SDeadBodyInfoSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_knownByActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodyInfoSaveData, m_knownByActors));	m_tKnownSince.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodyInfoSaveData, m_tKnownSince));	m_tInvestigatedSince.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodyInfoSaveData, m_tInvestigatedSince));}
+	m_knownByActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodyInfoSaveData, m_knownByActors));
+	m_tKnownSince.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodyInfoSaveData, m_tKnownSince));
+	m_tInvestigatedSince.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodyInfoSaveData, m_tInvestigatedSince));
+}
 
 ZHMTypeInfo SDeadBodySensorSaveData::TypeInfo = ZHMTypeInfo("SDeadBodySensorSaveData", sizeof(SDeadBodySensorSaveData), alignof(SDeadBodySensorSaveData), SDeadBodySensorSaveData::WriteJson, SDeadBodySensorSaveData::WriteSimpleJson, SDeadBodySensorSaveData::FromSimpleJson);
 
@@ -18441,7 +18730,8 @@ void SDeadBodySensorSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SDeadBodySensorSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aBodies.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodySensorSaveData, m_aBodies));}
+	m_aBodies.Serialize(p_Serializer, p_OwnOffset + offsetof(SDeadBodySensorSaveData, m_aBodies));
+}
 
 ZHMTypeInfo SCheckLastPositionGroupSaveData::TypeInfo = ZHMTypeInfo("SCheckLastPositionGroupSaveData", sizeof(SCheckLastPositionGroupSaveData), alignof(SCheckLastPositionGroupSaveData), SCheckLastPositionGroupSaveData::WriteJson, SCheckLastPositionGroupSaveData::WriteSimpleJson, SCheckLastPositionGroupSaveData::FromSimpleJson);
 
@@ -18645,7 +18935,10 @@ void SItemInstanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SItemInstanceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_repositoryId.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemInstanceSaveData, m_repositoryId));	m_sOnlineInstanceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemInstanceSaveData, m_sOnlineInstanceId));	m_aItemModifierIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemInstanceSaveData, m_aItemModifierIds));}
+	m_repositoryId.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemInstanceSaveData, m_repositoryId));
+	m_sOnlineInstanceId.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemInstanceSaveData, m_sOnlineInstanceId));
+	m_aItemModifierIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemInstanceSaveData, m_aItemModifierIds));
+}
 
 ZHMTypeInfo SWorldInventoryInstanceSaveData::TypeInfo = ZHMTypeInfo("SWorldInventoryInstanceSaveData", sizeof(SWorldInventoryInstanceSaveData), alignof(SWorldInventoryInstanceSaveData), SWorldInventoryInstanceSaveData::WriteJson, SWorldInventoryInstanceSaveData::WriteSimpleJson, SWorldInventoryInstanceSaveData::FromSimpleJson);
 
@@ -18709,7 +19002,8 @@ void SWorldInventoryInstanceSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 void SWorldInventoryInstanceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aItemInstanceSaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SWorldInventoryInstanceSaveData, m_aItemInstanceSaveData));}
+	m_aItemInstanceSaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SWorldInventoryInstanceSaveData, m_aItemInstanceSaveData));
+}
 
 ZHMTypeInfo SEvacuateTrespassGroupSaveData::TypeInfo = ZHMTypeInfo("SEvacuateTrespassGroupSaveData", sizeof(SEvacuateTrespassGroupSaveData), alignof(SEvacuateTrespassGroupSaveData), SEvacuateTrespassGroupSaveData::WriteJson, SEvacuateTrespassGroupSaveData::WriteSimpleJson, SEvacuateTrespassGroupSaveData::FromSimpleJson);
 
@@ -18849,7 +19143,8 @@ void SEvacuateTrespassGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void SEvacuateTrespassGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateTrespassGroupSaveData, m_fsmState));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateTrespassGroupSaveData, m_fsmState));
+}
 
 ZHMTypeInfo SActorSpreadTransitionOperatorMaterialActorSaveData::TypeInfo = ZHMTypeInfo("SActorSpreadTransitionOperatorMaterialActorSaveData", sizeof(SActorSpreadTransitionOperatorMaterialActorSaveData), alignof(SActorSpreadTransitionOperatorMaterialActorSaveData), SActorSpreadTransitionOperatorMaterialActorSaveData::WriteJson, SActorSpreadTransitionOperatorMaterialActorSaveData::WriteSimpleJson, SActorSpreadTransitionOperatorMaterialActorSaveData::FromSimpleJson);
 
@@ -19133,7 +19428,9 @@ void SVolumeTriggersSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SVolumeTriggersSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SVolumeTriggersSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SVolumeTriggersSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SVolumeTriggersSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SVolumeTriggersSaveData, m_aData));
+}
 
 ZHMTypeInfo SFaceOrderSaveData::TypeInfo = ZHMTypeInfo("SFaceOrderSaveData", sizeof(SFaceOrderSaveData), alignof(SFaceOrderSaveData), SFaceOrderSaveData::WriteJson, SFaceOrderSaveData::WriteSimpleJson, SFaceOrderSaveData::FromSimpleJson);
 
@@ -19325,7 +19622,8 @@ void SVIPEvacuationNodeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SVIPEvacuationNodeSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tPenalty.Serialize(p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodeSaveData, m_tPenalty));}
+	m_tPenalty.Serialize(p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodeSaveData, m_tPenalty));
+}
 
 ZHMTypeInfo SVIPEvacuationNodesSaveData::TypeInfo = ZHMTypeInfo("SVIPEvacuationNodesSaveData", sizeof(SVIPEvacuationNodesSaveData), alignof(SVIPEvacuationNodesSaveData), SVIPEvacuationNodesSaveData::WriteJson, SVIPEvacuationNodesSaveData::WriteSimpleJson, SVIPEvacuationNodesSaveData::FromSimpleJson);
 
@@ -19423,7 +19721,9 @@ void SVIPEvacuationNodesSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SVIPEvacuationNodesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodesSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodesSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodesSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodesSaveData, m_aData));
+}
 
 ZHMTypeInfo SExactCompressedGridFloatField::TypeInfo = ZHMTypeInfo("SExactCompressedGridFloatField", sizeof(SExactCompressedGridFloatField), alignof(SExactCompressedGridFloatField), SExactCompressedGridFloatField::WriteJson, SExactCompressedGridFloatField::WriteSimpleJson, SExactCompressedGridFloatField::FromSimpleJson);
 
@@ -19555,7 +19855,9 @@ void SExactCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_
 
 void SExactCompressedGridFloatField::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SExactCompressedGridFloatField, m_aIndices));	m_aValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SExactCompressedGridFloatField, m_aValues));}
+	m_aIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SExactCompressedGridFloatField, m_aIndices));
+	m_aValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SExactCompressedGridFloatField, m_aValues));
+}
 
 ZHMTypeInfo SIntelData::TypeInfo = ZHMTypeInfo("SIntelData", sizeof(SIntelData), alignof(SIntelData), SIntelData::WriteJson, SIntelData::WriteSimpleJson, SIntelData::FromSimpleJson);
 
@@ -19631,7 +19933,11 @@ void SIntelData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 
 void SIntelData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sHeadline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sHeadline));	m_sBodyHeadline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sBodyHeadline));	m_sBodytext.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sBodytext));	m_sImage.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sImage));}
+	m_sHeadline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sHeadline));
+	m_sBodyHeadline.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sBodyHeadline));
+	m_sBodytext.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sBodytext));
+	m_sImage.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelData, m_sImage));
+}
 
 ZHMTypeInfo SMathMultiplyDivideSaveData_SVector3::TypeInfo = ZHMTypeInfo("SMathMultiplyDivideSaveData_SVector3", sizeof(SMathMultiplyDivideSaveData_SVector3), alignof(SMathMultiplyDivideSaveData_SVector3), SMathMultiplyDivideSaveData_SVector3::WriteJson, SMathMultiplyDivideSaveData_SVector3::WriteSimpleJson, SMathMultiplyDivideSaveData_SVector3::FromSimpleJson);
 
@@ -19703,7 +20009,9 @@ void SMathMultiplyDivideSaveData_SVector3::FromSimpleJson(simdjson::ondemand::va
 
 void SMathMultiplyDivideSaveData_SVector3::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector3, m_fA));	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector3, m_fB));}
+	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector3, m_fA));
+	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector3, m_fB));
+}
 
 ZHMTypeInfo SMathMultipliesSaveData_SVector3::TypeInfo = ZHMTypeInfo("SMathMultipliesSaveData_SVector3", sizeof(SMathMultipliesSaveData_SVector3), alignof(SMathMultipliesSaveData_SVector3), SMathMultipliesSaveData_SVector3::WriteJson, SMathMultipliesSaveData_SVector3::WriteSimpleJson, SMathMultipliesSaveData_SVector3::FromSimpleJson);
 
@@ -19801,7 +20109,9 @@ void SMathMultipliesSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value 
 
 void SMathMultipliesSaveData_SVector3::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector3, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector3, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector3, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector3, m_aData));
+}
 
 ZHMTypeInfo SMapMarkerData::TypeInfo = ZHMTypeInfo("SMapMarkerData", sizeof(SMapMarkerData), alignof(SMapMarkerData), SMapMarkerData::WriteJson, SMapMarkerData::WriteSimpleJson, SMapMarkerData::FromSimpleJson);
 
@@ -19865,7 +20175,8 @@ void SMapMarkerData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SMapMarkerData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	pathPoints.Serialize(p_Serializer, p_OwnOffset + offsetof(SMapMarkerData, pathPoints));}
+	pathPoints.Serialize(p_Serializer, p_OwnOffset + offsetof(SMapMarkerData, pathPoints));
+}
 
 ZHMTypeInfo SDramaSituationSaveData::TypeInfo = ZHMTypeInfo("SDramaSituationSaveData", sizeof(SDramaSituationSaveData), alignof(SDramaSituationSaveData), SDramaSituationSaveData::WriteJson, SDramaSituationSaveData::WriteSimpleJson, SDramaSituationSaveData::FromSimpleJson);
 
@@ -20203,7 +20514,9 @@ void SDrama2SituationCollectionSaveData::FromSimpleJson(simdjson::ondemand::valu
 
 void SDrama2SituationCollectionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SituationCollectionSaveData, m_aEntities));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SituationCollectionSaveData, m_aStates));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SituationCollectionSaveData, m_aEntities));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2SituationCollectionSaveData, m_aStates));
+}
 
 ZHMTypeInfo SMathDistanceSaveData_SVector3::TypeInfo = ZHMTypeInfo("SMathDistanceSaveData_SVector3", sizeof(SMathDistanceSaveData_SVector3), alignof(SMathDistanceSaveData_SVector3), SMathDistanceSaveData_SVector3::WriteJson, SMathDistanceSaveData_SVector3::WriteSimpleJson, SMathDistanceSaveData_SVector3::FromSimpleJson);
 
@@ -20263,7 +20576,9 @@ void SMathDistanceSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_
 
 void SMathDistanceSaveData_SVector3::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector3, m_fA));	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector3, m_fB));}
+	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector3, m_fA));
+	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector3, m_fB));
+}
 
 ZHMTypeInfo SActorVisibilityConditionSaveData::TypeInfo = ZHMTypeInfo("SActorVisibilityConditionSaveData", sizeof(SActorVisibilityConditionSaveData), alignof(SActorVisibilityConditionSaveData), SActorVisibilityConditionSaveData::WriteJson, SActorVisibilityConditionSaveData::WriteSimpleJson, SActorVisibilityConditionSaveData::FromSimpleJson);
 
@@ -20453,7 +20768,9 @@ void SCollisionControllerAspectsSaveData::FromSimpleJson(simdjson::ondemand::val
 
 void SCollisionControllerAspectsSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollisionControllerAspectsSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollisionControllerAspectsSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollisionControllerAspectsSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCollisionControllerAspectsSaveData, m_aData));
+}
 
 ZHMTypeInfo SMathLerpSaveData_SVector3::TypeInfo = ZHMTypeInfo("SMathLerpSaveData_SVector3", sizeof(SMathLerpSaveData_SVector3), alignof(SMathLerpSaveData_SVector3), SMathLerpSaveData_SVector3::WriteJson, SMathLerpSaveData_SVector3::WriteSimpleJson, SMathLerpSaveData_SVector3::FromSimpleJson);
 
@@ -20525,7 +20842,9 @@ void SMathLerpSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SMathLerpSaveData_SVector3::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector3, m_A));	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector3, m_B));}
+	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector3, m_A));
+	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector3, m_B));
+}
 
 ZHMTypeInfo SMathMultiplyDivideSaveData_SVector4::TypeInfo = ZHMTypeInfo("SMathMultiplyDivideSaveData_SVector4", sizeof(SMathMultiplyDivideSaveData_SVector4), alignof(SMathMultiplyDivideSaveData_SVector4), SMathMultiplyDivideSaveData_SVector4::WriteJson, SMathMultiplyDivideSaveData_SVector4::WriteSimpleJson, SMathMultiplyDivideSaveData_SVector4::FromSimpleJson);
 
@@ -20597,7 +20916,9 @@ void SMathMultiplyDivideSaveData_SVector4::FromSimpleJson(simdjson::ondemand::va
 
 void SMathMultiplyDivideSaveData_SVector4::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector4, m_fA));	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector4, m_fB));}
+	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector4, m_fA));
+	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector4, m_fB));
+}
 
 ZHMTypeInfo IMorphemeCutSequenceAnimatable::TypeInfo = ZHMTypeInfo("IMorphemeCutSequenceAnimatable", sizeof(IMorphemeCutSequenceAnimatable), alignof(IMorphemeCutSequenceAnimatable), IMorphemeCutSequenceAnimatable::WriteJson, IMorphemeCutSequenceAnimatable::WriteSimpleJson, IMorphemeCutSequenceAnimatable::FromSimpleJson);
 
@@ -20671,7 +20992,8 @@ void SOptionValueSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SOptionValueSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_Value.Serialize(p_Serializer, p_OwnOffset + offsetof(SOptionValueSaveData, m_Value));}
+	m_Value.Serialize(p_Serializer, p_OwnOffset + offsetof(SOptionValueSaveData, m_Value));
+}
 
 ZHMTypeInfo SFontDefinition::TypeInfo = ZHMTypeInfo("SFontDefinition", sizeof(SFontDefinition), alignof(SFontDefinition), SFontDefinition::WriteJson, SFontDefinition::WriteSimpleJson, SFontDefinition::FromSimpleJson);
 
@@ -20747,7 +21069,9 @@ void SFontDefinition::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 void SFontDefinition::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sFontId.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontDefinition, sFontId));	sFontName.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontDefinition, sFontName));}
+	sFontId.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontDefinition, sFontId));
+	sFontName.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontDefinition, sFontName));
+}
 
 ZHMTypeInfo SFontLibraryDefinition::TypeInfo = ZHMTypeInfo("SFontLibraryDefinition", sizeof(SFontLibraryDefinition), alignof(SFontLibraryDefinition), SFontLibraryDefinition::WriteJson, SFontLibraryDefinition::WriteSimpleJson, SFontLibraryDefinition::FromSimpleJson);
 
@@ -20823,7 +21147,9 @@ void SFontLibraryDefinition::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SFontLibraryDefinition::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sFontLocaleID.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontLibraryDefinition, sFontLocaleID));	m_aFontDefinitions.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontLibraryDefinition, m_aFontDefinitions));}
+	sFontLocaleID.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontLibraryDefinition, sFontLocaleID));
+	m_aFontDefinitions.Serialize(p_Serializer, p_OwnOffset + offsetof(SFontLibraryDefinition, m_aFontDefinitions));
+}
 
 ZHMTypeInfo SAccessoryItemSaveData::TypeInfo = ZHMTypeInfo("SAccessoryItemSaveData", sizeof(SAccessoryItemSaveData), alignof(SAccessoryItemSaveData), SAccessoryItemSaveData::WriteJson, SAccessoryItemSaveData::WriteSimpleJson, SAccessoryItemSaveData::FromSimpleJson);
 
@@ -21377,7 +21703,13 @@ void SSentryZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SSentryZoneSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tGreetingCooldown.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_tGreetingCooldown));	m_tLoiteringCooldown.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_tLoiteringCooldown));	m_aDisguisesAllowedDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_aDisguisesAllowedDisabled));	m_aDisguisesFriskExemptDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_aDisguisesFriskExemptDisabled));	m_aDisguisesDontEscalateOnLineCrossingDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_aDisguisesDontEscalateOnLineCrossingDisabled));	m_ItemsDroppedInZone.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_ItemsDroppedInZone));}
+	m_tGreetingCooldown.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_tGreetingCooldown));
+	m_tLoiteringCooldown.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_tLoiteringCooldown));
+	m_aDisguisesAllowedDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_aDisguisesAllowedDisabled));
+	m_aDisguisesFriskExemptDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_aDisguisesFriskExemptDisabled));
+	m_aDisguisesDontEscalateOnLineCrossingDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_aDisguisesDontEscalateOnLineCrossingDisabled));
+	m_ItemsDroppedInZone.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryZoneSaveData, m_ItemsDroppedInZone));
+}
 
 ZHMTypeInfo SCautiousVIPGroupSaveData::TypeInfo = ZHMTypeInfo("SCautiousVIPGroupSaveData", sizeof(SCautiousVIPGroupSaveData), alignof(SCautiousVIPGroupSaveData), SCautiousVIPGroupSaveData::WriteJson, SCautiousVIPGroupSaveData::WriteSimpleJson, SCautiousVIPGroupSaveData::FromSimpleJson);
 
@@ -21473,7 +21805,9 @@ void SCautiousVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SCautiousVIPGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousVIPGroupSaveData, m_fsmState));	m_stateData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousVIPGroupSaveData, m_stateData));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousVIPGroupSaveData, m_fsmState));
+	m_stateData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousVIPGroupSaveData, m_stateData));
+}
 
 ZHMTypeInfo SSituationGroupSaveData::TypeInfo = ZHMTypeInfo("SSituationGroupSaveData", sizeof(SSituationGroupSaveData), alignof(SSituationGroupSaveData), SSituationGroupSaveData::WriteJson, SSituationGroupSaveData::WriteSimpleJson, SSituationGroupSaveData::FromSimpleJson);
 
@@ -21587,7 +21921,10 @@ void SSituationGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SSituationGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sClassTypeName.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationGroupSaveData, m_sClassTypeName));	m_aActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationGroupSaveData, m_aActors));	m_CustomData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationGroupSaveData, m_CustomData));}
+	m_sClassTypeName.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationGroupSaveData, m_sClassTypeName));
+	m_aActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationGroupSaveData, m_aActors));
+	m_CustomData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationGroupSaveData, m_CustomData));
+}
 
 ZHMTypeInfo SMathLerpSaveData_SVector2::TypeInfo = ZHMTypeInfo("SMathLerpSaveData_SVector2", sizeof(SMathLerpSaveData_SVector2), alignof(SMathLerpSaveData_SVector2), SMathLerpSaveData_SVector2::WriteJson, SMathLerpSaveData_SVector2::WriteSimpleJson, SMathLerpSaveData_SVector2::FromSimpleJson);
 
@@ -21659,7 +21996,9 @@ void SMathLerpSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SMathLerpSaveData_SVector2::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector2, m_A));	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector2, m_B));}
+	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector2, m_A));
+	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector2, m_B));
+}
 
 ZHMTypeInfo SMathLerpsSaveData_SVector2::TypeInfo = ZHMTypeInfo("SMathLerpsSaveData_SVector2", sizeof(SMathLerpsSaveData_SVector2), alignof(SMathLerpsSaveData_SVector2), SMathLerpsSaveData_SVector2::WriteJson, SMathLerpsSaveData_SVector2::WriteSimpleJson, SMathLerpsSaveData_SVector2::FromSimpleJson);
 
@@ -21757,7 +22096,9 @@ void SMathLerpsSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SMathLerpsSaveData_SVector2::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector2, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector2, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector2, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector2, m_aData));
+}
 
 ZHMTypeInfo ZPlanningObjectiveInfoBuilder::TypeInfo = ZHMTypeInfo("ZPlanningObjectiveInfoBuilder", sizeof(ZPlanningObjectiveInfoBuilder), alignof(ZPlanningObjectiveInfoBuilder), ZPlanningObjectiveInfoBuilder::WriteJson, ZPlanningObjectiveInfoBuilder::WriteSimpleJson, ZPlanningObjectiveInfoBuilder::FromSimpleJson);
 
@@ -21863,7 +22204,8 @@ void STestStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 void STestStruct::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	stringField.Serialize(p_Serializer, p_OwnOffset + offsetof(STestStruct, stringField));}
+	stringField.Serialize(p_Serializer, p_OwnOffset + offsetof(STestStruct, stringField));
+}
 
 ZHMTypeInfo STestStruct2::TypeInfo = ZHMTypeInfo("STestStruct2", sizeof(STestStruct2), alignof(STestStruct2), STestStruct2::WriteJson, STestStruct2::WriteSimpleJson, STestStruct2::FromSimpleJson);
 
@@ -21943,7 +22285,9 @@ void STestStruct2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 void STestStruct2::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	arrayField.Serialize(p_Serializer, p_OwnOffset + offsetof(STestStruct2, arrayField));	variantField.Serialize(p_Serializer, p_OwnOffset + offsetof(STestStruct2, variantField));}
+	arrayField.Serialize(p_Serializer, p_OwnOffset + offsetof(STestStruct2, arrayField));
+	variantField.Serialize(p_Serializer, p_OwnOffset + offsetof(STestStruct2, variantField));
+}
 
 ZHMTypeInfo SAnimatedActorStandOrderSaveData::TypeInfo = ZHMTypeInfo("SAnimatedActorStandOrderSaveData", sizeof(SAnimatedActorStandOrderSaveData), alignof(SAnimatedActorStandOrderSaveData), SAnimatedActorStandOrderSaveData::WriteJson, SAnimatedActorStandOrderSaveData::WriteSimpleJson, SAnimatedActorStandOrderSaveData::FromSimpleJson);
 
@@ -21987,7 +22331,8 @@ void SAnimatedActorStandOrderSaveData::FromSimpleJson(simdjson::ondemand::value 
 
 void SAnimatedActorStandOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vFacingDirection.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorStandOrderSaveData, m_vFacingDirection));}
+	m_vFacingDirection.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorStandOrderSaveData, m_vFacingDirection));
+}
 
 ZHMTypeInfo SInventoryUISlotSlim::TypeInfo = ZHMTypeInfo("SInventoryUISlotSlim", sizeof(SInventoryUISlotSlim), alignof(SInventoryUISlotSlim), SInventoryUISlotSlim::WriteJson, SInventoryUISlotSlim::WriteSimpleJson, SInventoryUISlotSlim::FromSimpleJson);
 
@@ -22047,7 +22392,9 @@ void SInventoryUISlotSlim::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SInventoryUISlotSlim::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlotSlim, icon));	containedIcon.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlotSlim, containedIcon));}
+	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlotSlim, icon));
+	containedIcon.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlotSlim, containedIcon));
+}
 
 ZHMTypeInfo IComponentInterface::TypeInfo = ZHMTypeInfo("IComponentInterface", sizeof(IComponentInterface), alignof(IComponentInterface), IComponentInterface::WriteJson, IComponentInterface::WriteSimpleJson, IComponentInterface::FromSimpleJson);
 
@@ -22141,7 +22488,8 @@ void SIntelDataArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SIntelDataArray_dummy::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDataArray_dummy, dummy));}
+	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelDataArray_dummy, dummy));
+}
 
 ZHMTypeInfo SAnimatedActorReactOrderSaveData::TypeInfo = ZHMTypeInfo("SAnimatedActorReactOrderSaveData", sizeof(SAnimatedActorReactOrderSaveData), alignof(SAnimatedActorReactOrderSaveData), SAnimatedActorReactOrderSaveData::WriteJson, SAnimatedActorReactOrderSaveData::WriteSimpleJson, SAnimatedActorReactOrderSaveData::FromSimpleJson);
 
@@ -22309,7 +22657,10 @@ void SAnimatedActorReactOrderSaveData::FromSimpleJson(simdjson::ondemand::value 
 
 void SAnimatedActorReactOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vFaceTarget.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorReactOrderSaveData, m_vFaceTarget));	m_vLookAtTarget.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorReactOrderSaveData, m_vLookAtTarget));	m_sAct.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorReactOrderSaveData, m_sAct));}
+	m_vFaceTarget.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorReactOrderSaveData, m_vFaceTarget));
+	m_vLookAtTarget.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorReactOrderSaveData, m_vLookAtTarget));
+	m_sAct.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorReactOrderSaveData, m_sAct));
+}
 
 ZHMTypeInfo SSaveGameHeader::TypeInfo = ZHMTypeInfo("SSaveGameHeader", sizeof(SSaveGameHeader), alignof(SSaveGameHeader), SSaveGameHeader::WriteJson, SSaveGameHeader::WriteSimpleJson, SSaveGameHeader::FromSimpleJson);
 
@@ -22413,7 +22764,8 @@ void SSaveGameHeader::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 void SSaveGameHeader::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	MetaData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameHeader, MetaData));}
+	MetaData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSaveGameHeader, MetaData));
+}
 
 ZHMTypeInfo SVoidSignalEntitySaveData::TypeInfo = ZHMTypeInfo("SVoidSignalEntitySaveData", sizeof(SVoidSignalEntitySaveData), alignof(SVoidSignalEntitySaveData), SVoidSignalEntitySaveData::WriteJson, SVoidSignalEntitySaveData::WriteSimpleJson, SVoidSignalEntitySaveData::FromSimpleJson);
 
@@ -22551,7 +22903,8 @@ void SRenderMaterialSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SRenderMaterialSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aDynamicParametersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderMaterialSaveData, m_aDynamicParametersData));}
+	m_aDynamicParametersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderMaterialSaveData, m_aDynamicParametersData));
+}
 
 ZHMTypeInfo SCrowdReactionSaveData::TypeInfo = ZHMTypeInfo("SCrowdReactionSaveData", sizeof(SCrowdReactionSaveData), alignof(SCrowdReactionSaveData), SCrowdReactionSaveData::WriteJson, SCrowdReactionSaveData::WriteSimpleJson, SCrowdReactionSaveData::FromSimpleJson);
 
@@ -22793,7 +23146,10 @@ void SInvestigateWeaponGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 void SInvestigateWeaponGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SInvestigateWeaponGroupSaveData, m_fsmState));	m_tLastGuardSearch.Serialize(p_Serializer, p_OwnOffset + offsetof(SInvestigateWeaponGroupSaveData, m_tLastGuardSearch));	m_aUnconsciousGuards.Serialize(p_Serializer, p_OwnOffset + offsetof(SInvestigateWeaponGroupSaveData, m_aUnconsciousGuards));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SInvestigateWeaponGroupSaveData, m_fsmState));
+	m_tLastGuardSearch.Serialize(p_Serializer, p_OwnOffset + offsetof(SInvestigateWeaponGroupSaveData, m_tLastGuardSearch));
+	m_aUnconsciousGuards.Serialize(p_Serializer, p_OwnOffset + offsetof(SInvestigateWeaponGroupSaveData, m_aUnconsciousGuards));
+}
 
 ZHMTypeInfo SAttentionHUDUIElement::TypeInfo = ZHMTypeInfo("SAttentionHUDUIElement", sizeof(SAttentionHUDUIElement), alignof(SAttentionHUDUIElement), SAttentionHUDUIElement::WriteJson, SAttentionHUDUIElement::WriteSimpleJson, SAttentionHUDUIElement::FromSimpleJson);
 
@@ -23073,7 +23429,9 @@ void SDrama2ActorCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void SDrama2ActorCollectionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorCollectionSaveData, m_aEntities));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorCollectionSaveData, m_aStates));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorCollectionSaveData, m_aEntities));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDrama2ActorCollectionSaveData, m_aStates));
+}
 
 ZHMTypeInfo SDramaActorCollectionSaveData::TypeInfo = ZHMTypeInfo("SDramaActorCollectionSaveData", sizeof(SDramaActorCollectionSaveData), alignof(SDramaActorCollectionSaveData), SDramaActorCollectionSaveData::WriteJson, SDramaActorCollectionSaveData::WriteSimpleJson, SDramaActorCollectionSaveData::FromSimpleJson);
 
@@ -23171,7 +23529,9 @@ void SDramaActorCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SDramaActorCollectionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorCollectionSaveData, m_aEntities));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorCollectionSaveData, m_aStates));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorCollectionSaveData, m_aEntities));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaActorCollectionSaveData, m_aStates));
+}
 
 ZHMTypeInfo SDramaSituationCollectionSaveData::TypeInfo = ZHMTypeInfo("SDramaSituationCollectionSaveData", sizeof(SDramaSituationCollectionSaveData), alignof(SDramaSituationCollectionSaveData), SDramaSituationCollectionSaveData::WriteJson, SDramaSituationCollectionSaveData::WriteSimpleJson, SDramaSituationCollectionSaveData::FromSimpleJson);
 
@@ -23269,7 +23629,9 @@ void SDramaSituationCollectionSaveData::FromSimpleJson(simdjson::ondemand::value
 
 void SDramaSituationCollectionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSituationCollectionSaveData, m_aEntities));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSituationCollectionSaveData, m_aStates));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSituationCollectionSaveData, m_aEntities));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSituationCollectionSaveData, m_aStates));
+}
 
 ZHMTypeInfo SDramaSetupSaveData::TypeInfo = ZHMTypeInfo("SDramaSetupSaveData", sizeof(SDramaSetupSaveData), alignof(SDramaSetupSaveData), SDramaSetupSaveData::WriteJson, SDramaSetupSaveData::WriteSimpleJson, SDramaSetupSaveData::FromSimpleJson);
 
@@ -23431,7 +23793,9 @@ void SDramaSetupCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SDramaSetupCollectionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSetupCollectionSaveData, m_aEntities));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSetupCollectionSaveData, m_aStates));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSetupCollectionSaveData, m_aEntities));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SDramaSetupCollectionSaveData, m_aStates));
+}
 
 ZHMTypeInfo SScreenplay2ManagerSaveData::TypeInfo = ZHMTypeInfo("SScreenplay2ManagerSaveData", sizeof(SScreenplay2ManagerSaveData), alignof(SScreenplay2ManagerSaveData), SScreenplay2ManagerSaveData::WriteJson, SScreenplay2ManagerSaveData::WriteSimpleJson, SScreenplay2ManagerSaveData::FromSimpleJson);
 
@@ -23555,7 +23919,13 @@ void SScreenplay2ManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SScreenplay2ManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_DramaActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_DramaActorData));	m_DramaSituationData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_DramaSituationData));	m_DramaSetupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_DramaSetupData));	m_Drama2ActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_Drama2ActorData));	m_Drama2SituationData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_Drama2SituationData));	m_Drama2SetupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_Drama2SetupData));}
+	m_DramaActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_DramaActorData));
+	m_DramaSituationData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_DramaSituationData));
+	m_DramaSetupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_DramaSetupData));
+	m_Drama2ActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_Drama2ActorData));
+	m_Drama2SituationData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_Drama2SituationData));
+	m_Drama2SetupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplay2ManagerSaveData, m_Drama2SetupData));
+}
 
 ZHMTypeInfo SInventoryUI::TypeInfo = ZHMTypeInfo("SInventoryUI", sizeof(SInventoryUI), alignof(SInventoryUI), SInventoryUI::WriteJson, SInventoryUI::WriteSimpleJson, SInventoryUI::FromSimpleJson);
 
@@ -23655,7 +24025,8 @@ void SInventoryUI::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 void SInventoryUI::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	mainslotsSlim.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUI, mainslotsSlim));}
+	mainslotsSlim.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUI, mainslotsSlim));
+}
 
 ZHMTypeInfo SActorBoneAttachSaveData::TypeInfo = ZHMTypeInfo("SActorBoneAttachSaveData", sizeof(SActorBoneAttachSaveData), alignof(SActorBoneAttachSaveData), SActorBoneAttachSaveData::WriteJson, SActorBoneAttachSaveData::WriteSimpleJson, SActorBoneAttachSaveData::FromSimpleJson);
 
@@ -23805,7 +24176,9 @@ void SActorBoneAttachmentsSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SActorBoneAttachmentsSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneAttachmentsSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneAttachmentsSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneAttachmentsSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorBoneAttachmentsSaveData, m_aData));
+}
 
 ZHMTypeInfo SUIBreadcrumbDataSaveData::TypeInfo = ZHMTypeInfo("SUIBreadcrumbDataSaveData", sizeof(SUIBreadcrumbDataSaveData), alignof(SUIBreadcrumbDataSaveData), SUIBreadcrumbDataSaveData::WriteJson, SUIBreadcrumbDataSaveData::WriteSimpleJson, SUIBreadcrumbDataSaveData::FromSimpleJson);
 
@@ -23901,7 +24274,8 @@ void SGeomScaleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SGeomScaleSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPrimitiveScale.Serialize(p_Serializer, p_OwnOffset + offsetof(SGeomScaleSaveData, m_vPrimitiveScale));}
+	m_vPrimitiveScale.Serialize(p_Serializer, p_OwnOffset + offsetof(SGeomScaleSaveData, m_vPrimitiveScale));
+}
 
 ZHMTypeInfo SCamBone::TypeInfo = ZHMTypeInfo("SCamBone", sizeof(SCamBone), alignof(SCamBone), SCamBone::WriteJson, SCamBone::WriteSimpleJson, SCamBone::FromSimpleJson);
 
@@ -24045,7 +24419,8 @@ void SEntityTemplateEntitySubset::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SEntityTemplateEntitySubset::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	entities.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateEntitySubset, entities));}
+	entities.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplateEntitySubset, entities));
+}
 
 ZHMTypeInfo STemplateBlueprintSubEntity::TypeInfo = ZHMTypeInfo("STemplateBlueprintSubEntity", sizeof(STemplateBlueprintSubEntity), alignof(STemplateBlueprintSubEntity), STemplateBlueprintSubEntity::WriteJson, STemplateBlueprintSubEntity::WriteSimpleJson, STemplateBlueprintSubEntity::FromSimpleJson);
 
@@ -24281,7 +24656,13 @@ void STemplateBlueprintSubEntity::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void STemplateBlueprintSubEntity::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	logicalParent.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, logicalParent));	entityName.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, entityName));	propertyAliases.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, propertyAliases));	exposedEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, exposedEntities));	exposedInterfaces.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, exposedInterfaces));	entitySubsets.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, entitySubsets));}
+	logicalParent.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, logicalParent));
+	entityName.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, entityName));
+	propertyAliases.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, propertyAliases));
+	exposedEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, exposedEntities));
+	exposedInterfaces.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, exposedInterfaces));
+	entitySubsets.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateBlueprintSubEntity, entitySubsets));
+}
 
 ZHMTypeInfo SValueBoolsSaveData::TypeInfo = ZHMTypeInfo("SValueBoolsSaveData", sizeof(SValueBoolsSaveData), alignof(SValueBoolsSaveData), SValueBoolsSaveData::WriteJson, SValueBoolsSaveData::WriteSimpleJson, SValueBoolsSaveData::FromSimpleJson);
 
@@ -24377,7 +24758,9 @@ void SValueBoolsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SValueBoolsSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueBoolsSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueBoolsSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueBoolsSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueBoolsSaveData, m_aData));
+}
 
 ZHMTypeInfo ZResourcePtr::TypeInfo = ZHMTypeInfo("ZResourcePtr", sizeof(ZResourcePtr), alignof(ZResourcePtr), ZResourcePtr::WriteJson, ZResourcePtr::WriteSimpleJson, ZResourcePtr::FromSimpleJson);
 
@@ -24513,7 +24896,9 @@ void ZComponentCreator::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void ZComponentCreator::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sComponentName.Serialize(p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, m_sComponentName));	m_aArgs.Serialize(p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, m_aArgs));}
+	m_sComponentName.Serialize(p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, m_sComponentName));
+	m_aArgs.Serialize(p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, m_aArgs));
+}
 
 ZHMTypeInfo SStashPointSaveData::TypeInfo = ZHMTypeInfo("SStashPointSaveData", sizeof(SStashPointSaveData), alignof(SStashPointSaveData), SStashPointSaveData::WriteJson, SStashPointSaveData::WriteSimpleJson, SStashPointSaveData::FromSimpleJson);
 
@@ -24627,7 +25012,9 @@ void SStashPointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SStashPointSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_arItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SStashPointSaveData, m_arItems));	m_MainItemID.Serialize(p_Serializer, p_OwnOffset + offsetof(SStashPointSaveData, m_MainItemID));}
+	m_arItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SStashPointSaveData, m_arItems));
+	m_MainItemID.Serialize(p_Serializer, p_OwnOffset + offsetof(SStashPointSaveData, m_MainItemID));
+}
 
 ZHMTypeInfo SComboDeviceBinding::TypeInfo = ZHMTypeInfo("SComboDeviceBinding", sizeof(SComboDeviceBinding), alignof(SComboDeviceBinding), SComboDeviceBinding::WriteJson, SComboDeviceBinding::WriteSimpleJson, SComboDeviceBinding::FromSimpleJson);
 
@@ -24743,7 +25130,8 @@ void SActorSpreadTransitionOperatorMaterialSaveData::FromSimpleJson(simdjson::on
 
 void SActorSpreadTransitionOperatorMaterialSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aActorMaterialOverrides.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadTransitionOperatorMaterialSaveData, m_aActorMaterialOverrides));}
+	m_aActorMaterialOverrides.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadTransitionOperatorMaterialSaveData, m_aActorMaterialOverrides));
+}
 
 ZHMTypeInfo SSentryOrderSaveData::TypeInfo = ZHMTypeInfo("SSentryOrderSaveData", sizeof(SSentryOrderSaveData), alignof(SSentryOrderSaveData), SSentryOrderSaveData::WriteJson, SSentryOrderSaveData::WriteSimpleJson, SSentryOrderSaveData::FromSimpleJson);
 
@@ -24855,7 +25243,9 @@ void SMathLerpSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SMathLerpSaveData_SVector4::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector4, m_A));	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector4, m_B));}
+	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector4, m_A));
+	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SVector4, m_B));
+}
 
 ZHMTypeInfo SMathLerpsSaveData_SVector4::TypeInfo = ZHMTypeInfo("SMathLerpsSaveData_SVector4", sizeof(SMathLerpsSaveData_SVector4), alignof(SMathLerpsSaveData_SVector4), SMathLerpsSaveData_SVector4::WriteJson, SMathLerpsSaveData_SVector4::WriteSimpleJson, SMathLerpsSaveData_SVector4::FromSimpleJson);
 
@@ -24953,7 +25343,9 @@ void SMathLerpsSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SMathLerpsSaveData_SVector4::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector4, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector4, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector4, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector4, m_aData));
+}
 
 ZHMTypeInfo SAgitatedBystanderOrderSaveData::TypeInfo = ZHMTypeInfo("SAgitatedBystanderOrderSaveData", sizeof(SAgitatedBystanderOrderSaveData), alignof(SAgitatedBystanderOrderSaveData), SAgitatedBystanderOrderSaveData::WriteJson, SAgitatedBystanderOrderSaveData::WriteSimpleJson, SAgitatedBystanderOrderSaveData::FromSimpleJson);
 
@@ -25025,7 +25417,9 @@ void SAgitatedBystanderOrderSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 void SAgitatedBystanderOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vCover.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgitatedBystanderOrderSaveData, m_vCover));	m_vCoverDir.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgitatedBystanderOrderSaveData, m_vCoverDir));}
+	m_vCover.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgitatedBystanderOrderSaveData, m_vCover));
+	m_vCoverDir.Serialize(p_Serializer, p_OwnOffset + offsetof(SAgitatedBystanderOrderSaveData, m_vCoverDir));
+}
 
 ZHMTypeInfo SActorAccessoryItemActionSaveData::TypeInfo = ZHMTypeInfo("SActorAccessoryItemActionSaveData", sizeof(SActorAccessoryItemActionSaveData), alignof(SActorAccessoryItemActionSaveData), SActorAccessoryItemActionSaveData::WriteJson, SActorAccessoryItemActionSaveData::WriteSimpleJson, SActorAccessoryItemActionSaveData::FromSimpleJson);
 
@@ -25145,7 +25539,8 @@ void SGameStatsWeapon::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 void SGameStatsWeapon::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_WeaponRepositoryID.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameStatsWeapon, m_WeaponRepositoryID));}
+	m_WeaponRepositoryID.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameStatsWeapon, m_WeaponRepositoryID));
+}
 
 ZHMTypeInfo SGUIViewPort::TypeInfo = ZHMTypeInfo("SGUIViewPort", sizeof(SGUIViewPort), alignof(SGUIViewPort), SGUIViewPort::WriteJson, SGUIViewPort::WriteSimpleJson, SGUIViewPort::FromSimpleJson);
 
@@ -25319,7 +25714,9 @@ void SShotListenersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SShotListenersSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SShotListenersSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SShotListenersSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SShotListenersSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SShotListenersSaveData, m_aData));
+}
 
 ZHMTypeInfo SBoneTransformSaveData::TypeInfo = ZHMTypeInfo("SBoneTransformSaveData", sizeof(SBoneTransformSaveData), alignof(SBoneTransformSaveData), SBoneTransformSaveData::WriteJson, SBoneTransformSaveData::WriteSimpleJson, SBoneTransformSaveData::FromSimpleJson);
 
@@ -25379,7 +25776,9 @@ void SBoneTransformSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SBoneTransformSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SBoneTransformSaveData, mQuaterion));	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SBoneTransformSaveData, mTranslation));}
+	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SBoneTransformSaveData, mQuaterion));
+	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SBoneTransformSaveData, mTranslation));
+}
 
 ZHMTypeInfo SActorProviderApproachSaveData::TypeInfo = ZHMTypeInfo("SActorProviderApproachSaveData", sizeof(SActorProviderApproachSaveData), alignof(SActorProviderApproachSaveData), SActorProviderApproachSaveData::WriteJson, SActorProviderApproachSaveData::WriteSimpleJson, SActorProviderApproachSaveData::FromSimpleJson);
 
@@ -25517,7 +25916,9 @@ void SBodyContainersSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SBodyContainersSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodyContainersSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodyContainersSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodyContainersSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodyContainersSaveData, m_aData));
+}
 
 ZHMTypeInfo ZAutoNullEntityRef::TypeInfo = ZHMTypeInfo("ZAutoNullEntityRef", sizeof(ZAutoNullEntityRef), alignof(ZAutoNullEntityRef), ZAutoNullEntityRef::WriteJson, ZAutoNullEntityRef::WriteSimpleJson, ZAutoNullEntityRef::FromSimpleJson);
 
@@ -25639,7 +26040,8 @@ void SItemOnBackUIData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SItemOnBackUIData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemOnBackUIData, icon));}
+	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemOnBackUIData, icon));
+}
 
 ZHMTypeInfo SContractObjectiveSaveData::TypeInfo = ZHMTypeInfo("SContractObjectiveSaveData", sizeof(SContractObjectiveSaveData), alignof(SContractObjectiveSaveData), SContractObjectiveSaveData::WriteJson, SContractObjectiveSaveData::WriteSimpleJson, SContractObjectiveSaveData::FromSimpleJson);
 
@@ -26107,7 +26509,25 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SContractObjectiveSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_Id.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_Id));	m_sText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sText));	m_sSuccessEventName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sSuccessEventName));	m_SuccessEventValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_SuccessEventValues));	m_sFailedEventName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sFailedEventName));	m_FailedEventValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_FailedEventValues));	m_sResetEventName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sResetEventName));	m_ResetEventValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ResetEventValues));	m_sBriefingText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingText));	m_sLongBriefingText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sLongBriefingText));	m_sHUDText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sHUDText));	m_ActivationCondition.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ActivationCondition));	m_OnInactive.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnInactive));	m_OnActive.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnActive));	m_aExits.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_aExits));	m_sImage.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sImage));	m_sObjectiveType.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sObjectiveType));	m_sBriefingName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingName));}
+	m_Id.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_Id));
+	m_sText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sText));
+	m_sSuccessEventName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sSuccessEventName));
+	m_SuccessEventValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_SuccessEventValues));
+	m_sFailedEventName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sFailedEventName));
+	m_FailedEventValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_FailedEventValues));
+	m_sResetEventName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sResetEventName));
+	m_ResetEventValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ResetEventValues));
+	m_sBriefingText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingText));
+	m_sLongBriefingText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sLongBriefingText));
+	m_sHUDText.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sHUDText));
+	m_ActivationCondition.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ActivationCondition));
+	m_OnInactive.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnInactive));
+	m_OnActive.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnActive));
+	m_aExits.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_aExits));
+	m_sImage.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sImage));
+	m_sObjectiveType.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sObjectiveType));
+	m_sBriefingName.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingName));
+}
 
 ZHMTypeInfo SOnlineSaveData::TypeInfo = ZHMTypeInfo("SOnlineSaveData", sizeof(SOnlineSaveData), alignof(SOnlineSaveData), SOnlineSaveData::WriteJson, SOnlineSaveData::WriteSimpleJson, SOnlineSaveData::FromSimpleJson);
 
@@ -26195,7 +26615,10 @@ void SOnlineSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 void SOnlineSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineSaveData, m_sName));	m_sContractSessionId.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineSaveData, m_sContractSessionId));	m_sLastEventToken.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineSaveData, m_sLastEventToken));}
+	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineSaveData, m_sName));
+	m_sContractSessionId.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineSaveData, m_sContractSessionId));
+	m_sLastEventToken.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineSaveData, m_sLastEventToken));
+}
 
 ZHMTypeInfo SMathLerpsSaveData_SVector3::TypeInfo = ZHMTypeInfo("SMathLerpsSaveData_SVector3", sizeof(SMathLerpsSaveData_SVector3), alignof(SMathLerpsSaveData_SVector3), SMathLerpsSaveData_SVector3::WriteJson, SMathLerpsSaveData_SVector3::WriteSimpleJson, SMathLerpsSaveData_SVector3::FromSimpleJson);
 
@@ -26293,7 +26716,9 @@ void SMathLerpsSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SMathLerpsSaveData_SVector3::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector3, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector3, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector3, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SVector3, m_aData));
+}
 
 ZHMTypeInfo SValueFloatSaveData::TypeInfo = ZHMTypeInfo("SValueFloatSaveData", sizeof(SValueFloatSaveData), alignof(SValueFloatSaveData), SValueFloatSaveData::WriteJson, SValueFloatSaveData::WriteSimpleJson, SValueFloatSaveData::FromSimpleJson);
 
@@ -26389,7 +26814,9 @@ void SValueFloatSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SValueFloatSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueFloatSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueFloatSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueFloatSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueFloatSaveData, m_aData));
+}
 
 ZHMTypeInfo SHUDTimerControllerSaveData::TypeInfo = ZHMTypeInfo("SHUDTimerControllerSaveData", sizeof(SHUDTimerControllerSaveData), alignof(SHUDTimerControllerSaveData), SHUDTimerControllerSaveData::WriteJson, SHUDTimerControllerSaveData::WriteSimpleJson, SHUDTimerControllerSaveData::FromSimpleJson);
 
@@ -26521,7 +26948,8 @@ void SSituationConversationGroupSaveData::FromSimpleJson(simdjson::ondemand::val
 
 void SSituationConversationGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_members.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationConversationGroupSaveData, m_members));}
+	m_members.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationConversationGroupSaveData, m_members));
+}
 
 ZHMTypeInfo ZPostfilterGraphBaseNode::TypeInfo = ZHMTypeInfo("ZPostfilterGraphBaseNode", sizeof(ZPostfilterGraphBaseNode), alignof(ZPostfilterGraphBaseNode), ZPostfilterGraphBaseNode::WriteJson, ZPostfilterGraphBaseNode::WriteSimpleJson, ZPostfilterGraphBaseNode::FromSimpleJson);
 
@@ -26741,7 +27169,9 @@ void SLampCoreSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SLampCoreSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SLampCoreSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLampCoreSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SLampCoreSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SLampCoreSaveData, m_aData));
+}
 
 ZHMTypeInfo SSecuritySystemCameraSaveData::TypeInfo = ZHMTypeInfo("SSecuritySystemCameraSaveData", sizeof(SSecuritySystemCameraSaveData), alignof(SSecuritySystemCameraSaveData), SSecuritySystemCameraSaveData::WriteJson, SSecuritySystemCameraSaveData::WriteSimpleJson, SSecuritySystemCameraSaveData::FromSimpleJson);
 
@@ -27073,7 +27503,8 @@ void SCombatOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SCombatOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPos.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatOrderSaveData, m_vPos));}
+	m_vPos.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatOrderSaveData, m_vPos));
+}
 
 ZHMTypeInfo SHintEntrySaveData::TypeInfo = ZHMTypeInfo("SHintEntrySaveData", sizeof(SHintEntrySaveData), alignof(SHintEntrySaveData), SHintEntrySaveData::WriteJson, SHintEntrySaveData::WriteSimpleJson, SHintEntrySaveData::FromSimpleJson);
 
@@ -27229,7 +27660,9 @@ void SHintManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SHintManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_activeHint.Serialize(p_Serializer, p_OwnOffset + offsetof(SHintManagerSaveData, m_activeHint));	m_aQueue.Serialize(p_Serializer, p_OwnOffset + offsetof(SHintManagerSaveData, m_aQueue));}
+	m_activeHint.Serialize(p_Serializer, p_OwnOffset + offsetof(SHintManagerSaveData, m_activeHint));
+	m_aQueue.Serialize(p_Serializer, p_OwnOffset + offsetof(SHintManagerSaveData, m_aQueue));
+}
 
 ZHMTypeInfo SCppEntity::TypeInfo = ZHMTypeInfo("SCppEntity", sizeof(SCppEntity), alignof(SCppEntity), SCppEntity::WriteJson, SCppEntity::WriteSimpleJson, SCppEntity::FromSimpleJson);
 
@@ -27305,7 +27738,8 @@ void SCppEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 
 void SCppEntity::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	propertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntity, propertyValues));}
+	propertyValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SCppEntity, propertyValues));
+}
 
 ZHMTypeInfo SClothWireEntitySaveData::TypeInfo = ZHMTypeInfo("SClothWireEntitySaveData", sizeof(SClothWireEntitySaveData), alignof(SClothWireEntitySaveData), SClothWireEntitySaveData::WriteJson, SClothWireEntitySaveData::WriteSimpleJson, SClothWireEntitySaveData::FromSimpleJson);
 
@@ -27777,7 +28211,13 @@ void SGameplayRenderablesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SGameplayRenderablesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aLightData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aLightData));	m_aMaterialData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aMaterialData));	m_aParticleData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aParticleData));	m_aBoneAttachData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aBoneAttachData));	m_aPostFilterParametersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aPostFilterParametersData));	m_aGateData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aGateData));}
+	m_aLightData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aLightData));
+	m_aMaterialData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aMaterialData));
+	m_aParticleData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aParticleData));
+	m_aBoneAttachData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aBoneAttachData));
+	m_aPostFilterParametersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aPostFilterParametersData));
+	m_aGateData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameplayRenderablesSaveData, m_aGateData));
+}
 
 ZHMTypeInfo SDoorSoundDefs::TypeInfo = ZHMTypeInfo("SDoorSoundDefs", sizeof(SDoorSoundDefs), alignof(SDoorSoundDefs), SDoorSoundDefs::WriteJson, SDoorSoundDefs::WriteSimpleJson, SDoorSoundDefs::FromSimpleJson);
 
@@ -27971,7 +28411,9 @@ void SEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SEventSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_nStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SEventSaveData, m_nStart));	m_nEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SEventSaveData, m_nEnd));}
+	m_nStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SEventSaveData, m_nStart));
+	m_nEnd.Serialize(p_Serializer, p_OwnOffset + offsetof(SEventSaveData, m_nEnd));
+}
 
 ZHMTypeInfo SSharedKnowledgeSaveData::TypeInfo = ZHMTypeInfo("SSharedKnowledgeSaveData", sizeof(SSharedKnowledgeSaveData), alignof(SSharedKnowledgeSaveData), SSharedKnowledgeSaveData::WriteJson, SSharedKnowledgeSaveData::WriteSimpleJson, SSharedKnowledgeSaveData::FromSimpleJson);
 
@@ -28079,7 +28521,10 @@ void SSharedKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SSharedKnowledgeSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_OutfitId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSharedKnowledgeSaveData, m_OutfitId));	m_ActualMatrix.Serialize(p_Serializer, p_OwnOffset + offsetof(SSharedKnowledgeSaveData, m_ActualMatrix));	m_aEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SSharedKnowledgeSaveData, m_aEvents));}
+	m_OutfitId.Serialize(p_Serializer, p_OwnOffset + offsetof(SSharedKnowledgeSaveData, m_OutfitId));
+	m_ActualMatrix.Serialize(p_Serializer, p_OwnOffset + offsetof(SSharedKnowledgeSaveData, m_ActualMatrix));
+	m_aEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SSharedKnowledgeSaveData, m_aEvents));
+}
 
 ZHMTypeInfo SSituationMemberSaveData::TypeInfo = ZHMTypeInfo("SSituationMemberSaveData", sizeof(SSituationMemberSaveData), alignof(SSituationMemberSaveData), SSituationMemberSaveData::WriteJson, SSituationMemberSaveData::WriteSimpleJson, SSituationMemberSaveData::FromSimpleJson);
 
@@ -28203,7 +28648,10 @@ void SSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SSituationMemberSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_OrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationMemberSaveData, m_OrderData));	m_PendingOrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationMemberSaveData, m_PendingOrderData));	m_CustomData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationMemberSaveData, m_CustomData));}
+	m_OrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationMemberSaveData, m_OrderData));
+	m_PendingOrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationMemberSaveData, m_PendingOrderData));
+	m_CustomData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationMemberSaveData, m_CustomData));
+}
 
 ZHMTypeInfo SSituationSaveData::TypeInfo = ZHMTypeInfo("SSituationSaveData", sizeof(SSituationSaveData), alignof(SSituationSaveData), SSituationSaveData::WriteJson, SSituationSaveData::WriteSimpleJson, SSituationSaveData::FromSimpleJson);
 
@@ -28395,7 +28843,11 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SSituationSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_Data.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_Data));	m_aMemberData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_aMemberData));	m_aGroupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_aGroupData));	m_situationStartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_situationStartTime));}
+	m_Data.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_Data));
+	m_aMemberData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_aMemberData));
+	m_aGroupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_aGroupData));
+	m_situationStartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SSituationSaveData, m_situationStartTime));
+}
 
 ZHMTypeInfo SSniperCombatGroupSaveData::TypeInfo = ZHMTypeInfo("SSniperCombatGroupSaveData", sizeof(SSniperCombatGroupSaveData), alignof(SSniperCombatGroupSaveData), SSniperCombatGroupSaveData::WriteJson, SSniperCombatGroupSaveData::WriteSimpleJson, SSniperCombatGroupSaveData::FromSimpleJson);
 
@@ -28495,7 +28947,10 @@ void SSniperCombatGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SSniperCombatGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperCombatGroupSaveData, m_fsmState));	m_tEscapeTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperCombatGroupSaveData, m_tEscapeTime));	m_tLastTauntTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperCombatGroupSaveData, m_tLastTauntTime));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperCombatGroupSaveData, m_fsmState));
+	m_tEscapeTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperCombatGroupSaveData, m_tEscapeTime));
+	m_tLastTauntTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SSniperCombatGroupSaveData, m_tLastTauntTime));
+}
 
 ZHMTypeInfo SMovementCoverSaveData::TypeInfo = ZHMTypeInfo("SMovementCoverSaveData", sizeof(SMovementCoverSaveData), alignof(SMovementCoverSaveData), SMovementCoverSaveData::WriteJson, SMovementCoverSaveData::WriteSimpleJson, SMovementCoverSaveData::FromSimpleJson);
 
@@ -28587,7 +29042,8 @@ void SMovementCoverSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SMovementCoverSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_mPositionInCover.Serialize(p_Serializer, p_OwnOffset + offsetof(SMovementCoverSaveData, m_mPositionInCover));}
+	m_mPositionInCover.Serialize(p_Serializer, p_OwnOffset + offsetof(SMovementCoverSaveData, m_mPositionInCover));
+}
 
 ZHMTypeInfo ZEntityID::TypeInfo = ZHMTypeInfo("ZEntityID", sizeof(ZEntityID), alignof(ZEntityID), ZEntityID::WriteJson, ZEntityID::WriteSimpleJson, ZEntityID::FromSimpleJson);
 
@@ -28627,7 +29083,8 @@ void ZEntityID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 void ZEntityID::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sStr.Serialize(p_Serializer, p_OwnOffset + offsetof(ZEntityID, m_sStr));}
+	m_sStr.Serialize(p_Serializer, p_OwnOffset + offsetof(ZEntityID, m_sStr));
+}
 
 ZHMTypeInfo ZGridFloatField::TypeInfo = ZHMTypeInfo("ZGridFloatField", sizeof(ZGridFloatField), alignof(ZGridFloatField), ZGridFloatField::WriteJson, ZGridFloatField::WriteSimpleJson, ZGridFloatField::FromSimpleJson);
 
@@ -28701,7 +29158,8 @@ void ZGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 void ZGridFloatField::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_field.Serialize(p_Serializer, p_OwnOffset + offsetof(ZGridFloatField, m_field));}
+	m_field.Serialize(p_Serializer, p_OwnOffset + offsetof(ZGridFloatField, m_field));
+}
 
 ZHMTypeInfo SCrowdActivitySaveData::TypeInfo = ZHMTypeInfo("SCrowdActivitySaveData", sizeof(SCrowdActivitySaveData), alignof(SCrowdActivitySaveData), SCrowdActivitySaveData::WriteJson, SCrowdActivitySaveData::WriteSimpleJson, SCrowdActivitySaveData::FromSimpleJson);
 
@@ -28875,7 +29333,9 @@ void SMathMultipliesSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value 
 
 void SMathMultipliesSaveData_SVector4::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector4, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector4, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector4, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector4, m_aData));
+}
 
 ZHMTypeInfo S25DProjectionSettingsCurveEntry::TypeInfo = ZHMTypeInfo("S25DProjectionSettingsCurveEntry", sizeof(S25DProjectionSettingsCurveEntry), alignof(S25DProjectionSettingsCurveEntry), S25DProjectionSettingsCurveEntry::WriteJson, S25DProjectionSettingsCurveEntry::WriteSimpleJson, S25DProjectionSettingsCurveEntry::FromSimpleJson);
 
@@ -29129,7 +29589,8 @@ void SManHuntServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SManHuntServiceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_rGuardNodes.Serialize(p_Serializer, p_OwnOffset + offsetof(SManHuntServiceSaveData, m_rGuardNodes));}
+	m_rGuardNodes.Serialize(p_Serializer, p_OwnOffset + offsetof(SManHuntServiceSaveData, m_rGuardNodes));
+}
 
 ZHMTypeInfo SFootIKEventData::TypeInfo = ZHMTypeInfo("SFootIKEventData", sizeof(SFootIKEventData), alignof(SFootIKEventData), SFootIKEventData::WriteJson, SFootIKEventData::WriteSimpleJson, SFootIKEventData::FromSimpleJson);
 
@@ -29385,7 +29846,9 @@ void SBodybagBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SBodybagBoneSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagBoneSaveData, mQuaterion));	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagBoneSaveData, mTranslation));}
+	mQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagBoneSaveData, mQuaterion));
+	mTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagBoneSaveData, mTranslation));
+}
 
 ZHMTypeInfo SAIPerceptibleEntitySaveData::TypeInfo = ZHMTypeInfo("SAIPerceptibleEntitySaveData", sizeof(SAIPerceptibleEntitySaveData), alignof(SAIPerceptibleEntitySaveData), SAIPerceptibleEntitySaveData::WriteJson, SAIPerceptibleEntitySaveData::WriteSimpleJson, SAIPerceptibleEntitySaveData::FromSimpleJson);
 
@@ -29537,7 +30000,10 @@ void SClothBundleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SClothBundleSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SClothBundleSaveData, m_vPosition));	m_vQuaternion.Serialize(p_Serializer, p_OwnOffset + offsetof(SClothBundleSaveData, m_vQuaternion));	m_OutfitID.Serialize(p_Serializer, p_OwnOffset + offsetof(SClothBundleSaveData, m_OutfitID));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SClothBundleSaveData, m_vPosition));
+	m_vQuaternion.Serialize(p_Serializer, p_OwnOffset + offsetof(SClothBundleSaveData, m_vQuaternion));
+	m_OutfitID.Serialize(p_Serializer, p_OwnOffset + offsetof(SClothBundleSaveData, m_OutfitID));
+}
 
 ZHMTypeInfo SBodyPartDamageMultipliers::TypeInfo = ZHMTypeInfo("SBodyPartDamageMultipliers", sizeof(SBodyPartDamageMultipliers), alignof(SBodyPartDamageMultipliers), SBodyPartDamageMultipliers::WriteJson, SBodyPartDamageMultipliers::WriteSimpleJson, SBodyPartDamageMultipliers::FromSimpleJson);
 
@@ -29819,7 +30285,9 @@ void SColorRGBSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SColorRGBSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SColorRGBSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SColorRGBSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SColorRGBSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SColorRGBSaveData, m_aData));
+}
 
 ZHMTypeInfo SStateControllerSaveDataStruct::TypeInfo = ZHMTypeInfo("SStateControllerSaveDataStruct", sizeof(SStateControllerSaveDataStruct), alignof(SStateControllerSaveDataStruct), SStateControllerSaveDataStruct::WriteJson, SStateControllerSaveDataStruct::WriteSimpleJson, SStateControllerSaveDataStruct::FromSimpleJson);
 
@@ -29969,7 +30437,9 @@ void SStateControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SStateControllerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SStateControllerSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SStateControllerSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SStateControllerSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SStateControllerSaveData, m_aData));
+}
 
 ZHMTypeInfo SValueSaveData::TypeInfo = ZHMTypeInfo("SValueSaveData", sizeof(SValueSaveData), alignof(SValueSaveData), SValueSaveData::WriteJson, SValueSaveData::WriteSimpleJson, SValueSaveData::FromSimpleJson);
 
@@ -30077,7 +30547,12 @@ void SValueSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SValueSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_ValueBool.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueBool));	m_ValueFloat.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueFloat));	m_ValueInt.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueInt));	m_StateController.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_StateController));	m_ValueColorRGB.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueColorRGB));}
+	m_ValueBool.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueBool));
+	m_ValueFloat.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueFloat));
+	m_ValueInt.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueInt));
+	m_StateController.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_StateController));
+	m_ValueColorRGB.Serialize(p_Serializer, p_OwnOffset + offsetof(SValueSaveData, m_ValueColorRGB));
+}
 
 ZHMTypeInfo SHeroItemActionSaveData::TypeInfo = ZHMTypeInfo("SHeroItemActionSaveData", sizeof(SHeroItemActionSaveData), alignof(SHeroItemActionSaveData), SHeroItemActionSaveData::WriteJson, SHeroItemActionSaveData::WriteSimpleJson, SHeroItemActionSaveData::FromSimpleJson);
 
@@ -30301,7 +30776,11 @@ void SBodybagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 void SBodybagSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vLinkedPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_vLinkedPosition));	m_vLinkedQuaternionRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_vLinkedQuaternionRotation));	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_aBones));	m_aBoneIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_aBoneIndices));}
+	m_vLinkedPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_vLinkedPosition));
+	m_vLinkedQuaternionRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_vLinkedQuaternionRotation));
+	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_aBones));
+	m_aBoneIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SBodybagSaveData, m_aBoneIndices));
+}
 
 ZHMTypeInfo SAudioEmitterStateSaveData::TypeInfo = ZHMTypeInfo("SAudioEmitterStateSaveData", sizeof(SAudioEmitterStateSaveData), alignof(SAudioEmitterStateSaveData), SAudioEmitterStateSaveData::WriteJson, SAudioEmitterStateSaveData::WriteSimpleJson, SAudioEmitterStateSaveData::FromSimpleJson);
 
@@ -30445,7 +30924,10 @@ void SEntityTemplatePinConnection::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SEntityTemplatePinConnection::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	fromPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, fromPinName));	toPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, toPinName));	constantPinValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, constantPinValue));}
+	fromPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, fromPinName));
+	toPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, toPinName));
+	constantPinValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, constantPinValue));
+}
 
 ZHMTypeInfo SEvacuateVIPGroupSaveData::TypeInfo = ZHMTypeInfo("SEvacuateVIPGroupSaveData", sizeof(SEvacuateVIPGroupSaveData), alignof(SEvacuateVIPGroupSaveData), SEvacuateVIPGroupSaveData::WriteJson, SEvacuateVIPGroupSaveData::WriteSimpleJson, SEvacuateVIPGroupSaveData::FromSimpleJson);
 
@@ -30699,7 +31181,14 @@ void SEvacuateVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SEvacuateVIPGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_fsmState));	m_assignedBodyguards.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_assignedBodyguards));	m_tEvacuationStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tEvacuationStart));	m_tCornered.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tCornered));	m_tTacticalPoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tTacticalPoint));	m_tSafeRoom.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tSafeRoom));	m_tSafeRoomStandDown.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tSafeRoomStandDown));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_fsmState));
+	m_assignedBodyguards.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_assignedBodyguards));
+	m_tEvacuationStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tEvacuationStart));
+	m_tCornered.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tCornered));
+	m_tTacticalPoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tTacticalPoint));
+	m_tSafeRoom.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tSafeRoom));
+	m_tSafeRoomStandDown.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateVIPGroupSaveData, m_tSafeRoomStandDown));
+}
 
 ZHMTypeInfo IRenderCompositorEntity::TypeInfo = ZHMTypeInfo("IRenderCompositorEntity", sizeof(IRenderCompositorEntity), alignof(IRenderCompositorEntity), IRenderCompositorEntity::WriteJson, IRenderCompositorEntity::WriteSimpleJson, IRenderCompositorEntity::FromSimpleJson);
 
@@ -31113,7 +31602,10 @@ void S25DProjectionSettings::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void S25DProjectionSettings::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	aScaleCurve.Serialize(p_Serializer, p_OwnOffset + offsetof(S25DProjectionSettings, aScaleCurve));	aAlphaCurve.Serialize(p_Serializer, p_OwnOffset + offsetof(S25DProjectionSettings, aAlphaCurve));	sWorldSpaceSettings.Serialize(p_Serializer, p_OwnOffset + offsetof(S25DProjectionSettings, sWorldSpaceSettings));}
+	aScaleCurve.Serialize(p_Serializer, p_OwnOffset + offsetof(S25DProjectionSettings, aScaleCurve));
+	aAlphaCurve.Serialize(p_Serializer, p_OwnOffset + offsetof(S25DProjectionSettings, aAlphaCurve));
+	sWorldSpaceSettings.Serialize(p_Serializer, p_OwnOffset + offsetof(S25DProjectionSettings, sWorldSpaceSettings));
+}
 
 ZHMTypeInfo SMathMultiplyDivideSaveData_SVector2::TypeInfo = ZHMTypeInfo("SMathMultiplyDivideSaveData_SVector2", sizeof(SMathMultiplyDivideSaveData_SVector2), alignof(SMathMultiplyDivideSaveData_SVector2), SMathMultiplyDivideSaveData_SVector2::WriteJson, SMathMultiplyDivideSaveData_SVector2::WriteSimpleJson, SMathMultiplyDivideSaveData_SVector2::FromSimpleJson);
 
@@ -31185,7 +31677,9 @@ void SMathMultiplyDivideSaveData_SVector2::FromSimpleJson(simdjson::ondemand::va
 
 void SMathMultiplyDivideSaveData_SVector2::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector2, m_fA));	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector2, m_fB));}
+	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector2, m_fA));
+	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultiplyDivideSaveData_SVector2, m_fB));
+}
 
 ZHMTypeInfo SInventoryUISlot::TypeInfo = ZHMTypeInfo("SInventoryUISlot", sizeof(SInventoryUISlot), alignof(SInventoryUISlot), SInventoryUISlot::WriteJson, SInventoryUISlot::WriteSimpleJson, SInventoryUISlot::FromSimpleJson);
 
@@ -31621,7 +32115,18 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 void SInventoryUISlot::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	label.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, label));	containedLabel.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, containedLabel));	description.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, description));	perks.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, perks));	id.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, id));	weaponCategory.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, weaponCategory));	itemCategory.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, itemCategory));	itemCategoryLKey.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, itemCategoryLKey));	inventoryCategoryIcon.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, inventoryCategoryIcon));	actionAndKillTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, actionAndKillTypes));	sPoisonType.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, sPoisonType));}
+	label.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, label));
+	containedLabel.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, containedLabel));
+	description.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, description));
+	perks.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, perks));
+	id.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, id));
+	weaponCategory.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, weaponCategory));
+	itemCategory.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, itemCategory));
+	itemCategoryLKey.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, itemCategoryLKey));
+	inventoryCategoryIcon.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, inventoryCategoryIcon));
+	actionAndKillTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, actionAndKillTypes));
+	sPoisonType.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUISlot, sPoisonType));
+}
 
 ZHMTypeInfo SVisibilitySaveData::TypeInfo = ZHMTypeInfo("SVisibilitySaveData", sizeof(SVisibilitySaveData), alignof(SVisibilitySaveData), SVisibilitySaveData::WriteJson, SVisibilitySaveData::WriteSimpleJson, SVisibilitySaveData::FromSimpleJson);
 
@@ -31773,7 +32278,10 @@ void SCombatZoneEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SCombatZoneEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tLockdownTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatZoneEntitySaveData, m_tLockdownTime));	m_tTriggerTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatZoneEntitySaveData, m_tTriggerTime));	m_tEngageTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatZoneEntitySaveData, m_tEngageTime));}
+	m_tLockdownTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatZoneEntitySaveData, m_tLockdownTime));
+	m_tTriggerTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatZoneEntitySaveData, m_tTriggerTime));
+	m_tEngageTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatZoneEntitySaveData, m_tEngageTime));
+}
 
 ZHMTypeInfo SGProperties::TypeInfo = ZHMTypeInfo("SGProperties", sizeof(SGProperties), alignof(SGProperties), SGProperties::WriteJson, SGProperties::WriteSimpleJson, SGProperties::FromSimpleJson);
 
@@ -31869,7 +32377,9 @@ void SGProperties::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 void SGProperties::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	vMin.Serialize(p_Serializer, p_OwnOffset + offsetof(SGProperties, vMin));	vMax.Serialize(p_Serializer, p_OwnOffset + offsetof(SGProperties, vMax));}
+	vMin.Serialize(p_Serializer, p_OwnOffset + offsetof(SGProperties, vMin));
+	vMax.Serialize(p_Serializer, p_OwnOffset + offsetof(SGProperties, vMax));
+}
 
 ZHMTypeInfo SCuriousEventSaveData::TypeInfo = ZHMTypeInfo("SCuriousEventSaveData", sizeof(SCuriousEventSaveData), alignof(SCuriousEventSaveData), SCuriousEventSaveData::WriteJson, SCuriousEventSaveData::WriteSimpleJson, SCuriousEventSaveData::FromSimpleJson);
 
@@ -31925,7 +32435,8 @@ void SCuriousEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SCuriousEventSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tExpiresAt.Serialize(p_Serializer, p_OwnOffset + offsetof(SCuriousEventSaveData, m_tExpiresAt));}
+	m_tExpiresAt.Serialize(p_Serializer, p_OwnOffset + offsetof(SCuriousEventSaveData, m_tExpiresAt));
+}
 
 ZHMTypeInfo SCuriousEventServiceSaveData::TypeInfo = ZHMTypeInfo("SCuriousEventServiceSaveData", sizeof(SCuriousEventServiceSaveData), alignof(SCuriousEventServiceSaveData), SCuriousEventServiceSaveData::WriteJson, SCuriousEventServiceSaveData::WriteSimpleJson, SCuriousEventServiceSaveData::FromSimpleJson);
 
@@ -31989,7 +32500,8 @@ void SCuriousEventServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SCuriousEventServiceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aCuriousEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SCuriousEventServiceSaveData, m_aCuriousEvents));}
+	m_aCuriousEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SCuriousEventServiceSaveData, m_aCuriousEvents));
+}
 
 ZHMTypeInfo SMathDistanceSaveData_SVector4::TypeInfo = ZHMTypeInfo("SMathDistanceSaveData_SVector4", sizeof(SMathDistanceSaveData_SVector4), alignof(SMathDistanceSaveData_SVector4), SMathDistanceSaveData_SVector4::WriteJson, SMathDistanceSaveData_SVector4::WriteSimpleJson, SMathDistanceSaveData_SVector4::FromSimpleJson);
 
@@ -32049,7 +32561,9 @@ void SMathDistanceSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_
 
 void SMathDistanceSaveData_SVector4::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector4, m_fA));	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector4, m_fB));}
+	m_fA.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector4, m_fA));
+	m_fB.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathDistanceSaveData_SVector4, m_fB));
+}
 
 ZHMTypeInfo SCautiousBackupGroupSaveData::TypeInfo = ZHMTypeInfo("SCautiousBackupGroupSaveData", sizeof(SCautiousBackupGroupSaveData), alignof(SCautiousBackupGroupSaveData), SCautiousBackupGroupSaveData::WriteJson, SCautiousBackupGroupSaveData::WriteSimpleJson, SCautiousBackupGroupSaveData::FromSimpleJson);
 
@@ -32209,7 +32723,10 @@ void SCautiousBackupGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SCautiousBackupGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousBackupGroupSaveData, m_aCandidates));	m_aReservedApproachNodeIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousBackupGroupSaveData, m_aReservedApproachNodeIndices));	m_tStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousBackupGroupSaveData, m_tStart));}
+	m_aCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousBackupGroupSaveData, m_aCandidates));
+	m_aReservedApproachNodeIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousBackupGroupSaveData, m_aReservedApproachNodeIndices));
+	m_tStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousBackupGroupSaveData, m_tStart));
+}
 
 ZHMTypeInfo SEntityPinDescriptor::TypeInfo = ZHMTypeInfo("SEntityPinDescriptor", sizeof(SEntityPinDescriptor), alignof(SEntityPinDescriptor), SEntityPinDescriptor::WriteJson, SEntityPinDescriptor::WriteSimpleJson, SEntityPinDescriptor::FromSimpleJson);
 
@@ -32313,7 +32830,11 @@ void SEntityPinDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SEntityPinDescriptor::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sName));	sDisplayName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sDisplayName));	type.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, type));	sHelpText.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sHelpText));}
+	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sName));
+	sDisplayName.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sDisplayName));
+	type.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, type));
+	sHelpText.Serialize(p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sHelpText));
+}
 
 ZHMTypeInfo SGuardBodySituationSaveData::TypeInfo = ZHMTypeInfo("SGuardBodySituationSaveData", sizeof(SGuardBodySituationSaveData), alignof(SGuardBodySituationSaveData), SGuardBodySituationSaveData::WriteJson, SGuardBodySituationSaveData::WriteSimpleJson, SGuardBodySituationSaveData::FromSimpleJson);
 
@@ -32473,7 +32994,9 @@ void STargetTrackingSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void STargetTrackingSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_position.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetTrackingSaveData, m_position));	m_time.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetTrackingSaveData, m_time));}
+	m_position.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetTrackingSaveData, m_position));
+	m_time.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetTrackingSaveData, m_time));
+}
 
 ZHMTypeInfo STargetTrackingServiceSaveData::TypeInfo = ZHMTypeInfo("STargetTrackingServiceSaveData", sizeof(STargetTrackingServiceSaveData), alignof(STargetTrackingServiceSaveData), STargetTrackingServiceSaveData::WriteJson, STargetTrackingServiceSaveData::WriteSimpleJson, STargetTrackingServiceSaveData::FromSimpleJson);
 
@@ -32537,7 +33060,8 @@ void STargetTrackingServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void STargetTrackingServiceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aTrackedTargets.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetTrackingServiceSaveData, m_aTrackedTargets));}
+	m_aTrackedTargets.Serialize(p_Serializer, p_OwnOffset + offsetof(STargetTrackingServiceSaveData, m_aTrackedTargets));
+}
 
 ZHMTypeInfo SActOrderSaveData::TypeInfo = ZHMTypeInfo("SActOrderSaveData", sizeof(SActOrderSaveData), alignof(SActOrderSaveData), SActOrderSaveData::WriteJson, SActOrderSaveData::WriteSimpleJson, SActOrderSaveData::FromSimpleJson);
 
@@ -32653,7 +33177,9 @@ void SActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SActOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sAct.Serialize(p_Serializer, p_OwnOffset + offsetof(SActOrderSaveData, m_sAct));	m_faceTarget.Serialize(p_Serializer, p_OwnOffset + offsetof(SActOrderSaveData, m_faceTarget));}
+	m_sAct.Serialize(p_Serializer, p_OwnOffset + offsetof(SActOrderSaveData, m_sAct));
+	m_faceTarget.Serialize(p_Serializer, p_OwnOffset + offsetof(SActOrderSaveData, m_faceTarget));
+}
 
 ZHMTypeInfo SContractObjectiveHudHintEntitySaveData::TypeInfo = ZHMTypeInfo("SContractObjectiveHudHintEntitySaveData", sizeof(SContractObjectiveHudHintEntitySaveData), alignof(SContractObjectiveHudHintEntitySaveData), SContractObjectiveHudHintEntitySaveData::WriteJson, SContractObjectiveHudHintEntitySaveData::WriteSimpleJson, SContractObjectiveHudHintEntitySaveData::FromSimpleJson);
 
@@ -32833,7 +33359,11 @@ void SGBufferSample::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SGBufferSample::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	normal.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, normal));	diffuse.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, diffuse));	specular.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, specular));	accumulatedLight.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, accumulatedLight));}
+	normal.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, normal));
+	diffuse.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, diffuse));
+	specular.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, specular));
+	accumulatedLight.Serialize(p_Serializer, p_OwnOffset + offsetof(SGBufferSample, accumulatedLight));
+}
 
 ZHMTypeInfo SRememberActorSaveData::TypeInfo = ZHMTypeInfo("SRememberActorSaveData", sizeof(SRememberActorSaveData), alignof(SRememberActorSaveData), SRememberActorSaveData::WriteJson, SRememberActorSaveData::WriteSimpleJson, SRememberActorSaveData::FromSimpleJson);
 
@@ -32895,7 +33425,8 @@ void SRememberActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SRememberActorSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_Actors.Serialize(p_Serializer, p_OwnOffset + offsetof(SRememberActorSaveData, m_Actors));}
+	m_Actors.Serialize(p_Serializer, p_OwnOffset + offsetof(SRememberActorSaveData, m_Actors));
+}
 
 ZHMTypeInfo SEscortOutBehaviorSaveData::TypeInfo = ZHMTypeInfo("SEscortOutBehaviorSaveData", sizeof(SEscortOutBehaviorSaveData), alignof(SEscortOutBehaviorSaveData), SEscortOutBehaviorSaveData::WriteJson, SEscortOutBehaviorSaveData::WriteSimpleJson, SEscortOutBehaviorSaveData::FromSimpleJson);
 
@@ -33119,7 +33650,14 @@ void SEscortOutBehaviorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SEscortOutBehaviorSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsm.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_fsm));	m_vExitPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_vExitPosition));	m_tWarningTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tWarningTime));	m_tEscortStateSilenceTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tEscortStateSilenceTime));	m_tWaitHitmanToComplyWarningTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tWaitHitmanToComplyWarningTime));	m_tWaitHitmanToComplyStateTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tWaitHitmanToComplyStateTime));	m_tLastLookBack.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tLastLookBack));}
+	m_fsm.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_fsm));
+	m_vExitPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_vExitPosition));
+	m_tWarningTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tWarningTime));
+	m_tEscortStateSilenceTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tEscortStateSilenceTime));
+	m_tWaitHitmanToComplyWarningTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tWaitHitmanToComplyWarningTime));
+	m_tWaitHitmanToComplyStateTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tWaitHitmanToComplyStateTime));
+	m_tLastLookBack.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutBehaviorSaveData, m_tLastLookBack));
+}
 
 ZHMTypeInfo SRecoverUnconsciousGroupSaveData::TypeInfo = ZHMTypeInfo("SRecoverUnconsciousGroupSaveData", sizeof(SRecoverUnconsciousGroupSaveData), alignof(SRecoverUnconsciousGroupSaveData), SRecoverUnconsciousGroupSaveData::WriteJson, SRecoverUnconsciousGroupSaveData::WriteSimpleJson, SRecoverUnconsciousGroupSaveData::FromSimpleJson);
 
@@ -33235,7 +33773,8 @@ void SRecoverUnconsciousGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 
 void SRecoverUnconsciousGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SRecoverUnconsciousGroupSaveData, m_fsmState));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SRecoverUnconsciousGroupSaveData, m_fsmState));
+}
 
 ZHMTypeInfo SCompressedGridFloatField::TypeInfo = ZHMTypeInfo("SCompressedGridFloatField", sizeof(SCompressedGridFloatField), alignof(SCompressedGridFloatField), SCompressedGridFloatField::WriteJson, SCompressedGridFloatField::WriteSimpleJson, SCompressedGridFloatField::FromSimpleJson);
 
@@ -33379,7 +33918,9 @@ void SCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SCompressedGridFloatField::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aIndices));	m_aValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aValues));}
+	m_aIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aIndices));
+	m_aValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aValues));
+}
 
 ZHMTypeInfo SHeroItemAttachmentSaveData::TypeInfo = ZHMTypeInfo("SHeroItemAttachmentSaveData", sizeof(SHeroItemAttachmentSaveData), alignof(SHeroItemAttachmentSaveData), SHeroItemAttachmentSaveData::WriteJson, SHeroItemAttachmentSaveData::WriteSimpleJson, SHeroItemAttachmentSaveData::FromSimpleJson);
 
@@ -33517,7 +34058,9 @@ void SMathMultipliesSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value 
 
 void SMathMultipliesSaveData_SVector2::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector2, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector2, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector2, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_SVector2, m_aData));
+}
 
 ZHMTypeInfo SSpaceCollectionBehaviorConfiguration::TypeInfo = ZHMTypeInfo("SSpaceCollectionBehaviorConfiguration", sizeof(SSpaceCollectionBehaviorConfiguration), alignof(SSpaceCollectionBehaviorConfiguration), SSpaceCollectionBehaviorConfiguration::WriteJson, SSpaceCollectionBehaviorConfiguration::WriteSimpleJson, SSpaceCollectionBehaviorConfiguration::FromSimpleJson);
 
@@ -33643,7 +34186,9 @@ void SBlobsConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SBlobsConfigResourceEntry::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	Id.Serialize(p_Serializer, p_OwnOffset + offsetof(SBlobsConfigResourceEntry, Id));	BlobRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SBlobsConfigResourceEntry, BlobRid));}
+	Id.Serialize(p_Serializer, p_OwnOffset + offsetof(SBlobsConfigResourceEntry, Id));
+	BlobRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SBlobsConfigResourceEntry, BlobRid));
+}
 
 ZHMTypeInfo SGuardBodySituationMemberSaveData::TypeInfo = ZHMTypeInfo("SGuardBodySituationMemberSaveData", sizeof(SGuardBodySituationMemberSaveData), alignof(SGuardBodySituationMemberSaveData), SGuardBodySituationMemberSaveData::WriteJson, SGuardBodySituationMemberSaveData::WriteSimpleJson, SGuardBodySituationMemberSaveData::FromSimpleJson);
 
@@ -33909,7 +34454,10 @@ void SAnimPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SAnimPlayerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	mTrajectoryQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimPlayerSaveData, mTrajectoryQuaterion));	mTrajectoryTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimPlayerSaveData, mTrajectoryTranslation));	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimPlayerSaveData, m_aBones));}
+	mTrajectoryQuaterion.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimPlayerSaveData, mTrajectoryQuaterion));
+	mTrajectoryTranslation.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimPlayerSaveData, mTrajectoryTranslation));
+	m_aBones.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimPlayerSaveData, m_aBones));
+}
 
 ZHMTypeInfo SActorKeywordProxiesSaveData::TypeInfo = ZHMTypeInfo("SActorKeywordProxiesSaveData", sizeof(SActorKeywordProxiesSaveData), alignof(SActorKeywordProxiesSaveData), SActorKeywordProxiesSaveData::WriteJson, SActorKeywordProxiesSaveData::WriteSimpleJson, SActorKeywordProxiesSaveData::FromSimpleJson);
 
@@ -34007,7 +34555,9 @@ void SActorKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SActorKeywordProxiesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorKeywordProxiesSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorKeywordProxiesSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorKeywordProxiesSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorKeywordProxiesSaveData, m_aData));
+}
 
 ZHMTypeInfo SAccidentObserversGroupSaveData::TypeInfo = ZHMTypeInfo("SAccidentObserversGroupSaveData", sizeof(SAccidentObserversGroupSaveData), alignof(SAccidentObserversGroupSaveData), SAccidentObserversGroupSaveData::WriteJson, SAccidentObserversGroupSaveData::WriteSimpleJson, SAccidentObserversGroupSaveData::FromSimpleJson);
 
@@ -34093,7 +34643,8 @@ void SAccidentObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 void SAccidentObserversGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aWaitingObservers.Serialize(p_Serializer, p_OwnOffset + offsetof(SAccidentObserversGroupSaveData, m_aWaitingObservers));}
+	m_aWaitingObservers.Serialize(p_Serializer, p_OwnOffset + offsetof(SAccidentObserversGroupSaveData, m_aWaitingObservers));
+}
 
 ZHMTypeInfo ZTime::TypeInfo = ZHMTypeInfo("ZTime", sizeof(ZTime), alignof(ZTime), ZTime::WriteJson, ZTime::WriteSimpleJson, ZTime::FromSimpleJson);
 
@@ -34293,7 +34844,9 @@ void SAnimatedActorActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void SAnimatedActorActOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vOriginPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorActOrderSaveData, m_vOriginPosition));	m_vOriginQuaternion.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorActOrderSaveData, m_vOriginQuaternion));}
+	m_vOriginPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorActOrderSaveData, m_vOriginPosition));
+	m_vOriginQuaternion.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorActOrderSaveData, m_vOriginQuaternion));
+}
 
 ZHMTypeInfo SMatrix43::TypeInfo = ZHMTypeInfo("SMatrix43", sizeof(SMatrix43), alignof(SMatrix43), SMatrix43::WriteJson, SMatrix43::WriteSimpleJson, SMatrix43::FromSimpleJson);
 
@@ -34385,7 +34938,11 @@ void SMatrix43::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 void SMatrix43::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	XAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, XAxis));	YAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, YAxis));	ZAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, ZAxis));	Trans.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, Trans));}
+	XAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, XAxis));
+	YAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, YAxis));
+	ZAxis.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, ZAxis));
+	Trans.Serialize(p_Serializer, p_OwnOffset + offsetof(SMatrix43, Trans));
+}
 
 ZHMTypeInfo SAudioMemoryMonitorEntry::TypeInfo = ZHMTypeInfo("SAudioMemoryMonitorEntry", sizeof(SAudioMemoryMonitorEntry), alignof(SAudioMemoryMonitorEntry), SAudioMemoryMonitorEntry::WriteJson, SAudioMemoryMonitorEntry::WriteSimpleJson, SAudioMemoryMonitorEntry::FromSimpleJson);
 
@@ -34473,7 +35030,8 @@ void SAudioMemoryMonitorEntry::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SAudioMemoryMonitorEntry::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	references.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioMemoryMonitorEntry, references));}
+	references.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioMemoryMonitorEntry, references));
+}
 
 ZHMTypeInfo ZHttpUrl::TypeInfo = ZHMTypeInfo("ZHttpUrl", sizeof(ZHttpUrl), alignof(ZHttpUrl), ZHttpUrl::WriteJson, ZHttpUrl::WriteSimpleJson, ZHttpUrl::FromSimpleJson);
 
@@ -34653,7 +35211,9 @@ void SOnlineEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 void SOnlineEvent::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineEvent, sName));	data.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineEvent, data));}
+	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineEvent, sName));
+	data.Serialize(p_Serializer, p_OwnOffset + offsetof(SOnlineEvent, data));
+}
 
 ZHMTypeInfo SFleeOrderSaveData::TypeInfo = ZHMTypeInfo("SFleeOrderSaveData", sizeof(SFleeOrderSaveData), alignof(SFleeOrderSaveData), SFleeOrderSaveData::WriteJson, SFleeOrderSaveData::WriteSimpleJson, SFleeOrderSaveData::FromSimpleJson);
 
@@ -34817,7 +35377,12 @@ void SExternalEntityTemplatePinConnection::FromSimpleJson(simdjson::ondemand::va
 
 void SExternalEntityTemplatePinConnection::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	fromEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, fromEntity));	toEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, toEntity));	fromPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, fromPinName));	toPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, toPinName));	constantPinValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, constantPinValue));}
+	fromEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, fromEntity));
+	toEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, toEntity));
+	fromPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, fromPinName));
+	toPinName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, toPinName));
+	constantPinValue.Serialize(p_Serializer, p_OwnOffset + offsetof(SExternalEntityTemplatePinConnection, constantPinValue));
+}
 
 ZHMTypeInfo STemplateEntityBlueprint::TypeInfo = ZHMTypeInfo("STemplateEntityBlueprint", sizeof(STemplateEntityBlueprint), alignof(STemplateEntityBlueprint), STemplateEntityBlueprint::WriteJson, STemplateEntityBlueprint::WriteSimpleJson, STemplateEntityBlueprint::FromSimpleJson);
 
@@ -35155,7 +35720,15 @@ void STemplateEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void STemplateEntityBlueprint::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	subEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, subEntities));	externalSceneTypeIndicesInResourceHeader.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, externalSceneTypeIndicesInResourceHeader));	pinConnections.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, pinConnections));	inputPinForwardings.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, inputPinForwardings));	outputPinForwardings.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, outputPinForwardings));	overrideDeletes.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, overrideDeletes));	pinConnectionOverrides.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, pinConnectionOverrides));	pinConnectionOverrideDeletes.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, pinConnectionOverrideDeletes));}
+	subEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, subEntities));
+	externalSceneTypeIndicesInResourceHeader.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, externalSceneTypeIndicesInResourceHeader));
+	pinConnections.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, pinConnections));
+	inputPinForwardings.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, inputPinForwardings));
+	outputPinForwardings.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, outputPinForwardings));
+	overrideDeletes.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, overrideDeletes));
+	pinConnectionOverrides.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, pinConnectionOverrides));
+	pinConnectionOverrideDeletes.Serialize(p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, pinConnectionOverrideDeletes));
+}
 
 ZHMTypeInfo SDramaControllerSaveData::TypeInfo = ZHMTypeInfo("SDramaControllerSaveData", sizeof(SDramaControllerSaveData), alignof(SDramaControllerSaveData), SDramaControllerSaveData::WriteJson, SDramaControllerSaveData::WriteSimpleJson, SDramaControllerSaveData::FromSimpleJson);
 
@@ -35453,7 +36026,9 @@ void SSmuggleSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SSmuggleSituationSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aActorsSaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSmuggleSituationSaveData, m_aActorsSaveData));	m_aMoveToActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SSmuggleSituationSaveData, m_aMoveToActs));}
+	m_aActorsSaveData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSmuggleSituationSaveData, m_aActorsSaveData));
+	m_aMoveToActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SSmuggleSituationSaveData, m_aMoveToActs));
+}
 
 ZHMTypeInfo SRenderVideoPlayerSaveData::TypeInfo = ZHMTypeInfo("SRenderVideoPlayerSaveData", sizeof(SRenderVideoPlayerSaveData), alignof(SRenderVideoPlayerSaveData), SRenderVideoPlayerSaveData::WriteJson, SRenderVideoPlayerSaveData::WriteSimpleJson, SRenderVideoPlayerSaveData::FromSimpleJson);
 
@@ -35625,7 +36200,10 @@ void SRenderVideoPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SRenderVideoPlayerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_LastVisible.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderVideoPlayerSaveData, m_LastVisible));	m_StartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderVideoPlayerSaveData, m_StartTime));	m_RunTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderVideoPlayerSaveData, m_RunTime));}
+	m_LastVisible.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderVideoPlayerSaveData, m_LastVisible));
+	m_StartTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderVideoPlayerSaveData, m_StartTime));
+	m_RunTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SRenderVideoPlayerSaveData, m_RunTime));
+}
 
 ZHMTypeInfo SConditionalTimerEntitySaveData::TypeInfo = ZHMTypeInfo("SConditionalTimerEntitySaveData", sizeof(SConditionalTimerEntitySaveData), alignof(SConditionalTimerEntitySaveData), SConditionalTimerEntitySaveData::WriteJson, SConditionalTimerEntitySaveData::WriteSimpleJson, SConditionalTimerEntitySaveData::FromSimpleJson);
 
@@ -35843,7 +36421,9 @@ void ZScopedRuntimePinConDesc::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void ZScopedRuntimePinConDesc::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aScopePath.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedRuntimePinConDesc, m_aScopePath));	m_PinConDesc.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedRuntimePinConDesc, m_PinConDesc));}
+	m_aScopePath.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedRuntimePinConDesc, m_aScopePath));
+	m_PinConDesc.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedRuntimePinConDesc, m_PinConDesc));
+}
 
 ZHMTypeInfo SSequenceTrackSaveData::TypeInfo = ZHMTypeInfo("SSequenceTrackSaveData", sizeof(SSequenceTrackSaveData), alignof(SSequenceTrackSaveData), SSequenceTrackSaveData::WriteJson, SSequenceTrackSaveData::WriteSimpleJson, SSequenceTrackSaveData::FromSimpleJson);
 
@@ -35899,7 +36479,8 @@ void SSequenceTrackSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SSequenceTrackSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_CustomTrackData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSequenceTrackSaveData, m_CustomTrackData));}
+	m_CustomTrackData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSequenceTrackSaveData, m_CustomTrackData));
+}
 
 ZHMTypeInfo SAimAssistObjectSaveData::TypeInfo = ZHMTypeInfo("SAimAssistObjectSaveData", sizeof(SAimAssistObjectSaveData), alignof(SAimAssistObjectSaveData), SAimAssistObjectSaveData::WriteJson, SAimAssistObjectSaveData::WriteSimpleJson, SAimAssistObjectSaveData::FromSimpleJson);
 
@@ -36061,7 +36642,10 @@ void SExposedEntityTypeDescriptor::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SExposedEntityTypeDescriptor::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityTypeDescriptor, sName));	types.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityTypeDescriptor, types));	aSupportedTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityTypeDescriptor, aSupportedTypes));}
+	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityTypeDescriptor, sName));
+	types.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityTypeDescriptor, types));
+	aSupportedTypes.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityTypeDescriptor, aSupportedTypes));
+}
 
 ZHMTypeInfo SScreenplayManagerSaveData::TypeInfo = ZHMTypeInfo("SScreenplayManagerSaveData", sizeof(SScreenplayManagerSaveData), alignof(SScreenplayManagerSaveData), SScreenplayManagerSaveData::WriteJson, SScreenplayManagerSaveData::WriteSimpleJson, SScreenplayManagerSaveData::FromSimpleJson);
 
@@ -36137,7 +36721,10 @@ void SScreenplayManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SScreenplayManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_DramaActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplayManagerSaveData, m_DramaActorData));	m_DramaSituationData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplayManagerSaveData, m_DramaSituationData));	m_DramaSetupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplayManagerSaveData, m_DramaSetupData));}
+	m_DramaActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplayManagerSaveData, m_DramaActorData));
+	m_DramaSituationData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplayManagerSaveData, m_DramaSituationData));
+	m_DramaSetupData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScreenplayManagerSaveData, m_DramaSetupData));
+}
 
 ZHMTypeInfo SObserversGroupSaveData::TypeInfo = ZHMTypeInfo("SObserversGroupSaveData", sizeof(SObserversGroupSaveData), alignof(SObserversGroupSaveData), SObserversGroupSaveData::WriteJson, SObserversGroupSaveData::WriteSimpleJson, SObserversGroupSaveData::FromSimpleJson);
 
@@ -36223,7 +36810,8 @@ void SObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SObserversGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aWaitingObservers.Serialize(p_Serializer, p_OwnOffset + offsetof(SObserversGroupSaveData, m_aWaitingObservers));}
+	m_aWaitingObservers.Serialize(p_Serializer, p_OwnOffset + offsetof(SObserversGroupSaveData, m_aWaitingObservers));
+}
 
 ZHMTypeInfo SLockdownManagerAIZoneSaveData::TypeInfo = ZHMTypeInfo("SLockdownManagerAIZoneSaveData", sizeof(SLockdownManagerAIZoneSaveData), alignof(SLockdownManagerAIZoneSaveData), SLockdownManagerAIZoneSaveData::WriteJson, SLockdownManagerAIZoneSaveData::WriteSimpleJson, SLockdownManagerAIZoneSaveData::FromSimpleJson);
 
@@ -36295,7 +36883,9 @@ void SLockdownManagerAIZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void SLockdownManagerAIZoneSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tExpiry.Serialize(p_Serializer, p_OwnOffset + offsetof(SLockdownManagerAIZoneSaveData, m_tExpiry));	m_tExpiryHeroOutside.Serialize(p_Serializer, p_OwnOffset + offsetof(SLockdownManagerAIZoneSaveData, m_tExpiryHeroOutside));}
+	m_tExpiry.Serialize(p_Serializer, p_OwnOffset + offsetof(SLockdownManagerAIZoneSaveData, m_tExpiry));
+	m_tExpiryHeroOutside.Serialize(p_Serializer, p_OwnOffset + offsetof(SLockdownManagerAIZoneSaveData, m_tExpiryHeroOutside));
+}
 
 ZHMTypeInfo SCrowdServiceSaveData::TypeInfo = ZHMTypeInfo("SCrowdServiceSaveData", sizeof(SCrowdServiceSaveData), alignof(SCrowdServiceSaveData), SCrowdServiceSaveData::WriteJson, SCrowdServiceSaveData::WriteSimpleJson, SCrowdServiceSaveData::FromSimpleJson);
 
@@ -36427,7 +37017,10 @@ void SCrowdServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SCrowdServiceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aDeadBodies.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdServiceSaveData, m_aDeadBodies));	m_aPerceptiblePool.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdServiceSaveData, m_aPerceptiblePool));	m_aPerceptibleActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdServiceSaveData, m_aPerceptibleActors));}
+	m_aDeadBodies.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdServiceSaveData, m_aDeadBodies));
+	m_aPerceptiblePool.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdServiceSaveData, m_aPerceptiblePool));
+	m_aPerceptibleActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdServiceSaveData, m_aPerceptibleActors));
+}
 
 ZHMTypeInfo SHeroEscortSituation2ActorStateSaveData::TypeInfo = ZHMTypeInfo("SHeroEscortSituation2ActorStateSaveData", sizeof(SHeroEscortSituation2ActorStateSaveData), alignof(SHeroEscortSituation2ActorStateSaveData), SHeroEscortSituation2ActorStateSaveData::WriteJson, SHeroEscortSituation2ActorStateSaveData::WriteSimpleJson, SHeroEscortSituation2ActorStateSaveData::FromSimpleJson);
 
@@ -36729,7 +37322,13 @@ void SEvacuateSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SEvacuateSituationSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_fsmState));	m_tLastSeriousSituation.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_tLastSeriousSituation));	m_tLastThreat.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_tLastThreat));	m_evacuateGroups.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_evacuateGroups));	m_activeSafeRooms.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_activeSafeRooms));	m_vipsUnderFire.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_vipsUnderFire));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_fsmState));
+	m_tLastSeriousSituation.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_tLastSeriousSituation));
+	m_tLastThreat.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_tLastThreat));
+	m_evacuateGroups.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_evacuateGroups));
+	m_activeSafeRooms.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_activeSafeRooms));
+	m_vipsUnderFire.Serialize(p_Serializer, p_OwnOffset + offsetof(SEvacuateSituationSaveData, m_vipsUnderFire));
+}
 
 ZHMTypeInfo SAudioEmitterRTPCSaveData::TypeInfo = ZHMTypeInfo("SAudioEmitterRTPCSaveData", sizeof(SAudioEmitterRTPCSaveData), alignof(SAudioEmitterRTPCSaveData), SAudioEmitterRTPCSaveData::WriteJson, SAudioEmitterRTPCSaveData::WriteSimpleJson, SAudioEmitterRTPCSaveData::FromSimpleJson);
 
@@ -36947,7 +37546,11 @@ void SLocalizedVideoData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SLocalizedVideoData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	AudioLanguages.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, AudioLanguages));	VideoRidsPerAudioLanguage.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, VideoRidsPerAudioLanguage));	SubtitleLanguages.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, SubtitleLanguages));	SubtitleMarkupsPerLanguage.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, SubtitleMarkupsPerLanguage));}
+	AudioLanguages.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, AudioLanguages));
+	VideoRidsPerAudioLanguage.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, VideoRidsPerAudioLanguage));
+	SubtitleLanguages.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, SubtitleLanguages));
+	SubtitleMarkupsPerLanguage.Serialize(p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoData, SubtitleMarkupsPerLanguage));
+}
 
 ZHMTypeInfo SPerceptibleCrowdBodySaveData::TypeInfo = ZHMTypeInfo("SPerceptibleCrowdBodySaveData", sizeof(SPerceptibleCrowdBodySaveData), alignof(SPerceptibleCrowdBodySaveData), SPerceptibleCrowdBodySaveData::WriteJson, SPerceptibleCrowdBodySaveData::WriteSimpleJson, SPerceptibleCrowdBodySaveData::FromSimpleJson);
 
@@ -37079,7 +37682,8 @@ void SDoorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 void SDoorSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tOpenTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SDoorSaveData, m_tOpenTime));}
+	m_tOpenTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SDoorSaveData, m_tOpenTime));
+}
 
 ZHMTypeInfo SDetectedInPrivateGroupSaveData::TypeInfo = ZHMTypeInfo("SDetectedInPrivateGroupSaveData", sizeof(SDetectedInPrivateGroupSaveData), alignof(SDetectedInPrivateGroupSaveData), SDetectedInPrivateGroupSaveData::WriteJson, SDetectedInPrivateGroupSaveData::WriteSimpleJson, SDetectedInPrivateGroupSaveData::FromSimpleJson);
 
@@ -37183,7 +37787,8 @@ void SDetectedInPrivateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 void SDetectedInPrivateGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SDetectedInPrivateGroupSaveData, m_fsmState));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SDetectedInPrivateGroupSaveData, m_fsmState));
+}
 
 ZHMTypeInfo ISituation::TypeInfo = ZHMTypeInfo("ISituation", sizeof(ISituation), alignof(ISituation), ISituation::WriteJson, ISituation::WriteSimpleJson, ISituation::FromSimpleJson);
 
@@ -37377,7 +37982,8 @@ void SGWaypoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 
 void SGWaypoint::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	vPos.Serialize(p_Serializer, p_OwnOffset + offsetof(SGWaypoint, vPos));}
+	vPos.Serialize(p_Serializer, p_OwnOffset + offsetof(SGWaypoint, vPos));
+}
 
 ZHMTypeInfo SSavableEntitiesSaveData::TypeInfo = ZHMTypeInfo("SSavableEntitiesSaveData", sizeof(SSavableEntitiesSaveData), alignof(SSavableEntitiesSaveData), SSavableEntitiesSaveData::WriteJson, SSavableEntitiesSaveData::WriteSimpleJson, SSavableEntitiesSaveData::FromSimpleJson);
 
@@ -37475,7 +38081,9 @@ void SSavableEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SSavableEntitiesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableEntitiesSaveData, m_aEntities));	m_aEntityData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableEntitiesSaveData, m_aEntityData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableEntitiesSaveData, m_aEntities));
+	m_aEntityData.Serialize(p_Serializer, p_OwnOffset + offsetof(SSavableEntitiesSaveData, m_aEntityData));
+}
 
 ZHMTypeInfo SHandleDistractionSituationSaveData::TypeInfo = ZHMTypeInfo("SHandleDistractionSituationSaveData", sizeof(SHandleDistractionSituationSaveData), alignof(SHandleDistractionSituationSaveData), SHandleDistractionSituationSaveData::WriteJson, SHandleDistractionSituationSaveData::WriteSimpleJson, SHandleDistractionSituationSaveData::FromSimpleJson);
 
@@ -37715,7 +38323,11 @@ void SCautiousHuntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SCautiousHuntSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_fsmState));	m_tAnnounceHuntCoolDown.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_tAnnounceHuntCoolDown));	m_tAnnouncedHunt.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_tAnnouncedHunt));	m_tShareHuntTargetCoolDown.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_tShareHuntTargetCoolDown));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_fsmState));
+	m_tAnnounceHuntCoolDown.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_tAnnounceHuntCoolDown));
+	m_tAnnouncedHunt.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_tAnnouncedHunt));
+	m_tShareHuntTargetCoolDown.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousHuntSaveData, m_tShareHuntTargetCoolDown));
+}
 
 ZHMTypeInfo SHelpingActorSaveData::TypeInfo = ZHMTypeInfo("SHelpingActorSaveData", sizeof(SHelpingActorSaveData), alignof(SHelpingActorSaveData), SHelpingActorSaveData::WriteJson, SHelpingActorSaveData::WriteSimpleJson, SHelpingActorSaveData::FromSimpleJson);
 
@@ -37955,7 +38567,14 @@ void SDecalSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SDecalSpawnSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vPosition));	m_vNormal.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vNormal));	m_vDirection.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vDirection));	m_vSize.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vSize));	m_Color.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_Color));	m_vUVOffset.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vUVOffset));	m_vTiling.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vTiling));}
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vPosition));
+	m_vNormal.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vNormal));
+	m_vDirection.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vDirection));
+	m_vSize.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vSize));
+	m_Color.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_Color));
+	m_vUVOffset.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vUVOffset));
+	m_vTiling.Serialize(p_Serializer, p_OwnOffset + offsetof(SDecalSpawnSaveData, m_vTiling));
+}
 
 ZHMTypeInfo SRunningCrowdAIEventSaveData::TypeInfo = ZHMTypeInfo("SRunningCrowdAIEventSaveData", sizeof(SRunningCrowdAIEventSaveData), alignof(SRunningCrowdAIEventSaveData), SRunningCrowdAIEventSaveData::WriteJson, SRunningCrowdAIEventSaveData::WriteSimpleJson, SRunningCrowdAIEventSaveData::FromSimpleJson);
 
@@ -38083,7 +38702,8 @@ void SRunningCrowdAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SRunningCrowdAIEventSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_Position.Serialize(p_Serializer, p_OwnOffset + offsetof(SRunningCrowdAIEventSaveData, m_Position));}
+	m_Position.Serialize(p_Serializer, p_OwnOffset + offsetof(SRunningCrowdAIEventSaveData, m_Position));
+}
 
 ZHMTypeInfo SMathMultipliesSaveData_float32::TypeInfo = ZHMTypeInfo("SMathMultipliesSaveData_float32", sizeof(SMathMultipliesSaveData_float32), alignof(SMathMultipliesSaveData_float32), SMathMultipliesSaveData_float32::WriteJson, SMathMultipliesSaveData_float32::WriteSimpleJson, SMathMultipliesSaveData_float32::FromSimpleJson);
 
@@ -38181,7 +38801,9 @@ void SMathMultipliesSaveData_float32::FromSimpleJson(simdjson::ondemand::value p
 
 void SMathMultipliesSaveData_float32::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_float32, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_float32, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_float32, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathMultipliesSaveData_float32, m_aData));
+}
 
 ZHMTypeInfo SInventoryControllerItemSaveData::TypeInfo = ZHMTypeInfo("SInventoryControllerItemSaveData", sizeof(SInventoryControllerItemSaveData), alignof(SInventoryControllerItemSaveData), SInventoryControllerItemSaveData::WriteJson, SInventoryControllerItemSaveData::WriteSimpleJson, SInventoryControllerItemSaveData::FromSimpleJson);
 
@@ -38331,7 +38953,9 @@ void SDoorsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SDoorsSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDoorsSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDoorsSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SDoorsSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SDoorsSaveData, m_aData));
+}
 
 ZHMTypeInfo SPrivateAreaSaveData::TypeInfo = ZHMTypeInfo("SPrivateAreaSaveData", sizeof(SPrivateAreaSaveData), alignof(SPrivateAreaSaveData), SPrivateAreaSaveData::WriteJson, SPrivateAreaSaveData::WriteSimpleJson, SPrivateAreaSaveData::FromSimpleJson);
 
@@ -38439,7 +39063,9 @@ void SPrivateAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SPrivateAreaSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vHitmanEnterPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SPrivateAreaSaveData, m_vHitmanEnterPosition));	m_vHitmanExitPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SPrivateAreaSaveData, m_vHitmanExitPosition));}
+	m_vHitmanEnterPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SPrivateAreaSaveData, m_vHitmanEnterPosition));
+	m_vHitmanExitPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SPrivateAreaSaveData, m_vHitmanExitPosition));
+}
 
 ZHMTypeInfo SPatrolGroupSaveData::TypeInfo = ZHMTypeInfo("SPatrolGroupSaveData", sizeof(SPatrolGroupSaveData), alignof(SPatrolGroupSaveData), SPatrolGroupSaveData::WriteJson, SPatrolGroupSaveData::WriteSimpleJson, SPatrolGroupSaveData::FromSimpleJson);
 
@@ -38685,7 +39311,8 @@ void SActorTagManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SActorTagManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aActorTagData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorTagManagerSaveData, m_aActorTagData));}
+	m_aActorTagData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorTagManagerSaveData, m_aActorTagData));
+}
 
 ZHMTypeInfo SSCCuriousConfiguration::TypeInfo = ZHMTypeInfo("SSCCuriousConfiguration", sizeof(SSCCuriousConfiguration), alignof(SSCCuriousConfiguration), SSCCuriousConfiguration::WriteJson, SSCCuriousConfiguration::WriteSimpleJson, SSCCuriousConfiguration::FromSimpleJson);
 
@@ -38969,7 +39596,9 @@ void SPhysicsListSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SPhysicsListSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntityRefs.Serialize(p_Serializer, p_OwnOffset + offsetof(SPhysicsListSaveData, m_aEntityRefs));	m_aEntityDatas.Serialize(p_Serializer, p_OwnOffset + offsetof(SPhysicsListSaveData, m_aEntityDatas));}
+	m_aEntityRefs.Serialize(p_Serializer, p_OwnOffset + offsetof(SPhysicsListSaveData, m_aEntityRefs));
+	m_aEntityDatas.Serialize(p_Serializer, p_OwnOffset + offsetof(SPhysicsListSaveData, m_aEntityDatas));
+}
 
 ZHMTypeInfo IMorphemeCutSequenceAnimationEntity::TypeInfo = ZHMTypeInfo("IMorphemeCutSequenceAnimationEntity", sizeof(IMorphemeCutSequenceAnimationEntity), alignof(IMorphemeCutSequenceAnimationEntity), IMorphemeCutSequenceAnimationEntity::WriteJson, IMorphemeCutSequenceAnimationEntity::WriteSimpleJson, IMorphemeCutSequenceAnimationEntity::FromSimpleJson);
 
@@ -39127,7 +39756,9 @@ void SMathLerpsSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SMathLerpsSaveData_float32::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_float32, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_float32, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_float32, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_float32, m_aData));
+}
 
 ZHMTypeInfo IValueEntity::TypeInfo = ZHMTypeInfo("IValueEntity", sizeof(IValueEntity), alignof(IValueEntity), IValueEntity::WriteJson, IValueEntity::WriteSimpleJson, IValueEntity::FromSimpleJson);
 
@@ -39213,7 +39844,8 @@ void SAnimatedActorOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SAnimatedActorOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_OrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorOrderSaveData, m_OrderData));}
+	m_OrderData.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorOrderSaveData, m_OrderData));
+}
 
 ZHMTypeInfo SGameKeywordManagerSaveData::TypeInfo = ZHMTypeInfo("SGameKeywordManagerSaveData", sizeof(SGameKeywordManagerSaveData), alignof(SGameKeywordManagerSaveData), SGameKeywordManagerSaveData::WriteJson, SGameKeywordManagerSaveData::WriteSimpleJson, SGameKeywordManagerSaveData::FromSimpleJson);
 
@@ -39311,7 +39943,9 @@ void SGameKeywordManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SGameKeywordManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aKeywordsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameKeywordManagerSaveData, m_aKeywordsData));	m_aKeywordStringData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameKeywordManagerSaveData, m_aKeywordStringData));}
+	m_aKeywordsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameKeywordManagerSaveData, m_aKeywordsData));
+	m_aKeywordStringData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameKeywordManagerSaveData, m_aKeywordStringData));
+}
 
 ZHMTypeInfo SUIGridCellPosition::TypeInfo = ZHMTypeInfo("SUIGridCellPosition", sizeof(SUIGridCellPosition), alignof(SUIGridCellPosition), SUIGridCellPosition::WriteJson, SUIGridCellPosition::WriteSimpleJson, SUIGridCellPosition::FromSimpleJson);
 
@@ -39539,7 +40173,8 @@ void SRegionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 void SRegionSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vCenter.Serialize(p_Serializer, p_OwnOffset + offsetof(SRegionSaveData, m_vCenter));}
+	m_vCenter.Serialize(p_Serializer, p_OwnOffset + offsetof(SRegionSaveData, m_vCenter));
+}
 
 ZHMTypeInfo SEscortOutOrderSaveData::TypeInfo = ZHMTypeInfo("SEscortOutOrderSaveData", sizeof(SEscortOutOrderSaveData), alignof(SEscortOutOrderSaveData), SEscortOutOrderSaveData::WriteJson, SEscortOutOrderSaveData::WriteSimpleJson, SEscortOutOrderSaveData::FromSimpleJson);
 
@@ -39603,7 +40238,8 @@ void SEscortOutOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SEscortOutOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aExitPoints.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutOrderSaveData, m_aExitPoints));}
+	m_aExitPoints.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortOutOrderSaveData, m_aExitPoints));
+}
 
 ZHMTypeInfo SItemsSaveData::TypeInfo = ZHMTypeInfo("SItemsSaveData", sizeof(SItemsSaveData), alignof(SItemsSaveData), SItemsSaveData::WriteJson, SItemsSaveData::WriteSimpleJson, SItemsSaveData::FromSimpleJson);
 
@@ -39701,7 +40337,9 @@ void SItemsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SItemsSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemsSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemsSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemsSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemsSaveData, m_aData));
+}
 
 ZHMTypeInfo ZContractEvaluationContext::TypeInfo = ZHMTypeInfo("ZContractEvaluationContext", sizeof(ZContractEvaluationContext), alignof(ZContractEvaluationContext), ZContractEvaluationContext::WriteJson, ZContractEvaluationContext::WriteSimpleJson, ZContractEvaluationContext::FromSimpleJson);
 
@@ -39871,7 +40509,8 @@ void SInventoryControllerSlotSaveData::FromSimpleJson(simdjson::ondemand::value 
 
 void SInventoryControllerSlotSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSlotSaveData, m_aItems));}
+	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSlotSaveData, m_aItems));
+}
 
 ZHMTypeInfo SInventoryControllerSaveData::TypeInfo = ZHMTypeInfo("SInventoryControllerSaveData", sizeof(SInventoryControllerSaveData), alignof(SInventoryControllerSaveData), SInventoryControllerSaveData::WriteJson, SInventoryControllerSaveData::WriteSimpleJson, SInventoryControllerSaveData::FromSimpleJson);
 
@@ -40259,7 +40898,13 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SInventoryControllerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aItems));	m_StoredSlot.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_StoredSlot));	m_aSlots.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aSlots));	m_aPendingPickupItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aPendingPickupItems));	m_aAmmoIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aAmmoIds));	m_aAmmoCounts.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aAmmoCounts));}
+	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aItems));
+	m_StoredSlot.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_StoredSlot));
+	m_aSlots.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aSlots));
+	m_aPendingPickupItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aPendingPickupItems));
+	m_aAmmoIds.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aAmmoIds));
+	m_aAmmoCounts.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryControllerSaveData, m_aAmmoCounts));
+}
 
 ZHMTypeInfo SEscortSituationActors::TypeInfo = ZHMTypeInfo("SEscortSituationActors", sizeof(SEscortSituationActors), alignof(SEscortSituationActors), SEscortSituationActors::WriteJson, SEscortSituationActors::WriteSimpleJson, SEscortSituationActors::FromSimpleJson);
 
@@ -40363,7 +41008,8 @@ void SLockdownManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SLockdownManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aAIZones.Serialize(p_Serializer, p_OwnOffset + offsetof(SLockdownManagerSaveData, m_aAIZones));}
+	m_aAIZones.Serialize(p_Serializer, p_OwnOffset + offsetof(SLockdownManagerSaveData, m_aAIZones));
+}
 
 ZHMTypeInfo SAudioEmitterSaveData::TypeInfo = ZHMTypeInfo("SAudioEmitterSaveData", sizeof(SAudioEmitterSaveData), alignof(SAudioEmitterSaveData), SAudioEmitterSaveData::WriteJson, SAudioEmitterSaveData::WriteSimpleJson, SAudioEmitterSaveData::FromSimpleJson);
 
@@ -40717,7 +41363,14 @@ void SAudioSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SAudioSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEmitters.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitters));	m_aEmitterEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitterEvents));	m_aEmitterRTPCs.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitterRTPCs));	m_aEmitterSwitches.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitterSwitches));	m_aGlobalStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aGlobalStates));	m_aGlobalRTPCs.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aGlobalRTPCs));	m_aEventsEnabledAfterInit.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEventsEnabledAfterInit));}
+	m_aEmitters.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitters));
+	m_aEmitterEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitterEvents));
+	m_aEmitterRTPCs.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitterRTPCs));
+	m_aEmitterSwitches.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEmitterSwitches));
+	m_aGlobalStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aGlobalStates));
+	m_aGlobalRTPCs.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aGlobalRTPCs));
+	m_aEventsEnabledAfterInit.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSaveData, m_aEventsEnabledAfterInit));
+}
 
 ZHMTypeInfo ZWorldMapMetaData::TypeInfo = ZHMTypeInfo("ZWorldMapMetaData", sizeof(ZWorldMapMetaData), alignof(ZWorldMapMetaData), ZWorldMapMetaData::WriteJson, ZWorldMapMetaData::WriteSimpleJson, ZWorldMapMetaData::FromSimpleJson);
 
@@ -40891,7 +41544,8 @@ void STriggerAlarmGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void STriggerAlarmGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(STriggerAlarmGroupSaveData, m_fsmState));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(STriggerAlarmGroupSaveData, m_fsmState));
+}
 
 ZHMTypeInfo SActorSpreadControllerCandidateSaveData::TypeInfo = ZHMTypeInfo("SActorSpreadControllerCandidateSaveData", sizeof(SActorSpreadControllerCandidateSaveData), alignof(SActorSpreadControllerCandidateSaveData), SActorSpreadControllerCandidateSaveData::WriteJson, SActorSpreadControllerCandidateSaveData::WriteSimpleJson, SActorSpreadControllerCandidateSaveData::FromSimpleJson);
 
@@ -40959,7 +41613,8 @@ void SActorSpreadControllerCandidateSaveData::FromSimpleJson(simdjson::ondemand:
 
 void SActorSpreadControllerCandidateSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_CandidateTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerCandidateSaveData, m_CandidateTime));}
+	m_CandidateTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerCandidateSaveData, m_CandidateTime));
+}
 
 ZHMTypeInfo SActorSpreadControllerSaveData::TypeInfo = ZHMTypeInfo("SActorSpreadControllerSaveData", sizeof(SActorSpreadControllerSaveData), alignof(SActorSpreadControllerSaveData), SActorSpreadControllerSaveData::WriteJson, SActorSpreadControllerSaveData::WriteSimpleJson, SActorSpreadControllerSaveData::FromSimpleJson);
 
@@ -41249,7 +41904,13 @@ void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void SActorSpreadControllerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aSpreadingActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aSpreadingActors));	m_aDeadSpreadingActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aDeadSpreadingActors));	m_aSpreadingActorsAddedTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aSpreadingActorsAddedTime));	m_aNewCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aNewCandidates));	m_aCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aCandidates));	m_PlayerCandidateTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_PlayerCandidateTime));}
+	m_aSpreadingActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aSpreadingActors));
+	m_aDeadSpreadingActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aDeadSpreadingActors));
+	m_aSpreadingActorsAddedTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aSpreadingActorsAddedTime));
+	m_aNewCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aNewCandidates));
+	m_aCandidates.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_aCandidates));
+	m_PlayerCandidateTime.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorSpreadControllerSaveData, m_PlayerCandidateTime));
+}
 
 ZHMTypeInfo SAnimatedActorMoveOrderSaveData::TypeInfo = ZHMTypeInfo("SAnimatedActorMoveOrderSaveData", sizeof(SAnimatedActorMoveOrderSaveData), alignof(SAnimatedActorMoveOrderSaveData), SAnimatedActorMoveOrderSaveData::WriteJson, SAnimatedActorMoveOrderSaveData::WriteSimpleJson, SAnimatedActorMoveOrderSaveData::FromSimpleJson);
 
@@ -41385,7 +42046,10 @@ void SAnimatedActorMoveOrderSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 void SAnimatedActorMoveOrderSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vWaypoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorMoveOrderSaveData, m_vWaypoint));	m_vForcedEndpoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorMoveOrderSaveData, m_vForcedEndpoint));	m_vFacingDirection.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorMoveOrderSaveData, m_vFacingDirection));}
+	m_vWaypoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorMoveOrderSaveData, m_vWaypoint));
+	m_vForcedEndpoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorMoveOrderSaveData, m_vForcedEndpoint));
+	m_vFacingDirection.Serialize(p_Serializer, p_OwnOffset + offsetof(SAnimatedActorMoveOrderSaveData, m_vFacingDirection));
+}
 
 ZHMTypeInfo SScreenplayRole2HeroSaveState::TypeInfo = ZHMTypeInfo("SScreenplayRole2HeroSaveState", sizeof(SScreenplayRole2HeroSaveState), alignof(SScreenplayRole2HeroSaveState), SScreenplayRole2HeroSaveState::WriteJson, SScreenplayRole2HeroSaveState::WriteSimpleJson, SScreenplayRole2HeroSaveState::FromSimpleJson);
 
@@ -42207,7 +42871,8 @@ void SGetHelpServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 void SGetHelpServiceSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aHelpingActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpServiceSaveData, m_aHelpingActors));}
+	m_aHelpingActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SGetHelpServiceSaveData, m_aHelpingActors));
+}
 
 ZHMTypeInfo SPersistentEntitySaveData::TypeInfo = ZHMTypeInfo("SPersistentEntitySaveData", sizeof(SPersistentEntitySaveData), alignof(SPersistentEntitySaveData), SPersistentEntitySaveData::WriteJson, SPersistentEntitySaveData::WriteSimpleJson, SPersistentEntitySaveData::FromSimpleJson);
 
@@ -42315,7 +42980,9 @@ void SPersistentEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 void SPersistentEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntityIDs.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveData, m_aEntityIDs));	m_aEntityNames.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveData, m_aEntityNames));}
+	m_aEntityIDs.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveData, m_aEntityIDs));
+	m_aEntityNames.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveData, m_aEntityNames));
+}
 
 ZHMTypeInfo SActionRadialArcDisplayInfo::TypeInfo = ZHMTypeInfo("SActionRadialArcDisplayInfo", sizeof(SActionRadialArcDisplayInfo), alignof(SActionRadialArcDisplayInfo), SActionRadialArcDisplayInfo::WriteJson, SActionRadialArcDisplayInfo::WriteSimpleJson, SActionRadialArcDisplayInfo::FromSimpleJson);
 
@@ -42415,7 +43082,8 @@ void SActionRadialArcDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SActionRadialArcDisplayInfo::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	label.Serialize(p_Serializer, p_OwnOffset + offsetof(SActionRadialArcDisplayInfo, label));}
+	label.Serialize(p_Serializer, p_OwnOffset + offsetof(SActionRadialArcDisplayInfo, label));
+}
 
 ZHMTypeInfo SExposedEntityDescriptor::TypeInfo = ZHMTypeInfo("SExposedEntityDescriptor", sizeof(SExposedEntityDescriptor), alignof(SExposedEntityDescriptor), SExposedEntityDescriptor::WriteJson, SExposedEntityDescriptor::WriteSimpleJson, SExposedEntityDescriptor::FromSimpleJson);
 
@@ -42503,7 +43171,10 @@ void SExposedEntityDescriptor::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SExposedEntityDescriptor::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sName));	sDisplayName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sDisplayName));	sHelpText.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sHelpText));}
+	sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sName));
+	sDisplayName.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sDisplayName));
+	sHelpText.Serialize(p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sHelpText));
+}
 
 ZHMTypeInfo SMovementHideInClosetSaveData::TypeInfo = ZHMTypeInfo("SMovementHideInClosetSaveData", sizeof(SMovementHideInClosetSaveData), alignof(SMovementHideInClosetSaveData), SMovementHideInClosetSaveData::WriteJson, SMovementHideInClosetSaveData::WriteSimpleJson, SMovementHideInClosetSaveData::FromSimpleJson);
 
@@ -42629,7 +43300,9 @@ void SLevelReferenceableEntitieSaveData::FromSimpleJson(simdjson::ondemand::valu
 
 void SLevelReferenceableEntitieSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sSceneResource.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelReferenceableEntitieSaveData, m_sSceneResource));	m_aAdditionalBrickResources.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelReferenceableEntitieSaveData, m_aAdditionalBrickResources));}
+	m_sSceneResource.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelReferenceableEntitieSaveData, m_sSceneResource));
+	m_aAdditionalBrickResources.Serialize(p_Serializer, p_OwnOffset + offsetof(SLevelReferenceableEntitieSaveData, m_aAdditionalBrickResources));
+}
 
 ZHMTypeInfo IEventConsumerCollection::TypeInfo = ZHMTypeInfo("IEventConsumerCollection", sizeof(IEventConsumerCollection), alignof(IEventConsumerCollection), IEventConsumerCollection::WriteJson, IEventConsumerCollection::WriteSimpleJson, IEventConsumerCollection::FromSimpleJson);
 
@@ -42857,7 +43530,9 @@ void SWaveformGeneratorManagerSaveData::FromSimpleJson(simdjson::ondemand::value
 
 void SWaveformGeneratorManagerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aGenerators.Serialize(p_Serializer, p_OwnOffset + offsetof(SWaveformGeneratorManagerSaveData, m_aGenerators));	m_aGeneratorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SWaveformGeneratorManagerSaveData, m_aGeneratorData));}
+	m_aGenerators.Serialize(p_Serializer, p_OwnOffset + offsetof(SWaveformGeneratorManagerSaveData, m_aGenerators));
+	m_aGeneratorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SWaveformGeneratorManagerSaveData, m_aGeneratorData));
+}
 
 ZHMTypeInfo SMathLerpSaveData_SColorRGB::TypeInfo = ZHMTypeInfo("SMathLerpSaveData_SColorRGB", sizeof(SMathLerpSaveData_SColorRGB), alignof(SMathLerpSaveData_SColorRGB), SMathLerpSaveData_SColorRGB::WriteJson, SMathLerpSaveData_SColorRGB::WriteSimpleJson, SMathLerpSaveData_SColorRGB::FromSimpleJson);
 
@@ -42929,7 +43604,9 @@ void SMathLerpSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SMathLerpSaveData_SColorRGB::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGB, m_A));	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGB, m_B));}
+	m_A.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGB, m_A));
+	m_B.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpSaveData_SColorRGB, m_B));
+}
 
 ZHMTypeInfo SMathLerpsSaveData_SColorRGB::TypeInfo = ZHMTypeInfo("SMathLerpsSaveData_SColorRGB", sizeof(SMathLerpsSaveData_SColorRGB), alignof(SMathLerpsSaveData_SColorRGB), SMathLerpsSaveData_SColorRGB::WriteJson, SMathLerpsSaveData_SColorRGB::WriteSimpleJson, SMathLerpsSaveData_SColorRGB::FromSimpleJson);
 
@@ -43027,7 +43704,9 @@ void SMathLerpsSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SMathLerpsSaveData_SColorRGB::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGB, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGB, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGB, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SMathLerpsSaveData_SColorRGB, m_aData));
+}
 
 ZHMTypeInfo SVideoDatabaseEntry::TypeInfo = ZHMTypeInfo("SVideoDatabaseEntry", sizeof(SVideoDatabaseEntry), alignof(SVideoDatabaseEntry), SVideoDatabaseEntry::WriteJson, SVideoDatabaseEntry::WriteSimpleJson, SVideoDatabaseEntry::FromSimpleJson);
 
@@ -43083,7 +43762,9 @@ void SVideoDatabaseEntry::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SVideoDatabaseEntry::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	VideoId.Serialize(p_Serializer, p_OwnOffset + offsetof(SVideoDatabaseEntry, VideoId));	RuntimeLocalizedVideoRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SVideoDatabaseEntry, RuntimeLocalizedVideoRid));}
+	VideoId.Serialize(p_Serializer, p_OwnOffset + offsetof(SVideoDatabaseEntry, VideoId));
+	RuntimeLocalizedVideoRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SVideoDatabaseEntry, RuntimeLocalizedVideoRid));
+}
 
 ZHMTypeInfo SVideoDatabaseData::TypeInfo = ZHMTypeInfo("SVideoDatabaseData", sizeof(SVideoDatabaseData), alignof(SVideoDatabaseData), SVideoDatabaseData::WriteJson, SVideoDatabaseData::WriteSimpleJson, SVideoDatabaseData::FromSimpleJson);
 
@@ -43147,7 +43828,8 @@ void SVideoDatabaseData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 void SVideoDatabaseData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	Videos.Serialize(p_Serializer, p_OwnOffset + offsetof(SVideoDatabaseData, Videos));}
+	Videos.Serialize(p_Serializer, p_OwnOffset + offsetof(SVideoDatabaseData, Videos));
+}
 
 ZHMTypeInfo SAvoidDangerousAreaGroupSaveData::TypeInfo = ZHMTypeInfo("SAvoidDangerousAreaGroupSaveData", sizeof(SAvoidDangerousAreaGroupSaveData), alignof(SAvoidDangerousAreaGroupSaveData), SAvoidDangerousAreaGroupSaveData::WriteJson, SAvoidDangerousAreaGroupSaveData::WriteSimpleJson, SAvoidDangerousAreaGroupSaveData::FromSimpleJson);
 
@@ -43243,7 +43925,9 @@ void SAvoidDangerousAreaGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 
 void SAvoidDangerousAreaGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SAvoidDangerousAreaGroupSaveData, m_fsmState));	m_vDestinationPoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SAvoidDangerousAreaGroupSaveData, m_vDestinationPoint));}
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SAvoidDangerousAreaGroupSaveData, m_fsmState));
+	m_vDestinationPoint.Serialize(p_Serializer, p_OwnOffset + offsetof(SAvoidDangerousAreaGroupSaveData, m_vDestinationPoint));
+}
 
 ZHMTypeInfo SGetIActorPositionSaveData::TypeInfo = ZHMTypeInfo("SGetIActorPositionSaveData", sizeof(SGetIActorPositionSaveData), alignof(SGetIActorPositionSaveData), SGetIActorPositionSaveData::WriteJson, SGetIActorPositionSaveData::WriteSimpleJson, SGetIActorPositionSaveData::FromSimpleJson);
 
@@ -43651,7 +44335,8 @@ void SConditionBase::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SConditionBase::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	assignTo.Serialize(p_Serializer, p_OwnOffset + offsetof(SConditionBase, assignTo));}
+	assignTo.Serialize(p_Serializer, p_OwnOffset + offsetof(SConditionBase, assignTo));
+}
 
 ZHMTypeInfo SCrowdAIEventSaveData::TypeInfo = ZHMTypeInfo("SCrowdAIEventSaveData", sizeof(SCrowdAIEventSaveData), alignof(SCrowdAIEventSaveData), SCrowdAIEventSaveData::WriteJson, SCrowdAIEventSaveData::WriteSimpleJson, SCrowdAIEventSaveData::FromSimpleJson);
 
@@ -43715,7 +44400,8 @@ void SCrowdAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SCrowdAIEventSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_RunningEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdAIEventSaveData, m_RunningEvents));}
+	m_RunningEvents.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdAIEventSaveData, m_RunningEvents));
+}
 
 ZHMTypeInfo SItemKeywordProxySaveData::TypeInfo = ZHMTypeInfo("SItemKeywordProxySaveData", sizeof(SItemKeywordProxySaveData), alignof(SItemKeywordProxySaveData), SItemKeywordProxySaveData::WriteJson, SItemKeywordProxySaveData::WriteSimpleJson, SItemKeywordProxySaveData::FromSimpleJson);
 
@@ -44219,7 +44905,12 @@ void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SEscortSituationSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_vLastPosition));	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aAddedActors));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aStates));	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aEscortActs));	m_aSearchActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aSearchActs));}
+	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_vLastPosition));
+	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aAddedActors));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aStates));
+	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aEscortActs));
+	m_aSearchActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SEscortSituationSaveData, m_aSearchActs));
+}
 
 ZHMTypeInfo SAttentionHUDUIElementArray_Dummy::TypeInfo = ZHMTypeInfo("SAttentionHUDUIElementArray_Dummy", sizeof(SAttentionHUDUIElementArray_Dummy), alignof(SAttentionHUDUIElementArray_Dummy), SAttentionHUDUIElementArray_Dummy::WriteJson, SAttentionHUDUIElementArray_Dummy::WriteSimpleJson, SAttentionHUDUIElementArray_Dummy::FromSimpleJson);
 
@@ -44283,7 +44974,8 @@ void SAttentionHUDUIElementArray_Dummy::FromSimpleJson(simdjson::ondemand::value
 
 void SAttentionHUDUIElementArray_Dummy::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SAttentionHUDUIElementArray_Dummy, dummy));}
+	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SAttentionHUDUIElementArray_Dummy, dummy));
+}
 
 ZHMTypeInfo STrespassingRuleEntitySaveData::TypeInfo = ZHMTypeInfo("STrespassingRuleEntitySaveData", sizeof(STrespassingRuleEntitySaveData), alignof(STrespassingRuleEntitySaveData), STrespassingRuleEntitySaveData::WriteJson, STrespassingRuleEntitySaveData::WriteSimpleJson, STrespassingRuleEntitySaveData::FromSimpleJson);
 
@@ -44345,7 +45037,8 @@ void STrespassingRuleEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 void STrespassingRuleEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aAllowedProfessionsDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(STrespassingRuleEntitySaveData, m_aAllowedProfessionsDisabled));}
+	m_aAllowedProfessionsDisabled.Serialize(p_Serializer, p_OwnOffset + offsetof(STrespassingRuleEntitySaveData, m_aAllowedProfessionsDisabled));
+}
 
 ZHMTypeInfo IHM5WeaponInventory::TypeInfo = ZHMTypeInfo("IHM5WeaponInventory", sizeof(IHM5WeaponInventory), alignof(IHM5WeaponInventory), IHM5WeaponInventory::WriteJson, IHM5WeaponInventory::WriteSimpleJson, IHM5WeaponInventory::FromSimpleJson);
 
@@ -44501,7 +45194,9 @@ void STrackDollyControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void STrackDollyControllerSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vDollyPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(STrackDollyControllerSaveData, m_vDollyPosition));	m_vDollyRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(STrackDollyControllerSaveData, m_vDollyRotation));}
+	m_vDollyPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(STrackDollyControllerSaveData, m_vDollyPosition));
+	m_vDollyRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(STrackDollyControllerSaveData, m_vDollyRotation));
+}
 
 ZHMTypeInfo SPIPMessageManagerProxySaveData::TypeInfo = ZHMTypeInfo("SPIPMessageManagerProxySaveData", sizeof(SPIPMessageManagerProxySaveData), alignof(SPIPMessageManagerProxySaveData), SPIPMessageManagerProxySaveData::WriteJson, SPIPMessageManagerProxySaveData::WriteSimpleJson, SPIPMessageManagerProxySaveData::FromSimpleJson);
 
@@ -44935,7 +45630,11 @@ void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SLeadEscortSituationSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_vLastPosition));	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_aAddedActors));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_aStates));	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_aEscortActs));}
+	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_vLastPosition));
+	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_aAddedActors));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_aStates));
+	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SLeadEscortSituationSaveData, m_aEscortActs));
+}
 
 ZHMTypeInfo SActorAliveConditionSaveData::TypeInfo = ZHMTypeInfo("SActorAliveConditionSaveData", sizeof(SActorAliveConditionSaveData), alignof(SActorAliveConditionSaveData), SActorAliveConditionSaveData::WriteJson, SActorAliveConditionSaveData::WriteSimpleJson, SActorAliveConditionSaveData::FromSimpleJson);
 
@@ -45199,7 +45898,9 @@ void SContractConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SContractConfigResourceEntry::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	Id.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractConfigResourceEntry, Id));	ContractRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractConfigResourceEntry, ContractRid));}
+	Id.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractConfigResourceEntry, Id));
+	ContractRid.Serialize(p_Serializer, p_OwnOffset + offsetof(SContractConfigResourceEntry, ContractRid));
+}
 
 ZHMTypeInfo SItemSpawnerSaveData::TypeInfo = ZHMTypeInfo("SItemSpawnerSaveData", sizeof(SItemSpawnerSaveData), alignof(SItemSpawnerSaveData), SItemSpawnerSaveData::WriteJson, SItemSpawnerSaveData::WriteSimpleJson, SItemSpawnerSaveData::FromSimpleJson);
 
@@ -45361,7 +46062,8 @@ void SItemLeftHandUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SItemLeftHandUIData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemLeftHandUIData, icon));}
+	icon.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemLeftHandUIData, icon));
+}
 
 ZHMTypeInfo SBoneScalesList::TypeInfo = ZHMTypeInfo("SBoneScalesList", sizeof(SBoneScalesList), alignof(SBoneScalesList), SBoneScalesList::WriteJson, SBoneScalesList::WriteSimpleJson, SBoneScalesList::FromSimpleJson);
 
@@ -45425,7 +46127,8 @@ void SBoneScalesList::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 void SBoneScalesList::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aBoneScales.Serialize(p_Serializer, p_OwnOffset + offsetof(SBoneScalesList, m_aBoneScales));}
+	m_aBoneScales.Serialize(p_Serializer, p_OwnOffset + offsetof(SBoneScalesList, m_aBoneScales));
+}
 
 ZHMTypeInfo SHeroEscortSituationActorStateSaveData::TypeInfo = ZHMTypeInfo("SHeroEscortSituationActorStateSaveData", sizeof(SHeroEscortSituationActorStateSaveData), alignof(SHeroEscortSituationActorStateSaveData), SHeroEscortSituationActorStateSaveData::WriteJson, SHeroEscortSituationActorStateSaveData::WriteSimpleJson, SHeroEscortSituationActorStateSaveData::FromSimpleJson);
 
@@ -45589,7 +46292,8 @@ void ZER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 
 void ZER64::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sExposedEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(ZER64, m_sExposedEntity));}
+	m_sExposedEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(ZER64, m_sExposedEntity));
+}
 
 ZHMTypeInfo SFooStruct::TypeInfo = ZHMTypeInfo("SFooStruct", sizeof(SFooStruct), alignof(SFooStruct), SFooStruct::WriteJson, SFooStruct::WriteSimpleJson, SFooStruct::FromSimpleJson);
 
@@ -45641,7 +46345,8 @@ void SFooStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 
 void SFooStruct::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sOther.Serialize(p_Serializer, p_OwnOffset + offsetof(SFooStruct, m_sOther));}
+	m_sOther.Serialize(p_Serializer, p_OwnOffset + offsetof(SFooStruct, m_sOther));
+}
 
 ZHMTypeInfo SChairSaveData::TypeInfo = ZHMTypeInfo("SChairSaveData", sizeof(SChairSaveData), alignof(SChairSaveData), SChairSaveData::WriteJson, SChairSaveData::WriteSimpleJson, SChairSaveData::FromSimpleJson);
 
@@ -45801,7 +46506,9 @@ void SCombatMetricsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 void SCombatMetricsSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_DeadVIPsOrContractTargets.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatMetricsSaveData, m_DeadVIPsOrContractTargets));	m_DiscoveredVIPOrContractTargetBodies.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatMetricsSaveData, m_DiscoveredVIPOrContractTargetBodies));}
+	m_DeadVIPsOrContractTargets.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatMetricsSaveData, m_DeadVIPsOrContractTargets));
+	m_DiscoveredVIPOrContractTargetBodies.Serialize(p_Serializer, p_OwnOffset + offsetof(SCombatMetricsSaveData, m_DiscoveredVIPOrContractTargetBodies));
+}
 
 ZHMTypeInfo SCautiousSearchGroupSaveData::TypeInfo = ZHMTypeInfo("SCautiousSearchGroupSaveData", sizeof(SCautiousSearchGroupSaveData), alignof(SCautiousSearchGroupSaveData), SCautiousSearchGroupSaveData::WriteJson, SCautiousSearchGroupSaveData::WriteSimpleJson, SCautiousSearchGroupSaveData::FromSimpleJson);
 
@@ -45999,7 +46706,9 @@ void SActorStandInEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SActorStandInEntitiesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorStandInEntitiesSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorStandInEntitiesSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorStandInEntitiesSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorStandInEntitiesSaveData, m_aData));
+}
 
 ZHMTypeInfo ZBitArray::TypeInfo = ZHMTypeInfo("ZBitArray", sizeof(ZBitArray), alignof(ZBitArray), ZBitArray::WriteJson, ZBitArray::WriteSimpleJson, ZBitArray::FromSimpleJson);
 
@@ -46073,7 +46782,8 @@ void ZBitArray::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 void ZBitArray::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aBytes.Serialize(p_Serializer, p_OwnOffset + offsetof(ZBitArray, m_aBytes));}
+	m_aBytes.Serialize(p_Serializer, p_OwnOffset + offsetof(ZBitArray, m_aBytes));
+}
 
 ZHMTypeInfo SReasoningGrid::TypeInfo = ZHMTypeInfo("SReasoningGrid", sizeof(SReasoningGrid), alignof(SReasoningGrid), SReasoningGrid::WriteJson, SReasoningGrid::WriteSimpleJson, SReasoningGrid::FromSimpleJson);
 
@@ -46247,7 +46957,13 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void SReasoningGrid::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_WaypointList.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_WaypointList));	m_LowVisibilityBits.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_LowVisibilityBits));	m_HighVisibilityBits.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_HighVisibilityBits));	m_Properties.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_Properties));	m_pVisibilityData.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_pVisibilityData));	m_deadEndData.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_deadEndData));}
+	m_WaypointList.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_WaypointList));
+	m_LowVisibilityBits.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_LowVisibilityBits));
+	m_HighVisibilityBits.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_HighVisibilityBits));
+	m_Properties.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_Properties));
+	m_pVisibilityData.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_pVisibilityData));
+	m_deadEndData.Serialize(p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_deadEndData));
+}
 
 ZHMTypeInfo SDynamicObjectKeyValuePair::TypeInfo = ZHMTypeInfo("SDynamicObjectKeyValuePair", sizeof(SDynamicObjectKeyValuePair), alignof(SDynamicObjectKeyValuePair), SDynamicObjectKeyValuePair::WriteJson, SDynamicObjectKeyValuePair::WriteSimpleJson, SDynamicObjectKeyValuePair::FromSimpleJson);
 
@@ -46303,7 +47019,9 @@ void SDynamicObjectKeyValuePair::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 void SDynamicObjectKeyValuePair::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	sKey.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicObjectKeyValuePair, sKey));	value.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicObjectKeyValuePair, value));}
+	sKey.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicObjectKeyValuePair, sKey));
+	value.Serialize(p_Serializer, p_OwnOffset + offsetof(SDynamicObjectKeyValuePair, value));
+}
 
 ZHMTypeInfo SActorProxySaveData::TypeInfo = ZHMTypeInfo("SActorProxySaveData", sizeof(SActorProxySaveData), alignof(SActorProxySaveData), SActorProxySaveData::WriteJson, SActorProxySaveData::WriteSimpleJson, SActorProxySaveData::FromSimpleJson);
 
@@ -46441,7 +47159,9 @@ void SActorProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 void SActorProxiesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorProxiesSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorProxiesSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorProxiesSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SActorProxiesSaveData, m_aData));
+}
 
 ZHMTypeInfo SItemKeywordProxiesSaveData::TypeInfo = ZHMTypeInfo("SItemKeywordProxiesSaveData", sizeof(SItemKeywordProxiesSaveData), alignof(SItemKeywordProxiesSaveData), SItemKeywordProxiesSaveData::WriteJson, SItemKeywordProxiesSaveData::WriteSimpleJson, SItemKeywordProxiesSaveData::FromSimpleJson);
 
@@ -46539,7 +47259,9 @@ void SItemKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 void SItemKeywordProxiesSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemKeywordProxiesSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemKeywordProxiesSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemKeywordProxiesSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(SItemKeywordProxiesSaveData, m_aData));
+}
 
 ZHMTypeInfo STrapsSaveData::TypeInfo = ZHMTypeInfo("STrapsSaveData", sizeof(STrapsSaveData), alignof(STrapsSaveData), STrapsSaveData::WriteJson, STrapsSaveData::WriteSimpleJson, STrapsSaveData::FromSimpleJson);
 
@@ -46637,7 +47359,9 @@ void STrapsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 void STrapsSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STrapsSaveData, m_aEntities));	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(STrapsSaveData, m_aData));}
+	m_aEntities.Serialize(p_Serializer, p_OwnOffset + offsetof(STrapsSaveData, m_aEntities));
+	m_aData.Serialize(p_Serializer, p_OwnOffset + offsetof(STrapsSaveData, m_aData));
+}
 
 ZHMTypeInfo SGameEntitySaveData::TypeInfo = ZHMTypeInfo("SGameEntitySaveData", sizeof(SGameEntitySaveData), alignof(SGameEntitySaveData), SGameEntitySaveData::WriteJson, SGameEntitySaveData::WriteSimpleJson, SGameEntitySaveData::FromSimpleJson);
 
@@ -47049,7 +47773,31 @@ void SGameEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 void SGameEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_DoorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_DoorData));	m_ItemsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ItemsData));	m_VolumeTriggersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_VolumeTriggersData));	m_MathMultipliesData_float32.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_float32));	m_MathMultipliesData_Vector2.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_Vector2));	m_MathMultipliesData_Vector3.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_Vector3));	m_MathMultipliesData_Vector4.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_Vector4));	m_ShotListenersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ShotListenersData));	m_TrapsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_TrapsData));	m_ActorProxiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorProxiesData));	m_ActorStandInEntitiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorStandInEntitiesData));	m_ActorBoneAttachmentsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorBoneAttachmentsData));	m_ActorKeywordProxiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorKeywordProxiesData));	m_ItemKeywordProxiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ItemKeywordProxiesData));	m_LampCoreData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_LampCoreData));	m_VIPEvacuationNodesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_VIPEvacuationNodesData));	m_CollisionControllerAspectsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_CollisionControllerAspectsData));	m_BodyContainersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_BodyContainersData));	m_MathLerpsData_float32.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_float32));	m_MathLerpsData_SVector2.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SVector2));	m_MathLerpsData_SVector3.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SVector3));	m_MathLerpsData_SVector4.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SVector4));	m_MathLerpsData_SColorRGB.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SColorRGB));	m_MathLerpsData_SColorRGBA.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SColorRGBA));}
+	m_DoorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_DoorData));
+	m_ItemsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ItemsData));
+	m_VolumeTriggersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_VolumeTriggersData));
+	m_MathMultipliesData_float32.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_float32));
+	m_MathMultipliesData_Vector2.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_Vector2));
+	m_MathMultipliesData_Vector3.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_Vector3));
+	m_MathMultipliesData_Vector4.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathMultipliesData_Vector4));
+	m_ShotListenersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ShotListenersData));
+	m_TrapsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_TrapsData));
+	m_ActorProxiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorProxiesData));
+	m_ActorStandInEntitiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorStandInEntitiesData));
+	m_ActorBoneAttachmentsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorBoneAttachmentsData));
+	m_ActorKeywordProxiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ActorKeywordProxiesData));
+	m_ItemKeywordProxiesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_ItemKeywordProxiesData));
+	m_LampCoreData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_LampCoreData));
+	m_VIPEvacuationNodesData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_VIPEvacuationNodesData));
+	m_CollisionControllerAspectsData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_CollisionControllerAspectsData));
+	m_BodyContainersData.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_BodyContainersData));
+	m_MathLerpsData_float32.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_float32));
+	m_MathLerpsData_SVector2.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SVector2));
+	m_MathLerpsData_SVector3.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SVector3));
+	m_MathLerpsData_SVector4.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SVector4));
+	m_MathLerpsData_SColorRGB.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SColorRGB));
+	m_MathLerpsData_SColorRGBA.Serialize(p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SColorRGBA));
+}
 
 ZHMTypeInfo SPersistentEntitySaveDataList::TypeInfo = ZHMTypeInfo("SPersistentEntitySaveDataList", sizeof(SPersistentEntitySaveDataList), alignof(SPersistentEntitySaveDataList), SPersistentEntitySaveDataList::WriteJson, SPersistentEntitySaveDataList::WriteSimpleJson, SPersistentEntitySaveDataList::FromSimpleJson);
 
@@ -47181,7 +47929,10 @@ void SPersistentEntitySaveDataList::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SPersistentEntitySaveDataList::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aEntityDatas.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveDataList, m_aEntityDatas));	m_mDynamicObjectIDGenerationKeys.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveDataList, m_mDynamicObjectIDGenerationKeys));	m_mDynamicObjectIDGenerationValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveDataList, m_mDynamicObjectIDGenerationValues));}
+	m_aEntityDatas.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveDataList, m_aEntityDatas));
+	m_mDynamicObjectIDGenerationKeys.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveDataList, m_mDynamicObjectIDGenerationKeys));
+	m_mDynamicObjectIDGenerationValues.Serialize(p_Serializer, p_OwnOffset + offsetof(SPersistentEntitySaveDataList, m_mDynamicObjectIDGenerationValues));
+}
 
 ZHMTypeInfo SConversationPart::TypeInfo = ZHMTypeInfo("SConversationPart", sizeof(SConversationPart), alignof(SConversationPart), SConversationPart::WriteJson, SConversationPart::WriteSimpleJson, SConversationPart::FromSimpleJson);
 
@@ -47257,7 +48008,8 @@ void SConversationPart::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SConversationPart::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_entries.Serialize(p_Serializer, p_OwnOffset + offsetof(SConversationPart, m_entries));}
+	m_entries.Serialize(p_Serializer, p_OwnOffset + offsetof(SConversationPart, m_entries));
+}
 
 ZHMTypeInfo SHitmanSaveData::TypeInfo = ZHMTypeInfo("SHitmanSaveData", sizeof(SHitmanSaveData), alignof(SHitmanSaveData), SHitmanSaveData::WriteJson, SHitmanSaveData::WriteSimpleJson, SHitmanSaveData::FromSimpleJson);
 
@@ -47453,7 +48205,13 @@ void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 void SHitmanSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_OutfitID.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_OutfitID));	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_vPosition));	m_vRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_vRotation));	m_Inventory.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_Inventory));	m_Camera.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_Camera));	m_MovementData.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_MovementData));}
+	m_OutfitID.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_OutfitID));
+	m_vPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_vPosition));
+	m_vRotation.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_vRotation));
+	m_Inventory.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_Inventory));
+	m_Camera.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_Camera));
+	m_MovementData.Serialize(p_Serializer, p_OwnOffset + offsetof(SHitmanSaveData, m_MovementData));
+}
 
 ZHMTypeInfo SCharacterSpeakEntitySaveData::TypeInfo = ZHMTypeInfo("SCharacterSpeakEntitySaveData", sizeof(SCharacterSpeakEntitySaveData), alignof(SCharacterSpeakEntitySaveData), SCharacterSpeakEntitySaveData::WriteJson, SCharacterSpeakEntitySaveData::WriteSimpleJson, SCharacterSpeakEntitySaveData::FromSimpleJson);
 
@@ -47857,7 +48615,12 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 void SHeroEscortSituationSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_vLastPosition));	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_aAddedActors));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_aStates));	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_aEscortActs));	m_RecordedHitmanOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_RecordedHitmanOutfit));}
+	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_vLastPosition));
+	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_aAddedActors));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_aStates));
+	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_aEscortActs));
+	m_RecordedHitmanOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituationSaveData, m_RecordedHitmanOutfit));
+}
 
 ZHMTypeInfo SPatrolOrderSaveData::TypeInfo = ZHMTypeInfo("SPatrolOrderSaveData", sizeof(SPatrolOrderSaveData), alignof(SPatrolOrderSaveData), SPatrolOrderSaveData::WriteJson, SPatrolOrderSaveData::WriteSimpleJson, SPatrolOrderSaveData::FromSimpleJson);
 
@@ -48197,7 +48960,12 @@ void SHeroEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 void SHeroEscortSituation2SaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_vLastPosition));	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_aAddedActors));	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_aStates));	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_aEscortActs));	m_RecordedHitmanOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_RecordedHitmanOutfit));}
+	m_vLastPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_vLastPosition));
+	m_aAddedActors.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_aAddedActors));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_aStates));
+	m_aEscortActs.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_aEscortActs));
+	m_RecordedHitmanOutfit.Serialize(p_Serializer, p_OwnOffset + offsetof(SHeroEscortSituation2SaveData, m_RecordedHitmanOutfit));
+}
 
 ZHMTypeInfo SIntelListDisplayInfoArray_dummy::TypeInfo = ZHMTypeInfo("SIntelListDisplayInfoArray_dummy", sizeof(SIntelListDisplayInfoArray_dummy), alignof(SIntelListDisplayInfoArray_dummy), SIntelListDisplayInfoArray_dummy::WriteJson, SIntelListDisplayInfoArray_dummy::WriteSimpleJson, SIntelListDisplayInfoArray_dummy::FromSimpleJson);
 
@@ -48261,7 +49029,8 @@ void SIntelListDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::value 
 
 void SIntelListDisplayInfoArray_dummy::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelListDisplayInfoArray_dummy, dummy));}
+	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SIntelListDisplayInfoArray_dummy, dummy));
+}
 
 ZHMTypeInfo SSentryGroupSaveData::TypeInfo = ZHMTypeInfo("SSentryGroupSaveData", sizeof(SSentryGroupSaveData), alignof(SSentryGroupSaveData), SSentryGroupSaveData::WriteJson, SSentryGroupSaveData::WriteSimpleJson, SSentryGroupSaveData::FromSimpleJson);
 
@@ -48393,7 +49162,9 @@ void SSentryGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SSentryGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tLastEscalateOrder.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryGroupSaveData, m_tLastEscalateOrder));	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryGroupSaveData, m_fsmState));}
+	m_tLastEscalateOrder.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryGroupSaveData, m_tLastEscalateOrder));
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SSentryGroupSaveData, m_fsmState));
+}
 
 ZHMTypeInfo SHUDVisibilityController2SaveData::TypeInfo = ZHMTypeInfo("SHUDVisibilityController2SaveData", sizeof(SHUDVisibilityController2SaveData), alignof(SHUDVisibilityController2SaveData), SHUDVisibilityController2SaveData::WriteJson, SHUDVisibilityController2SaveData::WriteSimpleJson, SHUDVisibilityController2SaveData::FromSimpleJson);
 
@@ -48803,7 +49574,13 @@ void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 
 void SCautiousInvestigateGroupSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_tGroupStarted.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_tGroupStarted));	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_fsmState));	m_fsmAssistantState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_fsmAssistantState));	m_investigateArea.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_investigateArea));	m_targetDistanceField.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_targetDistanceField));	m_targetLOSField.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_targetLOSField));}
+	m_tGroupStarted.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_tGroupStarted));
+	m_fsmState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_fsmState));
+	m_fsmAssistantState.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_fsmAssistantState));
+	m_investigateArea.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_investigateArea));
+	m_targetDistanceField.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_targetDistanceField));
+	m_targetLOSField.Serialize(p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateGroupSaveData, m_targetLOSField));
+}
 
 ZHMTypeInfo IActor::TypeInfo = ZHMTypeInfo("IActor", sizeof(IActor), alignof(IActor), IActor::WriteJson, IActor::WriteSimpleJson, IActor::FromSimpleJson);
 
@@ -48897,7 +49674,8 @@ void SActionRadialArcDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::
 
 void SActionRadialArcDisplayInfoArray_dummy::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SActionRadialArcDisplayInfoArray_dummy, dummy));}
+	dummy.Serialize(p_Serializer, p_OwnOffset + offsetof(SActionRadialArcDisplayInfoArray_dummy, dummy));
+}
 
 ZHMTypeInfo SInventoryMovementConfig::TypeInfo = ZHMTypeInfo("SInventoryMovementConfig", sizeof(SInventoryMovementConfig), alignof(SInventoryMovementConfig), SInventoryMovementConfig::WriteJson, SInventoryMovementConfig::WriteSimpleJson, SInventoryMovementConfig::FromSimpleJson);
 
@@ -49049,7 +49827,8 @@ void SInventoryMovementConfig::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void SInventoryMovementConfig::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vSafeDropPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryMovementConfig, m_vSafeDropPosition));}
+	m_vSafeDropPosition.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryMovementConfig, m_vSafeDropPosition));
+}
 
 ZHMTypeInfo ZInteractionGuideData::TypeInfo = ZHMTypeInfo("ZInteractionGuideData", sizeof(ZInteractionGuideData), alignof(ZInteractionGuideData), ZInteractionGuideData::WriteJson, ZInteractionGuideData::WriteSimpleJson, ZInteractionGuideData::FromSimpleJson);
 
@@ -49165,7 +49944,9 @@ void ZEntityReference::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 void ZEntityReference::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_EntityID.Serialize(p_Serializer, p_OwnOffset + offsetof(ZEntityReference, m_EntityID));	m_sExposedEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(ZEntityReference, m_sExposedEntity));}
+	m_EntityID.Serialize(p_Serializer, p_OwnOffset + offsetof(ZEntityReference, m_EntityID));
+	m_sExposedEntity.Serialize(p_Serializer, p_OwnOffset + offsetof(ZEntityReference, m_sExposedEntity));
+}
 
 ZHMTypeInfo SInventoryUICache::TypeInfo = ZHMTypeInfo("SInventoryUICache", sizeof(SInventoryUICache), alignof(SInventoryUICache), SInventoryUICache::WriteJson, SInventoryUICache::WriteSimpleJson, SInventoryUICache::FromSimpleJson);
 
@@ -49265,7 +50046,9 @@ void SInventoryUICache::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 void SInventoryUICache::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	mainslots.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUICache, mainslots));	otherslots.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUICache, otherslots));}
+	mainslots.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUICache, mainslots));
+	otherslots.Serialize(p_Serializer, p_OwnOffset + offsetof(SInventoryUICache, otherslots));
+}
 
 ZHMTypeInfo SHudMissionTimerControllerData::TypeInfo = ZHMTypeInfo("SHudMissionTimerControllerData", sizeof(SHudMissionTimerControllerData), alignof(SHudMissionTimerControllerData), SHudMissionTimerControllerData::WriteJson, SHudMissionTimerControllerData::WriteSimpleJson, SHudMissionTimerControllerData::FromSimpleJson);
 
@@ -49321,7 +50104,8 @@ void SHudMissionTimerControllerData::FromSimpleJson(simdjson::ondemand::value p_
 
 void SHudMissionTimerControllerData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_fScoreGameTimeStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SHudMissionTimerControllerData, m_fScoreGameTimeStart));}
+	m_fScoreGameTimeStart.Serialize(p_Serializer, p_OwnOffset + offsetof(SHudMissionTimerControllerData, m_fScoreGameTimeStart));
+}
 
 ZHMTypeInfo SHUDPIPControllerSaveData::TypeInfo = ZHMTypeInfo("SHUDPIPControllerSaveData", sizeof(SHUDPIPControllerSaveData), alignof(SHUDPIPControllerSaveData), SHUDPIPControllerSaveData::WriteJson, SHUDPIPControllerSaveData::WriteSimpleJson, SHUDPIPControllerSaveData::FromSimpleJson);
 
@@ -49439,7 +50223,9 @@ void ZScopedER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 void ZScopedER64::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_er64.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedER64, m_er64));	m_aScopePath.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedER64, m_aScopePath));}
+	m_er64.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedER64, m_er64));
+	m_aScopePath.Serialize(p_Serializer, p_OwnOffset + offsetof(ZScopedER64, m_aScopePath));
+}
 
 ZHMTypeInfo IContractEvaluationContextListener::TypeInfo = ZHMTypeInfo("IContractEvaluationContextListener", sizeof(IContractEvaluationContextListener), alignof(IContractEvaluationContextListener), IContractEvaluationContextListener::WriteJson, IContractEvaluationContextListener::WriteSimpleJson, IContractEvaluationContextListener::FromSimpleJson);
 
@@ -49581,7 +50367,9 @@ void STrajectoryTrackSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 void STrajectoryTrackSaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_vOriginalEntityTransform.Serialize(p_Serializer, p_OwnOffset + offsetof(STrajectoryTrackSaveData, m_vOriginalEntityTransform));	m_vTargetStartTransform.Serialize(p_Serializer, p_OwnOffset + offsetof(STrajectoryTrackSaveData, m_vTargetStartTransform));}
+	m_vOriginalEntityTransform.Serialize(p_Serializer, p_OwnOffset + offsetof(STrajectoryTrackSaveData, m_vOriginalEntityTransform));
+	m_vTargetStartTransform.Serialize(p_Serializer, p_OwnOffset + offsetof(STrajectoryTrackSaveData, m_vTargetStartTransform));
+}
 
 ZHMTypeInfo SAIVisionBlockerSaveData::TypeInfo = ZHMTypeInfo("SAIVisionBlockerSaveData", sizeof(SAIVisionBlockerSaveData), alignof(SAIVisionBlockerSaveData), SAIVisionBlockerSaveData::WriteJson, SAIVisionBlockerSaveData::WriteSimpleJson, SAIVisionBlockerSaveData::FromSimpleJson);
 
@@ -49923,5 +50711,10 @@ void SCrowdEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 void SCrowdEntitySaveData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_CrowdActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_CrowdActorData));	m_RegionData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_RegionData));	m_DeadPoseRepository.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_DeadPoseRepository));	m_aCrowdAiPoolActorsMale.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_aCrowdAiPoolActorsMale));	m_aCrowdAiPoolActorsFemale.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_aCrowdAiPoolActorsFemale));}
+	m_CrowdActorData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_CrowdActorData));
+	m_RegionData.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_RegionData));
+	m_DeadPoseRepository.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_DeadPoseRepository));
+	m_aCrowdAiPoolActorsMale.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_aCrowdAiPoolActorsMale));
+	m_aCrowdAiPoolActorsFemale.Serialize(p_Serializer, p_OwnOffset + offsetof(SCrowdEntitySaveData, m_aCrowdAiPoolActorsFemale));
+}
 

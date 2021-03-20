@@ -29,7 +29,7 @@ enum class EItemMeleeDamageBehavior
 };
 
 // 0x0000000142B19138 (Size: 0x8)
-class IPureWaterReflectable
+class alignas(0) IPureWaterReflectable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -42,7 +42,7 @@ public:
 };
 
 // 0x0000000142ABD860 (Size: 0x3)
-class SPhysicsSaveData
+class alignas(1) SPhysicsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -607,7 +607,7 @@ enum class EAISharedEventType
 };
 
 // 0x0000000142A9A6B8 (Size: 0x8)
-class SGetHelpOrderSaveData
+class alignas(4) SGetHelpOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -622,7 +622,7 @@ public:
 };
 
 // 0x0000000142AA4560 (Size: 0x1)
-class SActorSoundDefs
+class alignas(1) SActorSoundDefs
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -649,7 +649,7 @@ enum class ZActBehaviorEntity_EState
 };
 
 // 0x0000000142A86D58 (Size: 0x8)
-class ZGameTime
+class alignas(8) ZGameTime
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -663,7 +663,7 @@ public:
 };
 
 // 0x0000000142AA9A18 (Size: 0x18)
-class SActBehaviorEntitySaveData
+class alignas(8) SActBehaviorEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -695,7 +695,7 @@ enum class EBystanderPointType
 };
 
 // 0x0000000142AA1270 (Size: 0x20)
-class SActorProviderDirectSaveData
+class alignas(8) SActorProviderDirectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -841,7 +841,7 @@ enum class _EUIOptionKey
 };
 
 // 0x0000000142117658 (Size: 0x10)
-class float4
+class alignas(16) float4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -993,7 +993,7 @@ enum class CrowdUtil_ECrowdActorMood
 };
 
 // 0x0000000142AEF0D0 (Size: 0x50)
-class SCrowdActorSaveData
+class alignas(16) SCrowdActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1023,7 +1023,7 @@ enum class EVRConfigCameraRotationAllowed
 };
 
 // 0x0000000143E6C9E0 (Size: 0x40)
-class SCollidingParticle
+class alignas(16) SCollidingParticle
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1395,7 +1395,7 @@ enum class EGSExplodingPropType
 };
 
 // 0x0000000142AEE3D0 (Size: 0x8)
-class SAudioEmitterSwitchSaveData
+class alignas(4) SAudioEmitterSwitchSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1410,7 +1410,7 @@ public:
 };
 
 // 0x0000000142117688 (Size: 0x8)
-class SVector2
+class alignas(4) SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1425,7 +1425,7 @@ public:
 };
 
 // 0x0000000142AA40D0 (Size: 0x10)
-class SMathDistanceSaveData_SVector2
+class alignas(4) SMathDistanceSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1448,7 +1448,7 @@ enum class ZCrowdActorEntity_ECharacterSoundType
 };
 
 // 0x00000001422D6F00 (Size: 0x20)
-class SItemStorageSaveData
+class alignas(8) SItemStorageSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1600,7 +1600,7 @@ enum class EOnlinTest
 };
 
 // 0x0000000142AA1000 (Size: 0x10)
-class SBehaviorTreeInputPinCondition
+class alignas(8) SBehaviorTreeInputPinCondition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1645,7 +1645,7 @@ enum class EDeathContext
 };
 
 // 0x00000001422D6F30 (Size: 0x28)
-class SItemWeaponSaveData
+class alignas(8) SItemWeaponSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1679,7 +1679,7 @@ enum class ZActBehaviorEntity_EApproachAlignment
 };
 
 // 0x0000000142A88B60 (Size: 0x8)
-class ISequenceTarget
+class alignas(0) ISequenceTarget
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1716,7 +1716,7 @@ enum class ZInputListenerDpadEntity_eInputListenerDpad
 };
 
 // 0x00000001422D5D80 (Size: 0x10)
-class ZResourceID
+class alignas(8) ZResourceID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1730,7 +1730,7 @@ public:
 };
 
 // 0x0000000142AB9FB0 (Size: 0x50)
-class SEnvironmentConfigResourceEntry
+class alignas(8) SEnvironmentConfigResourceEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1748,7 +1748,7 @@ public:
 };
 
 // 0x0000000142AB9FE0 (Size: 0x18)
-class SEnvironmentConfigResource
+class alignas(8) SEnvironmentConfigResource
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1774,7 +1774,7 @@ enum class ZEscortSituation2Entity_ETargetState
 };
 
 // 0x0000000142A9F630 (Size: 0x30)
-class SSniperScoringEvent
+class alignas(8) SSniperScoringEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1793,7 +1793,7 @@ public:
 };
 
 // 0x0000000143F1E140 (Size: 0x20)
-class ZAMDEvent
+class alignas(8) ZAMDEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1810,7 +1810,7 @@ public:
 };
 
 // 0x0000000143F1E170 (Size: 0x28)
-class ZAMDEventTrack
+class alignas(8) ZAMDEventTrack
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -1825,7 +1825,7 @@ public:
 };
 
 // 0x0000000143F1E1A0 (Size: 0x30)
-class ZAMDTake
+class alignas(8) ZAMDTake
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2034,7 +2034,7 @@ enum class EEngineModeId
 };
 
 // 0x0000000142B01688 (Size: 0x4)
-class SDestructibleInteractionHandlerData
+class alignas(4) SDestructibleInteractionHandlerData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2175,7 +2175,7 @@ enum class ETimerEntityCommandType
 };
 
 // 0x0000000142ABDAA0 (Size: 0xC)
-class STimerEntityCommandSaveData
+class alignas(4) STimerEntityCommandSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2191,7 +2191,7 @@ public:
 };
 
 // 0x0000000142ABDAB8 (Size: 0xC)
-class STimerEntityStateSaveData
+class alignas(4) STimerEntityStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2207,7 +2207,7 @@ public:
 };
 
 // 0x0000000142ABDB00 (Size: 0x48)
-class SGameTimersSaveData
+class alignas(8) SGameTimersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2231,7 +2231,7 @@ enum class ReverbFidelity
 };
 
 // 0x00000001421176B8 (Size: 0x40)
-class SMatrix
+class alignas(16) SMatrix
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2481,7 +2481,7 @@ enum class EAIEventType
 };
 
 // 0x0000000142A8FD88 (Size: 0x18)
-class SAIEventSaveData
+class alignas(8) SAIEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2498,7 +2498,7 @@ public:
 };
 
 // 0x0000000142A8FDB8 (Size: 0x80)
-class SKnownEntitySaveData
+class alignas(16) SKnownEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2518,7 +2518,7 @@ public:
 };
 
 // 0x0000000142A8FE18 (Size: 0x60)
-class SActorGoalSaveData
+class alignas(8) SActorGoalSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2590,7 +2590,7 @@ enum class EGameTension
 };
 
 // 0x0000000142A8FBE8 (Size: 0x98)
-class SKnowledgeSaveData
+class alignas(8) SKnowledgeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2778,7 +2778,7 @@ enum class ZCautiousInvestigateGroup_EInvestigateGroupState
 };
 
 // 0x0000000142A9AF00 (Size: 0x4)
-class SMovementDrainPipeSaveData
+class alignas(4) SMovementDrainPipeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2821,7 +2821,7 @@ enum class EExtendedPropertyType
 };
 
 // 0x0000000142AF06A0 (Size: 0x20)
-class SExtendedCppEntityProperty
+class alignas(8) SExtendedCppEntityProperty
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2838,7 +2838,7 @@ public:
 };
 
 // 0x0000000142AF06D0 (Size: 0x18)
-class SExtendedCppEntityBlueprint
+class alignas(8) SExtendedCppEntityBlueprint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2987,7 +2987,7 @@ enum class EDramaStateFlag
 };
 
 // 0x0000000142AE29D0 (Size: 0x1)
-class BoneId
+class alignas(1) BoneId
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3090,7 +3090,7 @@ enum class ESequencePreviewState
 };
 
 // 0x0000000143E6DEC0 (Size: 0x28)
-class SSavableData
+class alignas(8) SSavableData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3220,7 +3220,7 @@ enum class ERequirementId
 };
 
 // 0x0000000143E6DEA8 (Size: 0xA8)
-class SSaveGameMetaData
+class alignas(8) SSaveGameMetaData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3269,7 +3269,7 @@ enum class ZAISoundEvent_ELoudness
 };
 
 // 0x0000000142A9A6D0 (Size: 0x8)
-class SGuardPointOrderSaveData
+class alignas(4) SGuardPointOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3366,7 +3366,7 @@ enum class ECollidableLayer
 };
 
 // 0x0000000142117950 (Size: 0x10)
-class ZGuid
+class alignas(8) ZGuid
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3390,7 +3390,7 @@ public:
 };
 
 // 0x0000000142AB9EC0 (Size: 0x20)
-class SActivity
+class alignas(8) SActivity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3405,7 +3405,7 @@ public:
 };
 
 // 0x0000000142AB9F08 (Size: 0x38)
-class SActivityExits
+class alignas(8) SActivityExits
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3566,7 +3566,7 @@ enum class EActorBumpType
 };
 
 // 0x0000000142A9A220 (Size: 0x50)
-class ZSituationOrder
+class alignas(16) ZSituationOrder
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3603,7 +3603,7 @@ enum class ZValueInt_Comparator_Poll_EEvaluationType
 };
 
 // 0x0000000142A86C38 (Size: 0x8)
-class ZBehaviorTreeVariable
+class alignas(4) ZBehaviorTreeVariable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3627,7 +3627,7 @@ enum class EHM5SoundFootstepStance
 };
 
 // 0x0000000142AF04C0 (Size: 0x18)
-class SCppEntitySubsetInfo
+class alignas(8) SCppEntitySubsetInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3642,7 +3642,7 @@ public:
 };
 
 // 0x0000000142AF0658 (Size: 0x28)
-class SCppEntityBlueprint
+class alignas(8) SCppEntityBlueprint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3676,7 +3676,7 @@ enum class eWeaponOperation
 };
 
 // 0x0000000142AEDDE8 (Size: 0x8)
-class SMusicGridData
+class alignas(4) SMusicGridData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3777,7 +3777,7 @@ enum class EItemLocation
 };
 
 // 0x0000000142AACA88 (Size: 0x1)
-class SExitsActiveSaveData
+class alignas(1) SExitsActiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3867,7 +3867,7 @@ enum class ERayLayer
 };
 
 // 0x0000000142A9A778 (Size: 0x2)
-class SRepositionOrderSaveData
+class alignas(1) SRepositionOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3907,7 +3907,7 @@ enum class IContractObjective_Type
 };
 
 // 0x0000000142AA3D28 (Size: 0x18)
-class SObjetiveSaveData
+class alignas(8) SObjetiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3941,7 +3941,7 @@ enum class EPhysicsObjectType
 };
 
 // 0x0000000142B01640 (Size: 0x90)
-class SDestructiblePieceSaveData
+class alignas(16) SDestructiblePieceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3969,7 +3969,7 @@ enum class ERuntimeMemoryAllocationState
 };
 
 // 0x0000000142B01658 (Size: 0x20)
-class SDestructibleRuntimeConnnection
+class alignas(8) SDestructibleRuntimeConnnection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3984,7 +3984,7 @@ public:
 };
 
 // 0x0000000142B01670 (Size: 0x8)
-class SDestructibleRuntimeDamage
+class alignas(4) SDestructibleRuntimeDamage
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3999,7 +3999,7 @@ public:
 };
 
 // 0x0000000142B01370 (Size: 0x60)
-class SDestructibleObjectSaveData
+class alignas(8) SDestructibleObjectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4023,7 +4023,7 @@ public:
 };
 
 // 0x0000000142AAF320 (Size: 0x48)
-class SIntelDisplayInfo
+class alignas(8) SIntelDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4043,7 +4043,7 @@ public:
 };
 
 // 0x0000000142AB1DB8 (Size: 0x18)
-class SIntelDisplayInfoArray_dummy
+class alignas(8) SIntelDisplayInfoArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4090,7 +4090,7 @@ enum class EReplicaMode
 };
 
 // 0x0000000142117670 (Size: 0xC)
-class SVector3
+class alignas(4) SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4106,7 +4106,7 @@ public:
 };
 
 // 0x00000001421176A0 (Size: 0x10)
-class SVector4
+class alignas(4) SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4123,7 +4123,7 @@ public:
 };
 
 // 0x0000000142ABD8A8 (Size: 0x20)
-class SSpatialSaveData
+class alignas(4) SSpatialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4212,7 +4212,7 @@ enum class EDetachUsage
 };
 
 // 0x00000001422D6F60 (Size: 0x8)
-class ZRuntimeResourceID
+class alignas(4) ZRuntimeResourceID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4227,7 +4227,7 @@ public:
 };
 
 // 0x0000000142AB1A40 (Size: 0xA0)
-class SWeaponStatusUIData
+class alignas(8) SWeaponStatusUIData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4305,7 +4305,7 @@ enum class EVRConfigHeadAnchorMode
 };
 
 // 0x0000000142A9F4C8 (Size: 0x70)
-class SVRConfigCameraComponent
+class alignas(16) SVRConfigCameraComponent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4349,7 +4349,7 @@ enum class eWeaponType
 };
 
 // 0x0000000142A95A00 (Size: 0x8)
-class IMorphemeEventConsumer
+class alignas(0) IMorphemeEventConsumer
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4445,7 +4445,7 @@ enum class ZInteractionEventConsumer_EEvent
 };
 
 // 0x0000000142AEEFE0 (Size: 0x20)
-class SCrowdPoseBoneSaveData
+class alignas(4) SCrowdPoseBoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4460,7 +4460,7 @@ public:
 };
 
 // 0x0000000142AEF010 (Size: 0x18)
-class SCrowdPoseSaveData
+class alignas(8) SCrowdPoseSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4474,7 +4474,7 @@ public:
 };
 
 // 0x0000000142AEF040 (Size: 0x20)
-class SCrowdPoseCollectionSaveData
+class alignas(8) SCrowdPoseCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4489,7 +4489,7 @@ public:
 };
 
 // 0x0000000142AEF070 (Size: 0x18)
-class SCrowdDeadPoseRepositorySaveData
+class alignas(8) SCrowdDeadPoseRepositorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4821,7 +4821,7 @@ enum class EParticleDecalSpawnEntity_Constraints
 };
 
 // 0x000000014211A620 (Size: 0x10)
-class ZDynamicObject
+class alignas(8) ZDynamicObject
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4835,7 +4835,7 @@ public:
 };
 
 // 0x0000000142AA3D68 (Size: 0x20)
-class SChallengeSaveData
+class alignas(8) SChallengeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4931,7 +4931,7 @@ enum class ZRecoverUnconsciousGroup_EInvestigateGroupState
 };
 
 // 0x0000000142ABD9F8 (Size: 0xC)
-class STimerEntitySaveData
+class alignas(4) STimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4947,7 +4947,7 @@ public:
 };
 
 // 0x0000000142ABDA40 (Size: 0x30)
-class STimerEntitiesSaveData
+class alignas(8) STimerEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4962,7 +4962,7 @@ public:
 };
 
 // 0x0000000142ABDA10 (Size: 0x14)
-class SRandomTimerEntitySaveData
+class alignas(4) SRandomTimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4981,7 +4981,7 @@ public:
 };
 
 // 0x0000000142ABDA70 (Size: 0x30)
-class SRandomTimerEntitiesSaveData
+class alignas(8) SRandomTimerEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4996,7 +4996,7 @@ public:
 };
 
 // 0x0000000142ABD980 (Size: 0xA8)
-class STimerManagerSaveData
+class alignas(8) STimerManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5111,7 +5111,7 @@ enum class IScatterContainerEntity_EResizeMode
 };
 
 // 0x0000000143E6DDA0 (Size: 0xC)
-class SGateSaveData
+class alignas(4) SGateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5153,7 +5153,7 @@ enum class ERegionMask
 };
 
 // 0x0000000142AF0478 (Size: 0x28)
-class SEntityTemplatePropertyAlias
+class alignas(8) SEntityTemplatePropertyAlias
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5214,7 +5214,7 @@ enum class ECharacterAnimEvent
 };
 
 // 0x0000000142A99638 (Size: 0x38)
-class SDrama2ActorSaveState
+class alignas(8) SDrama2ActorSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5308,7 +5308,7 @@ enum class EActionPromptState
 };
 
 // 0x0000000142AAF368 (Size: 0x60)
-class SHUDPromptDisplayInfo
+class alignas(8) SHUDPromptDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5421,7 +5421,7 @@ enum class ECOMUsage
 };
 
 // 0x0000000143E6ED50 (Size: 0x18)
-class SStepCounterEntitySaveData
+class alignas(4) SStepCounterEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5513,7 +5513,7 @@ enum class ZEntityPropertyReplica_EReplicationStrategy
 };
 
 // 0x0000000143E6D770 (Size: 0x10)
-class SLoadRuntimeResourceResult
+class alignas(8) SLoadRuntimeResourceResult
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5544,7 +5544,7 @@ enum class ZInvestigateCautiousSituation_EBystanderState
 };
 
 // 0x0000000142A9C748 (Size: 0x4)
-class SHeroEscortSituation2Actors
+class alignas(4) SHeroEscortSituation2Actors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5578,7 +5578,7 @@ enum class ZSniperCombatSituation_ESituationState
 };
 
 // 0x0000000142A9D420 (Size: 0x14)
-class SSpatialMoverEntitySaveData
+class alignas(4) SSpatialMoverEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5612,7 +5612,7 @@ enum class IItemWeapon_EDeadlyThrowType
 };
 
 // 0x0000000142AB1E78 (Size: 0x2)
-class SLayerBehaviorConfiguration
+class alignas(1) SLayerBehaviorConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5650,7 +5650,7 @@ enum class EOnlineEventInvestigationType
 };
 
 // 0x0000000142A958B0 (Size: 0x8)
-class IBodybagEntity
+class alignas(0) IBodybagEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5743,7 +5743,7 @@ enum class EAgilityState
 };
 
 // 0x0000000142AACD28 (Size: 0x60)
-class SInventoryItem
+class alignas(8) SInventoryItem
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5761,7 +5761,7 @@ public:
 };
 
 // 0x0000000142AACD40 (Size: 0x70)
-class SContainerItemInfo
+class alignas(8) SContainerItemInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5776,7 +5776,7 @@ public:
 };
 
 // 0x0000000142AA3DC0 (Size: 0x90)
-class SInventoryInfo
+class alignas(8) SInventoryInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5812,7 +5812,7 @@ enum class EOutfitType
 };
 
 // 0x0000000142AA2288 (Size: 0x60)
-class ZRayQueryInput
+class alignas(16) ZRayQueryInput
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6045,7 +6045,7 @@ enum class EEquipAbility
 };
 
 // 0x00000001422D79E8 (Size: 0x3)
-class SContextActionSaveData
+class alignas(1) SContextActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6094,7 +6094,7 @@ enum class EVolumeTriggerEntityTypeFlags
 };
 
 // 0x0000000142A8FBB8 (Size: 0x50)
-class SActorThrowSaveData
+class alignas(16) SActorThrowSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6112,7 +6112,7 @@ public:
 };
 
 // 0x0000000142AB1DD8 (Size: 0x18)
-class SIntelListDisplayInfo
+class alignas(8) SIntelListDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6147,7 +6147,7 @@ enum class ZSetUIControlDisplayInfoEntity_EVisibilityOp
 };
 
 // 0x0000000142AA3DD8 (Size: 0x40)
-class SAgencyPickupInfo
+class alignas(8) SAgencyPickupInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6163,7 +6163,7 @@ public:
 };
 
 // 0x0000000142AA3D48 (Size: 0x10)
-class SSoundAmbienceSaveData
+class alignas(4) SSoundAmbienceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6181,7 +6181,7 @@ public:
 };
 
 // 0x0000000142AA3DA0 (Size: 0x18)
-class SChallengesSaveData
+class alignas(8) SChallengesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6195,7 +6195,7 @@ public:
 };
 
 // 0x00000001422D7988 (Size: 0x1D8)
-class SLevelSaveData
+class alignas(8) SLevelSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6275,7 +6275,7 @@ enum class EFSMStateStatus
 };
 
 // 0x0000000142A86D40 (Size: 0x18)
-class SFSMSaveData
+class alignas(8) SFSMSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6340,7 +6340,7 @@ enum class EDisturbanceType
 };
 
 // 0x0000000142A9A3E8 (Size: 0x90)
-class SGetHelpGroupSaveData
+class alignas(16) SGetHelpGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6384,7 +6384,7 @@ enum class EStandRepositionStrategy
 };
 
 // 0x0000000142AA8BF8 (Size: 0x4)
-class SActorDynamicTemplateManipulatorSaveData
+class alignas(4) SActorDynamicTemplateManipulatorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6518,7 +6518,7 @@ enum class EGameEventArgType
 };
 
 // 0x0000000142AA18C0 (Size: 0x8)
-class SCautiousVIPGroupState
+class alignas(8) SCautiousVIPGroupState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6647,7 +6647,7 @@ enum class ECautiousDisturbanceState
 };
 
 // 0x0000000142AA3F10 (Size: 0x4)
-class SActorKeywordProxySaveData
+class alignas(4) SActorKeywordProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6672,7 +6672,7 @@ enum class ZValueBool_Operation_EEvaluationType
 };
 
 // 0x0000000142AB1590 (Size: 0x18)
-class SHUDPromptDisplayInfoArray_Dummy
+class alignas(8) SHUDPromptDisplayInfoArray_Dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6686,7 +6686,7 @@ public:
 };
 
 // 0x0000000142A99FB8 (Size: 0x14)
-class SCombatSituationMemberSaveData
+class alignas(4) SCombatSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6973,7 +6973,7 @@ enum class InputControlNamesp_eHM5InputActionType
 };
 
 // 0x0000000143E6DE78 (Size: 0x10)
-class SVariantStruct
+class alignas(8) SVariantStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7055,7 +7055,7 @@ enum class EHintMessageType
 };
 
 // 0x0000000142AA0FE0 (Size: 0x18)
-class SBehaviorTreeEntityReference
+class alignas(8) SBehaviorTreeEntityReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7070,7 +7070,7 @@ public:
 };
 
 // 0x0000000142AA1050 (Size: 0x30)
-class SBehaviorTreeInfo
+class alignas(8) SBehaviorTreeInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7129,7 +7129,7 @@ enum class EVRIKElementMode
 };
 
 // 0x0000000142AA44E0 (Size: 0x2)
-class SShotListenerSaveData
+class alignas(1) SShotListenerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7152,7 +7152,7 @@ enum class EWeaponUpgradeUse
 };
 
 // 0x0000000142AB46A8 (Size: 0x8)
-class SKeywordSaveData
+class alignas(4) SKeywordSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7617,7 +7617,7 @@ enum class Network_OrderingChannel
 };
 
 // 0x0000000142ABD950 (Size: 0xC)
-class SProgressTimerEntitySaveData
+class alignas(4) SProgressTimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7660,7 +7660,7 @@ enum class EReplicaOperation
 };
 
 // 0x00000001421176D0 (Size: 0x24)
-class SMatrix33
+class alignas(4) SMatrix33
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7787,7 +7787,7 @@ enum class EButtonDisplay
 };
 
 // 0x0000000142AA14B0 (Size: 0x38)
-class SCrowdBodySaveData
+class alignas(8) SCrowdBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7837,7 +7837,7 @@ enum class EContinuity
 };
 
 // 0x00000001422D6028 (Size: 0x8)
-class ZEntityRef
+class alignas(8) ZEntityRef
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7936,7 +7936,7 @@ enum class ZHM5HitmanHealthModifier_EHealthDrainType
 };
 
 // 0x0000000142AC15A0 (Size: 0x30)
-class SValueIntSaveData
+class alignas(8) SValueIntSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7960,7 +7960,7 @@ enum class ZHM5BodyContainer_EBCBodyMode
 };
 
 // 0x0000000142A95538 (Size: 0x4)
-class SMovementLadderSaveData
+class alignas(4) SMovementLadderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -7996,7 +7996,7 @@ enum class EScreenAnchor
 };
 
 // 0x0000000142AA1470 (Size: 0x28)
-class SAIModifierServiceActorSaveData
+class alignas(4) SAIModifierServiceActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8020,7 +8020,7 @@ public:
 };
 
 // 0x0000000142A9EED8 (Size: 0x20)
-class SAIModifierServiceSaveData
+class alignas(8) SAIModifierServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8035,7 +8035,7 @@ public:
 };
 
 // 0x0000000142A96D90 (Size: 0x8)
-class ISoundGateController
+class alignas(0) ISoundGateController
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8063,7 +8063,7 @@ enum class eHitmanPermissionReason
 };
 
 // 0x0000000142AEE618 (Size: 0x2)
-class ZDialogEventItemTypedIndex
+class alignas(2) ZDialogEventItemTypedIndex
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8131,7 +8131,7 @@ enum class ZPreferenceItemEntity_EBoolOptions
 };
 
 // 0x0000000142ABFEC8 (Size: 0x10)
-class SIntelSaveData
+class alignas(4) SIntelSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8161,7 +8161,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFamily
 };
 
 // 0x0000000142AB9EF0 (Size: 0x38)
-class SActivityObjective
+class alignas(8) SActivityObjective
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8176,7 +8176,7 @@ public:
 };
 
 // 0x0000000142AB9F38 (Size: 0x70)
-class SActivityDefinition
+class alignas(8) SActivityDefinition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8192,7 +8192,7 @@ public:
 };
 
 // 0x0000000142AB9F68 (Size: 0x18)
-class SActivities
+class alignas(8) SActivities
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8254,7 +8254,7 @@ enum class ZHM5LedgeMount_ELedgeEndState
 };
 
 // 0x0000000142AF0250 (Size: 0x20)
-class SEntityTemplateReference
+class alignas(8) SEntityTemplateReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8271,7 +8271,7 @@ public:
 };
 
 // 0x0000000142AF03E8 (Size: 0x18)
-class SEntityTemplateProperty
+class alignas(8) SEntityTemplateProperty
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8286,7 +8286,7 @@ public:
 };
 
 // 0x0000000142AF0430 (Size: 0x20)
-class SEntityTemplatePlatformSpecificProperty
+class alignas(8) SEntityTemplatePlatformSpecificProperty
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8302,7 +8302,7 @@ public:
 };
 
 // 0x0000000142AF0508 (Size: 0x70)
-class STemplateFactorySubEntity
+class alignas(8) STemplateFactorySubEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8320,7 +8320,7 @@ public:
 };
 
 // 0x0000000142AF0400 (Size: 0x38)
-class SEntityTemplatePropertyOverride
+class alignas(8) SEntityTemplatePropertyOverride
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8335,7 +8335,7 @@ public:
 };
 
 // 0x0000000142AF0628 (Size: 0x58)
-class STemplateEntityFactory
+class alignas(8) STemplateEntityFactory
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8383,7 +8383,7 @@ enum class EHUDElement
 };
 
 // 0x00000001422D5C08 (Size: 0xC)
-class SColorRGB
+class alignas(4) SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8399,7 +8399,7 @@ public:
 };
 
 // 0x0000000143E6DDB8 (Size: 0x1C)
-class SLightSaveData
+class alignas(4) SLightSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8466,7 +8466,7 @@ enum class EScreenplayTriggerEvent
 };
 
 // 0x0000000142A996E0 (Size: 0x4)
-class SItemActionSaveData
+class alignas(4) SItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8525,7 +8525,7 @@ enum class ETakeDownAnim
 };
 
 // 0x0000000142A9EEA8 (Size: 0x38)
-class SDramaActorSaveState
+class alignas(8) SDramaActorSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8548,7 +8548,7 @@ public:
 };
 
 // 0x0000000142AB2100 (Size: 0x8)
-class STrackerEntitySaveData
+class alignas(4) STrackerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8565,7 +8565,7 @@ public:
 };
 
 // 0x0000000142AB0978 (Size: 0x18)
-class STrackerManagerSaveData
+class alignas(8) STrackerManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8664,7 +8664,7 @@ enum class EFilterMaskBit
 };
 
 // 0x0000000142A97828 (Size: 0x3)
-class SRemoteControlReceiverSaveData
+class alignas(1) SRemoteControlReceiverSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8680,7 +8680,7 @@ public:
 };
 
 // 0x0000000142117920 (Size: 0x20)
-class ZGuidString
+class alignas(8) ZGuidString
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8704,7 +8704,7 @@ enum class ZHM5BodyContainer_EBCState
 };
 
 // 0x0000000142A979F8 (Size: 0x10)
-class SBodyContainerSaveData
+class alignas(4) SBodyContainerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8830,7 +8830,7 @@ enum class ZContractObjectiveHudHintEntity_EObjectiveHintIcon
 };
 
 // 0x0000000142A97A50 (Size: 0x8)
-class S3rdPersonCameraSaveData
+class alignas(4) S3rdPersonCameraSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9083,7 +9083,7 @@ enum class ECCWeaponAnimSet
 };
 
 // 0x00000001422D6ED0 (Size: 0x50)
-class SItemSaveData
+class alignas(4) SItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9145,7 +9145,7 @@ enum class ZDetectedInPrivateGroup_EInvestigateGroupState
 };
 
 // 0x0000000142A9A4F0 (Size: 0x48)
-class SCautiousSituationMemberSaveData
+class alignas(8) SCautiousSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9267,7 +9267,7 @@ enum class ZConditionListEntity_EEvaluationType
 };
 
 // 0x0000000143E70DE0 (Size: 0x30)
-class SCrowdFlowChannel
+class alignas(8) SCrowdFlowChannel
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9381,7 +9381,7 @@ enum class EScreenPlayState
 };
 
 // 0x0000000142A991C8 (Size: 0xC)
-class SDrama2SetupSaveData
+class alignas(4) SDrama2SetupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9397,7 +9397,7 @@ public:
 };
 
 // 0x0000000142A99270 (Size: 0x30)
-class SDrama2SetupCollectionSaveData
+class alignas(8) SDrama2SetupCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9412,7 +9412,7 @@ public:
 };
 
 // 0x0000000142AA7A58 (Size: 0x18)
-class SBehaviorTreeEvaluationLogEntry
+class alignas(8) SBehaviorTreeEvaluationLogEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9428,7 +9428,7 @@ public:
 };
 
 // 0x0000000142AA7AA0 (Size: 0x30)
-class SBehaviorTreeEvaluationLog
+class alignas(8) SBehaviorTreeEvaluationLog
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9465,7 +9465,7 @@ enum class EBIEventTypes
 };
 
 // 0x0000000142AA46C0 (Size: 0x48)
-class STargetInfoObjectiveCondition
+class alignas(8) STargetInfoObjectiveCondition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9483,7 +9483,7 @@ public:
 };
 
 // 0x0000000142AA46F8 (Size: 0x58)
-class STargetInfoDisplayData
+class alignas(8) STargetInfoDisplayData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9504,7 +9504,7 @@ public:
 };
 
 // 0x0000000142AA4718 (Size: 0x18)
-class STargetInfoDisplayData_Dummy
+class alignas(8) STargetInfoDisplayData_Dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9526,7 +9526,7 @@ enum class ICameraEntity_EProjectionType
 };
 
 // 0x0000000142A95230 (Size: 0x4)
-class SClothBundleSpawnSaveData
+class alignas(4) SClothBundleSpawnSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9572,7 +9572,7 @@ enum class ZBoxReflectionEntity_EBoundsType
 };
 
 // 0x0000000142ABF770 (Size: 0x110)
-class ZSoundCollisionInfo
+class alignas(16) ZSoundCollisionInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9594,7 +9594,7 @@ enum class EVRIKElement
 };
 
 // 0x0000000143E6F970 (Size: 0x8)
-class ZGfxValueWrapper
+class alignas(8) ZGfxValueWrapper
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9614,7 +9614,7 @@ enum class STestStruct_ETestEnum
 };
 
 // 0x0000000142AEE3A0 (Size: 0x18)
-class SAudioEmitterEventSaveData
+class alignas(4) SAudioEmitterEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9828,7 +9828,7 @@ enum class EActorEmotionState
 };
 
 // 0x0000000142A86A08 (Size: 0x8)
-class SActorAnimSetVariationIndexSaveData
+class alignas(4) SActorAnimSetVariationIndexSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9843,7 +9843,7 @@ public:
 };
 
 // 0x0000000142A86A68 (Size: 0x48)
-class SActorAnimSetSaveData
+class alignas(8) SActorAnimSetSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9876,7 +9876,7 @@ enum class EAttachLocation
 };
 
 // 0x0000000142A86B00 (Size: 0x10)
-class SActorInventoryItemSaveData
+class alignas(4) SActorInventoryItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9895,7 +9895,7 @@ public:
 };
 
 // 0x0000000142A86B30 (Size: 0x18)
-class SActorInventorySaveData
+class alignas(8) SActorInventorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9909,7 +9909,7 @@ public:
 };
 
 // 0x0000000142A8FB40 (Size: 0x18)
-class SLongTermMemorySaveData
+class alignas(8) SLongTermMemorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9933,7 +9933,7 @@ enum class EDeathType
 };
 
 // 0x0000000142A8FBA0 (Size: 0x60)
-class SActorDamageControlSaveData
+class alignas(8) SActorDamageControlSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9972,7 +9972,7 @@ public:
 };
 
 // 0x0000000142A8FBD0 (Size: 0x40)
-class SActorDynamicTemplateSaveData
+class alignas(8) SActorDynamicTemplateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9994,7 +9994,7 @@ public:
 };
 
 // 0x0000000142A8FC60 (Size: 0x18)
-class SEventHistorySaveData
+class alignas(8) SEventHistorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10008,7 +10008,7 @@ public:
 };
 
 // 0x0000000142A8FB58 (Size: 0x20)
-class SActorBoneSaveData
+class alignas(4) SActorBoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10023,7 +10023,7 @@ public:
 };
 
 // 0x0000000142A8FB88 (Size: 0x40)
-class SActorRagdollPoseSaveData
+class alignas(8) SActorRagdollPoseSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10039,7 +10039,7 @@ public:
 };
 
 // 0x0000000142A8FC90 (Size: 0x370)
-class SActorSaveData
+class alignas(16) SActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10107,7 +10107,7 @@ public:
 };
 
 // 0x0000000143E6DE60 (Size: 0x20)
-class SEntityPath
+class alignas(8) SEntityPath
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10122,7 +10122,7 @@ public:
 };
 
 // 0x0000000143E6D7C8 (Size: 0x38)
-class SSaveGameData
+class alignas(8) SSaveGameData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10193,7 +10193,7 @@ enum class ZAudioSequenceTrack_EPlaybackTarget
 };
 
 // 0x0000000142A9AEA0 (Size: 0x8)
-class SMovementDisguiseSafeZoneSaveData
+class alignas(4) SMovementDisguiseSafeZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10290,7 +10290,7 @@ enum class EOrderCompletionStatus
 };
 
 // 0x0000000142A9E9D8 (Size: 0x4)
-class SHeroEscortSituationActors
+class alignas(4) SHeroEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10429,7 +10429,7 @@ enum class ZActDurationCondition_EState
 };
 
 // 0x0000000143E70E58 (Size: 0x4)
-class ZCrowdGridPoint
+class alignas(2) ZCrowdGridPoint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10482,7 +10482,7 @@ enum class ZLeadEscortSituationEntity_ETargetState
 };
 
 // 0x0000000142A9FAC8 (Size: 0x8)
-class ISoundMaterialDescriptor
+class alignas(0) ISoundMaterialDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10534,7 +10534,7 @@ enum class ECharacterSubcontrollerType
 };
 
 // 0x0000000142AA1B10 (Size: 0x20)
-class SDisturbanceSaveData
+class alignas(8) SDisturbanceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10763,7 +10763,7 @@ enum class EEngineFrameUpdatePriority
 };
 
 // 0x0000000142AB0798 (Size: 0x4)
-class SZHUDIgnoreVisibilitySaveData
+class alignas(4) SZHUDIgnoreVisibilitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10777,7 +10777,7 @@ public:
 };
 
 // 0x0000000142A97F78 (Size: 0x8)
-class SGameCamProfileEntitySaveData
+class alignas(4) SGameCamProfileEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10792,7 +10792,7 @@ public:
 };
 
 // 0x0000000142AF0490 (Size: 0x30)
-class SEntityTemplateExposedEntity
+class alignas(8) SEntityTemplateExposedEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10835,7 +10835,7 @@ enum class ESmoothingMode
 };
 
 // 0x0000000143E6ED38 (Size: 0x2)
-class SLightFlickerEntitySaveData
+class alignas(1) SLightFlickerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10874,7 +10874,7 @@ enum class EActorAIDot
 };
 
 // 0x00000001422D5C20 (Size: 0x10)
-class SColorRGBA
+class alignas(4) SColorRGBA
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10891,7 +10891,7 @@ public:
 };
 
 // 0x0000000142AA41D0 (Size: 0x24)
-class SMathLerpSaveData_SColorRGBA
+class alignas(4) SMathLerpSaveData_SColorRGBA
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10907,7 +10907,7 @@ public:
 };
 
 // 0x0000000142AA2958 (Size: 0x30)
-class SMathLerpsSaveData_SColorRGBA
+class alignas(8) SMathLerpsSaveData_SColorRGBA
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10976,7 +10976,7 @@ enum class ZEscortSituationEntity_EEscortState
 };
 
 // 0x0000000142A9A3B8 (Size: 0x58)
-class SFriskSuspectGroupSaveData
+class alignas(8) SFriskSuspectGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11012,7 +11012,7 @@ enum class SniperControllerConditionType
 };
 
 // 0x0000000143E70C10 (Size: 0x20)
-class STypeReference
+class alignas(8) STypeReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11027,7 +11027,7 @@ public:
 };
 
 // 0x0000000143E70C28 (Size: 0x50)
-class SExposedTypeInfo
+class alignas(8) SExposedTypeInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11066,7 +11066,7 @@ enum class CrowdUtil_ECrowdFacing
 };
 
 // 0x0000000142AA1548 (Size: 0x30)
-class SDynamicEnforcerCandidateSaveData
+class alignas(16) SDynamicEnforcerCandidateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11083,7 +11083,7 @@ public:
 };
 
 // 0x0000000142A9EEF0 (Size: 0x18)
-class SDynamicEnforcerServiceSaveData
+class alignas(8) SDynamicEnforcerServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11106,7 +11106,7 @@ enum class EKeywordSetBehavior
 };
 
 // 0x0000000142AA7410 (Size: 0x4)
-class SActorStandInSaveData
+class alignas(4) SActorStandInSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11128,7 +11128,7 @@ enum class eItemRarity
 };
 
 // 0x0000000142A98CF8 (Size: 0x3)
-class SDynamicRayCastEntitySaveData
+class alignas(1) SDynamicRayCastEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11165,7 +11165,7 @@ enum class EPlaceableType
 };
 
 // 0x00000001422D5D98 (Size: 0x18)
-class ZRuntimePinConDesc
+class alignas(8) ZRuntimePinConDesc
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11200,7 +11200,7 @@ enum class ELastSoundTension
 };
 
 // 0x0000000143E6DE30 (Size: 0x88)
-class SPostfilterParametersSaveData
+class alignas(4) SPostfilterParametersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11291,7 +11291,7 @@ enum class ECameraOffset_old
 };
 
 // 0x0000000142A9AEE8 (Size: 0x18)
-class SMovementAgilitySaveData
+class alignas(4) SMovementAgilitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11350,7 +11350,7 @@ enum class ZHUDUIRoot_EHUDVisibility
 };
 
 // 0x0000000142A86FA0 (Size: 0x18)
-class SActorManagerReferencableData
+class alignas(8) SActorManagerReferencableData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11364,7 +11364,7 @@ public:
 };
 
 // 0x0000000142B015F8 (Size: 0x4)
-class SClothVertex
+class alignas(2) SClothVertex
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11424,7 +11424,7 @@ enum class ZInvestigateCautiousSituation_ESituationState
 };
 
 // 0x0000000142A9AA00 (Size: 0x40)
-class SSituationOrderSaveData
+class alignas(16) SSituationOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11467,7 +11467,7 @@ enum class ZHUDOccluderTriggerEntity_EOccluderTestBit
 };
 
 // 0x0000000142A9C660 (Size: 0x4)
-class SEscortSituation2Actors
+class alignas(4) SEscortSituation2Actors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11481,7 +11481,7 @@ public:
 };
 
 // 0x0000000142A9C648 (Size: 0x1C)
-class SEscortSituation2ActorStateSaveData
+class alignas(4) SEscortSituation2ActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11501,7 +11501,7 @@ public:
 };
 
 // 0x0000000142A9C6C0 (Size: 0x98)
-class SEscortSituation2SaveData
+class alignas(8) SEscortSituation2SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11545,7 +11545,7 @@ enum class EOpportunityRevealState
 };
 
 // 0x0000000142AA1430 (Size: 0x38)
-class SDeadBodyInfoSaveData
+class alignas(8) SDeadBodyInfoSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11571,7 +11571,7 @@ public:
 };
 
 // 0x0000000142A9EEC0 (Size: 0x20)
-class SDeadBodySensorSaveData
+class alignas(8) SDeadBodySensorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11606,7 +11606,7 @@ enum class EActorSecondaryIconState
 };
 
 // 0x0000000142A9A070 (Size: 0x10)
-class SCheckLastPositionGroupSaveData
+class alignas(4) SCheckLastPositionGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11634,7 +11634,7 @@ enum class ZInputListenerAxisEntity_eInputListenerAxes
 };
 
 // 0x0000000142ABEF88 (Size: 0x40)
-class SItemInstanceSaveData
+class alignas(8) SItemInstanceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11651,7 +11651,7 @@ public:
 };
 
 // 0x0000000142ABEBB0 (Size: 0x18)
-class SWorldInventoryInstanceSaveData
+class alignas(8) SWorldInventoryInstanceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11812,7 +11812,7 @@ enum class ZCharacterSpeakCondition_EState
 };
 
 // 0x0000000142A9A7F0 (Size: 0x30)
-class SEvacuateTrespassGroupSaveData
+class alignas(8) SEvacuateTrespassGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11834,7 +11834,7 @@ public:
 };
 
 // 0x0000000142AA3ED0 (Size: 0x8)
-class SActorSpreadTransitionOperatorMaterialActorSaveData
+class alignas(4) SActorSpreadTransitionOperatorMaterialActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11930,7 +11930,7 @@ enum class UIMapLayer_EUIMapLayerID
 };
 
 // 0x0000000142A876C0 (Size: 0x8)
-class IHumanBody
+class alignas(0) IHumanBody
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11963,7 +11963,7 @@ enum class ENetPlayerEvent
 };
 
 // 0x0000000142A95248 (Size: 0x8)
-class SHeroCameraStandInSaveState
+class alignas(4) SHeroCameraStandInSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11993,7 +11993,7 @@ enum class EVRConfigCapsuleGridSize
 };
 
 // 0x0000000142A9CD50 (Size: 0x2)
-class SVolumeTriggerListenerSaveData
+class alignas(1) SVolumeTriggerListenerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12008,7 +12008,7 @@ public:
 };
 
 // 0x0000000142AA2610 (Size: 0x30)
-class SVolumeTriggersSaveData
+class alignas(8) SVolumeTriggersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12233,7 +12233,7 @@ enum class EItemGripType
 };
 
 // 0x0000000142A9A628 (Size: 0xC)
-class SFaceOrderSaveData
+class alignas(4) SFaceOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12290,7 +12290,7 @@ enum class EPathFinderBoxType
 };
 
 // 0x0000000142A9ECE0 (Size: 0x18)
-class SVIPEvacuationNodeSaveData
+class alignas(8) SVIPEvacuationNodeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12308,7 +12308,7 @@ public:
 };
 
 // 0x0000000142AA27D0 (Size: 0x30)
-class SVIPEvacuationNodesSaveData
+class alignas(8) SVIPEvacuationNodesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12339,7 +12339,7 @@ enum class EMotionType
 };
 
 // 0x0000000142AA17E0 (Size: 0x40)
-class SExactCompressedGridFloatField
+class alignas(8) SExactCompressedGridFloatField
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12357,7 +12357,7 @@ public:
 };
 
 // 0x0000000142AC0060 (Size: 0x40)
-class SIntelData
+class alignas(8) SIntelData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12442,7 +12442,7 @@ enum class ZHM5BodyContainer_eBCCloseMode
 };
 
 // 0x0000000142AA4230 (Size: 0x1C)
-class SMathMultiplyDivideSaveData_SVector3
+class alignas(4) SMathMultiplyDivideSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12458,7 +12458,7 @@ public:
 };
 
 // 0x0000000142AA26B8 (Size: 0x30)
-class SMathMultipliesSaveData_SVector3
+class alignas(8) SMathMultipliesSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12493,7 +12493,7 @@ enum class ZHM5ValueEntity_bool_EForwardRule
 };
 
 // 0x0000000142AB1E18 (Size: 0x18)
-class SMapMarkerData
+class alignas(8) SMapMarkerData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12507,7 +12507,7 @@ public:
 };
 
 // 0x0000000142A9E528 (Size: 0x10)
-class SDramaSituationSaveData
+class alignas(4) SDramaSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12539,7 +12539,7 @@ enum class Network_PacketReliability
 };
 
 // 0x0000000142A9EA88 (Size: 0x4)
-class SLeadEscortSituationActors
+class alignas(4) SLeadEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12576,7 +12576,7 @@ enum class IContractObjective_State
 };
 
 // 0x0000000142A991E0 (Size: 0x10)
-class SDrama2SituationSaveData
+class alignas(4) SDrama2SituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12596,7 +12596,7 @@ public:
 };
 
 // 0x0000000142A99240 (Size: 0x30)
-class SDrama2SituationCollectionSaveData
+class alignas(8) SDrama2SituationCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12611,7 +12611,7 @@ public:
 };
 
 // 0x0000000142AA40F0 (Size: 0x18)
-class SMathDistanceSaveData_SVector3
+class alignas(4) SMathDistanceSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12646,7 +12646,7 @@ enum class EMoveSpeed
 };
 
 // 0x00000001422D72A8 (Size: 0x4)
-class SActorVisibilityConditionSaveData
+class alignas(4) SActorVisibilityConditionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13344,7 +13344,7 @@ enum class EStealthSituation
 };
 
 // 0x0000000142AA4460 (Size: 0x2)
-class SCollisionControllerAspectSaveData
+class alignas(1) SCollisionControllerAspectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13359,7 +13359,7 @@ public:
 };
 
 // 0x0000000142AA2808 (Size: 0x30)
-class SCollisionControllerAspectsSaveData
+class alignas(8) SCollisionControllerAspectsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13422,7 +13422,7 @@ enum class EPersistentBoolDataSyncType
 };
 
 // 0x0000000142AA4170 (Size: 0x1C)
-class SMathLerpSaveData_SVector3
+class alignas(4) SMathLerpSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13470,7 +13470,7 @@ enum class ESaveLoadStatus
 };
 
 // 0x0000000142AA4250 (Size: 0x24)
-class SMathMultiplyDivideSaveData_SVector4
+class alignas(4) SMathMultiplyDivideSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13494,7 +13494,7 @@ enum class EEntityOrdering
 };
 
 // 0x0000000142A86300 (Size: 0x8)
-class IMorphemeCutSequenceAnimatable
+class alignas(0) IMorphemeCutSequenceAnimatable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13516,7 +13516,7 @@ enum class EAccidentDeathContext
 };
 
 // 0x0000000142AB2248 (Size: 0x10)
-class SOptionValueSaveData
+class alignas(8) SOptionValueSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13549,7 +13549,7 @@ enum class EDialogEventItemType
 };
 
 // 0x0000000143E6FDB0 (Size: 0x28)
-class SFontDefinition
+class alignas(8) SFontDefinition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13566,7 +13566,7 @@ public:
 };
 
 // 0x0000000143E6FDE0 (Size: 0x28)
-class SFontLibraryDefinition
+class alignas(8) SFontLibraryDefinition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13612,7 +13612,7 @@ enum class ECharacterUpperBodyStateType
 };
 
 // 0x00000001422D7670 (Size: 0xC)
-class SAccessoryItemSaveData
+class alignas(4) SAccessoryItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13629,7 +13629,7 @@ public:
 };
 
 // 0x00000001422D6BA0 (Size: 0x40)
-class ZUIDataProvider
+class alignas(0) ZUIDataProvider
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13642,7 +13642,7 @@ public:
 };
 
 // 0x0000000142A9ED40 (Size: 0x88)
-class SSentryZoneSaveData
+class alignas(8) SSentryZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13764,7 +13764,7 @@ enum class EClothBendConstrainType
 };
 
 // 0x0000000142A9A358 (Size: 0x30)
-class SCautiousVIPGroupSaveData
+class alignas(8) SCautiousVIPGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13826,7 +13826,7 @@ enum class EDeathAnimationType
 };
 
 // 0x0000000142A9A188 (Size: 0x48)
-class SSituationGroupSaveData
+class alignas(8) SSituationGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13844,7 +13844,7 @@ public:
 };
 
 // 0x0000000142AA4150 (Size: 0x14)
-class SMathLerpSaveData_SVector2
+class alignas(4) SMathLerpSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13860,7 +13860,7 @@ public:
 };
 
 // 0x0000000142AA2878 (Size: 0x30)
-class SMathLerpsSaveData_SVector2
+class alignas(8) SMathLerpsSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13896,7 +13896,7 @@ enum class ZCautiousInvestigateGroup_EAssistantState
 };
 
 // 0x0000000142AACF10 (Size: 0x8)
-class ZPlanningObjectiveInfoBuilder
+class alignas(8) ZPlanningObjectiveInfoBuilder
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13934,7 +13934,7 @@ enum class ECharacterIdlePriority
 };
 
 // 0x0000000143F1E690 (Size: 0x20)
-class STestStruct
+class alignas(8) STestStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13951,7 +13951,7 @@ public:
 };
 
 // 0x0000000143F1E6C0 (Size: 0x28)
-class STestStruct2
+class alignas(8) STestStruct2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14008,7 +14008,7 @@ enum class EDisposalType
 };
 
 // 0x0000000142AA0DE8 (Size: 0xC)
-class SAnimatedActorStandOrderSaveData
+class alignas(4) SAnimatedActorStandOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14044,7 +14044,7 @@ enum class EButtonState
 };
 
 // 0x0000000142AB1D28 (Size: 0x20)
-class SInventoryUISlotSlim
+class alignas(8) SInventoryUISlotSlim
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14103,7 +14103,7 @@ enum class InputControlNamesp_eHM5InputActionID
 };
 
 // 0x000000014211A5D8 (Size: 0x8)
-class IComponentInterface
+class alignas(0) IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14257,7 +14257,7 @@ enum class JSONTemplate_ETemplateType
 };
 
 // 0x0000000142AC0090 (Size: 0x18)
-class SIntelDataArray_dummy
+class alignas(8) SIntelDataArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14389,7 +14389,7 @@ enum class EClipSpawnAxis
 };
 
 // 0x0000000142A87000 (Size: 0x38)
-class SAnimatedActorReactOrderSaveData
+class alignas(8) SAnimatedActorReactOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14413,7 +14413,7 @@ public:
 };
 
 // 0x0000000143E6D7E0 (Size: 0xC0)
-class SSaveGameHeader
+class alignas(8) SSaveGameHeader
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14454,7 +14454,7 @@ enum class ECameraCollisionMode
 };
 
 // 0x0000000143E6ED68 (Size: 0x8)
-class SVoidSignalEntitySaveData
+class alignas(4) SVoidSignalEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14477,7 +14477,7 @@ enum class EClothStretchConstrainType
 };
 
 // 0x0000000143E6DE48 (Size: 0x28)
-class SRenderMaterialSaveData
+class alignas(8) SRenderMaterialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14517,7 +14517,7 @@ enum class ZSetUIControlDisplayInfoEntity_EProjectionOp
 };
 
 // 0x0000000142A88078 (Size: 0x14)
-class SCrowdReactionSaveData
+class alignas(4) SCrowdReactionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14549,7 +14549,7 @@ enum class EHM5SoundFootstepEmitterTarget
 };
 
 // 0x0000000142A9A418 (Size: 0x50)
-class SInvestigateWeaponGroupSaveData
+class alignas(8) SInvestigateWeaponGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14579,7 +14579,7 @@ enum class EGuardPointType
 };
 
 // 0x0000000142AB1B80 (Size: 0x14)
-class SAttentionHUDUIElement
+class alignas(4) SAttentionHUDUIElement
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14665,7 +14665,7 @@ enum class ZHM5BodyContainer_EBCAnimSet
 };
 
 // 0x0000000142AC1090 (Size: 0x8)
-class SValueBoolDelayedEntitySaveData
+class alignas(4) SValueBoolDelayedEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14681,7 +14681,7 @@ public:
 };
 
 // 0x0000000142AA7548 (Size: 0x8)
-class IActorProvider
+class alignas(0) IActorProvider
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14723,7 +14723,7 @@ enum class eParticleEmitterBoxEntity_SpawnModes
 };
 
 // 0x0000000142A99210 (Size: 0x30)
-class SDrama2ActorCollectionSaveData
+class alignas(8) SDrama2ActorCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14738,7 +14738,7 @@ public:
 };
 
 // 0x0000000142A99288 (Size: 0x30)
-class SDramaActorCollectionSaveData
+class alignas(8) SDramaActorCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14753,7 +14753,7 @@ public:
 };
 
 // 0x0000000142A992A0 (Size: 0x30)
-class SDramaSituationCollectionSaveData
+class alignas(8) SDramaSituationCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14768,7 +14768,7 @@ public:
 };
 
 // 0x0000000142A9E510 (Size: 0xC)
-class SDramaSetupSaveData
+class alignas(4) SDramaSetupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14784,7 +14784,7 @@ public:
 };
 
 // 0x0000000142A992B8 (Size: 0x30)
-class SDramaSetupCollectionSaveData
+class alignas(8) SDramaSetupCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14799,7 +14799,7 @@ public:
 };
 
 // 0x0000000142A992D0 (Size: 0x120)
-class SScreenplay2ManagerSaveData
+class alignas(8) SScreenplay2ManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14818,7 +14818,7 @@ public:
 };
 
 // 0x0000000142AB0D68 (Size: 0x28)
-class SInventoryUI
+class alignas(8) SInventoryUI
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14870,7 +14870,7 @@ enum class ECommunicationBarMessage
 };
 
 // 0x0000000142AA7428 (Size: 0x8)
-class SActorBoneAttachSaveData
+class alignas(4) SActorBoneAttachSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14885,7 +14885,7 @@ public:
 };
 
 // 0x0000000142AA2990 (Size: 0x30)
-class SActorBoneAttachmentsSaveData
+class alignas(8) SActorBoneAttachmentsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14915,7 +14915,7 @@ enum class EThrowType
 };
 
 // 0x0000000142AAF020 (Size: 0x8)
-class SUIBreadcrumbDataSaveData
+class alignas(4) SUIBreadcrumbDataSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14930,7 +14930,7 @@ public:
 };
 
 // 0x0000000142ABD7A0 (Size: 0x10)
-class SGeomScaleSaveData
+class alignas(4) SGeomScaleSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14953,7 +14953,7 @@ enum class EDetectedNatType
 };
 
 // 0x0000000142AA2D30 (Size: 0x8)
-class SCamBone
+class alignas(4) SCamBone
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15003,7 +15003,7 @@ enum class EMarkerClipAlgorithm
 };
 
 // 0x0000000142A86330 (Size: 0x8)
-class IBoneCollidable
+class alignas(0) IBoneCollidable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15016,7 +15016,7 @@ public:
 };
 
 // 0x0000000142AF04A8 (Size: 0x18)
-class SEntityTemplateEntitySubset
+class alignas(8) SEntityTemplateEntitySubset
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15030,7 +15030,7 @@ public:
 };
 
 // 0x0000000142AF0580 (Size: 0xA8)
-class STemplateBlueprintSubEntity
+class alignas(8) STemplateBlueprintSubEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15104,7 +15104,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioExoticType
 };
 
 // 0x0000000142AC1570 (Size: 0x30)
-class SValueBoolsSaveData
+class alignas(8) SValueBoolsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15119,7 +15119,7 @@ public:
 };
 
 // 0x0000000142A95F40 (Size: 0x8)
-class ZResourcePtr
+class alignas(4) ZResourcePtr
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15164,7 +15164,7 @@ enum class ZGetHelpGroup_EInvestigateGroupState
 };
 
 // 0x0000000143F1E660 (Size: 0x1)
-class SSerializedValue
+class alignas(1) SSerializedValue
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15205,7 +15205,7 @@ enum class EActorGroup
 };
 
 // 0x00000001422D5CC8 (Size: 0x28)
-class ZComponentCreator
+class alignas(8) ZComponentCreator
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15458,7 +15458,7 @@ enum class InputControlNamesp_eHM5InputAction
 };
 
 // 0x0000000142A90EE8 (Size: 0x38)
-class SStashPointSaveData
+class alignas(8) SStashPointSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15485,7 +15485,7 @@ enum class ZPathfinderDebugEntity_EDebugTestType
 };
 
 // 0x0000000142AB2268 (Size: 0x8)
-class SComboDeviceBinding
+class alignas(4) SComboDeviceBinding
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15525,7 +15525,7 @@ enum class ELocale
 };
 
 // 0x0000000142A998A8 (Size: 0x18)
-class SActorSpreadTransitionOperatorMaterialSaveData
+class alignas(8) SActorSpreadTransitionOperatorMaterialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15596,7 +15596,7 @@ enum class EItemRequirement
 };
 
 // 0x0000000142A9A7A8 (Size: 0x4)
-class SSentryOrderSaveData
+class alignas(4) SSentryOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15610,7 +15610,7 @@ public:
 };
 
 // 0x0000000142AA4190 (Size: 0x24)
-class SMathLerpSaveData_SVector4
+class alignas(4) SMathLerpSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15626,7 +15626,7 @@ public:
 };
 
 // 0x0000000142AA28E8 (Size: 0x30)
-class SMathLerpsSaveData_SVector4
+class alignas(8) SMathLerpsSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15696,7 +15696,7 @@ enum class ZRagdollAttacherEntity_EResetMode
 };
 
 // 0x0000000142A9A238 (Size: 0x30)
-class SAgitatedBystanderOrderSaveData
+class alignas(16) SAgitatedBystanderOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15712,7 +15712,7 @@ public:
 };
 
 // 0x0000000142A98EA0 (Size: 0x4)
-class SActorAccessoryItemActionSaveData
+class alignas(4) SActorAccessoryItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15726,7 +15726,7 @@ public:
 };
 
 // 0x0000000142A88338 (Size: 0x20)
-class SGameStatsWeapon
+class alignas(8) SGameStatsWeapon
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15743,7 +15743,7 @@ public:
 };
 
 // 0x0000000143CEB0D0 (Size: 0x10)
-class SGUIViewPort
+class alignas(4) SGUIViewPort
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15760,7 +15760,7 @@ public:
 };
 
 // 0x0000000142AA2728 (Size: 0x30)
-class SShotListenersSaveData
+class alignas(8) SShotListenersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15775,7 +15775,7 @@ public:
 };
 
 // 0x0000000142AFA900 (Size: 0x20)
-class SBoneTransformSaveData
+class alignas(4) SBoneTransformSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15790,7 +15790,7 @@ public:
 };
 
 // 0x0000000142AA1250 (Size: 0x4)
-class SActorProviderApproachSaveData
+class alignas(4) SActorProviderApproachSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15804,7 +15804,7 @@ public:
 };
 
 // 0x0000000142AA29C8 (Size: 0x30)
-class SBodyContainersSaveData
+class alignas(8) SBodyContainersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15819,7 +15819,7 @@ public:
 };
 
 // 0x0000000142AF07A0 (Size: 0x8)
-class ZAutoNullEntityRef
+class alignas(8) ZAutoNullEntityRef
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15832,7 +15832,7 @@ public:
 };
 
 // 0x0000000142AB1A70 (Size: 0x10)
-class SItemOnBackUIData
+class alignas(4) SItemOnBackUIData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15850,7 +15850,7 @@ public:
 };
 
 // 0x0000000142AACB48 (Size: 0x148)
-class SContractObjectiveSaveData
+class alignas(8) SContractObjectiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15896,7 +15896,7 @@ public:
 };
 
 // 0x0000000142AACD88 (Size: 0x40)
-class SOnlineSaveData
+class alignas(8) SOnlineSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15914,7 +15914,7 @@ public:
 };
 
 // 0x0000000142AA28B0 (Size: 0x30)
-class SMathLerpsSaveData_SVector3
+class alignas(8) SMathLerpsSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15929,7 +15929,7 @@ public:
 };
 
 // 0x0000000142AC1588 (Size: 0x30)
-class SValueFloatSaveData
+class alignas(8) SValueFloatSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15944,7 +15944,7 @@ public:
 };
 
 // 0x0000000142AB0660 (Size: 0x4)
-class SHUDTimerControllerSaveData
+class alignas(4) SHUDTimerControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15958,7 +15958,7 @@ public:
 };
 
 // 0x00000001422D5D08 (Size: 0x60)
-class ZEntityPath
+class alignas(8) ZEntityPath
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15971,7 +15971,7 @@ public:
 };
 
 // 0x0000000142AA1C78 (Size: 0x18)
-class SSituationConversationGroupSaveData
+class alignas(8) SSituationConversationGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15985,7 +15985,7 @@ public:
 };
 
 // 0x0000000142A918C8 (Size: 0x8)
-class ZPostfilterGraphBaseNode
+class alignas(0) ZPostfilterGraphBaseNode
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15998,7 +15998,7 @@ public:
 };
 
 // 0x0000000142A9EC20 (Size: 0x1)
-class SDangerousAreaSaveData
+class alignas(1) SDangerousAreaSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16012,7 +16012,7 @@ public:
 };
 
 // 0x0000000142AA2BF0 (Size: 0x8)
-class SLampCoreSaveState
+class alignas(4) SLampCoreSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16027,7 +16027,7 @@ public:
 };
 
 // 0x0000000142AA2798 (Size: 0x30)
-class SLampCoreSaveData
+class alignas(8) SLampCoreSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16042,7 +16042,7 @@ public:
 };
 
 // 0x0000000142A98DD8 (Size: 0x6)
-class SSecuritySystemCameraSaveData
+class alignas(2) SSecuritySystemCameraSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16060,7 +16060,7 @@ public:
 };
 
 // 0x0000000142A9CC28 (Size: 0x10)
-class SRotateEntitySaveData
+class alignas(4) SRotateEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16077,7 +16077,7 @@ public:
 };
 
 // 0x00000001421171A8 (Size: 0x8)
-class IFreeCameraControl
+class alignas(0) IFreeCameraControl
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16090,7 +16090,7 @@ public:
 };
 
 // 0x0000000142AA9B90 (Size: 0x4)
-class SSpeakEntitySaveData
+class alignas(4) SSpeakEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16104,7 +16104,7 @@ public:
 };
 
 // 0x0000000142AACEF8 (Size: 0x18)
-class IContractModule
+class alignas(0) IContractModule
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16117,7 +16117,7 @@ public:
 };
 
 // 0x0000000142A9A5E0 (Size: 0x20)
-class SCombatOrderSaveData
+class alignas(16) SCombatOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16133,7 +16133,7 @@ public:
 };
 
 // 0x0000000142AC05F8 (Size: 0xC)
-class SHintEntrySaveData
+class alignas(4) SHintEntrySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16149,7 +16149,7 @@ public:
 };
 
 // 0x0000000142AC0628 (Size: 0x30)
-class SHintManagerSaveData
+class alignas(8) SHintManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16165,7 +16165,7 @@ public:
 };
 
 // 0x0000000142AF0670 (Size: 0x20)
-class SCppEntity
+class alignas(8) SCppEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16180,7 +16180,7 @@ public:
 };
 
 // 0x0000000142B01220 (Size: 0x8)
-class SClothWireEntitySaveData
+class alignas(4) SClothWireEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16197,7 +16197,7 @@ public:
 };
 
 // 0x0000000143E6DDD0 (Size: 0x14)
-class SParticleEmitterSaveData
+class alignas(4) SParticleEmitterSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16216,7 +16216,7 @@ public:
 };
 
 // 0x0000000143E6DCF8 (Size: 0x8)
-class SBoneAttachSaveData
+class alignas(4) SBoneAttachSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16231,7 +16231,7 @@ public:
 };
 
 // 0x0000000143E6D788 (Size: 0x90)
-class SGameplayRenderablesSaveData
+class alignas(8) SGameplayRenderablesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16250,7 +16250,7 @@ public:
 };
 
 // 0x0000000142AA45E0 (Size: 0x1)
-class SDoorSoundDefs
+class alignas(1) SDoorSoundDefs
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16263,7 +16263,7 @@ public:
 };
 
 // 0x0000000142AA4330 (Size: 0x8)
-class SItsATrapSaveData
+class alignas(4) SItsATrapSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16278,7 +16278,7 @@ public:
 };
 
 // 0x0000000142A95550 (Size: 0x1)
-class SMovementLocomotionSaveData
+class alignas(1) SMovementLocomotionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16292,7 +16292,7 @@ public:
 };
 
 // 0x0000000142AA0BE8 (Size: 0x18)
-class SEventSaveData
+class alignas(8) SEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16308,7 +16308,7 @@ public:
 };
 
 // 0x0000000142AA0C20 (Size: 0x80)
-class SSharedKnowledgeSaveData
+class alignas(16) SSharedKnowledgeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16325,7 +16325,7 @@ public:
 };
 
 // 0x0000000142AA0C40 (Size: 0x48)
-class SSituationMemberSaveData
+class alignas(8) SSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16345,7 +16345,7 @@ public:
 };
 
 // 0x0000000142AA0C90 (Size: 0x68)
-class SSituationSaveData
+class alignas(8) SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16367,7 +16367,7 @@ public:
 };
 
 // 0x0000000142A9A580 (Size: 0x30)
-class SSniperCombatGroupSaveData
+class alignas(8) SSniperCombatGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16385,7 +16385,7 @@ public:
 };
 
 // 0x0000000142A9AED0 (Size: 0x50)
-class SMovementCoverSaveData
+class alignas(16) SMovementCoverSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16403,7 +16403,7 @@ public:
 };
 
 // 0x0000000142AF0310 (Size: 0x10)
-class ZEntityID
+class alignas(8) ZEntityID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16417,7 +16417,7 @@ public:
 };
 
 // 0x0000000142B1B210 (Size: 0x20)
-class ZGridFloatField
+class alignas(8) ZGridFloatField
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16432,7 +16432,7 @@ public:
 };
 
 // 0x0000000142AEED70 (Size: 0x10)
-class SCrowdActivitySaveData
+class alignas(4) SCrowdActivitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16449,7 +16449,7 @@ public:
 };
 
 // 0x0000000142AA26F0 (Size: 0x30)
-class SMathMultipliesSaveData_SVector4
+class alignas(8) SMathMultipliesSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16464,7 +16464,7 @@ public:
 };
 
 // 0x0000000142AB2188 (Size: 0x8)
-class S25DProjectionSettingsCurveEntry
+class alignas(4) S25DProjectionSettingsCurveEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16479,7 +16479,7 @@ public:
 };
 
 // 0x0000000142A9AEB8 (Size: 0x8)
-class SMovementDragBodySaveData
+class alignas(4) SMovementDragBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16494,7 +16494,7 @@ public:
 };
 
 // 0x0000000142AA4130 (Size: 0xC)
-class SMathLerpSaveData_float32
+class alignas(4) SMathLerpSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16510,7 +16510,7 @@ public:
 };
 
 // 0x0000000142A9EF20 (Size: 0x20)
-class SManHuntServiceSaveData
+class alignas(8) SManHuntServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16526,7 +16526,7 @@ public:
 };
 
 // 0x0000000142AB6B58 (Size: 0x4)
-class SFootIKEventData
+class alignas(4) SFootIKEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16540,7 +16540,7 @@ public:
 };
 
 // 0x0000000142A9C880 (Size: 0x1)
-class SEventChannelSaveData
+class alignas(1) SEventChannelSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16554,7 +16554,7 @@ public:
 };
 
 // 0x0000000142AA3AD0 (Size: 0x8)
-class SCCEffectSet
+class alignas(4) SCCEffectSet
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16569,7 +16569,7 @@ public:
 };
 
 // 0x0000000142A95338 (Size: 0xC)
-class SHeroStandInSaveState
+class alignas(4) SHeroStandInSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16585,7 +16585,7 @@ public:
 };
 
 // 0x0000000142A9EBD8 (Size: 0x20)
-class SBodybagBoneSaveData
+class alignas(4) SBodybagBoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16600,7 +16600,7 @@ public:
 };
 
 // 0x0000000142A9E428 (Size: 0x1)
-class SAIPerceptibleEntitySaveData
+class alignas(1) SAIPerceptibleEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16614,7 +16614,7 @@ public:
 };
 
 // 0x0000000142A95218 (Size: 0x40)
-class SClothBundleSaveData
+class alignas(8) SClothBundleSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16633,7 +16633,7 @@ public:
 };
 
 // 0x0000000142A97720 (Size: 0x34)
-class SBodyPartDamageMultipliers
+class alignas(4) SBodyPartDamageMultipliers
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16659,7 +16659,7 @@ public:
 };
 
 // 0x0000000142AC1618 (Size: 0x30)
-class SColorRGBSaveData
+class alignas(8) SColorRGBSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16674,7 +16674,7 @@ public:
 };
 
 // 0x0000000142AC15B8 (Size: 0x8)
-class SStateControllerSaveDataStruct
+class alignas(4) SStateControllerSaveDataStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16689,7 +16689,7 @@ public:
 };
 
 // 0x0000000142AC15E8 (Size: 0x30)
-class SStateControllerSaveData
+class alignas(8) SStateControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16704,7 +16704,7 @@ public:
 };
 
 // 0x0000000142AC0FA0 (Size: 0xF0)
-class SValueSaveData
+class alignas(8) SValueSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16722,7 +16722,7 @@ public:
 };
 
 // 0x00000001422D74C8 (Size: 0x4)
-class SHeroItemActionSaveData
+class alignas(4) SHeroItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16736,7 +16736,7 @@ public:
 };
 
 // 0x0000000142AA6D08 (Size: 0x140)
-class ZInteractionData
+class alignas(16) ZInteractionData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16749,7 +16749,7 @@ public:
 };
 
 // 0x0000000142A9EC08 (Size: 0x58)
-class SBodybagSaveData
+class alignas(8) SBodybagSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16768,7 +16768,7 @@ public:
 };
 
 // 0x0000000142AEE3E8 (Size: 0x8)
-class SAudioEmitterStateSaveData
+class alignas(4) SAudioEmitterStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16783,7 +16783,7 @@ public:
 };
 
 // 0x0000000142AF0448 (Size: 0x38)
-class SEntityTemplatePinConnection
+class alignas(8) SEntityTemplatePinConnection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16801,7 +16801,7 @@ public:
 };
 
 // 0x0000000142A9A820 (Size: 0x78)
-class SEvacuateVIPGroupSaveData
+class alignas(8) SEvacuateVIPGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16829,7 +16829,7 @@ public:
 };
 
 // 0x0000000143E6CAC0 (Size: 0x1)
-class IRenderCompositorEntity
+class alignas(1) IRenderCompositorEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16842,7 +16842,7 @@ public:
 };
 
 // 0x0000000142AB21A8 (Size: 0x18)
-class SWorldSpaceSettings
+class alignas(4) SWorldSpaceSettings
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16861,7 +16861,7 @@ public:
 };
 
 // 0x0000000142AA7250 (Size: 0x80)
-class S25DProjectionSettings
+class alignas(8) S25DProjectionSettings
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16891,7 +16891,7 @@ public:
 };
 
 // 0x0000000142AA4210 (Size: 0x14)
-class SMathMultiplyDivideSaveData_SVector2
+class alignas(4) SMathMultiplyDivideSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16907,7 +16907,7 @@ public:
 };
 
 // 0x0000000142AB0D50 (Size: 0x100)
-class SInventoryUISlot
+class alignas(8) SInventoryUISlot
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16950,7 +16950,7 @@ public:
 };
 
 // 0x0000000142ABD8D8 (Size: 0x1)
-class SVisibilitySaveData
+class alignas(1) SVisibilitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16964,7 +16964,7 @@ public:
 };
 
 // 0x0000000142A9E370 (Size: 0x20)
-class SCombatZoneEntitySaveData
+class alignas(8) SCombatZoneEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16983,7 +16983,7 @@ public:
 };
 
 // 0x0000000143F1E4E8 (Size: 0x30)
-class SGProperties
+class alignas(16) SGProperties
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17001,7 +17001,7 @@ public:
 };
 
 // 0x0000000142AA14F0 (Size: 0x10)
-class SCuriousEventSaveData
+class alignas(8) SCuriousEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17016,7 +17016,7 @@ public:
 };
 
 // 0x0000000142AA1528 (Size: 0x18)
-class SCuriousEventServiceSaveData
+class alignas(8) SCuriousEventServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17030,7 +17030,7 @@ public:
 };
 
 // 0x0000000142AA4110 (Size: 0x20)
-class SMathDistanceSaveData_SVector4
+class alignas(4) SMathDistanceSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17045,7 +17045,7 @@ public:
 };
 
 // 0x0000000142A9A2C8 (Size: 0x50)
-class SCautiousBackupGroupSaveData
+class alignas(8) SCautiousBackupGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17065,7 +17065,7 @@ public:
 };
 
 // 0x0000000143E70BC8 (Size: 0x48)
-class SEntityPinDescriptor
+class alignas(8) SEntityPinDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17084,7 +17084,7 @@ public:
 };
 
 // 0x0000000142A99E20 (Size: 0x8)
-class SGuardBodySituationSaveData
+class alignas(4) SGuardBodySituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17102,7 +17102,7 @@ public:
 };
 
 // 0x0000000142AA15E8 (Size: 0x30)
-class STargetTrackingSaveData
+class alignas(16) STargetTrackingSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17118,7 +17118,7 @@ public:
 };
 
 // 0x0000000142A9EF50 (Size: 0x18)
-class STargetTrackingServiceSaveData
+class alignas(8) STargetTrackingServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17132,7 +17132,7 @@ public:
 };
 
 // 0x0000000142A9A5B0 (Size: 0x40)
-class SActOrderSaveData
+class alignas(16) SActOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17152,7 +17152,7 @@ public:
 };
 
 // 0x0000000142AAEB10 (Size: 0x1)
-class SContractObjectiveHudHintEntitySaveData
+class alignas(1) SContractObjectiveHudHintEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17166,7 +17166,7 @@ public:
 };
 
 // 0x0000000143F1E5A0 (Size: 0x40)
-class SGBufferSample
+class alignas(4) SGBufferSample
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17187,7 +17187,7 @@ public:
 };
 
 // 0x0000000142AA9860 (Size: 0x18)
-class SRememberActorSaveData
+class alignas(8) SRememberActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17201,7 +17201,7 @@ public:
 };
 
 // 0x0000000142A86D70 (Size: 0x70)
-class SEscortOutBehaviorSaveData
+class alignas(16) SEscortOutBehaviorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17228,7 +17228,7 @@ public:
 };
 
 // 0x0000000142A9A478 (Size: 0x28)
-class SRecoverUnconsciousGroupSaveData
+class alignas(8) SRecoverUnconsciousGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17248,7 +17248,7 @@ public:
 };
 
 // 0x0000000142AA1B68 (Size: 0x40)
-class SCompressedGridFloatField
+class alignas(8) SCompressedGridFloatField
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17267,7 +17267,7 @@ public:
 };
 
 // 0x00000001422D7500 (Size: 0x4)
-class SHeroItemAttachmentSaveData
+class alignas(4) SHeroItemAttachmentSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17281,7 +17281,7 @@ public:
 };
 
 // 0x0000000142AA2680 (Size: 0x30)
-class SMathMultipliesSaveData_SVector2
+class alignas(8) SMathMultipliesSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17296,7 +17296,7 @@ public:
 };
 
 // 0x0000000142AB1E98 (Size: 0x1)
-class SSpaceCollectionBehaviorConfiguration
+class alignas(1) SSpaceCollectionBehaviorConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17310,7 +17310,7 @@ public:
 };
 
 // 0x0000000142A87660 (Size: 0x8)
-class IEscortOutSituation
+class alignas(0) IEscortOutSituation
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17323,7 +17323,7 @@ public:
 };
 
 // 0x0000000142AB9F80 (Size: 0x18)
-class SBlobsConfigResourceEntry
+class alignas(8) SBlobsConfigResourceEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17338,7 +17338,7 @@ public:
 };
 
 // 0x0000000142A99E08 (Size: 0xC)
-class SGuardBodySituationMemberSaveData
+class alignas(4) SGuardBodySituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17355,7 +17355,7 @@ public:
 };
 
 // 0x0000000142B002F0 (Size: 0x8)
-class INetRelevancy
+class alignas(8) INetRelevancy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17368,7 +17368,7 @@ public:
 };
 
 // 0x0000000142AA41F0 (Size: 0xC)
-class SMathMultiplyDivideSaveData_float32
+class alignas(4) SMathMultiplyDivideSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17384,7 +17384,7 @@ public:
 };
 
 // 0x0000000142AFA930 (Size: 0x38)
-class SAnimPlayerSaveData
+class alignas(8) SAnimPlayerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17400,7 +17400,7 @@ public:
 };
 
 // 0x0000000142AA2568 (Size: 0x30)
-class SActorKeywordProxiesSaveData
+class alignas(8) SActorKeywordProxiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17415,7 +17415,7 @@ public:
 };
 
 // 0x0000000142A9A268 (Size: 0x28)
-class SAccidentObserversGroupSaveData
+class alignas(8) SAccidentObserversGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17431,7 +17431,7 @@ public:
 };
 
 // 0x00000001422D5DD0 (Size: 0x8)
-class ZTime
+class alignas(8) ZTime
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17445,7 +17445,7 @@ public:
 };
 
 // 0x0000000142AFBB30 (Size: 0x8)
-class SGaitTransitionEntry
+class alignas(4) SGaitTransitionEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17460,7 +17460,7 @@ public:
 };
 
 // 0x0000000142A86FE8 (Size: 0x2C)
-class SAnimatedActorActOrderSaveData
+class alignas(4) SAnimatedActorActOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17479,7 +17479,7 @@ public:
 };
 
 // 0x00000001421176E8 (Size: 0x30)
-class SMatrix43
+class alignas(4) SMatrix43
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17496,7 +17496,7 @@ public:
 };
 
 // 0x0000000142AEE388 (Size: 0x20)
-class SAudioMemoryMonitorEntry
+class alignas(8) SAudioMemoryMonitorEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17512,7 +17512,7 @@ public:
 };
 
 // 0x0000000142AFD278 (Size: 0x60)
-class ZHttpUrl
+class alignas(8) ZHttpUrl
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17525,7 +17525,7 @@ public:
 };
 
 // 0x0000000142AAF2C0 (Size: 0x8)
-class IUIDataListener
+class alignas(0) IUIDataListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17538,7 +17538,7 @@ public:
 };
 
 // 0x0000000142A9A7C0 (Size: 0xC)
-class SEvacuateSituationMemberSaveData
+class alignas(4) SEvacuateSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17554,7 +17554,7 @@ public:
 };
 
 // 0x0000000142AB9E78 (Size: 0x20)
-class SOnlineEvent
+class alignas(8) SOnlineEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17569,7 +17569,7 @@ public:
 };
 
 // 0x0000000142A9A658 (Size: 0x8)
-class SFleeOrderSaveData
+class alignas(4) SFleeOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17585,7 +17585,7 @@ public:
 };
 
 // 0x0000000142AF0460 (Size: 0x70)
-class SExternalEntityTemplatePinConnection
+class alignas(8) SExternalEntityTemplatePinConnection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17603,7 +17603,7 @@ public:
 };
 
 // 0x0000000142AF05E0 (Size: 0xC8)
-class STemplateEntityBlueprint
+class alignas(8) STemplateEntityBlueprint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17626,7 +17626,7 @@ public:
 };
 
 // 0x0000000142A990B0 (Size: 0x2)
-class SDramaControllerSaveData
+class alignas(1) SDramaControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17641,7 +17641,7 @@ public:
 };
 
 // 0x0000000142A9EB38 (Size: 0x1C)
-class SSmuggleSituationActorStateSaveData
+class alignas(4) SSmuggleSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17661,7 +17661,7 @@ public:
 };
 
 // 0x0000000142A9EB68 (Size: 0x38)
-class SSmuggleSituationSaveData
+class alignas(8) SSmuggleSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17679,7 +17679,7 @@ public:
 };
 
 // 0x0000000142AF1550 (Size: 0x20)
-class SRenderVideoPlayerSaveData
+class alignas(8) SRenderVideoPlayerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17703,7 +17703,7 @@ public:
 };
 
 // 0x0000000142ABD908 (Size: 0xC)
-class SConditionalTimerEntitySaveData
+class alignas(4) SConditionalTimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17720,7 +17720,7 @@ public:
 };
 
 // 0x0000000142AA8BC8 (Size: 0xC)
-class SActorDynamicTemplateHandlerSaveData
+class alignas(4) SActorDynamicTemplateHandlerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17736,7 +17736,7 @@ public:
 };
 
 // 0x00000001422D5DB0 (Size: 0x30)
-class ZScopedRuntimePinConDesc
+class alignas(8) ZScopedRuntimePinConDesc
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17751,7 +17751,7 @@ public:
 };
 
 // 0x0000000143E6E7C0 (Size: 0x18)
-class SSequenceTrackSaveData
+class alignas(8) SSequenceTrackSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17766,7 +17766,7 @@ public:
 };
 
 // 0x0000000142A98008 (Size: 0x2)
-class SAimAssistObjectSaveData
+class alignas(1) SAimAssistObjectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17781,7 +17781,7 @@ public:
 };
 
 // 0x0000000143E70BF8 (Size: 0x40)
-class SExposedEntityTypeDescriptor
+class alignas(8) SExposedEntityTypeDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17797,7 +17797,7 @@ public:
 };
 
 // 0x0000000142A9E588 (Size: 0x90)
-class SScreenplayManagerSaveData
+class alignas(8) SScreenplayManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17813,7 +17813,7 @@ public:
 };
 
 // 0x0000000142A9A448 (Size: 0x28)
-class SObserversGroupSaveData
+class alignas(8) SObserversGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17829,7 +17829,7 @@ public:
 };
 
 // 0x0000000142AA0888 (Size: 0x18)
-class SLockdownManagerAIZoneSaveData
+class alignas(8) SLockdownManagerAIZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17845,7 +17845,7 @@ public:
 };
 
 // 0x0000000142A9EF38 (Size: 0x48)
-class SCrowdServiceSaveData
+class alignas(8) SCrowdServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17861,7 +17861,7 @@ public:
 };
 
 // 0x0000000142A9C730 (Size: 0x1C)
-class SHeroEscortSituation2ActorStateSaveData
+class alignas(4) SHeroEscortSituation2ActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17881,7 +17881,7 @@ public:
 };
 
 // 0x0000000142A9A9E8 (Size: 0x78)
-class SEvacuateSituationSaveData
+class alignas(8) SEvacuateSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17901,7 +17901,7 @@ public:
 };
 
 // 0x0000000142AEE3B8 (Size: 0x8)
-class SAudioEmitterRTPCSaveData
+class alignas(4) SAudioEmitterRTPCSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17916,7 +17916,7 @@ public:
 };
 
 // 0x0000000142AFA5A0 (Size: 0x60)
-class SLocalizedVideoData
+class alignas(8) SLocalizedVideoData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17933,7 +17933,7 @@ public:
 };
 
 // 0x0000000142A88560 (Size: 0x8)
-class SPerceptibleCrowdBodySaveData
+class alignas(4) SPerceptibleCrowdBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17948,7 +17948,7 @@ public:
 };
 
 // 0x0000000142A97190 (Size: 0x18)
-class SDoorSaveData
+class alignas(8) SDoorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17965,7 +17965,7 @@ public:
 };
 
 // 0x0000000142A9A388 (Size: 0x28)
-class SDetectedInPrivateGroupSaveData
+class alignas(8) SDetectedInPrivateGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17984,7 +17984,7 @@ public:
 };
 
 // 0x0000000142A87690 (Size: 0x8)
-class ISituation
+class alignas(0) ISituation
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -17997,7 +17997,7 @@ public:
 };
 
 // 0x0000000143F1E500 (Size: 0x30)
-class SGWaypoint
+class alignas(16) SGWaypoint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18021,7 +18021,7 @@ public:
 };
 
 // 0x0000000143E6DCC0 (Size: 0x30)
-class SSavableEntitiesSaveData
+class alignas(8) SSavableEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18036,7 +18036,7 @@ public:
 };
 
 // 0x0000000142A9A8C8 (Size: 0xC)
-class SHandleDistractionSituationSaveData
+class alignas(4) SHandleDistractionSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18052,7 +18052,7 @@ public:
 };
 
 // 0x0000000142AA1B30 (Size: 0x38)
-class SCautiousHuntSaveData
+class alignas(8) SCautiousHuntSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18076,7 +18076,7 @@ public:
 };
 
 // 0x0000000142AA1588 (Size: 0x8)
-class SHelpingActorSaveData
+class alignas(4) SHelpingActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18091,7 +18091,7 @@ public:
 };
 
 // 0x0000000142A9D4A8 (Size: 0x80)
-class SDecalSpawnSaveData
+class alignas(16) SDecalSpawnSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18115,7 +18115,7 @@ public:
 };
 
 // 0x0000000142A87FB0 (Size: 0x40)
-class SRunningCrowdAIEventSaveData
+class alignas(16) SRunningCrowdAIEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18136,7 +18136,7 @@ public:
 };
 
 // 0x0000000142AA2648 (Size: 0x30)
-class SMathMultipliesSaveData_float32
+class alignas(8) SMathMultipliesSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18151,7 +18151,7 @@ public:
 };
 
 // 0x0000000142ABEEF8 (Size: 0x8)
-class SInventoryControllerItemSaveData
+class alignas(4) SInventoryControllerItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18166,7 +18166,7 @@ public:
 };
 
 // 0x0000000142A971C0 (Size: 0x30)
-class SDoorsSaveData
+class alignas(8) SDoorsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18181,7 +18181,7 @@ public:
 };
 
 // 0x0000000142A9ED20 (Size: 0x30)
-class SPrivateAreaSaveData
+class alignas(16) SPrivateAreaSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18200,7 +18200,7 @@ public:
 };
 
 // 0x0000000142A9A460 (Size: 0x4)
-class SPatrolGroupSaveData
+class alignas(4) SPatrolGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18214,7 +18214,7 @@ public:
 };
 
 // 0x0000000142AB9E60 (Size: 0x8)
-class IOnlineConfigurationListener
+class alignas(0) IOnlineConfigurationListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18227,7 +18227,7 @@ public:
 };
 
 // 0x0000000142AA22D8 (Size: 0x8)
-class SActorTagSaveData
+class alignas(4) SActorTagSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18243,7 +18243,7 @@ public:
 };
 
 // 0x0000000142A97D68 (Size: 0x28)
-class SActorTagManagerSaveData
+class alignas(8) SActorTagManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18261,7 +18261,7 @@ public:
 };
 
 // 0x0000000142A9EBB0 (Size: 0x3)
-class SSCCuriousConfiguration
+class alignas(1) SSCCuriousConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18277,7 +18277,7 @@ public:
 };
 
 // 0x0000000142AACEE0 (Size: 0x8)
-class IContractObjective
+class alignas(0) IContractObjective
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18290,7 +18290,7 @@ public:
 };
 
 // 0x0000000142AA2EF8 (Size: 0x8)
-class STargetableBoneConfiguration
+class alignas(4) STargetableBoneConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18305,7 +18305,7 @@ public:
 };
 
 // 0x0000000142B00518 (Size: 0x1)
-class SPFObstactleSaveData
+class alignas(1) SPFObstactleSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18319,7 +18319,7 @@ public:
 };
 
 // 0x0000000142ABD830 (Size: 0x30)
-class SPhysicsListSaveData
+class alignas(8) SPhysicsListSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18334,7 +18334,7 @@ public:
 };
 
 // 0x0000000142AFBCD8 (Size: 0x8)
-class IMorphemeCutSequenceAnimationEntity
+class alignas(0) IMorphemeCutSequenceAnimationEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18347,7 +18347,7 @@ public:
 };
 
 // 0x0000000142A9FF48 (Size: 0x8)
-class IAnimPlayerEntity
+class alignas(0) IAnimPlayerEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18360,7 +18360,7 @@ public:
 };
 
 // 0x0000000142AA2840 (Size: 0x30)
-class SMathLerpsSaveData_float32
+class alignas(8) SMathLerpsSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18375,7 +18375,7 @@ public:
 };
 
 // 0x0000000142A9BC40 (Size: 0x8)
-class IValueEntity
+class alignas(0) IValueEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18388,7 +18388,7 @@ public:
 };
 
 // 0x0000000142A86FB8 (Size: 0x18)
-class SAnimatedActorOrderSaveData
+class alignas(8) SAnimatedActorOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18403,7 +18403,7 @@ public:
 };
 
 // 0x0000000142AB45A0 (Size: 0x30)
-class SGameKeywordManagerSaveData
+class alignas(8) SGameKeywordManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18418,7 +18418,7 @@ public:
 };
 
 // 0x0000000143E6FF30 (Size: 0x10)
-class SUIGridCellPosition
+class alignas(4) SUIGridCellPosition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18435,7 +18435,7 @@ public:
 };
 
 // 0x0000000142AEF100 (Size: 0x40)
-class SRegionSaveData
+class alignas(16) SRegionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18458,7 +18458,7 @@ public:
 };
 
 // 0x0000000142A9A5F8 (Size: 0x18)
-class SEscortOutOrderSaveData
+class alignas(8) SEscortOutOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18472,7 +18472,7 @@ public:
 };
 
 // 0x0000000142AA25D8 (Size: 0x30)
-class SItemsSaveData
+class alignas(8) SItemsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18487,7 +18487,7 @@ public:
 };
 
 // 0x0000000142AACEC0 (Size: 0x48)
-class ZContractEvaluationContext
+class alignas(8) ZContractEvaluationContext
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18500,7 +18500,7 @@ public:
 };
 
 // 0x0000000142ABEEE0 (Size: 0x8)
-class SStoredSlotSaveData
+class alignas(4) SStoredSlotSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18516,7 +18516,7 @@ public:
 };
 
 // 0x0000000142ABEF40 (Size: 0x20)
-class SInventoryControllerSlotSaveData
+class alignas(8) SInventoryControllerSlotSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18531,7 +18531,7 @@ public:
 };
 
 // 0x0000000142A9B588 (Size: 0xB8)
-class SInventoryControllerSaveData
+class alignas(8) SInventoryControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18564,7 +18564,7 @@ public:
 };
 
 // 0x0000000142A9E910 (Size: 0x4)
-class SEscortSituationActors
+class alignas(4) SEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18578,7 +18578,7 @@ public:
 };
 
 // 0x0000000142A8FF20 (Size: 0x18)
-class SLockdownManagerSaveData
+class alignas(8) SLockdownManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18592,7 +18592,7 @@ public:
 };
 
 // 0x0000000142AEE400 (Size: 0x10)
-class SAudioEmitterSaveData
+class alignas(4) SAudioEmitterSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18609,7 +18609,7 @@ public:
 };
 
 // 0x0000000142AEDF68 (Size: 0xA8)
-class SAudioSaveData
+class alignas(8) SAudioSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18629,7 +18629,7 @@ public:
 };
 
 // 0x0000000142AB2848 (Size: 0x10)
-class ZWorldMapMetaData
+class alignas(8) ZWorldMapMetaData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18642,7 +18642,7 @@ public:
 };
 
 // 0x0000000142A98EE0 (Size: 0x8)
-class SActorItemActionSaveData
+class alignas(4) SActorItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18657,7 +18657,7 @@ public:
 };
 
 // 0x0000000142A9A4D8 (Size: 0x30)
-class STriggerAlarmGroupSaveData
+class alignas(8) STriggerAlarmGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18675,7 +18675,7 @@ public:
 };
 
 // 0x0000000142AA3E10 (Size: 0x18)
-class SActorSpreadControllerCandidateSaveData
+class alignas(8) SActorSpreadControllerCandidateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18691,7 +18691,7 @@ public:
 };
 
 // 0x0000000142A997B8 (Size: 0x90)
-class SActorSpreadControllerSaveData
+class alignas(8) SActorSpreadControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18716,7 +18716,7 @@ public:
 };
 
 // 0x0000000142A86FD0 (Size: 0x2C)
-class SAnimatedActorMoveOrderSaveData
+class alignas(4) SAnimatedActorMoveOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18737,7 +18737,7 @@ public:
 };
 
 // 0x0000000142A9C858 (Size: 0x8)
-class SScreenplayRole2HeroSaveState
+class alignas(4) SScreenplayRole2HeroSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18752,7 +18752,7 @@ public:
 };
 
 // 0x0000000142A977D8 (Size: 0x36)
-class SHM5CrippleBoxSaveData
+class alignas(1) SHM5CrippleBoxSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18819,7 +18819,7 @@ public:
 };
 
 // 0x0000000142A9DA18 (Size: 0x8)
-class IActorProviderFilter
+class alignas(0) IActorProviderFilter
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18832,7 +18832,7 @@ public:
 };
 
 // 0x0000000142A9EF08 (Size: 0x18)
-class SGetHelpServiceSaveData
+class alignas(8) SGetHelpServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18846,7 +18846,7 @@ public:
 };
 
 // 0x0000000143E6DDE8 (Size: 0x38)
-class SPersistentEntitySaveData
+class alignas(8) SPersistentEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18862,7 +18862,7 @@ public:
 };
 
 // 0x0000000142AB14D0 (Size: 0x18)
-class SActionRadialArcDisplayInfo
+class alignas(8) SActionRadialArcDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18881,7 +18881,7 @@ public:
 };
 
 // 0x0000000143E70BE0 (Size: 0x38)
-class SExposedEntityDescriptor
+class alignas(8) SExposedEntityDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18899,7 +18899,7 @@ public:
 };
 
 // 0x0000000142A95520 (Size: 0x8)
-class SMovementHideInClosetSaveData
+class alignas(4) SMovementHideInClosetSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18914,7 +18914,7 @@ public:
 };
 
 // 0x00000001422D7550 (Size: 0x28)
-class SLevelReferenceableEntitieSaveData
+class alignas(8) SLevelReferenceableEntitieSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18929,7 +18929,7 @@ public:
 };
 
 // 0x0000000142A95868 (Size: 0x8)
-class IEventConsumerCollection
+class alignas(0) IEventConsumerCollection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18942,7 +18942,7 @@ public:
 };
 
 // 0x0000000142AC1690 (Size: 0x18)
-class SWaveformGeneratorSaveData
+class alignas(4) SWaveformGeneratorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18961,7 +18961,7 @@ public:
 };
 
 // 0x0000000142AC0FB8 (Size: 0x30)
-class SWaveformGeneratorManagerSaveData
+class alignas(8) SWaveformGeneratorManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18976,7 +18976,7 @@ public:
 };
 
 // 0x0000000142AA41B0 (Size: 0x1C)
-class SMathLerpSaveData_SColorRGB
+class alignas(4) SMathLerpSaveData_SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -18992,7 +18992,7 @@ public:
 };
 
 // 0x0000000142AA2920 (Size: 0x30)
-class SMathLerpsSaveData_SColorRGB
+class alignas(8) SMathLerpsSaveData_SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19007,7 +19007,7 @@ public:
 };
 
 // 0x0000000142AB1670 (Size: 0x18)
-class SVideoDatabaseEntry
+class alignas(8) SVideoDatabaseEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19022,7 +19022,7 @@ public:
 };
 
 // 0x0000000142AB16A8 (Size: 0x18)
-class SVideoDatabaseData
+class alignas(8) SVideoDatabaseData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19036,7 +19036,7 @@ public:
 };
 
 // 0x0000000142A9A298 (Size: 0x40)
-class SAvoidDangerousAreaGroupSaveData
+class alignas(16) SAvoidDangerousAreaGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19054,7 +19054,7 @@ public:
 };
 
 // 0x0000000142A98F08 (Size: 0x4)
-class SGetIActorPositionSaveData
+class alignas(4) SGetIActorPositionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19068,7 +19068,7 @@ public:
 };
 
 // 0x0000000142117700 (Size: 0x40)
-class SMatrix44
+class alignas(4) SMatrix44
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19097,7 +19097,7 @@ public:
 };
 
 // 0x0000000142A880F0 (Size: 0x1)
-class SDisguiseZoneSaveData
+class alignas(1) SDisguiseZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19111,7 +19111,7 @@ public:
 };
 
 // 0x0000000142AACA40 (Size: 0x1)
-class SExitSaveData
+class alignas(1) SExitSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19125,7 +19125,7 @@ public:
 };
 
 // 0x0000000142AA1088 (Size: 0x10)
-class SConditionBase
+class alignas(4) SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19141,7 +19141,7 @@ public:
 };
 
 // 0x0000000142A87FE0 (Size: 0x18)
-class SCrowdAIEventSaveData
+class alignas(8) SCrowdAIEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19155,7 +19155,7 @@ public:
 };
 
 // 0x0000000142AA40B0 (Size: 0x4)
-class SItemKeywordProxySaveData
+class alignas(4) SItemKeywordProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19169,7 +19169,7 @@ public:
 };
 
 // 0x0000000142A9E8F8 (Size: 0x1C)
-class SEscortSituationActorStateSaveData
+class alignas(4) SEscortSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19189,7 +19189,7 @@ public:
 };
 
 // 0x0000000142A9E958 (Size: 0x98)
-class SEscortSituationSaveData
+class alignas(8) SEscortSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19221,7 +19221,7 @@ public:
 };
 
 // 0x0000000142AB1BB8 (Size: 0x18)
-class SAttentionHUDUIElementArray_Dummy
+class alignas(8) SAttentionHUDUIElementArray_Dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19235,7 +19235,7 @@ public:
 };
 
 // 0x0000000142A885A8 (Size: 0x18)
-class STrespassingRuleEntitySaveData
+class alignas(8) STrespassingRuleEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19249,7 +19249,7 @@ public:
 };
 
 // 0x0000000142AA67C8 (Size: 0x8)
-class IHM5WeaponInventory
+class alignas(0) IHM5WeaponInventory
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19262,7 +19262,7 @@ public:
 };
 
 // 0x0000000142A9A040 (Size: 0xD8)
-class ZSituationGroup
+class alignas(8) ZSituationGroup
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19275,7 +19275,7 @@ public:
 };
 
 // 0x00000001422D79D0 (Size: 0x28)
-class STrackDollyControllerSaveData
+class alignas(4) STrackDollyControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19293,7 +19293,7 @@ public:
 };
 
 // 0x0000000142A88908 (Size: 0x1)
-class SPIPMessageManagerProxySaveData
+class alignas(1) SPIPMessageManagerProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19307,7 +19307,7 @@ public:
 };
 
 // 0x0000000142A9EA70 (Size: 0x1C)
-class SLeadEscortSituationActorStateSaveData
+class alignas(4) SLeadEscortSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19327,7 +19327,7 @@ public:
 };
 
 // 0x0000000142A9EAD0 (Size: 0x78)
-class SLeadEscortSituationSaveData
+class alignas(8) SLeadEscortSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19355,7 +19355,7 @@ public:
 };
 
 // 0x0000000142A90EA8 (Size: 0x4)
-class SActorAliveConditionSaveData
+class alignas(4) SActorAliveConditionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19369,7 +19369,7 @@ public:
 };
 
 // 0x0000000142ABDB20 (Size: 0x8)
-class STokenID
+class alignas(4) STokenID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19384,7 +19384,7 @@ public:
 };
 
 // 0x0000000142AA8AD0 (Size: 0x8)
-class SConversationEntry
+class alignas(4) SConversationEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19399,7 +19399,7 @@ public:
 };
 
 // 0x00000001422D6FC8 (Size: 0xC)
-class SWeaponCustomControlSaveData
+class alignas(4) SWeaponCustomControlSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19415,7 +19415,7 @@ public:
 };
 
 // 0x0000000142AB9F98 (Size: 0x18)
-class SContractConfigResourceEntry
+class alignas(8) SContractConfigResourceEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19430,7 +19430,7 @@ public:
 };
 
 // 0x0000000142ABEC40 (Size: 0x1)
-class SItemSpawnerSaveData
+class alignas(1) SItemSpawnerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19444,7 +19444,7 @@ public:
 };
 
 // 0x0000000142AF17A8 (Size: 0x8)
-class ITriggerListener
+class alignas(0) ITriggerListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19457,7 +19457,7 @@ public:
 };
 
 // 0x0000000142AB1A58 (Size: 0x10)
-class SItemLeftHandUIData
+class alignas(4) SItemLeftHandUIData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19475,7 +19475,7 @@ public:
 };
 
 // 0x0000000143F1E128 (Size: 0x18)
-class SBoneScalesList
+class alignas(8) SBoneScalesList
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19489,7 +19489,7 @@ public:
 };
 
 // 0x0000000142A9E9C0 (Size: 0x1C)
-class SHeroEscortSituationActorStateSaveData
+class alignas(4) SHeroEscortSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19509,7 +19509,7 @@ public:
 };
 
 // 0x00000001422D5D28 (Size: 0x18)
-class ZER64
+class alignas(8) ZER64
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19524,7 +19524,7 @@ public:
 };
 
 // 0x0000000142AF0948 (Size: 0x18)
-class SFooStruct
+class alignas(8) SFooStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19539,7 +19539,7 @@ public:
 };
 
 // 0x0000000142A97258 (Size: 0x8)
-class SChairSaveData
+class alignas(4) SChairSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19554,7 +19554,7 @@ public:
 };
 
 // 0x0000000142AA0CB0 (Size: 0x38)
-class SCombatMetricsSaveData
+class alignas(8) SCombatMetricsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19570,7 +19570,7 @@ public:
 };
 
 // 0x0000000142A9A328 (Size: 0x14)
-class SCautiousSearchGroupSaveData
+class alignas(4) SCautiousSearchGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19589,7 +19589,7 @@ public:
 };
 
 // 0x0000000142AA24F8 (Size: 0x30)
-class SActorStandInEntitiesSaveData
+class alignas(8) SActorStandInEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19604,7 +19604,7 @@ public:
 };
 
 // 0x00000001422D5C70 (Size: 0x20)
-class ZBitArray
+class alignas(8) ZBitArray
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19619,7 +19619,7 @@ public:
 };
 
 // 0x0000000142B1B1D8 (Size: 0xD0)
-class SReasoningGrid
+class alignas(16) SReasoningGrid
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19639,7 +19639,7 @@ public:
 };
 
 // 0x00000001422D5C50 (Size: 0x20)
-class SDynamicObjectKeyValuePair
+class alignas(8) SDynamicObjectKeyValuePair
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19654,7 +19654,7 @@ public:
 };
 
 // 0x0000000142AA1300 (Size: 0x4)
-class SActorProxySaveData
+class alignas(4) SActorProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19668,7 +19668,7 @@ public:
 };
 
 // 0x0000000142AA2530 (Size: 0x30)
-class SActorProxiesSaveData
+class alignas(8) SActorProxiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19683,7 +19683,7 @@ public:
 };
 
 // 0x0000000142AA25A0 (Size: 0x30)
-class SItemKeywordProxiesSaveData
+class alignas(8) SItemKeywordProxiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19698,7 +19698,7 @@ public:
 };
 
 // 0x0000000142AA2760 (Size: 0x30)
-class STrapsSaveData
+class alignas(8) STrapsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19713,7 +19713,7 @@ public:
 };
 
 // 0x0000000142A97C18 (Size: 0x480)
-class SGameEntitySaveData
+class alignas(8) SGameEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19750,7 +19750,7 @@ public:
 };
 
 // 0x0000000143E6DCA8 (Size: 0x48)
-class SPersistentEntitySaveDataList
+class alignas(8) SPersistentEntitySaveDataList
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19766,7 +19766,7 @@ public:
 };
 
 // 0x0000000142AA8B00 (Size: 0x20)
-class SConversationPart
+class alignas(8) SConversationPart
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19781,7 +19781,7 @@ public:
 };
 
 // 0x0000000142A953A8 (Size: 0x78)
-class SHitmanSaveData
+class alignas(8) SHitmanSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19806,7 +19806,7 @@ public:
 };
 
 // 0x0000000142AC08D0 (Size: 0xC)
-class SCharacterSpeakEntitySaveData
+class alignas(4) SCharacterSpeakEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19822,7 +19822,7 @@ public:
 };
 
 // 0x0000000142AB1230 (Size: 0x8)
-class IWorldMapMarker
+class alignas(0) IWorldMapMarker
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19835,7 +19835,7 @@ public:
 };
 
 // 0x0000000142A9EA20 (Size: 0x90)
-class SHeroEscortSituationSaveData
+class alignas(8) SHeroEscortSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19865,7 +19865,7 @@ public:
 };
 
 // 0x0000000142A9A748 (Size: 0x1)
-class SPatrolOrderSaveData
+class alignas(1) SPatrolOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19878,7 +19878,7 @@ public:
 };
 
 // 0x0000000142A9C790 (Size: 0x90)
-class SHeroEscortSituation2SaveData
+class alignas(8) SHeroEscortSituation2SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19908,7 +19908,7 @@ public:
 };
 
 // 0x0000000142AB1DF8 (Size: 0x18)
-class SIntelListDisplayInfoArray_dummy
+class alignas(8) SIntelListDisplayInfoArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19922,7 +19922,7 @@ public:
 };
 
 // 0x0000000142A9A4A8 (Size: 0x38)
-class SSentryGroupSaveData
+class alignas(8) SSentryGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19943,7 +19943,7 @@ public:
 };
 
 // 0x0000000142AB0780 (Size: 0x4)
-class SHUDVisibilityController2SaveData
+class alignas(4) SHUDVisibilityController2SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19957,7 +19957,7 @@ public:
 };
 
 // 0x0000000142A90130 (Size: 0x8)
-class IBoneAnimator
+class alignas(0) IBoneAnimator
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -19970,7 +19970,7 @@ public:
 };
 
 // 0x0000000142A9A2F8 (Size: 0x100)
-class SCautiousInvestigateGroupSaveData
+class alignas(16) SCautiousInvestigateGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20007,7 +20007,7 @@ public:
 };
 
 // 0x00000001422D7AC0 (Size: 0x8)
-class IActor
+class alignas(0) IActor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20020,7 +20020,7 @@ public:
 };
 
 // 0x0000000142AB14F0 (Size: 0x18)
-class SActionRadialArcDisplayInfoArray_dummy
+class alignas(8) SActionRadialArcDisplayInfoArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20034,7 +20034,7 @@ public:
 };
 
 // 0x0000000142AA3168 (Size: 0x30)
-class SInventoryMovementConfig
+class alignas(16) SInventoryMovementConfig
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20057,7 +20057,7 @@ public:
 };
 
 // 0x0000000142AA6D20 (Size: 0xA0)
-class ZInteractionGuideData
+class alignas(16) ZInteractionGuideData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20070,7 +20070,7 @@ public:
 };
 
 // 0x0000000142A90BF0 (Size: 0x8)
-class IBulletImpactListener
+class alignas(0) IBulletImpactListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20083,7 +20083,7 @@ public:
 };
 
 // 0x0000000142AF02B0 (Size: 0x20)
-class ZEntityReference
+class alignas(8) ZEntityReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20098,7 +20098,7 @@ public:
 };
 
 // 0x0000000142AB1D80 (Size: 0x30)
-class SInventoryUICache
+class alignas(8) SInventoryUICache
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20113,7 +20113,7 @@ public:
 };
 
 // 0x0000000142AAF1E8 (Size: 0x10)
-class SHudMissionTimerControllerData
+class alignas(8) SHudMissionTimerControllerData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20128,7 +20128,7 @@ public:
 };
 
 // 0x0000000142AAF230 (Size: 0x1)
-class SHUDPIPControllerSaveData
+class alignas(1) SHUDPIPControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20142,7 +20142,7 @@ public:
 };
 
 // 0x00000001422D5D58 (Size: 0x30)
-class ZScopedER64
+class alignas(8) ZScopedER64
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20157,7 +20157,7 @@ public:
 };
 
 // 0x0000000142AACDB8 (Size: 0x8)
-class IContractEvaluationContextListener
+class alignas(0) IContractEvaluationContextListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20170,7 +20170,7 @@ public:
 };
 
 // 0x0000000142A98E10 (Size: 0x2)
-class SSecuritySystemRecorderSaveData
+class alignas(1) SSecuritySystemRecorderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20185,7 +20185,7 @@ public:
 };
 
 // 0x0000000143E6E3D0 (Size: 0x80)
-class STrajectoryTrackSaveData
+class alignas(16) STrajectoryTrackSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20200,7 +20200,7 @@ public:
 };
 
 // 0x0000000142A9E478 (Size: 0x1)
-class SAIVisionBlockerSaveData
+class alignas(1) SAIVisionBlockerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20214,7 +20214,7 @@ public:
 };
 
 // 0x00000001422D5F50 (Size: 0x8)
-class IMetricValue
+class alignas(0) IMetricValue
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20227,7 +20227,7 @@ public:
 };
 
 // 0x0000000142AA0DC8 (Size: 0x10)
-class SActorIKControllerSaveData
+class alignas(4) SActorIKControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -20244,7 +20244,7 @@ public:
 };
 
 // 0x0000000142AEEDE8 (Size: 0x80)
-class SCrowdEntitySaveData
+class alignas(8) SCrowdEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
