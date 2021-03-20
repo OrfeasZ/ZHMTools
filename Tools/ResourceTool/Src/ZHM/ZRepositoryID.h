@@ -15,25 +15,10 @@ public:
 		Parentheses,
 	};
 
-	static void WriteJson(void* p_Object, std::ostream& p_Stream)
-	{
-		auto* s_Object = static_cast<ZRepositoryID*>(p_Object);
-		p_Stream << JsonStr(s_Object->ToString());
-	}
-
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-	{
-		auto* s_Object = static_cast<ZRepositoryID*>(p_Object);
-		p_Stream << JsonStr(s_Object->ToString());
-	}
-
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-	{
-		auto s_StringView = std::string_view(p_Document);
-		auto s_String = std::string(s_StringView.data(), s_StringView.size());
-		
-		*reinterpret_cast<ZRepositoryID*>(p_Target) = s_String;
-	}
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRepositoryID() : m_nHigh(0), m_nLow(0) {}
 
@@ -141,8 +126,6 @@ public:
 
 		return s_GUID;
 	}
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 public:
 	union

@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 #include <ZHM/ZHMSerializer.h>
+#include <Util/PortableIntrinsics.h>
 
 template <class T>
 class TIterator
@@ -42,13 +43,17 @@ public:
 
 		if (m_pBegin == nullptr)
 		{
-			m_pBegin = reinterpret_cast<T*>(malloc(sizeof(T) * p_Size));
+			m_pBegin = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * p_Size, alignof(T)));
 			m_pEnd = m_pBegin + p_Size;
 			m_pAllocationEnd = m_pEnd;
 			return;
 		}
 
-		m_pBegin = reinterpret_cast<T*>(realloc(m_pBegin, sizeof(T) * p_Size));
+		T* s_NewMemory = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * p_Size, alignof(T)));
+		memcpy(s_NewMemory, m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * size());
+		c_aligned_free(m_pBegin);
+
+		m_pBegin = s_NewMemory;
 		m_pEnd = m_pBegin + p_Size;
 		m_pAllocationEnd = m_pEnd;
 	}
@@ -71,7 +76,7 @@ public:
 		if (fitsInline() && hasInlineFlag())
 			return m_nInlineCount;
 		
-		return (reinterpret_cast<uintptr_t>(m_pEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / sizeof(T);
+		return (reinterpret_cast<uintptr_t>(m_pEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / c_get_aligned(sizeof(T), alignof(T));
 	}
 
 	inline size_t capacity() const
@@ -79,7 +84,7 @@ public:
 		if (fitsInline() && hasInlineFlag())
 			return m_nInlineCapacity;
 
-		return (reinterpret_cast<uintptr_t>(m_pAllocationEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / sizeof(T);
+		return (reinterpret_cast<uintptr_t>(m_pAllocationEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / c_get_aligned(sizeof(T), alignof(T));
 	}
 
 	inline T& operator[](size_t p_Index) const
@@ -144,12 +149,14 @@ public:
 		return (m_nFlags >> 62) & 1;
 	}
 
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 	{
-		if (hasInlineFlag())
+		auto* s_Object = reinterpret_cast<TArray<T>*>(p_Object);
+		
+		if (s_Object->hasInlineFlag())
 			throw std::exception("cannot serialize inline arrays");
 
-		if (size() == 0)
+		if (s_Object->size() == 0)
 		{
 			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<T>, m_pBegin));
 			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd));
@@ -157,22 +164,22 @@ public:
 		}
 		else
 		{
-			auto s_ElementsPtr = p_Serializer.WriteMemory(m_pBegin, sizeof(T) * size());
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
 
-			for (size_t i = 0; i < size(); ++i)
+			for (size_t i = 0; i < s_Object->size(); ++i)
 			{
-				auto& s_Item = begin()[i];
+				auto& s_Item = s_Object->begin()[i];
 
 				if constexpr(!std::is_fundamental_v<T> && !std::is_enum_v<T>)
 				{
-					uintptr_t s_Offset = s_ElementsPtr + sizeof(T) * i;
-					s_Item.Serialize(p_Serializer, s_Offset);
+					uintptr_t s_Offset = s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * i;
+					T::Serialize(&s_Item, p_Serializer, s_Offset);
 				}
 			}
 
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pBegin), s_ElementsPtr);
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + sizeof(T) * size());
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + sizeof(T) * size());
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
 		}
 	}
 

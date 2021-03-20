@@ -88,9 +88,11 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<ZVariant*>(p_Target) = s_Variant;
 }
 
-void ZVariant::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	if (m_pTypeID == nullptr || m_pTypeID->IsDummy())
+	auto* s_Object = reinterpret_cast<ZVariant*>(p_Object);
+	
+	if (s_Object->m_pTypeID == nullptr || s_Object->m_pTypeID->IsDummy())
 	{
 		std::cerr << "[ERROR] Tried serializing ZVariant with an unknown type.";
 		
@@ -100,15 +102,18 @@ void ZVariant::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 		return;
 	}
 	
-	p_Serializer.PatchType(p_OwnOffset + offsetof(ZVariant, m_pTypeID), m_pTypeID);
+	p_Serializer.PatchType(p_OwnOffset + offsetof(ZVariant, m_pTypeID), s_Object->m_pTypeID);
 
-	if (m_pData == nullptr)
+	if (s_Object->m_pData == nullptr)
 	{
 		p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(ZVariant, m_pData));
 	}
 	else
 	{
-		auto s_ValueOffset = p_Serializer.WriteMemory(m_pData, m_pTypeID->Size());
+		auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size());
+
+		s_Object->m_pTypeID->Serialize(s_Object->m_pData, p_Serializer, s_ValueOffset);
+		
 		p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ValueOffset);
 	}
 }

@@ -43,7 +43,10 @@ inline uint32_t c_byteswap_ulong(uint32_t p_Value)
 #endif
 }
 
-inline size_t c_get_aligned(size_t p_Size, size_t p_Alignment)
+inline constexpr size_t c_get_aligned(size_t p_Size, size_t p_Alignment)
 {
+	if ((p_Size % p_Alignment) == 0)
+		return p_Size;
+	
 	return p_Size + (p_Alignment - (p_Size % p_Alignment));
 }

@@ -31,6 +31,10 @@ public:
 	{
 		*reinterpret_cast<int32_t*>(p_Target) = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
 	}
+
+	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
+	{
+	}
 	
 	virtual std::string TypeName() const
 	{
@@ -150,6 +154,38 @@ public:
 		s_Array->m_pEnd = reinterpret_cast<void**>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_TotalSize);
 		s_Array->m_pAllocationEnd = s_Array->m_pEnd;
 	}
+
+	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
+	{
+		auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
+
+		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
+		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->m_pEnd) - reinterpret_cast<uintptr_t>(s_Object->m_pBegin)) / s_AlignedSize;
+
+		if (s_ElementCount == 0)
+		{
+			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<void*>, m_pBegin));
+			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<void*>, m_pEnd));
+			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<void*>, m_pAllocationEnd));
+		}
+		else
+		{
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment()) * s_ElementCount);
+			auto s_CurrentElement = s_ElementsPtr;
+
+			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin);
+
+			for (size_t i = 0; i < s_ElementCount; ++i)
+			{
+				m_ElementType->Serialize(reinterpret_cast<void*>(s_ObjectPtr), p_Serializer, s_CurrentElement);
+				s_CurrentElement += s_AlignedSize;
+			}
+
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pBegin), s_ElementsPtr);
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pEnd), s_CurrentElement);
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pAllocationEnd), s_CurrentElement);
+		}
+	}
 	
 	virtual std::string TypeName() const
 	{
@@ -195,6 +231,11 @@ public:
 		throw std::exception("Cannot deserialize value with dummy type info.");
 	}
 
+	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
+	{
+		throw std::exception("Cannot serialize a value with dummy type info.");
+	}
+	
 	virtual std::string TypeName() const
 	{
 		return m_TypeName;
@@ -270,7 +311,26 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(std::string_view p_Name)
 	return GetTypeByName(std::string(p_Name.data(), p_Name.size()));
 }
 
-void TypeID::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void TypeID::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
-	p_Serializer.PatchType(p_OwnOffset + offsetof(TypeID, m_pTypeID), m_pTypeID);
+	auto* s_Object = static_cast<TypeID*>(p_Object);
+	p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+}
+
+void TypeID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = static_cast<TypeID*>(p_Object);
+	p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+}
+
+void TypeID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_TypeName = std::string_view(p_Document);
+	reinterpret_cast<TypeID*>(p_Target)->m_pTypeID = ZHMTypeInfo::GetTypeByName(s_TypeName);
+}
+
+void TypeID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = static_cast<TypeID*>(p_Object);
+	p_Serializer.PatchType(p_OwnOffset + offsetof(TypeID, m_pTypeID), s_Object->m_pTypeID);
 }

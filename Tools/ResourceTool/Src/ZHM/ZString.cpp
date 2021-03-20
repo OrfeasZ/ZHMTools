@@ -39,8 +39,27 @@ std::string JsonStr(const ZString& p_String)
 	return o.str();
 }
 
-void ZString::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZString::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
-	auto s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(m_pChars), size());
+	auto* s_Object = static_cast<ZString*>(p_Object);
+	p_Stream << JsonStr(*s_Object);
+}
+
+void ZString::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = static_cast<ZString*>(p_Object);
+	p_Stream << JsonStr(*s_Object);
+}
+
+void ZString::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZString s_String = std::string_view(p_Document);
+	*reinterpret_cast<ZString*>(p_Target) = s_String;
+}
+
+void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZString*>(p_Object);
+	auto s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars), s_Object->size());
 	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);
 }

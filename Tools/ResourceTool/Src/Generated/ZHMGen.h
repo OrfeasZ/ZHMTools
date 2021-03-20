@@ -36,8 +36,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -49,8 +48,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsInPhysicsWorld; // 0x0
 	bool m_bIsKinematicBody; // 0x1
@@ -614,8 +612,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EAISharedEventType m_helpType; // 0x0
 	uint32 m_rInitialGuard; // 0x4
@@ -629,8 +626,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -656,8 +652,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int64 m_nTicks; // 0x0
 };
@@ -670,8 +665,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bStartedSignalSent; // 0x0
 	bool m_bReachedSignalSent; // 0x1
@@ -702,8 +696,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aActors; // 0x0
 	bool m_bRunning; // 0x18
@@ -848,8 +841,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -1000,8 +992,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	ESpeed m_eWantedSpeed; // 0x4
@@ -1030,8 +1021,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float4 m_vPosition; // 0x0
 	float4 m_vVelocity; // 0x10
@@ -1402,8 +1392,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nGroupId; // 0x0
 	uint32 m_nStateId; // 0x4
@@ -1417,8 +1406,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -1432,8 +1420,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
@@ -1455,8 +1442,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_Storage; // 0x0
 	TArray<uint32> m_ContainedItems; // 0x8
@@ -1607,8 +1593,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sName; // 0x0
 };
@@ -1652,8 +1637,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_magazineBulletsByAmmoType; // 0x0
 	uint32 m_nExtraMagazineBullets; // 0x18
@@ -1686,8 +1670,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -1723,8 +1706,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_uri; // 0x0
 };
@@ -1737,8 +1719,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString Name; // 0x0
 	ZResourceID ContractsDatastoreRid; // 0x10
@@ -1755,8 +1736,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
 };
@@ -1781,8 +1761,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_iPoints; // 0x0
 	int32 m_iPlayer; // 0x4
@@ -1800,8 +1779,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nEventID; // 0x0
 	float32 m_fStartFraction; // 0x4
@@ -1817,8 +1795,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sName; // 0x0
 	TArray<ZAMDEvent> m_events; // 0x10
@@ -1832,8 +1809,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
 	ZVariant m_customData; // 0x18
@@ -2041,8 +2017,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fSettleTime; // 0x0
 };
@@ -2182,8 +2157,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ETimerEntityCommandType m_eType; // 0x0
 	uint32 m_rEntity; // 0x4
@@ -2198,8 +2172,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	float32 m_fNextEventTime; // 0x4
@@ -2214,8 +2187,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<STimerEntityCommandSaveData> m_aTimerEntityCommands; // 0x0
 	TArray<STimerEntityStateSaveData> m_aTimerEntityState; // 0x18
@@ -2238,8 +2210,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float4 XAxis; // 0x0
 	float4 YAxis; // 0x10
@@ -2488,8 +2459,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EAIEventType m_eType; // 0x0
 	bool m_bHandled; // 0x4
@@ -2505,8 +2475,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nSharedIndex; // 0x0
 	TArray<SAIEventSaveData> m_aEvents; // 0x8
@@ -2525,8 +2494,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<int32> m_aEntities; // 0x0
 	TArray<bool> m_aHandled; // 0x18
@@ -2597,8 +2565,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SKnownEntitySaveData> m_aKnownEntities; // 0x0
 	TArray<EAIGoal> m_aGoalKeys; // 0x18
@@ -2785,8 +2752,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rDrainPipe; // 0x0
 };
@@ -2828,8 +2794,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString propertyName; // 0x0
 	EExtendedPropertyType propertyType; // 0x10
@@ -2845,8 +2810,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SExtendedCppEntityProperty> properties; // 0x0
 };
@@ -2994,8 +2958,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -3097,8 +3060,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZVariant m_EntitiesData; // 0x0
 	ZVariant m_Data; // 0x10
@@ -3227,8 +3189,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint8 nSlot; // 0x0
 	ESaveType eSaveType; // 0x4
@@ -3276,8 +3237,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_guardPoint; // 0x0
 	bool m_walkOnly; // 0x4
@@ -3373,8 +3333,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 _a; // 0x0
 	uint16 _b; // 0x4
@@ -3397,8 +3356,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGuid id; // 0x0
 	ZString activityId; // 0x10
@@ -3412,8 +3370,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SActivity activity; // 0x0
 	TArray<ZString> exits; // 0x20
@@ -3573,8 +3530,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -3610,8 +3566,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -3634,8 +3589,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString name; // 0x0
 	uint32 flags; // 0x10
@@ -3649,8 +3603,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TypeID typeName; // 0x0
 	uint32 typeFlags; // 0x8
@@ -3683,8 +3636,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fGridDurationSec; // 0x0
 	float32 m_fGridOffsetSec; // 0x4
@@ -3784,8 +3736,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsActive; // 0x0
 };
@@ -3874,8 +3825,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bStrafe; // 0x0
 	bool m_bAimAtTarget; // 0x1
@@ -3914,8 +3864,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	IContractObjective_Type m_eType; // 0x0
 	ZVariant m_SaveData; // 0x8
@@ -3948,8 +3897,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SMatrix m_mTransform; // 0x0
 	TArray<uint16> m_aIndices; // 0x40
@@ -3976,8 +3924,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint16 m_nPieceIndex; // 0x0
 	TArray<uint16> m_aConnections; // 0x8
@@ -3991,8 +3938,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint16 m_nPieceIndex; // 0x0
 	float32 m_fDamage; // 0x4
@@ -4006,8 +3952,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SDestructibleInteractionHandlerData m_interactionData; // 0x0
 	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
@@ -4030,8 +3975,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 index; // 0x0
 	bool selected; // 0x4
@@ -4050,8 +3994,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SIntelDisplayInfo> dummy; // 0x0
 };
@@ -4097,8 +4040,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -4113,8 +4055,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -4130,8 +4071,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bVisible; // 0x0
 	SVector3 m_vPosition; // 0x4
@@ -4219,8 +4159,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_IDHigh; // 0x0
 	uint32 m_IDLow; // 0x4
@@ -4234,8 +4173,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRuntimeResourceID icon; // 0x0
 	ZRuntimeResourceID containedIcon; // 0x8
@@ -4312,8 +4250,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EVRConfigHeadAnchorMode m_eHeadAnchorMode; // 0x0
 	uint32 m_uRecenterRequestCounter; // 0x4
@@ -4356,8 +4293,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -4452,8 +4388,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -4467,8 +4402,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
 };
@@ -4481,8 +4415,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint64 m_id; // 0x0
 	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
@@ -4496,8 +4429,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
 };
@@ -4828,8 +4760,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZVariant m_value; // 0x0
 };
@@ -4842,8 +4773,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sId; // 0x0
 	ZDynamicObject m_State; // 0x10
@@ -4938,8 +4868,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nInterval; // 0x0
 	bool m_bEnabled; // 0x4
@@ -4954,8 +4883,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<STimerEntitySaveData> m_aData; // 0x18
@@ -4969,8 +4897,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	bool m_bRegistered; // 0x1
@@ -4988,8 +4915,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
@@ -5003,8 +4929,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	STimerEntitiesSaveData m_TimersData; // 0x0
 	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
@@ -5118,8 +5043,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsOpen; // 0x4
@@ -5160,8 +5084,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sAliasName; // 0x0
 	int32 entityID; // 0x10
@@ -5221,8 +5144,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rSequence; // 0x4
@@ -5315,8 +5237,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bActive; // 0x0
 	EActionPromptState m_eState; // 0x4
@@ -5428,8 +5349,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_nIndex; // 0x0
 	int32 m_nLoopIndex; // 0x4
@@ -5520,8 +5440,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sFilePath; // 0x0
 };
@@ -5551,8 +5470,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -5585,8 +5503,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fSpeed; // 0x0
 	SVector3 m_vPosition; // 0x4
@@ -5619,8 +5536,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bTrigger; // 0x0
 	bool m_bCollector; // 0x1
@@ -5657,8 +5573,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -5750,8 +5665,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sInstanceId; // 0x0
 	ZString sUnlockableId; // 0x10
@@ -5768,8 +5682,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sContainerInstanceId; // 0x0
 	SInventoryItem m_concealedItem; // 0x10
@@ -5783,8 +5696,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SInventoryItem> m_aPockets; // 0x0
 	SInventoryItem m_CarriedItem; // 0x18
@@ -5819,8 +5731,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -6052,8 +5963,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	bool m_bTriggered; // 0x1
@@ -6101,8 +6011,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
 	float4 m_vStartPosition; // 0x10
@@ -6119,8 +6028,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 index; // 0x0
 	bool active; // 0x4
@@ -6154,8 +6062,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRepositoryID m_AgencyPickupId; // 0x0
 	TArray<ZRepositoryID> m_aItemIds; // 0x10
@@ -6170,8 +6077,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rCurrentAmbience; // 0x0
 	uint32 m_rCurrentGate; // 0x4
@@ -6188,8 +6094,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
 };
@@ -6202,8 +6107,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int64 m_nGameTime; // 0x0
 	int64 m_nGameTimePrev; // 0x8
@@ -6282,8 +6186,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EFSMStateStatus m_eStateStatus; // 0x0
 	int32 m_state; // 0x4
@@ -6347,8 +6250,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float4 m_vLastKnownTargetPosition; // 0x0
 	uint16 m_rReturnNode; // 0x10
@@ -6391,8 +6293,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -6525,8 +6426,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGameTime m_tMove; // 0x0
 };
@@ -6654,8 +6554,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -6679,8 +6578,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
 };
@@ -6693,8 +6591,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fDistanceToTarget; // 0x0
 	float32 m_fDistanceFieldValue; // 0x4
@@ -6980,8 +6877,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZVariant m_Data; // 0x0
 };
@@ -7062,8 +6958,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bList; // 0x0
 	ZString m_sName; // 0x8
@@ -7077,8 +6972,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SBehaviorTreeEntityReference> m_references; // 0x0
 	TArray<SBehaviorTreeInputPinCondition> m_inputPinConditions; // 0x18
@@ -7136,8 +7030,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	bool m_bNPCShotProcessed; // 0x1
@@ -7159,8 +7052,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_HolderSaveableId; // 0x0
 	int32 m_KeywordID; // 0x4
@@ -7624,8 +7516,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nInterval; // 0x0
 	int32 m_nRemaining; // 0x4
@@ -7667,8 +7558,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 XAxis; // 0x0
 	SVector3 YAxis; // 0xC
@@ -7794,8 +7684,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_pCorpseBodybagEntity; // 0x0
 	uint32 m_rCrowdEntity; // 0x4
@@ -7844,8 +7733,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -7943,8 +7831,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<int32> m_aData; // 0x18
@@ -7967,8 +7854,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rLadder; // 0x0
 };
@@ -8003,8 +7889,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActorRef; // 0x0
 	bool m_bNeedsVolumeUpdate; // 0x4
@@ -8027,8 +7912,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bFullVolumeUpdate; // 0x0
 	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
@@ -8042,8 +7926,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -8070,8 +7953,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -8138,8 +8020,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rCurrentStage; // 0x0
 	float32 m_fHandlerAudioPlayPosition; // 0x4
@@ -8168,8 +8049,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SActivity activity; // 0x0
 	TArray<SActivity> opportunities; // 0x20
@@ -8183,8 +8063,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SActivity activity; // 0x0
 	TArray<SActivityObjective> objectives; // 0x20
@@ -8199,8 +8078,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SActivityDefinition> Activities; // 0x0
 };
@@ -8261,8 +8139,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint64 entityID; // 0x0
 	int32 externalSceneIndex; // 0x8
@@ -8278,8 +8155,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 nPropertyID; // 0x0
 	ZVariant value; // 0x8
@@ -8293,8 +8169,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SEntityTemplateProperty propertyValue; // 0x0
 	EVirtualPlatformID platform; // 0x18
@@ -8309,8 +8184,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
@@ -8327,8 +8201,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SEntityTemplateReference propertyOwner; // 0x0
 	SEntityTemplateProperty propertyValue; // 0x20
@@ -8342,8 +8215,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 subType; // 0x0
 	int32 blueprintIndexInResourceHeader; // 0x4
@@ -8390,8 +8262,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 r; // 0x0
 	float32 g; // 0x4
@@ -8406,8 +8277,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	SColorRGB m_DiffuseColor; // 0x4
@@ -8473,8 +8343,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
 };
@@ -8532,8 +8401,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rSequence; // 0x4
@@ -8555,8 +8423,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rTracker; // 0x0
 	bool m_bIsVisible; // 0x4
@@ -8572,8 +8439,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
 };
@@ -8671,8 +8537,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	bool m_bReceiverActivated; // 0x1
@@ -8687,8 +8552,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -8711,8 +8575,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZHM5BodyContainer_EBCState m_eBCState; // 0x0
 	float32 m_fLidAutoCloseTime; // 0x4
@@ -8837,8 +8700,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fAngleYaw; // 0x0
 	float32 m_fAnglePitch; // 0x4
@@ -9090,8 +8952,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vRotation; // 0xC
@@ -9152,8 +9013,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGameTime m_tLastDisturbance; // 0x0
 	ZGameTime m_tLastSearchCalc; // 0x8
@@ -9274,8 +9134,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint8> m_aFlowVectorIndex; // 0x0
 	TArray<uint16> m_aFlowCost; // 0x18
@@ -9388,8 +9247,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bDoneTriggered; // 0x0
 	EScreenPlayState m_eState; // 0x4
@@ -9404,8 +9262,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2SetupSaveData> m_aStates; // 0x18
@@ -9419,8 +9276,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nBehaviorTreeIndex; // 0x0
 	uint64 m_nConditionOffset; // 0x8
@@ -9435,8 +9291,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<ZResourceID> m_BehaviorTrees; // 0x0
 	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
@@ -9472,8 +9327,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString header; // 0x0
 	ZString title; // 0x10
@@ -9490,8 +9344,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString npcName; // 0x0
 	ZString disguiseName; // 0x10
@@ -9511,8 +9364,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<STargetInfoDisplayData> __dummy; // 0x0
 };
@@ -9533,8 +9385,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rClothbundle; // 0x0
 };
@@ -9579,8 +9430,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -9601,8 +9451,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -9621,8 +9470,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nEventId; // 0x0
 	bool m_bPaused; // 0x4
@@ -9835,8 +9683,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rAnimationSetDefinition; // 0x0
 	int32 m_nIndex; // 0x4
@@ -9850,8 +9697,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EAnimSetType m_eAnimSet; // 0x0
 	uint32 m_rCustomAnimationSet; // 0x4
@@ -9883,8 +9729,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
 	EAttachLocation m_eAttachLocation; // 0x4
@@ -9902,8 +9747,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
 };
@@ -9916,8 +9760,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRepositoryID m_sOutfit; // 0x0
 	uint8 m_Memory; // 0x10
@@ -9940,8 +9783,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool bExplosive; // 0x0
 	bool bProjectile; // 0x1
@@ -9979,8 +9821,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sName; // 0x0
 	EGameTension m_eTensionLimit; // 0x10
@@ -10001,8 +9842,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<ZGameTime> m_aOccurences; // 0x0
 };
@@ -10015,8 +9855,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -10030,8 +9869,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_vBodyVelocity; // 0x0
 	TArray<SActorBoneSaveData> m_aBones; // 0x10
@@ -10046,8 +9884,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vQuaternion; // 0xC
@@ -10114,8 +9951,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint64 m_nOwnerID; // 0x0
 	TArray<uint64> m_aEntityPath; // 0x8
@@ -10129,8 +9965,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nVersion; // 0x0
 	TArray<SSavableData> m_aSavableObjectsData; // 0x8
@@ -10200,8 +10035,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rSafeZone; // 0x0
 	uint32 m_nSafeZoneAnimNode; // 0x4
@@ -10297,8 +10131,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -10436,8 +10269,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int16 m_nHeightOffset; // 0x0
 	uint8 m_nOnNavGrid; // 0x2
@@ -10489,8 +10321,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -10541,8 +10372,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_object; // 0x0
 	EDisturbanceType m_type; // 0x4
@@ -10770,8 +10600,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 alpha; // 0x0
 };
@@ -10784,8 +10613,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsEnabled; // 0x0
 	uint32 m_rHero; // 0x4
@@ -10799,8 +10627,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sName; // 0x0
 	bool bIsArray; // 0x10
@@ -10842,8 +10669,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bLightOn; // 0x0
 	bool m_bFlickerOn; // 0x1
@@ -10881,8 +10707,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 r; // 0x0
 	float32 g; // 0x4
@@ -10898,8 +10723,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SColorRGBA m_A; // 0x0
 	SColorRGBA m_B; // 0x10
@@ -10914,8 +10738,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
@@ -10983,8 +10806,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	bool m_bHitmanIsGuard; // 0x18
@@ -11019,8 +10841,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sEntityID; // 0x0
 	ZString sTypeArgName; // 0x10
@@ -11034,8 +10855,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sName; // 0x0
 	ZString sDisplayName; // 0x10
@@ -11073,8 +10893,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	float4 m_vPosition; // 0x10
@@ -11090,8 +10909,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
 };
@@ -11113,8 +10931,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -11135,8 +10952,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	bool m_bIsRayIntersecting; // 0x1
@@ -11172,8 +10988,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint64 m_nFromEntityID; // 0x0
 	uint64 m_nToEntityID; // 0x8
@@ -11207,8 +11022,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	bool m_bDepthOfFieldEnabled; // 0x4
@@ -11298,8 +11112,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rLedgeGuide; // 0x0
 	float32 m_fFaceLeftRightTarget; // 0x4
@@ -11357,8 +11170,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<ESituationType> m_aSituationTypes; // 0x0
 };
@@ -11371,8 +11183,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint16 m_nColumn; // 0x0
 	uint16 m_nRow; // 0x2
@@ -11431,8 +11242,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sClassTypeName; // 0x0
 	EAISharedEventType m_eType; // 0x10
@@ -11474,8 +11284,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -11488,8 +11297,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -11508,8 +11316,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -11552,8 +11359,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rGuard; // 0x4
@@ -11578,8 +11384,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
 	int32 m_nBodyIndex; // 0x18
@@ -11613,8 +11418,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_pLeader; // 0x0
 	uint32 m_pAssistant; // 0x4
@@ -11641,8 +11445,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRepositoryID m_repositoryId; // 0x0
 	uint64 m_nEntityID; // 0x10
@@ -11658,8 +11461,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SItemInstanceSaveData> m_aItemInstanceSaveData; // 0x0
 };
@@ -11819,8 +11621,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	int32 m_target; // 0x18
@@ -11841,8 +11642,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_Actor; // 0x0
 	float32 m_fOpacity; // 0x4
@@ -11937,8 +11737,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -11970,8 +11769,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rHero; // 0x0
 	bool m_bPaused; // 0x4
@@ -12000,8 +11798,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bColliding; // 0x0
 	bool m_bInternalEnabled; // 0x1
@@ -12015,8 +11812,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVolumeTriggerListenerSaveData> m_aData; // 0x18
@@ -12240,8 +12036,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bLookAt; // 0x0
 	bool m_bAimAt; // 0x1
@@ -12297,8 +12092,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fPenaltyMultiplier; // 0x0
 	float32 m_fPenaltyDuration; // 0x4
@@ -12315,8 +12109,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
@@ -12346,8 +12139,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fInitialValue; // 0x0
 	uint32 m_nFieldSize; // 0x4
@@ -12364,8 +12156,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sHeadline; // 0x0
 	ZString m_sBodyHeadline; // 0x10
@@ -12449,8 +12240,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_fA; // 0x0
 	SVector3 m_fB; // 0xC
@@ -12465,8 +12255,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
@@ -12500,8 +12289,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SVector2> pathPoints; // 0x0
 };
@@ -12514,8 +12302,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bSituationRunning; // 0x0
 	bool m_bIsTerminated; // 0x1
@@ -12546,8 +12333,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -12583,8 +12369,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_nPriorityModifier; // 0x0
 	int32 m_nCurrentDrama; // 0x4
@@ -12603,8 +12388,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2SituationSaveData> m_aStates; // 0x18
@@ -12618,8 +12402,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_fA; // 0x0
 	SVector3 m_fB; // 0xC
@@ -12653,8 +12436,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_pActor; // 0x0
 };
@@ -13351,8 +13133,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bCollideHitman; // 0x0
 	bool m_bCollideCamera; // 0x1
@@ -13366,8 +13147,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
@@ -13429,8 +13209,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_A; // 0x0
 	SVector3 m_B; // 0xC
@@ -13477,8 +13256,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
@@ -13501,8 +13279,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -13523,8 +13300,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZVariant m_Value; // 0x0
 };
@@ -13556,8 +13332,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sFontId; // 0x0
 	ZString sFontName; // 0x10
@@ -13573,8 +13348,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sFontLocaleID; // 0x0
 	TArray<SFontDefinition> m_aFontDefinitions; // 0x10
@@ -13619,8 +13393,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	uint32 m_nBoneId; // 0x4
@@ -13636,8 +13409,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -13649,8 +13421,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGameTime m_tGreetingCooldown; // 0x0
 	ZGameTime m_tLoiteringCooldown; // 0x8
@@ -13771,8 +13542,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_vip; // 0x0
 	SFSMSaveData m_fsmState; // 0x8
@@ -13833,8 +13603,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sClassTypeName; // 0x0
 	uint32 m_nSituation; // 0x10
@@ -13851,8 +13620,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector2 m_A; // 0x0
 	SVector2 m_B; // 0x8
@@ -13867,8 +13635,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector2> m_aData; // 0x18
@@ -13903,8 +13670,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -13941,8 +13707,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString stringField; // 0x0
 	uint32 intField; // 0x10
@@ -13958,8 +13723,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<STestStruct> arrayField; // 0x0
 	ZVariant variantField; // 0x18
@@ -14015,8 +13779,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_vFacingDirection; // 0x0
 };
@@ -14051,8 +13814,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZVariant icon; // 0x0
 	ZVariant containedIcon; // 0x10
@@ -14110,8 +13872,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -14264,8 +14025,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SIntelData> dummy; // 0x0
 };
@@ -14396,8 +14156,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_vFaceTarget; // 0x0
 	SVector3 m_vLookAtTarget; // 0xC
@@ -14420,8 +14179,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 nFourCC; // 0x0
 	uint32 nVersion; // 0x4
@@ -14461,8 +14219,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bSignaling; // 0x0
 	float32 m_fFiredAtTime; // 0x4
@@ -14484,8 +14241,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	TArray<uint8> m_aDynamicParametersData; // 0x8
@@ -14524,8 +14280,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nNumPacify; // 0x0
 	uint32 m_nNumShotsFired; // 0x4
@@ -14556,8 +14311,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rTarget; // 0x0
 	uint32 m_rReporter; // 0x4
@@ -14586,8 +14340,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 fAngle; // 0x0
 	float32 fAttention; // 0x4
@@ -14672,8 +14425,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bValue; // 0x0
 	bool m_bWaitingValue; // 0x1
@@ -14688,8 +14440,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -14730,8 +14481,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2ActorSaveState> m_aStates; // 0x18
@@ -14745,8 +14495,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaActorSaveState> m_aStates; // 0x18
@@ -14760,8 +14509,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaSituationSaveData> m_aStates; // 0x18
@@ -14775,8 +14523,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bDoneTriggered; // 0x0
 	ZScreenplay_EState m_eState; // 0x4
@@ -14791,8 +14538,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaSetupSaveData> m_aStates; // 0x18
@@ -14806,8 +14552,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SDramaActorCollectionSaveData m_DramaActorData; // 0x0
 	SDramaSituationCollectionSaveData m_DramaSituationData; // 0x30
@@ -14825,8 +14570,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SInventoryUISlotSlim> mainslotsSlim; // 0x0
 	int32 otherslotsCount; // 0x18
@@ -14877,8 +14621,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rAttachmentTarget; // 0x0
 	bool m_bIsAttached; // 0x4
@@ -14892,8 +14635,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorBoneAttachSaveData> m_aData; // 0x18
@@ -14922,8 +14664,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fProgress; // 0x0
 	int32 m_nState; // 0x4
@@ -14937,8 +14678,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 m_vPrimitiveScale; // 0x0
 };
@@ -14960,8 +14700,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	BoneId_Enum m_eBoneId; // 0x0
 	float32 m_fWeight; // 0x4
@@ -15010,8 +14749,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -15023,8 +14761,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<int32> entities; // 0x0
 };
@@ -15037,8 +14774,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
@@ -15111,8 +14847,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<bool> m_aData; // 0x18
@@ -15126,8 +14861,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -15171,8 +14905,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -15212,8 +14945,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sComponentName; // 0x0
 	TArray<ZVariant> m_aArgs; // 0x10
@@ -15465,8 +15197,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_arItems; // 0x0
 	uint32 m_pSuitcase; // 0x18
@@ -15492,8 +15223,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 type; // 0x0
 	uint32 button; // 0x4
@@ -15532,8 +15262,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SActorSpreadTransitionOperatorMaterialActorSaveData> m_aActorMaterialOverrides; // 0x0
 };
@@ -15603,8 +15332,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rSentryZone; // 0x0
 };
@@ -15617,8 +15345,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 m_A; // 0x0
 	SVector4 m_B; // 0x10
@@ -15633,8 +15360,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
@@ -15703,8 +15429,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rBystanderPoint; // 0x0
 	float4 m_vCover; // 0x10
@@ -15719,8 +15444,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -15733,8 +15457,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRepositoryID m_WeaponRepositoryID; // 0x0
 	eItemType m_eItemWeapon; // 0x10
@@ -15750,8 +15473,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 x; // 0x0
 	uint32 y; // 0x4
@@ -15767,8 +15489,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SShotListenerSaveData> m_aData; // 0x18
@@ -15782,8 +15503,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -15797,8 +15517,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rCastActor; // 0x0
 };
@@ -15811,8 +15530,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SBodyContainerSaveData> m_aData; // 0x18
@@ -15826,8 +15544,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -15839,8 +15556,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRuntimeResourceID icon; // 0x0
 	int32 nItemHUDType; // 0x8
@@ -15857,8 +15573,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGuid m_Id; // 0x0
 	ZString m_sText; // 0x10
@@ -15903,8 +15618,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sName; // 0x0
 	int64 m_nTimeStamp; // 0x10
@@ -15921,8 +15635,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector3> m_aData; // 0x18
@@ -15936,8 +15649,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<float32> m_aData; // 0x18
@@ -15951,8 +15663,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_pCurrentInstance; // 0x0
 };
@@ -15965,8 +15676,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -15978,8 +15688,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_members; // 0x0
 };
@@ -15992,8 +15701,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -16005,8 +15713,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bDangerous; // 0x0
 };
@@ -16019,8 +15726,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fDiffusePower; // 0x0
 	bool m_bSwitchState; // 0x4
@@ -16034,8 +15740,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SLampCoreSaveState> m_aData; // 0x18
@@ -16049,8 +15754,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint16 m_nEscalation; // 0x0
 	bool m_bIsFunctional; // 0x2
@@ -16067,8 +15771,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	float32 m_fXAxisSpeed; // 0x4
@@ -16084,8 +15787,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -16097,8 +15799,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fSeekPosition; // 0x0
 };
@@ -16111,8 +15812,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -16124,8 +15824,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float4 m_vPos; // 0x0
 	uint32 m_coverPlane; // 0x10
@@ -16140,8 +15839,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsValid; // 0x0
 	uint32 m_hint; // 0x4
@@ -16156,8 +15854,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SHintEntrySaveData m_activeHint; // 0x0
 	TArray<SHintEntrySaveData> m_aQueue; // 0x10
@@ -16172,8 +15869,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 blueprintIndexInResourceHeader; // 0x0
 	TArray<SEntityTemplateProperty> propertyValues; // 0x8
@@ -16187,8 +15883,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fWireLength; // 0x0
 	bool m_bAttachToAnchorTransform; // 0x4
@@ -16204,8 +15899,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsActivated; // 0x4
@@ -16223,8 +15917,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsAttached; // 0x4
@@ -16238,8 +15931,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SLightSaveData> m_aLightData; // 0x0
 	TArray<SRenderMaterialSaveData> m_aMaterialData; // 0x18
@@ -16257,8 +15949,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -16270,8 +15961,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	float32 m_fTimer; // 0x4
@@ -16285,8 +15975,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsSneaking; // 0x0
 };
@@ -16299,8 +15988,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EAISharedEventType m_nType; // 0x0
 	ZGameTime m_nStart; // 0x8
@@ -16315,8 +16003,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEntity; // 0x0
 	ZRepositoryID m_OutfitId; // 0x8
@@ -16332,8 +16019,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	ESituationJoinReason m_eJoinReason; // 0x4
@@ -16352,8 +16038,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rSituation; // 0x0
 	ESituationType m_eType; // 0x4
@@ -16374,8 +16059,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	int32 m_target; // 0x18
@@ -16392,8 +16076,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rCoverPlane; // 0x0
 	uint32 m_nCoverAnimNodeID; // 0x4
@@ -16410,8 +16093,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sStr; // 0x0
 };
@@ -16424,8 +16106,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fInitialValue; // 0x4
 	TArray<float32> m_field; // 0x8
@@ -16439,8 +16120,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 	EGait m_eGait; // 0x4
@@ -16456,8 +16136,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
@@ -16471,8 +16150,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 fDistance; // 0x0
 	float32 fValue; // 0x4
@@ -16486,8 +16164,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rDraggedActor; // 0x0
 	uint32 m_nGrabBoneID; // 0x4
@@ -16501,8 +16178,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_A; // 0x0
 	float32 m_B; // 0x4
@@ -16517,8 +16193,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint16> m_rGuardNodes; // 0x0
 	uint16 m_rInitialNode; // 0x18
@@ -16533,8 +16208,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFootIKEventData_EFoot m_Foot; // 0x0
 };
@@ -16547,8 +16221,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 };
@@ -16561,8 +16234,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ECCDecalEffect m_eDecalEffect; // 0x0
 	ECCEmitterEffect m_eEmitterEffect; // 0x4
@@ -16576,8 +16248,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rHero; // 0x0
 	uint32 m_rCurrentSpeakEntity; // 0x4
@@ -16592,8 +16263,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -16607,8 +16277,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bPerceptibleEnabled; // 0x0
 };
@@ -16621,8 +16290,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vQuaternion; // 0xC
@@ -16640,8 +16308,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fHeadDamageMultiplier; // 0x0
 	float32 m_fFaceDamageMultiplier; // 0x4
@@ -16666,8 +16333,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SColorRGB> m_aData; // 0x18
@@ -16681,8 +16347,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nIndex; // 0x0
 	bool m_bEnabled; // 0x4
@@ -16696,8 +16361,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SStateControllerSaveDataStruct> m_aData; // 0x18
@@ -16711,8 +16375,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SValueBoolsSaveData m_ValueBool; // 0x0
 	SValueFloatSaveData m_ValueFloat; // 0x30
@@ -16729,8 +16392,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
 };
@@ -16743,8 +16405,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -16756,8 +16417,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 m_vLinkedPosition; // 0x0
 	SVector4 m_vLinkedQuaternionRotation; // 0xC
@@ -16775,8 +16435,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nGroupId; // 0x0
 	uint32 m_nStateId; // 0x4
@@ -16790,8 +16449,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 fromID; // 0x0
 	int32 toID; // 0x4
@@ -16808,8 +16466,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rVIP; // 0x18
@@ -16836,8 +16493,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -16849,8 +16505,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 fCloseupDistance; // 0x0
 	float32 fScale; // 0x4
@@ -16868,8 +16523,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 fNearDistance; // 0x0
 	float32 fFarDistance; // 0x4
@@ -16898,8 +16552,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
@@ -16914,8 +16567,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString label; // 0x0
 	ZString containedLabel; // 0x10
@@ -16957,8 +16609,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsVisible; // 0x0
 };
@@ -16971,8 +16622,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsInLockdown; // 0x0
 	bool m_bIsFalseAlarm; // 0x1
@@ -16990,8 +16640,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float4 vMin; // 0x0
 	float4 vMax; // 0x10
@@ -17008,8 +16657,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGameTime m_tExpiresAt; // 0x0
 	int32 m_nKnowledgeIndex; // 0x8
@@ -17023,8 +16671,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SCuriousEventSaveData> m_aCuriousEvents; // 0x0
 };
@@ -17037,8 +16684,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
@@ -17052,8 +16698,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZCautiousBackupGroup_EGroupState m_eGroupState; // 0x0
 	uint32 m_pLeader; // 0x4
@@ -17072,8 +16717,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sName; // 0x0
 	ZString sDisplayName; // 0x10
@@ -17091,8 +16735,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bBystanderFieldsFailed; // 0x0
 	bool m_bLastGetHelpGroupFailed; // 0x1
@@ -17109,8 +16752,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_sharedTarget; // 0x0
 	float4 m_position; // 0x10
@@ -17125,8 +16767,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<STargetTrackingSaveData> m_aTrackedTargets; // 0x0
 };
@@ -17139,8 +16780,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sAct; // 0x0
 	float32 m_fDuration; // 0x10
@@ -17159,8 +16799,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bVisible; // 0x0
 };
@@ -17173,8 +16812,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 normal; // 0x0
 	SVector3 diffuse; // 0xC
@@ -17194,8 +16832,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_Actors; // 0x0
 };
@@ -17208,8 +16845,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nSituation; // 0x0
 	bool m_bConversationHelperPaused; // 0x4
@@ -17235,8 +16871,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rVictim; // 0x18
@@ -17255,8 +16890,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsSparse; // 0x0
 	uint32 m_nFieldSize; // 0x4
@@ -17274,8 +16908,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
 };
@@ -17288,8 +16921,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
@@ -17303,8 +16935,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bInclusive; // 0x0
 };
@@ -17317,8 +16948,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -17330,8 +16960,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString Id; // 0x0
 	ZRuntimeResourceID BlobRid; // 0x10
@@ -17345,8 +16974,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bSearchingForMorgue; // 0x0
 	bool m_IsExitingSuccessfulBehavior; // 0x1
@@ -17362,8 +16990,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -17375,8 +17002,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fA; // 0x0
 	float32 m_fB; // 0x4
@@ -17391,8 +17017,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector4 mTrajectoryQuaterion; // 0x0
 	SVector4 mTrajectoryTranslation; // 0x10
@@ -17407,8 +17032,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorKeywordProxySaveData> m_aData; // 0x18
@@ -17422,8 +17046,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_target; // 0x0
 	TArray<uint32> m_aWaitingObservers; // 0x8
@@ -17438,8 +17061,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint64 m_nValue; // 0x0
 };
@@ -17452,8 +17074,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EGait m_gait; // 0x0
 	ESpeed m_speed; // 0x4
@@ -17467,8 +17088,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bOverrideExistingAct; // 0x0
 	uint32 m_nForcedAnimationNode; // 0x4
@@ -17486,8 +17106,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SVector3 XAxis; // 0x0
 	SVector3 YAxis; // 0xC
@@ -17503,8 +17122,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 shortId; // 0x0
 	uint32 size; // 0x4
@@ -17519,8 +17137,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -17532,8 +17149,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -17545,8 +17161,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_pGuardDutyPoint; // 0x0
 	int32 m_nPatrolWaypointIndex; // 0x4
@@ -17561,8 +17176,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sName; // 0x0
 	ZDynamicObject data; // 0x10
@@ -17576,8 +17190,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EDisturbanceType m_eHelpReason; // 0x0
 	uint16 m_nGridNodeIndex; // 0x4
@@ -17592,8 +17205,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SEntityTemplateReference fromEntity; // 0x0
 	SEntityTemplateReference toEntity; // 0x20
@@ -17610,8 +17222,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 subType; // 0x0
 	int32 rootEntityIndex; // 0x4
@@ -17633,8 +17244,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsStartCondValid; // 0x0
 	bool m_bIsEnableCondValid; // 0x1
@@ -17648,8 +17258,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -17668,8 +17277,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsEnabled; // 0x0
 	bool m_bIsRunning; // 0x1
@@ -17686,8 +17294,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bPlaying; // 0x0
 	bool m_bPaused; // 0x1
@@ -17710,8 +17317,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nInterval; // 0x0
 	int32 m_nRemaining; // 0x4
@@ -17727,8 +17333,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
@@ -17743,8 +17348,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint64> m_aScopePath; // 0x0
 	ZRuntimePinConDesc m_PinConDesc; // 0x18
@@ -17758,8 +17362,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rTrackEntity; // 0x0
 	ZVariant m_CustomTrackData; // 0x8
@@ -17773,8 +17376,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bHasBeenStarted; // 0x0
 	bool m_bWasAimAssistActivated; // 0x1
@@ -17788,8 +17390,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sName; // 0x0
 	TArray<ZResourceID> types; // 0x10
@@ -17804,8 +17405,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SDramaActorCollectionSaveData m_DramaActorData; // 0x0
 	SDramaSituationCollectionSaveData m_DramaSituationData; // 0x30
@@ -17820,8 +17420,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_target; // 0x0
 	TArray<uint32> m_aWaitingObservers; // 0x8
@@ -17836,8 +17435,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGameTime m_tExpiry; // 0x0
 	ZGameTime m_tExpiryHeroOutside; // 0x8
@@ -17852,8 +17450,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SCrowdBodySaveData> m_aDeadBodies; // 0x0
 	TArray<uint32> m_aPerceptiblePool; // 0x18
@@ -17868,8 +17465,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -17888,8 +17484,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	ZGameTime m_tLastSeriousSituation; // 0x18
@@ -17908,8 +17503,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nParamId; // 0x0
 	float32 m_fValue; // 0x4
@@ -17923,8 +17517,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<ZString> AudioLanguages; // 0x0
 	TArray<ZRuntimeResourceID> VideoRidsPerAudioLanguage; // 0x18
@@ -17940,8 +17533,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rCombatZone; // 0x0
 	int32 m_rSharedKnowledge; // 0x4
@@ -17955,8 +17547,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nDoorState; // 0x0
 	float32 m_fAnimPercent; // 0x4
@@ -17972,8 +17563,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	float32 m_fTimeWaiting; // 0x18
@@ -17991,8 +17581,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18004,8 +17593,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint16 nNeighbor0; // 0x0
 	uint16 nNeighbor1; // 0x2
@@ -18028,8 +17616,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVariantStruct> m_aEntityData; // 0x18
@@ -18043,8 +17630,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_pLeader; // 0x0
 	uint32 m_pAssistant; // 0x4
@@ -18059,8 +17645,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	ZGameTime m_tAnnounceHuntCoolDown; // 0x18
@@ -18083,8 +17668,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_HelpTargetKnowledgeIndex; // 0x0
 	uint32 m_rActor; // 0x4
@@ -18098,8 +17682,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bWasSpawned; // 0x0
 	float4 m_vPosition; // 0x10
@@ -18122,8 +17705,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_ReactionEntity; // 0x0
 	uint32 m_CrowdEntity; // 0x4
@@ -18143,8 +17725,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_float32> m_aData; // 0x18
@@ -18158,8 +17739,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItemEntity; // 0x0
 	uint32 m_nAmmo; // 0x4
@@ -18173,8 +17753,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDoorSaveData> m_aData; // 0x18
@@ -18188,8 +17767,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bIsInside; // 0x0
 	bool m_nHasEntered; // 0x1
@@ -18207,8 +17785,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 m_nRouteID; // 0x0
 };
@@ -18221,8 +17798,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18234,8 +17810,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bSeen; // 0x0
 	bool m_bTagged; // 0x1
@@ -18250,8 +17825,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bContractsCreationMode; // 0x0
 	int32 m_nTagCount; // 0x4
@@ -18268,8 +17842,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_CanGuardsInvestigate; // 0x0
 	bool m_CanCiviliansInvestigate; // 0x1
@@ -18284,8 +17857,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18297,8 +17869,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	BoneId_Enum m_eBone; // 0x0
 	float32 m_fBoneRadiusOverride; // 0x4
@@ -18312,8 +17883,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 };
@@ -18326,8 +17896,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntityRefs; // 0x0
 	TArray<SPhysicsSaveData> m_aEntityDatas; // 0x18
@@ -18341,8 +17910,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18354,8 +17922,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18367,8 +17934,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_float32> m_aData; // 0x18
@@ -18382,8 +17948,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18395,8 +17960,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EActorAnimationOrder m_eOrderType; // 0x0
 	ZVariant m_OrderData; // 0x8
@@ -18410,8 +17974,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SKeywordSaveData> m_aKeywordsData; // 0x0
 	TArray<ZString> m_aKeywordStringData; // 0x18
@@ -18425,8 +17988,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	int32 nColumnIndex; // 0x0
 	int32 nRowIndex; // 0x4
@@ -18442,8 +18004,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nIndex; // 0x0
 	CrowdRegionType m_eType; // 0x4
@@ -18465,8 +18026,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<float4> m_aExitPoints; // 0x0
 };
@@ -18479,8 +18039,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItemSaveData> m_aData; // 0x18
@@ -18494,8 +18053,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18507,8 +18065,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_iStoredInventorySlotIndex; // 0x0
 	uint8 m_iStoreReason; // 0x4
@@ -18523,8 +18080,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
 	EInventoryStorageType m_eStorageType; // 0x18
@@ -18538,8 +18094,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
 	uint32 m_nEquippedItemIndex; // 0x18
@@ -18571,8 +18126,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -18585,8 +18139,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SLockdownManagerAIZoneSaveData> m_aAIZones; // 0x0
 };
@@ -18599,8 +18152,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rEmitter; // 0x0
 	uint32 m_nNumberOfEvents; // 0x4
@@ -18616,8 +18168,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SAudioEmitterSaveData> m_aEmitters; // 0x0
 	TArray<SAudioEmitterEventSaveData> m_aEmitterEvents; // 0x18
@@ -18636,8 +18187,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18649,8 +18199,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
@@ -18664,8 +18213,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rTarget; // 0x0
 	uint32 m_rAlarm; // 0x4
@@ -18682,8 +18230,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_CandidateActor; // 0x0
 	ZGameTime m_CandidateTime; // 0x8
@@ -18698,8 +18245,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aSpreadingActors; // 0x0
 	TArray<uint32> m_aDeadSpreadingActors; // 0x18
@@ -18723,8 +18269,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bPrecisePositioning; // 0x0
 	bool m_bPreciseOrientation; // 0x1
@@ -18744,8 +18289,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rCurrentSpeakEntity; // 0x0
 	bool m_bPaused; // 0x4
@@ -18759,8 +18303,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bInSequence; // 0x0
 	bool m_bAllowBaseMovements; // 0x1
@@ -18826,8 +18369,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18839,8 +18381,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SHelpingActorSaveData> m_aHelpingActors; // 0x0
 };
@@ -18853,8 +18394,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint64 m_nResourceId; // 0x0
 	TArray<uint64> m_aEntityIDs; // 0x8
@@ -18869,8 +18409,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool hidden; // 0x0
 	bool locked; // 0x1
@@ -18888,8 +18427,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sName; // 0x0
 	ZString sDisplayName; // 0x10
@@ -18906,8 +18444,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ICloset_EClosetType m_eCurrentClosetType; // 0x0
 	uint32 m_rCloset; // 0x4
@@ -18921,8 +18458,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sSceneResource; // 0x0
 	TArray<ZString> m_aAdditionalBrickResources; // 0x10
@@ -18936,8 +18472,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -18949,8 +18484,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fTime; // 0x0
 	float32 m_fFrequency; // 0x4
@@ -18968,8 +18502,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aGenerators; // 0x0
 	TArray<SWaveformGeneratorSaveData> m_aGeneratorData; // 0x18
@@ -18983,8 +18516,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SColorRGB m_A; // 0x0
 	SColorRGB m_B; // 0xC
@@ -18999,8 +18531,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SColorRGB> m_aData; // 0x18
@@ -19014,8 +18545,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString VideoId; // 0x0
 	ZRuntimeResourceID RuntimeLocalizedVideoRid; // 0x10
@@ -19029,8 +18559,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SVideoDatabaseEntry> Videos; // 0x0
 };
@@ -19043,8 +18572,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rDangerousArea; // 0x18
@@ -19061,8 +18589,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_StoredActor; // 0x0
 };
@@ -19075,8 +18602,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m11; // 0x0
 	float32 m12; // 0x4
@@ -19104,8 +18630,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 };
@@ -19118,8 +18643,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 };
@@ -19132,8 +18656,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ECompiledConditionType eConditionType; // 0x0
 	uint32 nConditionModifiers; // 0x4
@@ -19148,8 +18671,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SRunningCrowdAIEventSaveData> m_RunningEvents; // 0x0
 };
@@ -19162,8 +18684,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
 };
@@ -19176,8 +18697,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -19196,8 +18716,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -19228,8 +18747,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SAttentionHUDUIElement> dummy; // 0x0
 };
@@ -19242,8 +18760,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<bool> m_aAllowedProfessionsDisabled; // 0x0
 };
@@ -19256,8 +18773,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -19269,8 +18785,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -19282,8 +18797,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rTrackEntity; // 0x0
 	float32 m_fTrackPosition; // 0x4
@@ -19300,8 +18814,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 };
@@ -19314,8 +18827,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -19334,8 +18846,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -19362,8 +18873,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -19376,8 +18886,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_iValue; // 0x0
 	bool m_bValid; // 0x4
@@ -19391,8 +18900,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EConversationRole m_role; // 0x0
 	EActorSoundDefs m_sound; // 0x4
@@ -19406,8 +18914,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
@@ -19422,8 +18929,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString Id; // 0x0
 	ZRuntimeResourceID ContractRid; // 0x10
@@ -19437,8 +18943,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bItemUpdateTransformChange; // 0x0
 };
@@ -19451,8 +18956,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -19464,8 +18968,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRuntimeResourceID icon; // 0x0
 	int32 nItemHUDType; // 0x8
@@ -19482,8 +18985,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SVector3> m_aBoneScales; // 0x0
 };
@@ -19496,8 +18998,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -19516,8 +19017,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint64 m_nEntityID; // 0x0
 	ZString m_sExposedEntity; // 0x8
@@ -19531,8 +19031,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_eTest; // 0x0
 	ZString m_sOther; // 0x8
@@ -19546,8 +19045,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 	bool m_bAttached; // 0x4
@@ -19561,8 +19059,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_CombatProgress; // 0x0
 	TArray<uint32> m_DeadVIPsOrContractTargets; // 0x8
@@ -19577,8 +19074,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint16 m_searchNode; // 0x0
 	uint16 m_assistantApproachNode; // 0x2
@@ -19596,8 +19092,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorStandInSaveData> m_aData; // 0x18
@@ -19611,8 +19106,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint8> m_aBytes; // 0x0
 	uint32 m_nSize; // 0x18
@@ -19626,8 +19120,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SGWaypoint> m_WaypointList; // 0x0
 	ZBitArray m_LowVisibilityBits; // 0x18
@@ -19646,8 +19139,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString sKey; // 0x0
 	ZDynamicObject value; // 0x10
@@ -19661,8 +19153,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rActor; // 0x0
 };
@@ -19675,8 +19166,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorProxySaveData> m_aData; // 0x18
@@ -19690,8 +19180,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItemKeywordProxySaveData> m_aData; // 0x18
@@ -19705,8 +19194,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItsATrapSaveData> m_aData; // 0x18
@@ -19720,8 +19208,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SDoorsSaveData m_DoorData; // 0x0
 	SItemsSaveData m_ItemsData; // 0x30
@@ -19757,8 +19244,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SPersistentEntitySaveData> m_aEntityDatas; // 0x0
 	TArray<uint64> m_mDynamicObjectIDGenerationKeys; // 0x18
@@ -19773,8 +19259,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_chance; // 0x0
 	TArray<SConversationEntry> m_entries; // 0x8
@@ -19788,8 +19273,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZRepositoryID m_OutfitID; // 0x0
 	int32 m_nOutfitCharset; // 0x10
@@ -19813,8 +19297,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fSeekPosition; // 0x0
 	uint32 m_nRandomSelectionSeed; // 0x4
@@ -19829,8 +19312,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -19842,8 +19324,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -19872,8 +19353,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -19885,8 +19365,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -19915,8 +19394,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SIntelListDisplayInfo> dummy; // 0x0
 };
@@ -19929,8 +19407,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rTarget; // 0x0
 	uint32 m_pLeader; // 0x4
@@ -19950,8 +19427,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZHUDUIRoot_EHUDVisibility m_eCurrentRequest; // 0x0
 };
@@ -19964,8 +19440,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -19977,8 +19452,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGameTime m_tGroupStarted; // 0x0
 	int32 m_target; // 0x8
@@ -20014,8 +19488,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -20027,8 +19500,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SActionRadialArcDisplayInfo> dummy; // 0x0
 };
@@ -20041,8 +19513,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	EInventoryConfigItemHandling m_eItemHandlingRightHand; // 0x0
 	EInventoryConfigItemHandling m_eItemHandlingLeftHand; // 0x4
@@ -20064,8 +19535,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -20077,8 +19547,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -20090,8 +19559,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZEntityID m_EntityID; // 0x0
 	ZString m_sExposedEntity; // 0x10
@@ -20105,8 +19573,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SInventoryUISlot> mainslots; // 0x0
 	TArray<SInventoryUISlot> otherslots; // 0x18
@@ -20120,8 +19587,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZGameTime m_fScoreGameTimeStart; // 0x0
 	bool m_bWasIntroCutFired; // 0x8
@@ -20135,8 +19601,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bPiPEnabled; // 0x0
 };
@@ -20149,8 +19614,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZER64 m_er64; // 0x0
 	TArray<uint64> m_aScopePath; // 0x18
@@ -20164,8 +19628,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -20177,8 +19640,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bHasRecordings; // 0x0
 	bool m_bIsFunctional; // 0x1
@@ -20192,8 +19654,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	SMatrix m_vOriginalEntityTransform; // 0x0
 	SMatrix m_vTargetStartTransform; // 0x40
@@ -20207,8 +19668,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
 };
@@ -20221,8 +19681,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 };
 
@@ -20234,8 +19693,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	float32 m_fRightHandWeight; // 0x0
 	float32 m_fLeftHandWeight; // 0x4
@@ -20251,8 +19709,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SCrowdActorSaveData> m_CrowdActorData; // 0x0
 	TArray<SRegionSaveData> m_RegionData; // 0x18

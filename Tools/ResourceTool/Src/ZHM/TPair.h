@@ -109,15 +109,17 @@ public:
 		}	
 	}
 
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 	{
 		typedef TPair<T, Z> ThisPair;
+
+		auto* s_Object = reinterpret_cast<ThisPair*>(p_Object);
 		
 		if constexpr (!std::is_fundamental_v<T>)
-			first.Serialize(p_Serializer, p_OwnOffset + offsetof(ThisPair, first));
+			T::Serialize(&s_Object->first, p_Serializer, p_OwnOffset + offsetof(ThisPair, first));
 		
 		if constexpr (!std::is_fundamental_v<Z>)
-			second.Serialize(p_Serializer, p_OwnOffset + offsetof(ThisPair, second));
+			Z::Serialize(&s_Object->second, p_Serializer, p_OwnOffset + offsetof(ThisPair, second));
 	}
 	
 public:

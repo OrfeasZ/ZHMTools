@@ -13,8 +13,7 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 	
 public:
 	// This member (m_pTypeID) is normally an STypeID pointer, but we use our custom

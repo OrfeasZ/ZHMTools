@@ -16,23 +16,10 @@ extern std::string JsonStr(const ZString& p_String);
 class ZString
 {
 public:
-	static void WriteJson(void* p_Object, std::ostream& p_Stream)
-	{
-		auto* s_Object = static_cast<ZString*>(p_Object);
-		p_Stream << JsonStr(*s_Object);
-	}
-
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-	{
-		auto* s_Object = static_cast<ZString*>(p_Object);
-		p_Stream << JsonStr(*s_Object);
-	}
-
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-	{
-		ZString s_String = std::string_view(p_Document);
-		*reinterpret_cast<ZString*>(p_Target) = s_String;
-	}
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 	
 	inline ZString() :
 		m_nLength(0x80000000),
@@ -104,8 +91,6 @@ public:
 	{
 		return (m_nLength & 0xC0000000) == 0;
 	}
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 private:
 	void allocate(const char* str, size_t size)

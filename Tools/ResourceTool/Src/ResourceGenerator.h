@@ -53,7 +53,7 @@ public:
 		ZHMSerializer s_Serializer(alignof(T));
 		auto s_BaseOffset = s_Serializer.WriteMemory(&s_Resource, sizeof(T));
 
-		s_Resource.Serialize(s_Serializer, s_BaseOffset);
+		T::Serialize(&s_Resource, s_Serializer, s_BaseOffset);
 
 		// Get serialized data and segments.
 		auto s_SerializedData = s_Serializer.GetBuffer();

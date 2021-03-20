@@ -2,7 +2,7 @@
 
 #include "Util/Base64.h"
 
-ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", sizeof(SAudioSwitchBlueprintData), alignof(SAudioSwitchBlueprintData), WriteJson, WriteSimpleJson, FromSimpleJson);
+ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", sizeof(SAudioSwitchBlueprintData), alignof(SAudioSwitchBlueprintData), WriteJson, WriteSimpleJson, FromSimpleJson, Serialize);
 
 void SAudioSwitchBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -68,13 +68,15 @@ void SAudioSwitchBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SAudioSwitchBlueprintData*>(p_Target) = s_Object;
 }
 
-void SAudioSwitchBlueprintData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioSwitchBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sGroupName.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSwitchBlueprintData, m_sGroupName));
-	m_aSwitches.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSwitchBlueprintData, m_aSwitches));
+	auto* s_Object = static_cast<SAudioSwitchBlueprintData*>(p_Object);
+
+	ZString::Serialize(&s_Object->m_sGroupName, p_Serializer, p_OwnOffset + offsetof(SAudioSwitchBlueprintData, m_sGroupName));
+	TArray<ZString>::Serialize(&s_Object->m_aSwitches, p_Serializer, p_OwnOffset + offsetof(SAudioSwitchBlueprintData, m_aSwitches));
 }
 
-ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", sizeof(SScaleformGFxResource), alignof(SScaleformGFxResource), WriteJson, WriteSimpleJson, FromSimpleJson);
+ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", sizeof(SScaleformGFxResource), alignof(SScaleformGFxResource), WriteJson, WriteSimpleJson, FromSimpleJson, Serialize);
 
 void SScaleformGFxResource::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -191,16 +193,18 @@ void SScaleformGFxResource::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SScaleformGFxResource*>(p_Target) = s_Object;
 }
 
-void SScaleformGFxResource::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SScaleformGFxResource::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	auto s_DataPtr = p_Serializer.WriteMemory(m_pSwfData, m_nSwfDataSize);
+	auto* s_Object = static_cast<SScaleformGFxResource*>(p_Object);
+
+	auto s_DataPtr = p_Serializer.WriteMemory(s_Object->m_pSwfData, s_Object->m_nSwfDataSize);
 	p_Serializer.PatchPtr(p_OwnOffset + offsetof(SScaleformGFxResource, m_pSwfData), s_DataPtr);
 	
-	m_pAdditionalFileNames.Serialize(p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileNames));
-	m_pAdditionalFileData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileData));
+	TArray<ZString>::Serialize(&s_Object->m_pAdditionalFileNames, p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileNames));
+	TArray<TArray<uint8_t>>::Serialize(&s_Object->m_pAdditionalFileData, p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileData));
 }
 
-ZHMTypeInfo SGlobalResourceIndexItem::TypeInfo = ZHMTypeInfo("SGlobalResourceIndexItem", sizeof(SGlobalResourceIndexItem), alignof(SGlobalResourceIndexItem), WriteJson, WriteSimpleJson, FromSimpleJson);
+ZHMTypeInfo SGlobalResourceIndexItem::TypeInfo = ZHMTypeInfo("SGlobalResourceIndexItem", sizeof(SGlobalResourceIndexItem), alignof(SGlobalResourceIndexItem), WriteJson, WriteSimpleJson, FromSimpleJson, Serialize);
 
 void SGlobalResourceIndexItem::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -266,13 +270,15 @@ void SGlobalResourceIndexItem::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SGlobalResourceIndexItem*>(p_Target) = s_Object;
 }
 
-void SGlobalResourceIndexItem::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGlobalResourceIndexItem::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndexItem, m_sName));
-	m_aResourceIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndexItem, m_aResourceIndices));
+	auto* s_Object = static_cast<SGlobalResourceIndexItem*>(p_Object);
+
+	ZString::Serialize(&s_Object->m_sName, p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndexItem, m_sName));
+	TArray<uint32_t>::Serialize(&s_Object->m_aResourceIndices, p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndexItem, m_aResourceIndices));
 }
 
-ZHMTypeInfo SGlobalResourceIndex::TypeInfo = ZHMTypeInfo("SGlobalResourceIndex", sizeof(SGlobalResourceIndex), alignof(SGlobalResourceIndex), WriteJson, WriteSimpleJson, FromSimpleJson);
+ZHMTypeInfo SGlobalResourceIndex::TypeInfo = ZHMTypeInfo("SGlobalResourceIndex", sizeof(SGlobalResourceIndex), alignof(SGlobalResourceIndex), WriteJson, WriteSimpleJson, FromSimpleJson, Serialize);
 
 void SGlobalResourceIndex::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -338,12 +344,14 @@ void SGlobalResourceIndex::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SGlobalResourceIndex*>(p_Target) = s_Object;
 }
 
-void SGlobalResourceIndex::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGlobalResourceIndex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndex, m_aItems));
+	auto* s_Object = static_cast<SGlobalResourceIndex*>(p_Object);
+
+	TArray<SGlobalResourceIndexItem>::Serialize(&s_Object->m_aItems, p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndex, m_aItems));
 }
 
-ZHMTypeInfo SAudioStateBlueprintData::TypeInfo = ZHMTypeInfo("SAudioStateBlueprintData", sizeof(SAudioStateBlueprintData), alignof(SAudioStateBlueprintData), WriteJson, WriteSimpleJson, FromSimpleJson);
+ZHMTypeInfo SAudioStateBlueprintData::TypeInfo = ZHMTypeInfo("SAudioStateBlueprintData", sizeof(SAudioStateBlueprintData), alignof(SAudioStateBlueprintData), WriteJson, WriteSimpleJson, FromSimpleJson, Serialize);
 
 void SAudioStateBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -409,8 +417,10 @@ void SAudioStateBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SAudioStateBlueprintData*>(p_Target) = s_Object;
 }
 
-void SAudioStateBlueprintData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioStateBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	m_sGroupName.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_sGroupName));
-	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_aStates));
+	auto* s_Object = static_cast<SAudioStateBlueprintData*>(p_Object);
+
+	ZString::Serialize(&s_Object->m_sGroupName, p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_sGroupName));
+	TArray<ZString>::Serialize(&s_Object->m_aStates, p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_aStates));
 }
