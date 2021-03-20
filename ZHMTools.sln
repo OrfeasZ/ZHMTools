@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHM.Common", "Libraries\ZHM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B868C786-48A8-4789-957D-1FDB3AC892D5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceParser", "Tools\ResourceParser\ResourceParser.vcxproj", "{39A35FD1-FA96-42B6-8A83-D21E9ED47A4F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceTool", "Tools\ResourceTool\ResourceTool.vcxproj", "{39A35FD1-FA96-42B6-8A83-D21E9ED47A4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{726F4478-97D7-4FB5-925A-90D11BF02369}"
 	ProjectSection(SolutionItems) = preProject

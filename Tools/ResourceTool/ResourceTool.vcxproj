@@ -14,9 +14,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{39a35fd1-fa96-42b6-8a83-d21e9ed47a4f}</ProjectGuid>
-    <RootNamespace>ResourceParser</RootNamespace>
+    <RootNamespace>ResourceTool</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ResourceParser</ProjectName>
+    <ProjectName>ResourceTool</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
