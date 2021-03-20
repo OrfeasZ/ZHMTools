@@ -122,4 +122,13 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		{
 			*reinterpret_cast<ZString*>(p_Target) = std::string_view(p_Document);
 		});
+
+	new ZHMTypeInfo("void", 0, 0,
+		[](void* p_Data, std::ostream& p_Stream)
+		{
+			p_Stream << "null";
+		},
+		[](simdjson::ondemand::value p_Document, void* p_Target)
+		{
+		});
 }

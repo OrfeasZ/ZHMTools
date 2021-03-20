@@ -59,18 +59,30 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	ZVariant s_Variant;
 
-	std::string_view s_TypeName = p_Document["$type"];
-
-	s_Variant.m_pTypeID = ZHMTypeInfo::GetTypeByName(s_TypeName);
-
-	if (s_Variant.m_pTypeID == nullptr || s_Variant.m_pTypeID->IsDummy())
+	if (p_Document.type().first == simdjson::ondemand::json_type::null)
 	{
-		std::cerr << "[ERROR] Could not find TypeInfo for ZVariant of type '" << s_TypeName << "'." << std::endl;
+		s_Variant.m_pTypeID = ZHMTypeInfo::GetTypeByName(std::string_view("void"));
+		s_Variant.m_pData = nullptr;
 	}
 	else
 	{
-		s_Variant.m_pData = c_aligned_alloc(s_Variant.m_pTypeID->Size(), s_Variant.m_pTypeID->Alignment());
-		s_Variant.m_pTypeID->CreateFromJson(p_Document["$val"], s_Variant.m_pData);
+		std::string_view s_TypeName = p_Document["$type"];
+
+		s_Variant.m_pTypeID = ZHMTypeInfo::GetTypeByName(s_TypeName);
+
+		if (s_Variant.m_pTypeID->IsDummy())
+		{
+			std::cerr << "[ERROR] Could not find TypeInfo for ZVariant of type '" << s_TypeName << "'." << std::endl;
+		}
+		else
+		{
+			if (s_Variant.m_pTypeID->TypeName() == "void")
+				s_Variant.m_pData = nullptr;
+			else
+				s_Variant.m_pData = c_aligned_alloc(s_Variant.m_pTypeID->Size(), s_Variant.m_pTypeID->Alignment());
+
+			s_Variant.m_pTypeID->CreateFromJson(p_Document["$val"], s_Variant.m_pData);
+		}
 	}
 
 	*reinterpret_cast<ZVariant*>(p_Target) = s_Variant;
