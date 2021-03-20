@@ -42,9 +42,6 @@
     <ClCompile Include="Src\ResourceGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\ZHM\ZHMAllocator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Src\ZHM\ZHMSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\External\simdjson.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ZHM\ZHMAllocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\ZHM\ZHMSerializer.h">
