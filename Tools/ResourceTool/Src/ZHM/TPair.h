@@ -80,7 +80,7 @@ public:
 					T::FromSimpleJson(s_PairValue, &s_Object->first);
 				}
 
-				s_First = true;
+				s_First = false;
 				continue;
 			}
 
