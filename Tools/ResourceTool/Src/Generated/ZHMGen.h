@@ -12,41 +12,24 @@
 
 class ZHMTypeInfo;
 
-// 0x0000000142AB2380 (Size: 0x4)
-enum class EActionRadialArcIconType
+// 0x0000000142AC14F8 (Size: 0x4)
+enum class ZStateControllerEntity_WrapMode
 {
-	EARAIT_NoIcon = 0,
-	EARAIT_Locked = 1,
-	EARAIT_NeedTool = 2,
-	EARAIT_IsRunning = 3,
-	EARAIT_Crowbar = 4,
-	EARAIT_Wrench = 5,
-	EARAIT_Card = 6,
-	EARAIT_Lockpick = 7,
-	EARAIT_Screwdriver = 8,
-	EARAIT_AmmoBullet = 9,
-	EARAIT_Flower = 10,
-	EARAIT_ChemicalTube = 11,
-	EARAIT_Golfball = 12,
-	EARAIT_Keypad = 13,
-	EARAIT_Key = 14,
-	EARAIT_Coin = 15,
-	EARAIT_Poison = 16,
-	EARAIT_Exsplosive = 17,
+	WM_Loop = 0,
+	WM_Clamp = 1,
 };
 
-// 0x0000000142A9F498 (Size: 0x4)
-enum class EVRConfigHeadAnchorMode
+// 0x0000000142ABEDD8 (Size: 0x4)
+enum class EItemMeleeDamageBehavior
 {
-	EVRCHAM_HeadBone = 0,
-	EVRCHAM_CapsuleBased = 1,
-	EVRCHAM_CapsuleGrid = 2,
-	EVRCHAM_LockPosition = 3,
-	EVRCHAM_KeepCurrent = 4,
+	EIMDB_Undefined = 0,
+	EIMDB_Bouncing = 1,
+	EIMDB_Slashing = 2,
+	EIMDB_Sticking = 3,
 };
 
-// 0x0000000142117658 (Size: 0x10)
-class float4
+// 0x0000000142B19138 (Size: 0x8)
+class IPureWaterReflectable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -56,14 +39,10 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	float32 x; // 0x0
-	float32 y; // 0x4
-	float32 z; // 0x8
-	float32 w; // 0xC
 };
 
-// 0x00000001421176B8 (Size: 0x40)
-class SMatrix
+// 0x0000000142ABD860 (Size: 0x3)
+class SPhysicsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -73,156 +52,42 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	float4 XAxis; // 0x0
-	float4 YAxis; // 0x10
-	float4 ZAxis; // 0x20
-	float4 Trans; // 0x30
+	bool m_bIsInPhysicsWorld; // 0x0
+	bool m_bIsKinematicBody; // 0x1
+	bool m_bIsVisible; // 0x2
 };
 
-// 0x0000000142A9F4C8 (Size: 0x70)
-class SVRConfigCameraComponent
+// 0x0000000142AA1970 (Size: 0x4)
+enum class ZFriskSuspectGroup_EAssistantState
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	EVRConfigHeadAnchorMode m_eHeadAnchorMode; // 0x0
-	uint32 m_uRecenterRequestCounter; // 0x4
-	float32 m_fVRUserInputWeight; // 0x8
-	float32 m_fGridSize; // 0xC
-	float32 m_fCapsuleHeadAttacherOffset; // 0x10
-	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x14
-	float32 m_fHeadBoneAttacherOffset; // 0x18
-	float4 m_vAnchorPosOffset; // 0x20
-	SMatrix m_mAnchorRotOffset; // 0x30
+	AS_Waiting = 0,
+	AS_Approach = 1,
+	AS_Approaching = 2,
+	AS_Covering = 3,
 };
 
-// 0x0000000142A9CA10 (Size: 0x4)
-enum class EGameEventType
+// 0x0000000143CEB688 (Size: 0x4)
+enum class ZRenderPostfilterParametersEntity_EHDRGlareType
 {
-	GET_GameplayStart = 0,
-	GET_GameplayStop = 1,
-	GET_IntroCutStart = 2,
-	GET_IntroCutEnd = 3,
-	GET_ProfilingStart = 4,
-	GET_SavegameRestored = 5,
-	GET_PlayingAfterLoad = 6,
-	GET_COUNT = 7,
+	eCamera = 0,
+	eNatural = 1,
+	eCheapLens = 2,
+	eFilterCrossScreen = 3,
+	eFilterCrossScreenSpectral = 4,
+	eFilterSnowCross = 5,
+	eFilterSnowCrossSpectral = 6,
+	eFilterSunnyCross = 7,
+	eFilterSunnyCrossSpectral = 8,
+	eCinecamVerticalSlits = 9,
+	eCinecamHorizontalSlits = 10,
 };
 
-// 0x0000000142B01628 (Size: 0x4)
-enum class EPhysicsObjectType
+// 0x0000000142A9CC58 (Size: 0x4)
+enum class ZOperatorBool_EEvaluationType
 {
-	EPHYSICSOBJECTTYPE_UNKNOWN = 0,
-	EPHYSICSOBJECTTYPE_DYNAMIC = 1,
-	EPHYSICSOBJECTTYPE_KINEMATIC = 2,
-	EPHYSICSOBJECTTYPE_STATIC = 3,
-};
-
-// 0x0000000143CEC330 (Size: 0x4)
-enum class eParticleEmitterMeshEntity_SpawnModes
-{
-	MESH_SPAWNMODE_VERTEX = 0,
-	MESH_SPAWNMODE_EDGE = 1,
-	MESH_SPAWNMODE_FACE = 2,
-};
-
-// 0x00000001422D6F60 (Size: 0x8)
-class ZRuntimeResourceID
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_IDHigh; // 0x0
-	uint32 m_IDLow; // 0x4
-};
-
-// 0x0000000142AB9F98 (Size: 0x18)
-class SContractConfigResourceEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString Id; // 0x0
-	ZRuntimeResourceID ContractRid; // 0x10
-};
-
-// 0x0000000142ABEC40 (Size: 0x1)
-class SItemSpawnerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bItemUpdateTransformChange; // 0x0
-};
-
-// 0x00000001422D6EB8 (Size: 0x1)
-enum class ERenderGlowTypes
-{
-	ERENDERGLOWTYPE_NONE = 0,
-	ERENDERGLOWTYPE_ENEMIES = 1,
-	ERENDERGLOWTYPE_ALLIES = 2,
-	ERENDERGLOWTYPE_CIVILIAN = 3,
-	ERENDERGLOWTYPE_ITEMS = 4,
-	ERENDERGLOWTYPE_STASHED_ITEMS = 5,
-	ERENDERGLOWTYPE_SETPIECE = 6,
-	ERENDERGLOWTYPE_BACKGROUND = 7,
-	ERENDERGLOWTYPE_CONTRACT_TARGET = 8,
-	ERENDERGLOWTYPE_CONTRACT_TARGET_NON_CRITICAL = 9,
-	ERENDERGLOWTYPE_CONTRACT_TARGET_SPECIAL = 10,
-	ERENDERGLOWTYPE_OBJECTIVES = 11,
-	ERENDERGLOWTYPE_ENFORCER = 12,
-	ERENDERGLOWTYPE_LTMEMORY = 13,
-	ERENDERGLOWTYPE_TAGGED = 14,
-	ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED = 15,
-	ERENDERGLOWTYPE_TAGFOCUS_TAGGED = 16,
-	ERENDERGLOWTYPE_BACKGROUNDUNMASKED = 17,
-	ERENDERGLOWTYPE_INTERACTION = 18,
-	ERENDERGLOWTYPE_INTERACTION_SELECTED = 19,
-	ERENDERGLOWTYPE_INTERACTION_DESELECTED = 20,
-	ERENDERGLOWTYPE_PLAYER_LVA = 21,
-	ERENDERGLOWTYPE_PLAYER_LVA_SEEN = 22,
-	ERENDERGLOWTYPE_VS_OPPONENT = 23,
-	ERENDERGLOWTYPE_TRAVERSAL = 24,
-	ERENDERGLOWTYPE_EMISSIVE_UI = 25,
-	ERENDERGLOWTYPE_EMISSIVE_UI_IGNORE_DEPTH = 26,
-	ERENDERGLOWTYPE_OPPONENT = 27,
-	ERENDERGLOWTYPE_CAMERA = 28,
-};
-
-// 0x0000000142AA59D0 (Size: 0x4)
-enum class EFocusBarState
-{
-	FOCUS_BAR_NORMAL = 0,
-	FOCUS_BAR_INSTINCT = 1,
-	FOCUS_BAR_BURNING = 2,
-};
-
-// 0x0000000142ABF750 (Size: 0x4)
-enum class ESoundCollisionObjectType
-{
-	StaticRigidBody = 0,
-	DynamicRigidBody = 1,
-	Ragdoll = 2,
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
 };
 
 // 0x0000000142A88290 (Size: 0x4)
@@ -238,6 +103,17 @@ enum class EGSKillSituation
 	GSKILLSITUATION_PUSHOVERRAILING = 7,
 	GSKILLSITUATION_PACIFY = 8,
 	GSKILLSITUATION_FIBERWIRE = 9,
+};
+
+// 0x0000000142AA17C0 (Size: 0x4)
+enum class ZCautiousInvestigateGroup_EApproachOrderState
+{
+	AOS_RequestHuntApproachNode = 0,
+	AOS_RequestLeaderApproachNode = 1,
+	AOS_WaitForApproachNode = 2,
+	AOS_RequestLOSNode = 3,
+	AOS_Ready = 4,
+	AOS_NoApproachNode = 5,
 };
 
 // 0x0000000142AA55B0 (Size: 0x4)
@@ -285,55 +161,13 @@ enum class EGSEvent
 	GSEvent_Projectile_MultiKillTargets = 39,
 };
 
-// 0x0000000142ABEDD8 (Size: 0x4)
-enum class EItemMeleeDamageBehavior
+// 0x0000000142AB17F0 (Size: 0x4)
+enum class ZHUDCamera3DControllerEntity_ESpace
 {
-	EIMDB_Undefined = 0,
-	EIMDB_Bouncing = 1,
-	EIMDB_Slashing = 2,
-	EIMDB_Sticking = 3,
-};
-
-// 0x0000000142B19138 (Size: 0x8)
-class IPureWaterReflectable
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142ABD860 (Size: 0x3)
-class SPhysicsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bIsInPhysicsWorld; // 0x0
-	bool m_bIsKinematicBody; // 0x1
-	bool m_bIsVisible; // 0x2
-};
-
-// 0x0000000142AA4560 (Size: 0x1)
-class SActorSoundDefs
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
+	View = 0,
+	Camera = 1,
+	Player = 2,
+	World = 3,
 };
 
 // 0x00000001422D7228 (Size: 0x4)
@@ -787,6 +621,65 @@ public:
 	uint32 m_rInitialGuard; // 0x4
 };
 
+// 0x0000000142AA4560 (Size: 0x1)
+class SActorSoundDefs
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142A9C678 (Size: 0x4)
+enum class ZActBehaviorEntity_EState
+{
+	UNDEFINED = 0,
+	IDLE = 1,
+	STOPPING = 2,
+	PREPARING = 3,
+	MOVING = 4,
+	ENTERING = 5,
+	RUNNING = 6,
+	TIMEDOUT = 7,
+	COMPLETE = 8,
+};
+
+// 0x0000000142A86D58 (Size: 0x8)
+class ZGameTime
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int64 m_nTicks; // 0x0
+};
+
+// 0x0000000142AA9A18 (Size: 0x18)
+class SActBehaviorEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bStartedSignalSent; // 0x0
+	bool m_bReachedSignalSent; // 0x1
+	ZActBehaviorEntity_EState m_nState; // 0x4
+	ZGameTime m_ActStartTime; // 0x8
+	bool m_bForceTimeout; // 0x10
+};
+
 // 0x0000000143E6C9F8 (Size: 0x1)
 enum class ETessellationMode
 {
@@ -794,45 +687,11 @@ enum class ETessellationMode
 	TESSELLATIONMODE_PHONG = 1,
 };
 
-// 0x0000000143E6ED68 (Size: 0x8)
-class SVoidSignalEntitySaveData
+// 0x0000000142AA98D8 (Size: 0x4)
+enum class EBystanderPointType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bSignaling; // 0x0
-	float32 m_fFiredAtTime; // 0x4
-};
-
-// 0x0000000142B01868 (Size: 0x1)
-enum class ECameraCollisionMode
-{
-	ECAMERACOLLISIONMODE_COLLIDE_ALWAYS = 0,
-	ECAMERACOLLISIONMODE_CAMERA_OBSTACLE = 1,
-	ECAMERACOLLISIONMODE_COLLIDE_NEVER = 2,
-	ECAMERACOLLISIONMODE_COLLIDE_DEFAULT = 3,
-};
-
-// 0x0000000142AA0DC8 (Size: 0x10)
-class SActorIKControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_fRightHandWeight; // 0x0
-	float32 m_fLeftHandWeight; // 0x4
-	float32 m_fRightHandTargetWeight; // 0x8
-	float32 m_fLeftHandTargetWeight; // 0xC
+	BPT_Scared = 0,
+	BPT_Alerted = 1,
 };
 
 // 0x0000000142AA1270 (Size: 0x20)
@@ -850,15 +709,139 @@ public:
 	bool m_bRunning; // 0x18
 };
 
-// 0x0000000142AA98D8 (Size: 0x4)
-enum class EBystanderPointType
+// 0x0000000142AAE950 (Size: 0x4)
+enum class _EUIOptionKey
 {
-	BPT_Scared = 0,
-	BPT_Alerted = 1,
+	UI_OPTION_GAME_VIBRATION = 100,
+	UI_OPTION_GAME_ADAPTIVE_FEEDBACK = 110,
+	UI_OPTION_GAME_AIM_ASSIST = 200,
+	UI_OPTION_GAME_AIM_CAUSAL = 210,
+	UI_OPTION_GAME_INVERT_INVENTORY_EMOTE = 220,
+	UI_OPTION_GAME_INVERT_X = 300,
+	UI_OPTION_GAME_INVERT_MOUSE_X = 301,
+	UI_OPTION_GAME_INVERT_MOUSE_Y = 302,
+	UI_OPTION_GAME_INVERT_Y = 310,
+	UI_OPTION_GAME_CONTROL_SCHEME = 311,
+	UI_OPTION_GAME_FAST_TARGET = 312,
+	UI_OPTION_GAME_DIFFICULTY = 321,
+	UI_OPTION_GAME_TRIGGER_SHOOT = 330,
+	UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA = 332,
+	UI_OPTION_GAME_LEFT_HANDED_CONTROLS = 333,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY_HORZ = 334,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY_VERT = 335,
+	UI_OPTION_GAME_MOUSE_SENSITIVITY = 336,
+	UI_OPTION_GAME_AIM_SENSITIVITY = 337,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY = 338,
+	UI_OPTION_GAME_INSTINCT_PATHS = 340,
+	UI_OPTION_GAME_INSTINCT_NPCGLOW = 342,
+	UI_OPTION_GAME_HINTS_TUTORIAL = 346,
+	UI_OPTION_GAME_HINTS_INSTINCT = 348,
+	UI_OPTION_GAME_LANG_AUDIO = 350,
+	UI_OPTION_GAME_LANG_TEXT = 351,
+	UI_OPTION_GAME_COVER_TOGGLE = 352,
+	UI_OPTION_GAME_FIXED_MAP = 353,
+	UI_OPTION_GAME_MAP_SHOW_NORTH_INDICATOR = 354,
+	UI_OPTION_GAME_AID_OPPORTUNITIES = 360,
+	UI_OPTION_GAME_AID_INSTINCT = 361,
+	UI_OPTION_GAME_AID_MINI_MAP = 362,
+	UI_OPTION_GAME_AID_NPC_ICONS = 363,
+	UI_OPTION_GAME_AID_ATTENTION = 364,
+	UI_OPTION_GAME_AID_VITAL_INFO = 365,
+	UI_OPTION_GAME_AID_INTERACTION_H = 366,
+	UI_OPTION_GAME_AID_OBJECTIVES = 367,
+	UI_OPTION_GAME_AID_WEAPON_HUD = 368,
+	UI_OPTION_GAME_AID_CHALLENGEDESCRIPTION = 369,
+	UI_OPTION_GAME_MINI_MAP_SHOW_NPCS = 370,
+	UI_OPTION_GAME_AID_TARGET_INFO = 371,
+	UI_OPTION_GAME_AID_CHALLENGE_HUD = 372,
+	UI_OPTION_GAME_MINI_MAP_SHOW_TARGETS = 373,
+	UI_OPTION_GAME_CHALLENGES_FILTER = 374,
+	UI_OPTION_GAME_AID_MISSION_TIMER = 375,
+	UI_OPTION_GAME_DIFFICULTY_LEVEL_HUD = 376,
+	UI_OPTION_GAME_AID_GLOBAL_HINTS = 377,
+	UI_OPTION_GAME_SCORE_HUD = 378,
+	UI_OPTION_GAME_AID_LVA = 379,
+	UI_OPTION_GAME_AID_PICTURE_IN_PICTURE = 380,
+	UI_OPTION_GAME_AID_INTERACTION_PROMPT = 381,
+	UI_OPTION_GAME_AID_SA_HUD = 382,
+	UI_OPTION_GAME_AID_RELOAD_HUD = 383,
+	UI_OPTION_GAME_AID_CAMERA_GRID = 384,
+	UI_OPTION_GAME_AID_AIM_TOGGLE = 385,
+	UI_OPTION_GAME_AID_OBJECTIVES_VR = 386,
+	UI_OPTION_GAME_AID_WEAPON_HUD_VR = 387,
+	UI_OPTION_GAME_AID_RELOAD_HUD_VR = 388,
+	UI_OPTION_GAME_AUTOSAVE = 390,
+	UI_OPTION_GAME_AUTOSAVE_VR = 391,
+	UI_OPTION_GAME_AUTOSAVE_HUD = 400,
+	UI_OPTION_SOUND_VOLUME_MASTER = 1010,
+	UI_OPTION_SOUND_VOLUME_EFFECTS = 1020,
+	UI_OPTION_SOUND_VOLUME_MUSIC = 1030,
+	UI_OPTION_SOUND_VOLUME_DIALOGUE = 1040,
+	UI_OPTION_SOUND_MUTE_MICROPHONE = 1050,
+	UI_OPTION_SOUND_MUTE_OTHER_PLAYER = 1060,
+	UI_OPTION_SOUND_OUTPUTMODE = 1200,
+	UI_OPTION_SOUND_SIMULATION_QUALITY = 1210,
+	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE = 1220,
+	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE_VR = 1221,
+	UI_OPTION_GRAPHICS_SUBTITLES = 2000,
+	UI_OPTION_GRAPHICS_SUBTITLES_SIZE = 2001,
+	UI_OPTION_GRAPHICS_SUBTITLES_VR = 2010,
+	UI_OPTION_GRAPHICS_SUBTITLES_SIZE_VR = 2011,
+	UI_OPTION_GRAPHICS_SAFE_AREA_X = 2210,
+	UI_OPTION_GRAPHICS_SAFE_AREA_Y = 2220,
+	UI_OPTION_GSM_AUTHORITY_BEGIN_MARKER = 2221,
+	UI_OPTION_DISPLAY_RESOLUTION = 2230,
+	UI_OPTION_DISPLAY_REFRESHRATE = 2240,
+	UI_OPTION_DISPLAY_FULLSCREEN = 2250,
+	UI_OPTION_DISPLAY_EXCLUSIVE = 2260,
+	UI_OPTION_DISPLAY_VSYNC = 2270,
+	UI_OPTION_DISPLAY_MONITOR = 2280,
+	UI_OPTION_DISPLAY_QUALITY = 2290,
+	UI_OPTION_DISPLAY_ASPECT = 2300,
+	UI_OPTION_DISPLAY_STEREOSCOPIC = 2310,
+	UI_OPTION_DISPLAY_STEREO_DEPTH = 2320,
+	UI_OPTION_DISPLAY_STEREO_STRENGTH = 2330,
+	UI_OPTION_GRAPHICS_QUALITY = 2600,
+	UI_OPTION_GRAPHICS_SHADOW_QUALITY = 2610,
+	UI_OPTION_GRAPHICS_SHADOW_RESOLUTION = 2620,
+	UI_OPTION_GRAPHICS_TEXTURE_QUALITY = 2630,
+	UI_OPTION_GRAPHICS_TEXTURE_FILTER = 2640,
+	UI_OPTION_GRAPHICS_ASSAO_QUALITY = 2650,
+	UI_OPTION_GRAPHICS_VSYNC = 2660,
+	UI_OPTION_GRAPHICS_TESSELLATION = 2680,
+	UI_OPTION_GRAPHICS_MIRRORS = 2690,
+	UI_OPTION_GRAPHICS_LOD = 2710,
+	UI_OPTION_GRAPHICS_MOTIONBLUR = 2720,
+	UI_OPTION_GRAPHICS_BOKEH = 2740,
+	UI_OPTION_GRAPHICS_REFLECTION_QUALITY = 2742,
+	UI_OPTION_GRAPHICS_MOTION_BLUR = 2743,
+	UI_OPTION_GRAPHICS_DYNAMIC_SHARPENING = 2744,
+	UI_OPTION_GRAPHICS_SIMULATION_QUALITY = 2745,
+	UI_OPTION_GRAPHICS_SSR = 2746,
+	UI_OPTION_GRAPHICS_VRS = 2747,
+	UI_OPTION_GRAPHICS_SUPER_SAMPLING = 2750,
+	UI_OPTION_GRAPHICS_GAMMA = 2760,
+	UI_OPTION_GRAPHICS_FRAMERATE_LIMIT = 2770,
+	UI_OPTION_GRAPHICS_HDR = 2771,
+	UI_OPTION_GSM_AUTHORITY_END_MARKER = 2771,
+	UI_OPTION_GRAPHICS_HDR_GAMMA = 2772,
+	UI_OPTION_GRAPHICS_RENDERING_QUALITY = 2773,
+	UI_OPTION_GRAPHICS_NEUTRAL_LUT_BLEND = 2774,
+	UI_OPTION_GRAPHICS_DIFFUSE_COLOR_CLAMP = 2775,
+	UI_OPTION_VR_BLINDERS_ENABLED = 3000,
+	UI_OPTION_VR_BLINDERS_STRENGTH = 3001,
+	UI_OPTION_VR_TURN_MODE = 3002,
+	UI_OPTION_VR_HEAD_BASED_MOVEMENT = 3003,
+	UI_OPTION_VR_FADE_ON_COLLISION = 3004,
+	UI_OPTION_VR_TURN_RATE = 3005,
+	UI_OPTION_VR_TURN_SPEED = 3006,
+	UI_OPTION_VR_MINIMUM_REPROJECTION_COLOR = 3007,
+	UI_OPTION_VR_LEFT_HAND_FOLLOW_RIGHT = 3008,
+	UI_OPTION_VR_SAFE_AREA_ENABLED = 3009,
 };
 
-// 0x0000000142ABD9F8 (Size: 0xC)
-class STimerEntitySaveData
+// 0x0000000142117658 (Size: 0x10)
+class float4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -868,83 +851,149 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	int32 m_nInterval; // 0x0
-	bool m_bEnabled; // 0x4
-	float32 m_fTimeToNextEvent; // 0x8
+	float32 x; // 0x0
+	float32 y; // 0x4
+	float32 z; // 0x8
+	float32 w; // 0xC
 };
 
-// 0x0000000142AA3C90 (Size: 0x4)
-enum class EWeaponUpgradeIcon
+// 0x0000000142AEF0A0 (Size: 0x4)
+enum class ESpeed
 {
-	WEAPON_UPGRADE_ICON_NONE = 0,
-	WEAPON_UPGRADE_ICON_SILENCER = 1,
-	WEAPON_UPGRADE_ICON_RED_DOT_SIGHT = 2,
-	WEAPON_UPGRADE_ICON_AMMUNITION = 3,
-	WEAPON_UPGRADE_ICON_MAGAZINE = 4,
-	WEAPON_UPGRADE_ICON_EXTCLIP = 5,
-	WEAPON_UPGRADE_ICON_SHELLS = 6,
-	WEAPON_UPGRADE_ICON_SLIDE = 7,
-	WEAPON_UPGRADE_ICON_BOLT = 8,
-	WEAPON_UPGRADE_ICON_BARREL = 9,
-	WEAPON_UPGRADE_ICON_HAMMER = 10,
-	WEAPON_UPGRADE_ICON_CHUTE = 11,
-	WEAPON_UPGRADE_ICON_DUALWIELD = 12,
-	WEAPON_UPGRADE_ICON_MAGNUM = 13,
-	WEAPON_UPGRADE_ICON_STOCK = 14,
+	eSpeed_Idle = 0,
+	eSpeed_Slow = 1,
+	eSpeed_Normal = 2,
+	eSpeed_Fast = 3,
+	eSpeed_Sprint = 4,
 };
 
-// 0x0000000142AA4CE0 (Size: 0x4)
-enum class ECustomSoundDefType
+// 0x0000000142AEED58 (Size: 0x4)
+enum class EGait
 {
-	eCSDT_Distraction_InvestigationAck = 0,
-	eCSDT_Distraction_InvestigationInvestigate = 1,
-	eCSDT_Distraction_InvestigationStnd = 2,
+	eGait_Normal = 0,
+	eGait_Reposition = 1,
+	eGait_Alert = 2,
+	eGait_Scared = 3,
+	eGait_Prone = 4,
+	eGait_Dead = 5,
+	eGait_Angry = 6,
+	eGait_Applause = 7,
+	eGait_BeatUp_000cm_01_Dual_A = 8,
+	eGait_BeatUp_000cm_01_Dual_B = 9,
+	eGait_BeatUp_000cm_02_Dual_A = 10,
+	eGait_BeatUp_000cm_02_Dual_B = 11,
+	eGait_BeatUp_Wall_Dual_A = 12,
+	eGait_BeatUp_Wall_Dual_B = 13,
+	eGait_Chatting = 14,
+	eGait_Cheer = 15,
+	eGait_Clap = 16,
+	eGait_Climb_Up_Fall = 17,
+	eGait_Concerned = 18,
+	eGait_Couples_A = 19,
+	eGait_Couples_B = 20,
+	eGait_Couples_C = 21,
+	eGait_Dance_Drunk = 22,
+	eGait_Dance_Dual_A = 23,
+	eGait_Dance_Dual_B = 24,
+	eGait_Dance_Party = 25,
+	eGait_Dance_Party_A = 26,
+	eGait_Dance_Party_B = 27,
+	eGait_Dance_Party_C = 28,
+	eGait_Dance_Party_D = 29,
+	eGait_Dance_Party_E = 30,
+	eGait_Dance_Party_F = 31,
+	eGait_Dance_Rave = 32,
+	eGait_Dance_Rave_A = 33,
+	eGait_Dance_Rave_B = 34,
+	eGait_Dance_Rave_C = 35,
+	eGait_Dance_Rave_D = 36,
+	eGait_Dance_Rave_E = 37,
+	eGait_Dance_Rave_F = 38,
+	eGait_Dance_Rave_Zone_Out_A = 39,
+	eGait_Dance_Rave_Zone_Out_B = 40,
+	eGait_Dance_Rave_Zone_Out_C = 41,
+	eGait_Dance_Rave_Zone_Out_D = 42,
+	eGait_Dance_Rave_Zone_Out_E = 43,
+	eGait_Dance_Rave_Zone_Out_F = 44,
+	eGait_Dance_Rave_Zone_Out_G = 45,
+	eGait_Dance_Rave_Zone_Out_H = 46,
+	eGait_Excited = 47,
+	eGait_Fanatic_Fans = 48,
+	eGait_Freeze_A = 49,
+	eGait_Freeze_B = 50,
+	eGait_Freeze_C = 51,
+	eGait_Freeze_Lean_Wall = 52,
+	eGait_Haggle = 53,
+	eGait_Interested = 54,
+	eGait_Jeer = 55,
+	eGait_Lean_Rail = 56,
+	eGait_Lean_Wall = 57,
+	eGait_Lie_WritheInPain = 58,
+	eGait_LookAt_Race_A = 59,
+	eGait_LookAt_Race_B = 60,
+	eGait_LookUp_Excited = 61,
+	eGait_Mingle = 62,
+	eGait_Mingle_120cm = 63,
+	eGait_Mingle_Drunk = 64,
+	eGait_Mingle_Rave_A = 65,
+	eGait_Mingle_Rave_B = 66,
+	eGait_Mingle_Rave_C = 67,
+	eGait_Mingle_Mumbai_A = 68,
+	eGait_Mingle_Mumbai_B = 69,
+	eGait_Mingle_Race = 70,
+	eGait_Mingle_Race_Rail = 71,
+	eGait_Mingle_Wall = 72,
+	eGait_Pacing_Angry = 73,
+	eGait_Party = 74,
+	eGait_Protest = 75,
+	eGait_Push_Gate = 76,
+	eGait_Rally = 77,
+	eGait_Reaction_TearGas = 78,
+	eGait_Shocked = 79,
+	eGait_Shop = 80,
+	eGait_Sit_020cm = 81,
+	eGait_Sit_040cm = 82,
+	eGait_Sit_100cm = 83,
+	eGait_Sit_ChairBasic = 84,
+	eGait_Sit_ChairBasic_LeanForward = 85,
+	eGait_Sit_Chair_Rave_A = 86,
+	eGait_Sit_Chair_Rave_B = 87,
+	eGait_Sit_Chair_Rave_C = 88,
+	eGait_Sit_Ground_Hungover = 89,
+	eGait_Squat_Relaxed = 90,
+	eGait_Squat_Sorting = 91,
+	eGait_Throw_Rice = 92,
+	eGait_Wait_Excited = 93,
+	eGait_Wait_InLine = 94,
+	eGait_WarmHands_100cm = 95,
+	eGait_Wave_Mexican = 96,
+	eGait_Yell_Up = 97,
+	eGait_Custom0 = 98,
+	eGait_Custom1 = 99,
+	eGait_Custom2 = 100,
+	eGait_Custom3 = 101,
+	eGait_Custom4 = 102,
+	eGait_Custom5 = 103,
+	eGait_Custom6 = 104,
+	eGait_Custom7 = 105,
+	eGait_Custom8 = 106,
+	eGait_Custom9 = 107,
 };
 
-// 0x0000000142A88320 (Size: 0x4)
-enum class EWeaponSpecialSituation
+// 0x0000000142AEF0B8 (Size: 0x4)
+enum class CrowdUtil_ECrowdActorMood
 {
-	WSS_NORMAL = 0,
-	WSS_BAREHANDS = 1,
-	WSS_EXPLOSION = 2,
-	WSS_ACCIDENT = 3,
-	WSS_NPC_FRIENDLY_FIRE = 4,
-	WSS_EXECUTE_PISTOL = 5,
-	WSS_ANY_WEAPON = 6,
-	WSS_INVISIBLE = 7,
+	CM_AMBIENT = 0,
+	CM_ALERTED = 1,
+	CM_SCARED = 2,
+	CM_PANICED = 3,
+	CM_DEAD = 4,
+	CM_DISABLED = 5,
+	NUM_ACTOR_MOOD_TYPES = 6,
 };
 
-// 0x0000000142AA0AB0 (Size: 0x4)
-enum class EAIModifierScope
-{
-	AIMS_Volume = 0,
-	AIMS_Behavior = 1,
-	AIMS_Role = 2,
-	AIMS_Item = 3,
-	AIMS_Situation = 4,
-	AIMS_Outfit = 5,
-	AIMS_Override = 6,
-	AIMS_Status = 7,
-};
-
-// 0x0000000142AA5730 (Size: 0x4)
-enum class ERatingTitle
-{
-	ERatingTitle_SilentAssassin = 0,
-	ERatingTitle_PerfectAssassin = 1,
-	ERatingTitle_Ninja = 2,
-	ERatingTitle_GloryBlazer = 3,
-	ERatingTitle_Eraser = 4,
-	ERatingTitle_Exhibitionist = 5,
-	ERatingTitle_Trickster = 6,
-	ERatingTitle_Chameleon = 7,
-	ERatingTitle_Spider = 8,
-	ERatingTitle_Angel = 9,
-	ERatingTitle_COUNT = 10,
-};
-
-// 0x0000000142A95A00 (Size: 0x8)
-class IMorphemeEventConsumer
+// 0x0000000142AEF0D0 (Size: 0x50)
+class SCrowdActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -954,13 +1003,380 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+	bool m_bEnabled; // 0x0
+	ESpeed m_eWantedSpeed; // 0x4
+	EGait m_eWantedGait; // 0x8
+	uint32 m_nAnimSourceID; // 0xC
+	uint32 m_nAnimSourceIndex; // 0x10
+	float4 m_vPosition; // 0x20
+	float4 m_vForward; // 0x30
+	float32 m_fSpeed; // 0x40
+	CrowdUtil_ECrowdActorMood m_eMood; // 0x44
 };
 
-// 0x0000000142AA2D10 (Size: 0x4)
-enum class ECameraControls
+// 0x0000000142A9F480 (Size: 0x4)
+enum class EVRConfigCameraRotationAllowed
 {
-	eCameraControlsNormal = 0,
-	eCameraControlsOTS = 1,
+	EVRCCRA_RotationEnabled = 0,
+	EVRCCRA_RotationDisabled = 1,
+	EVRCCRA_KeepCurrent = 2,
+};
+
+// 0x0000000143E6C9E0 (Size: 0x40)
+class SCollidingParticle
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float4 m_vPosition; // 0x0
+	float4 m_vVelocity; // 0x10
+	float4 m_vNewVelocity; // 0x20
+	uint32 m_nColor; // 0x30
+	float32 m_fSize; // 0x34
+};
+
+// 0x0000000142AA3A80 (Size: 0x4)
+enum class ZInteractionGuideData_EDirection
+{
+	UP = 0,
+	DOWN = 1,
+	LEFT = 2,
+	RIGHT = 3,
+};
+
+// 0x0000000142A884C8 (Size: 0x4)
+enum class ZInteractionData_EFilterResult
+{
+	EFR_REQUESTED = 0,
+	EFR_ENABLE_INTERACTION = 1,
+	EFR_EXPANDED_NOT_INTERACTABLE = 2,
+	EFR_COLLAPSED_CANT_OPERATE = 3,
+	EFR_COLLAPSED_PRIORITY = 4,
+	EFR_COLLAPSED_GAMESTATE = 5,
+	EFR_COLLAPSED_ACTION_FILTER = 6,
+	EFR_REJECTED_OTHER = 7,
+	EFR_REJECTED_OUTOFRANGE = 8,
+	EFR_REJECTED_OCCLUDED = 9,
+	EFR_REJECTED_OUTOFVIEW = 10,
+	EFR_REJECTED_GAMESTATE = 11,
+	EFR_REJECTED_ACTION_FILTER = 12,
+	EFR_REJECTED_INVALIDDATA = 13,
+	EFR_REJECTED_PRIORITY = 14,
+};
+
+// 0x0000000142A9C6F8 (Size: 0x4)
+enum class ZHeroEscortSituation2Entity_ETargetState
+{
+	ETS_Unknown = 0,
+	ETS_NoTarget = 1,
+	ETS_RunningActBehavior = 2,
+	ETS_RunningDummyBehavior = 3,
+	ETS_RunningOtherBehavior = 4,
+	ETS_Dead = 5,
+	ETS_TargetIsHitman = 6,
+};
+
+// 0x0000000142A95F70 (Size: 0x4)
+enum class ESoundChannelGroup
+{
+	ESCG_NONE = 0,
+	SND_Default = 1,
+	SND_Phys_Rigidbody = 2,
+	SND_Phys_Shatter = 3,
+	SND_Wpn_HM = 4,
+	SND_Wpn_HM_Shot = 5,
+	SND_Wpn_NPC = 6,
+	SND_Wpn_Impacts = 7,
+	SND_Wpn_Flybys = 8,
+	SND_Characters = 9,
+	SND_Ambience = 10,
+	SND_Props = 11,
+	SND_Prop_Item = 12,
+	SND_FS_HM = 13,
+	SND_FS_NPC = 14,
+	SND_VisualFX = 15,
+	SND_VisualFX_ShotActivate = 16,
+	SND_VisualFX_Explosions = 17,
+	SND_Diag_HM = 18,
+	SND_Diag_NPC = 19,
+	SND_CS_Ingame = 20,
+	SND_CS_PreRend = 21,
+	SND_Music_Env = 22,
+	SND_MusicNonEnv = 23,
+	SND_SpecialFX_CC = 24,
+	SND_SpecialFX_Jumps = 25,
+	SND_SpecialFX_Closet = 26,
+	SND_SpecialFX_Vent = 27,
+	SND_SpecialFX_Instinct = 28,
+	SND_SpecialFX_Disguise = 29,
+	SND_SpecialFX_Agility = 30,
+	SND_Stingers_SFX = 31,
+	SND_GUI = 32,
+	SND_Test = 33,
+	ANIM_HM_Generic = 34,
+	ANIM_HM_Loco = 35,
+	ANIM_HM_Agility = 36,
+	ANIM_HM_Suit_Flap = 37,
+	ANIM_HM_Suit_Release = 38,
+	ANIM_HM_Suit_Slide = 39,
+	ANIM_HM_Suit_LandImpact = 40,
+	ANIM_HM_Suit_Grab = 41,
+	ANIM_HM_Suit_Roll = 42,
+	ANIM_HM_Suit_Swoosh_Body = 43,
+	ANIM_HM_Suit_Swoosh_Fast = 44,
+	ANIM_HM_CC_Impacts = 45,
+	ANIM_HM_CC_Movement = 46,
+	ANIM_NPC_Generic = 47,
+	ANIM_NPC_Loco = 48,
+	ANIM_NPC_CC_Impacts = 49,
+	ANIM_NPC_CC_Movement = 50,
+	SND_Wpn_HM_Tail = 51,
+	SND_Wpn_NPC_Tail = 52,
+	SND_Diag_NPC_Crowd = 53,
+	SND_Phys_RigidBody_Ragdoll = 54,
+	SND_Diag_VO = 55,
+	SND_GUI_Menu = 56,
+	SND_Props_Doors = 57,
+	SND_Wpn_HM_Handguns = 58,
+	SND_Wpn_HM_Revolvers = 59,
+	SND_Wpn_HM_Rifles = 60,
+	SND_Wpn_HM_Shotguns = 61,
+	SND_Wpn_HM_Smgs = 62,
+	SND_Wpn_HM_Snipers = 63,
+	SND_Wpn_HM_Other = 64,
+	SND_Wpn_NPC_Handguns = 65,
+	SND_Wpn_NPC_Revolvers = 66,
+	SND_Wpn_NPC_Rifles = 67,
+	SND_Wpn_NPC_Shotguns = 68,
+	SND_Wpn_NPC_Smgs = 69,
+	SND_Wpn_NPC_Snipers = 70,
+	SND_Wpn_NPC_Other = 71,
+	SND_Diag_NPC_Oneliner = 72,
+	SND_Moments = 73,
+};
+
+// 0x0000000142A97780 (Size: 0x4)
+enum class EOutfitAICategory
+{
+	OAC_Undefined = 0,
+	OAC_Fallback = 1,
+	OAC_47Suit = 2,
+	OAC_47TRAINING = 3,
+	OAC_47MARRAKESH = 4,
+	OAC_47SAPIENZA = 5,
+	OAC_47BANGKOK = 6,
+	OAC_47COLORADO = 7,
+	OAC_47HOKKAIDO = 8,
+	OAC_47PREORDER = 9,
+	OAC_47COLUMBIA = 10,
+	OAC_47ISLAND = 11,
+	OAC_47MUMBAI = 12,
+	OAC_47NEWZEALAND = 13,
+	OAC_47STARTCLASSY = 14,
+	OAC_47STARTOUTFIT = 15,
+	OAC_47SUBURBIA = 16,
+	OAC_Bodyguard = 17,
+	OAC_CameraMan = 18,
+	OAC_Chef = 19,
+	OAC_Cleaner = 20,
+	OAC_Cop = 21,
+	OAC_Crew = 22,
+	OAC_DaSilva = 23,
+	OAC_Gardner = 24,
+	OAC_Hazmat = 25,
+	OAC_HouseStaff = 26,
+	OAC_Maintenance = 27,
+	OAC_Officer = 28,
+	OAC_Priest = 29,
+	OAC_Printer = 30,
+	OAC_Scientist = 31,
+	OAC_Security = 32,
+	OAC_Sheik = 33,
+	OAC_Stylist = 34,
+	OAC_Waiter = 35,
+	OAC_Busker = 36,
+	OAC_Caddie = 37,
+	OAC_ChurchStaff = 38,
+	OAC_Cyclist = 39,
+	OAC_Filmcrew = 40,
+	OAC_Fortune = 41,
+	OAC_Hippie = 42,
+	OAC_Investor = 43,
+	OAC_KGB = 44,
+	OAC_Lawyer = 45,
+	OAC_Kruger = 46,
+	OAC_Masseur = 47,
+	OAC_Mechanic = 48,
+	OAC_Norfolk = 49,
+	OAC_Plague = 50,
+	OAC_Psych = 51,
+	OAC_Shopkeep = 52,
+	OAC_Soldier = 53,
+	OAC_Tux = 54,
+	OAC_Vampire = 55,
+	OAC_YachtCrew = 56,
+	OAC_Exterminator = 57,
+	OAC_SoundCrew = 58,
+	OAC_Intern = 59,
+	OAC_Stalker = 60,
+	OAC_Scarecrow = 61,
+	OAC_Hacker = 62,
+	OAC_SpecOps = 63,
+	OAC_Berg = 64,
+	OAC_Morgue = 65,
+	OAC_Surgeon = 66,
+	OAC_Doctor = 67,
+	OAC_Director = 68,
+	OAC_Ninja = 69,
+	OAC_Baseball = 70,
+	OAC_KillBill = 71,
+	OAC_Pilot = 72,
+	OAC_Yoga = 73,
+	OAC_Mummy = 74,
+	OAC_Cowboy = 75,
+	OAC_Staff = 76,
+	OAC_Santa = 77,
+	OAC_MambaCrew = 78,
+	OAC_Delivery = 79,
+	OAC_GOTY_Clown = 80,
+	OAC_GOTY_Cowboy = 81,
+	OAC_GOTY_DarkSniper = 82,
+	OAC_Driver = 83,
+	OAC_Driverpale = 84,
+	OAC_Eventstff = 85,
+	OAC_Flrdaman = 86,
+	OAC_Food = 87,
+	OAC_Journal = 88,
+	OAC_Krnstdtengnr = 89,
+	OAC_Krnstdtsec = 90,
+	OAC_Ktchstff = 91,
+	OAC_Lee = 92,
+	OAC_Mascot = 93,
+	OAC_Medic = 94,
+	OAC_Mendez = 95,
+	OAC_Musician = 96,
+	OAC_Racecoord = 97,
+	OAC_Racemarsh = 98,
+	OAC_Thug = 99,
+	OAC_Worker = 100,
+	OAC_Research = 101,
+	OAC_Tatoo = 102,
+	OAC_Shaman = 103,
+	OAC_Artist = 104,
+	OAC_Barber = 105,
+	OAC_DJ = 106,
+	OAC_Kshmrn = 107,
+	OAC_Master = 108,
+	OAC_Burial = 109,
+	OAC_Ravenmaster = 110,
+	OAC_Sentinel = 111,
+	OAC_Blake = 112,
+	OAC_Actor = 113,
+	OAC_Architect = 114,
+	OAC_Arkian = 115,
+	OAC_Arkptrn = 116,
+	OAC_Bbq = 117,
+	OAC_Bollycrew = 118,
+	OAC_Cavegd = 119,
+	OAC_Civilian = 120,
+	OAC_Cavewkr = 121,
+	OAC_Clothsale = 122,
+	OAC_Counsellor = 123,
+	OAC_Cowboyhat = 124,
+	OAC_Custdn = 125,
+	OAC_Dancer = 126,
+	OAC_Dbbwll = 127,
+	OAC_Deadjanus = 128,
+	OAC_Driverch = 129,
+	OAC_Driversa = 130,
+	OAC_Driveruk = 131,
+	OAC_Driverus = 132,
+	OAC_Druglabwkr = 133,
+	OAC_Elite = 134,
+	OAC_Fakemlstrm = 135,
+	OAC_Farm = 136,
+	OAC_Fieldgrd = 137,
+	OAC_Headmaster = 138,
+	OAC_Knight = 139,
+	OAC_Laundrywkr = 140,
+	OAC_Lndrygrd = 141,
+	OAC_Mailman = 142,
+	OAC_Mansiongd = 143,
+	OAC_Mech_Miami = 144,
+	OAC_Mechch = 145,
+	OAC_Mechit = 146,
+	OAC_Mechkrnstdt = 147,
+	OAC_Mechsa = 148,
+	OAC_Mechuk = 149,
+	OAC_Mechus = 150,
+	OAC_Metalwkr = 151,
+	OAC_Militiasec = 152,
+	OAC_Mime = 153,
+	OAC_Moviemnstr = 154,
+	OAC_Mumbaiserv = 155,
+	OAC_Mumbsec = 156,
+	OAC_Nitiate = 157,
+	OAC_Nurse = 158,
+	OAC_Orson = 159,
+	OAC_Parka = 160,
+	OAC_Politicasst = 161,
+	OAC_Politician = 162,
+	OAC_Priest_VP = 163,
+	OAC_Queensgrd = 164,
+	OAC_Queenthug = 165,
+	OAC_Rangangrd = 166,
+	OAC_Rangansec = 167,
+	OAC_Realstbroke = 168,
+	OAC_Resident = 169,
+	OAC_Resortstaff = 170,
+	OAC_Sitewkr = 171,
+	OAC_Snowtrek = 172,
+	OAC_Subwkr = 173,
+	OAC_Suit = 174,
+	OAC_Tailor = 175,
+	OAC_Teaserv = 176,
+	OAC_Terminus = 177,
+	OAC_Trainserv = 178,
+	OAC_Villagegd = 179,
+	OAC_Winter = 180,
+	OAC_Wiseman = 181,
+	OAC_Investbanker = 182,
+	OAC_Bankteller = 183,
+	OAC_Robber = 184,
+	OAC_TechCrew = 185,
+	OAC_Attendant = 186,
+	OAC_Critic = 187,
+	OAC_FamilyGrd = 188,
+	OAC_PrivateEye = 189,
+	OAC_Undertaker = 190,
+	OAC_Photographer = 191,
+	OAC_LawyerBd = 192,
+	OAC_Biker = 193,
+	OAC_DeliveryFox = 194,
+	OAC_Dealer = 195,
+	OAC_ClubOwner = 196,
+	OAC_Bartender = 197,
+	OAC_ClubStaff = 198,
+	OAC_ClubTech = 199,
+	OAC_Herald = 200,
+	OAC_Gaucho = 201,
+	OAC_WineMkr = 202,
+	OAC_Fixer = 203,
+	OAC_Sommelier = 204,
+};
+
+// 0x00000001422D71A0 (Size: 0x4)
+enum class ZActorKeywordCondition_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	ANY_TRUE_IF_NO_REQS = 3,
 };
 
 // 0x0000000142A882C0 (Size: 0x4)
@@ -1021,6 +1437,14 @@ public:
 
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
+};
+
+// 0x0000000142AEEFC8 (Size: 0x4)
+enum class ZCrowdActorEntity_ECharacterSoundType
+{
+	eSoundType_Male = 0,
+	eSoundType_Female = 1,
+	eSoundType_Female_Heels = 2,
 };
 
 // 0x00000001422D6F00 (Size: 0x20)
@@ -1148,6 +1572,26 @@ enum class EDebugExclusionLayerState
 	DEBUGELSTATE_UNKNOWN = 2,
 };
 
+// 0x0000000143E6C998 (Size: 0x1)
+enum class ILightEntity_ELightType
+{
+	LT_DIRECTIONAL = 0,
+	LT_ENVIRONMENT = 1,
+	LT_OMNI = 2,
+	LT_SPOT = 3,
+	LT_SQUARESPOT = 4,
+	LT_CAPSULE = 5,
+	LT_AREA_QUAD = 6,
+};
+
+// 0x0000000142AA3700 (Size: 0x4)
+enum class ZPhotoModeMenuDataProvider_EMenuEntryType
+{
+	Toggle = 1,
+	Slider = 2,
+	List = 3,
+};
+
 // 0x0000000142AB9FF8 (Size: 0x4)
 enum class EOnlinTest
 {
@@ -1167,6 +1611,27 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZString m_sName; // 0x0
+};
+
+// 0x0000000143E6C418 (Size: 0x1)
+enum class EParticleColorUsage
+{
+	REPLACE_PARTICLE_COLOR = 0,
+	LEAVE_PARTICLE_COLOR = 1,
+};
+
+// 0x0000000142AACDA0 (Size: 0x4)
+enum class eContractSessionStartError
+{
+	ERROR_NONE = 0,
+	ERROR_MISSING_CONTENT = 1,
+	ERROR_SERVER_UNREACHABLE = 2,
+	ERROR_SERVER_ERROR = 3,
+	ERROR_CONTRACT_NOT_PLAYABLE_YET = 4,
+	ERROR_CONTRACT_NOT_PLAYABLE_ANYMORE = 5,
+	ERROR_CANCELED = 6,
+	ERROR_ALREADY_STARTING = 7,
+	ERROR_UNKNOWN = 8,
 };
 
 // 0x00000001422D6F18 (Size: 0x4)
@@ -1196,25 +1661,41 @@ public:
 	EDeathContext m_eDeathContext; // 0x20
 };
 
-// 0x0000000142AACDA0 (Size: 0x4)
-enum class eContractSessionStartError
+// 0x0000000142AF0748 (Size: 0x4)
+enum class EGameModeId
 {
-	ERROR_NONE = 0,
-	ERROR_MISSING_CONTENT = 1,
-	ERROR_SERVER_UNREACHABLE = 2,
-	ERROR_SERVER_ERROR = 3,
-	ERROR_CONTRACT_NOT_PLAYABLE_YET = 4,
-	ERROR_CONTRACT_NOT_PLAYABLE_ANYMORE = 5,
-	ERROR_CANCELED = 6,
-	ERROR_ALREADY_STARTING = 7,
-	ERROR_UNKNOWN = 8,
+	GameMode_Invalid = -1,
+	GameMode_Normal = 0,
+	GameMode_Sniper = 1,
+	GameMode_Versus = 2,
+	GameMode_Max = 3,
 };
 
-// 0x0000000143E6C418 (Size: 0x1)
-enum class EParticleColorUsage
+// 0x0000000142AA99E8 (Size: 0x4)
+enum class ZActBehaviorEntity_EApproachAlignment
 {
-	REPLACE_PARTICLE_COLOR = 0,
-	LEAVE_PARTICLE_COLOR = 1,
+	AA_STRICT = 0,
+	AA_LOOSE = 1,
+};
+
+// 0x0000000142A88B60 (Size: 0x8)
+class ISequenceTarget
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000143E6C9B0 (Size: 0x4)
+enum class ILightEntity_EFrameIndexStrategy
+{
+	WRAP = 0,
+	CLAMP = 1,
 };
 
 // 0x0000000142AB21E0 (Size: 0x4)
@@ -1225,18 +1706,321 @@ enum class EViewportLock
 	VPL_Rectangular_AvoidMinimapOverlap = 2,
 };
 
-// 0x00000001422D6F48 (Size: 0x4)
-enum class eWeaponType
+// 0x0000000142AA39D0 (Size: 0x4)
+enum class ZInputListenerDpadEntity_eInputListenerDpad
 {
-	WT_HANDGUN = 0,
-	WT_SLOWGUN = 1,
-	WT_ASSAULTRIFLE = 2,
-	WT_SMG = 3,
-	WT_SNIPER = 4,
-	WT_RPG = 5,
-	WT_KNIFE = 6,
-	WT_SHOTGUN = 7,
-	WT_SPOTTER = 8,
+	EILDP_UP = 0,
+	EILDP_LEFT = 1,
+	EILDP_DOWN = 2,
+	EILDP_RIGHT = 3,
+};
+
+// 0x00000001422D5D80 (Size: 0x10)
+class ZResourceID
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString m_uri; // 0x0
+};
+
+// 0x0000000142AB9FB0 (Size: 0x50)
+class SEnvironmentConfigResourceEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString Name; // 0x0
+	ZResourceID ContractsDatastoreRid; // 0x10
+	ZResourceID UnlockablesDatastoreRid; // 0x20
+	ZResourceID BlobsDatastoreRid; // 0x30
+	ZResourceID ActivityDatastoreRid; // 0x40
+};
+
+// 0x0000000142AB9FE0 (Size: 0x18)
+class SEnvironmentConfigResource
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
+};
+
+// 0x0000000142A9C5E0 (Size: 0x4)
+enum class ZEscortSituation2Entity_ETargetState
+{
+	ETS_Unknown = 0,
+	ETS_NoTarget = 1,
+	ETS_RunningActBehavior = 2,
+	ETS_RunningDummyBehavior = 3,
+	ETS_RunningOtherBehavior = 4,
+	ETS_Dead = 5,
+	ETS_TargetIsHitman = 6,
+};
+
+// 0x0000000142A9F630 (Size: 0x30)
+class SSniperScoringEvent
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int32 m_iPoints; // 0x0
+	int32 m_iPlayer; // 0x4
+	ZString m_sName; // 0x8
+	ZString m_sText; // 0x18
+	int32 m_iType; // 0x28
+	uint8 m_iScoringMachine; // 0x2C
+};
+
+// 0x0000000143F1E140 (Size: 0x20)
+class ZAMDEvent
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nEventID; // 0x0
+	float32 m_fStartFraction; // 0x4
+	float32 m_fDuration; // 0x8
+	ZVariant m_customData; // 0x10
+};
+
+// 0x0000000143F1E170 (Size: 0x28)
+class ZAMDEventTrack
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString m_sName; // 0x0
+	TArray<ZAMDEvent> m_events; // 0x10
+};
+
+// 0x0000000143F1E1A0 (Size: 0x30)
+class ZAMDTake
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
+	ZVariant m_customData; // 0x18
+	int32 m_nSyncTrackIndex; // 0x28
+};
+
+// 0x0000000142AA4BC0 (Size: 0x4)
+enum class EAIFormationMemberSpeed
+{
+	eFMS_Slow = 0,
+	eFMS_Normal = 1,
+	eFMS_Fast = 2,
+};
+
+// 0x0000000142A99F58 (Size: 0x4)
+enum class ZTrespassingSituation_ESituationState
+{
+	SS_Main = 1,
+	SS_StandDown = 2,
+	SS_Escalate = 3,
+};
+
+// 0x0000000142AA59D0 (Size: 0x4)
+enum class EFocusBarState
+{
+	FOCUS_BAR_NORMAL = 0,
+	FOCUS_BAR_INSTINCT = 1,
+	FOCUS_BAR_BURNING = 2,
+};
+
+// 0x00000001422D6EB8 (Size: 0x1)
+enum class ERenderGlowTypes
+{
+	ERENDERGLOWTYPE_NONE = 0,
+	ERENDERGLOWTYPE_ENEMIES = 1,
+	ERENDERGLOWTYPE_ALLIES = 2,
+	ERENDERGLOWTYPE_CIVILIAN = 3,
+	ERENDERGLOWTYPE_ITEMS = 4,
+	ERENDERGLOWTYPE_STASHED_ITEMS = 5,
+	ERENDERGLOWTYPE_SETPIECE = 6,
+	ERENDERGLOWTYPE_BACKGROUND = 7,
+	ERENDERGLOWTYPE_CONTRACT_TARGET = 8,
+	ERENDERGLOWTYPE_CONTRACT_TARGET_NON_CRITICAL = 9,
+	ERENDERGLOWTYPE_CONTRACT_TARGET_SPECIAL = 10,
+	ERENDERGLOWTYPE_OBJECTIVES = 11,
+	ERENDERGLOWTYPE_ENFORCER = 12,
+	ERENDERGLOWTYPE_LTMEMORY = 13,
+	ERENDERGLOWTYPE_TAGGED = 14,
+	ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED = 15,
+	ERENDERGLOWTYPE_TAGFOCUS_TAGGED = 16,
+	ERENDERGLOWTYPE_BACKGROUNDUNMASKED = 17,
+	ERENDERGLOWTYPE_INTERACTION = 18,
+	ERENDERGLOWTYPE_INTERACTION_SELECTED = 19,
+	ERENDERGLOWTYPE_INTERACTION_DESELECTED = 20,
+	ERENDERGLOWTYPE_PLAYER_LVA = 21,
+	ERENDERGLOWTYPE_PLAYER_LVA_SEEN = 22,
+	ERENDERGLOWTYPE_VS_OPPONENT = 23,
+	ERENDERGLOWTYPE_TRAVERSAL = 24,
+	ERENDERGLOWTYPE_EMISSIVE_UI = 25,
+	ERENDERGLOWTYPE_EMISSIVE_UI_IGNORE_DEPTH = 26,
+	ERENDERGLOWTYPE_OPPONENT = 27,
+	ERENDERGLOWTYPE_CAMERA = 28,
+};
+
+// 0x0000000142ABF750 (Size: 0x4)
+enum class ESoundCollisionObjectType
+{
+	StaticRigidBody = 0,
+	DynamicRigidBody = 1,
+	Ragdoll = 2,
+};
+
+// 0x0000000142AEF148 (Size: 0x4)
+enum class TeleportActionType
+{
+	STAY = 0,
+	TELEPORT = 1,
+	LEAVE_CROWD = 2,
+};
+
+// 0x0000000142AA3FD0 (Size: 0x4)
+enum class ZDistanceCondition_ECompareMethod
+{
+	CM_GreaterOrEqualThan = 0,
+	CM_LessThan = 1,
+};
+
+// 0x0000000142A8FC30 (Size: 0x4)
+enum class EActorAIState
+{
+	eAAIS_None = 0,
+	eAAIS_Distracted = 1,
+	eAAIS_PotentialThreat = 2,
+	eAAIS_PotentialThreatDistracted = 3,
+	eAAIS_PotentialThreatDisabled = 4,
+	eAAIS_Aggressive = 5,
+	eAAIS_EscortingOut = 6,
+	eAAIS_Fleeing = 7,
+	eAAIS_Unconscious = 8,
+	eAAIS_Stunned = 9,
+	eAAIS_Grenade = 10,
+	eAAIS_DisabledInCombat = 11,
+	eAAIS_Disabled = 12,
+	eAAIS_Max = 13,
+};
+
+// 0x0000000142A86C08 (Size: 0x4)
+enum class EMorphemeEventId
+{
+	eDE_None = 0,
+	eDE_UnholsterWeapon = 18,
+	eDE_HolsterWeapon = 19,
+	eDE_FireWeapon = 20,
+	eDE_AttachWeapon = 21,
+	eDE_DetachWeapon = 22,
+	eDE_LegR = 100,
+	eDE_LegL = 101,
+	eDE_TransitionEnd_LegR = 200,
+	eDE_TransitionEnd_LegL = 201,
+	eDE_Finish = 255,
+	eDE_InterpolationStart = 300,
+	eDE_InterpolationEnd = 301,
+	eDE_TransitionSignal = 400,
+	eDE_TransitionEnd = 500,
+	eDE_DisableNPCHitmanCollision = 700,
+	eDE_EnableNPCHitmanCollision = 701,
+	eDE_EnableRagdollRangeStart = 800,
+	eDE_EnableRagdollRangeEnd = 801,
+	eDE_StartBlendingOut = 850,
+	eDE_FinishBlendingOut = 851,
+	eDE_StartOrientationBlend = 860,
+	eDE_FinishOrientationBlend = 861,
+	eDE_RecoveryPowerRagdollEnd = 862,
+	eDE_RecoveryBlendEnd = 863,
+	eDE_ImpactFinished = 900,
+	eDE_ActFinished = 1000,
+	eDE_ActFinishedWhenMoving = 1001,
+	eDE_ActReached = 1005,
+	eDE_ActLoop = 1050,
+	eDE_ActFullbodyStartMarker = 1090,
+	eDE_ActFullbodyEndMarker = 1091,
+	eDE_ReactionFinished = 1100,
+	eDE_StandToCrouch = 1500,
+	eDE_CrouchToStand = 1501,
+	eDE_OffHandIKEnable = 1600,
+	eDE_OffHandIKDisable = 1601,
+	eDE_StandToMoveRotationToTranslation = 1700,
+	eDE_MoveToStandTranslationToRotation = 1701,
+	eDE_HeadIKEnable = 1800,
+	eDE_HeadIKDisable = 1801,
+	eDE_WindowLeaningEnable = 2000,
+	eDE_WindowLeaningDisable = 2001,
+	eDE_PreventDeathAnimations = 2002,
+	eDE_AllowDeathAnimations = 2003,
+	eDE_HeadControlEnable = 2010,
+	eDE_HeadControlDisable = 2011,
+	eDE_CombatActEndMarker = 3000,
+	eDE_CombatAim = 3100,
+	eDE_CombatEnableRightHandIK = 3010,
+	eDE_CombatEnableLeftHandIK = 3011,
+	eDE_CombatEndEnableIK = 3015,
+	eDE_CombatStartDisableIK = 3020,
+	eDE_CombatEndDisableIK = 3025,
+	eDE_CombatEnableShoot = 3030,
+	eDE_CombatDisableShoot = 3040,
+	eDE_CombatEnableBlindShoot = 3050,
+	eDE_CombatDisableBlindShoot = 3060,
+	eDE_CombatUnholsterGrenade = 3070,
+	eDE_CombatThrowGrenade = 3080,
+	eDE_ActBehaviorEventStart = 4000,
+	eDE_ActItemPickup = 4001,
+	eDE_ActItemDrop = 4002,
+	eDE_AmbientItemUseMarker = 4010,
+	eDE_ActBehaviorEventEnd = 4999,
+	eDE_Act_LeadIn_Marker = 10301,
+	eDE_Act_UB_BlendIn_End = 10050,
+	eDE_Act_FB_BlendIn_Start = 10051,
+	eDE_Act_FB_BlendIn_End = 10052,
+	eDE_Act_FB_BlendOut_End = 10053,
+};
+
+// 0x0000000142AA1150 (Size: 0x4)
+enum class EAccidentScaleContext
+{
+	eASC_Standard = 0,
+	eASC_Unsafe = 1,
+	eASC_Dangerous = 2,
 };
 
 // 0x0000000142AF0730 (Size: 0x4)
@@ -1263,14 +2047,6 @@ public:
 	float32 m_fSettleTime; // 0x0
 };
 
-// 0x0000000142AA1150 (Size: 0x4)
-enum class EAccidentScaleContext
-{
-	eASC_Standard = 0,
-	eASC_Unsafe = 1,
-	eASC_Dangerous = 2,
-};
-
 // 0x0000000142A9CAA8 (Size: 0x4)
 enum class EDamageEvent
 {
@@ -1293,6 +2069,49 @@ enum class EDamageEvent
 	eDE_Burn = 65536,
 	eDE_Drop = 131072,
 	eDE_Drown = 262144,
+};
+
+// 0x0000000142AEE490 (Size: 0x4)
+enum class ZSoundAmbienceGroup_ESoundCollisionType
+{
+	SCT_Box = 0,
+	SCT_Cylinder = 1,
+	SCT_Sphere = 2,
+	SCT_Volume = 3,
+};
+
+// 0x0000000142AF1688 (Size: 0x4)
+enum class ZDebugGizmoEntity_EDrawLayer
+{
+	DL_DEFAULT = 0,
+	DL_LIGHT = 1,
+	DL_PARTICLES = 2,
+	DL_PARTITIONING = 3,
+	DL_DECALS = 4,
+	DL_CROWD = 5,
+	DL_PHYSICS = 6,
+	DL_HERO = 7,
+	DL_AI = 8,
+	DL_AI_GRID = 9,
+	DL_AI_SITUATION = 10,
+	DL_AI_AREA = 11,
+	DL_NPC_LOCOMOTION = 12,
+	DL_GAME = 13,
+	DL_ALIGNMENT = 14,
+	DL_ENGINE = 15,
+	DL_SOUND = 16,
+	DL_ANIMATION = 17,
+	DL_CLOTH = 18,
+	DL_SOUND_PARTITIONING = 19,
+	DL_UI = 20,
+};
+
+// 0x0000000142AB6660 (Size: 0x4)
+enum class ZCoverPlane_ECoverSize
+{
+	eLowCover = 0,
+	eMediumCover = 1,
+	eHighCover = 2,
 };
 
 // 0x00000001422D7288 (Size: 0x4)
@@ -1330,6 +2149,14 @@ enum class EAnimSetType
 	EAST_CARRY_UMBRELLA = 29,
 };
 
+// 0x0000000142AB66A8 (Size: 0x4)
+enum class ZContextKillGuide_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+};
+
 // 0x0000000142ABEE50 (Size: 0x4)
 enum class EMassImpulseType
 {
@@ -1339,12 +2166,85 @@ enum class EMassImpulseType
 	eMIT_ShockWaveNoExplosion = 3,
 };
 
+// 0x0000000142ABDA88 (Size: 0x4)
+enum class ETimerEntityCommandType
+{
+	ETECT_Add = 0,
+	ETECT_Remove = 1,
+	ETECT_Reset = 2,
+};
+
+// 0x0000000142ABDAA0 (Size: 0xC)
+class STimerEntityCommandSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ETimerEntityCommandType m_eType; // 0x0
+	uint32 m_rEntity; // 0x4
+	float32 m_fInterval; // 0x8
+};
+
+// 0x0000000142ABDAB8 (Size: 0xC)
+class STimerEntityStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rEntity; // 0x0
+	float32 m_fNextEventTime; // 0x4
+	bool m_bPending; // 0x8
+};
+
+// 0x0000000142ABDB00 (Size: 0x48)
+class SGameTimersSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<STimerEntityCommandSaveData> m_aTimerEntityCommands; // 0x0
+	TArray<STimerEntityStateSaveData> m_aTimerEntityState; // 0x18
+	TArray<uint32> m_aPendingTimers; // 0x30
+};
+
 // 0x0000000142AEE5E0 (Size: 0x4)
 enum class ReverbFidelity
 {
 	Low = 0,
 	Medium = 1,
 	High = 2,
+};
+
+// 0x00000001421176B8 (Size: 0x40)
+class SMatrix
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float4 XAxis; // 0x0
+	float4 YAxis; // 0x10
+	float4 ZAxis; // 0x20
+	float4 Trans; // 0x30
 };
 
 // 0x00000001422D7210 (Size: 0x4)
@@ -1580,20 +2480,6 @@ enum class EAIEventType
 	AIET_DEBUG_EVENTS_END = 227,
 };
 
-// 0x0000000142A86D58 (Size: 0x8)
-class ZGameTime
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	int64 m_nTicks; // 0x0
-};
-
 // 0x0000000142A8FD88 (Size: 0x18)
 class SAIEventSaveData
 {
@@ -1732,60 +2618,14 @@ public:
 	uint32 m_behaviorModifiers; // 0x90
 };
 
-// 0x0000000142ABDA88 (Size: 0x4)
-enum class ETimerEntityCommandType
+// 0x0000000142B01808 (Size: 0x1)
+enum class ECharacterCollidableLayer
 {
-	ETECT_Add = 0,
-	ETECT_Remove = 1,
-	ETECT_Reset = 2,
-};
-
-// 0x0000000142ABDAA0 (Size: 0xC)
-class STimerEntityCommandSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ETimerEntityCommandType m_eType; // 0x0
-	uint32 m_rEntity; // 0x4
-	float32 m_fInterval; // 0x8
-};
-
-// 0x0000000142ABDAB8 (Size: 0xC)
-class STimerEntityStateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rEntity; // 0x0
-	float32 m_fNextEventTime; // 0x4
-	bool m_bPending; // 0x8
-};
-
-// 0x0000000142ABDB00 (Size: 0x48)
-class SGameTimersSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<STimerEntityCommandSaveData> m_aTimerEntityCommands; // 0x0
-	TArray<STimerEntityStateSaveData> m_aTimerEntityState; // 0x18
-	TArray<uint32> m_aPendingTimers; // 0x30
+	CCL_DYNAMIC = 0,
+	CCL_DYNAMIC_TRANSPARENT = 1,
+	CCL_DYNAMIC_NO_COLLISION = 2,
+	CCL_DYNAMIC_NO_COLLISION_TRANSPARENT = 3,
+	CCL_UNUSED_LAST = 4,
 };
 
 // 0x0000000142AACB90 (Size: 0x4)
@@ -1799,14 +2639,61 @@ enum class EDifficultyLevel
 	eDL_ALL_FLAGS = 15,
 };
 
-// 0x0000000142B01808 (Size: 0x1)
-enum class ECharacterCollidableLayer
+// 0x0000000142AFA570 (Size: 0x4)
+enum class ERegionId
 {
-	CCL_DYNAMIC = 0,
-	CCL_DYNAMIC_TRANSPARENT = 1,
-	CCL_DYNAMIC_NO_COLLISION = 2,
-	CCL_DYNAMIC_NO_COLLISION_TRANSPARENT = 3,
-	CCL_UNUSED_LAST = 4,
+	RegionId_Default = 0,
+	RegionId_Japan = 1,
+	RegionId_Asia = 2,
+};
+
+// 0x0000000142AA9700 (Size: 0x4)
+enum class ZActorPickerEffectTrack_EEffectPhaseAction
+{
+	EPA_ATTACH = 0,
+	EPA_DETACH = 1,
+};
+
+// 0x0000000142AA36C0 (Size: 0x4)
+enum class ZHUDOutfitWidgetControllerEntity_EVisibilityPolicy
+{
+	INITIALLY_HIDDEN_POPUP_ON_CHANGE = 0,
+	DONT_TOUCH = 1,
+};
+
+// 0x0000000142AAAB28 (Size: 0x4)
+enum class ESmartWaitCondition
+{
+	SWC_Time = 0,
+	SWC_Distance = 1,
+	SWC_Executing = 2,
+	SWC_Executed = 3,
+};
+
+// 0x0000000142AA18A0 (Size: 0x4)
+enum class ZCautiousSearchGroup_EAssistantState
+{
+	AS_CalculateFields = 0,
+	AS_RequestNode = 1,
+	AS_Approach = 2,
+	AS_Approaching = 3,
+	AS_Act = 4,
+	AS_Acting = 5,
+};
+
+// 0x0000000142A91010 (Size: 0x4)
+enum class ZTestGroupPath_EModifierType
+{
+	EMT_PushCorners = 0,
+	EMT_PushCornersAlt = 1,
+};
+
+// 0x0000000142AA3C30 (Size: 0x4)
+enum class ZHM5Item_EUseTypes
+{
+	EUT_CantUse = 0,
+	EUT_Toggle = 1,
+	EUT_TurnOn = 2,
 };
 
 // 0x0000000142A873D8 (Size: 0x4)
@@ -1837,47 +2724,11 @@ enum class EActorLookAtStopReason
 	eSR_HideInPlainSight = 9,
 };
 
-// 0x0000000143E6ED50 (Size: 0x18)
-class SStepCounterEntitySaveData
+// 0x0000000142AA5190 (Size: 0x4)
+enum class ECharacterIdleHandlerFullbodyType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_nIndex; // 0x0
-	int32 m_nLoopIndex; // 0x4
-	bool m_bFirst; // 0x8
-	bool m_bEnabled; // 0x9
-	float32 m_nCountFrom; // 0xC
-	float32 m_nCountTo; // 0x10
-	float32 m_nStepSize; // 0x14
-};
-
-// 0x0000000142B016E8 (Size: 0x4)
-enum class ERuntimeMemoryAllocationState
-{
-	eRMAS_NeverAllocated = 0,
-	eRMAS_Allocated = 1,
-	eRMAS_Released = 2,
-};
-
-// 0x0000000142AEF0E8 (Size: 0x4)
-enum class CrowdRegionType
-{
-	CROWDSPHERE_NONE = 0,
-	CROWDSPHERE_SAFE = 1,
-	CROWDSPHERE_POI = 2,
-	CROWDSPHERE_AVOID = 3,
-	CROWDSPHERE_RELOCATE = 4,
-	CROWDSPHERE_STOP = 5,
-	CROWDSPHERE_ALERT = 6,
-	CROWDSPHERE_SCARE = 7,
-	CROWDSPHERE_GETDOWN = 8,
-	CROWDSPHERE_DIE = 9,
+	ecIHFBT_DisguisedIdle = 0,
+	ecIHFBT_Event = 1,
 };
 
 // 0x0000000142A97738 (Size: 0x4)
@@ -1901,11 +2752,51 @@ enum class EHM5SoundFootwearType
 	EFWT_SWAT_BOOTS = 15,
 };
 
-// 0x0000000142AA5190 (Size: 0x4)
-enum class ECharacterIdleHandlerFullbodyType
+// 0x0000000142AC1558 (Size: 0x4)
+enum class ZValueBool_Operation_Signal_EEvaluationType
 {
-	ecIHFBT_DisguisedIdle = 0,
-	ecIHFBT_Event = 1,
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	NOT_ALL = 3,
+	ALL_EQUAL = 4,
+	ONE_TRUE = 5,
+};
+
+// 0x0000000142A9A940 (Size: 0x4)
+enum class ZCautiousInvestigateGroup_EInvestigateGroupState
+{
+	IGS_FindAssistant = 0,
+	IGS_PreAcknowledge = 1,
+	IGS_Acknowledge = 2,
+	IGS_Approach = 3,
+	IGS_Approaching = 4,
+	IGS_Investigating = 5,
+	IGS_DeadBody = 6,
+	IGS_Completed = 7,
+	IGS_Max = 8,
+};
+
+// 0x0000000142A9AF00 (Size: 0x4)
+class SMovementDrainPipeSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rDrainPipe; // 0x0
+};
+
+// 0x0000000142AA2BD0 (Size: 0x4)
+enum class IHM5Door_eCloseMode
+{
+	CM_AUTOCLOSE = 0,
+	CM_MANUALCLOSE = 1,
+	CM_NEVERCLOSE = 2,
 };
 
 // 0x0000000143CEC2E0 (Size: 0x1)
@@ -1960,6 +2851,18 @@ public:
 	TArray<SExtendedCppEntityProperty> properties; // 0x0
 };
 
+// 0x0000000142AFD248 (Size: 0x4)
+enum class WebSocketUtils_EOpCode
+{
+	eCONTINUATION = 0,
+	eTEXT = 1,
+	eBINARY = 2,
+	eCLOSE = 8,
+	ePING = 9,
+	ePONG = 10,
+	eNONE = 15,
+};
+
 // 0x0000000142A9F450 (Size: 0x4)
 enum class EVRConfigAnimationMode
 {
@@ -1970,66 +2873,6 @@ enum class EVRConfigAnimationMode
 	EVRCAM_RemoveGroundMotion = 4,
 	EVRCAM_RemoveFullBodyAndGroundMotion = 5,
 	EVRCAM_KeepCurrentMode = 6,
-};
-
-// 0x0000000142AA7300 (Size: 0x4)
-enum class ERegionMask
-{
-	eRM_None = 1,
-	eRM_LowCover = 2,
-	eRM_HighCover = 4,
-	eRM_Stairs = 8,
-	eRM_Separator = 16,
-	eRM_User_1 = 32,
-	eRM_User_2 = 64,
-	eRM_User_3 = 128,
-	eRM_User_4 = 256,
-	eRM_User_5 = 512,
-	eRM_User_6 = 1024,
-	eRM_User_7 = 2048,
-	eRM_User_8 = 4096,
-};
-
-// 0x0000000143F1E360 (Size: 0x4)
-enum class ECollidableShape
-{
-	ECOLLIDABLESHAPE_SPHERE = 0,
-	ECOLLIDABLESHAPE_CAPSULE = 1,
-	ECOLLIDABLESHAPE_BOX = 2,
-};
-
-// 0x0000000142AA5D90 (Size: 0x4)
-enum class EHM5SoundRicochetType
-{
-	ESRT_VARIATION1 = 0,
-	ESRT_VARIATION2 = 1,
-};
-
-// 0x0000000142AC05F8 (Size: 0xC)
-class SHintEntrySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bIsValid; // 0x0
-	uint32 m_hint; // 0x4
-	uint32 m_context; // 0x8
-};
-
-// 0x0000000142AA4440 (Size: 0x4)
-enum class EClipSpawnAxis
-{
-	eCSA_XPos = 0,
-	eCSA_XNeg = 1,
-	eCSA_YPos = 2,
-	eCSA_YNeg = 3,
-	eCSA_ZPos = 4,
-	eCSA_ZNeg = 5,
 };
 
 // 0x0000000142A86A38 (Size: 0x4)
@@ -2045,75 +2888,20 @@ enum class EAnimSetState
 	EASES_INFECTED = 7,
 };
 
-// 0x00000001421176A0 (Size: 0x10)
-class SVector4
+// 0x0000000143CEB670 (Size: 0x4)
+enum class ZRenderPostfilterParametersEntity_EHDRToneMapType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 x; // 0x0
-	float32 y; // 0x4
-	float32 z; // 0x8
-	float32 w; // 0xC
+	eLinear = 0,
+	eReinhardRGB = 1,
+	eFilmicRGB = 2,
 };
 
-// 0x0000000142AA4190 (Size: 0x24)
-class SMathLerpSaveData_SVector4
+// 0x0000000142AB6B40 (Size: 0x4)
+enum class SFootIKEventData_EFoot
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SVector4 m_A; // 0x0
-	SVector4 m_B; // 0x10
-	float32 m_fT; // 0x20
-};
-
-// 0x0000000142AA28E8 (Size: 0x30)
-class SMathLerpsSaveData_SVector4
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
-};
-
-// 0x0000000142A9A7A8 (Size: 0x4)
-class SSentryOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rSentryZone; // 0x0
-};
-
-// 0x0000000142AA30E0 (Size: 0x4)
-enum class EItemRequirement
-{
-	eIR_NoRequirement = 0,
-	eIR_RequireEmpty = 1,
-	eIR_RequireItem = 2,
-	eIR_RequireNoBigItem = 3,
+	eLeft = 0,
+	eRight = 1,
+	eBoth = 2,
 };
 
 // 0x00000001422D72F8 (Size: 0x4)
@@ -2186,28 +2974,20 @@ enum class EHM5GameInputFlag
 	eGameInputActionsNUM = 64,
 };
 
-// 0x0000000142AB6BB8 (Size: 0x4)
-enum class EPostProcessorComponentType
+// 0x0000000142A99128 (Size: 0x4)
+enum class EDramaStateFlag
 {
-	MRP_LOOKAT = 1,
-	MRP_AIM = 2,
-	MRP_LEDGEFEETLOCK = 16,
-	MRP_LEDGEHANG = 32,
-	MRP_IMPACT = 1024,
-	MRP_BLINDFIRE = 2048,
+	eDSF_DEFAULT = 0,
+	eDSF_ENABLED = 1,
+	eDSF_CAST = 2,
+	eDSF_RESUMING = 4,
+	eDSF_RUNNING = 8,
+	eDSF_DONE = 16,
+	eDSF_TERMINATED = 32,
 };
 
-// 0x0000000142AB1510 (Size: 0x4)
-enum class EActionPromptState
-{
-	eActionPromptState_Disabled = 0,
-	eActionPromptState_Enabled = 1,
-	eActionPromptState_Activated = 2,
-	eActionPromptState_Held = 3,
-};
-
-// 0x0000000142AAF368 (Size: 0x60)
-class SHUDPromptDisplayInfo
+// 0x0000000142AE29D0 (Size: 0x1)
+class BoneId
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2217,22 +2997,54 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	bool m_bActive; // 0x0
-	EActionPromptState m_eState; // 0x4
-	int32 m_nIconId; // 0x8
-	int32 m_eTypeId; // 0xC
-	float32 m_fProgress; // 0x10
-	float32 m_fDistance; // 0x14
-	bool m_bShowWarning; // 0x18
-	bool m_bNoActionAvailable; // 0x19
-	ZString m_sLabel; // 0x20
-	ZString m_sDescription; // 0x30
-	ZString m_sGlyph; // 0x40
-	float32 m_fOpacity; // 0x50
-	bool m_bIllegalItem; // 0x54
-	bool m_bSuspiciousItem; // 0x55
-	bool m_bDropTempHolsterableItems; // 0x56
-	int32 m_nFontSize; // 0x58
+};
+
+// 0x0000000142A8FC00 (Size: 0x4)
+enum class EActorState
+{
+	AS_DEACTIVATED = 0,
+	AS_ALIVE = 1,
+	AS_DYING = 2,
+	AS_DEAD = 3,
+	AS_DISABLED = 4,
+};
+
+// 0x0000000142A9C6E0 (Size: 0x4)
+enum class ZHeroEscortSituation2Entity_EEscortState
+{
+	EES_Idle = 0,
+	EES_Evaluate = 1,
+	EES_Escorting = 2,
+	EES_Intermediate = 3,
+	EES_OutOfRange = 4,
+};
+
+// 0x0000000142AB4530 (Size: 0x4)
+enum class ZKeywordCondition_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	ANY_TRUE_IF_NO_REQS = 3,
+	EQUAL = 4,
+	GREATER = 5,
+	LESS = 6,
+};
+
+// 0x0000000142AA45C0 (Size: 0x4)
+enum class SActorSoundDefs_EDefinition
+{
+	_NoSound = 0,
+};
+
+// 0x0000000142AA7AD0 (Size: 0x4)
+enum class EBehaviorTreeVariableType
+{
+	BTVT_Invalid = -1,
+	BTVT_SceneReference = 0,
+	BTVT_Contextual = 1,
+	BTVT_Dynamic = 2,
+	BTVT_NumTypes = 3,
 };
 
 // 0x0000000142A9ED60 (Size: 0x4)
@@ -2248,12 +3060,14 @@ enum class EActorPerceptionSensitivity
 	APS_SPIDER_SENSE = 7,
 };
 
-// 0x0000000143E6E880 (Size: 0x4)
-enum class ESequencePreviewState
+// 0x0000000142AA5070 (Size: 0x4)
+enum class ECharacterStateTransitionAttempt
 {
-	PREVIEW_STOPPED = 0,
-	PREVIEW_PLAYING = 1,
-	PREVIEW_PAUSED = 2,
+	eSM_TA_IfDestinationCan = 0,
+	eSM_TA_IfDestinationCanAndWants = 1,
+	eSM_TA_IfDestinationCanAndOriginDoesNotWant = 2,
+	eSM_TA_IfDestinationCanAndWantsOriginDoesNotWant = 3,
+	eSM_TA_IfDestinationCanAndOriginCanNot = 4,
 };
 
 // 0x0000000142AA4EC0 (Size: 0x4)
@@ -2267,14 +3081,215 @@ enum class ETakeDownState
 	eTD_Unknown = 5,
 };
 
-// 0x0000000142AA5070 (Size: 0x4)
-enum class ECharacterStateTransitionAttempt
+// 0x0000000143E6E880 (Size: 0x4)
+enum class ESequencePreviewState
 {
-	eSM_TA_IfDestinationCan = 0,
-	eSM_TA_IfDestinationCanAndWants = 1,
-	eSM_TA_IfDestinationCanAndOriginDoesNotWant = 2,
-	eSM_TA_IfDestinationCanAndWantsOriginDoesNotWant = 3,
-	eSM_TA_IfDestinationCanAndOriginCanNot = 4,
+	PREVIEW_STOPPED = 0,
+	PREVIEW_PLAYING = 1,
+	PREVIEW_PAUSED = 2,
+};
+
+// 0x0000000143E6DEC0 (Size: 0x28)
+class SSavableData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZVariant m_EntitiesData; // 0x0
+	ZVariant m_Data; // 0x10
+	uint32 m_nId; // 0x20
+};
+
+// 0x0000000142AA2D90 (Size: 0x4)
+enum class ECameraState
+{
+	eCamSneakStand = 0,
+	eCamSneakWalk = 1,
+	eCamSneakRoadyRun = 2,
+	eCamNormalStand = 3,
+	eCamNormalWalk = 4,
+	eCamNormalRun = 5,
+	eCamLocomotion = 6,
+	eCamCrowdStand = 7,
+	eCamCrowdWalk = 8,
+	eCamCrowdRun = 9,
+	eCamCrowdSneakStand = 10,
+	eCamCrowdSneakWalk = 11,
+	eCamCrowdSneakRoadyRun = 12,
+	eCamCrowdLocomotion = 13,
+	eCamDead = 14,
+	eCamLadder = 15,
+	eCamDrainPipe = 16,
+	eCamDrag = 17,
+	eCamSBTag = 18,
+	eCamSBTagOTS = 19,
+	eCamCloseCombat = 20,
+	eCamFiberWire = 21,
+	eCamWindowPull = 22,
+	eCamRailPush = 23,
+	eCamLedgeKick = 24,
+	eCamLedgePull = 25,
+	eCamLedgeHang = 26,
+	eCamLedgeWalk = 27,
+	eCamLedgeWalkOTS = 28,
+	eCamCoverLow = 29,
+	eCamCoverMedium = 30,
+	eCamCoverHigh = 31,
+	eCamCoverLowOTS = 32,
+	eCamCoverHighOTS = 33,
+	eCamCoverLowScope = 34,
+	eCamCoverHighScope = 35,
+	eCamCoverLowTakedownOver = 36,
+	eCamCoverLowTakedownCorner = 37,
+	eCamCoverHighTakedownCorner = 38,
+	eCamTakeDisguise = 39,
+	eCamOTS = 40,
+	eCamOTSHigh = 41,
+	eCamOTSLow = 42,
+	eCamUnAimedShooting = 43,
+	eCamUnAimedShootingHigh = 44,
+	eCamUnAimedShootingLow = 45,
+	eCamScope = 46,
+	eCamScopeHigh = 47,
+	eCamScopeLow = 48,
+	eCamVaultLow = 49,
+	eCamVaultHigh = 50,
+	eCamTakedown = 51,
+	eCamTakedownChair = 52,
+	eCamLockedSniping = 53,
+	eCamLockedSnipingScope = 54,
+	eCamLockedSnipingScopeHigh = 55,
+	eCamLockedSnipingScopeLow = 56,
+	eCamContainerAssemble = 57,
+	eCamNumProfiles = 58,
+	eCamAll = 59,
+};
+
+// 0x0000000143E6DE90 (Size: 0x4)
+enum class ESaveType
+{
+	ESaveType_AutoSave = 0,
+	ESaveType_QuickSave = 1,
+	ESaveType_SystemData = 2,
+	ESaveType_LocalProfile = 3,
+};
+
+// 0x0000000143E6D740 (Size: 0x4)
+enum class ERequirementId
+{
+	EREQUIREMENT_INVALID = 0,
+	EREQUIREMENT_TOKEN_OUTFIT_LEGACY_HERO_REQUIEMSUIT = 1,
+	EREQUIREMENT_FIREARMS_HERO_PISTOL_TACTICAL_015_SU_SKIN05 = 2,
+	EREQUIREMENT_PROP_DEVICE_SONYPREORDER_WHITE_RUBBERDUCK_REMOTE_EXPLOSIVE = 3,
+	EREQUIREMENT_GOTY_PATIENT_ZERO = 4,
+	EREQUIREMENT_GOTY_TOKEN_OUTFIT_PARIS_CLOWN = 5,
+	EREQUIREMENT_GOTY_TOKEN_OUTFIT_HOKKAIDO_COWBOY = 6,
+	EREQUIREMENT_GOTY_TOKEN_OUTFIT_MARRAKESH_DARK_SNIPER = 7,
+	EREQUIREMENT_ANNIVERSARY_OUTFITS = 8,
+	EREQUIREMENT_LOCATION_NEWZEALAND = 9,
+	EREQUIREMENT_S2_EXECUTIVE_PACK = 10,
+	EREQUIREMENT_S2_COLLECTORS_PACK = 11,
+	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM1 = 12,
+	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2 = 13,
+	EREQUIREMENT_PROP_CONTAINER_SUITCASE_ICA_STA_STADIA = 14,
+	EREQUIREMENT_PROP_DEVICE_ICA_RUBBERDUCK_REMOTE_EXPLOSIVE_STA_STADIA = 15,
+	EREQUIREMENT_H1_LEGACY_STANDARD = 16,
+	EREQUIREMENT_H1_LEGACY_EXPANSION = 17,
+	EREQUIREMENT_H2_LEGACY_STANDARD = 18,
+	EREQUIREMENT_H2_LEGACY_EXPANSION = 19,
+	EREQUIREMENT_H3_EXPANSION = 20,
+	EREQUIREMENT_LOCATION_GOLDEN = 21,
+	EREQUIREMENT_LOCATION_ANCESTRAL = 22,
+	EREQUIREMENT_LOCATION_EDGY = 23,
+	EREQUIREMENT_LOCATION_WET = 24,
+	EREQUIREMENT_LOCATION_ELEGANT = 25,
+	EREQUIREMENT_LOCATION_TRAPPED = 26,
+	EREQUIREMENT_PLATFORM_ORBIS = 27,
+	EREQUIREMENT_PLATFORM_PS5 = 28,
+	EREQUIREMENT_PLATFORM_GDK = 29,
+	EREQUIREMENT_PLATFORM_EPIC = 30,
+	EREQUIREMENT_PLATFORM_STEAM = 31,
+	EREQUIREMENT_PLATFORM_GGP = 32,
+	EREQUIREMENT_H3_PREORDER = 33,
+	EREQUIREMENT_PLATFORM_IZUMO = 34,
+};
+
+// 0x0000000143E6DEA8 (Size: 0xA8)
+class SSaveGameMetaData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint8 nSlot; // 0x0
+	ESaveType eSaveType; // 0x4
+	int32 eDifficultyLevel; // 0x8
+	ZString sContractId; // 0x10
+	ZString sContractTitle; // 0x20
+	ZString sContractType; // 0x30
+	ZString sLocationId; // 0x40
+	ZString sContractSessionId; // 0x50
+	ZString sLastEventToken; // 0x60
+	bool bIsOnline; // 0x70
+	bool bIsVR; // 0x71
+	TArray<uint32> aScreenShot; // 0x78
+	TArray<ERequirementId> aRequirements; // 0x90
+};
+
+// 0x0000000142A99EF0 (Size: 0x4)
+enum class ZStandOffSituation_ESituationState
+{
+	SS_Uncertain = 0,
+	SS_Main = 1,
+	SS_Arresting = 2,
+	SS_GetHelp = 3,
+	SS_Escalate = 4,
+	SS_Investigate = 5,
+	SS_GetHelpFromFleeingCivilian = 6,
+};
+
+// 0x0000000142A9E448 (Size: 0x4)
+enum class ZAISoundEvent_ELoudness
+{
+	EAISEL_Default = 0,
+	EAISEL_VeryLow = 1,
+	EAISEL_Low = 2,
+	EAISEL_Normal = 3,
+	EAISEL_Loud = 4,
+	EAISEL_VeryLoud = 5,
+};
+
+// 0x0000000142A9A6D0 (Size: 0x8)
+class SGuardPointOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_guardPoint; // 0x0
+	bool m_walkOnly; // 0x4
+};
+
+// 0x0000000142AACCE0 (Size: 0x4)
+enum class IContractObjective_ObjectiveType
+{
+	KILL = 0,
+	SETPIECE = 1,
+	CUSTOMKILL = 2,
+	CUSTOM = 3,
 };
 
 // 0x0000000142AF0700 (Size: 0x4)
@@ -2295,6 +3310,13 @@ enum class ESynchronisedActionState
 	eSAS_COOLINGDOWN = 2,
 };
 
+// 0x0000000142AB1650 (Size: 0x4)
+enum class ZUISubtitleDataProvider_EAlignment
+{
+	ALIGN_BOTTOM = 0,
+	ALIGN_TOP = 1,
+};
+
 // 0x0000000142AA3100 (Size: 0x4)
 enum class EInventoryConfigItemHandling
 {
@@ -2305,6 +3327,42 @@ enum class EInventoryConfigItemHandling
 	EICIH_DropOrStore = 4,
 	EICIH_DropAndPickup = 5,
 	EICIH_DoNothing = 6,
+};
+
+// 0x0000000142A86F70 (Size: 0x4)
+enum class ECollidableLayer
+{
+	eCollLayer_COLLIDE_WITH_ALL = 0,
+	eCollLayer_STATIC_COLLIDABLES_ONLY = 1,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY = 2,
+	eCollLayer_STAIRS = 3,
+	eCollLayer_SHOT_ONLY_COLLISION = 4,
+	eCollLayer_DYNAMIC_TRASH_COLLIDABLES = 5,
+	eCollLayer_KINEMATIC_COLLIDABLES_ONLY = 6,
+	eCollLayer_STATIC_COLLIDABLES_ONLY_TRANSPARENT = 7,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_TRANSPARENT = 8,
+	eCollLayer_KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT = 9,
+	eCollLayer_STAIRS_STEPS = 10,
+	eCollLayer_STAIRS_SLOPE = 11,
+	eCollLayer_HERO_PROXY = 12,
+	eCollLayer_ACTOR_PROXY = 13,
+	eCollLayer_HERO_VR = 14,
+	eCollLayer_CLIP = 15,
+	eCollLayer_ACTOR_RAGDOLL = 16,
+	eCollLayer_CROWD_RAGDOLL = 17,
+	eCollLayer_LEDGE_ANCHOR = 18,
+	eCollLayer_ACTOR_DYN_BODY = 19,
+	eCollLayer_HERO_DYN_BODY = 20,
+	eCollLayer_ITEMS = 21,
+	eCollLayer_WEAPONS = 22,
+	eCollLayer_COLLISION_VOLUME_HITMAN_ON = 23,
+	eCollLayer_COLLISION_VOLUME_HITMAN_OFF = 24,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER = 25,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER_TRANSPARENT = 26,
+	eCollLayer_COLLIDE_WITH_STATIC_ONLY = 27,
+	eCollLayer_AI_VISION_BLOCKER = 28,
+	eCollLayer_AI_VISION_BLOCKER_AMBIENT_ONLY = 29,
+	eCollayer_UNUSED_LAST = 30,
 };
 
 // 0x0000000142117950 (Size: 0x10)
@@ -2361,71 +3419,18 @@ public:
 	TArray<ZString> exits; // 0x20
 };
 
-// 0x0000000142A86F70 (Size: 0x4)
-enum class ECollidableLayer
+// 0x0000000142AACC80 (Size: 0x4)
+enum class IContractEvaluationContextListener_EListenerType
 {
-	eCollLayer_COLLIDE_WITH_ALL = 0,
-	eCollLayer_STATIC_COLLIDABLES_ONLY = 1,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY = 2,
-	eCollLayer_STAIRS = 3,
-	eCollLayer_SHOT_ONLY_COLLISION = 4,
-	eCollLayer_DYNAMIC_TRASH_COLLIDABLES = 5,
-	eCollLayer_KINEMATIC_COLLIDABLES_ONLY = 6,
-	eCollLayer_STATIC_COLLIDABLES_ONLY_TRANSPARENT = 7,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_TRANSPARENT = 8,
-	eCollLayer_KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT = 9,
-	eCollLayer_STAIRS_STEPS = 10,
-	eCollLayer_STAIRS_SLOPE = 11,
-	eCollLayer_HERO_PROXY = 12,
-	eCollLayer_ACTOR_PROXY = 13,
-	eCollLayer_HERO_VR = 14,
-	eCollLayer_CLIP = 15,
-	eCollLayer_ACTOR_RAGDOLL = 16,
-	eCollLayer_CROWD_RAGDOLL = 17,
-	eCollLayer_LEDGE_ANCHOR = 18,
-	eCollLayer_ACTOR_DYN_BODY = 19,
-	eCollLayer_HERO_DYN_BODY = 20,
-	eCollLayer_ITEMS = 21,
-	eCollLayer_WEAPONS = 22,
-	eCollLayer_COLLISION_VOLUME_HITMAN_ON = 23,
-	eCollLayer_COLLISION_VOLUME_HITMAN_OFF = 24,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER = 25,
-	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER_TRANSPARENT = 26,
-	eCollLayer_COLLIDE_WITH_STATIC_ONLY = 27,
-	eCollLayer_AI_VISION_BLOCKER = 28,
-	eCollLayer_AI_VISION_BLOCKER_AMBIENT_ONLY = 29,
-	eCollayer_UNUSED_LAST = 30,
-};
-
-// 0x0000000142AB1DD8 (Size: 0x18)
-class SIntelListDisplayInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	int32 index; // 0x0
-	bool active; // 0x4
-	bool newInfo; // 0x5
-	ZString label; // 0x8
-};
-
-// 0x0000000142AB1DF8 (Size: 0x18)
-class SIntelListDisplayInfoArray_dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SIntelListDisplayInfo> dummy; // 0x0
+	eDEFAULT = 0,
+	eOBJECTIVECOUNTER = 1,
+	eFORCEUPDATE = 2,
+	eCUSTOM = 3,
+	eINTERNAL = 4,
+	eCHALLENGECOUNTER = 5,
+	eCHALLENGETREE = 6,
+	eTOGGLE = 7,
+	eMATCHARRAYS = 8,
 };
 
 // 0x0000000142A882A8 (Size: 0x4)
@@ -2437,76 +3442,36 @@ enum class EGSKillVictim
 	GSKILLVICTIM_TARGET = 3,
 };
 
-// 0x0000000142AB2188 (Size: 0x8)
-class S25DProjectionSettingsCurveEntry
+// 0x0000000143E6C950 (Size: 0x4)
+enum class IRenderCompositorEntity_EMode
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 fDistance; // 0x0
-	float32 fValue; // 0x4
+	eSourceA = 0,
+	eSourceB = 1,
+	eLayered = 2,
+	eAlphaLayered = 3,
 };
 
-// 0x0000000142AA4250 (Size: 0x24)
-class SMathMultiplyDivideSaveData_SVector4
+// 0x0000000142A97168 (Size: 0x4)
+enum class IHM5Door_EOpenMode
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SVector4 m_fA; // 0x0
-	SVector4 m_fB; // 0x10
-	bool m_bDivide; // 0x20
+	OM_TWO_WAY = 0,
+	OM_OPEN_POS_SIDE_ONLY = 1,
+	OM_OPEN_NEG_SIDE_ONLY = 2,
+	OM_DISABLED = 3,
 };
 
-// 0x0000000142AA26F0 (Size: 0x30)
-class SMathMultipliesSaveData_SVector4
+// 0x00000001422D71C8 (Size: 0x4)
+enum class ZActorKnowledgeCondition_EEvaluationType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
+	ALL = 0,
+	ANY = 1,
 };
 
-// 0x0000000142AA3E10 (Size: 0x18)
-class SActorSpreadControllerCandidateSaveData
+// 0x0000000142AB2020 (Size: 0x4)
+enum class EMarkerInclusionMode
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_CandidateActor; // 0x0
-	ZGameTime m_CandidateTime; // 0x8
-	bool m_bValidCandidate; // 0x10
-};
-
-// 0x0000000142AF0748 (Size: 0x4)
-enum class EGameModeId
-{
-	GameMode_Invalid = -1,
-	GameMode_Normal = 0,
-	GameMode_Sniper = 1,
-	GameMode_Versus = 2,
-	GameMode_Max = 3,
+	MIM_DEFAULT = 0,
+	MIM_IF_FORCE_INCLUDED_ONLY = 1,
 };
 
 // 0x0000000142A98C78 (Size: 0x4)
@@ -2561,11 +3526,26 @@ enum class EHeroGameState
 	eHGS_NUM = 46,
 };
 
-// 0x0000000142AB2020 (Size: 0x4)
-enum class EMarkerInclusionMode
+// 0x0000000142AA2138 (Size: 0x4)
+enum class ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent
 {
-	MIM_DEFAULT = 0,
-	MIM_IF_FORCE_INCLUDED_ONLY = 1,
+	EIIE_ItemImpactBack = 0,
+	EIIE_ItemImpactFront = 1,
+	EIIE_ImpactLow = 2,
+	EIIE_ItemPullOut = 3,
+	EIIE_ItemOnDeadlyThrow = 4,
+	EIIE_ItemSlitThroat = 5,
+	EIIE_ItemSoundGeneric01 = 6,
+	EIIE_ItemSoundGeneric02 = 7,
+	EIIE_ItemSoundGeneric03 = 8,
+};
+
+// 0x0000000143E6CA10 (Size: 0x1)
+enum class ETessellationFactorMode
+{
+	TESSELLATIONFACTORMODE_FIXED = 0,
+	TESSELLATIONFACTORMODE_OBJECT = 1,
+	TESSELLATIONFACTORMODE_TRIANGLE = 2,
 };
 
 // 0x0000000142AA5250 (Size: 0x4)
@@ -2577,12 +3557,49 @@ enum class ETargetType
 	eTDS_Linked = 3,
 };
 
-// 0x0000000143E6CA10 (Size: 0x1)
-enum class ETessellationFactorMode
+// 0x0000000142AA1410 (Size: 0x4)
+enum class EActorBumpType
 {
-	TESSELLATIONFACTORMODE_FIXED = 0,
-	TESSELLATIONFACTORMODE_OBJECT = 1,
-	TESSELLATIONFACTORMODE_TRIANGLE = 2,
+	EABT_NONE = 0,
+	EABT_UPPERBODY = 1,
+	EABT_HEAD = 2,
+};
+
+// 0x0000000142A9A220 (Size: 0x50)
+class ZSituationOrder
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142A960B8 (Size: 0x4)
+enum class ZHM5GenericEventConsumer_EEvent
+{
+	eGeneric00 = 0,
+	eGeneric01 = 1,
+	eGeneric02 = 2,
+	eGeneric03 = 3,
+	eGeneric04 = 4,
+	eGeneric05 = 5,
+	eGeneric06 = 6,
+	eGeneric07 = 7,
+};
+
+// 0x0000000142AC1660 (Size: 0x4)
+enum class ZValueInt_Comparator_Poll_EEvaluationType
+{
+	EQUAL = 0,
+	NOT_EQUAL = 1,
+	LESS = 2,
+	LESS_OR_EQUAL = 3,
+	HIGHER = 4,
+	HIGHER_OR_EQUAL = 5,
 };
 
 // 0x0000000142A86C38 (Size: 0x8)
@@ -2609,6 +3626,37 @@ enum class EHM5SoundFootstepStance
 	EFSS_ANY = 5,
 };
 
+// 0x0000000142AF04C0 (Size: 0x18)
+class SCppEntitySubsetInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString name; // 0x0
+	uint32 flags; // 0x10
+};
+
+// 0x0000000142AF0658 (Size: 0x28)
+class SCppEntityBlueprint
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TypeID typeName; // 0x0
+	uint32 typeFlags; // 0x8
+	TArray<SCppEntitySubsetInfo> subsets; // 0x10
+};
+
 // 0x0000000142AA8B60 (Size: 0x4)
 enum class EGestureCategory
 {
@@ -2620,6 +3668,61 @@ enum class EGestureCategory
 	EGC_StopWarn = 5,
 };
 
+// 0x0000000142ABEFE8 (Size: 0x4)
+enum class eWeaponOperation
+{
+	WO_SEMI_AUTO = 0,
+	WO_FULL_AUTO = 1,
+};
+
+// 0x0000000142AEDDE8 (Size: 0x8)
+class SMusicGridData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_fGridDurationSec; // 0x0
+	float32 m_fGridOffsetSec; // 0x4
+};
+
+// 0x0000000142A880B0 (Size: 0x1)
+enum class ERayDetailLevel
+{
+	RAYDETAILS_NONE = 0,
+	RAYDETAILS_BONES = 1,
+	RAYDETAILS_MESH = 2,
+};
+
+// 0x0000000142A98CA0 (Size: 0x4)
+enum class EVictimMovementType
+{
+	eVictimMovementNone = -1,
+	eVictimMovementPullVictimFromWindow = 0,
+	eVictimMovementThrowBodyOverRail = 1,
+	eVictimMovementDumpBodyOverLedge = 2,
+	eVictimMovementTakeDown = 3,
+	eVictimMovementRecoveryFinisher = 4,
+	eVictimMovementGrabVictim = 5,
+	eVictimMovementPushVictimThroughWindowAndRail = 6,
+	eVictimMovementContextKill = 7,
+	eVictimMovementKickVictimOverLedge = 8,
+	eVictimMovementCoupDeGrace = 9,
+	eVictimMovementCloseCombat = 10,
+	eVictimMovementLast = 11,
+};
+
+// 0x0000000142ABED00 (Size: 0x4)
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioImpactType
+{
+	eWBC_AudioImpactType_Normal = 0,
+	eWBC_AudioImpactType_Sweetener = 1,
+};
+
 // 0x0000000142AA2CB0 (Size: 0x4)
 enum class ECameraShakerChannel
 {
@@ -2629,17 +3732,6 @@ enum class ECameraShakerChannel
 	eCameraShakerChannel_Weapon = 3,
 	eCameraShakerChannel_CloseCombat = 4,
 	eCameraShakerChannel_Num = 5,
-};
-
-// 0x00000001422D7150 (Size: 0x4)
-enum class EItemLocation
-{
-	eIL_Anywhere = 0,
-	eIL_Inventory = 1,
-	eIL_RightHand = 2,
-	eIL_LeftHand = 3,
-	eIL_FreeBone = 4,
-	eIL_Count = 5,
 };
 
 // 0x0000000142A9A1C0 (Size: 0x4)
@@ -2673,8 +3765,19 @@ enum class ESituationType
 	ESituationType_Count = 25,
 };
 
-// 0x0000000142AEDDE8 (Size: 0x8)
-class SMusicGridData
+// 0x00000001422D7150 (Size: 0x4)
+enum class EItemLocation
+{
+	eIL_Anywhere = 0,
+	eIL_Inventory = 1,
+	eIL_RightHand = 2,
+	eIL_LeftHand = 3,
+	eIL_FreeBone = 4,
+	eIL_Count = 5,
+};
+
+// 0x0000000142AACA88 (Size: 0x1)
+class SExitsActiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2684,180 +3787,39 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	float32 m_fGridDurationSec; // 0x0
-	float32 m_fGridOffsetSec; // 0x4
+	bool m_bIsActive; // 0x0
 };
 
-// 0x0000000142ABEFE8 (Size: 0x4)
-enum class eWeaponOperation
+// 0x0000000142AB6690 (Size: 0x4)
+enum class ZContextKillGuide_EContextKillType
 {
-	WO_SEMI_AUTO = 0,
-	WO_FULL_AUTO = 1,
+	eCKT_TOILET_DROWN = 0,
+	eCKT_SNAP_AND_TOSS = 1,
+	eCKT_PUSH = 2,
+	eCKT_NO_ANIMATION = 3,
+	eCKT_END = 4,
 };
 
-// 0x0000000142A880B0 (Size: 0x1)
-enum class ERayDetailLevel
+// 0x0000000142AA61D0 (Size: 0x4)
+enum class MenuWeaponUpgradeData_EUpgradeAction
 {
-	RAYDETAILS_NONE = 0,
-	RAYDETAILS_BONES = 1,
-	RAYDETAILS_MESH = 2,
+	EUPGRADE_ACTION_NONE = 0,
+	EUPGRADE_ACTION_INSTALL = 1,
+	EUPGRADE_ACTION_REMOVE = 2,
+	EUPGRADE_ACTION_UNLOCK_SLOT = 3,
+	EUPGRADE_ACTION_BUY_NEXT_LEVEL = 4,
+	EUPGRADE_ACTION_EQUIP_WEAPON = 5,
+	EUPGRADE_ACTION_UNEQUIP_WEAPON = 6,
+	EUPGRADE_ACTION_CLEAR_LEVELS = 7,
 };
 
-// 0x0000000142A9F480 (Size: 0x4)
-enum class EVRConfigCameraRotationAllowed
+// 0x0000000143E6FF60 (Size: 0x4)
+enum class ZUIPerformanceTestMetricsCollectorEntity_EVsyncPolicy
 {
-	EVRCCRA_RotationEnabled = 0,
-	EVRCCRA_RotationDisabled = 1,
-	EVRCCRA_KeepCurrent = 2,
-};
-
-// 0x0000000143E6C9E0 (Size: 0x40)
-class SCollidingParticle
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float4 m_vPosition; // 0x0
-	float4 m_vVelocity; // 0x10
-	float4 m_vNewVelocity; // 0x20
-	uint32 m_nColor; // 0x30
-	float32 m_fSize; // 0x34
-};
-
-// 0x0000000142AAE950 (Size: 0x4)
-enum class _EUIOptionKey
-{
-	UI_OPTION_GAME_VIBRATION = 100,
-	UI_OPTION_GAME_ADAPTIVE_FEEDBACK = 110,
-	UI_OPTION_GAME_AIM_ASSIST = 200,
-	UI_OPTION_GAME_AIM_CAUSAL = 210,
-	UI_OPTION_GAME_INVERT_INVENTORY_EMOTE = 220,
-	UI_OPTION_GAME_INVERT_X = 300,
-	UI_OPTION_GAME_INVERT_MOUSE_X = 301,
-	UI_OPTION_GAME_INVERT_MOUSE_Y = 302,
-	UI_OPTION_GAME_INVERT_Y = 310,
-	UI_OPTION_GAME_CONTROL_SCHEME = 311,
-	UI_OPTION_GAME_FAST_TARGET = 312,
-	UI_OPTION_GAME_DIFFICULTY = 321,
-	UI_OPTION_GAME_TRIGGER_SHOOT = 330,
-	UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA = 332,
-	UI_OPTION_GAME_LEFT_HANDED_CONTROLS = 333,
-	UI_OPTION_GAME_CAMERA_SENSITIVITY_HORZ = 334,
-	UI_OPTION_GAME_CAMERA_SENSITIVITY_VERT = 335,
-	UI_OPTION_GAME_MOUSE_SENSITIVITY = 336,
-	UI_OPTION_GAME_AIM_SENSITIVITY = 337,
-	UI_OPTION_GAME_CAMERA_SENSITIVITY = 338,
-	UI_OPTION_GAME_INSTINCT_PATHS = 340,
-	UI_OPTION_GAME_INSTINCT_NPCGLOW = 342,
-	UI_OPTION_GAME_HINTS_TUTORIAL = 346,
-	UI_OPTION_GAME_HINTS_INSTINCT = 348,
-	UI_OPTION_GAME_LANG_AUDIO = 350,
-	UI_OPTION_GAME_LANG_TEXT = 351,
-	UI_OPTION_GAME_COVER_TOGGLE = 352,
-	UI_OPTION_GAME_FIXED_MAP = 353,
-	UI_OPTION_GAME_MAP_SHOW_NORTH_INDICATOR = 354,
-	UI_OPTION_GAME_AID_OPPORTUNITIES = 360,
-	UI_OPTION_GAME_AID_INSTINCT = 361,
-	UI_OPTION_GAME_AID_MINI_MAP = 362,
-	UI_OPTION_GAME_AID_NPC_ICONS = 363,
-	UI_OPTION_GAME_AID_ATTENTION = 364,
-	UI_OPTION_GAME_AID_VITAL_INFO = 365,
-	UI_OPTION_GAME_AID_INTERACTION_H = 366,
-	UI_OPTION_GAME_AID_OBJECTIVES = 367,
-	UI_OPTION_GAME_AID_WEAPON_HUD = 368,
-	UI_OPTION_GAME_AID_CHALLENGEDESCRIPTION = 369,
-	UI_OPTION_GAME_MINI_MAP_SHOW_NPCS = 370,
-	UI_OPTION_GAME_AID_TARGET_INFO = 371,
-	UI_OPTION_GAME_AID_CHALLENGE_HUD = 372,
-	UI_OPTION_GAME_MINI_MAP_SHOW_TARGETS = 373,
-	UI_OPTION_GAME_CHALLENGES_FILTER = 374,
-	UI_OPTION_GAME_AID_MISSION_TIMER = 375,
-	UI_OPTION_GAME_DIFFICULTY_LEVEL_HUD = 376,
-	UI_OPTION_GAME_AID_GLOBAL_HINTS = 377,
-	UI_OPTION_GAME_SCORE_HUD = 378,
-	UI_OPTION_GAME_AID_LVA = 379,
-	UI_OPTION_GAME_AID_PICTURE_IN_PICTURE = 380,
-	UI_OPTION_GAME_AID_INTERACTION_PROMPT = 381,
-	UI_OPTION_GAME_AID_SA_HUD = 382,
-	UI_OPTION_GAME_AID_RELOAD_HUD = 383,
-	UI_OPTION_GAME_AID_CAMERA_GRID = 384,
-	UI_OPTION_GAME_AID_AIM_TOGGLE = 385,
-	UI_OPTION_GAME_AID_OBJECTIVES_VR = 386,
-	UI_OPTION_GAME_AID_WEAPON_HUD_VR = 387,
-	UI_OPTION_GAME_AID_RELOAD_HUD_VR = 388,
-	UI_OPTION_GAME_AUTOSAVE = 390,
-	UI_OPTION_GAME_AUTOSAVE_VR = 391,
-	UI_OPTION_GAME_AUTOSAVE_HUD = 400,
-	UI_OPTION_SOUND_VOLUME_MASTER = 1010,
-	UI_OPTION_SOUND_VOLUME_EFFECTS = 1020,
-	UI_OPTION_SOUND_VOLUME_MUSIC = 1030,
-	UI_OPTION_SOUND_VOLUME_DIALOGUE = 1040,
-	UI_OPTION_SOUND_MUTE_MICROPHONE = 1050,
-	UI_OPTION_SOUND_MUTE_OTHER_PLAYER = 1060,
-	UI_OPTION_SOUND_OUTPUTMODE = 1200,
-	UI_OPTION_SOUND_SIMULATION_QUALITY = 1210,
-	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE = 1220,
-	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE_VR = 1221,
-	UI_OPTION_GRAPHICS_SUBTITLES = 2000,
-	UI_OPTION_GRAPHICS_SUBTITLES_SIZE = 2001,
-	UI_OPTION_GRAPHICS_SUBTITLES_VR = 2010,
-	UI_OPTION_GRAPHICS_SUBTITLES_SIZE_VR = 2011,
-	UI_OPTION_GRAPHICS_SAFE_AREA_X = 2210,
-	UI_OPTION_GRAPHICS_SAFE_AREA_Y = 2220,
-	UI_OPTION_GSM_AUTHORITY_BEGIN_MARKER = 2221,
-	UI_OPTION_DISPLAY_RESOLUTION = 2230,
-	UI_OPTION_DISPLAY_REFRESHRATE = 2240,
-	UI_OPTION_DISPLAY_FULLSCREEN = 2250,
-	UI_OPTION_DISPLAY_EXCLUSIVE = 2260,
-	UI_OPTION_DISPLAY_VSYNC = 2270,
-	UI_OPTION_DISPLAY_MONITOR = 2280,
-	UI_OPTION_DISPLAY_QUALITY = 2290,
-	UI_OPTION_DISPLAY_ASPECT = 2300,
-	UI_OPTION_DISPLAY_STEREOSCOPIC = 2310,
-	UI_OPTION_DISPLAY_STEREO_DEPTH = 2320,
-	UI_OPTION_DISPLAY_STEREO_STRENGTH = 2330,
-	UI_OPTION_GRAPHICS_QUALITY = 2600,
-	UI_OPTION_GRAPHICS_SHADOW_QUALITY = 2610,
-	UI_OPTION_GRAPHICS_SHADOW_RESOLUTION = 2620,
-	UI_OPTION_GRAPHICS_TEXTURE_QUALITY = 2630,
-	UI_OPTION_GRAPHICS_TEXTURE_FILTER = 2640,
-	UI_OPTION_GRAPHICS_ASSAO_QUALITY = 2650,
-	UI_OPTION_GRAPHICS_VSYNC = 2660,
-	UI_OPTION_GRAPHICS_TESSELLATION = 2680,
-	UI_OPTION_GRAPHICS_MIRRORS = 2690,
-	UI_OPTION_GRAPHICS_LOD = 2710,
-	UI_OPTION_GRAPHICS_MOTIONBLUR = 2720,
-	UI_OPTION_GRAPHICS_BOKEH = 2740,
-	UI_OPTION_GRAPHICS_REFLECTION_QUALITY = 2742,
-	UI_OPTION_GRAPHICS_MOTION_BLUR = 2743,
-	UI_OPTION_GRAPHICS_DYNAMIC_SHARPENING = 2744,
-	UI_OPTION_GRAPHICS_SIMULATION_QUALITY = 2745,
-	UI_OPTION_GRAPHICS_SSR = 2746,
-	UI_OPTION_GRAPHICS_VRS = 2747,
-	UI_OPTION_GRAPHICS_SUPER_SAMPLING = 2750,
-	UI_OPTION_GRAPHICS_GAMMA = 2760,
-	UI_OPTION_GRAPHICS_FRAMERATE_LIMIT = 2770,
-	UI_OPTION_GRAPHICS_HDR = 2771,
-	UI_OPTION_GSM_AUTHORITY_END_MARKER = 2771,
-	UI_OPTION_GRAPHICS_HDR_GAMMA = 2772,
-	UI_OPTION_GRAPHICS_RENDERING_QUALITY = 2773,
-	UI_OPTION_GRAPHICS_NEUTRAL_LUT_BLEND = 2774,
-	UI_OPTION_GRAPHICS_DIFFUSE_COLOR_CLAMP = 2775,
-	UI_OPTION_VR_BLINDERS_ENABLED = 3000,
-	UI_OPTION_VR_BLINDERS_STRENGTH = 3001,
-	UI_OPTION_VR_TURN_MODE = 3002,
-	UI_OPTION_VR_HEAD_BASED_MOVEMENT = 3003,
-	UI_OPTION_VR_FADE_ON_COLLISION = 3004,
-	UI_OPTION_VR_TURN_RATE = 3005,
-	UI_OPTION_VR_TURN_SPEED = 3006,
-	UI_OPTION_VR_MINIMUM_REPROJECTION_COLOR = 3007,
-	UI_OPTION_VR_LEFT_HAND_FOLLOW_RIGHT = 3008,
-	UI_OPTION_VR_SAFE_AREA_ENABLED = 3009,
+	None = -1,
+	ForceOff = 0,
+	Force60 = 1,
+	Force30 = 2,
 };
 
 // 0x0000000142AA3080 (Size: 0x4)
@@ -2876,21 +3838,6 @@ enum class EIntelType
 	eIT_BACKGROUND = 2,
 	eIT_HANDLER = 3,
 	eIT_UNDEFINED = 4,
-};
-
-// 0x0000000142A9A778 (Size: 0x2)
-class SRepositionOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bStrafe; // 0x0
-	bool m_bAimAtTarget; // 0x1
 };
 
 // 0x0000000142A86F88 (Size: 0x4)
@@ -2919,6 +3866,21 @@ enum class ERayLayer
 	eRayLayer_UNUSED_LAST = 24,
 };
 
+// 0x0000000142A9A778 (Size: 0x2)
+class SRepositionOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bStrafe; // 0x0
+	bool m_bAimAtTarget; // 0x1
+};
+
 // 0x0000000142B00248 (Size: 0x4)
 enum class EMultiplayerLobbyRequestType
 {
@@ -2937,8 +3899,15 @@ enum class EExclusionLayer
 	EL_AMBIENT = 2,
 };
 
-// 0x0000000142A98DD8 (Size: 0x6)
-class SSecuritySystemCameraSaveData
+// 0x0000000142AA3D10 (Size: 0x4)
+enum class IContractObjective_Type
+{
+	CONTRACT_OBJ_EVENT_BASED = 0,
+	CONTRACT_OBJ_SM_BASED = 1,
+};
+
+// 0x0000000142AA3D28 (Size: 0x18)
+class SObjetiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -2948,18 +3917,143 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint16 m_nEscalation; // 0x0
-	bool m_bIsFunctional; // 0x2
-	bool m_bHasEnteredOnce; // 0x3
-	bool m_bWasInvestigated; // 0x4
-	bool m_bDestroyed; // 0x5
+	IContractObjective_Type m_eType; // 0x0
+	ZVariant m_SaveData; // 0x8
 };
 
-// 0x0000000142A8FF00 (Size: 0x4)
-enum class EConversationRole
+// 0x0000000142A9E970 (Size: 0x4)
+enum class ZHeroEscortSituationEntity_EEscortState
 {
-	eCR_Leader = 0,
-	eCR_Assistant = 1,
+	EES_Idle = 0,
+	EES_Evaluate = 1,
+	EES_Escorting = 2,
+	EES_Intermediate = 3,
+	EES_OutOfRange = 4,
+};
+
+// 0x0000000142B01628 (Size: 0x4)
+enum class EPhysicsObjectType
+{
+	EPHYSICSOBJECTTYPE_UNKNOWN = 0,
+	EPHYSICSOBJECTTYPE_DYNAMIC = 1,
+	EPHYSICSOBJECTTYPE_KINEMATIC = 2,
+	EPHYSICSOBJECTTYPE_STATIC = 3,
+};
+
+// 0x0000000142B01640 (Size: 0x90)
+class SDestructiblePieceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SMatrix m_mTransform; // 0x0
+	TArray<uint16> m_aIndices; // 0x40
+	float32 m_fMass; // 0x58
+	EPhysicsObjectType m_ePhysicsType; // 0x5C
+	bool m_bIsAwake; // 0x60
+	float4 m_fLinearVelocity; // 0x70
+	float4 m_fAngularVelocity; // 0x80
+};
+
+// 0x0000000142B016E8 (Size: 0x4)
+enum class ERuntimeMemoryAllocationState
+{
+	eRMAS_NeverAllocated = 0,
+	eRMAS_Allocated = 1,
+	eRMAS_Released = 2,
+};
+
+// 0x0000000142B01658 (Size: 0x20)
+class SDestructibleRuntimeConnnection
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint16 m_nPieceIndex; // 0x0
+	TArray<uint16> m_aConnections; // 0x8
+};
+
+// 0x0000000142B01670 (Size: 0x8)
+class SDestructibleRuntimeDamage
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint16 m_nPieceIndex; // 0x0
+	float32 m_fDamage; // 0x4
+};
+
+// 0x0000000142B01370 (Size: 0x60)
+class SDestructibleObjectSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SDestructibleInteractionHandlerData m_interactionData; // 0x0
+	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
+	TArray<SDestructibleRuntimeConnnection> m_aConnectionData; // 0x20
+	TArray<SDestructibleRuntimeDamage> m_aDamageData; // 0x38
+	uint16 m_nNumAnchors; // 0x50
+	ERuntimeMemoryAllocationState m_eRuntimeMemoryAllocationState; // 0x54
+	EPhysicsObjectType m_eSystemPhysicsType; // 0x58
+	bool m_bHasSystemBeenDetached; // 0x5C
+	bool m_bHasSystemBeenFractured; // 0x5D
+	bool m_bPhysicsEnabled; // 0x5E
+	bool m_bDestructionEnabled; // 0x5F
+};
+
+// 0x0000000142AAF320 (Size: 0x48)
+class SIntelDisplayInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int32 index; // 0x0
+	bool selected; // 0x4
+	bool active; // 0x5
+	ZString headline; // 0x8
+	ZString bodyheadline; // 0x18
+	ZString text; // 0x28
+	ZString img; // 0x38
+};
+
+// 0x0000000142AB1DB8 (Size: 0x18)
+class SIntelDisplayInfoArray_dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SIntelDisplayInfo> dummy; // 0x0
 };
 
 // 0x0000000142AEE4D8 (Size: 0x1)
@@ -2971,51 +4065,28 @@ enum class AudioEventCullingBehavior
 	NoDistanceCulling = 3,
 };
 
-// 0x00000001422D5D98 (Size: 0x18)
-class ZRuntimePinConDesc
+// 0x0000000142A8FF00 (Size: 0x4)
+enum class EConversationRole
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint64 m_nFromEntityID; // 0x0
-	uint64 m_nToEntityID; // 0x8
-	uint32 m_nFromPinID; // 0x10
-	uint32 m_nToPinID; // 0x14
+	eCR_Leader = 0,
+	eCR_Assistant = 1,
 };
 
-// 0x00000001422D5DB0 (Size: 0x30)
-class ZScopedRuntimePinConDesc
+// 0x0000000142B001A0 (Size: 0x4)
+enum class Network_PacketPriority
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint64> m_aScopePath; // 0x0
-	ZRuntimePinConDesc m_PinConDesc; // 0x18
+	IMMEDIATE_PRIORITY = 0,
+	HIGH_PRIORITY = 1,
+	MEDIUM_PRIORITY = 2,
+	LOW_PRIORITY = 3,
+	NUMBER_OF_PRIORITIES = 4,
 };
 
-// 0x0000000143E6E7C0 (Size: 0x18)
-class SSequenceTrackSaveData
+// 0x0000000142B001E8 (Size: 0x4)
+enum class EReplicaMode
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rTrackEntity; // 0x0
-	ZVariant m_CustomTrackData; // 0x8
+	E_RM_STATIC_OBJECT = 0,
+	E_RM_DYNAMIC = 1,
 };
 
 // 0x0000000142117670 (Size: 0xC)
@@ -3034,6 +4105,23 @@ public:
 	float32 z; // 0x8
 };
 
+// 0x00000001421176A0 (Size: 0x10)
+class SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 x; // 0x0
+	float32 y; // 0x4
+	float32 z; // 0x8
+	float32 w; // 0xC
+};
+
 // 0x0000000142ABD8A8 (Size: 0x20)
 class SSpatialSaveData
 {
@@ -3050,11 +4138,69 @@ public:
 	SVector4 m_vQuaternionRotation; // 0x10
 };
 
-// 0x0000000142B001E8 (Size: 0x4)
-enum class EReplicaMode
+// 0x0000000142AC1648 (Size: 0x4)
+enum class ZValueInt_Comparator_EEvaluationType
 {
-	E_RM_STATIC_OBJECT = 0,
-	E_RM_DYNAMIC = 1,
+	EQUAL = 0,
+	NOT_EQUAL = 1,
+	LESS = 2,
+	LESS_OR_EQUAL = 3,
+	HIGHER = 4,
+	HIGHER_OR_EQUAL = 5,
+};
+
+// 0x0000000142AF06E8 (Size: 0x4)
+enum class ZSpatialEntity_ERoomBehaviour
+{
+	ROOM_STATIC = 0,
+	ROOM_DYNAMIC = 1,
+	ROOM_STATIC_OUTSIDE_CLIENT = 2,
+};
+
+// 0x0000000142AA8C28 (Size: 0x4)
+enum class ZActorPicker_EKeywordEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+};
+
+// 0x0000000142AB9EA8 (Size: 0x4)
+enum class ZOnlineManager_EError
+{
+	eNONE = 0,
+	eGENERAL = 1000,
+	eNETWORK_UNKNOWN = 1001,
+	eNETWORK_SEND_FAILED = 1002,
+	eAPI_VERSION = 1003,
+	eAUTHENTICATION_UNAUTHORIZED = 1004,
+	eAUTHENTICATION_PROXY = 1005,
+	eAUTHENTICATION_SERVER_ERROR = 1006,
+	eAUTHENTICATION_USER_GONE = 1007,
+	eAUTHENTICATION_STEAM_GENERAL = 1008,
+	eAUTHENTICATION_EPIC_GENERAL = 1009,
+	eAUTHENTICATION_IZUMO_GENERAL = 1010,
+	eAUTHENTICATION_PSN_GENERAL = 1011,
+	eAUTHENTICATION_PSN_NP_CHECK = 1012,
+	eAUTHENTICATION_PSN_ACCOUNT_COLLISION = 1013,
+	eAUTHENTICATION_NO_PRIMARY_USER = 1014,
+	eAUTHENTICATION_XBLIVE_GENERAL = 1015,
+	eAUTHENTICATION_XBLIVE_SIGNED_OUT = 1016,
+	eAUTHENTICATION_XBLIVE_USER_CHANGED = 1017,
+	eAUTHENTICATION_STADIA_GENERAL = 1018,
+	ePLATFORM_USERINFO = 1019,
+	eCONFIGURATION = 1020,
+	eENTITLEMENTS = 1021,
+	ePROFILE = 1022,
+	eGAME_SESSION = 1023,
+	eGENERAL_SERVER_ERROR = 1024,
+	eGENERAL_SERVER_BUSY = 1025,
+	eGENERAL_CLIENT_ERROR = 1026,
+	eDYNAMIC_RESOURCES_CONFIG_ERROR = 1027,
+	eDYNAMIC_RESOURCES_UPDATEFAILED = 1028,
+	eDYNAMIC_RESOURCES_OUTDATED = 1029,
+	eCANCELLED = 1030,
+	eERROR_MAX = 1031,
 };
 
 // 0x0000000142AA44C0 (Size: 0x4)
@@ -3063,6 +4209,21 @@ enum class EDetachUsage
 	EDU_NEVER = 0,
 	EDU_ALWAYS = 1,
 	EDU_RAGDOLL_ONLY = 2,
+};
+
+// 0x00000001422D6F60 (Size: 0x8)
+class ZRuntimeResourceID
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_IDHigh; // 0x0
+	uint32 m_IDLow; // 0x4
 };
 
 // 0x0000000142AB1A40 (Size: 0xA0)
@@ -3120,6 +4281,411 @@ enum class EDestructibleInteractionType
 	eDIT_COUNT = 5,
 };
 
+// 0x0000000142A9CA10 (Size: 0x4)
+enum class EGameEventType
+{
+	GET_GameplayStart = 0,
+	GET_GameplayStop = 1,
+	GET_IntroCutStart = 2,
+	GET_IntroCutEnd = 3,
+	GET_ProfilingStart = 4,
+	GET_SavegameRestored = 5,
+	GET_PlayingAfterLoad = 6,
+	GET_COUNT = 7,
+};
+
+// 0x0000000142A9F498 (Size: 0x4)
+enum class EVRConfigHeadAnchorMode
+{
+	EVRCHAM_HeadBone = 0,
+	EVRCHAM_CapsuleBased = 1,
+	EVRCHAM_CapsuleGrid = 2,
+	EVRCHAM_LockPosition = 3,
+	EVRCHAM_KeepCurrent = 4,
+};
+
+// 0x0000000142A9F4C8 (Size: 0x70)
+class SVRConfigCameraComponent
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	EVRConfigHeadAnchorMode m_eHeadAnchorMode; // 0x0
+	uint32 m_uRecenterRequestCounter; // 0x4
+	float32 m_fVRUserInputWeight; // 0x8
+	float32 m_fGridSize; // 0xC
+	float32 m_fCapsuleHeadAttacherOffset; // 0x10
+	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x14
+	float32 m_fHeadBoneAttacherOffset; // 0x18
+	float4 m_vAnchorPosOffset; // 0x20
+	SMatrix m_mAnchorRotOffset; // 0x30
+};
+
+// 0x0000000143CEC330 (Size: 0x4)
+enum class eParticleEmitterMeshEntity_SpawnModes
+{
+	MESH_SPAWNMODE_VERTEX = 0,
+	MESH_SPAWNMODE_EDGE = 1,
+	MESH_SPAWNMODE_FACE = 2,
+};
+
+// 0x00000001422D6F48 (Size: 0x4)
+enum class eWeaponType
+{
+	WT_HANDGUN = 0,
+	WT_SLOWGUN = 1,
+	WT_ASSAULTRIFLE = 2,
+	WT_SMG = 3,
+	WT_SNIPER = 4,
+	WT_RPG = 5,
+	WT_KNIFE = 6,
+	WT_SHOTGUN = 7,
+	WT_SPOTTER = 8,
+};
+
+// 0x0000000142A95A00 (Size: 0x8)
+class IMorphemeEventConsumer
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142AA5730 (Size: 0x4)
+enum class ERatingTitle
+{
+	ERatingTitle_SilentAssassin = 0,
+	ERatingTitle_PerfectAssassin = 1,
+	ERatingTitle_Ninja = 2,
+	ERatingTitle_GloryBlazer = 3,
+	ERatingTitle_Eraser = 4,
+	ERatingTitle_Exhibitionist = 5,
+	ERatingTitle_Trickster = 6,
+	ERatingTitle_Chameleon = 7,
+	ERatingTitle_Spider = 8,
+	ERatingTitle_Angel = 9,
+	ERatingTitle_COUNT = 10,
+};
+
+// 0x0000000142AA2D10 (Size: 0x4)
+enum class ECameraControls
+{
+	eCameraControlsNormal = 0,
+	eCameraControlsOTS = 1,
+};
+
+// 0x0000000142AA5D90 (Size: 0x4)
+enum class EHM5SoundRicochetType
+{
+	ESRT_VARIATION1 = 0,
+	ESRT_VARIATION2 = 1,
+};
+
+// 0x0000000143F1E360 (Size: 0x4)
+enum class ECollidableShape
+{
+	ECOLLIDABLESHAPE_SPHERE = 0,
+	ECOLLIDABLESHAPE_CAPSULE = 1,
+	ECOLLIDABLESHAPE_BOX = 2,
+};
+
+// 0x0000000143E6FE28 (Size: 0x4)
+enum class ZUISplashHintDataProviderEntity_ESplashHintType
+{
+	SHT_GlobalHint = 0,
+	SHT_TutorialHint = 1,
+	SHT_ControlHint = 2,
+};
+
+// 0x0000000142AA4090 (Size: 0x4)
+enum class ZHM5GameTimeMultiplierEntity_eTMLDReason
+{
+	eTMLDR_HintMessages = 0,
+	eTMLDR_Sequence = 1,
+	eTMLDR_ActionKillHeadShot = 2,
+	eTMLDR_ActionKillCCProp = 3,
+	eTMLDR_ActionKillExplosion = 4,
+	eTMLDR_ActionKillLastEnemyInEncounter = 5,
+	eTMLDR_ActionKillLastEnemyInCheckPoint = 6,
+	eTMLDR_NOTSET = 7,
+};
+
+// 0x0000000142A960F0 (Size: 0x4)
+enum class ZInteractionEventConsumer_EEvent
+{
+	eActivate = 0,
+	eRH_Place = 1,
+	eRH_Retrieve = 2,
+	eRH_Swap = 3,
+	eRH_Show = 4,
+	eRH_Hide = 5,
+	eLH_Place = 6,
+	eLH_Retrieve = 7,
+	eLH_Swap = 8,
+	eLH_Show = 9,
+	eLH_Hide = 10,
+	eObjectEvent01 = 11,
+	eObjectEvent02 = 12,
+	eObjectEvent03 = 13,
+	eObjectEvent04 = 14,
+	eSoundEvent01 = 15,
+	eSoundEvent02 = 16,
+	eSoundEvent03 = 17,
+	eSoundEvent04 = 18,
+};
+
+// 0x0000000142AEEFE0 (Size: 0x20)
+class SCrowdPoseBoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector4 mQuaterion; // 0x0
+	SVector4 mTranslation; // 0x10
+};
+
+// 0x0000000142AEF010 (Size: 0x18)
+class SCrowdPoseSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
+};
+
+// 0x0000000142AEF040 (Size: 0x20)
+class SCrowdPoseCollectionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint64 m_id; // 0x0
+	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
+};
+
+// 0x0000000142AEF070 (Size: 0x18)
+class SCrowdDeadPoseRepositorySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
+};
+
+// 0x00000001422D6E18 (Size: 0x4)
+enum class BoneId_Enum
+{
+	GROUND = 0,
+	PELVIS = 1,
+	SPINE = 2,
+	SPINE_1 = 3,
+	SPINE_2 = 4,
+	NECK = 5,
+	NECK1 = 6,
+	HEAD = 7,
+	LEFT_THIGH = 8,
+	LEFT_THIGH_TWIST = 9,
+	LEFT_THIGH_TWIST1 = 10,
+	LEFT_THIGH_TWIST2 = 11,
+	LEFT_CALF = 12,
+	LEFT_FOOT = 13,
+	LEFT_TOE = 14,
+	LEFT_TOENUB = 15,
+	RIGHT_THIGH = 16,
+	RIGHT_THIGH_TWIST = 17,
+	RIGHT_THIGH_TWIST1 = 18,
+	RIGHT_THIGH_TWIST2 = 19,
+	RIGHT_CALF = 20,
+	RIGHT_FOOT = 21,
+	RIGHT_TOE = 22,
+	RIGHT_TOENUB = 23,
+	LEFT_CLAVICLE = 24,
+	LEFT_UPPER_ARM = 25,
+	LEFT_UPPER_ARM_TWIST = 26,
+	LEFT_UPPER_ARM_TWIST1 = 27,
+	LEFT_UPPER_ARM_TWIST2 = 28,
+	LEFT_FOREARM = 29,
+	LEFT_FORETWIST = 30,
+	LEFT_FORETWIST1 = 31,
+	LEFT_FORETWIST2 = 32,
+	LEFT_HAND = 33,
+	LEFT_FINGER_0 = 34,
+	LEFT_FINGER_01 = 35,
+	LEFT_FINGER_02 = 36,
+	LEFT_FINGER_1 = 37,
+	LEFT_FINGER_11 = 38,
+	LEFT_FINGER_12 = 39,
+	LEFT_FINGER_2 = 40,
+	LEFT_FINGER_21 = 41,
+	LEFT_FINGER_22 = 42,
+	LEFT_FINGER_3 = 43,
+	LEFT_FINGER_31 = 44,
+	LEFT_FINGER_32 = 45,
+	LEFT_FINGER_4 = 46,
+	LEFT_FINGER_41 = 47,
+	LEFT_FINGER_42 = 48,
+	RIGHT_CLAVICLE = 49,
+	RIGHT_UPPER_ARM = 50,
+	RIGHT_UPPER_ARM_TWIST = 51,
+	RIGHT_UPPER_ARM_TWIST1 = 52,
+	RIGHT_UPPER_ARM_TWIST2 = 53,
+	RIGHT_FOREARM = 54,
+	RIGHT_FORETWIST = 55,
+	RIGHT_FORETWIST1 = 56,
+	RIGHT_FORETWIST2 = 57,
+	RIGHT_HAND = 58,
+	RIGHT_FINGER_0 = 59,
+	RIGHT_FINGER_01 = 60,
+	RIGHT_FINGER_02 = 61,
+	RIGHT_FINGER_1 = 62,
+	RIGHT_FINGER_11 = 63,
+	RIGHT_FINGER_12 = 64,
+	RIGHT_FINGER_2 = 65,
+	RIGHT_FINGER_21 = 66,
+	RIGHT_FINGER_22 = 67,
+	RIGHT_FINGER_3 = 68,
+	RIGHT_FINGER_31 = 69,
+	RIGHT_FINGER_32 = 70,
+	RIGHT_FINGER_4 = 71,
+	RIGHT_FINGER_41 = 72,
+	RIGHT_FINGER_42 = 73,
+	XTRA_MUS_R_HIP = 74,
+	XTRA_MUS_L_HIP = 75,
+	RIGHT_HAND_ATTACHER = 76,
+	LEFT_HAND_ATTACHER = 77,
+	HIP_ATTACHER = 78,
+	BACK_ATTACHER = 79,
+	FREE_ATTACHER = 80,
+	CAMERA_ATTACHER_01 = 81,
+	CAMERA_ATTACHER_02 = 82,
+	FREE_ATTACHER_PROP_01 = 83,
+	FREE_ATTACHER_PROP_02 = 84,
+	LEFT_EYE = 85,
+	LEFT_EYE_LID = 86,
+	RIGHT_EYE = 87,
+	RIGHT_EYE_LID = 88,
+	LOWER_LIP = 89,
+	JAW = 90,
+	HOLSTER_ATTACHER = 91,
+	LEFT_WRIST_EFFECTOR = 92,
+	LEFT_FINGER_0_EFFECTOR = 93,
+	LEFT_FINGER_1_EFFECTOR = 94,
+	LEFT_FINGER_2_EFFECTOR = 95,
+	LEFT_FINGER_3_EFFECTOR = 96,
+	LEFT_FINGER_4_EFFECTOR = 97,
+	RIGHT_WRIST_EFFECTOR = 98,
+	RIGHT_FINGER_0_EFFECTOR = 99,
+	RIGHT_FINGER_1_EFFECTOR = 100,
+	RIGHT_FINGER_2_EFFECTOR = 101,
+	RIGHT_FINGER_3_EFFECTOR = 102,
+	RIGHT_FINGER_4_EFFECTOR = 103,
+	XTRA_MUS_L_PEC = 104,
+	XTRA_MUS_R_PEC = 105,
+	XTRA_MUS_NECK = 106,
+	XTRA_MUS_L_ELBOW = 107,
+	XTRA_MUS_R_ELBOW = 108,
+	XTRA_MUS_L_ASS = 109,
+	XTRA_MUS_R_ASS = 110,
+	XTRA_MUS_L_TOE = 111,
+	XTRA_MUS_L_KNEE = 112,
+	XTRA_MUS_L_FOOT = 113,
+	XTRA_MUS_R_TOE = 114,
+	XTRA_MUS_R_KNEE = 115,
+	XTRA_MUS_R_FOOT = 116,
+	XTRA_TARGET_R_FOOT = 117,
+	XTRA_PIVOT_R_HEEL = 118,
+	XTRA_TARGET_R_KNEE = 119,
+	XTRA_ALIGN_R_KNEE = 120,
+	XTRA_TARGET_L_FOOT = 121,
+	XTRA_PIVOT_L_HEEL = 122,
+	XTRA_TARGET_L_KNEE = 123,
+	XTRA_ALIGN_L_KNEE = 124,
+	XTRA_TARGET_R_ASS = 125,
+	XTRA_TARGET_L_ASS = 126,
+	XTRA_ALIGN_L_ASS = 127,
+	XTRA_ALIGN_R_ASS = 128,
+	XTRA_UP_THIGH = 129,
+	XTRA_TARGET_R_PEC = 130,
+	XTRA_ALIGN_R_ELBOW = 131,
+	XTRA_TARGET_R_ELBOW = 132,
+	XTRA_TARGET_L_PEC = 133,
+	XTRA_ALIGN_L_ELBOW = 134,
+	XTRA_TARGET_L_ELBOW = 135,
+	XTRA_ALIGN_L_PEC = 136,
+	XTRA_UP_PEC = 137,
+	XTRA_ALIGN_R_PEC = 138,
+	XTRA_ALIGN_NECK = 139,
+	HEAD_ATTACHER = 140,
+	RIFLE_HOLSTER_ATTACHER = 141,
+	SPINE1_ATTACHER = 142,
+	PISTOL_HOLSTER_ATTACHER = 143,
+	BONEID_LAST = 144,
+};
+
+// 0x0000000142A971D8 (Size: 0x4)
+enum class ZHM5IndicatorManager_EIndicatorType
+{
+	eActorAmbient = 0,
+	eActorAlertedLow = 1,
+	eActorAlertedHigh = 2,
+	eActorArrest = 3,
+	eActorCombat = 4,
+	eExplosion = 5,
+	eObjective = 6,
+	ePointOfInterest = 7,
+	eContractExit = 8,
+	eEasterActor = 9,
+};
+
+// 0x0000000142A98F88 (Size: 0x4)
+enum class ZVsTargetPicker_ETargetSelectionType
+{
+	eTST_Random = 0,
+	eTST_Fair = 1,
+	eTST_Max = 2,
+};
+
+// 0x0000000142A9A928 (Size: 0x4)
+enum class ZAvoidDangerousAreaGroup_EAvoidDangerousAreaGroupState
+{
+	IGS_SelectDestination = 0,
+	IGS_Move = 1,
+	IGS_Jump = 2,
+	IGS_Wait = 3,
+	IGS_Completed = 4,
+	IGS_Max = 5,
+};
+
 // 0x0000000142AA4930 (Size: 0x4)
 enum class EActorLookAtTargetType
 {
@@ -3130,6 +4696,476 @@ enum class EActorLookAtTargetType
 	eALAT_Hero = 4,
 	eALAT_Screenplay = 5,
 	eALAPT_Max = 6,
+};
+
+// 0x0000000142A88320 (Size: 0x4)
+enum class EWeaponSpecialSituation
+{
+	WSS_NORMAL = 0,
+	WSS_BAREHANDS = 1,
+	WSS_EXPLOSION = 2,
+	WSS_ACCIDENT = 3,
+	WSS_NPC_FRIENDLY_FIRE = 4,
+	WSS_EXECUTE_PISTOL = 5,
+	WSS_ANY_WEAPON = 6,
+	WSS_INVISIBLE = 7,
+};
+
+// 0x0000000142AA4CE0 (Size: 0x4)
+enum class ECustomSoundDefType
+{
+	eCSDT_Distraction_InvestigationAck = 0,
+	eCSDT_Distraction_InvestigationInvestigate = 1,
+	eCSDT_Distraction_InvestigationStnd = 2,
+};
+
+// 0x0000000142AA0AB0 (Size: 0x4)
+enum class EAIModifierScope
+{
+	AIMS_Volume = 0,
+	AIMS_Behavior = 1,
+	AIMS_Role = 2,
+	AIMS_Item = 3,
+	AIMS_Situation = 4,
+	AIMS_Outfit = 5,
+	AIMS_Override = 6,
+	AIMS_Status = 7,
+};
+
+// 0x0000000142AA21B8 (Size: 0x4)
+enum class ZHM5WeaponEventConsumer_EAnimWeapon
+{
+	eHM5Weapon_HideClip = 0,
+	eHM5Weapon_ShowClip = 1,
+	eHM5Weapon_SpawnPhysicsClip = 2,
+	eHM5Weapon_EjectCartridge = 3,
+};
+
+// 0x0000000142A90ED0 (Size: 0x4)
+enum class EStashpointContainedEntityType
+{
+	PICKUP_NONE = 0,
+	PICKUP_ITEMS = 1,
+	PICKUP_OUTFIT = 2,
+	PICKUP_PICKEDUP = 3,
+};
+
+// 0x0000000142ABF738 (Size: 0x4)
+enum class ESoundCollisionType
+{
+	Impact = 0,
+	Rolling = 1,
+	Sliding = 2,
+};
+
+// 0x0000000142A97878 (Size: 0x4)
+enum class ICloset_EClosetType
+{
+	eTypeClosetNormal = 0,
+	eTypeClosetCake = 1,
+	eTypeClosetDumpster = 2,
+	eTypeClosetLast = 3,
+};
+
+// 0x0000000142AA54F0 (Size: 0x4)
+enum class EHitmanPermissionFlag
+{
+	eHPFlag_InventorySelect = 0,
+	eHPFlag_CanHolsterItem = 1,
+	eHPFlag_CanDropItem = 2,
+	eHPFlag_CanDualWield = 3,
+	eHPFlag_CameraControl = 4,
+	eHPFlag_MovementControl = 5,
+	eHPFlag_AimControl = 6,
+	eHPFlag_CanOpenNotebook = 7,
+	eHPFlag_CanOpenPauseMenu = 8,
+	eHPFlag_PermissionsNUM = 9,
+};
+
+// 0x0000000142AB2380 (Size: 0x4)
+enum class EActionRadialArcIconType
+{
+	EARAIT_NoIcon = 0,
+	EARAIT_Locked = 1,
+	EARAIT_NeedTool = 2,
+	EARAIT_IsRunning = 3,
+	EARAIT_Crowbar = 4,
+	EARAIT_Wrench = 5,
+	EARAIT_Card = 6,
+	EARAIT_Lockpick = 7,
+	EARAIT_Screwdriver = 8,
+	EARAIT_AmmoBullet = 9,
+	EARAIT_Flower = 10,
+	EARAIT_ChemicalTube = 11,
+	EARAIT_Golfball = 12,
+	EARAIT_Keypad = 13,
+	EARAIT_Key = 14,
+	EARAIT_Coin = 15,
+	EARAIT_Poison = 16,
+	EARAIT_Exsplosive = 17,
+};
+
+// 0x0000000142AA9B20 (Size: 0x4)
+enum class ZPatrolBehaviorEntity_ERotationAlignment
+{
+	RA_NONE = 0,
+	RA_LOOSE = 1,
+	RA_EXACT = 2,
+};
+
+// 0x0000000142AA48D0 (Size: 0x4)
+enum class EParticleDecalSpawnEntity_Constraints
+{
+	FACTOR_AND_RANDOMIZE = 0,
+	SIZE_RANGE = 1,
+};
+
+// 0x000000014211A620 (Size: 0x10)
+class ZDynamicObject
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZVariant m_value; // 0x0
+};
+
+// 0x0000000142AA3D68 (Size: 0x20)
+class SChallengeSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString m_sId; // 0x0
+	ZDynamicObject m_State; // 0x10
+};
+
+// 0x0000000142AA9A00 (Size: 0x4)
+enum class ZActBehaviorEntity_ERotationAlignment
+{
+	RA_NONE = 0,
+	RA_LOOSE = 1,
+	RA_EXACT = 2,
+};
+
+// 0x0000000142AFBB18 (Size: 0x4)
+enum class EAnimBlendMode
+{
+	EAnimBlendMode_InterpAttInterpPos = 0,
+	EAnimBlendMode_InterpAttAddPos = 1,
+	EAnimBlendMode_AddAttLeavePos = 2,
+	EAnimBlendMode_AddAttAddPos = 3,
+};
+
+// 0x0000000142AF0760 (Size: 0x4)
+enum class ETeamModeId
+{
+	TeamMode_Coop = 0,
+	TeamMode_Versus = 1,
+};
+
+// 0x0000000143E6FE58 (Size: 0x4)
+enum class ZUIControlEntity_EScaleMode
+{
+	Manual = 0,
+	ResolutionScale = 1,
+	ResolutionScaleAspect = 2,
+	ResolutionScaleAspectFill = 3,
+};
+
+// 0x0000000142AA38B0 (Size: 0x4)
+enum class ZInputListenerActorPool_eInputListenerButtons
+{
+	EILB_UP = 0,
+	EILB_LEFT = 1,
+	EILB_DOWN = 2,
+	EILB_RIGHT = 3,
+};
+
+// 0x0000000142AEF0E8 (Size: 0x4)
+enum class CrowdRegionType
+{
+	CROWDSPHERE_NONE = 0,
+	CROWDSPHERE_SAFE = 1,
+	CROWDSPHERE_POI = 2,
+	CROWDSPHERE_AVOID = 3,
+	CROWDSPHERE_RELOCATE = 4,
+	CROWDSPHERE_STOP = 5,
+	CROWDSPHERE_ALERT = 6,
+	CROWDSPHERE_SCARE = 7,
+	CROWDSPHERE_GETDOWN = 8,
+	CROWDSPHERE_DIE = 9,
+};
+
+// 0x0000000142A99300 (Size: 0x4)
+enum class EDramaEventAction
+{
+	eDEA_NONE = 0,
+	eDEA_TERMINATE_DRAMA = 1,
+	eDEA_DONE_DRAMA = 2,
+	eDEA_STOP_BEHAVIOR = 4,
+	eDEA_DONT_STOP_SPEAK = 8,
+	eDEA_RESET_CASTING = 16,
+	eDEA_RESET_STATE = 32,
+};
+
+// 0x0000000142A9A9A0 (Size: 0x4)
+enum class ZRecoverUnconsciousGroup_EInvestigateGroupState
+{
+	IGS_InitialState = 0,
+	IGS_WaitingForVictim = 1,
+	IGS_Recovering = 2,
+	IGS_Relocating = 3,
+	IGS_Reporting = 4,
+	IGS_Completed = 5,
+	IGS_Max = 6,
+};
+
+// 0x0000000142ABD9F8 (Size: 0xC)
+class STimerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int32 m_nInterval; // 0x0
+	bool m_bEnabled; // 0x4
+	float32 m_fTimeToNextEvent; // 0x8
+};
+
+// 0x0000000142ABDA40 (Size: 0x30)
+class STimerEntitiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<STimerEntitySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142ABDA10 (Size: 0x14)
+class SRandomTimerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bEnabled; // 0x0
+	bool m_bRegistered; // 0x1
+	float32 m_fMinTime; // 0x4
+	float32 m_fMaxTime; // 0x8
+	float32 m_fProbability; // 0xC
+	int32 m_nRemaining; // 0x10
+};
+
+// 0x0000000142ABDA70 (Size: 0x30)
+class SRandomTimerEntitiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142ABD980 (Size: 0xA8)
+class STimerManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	STimerEntitiesSaveData m_TimersData; // 0x0
+	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
+	SGameTimersSaveData m_GameTimersData; // 0x60
+};
+
+// 0x0000000142AB6B88 (Size: 0x4)
+enum class ZHM5HIKEventConsumer_EBlend
+{
+	eBlendIn = 0,
+	eBlendOut = 1,
+	eInstantOn = 2,
+	eInstantOff = 3,
+};
+
+// 0x0000000142A958E0 (Size: 0x4)
+enum class ECharacterActionRequests
+{
+	eSM_AR_None = 0,
+	eSM_AR_ReloadR = 1,
+	eSM_AR_ReloadL = 2,
+	eSM_AR_ShootR = 3,
+	eSM_AR_ShootL = 4,
+	eSM_AR_SwapHands = 5,
+	eSM_AR_HolsterR = 6,
+	eSM_AR_HolsterL = 7,
+	eSM_AR_UnholsterR = 8,
+	eSM_AR_UnholsterL = 9,
+	eSM_AR_PickupItemR = 10,
+	eSM_AR_PickupItemL = 11,
+	eSM_AR_InteractionR = 12,
+	eSM_AR_InteractionL = 13,
+	eSM_AR_InteractionSwipe = 14,
+	eSM_AR_InteractionSwipeR = 15,
+	eSM_AR_InteractionSwipeL = 16,
+	eSM_AR_OpenDoor = 17,
+	eSM_AR_OpenDoorR = 18,
+	eSM_AR_OpenDoorL = 19,
+	eSM_AR_CloseCombat = 20,
+	eSM_AR_Movement = 21,
+	eSM_AR_Pretend = 22,
+	eSM_AR_Sniping = 23,
+	eSM_AR_EndSniping = 24,
+	eSM_AR_RetrieveFromSuitcase = 25,
+	eSM_AR_Marking = 26,
+	eSM_AR_ChangeAmmo = 27,
+	eSM_AR_Assemble = 28,
+	eSM_AR_Assemble_UnequippedContainer = 29,
+	eSM_AR_Disassemble = 30,
+	eSM_AR_Disassemble_PickingUp = 31,
+	eSM_AR_AssembleUB = 32,
+	eSM_AR_DisassembleUB = 33,
+	eSM_AR_Cancel = 34,
+	eSM_AR_Sprint = 35,
+	eSM_AR_CloseHandR = 36,
+	eSM_AR_CloseHandL = 37,
+};
+
+// 0x0000000142AA3C90 (Size: 0x4)
+enum class EWeaponUpgradeIcon
+{
+	WEAPON_UPGRADE_ICON_NONE = 0,
+	WEAPON_UPGRADE_ICON_SILENCER = 1,
+	WEAPON_UPGRADE_ICON_RED_DOT_SIGHT = 2,
+	WEAPON_UPGRADE_ICON_AMMUNITION = 3,
+	WEAPON_UPGRADE_ICON_MAGAZINE = 4,
+	WEAPON_UPGRADE_ICON_EXTCLIP = 5,
+	WEAPON_UPGRADE_ICON_SHELLS = 6,
+	WEAPON_UPGRADE_ICON_SLIDE = 7,
+	WEAPON_UPGRADE_ICON_BOLT = 8,
+	WEAPON_UPGRADE_ICON_BARREL = 9,
+	WEAPON_UPGRADE_ICON_HAMMER = 10,
+	WEAPON_UPGRADE_ICON_CHUTE = 11,
+	WEAPON_UPGRADE_ICON_DUALWIELD = 12,
+	WEAPON_UPGRADE_ICON_MAGNUM = 13,
+	WEAPON_UPGRADE_ICON_STOCK = 14,
+};
+
+// 0x0000000142A9E4C0 (Size: 0x4)
+enum class ZDramaSituationEntity_EReentryBehavior
+{
+	RB_CONTINUE = 0,
+	RB_TERMINATE = 1,
+	RB_RESTART = 2,
+	RB_RECASTANDRESTART = 3,
+	RB_RECASTANDCONTINUE = 4,
+};
+
+// 0x0000000143E6C388 (Size: 0x1)
+enum class ECollisionResponse
+{
+	REFLECT_VELOCITY = 0,
+	SLIDE_ON = 1,
+	STAY_AT_COLLISION_POINT = 2,
+	CUSTOM = 3,
+};
+
+// 0x0000000143E6E120 (Size: 0x4)
+enum class IScatterContainerEntity_EResizeMode
+{
+	MODE_CLEAR = 0,
+	MODE_KEEPASCENTER = 1,
+	MODE_SCALE = 2,
+};
+
+// 0x0000000143E6DDA0 (Size: 0xC)
+class SGateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rEntity; // 0x0
+	bool m_bIsOpen; // 0x4
+	float32 m_fOpenFraction; // 0x8
+};
+
+// 0x0000000143E6C980 (Size: 0x4)
+enum class ZBoneWeightRotationEntity_eRotationAxises
+{
+	AXIS_X = 0,
+	AXIS_Y = 1,
+	AXIS_Z = 2,
+};
+
+// 0x0000000142AA7300 (Size: 0x4)
+enum class ERegionMask
+{
+	eRM_None = 1,
+	eRM_LowCover = 2,
+	eRM_HighCover = 4,
+	eRM_Stairs = 8,
+	eRM_Separator = 16,
+	eRM_User_1 = 32,
+	eRM_User_2 = 64,
+	eRM_User_3 = 128,
+	eRM_User_4 = 256,
+	eRM_User_5 = 512,
+	eRM_User_6 = 1024,
+	eRM_User_7 = 2048,
+	eRM_User_8 = 4096,
+};
+
+// 0x0000000142AF0478 (Size: 0x28)
+class SEntityTemplatePropertyAlias
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString sAliasName; // 0x0
+	int32 entityID; // 0x10
+	ZString sPropertyName; // 0x18
 };
 
 // 0x0000000142AA5370 (Size: 0x4)
@@ -3177,82 +5213,6 @@ enum class ECharacterAnimEvent
 	eCAE_EarlyExit = 50,
 };
 
-// 0x0000000142AF0478 (Size: 0x28)
-class SEntityTemplatePropertyAlias
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString sAliasName; // 0x0
-	int32 entityID; // 0x10
-	ZString sPropertyName; // 0x18
-};
-
-// 0x00000001422D6E80 (Size: 0x4)
-enum class EDeathType
-{
-	eDT_UNDEFINED = 0,
-	eDT_PACIFY = 1,
-	eDT_KILL = 2,
-	eDT_BLOODY_KILL = 3,
-};
-
-// 0x0000000142AA54F0 (Size: 0x4)
-enum class EHitmanPermissionFlag
-{
-	eHPFlag_InventorySelect = 0,
-	eHPFlag_CanHolsterItem = 1,
-	eHPFlag_CanDropItem = 2,
-	eHPFlag_CanDualWield = 3,
-	eHPFlag_CameraControl = 4,
-	eHPFlag_MovementControl = 5,
-	eHPFlag_AimControl = 6,
-	eHPFlag_CanOpenNotebook = 7,
-	eHPFlag_CanOpenPauseMenu = 8,
-	eHPFlag_PermissionsNUM = 9,
-};
-
-// 0x000000014211A620 (Size: 0x10)
-class ZDynamicObject
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZVariant m_value; // 0x0
-};
-
-// 0x0000000142AA3D68 (Size: 0x20)
-class SChallengeSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString m_sId; // 0x0
-	ZDynamicObject m_State; // 0x10
-};
-
-// 0x0000000142AA48D0 (Size: 0x4)
-enum class EParticleDecalSpawnEntity_Constraints
-{
-	FACTOR_AND_RANDOMIZE = 0,
-	SIZE_RANGE = 1,
-};
-
 // 0x0000000142A99638 (Size: 0x38)
 class SDrama2ActorSaveState
 {
@@ -3287,6 +5247,19 @@ enum class EMatchOverCondition
 	OpponentsAbandoned = 2,
 };
 
+// 0x0000000142AEF1D8 (Size: 0x4)
+enum class CrowdUtil_ECrowdStandingPush
+{
+	PUSH_FRONT = 0,
+	PUSH_FRONT_LEFT = 1,
+	PUSH_LEFT = 2,
+	PUSH_BACK_LEFT = 3,
+	PUSH_BACK = 4,
+	PUSH_BACK_RIGHT = 5,
+	PUSH_RIGHT = 6,
+	PUSH_FRONT_RIGHT = 7,
+};
+
 // 0x0000000142AA4B60 (Size: 0x4)
 enum class EDialogueLine
 {
@@ -3312,6 +5285,159 @@ enum class EDialogueLine
 	DropWeapon_Escalate_Single01 = 19,
 	DropWeapon_Escalate_Double01 = 20,
 	DropWeapon_Escalate_Multiple01 = 21,
+};
+
+// 0x0000000142AB6BB8 (Size: 0x4)
+enum class EPostProcessorComponentType
+{
+	MRP_LOOKAT = 1,
+	MRP_AIM = 2,
+	MRP_LEDGEFEETLOCK = 16,
+	MRP_LEDGEHANG = 32,
+	MRP_IMPACT = 1024,
+	MRP_BLINDFIRE = 2048,
+};
+
+// 0x0000000142AB1510 (Size: 0x4)
+enum class EActionPromptState
+{
+	eActionPromptState_Disabled = 0,
+	eActionPromptState_Enabled = 1,
+	eActionPromptState_Activated = 2,
+	eActionPromptState_Held = 3,
+};
+
+// 0x0000000142AAF368 (Size: 0x60)
+class SHUDPromptDisplayInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bActive; // 0x0
+	EActionPromptState m_eState; // 0x4
+	int32 m_nIconId; // 0x8
+	int32 m_eTypeId; // 0xC
+	float32 m_fProgress; // 0x10
+	float32 m_fDistance; // 0x14
+	bool m_bShowWarning; // 0x18
+	bool m_bNoActionAvailable; // 0x19
+	ZString m_sLabel; // 0x20
+	ZString m_sDescription; // 0x30
+	ZString m_sGlyph; // 0x40
+	float32 m_fOpacity; // 0x50
+	bool m_bIllegalItem; // 0x54
+	bool m_bSuspiciousItem; // 0x55
+	bool m_bDropTempHolsterableItems; // 0x56
+	int32 m_nFontSize; // 0x58
+};
+
+// 0x0000000142AFD260 (Size: 0x4)
+enum class WebSocketUtils_ECloseStatus
+{
+	eCS_NORMAL = 1000,
+	eCS_GOINGAWAY = 1001,
+	eCS_PROTOCOLERROR = 1002,
+	eCS_INVALIDDATA = 1003,
+	eCS_1004 = 1004,
+	eCS_NOSTATUSRCVD = 1005,
+	eCS_ABNORMALCLOSURE = 1006,
+	eCS_INVALIDPAYLOAD = 1007,
+	eCS_POLICYVIOLATION = 1008,
+	eCS_MSGTOOBIG = 1009,
+	eCS_MANDATORYEXT = 1010,
+	eCS_INTERNALSRVERR = 1011,
+	eCS_TLSHANDSHAKE = 1015,
+};
+
+// 0x0000000142A9D3A0 (Size: 0x4)
+enum class EControlButtonName
+{
+	eCN_ABORT = 0,
+	eCN_ACTION = 1,
+	eCN_ACTIVATE_PROP = 2,
+	eCN_AGILITY_DOWN = 3,
+	eCN_AGILITY_ENTERWINDOW = 4,
+	eCN_AGILITY_SNEAKPASTWINDOW = 5,
+	eCN_AGILITY_THROWOVERRAIL = 6,
+	eCN_AGILITY_UP = 7,
+	eCN_AIM = 8,
+	eCN_COVER_ENTER = 9,
+	eCN_COVER_TAKEDOWN = 10,
+	eCN_COVER_TO_COVER = 11,
+	eCN_CROUCH = 12,
+	eCN_DRAGBODY = 13,
+	eCN_DUMPBODY = 14,
+	eCN_FIBERWIRE = 15,
+	eCN_INSTINCT = 16,
+	eCN_INVENTORY_HOLSTER = 17,
+	eCN_INVENTORY_LONGRANGE = 18,
+	eCN_MARK_TARGET = 19,
+	eCN_CHANGE_AMMO_NEXT = 20,
+	eCN_CHANGE_AMMO_PREVIOUS = 21,
+	eCN_INVENTORY_PROP = 22,
+	eCN_INVENTORY_SHORTRANGE = 23,
+	eCN_ITEM_DROP = 24,
+	eCN_ITEM_THROW = 25,
+	eCN_MELEE_HIT = 26,
+	eCN_MELEE_TAKEDOWN = 27,
+	eCN_PICKUP = 28,
+	eCN_RUN = 29,
+	eCN_WALK_SLOW = 30,
+	eCN_CONCEAL_RETRIEVE = 31,
+	eCN_SB_ACTIVATE = 32,
+	eCN_SB_CANCEL = 33,
+	eCN_SB_EXECUTE = 34,
+	eCN_SB_REMOVETAG = 35,
+	eCN_SHOOT = 36,
+	eCN_NOTEBOOK = 37,
+	eCN_PAUSE = 38,
+	eCN_NO_ICON = 39,
+};
+
+// 0x0000000142AA1BF0 (Size: 0x4)
+enum class ZInvestigateDisguiseGroup_EState
+{
+	eInit = 0,
+	eGuardBanter = 1,
+	eAcknowledge = 2,
+	eMain = 3,
+	eSearch = 4,
+	eMoveback = 5,
+	eStandDown = 6,
+	eEscalate = 7,
+	eDone = 8,
+};
+
+// 0x0000000142B015C8 (Size: 0x1)
+enum class ECOMUsage
+{
+	ECOMUSAGE_AUTOCOMPUTE = 0,
+	ECOMUSAGE_PIVOT = 1,
+};
+
+// 0x0000000143E6ED50 (Size: 0x18)
+class SStepCounterEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_nIndex; // 0x0
+	int32 m_nLoopIndex; // 0x4
+	bool m_bFirst; // 0x8
+	bool m_bEnabled; // 0x9
+	float32 m_nCountFrom; // 0xC
+	float32 m_nCountTo; // 0x10
+	float32 m_nStepSize; // 0x14
 };
 
 // 0x0000000142AA1F98 (Size: 0x4)
@@ -3378,6 +5504,79 @@ enum class eAmmoType
 	eUnknownAmmoType = 13,
 };
 
+// 0x0000000142B001B8 (Size: 0x4)
+enum class ZEntityPropertyReplica_EReplicationStrategy
+{
+	REP_ALL_PROPERTIES = 0,
+	REP_ALL_EXCEPT = 1,
+	REP_ONLY_SPECIFIC = 2,
+};
+
+// 0x0000000143E6D770 (Size: 0x10)
+class SLoadRuntimeResourceResult
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString sFilePath; // 0x0
+};
+
+// 0x0000000142AA1CF0 (Size: 0x4)
+enum class ZApproachOrder_EApproachStyle
+{
+	AS_AUTO = 0,
+	AS_SPRINT = 1,
+	AS_JOG = 2,
+	AS_WALK = 3,
+};
+
+// 0x0000000142A99E58 (Size: 0x4)
+enum class ZInvestigateCautiousSituation_EBystanderState
+{
+	BS_SelectCandidate = 0,
+	BS_SelectPoint = 1,
+	BS_SearchDangerField = 2,
+};
+
+// 0x0000000142A9C748 (Size: 0x4)
+class SHeroEscortSituation2Actors
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142A9EAE8 (Size: 0x4)
+enum class ZSmuggleSituationEntity_ESmuggleState
+{
+	ESS_Idle = 0,
+	ESS_Evaluate = 1,
+	ESS_FindJob = 2,
+	ESS_OnRouteToLocation = 3,
+	ESS_PickingUp = 4,
+	ESS_PuttingDown = 5,
+	ESS_OnABreak = 6,
+};
+
+// 0x0000000142A9A008 (Size: 0x4)
+enum class ZSniperCombatSituation_ESituationState
+{
+	SS_Main = 0,
+	SS_StandDown = 1,
+	SS_InvalidSituation = 2,
+};
+
 // 0x0000000142A9D420 (Size: 0x14)
 class SSpatialMoverEntitySaveData
 {
@@ -3394,6 +5593,22 @@ public:
 	bool m_bEnabled; // 0x10
 	bool m_bBackwards; // 0x11
 	bool m_bIsFrameUpdateRegistered; // 0x12
+};
+
+// 0x0000000143E6C368 (Size: 0x1)
+enum class EValueUpdateStrategy
+{
+	UPDATE_STRATEGY_REPLACE = 0,
+	UPDATE_STRATEGY_ADD_TO = 1,
+	UPDATE_STRATEGY_MULTIPLY = 2,
+};
+
+// 0x0000000142ABEEC8 (Size: 0x4)
+enum class IItemWeapon_EDeadlyThrowType
+{
+	DEADLYTHROW_NONE = 0,
+	DEADLYTHROW_LIGHT = 1,
+	DEADLYTHROW_HEAVY = 2,
 };
 
 // 0x0000000142AB1E78 (Size: 0x2)
@@ -3434,12 +5649,56 @@ enum class EOnlineEventInvestigationType
 	OEIT_CameraDefect = 17,
 };
 
-// 0x0000000143E6C368 (Size: 0x1)
-enum class EValueUpdateStrategy
+// 0x0000000142A958B0 (Size: 0x8)
+class IBodybagEntity
 {
-	UPDATE_STRATEGY_REPLACE = 0,
-	UPDATE_STRATEGY_ADD_TO = 1,
-	UPDATE_STRATEGY_MULTIPLY = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142A9E8D8 (Size: 0x4)
+enum class ZEscortSituationEntity_ETargetState
+{
+	ETS_Unknown = 0,
+	ETS_NoTarget = 1,
+	ETS_RunningActBehavior = 2,
+	ETS_RunningDummyBehavior = 3,
+	ETS_RunningOtherBehavior = 4,
+	ETS_Dead = 5,
+	ETS_TargetIsHitman = 6,
+};
+
+// 0x0000000142AA0FC0 (Size: 0x4)
+enum class ECoverPosition
+{
+	COVER_POSITION_NONE = 0,
+	COVER_POSITION_LEFT = 1,
+	COVER_POSITION_RIGHT = 2,
+	COVER_POSITION_MIDDLE = 3,
+};
+
+// 0x0000000143E6C968 (Size: 0x4)
+enum class IRenderCompositorEntity_EViewportAnchor
+{
+	eFill = 0,
+	eTopLeft = 1,
+	eTopRight = 2,
+	eBottomLeft = 3,
+	eBottomRight = 4,
+};
+
+// 0x0000000143E6FEA0 (Size: 0x4)
+enum class SUITestData_ETestEnum
+{
+	ETestEnum_Value_One = 1,
+	ETestEnum_Value_Two = 2,
+	ETestEnum_Value_Three = 3,
 };
 
 // 0x0000000142AA2DD0 (Size: 0x4)
@@ -3483,8 +5742,8 @@ enum class EAgilityState
 	eAgState_Unknown = 35,
 };
 
-// 0x0000000143F1E140 (Size: 0x20)
-class ZAMDEvent
+// 0x0000000142AACD28 (Size: 0x60)
+class SInventoryItem
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3494,14 +5753,15 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_nEventID; // 0x0
-	float32 m_fStartFraction; // 0x4
-	float32 m_fDuration; // 0x8
-	ZVariant m_customData; // 0x10
+	ZString sInstanceId; // 0x0
+	ZString sUnlockableId; // 0x10
+	ZRepositoryID repositoryId; // 0x20
+	TArray<ZRepositoryID> aRepositoryAssetIds; // 0x30
+	TArray<ZRepositoryID> aModifierIds; // 0x48
 };
 
-// 0x0000000143F1E170 (Size: 0x28)
-class ZAMDEventTrack
+// 0x0000000142AACD40 (Size: 0x70)
+class SContainerItemInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3511,12 +5771,12 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	ZString m_sName; // 0x0
-	TArray<ZAMDEvent> m_events; // 0x10
+	ZString m_sContainerInstanceId; // 0x0
+	SInventoryItem m_concealedItem; // 0x10
 };
 
-// 0x0000000142AA4210 (Size: 0x14)
-class SMathMultiplyDivideSaveData_SVector2
+// 0x0000000142AA3DC0 (Size: 0x90)
+class SInventoryInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3526,24 +5786,9 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	SVector2 m_fA; // 0x0
-	SVector2 m_fB; // 0x8
-	bool m_bDivide; // 0x10
-};
-
-// 0x0000000142AA2680 (Size: 0x30)
-class SMathMultipliesSaveData_SVector2
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
+	TArray<SInventoryItem> m_aPockets; // 0x0
+	SInventoryItem m_CarriedItem; // 0x18
+	TArray<SContainerItemInfo> m_aContainerItems; // 0x78
 };
 
 // 0x0000000142A9F510 (Size: 0x4)
@@ -3553,6 +5798,17 @@ enum class EVRConfigCinemaMode
 	EVRCCM_CinemaModeEnabled = 1,
 	EVRCCM_CinemaModeDisabled = 2,
 	EVRCCM_KeepCurrent = 3,
+};
+
+// 0x0000000142A97798 (Size: 0x4)
+enum class EOutfitType
+{
+	eOT_None = 0,
+	eOT_Suit = 1,
+	eOT_Guard = 2,
+	eOT_Worker = 3,
+	eOT_Waiter = 4,
+	eOT_LucasGrey = 5,
 };
 
 // 0x0000000142AA2288 (Size: 0x60)
@@ -3568,15 +5824,53 @@ public:
 
 };
 
-// 0x0000000142A97798 (Size: 0x4)
-enum class EOutfitType
+// 0x0000000142AA97B8 (Size: 0x4)
+enum class ZActorTensionEntity_ETensionCheckMode
 {
-	eOT_None = 0,
-	eOT_Suit = 1,
-	eOT_Guard = 2,
-	eOT_Worker = 3,
-	eOT_Waiter = 4,
-	eOT_LucasGrey = 5,
+	ETCM_INSIDE_VOLUME_OR_LIST = 0,
+	ETCM_INSIDE_VOLUME_AND_LIST = 1,
+};
+
+// 0x0000000142B02DA0 (Size: 0x4)
+enum class EUbitusRequest
+{
+	EUR_DEVICE_LANGUAGE = 0,
+	EUR_DEVICE_MODE = 16,
+	EUR_NETWORK_SERVICE_ACCOUNT_ID = 48,
+	EUR_ACCOUNT_AUTHORIZATION_CODE = 64,
+	EUR_ACCOUNT_AUTHORIZATION_TOKEN = 80,
+	EUR_NETWORK_SERVICE_ACCOUNT_TOKEN = 96,
+	EUR_NICKNAME = 112,
+	EUR_FRIEND_LIST = 128,
+	EUR_BLOCKED_USER_LIST = 144,
+	EUR_PROFILE_LIST = 160,
+	EUR_ESHOP_INFO = 176,
+	EUR_FREE_COMMUNICATION_AVAILABLE = 192,
+	EUR_DLC_PURCHASE_STATUS = 208,
+	EUR_PAUSE_GAME = 32800,
+	EUR_RESUME_GAME = 32801,
+	EUR_ESHOP_CLOSED = 1226,
+};
+
+// 0x0000000142A9E4F8 (Size: 0x4)
+enum class ZScreenplay_EState
+{
+	State_Idle = 0,
+	State_Running = 1,
+	State_Paused = 2,
+	State_Failed = 3,
+	State_Done = 4,
+};
+
+// 0x0000000142AA3970 (Size: 0x4)
+enum class ZInputListenerButtonEntity_eInputListenerButtons
+{
+	EILB_UP = 0,
+	EILB_LEFT = 1,
+	EILB_DOWN = 2,
+	EILB_RIGHT = 3,
+	EILB_AIM = 4,
+	EILB_TRIGGER = 5,
 };
 
 // 0x0000000142AA6450 (Size: 0x4)
@@ -3775,51 +6069,13 @@ enum class EAISituationEvent
 	AISE_Data = 3,
 };
 
-// 0x00000001422D5D80 (Size: 0x10)
-class ZResourceID
+// 0x0000000142A9EA38 (Size: 0x4)
+enum class ZLeadEscortSituationEntity_EEscortState
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString m_uri; // 0x0
-};
-
-// 0x0000000142AEE388 (Size: 0x20)
-class SAudioMemoryMonitorEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 shortId; // 0x0
-	uint32 size; // 0x4
-	TArray<ZResourceID> references; // 0x8
-};
-
-// 0x0000000142AAAB28 (Size: 0x4)
-enum class ESmartWaitCondition
-{
-	SWC_Time = 0,
-	SWC_Distance = 1,
-	SWC_Executing = 2,
-	SWC_Executed = 3,
-};
-
-// 0x0000000142AFA570 (Size: 0x4)
-enum class ERegionId
-{
-	RegionId_Default = 0,
-	RegionId_Japan = 1,
-	RegionId_Asia = 2,
+	EES_Idle = 0,
+	EES_Evaluate = 1,
+	EES_Escorting = 2,
+	EES_Intermediate = 3,
 };
 
 // 0x0000000142A9CD20 (Size: 0x4)
@@ -3855,16 +6111,8 @@ public:
 	float32 m_fDistance; // 0x40
 };
 
-// 0x0000000142AA1410 (Size: 0x4)
-enum class EActorBumpType
-{
-	EABT_NONE = 0,
-	EABT_UPPERBODY = 1,
-	EABT_HEAD = 2,
-};
-
-// 0x0000000142A9A220 (Size: 0x50)
-class ZSituationOrder
+// 0x0000000142AB1DD8 (Size: 0x18)
+class SIntelListDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -3874,32 +6122,135 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+	int32 index; // 0x0
+	bool active; // 0x4
+	bool newInfo; // 0x5
+	ZString label; // 0x8
 };
 
-// 0x0000000143E6DE90 (Size: 0x4)
-enum class ESaveType
+// 0x0000000142A9A9D0 (Size: 0x4)
+enum class ZSniperCombatGroup_EGroupState
 {
-	ESaveType_AutoSave = 0,
-	ESaveType_QuickSave = 1,
-	ESaveType_SystemData = 2,
-	ESaveType_LocalProfile = 3,
+	IGS_WaitingForActors = 0,
+	IGS_Move = 1,
+	IGS_Siege = 2,
+	IGS_Completed = 3,
+	IGS_Max = 4,
 };
 
-// 0x0000000142AFA558 (Size: 0x4)
-enum class ELocale
+// 0x0000000143E6FDF8 (Size: 0x4)
+enum class ZSetUIControlDisplayInfoEntity_EVisibilityOp
 {
-	Locale_En = 0,
-	Locale_Fr = 1,
-	Locale_It = 2,
-	Locale_De = 3,
-	Locale_Es = 4,
-	Locale_Ru = 5,
-	Locale_Mx = 6,
-	Locale_Br = 7,
-	Locale_Pl = 8,
-	Locale_Cn = 9,
-	Locale_Jp = 10,
-	Locale_Tc = 11,
+	NoOp = 0,
+	SetTrue = 1,
+	SetFalse = 2,
+};
+
+// 0x0000000142AA3DD8 (Size: 0x40)
+class SAgencyPickupInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZRepositoryID m_AgencyPickupId; // 0x0
+	TArray<ZRepositoryID> m_aItemIds; // 0x10
+	TArray<ZRepositoryID> m_aModifierIds; // 0x28
+};
+
+// 0x0000000142AA3D48 (Size: 0x10)
+class SSoundAmbienceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rCurrentAmbience; // 0x0
+	uint32 m_rCurrentGate; // 0x4
+	float32 m_fTransitionAmount; // 0x8
+	bool m_bEnteredFromSide0; // 0xC
+	bool m_bInTransition; // 0xD
+};
+
+// 0x0000000142AA3DA0 (Size: 0x18)
+class SChallengesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
+};
+
+// 0x00000001422D7988 (Size: 0x1D8)
+class SLevelSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int64 m_nGameTime; // 0x0
+	int64 m_nGameTimePrev; // 0x8
+	int64 m_nGameTimeDelta; // 0x10
+	ZString m_sScene; // 0x18
+	ZString m_sLocationId; // 0x28
+	ZString m_sContractId; // 0x38
+	ZString m_sContractSessionId; // 0x48
+	ZString m_sLastEventToken; // 0x58
+	ZRepositoryID m_EnabledEntranceId; // 0x68
+	ZRepositoryID m_StartupDisguiseId; // 0x78
+	ZVariant m_contractData; // 0x88
+	ZGuid m_trackedOpportunity; // 0x98
+	SInventoryInfo m_aStartupInventory; // 0xA8
+	SAgencyPickupInfo m_aStartupAgencyPickupSelection; // 0x138
+	TArray<SObjetiveSaveData> m_aObjectives; // 0x178
+	TArray<ZVariant> m_aGameChangers; // 0x190
+	SSoundAmbienceSaveData m_SoundAmbienceData; // 0x1A8
+	SChallengesSaveData m_ChallengesSaveData; // 0x1B8
+	int32 m_nSaveGameLimit; // 0x1D0
+	float32 m_fLastKillTimestamp; // 0x1D4
+};
+
+// 0x0000000142AA9AE8 (Size: 0x4)
+enum class ZMoveToPositionBehaviorEntity_ERotationAlignment
+{
+	RA_NONE = 0,
+	RA_LOOSE = 1,
+	RA_EXACT = 2,
+};
+
+// 0x0000000142ABECB8 (Size: 0x4)
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFireType
+{
+	eWBC_AudioFireType_Full_Automatic = 0,
+	eWBC_AudioFireType_Single = 1,
+};
+
+// 0x0000000142AA5E50 (Size: 0x4)
+enum class EButtonPressType
+{
+	BUTTON_PRESS = 0,
+	BUTTON_HOLD = 1,
+	BUTTON_REPEAT = 2,
+	BUTTON_TAP = 3,
+	BUTTON_ROTATE_CCW = 4,
+	BUTTON_PRESS_TYPE_MAX = 5,
 };
 
 // 0x0000000142ABEC58 (Size: 0x4)
@@ -3911,330 +6262,6 @@ enum class EImpactEffectsOptions
 	eIE_MaterialImpactEffects = 4,
 	eIE_AmmoImpactEffect = 8,
 	eIE_All = 16,
-};
-
-// 0x0000000142A99128 (Size: 0x4)
-enum class EDramaStateFlag
-{
-	eDSF_DEFAULT = 0,
-	eDSF_ENABLED = 1,
-	eDSF_CAST = 2,
-	eDSF_RESUMING = 4,
-	eDSF_RUNNING = 8,
-	eDSF_DONE = 16,
-	eDSF_TERMINATED = 32,
-};
-
-// 0x0000000142AE29D0 (Size: 0x1)
-class BoneId
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142A8FC00 (Size: 0x4)
-enum class EActorState
-{
-	AS_DEACTIVATED = 0,
-	AS_ALIVE = 1,
-	AS_DYING = 2,
-	AS_DEAD = 3,
-	AS_DISABLED = 4,
-};
-
-// 0x0000000142A97780 (Size: 0x4)
-enum class EOutfitAICategory
-{
-	OAC_Undefined = 0,
-	OAC_Fallback = 1,
-	OAC_47Suit = 2,
-	OAC_47TRAINING = 3,
-	OAC_47MARRAKESH = 4,
-	OAC_47SAPIENZA = 5,
-	OAC_47BANGKOK = 6,
-	OAC_47COLORADO = 7,
-	OAC_47HOKKAIDO = 8,
-	OAC_47PREORDER = 9,
-	OAC_47COLUMBIA = 10,
-	OAC_47ISLAND = 11,
-	OAC_47MUMBAI = 12,
-	OAC_47NEWZEALAND = 13,
-	OAC_47STARTCLASSY = 14,
-	OAC_47STARTOUTFIT = 15,
-	OAC_47SUBURBIA = 16,
-	OAC_Bodyguard = 17,
-	OAC_CameraMan = 18,
-	OAC_Chef = 19,
-	OAC_Cleaner = 20,
-	OAC_Cop = 21,
-	OAC_Crew = 22,
-	OAC_DaSilva = 23,
-	OAC_Gardner = 24,
-	OAC_Hazmat = 25,
-	OAC_HouseStaff = 26,
-	OAC_Maintenance = 27,
-	OAC_Officer = 28,
-	OAC_Priest = 29,
-	OAC_Printer = 30,
-	OAC_Scientist = 31,
-	OAC_Security = 32,
-	OAC_Sheik = 33,
-	OAC_Stylist = 34,
-	OAC_Waiter = 35,
-	OAC_Busker = 36,
-	OAC_Caddie = 37,
-	OAC_ChurchStaff = 38,
-	OAC_Cyclist = 39,
-	OAC_Filmcrew = 40,
-	OAC_Fortune = 41,
-	OAC_Hippie = 42,
-	OAC_Investor = 43,
-	OAC_KGB = 44,
-	OAC_Lawyer = 45,
-	OAC_Kruger = 46,
-	OAC_Masseur = 47,
-	OAC_Mechanic = 48,
-	OAC_Norfolk = 49,
-	OAC_Plague = 50,
-	OAC_Psych = 51,
-	OAC_Shopkeep = 52,
-	OAC_Soldier = 53,
-	OAC_Tux = 54,
-	OAC_Vampire = 55,
-	OAC_YachtCrew = 56,
-	OAC_Exterminator = 57,
-	OAC_SoundCrew = 58,
-	OAC_Intern = 59,
-	OAC_Stalker = 60,
-	OAC_Scarecrow = 61,
-	OAC_Hacker = 62,
-	OAC_SpecOps = 63,
-	OAC_Berg = 64,
-	OAC_Morgue = 65,
-	OAC_Surgeon = 66,
-	OAC_Doctor = 67,
-	OAC_Director = 68,
-	OAC_Ninja = 69,
-	OAC_Baseball = 70,
-	OAC_KillBill = 71,
-	OAC_Pilot = 72,
-	OAC_Yoga = 73,
-	OAC_Mummy = 74,
-	OAC_Cowboy = 75,
-	OAC_Staff = 76,
-	OAC_Santa = 77,
-	OAC_MambaCrew = 78,
-	OAC_Delivery = 79,
-	OAC_GOTY_Clown = 80,
-	OAC_GOTY_Cowboy = 81,
-	OAC_GOTY_DarkSniper = 82,
-	OAC_Driver = 83,
-	OAC_Driverpale = 84,
-	OAC_Eventstff = 85,
-	OAC_Flrdaman = 86,
-	OAC_Food = 87,
-	OAC_Journal = 88,
-	OAC_Krnstdtengnr = 89,
-	OAC_Krnstdtsec = 90,
-	OAC_Ktchstff = 91,
-	OAC_Lee = 92,
-	OAC_Mascot = 93,
-	OAC_Medic = 94,
-	OAC_Mendez = 95,
-	OAC_Musician = 96,
-	OAC_Racecoord = 97,
-	OAC_Racemarsh = 98,
-	OAC_Thug = 99,
-	OAC_Worker = 100,
-	OAC_Research = 101,
-	OAC_Tatoo = 102,
-	OAC_Shaman = 103,
-	OAC_Artist = 104,
-	OAC_Barber = 105,
-	OAC_DJ = 106,
-	OAC_Kshmrn = 107,
-	OAC_Master = 108,
-	OAC_Burial = 109,
-	OAC_Ravenmaster = 110,
-	OAC_Sentinel = 111,
-	OAC_Blake = 112,
-	OAC_Actor = 113,
-	OAC_Architect = 114,
-	OAC_Arkian = 115,
-	OAC_Arkptrn = 116,
-	OAC_Bbq = 117,
-	OAC_Bollycrew = 118,
-	OAC_Cavegd = 119,
-	OAC_Civilian = 120,
-	OAC_Cavewkr = 121,
-	OAC_Clothsale = 122,
-	OAC_Counsellor = 123,
-	OAC_Cowboyhat = 124,
-	OAC_Custdn = 125,
-	OAC_Dancer = 126,
-	OAC_Dbbwll = 127,
-	OAC_Deadjanus = 128,
-	OAC_Driverch = 129,
-	OAC_Driversa = 130,
-	OAC_Driveruk = 131,
-	OAC_Driverus = 132,
-	OAC_Druglabwkr = 133,
-	OAC_Elite = 134,
-	OAC_Fakemlstrm = 135,
-	OAC_Farm = 136,
-	OAC_Fieldgrd = 137,
-	OAC_Headmaster = 138,
-	OAC_Knight = 139,
-	OAC_Laundrywkr = 140,
-	OAC_Lndrygrd = 141,
-	OAC_Mailman = 142,
-	OAC_Mansiongd = 143,
-	OAC_Mech_Miami = 144,
-	OAC_Mechch = 145,
-	OAC_Mechit = 146,
-	OAC_Mechkrnstdt = 147,
-	OAC_Mechsa = 148,
-	OAC_Mechuk = 149,
-	OAC_Mechus = 150,
-	OAC_Metalwkr = 151,
-	OAC_Militiasec = 152,
-	OAC_Mime = 153,
-	OAC_Moviemnstr = 154,
-	OAC_Mumbaiserv = 155,
-	OAC_Mumbsec = 156,
-	OAC_Nitiate = 157,
-	OAC_Nurse = 158,
-	OAC_Orson = 159,
-	OAC_Parka = 160,
-	OAC_Politicasst = 161,
-	OAC_Politician = 162,
-	OAC_Priest_VP = 163,
-	OAC_Queensgrd = 164,
-	OAC_Queenthug = 165,
-	OAC_Rangangrd = 166,
-	OAC_Rangansec = 167,
-	OAC_Realstbroke = 168,
-	OAC_Resident = 169,
-	OAC_Resortstaff = 170,
-	OAC_Sitewkr = 171,
-	OAC_Snowtrek = 172,
-	OAC_Subwkr = 173,
-	OAC_Suit = 174,
-	OAC_Tailor = 175,
-	OAC_Teaserv = 176,
-	OAC_Terminus = 177,
-	OAC_Trainserv = 178,
-	OAC_Villagegd = 179,
-	OAC_Winter = 180,
-	OAC_Wiseman = 181,
-	OAC_Investbanker = 182,
-	OAC_Bankteller = 183,
-	OAC_Robber = 184,
-	OAC_TechCrew = 185,
-	OAC_Attendant = 186,
-	OAC_Critic = 187,
-	OAC_FamilyGrd = 188,
-	OAC_PrivateEye = 189,
-	OAC_Undertaker = 190,
-	OAC_Photographer = 191,
-	OAC_LawyerBd = 192,
-	OAC_Biker = 193,
-	OAC_DeliveryFox = 194,
-	OAC_Dealer = 195,
-	OAC_ClubOwner = 196,
-	OAC_Bartender = 197,
-	OAC_ClubStaff = 198,
-	OAC_ClubTech = 199,
-	OAC_Herald = 200,
-	OAC_Gaucho = 201,
-	OAC_WineMkr = 202,
-	OAC_Fixer = 203,
-	OAC_Sommelier = 204,
-};
-
-// 0x0000000142A95F70 (Size: 0x4)
-enum class ESoundChannelGroup
-{
-	ESCG_NONE = 0,
-	SND_Default = 1,
-	SND_Phys_Rigidbody = 2,
-	SND_Phys_Shatter = 3,
-	SND_Wpn_HM = 4,
-	SND_Wpn_HM_Shot = 5,
-	SND_Wpn_NPC = 6,
-	SND_Wpn_Impacts = 7,
-	SND_Wpn_Flybys = 8,
-	SND_Characters = 9,
-	SND_Ambience = 10,
-	SND_Props = 11,
-	SND_Prop_Item = 12,
-	SND_FS_HM = 13,
-	SND_FS_NPC = 14,
-	SND_VisualFX = 15,
-	SND_VisualFX_ShotActivate = 16,
-	SND_VisualFX_Explosions = 17,
-	SND_Diag_HM = 18,
-	SND_Diag_NPC = 19,
-	SND_CS_Ingame = 20,
-	SND_CS_PreRend = 21,
-	SND_Music_Env = 22,
-	SND_MusicNonEnv = 23,
-	SND_SpecialFX_CC = 24,
-	SND_SpecialFX_Jumps = 25,
-	SND_SpecialFX_Closet = 26,
-	SND_SpecialFX_Vent = 27,
-	SND_SpecialFX_Instinct = 28,
-	SND_SpecialFX_Disguise = 29,
-	SND_SpecialFX_Agility = 30,
-	SND_Stingers_SFX = 31,
-	SND_GUI = 32,
-	SND_Test = 33,
-	ANIM_HM_Generic = 34,
-	ANIM_HM_Loco = 35,
-	ANIM_HM_Agility = 36,
-	ANIM_HM_Suit_Flap = 37,
-	ANIM_HM_Suit_Release = 38,
-	ANIM_HM_Suit_Slide = 39,
-	ANIM_HM_Suit_LandImpact = 40,
-	ANIM_HM_Suit_Grab = 41,
-	ANIM_HM_Suit_Roll = 42,
-	ANIM_HM_Suit_Swoosh_Body = 43,
-	ANIM_HM_Suit_Swoosh_Fast = 44,
-	ANIM_HM_CC_Impacts = 45,
-	ANIM_HM_CC_Movement = 46,
-	ANIM_NPC_Generic = 47,
-	ANIM_NPC_Loco = 48,
-	ANIM_NPC_CC_Impacts = 49,
-	ANIM_NPC_CC_Movement = 50,
-	SND_Wpn_HM_Tail = 51,
-	SND_Wpn_NPC_Tail = 52,
-	SND_Diag_NPC_Crowd = 53,
-	SND_Phys_RigidBody_Ragdoll = 54,
-	SND_Diag_VO = 55,
-	SND_GUI_Menu = 56,
-	SND_Props_Doors = 57,
-	SND_Wpn_HM_Handguns = 58,
-	SND_Wpn_HM_Revolvers = 59,
-	SND_Wpn_HM_Rifles = 60,
-	SND_Wpn_HM_Shotguns = 61,
-	SND_Wpn_HM_Smgs = 62,
-	SND_Wpn_HM_Snipers = 63,
-	SND_Wpn_HM_Other = 64,
-	SND_Wpn_NPC_Handguns = 65,
-	SND_Wpn_NPC_Revolvers = 66,
-	SND_Wpn_NPC_Rifles = 67,
-	SND_Wpn_NPC_Shotguns = 68,
-	SND_Wpn_NPC_Smgs = 69,
-	SND_Wpn_NPC_Snipers = 70,
-	SND_Wpn_NPC_Other = 71,
-	SND_Diag_NPC_Oneliner = 72,
-	SND_Moments = 73,
 };
 
 // 0x0000000142ABD5F8 (Size: 0x4)
@@ -4349,6 +6376,38 @@ enum class EBooleanOption
 	BO_Default = 2,
 };
 
+// 0x0000000142AA0F60 (Size: 0x4)
+enum class EStandRepositionStrategy
+{
+	SRS_InPlaceRepositioning = 0,
+	SRS_NoRepositioning = 1,
+};
+
+// 0x0000000142AA8BF8 (Size: 0x4)
+class SActorDynamicTemplateManipulatorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA4780 (Size: 0x4)
+enum class ZLookAtLogic_EAxisSelect
+{
+	eX = 0,
+	eX_NEG = 1,
+	eY = 2,
+	eY_NEG = 3,
+	eZ = 4,
+	eZ_NEG = 5,
+};
+
 // 0x0000000142A9A208 (Size: 0x4)
 enum class ESituationStateChangeReason
 {
@@ -4382,6 +6441,18 @@ enum class EMaterialRegistrationState
 	eMRS_Failed = 3,
 };
 
+// 0x0000000142A9E988 (Size: 0x4)
+enum class ZHeroEscortSituationEntity_ETargetState
+{
+	ETS_Unknown = 0,
+	ETS_NoTarget = 1,
+	ETS_RunningActBehavior = 2,
+	ETS_RunningDummyBehavior = 3,
+	ETS_RunningOtherBehavior = 4,
+	ETS_Dead = 5,
+	ETS_TargetIsHitman = 6,
+};
+
 // 0x0000000142A87FF8 (Size: 0x4)
 enum class CrowdReactionAIEventType
 {
@@ -4392,23 +6463,62 @@ enum class CrowdReactionAIEventType
 	CROWDAIEVENT_BLAME_FOR_KILL = 4,
 };
 
-// 0x00000001422D5D28 (Size: 0x18)
-class ZER64
+// 0x0000000143CEB6A0 (Size: 0x4)
+enum class ZRenderPostfilterParametersEntity_EDOFBlurType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint64 m_nEntityID; // 0x0
-	ZString m_sExposedEntity; // 0x8
+	eFastest = 0,
+	eLowRezLensBlur = 1,
+	eLowRezLensBlurSoft = 2,
+	eHighRezLensBlur = 3,
 };
 
-// 0x00000001422D5D58 (Size: 0x30)
-class ZScopedER64
+// 0x0000000142A9E408 (Size: 0x4)
+enum class ZAIPerceptibleEntity_EReactionBehaviorMode
+{
+	FullBehavior = 0,
+	StopOnInvestigate = 1,
+	StopOnReacted = 2,
+};
+
+// 0x0000000142AEF178 (Size: 0x4)
+enum class CrowdUtil_EDefaultStateTypes
+{
+	STATE_IDLE = 0,
+	STATE_WALK = 1,
+	STATE_PENDINGWALK = 2,
+	STATE_DEAD = 3,
+	STATE_SCARED = 4,
+	STATE_PENDINGSCARED = 5,
+	STATE_POSSESSED = 6,
+	STATE_ALERT = 7,
+	STATE_PRONE = 8,
+	STATE_RELOCATE = 9,
+	STATE_PENDINGRELOCATE = 10,
+	NUM_DEFAULT_STATES = 11,
+};
+
+// 0x0000000142A98CC0 (Size: 0x4)
+enum class ZHitmanLocomotionQuery_EEvaluationType
+{
+	ALL = 0,
+	ANY = 1,
+};
+
+// 0x0000000142AA5610 (Size: 0x4)
+enum class EGameEventArgType
+{
+	GE_ARGS_KILL = 0,
+	GE_ARGS_PRIORITYKILL = 1,
+	GE_ARGS_SITUATION = 2,
+	GE_ARGS_INVENTORY = 3,
+	GE_ARGS_EXPLODINGPROP = 4,
+	GE_ARGS_EVENT = 5,
+	GE_ARGS_CHECKPOINTEVENT = 6,
+	GE_ARGS_AI_SITUATION = 7,
+};
+
+// 0x0000000142AA18C0 (Size: 0x8)
+class SCautiousVIPGroupState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4418,8 +6528,17 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	ZER64 m_er64; // 0x0
-	TArray<uint64> m_aScopePath; // 0x18
+	ZGameTime m_tMove; // 0x0
+};
+
+// 0x0000000142AA1840 (Size: 0x4)
+enum class ZCautiousSearchGroup_ESearchGroupState
+{
+	SGS_Acknowledge = 0,
+	SGS_Approach = 1,
+	SGS_Approaching = 2,
+	SGS_Waiting = 3,
+	SGS_Completed = 4,
 };
 
 // 0x0000000142AA6B20 (Size: 0x4)
@@ -4428,6 +6547,87 @@ enum class EVRConfigRotationType
 	EVRCRT_None = 0,
 	EVRCRT_Lock = 1,
 	EVRCRT_Offset = 2,
+};
+
+// 0x0000000142AA4030 (Size: 0x4)
+enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason
+{
+	eTMLDR_HintMessages = 0,
+	eTMLDR_Sequence = 1,
+	eTMLDR_ActionKillHeadShot = 2,
+	eTMLDR_ActionKillCCProp = 3,
+	eTMLDR_ActionKillExplosion = 4,
+	eTMLDR_ActionKillLastEnemyInEncounter = 5,
+	eTMLDR_ActionKillLastEnemyInCheckPoint = 6,
+	eTMLDR_NOTSET = 7,
+};
+
+// 0x0000000143E6CA88 (Size: 0x4)
+enum class IRoomEntity_EReasoningGridImportance
+{
+	RGI_NoGrid = 0,
+	RGI_Low = 1,
+	RGI_Normal = 2,
+	RGI_High = 3,
+	RGI_Extreme = 4,
+};
+
+// 0x0000000142AB9E90 (Size: 0x4)
+enum class ZOnlineManager_EState
+{
+	eTRIGGER_FLOW = 1,
+	eOFFLINE = 2,
+	eSUSPEND = 3,
+	eDISCONNECTED = 4,
+	eBEGIN_CONNECTION_FLOW = 5,
+	ePREAUTHENTICATE = 6,
+	eFETCH_API_VERSION = 7,
+	eFETCHING_API_VERSION = 8,
+	eAPI_VERSION_RECEIVED = 9,
+	eFETCHING_CONFIGURATION = 10,
+	eCONFIGURATION_RECEIVED = 11,
+	eONLINE_CONSENT_CONFIRMATION = 12,
+	ePREAUTHENTICATION_ENTITLEMENTS_SYNCHRONIZE_INPROGRESS = 13,
+	ePREAUTHENTICATION_ENTITLEMENTS_SYNCHRONIZE_DONE = 14,
+	eAUTHENTICATING = 15,
+	eAUTHENTICATION_RECEIVED = 16,
+	eENTITLEMENTS_SYNCHRONIZE_INPROGRESS = 17,
+	eENTITLEMENTS_SYNCHRONIZE_DONE = 18,
+	eAUTHENTICATING_GAMESERVICE = 19,
+	eAUTHENTICATION_GAMESERVICE_RECEIVED = 20,
+	eFETCHING_OFFLINE_CACHE_DB_DIFF = 21,
+	eFETCHING_OFFLINE_CACHE_DB_DIFF_RECEIVED = 22,
+	eFETCHING_DYNAMIC_RESOURCES = 23,
+	eDYNAMIC_RESOURCES_MOUNTED = 24,
+	eCHECK_FOR_DLC_UPDATES = 25,
+	eFETCHING_PLATFORM_USERINFO = 26,
+	ePLATFORM_USERINFO_RECEIVED = 27,
+	eFETCHING_USER_CONFIGURATION = 28,
+	eUSER_CONFIGURATION_RECEIEVED = 29,
+	eFETCHING_PROFILE = 30,
+	ePROFILE_RECEIVED = 31,
+	eSYNCHRONIZING_PROFILE = 32,
+	ePROFILE_SYNCHRONIZED = 33,
+	eRETRIEVING_EVENTS = 34,
+	eEVENTS_RETRIEVED = 35,
+	eWAITING_FOR_SYNCHRONIZING_EVENTS = 36,
+	eCONNECTED = 37,
+	eCONNECT_TO_GAME_SESSION = 38,
+	eCONNECTING_TO_GAME_SESSION = 39,
+	eRETRY_SAVE_EVENTS = 40,
+	eRETRY_SAVE_EVENTS_INTERNAL = 41,
+	eREAUTHENTICATE = 42,
+	ePLATFORM_SESSION_RECONNECT = 43,
+	eSTATE_MAX = 44,
+};
+
+// 0x0000000142ABD610 (Size: 0x4)
+enum class EFSMInternalEvent
+{
+	eFSMEvent_Completed = 0,
+	eFSMEvent_Failed = 1,
+	eFSMEvent_Choice = 2,
+	eFSMEvent_Max = 3,
 };
 
 // 0x0000000142A8FD58 (Size: 0x4)
@@ -4444,6 +6644,74 @@ enum class ECautiousDisturbanceState
 	eCDS_Similar = 8,
 	eCDS_ManHunt = 9,
 	eCDS_CombatSuppressGunshots = 10,
+};
+
+// 0x0000000142AA3F10 (Size: 0x4)
+class SActorKeywordProxySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AC1528 (Size: 0x4)
+enum class ZValueBool_Operation_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	NOT_ALL = 3,
+	ALL_EQUAL = 4,
+	ONE_TRUE = 5,
+};
+
+// 0x0000000142AB1590 (Size: 0x18)
+class SHUDPromptDisplayInfoArray_Dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
+};
+
+// 0x0000000142A99FB8 (Size: 0x14)
+class SCombatSituationMemberSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_fDistanceToTarget; // 0x0
+	float32 m_fDistanceFieldValue; // 0x4
+	EDisturbanceType m_civilianJoinReason; // 0x8
+	bool m_bIsPreferredToFire; // 0xC
+	bool m_bDialogPreventShooting; // 0xD
+	bool m_bCanFlee; // 0xE
+	bool m_bCantFleeNoPath; // 0xF
+	bool m_bReportedToGuard; // 0x10
+	bool m_bStandAndShoot; // 0x11
+};
+
+// 0x0000000142AACCB0 (Size: 0x4)
+enum class IContractObjective_SCounterData_ECounterType
+{
+	eDEFAULT = 0,
+	ePERCENTAGE = 1,
 };
 
 // 0x0000000142AA4E00 (Size: 0x4)
@@ -4482,6 +6750,19 @@ enum class ECCNodeType
 	eCCNodeType_Count = 30,
 };
 
+// 0x0000000142A95FB8 (Size: 0x4)
+enum class ZHM5CrowdGenericEventConsumer_EEvent
+{
+	eFootstep = 0,
+	eClothRustle = 1,
+	ePushReaction = 2,
+	ePanic = 3,
+	eGeneric00 = 4,
+	eGeneric01 = 5,
+	eGeneric02 = 6,
+	eGeneric03 = 7,
+};
+
 // 0x0000000143E6FD98 (Size: 0x4)
 enum class EFontFlags
 {
@@ -4505,73 +6786,99 @@ enum class EDeathBehavior
 	eDB_NO_RAGDOLL = 3,
 };
 
-// 0x0000000142A99300 (Size: 0x4)
-enum class EDramaEventAction
+// 0x0000000142AEF160 (Size: 0x4)
+enum class CrowdMapImpl_CellFlags
 {
-	eDEA_NONE = 0,
-	eDEA_TERMINATE_DRAMA = 1,
-	eDEA_DONE_DRAMA = 2,
-	eDEA_STOP_BEHAVIOR = 4,
-	eDEA_DONT_STOP_SPEAK = 8,
-	eDEA_RESET_CASTING = 16,
-	eDEA_RESET_STATE = 32,
+	CELLFLAG_RESTRICTED_A = 1,
+	CELLFLAG_RESTRICTED_B = 2,
+	CELLFLAG_RESTRICTED_C = 4,
+	CELLFLAG_WALKABLE = 8,
+	CELLFLAG_TELEPORT_IN = 16,
+	CELLFLAG_TELEPORT_OUT = 32,
+	CELLFLAG_UNUSED = 64,
+	CELLFLAG_PANIC_ONLY = 128,
 };
 
-// 0x0000000142AB1FC0 (Size: 0x4)
-enum class EAutoScanMode
+// 0x0000000142AEE4A8 (Size: 0x4)
+enum class ESoundGateType
 {
-	ASM_GEOMETRY = 0,
-	ASM_VOLUMEBOX = 1,
+	SOUNDGATE_TYPE_ROUND = 0,
+	SOUNDGATE_TYPE_SHARPCORNERS = 1,
 };
 
-// 0x0000000142ABD610 (Size: 0x4)
-enum class EFSMInternalEvent
+// 0x0000000142AA11D0 (Size: 0x4)
+enum class EAIModifiers
 {
-	eFSMEvent_Completed = 0,
-	eFSMEvent_Failed = 1,
-	eFSMEvent_Choice = 2,
-	eFSMEvent_Max = 3,
+	AIM_Invalid = 0,
+	AIM_IgnoreLowNoise = 1,
+	AIM_IgnoreHitmanPropToss = 2,
+	AIM_IgnoreAnnoyingHitman = 4,
+	AIM_IgnoreSneakyHitman = 8,
+	AIM_IgnoreAgileHitman = 16,
+	AIM_IgnoreSillyHitman = 30,
+	AIM_PreferredInvestigator = 32,
+	AIM_AccidentShy = 64,
+	AIM_PreferredAccidentInvestigator = 128,
+	AIM_BlockFiberWireInteraction = 256,
+	AIM_BlockCloseCombatInteraction = 512,
+	AIM_BlockDragBodyInteraction = 1024,
+	AIM_BlockAllInteractions = 1792,
+	AIM_IgnoreDistractions = 2048,
+	AIM_IgnoreTrespassing = 4096,
+	AIM_IgnoreWeapons = 8192,
+	AIM_IgnoreLockdown = 16384,
+	AIM_DisableHelpCivilian = 32768,
+	AIM_WantsPrivacy = 65536,
+	AIM_ConversationHelper = 131072,
+	AIM_ConversationHelperFast = 262144,
+	AIM_OneHitpoint = 524288,
+	AIM_BlockDeadlyThrow = 1048576,
+	AIM_SuppressSocialGreeting = 2097152,
+	AIM_NeverInvestigateAccidents = 4194304,
+	AIM_BlockDeath = 8388608,
+	AIM_IgnoreDeadBody = 16777216,
+	AIM_NeverSpectate = 33554432,
+	AIM_DisableDeadBodySensor = 67108864,
+	AIM_DeafAndBlind = 134217728,
 };
 
-// 0x0000000142A8FEE8 (Size: 0x4)
-enum class EConversationID
+// 0x0000000143CEC048 (Size: 0x4)
+enum class ZBoneAttachEntity_EResetMode
 {
-	eCI_GuardCivilian_Distraction_Investigation = 0,
-	eCI_HearBulletImpact_Distraction_Investigation = 1,
-	eCI_HearItemImpact_Distraction_Investigation = 2,
-	eCI_HearCarAlarm_Distraction_Investigation = 3,
-	eCI_SeeItemToss_Distraction_Investigation = 4,
-	eCI_HearRadio_Distraction_Investigation = 5,
-	eCI_HearPain_Distraction_Investigation = 6,
-	eCI_HearAccident_Distraction_Investigation = 7,
-	eCI_HearCuriousItemSound_Distraction_Investigation = 8,
-	eCI_HearCuriousSound_Distraction_Investigation = 9,
-	eCI_SeeSuspiciousPerceptible_Distraction_Investigation = 10,
-	eCI_SeeInterestingItem_Distraction_Investigation = 11,
-	eCI_HearFootSteps_Distraction_Investigation = 12,
-	eCI_HearAngryDialog_Distraction_Investigation = 13,
-	eCI_HearHelpDialog_Distraction_Investigation = 14,
-	eCI_HearWarning_Distraction_Investigation = 15,
-	eCI_SightInvestigation_Distraction_Investigation = 16,
-	eCI_HearBulletImpact_Distraction_StandDown = 17,
-	eCI_HearItemImpact_Distraction_StandDown = 18,
-	eCI_HearCarAlarm_Distraction_StandDown = 19,
-	eCI_SeeItemToss_Distraction_StandDown = 20,
-	eCI_HearRadio_Distraction_StandDown = 21,
-	eCI_HearPain_Distraction_StandDown = 22,
-	eCI_HearAccident_Distraction_StandDown = 23,
-	eCI_HearCuriousItemSound_Distraction_StandDown = 24,
-	eCI_HearCuriousSound_Distraction_StandDown = 25,
-	eCI_SeeSuspiciousPerceptible_Distraction_StandDown = 26,
-	eCI_SeeInterestingItem_Distraction_StandDown = 27,
-	eCI_HearFootSteps_Distraction_StandDown = 28,
-	eCI_HearAngryDialog_Distraction_StandDown = 29,
-	eCI_HearHelpDialog_Distraction_StandDown = 30,
-	eCI_HearWarning_Distraction_StandDown = 31,
-	eCI_SightInvestigation_Distraction_StandDown = 32,
-	eCI_Suitcase_Distraction_DeliverToGuard = 33,
-	eCI_Suitcase_Distraction_RadioRequestHelp = 34,
-	eCI_Count = 35,
+	eAtBoneOrigin = 0,
+	eKeepOffset = 1,
+};
+
+// 0x0000000143E6CA40 (Size: 0x1)
+enum class ZVRCameraEntity_ETurnMode
+{
+	eSmooth = 0,
+	eSnap = 1,
+	eSmoothSnap = 2,
+};
+
+// 0x0000000143E6FF18 (Size: 0x4)
+enum class ZUIFlowLayoutEntity_EFlowType
+{
+	E_FLOW_TYPE_HORIZONTAL = 0,
+	E_FLOW_TYPE_VERTICAL = 1,
+};
+
+// 0x0000000142AB4430 (Size: 0x4)
+enum class ZChannelKeywordCondition_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	ANY_TRUE_IF_NO_REQS = 3,
+};
+
+// 0x00000001422D7058 (Size: 0x4)
+enum class ZTrackDollyControllerQueryEntity_ETrackPointQueryType
+{
+	Closest = 0,
+	ClosestNext = 1,
+	ClosestPrevious = 2,
 };
 
 // 0x0000000142AA2F60 (Size: 0x4)
@@ -4582,11 +6889,13 @@ enum class ESubcontrollerInventorySlot
 	eSIS_RightHand = 2,
 };
 
-// 0x0000000142A9CAF0 (Size: 0x4)
-enum class ERANDOM_DISTRIBUTION
+// 0x0000000142A97138 (Size: 0x4)
+enum class IHM5Door_EInitialState
 {
-	RND_UNIFORM = 0,
-	RND_SAWTOOTH = 1,
+	IS_CLOSED = 0,
+	IS_OPEN = 1,
+	IS_OPEN_IN = 2,
+	IS_OPEN_OUT = 3,
 };
 
 // 0x0000000142A88480 (Size: 0x4)
@@ -4625,34 +6934,42 @@ enum class EActionType
 	AT_ITEM_INTERACTION = -2147483648,
 };
 
-// 0x0000000142AA44E0 (Size: 0x2)
-class SShotListenerSaveData
+// 0x0000000142A9CAF0 (Size: 0x4)
+enum class ERANDOM_DISTRIBUTION
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bEnabled; // 0x0
-	bool m_bNPCShotProcessed; // 0x1
+	RND_UNIFORM = 0,
+	RND_SAWTOOTH = 1,
 };
 
-// 0x0000000142AA2728 (Size: 0x30)
-class SShotListenersSaveData
+// 0x0000000142AA5790 (Size: 0x4)
+enum class ERatingCategory
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	ERatingCategory_Invalid = 0,
+	ERatingCategory_Flawless = 1,
+	ERatingCategory_Violence = 2,
+	ERatingCategory_Cunning = 3,
+	ERatingCategory_Noise = 4,
+	ERatingCategory_COUNT = 5,
+};
 
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SShotListenerSaveData> m_aData; // 0x18
+// 0x0000000142AA6170 (Size: 0x4)
+enum class InputControlNamesp_eHM5InputActionType
+{
+	eTypeGet = 0,
+	eTypeHold = 1,
+	eTypeRepeat = 2,
+	eTypeTap = 3,
+	eTypeRelease = 4,
+	eTypeDownedge = 5,
+	eTypeFastTap = 6,
+	eTypeHoldDown = 7,
+	eTypeFireOnceHoldDown = 8,
+	eTypeClickHold = 9,
+	eTypePress = 10,
+	eTypeANALOG = 11,
+	eTypeANALOGRAW = 12,
+	eTypeRELATIVE = 13,
+	eTYPE_INVALID = 14,
 };
 
 // 0x0000000143E6DE78 (Size: 0x10)
@@ -4675,6 +6992,19 @@ enum class EDebugSpatialInfoVerbosity
 	EDSIV_Overview = 0,
 	EDSIV_HierachicalView = 1,
 	EDSIV_Full = 2,
+};
+
+// 0x0000000142A96078 (Size: 0x4)
+enum class ZHM5FaceFXSpecificEventConsumer_EEvent
+{
+	eNone = 0,
+	eGetInCombatCoverExhalation = 1,
+	eLeaveCombatCoverExhalation = 2,
+	eAgilityStrainedInhaleExhale = 3,
+	eAgilityGroan = 4,
+	eCloseCombatAttackSnarl = 5,
+	eCloseCombatStainedGroan = 6,
+	eCloseCombatSilentKillShush = 7,
 };
 
 // 0x0000000142AF0718 (Size: 0x4)
@@ -4764,67 +7094,22 @@ enum class EHUDMessageStatus
 	HUD_MESSAGE_FADEOUT = 4,
 };
 
-// 0x0000000143E6D740 (Size: 0x4)
-enum class ERequirementId
+// 0x0000000142B017A8 (Size: 0x4)
+enum class EConstraintType
 {
-	EREQUIREMENT_INVALID = 0,
-	EREQUIREMENT_TOKEN_OUTFIT_LEGACY_HERO_REQUIEMSUIT = 1,
-	EREQUIREMENT_FIREARMS_HERO_PISTOL_TACTICAL_015_SU_SKIN05 = 2,
-	EREQUIREMENT_PROP_DEVICE_SONYPREORDER_WHITE_RUBBERDUCK_REMOTE_EXPLOSIVE = 3,
-	EREQUIREMENT_GOTY_PATIENT_ZERO = 4,
-	EREQUIREMENT_GOTY_TOKEN_OUTFIT_PARIS_CLOWN = 5,
-	EREQUIREMENT_GOTY_TOKEN_OUTFIT_HOKKAIDO_COWBOY = 6,
-	EREQUIREMENT_GOTY_TOKEN_OUTFIT_MARRAKESH_DARK_SNIPER = 7,
-	EREQUIREMENT_ANNIVERSARY_OUTFITS = 8,
-	EREQUIREMENT_LOCATION_NEWZEALAND = 9,
-	EREQUIREMENT_S2_EXECUTIVE_PACK = 10,
-	EREQUIREMENT_S2_COLLECTORS_PACK = 11,
-	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM1 = 12,
-	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2 = 13,
-	EREQUIREMENT_PROP_CONTAINER_SUITCASE_ICA_STA_STADIA = 14,
-	EREQUIREMENT_PROP_DEVICE_ICA_RUBBERDUCK_REMOTE_EXPLOSIVE_STA_STADIA = 15,
-	EREQUIREMENT_H1_LEGACY_STANDARD = 16,
-	EREQUIREMENT_H1_LEGACY_EXPANSION = 17,
-	EREQUIREMENT_H2_LEGACY_STANDARD = 18,
-	EREQUIREMENT_H2_LEGACY_EXPANSION = 19,
-	EREQUIREMENT_H3_EXPANSION = 20,
-	EREQUIREMENT_LOCATION_GOLDEN = 21,
-	EREQUIREMENT_LOCATION_ANCESTRAL = 22,
-	EREQUIREMENT_LOCATION_EDGY = 23,
-	EREQUIREMENT_LOCATION_WET = 24,
-	EREQUIREMENT_LOCATION_ELEGANT = 25,
-	EREQUIREMENT_LOCATION_TRAPPED = 26,
-	EREQUIREMENT_PLATFORM_ORBIS = 27,
-	EREQUIREMENT_PLATFORM_PS5 = 28,
-	EREQUIREMENT_PLATFORM_GDK = 29,
-	EREQUIREMENT_PLATFORM_EPIC = 30,
-	EREQUIREMENT_PLATFORM_STEAM = 31,
-	EREQUIREMENT_PLATFORM_GGP = 32,
-	EREQUIREMENT_H3_PREORDER = 33,
-	EREQUIREMENT_PLATFORM_IZUMO = 34,
+	ECONSTRAINTTYPE_UNKNOWN = 0,
+	ECONSTRAINTTYPE_BALL_AND_SOCKET = 1,
+	ECONSTRAINTTYPE_HINGE = 2,
+	ECONSTRAINTTYPE_FIXED = 3,
+	ECONSTRAINTTYPE_DISTANCE = 4,
+	ECONSTRAINTTYPE_D6 = 5,
 };
 
-// 0x0000000142AB2268 (Size: 0x8)
-class SComboDeviceBinding
+// 0x0000000142AA4350 (Size: 0x4)
+enum class ZSecuritySystemCameraConfiguration_ECameraEscalationSituations
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 type; // 0x0
-	uint32 button; // 0x4
-};
-
-// 0x0000000142A9E2B8 (Size: 0x4)
-enum class ECombatZoneState
-{
-	CZS_Inactive = 0,
-	CZS_Triggered = 1,
-	CZS_Engaged = 2,
+	eCES_Arrest = 0,
+	eCES_Combat = 1,
 };
 
 // 0x0000000142A883C0 (Size: 0x4)
@@ -4835,6 +7120,29 @@ enum class EObjectiveType
 	OBJECTIVE_TERTIARY = 2,
 };
 
+// 0x0000000142A9F588 (Size: 0x4)
+enum class EVRIKElementMode
+{
+	EVRIKEM_Enabled = 0,
+	EVRIKEM_Disabled = 1,
+	EVRIKEM_KeepCurrent = 2,
+};
+
+// 0x0000000142AA44E0 (Size: 0x2)
+class SShotListenerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bEnabled; // 0x0
+	bool m_bNPCShotProcessed; // 0x1
+};
+
 // 0x0000000142AA3CF0 (Size: 0x4)
 enum class EWeaponUpgradeUse
 {
@@ -4843,12 +7151,485 @@ enum class EWeaponUpgradeUse
 	eWUU_AllFireModes = 2,
 };
 
-// 0x0000000142A9F588 (Size: 0x4)
-enum class EVRIKElementMode
+// 0x0000000142AB46A8 (Size: 0x8)
+class SKeywordSaveData
 {
-	EVRIKEM_Enabled = 0,
-	EVRIKEM_Disabled = 1,
-	EVRIKEM_KeepCurrent = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_HolderSaveableId; // 0x0
+	int32 m_KeywordID; // 0x4
+};
+
+// 0x00000001422D6E68 (Size: 0x4)
+enum class EActorSoundDefs
+{
+	_NoSound = 0,
+	Dth_BrkNck = 1,
+	Dth_Fll = 2,
+	Dth_GnSht = 3,
+	Dth_HdSht = 4,
+	Dth_Mpct = 5,
+	Dth_SltThrt = 6,
+	Dth_Strngl = 7,
+	Dth_Xplo = 8,
+	Dth_PrpF = 9,
+	Dth_Electro = 10,
+	Dth_Burn = 11,
+	Dth_Crush = 12,
+	Dth_Scrm = 13,
+	Dth_Hrt = 14,
+	Dth_SrpsGrab = 15,
+	Dth_HumShldStrain = 16,
+	Dth_Snore = 17,
+	Dth_Groan = 18,
+	Dth_Dump = 19,
+	Dth_PrpTssFrntAck = 20,
+	Dth_Headlock = 21,
+	Dth_Blinded = 22,
+	Dth_BeeSting = 23,
+	Dth_Grab = 24,
+	Gen_Grt47 = 25,
+	Gen_GrtGrd47WGun = 26,
+	Gen_GrtTrgt = 27,
+	Gen_GrtTrgtRsp = 28,
+	Gen_NPC2NPCGrt = 29,
+	Gen_NPC2NPCRsp = 30,
+	Gen_GtHlp = 31,
+	Gen_GtHlpLd = 32,
+	Gen_GtHlp47Knwn = 33,
+	Gen_Mssng = 34,
+	Gen_HMHere = 35,
+	Gen_HMThere = 36,
+	Gen_SrpsLow = 37,
+	Gen_SrpsLowShort = 38,
+	Gen_Srps = 39,
+	Gen_SrpsLd = 40,
+	Gen_StndRsp = 41,
+	Gen_Stop = 42,
+	Gen_StopLd = 43,
+	Gen_Reveal = 44,
+	Gen_ThumbsUp = 45,
+	Gen_BrknAck = 46,
+	Gen_Ack = 47,
+	Gen_AckLd = 48,
+	Gen_AckNtnse = 49,
+	Gen_BumpAck = 50,
+	Gen_Curse = 51,
+	Gen_CurseLow = 52,
+	Gen_DrpGun = 53,
+	Gen_DrpCase = 54,
+	Gen_CoinCurse = 55,
+	Gen_TransportGreet = 56,
+	Gen_Thanks = 57,
+	Gen_ReturnItem2Guard = 58,
+	Gen_NoWay1 = 59,
+	Gen_NoWay2Kidding = 60,
+	Gen_NoWay3Joke = 61,
+	Gen_NoWay44Real = 62,
+	Gen_NoWay5DntBeliv = 63,
+	Gen_NoWay6Serious = 64,
+	Gen_NoWay7Horrible = 65,
+	Gen_Way1 = 66,
+	Gen_Way2Kidding = 67,
+	Gen_Way3Joke = 68,
+	Gen_Way44Real = 69,
+	Gen_Way5DntBeliv = 70,
+	Gen_Way6Serious = 71,
+	Gen_Way7Horrible = 72,
+	Gen_NkdRunAck = 73,
+	Gen_Grasp = 74,
+	Gen_Amused = 75,
+	Gen_Annoyed = 76,
+	Gen_BdygrdArrive = 77,
+	Gen_BdygrdMovOut = 78,
+	Gen_GiveUp = 79,
+	Gen_Off = 80,
+	Gen_On = 81,
+	Gen_PanicLow = 82,
+	Gen_Sick = 83,
+	Gen_SmellAck = 84,
+	Gen_SmrtPhnAct = 85,
+	Gen_PhoneAct = 86,
+	Gen_OutbreakInfect = 87,
+	Gen_OutbreakSick = 88,
+	Gen_OutbreakWhine = 89,
+	Gtag = 90,
+	ClsCmbt_Ack = 91,
+	ClsCmbt_Tnt = 92,
+	Cmbt_BackupCll = 93,
+	Cmbt_BadDsg = 94,
+	Cmbt_Beg = 95,
+	Cmbt_ClsAck = 96,
+	Cmbt_Fire = 97,
+	Cmbt_FireLdr = 98,
+	Cmbt_GtHit = 99,
+	Cmbt_HitHM = 100,
+	Cmbt_HMClsCmbtAck = 101,
+	Cmbt_HMCvr = 102,
+	Cmbt_HMFire = 103,
+	Cmbt_HMFlnk = 104,
+	Cmbt_HMHeadPopr = 105,
+	Cmbt_HMKll = 106,
+	Cmbt_HMKllCiv = 107,
+	Cmbt_HMKllName = 108,
+	Cmbt_HMKllPrpTss = 109,
+	Cmbt_HMMssTnt = 110,
+	Cmbt_HMShrpShtr = 111,
+	Cmbt_HMSpttd = 112,
+	Cmbt_HMVnshd = 113,
+	Cmbt_Hold = 114,
+	Cmbt_HoldLdr = 115,
+	Cmbt_HumShldRls1 = 116,
+	Cmbt_HumShldRls2 = 117,
+	Cmbt_HumShldRls3 = 118,
+	Cmbt_HumShldRlsFem1 = 119,
+	Cmbt_HumShldRlsFem2 = 120,
+	Cmbt_HumShldRlsFem3 = 121,
+	Cmbt_HumShldVctm = 122,
+	Cmbt_HumShldLdr = 123,
+	Cmbt_LngLst = 124,
+	Cmbt_LngLstRsp = 125,
+	Cmbt_LstMnStn = 126,
+	Cmbt_LstSght = 127,
+	Cmbt_LstSghtRsp = 128,
+	Cmbt_NdrAttck = 129,
+	Cmbt_Relod = 130,
+	Cmbt_Scrm = 131,
+	Cmbt_ThrowFlash = 132,
+	Cmbt_ThrowFlashMiss = 133,
+	Cmbt_ThrowFlashMiss2 = 134,
+	Cmbt_ThrowFlashWin = 135,
+	Cmbt_ThrowFlashWin2 = 136,
+	Cmbt_TkDwnLdr = 137,
+	Cmbt_VntAck = 138,
+	Cmbt_Whmp = 139,
+	Cmbt_StalemateHold = 140,
+	Cmbt_StalemateTnt = 141,
+	Cmbt_TriggerTheAlarm = 142,
+	Cmbt_47Mpty = 143,
+	Cmbt_47SuperSize = 144,
+	Evac_PrtTrgtSolo = 145,
+	Evac_PrtTrgtAck = 146,
+	Evac_PrtTrgtAckLdr = 147,
+	Evac_PrtTrgtEscrt = 148,
+	Evac_PrtTrgtStop = 149,
+	Evac_PrtTrgtStnd = 150,
+	Evac_PrtTrgtStndRsp = 151,
+	Evac_Cornered = 152,
+	Evac_MovOut = 153,
+	Evac_PathChange = 154,
+	Evac_PeelOff = 155,
+	Evac_LastPeelOff = 156,
+	Evac_ShltrArrv = 157,
+	Evac_ShltrBad = 158,
+	Evac_ShltrLdr = 159,
+	Evac_ShltrRsp = 160,
+	Evac_TrgtHitRsp = 161,
+	AvoidXplo_Ack = 162,
+	AvoidXplo_Stnd = 163,
+	Ar_47BadAction = 164,
+	Ar_47X = 165,
+	Ar_BadDsg = 166,
+	Ar_BlmeKll = 167,
+	Ar_BlameKnckDwn = 168,
+	Ar_BlameKnckDwnPT = 169,
+	Ar_BlameKllPT = 170,
+	Ar_47BadActionPT = 171,
+	Ar_DrgBody = 172,
+	Ar_FkeSrrdrTnt = 173,
+	Ar_HMDoor = 174,
+	Ar_Strangle = 175,
+	Ar_Trspss = 176,
+	Ar_WeapWrn1 = 177,
+	Ar_WeapWrn2 = 178,
+	Ar_Wrn1 = 179,
+	Ar_Wrn2 = 180,
+	Ar_Wrn3 = 181,
+	Ar_VictimAck = 182,
+	Ar_Thief = 183,
+	Ar_Rsp = 184,
+	Sniper_Ack = 185,
+	InCa_BackupCll = 186,
+	InCa_ChckCvr = 187,
+	InCa_CivRptFail = 188,
+	InCa_CivUpset = 189,
+	InCa_ClstTnt = 190,
+	InCa_HMTnt = 191,
+	InCa_Idle = 192,
+	InCa_NitiateHMKnwn = 193,
+	InCa_SrchLdr = 194,
+	InCa_Stnd = 195,
+	InCa_StndAgtd = 196,
+	InCa_StndAgtdLdr = 197,
+	InCa_StndAgtdHMKnwn = 198,
+	InCa_StndAgtdHMKnwnLdr = 199,
+	InCa_StndHMKnwn = 200,
+	InCa_StndHMKnwnLdr = 201,
+	InCa_StndLdr = 202,
+	InCa_StndRsp = 203,
+	InCa_StndLckDwnFlsAlrm = 204,
+	InCa_VntTnt = 205,
+	InCa_Brk2Civ = 206,
+	InCa_Brk2Grd = 207,
+	InCa_Brk2Rdo = 208,
+	InCa_BrkAsk = 209,
+	InCa_GhostAsk = 210,
+	InCa_TriggerTheAlarm = 211,
+	InCa_Xpln47Thief = 212,
+	InCa_DstrssInv = 213,
+	InCa_DstrssLdr = 214,
+	InCa_DstrssInvLdr = 215,
+	InCa_WakeAsk = 216,
+	InCa_47Rcall = 217,
+	InCa_WakerStnd = 218,
+	InCa_ClsCmbtAck = 219,
+	InCa_SeeDthInv = 220,
+	InCa_SeeDthInvLdr = 221,
+	InCa_SeeDthLdr = 222,
+	InCa_XploInv = 223,
+	InCa_XploInvLdr = 224,
+	InCa_XploLdr = 225,
+	InCa_AlarmAck = 226,
+	InCa_GnShtInv = 227,
+	InCa_GnShtInvLdr = 228,
+	InCa_GnShtLdr = 229,
+	InCa_RecurSvrInv = 230,
+	InCa_RecurSvrInvLdr = 231,
+	InCa_RecurSvrInvRsp = 232,
+	InCa_RecurSvrLdr = 233,
+	InCa_RecurSvrRsp = 234,
+	InCa_LckDwnGtOutLdr = 235,
+	InCa_LckDwnGtOutRsp = 236,
+	InCa_LckDwnWrn1 = 237,
+	InCa_LckDwnWrn2 = 238,
+	InCa_LckDwnWrn3 = 239,
+	InCa_LckDwnCivCmnt = 240,
+	InCa_FrskAck = 241,
+	InCa_Frsk = 242,
+	InCa_FrskCln = 243,
+	InCa_FrskWpn = 244,
+	InCa_Xpln47Wpn = 245,
+	InCa_XplnAccdnt = 246,
+	InCa_XplnDedBdy = 247,
+	InCa_XplnDedBdyMassive = 248,
+	InCa_XplnDrgBdy = 249,
+	InCa_XplnDstrss = 250,
+	InCa_XplnExplo = 251,
+	InCa_XplnGhost = 252,
+	InCa_XplnGnsht = 253,
+	InCa_XplnNkdBdy = 254,
+	InCa_XplnPcfdBdy = 255,
+	InCa_XplnSeeDth = 256,
+	InCa_XplnTrspss = 257,
+	InCa_XplnX = 258,
+	InCa_XplnWpn = 259,
+	InCa_XplnDsg = 260,
+	InCa_XplnImposter = 261,
+	InCa_XplnRecurSvr = 262,
+	InCa_XplnRsp = 263,
+	InCa_XplnAckRdo = 264,
+	InCa_XplnKnckDwn = 265,
+	InCa_XplnKnckDwnVctm = 266,
+	InCa_XplnKnckDwnGhost = 267,
+	InCa_XplnSeeStrngl = 268,
+	InCa_XplnHuntTargetWin = 269,
+	InCa_XplnHuntTargetFail = 270,
+	InCa_VIPDownAck = 271,
+	InCa_VIPKillAck = 272,
+	Accdnt_Inv = 273,
+	InDedBdy_BloodPllAck = 274,
+	InDedBdy_Ack = 275,
+	InDedBdy_NkdAck = 276,
+	InDedBdy_Inv = 277,
+	InDedBdy_BllPllRpt = 278,
+	InDedBdy_Massive = 279,
+	InDedBdy_PcfdInv = 280,
+	InDedBdy_CntnAck = 281,
+	InDedBdy_Stnd = 282,
+	InDedBdy_CircleBdy = 283,
+	InDedBdy_CivCmnt = 284,
+	InDedBdy_PrmtrBrchWrn1 = 285,
+	InDedBdy_PrmtrBrchWrn2 = 286,
+	InDedBdy_47AsGrdAck = 287,
+	InDedBdy_BodyGone = 288,
+	InDedBdy_VctmRcvr = 289,
+	InDedBdy_WakerWake = 290,
+	InDedBdy_WakeRsp = 291,
+	InDedBdy_WakeNkdLdr = 292,
+	InDedBdy_WakeNkdRsp = 293,
+	Rcvr_Xpln47 = 294,
+	Rcvr_XplnDsg = 295,
+	Rcvr_XplnKnckDwn = 296,
+	InDsg_FllwWrn1 = 297,
+	InDsg_FllwWrn2 = 298,
+	InDsg_FllwWrn3 = 299,
+	InDsg_Pzzl = 300,
+	InDsg_Stnd = 301,
+	InDsg_StndDistance = 302,
+	InDsg_StndHidden = 303,
+	InDsg_HdNPlnSght = 304,
+	InDsg_FllwWrn1Ack = 305,
+	InDsg_FllwWrn1BadAction = 306,
+	InDsg_FllwWrn1Wpn = 307,
+	InDsg_FllwWrn1BadSound = 308,
+	InDsg_FllwWrnJoinr = 309,
+	InDsg_FllwWrn1ShadyItem = 310,
+	Trspss_Stnd = 311,
+	Trspss_Wrn1 = 312,
+	Trspss_Wrn2 = 313,
+	Trspss_Wrn3 = 314,
+	Trspss_Rsp = 315,
+	Trspss_SrchAckLegal47 = 316,
+	Trspss_EscortAck = 317,
+	Trspss_EscortRequest = 318,
+	Trspss_EscortRequestRepeat = 319,
+	Trspss_EscortStayClose = 320,
+	Trspss_EscortOk = 321,
+	Trspss_EscortStnd = 322,
+	Trspss_EscortArrest = 323,
+	Trspss_EscortExit = 324,
+	Trspss_EscortStayRequest = 325,
+	InCu_Brk2Rdo = 326,
+	InCu_CivCmnd = 327,
+	InCu_Stnd = 328,
+	InCu_CivRsp = 329,
+	InCu_BackupRqst = 330,
+	InCu_CrAlrmAck = 331,
+	InCu_CrAlrmLdr = 332,
+	InCu_CrAlrmStndRsp = 333,
+	InCu_FtStpsAck = 334,
+	InCu_FtStpsStnd = 335,
+	InCu_PrpTssHearAck = 336,
+	InCu_PrpTssHearInv = 337,
+	InCu_PrpTssHearLdr = 338,
+	InCu_PrpTssHearStndRsp = 339,
+	InCu_PrpTssSeeAck = 340,
+	InCu_PrpTssSeeInv = 341,
+	InCu_PrpTssSeeLdr = 342,
+	InCu_PrpTssSeeStndRsp = 343,
+	InCu_RdoAck = 344,
+	InCu_RdoInv = 345,
+	InCu_RdoLdr = 346,
+	InCu_RdoStndRsp = 347,
+	InCu_WpnInv = 348,
+	InCu_RecurAck = 349,
+	InCu_RecurInv = 350,
+	InCu_RecurLdr = 351,
+	InCu_RecurRsp = 352,
+	InCu_ItemAckLdr = 353,
+	InCu_CrAlrmStndStndRsp = 354,
+	InCu_EscrtTrgtRedLight = 355,
+	InCu_EscrtTrgtGreenLight = 356,
+	InSt_HMAglty = 357,
+	InSt_HMBz = 358,
+	InSt_HMBzStnd = 359,
+	InSt_HMEntXit = 360,
+	InSt_HMInCvr = 361,
+	InSt_HMSnkng = 362,
+	InSt_PrpTssSee = 363,
+	InSt_Stnd = 364,
+	InSt_Wrn = 365,
+	InSt_HM2Cls = 366,
+	InSt_SickAck = 367,
+	InSt_AdiosRequest = 368,
+	InSt_PQ = 369,
+	FseBx_Fixed = 370,
+	FseBx_Fixing = 371,
+	FseBx_GoFix = 372,
+	FseBx_SabAck = 373,
+	Sentry_DenyEntry = 374,
+	Sentry_Frsk = 375,
+	Sentry_FrskRequest = 376,
+	Sentry_ItemRequest = 377,
+	Sentry_Accepted = 378,
+	Sentry_FrskWpnAck = 379,
+	Sentry_47LoiterAck = 380,
+	Sentry_DenyDsg = 381,
+	Sentry_PostCommentLdr = 382,
+	Sentry_PostCommentRsp = 383,
+	VIP_MssgnA_Ldr = 384,
+	VIP_MssgnB_Rsp = 385,
+	VIP_MssgnC_Ldr = 386,
+	VIP_MssgnD_Rsp = 387,
+	VIP_MssngCallOut = 388,
+	Dth_Sick = 389,
+	Dth_Poison = 390,
+	Gen_Avoid = 391,
+	Gen_CloseCall = 392,
+	Gen_PhnPckUP = 393,
+	Gen_PhoneActLockdown = 394,
+	Cmbt_FlushOutLdr = 395,
+	Cmbt_HMPrptssKnckOut = 396,
+	InCa_FrskHeadsUpLdr = 397,
+	InCa_FrskHeadsUpRdo = 398,
+	InCa_XplnLOS = 399,
+	InCa_XplnGotShot = 400,
+	InDedBdy_CivCmntPhone = 401,
+	InDedBdy_NoFaulVctmXpln = 402,
+	InDsg_FllwWrn1Nkd = 403,
+	Ar_BlameKnckDwnMelee = 404,
+	Exp_Carry = 405,
+	Exp_ClearThroat = 406,
+	Exp_Cough = 407,
+	Exp_Drink = 408,
+	Exp_Exhale = 409,
+	Exp_Idle = 410,
+	Exp_Inhale = 411,
+	Exp_InhaleFast = 412,
+	Exp_Sniff = 413,
+	Exp_Swallow = 414,
+	Exp_Think = 415,
+	Exp_Scared = 416,
+	Exp_Gld = 417,
+	Exp_Dsppntd = 418,
+	Exp_InPain = 419,
+	InCa_AckBdy = 420,
+	InCa_AckBdyLdr = 421,
+	InDedBdy_CivCmntPcfd = 422,
+	InDedBdy_CivCmntPhonePcfd = 423,
+	Gen_SocialAck = 424,
+};
+
+// 0x0000000142B002A8 (Size: 0x4)
+enum class Network_OrderingChannel
+{
+	SYSTEM_INTERNAL = 0,
+	PLAYER_INPUT = 1,
+	SYNCH_POINT = 2,
+	CAMERA = 3,
+	PROJECTILE = 4,
+	PIN_SIGNAL = 5,
+	GAME_STATE = 6,
+	HERO_STATE = 7,
+	NPC_STATE = 8,
+	WEAPONS = 9,
+	INTERACTIONS = 10,
+	ACTS = 11,
+	ANIMATION = 12,
+	MISC = 13,
+	MAX_CHANNELS = 16,
+};
+
+// 0x0000000142ABD950 (Size: 0xC)
+class SProgressTimerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int32 m_nInterval; // 0x0
+	int32 m_nRemaining; // 0x4
+	bool m_bValue; // 0x8
 };
 
 // 0x0000000142A98038 (Size: 0x4)
@@ -4864,11 +7645,34 @@ enum class ECheatGroup
 	eCGDevices = 7,
 };
 
+// 0x0000000143CEB658 (Size: 0x4)
+enum class ZRenderPostfilterParametersEntity_EHDRAdaptationType
+{
+	eMedian = 0,
+	eGeometricMean = 1,
+};
+
 // 0x0000000142B00278 (Size: 0x4)
 enum class EReplicaOperation
 {
 	E_Created = 0,
 	E_Destroyed = 1,
+};
+
+// 0x00000001421176D0 (Size: 0x24)
+class SMatrix33
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector3 XAxis; // 0x0
+	SVector3 YAxis; // 0xC
+	SVector3 ZAxis; // 0x18
 };
 
 // 0x0000000142AA3AB8 (Size: 0x4)
@@ -4888,22 +7692,6 @@ enum class ECCEmitterEffect
 	eCCEmitterEffect_Blood = 11,
 };
 
-// 0x00000001421176D0 (Size: 0x24)
-class SMatrix33
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SVector3 XAxis; // 0x0
-	SVector3 YAxis; // 0xC
-	SVector3 ZAxis; // 0x18
-};
-
 // 0x0000000142AA58B0 (Size: 0x4)
 enum class ECommunicationBarState
 {
@@ -4917,27 +7705,6 @@ enum class ECommunicationBarState
 	COMMUNICATION_BAR_BODY_FOUND = 7,
 	COMMUNICATION_BAR_GUARDS_ALERTED = 8,
 	COMMUNICATION_BAR_BACKUP_ARRIVED = 9,
-};
-
-// 0x0000000142AA14B0 (Size: 0x38)
-class SCrowdBodySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_pCorpseBodybagEntity; // 0x0
-	uint32 m_rCrowdEntity; // 0x4
-	uint16 m_iActorIndex; // 0x8
-	uint32 m_rPerceptibleEntity; // 0xC
-	TArray<uint32> m_aKnownBy; // 0x10
-	ZGameTime m_tStart; // 0x28
-	bool m_bManaged; // 0x30
-	int32 m_rBagSharedKnowledge; // 0x34
 };
 
 // 0x0000000142AA57F0 (Size: 0x4)
@@ -5019,35 +7786,8 @@ enum class EButtonDisplay
 	BUTTON_DISPLAY_MAX = 73,
 };
 
-// 0x0000000142AEF148 (Size: 0x4)
-enum class TeleportActionType
-{
-	STAY = 0,
-	TELEPORT = 1,
-	LEAVE_CROWD = 2,
-};
-
-// 0x0000000142A8FC30 (Size: 0x4)
-enum class EActorAIState
-{
-	eAAIS_None = 0,
-	eAAIS_Distracted = 1,
-	eAAIS_PotentialThreat = 2,
-	eAAIS_PotentialThreatDistracted = 3,
-	eAAIS_PotentialThreatDisabled = 4,
-	eAAIS_Aggressive = 5,
-	eAAIS_EscortingOut = 6,
-	eAAIS_Fleeing = 7,
-	eAAIS_Unconscious = 8,
-	eAAIS_Stunned = 9,
-	eAAIS_Grenade = 10,
-	eAAIS_DisabledInCombat = 11,
-	eAAIS_Disabled = 12,
-	eAAIS_Max = 13,
-};
-
-// 0x0000000142AA1300 (Size: 0x4)
-class SActorProxySaveData
+// 0x0000000142AA14B0 (Size: 0x38)
+class SCrowdBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5057,97 +7797,25 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rActor; // 0x0
+	uint32 m_pCorpseBodybagEntity; // 0x0
+	uint32 m_rCrowdEntity; // 0x4
+	uint16 m_iActorIndex; // 0x8
+	uint32 m_rPerceptibleEntity; // 0xC
+	TArray<uint32> m_aKnownBy; // 0x10
+	ZGameTime m_tStart; // 0x28
+	bool m_bManaged; // 0x30
+	int32 m_rBagSharedKnowledge; // 0x34
 };
 
-// 0x0000000142AA2530 (Size: 0x30)
-class SActorProxiesSaveData
+// 0x0000000142AC1540 (Size: 0x4)
+enum class ZValueBool_OperationRecalc_EEvaluationType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SActorProxySaveData> m_aData; // 0x18
-};
-
-// 0x0000000142A86C08 (Size: 0x4)
-enum class EMorphemeEventId
-{
-	eDE_None = 0,
-	eDE_UnholsterWeapon = 18,
-	eDE_HolsterWeapon = 19,
-	eDE_FireWeapon = 20,
-	eDE_AttachWeapon = 21,
-	eDE_DetachWeapon = 22,
-	eDE_LegR = 100,
-	eDE_LegL = 101,
-	eDE_TransitionEnd_LegR = 200,
-	eDE_TransitionEnd_LegL = 201,
-	eDE_Finish = 255,
-	eDE_InterpolationStart = 300,
-	eDE_InterpolationEnd = 301,
-	eDE_TransitionSignal = 400,
-	eDE_TransitionEnd = 500,
-	eDE_DisableNPCHitmanCollision = 700,
-	eDE_EnableNPCHitmanCollision = 701,
-	eDE_EnableRagdollRangeStart = 800,
-	eDE_EnableRagdollRangeEnd = 801,
-	eDE_StartBlendingOut = 850,
-	eDE_FinishBlendingOut = 851,
-	eDE_StartOrientationBlend = 860,
-	eDE_FinishOrientationBlend = 861,
-	eDE_RecoveryPowerRagdollEnd = 862,
-	eDE_RecoveryBlendEnd = 863,
-	eDE_ImpactFinished = 900,
-	eDE_ActFinished = 1000,
-	eDE_ActFinishedWhenMoving = 1001,
-	eDE_ActReached = 1005,
-	eDE_ActLoop = 1050,
-	eDE_ActFullbodyStartMarker = 1090,
-	eDE_ActFullbodyEndMarker = 1091,
-	eDE_ReactionFinished = 1100,
-	eDE_StandToCrouch = 1500,
-	eDE_CrouchToStand = 1501,
-	eDE_OffHandIKEnable = 1600,
-	eDE_OffHandIKDisable = 1601,
-	eDE_StandToMoveRotationToTranslation = 1700,
-	eDE_MoveToStandTranslationToRotation = 1701,
-	eDE_HeadIKEnable = 1800,
-	eDE_HeadIKDisable = 1801,
-	eDE_WindowLeaningEnable = 2000,
-	eDE_WindowLeaningDisable = 2001,
-	eDE_PreventDeathAnimations = 2002,
-	eDE_AllowDeathAnimations = 2003,
-	eDE_HeadControlEnable = 2010,
-	eDE_HeadControlDisable = 2011,
-	eDE_CombatActEndMarker = 3000,
-	eDE_CombatAim = 3100,
-	eDE_CombatEnableRightHandIK = 3010,
-	eDE_CombatEnableLeftHandIK = 3011,
-	eDE_CombatEndEnableIK = 3015,
-	eDE_CombatStartDisableIK = 3020,
-	eDE_CombatEndDisableIK = 3025,
-	eDE_CombatEnableShoot = 3030,
-	eDE_CombatDisableShoot = 3040,
-	eDE_CombatEnableBlindShoot = 3050,
-	eDE_CombatDisableBlindShoot = 3060,
-	eDE_CombatUnholsterGrenade = 3070,
-	eDE_CombatThrowGrenade = 3080,
-	eDE_ActBehaviorEventStart = 4000,
-	eDE_ActItemPickup = 4001,
-	eDE_ActItemDrop = 4002,
-	eDE_AmbientItemUseMarker = 4010,
-	eDE_ActBehaviorEventEnd = 4999,
-	eDE_Act_LeadIn_Marker = 10301,
-	eDE_Act_UB_BlendIn_End = 10050,
-	eDE_Act_FB_BlendIn_Start = 10051,
-	eDE_Act_FB_BlendIn_End = 10052,
-	eDE_Act_FB_BlendOut_End = 10053,
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	NOT_ALL = 3,
+	ALL_EQUAL = 4,
+	ONE_TRUE = 5,
 };
 
 // 0x0000000142ABEFD0 (Size: 0x4)
@@ -5160,45 +7828,57 @@ enum class EHM5SoundBulletType
 	ESBT_ANY = 4,
 };
 
-// 0x0000000142A9E528 (Size: 0x10)
-class SDramaSituationSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bSituationRunning; // 0x0
-	bool m_bIsTerminated; // 0x1
-	float32 m_nPriorityModifier; // 0x4
-	int32 m_nCurrentDrama; // 0x8
-	bool m_bProvidersStarted; // 0xC
-};
-
-// 0x0000000142A992A0 (Size: 0x30)
-class SDramaSituationCollectionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SDramaSituationSaveData> m_aStates; // 0x18
-};
-
 // 0x0000000142AEFF38 (Size: 0x4)
 enum class EContinuity
 {
 	C0 = 0,
 	C1 = 1,
 	C2 = 2,
+};
+
+// 0x00000001422D6028 (Size: 0x8)
+class ZEntityRef
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000143E6CA58 (Size: 0x4)
+enum class EVRRenderingMode
+{
+	VR_RENDER_MODE_2D_SCREEN = 0,
+	VR_RENDER_MODE_STEREO_3D = 1,
+};
+
+// 0x0000000142AA50D0 (Size: 0x4)
+enum class ECharacterFullBodyStateType
+{
+	eSM_FB_OldMovementPlaceholder = 0,
+	eSM_FB_Slave = 1,
+	eSM_FB_Locomotion = 2,
+	eSM_FB_CloseCombat = 3,
+	eSM_FB_FlavorIdle = 4,
+	eSM_FB_Sniping = 5,
+	eSM_FB_AssemblePutOnTheFloor = 6,
+	eSM_FB_AssembleAlignContainer = 7,
+	eSM_FB_AssembleRetrieve = 8,
+	eSM_FB_AssembleStore = 11,
+};
+
+// 0x0000000142ABECD0 (Size: 0x4)
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioHeadTailType
+{
+	eWBC_AudioHeadTailType_DryFire = 0,
+	eWBC_AudioHeadTailType_Normal = 1,
+	eWBC_AudioHeadTailType_NormalSweetener = 2,
+	eWBC_AudioHeadTailType_Silenced = 3,
+	eWBC_AudioHeadTailType_SilencedSweetener = 4,
 };
 
 // 0x0000000142AA5DF0 (Size: 0x4)
@@ -5232,12 +7912,51 @@ enum class EControllerButton
 	BUTTON_ESCAPE = 25,
 };
 
-// 0x0000000142AA4540 (Size: 0x4)
-enum class ESoundMaterialType
+// 0x0000000142B02568 (Size: 0x4)
+enum class ERayType
 {
-	eGeneric = 0,
-	eFlesh = 1,
-	eSilent = 2,
+	ERAY_CLOSESTHIT_SIMPLE = 0,
+	ERAY_CLOSESTHIT_DETAILED = 1,
+};
+
+// 0x0000000142AA16C0 (Size: 0x4)
+enum class ZCautiousBackupGroup_EGroupState
+{
+	GS_DistanceField = 0,
+	GS_SendBackup = 1,
+	GS_Waiting = 2,
+	GS_Completed = 3,
+};
+
+// 0x0000000142AA4310 (Size: 0x4)
+enum class ZHM5HitmanHealthModifier_EHealthDrainType
+{
+	eRemoveHealthInstantly = 0,
+	eDecreaseHealthToValue = 1,
+};
+
+// 0x0000000142AC15A0 (Size: 0x30)
+class SValueIntSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<int32> m_aData; // 0x18
+};
+
+// 0x0000000142A979E0 (Size: 0x4)
+enum class ZHM5BodyContainer_EBCBodyMode
+{
+	BC_1_VICTIM = 0,
+	BC_2_VICTIMS = 1,
+	BC_1_VICTIM_FLUSHABLE = 2,
+	BC_1_VICTIM_AUTOFLUSHABLE = 3,
 };
 
 // 0x0000000142A95538 (Size: 0x4)
@@ -5252,6 +7971,28 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rLadder; // 0x0
+};
+
+// 0x0000000142AA4540 (Size: 0x4)
+enum class ESoundMaterialType
+{
+	eGeneric = 0,
+	eFlesh = 1,
+	eSilent = 2,
+};
+
+// 0x0000000142A9D3E0 (Size: 0x4)
+enum class EScreenAnchor
+{
+	SCREEN_ANCHOR_TOP_LEFT = 0,
+	SCREEN_ANCHOR_TOP_CENTER = 1,
+	SCREEN_ANCHOR_TOP_RIGHT = 2,
+	SCREEN_ANCHOR_MIDDLE_LEFT = 3,
+	SCREEN_ANCHOR_MIDDLE_CENTER = 4,
+	SCREEN_ANCHOR_MIDDLE_RIGHT = 5,
+	SCREEN_ANCHOR_BOTTOM_LEFT = 6,
+	SCREEN_ANCHOR_BOTTOM_CENTER = 7,
+	SCREEN_ANCHOR_BOTTOM_RIGHT = 8,
 };
 
 // 0x0000000142AA1470 (Size: 0x28)
@@ -5291,20 +8032,6 @@ public:
 
 	bool m_bFullVolumeUpdate; // 0x0
 	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
-};
-
-// 0x0000000142A9D3E0 (Size: 0x4)
-enum class EScreenAnchor
-{
-	SCREEN_ANCHOR_TOP_LEFT = 0,
-	SCREEN_ANCHOR_TOP_CENTER = 1,
-	SCREEN_ANCHOR_TOP_RIGHT = 2,
-	SCREEN_ANCHOR_MIDDLE_LEFT = 3,
-	SCREEN_ANCHOR_MIDDLE_CENTER = 4,
-	SCREEN_ANCHOR_MIDDLE_RIGHT = 5,
-	SCREEN_ANCHOR_BOTTOM_LEFT = 6,
-	SCREEN_ANCHOR_BOTTOM_CENTER = 7,
-	SCREEN_ANCHOR_BOTTOM_RIGHT = 8,
 };
 
 // 0x0000000142A96D90 (Size: 0x8)
@@ -5365,16 +8092,6 @@ enum class EActorAnimationOrder
 	AAO_Controlled = 11,
 };
 
-// 0x0000000142AEF0A0 (Size: 0x4)
-enum class ESpeed
-{
-	eSpeed_Idle = 0,
-	eSpeed_Slow = 1,
-	eSpeed_Normal = 2,
-	eSpeed_Fast = 3,
-	eSpeed_Sprint = 4,
-};
-
 // 0x0000000143CEC1C8 (Size: 0x1)
 enum class ESeamFixMode
 {
@@ -5388,51 +8105,33 @@ enum class ESeamFixMode
 	SEAMFIX_YZ = 6,
 };
 
-// 0x0000000142AA11D0 (Size: 0x4)
-enum class EAIModifiers
+// 0x0000000142AFBB90 (Size: 0x4)
+enum class ESyncEvent
 {
-	AIM_Invalid = 0,
-	AIM_IgnoreLowNoise = 1,
-	AIM_IgnoreHitmanPropToss = 2,
-	AIM_IgnoreAnnoyingHitman = 4,
-	AIM_IgnoreSneakyHitman = 8,
-	AIM_IgnoreAgileHitman = 16,
-	AIM_IgnoreSillyHitman = 30,
-	AIM_PreferredInvestigator = 32,
-	AIM_AccidentShy = 64,
-	AIM_PreferredAccidentInvestigator = 128,
-	AIM_BlockFiberWireInteraction = 256,
-	AIM_BlockCloseCombatInteraction = 512,
-	AIM_BlockDragBodyInteraction = 1024,
-	AIM_BlockAllInteractions = 1792,
-	AIM_IgnoreDistractions = 2048,
-	AIM_IgnoreTrespassing = 4096,
-	AIM_IgnoreWeapons = 8192,
-	AIM_IgnoreLockdown = 16384,
-	AIM_DisableHelpCivilian = 32768,
-	AIM_WantsPrivacy = 65536,
-	AIM_ConversationHelper = 131072,
-	AIM_ConversationHelperFast = 262144,
-	AIM_OneHitpoint = 524288,
-	AIM_BlockDeadlyThrow = 1048576,
-	AIM_SuppressSocialGreeting = 2097152,
-	AIM_NeverInvestigateAccidents = 4194304,
-	AIM_BlockDeath = 8388608,
-	AIM_IgnoreDeadBody = 16777216,
-	AIM_NeverSpectate = 33554432,
-	AIM_DisableDeadBodySensor = 67108864,
-	AIM_DeafAndBlind = 134217728,
+	eSyncEvent_None = 0,
+	eSyncEvent_LeftFoot = 100,
+	eSyncEvent_RightFoot = 200,
+	eSyncEvent_BothFeet = 300,
 };
 
-// 0x0000000142AEE4A8 (Size: 0x4)
-enum class ESoundGateType
+// 0x0000000142AEF190 (Size: 0x4)
+enum class CrowdUtil_ECrowdDirection
 {
-	SOUNDGATE_TYPE_ROUND = 0,
-	SOUNDGATE_TYPE_SHARPCORNERS = 1,
+	NORTH = 0,
+	EAST = 1,
+	SOUTH = 2,
+	WEST = 3,
 };
 
-// 0x0000000143F1E1A0 (Size: 0x30)
-class ZAMDTake
+// 0x0000000142AA46A0 (Size: 0x4)
+enum class ZPreferenceItemEntity_EBoolOptions
+{
+	EBO_INVERTVERTICAL = 0,
+	EBO_FIXEDMAP = 1,
+};
+
+// 0x0000000142ABFEC8 (Size: 0x10)
+class SIntelSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5442,13 +8141,27 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
-	ZVariant m_customData; // 0x18
-	int32 m_nSyncTrackIndex; // 0x28
+	uint32 m_rCurrentStage; // 0x0
+	float32 m_fHandlerAudioPlayPosition; // 0x4
+	bool m_bTracked; // 0x8
+	bool m_bUnlocked; // 0x9
+	bool m_bRegistered; // 0xA
+	bool m_bIsLastTriggered; // 0xB
+	bool m_bIsHandlerAudioPlaying; // 0xC
 };
 
-// 0x0000000142A9F630 (Size: 0x30)
-class SSniperScoringEvent
+// 0x0000000142ABECA0 (Size: 0x4)
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFamily
+{
+	eWBC_AudioFamily_Exotics = 0,
+	eWBC_AudioFamily_Heavy = 1,
+	eWBC_AudioFamily_Light = 2,
+	eWBC_AudioFamily_NPC = 3,
+	eWBC_AudioFamily_Standard = 4,
+};
+
+// 0x0000000142AB9EF0 (Size: 0x38)
+class SActivityObjective
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5458,29 +8171,265 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	int32 m_iPoints; // 0x0
-	int32 m_iPlayer; // 0x4
-	ZString m_sName; // 0x8
-	ZString m_sText; // 0x18
-	int32 m_iType; // 0x28
-	uint8 m_iScoringMachine; // 0x2C
+	SActivity activity; // 0x0
+	TArray<SActivity> opportunities; // 0x20
 };
 
-// 0x0000000142AA4BC0 (Size: 0x4)
-enum class EAIFormationMemberSpeed
+// 0x0000000142AB9F38 (Size: 0x70)
+class SActivityDefinition
 {
-	eFMS_Slow = 0,
-	eFMS_Normal = 1,
-	eFMS_Fast = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SActivity activity; // 0x0
+	TArray<SActivityObjective> objectives; // 0x20
+	SActivityExits exits; // 0x38
 };
 
-// 0x0000000142ABEFB8 (Size: 0x4)
-enum class EItemPoisonType
+// 0x0000000142AB9F68 (Size: 0x18)
+class SActivities
 {
-	POISONTYPE_NONE = 0,
-	POISONTYPE_LETHAL = 1,
-	POISONTYPE_SEDATIVE = 2,
-	POISONTYPE_EMETIC = 3,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SActivityDefinition> Activities; // 0x0
+};
+
+// 0x0000000142A99F08 (Size: 0x4)
+enum class ZStandOffSituation_EDialogState
+{
+	eDS_ReportTarget = 0,
+	eDS_ArrestReason = 1,
+	eDS_ArrestReasonWait = 2,
+	eDS_Warning = 3,
+	eDS_WarningWait = 4,
+	eDS_WeaponWarning = 5,
+	eDS_WeaponWarningWait = 6,
+	eDS_StopWait = 7,
+	eDS_Done = 8,
+};
+
+// 0x0000000142AF1658 (Size: 0x4)
+enum class ZCameraConeTriggerEntity_EAlignment
+{
+	X_POSITIVE = 0,
+	Y_POSITIVE = 1,
+	Z_POSITIVE = 2,
+	X_NEGATIVE = 3,
+	Y_NEGATIVE = 4,
+	Z_NEGATIVE = 5,
+};
+
+// 0x00000001422D74A0 (Size: 0x4)
+enum class ZHeroInventoryAction_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+};
+
+// 0x0000000142A9F6A8 (Size: 0x4)
+enum class IContractObjective_Category
+{
+	PRIMARY = 0,
+	SECONDARY = 1,
+	CONDITION = 2,
+};
+
+// 0x0000000142AA2460 (Size: 0x4)
+enum class ZHM5LedgeMount_ELedgeEndState
+{
+	eHang = 0,
+	eStand = 1,
+};
+
+// 0x0000000142AF0250 (Size: 0x20)
+class SEntityTemplateReference
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint64 entityID; // 0x0
+	int32 externalSceneIndex; // 0x8
+	int32 entityIndex; // 0xC
+	ZString exposedEntity; // 0x10
+};
+
+// 0x0000000142AF03E8 (Size: 0x18)
+class SEntityTemplateProperty
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 nPropertyID; // 0x0
+	ZVariant value; // 0x8
+};
+
+// 0x0000000142AF0430 (Size: 0x20)
+class SEntityTemplatePlatformSpecificProperty
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SEntityTemplateProperty propertyValue; // 0x0
+	EVirtualPlatformID platform; // 0x18
+	bool postInit; // 0x1C
+};
+
+// 0x0000000142AF0508 (Size: 0x70)
+class STemplateFactorySubEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SEntityTemplateReference logicalParent; // 0x0
+	int32 entityTypeResourceIndex; // 0x20
+	TArray<SEntityTemplateProperty> propertyValues; // 0x28
+	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x40
+	TArray<SEntityTemplatePlatformSpecificProperty> platformSpecificPropertyValues; // 0x58
+};
+
+// 0x0000000142AF0400 (Size: 0x38)
+class SEntityTemplatePropertyOverride
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SEntityTemplateReference propertyOwner; // 0x0
+	SEntityTemplateProperty propertyValue; // 0x20
+};
+
+// 0x0000000142AF0628 (Size: 0x58)
+class STemplateEntityFactory
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int32 subType; // 0x0
+	int32 blueprintIndexInResourceHeader; // 0x4
+	int32 rootEntityIndex; // 0x8
+	TArray<STemplateFactorySubEntity> subEntities; // 0x10
+	TArray<SEntityTemplatePropertyOverride> propertyOverrides; // 0x28
+	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x40
+};
+
+// 0x0000000142A88460 (Size: 0x4)
+enum class EHUDElement
+{
+	HUD_ELEMENT_NONE = 0,
+	HUD_ELEMENT_MINIMAP = 1,
+	HUD_ELEMENT_DISGUISE = 2,
+	HUD_ELEMENT_WEAPON_DISPLAY = 4,
+	HUD_ELEMENT_FOCUS_BAR = 8,
+	HUD_ELEMENT_RETICULES = 16,
+	HUD_ELEMENT_WEAPON_SELECTOR = 32,
+	HUD_ELEMENT_SPECIAL_BAR = 64,
+	HUD_ELEMENT_TEXT_MESSAGES = 128,
+	HUD_ELEMENT_CONTRACT_MARKS = 256,
+	HUD_ELEMENT_RATING_UPDATE = 512,
+	HUD_ELEMENT_RANKING = 1024,
+	HUD_ELEMENT_CHALLENGES = 2048,
+	HUD_ELEMENT_CUSTOM_TEXTS = 4096,
+	HUD_ELEMENT_ACTION_BUTTONS = 8192,
+	HUD_ELEMENT_ATTENTION_PEAKS = 16384,
+	HUD_ELEMENT_RATING_TRACKER = 32768,
+	HUD_ELEMENT_TARGET_TRACKER = 65536,
+	HUD_ELEMENT_HINTS = 131072,
+	HUD_ELEMENT_CONTRACT_SCORING = 262144,
+	HUD_ELEMENT_TUTORIAL = 524288,
+	HUD_ELEMENT_HEALTH_BAR = 1048576,
+	HUD_ELEMENT_OBJECTIVES = 2097152,
+	HUD_ALL_ELEMENTS = 8388607,
+};
+
+// 0x00000001422D5C08 (Size: 0xC)
+class SColorRGB
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 r; // 0x0
+	float32 g; // 0x4
+	float32 b; // 0x8
+};
+
+// 0x0000000143E6DDB8 (Size: 0x1C)
+class SLightSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rEntity; // 0x0
+	SColorRGB m_DiffuseColor; // 0x4
+	float32 m_fDiffusePower; // 0x10
+	float32 m_fAspectXByY_Actual; // 0x14
+	bool m_bVisible; // 0x18
+};
+
+// 0x0000000142AB1850 (Size: 0x4)
+enum class ZHUDCamera3DControllerEntity_EMode
+{
+	Auto = 0,
+	Mode2D = 1,
+	Mode3D = 2,
+};
+
+// 0x0000000142AB1A20 (Size: 0x4)
+enum class ZHUDTimerInstance_ETimeFormatChoice
+{
+	YES = 0,
+	NO = 1,
+	AUTO = 2,
 };
 
 // 0x0000000142A880C8 (Size: 0x4)
@@ -5497,6 +8446,15 @@ enum class EParticleModifierImpulseDirections
 	TARGET_ZAXIS_DIRECTION = 0,
 	TOWARDS_TARGET_PIVOT = 1,
 	AWAY_FROM_TARGET_PIVOT = 2,
+};
+
+// 0x0000000142ABEFB8 (Size: 0x4)
+enum class EItemPoisonType
+{
+	POISONTYPE_NONE = 0,
+	POISONTYPE_LETHAL = 1,
+	POISONTYPE_SEDATIVE = 2,
+	POISONTYPE_EMETIC = 3,
 };
 
 // 0x0000000142AA12E0 (Size: 0x4)
@@ -5519,6 +8477,18 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
+};
+
+// 0x0000000142A9F558 (Size: 0x4)
+enum class eVRFadeType
+{
+	FadeToGame = 0,
+	FadeToBlack = 1,
+	FadeToGame_HighPriority = 2,
+	FadeToBlack_HighPriority = 3,
+	CutToGame = 4,
+	CutToBlack = 5,
+	KeepCurrent = 6,
 };
 
 // 0x0000000142AA4F20 (Size: 0x4)
@@ -5554,16 +8524,82 @@ enum class ETakeDownAnim
 	eTakeDownAnimLast = 27,
 };
 
-// 0x0000000142A9F558 (Size: 0x4)
-enum class eVRFadeType
+// 0x0000000142A9EEA8 (Size: 0x38)
+class SDramaActorSaveState
 {
-	FadeToGame = 0,
-	FadeToBlack = 1,
-	FadeToGame_HighPriority = 2,
-	FadeToBlack_HighPriority = 3,
-	CutToGame = 4,
-	CutToBlack = 5,
-	KeepCurrent = 6,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rSequence; // 0x4
+	uint32 m_rBehavior; // 0x8
+	uint32 m_rCurrentSpeakEntity; // 0xC
+	uint32 m_rScreenplay; // 0x10
+	ZString m_sMatchName; // 0x18
+	ZGameTime m_tActorSpeakEnd; // 0x28
+	bool m_bIsDone; // 0x30
+	bool m_bIsPaused; // 0x31
+	bool m_bIsSpeaking; // 0x32
+};
+
+// 0x0000000142AB2100 (Size: 0x8)
+class STrackerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rTracker; // 0x0
+	bool m_bIsVisible; // 0x4
+	bool m_bIsEnabled; // 0x5
+	bool m_bSpatialVisibility; // 0x6
+};
+
+// 0x0000000142AB0978 (Size: 0x18)
+class STrackerManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
+};
+
+// 0x0000000142A98D70 (Size: 0x4)
+enum class ZLogicMultipleGate_EGateType
+{
+	eFireEveryTime = 0,
+	eFirePortOnce = 1,
+	eFireOnce = 2,
+};
+
+// 0x0000000142AA99D0 (Size: 0x4)
+enum class ZActBehaviorEntity_EMovementType
+{
+	MT_WALK = 0,
+	MT_SNAP = 1,
+	MT_IGNORE_POSITION = 2,
+};
+
+// 0x0000000142AA9B08 (Size: 0x4)
+enum class ZPatrolBehaviorEntity_EMovementType
+{
+	MT_WALK = 0,
+	MT_SNAP = 1,
+	MT_IGNORE_POSITION = 2,
 };
 
 // 0x0000000142AA6610 (Size: 0x4)
@@ -5605,66 +8641,6 @@ enum class ESilenceRating
 	eSR_CompletelySilenced = 3,
 };
 
-// 0x0000000142AFD278 (Size: 0x60)
-class ZHttpUrl
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142AF0250 (Size: 0x20)
-class SEntityTemplateReference
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint64 entityID; // 0x0
-	int32 externalSceneIndex; // 0x8
-	int32 entityIndex; // 0xC
-	ZString exposedEntity; // 0x10
-};
-
-// 0x0000000142AF03E8 (Size: 0x18)
-class SEntityTemplateProperty
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 nPropertyID; // 0x0
-	ZVariant value; // 0x8
-};
-
-// 0x0000000142AF0400 (Size: 0x38)
-class SEntityTemplatePropertyOverride
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SEntityTemplateReference propertyOwner; // 0x0
-	SEntityTemplateProperty propertyValue; // 0x20
-};
-
 // 0x0000000142B001D0 (Size: 0x4)
 enum class GameLobbyState
 {
@@ -5679,32 +8655,12 @@ enum class GameLobbyState
 	GLS_InGame = 8,
 };
 
-// 0x0000000142ABDA40 (Size: 0x30)
-class STimerEntitiesSaveData
+// 0x0000000142B01820 (Size: 0x1)
+enum class EFilterMaskBit
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<STimerEntitySaveData> m_aData; // 0x18
-};
-
-// 0x0000000142117920 (Size: 0x20)
-class ZGuidString
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
+	eFilterMaskBit_ObjectCollision = 0,
+	eFilterMaskBit_OpaqueCollision = 1,
+	eFilterMaskBit_UNUSED_LAST = 2,
 };
 
 // 0x0000000142A97828 (Size: 0x3)
@@ -5723,12 +8679,45 @@ public:
 	bool m_bDestroyed; // 0x2
 };
 
-// 0x0000000142B01820 (Size: 0x1)
-enum class EFilterMaskBit
+// 0x0000000142117920 (Size: 0x20)
+class ZGuidString
 {
-	eFilterMaskBit_ObjectCollision = 0,
-	eFilterMaskBit_OpaqueCollision = 1,
-	eFilterMaskBit_UNUSED_LAST = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142A97998 (Size: 0x4)
+enum class ZHM5BodyContainer_EBCState
+{
+	BC_CLOSED = 0,
+	BC_OPEN = 1,
+	BC_FLUSH = 2,
+	BC_OPENING = 3,
+	BC_CLOSING = 4,
+	BC_FLUSHING = 5,
+};
+
+// 0x0000000142A979F8 (Size: 0x10)
+class SBodyContainerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZHM5BodyContainer_EBCState m_eBCState; // 0x0
+	float32 m_fLidAutoCloseTime; // 0x4
+	float32 m_fLidOpenFraction; // 0x8
+	bool m_bFrameUpdateActive; // 0xC
 };
 
 // 0x0000000142B01598 (Size: 0x1)
@@ -5740,12 +8729,51 @@ enum class ECollisionPriority
 	ECOLLISIONPRIORITY_CRITICAL = 3,
 };
 
+// 0x0000000142A86B50 (Size: 0x4)
+enum class ZActStateCondition_EState
+{
+	MOVING = 0,
+	ENTERING = 1,
+	PLAYING = 2,
+};
+
 // 0x0000000142AB66C0 (Size: 0x4)
 enum class ELedgeDismountBehavior
 {
 	eLDB_DontCare = 0,
 	eLDB_Stand = 1,
 	eLDB_Crouch = 2,
+};
+
+// 0x0000000142AC1630 (Size: 0x4)
+enum class ZValueInt_Evaluation_EEvaluationType
+{
+	EQUAL = 0,
+	NOT_EQUAL = 1,
+	LESS = 2,
+	LESS_OR_EQUAL = 3,
+	HIGHER = 4,
+	HIGHER_OR_EQUAL = 5,
+};
+
+// 0x0000000143E6E108 (Size: 0x4)
+enum class IScatterContainerEntity_ECanvasSize
+{
+	SIZE_128 = 0,
+	SIZE_256 = 1,
+	SIZE_512 = 2,
+	SIZE_1024 = 3,
+	SIZE_2048 = 4,
+	SIZE_4096 = 5,
+};
+
+// 0x0000000142AA1C10 (Size: 0x4)
+enum class ZMoveToOrder_EMoveSpeed
+{
+	MS_AUTO = 0,
+	MS_SPRINT = 1,
+	MS_JOG = 2,
+	MS_WALK = 3,
 };
 
 // 0x0000000142AA3AA0 (Size: 0x4)
@@ -5765,18 +8793,40 @@ enum class ECCDecalEffect
 	eCCDecalEffect_Bruise = 11,
 };
 
-// 0x0000000142AA4D40 (Size: 0x4)
-enum class ESpeechPriority
+// 0x0000000143E6E138 (Size: 0x4)
+enum class IScatterContainerEntity_ECanvasClearMode
 {
-	SP_AMBIENT = 0,
-	SP_ALERTED = 1,
-	SP_PAIN = 2,
-	SP_ALERTED_IMPORTANT = 3,
-	SP_COMBAT = 4,
-	SP_COMBAT_IMPORTANT = 5,
-	SP_DEATH = 6,
-	SP_MAX = 7,
-	SP_COUNT__ = 8,
+	CLEAR_ALL = 0,
+	CLEAR_INTENSITY = 1,
+	CLEAR_SPECIFICMATERIAL = 2,
+	CLEAR_ALLMATERIALS = 3,
+	CLEAR_SETINTENSITYVALUECLEARMATERIAL = 4,
+	CLEAR_SETINTENSITYVALUEKEEPMATERIAL = 5,
+	CLEAR_SETINTENSITYVALUEANDMATERIAL = 6,
+	CLEAR_SETMATERIALKEEPINTENSITYVALUE = 7,
+};
+
+// 0x0000000142AB15F0 (Size: 0x4)
+enum class ZContractObjectiveHudHintEntity_EObjectiveHintIcon
+{
+	eNone = 0,
+	eSuitcase = 1,
+	eObjective_A = 3,
+	eObjective_B = 4,
+	eObjective_C = 5,
+	eObjective_D = 6,
+	eInfoIcon = 7,
+	eExclamationMark = 8,
+	eIntelIcon = 9,
+	eDiscoveryIcon = 10,
+	eDiscoveryIcon_A = 11,
+	eDiscoveryIcon_B = 12,
+	eDiscoveryIcon_C = 13,
+	eDiscoveryIcon_A_Compleed = 14,
+	eDiscoveryIcon_B_Compleed = 15,
+	eDiscoveryIcon_C_Compleed = 16,
+	eMissionObjective = 17,
+	eExitMissionIcon = 18,
 };
 
 // 0x0000000142A97A50 (Size: 0x8)
@@ -5794,18 +8844,26 @@ public:
 	float32 m_fAnglePitch; // 0x4
 };
 
-// 0x0000000142AA3DA0 (Size: 0x18)
-class SChallengesSaveData
+// 0x0000000142AA4D40 (Size: 0x4)
+enum class ESpeechPriority
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	SP_AMBIENT = 0,
+	SP_ALERTED = 1,
+	SP_PAIN = 2,
+	SP_ALERTED_IMPORTANT = 3,
+	SP_COMBAT = 4,
+	SP_COMBAT_IMPORTANT = 5,
+	SP_DEATH = 6,
+	SP_MAX = 7,
+	SP_COUNT__ = 8,
+};
 
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
+// 0x0000000142A8FD10 (Size: 0x4)
+enum class EActorRole
+{
+	eActorRole_Default = 0,
+	eActorRole_Bodyguard = 1,
+	eActorRole_VIP = 2,
 };
 
 // 0x0000000142A86C20 (Size: 0x4)
@@ -6024,12 +9082,47 @@ enum class ECCWeaponAnimSet
 	AS_AXE = 12,
 };
 
-// 0x0000000142A8FD10 (Size: 0x4)
-enum class EActorRole
+// 0x00000001422D6ED0 (Size: 0x50)
+class SItemSaveData
 {
-	eActorRole_Default = 0,
-	eActorRole_Bodyguard = 1,
-	eActorRole_VIP = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector3 m_vPosition; // 0x0
+	SVector4 m_vRotation; // 0xC
+	bool m_bShowItem; // 0x1C
+	bool m_bEnablePickup; // 0x1D
+	bool m_bKinematic; // 0x1E
+	bool m_bSleeping; // 0x1F
+	bool m_bIsPerceptible; // 0x20
+	bool m_bDestroyed; // 0x21
+	SVector3 m_vVelocity; // 0x24
+	uint32 m_rTransformParent; // 0x30
+	uint32 m_rSpawner; // 0x34
+	uint32 m_rOwner; // 0x38
+	uint32 m_rHoldingContainer; // 0x3C
+	uint32 m_pPreviousOwner; // 0x40
+	bool m_bTurnedOn; // 0x44
+	bool m_bEverOwnedByHitman; // 0x45
+	bool m_bWasPlacedAndAttached; // 0x46
+	bool m_bObjectInPhysicsWorld; // 0x47
+	int32 m_nQuantity; // 0x48
+	ERenderGlowTypes m_eGlowType; // 0x4C
+};
+
+// 0x0000000142AC1678 (Size: 0x1)
+enum class ZWaveformGeneratorEntity_ECurveType
+{
+	CURVE_TYPE_SINE = 0,
+	CURVE_TYPE_SQUARE = 1,
+	CURVE_TYPE_TRIANGLE = 2,
+	CURVE_TYPE_SAWTOOTH = 3,
+	CURVE_TYPE_REVERSE_SAWTOOTH = 4,
 };
 
 // 0x0000000142ABEDC0 (Size: 0x4)
@@ -6040,31 +9133,19 @@ enum class EItemHUDType
 	EIHT_OutbreakHealingItem = 2,
 };
 
-// 0x0000000142AC00A8 (Size: 0x4)
-enum class EIntelTensionLevel
+// 0x0000000142A9A970 (Size: 0x4)
+enum class ZDetectedInPrivateGroup_EInvestigateGroupState
 {
-	eITL_Undefined = 0,
-	eITL_Ambient = 1,
-	eITL_Agitated = 2,
-	eITL_Searching = 3,
-	eITL_AlertedLow = 4,
-	eITL_AlertedHigh = 5,
-	eITL_Hunting = 6,
-	eITL_Arrest = 7,
-	eITL_Combat = 8,
+	IGS_Delay = 0,
+	IGS_Talk = 1,
+	IGS_Move = 2,
+	IGS_Wait = 3,
+	IGS_Completed = 4,
+	IGS_Max = 5,
 };
 
-// 0x0000000142AA1A98 (Size: 0x4)
-enum class ESentryActionPrompt
-{
-	eSAP_None = 0,
-	eSAP_Frisk = 1,
-	eSAP_ShowItem = 2,
-	eSAP_Max = 3,
-};
-
-// 0x0000000142AA7A58 (Size: 0x18)
-class SBehaviorTreeEvaluationLogEntry
+// 0x0000000142A9A4F0 (Size: 0x48)
+class SCautiousSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -6074,580 +9155,28 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_nBehaviorTreeIndex; // 0x0
-	uint64 m_nConditionOffset; // 0x8
-	bool m_bResult; // 0x10
+	ZGameTime m_tLastDisturbance; // 0x0
+	ZGameTime m_tLastSearchCalc; // 0x8
+	ZGameTime m_tLastInfluenceCalc; // 0x10
+	ZGameTime m_tLastSearchCompleted; // 0x18
+	ZGameTime m_tLastInvestigationCompleted; // 0x20
+	ZGameTime m_tTimeIdling; // 0x28
+	uint32 m_pGuardDutyPoint; // 0x30
+	int32 m_nBulletImpactsHeard; // 0x34
+	int32 m_nPatrolWaypointIndex; // 0x38
+	uint32 m_nPatrolWaypointSubIndex; // 0x3C
+	bool m_bBanterCandidate; // 0x40
+	bool m_bCivOccupant; // 0x41
+	bool m_bRecievingNewHuntTarget; // 0x42
+	bool m_bLockdownEnforcer; // 0x43
 };
 
-// 0x0000000142AA7AA0 (Size: 0x30)
-class SBehaviorTreeEvaluationLog
+// 0x0000000142AA9758 (Size: 0x4)
+enum class ZActorPickerFilterKeyword_EEvaluationType
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<ZResourceID> m_BehaviorTrees; // 0x0
-	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
-};
-
-// 0x0000000142AAF320 (Size: 0x48)
-class SIntelDisplayInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	int32 index; // 0x0
-	bool selected; // 0x4
-	bool active; // 0x5
-	ZString headline; // 0x8
-	ZString bodyheadline; // 0x18
-	ZString text; // 0x28
-	ZString img; // 0x38
-};
-
-// 0x0000000142AA5EB0 (Size: 0x4)
-enum class EBIEventTypes
-{
-	eBIL_HM_HitNPC = 0,
-	eBIL_HM_HitNPCKilled = 1,
-	eBIL_HM_HitNPCHeadShot = 2,
-	eBIL_HM_HitNPCCloseCombatShot = 3,
-	eBIL_NPC_HitHM = 4,
-	eBIL_Geometry = 5,
-};
-
-// 0x0000000142AB2500 (Size: 0x4)
-enum class EInteractionInputType
-{
-	EIIT_UNKNOWN = 0,
-	EIIT_PRESS = 1,
-	EIIT_HOLD = 2,
-	EIIT_HOLD_DOWN = 3,
-	EIIT_REPEAT = 4,
-	EIIT_GUIDE = 5,
-};
-
-// 0x0000000142AA46C0 (Size: 0x48)
-class STargetInfoObjectiveCondition
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString header; // 0x0
-	ZString title; // 0x10
-	ZString icon; // 0x20
-	ZString type; // 0x30
-	bool hardCondition; // 0x40
-};
-
-// 0x0000000142AA46F8 (Size: 0x58)
-class STargetInfoDisplayData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString npcName; // 0x0
-	ZString disguiseName; // 0x10
-	ZString objectiveType; // 0x20
-	TArray<STargetInfoObjectiveCondition> objectiveConditions; // 0x30
-	int32 fX; // 0x48
-	int32 fY; // 0x4C
-	float32 fAlpha; // 0x50
-	bool bIsTarget; // 0x54
-};
-
-// 0x0000000142AA4718 (Size: 0x18)
-class STargetInfoDisplayData_Dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<STargetInfoDisplayData> __dummy; // 0x0
-};
-
-// 0x0000000142AA3D48 (Size: 0x10)
-class SSoundAmbienceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rCurrentAmbience; // 0x0
-	uint32 m_rCurrentGate; // 0x4
-	float32 m_fTransitionAmount; // 0x8
-	bool m_bEnteredFromSide0; // 0xC
-	bool m_bInTransition; // 0xD
-};
-
-// 0x0000000142AA56D0 (Size: 0x4)
-enum class ERatingTitleRequirement
-{
-	ERatingTitleRequirement_Optional = 0,
-	ERatingTitleRequirement_Required = 1,
-	ERatingTitleRequirement_Fails = 2,
-};
-
-// 0x0000000142ABF770 (Size: 0x110)
-class ZSoundCollisionInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000143E6F970 (Size: 0x8)
-class ZGfxValueWrapper
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142AA5490 (Size: 0x4)
-enum class EVRIKElement
-{
-	EVRIKE_LeftHand = 0,
-	EVRIKE_RightHand = 1,
-	EVRIKE_Pelvis = 2,
-	EVRIKE_Spine = 3,
-};
-
-// 0x0000000142A86A20 (Size: 0x4)
-enum class EActorEmotionState
-{
-	AES_Ambient = 0,
-	AES_Alerted = 1,
-	AES_Scared = 2,
-	AES_Hunt = 3,
-	AES_Combat = 4,
-	AES_None = 268435455,
-};
-
-// 0x0000000142A87000 (Size: 0x38)
-class SAnimatedActorReactOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SVector3 m_vFaceTarget; // 0x0
-	SVector3 m_vLookAtTarget; // 0xC
-	uint32 m_rChildNetworkEntity; // 0x18
-	EActorEmotionState m_targetEmotionState; // 0x1C
-	bool m_bDeadbody; // 0x20
-	bool m_bExplosion; // 0x21
-	bool m_bTrespassing; // 0x22
-	bool m_bDropCarriedItems; // 0x23
-	bool m_bFaceTargetSet; // 0x24
-	bool m_bLookAtTargetSet; // 0x25
-	ZString m_sAct; // 0x28
-};
-
-// 0x0000000143E6DEA8 (Size: 0xA8)
-class SSaveGameMetaData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint8 nSlot; // 0x0
-	ESaveType eSaveType; // 0x4
-	int32 eDifficultyLevel; // 0x8
-	ZString sContractId; // 0x10
-	ZString sContractTitle; // 0x20
-	ZString sContractType; // 0x30
-	ZString sLocationId; // 0x40
-	ZString sContractSessionId; // 0x50
-	ZString sLastEventToken; // 0x60
-	bool bIsOnline; // 0x70
-	bool bIsVR; // 0x71
-	TArray<uint32> aScreenShot; // 0x78
-	TArray<ERequirementId> aRequirements; // 0x90
-};
-
-// 0x0000000143E6D7E0 (Size: 0xC0)
-class SSaveGameHeader
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 nFourCC; // 0x0
-	uint32 nVersion; // 0x4
-	uint32 nCrc32; // 0x8
-	uint32 nSize; // 0xC
-	int64 nTimeStamp; // 0x10
-	SSaveGameMetaData MetaData; // 0x18
-};
-
-// 0x0000000142AA5910 (Size: 0x4)
-enum class EMeBarState
-{
-	ME_BAR_NONE = 0,
-	ME_BAR_TRESPASSING = 1,
-	ME_BAR_DEEPTRESPASSING = 2,
-	ME_BAR_VISIBLY_ARMED = 3,
-	ME_BAR_CHANGING_DISGUISE = 4,
-	ME_BAR_DISGUISE_BLOWN = 5,
-	ME_BAR_DISGUISE_SUSPICIOUS = 6,
-	ME_BAR_NEAR_BODY = 7,
-};
-
-// 0x0000000142AA4E60 (Size: 0x4)
-enum class ECCNodeSubtype
-{
-	eCCNodeSubtype_Left = 0,
-	eCCNodeSubtype_Right = 1,
-	eCCNodeSubtype_Front = 2,
-	eCCNodeSubtype_Back = 3,
-	eCCNodeSubtype_StairsAbove = 4,
-	eCCNodeSubtype_StairsBelow = 5,
-	eCCNodeSubtype_StairsAbove_Back = 6,
-	eCCNodeSubtype_StairsBelow_Back = 7,
-	eCCNodeSubtype_Front_Back = 8,
-	eCCNodeSubtype_Count = 9,
-};
-
-// 0x0000000142A9D388 (Size: 0x4)
-enum class EHintMessageSoundType
-{
-	EHintMessageSound_None = 0,
-	EHintMessageSound_GeneralHint = 1,
-	EHintMessageSound_UsefulItem = 2,
-	EHintMessageSound_NeedsItem = 3,
-	EHintMessageSound_ObjectiveExit = 4,
-	EHintMessageSound_Target = 5,
-	EHintMessageSound_AccidentKill = 6,
-	EHintMessageSound_Trespassing = 7,
-	EHintMessageSound_CanBeTurnedOn = 8,
-	EHintMessageSound_CanBeTurnedOff = 9,
-	EHintMessageSound_Agility = 10,
-};
-
-// 0x0000000142B01850 (Size: 0x1)
-enum class EAsyncRaycastsGroup
-{
-	eAsyncRaycasts_Gameplay = 0,
-	eAsyncRaycasts_ParticlesSoundCloth = 1,
-	eAsyncRaycasts_UNUSED_LAST = 2,
-};
-
-// 0x0000000142A86BB8 (Size: 0x4)
-enum class EKnownEntityType
-{
-	KET_UNKNOWN = 0,
-	KET_HITMAN = 1,
-	KET_ACTOR = 2,
-	KET_ITEM = 3,
-	KET_LOCATION = 4,
-	KET_OBJECT = 5,
-	KET_COVER = 6,
-	KET_PERCEPTIBLE = 7,
-	KET_TEMPCROWDBODY = 8,
-};
-
-// 0x0000000142B02568 (Size: 0x4)
-enum class ERayType
-{
-	ERAY_CLOSESTHIT_SIMPLE = 0,
-	ERAY_CLOSESTHIT_DETAILED = 1,
-};
-
-// 0x0000000142AEE4C0 (Size: 0x4)
-enum class ESoundGateFlags
-{
-	SOUNDGATE_FLAGS_AMBIENCE = 1,
-	SOUNDGATE_FLAGS_OCCLUSION = 2,
-	SOUNDGATE_FLAGS_ALL = 255,
-};
-
-// 0x0000000143E6DDA0 (Size: 0xC)
-class SGateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rEntity; // 0x0
-	bool m_bIsOpen; // 0x4
-	float32 m_fOpenFraction; // 0x8
-};
-
-// 0x0000000143E6CAC0 (Size: 0x1)
-class IRenderCompositorEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142AB24A0 (Size: 0x4)
-enum class EInteractionIndicatorState
-{
-	EIIS_AVAILABLE = 0,
-	EIIS_COLLAPSED = 1,
-	EIIS_ACTIVATING = 2,
-	EIIS_NOTAVAILABLE = 3,
-};
-
-// 0x0000000142AA0B60 (Size: 0x4)
-enum class EActorLookAtPriority
-{
-	eALAPriority_Ambient = 0,
-	eALAPriority_AmbientHigh = 1,
-	eALAPriority_Alert = 2,
-	eALAPriority_AlertHigh = 3,
-	eALAPriority_Hunt = 4,
-	eALAPriority_HuntHigh = 5,
-	eALAPriority_Combat = 6,
-	eALAPriority_CombatHigh = 7,
-};
-
-// 0x0000000142AA5430 (Size: 0x1)
-enum class ECharacterAnimEventState
-{
-	eES_None = 0,
-	eES_Pending = 1,
-	eES_Completed = 2,
-	eES_TimedOut = 3,
-};
-
-// 0x0000000142A882F0 (Size: 0x4)
-enum class EAISituation
-{
-	AIS_GENERIC = 0,
-	AIS_SPECIAL = 1,
-	AIS_SENSOR = 2,
-	AIS_TRESPASSING = 3,
-	AIS_STANDOFF = 4,
-	AIS_SMUGGLE = 5,
-	AIS_GET_HELP = 6,
-	AIS_CONVERSTION_GROUP = 7,
-	AIS_PROTO_COMBAT = 8,
-	AIS_SENTRY = 9,
-	AIS_LEAD_ESCORT = 10,
-	AIS_INVESTIGATE_WEAPON = 11,
-	AIS_INVESTIGATE_STANDING = 12,
-	AIS_INVESTIGATE_CURIOUS = 13,
-	AIS_INVESTIGATE_CAUTIOUS = 14,
-	AIS_HERO_ESCORT = 15,
-	AIS_EVACUATE = 16,
-	AIS_ESCORT = 17,
-	AIS_ENTOURAGE = 18,
-	AIS_DRAMA = 19,
-	AIS_DISGUISE = 20,
-	AIS_DEAD_BODY = 21,
-	AIS_COMBAT = 22,
-	AIS_CLOSE_COMBAT = 23,
-	AIS_AVOID_EXPLOSION = 24,
-	AIS_ACCIDENT = 25,
-	AIS_PRIVATE = 26,
-	AIS_GUARD_BODY = 27,
-	AIS_RECOVER_UNC = 28,
-	AIS_SNIPER = 29,
-};
-
-// 0x0000000142AACEF8 (Size: 0x18)
-class IContractModule
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x00000001421171A8 (Size: 0x8)
-class IFreeCameraControl
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142AA9B90 (Size: 0x4)
-class SSpeakEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_fSeekPosition; // 0x0
-};
-
-// 0x0000000142AA99B0 (Size: 0x4)
-enum class EWaypointRotationAlignment
-{
-	RA_NONE = 0,
-	RA_LOOSE = 1,
-	RA_EXACT = 2,
-};
-
-// 0x0000000142A991B0 (Size: 0x4)
-enum class EScreenPlayState
-{
-	State_Stopped = 0,
-	State_Running = 1,
-	State_Resuming = 2,
-	State_Pausing = 3,
-	State_Paused = 4,
-	State_Done = 5,
-	State_Terminated = 6,
-};
-
-// 0x0000000142A992E8 (Size: 0x4)
-enum class EDramaSituationDescriptors
-{
-	eDSD_NONE = 0,
-	eDSD_HERO = 1,
-	eDSD_CONVERSATION = 2,
-	eDSD_DISTRACTION = 4,
-	eDSD_URGENT = 8,
-	eDSD_SICK = 16,
-	eDSD_DEATH = 32,
-	eDSD_ALERT = 64,
-	eDSD_PARANOID = 128,
-	eDSD_SCARY = 256,
-	eDSD_TRIVIAL = 512,
-	eDSD_PREOCCUPIED = 1024,
-	eDSD_PRIVATE = 2048,
-};
-
-// 0x0000000142A98E10 (Size: 0x2)
-class SSecuritySystemRecorderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bHasRecordings; // 0x0
-	bool m_bIsFunctional; // 0x1
-};
-
-// 0x0000000142AC00F0 (Size: 0x1)
-enum class EOpportunityState
-{
-	OS_TRACKED = 1,
-	OS_ENABLED = 2,
-	OS_UNLOCKED = 4,
-	OS_REVEAL_PENDING = 8,
-};
-
-// 0x0000000142B01880 (Size: 0x1)
-enum class ERagdollPart
-{
-	ERAGDOLLPART_NONE = 0,
-	ERAGDOLLPART_BODY = 1,
-	ERAGDOLLPART_HEAD = 2,
-	ERAGDOLLPART_HAND = 3,
-	ERAGDOLLPART_FOOT = 4,
-};
-
-// 0x0000000142AA3EB0 (Size: 0x4)
-enum class EOutbreakInfectionStage
-{
-	eOIS_Stage1 = 0,
-	eOIS_Stage2 = 1,
-	eOIS_Stage3 = 2,
-};
-
-// 0x0000000142AFA900 (Size: 0x20)
-class SBoneTransformSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SVector4 mQuaterion; // 0x0
-	SVector4 mTranslation; // 0x10
-};
-
-// 0x0000000142A88500 (Size: 0x4)
-enum class eActionRewardType
-{
-	AR_None = 0,
-	AR_QuestItem = 1,
-	AR_Keycard = 2,
-	AR_Key = 3,
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
 };
 
 // 0x0000000142AFFFF0 (Size: 0x4)
@@ -6730,6 +9259,1175 @@ enum class ENetworkSystemID
 	NSID_MAX = 72,
 };
 
+// 0x00000001422D7318 (Size: 0x4)
+enum class ZConditionListEntity_EEvaluationType
+{
+	ALL_TRUE = 0,
+	ANY_TRUE = 1,
+};
+
+// 0x0000000143E70DE0 (Size: 0x30)
+class SCrowdFlowChannel
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint8> m_aFlowVectorIndex; // 0x0
+	TArray<uint16> m_aFlowCost; // 0x18
+};
+
+// 0x0000000142A96040 (Size: 0x4)
+enum class ZHM5FaceFXReactionEventConsumer_EEvent
+{
+	eHitByBullet = 0,
+	eFireRegularWeapon = 1,
+	eReloadRegularWeapon = 2,
+	eFireHeavyWeapon = 3,
+	eReloadHeavyWeapon = 4,
+	eCCAttacking = 5,
+	eCCGettingHit = 6,
+	eCoverDodgebulletLeft = 7,
+	eCoverDodgebulletRight = 8,
+	eReactToExplosion = 9,
+};
+
+// 0x0000000142AF16A0 (Size: 0x4)
+enum class ZDebugSpatialEntity_EDrawLayer
+{
+	DL_DEFAULT = 0,
+	DL_LIGHT = 1,
+	DL_PARTICLES = 2,
+	DL_PARTITIONING = 3,
+	DL_DECALS = 4,
+	DL_CROWD = 5,
+	DL_PHYSICS = 6,
+	DL_HERO = 7,
+	DL_AI = 8,
+	DL_AI_GRID = 9,
+	DL_AI_SITUATION = 10,
+	DL_NPC_LOCOMOTION = 11,
+	DL_GAME = 12,
+	DL_ALIGNMENT = 13,
+	DL_ENGINE = 14,
+	DL_SOUND = 15,
+	DL_ANIMATION = 16,
+	DL_CLOTH = 17,
+	DL_SOUND_PARTITIONING = 18,
+	DL_UI = 19,
+};
+
+// 0x0000000142AC00A8 (Size: 0x4)
+enum class EIntelTensionLevel
+{
+	eITL_Undefined = 0,
+	eITL_Ambient = 1,
+	eITL_Agitated = 2,
+	eITL_Searching = 3,
+	eITL_AlertedLow = 4,
+	eITL_AlertedHigh = 5,
+	eITL_Hunting = 6,
+	eITL_Arrest = 7,
+	eITL_Combat = 8,
+};
+
+// 0x0000000142AEF1C0 (Size: 0x4)
+enum class CrowdUtil_ECrowdSide
+{
+	LEFT = 0,
+	RIGHT = 1,
+};
+
+// 0x0000000142AA1A98 (Size: 0x4)
+enum class ESentryActionPrompt
+{
+	eSAP_None = 0,
+	eSAP_Frisk = 1,
+	eSAP_ShowItem = 2,
+	eSAP_Max = 3,
+};
+
+// 0x0000000142AA3130 (Size: 0x4)
+enum class EInventoryConfigCustomRule
+{
+	EICCR_None = 0,
+	EICCR_Surrender = 1,
+	EICCR_TempDropLeftHandItem = 2,
+};
+
+// 0x0000000142ABEF70 (Size: 0x4)
+enum class ZItemSpawner_EPhysicsMode
+{
+	EPM_DEFINED_BY_ITEM = 0,
+	EPM_DYNAMIC = 1,
+	EPM_SLEEPING = 2,
+	EPM_KINEMATIC = 3,
+};
+
+// 0x0000000142A991B0 (Size: 0x4)
+enum class EScreenPlayState
+{
+	State_Stopped = 0,
+	State_Running = 1,
+	State_Resuming = 2,
+	State_Pausing = 3,
+	State_Paused = 4,
+	State_Done = 5,
+	State_Terminated = 6,
+};
+
+// 0x0000000142A991C8 (Size: 0xC)
+class SDrama2SetupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bDoneTriggered; // 0x0
+	EScreenPlayState m_eState; // 0x4
+	uint32 m_rSituation; // 0x8
+};
+
+// 0x0000000142A99270 (Size: 0x30)
+class SDrama2SetupCollectionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SDrama2SetupSaveData> m_aStates; // 0x18
+};
+
+// 0x0000000142AA7A58 (Size: 0x18)
+class SBehaviorTreeEvaluationLogEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nBehaviorTreeIndex; // 0x0
+	uint64 m_nConditionOffset; // 0x8
+	bool m_bResult; // 0x10
+};
+
+// 0x0000000142AA7AA0 (Size: 0x30)
+class SBehaviorTreeEvaluationLog
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<ZResourceID> m_BehaviorTrees; // 0x0
+	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
+};
+
+// 0x0000000142AB2500 (Size: 0x4)
+enum class EInteractionInputType
+{
+	EIIT_UNKNOWN = 0,
+	EIIT_PRESS = 1,
+	EIIT_HOLD = 2,
+	EIIT_HOLD_DOWN = 3,
+	EIIT_REPEAT = 4,
+	EIIT_GUIDE = 5,
+};
+
+// 0x0000000142AA5EB0 (Size: 0x4)
+enum class EBIEventTypes
+{
+	eBIL_HM_HitNPC = 0,
+	eBIL_HM_HitNPCKilled = 1,
+	eBIL_HM_HitNPCHeadShot = 2,
+	eBIL_HM_HitNPCCloseCombatShot = 3,
+	eBIL_NPC_HitHM = 4,
+	eBIL_Geometry = 5,
+};
+
+// 0x0000000142AA46C0 (Size: 0x48)
+class STargetInfoObjectiveCondition
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString header; // 0x0
+	ZString title; // 0x10
+	ZString icon; // 0x20
+	ZString type; // 0x30
+	bool hardCondition; // 0x40
+};
+
+// 0x0000000142AA46F8 (Size: 0x58)
+class STargetInfoDisplayData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString npcName; // 0x0
+	ZString disguiseName; // 0x10
+	ZString objectiveType; // 0x20
+	TArray<STargetInfoObjectiveCondition> objectiveConditions; // 0x30
+	int32 fX; // 0x48
+	int32 fY; // 0x4C
+	float32 fAlpha; // 0x50
+	bool bIsTarget; // 0x54
+};
+
+// 0x0000000142AA4718 (Size: 0x18)
+class STargetInfoDisplayData_Dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<STargetInfoDisplayData> __dummy; // 0x0
+};
+
+// 0x0000000142A95260 (Size: 0x4)
+enum class ICameraEntity_EProjectionType
+{
+	ePerspectiveRH = 0,
+	eOrtogonalRH = 1,
+	eCustom = 2,
+};
+
+// 0x0000000142A95230 (Size: 0x4)
+class SClothBundleSpawnSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rClothbundle; // 0x0
+};
+
+// 0x0000000142A99D48 (Size: 0x4)
+enum class ZDeadBodySituation_ESituationFlavor
+{
+	SF_None = 0,
+	SF_Unconscious = 1,
+	SF_DeadBody = 2,
+	SF_Accident = 3,
+};
+
+// 0x0000000142A98E68 (Size: 0x4)
+enum class ZSetVisibleEntity_StartBehavior
+{
+	SB_Nothing = 0,
+	SB_MakeVisible = 1,
+	SB_MakeInvisible = 2,
+};
+
+// 0x0000000142AA56D0 (Size: 0x4)
+enum class ERatingTitleRequirement
+{
+	ERatingTitleRequirement_Optional = 0,
+	ERatingTitleRequirement_Required = 1,
+	ERatingTitleRequirement_Fails = 2,
+};
+
+// 0x0000000143CEC130 (Size: 0x4)
+enum class ZBoxReflectionEntity_EBoundsType
+{
+	eBox = 0,
+	eRoom = 1,
+};
+
+// 0x0000000142ABF770 (Size: 0x110)
+class ZSoundCollisionInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142AA5490 (Size: 0x4)
+enum class EVRIKElement
+{
+	EVRIKE_LeftHand = 0,
+	EVRIKE_RightHand = 1,
+	EVRIKE_Pelvis = 2,
+	EVRIKE_Spine = 3,
+};
+
+// 0x0000000143E6F970 (Size: 0x8)
+class ZGfxValueWrapper
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000143F1E678 (Size: 0x4)
+enum class STestStruct_ETestEnum
+{
+	ETomato = 3,
+	EPotato = 5,
+};
+
+// 0x0000000142AEE3A0 (Size: 0x18)
+class SAudioEmitterEventSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nEventId; // 0x0
+	bool m_bPaused; // 0x4
+	uint32 m_nFlags; // 0x8
+	uint32 m_rEventSender; // 0xC
+	int32 m_nSeekPosition; // 0x10
+	uint8 m_nPlayState; // 0x14
+};
+
+// 0x0000000142AA1F18 (Size: 0x4)
+enum class ZHM5BodySoundEventConsumer_EAnimSoundBody
+{
+	eHM5AnimSoundBody_Buttocks = 0,
+	eHM5AnimSoundBody_Back = 1,
+	eHM5AnimSoundBody_Head = 2,
+	eHM5AnimSoundBody_Knee_L = 3,
+	eHM5AnimSoundBody_Knee_R = 4,
+	eHM5AnimSoundBody_Elbow_L = 5,
+	eHM5AnimSoundBody_Elbow_R = 6,
+	eHM5AnimSoundBody_Hand_L = 7,
+	eHM5AnimSoundBody_Hand_R = 8,
+	eHM5AnimSoundBody_Foot_L = 9,
+	eHM5AnimSoundBody_Foot_R = 10,
+	eHM5AnimSoundBody_Shoulder_L = 11,
+	eHM5AnimSoundBody_Shoulder_R = 12,
+	eHM5AnimSoundBody_RollFwd = 13,
+	eHM5AnimSoundBody_RollSide = 14,
+};
+
+// 0x0000000142AA4E60 (Size: 0x4)
+enum class ECCNodeSubtype
+{
+	eCCNodeSubtype_Left = 0,
+	eCCNodeSubtype_Right = 1,
+	eCCNodeSubtype_Front = 2,
+	eCCNodeSubtype_Back = 3,
+	eCCNodeSubtype_StairsAbove = 4,
+	eCCNodeSubtype_StairsBelow = 5,
+	eCCNodeSubtype_StairsAbove_Back = 6,
+	eCCNodeSubtype_StairsBelow_Back = 7,
+	eCCNodeSubtype_Front_Back = 8,
+	eCCNodeSubtype_Count = 9,
+};
+
+// 0x0000000142AA37F0 (Size: 0x4)
+enum class ZPIPMessageEntity_EIcon
+{
+	IconStart = 0,
+	MagnifyingGlass = 1,
+	ArrowRight = 2,
+	ExclamationMark = 3,
+	Target = 4,
+	SurveillanceCamera = 5,
+	Concealed = 6,
+	QuestionMark = 7,
+	IconEnd = 8,
+};
+
+// 0x0000000142AA99B0 (Size: 0x4)
+enum class EWaypointRotationAlignment
+{
+	RA_NONE = 0,
+	RA_LOOSE = 1,
+	RA_EXACT = 2,
+};
+
+// 0x0000000142B01850 (Size: 0x1)
+enum class EAsyncRaycastsGroup
+{
+	eAsyncRaycasts_Gameplay = 0,
+	eAsyncRaycasts_ParticlesSoundCloth = 1,
+	eAsyncRaycasts_UNUSED_LAST = 2,
+};
+
+// 0x0000000142A9D388 (Size: 0x4)
+enum class EHintMessageSoundType
+{
+	EHintMessageSound_None = 0,
+	EHintMessageSound_GeneralHint = 1,
+	EHintMessageSound_UsefulItem = 2,
+	EHintMessageSound_NeedsItem = 3,
+	EHintMessageSound_ObjectiveExit = 4,
+	EHintMessageSound_Target = 5,
+	EHintMessageSound_AccidentKill = 6,
+	EHintMessageSound_Trespassing = 7,
+	EHintMessageSound_CanBeTurnedOn = 8,
+	EHintMessageSound_CanBeTurnedOff = 9,
+	EHintMessageSound_Agility = 10,
+};
+
+// 0x0000000142A86BB8 (Size: 0x4)
+enum class EKnownEntityType
+{
+	KET_UNKNOWN = 0,
+	KET_HITMAN = 1,
+	KET_ACTOR = 2,
+	KET_ITEM = 3,
+	KET_LOCATION = 4,
+	KET_OBJECT = 5,
+	KET_COVER = 6,
+	KET_PERCEPTIBLE = 7,
+	KET_TEMPCROWDBODY = 8,
+};
+
+// 0x00000001422D70B8 (Size: 0x4)
+enum class ZActorAccessoryItemCondition_EConditionTypes
+{
+	ECT_HasInPool = 0,
+	ECT_HasAttached = 1,
+};
+
+// 0x0000000142A98CE0 (Size: 0x4)
+enum class ZHM5DynamicRayCastEntity_ECollideType
+{
+	eAll = 0,
+	eStaticOnly = 1,
+	eDynamicOnly = 2,
+	eBaseCharacter = 3,
+	eHitman = 4,
+	eActor = 5,
+};
+
+// 0x0000000142AB49C8 (Size: 0x4)
+enum class ZCausalNodeEntity_ECauseEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+};
+
+// 0x0000000142AEE4C0 (Size: 0x4)
+enum class ESoundGateFlags
+{
+	SOUNDGATE_FLAGS_AMBIENCE = 1,
+	SOUNDGATE_FLAGS_OCCLUSION = 2,
+	SOUNDGATE_FLAGS_ALL = 255,
+};
+
+// 0x0000000142AEEFB0 (Size: 0x4)
+enum class CrowdUtil_EGenderReq
+{
+	eGender_Any = 0,
+	eGender_Male = 1,
+	eGender_Female = 2,
+};
+
+// 0x0000000142AB24A0 (Size: 0x4)
+enum class EInteractionIndicatorState
+{
+	EIIS_AVAILABLE = 0,
+	EIIS_COLLAPSED = 1,
+	EIIS_ACTIVATING = 2,
+	EIIS_NOTAVAILABLE = 3,
+};
+
+// 0x0000000142AA0B60 (Size: 0x4)
+enum class EActorLookAtPriority
+{
+	eALAPriority_Ambient = 0,
+	eALAPriority_AmbientHigh = 1,
+	eALAPriority_Alert = 2,
+	eALAPriority_AlertHigh = 3,
+	eALAPriority_Hunt = 4,
+	eALAPriority_HuntHigh = 5,
+	eALAPriority_Combat = 6,
+	eALAPriority_CombatHigh = 7,
+};
+
+// 0x0000000142AA5430 (Size: 0x1)
+enum class ECharacterAnimEventState
+{
+	eES_None = 0,
+	eES_Pending = 1,
+	eES_Completed = 2,
+	eES_TimedOut = 3,
+};
+
+// 0x0000000142AF1670 (Size: 0x4)
+enum class ZCameraPlaneTriggerEntity_EAlignment
+{
+	XY = 0,
+	XZ = 1,
+	YZ = 2,
+};
+
+// 0x0000000142AA19D0 (Size: 0x4)
+enum class ZFriskSuspectGroup_EHitmanGreetState
+{
+	HGS_NotGreeted = 0,
+	HGS_Greeted = 1,
+	HGS_ShrugOff = 2,
+};
+
+// 0x0000000142A86A20 (Size: 0x4)
+enum class EActorEmotionState
+{
+	AES_Ambient = 0,
+	AES_Alerted = 1,
+	AES_Scared = 2,
+	AES_Hunt = 3,
+	AES_Combat = 4,
+	AES_None = 268435455,
+};
+
+// 0x0000000142A86A08 (Size: 0x8)
+class SActorAnimSetVariationIndexSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rAnimationSetDefinition; // 0x0
+	int32 m_nIndex; // 0x4
+};
+
+// 0x0000000142A86A68 (Size: 0x48)
+class SActorAnimSetSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	EAnimSetType m_eAnimSet; // 0x0
+	uint32 m_rCustomAnimationSet; // 0x4
+	EGameTension m_eVariationResourceMaxTension; // 0x8
+	EActorEmotionState m_eVariationResourceMaxEmotionState; // 0xC
+	EAnimSetState m_eAnimSetEmotionState; // 0x10
+	EAnimSetType m_ePreCustomAnimSet; // 0x14
+	TArray<SActorAnimSetVariationIndexSaveData> m_aLocoVariationIndecies; // 0x18
+	TArray<SActorAnimSetVariationIndexSaveData> m_aReactVariationIndecies; // 0x30
+};
+
+// 0x00000001422D74E0 (Size: 0x4)
+enum class EAttachLocation
+{
+	eALRightHand = 0,
+	eALLeftHand = 1,
+	eALFreeBone = 2,
+	eALBack = 3,
+	eALRifle = 4,
+	eALAttachCount = 5,
+	eALUndefined = 6,
+};
+
+// 0x0000000142A86B00 (Size: 0x10)
+class SActorInventoryItemSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rItem; // 0x0
+	EAttachLocation m_eAttachLocation; // 0x4
+	EGameTension m_eMaxTension; // 0x8
+	bool m_bLeftHand; // 0xC
+	bool m_bWeapon; // 0xD
+	bool m_bGrenade; // 0xE
+};
+
+// 0x0000000142A86B30 (Size: 0x18)
+class SActorInventorySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
+};
+
+// 0x0000000142A8FB40 (Size: 0x18)
+class SLongTermMemorySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZRepositoryID m_sOutfit; // 0x0
+	uint8 m_Memory; // 0x10
+};
+
+// 0x00000001422D6E80 (Size: 0x4)
+enum class EDeathType
+{
+	eDT_UNDEFINED = 0,
+	eDT_PACIFY = 1,
+	eDT_KILL = 2,
+	eDT_BLOODY_KILL = 3,
+};
+
+// 0x0000000142A8FBA0 (Size: 0x60)
+class SActorDamageControlSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool bExplosive; // 0x0
+	bool bProjectile; // 0x1
+	bool bHeadshot; // 0x2
+	bool bSniperShot; // 0x3
+	bool bThroughWall; // 0x4
+	bool bKillByAccident; // 0x5
+	bool bWeaponSilenced; // 0x6
+	bool bLongRange; // 0x7
+	float32 fTotalDamage; // 0x8
+	float32 fPacifyDamage; // 0xC
+	int32 nImpactBodyPart; // 0x10
+	EDeathType maxDeathType; // 0x14
+	EDeathContext maxDeathContext; // 0x18
+	uint32 rAccidentSetup; // 0x1C
+	bool bFirearmPacifiesTarget; // 0x20
+	bool bBulletCausesHitReaction; // 0x21
+	float32 fHitsNumberTimeout; // 0x24
+	float32 fHealthPercentTimeout; // 0x28
+	uint32 rCharacter; // 0x2C
+	uint32 rSource; // 0x30
+	ZRepositoryID m_accuseUnconsciousOutfit; // 0x38
+	bool m_bValidAccuseUnconsciousOutfit; // 0x48
+	EActorSoundDefs eDeathSpeak; // 0x4C
+	bool bDefaultDeathSound; // 0x50
+	int32 iEvents; // 0x54
+	float32 fAgilityElementUncosciousTime; // 0x58
+};
+
+// 0x0000000142A8FBD0 (Size: 0x40)
+class SActorDynamicTemplateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString m_sName; // 0x0
+	EGameTension m_eTensionLimit; // 0x10
+	EActorEmotionState m_eEmotionLimit; // 0x14
+	ZGameTime m_nTimeLimit; // 0x18
+	EGameTension m_eTensionRemoveLimit; // 0x20
+	EActorEmotionState m_eEmotionRemoveLimit; // 0x24
+	ZGameTime m_nTimeRemoveLimit; // 0x28
+	int64 m_resourceID; // 0x30
+	uint32 m_rInstance; // 0x38
+};
+
+// 0x0000000142A8FC60 (Size: 0x18)
+class SEventHistorySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<ZGameTime> m_aOccurences; // 0x0
+};
+
+// 0x0000000142A8FB58 (Size: 0x20)
+class SActorBoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector4 mQuaterion; // 0x0
+	SVector4 mTranslation; // 0x10
+};
+
+// 0x0000000142A8FB88 (Size: 0x40)
+class SActorRagdollPoseSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector3 m_vBodyVelocity; // 0x0
+	TArray<SActorBoneSaveData> m_aBones; // 0x10
+	TArray<uint32> m_aBoneIndices; // 0x28
+};
+
+// 0x0000000142A8FC90 (Size: 0x370)
+class SActorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector3 m_vPosition; // 0x0
+	SVector4 m_vQuaternion; // 0xC
+	SActorInventorySaveData m_Inventory; // 0x20
+	SActorAnimSetSaveData m_AnimSet; // 0x38
+	SActorThrowSaveData m_ThrowHandler; // 0x80
+	int32 m_nCurrentBehaviorType; // 0xD0
+	ZVariant m_CurrentBehaviorState; // 0xD8
+	TArray<uint32> m_aCurrentBehaviorEntities; // 0xE8
+	TArray<uint32> m_aBehaviorEntities; // 0x100
+	SKnowledgeSaveData m_KnowledgeData; // 0x118
+	ZRepositoryID m_OutfitRepositoryId; // 0x1B0
+	int32 m_nOutfitCharset; // 0x1C0
+	int32 m_nOutfitVariation; // 0x1C4
+	ZGameTime m_tSequenceEndTime; // 0x1C8
+	EActorState m_nState; // 0x1D0
+	uint32 m_rBodyContainerEntity; // 0x1D4
+	int32 m_nBodyContainerSlot; // 0x1D8
+	EActorEmotionState m_eEmotionState; // 0x1DC
+	uint32 m_rCorpseBodybagEntity; // 0x1E0
+	uint32 m_rDragBodybagEntity; // 0x1E4
+	uint32 m_AccidentContext; // 0x1E8
+	SActorDamageControlSaveData m_ActorDamageControlData; // 0x1F0
+	ZVariant m_AnimatedActorOrderData; // 0x250
+	float32 m_fStepsFraction; // 0x260
+	float32 m_fZBeforeEnteringStairs; // 0x264
+	float32 m_fZError; // 0x268
+	TArray<SActorDynamicTemplateSaveData> m_aDynamicTemplates; // 0x270
+	SMatrix m_sEndOrientation; // 0x290
+	EActorAIState m_eOverrideSensorState; // 0x2D0
+	EDeathBehavior m_eDeathBehavior; // 0x2D4
+	SEventHistorySaveData m_bumpsHistory; // 0x2D8
+	SActorRagdollPoseSaveData m_RagdollPose; // 0x2F0
+	TArray<SLongTermMemorySaveData> m_aLongTermMemorySaveData; // 0x330
+	uint32 m_AgentData; // 0x348
+	uint32 m_KnockdownsWhileConscious; // 0x34C
+	uint32 m_SecondaryAIIconState; // 0x350
+	int32 m_SituationAvailabilityValue; // 0x354
+	bool m_HadValidAgent; // 0x358
+	bool m_bNude; // 0x359
+	bool m_bActiveEnforcer; // 0x35A
+	bool m_bIsPotentialEnforcer; // 0x35B
+	bool m_bDynamicEnforcer; // 0x35C
+	bool m_bIsCrowdCharacter; // 0x35D
+	bool m_bIsWoozy; // 0x35E
+	bool m_bBlendingOrientation; // 0x35F
+	bool m_bMakeMainWeaponUndroppable; // 0x360
+	bool m_bFinalizePendingSpawnGrenade; // 0x361
+	bool m_bWeaponIsHidden; // 0x362
+	bool m_bRegisteredForLT; // 0x363
+	bool m_bKeepOverrideSensorStateAfterBeingUnconscious; // 0x364
+	bool m_bWeaponReady; // 0x365
+	bool m_bDynamicWeaponUnholstered; // 0x366
+	bool m_bForceInteractionGlow; // 0x367
+	bool m_bIsOutfitRuined; // 0x368
+	bool m_BehaviorSelectDisabled; // 0x369
+};
+
+// 0x0000000143E6DE60 (Size: 0x20)
+class SEntityPath
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint64 m_nOwnerID; // 0x0
+	TArray<uint64> m_aEntityPath; // 0x8
+};
+
+// 0x0000000143E6D7C8 (Size: 0x38)
+class SSaveGameData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nVersion; // 0x0
+	TArray<SSavableData> m_aSavableObjectsData; // 0x8
+	TArray<SEntityPath> m_aEntityPaths; // 0x20
+};
+
+// 0x0000000142AA4640 (Size: 0x4)
+enum class SDoorSoundDefs_EDefinition
+{
+	DoorOpen = 0,
+	DoorClose = 1,
+	DoorSlam = 2,
+	DoorOpenStop = 3,
+};
+
+// 0x0000000142AA96B0 (Size: 0x4)
+enum class ZActorPickerEffectDrama_EEffectPhaseAction
+{
+	EPA_START = 0,
+	EPA_LEAVE = 1,
+};
+
+// 0x0000000142ABED60 (Size: 0x4)
+enum class EItemModifierType
+{
+	MODIFIER_NONE = 0,
+	MODIFIER_THROW = 1,
+	MODIFIER_CARRY = 2,
+	MODIFIER_AMMO = 3,
+	MODIFIER_PRECISION = 4,
+	MODIFIER_DAMAGE = 5,
+	MODIFIER_IMPACT = 6,
+	MODIFIER_EXPLOSIVE = 7,
+	MODIFIER_RANGE = 8,
+	MODIFIER_ZOOM = 9,
+	MODIFIER_SUPPRESSOR = 10,
+	MODIFIER_RECOIL = 11,
+	MODIFIER_RATEOFFIRE = 12,
+	MODIFIER_SCOPEBOBBING = 13,
+	MODIFIER_MUZZLEVELOCITY = 14,
+	MODIFIER_KNOCKDOWN = 15,
+	MODIFIER_FULLAUTO = 16,
+	MODIFIER_PRECISIONSHOT = 17,
+	MODIFIER_SCOPETIMESLOWDOWN = 18,
+	MODIFIER_STYLE = 19,
+	MODIFIER_RELOAD = 20,
+	MODIFIER_THRESHOLD = 21,
+	MODIFIER_PERK = 22,
+	MODIFIER_MAGAZINE = 23,
+	MODIFIER_BURST = 24,
+};
+
+// 0x0000000143E6E868 (Size: 0x4)
+enum class ZAudioSequenceTrack_EPlaybackTarget
+{
+	eNone = 0,
+	eTargetEntityAudioPlayer = 1,
+	eTargetEntityEmitter = 2,
+	ePreviewEmitter = 3,
+};
+
+// 0x0000000142A9AEA0 (Size: 0x8)
+class SMovementDisguiseSafeZoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rSafeZone; // 0x0
+	uint32 m_nSafeZoneAnimNode; // 0x4
+};
+
+// 0x0000000142A882F0 (Size: 0x4)
+enum class EAISituation
+{
+	AIS_GENERIC = 0,
+	AIS_SPECIAL = 1,
+	AIS_SENSOR = 2,
+	AIS_TRESPASSING = 3,
+	AIS_STANDOFF = 4,
+	AIS_SMUGGLE = 5,
+	AIS_GET_HELP = 6,
+	AIS_CONVERSTION_GROUP = 7,
+	AIS_PROTO_COMBAT = 8,
+	AIS_SENTRY = 9,
+	AIS_LEAD_ESCORT = 10,
+	AIS_INVESTIGATE_WEAPON = 11,
+	AIS_INVESTIGATE_STANDING = 12,
+	AIS_INVESTIGATE_CURIOUS = 13,
+	AIS_INVESTIGATE_CAUTIOUS = 14,
+	AIS_HERO_ESCORT = 15,
+	AIS_EVACUATE = 16,
+	AIS_ESCORT = 17,
+	AIS_ENTOURAGE = 18,
+	AIS_DRAMA = 19,
+	AIS_DISGUISE = 20,
+	AIS_DEAD_BODY = 21,
+	AIS_COMBAT = 22,
+	AIS_CLOSE_COMBAT = 23,
+	AIS_AVOID_EXPLOSION = 24,
+	AIS_ACCIDENT = 25,
+	AIS_PRIVATE = 26,
+	AIS_GUARD_BODY = 27,
+	AIS_RECOVER_UNC = 28,
+	AIS_SNIPER = 29,
+};
+
+// 0x0000000142A992E8 (Size: 0x4)
+enum class EDramaSituationDescriptors
+{
+	eDSD_NONE = 0,
+	eDSD_HERO = 1,
+	eDSD_CONVERSATION = 2,
+	eDSD_DISTRACTION = 4,
+	eDSD_URGENT = 8,
+	eDSD_SICK = 16,
+	eDSD_DEATH = 32,
+	eDSD_ALERT = 64,
+	eDSD_PARANOID = 128,
+	eDSD_SCARY = 256,
+	eDSD_TRIVIAL = 512,
+	eDSD_PREOCCUPIED = 1024,
+	eDSD_PRIVATE = 2048,
+};
+
+// 0x0000000142AC00F0 (Size: 0x1)
+enum class EOpportunityState
+{
+	OS_TRACKED = 1,
+	OS_ENABLED = 2,
+	OS_UNLOCKED = 4,
+	OS_REVEAL_PENDING = 8,
+};
+
+// 0x0000000142B01880 (Size: 0x1)
+enum class ERagdollPart
+{
+	ERAGDOLLPART_NONE = 0,
+	ERAGDOLLPART_BODY = 1,
+	ERAGDOLLPART_HEAD = 2,
+	ERAGDOLLPART_HAND = 3,
+	ERAGDOLLPART_FOOT = 4,
+};
+
+// 0x0000000142AA4AA0 (Size: 0x1)
+enum class EOrderCompletionStatus
+{
+	OCS_Undetermined = 0,
+	OCS_Succeeded = 1,
+	OCS_Interrupted = 2,
+	OCS_Blocked = 3,
+	OCS_Failed = 4,
+};
+
+// 0x0000000142A9E9D8 (Size: 0x4)
+class SHeroEscortSituationActors
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x00000001422D7350 (Size: 0x4)
+enum class ZHM5ContextActionEntity_EInteraction
+{
+	eIT_RotateLeftStick = 0,
+	eIT_AutoComplete = 1,
+	eIT_NoInteraction = 2,
+};
+
+// 0x0000000142AA3EB0 (Size: 0x4)
+enum class EOutbreakInfectionStage
+{
+	eOIS_Stage1 = 0,
+	eOIS_Stage2 = 1,
+	eOIS_Stage3 = 2,
+};
+
+// 0x0000000142A88500 (Size: 0x4)
+enum class eActionRewardType
+{
+	AR_None = 0,
+	AR_QuestItem = 1,
+	AR_Keycard = 2,
+	AR_Key = 3,
+};
+
+// 0x0000000142AFBB00 (Size: 0x4)
+enum class ZAT2Controller_EFootstepsMovementType
+{
+	MOVEMENT_WALKING = 0,
+	MOVEMENT_WALKING_SLIDING = 1,
+	MOVEMENT_RUNNING = 2,
+	MOVEMENT_STANDING = 3,
+};
+
+// 0x0000000142AA9AB8 (Size: 0x4)
+enum class ZMoveToPositionBehaviorEntity_EMovementType
+{
+	MT_WALK = 0,
+	MT_SNAP = 1,
+	MT_IGNORE_POSITION = 2,
+};
+
+// 0x0000000142AEE4F0 (Size: 0x1)
+enum class AudioCurve
+{
+	AudioCurve_Log3 = 0,
+	AudioCurve_Sine = 1,
+	AudioCurve_Log1 = 2,
+	AudioCurve_InvSCurve = 3,
+	AudioCurve_Linear = 4,
+	AudioCurve_SCurve = 5,
+	AudioCurve_Exp1 = 6,
+	AudioCurve_SineRecip = 7,
+	AudioCurve_Exp3 = 8,
+	AudioCurve_LastFadeCurve = 9,
+	AudioCurve_Constant = 10,
+};
+
+// 0x0000000142AA2400 (Size: 0x4)
+enum class ZHM5ForceCover_EFaceDirection
+{
+	eFaceLeft = 0,
+	eFaceRight = 1,
+};
+
+// 0x0000000142AF0268 (Size: 0x4)
+enum class EActivationPriority
+{
+	eActivatable_First = 0,
+	eActivatable_PlayModeAddedPhysics = 1,
+	eActivatable_DestructiblePhysics = 2,
+	eActivatable_PhysicsWind = 3,
+	eActivatable_Physics = 4,
+	eActivatable_PhysicsDone = 5,
+	eActivatable_Keywords = 6,
+	eActivatable_EventChannel = 7,
+	eActivatable_Items = 8,
+	eActivatable_Actor = 9,
+	eActivatable_Hitman = 10,
+	eActivatable_AnimPlayer = 11,
+	eActivatable_Sequence = 12,
+	eActivatable_SpawnPoint = 13,
+	eActivatable_CoverPlane = 14,
+	eActivatable_GuardPoint = 15,
+	eActivatable_Guide = 16,
+	eActivatable_CombatAct = 17,
+	eActivatable_CombatAttractor = 18,
+	eActivatable_SequenceController = 19,
+	eActivatable_KnownEntityAspects = 20,
+	eActivatable_AIReasoningGrid = 21,
+	eActivatable_HM5Zone = 22,
+	eActivatable_Crowds = 23,
+	eActivatable_ChildNetworkAct = 24,
+	eActivatable_Door = 25,
+	eActivatable_UI_Setup = 26,
+	eActivatable_NormalGameplay = 27,
+	eActivatable_NormalGameplay_Condition = 28,
+	eActivatable_NormalGameplay_Values = 29,
+	eActivatable_NormalGameplay_State = 30,
+	eActivatable_HeroSpawns = 31,
+	eActivatable_UI = 32,
+	eActivatable_Locomotion = 33,
+	eActivatable_Timers = 34,
+	eActivatable_AreaTriggers = 35,
+	eActivatable_Default = 36,
+	eActivatable_GameEventListener = 37,
+	eLAST_ACTIVATION_PRIORITY = 38,
+};
+
+// 0x0000000142AB20E0 (Size: 0x4)
+enum class ZMenuSliderNavigationEntity_ESliderInputMode
+{
+	E_HORIZONTAL = 0,
+	E_VERTICAL = 1,
+};
+
+// 0x0000000142AA9A30 (Size: 0x4)
+enum class ZActDurationCondition_EState
+{
+	MOVING = 0,
+	ENTERING = 1,
+	PLAYING = 2,
+	STOPPING = 3,
+};
+
 // 0x0000000143E70E58 (Size: 0x4)
 class ZCrowdGridPoint
 {
@@ -6753,42 +10451,34 @@ enum class ETextAlignment
 	TEXT_ALIGN_RIGHT = 2,
 };
 
-// 0x0000000142AA2BF0 (Size: 0x8)
-class SLampCoreSaveState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_fDiffusePower; // 0x0
-	bool m_bSwitchState; // 0x4
-};
-
-// 0x0000000142AA2798 (Size: 0x30)
-class SLampCoreSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SLampCoreSaveState> m_aData; // 0x18
-};
-
 // 0x0000000142ABED78 (Size: 0x4)
 enum class eItemSize
 {
 	ITEMSIZE_SMALL = 0,
 	ITEMSIZE_MEDIUM = 1,
 	ITEMSIZE_LARGE = 2,
+};
+
+// 0x0000000142A9C5C8 (Size: 0x4)
+enum class ZEscortSituation2Entity_EEscortState
+{
+	EES_Idle = 0,
+	EES_Evaluate = 1,
+	EES_Escorting = 2,
+	EES_Searching = 3,
+	EES_Intermediate = 4,
+};
+
+// 0x0000000142A9EA50 (Size: 0x4)
+enum class ZLeadEscortSituationEntity_ETargetState
+{
+	ETS_Unknown = 0,
+	ETS_NoTarget = 1,
+	ETS_RunningActBehavior = 2,
+	ETS_RunningDummyBehavior = 3,
+	ETS_RunningOtherBehavior = 4,
+	ETS_Dead = 5,
+	ETS_TargetIsHitman = 6,
 };
 
 // 0x0000000142A9FAC8 (Size: 0x8)
@@ -6802,6 +10492,14 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+};
+
+// 0x0000000142AEF088 (Size: 0x4)
+enum class ECrowdFlowCandidates
+{
+	NONE = 0,
+	EVERYONE = 1,
+	SPAWNED_ON_FLOW = 2,
 };
 
 // 0x0000000142AA5130 (Size: 0x4)
@@ -6835,14 +10533,6 @@ enum class ECharacterSubcontrollerType
 	eSCT_Fiberwire = 25,
 };
 
-// 0x0000000142AEF088 (Size: 0x4)
-enum class ECrowdFlowCandidates
-{
-	NONE = 0,
-	EVERYONE = 1,
-	SPAWNED_ON_FLOW = 2,
-};
-
 // 0x0000000142AA1B10 (Size: 0x20)
 class SDisturbanceSaveData
 {
@@ -6869,54 +10559,6 @@ enum class EThrownCollisionSoundLoudness
 	eLoudness_Low = 1,
 	eLoudness_Normal = 2,
 	eLoudness_Loud = 3,
-};
-
-// 0x0000000142A9A418 (Size: 0x50)
-class SInvestigateWeaponGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rTarget; // 0x0
-	uint32 m_rReporter; // 0x4
-	uint32 m_rInvestigator; // 0x8
-	uint32 m_rGuard; // 0xC
-	bool m_ReporterIsVIPWithAmbientEscort; // 0x10
-	SFSMSaveData m_fsmState; // 0x18
-	ZGameTime m_tLastGuardSearch; // 0x30
-	TArray<uint32> m_aUnconsciousGuards; // 0x38
-};
-
-// 0x0000000142AB1B80 (Size: 0x14)
-class SAttentionHUDUIElement
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 fAngle; // 0x0
-	float32 fAttention; // 0x4
-	float32 fAlpha; // 0x8
-	float32 fRadius; // 0xC
-	int32 nColor; // 0x10
-};
-
-// 0x0000000142A9E388 (Size: 0x4)
-enum class EGuardPointType
-{
-	GPT_Hold = 0,
-	GPT_Combat = 1,
-	GPT_CombatAndHold = 2,
-	GPT_VIPSafeRoom = 3,
 };
 
 // 0x0000000142AB23E0 (Size: 0x4)
@@ -6974,969 +10616,21 @@ enum class EUIBusyOperationId
 	eOperationId_None = 47,
 };
 
-// 0x0000000142AF16E8 (Size: 0x4)
-enum class ESmoothingMode
-{
-	ESM_LINEAR = 0,
-	ESM_EXPONENTIAL = 1,
-};
-
-// 0x0000000142AF0430 (Size: 0x20)
-class SEntityTemplatePlatformSpecificProperty
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SEntityTemplateProperty propertyValue; // 0x0
-	EVirtualPlatformID platform; // 0x18
-	bool postInit; // 0x1C
-};
-
-// 0x0000000142AF0508 (Size: 0x70)
-class STemplateFactorySubEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SEntityTemplateReference logicalParent; // 0x0
-	int32 entityTypeResourceIndex; // 0x20
-	TArray<SEntityTemplateProperty> propertyValues; // 0x28
-	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x40
-	TArray<SEntityTemplatePlatformSpecificProperty> platformSpecificPropertyValues; // 0x58
-};
-
-// 0x0000000142A9CC28 (Size: 0x10)
-class SRotateEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bEnabled; // 0x0
-	float32 m_fXAxisSpeed; // 0x4
-	float32 m_fYAxisSpeed; // 0x8
-	float32 m_fZAxisSpeed; // 0xC
-};
-
-// 0x0000000142AA2C50 (Size: 0x4)
-enum class SniperControllerConditionType
-{
-	SCCT_Enabled = 0,
-	SCCT_PrecisionAim = 1,
-};
-
-// 0x0000000143E70C10 (Size: 0x20)
-class STypeReference
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString sEntityID; // 0x0
-	ZString sTypeArgName; // 0x10
-};
-
-// 0x0000000143E70C28 (Size: 0x50)
-class SExposedTypeInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString sName; // 0x0
-	ZString sDisplayName; // 0x10
-	ZString sHelpText; // 0x20
-	STypeReference target; // 0x30
-};
-
-// 0x0000000142AB1F00 (Size: 0x4)
-enum class EMapType
-{
-	E_MAPTYPE_Minimap = 0,
-	E_MAPTYPE_MainMap = 1,
-	E_MAPTYPE_MenuMap = 2,
-};
-
-// 0x0000000142AA1548 (Size: 0x30)
-class SDynamicEnforcerCandidateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rActor; // 0x0
-	float4 m_vPosition; // 0x10
-	EAISharedEventType m_eType; // 0x20
-	float32 m_fRadius; // 0x24
-};
-
-// 0x0000000142A9EEF0 (Size: 0x18)
-class SDynamicEnforcerServiceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
-};
-
-// 0x0000000142AA7410 (Size: 0x4)
-class SActorStandInSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rActor; // 0x0
-};
-
-// 0x0000000142AA6628 (Size: 0x4)
-enum class EKeywordSetBehavior
-{
-	EKWSB_All = 0,
-	EKWSB_None = 1,
-	EKWSB_Any = 2,
-	EKWSB_No = 3,
-};
-
-// 0x0000000142AA5790 (Size: 0x4)
-enum class ERatingCategory
-{
-	ERatingCategory_Invalid = 0,
-	ERatingCategory_Flawless = 1,
-	ERatingCategory_Violence = 2,
-	ERatingCategory_Cunning = 3,
-	ERatingCategory_Noise = 4,
-	ERatingCategory_COUNT = 5,
-};
-
-// 0x0000000142A98CF8 (Size: 0x3)
-class SDynamicRayCastEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bEnabled; // 0x0
-	bool m_bIsRayIntersecting; // 0x1
-	bool m_bIsCurrentlyEnabled; // 0x2
-};
-
-// 0x0000000142ABEE08 (Size: 0x4)
-enum class eItemRarity
-{
-	ITEMRARITY_COMMON = 0,
-	ITEMRARITY_UNCOMMON = 1,
-	ITEMRARITY_RARE = 2,
-};
-
-// 0x00000001422D7518 (Size: 0x4)
-enum class eHolsterAbility
-{
-	eUndecided = 0,
-	eHolsteringAllowed = 1,
-	eHolsterTemporarilyOnly = 2,
-	eHolsterSecondaryOnly = 3,
-	eHolsterQuestStorage = 4,
-	eCanNotBeHolstered = 5,
-};
-
-// 0x0000000142AA0F00 (Size: 0x4)
-enum class EMoveEndState
-{
-	MES_Moving = 0,
-	MES_Stopping = 1,
-	MES_Standing = 2,
-};
-
-// 0x0000000142A9EC60 (Size: 0x4)
-enum class EPlaceableType
-{
-	PLACEABLE_NOT = 0,
-	PLACEABLE_FULL_PHYSICS = 1,
-	PLACEABLE_SLEEP_PHYSICS = 2,
-	PLACEABLE_NO_PHYSICS = 3,
-	PLACEABLE_ATTACH = 4,
-};
-
-// 0x00000001422D5C08 (Size: 0xC)
-class SColorRGB
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 r; // 0x0
-	float32 g; // 0x4
-	float32 b; // 0x8
-};
-
-// 0x0000000143E6DE30 (Size: 0x88)
-class SPostfilterParametersSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rEntity; // 0x0
-	bool m_bDepthOfFieldEnabled; // 0x4
-	float32 m_fDepthOfFieldBlurriness; // 0x8
-	bool m_bRadialBlurEnabled; // 0xC
-	float32 m_fRadialBlurriness; // 0x10
-	SVector2 m_vRadialBlurCenter; // 0x14
-	float32 m_fRadialBlurStart; // 0x1C
-	bool m_bSpatialBlurEnabled; // 0x20
-	float32 m_fSpatialBlurriness; // 0x24
-	SVector3 m_vSpatialBlurCenter; // 0x28
-	float32 m_fSpatialBlurStart; // 0x34
-	float32 m_fSpatialBlurFade; // 0x38
-	bool m_bDistortionWobbleEnabled; // 0x3C
-	float32 m_fDistortionWobbleScale; // 0x40
-	SVector2 m_vDistortionWobbleWaveLength; // 0x44
-	SVector2 m_vDistortionWobbleSpeed; // 0x4C
-	bool m_bDistortionWobbleUseRealTime; // 0x54
-	bool m_bHDRActive; // 0x55
-	bool m_bHDREnabled; // 0x56
-	SVector2 m_vHDRAdaptationSpeed; // 0x58
-	SVector2 m_vHDRAdaptationLuminanceMinMax; // 0x60
-	SVector2 m_vHDRAdaptationMiddleGrayMinMax; // 0x68
-	float32 m_fHDRWhitePoint; // 0x70
-	float32 m_fHDRBrightPassThreshold; // 0x74
-	float32 m_fHDRBrightPassMaxPercentage; // 0x78
-	SColorRGB m_HDRColorTint; // 0x7C
-};
-
-// 0x0000000142A8FC60 (Size: 0x18)
-class SEventHistorySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<ZGameTime> m_aOccurences; // 0x0
-};
-
-// 0x0000000142AA5670 (Size: 0x4)
-enum class ELastSoundTension
-{
-	EST_Unknown = 0,
-	EST_Ambient = 1,
-	EST_Yellow = 2,
-	EST_Orange = 3,
-	EST_Red = 4,
-};
-
-// 0x0000000143F1E660 (Size: 0x1)
-class SSerializedValue
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142ABEF28 (Size: 0x4)
-enum class EInventoryStorageType
-{
-	EIST_None = 0,
-	EIST_Bag = 1,
-	EIST_RightHand = 2,
-	EIST_LeftHand = 3,
-	EIST_Back = 4,
-	EIST_Support = 5,
-	EIST_Quest = 6,
-	EIST_Temporary = 7,
-	EIST_Debug = 8,
-};
-
-// 0x00000001422D5F50 (Size: 0x8)
-class IMetricValue
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x00000001422D5D08 (Size: 0x60)
-class ZEntityPath
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142AEE5F8 (Size: 0x4)
-enum class EDialogEventEndReason
-{
-	EDialogEvent_Completed = 0,
-	EDialogEvent_Stopped = 1,
-};
-
-// 0x0000000142AA0F60 (Size: 0x4)
-enum class EStandRepositionStrategy
-{
-	SRS_InPlaceRepositioning = 0,
-	SRS_NoRepositioning = 1,
-};
-
-// 0x0000000142ABF738 (Size: 0x4)
-enum class ESoundCollisionType
-{
-	Impact = 0,
-	Rolling = 1,
-	Sliding = 2,
-};
-
-// 0x0000000142A90ED0 (Size: 0x4)
-enum class EStashpointContainedEntityType
-{
-	PICKUP_NONE = 0,
-	PICKUP_ITEMS = 1,
-	PICKUP_OUTFIT = 2,
-	PICKUP_PICKEDUP = 3,
-};
-
-// 0x0000000142AA6D08 (Size: 0x140)
-class ZInteractionData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142AA2DE8 (Size: 0x4)
-enum class ECameraOffset_old
-{
-	eCameraOffset_Center = 0,
-	eCameraOffset_Left = 1,
-	eCameraOffset_Right = 2,
-};
-
-// 0x0000000142A9AEE8 (Size: 0x18)
-class SMovementAgilitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rLedgeGuide; // 0x0
-	float32 m_fFaceLeftRightTarget; // 0x4
-	EAgilityState m_ePrevAgilityState; // 0x8
-	EAgilityState m_eAgilityState; // 0xC
-	uint32 m_nActiveAnimNode; // 0x10
-	ECameraOffset_old m_eCameraOffset; // 0x14
-};
-
-// 0x0000000142B01718 (Size: 0x1)
-enum class EDefaultCollidableLayer
-{
-	DCL_STATIC = 0,
-	DCL_KINEMATIC = 1,
-	DCL_KINEMATIC_TRANSPARENT = 2,
-	DCL_DYNAMIC = 3,
-	DCL_DYNAMIC_TRANSPARENT = 4,
-	DCL_COLLIDE_ALL = 5,
-	DCL_STATIC_TRANSPARENT = 6,
-	DCL_COLLIDE_STATIC_ONLY = 7,
-	DCL_DYNAMIC_NO_CHARACTER = 8,
-	DCL_UNUSED_LAST = 9,
-};
-
-// 0x0000000142B015F8 (Size: 0x4)
-class SClothVertex
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint16 m_nColumn; // 0x0
-	uint16 m_nRow; // 0x2
-};
-
-// 0x0000000142A86FA0 (Size: 0x18)
-class SActorManagerReferencableData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<ESituationType> m_aSituationTypes; // 0x0
-};
-
-// 0x0000000142A88278 (Size: 0x4)
-enum class EKillType
-{
-	EKillType_Undefined = 0,
-	EKillType_Throw = 1,
-	EKillType_Fiberwire = 2,
-	EKillType_PistolExecute = 3,
-	EKillType_ItemTakeOutFront = 4,
-	EKillType_ItemTakeOutBack = 5,
-	EKillType_ChokeOut = 6,
-	EKillType_SnapNeck = 7,
-	EKillType_KnockOut = 8,
-	EKillType_Push = 9,
-	EKillType_Pull = 10,
-};
-
-// 0x00000001422D6028 (Size: 0x8)
-class ZEntityRef
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000143E6CA58 (Size: 0x4)
-enum class EVRRenderingMode
-{
-	VR_RENDER_MODE_2D_SCREEN = 0,
-	VR_RENDER_MODE_STEREO_3D = 1,
-};
-
-// 0x0000000142AA50D0 (Size: 0x4)
-enum class ECharacterFullBodyStateType
-{
-	eSM_FB_OldMovementPlaceholder = 0,
-	eSM_FB_Slave = 1,
-	eSM_FB_Locomotion = 2,
-	eSM_FB_CloseCombat = 3,
-	eSM_FB_FlavorIdle = 4,
-	eSM_FB_Sniping = 5,
-	eSM_FB_AssemblePutOnTheFloor = 6,
-	eSM_FB_AssembleAlignContainer = 7,
-	eSM_FB_AssembleRetrieve = 8,
-	eSM_FB_AssembleStore = 11,
-};
-
-// 0x0000000142AA3660 (Size: 0x4)
-enum class EHUDIconType
-{
-	HUD_ICON_NONE = 0,
-	HUD_ICON_ALARM_TIMER = 1,
-	HUD_ICON_CLOSECOMBAT = 2,
-	HUD_ICON_BREADCRUMB = 3,
-	HUD_ICON_EXIT = 4,
-	HUD_ICON_OBJECTIVE = 5,
-	HUD_ICON_TARGET = 6,
-	HUD_ICON_TUTORIAL_ARROW = 7,
-};
-
-// 0x0000000142A9B660 (Size: 0x4)
-enum class ECharacterActionSyncRequests
-{
-	eSM_ASR_Reload = 1,
-	eSM_ASR_SwapItemHandL = 2,
-	eSM_ASR_SwapItemHandR = 4,
-};
-
-// 0x0000000142AA49F0 (Size: 0x4)
-enum class EActBodyType
-{
-	ABT_UpperBodyOnly = 0,
-	ABT_FullBodyWithLeadIn = 1,
-	ABT_FullBodyOnly = 2,
-};
-
-// 0x0000000142AC00D8 (Size: 0x4)
-enum class EOpportunityRevealState
-{
-	ORS_REVEALING = 1,
-	ORS_HINT = 2,
-	ORS_DISTANCE = 4,
-	ORS_RANGE_FLAGS = 6,
-	ORS_REVEALED = 8,
-	ORS_REVEAL_FLAGS = 9,
-	ORS_BYPASS_MENU = 16,
-};
-
-// 0x0000000142A88260 (Size: 0x4)
-enum class EGSBodyPart
-{
-	GSBODYPART_UNKNOWN = 0,
-	GSBODYPART_HEAD = 1,
-	GSBODYPART_TORSO = 2,
-	GSBODYPART_ARM = 3,
-	GSBODYPART_LEG = 4,
-};
-
-// 0x0000000142AA1430 (Size: 0x38)
-class SDeadBodyInfoSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rActor; // 0x0
-	uint32 m_rGuard; // 0x4
-	TArray<uint32> m_knownByActors; // 0x8
-	ZGameTime m_tKnownSince; // 0x20
-	ZGameTime m_tInvestigatedSince; // 0x28
-	bool m_bGuarded; // 0x30
-	bool m_bBodyInvestigated; // 0x31
-	bool m_bHidden; // 0x32
-	bool m_bDeadByAccident; // 0x33
-	bool m_bDeadByUnnoticed; // 0x34
-	bool m_bHitmanSuspectedInCurrentOutfit; // 0x35
-	bool m_bDeadByExplosion; // 0x36
-	bool m_IsFoundOutsideNavmeshAndIgnored; // 0x37
-};
-
-// 0x0000000142A9EEC0 (Size: 0x20)
-class SDeadBodySensorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
-	int32 m_nBodyIndex; // 0x18
-};
-
-// 0x0000000142AA1360 (Size: 0x4)
-enum class EActorSecondaryIconState
-{
-	eSIS_Clear = 0,
-	eSIS_Infected = 1,
-	eSIS_Infected_Stage1 = 2,
-	eSIS_Infected_Stage2 = 3,
-	eSIS_Infected_Stage3 = 4,
-};
-
-// 0x0000000142A9A070 (Size: 0x10)
-class SCheckLastPositionGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_pLeader; // 0x0
-	uint32 m_pAssistant; // 0x4
-	uint16 m_nLeaderTargetNodeIndex; // 0x8
-	bool m_bLeaderOrderAssigned; // 0xA
-	bool m_bAssistantOrderAssigned; // 0xB
-	bool m_bSearchCompleted; // 0xC
-};
-
-// 0x0000000142A8FCA8 (Size: 0x4)
-enum class EActorEventTypes
-{
-	eAET_OnAlive = 0,
-	eAET_OnPacified = 1,
-	eAET_OnMurdered = 2,
-	eAET_OnAccidentDeath = 3,
-	eAET_OnUnnoticableKill = 4,
-	eAET_OnBodyNoticed = 5,
-	eAET_OnBodyBagged = 6,
-	eAET_OnDying = 7,
-	eAET_OnDead = 8,
-	eAET_OnBodyHidden = 9,
-	eAET_OnBodyFlushed = 10,
-	eAET_OnBodyDumped = 11,
-	eAET_OnDelete = 12,
-};
-
-// 0x0000000142AA3320 (Size: 0x4)
-enum class EVRConfigCustomEvent
-{
-	EVRCCE_ClosetInside = 0,
-	EVRCCE_ClosetExiting = 1,
-	EVRCCE_DrainPipeMounted = 2,
-	EVRCCE_DrainPipeStartedDismounting = 3,
-	EVRCCE_LadderMounted = 4,
-	EVRCCE_LadderStartedDismounting = 5,
-	EVRCCE_LedgeChange = 6,
-	EVRCCE_LedgeShimmyStart = 7,
-	EVRCCE_LedgeShimmyStop = 8,
-	EVRCCE_PeekEntered = 9,
-	EVRCCE_PeekStartedExiting = 10,
-	EVRCCE_FriskStartedTurning = 11,
-	EVRCCE_FriskEndedTurning = 12,
-	EVRCCE_ShowItemStartedTurning = 13,
-	EVRCCE_ShowItemEndedTurning = 14,
-	EVRCCE_SubactionAnimationStarted = 15,
-	EVRCCE_SubactionAnimation_Hide = 16,
-	EVRCCE_FocussedInteractionEntered = 17,
-	EVRCCE_FocussedInteractionStartedExiting = 18,
-	EVRCCE_DisguiseSafeZoneEntered = 19,
-	EVRCCE_DisguiseSafeZoneStartedExiting = 20,
-	EVRCCE_SniperModeEnter = 21,
-	EVRCCE_SniperModeEntered = 22,
-	EVRCCE_SniperModeExit = 23,
-	EVRCCE_SniperModeExited = 24,
-	EVRCCE_VictimMovement0 = 25,
-	EVRCCE_VictimMovement1 = 26,
-	EVRCCE_VictimMovement2 = 27,
-	EVRCCE_VictimMovement3 = 28,
-	EVRCCE_VictimMovementRemoveControl = 29,
-	EVRCCE_AgilityLowVault = 30,
-	EVRCCE_AgilityHighVault = 31,
-	EVRCCE_AgilityRemoveControl = 32,
-	EVRCCE_FiberwireStartPriming = 33,
-	EVRCCE_FiberwireStopPriming = 34,
-	EVRCCE_ToiletDrownEntered = 35,
-	EVRCCE_ToiletDrownExited = 36,
-	EVRCCE_CloseCombatStartPriming = 37,
-	EVRCCE_CloseCombatStopPriming = 38,
-	EVRCCE_SilentTakedownEnterActivationArea = 39,
-	EVRCCE_SilentTakedownExitActivationArea = 40,
-	EVRCCE_SilentTakedownInstaPacification = 41,
-	EVRCCE_SnapNeckEnterActivationArea = 42,
-	EVRCCE_SnapNeckExitActivationArea = 43,
-	EVRCCE_TeleportStart = 44,
-	EVRCCE_TeleportEnd = 45,
-};
-
-// 0x0000000142AC1690 (Size: 0x18)
-class SWaveformGeneratorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_fTime; // 0x0
-	float32 m_fFrequency; // 0x4
-	float32 m_fOffset; // 0x8
-	float32 m_fScale; // 0xC
-	float32 m_fStartTime; // 0x10
-	uint32 m_nCount; // 0x14
-};
-
-// 0x0000000142B00260 (Size: 0x4)
-enum class EMultiplayerNetworkState
-{
-	Base = 0,
-	Idle = 1,
-	Searching = 2,
-	Connecting = 3,
-	Joining = 4,
-	Creating = 5,
-	Connected = 6,
-	Disconnecting = 7,
-	Count = 8,
-};
-
-// 0x0000000142A884E0 (Size: 0x4)
-enum class EBoolCheckType
-{
-	eBCT_IGNORE = 0,
-	eBCT_TRUE = 1,
-	eBCT_FALSE = 2,
-};
-
-// 0x0000000142A8FD28 (Size: 0x4)
-enum class EActorFaction
-{
-	eActorFaction_Default = 0,
-	eActorFaction_VIP_1 = 1,
-	eActorFaction_VIP_2 = 2,
-	eActorFaction_VIP_3 = 3,
-	eActorFaction_VIP_4 = 4,
-	eActorFaction_VIP_5 = 5,
-	eActorFaction_VIP_6 = 6,
-	eActorFaction_VIP_7 = 7,
-};
-
-// 0x0000000142AEE5C8 (Size: 0x1)
-enum class SoundPlayState
-{
-	ePlaying = 0,
-	eLoopBreaking = 1,
-	eStopping = 2,
-};
-
-// 0x0000000142AB49E0 (Size: 0x4)
-enum class ECausalGraphTraversal
-{
-	eCGT_NONE = 0,
-	eCGT_INPUT = 1,
-	eCGT_OUTPUT = 2,
-	eCGT_BOTH = 3,
-};
-
-// 0x0000000142AA5A30 (Size: 0x4)
-enum class EPushNotificationType
-{
-	PUSH_NOTIFICATION_OBJECTIVE = 0,
-	PUSH_NOTIFICATION_DISGUISE = 1,
-	PUSH_NOTIFICATION_CONTRACT = 2,
-	PUSH_NOTIFICATION_CHALLENGE = 3,
-	PUSH_NOTIFICATION_RATING = 4,
-	PUSH_NOTIFICATION_SPECIAL_RATING_UNLOCKED = 5,
-	PUSH_NOTIFICATION_CONTRACT_PICKED_UP = 6,
-	PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED = 7,
-	PUSH_NOTIFICATION_SCORE_COMPARISON = 8,
-};
-
-// 0x0000000142AA3ED0 (Size: 0x8)
-class SActorSpreadTransitionOperatorMaterialActorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_Actor; // 0x0
-	float32 m_fOpacity; // 0x4
-};
-
-// 0x0000000143E6CAA0 (Size: 0x4)
-enum class EVRRenderDeviceType
-{
-	RENDER_VR_DEVICE_TYPE_DUMMY = 0,
-	RENDER_VR_DEVICE_TYPE_OCULUS = 1,
-	RENDER_VR_DEVICE_TYPE_PSVR = 2,
-	RENDER_VR_DEVICE_TYPE_COUNT = 3,
-};
-
-// 0x0000000142B017C0 (Size: 0x4)
-enum class EDamageResponse
-{
-	eDR_Fractured = 0,
-	eDR_Detached = 1,
-	eDR_Destroyed = 2,
-	eDR_Collided = 3,
-	eDR_Count = 4,
-};
-
-// 0x0000000142AA3118 (Size: 0x4)
-enum class EInventoryConfigFormerEquippedItems
-{
-	EICFEI_Equip = 0,
-	EICFEI_EquipOrPickup = 1,
-	EICFEI_Forget = 2,
-};
-
-// 0x0000000143E6DE60 (Size: 0x20)
-class SEntityPath
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint64 m_nOwnerID; // 0x0
-	TArray<uint64> m_aEntityPath; // 0x8
-};
-
-// 0x0000000142A9A1A8 (Size: 0x4)
-enum class ESituationJoinReason
-{
-	AISJR_Default = 0,
-	AISJR_HeardSound = 1,
-	AISJR_Alarm = 2,
-	AISJR_HitmanStrange = 3,
-	AISJR_HitmanIllegal = 4,
-	AISJR_Assist = 5,
-	AISJR_AssistingGuard = 6,
-	AISJR_Propagate = 7,
-	AISJR_ResumeSituation = 8,
-	AISJR_Spawned = 9,
-	AISJR_HelpCivilian = 10,
-	AISJR_Escalating = 11,
-	AISJR_DeadBody = 12,
-	AISJR_Accident = 13,
-	AISJR_StandDown = 14,
-	AISJR_Report = 15,
-	AISJR_ForcedToHold = 16,
-	AISJR_Wounded = 17,
-	AISJR_SC_HeardBulletImpact = 18,
-	AISJR_SC_HeardSetPiece = 19,
-};
-
-// 0x0000000142AA3130 (Size: 0x4)
-enum class EInventoryConfigCustomRule
-{
-	EICCR_None = 0,
-	EICCR_Surrender = 1,
-	EICCR_TempDropLeftHandItem = 2,
-};
-
-// 0x0000000142AAAB10 (Size: 0x4)
-enum class ESmartBehaviorOrder
-{
-	SBO_Stand = 0,
-	SBO_Move = 1,
-	SBO_React = 2,
-	SBO_Act = 3,
-	SBO_MoveToAct = 4,
-	SBO_MoveToCover = 5,
-	SBO_ShootFromCover = 6,
-	SBO_Death = 7,
-	SBO_Teleport = 8,
-};
-
-// 0x0000000142A99110 (Size: 0x4)
-enum class EScreenplayStateFlag
-{
-	eSSF_DEFAULT = 0,
-	eSSF_ENABLED = 1,
-	eSSF_CAST = 2,
-	eSSF_RESUMING = 4,
-	eSSF_RUNNING = 8,
-	eSSF_DONE = 16,
-	eSSF_TERMINATED = 32,
-};
-
-// 0x0000000142B00218 (Size: 0x4)
-enum class ENetPlayerEvent
-{
-	Login = 0,
-	Logout = 1,
-	NewHost = 2,
-};
-
-// 0x0000000142AB0798 (Size: 0x4)
-class SZHUDIgnoreVisibilitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 alpha; // 0x0
-};
-
-// 0x0000000142A97F78 (Size: 0x8)
-class SGameCamProfileEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bIsEnabled; // 0x0
-	uint32 m_rHero; // 0x4
-};
-
-// 0x0000000142AF0490 (Size: 0x30)
-class SEntityTemplateExposedEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString sName; // 0x0
-	bool bIsArray; // 0x10
-	TArray<SEntityTemplateReference> aTargets; // 0x18
+// 0x0000000142AA5C10 (Size: 0x4)
+enum class EInformationBarMessage
+{
+	eIBM_Clear = 0,
+	eIBM_LastEnemyKilledCP = 1,
+	eIBM_InvestigateStand = 2,
+	eIBM_BodyFound = 3,
+	eIBM_Suspicious = 4,
+	eIBM_DisguiseBlown = 5,
+	eIBM_Hunt = 6,
+	eIBM_Exposed = 7,
+	eIBM_LandMineArmed = 8,
+	eIBM_RadioOn = 9,
+	eIBM_Trespassing = 10,
+	eIBM_NUM = 11,
 };
 
 // 0x0000000142AF0298 (Size: 0x4)
@@ -8068,21 +10762,49 @@ enum class EEngineFrameUpdatePriority
 	eFrameUpdatePriority_OutfitStreamingManager = 1001,
 };
 
-// 0x0000000142AA5C10 (Size: 0x4)
-enum class EInformationBarMessage
+// 0x0000000142AB0798 (Size: 0x4)
+class SZHUDIgnoreVisibilitySaveData
 {
-	eIBM_Clear = 0,
-	eIBM_LastEnemyKilledCP = 1,
-	eIBM_InvestigateStand = 2,
-	eIBM_BodyFound = 3,
-	eIBM_Suspicious = 4,
-	eIBM_DisguiseBlown = 5,
-	eIBM_Hunt = 6,
-	eIBM_Exposed = 7,
-	eIBM_LandMineArmed = 8,
-	eIBM_RadioOn = 9,
-	eIBM_Trespassing = 10,
-	eIBM_NUM = 11,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 alpha; // 0x0
+};
+
+// 0x0000000142A97F78 (Size: 0x8)
+class SGameCamProfileEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bIsEnabled; // 0x0
+	uint32 m_rHero; // 0x4
+};
+
+// 0x0000000142AF0490 (Size: 0x30)
+class SEntityTemplateExposedEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString sName; // 0x0
+	bool bIsArray; // 0x10
+	TArray<SEntityTemplateReference> aTargets; // 0x18
 };
 
 // 0x0000000142AA5AF0 (Size: 0x4)
@@ -8095,16 +10817,1172 @@ enum class ESniperScoreMessageType
 	ESSMT_STYLE_CIVKILL = 4,
 };
 
-// 0x00000001422D74E0 (Size: 0x4)
-enum class EAttachLocation
+// 0x0000000142AFD230 (Size: 0x4)
+enum class ZHttpUrl_EVerb
 {
-	eALRightHand = 0,
-	eALLeftHand = 1,
-	eALFreeBone = 2,
-	eALBack = 3,
-	eALRifle = 4,
-	eALAttachCount = 5,
-	eALUndefined = 6,
+	eNONE = 0,
+	eGET = 1,
+	ePOST = 2,
+	ePUT = 3,
+	eHEAD = 4,
+};
+
+// 0x0000000142AF16E8 (Size: 0x4)
+enum class ESmoothingMode
+{
+	ESM_LINEAR = 0,
+	ESM_EXPONENTIAL = 1,
+};
+
+// 0x0000000143E6ED38 (Size: 0x2)
+class SLightFlickerEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bLightOn; // 0x0
+	bool m_bFlickerOn; // 0x1
+};
+
+// 0x0000000142AA96E0 (Size: 0x4)
+enum class ZActorPickerEffectTemplate_EEffectPhaseAction
+{
+	EPA_NONE = 0,
+	EPA_START_TEMPLATE = 1,
+	EPA_STOP_TEMPLATE = 2,
+};
+
+// 0x0000000142AA4C20 (Size: 0x4)
+enum class EActorAIDot
+{
+	eAAID_None = 0,
+	eAAID_Distracted = 1,
+	eAAID_PotentialThreat = 2,
+	eAAID_PotentialThreatDistracted = 3,
+	eAAID_Aggressive = 4,
+	eAAID_EscortingOut = 5,
+	eAAID_Fleeing = 6,
+	eAAID_Unconscious = 7,
+	eAAID_Stunned = 8,
+	eAAID_Grenade = 9,
+	eAAID_PotentialThreatDisabled = 100,
+};
+
+// 0x00000001422D5C20 (Size: 0x10)
+class SColorRGBA
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 r; // 0x0
+	float32 g; // 0x4
+	float32 b; // 0x8
+	float32 a; // 0xC
+};
+
+// 0x0000000142AA41D0 (Size: 0x24)
+class SMathLerpSaveData_SColorRGBA
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SColorRGBA m_A; // 0x0
+	SColorRGBA m_B; // 0x10
+	float32 m_fT; // 0x20
+};
+
+// 0x0000000142AA2958 (Size: 0x30)
+class SMathLerpsSaveData_SColorRGBA
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
+};
+
+// 0x0000000143CEC178 (Size: 0x4)
+enum class ZDecalControllerEntity_EScaleType
+{
+	eScaleDisable = 0,
+	eScaleUniform = 1,
+	eScaleY = 2,
+};
+
+// 0x0000000143E6FE88 (Size: 0x4)
+enum class ZUIControlLayoutLegacyAspect_ELayoutMode
+{
+	E_LAYOUT_MODE_Absolute = 0,
+	E_LAYOUT_MODE_Proportional = 1,
+	E_LAYOUT_MODE_Proportional_MaintainAspect = 2,
+	E_LAYOUT_MODE_Proportional_MaintainAspect_Fill = 3,
+	E_LAYOUT_MODE_Proportional_Scale_Fit = 4,
+	E_LAYOUT_MODE_Proportional_Scale_MaintainAspect = 5,
+	E_LAYOUT_MODE_Proportional_Scale_MaintainAspect_Fill = 6,
+};
+
+// 0x0000000143E6FE70 (Size: 0x4)
+enum class ZUIControlLayoutLegacyAspect_EAlignmentType
+{
+	E_ALIGNMENT_TYPE_Center = 0,
+	E_ALIGNMENT_TYPE_TopCenter = 1,
+	E_ALIGNMENT_TYPE_BottomCenter = 2,
+	E_ALIGNMENT_TYPE_CenterLeft = 3,
+	E_ALIGNMENT_TYPE_CenterRight = 4,
+	E_ALIGNMENT_TYPE_TopLeft = 5,
+	E_ALIGNMENT_TYPE_TopRight = 6,
+	E_ALIGNMENT_TYPE_BottomLeft = 7,
+	E_ALIGNMENT_TYPE_BottomRight = 8,
+};
+
+// 0x0000000142ABEC88 (Size: 0x4)
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioClass
+{
+	eWBC_AudioClass_AssaultRifle = 0,
+	eWBC_AudioClass_Pistol = 1,
+	eWBC_AudioClass_Shotgun = 2,
+	eWBC_AudioClass_SMG = 3,
+	eWBC_AudioClass_SniperRifle = 4,
+};
+
+// 0x0000000142A9E8C0 (Size: 0x4)
+enum class ZEscortSituationEntity_EEscortState
+{
+	EES_Idle = 0,
+	EES_Evaluate = 1,
+	EES_Escorting = 2,
+	EES_Searching = 3,
+	EES_Intermediate = 4,
+};
+
+// 0x0000000142A9A3B8 (Size: 0x58)
+class SFriskSuspectGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SFSMSaveData m_fsmState; // 0x0
+	bool m_bHitmanIsGuard; // 0x18
+	int32 m_target; // 0x1C
+	uint32 m_pLeader; // 0x20
+	uint32 m_pAssistant; // 0x24
+	ZFriskSuspectGroup_EAssistantState m_eAssistantState; // 0x28
+	EDisturbanceType m_eDisturbanceType; // 0x2C
+	ZFriskSuspectGroup_EHitmanGreetState m_eHitmanGreetState; // 0x30
+	ZGameTime m_tHitmanGreet; // 0x38
+	float32 m_fMovingTime; // 0x40
+	float32 m_fRunningTime; // 0x44
+	ZGameTime m_tWaitToComplyTime; // 0x48
+	bool m_bWarnOnWeaponFound; // 0x50
+	bool m_bWeaponFound; // 0x51
+	bool m_bMoveWarning; // 0x52
+	bool m_bFirskRequestRepeated; // 0x53
+};
+
+// 0x0000000142AA2C50 (Size: 0x4)
+enum class SniperControllerConditionType
+{
+	SCCT_Enabled = 0,
+	SCCT_PrecisionAim = 1,
+};
+
+// 0x0000000143E70C10 (Size: 0x20)
+class STypeReference
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString sEntityID; // 0x0
+	ZString sTypeArgName; // 0x10
+};
+
+// 0x0000000143E70C28 (Size: 0x50)
+class SExposedTypeInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString sName; // 0x0
+	ZString sDisplayName; // 0x10
+	ZString sHelpText; // 0x20
+	STypeReference target; // 0x30
+};
+
+// 0x0000000142AF0AF8 (Size: 0x4)
+enum class ZActorInstanceEntity_EFFXMode
+{
+	eFFX_MODE_DISABLE = 0,
+	eFFX_MODE_OVERWRITE = 1,
+};
+
+// 0x0000000142AB1F00 (Size: 0x4)
+enum class EMapType
+{
+	E_MAPTYPE_Minimap = 0,
+	E_MAPTYPE_MainMap = 1,
+	E_MAPTYPE_MenuMap = 2,
+};
+
+// 0x0000000142AEF1A8 (Size: 0x4)
+enum class CrowdUtil_ECrowdFacing
+{
+	FRONT = 0,
+	BACK = 1,
+};
+
+// 0x0000000142AA1548 (Size: 0x30)
+class SDynamicEnforcerCandidateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+	float4 m_vPosition; // 0x10
+	EAISharedEventType m_eType; // 0x20
+	float32 m_fRadius; // 0x24
+};
+
+// 0x0000000142A9EEF0 (Size: 0x18)
+class SDynamicEnforcerServiceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
+};
+
+// 0x0000000142AA6628 (Size: 0x4)
+enum class EKeywordSetBehavior
+{
+	EKWSB_All = 0,
+	EKWSB_None = 1,
+	EKWSB_Any = 2,
+	EKWSB_No = 3,
+};
+
+// 0x0000000142AA7410 (Size: 0x4)
+class SActorStandInSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142ABEE08 (Size: 0x4)
+enum class eItemRarity
+{
+	ITEMRARITY_COMMON = 0,
+	ITEMRARITY_UNCOMMON = 1,
+	ITEMRARITY_RARE = 2,
+};
+
+// 0x0000000142A98CF8 (Size: 0x3)
+class SDynamicRayCastEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bEnabled; // 0x0
+	bool m_bIsRayIntersecting; // 0x1
+	bool m_bIsCurrentlyEnabled; // 0x2
+};
+
+// 0x00000001422D7518 (Size: 0x4)
+enum class eHolsterAbility
+{
+	eUndecided = 0,
+	eHolsteringAllowed = 1,
+	eHolsterTemporarilyOnly = 2,
+	eHolsterSecondaryOnly = 3,
+	eHolsterQuestStorage = 4,
+	eCanNotBeHolstered = 5,
+};
+
+// 0x0000000142A9EC60 (Size: 0x4)
+enum class EPlaceableType
+{
+	PLACEABLE_NOT = 0,
+	PLACEABLE_FULL_PHYSICS = 1,
+	PLACEABLE_SLEEP_PHYSICS = 2,
+	PLACEABLE_NO_PHYSICS = 3,
+	PLACEABLE_ATTACH = 4,
+};
+
+// 0x00000001422D5D98 (Size: 0x18)
+class ZRuntimePinConDesc
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint64 m_nFromEntityID; // 0x0
+	uint64 m_nToEntityID; // 0x8
+	uint32 m_nFromPinID; // 0x10
+	uint32 m_nToPinID; // 0x14
+};
+
+// 0x0000000142AA0F00 (Size: 0x4)
+enum class EMoveEndState
+{
+	MES_Moving = 0,
+	MES_Stopping = 1,
+	MES_Standing = 2,
+};
+
+// 0x0000000142AA5670 (Size: 0x4)
+enum class ELastSoundTension
+{
+	EST_Unknown = 0,
+	EST_Ambient = 1,
+	EST_Yellow = 2,
+	EST_Orange = 3,
+	EST_Red = 4,
+};
+
+// 0x0000000143E6DE30 (Size: 0x88)
+class SPostfilterParametersSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rEntity; // 0x0
+	bool m_bDepthOfFieldEnabled; // 0x4
+	float32 m_fDepthOfFieldBlurriness; // 0x8
+	bool m_bRadialBlurEnabled; // 0xC
+	float32 m_fRadialBlurriness; // 0x10
+	SVector2 m_vRadialBlurCenter; // 0x14
+	float32 m_fRadialBlurStart; // 0x1C
+	bool m_bSpatialBlurEnabled; // 0x20
+	float32 m_fSpatialBlurriness; // 0x24
+	SVector3 m_vSpatialBlurCenter; // 0x28
+	float32 m_fSpatialBlurStart; // 0x34
+	float32 m_fSpatialBlurFade; // 0x38
+	bool m_bDistortionWobbleEnabled; // 0x3C
+	float32 m_fDistortionWobbleScale; // 0x40
+	SVector2 m_vDistortionWobbleWaveLength; // 0x44
+	SVector2 m_vDistortionWobbleSpeed; // 0x4C
+	bool m_bDistortionWobbleUseRealTime; // 0x54
+	bool m_bHDRActive; // 0x55
+	bool m_bHDREnabled; // 0x56
+	SVector2 m_vHDRAdaptationSpeed; // 0x58
+	SVector2 m_vHDRAdaptationLuminanceMinMax; // 0x60
+	SVector2 m_vHDRAdaptationMiddleGrayMinMax; // 0x68
+	float32 m_fHDRWhitePoint; // 0x70
+	float32 m_fHDRBrightPassThreshold; // 0x74
+	float32 m_fHDRBrightPassMaxPercentage; // 0x78
+	SColorRGB m_HDRColorTint; // 0x7C
+};
+
+// 0x0000000143E6E7D8 (Size: 0x4)
+enum class ZSequenceEntity_ELetterBoxAspect
+{
+	LETTERBOXASPECT_WIDESCREEN = 0,
+	LETTERBOXASPECT_CINEMASCOPE = 1,
+};
+
+// 0x0000000142AB6B70 (Size: 0x4)
+enum class ZHM5HIKEventConsumer_EEffector
+{
+	eLeftHand = 0,
+	eRightHand = 1,
+};
+
+// 0x0000000142AA9998 (Size: 0x4)
+enum class ZWaypointEntity_EMovementType
+{
+	MT_WALK = 0,
+	MT_WALK_IF_NOT_IN_SEQUENCE = 1,
+	MT_SNAP = 2,
+	MT_IGNORE_POSITION = 3,
+};
+
+// 0x0000000142ABEF28 (Size: 0x4)
+enum class EInventoryStorageType
+{
+	EIST_None = 0,
+	EIST_Bag = 1,
+	EIST_RightHand = 2,
+	EIST_LeftHand = 3,
+	EIST_Back = 4,
+	EIST_Support = 5,
+	EIST_Quest = 6,
+	EIST_Temporary = 7,
+	EIST_Debug = 8,
+};
+
+// 0x0000000142AEE5F8 (Size: 0x4)
+enum class EDialogEventEndReason
+{
+	EDialogEvent_Completed = 0,
+	EDialogEvent_Stopped = 1,
+};
+
+// 0x0000000142AA2DE8 (Size: 0x4)
+enum class ECameraOffset_old
+{
+	eCameraOffset_Center = 0,
+	eCameraOffset_Left = 1,
+	eCameraOffset_Right = 2,
+};
+
+// 0x0000000142A9AEE8 (Size: 0x18)
+class SMovementAgilitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rLedgeGuide; // 0x0
+	float32 m_fFaceLeftRightTarget; // 0x4
+	EAgilityState m_ePrevAgilityState; // 0x8
+	EAgilityState m_eAgilityState; // 0xC
+	uint32 m_nActiveAnimNode; // 0x10
+	ECameraOffset_old m_eCameraOffset; // 0x14
+};
+
+// 0x0000000142B01718 (Size: 0x1)
+enum class EDefaultCollidableLayer
+{
+	DCL_STATIC = 0,
+	DCL_KINEMATIC = 1,
+	DCL_KINEMATIC_TRANSPARENT = 2,
+	DCL_DYNAMIC = 3,
+	DCL_DYNAMIC_TRANSPARENT = 4,
+	DCL_COLLIDE_ALL = 5,
+	DCL_STATIC_TRANSPARENT = 6,
+	DCL_COLLIDE_STATIC_ONLY = 7,
+	DCL_DYNAMIC_NO_CHARACTER = 8,
+	DCL_UNUSED_LAST = 9,
+};
+
+// 0x0000000142ABED90 (Size: 0x4)
+enum class eItemHands
+{
+	IH_NONE = 0,
+	IH_ONEHANDED = 1,
+	IH_TWOHANDED = 2,
+};
+
+// 0x0000000142AA89D8 (Size: 0x4)
+enum class ZActorProviderFilterKeyword_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+};
+
+// 0x0000000142AB1AF0 (Size: 0x4)
+enum class ZHUDUIRoot_EHUDVisibility
+{
+	eHV_INSTANT_OFF = 0,
+	eHV_FADE_OUT = 1,
+	eHV_FADE_IN = 2,
+	eHV_INSTANT_ON = 3,
+};
+
+// 0x0000000142A86FA0 (Size: 0x18)
+class SActorManagerReferencableData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<ESituationType> m_aSituationTypes; // 0x0
+};
+
+// 0x0000000142B015F8 (Size: 0x4)
+class SClothVertex
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint16 m_nColumn; // 0x0
+	uint16 m_nRow; // 0x2
+};
+
+// 0x0000000142A88278 (Size: 0x4)
+enum class EKillType
+{
+	EKillType_Undefined = 0,
+	EKillType_Throw = 1,
+	EKillType_Fiberwire = 2,
+	EKillType_PistolExecute = 3,
+	EKillType_ItemTakeOutFront = 4,
+	EKillType_ItemTakeOutBack = 5,
+	EKillType_ChokeOut = 6,
+	EKillType_SnapNeck = 7,
+	EKillType_KnockOut = 8,
+	EKillType_Push = 9,
+	EKillType_Pull = 10,
+};
+
+// 0x0000000142AA3660 (Size: 0x4)
+enum class EHUDIconType
+{
+	HUD_ICON_NONE = 0,
+	HUD_ICON_ALARM_TIMER = 1,
+	HUD_ICON_CLOSECOMBAT = 2,
+	HUD_ICON_BREADCRUMB = 3,
+	HUD_ICON_EXIT = 4,
+	HUD_ICON_OBJECTIVE = 5,
+	HUD_ICON_TARGET = 6,
+	HUD_ICON_TUTORIAL_ARROW = 7,
+};
+
+// 0x0000000142A9B660 (Size: 0x4)
+enum class ECharacterActionSyncRequests
+{
+	eSM_ASR_Reload = 1,
+	eSM_ASR_SwapItemHandL = 2,
+	eSM_ASR_SwapItemHandR = 4,
+};
+
+// 0x0000000142A99E40 (Size: 0x4)
+enum class ZInvestigateCautiousSituation_ESituationState
+{
+	SS_Main = 0,
+	SS_StandDownPending = 1,
+	SS_StandDown = 2,
+};
+
+// 0x0000000142A9AA00 (Size: 0x40)
+class SSituationOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString m_sClassTypeName; // 0x0
+	EAISharedEventType m_eType; // 0x10
+	int32 m_nTarget; // 0x14
+	bool m_bHasPosition; // 0x18
+	float4 m_vPosition; // 0x20
+	ZVariant m_CustomData; // 0x30
+};
+
+// 0x0000000142AA49F0 (Size: 0x4)
+enum class EActBodyType
+{
+	ABT_UpperBodyOnly = 0,
+	ABT_FullBodyWithLeadIn = 1,
+	ABT_FullBodyOnly = 2,
+};
+
+// 0x0000000142AB1970 (Size: 0x4)
+enum class ZHUDOccluderTriggerEntity_EOccluderTestBit
+{
+	PhysX_Far = 1,
+	Crowd_Far = 2,
+	PhysX_Middle = 4,
+	Crowd_Middle = 8,
+	PhysX_LowerLeft = 16,
+	Crowd_LowerLeft = 32,
+	PhysX_LowerRight = 64,
+	Crowd_LowerRight = 128,
+	PhysX_UpperLeft = 256,
+	PhysX_UpperRight = 512,
+	LateralShift = 1024,
+};
+
+// 0x0000000142A9C660 (Size: 0x4)
+class SEscortSituation2Actors
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142A9C648 (Size: 0x1C)
+class SEscortSituation2ActorStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nID; // 0x0
+	bool m_bAllocatedForSituation; // 0x4
+	ZEscortSituation2Entity_EEscortState m_eState; // 0x8
+	ZEscortSituation2Entity_EEscortState m_eStatePrevious; // 0xC
+	float32 m_fDistanceToTarget; // 0x10
+	uint32 m_rCurrentScreenplay; // 0x14
+	uint32 m_rPreferredIntermediateScreenplay; // 0x18
+};
+
+// 0x0000000142A9C6C0 (Size: 0x98)
+class SEscortSituation2SaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bActivated; // 0x0
+	bool m_bMayEscort; // 0x1
+	bool m_bTargetDead; // 0x2
+	bool m_bTargetInRange; // 0x3
+	bool m_bAllEscortsAreDead; // 0x4
+	bool m_bForceSearch; // 0x5
+	SVector3 m_vLastPosition; // 0x8
+	bool m_bFoundDeadTarget; // 0x14
+	int64 m_nTargetDeadTime; // 0x18
+	bool m_bTargetIsMoving; // 0x20
+	ZEscortSituation2Entity_ETargetState m_eTargetState; // 0x24
+	EActorEmotionState m_eTargetEmotionState; // 0x28
+	ZActBehaviorEntity_EState m_eTargetActState; // 0x2C
+	float32 m_fTargetNotMovingTime; // 0x30
+	float32 m_fTargetAgitationCooldownTimer; // 0x34
+	TArray<SEscortSituation2Actors> m_aAddedActors; // 0x38
+	TArray<SEscortSituation2ActorStateSaveData> m_aStates; // 0x50
+	TArray<uint32> m_aEscortActs; // 0x68
+	TArray<uint32> m_aSearchActs; // 0x80
+};
+
+// 0x0000000142AC00D8 (Size: 0x4)
+enum class EOpportunityRevealState
+{
+	ORS_REVEALING = 1,
+	ORS_HINT = 2,
+	ORS_DISTANCE = 4,
+	ORS_RANGE_FLAGS = 6,
+	ORS_REVEALED = 8,
+	ORS_REVEAL_FLAGS = 9,
+	ORS_BYPASS_MENU = 16,
+};
+
+// 0x0000000142AA1430 (Size: 0x38)
+class SDeadBodyInfoSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rGuard; // 0x4
+	TArray<uint32> m_knownByActors; // 0x8
+	ZGameTime m_tKnownSince; // 0x20
+	ZGameTime m_tInvestigatedSince; // 0x28
+	bool m_bGuarded; // 0x30
+	bool m_bBodyInvestigated; // 0x31
+	bool m_bHidden; // 0x32
+	bool m_bDeadByAccident; // 0x33
+	bool m_bDeadByUnnoticed; // 0x34
+	bool m_bHitmanSuspectedInCurrentOutfit; // 0x35
+	bool m_bDeadByExplosion; // 0x36
+	bool m_IsFoundOutsideNavmeshAndIgnored; // 0x37
+};
+
+// 0x0000000142A9EEC0 (Size: 0x20)
+class SDeadBodySensorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
+	int32 m_nBodyIndex; // 0x18
+};
+
+// 0x0000000142A88260 (Size: 0x4)
+enum class EGSBodyPart
+{
+	GSBODYPART_UNKNOWN = 0,
+	GSBODYPART_HEAD = 1,
+	GSBODYPART_TORSO = 2,
+	GSBODYPART_ARM = 3,
+	GSBODYPART_LEG = 4,
+};
+
+// 0x0000000142AA1360 (Size: 0x4)
+enum class EActorSecondaryIconState
+{
+	eSIS_Clear = 0,
+	eSIS_Infected = 1,
+	eSIS_Infected_Stage1 = 2,
+	eSIS_Infected_Stage2 = 3,
+	eSIS_Infected_Stage3 = 4,
+};
+
+// 0x0000000142A9A070 (Size: 0x10)
+class SCheckLastPositionGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_pLeader; // 0x0
+	uint32 m_pAssistant; // 0x4
+	uint16 m_nLeaderTargetNodeIndex; // 0x8
+	bool m_bLeaderOrderAssigned; // 0xA
+	bool m_bAssistantOrderAssigned; // 0xB
+	bool m_bSearchCompleted; // 0xC
+};
+
+// 0x0000000142AA3910 (Size: 0x4)
+enum class ZInputListenerAxisEntity_eInputListenerAxes
+{
+	EILA_HORIZONTAL = 0,
+	EILA_VERTICAL = 1,
+	EILA_TRIGGER_1 = 2,
+	EILA_TRIGGER_2 = 3,
+};
+
+// 0x0000000142ABEF88 (Size: 0x40)
+class SItemInstanceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZRepositoryID m_repositoryId; // 0x0
+	uint64 m_nEntityID; // 0x10
+	ZString m_sOnlineInstanceId; // 0x18
+	TArray<ZRepositoryID> m_aItemModifierIds; // 0x28
+};
+
+// 0x0000000142ABEBB0 (Size: 0x18)
+class SWorldInventoryInstanceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SItemInstanceSaveData> m_aItemInstanceSaveData; // 0x0
+};
+
+// 0x0000000142A8FCA8 (Size: 0x4)
+enum class EActorEventTypes
+{
+	eAET_OnAlive = 0,
+	eAET_OnPacified = 1,
+	eAET_OnMurdered = 2,
+	eAET_OnAccidentDeath = 3,
+	eAET_OnUnnoticableKill = 4,
+	eAET_OnBodyNoticed = 5,
+	eAET_OnBodyBagged = 6,
+	eAET_OnDying = 7,
+	eAET_OnDead = 8,
+	eAET_OnBodyHidden = 9,
+	eAET_OnBodyFlushed = 10,
+	eAET_OnBodyDumped = 11,
+	eAET_OnDelete = 12,
+};
+
+// 0x0000000142AA3320 (Size: 0x4)
+enum class EVRConfigCustomEvent
+{
+	EVRCCE_ClosetInside = 0,
+	EVRCCE_ClosetExiting = 1,
+	EVRCCE_DrainPipeMounted = 2,
+	EVRCCE_DrainPipeStartedDismounting = 3,
+	EVRCCE_LadderMounted = 4,
+	EVRCCE_LadderStartedDismounting = 5,
+	EVRCCE_LedgeChange = 6,
+	EVRCCE_LedgeShimmyStart = 7,
+	EVRCCE_LedgeShimmyStop = 8,
+	EVRCCE_PeekEntered = 9,
+	EVRCCE_PeekStartedExiting = 10,
+	EVRCCE_FriskStartedTurning = 11,
+	EVRCCE_FriskEndedTurning = 12,
+	EVRCCE_ShowItemStartedTurning = 13,
+	EVRCCE_ShowItemEndedTurning = 14,
+	EVRCCE_SubactionAnimationStarted = 15,
+	EVRCCE_SubactionAnimation_Hide = 16,
+	EVRCCE_FocussedInteractionEntered = 17,
+	EVRCCE_FocussedInteractionStartedExiting = 18,
+	EVRCCE_DisguiseSafeZoneEntered = 19,
+	EVRCCE_DisguiseSafeZoneStartedExiting = 20,
+	EVRCCE_SniperModeEnter = 21,
+	EVRCCE_SniperModeEntered = 22,
+	EVRCCE_SniperModeExit = 23,
+	EVRCCE_SniperModeExited = 24,
+	EVRCCE_VictimMovement0 = 25,
+	EVRCCE_VictimMovement1 = 26,
+	EVRCCE_VictimMovement2 = 27,
+	EVRCCE_VictimMovement3 = 28,
+	EVRCCE_VictimMovementRemoveControl = 29,
+	EVRCCE_AgilityLowVault = 30,
+	EVRCCE_AgilityHighVault = 31,
+	EVRCCE_AgilityRemoveControl = 32,
+	EVRCCE_FiberwireStartPriming = 33,
+	EVRCCE_FiberwireStopPriming = 34,
+	EVRCCE_ToiletDrownEntered = 35,
+	EVRCCE_ToiletDrownExited = 36,
+	EVRCCE_CloseCombatStartPriming = 37,
+	EVRCCE_CloseCombatStopPriming = 38,
+	EVRCCE_SilentTakedownEnterActivationArea = 39,
+	EVRCCE_SilentTakedownExitActivationArea = 40,
+	EVRCCE_SilentTakedownInstaPacification = 41,
+	EVRCCE_SnapNeckEnterActivationArea = 42,
+	EVRCCE_SnapNeckExitActivationArea = 43,
+	EVRCCE_TeleportStart = 44,
+	EVRCCE_TeleportEnd = 45,
+};
+
+// 0x0000000142B00260 (Size: 0x4)
+enum class EMultiplayerNetworkState
+{
+	Base = 0,
+	Idle = 1,
+	Searching = 2,
+	Connecting = 3,
+	Joining = 4,
+	Creating = 5,
+	Connected = 6,
+	Disconnecting = 7,
+	Count = 8,
+};
+
+// 0x0000000142A884E0 (Size: 0x4)
+enum class EBoolCheckType
+{
+	eBCT_IGNORE = 0,
+	eBCT_TRUE = 1,
+	eBCT_FALSE = 2,
+};
+
+// 0x0000000142A8FD28 (Size: 0x4)
+enum class EActorFaction
+{
+	eActorFaction_Default = 0,
+	eActorFaction_VIP_1 = 1,
+	eActorFaction_VIP_2 = 2,
+	eActorFaction_VIP_3 = 3,
+	eActorFaction_VIP_4 = 4,
+	eActorFaction_VIP_5 = 5,
+	eActorFaction_VIP_6 = 6,
+	eActorFaction_VIP_7 = 7,
+};
+
+// 0x0000000142AEE5C8 (Size: 0x1)
+enum class SoundPlayState
+{
+	ePlaying = 0,
+	eLoopBreaking = 1,
+	eStopping = 2,
+};
+
+// 0x0000000142AA5A30 (Size: 0x4)
+enum class EPushNotificationType
+{
+	PUSH_NOTIFICATION_OBJECTIVE = 0,
+	PUSH_NOTIFICATION_DISGUISE = 1,
+	PUSH_NOTIFICATION_CONTRACT = 2,
+	PUSH_NOTIFICATION_CHALLENGE = 3,
+	PUSH_NOTIFICATION_RATING = 4,
+	PUSH_NOTIFICATION_SPECIAL_RATING_UNLOCKED = 5,
+	PUSH_NOTIFICATION_CONTRACT_PICKED_UP = 6,
+	PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED = 7,
+	PUSH_NOTIFICATION_SCORE_COMPARISON = 8,
+};
+
+// 0x0000000142AB49E0 (Size: 0x4)
+enum class ECausalGraphTraversal
+{
+	eCGT_NONE = 0,
+	eCGT_INPUT = 1,
+	eCGT_OUTPUT = 2,
+	eCGT_BOTH = 3,
+};
+
+// 0x0000000142AC0990 (Size: 0x4)
+enum class ZCharacterSpeakCondition_EState
+{
+	Started = 0,
+	Playing = 1,
+	PlayingAndAudible = 2,
+	Completed = 3,
+	SubsSeenAndCompleted = 4,
+	Failed = 5,
+	Stopped = 6,
+};
+
+// 0x0000000142A9A7F0 (Size: 0x30)
+class SEvacuateTrespassGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SFSMSaveData m_fsmState; // 0x0
+	int32 m_target; // 0x18
+	uint32 m_safeRoomNode; // 0x1C
+	uint32 m_leader; // 0x20
+	uint32 m_assistant; // 0x24
+	bool m_escalate; // 0x28
+	bool m_completed; // 0x29
+	bool m_standDown; // 0x2A
+	int32 m_warningCount; // 0x2C
+};
+
+// 0x0000000142AA3ED0 (Size: 0x8)
+class SActorSpreadTransitionOperatorMaterialActorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_Actor; // 0x0
+	float32 m_fOpacity; // 0x4
+};
+
+// 0x0000000143E6CAA0 (Size: 0x4)
+enum class EVRRenderDeviceType
+{
+	RENDER_VR_DEVICE_TYPE_DUMMY = 0,
+	RENDER_VR_DEVICE_TYPE_OCULUS = 1,
+	RENDER_VR_DEVICE_TYPE_PSVR = 2,
+	RENDER_VR_DEVICE_TYPE_COUNT = 3,
+};
+
+// 0x0000000142AA3118 (Size: 0x4)
+enum class EInventoryConfigFormerEquippedItems
+{
+	EICFEI_Equip = 0,
+	EICFEI_EquipOrPickup = 1,
+	EICFEI_Forget = 2,
+};
+
+// 0x0000000142B017C0 (Size: 0x4)
+enum class EDamageResponse
+{
+	eDR_Fractured = 0,
+	eDR_Detached = 1,
+	eDR_Destroyed = 2,
+	eDR_Collided = 3,
+	eDR_Count = 4,
+};
+
+// 0x0000000142A97150 (Size: 0x4)
+enum class IHM5Door_EOpenDir
+{
+	OD_AWAY = 0,
+	OD_TOWARS = 1,
+	OD_IN = 2,
+	OD_OUT = 3,
+};
+
+// 0x0000000142A9A1A8 (Size: 0x4)
+enum class ESituationJoinReason
+{
+	AISJR_Default = 0,
+	AISJR_HeardSound = 1,
+	AISJR_Alarm = 2,
+	AISJR_HitmanStrange = 3,
+	AISJR_HitmanIllegal = 4,
+	AISJR_Assist = 5,
+	AISJR_AssistingGuard = 6,
+	AISJR_Propagate = 7,
+	AISJR_ResumeSituation = 8,
+	AISJR_Spawned = 9,
+	AISJR_HelpCivilian = 10,
+	AISJR_Escalating = 11,
+	AISJR_DeadBody = 12,
+	AISJR_Accident = 13,
+	AISJR_StandDown = 14,
+	AISJR_Report = 15,
+	AISJR_ForcedToHold = 16,
+	AISJR_Wounded = 17,
+	AISJR_SC_HeardBulletImpact = 18,
+	AISJR_SC_HeardSetPiece = 19,
+};
+
+// 0x0000000142AB1F60 (Size: 0x4)
+enum class UIMapLayer_EUIMapLayerID
+{
+	eUIMLI_UNSPECIFIED = 0,
+	eUIMLI_STAIRCASE = 1,
+	eUIMLI_AREA_UNDISCOVERED = 2,
+	eUIMLI_TEXT = 3,
+	eUIMLI_DROPPED_ITEMS_AND_DISGUISES = 4,
+	eUIMLI_NPC = 5,
+	eUIMLI_NORTH_INDICATOR = 6,
+	eUIMLI_SECURITY_CAMERA = 7,
+	eUIMLI_AGENCY_PICKUP = 8,
+	eUIMLI_OPPORTUNITY = 9,
+	eUIMLI_EXIT = 10,
+	eUIMLI_OBJECTIVE = 11,
+	eUIMLI_TARGET = 12,
+	eUIMLI_OPPONENT = 13,
+	eUIMLI_HERO = 14,
+};
+
+// 0x0000000142A876C0 (Size: 0x8)
+class IHumanBody
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142A99110 (Size: 0x4)
+enum class EScreenplayStateFlag
+{
+	eSSF_DEFAULT = 0,
+	eSSF_ENABLED = 1,
+	eSSF_CAST = 2,
+	eSSF_RESUMING = 4,
+	eSSF_RUNNING = 8,
+	eSSF_DONE = 16,
+	eSSF_TERMINATED = 32,
+};
+
+// 0x0000000142B00218 (Size: 0x4)
+enum class ENetPlayerEvent
+{
+	Login = 0,
+	Logout = 1,
+	NewHost = 2,
+};
+
+// 0x0000000142A95248 (Size: 0x8)
+class SHeroCameraStandInSaveState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rHero; // 0x0
+	bool m_bPaused; // 0x4
+};
+
+// 0x0000000142AB6678 (Size: 0x4)
+enum class ZCoverPlane_ECoverType
+{
+	eCoverOnly = 0,
+	eCoverAndRail = 1,
+	eRailOnly = 2,
 };
 
 // 0x0000000142A9F4B0 (Size: 0x4)
@@ -8354,15 +12232,6 @@ enum class EItemGripType
 	IGT_None = 40,
 };
 
-// 0x0000000142AA0FC0 (Size: 0x4)
-enum class ECoverPosition
-{
-	COVER_POSITION_NONE = 0,
-	COVER_POSITION_LEFT = 1,
-	COVER_POSITION_RIGHT = 2,
-	COVER_POSITION_MIDDLE = 3,
-};
-
 // 0x0000000142A9A628 (Size: 0xC)
 class SFaceOrderSaveData
 {
@@ -8406,21 +12275,6 @@ enum class EBulletType
 	BULLET_TYPE_SHOTGUN = 6,
 	BULLET_TYPE_SNIPER = 7,
 	BULLET_TYPE_RPG = 8,
-};
-
-// 0x0000000143E6DCF8 (Size: 0x8)
-class SBoneAttachSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rEntity; // 0x0
-	bool m_bIsAttached; // 0x4
 };
 
 // 0x0000000142B00670 (Size: 0x4)
@@ -8468,6 +12322,14 @@ public:
 	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
 };
 
+// 0x0000000142AA3850 (Size: 0x4)
+enum class ZVRHUDWristAlignmentController_EAxis
+{
+	X_AXIS = 0,
+	Y_AXIS = 1,
+	Z_AXIS = 2,
+};
+
 // 0x0000000142B01610 (Size: 0x4)
 enum class EMotionType
 {
@@ -8511,18 +12373,12 @@ public:
 	ZString m_sImage; // 0x30
 };
 
-// 0x00000001422D7500 (Size: 0x4)
-class SHeroItemAttachmentSaveData
+// 0x0000000142B015B0 (Size: 0x1)
+enum class ECCDUsage
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rItem; // 0x0
+	ECCDUSAGE_DISABLED = 0,
+	ECCDUSAGE_AGAINST_STATIC = 1,
+	ECCDUSAGE_AGAINST_STATIC_DYNAMIC = 2,
 };
 
 // 0x0000000142A9AF18 (Size: 0x4)
@@ -8549,16 +12405,44 @@ enum class ECharacterStateTags
 	eSM_ST_UsingItemRight = 131072,
 };
 
-// 0x0000000142B015B0 (Size: 0x1)
-enum class ECCDUsage
+// 0x0000000142ABEE38 (Size: 0x4)
+enum class EAmmoBehaviourConfigType
 {
-	ECCDUSAGE_DISABLED = 0,
-	ECCDUSAGE_AGAINST_STATIC = 1,
-	ECCDUSAGE_AGAINST_STATIC_DYNAMIC = 2,
+	eAB_None = 0,
+	eAB_Explosive = 1,
+	eAB_Penetration = 2,
 };
 
-// 0x00000001422D5C20 (Size: 0x10)
-class SColorRGBA
+// 0x0000000143E6FE40 (Size: 0x4)
+enum class ZUIControlEntity_EAlignment
+{
+	TopLeft = 0,
+	TopCenter = 1,
+	TopRight = 2,
+	CenterLeft = 3,
+	Center = 4,
+	CenterRight = 5,
+	BottomLeft = 6,
+	BottomCenter = 7,
+	BottomRight = 8,
+	StretchCenter = 9,
+	StretchHorizontalTop = 10,
+	StretchHorizontalCenter = 11,
+	StretchHorizontalBottom = 12,
+	StretchVerticalLeft = 13,
+	StretchVerticalCenter = 14,
+	StretchVerticalRight = 15,
+};
+
+// 0x0000000142A979B0 (Size: 0x4)
+enum class ZHM5BodyContainer_eBCCloseMode
+{
+	BC_AUTOCLOSE = 0,
+	BC_MANUALCLOSE = 1,
+};
+
+// 0x0000000142AA4230 (Size: 0x1C)
+class SMathMultiplyDivideSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8568,18 +12452,24 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	float32 r; // 0x0
-	float32 g; // 0x4
-	float32 b; // 0x8
-	float32 a; // 0xC
+	SVector3 m_fA; // 0x0
+	SVector3 m_fB; // 0xC
+	bool m_bDivide; // 0x18
 };
 
-// 0x0000000142ABEE38 (Size: 0x4)
-enum class EAmmoBehaviourConfigType
+// 0x0000000142AA26B8 (Size: 0x30)
+class SMathMultipliesSaveData_SVector3
 {
-	eAB_None = 0,
-	eAB_Explosive = 1,
-	eAB_Penetration = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
 };
 
 // 0x0000000142AA2068 (Size: 0x4)
@@ -8595,8 +12485,15 @@ enum class EHM5SoundFootstepEvent
 	EFSE_LAND = 7,
 };
 
-// 0x0000000143E6DDB8 (Size: 0x1C)
-class SLightSaveData
+// 0x0000000142A9CCD0 (Size: 0x4)
+enum class ZHM5ValueEntity_bool_EForwardRule
+{
+	eAlways = 0,
+	eValueChanged = 1,
+};
+
+// 0x0000000142AB1E18 (Size: 0x18)
+class SMapMarkerData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8606,15 +12503,11 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rEntity; // 0x0
-	SColorRGB m_DiffuseColor; // 0x4
-	float32 m_fDiffusePower; // 0x10
-	float32 m_fAspectXByY_Actual; // 0x14
-	bool m_bVisible; // 0x18
+	TArray<SVector2> pathPoints; // 0x0
 };
 
-// 0x0000000142AF0628 (Size: 0x58)
-class STemplateEntityFactory
+// 0x0000000142A9E528 (Size: 0x10)
+class SDramaSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -8624,52 +12517,97 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	int32 subType; // 0x0
-	int32 blueprintIndexInResourceHeader; // 0x4
-	int32 rootEntityIndex; // 0x8
-	TArray<STemplateFactorySubEntity> subEntities; // 0x10
-	TArray<SEntityTemplatePropertyOverride> propertyOverrides; // 0x28
-	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x40
+	bool m_bSituationRunning; // 0x0
+	bool m_bIsTerminated; // 0x1
+	float32 m_nPriorityModifier; // 0x4
+	int32 m_nCurrentDrama; // 0x8
+	bool m_bProvidersStarted; // 0xC
 };
 
-// 0x0000000142A88460 (Size: 0x4)
-enum class EHUDElement
+// 0x0000000142B00290 (Size: 0x4)
+enum class Network_PacketReliability
 {
-	HUD_ELEMENT_NONE = 0,
-	HUD_ELEMENT_MINIMAP = 1,
-	HUD_ELEMENT_DISGUISE = 2,
-	HUD_ELEMENT_WEAPON_DISPLAY = 4,
-	HUD_ELEMENT_FOCUS_BAR = 8,
-	HUD_ELEMENT_RETICULES = 16,
-	HUD_ELEMENT_WEAPON_SELECTOR = 32,
-	HUD_ELEMENT_SPECIAL_BAR = 64,
-	HUD_ELEMENT_TEXT_MESSAGES = 128,
-	HUD_ELEMENT_CONTRACT_MARKS = 256,
-	HUD_ELEMENT_RATING_UPDATE = 512,
-	HUD_ELEMENT_RANKING = 1024,
-	HUD_ELEMENT_CHALLENGES = 2048,
-	HUD_ELEMENT_CUSTOM_TEXTS = 4096,
-	HUD_ELEMENT_ACTION_BUTTONS = 8192,
-	HUD_ELEMENT_ATTENTION_PEAKS = 16384,
-	HUD_ELEMENT_RATING_TRACKER = 32768,
-	HUD_ELEMENT_TARGET_TRACKER = 65536,
-	HUD_ELEMENT_HINTS = 131072,
-	HUD_ELEMENT_CONTRACT_SCORING = 262144,
-	HUD_ELEMENT_TUTORIAL = 524288,
-	HUD_ELEMENT_HEALTH_BAR = 1048576,
-	HUD_ELEMENT_OBJECTIVES = 2097152,
-	HUD_ALL_ELEMENTS = 8388607,
+	UNRELIABLE = 0,
+	UNRELIABLE_SEQUENCED = 1,
+	RELIABLE = 2,
+	RELIABLE_ORDERED = 3,
+	RELIABLE_SEQUENCED = 4,
+	UNRELIABLE_WITH_ACK_RECEIPT = 5,
+	RELIABLE_WITH_ACK_RECEIPT = 6,
+	RELIABLE_ORDERED_WITH_ACK_RECEIPT = 7,
+	NUMBER_OF_RELIABILITIES = 8,
 };
 
-// 0x0000000142AA5E50 (Size: 0x4)
-enum class EButtonPressType
+// 0x0000000142A9EA88 (Size: 0x4)
+class SLeadEscortSituationActors
 {
-	BUTTON_PRESS = 0,
-	BUTTON_HOLD = 1,
-	BUTTON_REPEAT = 2,
-	BUTTON_TAP = 3,
-	BUTTON_ROTATE_CCW = 4,
-	BUTTON_PRESS_TYPE_MAX = 5,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA0A50 (Size: 0x4)
+enum class ZActorDebugEntity_EActorDebugColor
+{
+	EDC_RED = 255,
+	EDC_GREEN = 65280,
+	EDC_BLUE = 16711680,
+	EDC_PINK = 16711935,
+	EDC_DARK_RED = 127,
+	EDC_DARK_GREEN = 32512,
+	EDC_DARK_BLUE = 8323072,
+	EDC_DARK_PINK = 8323199,
+	EDC_BLACK = 0,
+	EDC_WHITE = 16777215,
+};
+
+// 0x0000000142AACCF8 (Size: 0x4)
+enum class IContractObjective_State
+{
+	IN_PROGRESS = 0,
+	COMPLETED = 1,
+	FAILED = 2,
+};
+
+// 0x0000000142A991E0 (Size: 0x10)
+class SDrama2SituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_nPriorityModifier; // 0x0
+	int32 m_nCurrentDrama; // 0x4
+	float32 m_nDoneTime; // 0x8
+	bool m_bIsOnCooldown; // 0xC
+	bool m_bProvidersStarted; // 0xD
+	bool m_bSituationRunning; // 0xE
+	bool m_bIsTerminated; // 0xF
+};
+
+// 0x0000000142A99240 (Size: 0x30)
+class SDrama2SituationCollectionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SDrama2SituationSaveData> m_aStates; // 0x18
 };
 
 // 0x0000000142AA40F0 (Size: 0x18)
@@ -8697,112 +12635,6 @@ enum class ERenderVRTrackingID
 	RENDER_VR_TRACK_HAND_RIGHT = 20,
 };
 
-// 0x0000000143E6DEC0 (Size: 0x28)
-class SSavableData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZVariant m_EntitiesData; // 0x0
-	ZVariant m_Data; // 0x10
-	uint32 m_nId; // 0x20
-};
-
-// 0x0000000142AA2D90 (Size: 0x4)
-enum class ECameraState
-{
-	eCamSneakStand = 0,
-	eCamSneakWalk = 1,
-	eCamSneakRoadyRun = 2,
-	eCamNormalStand = 3,
-	eCamNormalWalk = 4,
-	eCamNormalRun = 5,
-	eCamLocomotion = 6,
-	eCamCrowdStand = 7,
-	eCamCrowdWalk = 8,
-	eCamCrowdRun = 9,
-	eCamCrowdSneakStand = 10,
-	eCamCrowdSneakWalk = 11,
-	eCamCrowdSneakRoadyRun = 12,
-	eCamCrowdLocomotion = 13,
-	eCamDead = 14,
-	eCamLadder = 15,
-	eCamDrainPipe = 16,
-	eCamDrag = 17,
-	eCamSBTag = 18,
-	eCamSBTagOTS = 19,
-	eCamCloseCombat = 20,
-	eCamFiberWire = 21,
-	eCamWindowPull = 22,
-	eCamRailPush = 23,
-	eCamLedgeKick = 24,
-	eCamLedgePull = 25,
-	eCamLedgeHang = 26,
-	eCamLedgeWalk = 27,
-	eCamLedgeWalkOTS = 28,
-	eCamCoverLow = 29,
-	eCamCoverMedium = 30,
-	eCamCoverHigh = 31,
-	eCamCoverLowOTS = 32,
-	eCamCoverHighOTS = 33,
-	eCamCoverLowScope = 34,
-	eCamCoverHighScope = 35,
-	eCamCoverLowTakedownOver = 36,
-	eCamCoverLowTakedownCorner = 37,
-	eCamCoverHighTakedownCorner = 38,
-	eCamTakeDisguise = 39,
-	eCamOTS = 40,
-	eCamOTSHigh = 41,
-	eCamOTSLow = 42,
-	eCamUnAimedShooting = 43,
-	eCamUnAimedShootingHigh = 44,
-	eCamUnAimedShootingLow = 45,
-	eCamScope = 46,
-	eCamScopeHigh = 47,
-	eCamScopeLow = 48,
-	eCamVaultLow = 49,
-	eCamVaultHigh = 50,
-	eCamTakedown = 51,
-	eCamTakedownChair = 52,
-	eCamLockedSniping = 53,
-	eCamLockedSnipingScope = 54,
-	eCamLockedSnipingScopeHigh = 55,
-	eCamLockedSnipingScopeLow = 56,
-	eCamContainerAssemble = 57,
-	eCamNumProfiles = 58,
-	eCamAll = 59,
-};
-
-// 0x0000000142A9A6D0 (Size: 0x8)
-class SGuardPointOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_guardPoint; // 0x0
-	bool m_walkOnly; // 0x4
-};
-
-// 0x0000000142B01838 (Size: 0x1)
-enum class ECollisionNotifyGroup
-{
-	eCollisionNotifyGroup_Default = 0,
-	eCollisionNotifyGroup_CollisionListener = 1,
-	eCollisionNotifyGroup_PhysicsEntity = 2,
-	eCollisionNotifyGroup_DontNotify = 3,
-	eCollisionNotifyGroup_ForceNotify = 4,
-};
-
 // 0x0000000142A873C0 (Size: 0x4)
 enum class EMoveSpeed
 {
@@ -8827,36 +12659,6 @@ public:
 	uint32 m_pActor; // 0x0
 };
 
-// 0x0000000142AAF020 (Size: 0x8)
-class SUIBreadcrumbDataSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_fProgress; // 0x0
-	int32 m_nState; // 0x4
-};
-
-// 0x0000000142A9F5B8 (Size: 0x4)
-enum class EThrowType
-{
-	THROW_NONE = 0,
-	THROW_COIN = 1,
-	THROW_NORMAL = 2,
-	THROW_HEAVY = 3,
-	THROW_KNOCKDOWN_LIGHT = 4,
-	THROW_KNOCKDOWN_HEAVY = 5,
-	THROW_PACIFY_LIGHT = 6,
-	THROW_PACIFY_HEAVY = 7,
-	THROW_DEADLY_LIGHT = 8,
-	THROW_DEADLY_HEAVY = 9,
-};
-
 // 0x0000000142AFBC70 (Size: 0x4)
 enum class ECoordinateSpace
 {
@@ -8875,23 +12677,13 @@ enum class ECameraAssistanceMode
 	eCAM_AutoTrackTarget = 2,
 };
 
-// 0x0000000142ABDA10 (Size: 0x14)
-class SRandomTimerEntitySaveData
+// 0x0000000143E6FF48 (Size: 0x4)
+enum class ZUIListNavigationEntity_ENavigationInputMode
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bEnabled; // 0x0
-	bool m_bRegistered; // 0x1
-	float32 m_fMinTime; // 0x4
-	float32 m_fMaxTime; // 0x8
-	float32 m_fProbability; // 0xC
-	int32 m_nRemaining; // 0x10
+	E_MODE_UP_DOWN = 0,
+	E_MODE_LEFT_RIGHT = 1,
+	E_MODE_PGPREV_PGNEXT = 2,
+	E_MODE_SMART_2D = 3,
 };
 
 // 0x0000000142ABB418 (Size: 0x4)
@@ -8919,17 +12711,6 @@ enum class EIntelStage
 	eIT_MAIN = 0,
 	eIT_STAGE = 1,
 	eIT_HINT = 2,
-};
-
-// 0x0000000142AA53D0 (Size: 0x4)
-enum class ECharacterAnimChildNetworkSlot
-{
-	eCACNS_None = 0,
-	eCACNS_FlavorIdle_FB = 1,
-	eCACNS_FlavorIdle_RH = 2,
-	eCACNS_FlavorIdle_LH = 3,
-	eCACNS_Interaction_RH = 4,
-	eCACNS_Interaction_LH = 5,
 };
 
 // 0x0000000142A8FAF0 (Size: 0x4)
@@ -9497,6 +13278,17 @@ enum class EActorVoiceVariation
 	eAVV_ZAYDAN = 559,
 };
 
+// 0x0000000142AA53D0 (Size: 0x4)
+enum class ECharacterAnimChildNetworkSlot
+{
+	eCACNS_None = 0,
+	eCACNS_FlavorIdle_FB = 1,
+	eCACNS_FlavorIdle_RH = 2,
+	eCACNS_FlavorIdle_LH = 3,
+	eCACNS_Interaction_RH = 4,
+	eCACNS_Interaction_LH = 5,
+};
+
 // 0x0000000142A882D8 (Size: 0x4)
 enum class EStealthSituation
 {
@@ -9551,8 +13343,8 @@ enum class EStealthSituation
 	SS_UNKNOWN_BODY_SPOTTED = 48,
 };
 
-// 0x0000000143F1E128 (Size: 0x18)
-class SBoneScalesList
+// 0x0000000142AA4460 (Size: 0x2)
+class SCollisionControllerAspectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9562,44 +13354,12 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<SVector3> m_aBoneScales; // 0x0
+	bool m_bCollideHitman; // 0x0
+	bool m_bCollideCamera; // 0x1
 };
 
-// 0x0000000142AEE5B0 (Size: 0x4)
-enum class EAudioVolumetricMixingMode
-{
-	AUDIO_VOLUMETRIC_MIXING_MAX_ALL = 0,
-	AUDIO_VOLUMETRIC_MIXING_MAX_3D = 1,
-	AUDIO_VOLUMETRIC_MIXING_ADD = 2,
-};
-
-// 0x0000000142AFBB90 (Size: 0x4)
-enum class ESyncEvent
-{
-	eSyncEvent_None = 0,
-	eSyncEvent_LeftFoot = 100,
-	eSyncEvent_RightFoot = 200,
-	eSyncEvent_BothFeet = 300,
-};
-
-// 0x0000000142AA4230 (Size: 0x1C)
-class SMathMultiplyDivideSaveData_SVector3
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SVector3 m_fA; // 0x0
-	SVector3 m_fB; // 0xC
-	bool m_bDivide; // 0x18
-};
-
-// 0x0000000142AA26B8 (Size: 0x30)
-class SMathMultipliesSaveData_SVector3
+// 0x0000000142AA2808 (Size: 0x30)
+class SCollisionControllerAspectsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -9610,94 +13370,38 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
+	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142AF0760 (Size: 0x4)
-enum class ETeamModeId
+// 0x0000000142A98C30 (Size: 0x4)
+enum class ZHeroKeywordCondition_EEvaluationType
 {
-	TeamMode_Coop = 0,
-	TeamMode_Versus = 1,
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	ANY_TRUE_IF_NO_REQS = 3,
 };
 
-// 0x0000000142AFBB18 (Size: 0x4)
-enum class EAnimBlendMode
+// 0x0000000142AEE5B0 (Size: 0x4)
+enum class EAudioVolumetricMixingMode
 {
-	EAnimBlendMode_InterpAttInterpPos = 0,
-	EAnimBlendMode_InterpAttAddPos = 1,
-	EAnimBlendMode_AddAttLeavePos = 2,
-	EAnimBlendMode_AddAttAddPos = 3,
+	AUDIO_VOLUMETRIC_MIXING_MAX_ALL = 0,
+	AUDIO_VOLUMETRIC_MIXING_MAX_3D = 1,
+	AUDIO_VOLUMETRIC_MIXING_ADD = 2,
 };
 
-// 0x0000000142A9D3A0 (Size: 0x4)
-enum class EControlButtonName
+// 0x0000000142AA8B90 (Size: 0x4)
+enum class ZActorBoneAttachEntity_EResetMode
 {
-	eCN_ABORT = 0,
-	eCN_ACTION = 1,
-	eCN_ACTIVATE_PROP = 2,
-	eCN_AGILITY_DOWN = 3,
-	eCN_AGILITY_ENTERWINDOW = 4,
-	eCN_AGILITY_SNEAKPASTWINDOW = 5,
-	eCN_AGILITY_THROWOVERRAIL = 6,
-	eCN_AGILITY_UP = 7,
-	eCN_AIM = 8,
-	eCN_COVER_ENTER = 9,
-	eCN_COVER_TAKEDOWN = 10,
-	eCN_COVER_TO_COVER = 11,
-	eCN_CROUCH = 12,
-	eCN_DRAGBODY = 13,
-	eCN_DUMPBODY = 14,
-	eCN_FIBERWIRE = 15,
-	eCN_INSTINCT = 16,
-	eCN_INVENTORY_HOLSTER = 17,
-	eCN_INVENTORY_LONGRANGE = 18,
-	eCN_MARK_TARGET = 19,
-	eCN_CHANGE_AMMO_NEXT = 20,
-	eCN_CHANGE_AMMO_PREVIOUS = 21,
-	eCN_INVENTORY_PROP = 22,
-	eCN_INVENTORY_SHORTRANGE = 23,
-	eCN_ITEM_DROP = 24,
-	eCN_ITEM_THROW = 25,
-	eCN_MELEE_HIT = 26,
-	eCN_MELEE_TAKEDOWN = 27,
-	eCN_PICKUP = 28,
-	eCN_RUN = 29,
-	eCN_WALK_SLOW = 30,
-	eCN_CONCEAL_RETRIEVE = 31,
-	eCN_SB_ACTIVATE = 32,
-	eCN_SB_CANCEL = 33,
-	eCN_SB_EXECUTE = 34,
-	eCN_SB_REMOVETAG = 35,
-	eCN_SHOOT = 36,
-	eCN_NOTEBOOK = 37,
-	eCN_PAUSE = 38,
-	eCN_NO_ICON = 39,
+	eAtBoneOrigin = 0,
+	eKeepOffset = 1,
 };
 
-// 0x0000000142AA7AD0 (Size: 0x4)
-enum class EBehaviorTreeVariableType
+// 0x0000000142AA2B70 (Size: 0x4)
+enum class IHM5Door_ECPDoorLockType
 {
-	BTVT_Invalid = -1,
-	BTVT_SceneReference = 0,
-	BTVT_Contextual = 1,
-	BTVT_Dynamic = 2,
-	BTVT_NumTypes = 3,
-};
-
-// 0x0000000142AA41D0 (Size: 0x24)
-class SMathLerpSaveData_SColorRGBA
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SColorRGBA m_A; // 0x0
-	SColorRGBA m_B; // 0x10
-	float32 m_fT; // 0x20
+	CPDLT_NORMAL_LOCK = 0,
+	CPDLT_PUSH_BAR_PAD_LOCK = 1,
 };
 
 // 0x0000000142A8FCF8 (Size: 0x4)
@@ -9765,14 +13469,20 @@ enum class ESaveLoadStatus
 	ESaveLoadStatus_ERROR_INVALIDATED = 13,
 };
 
-// 0x0000000142AA4AA0 (Size: 0x1)
-enum class EOrderCompletionStatus
+// 0x0000000142AA4250 (Size: 0x24)
+class SMathMultiplyDivideSaveData_SVector4
 {
-	OCS_Undetermined = 0,
-	OCS_Succeeded = 1,
-	OCS_Interrupted = 2,
-	OCS_Blocked = 3,
-	OCS_Failed = 4,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector4 m_fA; // 0x0
+	SVector4 m_fB; // 0x10
+	bool m_bDivide; // 0x20
 };
 
 // 0x0000000142A9D468 (Size: 0x4)
@@ -9781,215 +13491,6 @@ enum class EEntityOrdering
 	EO_LOW = 0,
 	EO_NORMAL = 1,
 	EO_HIGH = 2,
-};
-
-// 0x0000000142A99210 (Size: 0x30)
-class SDrama2ActorCollectionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SDrama2ActorSaveState> m_aStates; // 0x18
-};
-
-// 0x0000000142A9EEA8 (Size: 0x38)
-class SDramaActorSaveState
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rActor; // 0x0
-	uint32 m_rSequence; // 0x4
-	uint32 m_rBehavior; // 0x8
-	uint32 m_rCurrentSpeakEntity; // 0xC
-	uint32 m_rScreenplay; // 0x10
-	ZString m_sMatchName; // 0x18
-	ZGameTime m_tActorSpeakEnd; // 0x28
-	bool m_bIsDone; // 0x30
-	bool m_bIsPaused; // 0x31
-	bool m_bIsSpeaking; // 0x32
-};
-
-// 0x0000000142A99288 (Size: 0x30)
-class SDramaActorCollectionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SDramaActorSaveState> m_aStates; // 0x18
-};
-
-// 0x0000000142A991E0 (Size: 0x10)
-class SDrama2SituationSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_nPriorityModifier; // 0x0
-	int32 m_nCurrentDrama; // 0x4
-	float32 m_nDoneTime; // 0x8
-	bool m_bIsOnCooldown; // 0xC
-	bool m_bProvidersStarted; // 0xD
-	bool m_bSituationRunning; // 0xE
-	bool m_bIsTerminated; // 0xF
-};
-
-// 0x0000000142A99240 (Size: 0x30)
-class SDrama2SituationCollectionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SDrama2SituationSaveData> m_aStates; // 0x18
-};
-
-// 0x0000000142A991C8 (Size: 0xC)
-class SDrama2SetupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bDoneTriggered; // 0x0
-	EScreenPlayState m_eState; // 0x4
-	uint32 m_rSituation; // 0x8
-};
-
-// 0x0000000142A99270 (Size: 0x30)
-class SDrama2SetupCollectionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SDrama2SetupSaveData> m_aStates; // 0x18
-};
-
-// 0x0000000142AB1D28 (Size: 0x20)
-class SInventoryUISlotSlim
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZVariant icon; // 0x0
-	ZVariant containedIcon; // 0x10
-};
-
-// 0x0000000142AB0D68 (Size: 0x28)
-class SInventoryUI
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SInventoryUISlotSlim> mainslotsSlim; // 0x0
-	int32 otherslotsCount; // 0x18
-	int32 selectedIndex; // 0x1C
-	bool isActionInventory; // 0x20
-};
-
-// 0x0000000142AA7428 (Size: 0x8)
-class SActorBoneAttachSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rAttachmentTarget; // 0x0
-	bool m_bIsAttached; // 0x4
-};
-
-// 0x0000000142AA2990 (Size: 0x30)
-class SActorBoneAttachmentsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SActorBoneAttachSaveData> m_aData; // 0x18
-};
-
-// 0x0000000142AA5BB0 (Size: 0x4)
-enum class ECommunicationBarMessage
-{
-	ECBM_Unknown = 0,
-	ECBM_Spotted = 1,
-	ECBM_Frisking = 2,
-	ECBM_HostileArea = 3,
-	ECBM_InvestigatingArea = 4,
-	ECBM_Clear = 5,
-	ECBM_Suspicious = 6,
-	ECBM_Alerted = 7,
-	ECBM_Hunting = 8,
-	ECBM_Arresting = 9,
-	ECBM_Engaging = 10,
-	ECBM_Hostile = 11,
-	ECBM_IdentityKnown = 12,
-	ECBM_Agitated = 13,
-	ECBM_VipRunsToSafeArea = 14,
-	ECBM_VipEscaping = 15,
-	ECBM_BodyFound = 16,
-	ECBM_GunshotHeard = 17,
-	ECBM_CloseCombatHeard = 18,
-	ECBM_CrimeNoticed = 19,
-	ECBM_BulletImpactNoticed = 20,
-	ECBM_SpottedByCamera = 21,
-	ECBM_UnconsciousWitness = 22,
 };
 
 // 0x0000000142A86300 (Size: 0x8)
@@ -10026,38 +13527,6 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	ZVariant m_Value; // 0x0
-};
-
-// 0x0000000143E6DDE8 (Size: 0x38)
-class SPersistentEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint64 m_nResourceId; // 0x0
-	TArray<uint64> m_aEntityIDs; // 0x8
-	TArray<ZString> m_aEntityNames; // 0x20
-};
-
-// 0x0000000143E6DCA8 (Size: 0x48)
-class SPersistentEntitySaveDataList
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SPersistentEntitySaveData> m_aEntityDatas; // 0x0
-	TArray<uint64> m_mDynamicObjectIDGenerationKeys; // 0x18
-	TArray<uint64> m_mDynamicObjectIDGenerationValues; // 0x30
 };
 
 // 0x0000000142A8FCE0 (Size: 0x4)
@@ -10111,42 +13580,39 @@ public:
 	TArray<SFontDefinition> m_aFontDefinitions; // 0x10
 };
 
-// 0x0000000142A98CA0 (Size: 0x4)
-enum class EVictimMovementType
+// 0x0000000142AFBAD0 (Size: 0x4)
+enum class ZAT2Controller_EFoot
 {
-	eVictimMovementNone = -1,
-	eVictimMovementPullVictimFromWindow = 0,
-	eVictimMovementThrowBodyOverRail = 1,
-	eVictimMovementDumpBodyOverLedge = 2,
-	eVictimMovementTakeDown = 3,
-	eVictimMovementRecoveryFinisher = 4,
-	eVictimMovementGrabVictim = 5,
-	eVictimMovementPushVictimThroughWindowAndRail = 6,
-	eVictimMovementContextKill = 7,
-	eVictimMovementKickVictimOverLedge = 8,
-	eVictimMovementCoupDeGrace = 9,
-	eVictimMovementCloseCombat = 10,
-	eVictimMovementLast = 11,
+	FOOT_LEFT = 0,
+	FOOT_RIGHT = 1,
 };
 
-// 0x0000000142AEE4F0 (Size: 0x1)
-enum class AudioCurve
+// 0x0000000142AA3380 (Size: 0x4)
+enum class ECharacterUpperBodyStateType
 {
-	AudioCurve_Log3 = 0,
-	AudioCurve_Sine = 1,
-	AudioCurve_Log1 = 2,
-	AudioCurve_InvSCurve = 3,
-	AudioCurve_Linear = 4,
-	AudioCurve_SCurve = 5,
-	AudioCurve_Exp1 = 6,
-	AudioCurve_SineRecip = 7,
-	AudioCurve_Exp3 = 8,
-	AudioCurve_LastFadeCurve = 9,
-	AudioCurve_Constant = 10,
+	eSM_UB_EmptyHanded = 0,
+	eSM_UB_Unholster = 1,
+	eSM_UB_Hold = 2,
+	eSM_UB_Reload = 3,
+	eSM_UB_Holster = 4,
+	eSM_UB_Conceal = 5,
+	eSM_UB_SwapItemHand = 6,
+	eSM_UB_Aiming = 7,
+	eSM_UB_Pickup = 8,
+	eSM_UB_InteractionSwipe = 9,
+	eSM_UB_Interaction = 10,
+	eSM_UB_Slave = 11,
+	eSM_UB_OpenDoor = 12,
+	eSM_UB_FlavorIdle = 13,
+	eSM_UB_ChangeAmmo = 14,
+	eSM_UB_Assemble = 15,
+	eSM_UB_Fiberwire = 16,
+	eSM_UB_PrimeTwoHanded = 17,
+	eSM_UB_SnapNeck = 18,
 };
 
-// 0x0000000142AA41B0 (Size: 0x1C)
-class SMathLerpSaveData_SColorRGB
+// 0x00000001422D7670 (Size: 0xC)
+class SAccessoryItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10156,57 +13622,14 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	SColorRGB m_A; // 0x0
-	SColorRGB m_B; // 0xC
-	float32 m_fT; // 0x18
+	uint32 m_rEntity; // 0x0
+	uint32 m_nBoneId; // 0x4
+	bool m_bAttached; // 0x8
+	bool m_bVisible; // 0x9
 };
 
-// 0x0000000142AF0268 (Size: 0x4)
-enum class EActivationPriority
-{
-	eActivatable_First = 0,
-	eActivatable_PlayModeAddedPhysics = 1,
-	eActivatable_DestructiblePhysics = 2,
-	eActivatable_PhysicsWind = 3,
-	eActivatable_Physics = 4,
-	eActivatable_PhysicsDone = 5,
-	eActivatable_Keywords = 6,
-	eActivatable_EventChannel = 7,
-	eActivatable_Items = 8,
-	eActivatable_Actor = 9,
-	eActivatable_Hitman = 10,
-	eActivatable_AnimPlayer = 11,
-	eActivatable_Sequence = 12,
-	eActivatable_SpawnPoint = 13,
-	eActivatable_CoverPlane = 14,
-	eActivatable_GuardPoint = 15,
-	eActivatable_Guide = 16,
-	eActivatable_CombatAct = 17,
-	eActivatable_CombatAttractor = 18,
-	eActivatable_SequenceController = 19,
-	eActivatable_KnownEntityAspects = 20,
-	eActivatable_AIReasoningGrid = 21,
-	eActivatable_HM5Zone = 22,
-	eActivatable_Crowds = 23,
-	eActivatable_ChildNetworkAct = 24,
-	eActivatable_Door = 25,
-	eActivatable_UI_Setup = 26,
-	eActivatable_NormalGameplay = 27,
-	eActivatable_NormalGameplay_Condition = 28,
-	eActivatable_NormalGameplay_Values = 29,
-	eActivatable_NormalGameplay_State = 30,
-	eActivatable_HeroSpawns = 31,
-	eActivatable_UI = 32,
-	eActivatable_Locomotion = 33,
-	eActivatable_Timers = 34,
-	eActivatable_AreaTriggers = 35,
-	eActivatable_Default = 36,
-	eActivatable_GameEventListener = 37,
-	eLAST_ACTIVATION_PRIORITY = 38,
-};
-
-// 0x0000000142AA18C0 (Size: 0x8)
-class SCautiousVIPGroupState
+// 0x00000001422D6BA0 (Size: 0x40)
+class ZUIDataProvider
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10216,7 +13639,128 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	ZGameTime m_tMove; // 0x0
+};
+
+// 0x0000000142A9ED40 (Size: 0x88)
+class SSentryZoneSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZGameTime m_tGreetingCooldown; // 0x0
+	ZGameTime m_tLoiteringCooldown; // 0x8
+	int32 m_nWarningCount; // 0x10
+	bool m_bShowingWarning; // 0x14
+	bool bLeftThroughWarningZone; // 0x15
+	bool bEnteredThroughEntranceZone; // 0x16
+	bool bInEntranceZone; // 0x17
+	bool bInWarningZone; // 0x18
+	bool bInGreetingZone; // 0x19
+	bool bInReFriskZone; // 0x1A
+	bool m_bInRequiredDisguise; // 0x1B
+	bool m_bInFriskExemptDisguise; // 0x1C
+	bool m_bHasRequiredItem; // 0x1D
+	bool m_bCanShowActionPrompt; // 0x1E
+	bool m_bTargetInAnyZone; // 0x1F
+	bool m_bSituationActive; // 0x20
+	bool m_bFrisked; // 0x21
+	bool m_bItemChecked; // 0x22
+	bool m_bGreeted; // 0x23
+	bool m_bGreetedInstruction; // 0x24
+	bool m_bGreetedLoitering; // 0x25
+	bool m_bGreetedUnexpected; // 0x26
+	bool m_bInFriskWarningZone; // 0x27
+	TArray<bool> m_aDisguisesAllowedDisabled; // 0x28
+	TArray<bool> m_aDisguisesFriskExemptDisabled; // 0x40
+	TArray<bool> m_aDisguisesDontEscalateOnLineCrossingDisabled; // 0x58
+	TArray<uint32> m_ItemsDroppedInZone; // 0x70
+};
+
+// 0x0000000143CEC190 (Size: 0x4)
+enum class ZDecalControllerEntity_ERotationType
+{
+	eRotationDisable = 0,
+	eRotationAlignRay = 1,
+	eRotationRandom = 2,
+};
+
+// 0x0000000143E6E0F0 (Size: 0x4)
+enum class IScatterContainerEntity_EBrushType
+{
+	BRUSH_SQUARE = 0,
+	BRUSH_CIRCLE = 1,
+};
+
+// 0x0000000142A88498 (Size: 0x4)
+enum class EBaseMovementType
+{
+	eMovementNone = -1,
+	eMovementDead = 0,
+	eMovementNewFullBody = 1,
+	eMovementAgility = 2,
+	eMovementAlign = 3,
+	eMovementCover = 4,
+	eMovementDrainPipe = 5,
+	eMovementLadder = 6,
+	eMovementPullVictimFromWindow = 7,
+	eMovementFiberWireKill = 8,
+	eMovementDumpBody = 9,
+	eMovementThrowBodyOverRail = 10,
+	eMovementDumpBodyOverLedge = 11,
+	eMovementOperateCPDoor = 12,
+	eMovementDisguiseSafeZone = 13,
+	eMovementHideInCloset = 14,
+	eMovementTakeDown = 15,
+	eMovementCloseCombat = 16,
+	eMovementRecoveryFinisher = 17,
+	eMovementContextAction = 18,
+	eMovementSubaction = 19,
+	eMovementGrabVictim = 20,
+	eMovementPushVictimThroughWindowAndRail = 21,
+	eMovementContextKill = 22,
+	eMovementKickVictimOverLedge = 23,
+	eMovementDragBody = 24,
+	eMovementTakeClothes = 25,
+	eMovementCoupDeGrace = 26,
+	eMovementThrow = 27,
+	eMovementPlace = 28,
+	eMovementSurrender = 29,
+	eMovementFrisk = 30,
+	eMovementShowItem = 31,
+	eMovementPeek = 32,
+	eMovementFocusedInteraction = 33,
+	eMovementSilentTakedown = 34,
+	eMovementSnapNeck = 35,
+	eMovementLocomotion = 36,
+	eMovementLast = 37,
+	eMovementPickupItem = 38,
+};
+
+// 0x0000000142AA24C0 (Size: 0x4)
+enum class ZHM5LedgeMount_EFaceDirection
+{
+	eFaceFront = 0,
+	eFaceLeft = 1,
+	eFaceRight = 2,
+};
+
+// 0x0000000142AA9AD0 (Size: 0x4)
+enum class ZMoveToPositionBehaviorEntity_EApproachAlignment
+{
+	AA_STRICT = 0,
+	AA_LOOSE = 1,
+};
+
+// 0x0000000142B019C0 (Size: 0x4)
+enum class EClothBendConstrainType
+{
+	eClothBendConstrainType_Stick = 0,
+	eClothBendConstrainType_Triangle = 1,
 };
 
 // 0x0000000142A9A358 (Size: 0x30)
@@ -10237,25 +13781,29 @@ public:
 	int32 m_occupancyNode; // 0x2C
 };
 
-// 0x0000000142B019C0 (Size: 0x4)
-enum class EClothBendConstrainType
+// 0x0000000142A9C7B0 (Size: 0x4)
+enum class ERoleEvent
 {
-	eClothBendConstrainType_Stick = 0,
-	eClothBendConstrainType_Triangle = 1,
+	eRE_NONE = 0,
+	eRE_CAST = 1,
+	eRE_CLEAR = 2,
+	eRE_ENTER_DRAMA = 3,
+	eRE_REENTER_DRAMA = 4,
+	eRE_LEAVE_DRAMA = 5,
+	eRE_NEW_DRAMA = 6,
+	eRE_PAUSED = 7,
+	eRE_RESUMING = 8,
+	eRE_RUNNING = 9,
 };
 
-// 0x0000000142A9E478 (Size: 0x1)
-class SAIVisionBlockerSaveData
+// 0x0000000142AB2320 (Size: 0x4)
+enum class ZWorldUIElementInstanceBase_EVisibility
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bEnabled; // 0x0
+	EVIS_ALWAYS = 0,
+	EVIS_POSY = 1,
+	EVIS_NEGY = 2,
+	EVIS_POSX = 3,
+	EVIS_NEGX = 4,
 };
 
 // 0x0000000142AA5A90 (Size: 0x4)
@@ -10265,6 +13813,16 @@ enum class EHUDIconFlags
 	HUD_ICON_FLAG_VALUE = 2,
 	HUD_ICON_FLAG_SCALE = 4,
 	HUD_ICON_FLAG_TEXT = 8,
+};
+
+// 0x0000000142AA4B00 (Size: 0x4)
+enum class EDeathAnimationType
+{
+	DAT_None = 0,
+	DAT_SingleShot = 1,
+	DAT_BurstShot = 2,
+	DAT_HeavyShot = 3,
+	DAT_Unknown = 4,
 };
 
 // 0x0000000142A9A188 (Size: 0x48)
@@ -10316,14 +13874,25 @@ public:
 	TArray<SMathLerpSaveData_SVector2> m_aData; // 0x18
 };
 
-// 0x0000000142AA4B00 (Size: 0x4)
-enum class EDeathAnimationType
+// 0x0000000142A95ED0 (Size: 0x4)
+enum class ZHM5Animator_EBoneAnimator
 {
-	DAT_None = 0,
-	DAT_SingleShot = 1,
-	DAT_BurstShot = 2,
-	DAT_HeavyShot = 3,
-	DAT_Unknown = 4,
+	BA_ANIMATION = 0,
+	BA_RAGDOLL = 1,
+	BA_BLENDING = 2,
+	BA_POWEREDRAGDOLL = 3,
+	BA_POSE = 4,
+};
+
+// 0x0000000142A9A958 (Size: 0x4)
+enum class ZCautiousInvestigateGroup_EAssistantState
+{
+	AS_Waiting = 0,
+	AS_CalculateFields = 1,
+	AS_RequestNode = 2,
+	AS_Moving = 3,
+	AS_Investigating = 4,
+	AS_Max = 5,
 };
 
 // 0x0000000142AACF10 (Size: 0x8)
@@ -10348,119 +13917,6 @@ enum class ERestitutionCombineMode
 	ERestitutionCombineMode_MAX = 3,
 };
 
-// 0x0000000142AEED58 (Size: 0x4)
-enum class EGait
-{
-	eGait_Normal = 0,
-	eGait_Reposition = 1,
-	eGait_Alert = 2,
-	eGait_Scared = 3,
-	eGait_Prone = 4,
-	eGait_Dead = 5,
-	eGait_Angry = 6,
-	eGait_Applause = 7,
-	eGait_BeatUp_000cm_01_Dual_A = 8,
-	eGait_BeatUp_000cm_01_Dual_B = 9,
-	eGait_BeatUp_000cm_02_Dual_A = 10,
-	eGait_BeatUp_000cm_02_Dual_B = 11,
-	eGait_BeatUp_Wall_Dual_A = 12,
-	eGait_BeatUp_Wall_Dual_B = 13,
-	eGait_Chatting = 14,
-	eGait_Cheer = 15,
-	eGait_Clap = 16,
-	eGait_Climb_Up_Fall = 17,
-	eGait_Concerned = 18,
-	eGait_Couples_A = 19,
-	eGait_Couples_B = 20,
-	eGait_Couples_C = 21,
-	eGait_Dance_Drunk = 22,
-	eGait_Dance_Dual_A = 23,
-	eGait_Dance_Dual_B = 24,
-	eGait_Dance_Party = 25,
-	eGait_Dance_Party_A = 26,
-	eGait_Dance_Party_B = 27,
-	eGait_Dance_Party_C = 28,
-	eGait_Dance_Party_D = 29,
-	eGait_Dance_Party_E = 30,
-	eGait_Dance_Party_F = 31,
-	eGait_Dance_Rave = 32,
-	eGait_Dance_Rave_A = 33,
-	eGait_Dance_Rave_B = 34,
-	eGait_Dance_Rave_C = 35,
-	eGait_Dance_Rave_D = 36,
-	eGait_Dance_Rave_E = 37,
-	eGait_Dance_Rave_F = 38,
-	eGait_Dance_Rave_Zone_Out_A = 39,
-	eGait_Dance_Rave_Zone_Out_B = 40,
-	eGait_Dance_Rave_Zone_Out_C = 41,
-	eGait_Dance_Rave_Zone_Out_D = 42,
-	eGait_Dance_Rave_Zone_Out_E = 43,
-	eGait_Dance_Rave_Zone_Out_F = 44,
-	eGait_Dance_Rave_Zone_Out_G = 45,
-	eGait_Dance_Rave_Zone_Out_H = 46,
-	eGait_Excited = 47,
-	eGait_Fanatic_Fans = 48,
-	eGait_Freeze_A = 49,
-	eGait_Freeze_B = 50,
-	eGait_Freeze_C = 51,
-	eGait_Freeze_Lean_Wall = 52,
-	eGait_Haggle = 53,
-	eGait_Interested = 54,
-	eGait_Jeer = 55,
-	eGait_Lean_Rail = 56,
-	eGait_Lean_Wall = 57,
-	eGait_Lie_WritheInPain = 58,
-	eGait_LookAt_Race_A = 59,
-	eGait_LookAt_Race_B = 60,
-	eGait_LookUp_Excited = 61,
-	eGait_Mingle = 62,
-	eGait_Mingle_120cm = 63,
-	eGait_Mingle_Drunk = 64,
-	eGait_Mingle_Rave_A = 65,
-	eGait_Mingle_Rave_B = 66,
-	eGait_Mingle_Rave_C = 67,
-	eGait_Mingle_Mumbai_A = 68,
-	eGait_Mingle_Mumbai_B = 69,
-	eGait_Mingle_Race = 70,
-	eGait_Mingle_Race_Rail = 71,
-	eGait_Mingle_Wall = 72,
-	eGait_Pacing_Angry = 73,
-	eGait_Party = 74,
-	eGait_Protest = 75,
-	eGait_Push_Gate = 76,
-	eGait_Rally = 77,
-	eGait_Reaction_TearGas = 78,
-	eGait_Shocked = 79,
-	eGait_Shop = 80,
-	eGait_Sit_020cm = 81,
-	eGait_Sit_040cm = 82,
-	eGait_Sit_100cm = 83,
-	eGait_Sit_ChairBasic = 84,
-	eGait_Sit_ChairBasic_LeanForward = 85,
-	eGait_Sit_Chair_Rave_A = 86,
-	eGait_Sit_Chair_Rave_B = 87,
-	eGait_Sit_Chair_Rave_C = 88,
-	eGait_Sit_Ground_Hungover = 89,
-	eGait_Squat_Relaxed = 90,
-	eGait_Squat_Sorting = 91,
-	eGait_Throw_Rice = 92,
-	eGait_Wait_Excited = 93,
-	eGait_Wait_InLine = 94,
-	eGait_WarmHands_100cm = 95,
-	eGait_Wave_Mexican = 96,
-	eGait_Yell_Up = 97,
-	eGait_Custom0 = 98,
-	eGait_Custom1 = 99,
-	eGait_Custom2 = 100,
-	eGait_Custom3 = 101,
-	eGait_Custom4 = 102,
-	eGait_Custom5 = 103,
-	eGait_Custom6 = 104,
-	eGait_Custom7 = 105,
-	eGait_Custom8 = 106,
-	eGait_Custom9 = 107,
-};
-
 // 0x0000000142AA3020 (Size: 0x4)
 enum class ECharacterIdlePriority
 {
@@ -10475,6 +13931,66 @@ enum class ECharacterIdlePriority
 	eCIP_QuiteHigh = 8,
 	eCIP_VeryHigh = 9,
 	eCIP_Urgent = 10,
+};
+
+// 0x0000000143F1E690 (Size: 0x20)
+class STestStruct
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString stringField; // 0x0
+	uint32 intField; // 0x10
+	float32 floatField; // 0x14
+	STestStruct_ETestEnum enumField; // 0x18
+};
+
+// 0x0000000143F1E6C0 (Size: 0x28)
+class STestStruct2
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<STestStruct> arrayField; // 0x0
+	ZVariant variantField; // 0x18
+};
+
+// 0x0000000143E6E7F0 (Size: 0x4)
+enum class ZSequenceEntity_ECommand
+{
+	COMMAND_START = 0,
+	COMMAND_ENABLE_PREVIEW = 1,
+	COMMAND_STOP = 2,
+	COMMAND_DISABLE_PREVIEW = 3,
+	COMMAND_ABORT = 4,
+	COMMAND_PAUSE = 5,
+	COMMAND_UNPAUSE = 6,
+	COMMAND_SETTIME = 7,
+	COMMAND_SKIPTOEND = 8,
+	COMMAND_GAME_PAUSE = 9,
+	COMMAND_GAME_UNPAUSE = 10,
+	COMMAND_PREVIEW_PAUSE = 11,
+	COMMAND_PREVIEW_STOP = 12,
+	COMMAND_PREVIEW_PLAY = 13,
+	COMMAND_PREVIEW_LOOPED = 14,
+	COMMAND_CLEAR = 15,
+};
+
+// 0x0000000143E6CA28 (Size: 0x4)
+enum class ZVRCameraEntity_EEye
+{
+	eLeftEye = 0,
+	eRightEye = 1,
 };
 
 // 0x0000000142AA6D80 (Size: 0x4)
@@ -10527,8 +14043,8 @@ enum class EButtonState
 	BUTTON_STATE_BLINKING = 3,
 };
 
-// 0x0000000142ABDA70 (Size: 0x30)
-class SRandomTimerEntitiesSaveData
+// 0x0000000142AB1D28 (Size: 0x20)
+class SInventoryUISlotSlim
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10538,64 +14054,56 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
+	ZVariant icon; // 0x0
+	ZVariant containedIcon; // 0x10
 };
 
-// 0x0000000142B015C8 (Size: 0x1)
-enum class ECOMUsage
+// 0x0000000142A95EF0 (Size: 0x4)
+enum class ZHM5AgilityEventConsumer_EEvent
 {
-	ECOMUSAGE_AUTOCOMPUTE = 0,
-	ECOMUSAGE_PIVOT = 1,
+	EAE_LEFTHAND = 0,
+	EAE_RIGHTHAND = 1,
+	EAE_LEFTLEG = 2,
+	EAE_RIGHTLEG = 3,
 };
 
-// 0x0000000142A88498 (Size: 0x4)
-enum class EBaseMovementType
+// 0x0000000142AA3BD0 (Size: 0x4)
+enum class ZHM5Item_EKeywordEvaluationType
 {
-	eMovementNone = -1,
-	eMovementDead = 0,
-	eMovementNewFullBody = 1,
-	eMovementAgility = 2,
-	eMovementAlign = 3,
-	eMovementCover = 4,
-	eMovementDrainPipe = 5,
-	eMovementLadder = 6,
-	eMovementPullVictimFromWindow = 7,
-	eMovementFiberWireKill = 8,
-	eMovementDumpBody = 9,
-	eMovementThrowBodyOverRail = 10,
-	eMovementDumpBodyOverLedge = 11,
-	eMovementOperateCPDoor = 12,
-	eMovementDisguiseSafeZone = 13,
-	eMovementHideInCloset = 14,
-	eMovementTakeDown = 15,
-	eMovementCloseCombat = 16,
-	eMovementRecoveryFinisher = 17,
-	eMovementContextAction = 18,
-	eMovementSubaction = 19,
-	eMovementGrabVictim = 20,
-	eMovementPushVictimThroughWindowAndRail = 21,
-	eMovementContextKill = 22,
-	eMovementKickVictimOverLedge = 23,
-	eMovementDragBody = 24,
-	eMovementTakeClothes = 25,
-	eMovementCoupDeGrace = 26,
-	eMovementThrow = 27,
-	eMovementPlace = 28,
-	eMovementSurrender = 29,
-	eMovementFrisk = 30,
-	eMovementShowItem = 31,
-	eMovementPeek = 32,
-	eMovementFocusedInteraction = 33,
-	eMovementSilentTakedown = 34,
-	eMovementSnapNeck = 35,
-	eMovementLocomotion = 36,
-	eMovementLast = 37,
-	eMovementPickupItem = 38,
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
 };
 
-// 0x0000000143E70DE0 (Size: 0x30)
-class SCrowdFlowChannel
+// 0x0000000142AA6110 (Size: 0x4)
+enum class InputControlNamesp_eHM5InputActionID
+{
+	eIDButtonFaceDown = 0,
+	eIDButtonFaceLeft = 1,
+	eIDButtonFaceRight = 2,
+	eIDButtonFaceUp = 3,
+	eIDBumperLeft = 4,
+	eIDBumperRight = 5,
+	eIDDpadDown = 6,
+	eIDDpadLeft = 7,
+	eIDDpadRight = 8,
+	eIDDpadUp = 9,
+	eIDThumbLeft = 10,
+	eIDThumbRight = 11,
+	eIDButtonStart = 12,
+	eIDButtonSelect = 13,
+	eIDTriggerLeft = 14,
+	eIDTriggerRight = 15,
+	eIDStickLeftHorizontal = 16,
+	eIDStickLeftVertical = 17,
+	eIDStickRightHorizontal = 18,
+	eIDStickRightVertical = 19,
+	eIDKeyboard = 20,
+	eID_INVALID = 21,
+};
+
+// 0x000000014211A5D8 (Size: 0x8)
+class IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10605,23 +14113,151 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<uint8> m_aFlowVectorIndex; // 0x0
-	TArray<uint16> m_aFlowCost; // 0x18
 };
 
-// 0x0000000142B017A8 (Size: 0x4)
-enum class EConstraintType
+// 0x0000000143E706E0 (Size: 0x4)
+enum class JSONTemplate_ETemplateType
 {
-	ECONSTRAINTTYPE_UNKNOWN = 0,
-	ECONSTRAINTTYPE_BALL_AND_SOCKET = 1,
-	ECONSTRAINTTYPE_HINGE = 2,
-	ECONSTRAINTTYPE_FIXED = 3,
-	ECONSTRAINTTYPE_DISTANCE = 4,
-	ECONSTRAINTTYPE_D6 = 5,
+	ETT_BASE = 0,
+	ETT_DATA_VALUE = 1,
+	ETT_DATA_VALUE_CUSTOM = 2,
+	ETT_OBJECT = 3,
+	ETT_ARRAY = 4,
+	ETT_ASYNCROOT = 5,
+	ETT_IF = 6,
+	ETT_SWITCH = 7,
+	ETT_EACH = 8,
+	ETT_LOC = 9,
+	ETT_PARENTHESIS = 10,
+	ETT_FORMATSTRING = 11,
+	ETT_FORMATINT = 12,
+	ETT_INTCLAMP = 13,
+	ETT_FORMATPUBLICID = 14,
+	ETT_ISNULL = 15,
+	ETT_DATA_CONTEXT = 16,
+	ETT_ARRAY_ELEMENT = 17,
+	ETT_ARRAY_FILTER = 18,
+	ETT_ARRAY_CONVERT = 19,
+	ETT_ARRAY_SIZE = 20,
+	ETT_ARRAY_SORT = 21,
+	ETT_ARRAY_GROUPBY = 22,
+	ETT_EXPAND = 23,
+	ETT_ISNULLOREMPTY = 24,
+	ETT_NOT = 25,
+	ETT_COMPARE = 26,
+	ETT_PARENT = 27,
+	ETT_AND = 28,
+	ETT_OR = 29,
+	ETT_MERGEOBJECTS = 30,
+	ETT_MERGEARRAYS = 31,
+	ETT_LOCALE_TEXT = 32,
+	ETT_LOCALE_AUDIO = 33,
+	ETT_CURRENT_LOCALE_TEXT = 34,
+	ETT_GET_APPLICATION_OPTION = 35,
+	ETT_PLATFORM = 36,
+	ETT_REGION = 37,
+	ETT_STOREREGION = 38,
+	ETT_STORE = 39,
+	ETT_IS_DISC_RELEASE = 40,
+	ETT_ISDEBUG = 41,
+	ETT_IS_CONTROLLER_AVAILABLE = 42,
+	ETT_IS_KEYBOARD_AVAILABLE = 43,
+	ETT_IS_VR_DEVICE_AVAILABLE = 44,
+	ETT_IS_VR_DEVICE_ACTIVE = 45,
+	ETT_IS_VR_ACTIVE = 46,
+	ETT_VR_MODE = 47,
+	ETT_TEMPLATES_OVERRIDE_BEGIN = 48,
+	ETT_ONLINE_RESOURCE = 48,
+	ETT_INCLUDE = 49,
+	ETT_UI_OPTION_VALUE = 50,
+	ETT_UI_OPTION_DEFAULT_VALUE = 51,
+	ETT_UI_OPTION_DEBUG_VALUE = 52,
+	ETT_UI_OPTION_AVAILABLE_DISPLAY_RESOLUTIONS = 53,
+	ETT_UI_OPTION_AVAILABLE_DISPLAY_FULLSCREEN = 54,
+	ETT_UI_OPTION_AVAILABLE_TEXTURE_QUALITY = 55,
+	ETT_UI_OPTION_AVAILABLE_SHADOW_QUALITY = 56,
+	ETT_UI_OPTION_AVAILABLE_SUPERSAMPLING = 57,
+	ETT_UI_OPTION_AVAILABLE_DOUBLEFRAMERATE = 58,
+	ETT_CURRENT_CONTRACT_CONTEXT = 59,
+	ETT_CURRENT_CONTRACT_OBJECTIVES = 60,
+	ETT_CURRENT_CONTRACT_SESSIONID = 61,
+	ETT_CURRENT_CONTRACT_CHARACTER_INFO = 62,
+	ETT_CURRENT_CONTRACT_TRACKED_OPPORTUNITY = 63,
+	ETT_CURRENT_DIFFICULTY = 64,
+	ETT_CURRENT_ENGINE_MODE = 65,
+	ETT_CURRENT_GAME_MODE = 66,
+	ETT_CAN_SAVE = 67,
+	ETT_IS_SAVELIMIT_EXCEEDED = 68,
+	ETT_IS_ALLOWED_TO_RESTART = 69,
+	ETT_ACTIVE_CHALLENGES = 70,
+	ETT_USER = 71,
+	ETT_ISUSER = 72,
+	ETT_DLCCOUNT = 73,
+	ETT_PROFILEID = 74,
+	ETT_HDRGAMMAVALUERANGEMIN = 75,
+	ETT_HDRGAMMAVALUERANGEMAX = 76,
+	ETT_HDRGAMMAVALUESTEP = 77,
+	ETT_ISHDRAVAILABLE = 78,
+	ETT_ISHDRRENDERING = 79,
+	ETT_ISVRSAVAILABLE = 80,
+	ETT_ITEM = 81,
+	ETT_REPOSITORY = 82,
+	ETT_ISONLINE = 83,
+	ETT_ISINGAME = 84,
+	ETT_ISINEDITOR = 85,
+	ETT_ISUGCRESTRICTED = 86,
+	ETT_ISPACKAGEOWNED = 87,
+	ETT_ISININVENTORY = 88,
+	ETT_ISPLATFORMENTITLEMENTOWNED = 89,
+	ETT_MULTIPLAYERLOBBYSTATE = 90,
+	ETT_MULTIPLAYERLOCALID = 91,
+	ETT_MULTIPLAYERJOINEDIDS = 92,
+	ETT_MULTIPLAYERISPLAYERREADY = 93,
+	ETT_MULTIPLAYERINFO = 94,
+	ETT_MULTIPLAYERMATCHMAKINGTIME = 95,
+	ETT_MULTIPLAYERNATTYPE = 96,
+	ETT_LOADOUT = 97,
+	ETT_LOADOUT_SLOT = 98,
+	ETT_LOADOUT_AGENCY_PICKUP = 99,
+	ETT_LOADOUT_SELECTED_ENTRANCE = 100,
+	ETT_PERSISTENTMENUDATA = 101,
+	ETT_GAMEPERSISTENTDATA = 102,
+	ETT_ENDGAME_PAGETRANSITION_OVERRIDE = 103,
+	ETT_VERSUSINFO = 104,
+	ETT_SNIPERINFO = 105,
+	ETT_GAMEMODE = 106,
+	ETT_CACHEDUSERCENTRICCONTRACT = 107,
+	ETT_SAVEGAMES = 108,
+	ETT_AVAILABILITY_OF_RESOURCES = 109,
+	ETT_AVAILABILITY_OF_CONTRACT = 110,
+	ETT_AS3DATE = 111,
+	ETT_IOIACCOUNT_STATUS = 112,
+	ETT_ISCONTRACT_IN_PLAYLIST = 113,
+	ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION = 114,
+	ETT_VIDEOMEMORYINFO_IS_SUPPORTED = 115,
+	ETT_VIDEOMEMORYINFO = 116,
+	ETT_DISPLAY_SIZE = 117,
+	ETT_IS_VIDEO_VALID = 118,
+	ETT_INTEL_IDS = 119,
+	ETT_INTEL_DETAILS = 120,
+	ETT_MENU_CONFIGURATION = 121,
+	ETT_HERO_INVENTORY = 122,
+	ETT_MAP_TRACKERINFO = 123,
+	ETT_WAS_EXITGATE_TRIGGERED = 124,
+	ETT_ARE_OPPORTUNITIES_ENABLED = 125,
+	ETT_CHARACTERS = 126,
+	ETT_CHARACTERINFO = 127,
+	ETT_DATABINDING = 128,
+	ETT_DATABINDING_ROOT = 129,
+	ETT_ALLOWED_UNLOCKABLES = 130,
+	ETT_HAS_FRAMERATE_OPTION = 131,
+	ETT_NVIDIAHIGHLIGHTSAVAILABLE = 132,
+	ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 133,
+	ETT_DEBUG_ALLHITMANSUITS = 134,
 };
 
-// 0x0000000142A9AEA0 (Size: 0x8)
-class SMovementDisguiseSafeZoneSaveData
+// 0x0000000142AC0090 (Size: 0x18)
+class SIntelDataArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10631,46 +14267,16 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rSafeZone; // 0x0
-	uint32 m_nSafeZoneAnimNode; // 0x4
+	TArray<SIntelData> dummy; // 0x0
 };
 
-// 0x0000000142ABED60 (Size: 0x4)
-enum class EItemModifierType
+// 0x0000000143CEC228 (Size: 0x4)
+enum class ZMirrorEntity_EMirrorQuality
 {
-	MODIFIER_NONE = 0,
-	MODIFIER_THROW = 1,
-	MODIFIER_CARRY = 2,
-	MODIFIER_AMMO = 3,
-	MODIFIER_PRECISION = 4,
-	MODIFIER_DAMAGE = 5,
-	MODIFIER_IMPACT = 6,
-	MODIFIER_EXPLOSIVE = 7,
-	MODIFIER_RANGE = 8,
-	MODIFIER_ZOOM = 9,
-	MODIFIER_SUPPRESSOR = 10,
-	MODIFIER_RECOIL = 11,
-	MODIFIER_RATEOFFIRE = 12,
-	MODIFIER_SCOPEBOBBING = 13,
-	MODIFIER_MUZZLEVELOCITY = 14,
-	MODIFIER_KNOCKDOWN = 15,
-	MODIFIER_FULLAUTO = 16,
-	MODIFIER_PRECISIONSHOT = 17,
-	MODIFIER_SCOPETIMESLOWDOWN = 18,
-	MODIFIER_STYLE = 19,
-	MODIFIER_RELOAD = 20,
-	MODIFIER_THRESHOLD = 21,
-	MODIFIER_PERK = 22,
-	MODIFIER_MAGAZINE = 23,
-	MODIFIER_BURST = 24,
-};
-
-// 0x0000000142ABED90 (Size: 0x4)
-enum class eItemHands
-{
-	IH_NONE = 0,
-	IH_ONEHANDED = 1,
-	IH_TWOHANDED = 2,
+	QUALITY_LOW = 0,
+	QUALITY_MEDIUM = 1,
+	QUALITY_HIGH = 2,
+	QUALITY_LEAVE = 3,
 };
 
 // 0x00000001422D6F78 (Size: 0x4)
@@ -10698,8 +14304,92 @@ enum class EAILegalType
 	AILT_Count = 5,
 };
 
-// 0x00000001422D7670 (Size: 0xC)
-class SAccessoryItemSaveData
+// 0x0000000142AA9738 (Size: 0x4)
+enum class ZActorPickerFilterGroup_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+};
+
+// 0x0000000142AA42B0 (Size: 0x4)
+enum class ZHM5HitmanHealthModifier_EHealthValue
+{
+	eHealth0 = 0,
+	eHealth10 = 10,
+	eHealth20 = 20,
+	eHealth30 = 30,
+	eHealth40 = 40,
+	eHealth50 = 50,
+	eHealth60 = 60,
+	eHealth70 = 70,
+	eHealth80 = 80,
+	eHealth90 = 90,
+	eHealth100 = 100,
+};
+
+// 0x0000000142A8FEE8 (Size: 0x4)
+enum class EConversationID
+{
+	eCI_GuardCivilian_Distraction_Investigation = 0,
+	eCI_HearBulletImpact_Distraction_Investigation = 1,
+	eCI_HearItemImpact_Distraction_Investigation = 2,
+	eCI_HearCarAlarm_Distraction_Investigation = 3,
+	eCI_SeeItemToss_Distraction_Investigation = 4,
+	eCI_HearRadio_Distraction_Investigation = 5,
+	eCI_HearPain_Distraction_Investigation = 6,
+	eCI_HearAccident_Distraction_Investigation = 7,
+	eCI_HearCuriousItemSound_Distraction_Investigation = 8,
+	eCI_HearCuriousSound_Distraction_Investigation = 9,
+	eCI_SeeSuspiciousPerceptible_Distraction_Investigation = 10,
+	eCI_SeeInterestingItem_Distraction_Investigation = 11,
+	eCI_HearFootSteps_Distraction_Investigation = 12,
+	eCI_HearAngryDialog_Distraction_Investigation = 13,
+	eCI_HearHelpDialog_Distraction_Investigation = 14,
+	eCI_HearWarning_Distraction_Investigation = 15,
+	eCI_SightInvestigation_Distraction_Investigation = 16,
+	eCI_HearBulletImpact_Distraction_StandDown = 17,
+	eCI_HearItemImpact_Distraction_StandDown = 18,
+	eCI_HearCarAlarm_Distraction_StandDown = 19,
+	eCI_SeeItemToss_Distraction_StandDown = 20,
+	eCI_HearRadio_Distraction_StandDown = 21,
+	eCI_HearPain_Distraction_StandDown = 22,
+	eCI_HearAccident_Distraction_StandDown = 23,
+	eCI_HearCuriousItemSound_Distraction_StandDown = 24,
+	eCI_HearCuriousSound_Distraction_StandDown = 25,
+	eCI_SeeSuspiciousPerceptible_Distraction_StandDown = 26,
+	eCI_SeeInterestingItem_Distraction_StandDown = 27,
+	eCI_HearFootSteps_Distraction_StandDown = 28,
+	eCI_HearAngryDialog_Distraction_StandDown = 29,
+	eCI_HearHelpDialog_Distraction_StandDown = 30,
+	eCI_HearWarning_Distraction_StandDown = 31,
+	eCI_SightInvestigation_Distraction_StandDown = 32,
+	eCI_Suitcase_Distraction_DeliverToGuard = 33,
+	eCI_Suitcase_Distraction_RadioRequestHelp = 34,
+	eCI_Count = 35,
+};
+
+// 0x0000000142AF16B8 (Size: 0x4)
+enum class ZDebugTextEntity_EHorizontalAlignment
+{
+	HA_LEFT = 1,
+	HA_CENTER = 0,
+	HA_RIGHT = 2,
+};
+
+// 0x0000000142AA4440 (Size: 0x4)
+enum class EClipSpawnAxis
+{
+	eCSA_XPos = 0,
+	eCSA_XNeg = 1,
+	eCSA_YPos = 2,
+	eCSA_YNeg = 3,
+	eCSA_ZPos = 4,
+	eCSA_ZNeg = 5,
+};
+
+// 0x0000000142A87000 (Size: 0x38)
+class SAnimatedActorReactOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10709,38 +14399,21 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rEntity; // 0x0
-	uint32 m_nBoneId; // 0x4
-	bool m_bAttached; // 0x8
-	bool m_bVisible; // 0x9
+	SVector3 m_vFaceTarget; // 0x0
+	SVector3 m_vLookAtTarget; // 0xC
+	uint32 m_rChildNetworkEntity; // 0x18
+	EActorEmotionState m_targetEmotionState; // 0x1C
+	bool m_bDeadbody; // 0x20
+	bool m_bExplosion; // 0x21
+	bool m_bTrespassing; // 0x22
+	bool m_bDropCarriedItems; // 0x23
+	bool m_bFaceTargetSet; // 0x24
+	bool m_bLookAtTargetSet; // 0x25
+	ZString m_sAct; // 0x28
 };
 
-// 0x0000000142AA3380 (Size: 0x4)
-enum class ECharacterUpperBodyStateType
-{
-	eSM_UB_EmptyHanded = 0,
-	eSM_UB_Unholster = 1,
-	eSM_UB_Hold = 2,
-	eSM_UB_Reload = 3,
-	eSM_UB_Holster = 4,
-	eSM_UB_Conceal = 5,
-	eSM_UB_SwapItemHand = 6,
-	eSM_UB_Aiming = 7,
-	eSM_UB_Pickup = 8,
-	eSM_UB_InteractionSwipe = 9,
-	eSM_UB_Interaction = 10,
-	eSM_UB_Slave = 11,
-	eSM_UB_OpenDoor = 12,
-	eSM_UB_FlavorIdle = 13,
-	eSM_UB_ChangeAmmo = 14,
-	eSM_UB_Assemble = 15,
-	eSM_UB_Fiberwire = 16,
-	eSM_UB_PrimeTwoHanded = 17,
-	eSM_UB_SnapNeck = 18,
-};
-
-// 0x0000000142AB46A8 (Size: 0x8)
-class SKeywordSaveData
+// 0x0000000143E6D7E0 (Size: 0xC0)
+class SSaveGameHeader
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10750,453 +14423,49 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_HolderSaveableId; // 0x0
-	int32 m_KeywordID; // 0x4
+	uint32 nFourCC; // 0x0
+	uint32 nVersion; // 0x4
+	uint32 nCrc32; // 0x8
+	uint32 nSize; // 0xC
+	int64 nTimeStamp; // 0x10
+	SSaveGameMetaData MetaData; // 0x18
 };
 
-// 0x00000001422D6E68 (Size: 0x4)
-enum class EActorSoundDefs
+// 0x0000000142AA5910 (Size: 0x4)
+enum class EMeBarState
 {
-	_NoSound = 0,
-	Dth_BrkNck = 1,
-	Dth_Fll = 2,
-	Dth_GnSht = 3,
-	Dth_HdSht = 4,
-	Dth_Mpct = 5,
-	Dth_SltThrt = 6,
-	Dth_Strngl = 7,
-	Dth_Xplo = 8,
-	Dth_PrpF = 9,
-	Dth_Electro = 10,
-	Dth_Burn = 11,
-	Dth_Crush = 12,
-	Dth_Scrm = 13,
-	Dth_Hrt = 14,
-	Dth_SrpsGrab = 15,
-	Dth_HumShldStrain = 16,
-	Dth_Snore = 17,
-	Dth_Groan = 18,
-	Dth_Dump = 19,
-	Dth_PrpTssFrntAck = 20,
-	Dth_Headlock = 21,
-	Dth_Blinded = 22,
-	Dth_BeeSting = 23,
-	Dth_Grab = 24,
-	Gen_Grt47 = 25,
-	Gen_GrtGrd47WGun = 26,
-	Gen_GrtTrgt = 27,
-	Gen_GrtTrgtRsp = 28,
-	Gen_NPC2NPCGrt = 29,
-	Gen_NPC2NPCRsp = 30,
-	Gen_GtHlp = 31,
-	Gen_GtHlpLd = 32,
-	Gen_GtHlp47Knwn = 33,
-	Gen_Mssng = 34,
-	Gen_HMHere = 35,
-	Gen_HMThere = 36,
-	Gen_SrpsLow = 37,
-	Gen_SrpsLowShort = 38,
-	Gen_Srps = 39,
-	Gen_SrpsLd = 40,
-	Gen_StndRsp = 41,
-	Gen_Stop = 42,
-	Gen_StopLd = 43,
-	Gen_Reveal = 44,
-	Gen_ThumbsUp = 45,
-	Gen_BrknAck = 46,
-	Gen_Ack = 47,
-	Gen_AckLd = 48,
-	Gen_AckNtnse = 49,
-	Gen_BumpAck = 50,
-	Gen_Curse = 51,
-	Gen_CurseLow = 52,
-	Gen_DrpGun = 53,
-	Gen_DrpCase = 54,
-	Gen_CoinCurse = 55,
-	Gen_TransportGreet = 56,
-	Gen_Thanks = 57,
-	Gen_ReturnItem2Guard = 58,
-	Gen_NoWay1 = 59,
-	Gen_NoWay2Kidding = 60,
-	Gen_NoWay3Joke = 61,
-	Gen_NoWay44Real = 62,
-	Gen_NoWay5DntBeliv = 63,
-	Gen_NoWay6Serious = 64,
-	Gen_NoWay7Horrible = 65,
-	Gen_Way1 = 66,
-	Gen_Way2Kidding = 67,
-	Gen_Way3Joke = 68,
-	Gen_Way44Real = 69,
-	Gen_Way5DntBeliv = 70,
-	Gen_Way6Serious = 71,
-	Gen_Way7Horrible = 72,
-	Gen_NkdRunAck = 73,
-	Gen_Grasp = 74,
-	Gen_Amused = 75,
-	Gen_Annoyed = 76,
-	Gen_BdygrdArrive = 77,
-	Gen_BdygrdMovOut = 78,
-	Gen_GiveUp = 79,
-	Gen_Off = 80,
-	Gen_On = 81,
-	Gen_PanicLow = 82,
-	Gen_Sick = 83,
-	Gen_SmellAck = 84,
-	Gen_SmrtPhnAct = 85,
-	Gen_PhoneAct = 86,
-	Gen_OutbreakInfect = 87,
-	Gen_OutbreakSick = 88,
-	Gen_OutbreakWhine = 89,
-	Gtag = 90,
-	ClsCmbt_Ack = 91,
-	ClsCmbt_Tnt = 92,
-	Cmbt_BackupCll = 93,
-	Cmbt_BadDsg = 94,
-	Cmbt_Beg = 95,
-	Cmbt_ClsAck = 96,
-	Cmbt_Fire = 97,
-	Cmbt_FireLdr = 98,
-	Cmbt_GtHit = 99,
-	Cmbt_HitHM = 100,
-	Cmbt_HMClsCmbtAck = 101,
-	Cmbt_HMCvr = 102,
-	Cmbt_HMFire = 103,
-	Cmbt_HMFlnk = 104,
-	Cmbt_HMHeadPopr = 105,
-	Cmbt_HMKll = 106,
-	Cmbt_HMKllCiv = 107,
-	Cmbt_HMKllName = 108,
-	Cmbt_HMKllPrpTss = 109,
-	Cmbt_HMMssTnt = 110,
-	Cmbt_HMShrpShtr = 111,
-	Cmbt_HMSpttd = 112,
-	Cmbt_HMVnshd = 113,
-	Cmbt_Hold = 114,
-	Cmbt_HoldLdr = 115,
-	Cmbt_HumShldRls1 = 116,
-	Cmbt_HumShldRls2 = 117,
-	Cmbt_HumShldRls3 = 118,
-	Cmbt_HumShldRlsFem1 = 119,
-	Cmbt_HumShldRlsFem2 = 120,
-	Cmbt_HumShldRlsFem3 = 121,
-	Cmbt_HumShldVctm = 122,
-	Cmbt_HumShldLdr = 123,
-	Cmbt_LngLst = 124,
-	Cmbt_LngLstRsp = 125,
-	Cmbt_LstMnStn = 126,
-	Cmbt_LstSght = 127,
-	Cmbt_LstSghtRsp = 128,
-	Cmbt_NdrAttck = 129,
-	Cmbt_Relod = 130,
-	Cmbt_Scrm = 131,
-	Cmbt_ThrowFlash = 132,
-	Cmbt_ThrowFlashMiss = 133,
-	Cmbt_ThrowFlashMiss2 = 134,
-	Cmbt_ThrowFlashWin = 135,
-	Cmbt_ThrowFlashWin2 = 136,
-	Cmbt_TkDwnLdr = 137,
-	Cmbt_VntAck = 138,
-	Cmbt_Whmp = 139,
-	Cmbt_StalemateHold = 140,
-	Cmbt_StalemateTnt = 141,
-	Cmbt_TriggerTheAlarm = 142,
-	Cmbt_47Mpty = 143,
-	Cmbt_47SuperSize = 144,
-	Evac_PrtTrgtSolo = 145,
-	Evac_PrtTrgtAck = 146,
-	Evac_PrtTrgtAckLdr = 147,
-	Evac_PrtTrgtEscrt = 148,
-	Evac_PrtTrgtStop = 149,
-	Evac_PrtTrgtStnd = 150,
-	Evac_PrtTrgtStndRsp = 151,
-	Evac_Cornered = 152,
-	Evac_MovOut = 153,
-	Evac_PathChange = 154,
-	Evac_PeelOff = 155,
-	Evac_LastPeelOff = 156,
-	Evac_ShltrArrv = 157,
-	Evac_ShltrBad = 158,
-	Evac_ShltrLdr = 159,
-	Evac_ShltrRsp = 160,
-	Evac_TrgtHitRsp = 161,
-	AvoidXplo_Ack = 162,
-	AvoidXplo_Stnd = 163,
-	Ar_47BadAction = 164,
-	Ar_47X = 165,
-	Ar_BadDsg = 166,
-	Ar_BlmeKll = 167,
-	Ar_BlameKnckDwn = 168,
-	Ar_BlameKnckDwnPT = 169,
-	Ar_BlameKllPT = 170,
-	Ar_47BadActionPT = 171,
-	Ar_DrgBody = 172,
-	Ar_FkeSrrdrTnt = 173,
-	Ar_HMDoor = 174,
-	Ar_Strangle = 175,
-	Ar_Trspss = 176,
-	Ar_WeapWrn1 = 177,
-	Ar_WeapWrn2 = 178,
-	Ar_Wrn1 = 179,
-	Ar_Wrn2 = 180,
-	Ar_Wrn3 = 181,
-	Ar_VictimAck = 182,
-	Ar_Thief = 183,
-	Ar_Rsp = 184,
-	Sniper_Ack = 185,
-	InCa_BackupCll = 186,
-	InCa_ChckCvr = 187,
-	InCa_CivRptFail = 188,
-	InCa_CivUpset = 189,
-	InCa_ClstTnt = 190,
-	InCa_HMTnt = 191,
-	InCa_Idle = 192,
-	InCa_NitiateHMKnwn = 193,
-	InCa_SrchLdr = 194,
-	InCa_Stnd = 195,
-	InCa_StndAgtd = 196,
-	InCa_StndAgtdLdr = 197,
-	InCa_StndAgtdHMKnwn = 198,
-	InCa_StndAgtdHMKnwnLdr = 199,
-	InCa_StndHMKnwn = 200,
-	InCa_StndHMKnwnLdr = 201,
-	InCa_StndLdr = 202,
-	InCa_StndRsp = 203,
-	InCa_StndLckDwnFlsAlrm = 204,
-	InCa_VntTnt = 205,
-	InCa_Brk2Civ = 206,
-	InCa_Brk2Grd = 207,
-	InCa_Brk2Rdo = 208,
-	InCa_BrkAsk = 209,
-	InCa_GhostAsk = 210,
-	InCa_TriggerTheAlarm = 211,
-	InCa_Xpln47Thief = 212,
-	InCa_DstrssInv = 213,
-	InCa_DstrssLdr = 214,
-	InCa_DstrssInvLdr = 215,
-	InCa_WakeAsk = 216,
-	InCa_47Rcall = 217,
-	InCa_WakerStnd = 218,
-	InCa_ClsCmbtAck = 219,
-	InCa_SeeDthInv = 220,
-	InCa_SeeDthInvLdr = 221,
-	InCa_SeeDthLdr = 222,
-	InCa_XploInv = 223,
-	InCa_XploInvLdr = 224,
-	InCa_XploLdr = 225,
-	InCa_AlarmAck = 226,
-	InCa_GnShtInv = 227,
-	InCa_GnShtInvLdr = 228,
-	InCa_GnShtLdr = 229,
-	InCa_RecurSvrInv = 230,
-	InCa_RecurSvrInvLdr = 231,
-	InCa_RecurSvrInvRsp = 232,
-	InCa_RecurSvrLdr = 233,
-	InCa_RecurSvrRsp = 234,
-	InCa_LckDwnGtOutLdr = 235,
-	InCa_LckDwnGtOutRsp = 236,
-	InCa_LckDwnWrn1 = 237,
-	InCa_LckDwnWrn2 = 238,
-	InCa_LckDwnWrn3 = 239,
-	InCa_LckDwnCivCmnt = 240,
-	InCa_FrskAck = 241,
-	InCa_Frsk = 242,
-	InCa_FrskCln = 243,
-	InCa_FrskWpn = 244,
-	InCa_Xpln47Wpn = 245,
-	InCa_XplnAccdnt = 246,
-	InCa_XplnDedBdy = 247,
-	InCa_XplnDedBdyMassive = 248,
-	InCa_XplnDrgBdy = 249,
-	InCa_XplnDstrss = 250,
-	InCa_XplnExplo = 251,
-	InCa_XplnGhost = 252,
-	InCa_XplnGnsht = 253,
-	InCa_XplnNkdBdy = 254,
-	InCa_XplnPcfdBdy = 255,
-	InCa_XplnSeeDth = 256,
-	InCa_XplnTrspss = 257,
-	InCa_XplnX = 258,
-	InCa_XplnWpn = 259,
-	InCa_XplnDsg = 260,
-	InCa_XplnImposter = 261,
-	InCa_XplnRecurSvr = 262,
-	InCa_XplnRsp = 263,
-	InCa_XplnAckRdo = 264,
-	InCa_XplnKnckDwn = 265,
-	InCa_XplnKnckDwnVctm = 266,
-	InCa_XplnKnckDwnGhost = 267,
-	InCa_XplnSeeStrngl = 268,
-	InCa_XplnHuntTargetWin = 269,
-	InCa_XplnHuntTargetFail = 270,
-	InCa_VIPDownAck = 271,
-	InCa_VIPKillAck = 272,
-	Accdnt_Inv = 273,
-	InDedBdy_BloodPllAck = 274,
-	InDedBdy_Ack = 275,
-	InDedBdy_NkdAck = 276,
-	InDedBdy_Inv = 277,
-	InDedBdy_BllPllRpt = 278,
-	InDedBdy_Massive = 279,
-	InDedBdy_PcfdInv = 280,
-	InDedBdy_CntnAck = 281,
-	InDedBdy_Stnd = 282,
-	InDedBdy_CircleBdy = 283,
-	InDedBdy_CivCmnt = 284,
-	InDedBdy_PrmtrBrchWrn1 = 285,
-	InDedBdy_PrmtrBrchWrn2 = 286,
-	InDedBdy_47AsGrdAck = 287,
-	InDedBdy_BodyGone = 288,
-	InDedBdy_VctmRcvr = 289,
-	InDedBdy_WakerWake = 290,
-	InDedBdy_WakeRsp = 291,
-	InDedBdy_WakeNkdLdr = 292,
-	InDedBdy_WakeNkdRsp = 293,
-	Rcvr_Xpln47 = 294,
-	Rcvr_XplnDsg = 295,
-	Rcvr_XplnKnckDwn = 296,
-	InDsg_FllwWrn1 = 297,
-	InDsg_FllwWrn2 = 298,
-	InDsg_FllwWrn3 = 299,
-	InDsg_Pzzl = 300,
-	InDsg_Stnd = 301,
-	InDsg_StndDistance = 302,
-	InDsg_StndHidden = 303,
-	InDsg_HdNPlnSght = 304,
-	InDsg_FllwWrn1Ack = 305,
-	InDsg_FllwWrn1BadAction = 306,
-	InDsg_FllwWrn1Wpn = 307,
-	InDsg_FllwWrn1BadSound = 308,
-	InDsg_FllwWrnJoinr = 309,
-	InDsg_FllwWrn1ShadyItem = 310,
-	Trspss_Stnd = 311,
-	Trspss_Wrn1 = 312,
-	Trspss_Wrn2 = 313,
-	Trspss_Wrn3 = 314,
-	Trspss_Rsp = 315,
-	Trspss_SrchAckLegal47 = 316,
-	Trspss_EscortAck = 317,
-	Trspss_EscortRequest = 318,
-	Trspss_EscortRequestRepeat = 319,
-	Trspss_EscortStayClose = 320,
-	Trspss_EscortOk = 321,
-	Trspss_EscortStnd = 322,
-	Trspss_EscortArrest = 323,
-	Trspss_EscortExit = 324,
-	Trspss_EscortStayRequest = 325,
-	InCu_Brk2Rdo = 326,
-	InCu_CivCmnd = 327,
-	InCu_Stnd = 328,
-	InCu_CivRsp = 329,
-	InCu_BackupRqst = 330,
-	InCu_CrAlrmAck = 331,
-	InCu_CrAlrmLdr = 332,
-	InCu_CrAlrmStndRsp = 333,
-	InCu_FtStpsAck = 334,
-	InCu_FtStpsStnd = 335,
-	InCu_PrpTssHearAck = 336,
-	InCu_PrpTssHearInv = 337,
-	InCu_PrpTssHearLdr = 338,
-	InCu_PrpTssHearStndRsp = 339,
-	InCu_PrpTssSeeAck = 340,
-	InCu_PrpTssSeeInv = 341,
-	InCu_PrpTssSeeLdr = 342,
-	InCu_PrpTssSeeStndRsp = 343,
-	InCu_RdoAck = 344,
-	InCu_RdoInv = 345,
-	InCu_RdoLdr = 346,
-	InCu_RdoStndRsp = 347,
-	InCu_WpnInv = 348,
-	InCu_RecurAck = 349,
-	InCu_RecurInv = 350,
-	InCu_RecurLdr = 351,
-	InCu_RecurRsp = 352,
-	InCu_ItemAckLdr = 353,
-	InCu_CrAlrmStndStndRsp = 354,
-	InCu_EscrtTrgtRedLight = 355,
-	InCu_EscrtTrgtGreenLight = 356,
-	InSt_HMAglty = 357,
-	InSt_HMBz = 358,
-	InSt_HMBzStnd = 359,
-	InSt_HMEntXit = 360,
-	InSt_HMInCvr = 361,
-	InSt_HMSnkng = 362,
-	InSt_PrpTssSee = 363,
-	InSt_Stnd = 364,
-	InSt_Wrn = 365,
-	InSt_HM2Cls = 366,
-	InSt_SickAck = 367,
-	InSt_AdiosRequest = 368,
-	InSt_PQ = 369,
-	FseBx_Fixed = 370,
-	FseBx_Fixing = 371,
-	FseBx_GoFix = 372,
-	FseBx_SabAck = 373,
-	Sentry_DenyEntry = 374,
-	Sentry_Frsk = 375,
-	Sentry_FrskRequest = 376,
-	Sentry_ItemRequest = 377,
-	Sentry_Accepted = 378,
-	Sentry_FrskWpnAck = 379,
-	Sentry_47LoiterAck = 380,
-	Sentry_DenyDsg = 381,
-	Sentry_PostCommentLdr = 382,
-	Sentry_PostCommentRsp = 383,
-	VIP_MssgnA_Ldr = 384,
-	VIP_MssgnB_Rsp = 385,
-	VIP_MssgnC_Ldr = 386,
-	VIP_MssgnD_Rsp = 387,
-	VIP_MssngCallOut = 388,
-	Dth_Sick = 389,
-	Dth_Poison = 390,
-	Gen_Avoid = 391,
-	Gen_CloseCall = 392,
-	Gen_PhnPckUP = 393,
-	Gen_PhoneActLockdown = 394,
-	Cmbt_FlushOutLdr = 395,
-	Cmbt_HMPrptssKnckOut = 396,
-	InCa_FrskHeadsUpLdr = 397,
-	InCa_FrskHeadsUpRdo = 398,
-	InCa_XplnLOS = 399,
-	InCa_XplnGotShot = 400,
-	InDedBdy_CivCmntPhone = 401,
-	InDedBdy_NoFaulVctmXpln = 402,
-	InDsg_FllwWrn1Nkd = 403,
-	Ar_BlameKnckDwnMelee = 404,
-	Exp_Carry = 405,
-	Exp_ClearThroat = 406,
-	Exp_Cough = 407,
-	Exp_Drink = 408,
-	Exp_Exhale = 409,
-	Exp_Idle = 410,
-	Exp_Inhale = 411,
-	Exp_InhaleFast = 412,
-	Exp_Sniff = 413,
-	Exp_Swallow = 414,
-	Exp_Think = 415,
-	Exp_Scared = 416,
-	Exp_Gld = 417,
-	Exp_Dsppntd = 418,
-	Exp_InPain = 419,
-	InCa_AckBdy = 420,
-	InCa_AckBdyLdr = 421,
-	InDedBdy_CivCmntPcfd = 422,
-	InDedBdy_CivCmntPhonePcfd = 423,
-	Gen_SocialAck = 424,
+	ME_BAR_NONE = 0,
+	ME_BAR_TRESPASSING = 1,
+	ME_BAR_DEEPTRESPASSING = 2,
+	ME_BAR_VISIBLY_ARMED = 3,
+	ME_BAR_CHANGING_DISGUISE = 4,
+	ME_BAR_DISGUISE_BLOWN = 5,
+	ME_BAR_DISGUISE_SUSPICIOUS = 6,
+	ME_BAR_NEAR_BODY = 7,
 };
 
-// 0x0000000142A9C7B0 (Size: 0x4)
-enum class ERoleEvent
+// 0x0000000142B01868 (Size: 0x1)
+enum class ECameraCollisionMode
 {
-	eRE_NONE = 0,
-	eRE_CAST = 1,
-	eRE_CLEAR = 2,
-	eRE_ENTER_DRAMA = 3,
-	eRE_REENTER_DRAMA = 4,
-	eRE_LEAVE_DRAMA = 5,
-	eRE_NEW_DRAMA = 6,
-	eRE_PAUSED = 7,
-	eRE_RESUMING = 8,
-	eRE_RUNNING = 9,
+	ECAMERACOLLISIONMODE_COLLIDE_ALWAYS = 0,
+	ECAMERACOLLISIONMODE_CAMERA_OBSTACLE = 1,
+	ECAMERACOLLISIONMODE_COLLIDE_NEVER = 2,
+	ECAMERACOLLISIONMODE_COLLIDE_DEFAULT = 3,
+};
+
+// 0x0000000143E6ED68 (Size: 0x8)
+class SVoidSignalEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bSignaling; // 0x0
+	float32 m_fFiredAtTime; // 0x4
 };
 
 // 0x0000000142B01908 (Size: 0x4)
@@ -11232,6 +14501,46 @@ enum class ENamedGameEvents
 	eNumNamedGameEvents = 3,
 };
 
+// 0x0000000142AF16D0 (Size: 0x4)
+enum class ZDebugTextEntity_EVerticalAlignment
+{
+	VA_TOP = 16,
+	VA_CENTER = 0,
+	VA_BOTTOM = 32,
+};
+
+// 0x0000000143E6FE10 (Size: 0x4)
+enum class ZSetUIControlDisplayInfoEntity_EProjectionOp
+{
+	NoOp = 0,
+	SetPerspective = 1,
+};
+
+// 0x0000000142A88078 (Size: 0x14)
+class SCrowdReactionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nNumPacify; // 0x0
+	uint32 m_nNumShotsFired; // 0x4
+	uint32 m_nNumDeaths; // 0x8
+	uint32 m_nNumScared; // 0xC
+	bool m_bWarzoneSpawned; // 0x10
+};
+
+// 0x0000000142AA3F70 (Size: 0x4)
+enum class ZDistanceCondition_EObjectType
+{
+	DT_ToCam = 0,
+	DT_ToPlayer = 1,
+};
+
 // 0x0000000142AA5CD0 (Size: 0x4)
 enum class EHM5SoundFootstepEmitterTarget
 {
@@ -11239,25 +14548,52 @@ enum class EHM5SoundFootstepEmitterTarget
 	EFSAT_NPC = 1,
 };
 
-// 0x0000000142B02DA0 (Size: 0x4)
-enum class EUbitusRequest
+// 0x0000000142A9A418 (Size: 0x50)
+class SInvestigateWeaponGroupSaveData
 {
-	EUR_DEVICE_LANGUAGE = 0,
-	EUR_DEVICE_MODE = 16,
-	EUR_NETWORK_SERVICE_ACCOUNT_ID = 48,
-	EUR_ACCOUNT_AUTHORIZATION_CODE = 64,
-	EUR_ACCOUNT_AUTHORIZATION_TOKEN = 80,
-	EUR_NETWORK_SERVICE_ACCOUNT_TOKEN = 96,
-	EUR_NICKNAME = 112,
-	EUR_FRIEND_LIST = 128,
-	EUR_BLOCKED_USER_LIST = 144,
-	EUR_PROFILE_LIST = 160,
-	EUR_ESHOP_INFO = 176,
-	EUR_FREE_COMMUNICATION_AVAILABLE = 192,
-	EUR_DLC_PURCHASE_STATUS = 208,
-	EUR_PAUSE_GAME = 32800,
-	EUR_RESUME_GAME = 32801,
-	EUR_ESHOP_CLOSED = 1226,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rTarget; // 0x0
+	uint32 m_rReporter; // 0x4
+	uint32 m_rInvestigator; // 0x8
+	uint32 m_rGuard; // 0xC
+	bool m_ReporterIsVIPWithAmbientEscort; // 0x10
+	SFSMSaveData m_fsmState; // 0x18
+	ZGameTime m_tLastGuardSearch; // 0x30
+	TArray<uint32> m_aUnconsciousGuards; // 0x38
+};
+
+// 0x0000000142A9E388 (Size: 0x4)
+enum class EGuardPointType
+{
+	GPT_Hold = 0,
+	GPT_Combat = 1,
+	GPT_CombatAndHold = 2,
+	GPT_VIPSafeRoom = 3,
+};
+
+// 0x0000000142AB1B80 (Size: 0x14)
+class SAttentionHUDUIElement
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 fAngle; // 0x0
+	float32 fAttention; // 0x4
+	float32 fAlpha; // 0x8
+	float32 fRadius; // 0xC
+	int32 nColor; // 0x10
 };
 
 // 0x0000000142AA2FC0 (Size: 0x4)
@@ -11308,6 +14644,26 @@ enum class EAimAssistActivationState
 	eAAAS_Deactivating = 3,
 };
 
+// 0x0000000142AB66D8 (Size: 0x4)
+enum class ELedgeDismountDirection
+{
+	eLDD_DontCare = 0,
+	eLDD_FaceLedge = 1,
+	eLDD_FaceLeft = 2,
+	eLDD_FaceRight = 3,
+	eLDD_Turn180 = 4,
+};
+
+// 0x0000000142A979C8 (Size: 0x4)
+enum class ZHM5BodyContainer_EBCAnimSet
+{
+	BC_CONTAINER_STANDARD = 0,
+	BC_CONTAINER_WOODCHIPPER = 1,
+	BC_CAR_STANDARD_TRUNK = 2,
+	BC_CONTAINER_CLOSET = 3,
+	BC_CONTAINER_LAUNDRYCHUTE = 4,
+};
+
 // 0x0000000142AC1090 (Size: 0x8)
 class SValueBoolDelayedEntitySaveData
 {
@@ -11324,23 +14680,6 @@ public:
 	float32 m_fTimeToNextEvent; // 0x4
 };
 
-// 0x0000000142AB66D8 (Size: 0x4)
-enum class ELedgeDismountDirection
-{
-	eLDD_DontCare = 0,
-	eLDD_FaceLedge = 1,
-	eLDD_FaceLeft = 2,
-	eLDD_FaceRight = 3,
-	eLDD_Turn180 = 4,
-};
-
-// 0x0000000142AC1510 (Size: 0x4)
-enum class ETargetPrintDestination
-{
-	eTPD_Screen = 0,
-	eTPD_TraceViewer = 1,
-};
-
 // 0x0000000142AA7548 (Size: 0x8)
 class IActorProvider
 {
@@ -11354,62 +14693,23 @@ public:
 
 };
 
-// 0x0000000142AF0670 (Size: 0x20)
-class SCppEntity
+// 0x0000000142AC1510 (Size: 0x4)
+enum class ETargetPrintDestination
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	int32 blueprintIndexInResourceHeader; // 0x0
-	TArray<SEntityTemplateProperty> propertyValues; // 0x8
+	eTPD_Screen = 0,
+	eTPD_TraceViewer = 1,
 };
 
-// 0x0000000142A958E0 (Size: 0x4)
-enum class ECharacterActionRequests
+// 0x0000000142AB1B60 (Size: 0x4)
+enum class ZHUDWorldSpatialAttachEntity_EOrientation
 {
-	eSM_AR_None = 0,
-	eSM_AR_ReloadR = 1,
-	eSM_AR_ReloadL = 2,
-	eSM_AR_ShootR = 3,
-	eSM_AR_ShootL = 4,
-	eSM_AR_SwapHands = 5,
-	eSM_AR_HolsterR = 6,
-	eSM_AR_HolsterL = 7,
-	eSM_AR_UnholsterR = 8,
-	eSM_AR_UnholsterL = 9,
-	eSM_AR_PickupItemR = 10,
-	eSM_AR_PickupItemL = 11,
-	eSM_AR_InteractionR = 12,
-	eSM_AR_InteractionL = 13,
-	eSM_AR_InteractionSwipe = 14,
-	eSM_AR_InteractionSwipeR = 15,
-	eSM_AR_InteractionSwipeL = 16,
-	eSM_AR_OpenDoor = 17,
-	eSM_AR_OpenDoorR = 18,
-	eSM_AR_OpenDoorL = 19,
-	eSM_AR_CloseCombat = 20,
-	eSM_AR_Movement = 21,
-	eSM_AR_Pretend = 22,
-	eSM_AR_Sniping = 23,
-	eSM_AR_EndSniping = 24,
-	eSM_AR_RetrieveFromSuitcase = 25,
-	eSM_AR_Marking = 26,
-	eSM_AR_ChangeAmmo = 27,
-	eSM_AR_Assemble = 28,
-	eSM_AR_Assemble_UnequippedContainer = 29,
-	eSM_AR_Disassemble = 30,
-	eSM_AR_Disassemble_PickingUp = 31,
-	eSM_AR_AssembleUB = 32,
-	eSM_AR_DisassembleUB = 33,
-	eSM_AR_Cancel = 34,
-	eSM_AR_Sprint = 35,
-	eSM_AR_CloseHandR = 36,
-	eSM_AR_CloseHandL = 37,
+	ROTATE_WITH_SPATIAL = 0,
+	LOOK_AT_CAMERA_POSITION = 1,
+	LOOK_AT_CAMERA_POSITION_HORIZ_ONLY = 2,
+	LOOK_AT_CAMERAPARENT_POSITION = 3,
+	LOOK_AT_CAMERAPARENT_POSITION_HORIZ_ONLY = 4,
+	ALIGN_WITH_VIEW_PLANE = 5,
+	ALIGN_WITH_VIEW_PLANE_HORIZ_ONLY = 6,
 };
 
 // 0x0000000143CEC308 (Size: 0x4)
@@ -11422,8 +14722,8 @@ enum class eParticleEmitterBoxEntity_SpawnModes
 	BOX_SPAWNMODE_ELLIPSOID = 4,
 };
 
-// 0x0000000142AEEFE0 (Size: 0x20)
-class SCrowdPoseBoneSaveData
+// 0x0000000142A99210 (Size: 0x30)
+class SDrama2ActorCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11433,8 +14733,200 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	SVector4 mQuaterion; // 0x0
-	SVector4 mTranslation; // 0x10
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SDrama2ActorSaveState> m_aStates; // 0x18
+};
+
+// 0x0000000142A99288 (Size: 0x30)
+class SDramaActorCollectionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SDramaActorSaveState> m_aStates; // 0x18
+};
+
+// 0x0000000142A992A0 (Size: 0x30)
+class SDramaSituationCollectionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SDramaSituationSaveData> m_aStates; // 0x18
+};
+
+// 0x0000000142A9E510 (Size: 0xC)
+class SDramaSetupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bDoneTriggered; // 0x0
+	ZScreenplay_EState m_eState; // 0x4
+	uint32 m_rSituation; // 0x8
+};
+
+// 0x0000000142A992B8 (Size: 0x30)
+class SDramaSetupCollectionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SDramaSetupSaveData> m_aStates; // 0x18
+};
+
+// 0x0000000142A992D0 (Size: 0x120)
+class SScreenplay2ManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SDramaActorCollectionSaveData m_DramaActorData; // 0x0
+	SDramaSituationCollectionSaveData m_DramaSituationData; // 0x30
+	SDramaSetupCollectionSaveData m_DramaSetupData; // 0x60
+	SDrama2ActorCollectionSaveData m_Drama2ActorData; // 0x90
+	SDrama2SituationCollectionSaveData m_Drama2SituationData; // 0xC0
+	SDrama2SetupCollectionSaveData m_Drama2SetupData; // 0xF0
+};
+
+// 0x0000000142AB0D68 (Size: 0x28)
+class SInventoryUI
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SInventoryUISlotSlim> mainslotsSlim; // 0x0
+	int32 otherslotsCount; // 0x18
+	int32 selectedIndex; // 0x1C
+	bool isActionInventory; // 0x20
+};
+
+// 0x0000000142AB18B0 (Size: 0x4)
+enum class ZHUDCamera3DControllerEntity_EType
+{
+	Menu = 0,
+	HUD = 1,
+};
+
+// 0x0000000142AA5BB0 (Size: 0x4)
+enum class ECommunicationBarMessage
+{
+	ECBM_Unknown = 0,
+	ECBM_Spotted = 1,
+	ECBM_Frisking = 2,
+	ECBM_HostileArea = 3,
+	ECBM_InvestigatingArea = 4,
+	ECBM_Clear = 5,
+	ECBM_Suspicious = 6,
+	ECBM_Alerted = 7,
+	ECBM_Hunting = 8,
+	ECBM_Arresting = 9,
+	ECBM_Engaging = 10,
+	ECBM_Hostile = 11,
+	ECBM_IdentityKnown = 12,
+	ECBM_Agitated = 13,
+	ECBM_VipRunsToSafeArea = 14,
+	ECBM_VipEscaping = 15,
+	ECBM_BodyFound = 16,
+	ECBM_GunshotHeard = 17,
+	ECBM_CloseCombatHeard = 18,
+	ECBM_CrimeNoticed = 19,
+	ECBM_BulletImpactNoticed = 20,
+	ECBM_SpottedByCamera = 21,
+	ECBM_UnconsciousWitness = 22,
+};
+
+// 0x0000000142AA7428 (Size: 0x8)
+class SActorBoneAttachSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rAttachmentTarget; // 0x0
+	bool m_bIsAttached; // 0x4
+};
+
+// 0x0000000142AA2990 (Size: 0x30)
+class SActorBoneAttachmentsSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SActorBoneAttachSaveData> m_aData; // 0x18
+};
+
+// 0x0000000142A9F5B8 (Size: 0x4)
+enum class EThrowType
+{
+	THROW_NONE = 0,
+	THROW_COIN = 1,
+	THROW_NORMAL = 2,
+	THROW_HEAVY = 3,
+	THROW_KNOCKDOWN_LIGHT = 4,
+	THROW_KNOCKDOWN_HEAVY = 5,
+	THROW_PACIFY_LIGHT = 6,
+	THROW_PACIFY_HEAVY = 7,
+	THROW_DEADLY_LIGHT = 8,
+	THROW_DEADLY_HEAVY = 9,
+};
+
+// 0x0000000142AAF020 (Size: 0x8)
+class SUIBreadcrumbDataSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_fProgress; // 0x0
+	int32 m_nState; // 0x4
 };
 
 // 0x0000000142ABD7A0 (Size: 0x10)
@@ -11460,6 +14952,29 @@ enum class EDetectedNatType
 	NAT_3 = 3,
 };
 
+// 0x0000000142AA2D30 (Size: 0x8)
+class SCamBone
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	BoneId_Enum m_eBoneId; // 0x0
+	float32 m_fWeight; // 0x4
+};
+
+// 0x0000000143E6C9C8 (Size: 0x4)
+enum class ILightEntity_ERoomLightFlow
+{
+	AUTOMATIC = 0,
+	LOCAL = 1,
+	ALLROOMS = 2,
+};
+
 // 0x0000000142ABED30 (Size: 0x4)
 enum class ECrossHairType
 {
@@ -11479,6 +14994,14 @@ enum class ECrossHairType
 	CROSSHAIR_DOT = 13,
 };
 
+// 0x0000000142AB2080 (Size: 0x4)
+enum class EMarkerClipAlgorithm
+{
+	MCA_NONE = 0,
+	MCA_SIMPLE = 1,
+	MCA_ADVANCED = 2,
+};
+
 // 0x0000000142A86330 (Size: 0x8)
 class IBoneCollidable
 {
@@ -11492,12 +15015,47 @@ public:
 
 };
 
-// 0x0000000142AB2080 (Size: 0x4)
-enum class EMarkerClipAlgorithm
+// 0x0000000142AF04A8 (Size: 0x18)
+class SEntityTemplateEntitySubset
 {
-	MCA_NONE = 0,
-	MCA_SIMPLE = 1,
-	MCA_ADVANCED = 2,
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<int32> entities; // 0x0
+};
+
+// 0x0000000142AF0580 (Size: 0xA8)
+class STemplateBlueprintSubEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SEntityTemplateReference logicalParent; // 0x0
+	int32 entityTypeResourceIndex; // 0x20
+	uint64 entityId; // 0x28
+	bool editorOnly; // 0x30
+	ZString entityName; // 0x38
+	TArray<SEntityTemplatePropertyAlias> propertyAliases; // 0x48
+	TArray<SEntityTemplateExposedEntity> exposedEntities; // 0x60
+	TArray<TPair<ZString,int32>> exposedInterfaces; // 0x78
+	TArray<TPair<ZString,SEntityTemplateEntitySubset>> entitySubsets; // 0x90
+};
+
+// 0x00000001422D7468 (Size: 0x4)
+enum class ZHeroBoneAttachEntity_EResetMode
+{
+	eAtBoneOrigin = 0,
+	eKeepOffset = 1,
 };
 
 // 0x0000000142B01898 (Size: 0x4)
@@ -11516,6 +15074,15 @@ enum class eBurstPatternType
 	eEBP_Box = 2,
 };
 
+// 0x0000000142AA9978 (Size: 0x4)
+enum class ZPointOfInterestEntity_EPOIType
+{
+	ePOIT_Invalid = 0,
+	ePOIT_Glance = 1,
+	ePOIT_Inspect = 2,
+	ePOIT_Stare = 3,
+};
+
 // 0x0000000142A9B388 (Size: 0x4)
 enum class ECharacterResourceType
 {
@@ -11525,8 +15092,19 @@ enum class ECharacterResourceType
 	eSMT_LeftHand = 3,
 };
 
-// 0x00000001422D6FC8 (Size: 0xC)
-class SWeaponCustomControlSaveData
+// 0x0000000142ABECE8 (Size: 0x4)
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioExoticType
+{
+	eWBC_AudioExoticType_MiniPistol = 0,
+	eWBC_AudioExoticType_OneHandSpinReloadShotgun = 1,
+	eWBC_AudioExoticType_TranquilizerDartPistol = 2,
+	eWBC_AudioExoticType_Walter2000SniperRifle = 3,
+	eWBC_AudioExoticType_ShootingRange_NPCAssaultRifle = 4,
+	eWBC_AudioExoticType_None = 32768,
+};
+
+// 0x0000000142AC1570 (Size: 0x30)
+class SValueBoolsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11536,22 +15114,12 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rActor; // 0x0
-	uint32 m_rItem; // 0x4
-	bool m_bTargetRegistered; // 0x8
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<bool> m_aData; // 0x18
 };
 
-// 0x0000000143E6C388 (Size: 0x1)
-enum class ECollisionResponse
-{
-	REFLECT_VELOCITY = 0,
-	SLIDE_ON = 1,
-	STAY_AT_COLLISION_POINT = 2,
-	CUSTOM = 3,
-};
-
-// 0x0000000142AA0BE8 (Size: 0x18)
-class SEventSaveData
+// 0x0000000142A95F40 (Size: 0x8)
+class ZResourcePtr
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11561,13 +15129,42 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	EAISharedEventType m_nType; // 0x0
-	ZGameTime m_nStart; // 0x8
-	ZGameTime m_nEnd; // 0x10
 };
 
-// 0x0000000142AEF010 (Size: 0x18)
-class SCrowdPoseSaveData
+// 0x0000000143CEB9C0 (Size: 0x4)
+enum class IRenderMaterialEntity_EModifierOperation
+{
+	eLeave = 0,
+	eReplace = 1,
+	eModulate = 2,
+	eAdd = 3,
+	eColor = 128,
+};
+
+// 0x0000000143CEC148 (Size: 0x4)
+enum class ZBoxReflectionEntity_EType
+{
+	eLocal = 0,
+	eFallback = 1,
+};
+
+// 0x0000000142A9A988 (Size: 0x4)
+enum class ZGetHelpGroup_EInvestigateGroupState
+{
+	IGS_Acknowledge = 0,
+	IGS_WaitForAckDialog = 1,
+	IGS_RunToGuard = 2,
+	IGS_ReportToHitman = 3,
+	IGS_ReportToGuard = 4,
+	IGS_StartMoveBack = 5,
+	IGS_MoveBack = 6,
+	IGS_Investigate = 7,
+	IGS_Completed = 8,
+	IGS_Max = 9,
+};
+
+// 0x0000000143F1E660 (Size: 0x1)
+class SSerializedValue
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11577,22 +15174,16 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
 };
 
-// 0x0000000142AEF040 (Size: 0x20)
-class SCrowdPoseCollectionSaveData
+// 0x0000000142B01838 (Size: 0x1)
+enum class ECollisionNotifyGroup
 {
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint64 m_id; // 0x0
-	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
+	eCollisionNotifyGroup_Default = 0,
+	eCollisionNotifyGroup_CollisionListener = 1,
+	eCollisionNotifyGroup_PhysicsEntity = 2,
+	eCollisionNotifyGroup_DontNotify = 3,
+	eCollisionNotifyGroup_ForceNotify = 4,
 };
 
 // 0x0000000142AA4DA0 (Size: 0x4)
@@ -11601,6 +15192,16 @@ enum class ECharSetCharacterType
 	ECSCT_Actor = 0,
 	ECSCT_Nude = 1,
 	ECSCT_HeroA = 2,
+};
+
+// 0x0000000142A8FAC0 (Size: 0x4)
+enum class EActorGroup
+{
+	eAG_Group_A = 0,
+	eAG_Group_B = 1,
+	eAG_Group_C = 2,
+	eAG_Group_D = 3,
+	eAG_Count = 4,
 };
 
 // 0x00000001422D5CC8 (Size: 0x28)
@@ -11618,31 +15219,246 @@ public:
 	TArray<ZVariant> m_aArgs; // 0x10
 };
 
-// 0x0000000142A8FAC0 (Size: 0x4)
-enum class EActorGroup
+// 0x0000000142A91718 (Size: 0x4)
+enum class InputControlNamesp_eHM5InputAction
 {
-	eAG_Group_A = 0,
-	eAG_Group_B = 1,
-	eAG_Group_C = 2,
-	eAG_Group_D = 3,
-	eAG_Count = 4,
+	eIAButtonFaceDown_Downedge = 0,
+	eIAButtonFaceDown_FastTap = 1,
+	eIAButtonFaceDown_HldDwnOnce = 2,
+	eIAButtonFaceDown_Hold = 3,
+	eIAButtonFaceDown_HoldDown = 4,
+	eIAButtonFaceLeft_Downedge = 5,
+	eIAButtonFaceLeft_HldDwnOnce = 6,
+	eIAButtonFaceLeft_Hold = 7,
+	eIAButtonFaceLeft_HoldDown = 8,
+	eIAButtonFaceLeft_FastTap = 9,
+	eIAButtonFaceLeft_Tap = 10,
+	eIAButtonFaceLeft_Release = 11,
+	eIAButtonFaceLeft_Repeat = 12,
+	eIAButtonFaceRight_Downedge = 13,
+	eIAButtonFaceRight_HldDwnOnce = 14,
+	eIAButtonFaceRight_Hold = 15,
+	eIAButtonFaceRight_HoldDown = 16,
+	eIAButtonFaceRight_FastTap = 17,
+	eIAButtonFaceRight_Tap = 18,
+	eIAButtonFaceRight_Release = 19,
+	eIAButtonFaceRight_Repeat = 20,
+	eIAButtonFaceUp_Downedge = 21,
+	eIAButtonFaceUp_FastTap = 22,
+	eIAButtonFaceUp_HldDwnOnce = 23,
+	eIAButtonFaceUp_Hold = 24,
+	eIAButtonFaceUp_HoldDown = 25,
+	eIABumperLeft_FastTap = 26,
+	eIABumperLeft_Downedge = 27,
+	eIABumperLeft_Hold = 28,
+	eIABumperLeft_Holddown = 29,
+	eIABumperLeft_Release = 30,
+	eIABumperRight_FastTap = 31,
+	eIABumperRight_Downedge = 32,
+	eIABumperRight_Hold = 33,
+	eIABumperRight_Holddown = 34,
+	eIABumperRight_Release = 35,
+	eIADpadUp_Downedge = 36,
+	eIADpadUp_HldDwnOnce = 37,
+	eIADpadUp_Hold = 38,
+	eIADpadDown_Hold = 39,
+	eIADpadUp_FastTap = 40,
+	eIADpadDown_Downedge = 41,
+	eIADpadDown_Release = 42,
+	eIADpadDown_FastTap = 43,
+	eIADpadDown_HldDwnOnce = 44,
+	eIADpadLeft_Downedge = 45,
+	eIADpadRight_Downedge = 46,
+	eIAThumbRight_Hold = 47,
+	eIAThumbRight_Downedge = 48,
+	eIAThumbLeft_Hold = 49,
+	eIAThumbLeft_DownEdge = 50,
+	eIATriggerLeft_Downedge = 51,
+	eIATriggerLeft_FastTap = 52,
+	eIATriggerLeft_Hold = 53,
+	eIATriggerLeft_Holddown = 54,
+	eIATriggerLeft_Release = 55,
+	eIATriggerRight_Downedge = 56,
+	eIATriggerRight_FastTap = 57,
+	eIATriggerRight_Hold = 58,
+	eIATriggerRight_Holddown = 59,
+	eIATriggerRight_Release = 60,
+	eIAGenericStart_Hold = 61,
+	eIAGCMeleeUse_Downedge = 62,
+	eIAGCMeleeUse_Hold = 63,
+	eIAGCMeleeUse_HoldDown = 64,
+	eIAGCMeleeUse_Release = 65,
+	eIAGCMeleeUse_HldDwnOnce = 66,
+	eIAGCMeleeUse_Repeat = 67,
+	eIAGCMeleeUse_Tap = 68,
+	eIAGCMeleeUse_FastTap = 69,
+	eIAGCAgilityDisguise_Downedge = 70,
+	eIAGCAgilityDisguise_Hold = 71,
+	eIAGCAgilityDisguise_HoldDown = 72,
+	eIAGCAgilityDisguise_Release = 73,
+	eIAGCAgilityDisguise_HldDwnOnce = 74,
+	eIAGCAgilityDisguise_Repeat = 75,
+	eIAGCAgilityDisguise_Tap = 76,
+	eIAGCAgilityDisguise_FastTap = 77,
+	eIAGCCoverDragBody_Downedge = 78,
+	eIAGCCoverDragBody_Hold = 79,
+	eIAGCCoverDragBody_HoldDown = 80,
+	eIAGCCoverDragBody_Release = 81,
+	eIAGCCoverDragBody_HldDwnOnce = 82,
+	eIAGCCoverDragBody_Repeat = 83,
+	eIAGCCoverDragBody_Tap = 84,
+	eIAGCCoverDragBody_FastTap = 85,
+	eIAGCInteractPickup_Downedge = 86,
+	eIAGCInteractPickup_Hold = 87,
+	eIAGCInteractPickup_HoldDown = 88,
+	eIAGCInteractPickup_Release = 89,
+	eIAGCInteractPickup_HldDwnOnce = 90,
+	eIAGCInteractPickup_Repeat = 91,
+	eIAGCInteractPickup_Tap = 92,
+	eIAGCInteractPickup_FastTap = 93,
+	eIAGCReloadInstinct_Downedge = 94,
+	eIAGCReloadInstinct_Hold = 95,
+	eIAGCReloadInstinct_HoldDown = 96,
+	eIAGCReloadInstinct_Release = 97,
+	eIAGCReloadInstinct_HldDwnOnce = 98,
+	eIAGCReloadInstinct_Repeat = 99,
+	eIAGCReloadInstinct_Tap = 100,
+	eIAGCReloadInstinct_FastTap = 101,
+	eIAGCRun_Downedge = 102,
+	eIAGCRun_Hold = 103,
+	eIAGCRun_HoldDown = 104,
+	eIAGCRun_Release = 105,
+	eIAGCRun_HldDwnOnce = 106,
+	eIAGCRun_Repeat = 107,
+	eIAGCRun_Tap = 108,
+	eIAGCRun_FastTap = 109,
+	eIAGCHolster_Downedge = 110,
+	eIAGCHolster_Hold = 111,
+	eIAGCHolster_HoldDown = 112,
+	eIAGCHolster_Release = 113,
+	eIAGCHolster_HldDwnOnce = 114,
+	eIAGCHolster_Repeat = 115,
+	eIAGCHolster_Tap = 116,
+	eIAGCHolster_FastTap = 117,
+	eIAGCInventory_Downedge = 118,
+	eIAGCInventory_Hold = 119,
+	eIAGCInventory_HoldDown = 120,
+	eIAGCInventory_Release = 121,
+	eIAGCInventory_HldDwnOnce = 122,
+	eIAGCInventory_Repeat = 123,
+	eIAGCInventory_Tap = 124,
+	eIAGCInventory_FastTap = 125,
+	eIAGCEmotes_Downedge = 126,
+	eIAGCEmotes_Hold = 127,
+	eIAGCEmotes_HoldDown = 128,
+	eIAGCEmotes_Release = 129,
+	eIAGCEmotes_HldDwnOnce = 130,
+	eIAGCEmotes_Repeat = 131,
+	eIAGCEmotes_Tap = 132,
+	eIAGCEmotes_FastTap = 133,
+	eIAGCDropItem_Downedge = 134,
+	eIAGCDropItem_Hold = 135,
+	eIAGCDropItem_HoldDown = 136,
+	eIAGCDropItem_Release = 137,
+	eIAGCDropItem_HldDwnOnce = 138,
+	eIAGCDropItem_Repeat = 139,
+	eIAGCDropItem_Tap = 140,
+	eIAGCDropItem_FastTap = 141,
+	eIAGCCrouch_Downedge = 142,
+	eIAGCCrouch_Hold = 143,
+	eIAGCCrouch_HoldDown = 144,
+	eIAGCCrouch_Release = 145,
+	eIAGCCrouch_HldDwnOnce = 146,
+	eIAGCCrouch_Repeat = 147,
+	eIAGCCrouch_Tap = 148,
+	eIAGCCrouch_FastTap = 149,
+	eIAGCCameraShoulder_Downedge = 150,
+	eIAGCCameraShoulder_Hold = 151,
+	eIAGCCameraShoulder_HoldDown = 152,
+	eIAGCCameraShoulder_Release = 153,
+	eIAGCCameraShoulder_HldDwnOnce = 154,
+	eIAGCCameraShoulder_Repeat = 155,
+	eIAGCCameraShoulder_Tap = 156,
+	eIAGCCameraShoulder_FastTap = 157,
+	eIAKBMMoveUp = 158,
+	eIAKBMMoveDown = 159,
+	eIAKBMMoveLeft = 160,
+	eIAKBMMoveRight = 161,
+	eIAKBMMarkTarget = 162,
+	eIAKBMNextAmmo = 163,
+	eIAKBMPreviousAmmo = 164,
+	eIAKBMUse = 165,
+	eIAKBMUse2 = 166,
+	eIAKBMUse2Hold = 167,
+	eIAKBMSlideDown = 168,
+	eIAKBMPickup = 169,
+	eIAKBMCover = 170,
+	eIAKBMDragBody = 171,
+	eIAKBMMelee = 172,
+	eIAKBMMelee_Repeat = 173,
+	eIAKBMActivateProp = 174,
+	eIAKBMActivateProp_HldDwnOnce = 175,
+	eIAKBMActivateProp_Hold = 176,
+	eIAKBMActivatePropSecondary = 177,
+	eIAKBMConcealRetrieve = 178,
+	eIAKBMTakeDisguise = 179,
+	eIAKBMRun = 180,
+	eIAKBMWalkSlow = 181,
+	eIAKBMAim = 182,
+	eIAKBMShoot = 183,
+	eIAKBMShoot_Downedge = 184,
+	eIAKBMShoot_Release = 185,
+	eIAKBMReload = 186,
+	eIAKBMInstinct = 187,
+	eIAKBMCamSwitch = 188,
+	eIAKBMSneak = 189,
+	eIAKBMHolster = 190,
+	eIAKBMFireMode = 191,
+	eIAKBMNotebook = 192,
+	eIAKBMNotebookMap = 193,
+	eIAKBMPause = 194,
+	eIAKBMWeapon1 = 195,
+	eIAKBMWeapon2 = 196,
+	eIAKBMWeapon3 = 197,
+	eIAKBMWeapon4 = 198,
+	eIAKBMWeapon5 = 199,
+	eIAKBMWeapon6 = 200,
+	eIAKBMWeapon7 = 201,
+	eIAKBMPrecisionAim = 202,
+	eIAKBMZoomIn = 203,
+	eIAKBMZoomOut = 204,
+	eIAKBMDropItem = 205,
+	eIAKBMInventory = 206,
+	eIAKBMEmotes = 207,
+	eIAKBMSurrender = 208,
+	eIAKBMSurrender_Hold = 209,
+	eIAKBMSurrender_HoldDown = 210,
+	eIAKBMSurrender_HoldDownOnce = 211,
+	eIAKBMTogglePlacement = 212,
+	eIAKBMOkay = 213,
+	eIAKBMCancel = 214,
+	eIAKBMAccept = 215,
+	eIATriggerLeft_Analog = 216,
+	eIATriggerRight_Analog = 217,
+	eIAStickLeftHorizontal_Analog = 218,
+	eIAStickLeftVertical_Analog = 219,
+	eIAStickRightHorizontal_Analog = 220,
+	eIAStickRightVertical_Analog = 221,
+	eIAStickLeftHorizontal_Raw = 222,
+	eIAStickLeftVertical_Raw = 223,
+	eIAStickRightHorizontal_Raw = 224,
+	eIAStickRightVertical_Raw = 225,
+	eIABumperLeft_Analog = 226,
+	eIABumperRight_Analog = 227,
+	eIAKBMMoveHorizontal = 228,
+	eIAKBMMoveVertical = 229,
+	eIAKBMLookHorizontal = 230,
+	eIAKBMLookVertical = 231,
+	eIActionsNUM = 232,
 };
 
-// 0x0000000142AA5610 (Size: 0x4)
-enum class EGameEventArgType
-{
-	GE_ARGS_KILL = 0,
-	GE_ARGS_PRIORITYKILL = 1,
-	GE_ARGS_SITUATION = 2,
-	GE_ARGS_INVENTORY = 3,
-	GE_ARGS_EXPLODINGPROP = 4,
-	GE_ARGS_EVENT = 5,
-	GE_ARGS_CHECKPOINTEVENT = 6,
-	GE_ARGS_AI_SITUATION = 7,
-};
-
-// 0x0000000142AA2958 (Size: 0x30)
-class SMathLerpsSaveData_SColorRGBA
+// 0x0000000142A90EE8 (Size: 0x38)
+class SStashPointSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11652,24 +15468,60 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
+	TArray<uint32> m_arItems; // 0x0
+	uint32 m_pSuitcase; // 0x18
+	uint32 m_pMainItem; // 0x1C
+	EStashpointContainedEntityType m_eContainedType; // 0x20
+	ZRepositoryID m_MainItemID; // 0x28
 };
 
-// 0x0000000142AA4C20 (Size: 0x4)
-enum class EActorAIDot
+// 0x0000000142B00638 (Size: 0x4)
+enum class ZPathfinderDebugEntity_EDebugTestType
 {
-	eAAID_None = 0,
-	eAAID_Distracted = 1,
-	eAAID_PotentialThreat = 2,
-	eAAID_PotentialThreatDistracted = 3,
-	eAAID_Aggressive = 4,
-	eAAID_EscortingOut = 5,
-	eAAID_Fleeing = 6,
-	eAAID_Unconscious = 7,
-	eAAID_Stunned = 8,
-	eAAID_Grenade = 9,
-	eAAID_PotentialThreatDisabled = 100,
+	PATHFINDER = 0,
+	TRACELINE = 1,
+	MAP_LOCATION = 2,
+	REGION_MASK_WITHIN_RADIUS = 3,
+};
+
+// 0x0000000142AB2268 (Size: 0x8)
+class SComboDeviceBinding
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 type; // 0x0
+	uint32 button; // 0x4
+};
+
+// 0x0000000142A9E2B8 (Size: 0x4)
+enum class ECombatZoneState
+{
+	CZS_Inactive = 0,
+	CZS_Triggered = 1,
+	CZS_Engaged = 2,
+};
+
+// 0x0000000142AFA558 (Size: 0x4)
+enum class ELocale
+{
+	Locale_En = 0,
+	Locale_Fr = 1,
+	Locale_It = 2,
+	Locale_De = 3,
+	Locale_Es = 4,
+	Locale_Ru = 5,
+	Locale_Mx = 6,
+	Locale_Br = 7,
+	Locale_Pl = 8,
+	Locale_Cn = 9,
+	Locale_Jp = 10,
+	Locale_Tc = 11,
 };
 
 // 0x0000000142A998A8 (Size: 0x18)
@@ -11707,6 +15559,13 @@ enum class EGameUIMenu
 	eUIMenu_Count = 15,
 };
 
+// 0x0000000142AB1FC0 (Size: 0x4)
+enum class EAutoScanMode
+{
+	ASM_GEOMETRY = 0,
+	ASM_VOLUMEBOX = 1,
+};
+
 // 0x0000000142B00230 (Size: 0x1)
 enum class ENetRole
 {
@@ -11725,6 +15584,60 @@ enum class EActorCCPreset
 	ACCP_GuardMaleSuperElite = 4,
 	ACCP_Ignore = 5,
 	ACCP_None = 6,
+};
+
+// 0x0000000142AA30E0 (Size: 0x4)
+enum class EItemRequirement
+{
+	eIR_NoRequirement = 0,
+	eIR_RequireEmpty = 1,
+	eIR_RequireItem = 2,
+	eIR_RequireNoBigItem = 3,
+};
+
+// 0x0000000142A9A7A8 (Size: 0x4)
+class SSentryOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rSentryZone; // 0x0
+};
+
+// 0x0000000142AA4190 (Size: 0x24)
+class SMathLerpSaveData_SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector4 m_A; // 0x0
+	SVector4 m_B; // 0x10
+	float32 m_fT; // 0x20
+};
+
+// 0x0000000142AA28E8 (Size: 0x30)
+class SMathLerpsSaveData_SVector4
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
 };
 
 // 0x0000000142B015E0 (Size: 0x4)
@@ -11761,6 +15674,27 @@ enum class EVsGenericEvent
 	eVSGE_MAX = 20,
 };
 
+// 0x0000000142AAAB10 (Size: 0x4)
+enum class ESmartBehaviorOrder
+{
+	SBO_Stand = 0,
+	SBO_Move = 1,
+	SBO_React = 2,
+	SBO_Act = 3,
+	SBO_MoveToAct = 4,
+	SBO_MoveToCover = 5,
+	SBO_ShootFromCover = 6,
+	SBO_Death = 7,
+	SBO_Teleport = 8,
+};
+
+// 0x0000000142AA9840 (Size: 0x4)
+enum class ZRagdollAttacherEntity_EResetMode
+{
+	eAtBoneOrigin = 0,
+	eKeepOffset = 1,
+};
+
 // 0x0000000142A9A238 (Size: 0x30)
 class SAgitatedBystanderOrderSaveData
 {
@@ -11775,6 +15709,37 @@ public:
 	uint32 m_rBystanderPoint; // 0x0
 	float4 m_vCover; // 0x10
 	float4 m_vCoverDir; // 0x20
+};
+
+// 0x0000000142A98EA0 (Size: 0x4)
+class SActorAccessoryItemActionSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142A88338 (Size: 0x20)
+class SGameStatsWeapon
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZRepositoryID m_WeaponRepositoryID; // 0x0
+	eItemType m_eItemWeapon; // 0x10
+	EWeaponSpecialSituation m_eSpecialSituation; // 0x14
+	eAmmoType m_eAmmoType; // 0x18
 };
 
 // 0x0000000143CEB0D0 (Size: 0x10)
@@ -11794,8 +15759,8 @@ public:
 	uint32 w; // 0xC
 };
 
-// 0x0000000142A98EA0 (Size: 0x4)
-class SActorAccessoryItemActionSaveData
+// 0x0000000142AA2728 (Size: 0x30)
+class SShotListenersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11805,11 +15770,12 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rActor; // 0x0
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SShotListenerSaveData> m_aData; // 0x18
 };
 
-// 0x0000000143E6D7C8 (Size: 0x38)
-class SSaveGameData
+// 0x0000000142AFA900 (Size: 0x20)
+class SBoneTransformSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11819,133 +15785,8 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_nVersion; // 0x0
-	TArray<SSavableData> m_aSavableObjectsData; // 0x8
-	TArray<SEntityPath> m_aEntityPaths; // 0x20
-};
-
-// 0x0000000142A86B00 (Size: 0x10)
-class SActorInventoryItemSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rItem; // 0x0
-	EAttachLocation m_eAttachLocation; // 0x4
-	EGameTension m_eMaxTension; // 0x8
-	bool m_bLeftHand; // 0xC
-	bool m_bWeapon; // 0xD
-	bool m_bGrenade; // 0xE
-};
-
-// 0x0000000143F1E500 (Size: 0x30)
-class SGWaypoint
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint16 nNeighbor0; // 0x0
-	uint16 nNeighbor1; // 0x2
-	uint16 nNeighbor2; // 0x4
-	uint16 nNeighbor3; // 0x6
-	uint16 nNeighbor4; // 0x8
-	uint16 nNeighbor5; // 0xA
-	uint16 nNeighbor6; // 0xC
-	uint16 nNeighbor7; // 0xE
-	float4 vPos; // 0x10
-	uint32 nVisionDataOffset; // 0x20
-	int16 nLayerIndex; // 0x24
-};
-
-// 0x00000001422D5C70 (Size: 0x20)
-class ZBitArray
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint8> m_aBytes; // 0x0
-	uint32 m_nSize; // 0x18
-};
-
-// 0x0000000143F1E4E8 (Size: 0x30)
-class SGProperties
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float4 vMin; // 0x0
-	float4 vMax; // 0x10
-	int32 nGridWidth; // 0x20
-	float32 fGridSpacing; // 0x24
-	int32 nVisibilityRange; // 0x28
-};
-
-// 0x0000000142B1B1D8 (Size: 0xD0)
-class SReasoningGrid
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SGWaypoint> m_WaypointList; // 0x0
-	ZBitArray m_LowVisibilityBits; // 0x18
-	ZBitArray m_HighVisibilityBits; // 0x38
-	SGProperties m_Properties; // 0x60
-	uint32 m_nNodeCount; // 0x90
-	TArray<uint8> m_pVisibilityData; // 0x98
-	ZBitArray m_deadEndData; // 0xB0
-};
-
-// 0x0000000142AAF2C0 (Size: 0x8)
-class IUIDataListener
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142B01658 (Size: 0x20)
-class SDestructibleRuntimeConnnection
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint16 m_nPieceIndex; // 0x0
-	TArray<uint16> m_aConnections; // 0x8
+	SVector4 mQuaterion; // 0x0
+	SVector4 mTranslation; // 0x10
 };
 
 // 0x0000000142AA1250 (Size: 0x4)
@@ -11960,6 +15801,34 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rCastActor; // 0x0
+};
+
+// 0x0000000142AA29C8 (Size: 0x30)
+class SBodyContainersSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SBodyContainerSaveData> m_aData; // 0x18
+};
+
+// 0x0000000142AF07A0 (Size: 0x8)
+class ZAutoNullEntityRef
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
 };
 
 // 0x0000000142AB1A70 (Size: 0x10)
@@ -11980,8 +15849,8 @@ public:
 	bool bIllegal; // 0xE
 };
 
-// 0x0000000142AF07A0 (Size: 0x8)
-class ZAutoNullEntityRef
+// 0x0000000142AACB48 (Size: 0x148)
+class SContractObjectiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11991,6 +15860,39 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+	ZGuid m_Id; // 0x0
+	ZString m_sText; // 0x10
+	IContractObjective_Category m_eCategory; // 0x20
+	bool m_bCompleted; // 0x24
+	bool m_bFailed; // 0x25
+	bool m_bIsHidden; // 0x26
+	ZString m_sSuccessEventName; // 0x28
+	ZDynamicObject m_SuccessEventValues; // 0x38
+	ZString m_sFailedEventName; // 0x48
+	ZDynamicObject m_FailedEventValues; // 0x58
+	ZString m_sResetEventName; // 0x68
+	ZDynamicObject m_ResetEventValues; // 0x78
+	ZDynamicObject m_sBriefingText; // 0x88
+	ZDynamicObject m_sLongBriefingText; // 0x98
+	ZDynamicObject m_sHUDText; // 0xA8
+	int32 m_iRepeatSuccess; // 0xB8
+	int32 m_iRepeatFailed; // 0xBC
+	int32 m_iCurrentSuccess; // 0xC0
+	int32 m_iCurrentFailed; // 0xC4
+	ZDynamicObject m_ActivationCondition; // 0xC8
+	bool m_ActivationValue; // 0xD8
+	bool m_bUpdateActivationOnCompleted; // 0xD9
+	bool m_bDisplayAsKill; // 0xDA
+	bool m_bIgnoreIfInactive; // 0xDB
+	bool m_bShowInHud; // 0xDC
+	bool m_bCombinedDisplayInHud; // 0xDD
+	ZDynamicObject m_OnInactive; // 0xE0
+	ZDynamicObject m_OnActive; // 0xF0
+	ZDynamicObject m_aExits; // 0x100
+	ZString m_sImage; // 0x110
+	ZString m_sObjectiveType; // 0x120
+	ZString m_sBriefingName; // 0x130
+	bool m_bForceShowOnLoadingScreen; // 0x140
 };
 
 // 0x0000000142AACD88 (Size: 0x40)
@@ -12009,38 +15911,6 @@ public:
 	bool m_bIsOnline; // 0x18
 	ZString m_sContractSessionId; // 0x20
 	ZString m_sLastEventToken; // 0x30
-};
-
-// 0x0000000142AC0628 (Size: 0x30)
-class SHintManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SHintEntrySaveData m_activeHint; // 0x0
-	TArray<SHintEntrySaveData> m_aQueue; // 0x10
-	bool m_bIsRunning; // 0x28
-};
-
-// 0x0000000142A9A5E0 (Size: 0x20)
-class SCombatOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float4 m_vPos; // 0x0
-	uint32 m_coverPlane; // 0x10
-	uint32 m_rInteraction; // 0x14
 };
 
 // 0x0000000142AA28B0 (Size: 0x30)
@@ -12087,6 +15957,19 @@ public:
 	uint32 m_pCurrentInstance; // 0x0
 };
 
+// 0x00000001422D5D08 (Size: 0x60)
+class ZEntityPath
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
 // 0x0000000142AA1C78 (Size: 0x18)
 class SSituationConversationGroupSaveData
 {
@@ -12099,37 +15982,6 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<uint32> m_members; // 0x0
-};
-
-// 0x0000000142AB9EF0 (Size: 0x38)
-class SActivityObjective
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SActivity activity; // 0x0
-	TArray<SActivity> opportunities; // 0x20
-};
-
-// 0x0000000142AB9F38 (Size: 0x70)
-class SActivityDefinition
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SActivity activity; // 0x0
-	TArray<SActivityObjective> objectives; // 0x20
-	SActivityExits exits; // 0x38
 };
 
 // 0x0000000142A918C8 (Size: 0x8)
@@ -12159,8 +16011,8 @@ public:
 	bool m_bDangerous; // 0x0
 };
 
-// 0x0000000142A88078 (Size: 0x14)
-class SCrowdReactionSaveData
+// 0x0000000142AA2BF0 (Size: 0x8)
+class SLampCoreSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12170,11 +16022,161 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_nNumPacify; // 0x0
-	uint32 m_nNumShotsFired; // 0x4
-	uint32 m_nNumDeaths; // 0x8
-	uint32 m_nNumScared; // 0xC
-	bool m_bWarzoneSpawned; // 0x10
+	float32 m_fDiffusePower; // 0x0
+	bool m_bSwitchState; // 0x4
+};
+
+// 0x0000000142AA2798 (Size: 0x30)
+class SLampCoreSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SLampCoreSaveState> m_aData; // 0x18
+};
+
+// 0x0000000142A98DD8 (Size: 0x6)
+class SSecuritySystemCameraSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint16 m_nEscalation; // 0x0
+	bool m_bIsFunctional; // 0x2
+	bool m_bHasEnteredOnce; // 0x3
+	bool m_bWasInvestigated; // 0x4
+	bool m_bDestroyed; // 0x5
+};
+
+// 0x0000000142A9CC28 (Size: 0x10)
+class SRotateEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bEnabled; // 0x0
+	float32 m_fXAxisSpeed; // 0x4
+	float32 m_fYAxisSpeed; // 0x8
+	float32 m_fZAxisSpeed; // 0xC
+};
+
+// 0x00000001421171A8 (Size: 0x8)
+class IFreeCameraControl
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142AA9B90 (Size: 0x4)
+class SSpeakEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_fSeekPosition; // 0x0
+};
+
+// 0x0000000142AACEF8 (Size: 0x18)
+class IContractModule
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142A9A5E0 (Size: 0x20)
+class SCombatOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float4 m_vPos; // 0x0
+	uint32 m_coverPlane; // 0x10
+	uint32 m_rInteraction; // 0x14
+};
+
+// 0x0000000142AC05F8 (Size: 0xC)
+class SHintEntrySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bIsValid; // 0x0
+	uint32 m_hint; // 0x4
+	uint32 m_context; // 0x8
+};
+
+// 0x0000000142AC0628 (Size: 0x30)
+class SHintManagerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SHintEntrySaveData m_activeHint; // 0x0
+	TArray<SHintEntrySaveData> m_aQueue; // 0x10
+	bool m_bIsRunning; // 0x28
+};
+
+// 0x0000000142AF0670 (Size: 0x20)
+class SCppEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	int32 blueprintIndexInResourceHeader; // 0x0
+	TArray<SEntityTemplateProperty> propertyValues; // 0x8
 };
 
 // 0x0000000142B01220 (Size: 0x8)
@@ -12213,6 +16215,21 @@ public:
 	float32 m_fEmissionCntLeft; // 0x10
 };
 
+// 0x0000000143E6DCF8 (Size: 0x8)
+class SBoneAttachSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rEntity; // 0x0
+	bool m_bIsAttached; // 0x4
+};
+
 // 0x0000000143E6D788 (Size: 0x90)
 class SGameplayRenderablesSaveData
 {
@@ -12232,6 +16249,19 @@ public:
 	TArray<SGateSaveData> m_aGateData; // 0x78
 };
 
+// 0x0000000142AA45E0 (Size: 0x1)
+class SDoorSoundDefs
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
 // 0x0000000142AA4330 (Size: 0x8)
 class SItsATrapSaveData
 {
@@ -12247,8 +16277,8 @@ public:
 	float32 m_fTimer; // 0x4
 };
 
-// 0x0000000142AA45E0 (Size: 0x1)
-class SDoorSoundDefs
+// 0x0000000142A95550 (Size: 0x1)
+class SMovementLocomotionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12258,10 +16288,11 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+	bool m_bIsSneaking; // 0x0
 };
 
-// 0x0000000142A8FB58 (Size: 0x20)
-class SActorBoneSaveData
+// 0x0000000142AA0BE8 (Size: 0x18)
+class SEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12271,12 +16302,13 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	SVector4 mQuaterion; // 0x0
-	SVector4 mTranslation; // 0x10
+	EAISharedEventType m_nType; // 0x0
+	ZGameTime m_nStart; // 0x8
+	ZGameTime m_nEnd; // 0x10
 };
 
-// 0x0000000143F1E5A0 (Size: 0x40)
-class SGBufferSample
+// 0x0000000142AA0C20 (Size: 0x80)
+class SSharedKnowledgeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12286,28 +16318,10 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	SVector3 normal; // 0x0
-	SVector3 diffuse; // 0xC
-	SVector3 specular; // 0x18
-	SVector3 accumulatedLight; // 0x24
-	float32 glossiness; // 0x30
-	float32 translucency; // 0x34
-	float32 ao; // 0x38
-	uint32 shadingModel; // 0x3C
-};
-
-// 0x0000000142AA9860 (Size: 0x18)
-class SRememberActorSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_Actors; // 0x0
+	uint32 m_rEntity; // 0x0
+	ZRepositoryID m_OutfitId; // 0x8
+	SMatrix m_ActualMatrix; // 0x20
+	TArray<SEventSaveData> m_aEvents; // 0x60
 };
 
 // 0x0000000142AA0C40 (Size: 0x48)
@@ -12350,61 +16364,6 @@ public:
 	int32 m_nNextGroupID; // 0x50
 	ZGameTime m_situationStartTime; // 0x58
 	bool m_bSituationEnded; // 0x60
-};
-
-// 0x0000000142A95550 (Size: 0x1)
-class SMovementLocomotionSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bIsSneaking; // 0x0
-};
-
-// 0x0000000142A9A4F0 (Size: 0x48)
-class SCautiousSituationMemberSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZGameTime m_tLastDisturbance; // 0x0
-	ZGameTime m_tLastSearchCalc; // 0x8
-	ZGameTime m_tLastInfluenceCalc; // 0x10
-	ZGameTime m_tLastSearchCompleted; // 0x18
-	ZGameTime m_tLastInvestigationCompleted; // 0x20
-	ZGameTime m_tTimeIdling; // 0x28
-	uint32 m_pGuardDutyPoint; // 0x30
-	int32 m_nBulletImpactsHeard; // 0x34
-	int32 m_nPatrolWaypointIndex; // 0x38
-	uint32 m_nPatrolWaypointSubIndex; // 0x3C
-	bool m_bBanterCandidate; // 0x40
-	bool m_bCivOccupant; // 0x41
-	bool m_bRecievingNewHuntTarget; // 0x42
-	bool m_bLockdownEnforcer; // 0x43
-};
-
-// 0x0000000142AF04A8 (Size: 0x18)
-class SEntityTemplateEntitySubset
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<int32> entities; // 0x0
 };
 
 // 0x0000000142A9A580 (Size: 0x30)
@@ -12489,8 +16448,8 @@ public:
 	float32 m_nMaxLeaveDelaySec; // 0xC
 };
 
-// 0x0000000143E6D770 (Size: 0x10)
-class SLoadRuntimeResourceResult
+// 0x0000000142AA26F0 (Size: 0x30)
+class SMathMultipliesSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -12500,7 +16459,38 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	ZString sFilePath; // 0x0
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
+};
+
+// 0x0000000142AB2188 (Size: 0x8)
+class S25DProjectionSettingsCurveEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 fDistance; // 0x0
+	float32 fValue; // 0x4
+};
+
+// 0x0000000142A9AEB8 (Size: 0x8)
+class SMovementDragBodySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rDraggedActor; // 0x0
+	uint32 m_nGrabBoneID; // 0x4
 };
 
 // 0x0000000142AA4130 (Size: 0xC)
@@ -12519,21 +16509,6 @@ public:
 	float32 m_fT; // 0x8
 };
 
-// 0x0000000142A9AEB8 (Size: 0x8)
-class SMovementDragBodySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rDraggedActor; // 0x0
-	uint32 m_nGrabBoneID; // 0x4
-};
-
 // 0x0000000142A9EF20 (Size: 0x20)
 class SManHuntServiceSaveData
 {
@@ -12548,6 +16523,20 @@ public:
 	TArray<uint16> m_rGuardNodes; // 0x0
 	uint16 m_rInitialNode; // 0x18
 	float32 m_fGuardSightRange; // 0x1C
+};
+
+// 0x0000000142AB6B58 (Size: 0x4)
+class SFootIKEventData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SFootIKEventData_EFoot m_Foot; // 0x0
 };
 
 // 0x0000000142A9C880 (Size: 0x1)
@@ -12595,34 +16584,6 @@ public:
 	bool m_bPaused; // 0x8
 };
 
-// 0x0000000142A95F40 (Size: 0x8)
-class ZResourcePtr
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142AC1570 (Size: 0x30)
-class SValueBoolsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<bool> m_aData; // 0x18
-};
-
 // 0x0000000142A9EBD8 (Size: 0x20)
 class SBodybagBoneSaveData
 {
@@ -12650,6 +16611,25 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bPerceptibleEnabled; // 0x0
+};
+
+// 0x0000000142A95218 (Size: 0x40)
+class SClothBundleSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector3 m_vPosition; // 0x0
+	SVector4 m_vQuaternion; // 0xC
+	ZRepositoryID m_OutfitID; // 0x20
+	int32 m_nOutfitVariation; // 0x30
+	int32 m_nOutfitCharset; // 0x34
+	bool bSpawnedByHitman; // 0x38
 };
 
 // 0x0000000142A97720 (Size: 0x34)
@@ -12691,21 +16671,6 @@ public:
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SColorRGB> m_aData; // 0x18
-};
-
-// 0x0000000142AC15A0 (Size: 0x30)
-class SValueIntSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<int32> m_aData; // 0x18
 };
 
 // 0x0000000142AC15B8 (Size: 0x8)
@@ -12770,6 +16735,19 @@ public:
 	uint32 m_rItem; // 0x0
 };
 
+// 0x0000000142AA6D08 (Size: 0x140)
+class ZInteractionData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
 // 0x0000000142A9EC08 (Size: 0x58)
 class SBodybagSaveData
 {
@@ -12822,38 +16800,6 @@ public:
 	ZVariant constantPinValue; // 0x28
 };
 
-// 0x0000000142AB9FB0 (Size: 0x50)
-class SEnvironmentConfigResourceEntry
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString Name; // 0x0
-	ZResourceID ContractsDatastoreRid; // 0x10
-	ZResourceID UnlockablesDatastoreRid; // 0x20
-	ZResourceID BlobsDatastoreRid; // 0x30
-	ZResourceID ActivityDatastoreRid; // 0x40
-};
-
-// 0x0000000142AB9FE0 (Size: 0x18)
-class SEnvironmentConfigResource
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
-};
-
 // 0x0000000142A9A820 (Size: 0x78)
 class SEvacuateVIPGroupSaveData
 {
@@ -12880,6 +16826,19 @@ public:
 	bool m_bInitialFlee; // 0x70
 	bool m_safeRoomVIPSentActingStarted; // 0x71
 	bool m_isSetupPhaseComplete; // 0x72
+};
+
+// 0x0000000143E6CAC0 (Size: 0x1)
+class IRenderCompositorEntity
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
 };
 
 // 0x0000000142AB21A8 (Size: 0x18)
@@ -12931,6 +16890,65 @@ public:
 	SWorldSpaceSettings sWorldSpaceSettings; // 0x68
 };
 
+// 0x0000000142AA4210 (Size: 0x14)
+class SMathMultiplyDivideSaveData_SVector2
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SVector2 m_fA; // 0x0
+	SVector2 m_fB; // 0x8
+	bool m_bDivide; // 0x10
+};
+
+// 0x0000000142AB0D50 (Size: 0x100)
+class SInventoryUISlot
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString label; // 0x0
+	ZString containedLabel; // 0x10
+	ZString description; // 0x20
+	TArray<ZString> perks; // 0x30
+	bool silencer; // 0x48
+	int32 count; // 0x4C
+	int32 ammo; // 0x50
+	ZRepositoryID id; // 0x58
+	ZString weaponCategory; // 0x68
+	int32 nAmmoRemaining; // 0x78
+	int32 nAmmoTotal; // 0x7C
+	int32 nAmmoInClip; // 0x80
+	int32 nWeaponType; // 0x84
+	int32 nItemHUDType; // 0x88
+	ZString itemCategory; // 0x90
+	ZString itemCategoryLKey; // 0xA0
+	ZString inventoryCategoryIcon; // 0xB0
+	bool isDroppable; // 0xC0
+	bool isContainer; // 0xC1
+	bool containsItem; // 0xC2
+	int32 nContainedItemHUDType; // 0xC4
+	bool bContainedItemIllegal; // 0xC8
+	bool bContainedItemSuspicious; // 0xC9
+	bool bContainedItemDetectedDuringFrisk; // 0xCA
+	bool detectedDuringFrisk; // 0xCB
+	TArray<ZString> actionAndKillTypes; // 0xD0
+	bool suspicious; // 0xE8
+	bool illegal; // 0xE9
+	bool canReload; // 0xEA
+	ZString sPoisonType; // 0xF0
+};
+
 // 0x0000000142ABD8D8 (Size: 0x1)
 class SVisibilitySaveData
 {
@@ -12962,6 +16980,24 @@ public:
 	ZGameTime m_tLockdownTime; // 0x8
 	ZGameTime m_tTriggerTime; // 0x10
 	ZGameTime m_tEngageTime; // 0x18
+};
+
+// 0x0000000143F1E4E8 (Size: 0x30)
+class SGProperties
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float4 vMin; // 0x0
+	float4 vMax; // 0x10
+	int32 nGridWidth; // 0x20
+	float32 fGridSpacing; // 0x24
+	int32 nVisibilityRange; // 0x28
 };
 
 // 0x0000000142AA14F0 (Size: 0x10)
@@ -13006,6 +17042,45 @@ public:
 
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
+};
+
+// 0x0000000142A9A2C8 (Size: 0x50)
+class SCautiousBackupGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZCautiousBackupGroup_EGroupState m_eGroupState; // 0x0
+	uint32 m_pLeader; // 0x4
+	uint16 m_nTargetNodeIndex; // 0x8
+	TArray<uint32> m_aCandidates; // 0x10
+	uint32 m_pCandidate; // 0x28
+	TArray<uint16> m_aReservedApproachNodeIndices; // 0x30
+	ZGameTime m_tStart; // 0x48
+};
+
+// 0x0000000143E70BC8 (Size: 0x48)
+class SEntityPinDescriptor
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString sName; // 0x0
+	ZString sDisplayName; // 0x10
+	ZResourceID type; // 0x20
+	ZString sHelpText; // 0x30
+	bool bIsPlaceholder; // 0x40
+	bool bIsHidden; // 0x41
 };
 
 // 0x0000000142A99E20 (Size: 0x8)
@@ -13056,36 +17131,6 @@ public:
 	TArray<STargetTrackingSaveData> m_aTrackedTargets; // 0x0
 };
 
-// 0x0000000142AA4460 (Size: 0x2)
-class SCollisionControllerAspectSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bCollideHitman; // 0x0
-	bool m_bCollideCamera; // 0x1
-};
-
-// 0x0000000142AA2808 (Size: 0x30)
-class SCollisionControllerAspectsSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<uint32> m_aEntities; // 0x0
-	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
-};
-
 // 0x0000000142A9A5B0 (Size: 0x40)
 class SActOrderSaveData
 {
@@ -13120,8 +17165,8 @@ public:
 	bool m_bVisible; // 0x0
 };
 
-// 0x0000000142AB1E18 (Size: 0x18)
-class SMapMarkerData
+// 0x0000000143F1E5A0 (Size: 0x40)
+class SGBufferSample
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13131,7 +17176,28 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<SVector2> pathPoints; // 0x0
+	SVector3 normal; // 0x0
+	SVector3 diffuse; // 0xC
+	SVector3 specular; // 0x18
+	SVector3 accumulatedLight; // 0x24
+	float32 glossiness; // 0x30
+	float32 translucency; // 0x34
+	float32 ao; // 0x38
+	uint32 shadingModel; // 0x3C
+};
+
+// 0x0000000142AA9860 (Size: 0x18)
+class SRememberActorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_Actors; // 0x0
 };
 
 // 0x0000000142A86D70 (Size: 0x70)
@@ -13161,25 +17227,6 @@ public:
 	bool m_bJustShowExit; // 0x62
 };
 
-// 0x0000000142AA1B68 (Size: 0x40)
-class SCompressedGridFloatField
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bIsSparse; // 0x0
-	uint32 m_nFieldSize; // 0x4
-	float32 m_fInitialValue; // 0x8
-	uint32 m_nGridCRC; // 0xC
-	TArray<uint16> m_aIndices; // 0x10
-	TArray<uint8> m_aValues; // 0x28
-};
-
 // 0x0000000142A9A478 (Size: 0x28)
 class SRecoverUnconsciousGroupSaveData
 {
@@ -13200,8 +17247,8 @@ public:
 	bool m_bFastWakeUp; // 0x26
 };
 
-// 0x0000000142A9A268 (Size: 0x28)
-class SAccidentObserversGroupSaveData
+// 0x0000000142AA1B68 (Size: 0x40)
+class SCompressedGridFloatField
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13211,13 +17258,16 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_target; // 0x0
-	TArray<uint32> m_aWaitingObservers; // 0x8
-	EAccidentScaleContext m_accidentScaleContext; // 0x20
+	bool m_bIsSparse; // 0x0
+	uint32 m_nFieldSize; // 0x4
+	float32 m_fInitialValue; // 0x8
+	uint32 m_nGridCRC; // 0xC
+	TArray<uint16> m_aIndices; // 0x10
+	TArray<uint8> m_aValues; // 0x28
 };
 
-// 0x0000000142AFBB30 (Size: 0x8)
-class SGaitTransitionEntry
+// 0x00000001422D7500 (Size: 0x4)
+class SHeroItemAttachmentSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13227,12 +17277,11 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	EGait m_gait; // 0x0
-	ESpeed m_speed; // 0x4
+	uint32 m_rItem; // 0x0
 };
 
-// 0x00000001422D5DD0 (Size: 0x8)
-class ZTime
+// 0x0000000142AA2680 (Size: 0x30)
+class SMathMultipliesSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13242,29 +17291,8 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint64 m_nValue; // 0x0
-};
-
-// 0x0000000142AF0580 (Size: 0xA8)
-class STemplateBlueprintSubEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SEntityTemplateReference logicalParent; // 0x0
-	int32 entityTypeResourceIndex; // 0x20
-	uint64 entityId; // 0x28
-	bool editorOnly; // 0x30
-	ZString entityName; // 0x38
-	TArray<SEntityTemplatePropertyAlias> propertyAliases; // 0x48
-	TArray<SEntityTemplateExposedEntity> exposedEntities; // 0x60
-	TArray<TPair<ZString,int32>> exposedInterfaces; // 0x78
-	TArray<TPair<ZString,SEntityTemplateEntitySubset>> entitySubsets; // 0x90
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
 };
 
 // 0x0000000142AB1E98 (Size: 0x1)
@@ -13279,21 +17307,6 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bInclusive; // 0x0
-};
-
-// 0x0000000142A990B0 (Size: 0x2)
-class SDramaControllerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bIsStartCondValid; // 0x0
-	bool m_bIsEnableCondValid; // 0x1
 };
 
 // 0x0000000142A87660 (Size: 0x8)
@@ -13370,21 +17383,6 @@ public:
 	bool m_bDivide; // 0x8
 };
 
-// 0x0000000142A86A08 (Size: 0x8)
-class SActorAnimSetVariationIndexSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rAnimationSetDefinition; // 0x0
-	int32 m_nIndex; // 0x4
-};
-
 // 0x0000000142AFA930 (Size: 0x38)
 class SAnimPlayerSaveData
 {
@@ -13401,20 +17399,6 @@ public:
 	TArray<SBoneTransformSaveData> m_aBones; // 0x20
 };
 
-// 0x0000000142AA3F10 (Size: 0x4)
-class SActorKeywordProxySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rActor; // 0x0
-};
-
 // 0x0000000142AA2568 (Size: 0x30)
 class SActorKeywordProxiesSaveData
 {
@@ -13428,6 +17412,51 @@ public:
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorKeywordProxySaveData> m_aData; // 0x18
+};
+
+// 0x0000000142A9A268 (Size: 0x28)
+class SAccidentObserversGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_target; // 0x0
+	TArray<uint32> m_aWaitingObservers; // 0x8
+	EAccidentScaleContext m_accidentScaleContext; // 0x20
+};
+
+// 0x00000001422D5DD0 (Size: 0x8)
+class ZTime
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint64 m_nValue; // 0x0
+};
+
+// 0x0000000142AFBB30 (Size: 0x8)
+class SGaitTransitionEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	EGait m_gait; // 0x0
+	ESpeed m_speed; // 0x4
 };
 
 // 0x0000000142A86FE8 (Size: 0x2C)
@@ -13464,6 +17493,48 @@ public:
 	SVector3 YAxis; // 0xC
 	SVector3 ZAxis; // 0x18
 	SVector3 Trans; // 0x24
+};
+
+// 0x0000000142AEE388 (Size: 0x20)
+class SAudioMemoryMonitorEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 shortId; // 0x0
+	uint32 size; // 0x4
+	TArray<ZResourceID> references; // 0x8
+};
+
+// 0x0000000142AFD278 (Size: 0x60)
+class ZHttpUrl
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+};
+
+// 0x0000000142AAF2C0 (Size: 0x8)
+class IUIDataListener
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
 };
 
 // 0x0000000142A9A7C0 (Size: 0xC)
@@ -13554,6 +17625,59 @@ public:
 	TArray<SExternalEntityTemplatePinConnection> pinConnectionOverrideDeletes; // 0xB0
 };
 
+// 0x0000000142A990B0 (Size: 0x2)
+class SDramaControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bIsStartCondValid; // 0x0
+	bool m_bIsEnableCondValid; // 0x1
+};
+
+// 0x0000000142A9EB38 (Size: 0x1C)
+class SSmuggleSituationActorStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+	bool m_bAllocatedForSituation; // 0x4
+	ZSmuggleSituationEntity_ESmuggleState m_nState; // 0x8
+	ZSmuggleSituationEntity_ESmuggleState m_nStatePrevious; // 0xC
+	float32 m_fStateTimer; // 0x10
+	int32 m_nTargetLocationIndex; // 0x14
+	uint32 m_rScreenplay; // 0x18
+};
+
+// 0x0000000142A9EB68 (Size: 0x38)
+class SSmuggleSituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bIsEnabled; // 0x0
+	bool m_bIsRunning; // 0x1
+	int32 m_nNumberOfPickups; // 0x4
+	TArray<SSmuggleSituationActorStateSaveData> m_aActorsSaveData; // 0x8
+	TArray<uint32> m_aMoveToActs; // 0x20
+};
+
 // 0x0000000142AF1550 (Size: 0x20)
 class SRenderVideoPlayerSaveData
 {
@@ -13611,6 +17735,36 @@ public:
 	uint32 m_rSetpiece; // 0x8
 };
 
+// 0x00000001422D5DB0 (Size: 0x30)
+class ZScopedRuntimePinConDesc
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint64> m_aScopePath; // 0x0
+	ZRuntimePinConDesc m_PinConDesc; // 0x18
+};
+
+// 0x0000000143E6E7C0 (Size: 0x18)
+class SSequenceTrackSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rTrackEntity; // 0x0
+	ZVariant m_CustomTrackData; // 0x8
+};
+
 // 0x0000000142A98008 (Size: 0x2)
 class SAimAssistObjectSaveData
 {
@@ -13642,8 +17796,8 @@ public:
 	TArray<ZString> aSupportedTypes; // 0x28
 };
 
-// 0x0000000142A876C0 (Size: 0x8)
-class IHumanBody
+// 0x0000000142A9E588 (Size: 0x90)
+class SScreenplayManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13653,6 +17807,9 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+	SDramaActorCollectionSaveData m_DramaActorData; // 0x0
+	SDramaSituationCollectionSaveData m_DramaSituationData; // 0x30
+	SDramaSetupCollectionSaveData m_DramaSetupData; // 0x60
 };
 
 // 0x0000000142A9A448 (Size: 0x28)
@@ -13703,6 +17860,26 @@ public:
 	TArray<uint32> m_aPerceptibleActors; // 0x30
 };
 
+// 0x0000000142A9C730 (Size: 0x1C)
+class SHeroEscortSituation2ActorStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nID; // 0x0
+	bool m_bAllocatedForSituation; // 0x4
+	ZHeroEscortSituation2Entity_EEscortState m_eState; // 0x8
+	ZHeroEscortSituation2Entity_EEscortState m_eStatePrevious; // 0xC
+	float32 m_fDistanceToTarget; // 0x10
+	uint32 m_rCurrentScreenplay; // 0x14
+	uint32 m_rPreferredIntermediateScreenplay; // 0x18
+};
+
 // 0x0000000142A9A9E8 (Size: 0x78)
 class SEvacuateSituationSaveData
 {
@@ -13721,22 +17898,6 @@ public:
 	TArray<int32> m_evacuateGroups; // 0x30
 	TArray<uint32> m_activeSafeRooms; // 0x48
 	TArray<uint32> m_vipsUnderFire; // 0x60
-};
-
-// 0x0000000142ABD950 (Size: 0xC)
-class SProgressTimerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	int32 m_nInterval; // 0x0
-	int32 m_nRemaining; // 0x4
-	bool m_bValue; // 0x8
 };
 
 // 0x0000000142AEE3B8 (Size: 0x8)
@@ -13784,25 +17945,6 @@ public:
 
 	uint32 m_rCombatZone; // 0x0
 	int32 m_rSharedKnowledge; // 0x4
-};
-
-// 0x0000000142A9AA00 (Size: 0x40)
-class SSituationOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString m_sClassTypeName; // 0x0
-	EAISharedEventType m_eType; // 0x10
-	int32 m_nTarget; // 0x14
-	bool m_bHasPosition; // 0x18
-	float4 m_vPosition; // 0x20
-	ZVariant m_CustomData; // 0x30
 };
 
 // 0x0000000142A97190 (Size: 0x18)
@@ -13854,8 +17996,8 @@ public:
 
 };
 
-// 0x00000001422D6ED0 (Size: 0x50)
-class SItemSaveData
+// 0x0000000143F1E500 (Size: 0x30)
+class SGWaypoint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -13865,26 +18007,17 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	SVector3 m_vPosition; // 0x0
-	SVector4 m_vRotation; // 0xC
-	bool m_bShowItem; // 0x1C
-	bool m_bEnablePickup; // 0x1D
-	bool m_bKinematic; // 0x1E
-	bool m_bSleeping; // 0x1F
-	bool m_bIsPerceptible; // 0x20
-	bool m_bDestroyed; // 0x21
-	SVector3 m_vVelocity; // 0x24
-	uint32 m_rTransformParent; // 0x30
-	uint32 m_rSpawner; // 0x34
-	uint32 m_rOwner; // 0x38
-	uint32 m_rHoldingContainer; // 0x3C
-	uint32 m_pPreviousOwner; // 0x40
-	bool m_bTurnedOn; // 0x44
-	bool m_bEverOwnedByHitman; // 0x45
-	bool m_bWasPlacedAndAttached; // 0x46
-	bool m_bObjectInPhysicsWorld; // 0x47
-	int32 m_nQuantity; // 0x48
-	ERenderGlowTypes m_eGlowType; // 0x4C
+	uint16 nNeighbor0; // 0x0
+	uint16 nNeighbor1; // 0x2
+	uint16 nNeighbor2; // 0x4
+	uint16 nNeighbor3; // 0x6
+	uint16 nNeighbor4; // 0x8
+	uint16 nNeighbor5; // 0xA
+	uint16 nNeighbor6; // 0xC
+	uint16 nNeighbor7; // 0xE
+	float4 vPos; // 0x10
+	uint32 nVisionDataOffset; // 0x20
+	int16 nLayerIndex; // 0x24
 };
 
 // 0x0000000143E6DCC0 (Size: 0x30)
@@ -13900,37 +18033,6 @@ public:
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVariantStruct> m_aEntityData; // 0x18
-};
-
-// 0x0000000142AB2100 (Size: 0x8)
-class STrackerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rTracker; // 0x0
-	bool m_bIsVisible; // 0x4
-	bool m_bIsEnabled; // 0x5
-	bool m_bSpatialVisibility; // 0x6
-};
-
-// 0x0000000142AB0978 (Size: 0x18)
-class STrackerManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
 };
 
 // 0x0000000142A9A8C8 (Size: 0xC)
@@ -14033,19 +18135,6 @@ public:
 	bool m_IsInvestigated; // 0x30
 };
 
-// 0x0000000142A958B0 (Size: 0x8)
-class IBodybagEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
 // 0x0000000142AA2648 (Size: 0x30)
 class SMathMultipliesSaveData_float32
 {
@@ -14137,19 +18226,6 @@ public:
 
 };
 
-// 0x0000000142A9A748 (Size: 0x1)
-class SPatrolOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
 // 0x0000000142AA22D8 (Size: 0x8)
 class SActorTagSaveData
 {
@@ -14200,8 +18276,8 @@ public:
 	bool m_CanVIPsInvestigate; // 0x2
 };
 
-// 0x0000000142AA8BF8 (Size: 0x4)
-class SActorDynamicTemplateManipulatorSaveData
+// 0x0000000142AACEE0 (Size: 0x8)
+class IContractObjective
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14211,11 +18287,10 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142AC0090 (Size: 0x18)
-class SIntelDataArray_dummy
+// 0x0000000142AA2EF8 (Size: 0x8)
+class STargetableBoneConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14225,41 +18300,8 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<SIntelData> dummy; // 0x0
-};
-
-// 0x0000000142ABFEC8 (Size: 0x10)
-class SIntelSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rCurrentStage; // 0x0
-	float32 m_fHandlerAudioPlayPosition; // 0x4
-	bool m_bTracked; // 0x8
-	bool m_bUnlocked; // 0x9
-	bool m_bRegistered; // 0xA
-	bool m_bIsLastTriggered; // 0xB
-	bool m_bIsHandlerAudioPlaying; // 0xC
-};
-
-// 0x0000000142AB9F68 (Size: 0x18)
-class SActivities
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SActivityDefinition> Activities; // 0x0
+	BoneId_Enum m_eBone; // 0x0
+	float32 m_fBoneRadiusOverride; // 0x4
 };
 
 // 0x0000000142B00518 (Size: 0x1)
@@ -14291,115 +18333,6 @@ public:
 	TArray<SPhysicsSaveData> m_aEntityDatas; // 0x18
 };
 
-// 0x0000000142AB1DB8 (Size: 0x18)
-class SIntelDisplayInfoArray_dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SIntelDisplayInfo> dummy; // 0x0
-};
-
-// 0x0000000142B01640 (Size: 0x90)
-class SDestructiblePieceSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SMatrix m_mTransform; // 0x0
-	TArray<uint16> m_aIndices; // 0x40
-	float32 m_fMass; // 0x58
-	EPhysicsObjectType m_ePhysicsType; // 0x5C
-	bool m_bIsAwake; // 0x60
-	float4 m_fLinearVelocity; // 0x70
-	float4 m_fAngularVelocity; // 0x80
-};
-
-// 0x0000000142B01670 (Size: 0x8)
-class SDestructibleRuntimeDamage
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint16 m_nPieceIndex; // 0x0
-	float32 m_fDamage; // 0x4
-};
-
-// 0x0000000142B01370 (Size: 0x60)
-class SDestructibleObjectSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SDestructibleInteractionHandlerData m_interactionData; // 0x0
-	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
-	TArray<SDestructibleRuntimeConnnection> m_aConnectionData; // 0x20
-	TArray<SDestructibleRuntimeDamage> m_aDamageData; // 0x38
-	uint16 m_nNumAnchors; // 0x50
-	ERuntimeMemoryAllocationState m_eRuntimeMemoryAllocationState; // 0x54
-	EPhysicsObjectType m_eSystemPhysicsType; // 0x58
-	bool m_bHasSystemBeenDetached; // 0x5C
-	bool m_bHasSystemBeenFractured; // 0x5D
-	bool m_bPhysicsEnabled; // 0x5E
-	bool m_bDestructionEnabled; // 0x5F
-};
-
-// 0x0000000142AB1590 (Size: 0x18)
-class SHUDPromptDisplayInfoArray_Dummy
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
-};
-
-// 0x0000000142A99FB8 (Size: 0x14)
-class SCombatSituationMemberSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	float32 m_fDistanceToTarget; // 0x0
-	float32 m_fDistanceFieldValue; // 0x4
-	EDisturbanceType m_civilianJoinReason; // 0x8
-	bool m_bIsPreferredToFire; // 0xC
-	bool m_bDialogPreventShooting; // 0xD
-	bool m_bCanFlee; // 0xE
-	bool m_bCantFleeNoPath; // 0xF
-	bool m_bReportedToGuard; // 0x10
-	bool m_bStandAndShoot; // 0x11
-};
-
 // 0x0000000142AFBCD8 (Size: 0x8)
 class IMorphemeCutSequenceAnimationEntity
 {
@@ -14413,8 +18346,8 @@ public:
 
 };
 
-// 0x0000000142AACA88 (Size: 0x1)
-class SExitsActiveSaveData
+// 0x0000000142A9FF48 (Size: 0x8)
+class IAnimPlayerEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14424,21 +18357,6 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	bool m_bIsActive; // 0x0
-};
-
-// 0x0000000142A9C660 (Size: 0x4)
-class SEscortSituation2Actors
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rActor; // 0x0
 };
 
 // 0x0000000142AA2840 (Size: 0x30)
@@ -14454,19 +18372,6 @@ public:
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_float32> m_aData; // 0x18
-};
-
-// 0x0000000142A9FF48 (Size: 0x8)
-class IAnimPlayerEntity
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
 };
 
 // 0x0000000142A9BC40 (Size: 0x8)
@@ -14552,6 +18457,20 @@ public:
 	int16 m_nObstacleActorIndex; // 0x36
 };
 
+// 0x0000000142A9A5F8 (Size: 0x18)
+class SEscortOutOrderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<float4> m_aExitPoints; // 0x0
+};
+
 // 0x0000000142AA25D8 (Size: 0x30)
 class SItemsSaveData
 {
@@ -14567,20 +18486,6 @@ public:
 	TArray<SItemSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142A9A5F8 (Size: 0x18)
-class SEscortOutOrderSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<float4> m_aExitPoints; // 0x0
-};
-
 // 0x0000000142AACEC0 (Size: 0x48)
 class ZContractEvaluationContext
 {
@@ -14592,6 +18497,70 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+};
+
+// 0x0000000142ABEEE0 (Size: 0x8)
+class SStoredSlotSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_iStoredInventorySlotIndex; // 0x0
+	uint8 m_iStoreReason; // 0x4
+	bool m_bItemsStored; // 0x5
+};
+
+// 0x0000000142ABEF40 (Size: 0x20)
+class SInventoryControllerSlotSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
+	EInventoryStorageType m_eStorageType; // 0x18
+};
+
+// 0x0000000142A9B588 (Size: 0xB8)
+class SInventoryControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
+	uint32 m_nEquippedItemIndex; // 0x18
+	uint32 m_nMostRecentItemIndex; // 0x1C
+	SStoredSlotSaveData m_StoredSlot; // 0x20
+	TArray<SInventoryControllerSlotSaveData> m_aSlots; // 0x28
+	TArray<uint32> m_aPendingPickupItems; // 0x40
+	uint32 m_nAmmoCountGun; // 0x58
+	uint32 m_nAmmoCountRevolver; // 0x5C
+	uint32 m_nAmmoCountSMG; // 0x60
+	uint32 m_nAmmoCountRifle; // 0x64
+	uint32 m_nAmmoCountShotgun; // 0x68
+	uint32 m_nAmmoCountSniper; // 0x6C
+	uint32 m_nAmmoCountMG; // 0x70
+	uint32 m_nAmmoCountRPG; // 0x74
+	uint32 m_nAmmoCountFake; // 0x78
+	uint32 m_nAmmoCountLightPistol; // 0x7C
+	uint32 m_nAmmoCountDartTranquilizer; // 0x80
+	uint32 m_nAmmoCountAmmoShotgunBeanbag; // 0x84
+	TArray<ZRepositoryID> m_aAmmoIds; // 0x88
+	TArray<uint32> m_aAmmoCounts; // 0xA0
 };
 
 // 0x0000000142A9E910 (Size: 0x4)
@@ -14639,25 +18608,6 @@ public:
 	uint32 m_nNumberOfSwitches; // 0xC
 };
 
-// 0x0000000142AEE3A0 (Size: 0x18)
-class SAudioEmitterEventSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_nEventId; // 0x0
-	bool m_bPaused; // 0x4
-	uint32 m_nFlags; // 0x8
-	uint32 m_rEventSender; // 0xC
-	int32 m_nSeekPosition; // 0x10
-	uint8 m_nPlayState; // 0x14
-};
-
 // 0x0000000142AEDF68 (Size: 0xA8)
 class SAudioSaveData
 {
@@ -14676,81 +18626,6 @@ public:
 	TArray<SAudioEmitterStateSaveData> m_aGlobalStates; // 0x60
 	TArray<SAudioEmitterRTPCSaveData> m_aGlobalRTPCs; // 0x78
 	TArray<uint32> m_aEventsEnabledAfterInit; // 0x90
-};
-
-// 0x0000000142A9A7F0 (Size: 0x30)
-class SEvacuateTrespassGroupSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SFSMSaveData m_fsmState; // 0x0
-	int32 m_target; // 0x18
-	uint32 m_safeRoomNode; // 0x1C
-	uint32 m_leader; // 0x20
-	uint32 m_assistant; // 0x24
-	bool m_escalate; // 0x28
-	bool m_completed; // 0x29
-	bool m_standDown; // 0x2A
-	int32 m_warningCount; // 0x2C
-};
-
-// 0x0000000142A9ED40 (Size: 0x88)
-class SSentryZoneSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZGameTime m_tGreetingCooldown; // 0x0
-	ZGameTime m_tLoiteringCooldown; // 0x8
-	int32 m_nWarningCount; // 0x10
-	bool m_bShowingWarning; // 0x14
-	bool bLeftThroughWarningZone; // 0x15
-	bool bEnteredThroughEntranceZone; // 0x16
-	bool bInEntranceZone; // 0x17
-	bool bInWarningZone; // 0x18
-	bool bInGreetingZone; // 0x19
-	bool bInReFriskZone; // 0x1A
-	bool m_bInRequiredDisguise; // 0x1B
-	bool m_bInFriskExemptDisguise; // 0x1C
-	bool m_bHasRequiredItem; // 0x1D
-	bool m_bCanShowActionPrompt; // 0x1E
-	bool m_bTargetInAnyZone; // 0x1F
-	bool m_bSituationActive; // 0x20
-	bool m_bFrisked; // 0x21
-	bool m_bItemChecked; // 0x22
-	bool m_bGreeted; // 0x23
-	bool m_bGreetedInstruction; // 0x24
-	bool m_bGreetedLoitering; // 0x25
-	bool m_bGreetedUnexpected; // 0x26
-	bool m_bInFriskWarningZone; // 0x27
-	TArray<bool> m_aDisguisesAllowedDisabled; // 0x28
-	TArray<bool> m_aDisguisesFriskExemptDisabled; // 0x40
-	TArray<bool> m_aDisguisesDontEscalateOnLineCrossingDisabled; // 0x58
-	TArray<uint32> m_ItemsDroppedInZone; // 0x70
-};
-
-// 0x00000001422D6BA0 (Size: 0x40)
-class ZUIDataProvider
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
 };
 
 // 0x0000000142AB2848 (Size: 0x10)
@@ -14781,21 +18656,6 @@ public:
 	uint32 m_rItem; // 0x4
 };
 
-// 0x0000000142ABEF40 (Size: 0x20)
-class SInventoryControllerSlotSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
-	EInventoryStorageType m_eStorageType; // 0x18
-};
-
 // 0x0000000142A9A4D8 (Size: 0x30)
 class STriggerAlarmGroupSaveData
 {
@@ -14814,8 +18674,8 @@ public:
 	bool m_bTriggeredAlarm; // 0x28
 };
 
-// 0x0000000142A86A68 (Size: 0x48)
-class SActorAnimSetSaveData
+// 0x0000000142AA3E10 (Size: 0x18)
+class SActorSpreadControllerCandidateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -14825,28 +18685,9 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	EAnimSetType m_eAnimSet; // 0x0
-	uint32 m_rCustomAnimationSet; // 0x4
-	EGameTension m_eVariationResourceMaxTension; // 0x8
-	EActorEmotionState m_eVariationResourceMaxEmotionState; // 0xC
-	EAnimSetState m_eAnimSetEmotionState; // 0x10
-	EAnimSetType m_ePreCustomAnimSet; // 0x14
-	TArray<SActorAnimSetVariationIndexSaveData> m_aLocoVariationIndecies; // 0x18
-	TArray<SActorAnimSetVariationIndexSaveData> m_aReactVariationIndecies; // 0x30
-};
-
-// 0x0000000142A86B30 (Size: 0x18)
-class SActorInventorySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
+	uint32 m_CandidateActor; // 0x0
+	ZGameTime m_CandidateTime; // 0x8
+	bool m_bValidCandidate; // 0x10
 };
 
 // 0x0000000142A997B8 (Size: 0x90)
@@ -14977,22 +18818,6 @@ public:
 	bool m_bActivatedByPinSignal; // 0x35
 };
 
-// 0x0000000142A8FB88 (Size: 0x40)
-class SActorRagdollPoseSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	SVector3 m_vBodyVelocity; // 0x0
-	TArray<SActorBoneSaveData> m_aBones; // 0x10
-	TArray<uint32> m_aBoneIndices; // 0x28
-};
-
 // 0x0000000142A9DA18 (Size: 0x8)
 class IActorProviderFilter
 {
@@ -15018,6 +18843,22 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	TArray<SHelpingActorSaveData> m_aHelpingActors; // 0x0
+};
+
+// 0x0000000143E6DDE8 (Size: 0x38)
+class SPersistentEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint64 m_nResourceId; // 0x0
+	TArray<uint64> m_aEntityIDs; // 0x8
+	TArray<ZString> m_aEntityNames; // 0x20
 };
 
 // 0x0000000142AB14D0 (Size: 0x18)
@@ -15057,6 +18898,21 @@ public:
 	bool bIsHidden; // 0x31
 };
 
+// 0x0000000142A95520 (Size: 0x8)
+class SMovementHideInClosetSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ICloset_EClosetType m_eCurrentClosetType; // 0x0
+	uint32 m_rCloset; // 0x4
+};
+
 // 0x00000001422D7550 (Size: 0x28)
 class SLevelReferenceableEntitieSaveData
 {
@@ -15072,33 +18928,6 @@ public:
 	TArray<ZString> m_aAdditionalBrickResources; // 0x10
 };
 
-// 0x0000000142AACEE0 (Size: 0x8)
-class IContractObjective
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x0000000142A9EA88 (Size: 0x4)
-class SLeadEscortSituationActors
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rActor; // 0x0
-};
-
 // 0x0000000142A95868 (Size: 0x8)
 class IEventConsumerCollection
 {
@@ -15110,6 +18939,25 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+};
+
+// 0x0000000142AC1690 (Size: 0x18)
+class SWaveformGeneratorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_fTime; // 0x0
+	float32 m_fFrequency; // 0x4
+	float32 m_fOffset; // 0x8
+	float32 m_fScale; // 0xC
+	float32 m_fStartTime; // 0x10
+	uint32 m_nCount; // 0x14
 };
 
 // 0x0000000142AC0FB8 (Size: 0x30)
@@ -15125,6 +18973,22 @@ public:
 
 	TArray<uint32> m_aGenerators; // 0x0
 	TArray<SWaveformGeneratorSaveData> m_aGeneratorData; // 0x18
+};
+
+// 0x0000000142AA41B0 (Size: 0x1C)
+class SMathLerpSaveData_SColorRGB
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SColorRGB m_A; // 0x0
+	SColorRGB m_B; // 0xC
+	float32 m_fT; // 0x18
 };
 
 // 0x0000000142AA2920 (Size: 0x30)
@@ -15246,22 +19110,6 @@ public:
 	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000142ABD980 (Size: 0xA8)
-class STimerManagerSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	STimerEntitiesSaveData m_TimersData; // 0x0
-	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
-	SGameTimersSaveData m_GameTimersData; // 0x60
-};
-
 // 0x0000000142AACA40 (Size: 0x1)
 class SExitSaveData
 {
@@ -15292,25 +19140,6 @@ public:
 	ZBehaviorTreeVariable assignTo; // 0x8
 };
 
-// 0x0000000143E70BC8 (Size: 0x48)
-class SEntityPinDescriptor
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString sName; // 0x0
-	ZString sDisplayName; // 0x10
-	ZResourceID type; // 0x20
-	ZString sHelpText; // 0x30
-	bool bIsPlaceholder; // 0x40
-	bool bIsHidden; // 0x41
-};
-
 // 0x0000000142A87FE0 (Size: 0x18)
 class SCrowdAIEventSaveData
 {
@@ -15337,6 +19166,58 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	uint32 m_rItem; // 0x0
+};
+
+// 0x0000000142A9E8F8 (Size: 0x1C)
+class SEscortSituationActorStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nID; // 0x0
+	bool m_bAllocatedForSituation; // 0x4
+	ZEscortSituationEntity_EEscortState m_eState; // 0x8
+	ZEscortSituationEntity_EEscortState m_eStatePrevious; // 0xC
+	float32 m_fDistanceToTarget; // 0x10
+	uint32 m_rCurrentScreenplay; // 0x14
+	uint32 m_rPreferredIntermediateScreenplay; // 0x18
+};
+
+// 0x0000000142A9E958 (Size: 0x98)
+class SEscortSituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bActivated; // 0x0
+	bool m_bMayEscort; // 0x1
+	bool m_bTargetDead; // 0x2
+	bool m_bTargetInRange; // 0x3
+	bool m_bAllEscortsAreDead; // 0x4
+	bool m_bForceSearch; // 0x5
+	SVector3 m_vLastPosition; // 0x8
+	bool m_bFoundDeadTarget; // 0x14
+	int64 m_nTargetDeadTime; // 0x18
+	bool m_bTargetIsMoving; // 0x20
+	ZEscortSituationEntity_ETargetState m_eTargetState; // 0x24
+	EActorEmotionState m_eTargetEmotionState; // 0x28
+	ZActBehaviorEntity_EState m_eTargetActState; // 0x2C
+	float32 m_fTargetNotMovingTime; // 0x30
+	float32 m_fTargetAgitationCooldownTimer; // 0x34
+	TArray<SEscortSituationActors> m_aAddedActors; // 0x38
+	TArray<SEscortSituationActorStateSaveData> m_aStates; // 0x50
+	TArray<uint32> m_aEscortActs; // 0x68
+	TArray<uint32> m_aSearchActs; // 0x80
 };
 
 // 0x0000000142AB1BB8 (Size: 0x18)
@@ -15367,32 +19248,6 @@ public:
 	TArray<bool> m_aAllowedProfessionsDisabled; // 0x0
 };
 
-// 0x0000000142A88B60 (Size: 0x8)
-class ISequenceTarget
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
-// 0x000000014211A5D8 (Size: 0x8)
-class IComponentInterface
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-};
-
 // 0x0000000142AA67C8 (Size: 0x8)
 class IHM5WeaponInventory
 {
@@ -15417,21 +19272,6 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-};
-
-// 0x0000000142AF04C0 (Size: 0x18)
-class SCppEntitySubsetInfo
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString name; // 0x0
-	uint32 flags; // 0x10
 };
 
 // 0x00000001422D79D0 (Size: 0x28)
@@ -15464,6 +19304,54 @@ public:
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
 	bool m_bEnabled; // 0x0
+};
+
+// 0x0000000142A9EA70 (Size: 0x1C)
+class SLeadEscortSituationActorStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nID; // 0x0
+	bool m_bAllocatedForSituation; // 0x4
+	ZLeadEscortSituationEntity_EEscortState m_eState; // 0x8
+	ZLeadEscortSituationEntity_EEscortState m_eStatePrevious; // 0xC
+	float32 m_fDistanceToTarget; // 0x10
+	uint32 m_rCurrentScreenplay; // 0x14
+	uint32 m_rPreferredIntermediateScreenplay; // 0x18
+};
+
+// 0x0000000142A9EAD0 (Size: 0x78)
+class SLeadEscortSituationSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bActivated; // 0x0
+	bool m_bMayEscort; // 0x1
+	bool m_bTargetDead; // 0x2
+	bool m_bTargetInRange; // 0x3
+	bool m_bAllEscortsAreDead; // 0x4
+	SVector3 m_vLastPosition; // 0x8
+	bool m_bTargetIsMoving; // 0x14
+	ZLeadEscortSituationEntity_ETargetState m_eTargetState; // 0x18
+	EActorEmotionState m_eTargetEmotionState; // 0x1C
+	ZActBehaviorEntity_EState m_eTargetActState; // 0x20
+	float32 m_fTargetNotMovingTime; // 0x24
+	float32 m_fTargetAgitationCooldownTimer; // 0x28
+	TArray<SLeadEscortSituationActors> m_aAddedActors; // 0x30
+	TArray<SLeadEscortSituationActorStateSaveData> m_aStates; // 0x48
+	TArray<uint32> m_aEscortActs; // 0x60
 };
 
 // 0x0000000142A90EA8 (Size: 0x4)
@@ -15510,6 +19398,51 @@ public:
 	EActorSoundDefs m_sound; // 0x4
 };
 
+// 0x00000001422D6FC8 (Size: 0xC)
+class SWeaponCustomControlSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+	uint32 m_rItem; // 0x4
+	bool m_bTargetRegistered; // 0x8
+};
+
+// 0x0000000142AB9F98 (Size: 0x18)
+class SContractConfigResourceEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZString Id; // 0x0
+	ZRuntimeResourceID ContractRid; // 0x10
+};
+
+// 0x0000000142ABEC40 (Size: 0x1)
+class SItemSpawnerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bItemUpdateTransformChange; // 0x0
+};
+
 // 0x0000000142AF17A8 (Size: 0x8)
 class ITriggerListener
 {
@@ -15539,6 +19472,55 @@ public:
 	bool bHasItemToShow; // 0xC
 	bool bSuspicious; // 0xD
 	bool bIllegal; // 0xE
+};
+
+// 0x0000000143F1E128 (Size: 0x18)
+class SBoneScalesList
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SVector3> m_aBoneScales; // 0x0
+};
+
+// 0x0000000142A9E9C0 (Size: 0x1C)
+class SHeroEscortSituationActorStateSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_nID; // 0x0
+	bool m_bAllocatedForSituation; // 0x4
+	ZHeroEscortSituationEntity_EEscortState m_eState; // 0x8
+	ZHeroEscortSituationEntity_EEscortState m_eStatePrevious; // 0xC
+	float32 m_fDistanceToTarget; // 0x10
+	uint32 m_rCurrentScreenplay; // 0x14
+	uint32 m_rPreferredIntermediateScreenplay; // 0x18
+};
+
+// 0x00000001422D5D28 (Size: 0x18)
+class ZER64
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint64 m_nEntityID; // 0x0
+	ZString m_sExposedEntity; // 0x8
 };
 
 // 0x0000000142AF0948 (Size: 0x18)
@@ -15587,8 +19569,8 @@ public:
 	TArray<uint32> m_DiscoveredVIPOrContractTargetBodies; // 0x20
 };
 
-// 0x0000000142A9AF00 (Size: 0x4)
-class SMovementDrainPipeSaveData
+// 0x0000000142A9A328 (Size: 0x14)
+class SCautiousSearchGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15598,22 +19580,12 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rDrainPipe; // 0x0
-};
-
-// 0x0000000143E6ED38 (Size: 0x2)
-class SLightFlickerEntitySaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	bool m_bLightOn; // 0x0
-	bool m_bFlickerOn; // 0x1
+	uint16 m_searchNode; // 0x0
+	uint16 m_assistantApproachNode; // 0x2
+	ZCautiousSearchGroup_ESearchGroupState m_eGroupState; // 0x4
+	ZCautiousSearchGroup_EAssistantState m_eAssistantState; // 0x8
+	uint32 m_pLeader; // 0xC
+	uint32 m_pAssistant; // 0x10
 };
 
 // 0x0000000142AA24F8 (Size: 0x30)
@@ -15631,6 +19603,41 @@ public:
 	TArray<SActorStandInSaveData> m_aData; // 0x18
 };
 
+// 0x00000001422D5C70 (Size: 0x20)
+class ZBitArray
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint8> m_aBytes; // 0x0
+	uint32 m_nSize; // 0x18
+};
+
+// 0x0000000142B1B1D8 (Size: 0xD0)
+class SReasoningGrid
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SGWaypoint> m_WaypointList; // 0x0
+	ZBitArray m_LowVisibilityBits; // 0x18
+	ZBitArray m_HighVisibilityBits; // 0x38
+	SGProperties m_Properties; // 0x60
+	uint32 m_nNodeCount; // 0x90
+	TArray<uint8> m_pVisibilityData; // 0x98
+	ZBitArray m_deadEndData; // 0xB0
+};
+
 // 0x00000001422D5C50 (Size: 0x20)
 class SDynamicObjectKeyValuePair
 {
@@ -15644,6 +19651,35 @@ public:
 
 	ZString sKey; // 0x0
 	ZDynamicObject value; // 0x10
+};
+
+// 0x0000000142AA1300 (Size: 0x4)
+class SActorProxySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA2530 (Size: 0x30)
+class SActorProxiesSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SActorProxySaveData> m_aData; // 0x18
 };
 
 // 0x0000000142AA25A0 (Size: 0x30)
@@ -15676,6 +19712,59 @@ public:
 	TArray<SItsATrapSaveData> m_aData; // 0x18
 };
 
+// 0x0000000142A97C18 (Size: 0x480)
+class SGameEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	SDoorsSaveData m_DoorData; // 0x0
+	SItemsSaveData m_ItemsData; // 0x30
+	SVolumeTriggersSaveData m_VolumeTriggersData; // 0x60
+	SMathMultipliesSaveData_float32 m_MathMultipliesData_float32; // 0x90
+	SMathMultipliesSaveData_SVector2 m_MathMultipliesData_Vector2; // 0xC0
+	SMathMultipliesSaveData_SVector3 m_MathMultipliesData_Vector3; // 0xF0
+	SMathMultipliesSaveData_SVector4 m_MathMultipliesData_Vector4; // 0x120
+	SShotListenersSaveData m_ShotListenersData; // 0x150
+	STrapsSaveData m_TrapsData; // 0x180
+	SActorProxiesSaveData m_ActorProxiesData; // 0x1B0
+	SActorStandInEntitiesSaveData m_ActorStandInEntitiesData; // 0x1E0
+	SActorBoneAttachmentsSaveData m_ActorBoneAttachmentsData; // 0x210
+	SActorKeywordProxiesSaveData m_ActorKeywordProxiesData; // 0x240
+	SItemKeywordProxiesSaveData m_ItemKeywordProxiesData; // 0x270
+	SLampCoreSaveData m_LampCoreData; // 0x2A0
+	SVIPEvacuationNodesSaveData m_VIPEvacuationNodesData; // 0x2D0
+	SCollisionControllerAspectsSaveData m_CollisionControllerAspectsData; // 0x300
+	SBodyContainersSaveData m_BodyContainersData; // 0x330
+	SMathLerpsSaveData_float32 m_MathLerpsData_float32; // 0x360
+	SMathLerpsSaveData_SVector2 m_MathLerpsData_SVector2; // 0x390
+	SMathLerpsSaveData_SVector3 m_MathLerpsData_SVector3; // 0x3C0
+	SMathLerpsSaveData_SVector4 m_MathLerpsData_SVector4; // 0x3F0
+	SMathLerpsSaveData_SColorRGB m_MathLerpsData_SColorRGB; // 0x420
+	SMathLerpsSaveData_SColorRGBA m_MathLerpsData_SColorRGBA; // 0x450
+};
+
+// 0x0000000143E6DCA8 (Size: 0x48)
+class SPersistentEntitySaveDataList
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SPersistentEntitySaveData> m_aEntityDatas; // 0x0
+	TArray<uint64> m_mDynamicObjectIDGenerationKeys; // 0x18
+	TArray<uint64> m_mDynamicObjectIDGenerationValues; // 0x30
+};
+
 // 0x0000000142AA8B00 (Size: 0x20)
 class SConversationPart
 {
@@ -15691,8 +19780,8 @@ public:
 	TArray<SConversationEntry> m_entries; // 0x8
 };
 
-// 0x0000000142A9E9D8 (Size: 0x4)
-class SHeroEscortSituationActors
+// 0x0000000142A953A8 (Size: 0x78)
+class SHitmanSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15702,7 +19791,18 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rActor; // 0x0
+	ZRepositoryID m_OutfitID; // 0x0
+	int32 m_nOutfitCharset; // 0x10
+	int32 m_nOutfitVariation; // 0x14
+	float32 m_fHealth; // 0x18
+	SVector3 m_vPosition; // 0x1C
+	SVector4 m_vRotation; // 0x28
+	ZVariant m_Inventory; // 0x38
+	ZVariant m_Camera; // 0x48
+	EBaseMovementType m_eMovementType; // 0x58
+	ZVariant m_MovementData; // 0x60
+	bool m_bLethalAgilityElementUsed; // 0x70
+	bool m_bIsChangingClothes; // 0x71
 };
 
 // 0x0000000142AC08D0 (Size: 0xC)
@@ -15721,28 +19821,6 @@ public:
 	bool m_bWereSubtitlesSeen; // 0x8
 };
 
-// 0x0000000142A8FBD0 (Size: 0x40)
-class SActorDynamicTemplateSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	ZString m_sName; // 0x0
-	EGameTension m_eTensionLimit; // 0x10
-	EActorEmotionState m_eEmotionLimit; // 0x14
-	ZGameTime m_nTimeLimit; // 0x18
-	EGameTension m_eTensionRemoveLimit; // 0x20
-	EActorEmotionState m_eEmotionRemoveLimit; // 0x24
-	ZGameTime m_nTimeRemoveLimit; // 0x28
-	int64 m_resourceID; // 0x30
-	uint32 m_rInstance; // 0x38
-};
-
 // 0x0000000142AB1230 (Size: 0x8)
 class IWorldMapMarker
 {
@@ -15756,8 +19834,8 @@ public:
 
 };
 
-// 0x0000000142A95248 (Size: 0x8)
-class SHeroCameraStandInSaveState
+// 0x0000000142A9EA20 (Size: 0x90)
+class SHeroEscortSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15767,12 +19845,27 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rHero; // 0x0
-	bool m_bPaused; // 0x4
+	bool m_bActivated; // 0x0
+	bool m_bMayEscort; // 0x1
+	bool m_bTargetDead; // 0x2
+	bool m_bTargetInRange; // 0x3
+	bool m_bAllEscortsAreDead; // 0x4
+	SVector3 m_vLastPosition; // 0x8
+	bool m_bTargetIsMoving; // 0x14
+	ZHeroEscortSituationEntity_ETargetState m_eTargetState; // 0x18
+	EActorEmotionState m_eTargetEmotionState; // 0x1C
+	ZActBehaviorEntity_EState m_eTargetActState; // 0x20
+	float32 m_fTargetNotMovingTime; // 0x24
+	float32 m_fTargetAgitationCooldownTimer; // 0x28
+	TArray<SHeroEscortSituationActors> m_aAddedActors; // 0x30
+	TArray<SHeroEscortSituationActorStateSaveData> m_aStates; // 0x48
+	TArray<uint32> m_aEscortActs; // 0x60
+	float32 m_fTimeSinceLossOfSight; // 0x78
+	ZRepositoryID m_RecordedHitmanOutfit; // 0x80
 };
 
-// 0x0000000142ABEEE0 (Size: 0x8)
-class SStoredSlotSaveData
+// 0x0000000142A9A748 (Size: 0x1)
+class SPatrolOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15782,9 +19875,50 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_iStoredInventorySlotIndex; // 0x0
-	uint8 m_iStoreReason; // 0x4
-	bool m_bItemsStored; // 0x5
+};
+
+// 0x0000000142A9C790 (Size: 0x90)
+class SHeroEscortSituation2SaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bActivated; // 0x0
+	bool m_bMayEscort; // 0x1
+	bool m_bTargetDead; // 0x2
+	bool m_bTargetInRange; // 0x3
+	bool m_bAllEscortsAreDead; // 0x4
+	SVector3 m_vLastPosition; // 0x8
+	bool m_bTargetIsMoving; // 0x14
+	ZHeroEscortSituation2Entity_ETargetState m_eTargetState; // 0x18
+	EActorEmotionState m_eTargetEmotionState; // 0x1C
+	ZActBehaviorEntity_EState m_eTargetActState; // 0x20
+	float32 m_fTargetNotMovingTime; // 0x24
+	float32 m_fTargetAgitationCooldownTimer; // 0x28
+	TArray<SHeroEscortSituation2Actors> m_aAddedActors; // 0x30
+	TArray<SHeroEscortSituation2ActorStateSaveData> m_aStates; // 0x48
+	TArray<uint32> m_aEscortActs; // 0x60
+	float32 m_fTimeSinceLossOfSight; // 0x78
+	ZRepositoryID m_RecordedHitmanOutfit; // 0x80
+};
+
+// 0x0000000142AB1DF8 (Size: 0x18)
+class SIntelListDisplayInfoArray_dummy
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SIntelListDisplayInfo> dummy; // 0x0
 };
 
 // 0x0000000142A9A4A8 (Size: 0x38)
@@ -15808,6 +19942,20 @@ public:
 	bool m_bShowingWarning; // 0x35
 };
 
+// 0x0000000142AB0780 (Size: 0x4)
+class SHUDVisibilityController2SaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZHUDUIRoot_EHUDVisibility m_eCurrentRequest; // 0x0
+};
+
 // 0x0000000142A90130 (Size: 0x8)
 class IBoneAnimator
 {
@@ -15819,6 +19967,43 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+};
+
+// 0x0000000142A9A2F8 (Size: 0x100)
+class SCautiousInvestigateGroupSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZGameTime m_tGroupStarted; // 0x0
+	int32 m_target; // 0x8
+	EDisturbanceType m_type; // 0xC
+	uint32 m_pLeader; // 0x10
+	uint32 m_pAssistant; // 0x14
+	int32 m_nLeaderApproachNode; // 0x18
+	int32 m_nAssistantApproachNode; // 0x1C
+	ZCautiousInvestigateGroup_EApproachOrderState m_eApproachOrderState; // 0x20
+	SFSMSaveData m_fsmState; // 0x28
+	SFSMSaveData m_fsmAssistantState; // 0x40
+	bool m_bUsingRecurringDialog; // 0x58
+	bool m_bStartedInvestigateDialog; // 0x59
+	bool m_bDelayInvestigateDialog; // 0x5A
+	bool m_bReservedOccupancy; // 0x5B
+	bool m_bSilentInvestigation; // 0x5C
+	bool m_bInvestigateDeadBody; // 0x5D
+	bool m_bMultipleBodies; // 0x5E
+	bool m_bCheckSuspects; // 0x5F
+	float4 m_investigateArea; // 0x60
+	SExactCompressedGridFloatField m_targetDistanceField; // 0x70
+	SExactCompressedGridFloatField m_targetLOSField; // 0xB0
+	bool m_bValidTargetDistanceField; // 0xF0
+	bool m_bValidTargetLOSField; // 0xF1
+	bool m_bForceAcknowledge; // 0xF2
 };
 
 // 0x00000001422D7AC0 (Size: 0x8)
@@ -15884,20 +20069,6 @@ public:
 
 };
 
-// 0x0000000142A95230 (Size: 0x4)
-class SClothBundleSpawnSaveData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-
-	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
-
-	uint32 m_rClothbundle; // 0x0
-};
-
 // 0x0000000142A90BF0 (Size: 0x8)
 class IBulletImpactListener
 {
@@ -15924,6 +20095,21 @@ public:
 
 	ZEntityID m_EntityID; // 0x0
 	ZString m_sExposedEntity; // 0x10
+};
+
+// 0x0000000142AB1D80 (Size: 0x30)
+class SInventoryUICache
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SInventoryUISlot> mainslots; // 0x0
+	TArray<SInventoryUISlot> otherslots; // 0x18
 };
 
 // 0x0000000142AAF1E8 (Size: 0x10)
@@ -15955,6 +20141,21 @@ public:
 	bool m_bPiPEnabled; // 0x0
 };
 
+// 0x00000001422D5D58 (Size: 0x30)
+class ZScopedER64
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	ZER64 m_er64; // 0x0
+	TArray<uint64> m_aScopePath; // 0x18
+};
+
 // 0x0000000142AACDB8 (Size: 0x8)
 class IContractEvaluationContextListener
 {
@@ -15966,6 +20167,21 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
+};
+
+// 0x0000000142A98E10 (Size: 0x2)
+class SSecuritySystemRecorderSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	bool m_bHasRecordings; // 0x0
+	bool m_bIsFunctional; // 0x1
 };
 
 // 0x0000000143E6E3D0 (Size: 0x80)
@@ -15983,8 +20199,8 @@ public:
 	SMatrix m_vTargetStartTransform; // 0x40
 };
 
-// 0x0000000142AEF070 (Size: 0x18)
-class SCrowdDeadPoseRepositorySaveData
+// 0x0000000142A9E478 (Size: 0x1)
+class SAIVisionBlockerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -15994,11 +20210,11 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
+	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000142A9C748 (Size: 0x4)
-class SHeroEscortSituation2Actors
+// 0x00000001422D5F50 (Size: 0x8)
+class IMetricValue
 {
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -16008,6 +20224,41 @@ public:
 
 	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
 
-	uint32 m_rActor; // 0x0
+};
+
+// 0x0000000142AA0DC8 (Size: 0x10)
+class SActorIKControllerSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	float32 m_fRightHandWeight; // 0x0
+	float32 m_fLeftHandWeight; // 0x4
+	float32 m_fRightHandTargetWeight; // 0x8
+	float32 m_fLeftHandTargetWeight; // 0xC
+};
+
+// 0x0000000142AEEDE8 (Size: 0x80)
+class SCrowdEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<SCrowdActorSaveData> m_CrowdActorData; // 0x0
+	TArray<SRegionSaveData> m_RegionData; // 0x18
+	bool m_bIsCrowdAmbient; // 0x30
+	SCrowdDeadPoseRepositorySaveData m_DeadPoseRepository; // 0x38
+	TArray<uint32> m_aCrowdAiPoolActorsMale; // 0x50
+	TArray<uint32> m_aCrowdAiPoolActorsFemale; // 0x68
 };
 
