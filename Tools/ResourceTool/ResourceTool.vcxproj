@@ -111,6 +111,7 @@
     <ClCompile Include="Src\ZHM\ZHMPrimitives.cpp" />
     <ClCompile Include="Src\ZHM\ZHMSerializer.cpp" />
     <ClCompile Include="Src\ZHM\ZHMTypeInfo.cpp" />
+    <ClCompile Include="Src\ZHM\ZRepositoryID.cpp" />
     <ClCompile Include="Src\ZHM\ZString.cpp" />
     <ClCompile Include="Src\ZHM\ZVariant.cpp" />
   </ItemGroup>
@@ -131,6 +132,7 @@
     <ClInclude Include="Src\ZHM\THashMap.h" />
     <ClInclude Include="Src\ZHM\TMap.h" />
     <ClInclude Include="Src\ZHM\TPair.h" />
+    <ClInclude Include="Src\ZHM\ZRepositoryID.h" />
     <ClInclude Include="Src\ZHM\ZHMCustomTypes.h" />
     <ClInclude Include="Src\ZHM\ZHMPrimitives.h" />
     <ClInclude Include="Src\ZHM\ZHMSerializer.h" />

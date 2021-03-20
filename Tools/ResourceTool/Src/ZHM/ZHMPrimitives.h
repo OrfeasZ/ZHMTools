@@ -19,3 +19,4 @@ typedef double float64;
 #include "THashMap.h"
 #include "TPair.h"
 #include "ZVariant.h"
+#include "ZRepositoryID.h"
