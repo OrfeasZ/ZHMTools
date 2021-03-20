@@ -21,4 +21,5 @@ private:
 
 public:
 	static std::string GetEnumValueName(const std::string& p_TypeName, int32_t p_Value);
+	static int32_t GetEnumValueByName(const std::string& p_TypeName, std::string_view p_Name);
 };

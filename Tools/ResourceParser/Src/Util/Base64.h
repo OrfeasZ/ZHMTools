@@ -77,7 +77,7 @@ public:
         return ret;
     }
 
-    static std::string Decode(const std::string& input, std::string& out)
+    static void Decode(const std::string& input, std::string& out)
 	{
         static constexpr unsigned char kDecodingTable[] = {
           64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
@@ -100,8 +100,8 @@ public:
 
         size_t in_len = input.size();
     	
-        if (in_len % 4 != 0) 
-            return "Input data size is not a multiple of 4";
+        if (in_len % 4 != 0)
+            return;
 
         size_t out_len = in_len / 4 * 3;
         if (input[in_len - 1] == '=') out_len--;
@@ -127,7 +127,10 @@ public:
             if (j < out_len) 
                 out[j++] = (triple >> 0 * 8) & 0xFF;
         }
-
-        return "";
+    }
+	
+    static void Decode(std::string_view input, std::string& out)
+    {
+        Decode(std::string(input.data(), input.size()), out);
     }
 };

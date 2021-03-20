@@ -18,4 +18,4 @@ typedef double float64;
 #include "TMap.h"
 #include "THashMap.h"
 #include "TPair.h"
-#include "ZObject.h"
+#include "ZVariant.h"

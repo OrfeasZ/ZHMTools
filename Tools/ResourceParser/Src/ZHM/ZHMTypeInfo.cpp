@@ -12,3 +12,8 @@ ZHMTypeInfo* ZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 
 	return it->second;
 }
+
+ZHMTypeInfo* ZHMTypeInfo::GetTypeByName(std::string_view p_Name)
+{
+	return GetTypeByName(std::string(p_Name.data(), p_Name.size()));
+}

@@ -26,6 +26,7 @@ SOFTWARE.
 
 #include <cctype>
 #include <cstdint>
+#include <string_view>
 
 namespace Hash
 {
@@ -100,6 +101,11 @@ namespace Hash
 		}
     	
 		return s_Hash ^ 0xFFFFFFFF;
+    }
+
+    constexpr uint32_t Crc32(std::string_view p_Data)
+    {
+		return Crc32(p_Data.data(), p_Data.size());
     }
 
 	constexpr uint32_t Fnv1a(const char* p_Data, size_t p_Length)

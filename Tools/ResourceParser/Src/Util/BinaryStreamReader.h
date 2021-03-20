@@ -3,10 +3,10 @@
 #include <cassert>
 #include <string>
 
-class BinaryStream
+class BinaryStreamReader
 {
 public:
-	BinaryStream(void* p_Buffer, size_t p_Size) :
+	BinaryStreamReader(void* p_Buffer, size_t p_Size) :
 		m_Buffer(p_Buffer),
 		m_Size(p_Size),
 		m_StreamPos(0)

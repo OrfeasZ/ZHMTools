@@ -2,7 +2,7 @@
 
 #include "Util/Base64.h"
 
-ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", SAudioSwitchBlueprintData::WriteJson, SAudioSwitchBlueprintData::WriteSimpleJson);
+ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", sizeof(SAudioSwitchBlueprintData), alignof(SAudioSwitchBlueprintData), WriteJson, WriteSimpleJson, FromSimpleJson);
 
 void SAudioSwitchBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -54,7 +54,27 @@ void SAudioSwitchBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_
 	p_Stream << "}";
 }
 
-ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", SScaleformGFxResource::WriteJson, SScaleformGFxResource::WriteSimpleJson);
+void SAudioSwitchBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SAudioSwitchBlueprintData s_Object;
+
+	s_Object.m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
+
+	for (auto s_Item : p_Document["m_aSwitches"])
+	{
+		s_Object.m_aSwitches.push_back(std::string_view(s_Item));
+	}
+
+	*reinterpret_cast<SAudioSwitchBlueprintData*>(p_Target) = s_Object;
+}
+
+void SAudioSwitchBlueprintData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	m_sGroupName.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSwitchBlueprintData, m_sGroupName));
+	m_aSwitches.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioSwitchBlueprintData, m_aSwitches));
+}
+
+ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", sizeof(SScaleformGFxResource), alignof(SScaleformGFxResource), WriteJson, WriteSimpleJson, FromSimpleJson);
 
 void SScaleformGFxResource::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -139,7 +159,48 @@ void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 	p_Stream << "}";
 }
 
-ZHMTypeInfo SGlobalResourceIndexItem::TypeInfo = ZHMTypeInfo("SGlobalResourceIndexItem", SGlobalResourceIndexItem::WriteJson, SGlobalResourceIndexItem::WriteSimpleJson);
+void SScaleformGFxResource::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SScaleformGFxResource s_Object;
+
+	std::string s_SwfData;
+	Base64::Decode(std::string_view(p_Document["m_pSwfData"]), s_SwfData);
+
+	s_Object.m_nSwfDataSize = s_SwfData.size();
+	s_Object.m_pSwfData = reinterpret_cast<uint8_t*>(malloc(s_SwfData.size()));
+	memcpy(s_Object.m_pSwfData, s_SwfData.data(), s_SwfData.size());
+
+	for (auto s_Item : p_Document["m_pAdditionalFileNames"])
+	{
+		s_Object.m_pAdditionalFileNames.push_back(std::string_view(s_Item));
+	}
+
+	for (auto s_Item : p_Document["m_pAdditionalFileData"])
+	{
+		std::string s_Data;
+		Base64::Decode(std::string_view(s_Item), s_Data);
+
+		TArray<uint8_t> s_DataArr;
+		s_DataArr.resize(s_Data.size());
+
+		memcpy(s_DataArr.begin(), s_Data.data(), s_Data.size());
+		
+		s_Object.m_pAdditionalFileData.push_back(s_DataArr);
+	}
+
+	*reinterpret_cast<SScaleformGFxResource*>(p_Target) = s_Object;
+}
+
+void SScaleformGFxResource::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto s_DataPtr = p_Serializer.WriteMemory(m_pSwfData, m_nSwfDataSize);
+	p_Serializer.PatchPtr(p_OwnOffset + offsetof(SScaleformGFxResource, m_pSwfData), s_DataPtr);
+	
+	m_pAdditionalFileNames.Serialize(p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileNames));
+	m_pAdditionalFileData.Serialize(p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileData));
+}
+
+ZHMTypeInfo SGlobalResourceIndexItem::TypeInfo = ZHMTypeInfo("SGlobalResourceIndexItem", sizeof(SGlobalResourceIndexItem), alignof(SGlobalResourceIndexItem), WriteJson, WriteSimpleJson, FromSimpleJson);
 
 void SGlobalResourceIndexItem::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -191,7 +252,27 @@ void SGlobalResourceIndexItem::WriteSimpleJson(void* p_Object, std::ostream& p_S
 	p_Stream << "}";
 }
 
-ZHMTypeInfo SGlobalResourceIndex::TypeInfo = ZHMTypeInfo("SGlobalResourceIndex", SGlobalResourceIndex::WriteJson, SGlobalResourceIndex::WriteSimpleJson);
+void SGlobalResourceIndexItem::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SGlobalResourceIndexItem s_Object;
+
+	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
+
+	for (auto s_Item : p_Document["m_aResourceIndices"])
+	{
+		s_Object.m_aResourceIndices.push_back(static_cast<uint32_t>(int64_t(s_Item)));
+	}
+
+	*reinterpret_cast<SGlobalResourceIndexItem*>(p_Target) = s_Object;
+}
+
+void SGlobalResourceIndexItem::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	m_sName.Serialize(p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndexItem, m_sName));
+	m_aResourceIndices.Serialize(p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndexItem, m_aResourceIndices));
+}
+
+ZHMTypeInfo SGlobalResourceIndex::TypeInfo = ZHMTypeInfo("SGlobalResourceIndex", sizeof(SGlobalResourceIndex), alignof(SGlobalResourceIndex), WriteJson, WriteSimpleJson, FromSimpleJson);
 
 void SGlobalResourceIndex::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -243,7 +324,26 @@ void SGlobalResourceIndex::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 	p_Stream << "}";
 }
 
-ZHMTypeInfo SAudioStateBlueprintData::TypeInfo = ZHMTypeInfo("SAudioStateBlueprintData", SAudioStateBlueprintData::WriteJson, SAudioStateBlueprintData::WriteSimpleJson);
+void SGlobalResourceIndex::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SGlobalResourceIndex s_Object;
+
+	for (simdjson::ondemand::value s_Item : p_Document["m_aItems"])
+	{
+		SGlobalResourceIndexItem s_Value;
+		SGlobalResourceIndexItem::FromSimpleJson(s_Item, &s_Value);
+		s_Object.m_aItems.push_back(s_Value);
+	}
+
+	*reinterpret_cast<SGlobalResourceIndex*>(p_Target) = s_Object;
+}
+
+void SGlobalResourceIndex::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	m_aItems.Serialize(p_Serializer, p_OwnOffset + offsetof(SGlobalResourceIndex, m_aItems));
+}
+
+ZHMTypeInfo SAudioStateBlueprintData::TypeInfo = ZHMTypeInfo("SAudioStateBlueprintData", sizeof(SAudioStateBlueprintData), alignof(SAudioStateBlueprintData), WriteJson, WriteSimpleJson, FromSimpleJson);
 
 void SAudioStateBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -293,4 +393,24 @@ void SAudioStateBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 	p_Stream << "]";
 
 	p_Stream << "}";
+}
+
+void SAudioStateBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SAudioStateBlueprintData s_Object;
+
+	s_Object.m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
+
+	for (auto s_Item : p_Document["m_aStates"])
+	{
+		s_Object.m_aStates.push_back(std::string_view(s_Item));
+	}
+
+	*reinterpret_cast<SAudioStateBlueprintData*>(p_Target) = s_Object;
+}
+
+void SAudioStateBlueprintData::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	m_sGroupName.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_sGroupName));
+	m_aStates.Serialize(p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_aStates));
 }

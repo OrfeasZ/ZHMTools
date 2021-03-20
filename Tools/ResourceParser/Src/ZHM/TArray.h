@@ -1,6 +1,9 @@
 #pragma once
 
 #include <cstdint>
+#include <cstdlib>
+
+#include <ZHM/ZHMSerializer.h>
 
 template <class T>
 class TIterator
@@ -139,6 +142,38 @@ public:
 	bool hasInlineFlag() const
 	{
 		return (m_nFlags >> 62) & 1;
+	}
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+	{
+		if (hasInlineFlag())
+			throw std::exception("cannot serialize inline arrays");
+
+		if (size() == 0)
+		{
+			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<T>, m_pBegin));
+			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd));
+			p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd));
+		}
+		else
+		{
+			auto s_ElementsPtr = p_Serializer.WriteMemory(m_pBegin, sizeof(T) * size());
+
+			for (size_t i = 0; i < size(); ++i)
+			{
+				auto& s_Item = begin()[i];
+
+				if constexpr(!std::is_fundamental_v<T> && !std::is_enum_v<T>)
+				{
+					uintptr_t s_Offset = s_ElementsPtr + sizeof(T) * i;
+					s_Item.Serialize(p_Serializer, s_Offset);
+				}
+			}
+
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pBegin), s_ElementsPtr);
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + sizeof(T) * size());
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + sizeof(T) * size());
+		}
 	}
 
 public:
