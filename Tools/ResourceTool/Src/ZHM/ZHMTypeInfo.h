@@ -7,22 +7,36 @@
 typedef void(*WriteTypeAsJson_t)(void*, std::ostream&);
 typedef void(*CreateTypeFromJson_t)(simdjson::ondemand::value, void*);
 
-class ZHMTypeInfo
+class IZHMTypeInfo
 {
 private:
 	struct PrimitiveRegistrar
 	{
-		PrimitiveRegistrar() { ZHMTypeInfo::RegisterPrimitiveTypes(); }
+		PrimitiveRegistrar() { IZHMTypeInfo::RegisterPrimitiveTypes(); }
 	};
-	
-	static std::unordered_map<std::string, ZHMTypeInfo*>* g_TypeRegistry;
+
+	static std::unordered_map<std::string, IZHMTypeInfo*>* g_TypeRegistry;
 	static PrimitiveRegistrar g_PrimitiveRegistrar;
 	static void RegisterPrimitiveTypes();
 
 public:
-	static ZHMTypeInfo* GetTypeByName(const std::string& p_Name);
-	static ZHMTypeInfo* GetTypeByName(std::string_view p_Name);
-	
+	static IZHMTypeInfo* GetTypeByName(const std::string& p_Name);
+	static IZHMTypeInfo* GetTypeByName(std::string_view p_Name);
+
+public:
+	virtual void WriteJson(void* p_Object, std::ostream& p_Stream) = 0;
+	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) = 0;
+	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) = 0;
+	virtual std::string TypeName() const = 0;
+	virtual size_t Size() const = 0;
+	virtual size_t Alignment() const = 0;
+	virtual bool IsDummy() const = 0;
+
+	friend class ZHMTypeInfo;
+};
+
+class ZHMTypeInfo : public IZHMTypeInfo
+{
 public:
 	ZHMTypeInfo(const char* p_TypeName, size_t p_Size, size_t p_Alignment, WriteTypeAsJson_t p_WriteJson, WriteTypeAsJson_t p_WriteSimpleJson, CreateTypeFromJson_t p_CreateFromJson) :
 		m_Name(p_TypeName),
@@ -33,7 +47,7 @@ public:
 		m_CreateFromJson(p_CreateFromJson)
 	{
 		if (g_TypeRegistry == nullptr)
-			g_TypeRegistry = new std::unordered_map<std::string, ZHMTypeInfo*>();
+			g_TypeRegistry = new std::unordered_map<std::string, IZHMTypeInfo*>();
 		
 		(*g_TypeRegistry)[p_TypeName] = this;
 	}
@@ -47,39 +61,44 @@ public:
 		m_CreateFromJson(p_CreateFromJson)
 	{
 		if (g_TypeRegistry == nullptr)
-			g_TypeRegistry = new std::unordered_map<std::string, ZHMTypeInfo*>();
+			g_TypeRegistry = new std::unordered_map<std::string, IZHMTypeInfo*>();
 		
 		(*g_TypeRegistry)[p_TypeName] = this;
 	}
 
-	void WriteJson(void* p_Object, std::ostream& p_Stream)
+	void WriteJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		return m_WriteJson(p_Object, p_Stream);
 	}
 
-	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		return m_WriteSimpleJson(p_Object, p_Stream);
 	}
 
-	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
+	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) override
 	{
 		return m_CreateFromJson(p_Document, p_Target);
 	}
 
-	std::string TypeName() const
+	std::string TypeName() const override
 	{
 		return m_Name;
 	}
 
-	size_t Size() const
+	size_t Size() const override
 	{
 		return m_Size;
 	}
 
-	size_t Alignment() const
+	size_t Alignment() const override
 	{
 		return m_Alignment;
+	}
+
+	bool IsDummy() const override
+	{
+		return false;
 	}
 
 private:
@@ -89,4 +108,30 @@ private:
 	WriteTypeAsJson_t m_WriteJson;
 	WriteTypeAsJson_t m_WriteSimpleJson;
 	CreateTypeFromJson_t m_CreateFromJson;
+};
+
+class TypeID
+{
+public:
+	static void WriteJson(void* p_Object, std::ostream& p_Stream)
+	{
+		auto* s_Object = static_cast<TypeID*>(p_Object);
+		p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+	}
+
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+	{
+		auto* s_Object = static_cast<TypeID*>(p_Object);
+		p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+	}
+
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+	{
+		auto s_TypeName = std::string_view(p_Document);
+		reinterpret_cast<TypeID*>(p_Target)->m_pTypeID = ZHMTypeInfo::GetTypeByName(s_TypeName);
+	}
+
+	void Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	
+	IZHMTypeInfo* m_pTypeID;
 };

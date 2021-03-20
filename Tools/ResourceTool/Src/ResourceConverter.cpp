@@ -51,7 +51,7 @@ void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_R
 
 	const auto s_TypeIdCount = p_SegmentStream.Read<uint32_t>();
 
-	std::vector<ZHMTypeInfo*> s_Types(s_TypeIdCount);
+	std::vector<IZHMTypeInfo*> s_Types(s_TypeIdCount);
 
 	for (uint32_t i = 0; i < s_TypeIdCount; ++i)
 	{

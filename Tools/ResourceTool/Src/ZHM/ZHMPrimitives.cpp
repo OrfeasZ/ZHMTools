@@ -1,7 +1,7 @@
 #include "ZHMPrimitives.h"
 #include "ZHMTypeInfo.h"
 
-void ZHMTypeInfo::RegisterPrimitiveTypes()
+void IZHMTypeInfo::RegisterPrimitiveTypes()
 {
 	new ZHMTypeInfo("int8", sizeof(int8), alignof(int8),
 		[](void* p_Data, std::ostream& p_Stream)

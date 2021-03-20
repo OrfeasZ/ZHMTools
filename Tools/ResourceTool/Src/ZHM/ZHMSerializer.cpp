@@ -44,7 +44,7 @@ void ZHMSerializer::PatchNullPtr(uintptr_t p_Offset)
 	m_Relocations.insert(p_Offset);
 }
 
-void ZHMSerializer::PatchType(uintptr_t p_Offset, ZHMTypeInfo* p_Type)
+void ZHMSerializer::PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type)
 {
 	// See if we already have this type.
 	size_t s_TypeIndex = m_Types.size();

@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <vector>
 
-class ZHMTypeInfo;
+class IZHMTypeInfo;
 
 class ZHMSerializer
 {
@@ -25,7 +25,7 @@ public:
 	uintptr_t WriteMemory(void* p_Memory, size_t p_Size);
 	void PatchPtr(uintptr_t p_Offset, uintptr_t p_Pointer);
 	void PatchNullPtr(uintptr_t p_Offset);
-	void PatchType(uintptr_t p_Offset, ZHMTypeInfo* p_Type);
+	void PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type);
 	
 	std::set<uintptr_t> GetRelocations() const;
 	std::string GetBuffer();
@@ -52,6 +52,6 @@ private:
 	uint8_t m_Alignment;
 	std::set<uintptr_t> m_Relocations;
 	
-	std::vector<ZHMTypeInfo*> m_Types;
+	std::vector<IZHMTypeInfo*> m_Types;
 	std::set<uintptr_t> m_TypeIdOffsets;
 };

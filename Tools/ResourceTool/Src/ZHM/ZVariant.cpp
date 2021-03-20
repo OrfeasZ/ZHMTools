@@ -11,6 +11,14 @@ void ZVariant::WriteJson(void* p_Object, std::ostream& p_Stream)
 
 	if (s_Object->m_pTypeID == nullptr)
 	{
+		fprintf(stderr, "[WARNING] Could not write ZVariant with null type\n");
+		p_Stream << "null";
+		return;
+	}
+	
+	if (s_Object->m_pTypeID->IsDummy())
+	{
+		fprintf(stderr, "[WARNING] Could not write ZVariant with unknown type '%s'.\n", s_Object->m_pTypeID->TypeName().c_str());
 		p_Stream << "null";
 		return;
 	}
@@ -28,6 +36,14 @@ void ZVariant::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	if (s_Object->m_pTypeID == nullptr)
 	{
+		fprintf(stderr, "[WARNING] Could not write ZVariant with null type\n");
+		p_Stream << "null";
+		return;
+	}
+
+	if (s_Object->m_pTypeID->IsDummy())
+	{
+		fprintf(stderr, "[WARNING] Could not write ZVariant with unknown type '%s'.\n", s_Object->m_pTypeID->TypeName().c_str());
 		p_Stream << "null";
 		return;
 	}
@@ -47,7 +63,7 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 
 	s_Variant.m_pTypeID = ZHMTypeInfo::GetTypeByName(s_TypeName);
 
-	if (s_Variant.m_pTypeID == nullptr)
+	if (s_Variant.m_pTypeID == nullptr || s_Variant.m_pTypeID->IsDummy())
 	{
 		std::cerr << "[ERROR] Could not find TypeInfo for ZVariant of type '" << s_TypeName << "'." << std::endl;
 	}
@@ -62,9 +78,9 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 
 void ZVariant::Serialize(ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	if (m_pTypeID == nullptr)
+	if (m_pTypeID == nullptr || m_pTypeID->IsDummy())
 	{
-		std::cerr << "[ERROR] Tried serializing ZVariant with null type id.";
+		std::cerr << "[ERROR] Tried serializing ZVariant with an unknown type.";
 		
 		p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(ZVariant, m_pTypeID));
 		p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(ZVariant, m_pData));

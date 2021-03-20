@@ -2,7 +2,6 @@
 
 #include <cstdint>
 #include <cstring>
-#include <intrin.h>
 #include <string_view>
 #include <sstream>
 #include <iomanip>
