@@ -42,3 +42,8 @@ inline uint32_t c_byteswap_ulong(uint32_t p_Value)
 			((p_Value << 24) & 0xFF000000);
 #endif
 }
+
+inline size_t c_get_aligned(size_t p_Size, size_t p_Alignment)
+{
+	return p_Size + (p_Alignment - (p_Size % p_Alignment));
+}

@@ -3,6 +3,7 @@
 #include "TArray.h"
 #include <Generated/ZHMEnums.h>
 #include <External/simdjson.h>
+#include <Util/PortableIntrinsics.h>
 
 std::unordered_map<std::string, IZHMTypeInfo*>* IZHMTypeInfo::g_TypeRegistry = nullptr;
 ZHMTypeInfo::PrimitiveRegistrar IZHMTypeInfo::g_PrimitiveRegistrar;
@@ -66,8 +67,10 @@ public:
 public:
 	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
+		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
+		
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Object);
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / m_ElementType->Size();
+		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / s_AlignedSize;
 		
 		p_Stream << "[";
 
@@ -76,7 +79,7 @@ public:
 		for (size_t i = 0; i < s_ElementCount; ++i)
 		{
 			m_ElementType->WriteJson(reinterpret_cast<void*>(s_ObjectPtr), p_Stream);
-			s_ObjectPtr += m_ElementType->Size();
+			s_ObjectPtr += s_AlignedSize;
 
 			if (i < s_ElementCount - 1)
 				p_Stream << ",";
@@ -87,8 +90,10 @@ public:
 	
 	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
+		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
+
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Object);
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / m_ElementType->Size();
+		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / s_AlignedSize;
 
 		p_Stream << "[";
 
@@ -97,7 +102,7 @@ public:
 		for (size_t i = 0; i < s_ElementCount; ++i)
 		{
 			m_ElementType->WriteSimpleJson(reinterpret_cast<void*>(s_ObjectPtr), p_Stream);
-			s_ObjectPtr += m_ElementType->Size();
+			s_ObjectPtr += s_AlignedSize;
 
 			if (i < s_ElementCount - 1)
 				p_Stream << ",";
@@ -108,29 +113,41 @@ public:
 	
 	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
 	{
-		// Get all elements.
-		std::vector<simdjson::ondemand::value> s_Elements;
+		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
+
+		std::vector<void*> s_Elements;
+		
+		// Parse each element.
+		size_t s_TotalSize = 0;
 
 		for (simdjson::ondemand::value s_Element : p_Document)
-			s_Elements.push_back(s_Element);
-		
-		// Allocate memory for all the elements.
-		void* s_Memory = malloc(m_ElementType->Size() * s_Elements.size());
-		memset(s_Memory, 0x00, m_ElementType->Size() * s_Elements.size());
+		{
+			// Allocate memory for this element.
+			void* s_Memory = c_aligned_alloc(m_ElementType->Size(), m_ElementType->Alignment());
+			s_TotalSize += s_AlignedSize;
+			
+			m_ElementType->CreateFromJson(s_Element, s_Memory);
 
-		// Parse each element.
-		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Memory);
+			s_Elements.push_back(s_Memory);
+		}
+
+		// Create a buffer to hold everything together.
+		void* s_FinalMemory = c_aligned_alloc(s_TotalSize, m_ElementType->Alignment());
+
+		size_t s_Offset = 0;
 
 		for (auto s_Element : s_Elements)
 		{
-			m_ElementType->CreateFromJson(s_Element, reinterpret_cast<void*>(s_ObjectPtr));
-			s_ObjectPtr += m_ElementType->Size();			
+			memcpy(reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_Offset), s_Element, s_AlignedSize);
+			c_aligned_free(s_Element);
+			
+			s_Offset += s_AlignedSize;
 		}
-
+		
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Target);
 
-		s_Array->m_pBegin = reinterpret_cast<void**>(s_Memory);
-		s_Array->m_pEnd = reinterpret_cast<void**>(s_ObjectPtr);
+		s_Array->m_pBegin = reinterpret_cast<void**>(s_FinalMemory);
+		s_Array->m_pEnd = reinterpret_cast<void**>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_TotalSize);
 		s_Array->m_pAllocationEnd = s_Array->m_pEnd;
 	}
 	
