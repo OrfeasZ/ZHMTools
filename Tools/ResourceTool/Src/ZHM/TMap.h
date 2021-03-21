@@ -141,13 +141,27 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
 		// TODO
+		fprintf(stderr, "[WARNING] Tried to convert a map to JSON. This is currently unsupported.\n");
 		p_Stream << "null";
 	}
 
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
 		// TODO
+		fprintf(stderr, "[WARNING] Tried to convert a map to JSON. This is currently unsupported.\n");
 		p_Stream << "null";
+	}
+
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+	{
+		// TODO
+		fprintf(stderr, "[WARNING] Tried parsing a map from JSON. This is currently unsupported.\n");
+	}
+
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+	{
+		// TODO
+		fprintf(stderr, "[WARNING] Tried serializing a map. This is currently unsupported.\n");
 	}
 
 public:
@@ -209,12 +223,26 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
 		// TODO
+		fprintf(stderr, "[WARNING] Tried to convert a multi map to JSON. This is currently unsupported.\n");
 		p_Stream << "null";
 	}
 
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
 		// TODO
+		fprintf(stderr, "[WARNING] Tried to convert a multi map to JSON. This is currently unsupported.\n");
 		p_Stream << "null";
+	}
+
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+	{
+		// TODO
+		fprintf(stderr, "[WARNING] Tried parsing a multi map from JSON. This is currently unsupported.\n");
+	}
+
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+	{
+		// TODO
+		fprintf(stderr, "[WARNING] Tried serializing a multi map. This is currently unsupported.\n");
 	}
 };

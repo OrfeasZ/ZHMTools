@@ -66,6 +66,11 @@ void ZHMSerializer::PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type)
 	m_TypeIdOffsets.insert(p_Offset);
 }
 
+void ZHMSerializer::RegisterRuntimeResourceId(uintptr_t p_Offset)
+{
+	m_RuntimeResourceIdOffsets.insert(p_Offset);
+}
+
 std::set<uintptr_t> ZHMSerializer::GetRelocations() const
 {
 	return m_Relocations;
@@ -118,6 +123,9 @@ std::vector<ZHMSerializer::SerializerSegment> ZHMSerializer::GenerateSegments()
 	if (!m_Types.empty())
 		s_Segments.emplace_back(0x3989BF9F, GenerateTypeIdSegment());
 	
+	if (!m_RuntimeResourceIdOffsets.empty())
+		s_Segments.emplace_back(0x578FBCEE, GenerateRuntimeResourceIdSegment());
+	
 	return s_Segments;
 }
 
@@ -152,6 +160,18 @@ std::string ZHMSerializer::GenerateTypeIdSegment()
 		s_Writer.Write<int32_t>(-1);
 		s_Writer.WriteString(m_Types[i]->TypeName());
 	}
+
+	return s_Writer.ToString();
+}
+
+std::string ZHMSerializer::GenerateRuntimeResourceIdSegment()
+{
+	BinaryStreamWriter s_Writer;
+
+	s_Writer.Write<uint32_t>(m_RuntimeResourceIdOffsets.size());
+
+	for (auto s_Offset : m_RuntimeResourceIdOffsets)
+		s_Writer.Write<uint32_t>(s_Offset);
 
 	return s_Writer.ToString();
 }

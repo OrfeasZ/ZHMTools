@@ -200,50 +200,54 @@ public:
 	};
 };
 
-template<typename T>
+template<typename T, size_t N>
 class TFixedArray
 {
 public:
+	TFixedArray()
+	{
+	}
+
 	inline size_t size() const
 	{
-		return (reinterpret_cast<uintptr_t>(m_pEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / sizeof(uintptr_t);
+		return N;
 	}
 
 	inline size_t capacity() const
 	{
-		return (reinterpret_cast<uintptr_t>(m_pEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / sizeof(uintptr_t);
+		return N;
 	}
 
 	inline T& operator[](size_t p_Index) const
 	{
-		return m_pBegin[p_Index];
+		return begin()[p_Index];
 	}
 
 	inline T* begin()
 	{
-		return m_pBegin;
+		return &m_Elements[0];
 	}
 
 	inline T* end()
 	{
-		return m_pEnd;
+		return begin() + size();
 	}
 
 	inline T* begin() const
 	{
-		return m_pBegin;
+		return const_cast<T*>(&m_Elements[0]);
 	}
 
 	inline T* end() const
 	{
-		return m_pEnd;
+		return begin() + size();
 	}
 
 	inline T* find(const T& p_Value) const
 	{
-		T* s_Current = m_pBegin;
+		T* s_Current = begin();
 
-		while (s_Current != m_pEnd)
+		while (s_Current != end())
 		{
 			if (*s_Current == p_Value)
 				return s_Current;
@@ -251,10 +255,25 @@ public:
 			++s_Current;
 		}
 
-		return m_pEnd;
+		return end();
+	}
+
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+	{
+		auto* s_Object = reinterpret_cast<TFixedArray<T, N>*>(p_Object);
+
+		for (size_t i = 0; i < s_Object->size(); ++i)
+		{
+			auto& s_Item = s_Object->begin()[i];
+
+			if constexpr (!std::is_fundamental_v<T> && !std::is_enum_v<T>)
+			{
+				uintptr_t s_Offset = p_OwnOffset + c_get_aligned(sizeof(T), alignof(T)) * i;
+				T::Serialize(&s_Item, p_Serializer, s_Offset);
+			}
+		}
 	}
 
 public:
-	T* m_pBegin;
-	T* m_pEnd;
+	T m_Elements[N];
 };

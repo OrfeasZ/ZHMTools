@@ -88,6 +88,17 @@ void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_R
 	}
 }
 
+void ProcessRuntimeResourceIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream)
+{
+	const auto s_ResourceIdCount = p_SegmentStream.Read<uint32_t>();
+
+	for (uint32_t i = 0; i < s_ResourceIdCount; ++i)
+	{
+		// We read these but in reality we don't really care about them.
+		const auto s_ResourceIdOffset = p_SegmentStream.Read<uint32_t>();
+	}
+}
+
 bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, IResourceConverter* p_Converter, bool p_SimpleOutput)
 {
 	// Read the entire file to memory.
@@ -142,7 +153,10 @@ bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::fil
 			ProcessTypeIds(s_Stream, s_ResourceStream);
 			break;
 
-			// TODO: Resource ID segments
+		case 0x578FBCEE:
+			ProcessRuntimeResourceIds(s_Stream, s_ResourceStream);
+			break;
+
 			// TODO: Runtime Resource ID and Resource Ptr
 
 		default:

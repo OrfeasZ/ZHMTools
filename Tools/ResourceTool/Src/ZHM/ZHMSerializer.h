@@ -26,6 +26,7 @@ public:
 	void PatchPtr(uintptr_t p_Offset, uintptr_t p_Pointer);
 	void PatchNullPtr(uintptr_t p_Offset);
 	void PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type);
+	void RegisterRuntimeResourceId(uintptr_t p_Offset);
 	
 	std::set<uintptr_t> GetRelocations() const;
 	std::string GetBuffer();
@@ -36,6 +37,7 @@ public:
 private:
 	std::string GenerateRelocationSegment();
 	std::string GenerateTypeIdSegment();
+	std::string GenerateRuntimeResourceIdSegment();
 	
 	void Align();
 	void EnsureEnough(size_t p_Size);
@@ -54,4 +56,6 @@ private:
 	
 	std::vector<IZHMTypeInfo*> m_Types;
 	std::set<uintptr_t> m_TypeIdOffsets;
+	
+	std::set<uintptr_t> m_RuntimeResourceIdOffsets;
 };
