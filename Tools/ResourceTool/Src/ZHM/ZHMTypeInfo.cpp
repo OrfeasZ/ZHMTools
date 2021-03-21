@@ -179,6 +179,7 @@ public:
 			{
 				m_ElementType->Serialize(reinterpret_cast<void*>(s_ObjectPtr), p_Serializer, s_CurrentElement);
 				s_CurrentElement += s_AlignedSize;
+				s_ObjectPtr += s_AlignedSize;
 			}
 
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pBegin), s_ElementsPtr);
