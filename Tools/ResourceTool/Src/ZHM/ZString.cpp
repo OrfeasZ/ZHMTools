@@ -24,6 +24,26 @@ std::string JsonStr(const ZString& p_String)
 		{
 			o << "\\/";
 		}
+		else if (c == '\b')
+		{
+			o << "\\b";
+		}
+		else if (c == '\f')
+		{
+			o << "\\f";
+		}
+		else if (c == '\n')
+		{
+			o << "\\n";
+		}
+		else if (c == '\r')
+		{
+			o << "\\r";
+		}
+		else if (c == '\t')
+		{
+			o << "\\t";
+		}
 		else if (c >= 0 && c <= 0x1F)
 		{
 			o << "\\u" << std::hex << std::setw(4) << std::setfill('0') << static_cast<int>(c);
