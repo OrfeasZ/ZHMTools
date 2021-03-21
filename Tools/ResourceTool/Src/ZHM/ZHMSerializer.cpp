@@ -8,7 +8,7 @@ ZHMSerializer::ZHMSerializer(uint8_t p_Alignment)
 	m_CurrentSize = 0;
 	m_Capacity = 256;
 	m_Buffer = malloc(m_Capacity);
-	m_Alignment = p_Alignment;
+	m_Alignment = std::max(static_cast<uintptr_t>(p_Alignment), sizeof(uintptr_t));
 }
 
 ZHMSerializer::~ZHMSerializer()
@@ -16,9 +16,9 @@ ZHMSerializer::~ZHMSerializer()
 	free(m_Buffer);
 }
 
-uintptr_t ZHMSerializer::WriteMemory(void* p_Memory, size_t p_Size)
+uintptr_t ZHMSerializer::WriteMemory(void* p_Memory, size_t p_Size, size_t p_Alignment)
 {
-	Align();
+	AlignTo(p_Alignment);
 
 	uintptr_t s_StartOffset = m_CurrentSize;
 
@@ -78,16 +78,18 @@ std::set<uintptr_t> ZHMSerializer::GetRelocations() const
 
 std::string ZHMSerializer::GetBuffer()
 {
-	Align();
+	AlignTo(m_Alignment);
 	return std::string(reinterpret_cast<char*>(m_Buffer), m_CurrentSize);
 }
 
-void ZHMSerializer::Align()
+void ZHMSerializer::AlignTo(uintptr_t p_Alignment)
 {
+	auto s_Alignment = std::max(m_Alignment, p_Alignment);
+	
 	// Align to boundary.
-	if (m_CurrentSize % m_Alignment != 0)
+	if (m_CurrentSize % s_Alignment != 0)
 	{
-		const auto s_BytesToSkip = m_Alignment - (m_CurrentSize % m_Alignment);
+		const auto s_BytesToSkip = s_Alignment - (m_CurrentSize % s_Alignment);
 		EnsureEnough(m_CurrentSize + s_BytesToSkip);
 
 		memset(CurrentPtr(), 0x00, s_BytesToSkip);

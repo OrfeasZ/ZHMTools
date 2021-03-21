@@ -51,7 +51,7 @@ public:
 
 		// Start serializing.
 		ZHMSerializer s_Serializer(alignof(T));
-		auto s_BaseOffset = s_Serializer.WriteMemory(&s_Resource, sizeof(T));
+		auto s_BaseOffset = s_Serializer.WriteMemory(&s_Resource, sizeof(T), alignof(T));
 
 		T::Serialize(&s_Resource, s_Serializer, s_BaseOffset);
 

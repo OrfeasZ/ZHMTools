@@ -110,7 +110,7 @@ void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t 
 	}
 	else
 	{
-		auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size());
+		auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size(), s_Object->m_pTypeID->Alignment());
 
 		s_Object->m_pTypeID->Serialize(s_Object->m_pData, p_Serializer, s_ValueOffset);
 		

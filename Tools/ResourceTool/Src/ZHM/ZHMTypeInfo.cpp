@@ -170,7 +170,7 @@ public:
 		}
 		else
 		{
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment()) * s_ElementCount);
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment()) * s_ElementCount, m_ElementType->Alignment());
 			auto s_CurrentElement = s_ElementsPtr;
 
 			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin);

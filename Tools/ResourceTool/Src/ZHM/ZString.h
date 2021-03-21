@@ -92,6 +92,14 @@ public:
 		return (m_nLength & 0xC0000000) == 0;
 	}
 
+	bool startsWith(const ZString& p_Other) const
+	{
+		if (size() < p_Other.size())
+			return false;
+
+		return strncmp(c_str(), p_Other.c_str(), p_Other.size()) == 0;
+	}
+
 private:
 	void allocate(const char* str, size_t size)
 	{

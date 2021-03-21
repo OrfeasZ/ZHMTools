@@ -22,7 +22,7 @@ public:
 	ZHMSerializer(uint8_t p_Alignment);
 	~ZHMSerializer();
 	
-	uintptr_t WriteMemory(void* p_Memory, size_t p_Size);
+	uintptr_t WriteMemory(void* p_Memory, size_t p_Size, size_t p_Alignment);
 	void PatchPtr(uintptr_t p_Offset, uintptr_t p_Pointer);
 	void PatchNullPtr(uintptr_t p_Offset);
 	void PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type);
@@ -32,14 +32,14 @@ public:
 	std::string GetBuffer();
 	std::vector<SerializerSegment> GenerateSegments();
 	
-	uint8_t Alignment() const { return m_Alignment; }
+	uintptr_t Alignment() const { return m_Alignment; }
 
 private:
 	std::string GenerateRelocationSegment();
 	std::string GenerateTypeIdSegment();
 	std::string GenerateRuntimeResourceIdSegment();
 	
-	void Align();
+	void AlignTo(uintptr_t p_Alignment);
 	void EnsureEnough(size_t p_Size);
 
 	void* CurrentPtr()
@@ -51,7 +51,7 @@ private:
 	size_t m_CurrentSize;
 	size_t m_Capacity;
 	void* m_Buffer;
-	uint8_t m_Alignment;
+	uintptr_t m_Alignment;
 	std::set<uintptr_t> m_Relocations;
 	
 	std::vector<IZHMTypeInfo*> m_Types;
