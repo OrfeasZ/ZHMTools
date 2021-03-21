@@ -31,8 +31,13 @@ public:
 	{
 		// TODO: Inline support.
 		size_t s_Size = size();
-		resize(s_Size + 1);
+
+		// If we're at capacity we need to expand.
+		if (capacity() == s_Size)
+			resize(s_Size + 1);
+		
 		m_pBegin[s_Size] = p_Value;
+		m_pEnd = m_pBegin + (s_Size + 1);
 	}
 
 	void resize(size_t p_Size)
@@ -41,21 +46,28 @@ public:
 		if (capacity() == p_Size)
 			return;
 
+		auto s_CurrentSize = size();
+
+		size_t s_NewSize = ceil((capacity() == 0 ? 1 : capacity()) * 1.5);
+
+		while (s_NewSize < p_Size)
+			s_NewSize = ceil(s_NewSize * 1.5);
+
 		if (m_pBegin == nullptr)
 		{
-			m_pBegin = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * p_Size, alignof(T)));
-			m_pEnd = m_pBegin + p_Size;
-			m_pAllocationEnd = m_pEnd;
+			m_pBegin = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * s_NewSize, alignof(T)));
+			m_pEnd = m_pBegin + s_CurrentSize;
+			m_pAllocationEnd = m_pBegin + s_NewSize;
 			return;
 		}
 
-		T* s_NewMemory = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * p_Size, alignof(T)));
+		T* s_NewMemory = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * s_NewSize, alignof(T)));
 		memcpy(s_NewMemory, m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * size());
 		c_aligned_free(m_pBegin);
 
 		m_pBegin = s_NewMemory;
-		m_pEnd = m_pBegin + p_Size;
-		m_pAllocationEnd = m_pEnd;
+		m_pEnd = m_pBegin + s_CurrentSize;
+		m_pAllocationEnd = m_pBegin + s_NewSize;
 	}
 
 	void clear()
@@ -164,7 +176,7 @@ public:
 		}
 		else
 		{
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * s_Object->size(), alignof(T));
 
 			for (size_t i = 0; i < s_Object->size(); ++i)
 			{

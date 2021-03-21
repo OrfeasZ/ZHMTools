@@ -100,10 +100,10 @@ void ZHMSerializer::EnsureEnough(size_t p_Size)
 	if (m_Capacity >= p_Size)
 		return;
 
-	size_t s_NewCapacity = m_Capacity * 1.5;
+	size_t s_NewCapacity = ceil(m_Capacity * 1.5);
 
 	while (s_NewCapacity < p_Size)
-		s_NewCapacity *= 1.5;
+		s_NewCapacity = ceil(s_NewCapacity * 1.5);
 
 	auto s_NewBuffer = malloc(s_NewCapacity);
 	memcpy(s_NewBuffer, m_Buffer, m_CurrentSize);

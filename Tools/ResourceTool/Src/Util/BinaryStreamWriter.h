@@ -65,10 +65,10 @@ private:
 		if (m_Position + p_AdditionalBytes <= m_Capacity)
 			return;
 
-		size_t s_NewCapacity = m_Capacity * 1.5;
+		size_t s_NewCapacity = ceil(m_Capacity * 1.5);
 
 		while (s_NewCapacity < m_Position + p_AdditionalBytes)
-			s_NewCapacity *= 1.5;
+			s_NewCapacity = ceil( s_NewCapacity * 1.5);
 
 		m_Buffer = realloc(m_Buffer, s_NewCapacity);
 		m_Capacity = s_NewCapacity;
