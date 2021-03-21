@@ -15,7 +15,7 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	REGISTER_RESOURCE(ATMD, ZAMDTake)
 	REGISTER_RESOURCE(CBLU, SCppEntityBlueprint)
 	REGISTER_RESOURCE(CPPT, SCppEntity)
-	//REGISTER_RESOURCE(CRMD, SCrowdMapData)
+	REGISTER_RESOURCE(CRMD, SCrowdMapData)
 	REGISTER_RESOURCE(DSWB, SAudioSwitchBlueprintData)
 	REGISTER_RESOURCE(ECPB, SExtendedCppEntityBlueprint)
 	REGISTER_RESOURCE(GFXF, SScaleformGFxResource)
