@@ -32,14 +32,14 @@ jobs:
         mkdir _dist
         Copy-Item _build/Release/bin/ResourceTool.exe -Destination _dist/
         Copy-Item _build/Release/bin/ResourceTool.pdb -Destination _dist/
-        Copy-Item LICENSE -Destination _sdk/
+        Copy-Item LICENSE -Destination _dist/
 
     - name: Archive tools
       uses: actions/upload-artifact@v2
       with:
         name: ZHMTools
         path: |
-          _sdk/*
+          _dist/*
 
   create_release:
     name: Create release
