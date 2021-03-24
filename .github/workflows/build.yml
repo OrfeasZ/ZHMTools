@@ -23,9 +23,13 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Restore packages
+      run: |
+        msbuild ZHMTools.sln /t:Restore /m
+
     - name: Build
       run: |
-        msbuild ZHMTools.sln /t:Build /p:Configuration=Release
+        msbuild ZHMTools.sln /t:Build /p:Configuration=Release /m
 
     - name: Copy artifacts
       run: |
