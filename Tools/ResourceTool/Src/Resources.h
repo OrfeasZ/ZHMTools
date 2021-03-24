@@ -3,11 +3,13 @@
 #include <ostream>
 #include <filesystem>
 #include <unordered_map>
+#include <string>
 
 class IResourceConverter
 {
 public:
-	virtual void WriteJson(void* p_ResourceData, bool p_Simple, std::ostream& p_Stream) = 0;
+	virtual bool ToJson(void* p_ResourceData, size_t p_Size, bool p_Simple, std::ostream& p_Stream) = 0;
+	virtual void* ToInMemStructure(void* p_ResourceData, size_t p_Size) = 0;
 };
 
 class IResourceGenerator
@@ -15,6 +17,8 @@ class IResourceGenerator
 public:
 	virtual ~IResourceGenerator() = default;
 	virtual bool GenerateFrom(std::filesystem::path p_JsonFilePath, std::filesystem::path p_OutputPath) = 0;
+	virtual bool GenerateFromMemory(void* p_Memory, std::filesystem::path p_OutputPath) = 0;
+	virtual std::string GenerateBufferFromMemory(void* p_Memory) = 0;
 };
 
 struct Resource

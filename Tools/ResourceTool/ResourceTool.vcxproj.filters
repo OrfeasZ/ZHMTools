@@ -39,9 +39,6 @@
     <ClCompile Include="Src\External\simdjson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\ResourceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Src\ZHM\ZHMSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

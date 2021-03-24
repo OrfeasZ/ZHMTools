@@ -1,6 +1,7 @@
 #include "Resources.h"
 
 #include <cstdio>
+#include <fstream>
 
 #include "ResourceConverter.h"
 #include "ResourceGenerator.h"
@@ -12,6 +13,36 @@
 #define EXECUTABLE "./ResourceTool"
 #define SAMPLE_PATH "/path/to/"
 #endif
+
+bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, IResourceConverter* p_Converter, bool p_SimpleOutput)
+{
+	// Read the entire file to memory.
+	const auto s_FileSize = file_size(p_InputFilePath);
+	std::ifstream s_FileStream(p_InputFilePath, std::ios::in | std::ios::binary);
+
+	void* s_FileData = malloc(s_FileSize);
+	s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
+
+	s_FileStream.close();
+
+	std::ofstream s_OutputStream(p_OutputFilePath, std::ios::out);
+	auto s_Result = p_Converter->ToJson(s_FileData, s_FileSize, p_SimpleOutput, s_OutputStream);
+
+	free(s_FileData);
+
+	return s_Result;
+}
+
+bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::filesystem::path& p_OutputFilePath, IResourceGenerator* p_Generator, bool p_SimpleInput)
+{
+	if (!p_SimpleInput)
+	{
+		fprintf(stderr, "[ERROR] Only simple JSON inputs are supported currently.\n");
+		return false;
+	}
+
+	return p_Generator->GenerateFrom(p_JsonFilePath, p_OutputFilePath);
+}
 
 void PrintHelp()
 {	
