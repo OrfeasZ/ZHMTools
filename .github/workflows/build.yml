@@ -14,10 +14,6 @@ jobs:
     name: Build
     runs-on: [ windows-latest ]
 
-    strategy:
-      matrix:
-        buildtype: [ RelWithDebInfo, Debug ]
-
     steps:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
@@ -26,16 +22,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         submodules: recursive
-
-    - name: Generate projects
-      run: |
-        mkdir _build-${{ matrix.buildtype }}
-        cd _build-${{ matrix.buildtype }}
-        cmake -G Ninja `
-          -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} `
-          -DCMAKE_CXX_COMPILER=cl `
-          -DCMAKE_C_COMPILER=cl `
-          ..
 
     - name: Build
       run: |
