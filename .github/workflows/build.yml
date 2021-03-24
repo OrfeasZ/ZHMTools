@@ -25,7 +25,7 @@ jobs:
 
     - name: Restore packages
       run: |
-        msbuild ZHMTools.sln /t:Restore /m
+        msbuild ZHMTools.sln /t:Restore /p:Configuration=Release /m
 
     - name: Build
       run: |
