@@ -19,7 +19,7 @@ public:
 public:
 	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
+		p_Stream << "{" << "\"$enumVal\"" << ":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << "," << "\"$enumValName\"" << ":" << JsonStr(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
 	}
 	
 	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)

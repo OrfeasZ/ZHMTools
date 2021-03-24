@@ -23,7 +23,7 @@ void ZVariant::WriteJson(void* p_Object, std::ostream& p_Stream)
 		return;
 	}
 
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr(s_Object->m_pTypeID->TypeName()) << "," << JsonStr("$val") << ":";
+	p_Stream << "{" << "\"$type\"" << ":" << JsonStr(s_Object->m_pTypeID->TypeName()) << "," << "\"$val\"" << ":";
 
 	s_Object->m_pTypeID->WriteJson(s_Object->m_pData, p_Stream);
 
@@ -48,7 +48,7 @@ void ZVariant::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 		return;
 	}
 
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr(s_Object->m_pTypeID->TypeName()) << "," << JsonStr("$val") << ":";
+	p_Stream << "{" << "\"$type\"" << ":" << JsonStr(s_Object->m_pTypeID->TypeName()) << "," << "\"$val\"" << ":";
 
 	s_Object->m_pTypeID->WriteSimpleJson(s_Object->m_pData, p_Stream);
 

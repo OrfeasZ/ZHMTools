@@ -11,14 +11,14 @@ public:
 	{
 		auto s_Object = static_cast<TPair<T, Z>*>(p_Object);
 
-		p_Stream << "{" << JsonStr("first") << ":";
+		p_Stream << "{" << "\"first\"" << ":";
 		
 		if constexpr (std::is_fundamental_v<T>)
 			p_Stream << s_Object->first;
 		else
 			T::WriteJson(&s_Object->first, p_Stream);
 
-		p_Stream << "," << JsonStr("second") << ":";
+		p_Stream << "," << "\"second\"" << ":";
 		
 		if constexpr (std::is_fundamental_v<Z>)
 			p_Stream << s_Object->second;
