@@ -27,6 +27,13 @@ public:
 	void PatchNullPtr(uintptr_t p_Offset);
 	void PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type);
 	void RegisterRuntimeResourceId(uintptr_t p_Offset);
+
+	template <class T>
+	void PatchValue(uintptr_t p_Offset, T p_Value)
+	{
+		EnsureEnough(p_Offset + sizeof(T));
+		*reinterpret_cast<T*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = p_Value;
+	}
 	
 	std::set<uintptr_t> GetRelocations() const;
 	std::string GetBuffer();
