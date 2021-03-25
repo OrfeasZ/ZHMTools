@@ -84,6 +84,6 @@ void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p
 
 	// Some strings can have the allocated flag, so we rewrite the length without it
 	// cause otherwise the game will try to do some weird re-allocation shit and crash spectacularly.
-	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(ZString, m_nLength), s_Object->size() | 0x80000000);
+	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(ZString, m_nLength), s_Object->size() | 0x40000000);
 	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);
 }
