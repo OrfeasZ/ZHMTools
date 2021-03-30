@@ -13707,291 +13707,6 @@ void S3rdPersonCameraSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serial
 
 }
 
-ZHMTypeInfo SItemSaveData::TypeInfo = ZHMTypeInfo("SItemSaveData", sizeof(SItemSaveData), alignof(SItemSaveData), SItemSaveData::WriteJson, SItemSaveData::WriteSimpleJson, SItemSaveData::FromSimpleJson, SItemSaveData::Serialize);
-
-void SItemSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << JsonStr("m_vPosition") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("SVector3") << "," << JsonStr("$val") << ":";
-	SVector3::WriteJson(&s_Object->m_vPosition, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_vRotation") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("SVector4") << "," << JsonStr("$val") << ":";
-	SVector4::WriteJson(&s_Object->m_vRotation, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bShowItem") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bShowItem;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bEnablePickup") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bEnablePickup;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bKinematic") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bKinematic;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bSleeping") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bSleeping;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bIsPerceptible") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bIsPerceptible;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bDestroyed") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bDestroyed;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_vVelocity") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("SVector3") << "," << JsonStr("$val") << ":";
-	SVector3::WriteJson(&s_Object->m_vVelocity, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rTransformParent") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_rTransformParent;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rSpawner") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_rSpawner;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rOwner") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_rOwner;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rHoldingContainer") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_rHoldingContainer;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_pPreviousOwner") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_pPreviousOwner;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bTurnedOn") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bTurnedOn;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bEverOwnedByHitman") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bEverOwnedByHitman;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bWasPlacedAndAttached") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bWasPlacedAndAttached;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bObjectInPhysicsWorld") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bObjectInPhysicsWorld;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nQuantity") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nQuantity;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_eGlowType") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ERenderGlowTypes") << "," << JsonStr("$val") << ":";
-	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_eGlowType) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("ERenderGlowTypes", static_cast<int>(s_Object->m_eGlowType))) << "}";
-	p_Stream << "}";
-
-	p_Stream << "}";
-}
-
-void SItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << JsonStr("m_vPosition") << ":";
-	SVector3::WriteSimpleJson(&s_Object->m_vPosition, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_vRotation") << ":";
-	SVector4::WriteSimpleJson(&s_Object->m_vRotation, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bShowItem") << ":";
-	p_Stream << s_Object->m_bShowItem;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bEnablePickup") << ":";
-	p_Stream << s_Object->m_bEnablePickup;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bKinematic") << ":";
-	p_Stream << s_Object->m_bKinematic;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bSleeping") << ":";
-	p_Stream << s_Object->m_bSleeping;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bIsPerceptible") << ":";
-	p_Stream << s_Object->m_bIsPerceptible;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bDestroyed") << ":";
-	p_Stream << s_Object->m_bDestroyed;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_vVelocity") << ":";
-	SVector3::WriteSimpleJson(&s_Object->m_vVelocity, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rTransformParent") << ":";
-	p_Stream << s_Object->m_rTransformParent;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rSpawner") << ":";
-	p_Stream << s_Object->m_rSpawner;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rOwner") << ":";
-	p_Stream << s_Object->m_rOwner;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_rHoldingContainer") << ":";
-	p_Stream << s_Object->m_rHoldingContainer;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_pPreviousOwner") << ":";
-	p_Stream << s_Object->m_pPreviousOwner;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bTurnedOn") << ":";
-	p_Stream << s_Object->m_bTurnedOn;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bEverOwnedByHitman") << ":";
-	p_Stream << s_Object->m_bEverOwnedByHitman;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bWasPlacedAndAttached") << ":";
-	p_Stream << s_Object->m_bWasPlacedAndAttached;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bObjectInPhysicsWorld") << ":";
-	p_Stream << s_Object->m_bObjectInPhysicsWorld;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nQuantity") << ":";
-	p_Stream << s_Object->m_nQuantity;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_eGlowType") << ":";
-	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("ERenderGlowTypes", static_cast<int>(s_Object->m_eGlowType)));
-
-	p_Stream << "}";
-}
-
-void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	SItemSaveData s_Object;
-
-	{
-		SVector3 s_Item;
-		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
-		s_Object.m_vPosition = s_Item;
-	}
-
-	{
-		SVector4 s_Item;
-		SVector4::FromSimpleJson(p_Document["m_vRotation"], &s_Item);
-		s_Object.m_vRotation = s_Item;
-	}
-
-	s_Object.m_bShowItem = bool(p_Document["m_bShowItem"]);
-
-	s_Object.m_bEnablePickup = bool(p_Document["m_bEnablePickup"]);
-
-	s_Object.m_bKinematic = bool(p_Document["m_bKinematic"]);
-
-	s_Object.m_bSleeping = bool(p_Document["m_bSleeping"]);
-
-	s_Object.m_bIsPerceptible = bool(p_Document["m_bIsPerceptible"]);
-
-	s_Object.m_bDestroyed = bool(p_Document["m_bDestroyed"]);
-
-	{
-		SVector3 s_Item;
-		SVector3::FromSimpleJson(p_Document["m_vVelocity"], &s_Item);
-		s_Object.m_vVelocity = s_Item;
-	}
-
-	s_Object.m_rTransformParent = static_cast<uint32>(int64_t(p_Document["m_rTransformParent"]));
-
-	s_Object.m_rSpawner = static_cast<uint32>(int64_t(p_Document["m_rSpawner"]));
-
-	s_Object.m_rOwner = static_cast<uint32>(int64_t(p_Document["m_rOwner"]));
-
-	s_Object.m_rHoldingContainer = static_cast<uint32>(int64_t(p_Document["m_rHoldingContainer"]));
-
-	s_Object.m_pPreviousOwner = static_cast<uint32>(int64_t(p_Document["m_pPreviousOwner"]));
-
-	s_Object.m_bTurnedOn = bool(p_Document["m_bTurnedOn"]);
-
-	s_Object.m_bEverOwnedByHitman = bool(p_Document["m_bEverOwnedByHitman"]);
-
-	s_Object.m_bWasPlacedAndAttached = bool(p_Document["m_bWasPlacedAndAttached"]);
-
-	s_Object.m_bObjectInPhysicsWorld = bool(p_Document["m_bObjectInPhysicsWorld"]);
-
-	s_Object.m_nQuantity = static_cast<int32>(int64_t(p_Document["m_nQuantity"]));
-
-	s_Object.m_eGlowType = static_cast<ERenderGlowTypes>(ZHMEnums::GetEnumValueByName("ERenderGlowTypes", std::string_view(p_Document["m_eGlowType"])));
-
-	*reinterpret_cast<SItemSaveData*>(p_Target) = s_Object;
-}
-
-void SItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
-
-	SVector3::Serialize(&s_Object->m_vPosition, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vPosition));
-	SVector4::Serialize(&s_Object->m_vRotation, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vRotation));
-	SVector3::Serialize(&s_Object->m_vVelocity, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vVelocity));
-}
-
 ZHMTypeInfo SCautiousSituationMemberSaveData::TypeInfo = ZHMTypeInfo("SCautiousSituationMemberSaveData", sizeof(SCautiousSituationMemberSaveData), alignof(SCautiousSituationMemberSaveData), SCautiousSituationMemberSaveData::WriteJson, SCautiousSituationMemberSaveData::WriteSimpleJson, SCautiousSituationMemberSaveData::FromSimpleJson, SCautiousSituationMemberSaveData::Serialize);
 
 void SCautiousSituationMemberSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
@@ -21629,48 +21344,6 @@ void SFaceOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, 
 
 }
 
-ZHMTypeInfo ZInteractionEventConsumer_SInteractionEventData::TypeInfo = ZHMTypeInfo("ZInteractionEventConsumer.SInteractionEventData", sizeof(ZInteractionEventConsumer_SInteractionEventData), alignof(ZInteractionEventConsumer_SInteractionEventData), ZInteractionEventConsumer_SInteractionEventData::WriteJson, ZInteractionEventConsumer_SInteractionEventData::WriteSimpleJson, ZInteractionEventConsumer_SInteractionEventData::FromSimpleJson, ZInteractionEventConsumer_SInteractionEventData::Serialize);
-
-void ZInteractionEventConsumer_SInteractionEventData::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << JsonStr("m_nEvent") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZInteractionEventConsumer.EEvent") << "," << JsonStr("$val") << ":";
-	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_nEvent) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("ZInteractionEventConsumer.EEvent", static_cast<int>(s_Object->m_nEvent))) << "}";
-	p_Stream << "}";
-
-	p_Stream << "}";
-}
-
-void ZInteractionEventConsumer_SInteractionEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << JsonStr("m_nEvent") << ":";
-	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("ZInteractionEventConsumer.EEvent", static_cast<int>(s_Object->m_nEvent)));
-
-	p_Stream << "}";
-}
-
-void ZInteractionEventConsumer_SInteractionEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	ZInteractionEventConsumer_SInteractionEventData s_Object;
-
-	s_Object.m_nEvent = static_cast<ZInteractionEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZInteractionEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
-
-	*reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Target) = s_Object;
-}
-
-void ZInteractionEventConsumer_SInteractionEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Object);
-
-}
-
 ZHMTypeInfo SVIPEvacuationNodeSaveData::TypeInfo = ZHMTypeInfo("SVIPEvacuationNodeSaveData", sizeof(SVIPEvacuationNodeSaveData), alignof(SVIPEvacuationNodeSaveData), SVIPEvacuationNodeSaveData::WriteJson, SVIPEvacuationNodeSaveData::WriteSimpleJson, SVIPEvacuationNodeSaveData::FromSimpleJson, SVIPEvacuationNodeSaveData::Serialize);
 
 void SVIPEvacuationNodeSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
@@ -21870,6 +21543,48 @@ void SVIPEvacuationNodesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Ser
 
 	TArray<uint32>::Serialize(&s_Object->m_aEntities, p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodesSaveData, m_aEntities));
 	TArray<SVIPEvacuationNodeSaveData>::Serialize(&s_Object->m_aData, p_Serializer, p_OwnOffset + offsetof(SVIPEvacuationNodesSaveData, m_aData));
+}
+
+ZHMTypeInfo ZInteractionEventConsumer_SInteractionEventData::TypeInfo = ZHMTypeInfo("ZInteractionEventConsumer.SInteractionEventData", sizeof(ZInteractionEventConsumer_SInteractionEventData), alignof(ZInteractionEventConsumer_SInteractionEventData), ZInteractionEventConsumer_SInteractionEventData::WriteJson, ZInteractionEventConsumer_SInteractionEventData::WriteSimpleJson, ZInteractionEventConsumer_SInteractionEventData::FromSimpleJson, ZInteractionEventConsumer_SInteractionEventData::Serialize);
+
+void ZInteractionEventConsumer_SInteractionEventData::WriteJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Object);
+
+	p_Stream << "{";
+	p_Stream << JsonStr("m_nEvent") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZInteractionEventConsumer.EEvent") << "," << JsonStr("$val") << ":";
+	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_nEvent) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("ZInteractionEventConsumer.EEvent", static_cast<int>(s_Object->m_nEvent))) << "}";
+	p_Stream << "}";
+
+	p_Stream << "}";
+}
+
+void ZInteractionEventConsumer_SInteractionEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_nEvent") << ":";
+	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("ZInteractionEventConsumer.EEvent", static_cast<int>(s_Object->m_nEvent)));
+
+	p_Stream << "}";
+}
+
+void ZInteractionEventConsumer_SInteractionEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZInteractionEventConsumer_SInteractionEventData s_Object;
+
+	s_Object.m_nEvent = static_cast<ZInteractionEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZInteractionEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
+
+	*reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Target) = s_Object;
+}
+
+void ZInteractionEventConsumer_SInteractionEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Object);
+
 }
 
 ZHMTypeInfo AI_SEventDescription::TypeInfo = ZHMTypeInfo("AI.SEventDescription", sizeof(AI_SEventDescription), alignof(AI_SEventDescription), AI_SEventDescription::WriteJson, AI_SEventDescription::WriteSimpleJson, AI_SEventDescription::FromSimpleJson, AI_SEventDescription::Serialize);
@@ -22510,48 +22225,6 @@ void SDramaSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 void SDramaSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaSituationSaveData*>(p_Object);
-
-}
-
-ZHMTypeInfo SLeadEscortSituationActors::TypeInfo = ZHMTypeInfo("SLeadEscortSituationActors", sizeof(SLeadEscortSituationActors), alignof(SLeadEscortSituationActors), SLeadEscortSituationActors::WriteJson, SLeadEscortSituationActors::WriteSimpleJson, SLeadEscortSituationActors::FromSimpleJson, SLeadEscortSituationActors::Serialize);
-
-void SLeadEscortSituationActors::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SLeadEscortSituationActors*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << JsonStr("m_rActor") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_rActor;
-	p_Stream << "}";
-
-	p_Stream << "}";
-}
-
-void SLeadEscortSituationActors::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SLeadEscortSituationActors*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << JsonStr("m_rActor") << ":";
-	p_Stream << s_Object->m_rActor;
-
-	p_Stream << "}";
-}
-
-void SLeadEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	SLeadEscortSituationActors s_Object;
-
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
-
-	*reinterpret_cast<SLeadEscortSituationActors*>(p_Target) = s_Object;
-}
-
-void SLeadEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SLeadEscortSituationActors*>(p_Object);
 
 }
 
@@ -24780,6 +24453,291 @@ void SIntelDataArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serialize
 	TArray<SIntelData>::Serialize(&s_Object->dummy, p_Serializer, p_OwnOffset + offsetof(SIntelDataArray_dummy, dummy));
 }
 
+ZHMTypeInfo SItemSaveData::TypeInfo = ZHMTypeInfo("SItemSaveData", sizeof(SItemSaveData), alignof(SItemSaveData), SItemSaveData::WriteJson, SItemSaveData::WriteSimpleJson, SItemSaveData::FromSimpleJson, SItemSaveData::Serialize);
+
+void SItemSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
+
+	p_Stream << "{";
+	p_Stream << JsonStr("m_vPosition") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("SVector3") << "," << JsonStr("$val") << ":";
+	SVector3::WriteJson(&s_Object->m_vPosition, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_vRotation") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("SVector4") << "," << JsonStr("$val") << ":";
+	SVector4::WriteJson(&s_Object->m_vRotation, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bShowItem") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bShowItem;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bEnablePickup") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bEnablePickup;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bKinematic") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bKinematic;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bSleeping") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bSleeping;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bIsPerceptible") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bIsPerceptible;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bDestroyed") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bDestroyed;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_vVelocity") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("SVector3") << "," << JsonStr("$val") << ":";
+	SVector3::WriteJson(&s_Object->m_vVelocity, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rTransformParent") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_rTransformParent;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rSpawner") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_rSpawner;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rOwner") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_rOwner;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rHoldingContainer") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_rHoldingContainer;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_pPreviousOwner") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_pPreviousOwner;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bTurnedOn") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bTurnedOn;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bEverOwnedByHitman") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bEverOwnedByHitman;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bWasPlacedAndAttached") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bWasPlacedAndAttached;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bObjectInPhysicsWorld") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bObjectInPhysicsWorld;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nQuantity") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nQuantity;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_eGlowType") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ERenderGlowTypes") << "," << JsonStr("$val") << ":";
+	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_eGlowType) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("ERenderGlowTypes", static_cast<int>(s_Object->m_eGlowType))) << "}";
+	p_Stream << "}";
+
+	p_Stream << "}";
+}
+
+void SItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_vPosition") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vPosition, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_vRotation") << ":";
+	SVector4::WriteSimpleJson(&s_Object->m_vRotation, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bShowItem") << ":";
+	p_Stream << s_Object->m_bShowItem;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bEnablePickup") << ":";
+	p_Stream << s_Object->m_bEnablePickup;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bKinematic") << ":";
+	p_Stream << s_Object->m_bKinematic;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bSleeping") << ":";
+	p_Stream << s_Object->m_bSleeping;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bIsPerceptible") << ":";
+	p_Stream << s_Object->m_bIsPerceptible;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bDestroyed") << ":";
+	p_Stream << s_Object->m_bDestroyed;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_vVelocity") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vVelocity, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rTransformParent") << ":";
+	p_Stream << s_Object->m_rTransformParent;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rSpawner") << ":";
+	p_Stream << s_Object->m_rSpawner;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rOwner") << ":";
+	p_Stream << s_Object->m_rOwner;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_rHoldingContainer") << ":";
+	p_Stream << s_Object->m_rHoldingContainer;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_pPreviousOwner") << ":";
+	p_Stream << s_Object->m_pPreviousOwner;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bTurnedOn") << ":";
+	p_Stream << s_Object->m_bTurnedOn;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bEverOwnedByHitman") << ":";
+	p_Stream << s_Object->m_bEverOwnedByHitman;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bWasPlacedAndAttached") << ":";
+	p_Stream << s_Object->m_bWasPlacedAndAttached;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bObjectInPhysicsWorld") << ":";
+	p_Stream << s_Object->m_bObjectInPhysicsWorld;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nQuantity") << ":";
+	p_Stream << s_Object->m_nQuantity;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_eGlowType") << ":";
+	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("ERenderGlowTypes", static_cast<int>(s_Object->m_eGlowType)));
+
+	p_Stream << "}";
+}
+
+void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SItemSaveData s_Object;
+
+	{
+		SVector3 s_Item;
+		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
+		s_Object.m_vPosition = s_Item;
+	}
+
+	{
+		SVector4 s_Item;
+		SVector4::FromSimpleJson(p_Document["m_vRotation"], &s_Item);
+		s_Object.m_vRotation = s_Item;
+	}
+
+	s_Object.m_bShowItem = bool(p_Document["m_bShowItem"]);
+
+	s_Object.m_bEnablePickup = bool(p_Document["m_bEnablePickup"]);
+
+	s_Object.m_bKinematic = bool(p_Document["m_bKinematic"]);
+
+	s_Object.m_bSleeping = bool(p_Document["m_bSleeping"]);
+
+	s_Object.m_bIsPerceptible = bool(p_Document["m_bIsPerceptible"]);
+
+	s_Object.m_bDestroyed = bool(p_Document["m_bDestroyed"]);
+
+	{
+		SVector3 s_Item;
+		SVector3::FromSimpleJson(p_Document["m_vVelocity"], &s_Item);
+		s_Object.m_vVelocity = s_Item;
+	}
+
+	s_Object.m_rTransformParent = static_cast<uint32>(int64_t(p_Document["m_rTransformParent"]));
+
+	s_Object.m_rSpawner = static_cast<uint32>(int64_t(p_Document["m_rSpawner"]));
+
+	s_Object.m_rOwner = static_cast<uint32>(int64_t(p_Document["m_rOwner"]));
+
+	s_Object.m_rHoldingContainer = static_cast<uint32>(int64_t(p_Document["m_rHoldingContainer"]));
+
+	s_Object.m_pPreviousOwner = static_cast<uint32>(int64_t(p_Document["m_pPreviousOwner"]));
+
+	s_Object.m_bTurnedOn = bool(p_Document["m_bTurnedOn"]);
+
+	s_Object.m_bEverOwnedByHitman = bool(p_Document["m_bEverOwnedByHitman"]);
+
+	s_Object.m_bWasPlacedAndAttached = bool(p_Document["m_bWasPlacedAndAttached"]);
+
+	s_Object.m_bObjectInPhysicsWorld = bool(p_Document["m_bObjectInPhysicsWorld"]);
+
+	s_Object.m_nQuantity = static_cast<int32>(int64_t(p_Document["m_nQuantity"]));
+
+	s_Object.m_eGlowType = static_cast<ERenderGlowTypes>(ZHMEnums::GetEnumValueByName("ERenderGlowTypes", std::string_view(p_Document["m_eGlowType"])));
+
+	*reinterpret_cast<SItemSaveData*>(p_Target) = s_Object;
+}
+
+void SItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
+
+	SVector3::Serialize(&s_Object->m_vPosition, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vPosition));
+	SVector4::Serialize(&s_Object->m_vRotation, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vRotation));
+	SVector3::Serialize(&s_Object->m_vVelocity, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_vVelocity));
+}
+
 ZHMTypeInfo SAnimatedActorReactOrderSaveData::TypeInfo = ZHMTypeInfo("SAnimatedActorReactOrderSaveData", sizeof(SAnimatedActorReactOrderSaveData), alignof(SAnimatedActorReactOrderSaveData), SAnimatedActorReactOrderSaveData::WriteJson, SAnimatedActorReactOrderSaveData::WriteSimpleJson, SAnimatedActorReactOrderSaveData::FromSimpleJson, SAnimatedActorReactOrderSaveData::Serialize);
 
 void SAnimatedActorReactOrderSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
@@ -25203,6 +25161,494 @@ void SRenderMaterialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Seriali
 	auto* s_Object = reinterpret_cast<SRenderMaterialSaveData*>(p_Object);
 
 	TArray<uint8>::Serialize(&s_Object->m_aDynamicParametersData, p_Serializer, p_OwnOffset + offsetof(SRenderMaterialSaveData, m_aDynamicParametersData));
+}
+
+ZHMTypeInfo SContractObjectiveSaveData::TypeInfo = ZHMTypeInfo("SContractObjectiveSaveData", sizeof(SContractObjectiveSaveData), alignof(SContractObjectiveSaveData), SContractObjectiveSaveData::WriteJson, SContractObjectiveSaveData::WriteSimpleJson, SContractObjectiveSaveData::FromSimpleJson, SContractObjectiveSaveData::Serialize);
+
+void SContractObjectiveSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SContractObjectiveSaveData*>(p_Object);
+
+	p_Stream << "{";
+	p_Stream << JsonStr("m_Id") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZGuid") << "," << JsonStr("$val") << ":";
+	ZGuid::WriteJson(&s_Object->m_Id, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sText") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
+	p_Stream << JsonStr(s_Object->m_sText);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_eCategory") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("IContractObjective.Category") << "," << JsonStr("$val") << ":";
+	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_eCategory) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("IContractObjective.Category", static_cast<int>(s_Object->m_eCategory))) << "}";
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bCompleted") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bCompleted;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bFailed") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bFailed;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bIsHidden") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bIsHidden;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sSuccessEventName") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
+	p_Stream << JsonStr(s_Object->m_sSuccessEventName);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_SuccessEventValues") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_SuccessEventValues, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sFailedEventName") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
+	p_Stream << JsonStr(s_Object->m_sFailedEventName);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_FailedEventValues") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_FailedEventValues, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sResetEventName") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
+	p_Stream << JsonStr(s_Object->m_sResetEventName);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_ResetEventValues") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_ResetEventValues, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sBriefingText") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_sBriefingText, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sLongBriefingText") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_sLongBriefingText, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sHUDText") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_sHUDText, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iRepeatSuccess") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_iRepeatSuccess;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iRepeatFailed") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_iRepeatFailed;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iCurrentSuccess") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_iCurrentSuccess;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iCurrentFailed") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_iCurrentFailed;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_ActivationCondition") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_ActivationCondition, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_ActivationValue") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_ActivationValue;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bUpdateActivationOnCompleted") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bUpdateActivationOnCompleted;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bDisplayAsKill") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bDisplayAsKill;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bIgnoreIfInactive") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bIgnoreIfInactive;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bShowInHud") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bShowInHud;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bCombinedDisplayInHud") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bCombinedDisplayInHud;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_OnInactive") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_OnInactive, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_OnActive") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_OnActive, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_aExits") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_aExits, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sImage") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
+	p_Stream << JsonStr(s_Object->m_sImage);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sObjectiveType") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
+	p_Stream << JsonStr(s_Object->m_sObjectiveType);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sBriefingName") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
+	p_Stream << JsonStr(s_Object->m_sBriefingName);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bForceShowOnLoadingScreen") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_bForceShowOnLoadingScreen;
+	p_Stream << "}";
+
+	p_Stream << "}";
+}
+
+void SContractObjectiveSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SContractObjectiveSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_Id") << ":";
+	ZGuid::WriteSimpleJson(&s_Object->m_Id, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sText") << ":";
+	p_Stream << JsonStr(s_Object->m_sText);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_eCategory") << ":";
+	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("IContractObjective.Category", static_cast<int>(s_Object->m_eCategory)));
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bCompleted") << ":";
+	p_Stream << s_Object->m_bCompleted;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bFailed") << ":";
+	p_Stream << s_Object->m_bFailed;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bIsHidden") << ":";
+	p_Stream << s_Object->m_bIsHidden;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sSuccessEventName") << ":";
+	p_Stream << JsonStr(s_Object->m_sSuccessEventName);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_SuccessEventValues") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_SuccessEventValues, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sFailedEventName") << ":";
+	p_Stream << JsonStr(s_Object->m_sFailedEventName);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_FailedEventValues") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_FailedEventValues, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sResetEventName") << ":";
+	p_Stream << JsonStr(s_Object->m_sResetEventName);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_ResetEventValues") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_ResetEventValues, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sBriefingText") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_sBriefingText, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sLongBriefingText") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_sLongBriefingText, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sHUDText") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_sHUDText, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iRepeatSuccess") << ":";
+	p_Stream << s_Object->m_iRepeatSuccess;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iRepeatFailed") << ":";
+	p_Stream << s_Object->m_iRepeatFailed;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iCurrentSuccess") << ":";
+	p_Stream << s_Object->m_iCurrentSuccess;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_iCurrentFailed") << ":";
+	p_Stream << s_Object->m_iCurrentFailed;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_ActivationCondition") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_ActivationCondition, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_ActivationValue") << ":";
+	p_Stream << s_Object->m_ActivationValue;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bUpdateActivationOnCompleted") << ":";
+	p_Stream << s_Object->m_bUpdateActivationOnCompleted;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bDisplayAsKill") << ":";
+	p_Stream << s_Object->m_bDisplayAsKill;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bIgnoreIfInactive") << ":";
+	p_Stream << s_Object->m_bIgnoreIfInactive;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bShowInHud") << ":";
+	p_Stream << s_Object->m_bShowInHud;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bCombinedDisplayInHud") << ":";
+	p_Stream << s_Object->m_bCombinedDisplayInHud;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_OnInactive") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_OnInactive, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_OnActive") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_OnActive, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_aExits") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_aExits, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sImage") << ":";
+	p_Stream << JsonStr(s_Object->m_sImage);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sObjectiveType") << ":";
+	p_Stream << JsonStr(s_Object->m_sObjectiveType);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_sBriefingName") << ":";
+	p_Stream << JsonStr(s_Object->m_sBriefingName);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_bForceShowOnLoadingScreen") << ":";
+	p_Stream << s_Object->m_bForceShowOnLoadingScreen;
+
+	p_Stream << "}";
+}
+
+void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SContractObjectiveSaveData s_Object;
+
+	{
+		ZGuid s_Item;
+		ZGuid::FromSimpleJson(p_Document["m_Id"], &s_Item);
+		s_Object.m_Id = s_Item;
+	}
+
+	s_Object.m_sText = std::string_view(p_Document["m_sText"]);
+
+	s_Object.m_eCategory = static_cast<IContractObjective_Category>(ZHMEnums::GetEnumValueByName("IContractObjective.Category", std::string_view(p_Document["m_eCategory"])));
+
+	s_Object.m_bCompleted = bool(p_Document["m_bCompleted"]);
+
+	s_Object.m_bFailed = bool(p_Document["m_bFailed"]);
+
+	s_Object.m_bIsHidden = bool(p_Document["m_bIsHidden"]);
+
+	s_Object.m_sSuccessEventName = std::string_view(p_Document["m_sSuccessEventName"]);
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_SuccessEventValues"], &s_Item);
+		s_Object.m_SuccessEventValues = s_Item;
+	}
+
+	s_Object.m_sFailedEventName = std::string_view(p_Document["m_sFailedEventName"]);
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_FailedEventValues"], &s_Item);
+		s_Object.m_FailedEventValues = s_Item;
+	}
+
+	s_Object.m_sResetEventName = std::string_view(p_Document["m_sResetEventName"]);
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_ResetEventValues"], &s_Item);
+		s_Object.m_ResetEventValues = s_Item;
+	}
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_sBriefingText"], &s_Item);
+		s_Object.m_sBriefingText = s_Item;
+	}
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_sLongBriefingText"], &s_Item);
+		s_Object.m_sLongBriefingText = s_Item;
+	}
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_sHUDText"], &s_Item);
+		s_Object.m_sHUDText = s_Item;
+	}
+
+	s_Object.m_iRepeatSuccess = static_cast<int32>(int64_t(p_Document["m_iRepeatSuccess"]));
+
+	s_Object.m_iRepeatFailed = static_cast<int32>(int64_t(p_Document["m_iRepeatFailed"]));
+
+	s_Object.m_iCurrentSuccess = static_cast<int32>(int64_t(p_Document["m_iCurrentSuccess"]));
+
+	s_Object.m_iCurrentFailed = static_cast<int32>(int64_t(p_Document["m_iCurrentFailed"]));
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_ActivationCondition"], &s_Item);
+		s_Object.m_ActivationCondition = s_Item;
+	}
+
+	s_Object.m_ActivationValue = bool(p_Document["m_ActivationValue"]);
+
+	s_Object.m_bUpdateActivationOnCompleted = bool(p_Document["m_bUpdateActivationOnCompleted"]);
+
+	s_Object.m_bDisplayAsKill = bool(p_Document["m_bDisplayAsKill"]);
+
+	s_Object.m_bIgnoreIfInactive = bool(p_Document["m_bIgnoreIfInactive"]);
+
+	s_Object.m_bShowInHud = bool(p_Document["m_bShowInHud"]);
+
+	s_Object.m_bCombinedDisplayInHud = bool(p_Document["m_bCombinedDisplayInHud"]);
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_OnInactive"], &s_Item);
+		s_Object.m_OnInactive = s_Item;
+	}
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_OnActive"], &s_Item);
+		s_Object.m_OnActive = s_Item;
+	}
+
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_aExits"], &s_Item);
+		s_Object.m_aExits = s_Item;
+	}
+
+	s_Object.m_sImage = std::string_view(p_Document["m_sImage"]);
+
+	s_Object.m_sObjectiveType = std::string_view(p_Document["m_sObjectiveType"]);
+
+	s_Object.m_sBriefingName = std::string_view(p_Document["m_sBriefingName"]);
+
+	s_Object.m_bForceShowOnLoadingScreen = bool(p_Document["m_bForceShowOnLoadingScreen"]);
+
+	*reinterpret_cast<SContractObjectiveSaveData*>(p_Target) = s_Object;
+}
+
+void SContractObjectiveSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SContractObjectiveSaveData*>(p_Object);
+
+	ZGuid::Serialize(&s_Object->m_Id, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_Id));
+	ZString::Serialize(&s_Object->m_sText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sText));
+	ZString::Serialize(&s_Object->m_sSuccessEventName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sSuccessEventName));
+	ZDynamicObject::Serialize(&s_Object->m_SuccessEventValues, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_SuccessEventValues));
+	ZString::Serialize(&s_Object->m_sFailedEventName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sFailedEventName));
+	ZDynamicObject::Serialize(&s_Object->m_FailedEventValues, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_FailedEventValues));
+	ZString::Serialize(&s_Object->m_sResetEventName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sResetEventName));
+	ZDynamicObject::Serialize(&s_Object->m_ResetEventValues, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ResetEventValues));
+	ZDynamicObject::Serialize(&s_Object->m_sBriefingText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingText));
+	ZDynamicObject::Serialize(&s_Object->m_sLongBriefingText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sLongBriefingText));
+	ZDynamicObject::Serialize(&s_Object->m_sHUDText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sHUDText));
+	ZDynamicObject::Serialize(&s_Object->m_ActivationCondition, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ActivationCondition));
+	ZDynamicObject::Serialize(&s_Object->m_OnInactive, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnInactive));
+	ZDynamicObject::Serialize(&s_Object->m_OnActive, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnActive));
+	ZDynamicObject::Serialize(&s_Object->m_aExits, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_aExits));
+	ZString::Serialize(&s_Object->m_sImage, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sImage));
+	ZString::Serialize(&s_Object->m_sObjectiveType, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sObjectiveType));
+	ZString::Serialize(&s_Object->m_sBriefingName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingName));
 }
 
 ZHMTypeInfo SCrowdReactionSaveData::TypeInfo = ZHMTypeInfo("SCrowdReactionSaveData", sizeof(SCrowdReactionSaveData), alignof(SCrowdReactionSaveData), SCrowdReactionSaveData::WriteJson, SCrowdReactionSaveData::WriteSimpleJson, SCrowdReactionSaveData::FromSimpleJson, SCrowdReactionSaveData::Serialize);
@@ -28824,494 +29270,6 @@ void ZAutoNullEntityRef::Serialize(void* p_Object, ZHMSerializer& p_Serializer, 
 {
 	auto* s_Object = reinterpret_cast<ZAutoNullEntityRef*>(p_Object);
 
-}
-
-ZHMTypeInfo SContractObjectiveSaveData::TypeInfo = ZHMTypeInfo("SContractObjectiveSaveData", sizeof(SContractObjectiveSaveData), alignof(SContractObjectiveSaveData), SContractObjectiveSaveData::WriteJson, SContractObjectiveSaveData::WriteSimpleJson, SContractObjectiveSaveData::FromSimpleJson, SContractObjectiveSaveData::Serialize);
-
-void SContractObjectiveSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SContractObjectiveSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << JsonStr("m_Id") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZGuid") << "," << JsonStr("$val") << ":";
-	ZGuid::WriteJson(&s_Object->m_Id, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sText") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
-	p_Stream << JsonStr(s_Object->m_sText);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_eCategory") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("IContractObjective.Category") << "," << JsonStr("$val") << ":";
-	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_eCategory) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("IContractObjective.Category", static_cast<int>(s_Object->m_eCategory))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bCompleted") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bCompleted;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bFailed") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bFailed;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bIsHidden") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bIsHidden;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sSuccessEventName") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
-	p_Stream << JsonStr(s_Object->m_sSuccessEventName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_SuccessEventValues") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_SuccessEventValues, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sFailedEventName") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
-	p_Stream << JsonStr(s_Object->m_sFailedEventName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_FailedEventValues") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_FailedEventValues, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sResetEventName") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
-	p_Stream << JsonStr(s_Object->m_sResetEventName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_ResetEventValues") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_ResetEventValues, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sBriefingText") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_sBriefingText, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sLongBriefingText") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_sLongBriefingText, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sHUDText") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_sHUDText, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iRepeatSuccess") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_iRepeatSuccess;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iRepeatFailed") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_iRepeatFailed;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iCurrentSuccess") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_iCurrentSuccess;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iCurrentFailed") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_iCurrentFailed;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_ActivationCondition") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_ActivationCondition, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_ActivationValue") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_ActivationValue;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bUpdateActivationOnCompleted") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bUpdateActivationOnCompleted;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bDisplayAsKill") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bDisplayAsKill;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bIgnoreIfInactive") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bIgnoreIfInactive;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bShowInHud") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bShowInHud;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bCombinedDisplayInHud") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bCombinedDisplayInHud;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_OnInactive") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_OnInactive, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_OnActive") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_OnActive, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_aExits") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
-	ZDynamicObject::WriteJson(&s_Object->m_aExits, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sImage") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
-	p_Stream << JsonStr(s_Object->m_sImage);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sObjectiveType") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
-	p_Stream << JsonStr(s_Object->m_sObjectiveType);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sBriefingName") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZString") << "," << JsonStr("$val") << ":";
-	p_Stream << JsonStr(s_Object->m_sBriefingName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bForceShowOnLoadingScreen") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_bForceShowOnLoadingScreen;
-	p_Stream << "}";
-
-	p_Stream << "}";
-}
-
-void SContractObjectiveSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SContractObjectiveSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << JsonStr("m_Id") << ":";
-	ZGuid::WriteSimpleJson(&s_Object->m_Id, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sText") << ":";
-	p_Stream << JsonStr(s_Object->m_sText);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_eCategory") << ":";
-	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("IContractObjective.Category", static_cast<int>(s_Object->m_eCategory)));
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bCompleted") << ":";
-	p_Stream << s_Object->m_bCompleted;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bFailed") << ":";
-	p_Stream << s_Object->m_bFailed;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bIsHidden") << ":";
-	p_Stream << s_Object->m_bIsHidden;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sSuccessEventName") << ":";
-	p_Stream << JsonStr(s_Object->m_sSuccessEventName);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_SuccessEventValues") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_SuccessEventValues, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sFailedEventName") << ":";
-	p_Stream << JsonStr(s_Object->m_sFailedEventName);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_FailedEventValues") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_FailedEventValues, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sResetEventName") << ":";
-	p_Stream << JsonStr(s_Object->m_sResetEventName);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_ResetEventValues") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_ResetEventValues, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sBriefingText") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_sBriefingText, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sLongBriefingText") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_sLongBriefingText, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sHUDText") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_sHUDText, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iRepeatSuccess") << ":";
-	p_Stream << s_Object->m_iRepeatSuccess;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iRepeatFailed") << ":";
-	p_Stream << s_Object->m_iRepeatFailed;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iCurrentSuccess") << ":";
-	p_Stream << s_Object->m_iCurrentSuccess;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_iCurrentFailed") << ":";
-	p_Stream << s_Object->m_iCurrentFailed;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_ActivationCondition") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_ActivationCondition, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_ActivationValue") << ":";
-	p_Stream << s_Object->m_ActivationValue;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bUpdateActivationOnCompleted") << ":";
-	p_Stream << s_Object->m_bUpdateActivationOnCompleted;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bDisplayAsKill") << ":";
-	p_Stream << s_Object->m_bDisplayAsKill;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bIgnoreIfInactive") << ":";
-	p_Stream << s_Object->m_bIgnoreIfInactive;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bShowInHud") << ":";
-	p_Stream << s_Object->m_bShowInHud;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bCombinedDisplayInHud") << ":";
-	p_Stream << s_Object->m_bCombinedDisplayInHud;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_OnInactive") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_OnInactive, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_OnActive") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_OnActive, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_aExits") << ":";
-	ZDynamicObject::WriteSimpleJson(&s_Object->m_aExits, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sImage") << ":";
-	p_Stream << JsonStr(s_Object->m_sImage);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sObjectiveType") << ":";
-	p_Stream << JsonStr(s_Object->m_sObjectiveType);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_sBriefingName") << ":";
-	p_Stream << JsonStr(s_Object->m_sBriefingName);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_bForceShowOnLoadingScreen") << ":";
-	p_Stream << s_Object->m_bForceShowOnLoadingScreen;
-
-	p_Stream << "}";
-}
-
-void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	SContractObjectiveSaveData s_Object;
-
-	{
-		ZGuid s_Item;
-		ZGuid::FromSimpleJson(p_Document["m_Id"], &s_Item);
-		s_Object.m_Id = s_Item;
-	}
-
-	s_Object.m_sText = std::string_view(p_Document["m_sText"]);
-
-	s_Object.m_eCategory = static_cast<IContractObjective_Category>(ZHMEnums::GetEnumValueByName("IContractObjective.Category", std::string_view(p_Document["m_eCategory"])));
-
-	s_Object.m_bCompleted = bool(p_Document["m_bCompleted"]);
-
-	s_Object.m_bFailed = bool(p_Document["m_bFailed"]);
-
-	s_Object.m_bIsHidden = bool(p_Document["m_bIsHidden"]);
-
-	s_Object.m_sSuccessEventName = std::string_view(p_Document["m_sSuccessEventName"]);
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_SuccessEventValues"], &s_Item);
-		s_Object.m_SuccessEventValues = s_Item;
-	}
-
-	s_Object.m_sFailedEventName = std::string_view(p_Document["m_sFailedEventName"]);
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_FailedEventValues"], &s_Item);
-		s_Object.m_FailedEventValues = s_Item;
-	}
-
-	s_Object.m_sResetEventName = std::string_view(p_Document["m_sResetEventName"]);
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_ResetEventValues"], &s_Item);
-		s_Object.m_ResetEventValues = s_Item;
-	}
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_sBriefingText"], &s_Item);
-		s_Object.m_sBriefingText = s_Item;
-	}
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_sLongBriefingText"], &s_Item);
-		s_Object.m_sLongBriefingText = s_Item;
-	}
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_sHUDText"], &s_Item);
-		s_Object.m_sHUDText = s_Item;
-	}
-
-	s_Object.m_iRepeatSuccess = static_cast<int32>(int64_t(p_Document["m_iRepeatSuccess"]));
-
-	s_Object.m_iRepeatFailed = static_cast<int32>(int64_t(p_Document["m_iRepeatFailed"]));
-
-	s_Object.m_iCurrentSuccess = static_cast<int32>(int64_t(p_Document["m_iCurrentSuccess"]));
-
-	s_Object.m_iCurrentFailed = static_cast<int32>(int64_t(p_Document["m_iCurrentFailed"]));
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_ActivationCondition"], &s_Item);
-		s_Object.m_ActivationCondition = s_Item;
-	}
-
-	s_Object.m_ActivationValue = bool(p_Document["m_ActivationValue"]);
-
-	s_Object.m_bUpdateActivationOnCompleted = bool(p_Document["m_bUpdateActivationOnCompleted"]);
-
-	s_Object.m_bDisplayAsKill = bool(p_Document["m_bDisplayAsKill"]);
-
-	s_Object.m_bIgnoreIfInactive = bool(p_Document["m_bIgnoreIfInactive"]);
-
-	s_Object.m_bShowInHud = bool(p_Document["m_bShowInHud"]);
-
-	s_Object.m_bCombinedDisplayInHud = bool(p_Document["m_bCombinedDisplayInHud"]);
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_OnInactive"], &s_Item);
-		s_Object.m_OnInactive = s_Item;
-	}
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_OnActive"], &s_Item);
-		s_Object.m_OnActive = s_Item;
-	}
-
-	{
-		ZDynamicObject s_Item;
-		ZDynamicObject::FromSimpleJson(p_Document["m_aExits"], &s_Item);
-		s_Object.m_aExits = s_Item;
-	}
-
-	s_Object.m_sImage = std::string_view(p_Document["m_sImage"]);
-
-	s_Object.m_sObjectiveType = std::string_view(p_Document["m_sObjectiveType"]);
-
-	s_Object.m_sBriefingName = std::string_view(p_Document["m_sBriefingName"]);
-
-	s_Object.m_bForceShowOnLoadingScreen = bool(p_Document["m_bForceShowOnLoadingScreen"]);
-
-	*reinterpret_cast<SContractObjectiveSaveData*>(p_Target) = s_Object;
-}
-
-void SContractObjectiveSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SContractObjectiveSaveData*>(p_Object);
-
-	ZGuid::Serialize(&s_Object->m_Id, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_Id));
-	ZString::Serialize(&s_Object->m_sText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sText));
-	ZString::Serialize(&s_Object->m_sSuccessEventName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sSuccessEventName));
-	ZDynamicObject::Serialize(&s_Object->m_SuccessEventValues, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_SuccessEventValues));
-	ZString::Serialize(&s_Object->m_sFailedEventName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sFailedEventName));
-	ZDynamicObject::Serialize(&s_Object->m_FailedEventValues, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_FailedEventValues));
-	ZString::Serialize(&s_Object->m_sResetEventName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sResetEventName));
-	ZDynamicObject::Serialize(&s_Object->m_ResetEventValues, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ResetEventValues));
-	ZDynamicObject::Serialize(&s_Object->m_sBriefingText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingText));
-	ZDynamicObject::Serialize(&s_Object->m_sLongBriefingText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sLongBriefingText));
-	ZDynamicObject::Serialize(&s_Object->m_sHUDText, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sHUDText));
-	ZDynamicObject::Serialize(&s_Object->m_ActivationCondition, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_ActivationCondition));
-	ZDynamicObject::Serialize(&s_Object->m_OnInactive, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnInactive));
-	ZDynamicObject::Serialize(&s_Object->m_OnActive, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_OnActive));
-	ZDynamicObject::Serialize(&s_Object->m_aExits, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_aExits));
-	ZString::Serialize(&s_Object->m_sImage, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sImage));
-	ZString::Serialize(&s_Object->m_sObjectiveType, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sObjectiveType));
-	ZString::Serialize(&s_Object->m_sBriefingName, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveSaveData, m_sBriefingName));
 }
 
 ZHMTypeInfo SOnlineSaveData::TypeInfo = ZHMTypeInfo("SOnlineSaveData", sizeof(SOnlineSaveData), alignof(SOnlineSaveData), SOnlineSaveData::WriteJson, SOnlineSaveData::WriteSimpleJson, SOnlineSaveData::FromSimpleJson, SOnlineSaveData::Serialize);
@@ -45526,161 +45484,6 @@ void SUIGridCellPosition::Serialize(void* p_Object, ZHMSerializer& p_Serializer,
 
 }
 
-ZHMTypeInfo SRegionSaveData::TypeInfo = ZHMTypeInfo("SRegionSaveData", sizeof(SRegionSaveData), alignof(SRegionSaveData), SRegionSaveData::WriteJson, SRegionSaveData::WriteSimpleJson, SRegionSaveData::FromSimpleJson, SRegionSaveData::Serialize);
-
-void SRegionSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SRegionSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << JsonStr("m_nIndex") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nIndex;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_eType") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("CrowdRegionType") << "," << JsonStr("$val") << ":";
-	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_eType) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("CrowdRegionType", static_cast<int>(s_Object->m_eType))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_vCenter") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float4") << "," << JsonStr("$val") << ":";
-	float4::WriteJson(&s_Object->m_vCenter, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nDirection") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nDirection;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nRadius") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nRadius;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nAngle") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nAngle;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nLifetime") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nLifetime;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nAge") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nAge;
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nGroupID") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint8") << "," << JsonStr("$val") << ":";
-	p_Stream << static_cast<int>(s_Object->m_nGroupID);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nObstacleActorIndex") << ":";
-	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int16") << "," << JsonStr("$val") << ":";
-	p_Stream << s_Object->m_nObstacleActorIndex;
-	p_Stream << "}";
-
-	p_Stream << "}";
-}
-
-void SRegionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SRegionSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << JsonStr("m_nIndex") << ":";
-	p_Stream << s_Object->m_nIndex;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_eType") << ":";
-	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("CrowdRegionType", static_cast<int>(s_Object->m_eType)));
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_vCenter") << ":";
-	float4::WriteSimpleJson(&s_Object->m_vCenter, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nDirection") << ":";
-	p_Stream << s_Object->m_nDirection;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nRadius") << ":";
-	p_Stream << s_Object->m_nRadius;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nAngle") << ":";
-	p_Stream << s_Object->m_nAngle;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nLifetime") << ":";
-	p_Stream << s_Object->m_nLifetime;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nAge") << ":";
-	p_Stream << s_Object->m_nAge;
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nGroupID") << ":";
-	p_Stream << static_cast<int>(s_Object->m_nGroupID);
-	p_Stream << ",";
-
-	p_Stream << JsonStr("m_nObstacleActorIndex") << ":";
-	p_Stream << s_Object->m_nObstacleActorIndex;
-
-	p_Stream << "}";
-}
-
-void SRegionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	SRegionSaveData s_Object;
-
-	s_Object.m_nIndex = static_cast<uint32>(int64_t(p_Document["m_nIndex"]));
-
-	s_Object.m_eType = static_cast<CrowdRegionType>(ZHMEnums::GetEnumValueByName("CrowdRegionType", std::string_view(p_Document["m_eType"])));
-
-	{
-		float4 s_Item;
-		float4::FromSimpleJson(p_Document["m_vCenter"], &s_Item);
-		s_Object.m_vCenter = s_Item;
-	}
-
-	s_Object.m_nDirection = static_cast<float32>(double(p_Document["m_nDirection"]));
-
-	s_Object.m_nRadius = static_cast<float32>(double(p_Document["m_nRadius"]));
-
-	s_Object.m_nAngle = static_cast<uint32>(int64_t(p_Document["m_nAngle"]));
-
-	s_Object.m_nLifetime = static_cast<float32>(double(p_Document["m_nLifetime"]));
-
-	s_Object.m_nAge = static_cast<float32>(double(p_Document["m_nAge"]));
-
-	s_Object.m_nGroupID = static_cast<uint8>(int64_t(p_Document["m_nGroupID"]));
-
-	s_Object.m_nObstacleActorIndex = static_cast<int16>(int64_t(p_Document["m_nObstacleActorIndex"]));
-
-	*reinterpret_cast<SRegionSaveData*>(p_Target) = s_Object;
-}
-
-void SRegionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SRegionSaveData*>(p_Object);
-
-	float4::Serialize(&s_Object->m_vCenter, p_Serializer, p_OwnOffset + offsetof(SRegionSaveData, m_vCenter));
-}
-
 ZHMTypeInfo SEscortOutOrderSaveData::TypeInfo = ZHMTypeInfo("SEscortOutOrderSaveData", sizeof(SEscortOutOrderSaveData), alignof(SEscortOutOrderSaveData), SEscortOutOrderSaveData::WriteJson, SEscortOutOrderSaveData::WriteSimpleJson, SEscortOutOrderSaveData::FromSimpleJson, SEscortOutOrderSaveData::Serialize);
 
 void SEscortOutOrderSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
@@ -50566,6 +50369,203 @@ void ZInvestigateDisguiseGroup_SDialogLines::Serialize(void* p_Object, ZHMSerial
 {
 	auto* s_Object = reinterpret_cast<ZInvestigateDisguiseGroup_SDialogLines*>(p_Object);
 
+}
+
+ZHMTypeInfo SLeadEscortSituationActors::TypeInfo = ZHMTypeInfo("SLeadEscortSituationActors", sizeof(SLeadEscortSituationActors), alignof(SLeadEscortSituationActors), SLeadEscortSituationActors::WriteJson, SLeadEscortSituationActors::WriteSimpleJson, SLeadEscortSituationActors::FromSimpleJson, SLeadEscortSituationActors::Serialize);
+
+void SLeadEscortSituationActors::WriteJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SLeadEscortSituationActors*>(p_Object);
+
+	p_Stream << "{";
+	p_Stream << JsonStr("m_rActor") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_rActor;
+	p_Stream << "}";
+
+	p_Stream << "}";
+}
+
+void SLeadEscortSituationActors::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SLeadEscortSituationActors*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_rActor") << ":";
+	p_Stream << s_Object->m_rActor;
+
+	p_Stream << "}";
+}
+
+void SLeadEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SLeadEscortSituationActors s_Object;
+
+	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+
+	*reinterpret_cast<SLeadEscortSituationActors*>(p_Target) = s_Object;
+}
+
+void SLeadEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SLeadEscortSituationActors*>(p_Object);
+
+}
+
+ZHMTypeInfo SRegionSaveData::TypeInfo = ZHMTypeInfo("SRegionSaveData", sizeof(SRegionSaveData), alignof(SRegionSaveData), SRegionSaveData::WriteJson, SRegionSaveData::WriteSimpleJson, SRegionSaveData::FromSimpleJson, SRegionSaveData::Serialize);
+
+void SRegionSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SRegionSaveData*>(p_Object);
+
+	p_Stream << "{";
+	p_Stream << JsonStr("m_nIndex") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nIndex;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_eType") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("CrowdRegionType") << "," << JsonStr("$val") << ":";
+	p_Stream << "{" << JsonStr("$enumVal") << ":" << static_cast<int>(s_Object->m_eType) << "," << JsonStr("$enumValName") << ":" << JsonStr(ZHMEnums::GetEnumValueName("CrowdRegionType", static_cast<int>(s_Object->m_eType))) << "}";
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_vCenter") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float4") << "," << JsonStr("$val") << ":";
+	float4::WriteJson(&s_Object->m_vCenter, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nDirection") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nDirection;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nRadius") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nRadius;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nAngle") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nAngle;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nLifetime") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nLifetime;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nAge") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("float32") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nAge;
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nGroupID") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("uint8") << "," << JsonStr("$val") << ":";
+	p_Stream << static_cast<int>(s_Object->m_nGroupID);
+	p_Stream << "}";
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nObstacleActorIndex") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("int16") << "," << JsonStr("$val") << ":";
+	p_Stream << s_Object->m_nObstacleActorIndex;
+	p_Stream << "}";
+
+	p_Stream << "}";
+}
+
+void SRegionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SRegionSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_nIndex") << ":";
+	p_Stream << s_Object->m_nIndex;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_eType") << ":";
+	p_Stream << JsonStr(ZHMEnums::GetEnumValueName("CrowdRegionType", static_cast<int>(s_Object->m_eType)));
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_vCenter") << ":";
+	float4::WriteSimpleJson(&s_Object->m_vCenter, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nDirection") << ":";
+	p_Stream << s_Object->m_nDirection;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nRadius") << ":";
+	p_Stream << s_Object->m_nRadius;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nAngle") << ":";
+	p_Stream << s_Object->m_nAngle;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nLifetime") << ":";
+	p_Stream << s_Object->m_nLifetime;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nAge") << ":";
+	p_Stream << s_Object->m_nAge;
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nGroupID") << ":";
+	p_Stream << static_cast<int>(s_Object->m_nGroupID);
+	p_Stream << ",";
+
+	p_Stream << JsonStr("m_nObstacleActorIndex") << ":";
+	p_Stream << s_Object->m_nObstacleActorIndex;
+
+	p_Stream << "}";
+}
+
+void SRegionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SRegionSaveData s_Object;
+
+	s_Object.m_nIndex = static_cast<uint32>(int64_t(p_Document["m_nIndex"]));
+
+	s_Object.m_eType = static_cast<CrowdRegionType>(ZHMEnums::GetEnumValueByName("CrowdRegionType", std::string_view(p_Document["m_eType"])));
+
+	{
+		float4 s_Item;
+		float4::FromSimpleJson(p_Document["m_vCenter"], &s_Item);
+		s_Object.m_vCenter = s_Item;
+	}
+
+	s_Object.m_nDirection = static_cast<float32>(double(p_Document["m_nDirection"]));
+
+	s_Object.m_nRadius = static_cast<float32>(double(p_Document["m_nRadius"]));
+
+	s_Object.m_nAngle = static_cast<uint32>(int64_t(p_Document["m_nAngle"]));
+
+	s_Object.m_nLifetime = static_cast<float32>(double(p_Document["m_nLifetime"]));
+
+	s_Object.m_nAge = static_cast<float32>(double(p_Document["m_nAge"]));
+
+	s_Object.m_nGroupID = static_cast<uint8>(int64_t(p_Document["m_nGroupID"]));
+
+	s_Object.m_nObstacleActorIndex = static_cast<int16>(int64_t(p_Document["m_nObstacleActorIndex"]));
+
+	*reinterpret_cast<SRegionSaveData*>(p_Target) = s_Object;
+}
+
+void SRegionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SRegionSaveData*>(p_Object);
+
+	float4::Serialize(&s_Object->m_vCenter, p_Serializer, p_OwnOffset + offsetof(SRegionSaveData, m_vCenter));
 }
 
 ZHMTypeInfo SConditionBase::TypeInfo = ZHMTypeInfo("SConditionBase", sizeof(SConditionBase), alignof(SConditionBase), SConditionBase::WriteJson, SConditionBase::WriteSimpleJson, SConditionBase::FromSimpleJson, SConditionBase::Serialize);

@@ -1330,20 +1330,20 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "eGameInputEquipLongRange" },
 		{ 14, "eGameInputHolsterItem" },
 		{ 15, "eGameInputDropItem" },
-		{ 16, "eGameInputTogglePlacement" },
-		{ 17, "eGameInputActivatePropQuick" },
-		{ 18, "eGameInputActivateProp" },
-		{ 19, "eGameInputActivatePropHold" },
-		{ 20, "eGameInputActivatePropSecondary" },
-		{ 21, "eGameInputActivatePropInterruptibleStart" },
-		{ 22, "eGameInputActivatePropInterruptibleEnd" },
-		{ 23, "eGameInputConcealRetrieve" },
-		{ 24, "eGameInputGuideAction" },
-		{ 25, "eGameInputGuideActionHold" },
-		{ 26, "eGameInputGuideActionSecondary" },
-		{ 27, "eGameInputGuideEnterWindow" },
-		{ 28, "eGameInputGuideSneakPastWindow" },
-		{ 29, "eGameInputGuideSneakPastWindowHold" },
+		{ 16, "eGameInputDropSuitcase" },
+		{ 17, "eGameInputTogglePlacement" },
+		{ 18, "eGameInputActivatePropQuick" },
+		{ 19, "eGameInputActivateProp" },
+		{ 20, "eGameInputActivatePropHold" },
+		{ 21, "eGameInputActivatePropSecondary" },
+		{ 22, "eGameInputActivatePropInterruptibleStart" },
+		{ 23, "eGameInputActivatePropInterruptibleEnd" },
+		{ 24, "eGameInputConcealRetrieve" },
+		{ 25, "eGameInputGuideAction" },
+		{ 26, "eGameInputGuideActionHold" },
+		{ 27, "eGameInputGuideActionSecondary" },
+		{ 28, "eGameInputGuideEnterWindow" },
+		{ 29, "eGameInputGuideSneakPastWindow" },
 		{ 30, "eGameInputGuideKill" },
 		{ 31, "eGameInputSlideLadder" },
 		{ 32, "eGameInputCloseCombat" },
@@ -1750,21 +1750,6 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EABT_HEAD" },
 	};
 
-	(*g_Enums)["ETimerEntityCommandType"] = {
-		{ 0, "ETECT_Add" },
-		{ 1, "ETECT_Remove" },
-		{ 2, "ETECT_Reset" },
-	};
-
-	(*g_Enums)["ZValueInt_Comparator_Poll.EEvaluationType"] = {
-		{ 0, "EQUAL" },
-		{ 1, "NOT_EQUAL" },
-		{ 2, "LESS" },
-		{ 3, "LESS_OR_EQUAL" },
-		{ 4, "HIGHER" },
-		{ 5, "HIGHER_OR_EQUAL" },
-	};
-
 	(*g_Enums)["EHM5SoundFootstepStance"] = {
 		{ 0, "EFSS_SNEAK" },
 		{ 1, "EFSS_SNEAKRUN" },
@@ -1781,6 +1766,27 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EGC_TrespassWarn2" },
 		{ 4, "EGC_TrespassWarn3" },
 		{ 5, "EGC_StopWarn" },
+	};
+
+	(*g_Enums)["ZOnlineManager.EIoiAccountState"] = {
+		{ 0, "eMISSING" },
+		{ 1, "eUNCONFIRMED" },
+		{ 2, "eCONFIRMED" },
+	};
+
+	(*g_Enums)["ETimerEntityCommandType"] = {
+		{ 0, "ETECT_Add" },
+		{ 1, "ETECT_Remove" },
+		{ 2, "ETECT_Reset" },
+	};
+
+	(*g_Enums)["ZValueInt_Comparator_Poll.EEvaluationType"] = {
+		{ 0, "EQUAL" },
+		{ 1, "NOT_EQUAL" },
+		{ 2, "LESS" },
+		{ 3, "LESS_OR_EQUAL" },
+		{ 4, "HIGHER" },
+		{ 5, "HIGHER_OR_EQUAL" },
 	};
 
 	(*g_Enums)["eWeaponOperation"] = {
@@ -2006,32 +2012,36 @@ void ZHMEnums::RegisterEnums()
 		{ 1003, "eAPI_VERSION" },
 		{ 1004, "eAUTHENTICATION_UNAUTHORIZED" },
 		{ 1005, "eAUTHENTICATION_PROXY" },
-		{ 1024, "eGENERAL_SERVER_ERROR" },
+		{ 1024, "ePROFILE" },
 		{ 1006, "eAUTHENTICATION_SERVER_ERROR" },
-		{ 1007, "eAUTHENTICATION_USER_GONE" },
-		{ 1030, "eCANCELLED" },
-		{ 1008, "eAUTHENTICATION_STEAM_GENERAL" },
-		{ 1009, "eAUTHENTICATION_EPIC_GENERAL" },
-		{ 1010, "eAUTHENTICATION_IZUMO_GENERAL" },
-		{ 1027, "eDYNAMIC_RESOURCES_CONFIG_ERROR" },
-		{ 1011, "eAUTHENTICATION_PSN_GENERAL" },
-		{ 1012, "eAUTHENTICATION_PSN_NP_CHECK" },
-		{ 1013, "eAUTHENTICATION_PSN_ACCOUNT_COLLISION" },
-		{ 1014, "eAUTHENTICATION_NO_PRIMARY_USER" },
-		{ 1015, "eAUTHENTICATION_XBLIVE_GENERAL" },
-		{ 1016, "eAUTHENTICATION_XBLIVE_SIGNED_OUT" },
-		{ 1017, "eAUTHENTICATION_XBLIVE_USER_CHANGED" },
-		{ 1028, "eDYNAMIC_RESOURCES_UPDATEFAILED" },
-		{ 1018, "eAUTHENTICATION_STADIA_GENERAL" },
-		{ 1019, "ePLATFORM_USERINFO" },
-		{ 1020, "eCONFIGURATION" },
-		{ 1021, "eENTITLEMENTS" },
-		{ 1022, "ePROFILE" },
-		{ 1023, "eGAME_SESSION" },
-		{ 1025, "eGENERAL_SERVER_BUSY" },
-		{ 1026, "eGENERAL_CLIENT_ERROR" },
-		{ 1029, "eDYNAMIC_RESOURCES_OUTDATED" },
-		{ 1031, "eERROR_MAX" },
+		{ 1007, "eAUTHENTICATION_SERVER_MAINTENANCE" },
+		{ 1030, "eDYNAMIC_RESOURCES_UPDATEFAILED" },
+		{ 1008, "eAUTHENTICATION_SERVER_IN_QUEUE" },
+		{ 1009, "eAUTHENTICATION_USER_GONE" },
+		{ 1010, "eAUTHENTICATION_STEAM_GENERAL" },
+		{ 1027, "eGENERAL_SERVER_BUSY" },
+		{ 1011, "eAUTHENTICATION_EPIC_GENERAL" },
+		{ 1012, "eAUTHENTICATION_IZUMO_GENERAL" },
+		{ 1013, "eAUTHENTICATION_PSN_GENERAL" },
+		{ 1032, "eFSP_IOI_ACCOUNT_SIGNUP_REQUIRED" },
+		{ 1014, "eAUTHENTICATION_PSN_NP_CHECK" },
+		{ 1015, "eAUTHENTICATION_PSN_ACCOUNT_COLLISION" },
+		{ 1016, "eAUTHENTICATION_NO_PRIMARY_USER" },
+		{ 1017, "eAUTHENTICATION_XBLIVE_GENERAL" },
+		{ 1028, "eGENERAL_CLIENT_ERROR" },
+		{ 1018, "eAUTHENTICATION_XBLIVE_SIGNED_OUT" },
+		{ 1035, "eERROR_MAX" },
+		{ 1019, "eAUTHENTICATION_XBLIVE_USER_CHANGED" },
+		{ 1020, "eAUTHENTICATION_STADIA_GENERAL" },
+		{ 1021, "ePLATFORM_USERINFO" },
+		{ 1022, "eCONFIGURATION" },
+		{ 1023, "eENTITLEMENTS" },
+		{ 1025, "eGAME_SESSION" },
+		{ 1026, "eGENERAL_SERVER_ERROR" },
+		{ 1029, "eDYNAMIC_RESOURCES_CONFIG_ERROR" },
+		{ 1031, "eDYNAMIC_RESOURCES_OUTDATED" },
+		{ 1033, "eFSP_IOI_ACCOUNT_SIGNUP_ERROR" },
+		{ 1034, "eCANCELLED" },
 	};
 
 	(*g_Enums)["EDetachUsage"] = {
@@ -3702,30 +3712,31 @@ void ZHMEnums::RegisterEnums()
 		{ 18, "eENTITLEMENTS_SYNCHRONIZE_DONE" },
 		{ 19, "eAUTHENTICATING_GAMESERVICE" },
 		{ 20, "eAUTHENTICATION_GAMESERVICE_RECEIVED" },
-		{ 21, "eFETCHING_OFFLINE_CACHE_DB_DIFF" },
-		{ 22, "eFETCHING_OFFLINE_CACHE_DB_DIFF_RECEIVED" },
-		{ 23, "eFETCHING_DYNAMIC_RESOURCES" },
-		{ 24, "eDYNAMIC_RESOURCES_MOUNTED" },
-		{ 25, "eCHECK_FOR_DLC_UPDATES" },
-		{ 26, "eFETCHING_PLATFORM_USERINFO" },
-		{ 27, "ePLATFORM_USERINFO_RECEIVED" },
-		{ 28, "eFETCHING_USER_CONFIGURATION" },
-		{ 29, "eUSER_CONFIGURATION_RECEIEVED" },
-		{ 30, "eFETCHING_PROFILE" },
-		{ 31, "ePROFILE_RECEIVED" },
-		{ 32, "eSYNCHRONIZING_PROFILE" },
-		{ 33, "ePROFILE_SYNCHRONIZED" },
-		{ 34, "eRETRIEVING_EVENTS" },
-		{ 35, "eEVENTS_RETRIEVED" },
-		{ 36, "eWAITING_FOR_SYNCHRONIZING_EVENTS" },
-		{ 37, "eCONNECTED" },
-		{ 38, "eCONNECT_TO_GAME_SESSION" },
-		{ 39, "eCONNECTING_TO_GAME_SESSION" },
-		{ 40, "eRETRY_SAVE_EVENTS" },
-		{ 41, "eRETRY_SAVE_EVENTS_INTERNAL" },
-		{ 42, "eREAUTHENTICATE" },
-		{ 43, "ePLATFORM_SESSION_RECONNECT" },
-		{ 44, "eSTATE_MAX" },
+		{ 21, "eFSP_IOI_ACCOUNT_SIGNUP" },
+		{ 22, "eFETCHING_OFFLINE_CACHE_DB_DIFF" },
+		{ 23, "eFETCHING_OFFLINE_CACHE_DB_DIFF_RECEIVED" },
+		{ 24, "eFETCHING_DYNAMIC_RESOURCES" },
+		{ 25, "eDYNAMIC_RESOURCES_MOUNTED" },
+		{ 26, "eCHECK_FOR_DLC_UPDATES" },
+		{ 27, "eFETCHING_PLATFORM_USERINFO" },
+		{ 28, "ePLATFORM_USERINFO_RECEIVED" },
+		{ 29, "eFETCHING_USER_CONFIGURATION" },
+		{ 30, "eUSER_CONFIGURATION_RECEIEVED" },
+		{ 31, "eFETCHING_PROFILE" },
+		{ 32, "ePROFILE_RECEIVED" },
+		{ 33, "eSYNCHRONIZING_PROFILE" },
+		{ 34, "ePROFILE_SYNCHRONIZED" },
+		{ 35, "eRETRIEVING_EVENTS" },
+		{ 36, "eEVENTS_RETRIEVED" },
+		{ 37, "eWAITING_FOR_SYNCHRONIZING_EVENTS" },
+		{ 38, "eCONNECTED" },
+		{ 39, "eCONNECT_TO_GAME_SESSION" },
+		{ 40, "eCONNECTING_TO_GAME_SESSION" },
+		{ 41, "eRETRY_SAVE_EVENTS" },
+		{ 42, "eRETRY_SAVE_EVENTS_INTERNAL" },
+		{ 43, "eREAUTHENTICATE" },
+		{ 44, "ePLATFORM_SESSION_RECONNECT" },
+		{ 45, "eSTATE_MAX" },
 	};
 
 	(*g_Enums)["ZDebugHM5GameTimeMultiplierEnt.eTMLDReason"] = {
@@ -4091,6 +4102,13 @@ void ZHMEnums::RegisterEnums()
 		{ 32, "EREQUIREMENT_PLATFORM_GGP" },
 		{ 33, "EREQUIREMENT_H3_PREORDER" },
 		{ 34, "EREQUIREMENT_PLATFORM_IZUMO" },
+		{ 35, "EREQUIREMENT_H3_DEADLYSINS_GREED" },
+		{ 36, "EREQUIREMENT_H3_DEADLYSINS_PRIDE" },
+		{ 37, "EREQUIREMENT_H3_DEADLYSINS_SLOTH" },
+		{ 38, "EREQUIREMENT_H3_DEADLYSINS_LUST" },
+		{ 39, "EREQUIREMENT_H3_DEADLYSINS_GLUTTONY" },
+		{ 40, "EREQUIREMENT_H3_DEADLYSINS_WRATH" },
+		{ 41, "EREQUIREMENT_H3_DEADLYSINS_ENVY" },
 	};
 
 	(*g_Enums)["ZSecuritySystemCameraConfiguration.ECameraEscalationSituations"] = {
@@ -5437,14 +5455,6 @@ void ZHMEnums::RegisterEnums()
 		{ 190, "BT_Invalid" },
 	};
 
-	(*g_Enums)["ZWaveformGeneratorEntity.ECurveType"] = {
-		{ 0, "CURVE_TYPE_SINE" },
-		{ 1, "CURVE_TYPE_SQUARE" },
-		{ 2, "CURVE_TYPE_TRIANGLE" },
-		{ 3, "CURVE_TYPE_SAWTOOTH" },
-		{ 4, "CURVE_TYPE_REVERSE_SAWTOOTH" },
-	};
-
 	(*g_Enums)["EItemHUDType"] = {
 		{ 0, "EIHT_None" },
 		{ 1, "EIHT_GhostItem" },
@@ -6787,7 +6797,8 @@ void ZHMEnums::RegisterEnums()
 		{ 0, "RENDER_VR_DEVICE_TYPE_DUMMY" },
 		{ 1, "RENDER_VR_DEVICE_TYPE_OCULUS" },
 		{ 2, "RENDER_VR_DEVICE_TYPE_PSVR" },
-		{ 3, "RENDER_VR_DEVICE_TYPE_COUNT" },
+		{ 3, "RENDER_VR_DEVICE_TYPE_OPENVR" },
+		{ 4, "RENDER_VR_DEVICE_TYPE_COUNT" },
 	};
 
 	(*g_Enums)["IHM5Door.EOpenDir"] = {
@@ -8046,6 +8057,11 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "FOOT_RIGHT" },
 	};
 
+	(*g_Enums)["EVRHUDHandedness"] = {
+		{ 0, "ON_LEFT_HAND" },
+		{ 1, "ON_RIGHT_HAND" },
+	};
+
 	(*g_Enums)["ECharacterUpperBodyStateType"] = {
 		{ 0, "eSM_UB_EmptyHanded" },
 		{ 1, "eSM_UB_Unholster" },
@@ -8485,6 +8501,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ANY" },
 	};
 
+	(*g_Enums)["ZWaveformGeneratorEntity.ECurveType"] = {
+		{ 0, "CURVE_TYPE_SINE" },
+		{ 1, "CURVE_TYPE_SQUARE" },
+		{ 2, "CURVE_TYPE_TRIANGLE" },
+		{ 3, "CURVE_TYPE_SAWTOOTH" },
+		{ 4, "CURVE_TYPE_REVERSE_SAWTOOTH" },
+	};
+
 	(*g_Enums)["ZHM5HitmanHealthModifier.EHealthValue"] = {
 		{ 40, "eHealth40" },
 		{ 0, "eHealth0" },
@@ -8577,6 +8601,11 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eClothBendConstrainType_None" },
 	};
 
+	(*g_Enums)["EMoveRecenterMode"] = {
+		{ 0, "VR_MOVE_TRIGGER_INDEPENDENT" },
+		{ 1, "VR_MOVE_TRIGGER_AVERAGE" },
+	};
+
 	(*g_Enums)["ENamedGameEvents"] = {
 		{ 0, "eEvent_IntroCutStart" },
 		{ 1, "eEvent_PlayingAfterLoad" },
@@ -8588,6 +8617,15 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "VA_TOP" },
 		{ 0, "VA_CENTER" },
 		{ 32, "VA_BOTTOM" },
+	};
+
+	(*g_Enums)["ZMinimapNavDirectionProvider.EAxis"] = {
+		{ 0, "X_POSITIVE" },
+		{ 1, "X_NEGATIVE" },
+		{ 2, "Y_POSITIVE" },
+		{ 3, "Y_NEGATIVE" },
+		{ 4, "Z_POSITIVE" },
+		{ 5, "Z_NEGATIVE" },
 	};
 
 	(*g_Enums)["ZSetUIControlDisplayInfoEntity.EProjectionOp"] = {
