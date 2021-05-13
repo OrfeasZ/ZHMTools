@@ -17518,6 +17518,75 @@ void AI_SFirePattern02_SData::Serialize(void* p_Object, ZHMSerializer& p_Seriali
 
 }
 
+ZHMTypeInfo AI_SFirePattern02::TypeInfo = ZHMTypeInfo("AI.SFirePattern02", sizeof(AI_SFirePattern02), alignof(AI_SFirePattern02), AI_SFirePattern02::WriteJson, AI_SFirePattern02::WriteSimpleJson, AI_SFirePattern02::FromSimpleJson, AI_SFirePattern02::Serialize);
+
+void AI_SFirePattern02::WriteJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI_SFirePattern02*>(p_Object);
+
+	p_Stream << "{";
+	p_Stream << JsonStr("m_PatternSequenceData") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("TArray<AI_SFirePattern02_SData>") << "," << JsonStr("$val") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("AI_SFirePattern02_SData") << "," << JsonStr("$val") << ":";
+		AI_SFirePattern02_SData::WriteJson(&s_Item0, p_Stream);
+		p_Stream << "}";
+
+		if (i < s_Object->m_PatternSequenceData.size() - 1)
+			p_Stream << ",";
+	}
+	p_Stream << "]";
+	p_Stream << "}";
+
+	p_Stream << "}";
+}
+
+void AI_SFirePattern02::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI_SFirePattern02*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_PatternSequenceData") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
+		AI_SFirePattern02_SData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_PatternSequenceData.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void AI_SFirePattern02::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	AI_SFirePattern02 s_Object;
+
+	for (simdjson::ondemand::value s_Item0 : p_Document["m_PatternSequenceData"])
+	{
+		AI_SFirePattern02_SData s_ArrayItem0;
+		AI_SFirePattern02_SData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.m_PatternSequenceData.push_back(s_ArrayItem0);
+	}
+
+	*reinterpret_cast<AI_SFirePattern02*>(p_Target) = s_Object;
+}
+
+void AI_SFirePattern02::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI_SFirePattern02*>(p_Object);
+
+	TArray<AI_SFirePattern02_SData>::Serialize(&s_Object->m_PatternSequenceData, p_Serializer, p_OwnOffset + offsetof(AI_SFirePattern02, m_PatternSequenceData));
+}
+
 ZHMTypeInfo SHeroEscortSituationActors::TypeInfo = ZHMTypeInfo("SHeroEscortSituationActors", sizeof(SHeroEscortSituationActors), alignof(SHeroEscortSituationActors), SHeroEscortSituationActors::WriteJson, SHeroEscortSituationActors::WriteSimpleJson, SHeroEscortSituationActors::FromSimpleJson, SHeroEscortSituationActors::Serialize);
 
 void SHeroEscortSituationActors::WriteJson(void* p_Object, std::ostream& p_Stream)
@@ -42169,6 +42238,75 @@ void AI_SFirePattern01_SData::Serialize(void* p_Object, ZHMSerializer& p_Seriali
 {
 	auto* s_Object = reinterpret_cast<AI_SFirePattern01_SData*>(p_Object);
 
+}
+
+ZHMTypeInfo AI_SFirePattern01::TypeInfo = ZHMTypeInfo("AI.SFirePattern01", sizeof(AI_SFirePattern01), alignof(AI_SFirePattern01), AI_SFirePattern01::WriteJson, AI_SFirePattern01::WriteSimpleJson, AI_SFirePattern01::FromSimpleJson, AI_SFirePattern01::Serialize);
+
+void AI_SFirePattern01::WriteJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI_SFirePattern01*>(p_Object);
+
+	p_Stream << "{";
+	p_Stream << JsonStr("m_PatternSequenceData") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("TArray<AI_SFirePattern01_SData>") << "," << JsonStr("$val") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
+		p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("AI_SFirePattern01_SData") << "," << JsonStr("$val") << ":";
+		AI_SFirePattern01_SData::WriteJson(&s_Item0, p_Stream);
+		p_Stream << "}";
+
+		if (i < s_Object->m_PatternSequenceData.size() - 1)
+			p_Stream << ",";
+	}
+	p_Stream << "]";
+	p_Stream << "}";
+
+	p_Stream << "}";
+}
+
+void AI_SFirePattern01::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI_SFirePattern01*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << JsonStr("m_PatternSequenceData") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
+		AI_SFirePattern01_SData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_PatternSequenceData.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void AI_SFirePattern01::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	AI_SFirePattern01 s_Object;
+
+	for (simdjson::ondemand::value s_Item0 : p_Document["m_PatternSequenceData"])
+	{
+		AI_SFirePattern01_SData s_ArrayItem0;
+		AI_SFirePattern01_SData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.m_PatternSequenceData.push_back(s_ArrayItem0);
+	}
+
+	*reinterpret_cast<AI_SFirePattern01*>(p_Target) = s_Object;
+}
+
+void AI_SFirePattern01::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI_SFirePattern01*>(p_Object);
+
+	TArray<AI_SFirePattern01_SData>::Serialize(&s_Object->m_PatternSequenceData, p_Serializer, p_OwnOffset + offsetof(AI_SFirePattern01, m_PatternSequenceData));
 }
 
 ZHMTypeInfo SPerceptibleCrowdBodySaveData::TypeInfo = ZHMTypeInfo("SPerceptibleCrowdBodySaveData", sizeof(SPerceptibleCrowdBodySaveData), alignof(SPerceptibleCrowdBodySaveData), SPerceptibleCrowdBodySaveData::WriteJson, SPerceptibleCrowdBodySaveData::WriteSimpleJson, SPerceptibleCrowdBodySaveData::FromSimpleJson, SPerceptibleCrowdBodySaveData::Serialize);

@@ -10313,6 +10313,19 @@ public:
 	float32 m_WaitMaxSeconds; // 0xC
 };
 
+// 0x0000000142A9EE90 (Size: 0x18)
+class alignas(8) AI_SFirePattern02
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<AI_SFirePattern02_SData> m_PatternSequenceData; // 0x0
+};
+
 // 0x0000000142AB5290 (Size: 0x4)
 enum class EDramaSituationDescriptors
 {
@@ -18137,6 +18150,19 @@ public:
 	uint32 m_BulletsToFire; // 0x0
 	float32 m_WaitMinSeconds; // 0x4
 	float32 m_WaitMaxSeconds; // 0x8
+};
+
+// 0x0000000142A9EE78 (Size: 0x18)
+class alignas(8) AI_SFirePattern01
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteJson(void* p_Object, std::ostream& p_Stream);
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+
+	TArray<AI_SFirePattern01_SData> m_PatternSequenceData; // 0x0
 };
 
 // 0x0000000142A94420 (Size: 0x8)
