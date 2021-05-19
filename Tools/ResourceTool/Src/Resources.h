@@ -1,3 +1,6 @@
+/*
+	5/10/2021 - [REDACTED] added GenerateFromMemoryJson function generating resources from JSONs in memory
+*/
 #pragma once
 
 #include <ostream>
@@ -17,6 +20,7 @@ class IResourceGenerator
 public:
 	virtual ~IResourceGenerator() = default;
 	virtual bool GenerateFrom(std::filesystem::path p_JsonFilePath, std::filesystem::path p_OutputPath) = 0;
+	virtual bool GenerateFromMemoryJson(const char* s_JsonInMemory, size_t p_Size, std::filesystem::path p_OutputPath) = 0;
 	virtual bool GenerateFromMemory(void* p_Memory, std::filesystem::path p_OutputPath) = 0;
 	virtual std::string GenerateBufferFromMemory(void* p_Memory) = 0;
 };

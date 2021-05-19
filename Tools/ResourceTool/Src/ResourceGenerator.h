@@ -1,3 +1,6 @@
+/*
+	5/10/2021 - [REDACTED] added GenerateFromMemoryJson function generating resources from JSONs in memory
+*/
 #pragma once
 
 #include "Resources.h"
@@ -42,6 +45,22 @@ public:
 		// Load the input file as JSON.
 		simdjson::ondemand::parser s_Parser;
 		auto s_Json = simdjson::padded_string::load(s_JsonFilePath.string());
+
+		simdjson::ondemand::document s_Value = s_Parser.iterate(s_Json);
+
+		// Parse type from JSON.
+		T s_Resource;
+		T::FromSimpleJson(s_Value.resume_value(), &s_Resource);
+
+		return GenerateFromMemory(&s_Resource, p_OutputPath);
+	}
+
+	bool GenerateFromMemoryJson(const char* s_JsonInMemory, size_t p_Size, std::filesystem::path p_OutputPath) override
+	{
+		// Load the JSON from memory.
+		simdjson::ondemand::parser s_Parser;
+
+		auto s_Json = simdjson::padded_string(s_JsonInMemory, p_Size);
 
 		simdjson::ondemand::document s_Value = s_Parser.iterate(s_Json);
 
