@@ -1,10 +1,9 @@
-#include "Resources.h"
-
 #include <cstdio>
 #include <fstream>
 
-#include "ResourceConverter.h"
-#include "ResourceGenerator.h"
+#include <IResourceConverter.h>
+#include <IResourceGenerator.h>
+#include <ResourceLib.h>
 
 #if _WIN32
 #define EXECUTABLE "ResourceTool.exe"
@@ -45,21 +44,25 @@ bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::fi
 }
 
 void PrintHelp()
-{	
+{
 	printf("Usage: " EXECUTABLE " <mode> <resource-type> <input-path> <output-path> [options]\n");
 
 	printf("\n");
 	printf("mode can be one of: convert, generate\n");
 	printf("resource-type can be one of: ");
 
-	for (auto it = g_Resources.begin(); it != g_Resources.end(); ++it)
+	auto* s_Resources = GetSupportedResourceTypes();
+	
+	for (size_t i = 0; i < s_Resources->TypeCount; ++i)
 	{
-		if (it != g_Resources.begin())
+		if (i != 0)
 			printf(", ");
 
-		printf(it->first.c_str());
+		printf(s_Resources->Types[i]);
 	}
-	
+
+	FreeSupportedResourceTypes(s_Resources);
+
 	printf("\n");
 	printf("\n");
 	printf("\n");
@@ -88,7 +91,7 @@ int TryConvertFile(const std::string& p_FilePath)
 		fprintf(stderr, "[ERROR] Could not find the file you specified.\n");
 		return 1;
 	}
-	
+
 	auto s_Extension = s_InputPath.extension().string();
 	std::string s_PossibleResourceType = s_Extension.substr(1);
 	std::string s_OutputPathStr = p_FilePath + ".json";
@@ -100,17 +103,16 @@ int TryConvertFile(const std::string& p_FilePath)
 		s_OutputPathStr = p_FilePath.substr(0, p_FilePath.size() - 5);
 		s_Convert = false;
 	}
-	
-	auto s_ResourceIt = g_Resources.find(s_PossibleResourceType);
 
-	if (s_ResourceIt == g_Resources.end())
+	auto* s_ResourceConverter = GetConverterForResource(s_PossibleResourceType.c_str());
+	auto* s_ResourceGenerator = GetGeneratorForResource(s_PossibleResourceType.c_str());
+
+	if (s_ResourceConverter == nullptr || s_ResourceGenerator == nullptr)
 	{
 		fprintf(stderr, "[ERROR] Could not identify the type of resource you are trying to convert / generate. Make sure that the file extension is the same as the resource type (eg. XXXX.TBLU) or is prefixed by the resource type in the case of json files (eg. XXXX.TBLU.json).\n");
 		return 1;
 	}
-
-	auto s_Resource = s_ResourceIt->second;	
-
+	
 	const auto s_OutputPath = std::filesystem::path(s_OutputPathStr);
 
 	if (is_directory(s_OutputPath))
@@ -123,14 +125,14 @@ int TryConvertFile(const std::string& p_FilePath)
 	{
 		if (s_Convert)
 		{
-			if (!ResourceToJson(s_InputPath, s_OutputPath, s_Resource.Converter, true))
+			if (!ResourceToJson(s_InputPath, s_OutputPath, s_ResourceConverter, true))
 			{
 				return 1;
 			}
 		}
 		else
 		{
-			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_Resource.Generator, true))
+			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, true))
 			{
 				return 1;
 			}
@@ -153,7 +155,7 @@ int main(int argc, char** argv)
 		const std::string s_FileToConvert(argv[1]);
 		return TryConvertFile(s_FileToConvert);
 	}
-	
+
 	if (argc < 5)
 	{
 		PrintHelp();
@@ -164,7 +166,7 @@ int main(int argc, char** argv)
 	const std::string s_ResourceType(argv[2]);
 	const std::string s_InputPathStr(argv[3]);
 	const std::string s_OutputPathStr(argv[4]);
-	
+
 	bool s_SimpleJson = argc >= 6 && std::string(argv[5]) == "--simple";
 
 	if (s_OperatingMode != "convert" && s_OperatingMode != "generate")
@@ -173,16 +175,15 @@ int main(int argc, char** argv)
 		return 1;
 	}
 	
-	auto s_ResourceIt = g_Resources.find(s_ResourceType);
+	auto* s_ResourceConverter = GetConverterForResource(s_ResourceType.c_str());
+	auto* s_ResourceGenerator = GetGeneratorForResource(s_ResourceType.c_str());
 
-	if (s_ResourceIt == g_Resources.end())
+	if (s_ResourceConverter == nullptr || s_ResourceGenerator == nullptr)
 	{
 		PrintHelp();
 		return 1;
 	}
-
-	auto s_Resource = s_ResourceIt->second;
-
+	
 	const auto s_InputPath = std::filesystem::path(s_InputPathStr);
 
 	if (!is_regular_file(s_InputPath))
@@ -203,14 +204,14 @@ int main(int argc, char** argv)
 	{
 		if (s_OperatingMode == "convert")
 		{
-			if (!ResourceToJson(s_InputPath, s_OutputPath, s_Resource.Converter, s_SimpleJson))
+			if (!ResourceToJson(s_InputPath, s_OutputPath, s_ResourceConverter, s_SimpleJson))
 			{
 				return 1;
 			}
 		}
 		else if (s_OperatingMode == "generate")
 		{
-			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_Resource.Generator, s_SimpleJson))
+			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, s_SimpleJson))
 			{
 				return 1;
 			}

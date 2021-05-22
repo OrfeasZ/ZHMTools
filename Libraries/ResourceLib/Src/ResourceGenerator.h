@@ -6,6 +6,8 @@
 #include <string>
 #include <filesystem>
 
+#include <IResourceGenerator.h>
+
 #include <External/simdjson.h>
 #include <Util/PortableIntrinsics.h>
 #include <Util/BinaryStreamWriter.h>

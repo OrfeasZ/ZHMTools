@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Resources.h"
+
+#include <IResourceConverter.h>
+
 #include <Util/PortableIntrinsics.h>
 #include <Util/BinaryStreamReader.h>
 
