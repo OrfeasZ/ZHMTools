@@ -18,6 +18,7 @@ target_link_libraries(ResourceTool PUBLIC
 	ResourceLib
 )
 
+# Copy over the ResourceLib binaries so the executable can find them when running.
 add_custom_command(TARGET ResourceTool POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     $<TARGET_FILE:ResourceLib> $<TARGET_FILE_DIR:ResourceTool>
