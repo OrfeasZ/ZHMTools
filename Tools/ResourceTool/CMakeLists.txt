@@ -4,10 +4,6 @@ add_executable(ResourceTool
 	Src/ResourceTool.cpp
 )
 
-set_target_properties(ResourceTool PROPERTIES
-	CXX_STANDARD 20
-)
-
 target_include_directories(ResourceTool PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/Src
 )

@@ -10,10 +10,6 @@ add_library(CodeGenLib SHARED
 	Src/CodeGen.cpp
 )
 
-set_target_properties(CodeGenLib PROPERTIES
-	CXX_STANDARD 20
-)
-
 target_include_directories(CodeGenLib PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/Src
 )

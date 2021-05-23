@@ -6,6 +6,8 @@ endif()
 
 project("ZHMTools")
 
+set(CMAKE_CXX_STANDARD 20)
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	set(VCPKG_CRT_LINKAGE "static")
 	set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")

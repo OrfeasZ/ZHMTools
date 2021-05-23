@@ -8,10 +8,6 @@ add_executable(CodeGen
 	${CODEGEN_SOURCES}
 )
 
-set_target_properties(CodeGen PROPERTIES
-	CXX_STANDARD 20
-)
-
 target_include_directories(CodeGen PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/Src
 )

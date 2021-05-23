@@ -78,7 +78,6 @@ add_library(ResourceLib_HM2 ${RESOURCELIB_TYPE}
 )
 
 set_target_properties(ResourceLib_HM3 ResourceLib_HM2 PROPERTIES
-	CXX_STANDARD 20
 	CXX_VISIBILITY_PRESET hidden
 )
 
