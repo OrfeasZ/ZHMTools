@@ -68,13 +68,14 @@ jobs:
       run: |
         cd _build
         mkdir _resourcelib
+        mkdir _resourcelib/Include
         Copy-Item Libraries/ResourceLib/ResourceLib_HM2.dll -Destination _resourcelib/
         Copy-Item Libraries/ResourceLib/ResourceLib_HM2.lib -Destination _resourcelib/
         Copy-Item Libraries/ResourceLib/ResourceLib_HM2.pdb -Destination _resourcelib/
         Copy-Item Libraries/ResourceLib/ResourceLib_HM3.dll -Destination _resourcelib/
         Copy-Item Libraries/ResourceLib/ResourceLib_HM3.lib -Destination _resourcelib/
         Copy-Item Libraries/ResourceLib/ResourceLib_HM3.pdb -Destination _resourcelib/
-        Copy-Item ../Libraries/ResourceLib/Include -Destination _resourcelib/
+        Copy-Item ../Libraries/ResourceLib/Include/* -Destination _resourcelib/Include/
         Copy-Item ../LICENSE -Destination _resourcelib/
 
     - name: Archive ResourceTool
