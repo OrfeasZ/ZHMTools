@@ -96,7 +96,7 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_CXX_COMPILER=clang++-12 \
           -DCMAKE_C_COMPILER=clang-12 \
-          -DLIBCPP_PATH=/usr/include/c++/9 \
+          -DLIBCPP_VERSION=9 \
           ..
 
     - name: Build
