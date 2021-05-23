@@ -515,7 +515,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	if (s_TypeName.find_first_of('<') != std::string::npos)
 		return;
 
-	s_HeaderStream << s_Indent << "// 0x" << std::hex << std::uppercase << p_Type << " (Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << ")" << std::dec << std::endl;
+	s_HeaderStream << s_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
 	s_HeaderStream << s_Indent << "class alignas(" << s_Type->m_nTypeAlignment << ") " << s_NormalizedName;
 
 	if (s_Type->m_nBaseClassCount > 0)
@@ -899,7 +899,7 @@ void CodeGen::GenerateReflectiveEnum(STypeID* p_Type)
 
 	std::ostringstream s_Stream;
 
-	s_Stream << "// 0x" << std::hex << std::uppercase << p_Type << " (Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << ")" << std::dec << std::endl;
+	s_Stream << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
 	s_Stream << "enum class " << NormalizeName(p_Type) << std::endl;
 	s_Stream << "{" << std::endl;
 

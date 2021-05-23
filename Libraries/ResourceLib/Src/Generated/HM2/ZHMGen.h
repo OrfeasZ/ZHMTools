@@ -12,7 +12,7 @@
 
 class ZHMTypeInfo;
 
-// 0x0000000142B90A20 (Size: 0x4)
+// Size: 0x4
 enum class ZFriskSuspectGroup_EAssistantState
 {
 	AS_Waiting = 0,
@@ -21,7 +21,7 @@ enum class ZFriskSuspectGroup_EAssistantState
 	AS_Covering = 3,
 };
 
-// 0x0000000143E05E28 (Size: 0x4)
+// Size: 0x4
 enum class ZRenderPostfilterParametersEntity_EHDRGlareType
 {
 	eCamera = 0,
@@ -37,7 +37,7 @@ enum class ZRenderPostfilterParametersEntity_EHDRGlareType
 	eCinecamHorizontalSlits = 10,
 };
 
-// 0x0000000142B8C338 (Size: 0x4)
+// Size: 0x4
 enum class ZOperatorBool_EEvaluationType
 {
 	ALL = 0,
@@ -45,7 +45,7 @@ enum class ZOperatorBool_EEvaluationType
 	ANY = 2,
 };
 
-// 0x00000001423CC648 (Size: 0x4)
+// Size: 0x4
 enum class EGSKillSituation
 {
 	GSKILLSITUATION_UNKNOWN = 0,
@@ -60,7 +60,7 @@ enum class EGSKillSituation
 	GSKILLSITUATION_FIBERWIRE = 9,
 };
 
-// 0x0000000142B90870 (Size: 0x4)
+// Size: 0x4
 enum class ZCautiousInvestigateGroup_EApproachOrderState
 {
 	AOS_RequestHuntApproachNode = 0,
@@ -71,7 +71,7 @@ enum class ZCautiousInvestigateGroup_EApproachOrderState
 	AOS_NoApproachNode = 5,
 };
 
-// 0x0000000142B940F0 (Size: 0x4)
+// Size: 0x4
 enum class EGSEvent
 {
 	GSEvent_StrayBullet = 0,
@@ -116,7 +116,7 @@ enum class EGSEvent
 	GSEvent_Projectile_MultiKillTargets = 39,
 };
 
-// 0x0000000142B829C0 (Size: 0x4)
+// Size: 0x4
 enum class EAISharedEventType
 {
 	AISET_None = 0,
@@ -548,7 +548,7 @@ enum class EAISharedEventType
 	AISET_DYNAMIC_ENFORCER_ARREST_REASON_END = 426,
 };
 
-// 0x0000000142B82FF0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SGetHelpOrderSaveData
 {
 public:
@@ -562,7 +562,7 @@ public:
 	uint32 m_rInitialGuard; // 0x4
 };
 
-// 0x0000000142B930A0 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SActorSoundDefs
 {
 public:
@@ -574,7 +574,7 @@ public:
 
 };
 
-// 0x0000000142B8B0F0 (Size: 0x4)
+// Size: 0x4
 enum class ZActBehaviorEntity_EState
 {
 	UNDEFINED = 0,
@@ -588,7 +588,7 @@ enum class ZActBehaviorEntity_EState
 	COMPLETE = 8,
 };
 
-// 0x0000000142B79C90 (Size: 0x8)
+// Size: 0x8
 class alignas(8) ZGameTime
 {
 public:
@@ -601,7 +601,7 @@ public:
 	int64 m_nTicks; // 0x0
 };
 
-// 0x0000000142B9EB58 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SActBehaviorEntitySaveData
 {
 public:
@@ -618,14 +618,14 @@ public:
 	bool m_bForceTimeout; // 0x10
 };
 
-// 0x0000000143E09F88 (Size: 0x1)
+// Size: 0x1
 enum class ETessellationMode
 {
 	TESSELLATIONMODE_FLAT = 0,
 	TESSELLATIONMODE_PHONG = 1,
 };
 
-// 0x0000000142C14B08 (Size: 0x1)
+// Size: 0x1
 enum class ECameraCollisionMode
 {
 	ECAMERACOLLISIONMODE_COLLIDE_ALWAYS = 0,
@@ -634,7 +634,7 @@ enum class ECameraCollisionMode
 	ECAMERACOLLISIONMODE_COLLIDE_DEFAULT = 3,
 };
 
-// 0x0000000143E0C208 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SVoidSignalEntitySaveData
 {
 public:
@@ -648,14 +648,14 @@ public:
 	float32 m_fFiredAtTime; // 0x4
 };
 
-// 0x0000000142B9EA08 (Size: 0x4)
+// Size: 0x4
 enum class EBystanderPointType
 {
 	BPT_Scared = 0,
 	BPT_Alerted = 1,
 };
 
-// 0x0000000142B90310 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SActorProviderDirectSaveData
 {
 public:
@@ -669,7 +669,7 @@ public:
 	bool m_bRunning; // 0x18
 };
 
-// 0x00000001423CC910 (Size: 0x4)
+// Size: 0x4
 enum class ZInteractionData_EFilterResult
 {
 	EFR_REQUESTED = 0,
@@ -689,7 +689,7 @@ enum class ZInteractionData_EFilterResult
 	EFR_REJECTED_PRIORITY = 14,
 };
 
-// 0x0000000142B9ACB8 (Size: 0x4)
+// Size: 0x4
 enum class ZHeroEscortSituation2Entity_ETargetState
 {
 	ETS_Unknown = 0,
@@ -701,7 +701,7 @@ enum class ZHeroEscortSituation2Entity_ETargetState
 	ETS_TargetIsHitman = 6,
 };
 
-// 0x0000000142B88128 (Size: 0x4)
+// Size: 0x4
 enum class ESoundChannelGroup
 {
 	ESCG_NONE = 0,
@@ -780,7 +780,7 @@ enum class ESoundChannelGroup
 	SND_Moments = 73,
 };
 
-// 0x0000000142B896A0 (Size: 0x4)
+// Size: 0x4
 enum class EOutfitAICategory
 {
 	OAC_Undefined = 0,
@@ -970,7 +970,7 @@ enum class EOutfitAICategory
 	OAC_Robber = 184,
 };
 
-// 0x0000000142B8D728 (Size: 0x4)
+// Size: 0x4
 enum class ZActorKeywordCondition_EEvaluationType
 {
 	ALL = 0,
@@ -979,7 +979,7 @@ enum class ZActorKeywordCondition_EEvaluationType
 	ANY_TRUE_IF_NO_REQS = 3,
 };
 
-// 0x00000001423CC678 (Size: 0x4)
+// Size: 0x4
 enum class EGSExplodingPropType
 {
 	eGSExplodingProp_Unknown = 0,
@@ -994,7 +994,7 @@ enum class EGSExplodingPropType
 	eGSExplodingProp_Car = 9,
 };
 
-// 0x0000000142BEF688 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SAudioEmitterSwitchSaveData
 {
 public:
@@ -1008,7 +1008,7 @@ public:
 	uint32 m_nStateId; // 0x4
 };
 
-// 0x000000014210DB28 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SVector2
 {
 public:
@@ -1022,7 +1022,7 @@ public:
 	float32 y; // 0x4
 };
 
-// 0x0000000142B92C10 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SMathDistanceSaveData_SVector2
 {
 public:
@@ -1036,7 +1036,7 @@ public:
 	SVector2 m_fB; // 0x8
 };
 
-// 0x0000000142BF2388 (Size: 0x4)
+// Size: 0x4
 enum class ZCrowdActorEntity_ECharacterSoundType
 {
 	eSoundType_Male = 0,
@@ -1044,7 +1044,7 @@ enum class ZCrowdActorEntity_ECharacterSoundType
 	eSoundType_Female_Heels = 2,
 };
 
-// 0x00000001423CCA98 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SItemStorageSaveData
 {
 public:
@@ -1058,7 +1058,7 @@ public:
 	TArray<uint32> m_ContainedItems; // 0x8
 };
 
-// 0x00000001423CC6D8 (Size: 0x4)
+// Size: 0x4
 enum class eItemType
 {
 	eCC_FireExtinguisher_01 = 0,
@@ -1159,7 +1159,7 @@ enum class eItemType
 	eUnknownItemType = 1337,
 };
 
-// 0x0000000142B82740 (Size: 0x4)
+// Size: 0x4
 enum class EDebugExclusionLayerState
 {
 	DEBUGELSTATE_UNBLOCKED = 0,
@@ -1167,7 +1167,7 @@ enum class EDebugExclusionLayerState
 	DEBUGELSTATE_UNKNOWN = 2,
 };
 
-// 0x0000000143E09F28 (Size: 0x1)
+// Size: 0x1
 enum class ILightEntity_ELightType
 {
 	LT_DIRECTIONAL = 0,
@@ -1179,14 +1179,14 @@ enum class ILightEntity_ELightType
 	LT_AREA_QUAD = 6,
 };
 
-// 0x0000000142BBD4E0 (Size: 0x4)
+// Size: 0x4
 enum class EOnlinTest
 {
 	eHELLO = 0,
 	eWORLD = 1,
 };
 
-// 0x0000000142B900A0 (Size: 0x10)
+// Size: 0x10
 class alignas(8) SBehaviorTreeInputPinCondition
 {
 public:
@@ -1199,14 +1199,14 @@ public:
 	ZString m_sName; // 0x0
 };
 
-// 0x0000000143E09AB8 (Size: 0x1)
+// Size: 0x1
 enum class EParticleColorUsage
 {
 	REPLACE_PARTICLE_COLOR = 0,
 	LEAVE_PARTICLE_COLOR = 1,
 };
 
-// 0x0000000142BB1728 (Size: 0x4)
+// Size: 0x4
 enum class eContractSessionStartError
 {
 	ERROR_NONE = 0,
@@ -1220,7 +1220,7 @@ enum class eContractSessionStartError
 	ERROR_UNKNOWN = 8,
 };
 
-// 0x00000001423CCAB0 (Size: 0x4)
+// Size: 0x4
 enum class EDeathContext
 {
 	eDC_UNDEFINED = 0,
@@ -1230,7 +1230,7 @@ enum class EDeathContext
 	eDC_MURDER = 4,
 };
 
-// 0x00000001423CCAC8 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SItemWeaponSaveData
 {
 public:
@@ -1246,7 +1246,7 @@ public:
 	EDeathContext m_eDeathContext; // 0x20
 };
 
-// 0x0000000142BF3980 (Size: 0x4)
+// Size: 0x4
 enum class EGameModeId
 {
 	GameMode_Invalid = -1,
@@ -1256,14 +1256,14 @@ enum class EGameModeId
 	GameMode_Max = 3,
 };
 
-// 0x0000000142B9EB28 (Size: 0x4)
+// Size: 0x4
 enum class ZActBehaviorEntity_EApproachAlignment
 {
 	AA_STRICT = 0,
 	AA_LOOSE = 1,
 };
 
-// 0x0000000142B7B598 (Size: 0x8)
+// Size: 0x8
 class alignas(0) ISequenceTarget
 {
 public:
@@ -1275,14 +1275,14 @@ public:
 
 };
 
-// 0x0000000143E09F40 (Size: 0x4)
+// Size: 0x4
 enum class ILightEntity_EFrameIndexStrategy
 {
 	WRAP = 0,
 	CLAMP = 1,
 };
 
-// 0x0000000142BB5FC8 (Size: 0x4)
+// Size: 0x4
 enum class EViewportLock
 {
 	VPL_None = 0,
@@ -1290,7 +1290,7 @@ enum class EViewportLock
 	VPL_Rectangular_AvoidMinimapOverlap = 2,
 };
 
-// 0x0000000142B92600 (Size: 0x4)
+// Size: 0x4
 enum class ZInputListenerDpadEntity_eInputListenerDpad
 {
 	EILDP_UP = 0,
@@ -1299,7 +1299,7 @@ enum class ZInputListenerDpadEntity_eInputListenerDpad
 	EILDP_RIGHT = 3,
 };
 
-// 0x00000001423CB9F8 (Size: 0x10)
+// Size: 0x10
 class alignas(8) ZResourceID
 {
 public:
@@ -1312,7 +1312,7 @@ public:
 	ZString m_uri; // 0x0
 };
 
-// 0x0000000142BBD498 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SEnvironmentConfigResourceEntry
 {
 public:
@@ -1328,7 +1328,7 @@ public:
 	ZResourceID BlobsDatastoreRid; // 0x30
 };
 
-// 0x0000000142BBD4C8 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SEnvironmentConfigResource
 {
 public:
@@ -1341,7 +1341,7 @@ public:
 	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
 };
 
-// 0x0000000142B9ABE8 (Size: 0x4)
+// Size: 0x4
 enum class ZEscortSituation2Entity_ETargetState
 {
 	ETS_Unknown = 0,
@@ -1353,7 +1353,7 @@ enum class ZEscortSituation2Entity_ETargetState
 	ETS_TargetIsHitman = 6,
 };
 
-// 0x0000000142B7B370 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SSniperScoringEvent
 {
 public:
@@ -1371,7 +1371,7 @@ public:
 	uint8 m_iScoringMachine; // 0x2C
 };
 
-// 0x0000000143E40040 (Size: 0x20)
+// Size: 0x20
 class alignas(8) ZAMDEvent
 {
 public:
@@ -1387,7 +1387,7 @@ public:
 	ZVariant m_customData; // 0x10
 };
 
-// 0x0000000143E40070 (Size: 0x28)
+// Size: 0x28
 class alignas(8) ZAMDEventTrack
 {
 public:
@@ -1401,7 +1401,7 @@ public:
 	TArray<ZAMDEvent> m_events; // 0x10
 };
 
-// 0x0000000143E400A0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) ZAMDTake
 {
 public:
@@ -1416,7 +1416,7 @@ public:
 	int32 m_nSyncTrackIndex; // 0x28
 };
 
-// 0x0000000142B93700 (Size: 0x4)
+// Size: 0x4
 enum class EAIFormationMemberSpeed
 {
 	eFMS_Slow = 0,
@@ -1424,7 +1424,7 @@ enum class EAIFormationMemberSpeed
 	eFMS_Fast = 2,
 };
 
-// 0x0000000142B824A8 (Size: 0x4)
+// Size: 0x4
 enum class ZTrespassingSituation_ESituationState
 {
 	SS_Main = 1,
@@ -1432,7 +1432,7 @@ enum class ZTrespassingSituation_ESituationState
 	SS_Escalate = 3,
 };
 
-// 0x0000000142B94510 (Size: 0x4)
+// Size: 0x4
 enum class EFocusBarState
 {
 	FOCUS_BAR_NORMAL = 0,
@@ -1440,7 +1440,7 @@ enum class EFocusBarState
 	FOCUS_BAR_BURNING = 2,
 };
 
-// 0x00000001423CCA50 (Size: 0x1)
+// Size: 0x1
 enum class ERenderGlowTypes
 {
 	ERENDERGLOWTYPE_NONE = 0,
@@ -1472,7 +1472,7 @@ enum class ERenderGlowTypes
 	ERENDERGLOWTYPE_OPPONENT = 26,
 };
 
-// 0x0000000142BC28D0 (Size: 0x4)
+// Size: 0x4
 enum class ESoundCollisionObjectType
 {
 	StaticRigidBody = 0,
@@ -1480,7 +1480,7 @@ enum class ESoundCollisionObjectType
 	Ragdoll = 2,
 };
 
-// 0x0000000142BF2508 (Size: 0x4)
+// Size: 0x4
 enum class TeleportActionType
 {
 	STAY = 0,
@@ -1488,14 +1488,14 @@ enum class TeleportActionType
 	LEAVE_CROWD = 2,
 };
 
-// 0x0000000142B92B70 (Size: 0x4)
+// Size: 0x4
 enum class ZDistanceCondition_ECompareMethod
 {
 	CM_GreaterOrEqualThan = 0,
 	CM_LessThan = 1,
 };
 
-// 0x0000000142B82910 (Size: 0x4)
+// Size: 0x4
 enum class EActorAIState
 {
 	eAAIS_None = 0,
@@ -1514,7 +1514,7 @@ enum class EActorAIState
 	eAAIS_Max = 13,
 };
 
-// 0x0000000142B79B40 (Size: 0x4)
+// Size: 0x4
 enum class EMorphemeEventId
 {
 	eDE_None = 0,
@@ -1589,7 +1589,7 @@ enum class EMorphemeEventId
 	eDE_Act_FB_BlendOut_End = 10053,
 };
 
-// 0x0000000142B901F0 (Size: 0x4)
+// Size: 0x4
 enum class EAccidentScaleContext
 {
 	eASC_Standard = 0,
@@ -1597,7 +1597,7 @@ enum class EAccidentScaleContext
 	eASC_Dangerous = 2,
 };
 
-// 0x0000000142BF3968 (Size: 0x4)
+// Size: 0x4
 enum class EEngineModeId
 {
 	EngineMode_Invalid = -1,
@@ -1607,7 +1607,7 @@ enum class EEngineModeId
 	EngineMode_Max = 3,
 };
 
-// 0x0000000142C14940 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SDestructibleInteractionHandlerData
 {
 public:
@@ -1620,7 +1620,7 @@ public:
 	float32 m_fSettleTime; // 0x0
 };
 
-// 0x0000000142B9AFF0 (Size: 0x4)
+// Size: 0x4
 enum class EDamageEvent
 {
 	eDE_UNDEFINED = 0,
@@ -1644,7 +1644,7 @@ enum class EDamageEvent
 	eDE_Drown = 262144,
 };
 
-// 0x0000000142BEF748 (Size: 0x4)
+// Size: 0x4
 enum class ZSoundAmbienceGroup_ESoundCollisionType
 {
 	SCT_Box = 0,
@@ -1653,7 +1653,7 @@ enum class ZSoundAmbienceGroup_ESoundCollisionType
 	SCT_Volume = 3,
 };
 
-// 0x0000000142BF4800 (Size: 0x4)
+// Size: 0x4
 enum class ZDebugGizmoEntity_EDrawLayer
 {
 	DL_DEFAULT = 0,
@@ -1679,7 +1679,7 @@ enum class ZDebugGizmoEntity_EDrawLayer
 	DL_UI = 20,
 };
 
-// 0x0000000142BB9F30 (Size: 0x4)
+// Size: 0x4
 enum class ZCoverPlane_ECoverSize
 {
 	eLowCover = 0,
@@ -1687,7 +1687,7 @@ enum class ZCoverPlane_ECoverSize
 	eHighCover = 2,
 };
 
-// 0x0000000142BB9F78 (Size: 0x4)
+// Size: 0x4
 enum class ZContextKillGuide_EEvaluationType
 {
 	ALL = 0,
@@ -1695,7 +1695,7 @@ enum class ZContextKillGuide_EEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142B84050 (Size: 0x8)
+// Size: 0x8
 class alignas(4) ZResourcePtr
 {
 public:
@@ -1707,7 +1707,7 @@ public:
 
 };
 
-// 0x0000000142B88110 (Size: 0x10)
+// Size: 0x10
 class alignas(4) ZHM5CrowdEventConsumer_SCrowdSoundEventData
 {
 public:
@@ -1722,7 +1722,7 @@ public:
 	float32 m_fPitch; // 0xC
 };
 
-// 0x0000000142B79990 (Size: 0x4)
+// Size: 0x4
 enum class EAnimSetType
 {
 	EAST_UNDEFINED = 0,
@@ -1752,7 +1752,7 @@ enum class EAnimSetType
 	EAST_CARRY_TUBE = 24,
 };
 
-// 0x0000000142BC2128 (Size: 0x4)
+// Size: 0x4
 enum class EMassImpulseType
 {
 	eMIT_None = 0,
@@ -1761,7 +1761,7 @@ enum class EMassImpulseType
 	eMIT_ShockWaveNoExplosion = 3,
 };
 
-// 0x0000000142BC0D80 (Size: 0x4)
+// Size: 0x4
 enum class ETimerEntityCommandType
 {
 	ETECT_Add = 0,
@@ -1769,7 +1769,7 @@ enum class ETimerEntityCommandType
 	ETECT_Reset = 2,
 };
 
-// 0x0000000142BC0D98 (Size: 0xC)
+// Size: 0xC
 class alignas(4) STimerEntityCommandSaveData
 {
 public:
@@ -1784,7 +1784,7 @@ public:
 	float32 m_fInterval; // 0x8
 };
 
-// 0x0000000142BC0DB0 (Size: 0xC)
+// Size: 0xC
 class alignas(4) STimerEntityStateSaveData
 {
 public:
@@ -1799,7 +1799,7 @@ public:
 	bool m_bPending; // 0x8
 };
 
-// 0x0000000142BC0DF8 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SGameTimersSaveData
 {
 public:
@@ -1814,7 +1814,7 @@ public:
 	TArray<uint32> m_aPendingTimers; // 0x30
 };
 
-// 0x0000000142BEF8B0 (Size: 0x4)
+// Size: 0x4
 enum class ReverbFidelity
 {
 	Low = 0,
@@ -1822,7 +1822,7 @@ enum class ReverbFidelity
 	High = 2,
 };
 
-// 0x000000014210DAF8 (Size: 0x10)
+// Size: 0x10
 class alignas(16) float4
 {
 public:
@@ -1838,7 +1838,7 @@ public:
 	float32 w; // 0xC
 };
 
-// 0x000000014210DB58 (Size: 0x40)
+// Size: 0x40
 class alignas(16) SMatrix
 {
 public:
@@ -1854,7 +1854,7 @@ public:
 	float4 Trans; // 0x30
 };
 
-// 0x0000000142B829A8 (Size: 0x4)
+// Size: 0x4
 enum class EAIEventType
 {
 	AIET_None = 0,
@@ -2086,7 +2086,7 @@ enum class EAIEventType
 	AIET_DEBUG_EVENTS_END = 226,
 };
 
-// 0x0000000142B82A80 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SAIEventSaveData
 {
 public:
@@ -2102,7 +2102,7 @@ public:
 	ZGameTime m_nEnd; // 0x10
 };
 
-// 0x0000000142B82AB0 (Size: 0x80)
+// Size: 0x80
 class alignas(16) SKnownEntitySaveData
 {
 public:
@@ -2121,7 +2121,7 @@ public:
 	uint16 m_nGoals; // 0x78
 };
 
-// 0x0000000142B82AF8 (Size: 0x60)
+// Size: 0x60
 class alignas(8) SActorGoalSaveData
 {
 public:
@@ -2137,7 +2137,7 @@ public:
 	TArray<float32> m_fExpiredTime; // 0x48
 };
 
-// 0x0000000142B829D8 (Size: 0x4)
+// Size: 0x4
 enum class EAIGoal
 {
 	AIG_Kill = 0,
@@ -2178,7 +2178,7 @@ enum class EAIGoal
 	AIG_None = 35,
 };
 
-// 0x0000000142B799A8 (Size: 0x4)
+// Size: 0x4
 enum class EGameTension
 {
 	EGT_Undefined = 0,
@@ -2192,7 +2192,7 @@ enum class EGameTension
 	EGT_Combat = 8,
 };
 
-// 0x0000000142B828C8 (Size: 0x98)
+// Size: 0x98
 class alignas(8) SKnowledgeSaveData
 {
 public:
@@ -2220,7 +2220,7 @@ public:
 	uint32 m_behaviorModifiers; // 0x90
 };
 
-// 0x0000000142C14AA8 (Size: 0x1)
+// Size: 0x1
 enum class ECharacterCollidableLayer
 {
 	CCL_DYNAMIC = 0,
@@ -2230,7 +2230,7 @@ enum class ECharacterCollidableLayer
 	CCL_UNUSED_LAST = 4,
 };
 
-// 0x0000000142BB1518 (Size: 0x4)
+// Size: 0x4
 enum class EDifficultyLevel
 {
 	eDL_NO_FLAGS = 0,
@@ -2241,7 +2241,7 @@ enum class EDifficultyLevel
 	eDL_ALL_FLAGS = 15,
 };
 
-// 0x0000000142B90950 (Size: 0x4)
+// Size: 0x4
 enum class ZCautiousSearchGroup_EAssistantState
 {
 	AS_CalculateFields = 0,
@@ -2252,14 +2252,14 @@ enum class ZCautiousSearchGroup_EAssistantState
 	AS_Acting = 5,
 };
 
-// 0x0000000142B8C748 (Size: 0x4)
+// Size: 0x4
 enum class ZTestGroupPath_EModifierType
 {
 	EMT_PushCorners = 0,
 	EMT_PushCornersAlt = 1,
 };
 
-// 0x0000000142B927D0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5Item_EUseTypes
 {
 	EUT_CantUse = 0,
@@ -2267,7 +2267,7 @@ enum class ZHM5Item_EUseTypes
 	EUT_TurnOn = 2,
 };
 
-// 0x0000000142B7A2F8 (Size: 0x4)
+// Size: 0x4
 enum class EAnimationPose
 {
 	AP_Undefined = 0,
@@ -2280,7 +2280,7 @@ enum class EAnimationPose
 	AP_SittingChairTable = 7,
 };
 
-// 0x0000000142B934D0 (Size: 0x4)
+// Size: 0x4
 enum class EActorLookAtStopReason
 {
 	eSR_Unknown = 0,
@@ -2295,14 +2295,14 @@ enum class EActorLookAtStopReason
 	eSR_HideInPlainSight = 9,
 };
 
-// 0x0000000142B93D30 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterIdleHandlerFullbodyType
 {
 	ecIHFBT_DisguisedIdle = 0,
 	ecIHFBT_Event = 1,
 };
 
-// 0x0000000142B89658 (Size: 0x4)
+// Size: 0x4
 enum class EHM5SoundFootwearType
 {
 	EFWT_UNDEFINED = 0,
@@ -2323,7 +2323,7 @@ enum class EHM5SoundFootwearType
 	EFWT_SWAT_BOOTS = 15,
 };
 
-// 0x0000000142BC42B0 (Size: 0x4)
+// Size: 0x4
 enum class ZValueBool_Operation_Signal_EEvaluationType
 {
 	ALL = 0,
@@ -2334,7 +2334,7 @@ enum class ZValueBool_Operation_Signal_EEvaluationType
 	ONE_TRUE = 5,
 };
 
-// 0x0000000142B83278 (Size: 0x4)
+// Size: 0x4
 enum class ZCautiousInvestigateGroup_EInvestigateGroupState
 {
 	IGS_FindAssistant = 0,
@@ -2348,7 +2348,7 @@ enum class ZCautiousInvestigateGroup_EInvestigateGroupState
 	IGS_Max = 8,
 };
 
-// 0x0000000142B87230 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SMovementDrainPipeSaveData
 {
 public:
@@ -2361,7 +2361,7 @@ public:
 	uint32 m_rDrainPipe; // 0x0
 };
 
-// 0x0000000142B91C80 (Size: 0x4)
+// Size: 0x4
 enum class IHM5Door_eCloseMode
 {
 	CM_AUTOCLOSE = 0,
@@ -2369,7 +2369,7 @@ enum class IHM5Door_eCloseMode
 	CM_NEVERCLOSE = 2,
 };
 
-// 0x0000000143E09968 (Size: 0x1)
+// Size: 0x1
 enum class EParticleSpritePivotLocation
 {
 	CENTER_PIVOT = 0,
@@ -2377,7 +2377,7 @@ enum class EParticleSpritePivotLocation
 	TOP_PIVOT = 2,
 };
 
-// 0x0000000142BF38C0 (Size: 0x4)
+// Size: 0x4
 enum class EExtendedPropertyType
 {
 	TYPE_RESOURCEPTR = 0,
@@ -2390,7 +2390,7 @@ enum class EExtendedPropertyType
 	TYPE_VARIANT = 7,
 };
 
-// 0x0000000142BF38D8 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SExtendedCppEntityProperty
 {
 public:
@@ -2406,7 +2406,7 @@ public:
 	uint64 extraData; // 0x18
 };
 
-// 0x0000000142BF3908 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SExtendedCppEntityBlueprint
 {
 public:
@@ -2419,7 +2419,7 @@ public:
 	TArray<SExtendedCppEntityProperty> properties; // 0x0
 };
 
-// 0x0000000142C104B8 (Size: 0x4)
+// Size: 0x4
 enum class WebSocketUtils_EOpCode
 {
 	eCONTINUATION = 0,
@@ -2431,7 +2431,7 @@ enum class WebSocketUtils_EOpCode
 	eNONE = 15,
 };
 
-// 0x0000000142B92F80 (Size: 0x4)
+// Size: 0x4
 enum class EClipSpawnAxis
 {
 	eCSA_XPos = 0,
@@ -2442,7 +2442,7 @@ enum class EClipSpawnAxis
 	eCSA_ZNeg = 5,
 };
 
-// 0x0000000142B799D8 (Size: 0x4)
+// Size: 0x4
 enum class EAnimSetState
 {
 	EASES_DEFAULT = 0,
@@ -2455,7 +2455,7 @@ enum class EAnimSetState
 	EASES_INFECTED = 7,
 };
 
-// 0x0000000143E05E10 (Size: 0x4)
+// Size: 0x4
 enum class ZRenderPostfilterParametersEntity_EHDRToneMapType
 {
 	eLinear = 0,
@@ -2463,7 +2463,7 @@ enum class ZRenderPostfilterParametersEntity_EHDRToneMapType
 	eFilmicRGB = 2,
 };
 
-// 0x0000000142BBA248 (Size: 0x4)
+// Size: 0x4
 enum class SFootIKEventData_EFoot
 {
 	eLeft = 0,
@@ -2471,7 +2471,7 @@ enum class SFootIKEventData_EFoot
 	eBoth = 2,
 };
 
-// 0x00000001423CC8B0 (Size: 0x4)
+// Size: 0x4
 enum class EHM5GameInputFlag
 {
 	eGameInputActionPerform = 0,
@@ -2541,7 +2541,7 @@ enum class EHM5GameInputFlag
 	eGameInputActionsNUM = 64,
 };
 
-// 0x0000000142B8B150 (Size: 0x4)
+// Size: 0x4
 enum class ZHeroEscortSituationEntity_EEscortState
 {
 	EES_Idle = 0,
@@ -2551,7 +2551,7 @@ enum class ZHeroEscortSituationEntity_EEscortState
 	EES_OutOfRange = 4,
 };
 
-// 0x0000000142C148E0 (Size: 0x4)
+// Size: 0x4
 enum class EPhysicsObjectType
 {
 	EPHYSICSOBJECTTYPE_UNKNOWN = 0,
@@ -2560,7 +2560,7 @@ enum class EPhysicsObjectType
 	EPHYSICSOBJECTTYPE_STATIC = 3,
 };
 
-// 0x0000000142C148F8 (Size: 0x90)
+// Size: 0x90
 class alignas(16) SDestructiblePieceSaveData
 {
 public:
@@ -2579,7 +2579,7 @@ public:
 	float4 m_fAngularVelocity; // 0x80
 };
 
-// 0x0000000142C149A0 (Size: 0x4)
+// Size: 0x4
 enum class ERuntimeMemoryAllocationState
 {
 	eRMAS_NeverAllocated = 0,
@@ -2587,7 +2587,7 @@ enum class ERuntimeMemoryAllocationState
 	eRMAS_Released = 2,
 };
 
-// 0x0000000142C14910 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SDestructibleRuntimeConnnection
 {
 public:
@@ -2601,7 +2601,7 @@ public:
 	TArray<uint16> m_aConnections; // 0x8
 };
 
-// 0x0000000142C14928 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SDestructibleRuntimeDamage
 {
 public:
@@ -2615,7 +2615,7 @@ public:
 	float32 m_fDamage; // 0x4
 };
 
-// 0x0000000142C14628 (Size: 0x60)
+// Size: 0x60
 class alignas(8) SDestructibleObjectSaveData
 {
 public:
@@ -2638,7 +2638,7 @@ public:
 	bool m_bDestructionEnabled; // 0x5F
 };
 
-// 0x0000000142BB3B80 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SIntelDisplayInfo
 {
 public:
@@ -2657,7 +2657,7 @@ public:
 	ZString img; // 0x38
 };
 
-// 0x0000000142BB5C40 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SIntelDisplayInfoArray_dummy
 {
 public:
@@ -2670,7 +2670,7 @@ public:
 	TArray<SIntelDisplayInfo> dummy; // 0x0
 };
 
-// 0x0000000142B9A718 (Size: 0x4)
+// Size: 0x4
 enum class EDramaStateFlag
 {
 	eDSF_DEFAULT = 0,
@@ -2682,7 +2682,7 @@ enum class EDramaStateFlag
 	eDSF_TERMINATED = 32,
 };
 
-// 0x0000000142BE5490 (Size: 0x1)
+// Size: 0x1
 class alignas(1) BoneId
 {
 public:
@@ -2694,7 +2694,7 @@ public:
 
 };
 
-// 0x0000000142B828E0 (Size: 0x4)
+// Size: 0x4
 enum class EActorState
 {
 	AS_DEACTIVATED = 0,
@@ -2704,7 +2704,7 @@ enum class EActorState
 	AS_DISABLED = 4,
 };
 
-// 0x0000000142B9ACA0 (Size: 0x4)
+// Size: 0x4
 enum class ZHeroEscortSituation2Entity_EEscortState
 {
 	EES_Idle = 0,
@@ -2714,7 +2714,7 @@ enum class ZHeroEscortSituation2Entity_EEscortState
 	EES_OutOfRange = 4,
 };
 
-// 0x0000000142BB7E20 (Size: 0x4)
+// Size: 0x4
 enum class ZKeywordCondition_EEvaluationType
 {
 	ALL = 0,
@@ -2726,13 +2726,13 @@ enum class ZKeywordCondition_EEvaluationType
 	LESS = 6,
 };
 
-// 0x0000000142B93100 (Size: 0x4)
+// Size: 0x4
 enum class SActorSoundDefs_EDefinition
 {
 	_NoSound = 0,
 };
 
-// 0x0000000142B9C9F0 (Size: 0x4)
+// Size: 0x4
 enum class EBehaviorTreeVariableType
 {
 	BTVT_Invalid = -1,
@@ -2742,7 +2742,7 @@ enum class EBehaviorTreeVariableType
 	BTVT_NumTypes = 3,
 };
 
-// 0x0000000142B8B588 (Size: 0x4)
+// Size: 0x4
 enum class EActorPerceptionSensitivity
 {
 	APS_AMBIENT_DEAFBLIND = 0,
@@ -2755,7 +2755,7 @@ enum class EActorPerceptionSensitivity
 	APS_SPIDER_SENSE = 7,
 };
 
-// 0x0000000142B93BB0 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterStateTransitionAttempt
 {
 	eSM_TA_IfDestinationCan = 0,
@@ -2765,7 +2765,7 @@ enum class ECharacterStateTransitionAttempt
 	eSM_TA_IfDestinationCanAndOriginCanNot = 4,
 };
 
-// 0x0000000142B93A00 (Size: 0x4)
+// Size: 0x4
 enum class ETakeDownState
 {
 	eTD_Cover = 0,
@@ -2776,7 +2776,7 @@ enum class ETakeDownState
 	eTD_Unknown = 5,
 };
 
-// 0x0000000143E0BD10 (Size: 0x4)
+// Size: 0x4
 enum class ESequencePreviewState
 {
 	PREVIEW_STOPPED = 0,
@@ -2784,7 +2784,7 @@ enum class ESequencePreviewState
 	PREVIEW_PAUSED = 2,
 };
 
-// 0x0000000142B82428 (Size: 0x4)
+// Size: 0x4
 enum class ZStandOffSituation_ESituationState
 {
 	SS_Uncertain = 0,
@@ -2796,7 +2796,7 @@ enum class ZStandOffSituation_ESituationState
 	SS_GetHelpFromFleeingCivilian = 6,
 };
 
-// 0x0000000142B8AB88 (Size: 0x4)
+// Size: 0x4
 enum class ZAISoundEvent_ELoudness
 {
 	EAISEL_Default = 0,
@@ -2807,7 +2807,7 @@ enum class ZAISoundEvent_ELoudness
 	EAISEL_VeryLoud = 5,
 };
 
-// 0x0000000142B83008 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SGuardPointOrderSaveData
 {
 public:
@@ -2821,7 +2821,7 @@ public:
 	bool m_walkOnly; // 0x4
 };
 
-// 0x0000000142BB1668 (Size: 0x4)
+// Size: 0x4
 enum class IContractObjective_ObjectiveType
 {
 	KILL = 0,
@@ -2830,7 +2830,7 @@ enum class IContractObjective_ObjectiveType
 	CUSTOM = 3,
 };
 
-// 0x0000000143E0B360 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SSavableData
 {
 public:
@@ -2845,7 +2845,7 @@ public:
 	uint32 m_nId; // 0x20
 };
 
-// 0x0000000142B91E40 (Size: 0x4)
+// Size: 0x4
 enum class ECameraState
 {
 	eCamSneakStand = 0,
@@ -2910,7 +2910,7 @@ enum class ECameraState
 	eCamAll = 59,
 };
 
-// 0x0000000143E0B330 (Size: 0x4)
+// Size: 0x4
 enum class ESaveType
 {
 	ESaveType_AutoSave = 0,
@@ -2919,7 +2919,7 @@ enum class ESaveType
 	ESaveType_LocalProfile = 3,
 };
 
-// 0x0000000143E0AC48 (Size: 0x4)
+// Size: 0x4
 enum class ERequirementId
 {
 	EREQUIREMENT_INVALID = 0,
@@ -2938,7 +2938,7 @@ enum class ERequirementId
 	EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2 = 13,
 };
 
-// 0x0000000143E0B348 (Size: 0xA8)
+// Size: 0xA8
 class alignas(8) SSaveGameMetaData
 {
 public:
@@ -2962,7 +2962,7 @@ public:
 	TArray<ERequirementId> aRequirements; // 0x90
 };
 
-// 0x0000000142BF3938 (Size: 0x4)
+// Size: 0x4
 enum class ECppTypeFlags
 {
 	EDITOR_ONLY = 1,
@@ -2972,7 +2972,7 @@ enum class ECppTypeFlags
 	RESETABLE_STATIC = 16,
 };
 
-// 0x0000000142B947B0 (Size: 0x4)
+// Size: 0x4
 enum class ESynchronisedActionState
 {
 	eSAS_INACTIVE = 0,
@@ -2980,14 +2980,14 @@ enum class ESynchronisedActionState
 	eSAS_COOLINGDOWN = 2,
 };
 
-// 0x0000000142BB57D0 (Size: 0x4)
+// Size: 0x4
 enum class ZUISubtitleDataProvider_EAlignment
 {
 	ALIGN_BOTTOM = 0,
 	ALIGN_TOP = 1,
 };
 
-// 0x0000000142B921B0 (Size: 0x4)
+// Size: 0x4
 enum class EInventoryConfigItemHandling
 {
 	EICIH_Allow = 0,
@@ -2999,7 +2999,7 @@ enum class EInventoryConfigItemHandling
 	EICIH_DoNothing = 6,
 };
 
-// 0x0000000142B79F20 (Size: 0x4)
+// Size: 0x4
 enum class ECollidableLayer
 {
 	eCollLayer_COLLIDE_WITH_ALL = 0,
@@ -3034,7 +3034,7 @@ enum class ECollidableLayer
 	eCollayer_UNUSED_LAST = 29,
 };
 
-// 0x0000000142BB1608 (Size: 0x4)
+// Size: 0x4
 enum class IContractEvaluationContextListener_EListenerType
 {
 	eDEFAULT = 0,
@@ -3047,7 +3047,7 @@ enum class IContractEvaluationContextListener_EListenerType
 	eMATCHARRAYS = 7,
 };
 
-// 0x00000001423CC660 (Size: 0x4)
+// Size: 0x4
 enum class EGSKillVictim
 {
 	GSKILLVICTIM_UNKNOWN = 0,
@@ -3056,7 +3056,7 @@ enum class EGSKillVictim
 	GSKILLVICTIM_TARGET = 3,
 };
 
-// 0x000000014210DDD8 (Size: 0x10)
+// Size: 0x10
 class alignas(8) ZGuid
 {
 public:
@@ -3079,7 +3079,7 @@ public:
 	uint8 _k; // 0xF
 };
 
-// 0x0000000143E09EE0 (Size: 0x4)
+// Size: 0x4
 enum class IRenderCompositorEntity_EMode
 {
 	eSourceA = 0,
@@ -3088,7 +3088,7 @@ enum class IRenderCompositorEntity_EMode
 	eAlphaLayered = 3,
 };
 
-// 0x0000000142B88440 (Size: 0x4)
+// Size: 0x4
 enum class IHM5Door_EOpenMode
 {
 	OM_TWO_WAY = 0,
@@ -3097,21 +3097,21 @@ enum class IHM5Door_EOpenMode
 	OM_DISABLED = 3,
 };
 
-// 0x0000000142B8D748 (Size: 0x4)
+// Size: 0x4
 enum class ZActorKnowledgeCondition_EEvaluationType
 {
 	ALL = 0,
 	ANY = 1,
 };
 
-// 0x0000000142BB5E60 (Size: 0x4)
+// Size: 0x4
 enum class EMarkerInclusionMode
 {
 	MIM_DEFAULT = 0,
 	MIM_IF_FORCE_INCLUDED_ONLY = 1,
 };
 
-// 0x0000000142B8D940 (Size: 0x4)
+// Size: 0x4
 enum class EHeroGameState
 {
 	eHGS_Reserved_QueryALL = 0,
@@ -3156,7 +3156,7 @@ enum class EHeroGameState
 	eHGS_NUM = 39,
 };
 
-// 0x0000000142B911E8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent
 {
 	EIIE_ItemImpactBack = 0,
@@ -3170,7 +3170,7 @@ enum class ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent
 	EIIE_ItemSoundGeneric03 = 8,
 };
 
-// 0x0000000143E09FA0 (Size: 0x1)
+// Size: 0x1
 enum class ETessellationFactorMode
 {
 	TESSELLATIONFACTORMODE_FIXED = 0,
@@ -3178,7 +3178,7 @@ enum class ETessellationFactorMode
 	TESSELLATIONFACTORMODE_TRIANGLE = 2,
 };
 
-// 0x0000000142B93DF0 (Size: 0x4)
+// Size: 0x4
 enum class ETargetType
 {
 	eTDS_None = 0,
@@ -3187,7 +3187,7 @@ enum class ETargetType
 	eTDS_Linked = 3,
 };
 
-// 0x0000000142B904C0 (Size: 0x4)
+// Size: 0x4
 enum class EActorBumpType
 {
 	EABT_NONE = 0,
@@ -3195,7 +3195,7 @@ enum class EActorBumpType
 	EABT_HEAD = 2,
 };
 
-// 0x0000000142B82788 (Size: 0x50)
+// Size: 0x50
 class alignas(16) ZSituationOrder
 {
 public:
@@ -3207,7 +3207,7 @@ public:
 
 };
 
-// 0x0000000142B88270 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5GenericEventConsumer_EEvent
 {
 	eGeneric00 = 0,
@@ -3220,7 +3220,7 @@ enum class ZHM5GenericEventConsumer_EEvent
 	eGeneric07 = 7,
 };
 
-// 0x0000000142BC43B8 (Size: 0x4)
+// Size: 0x4
 enum class ZValueInt_Comparator_Poll_EEvaluationType
 {
 	EQUAL = 0,
@@ -3231,7 +3231,7 @@ enum class ZValueInt_Comparator_Poll_EEvaluationType
 	HIGHER_OR_EQUAL = 5,
 };
 
-// 0x0000000142B79B70 (Size: 0x8)
+// Size: 0x8
 class alignas(4) ZBehaviorTreeVariable
 {
 public:
@@ -3243,7 +3243,7 @@ public:
 
 };
 
-// 0x0000000142B94870 (Size: 0x4)
+// Size: 0x4
 enum class EHM5SoundFootstepStance
 {
 	EFSS_SNEAK = 0,
@@ -3254,7 +3254,7 @@ enum class EHM5SoundFootstepStance
 	EFSS_ANY = 5,
 };
 
-// 0x0000000142BF3710 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SCppEntitySubsetInfo
 {
 public:
@@ -3268,7 +3268,7 @@ public:
 	uint32 flags; // 0x10
 };
 
-// 0x0000000142BF3890 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SCppEntityBlueprint
 {
 public:
@@ -3283,7 +3283,7 @@ public:
 	TArray<SCppEntitySubsetInfo> subsets; // 0x10
 };
 
-// 0x0000000142B9DC00 (Size: 0x4)
+// Size: 0x4
 enum class EGestureCategory
 {
 	EGC_None = 0,
@@ -3294,14 +3294,14 @@ enum class EGestureCategory
 	EGC_StopWarn = 5,
 };
 
-// 0x0000000142BC22C0 (Size: 0x4)
+// Size: 0x4
 enum class eWeaponOperation
 {
 	WO_SEMI_AUTO = 0,
 	WO_FULL_AUTO = 1,
 };
 
-// 0x0000000142BEEE40 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SMusicGridData
 {
 public:
@@ -3315,7 +3315,7 @@ public:
 	float32 m_fGridOffsetSec; // 0x4
 };
 
-// 0x0000000142B88010 (Size: 0x18)
+// Size: 0x18
 class alignas(8) ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData
 {
 public:
@@ -3330,7 +3330,7 @@ public:
 	bool m_DistractionIsActive; // 0x10
 };
 
-// 0x0000000142B7AFE0 (Size: 0x1)
+// Size: 0x1
 enum class ERayDetailLevel
 {
 	RAYDETAILS_NONE = 0,
@@ -3338,7 +3338,7 @@ enum class ERayDetailLevel
 	RAYDETAILS_MESH = 2,
 };
 
-// 0x0000000142B8D968 (Size: 0x4)
+// Size: 0x4
 enum class EVictimMovementType
 {
 	eVictimMovementNone = -1,
@@ -3356,14 +3356,14 @@ enum class EVictimMovementType
 	eVictimMovementLast = 11,
 };
 
-// 0x0000000142BC1FF0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioImpactType
 {
 	eWBC_AudioImpactType_Normal = 0,
 	eWBC_AudioImpactType_Sweetener = 1,
 };
 
-// 0x0000000142B91D60 (Size: 0x4)
+// Size: 0x4
 enum class ECameraShakerChannel
 {
 	eCameraShakerChannel_Default = 0,
@@ -3374,7 +3374,7 @@ enum class ECameraShakerChannel
 	eCameraShakerChannel_Num = 5,
 };
 
-// 0x0000000142BF2478 (Size: 0x4)
+// Size: 0x4
 enum class CrowdUtil_ECrowdActorMood
 {
 	CM_AMBIENT = 0,
@@ -3386,7 +3386,7 @@ enum class CrowdUtil_ECrowdActorMood
 	NUM_ACTOR_MOOD_TYPES = 6,
 };
 
-// 0x0000000142B82710 (Size: 0x4)
+// Size: 0x4
 enum class ESituationType
 {
 	AIST_Any = 0,
@@ -3417,7 +3417,7 @@ enum class ESituationType
 	ESituationType_Count = 25,
 };
 
-// 0x0000000142B8D708 (Size: 0x4)
+// Size: 0x4
 enum class EItemLocation
 {
 	eIL_Anywhere = 0,
@@ -3428,7 +3428,7 @@ enum class EItemLocation
 	eIL_Count = 5,
 };
 
-// 0x0000000142BB9F60 (Size: 0x4)
+// Size: 0x4
 enum class ZContextKillGuide_EContextKillType
 {
 	eCKT_TOILET_DROWN = 0,
@@ -3438,7 +3438,7 @@ enum class ZContextKillGuide_EContextKillType
 	eCKT_END = 4,
 };
 
-// 0x0000000142B94D10 (Size: 0x4)
+// Size: 0x4
 enum class MenuWeaponUpgradeData_EUpgradeAction
 {
 	EUPGRADE_ACTION_NONE = 0,
@@ -3451,7 +3451,7 @@ enum class MenuWeaponUpgradeData_EUpgradeAction
 	EUPGRADE_ACTION_CLEAR_LEVELS = 7,
 };
 
-// 0x0000000142B92130 (Size: 0x4)
+// Size: 0x4
 enum class EBoolStateRequirement
 {
 	eBSR_Any = 0,
@@ -3459,7 +3459,7 @@ enum class EBoolStateRequirement
 	eBSR_RequireFalse = 2,
 };
 
-// 0x0000000142BB6530 (Size: 0x4)
+// Size: 0x4
 enum class EIntelType
 {
 	eIT_DATA = 0,
@@ -3469,7 +3469,7 @@ enum class EIntelType
 	eIT_UNDEFINED = 4,
 };
 
-// 0x0000000142B79F38 (Size: 0x4)
+// Size: 0x4
 enum class ERayLayer
 {
 	eRayLayer_COLLIDE_WITH_ALL = 0,
@@ -3495,7 +3495,7 @@ enum class ERayLayer
 	eRayLayer_UNUSED_LAST = 24,
 };
 
-// 0x0000000142B830B0 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SRepositionOrderSaveData
 {
 public:
@@ -3509,7 +3509,7 @@ public:
 	bool m_bAimAtTarget; // 0x1
 };
 
-// 0x0000000142C13550 (Size: 0x4)
+// Size: 0x4
 enum class EMultiplayerLobbyRequestType
 {
 	LOBBY_REQUEST_VOID = 0,
@@ -3519,7 +3519,7 @@ enum class EMultiplayerLobbyRequestType
 	LOBBY_REQUEST_JOIN = 4,
 };
 
-// 0x0000000142B82758 (Size: 0x4)
+// Size: 0x4
 enum class EExclusionLayer
 {
 	EL_NONE = 0,
@@ -3527,14 +3527,14 @@ enum class EExclusionLayer
 	EL_AMBIENT = 2,
 };
 
-// 0x0000000142B928B0 (Size: 0x4)
+// Size: 0x4
 enum class IContractObjective_Type
 {
 	CONTRACT_OBJ_EVENT_BASED = 0,
 	CONTRACT_OBJ_SM_BASED = 1,
 };
 
-// 0x0000000142B928C8 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SObjetiveSaveData
 {
 public:
@@ -3548,7 +3548,7 @@ public:
 	ZVariant m_SaveData; // 0x8
 };
 
-// 0x0000000142BEF790 (Size: 0x1)
+// Size: 0x1
 enum class AudioEventCullingBehavior
 {
 	AutoSendStop = 0,
@@ -3557,14 +3557,14 @@ enum class AudioEventCullingBehavior
 	NoDistanceCulling = 3,
 };
 
-// 0x0000000142B9BD40 (Size: 0x4)
+// Size: 0x4
 enum class EConversationRole
 {
 	eCR_Leader = 0,
 	eCR_Assistant = 1,
 };
 
-// 0x0000000142C13490 (Size: 0x4)
+// Size: 0x4
 enum class Network_PacketPriority
 {
 	IMMEDIATE_PRIORITY = 0,
@@ -3574,14 +3574,14 @@ enum class Network_PacketPriority
 	NUMBER_OF_PRIORITIES = 4,
 };
 
-// 0x0000000142C134F0 (Size: 0x4)
+// Size: 0x4
 enum class EReplicaMode
 {
 	E_RM_STATIC_OBJECT = 0,
 	E_RM_DYNAMIC = 1,
 };
 
-// 0x000000014210DB10 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SVector3
 {
 public:
@@ -3596,7 +3596,7 @@ public:
 	float32 z; // 0x8
 };
 
-// 0x000000014210DB40 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SVector4
 {
 public:
@@ -3612,7 +3612,7 @@ public:
 	float32 w; // 0xC
 };
 
-// 0x0000000142BC0BA0 (Size: 0x20)
+// Size: 0x20
 class alignas(4) SSpatialSaveData
 {
 public:
@@ -3627,7 +3627,7 @@ public:
 	SVector4 m_vQuaternionRotation; // 0x10
 };
 
-// 0x0000000142BC43A0 (Size: 0x4)
+// Size: 0x4
 enum class ZValueInt_Comparator_EEvaluationType
 {
 	EQUAL = 0,
@@ -3638,7 +3638,7 @@ enum class ZValueInt_Comparator_EEvaluationType
 	HIGHER_OR_EQUAL = 5,
 };
 
-// 0x0000000142BF3920 (Size: 0x4)
+// Size: 0x4
 enum class ZSpatialEntity_ERoomBehaviour
 {
 	ROOM_STATIC = 0,
@@ -3646,7 +3646,7 @@ enum class ZSpatialEntity_ERoomBehaviour
 	ROOM_STATIC_OUTSIDE_CLIENT = 2,
 };
 
-// 0x0000000142B9DCC0 (Size: 0x4)
+// Size: 0x4
 enum class ZActorPicker_EKeywordEvaluationType
 {
 	ALL = 0,
@@ -3654,7 +3654,7 @@ enum class ZActorPicker_EKeywordEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142BBD450 (Size: 0x4)
+// Size: 0x4
 enum class ZOnlineManager_EError
 {
 	eNONE = 0,
@@ -3688,7 +3688,7 @@ enum class ZOnlineManager_EError
 	eERROR_MAX = 1027,
 };
 
-// 0x0000000142B93000 (Size: 0x4)
+// Size: 0x4
 enum class EDetachUsage
 {
 	EDU_NEVER = 0,
@@ -3696,7 +3696,7 @@ enum class EDetachUsage
 	EDU_RAGDOLL_ONLY = 2,
 };
 
-// 0x00000001423CCAF8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) ZRuntimeResourceID
 {
 public:
@@ -3710,7 +3710,7 @@ public:
 	uint32 m_IDLow; // 0x4
 };
 
-// 0x0000000142BB5A10 (Size: 0xA0)
+// Size: 0xA0
 class alignas(8) SWeaponStatusUIData
 {
 public:
@@ -3753,7 +3753,7 @@ public:
 	uint32 nCurrentAmmoType; // 0x98
 };
 
-// 0x0000000142C14A78 (Size: 0x1)
+// Size: 0x1
 enum class EDestructibleInteractionType
 {
 	eDIT_SHOT = 0,
@@ -3764,7 +3764,7 @@ enum class EDestructibleInteractionType
 	eDIT_COUNT = 5,
 };
 
-// 0x0000000142B9AF78 (Size: 0x4)
+// Size: 0x4
 enum class EGameEventType
 {
 	GET_GameplayStart = 0,
@@ -3777,7 +3777,7 @@ enum class EGameEventType
 	GET_COUNT = 7,
 };
 
-// 0x0000000143E09A28 (Size: 0x4)
+// Size: 0x4
 enum class eParticleEmitterMeshEntity_SpawnModes
 {
 	MESH_SPAWNMODE_VERTEX = 0,
@@ -3785,7 +3785,7 @@ enum class eParticleEmitterMeshEntity_SpawnModes
 	MESH_SPAWNMODE_FACE = 2,
 };
 
-// 0x00000001423CCAE0 (Size: 0x4)
+// Size: 0x4
 enum class eWeaponType
 {
 	WT_HANDGUN = 0,
@@ -3799,7 +3799,7 @@ enum class eWeaponType
 	WT_SPOTTER = 8,
 };
 
-// 0x0000000142B87FF8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IMorphemeEventConsumer
 {
 public:
@@ -3811,7 +3811,7 @@ public:
 
 };
 
-// 0x0000000142B94270 (Size: 0x4)
+// Size: 0x4
 enum class ERatingTitle
 {
 	ERatingTitle_SilentAssassin = 0,
@@ -3827,21 +3827,21 @@ enum class ERatingTitle
 	ERatingTitle_COUNT = 10,
 };
 
-// 0x0000000142B91DC0 (Size: 0x4)
+// Size: 0x4
 enum class ECameraControls
 {
 	eCameraControlsNormal = 0,
 	eCameraControlsOTS = 1,
 };
 
-// 0x0000000142B948D0 (Size: 0x4)
+// Size: 0x4
 enum class EHM5SoundRicochetType
 {
 	ESRT_VARIATION1 = 0,
 	ESRT_VARIATION2 = 1,
 };
 
-// 0x0000000143E40260 (Size: 0x4)
+// Size: 0x4
 enum class ECollidableShape
 {
 	ECOLLIDABLESHAPE_SPHERE = 0,
@@ -3849,7 +3849,7 @@ enum class ECollidableShape
 	ECOLLIDABLESHAPE_BOX = 2,
 };
 
-// 0x0000000143E13948 (Size: 0x4)
+// Size: 0x4
 enum class ZUISplashHintDataProviderEntity_ESplashHintType
 {
 	SHT_GlobalHint = 0,
@@ -3857,7 +3857,7 @@ enum class ZUISplashHintDataProviderEntity_ESplashHintType
 	SHT_ControlHint = 2,
 };
 
-// 0x0000000142B882A8 (Size: 0x4)
+// Size: 0x4
 enum class ZInteractionEventConsumer_EEvent
 {
 	eActivate = 0,
@@ -3881,7 +3881,7 @@ enum class ZInteractionEventConsumer_EEvent
 	eSoundEvent04 = 18,
 };
 
-// 0x0000000142BF23A0 (Size: 0x20)
+// Size: 0x20
 class alignas(4) SCrowdPoseBoneSaveData
 {
 public:
@@ -3895,7 +3895,7 @@ public:
 	SVector4 mTranslation; // 0x10
 };
 
-// 0x0000000142BF23D0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SCrowdPoseSaveData
 {
 public:
@@ -3908,7 +3908,7 @@ public:
 	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
 };
 
-// 0x0000000142BF2400 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SCrowdPoseCollectionSaveData
 {
 public:
@@ -3922,7 +3922,7 @@ public:
 	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
 };
 
-// 0x0000000142BF2430 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SCrowdDeadPoseRepositorySaveData
 {
 public:
@@ -3935,7 +3935,7 @@ public:
 	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
 };
 
-// 0x00000001423CC9B0 (Size: 0x4)
+// Size: 0x4
 enum class BoneId_Enum
 {
 	GROUND = 0,
@@ -4085,7 +4085,7 @@ enum class BoneId_Enum
 	BONEID_LAST = 144,
 };
 
-// 0x0000000142B884C8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5IndicatorManager_EIndicatorType
 {
 	eActorAmbient = 0,
@@ -4100,7 +4100,7 @@ enum class ZHM5IndicatorManager_EIndicatorType
 	eEasterActor = 9,
 };
 
-// 0x0000000142B9A578 (Size: 0x4)
+// Size: 0x4
 enum class ZVsTargetPicker_ETargetSelectionType
 {
 	eTST_Random = 0,
@@ -4108,7 +4108,7 @@ enum class ZVsTargetPicker_ETargetSelectionType
 	eTST_Max = 2,
 };
 
-// 0x0000000142B83260 (Size: 0x4)
+// Size: 0x4
 enum class ZAvoidDangerousAreaGroup_EAvoidDangerousAreaGroupState
 {
 	IGS_SelectDestination = 0,
@@ -4119,7 +4119,7 @@ enum class ZAvoidDangerousAreaGroup_EAvoidDangerousAreaGroupState
 	IGS_Max = 5,
 };
 
-// 0x0000000142B93470 (Size: 0x4)
+// Size: 0x4
 enum class EActorLookAtTargetType
 {
 	eALAT_Invalid = 0,
@@ -4131,7 +4131,7 @@ enum class EActorLookAtTargetType
 	eALAPT_Max = 6,
 };
 
-// 0x00000001423CC6F0 (Size: 0x4)
+// Size: 0x4
 enum class EWeaponSpecialSituation
 {
 	WSS_NORMAL = 0,
@@ -4144,7 +4144,7 @@ enum class EWeaponSpecialSituation
 	WSS_INVISIBLE = 7,
 };
 
-// 0x0000000142B93820 (Size: 0x4)
+// Size: 0x4
 enum class ECustomSoundDefType
 {
 	eCSDT_Distraction_InvestigationAck = 0,
@@ -4152,7 +4152,7 @@ enum class ECustomSoundDefType
 	eCSDT_Distraction_InvestigationStnd = 2,
 };
 
-// 0x0000000142B8FB50 (Size: 0x4)
+// Size: 0x4
 enum class EAIModifierScope
 {
 	AIMS_Volume = 0,
@@ -4165,7 +4165,7 @@ enum class EAIModifierScope
 	AIMS_Status = 7,
 };
 
-// 0x0000000142B91268 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5WeaponEventConsumer_EAnimWeapon
 {
 	eHM5Weapon_HideClip = 0,
@@ -4174,7 +4174,7 @@ enum class ZHM5WeaponEventConsumer_EAnimWeapon
 	eHM5Weapon_EjectCartridge = 3,
 };
 
-// 0x0000000142B8C620 (Size: 0x4)
+// Size: 0x4
 enum class EStashpointContainedEntityType
 {
 	PICKUP_NONE = 0,
@@ -4183,7 +4183,7 @@ enum class EStashpointContainedEntityType
 	PICKUP_PICKEDUP = 3,
 };
 
-// 0x0000000142BC28B8 (Size: 0x4)
+// Size: 0x4
 enum class ESoundCollisionType
 {
 	Impact = 0,
@@ -4191,7 +4191,7 @@ enum class ESoundCollisionType
 	Sliding = 2,
 };
 
-// 0x0000000142B897B0 (Size: 0x4)
+// Size: 0x4
 enum class ICloset_EClosetType
 {
 	eTypeClosetNormal = 0,
@@ -4200,7 +4200,7 @@ enum class ICloset_EClosetType
 	eTypeClosetLast = 3,
 };
 
-// 0x0000000142B94030 (Size: 0x4)
+// Size: 0x4
 enum class EHitmanPermissionFlag
 {
 	eHPFlag_InventorySelect = 0,
@@ -4215,7 +4215,7 @@ enum class EHitmanPermissionFlag
 	eHPFlag_PermissionsNUM = 9,
 };
 
-// 0x0000000142BB6130 (Size: 0x4)
+// Size: 0x4
 enum class EActionRadialArcIconType
 {
 	EARAIT_NoIcon = 0,
@@ -4238,7 +4238,7 @@ enum class EActionRadialArcIconType
 	EARAIT_Exsplosive = 17,
 };
 
-// 0x0000000142B9EC60 (Size: 0x4)
+// Size: 0x4
 enum class ZPatrolBehaviorEntity_ERotationAlignment
 {
 	RA_NONE = 0,
@@ -4246,14 +4246,14 @@ enum class ZPatrolBehaviorEntity_ERotationAlignment
 	RA_EXACT = 2,
 };
 
-// 0x0000000142B93410 (Size: 0x4)
+// Size: 0x4
 enum class EParticleDecalSpawnEntity_Constraints
 {
 	FACTOR_AND_RANDOMIZE = 0,
 	SIZE_RANGE = 1,
 };
 
-// 0x00000001422103A8 (Size: 0x10)
+// Size: 0x10
 class alignas(8) ZDynamicObject
 {
 public:
@@ -4266,7 +4266,7 @@ public:
 	ZVariant m_value; // 0x0
 };
 
-// 0x0000000142B92908 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SChallengeSaveData
 {
 public:
@@ -4280,7 +4280,7 @@ public:
 	ZDynamicObject m_State; // 0x10
 };
 
-// 0x0000000142B9EB40 (Size: 0x4)
+// Size: 0x4
 enum class ZActBehaviorEntity_ERotationAlignment
 {
 	RA_NONE = 0,
@@ -4288,7 +4288,7 @@ enum class ZActBehaviorEntity_ERotationAlignment
 	RA_EXACT = 2,
 };
 
-// 0x0000000142B924E0 (Size: 0x4)
+// Size: 0x4
 enum class ZInputListenerActorPool_eInputListenerButtons
 {
 	EILB_UP = 0,
@@ -4297,7 +4297,7 @@ enum class ZInputListenerActorPool_eInputListenerButtons
 	EILB_RIGHT = 3,
 };
 
-// 0x0000000142BF24A8 (Size: 0x4)
+// Size: 0x4
 enum class CrowdRegionType
 {
 	CROWDSPHERE_NONE = 0,
@@ -4312,7 +4312,7 @@ enum class CrowdRegionType
 	CROWDSPHERE_DIE = 9,
 };
 
-// 0x0000000142B9A890 (Size: 0x4)
+// Size: 0x4
 enum class EDramaEventAction
 {
 	eDEA_NONE = 0,
@@ -4324,7 +4324,7 @@ enum class EDramaEventAction
 	eDEA_RESET_STATE = 32,
 };
 
-// 0x0000000142B832D8 (Size: 0x4)
+// Size: 0x4
 enum class ZRecoverUnconsciousGroup_EInvestigateGroupState
 {
 	IGS_InitialState = 0,
@@ -4336,7 +4336,7 @@ enum class ZRecoverUnconsciousGroup_EInvestigateGroupState
 	IGS_Max = 6,
 };
 
-// 0x0000000142BC0CF0 (Size: 0xC)
+// Size: 0xC
 class alignas(4) STimerEntitySaveData
 {
 public:
@@ -4351,7 +4351,7 @@ public:
 	float32 m_fTimeToNextEvent; // 0x8
 };
 
-// 0x0000000142BC0D38 (Size: 0x30)
+// Size: 0x30
 class alignas(8) STimerEntitiesSaveData
 {
 public:
@@ -4365,7 +4365,7 @@ public:
 	TArray<STimerEntitySaveData> m_aData; // 0x18
 };
 
-// 0x0000000142BC0D08 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SRandomTimerEntitySaveData
 {
 public:
@@ -4383,7 +4383,7 @@ public:
 	int32 m_nRemaining; // 0x10
 };
 
-// 0x0000000142BC0D68 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SRandomTimerEntitiesSaveData
 {
 public:
@@ -4397,7 +4397,7 @@ public:
 	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
 };
 
-// 0x0000000142BC0C78 (Size: 0xA8)
+// Size: 0xA8
 class alignas(8) STimerManagerSaveData
 {
 public:
@@ -4412,7 +4412,7 @@ public:
 	SGameTimersSaveData m_GameTimersData; // 0x60
 };
 
-// 0x0000000142BBA290 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5HIKEventConsumer_EBlend
 {
 	eBlendIn = 0,
@@ -4421,7 +4421,7 @@ enum class ZHM5HIKEventConsumer_EBlend
 	eInstantOff = 3,
 };
 
-// 0x0000000142B874D0 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterActionRequests
 {
 	eSM_AR_None = 0,
@@ -4462,7 +4462,7 @@ enum class ECharacterActionRequests
 	eSM_AR_Sprint = 35,
 };
 
-// 0x0000000142B92830 (Size: 0x4)
+// Size: 0x4
 enum class EWeaponUpgradeIcon
 {
 	WEAPON_UPGRADE_ICON_NONE = 0,
@@ -4482,7 +4482,7 @@ enum class EWeaponUpgradeIcon
 	WEAPON_UPGRADE_ICON_STOCK = 14,
 };
 
-// 0x0000000142B8AC10 (Size: 0x4)
+// Size: 0x4
 enum class ZDramaSituationEntity_EReentryBehavior
 {
 	RB_CONTINUE = 0,
@@ -4492,7 +4492,7 @@ enum class ZDramaSituationEntity_EReentryBehavior
 	RB_RECASTANDCONTINUE = 4,
 };
 
-// 0x0000000143E09A80 (Size: 0x1)
+// Size: 0x1
 enum class ECollisionResponse
 {
 	REFLECT_VELOCITY = 0,
@@ -4501,7 +4501,7 @@ enum class ECollisionResponse
 	CUSTOM = 3,
 };
 
-// 0x0000000143E0B5C0 (Size: 0x4)
+// Size: 0x4
 enum class IScatterContainerEntity_EResizeMode
 {
 	MODE_CLEAR = 0,
@@ -4509,7 +4509,7 @@ enum class IScatterContainerEntity_EResizeMode
 	MODE_SCALE = 2,
 };
 
-// 0x0000000143E0B240 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SGateSaveData
 {
 public:
@@ -4524,7 +4524,7 @@ public:
 	float32 m_fOpenFraction; // 0x8
 };
 
-// 0x0000000143E09F10 (Size: 0x4)
+// Size: 0x4
 enum class ZBoneWeightRotationEntity_eRotationAxises
 {
 	AXIS_X = 0,
@@ -4532,7 +4532,7 @@ enum class ZBoneWeightRotationEntity_eRotationAxises
 	AXIS_Z = 2,
 };
 
-// 0x0000000142B95C00 (Size: 0x4)
+// Size: 0x4
 enum class ERegionMask
 {
 	eRM_None = 1,
@@ -4550,7 +4550,7 @@ enum class ERegionMask
 	eRM_User_8 = 4096,
 };
 
-// 0x0000000142BF36C8 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SEntityTemplatePropertyAlias
 {
 public:
@@ -4565,7 +4565,7 @@ public:
 	ZString sPropertyName; // 0x18
 };
 
-// 0x0000000142B93F10 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterAnimEvent
 {
 	eCAE_ReloadStarted = 699,
@@ -4610,7 +4610,7 @@ enum class ECharacterAnimEvent
 	eCAE_EarlyExit = 50,
 };
 
-// 0x0000000142B90330 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SDrama2ActorSaveState
 {
 public:
@@ -4635,7 +4635,7 @@ public:
 	bool m_bRequired; // 0x35
 };
 
-// 0x0000000142B9B0C0 (Size: 0x4)
+// Size: 0x4
 enum class EMatchOverCondition
 {
 	CompletedNormally = 0,
@@ -4643,7 +4643,7 @@ enum class EMatchOverCondition
 	OpponentsAbandoned = 2,
 };
 
-// 0x0000000142BF2598 (Size: 0x4)
+// Size: 0x4
 enum class CrowdUtil_ECrowdStandingPush
 {
 	PUSH_FRONT = 0,
@@ -4656,7 +4656,7 @@ enum class CrowdUtil_ECrowdStandingPush
 	PUSH_FRONT_RIGHT = 7,
 };
 
-// 0x0000000142B936A0 (Size: 0x4)
+// Size: 0x4
 enum class EDialogueLine
 {
 	Hello = 0,
@@ -4683,7 +4683,7 @@ enum class EDialogueLine
 	DropWeapon_Escalate_Multiple01 = 21,
 };
 
-// 0x0000000142BBA2C0 (Size: 0x4)
+// Size: 0x4
 enum class EPostProcessorComponentType
 {
 	MRP_LOOKAT = 1,
@@ -4694,7 +4694,7 @@ enum class EPostProcessorComponentType
 	MRP_BLINDFIRE = 2048,
 };
 
-// 0x0000000142BB5688 (Size: 0x4)
+// Size: 0x4
 enum class EActionPromptState
 {
 	eActionPromptState_Disabled = 0,
@@ -4703,7 +4703,7 @@ enum class EActionPromptState
 	eActionPromptState_Held = 3,
 };
 
-// 0x0000000142BB56A0 (Size: 0x60)
+// Size: 0x60
 class alignas(8) SHUDPromptDisplayInfo
 {
 public:
@@ -4731,7 +4731,7 @@ public:
 	int32 m_nFontSize; // 0x58
 };
 
-// 0x0000000142C104D0 (Size: 0x4)
+// Size: 0x4
 enum class WebSocketUtils_ECloseStatus
 {
 	eCS_NORMAL = 1000,
@@ -4749,7 +4749,7 @@ enum class WebSocketUtils_ECloseStatus
 	eCS_TLSHANDSHAKE = 1015,
 };
 
-// 0x0000000142B8B780 (Size: 0x28)
+// Size: 0x28
 class alignas(8) ZDisguiseSituation_SSituationSaveData
 {
 public:
@@ -4764,7 +4764,7 @@ public:
 	EAISharedEventType m_eEventSetOnEscalation; // 0x20
 };
 
-// 0x0000000142B84038 (Size: 0x4)
+// Size: 0x4
 enum class EControlButtonName
 {
 	eCN_ABORT = 0,
@@ -4809,7 +4809,7 @@ enum class EControlButtonName
 	eCN_NO_ICON = 39,
 };
 
-// 0x0000000142B90CA0 (Size: 0x4)
+// Size: 0x4
 enum class ZInvestigateDisguiseGroup_EState
 {
 	eInit = 0,
@@ -4823,14 +4823,14 @@ enum class ZInvestigateDisguiseGroup_EState
 	eDone = 8,
 };
 
-// 0x0000000142C14880 (Size: 0x1)
+// Size: 0x1
 enum class ECOMUsage
 {
 	ECOMUSAGE_AUTOCOMPUTE = 0,
 	ECOMUSAGE_PIVOT = 1,
 };
 
-// 0x0000000142B799C0 (Size: 0x4)
+// Size: 0x4
 enum class EActorEmotionState
 {
 	AES_Ambient = 0,
@@ -4841,7 +4841,7 @@ enum class EActorEmotionState
 	AES_None = 268435455,
 };
 
-// 0x0000000142C134D8 (Size: 0x4)
+// Size: 0x4
 enum class EChatState
 {
 	NOT_TALKING = 0,
@@ -4850,7 +4850,7 @@ enum class EChatState
 	RESTRICTED = 3,
 };
 
-// 0x0000000143E0C1F0 (Size: 0x18)
+// Size: 0x18
 class alignas(4) SStepCounterEntitySaveData
 {
 public:
@@ -4869,7 +4869,7 @@ public:
 	float32 m_nStepSize; // 0x14
 };
 
-// 0x00000001423CC708 (Size: 0x4)
+// Size: 0x4
 enum class eAmmoType
 {
 	eAmmoGun = 0,
@@ -4887,7 +4887,7 @@ enum class eAmmoType
 	eUnknownAmmoType = 12,
 };
 
-// 0x0000000142C134A8 (Size: 0x4)
+// Size: 0x4
 enum class ZEntityPropertyReplica_EReplicationStrategy
 {
 	REP_ALL_PROPERTIES = 0,
@@ -4895,7 +4895,7 @@ enum class ZEntityPropertyReplica_EReplicationStrategy
 	REP_ONLY_SPECIFIC = 2,
 };
 
-// 0x0000000143E0AC78 (Size: 0x10)
+// Size: 0x10
 class alignas(8) SLoadRuntimeResourceResult
 {
 public:
@@ -4908,7 +4908,7 @@ public:
 	ZString sFilePath; // 0x0
 };
 
-// 0x0000000142B90DA0 (Size: 0x4)
+// Size: 0x4
 enum class ZApproachOrder_EApproachStyle
 {
 	AS_AUTO = 0,
@@ -4917,7 +4917,7 @@ enum class ZApproachOrder_EApproachStyle
 	AS_WALK = 3,
 };
 
-// 0x0000000142B8B7F0 (Size: 0x4)
+// Size: 0x4
 enum class ZInvestigateCautiousSituation_EBystanderState
 {
 	BS_SelectCandidate = 0,
@@ -4925,7 +4925,7 @@ enum class ZInvestigateCautiousSituation_EBystanderState
 	BS_SearchDangerField = 2,
 };
 
-// 0x0000000142B9AD08 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SHeroEscortSituation2Actors
 {
 public:
@@ -4938,7 +4938,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142B8B2C8 (Size: 0x4)
+// Size: 0x4
 enum class ZSmuggleSituationEntity_ESmuggleState
 {
 	ESS_Idle = 0,
@@ -4950,7 +4950,7 @@ enum class ZSmuggleSituationEntity_ESmuggleState
 	ESS_OnABreak = 6,
 };
 
-// 0x0000000142B82558 (Size: 0x4)
+// Size: 0x4
 enum class ZSniperCombatSituation_ESituationState
 {
 	SS_Main = 0,
@@ -4958,7 +4958,7 @@ enum class ZSniperCombatSituation_ESituationState
 	SS_InvalidSituation = 2,
 };
 
-// 0x0000000142B840D0 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SSpatialMoverEntitySaveData
 {
 public:
@@ -4975,7 +4975,7 @@ public:
 	bool m_bIsFrameUpdateRegistered; // 0x12
 };
 
-// 0x0000000143E09A60 (Size: 0x1)
+// Size: 0x1
 enum class EValueUpdateStrategy
 {
 	UPDATE_STRATEGY_REPLACE = 0,
@@ -4983,7 +4983,7 @@ enum class EValueUpdateStrategy
 	UPDATE_STRATEGY_MULTIPLY = 2,
 };
 
-// 0x0000000142BC21A0 (Size: 0x4)
+// Size: 0x4
 enum class IItemWeapon_EDeadlyThrowType
 {
 	DEADLYTHROW_NONE = 0,
@@ -4991,7 +4991,7 @@ enum class IItemWeapon_EDeadlyThrowType
 	DEADLYTHROW_HEAVY = 2,
 };
 
-// 0x0000000142BB5CC0 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SLayerBehaviorConfiguration
 {
 public:
@@ -5005,7 +5005,7 @@ public:
 	bool m_bCollector; // 0x1
 };
 
-// 0x0000000142B937C0 (Size: 0x4)
+// Size: 0x4
 enum class EOnlineEventInvestigationType
 {
 	OEIT_Generic = 0,
@@ -5028,7 +5028,7 @@ enum class EOnlineEventInvestigationType
 	OEIT_CameraDefect = 17,
 };
 
-// 0x0000000142B89F10 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IBodybagEntity
 {
 public:
@@ -5040,7 +5040,7 @@ public:
 
 };
 
-// 0x0000000142B8B070 (Size: 0x4)
+// Size: 0x4
 enum class ZEscortSituationEntity_ETargetState
 {
 	ETS_Unknown = 0,
@@ -5052,7 +5052,7 @@ enum class ZEscortSituationEntity_ETargetState
 	ETS_TargetIsHitman = 6,
 };
 
-// 0x0000000142B90060 (Size: 0x4)
+// Size: 0x4
 enum class ECoverPosition
 {
 	COVER_POSITION_NONE = 0,
@@ -5061,7 +5061,7 @@ enum class ECoverPosition
 	COVER_POSITION_MIDDLE = 3,
 };
 
-// 0x0000000143E09EF8 (Size: 0x4)
+// Size: 0x4
 enum class IRenderCompositorEntity_EViewportAnchor
 {
 	eFill = 0,
@@ -5071,7 +5071,7 @@ enum class IRenderCompositorEntity_EViewportAnchor
 	eBottomRight = 4,
 };
 
-// 0x0000000143E13990 (Size: 0x4)
+// Size: 0x4
 enum class SUITestData_ETestEnum
 {
 	ETestEnum_Value_One = 1,
@@ -5079,7 +5079,7 @@ enum class SUITestData_ETestEnum
 	ETestEnum_Value_Three = 3,
 };
 
-// 0x0000000142B91E80 (Size: 0x4)
+// Size: 0x4
 enum class EAgilityState
 {
 	eAgState_JumpToHangFromLocomotion = 0,
@@ -5120,7 +5120,7 @@ enum class EAgilityState
 	eAgState_Unknown = 35,
 };
 
-// 0x0000000142B896B8 (Size: 0x4)
+// Size: 0x4
 enum class EOutfitType
 {
 	eOT_None = 0,
@@ -5131,7 +5131,7 @@ enum class EOutfitType
 	eOT_LucasGrey = 5,
 };
 
-// 0x0000000142B91338 (Size: 0x60)
+// Size: 0x60
 class alignas(16) ZRayQueryInput
 {
 public:
@@ -5143,7 +5143,7 @@ public:
 
 };
 
-// 0x0000000142BB7FC8 (Size: 0x18)
+// Size: 0x18
 class alignas(8) ZKeywordCalculator_SCollection
 {
 public:
@@ -5156,14 +5156,14 @@ public:
 	TArray<int32> aKeywords; // 0x0
 };
 
-// 0x0000000142B9E918 (Size: 0x4)
+// Size: 0x4
 enum class ZActorTensionEntity_ETensionCheckMode
 {
 	ETCM_INSIDE_VOLUME_OR_LIST = 0,
 	ETCM_INSIDE_VOLUME_AND_LIST = 1,
 };
 
-// 0x0000000142B8AC48 (Size: 0x4)
+// Size: 0x4
 enum class ZScreenplay_EState
 {
 	State_Idle = 0,
@@ -5173,14 +5173,14 @@ enum class ZScreenplay_EState
 	State_Done = 4,
 };
 
-// 0x0000000142BEF8E0 (Size: 0x1)
+// Size: 0x1
 enum class AudioBusFlags
 {
 	AudioBus_Master = 1,
 	AudioBus_Primary = 2,
 };
 
-// 0x0000000142B925A0 (Size: 0x4)
+// Size: 0x4
 enum class ZInputListenerButtonEntity_eInputListenerButtons
 {
 	EILB_UP = 0,
@@ -5189,7 +5189,7 @@ enum class ZInputListenerButtonEntity_eInputListenerButtons
 	EILB_RIGHT = 3,
 };
 
-// 0x0000000142B94F80 (Size: 0x4)
+// Size: 0x4
 enum class EDifficultyParameter
 {
 	EDP_Invalid = 0,
@@ -5353,14 +5353,14 @@ enum class EDifficultyParameter
 	EDP_COUNT = 158,
 };
 
-// 0x0000000142BC2098 (Size: 0x4)
+// Size: 0x4
 enum class EEquipAbility
 {
 	EA_EQUIP_IN_HANDS = 0,
 	EA_CANNOT_BE_EQUIPPED = 1,
 };
 
-// 0x0000000142B8DC30 (Size: 0x3)
+// Size: 0x3
 class alignas(1) SContextActionSaveData
 {
 public:
@@ -5375,7 +5375,7 @@ public:
 	bool m_bShouldShow; // 0x2
 };
 
-// 0x00000001423CC6C0 (Size: 0x4)
+// Size: 0x4
 enum class EAISituationEvent
 {
 	AISE_Any = 0,
@@ -5384,7 +5384,7 @@ enum class EAISituationEvent
 	AISE_Data = 3,
 };
 
-// 0x0000000142BBA338 (Size: 0x4)
+// Size: 0x4
 enum class IKEndEffector
 {
 	BEE_Pelvis = 0,
@@ -5414,7 +5414,7 @@ enum class IKEndEffector
 	BEE_Count = 24,
 };
 
-// 0x0000000142B9C178 (Size: 0x4)
+// Size: 0x4
 enum class ESmartWaitCondition
 {
 	SWC_Time = 0,
@@ -5423,7 +5423,7 @@ enum class ESmartWaitCondition
 	SWC_Executed = 3,
 };
 
-// 0x0000000142C0D870 (Size: 0x4)
+// Size: 0x4
 enum class ERegionId
 {
 	RegionId_Default = 0,
@@ -5431,14 +5431,14 @@ enum class ERegionId
 	RegionId_Asia = 2,
 };
 
-// 0x0000000142B9DD68 (Size: 0x4)
+// Size: 0x4
 enum class ZActorPickerEffectTrack_EEffectPhaseAction
 {
 	EPA_ATTACH = 0,
 	EPA_DETACH = 1,
 };
 
-// 0x0000000142B8C410 (Size: 0x4)
+// Size: 0x4
 enum class EVolumeTriggerEntityTypeFlags
 {
 	VTET_Hitman = 1,
@@ -5453,7 +5453,7 @@ enum class EVolumeTriggerEntityTypeFlags
 	VTET_SpatialVisible = 512,
 };
 
-// 0x0000000142B82898 (Size: 0x50)
+// Size: 0x50
 class alignas(16) SActorThrowSaveData
 {
 public:
@@ -5470,7 +5470,7 @@ public:
 	float32 m_fDistance; // 0x40
 };
 
-// 0x0000000142BB5C60 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SIntelListDisplayInfo
 {
 public:
@@ -5486,7 +5486,7 @@ public:
 	ZString label; // 0x8
 };
 
-// 0x0000000142B83338 (Size: 0x4)
+// Size: 0x4
 enum class ZSniperCombatGroup_EGroupState
 {
 	IGS_WaitingForActors = 0,
@@ -5496,7 +5496,7 @@ enum class ZSniperCombatGroup_EGroupState
 	IGS_Max = 4,
 };
 
-// 0x0000000142B8B218 (Size: 0x4)
+// Size: 0x4
 enum class ZLeadEscortSituationEntity_EEscortState
 {
 	EES_Idle = 0,
@@ -5505,14 +5505,14 @@ enum class ZLeadEscortSituationEntity_EEscortState
 	EES_Intermediate = 3,
 };
 
-// 0x0000000142BC1FA8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFireType
 {
 	eWBC_AudioFireType_Full_Automatic = 0,
 	eWBC_AudioFireType_Single = 1,
 };
 
-// 0x0000000142B8B760 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZDetectedInPrivateSituation_SSituationSaveData
 {
 public:
@@ -5525,7 +5525,7 @@ public:
 	int32 m_pDetectedInPrivateGroup; // 0x0
 };
 
-// 0x0000000142B94990 (Size: 0x4)
+// Size: 0x4
 enum class EButtonPressType
 {
 	BUTTON_PRESS = 0,
@@ -5536,7 +5536,7 @@ enum class EButtonPressType
 	BUTTON_PRESS_TYPE_MAX = 5,
 };
 
-// 0x0000000142BC1F48 (Size: 0x4)
+// Size: 0x4
 enum class EImpactEffectsOptions
 {
 	eIE_None = 0,
@@ -5547,7 +5547,7 @@ enum class EImpactEffectsOptions
 	eIE_All = 16,
 };
 
-// 0x0000000142BC0908 (Size: 0x4)
+// Size: 0x4
 enum class EFSMStateStatus
 {
 	eInactive = 0,
@@ -5557,7 +5557,7 @@ enum class EFSMStateStatus
 	eInterrupted = 4,
 };
 
-// 0x0000000142B79C78 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SFSMSaveData
 {
 public:
@@ -5573,7 +5573,7 @@ public:
 	ZGameTime m_tCurrentStateEnterTime; // 0x10
 };
 
-// 0x0000000142B82440 (Size: 0x4)
+// Size: 0x4
 enum class EDisturbanceType
 {
 	DT_Generic = 0,
@@ -5621,7 +5621,7 @@ enum class EDisturbanceType
 	DT_MAX = 42,
 };
 
-// 0x0000000142B82D20 (Size: 0x90)
+// Size: 0x90
 class alignas(16) SGetHelpGroupSaveData
 {
 public:
@@ -5649,7 +5649,7 @@ public:
 	TArray<uint32> m_additionalGuards; // 0x70
 };
 
-// 0x0000000142B7A358 (Size: 0x4)
+// Size: 0x4
 enum class EBooleanOption
 {
 	BO_Off = 0,
@@ -5657,14 +5657,14 @@ enum class EBooleanOption
 	BO_Default = 2,
 };
 
-// 0x0000000142B90000 (Size: 0x4)
+// Size: 0x4
 enum class EStandRepositionStrategy
 {
 	SRS_InPlaceRepositioning = 0,
 	SRS_NoRepositioning = 1,
 };
 
-// 0x0000000142B9DC90 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorDynamicTemplateManipulatorSaveData
 {
 public:
@@ -5677,7 +5677,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142B932C0 (Size: 0x4)
+// Size: 0x4
 enum class ZLookAtLogic_EAxisSelect
 {
 	eX = 0,
@@ -5688,7 +5688,7 @@ enum class ZLookAtLogic_EAxisSelect
 	eZ_NEG = 5,
 };
 
-// 0x0000000142B82770 (Size: 0x4)
+// Size: 0x4
 enum class ESituationStateChangeReason
 {
 	eSSCR_NONE = 0,
@@ -5712,7 +5712,7 @@ enum class ESituationStateChangeReason
 	eSSCR_PAUSED_FROM_RESUMING = 2097152,
 };
 
-// 0x0000000142C14A90 (Size: 0x1)
+// Size: 0x1
 enum class EMaterialRegistrationState
 {
 	eMRS_None = 0,
@@ -5721,7 +5721,7 @@ enum class EMaterialRegistrationState
 	eMRS_Failed = 3,
 };
 
-// 0x0000000142B8B168 (Size: 0x4)
+// Size: 0x4
 enum class ZHeroEscortSituationEntity_ETargetState
 {
 	ETS_Unknown = 0,
@@ -5733,7 +5733,7 @@ enum class ZHeroEscortSituationEntity_ETargetState
 	ETS_TargetIsHitman = 6,
 };
 
-// 0x0000000142B7AF40 (Size: 0x4)
+// Size: 0x4
 enum class CrowdReactionAIEventType
 {
 	CROWDAIEVENT_NONE = 0,
@@ -5743,7 +5743,7 @@ enum class CrowdReactionAIEventType
 	CROWDAIEVENT_BLAME_FOR_KILL = 4,
 };
 
-// 0x0000000143E05E40 (Size: 0x4)
+// Size: 0x4
 enum class ZRenderPostfilterParametersEntity_EDOFBlurType
 {
 	eFastest = 0,
@@ -5752,7 +5752,7 @@ enum class ZRenderPostfilterParametersEntity_EDOFBlurType
 	eHighRezLensBlur = 3,
 };
 
-// 0x0000000142B8AB30 (Size: 0x4)
+// Size: 0x4
 enum class ZAIPerceptibleEntity_EReactionBehaviorMode
 {
 	FullBehavior = 0,
@@ -5760,7 +5760,7 @@ enum class ZAIPerceptibleEntity_EReactionBehaviorMode
 	StopOnReacted = 2,
 };
 
-// 0x0000000142BF2538 (Size: 0x4)
+// Size: 0x4
 enum class CrowdUtil_EDefaultStateTypes
 {
 	STATE_IDLE = 0,
@@ -5777,7 +5777,7 @@ enum class CrowdUtil_EDefaultStateTypes
 	NUM_DEFAULT_STATES = 11,
 };
 
-// 0x0000000142B94150 (Size: 0x4)
+// Size: 0x4
 enum class EGameEventArgType
 {
 	GE_ARGS_KILL = 0,
@@ -5790,7 +5790,7 @@ enum class EGameEventArgType
 	GE_ARGS_AI_SITUATION = 7,
 };
 
-// 0x0000000142B90970 (Size: 0x8)
+// Size: 0x8
 class alignas(8) SCautiousVIPGroupState
 {
 public:
@@ -5803,7 +5803,7 @@ public:
 	ZGameTime m_tMove; // 0x0
 };
 
-// 0x0000000142B908F0 (Size: 0x4)
+// Size: 0x4
 enum class ZCautiousSearchGroup_ESearchGroupState
 {
 	SGS_Acknowledge = 0,
@@ -5813,7 +5813,7 @@ enum class ZCautiousSearchGroup_ESearchGroupState
 	SGS_Completed = 4,
 };
 
-// 0x0000000142BB16B0 (Size: 0x60)
+// Size: 0x60
 class alignas(8) SInventoryItem
 {
 public:
@@ -5830,7 +5830,7 @@ public:
 	TArray<ZRepositoryID> aModifierIds; // 0x48
 };
 
-// 0x0000000142BB16C8 (Size: 0x70)
+// Size: 0x70
 class alignas(8) SContainerItemInfo
 {
 public:
@@ -5844,7 +5844,7 @@ public:
 	SInventoryItem m_concealedItem; // 0x10
 };
 
-// 0x0000000142B92960 (Size: 0x90)
+// Size: 0x90
 class alignas(8) SInventoryInfo
 {
 public:
@@ -5859,7 +5859,7 @@ public:
 	TArray<SContainerItemInfo> m_aContainerItems; // 0x78
 };
 
-// 0x0000000142B92978 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SAgencyPickupInfo
 {
 public:
@@ -5874,7 +5874,7 @@ public:
 	TArray<ZRepositoryID> m_aModifierIds; // 0x28
 };
 
-// 0x0000000142B928E8 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SSoundAmbienceSaveData
 {
 public:
@@ -5891,7 +5891,7 @@ public:
 	bool m_bInTransition; // 0xD
 };
 
-// 0x0000000142B92940 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SChallengesSaveData
 {
 public:
@@ -5904,7 +5904,7 @@ public:
 	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
 };
 
-// 0x00000001423CD278 (Size: 0x1D8)
+// Size: 0x1D8
 class alignas(8) SLevelSaveData
 {
 public:
@@ -5936,7 +5936,7 @@ public:
 	float32 m_fLastKillTimestamp; // 0x1D4
 };
 
-// 0x0000000142B9EC28 (Size: 0x4)
+// Size: 0x4
 enum class ZMoveToPositionBehaviorEntity_ERotationAlignment
 {
 	RA_NONE = 0,
@@ -5944,7 +5944,7 @@ enum class ZMoveToPositionBehaviorEntity_ERotationAlignment
 	RA_EXACT = 2,
 };
 
-// 0x0000000142B92BD0 (Size: 0x4)
+// Size: 0x4
 enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason
 {
 	eTMLDR_HintMessages = 0,
@@ -5957,7 +5957,7 @@ enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason
 	eTMLDR_NOTSET = 7,
 };
 
-// 0x0000000143E09FB8 (Size: 0x4)
+// Size: 0x4
 enum class IRoomEntity_EReasoningGridImportance
 {
 	RGI_NoGrid = 0,
@@ -5967,7 +5967,7 @@ enum class IRoomEntity_EReasoningGridImportance
 	RGI_Extreme = 4,
 };
 
-// 0x0000000142BBD438 (Size: 0x4)
+// Size: 0x4
 enum class ZOnlineManager_EState
 {
 	eTRIGGER_FLOW = 1,
@@ -6013,7 +6013,7 @@ enum class ZOnlineManager_EState
 	eSTATE_MAX = 41,
 };
 
-// 0x0000000142BC0920 (Size: 0x4)
+// Size: 0x4
 enum class EFSMInternalEvent
 {
 	eFSMEvent_Completed = 0,
@@ -6022,7 +6022,7 @@ enum class EFSMInternalEvent
 	eFSMEvent_Max = 3,
 };
 
-// 0x0000000142B82A50 (Size: 0x4)
+// Size: 0x4
 enum class ECautiousDisturbanceState
 {
 	eCDS_Pending = 0,
@@ -6038,7 +6038,7 @@ enum class ECautiousDisturbanceState
 	eCDS_CombatSuppressGunshots = 10,
 };
 
-// 0x0000000143E13978 (Size: 0x4)
+// Size: 0x4
 enum class ZUIControlEntity_ELayoutMode
 {
 	E_LAYOUT_MODE_Absolute = 0,
@@ -6050,7 +6050,7 @@ enum class ZUIControlEntity_ELayoutMode
 	E_LAYOUT_MODE_Proportional_Scale_MaintainAspect_Fill = 6,
 };
 
-// 0x0000000142B92AB0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorKeywordProxySaveData
 {
 public:
@@ -6063,7 +6063,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142BC4280 (Size: 0x4)
+// Size: 0x4
 enum class ZValueBool_Operation_EEvaluationType
 {
 	ALL = 0,
@@ -6074,7 +6074,7 @@ enum class ZValueBool_Operation_EEvaluationType
 	ONE_TRUE = 5,
 };
 
-// 0x0000000142BB5708 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SHUDPromptDisplayInfoArray_Dummy
 {
 public:
@@ -6087,7 +6087,7 @@ public:
 	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
 };
 
-// 0x0000000142B82508 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SCombatSituationMemberSaveData
 {
 public:
@@ -6108,14 +6108,14 @@ public:
 	bool m_bStandAndShoot; // 0x11
 };
 
-// 0x0000000142BB1638 (Size: 0x4)
+// Size: 0x4
 enum class IContractObjective_SCounterData_ECounterType
 {
 	eDEFAULT = 0,
 	ePERCENTAGE = 1,
 };
 
-// 0x0000000142B93940 (Size: 0x4)
+// Size: 0x4
 enum class ECCNodeType
 {
 	eCCNodeType_Counter = 0,
@@ -6151,7 +6151,7 @@ enum class ECCNodeType
 	eCCNodeType_Count = 30,
 };
 
-// 0x0000000142B88170 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5CrowdGenericEventConsumer_EEvent
 {
 	eFootstep = 0,
@@ -6164,7 +6164,7 @@ enum class ZHM5CrowdGenericEventConsumer_EEvent
 	eGeneric03 = 7,
 };
 
-// 0x0000000143E138E8 (Size: 0x4)
+// Size: 0x4
 enum class EFontFlags
 {
 	FV_Original = 16,
@@ -6178,7 +6178,7 @@ enum class EFontFlags
 	FV_FauxBoldItalic = 12,
 };
 
-// 0x0000000142B82928 (Size: 0x4)
+// Size: 0x4
 enum class EDeathBehavior
 {
 	eDB_IMPACT_ANIM = 0,
@@ -6187,7 +6187,7 @@ enum class EDeathBehavior
 	eDB_NO_RAGDOLL = 3,
 };
 
-// 0x0000000142BF2520 (Size: 0x4)
+// Size: 0x4
 enum class CrowdMapImpl_CellFlags
 {
 	CELLFLAG_RESTRICTED_A = 1,
@@ -6200,14 +6200,14 @@ enum class CrowdMapImpl_CellFlags
 	CELLFLAG_PANIC_ONLY = 128,
 };
 
-// 0x0000000142BEF760 (Size: 0x4)
+// Size: 0x4
 enum class ESoundGateType
 {
 	SOUNDGATE_TYPE_ROUND = 0,
 	SOUNDGATE_TYPE_SHARPCORNERS = 1,
 };
 
-// 0x0000000142B90270 (Size: 0x4)
+// Size: 0x4
 enum class EAIModifiers
 {
 	AIM_Invalid = 0,
@@ -6241,21 +6241,21 @@ enum class EAIModifiers
 	AIM_NeverSpectate = 33554432,
 };
 
-// 0x0000000143E09800 (Size: 0x4)
+// Size: 0x4
 enum class ZBoneAttachEntity_EResetMode
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
 };
 
-// 0x0000000143E13A08 (Size: 0x4)
+// Size: 0x4
 enum class ZUIFlowLayoutEntity_EFlowType
 {
 	E_FLOW_TYPE_HORIZONTAL = 0,
 	E_FLOW_TYPE_VERTICAL = 1,
 };
 
-// 0x0000000142BB7D18 (Size: 0x4)
+// Size: 0x4
 enum class ZChannelKeywordCondition_EEvaluationType
 {
 	ALL = 0,
@@ -6264,7 +6264,7 @@ enum class ZChannelKeywordCondition_EEvaluationType
 	ANY_TRUE_IF_NO_REQS = 3,
 };
 
-// 0x0000000142B8D690 (Size: 0x4)
+// Size: 0x4
 enum class ZTrackDollyControllerQueryEntity_ETrackPointQueryType
 {
 	Closest = 0,
@@ -6272,7 +6272,7 @@ enum class ZTrackDollyControllerQueryEntity_ETrackPointQueryType
 	ClosestPrevious = 2,
 };
 
-// 0x0000000142B9BD28 (Size: 0x4)
+// Size: 0x4
 enum class EConversationID
 {
 	eCI_GuardCivilian_Distraction_Investigation = 0,
@@ -6313,7 +6313,7 @@ enum class EConversationID
 	eCI_Count = 35,
 };
 
-// 0x0000000142B92010 (Size: 0x4)
+// Size: 0x4
 enum class ESubcontrollerInventorySlot
 {
 	eSIS_Invalid = 0,
@@ -6321,7 +6321,7 @@ enum class ESubcontrollerInventorySlot
 	eSIS_RightHand = 2,
 };
 
-// 0x0000000142B883F8 (Size: 0x4)
+// Size: 0x4
 enum class IHM5Door_EInitialState
 {
 	IS_CLOSED = 0,
@@ -6330,7 +6330,7 @@ enum class IHM5Door_EInitialState
 	IS_OPEN_OUT = 3,
 };
 
-// 0x0000000142BF4830 (Size: 0x4)
+// Size: 0x4
 enum class ZDebugTextEntity_EHorizontalAlignment
 {
 	HA_LEFT = 1,
@@ -6338,7 +6338,7 @@ enum class ZDebugTextEntity_EHorizontalAlignment
 	HA_RIGHT = 2,
 };
 
-// 0x00000001423CC8C8 (Size: 0x4)
+// Size: 0x4
 enum class EActionType
 {
 	AT_INVALID = 0,
@@ -6374,14 +6374,14 @@ enum class EActionType
 	AT_ITEM_INTERACTION = -2147483648,
 };
 
-// 0x0000000142B9B038 (Size: 0x4)
+// Size: 0x4
 enum class ERANDOM_DISTRIBUTION
 {
 	RND_UNIFORM = 0,
 	RND_SAWTOOTH = 1,
 };
 
-// 0x0000000142B942D0 (Size: 0x4)
+// Size: 0x4
 enum class ERatingCategory
 {
 	ERatingCategory_Invalid = 0,
@@ -6392,7 +6392,7 @@ enum class ERatingCategory
 	ERatingCategory_COUNT = 5,
 };
 
-// 0x0000000142B94CB0 (Size: 0x4)
+// Size: 0x4
 enum class InputControlNamesp_eHM5InputActionType
 {
 	eTypeGet = 0,
@@ -6412,7 +6412,7 @@ enum class InputControlNamesp_eHM5InputActionType
 	eTYPE_INVALID = 14,
 };
 
-// 0x0000000143E0B318 (Size: 0x10)
+// Size: 0x10
 class alignas(8) SVariantStruct
 {
 public:
@@ -6425,7 +6425,7 @@ public:
 	ZVariant m_Data; // 0x0
 };
 
-// 0x0000000142B9A648 (Size: 0x4)
+// Size: 0x4
 enum class EDebugSpatialInfoVerbosity
 {
 	EDSIV_Overview = 0,
@@ -6433,7 +6433,7 @@ enum class EDebugSpatialInfoVerbosity
 	EDSIV_Full = 2,
 };
 
-// 0x0000000142B88230 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5FaceFXSpecificEventConsumer_EEvent
 {
 	eNone = 0,
@@ -6446,7 +6446,7 @@ enum class ZHM5FaceFXSpecificEventConsumer_EEvent
 	eCloseCombatSilentKillShush = 7,
 };
 
-// 0x0000000142BF3950 (Size: 0x4)
+// Size: 0x4
 enum class EPlayMode
 {
 	PLAYMODE_STOPPED = 1,
@@ -6454,7 +6454,7 @@ enum class EPlayMode
 	PLAYMODE_PLAYING = 3,
 };
 
-// 0x0000000142B84008 (Size: 0x4)
+// Size: 0x4
 enum class EHintMessageType
 {
 	EHintMessageType_Hint = 0,
@@ -6463,7 +6463,7 @@ enum class EHintMessageType
 	EHintMessageType_Tutorial = 3,
 };
 
-// 0x0000000142B90080 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SBehaviorTreeEntityReference
 {
 public:
@@ -6477,7 +6477,7 @@ public:
 	ZString m_sName; // 0x8
 };
 
-// 0x0000000142B900F0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SBehaviorTreeInfo
 {
 public:
@@ -6491,7 +6491,7 @@ public:
 	TArray<SBehaviorTreeInputPinCondition> m_inputPinConditions; // 0x18
 };
 
-// 0x0000000142B94690 (Size: 0x4)
+// Size: 0x4
 enum class EHUDMessageStatus
 {
 	HUD_MESSAGE_UNUSED = 0,
@@ -6501,7 +6501,7 @@ enum class EHUDMessageStatus
 	HUD_MESSAGE_FADEOUT = 4,
 };
 
-// 0x0000000142B92DF0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5HitmanHealthModifier_EHealthValue
 {
 	eHealth0 = 0,
@@ -6517,14 +6517,14 @@ enum class ZHM5HitmanHealthModifier_EHealthValue
 	eHealth100 = 100,
 };
 
-// 0x0000000142B92E90 (Size: 0x4)
+// Size: 0x4
 enum class ZSecuritySystemCameraConfiguration_ECameraEscalationSituations
 {
 	eCES_Arrest = 0,
 	eCES_Combat = 1,
 };
 
-// 0x00000001423CC7C8 (Size: 0x4)
+// Size: 0x4
 enum class EObjectiveType
 {
 	OBJECTIVE_PRIMARY = 0,
@@ -6532,7 +6532,7 @@ enum class EObjectiveType
 	OBJECTIVE_TERTIARY = 2,
 };
 
-// 0x0000000142B93020 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SShotListenerSaveData
 {
 public:
@@ -6546,7 +6546,7 @@ public:
 	bool m_bNPCShotProcessed; // 0x1
 };
 
-// 0x0000000142B92890 (Size: 0x4)
+// Size: 0x4
 enum class EWeaponUpgradeUse
 {
 	eWUU_PrimaryOnly = 0,
@@ -6554,7 +6554,7 @@ enum class EWeaponUpgradeUse
 	eWUU_AllFireModes = 2,
 };
 
-// 0x0000000142BB7F98 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SKeywordSaveData
 {
 public:
@@ -6568,7 +6568,7 @@ public:
 	int32 m_KeywordID; // 0x4
 };
 
-// 0x00000001423CCA00 (Size: 0x4)
+// Size: 0x4
 enum class EActorSoundDefs
 {
 	_NoSound = 0,
@@ -6997,14 +6997,14 @@ enum class EActorSoundDefs
 	Gen_SocialAck = 423,
 };
 
-// 0x0000000142C0EDD0 (Size: 0x4)
+// Size: 0x4
 enum class ZAT2Controller_EFoot
 {
 	FOOT_LEFT = 0,
 	FOOT_RIGHT = 1,
 };
 
-// 0x0000000142C0EDE8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) ZAT2Controller_SGeneratedFootstepEvent
 {
 public:
@@ -7018,7 +7018,7 @@ public:
 	float32 m_fFrame; // 0x4
 };
 
-// 0x0000000142C135B0 (Size: 0x4)
+// Size: 0x4
 enum class Network_OrderingChannel
 {
 	SYSTEM_INTERNAL = 0,
@@ -7038,7 +7038,7 @@ enum class Network_OrderingChannel
 	MAX_CHANNELS = 16,
 };
 
-// 0x0000000142BC0C48 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SProgressTimerEntitySaveData
 {
 public:
@@ -7053,14 +7053,14 @@ public:
 	bool m_bValue; // 0x8
 };
 
-// 0x0000000143E05DF8 (Size: 0x4)
+// Size: 0x4
 enum class ZRenderPostfilterParametersEntity_EHDRAdaptationType
 {
 	eMedian = 0,
 	eGeometricMean = 1,
 };
 
-// 0x0000000142B89E08 (Size: 0x4)
+// Size: 0x4
 enum class ECheatGroup
 {
 	eCGNone = 0,
@@ -7073,7 +7073,7 @@ enum class ECheatGroup
 	eCGDevices = 7,
 };
 
-// 0x0000000142B824C0 (Size: 0x28)
+// Size: 0x28
 class alignas(8) ZTrespassingSituation_SState
 {
 public:
@@ -7090,14 +7090,14 @@ public:
 	bool m_bStopWarningGiven; // 0x20
 };
 
-// 0x0000000142C13580 (Size: 0x4)
+// Size: 0x4
 enum class EReplicaOperation
 {
 	E_Created = 0,
 	E_Destroyed = 1,
 };
 
-// 0x000000014210DB70 (Size: 0x24)
+// Size: 0x24
 class alignas(4) SMatrix33
 {
 public:
@@ -7112,7 +7112,7 @@ public:
 	SVector3 ZAxis; // 0x18
 };
 
-// 0x0000000142B92710 (Size: 0x4)
+// Size: 0x4
 enum class ECCEmitterEffect
 {
 	eCCEmitterEffect_None = 0,
@@ -7129,7 +7129,7 @@ enum class ECCEmitterEffect
 	eCCEmitterEffect_Blood = 11,
 };
 
-// 0x0000000142B943F0 (Size: 0x4)
+// Size: 0x4
 enum class ECommunicationBarState
 {
 	COMMUNICATION_BAR_NONE = 0,
@@ -7144,7 +7144,7 @@ enum class ECommunicationBarState
 	COMMUNICATION_BAR_BACKUP_ARRIVED = 9,
 };
 
-// 0x0000000142B94330 (Size: 0x4)
+// Size: 0x4
 enum class EButtonDisplay
 {
 	BUTTON_DISPLAY_AT_OPENDOOR = 0,
@@ -7223,7 +7223,7 @@ enum class EButtonDisplay
 	BUTTON_DISPLAY_MAX = 73,
 };
 
-// 0x0000000142B90560 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SCrowdBodySaveData
 {
 public:
@@ -7243,7 +7243,7 @@ public:
 	int32 m_rBagSharedKnowledge; // 0x34
 };
 
-// 0x0000000142B9ABD0 (Size: 0x4)
+// Size: 0x4
 enum class ZEscortSituation2Entity_EEscortState
 {
 	EES_Idle = 0,
@@ -7253,7 +7253,7 @@ enum class ZEscortSituation2Entity_EEscortState
 	EES_Intermediate = 4,
 };
 
-// 0x0000000142B9AC20 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SEscortSituation2ActorStateSaveData
 {
 public:
@@ -7272,7 +7272,7 @@ public:
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
 
-// 0x0000000142B93EB0 (Size: 0x4)
+// Size: 0x4
 enum class EAimAssistActivationState
 {
 	eAAAS_Activated = 0,
@@ -7281,7 +7281,7 @@ enum class EAimAssistActivationState
 	eAAAS_Deactivating = 3,
 };
 
-// 0x0000000142BC4298 (Size: 0x4)
+// Size: 0x4
 enum class ZValueBool_OperationRecalc_EEvaluationType
 {
 	ALL = 0,
@@ -7292,7 +7292,7 @@ enum class ZValueBool_OperationRecalc_EEvaluationType
 	ONE_TRUE = 5,
 };
 
-// 0x0000000142BC22A8 (Size: 0x4)
+// Size: 0x4
 enum class EHM5SoundBulletType
 {
 	ESBT_SMALL = 0,
@@ -7302,7 +7302,7 @@ enum class EHM5SoundBulletType
 	ESBT_ANY = 4,
 };
 
-// 0x0000000142BF3200 (Size: 0x4)
+// Size: 0x4
 enum class EContinuity
 {
 	C0 = 0,
@@ -7310,7 +7310,7 @@ enum class EContinuity
 	C2 = 2,
 };
 
-// 0x0000000142B93C10 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterFullBodyStateType
 {
 	eSM_FB_OldMovementPlaceholder = 0,
@@ -7325,7 +7325,7 @@ enum class ECharacterFullBodyStateType
 	eSM_FB_AssembleStore = 11,
 };
 
-// 0x0000000142BC1FC0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioHeadTailType
 {
 	eWBC_AudioHeadTailType_DryFire = 0,
@@ -7335,7 +7335,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioHeadTailType
 	eWBC_AudioHeadTailType_SilencedSweetener = 4,
 };
 
-// 0x0000000142B94930 (Size: 0x4)
+// Size: 0x4
 enum class EControllerButton
 {
 	BUTTON_NONE = 0,
@@ -7366,14 +7366,14 @@ enum class EControllerButton
 	BUTTON_ESCAPE = 25,
 };
 
-// 0x0000000142B92E50 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5HitmanHealthModifier_EHealthDrainType
 {
 	eRemoveHealthInstantly = 0,
 	eDecreaseHealthToValue = 1,
 };
 
-// 0x0000000142B90770 (Size: 0x4)
+// Size: 0x4
 enum class ZCautiousBackupGroup_EGroupState
 {
 	GS_DistanceField = 0,
@@ -7382,14 +7382,14 @@ enum class ZCautiousBackupGroup_EGroupState
 	GS_Completed = 3,
 };
 
-// 0x0000000142C157C8 (Size: 0x4)
+// Size: 0x4
 enum class ERayType
 {
 	ERAY_CLOSESTHIT_SIMPLE = 0,
 	ERAY_CLOSESTHIT_DETAILED = 1,
 };
 
-// 0x0000000142BC42F8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SValueIntSaveData
 {
 public:
@@ -7403,7 +7403,7 @@ public:
 	TArray<int32> m_aData; // 0x18
 };
 
-// 0x0000000142B89910 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5BodyContainer_EBCBodyMode
 {
 	BC_1_VICTIM = 0,
@@ -7412,7 +7412,7 @@ enum class ZHM5BodyContainer_EBCBodyMode
 	BC_1_VICTIM_AUTOFLUSHABLE = 3,
 };
 
-// 0x0000000142B871A0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SMovementLadderSaveData
 {
 public:
@@ -7425,7 +7425,7 @@ public:
 	uint32 m_rLadder; // 0x0
 };
 
-// 0x0000000142B93080 (Size: 0x4)
+// Size: 0x4
 enum class ESoundMaterialType
 {
 	eGeneric = 0,
@@ -7433,7 +7433,7 @@ enum class ESoundMaterialType
 	eSilent = 2,
 };
 
-// 0x0000000142B84090 (Size: 0x4)
+// Size: 0x4
 enum class EScreenAnchor
 {
 	SCREEN_ANCHOR_TOP_LEFT = 0,
@@ -7447,7 +7447,7 @@ enum class EScreenAnchor
 	SCREEN_ANCHOR_BOTTOM_RIGHT = 8,
 };
 
-// 0x0000000142B90520 (Size: 0x28)
+// Size: 0x28
 class alignas(4) SAIModifierServiceActorSaveData
 {
 public:
@@ -7470,7 +7470,7 @@ public:
 	uint32 m_uiModStatus; // 0x24
 };
 
-// 0x0000000142B8B858 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SAIModifierServiceSaveData
 {
 public:
@@ -7484,7 +7484,7 @@ public:
 	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
 };
 
-// 0x0000000142B87CE0 (Size: 0x8)
+// Size: 0x8
 class alignas(0) ISoundGateController
 {
 public:
@@ -7496,7 +7496,7 @@ public:
 
 };
 
-// 0x0000000142B94090 (Size: 0x4)
+// Size: 0x4
 enum class eHitmanPermissionReason
 {
 	eHPReason_MovementContext = 1,
@@ -7511,7 +7511,7 @@ enum class eHitmanPermissionReason
 	eHPReason_ALLReasons = -1,
 };
 
-// 0x0000000142BEF900 (Size: 0x2)
+// Size: 0x2
 class alignas(2) ZDialogEventItemTypedIndex
 {
 public:
@@ -7523,7 +7523,7 @@ public:
 
 };
 
-// 0x0000000142B7A2C8 (Size: 0x4)
+// Size: 0x4
 enum class EActorAnimationOrder
 {
 	AAO_None = 0,
@@ -7540,7 +7540,7 @@ enum class EActorAnimationOrder
 	AAO_Controlled = 11,
 };
 
-// 0x0000000142BF2460 (Size: 0x4)
+// Size: 0x4
 enum class ESpeed
 {
 	eSpeed_Idle = 0,
@@ -7550,7 +7550,7 @@ enum class ESpeed
 	eSpeed_Sprint = 4,
 };
 
-// 0x0000000143E098D0 (Size: 0x1)
+// Size: 0x1
 enum class ESeamFixMode
 {
 	SEAMFIX_NONE = 0,
@@ -7563,7 +7563,7 @@ enum class ESeamFixMode
 	SEAMFIX_YZ = 6,
 };
 
-// 0x0000000142C0EE90 (Size: 0x4)
+// Size: 0x4
 enum class ESyncEvent
 {
 	eSyncEvent_None = 0,
@@ -7572,7 +7572,7 @@ enum class ESyncEvent
 	eSyncEvent_BothFeet = 300,
 };
 
-// 0x0000000142BF2550 (Size: 0x4)
+// Size: 0x4
 enum class CrowdUtil_ECrowdDirection
 {
 	NORTH = 0,
@@ -7581,14 +7581,14 @@ enum class CrowdUtil_ECrowdDirection
 	WEST = 3,
 };
 
-// 0x0000000142B931E0 (Size: 0x4)
+// Size: 0x4
 enum class ZPreferenceItemEntity_EBoolOptions
 {
 	EBO_INVERTVERTICAL = 0,
 	EBO_FIXEDMAP = 1,
 };
 
-// 0x0000000142BC2FE8 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SIntelSaveData
 {
 public:
@@ -7607,7 +7607,7 @@ public:
 	bool m_bIsHandlerAudioPlaying; // 0xC
 };
 
-// 0x0000000142BC1F90 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFamily
 {
 	eWBC_AudioFamily_Exotics = 0,
@@ -7617,7 +7617,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFamily
 	eWBC_AudioFamily_Standard = 4,
 };
 
-// 0x0000000142B8D888 (Size: 0x4)
+// Size: 0x4
 enum class ZHeroInventoryAction_EEvaluationType
 {
 	ALL = 0,
@@ -7625,7 +7625,7 @@ enum class ZHeroInventoryAction_EEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142B82458 (Size: 0x4)
+// Size: 0x4
 enum class ZStandOffSituation_EDialogState
 {
 	eDS_ReportTarget = 0,
@@ -7639,7 +7639,7 @@ enum class ZStandOffSituation_EDialogState
 	eDS_Done = 8,
 };
 
-// 0x0000000142B7B550 (Size: 0x4)
+// Size: 0x4
 enum class IContractObjective_Category
 {
 	PRIMARY = 0,
@@ -7647,14 +7647,14 @@ enum class IContractObjective_Category
 	CONDITION = 2,
 };
 
-// 0x0000000142B91510 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5LedgeMount_ELedgeEndState
 {
 	eHang = 0,
 	eStand = 1,
 };
 
-// 0x0000000142BB59F0 (Size: 0x4)
+// Size: 0x4
 enum class ZHUDTimerInstance_ETimeFormatChoice
 {
 	YES = 0,
@@ -7662,7 +7662,7 @@ enum class ZHUDTimerInstance_ETimeFormatChoice
 	AUTO = 2,
 };
 
-// 0x0000000142B7AFF8 (Size: 0x4)
+// Size: 0x4
 enum class ECollidablesType
 {
 	ECST_STATIC_AND_DYNAMIC = 0,
@@ -7670,7 +7670,7 @@ enum class ECollidablesType
 	ECST_DYNAMIC_ONLY = 2,
 };
 
-// 0x0000000143E09AE0 (Size: 0x4)
+// Size: 0x4
 enum class EParticleModifierImpulseDirections
 {
 	TARGET_ZAXIS_DIRECTION = 0,
@@ -7678,7 +7678,7 @@ enum class EParticleModifierImpulseDirections
 	AWAY_FROM_TARGET_PIVOT = 2,
 };
 
-// 0x0000000142BC2290 (Size: 0x4)
+// Size: 0x4
 enum class EItemPoisonType
 {
 	POISONTYPE_NONE = 0,
@@ -7687,7 +7687,7 @@ enum class EItemPoisonType
 	POISONTYPE_EMETIC = 3,
 };
 
-// 0x0000000142B90390 (Size: 0x4)
+// Size: 0x4
 enum class EScreenplayTriggerEvent
 {
 	STT_ReportCrime = 0,
@@ -7695,7 +7695,7 @@ enum class EScreenplayTriggerEvent
 	STT_ReportCrimeMoveBack = 2,
 };
 
-// 0x0000000142B93A60 (Size: 0x4)
+// Size: 0x4
 enum class ETakeDownAnim
 {
 	eCoverLowOverNarrowCloseFront = 0,
@@ -7728,7 +7728,7 @@ enum class ETakeDownAnim
 	eTakeDownAnimLast = 27,
 };
 
-// 0x0000000142B8B828 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SDramaActorSaveState
 {
 public:
@@ -7750,7 +7750,7 @@ public:
 	bool m_bIsSpeaking; // 0x32
 };
 
-// 0x0000000142BB5F40 (Size: 0x8)
+// Size: 0x8
 class alignas(4) STrackerEntitySaveData
 {
 public:
@@ -7766,7 +7766,7 @@ public:
 	bool m_bSpatialVisibility; // 0x6
 };
 
-// 0x0000000142BB4BC8 (Size: 0x18)
+// Size: 0x18
 class alignas(8) STrackerManagerSaveData
 {
 public:
@@ -7779,7 +7779,7 @@ public:
 	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
 };
 
-// 0x0000000142B8DA20 (Size: 0x4)
+// Size: 0x4
 enum class ZLogicMultipleGate_EGateType
 {
 	eFireEveryTime = 0,
@@ -7787,7 +7787,7 @@ enum class ZLogicMultipleGate_EGateType
 	eFireOnce = 2,
 };
 
-// 0x0000000142B9EB10 (Size: 0x4)
+// Size: 0x4
 enum class ZActBehaviorEntity_EMovementType
 {
 	MT_WALK = 0,
@@ -7795,7 +7795,7 @@ enum class ZActBehaviorEntity_EMovementType
 	MT_IGNORE_POSITION = 2,
 };
 
-// 0x0000000142B90FC8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5BodySoundEventConsumer_EAnimSoundBody
 {
 	eHM5AnimSoundBody_Buttocks = 0,
@@ -7815,7 +7815,7 @@ enum class ZHM5BodySoundEventConsumer_EAnimSoundBody
 	eHM5AnimSoundBody_RollSide = 14,
 };
 
-// 0x0000000142B90FE0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5BodySoundEventConsumer_SBodySoundEventData
 {
 public:
@@ -7828,7 +7828,7 @@ public:
 	ZHM5BodySoundEventConsumer_EAnimSoundBody m_nEvent; // 0x0
 };
 
-// 0x0000000142B9EC48 (Size: 0x4)
+// Size: 0x4
 enum class ZPatrolBehaviorEntity_EMovementType
 {
 	MT_WALK = 0,
@@ -7836,7 +7836,7 @@ enum class ZPatrolBehaviorEntity_EMovementType
 	MT_IGNORE_POSITION = 2,
 };
 
-// 0x0000000142B95130 (Size: 0x4)
+// Size: 0x4
 enum class EUIActionGroupIcon
 {
 	EUIAGI_NoIcon = 0,
@@ -7866,7 +7866,7 @@ enum class EUIActionGroupIcon
 	EUIAGI_MAX = 24,
 };
 
-// 0x0000000142BC2008 (Size: 0x4)
+// Size: 0x4
 enum class ESilenceRating
 {
 	eSR_NotSilenced = 0,
@@ -7875,7 +7875,7 @@ enum class ESilenceRating
 	eSR_CompletelySilenced = 3,
 };
 
-// 0x0000000142C14AC0 (Size: 0x1)
+// Size: 0x1
 enum class EFilterMaskBit
 {
 	eFilterMaskBit_ObjectCollision = 0,
@@ -7883,7 +7883,7 @@ enum class EFilterMaskBit
 	eFilterMaskBit_UNUSED_LAST = 2,
 };
 
-// 0x0000000142B89760 (Size: 0x3)
+// Size: 0x3
 class alignas(1) SRemoteControlReceiverSaveData
 {
 public:
@@ -7898,7 +7898,7 @@ public:
 	bool m_bDestroyed; // 0x2
 };
 
-// 0x0000000142B898C8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5BodyContainer_EBCState
 {
 	BC_CLOSED = 0,
@@ -7909,7 +7909,7 @@ enum class ZHM5BodyContainer_EBCState
 	BC_FLUSHING = 5,
 };
 
-// 0x0000000142B89928 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SBodyContainerSaveData
 {
 public:
@@ -7925,7 +7925,7 @@ public:
 	bool m_bFrameUpdateActive; // 0xC
 };
 
-// 0x0000000142C14850 (Size: 0x1)
+// Size: 0x1
 enum class ECollisionPriority
 {
 	ECOLLISIONPRIORITY_LOW = 0,
@@ -7934,7 +7934,7 @@ enum class ECollisionPriority
 	ECOLLISIONPRIORITY_CRITICAL = 3,
 };
 
-// 0x0000000142B91118 (Size: 0x4)
+// Size: 0x4
 enum class EHM5SoundFootstepEvent
 {
 	EFSE_START = 0,
@@ -7947,7 +7947,7 @@ enum class EHM5SoundFootstepEvent
 	EFSE_LAND = 7,
 };
 
-// 0x0000000142B91130 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5FootstepEventConsumer_SFootstepSoundEventData
 {
 public:
@@ -7960,7 +7960,7 @@ public:
 	EHM5SoundFootstepEvent m_nEvent; // 0x0
 };
 
-// 0x0000000142B79A88 (Size: 0x4)
+// Size: 0x4
 enum class ZActStateCondition_EState
 {
 	MOVING = 0,
@@ -7968,7 +7968,7 @@ enum class ZActStateCondition_EState
 	PLAYING = 2,
 };
 
-// 0x0000000142BB9F90 (Size: 0x4)
+// Size: 0x4
 enum class ELedgeDismountBehavior
 {
 	eLDB_DontCare = 0,
@@ -7976,7 +7976,7 @@ enum class ELedgeDismountBehavior
 	eLDB_Crouch = 2,
 };
 
-// 0x0000000142BC4388 (Size: 0x4)
+// Size: 0x4
 enum class ZValueInt_Evaluation_EEvaluationType
 {
 	EQUAL = 0,
@@ -7987,7 +7987,7 @@ enum class ZValueInt_Evaluation_EEvaluationType
 	HIGHER_OR_EQUAL = 5,
 };
 
-// 0x0000000143E0B5A8 (Size: 0x4)
+// Size: 0x4
 enum class IScatterContainerEntity_ECanvasSize
 {
 	SIZE_128 = 0,
@@ -7998,7 +7998,7 @@ enum class IScatterContainerEntity_ECanvasSize
 	SIZE_4096 = 5,
 };
 
-// 0x0000000142B90CC0 (Size: 0x4)
+// Size: 0x4
 enum class ZMoveToOrder_EMoveSpeed
 {
 	MS_AUTO = 0,
@@ -8007,7 +8007,7 @@ enum class ZMoveToOrder_EMoveSpeed
 	MS_WALK = 3,
 };
 
-// 0x0000000142B926B0 (Size: 0x4)
+// Size: 0x4
 enum class ECCDecalEffect
 {
 	eCCDecalEffect_None = 0,
@@ -8024,7 +8024,7 @@ enum class ECCDecalEffect
 	eCCDecalEffect_Bruise = 11,
 };
 
-// 0x0000000142B823D0 (Size: 0x14)
+// Size: 0x14
 class alignas(4) ZRecoverUnconsciousSituation_SSituationSaveData
 {
 public:
@@ -8042,7 +8042,7 @@ public:
 	bool m_bVictimPacified; // 0x11
 };
 
-// 0x0000000143E0B5D8 (Size: 0x4)
+// Size: 0x4
 enum class IScatterContainerEntity_ECanvasClearMode
 {
 	CLEAR_ALL = 0,
@@ -8055,7 +8055,7 @@ enum class IScatterContainerEntity_ECanvasClearMode
 	CLEAR_SETMATERIALKEEPINTENSITYVALUE = 7,
 };
 
-// 0x0000000142BB5770 (Size: 0x4)
+// Size: 0x4
 enum class ZContractObjectiveHudHintEntity_EObjectiveHintIcon
 {
 	eNone = 0,
@@ -8078,7 +8078,7 @@ enum class ZContractObjectiveHudHintEntity_EObjectiveHintIcon
 	eExitMissionIcon = 18,
 };
 
-// 0x0000000142B89AF0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) S3rdPersonCameraSaveData
 {
 public:
@@ -8092,7 +8092,7 @@ public:
 	float32 m_fAnglePitch; // 0x4
 };
 
-// 0x0000000142B93880 (Size: 0x4)
+// Size: 0x4
 enum class ESpeechPriority
 {
 	SP_AMBIENT = 0,
@@ -8106,7 +8106,7 @@ enum class ESpeechPriority
 	SP_COUNT__ = 8,
 };
 
-// 0x00000001423CC9D0 (Size: 0x4)
+// Size: 0x4
 enum class ECCWeaponAnimSet
 {
 	AS_SLIT_THROAT_1H = 0,
@@ -8124,7 +8124,7 @@ enum class ECCWeaponAnimSet
 	AS_AXE = 12,
 };
 
-// 0x0000000142B79B58 (Size: 0x4)
+// Size: 0x4
 enum class ECompiledBehaviorType
 {
 	BT_ConditionScope = 0,
@@ -8322,7 +8322,7 @@ enum class ECompiledBehaviorType
 	BT_Invalid = 190,
 };
 
-// 0x0000000142B82A20 (Size: 0x4)
+// Size: 0x4
 enum class EActorRole
 {
 	eActorRole_Default = 0,
@@ -8330,7 +8330,7 @@ enum class EActorRole
 	eActorRole_VIP = 2,
 };
 
-// 0x00000001423CCA68 (Size: 0x50)
+// Size: 0x50
 class alignas(4) SItemSaveData
 {
 public:
@@ -8362,7 +8362,7 @@ public:
 	ERenderGlowTypes m_eGlowType; // 0x4C
 };
 
-// 0x0000000142BC43D0 (Size: 0x1)
+// Size: 0x1
 enum class ZWaveformGeneratorEntity_ECurveType
 {
 	CURVE_TYPE_SINE = 0,
@@ -8372,7 +8372,7 @@ enum class ZWaveformGeneratorEntity_ECurveType
 	CURVE_TYPE_REVERSE_SAWTOOTH = 4,
 };
 
-// 0x0000000142BC20B0 (Size: 0x4)
+// Size: 0x4
 enum class EItemHUDType
 {
 	EIHT_None = 0,
@@ -8380,7 +8380,7 @@ enum class EItemHUDType
 	EIHT_OutbreakHealingItem = 2,
 };
 
-// 0x0000000142B832A8 (Size: 0x4)
+// Size: 0x4
 enum class ZDetectedInPrivateGroup_EInvestigateGroupState
 {
 	IGS_Delay = 0,
@@ -8391,7 +8391,7 @@ enum class ZDetectedInPrivateGroup_EInvestigateGroupState
 	IGS_Max = 5,
 };
 
-// 0x0000000142B82E28 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SCautiousSituationMemberSaveData
 {
 public:
@@ -8417,7 +8417,7 @@ public:
 	bool m_bLockdownEnforcer; // 0x43
 };
 
-// 0x0000000142B9E8B8 (Size: 0x4)
+// Size: 0x4
 enum class ZActorPickerFilterKeyword_EEvaluationType
 {
 	ALL = 0,
@@ -8425,14 +8425,14 @@ enum class ZActorPickerFilterKeyword_EEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142BBA278 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5HIKEventConsumer_EEffector
 {
 	eLeftHand = 0,
 	eRightHand = 1,
 };
 
-// 0x0000000142BBA2A8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) ZHM5HIKEventConsumer_SZHM5HIKEventData
 {
 public:
@@ -8446,7 +8446,7 @@ public:
 	ZHM5HIKEventConsumer_EBlend m_nBlend; // 0x4
 };
 
-// 0x0000000142C132E0 (Size: 0x4)
+// Size: 0x4
 enum class ENetworkSystemID
 {
 	NSID_UNDEFINED = 0,
@@ -8526,14 +8526,14 @@ enum class ENetworkSystemID
 	NSID_MAX = 72,
 };
 
-// 0x0000000142B8D7D8 (Size: 0x4)
+// Size: 0x4
 enum class ZConditionListEntity_EEvaluationType
 {
 	ALL_TRUE = 0,
 	ANY_TRUE = 1,
 };
 
-// 0x0000000143E15100 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SCrowdFlowChannel
 {
 public:
@@ -8547,7 +8547,7 @@ public:
 	TArray<uint16> m_aFlowCost; // 0x18
 };
 
-// 0x0000000142B881F8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5FaceFXReactionEventConsumer_EEvent
 {
 	eHitByBullet = 0,
@@ -8562,7 +8562,7 @@ enum class ZHM5FaceFXReactionEventConsumer_EEvent
 	eReactToExplosion = 9,
 };
 
-// 0x0000000142BF4818 (Size: 0x4)
+// Size: 0x4
 enum class ZDebugSpatialEntity_EDrawLayer
 {
 	DL_DEFAULT = 0,
@@ -8587,7 +8587,7 @@ enum class ZDebugSpatialEntity_EDrawLayer
 	DL_UI = 19,
 };
 
-// 0x0000000142BC3150 (Size: 0x4)
+// Size: 0x4
 enum class EIntelTensionLevel
 {
 	eITL_Undefined = 0,
@@ -8601,14 +8601,14 @@ enum class EIntelTensionLevel
 	eITL_Combat = 8,
 };
 
-// 0x0000000142BF2580 (Size: 0x4)
+// Size: 0x4
 enum class CrowdUtil_ECrowdSide
 {
 	LEFT = 0,
 	RIGHT = 1,
 };
 
-// 0x0000000142B90B48 (Size: 0x4)
+// Size: 0x4
 enum class ESentryActionPrompt
 {
 	eSAP_None = 0,
@@ -8617,7 +8617,7 @@ enum class ESentryActionPrompt
 	eSAP_Max = 3,
 };
 
-// 0x0000000142B921E0 (Size: 0x4)
+// Size: 0x4
 enum class EInventoryConfigCustomRule
 {
 	EICCR_None = 0,
@@ -8625,7 +8625,7 @@ enum class EInventoryConfigCustomRule
 	EICCR_TempDropLeftHandItem = 2,
 };
 
-// 0x0000000142BC2248 (Size: 0x4)
+// Size: 0x4
 enum class ZItemSpawner_EPhysicsMode
 {
 	EPM_DEFINED_BY_ITEM = 0,
@@ -8634,7 +8634,7 @@ enum class ZItemSpawner_EPhysicsMode
 	EPM_KINEMATIC = 3,
 };
 
-// 0x0000000142B9A788 (Size: 0x4)
+// Size: 0x4
 enum class EScreenPlayState
 {
 	State_Stopped = 0,
@@ -8646,7 +8646,7 @@ enum class EScreenPlayState
 	State_Terminated = 6,
 };
 
-// 0x0000000142B9A7A0 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SDrama2SetupSaveData
 {
 public:
@@ -8661,7 +8661,7 @@ public:
 	uint32 m_rSituation; // 0x8
 };
 
-// 0x0000000142B9A848 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SDrama2SetupCollectionSaveData
 {
 public:
@@ -8675,7 +8675,7 @@ public:
 	TArray<SDrama2SetupSaveData> m_aStates; // 0x18
 };
 
-// 0x0000000142B9C978 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SBehaviorTreeEvaluationLogEntry
 {
 public:
@@ -8690,7 +8690,7 @@ public:
 	bool m_bResult; // 0x10
 };
 
-// 0x0000000142B9C9C0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SBehaviorTreeEvaluationLog
 {
 public:
@@ -8704,7 +8704,7 @@ public:
 	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
 };
 
-// 0x0000000142BB6310 (Size: 0x4)
+// Size: 0x4
 enum class EInteractionInputType
 {
 	EIIT_UNKNOWN = 0,
@@ -8715,7 +8715,7 @@ enum class EInteractionInputType
 	EIIT_GUIDE = 5,
 };
 
-// 0x0000000142B949F0 (Size: 0x4)
+// Size: 0x4
 enum class EBIEventTypes
 {
 	eBIL_HM_HitNPC = 0,
@@ -8726,7 +8726,7 @@ enum class EBIEventTypes
 	eBIL_Geometry = 5,
 };
 
-// 0x0000000142B93200 (Size: 0x48)
+// Size: 0x48
 class alignas(8) STargetInfoObjectiveCondition
 {
 public:
@@ -8743,7 +8743,7 @@ public:
 	bool hardCondition; // 0x40
 };
 
-// 0x0000000142B93238 (Size: 0x58)
+// Size: 0x58
 class alignas(8) STargetInfoDisplayData
 {
 public:
@@ -8763,7 +8763,7 @@ public:
 	bool bIsTarget; // 0x54
 };
 
-// 0x0000000142B93258 (Size: 0x18)
+// Size: 0x18
 class alignas(8) STargetInfoDisplayData_Dummy
 {
 public:
@@ -8776,7 +8776,7 @@ public:
 	TArray<STargetInfoDisplayData> __dummy; // 0x0
 };
 
-// 0x0000000142B899E8 (Size: 0x4)
+// Size: 0x4
 enum class ICameraEntity_EProjectionType
 {
 	ePerspectiveRH = 0,
@@ -8784,7 +8784,7 @@ enum class ICameraEntity_EProjectionType
 	eCustom = 2,
 };
 
-// 0x0000000142B899B8 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SClothBundleSpawnSaveData
 {
 public:
@@ -8797,7 +8797,7 @@ public:
 	uint32 m_rClothbundle; // 0x0
 };
 
-// 0x0000000142B8B6E0 (Size: 0x4)
+// Size: 0x4
 enum class ZDeadBodySituation_ESituationFlavor
 {
 	SF_None = 0,
@@ -8806,14 +8806,14 @@ enum class ZDeadBodySituation_ESituationFlavor
 	SF_Accident = 3,
 };
 
-// 0x0000000143E09838 (Size: 0x4)
+// Size: 0x4
 enum class ZBoxReflectionEntity_EBoundsType
 {
 	eBox = 0,
 	eRoom = 1,
 };
 
-// 0x0000000142B94210 (Size: 0x4)
+// Size: 0x4
 enum class ERatingTitleRequirement
 {
 	ERatingTitleRequirement_Optional = 0,
@@ -8821,7 +8821,7 @@ enum class ERatingTitleRequirement
 	ERatingTitleRequirement_Fails = 2,
 };
 
-// 0x0000000142B8DB18 (Size: 0x4)
+// Size: 0x4
 enum class ZSetVisibleEntity_StartBehavior
 {
 	SB_Nothing = 0,
@@ -8829,14 +8829,14 @@ enum class ZSetVisibleEntity_StartBehavior
 	SB_MakeInvisible = 2,
 };
 
-// 0x0000000143E40578 (Size: 0x4)
+// Size: 0x4
 enum class STestStruct_ETestEnum
 {
 	ETomato = 3,
 	EPotato = 5,
 };
 
-// 0x0000000142BEF658 (Size: 0x18)
+// Size: 0x18
 class alignas(4) SAudioEmitterEventSaveData
 {
 public:
@@ -8854,7 +8854,7 @@ public:
 	uint8 m_nPlayState; // 0x14
 };
 
-// 0x0000000142B79FB0 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SAnimatedActorReactOrderSaveData
 {
 public:
@@ -8877,7 +8877,7 @@ public:
 	ZString m_sAct; // 0x28
 };
 
-// 0x0000000143E0ACE8 (Size: 0xC0)
+// Size: 0xC0
 class alignas(8) SSaveGameHeader
 {
 public:
@@ -8895,7 +8895,7 @@ public:
 	SSaveGameMetaData MetaData; // 0x18
 };
 
-// 0x0000000142B94450 (Size: 0x4)
+// Size: 0x4
 enum class EMeBarState
 {
 	ME_BAR_NONE = 0,
@@ -8908,7 +8908,7 @@ enum class EMeBarState
 	ME_BAR_NEAR_BODY = 7,
 };
 
-// 0x0000000142B939A0 (Size: 0x4)
+// Size: 0x4
 enum class ECCNodeSubtype
 {
 	eCCNodeSubtype_Left = 0,
@@ -8923,7 +8923,7 @@ enum class ECCNodeSubtype
 	eCCNodeSubtype_Count = 9,
 };
 
-// 0x0000000142B92480 (Size: 0x4)
+// Size: 0x4
 enum class ZPIPMessageEntity_EIcon
 {
 	IconStart = 0,
@@ -8937,7 +8937,7 @@ enum class ZPIPMessageEntity_EIcon
 	IconEnd = 8,
 };
 
-// 0x0000000142B9EAD8 (Size: 0x4)
+// Size: 0x4
 enum class EWaypointRotationAlignment
 {
 	RA_NONE = 0,
@@ -8945,7 +8945,7 @@ enum class EWaypointRotationAlignment
 	RA_EXACT = 2,
 };
 
-// 0x0000000142C14AF0 (Size: 0x1)
+// Size: 0x1
 enum class EAsyncRaycastsGroup
 {
 	eAsyncRaycasts_Gameplay = 0,
@@ -8953,7 +8953,7 @@ enum class EAsyncRaycastsGroup
 	eAsyncRaycasts_UNUSED_LAST = 2,
 };
 
-// 0x0000000142B84020 (Size: 0x4)
+// Size: 0x4
 enum class EHintMessageSoundType
 {
 	EHintMessageSound_None = 0,
@@ -8969,7 +8969,7 @@ enum class EHintMessageSoundType
 	EHintMessageSound_Agility = 10,
 };
 
-// 0x0000000142B79AF0 (Size: 0x4)
+// Size: 0x4
 enum class EKnownEntityType
 {
 	KET_UNKNOWN = 0,
@@ -8983,14 +8983,14 @@ enum class EKnownEntityType
 	KET_TEMPCROWDBODY = 8,
 };
 
-// 0x0000000142B8D6B8 (Size: 0x4)
+// Size: 0x4
 enum class ZActorAccessoryItemCondition_EConditionTypes
 {
 	ECT_HasInPool = 0,
 	ECT_HasAttached = 1,
 };
 
-// 0x0000000142B8D990 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5DynamicRayCastEntity_ECollideType
 {
 	eAll = 0,
@@ -9001,7 +9001,7 @@ enum class ZHM5DynamicRayCastEntity_ECollideType
 	eActor = 5,
 };
 
-// 0x0000000142BB82A8 (Size: 0x4)
+// Size: 0x4
 enum class ZCausalNodeEntity_ECauseEvaluationType
 {
 	ALL = 0,
@@ -9009,7 +9009,7 @@ enum class ZCausalNodeEntity_ECauseEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142BEF778 (Size: 0x4)
+// Size: 0x4
 enum class ESoundGateFlags
 {
 	SOUNDGATE_FLAGS_AMBIENCE = 1,
@@ -9017,7 +9017,7 @@ enum class ESoundGateFlags
 	SOUNDGATE_FLAGS_ALL = 255,
 };
 
-// 0x0000000142BB6250 (Size: 0x4)
+// Size: 0x4
 enum class EInteractionIndicatorState
 {
 	EIIS_AVAILABLE = 0,
@@ -9026,7 +9026,7 @@ enum class EInteractionIndicatorState
 	EIIS_NOTAVAILABLE = 3,
 };
 
-// 0x0000000142BF2370 (Size: 0x4)
+// Size: 0x4
 enum class CrowdUtil_EGenderReq
 {
 	eGender_Any = 0,
@@ -9034,7 +9034,7 @@ enum class CrowdUtil_EGenderReq
 	eGender_Female = 2,
 };
 
-// 0x0000000142B8FC00 (Size: 0x4)
+// Size: 0x4
 enum class EActorLookAtPriority
 {
 	eALAPriority_Ambient = 0,
@@ -9047,7 +9047,7 @@ enum class EActorLookAtPriority
 	eALAPriority_CombatHigh = 7,
 };
 
-// 0x0000000142B93FD0 (Size: 0x1)
+// Size: 0x1
 enum class ECharacterAnimEventState
 {
 	eES_None = 0,
@@ -9056,7 +9056,7 @@ enum class ECharacterAnimEventState
 	eES_TimedOut = 3,
 };
 
-// 0x0000000142B90A80 (Size: 0x4)
+// Size: 0x4
 enum class ZFriskSuspectGroup_EHitmanGreetState
 {
 	HGS_NotGreeted = 0,
@@ -9064,7 +9064,7 @@ enum class ZFriskSuspectGroup_EHitmanGreetState
 	HGS_ShrugOff = 2,
 };
 
-// 0x0000000142B79978 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SActorAnimSetVariationIndexSaveData
 {
 public:
@@ -9078,7 +9078,7 @@ public:
 	int32 m_nIndex; // 0x4
 };
 
-// 0x0000000142B79A08 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SActorAnimSetSaveData
 {
 public:
@@ -9098,7 +9098,7 @@ public:
 	TArray<SActorAnimSetVariationIndexSaveData> m_aReactVariationIndecies; // 0x30
 };
 
-// 0x0000000142B79A20 (Size: 0x4)
+// Size: 0x4
 enum class EAttachLocation
 {
 	eALRightHand = 0,
@@ -9110,7 +9110,7 @@ enum class EAttachLocation
 	eALUndefined = 6,
 };
 
-// 0x0000000142B79A38 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SActorInventoryItemSaveData
 {
 public:
@@ -9128,7 +9128,7 @@ public:
 	bool m_bGrenade; // 0xE
 };
 
-// 0x0000000142B79A68 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SActorInventorySaveData
 {
 public:
@@ -9141,7 +9141,7 @@ public:
 	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
 };
 
-// 0x0000000142B82820 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SLongTermMemorySaveData
 {
 public:
@@ -9155,7 +9155,7 @@ public:
 	uint8 m_Memory; // 0x10
 };
 
-// 0x00000001423CCA18 (Size: 0x4)
+// Size: 0x4
 enum class EDeathType
 {
 	eDT_UNDEFINED = 0,
@@ -9164,7 +9164,7 @@ enum class EDeathType
 	eDT_BLOODY_KILL = 3,
 };
 
-// 0x0000000142B82880 (Size: 0x60)
+// Size: 0x60
 class alignas(8) SActorDamageControlSaveData
 {
 public:
@@ -9202,7 +9202,7 @@ public:
 	float32 fAgilityElementUncosciousTime; // 0x58
 };
 
-// 0x0000000142B828B0 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SActorDynamicTemplateSaveData
 {
 public:
@@ -9223,7 +9223,7 @@ public:
 	uint32 m_rInstance; // 0x38
 };
 
-// 0x0000000142B82940 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SEventHistorySaveData
 {
 public:
@@ -9236,7 +9236,7 @@ public:
 	TArray<ZGameTime> m_aOccurences; // 0x0
 };
 
-// 0x0000000142B82838 (Size: 0x20)
+// Size: 0x20
 class alignas(4) SActorBoneSaveData
 {
 public:
@@ -9250,7 +9250,7 @@ public:
 	SVector4 mTranslation; // 0x10
 };
 
-// 0x0000000142B82868 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SActorRagdollPoseSaveData
 {
 public:
@@ -9265,7 +9265,7 @@ public:
 	TArray<uint32> m_aBoneIndices; // 0x28
 };
 
-// 0x0000000142B82970 (Size: 0x370)
+// Size: 0x370
 class alignas(16) SActorSaveData
 {
 public:
@@ -9330,7 +9330,7 @@ public:
 	bool m_bIsOutfitRuined; // 0x364
 };
 
-// 0x0000000143E0B300 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SEntityPath
 {
 public:
@@ -9344,7 +9344,7 @@ public:
 	TArray<uint64> m_aEntityPath; // 0x8
 };
 
-// 0x0000000143E0ACD0 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SSaveGameData
 {
 public:
@@ -9359,7 +9359,7 @@ public:
 	TArray<SEntityPath> m_aEntityPaths; // 0x20
 };
 
-// 0x0000000142B93180 (Size: 0x4)
+// Size: 0x4
 enum class SDoorSoundDefs_EDefinition
 {
 	DoorOpen = 0,
@@ -9368,14 +9368,14 @@ enum class SDoorSoundDefs_EDefinition
 	DoorOpenStop = 3,
 };
 
-// 0x0000000142B9DD18 (Size: 0x4)
+// Size: 0x4
 enum class ZActorPickerEffectDrama_EEffectPhaseAction
 {
 	EPA_START = 0,
 	EPA_LEAVE = 1,
 };
 
-// 0x0000000142B94B18 (Size: 0x48)
+// Size: 0x48
 class alignas(8) AI_Private_Details_SBaseStimulus_Pool_SaveData
 {
 public:
@@ -9390,7 +9390,7 @@ public:
 	TArray<uint16> m_FreeIndices; // 0x30
 };
 
-// 0x0000000142BC2050 (Size: 0x4)
+// Size: 0x4
 enum class EItemModifierType
 {
 	MODIFIER_NONE = 0,
@@ -9420,7 +9420,7 @@ enum class EItemModifierType
 	MODIFIER_BURST = 24,
 };
 
-// 0x0000000143E0BCF8 (Size: 0x4)
+// Size: 0x4
 enum class ZAudioSequenceTrack_EPlaybackTarget
 {
 	eNone = 0,
@@ -9429,7 +9429,7 @@ enum class ZAudioSequenceTrack_EPlaybackTarget
 	ePreviewEmitter = 3,
 };
 
-// 0x0000000142B871D0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SMovementDisguiseSafeZoneSaveData
 {
 public:
@@ -9443,7 +9443,7 @@ public:
 	uint32 m_nSafeZoneAnimNode; // 0x4
 };
 
-// 0x00000001423CC6A8 (Size: 0x4)
+// Size: 0x4
 enum class EAISituation
 {
 	AIS_GENERIC = 0,
@@ -9478,7 +9478,7 @@ enum class EAISituation
 	AIS_SNIPER = 29,
 };
 
-// 0x0000000142B9DB60 (Size: 0x10)
+// Size: 0x10
 class alignas(4) AI_SFirePattern02_SData
 {
 public:
@@ -9494,7 +9494,7 @@ public:
 	float32 m_WaitMaxSeconds; // 0xC
 };
 
-// 0x0000000142B9A878 (Size: 0x4)
+// Size: 0x4
 enum class EDramaSituationDescriptors
 {
 	eDSD_NONE = 0,
@@ -9512,7 +9512,7 @@ enum class EDramaSituationDescriptors
 	eDSD_PRIVATE = 2048,
 };
 
-// 0x0000000142BC3198 (Size: 0x1)
+// Size: 0x1
 enum class EOpportunityState
 {
 	OS_TRACKED = 1,
@@ -9521,7 +9521,7 @@ enum class EOpportunityState
 	OS_REVEAL_PENDING = 8,
 };
 
-// 0x0000000142C14B20 (Size: 0x1)
+// Size: 0x1
 enum class ERagdollPart
 {
 	ERAGDOLLPART_NONE = 0,
@@ -9531,14 +9531,14 @@ enum class ERagdollPart
 	ERAGDOLLPART_FOOT = 4,
 };
 
-// 0x0000000142BC4250 (Size: 0x4)
+// Size: 0x4
 enum class ZStateControllerEntity_WrapMode
 {
 	WM_Loop = 0,
 	WM_Clamp = 1,
 };
 
-// 0x0000000142C2C218 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IPureWaterReflectable
 {
 public:
@@ -9550,7 +9550,7 @@ public:
 
 };
 
-// 0x0000000142BC0B58 (Size: 0x3)
+// Size: 0x3
 class alignas(1) SPhysicsSaveData
 {
 public:
@@ -9565,7 +9565,7 @@ public:
 	bool m_bIsVisible; // 0x2
 };
 
-// 0x0000000142B935E0 (Size: 0x1)
+// Size: 0x1
 enum class EOrderCompletionStatus
 {
 	OCS_Undetermined = 0,
@@ -9575,7 +9575,7 @@ enum class EOrderCompletionStatus
 	OCS_Failed = 4,
 };
 
-// 0x0000000142B8B1B8 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SHeroEscortSituationActors
 {
 public:
@@ -9588,7 +9588,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142B8D7F8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5ContextActionEntity_EInteraction
 {
 	eIT_RotateLeftStick = 0,
@@ -9596,7 +9596,7 @@ enum class ZHM5ContextActionEntity_EInteraction
 	eIT_NoInteraction = 2,
 };
 
-// 0x0000000142B92A50 (Size: 0x4)
+// Size: 0x4
 enum class EOutbreakInfectionStage
 {
 	eOIS_Stage1 = 0,
@@ -9604,7 +9604,7 @@ enum class EOutbreakInfectionStage
 	eOIS_Stage3 = 2,
 };
 
-// 0x0000000142B7B4C0 (Size: 0x4)
+// Size: 0x4
 enum class eActionRewardType
 {
 	AR_None = 0,
@@ -9613,7 +9613,7 @@ enum class eActionRewardType
 	AR_Key = 3,
 };
 
-// 0x0000000142C0EE00 (Size: 0x4)
+// Size: 0x4
 enum class ZAT2Controller_EFootstepsMovementType
 {
 	MOVEMENT_WALKING = 0,
@@ -9622,7 +9622,7 @@ enum class ZAT2Controller_EFootstepsMovementType
 	MOVEMENT_STANDING = 3,
 };
 
-// 0x0000000142B9EBF8 (Size: 0x4)
+// Size: 0x4
 enum class ZMoveToPositionBehaviorEntity_EMovementType
 {
 	MT_WALK = 0,
@@ -9630,7 +9630,7 @@ enum class ZMoveToPositionBehaviorEntity_EMovementType
 	MT_IGNORE_POSITION = 2,
 };
 
-// 0x0000000142BEF7A8 (Size: 0x1)
+// Size: 0x1
 enum class AudioCurve
 {
 	AudioCurve_Log3 = 0,
@@ -9646,14 +9646,14 @@ enum class AudioCurve
 	AudioCurve_Constant = 10,
 };
 
-// 0x0000000142B914B0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5ForceCover_EFaceDirection
 {
 	eFaceLeft = 0,
 	eFaceRight = 1,
 };
 
-// 0x0000000142BF3518 (Size: 0x4)
+// Size: 0x4
 enum class EActivationPriority
 {
 	eActivatable_First = 0,
@@ -9697,14 +9697,14 @@ enum class EActivationPriority
 	eLAST_ACTIVATION_PRIORITY = 38,
 };
 
-// 0x0000000142BB5F20 (Size: 0x4)
+// Size: 0x4
 enum class ZMenuSliderNavigationEntity_ESliderInputMode
 {
 	E_HORIZONTAL = 0,
 	E_VERTICAL = 1,
 };
 
-// 0x0000000142B9EB70 (Size: 0x4)
+// Size: 0x4
 enum class ZActDurationCondition_EState
 {
 	MOVING = 0,
@@ -9713,7 +9713,7 @@ enum class ZActDurationCondition_EState
 	STOPPING = 3,
 };
 
-// 0x0000000143E15178 (Size: 0x4)
+// Size: 0x4
 class alignas(2) ZCrowdGridPoint
 {
 public:
@@ -9727,7 +9727,7 @@ public:
 	uint8 m_nOnNavGrid; // 0x2
 };
 
-// 0x0000000142B840A8 (Size: 0x4)
+// Size: 0x4
 enum class ETextAlignment
 {
 	TEXT_ALIGN_LEFT = 0,
@@ -9735,7 +9735,7 @@ enum class ETextAlignment
 	TEXT_ALIGN_RIGHT = 2,
 };
 
-// 0x0000000142BC2068 (Size: 0x4)
+// Size: 0x4
 enum class eItemSize
 {
 	ITEMSIZE_SMALL = 0,
@@ -9743,7 +9743,7 @@ enum class eItemSize
 	ITEMSIZE_LARGE = 2,
 };
 
-// 0x0000000142B8B230 (Size: 0x4)
+// Size: 0x4
 enum class ZLeadEscortSituationEntity_ETargetState
 {
 	ETS_Unknown = 0,
@@ -9755,7 +9755,7 @@ enum class ZLeadEscortSituationEntity_ETargetState
 	ETS_TargetIsHitman = 6,
 };
 
-// 0x0000000142B8F200 (Size: 0x8)
+// Size: 0x8
 class alignas(0) ISoundMaterialDescriptor
 {
 public:
@@ -9767,7 +9767,7 @@ public:
 
 };
 
-// 0x0000000142BF2448 (Size: 0x4)
+// Size: 0x4
 enum class ECrowdFlowCandidates
 {
 	NONE = 0,
@@ -9775,7 +9775,7 @@ enum class ECrowdFlowCandidates
 	SPAWNED_ON_FLOW = 2,
 };
 
-// 0x0000000142B93CD0 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterSubcontrollerType
 {
 	eSCT_IDGenerator = 0,
@@ -9802,7 +9802,7 @@ enum class ECharacterSubcontrollerType
 	eSCT_Suitcase = 21,
 };
 
-// 0x0000000142B90BC0 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SDisturbanceSaveData
 {
 public:
@@ -9820,7 +9820,7 @@ public:
 	bool m_bLockOnHitmanPosition; // 0x1C
 };
 
-// 0x0000000142BC20C8 (Size: 0x4)
+// Size: 0x4
 enum class EThrownCollisionSoundLoudness
 {
 	eLoudness_Default = 0,
@@ -9829,7 +9829,7 @@ enum class EThrownCollisionSoundLoudness
 	eLoudness_Loud = 3,
 };
 
-// 0x0000000142B82D50 (Size: 0x50)
+// Size: 0x50
 class alignas(8) SInvestigateWeaponGroupSaveData
 {
 public:
@@ -9849,7 +9849,7 @@ public:
 	TArray<uint32> m_aUnconsciousGuards; // 0x38
 };
 
-// 0x0000000142B9EDB0 (Size: 0x4)
+// Size: 0x4
 enum class EGuardPointType
 {
 	GPT_Hold = 0,
@@ -9858,7 +9858,7 @@ enum class EGuardPointType
 	GPT_VIPSafeRoom = 3,
 };
 
-// 0x0000000142BB5AE0 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SAttentionHUDUIElement
 {
 public:
@@ -9875,7 +9875,7 @@ public:
 	int32 nColor; // 0x10
 };
 
-// 0x0000000142BB5A28 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SItemLeftHandUIData
 {
 public:
@@ -9892,7 +9892,7 @@ public:
 	bool bIllegal; // 0xE
 };
 
-// 0x0000000142BB5A40 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SItemOnBackUIData
 {
 public:
@@ -9909,7 +9909,7 @@ public:
 	bool bIllegal; // 0xE
 };
 
-// 0x0000000142BB3A78 (Size: 0xC8)
+// Size: 0xC8
 class alignas(8) ZHUDUIControllerEntity_SWeaponViewData
 {
 public:
@@ -9926,7 +9926,7 @@ public:
 	int32 nDisplayMode; // 0xC4
 };
 
-// 0x0000000142BB6190 (Size: 0x4)
+// Size: 0x4
 enum class EUIBusyOperationId
 {
 	eOperationId_GameSave = 0,
@@ -9980,7 +9980,7 @@ enum class EUIBusyOperationId
 	eOperationId_None = 46,
 };
 
-// 0x0000000142B94750 (Size: 0x4)
+// Size: 0x4
 enum class EInformationBarMessage
 {
 	eIBM_Clear = 0,
@@ -9997,7 +9997,7 @@ enum class EInformationBarMessage
 	eIBM_NUM = 11,
 };
 
-// 0x0000000142BF3548 (Size: 0x4)
+// Size: 0x4
 enum class EEngineFrameUpdatePriority
 {
 	eFUP_AILogger = 0,
@@ -10125,7 +10125,7 @@ enum class EEngineFrameUpdatePriority
 	eFrameUpdatePriority_OutfitStreamingManager = 1001,
 };
 
-// 0x0000000142B89D60 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SGameCamProfileEntitySaveData
 {
 public:
@@ -10139,7 +10139,7 @@ public:
 	uint32 m_rHero; // 0x4
 };
 
-// 0x0000000142BF3500 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SEntityTemplateReference
 {
 public:
@@ -10155,7 +10155,7 @@ public:
 	ZString exposedEntity; // 0x10
 };
 
-// 0x0000000142BF36E0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SEntityTemplateExposedEntity
 {
 public:
@@ -10170,7 +10170,7 @@ public:
 	TArray<SEntityTemplateReference> aTargets; // 0x18
 };
 
-// 0x0000000142B94630 (Size: 0x4)
+// Size: 0x4
 enum class ESniperScoreMessageType
 {
 	ESSMT_STYLE_DEFAULT = 0,
@@ -10180,7 +10180,7 @@ enum class ESniperScoreMessageType
 	ESSMT_STYLE_CIVKILL = 4,
 };
 
-// 0x0000000142C104A0 (Size: 0x4)
+// Size: 0x4
 enum class ZHttpUrl_EVerb
 {
 	eNONE = 0,
@@ -10190,14 +10190,14 @@ enum class ZHttpUrl_EVerb
 	eHEAD = 4,
 };
 
-// 0x0000000142BF4860 (Size: 0x4)
+// Size: 0x4
 enum class ESmoothingMode
 {
 	ESM_LINEAR = 0,
 	ESM_EXPONENTIAL = 1,
 };
 
-// 0x0000000143E0C1D8 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SLightFlickerEntitySaveData
 {
 public:
@@ -10211,7 +10211,7 @@ public:
 	bool m_bFlickerOn; // 0x1
 };
 
-// 0x0000000142B9DD48 (Size: 0x4)
+// Size: 0x4
 enum class ZActorPickerEffectTemplate_EEffectPhaseAction
 {
 	EPA_NONE = 0,
@@ -10219,7 +10219,7 @@ enum class ZActorPickerEffectTemplate_EEffectPhaseAction
 	EPA_STOP_TEMPLATE = 2,
 };
 
-// 0x0000000142B93760 (Size: 0x4)
+// Size: 0x4
 enum class EActorAIDot
 {
 	eAAID_None = 0,
@@ -10235,7 +10235,7 @@ enum class EActorAIDot
 	eAAID_PotentialThreatDisabled = 100,
 };
 
-// 0x00000001423CB8A0 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SColorRGBA
 {
 public:
@@ -10251,7 +10251,7 @@ public:
 	float32 a; // 0xC
 };
 
-// 0x0000000142B92D10 (Size: 0x24)
+// Size: 0x24
 class alignas(4) SMathLerpSaveData_SColorRGBA
 {
 public:
@@ -10266,7 +10266,7 @@ public:
 	float32 m_fT; // 0x20
 };
 
-// 0x0000000142B91A08 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathLerpsSaveData_SColorRGBA
 {
 public:
@@ -10280,7 +10280,7 @@ public:
 	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
 };
 
-// 0x0000000143E09880 (Size: 0x4)
+// Size: 0x4
 enum class ZDecalControllerEntity_EScaleType
 {
 	eScaleDisable = 0,
@@ -10288,7 +10288,7 @@ enum class ZDecalControllerEntity_EScaleType
 	eScaleY = 2,
 };
 
-// 0x0000000143E40590 (Size: 0x20)
+// Size: 0x20
 class alignas(8) STestStruct
 {
 public:
@@ -10304,7 +10304,7 @@ public:
 	STestStruct_ETestEnum enumField; // 0x18
 };
 
-// 0x0000000143E405C0 (Size: 0x28)
+// Size: 0x28
 class alignas(8) STestStruct2
 {
 public:
@@ -10318,7 +10318,7 @@ public:
 	ZVariant variantField; // 0x18
 };
 
-// 0x0000000143E0BC80 (Size: 0x4)
+// Size: 0x4
 enum class ZSequenceEntity_ECommand
 {
 	COMMAND_START = 0,
@@ -10339,7 +10339,7 @@ enum class ZSequenceEntity_ECommand
 	COMMAND_CLEAR = 15,
 };
 
-// 0x0000000143E13960 (Size: 0x4)
+// Size: 0x4
 enum class ZUIControlEntity_EAlignmentType
 {
 	E_ALIGNMENT_TYPE_Center = 0,
@@ -10353,7 +10353,7 @@ enum class ZUIControlEntity_EAlignmentType
 	E_ALIGNMENT_TYPE_BottomRight = 8,
 };
 
-// 0x0000000142B8B058 (Size: 0x4)
+// Size: 0x4
 enum class ZEscortSituationEntity_EEscortState
 {
 	EES_Idle = 0,
@@ -10363,7 +10363,7 @@ enum class ZEscortSituationEntity_EEscortState
 	EES_Intermediate = 4,
 };
 
-// 0x0000000142B82CF0 (Size: 0x58)
+// Size: 0x58
 class alignas(8) SFriskSuspectGroupSaveData
 {
 public:
@@ -10391,14 +10391,14 @@ public:
 	bool m_bFirskRequestRepeated; // 0x53
 };
 
-// 0x0000000142B91D00 (Size: 0x4)
+// Size: 0x4
 enum class SniperControllerConditionType
 {
 	SCCT_Enabled = 0,
 	SCCT_PrecisionAim = 1,
 };
 
-// 0x0000000143E14F30 (Size: 0x20)
+// Size: 0x20
 class alignas(8) STypeReference
 {
 public:
@@ -10412,7 +10412,7 @@ public:
 	ZString sTypeArgName; // 0x10
 };
 
-// 0x0000000143E14F48 (Size: 0x50)
+// Size: 0x50
 class alignas(8) SExposedTypeInfo
 {
 public:
@@ -10428,14 +10428,14 @@ public:
 	STypeReference target; // 0x30
 };
 
-// 0x0000000142BF3D18 (Size: 0x4)
+// Size: 0x4
 enum class ZActorInstanceEntity_EFFXMode
 {
 	eFFX_MODE_DISABLE = 0,
 	eFFX_MODE_OVERWRITE = 1,
 };
 
-// 0x0000000142BB5D40 (Size: 0x4)
+// Size: 0x4
 enum class EMapType
 {
 	E_MAPTYPE_Minimap = 0,
@@ -10443,14 +10443,14 @@ enum class EMapType
 	E_MAPTYPE_MenuMap = 2,
 };
 
-// 0x0000000142BF2568 (Size: 0x4)
+// Size: 0x4
 enum class CrowdUtil_ECrowdFacing
 {
 	FRONT = 0,
 	BACK = 1,
 };
 
-// 0x0000000142B905F8 (Size: 0x30)
+// Size: 0x30
 class alignas(16) SDynamicEnforcerCandidateSaveData
 {
 public:
@@ -10466,7 +10466,7 @@ public:
 	float32 m_fRadius; // 0x24
 };
 
-// 0x0000000142B8B870 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SDynamicEnforcerServiceSaveData
 {
 public:
@@ -10479,7 +10479,7 @@ public:
 	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
 };
 
-// 0x0000000142B95148 (Size: 0x4)
+// Size: 0x4
 enum class EKeywordSetBehavior
 {
 	EKWSB_All = 0,
@@ -10488,7 +10488,7 @@ enum class EKeywordSetBehavior
 	EKWSB_No = 3,
 };
 
-// 0x0000000142B95D10 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorStandInSaveData
 {
 public:
@@ -10501,7 +10501,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142BC20E0 (Size: 0x4)
+// Size: 0x4
 enum class eItemRarity
 {
 	ITEMRARITY_COMMON = 0,
@@ -10509,7 +10509,7 @@ enum class eItemRarity
 	ITEMRARITY_RARE = 2,
 };
 
-// 0x0000000142B8D9A8 (Size: 0x3)
+// Size: 0x3
 class alignas(1) SDynamicRayCastEntitySaveData
 {
 public:
@@ -10524,7 +10524,7 @@ public:
 	bool m_bIsCurrentlyEnabled; // 0x2
 };
 
-// 0x0000000142B8D8E8 (Size: 0x4)
+// Size: 0x4
 enum class eHolsterAbility
 {
 	eUndecided = 0,
@@ -10535,7 +10535,7 @@ enum class eHolsterAbility
 	eCanNotBeHolstered = 5,
 };
 
-// 0x0000000142B8B440 (Size: 0x4)
+// Size: 0x4
 enum class EPlaceableType
 {
 	PLACEABLE_NOT = 0,
@@ -10545,7 +10545,7 @@ enum class EPlaceableType
 	PLACEABLE_ATTACH = 4,
 };
 
-// 0x00000001423CBA10 (Size: 0x18)
+// Size: 0x18
 class alignas(8) ZRuntimePinConDesc
 {
 public:
@@ -10561,7 +10561,7 @@ public:
 	uint32 m_nToPinID; // 0x14
 };
 
-// 0x0000000142B8FFA0 (Size: 0x4)
+// Size: 0x4
 enum class EMoveEndState
 {
 	MES_Moving = 0,
@@ -10569,7 +10569,7 @@ enum class EMoveEndState
 	MES_Standing = 2,
 };
 
-// 0x0000000142B941B0 (Size: 0x4)
+// Size: 0x4
 enum class ELastSoundTension
 {
 	EST_Unknown = 0,
@@ -10579,7 +10579,7 @@ enum class ELastSoundTension
 	EST_Red = 4,
 };
 
-// 0x00000001423CB888 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SColorRGB
 {
 public:
@@ -10594,7 +10594,7 @@ public:
 	float32 b; // 0x8
 };
 
-// 0x0000000143E0B2D0 (Size: 0x88)
+// Size: 0x88
 class alignas(4) SPostfilterParametersSaveData
 {
 public:
@@ -10632,14 +10632,14 @@ public:
 	SColorRGB m_HDRColorTint; // 0x7C
 };
 
-// 0x0000000143E0BC68 (Size: 0x4)
+// Size: 0x4
 enum class ZSequenceEntity_ELetterBoxAspect
 {
 	LETTERBOXASPECT_WIDESCREEN = 0,
 	LETTERBOXASPECT_CINEMASCOPE = 1,
 };
 
-// 0x0000000142BB9FA8 (Size: 0x4)
+// Size: 0x4
 enum class ELedgeDismountDirection
 {
 	eLDD_DontCare = 0,
@@ -10649,7 +10649,7 @@ enum class ELedgeDismountDirection
 	eLDD_Turn180 = 4,
 };
 
-// 0x0000000142B898F8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5BodyContainer_EBCAnimSet
 {
 	BC_CONTAINER_STANDARD = 0,
@@ -10659,7 +10659,7 @@ enum class ZHM5BodyContainer_EBCAnimSet
 	BC_CONTAINER_LAUNDRYCHUTE = 4,
 };
 
-// 0x0000000142BC3DD0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SValueBoolDelayedEntitySaveData
 {
 public:
@@ -10674,7 +10674,7 @@ public:
 	float32 m_fTimeToNextEvent; // 0x4
 };
 
-// 0x0000000142B94A18 (Size: 0x18)
+// Size: 0x18
 class alignas(8) AI_Private_SStimulusSnapshot
 {
 public:
@@ -10688,7 +10688,7 @@ public:
 	ZString StimulusData; // 0x8
 };
 
-// 0x0000000142B9EAC0 (Size: 0x4)
+// Size: 0x4
 enum class ZWaypointEntity_EMovementType
 {
 	MT_WALK = 0,
@@ -10697,7 +10697,7 @@ enum class ZWaypointEntity_EMovementType
 	MT_IGNORE_POSITION = 3,
 };
 
-// 0x0000000142BC2200 (Size: 0x4)
+// Size: 0x4
 enum class EInventoryStorageType
 {
 	EIST_None = 0,
@@ -10711,14 +10711,14 @@ enum class EInventoryStorageType
 	EIST_Debug = 8,
 };
 
-// 0x0000000142BEF8C8 (Size: 0x4)
+// Size: 0x4
 enum class EDialogEventEndReason
 {
 	EDialogEvent_Completed = 0,
 	EDialogEvent_Stopped = 1,
 };
 
-// 0x0000000142B91E98 (Size: 0x4)
+// Size: 0x4
 enum class ECameraOffset_old
 {
 	eCameraOffset_Center = 0,
@@ -10726,7 +10726,7 @@ enum class ECameraOffset_old
 	eCameraOffset_Right = 2,
 };
 
-// 0x0000000142B87218 (Size: 0x18)
+// Size: 0x18
 class alignas(4) SMovementAgilitySaveData
 {
 public:
@@ -10744,7 +10744,7 @@ public:
 	ECameraOffset_old m_eCameraOffset; // 0x14
 };
 
-// 0x0000000142C149D0 (Size: 0x1)
+// Size: 0x1
 enum class EDefaultCollidableLayer
 {
 	DCL_STATIC = 0,
@@ -10759,7 +10759,7 @@ enum class EDefaultCollidableLayer
 	DCL_UNUSED_LAST = 9,
 };
 
-// 0x0000000142BC2080 (Size: 0x4)
+// Size: 0x4
 enum class eItemHands
 {
 	IH_NONE = 0,
@@ -10767,7 +10767,7 @@ enum class eItemHands
 	IH_TWOHANDED = 2,
 };
 
-// 0x0000000142B9DA68 (Size: 0x4)
+// Size: 0x4
 enum class ZActorProviderFilterKeyword_EEvaluationType
 {
 	ALL = 0,
@@ -10775,7 +10775,7 @@ enum class ZActorProviderFilterKeyword_EEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142BB5AC0 (Size: 0x4)
+// Size: 0x4
 enum class ZHUDUIRoot_EHUDVisibility
 {
 	eHV_INSTANT_OFF = 0,
@@ -10784,7 +10784,7 @@ enum class ZHUDUIRoot_EHUDVisibility
 	eHV_INSTANT_ON = 3,
 };
 
-// 0x0000000142B79F50 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SActorManagerReferencableData
 {
 public:
@@ -10797,7 +10797,7 @@ public:
 	TArray<ESituationType> m_aSituationTypes; // 0x0
 };
 
-// 0x0000000142C148B0 (Size: 0x4)
+// Size: 0x4
 class alignas(2) SClothVertex
 {
 public:
@@ -10811,7 +10811,7 @@ public:
 	uint16 m_nRow; // 0x2
 };
 
-// 0x00000001423CC630 (Size: 0x4)
+// Size: 0x4
 enum class EKillType
 {
 	EKillType_Undefined = 0,
@@ -10827,7 +10827,7 @@ enum class EKillType
 	EKillType_Pull = 10,
 };
 
-// 0x0000000142B92420 (Size: 0x4)
+// Size: 0x4
 enum class EHUDIconType
 {
 	HUD_ICON_NONE = 0,
@@ -10840,7 +10840,7 @@ enum class EHUDIconType
 	HUD_ICON_TUTORIAL_ARROW = 7,
 };
 
-// 0x0000000142B8E570 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterActionSyncRequests
 {
 	eSM_ASR_Reload = 1,
@@ -10848,7 +10848,7 @@ enum class ECharacterActionSyncRequests
 	eSM_ASR_SwapItemHandR = 4,
 };
 
-// 0x0000000142B93530 (Size: 0x4)
+// Size: 0x4
 enum class EActBodyType
 {
 	ABT_UpperBodyOnly = 0,
@@ -10856,7 +10856,7 @@ enum class EActBodyType
 	ABT_FullBodyOnly = 2,
 };
 
-// 0x0000000142B8B7D8 (Size: 0x4)
+// Size: 0x4
 enum class ZInvestigateCautiousSituation_ESituationState
 {
 	SS_Main = 0,
@@ -10864,7 +10864,7 @@ enum class ZInvestigateCautiousSituation_ESituationState
 	SS_StandDown = 2,
 };
 
-// 0x0000000142B83398 (Size: 0x40)
+// Size: 0x40
 class alignas(16) SSituationOrderSaveData
 {
 public:
@@ -10882,7 +10882,7 @@ public:
 	ZVariant m_CustomData; // 0x30
 };
 
-// 0x0000000142B9AC38 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SEscortSituation2Actors
 {
 public:
@@ -10895,7 +10895,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142B9AC80 (Size: 0x98)
+// Size: 0x98
 class alignas(8) SEscortSituation2SaveData
 {
 public:
@@ -10926,7 +10926,7 @@ public:
 	TArray<uint32> m_aSearchActs; // 0x80
 };
 
-// 0x0000000142BC3180 (Size: 0x4)
+// Size: 0x4
 enum class EOpportunityRevealState
 {
 	ORS_REVEALING = 1,
@@ -10938,7 +10938,7 @@ enum class EOpportunityRevealState
 	ORS_BYPASS_MENU = 16,
 };
 
-// 0x0000000142B904E0 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SDeadBodyInfoSaveData
 {
 public:
@@ -10963,7 +10963,7 @@ public:
 	bool m_IsFoundOutsideNavmeshAndIgnored; // 0x37
 };
 
-// 0x0000000142B8B840 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SDeadBodySensorSaveData
 {
 public:
@@ -10977,7 +10977,7 @@ public:
 	int32 m_nBodyIndex; // 0x18
 };
 
-// 0x00000001423CC618 (Size: 0x4)
+// Size: 0x4
 enum class EGSBodyPart
 {
 	GSBODYPART_UNKNOWN = 0,
@@ -10987,7 +10987,7 @@ enum class EGSBodyPart
 	GSBODYPART_LEG = 4,
 };
 
-// 0x0000000142B90410 (Size: 0x4)
+// Size: 0x4
 enum class EActorSecondaryIconState
 {
 	eSIS_Clear = 0,
@@ -10997,7 +10997,7 @@ enum class EActorSecondaryIconState
 	eSIS_Infected_Stage3 = 4,
 };
 
-// 0x0000000142B825C0 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SCheckLastPositionGroupSaveData
 {
 public:
@@ -11015,7 +11015,7 @@ public:
 	bool m_bSearchCompleted; // 0xC
 };
 
-// 0x0000000142B92540 (Size: 0x4)
+// Size: 0x4
 enum class ZInputListenerAxisEntity_eInputListenerAxes
 {
 	EILA_HORIZONTAL = 0,
@@ -11024,7 +11024,7 @@ enum class ZInputListenerAxisEntity_eInputListenerAxes
 	EILA_TRIGGER_2 = 3,
 };
 
-// 0x0000000142BC2260 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SItemInstanceSaveData
 {
 public:
@@ -11040,7 +11040,7 @@ public:
 	TArray<ZRepositoryID> m_aItemModifierIds; // 0x28
 };
 
-// 0x0000000142BC1EA0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SWorldInventoryInstanceSaveData
 {
 public:
@@ -11053,7 +11053,7 @@ public:
 	TArray<SItemInstanceSaveData> m_aItemInstanceSaveData; // 0x0
 };
 
-// 0x0000000142B82988 (Size: 0x4)
+// Size: 0x4
 enum class EActorEventTypes
 {
 	eAET_OnAlive = 0,
@@ -11071,7 +11071,7 @@ enum class EActorEventTypes
 	eAET_OnDelete = 12,
 };
 
-// 0x0000000142C13568 (Size: 0x4)
+// Size: 0x4
 enum class EMultiplayerNetworkState
 {
 	Base = 0,
@@ -11085,7 +11085,7 @@ enum class EMultiplayerNetworkState
 	Count = 8,
 };
 
-// 0x00000001423CC928 (Size: 0x4)
+// Size: 0x4
 enum class EBoolCheckType
 {
 	eBCT_IGNORE = 0,
@@ -11093,7 +11093,7 @@ enum class EBoolCheckType
 	eBCT_FALSE = 2,
 };
 
-// 0x0000000142B82A38 (Size: 0x4)
+// Size: 0x4
 enum class EActorFaction
 {
 	eActorFaction_Default = 0,
@@ -11106,7 +11106,7 @@ enum class EActorFaction
 	eActorFaction_VIP_7 = 7,
 };
 
-// 0x0000000142BEF898 (Size: 0x1)
+// Size: 0x1
 enum class SoundPlayState
 {
 	ePlaying = 0,
@@ -11114,7 +11114,7 @@ enum class SoundPlayState
 	eStopping = 2,
 };
 
-// 0x0000000142B94570 (Size: 0x4)
+// Size: 0x4
 enum class EPushNotificationType
 {
 	PUSH_NOTIFICATION_OBJECTIVE = 0,
@@ -11128,7 +11128,7 @@ enum class EPushNotificationType
 	PUSH_NOTIFICATION_SCORE_COMPARISON = 8,
 };
 
-// 0x0000000142BB82C0 (Size: 0x4)
+// Size: 0x4
 enum class ECausalGraphTraversal
 {
 	eCGT_NONE = 0,
@@ -11137,7 +11137,7 @@ enum class ECausalGraphTraversal
 	eCGT_BOTH = 3,
 };
 
-// 0x0000000142BC36D0 (Size: 0x4)
+// Size: 0x4
 enum class ZCharacterSpeakCondition_EState
 {
 	Started = 0,
@@ -11149,7 +11149,7 @@ enum class ZCharacterSpeakCondition_EState
 	Stopped = 6,
 };
 
-// 0x0000000142B83128 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SEvacuateTrespassGroupSaveData
 {
 public:
@@ -11170,7 +11170,7 @@ public:
 	int32 m_warningCount; // 0x2C
 };
 
-// 0x0000000142B921C8 (Size: 0x4)
+// Size: 0x4
 enum class EInventoryConfigFormerEquippedItems
 {
 	EICFEI_Equip = 0,
@@ -11178,7 +11178,7 @@ enum class EInventoryConfigFormerEquippedItems
 	EICFEI_Forget = 2,
 };
 
-// 0x0000000142C14A60 (Size: 0x4)
+// Size: 0x4
 enum class EDamageResponse
 {
 	eDR_Fractured = 0,
@@ -11188,7 +11188,7 @@ enum class EDamageResponse
 	eDR_Count = 4,
 };
 
-// 0x0000000142B88410 (Size: 0x4)
+// Size: 0x4
 enum class IHM5Door_EOpenDir
 {
 	OD_AWAY = 0,
@@ -11197,7 +11197,7 @@ enum class IHM5Door_EOpenDir
 	OD_OUT = 3,
 };
 
-// 0x0000000142B826F8 (Size: 0x4)
+// Size: 0x4
 enum class ESituationJoinReason
 {
 	AISJR_Default = 0,
@@ -11222,7 +11222,7 @@ enum class ESituationJoinReason
 	AISJR_SC_HeardSetPiece = 19,
 };
 
-// 0x0000000142BB5DA0 (Size: 0x4)
+// Size: 0x4
 enum class UIMapLayer_EUIMapLayerID
 {
 	eUIMLI_UNSPECIFIED = 0,
@@ -11242,7 +11242,7 @@ enum class UIMapLayer_EUIMapLayerID
 	eUIMLI_HERO = 14,
 };
 
-// 0x0000000142B7A5F8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IHumanBody
 {
 public:
@@ -11254,7 +11254,7 @@ public:
 
 };
 
-// 0x0000000142B9A700 (Size: 0x4)
+// Size: 0x4
 enum class EScreenplayStateFlag
 {
 	eSSF_DEFAULT = 0,
@@ -11266,7 +11266,7 @@ enum class EScreenplayStateFlag
 	eSSF_TERMINATED = 32,
 };
 
-// 0x0000000142C13520 (Size: 0x4)
+// Size: 0x4
 enum class ENetPlayerEvent
 {
 	Login = 0,
@@ -11274,7 +11274,7 @@ enum class ENetPlayerEvent
 	NewHost = 2,
 };
 
-// 0x0000000142B899D0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SHeroCameraStandInSaveState
 {
 public:
@@ -11288,7 +11288,7 @@ public:
 	bool m_bPaused; // 0x4
 };
 
-// 0x0000000142BB9F48 (Size: 0x4)
+// Size: 0x4
 enum class ZCoverPlane_ECoverType
 {
 	eCoverOnly = 0,
@@ -11296,14 +11296,14 @@ enum class ZCoverPlane_ECoverType
 	eRailOnly = 2,
 };
 
-// 0x0000000142BB62B0 (Size: 0x4)
+// Size: 0x4
 enum class EInteractionIndicatorType
 {
 	EIITYPE_STANDARD = 0,
 	EIITYPE_INTERRUPTABLE = 1,
 };
 
-// 0x0000000142B8C440 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SVolumeTriggerListenerSaveData
 {
 public:
@@ -11317,7 +11317,7 @@ public:
 	bool m_bInternalEnabled; // 0x1
 };
 
-// 0x0000000142B916C0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SVolumeTriggersSaveData
 {
 public:
@@ -11331,7 +11331,7 @@ public:
 	TArray<SVolumeTriggerListenerSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B90110 (Size: 0x4)
+// Size: 0x4
 enum class ECompiledConditionType
 {
 	CT_IsCurrent = 0,
@@ -11495,7 +11495,7 @@ enum class ECompiledConditionType
 	CT_IsAccidentBystandingGuardSearching = 158,
 };
 
-// 0x0000000142B95470 (Size: 0x4)
+// Size: 0x4
 enum class EItemGripType
 {
 	IGT_Empty = 0,
@@ -11541,7 +11541,7 @@ enum class EItemGripType
 	IGT_None = 40,
 };
 
-// 0x0000000142B82F60 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SFaceOrderSaveData
 {
 public:
@@ -11559,7 +11559,7 @@ public:
 	float32 m_fDurationVariance; // 0x8
 };
 
-// 0x0000000142BB61F0 (Size: 0x4)
+// Size: 0x4
 enum class EUIBusyState
 {
 	eBusyState_Saving = 0,
@@ -11571,7 +11571,7 @@ enum class EUIBusyState
 	eBusyState_None = 6,
 };
 
-// 0x0000000142B944B0 (Size: 0x4)
+// Size: 0x4
 enum class EBulletType
 {
 	BULLET_TYPE_NONE = 0,
@@ -11585,7 +11585,7 @@ enum class EBulletType
 	BULLET_TYPE_RPG = 8,
 };
 
-// 0x0000000142C13960 (Size: 0x4)
+// Size: 0x4
 enum class EPathFinderBoxType
 {
 	PFBT_INCLUDE_MESH_COLLISION = 0,
@@ -11597,7 +11597,7 @@ enum class EPathFinderBoxType
 	PFBT_IGNORE = 6,
 };
 
-// 0x0000000142B8A180 (Size: 0x10)
+// Size: 0x10
 class alignas(4) AI_SEventDescription
 {
 public:
@@ -11613,7 +11613,7 @@ public:
 	float32 m_fLoudness; // 0xC
 };
 
-// 0x0000000142C148C8 (Size: 0x4)
+// Size: 0x4
 enum class EMotionType
 {
 	MOTION_LOCKED = 0,
@@ -11621,7 +11621,7 @@ enum class EMotionType
 	MOTION_FREE = 2,
 };
 
-// 0x0000000142B90890 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SExactCompressedGridFloatField
 {
 public:
@@ -11638,7 +11638,7 @@ public:
 	TArray<float32> m_aValues; // 0x28
 };
 
-// 0x0000000142BC3108 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SIntelData
 {
 public:
@@ -11654,7 +11654,7 @@ public:
 	ZString m_sImage; // 0x30
 };
 
-// 0x0000000142C14868 (Size: 0x1)
+// Size: 0x1
 enum class ECCDUsage
 {
 	ECCDUSAGE_DISABLED = 0,
@@ -11662,7 +11662,7 @@ enum class ECCDUsage
 	ECCDUSAGE_AGAINST_STATIC_DYNAMIC = 2,
 };
 
-// 0x0000000142B8DFB0 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterStateTags
 {
 	eSM_ST_UsingFullBody = 1,
@@ -11686,7 +11686,7 @@ enum class ECharacterStateTags
 	eSM_ST_UsingItemRight = 131072,
 };
 
-// 0x0000000142BC2110 (Size: 0x4)
+// Size: 0x4
 enum class EAmmoBehaviourConfigType
 {
 	eAB_None = 0,
@@ -11694,14 +11694,14 @@ enum class EAmmoBehaviourConfigType
 	eAB_Penetration = 2,
 };
 
-// 0x0000000142B898E0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5BodyContainer_eBCCloseMode
 {
 	BC_AUTOCLOSE = 0,
 	BC_MANUALCLOSE = 1,
 };
 
-// 0x0000000142B92D70 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SMathMultiplyDivideSaveData_SVector3
 {
 public:
@@ -11716,7 +11716,7 @@ public:
 	bool m_bDivide; // 0x18
 };
 
-// 0x0000000142B91768 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathMultipliesSaveData_SVector3
 {
 public:
@@ -11730,14 +11730,14 @@ public:
 	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
 };
 
-// 0x0000000142B8C3C0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5ValueEntity_bool_EForwardRule
 {
 	eAlways = 0,
 	eValueChanged = 1,
 };
 
-// 0x0000000142BB5CA0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SMapMarkerData
 {
 public:
@@ -11750,7 +11750,7 @@ public:
 	TArray<SVector2> pathPoints; // 0x0
 };
 
-// 0x0000000142B8AC78 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SDramaSituationSaveData
 {
 public:
@@ -11767,7 +11767,7 @@ public:
 	bool m_bProvidersStarted; // 0xC
 };
 
-// 0x0000000142C13598 (Size: 0x4)
+// Size: 0x4
 enum class Network_PacketReliability
 {
 	UNRELIABLE = 0,
@@ -11781,7 +11781,7 @@ enum class Network_PacketReliability
 	NUMBER_OF_RELIABILITIES = 8,
 };
 
-// 0x0000000142BF3668 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SEntityTemplateProperty
 {
 public:
@@ -11795,7 +11795,7 @@ public:
 	ZVariant value; // 0x8
 };
 
-// 0x0000000142BF3740 (Size: 0x58)
+// Size: 0x58
 class alignas(8) STemplateFactorySubEntity
 {
 public:
@@ -11811,7 +11811,7 @@ public:
 	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x40
 };
 
-// 0x0000000142BF3680 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SEntityTemplatePropertyOverride
 {
 public:
@@ -11825,7 +11825,7 @@ public:
 	SEntityTemplateProperty propertyValue; // 0x20
 };
 
-// 0x0000000142BF3860 (Size: 0x58)
+// Size: 0x58
 class alignas(8) STemplateEntityFactory
 {
 public:
@@ -11843,7 +11843,7 @@ public:
 	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x40
 };
 
-// 0x00000001423CC860 (Size: 0x4)
+// Size: 0x4
 enum class EHUDElement
 {
 	HUD_ELEMENT_NONE = 0,
@@ -11872,7 +11872,7 @@ enum class EHUDElement
 	HUD_ALL_ELEMENTS = 8388607,
 };
 
-// 0x0000000142B8B268 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SLeadEscortSituationActors
 {
 public:
@@ -11885,7 +11885,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142B8FAF0 (Size: 0x4)
+// Size: 0x4
 enum class ZActorDebugEntity_EActorDebugColor
 {
 	EDC_RED = 255,
@@ -11900,7 +11900,7 @@ enum class ZActorDebugEntity_EActorDebugColor
 	EDC_WHITE = 16777215,
 };
 
-// 0x0000000142BB1680 (Size: 0x4)
+// Size: 0x4
 enum class IContractObjective_State
 {
 	IN_PROGRESS = 0,
@@ -11908,7 +11908,7 @@ enum class IContractObjective_State
 	FAILED = 2,
 };
 
-// 0x0000000142B9A7B8 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SDrama2SituationSaveData
 {
 public:
@@ -11927,7 +11927,7 @@ public:
 	bool m_bIsTerminated; // 0xF
 };
 
-// 0x0000000142B9A818 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SDrama2SituationCollectionSaveData
 {
 public:
@@ -11941,7 +11941,7 @@ public:
 	TArray<SDrama2SituationSaveData> m_aStates; // 0x18
 };
 
-// 0x0000000142B7A2E0 (Size: 0x4)
+// Size: 0x4
 enum class EMoveSpeed
 {
 	MS_Sneaking = 0,
@@ -11951,7 +11951,7 @@ enum class EMoveSpeed
 	MS_Flash = 4,
 };
 
-// 0x0000000142B8D780 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorVisibilityConditionSaveData
 {
 public:
@@ -11964,7 +11964,7 @@ public:
 	uint32 m_pActor; // 0x0
 };
 
-// 0x0000000142C0EF70 (Size: 0x4)
+// Size: 0x4
 enum class ECoordinateSpace
 {
 	CSPACE_INVALID = 0,
@@ -11974,7 +11974,7 @@ enum class ECoordinateSpace
 	CSPACE_CHARACTER_RELATIVE = 4,
 };
 
-// 0x0000000142B93E50 (Size: 0x4)
+// Size: 0x4
 enum class ECameraAssistanceMode
 {
 	eCAM_None = 0,
@@ -11982,7 +11982,7 @@ enum class ECameraAssistanceMode
 	eCAM_AutoTrackTarget = 2,
 };
 
-// 0x0000000143E13A38 (Size: 0x4)
+// Size: 0x4
 enum class ZUIListNavigationEntity_ENavigationInputMode
 {
 	E_MODE_UP_DOWN = 0,
@@ -11991,7 +11991,7 @@ enum class ZUIListNavigationEntity_ENavigationInputMode
 	E_MODE_SMART_2D = 3,
 };
 
-// 0x0000000142BBE918 (Size: 0x4)
+// Size: 0x4
 enum class ERegistrationState
 {
 	eINITIAL = 0,
@@ -12002,7 +12002,7 @@ enum class ERegistrationState
 	eFOUNDMATCH = 5,
 };
 
-// 0x0000000142C132F8 (Size: 0x4)
+// Size: 0x4
 enum class EDisconnectReason
 {
 	eNOTIFICATION = 0,
@@ -12010,7 +12010,7 @@ enum class EDisconnectReason
 	eNETWORK_STATE = 2,
 };
 
-// 0x0000000142BC3168 (Size: 0x4)
+// Size: 0x4
 enum class EIntelStage
 {
 	eIT_MAIN = 0,
@@ -12018,7 +12018,7 @@ enum class EIntelStage
 	eIT_HINT = 2,
 };
 
-// 0x0000000142B827E8 (Size: 0x4)
+// Size: 0x4
 enum class EActorVoiceVariation
 {
 	eAVV_Undefined = 0,
@@ -12470,7 +12470,7 @@ enum class EActorVoiceVariation
 	eAVV_ROBERT_KNOX = 446,
 };
 
-// 0x0000000142B93F70 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterAnimChildNetworkSlot
 {
 	eCACNS_None = 0,
@@ -12481,7 +12481,7 @@ enum class ECharacterAnimChildNetworkSlot
 	eCACNS_Interaction_LH = 5,
 };
 
-// 0x00000001423CC690 (Size: 0x4)
+// Size: 0x4
 enum class EStealthSituation
 {
 	SS_DISGUISE_TAKEN = 0,
@@ -12535,7 +12535,7 @@ enum class EStealthSituation
 	SS_UNKNOWN_BODY_SPOTTED = 48,
 };
 
-// 0x0000000142B92FA0 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SCollisionControllerAspectSaveData
 {
 public:
@@ -12549,7 +12549,7 @@ public:
 	bool m_bCollideCamera; // 0x1
 };
 
-// 0x0000000142B918B8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SCollisionControllerAspectsSaveData
 {
 public:
@@ -12563,7 +12563,7 @@ public:
 	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B8D908 (Size: 0x4)
+// Size: 0x4
 enum class ZHeroKeywordCondition_EEvaluationType
 {
 	ALL = 0,
@@ -12572,21 +12572,21 @@ enum class ZHeroKeywordCondition_EEvaluationType
 	ANY_TRUE_IF_NO_REQS = 3,
 };
 
-// 0x0000000142BEF880 (Size: 0x4)
+// Size: 0x4
 enum class EAudioVolumetricMixingMode
 {
 	AUDIO_VOLUMETRIC_MIXING_MAX = 0,
 	AUDIO_VOLUMETRIC_MIXING_ADD = 1,
 };
 
-// 0x0000000142B9DC30 (Size: 0x4)
+// Size: 0x4
 enum class ZActorBoneAttachEntity_EResetMode
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
 };
 
-// 0x0000000142C0EE18 (Size: 0x4)
+// Size: 0x4
 enum class EAnimBlendMode
 {
 	EAnimBlendMode_InterpAttInterpPos = 0,
@@ -12595,14 +12595,14 @@ enum class EAnimBlendMode
 	EAnimBlendMode_AddAttAddPos = 3,
 };
 
-// 0x0000000142B91C20 (Size: 0x4)
+// Size: 0x4
 enum class IHM5Door_ECPDoorLockType
 {
 	CPDLT_NORMAL_LOCK = 0,
 	CPDLT_PUSH_BAR_PAD_LOCK = 1,
 };
 
-// 0x0000000142B82A08 (Size: 0x4)
+// Size: 0x4
 enum class EActorRank
 {
 	AR_Default = 0,
@@ -12611,7 +12611,7 @@ enum class EActorRank
 	AR_Goon = 3,
 };
 
-// 0x0000000142B95A30 (Size: 0x4)
+// Size: 0x4
 enum class EPersistentBoolDataSyncType
 {
 	ePBDST_None = 0,
@@ -12619,7 +12619,7 @@ enum class EPersistentBoolDataSyncType
 	ePBDST_Full = 2,
 };
 
-// 0x0000000142B92CB0 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SMathLerpSaveData_SVector3
 {
 public:
@@ -12634,7 +12634,7 @@ public:
 	float32 m_fT; // 0x18
 };
 
-// 0x0000000142C15E90 (Size: 0x4)
+// Size: 0x4
 enum class ESaveLoadStatus
 {
 	ESaveLoadStatus_OK = 0,
@@ -12652,7 +12652,7 @@ enum class ESaveLoadStatus
 	ESaveLoadStatus_ERROR_INVALIDATED = 12,
 };
 
-// 0x0000000142B82728 (Size: 0x4)
+// Size: 0x4
 enum class ESituationAvailability
 {
 	ESA_AMBIENCE = 0,
@@ -12665,7 +12665,7 @@ enum class ESituationAvailability
 	ESA_OVR_ALL = 70000,
 };
 
-// 0x0000000142B92D90 (Size: 0x24)
+// Size: 0x24
 class alignas(4) SMathMultiplyDivideSaveData_SVector4
 {
 public:
@@ -12680,7 +12680,7 @@ public:
 	bool m_bDivide; // 0x20
 };
 
-// 0x0000000142B91048 (Size: 0x4)
+// Size: 0x4
 enum class EHM5SoundCloseCombatEvent
 {
 	ECCE_PUNCH_FACE = 0,
@@ -12701,7 +12701,7 @@ enum class EHM5SoundCloseCombatEvent
 	ECCE_ANY = 15,
 };
 
-// 0x0000000142B84118 (Size: 0x4)
+// Size: 0x4
 enum class EEntityOrdering
 {
 	EO_LOW = 0,
@@ -12709,7 +12709,7 @@ enum class EEntityOrdering
 	EO_HIGH = 2,
 };
 
-// 0x0000000142B794A0 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IMorphemeCutSequenceAnimatable
 {
 public:
@@ -12721,7 +12721,7 @@ public:
 
 };
 
-// 0x0000000142B90190 (Size: 0x4)
+// Size: 0x4
 enum class EAccidentDeathContext
 {
 	eADC_DeathByAccident = 0,
@@ -12730,7 +12730,7 @@ enum class EAccidentDeathContext
 	eADC_DeathByShot = 3,
 };
 
-// 0x0000000142BB6038 (Size: 0x10)
+// Size: 0x10
 class alignas(8) SOptionValueSaveData
 {
 public:
@@ -12743,7 +12743,7 @@ public:
 	ZVariant m_Value; // 0x0
 };
 
-// 0x0000000142B829F0 (Size: 0x4)
+// Size: 0x4
 enum class EActorType
 {
 	eAT_Civilian = 0,
@@ -12752,7 +12752,7 @@ enum class EActorType
 	eAT_Last = 3,
 };
 
-// 0x0000000142BEEFF0 (Size: 0x4)
+// Size: 0x4
 enum class EDialogEventItemType
 {
 	eDEIT_WavFile = 1,
@@ -12762,7 +12762,7 @@ enum class EDialogEventItemType
 	eDEIT_Invalid = 15,
 };
 
-// 0x0000000143E13900 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SFontDefinition
 {
 public:
@@ -12778,7 +12778,7 @@ public:
 	float32 fScaleFactor; // 0x24
 };
 
-// 0x0000000143E13930 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SFontLibraryDefinition
 {
 public:
@@ -12792,7 +12792,7 @@ public:
 	TArray<SFontDefinition> m_aFontDefinitions; // 0x10
 };
 
-// 0x0000000142B93C70 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterUpperBodyStateType
 {
 	eSM_UB_EmptyHanded = 0,
@@ -12813,7 +12813,7 @@ enum class ECharacterUpperBodyStateType
 	eSM_UB_Assemble = 15,
 };
 
-// 0x00000001423CCFC0 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SAccessoryItemSaveData
 {
 public:
@@ -12829,7 +12829,7 @@ public:
 	bool m_bVisible; // 0x9
 };
 
-// 0x00000001423CC540 (Size: 0x40)
+// Size: 0x40
 class alignas(0) ZUIDataProvider
 {
 public:
@@ -12841,7 +12841,7 @@ public:
 
 };
 
-// 0x0000000142B8B568 (Size: 0x88)
+// Size: 0x88
 class alignas(8) SSentryZoneSaveData
 {
 public:
@@ -12880,7 +12880,7 @@ public:
 	TArray<uint32> m_ItemsDroppedInZone; // 0x70
 };
 
-// 0x0000000143E09898 (Size: 0x4)
+// Size: 0x4
 enum class ZDecalControllerEntity_ERotationType
 {
 	eRotationDisable = 0,
@@ -12888,14 +12888,14 @@ enum class ZDecalControllerEntity_ERotationType
 	eRotationRandom = 2,
 };
 
-// 0x0000000143E0B590 (Size: 0x4)
+// Size: 0x4
 enum class IScatterContainerEntity_EBrushType
 {
 	BRUSH_SQUARE = 0,
 	BRUSH_CIRCLE = 1,
 };
 
-// 0x00000001423CC8E0 (Size: 0x4)
+// Size: 0x4
 enum class EBaseMovementType
 {
 	eMovementNone = -1,
@@ -12938,7 +12938,7 @@ enum class EBaseMovementType
 	eMovementPickupItem = 36,
 };
 
-// 0x0000000142BB5918 (Size: 0x20)
+// Size: 0x20
 class alignas(8) ZHUDHintController_SData
 {
 public:
@@ -12952,7 +12952,7 @@ public:
 	ZString m_sBodyText; // 0x10
 };
 
-// 0x0000000142B91570 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5LedgeMount_EFaceDirection
 {
 	eFaceFront = 0,
@@ -12960,21 +12960,21 @@ enum class ZHM5LedgeMount_EFaceDirection
 	eFaceRight = 2,
 };
 
-// 0x0000000142B9EC10 (Size: 0x4)
+// Size: 0x4
 enum class ZMoveToPositionBehaviorEntity_EApproachAlignment
 {
 	AA_STRICT = 0,
 	AA_LOOSE = 1,
 };
 
-// 0x0000000142C14C60 (Size: 0x4)
+// Size: 0x4
 enum class EClothBendConstrainType
 {
 	eClothBendConstrainType_Stick = 0,
 	eClothBendConstrainType_Triangle = 1,
 };
 
-// 0x0000000142B82C90 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SCautiousVIPGroupSaveData
 {
 public:
@@ -12991,7 +12991,7 @@ public:
 	int32 m_occupancyNode; // 0x2C
 };
 
-// 0x0000000142BB60D0 (Size: 0x4)
+// Size: 0x4
 enum class ZWorldUIElementInstanceBase_EVisibility
 {
 	EVIS_ALWAYS = 0,
@@ -13001,7 +13001,7 @@ enum class ZWorldUIElementInstanceBase_EVisibility
 	EVIS_NEGX = 4,
 };
 
-// 0x0000000142B95D40 (Size: 0x4)
+// Size: 0x4
 enum class ERoleEvent
 {
 	eRE_NONE = 0,
@@ -13016,7 +13016,7 @@ enum class ERoleEvent
 	eRE_RUNNING = 9,
 };
 
-// 0x0000000142B945D0 (Size: 0x4)
+// Size: 0x4
 enum class EHUDIconFlags
 {
 	HUD_ICON_FLAG_POSITION = 1,
@@ -13025,7 +13025,7 @@ enum class EHUDIconFlags
 	HUD_ICON_FLAG_TEXT = 8,
 };
 
-// 0x0000000142B92C90 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SMathLerpSaveData_SVector2
 {
 public:
@@ -13040,7 +13040,7 @@ public:
 	float32 m_fT; // 0x10
 };
 
-// 0x0000000142B91928 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathLerpsSaveData_SVector2
 {
 public:
@@ -13054,7 +13054,7 @@ public:
 	TArray<SMathLerpSaveData_SVector2> m_aData; // 0x18
 };
 
-// 0x0000000142B93640 (Size: 0x4)
+// Size: 0x4
 enum class EDeathAnimationType
 {
 	DAT_None = 0,
@@ -13064,7 +13064,7 @@ enum class EDeathAnimationType
 	DAT_Unknown = 4,
 };
 
-// 0x0000000142B826D8 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SSituationGroupSaveData
 {
 public:
@@ -13081,7 +13081,7 @@ public:
 	ZVariant m_CustomData; // 0x38
 };
 
-// 0x0000000142BB1878 (Size: 0x8)
+// Size: 0x8
 class alignas(8) ZPlanningObjectiveInfoBuilder
 {
 public:
@@ -13093,7 +13093,7 @@ public:
 
 };
 
-// 0x0000000142C149B8 (Size: 0x1)
+// Size: 0x1
 enum class ERestitutionCombineMode
 {
 	ERestitutionCombineMode_AVERAGE = 0,
@@ -13102,7 +13102,7 @@ enum class ERestitutionCombineMode
 	ERestitutionCombineMode_MAX = 3,
 };
 
-// 0x0000000142B920D0 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterIdlePriority
 {
 	eCIP_Irrelevant = 0,
@@ -13118,7 +13118,7 @@ enum class ECharacterIdlePriority
 	eCIP_Urgent = 10,
 };
 
-// 0x0000000142B95678 (Size: 0x4)
+// Size: 0x4
 enum class EDisposalType
 {
 	DISPOSAL_UNDEFINED = 0,
@@ -13132,7 +13132,7 @@ enum class EDisposalType
 	DISPOSAL_COUNT = 8,
 };
 
-// 0x0000000142B8FE88 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SAnimatedActorStandOrderSaveData
 {
 public:
@@ -13145,7 +13145,7 @@ public:
 	SVector3 m_vFacingDirection; // 0x0
 };
 
-// 0x0000000142B9C9D8 (Size: 0x4)
+// Size: 0x4
 enum class EDynamicVariableType
 {
 	DV_Invalid = -1,
@@ -13157,7 +13157,7 @@ enum class EDynamicVariableType
 	DV_NumVariables = 5,
 };
 
-// 0x0000000142B94390 (Size: 0x4)
+// Size: 0x4
 enum class EButtonState
 {
 	BUTTON_STATE_DISABLED = -1,
@@ -13167,7 +13167,7 @@ enum class EButtonState
 	BUTTON_STATE_BLINKING = 3,
 };
 
-// 0x0000000142B880C0 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5AgilityEventConsumer_EEvent
 {
 	EAE_LEFTHAND = 0,
@@ -13176,7 +13176,7 @@ enum class ZHM5AgilityEventConsumer_EEvent
 	EAE_RIGHTLEG = 3,
 };
 
-// 0x0000000142B92770 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5Item_EKeywordEvaluationType
 {
 	ALL = 0,
@@ -13184,7 +13184,7 @@ enum class ZHM5Item_EKeywordEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142B94C50 (Size: 0x4)
+// Size: 0x4
 enum class InputControlNamesp_eHM5InputActionID
 {
 	eIDButtonFaceDown = 0,
@@ -13211,7 +13211,7 @@ enum class InputControlNamesp_eHM5InputActionID
 	eID_INVALID = 21,
 };
 
-// 0x0000000142210360 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IComponentInterface
 {
 public:
@@ -13223,7 +13223,7 @@ public:
 
 };
 
-// 0x0000000143E149F0 (Size: 0x4)
+// Size: 0x4
 enum class JSONTemplate_ETemplateType
 {
 	ETT_BASE = 0,
@@ -13335,7 +13335,7 @@ enum class JSONTemplate_ETemplateType
 	ETT_DEBUG_ALLHITMANSUITS = 105,
 };
 
-// 0x0000000142BC3138 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SIntelDataArray_dummy
 {
 public:
@@ -13348,7 +13348,7 @@ public:
 	TArray<SIntelData> dummy; // 0x0
 };
 
-// 0x0000000143E09930 (Size: 0x4)
+// Size: 0x4
 enum class ZMirrorEntity_EMirrorQuality
 {
 	QUALITY_LOW = 0,
@@ -13357,7 +13357,7 @@ enum class ZMirrorEntity_EMirrorQuality
 	QUALITY_LEAVE = 3,
 };
 
-// 0x00000001423CCB10 (Size: 0x4)
+// Size: 0x4
 enum class EWeaponAnimationCategory
 {
 	eWAC_Undefined = 0,
@@ -13371,7 +13371,7 @@ enum class EWeaponAnimationCategory
 	eWAC_Shotgun_Semi = 8,
 };
 
-// 0x0000000142B902D0 (Size: 0x4)
+// Size: 0x4
 enum class EAILegalType
 {
 	AILT_Weapon = 0,
@@ -13382,7 +13382,7 @@ enum class EAILegalType
 	AILT_Count = 5,
 };
 
-// 0x0000000142BB3190 (Size: 0x4)
+// Size: 0x4
 enum class _EUIOptionKey
 {
 	UI_OPTION_GAME_VIBRATION = 100,
@@ -13491,7 +13491,7 @@ enum class _EUIOptionKey
 	UI_OPTION_GRAPHICS_RENDERING_QUALITY = 2773,
 };
 
-// 0x0000000142BF2118 (Size: 0x4)
+// Size: 0x4
 enum class EGait
 {
 	eGait_Normal = 0,
@@ -13578,7 +13578,7 @@ enum class EGait
 	eGait_Custom9 = 81,
 };
 
-// 0x0000000142BF2490 (Size: 0x50)
+// Size: 0x50
 class alignas(16) SCrowdActorSaveData
 {
 public:
@@ -13599,7 +13599,7 @@ public:
 	CrowdUtil_ECrowdActorMood m_eMood; // 0x44
 };
 
-// 0x0000000142B9DDA0 (Size: 0x4)
+// Size: 0x4
 enum class ZActorPickerFilterGroup_EEvaluationType
 {
 	ALL = 0,
@@ -13607,7 +13607,7 @@ enum class ZActorPickerFilterGroup_EEvaluationType
 	ANY = 2,
 };
 
-// 0x0000000142B83290 (Size: 0x4)
+// Size: 0x4
 enum class ZCautiousInvestigateGroup_EAssistantState
 {
 	AS_Waiting = 0,
@@ -13618,7 +13618,7 @@ enum class ZCautiousInvestigateGroup_EAssistantState
 	AS_Max = 5,
 };
 
-// 0x0000000142C14BA8 (Size: 0x4)
+// Size: 0x4
 enum class EClothStretchConstrainType
 {
 	eClothBendConstrainType_Anchor = 0,
@@ -13626,7 +13626,7 @@ enum class EClothStretchConstrainType
 	eClothBendConstrainType_None = 2,
 };
 
-// 0x0000000143E0B2E8 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SRenderMaterialSaveData
 {
 public:
@@ -13641,7 +13641,7 @@ public:
 	bool m_bActive; // 0x20
 };
 
-// 0x0000000142B880D8 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5AgilityEventConsumer_SAgilityEventData
 {
 public:
@@ -13654,7 +13654,7 @@ public:
 	ZHM5AgilityEventConsumer_EEvent m_nEvent; // 0x0
 };
 
-// 0x0000000142BF3530 (Size: 0x4)
+// Size: 0x4
 enum class ENamedGameEvents
 {
 	eEvent_IntroCutStart = 0,
@@ -13663,7 +13663,7 @@ enum class ENamedGameEvents
 	eNumNamedGameEvents = 3,
 };
 
-// 0x0000000142BF4848 (Size: 0x4)
+// Size: 0x4
 enum class ZDebugTextEntity_EVerticalAlignment
 {
 	VA_TOP = 16,
@@ -13671,7 +13671,7 @@ enum class ZDebugTextEntity_EVerticalAlignment
 	VA_BOTTOM = 32,
 };
 
-// 0x0000000142B7AFA8 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SCrowdReactionSaveData
 {
 public:
@@ -13688,21 +13688,21 @@ public:
 	bool m_bWarzoneSpawned; // 0x10
 };
 
-// 0x0000000142B92B10 (Size: 0x4)
+// Size: 0x4
 enum class ZDistanceCondition_EObjectType
 {
 	DT_ToCam = 0,
 	DT_ToPlayer = 1,
 };
 
-// 0x0000000142B94810 (Size: 0x4)
+// Size: 0x4
 enum class EHM5SoundFootstepEmitterTarget
 {
 	EFSAT_MAIN = 0,
 	EFSAT_NPC = 1,
 };
 
-// 0x0000000142B92070 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterEvent
 {
 	eCIET_PickUp = 0,
@@ -13723,7 +13723,7 @@ enum class ECharacterEvent
 	eCIET_None = 34,
 };
 
-// 0x0000000142B93D90 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterIdleHandlerUpperBodyType
 {
 	eCIHUBT_NothingToDoEmptySingleHand = 0,
@@ -13732,7 +13732,7 @@ enum class ECharacterIdleHandlerUpperBodyType
 	eCIHUBT_Custom = 3,
 };
 
-// 0x0000000142B92370 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterBodyType
 {
 	eCT_MaleRegular = 0,
@@ -13741,7 +13741,7 @@ enum class ECharacterBodyType
 	eCT_Undefined = 3,
 };
 
-// 0x0000000142B9C8B8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IActorProvider
 {
 public:
@@ -13753,14 +13753,14 @@ public:
 
 };
 
-// 0x0000000142BC4268 (Size: 0x4)
+// Size: 0x4
 enum class ETargetPrintDestination
 {
 	eTPD_Screen = 0,
 	eTPD_TraceViewer = 1,
 };
 
-// 0x0000000143E09A00 (Size: 0x4)
+// Size: 0x4
 enum class eParticleEmitterBoxEntity_SpawnModes
 {
 	BOX_SPAWNMODE_INSIDE = 0,
@@ -13770,7 +13770,7 @@ enum class eParticleEmitterBoxEntity_SpawnModes
 	BOX_SPAWNMODE_ELLIPSOID = 4,
 };
 
-// 0x0000000142BC1F78 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioClass
 {
 	eWBC_AudioClass_AssaultRifle = 0,
@@ -13780,7 +13780,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioClass
 	eWBC_AudioClass_SniperRifle = 4,
 };
 
-// 0x0000000142B880A0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) AnimationEventDataTypes_SBlend
 {
 public:
@@ -13793,7 +13793,7 @@ public:
 	float32 m_fBlendTime; // 0x0
 };
 
-// 0x0000000142C134C0 (Size: 0x4)
+// Size: 0x4
 enum class GameLobbyState
 {
 	GLS_None = 0,
@@ -13807,14 +13807,14 @@ enum class GameLobbyState
 	GLS_InGame = 8,
 };
 
-// 0x0000000142BF3998 (Size: 0x4)
+// Size: 0x4
 enum class ETeamModeId
 {
 	TeamMode_Coop = 0,
 	TeamMode_Versus = 1,
 };
 
-// 0x0000000142B7B2E0 (Size: 0x4)
+// Size: 0x4
 enum class EThrowType
 {
 	THROW_NONE = 0,
@@ -13829,7 +13829,7 @@ enum class EThrowType
 	THROW_DEADLY_HEAVY = 9,
 };
 
-// 0x0000000142BB37F0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SUIBreadcrumbDataSaveData
 {
 public:
@@ -13843,7 +13843,7 @@ public:
 	int32 m_nState; // 0x4
 };
 
-// 0x0000000142BC0A98 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SGeomScaleSaveData
 {
 public:
@@ -13856,7 +13856,7 @@ public:
 	SVector4 m_vPrimitiveScale; // 0x0
 };
 
-// 0x0000000142C13508 (Size: 0x4)
+// Size: 0x4
 enum class EDetectedNatType
 {
 	NAT_UNSET = 0,
@@ -13865,7 +13865,7 @@ enum class EDetectedNatType
 	NAT_3 = 3,
 };
 
-// 0x0000000142B91DE0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SCamBone
 {
 public:
@@ -13879,7 +13879,7 @@ public:
 	float32 m_fWeight; // 0x4
 };
 
-// 0x0000000143E09F58 (Size: 0x4)
+// Size: 0x4
 enum class ILightEntity_ERoomLightFlow
 {
 	AUTOMATIC = 0,
@@ -13887,7 +13887,7 @@ enum class ILightEntity_ERoomLightFlow
 	ALLROOMS = 2,
 };
 
-// 0x0000000142BC2020 (Size: 0x4)
+// Size: 0x4
 enum class ECrossHairType
 {
 	CROSSHAIR_NONE = 0,
@@ -13906,7 +13906,7 @@ enum class ECrossHairType
 	CROSSHAIR_DOT = 13,
 };
 
-// 0x0000000142BB5EC0 (Size: 0x4)
+// Size: 0x4
 enum class EMarkerClipAlgorithm
 {
 	MCA_NONE = 0,
@@ -13914,7 +13914,7 @@ enum class EMarkerClipAlgorithm
 	MCA_ADVANCED = 2,
 };
 
-// 0x0000000142B794B8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IBoneCollidable
 {
 public:
@@ -13926,7 +13926,7 @@ public:
 
 };
 
-// 0x0000000142BF36F8 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SEntityTemplateEntitySubset
 {
 public:
@@ -13939,7 +13939,7 @@ public:
 	TArray<int32> entities; // 0x0
 };
 
-// 0x0000000142BF37B8 (Size: 0xA8)
+// Size: 0xA8
 class alignas(8) STemplateBlueprintSubEntity
 {
 public:
@@ -13960,14 +13960,14 @@ public:
 	TArray<TPair<ZString,SEntityTemplateEntitySubset>> entitySubsets; // 0x90
 };
 
-// 0x0000000142B8D858 (Size: 0x4)
+// Size: 0x4
 enum class ZHeroBoneAttachEntity_EResetMode
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
 };
 
-// 0x0000000142C14B38 (Size: 0x4)
+// Size: 0x4
 enum class EQueryMaskType
 {
 	eQueryMaskType_CameraCollision = 1,
@@ -13975,7 +13975,7 @@ enum class EQueryMaskType
 	eQueryMaskType_ExplosionRelevant = 4,
 };
 
-// 0x0000000142BC2038 (Size: 0x4)
+// Size: 0x4
 enum class eBurstPatternType
 {
 	eEBP_None = 0,
@@ -13983,7 +13983,7 @@ enum class eBurstPatternType
 	eEBP_Box = 2,
 };
 
-// 0x0000000142B9EAA0 (Size: 0x4)
+// Size: 0x4
 enum class ZPointOfInterestEntity_EPOIType
 {
 	ePOIT_Invalid = 0,
@@ -13992,7 +13992,7 @@ enum class ZPointOfInterestEntity_EPOIType
 	ePOIT_Stare = 3,
 };
 
-// 0x0000000142B92F18 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule
 {
 public:
@@ -14005,7 +14005,7 @@ public:
 	int32 m_NrGuardsToSend; // 0x0
 };
 
-// 0x0000000142B8E358 (Size: 0x4)
+// Size: 0x4
 enum class ECharacterResourceType
 {
 	eSMT_Invalid = 0,
@@ -14014,7 +14014,7 @@ enum class ECharacterResourceType
 	eSMT_LeftHand = 3,
 };
 
-// 0x0000000142BC1FD8 (Size: 0x4)
+// Size: 0x4
 enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioExoticType
 {
 	eWBC_AudioExoticType_MiniPistol = 0,
@@ -14025,7 +14025,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioExoticType
 	eWBC_AudioExoticType_None = 32768,
 };
 
-// 0x0000000142BC42C8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SValueBoolsSaveData
 {
 public:
@@ -14039,7 +14039,7 @@ public:
 	TArray<bool> m_aData; // 0x18
 };
 
-// 0x0000000143E09108 (Size: 0x4)
+// Size: 0x4
 enum class IRenderMaterialEntity_EModifierOperation
 {
 	eLeave = 0,
@@ -14049,7 +14049,7 @@ enum class IRenderMaterialEntity_EModifierOperation
 	eColor = 128,
 };
 
-// 0x0000000142B8AC60 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SDramaSetupSaveData
 {
 public:
@@ -14064,14 +14064,14 @@ public:
 	uint32 m_rSituation; // 0x8
 };
 
-// 0x0000000143E09850 (Size: 0x4)
+// Size: 0x4
 enum class ZBoxReflectionEntity_EType
 {
 	eLocal = 0,
 	eFallback = 1,
 };
 
-// 0x0000000142B832C0 (Size: 0x4)
+// Size: 0x4
 enum class ZGetHelpGroup_EInvestigateGroupState
 {
 	IGS_Acknowledge = 0,
@@ -14086,7 +14086,7 @@ enum class ZGetHelpGroup_EInvestigateGroupState
 	IGS_Max = 9,
 };
 
-// 0x0000000143E40560 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SSerializedValue
 {
 public:
@@ -14098,7 +14098,7 @@ public:
 
 };
 
-// 0x0000000142C14AD8 (Size: 0x1)
+// Size: 0x1
 enum class ECollisionNotifyGroup
 {
 	eCollisionNotifyGroup_Default = 0,
@@ -14108,7 +14108,7 @@ enum class ECollisionNotifyGroup
 	eCollisionNotifyGroup_ForceNotify = 4,
 };
 
-// 0x0000000142B938E0 (Size: 0x4)
+// Size: 0x4
 enum class ECharSetCharacterType
 {
 	ECSCT_Actor = 0,
@@ -14116,7 +14116,7 @@ enum class ECharSetCharacterType
 	ECSCT_HeroA = 2,
 };
 
-// 0x0000000142B827B8 (Size: 0x4)
+// Size: 0x4
 enum class EActorGroup
 {
 	eAG_Group_A = 0,
@@ -14126,7 +14126,7 @@ enum class EActorGroup
 	eAG_Count = 4,
 };
 
-// 0x00000001423CB948 (Size: 0x28)
+// Size: 0x28
 class alignas(8) ZComponentCreator
 {
 public:
@@ -14140,7 +14140,7 @@ public:
 	TArray<ZVariant> m_aArgs; // 0x10
 };
 
-// 0x0000000142B841A0 (Size: 0x4)
+// Size: 0x4
 enum class InputControlNamesp_eHM5InputAction
 {
 	eIAButtonFaceDown_Downedge = 0,
@@ -14270,7 +14270,7 @@ enum class InputControlNamesp_eHM5InputAction
 	eIActionsNUM = 124,
 };
 
-// 0x0000000142B8C638 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SStashPointSaveData
 {
 public:
@@ -14287,7 +14287,7 @@ public:
 	ZRepositoryID m_MainItemID; // 0x28
 };
 
-// 0x0000000142C13928 (Size: 0x4)
+// Size: 0x4
 enum class ZPathfinderDebugEntity_EDebugTestType
 {
 	PATHFINDER = 0,
@@ -14296,7 +14296,7 @@ enum class ZPathfinderDebugEntity_EDebugTestType
 	REGION_MASK_WITHIN_RADIUS = 3,
 };
 
-// 0x0000000142B9ED10 (Size: 0x4)
+// Size: 0x4
 enum class ECombatZoneState
 {
 	CZS_Inactive = 0,
@@ -14304,7 +14304,7 @@ enum class ECombatZoneState
 	CZS_Engaged = 2,
 };
 
-// 0x0000000142BB3BF8 (Size: 0x78)
+// Size: 0x78
 class alignas(8) SInteractionIndicatorInstanceData
 {
 public:
@@ -14340,7 +14340,7 @@ public:
 	bool m_bNeedAlphaUpdate; // 0x75
 };
 
-// 0x0000000142BB5B48 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SInteractionIndicatorInstanceDataArray_Dummy
 {
 public:
@@ -14353,7 +14353,7 @@ public:
 	TArray<SInteractionIndicatorInstanceData> dummy; // 0x0
 };
 
-// 0x0000000142C0D858 (Size: 0x4)
+// Size: 0x4
 enum class ELocale
 {
 	Locale_En = 0,
@@ -14370,7 +14370,7 @@ enum class ELocale
 	Locale_Tc = 11,
 };
 
-// 0x0000000142B92A70 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SActorSpreadTransitionOperatorMaterialActorSaveData
 {
 public:
@@ -14384,7 +14384,7 @@ public:
 	float32 m_fOpacity; // 0x4
 };
 
-// 0x0000000142B8DE40 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SActorSpreadTransitionOperatorMaterialSaveData
 {
 public:
@@ -14397,7 +14397,7 @@ public:
 	TArray<SActorSpreadTransitionOperatorMaterialActorSaveData> m_aActorMaterialOverrides; // 0x0
 };
 
-// 0x0000000142BB3170 (Size: 0x4)
+// Size: 0x4
 enum class EGameUIMenu
 {
 	eUIMenu_IntroMenu = 0,
@@ -14418,14 +14418,14 @@ enum class EGameUIMenu
 	eUIMenu_Count = 15,
 };
 
-// 0x0000000142BB5E00 (Size: 0x4)
+// Size: 0x4
 enum class EAutoScanMode
 {
 	ASM_GEOMETRY = 0,
 	ASM_VOLUMEBOX = 1,
 };
 
-// 0x0000000142C13538 (Size: 0x1)
+// Size: 0x1
 enum class ENetRole
 {
 	None = 0,
@@ -14433,7 +14433,7 @@ enum class ENetRole
 	Client = 2,
 };
 
-// 0x0000000142B82A68 (Size: 0x4)
+// Size: 0x4
 enum class EActorCCPreset
 {
 	ACCP_CivilianFemale = 0,
@@ -14445,7 +14445,7 @@ enum class EActorCCPreset
 	ACCP_None = 6,
 };
 
-// 0x0000000142B92190 (Size: 0x4)
+// Size: 0x4
 enum class EItemRequirement
 {
 	eIR_NoRequirement = 0,
@@ -14454,7 +14454,7 @@ enum class EItemRequirement
 	eIR_RequireNoBigItem = 3,
 };
 
-// 0x0000000142B830E0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SSentryOrderSaveData
 {
 public:
@@ -14467,7 +14467,7 @@ public:
 	uint32 m_rSentryZone; // 0x0
 };
 
-// 0x0000000142B92CD0 (Size: 0x24)
+// Size: 0x24
 class alignas(4) SMathLerpSaveData_SVector4
 {
 public:
@@ -14482,7 +14482,7 @@ public:
 	float32 m_fT; // 0x20
 };
 
-// 0x0000000142B91998 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathLerpsSaveData_SVector4
 {
 public:
@@ -14496,7 +14496,7 @@ public:
 	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
 };
 
-// 0x0000000142B9A7E8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SDrama2ActorCollectionSaveData
 {
 public:
@@ -14510,7 +14510,7 @@ public:
 	TArray<SDrama2ActorSaveState> m_aStates; // 0x18
 };
 
-// 0x0000000142B8ACA8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SDramaActorCollectionSaveData
 {
 public:
@@ -14524,7 +14524,7 @@ public:
 	TArray<SDramaActorSaveState> m_aStates; // 0x18
 };
 
-// 0x0000000142B8ACD8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SDramaSituationCollectionSaveData
 {
 public:
@@ -14538,7 +14538,7 @@ public:
 	TArray<SDramaSituationSaveData> m_aStates; // 0x18
 };
 
-// 0x0000000142B8AD08 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SDramaSetupCollectionSaveData
 {
 public:
@@ -14552,7 +14552,7 @@ public:
 	TArray<SDramaSetupSaveData> m_aStates; // 0x18
 };
 
-// 0x0000000142B9A860 (Size: 0x120)
+// Size: 0x120
 class alignas(8) SScreenplay2ManagerSaveData
 {
 public:
@@ -14570,7 +14570,7 @@ public:
 	SDrama2SetupCollectionSaveData m_Drama2SetupData; // 0xF0
 };
 
-// 0x0000000142BB5BE8 (Size: 0x110)
+// Size: 0x110
 class alignas(8) SInventoryUISlot
 {
 public:
@@ -14615,7 +14615,7 @@ public:
 	ZString sPoisonType; // 0x100
 };
 
-// 0x0000000142BB4F88 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SInventoryUI
 {
 public:
@@ -14631,7 +14631,7 @@ public:
 	bool isActionInventory; // 0x34
 };
 
-// 0x0000000142B946F0 (Size: 0x4)
+// Size: 0x4
 enum class ECommunicationBarMessage
 {
 	ECBM_Unknown = 0,
@@ -14659,7 +14659,7 @@ enum class ECommunicationBarMessage
 	ECBM_UnconsciousWitness = 22,
 };
 
-// 0x0000000142B95D28 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SActorBoneAttachSaveData
 {
 public:
@@ -14673,7 +14673,7 @@ public:
 	bool m_bIsAttached; // 0x4
 };
 
-// 0x0000000142B91A40 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SActorBoneAttachmentsSaveData
 {
 public:
@@ -14687,7 +14687,7 @@ public:
 	TArray<SActorBoneAttachSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142C14898 (Size: 0x4)
+// Size: 0x4
 enum class EClothColliderFilter
 {
 	EClothColliderFilter_Environment = 0,
@@ -14695,7 +14695,7 @@ enum class EClothColliderFilter
 	EClothColliderFilter_Character_Environment = 2,
 };
 
-// 0x0000000142BB12C8 (Size: 0x4)
+// Size: 0x4
 enum class EVsGenericEvent
 {
 	eVSGE_MATCH_WON = 0,
@@ -14721,7 +14721,7 @@ enum class EVsGenericEvent
 	eVSGE_MAX = 20,
 };
 
-// 0x0000000142B9C160 (Size: 0x4)
+// Size: 0x4
 enum class ESmartBehaviorOrder
 {
 	SBO_Stand = 0,
@@ -14735,14 +14735,14 @@ enum class ESmartBehaviorOrder
 	SBO_Teleport = 8,
 };
 
-// 0x0000000142B9E990 (Size: 0x4)
+// Size: 0x4
 enum class ZRagdollAttacherEntity_EResetMode
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
 };
 
-// 0x0000000142B82528 (Size: 0x20)
+// Size: 0x20
 class alignas(16) ZSniperCombatSituation_SSniperSuspiciousArea
 {
 public:
@@ -14757,7 +14757,7 @@ public:
 	bool m_bIsIslandEntrance; // 0x14
 };
 
-// 0x0000000142B82E70 (Size: 0x30)
+// Size: 0x30
 class alignas(16) SAgitatedBystanderOrderSaveData
 {
 public:
@@ -14772,7 +14772,7 @@ public:
 	float4 m_vCoverDir; // 0x20
 };
 
-// 0x0000000142B8DB50 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorAccessoryItemActionSaveData
 {
 public:
@@ -14785,7 +14785,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x00000001423CC720 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SGameStatsWeapon
 {
 public:
@@ -14801,7 +14801,7 @@ public:
 	eAmmoType m_eAmmoType; // 0x18
 };
 
-// 0x0000000143E05800 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SGUIViewPort
 {
 public:
@@ -14817,7 +14817,7 @@ public:
 	uint32 w; // 0xC
 };
 
-// 0x0000000142B917D8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SShotListenersSaveData
 {
 public:
@@ -14831,7 +14831,7 @@ public:
 	TArray<SShotListenerSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142C0DC00 (Size: 0x20)
+// Size: 0x20
 class alignas(4) SBoneTransformSaveData
 {
 public:
@@ -14845,7 +14845,7 @@ public:
 	SVector4 mTranslation; // 0x10
 };
 
-// 0x0000000142B8B6C0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) ZAvoidDangerousAreaSituation_SSituationSaveData
 {
 public:
@@ -14858,7 +14858,7 @@ public:
 	TArray<int32> m_aAvoidDangerousAreaGroups; // 0x0
 };
 
-// 0x0000000142B902F0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorProviderApproachSaveData
 {
 public:
@@ -14871,7 +14871,7 @@ public:
 	uint32 m_rCastActor; // 0x0
 };
 
-// 0x0000000142B91A78 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SBodyContainersSaveData
 {
 public:
@@ -14885,7 +14885,7 @@ public:
 	TArray<SBodyContainerSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142BF39D8 (Size: 0x8)
+// Size: 0x8
 class alignas(8) ZAutoNullEntityRef
 {
 public:
@@ -14897,7 +14897,7 @@ public:
 
 };
 
-// 0x0000000142BB14B8 (Size: 0x148)
+// Size: 0x148
 class alignas(8) SContractObjectiveSaveData
 {
 public:
@@ -14942,7 +14942,7 @@ public:
 	bool m_bForceShowOnLoadingScreen; // 0x140
 };
 
-// 0x0000000142BB1710 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SOnlineSaveData
 {
 public:
@@ -14959,7 +14959,7 @@ public:
 	ZString m_sLastEventToken; // 0x30
 };
 
-// 0x0000000142B91960 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathLerpsSaveData_SVector3
 {
 public:
@@ -14973,7 +14973,7 @@ public:
 	TArray<SMathLerpSaveData_SVector3> m_aData; // 0x18
 };
 
-// 0x0000000142BC42E0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SValueFloatSaveData
 {
 public:
@@ -14987,7 +14987,7 @@ public:
 	TArray<float32> m_aData; // 0x18
 };
 
-// 0x0000000142B8B710 (Size: 0x8)
+// Size: 0x8
 class alignas(4) ZDeadBodySituation_SIncidentSaveData
 {
 public:
@@ -15001,7 +15001,7 @@ public:
 	bool m_bAccident; // 0x4
 };
 
-// 0x0000000142BB3A60 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SHUDTimerControllerSaveData
 {
 public:
@@ -15014,7 +15014,7 @@ public:
 	uint32 m_pCurrentInstance; // 0x0
 };
 
-// 0x00000001423CB988 (Size: 0x60)
+// Size: 0x60
 class alignas(8) ZEntityPath
 {
 public:
@@ -15026,7 +15026,7 @@ public:
 
 };
 
-// 0x0000000142B90D28 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SSituationConversationGroupSaveData
 {
 public:
@@ -15039,7 +15039,7 @@ public:
 	TArray<uint32> m_members; // 0x0
 };
 
-// 0x0000000142B8B400 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SDangerousAreaSaveData
 {
 public:
@@ -15052,7 +15052,7 @@ public:
 	bool m_bDangerous; // 0x0
 };
 
-// 0x0000000142B91CA0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SLampCoreSaveState
 {
 public:
@@ -15066,7 +15066,7 @@ public:
 	bool m_bSwitchState; // 0x4
 };
 
-// 0x0000000142B91848 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SLampCoreSaveData
 {
 public:
@@ -15080,7 +15080,7 @@ public:
 	TArray<SLampCoreSaveState> m_aData; // 0x18
 };
 
-// 0x0000000142B8DA88 (Size: 0x6)
+// Size: 0x6
 class alignas(2) SSecuritySystemCameraSaveData
 {
 public:
@@ -15097,7 +15097,7 @@ public:
 	bool m_bDestroyed; // 0x5
 };
 
-// 0x0000000142B8C308 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SRotateEntitySaveData
 {
 public:
@@ -15113,7 +15113,7 @@ public:
 	float32 m_fZAxisSpeed; // 0xC
 };
 
-// 0x000000014210D668 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IFreeCameraControl
 {
 public:
@@ -15125,7 +15125,7 @@ public:
 
 };
 
-// 0x0000000142B9EE08 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SSpeakEntitySaveData
 {
 public:
@@ -15138,7 +15138,7 @@ public:
 	float32 m_fSeekPosition; // 0x0
 };
 
-// 0x0000000142BB1860 (Size: 0x18)
+// Size: 0x18
 class alignas(0) IContractModule
 {
 public:
@@ -15150,7 +15150,7 @@ public:
 
 };
 
-// 0x0000000142B82F18 (Size: 0x20)
+// Size: 0x20
 class alignas(16) SCombatOrderSaveData
 {
 public:
@@ -15165,7 +15165,7 @@ public:
 	uint32 m_rInteraction; // 0x14
 };
 
-// 0x0000000142BC3338 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SHintEntrySaveData
 {
 public:
@@ -15180,7 +15180,7 @@ public:
 	uint32 m_context; // 0x8
 };
 
-// 0x0000000142BC3368 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SHintManagerSaveData
 {
 public:
@@ -15195,7 +15195,7 @@ public:
 	bool m_bIsRunning; // 0x28
 };
 
-// 0x0000000142B88210 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5FaceFXReactionEventConsumer_SFaceFXEventData
 {
 public:
@@ -15208,7 +15208,7 @@ public:
 	ZHM5FaceFXReactionEventConsumer_EEvent m_nEvent; // 0x0
 };
 
-// 0x0000000142BF38A8 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SCppEntity
 {
 public:
@@ -15222,7 +15222,7 @@ public:
 	TArray<SEntityTemplateProperty> propertyValues; // 0x8
 };
 
-// 0x0000000142C144D8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SClothWireEntitySaveData
 {
 public:
@@ -15238,7 +15238,7 @@ public:
 	bool m_bVisible; // 0x6
 };
 
-// 0x0000000142B92EA8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule
 {
 public:
@@ -15252,7 +15252,7 @@ public:
 	ZSecuritySystemCameraConfiguration_ECameraEscalationSituations m_Situation; // 0x4
 };
 
-// 0x0000000143E0B258 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SLightSaveData
 {
 public:
@@ -15269,7 +15269,7 @@ public:
 	bool m_bVisible; // 0x18
 };
 
-// 0x0000000143E0B270 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SParticleEmitterSaveData
 {
 public:
@@ -15287,7 +15287,7 @@ public:
 	float32 m_fEmissionCntLeft; // 0x10
 };
 
-// 0x0000000143E0B198 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SBoneAttachSaveData
 {
 public:
@@ -15301,7 +15301,7 @@ public:
 	bool m_bIsAttached; // 0x4
 };
 
-// 0x0000000143E0AC90 (Size: 0x90)
+// Size: 0x90
 class alignas(8) SGameplayRenderablesSaveData
 {
 public:
@@ -15319,7 +15319,7 @@ public:
 	TArray<SGateSaveData> m_aGateData; // 0x78
 };
 
-// 0x0000000142B91200 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5ItemInteractionEventConsumer_SItemInteractionEventData
 {
 public:
@@ -15332,7 +15332,7 @@ public:
 	ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent m_nEvent; // 0x0
 };
 
-// 0x0000000142B93120 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SDoorSoundDefs
 {
 public:
@@ -15344,7 +15344,7 @@ public:
 
 };
 
-// 0x0000000142B92E70 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SItsATrapSaveData
 {
 public:
@@ -15358,7 +15358,7 @@ public:
 	float32 m_fTimer; // 0x4
 };
 
-// 0x0000000142B871B8 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SMovementLocomotionSaveData
 {
 public:
@@ -15371,7 +15371,7 @@ public:
 	bool m_bIsSneaking; // 0x0
 };
 
-// 0x0000000142B8FC88 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SEventSaveData
 {
 public:
@@ -15386,7 +15386,7 @@ public:
 	ZGameTime m_nEnd; // 0x10
 };
 
-// 0x0000000142B8FCC0 (Size: 0x80)
+// Size: 0x80
 class alignas(16) SSharedKnowledgeSaveData
 {
 public:
@@ -15402,7 +15402,7 @@ public:
 	TArray<SEventSaveData> m_aEvents; // 0x60
 };
 
-// 0x0000000142B8FCE0 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SSituationMemberSaveData
 {
 public:
@@ -15421,7 +15421,7 @@ public:
 	ZVariant m_CustomData; // 0x38
 };
 
-// 0x0000000142B8FD30 (Size: 0x68)
+// Size: 0x68
 class alignas(8) SSituationSaveData
 {
 public:
@@ -15442,7 +15442,7 @@ public:
 	bool m_bSituationEnded; // 0x60
 };
 
-// 0x0000000142B82EB8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SSniperCombatGroupSaveData
 {
 public:
@@ -15459,7 +15459,7 @@ public:
 	ZGameTime m_tLastTauntTime; // 0x28
 };
 
-// 0x0000000142B87200 (Size: 0x50)
+// Size: 0x50
 class alignas(16) SMovementCoverSaveData
 {
 public:
@@ -15476,7 +15476,7 @@ public:
 	SMatrix m_mPositionInCover; // 0x10
 };
 
-// 0x0000000142BF35C0 (Size: 0x10)
+// Size: 0x10
 class alignas(8) ZEntityID
 {
 public:
@@ -15489,7 +15489,7 @@ public:
 	ZString m_sStr; // 0x0
 };
 
-// 0x0000000142C2C550 (Size: 0x20)
+// Size: 0x20
 class alignas(8) ZGridFloatField
 {
 public:
@@ -15503,7 +15503,7 @@ public:
 	TArray<float32> m_field; // 0x8
 };
 
-// 0x0000000142BF2130 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SCrowdActivitySaveData
 {
 public:
@@ -15519,7 +15519,7 @@ public:
 	float32 m_nMaxLeaveDelaySec; // 0xC
 };
 
-// 0x0000000142B917A0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathMultipliesSaveData_SVector4
 {
 public:
@@ -15533,7 +15533,7 @@ public:
 	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
 };
 
-// 0x0000000142BB1650 (Size: 0x30)
+// Size: 0x30
 class alignas(8) IContractObjective_SCounterData
 {
 public:
@@ -15550,7 +15550,7 @@ public:
 	IContractObjective_SCounterData_ECounterType m_eType; // 0x28
 };
 
-// 0x0000000142B871E8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SMovementDragBodySaveData
 {
 public:
@@ -15564,7 +15564,7 @@ public:
 	uint32 m_nGrabBoneID; // 0x4
 };
 
-// 0x0000000142B92C70 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SMathLerpSaveData_float32
 {
 public:
@@ -15579,7 +15579,7 @@ public:
 	float32 m_fT; // 0x8
 };
 
-// 0x0000000142B8B8A0 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SManHuntServiceSaveData
 {
 public:
@@ -15594,7 +15594,7 @@ public:
 	float32 m_fGuardSightRange; // 0x1C
 };
 
-// 0x0000000142B8CC18 (Size: 0x8)
+// Size: 0x8
 class alignas(0) ZPostfilterGraphBaseNode
 {
 public:
@@ -15606,7 +15606,7 @@ public:
 
 };
 
-// 0x0000000142BBA260 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SFootIKEventData
 {
 public:
@@ -15619,7 +15619,7 @@ public:
 	SFootIKEventData_EFoot m_Foot; // 0x0
 };
 
-// 0x0000000142B9AE28 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SEventChannelSaveData
 {
 public:
@@ -15632,7 +15632,7 @@ public:
 	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000143E09F70 (Size: 0x40)
+// Size: 0x40
 class alignas(16) SCollidingParticle
 {
 public:
@@ -15649,7 +15649,7 @@ public:
 	float32 m_fSize; // 0x34
 };
 
-// 0x0000000142B89AC8 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SHeroStandInSaveState
 {
 public:
@@ -15664,7 +15664,7 @@ public:
 	bool m_bPaused; // 0x8
 };
 
-// 0x0000000142B8A1B0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) AI_SSoundEventModifierState
 {
 public:
@@ -15678,7 +15678,7 @@ public:
 	float32 m_fLoudnessModifier; // 0x4
 };
 
-// 0x0000000142BB5648 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SActionRadialArcDisplayInfo
 {
 public:
@@ -15696,7 +15696,7 @@ public:
 	ZString label; // 0x8
 };
 
-// 0x0000000142B8B3B8 (Size: 0x20)
+// Size: 0x20
 class alignas(4) SBodybagBoneSaveData
 {
 public:
@@ -15710,7 +15710,7 @@ public:
 	SVector4 mTranslation; // 0x10
 };
 
-// 0x0000000142B8AB50 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SAIPerceptibleEntitySaveData
 {
 public:
@@ -15723,7 +15723,7 @@ public:
 	bool m_bPerceptibleEnabled; // 0x0
 };
 
-// 0x0000000142B84380 (Size: 0x80)
+// Size: 0x80
 class alignas(16) SDecalSpawnSaveData
 {
 public:
@@ -15746,7 +15746,7 @@ public:
 	uint32 m_rBlockingSpatialEntity; // 0x74
 };
 
-// 0x0000000142B82FC0 (Size: 0x20)
+// Size: 0x20
 class alignas(16) ZFormationMoveOrder_SFormationMoveOrderSaveData
 {
 public:
@@ -15761,7 +15761,7 @@ public:
 	EMoveSpeed m_eMoveSpeed; // 0x14
 };
 
-// 0x0000000142B899A0 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SClothBundleSaveData
 {
 public:
@@ -15779,7 +15779,7 @@ public:
 	bool bSpawnedByHitman; // 0x38
 };
 
-// 0x0000000142B89640 (Size: 0x34)
+// Size: 0x34
 class alignas(4) SBodyPartDamageMultipliers
 {
 public:
@@ -15804,7 +15804,7 @@ public:
 	bool m_bApplyLeftRightScalars; // 0x30
 };
 
-// 0x0000000142BC4370 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SColorRGBSaveData
 {
 public:
@@ -15818,7 +15818,7 @@ public:
 	TArray<SColorRGB> m_aData; // 0x18
 };
 
-// 0x0000000142BC4310 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SStateControllerSaveDataStruct
 {
 public:
@@ -15832,7 +15832,7 @@ public:
 	bool m_bEnabled; // 0x4
 };
 
-// 0x0000000142BC4340 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SStateControllerSaveData
 {
 public:
@@ -15846,7 +15846,7 @@ public:
 	TArray<SStateControllerSaveDataStruct> m_aData; // 0x18
 };
 
-// 0x0000000142BC3CE0 (Size: 0xF0)
+// Size: 0xF0
 class alignas(8) SValueSaveData
 {
 public:
@@ -15863,7 +15863,7 @@ public:
 	SColorRGBSaveData m_ValueColorRGB; // 0xC0
 };
 
-// 0x0000000142B8B5A0 (Size: 0x28)
+// Size: 0x28
 class alignas(4) ZSharedSensorDef_SVisibilitySetting
 {
 public:
@@ -15885,7 +15885,7 @@ public:
 	float32 m_fFocusConeBackWidth; // 0x24
 };
 
-// 0x0000000142B8D8B0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SHeroItemActionSaveData
 {
 public:
@@ -15898,7 +15898,7 @@ public:
 	uint32 m_rItem; // 0x0
 };
 
-// 0x0000000142B95600 (Size: 0x140)
+// Size: 0x140
 class alignas(16) ZInteractionData
 {
 public:
@@ -15910,7 +15910,7 @@ public:
 
 };
 
-// 0x0000000142B8B3E8 (Size: 0x58)
+// Size: 0x58
 class alignas(8) SBodybagSaveData
 {
 public:
@@ -15928,7 +15928,7 @@ public:
 	bool m_IsInMorgue; // 0x54
 };
 
-// 0x0000000142BEF6A0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SAudioEmitterStateSaveData
 {
 public:
@@ -15942,7 +15942,7 @@ public:
 	uint32 m_nStateId; // 0x4
 };
 
-// 0x0000000142BF3698 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SEntityTemplatePinConnection
 {
 public:
@@ -15959,7 +15959,7 @@ public:
 	ZVariant constantPinValue; // 0x28
 };
 
-// 0x0000000142B83158 (Size: 0x70)
+// Size: 0x70
 class alignas(8) SEvacuateVIPGroupSaveData
 {
 public:
@@ -15985,7 +15985,7 @@ public:
 	bool m_isSetupPhaseComplete; // 0x6A
 };
 
-// 0x0000000142B83038 (Size: 0x20)
+// Size: 0x20
 class alignas(16) ZJumpToOrder_SJumpToOrderSaveData
 {
 public:
@@ -15999,7 +15999,7 @@ public:
 	float4 m_vTargetPosition; // 0x10
 };
 
-// 0x0000000143E09FD8 (Size: 0x1)
+// Size: 0x1
 class alignas(1) IRenderCompositorEntity
 {
 public:
@@ -16011,7 +16011,7 @@ public:
 
 };
 
-// 0x0000000142B95B58 (Size: 0x38)
+// Size: 0x38
 class alignas(4) S25DProjectionSettings
 {
 public:
@@ -16037,7 +16037,7 @@ public:
 	float32 fViewportGutter; // 0x34
 };
 
-// 0x0000000142B92D50 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SMathMultiplyDivideSaveData_SVector2
 {
 public:
@@ -16052,7 +16052,7 @@ public:
 	bool m_bDivide; // 0x10
 };
 
-// 0x0000000142BC0BD0 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SVisibilitySaveData
 {
 public:
@@ -16065,7 +16065,7 @@ public:
 	bool m_bIsVisible; // 0x0
 };
 
-// 0x0000000142BB5BA8 (Size: 0xE8)
+// Size: 0xE8
 class alignas(8) ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo
 {
 public:
@@ -16099,7 +16099,7 @@ public:
 	ZString warningText; // 0xD8
 };
 
-// 0x0000000142B9ED98 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SCombatZoneEntitySaveData
 {
 public:
@@ -16117,7 +16117,7 @@ public:
 	ZGameTime m_tEngageTime; // 0x18
 };
 
-// 0x0000000143E403E8 (Size: 0x30)
+// Size: 0x30
 class alignas(16) SGProperties
 {
 public:
@@ -16134,7 +16134,7 @@ public:
 	int32 nVisibilityRange; // 0x28
 };
 
-// 0x0000000142B905A0 (Size: 0x10)
+// Size: 0x10
 class alignas(8) SCuriousEventSaveData
 {
 public:
@@ -16148,7 +16148,7 @@ public:
 	int32 m_nKnowledgeIndex; // 0x8
 };
 
-// 0x0000000142B905D8 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SCuriousEventServiceSaveData
 {
 public:
@@ -16161,7 +16161,7 @@ public:
 	TArray<SCuriousEventSaveData> m_aCuriousEvents; // 0x0
 };
 
-// 0x0000000142B92C50 (Size: 0x20)
+// Size: 0x20
 class alignas(4) SMathDistanceSaveData_SVector4
 {
 public:
@@ -16175,7 +16175,7 @@ public:
 	SVector4 m_fB; // 0x10
 };
 
-// 0x0000000142B82C00 (Size: 0x50)
+// Size: 0x50
 class alignas(8) SCautiousBackupGroupSaveData
 {
 public:
@@ -16194,7 +16194,7 @@ public:
 	ZGameTime m_tStart; // 0x48
 };
 
-// 0x0000000143E14EE8 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SEntityPinDescriptor
 {
 public:
@@ -16212,7 +16212,7 @@ public:
 	bool bIsHidden; // 0x41
 };
 
-// 0x0000000142B8B7B8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SGuardBodySituationSaveData
 {
 public:
@@ -16229,7 +16229,7 @@ public:
 	int32 m_pGetHelpGroup; // 0x4
 };
 
-// 0x0000000142B90698 (Size: 0x30)
+// Size: 0x30
 class alignas(16) STargetTrackingSaveData
 {
 public:
@@ -16244,7 +16244,7 @@ public:
 	ZGameTime m_time; // 0x20
 };
 
-// 0x0000000142B8B8D0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) STargetTrackingServiceSaveData
 {
 public:
@@ -16257,7 +16257,7 @@ public:
 	TArray<STargetTrackingSaveData> m_aTrackedTargets; // 0x0
 };
 
-// 0x0000000142B82EE8 (Size: 0x40)
+// Size: 0x40
 class alignas(16) SActOrderSaveData
 {
 public:
@@ -16276,7 +16276,7 @@ public:
 	bool m_bStopCurrentActFast; // 0x32
 };
 
-// 0x0000000142BB32F8 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SContractObjectiveHudHintEntitySaveData
 {
 public:
@@ -16289,7 +16289,7 @@ public:
 	bool m_bVisible; // 0x0
 };
 
-// 0x0000000142B79CA8 (Size: 0x70)
+// Size: 0x70
 class alignas(16) SEscortOutBehaviorSaveData
 {
 public:
@@ -16315,7 +16315,7 @@ public:
 	bool m_bJustShowExit; // 0x62
 };
 
-// 0x0000000142B82DB0 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SRecoverUnconsciousGroupSaveData
 {
 public:
@@ -16334,7 +16334,7 @@ public:
 	bool m_bFastWakeUp; // 0x26
 };
 
-// 0x0000000142B90C18 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SCompressedGridFloatField
 {
 public:
@@ -16352,7 +16352,7 @@ public:
 	TArray<uint8> m_aValues; // 0x28
 };
 
-// 0x0000000142B8D8D0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SHeroItemAttachmentSaveData
 {
 public:
@@ -16365,7 +16365,7 @@ public:
 	uint32 m_rItem; // 0x0
 };
 
-// 0x0000000142B91730 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathMultipliesSaveData_SVector2
 {
 public:
@@ -16379,7 +16379,7 @@ public:
 	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
 };
 
-// 0x0000000142B88070 (Size: 0xC)
+// Size: 0xC
 class alignas(4) AnimationTakeDataTypes_SGeneric
 {
 public:
@@ -16393,7 +16393,7 @@ public:
 	ZRuntimeResourceID m_fResourceTest; // 0x4
 };
 
-// 0x0000000142BB5CE0 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SSpaceCollectionBehaviorConfiguration
 {
 public:
@@ -16406,7 +16406,7 @@ public:
 	bool m_bInclusive; // 0x0
 };
 
-// 0x0000000142B7A598 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IEscortOutSituation
 {
 public:
@@ -16418,7 +16418,7 @@ public:
 
 };
 
-// 0x0000000142BBD468 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SBlobsConfigResourceEntry
 {
 public:
@@ -16432,7 +16432,7 @@ public:
 	ZRuntimeResourceID BlobRid; // 0x10
 };
 
-// 0x0000000142B8B7A0 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SGuardBodySituationMemberSaveData
 {
 public:
@@ -16448,7 +16448,7 @@ public:
 	uint32 m_rBodybag; // 0x8
 };
 
-// 0x0000000142C135F8 (Size: 0x8)
+// Size: 0x8
 class alignas(8) INetRelevancy
 {
 public:
@@ -16460,7 +16460,7 @@ public:
 
 };
 
-// 0x0000000142B92D30 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SMathMultiplyDivideSaveData_float32
 {
 public:
@@ -16475,7 +16475,7 @@ public:
 	bool m_bDivide; // 0x8
 };
 
-// 0x0000000142C0DC30 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SAnimPlayerSaveData
 {
 public:
@@ -16490,7 +16490,7 @@ public:
 	TArray<SBoneTransformSaveData> m_aBones; // 0x20
 };
 
-// 0x0000000142B91618 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SActorKeywordProxiesSaveData
 {
 public:
@@ -16504,7 +16504,7 @@ public:
 	TArray<SActorKeywordProxySaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B82BA0 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SAccidentObserversGroupSaveData
 {
 public:
@@ -16519,7 +16519,7 @@ public:
 	EAccidentScaleContext m_accidentScaleContext; // 0x20
 };
 
-// 0x00000001423CBA48 (Size: 0x8)
+// Size: 0x8
 class alignas(8) ZTime
 {
 public:
@@ -16532,7 +16532,7 @@ public:
 	uint64 m_nValue; // 0x0
 };
 
-// 0x0000000142C0EE30 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SGaitTransitionEntry
 {
 public:
@@ -16546,7 +16546,7 @@ public:
 	ESpeed m_speed; // 0x4
 };
 
-// 0x0000000142B79F98 (Size: 0x2C)
+// Size: 0x2C
 class alignas(4) SAnimatedActorActOrderSaveData
 {
 public:
@@ -16564,7 +16564,7 @@ public:
 	SVector4 m_vOriginQuaternion; // 0x1C
 };
 
-// 0x000000014210DB88 (Size: 0x30)
+// Size: 0x30
 class alignas(4) SMatrix43
 {
 public:
@@ -16580,7 +16580,7 @@ public:
 	SVector3 Trans; // 0x24
 };
 
-// 0x0000000142BEF640 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SAudioMemoryMonitorEntry
 {
 public:
@@ -16595,7 +16595,7 @@ public:
 	TArray<ZResourceID> references; // 0x8
 };
 
-// 0x0000000142C104E8 (Size: 0x60)
+// Size: 0x60
 class alignas(8) ZHttpUrl
 {
 public:
@@ -16607,7 +16607,7 @@ public:
 
 };
 
-// 0x0000000142BB3B20 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IUIDataListener
 {
 public:
@@ -16619,7 +16619,7 @@ public:
 
 };
 
-// 0x0000000142B830F8 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SEvacuateSituationMemberSaveData
 {
 public:
@@ -16634,7 +16634,7 @@ public:
 	uint32 m_nPatrolWaypointSubIndex; // 0x8
 };
 
-// 0x0000000142BBD420 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SOnlineEvent
 {
 public:
@@ -16648,7 +16648,7 @@ public:
 	ZDynamicObject data; // 0x10
 };
 
-// 0x0000000142B82F90 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SFleeOrderSaveData
 {
 public:
@@ -16663,7 +16663,7 @@ public:
 	bool m_bFleeForHelp; // 0x6
 };
 
-// 0x0000000142BF36B0 (Size: 0x70)
+// Size: 0x70
 class alignas(8) SExternalEntityTemplatePinConnection
 {
 public:
@@ -16680,7 +16680,7 @@ public:
 	ZVariant constantPinValue; // 0x60
 };
 
-// 0x0000000142BF3818 (Size: 0xC8)
+// Size: 0xC8
 class alignas(8) STemplateEntityBlueprint
 {
 public:
@@ -16702,7 +16702,7 @@ public:
 	TArray<SExternalEntityTemplatePinConnection> pinConnectionOverrideDeletes; // 0xB0
 };
 
-// 0x0000000142B9A6A0 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SDramaControllerSaveData
 {
 public:
@@ -16716,7 +16716,7 @@ public:
 	bool m_bIsEnableCondValid; // 0x1
 };
 
-// 0x0000000142B8B318 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SSmuggleSituationActorStateSaveData
 {
 public:
@@ -16735,7 +16735,7 @@ public:
 	uint32 m_rScreenplay; // 0x18
 };
 
-// 0x0000000142B8B348 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SSmuggleSituationSaveData
 {
 public:
@@ -16752,7 +16752,7 @@ public:
 	TArray<uint32> m_aMoveToActs; // 0x20
 };
 
-// 0x0000000142BF4728 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SRenderVideoPlayerSaveData
 {
 public:
@@ -16775,7 +16775,7 @@ public:
 	ZGameTime m_RunTime; // 0x18
 };
 
-// 0x0000000142BC0C00 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SConditionalTimerEntitySaveData
 {
 public:
@@ -16791,7 +16791,7 @@ public:
 	bool m_bValue; // 0x9
 };
 
-// 0x0000000142B9DC60 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SActorDynamicTemplateHandlerSaveData
 {
 public:
@@ -16806,7 +16806,7 @@ public:
 	uint32 m_rSetpiece; // 0x8
 };
 
-// 0x0000000142B882C0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZInteractionEventConsumer_SInteractionEventData
 {
 public:
@@ -16819,7 +16819,7 @@ public:
 	ZInteractionEventConsumer_EEvent m_nEvent; // 0x0
 };
 
-// 0x0000000142B8B4C0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SVIPEvacuationNodeSaveData
 {
 public:
@@ -16836,7 +16836,7 @@ public:
 	bool m_compromisedOnEnter; // 0x11
 };
 
-// 0x0000000142B91880 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SVIPEvacuationNodesSaveData
 {
 public:
@@ -16850,7 +16850,7 @@ public:
 	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
 };
 
-// 0x00000001423CBA28 (Size: 0x30)
+// Size: 0x30
 class alignas(8) ZScopedRuntimePinConDesc
 {
 public:
@@ -16864,7 +16864,7 @@ public:
 	ZRuntimePinConDesc m_PinConDesc; // 0x18
 };
 
-// 0x0000000143E0BC50 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SSequenceTrackSaveData
 {
 public:
@@ -16878,7 +16878,7 @@ public:
 	ZVariant m_CustomTrackData; // 0x8
 };
 
-// 0x0000000142B89DC0 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SAimAssistObjectSaveData
 {
 public:
@@ -16892,7 +16892,7 @@ public:
 	bool m_bWasAimAssistActivated; // 0x1
 };
 
-// 0x0000000143E14F18 (Size: 0x40)
+// Size: 0x40
 class alignas(8) SExposedEntityTypeDescriptor
 {
 public:
@@ -16907,7 +16907,7 @@ public:
 	TArray<ZString> aSupportedTypes; // 0x28
 };
 
-// 0x0000000142B8AD20 (Size: 0x90)
+// Size: 0x90
 class alignas(8) SScreenplayManagerSaveData
 {
 public:
@@ -16922,7 +16922,7 @@ public:
 	SDramaSetupCollectionSaveData m_DramaSetupData; // 0x60
 };
 
-// 0x0000000142B82D80 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SObserversGroupSaveData
 {
 public:
@@ -16937,7 +16937,7 @@ public:
 	float32 m_observerDistanceMax; // 0x20
 };
 
-// 0x0000000142B8F930 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SLockdownManagerAIZoneSaveData
 {
 public:
@@ -16952,7 +16952,7 @@ public:
 	uint32 m_rZone; // 0x10
 };
 
-// 0x0000000142B8B8B8 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SCrowdServiceSaveData
 {
 public:
@@ -16967,7 +16967,7 @@ public:
 	TArray<uint32> m_aPerceptibleActors; // 0x30
 };
 
-// 0x0000000142B9ACF0 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SHeroEscortSituation2ActorStateSaveData
 {
 public:
@@ -16986,7 +16986,7 @@ public:
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
 
-// 0x0000000142B83380 (Size: 0x78)
+// Size: 0x78
 class alignas(8) SEvacuateSituationSaveData
 {
 public:
@@ -17005,7 +17005,7 @@ public:
 	TArray<uint32> m_vipsUnderFire; // 0x60
 };
 
-// 0x0000000142BEF670 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SAudioEmitterRTPCSaveData
 {
 public:
@@ -17019,7 +17019,7 @@ public:
 	float32 m_fValue; // 0x4
 };
 
-// 0x0000000142BB5A60 (Size: 0x28)
+// Size: 0x28
 class alignas(8) ZHUDUIControllerEntity_SIntelData
 {
 public:
@@ -17035,7 +17035,7 @@ public:
 	float32 showDuration; // 0x24
 };
 
-// 0x0000000142C0D8A0 (Size: 0x60)
+// Size: 0x60
 class alignas(8) SLocalizedVideoData
 {
 public:
@@ -17051,7 +17051,7 @@ public:
 	TArray<ZString> SubtitleMarkupsPerLanguage; // 0x48
 };
 
-// 0x0000000142B9DB18 (Size: 0xC)
+// Size: 0xC
 class alignas(4) AI_SFirePattern01_SData
 {
 public:
@@ -17066,7 +17066,7 @@ public:
 	float32 m_WaitMaxSeconds; // 0x8
 };
 
-// 0x0000000142B7B418 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SPerceptibleCrowdBodySaveData
 {
 public:
@@ -17080,7 +17080,7 @@ public:
 	int32 m_rSharedKnowledge; // 0x4
 };
 
-// 0x0000000142BB5938 (Size: 0x20)
+// Size: 0x20
 class alignas(8) ZHUDInventoryNotificationController_SData
 {
 public:
@@ -17094,7 +17094,7 @@ public:
 	ZString m_sBodyText; // 0x10
 };
 
-// 0x0000000142B88468 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SDoorSaveData
 {
 public:
@@ -17110,7 +17110,7 @@ public:
 	ZGameTime m_tOpenTime; // 0x10
 };
 
-// 0x0000000142B82CC0 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SDetectedInPrivateGroupSaveData
 {
 public:
@@ -17128,7 +17128,7 @@ public:
 	int32 m_target; // 0x24
 };
 
-// 0x0000000142B7A5C8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) ISituation
 {
 public:
@@ -17140,7 +17140,7 @@ public:
 
 };
 
-// 0x0000000143E40400 (Size: 0x30)
+// Size: 0x30
 class alignas(16) SGWaypoint
 {
 public:
@@ -17163,7 +17163,7 @@ public:
 	int16 nLayerIndex; // 0x24
 };
 
-// 0x0000000142B91060 (Size: 0xC)
+// Size: 0xC
 class alignas(4) ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData
 {
 public:
@@ -17178,7 +17178,7 @@ public:
 	float32 m_fPitch; // 0x8
 };
 
-// 0x0000000143E0B160 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SSavableEntitiesSaveData
 {
 public:
@@ -17192,7 +17192,7 @@ public:
 	TArray<SVariantStruct> m_aEntityData; // 0x18
 };
 
-// 0x0000000142B82470 (Size: 0x80)
+// Size: 0x80
 class alignas(16) ZStandOffSituation_SState
 {
 public:
@@ -17235,7 +17235,7 @@ public:
 	bool m_bLOSMemberWantsToKill; // 0x74
 };
 
-// 0x0000000142B8BAB0 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SHandleDistractionSituationSaveData
 {
 public:
@@ -17250,7 +17250,7 @@ public:
 	uint32 m_pPreliminaryLeader; // 0x8
 };
 
-// 0x00000001423CC998 (Size: 0x18)
+// Size: 0x18
 class alignas(8) ZCurve
 {
 public:
@@ -17263,7 +17263,7 @@ public:
 	TArray<TFixedArray<float32, 8>> data; // 0x0
 };
 
-// 0x0000000142B90BE0 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SCautiousHuntSaveData
 {
 public:
@@ -17286,7 +17286,7 @@ public:
 	bool m_bRuleActive; // 0x36
 };
 
-// 0x0000000142B90638 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SHelpingActorSaveData
 {
 public:
@@ -17300,7 +17300,7 @@ public:
 	uint32 m_rActor; // 0x4
 };
 
-// 0x0000000142B7AEF8 (Size: 0x40)
+// Size: 0x40
 class alignas(16) SRunningCrowdAIEventSaveData
 {
 public:
@@ -17320,7 +17320,7 @@ public:
 	bool m_IsInvestigated; // 0x30
 };
 
-// 0x0000000142B916F8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathMultipliesSaveData_float32
 {
 public:
@@ -17334,7 +17334,7 @@ public:
 	TArray<SMathMultiplyDivideSaveData_float32> m_aData; // 0x18
 };
 
-// 0x0000000142B88288 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5GenericEventConsumer_SGenericEventData
 {
 public:
@@ -17347,7 +17347,7 @@ public:
 	ZHM5GenericEventConsumer_EEvent m_nEvent; // 0x0
 };
 
-// 0x0000000142BC21D0 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SInventoryControllerItemSaveData
 {
 public:
@@ -17361,7 +17361,7 @@ public:
 	uint32 m_nAmmo; // 0x4
 };
 
-// 0x0000000142B88498 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SDoorsSaveData
 {
 public:
@@ -17375,7 +17375,7 @@ public:
 	TArray<SDoorSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B8B530 (Size: 0x30)
+// Size: 0x30
 class alignas(16) SPrivateAreaSaveData
 {
 public:
@@ -17393,7 +17393,7 @@ public:
 	float4 m_vHitmanExitPosition; // 0x20
 };
 
-// 0x0000000142B91280 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5WeaponEventConsumer_SWeaponEventData
 {
 public:
@@ -17406,7 +17406,7 @@ public:
 	ZHM5WeaponEventConsumer_EAnimWeapon m_nEvent; // 0x0
 };
 
-// 0x0000000142B82D98 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SPatrolGroupSaveData
 {
 public:
@@ -17419,7 +17419,7 @@ public:
 	int32 m_nRouteID; // 0x0
 };
 
-// 0x0000000142BBD408 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IOnlineConfigurationListener
 {
 public:
@@ -17431,7 +17431,7 @@ public:
 
 };
 
-// 0x0000000142B91388 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SActorTagSaveData
 {
 public:
@@ -17446,7 +17446,7 @@ public:
 	uint32 m_rActorRef; // 0x4
 };
 
-// 0x0000000142B89B98 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SActorTagManagerSaveData
 {
 public:
@@ -17463,7 +17463,7 @@ public:
 	TArray<SActorTagSaveData> m_aActorTagData; // 0x10
 };
 
-// 0x0000000142B8B390 (Size: 0x3)
+// Size: 0x3
 class alignas(1) SSCCuriousConfiguration
 {
 public:
@@ -17478,7 +17478,7 @@ public:
 	bool m_CanVIPsInvestigate; // 0x2
 };
 
-// 0x0000000142BB3BB0 (Size: 0x8)
+// Size: 0x8
 class alignas(1) ZHUDAIGuide_SData
 {
 public:
@@ -17498,7 +17498,7 @@ public:
 	bool bDeepTrespassingNOTUSEDBUTNECESSARYBECAUSEOFREALLYSTRANGEPROPERTYPARSERBUG; // 0x7
 };
 
-// 0x0000000142BB1848 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IContractObjective
 {
 public:
@@ -17510,7 +17510,7 @@ public:
 
 };
 
-// 0x0000000142B91FA8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) STargetableBoneConfiguration
 {
 public:
@@ -17524,7 +17524,7 @@ public:
 	float32 m_fBoneRadiusOverride; // 0x4
 };
 
-// 0x0000000142C13808 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SPFObstactleSaveData
 {
 public:
@@ -17537,7 +17537,7 @@ public:
 	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000143E150E8 (Size: 0x80)
+// Size: 0x80
 class alignas(128) SCrowdCells
 {
 public:
@@ -17550,7 +17550,7 @@ public:
 	TFixedArray<uint8, 128> m_cells; // 0x0
 };
 
-// 0x0000000142BB36B8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SUIOptionsSaveData
 {
 public:
@@ -17564,7 +17564,7 @@ public:
 	TArray<SOptionValueSaveData> m_aValues; // 0x18
 };
 
-// 0x0000000142BC0B28 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SPhysicsListSaveData
 {
 public:
@@ -17578,7 +17578,7 @@ public:
 	TArray<SPhysicsSaveData> m_aEntityDatas; // 0x18
 };
 
-// 0x0000000142C0EFD8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IMorphemeCutSequenceAnimationEntity
 {
 public:
@@ -17590,7 +17590,7 @@ public:
 
 };
 
-// 0x0000000142BC28F0 (Size: 0x110)
+// Size: 0x110
 class alignas(16) ZSoundCollisionInfo
 {
 public:
@@ -17602,7 +17602,7 @@ public:
 
 };
 
-// 0x0000000143E0CD78 (Size: 0x8)
+// Size: 0x8
 class alignas(8) ZGfxValueWrapper
 {
 public:
@@ -17614,7 +17614,7 @@ public:
 
 };
 
-// 0x0000000142B8F6C8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IAnimPlayerEntity
 {
 public:
@@ -17626,7 +17626,7 @@ public:
 
 };
 
-// 0x0000000142B918F0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathLerpsSaveData_float32
 {
 public:
@@ -17640,7 +17640,7 @@ public:
 	TArray<SMathLerpSaveData_float32> m_aData; // 0x18
 };
 
-// 0x0000000142B8BF78 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IValueEntity
 {
 public:
@@ -17652,7 +17652,7 @@ public:
 
 };
 
-// 0x0000000142B79F68 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SAnimatedActorOrderSaveData
 {
 public:
@@ -17666,7 +17666,7 @@ public:
 	ZVariant m_OrderData; // 0x8
 };
 
-// 0x0000000142B82408 (Size: 0x38)
+// Size: 0x38
 class alignas(8) ZSpectatorSituation_SSituationSaveData
 {
 public:
@@ -17681,7 +17681,7 @@ public:
 	TArray<uint32> m_aNonObserverMembers; // 0x20
 };
 
-// 0x0000000142BB7E90 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SGameKeywordManagerSaveData
 {
 public:
@@ -17695,7 +17695,7 @@ public:
 	TArray<ZString> m_aKeywordStringData; // 0x18
 };
 
-// 0x0000000143E13A20 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SUIGridCellPosition
 {
 public:
@@ -17711,7 +17711,7 @@ public:
 	int32 nRowSpan; // 0xC
 };
 
-// 0x0000000142BF24C0 (Size: 0x40)
+// Size: 0x40
 class alignas(16) SRegionSaveData
 {
 public:
@@ -17733,7 +17733,7 @@ public:
 	int16 m_nObstacleActorIndex; // 0x36
 };
 
-// 0x0000000142B82F30 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SEscortOutOrderSaveData
 {
 public:
@@ -17746,7 +17746,7 @@ public:
 	TArray<float4> m_aExitPoints; // 0x0
 };
 
-// 0x0000000142B91688 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SItemsSaveData
 {
 public:
@@ -17760,7 +17760,7 @@ public:
 	TArray<SItemSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B88248 (Size: 0x18)
+// Size: 0x18
 class alignas(8) ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData
 {
 public:
@@ -17774,7 +17774,7 @@ public:
 	ZString m_sFaceExpression; // 0x8
 };
 
-// 0x0000000142BB1500 (Size: 0x48)
+// Size: 0x48
 class alignas(8) ZContractEvaluationContext
 {
 public:
@@ -17786,7 +17786,7 @@ public:
 
 };
 
-// 0x0000000142BC21B8 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SStoredSlotSaveData
 {
 public:
@@ -17801,7 +17801,7 @@ public:
 	bool m_bItemsStored; // 0x5
 };
 
-// 0x0000000142BC2218 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SInventoryControllerSlotSaveData
 {
 public:
@@ -17815,7 +17815,7 @@ public:
 	EInventoryStorageType m_eStorageType; // 0x18
 };
 
-// 0x0000000142B8E4B0 (Size: 0xB8)
+// Size: 0xB8
 class alignas(8) SInventoryControllerSaveData
 {
 public:
@@ -17847,7 +17847,7 @@ public:
 	TArray<uint32> m_aAmmoCounts; // 0xA0
 };
 
-// 0x0000000142B8B0D8 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SEscortSituationActors
 {
 public:
@@ -17860,7 +17860,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142B94AA8 (Size: 0x40)
+// Size: 0x40
 class alignas(8) AI_Private_SPoolModificationEvent
 {
 public:
@@ -17879,7 +17879,7 @@ public:
 	ZString EventMetaData; // 0x30
 };
 
-// 0x0000000142B83188 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SLockdownManagerSaveData
 {
 public:
@@ -17892,7 +17892,7 @@ public:
 	TArray<SLockdownManagerAIZoneSaveData> m_aAIZones; // 0x0
 };
 
-// 0x0000000142BEF6B8 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SAudioEmitterSaveData
 {
 public:
@@ -17908,7 +17908,7 @@ public:
 	uint32 m_nNumberOfSwitches; // 0xC
 };
 
-// 0x0000000142BEEFD8 (Size: 0xA8)
+// Size: 0xA8
 class alignas(8) SAudioSaveData
 {
 public:
@@ -17927,7 +17927,7 @@ public:
 	TArray<uint32> m_aEventsEnabledAfterInit; // 0x90
 };
 
-// 0x0000000142BB6608 (Size: 0x10)
+// Size: 0x10
 class alignas(8) ZWorldMapMetaData
 {
 public:
@@ -17939,7 +17939,7 @@ public:
 
 };
 
-// 0x0000000142B8DB90 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SActorItemActionSaveData
 {
 public:
@@ -17953,7 +17953,7 @@ public:
 	uint32 m_rItem; // 0x4
 };
 
-// 0x0000000142B82E10 (Size: 0x30)
+// Size: 0x30
 class alignas(8) STriggerAlarmGroupSaveData
 {
 public:
@@ -17970,7 +17970,7 @@ public:
 	bool m_bTriggeredAlarm; // 0x28
 };
 
-// 0x0000000142B88188 (Size: 0x4)
+// Size: 0x4
 class alignas(4) ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData
 {
 public:
@@ -17983,7 +17983,7 @@ public:
 	ZHM5CrowdGenericEventConsumer_EEvent m_nEvent; // 0x0
 };
 
-// 0x0000000142B929B0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SActorSpreadControllerCandidateSaveData
 {
 public:
@@ -17998,7 +17998,7 @@ public:
 	bool m_bValidCandidate; // 0x10
 };
 
-// 0x0000000142B8DD50 (Size: 0x90)
+// Size: 0x90
 class alignas(8) SActorSpreadControllerSaveData
 {
 public:
@@ -18022,7 +18022,7 @@ public:
 	ZGameTime m_PlayerCandidateTime; // 0x88
 };
 
-// 0x0000000142B79F80 (Size: 0x2C)
+// Size: 0x2C
 class alignas(4) SAnimatedActorMoveOrderSaveData
 {
 public:
@@ -18042,7 +18042,7 @@ public:
 	SVector3 m_vFacingDirection; // 0x20
 };
 
-// 0x0000000142B9AE00 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SScreenplayRole2HeroSaveState
 {
 public:
@@ -18056,7 +18056,7 @@ public:
 	bool m_bPaused; // 0x4
 };
 
-// 0x00000001423CB8D0 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SDynamicObjectKeyValuePair
 {
 public:
@@ -18070,7 +18070,7 @@ public:
 	ZDynamicObject value; // 0x10
 };
 
-// 0x00000001423CB8B8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) ZDynamicObject_SArrayTypesRegistrar
 {
 public:
@@ -18084,7 +18084,7 @@ public:
 	TArray<ZDynamicObject> _dummy2; // 0x18
 };
 
-// 0x0000000142B89710 (Size: 0x36)
+// Size: 0x36
 class alignas(1) SHM5CrippleBoxSaveData
 {
 public:
@@ -18150,7 +18150,7 @@ public:
 	bool m_bActivatedByPinSignal; // 0x35
 };
 
-// 0x0000000142B83068 (Size: 0x30)
+// Size: 0x30
 class alignas(16) ZMoveToOrder_SMoveToOrderSaveData
 {
 public:
@@ -18175,7 +18175,7 @@ public:
 	bool m_bEndStanding; // 0x27
 };
 
-// 0x0000000142B8A948 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IActorProviderFilter
 {
 public:
@@ -18187,7 +18187,7 @@ public:
 
 };
 
-// 0x0000000142B8B888 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SGetHelpServiceSaveData
 {
 public:
@@ -18200,7 +18200,7 @@ public:
 	TArray<SHelpingActorSaveData> m_aHelpingActors; // 0x0
 };
 
-// 0x0000000143E0B288 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SPersistentEntitySaveData
 {
 public:
@@ -18215,7 +18215,7 @@ public:
 	TArray<ZString> m_aEntityNames; // 0x20
 };
 
-// 0x0000000143E14F00 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SExposedEntityDescriptor
 {
 public:
@@ -18232,7 +18232,7 @@ public:
 	bool bIsHidden; // 0x31
 };
 
-// 0x0000000142B87188 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SMovementHideInClosetSaveData
 {
 public:
@@ -18246,7 +18246,7 @@ public:
 	uint32 m_rCloset; // 0x4
 };
 
-// 0x00000001423CCBD0 (Size: 0x28)
+// Size: 0x28
 class alignas(8) SLevelReferenceableEntitieSaveData
 {
 public:
@@ -18260,7 +18260,7 @@ public:
 	TArray<ZString> m_aAdditionalBrickResources; // 0x10
 };
 
-// 0x0000000142B874E8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IEventConsumerCollection
 {
 public:
@@ -18272,7 +18272,7 @@ public:
 
 };
 
-// 0x0000000142BC43E8 (Size: 0x18)
+// Size: 0x18
 class alignas(4) SWaveformGeneratorSaveData
 {
 public:
@@ -18290,7 +18290,7 @@ public:
 	uint32 m_nCount; // 0x14
 };
 
-// 0x0000000142BC3CF8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SWaveformGeneratorManagerSaveData
 {
 public:
@@ -18304,7 +18304,7 @@ public:
 	TArray<SWaveformGeneratorSaveData> m_aGeneratorData; // 0x18
 };
 
-// 0x0000000142B92CF0 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SMathLerpSaveData_SColorRGB
 {
 public:
@@ -18319,7 +18319,7 @@ public:
 	float32 m_fT; // 0x18
 };
 
-// 0x0000000142B919D0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SMathLerpsSaveData_SColorRGB
 {
 public:
@@ -18333,7 +18333,7 @@ public:
 	TArray<SMathLerpSaveData_SColorRGB> m_aData; // 0x18
 };
 
-// 0x0000000142BB57F0 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SVideoDatabaseEntry
 {
 public:
@@ -18347,7 +18347,7 @@ public:
 	ZRuntimeResourceID RuntimeLocalizedVideoRid; // 0x10
 };
 
-// 0x0000000142BB5828 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SVideoDatabaseData
 {
 public:
@@ -18360,7 +18360,7 @@ public:
 	TArray<SVideoDatabaseEntry> Videos; // 0x0
 };
 
-// 0x0000000142B82BD0 (Size: 0x40)
+// Size: 0x40
 class alignas(16) SAvoidDangerousAreaGroupSaveData
 {
 public:
@@ -18377,7 +18377,7 @@ public:
 	bool m_bWaitUntilDangerEnds; // 0x34
 };
 
-// 0x000000014210DBA0 (Size: 0x40)
+// Size: 0x40
 class alignas(4) SMatrix44
 {
 public:
@@ -18405,7 +18405,7 @@ public:
 	float32 m44; // 0x3C
 };
 
-// 0x0000000142B7B020 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SDisguiseZoneSaveData
 {
 public:
@@ -18418,7 +18418,7 @@ public:
 	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000143E404A0 (Size: 0x40)
+// Size: 0x40
 class alignas(4) SGBufferSample
 {
 public:
@@ -18438,7 +18438,7 @@ public:
 	uint32 shadingModel; // 0x3C
 };
 
-// 0x0000000142B82608 (Size: 0x1)
+// Size: 0x1
 class alignas(1) ZInfectedSituation_SSituationSaveData
 {
 public:
@@ -18451,7 +18451,7 @@ public:
 	bool m_bStandingDown; // 0x0
 };
 
-// 0x0000000142BB13E0 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SExitSaveData
 {
 public:
@@ -18464,7 +18464,7 @@ public:
 	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000142B90C38 (Size: 0xC)
+// Size: 0xC
 class alignas(4) ZInvestigateDisguiseGroup_SDialogLines
 {
 public:
@@ -18479,7 +18479,7 @@ public:
 	EActorSoundDefs m_eThirdWarning; // 0x8
 };
 
-// 0x0000000142B90128 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SConditionBase
 {
 public:
@@ -18494,7 +18494,7 @@ public:
 	ZBehaviorTreeVariable assignTo; // 0x8
 };
 
-// 0x0000000142B82398 (Size: 0x20)
+// Size: 0x20
 class alignas(8) ZInvestigateWeaponSituation_SSituationSaveData
 {
 public:
@@ -18510,7 +18510,7 @@ public:
 	int32 m_nActiveInvestigationGroup; // 0x18
 };
 
-// 0x0000000142B92C30 (Size: 0x18)
+// Size: 0x18
 class alignas(4) SMathDistanceSaveData_SVector3
 {
 public:
@@ -18524,7 +18524,7 @@ public:
 	SVector3 m_fB; // 0xC
 };
 
-// 0x0000000142B7AF28 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SCrowdAIEventSaveData
 {
 public:
@@ -18537,7 +18537,7 @@ public:
 	TArray<SRunningCrowdAIEventSaveData> m_RunningEvents; // 0x0
 };
 
-// 0x00000001423CC498 (Size: 0x8)
+// Size: 0x8
 class alignas(8) ZEntityRef
 {
 public:
@@ -18549,7 +18549,7 @@ public:
 
 };
 
-// 0x0000000142B92BF0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SItemKeywordProxySaveData
 {
 public:
@@ -18562,7 +18562,7 @@ public:
 	uint32 m_rItem; // 0x0
 };
 
-// 0x0000000142B8B0C0 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SEscortSituationActorStateSaveData
 {
 public:
@@ -18581,7 +18581,7 @@ public:
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
 
-// 0x0000000142B8B138 (Size: 0x98)
+// Size: 0x98
 class alignas(8) SEscortSituationSaveData
 {
 public:
@@ -18612,7 +18612,7 @@ public:
 	TArray<uint32> m_aSearchActs; // 0x80
 };
 
-// 0x0000000142BB5B00 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SAttentionHUDUIElementArray_Dummy
 {
 public:
@@ -18625,7 +18625,7 @@ public:
 	TArray<SAttentionHUDUIElement> dummy; // 0x0
 };
 
-// 0x0000000142B7B460 (Size: 0x18)
+// Size: 0x18
 class alignas(8) STrespassingRuleEntitySaveData
 {
 public:
@@ -18638,7 +18638,7 @@ public:
 	TArray<bool> m_aAllowedProfessionsDisabled; // 0x0
 };
 
-// 0x0000000142BF21A8 (Size: 0x80)
+// Size: 0x80
 class alignas(8) SCrowdEntitySaveData
 {
 public:
@@ -18656,7 +18656,7 @@ public:
 	TArray<uint32> m_aCrowdAiPoolActorsFemale; // 0x68
 };
 
-// 0x0000000142B8B808 (Size: 0x70)
+// Size: 0x70
 class alignas(8) ZInvestigateCautiousSituation_SStateData
 {
 public:
@@ -18692,7 +18692,7 @@ public:
 	bool m_bDiscoveredPacifiedBody; // 0x6D
 };
 
-// 0x0000000142B952D8 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IHM5WeaponInventory
 {
 public:
@@ -18704,7 +18704,7 @@ public:
 
 };
 
-// 0x0000000142B82590 (Size: 0xD8)
+// Size: 0xD8
 class alignas(8) ZSituationGroup
 {
 public:
@@ -18716,7 +18716,7 @@ public:
 
 };
 
-// 0x0000000142B8DC18 (Size: 0x28)
+// Size: 0x28
 class alignas(4) STrackDollyControllerSaveData
 {
 public:
@@ -18733,7 +18733,7 @@ public:
 	SVector4 m_vDollyRotation; // 0x18
 };
 
-// 0x00000001423CCE58 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SPIPMessageManagerProxySaveData
 {
 public:
@@ -18746,7 +18746,7 @@ public:
 	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000142B8B250 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SLeadEscortSituationActorStateSaveData
 {
 public:
@@ -18765,7 +18765,7 @@ public:
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
 
-// 0x0000000142B8B2B0 (Size: 0x78)
+// Size: 0x78
 class alignas(8) SLeadEscortSituationSaveData
 {
 public:
@@ -18792,7 +18792,7 @@ public:
 	TArray<uint32> m_aEscortActs; // 0x60
 };
 
-// 0x0000000143E139D8 (Size: 0x10)
+// Size: 0x10
 class alignas(8) SUITestData_SSubSubStruct
 {
 public:
@@ -18805,7 +18805,7 @@ public:
 	ZString sDeepString; // 0x0
 };
 
-// 0x0000000142B8C5F8 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorAliveConditionSaveData
 {
 public:
@@ -18818,7 +18818,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142BC0E18 (Size: 0x8)
+// Size: 0x8
 class alignas(4) STokenID
 {
 public:
@@ -18832,7 +18832,7 @@ public:
 	bool m_bValid; // 0x4
 };
 
-// 0x0000000142B9DB78 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SConversationEntry
 {
 public:
@@ -18846,7 +18846,7 @@ public:
 	EActorSoundDefs m_sound; // 0x4
 };
 
-// 0x00000001423CCB60 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SWeaponCustomControlSaveData
 {
 public:
@@ -18861,7 +18861,7 @@ public:
 	bool m_bTargetRegistered; // 0x8
 };
 
-// 0x0000000142BBD480 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SContractConfigResourceEntry
 {
 public:
@@ -18875,7 +18875,7 @@ public:
 	ZRuntimeResourceID ContractRid; // 0x10
 };
 
-// 0x0000000142BC1F30 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SItemSpawnerSaveData
 {
 public:
@@ -18888,7 +18888,7 @@ public:
 	bool m_bItemUpdateTransformChange; // 0x0
 };
 
-// 0x0000000142BF4900 (Size: 0x8)
+// Size: 0x8
 class alignas(0) ITriggerListener
 {
 public:
@@ -18900,7 +18900,7 @@ public:
 
 };
 
-// 0x0000000143E40028 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SBoneScalesList
 {
 public:
@@ -18913,7 +18913,7 @@ public:
 	TArray<SVector3> m_aBoneScales; // 0x0
 };
 
-// 0x0000000142B8B1A0 (Size: 0x1C)
+// Size: 0x1C
 class alignas(4) SHeroEscortSituationActorStateSaveData
 {
 public:
@@ -18932,7 +18932,7 @@ public:
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
 
-// 0x00000001423CB9A8 (Size: 0x18)
+// Size: 0x18
 class alignas(8) ZER64
 {
 public:
@@ -18946,7 +18946,7 @@ public:
 	ZString m_sExposedEntity; // 0x8
 };
 
-// 0x0000000142BF3B68 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SFooStruct
 {
 public:
@@ -18960,7 +18960,7 @@ public:
 	ZString m_sOther; // 0x8
 };
 
-// 0x0000000142B89180 (Size: 0x8)
+// Size: 0x8
 class alignas(4) SChairSaveData
 {
 public:
@@ -18974,7 +18974,7 @@ public:
 	bool m_bAttached; // 0x4
 };
 
-// 0x0000000142B8FD50 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SCombatMetricsSaveData
 {
 public:
@@ -18989,7 +18989,7 @@ public:
 	TArray<uint32> m_DiscoveredVIPOrContractTargetBodies; // 0x20
 };
 
-// 0x0000000142B82C60 (Size: 0x14)
+// Size: 0x14
 class alignas(4) SCautiousSearchGroupSaveData
 {
 public:
@@ -19007,7 +19007,7 @@ public:
 	uint32 m_pAssistant; // 0x10
 };
 
-// 0x0000000142B82F00 (Size: 0x20)
+// Size: 0x20
 class alignas(16) ZApproachOrder_SApproachOrderSaveData
 {
 public:
@@ -19023,7 +19023,7 @@ public:
 	bool m_bStopActFast; // 0x15
 };
 
-// 0x0000000142B915A8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SActorStandInEntitiesSaveData
 {
 public:
@@ -19037,7 +19037,7 @@ public:
 	TArray<SActorStandInSaveData> m_aData; // 0x18
 };
 
-// 0x00000001423CB8F0 (Size: 0x20)
+// Size: 0x20
 class alignas(8) ZBitArray
 {
 public:
@@ -19051,7 +19051,7 @@ public:
 	uint32 m_nSize; // 0x18
 };
 
-// 0x0000000142C2C518 (Size: 0xD0)
+// Size: 0xD0
 class alignas(16) SReasoningGrid
 {
 public:
@@ -19070,7 +19070,7 @@ public:
 	ZBitArray m_deadEndData; // 0xB0
 };
 
-// 0x0000000142B903B0 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SActorProxySaveData
 {
 public:
@@ -19083,7 +19083,7 @@ public:
 	uint32 m_rActor; // 0x0
 };
 
-// 0x0000000142B915E0 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SActorProxiesSaveData
 {
 public:
@@ -19097,7 +19097,7 @@ public:
 	TArray<SActorProxySaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B91650 (Size: 0x30)
+// Size: 0x30
 class alignas(8) SItemKeywordProxiesSaveData
 {
 public:
@@ -19111,7 +19111,7 @@ public:
 	TArray<SItemKeywordProxySaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B91810 (Size: 0x30)
+// Size: 0x30
 class alignas(8) STrapsSaveData
 {
 public:
@@ -19125,7 +19125,7 @@ public:
 	TArray<SItsATrapSaveData> m_aData; // 0x18
 };
 
-// 0x0000000142B88858 (Size: 0x480)
+// Size: 0x480
 class alignas(8) SGameEntitySaveData
 {
 public:
@@ -19161,7 +19161,7 @@ public:
 	SMathLerpsSaveData_SColorRGBA m_MathLerpsData_SColorRGBA; // 0x450
 };
 
-// 0x0000000143E0B148 (Size: 0x48)
+// Size: 0x48
 class alignas(8) SPersistentEntitySaveDataList
 {
 public:
@@ -19176,7 +19176,7 @@ public:
 	TArray<uint64> m_mDynamicObjectIDGenerationValues; // 0x30
 };
 
-// 0x0000000142B90FA8 (Size: 0x10)
+// Size: 0x10
 class alignas(4) ZHM5AudioEventConsumer_SAudioAnimationEventData
 {
 public:
@@ -19191,7 +19191,7 @@ public:
 	float32 m_fPitch; // 0xC
 };
 
-// 0x0000000142B9DBA8 (Size: 0x20)
+// Size: 0x20
 class alignas(8) SConversationPart
 {
 public:
@@ -19205,7 +19205,7 @@ public:
 	TArray<SConversationEntry> m_entries; // 0x8
 };
 
-// 0x0000000142B8B6F8 (Size: 0x28)
+// Size: 0x28
 class alignas(8) ZDeadBodySituation_SState
 {
 public:
@@ -19227,7 +19227,7 @@ public:
 	bool m_bEscalateUnconscious; // 0x21
 };
 
-// 0x0000000142B86FB0 (Size: 0x78)
+// Size: 0x78
 class alignas(8) SHitmanSaveData
 {
 public:
@@ -19251,7 +19251,7 @@ public:
 	bool m_bIsChangingClothes; // 0x71
 };
 
-// 0x0000000142BC3610 (Size: 0xC)
+// Size: 0xC
 class alignas(4) SCharacterSpeakEntitySaveData
 {
 public:
@@ -19266,7 +19266,7 @@ public:
 	bool m_bWereSubtitlesSeen; // 0x8
 };
 
-// 0x0000000142C0EDB8 (Size: 0x58)
+// Size: 0x58
 class alignas(8) ZAT2Controller_SEventPreviewInfo
 {
 public:
@@ -19283,7 +19283,7 @@ public:
 	TMap<ZString,ZVariant> m_extraDataProperties; // 0x30
 };
 
-// 0x0000000142B88088 (Size: 0x4)
+// Size: 0x4
 class alignas(4) AnimationEventDataTypes_SLegacy
 {
 public:
@@ -19296,7 +19296,7 @@ public:
 	int32 m_nEventID; // 0x0
 };
 
-// 0x0000000142BB5078 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IWorldMapMarker
 {
 public:
@@ -19308,7 +19308,7 @@ public:
 
 };
 
-// 0x0000000142BB1620 (Size: 0x48)
+// Size: 0x48
 class alignas(8) IContractObjective_STargetCondition
 {
 public:
@@ -19325,7 +19325,7 @@ public:
 	ZString sKillMethod; // 0x38
 };
 
-// 0x0000000142B8B200 (Size: 0x90)
+// Size: 0x90
 class alignas(8) SHeroEscortSituationSaveData
 {
 public:
@@ -19354,7 +19354,7 @@ public:
 	ZRepositoryID m_RecordedHitmanOutfit; // 0x80
 };
 
-// 0x0000000142B83080 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SPatrolOrderSaveData
 {
 public:
@@ -19366,7 +19366,7 @@ public:
 
 };
 
-// 0x0000000142B9AD50 (Size: 0x90)
+// Size: 0x90
 class alignas(8) SHeroEscortSituation2SaveData
 {
 public:
@@ -19395,7 +19395,7 @@ public:
 	ZRepositoryID m_RecordedHitmanOutfit; // 0x80
 };
 
-// 0x0000000142BB5C80 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SIntelListDisplayInfoArray_dummy
 {
 public:
@@ -19408,7 +19408,7 @@ public:
 	TArray<SIntelListDisplayInfo> dummy; // 0x0
 };
 
-// 0x0000000142BB5B68 (Size: 0xF8)
+// Size: 0xF8
 class alignas(8) ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo
 {
 public:
@@ -19443,7 +19443,7 @@ public:
 	ZString warningText; // 0xE8
 };
 
-// 0x0000000142B82DE0 (Size: 0x38)
+// Size: 0x38
 class alignas(8) SSentryGroupSaveData
 {
 public:
@@ -19463,7 +19463,7 @@ public:
 	bool m_bShowingWarning; // 0x35
 };
 
-// 0x0000000142BB3A90 (Size: 0x4)
+// Size: 0x4
 class alignas(4) SHUDVisibilityController2SaveData
 {
 public:
@@ -19476,7 +19476,7 @@ public:
 	ZHUDUIRoot_EHUDVisibility m_eCurrentRequest; // 0x0
 };
 
-// 0x0000000142B834A0 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IBoneAnimator
 {
 public:
@@ -19488,7 +19488,7 @@ public:
 
 };
 
-// 0x0000000142B82C30 (Size: 0x100)
+// Size: 0x100
 class alignas(16) SCautiousInvestigateGroupSaveData
 {
 public:
@@ -19524,7 +19524,7 @@ public:
 	bool m_bForceAcknowledge; // 0xF2
 };
 
-// 0x00000001423CD338 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IActor
 {
 public:
@@ -19536,7 +19536,7 @@ public:
 
 };
 
-// 0x0000000142BB5668 (Size: 0x18)
+// Size: 0x18
 class alignas(8) SActionRadialArcDisplayInfoArray_dummy
 {
 public:
@@ -19549,7 +19549,7 @@ public:
 	TArray<SActionRadialArcDisplayInfo> dummy; // 0x0
 };
 
-// 0x0000000142B92218 (Size: 0x30)
+// Size: 0x30
 class alignas(16) SInventoryMovementConfig
 {
 public:
@@ -19570,7 +19570,7 @@ public:
 	float4 m_vSafeDropPosition; // 0x20
 };
 
-// 0x0000000142BB3B98 (Size: 0x58)
+// Size: 0x58
 class alignas(8) ZSetPieceIconEntity_SIconData
 {
 public:
@@ -19588,7 +19588,7 @@ public:
 	bool bShowMissingTool; // 0x50
 };
 
-// 0x0000000142B95618 (Size: 0xA0)
+// Size: 0xA0
 class alignas(16) ZInteractionGuideData
 {
 public:
@@ -19600,7 +19600,7 @@ public:
 
 };
 
-// 0x0000000142B94B58 (Size: 0x4)
+// Size: 0x4
 class alignas(4) AI_Private_Details_SStimulus_AgentData_SaveData
 {
 public:
@@ -19613,7 +19613,7 @@ public:
 	uint32 m_AgentData; // 0x0
 };
 
-// 0x0000000142B83EE0 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IBulletImpactListener
 {
 public:
@@ -19625,7 +19625,7 @@ public:
 
 };
 
-// 0x0000000142BF3560 (Size: 0x20)
+// Size: 0x20
 class alignas(8) ZEntityReference
 {
 public:
@@ -19639,7 +19639,7 @@ public:
 	ZString m_sExposedEntity; // 0x10
 };
 
-// 0x0000000142BB3988 (Size: 0x10)
+// Size: 0x10
 class alignas(8) SHudMissionTimerControllerData
 {
 public:
@@ -19653,7 +19653,7 @@ public:
 	bool m_bWasIntroCutFired; // 0x8
 };
 
-// 0x0000000142BB39B8 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SHUDPIPControllerSaveData
 {
 public:
@@ -19666,7 +19666,7 @@ public:
 	bool m_bPiPEnabled; // 0x0
 };
 
-// 0x00000001423CB9D8 (Size: 0x30)
+// Size: 0x30
 class alignas(8) ZScopedER64
 {
 public:
@@ -19680,7 +19680,7 @@ public:
 	TArray<uint64> m_aScopePath; // 0x18
 };
 
-// 0x0000000142BB1740 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IContractEvaluationContextListener
 {
 public:
@@ -19692,7 +19692,7 @@ public:
 
 };
 
-// 0x0000000142B8DAC0 (Size: 0x2)
+// Size: 0x2
 class alignas(1) SSecuritySystemRecorderSaveData
 {
 public:
@@ -19706,7 +19706,7 @@ public:
 	bool m_bIsFunctional; // 0x1
 };
 
-// 0x0000000143E0B860 (Size: 0x80)
+// Size: 0x80
 class alignas(16) STrajectoryTrackSaveData
 {
 public:
@@ -19720,7 +19720,7 @@ public:
 	SMatrix m_vTargetStartTransform; // 0x40
 };
 
-// 0x0000000142B8ABB0 (Size: 0x1)
+// Size: 0x1
 class alignas(1) SAIVisionBlockerSaveData
 {
 public:
@@ -19733,7 +19733,7 @@ public:
 	bool m_bEnabled; // 0x0
 };
 
-// 0x0000000143E15160 (Size: 0xF0)
+// Size: 0xF0
 class alignas(16) SCrowdMapData
 {
 public:
@@ -19762,7 +19762,7 @@ public:
 	float32 m_nGridGeneratorOffset; // 0xEC
 };
 
-// 0x0000000142B8CE58 (Size: 0x8)
+// Size: 0x8
 class alignas(0) IMetricValue
 {
 public:
@@ -19774,7 +19774,7 @@ public:
 
 };
 
-// 0x0000000142B8FE68 (Size: 0x10)
+// Size: 0x10
 class alignas(4) SActorIKControllerSaveData
 {
 public:
