@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <fstream>
+#include <algorithm>
 
 #include <IResourceConverter.h>
 #include <IResourceGenerator.h>
@@ -124,7 +125,7 @@ int TryConvertFile(const std::string& p_FilePath)
 	auto s_DetectedVersion = HitmanVersion::Unknown;
 
 	std::string s_InputPathStr = s_InputPath.string();
-	std::ranges::transform(s_InputPathStr, s_InputPathStr.begin(), [](unsigned char c) { return std::tolower(c); });
+	std::transform(s_InputPathStr.begin(), s_InputPathStr.end(), s_InputPathStr.begin(), [](unsigned char c) { return std::tolower(c); });
 
 	if (s_InputPathStr.find("hitman2") != std::string::npos || s_InputPathStr.find("hitman 2") != std::string::npos || s_InputPathStr.find("hm2") != std::string::npos || s_InputPathStr.find("h2") != std::string::npos)
 		s_DetectedVersion = HitmanVersion::Hitman2;

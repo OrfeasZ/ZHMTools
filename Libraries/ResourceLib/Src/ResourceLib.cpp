@@ -1,5 +1,8 @@
 #include "ResourceLib.h"
+
 #include "Resources.h"
+
+#include <cstring>
 
 IResourceConverter* ZHM_TARGET_FUNC(GetConverterForResource)(const char* p_ResourceType)
 {

@@ -1,6 +1,9 @@
 #pragma once
+
+#include <cmath>
 #include <cstdlib>
 #include <string>
+#include <cstring>
 
 class BinaryStreamWriter
 {

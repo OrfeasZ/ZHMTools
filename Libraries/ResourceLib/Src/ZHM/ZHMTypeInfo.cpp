@@ -1,8 +1,11 @@
 #include "ZHMTypeInfo.h"
 
 #include "TArray.h"
+
 #include <External/simdjson.h>
 #include <Util/PortableIntrinsics.h>
+
+#include <stdexcept>
 
 #if ZHM_TARGET == 3
 #include <Generated/HM3/ZHMEnums.h>
@@ -224,22 +227,22 @@ public:
 
 	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		throw std::exception("Cannot serialize value with dummy type info.");
+		throw std::runtime_error("Cannot serialize value with dummy type info.");
 	}
 
 	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
-		throw std::exception("Cannot serialize value with dummy type info.");
+		throw std::runtime_error("Cannot serialize value with dummy type info.");
 	}
 
 	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
 	{
-		throw std::exception("Cannot deserialize value with dummy type info.");
+		throw std::runtime_error("Cannot deserialize value with dummy type info.");
 	}
 
 	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
 	{
-		throw std::exception("Cannot serialize a value with dummy type info.");
+		throw std::runtime_error("Cannot serialize a value with dummy type info.");
 	}
 	
 	virtual std::string TypeName() const

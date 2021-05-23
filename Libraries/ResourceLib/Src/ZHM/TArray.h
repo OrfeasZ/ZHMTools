@@ -2,6 +2,9 @@
 
 #include <cstdint>
 #include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <stdexcept>
 
 #include <ZHM/ZHMSerializer.h>
 #include <Util/PortableIntrinsics.h>
@@ -166,7 +169,7 @@ public:
 		auto* s_Object = reinterpret_cast<TArray<T>*>(p_Object);
 		
 		if (s_Object->hasInlineFlag())
-			throw std::exception("cannot serialize inline arrays");
+			throw std::runtime_error("cannot serialize inline arrays");
 
 		if (s_Object->size() == 0)
 		{

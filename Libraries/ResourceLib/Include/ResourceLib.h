@@ -1,9 +1,17 @@
 #include "ResourceLibCommon.h"
 
-#if RESOURCELIB_EXPORTS
-#	define RESOURCELIB_API __declspec(dllexport)
+#if defined(_MSC_VER)
+#	define RESOURCELIB_EXPORT __declspec(dllexport)
+#	define RESOURCELIB_IMPORT __declspec(dllimport)
 #else
-#	define RESOURCELIB_API __declspec(dllimport)
+#	define RESOURCELIB_EXPORT __attribute__((visibility("default")))
+#	define RESOURCELIB_IMPORT
+#endif
+
+#if RESOURCELIB_EXPORTS
+#	define RESOURCELIB_API RESOURCELIB_EXPORT
+#else
+#	define RESOURCELIB_API RESOURCELIB_IMPORT
 #endif
 
 #define ZHM_TARGET_FUNC_FINAL(X, Y) HM ## X ## _ ## Y

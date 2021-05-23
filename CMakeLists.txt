@@ -6,7 +6,7 @@ endif()
 
 project("ZHMTools")
 
-if(MSVC)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	set(VCPKG_CRT_LINKAGE "static")
 	set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
@@ -21,7 +21,9 @@ if(MSVC)
 endif()
 
 add_subdirectory("Libraries/ResourceLib")
-add_subdirectory("Libraries/CodeGenLib")
-
 add_subdirectory("Tools/ResourceTool")
-add_subdirectory("Tools/CodeGen")
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	add_subdirectory("Libraries/CodeGenLib")
+	add_subdirectory("Tools/CodeGen")
+endif()
