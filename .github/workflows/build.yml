@@ -91,7 +91,7 @@ jobs:
     - name: Install appropriate libstdc++
       run: |
         sudo apt-get update
-        sudo apt-get purge -y gcc-10 gcc-11 libstdc++-10-dev libstdc++-11-dev
+        sudo apt-get purge -y gcc-10 gcc-11 libstdc++-10-dev libstdc++-11-dev clang-10 clang++-10 clang-11 clang++-11 clang-12 clang++-12
         sudo apt-get install -y --allow-downgrades libstdc++-9-dev g++-9 gcc-9
         sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
