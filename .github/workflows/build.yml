@@ -91,8 +91,8 @@ jobs:
     - name: Install appropriate libstdc++
       run: |
         sudo apt-get update
-        sudo apt-get purge -y libstdc++-10-dev libstdc++-11-dev
-        sudo apt-get install -y --allow-downgrades libstdc++-9-dev
+        sudo apt-get purge -y gcc-10 gcc-11 libstdc++-10-dev libstdc++-11-dev
+        sudo apt-get install -y --allow-downgrades libstdc++-9-dev libstdc++-9 g++-9 gcc-9
 
     - name: Generate projects
       run: |
