@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <unordered_set>
 
 void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p_OutputPath)
 {
@@ -233,7 +234,7 @@ void CodeGen::GenerateEnum(STypeID* p_Type)
 {
 	auto s_Type = reinterpret_cast<IEnumType*>(p_Type->typeInfo());
 
-	std::unordered_map<int, std::string> s_Enum;
+	std::map<int, std::string> s_Enum;
 
 	//if (std::string(s_Type->m_pTypeName).find_first_of('.') != std::string::npos)
 	//	return;

@@ -1,9 +1,10 @@
 #pragma once
 
 #include <fstream>
-#include <unordered_map>
-#include <unordered_set>
+#include <map>
+#include <set>
 #include <filesystem>
+#include <unordered_set>
 
 class ZTypeRegistry;
 class STypeID;
@@ -11,7 +12,7 @@ class STypeID;
 struct GeneratedType
 {
 	std::string TypeName;
-	std::unordered_set<std::string> Dependencies;
+	std::set<std::string> Dependencies;
 	std::string Source;
 	std::string Header;
 	bool ShouldSkip;
@@ -36,10 +37,10 @@ private:
 	void Visit(GeneratedType* p_Type, std::unordered_set<GeneratedType*>& p_Visited, std::vector<GeneratedType*>& p_Sorted);
 
 private:
-	std::unordered_map<uint32_t, std::string> m_PropertyNames;
-	std::unordered_map<std::string, std::unordered_map<int, std::string>> m_Enums;
+	std::map<uint32_t, std::string> m_PropertyNames;
+	std::map<std::string, std::map<int, std::string>> m_Enums;
 
-	std::unordered_map<std::string, GeneratedType*> m_ReflectiveClasses;
+	std::map<std::string, GeneratedType*> m_ReflectiveClasses;
 
 	std::ofstream m_ClassesFile;
 	std::ofstream m_EnumsFile;
