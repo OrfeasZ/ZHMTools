@@ -1,9 +1,14 @@
 #include "ZHMTypeInfo.h"
 
 #include "TArray.h"
-#include <Generated/ZHMEnums.h>
 #include <External/simdjson.h>
 #include <Util/PortableIntrinsics.h>
+
+#if ZHM_TARGET == 3
+#include <Generated/HM3/ZHMEnums.h>
+#elif ZHM_TARGET == 2
+#include <Generated/HM2/ZHMEnums.h>
+#endif
 
 std::unordered_map<std::string, IZHMTypeInfo*>* IZHMTypeInfo::g_TypeRegistry = nullptr;
 ZHMTypeInfo::PrimitiveRegistrar IZHMTypeInfo::g_PrimitiveRegistrar;

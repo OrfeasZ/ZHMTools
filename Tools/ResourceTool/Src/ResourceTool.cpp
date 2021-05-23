@@ -3,7 +3,9 @@
 
 #include <IResourceConverter.h>
 #include <IResourceGenerator.h>
-#include <ResourceLib.h>
+
+#include <ResourceLib_HM3.h>
+#include <ResourceLib_HM2.h>
 
 #if _WIN32
 #define EXECUTABLE "ResourceTool.exe"
@@ -12,6 +14,13 @@
 #define EXECUTABLE "./ResourceTool"
 #define SAMPLE_PATH "/path/to/"
 #endif
+
+enum class HitmanVersion
+{
+	Unknown,
+	Hitman2,
+	Hitman3,
+};
 
 bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, IResourceConverter* p_Converter, bool p_SimpleOutput)
 {
@@ -45,30 +54,48 @@ bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::fi
 
 void PrintHelp()
 {
-	printf("Usage: " EXECUTABLE " <mode> <resource-type> <input-path> <output-path> [options]\n");
+	printf("Usage: " EXECUTABLE " <game> <mode> <resource-type> <input-path> <output-path> [options]\n");
 
 	printf("\n");
+	printf("game can be one of: HM2, HM3\n");
 	printf("mode can be one of: convert, generate\n");
-	printf("resource-type can be one of: ");
+	printf("resource-type can be one of:\n");
 
-	auto* s_Resources = GetSupportedResourceTypes();
+	printf("\tFor HM2: ");
+
+	auto* s_HM2Resources = HM2_GetSupportedResourceTypes();
 	
-	for (size_t i = 0; i < s_Resources->TypeCount; ++i)
+	for (size_t i = 0; i < s_HM2Resources->TypeCount; ++i)
 	{
 		if (i != 0)
 			printf(", ");
 
-		printf(s_Resources->Types[i]);
+		printf(s_HM2Resources->Types[i]);
 	}
 
-	FreeSupportedResourceTypes(s_Resources);
+	HM2_FreeSupportedResourceTypes(s_HM2Resources);
 
 	printf("\n");
+	printf("\tFor HM3: ");
+
+	auto* s_HM3Resources = HM3_GetSupportedResourceTypes();
+
+	for (size_t i = 0; i < s_HM3Resources->TypeCount; ++i)
+	{
+		if (i != 0)
+			printf(", ");
+
+		printf(s_HM3Resources->Types[i]);
+	}
+
+	HM3_FreeSupportedResourceTypes(s_HM3Resources);
+
+	printf("\n");	
 	printf("\n");
 	printf("\n");
 	printf("Converting resources:\n");
 	printf("\tBy using the \"convert\" mode, you can convert a binary resource into a JSON file.\n");
-	printf("\tExample: " EXECUTABLE " convert TEMP " SAMPLE_PATH "file.TEMP " SAMPLE_PATH "file.json\n");
+	printf("\tExample: " EXECUTABLE " HM3 convert TEMP " SAMPLE_PATH "file.TEMP " SAMPLE_PATH "file.json\n");
 	printf("\n");
 	printf("Options:\n");
 	printf("\t--simple\tGenerates simpler JSON output, omitting most type metadata.\n");
@@ -76,7 +103,7 @@ void PrintHelp()
 	printf("\n");
 	printf("Generating resources:\n");
 	printf("\tBy using the \"generate\" mode, you can generate a binary resource from a JSON file.\n");
-	printf("\tExample: " EXECUTABLE " generate TEMP " SAMPLE_PATH "file.json " SAMPLE_PATH "file.TEMP\n");
+	printf("\tExample: " EXECUTABLE " HM3 generate TEMP " SAMPLE_PATH "file.json " SAMPLE_PATH "file.TEMP\n");
 	printf("\n");
 	printf("Options:\n");
 	printf("\t--simple\tUse when the input JSON file is generated using the \"--simple\" option when converting.\n");
@@ -92,6 +119,22 @@ int TryConvertFile(const std::string& p_FilePath)
 		return 1;
 	}
 
+	auto s_DetectedVersion = HitmanVersion::Unknown;
+
+	std::string s_InputPathStr;
+	std::ranges::transform(s_InputPathStr, s_InputPathStr.begin(), [](unsigned char c) { return std::tolower(c); });
+
+	if (s_InputPathStr.find("hitman2") != std::string::npos || s_InputPathStr.find("hitman 2") != std::string::npos || s_InputPathStr.find("hm2") != std::string::npos)
+		s_DetectedVersion = HitmanVersion::Hitman2;
+	else if (s_InputPathStr.find("hitman3") != std::string::npos || s_InputPathStr.find("hitman 3") != std::string::npos || s_InputPathStr.find("hm3") != std::string::npos)
+		s_DetectedVersion = HitmanVersion::Hitman3;
+
+	if (s_DetectedVersion == HitmanVersion::Unknown)
+	{
+		fprintf(stderr, "[ERROR] Could not detect the version of the game this file is from. Make sure that the name of the game is in its path (eg. C:\\Some\\Folder\\HITMAN 3\\Other\\Folder\\XXXX.TBLU) and try again.\n");
+		return 1;
+	}
+
 	auto s_Extension = s_InputPath.extension().string();
 	std::string s_PossibleResourceType = s_Extension.substr(1);
 	std::string s_OutputPathStr = p_FilePath + ".json";
@@ -104,9 +147,22 @@ int TryConvertFile(const std::string& p_FilePath)
 		s_Convert = false;
 	}
 
-	auto* s_ResourceConverter = GetConverterForResource(s_PossibleResourceType.c_str());
-	auto* s_ResourceGenerator = GetGeneratorForResource(s_PossibleResourceType.c_str());
+	IResourceConverter* s_ResourceConverter = nullptr;
+	IResourceGenerator* s_ResourceGenerator = nullptr;
 
+	switch (s_DetectedVersion)
+	{
+	case HitmanVersion::Hitman2:
+		s_ResourceConverter = HM2_GetConverterForResource(s_PossibleResourceType.c_str());
+		s_ResourceGenerator = HM2_GetGeneratorForResource(s_PossibleResourceType.c_str());
+		break;
+		
+	case HitmanVersion::Hitman3:
+		s_ResourceConverter = HM3_GetConverterForResource(s_PossibleResourceType.c_str());
+		s_ResourceGenerator = HM3_GetGeneratorForResource(s_PossibleResourceType.c_str());
+		break;		
+	}
+	
 	if (s_ResourceConverter == nullptr || s_ResourceGenerator == nullptr)
 	{
 		fprintf(stderr, "[ERROR] Could not identify the type of resource you are trying to convert / generate. Make sure that the file extension is the same as the resource type (eg. XXXX.TBLU) or is prefixed by the resource type in the case of json files (eg. XXXX.TBLU.json).\n");
@@ -156,27 +212,54 @@ int main(int argc, char** argv)
 		return TryConvertFile(s_FileToConvert);
 	}
 
-	if (argc < 5)
+	if (argc < 6)
 	{
 		PrintHelp();
 		return 1;
 	}
 
-	const std::string s_OperatingMode(argv[1]);
-	const std::string s_ResourceType(argv[2]);
-	const std::string s_InputPathStr(argv[3]);
-	const std::string s_OutputPathStr(argv[4]);
+	const std::string s_GameVersionStr(argv[1]);
+	const std::string s_OperatingMode(argv[2]);
+	const std::string s_ResourceType(argv[3]);
+	const std::string s_InputPathStr(argv[4]);
+	const std::string s_OutputPathStr(argv[5]);
 
-	bool s_SimpleJson = argc >= 6 && std::string(argv[5]) == "--simple";
+	bool s_SimpleJson = argc >= 7 && std::string(argv[6]) == "--simple";
 
-	if (s_OperatingMode != "convert" && s_OperatingMode != "generate")
+	if (s_GameVersionStr != "HM2" && s_GameVersionStr != "HM3")
 	{
 		PrintHelp();
 		return 1;
 	}
 	
-	auto* s_ResourceConverter = GetConverterForResource(s_ResourceType.c_str());
-	auto* s_ResourceGenerator = GetGeneratorForResource(s_ResourceType.c_str());
+	if (s_OperatingMode != "convert" && s_OperatingMode != "generate")
+	{
+		PrintHelp();
+		return 1;
+	}
+
+	auto s_GameVersion = HitmanVersion::Unknown;
+
+	if (s_GameVersionStr == "HM2")
+		s_GameVersion = HitmanVersion::Hitman2;
+	else if (s_GameVersionStr == "HM3")
+		s_GameVersion = HitmanVersion::Hitman3;
+	
+	IResourceConverter* s_ResourceConverter = nullptr;
+	IResourceGenerator* s_ResourceGenerator = nullptr;
+
+	switch (s_GameVersion)
+	{
+	case HitmanVersion::Hitman2:
+		s_ResourceConverter = HM2_GetConverterForResource(s_ResourceType.c_str());
+		s_ResourceGenerator = HM2_GetGeneratorForResource(s_ResourceType.c_str());
+		break;
+
+	case HitmanVersion::Hitman3:
+		s_ResourceConverter = HM3_GetConverterForResource(s_ResourceType.c_str());
+		s_ResourceGenerator = HM3_GetGeneratorForResource(s_ResourceType.c_str());
+		break;
+	}
 
 	if (s_ResourceConverter == nullptr || s_ResourceGenerator == nullptr)
 	{

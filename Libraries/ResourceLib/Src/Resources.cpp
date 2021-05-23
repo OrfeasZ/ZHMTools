@@ -3,8 +3,13 @@
 #include "ResourceConverter.h"
 #include "ResourceGenerator.h"
 
-#include <Generated/ZHMGen.h>
 #include <ZHM/ZHMCustomTypes.h>
+
+#if ZHM_TARGET == 3
+#include <Generated/HM3/ZHMGen.h>
+#elif ZHM_TARGET == 2
+#include <Generated/HM2/ZHMGen.h>
+#endif
 
 // Register all supported resource types here.
 std::unordered_map<std::string, Resource> g_Resources = {

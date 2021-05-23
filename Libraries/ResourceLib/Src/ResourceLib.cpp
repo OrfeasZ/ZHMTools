@@ -1,8 +1,7 @@
 #include "ResourceLib.h"
-
 #include "Resources.h"
 
- IResourceConverter* GetConverterForResource(const char* p_ResourceType)
+IResourceConverter* ZHM_TARGET_FUNC(GetConverterForResource)(const char* p_ResourceType)
 {
 	const auto it = g_Resources.find(p_ResourceType);
 
@@ -12,7 +11,7 @@
 	return it->second.Converter;
 }
 
-IResourceGenerator* GetGeneratorForResource(const char* p_ResourceType)
+IResourceGenerator* ZHM_TARGET_FUNC(GetGeneratorForResource)(const char* p_ResourceType)
 {
 	const auto it = g_Resources.find(p_ResourceType);
 
@@ -22,7 +21,7 @@ IResourceGenerator* GetGeneratorForResource(const char* p_ResourceType)
 	return it->second.Generator;		
 }
 
-ResourceTypesArray* GetSupportedResourceTypes()
+ResourceTypesArray* ZHM_TARGET_FUNC(GetSupportedResourceTypes)()
 {
 	auto* s_Array = new ResourceTypesArray();
 
@@ -45,7 +44,7 @@ ResourceTypesArray* GetSupportedResourceTypes()
 	return s_Array;
 }
 
-void FreeSupportedResourceTypes(ResourceTypesArray* p_Array)
+void ZHM_TARGET_FUNC(FreeSupportedResourceTypes)(ResourceTypesArray* p_Array)
 {
 	for (size_t i = 0; i < p_Array->TypeCount; ++i)
 		free(const_cast<char*>(p_Array->Types[i]));
@@ -53,7 +52,7 @@ void FreeSupportedResourceTypes(ResourceTypesArray* p_Array)
 	delete[] p_Array->Types;
 }
 
-bool IsResourceTypeSupported(const char* p_ResourceType)
+bool ZHM_TARGET_FUNC(IsResourceTypeSupported)(const char* p_ResourceType)
 {
 	return g_Resources.find(p_ResourceType) != g_Resources.end();
 }

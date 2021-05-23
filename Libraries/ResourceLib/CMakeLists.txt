@@ -3,7 +3,7 @@
 set(RESOURCELIB_HEADERS
 	Include/IResourceConverter.h
 	Include/IResourceGenerator.h
-	Include/ResourceLib.h
+	Include/ResourceLibCommon.h
 )
 
 set(RESOURCELIB_SOURCES
@@ -40,37 +40,64 @@ set(RESOURCELIB_SOURCES
 )
 
 set(RESOURCELIB_SOURCES_HM3
-	Src/Generated/ZHMEnums.cpp
-	Src/Generated/ZHMEnums.h
-	Src/Generated/ZHMGen.cpp
-	Src/Generated/ZHMGen.h
-	Src/Generated/ZHMProperties.cpp
-	Src/Generated/ZHMProperties.h
+	Src/Generated/HM3/ZHMEnums.cpp
+	Src/Generated/HM3/ZHMEnums.h
+	Src/Generated/HM3/ZHMGen.cpp
+	Src/Generated/HM3/ZHMGen.h
+	Src/Generated/HM3/ZHMProperties.cpp
+	Src/Generated/HM3/ZHMProperties.h
+	Include/ResourceLib_HM3.h
 )
 
-add_library(ResourceLib SHARED
+set(RESOURCELIB_SOURCES_HM2
+	Src/Generated/HM2/ZHMEnums.cpp
+	Src/Generated/HM2/ZHMEnums.h
+	Src/Generated/HM2/ZHMGen.cpp
+	Src/Generated/HM2/ZHMGen.h
+	Src/Generated/HM2/ZHMProperties.cpp
+	Src/Generated/HM2/ZHMProperties.h
+	Include/ResourceLib_HM2.h
+)
+
+add_library(ResourceLib_HM3 SHARED
 	${RESOURCELIB_HEADERS}
 	${RESOURCELIB_SOURCES}
 	${RESOURCELIB_SOURCES_HM3}
 )
 
-set_target_properties(ResourceLib PROPERTIES
+add_library(ResourceLib_HM2 SHARED
+	${RESOURCELIB_HEADERS}
+	${RESOURCELIB_SOURCES}
+	${RESOURCELIB_SOURCES_HM2}
+)
+
+set_target_properties(ResourceLib_HM3 ResourceLib_HM2 PROPERTIES
 	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
 	CXX_STANDARD 20
 )
 
-target_compile_options(ResourceLib
+target_compile_options(ResourceLib_HM3
 	PUBLIC "/bigobj"
 )
 
-target_compile_definitions(ResourceLib PRIVATE
-	RESOURCELIB_EXPORTS
+target_compile_options(ResourceLib_HM2
+	PUBLIC "/bigobj"
 )
 
-target_include_directories(ResourceLib PRIVATE
-	${CMAKE_CURRENT_SOURCE_DIR}/Src
+target_compile_definitions(ResourceLib_HM3 
+	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=3
 )
 
-target_include_directories(ResourceLib PUBLIC
-	${CMAKE_CURRENT_SOURCE_DIR}/Include
+target_compile_definitions(ResourceLib_HM2 
+	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2
+)
+
+target_include_directories(ResourceLib_HM3 
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
+)
+
+target_include_directories(ResourceLib_HM2 
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
 )

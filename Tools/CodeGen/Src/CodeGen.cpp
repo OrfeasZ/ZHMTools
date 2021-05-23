@@ -83,14 +83,14 @@ int main()
 	if (!s_ProcessIds.Hitman2 && !s_ProcessIds.Hitman3)
 	{
         printf("Hitman is not currently running. Run the game first, wait until you get to the main menu, and then run this tool.\n");
-        return -1;
+        return 1;
 	}
     
     char s_ExePathStr[MAX_PATH];
     auto s_PathSize = GetModuleFileNameA(nullptr, s_ExePathStr, MAX_PATH);
 
     if (s_PathSize == 0)
-        return -1;
+        return 1;
 
     std::filesystem::path s_ExePath(s_ExePathStr);
     auto s_ExeDir = s_ExePath.parent_path();
@@ -100,14 +100,14 @@ int main()
 	if (!is_regular_file(s_CodeGenLibPath))
 	{
         printf("Could not find the code generation library. Make sure that CodeGenLib.dll exists in the same directory as this tool and try again.\n");
-        return -1;
+        return 1;
 	}
 
     size_t s_CodeGenLibPathSize = s_CodeGenLibPath.string().size();
     void* s_CodeGenLibPathStr = malloc(s_CodeGenLibPathSize + 1);
 
     if (s_CodeGenLibPathStr == nullptr)
-        return -1;
+        return 1;
 	
     memset(s_CodeGenLibPathStr, 0x00, s_CodeGenLibPathSize + 1);
     memcpy(s_CodeGenLibPathStr, s_CodeGenLibPath.string().data(), s_CodeGenLibPathSize);
@@ -117,7 +117,7 @@ int main()
         printf("Found HITMAN 2 running. Starting code generation...\n");
 
         if (!InjectIntoProcess(s_ProcessIds.Hitman2.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
-            return -1;
+            return 1;
 	}
 	
 	if (s_ProcessIds.Hitman3)
@@ -125,7 +125,7 @@ int main()
         printf("Found HITMAN 3 running. Starting code generation...\n");
 
         if (!InjectIntoProcess(s_ProcessIds.Hitman3.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
-            return -1;
+            return 1;
 	}
 
     free(s_CodeGenLibPathStr);
