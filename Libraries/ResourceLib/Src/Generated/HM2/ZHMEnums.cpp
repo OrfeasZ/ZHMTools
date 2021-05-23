@@ -49,1691 +49,23 @@ void ZHMEnums::RegisterEnums()
 {
 	g_Enums = new std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>();
 
-	(*g_Enums)["ZFriskSuspectGroup.EAssistantState"] = {
-		{ 0, "AS_Waiting" },
-		{ 1, "AS_Approach" },
-		{ 2, "AS_Approaching" },
-		{ 3, "AS_Covering" },
-	};
-
-	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRGlareType"] = {
-		{ 0, "eCamera" },
-		{ 1, "eNatural" },
-		{ 2, "eCheapLens" },
-		{ 3, "eFilterCrossScreen" },
-		{ 4, "eFilterCrossScreenSpectral" },
-		{ 5, "eFilterSnowCross" },
-		{ 6, "eFilterSnowCrossSpectral" },
-		{ 7, "eFilterSunnyCross" },
-		{ 8, "eFilterSunnyCrossSpectral" },
-		{ 9, "eCinecamVerticalSlits" },
-		{ 10, "eCinecamHorizontalSlits" },
-	};
-
-	(*g_Enums)["ZOperatorBool.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["EGSEvent"] = {
-		{ 0, "GSEvent_StrayBullet" },
-		{ 1, "GSEvent_TookDamage" },
-		{ 2, "GSEvent_UsedCover" },
-		{ 3, "GSEvent_UsedRun" },
-		{ 4, "GSEvent_UsedEliminate" },
-		{ 5, "GSEvent_UsedChokeOut" },
-		{ 6, "GSEvent_UsedKnockOutByHand" },
-		{ 7, "GSEvent_Pacified" },
-		{ 8, "GSEvent_TargetPacified" },
-		{ 9, "GSEvent_Recover" },
-		{ 10, "GSEvent_CaughtArmed" },
-		{ 11, "GSEvent_BodyFound" },
-		{ 12, "GSEvent_InvestigateCurious" },
-		{ 13, "GSEvent_NPCKilled" },
-		{ 14, "GSEvent_KilledNPCHidden" },
-		{ 15, "GSEvent_InvestigateCautious" },
-		{ 16, "GSEvent_PrecisionAimedKill" },
-		{ 17, "GSEvent_BlendInActivated" },
-		{ 18, "GSEvent_PropKill" },
-		{ 19, "GSEvent_SpottedThroughDisguise" },
-		{ 20, "GSEvent_TakeOutNonLethal" },
-		{ 21, "GSEvent_TargetKilled" },
-		{ 22, "GSEvent_NonTargetKilled" },
-		{ 23, "GSEvent_AllTargetsKilled" },
-		{ 24, "GSEvent_AccidentKill" },
-		{ 25, "GSEvent_ObjectiveUpdate" },
-		{ 26, "GSEvent_TargetAccidentKill" },
-		{ 27, "GSEvent_ObjectiveActivate" },
-		{ 28, "GSEvent_Headshot" },
-		{ 29, "GSEvent_Fiberwire" },
-		{ 30, "GSEvent_UsedEliminateSilent" },
-		{ 31, "GSEvent_ItemFound" },
-		{ 32, "GSEvent_ItemStashed" },
-		{ 33, "GSEvent_BodyBagPlaced" },
-		{ 34, "GSEvent_Projectile_HeadShot" },
-		{ 35, "GSEvent_Projectile_BodyShot" },
-		{ 36, "GSEvent_Projectile_Crowd_HeadShot" },
-		{ 37, "GSEvent_Projectile_Crowd_BodyShot" },
-		{ 38, "GSEvent_Projectile_Missed" },
-		{ 39, "GSEvent_Projectile_MultiKillTargets" },
-	};
-
-	(*g_Enums)["ZCautiousInvestigateGroup.EApproachOrderState"] = {
-		{ 0, "AOS_RequestHuntApproachNode" },
-		{ 1, "AOS_RequestLeaderApproachNode" },
-		{ 2, "AOS_WaitForApproachNode" },
-		{ 3, "AOS_RequestLOSNode" },
-		{ 4, "AOS_Ready" },
-		{ 5, "AOS_NoApproachNode" },
-	};
-
-	(*g_Enums)["EGSKillSituation"] = {
-		{ 0, "GSKILLSITUATION_UNKNOWN" },
-		{ 1, "GSKILLSITUATION_CLOSECOMBAT" },
-		{ 2, "GSKILLSITUATION_SILENT" },
-		{ 3, "GSKILLSITUATION_ENVIRONMENT" },
-		{ 4, "GSKILLSITUATION_ACTION" },
-		{ 5, "GSKILLSITUATION_DEADLYTHROW" },
-		{ 6, "GSKILLSITUATION_PULLTHROUGHWINDOW" },
-		{ 7, "GSKILLSITUATION_PUSHOVERRAILING" },
-		{ 8, "GSKILLSITUATION_PACIFY" },
-		{ 9, "GSKILLSITUATION_FIBERWIRE" },
-	};
-
-	(*g_Enums)["ETessellationMode"] = {
-		{ 0, "TESSELLATIONMODE_FLAT" },
-		{ 1, "TESSELLATIONMODE_PHONG" },
-	};
-
-	(*g_Enums)["ECameraCollisionMode"] = {
-		{ 0, "ECAMERACOLLISIONMODE_COLLIDE_ALWAYS" },
-		{ 1, "ECAMERACOLLISIONMODE_CAMERA_OBSTACLE" },
-		{ 2, "ECAMERACOLLISIONMODE_COLLIDE_NEVER" },
-		{ 3, "ECAMERACOLLISIONMODE_COLLIDE_DEFAULT" },
-	};
-
-	(*g_Enums)["EBystanderPointType"] = {
-		{ 0, "BPT_Scared" },
-		{ 1, "BPT_Alerted" },
-	};
-
-	(*g_Enums)["ZInteractionData.EFilterResult"] = {
-		{ 0, "EFR_REQUESTED" },
-		{ 1, "EFR_ENABLE_INTERACTION" },
-		{ 2, "EFR_EXPANDED_NOT_INTERACTABLE" },
-		{ 3, "EFR_COLLAPSED_CANT_OPERATE" },
-		{ 4, "EFR_COLLAPSED_PRIORITY" },
-		{ 5, "EFR_COLLAPSED_GAMESTATE" },
-		{ 6, "EFR_COLLAPSED_ACTION_FILTER" },
-		{ 7, "EFR_REJECTED_OTHER" },
-		{ 8, "EFR_REJECTED_OUTOFRANGE" },
-		{ 9, "EFR_REJECTED_OCCLUDED" },
-		{ 10, "EFR_REJECTED_OUTOFVIEW" },
-		{ 11, "EFR_REJECTED_GAMESTATE" },
-		{ 12, "EFR_REJECTED_ACTION_FILTER" },
-		{ 13, "EFR_REJECTED_INVALIDDATA" },
-		{ 14, "EFR_REJECTED_PRIORITY" },
-	};
-
-	(*g_Enums)["ZHeroEscortSituation2Entity.ETargetState"] = {
-		{ 0, "ETS_Unknown" },
-		{ 1, "ETS_NoTarget" },
-		{ 2, "ETS_RunningActBehavior" },
-		{ 3, "ETS_RunningDummyBehavior" },
-		{ 4, "ETS_RunningOtherBehavior" },
-		{ 5, "ETS_Dead" },
-		{ 6, "ETS_TargetIsHitman" },
-	};
-
-	(*g_Enums)["EOutfitAICategory"] = {
-		{ 0, "OAC_Undefined" },
-		{ 1, "OAC_Fallback" },
-		{ 2, "OAC_47Suit" },
-		{ 3, "OAC_47TRAINING" },
-		{ 4, "OAC_47MARRAKESH" },
-		{ 5, "OAC_47SAPIENZA" },
-		{ 6, "OAC_47BANGKOK" },
-		{ 7, "OAC_47COLORADO" },
-		{ 8, "OAC_47HOKKAIDO" },
-		{ 9, "OAC_47PREORDER" },
-		{ 10, "OAC_47COLUMBIA" },
-		{ 11, "OAC_47ISLAND" },
-		{ 12, "OAC_47MUMBAI" },
-		{ 13, "OAC_47NEWZEALAND" },
-		{ 14, "OAC_47STARTCLASSY" },
-		{ 15, "OAC_47STARTOUTFIT" },
-		{ 16, "OAC_47SUBURBIA" },
-		{ 17, "OAC_Bodyguard" },
-		{ 18, "OAC_CameraMan" },
-		{ 19, "OAC_Chef" },
-		{ 20, "OAC_Cleaner" },
-		{ 21, "OAC_Cop" },
-		{ 22, "OAC_Crew" },
-		{ 23, "OAC_DaSilva" },
-		{ 24, "OAC_Gardner" },
-		{ 25, "OAC_Hazmat" },
-		{ 26, "OAC_HouseStaff" },
-		{ 27, "OAC_Maintenance" },
-		{ 28, "OAC_Officer" },
-		{ 29, "OAC_Priest" },
-		{ 30, "OAC_Printer" },
-		{ 31, "OAC_Scientist" },
-		{ 32, "OAC_Security" },
-		{ 33, "OAC_Sheik" },
-		{ 34, "OAC_Stylist" },
-		{ 35, "OAC_Waiter" },
-		{ 36, "OAC_Busker" },
-		{ 37, "OAC_Caddie" },
-		{ 38, "OAC_ChurchStaff" },
-		{ 39, "OAC_Cyclist" },
-		{ 40, "OAC_Filmcrew" },
-		{ 41, "OAC_Fortune" },
-		{ 42, "OAC_Hippie" },
-		{ 43, "OAC_Investor" },
-		{ 44, "OAC_KGB" },
-		{ 45, "OAC_Lawyer" },
-		{ 46, "OAC_Kruger" },
-		{ 47, "OAC_Masseur" },
-		{ 48, "OAC_Mechanic" },
-		{ 49, "OAC_Norfolk" },
-		{ 50, "OAC_Plague" },
-		{ 51, "OAC_Psych" },
-		{ 52, "OAC_Shopkeep" },
-		{ 53, "OAC_Soldier" },
-		{ 54, "OAC_Tux" },
-		{ 55, "OAC_Vampire" },
-		{ 56, "OAC_YachtCrew" },
-		{ 57, "OAC_Exterminator" },
-		{ 58, "OAC_SoundCrew" },
-		{ 59, "OAC_Intern" },
-		{ 60, "OAC_Stalker" },
-		{ 61, "OAC_Scarecrow" },
-		{ 62, "OAC_Hacker" },
-		{ 63, "OAC_SpecOps" },
-		{ 64, "OAC_Berg" },
-		{ 65, "OAC_Morgue" },
-		{ 66, "OAC_Surgeon" },
-		{ 67, "OAC_Doctor" },
-		{ 68, "OAC_Director" },
-		{ 69, "OAC_Ninja" },
-		{ 70, "OAC_Baseball" },
-		{ 71, "OAC_KillBill" },
-		{ 72, "OAC_Pilot" },
-		{ 73, "OAC_Yoga" },
-		{ 74, "OAC_Mummy" },
-		{ 75, "OAC_Cowboy" },
-		{ 76, "OAC_Staff" },
-		{ 77, "OAC_Santa" },
-		{ 78, "OAC_MambaCrew" },
-		{ 79, "OAC_Delivery" },
-		{ 80, "OAC_GOTY_Clown" },
-		{ 81, "OAC_GOTY_Cowboy" },
-		{ 82, "OAC_GOTY_DarkSniper" },
-		{ 83, "OAC_Driver" },
-		{ 84, "OAC_Driverpale" },
-		{ 85, "OAC_Eventstff" },
-		{ 86, "OAC_Flrdaman" },
-		{ 87, "OAC_Food" },
-		{ 88, "OAC_Journal" },
-		{ 89, "OAC_Krnstdtengnr" },
-		{ 90, "OAC_Krnstdtsec" },
-		{ 91, "OAC_Ktchstff" },
-		{ 92, "OAC_Lee" },
-		{ 93, "OAC_Mascot" },
-		{ 94, "OAC_Medic" },
-		{ 95, "OAC_Mendez" },
-		{ 96, "OAC_Musician" },
-		{ 97, "OAC_Racecoord" },
-		{ 98, "OAC_Racemarsh" },
-		{ 99, "OAC_Thug" },
-		{ 100, "OAC_Worker" },
-		{ 101, "OAC_Research" },
-		{ 102, "OAC_Tatoo" },
-		{ 103, "OAC_Shaman" },
-		{ 104, "OAC_Artist" },
-		{ 105, "OAC_Barber" },
-		{ 106, "OAC_DJ" },
-		{ 107, "OAC_Kshmrn" },
-		{ 108, "OAC_Master" },
-		{ 109, "OAC_Burial" },
-		{ 110, "OAC_Ravenmaster" },
-		{ 111, "OAC_Sentinel" },
-		{ 112, "OAC_Blake" },
-		{ 113, "OAC_Actor" },
-		{ 114, "OAC_Architect" },
-		{ 115, "OAC_Arkian" },
-		{ 116, "OAC_Arkptrn" },
-		{ 117, "OAC_Bbq" },
-		{ 118, "OAC_Bollycrew" },
-		{ 119, "OAC_Cavegd" },
-		{ 120, "OAC_Civilian" },
-		{ 121, "OAC_Cavewkr" },
-		{ 122, "OAC_Clothsale" },
-		{ 123, "OAC_Counsellor" },
-		{ 124, "OAC_Cowboyhat" },
-		{ 125, "OAC_Custdn" },
-		{ 126, "OAC_Dancer" },
-		{ 127, "OAC_Dbbwll" },
-		{ 128, "OAC_Deadjanus" },
-		{ 129, "OAC_Driverch" },
-		{ 130, "OAC_Driversa" },
-		{ 131, "OAC_Driveruk" },
-		{ 132, "OAC_Driverus" },
-		{ 133, "OAC_Druglabwkr" },
-		{ 134, "OAC_Elite" },
-		{ 135, "OAC_Fakemlstrm" },
-		{ 136, "OAC_Farm" },
-		{ 137, "OAC_Fieldgrd" },
-		{ 138, "OAC_Headmaster" },
-		{ 139, "OAC_Knight" },
-		{ 140, "OAC_Laundrywkr" },
-		{ 141, "OAC_Lndrygrd" },
-		{ 142, "OAC_Mailman" },
-		{ 143, "OAC_Mansiongd" },
-		{ 144, "OAC_Mech_Miami" },
-		{ 145, "OAC_Mechch" },
-		{ 146, "OAC_Mechit" },
-		{ 147, "OAC_Mechkrnstdt" },
-		{ 148, "OAC_Mechsa" },
-		{ 149, "OAC_Mechuk" },
-		{ 150, "OAC_Mechus" },
-		{ 151, "OAC_Metalwkr" },
-		{ 152, "OAC_Militiasec" },
-		{ 153, "OAC_Mime" },
-		{ 154, "OAC_Moviemnstr" },
-		{ 155, "OAC_Mumbaiserv" },
-		{ 156, "OAC_Mumbsec" },
-		{ 157, "OAC_Nitiate" },
-		{ 158, "OAC_Nurse" },
-		{ 159, "OAC_Orson" },
-		{ 160, "OAC_Parka" },
-		{ 161, "OAC_Politicasst" },
-		{ 162, "OAC_Politician" },
-		{ 163, "OAC_Priest_VP" },
-		{ 164, "OAC_Queensgrd" },
-		{ 165, "OAC_Queenthug" },
-		{ 166, "OAC_Rangangrd" },
-		{ 167, "OAC_Rangansec" },
-		{ 168, "OAC_Realstbroke" },
-		{ 169, "OAC_Resident" },
-		{ 170, "OAC_Resortstaff" },
-		{ 171, "OAC_Sitewkr" },
-		{ 172, "OAC_Snowtrek" },
-		{ 173, "OAC_Subwkr" },
-		{ 174, "OAC_Suit" },
-		{ 175, "OAC_Tailor" },
-		{ 176, "OAC_Teaserv" },
-		{ 177, "OAC_Terminus" },
-		{ 178, "OAC_Trainserv" },
-		{ 179, "OAC_Villagegd" },
-		{ 180, "OAC_Winter" },
-		{ 181, "OAC_Wiseman" },
-		{ 182, "OAC_Investbanker" },
-		{ 183, "OAC_Bankteller" },
-		{ 184, "OAC_Robber" },
-	};
-
-	(*g_Enums)["ESoundChannelGroup"] = {
-		{ 0, "ESCG_NONE" },
-		{ 1, "SND_Default" },
-		{ 2, "SND_Phys_Rigidbody" },
-		{ 3, "SND_Phys_Shatter" },
-		{ 4, "SND_Wpn_HM" },
-		{ 5, "SND_Wpn_HM_Shot" },
-		{ 6, "SND_Wpn_NPC" },
-		{ 7, "SND_Wpn_Impacts" },
-		{ 8, "SND_Wpn_Flybys" },
-		{ 9, "SND_Characters" },
-		{ 10, "SND_Ambience" },
-		{ 11, "SND_Props" },
-		{ 12, "SND_Prop_Item" },
-		{ 13, "SND_FS_HM" },
-		{ 14, "SND_FS_NPC" },
-		{ 15, "SND_VisualFX" },
-		{ 16, "SND_VisualFX_ShotActivate" },
-		{ 17, "SND_VisualFX_Explosions" },
-		{ 18, "SND_Diag_HM" },
-		{ 19, "SND_Diag_NPC" },
-		{ 20, "SND_CS_Ingame" },
-		{ 21, "SND_CS_PreRend" },
-		{ 22, "SND_Music_Env" },
-		{ 23, "SND_MusicNonEnv" },
-		{ 24, "SND_SpecialFX_CC" },
-		{ 25, "SND_SpecialFX_Jumps" },
-		{ 26, "SND_SpecialFX_Closet" },
-		{ 27, "SND_SpecialFX_Vent" },
-		{ 28, "SND_SpecialFX_Instinct" },
-		{ 29, "SND_SpecialFX_Disguise" },
-		{ 30, "SND_SpecialFX_Agility" },
-		{ 31, "SND_Stingers_SFX" },
-		{ 32, "SND_GUI" },
-		{ 33, "SND_Test" },
-		{ 34, "ANIM_HM_Generic" },
-		{ 35, "ANIM_HM_Loco" },
-		{ 36, "ANIM_HM_Agility" },
-		{ 37, "ANIM_HM_Suit_Flap" },
-		{ 38, "ANIM_HM_Suit_Release" },
-		{ 39, "ANIM_HM_Suit_Slide" },
-		{ 40, "ANIM_HM_Suit_LandImpact" },
-		{ 41, "ANIM_HM_Suit_Grab" },
-		{ 42, "ANIM_HM_Suit_Roll" },
-		{ 43, "ANIM_HM_Suit_Swoosh_Body" },
-		{ 44, "ANIM_HM_Suit_Swoosh_Fast" },
-		{ 45, "ANIM_HM_CC_Impacts" },
-		{ 46, "ANIM_HM_CC_Movement" },
-		{ 47, "ANIM_NPC_Generic" },
-		{ 48, "ANIM_NPC_Loco" },
-		{ 49, "ANIM_NPC_CC_Impacts" },
-		{ 50, "ANIM_NPC_CC_Movement" },
-		{ 51, "SND_Wpn_HM_Tail" },
-		{ 52, "SND_Wpn_NPC_Tail" },
-		{ 53, "SND_Diag_NPC_Crowd" },
-		{ 54, "SND_Phys_RigidBody_Ragdoll" },
-		{ 55, "SND_Diag_VO" },
-		{ 56, "SND_GUI_Menu" },
-		{ 57, "SND_Props_Doors" },
-		{ 58, "SND_Wpn_HM_Handguns" },
-		{ 59, "SND_Wpn_HM_Revolvers" },
-		{ 60, "SND_Wpn_HM_Rifles" },
-		{ 61, "SND_Wpn_HM_Shotguns" },
-		{ 62, "SND_Wpn_HM_Smgs" },
-		{ 63, "SND_Wpn_HM_Snipers" },
-		{ 64, "SND_Wpn_HM_Other" },
-		{ 65, "SND_Wpn_NPC_Handguns" },
-		{ 66, "SND_Wpn_NPC_Revolvers" },
-		{ 67, "SND_Wpn_NPC_Rifles" },
-		{ 68, "SND_Wpn_NPC_Shotguns" },
-		{ 69, "SND_Wpn_NPC_Smgs" },
-		{ 70, "SND_Wpn_NPC_Snipers" },
-		{ 71, "SND_Wpn_NPC_Other" },
-		{ 72, "SND_Diag_NPC_Oneliner" },
-		{ 73, "SND_Moments" },
-	};
-
-	(*g_Enums)["ZActorKeywordCondition.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-		{ 3, "ANY_TRUE_IF_NO_REQS" },
-	};
-
-	(*g_Enums)["EGSExplodingPropType"] = {
-		{ 0, "eGSExplodingProp_Unknown" },
-		{ 1, "eGSExplodingProp_Barrel" },
-		{ 2, "eGSExplodingProp_PetrolCan" },
-		{ 3, "eGSExplodingProp_GasCanister" },
-		{ 4, "eGSExplodingProp_GasTank" },
-		{ 5, "eGSExplodingProp_Mine" },
-		{ 6, "eGSExplodingProp_Pig" },
-		{ 7, "eGSExplodingProp_Pigeon" },
-		{ 8, "eGSExplodingProp_FireworksBox" },
-		{ 9, "eGSExplodingProp_Car" },
-	};
-
-	(*g_Enums)["ZCrowdActorEntity.ECharacterSoundType"] = {
-		{ 0, "eSoundType_Male" },
-		{ 1, "eSoundType_Female" },
-		{ 2, "eSoundType_Female_Heels" },
-	};
-
-	(*g_Enums)["eItemType"] = {
-		{ 690, "eCC_PoolCue" },
-		{ 40, "eCC_Shovel" },
-		{ 650, "eOther_ContractEnvelope" },
-		{ 0, "eCC_FireExtinguisher_01" },
-		{ 680, "eCC_GlassShiv" },
-		{ 50, "eCC_Hammer" },
-		{ 640, "eCC_Scissor" },
-		{ 10, "eCC_Knife" },
-		{ 60, "eCC_Cleaver" },
-		{ 670, "eCC_BaseballBat" },
-		{ 20, "eCC_Axe" },
-		{ 70, "eCC_AntitankMine" },
-		{ 660, "eItemIrrelevantWeapon" },
-		{ 30, "eCC_PetrolCan" },
-		{ 730, "eCC_Guitar" },
-		{ 80, "eCC_C4Brick" },
-		{ 720, "eCC_Crutch" },
-		{ 90, "eCC_RemoteExplosive" },
-		{ 100, "eDetonator" },
-		{ 740, "eCC_Iron" },
-		{ 110, "eCC_Wrench" },
-		{ 120, "eCC_Dildo" },
-		{ 903, "eDLC_TEST_Prop_02" },
-		{ 130, "eCC_Bottle" },
-		{ 140, "eCC_Saw" },
-		{ 150, "eCC_Screwdriver" },
-		{ 160, "eCC_MetalPipe" },
-		{ 170, "eCC_Gavel" },
-		{ 901, "eDLC_TEST_FireArm_02" },
-		{ 180, "eCC_Radio" },
-		{ 190, "eCC_Bong" },
-		{ 530, "eSniper_AS50" },
-		{ 921, "eCC_SledgeHammer" },
-		{ 200, "eCC_Statue_Bust_A" },
-		{ 520, "eSMG_TMP" },
-		{ 210, "eGun_44AutoMag" },
-		{ 550, "eSniper_SakoTRG" },
-		{ 220, "eGun_44AutoMagSilenced" },
-		{ 230, "eGun_Derringer" },
-		{ 540, "eSniper_Remington700" },
-		{ 923, "eCC_Brick" },
-		{ 570, "eItemAmmo" },
-		{ 240, "eGun_Glock" },
-		{ 560, "eSniper_SakoTRGSilenced" },
-		{ 250, "eGun_GlockDirty" },
-		{ 910, "eHotSauceBarrel" },
-		{ 260, "eGun_GlockSilenced" },
-		{ 900, "eDLC_TEST_FireArm_01" },
-		{ 270, "eGun_HardBaller_01" },
-		{ 280, "eGun_HardBallerSilenced" },
-		{ 290, "eGun_Sig226" },
-		{ 300, "eGun_Sig226Silenced" },
-		{ 310, "eGun_Sphinx3000" },
-		{ 320, "eGun_Taurus24_7" },
-		{ 330, "eGun_Taurus24_7Silenced" },
-		{ 340, "eGun_Spotter" },
-		{ 350, "eOther_MG" },
-		{ 360, "eOther_RPG" },
-		{ 370, "eRevolver_PoliceRevolver" },
-		{ 380, "eRevolver_Snubnosed" },
-		{ 390, "eRevolver_Taurus" },
-		{ 922, "eCC_Katana" },
-		{ 400, "eRifle_HK416" },
-		{ 410, "eRifle_HK416Scope" },
-		{ 420, "eRifle_HK416Silenced" },
-		{ 932, "eSyringe_Sedative" },
-		{ 430, "eRifle_PumpRifle" },
-		{ 440, "eRifle_SG552" },
-		{ 450, "eRifle_SG552Scope" },
-		{ 460, "eShotgun_M500" },
-		{ 470, "eShotgun_M500New" },
-		{ 480, "eSMG_HK_UMP" },
-		{ 490, "eSMG_HK_UMPFlashlight" },
-		{ 500, "eSMG_HK_UMPScope" },
-		{ 510, "eSMG_HK_UMPSilenced" },
-		{ 580, "eCC_FiberWire" },
-		{ 590, "eOther_ZippoLighter" },
-		{ 600, "eOther_Keycard_A" },
-		{ 610, "eOther_SecurityTape" },
-		{ 620, "eCC_PowerCord" },
-		{ 630, "eCC_PoliceBaton" },
-		{ 700, "eCC_Rake" },
-		{ 710, "eCC_ToyCar" },
-		{ 760, "eRifle_Beretta_ARX160" },
-		{ 800, "eShotgun_Spas12" },
-		{ 810, "eShotgun_Spas12_Compact" },
-		{ 830, "eShotgun_Silenced" },
-		{ 860, "eSMG_AK74u" },
-		{ 880, "eSMG_STK" },
-		{ 902, "eDLC_TEST_Prop_01" },
-		{ 920, "eOther_GenericPickup" },
-		{ 924, "cCC_Book_A" },
-		{ 931, "eSyringe_Lethal" },
-		{ 933, "eSyringe_Emetic" },
-		{ 934, "eSuitcase" },
-		{ 1337, "eUnknownItemType" },
-	};
-
-	(*g_Enums)["EDebugExclusionLayerState"] = {
-		{ 0, "DEBUGELSTATE_UNBLOCKED" },
-		{ 1, "DEBUGELSTATE_BLOCKED" },
-		{ 2, "DEBUGELSTATE_UNKNOWN" },
-	};
-
-	(*g_Enums)["ILightEntity.ELightType"] = {
-		{ 0, "LT_DIRECTIONAL" },
-		{ 1, "LT_ENVIRONMENT" },
-		{ 2, "LT_OMNI" },
-		{ 3, "LT_SPOT" },
-		{ 4, "LT_SQUARESPOT" },
-		{ 5, "LT_CAPSULE" },
-		{ 6, "LT_AREA_QUAD" },
-	};
-
-	(*g_Enums)["EOnlinTest"] = {
-		{ 0, "eHELLO" },
-		{ 1, "eWORLD" },
-	};
-
-	(*g_Enums)["eContractSessionStartError"] = {
-		{ 0, "ERROR_NONE" },
-		{ 1, "ERROR_MISSING_CONTENT" },
-		{ 2, "ERROR_SERVER_UNREACHABLE" },
-		{ 3, "ERROR_SERVER_ERROR" },
-		{ 4, "ERROR_CONTRACT_NOT_PLAYABLE_YET" },
-		{ 5, "ERROR_CONTRACT_NOT_PLAYABLE_ANYMORE" },
-		{ 6, "ERROR_CANCELED" },
-		{ 7, "ERROR_ALREADY_STARTING" },
-		{ 8, "ERROR_UNKNOWN" },
-	};
-
-	(*g_Enums)["EParticleColorUsage"] = {
-		{ 0, "REPLACE_PARTICLE_COLOR" },
-		{ 1, "LEAVE_PARTICLE_COLOR" },
-	};
-
-	(*g_Enums)["EGameModeId"] = {
-		{ -1, "GameMode_Invalid" },
-		{ 0, "GameMode_Normal" },
-		{ 1, "GameMode_Sniper" },
-		{ 2, "GameMode_Versus" },
-		{ 3, "GameMode_Max" },
-	};
-
-	(*g_Enums)["ZActBehaviorEntity.EApproachAlignment"] = {
-		{ 0, "AA_STRICT" },
-		{ 1, "AA_LOOSE" },
-	};
-
-	(*g_Enums)["ILightEntity.EFrameIndexStrategy"] = {
-		{ 0, "WRAP" },
-		{ 1, "CLAMP" },
-	};
-
-	(*g_Enums)["EViewportLock"] = {
-		{ 0, "VPL_None" },
-		{ 1, "VPL_Rectangular" },
-		{ 2, "VPL_Rectangular_AvoidMinimapOverlap" },
-	};
-
-	(*g_Enums)["ZInputListenerDpadEntity.eInputListenerDpad"] = {
-		{ 0, "EILDP_UP" },
-		{ 1, "EILDP_LEFT" },
-		{ 2, "EILDP_DOWN" },
-		{ 3, "EILDP_RIGHT" },
-	};
-
-	(*g_Enums)["ZEscortSituation2Entity.ETargetState"] = {
-		{ 0, "ETS_Unknown" },
-		{ 1, "ETS_NoTarget" },
-		{ 2, "ETS_RunningActBehavior" },
-		{ 3, "ETS_RunningDummyBehavior" },
-		{ 4, "ETS_RunningOtherBehavior" },
-		{ 5, "ETS_Dead" },
-		{ 6, "ETS_TargetIsHitman" },
-	};
-
-	(*g_Enums)["ZTrespassingSituation.ESituationState"] = {
-		{ 1, "SS_Main" },
-		{ 2, "SS_StandDown" },
-		{ 3, "SS_Escalate" },
-	};
-
-	(*g_Enums)["EAIFormationMemberSpeed"] = {
-		{ 0, "eFMS_Slow" },
-		{ 1, "eFMS_Normal" },
-		{ 2, "eFMS_Fast" },
-	};
-
-	(*g_Enums)["ERenderGlowTypes"] = {
-		{ 0, "ERENDERGLOWTYPE_NONE" },
-		{ 1, "ERENDERGLOWTYPE_ENEMIES" },
-		{ 2, "ERENDERGLOWTYPE_ALLIES" },
-		{ 3, "ERENDERGLOWTYPE_CIVILIAN" },
-		{ 4, "ERENDERGLOWTYPE_ITEMS" },
-		{ 5, "ERENDERGLOWTYPE_STASHED_ITEMS" },
-		{ 6, "ERENDERGLOWTYPE_SETPIECE" },
-		{ 7, "ERENDERGLOWTYPE_BACKGROUND" },
-		{ 8, "ERENDERGLOWTYPE_CONTRACT_TARGET" },
-		{ 9, "ERENDERGLOWTYPE_CONTRACT_TARGET_NON_CRITICAL" },
-		{ 10, "ERENDERGLOWTYPE_CONTRACT_TARGET_SPECIAL" },
-		{ 11, "ERENDERGLOWTYPE_OBJECTIVES" },
-		{ 12, "ERENDERGLOWTYPE_ENFORCER" },
-		{ 13, "ERENDERGLOWTYPE_LTMEMORY" },
-		{ 14, "ERENDERGLOWTYPE_TAGGED" },
-		{ 15, "ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED" },
-		{ 16, "ERENDERGLOWTYPE_TAGFOCUS_TAGGED" },
-		{ 17, "ERENDERGLOWTYPE_BACKGROUNDUNMASKED" },
-		{ 18, "ERENDERGLOWTYPE_INTERACTION" },
-		{ 19, "ERENDERGLOWTYPE_INTERACTION_SELECTED" },
-		{ 20, "ERENDERGLOWTYPE_INTERACTION_DESELECTED" },
-		{ 21, "ERENDERGLOWTYPE_PLAYER_LVA" },
-		{ 22, "ERENDERGLOWTYPE_PLAYER_LVA_SEEN" },
-		{ 23, "ERENDERGLOWTYPE_VS_OPPONENT" },
-		{ 24, "ERENDERGLOWTYPE_TRAVERSAL" },
-		{ 25, "ERENDERGLOWTYPE_EMISSIVE_UI" },
-		{ 26, "ERENDERGLOWTYPE_OPPONENT" },
-	};
-
-	(*g_Enums)["EFocusBarState"] = {
-		{ 0, "FOCUS_BAR_NORMAL" },
-		{ 1, "FOCUS_BAR_INSTINCT" },
-		{ 2, "FOCUS_BAR_BURNING" },
-	};
-
-	(*g_Enums)["ESoundCollisionObjectType"] = {
-		{ 0, "StaticRigidBody" },
-		{ 1, "DynamicRigidBody" },
-		{ 2, "Ragdoll" },
-	};
-
-	(*g_Enums)["ZDistanceCondition.ECompareMethod"] = {
-		{ 0, "CM_GreaterOrEqualThan" },
-		{ 1, "CM_LessThan" },
-	};
-
-	(*g_Enums)["TeleportActionType"] = {
-		{ 0, "STAY" },
-		{ 1, "TELEPORT" },
-		{ 2, "LEAVE_CROWD" },
-	};
-
-	(*g_Enums)["EActorAIState"] = {
-		{ 0, "eAAIS_None" },
-		{ 1, "eAAIS_Distracted" },
-		{ 2, "eAAIS_PotentialThreat" },
-		{ 3, "eAAIS_PotentialThreatDistracted" },
-		{ 4, "eAAIS_PotentialThreatDisabled" },
-		{ 5, "eAAIS_Aggressive" },
-		{ 6, "eAAIS_EscortingOut" },
-		{ 7, "eAAIS_Fleeing" },
-		{ 8, "eAAIS_Unconscious" },
-		{ 9, "eAAIS_Stunned" },
-		{ 10, "eAAIS_Grenade" },
-		{ 11, "eAAIS_DisabledInCombat" },
-		{ 12, "eAAIS_Disabled" },
-		{ 13, "eAAIS_Max" },
-	};
-
-	(*g_Enums)["EMorphemeEventId"] = {
-		{ 0, "eDE_None" },
-		{ 1700, "eDE_StandToMoveRotationToTranslation" },
-		{ 18, "eDE_UnholsterWeapon" },
-		{ 10051, "eDE_Act_FB_BlendIn_Start" },
-		{ 862, "eDE_RecoveryPowerRagdollEnd" },
-		{ 19, "eDE_HolsterWeapon" },
-		{ 100, "eDE_LegR" },
-		{ 20, "eDE_FireWeapon" },
-		{ 1801, "eDE_HeadIKDisable" },
-		{ 4001, "eDE_ActItemPickup" },
-		{ 101, "eDE_LegL" },
-		{ 900, "eDE_ImpactFinished" },
-		{ 21, "eDE_AttachWeapon" },
-		{ 22, "eDE_DetachWeapon" },
-		{ 200, "eDE_TransitionEnd_LegR" },
-		{ 201, "eDE_TransitionEnd_LegL" },
-		{ 255, "eDE_Finish" },
-		{ 701, "eDE_EnableNPCHitmanCollision" },
-		{ 2010, "eDE_HeadControlEnable" },
-		{ 300, "eDE_InterpolationStart" },
-		{ 3011, "eDE_CombatEnableLeftHandIK" },
-		{ 1600, "eDE_OffHandIKEnable" },
-		{ 301, "eDE_InterpolationEnd" },
-		{ 400, "eDE_TransitionSignal" },
-		{ 3010, "eDE_CombatEnableRightHandIK" },
-		{ 3030, "eDE_CombatEnableShoot" },
-		{ 500, "eDE_TransitionEnd" },
-		{ 10050, "eDE_Act_UB_BlendIn_End" },
-		{ 700, "eDE_DisableNPCHitmanCollision" },
-		{ 800, "eDE_EnableRagdollRangeStart" },
-		{ 801, "eDE_EnableRagdollRangeEnd" },
-		{ 850, "eDE_StartBlendingOut" },
-		{ 3050, "eDE_CombatEnableBlindShoot" },
-		{ 851, "eDE_FinishBlendingOut" },
-		{ 1090, "eDE_ActFullbodyStartMarker" },
-		{ 860, "eDE_StartOrientationBlend" },
-		{ 861, "eDE_FinishOrientationBlend" },
-		{ 3015, "eDE_CombatEndEnableIK" },
-		{ 863, "eDE_RecoveryBlendEnd" },
-		{ 1000, "eDE_ActFinished" },
-		{ 1001, "eDE_ActFinishedWhenMoving" },
-		{ 2001, "eDE_WindowLeaningDisable" },
-		{ 1005, "eDE_ActReached" },
-		{ 1050, "eDE_ActLoop" },
-		{ 1091, "eDE_ActFullbodyEndMarker" },
-		{ 1100, "eDE_ReactionFinished" },
-		{ 1500, "eDE_StandToCrouch" },
-		{ 1501, "eDE_CrouchToStand" },
-		{ 1601, "eDE_OffHandIKDisable" },
-		{ 4002, "eDE_ActItemDrop" },
-		{ 3070, "eDE_CombatUnholsterGrenade" },
-		{ 1701, "eDE_MoveToStandTranslationToRotation" },
-		{ 1800, "eDE_HeadIKEnable" },
-		{ 4000, "eDE_ActBehaviorEventStart" },
-		{ 2000, "eDE_WindowLeaningEnable" },
-		{ 4010, "eDE_AmbientItemUseMarker" },
-		{ 2002, "eDE_PreventDeathAnimations" },
-		{ 2003, "eDE_AllowDeathAnimations" },
-		{ 2011, "eDE_HeadControlDisable" },
-		{ 3000, "eDE_CombatActEndMarker" },
-		{ 3025, "eDE_CombatEndDisableIK" },
-		{ 3100, "eDE_CombatAim" },
-		{ 10301, "eDE_Act_LeadIn_Marker" },
-		{ 3020, "eDE_CombatStartDisableIK" },
-		{ 3040, "eDE_CombatDisableShoot" },
-		{ 3060, "eDE_CombatDisableBlindShoot" },
-		{ 3080, "eDE_CombatThrowGrenade" },
-		{ 4999, "eDE_ActBehaviorEventEnd" },
-		{ 10052, "eDE_Act_FB_BlendIn_End" },
-		{ 10053, "eDE_Act_FB_BlendOut_End" },
-	};
-
-	(*g_Enums)["EAccidentScaleContext"] = {
-		{ 0, "eASC_Standard" },
-		{ 1, "eASC_Unsafe" },
-		{ 2, "eASC_Dangerous" },
-	};
-
-	(*g_Enums)["EEngineModeId"] = {
-		{ -1, "EngineMode_Invalid" },
-		{ 0, "EngineMode_SinglePlayer" },
-		{ 1, "EngineMode_SplitScreen" },
-		{ 2, "EngineMode_Multiplayer" },
-		{ 3, "EngineMode_Max" },
-	};
-
-	(*g_Enums)["ZActBehaviorEntity.EState"] = {
-		{ 0, "UNDEFINED" },
-		{ 1, "IDLE" },
-		{ 2, "STOPPING" },
-		{ 3, "PREPARING" },
-		{ 4, "MOVING" },
-		{ 5, "ENTERING" },
-		{ 6, "RUNNING" },
-		{ 7, "TIMEDOUT" },
-		{ 8, "COMPLETE" },
-	};
-
-	(*g_Enums)["ZSoundAmbienceGroup.ESoundCollisionType"] = {
-		{ 0, "SCT_Box" },
-		{ 1, "SCT_Cylinder" },
-		{ 2, "SCT_Sphere" },
-		{ 3, "SCT_Volume" },
-	};
-
-	(*g_Enums)["EDamageEvent"] = {
-		{ 128, "eDE_Shoot" },
-		{ 64, "eDE_DeadlyThrow" },
-		{ 0, "eDE_UNDEFINED" },
-		{ 16384, "eDE_Electric" },
-		{ 32768, "eDE_SuspendedObject" },
-		{ 32, "eDE_KickDownStairs" },
-		{ 8192, "eDE_Poison" },
-		{ 16, "eDE_PushOver" },
-		{ 4096, "eDE_Garotte" },
-		{ 1, "eDE_InCloset" },
-		{ 2, "eDE_Subdue" },
-		{ 4, "eDE_CloseCombat" },
-		{ 256, "eDE_Sedated" },
-		{ 512, "eDE_InstantTakeDown" },
-		{ 1024, "eDE_CoupDeGrace" },
-		{ 2048, "eDE_ContextKill" },
-		{ 65536, "eDE_Burn" },
-		{ 131072, "eDE_Drop" },
-		{ 262144, "eDE_Drown" },
-	};
-
-	(*g_Enums)["ZDebugGizmoEntity.EDrawLayer"] = {
-		{ 0, "DL_DEFAULT" },
-		{ 1, "DL_LIGHT" },
-		{ 2, "DL_PARTICLES" },
-		{ 3, "DL_PARTITIONING" },
-		{ 4, "DL_DECALS" },
-		{ 5, "DL_CROWD" },
-		{ 6, "DL_PHYSICS" },
-		{ 7, "DL_HERO" },
-		{ 8, "DL_AI" },
-		{ 9, "DL_AI_GRID" },
-		{ 10, "DL_AI_SITUATION" },
-		{ 11, "DL_AI_AREA" },
-		{ 12, "DL_NPC_LOCOMOTION" },
-		{ 13, "DL_GAME" },
-		{ 14, "DL_ALIGNMENT" },
-		{ 15, "DL_ENGINE" },
-		{ 16, "DL_SOUND" },
-		{ 17, "DL_ANIMATION" },
-		{ 18, "DL_CLOTH" },
-		{ 19, "DL_SOUND_PARTITIONING" },
-		{ 20, "DL_UI" },
-	};
-
-	(*g_Enums)["ZCoverPlane.ECoverSize"] = {
-		{ 0, "eLowCover" },
-		{ 1, "eMediumCover" },
-		{ 2, "eHighCover" },
-	};
-
-	(*g_Enums)["EAnimSetType"] = {
-		{ 0, "EAST_UNDEFINED" },
-		{ 1, "EAST_DEFAULT" },
-		{ 2, "EAST_PISTOL" },
-		{ 3, "EAST_REVOLVER" },
-		{ 4, "EAST_SMG" },
-		{ 5, "EAST_SNIPER" },
-		{ 6, "EAST_ASSULT" },
-		{ 7, "EAST_SHOTGUN" },
-		{ 8, "EAST_BODYBAG" },
-		{ 9, "EAST_GLASS" },
-		{ 10, "EAST_BOX" },
-		{ 11, "EAST_PLATE" },
-		{ 12, "EAST_SMALLOBJ" },
-		{ 13, "EAST_SUITCASE" },
-		{ 14, "EAST_TRAY" },
-		{ 15, "EAST_TROLLY" },
-		{ 16, "EAST_FLASHLIGHT" },
-		{ 17, "EAST_CARRY_1HANDEDWEAPON" },
-		{ 18, "EAST_CARRY_2HANDEDWEAPON" },
-		{ 19, "EAST_CARRY_RAKE" },
-		{ 20, "EAST_CARRY_WEAPON_ITEM" },
-		{ 21, "EAST_CARRY_BRICK_MINE" },
-		{ 22, "EAST_CARRY_PROXY_MINE" },
-		{ 23, "EAST_CARRY_LEAD_PIPES" },
-		{ 24, "EAST_CARRY_TUBE" },
-	};
-
-	(*g_Enums)["ZContextKillGuide.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["EMassImpulseType"] = {
-		{ 0, "eMIT_None" },
-		{ 1, "eMIT_Explosion" },
-		{ 2, "eMIT_ShockWave" },
-		{ 3, "eMIT_ShockWaveNoExplosion" },
-	};
-
-	(*g_Enums)["ReverbFidelity"] = {
-		{ 0, "Low" },
-		{ 1, "Medium" },
-		{ 2, "High" },
-	};
-
-	(*g_Enums)["EDifficultyLevel"] = {
-		{ 0, "eDL_NO_FLAGS" },
-		{ 8, "eDL_VERY_HARD" },
-		{ 1, "eDL_EASY" },
-		{ 2, "eDL_NORMAL" },
-		{ 4, "eDL_HARD" },
-		{ 15, "eDL_ALL_FLAGS" },
-	};
-
-	(*g_Enums)["ECharacterCollidableLayer"] = {
-		{ 0, "CCL_DYNAMIC" },
-		{ 1, "CCL_DYNAMIC_TRANSPARENT" },
-		{ 2, "CCL_DYNAMIC_NO_COLLISION" },
-		{ 3, "CCL_DYNAMIC_NO_COLLISION_TRANSPARENT" },
-		{ 4, "CCL_UNUSED_LAST" },
-	};
-
-	(*g_Enums)["ZTestGroupPath.EModifierType"] = {
-		{ 0, "EMT_PushCorners" },
-		{ 1, "EMT_PushCornersAlt" },
-	};
-
-	(*g_Enums)["ZCautiousSearchGroup.EAssistantState"] = {
-		{ 0, "AS_CalculateFields" },
-		{ 1, "AS_RequestNode" },
-		{ 2, "AS_Approach" },
-		{ 3, "AS_Approaching" },
-		{ 4, "AS_Act" },
-		{ 5, "AS_Acting" },
-	};
-
-	(*g_Enums)["EAnimationPose"] = {
-		{ 0, "AP_Undefined" },
-		{ 1, "AP_Standing" },
-		{ 2, "AP_SittingChair" },
-		{ 3, "AP_SittingGround" },
-		{ 4, "AP_LyingGround" },
-		{ 5, "AP_Crouching" },
-		{ 6, "AP_SittingBench" },
-		{ 7, "AP_SittingChairTable" },
-	};
-
-	(*g_Enums)["EActorLookAtStopReason"] = {
-		{ 0, "eSR_Unknown" },
-		{ 1, "eSR_Disabled" },
-		{ 2, "eSR_DurationExpired" },
-		{ 3, "eSR_OutOfRange" },
-		{ 4, "eSR_OutOfSight" },
-		{ 5, "eSR_OutOfRemainingPathDistance" },
-		{ 6, "eSR_Interrupted" },
-		{ 7, "eSR_TargetRemoved" },
-		{ 8, "eSR_HigherPriorityProfile" },
-		{ 9, "eSR_HideInPlainSight" },
-	};
-
-	(*g_Enums)["ZHM5Item.EUseTypes"] = {
-		{ 0, "EUT_CantUse" },
-		{ 1, "EUT_Toggle" },
-		{ 2, "EUT_TurnOn" },
-	};
-
-	(*g_Enums)["EHM5SoundFootwearType"] = {
-		{ 0, "EFWT_UNDEFINED" },
-		{ 1, "EFWT_BAREFOOT" },
-		{ 2, "EFWT_SLIPPERS" },
-		{ 3, "EFWT_DISPOSABLE_SLIPPERS" },
-		{ 4, "EFWT_SANDALS" },
-		{ 5, "EFWT_SNEAKERS" },
-		{ 6, "EFWT_SNEAKERS_METALLEG" },
-		{ 7, "EFWT_LEATHER" },
-		{ 8, "EFWT_FEMALE_LEATHER" },
-		{ 9, "EFWT_BOOTS" },
-		{ 10, "EFWT_COWBOY_BOOTS" },
-		{ 11, "EFWT_FEMALE_COWBOY_BOOTS" },
-		{ 12, "EFWT_RUBBER_BOOTS" },
-		{ 13, "EFWT_HIGH_HEELS" },
-		{ 14, "EFWT_LEATHER_KEYS" },
-		{ 15, "EFWT_SWAT_BOOTS" },
-	};
-
-	(*g_Enums)["ECharacterIdleHandlerFullbodyType"] = {
-		{ 0, "ecIHFBT_DisguisedIdle" },
-		{ 1, "ecIHFBT_Event" },
-	};
-
-	(*g_Enums)["ZValueBool_Operation_Signal.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-		{ 3, "NOT_ALL" },
-		{ 4, "ALL_EQUAL" },
-		{ 5, "ONE_TRUE" },
-	};
-
-	(*g_Enums)["ZCautiousInvestigateGroup.EInvestigateGroupState"] = {
-		{ 0, "IGS_FindAssistant" },
-		{ 1, "IGS_PreAcknowledge" },
-		{ 2, "IGS_Acknowledge" },
-		{ 3, "IGS_Approach" },
-		{ 4, "IGS_Approaching" },
-		{ 5, "IGS_Investigating" },
-		{ 6, "IGS_DeadBody" },
-		{ 7, "IGS_Completed" },
-		{ 8, "IGS_Max" },
-	};
-
-	(*g_Enums)["IHM5Door.eCloseMode"] = {
-		{ 0, "CM_AUTOCLOSE" },
-		{ 1, "CM_MANUALCLOSE" },
-		{ 2, "CM_NEVERCLOSE" },
-	};
-
-	(*g_Enums)["EParticleSpritePivotLocation"] = {
-		{ 0, "CENTER_PIVOT" },
-		{ 1, "BOTTOM_PIVOT" },
-		{ 2, "TOP_PIVOT" },
-	};
-
-	(*g_Enums)["WebSocketUtils.EOpCode"] = {
-		{ 0, "eCONTINUATION" },
-		{ 8, "eCLOSE" },
-		{ 1, "eTEXT" },
-		{ 9, "ePING" },
-		{ 2, "eBINARY" },
-		{ 10, "ePONG" },
-		{ 15, "eNONE" },
-	};
-
-	(*g_Enums)["EClipSpawnAxis"] = {
-		{ 0, "eCSA_XPos" },
-		{ 1, "eCSA_XNeg" },
-		{ 2, "eCSA_YPos" },
-		{ 3, "eCSA_YNeg" },
-		{ 4, "eCSA_ZPos" },
-		{ 5, "eCSA_ZNeg" },
-	};
-
-	(*g_Enums)["EAnimSetState"] = {
-		{ 0, "EASES_DEFAULT" },
-		{ 1, "EASES_AMBIENT_ARMED" },
-		{ 2, "EASES_AMBIENT_VIP_ESCORT" },
-		{ 3, "EASES_AMBIENT_HERO_ESCORT" },
-		{ 4, "EASES_COMBAT_EVACUATE" },
-		{ 5, "EASES_COMBAT_EVACUATE_VIP_SOLO" },
-		{ 6, "EASES_SICK" },
-		{ 7, "EASES_INFECTED" },
-	};
-
-	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRToneMapType"] = {
-		{ 0, "eLinear" },
-		{ 1, "eReinhardRGB" },
-		{ 2, "eFilmicRGB" },
-	};
-
-	(*g_Enums)["SFootIKEventData.EFoot"] = {
-		{ 0, "eLeft" },
-		{ 1, "eRight" },
-		{ 2, "eBoth" },
-	};
-
-	(*g_Enums)["EHM5GameInputFlag"] = {
-		{ 0, "eGameInputActionPerform" },
-		{ 1, "eGameInputActionPickup" },
-		{ 2, "eGameInputActionAbort" },
-		{ 3, "eGameInputActionDoor" },
-		{ 4, "eGameInputWeaponZoomIn" },
-		{ 5, "eGameInputWeaponZoomOut" },
-		{ 6, "eGameInputActionShoot" },
-		{ 7, "eGameInputActionPrecisionShoot" },
-		{ 8, "eGameInputAimOTS" },
-		{ 9, "eGameInputCoverAction" },
-		{ 10, "eGameInputCoverAlternativeAction" },
-		{ 11, "eGameInputInventoryAccept" },
-		{ 12, "eGameInputEquipShortRange" },
-		{ 13, "eGameInputEquipLongRange" },
-		{ 14, "eGameInputHolsterItem" },
-		{ 15, "eGameInputDropItem" },
-		{ 16, "eGameInputTogglePlacement" },
-		{ 17, "eGameInputActivatePropQuick" },
-		{ 18, "eGameInputActivateProp" },
-		{ 19, "eGameInputActivatePropHold" },
-		{ 20, "eGameInputActivatePropSecondary" },
-		{ 21, "eGameInputActivatePropInterruptibleStart" },
-		{ 22, "eGameInputActivatePropInterruptibleEnd" },
-		{ 23, "eGameInputConcealRetrieve" },
-		{ 24, "eGameInputGuideAction" },
-		{ 25, "eGameInputGuideActionHold" },
-		{ 26, "eGameInputGuideActionSecondary" },
-		{ 27, "eGameInputGuideEnterWindow" },
-		{ 28, "eGameInputGuideSneakPastWindow" },
-		{ 29, "eGameInputGuideSneakPastWindowHold" },
-		{ 30, "eGameInputGuideKill" },
-		{ 31, "eGameInputSlideLadder" },
-		{ 32, "eGameInputCloseCombat" },
-		{ 33, "eGameInputFiberwire" },
-		{ 34, "eGameInputCloseCombatCounter" },
-		{ 35, "eGameInputCloseCombatTakeDown" },
-		{ 36, "eGameInputCloseCombatSnapNeck" },
-		{ 37, "eGameInputSurrender" },
-		{ 38, "eGameInputShowItem" },
-		{ 39, "eGameInputReload" },
-		{ 40, "eGameInputTakeDisguise" },
-		{ 41, "eGameInputDragDropBody" },
-		{ 42, "eGameInputDumpBody" },
-		{ 43, "eGameInputSneakToggle" },
-		{ 44, "eGameInputCamSwitch" },
-		{ 45, "eGameInputActivateRun" },
-		{ 46, "eGameInputActivateWalkSlow" },
-		{ 47, "eGameInputInstinctMode" },
-		{ 48, "eGameInputContractTargetTag" },
-		{ 49, "eGameInputThrow" },
-		{ 50, "eGameInputCloseCombatChainHigh" },
-		{ 51, "eGameInputCloseCombatChainLow" },
-		{ 52, "eGameInputCloseCombatChainCounter" },
-		{ 53, "eGameInputSkipCutSequence" },
-		{ 54, "eGameInputCloseCombatChokeStart" },
-		{ 55, "eGameInputCloseCombatChoke" },
-		{ 56, "eGameInputFocusedInteractionFaceUp" },
-		{ 57, "eGameInputFocusedInteractionFaceLeft" },
-		{ 58, "eGameInputFocusedInteractionFaceDown" },
-		{ 59, "eGameInputFocusedInteractionLeftStickAnalog" },
-		{ 60, "eGameInputRemoteAction" },
-		{ 61, "eGameInputChangeAmmoNext" },
-		{ 62, "eGameInputChangeAmmoPrevious" },
-		{ 63, "eGameInputDefault" },
-		{ 64, "eGameInputActionsNUM" },
-	};
-
-	(*g_Enums)["ZHeroEscortSituationEntity.EEscortState"] = {
-		{ 0, "EES_Idle" },
-		{ 1, "EES_Evaluate" },
-		{ 2, "EES_Escorting" },
-		{ 3, "EES_Intermediate" },
-		{ 4, "EES_OutOfRange" },
-	};
-
-	(*g_Enums)["EDramaStateFlag"] = {
-		{ 0, "eDSF_DEFAULT" },
-		{ 8, "eDSF_RUNNING" },
-		{ 16, "eDSF_DONE" },
-		{ 32, "eDSF_TERMINATED" },
-		{ 1, "eDSF_ENABLED" },
-		{ 2, "eDSF_CAST" },
-		{ 4, "eDSF_RESUMING" },
-	};
-
-	(*g_Enums)["ZHeroEscortSituation2Entity.EEscortState"] = {
-		{ 0, "EES_Idle" },
-		{ 1, "EES_Evaluate" },
-		{ 2, "EES_Escorting" },
-		{ 3, "EES_Intermediate" },
-		{ 4, "EES_OutOfRange" },
-	};
-
-	(*g_Enums)["EActorState"] = {
-		{ 0, "AS_DEACTIVATED" },
-		{ 1, "AS_ALIVE" },
-		{ 2, "AS_DYING" },
-		{ 3, "AS_DEAD" },
-		{ 4, "AS_DISABLED" },
-	};
-
-	(*g_Enums)["SActorSoundDefs.EDefinition"] = {
-		{ 0, "_NoSound" },
-	};
-
-	(*g_Enums)["ZKeywordCondition.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-		{ 3, "ANY_TRUE_IF_NO_REQS" },
-		{ 4, "EQUAL" },
-		{ 5, "GREATER" },
-		{ 6, "LESS" },
-	};
-
-	(*g_Enums)["EBehaviorTreeVariableType"] = {
-		{ -1, "BTVT_Invalid" },
-		{ 0, "BTVT_SceneReference" },
-		{ 1, "BTVT_Contextual" },
-		{ 2, "BTVT_Dynamic" },
-		{ 3, "BTVT_NumTypes" },
-	};
-
-	(*g_Enums)["EActorPerceptionSensitivity"] = {
-		{ 0, "APS_AMBIENT_DEAFBLIND" },
-		{ 1, "APS_AMBIENT_SLEEPING" },
-		{ 2, "APS_AMBIENT_PREOCCUPIED" },
-		{ 3, "APS_AMBIENT" },
-		{ 4, "APS_ALERT_LOW" },
-		{ 5, "APS_ALERT" },
-		{ 6, "APS_COMBAT" },
-		{ 7, "APS_SPIDER_SENSE" },
-	};
-
-	(*g_Enums)["ECharacterStateTransitionAttempt"] = {
-		{ 0, "eSM_TA_IfDestinationCan" },
-		{ 1, "eSM_TA_IfDestinationCanAndWants" },
-		{ 2, "eSM_TA_IfDestinationCanAndOriginDoesNotWant" },
-		{ 3, "eSM_TA_IfDestinationCanAndWantsOriginDoesNotWant" },
-		{ 4, "eSM_TA_IfDestinationCanAndOriginCanNot" },
-	};
-
-	(*g_Enums)["ETakeDownState"] = {
-		{ 0, "eTD_Cover" },
-		{ 1, "eTD_Locomotion" },
-		{ 2, "eTD_ChokeLoop" },
-		{ 3, "eTD_ChokeFinish" },
-		{ 4, "eTD_Deactivating" },
-		{ 5, "eTD_Unknown" },
-	};
-
-	(*g_Enums)["ESequencePreviewState"] = {
-		{ 0, "PREVIEW_STOPPED" },
-		{ 1, "PREVIEW_PLAYING" },
-		{ 2, "PREVIEW_PAUSED" },
-	};
-
-	(*g_Enums)["ZAISoundEvent.ELoudness"] = {
-		{ 0, "EAISEL_Default" },
-		{ 1, "EAISEL_VeryLow" },
-		{ 2, "EAISEL_Low" },
-		{ 3, "EAISEL_Normal" },
-		{ 4, "EAISEL_Loud" },
-		{ 5, "EAISEL_VeryLoud" },
-	};
-
-	(*g_Enums)["ZStandOffSituation.ESituationState"] = {
-		{ 0, "SS_Uncertain" },
-		{ 1, "SS_Main" },
-		{ 2, "SS_Arresting" },
-		{ 3, "SS_GetHelp" },
-		{ 4, "SS_Escalate" },
-		{ 5, "SS_Investigate" },
-		{ 6, "SS_GetHelpFromFleeingCivilian" },
-	};
-
-	(*g_Enums)["IContractObjective.ObjectiveType"] = {
-		{ 0, "KILL" },
-		{ 1, "SETPIECE" },
-		{ 2, "CUSTOMKILL" },
-		{ 3, "CUSTOM" },
-	};
-
-	(*g_Enums)["ECameraState"] = {
-		{ 0, "eCamSneakStand" },
-		{ 1, "eCamSneakWalk" },
-		{ 2, "eCamSneakRoadyRun" },
-		{ 3, "eCamNormalStand" },
-		{ 4, "eCamNormalWalk" },
-		{ 5, "eCamNormalRun" },
-		{ 6, "eCamLocomotion" },
-		{ 7, "eCamCrowdStand" },
-		{ 8, "eCamCrowdWalk" },
-		{ 9, "eCamCrowdRun" },
-		{ 10, "eCamCrowdSneakStand" },
-		{ 11, "eCamCrowdSneakWalk" },
-		{ 12, "eCamCrowdSneakRoadyRun" },
-		{ 13, "eCamCrowdLocomotion" },
-		{ 14, "eCamDead" },
-		{ 15, "eCamLadder" },
-		{ 16, "eCamDrainPipe" },
-		{ 17, "eCamDrag" },
-		{ 18, "eCamSBTag" },
-		{ 19, "eCamSBTagOTS" },
-		{ 20, "eCamCloseCombat" },
-		{ 21, "eCamFiberWire" },
-		{ 22, "eCamWindowPull" },
-		{ 23, "eCamRailPush" },
-		{ 24, "eCamLedgeKick" },
-		{ 25, "eCamLedgePull" },
-		{ 26, "eCamLedgeHang" },
-		{ 27, "eCamLedgeWalk" },
-		{ 28, "eCamLedgeWalkOTS" },
-		{ 29, "eCamCoverLow" },
-		{ 30, "eCamCoverMedium" },
-		{ 31, "eCamCoverHigh" },
-		{ 32, "eCamCoverLowOTS" },
-		{ 33, "eCamCoverHighOTS" },
-		{ 34, "eCamCoverLowScope" },
-		{ 35, "eCamCoverHighScope" },
-		{ 36, "eCamCoverLowTakedownOver" },
-		{ 37, "eCamCoverLowTakedownCorner" },
-		{ 38, "eCamCoverHighTakedownCorner" },
-		{ 39, "eCamTakeDisguise" },
-		{ 40, "eCamOTS" },
-		{ 41, "eCamOTSHigh" },
-		{ 42, "eCamOTSLow" },
-		{ 43, "eCamUnAimedShooting" },
-		{ 44, "eCamUnAimedShootingHigh" },
-		{ 45, "eCamUnAimedShootingLow" },
-		{ 46, "eCamScope" },
-		{ 47, "eCamScopeHigh" },
-		{ 48, "eCamScopeLow" },
-		{ 49, "eCamVaultLow" },
-		{ 50, "eCamVaultHigh" },
-		{ 51, "eCamTakedown" },
-		{ 52, "eCamTakedownChair" },
-		{ 53, "eCamLockedSniping" },
-		{ 54, "eCamLockedSnipingScope" },
-		{ 55, "eCamLockedSnipingScopeHigh" },
-		{ 56, "eCamLockedSnipingScopeLow" },
-		{ 57, "eCamContainerAssemble" },
-		{ 58, "eCamNumProfiles" },
-		{ 59, "eCamAll" },
-	};
-
-	(*g_Enums)["ECppTypeFlags"] = {
-		{ 1, "EDITOR_ONLY" },
-		{ 2, "EDITOR_ONLY_CRITICAL" },
-		{ 4, "RESETABLE" },
-		{ 8, "RESETABLE_COND" },
-		{ 16, "RESETABLE_STATIC" },
-	};
-
-	(*g_Enums)["ESynchronisedActionState"] = {
-		{ 0, "eSAS_INACTIVE" },
-		{ 1, "eSAS_WAITING_TO_EXECUTE" },
-		{ 2, "eSAS_COOLINGDOWN" },
-	};
-
-	(*g_Enums)["EInventoryConfigItemHandling"] = {
-		{ 0, "EICIH_Allow" },
-		{ 1, "EICIH_Store" },
-		{ 2, "EICIH_InstaStore" },
-		{ 3, "EICIH_Drop" },
-		{ 4, "EICIH_DropOrStore" },
-		{ 5, "EICIH_DropAndPickup" },
-		{ 6, "EICIH_DoNothing" },
-	};
-
-	(*g_Enums)["ZUISubtitleDataProvider.EAlignment"] = {
-		{ 0, "ALIGN_BOTTOM" },
-		{ 1, "ALIGN_TOP" },
-	};
-
-	(*g_Enums)["ECollidableLayer"] = {
-		{ 0, "eCollLayer_COLLIDE_WITH_ALL" },
-		{ 1, "eCollLayer_STATIC_COLLIDABLES_ONLY" },
-		{ 2, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY" },
-		{ 3, "eCollLayer_STAIRS" },
-		{ 4, "eCollLayer_SHOT_ONLY_COLLISION" },
-		{ 5, "eCollLayer_DYNAMIC_TRASH_COLLIDABLES" },
-		{ 6, "eCollLayer_KINEMATIC_COLLIDABLES_ONLY" },
-		{ 7, "eCollLayer_STATIC_COLLIDABLES_ONLY_TRANSPARENT" },
-		{ 8, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY_TRANSPARENT" },
-		{ 9, "eCollLayer_KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT" },
-		{ 10, "eCollLayer_STAIRS_STEPS" },
-		{ 11, "eCollLayer_STAIRS_SLOPE" },
-		{ 12, "eCollLayer_HERO_PROXY" },
-		{ 13, "eCollLayer_ACTOR_PROXY" },
-		{ 14, "eCollLayer_CLIP" },
-		{ 15, "eCollLayer_ACTOR_RAGDOLL" },
-		{ 16, "eCollLayer_CROWD_RAGDOLL" },
-		{ 17, "eCollLayer_LEDGE_ANCHOR" },
-		{ 18, "eCollLayer_ACTOR_DYN_BODY" },
-		{ 19, "eCollLayer_HERO_DYN_BODY" },
-		{ 20, "eCollLayer_ITEMS" },
-		{ 21, "eCollLayer_WEAPONS" },
-		{ 22, "eCollLayer_COLLISION_VOLUME_HITMAN_ON" },
-		{ 23, "eCollLayer_COLLISION_VOLUME_HITMAN_OFF" },
-		{ 24, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER" },
-		{ 25, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER_TRANSPARENT" },
-		{ 26, "eCollLayer_COLLIDE_WITH_STATIC_ONLY" },
-		{ 27, "eCollLayer_AI_VISION_BLOCKER" },
-		{ 28, "eCollLayer_AI_VISION_BLOCKER_AMBIENT_ONLY" },
-		{ 29, "eCollayer_UNUSED_LAST" },
-	};
-
-	(*g_Enums)["EGSKillVictim"] = {
-		{ 0, "GSKILLVICTIM_UNKNOWN" },
-		{ 1, "GSKILLVICTIM_CIVILIAN" },
-		{ 2, "GSKILLVICTIM_GUARD" },
-		{ 3, "GSKILLVICTIM_TARGET" },
-	};
-
-	(*g_Enums)["IContractEvaluationContextListener.EListenerType"] = {
-		{ 0, "eDEFAULT" },
-		{ 1, "eOBJECTIVECOUNTER" },
-		{ 2, "eFORCEUPDATE" },
-		{ 3, "eCUSTOM" },
-		{ 4, "eCHALLENGECOUNTER" },
-		{ 5, "eCHALLENGETREE" },
-		{ 6, "eTOGGLE" },
-		{ 7, "eMATCHARRAYS" },
-	};
-
-	(*g_Enums)["IRenderCompositorEntity.EMode"] = {
-		{ 0, "eSourceA" },
-		{ 1, "eSourceB" },
-		{ 2, "eLayered" },
-		{ 3, "eAlphaLayered" },
-	};
-
-	(*g_Enums)["ZActorKnowledgeCondition.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "ANY" },
-	};
-
-	(*g_Enums)["IHM5Door.EOpenMode"] = {
-		{ 0, "OM_TWO_WAY" },
-		{ 1, "OM_OPEN_POS_SIDE_ONLY" },
-		{ 2, "OM_OPEN_NEG_SIDE_ONLY" },
-		{ 3, "OM_DISABLED" },
-	};
-
-	(*g_Enums)["EHeroGameState"] = {
-		{ 0, "eHGS_Reserved_QueryALL" },
-		{ 1, "eHGS_Reserved_QueryAny" },
-		{ 2, "eHGS_InstinctModeActive" },
-		{ 3, "eHGS_IsHardToSee" },
-		{ 4, "eHGS_Sneaking" },
-		{ 5, "eHGS_InSequence" },
-		{ 6, "eHGS_InCloseCombat" },
-		{ 7, "eHGS_ItemHandlingActive" },
-		{ 8, "eHGS_CamSwitched" },
-		{ 9, "eHGS_SniperMode" },
-		{ 10, "eHGS_OTSMode" },
-		{ 11, "eHGS_DualWielding" },
-		{ 12, "eHGS_PreciseAim" },
-		{ 13, "eHGS_ActivatingAltFire" },
-		{ 14, "eHGS_FiredLastFrFocusBurnRate" },
-		{ 15, "eHGS_FiredLastFrFocusGainValue" },
-		{ 16, "eHGS_BurningFocus" },
-		{ 17, "eHGS_InsideCloset" },
-		{ 18, "eHGS_Peeking" },
-		{ 19, "eHGS_FocusedInteraction" },
-		{ 20, "eHGS_HoldsUtility" },
-		{ 21, "eHGS_FacingRight" },
-		{ 22, "eHGS_MvAgility" },
-		{ 23, "eHGS_MvCover" },
-		{ 24, "eHGS_MvDragging" },
-		{ 25, "eHGS_MvDrainPipe" },
-		{ 26, "eHGS_MvLedgeWalk" },
-		{ 27, "eHGS_MvLedgeHang" },
-		{ 28, "eHGS_MvLocomotion" },
-		{ 29, "eHGS_MvCloseCombat" },
-		{ 30, "eHGS_MvSurrendering" },
-		{ 31, "eHGS_MvFriskComplying" },
-		{ 32, "eHGS_MvShowItem" },
-		{ 33, "eHGS_MvThrow" },
-		{ 34, "eHGS_MvFiberWireKill" },
-		{ 35, "eHGS_MvAlign" },
-		{ 36, "eHGS_MvTakedown" },
-		{ 37, "eHGS_MvSubAction" },
-		{ 38, "eHGS_MvNewFullBody" },
-		{ 39, "eHGS_NUM" },
-	};
-
-	(*g_Enums)["EMarkerInclusionMode"] = {
-		{ 0, "MIM_DEFAULT" },
-		{ 1, "MIM_IF_FORCE_INCLUDED_ONLY" },
-	};
-
-	(*g_Enums)["ZHM5ItemInteractionEventConsumer.EHM5SoundItemInteractionEvent"] = {
-		{ 0, "EIIE_ItemImpactBack" },
-		{ 1, "EIIE_ItemImpactFront" },
-		{ 2, "EIIE_ImpactLow" },
-		{ 3, "EIIE_ItemPullOut" },
-		{ 4, "EIIE_ItemOnDeadlyThrow" },
-		{ 5, "EIIE_ItemSlitThroat" },
-		{ 6, "EIIE_ItemSoundGeneric01" },
-		{ 7, "EIIE_ItemSoundGeneric02" },
-		{ 8, "EIIE_ItemSoundGeneric03" },
-	};
-
-	(*g_Enums)["ETargetType"] = {
-		{ 0, "eTDS_None" },
-		{ 1, "eTDS_LookAtTarget" },
-		{ 2, "eTDS_Spatial" },
-		{ 3, "eTDS_Linked" },
-	};
-
-	(*g_Enums)["ETessellationFactorMode"] = {
-		{ 0, "TESSELLATIONFACTORMODE_FIXED" },
-		{ 1, "TESSELLATIONFACTORMODE_OBJECT" },
-		{ 2, "TESSELLATIONFACTORMODE_TRIANGLE" },
-	};
-
-	(*g_Enums)["ZHM5GenericEventConsumer.EEvent"] = {
-		{ 0, "eGeneric00" },
-		{ 1, "eGeneric01" },
-		{ 2, "eGeneric02" },
-		{ 3, "eGeneric03" },
-		{ 4, "eGeneric04" },
-		{ 5, "eGeneric05" },
-		{ 6, "eGeneric06" },
-		{ 7, "eGeneric07" },
-	};
-
-	(*g_Enums)["EActorBumpType"] = {
-		{ 0, "EABT_NONE" },
-		{ 1, "EABT_UPPERBODY" },
-		{ 2, "EABT_HEAD" },
-	};
-
-	(*g_Enums)["ETimerEntityCommandType"] = {
-		{ 0, "ETECT_Add" },
-		{ 1, "ETECT_Remove" },
-		{ 2, "ETECT_Reset" },
-	};
-
-	(*g_Enums)["ZValueInt_Comparator_Poll.EEvaluationType"] = {
-		{ 0, "EQUAL" },
-		{ 1, "NOT_EQUAL" },
-		{ 2, "LESS" },
-		{ 3, "LESS_OR_EQUAL" },
-		{ 4, "HIGHER" },
-		{ 5, "HIGHER_OR_EQUAL" },
-	};
-
-	(*g_Enums)["EHM5SoundFootstepStance"] = {
-		{ 0, "EFSS_SNEAK" },
-		{ 1, "EFSS_SNEAKRUN" },
-		{ 2, "EFSS_WALKSLOWLY" },
-		{ 3, "EFSS_WALK" },
-		{ 4, "EFSS_RUN" },
-		{ 5, "EFSS_ANY" },
-	};
-
-	(*g_Enums)["EGestureCategory"] = {
-		{ 0, "EGC_None" },
-		{ 1, "EGC_AmbientDialog" },
-		{ 2, "EGC_TrespassWarn1" },
-		{ 3, "EGC_TrespassWarn2" },
-		{ 4, "EGC_TrespassWarn3" },
-		{ 5, "EGC_StopWarn" },
-	};
-
-	(*g_Enums)["eWeaponOperation"] = {
-		{ 0, "WO_SEMI_AUTO" },
-		{ 1, "WO_FULL_AUTO" },
-	};
-
-	(*g_Enums)["ERayDetailLevel"] = {
-		{ 0, "RAYDETAILS_NONE" },
-		{ 1, "RAYDETAILS_BONES" },
-		{ 2, "RAYDETAILS_MESH" },
-	};
-
-	(*g_Enums)["EVictimMovementType"] = {
-		{ 4, "eVictimMovementRecoveryFinisher" },
-		{ -1, "eVictimMovementNone" },
-		{ 0, "eVictimMovementPullVictimFromWindow" },
-		{ 1, "eVictimMovementThrowBodyOverRail" },
-		{ 2, "eVictimMovementDumpBodyOverLedge" },
-		{ 3, "eVictimMovementTakeDown" },
-		{ 5, "eVictimMovementGrabVictim" },
-		{ 6, "eVictimMovementPushVictimThroughWindowAndRail" },
-		{ 7, "eVictimMovementContextKill" },
-		{ 8, "eVictimMovementKickVictimOverLedge" },
-		{ 9, "eVictimMovementCoupDeGrace" },
-		{ 10, "eVictimMovementCloseCombat" },
-		{ 11, "eVictimMovementLast" },
-	};
-
-	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioImpactType"] = {
-		{ 0, "eWBC_AudioImpactType_Normal" },
-		{ 1, "eWBC_AudioImpactType_Sweetener" },
-	};
-
-	(*g_Enums)["ECameraShakerChannel"] = {
-		{ 0, "eCameraShakerChannel_Default" },
-		{ 1, "eCameraShakerChannle_Locomotion" },
-		{ 2, "eCameraShakerChannel_Ambient" },
-		{ 3, "eCameraShakerChannel_Weapon" },
-		{ 4, "eCameraShakerChannel_CloseCombat" },
-		{ 5, "eCameraShakerChannel_Num" },
-	};
-
-	(*g_Enums)["CrowdUtil.ECrowdActorMood"] = {
-		{ 0, "CM_AMBIENT" },
-		{ 1, "CM_ALERTED" },
-		{ 2, "CM_SCARED" },
-		{ 3, "CM_PANICED" },
-		{ 4, "CM_DEAD" },
-		{ 5, "CM_DISABLED" },
-		{ 6, "NUM_ACTOR_MOOD_TYPES" },
-	};
-
-	(*g_Enums)["EItemLocation"] = {
-		{ 0, "eIL_Anywhere" },
-		{ 1, "eIL_Inventory" },
-		{ 2, "eIL_RightHand" },
-		{ 3, "eIL_LeftHand" },
-		{ 4, "eIL_FreeBone" },
-		{ 5, "eIL_Count" },
-	};
-
-	(*g_Enums)["ESituationType"] = {
-		{ 0, "AIST_Any" },
-		{ 1, "AIST_DetectedInPrivate" },
-		{ 2, "AIST_HandleDistraction" },
-		{ 3, "AIST_Spectator" },
-		{ 4, "AIST_InvestigateWeapon" },
-		{ 5, "AIST_GuardBody" },
-		{ 6, "AIST_Entourage" },
-		{ 7, "AIST_HandleTrespassing" },
-		{ 8, "AIST_DeadBody" },
-		{ 9, "AIST_InvestigateCautious" },
-		{ 10, "AIST_Sentry" },
-		{ 11, "AIST_HandleDisguise" },
-		{ 12, "AIST_SC_Curious" },
-		{ 13, "AIST_SC_Alerted" },
-		{ 14, "AIST_SC_Combat" },
-		{ 15, "AIST_SniperCombat" },
-		{ 16, "AIST_Arrest" },
-		{ 17, "AIST_StandOff" },
-		{ 18, "AIST_RecoverUnconscious" },
-		{ 19, "AIST_AvoidExplosion" },
-		{ 20, "AIST_Evacuate" },
-		{ 21, "AIST_ProtoCombat" },
-		{ 22, "AIST_DangerousArea" },
-		{ 23, "AIST_CloseCombat" },
-		{ 24, "AIST_Infected" },
-		{ 25, "ESituationType_Count" },
-	};
-
-	(*g_Enums)["ZContextKillGuide.EContextKillType"] = {
-		{ 0, "eCKT_TOILET_DROWN" },
-		{ 1, "eCKT_SNAP_AND_TOSS" },
-		{ 2, "eCKT_PUSH" },
-		{ 3, "eCKT_NO_ANIMATION" },
-		{ 4, "eCKT_END" },
-	};
-
-	(*g_Enums)["MenuWeaponUpgradeData.EUpgradeAction"] = {
-		{ 0, "EUPGRADE_ACTION_NONE" },
-		{ 1, "EUPGRADE_ACTION_INSTALL" },
-		{ 2, "EUPGRADE_ACTION_REMOVE" },
-		{ 3, "EUPGRADE_ACTION_UNLOCK_SLOT" },
-		{ 4, "EUPGRADE_ACTION_BUY_NEXT_LEVEL" },
-		{ 5, "EUPGRADE_ACTION_EQUIP_WEAPON" },
-		{ 6, "EUPGRADE_ACTION_UNEQUIP_WEAPON" },
-		{ 7, "EUPGRADE_ACTION_CLEAR_LEVELS" },
-	};
-
-	(*g_Enums)["EBoolStateRequirement"] = {
-		{ 0, "eBSR_Any" },
-		{ 1, "eBSR_RequireTrue" },
-		{ 2, "eBSR_RequireFalse" },
-	};
-
-	(*g_Enums)["EIntelType"] = {
-		{ 0, "eIT_DATA" },
-		{ 1, "eIT_OPPORTUNITY" },
-		{ 2, "eIT_BACKGROUND" },
-		{ 3, "eIT_HANDLER" },
-		{ 4, "eIT_UNDEFINED" },
-	};
-
-	(*g_Enums)["ERayLayer"] = {
-		{ 8, "eRayLayer_BLOODSPLATDECAL_COLI" },
-		{ 0, "eRayLayer_COLLIDE_WITH_ALL" },
-		{ 1, "eRayLayer_CAMERA_COLI" },
-		{ 2, "eRayLayer_CAMERA_COLI_CAMERA_OBSTACE_ONLY" },
-		{ 3, "eRayLayer_HERO_FIRE" },
-		{ 4, "eRayLayer_ACTOR_FIRE" },
-		{ 5, "eRayLayer_ACTOR_LINE_OF_FIRE" },
-		{ 7, "eRayLayer_FOOTSTEPS_COLI" },
-		{ 9, "eRayLayer_COLLIDE_WITH_STATIC" },
-		{ 10, "eRayLayer_COLLIDE_WITH_STATIC_EXCL_TRANSPARENT" },
-		{ 11, "eRayLayer_PARTICLES" },
-		{ 12, "eRayLayer_COVERSEARCH" },
-		{ 13, "eRayLayer_ACTOR_VISIBILITY" },
-		{ 14, "eRayLayer_ACTOR_VISIBILITY_AMBIENT" },
-		{ 16, "eRayLayer_PICKUP" },
-		{ 17, "eRayLayer_HERO_PROXY" },
-		{ 19, "eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE" },
-		{ 20, "eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE_EXCL_TRANSPARENT" },
-		{ 22, "eRayLayer_HERO_PROXY_NO_VOLUMES" },
-		{ 23, "eRayLayer_PHYSICS_MANIPULATOR" },
-		{ 24, "eRayLayer_UNUSED_LAST" },
-	};
-
-	(*g_Enums)["EMultiplayerLobbyRequestType"] = {
-		{ 0, "LOBBY_REQUEST_VOID" },
-		{ 1, "LOBBY_REQUEST_IDLE" },
-		{ 2, "LOBBY_REQUEST_CREATE" },
-		{ 3, "LOBBY_REQUEST_CREATE_LOCALHOST" },
-		{ 4, "LOBBY_REQUEST_JOIN" },
-	};
-
-	(*g_Enums)["EExclusionLayer"] = {
-		{ 0, "EL_NONE" },
-		{ 1, "EL_STORY" },
-		{ 2, "EL_AMBIENT" },
-	};
-
-	(*g_Enums)["EConversationRole"] = {
-		{ 0, "eCR_Leader" },
-		{ 1, "eCR_Assistant" },
+	(*g_Enums)["AudioBusFlags"] = {
+		{ 1, "AudioBus_Master" },
+		{ 2, "AudioBus_Primary" },
+	};
+
+	(*g_Enums)["AudioCurve"] = {
+		{ 0, "AudioCurve_Log3" },
+		{ 1, "AudioCurve_Sine" },
+		{ 2, "AudioCurve_Log1" },
+		{ 3, "AudioCurve_InvSCurve" },
+		{ 4, "AudioCurve_Linear" },
+		{ 5, "AudioCurve_SCurve" },
+		{ 6, "AudioCurve_Exp1" },
+		{ 7, "AudioCurve_SineRecip" },
+		{ 8, "AudioCurve_Exp3" },
+		{ 9, "AudioCurve_LastFadeCurve" },
+		{ 10, "AudioCurve_Constant" },
 	};
 
 	(*g_Enums)["AudioEventCullingBehavior"] = {
@@ -1741,194 +73,6 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "AutoSendStopAfterTriggered" },
 		{ 2, "NoAutoSendStop" },
 		{ 3, "NoDistanceCulling" },
-	};
-
-	(*g_Enums)["Network.PacketPriority"] = {
-		{ 0, "IMMEDIATE_PRIORITY" },
-		{ 1, "HIGH_PRIORITY" },
-		{ 2, "MEDIUM_PRIORITY" },
-		{ 3, "LOW_PRIORITY" },
-		{ 4, "NUMBER_OF_PRIORITIES" },
-	};
-
-	(*g_Enums)["EReplicaMode"] = {
-		{ 0, "E_RM_STATIC_OBJECT" },
-		{ 1, "E_RM_DYNAMIC" },
-	};
-
-	(*g_Enums)["ZValueInt_Comparator.EEvaluationType"] = {
-		{ 0, "EQUAL" },
-		{ 1, "NOT_EQUAL" },
-		{ 2, "LESS" },
-		{ 3, "LESS_OR_EQUAL" },
-		{ 4, "HIGHER" },
-		{ 5, "HIGHER_OR_EQUAL" },
-	};
-
-	(*g_Enums)["ZSpatialEntity.ERoomBehaviour"] = {
-		{ 0, "ROOM_STATIC" },
-		{ 1, "ROOM_DYNAMIC" },
-		{ 2, "ROOM_STATIC_OUTSIDE_CLIENT" },
-	};
-
-	(*g_Enums)["ZOnlineManager.EError"] = {
-		{ 1001, "eNETWORK_UNKNOWN" },
-		{ 0, "eNONE" },
-		{ 1000, "eGENERAL" },
-		{ 1002, "eNETWORK_SEND_FAILED" },
-		{ 1003, "eAPI_VERSION" },
-		{ 1004, "eAUTHENTICATION_UNAUTHORIZED" },
-		{ 1005, "eAUTHENTICATION_PROXY" },
-		{ 1024, "eDYNAMIC_RESOURCES_UPDATEFAILED" },
-		{ 1006, "eAUTHENTICATION_SERVER_ERROR" },
-		{ 1007, "eAUTHENTICATION_USER_GONE" },
-		{ 1008, "eAUTHENTICATION_STEAM_GENERAL" },
-		{ 1009, "eAUTHENTICATION_PSN_GENERAL" },
-		{ 1010, "eAUTHENTICATION_PSN_NP_CHECK" },
-		{ 1027, "eERROR_MAX" },
-		{ 1011, "eAUTHENTICATION_NO_PRIMARY_USER" },
-		{ 1012, "eAUTHENTICATION_XBLIVE_GENERAL" },
-		{ 1013, "eAUTHENTICATION_XBLIVE_SIGNED_OUT" },
-		{ 1014, "eAUTHENTICATION_XBLIVE_USER_CHANGED" },
-		{ 1015, "ePLATFORM_USERINFO" },
-		{ 1016, "eCONFIGURATION" },
-		{ 1017, "eENTITLEMENTS" },
-		{ 1018, "ePROFILE" },
-		{ 1019, "eGAME_SESSION" },
-		{ 1020, "eGENERAL_SERVER_ERROR" },
-		{ 1021, "eGENERAL_SERVER_BUSY" },
-		{ 1022, "eGENERAL_CLIENT_ERROR" },
-		{ 1023, "eDYNAMIC_RESOURCES_CONFIG_ERROR" },
-		{ 1025, "eDYNAMIC_RESOURCES_OUTDATED" },
-		{ 1026, "eCANCELLED" },
-	};
-
-	(*g_Enums)["EDetachUsage"] = {
-		{ 0, "EDU_NEVER" },
-		{ 1, "EDU_ALWAYS" },
-		{ 2, "EDU_RAGDOLL_ONLY" },
-	};
-
-	(*g_Enums)["ZActorPicker.EKeywordEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["EDestructibleInteractionType"] = {
-		{ 0, "eDIT_SHOT" },
-		{ 1, "eDIT_EXPLOSION" },
-		{ 2, "eDIT_COLLISION" },
-		{ 3, "eDIT_FRACTURE_AND_DETACH_ALL" },
-		{ 4, "eDIT_OUT_OF_WORLD" },
-		{ 5, "eDIT_COUNT" },
-	};
-
-	(*g_Enums)["EGameEventType"] = {
-		{ 0, "GET_GameplayStart" },
-		{ 1, "GET_GameplayStop" },
-		{ 2, "GET_IntroCutStart" },
-		{ 3, "GET_IntroCutEnd" },
-		{ 4, "GET_ProfilingStart" },
-		{ 5, "GET_SavegameRestored" },
-		{ 6, "GET_PlayingAfterLoad" },
-		{ 7, "GET_COUNT" },
-	};
-
-	(*g_Enums)["EPhysicsObjectType"] = {
-		{ 0, "EPHYSICSOBJECTTYPE_UNKNOWN" },
-		{ 1, "EPHYSICSOBJECTTYPE_DYNAMIC" },
-		{ 2, "EPHYSICSOBJECTTYPE_KINEMATIC" },
-		{ 3, "EPHYSICSOBJECTTYPE_STATIC" },
-	};
-
-	(*g_Enums)["eParticleEmitterMeshEntity_SpawnModes"] = {
-		{ 0, "MESH_SPAWNMODE_VERTEX" },
-		{ 1, "MESH_SPAWNMODE_EDGE" },
-		{ 2, "MESH_SPAWNMODE_FACE" },
-	};
-
-	(*g_Enums)["eWeaponType"] = {
-		{ 0, "WT_HANDGUN" },
-		{ 1, "WT_SLOWGUN" },
-		{ 2, "WT_ASSAULTRIFLE" },
-		{ 3, "WT_SMG" },
-		{ 4, "WT_SNIPER" },
-		{ 5, "WT_RPG" },
-		{ 6, "WT_KNIFE" },
-		{ 7, "WT_SHOTGUN" },
-		{ 8, "WT_SPOTTER" },
-	};
-
-	(*g_Enums)["ERatingTitle"] = {
-		{ 0, "ERatingTitle_SilentAssassin" },
-		{ 1, "ERatingTitle_PerfectAssassin" },
-		{ 2, "ERatingTitle_Ninja" },
-		{ 3, "ERatingTitle_GloryBlazer" },
-		{ 4, "ERatingTitle_Eraser" },
-		{ 5, "ERatingTitle_Exhibitionist" },
-		{ 6, "ERatingTitle_Trickster" },
-		{ 7, "ERatingTitle_Chameleon" },
-		{ 8, "ERatingTitle_Spider" },
-		{ 9, "ERatingTitle_Angel" },
-		{ 10, "ERatingTitle_COUNT" },
-	};
-
-	(*g_Enums)["ECameraControls"] = {
-		{ 0, "eCameraControlsNormal" },
-		{ 1, "eCameraControlsOTS" },
-	};
-
-	(*g_Enums)["ECollidableShape"] = {
-		{ 0, "ECOLLIDABLESHAPE_SPHERE" },
-		{ 1, "ECOLLIDABLESHAPE_CAPSULE" },
-		{ 2, "ECOLLIDABLESHAPE_BOX" },
-	};
-
-	(*g_Enums)["EHM5SoundRicochetType"] = {
-		{ 0, "ESRT_VARIATION1" },
-		{ 1, "ESRT_VARIATION2" },
-	};
-
-	(*g_Enums)["ZUISplashHintDataProviderEntity.ESplashHintType"] = {
-		{ 0, "SHT_GlobalHint" },
-		{ 1, "SHT_TutorialHint" },
-		{ 2, "SHT_ControlHint" },
-	};
-
-	(*g_Enums)["ZInteractionEventConsumer.EEvent"] = {
-		{ 0, "eActivate" },
-		{ 1, "eRH_Place" },
-		{ 2, "eRH_Retrieve" },
-		{ 3, "eRH_Swap" },
-		{ 4, "eRH_Show" },
-		{ 5, "eRH_Hide" },
-		{ 6, "eLH_Place" },
-		{ 7, "eLH_Retrieve" },
-		{ 8, "eLH_Swap" },
-		{ 9, "eLH_Show" },
-		{ 10, "eLH_Hide" },
-		{ 11, "eObjectEvent01" },
-		{ 12, "eObjectEvent02" },
-		{ 13, "eObjectEvent03" },
-		{ 14, "eObjectEvent04" },
-		{ 15, "eSoundEvent01" },
-		{ 16, "eSoundEvent02" },
-		{ 17, "eSoundEvent03" },
-		{ 18, "eSoundEvent04" },
-	};
-
-	(*g_Enums)["ZHM5IndicatorManager.EIndicatorType"] = {
-		{ 0, "eActorAmbient" },
-		{ 1, "eActorAlertedLow" },
-		{ 2, "eActorAlertedHigh" },
-		{ 3, "eActorArrest" },
-		{ 4, "eActorCombat" },
-		{ 5, "eExplosion" },
-		{ 6, "eObjective" },
-		{ 7, "ePointOfInterest" },
-		{ 8, "eContractExit" },
-		{ 9, "eEasterActor" },
 	};
 
 	(*g_Enums)["BoneId.Enum"] = {
@@ -2079,148 +223,23 @@ void ZHMEnums::RegisterEnums()
 		{ 144, "BONEID_LAST" },
 	};
 
-	(*g_Enums)["ZVsTargetPicker.ETargetSelectionType"] = {
-		{ 0, "eTST_Random" },
-		{ 1, "eTST_Fair" },
-		{ 2, "eTST_Max" },
+	(*g_Enums)["CrowdMapImpl.CellFlags"] = {
+		{ 1, "CELLFLAG_RESTRICTED_A" },
+		{ 2, "CELLFLAG_RESTRICTED_B" },
+		{ 4, "CELLFLAG_RESTRICTED_C" },
+		{ 8, "CELLFLAG_WALKABLE" },
+		{ 16, "CELLFLAG_TELEPORT_IN" },
+		{ 32, "CELLFLAG_TELEPORT_OUT" },
+		{ 64, "CELLFLAG_UNUSED" },
+		{ 128, "CELLFLAG_PANIC_ONLY" },
 	};
 
-	(*g_Enums)["ZAvoidDangerousAreaGroup.EAvoidDangerousAreaGroupState"] = {
-		{ 0, "IGS_SelectDestination" },
-		{ 1, "IGS_Move" },
-		{ 2, "IGS_Jump" },
-		{ 3, "IGS_Wait" },
-		{ 4, "IGS_Completed" },
-		{ 5, "IGS_Max" },
-	};
-
-	(*g_Enums)["EActorLookAtTargetType"] = {
-		{ 0, "eALAT_Invalid" },
-		{ 1, "eALAT_PositionTarget" },
-		{ 2, "eALAT_KnownEntityType" },
-		{ 3, "eALAT_PointOfInterest" },
-		{ 4, "eALAT_Hero" },
-		{ 5, "eALAT_Screenplay" },
-		{ 6, "eALAPT_Max" },
-	};
-
-	(*g_Enums)["ECustomSoundDefType"] = {
-		{ 0, "eCSDT_Distraction_InvestigationAck" },
-		{ 1, "eCSDT_Distraction_InvestigationInvestigate" },
-		{ 2, "eCSDT_Distraction_InvestigationStnd" },
-	};
-
-	(*g_Enums)["EWeaponSpecialSituation"] = {
-		{ 0, "WSS_NORMAL" },
-		{ 1, "WSS_BAREHANDS" },
-		{ 2, "WSS_EXPLOSION" },
-		{ 3, "WSS_ACCIDENT" },
-		{ 4, "WSS_NPC_FRIENDLY_FIRE" },
-		{ 5, "WSS_EXECUTE_PISTOL" },
-		{ 6, "WSS_ANY_WEAPON" },
-		{ 7, "WSS_INVISIBLE" },
-	};
-
-	(*g_Enums)["EAIModifierScope"] = {
-		{ 0, "AIMS_Volume" },
-		{ 1, "AIMS_Behavior" },
-		{ 2, "AIMS_Role" },
-		{ 3, "AIMS_Item" },
-		{ 4, "AIMS_Situation" },
-		{ 5, "AIMS_Outfit" },
-		{ 6, "AIMS_Override" },
-		{ 7, "AIMS_Status" },
-	};
-
-	(*g_Enums)["ZHM5WeaponEventConsumer.EAnimWeapon"] = {
-		{ 0, "eHM5Weapon_HideClip" },
-		{ 1, "eHM5Weapon_ShowClip" },
-		{ 2, "eHM5Weapon_SpawnPhysicsClip" },
-		{ 3, "eHM5Weapon_EjectCartridge" },
-	};
-
-	(*g_Enums)["EStashpointContainedEntityType"] = {
-		{ 0, "PICKUP_NONE" },
-		{ 1, "PICKUP_ITEMS" },
-		{ 2, "PICKUP_OUTFIT" },
-		{ 3, "PICKUP_PICKEDUP" },
-	};
-
-	(*g_Enums)["ESoundCollisionType"] = {
-		{ 0, "Impact" },
-		{ 1, "Rolling" },
-		{ 2, "Sliding" },
-	};
-
-	(*g_Enums)["ICloset.EClosetType"] = {
-		{ 0, "eTypeClosetNormal" },
-		{ 1, "eTypeClosetCake" },
-		{ 2, "eTypeClosetDumpster" },
-		{ 3, "eTypeClosetLast" },
-	};
-
-	(*g_Enums)["EHitmanPermissionFlag"] = {
-		{ 0, "eHPFlag_InventorySelect" },
-		{ 1, "eHPFlag_CanHolsterItem" },
-		{ 2, "eHPFlag_CanDropItem" },
-		{ 3, "eHPFlag_CanDualWield" },
-		{ 4, "eHPFlag_CameraControl" },
-		{ 5, "eHPFlag_MovementControl" },
-		{ 6, "eHPFlag_AimControl" },
-		{ 7, "eHPFlag_CanOpenNotebook" },
-		{ 8, "eHPFlag_CanOpenPauseMenu" },
-		{ 9, "eHPFlag_PermissionsNUM" },
-	};
-
-	(*g_Enums)["EActionRadialArcIconType"] = {
-		{ 0, "EARAIT_NoIcon" },
-		{ 1, "EARAIT_Locked" },
-		{ 2, "EARAIT_NeedTool" },
-		{ 3, "EARAIT_IsRunning" },
-		{ 4, "EARAIT_Crowbar" },
-		{ 5, "EARAIT_Wrench" },
-		{ 6, "EARAIT_Card" },
-		{ 7, "EARAIT_Lockpick" },
-		{ 8, "EARAIT_Screwdriver" },
-		{ 9, "EARAIT_AmmoBullet" },
-		{ 10, "EARAIT_Flower" },
-		{ 11, "EARAIT_ChemicalTube" },
-		{ 12, "EARAIT_Golfball" },
-		{ 13, "EARAIT_Keypad" },
-		{ 14, "EARAIT_Key" },
-		{ 15, "EARAIT_Coin" },
-		{ 16, "EARAIT_Poison" },
-		{ 17, "EARAIT_Exsplosive" },
-	};
-
-	(*g_Enums)["EParticleDecalSpawnEntity_Constraints"] = {
-		{ 0, "FACTOR_AND_RANDOMIZE" },
-		{ 1, "SIZE_RANGE" },
-	};
-
-	(*g_Enums)["ZActBehaviorEntity.ERotationAlignment"] = {
-		{ 0, "RA_NONE" },
-		{ 1, "RA_LOOSE" },
-		{ 2, "RA_EXACT" },
-	};
-
-	(*g_Enums)["ZPatrolBehaviorEntity.ERotationAlignment"] = {
-		{ 0, "RA_NONE" },
-		{ 1, "RA_LOOSE" },
-		{ 2, "RA_EXACT" },
-	};
-
-	(*g_Enums)["ZInputListenerActorPool.eInputListenerButtons"] = {
-		{ 0, "EILB_UP" },
-		{ 1, "EILB_LEFT" },
-		{ 2, "EILB_DOWN" },
-		{ 3, "EILB_RIGHT" },
-	};
-
-	(*g_Enums)["ERuntimeMemoryAllocationState"] = {
-		{ 0, "eRMAS_NeverAllocated" },
-		{ 1, "eRMAS_Allocated" },
-		{ 2, "eRMAS_Released" },
+	(*g_Enums)["CrowdReactionAIEventType"] = {
+		{ 0, "CROWDAIEVENT_NONE" },
+		{ 1, "CROWDAIEVENT_CURIOUS" },
+		{ 2, "CROWDAIEVENT_ALERTED" },
+		{ 3, "CROWDAIEVENT_BLAME_FOR_WEAPON" },
+		{ 4, "CROWDAIEVENT_BLAME_FOR_KILL" },
 	};
 
 	(*g_Enums)["CrowdRegionType"] = {
@@ -2236,190 +255,31 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "CROWDSPHERE_DIE" },
 	};
 
-	(*g_Enums)["EDramaEventAction"] = {
-		{ 0, "eDEA_NONE" },
-		{ 8, "eDEA_DONT_STOP_SPEAK" },
-		{ 16, "eDEA_RESET_CASTING" },
-		{ 32, "eDEA_RESET_STATE" },
-		{ 1, "eDEA_TERMINATE_DRAMA" },
-		{ 2, "eDEA_DONE_DRAMA" },
-		{ 4, "eDEA_STOP_BEHAVIOR" },
+	(*g_Enums)["CrowdUtil.ECrowdActorMood"] = {
+		{ 0, "CM_AMBIENT" },
+		{ 1, "CM_ALERTED" },
+		{ 2, "CM_SCARED" },
+		{ 3, "CM_PANICED" },
+		{ 4, "CM_DEAD" },
+		{ 5, "CM_DISABLED" },
+		{ 6, "NUM_ACTOR_MOOD_TYPES" },
 	};
 
-	(*g_Enums)["ZRecoverUnconsciousGroup.EInvestigateGroupState"] = {
-		{ 0, "IGS_InitialState" },
-		{ 1, "IGS_WaitingForVictim" },
-		{ 2, "IGS_Recovering" },
-		{ 3, "IGS_Relocating" },
-		{ 4, "IGS_Reporting" },
-		{ 5, "IGS_Completed" },
-		{ 6, "IGS_Max" },
+	(*g_Enums)["CrowdUtil.ECrowdDirection"] = {
+		{ 0, "NORTH" },
+		{ 1, "EAST" },
+		{ 2, "SOUTH" },
+		{ 3, "WEST" },
 	};
 
-	(*g_Enums)["ECharacterActionRequests"] = {
-		{ 0, "eSM_AR_None" },
-		{ 1, "eSM_AR_ReloadR" },
-		{ 2, "eSM_AR_ReloadL" },
-		{ 3, "eSM_AR_ShootR" },
-		{ 4, "eSM_AR_ShootL" },
-		{ 5, "eSM_AR_SwapHands" },
-		{ 6, "eSM_AR_HolsterR" },
-		{ 7, "eSM_AR_HolsterL" },
-		{ 8, "eSM_AR_UnholsterR" },
-		{ 9, "eSM_AR_UnholsterL" },
-		{ 10, "eSM_AR_PickupItemR" },
-		{ 11, "eSM_AR_PickupItemL" },
-		{ 12, "eSM_AR_InteractionR" },
-		{ 13, "eSM_AR_InteractionL" },
-		{ 14, "eSM_AR_InteractionSwipe" },
-		{ 15, "eSM_AR_InteractionSwipeR" },
-		{ 16, "eSM_AR_InteractionSwipeL" },
-		{ 17, "eSM_AR_OpenDoor" },
-		{ 18, "eSM_AR_OpenDoorR" },
-		{ 19, "eSM_AR_OpenDoorL" },
-		{ 20, "eSM_AR_CloseCombat" },
-		{ 21, "eSM_AR_Movement" },
-		{ 22, "eSM_AR_Pretend" },
-		{ 23, "eSM_AR_Sniping" },
-		{ 24, "eSM_AR_EndSniping" },
-		{ 25, "eSM_AR_RetrieveFromSuitcase" },
-		{ 26, "eSM_AR_Marking" },
-		{ 27, "eSM_AR_ChangeAmmo" },
-		{ 28, "eSM_AR_Assemble" },
-		{ 29, "eSM_AR_Assemble_UnequippedContainer" },
-		{ 30, "eSM_AR_Disassemble" },
-		{ 31, "eSM_AR_Disassemble_PickingUp" },
-		{ 32, "eSM_AR_AssembleUB" },
-		{ 33, "eSM_AR_DisassembleUB" },
-		{ 34, "eSM_AR_Cancel" },
-		{ 35, "eSM_AR_Sprint" },
+	(*g_Enums)["CrowdUtil.ECrowdFacing"] = {
+		{ 0, "FRONT" },
+		{ 1, "BACK" },
 	};
 
-	(*g_Enums)["ZHM5HIKEventConsumer.EBlend"] = {
-		{ 0, "eBlendIn" },
-		{ 1, "eBlendOut" },
-		{ 2, "eInstantOn" },
-		{ 3, "eInstantOff" },
-	};
-
-	(*g_Enums)["EWeaponUpgradeIcon"] = {
-		{ 0, "WEAPON_UPGRADE_ICON_NONE" },
-		{ 1, "WEAPON_UPGRADE_ICON_SILENCER" },
-		{ 2, "WEAPON_UPGRADE_ICON_RED_DOT_SIGHT" },
-		{ 3, "WEAPON_UPGRADE_ICON_AMMUNITION" },
-		{ 4, "WEAPON_UPGRADE_ICON_MAGAZINE" },
-		{ 5, "WEAPON_UPGRADE_ICON_EXTCLIP" },
-		{ 6, "WEAPON_UPGRADE_ICON_SHELLS" },
-		{ 7, "WEAPON_UPGRADE_ICON_SLIDE" },
-		{ 8, "WEAPON_UPGRADE_ICON_BOLT" },
-		{ 9, "WEAPON_UPGRADE_ICON_BARREL" },
-		{ 10, "WEAPON_UPGRADE_ICON_HAMMER" },
-		{ 11, "WEAPON_UPGRADE_ICON_CHUTE" },
-		{ 12, "WEAPON_UPGRADE_ICON_DUALWIELD" },
-		{ 13, "WEAPON_UPGRADE_ICON_MAGNUM" },
-		{ 14, "WEAPON_UPGRADE_ICON_STOCK" },
-	};
-
-	(*g_Enums)["ECollisionResponse"] = {
-		{ 0, "REFLECT_VELOCITY" },
-		{ 1, "SLIDE_ON" },
-		{ 2, "STAY_AT_COLLISION_POINT" },
-		{ 3, "CUSTOM" },
-	};
-
-	(*g_Enums)["ZDramaSituationEntity.EReentryBehavior"] = {
-		{ 0, "RB_CONTINUE" },
-		{ 1, "RB_TERMINATE" },
-		{ 2, "RB_RESTART" },
-		{ 3, "RB_RECASTANDRESTART" },
-		{ 4, "RB_RECASTANDCONTINUE" },
-	};
-
-	(*g_Enums)["IScatterContainerEntity.EResizeMode"] = {
-		{ 0, "MODE_CLEAR" },
-		{ 1, "MODE_KEEPASCENTER" },
-		{ 2, "MODE_SCALE" },
-	};
-
-	(*g_Enums)["ZBoneWeightRotationEntity.eRotationAxises"] = {
-		{ 0, "AXIS_X" },
-		{ 1, "AXIS_Y" },
-		{ 2, "AXIS_Z" },
-	};
-
-	(*g_Enums)["EGameTension"] = {
-		{ 0, "EGT_Undefined" },
-		{ 1, "EGT_Ambient" },
-		{ 2, "EGT_Agitated" },
-		{ 3, "EGT_Searching" },
-		{ 4, "EGT_AlertedLow" },
-		{ 5, "EGT_AlertedHigh" },
-		{ 6, "EGT_Hunting" },
-		{ 7, "EGT_Arrest" },
-		{ 8, "EGT_Combat" },
-	};
-
-	(*g_Enums)["ERegionMask"] = {
-		{ 1, "eRM_None" },
-		{ 2, "eRM_LowCover" },
-		{ 4, "eRM_HighCover" },
-		{ 128, "eRM_User_3" },
-		{ 64, "eRM_User_2" },
-		{ 32, "eRM_User_1" },
-		{ 16, "eRM_Separator" },
-		{ 4096, "eRM_User_8" },
-		{ 8, "eRM_Stairs" },
-		{ 256, "eRM_User_4" },
-		{ 512, "eRM_User_5" },
-		{ 1024, "eRM_User_6" },
-		{ 2048, "eRM_User_7" },
-	};
-
-	(*g_Enums)["ECharacterAnimEvent"] = {
-		{ 699, "eCAE_ReloadStarted" },
-		{ 700, "eCAE_ReloadedClip" },
-		{ 9051, "eCAE_OpenDoorActivate" },
-		{ 701, "eCAE_ReloadCompleted" },
-		{ 703, "eCAE_ReloadSwapRHandAttacher" },
-		{ 9040, "eCAE_SwapHandsRtoL" },
-		{ 711, "eCAE_ReloadedOneBullet" },
-		{ 702, "eCAE_ReloadUpdate" },
-		{ 712, "eCAE_ChangeAmmoCompleted" },
-		{ 704, "eCAE_ReloadResetRHandSwap" },
-		{ 9071, "eCAE_AssembleAttach" },
-		{ 9010, "eCAE_UnholsterAttachL" },
-		{ 9074, "eCAE_AssembleContainerAttach" },
-		{ 9011, "eCAE_UnholsterCompletedL" },
-		{ 9075, "eCAE_AssembleEarlyOut" },
-		{ 9012, "eCAE_UnholsterAttachR" },
-		{ 9013, "eCAE_UnholsterCompletedR" },
-		{ 9020, "eCAE_HolsterDetachL" },
-		{ 9021, "eCAE_HolsterCompletedL" },
-		{ 9022, "eCAE_HolsterDetachR" },
-		{ 9023, "eCAE_HolsterCompletedR" },
-		{ 9030, "eCAE_SwipeActivate" },
-		{ 9031, "eCAE_SwipeCompleted" },
-		{ 10003, "eCAE_HandIKDisableRight" },
-		{ 5001, "eCAE_InteractionActivate" },
-		{ 5000, "eCAE_InteractionCompleted" },
-		{ 9041, "eCAE_SwapHandsRtoLCompleted" },
-		{ 9042, "eCAE_SwapHandsLtoR" },
-		{ 9043, "eCAE_SwapHandsLtoRCompleted" },
-		{ 9050, "eCAE_OpenDoorCompleted" },
-		{ 9060, "eCAE_FlavorIdleCompleted" },
-		{ 9070, "eCAE_AssemblePlaceAlignCompleted" },
-		{ 10002, "eCAE_HandIKEnableRight" },
-		{ 9073, "eCAE_AssembleToSneak" },
-		{ 9072, "eCAE_AssembleCompleted" },
-		{ 10000, "eCAE_HandIKEnableLeft" },
-		{ 10001, "eCAE_HandIKDisableLeft" },
-		{ 50, "eCAE_EarlyExit" },
-	};
-
-	(*g_Enums)["EMatchOverCondition"] = {
-		{ 0, "CompletedNormally" },
-		{ 1, "OpponentsDisconnected" },
-		{ 2, "OpponentsAbandoned" },
+	(*g_Enums)["CrowdUtil.ECrowdSide"] = {
+		{ 0, "LEFT" },
+		{ 1, "RIGHT" },
 	};
 
 	(*g_Enums)["CrowdUtil.ECrowdStandingPush"] = {
@@ -2433,130 +293,25 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "PUSH_FRONT_RIGHT" },
 	};
 
-	(*g_Enums)["EDialogueLine"] = {
-		{ 0, "Hello" },
-		{ 1, "MoveAlong" },
-		{ 2, "WhatsGoingOn" },
-		{ 3, "DropWeapon01" },
-		{ 4, "DropWeapon02" },
-		{ 5, "DropWeapon03" },
-		{ 6, "DropWeapon04" },
-		{ 7, "DropWeaponSecondWarning" },
-		{ 8, "Comply01" },
-		{ 9, "Comply02" },
-		{ 10, "YouAskedForIt" },
-		{ 11, "DropWeapon_Single01" },
-		{ 12, "DropWeapon_Double01" },
-		{ 13, "DropWeapon_Multiple01" },
-		{ 14, "DropWeapon_Comply_Single01" },
-		{ 15, "DropWeapon_Comply_Double01" },
-		{ 16, "DropWeapon_Comply_Multiple01" },
-		{ 17, "DropWeapon_RunAway01" },
-		{ 18, "DropWeapon_RunAway_Comply01" },
-		{ 19, "DropWeapon_Escalate_Single01" },
-		{ 20, "DropWeapon_Escalate_Double01" },
-		{ 21, "DropWeapon_Escalate_Multiple01" },
+	(*g_Enums)["CrowdUtil.EDefaultStateTypes"] = {
+		{ 0, "STATE_IDLE" },
+		{ 1, "STATE_WALK" },
+		{ 2, "STATE_PENDINGWALK" },
+		{ 3, "STATE_DEAD" },
+		{ 4, "STATE_SCARED" },
+		{ 5, "STATE_PENDINGSCARED" },
+		{ 6, "STATE_POSSESSED" },
+		{ 7, "STATE_ALERT" },
+		{ 8, "STATE_PRONE" },
+		{ 9, "STATE_RELOCATE" },
+		{ 10, "STATE_PENDINGRELOCATE" },
+		{ 11, "NUM_DEFAULT_STATES" },
 	};
 
-	(*g_Enums)["EPostProcessorComponentType"] = {
-		{ 1, "MRP_LOOKAT" },
-		{ 2, "MRP_AIM" },
-		{ 16, "MRP_LEDGEFEETLOCK" },
-		{ 32, "MRP_LEDGEHANG" },
-		{ 2048, "MRP_BLINDFIRE" },
-		{ 1024, "MRP_IMPACT" },
-	};
-
-	(*g_Enums)["WebSocketUtils.ECloseStatus"] = {
-		{ 1000, "eCS_NORMAL" },
-		{ 1001, "eCS_GOINGAWAY" },
-		{ 1002, "eCS_PROTOCOLERROR" },
-		{ 1003, "eCS_INVALIDDATA" },
-		{ 1004, "eCS_1004" },
-		{ 1005, "eCS_NOSTATUSRCVD" },
-		{ 1006, "eCS_ABNORMALCLOSURE" },
-		{ 1007, "eCS_INVALIDPAYLOAD" },
-		{ 1008, "eCS_POLICYVIOLATION" },
-		{ 1009, "eCS_MSGTOOBIG" },
-		{ 1010, "eCS_MANDATORYEXT" },
-		{ 1011, "eCS_INTERNALSRVERR" },
-		{ 1015, "eCS_TLSHANDSHAKE" },
-	};
-
-	(*g_Enums)["EControlButtonName"] = {
-		{ 0, "eCN_ABORT" },
-		{ 1, "eCN_ACTION" },
-		{ 2, "eCN_ACTIVATE_PROP" },
-		{ 3, "eCN_AGILITY_DOWN" },
-		{ 4, "eCN_AGILITY_ENTERWINDOW" },
-		{ 5, "eCN_AGILITY_SNEAKPASTWINDOW" },
-		{ 6, "eCN_AGILITY_THROWOVERRAIL" },
-		{ 7, "eCN_AGILITY_UP" },
-		{ 8, "eCN_AIM" },
-		{ 9, "eCN_COVER_ENTER" },
-		{ 10, "eCN_COVER_TAKEDOWN" },
-		{ 11, "eCN_COVER_TO_COVER" },
-		{ 12, "eCN_CROUCH" },
-		{ 13, "eCN_DRAGBODY" },
-		{ 14, "eCN_DUMPBODY" },
-		{ 15, "eCN_FIBERWIRE" },
-		{ 16, "eCN_INSTINCT" },
-		{ 17, "eCN_INVENTORY_HOLSTER" },
-		{ 18, "eCN_INVENTORY_LONGRANGE" },
-		{ 19, "eCN_MARK_TARGET" },
-		{ 20, "eCN_CHANGE_AMMO_NEXT" },
-		{ 21, "eCN_CHANGE_AMMO_PREVIOUS" },
-		{ 22, "eCN_INVENTORY_PROP" },
-		{ 23, "eCN_INVENTORY_SHORTRANGE" },
-		{ 24, "eCN_ITEM_DROP" },
-		{ 25, "eCN_ITEM_THROW" },
-		{ 26, "eCN_MELEE_HIT" },
-		{ 27, "eCN_MELEE_TAKEDOWN" },
-		{ 28, "eCN_PICKUP" },
-		{ 29, "eCN_RUN" },
-		{ 30, "eCN_WALK_SLOW" },
-		{ 31, "eCN_CONCEAL_RETRIEVE" },
-		{ 32, "eCN_SB_ACTIVATE" },
-		{ 33, "eCN_SB_CANCEL" },
-		{ 34, "eCN_SB_EXECUTE" },
-		{ 35, "eCN_SB_REMOVETAG" },
-		{ 36, "eCN_SHOOT" },
-		{ 37, "eCN_NOTEBOOK" },
-		{ 38, "eCN_PAUSE" },
-		{ 39, "eCN_NO_ICON" },
-	};
-
-	(*g_Enums)["ZInvestigateDisguiseGroup.EState"] = {
-		{ 0, "eInit" },
-		{ 1, "eGuardBanter" },
-		{ 2, "eAcknowledge" },
-		{ 3, "eMain" },
-		{ 4, "eSearch" },
-		{ 5, "eMoveback" },
-		{ 6, "eStandDown" },
-		{ 7, "eEscalate" },
-		{ 8, "eDone" },
-	};
-
-	(*g_Enums)["ECOMUsage"] = {
-		{ 0, "ECOMUSAGE_AUTOCOMPUTE" },
-		{ 1, "ECOMUSAGE_PIVOT" },
-	};
-
-	(*g_Enums)["EActorEmotionState"] = {
-		{ 0, "AES_Ambient" },
-		{ 1, "AES_Alerted" },
-		{ 2, "AES_Scared" },
-		{ 3, "AES_Hunt" },
-		{ 4, "AES_Combat" },
-		{ 268435455, "AES_None" },
-	};
-
-	(*g_Enums)["EChatState"] = {
-		{ 0, "NOT_TALKING" },
-		{ 1, "TALKING" },
-		{ 2, "MUTED" },
-		{ 3, "RESTRICTED" },
+	(*g_Enums)["CrowdUtil.EGenderReq"] = {
+		{ 0, "eGender_Any" },
+		{ 1, "eGender_Male" },
+		{ 2, "eGender_Female" },
 	};
 
 	(*g_Enums)["EAIEventType"] = {
@@ -2789,359 +544,564 @@ void ZHMEnums::RegisterEnums()
 		{ 226, "AIET_DEBUG_EVENTS_END" },
 	};
 
-	(*g_Enums)["eAmmoType"] = {
-		{ 0, "eAmmoGun" },
-		{ 1, "eAmmoRevolver" },
-		{ 2, "eAmmoSMG" },
-		{ 3, "eAmmoRifle" },
-		{ 4, "eAmmoShotgun" },
-		{ 5, "eAmmoSniper" },
-		{ 6, "eAmmoMG" },
-		{ 7, "eAmmoRPG" },
-		{ 8, "eAmmoFake" },
-		{ 9, "eAmmoLightPistol" },
-		{ 10, "eAmmoDartTranquilizer" },
-		{ 11, "eAmmoShotgunBeanbag" },
-		{ 12, "eUnknownAmmoType" },
+	(*g_Enums)["EAIFormationMemberSpeed"] = {
+		{ 0, "eFMS_Slow" },
+		{ 1, "eFMS_Normal" },
+		{ 2, "eFMS_Fast" },
 	};
 
-	(*g_Enums)["ZEntityPropertyReplica.EReplicationStrategy"] = {
-		{ 0, "REP_ALL_PROPERTIES" },
-		{ 1, "REP_ALL_EXCEPT" },
-		{ 2, "REP_ONLY_SPECIFIC" },
+	(*g_Enums)["EAIGoal"] = {
+		{ 0, "AIG_Kill" },
+		{ 1, "AIG_Arrest" },
+		{ 2, "AIG_FightSniper" },
+		{ 3, "AIG_HelpCivilian" },
+		{ 4, "AIG_HelpCivilianWeapon" },
+		{ 5, "AIG_Investigate" },
+		{ 6, "AIG_InvestigateDisguise" },
+		{ 7, "AIG_StandOffInvestigateDisguise" },
+		{ 8, "AIG_InvestigateDeadBody" },
+		{ 9, "AIG_HandleTrespasser" },
+		{ 10, "AIG_InvestigateCautious" },
+		{ 11, "AIG_HandleDistraction" },
+		{ 12, "AIG_AssistDistraction" },
+		{ 13, "AIG_GuardAssistDistraction" },
+		{ 14, "AIG_HandleSuitcase" },
+		{ 15, "AIG_InvestigateWeapon" },
+		{ 16, "AIG_DetectedInPrivate" },
+		{ 17, "AIG_RecoverUnconscious" },
+		{ 18, "AIG_RecoverUnconsciousAlerted" },
+		{ 19, "AIG_DeliverWeapon" },
+		{ 20, "AIG_AvoidExplosion" },
+		{ 21, "AIG_Hunt" },
+		{ 22, "AIG_Frisk" },
+		{ 23, "AIG_GuardBody" },
+		{ 24, "AIG_DragBody" },
+		{ 25, "AIG_LookAtAccident" },
+		{ 26, "AIG_Sentry" },
+		{ 27, "AIG_HelpGeneric" },
+		{ 28, "AIG_Evacuate" },
+		{ 29, "AIG_Entourage" },
+		{ 30, "AIG_AvoidDangerousArea" },
+		{ 31, "AIG_Spectator" },
+		{ 32, "AIG_Infected" },
+		{ 33, "AIG_SC_Combat" },
+		{ 34, "AIG_SC_Alerted" },
+		{ 35, "AIG_None" },
 	};
 
-	(*g_Enums)["ZApproachOrder.EApproachStyle"] = {
-		{ 0, "AS_AUTO" },
-		{ 1, "AS_SPRINT" },
-		{ 2, "AS_JOG" },
-		{ 3, "AS_WALK" },
+	(*g_Enums)["EAILegalType"] = {
+		{ 0, "AILT_Weapon" },
+		{ 1, "AILT_Shooting" },
+		{ 2, "AILT_Aiming" },
+		{ 3, "AILT_CloseCombat" },
+		{ 4, "AILT_ChangeOutfit" },
+		{ 5, "AILT_Count" },
 	};
 
-	(*g_Enums)["ZInvestigateCautiousSituation.EBystanderState"] = {
-		{ 0, "BS_SelectCandidate" },
-		{ 1, "BS_SelectPoint" },
-		{ 2, "BS_SearchDangerField" },
+	(*g_Enums)["EAIModifierScope"] = {
+		{ 0, "AIMS_Volume" },
+		{ 1, "AIMS_Behavior" },
+		{ 2, "AIMS_Role" },
+		{ 3, "AIMS_Item" },
+		{ 4, "AIMS_Situation" },
+		{ 5, "AIMS_Outfit" },
+		{ 6, "AIMS_Override" },
+		{ 7, "AIMS_Status" },
 	};
 
-	(*g_Enums)["ZSmuggleSituationEntity.ESmuggleState"] = {
-		{ 0, "ESS_Idle" },
-		{ 1, "ESS_Evaluate" },
-		{ 2, "ESS_FindJob" },
-		{ 3, "ESS_OnRouteToLocation" },
-		{ 4, "ESS_PickingUp" },
-		{ 5, "ESS_PuttingDown" },
-		{ 6, "ESS_OnABreak" },
+	(*g_Enums)["EAIModifiers"] = {
+		{ 0, "AIM_Invalid" },
+		{ 1, "AIM_IgnoreLowNoise" },
+		{ 2, "AIM_IgnoreHitmanPropToss" },
+		{ 4, "AIM_IgnoreAnnoyingHitman" },
+		{ 8, "AIM_IgnoreSneakyHitman" },
+		{ 16, "AIM_IgnoreAgileHitman" },
+		{ 30, "AIM_IgnoreSillyHitman" },
+		{ 32, "AIM_PreferredInvestigator" },
+		{ 64, "AIM_AccidentShy" },
+		{ 128, "AIM_PreferredAccidentInvestigator" },
+		{ 256, "AIM_BlockFiberWireInteraction" },
+		{ 512, "AIM_BlockCloseCombatInteraction" },
+		{ 1024, "AIM_BlockDragBodyInteraction" },
+		{ 1792, "AIM_BlockAllInteractions" },
+		{ 2048, "AIM_IgnoreDistractions" },
+		{ 4096, "AIM_IgnoreTrespassing" },
+		{ 8192, "AIM_IgnoreWeapons" },
+		{ 16384, "AIM_IgnoreLockdown" },
+		{ 32768, "AIM_DisableHelpCivilian" },
+		{ 65536, "AIM_WantsPrivacy" },
+		{ 131072, "AIM_ConversationHelper" },
+		{ 262144, "AIM_ConversationHelperFast" },
+		{ 524288, "AIM_OneHitpoint" },
+		{ 1048576, "AIM_BlockDeadlyThrow" },
+		{ 2097152, "AIM_SuppressSocialGreeting" },
+		{ 4194304, "AIM_NeverInvestigateAccidents" },
+		{ 8388608, "AIM_BlockDeath" },
+		{ 16777216, "AIM_IgnoreDeadBody" },
+		{ 33554432, "AIM_NeverSpectate" },
 	};
 
-	(*g_Enums)["ZSniperCombatSituation.ESituationState"] = {
-		{ 0, "SS_Main" },
-		{ 1, "SS_StandDown" },
-		{ 2, "SS_InvalidSituation" },
+	(*g_Enums)["EAISharedEventType"] = {
+		{ 0, "AISET_None" },
+		{ 1, "AISET_StandOffCrowdReactionDone" },
+		{ 2, "AISET_Shoot" },
+		{ 3, "AISET_ShootBlind" },
+		{ 4, "AISET_Scared" },
+		{ 5, "AISET_CloseCombatRunIn" },
+		{ 6, "AISET_CloseCombatArrest" },
+		{ 7, "AISET_ReadyForCloseCombatArrest" },
+		{ 8, "AISET_DeadByAccident" },
+		{ 9, "AISET_SituationConversation" },
+		{ 10, "AISET_LAST_BOOLEAN_EVENT" },
+		{ 11, "AISET_IllegalBehavior" },
+		{ 12, "AISET_BeingWatched" },
+		{ 13, "AISET_Sneaking" },
+		{ 14, "AISET_Squatting" },
+		{ 15, "AISET_Agility" },
+		{ 16, "AISET_IllegalAgility" },
+		{ 17, "AISET_ChangingOutfit" },
+		{ 18, "AISET_ChangedOutfit" },
+		{ 19, "AISET_CoverToCover" },
+		{ 20, "AISET_Trespassing" },
+		{ 21, "AISET_InTrespassZone" },
+		{ 22, "AISET_InDisguiseZone" },
+		{ 23, "AISET_DraggingBody" },
+		{ 24, "AISET_KillingWithFiberwire" },
+		{ 25, "AISET_KillingWithPull" },
+		{ 26, "AISET_KillingWithPush" },
+		{ 27, "AISET_KillingWithKick" },
+		{ 28, "AISET_KillingWithKnife" },
+		{ 29, "AISET_KillingWithDeadlyThrow" },
+		{ 30, "AISET_PullingFromLedge" },
+		{ 31, "AISET_PacifyingWithPull" },
+		{ 32, "AISET_PacifyingWithPush" },
+		{ 33, "AISET_PacifyingWithKick" },
+		{ 34, "AISET_PacifyingWithKnockDownThrow" },
+		{ 35, "AISET_PacifyingWithStrangle" },
+		{ 36, "AISET_PacifyingWithKnife" },
+		{ 37, "AISET_ThrowingSomething" },
+		{ 38, "AISET_ThrowingExplosives" },
+		{ 39, "AISET_KnockingDown" },
+		{ 40, "AISET_InCloset" },
+		{ 41, "AISET_InNpcUnreachableArea" },
+		{ 42, "AISET_Peeking" },
+		{ 43, "AISET_EnteringCloset" },
+		{ 44, "AISET_ExitingCloset" },
+		{ 45, "AISET_InCover" },
+		{ 46, "AISET_MovingInCover" },
+		{ 47, "AISET_HiddenInCover" },
+		{ 48, "AISET_HasWeapon" },
+		{ 49, "AISET_WeaponEquipped" },
+		{ 50, "AISET_WeaponFired" },
+		{ 51, "AISET_WeaponReloading" },
+		{ 52, "AISET_Aiming" },
+		{ 53, "AISET_GuardDisguise" },
+		{ 54, "AISET_PulledByHitmanOnLedge" },
+		{ 55, "AISET_CombatNoHold" },
+		{ 56, "AISET_CombatFireAtWill" },
+		{ 57, "AISET_InOrderedPosition" },
+		{ 58, "AISET_ORDERS_BEGIN" },
+		{ 59, "AISET_Order_Act" },
+		{ 60, "AISET_Order_Investigate" },
+		{ 61, "AISET_Order_SearchPosition" },
+		{ 62, "AISET_Order_Approach" },
+		{ 63, "AISET_Order_GetHelp" },
+		{ 64, "AISET_Order_StandDown" },
+		{ 65, "AISET_Order_Escalate" },
+		{ 66, "AISET_Order_Arrest" },
+		{ 67, "AISET_Order_Avoid" },
+		{ 68, "AISET_Order_Flee" },
+		{ 69, "AISET_Order_Patrol" },
+		{ 70, "AISET_Order_Reposition" },
+		{ 71, "AISET_Order_Chase" },
+		{ 72, "AISET_Order_AimFromPosition" },
+		{ 73, "AISET_Order_HoldPosition" },
+		{ 74, "AISET_Order_HoldCoverPosition" },
+		{ 75, "AISET_Order_FightFromCover" },
+		{ 76, "AISET_Order_FightFromPosition" },
+		{ 77, "AISET_Order_ShootFromPosition" },
+		{ 78, "AISET_Order_GuardPosition" },
+		{ 79, "AISET_Order_GuardBody" },
+		{ 80, "AISET_Order_WakeUpUnconscious" },
+		{ 81, "AISET_Order_DragBody" },
+		{ 82, "AISET_Order_TriggerAlarm" },
+		{ 83, "AISET_Order_DispatchSuspectInfo" },
+		{ 84, "AISET_Order_RecieveSuspectInfo" },
+		{ 85, "AISET_Order_RequestBackup" },
+		{ 86, "AISET_Order_ThrowFlashGrenade" },
+		{ 87, "AISET_Order_CheckLastPosition" },
+		{ 88, "AISET_Order_StandoffLastWarning" },
+		{ 89, "AISET_Order_Evacuate" },
+		{ 90, "AISET_Order_AgitatedBystander" },
+		{ 91, "AISET_Order_CuriousBystander" },
+		{ 92, "AISET_Order_Face" },
+		{ 93, "AISET_Order_Holster" },
+		{ 94, "AISET_Order_Unholster" },
+		{ 95, "AISET_Order_MoveTo" },
+		{ 96, "AISET_Order_JumpTo" },
+		{ 97, "AISET_Order_FormationMove" },
+		{ 98, "AISET_Order_SentryFrisk" },
+		{ 99, "AISET_Order_SentryWarning" },
+		{ 100, "AISET_Order_SentryGreeting" },
+		{ 101, "AISET_Order_SentryCheckItem" },
+		{ 102, "AISET_Order_SentryDemandPickUpItem" },
+		{ 103, "AISET_Order_DeliverWeapon" },
+		{ 104, "AISET_Order_RecoverUnconscious" },
+		{ 105, "AISET_Order_GetOutfit" },
+		{ 106, "AISET_Order_LockdownWarning" },
+		{ 107, "AISET_Order_VIPEvacuateIdle" },
+		{ 108, "AISET_Order_VIPSafeRoom" },
+		{ 109, "AISET_Order_VIPSafeRoomTrespasser" },
+		{ 110, "AISET_Order_VIPScared" },
+		{ 111, "AISET_Order_DefendVIP" },
+		{ 112, "AISET_Order_CautiousVIP" },
+		{ 113, "AISET_Order_CautiousGuardVIP" },
+		{ 114, "AISET_Order_EscortOut" },
+		{ 115, "AISET_Order_MoveInCover" },
+		{ 116, "AISET_Order_MoveToCover" },
+		{ 117, "AISET_Order_Conversation" },
+		{ 118, "AISET_Order_AttentionToPerson" },
+		{ 119, "AISET_Order_WaitForItemHandled" },
+		{ 120, "AISET_ORDERS_END" },
+		{ 121, "AISET_IMPULSES_BEGIN" },
+		{ 122, "AISET_Impulse_ReceiveHuntTarget" },
+		{ 123, "AISET_Impulse_AckHuntTarget" },
+		{ 124, "AISET_Impulse_TransmitHuntTarget" },
+		{ 125, "AISET_Impulse_ActiveRadioCall" },
+		{ 126, "AISET_IMPULSES_END" },
+		{ 127, "AISET_ForceFullAttention" },
+		{ 128, "AISET_InCameraView2D" },
+		{ 129, "AISET_BeingLookedAt" },
+		{ 130, "AISET_BeingAimedAt" },
+		{ 131, "AISET_WasAimedAtRecently" },
+		{ 132, "AISET_BeingShotAt" },
+		{ 133, "AISET_BeingActuallyShotAt" },
+		{ 134, "AISET_BeingFlanked" },
+		{ 135, "AISET_BeingBumped" },
+		{ 136, "AISET_BeingEscortedOut" },
+		{ 137, "AISET_EscortingOut" },
+		{ 138, "AISET_EscortOutFarewell" },
+		{ 139, "AISET_HMTrespassing" },
+		{ 140, "AISET_HMInEntryArea" },
+		{ 141, "AISET_HMTakingDamage" },
+		{ 142, "AISET_HumanShield" },
+		{ 143, "AISET_IllegalAction" },
+		{ 144, "AISET_IllegalActionSevere" },
+		{ 145, "AISET_TakingKeyCard" },
+		{ 146, "AISET_TakingSecurityTape" },
+		{ 147, "AISET_DumpingBody" },
+		{ 148, "AISET_Shooting" },
+		{ 149, "AISET_BlindFire" },
+		{ 150, "AISET_ShootingBallet" },
+		{ 151, "AISET_Running" },
+		{ 152, "AISET_Walking" },
+		{ 153, "AISET_UsingKeyCard" },
+		{ 154, "AISET_WeaponDropped" },
+		{ 155, "AISET_WeaponPickedUp" },
+		{ 156, "AISET_ItemPickedUp" },
+		{ 157, "AISET_ItemDropped" },
+		{ 158, "AISET_Surrendering" },
+		{ 159, "AISET_RequestSurrender" },
+		{ 160, "AISET_StandOffEscalated" },
+		{ 161, "AISET_StandOffInvestigateSevere" },
+		{ 162, "AISET_Standing" },
+		{ 163, "AISET_Enforcer" },
+		{ 164, "AISET_DisguiseEnforcer" },
+		{ 165, "AISET_Dead" },
+		{ 166, "AISET_DeadByUnnoticed" },
+		{ 167, "AISET_DeadBySniper" },
+		{ 168, "AISET_InMorgue" },
+		{ 169, "AISET_InAccident" },
+		{ 170, "AISET_Dying" },
+		{ 171, "AISET_InInvestigateDisguise" },
+		{ 172, "AISET_InArrest" },
+		{ 173, "AISET_Arrestor" },
+		{ 174, "AISET_InCombat" },
+		{ 175, "AISET_InCombatWithGuards" },
+		{ 176, "AISET_Hunted" },
+		{ 177, "AISET_ForceHunted" },
+		{ 178, "AISET_CloseCombat" },
+		{ 179, "AISET_TakingProjectileDamage" },
+		{ 180, "AISET_TakingHeadshotDamage" },
+		{ 181, "AISET_TakingExplosionDamage" },
+		{ 182, "AISET_TakingThrowDamage" },
+		{ 183, "AISET_ForceKillHM" },
+		{ 184, "AISET_Armed" },
+		{ 185, "AISET_BeingHumanShield" },
+		{ 186, "AISET_BeingPulledOutOfWindow" },
+		{ 187, "AISET_BeingPushedOverRail" },
+		{ 188, "AISET_BeingFiberwired" },
+		{ 189, "AISET_BeingPulledFromLedge" },
+		{ 190, "AISET_BeingDragged" },
+		{ 191, "AISET_OnScreen" },
+		{ 192, "AISET_ExplosionImminent" },
+		{ 193, "AISET_DisguiseSafeZone" },
+		{ 194, "AISET_DisguiseCanBlendIn" },
+		{ 195, "AISET_DisguiseBlendIn" },
+		{ 196, "AISET_DisguiseBroken" },
+		{ 197, "AISET_InWarZone" },
+		{ 198, "AISET_HearLockdownAlarm" },
+		{ 199, "AISET_InCrowd" },
+		{ 200, "AISET_InCrowdHighDensity" },
+		{ 201, "AISET_InCrowdAlert" },
+		{ 202, "AISET_InCrowdPanic" },
+		{ 203, "AISET_HiddenByCrowd" },
+		{ 204, "AISET_CrowdDisguise" },
+		{ 205, "AISET_BeingStrangled" },
+		{ 206, "AISET_BeingSnapNecked" },
+		{ 207, "AISET_BeingKnockedDown" },
+		{ 208, "AISET_BeingContextKilled" },
+		{ 209, "AISET_CloseCombatTakedown" },
+		{ 210, "AISET_ContextKill" },
+		{ 211, "AISET_ExecutePistol" },
+		{ 212, "AISET_PickingUpGuardedItem" },
+		{ 213, "AISET_SedativePoison" },
+		{ 214, "AISET_SpawnedActor" },
+		{ 215, "AISET_SoundRadio" },
+		{ 216, "AISET_Weapon" },
+		{ 217, "AISET_Item" },
+		{ 218, "AISET_ItemThrown" },
+		{ 219, "AISET_OwnedByHM" },
+		{ 220, "AISET_Coin" },
+		{ 221, "AISET_InLimitVisionAreaZone" },
+		{ 222, "AISET_InsideLimitVisionArea" },
+		{ 223, "AISET_BlockedByLimitVisionArea" },
+		{ 224, "AISET_AmbientOnly" },
+		{ 225, "AISET_HasBeenInCombat" },
+		{ 226, "AISET_HitByItem" },
+		{ 227, "AISET_CloseCombatAllowed" },
+		{ 228, "AISET_CollateralTarget" },
+		{ 229, "AISET_HuntAct" },
+		{ 230, "AISET_Sick" },
+		{ 231, "AISET_Stunned" },
+		{ 232, "AISET_Naked" },
+		{ 233, "AISET_Investigated" },
+		{ 234, "AISET_FreshBody" },
+		{ 235, "AISET_SeenDeadlyThrowVictim" },
+		{ 236, "AISET_IWillBeDeadlyThrowVictim" },
+		{ 237, "AISET_Suspect" },
+		{ 238, "AISET_BeingFrisked" },
+		{ 239, "AISET_RequestFrisk" },
+		{ 240, "AISET_FriskComplying" },
+		{ 241, "AISET_FriskApproachReady" },
+		{ 242, "AISET_FriskReady" },
+		{ 243, "AISET_Frisked" },
+		{ 244, "AISET_FriskFailed" },
+		{ 245, "AISET_FriskFoundWeapon" },
+		{ 246, "AISET_AntiSocial" },
+		{ 247, "AISET_Introvert" },
+		{ 248, "AISET_InLockdownZone" },
+		{ 249, "AISET_EnteringLockdownZone" },
+		{ 250, "AISET_InSentryZone" },
+		{ 251, "AISET_InSentryWarningZone" },
+		{ 252, "AISET_InSentryFriskWarningZone" },
+		{ 253, "AISET_SuppressTrespassing" },
+		{ 254, "AISET_ReportedDisturbance" },
+		{ 255, "AISET_InLockdown" },
+		{ 256, "AISET_ToldToEvacuate" },
+		{ 257, "AISET_CurrentTarget" },
+		{ 258, "AISET_RequestShowItem" },
+		{ 259, "AISET_RequestComplying" },
+		{ 260, "AISET_WokenByNPC" },
+		{ 261, "AISET_Silly" },
+		{ 262, "AISET_TriggerLockDownAlarm" },
+		{ 263, "AISET_CombatFromEvacuate" },
+		{ 264, "AISET_DontMakeFunPlease" },
+		{ 265, "AISET_TempCrowdKnowledge" },
+		{ 266, "AISET_Attached" },
+		{ 267, "AISET_DontReact" },
+		{ 268, "AISET_Sentry" },
+		{ 269, "AISET_HardSentry" },
+		{ 270, "AISET_FriskingSentry" },
+		{ 271, "AISET_Guarded" },
+		{ 272, "AISET_CloseCombatFinisher" },
+		{ 273, "AISET_WasInCloseCombatSawAggressor" },
+		{ 274, "AISET_Pacified" },
+		{ 275, "AISET_SomeoneIsSniping" },
+		{ 276, "AISET_FlashpointSeen" },
+		{ 277, "AISET_SniperLocation" },
+		{ 278, "AISET_WeaponContextKnown" },
+		{ 279, "AISET_Distracted" },
+		{ 280, "AISET_LockedInAgility" },
+		{ 281, "AISET_ActorAlreadyAlive" },
+		{ 282, "AISET_DraggingBodyBag" },
+		{ 283, "AISET_UncosciousBlamingFailed" },
+		{ 284, "AISET_VaultingOverObstacle" },
+		{ 285, "AISET_ClimbingWindow" },
+		{ 286, "AISET_Combat_Brave" },
+		{ 287, "AISET_Combat_OneTimeBrave" },
+		{ 288, "AISET_Combat_PrimaryRange" },
+		{ 289, "AISET_Combat_ThrewFlashGrenade" },
+		{ 290, "AISET_Combat_CloseToGuards" },
+		{ 291, "AISET_Combat_RecentlySeen" },
+		{ 292, "AISET_Combat_TargetSeenAtLeastOnce" },
+		{ 293, "AISET_InTheAirDeadly" },
+		{ 294, "AISET_InTheAir" },
+		{ 295, "AISET_Landing" },
+		{ 296, "AISET_InSentrySituation" },
+		{ 297, "AISET_Wounded" },
+		{ 298, "AISET_RecoveredFromWounded" },
+		{ 299, "AISET_ReactedToTossAlerted" },
+		{ 300, "AISET_ReactedToHitAlerted" },
+		{ 301, "AISET_GettingHelp" },
+		{ 302, "AISET_HelpingCivilian" },
+		{ 303, "AISET_InvestigatingMurder" },
+		{ 304, "AISET_InvestigatingMurderOrGunshot" },
+		{ 305, "AISET_InvestigateDisguiseGroupLeader" },
+		{ 306, "AISET_InvestigateDisguiseMovingBack" },
+		{ 307, "AISET_BodyguardVIPDead" },
+		{ 308, "AISET_SilentlyKilled" },
+		{ 309, "AISET_SilentlyKilling" },
+		{ 310, "AISET_SoundGunShot" },
+		{ 311, "AISET_SoundHitmanGunShot" },
+		{ 312, "AISET_SoundHitmanGunShotSilenced" },
+		{ 313, "AISET_ChangingOutfitFromBody" },
+		{ 314, "AISET_SpeedBoost" },
+		{ 315, "AISET_ManhuntMember" },
+		{ 316, "AISET_InvestigateDisguiseMember" },
+		{ 317, "AISET_EvacuateAfterRecover" },
+		{ 318, "AISET_Woozy" },
+		{ 319, "AISET_HasAmbientEscort" },
+		{ 320, "AISET_IsEscortingVIP" },
+		{ 321, "AISET_StrangleVictim" },
+		{ 322, "AISET_DontStandDownIfIdling" },
+		{ 323, "AISET_Jumping" },
+		{ 324, "AISET_GetHelpDone" },
+		{ 325, "AISET_VIPHandleOwnCuriousInvestigation" },
+		{ 326, "AISET_InDangerousArea" },
+		{ 327, "AISET_RadioCallHelpComming" },
+		{ 328, "AISET_RadioCallHelpFailed" },
+		{ 329, "AISET_RadioCallHelpArrived" },
+		{ 330, "AISET_SocialCooldown" },
+		{ 331, "AISET_VIPEscaping" },
+		{ 332, "AISET_InterestingLocation" },
+		{ 333, "AISET_SeeDeathExplained" },
+		{ 334, "AISET_HMHasVictim" },
+		{ 335, "AISET_PrivateSituationLeader" },
+		{ 336, "AISET_LongTermMemorySetGoal" },
+		{ 337, "AISET_ThrownByHitman" },
+		{ 338, "AISET_Dropped" },
+		{ 339, "AISET_InterestingItem" },
+		{ 340, "AISET_InEvacuateTrespassGroup" },
+		{ 341, "AISET_InRecoverUnconsciousGroup" },
+		{ 342, "AISET_Revived" },
+		{ 343, "AISET_IsBeggingForLife" },
+		{ 344, "AISET_HMStunnedByNPCFlashGrenade" },
+		{ 345, "AISET_Situation_Role_Leader" },
+		{ 346, "AISET_Situation_Role_Assistant" },
+		{ 347, "AISET_Situation_Role_AssitingGuard" },
+		{ 348, "AISET_ReadytoPlayInvestigationConversation" },
+		{ 349, "AISET_ReadytoPlayStandDownConversation" },
+		{ 350, "AISET_ForcedLeader" },
+		{ 351, "AISET_PropagatedByCivilian" },
+		{ 352, "AISET_Distraction_State_LeaderSelected" },
+		{ 353, "AISET_Distraction_State_Investigated" },
+		{ 354, "AISET_Distraction_State_Resolved" },
+		{ 355, "AISET_Distraction_State_Canceled" },
+		{ 356, "AISET_Distraction_Target_BeingHandled" },
+		{ 357, "AISET_Arrest_State_Approaching" },
+		{ 358, "AISET_Arrest_State_Escorting" },
+		{ 359, "AISET_Arrest_State_Guarding" },
+		{ 360, "AISET_Arrest_ArrestReason" },
+		{ 361, "AISET_Arrest_Warning_1" },
+		{ 362, "AISET_Arrest_Warning_2" },
+		{ 363, "AISET_Arrest_Warning_3" },
+		{ 364, "AISET_Arrest_Warning_Delay" },
+		{ 365, "AISET_SC_Escalating" },
+		{ 366, "AISET_SC_InCombatPosition" },
+		{ 367, "AISET_SC_Shoot" },
+		{ 368, "AISET_SC_PreventShooting" },
+		{ 369, "AISET_SC_PreventChangeCombatPosition" },
+		{ 370, "AISET_SC_CombatAct" },
+		{ 371, "AISET_SC_InCombat" },
+		{ 372, "AISET_SC_Investigator" },
+		{ 373, "AISET_Infected" },
+		{ 374, "AISET_Infected_Stage2" },
+		{ 375, "AISET_Infected_Stage3" },
+		{ 376, "AISET_Infection_Cured" },
+		{ 377, "AISET_ENFORCER_DISABLE_FLAG_BEGIN" },
+		{ 378, "AISET_Enforcer_Disable_HideInPlainSight" },
+		{ 379, "AISET_ENFORCER_DISABLE_FLAG_END" },
+		{ 380, "AISET_DYNAMIC_ENFORCER_FLAG_BEGIN" },
+		{ 381, "AISET_DynamicEnforcer_SharedHitmanSensor" },
+		{ 382, "AISET_DynamicEnforcer_NakedActor" },
+		{ 383, "AISET_DynamicEnforcer_SeenItemThrown" },
+		{ 384, "AISET_DynamicEnforcer_HitByItemOrCoin" },
+		{ 385, "AISET_DynamicEnforcer_Setpiece" },
+		{ 386, "AISET_DynamicEnforcer_SillyHitman" },
+		{ 387, "AISET_DynamicEnforcer_PrivateArea" },
+		{ 388, "AISET_DynamicEnforcer_SuspiciousMovement" },
+		{ 389, "AISET_DYNAMIC_ENFORCER_FLAG_INCA_BEGIN" },
+		{ 390, "AISET_DynamicEnforcer_Explosion" },
+		{ 391, "AISET_DynamicEnforcer_GunshotSound" },
+		{ 392, "AISET_DynamicEnforcer_BulletImpactSound" },
+		{ 393, "AISET_DynamicEnforcer_CloseCombatSound" },
+		{ 394, "AISET_DynamicEnforcer_DeadlyThrowVictim" },
+		{ 395, "AISET_DynamicEnforcer_PacifyingThrowVictim" },
+		{ 396, "AISET_DynamicEnforcer_SeenMurderVictimNotHeardGunshot" },
+		{ 397, "AISET_DynamicEnforcer_SeenMurderVictimHeardGunshot" },
+		{ 398, "AISET_DynamicEnforcer_MurderAttempt" },
+		{ 399, "AISET_DynamicEnforcer_DeadBody" },
+		{ 400, "AISET_DynamicEnforcer_PacifiedBody" },
+		{ 401, "AISET_DynamicEnforcer_Hunt" },
+		{ 402, "AISET_DYNAMIC_ENFORCER_FLAG_INCA_END" },
+		{ 403, "AISET_DYNAMIC_ENFORCER_FLAG_END" },
+		{ 404, "AISET_DYNAMIC_ENFORCER_DISABLE_FLAG_BEGIN" },
+		{ 405, "AISET_DynamicEnforcer_Disable_CivilianInInvestigateCautious" },
+		{ 406, "AISET_DYNAMIC_ENFORCER_DISABLE_FLAG_END" },
+		{ 407, "AISET_DYNAMIC_ENFORCER_CIVILIAN_DISGUISE_ONLY_FLAG_BEGIN" },
+		{ 408, "AISET_DynamicEnforcer_InvestigateWeapon" },
+		{ 409, "AISET_DYNAMIC_ENFORCER_CIVILIAN_DISGUISE_ONLY_FLAG_END" },
+		{ 410, "AISET_DYNAMIC_ENFORCER_ARREST_REASON_BEGIN" },
+		{ 411, "AISET_DynamicEnforcer_ArrestReason_Murder" },
+		{ 412, "AISET_DynamicEnforcer_ArrestReason_MurderAttempt" },
+		{ 413, "AISET_DynamicEnforcer_ArrestReason_HitByItemOrCoin" },
+		{ 414, "AISET_DynamicEnforcer_ArrestReason_NearDeadBody" },
+		{ 415, "AISET_DynamicEnforcer_ArrestReason_NearPacifiedBody" },
+		{ 416, "AISET_DynamicEnforcer_ArrestReason_GunshotSound" },
+		{ 417, "AISET_DynamicEnforcer_ArrestReason_CloseCombatSound" },
+		{ 418, "AISET_DynamicEnforcer_ArrestReason_BulletImpactSound" },
+		{ 419, "AISET_DynamicEnforcer_ArrestReason_Hunt" },
+		{ 420, "AISET_DynamicEnforcer_ArrestReason_Explosion" },
+		{ 421, "AISET_DynamicEnforcer_ArrestReason_PrivateArea" },
+		{ 422, "AISET_DynamicEnforcer_ArrestReason_Weapon" },
+		{ 423, "AISET_DynamicEnforcer_ArrestReason_Setpiece" },
+		{ 424, "AISET_DynamicEnforcer_ArrestReason_KnockdownThrow" },
+		{ 425, "AISET_DynamicEnforcer_ArrestReason_SillyHitman" },
+		{ 426, "AISET_DYNAMIC_ENFORCER_ARREST_REASON_END" },
 	};
 
-	(*g_Enums)["EOnlineEventInvestigationType"] = {
-		{ 0, "OEIT_Generic" },
-		{ 1, "OEIT_HearBulletImpact" },
-		{ 2, "OEIT_HearFootsteps" },
-		{ 3, "OEIT_CarAlarm" },
-		{ 4, "OEIT_HearBark" },
-		{ 5, "OEIT_HearPain" },
-		{ 6, "OEIT_HearRadio" },
-		{ 7, "OEIT_HearItemToss" },
-		{ 8, "OEIT_SeeItemToss" },
-		{ 9, "OEIT_HearAccident" },
-		{ 10, "OEIT_CuriousSound" },
-		{ 11, "OEIT_CuriousItemSound" },
-		{ 12, "OEIT_SeeWeapon" },
-		{ 13, "OEIT_SeeItem" },
-		{ 14, "OEIT_Perceptible" },
-		{ 15, "OEIT_Toss" },
-		{ 16, "OEIT_CrowdCurious" },
-		{ 17, "OEIT_CameraDefect" },
-	};
-
-	(*g_Enums)["IItemWeapon.EDeadlyThrowType"] = {
-		{ 0, "DEADLYTHROW_NONE" },
-		{ 1, "DEADLYTHROW_LIGHT" },
-		{ 2, "DEADLYTHROW_HEAVY" },
-	};
-
-	(*g_Enums)["EValueUpdateStrategy"] = {
-		{ 0, "UPDATE_STRATEGY_REPLACE" },
-		{ 1, "UPDATE_STRATEGY_ADD_TO" },
-		{ 2, "UPDATE_STRATEGY_MULTIPLY" },
-	};
-
-	(*g_Enums)["ZEscortSituationEntity.ETargetState"] = {
-		{ 0, "ETS_Unknown" },
-		{ 1, "ETS_NoTarget" },
-		{ 2, "ETS_RunningActBehavior" },
-		{ 3, "ETS_RunningDummyBehavior" },
-		{ 4, "ETS_RunningOtherBehavior" },
-		{ 5, "ETS_Dead" },
-		{ 6, "ETS_TargetIsHitman" },
-	};
-
-	(*g_Enums)["IRenderCompositorEntity.EViewportAnchor"] = {
-		{ 0, "eFill" },
-		{ 1, "eTopLeft" },
-		{ 2, "eTopRight" },
-		{ 3, "eBottomLeft" },
-		{ 4, "eBottomRight" },
-	};
-
-	(*g_Enums)["ECoverPosition"] = {
-		{ 0, "COVER_POSITION_NONE" },
-		{ 1, "COVER_POSITION_LEFT" },
-		{ 2, "COVER_POSITION_RIGHT" },
-		{ 3, "COVER_POSITION_MIDDLE" },
-	};
-
-	(*g_Enums)["EAgilityState"] = {
-		{ 0, "eAgState_JumpToHangFromLocomotion" },
-		{ 1, "eAgState_ClimbOnToLedgeFromLocomotion" },
-		{ 2, "eAgState_ClimbToHangFromLocomotion" },
-		{ 3, "eAgState_WalkOnFromLocomotion" },
-		{ 4, "eAgState_WalkOffToLocomoton" },
-		{ 5, "eAgState_PullUpToLedgeWalk" },
-		{ 6, "eAgState_PullUpToLocomotion" },
-		{ 7, "eAgState_LedgeJumpOffToLocomotion" },
-		{ 8, "eAgState_VaultOverLedgeFromCover" },
-		{ 9, "eAgState_ClimbOnToLedgeFromCover" },
-		{ 10, "eAgState_LedgeHangDefault" },
-		{ 11, "eAgState_LedgeWalkDefault" },
-		{ 12, "eAgState_TransLedgeHangDownToWalk" },
-		{ 13, "eAgState_TransLedgeHangUpToWalk" },
-		{ 14, "eAgState_TransLedgeWalkDownToHang" },
-		{ 15, "eAgState_TransLedgeWalkUpToHang" },
-		{ 16, "eAgState_TransLedgeHangUpToRail" },
-		{ 17, "eAgState_TransLedgeHangToLocomotion" },
-		{ 18, "eAgState_TransLedgeWalkToLocomotion" },
-		{ 19, "eAgState_LedgeHangJumpLeft" },
-		{ 20, "eAgState_LedgeHangJumpRight" },
-		{ 21, "eAgState_LedgeWalkJumpLeft" },
-		{ 22, "eAgState_LedgeWalkJumpRight" },
-		{ 23, "eAgState_SneakPastWindowLeftToRight" },
-		{ 24, "eAgState_SneakPastWindowRightToLeft" },
-		{ 25, "eAgState_ClimbWindowFromLedgeToLocomotion" },
-		{ 26, "eAgState_ClimbWindowFromLocomotionToLedge" },
-		{ 27, "eAgState_ClimbWindowFromLocomotionToLocomotion" },
-		{ 28, "eAgState_ClimbWindowFromCoverToLocomotion" },
-		{ 29, "eAgState_ClimbWindowFromCoverToLedge" },
-		{ 30, "eAgState_ClimbOnToLedgeFromDrainPipe" },
-		{ 31, "eAgState_ClimbToHangFromDrainPipe" },
-		{ 32, "eAgState_ClimbToWalkFromDrainPipeLeft" },
-		{ 33, "eAgState_ClimbToWalkFromDrainPipeRight" },
-		{ 34, "eAgState_Deactivate" },
-		{ 35, "eAgState_Unknown" },
-	};
-
-	(*g_Enums)["SUITestData.ETestEnum"] = {
-		{ 1, "ETestEnum_Value_One" },
-		{ 2, "ETestEnum_Value_Two" },
-		{ 3, "ETestEnum_Value_Three" },
-	};
-
-	(*g_Enums)["EOutfitType"] = {
-		{ 0, "eOT_None" },
-		{ 1, "eOT_Suit" },
-		{ 2, "eOT_Guard" },
-		{ 3, "eOT_Worker" },
-		{ 4, "eOT_Waiter" },
-		{ 5, "eOT_LucasGrey" },
-	};
-
-	(*g_Enums)["ZActorTensionEntity.ETensionCheckMode"] = {
-		{ 0, "ETCM_INSIDE_VOLUME_OR_LIST" },
-		{ 1, "ETCM_INSIDE_VOLUME_AND_LIST" },
-	};
-
-	(*g_Enums)["ZScreenplay.EState"] = {
-		{ 0, "State_Idle" },
-		{ 1, "State_Running" },
-		{ 2, "State_Paused" },
-		{ 3, "State_Failed" },
-		{ 4, "State_Done" },
-	};
-
-	(*g_Enums)["AudioBusFlags"] = {
-		{ 1, "AudioBus_Master" },
-		{ 2, "AudioBus_Primary" },
-	};
-
-	(*g_Enums)["EDifficultyParameter"] = {
-		{ 0, "EDP_Invalid" },
-		{ 1, "EDP_AIAttentionGainMultiplier" },
-		{ 2, "EDP_AIAudioPerceptionAlwaysEmitFootstepSoundEvents" },
-		{ 3, "EDP_AICombat_ActiveCombatants_MinimumNumber" },
-		{ 4, "EDP_AICombat_ActiveCombatants_MinimumNumberWhenAllVIPsAreDead" },
-		{ 5, "EDP_AICombat_ActiveCombatants_MaximumNumber" },
-		{ 6, "EDP_AICombat_ActiveCombatants_MinimumAmountForMedium" },
-		{ 7, "EDP_AICombat_ActiveCombatants_MinimumAmountForMany" },
-		{ 8, "EDP_AICombat_ShootingAccuracyResetPeriod_Minimum" },
-		{ 9, "EDP_AICombat_ShootingAccuracyResetPeriod_Maximum_FewCombatants" },
-		{ 10, "EDP_AICombat_ShootingAccuracyResetPeriod_Maximum_MediumCombatants" },
-		{ 11, "EDP_AICombat_ShootingAccuracyResetPeriod_Maximum_ManyCombatants" },
-		{ 12, "EDP_AICombat_Leaders_NumberOfActiveCombatantsNeededForOneLeader" },
-		{ 13, "EDP_AICombat_Leaders_NumberOfActiveCombatantsNeededForTwoLeaders" },
-		{ 14, "EDP_AICombat_MaximumInterestingCombatLifetime" },
-		{ 15, "EDP_AICombat_MaximumInterestingTimeSinceLastCombat" },
-		{ 16, "EDP_AICombat_ShootingAccuracyInitialBuildUp_MinimumDuration" },
-		{ 17, "EDP_AICombat_ShootingAccuracyInitialBuildUp_MaximumDuration" },
-		{ 18, "EDP_AICombat_ShootingAccuracy_MinimumDistance" },
-		{ 19, "EDP_AICombat_FlashGrenadeThrow_GlobalCooldown" },
-		{ 20, "EDP_AICombat_FlashGrenadeThrow_AggressionTriggerCooldown" },
-		{ 21, "EDP_AICombat_FlashGrenadeThrow_TargetCampingTriggerCooldown" },
-		{ 22, "EDP_AICombat_FlashGrenadeThrow_LargeRelocationTriggerCooldown" },
-		{ 23, "EDP_AIDisguise_FollowWarningsDelay" },
-		{ 24, "EDP_AIDisguise_BreakOnVeryCloseDistance" },
-		{ 25, "EDP_AIEscortOut_MaxForbiddenMovement" },
-		{ 26, "EDP_AIEscortOut_EscortEscalateDistance" },
-		{ 27, "EDP_AIEscortOut_MaxTimeToHonorWarning" },
-		{ 28, "EDP_AIEscortOut_EscortHardWarningDistance" },
-		{ 29, "EDP_AIIllegalActionAttentionModifier" },
-		{ 30, "EDP_AIInvestigateCautious_Disturbance_Radius" },
-		{ 31, "EDP_AIInvestigateCautious_Search_ClearDisturbanceBackRadius" },
-		{ 32, "EDP_AIInvestigateCautious_Search_ClearDisturbanceFrontRadius" },
-		{ 33, "EDP_AIInvestigateCautious_Search_ClearDisturbanceRespectSoftReservationThreshold" },
-		{ 34, "EDP_AIInvestigateCautiousAttentionToPersonEnabled" },
-		{ 35, "EDP_AIInvestigateDisguiseMembersFollowDistance" },
-		{ 36, "EDP_AILongTermMemory_DisableArrest" },
-		{ 37, "EDP_AIRunningAttentionModifier" },
-		{ 38, "EDP_AISentry_WarningDelay" },
-		{ 39, "EDP_AISuspiciousMovementDisguiseAttentionModifier" },
-		{ 40, "EDP_AISuspiciousMovementSensorEnabled" },
-		{ 41, "EDP_AISuspiciousLostTargetTime" },
-		{ 42, "EDP_AllowInstinctGlow" },
-		{ 43, "EDP_ArrestEscalateIllegalWeapon" },
-		{ 44, "EDP_ArrestEscalateMaximum" },
-		{ 45, "EDP_ArrestEscalateMoving" },
-		{ 46, "EDP_ArrestEscalateRunning" },
-		{ 47, "EDP_ArrestTargetLostTime" },
-		{ 48, "EDP_CloseCombatChainFailDamage" },
-		{ 49, "EDP_CloseCombatChoiceWindowLength" },
-		{ 50, "EDP_CloseCombatChokePressCount_Civilian" },
-		{ 51, "EDP_CloseCombatChokePressCount_Elite" },
-		{ 52, "EDP_CloseCombatChokePressCount_Guard" },
-		{ 53, "EDP_CloseCombatCounterEndLength" },
-		{ 54, "EDP_CloseCombatCounterFailDamage" },
-		{ 55, "EDP_CloseCombatShowSnapNeckPressCount_Civilian" },
-		{ 56, "EDP_CloseCombatShowSnapNeckPressCount_Elite" },
-		{ 57, "EDP_CloseCombatShowSnapNeckPressCount_Guard" },
-		{ 58, "EDP_DamageMultiplierHandgun" },
-		{ 59, "EDP_DamageMultiplierSlowgun" },
-		{ 60, "EDP_DamageMultiplierAssaultRifle" },
-		{ 61, "EDP_DamageMultiplierSMG" },
-		{ 62, "EDP_DamageMultiplierSniper" },
-		{ 63, "EDP_DamageMultiplierRPG" },
-		{ 64, "EDP_DamageMultiplierKnife" },
-		{ 65, "EDP_DamageMultiplierShotgun" },
-		{ 66, "EDP_DamageMultiplierSpotter" },
-		{ 67, "EDP_DamageMultiplierHandgun_NPC" },
-		{ 68, "EDP_DamageMultiplierSlowgun_NPC" },
-		{ 69, "EDP_DamageMultiplierAssaultRifle_NPC" },
-		{ 70, "EDP_DamageMultiplierSMG_NPC" },
-		{ 71, "EDP_DamageMultiplierSniper_NPC" },
-		{ 72, "EDP_DamageMultiplierRPG_NPC" },
-		{ 73, "EDP_DamageMultiplierKnife_NPC" },
-		{ 74, "EDP_DamageMultiplierShotgun_NPC" },
-		{ 75, "EDP_DamageMultiplierSpotter_NPC" },
-		{ 76, "EDP_DisguiseRuiningEnabled" },
-		{ 77, "EDP_GameMissionSaveLimit" },
-		{ 78, "EDP_GameOpportunitiesEnabled" },
-		{ 79, "EDP_HearRangeBulletImpact" },
-		{ 80, "EDP_HearRangeBulletImpactOnBody" },
-		{ 81, "EDP_HearRangeCloseCombatBreakNeck" },
-		{ 82, "EDP_HearRangeCloseCombatChoke" },
-		{ 83, "EDP_HearRangeCloseCombatFiberWire" },
-		{ 84, "EDP_HearRangeCloseCombatHitFromBehind" },
-		{ 85, "EDP_HearRangeCloseCombatL1" },
-		{ 86, "EDP_HearRangeCloseCombatL2" },
-		{ 87, "EDP_HearRangeCloseCombatL3" },
-		{ 88, "EDP_HearRangeEventAccident" },
-		{ 89, "EDP_HearRangeEventAlarm" },
-		{ 90, "EDP_HearRangeEventExplosion" },
-		{ 91, "EDP_HearRangeEventRadio" },
-		{ 92, "EDP_HearRangeEventStrange" },
-		{ 93, "EDP_HearRangeEventThrownItem" },
-		{ 94, "EDP_HearRangeFootstepWalkSlow" },
-		{ 95, "EDP_HearRangeFootstepWalk" },
-		{ 96, "EDP_HearRangeFootstepRun" },
-		{ 97, "EDP_HearRangeFootstepCrouchWalkSlow" },
-		{ 98, "EDP_HearRangeFootstepCrouchWalk" },
-		{ 99, "EDP_HearRangeFootstepCrouchRun" },
-		{ 100, "EDP_HearRangeFootstepVegetationLVAWalkSlow" },
-		{ 101, "EDP_HearRangeFootstepVegetationLVAWalk" },
-		{ 102, "EDP_HearRangeFootstepVegetationLVARun" },
-		{ 103, "EDP_HearRangeFootstepVegetationLVACrouchWalkSlow" },
-		{ 104, "EDP_HearRangeFootstepVegetationLVACrouchWalk" },
-		{ 105, "EDP_HearRangeFootstepVegetationLVACrouchRun" },
-		{ 106, "EDP_HearRangeGunEmpty" },
-		{ 107, "EDP_HearRangeGunShot" },
-		{ 108, "EDP_HearRangeGunSilenced" },
-		{ 109, "EDP_HearRangeGunSuperSilenced" },
-		{ 110, "EDP_HearRangeSpeakAngry" },
-		{ 111, "EDP_HearRangeSpeakHelp" },
-		{ 112, "EDP_HearRangeSpeakHelpLoud" },
-		{ 113, "EDP_HearRangeSpeakPain" },
-		{ 114, "EDP_HearRangeSpeakPainLow" },
-		{ 115, "EDP_HearRangeSpeakWarning" },
-		{ 116, "EDP_HitmanDamageReceivedMultiplier" },
-		{ 117, "EDP_InstinctModeBurnRate" },
-		{ 118, "EDP_InstinctRegenCap" },
-		{ 119, "EDP_InstinctRegenRate" },
-		{ 120, "EDP_ManhuntGroupMaxSearchTime" },
-		{ 121, "EDP_ManhuntGroupSearchAreaHackMaxDistance" },
-		{ 122, "EDP_ManhuntGroupSearchAreaRadius" },
-		{ 123, "EDP_MaxCoverShootActorCountMultiplier" },
-		{ 124, "EDP_MinAttentionToForceLookAt" },
-		{ 125, "EDP_MinAttentionToForceLookAtIfIncreasing" },
-		{ 126, "EDP_NPCDamageReceivedMultiplier" },
-		{ 127, "EDP_PlayerDamagePerSecondDistance" },
-		{ 128, "EDP_PlayerDamagePerSecondLimitFar" },
-		{ 129, "EDP_PlayerDamagePerSecondLimitNear" },
-		{ 130, "EDP_PlayerDamagePerSecondThreshold" },
-		{ 131, "EDP_PlayerHitPointsMax" },
-		{ 132, "EDP_PlayerHitPointsRegenerationDelay" },
-		{ 133, "EDP_PlayerHitPointsRegenerationPerSecond" },
-		{ 134, "EDP_SecurityCameras" },
-		{ 135, "EDP_SightReactionMinAttention" },
-		{ 136, "EDP_SightInvestigationMinAttention" },
-		{ 137, "EDP_ShootSpreadMax" },
-		{ 138, "EDP_ShootSpreadMin" },
-		{ 139, "EDP_ShootSpreadRange" },
-		{ 140, "EDP_SocialGreetingAngle" },
-		{ 141, "EDP_SocialGreetingCooldown" },
-		{ 142, "EDP_SocialGreetingCooldownAlertLevel" },
-		{ 143, "EDP_SocialGreetingCooldownLastSpeak" },
-		{ 144, "EDP_SocialGreetingCooldownPlayer" },
-		{ 145, "EDP_SocialGreetingCooldownSequence" },
-		{ 146, "EDP_SocialGreetingDistance" },
-		{ 147, "EDP_SocialLookAtTimeMax" },
-		{ 148, "EDP_SocialLookAtTimeMin" },
-		{ 149, "EDP_SocialSillyCooldown" },
-		{ 150, "EDP_SocialSillyDistance" },
-		{ 151, "EDP_SocialSillyTriggerTime" },
-		{ 152, "EDP_SocialStandingCooldown" },
-		{ 153, "EDP_SocialStandingDistance" },
-		{ 154, "EDP_SocialStandingDistanceImmediate" },
-		{ 155, "EDP_SocialStandingTriggerTime" },
-		{ 156, "EDP_SpotHitmanShootingDistance" },
-		{ 157, "EDP_StrictItemRules" },
-		{ 158, "EDP_COUNT" },
-	};
-
-	(*g_Enums)["ZInputListenerButtonEntity.eInputListenerButtons"] = {
-		{ 0, "EILB_UP" },
-		{ 1, "EILB_LEFT" },
-		{ 2, "EILB_DOWN" },
-		{ 3, "EILB_RIGHT" },
-	};
-
-	(*g_Enums)["EEquipAbility"] = {
-		{ 0, "EA_EQUIP_IN_HANDS" },
-		{ 1, "EA_CANNOT_BE_EQUIPPED" },
+	(*g_Enums)["EAISituation"] = {
+		{ 0, "AIS_GENERIC" },
+		{ 1, "AIS_SPECIAL" },
+		{ 2, "AIS_SENSOR" },
+		{ 3, "AIS_TRESPASSING" },
+		{ 4, "AIS_STANDOFF" },
+		{ 5, "AIS_SMUGGLE" },
+		{ 6, "AIS_GET_HELP" },
+		{ 7, "AIS_CONVERSTION_GROUP" },
+		{ 8, "AIS_PROTO_COMBAT" },
+		{ 9, "AIS_SENTRY" },
+		{ 10, "AIS_LEAD_ESCORT" },
+		{ 11, "AIS_INVESTIGATE_WEAPON" },
+		{ 12, "AIS_INVESTIGATE_STANDING" },
+		{ 13, "AIS_INVESTIGATE_CURIOUS" },
+		{ 14, "AIS_INVESTIGATE_CAUTIOUS" },
+		{ 15, "AIS_HERO_ESCORT" },
+		{ 16, "AIS_EVACUATE" },
+		{ 17, "AIS_ESCORT" },
+		{ 18, "AIS_ENTOURAGE" },
+		{ 19, "AIS_DRAMA" },
+		{ 20, "AIS_DISGUISE" },
+		{ 21, "AIS_DEAD_BODY" },
+		{ 22, "AIS_COMBAT" },
+		{ 23, "AIS_CLOSE_COMBAT" },
+		{ 24, "AIS_AVOID_EXPLOSION" },
+		{ 25, "AIS_ACCIDENT" },
+		{ 26, "AIS_PRIVATE" },
+		{ 27, "AIS_GUARD_BODY" },
+		{ 28, "AIS_RECOVER_UNC" },
+		{ 29, "AIS_SNIPER" },
 	};
 
 	(*g_Enums)["EAISituationEvent"] = {
@@ -3151,239 +1111,23 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "AISE_Data" },
 	};
 
-	(*g_Enums)["ERequirementId"] = {
-		{ 0, "EREQUIREMENT_INVALID" },
-		{ 1, "EREQUIREMENT_TOKEN_OUTFIT_LEGACY_HERO_REQUIEMSUIT" },
-		{ 2, "EREQUIREMENT_FIREARMS_HERO_PISTOL_TACTICAL_015_SU_SKIN05" },
-		{ 3, "EREQUIREMENT_PROP_DEVICE_SONYPREORDER_WHITE_RUBBERDUCK_REMOTE_EXPLOSIVE" },
-		{ 4, "EREQUIREMENT_GOTY_PATIENT_ZERO" },
-		{ 5, "EREQUIREMENT_GOTY_TOKEN_OUTFIT_PARIS_CLOWN" },
-		{ 6, "EREQUIREMENT_GOTY_TOKEN_OUTFIT_HOKKAIDO_COWBOY" },
-		{ 7, "EREQUIREMENT_GOTY_TOKEN_OUTFIT_MARRAKESH_DARK_SNIPER" },
-		{ 8, "EREQUIREMENT_ANNIVERSARY_OUTFITS" },
-		{ 9, "EREQUIREMENT_LOCATION_NEWZEALAND" },
-		{ 10, "EREQUIREMENT_S2_EXECUTIVE_PACK" },
-		{ 11, "EREQUIREMENT_S2_COLLECTORS_PACK" },
-		{ 12, "EREQUIREMENT_S2_EXPANSION_VANITY_ITEM1" },
-		{ 13, "EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2" },
+	(*g_Enums)["EAccidentDeathContext"] = {
+		{ 0, "eADC_DeathByAccident" },
+		{ 1, "eADC_DeathBySniper" },
+		{ 2, "eADC_DeathByPoison" },
+		{ 3, "eADC_DeathByShot" },
 	};
 
-	(*g_Enums)["IKEndEffector"] = {
-		{ 0, "BEE_Pelvis" },
-		{ 1, "BEE_SpineOrigin" },
-		{ 2, "BEE_SpineEnd" },
-		{ 3, "BEE_Head" },
-		{ 4, "BEE_LeftUpperArm" },
-		{ 5, "BEE_RightUpperArm" },
-		{ 6, "BEE_LeftForeArm" },
-		{ 7, "BEE_RightForeArm" },
-		{ 8, "BEE_LeftHand" },
-		{ 9, "BEE_LeftHandThumb" },
-		{ 10, "BEE_LeftHandIndex" },
-		{ 11, "BEE_LeftHandMiddle" },
-		{ 12, "BEE_LeftHandRing" },
-		{ 13, "BEE_LeftHandPinky" },
-		{ 14, "BEE_RightHand" },
-		{ 15, "BEE_RightHandThumb" },
-		{ 16, "BEE_RightHandIndex" },
-		{ 17, "BEE_RightHandMiddle" },
-		{ 18, "BEE_RightHandRing" },
-		{ 19, "BEE_RightHandPinky" },
-		{ 20, "BEE_LeftFoot" },
-		{ 21, "BEE_RightFoot" },
-		{ 22, "BEE_LeftToe" },
-		{ 23, "BEE_RightToe" },
-		{ 24, "BEE_Count" },
+	(*g_Enums)["EAccidentScaleContext"] = {
+		{ 0, "eASC_Standard" },
+		{ 1, "eASC_Unsafe" },
+		{ 2, "eASC_Dangerous" },
 	};
 
-	(*g_Enums)["ESmartWaitCondition"] = {
-		{ 0, "SWC_Time" },
-		{ 1, "SWC_Distance" },
-		{ 2, "SWC_Executing" },
-		{ 3, "SWC_Executed" },
-	};
-
-	(*g_Enums)["ZActorPickerEffectTrack.EEffectPhaseAction"] = {
-		{ 0, "EPA_ATTACH" },
-		{ 1, "EPA_DETACH" },
-	};
-
-	(*g_Enums)["ERegionId"] = {
-		{ 0, "RegionId_Default" },
-		{ 1, "RegionId_Japan" },
-		{ 2, "RegionId_Asia" },
-	};
-
-	(*g_Enums)["EVolumeTriggerEntityTypeFlags"] = {
-		{ 1, "VTET_Hitman" },
-		{ 2, "VTET_ActorAlive" },
-		{ 4, "VTET_ActorDead" },
-		{ 128, "VTET_ExplodeableItem" },
-		{ 64, "VTET_SoundSweetener" },
-		{ 32, "VTET_Spatial" },
-		{ 16, "VTET_ThrownItem" },
-		{ 8, "VTET_ActorPacified" },
-		{ 256, "VTET_Item" },
-		{ 512, "VTET_SpatialVisible" },
-	};
-
-	(*g_Enums)["ZSniperCombatGroup.EGroupState"] = {
-		{ 0, "IGS_WaitingForActors" },
-		{ 1, "IGS_Move" },
-		{ 2, "IGS_Siege" },
-		{ 3, "IGS_Completed" },
-		{ 4, "IGS_Max" },
-	};
-
-	(*g_Enums)["ZLeadEscortSituationEntity.EEscortState"] = {
-		{ 0, "EES_Idle" },
-		{ 1, "EES_Evaluate" },
-		{ 2, "EES_Escorting" },
-		{ 3, "EES_Intermediate" },
-	};
-
-	(*g_Enums)["ESaveType"] = {
-		{ 0, "ESaveType_AutoSave" },
-		{ 1, "ESaveType_QuickSave" },
-		{ 2, "ESaveType_SystemData" },
-		{ 3, "ESaveType_LocalProfile" },
-	};
-
-	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFireType"] = {
-		{ 0, "eWBC_AudioFireType_Full_Automatic" },
-		{ 1, "eWBC_AudioFireType_Single" },
-	};
-
-	(*g_Enums)["EButtonPressType"] = {
-		{ 0, "BUTTON_PRESS" },
-		{ 1, "BUTTON_HOLD" },
-		{ 2, "BUTTON_REPEAT" },
-		{ 3, "BUTTON_TAP" },
-		{ 4, "BUTTON_ROTATE_CCW" },
-		{ 5, "BUTTON_PRESS_TYPE_MAX" },
-	};
-
-	(*g_Enums)["EImpactEffectsOptions"] = {
-		{ 0, "eIE_None" },
-		{ 8, "eIE_AmmoImpactEffect" },
-		{ 16, "eIE_All" },
-		{ 1, "eIE_BloodSplatter" },
-		{ 2, "eIE_Decals" },
-		{ 4, "eIE_MaterialImpactEffects" },
-	};
-
-	(*g_Enums)["EBooleanOption"] = {
-		{ 0, "BO_Off" },
-		{ 1, "BO_On" },
-		{ 2, "BO_Default" },
-	};
-
-	(*g_Enums)["EStandRepositionStrategy"] = {
-		{ 0, "SRS_InPlaceRepositioning" },
-		{ 1, "SRS_NoRepositioning" },
-	};
-
-	(*g_Enums)["ZLookAtLogic.EAxisSelect"] = {
-		{ 0, "eX" },
-		{ 1, "eX_NEG" },
-		{ 2, "eY" },
-		{ 3, "eY_NEG" },
-		{ 4, "eZ" },
-		{ 5, "eZ_NEG" },
-	};
-
-	(*g_Enums)["ESituationStateChangeReason"] = {
-		{ 128, "eSSCR_C_CLOSE_COMBAT" },
-		{ 64, "eSSCR_C_CONTROLLED" },
-		{ 0, "eSSCR_NONE" },
-		{ 16384, "eSSCR_S_DONE" },
-		{ 32768, "eSSCR_S_TERMINATED" },
-		{ 32, "eSSCR_C_DEACTIVATED" },
-		{ 8192, "eSSCR_S_DISABLED" },
-		{ 2097152, "eSSCR_PAUSED_FROM_RESUMING" },
-		{ 16, "eSSCR_C_DIED" },
-		{ 4096, "eSSCR_CL_SYSTEMIC" },
-		{ 1048576, "eSSCR_PAUSED_FROM_PLAYING" },
-		{ 256, "eSSCR_C_HERO_ACTION" },
-		{ 512, "eSSCR_C_PACIFIED" },
-		{ 1024, "eSSCR_CL_CHILD_DRAMA" },
-		{ 2048, "eSSCR_CL_OTHER_DRAMA" },
-		{ 65536, "eSSCR_S_STARTED" },
-		{ 131072, "eSSCR_S_RESUMING" },
-		{ 262144, "eSSCR_S_UNPAUSE" },
-		{ 524288, "eSSCR_R_RESOURCE_UNAVAILABLE" },
-	};
-
-	(*g_Enums)["EMaterialRegistrationState"] = {
-		{ 0, "eMRS_None" },
-		{ 1, "eMRS_Pending" },
-		{ 2, "eMRS_Success" },
-		{ 3, "eMRS_Failed" },
-	};
-
-	(*g_Enums)["ZRenderPostfilterParametersEntity.EDOFBlurType"] = {
-		{ 0, "eFastest" },
-		{ 1, "eLowRezLensBlur" },
-		{ 2, "eLowRezLensBlurSoft" },
-		{ 3, "eHighRezLensBlur" },
-	};
-
-	(*g_Enums)["CrowdReactionAIEventType"] = {
-		{ 0, "CROWDAIEVENT_NONE" },
-		{ 1, "CROWDAIEVENT_CURIOUS" },
-		{ 2, "CROWDAIEVENT_ALERTED" },
-		{ 3, "CROWDAIEVENT_BLAME_FOR_WEAPON" },
-		{ 4, "CROWDAIEVENT_BLAME_FOR_KILL" },
-	};
-
-	(*g_Enums)["ZHeroEscortSituationEntity.ETargetState"] = {
-		{ 0, "ETS_Unknown" },
-		{ 1, "ETS_NoTarget" },
-		{ 2, "ETS_RunningActBehavior" },
-		{ 3, "ETS_RunningDummyBehavior" },
-		{ 4, "ETS_RunningOtherBehavior" },
-		{ 5, "ETS_Dead" },
-		{ 6, "ETS_TargetIsHitman" },
-	};
-
-	(*g_Enums)["CrowdUtil.EDefaultStateTypes"] = {
-		{ 0, "STATE_IDLE" },
-		{ 1, "STATE_WALK" },
-		{ 2, "STATE_PENDINGWALK" },
-		{ 3, "STATE_DEAD" },
-		{ 4, "STATE_SCARED" },
-		{ 5, "STATE_PENDINGSCARED" },
-		{ 6, "STATE_POSSESSED" },
-		{ 7, "STATE_ALERT" },
-		{ 8, "STATE_PRONE" },
-		{ 9, "STATE_RELOCATE" },
-		{ 10, "STATE_PENDINGRELOCATE" },
-		{ 11, "NUM_DEFAULT_STATES" },
-	};
-
-	(*g_Enums)["ZAIPerceptibleEntity.EReactionBehaviorMode"] = {
-		{ 0, "FullBehavior" },
-		{ 1, "StopOnInvestigate" },
-		{ 2, "StopOnReacted" },
-	};
-
-	(*g_Enums)["EGameEventArgType"] = {
-		{ 0, "GE_ARGS_KILL" },
-		{ 1, "GE_ARGS_PRIORITYKILL" },
-		{ 2, "GE_ARGS_SITUATION" },
-		{ 3, "GE_ARGS_INVENTORY" },
-		{ 4, "GE_ARGS_EXPLODINGPROP" },
-		{ 5, "GE_ARGS_EVENT" },
-		{ 6, "GE_ARGS_CHECKPOINTEVENT" },
-		{ 7, "GE_ARGS_AI_SITUATION" },
-	};
-
-	(*g_Enums)["ZCautiousSearchGroup.ESearchGroupState"] = {
-		{ 0, "SGS_Acknowledge" },
-		{ 1, "SGS_Approach" },
-		{ 2, "SGS_Approaching" },
-		{ 3, "SGS_Waiting" },
-		{ 4, "SGS_Completed" },
+	(*g_Enums)["EActBodyType"] = {
+		{ 0, "ABT_UpperBodyOnly" },
+		{ 1, "ABT_FullBodyWithLeadIn" },
+		{ 2, "ABT_FullBodyOnly" },
 	};
 
 	(*g_Enums)["EActionPromptState"] = {
@@ -3393,491 +1137,305 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eActionPromptState_Held" },
 	};
 
-	(*g_Enums)["ZMoveToPositionBehaviorEntity.ERotationAlignment"] = {
-		{ 0, "RA_NONE" },
-		{ 1, "RA_LOOSE" },
-		{ 2, "RA_EXACT" },
-	};
-
-	(*g_Enums)["IRoomEntity.EReasoningGridImportance"] = {
-		{ 0, "RGI_NoGrid" },
-		{ 1, "RGI_Low" },
-		{ 2, "RGI_Normal" },
-		{ 3, "RGI_High" },
-		{ 4, "RGI_Extreme" },
-	};
-
-	(*g_Enums)["EFSMInternalEvent"] = {
-		{ 0, "eFSMEvent_Completed" },
-		{ 1, "eFSMEvent_Failed" },
-		{ 2, "eFSMEvent_Choice" },
-		{ 3, "eFSMEvent_Max" },
-	};
-
-	(*g_Enums)["ZOnlineManager.EState"] = {
-		{ 1, "eTRIGGER_FLOW" },
-		{ 2, "eOFFLINE" },
-		{ 3, "eSUSPEND" },
-		{ 4, "eDISCONNECTED" },
-		{ 5, "eBEGIN_CONNECTION_FLOW" },
-		{ 6, "ePREAUTHENTICATE" },
-		{ 7, "eFETCH_API_VERSION" },
-		{ 8, "eFETCHING_API_VERSION" },
-		{ 9, "eAPI_VERSION_RECEIVED" },
-		{ 10, "eONLINE_CONSENT_CONFIRMATION" },
-		{ 11, "ePREAUTHENTICATION_ENTITLEMENTS_SYNCHRONIZE_INPROGRESS" },
-		{ 12, "ePREAUTHENTICATION_ENTITLEMENTS_SYNCHRONIZE_DONE" },
-		{ 13, "eAUTHENTICATING" },
-		{ 14, "eAUTHENTICATION_RECEIVED" },
-		{ 15, "eENTITLEMENTS_SYNCHRONIZE_INPROGRESS" },
-		{ 16, "eENTITLEMENTS_SYNCHRONIZE_DONE" },
-		{ 17, "eAUTHENTICATING_GAMESERVICE" },
-		{ 18, "eAUTHENTICATION_GAMESERVICE_RECEIVED" },
-		{ 19, "eFETCHING_OFFLINE_CACHE_DB_DIFF" },
-		{ 20, "eFETCHING_OFFLINE_CACHE_DB_DIFF_RECEIVED" },
-		{ 21, "eFETCHING_DYNAMIC_RESOURCES" },
-		{ 22, "eDYNAMIC_RESOURCES_MOUNTED" },
-		{ 23, "eCHECK_FOR_DLC_UPDATES" },
-		{ 24, "eFETCHING_PLATFORM_USERINFO" },
-		{ 25, "ePLATFORM_USERINFO_RECEIVED" },
-		{ 26, "eFETCHING_CONFIGURATION" },
-		{ 27, "eCONFIGURATION_RECEIVED" },
-		{ 28, "eFETCHING_PROFILE" },
-		{ 29, "ePROFILE_RECEIVED" },
-		{ 30, "eSYNCHRONIZING_PROFILE" },
-		{ 31, "ePROFILE_SYNCHRONIZED" },
-		{ 32, "eRETRIEVING_EVENTS" },
-		{ 33, "eEVENTS_RETRIEVED" },
-		{ 34, "eWAITING_FOR_SYNCHRONIZING_EVENTS" },
-		{ 35, "eCONNECTED" },
-		{ 36, "eCONNECT_TO_GAME_SESSION" },
-		{ 37, "eCONNECTING_TO_GAME_SESSION" },
-		{ 38, "eRETRY_SAVE_EVENTS" },
-		{ 39, "eRETRY_SAVE_EVENTS_INTERNAL" },
-		{ 40, "eREAUTHENTICATE" },
-		{ 41, "eSTATE_MAX" },
-	};
-
-	(*g_Enums)["ZDebugHM5GameTimeMultiplierEnt.eTMLDReason"] = {
-		{ 0, "eTMLDR_HintMessages" },
-		{ 1, "eTMLDR_Sequence" },
-		{ 2, "eTMLDR_ActionKillHeadShot" },
-		{ 3, "eTMLDR_ActionKillCCProp" },
-		{ 4, "eTMLDR_ActionKillExplosion" },
-		{ 5, "eTMLDR_ActionKillLastEnemyInEncounter" },
-		{ 6, "eTMLDR_ActionKillLastEnemyInCheckPoint" },
-		{ 7, "eTMLDR_NOTSET" },
-	};
-
-	(*g_Enums)["ECautiousDisturbanceState"] = {
-		{ 0, "eCDS_Pending" },
-		{ 1, "eCDS_Expired" },
-		{ 2, "eCDS_Handled" },
-		{ 3, "eCDS_GetHelpGroup" },
-		{ 4, "eCDS_InvestigationGroup" },
-		{ 5, "eCDS_InvestigateAfterExplosion" },
-		{ 6, "eCDS_Ignored" },
-		{ 7, "eCDS_NoInvestigator" },
-		{ 8, "eCDS_Similar" },
-		{ 9, "eCDS_ManHunt" },
-		{ 10, "eCDS_CombatSuppressGunshots" },
-	};
-
-	(*g_Enums)["ZValueBool_Operation.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-		{ 3, "NOT_ALL" },
-		{ 4, "ALL_EQUAL" },
-		{ 5, "ONE_TRUE" },
-	};
-
-	(*g_Enums)["ZUIControlEntity.ELayoutMode"] = {
-		{ 0, "E_LAYOUT_MODE_Absolute" },
-		{ 1, "E_LAYOUT_MODE_Proportional" },
-		{ 2, "E_LAYOUT_MODE_Proportional_MaintainAspect" },
-		{ 3, "E_LAYOUT_MODE_Proportional_MaintainAspect_Fill" },
-		{ 4, "E_LAYOUT_MODE_Proportional_Scale_Fit" },
-		{ 5, "E_LAYOUT_MODE_Proportional_Scale_MaintainAspect" },
-		{ 6, "E_LAYOUT_MODE_Proportional_Scale_MaintainAspect_Fill" },
-	};
-
-	(*g_Enums)["IContractObjective.SCounterData.ECounterType"] = {
-		{ 0, "eDEFAULT" },
-		{ 1, "ePERCENTAGE" },
-	};
-
-	(*g_Enums)["ECCNodeType"] = {
-		{ 0, "eCCNodeType_Counter" },
-		{ 1, "eCCNodeType_ExecutePistol" },
-		{ 2, "eCCNodeType_React" },
-		{ 3, "eCCNodeType_SilentTakeDownEnd" },
-		{ 4, "eCCNodeType_SilentKill" },
-		{ 5, "eCCNodeType_SlitThroat1H" },
-		{ 6, "eCCNodeType_Swing1H" },
-		{ 7, "eCCNodeType_Bash1H" },
-		{ 8, "eCCNodeType_Stab1H" },
-		{ 9, "eCCNodeType_Syringe1H" },
-		{ 10, "eCCNodeType_Strangle1H" },
-		{ 11, "eCCNodeType_Smash1H" },
-		{ 12, "eCCNodeType_Swing2H" },
-		{ 13, "eCCNodeType_Stab2H" },
-		{ 14, "eCCNodeType_Bash2H" },
-		{ 15, "eCCNodeType_Strangle2H" },
-		{ 16, "eCCNodeType_Axe" },
-		{ 17, "eCCNodeType_Sword1H" },
-		{ 18, "eCCNodeType_AttackChain" },
-		{ 19, "eCCNodeType_AttackChainCivilian" },
-		{ 20, "eCCNodeType_AttackChainHeavy" },
-		{ 21, "eCCNodeType_FailChain" },
-		{ 22, "eCCNodeType_FinishChainHigh" },
-		{ 23, "eCCNodeType_FinishChainLow" },
-		{ 24, "eCCNodeType_FinishChainKill" },
-		{ 25, "eCCNodeType_StairsChain" },
-		{ 26, "eCCNodeType_CounterChain" },
-		{ 27, "eCCNodeType_AttackIdle" },
-		{ 28, "eCCNodeType_AttackPassify" },
-		{ 29, "eCCNodeType_FailChainPush" },
-		{ 30, "eCCNodeType_Count" },
-	};
-
-	(*g_Enums)["ZHM5CrowdGenericEventConsumer.EEvent"] = {
-		{ 0, "eFootstep" },
-		{ 1, "eClothRustle" },
-		{ 2, "ePushReaction" },
-		{ 3, "ePanic" },
-		{ 4, "eGeneric00" },
-		{ 5, "eGeneric01" },
-		{ 6, "eGeneric02" },
-		{ 7, "eGeneric03" },
-	};
-
-	(*g_Enums)["EFontFlags"] = {
-		{ 8, "FV_FauxBold" },
-		{ 0, "FV_Normal" },
-		{ 32, "FV_NoAutoFit" },
-		{ 16, "FV_Original" },
-		{ 1, "FV_Italic" },
-		{ 2, "FV_Bold" },
-		{ 3, "FV_BoldItalic" },
-		{ 4, "FV_FauxItalic" },
-		{ 12, "FV_FauxBoldItalic" },
-	};
-
-	(*g_Enums)["EDeathBehavior"] = {
-		{ 0, "eDB_IMPACT_ANIM" },
-		{ 1, "eDB_NO_IMPACT_ANIM" },
-		{ 2, "eDB_NO_VELOCITY" },
-		{ 3, "eDB_NO_RAGDOLL" },
-	};
-
-	(*g_Enums)["CrowdMapImpl.CellFlags"] = {
-		{ 1, "CELLFLAG_RESTRICTED_A" },
-		{ 2, "CELLFLAG_RESTRICTED_B" },
-		{ 4, "CELLFLAG_RESTRICTED_C" },
-		{ 8, "CELLFLAG_WALKABLE" },
-		{ 16, "CELLFLAG_TELEPORT_IN" },
-		{ 32, "CELLFLAG_TELEPORT_OUT" },
-		{ 64, "CELLFLAG_UNUSED" },
-		{ 128, "CELLFLAG_PANIC_ONLY" },
-	};
-
-	(*g_Enums)["ZBoneAttachEntity.EResetMode"] = {
-		{ 0, "eAtBoneOrigin" },
-		{ 1, "eKeepOffset" },
-	};
-
-	(*g_Enums)["EAIModifiers"] = {
-		{ 32, "AIM_PreferredInvestigator" },
-		{ 8192, "AIM_IgnoreWeapons" },
-		{ 2097152, "AIM_SuppressSocialGreeting" },
-		{ 16, "AIM_IgnoreAgileHitman" },
-		{ 4096, "AIM_IgnoreTrespassing" },
-		{ 1048576, "AIM_BlockDeadlyThrow" },
-		{ 8, "AIM_IgnoreSneakyHitman" },
-		{ 0, "AIM_Invalid" },
-		{ 64, "AIM_AccidentShy" },
-		{ 128, "AIM_PreferredAccidentInvestigator" },
-		{ 16384, "AIM_IgnoreLockdown" },
-		{ 32768, "AIM_DisableHelpCivilian" },
-		{ 4194304, "AIM_NeverInvestigateAccidents" },
-		{ 8388608, "AIM_BlockDeath" },
-		{ 1, "AIM_IgnoreLowNoise" },
-		{ 2, "AIM_IgnoreHitmanPropToss" },
-		{ 4, "AIM_IgnoreAnnoyingHitman" },
-		{ 30, "AIM_IgnoreSillyHitman" },
-		{ 256, "AIM_BlockFiberWireInteraction" },
-		{ 512, "AIM_BlockCloseCombatInteraction" },
-		{ 1024, "AIM_BlockDragBodyInteraction" },
-		{ 1792, "AIM_BlockAllInteractions" },
-		{ 2048, "AIM_IgnoreDistractions" },
-		{ 65536, "AIM_WantsPrivacy" },
-		{ 131072, "AIM_ConversationHelper" },
-		{ 262144, "AIM_ConversationHelperFast" },
-		{ 524288, "AIM_OneHitpoint" },
-		{ 16777216, "AIM_IgnoreDeadBody" },
-		{ 33554432, "AIM_NeverSpectate" },
-	};
-
-	(*g_Enums)["ESoundGateType"] = {
-		{ 0, "SOUNDGATE_TYPE_ROUND" },
-		{ 1, "SOUNDGATE_TYPE_SHARPCORNERS" },
-	};
-
-	(*g_Enums)["ZChannelKeywordCondition.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-		{ 3, "ANY_TRUE_IF_NO_REQS" },
-	};
-
-	(*g_Enums)["ZUIFlowLayoutEntity.EFlowType"] = {
-		{ 0, "E_FLOW_TYPE_HORIZONTAL" },
-		{ 1, "E_FLOW_TYPE_VERTICAL" },
-	};
-
-	(*g_Enums)["ZTrackDollyControllerQueryEntity.ETrackPointQueryType"] = {
-		{ 0, "Closest" },
-		{ 1, "ClosestNext" },
-		{ 2, "ClosestPrevious" },
-	};
-
-	(*g_Enums)["EConversationID"] = {
-		{ 0, "eCI_GuardCivilian_Distraction_Investigation" },
-		{ 1, "eCI_HearBulletImpact_Distraction_Investigation" },
-		{ 2, "eCI_HearItemImpact_Distraction_Investigation" },
-		{ 3, "eCI_HearCarAlarm_Distraction_Investigation" },
-		{ 4, "eCI_SeeItemToss_Distraction_Investigation" },
-		{ 5, "eCI_HearRadio_Distraction_Investigation" },
-		{ 6, "eCI_HearPain_Distraction_Investigation" },
-		{ 7, "eCI_HearAccident_Distraction_Investigation" },
-		{ 8, "eCI_HearCuriousItemSound_Distraction_Investigation" },
-		{ 9, "eCI_HearCuriousSound_Distraction_Investigation" },
-		{ 10, "eCI_SeeSuspiciousPerceptible_Distraction_Investigation" },
-		{ 11, "eCI_SeeInterestingItem_Distraction_Investigation" },
-		{ 12, "eCI_HearFootSteps_Distraction_Investigation" },
-		{ 13, "eCI_HearAngryDialog_Distraction_Investigation" },
-		{ 14, "eCI_HearHelpDialog_Distraction_Investigation" },
-		{ 15, "eCI_HearWarning_Distraction_Investigation" },
-		{ 16, "eCI_SightInvestigation_Distraction_Investigation" },
-		{ 17, "eCI_HearBulletImpact_Distraction_StandDown" },
-		{ 18, "eCI_HearItemImpact_Distraction_StandDown" },
-		{ 19, "eCI_HearCarAlarm_Distraction_StandDown" },
-		{ 20, "eCI_SeeItemToss_Distraction_StandDown" },
-		{ 21, "eCI_HearRadio_Distraction_StandDown" },
-		{ 22, "eCI_HearPain_Distraction_StandDown" },
-		{ 23, "eCI_HearAccident_Distraction_StandDown" },
-		{ 24, "eCI_HearCuriousItemSound_Distraction_StandDown" },
-		{ 25, "eCI_HearCuriousSound_Distraction_StandDown" },
-		{ 26, "eCI_SeeSuspiciousPerceptible_Distraction_StandDown" },
-		{ 27, "eCI_SeeInterestingItem_Distraction_StandDown" },
-		{ 28, "eCI_HearFootSteps_Distraction_StandDown" },
-		{ 29, "eCI_HearAngryDialog_Distraction_StandDown" },
-		{ 30, "eCI_HearHelpDialog_Distraction_StandDown" },
-		{ 31, "eCI_HearWarning_Distraction_StandDown" },
-		{ 32, "eCI_SightInvestigation_Distraction_StandDown" },
-		{ 33, "eCI_Suitcase_Distraction_DeliverToGuard" },
-		{ 34, "eCI_Suitcase_Distraction_RadioRequestHelp" },
-		{ 35, "eCI_Count" },
-	};
-
-	(*g_Enums)["ESubcontrollerInventorySlot"] = {
-		{ 0, "eSIS_Invalid" },
-		{ 1, "eSIS_LeftHand" },
-		{ 2, "eSIS_RightHand" },
-	};
-
-	(*g_Enums)["IHM5Door.EInitialState"] = {
-		{ 0, "IS_CLOSED" },
-		{ 1, "IS_OPEN" },
-		{ 2, "IS_OPEN_IN" },
-		{ 3, "IS_OPEN_OUT" },
-	};
-
-	(*g_Enums)["ZDebugTextEntity.EHorizontalAlignment"] = {
-		{ 1, "HA_LEFT" },
-		{ 0, "HA_CENTER" },
-		{ 2, "HA_RIGHT" },
+	(*g_Enums)["EActionRadialArcIconType"] = {
+		{ 0, "EARAIT_NoIcon" },
+		{ 1, "EARAIT_Locked" },
+		{ 2, "EARAIT_NeedTool" },
+		{ 3, "EARAIT_IsRunning" },
+		{ 4, "EARAIT_Crowbar" },
+		{ 5, "EARAIT_Wrench" },
+		{ 6, "EARAIT_Card" },
+		{ 7, "EARAIT_Lockpick" },
+		{ 8, "EARAIT_Screwdriver" },
+		{ 9, "EARAIT_AmmoBullet" },
+		{ 10, "EARAIT_Flower" },
+		{ 11, "EARAIT_ChemicalTube" },
+		{ 12, "EARAIT_Golfball" },
+		{ 13, "EARAIT_Keypad" },
+		{ 14, "EARAIT_Key" },
+		{ 15, "EARAIT_Coin" },
+		{ 16, "EARAIT_Poison" },
+		{ 17, "EARAIT_Exsplosive" },
 	};
 
 	(*g_Enums)["EActionType"] = {
-		{ 64, "AT_CLOTHBUNDLE" },
-		{ 0, "AT_INVALID" },
-		{ 128, "AT_DRAGBODY" },
-		{ 16384, "AT_INTERACTION_GROUP" },
-		{ 32768, "AT_USE_NORMAL" },
-		{ 4194304, "AT_CONTAINERFLUSHBODY" },
-		{ 1073741824, "AT_USE_QUICK" },
 		{ -2147483648, "AT_ITEM_INTERACTION" },
-		{ 32, "AT_OUTFIT" },
-		{ 8192, "AT_COUP_DE_GRACE" },
-		{ 2097152, "AT_CANCEL" },
-		{ 536870912, "AT_ITEMCONTAINER" },
-		{ 16, "AT_REMOTE" },
-		{ 4096, "AT_DUMPBODY" },
-		{ 1048576, "AT_EXITSAFEZONE" },
-		{ 268435456, "AT_INTERRUPTIBLE_TAP" },
-		{ 8, "AT_GENERIC" },
+		{ 0, "AT_INVALID" },
 		{ 1, "AT_OPENDOOR" },
 		{ 2, "AT_CLOSEDOOR" },
 		{ 4, "AT_PICKUP" },
+		{ 8, "AT_GENERIC" },
+		{ 16, "AT_REMOTE" },
+		{ 32, "AT_OUTFIT" },
+		{ 64, "AT_CLOTHBUNDLE" },
+		{ 128, "AT_DRAGBODY" },
 		{ 256, "AT_RETRIEVE_ITEM_FROM_CONTAINER" },
 		{ 1024, "AT_HERO_MOVEMENT" },
 		{ 2048, "AT_SWAPITEM" },
+		{ 4096, "AT_DUMPBODY" },
+		{ 8192, "AT_COUP_DE_GRACE" },
+		{ 16384, "AT_INTERACTION_GROUP" },
+		{ 32768, "AT_USE_NORMAL" },
 		{ 65536, "AT_STASHPOINT_PICKUP" },
 		{ 131072, "AT_ENTERCLOSET" },
 		{ 262144, "AT_EXITCLOSET" },
 		{ 524288, "AT_ENTERSAFEZONE" },
+		{ 1048576, "AT_EXITSAFEZONE" },
+		{ 2097152, "AT_CANCEL" },
+		{ 4194304, "AT_CONTAINERFLUSHBODY" },
 		{ 16777216, "AT_PLACE_ITEM_IN_CONTAINER" },
 		{ 33554432, "AT_USE_DOWN" },
 		{ 67108864, "AT_USE_HOLD" },
 		{ 134217728, "AT_CONTEXTACTION" },
+		{ 268435456, "AT_INTERRUPTIBLE_TAP" },
+		{ 536870912, "AT_ITEMCONTAINER" },
+		{ 1073741824, "AT_USE_QUICK" },
 	};
 
-	(*g_Enums)["ERANDOM_DISTRIBUTION"] = {
-		{ 0, "RND_UNIFORM" },
-		{ 1, "RND_SAWTOOTH" },
+	(*g_Enums)["EActivationPriority"] = {
+		{ 0, "eActivatable_First" },
+		{ 1, "eActivatable_PlayModeAddedPhysics" },
+		{ 2, "eActivatable_DestructiblePhysics" },
+		{ 3, "eActivatable_PhysicsWind" },
+		{ 4, "eActivatable_Physics" },
+		{ 5, "eActivatable_PhysicsDone" },
+		{ 6, "eActivatable_Keywords" },
+		{ 7, "eActivatable_EventChannel" },
+		{ 8, "eActivatable_Items" },
+		{ 9, "eActivatable_Actor" },
+		{ 10, "eActivatable_Hitman" },
+		{ 11, "eActivatable_AnimPlayer" },
+		{ 12, "eActivatable_Sequence" },
+		{ 13, "eActivatable_SpawnPoint" },
+		{ 14, "eActivatable_CoverPlane" },
+		{ 15, "eActivatable_GuardPoint" },
+		{ 16, "eActivatable_Guide" },
+		{ 17, "eActivatable_CombatAct" },
+		{ 18, "eActivatable_CombatAttractor" },
+		{ 19, "eActivatable_SequenceController" },
+		{ 20, "eActivatable_KnownEntityAspects" },
+		{ 21, "eActivatable_AIReasoningGrid" },
+		{ 22, "eActivatable_HM5Zone" },
+		{ 23, "eActivatable_Crowds" },
+		{ 24, "eActivatable_ChildNetworkAct" },
+		{ 25, "eActivatable_Door" },
+		{ 26, "eActivatable_UI_Setup" },
+		{ 27, "eActivatable_NormalGameplay" },
+		{ 28, "eActivatable_NormalGameplay_Condition" },
+		{ 29, "eActivatable_NormalGameplay_Values" },
+		{ 30, "eActivatable_NormalGameplay_State" },
+		{ 31, "eActivatable_HeroSpawns" },
+		{ 32, "eActivatable_UI" },
+		{ 33, "eActivatable_Locomotion" },
+		{ 34, "eActivatable_Timers" },
+		{ 35, "eActivatable_AreaTriggers" },
+		{ 36, "eActivatable_Default" },
+		{ 37, "eActivatable_GameEventListener" },
+		{ 38, "eLAST_ACTIVATION_PRIORITY" },
 	};
 
-	(*g_Enums)["InputControlNamesp.eHM5InputActionType"] = {
-		{ 0, "eTypeGet" },
-		{ 1, "eTypeHold" },
-		{ 2, "eTypeRepeat" },
-		{ 3, "eTypeTap" },
-		{ 4, "eTypeRelease" },
-		{ 5, "eTypeDownedge" },
-		{ 6, "eTypeFastTap" },
-		{ 7, "eTypeHoldDown" },
-		{ 8, "eTypeFireOnceHoldDown" },
-		{ 9, "eTypeClickHold" },
-		{ 10, "eTypePress" },
-		{ 11, "eTypeANALOG" },
-		{ 12, "eTypeANALOGRAW" },
-		{ 13, "eTypeRELATIVE" },
-		{ 14, "eTYPE_INVALID" },
+	(*g_Enums)["EActorAIDot"] = {
+		{ 0, "eAAID_None" },
+		{ 1, "eAAID_Distracted" },
+		{ 2, "eAAID_PotentialThreat" },
+		{ 3, "eAAID_PotentialThreatDistracted" },
+		{ 4, "eAAID_Aggressive" },
+		{ 5, "eAAID_EscortingOut" },
+		{ 6, "eAAID_Fleeing" },
+		{ 7, "eAAID_Unconscious" },
+		{ 8, "eAAID_Stunned" },
+		{ 9, "eAAID_Grenade" },
+		{ 100, "eAAID_PotentialThreatDisabled" },
 	};
 
-	(*g_Enums)["ERatingCategory"] = {
-		{ 0, "ERatingCategory_Invalid" },
-		{ 1, "ERatingCategory_Flawless" },
-		{ 2, "ERatingCategory_Violence" },
-		{ 3, "ERatingCategory_Cunning" },
-		{ 4, "ERatingCategory_Noise" },
-		{ 5, "ERatingCategory_COUNT" },
+	(*g_Enums)["EActorAIState"] = {
+		{ 0, "eAAIS_None" },
+		{ 1, "eAAIS_Distracted" },
+		{ 2, "eAAIS_PotentialThreat" },
+		{ 3, "eAAIS_PotentialThreatDistracted" },
+		{ 4, "eAAIS_PotentialThreatDisabled" },
+		{ 5, "eAAIS_Aggressive" },
+		{ 6, "eAAIS_EscortingOut" },
+		{ 7, "eAAIS_Fleeing" },
+		{ 8, "eAAIS_Unconscious" },
+		{ 9, "eAAIS_Stunned" },
+		{ 10, "eAAIS_Grenade" },
+		{ 11, "eAAIS_DisabledInCombat" },
+		{ 12, "eAAIS_Disabled" },
+		{ 13, "eAAIS_Max" },
 	};
 
-	(*g_Enums)["EDebugSpatialInfoVerbosity"] = {
-		{ 0, "EDSIV_Overview" },
-		{ 1, "EDSIV_HierachicalView" },
-		{ 2, "EDSIV_Full" },
+	(*g_Enums)["EActorAnimationOrder"] = {
+		{ 0, "AAO_None" },
+		{ 1, "AAO_Stand" },
+		{ 2, "AAO_Move" },
+		{ 3, "AAO_React" },
+		{ 4, "AAO_Act" },
+		{ 5, "AAO_MoveToAct" },
+		{ 6, "AAO_MoveToCover" },
+		{ 7, "AAO_ShootFromCover" },
+		{ 8, "AAO_PeekFromCover" },
+		{ 9, "AAO_Death" },
+		{ 10, "AAO_Impact" },
+		{ 11, "AAO_Controlled" },
 	};
 
-	(*g_Enums)["EPlayMode"] = {
-		{ 1, "PLAYMODE_STOPPED" },
-		{ 2, "PLAYMODE_PAUSED" },
-		{ 3, "PLAYMODE_PLAYING" },
+	(*g_Enums)["EActorBumpType"] = {
+		{ 0, "EABT_NONE" },
+		{ 1, "EABT_UPPERBODY" },
+		{ 2, "EABT_HEAD" },
 	};
 
-	(*g_Enums)["ZHM5FaceFXSpecificEventConsumer.EEvent"] = {
-		{ 0, "eNone" },
-		{ 1, "eGetInCombatCoverExhalation" },
-		{ 2, "eLeaveCombatCoverExhalation" },
-		{ 3, "eAgilityStrainedInhaleExhale" },
-		{ 4, "eAgilityGroan" },
-		{ 5, "eCloseCombatAttackSnarl" },
-		{ 6, "eCloseCombatStainedGroan" },
-		{ 7, "eCloseCombatSilentKillShush" },
+	(*g_Enums)["EActorCCPreset"] = {
+		{ 0, "ACCP_CivilianFemale" },
+		{ 1, "ACCP_CivilianeMale" },
+		{ 2, "ACCP_GuardMale" },
+		{ 3, "ACCP_GuardMaleElite" },
+		{ 4, "ACCP_GuardMaleSuperElite" },
+		{ 5, "ACCP_Ignore" },
+		{ 6, "ACCP_None" },
 	};
 
-	(*g_Enums)["EHintMessageType"] = {
-		{ 0, "EHintMessageType_Hint" },
-		{ 1, "EHintMessageType_InstinctHint" },
-		{ 2, "EHintMessageType_InstinctPrompt" },
-		{ 3, "EHintMessageType_Tutorial" },
+	(*g_Enums)["EActorEmotionState"] = {
+		{ 0, "AES_Ambient" },
+		{ 1, "AES_Alerted" },
+		{ 2, "AES_Scared" },
+		{ 3, "AES_Hunt" },
+		{ 4, "AES_Combat" },
+		{ 268435455, "AES_None" },
 	};
 
-	(*g_Enums)["EHUDMessageStatus"] = {
-		{ 0, "HUD_MESSAGE_UNUSED" },
-		{ 1, "HUD_MESSAGE_ATTACH" },
-		{ 2, "HUD_MESSAGE_FADEIN" },
-		{ 3, "HUD_MESSAGE_DISPLAY" },
-		{ 4, "HUD_MESSAGE_FADEOUT" },
+	(*g_Enums)["EActorEventTypes"] = {
+		{ 0, "eAET_OnAlive" },
+		{ 1, "eAET_OnPacified" },
+		{ 2, "eAET_OnMurdered" },
+		{ 3, "eAET_OnAccidentDeath" },
+		{ 4, "eAET_OnUnnoticableKill" },
+		{ 5, "eAET_OnBodyNoticed" },
+		{ 6, "eAET_OnBodyBagged" },
+		{ 7, "eAET_OnDying" },
+		{ 8, "eAET_OnDead" },
+		{ 9, "eAET_OnBodyHidden" },
+		{ 10, "eAET_OnBodyFlushed" },
+		{ 11, "eAET_OnBodyDumped" },
+		{ 12, "eAET_OnDelete" },
 	};
 
-	(*g_Enums)["ZHM5HitmanHealthModifier.EHealthValue"] = {
-		{ 40, "eHealth40" },
-		{ 0, "eHealth0" },
-		{ 50, "eHealth50" },
-		{ 10, "eHealth10" },
-		{ 60, "eHealth60" },
-		{ 20, "eHealth20" },
-		{ 70, "eHealth70" },
-		{ 30, "eHealth30" },
-		{ 80, "eHealth80" },
-		{ 90, "eHealth90" },
-		{ 100, "eHealth100" },
+	(*g_Enums)["EActorFaction"] = {
+		{ 0, "eActorFaction_Default" },
+		{ 1, "eActorFaction_VIP_1" },
+		{ 2, "eActorFaction_VIP_2" },
+		{ 3, "eActorFaction_VIP_3" },
+		{ 4, "eActorFaction_VIP_4" },
+		{ 5, "eActorFaction_VIP_5" },
+		{ 6, "eActorFaction_VIP_6" },
+		{ 7, "eActorFaction_VIP_7" },
 	};
 
-	(*g_Enums)["ZSecuritySystemCameraConfiguration.ECameraEscalationSituations"] = {
-		{ 0, "eCES_Arrest" },
-		{ 1, "eCES_Combat" },
+	(*g_Enums)["EActorGroup"] = {
+		{ 0, "eAG_Group_A" },
+		{ 1, "eAG_Group_B" },
+		{ 2, "eAG_Group_C" },
+		{ 3, "eAG_Group_D" },
+		{ 4, "eAG_Count" },
 	};
 
-	(*g_Enums)["EObjectiveType"] = {
-		{ 0, "OBJECTIVE_PRIMARY" },
-		{ 1, "OBJECTIVE_SECONDARY" },
-		{ 2, "OBJECTIVE_TERTIARY" },
+	(*g_Enums)["EActorLookAtPriority"] = {
+		{ 0, "eALAPriority_Ambient" },
+		{ 1, "eALAPriority_AmbientHigh" },
+		{ 2, "eALAPriority_Alert" },
+		{ 3, "eALAPriority_AlertHigh" },
+		{ 4, "eALAPriority_Hunt" },
+		{ 5, "eALAPriority_HuntHigh" },
+		{ 6, "eALAPriority_Combat" },
+		{ 7, "eALAPriority_CombatHigh" },
 	};
 
-	(*g_Enums)["EWeaponUpgradeUse"] = {
-		{ 0, "eWUU_PrimaryOnly" },
-		{ 1, "eWUU_SecondaryOnly" },
-		{ 2, "eWUU_AllFireModes" },
+	(*g_Enums)["EActorLookAtStopReason"] = {
+		{ 0, "eSR_Unknown" },
+		{ 1, "eSR_Disabled" },
+		{ 2, "eSR_DurationExpired" },
+		{ 3, "eSR_OutOfRange" },
+		{ 4, "eSR_OutOfSight" },
+		{ 5, "eSR_OutOfRemainingPathDistance" },
+		{ 6, "eSR_Interrupted" },
+		{ 7, "eSR_TargetRemoved" },
+		{ 8, "eSR_HigherPriorityProfile" },
+		{ 9, "eSR_HideInPlainSight" },
+	};
+
+	(*g_Enums)["EActorLookAtTargetType"] = {
+		{ 0, "eALAT_Invalid" },
+		{ 1, "eALAT_PositionTarget" },
+		{ 2, "eALAT_KnownEntityType" },
+		{ 3, "eALAT_PointOfInterest" },
+		{ 4, "eALAT_Hero" },
+		{ 5, "eALAT_Screenplay" },
+		{ 6, "eALAPT_Max" },
+	};
+
+	(*g_Enums)["EActorPerceptionSensitivity"] = {
+		{ 0, "APS_AMBIENT_DEAFBLIND" },
+		{ 1, "APS_AMBIENT_SLEEPING" },
+		{ 2, "APS_AMBIENT_PREOCCUPIED" },
+		{ 3, "APS_AMBIENT" },
+		{ 4, "APS_ALERT_LOW" },
+		{ 5, "APS_ALERT" },
+		{ 6, "APS_COMBAT" },
+		{ 7, "APS_SPIDER_SENSE" },
+	};
+
+	(*g_Enums)["EActorRank"] = {
+		{ 0, "AR_Default" },
+		{ 1, "AR_Elite" },
+		{ 2, "AR_Cop" },
+		{ 3, "AR_Goon" },
+	};
+
+	(*g_Enums)["EActorRole"] = {
+		{ 0, "eActorRole_Default" },
+		{ 1, "eActorRole_Bodyguard" },
+		{ 2, "eActorRole_VIP" },
+	};
+
+	(*g_Enums)["EActorSecondaryIconState"] = {
+		{ 0, "eSIS_Clear" },
+		{ 1, "eSIS_Infected" },
+		{ 2, "eSIS_Infected_Stage1" },
+		{ 3, "eSIS_Infected_Stage2" },
+		{ 4, "eSIS_Infected_Stage3" },
 	};
 
 	(*g_Enums)["EActorSoundDefs"] = {
 		{ 0, "_NoSound" },
-		{ 399, "InCa_XplnGotShot" },
 		{ 1, "Dth_BrkNck" },
 		{ 2, "Dth_Fll" },
-		{ 393, "Gen_PhoneActLockdown" },
 		{ 3, "Dth_GnSht" },
 		{ 4, "Dth_HdSht" },
-		{ 387, "VIP_MssngCallOut" },
 		{ 5, "Dth_Mpct" },
 		{ 6, "Dth_SltThrt" },
-		{ 397, "InCa_FrskHeadsUpRdo" },
 		{ 7, "Dth_Strngl" },
 		{ 8, "Dth_Xplo" },
-		{ 407, "Exp_Drink" },
 		{ 9, "Dth_PrpF" },
 		{ 10, "Dth_Electro" },
-		{ 401, "InDedBdy_NoFaulVctmXpln" },
 		{ 11, "Dth_Burn" },
 		{ 12, "Dth_Crush" },
-		{ 395, "Cmbt_HMPrptssKnckOut" },
 		{ 13, "Dth_Scrm" },
 		{ 14, "Dth_Hrt" },
-		{ 405, "Exp_ClearThroat" },
 		{ 15, "Dth_SrpsGrab" },
 		{ 16, "Dth_HumShldStrain" },
-		{ 415, "Exp_Scared" },
 		{ 17, "Dth_Snore" },
 		{ 18, "Dth_Groan" },
-		{ 409, "Exp_Idle" },
 		{ 19, "Dth_Dump" },
 		{ 20, "Dth_PrpTssFrntAck" },
-		{ 403, "Ar_BlameKnckDwnMelee" },
 		{ 21, "Dth_Headlock" },
 		{ 22, "Dth_Blinded" },
-		{ 413, "Exp_Swallow" },
 		{ 23, "Dth_BeeSting" },
 		{ 24, "Gen_Grt47" },
 		{ 25, "Gen_GrtGrd47WGun" },
 		{ 26, "Gen_GrtTrgt" },
 		{ 27, "Gen_GrtTrgtRsp" },
 		{ 28, "Gen_NPC2NPCGrt" },
-		{ 411, "Exp_InhaleFast" },
 		{ 29, "Gen_NPC2NPCRsp" },
 		{ 30, "Gen_GtHlp" },
 		{ 31, "Gen_GtHlpLd" },
@@ -3886,7 +1444,6 @@ void ZHMEnums::RegisterEnums()
 		{ 34, "Gen_HMHere" },
 		{ 35, "Gen_HMThere" },
 		{ 36, "Gen_SrpsLow" },
-		{ 419, "InCa_AckBdy" },
 		{ 37, "Gen_SrpsLowShort" },
 		{ 38, "Gen_Srps" },
 		{ 39, "Gen_SrpsLd" },
@@ -3907,15 +1464,12 @@ void ZHMEnums::RegisterEnums()
 		{ 54, "Gen_CoinCurse" },
 		{ 55, "Gen_TransportGreet" },
 		{ 56, "Gen_Thanks" },
-		{ 391, "Gen_CloseCall" },
 		{ 57, "Gen_ReturnItem2Guard" },
 		{ 58, "Gen_NoWay1" },
-		{ 385, "VIP_MssgnC_Ldr" },
 		{ 59, "Gen_NoWay2Kidding" },
 		{ 60, "Gen_NoWay3Joke" },
 		{ 61, "Gen_NoWay44Real" },
 		{ 62, "Gen_NoWay5DntBeliv" },
-		{ 389, "Dth_Poison" },
 		{ 63, "Gen_NoWay6Serious" },
 		{ 64, "Gen_NoWay7Horrible" },
 		{ 65, "Gen_Way1" },
@@ -3983,350 +1537,988 @@ void ZHMEnums::RegisterEnums()
 		{ 127, "Cmbt_LstSghtRsp" },
 		{ 128, "Cmbt_NdrAttck" },
 		{ 129, "Cmbt_Relod" },
-		{ 314, "Trspss_Rsp" },
 		{ 130, "Cmbt_Scrm" },
 		{ 131, "Cmbt_ThrowFlash" },
-		{ 260, "InCa_XplnImposter" },
 		{ 132, "Cmbt_ThrowFlashMiss" },
 		{ 133, "Cmbt_ThrowFlashMiss2" },
-		{ 318, "Trspss_EscortRequestRepeat" },
 		{ 134, "Cmbt_ThrowFlashWin" },
 		{ 135, "Cmbt_ThrowFlashWin2" },
-		{ 312, "Trspss_Wrn2" },
 		{ 136, "Cmbt_TkDwnLdr" },
 		{ 137, "Cmbt_VntAck" },
-		{ 258, "InCa_XplnWpn" },
 		{ 138, "Cmbt_Whmp" },
 		{ 139, "Cmbt_StalemateHold" },
-		{ 268, "InCa_XplnHuntTargetWin" },
 		{ 140, "Cmbt_StalemateTnt" },
 		{ 141, "Cmbt_TriggerTheAlarm" },
-		{ 262, "InCa_XplnRsp" },
 		{ 142, "Cmbt_47Mpty" },
 		{ 143, "Cmbt_47SuperSize" },
-		{ 256, "InCa_XplnTrspss" },
 		{ 144, "Evac_PrtTrgtSolo" },
 		{ 145, "Evac_PrtTrgtAck" },
-		{ 266, "InCa_XplnKnckDwnGhost" },
 		{ 146, "Evac_PrtTrgtAckLdr" },
 		{ 147, "Evac_PrtTrgtEscrt" },
-		{ 276, "InDedBdy_Inv" },
 		{ 148, "Evac_PrtTrgtStop" },
 		{ 149, "Evac_PrtTrgtStnd" },
-		{ 270, "InCa_VIPDownAck" },
 		{ 150, "Evac_PrtTrgtStndRsp" },
 		{ 151, "Evac_Cornered" },
-		{ 264, "InCa_XplnKnckDwn" },
 		{ 152, "Evac_MovOut" },
 		{ 153, "Evac_PathChange" },
-		{ 274, "InDedBdy_Ack" },
 		{ 154, "Evac_PeelOff" },
 		{ 155, "Evac_LastPeelOff" },
-		{ 284, "InDedBdy_PrmtrBrchWrn1" },
 		{ 156, "Evac_ShltrArrv" },
 		{ 157, "Evac_ShltrBad" },
-		{ 278, "InDedBdy_Massive" },
 		{ 158, "Evac_ShltrLdr" },
 		{ 159, "Evac_ShltrRsp" },
-		{ 272, "Accdnt_Inv" },
 		{ 160, "Evac_TrgtHitRsp" },
 		{ 161, "AvoidXplo_Ack" },
 		{ 162, "AvoidXplo_Stnd" },
 		{ 163, "Ar_47BadAction" },
-		{ 292, "InDedBdy_WakeNkdRsp" },
 		{ 164, "Ar_47X" },
 		{ 165, "Ar_BadDsg" },
 		{ 166, "Ar_BlmeKll" },
 		{ 167, "Ar_BlameKnckDwn" },
 		{ 168, "Ar_BlameKnckDwnPT" },
 		{ 169, "Ar_BlameKllPT" },
-		{ 290, "InDedBdy_WakeRsp" },
 		{ 170, "Ar_47BadActionPT" },
 		{ 171, "Ar_DrgBody" },
-		{ 300, "InDsg_Stnd" },
 		{ 172, "Ar_FkeSrrdrTnt" },
 		{ 173, "Ar_HMDoor" },
-		{ 294, "Rcvr_XplnDsg" },
 		{ 174, "Ar_Strangle" },
 		{ 175, "Ar_Trspss" },
-		{ 288, "InDedBdy_VctmRcvr" },
 		{ 176, "Ar_WeapWrn1" },
 		{ 177, "Ar_WeapWrn2" },
-		{ 298, "InDsg_FllwWrn3" },
 		{ 178, "Ar_Wrn1" },
 		{ 179, "Ar_Wrn2" },
-		{ 308, "InDsg_FllwWrnJoinr" },
 		{ 180, "Ar_Wrn3" },
 		{ 181, "Ar_VictimAck" },
-		{ 302, "InDsg_StndHidden" },
 		{ 182, "Ar_Thief" },
 		{ 183, "Ar_Rsp" },
-		{ 296, "InDsg_FllwWrn1" },
 		{ 184, "Sniper_Ack" },
 		{ 185, "InCa_BackupCll" },
-		{ 306, "InDsg_FllwWrn1Wpn" },
 		{ 186, "InCa_ChckCvr" },
 		{ 187, "InCa_CivRptFail" },
-		{ 316, "Trspss_EscortAck" },
 		{ 188, "InCa_CivUpset" },
 		{ 189, "InCa_ClstTnt" },
-		{ 310, "Trspss_Stnd" },
 		{ 190, "InCa_HMTnt" },
 		{ 191, "InCa_Idle" },
-		{ 304, "InDsg_FllwWrn1Ack" },
 		{ 192, "InCa_NitiateHMKnwn" },
 		{ 193, "InCa_SrchLdr" },
-		{ 378, "Sentry_FrskWpnAck" },
 		{ 194, "InCa_Stnd" },
 		{ 195, "InCa_StndAgtd" },
-		{ 324, "Trspss_EscortStayRequest" },
 		{ 196, "InCa_StndAgtdLdr" },
 		{ 197, "InCa_StndAgtdHMKnwn" },
-		{ 382, "Sentry_PostCommentRsp" },
 		{ 198, "InCa_StndAgtdHMKnwnLdr" },
 		{ 199, "InCa_StndHMKnwn" },
-		{ 376, "Sentry_ItemRequest" },
 		{ 200, "InCa_StndHMKnwnLdr" },
 		{ 201, "InCa_StndLdr" },
-		{ 322, "Trspss_EscortArrest" },
 		{ 202, "InCa_StndRsp" },
 		{ 203, "InCa_StndLckDwnFlsAlrm" },
-		{ 332, "InCu_CrAlrmStndRsp" },
 		{ 204, "InCa_VntTnt" },
 		{ 205, "InCa_Brk2Civ" },
-		{ 326, "InCu_CivCmnd" },
 		{ 206, "InCa_Brk2Grd" },
 		{ 207, "InCa_Brk2Rdo" },
-		{ 320, "Trspss_EscortOk" },
 		{ 208, "InCa_BrkAsk" },
 		{ 209, "InCa_GhostAsk" },
-		{ 330, "InCu_CrAlrmAck" },
 		{ 210, "InCa_TriggerTheAlarm" },
 		{ 211, "InCa_Xpln47Thief" },
-		{ 340, "InCu_PrpTssSeeInv" },
 		{ 212, "InCa_DstrssInv" },
 		{ 213, "InCa_DstrssLdr" },
-		{ 334, "InCu_FtStpsStnd" },
 		{ 214, "InCa_DstrssInvLdr" },
 		{ 215, "InCa_WakeAsk" },
-		{ 328, "InCu_CivRsp" },
 		{ 216, "InCa_47Rcall" },
 		{ 217, "InCa_WakerStnd" },
-		{ 338, "InCu_PrpTssHearStndRsp" },
 		{ 218, "InCa_ClsCmbtAck" },
 		{ 219, "InCa_SeeDthInv" },
-		{ 348, "InCu_RecurAck" },
 		{ 220, "InCa_SeeDthInvLdr" },
 		{ 221, "InCa_SeeDthLdr" },
-		{ 342, "InCu_PrpTssSeeStndRsp" },
 		{ 222, "InCa_XploInv" },
 		{ 223, "InCa_XploInvLdr" },
-		{ 336, "InCu_PrpTssHearInv" },
 		{ 224, "InCa_XploLdr" },
 		{ 225, "InCa_AlarmAck" },
-		{ 282, "InDedBdy_CircleBdy" },
 		{ 226, "InCa_GnShtInv" },
 		{ 227, "InCa_GnShtInvLdr" },
-		{ 356, "InSt_HMAglty" },
 		{ 228, "InCa_GnShtLdr" },
 		{ 229, "InCa_RecurSvrInv" },
-		{ 286, "InDedBdy_47AsGrdAck" },
 		{ 230, "InCa_RecurSvrInvLdr" },
 		{ 231, "InCa_RecurSvrInvRsp" },
-		{ 280, "InDedBdy_CntnAck" },
 		{ 232, "InCa_RecurSvrLdr" },
 		{ 233, "InCa_RecurSvrRsp" },
-		{ 354, "InCu_EscrtTrgtRedLight" },
 		{ 234, "InCa_LckDwnGtOutLdr" },
 		{ 235, "InCa_LckDwnGtOutRsp" },
-		{ 364, "InSt_Wrn" },
 		{ 236, "InCa_LckDwnWrn1" },
 		{ 237, "InCa_LckDwnWrn2" },
-		{ 358, "InSt_HMBzStnd" },
 		{ 238, "InCa_LckDwnWrn3" },
 		{ 239, "InCa_LckDwnCivCmnt" },
-		{ 352, "InCu_ItemAckLdr" },
 		{ 240, "InCa_FrskAck" },
 		{ 241, "InCa_Frsk" },
-		{ 362, "InSt_PrpTssSee" },
 		{ 242, "InCa_FrskCln" },
 		{ 243, "InCa_FrskWpn" },
-		{ 372, "FseBx_SabAck" },
 		{ 244, "InCa_Xpln47Wpn" },
 		{ 245, "InCa_XplnAccdnt" },
-		{ 366, "InSt_SickAck" },
 		{ 246, "InCa_XplnDedBdy" },
 		{ 247, "InCa_XplnDedBdyMassive" },
-		{ 360, "InSt_HMInCvr" },
 		{ 248, "InCa_XplnDrgBdy" },
 		{ 249, "InCa_XplnDstrss" },
-		{ 370, "FseBx_Fixing" },
 		{ 250, "InCa_XplnExplo" },
 		{ 251, "InCa_XplnGhost" },
-		{ 380, "Sentry_DenyDsg" },
 		{ 252, "InCa_XplnGnsht" },
 		{ 253, "InCa_XplnNkdBdy" },
-		{ 374, "Sentry_Frsk" },
 		{ 254, "InCa_XplnPcfdBdy" },
 		{ 255, "InCa_XplnSeeDth" },
-		{ 368, "InSt_PQ" },
+		{ 256, "InCa_XplnTrspss" },
 		{ 257, "InCa_XplnX" },
+		{ 258, "InCa_XplnWpn" },
 		{ 259, "InCa_XplnDsg" },
+		{ 260, "InCa_XplnImposter" },
 		{ 261, "InCa_XplnRecurSvr" },
+		{ 262, "InCa_XplnRsp" },
 		{ 263, "InCa_XplnAckRdo" },
+		{ 264, "InCa_XplnKnckDwn" },
 		{ 265, "InCa_XplnKnckDwnVctm" },
+		{ 266, "InCa_XplnKnckDwnGhost" },
 		{ 267, "InCa_XplnSeeStrngl" },
+		{ 268, "InCa_XplnHuntTargetWin" },
 		{ 269, "InCa_XplnHuntTargetFail" },
+		{ 270, "InCa_VIPDownAck" },
 		{ 271, "InCa_VIPKillAck" },
+		{ 272, "Accdnt_Inv" },
 		{ 273, "InDedBdy_BloodPllAck" },
+		{ 274, "InDedBdy_Ack" },
 		{ 275, "InDedBdy_NkdAck" },
+		{ 276, "InDedBdy_Inv" },
 		{ 277, "InDedBdy_BllPllRpt" },
+		{ 278, "InDedBdy_Massive" },
 		{ 279, "InDedBdy_PcfdInv" },
+		{ 280, "InDedBdy_CntnAck" },
 		{ 281, "InDedBdy_Stnd" },
+		{ 282, "InDedBdy_CircleBdy" },
 		{ 283, "InDedBdy_CivCmnt" },
+		{ 284, "InDedBdy_PrmtrBrchWrn1" },
 		{ 285, "InDedBdy_PrmtrBrchWrn2" },
+		{ 286, "InDedBdy_47AsGrdAck" },
 		{ 287, "InDedBdy_BodyGone" },
+		{ 288, "InDedBdy_VctmRcvr" },
 		{ 289, "InDedBdy_WakerWake" },
+		{ 290, "InDedBdy_WakeRsp" },
 		{ 291, "InDedBdy_WakeNkdLdr" },
+		{ 292, "InDedBdy_WakeNkdRsp" },
 		{ 293, "Rcvr_Xpln47" },
+		{ 294, "Rcvr_XplnDsg" },
 		{ 295, "Rcvr_XplnKnckDwn" },
+		{ 296, "InDsg_FllwWrn1" },
 		{ 297, "InDsg_FllwWrn2" },
+		{ 298, "InDsg_FllwWrn3" },
 		{ 299, "InDsg_Pzzl" },
+		{ 300, "InDsg_Stnd" },
 		{ 301, "InDsg_StndDistance" },
+		{ 302, "InDsg_StndHidden" },
 		{ 303, "InDsg_HdNPlnSght" },
+		{ 304, "InDsg_FllwWrn1Ack" },
 		{ 305, "InDsg_FllwWrn1BadAction" },
+		{ 306, "InDsg_FllwWrn1Wpn" },
 		{ 307, "InDsg_FllwWrn1BadSound" },
+		{ 308, "InDsg_FllwWrnJoinr" },
 		{ 309, "InDsg_FllwWrn1ShadyItem" },
+		{ 310, "Trspss_Stnd" },
 		{ 311, "Trspss_Wrn1" },
+		{ 312, "Trspss_Wrn2" },
 		{ 313, "Trspss_Wrn3" },
+		{ 314, "Trspss_Rsp" },
 		{ 315, "Trspss_SrchAckLegal47" },
+		{ 316, "Trspss_EscortAck" },
 		{ 317, "Trspss_EscortRequest" },
+		{ 318, "Trspss_EscortRequestRepeat" },
 		{ 319, "Trspss_EscortStayClose" },
+		{ 320, "Trspss_EscortOk" },
 		{ 321, "Trspss_EscortStnd" },
+		{ 322, "Trspss_EscortArrest" },
 		{ 323, "Trspss_EscortExit" },
+		{ 324, "Trspss_EscortStayRequest" },
 		{ 325, "InCu_Brk2Rdo" },
+		{ 326, "InCu_CivCmnd" },
 		{ 327, "InCu_Stnd" },
+		{ 328, "InCu_CivRsp" },
 		{ 329, "InCu_BackupRqst" },
+		{ 330, "InCu_CrAlrmAck" },
 		{ 331, "InCu_CrAlrmLdr" },
+		{ 332, "InCu_CrAlrmStndRsp" },
 		{ 333, "InCu_FtStpsAck" },
+		{ 334, "InCu_FtStpsStnd" },
 		{ 335, "InCu_PrpTssHearAck" },
+		{ 336, "InCu_PrpTssHearInv" },
 		{ 337, "InCu_PrpTssHearLdr" },
+		{ 338, "InCu_PrpTssHearStndRsp" },
 		{ 339, "InCu_PrpTssSeeAck" },
+		{ 340, "InCu_PrpTssSeeInv" },
 		{ 341, "InCu_PrpTssSeeLdr" },
+		{ 342, "InCu_PrpTssSeeStndRsp" },
 		{ 343, "InCu_RdoAck" },
 		{ 344, "InCu_RdoInv" },
 		{ 345, "InCu_RdoLdr" },
 		{ 346, "InCu_RdoStndRsp" },
 		{ 347, "InCu_WpnInv" },
+		{ 348, "InCu_RecurAck" },
 		{ 349, "InCu_RecurInv" },
 		{ 350, "InCu_RecurLdr" },
 		{ 351, "InCu_RecurRsp" },
+		{ 352, "InCu_ItemAckLdr" },
 		{ 353, "InCu_CrAlrmStndStndRsp" },
+		{ 354, "InCu_EscrtTrgtRedLight" },
 		{ 355, "InCu_EscrtTrgtGreenLight" },
+		{ 356, "InSt_HMAglty" },
 		{ 357, "InSt_HMBz" },
+		{ 358, "InSt_HMBzStnd" },
 		{ 359, "InSt_HMEntXit" },
+		{ 360, "InSt_HMInCvr" },
 		{ 361, "InSt_HMSnkng" },
+		{ 362, "InSt_PrpTssSee" },
 		{ 363, "InSt_Stnd" },
+		{ 364, "InSt_Wrn" },
 		{ 365, "InSt_HM2Cls" },
+		{ 366, "InSt_SickAck" },
 		{ 367, "InSt_AdiosRequest" },
+		{ 368, "InSt_PQ" },
 		{ 369, "FseBx_Fixed" },
+		{ 370, "FseBx_Fixing" },
 		{ 371, "FseBx_GoFix" },
+		{ 372, "FseBx_SabAck" },
 		{ 373, "Sentry_DenyEntry" },
+		{ 374, "Sentry_Frsk" },
 		{ 375, "Sentry_FrskRequest" },
+		{ 376, "Sentry_ItemRequest" },
 		{ 377, "Sentry_Accepted" },
+		{ 378, "Sentry_FrskWpnAck" },
 		{ 379, "Sentry_47LoiterAck" },
+		{ 380, "Sentry_DenyDsg" },
 		{ 381, "Sentry_PostCommentLdr" },
+		{ 382, "Sentry_PostCommentRsp" },
 		{ 383, "VIP_MssgnA_Ldr" },
 		{ 384, "VIP_MssgnB_Rsp" },
+		{ 385, "VIP_MssgnC_Ldr" },
 		{ 386, "VIP_MssgnD_Rsp" },
+		{ 387, "VIP_MssngCallOut" },
 		{ 388, "Dth_Sick" },
+		{ 389, "Dth_Poison" },
 		{ 390, "Gen_Avoid" },
+		{ 391, "Gen_CloseCall" },
 		{ 392, "Gen_PhnPckUP" },
+		{ 393, "Gen_PhoneActLockdown" },
 		{ 394, "Cmbt_FlushOutLdr" },
+		{ 395, "Cmbt_HMPrptssKnckOut" },
 		{ 396, "InCa_FrskHeadsUpLdr" },
+		{ 397, "InCa_FrskHeadsUpRdo" },
 		{ 398, "InCa_XplnLOS" },
+		{ 399, "InCa_XplnGotShot" },
 		{ 400, "InDedBdy_CivCmntPhone" },
+		{ 401, "InDedBdy_NoFaulVctmXpln" },
 		{ 402, "InDsg_FllwWrn1Nkd" },
+		{ 403, "Ar_BlameKnckDwnMelee" },
 		{ 404, "Exp_Carry" },
+		{ 405, "Exp_ClearThroat" },
 		{ 406, "Exp_Cough" },
+		{ 407, "Exp_Drink" },
 		{ 408, "Exp_Exhale" },
+		{ 409, "Exp_Idle" },
 		{ 410, "Exp_Inhale" },
+		{ 411, "Exp_InhaleFast" },
 		{ 412, "Exp_Sniff" },
+		{ 413, "Exp_Swallow" },
 		{ 414, "Exp_Think" },
+		{ 415, "Exp_Scared" },
 		{ 416, "Exp_Gld" },
 		{ 417, "Exp_Dsppntd" },
 		{ 418, "Exp_InPain" },
+		{ 419, "InCa_AckBdy" },
 		{ 420, "InCa_AckBdyLdr" },
 		{ 421, "InDedBdy_CivCmntPcfd" },
 		{ 422, "InDedBdy_CivCmntPhonePcfd" },
 		{ 423, "Gen_SocialAck" },
 	};
 
-	(*g_Enums)["Network.OrderingChannel"] = {
-		{ 0, "SYSTEM_INTERNAL" },
-		{ 1, "PLAYER_INPUT" },
-		{ 2, "SYNCH_POINT" },
-		{ 3, "CAMERA" },
-		{ 4, "PROJECTILE" },
-		{ 5, "PIN_SIGNAL" },
-		{ 6, "GAME_STATE" },
-		{ 7, "HERO_STATE" },
-		{ 8, "NPC_STATE" },
-		{ 9, "WEAPONS" },
-		{ 10, "INTERACTIONS" },
-		{ 11, "ACTS" },
-		{ 12, "ANIMATION" },
-		{ 13, "MISC" },
-		{ 16, "MAX_CHANNELS" },
+	(*g_Enums)["EActorState"] = {
+		{ 0, "AS_DEACTIVATED" },
+		{ 1, "AS_ALIVE" },
+		{ 2, "AS_DYING" },
+		{ 3, "AS_DEAD" },
+		{ 4, "AS_DISABLED" },
 	};
 
-	(*g_Enums)["ECheatGroup"] = {
-		{ 0, "eCGNone" },
-		{ 1, "eCGPistols" },
-		{ 2, "eCGSMGs" },
-		{ 3, "eCGAssaultRifles" },
-		{ 4, "eCGShotguns" },
-		{ 5, "eCGSniper" },
-		{ 6, "eCGExotics" },
-		{ 7, "eCGDevices" },
+	(*g_Enums)["EActorType"] = {
+		{ 0, "eAT_Civilian" },
+		{ 1, "eAT_Guard" },
+		{ 2, "eAT_Hitman" },
+		{ 3, "eAT_Last" },
 	};
 
-	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRAdaptationType"] = {
-		{ 0, "eMedian" },
-		{ 1, "eGeometricMean" },
+	(*g_Enums)["EActorVoiceVariation"] = {
+		{ 0, "eAVV_Undefined" },
+		{ 1, "eAVV_ABIATTI" },
+		{ 2, "eAVV_BERG" },
+		{ 3, "eAVV_BDYGRD04" },
+		{ 4, "eAVV_BDYGRD01" },
+		{ 5, "eAVV_BDYGRD02" },
+		{ 6, "eAVV_BDYGRD03" },
+		{ 7, "eAVV_BUSEY" },
+		{ 8, "eAVV_CARUSO" },
+		{ 9, "eAVV_CHEF01" },
+		{ 10, "eAVV_CHEF02" },
+		{ 11, "eAVV_CHEF03" },
+		{ 12, "eAVV_CHEF04" },
+		{ 13, "eAVV_CHURCHSTAFF01" },
+		{ 14, "eAVV_CHURCHSTAFF02" },
+		{ 15, "eAVV_CHURCHSTAFF03" },
+		{ 16, "eAVV_CIVFEM01" },
+		{ 17, "eAVV_CIVFEM02" },
+		{ 18, "eAVV_CIVFEM03" },
+		{ 19, "eAVV_CIVFEM04" },
+		{ 20, "eAVV_CIVFEM05" },
+		{ 21, "eAVV_CIVMALE01" },
+		{ 22, "eAVV_CIVMALE02" },
+		{ 23, "eAVV_CIVMALE03" },
+		{ 24, "eAVV_CIVMALE04" },
+		{ 25, "eAVV_CIVMALE05" },
+		{ 26, "eAVV_CIVMALE06" },
+		{ 27, "eAVV_CLEANER01" },
+		{ 28, "eAVV_CLEANER02" },
+		{ 29, "eAVV_CLEANER03" },
+		{ 30, "eAVV_CLEANERFEM01" },
+		{ 31, "eAVV_CLEANERFEM02" },
+		{ 32, "eAVV_CLEANERFEM03" },
+		{ 33, "eAVV_CREW01" },
+		{ 34, "eAVV_CREW02" },
+		{ 35, "eAVV_CREW04" },
+		{ 36, "eAVV_CROSS" },
+		{ 37, "eAVV_DALIA" },
+		{ 38, "eAVV_DESANTIS" },
+		{ 39, "eAVV_DINO_BOSCO" },
+		{ 40, "eAVV_DOCTOR01" },
+		{ 41, "eAVV_DOCTOR06" },
+		{ 42, "eAVV_DOCTORFEM03" },
+		{ 43, "eAVV_DOCTORFEM04" },
+		{ 44, "eAVV_ET_ADONIS" },
+		{ 45, "eAVV_ET_ARGUS" },
+		{ 46, "eAVV_ET_CARDINAL" },
+		{ 47, "eAVV_ET_CONNER" },
+		{ 48, "eAVV_ET_DYLAN" },
+		{ 49, "eAVV_ET_FABA" },
+		{ 50, "eAVV_ET_GARY_LUNN" },
+		{ 51, "eAVV_ET_HARVERFOEK" },
+		{ 52, "eAVV_ET_LARIN" },
+		{ 53, "eAVV_ET_MOXON" },
+		{ 54, "eAVV_ET_MR_GIGGLES" },
+		{ 55, "eAVV_ET_PHILLIPOS" },
+		{ 56, "eAVV_ET_SCOTT_SARNO" },
+		{ 57, "eAVV_ET_TORVIK" },
+		{ 58, "eAVV_ET_TROUTT" },
+		{ 59, "eAVV_ET_VITO_DURIC" },
+		{ 60, "eAVV_FILMCREW01" },
+		{ 61, "eAVV_FILMCREW02" },
+		{ 62, "eAVV_FILMCREW03" },
+		{ 63, "eAVV_FILMCREW04" },
+		{ 64, "eAVV_FILMCREWFEM01" },
+		{ 65, "eAVV_FILMCREWFEM02" },
+		{ 66, "eAVV_FILMCREWFEM03" },
+		{ 67, "eAVV_FILMCREWFEM04" },
+		{ 68, "eAVV_FILMCREWFEM05" },
+		{ 69, "eAVV_FOD_FEM" },
+		{ 70, "eAVV_FOD_MALE" },
+		{ 71, "eAVV_GARDENER01" },
+		{ 72, "eAVV_GARDENER02" },
+		{ 73, "eAVV_GARDENER03" },
+		{ 74, "eAVV_GARDENERFEM01" },
+		{ 75, "eAVV_GARDENERFEM02" },
+		{ 76, "eAVV_GARDENERFEM03" },
+		{ 77, "eAVV_GRAVES" },
+		{ 78, "eAVV_GUARDIA02" },
+		{ 79, "eAVV_GUARDIA03" },
+		{ 80, "eAVV_HOUSSTFF01" },
+		{ 81, "eAVV_HOUSSTFF02" },
+		{ 82, "eAVV_HOUSSTFF03" },
+		{ 83, "eAVV_HOUSSTFF06" },
+		{ 84, "eAVV_HOUSSTFFEM01" },
+		{ 85, "eAVV_HOUSSTFFEM02" },
+		{ 86, "eAVV_HOUSSTFFEM03" },
+		{ 87, "eAVV_INTERN" },
+		{ 88, "eAAV_JOB_ACTORFEMHI02" },
+		{ 89, "eAAV_JOB_ACTORHI01" },
+		{ 90, "eAVV_JOB_ARCHTCTF05" },
+		{ 91, "eAVV_JOB_ARCHTCTF07" },
+		{ 92, "eAVV_JOB_ARCHTCTF08" },
+		{ 93, "eAVV_JOB_ARCHTCTF09" },
+		{ 94, "eAVV_JOB_ARCHTCTM06" },
+		{ 95, "eAVV_JOB_ARCHTCTM07" },
+		{ 96, "eAVV_JOB_ARCHTCTM08" },
+		{ 97, "eAVV_JOB_ARCHTCTM09" },
+		{ 98, "eAVV_JOB_ARCHTCTM10" },
+		{ 99, "eAVV_JOB_ARKELITE04" },
+		{ 100, "eAVV_JOB_ARKELITE05" },
+		{ 101, "eAVV_JOB_ARKELITE06" },
+		{ 102, "eAVV_JOB_ARKELITE07" },
+		{ 103, "eAVV_JOB_ARKIANF05" },
+		{ 104, "eAVV_JOB_ARKIANF06" },
+		{ 105, "eAVV_JOB_ARKIANF07" },
+		{ 106, "eAVV_JOB_ARKIANF08" },
+		{ 107, "eAVV_JOB_ARKIANF09" },
+		{ 108, "eAVV_JOB_ARKIANM06" },
+		{ 109, "eAVV_JOB_ARKIANM07" },
+		{ 110, "eAVV_JOB_ARKIANM08" },
+		{ 111, "eAVV_JOB_ARKIANM09" },
+		{ 112, "eAVV_JOB_ARKIANM10" },
+		{ 113, "eAVV_JOB_ARKPTRNF05" },
+		{ 114, "eAVV_JOB_ARKPTRNF06" },
+		{ 115, "eAVV_JOB_ARKPTRNF07" },
+		{ 116, "eAVV_JOB_ARKPTRNF08" },
+		{ 117, "eAVV_JOB_ARKPTRNF09" },
+		{ 118, "eAVV_JOB_ARKPTRNM06" },
+		{ 119, "eAVV_JOB_ARKPTRNM07" },
+		{ 120, "eAVV_JOB_ARKPTRNM08" },
+		{ 121, "eAVV_JOB_ARKPTRNM09" },
+		{ 122, "eAVV_JOB_ARKPTRNM10" },
+		{ 123, "eAVV_JOB_ARKSTAFFF05" },
+		{ 124, "eAVV_JOB_ARKSTAFFF06" },
+		{ 125, "eAVV_JOB_ARKSTAFFM06" },
+		{ 126, "eAVV_JOB_ARKSTAFFM07" },
+		{ 127, "eAVV_JOB_ARKSTAFFM08" },
+		{ 128, "eAVV_JOB_BANKERF05" },
+		{ 129, "eAVV_JOB_BANKERF06" },
+		{ 130, "eAVV_JOB_BANKERF08" },
+		{ 131, "eAVV_JOB_BANKERM06" },
+		{ 132, "eAVV_JOB_BANKERM07" },
+		{ 133, "eAVV_JOB_BANKERM08" },
+		{ 134, "eAVV_JOB_BANKERM09" },
+		{ 135, "eAVV_JOB_BANKGRD05" },
+		{ 136, "eAVV_JOB_BANKGRD06" },
+		{ 137, "eAVV_JOB_BANKGRD07" },
+		{ 138, "eAVV_JOB_BANKGRDCHF" },
+		{ 139, "eAVV_JOB_BANKIT07" },
+		{ 140, "eAVV_JOB_BANKMTNC08" },
+		{ 141, "eAVV_JOB_BBQGRD04" },
+		{ 142, "eAVV_JOB_BBQGRD05" },
+		{ 143, "eAVV_JOB_BBQGRD06" },
+		{ 144, "eAVV_JOB_BBQGRD07" },
+		{ 145, "eAAV_JOB_BOLLYCREWHI01" },
+		{ 146, "eAAV_JOB_BOLLYCREWHI02" },
+		{ 147, "eAAV_JOB_BOLLYCREWHI03" },
+		{ 148, "eAVV_JOB_CASSIDYGRD04" },
+		{ 149, "eAVV_JOB_CASSIDYGRD05" },
+		{ 150, "eAVV_JOB_CASSIDYGRD06" },
+		{ 151, "eAVV_JOB_CASSIDYGRD07" },
+		{ 152, "eAVV_JOB_CASTLESTFEM05" },
+		{ 153, "eAVV_JOB_CASTLESTFEM07" },
+		{ 154, "eAVV_JOB_CASTLESTFF07" },
+		{ 155, "eAVV_JOB_CASTLESTFF10" },
+		{ 156, "eAAV_JOB_CAVEGDES01" },
+		{ 157, "eAAV_JOB_CAVEGDES02" },
+		{ 158, "eAVV_JOB_CAVEWKR07" },
+		{ 159, "eAVV_JOB_CAVEWKR08" },
+		{ 160, "eAVV_JOB_CAVEWKRES01" },
+		{ 161, "eAVV_JOB_CAVEWKRES02" },
+		{ 162, "eAVV_JOB_CAVEWKRES03" },
+		{ 163, "eAVV_JOB_CHEFES01" },
+		{ 164, "eAVV_JOB_CHEFES02" },
+		{ 165, "eAVV_JOB_CHEFES03" },
+		{ 166, "eAVV_JOB_CHEFF07" },
+		{ 167, "eAVV_JOB_CHEFM06" },
+		{ 168, "eAVV_JOB_CHEFM07" },
+		{ 169, "eAVV_JOB_CHEFM09" },
+		{ 170, "eAVV_JOB_CIVGRD04" },
+		{ 171, "eAVV_JOB_CIVGRD05" },
+		{ 172, "eAVV_JOB_CIVGRD06" },
+		{ 173, "eAVV_JOB_CIVGRD07" },
+		{ 174, "eAAV_JOB_CLOTHSALHI01" },
+		{ 175, "eAAV_JOB_CLOTHSALHI02" },
+		{ 176, "eAVV_JOB_CNSTR08" },
+		{ 177, "eAVV_JOB_CNSTR09" },
+		{ 178, "eAVV_JOB_CNSTRES01" },
+		{ 179, "eAVV_JOB_CNSTRGRD04" },
+		{ 180, "eAVV_JOB_CNSTRGRD05" },
+		{ 181, "eAVV_JOB_CNSTRGRD06" },
+		{ 182, "eAVV_JOB_CNSTRGRD07" },
+		{ 183, "eAVV_JOB_COCAGRD06" },
+		{ 184, "eAVV_JOB_COCAGRDES02" },
+		{ 185, "eAVV_JOB_COP04" },
+		{ 186, "eAVV_JOB_COP05" },
+		{ 187, "eAVV_JOB_COP06" },
+		{ 188, "eAVV_JOB_COP07" },
+		{ 189, "eAVV_JOB_COUNSLRF08" },
+		{ 190, "eAVV_JOB_COUNSLRF09" },
+		{ 191, "eAVV_JOB_COUNSLRM07" },
+		{ 192, "eAVV_JOB_COUNSLRM09" },
+		{ 193, "eAVV_JOB_CUSTDNF05" },
+		{ 194, "eAVV_JOB_CUSTDNF06" },
+		{ 195, "eAVV_JOB_CUSTDNF07" },
+		{ 196, "eAVV_JOB_CUSTDNF08" },
+		{ 197, "eAVV_JOB_CUSTDNF09" },
+		{ 198, "eAVV_JOB_CUSTDNM06" },
+		{ 199, "eAVV_JOB_CUSTDNM07" },
+		{ 200, "eAVV_JOB_CUSTDNM08" },
+		{ 201, "eAVV_JOB_CUSTDNM09" },
+		{ 202, "eAVV_JOB_CUSTDNM10" },
+		{ 203, "eAVV_JOB_DRUGLABWKRES02" },
+		{ 204, "eAVV_JOB_DRUGLABWKRES03" },
+		{ 205, "eAVV_JOB_FARMF05" },
+		{ 206, "eAVV_JOB_FARMFES01" },
+		{ 207, "eAVV_JOB_FARMFES02" },
+		{ 208, "eAVV_JOB_FARMM06" },
+		{ 209, "eAVV_JOB_FARMM08" },
+		{ 210, "eAVV_JOB_FARMMES01" },
+		{ 211, "eAVV_JOB_FARMMES02" },
+		{ 212, "eAVV_JOB_FARMMES03" },
+		{ 213, "eAVV_JOB_GARBAGE08" },
+		{ 214, "eAVV_JOB_GARBAGE09" },
+		{ 215, "eAVV_JOB_GARBAGEES01" },
+		{ 216, "eAVV_JOB_GARBAGRD04" },
+		{ 217, "eAVV_JOB_GARBAGRD05" },
+		{ 218, "eAVV_JOB_GARBAGRD06" },
+		{ 219, "eAVV_JOB_GARBAGRD07" },
+		{ 220, "eAVV_JOB_GRDNR08" },
+		{ 221, "eAVV_JOB_GRDNR09" },
+		{ 222, "eAVV_JOB_GRDNRES01" },
+		{ 223, "eAVV_JOB_GRDNRGRD04" },
+		{ 224, "eAVV_JOB_GRDNRGRD05" },
+		{ 225, "eAVV_JOB_GRDNRGRD06" },
+		{ 226, "eAVV_JOB_GRDNRGRD07" },
+		{ 227, "eAVV_JOB_GUARD04" },
+		{ 228, "eAVV_JOB_GUARD05" },
+		{ 229, "eAVV_JOB_GUARD06" },
+		{ 230, "eAVV_JOB_GUARD07" },
+		{ 231, "eAVV_JOB_HSSTFFES02" },
+		{ 232, "eAVV_JOB_HSSTFMES02" },
+		{ 233, "eAVV_JOB_HSSTFFES03" },
+		{ 234, "eAVV_JOB_HSSTFMES03" },
+		{ 235, "eAVV_JOB_JANUSGRD04" },
+		{ 236, "eAVV_JOB_JANUSGRD05" },
+		{ 237, "eAVV_JOB_JANUSGRD06" },
+		{ 238, "eAVV_JOB_JANUSGRD07" },
+		{ 239, "eAAV_JOB_LNDRYGRDHI01" },
+		{ 240, "eAAV_JOB_LNDRYGRDHI02" },
+		{ 241, "eAAV_JOB_LNDRYGRDHI03" },
+		{ 242, "eAAV_JOB_LNDRYWKRHI01" },
+		{ 243, "eAAV_JOB_LNDRYWKRHI02" },
+		{ 244, "eAAV_JOB_LNDRYWKRHI03" },
+		{ 245, "eAAV_JOB_MANSIONGD05" },
+		{ 246, "eAAV_JOB_MANSIONGD06" },
+		{ 247, "eAAV_JOB_MANSIONGD07" },
+		{ 248, "eAAV_JOB_MANSIONGDES02" },
+		{ 249, "eAAV_JOB_MTLWKRHI01" },
+		{ 250, "eAAV_JOB_MTLWKRHI02" },
+		{ 251, "eAAV_JOB_MTLWKRHI03" },
+		{ 252, "eAAV_JOB_MUMBSECHI02" },
+		{ 253, "eAAV_JOB_MUMBSECHI03" },
+		{ 254, "eAAV_JOB_MUMBSRVHI01" },
+		{ 255, "eAAV_JOB_MUMBSRVHI02" },
+		{ 256, "eAAV_JOB_MUMBSRVHI03" },
+		{ 257, "eAVV_JOB_MUSICIANF05" },
+		{ 258, "eAVV_JOB_MUSICIANM06" },
+		{ 259, "eAVV_JOB_MUSICIANM07" },
+		{ 260, "eAVV_JOB_MUSICIANM08" },
+		{ 261, "eAVV_JOB_MUSICIANM09" },
+		{ 262, "eAVV_JOB_MUSICIANM10" },
+		{ 263, "eAVV_JOB_NITIATEF05" },
+		{ 264, "eAVV_JOB_NITIATEM06" },
+		{ 265, "eAVV_JOB_NITIATEM07" },
+		{ 266, "eAVV_JOB_RAIDER04" },
+		{ 267, "eAVV_JOB_RAIDER05" },
+		{ 268, "eAVV_JOB_RAIDER06" },
+		{ 269, "eAVV_JOB_RAIDER07" },
+		{ 270, "eAVV_JOB_SERVANT08" },
+		{ 271, "eAVV_JOB_SERVANT09" },
+		{ 272, "eAVV_JOB_SERVANTES02" },
+		{ 273, "eAVV_JOB_SERVANTFEM07" },
+		{ 274, "eAVV_JOB_SITEWKR06" },
+		{ 275, "eAVV_JOB_SITEWKR07" },
+		{ 276, "eAVV_JOB_SITEWKR08" },
+		{ 277, "eAVV_JOB_SITEWKR09" },
+		{ 278, "eAVV_JOB_SITEWKRES01" },
+		{ 279, "eAVV_JOB_SITEWKRES02" },
+		{ 280, "eAVV_JOB_SITEWKRES03" },
+		{ 281, "eAVV_JOB_STINGSTAFFF08" },
+		{ 282, "eAVV_JOB_STINGSTAFFM06" },
+		{ 283, "eAVV_JOB_STINGSTAFFM08" },
+		{ 284, "eAVV_JOB_STINGWTRF05" },
+		{ 285, "eAVV_JOB_STINGWTRM07" },
+		{ 286, "eAVV_JOB_STINGWTRM08" },
+		{ 287, "eAVV_JOB_STINGSEC05" },
+		{ 288, "eAVV_JOB_STINGSEC06" },
+		{ 289, "eAVV_JOB_STINGVILLAGRD05" },
+		{ 290, "eAVV_JOB_STINGVILLAGRD06" },
+		{ 291, "eAVV_JOB_STINGTECHF08" },
+		{ 292, "eAVV_JOB_STINGTECHM07" },
+		{ 293, "eAVV_JOB_STINGTECHM09" },
+		{ 294, "eAVV_JOB_STINGLIFEGRDM06" },
+		{ 295, "eAVV_JOB_STINGSMASSF09" },
+		{ 296, "eAVV_JOB_STINGTRAINERF06" },
+		{ 297, "eAVV_JOB_SUBWKR06" },
+		{ 298, "eAVV_JOB_SUBWKR07" },
+		{ 299, "eAAV_JOB_QUEENGRDHI01" },
+		{ 300, "eAAV_JOB_QUEENGRDHI02" },
+		{ 301, "eAAV_JOB_QUEENGRDHI03" },
+		{ 302, "eAAV_JOB_QUEENSTGHI03" },
+		{ 303, "eAAV_JOB_QUEENTGHI02" },
+		{ 304, "eAAV_JOB_RANGANGRD05" },
+		{ 305, "eAAV_JOB_RANGANGRD06" },
+		{ 306, "eAAV_JOB_RANGANSECHI01" },
+		{ 307, "eAAV_JOB_RANGANSECHI02" },
+		{ 308, "eAAV_JOB_RANGANSECHI03" },
+		{ 309, "eAAV_JOB_TEASERVHI02" },
+		{ 310, "eAAV_JOB_THUGHI01" },
+		{ 311, "eAAV_JOB_THUGHI02" },
+		{ 312, "eAAV_JOB_THUGHI03" },
+		{ 313, "eAAV_JOB_TRAINSERVHI01" },
+		{ 314, "eAAV_JOB_VILLAGEGDES01" },
+		{ 315, "eAAV_JOB_VILLAGEGDES03" },
+		{ 316, "eAVV_KONG" },
+		{ 317, "eAVV_MAMBACREW01" },
+		{ 318, "eAVV_MAMBACREW02" },
+		{ 319, "eAVV_MAMBACREW03" },
+		{ 320, "eAVV_MAMBACREW04" },
+		{ 321, "eAVV_MECH01" },
+		{ 322, "eAVV_MECH02" },
+		{ 323, "eAVV_MECH03" },
+		{ 324, "eAVV_MENDOLA" },
+		{ 325, "eAVV_MODEL01" },
+		{ 326, "eAVV_MODEL02" },
+		{ 327, "eAVV_MODEL03" },
+		{ 328, "eAVV_MODELFEM01" },
+		{ 329, "eAVV_MODELFEM02" },
+		{ 330, "eAVV_MODELFEM03" },
+		{ 331, "eAVV_MORGAN" },
+		{ 332, "eAVV_NOVIKOV" },
+		{ 333, "eAVV_NORFOLK" },
+		{ 334, "eAAV_PRIEST01" },
+		{ 335, "eAVV_RITTER" },
+		{ 336, "eAVV_ROSE" },
+		{ 337, "eAVV_SANTA" },
+		{ 338, "eAVV_SCIENTIST01" },
+		{ 339, "eAVV_SCIENTIST02" },
+		{ 340, "eAVV_SCIENTIST03" },
+		{ 341, "eAVV_SCIENTIST04" },
+		{ 342, "eAVV_SCIENTISTFEM01" },
+		{ 343, "eAVV_SCIENTISTFEM02" },
+		{ 344, "eAVV_SCIENTISTFEM03" },
+		{ 345, "eAVV_SCIENTISTFEM04" },
+		{ 346, "eAVV_SOFTGRD01" },
+		{ 347, "eAVV_SOFTGRD02" },
+		{ 348, "eAVV_SOFTGRD03" },
+		{ 349, "eAVV_SOLDIER01" },
+		{ 350, "eAVV_SOLDIER02" },
+		{ 351, "eAVV_SOLDIER03" },
+		{ 352, "eAVV_SOLDIERBOSS01" },
+		{ 353, "eAVV_SOLDIERBOSS02" },
+		{ 354, "eAVV_SOLDIERBOSS03" },
+		{ 355, "eAVV_SPECOPS01" },
+		{ 356, "eAVV_SPECOPS02" },
+		{ 357, "eAVV_SPECOPS03" },
+		{ 358, "eAVV_STAFFMALE01" },
+		{ 359, "eAVV_STAFFMALE02" },
+		{ 360, "eAVV_STAFFMALE03" },
+		{ 361, "eAVV_STAFFMALE04" },
+		{ 362, "eAVV_STAFFMALE05" },
+		{ 363, "eAVV_STAFFMALE06" },
+		{ 364, "eAVV_STAFFEM03" },
+		{ 365, "eAVV_STAFFEM04" },
+		{ 366, "eAVV_STAFFEM05" },
+		{ 367, "eAVV_STRANDBERG" },
+		{ 368, "eAVV_STYLIST01" },
+		{ 369, "eAVV_STYLIST02" },
+		{ 370, "eAVV_STYLIST03" },
+		{ 371, "eAVV_STYLIST04" },
+		{ 372, "eAVV_STYLISTFEM01" },
+		{ 373, "eAVV_STYLISTFEM02" },
+		{ 374, "eAVV_STYLISTFEM03" },
+		{ 375, "eAVV_STYLISTFEM04" },
+		{ 376, "eAVV_PARVATI" },
+		{ 377, "eAVV_WAITER01" },
+		{ 378, "eAVV_WAITER02" },
+		{ 379, "eAVV_WAITER03" },
+		{ 380, "eAVV_WAITER04" },
+		{ 381, "eAVV_WAITERFEM01" },
+		{ 382, "eAVV_WAITERFEM02" },
+		{ 383, "eAVV_WAITERFEM03" },
+		{ 384, "eAVV_WAITERFEM04" },
+		{ 385, "eAVV_YACHTCREW01" },
+		{ 386, "eAVV_YACHTCREW02" },
+		{ 387, "eAVV_YACHTCREW03" },
+		{ 388, "eAVV_YACHTCREW04" },
+		{ 389, "eAVV_YAMASAKI" },
+		{ 390, "eAVV_ZAYDAN" },
+		{ 391, "eAVV_WS_BOULTON" },
+		{ 392, "eAVV_WS_NEWMAN" },
+		{ 393, "eAVV_WS_WATSON" },
+		{ 394, "eAVV_BDYGRD05" },
+		{ 395, "eAVV_BDYGRD06" },
+		{ 396, "eAVV_BDYGRD07" },
+		{ 397, "eAVV_CIVFEM06" },
+		{ 398, "eAVV_CIVFEM07" },
+		{ 399, "eAVV_CIVFEM08" },
+		{ 400, "eAVV_CIVFEM09" },
+		{ 401, "eAVV_CIVFEMES01" },
+		{ 402, "eAVV_CIVFEMES02" },
+		{ 403, "eAVV_CIVFEMES03" },
+		{ 404, "eAVV_CIVFEMHI01" },
+		{ 405, "eAVV_CIVFEMHI02" },
+		{ 406, "eAVV_CIVFEMHI03" },
+		{ 407, "eAVV_CIVMALE07" },
+		{ 408, "eAVV_CIVMALE08" },
+		{ 409, "eAVV_CIVMALE09" },
+		{ 410, "eAVV_CIVMALE10" },
+		{ 411, "eAVV_CIVMALEES01" },
+		{ 412, "eAVV_CIVMALEES02" },
+		{ 413, "eAVV_CIVMALEES03" },
+		{ 414, "eAVV_CIVMALEHI01" },
+		{ 415, "eAVV_CIVMALEHI02" },
+		{ 416, "eAVV_CIVMALEHI03" },
+		{ 417, "eAVV_SHEEPGRD04" },
+		{ 418, "eAVV_SHEEPGRD05" },
+		{ 419, "eAVV_SHEEPGRD06" },
+		{ 420, "eAVV_SHEEPGRD07" },
+		{ 421, "eAVV_THUGES01" },
+		{ 422, "eAVV_THUGES02" },
+		{ 423, "eAVV_THUGES03" },
+		{ 424, "eAVV_THUGHI01" },
+		{ 425, "eAVV_THUGHI02" },
+		{ 426, "eAVV_THUGHI03" },
+		{ 427, "eAVV_CASSIDY" },
+		{ 428, "eAVV_CONSTANT" },
+		{ 429, "eAVV_DELGADO" },
+		{ 430, "eAVV_FRANCO" },
+		{ 431, "eAVV_JANUS" },
+		{ 432, "eAVV_KNOX_R" },
+		{ 433, "eAVV_KNOX_S" },
+		{ 434, "eAVV_MAELSTROM" },
+		{ 435, "eAVV_MARTINEZ" },
+		{ 436, "eAVV_ORSON" },
+		{ 437, "eAVV_RANGAN" },
+		{ 438, "eAVV_REYNARD" },
+		{ 439, "eAVV_SHAH" },
+		{ 440, "eAVV_WASHINGTON" },
+		{ 441, "eAVV_ATHENASAVALAS" },
+		{ 442, "eAVV_LJUDMILAVETROVA" },
+		{ 443, "eAVV_STEVENBRADLEY" },
+		{ 444, "eAVV_TYSONWILLIAMS" },
+		{ 445, "eAVV_SIERRA_KNOX" },
+		{ 446, "eAVV_ROBERT_KNOX" },
 	};
 
-	(*g_Enums)["EReplicaOperation"] = {
-		{ 0, "E_Created" },
-		{ 1, "E_Destroyed" },
+	(*g_Enums)["EAgilityState"] = {
+		{ 0, "eAgState_JumpToHangFromLocomotion" },
+		{ 1, "eAgState_ClimbOnToLedgeFromLocomotion" },
+		{ 2, "eAgState_ClimbToHangFromLocomotion" },
+		{ 3, "eAgState_WalkOnFromLocomotion" },
+		{ 4, "eAgState_WalkOffToLocomoton" },
+		{ 5, "eAgState_PullUpToLedgeWalk" },
+		{ 6, "eAgState_PullUpToLocomotion" },
+		{ 7, "eAgState_LedgeJumpOffToLocomotion" },
+		{ 8, "eAgState_VaultOverLedgeFromCover" },
+		{ 9, "eAgState_ClimbOnToLedgeFromCover" },
+		{ 10, "eAgState_LedgeHangDefault" },
+		{ 11, "eAgState_LedgeWalkDefault" },
+		{ 12, "eAgState_TransLedgeHangDownToWalk" },
+		{ 13, "eAgState_TransLedgeHangUpToWalk" },
+		{ 14, "eAgState_TransLedgeWalkDownToHang" },
+		{ 15, "eAgState_TransLedgeWalkUpToHang" },
+		{ 16, "eAgState_TransLedgeHangUpToRail" },
+		{ 17, "eAgState_TransLedgeHangToLocomotion" },
+		{ 18, "eAgState_TransLedgeWalkToLocomotion" },
+		{ 19, "eAgState_LedgeHangJumpLeft" },
+		{ 20, "eAgState_LedgeHangJumpRight" },
+		{ 21, "eAgState_LedgeWalkJumpLeft" },
+		{ 22, "eAgState_LedgeWalkJumpRight" },
+		{ 23, "eAgState_SneakPastWindowLeftToRight" },
+		{ 24, "eAgState_SneakPastWindowRightToLeft" },
+		{ 25, "eAgState_ClimbWindowFromLedgeToLocomotion" },
+		{ 26, "eAgState_ClimbWindowFromLocomotionToLedge" },
+		{ 27, "eAgState_ClimbWindowFromLocomotionToLocomotion" },
+		{ 28, "eAgState_ClimbWindowFromCoverToLocomotion" },
+		{ 29, "eAgState_ClimbWindowFromCoverToLedge" },
+		{ 30, "eAgState_ClimbOnToLedgeFromDrainPipe" },
+		{ 31, "eAgState_ClimbToHangFromDrainPipe" },
+		{ 32, "eAgState_ClimbToWalkFromDrainPipeLeft" },
+		{ 33, "eAgState_ClimbToWalkFromDrainPipeRight" },
+		{ 34, "eAgState_Deactivate" },
+		{ 35, "eAgState_Unknown" },
 	};
 
-	(*g_Enums)["ECCEmitterEffect"] = {
-		{ 0, "eCCEmitterEffect_None" },
-		{ 1, "eCCEmitterEffect_Stab" },
-		{ 2, "eCCEmitterEffect_Blunt1H" },
-		{ 3, "eCCEmitterEffect_Blunt2H" },
-		{ 4, "eCCEmitterEffect_Slash1H" },
-		{ 5, "eCCEmitterEffect_Shatter" },
-		{ 6, "eCCEmitterEffect_AxeCleave" },
-		{ 7, "eCCEmitterEffect_AxePull" },
-		{ 8, "eCCEmitterEffect_AxeSlitThroat" },
-		{ 9, "eCCEmitterEffect_SlitThroat" },
-		{ 10, "eCCEmitterEffect_FacePunch" },
-		{ 11, "eCCEmitterEffect_Blood" },
+	(*g_Enums)["EAimAssistActivationState"] = {
+		{ 0, "eAAAS_Activated" },
+		{ 1, "eAAAS_Activating" },
+		{ 2, "eAAAS_Deactivated" },
+		{ 3, "eAAAS_Deactivating" },
 	};
 
-	(*g_Enums)["ECommunicationBarState"] = {
-		{ 0, "COMMUNICATION_BAR_NONE" },
-		{ 1, "COMMUNICATION_BAR_CLEAR" },
-		{ 2, "COMMUNICATION_BAR_SEARCHING" },
-		{ 3, "COMMUNICATION_BAR_SUSPICIOUS" },
-		{ 4, "COMMUNICATION_BAR_HUNTING" },
-		{ 5, "COMMUNICATION_BAR_HOSTILE" },
-		{ 6, "COMMUNICATION_BAR_BLOOD_FOUND" },
-		{ 7, "COMMUNICATION_BAR_BODY_FOUND" },
-		{ 8, "COMMUNICATION_BAR_GUARDS_ALERTED" },
-		{ 9, "COMMUNICATION_BAR_BACKUP_ARRIVED" },
+	(*g_Enums)["EAmmoBehaviourConfigType"] = {
+		{ 0, "eAB_None" },
+		{ 1, "eAB_Explosive" },
+		{ 2, "eAB_Penetration" },
+	};
+
+	(*g_Enums)["EAnimBlendMode"] = {
+		{ 0, "EAnimBlendMode_InterpAttInterpPos" },
+		{ 1, "EAnimBlendMode_InterpAttAddPos" },
+		{ 2, "EAnimBlendMode_AddAttLeavePos" },
+		{ 3, "EAnimBlendMode_AddAttAddPos" },
+	};
+
+	(*g_Enums)["EAnimSetState"] = {
+		{ 0, "EASES_DEFAULT" },
+		{ 1, "EASES_AMBIENT_ARMED" },
+		{ 2, "EASES_AMBIENT_VIP_ESCORT" },
+		{ 3, "EASES_AMBIENT_HERO_ESCORT" },
+		{ 4, "EASES_COMBAT_EVACUATE" },
+		{ 5, "EASES_COMBAT_EVACUATE_VIP_SOLO" },
+		{ 6, "EASES_SICK" },
+		{ 7, "EASES_INFECTED" },
+	};
+
+	(*g_Enums)["EAnimSetType"] = {
+		{ 0, "EAST_UNDEFINED" },
+		{ 1, "EAST_DEFAULT" },
+		{ 2, "EAST_PISTOL" },
+		{ 3, "EAST_REVOLVER" },
+		{ 4, "EAST_SMG" },
+		{ 5, "EAST_SNIPER" },
+		{ 6, "EAST_ASSULT" },
+		{ 7, "EAST_SHOTGUN" },
+		{ 8, "EAST_BODYBAG" },
+		{ 9, "EAST_GLASS" },
+		{ 10, "EAST_BOX" },
+		{ 11, "EAST_PLATE" },
+		{ 12, "EAST_SMALLOBJ" },
+		{ 13, "EAST_SUITCASE" },
+		{ 14, "EAST_TRAY" },
+		{ 15, "EAST_TROLLY" },
+		{ 16, "EAST_FLASHLIGHT" },
+		{ 17, "EAST_CARRY_1HANDEDWEAPON" },
+		{ 18, "EAST_CARRY_2HANDEDWEAPON" },
+		{ 19, "EAST_CARRY_RAKE" },
+		{ 20, "EAST_CARRY_WEAPON_ITEM" },
+		{ 21, "EAST_CARRY_BRICK_MINE" },
+		{ 22, "EAST_CARRY_PROXY_MINE" },
+		{ 23, "EAST_CARRY_LEAD_PIPES" },
+		{ 24, "EAST_CARRY_TUBE" },
+	};
+
+	(*g_Enums)["EAnimationPose"] = {
+		{ 0, "AP_Undefined" },
+		{ 1, "AP_Standing" },
+		{ 2, "AP_SittingChair" },
+		{ 3, "AP_SittingGround" },
+		{ 4, "AP_LyingGround" },
+		{ 5, "AP_Crouching" },
+		{ 6, "AP_SittingBench" },
+		{ 7, "AP_SittingChairTable" },
+	};
+
+	(*g_Enums)["EAsyncRaycastsGroup"] = {
+		{ 0, "eAsyncRaycasts_Gameplay" },
+		{ 1, "eAsyncRaycasts_ParticlesSoundCloth" },
+		{ 2, "eAsyncRaycasts_UNUSED_LAST" },
+	};
+
+	(*g_Enums)["EAttachLocation"] = {
+		{ 0, "eALRightHand" },
+		{ 1, "eALLeftHand" },
+		{ 2, "eALFreeBone" },
+		{ 3, "eALBack" },
+		{ 4, "eALRifle" },
+		{ 5, "eALAttachCount" },
+		{ 6, "eALUndefined" },
+	};
+
+	(*g_Enums)["EAudioVolumetricMixingMode"] = {
+		{ 0, "AUDIO_VOLUMETRIC_MIXING_MAX" },
+		{ 1, "AUDIO_VOLUMETRIC_MIXING_ADD" },
+	};
+
+	(*g_Enums)["EAutoScanMode"] = {
+		{ 0, "ASM_GEOMETRY" },
+		{ 1, "ASM_VOLUMEBOX" },
+	};
+
+	(*g_Enums)["EBIEventTypes"] = {
+		{ 0, "eBIL_HM_HitNPC" },
+		{ 1, "eBIL_HM_HitNPCKilled" },
+		{ 2, "eBIL_HM_HitNPCHeadShot" },
+		{ 3, "eBIL_HM_HitNPCCloseCombatShot" },
+		{ 4, "eBIL_NPC_HitHM" },
+		{ 5, "eBIL_Geometry" },
+	};
+
+	(*g_Enums)["EBaseMovementType"] = {
+		{ -1, "eMovementNone" },
+		{ 0, "eMovementDead" },
+		{ 1, "eMovementNewFullBody" },
+		{ 2, "eMovementAgility" },
+		{ 3, "eMovementAlign" },
+		{ 4, "eMovementCover" },
+		{ 5, "eMovementDrainPipe" },
+		{ 6, "eMovementLadder" },
+		{ 7, "eMovementPullVictimFromWindow" },
+		{ 8, "eMovementFiberWireKill" },
+		{ 9, "eMovementDumpBody" },
+		{ 10, "eMovementThrowBodyOverRail" },
+		{ 11, "eMovementDumpBodyOverLedge" },
+		{ 12, "eMovementOperateCPDoor" },
+		{ 13, "eMovementDisguiseSafeZone" },
+		{ 14, "eMovementHideInCloset" },
+		{ 15, "eMovementTakeDown" },
+		{ 16, "eMovementCloseCombat" },
+		{ 17, "eMovementRecoveryFinisher" },
+		{ 18, "eMovementContextAction" },
+		{ 19, "eMovementSubaction" },
+		{ 20, "eMovementGrabVictim" },
+		{ 21, "eMovementPushVictimThroughWindowAndRail" },
+		{ 22, "eMovementContextKill" },
+		{ 23, "eMovementKickVictimOverLedge" },
+		{ 24, "eMovementDragBody" },
+		{ 25, "eMovementTakeClothes" },
+		{ 26, "eMovementCoupDeGrace" },
+		{ 27, "eMovementThrow" },
+		{ 28, "eMovementPlace" },
+		{ 29, "eMovementSurrender" },
+		{ 30, "eMovementFrisk" },
+		{ 31, "eMovementShowItem" },
+		{ 32, "eMovementPeek" },
+		{ 33, "eMovementFocusedInteraction" },
+		{ 34, "eMovementLocomotion" },
+		{ 35, "eMovementLast" },
+		{ 36, "eMovementPickupItem" },
+	};
+
+	(*g_Enums)["EBehaviorTreeVariableType"] = {
+		{ -1, "BTVT_Invalid" },
+		{ 0, "BTVT_SceneReference" },
+		{ 1, "BTVT_Contextual" },
+		{ 2, "BTVT_Dynamic" },
+		{ 3, "BTVT_NumTypes" },
+	};
+
+	(*g_Enums)["EBoolCheckType"] = {
+		{ 0, "eBCT_IGNORE" },
+		{ 1, "eBCT_TRUE" },
+		{ 2, "eBCT_FALSE" },
+	};
+
+	(*g_Enums)["EBoolStateRequirement"] = {
+		{ 0, "eBSR_Any" },
+		{ 1, "eBSR_RequireTrue" },
+		{ 2, "eBSR_RequireFalse" },
+	};
+
+	(*g_Enums)["EBooleanOption"] = {
+		{ 0, "BO_Off" },
+		{ 1, "BO_On" },
+		{ 2, "BO_Default" },
+	};
+
+	(*g_Enums)["EBulletType"] = {
+		{ 0, "BULLET_TYPE_NONE" },
+		{ 1, "BULLET_TYPE_GUN" },
+		{ 2, "BULLET_TYPE_REVOLVER" },
+		{ 3, "BULLET_TYPE_SMG" },
+		{ 4, "BULLET_TYPE_MG" },
+		{ 5, "BULLET_TYPE_RIFLE" },
+		{ 6, "BULLET_TYPE_SHOTGUN" },
+		{ 7, "BULLET_TYPE_SNIPER" },
+		{ 8, "BULLET_TYPE_RPG" },
 	};
 
 	(*g_Enums)["EButtonDisplay"] = {
@@ -4406,399 +2598,32 @@ void ZHMEnums::RegisterEnums()
 		{ 73, "BUTTON_DISPLAY_MAX" },
 	};
 
-	(*g_Enums)["EAimAssistActivationState"] = {
-		{ 0, "eAAAS_Activated" },
-		{ 1, "eAAAS_Activating" },
-		{ 2, "eAAAS_Deactivated" },
-		{ 3, "eAAAS_Deactivating" },
+	(*g_Enums)["EButtonPressType"] = {
+		{ 0, "BUTTON_PRESS" },
+		{ 1, "BUTTON_HOLD" },
+		{ 2, "BUTTON_REPEAT" },
+		{ 3, "BUTTON_TAP" },
+		{ 4, "BUTTON_ROTATE_CCW" },
+		{ 5, "BUTTON_PRESS_TYPE_MAX" },
 	};
 
-	(*g_Enums)["ZValueBool_OperationRecalc.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-		{ 3, "NOT_ALL" },
-		{ 4, "ALL_EQUAL" },
-		{ 5, "ONE_TRUE" },
+	(*g_Enums)["EButtonState"] = {
+		{ -1, "BUTTON_STATE_DISABLED" },
+		{ 0, "BUTTON_STATE_NONE" },
+		{ 1, "BUTTON_STATE_ENABLED" },
+		{ 2, "BUTTON_STATE_PRESSED" },
+		{ 3, "BUTTON_STATE_BLINKING" },
 	};
 
-	(*g_Enums)["EHM5SoundBulletType"] = {
-		{ 0, "ESBT_SMALL" },
-		{ 1, "ESBT_MEDIUM" },
-		{ 2, "ESBT_LARGE" },
-		{ 3, "ESBT_GORGEOUS" },
-		{ 4, "ESBT_ANY" },
+	(*g_Enums)["EBystanderPointType"] = {
+		{ 0, "BPT_Scared" },
+		{ 1, "BPT_Alerted" },
 	};
 
-	(*g_Enums)["EContinuity"] = {
-		{ 0, "C0" },
-		{ 1, "C1" },
-		{ 2, "C2" },
-	};
-
-	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioHeadTailType"] = {
-		{ 0, "eWBC_AudioHeadTailType_DryFire" },
-		{ 1, "eWBC_AudioHeadTailType_Normal" },
-		{ 2, "eWBC_AudioHeadTailType_NormalSweetener" },
-		{ 3, "eWBC_AudioHeadTailType_Silenced" },
-		{ 4, "eWBC_AudioHeadTailType_SilencedSweetener" },
-	};
-
-	(*g_Enums)["ECharacterFullBodyStateType"] = {
-		{ 0, "eSM_FB_OldMovementPlaceholder" },
-		{ 1, "eSM_FB_Slave" },
-		{ 2, "eSM_FB_Locomotion" },
-		{ 3, "eSM_FB_CloseCombat" },
-		{ 4, "eSM_FB_FlavorIdle" },
-		{ 5, "eSM_FB_Sniping" },
-		{ 6, "eSM_FB_AssemblePutOnTheFloor" },
-		{ 7, "eSM_FB_AssembleAlignContainer" },
-		{ 8, "eSM_FB_AssembleRetrieve" },
-		{ 11, "eSM_FB_AssembleStore" },
-	};
-
-	(*g_Enums)["EControllerButton"] = {
-		{ 0, "BUTTON_NONE" },
-		{ 1, "BUTTON_CROSS" },
-		{ 2, "BUTTON_TRIANGLE" },
-		{ 3, "BUTTON_SQUARE" },
-		{ 4, "BUTTON_CIRCLE" },
-		{ 5, "BUTTON_UP" },
-		{ 6, "BUTTON_RIGHT" },
-		{ 7, "BUTTON_DOWN" },
-		{ 8, "BUTTON_LEFT" },
-		{ 9, "BUTTON_R1" },
-		{ 10, "BUTTON_R2" },
-		{ 11, "BUTTON_R3" },
-		{ 12, "BUTTON_R_STICK" },
-		{ 13, "BUTTON_L1" },
-		{ 14, "BUTTON_L2" },
-		{ 15, "BUTTON_L3" },
-		{ 16, "BUTTON_L_STICK" },
-		{ 17, "BUTTON_START" },
-		{ 18, "BUTTON_SELECT" },
-		{ 19, "BUTTON_UP_DOWN" },
-		{ 20, "BUTTON_LEFT_RIGHT" },
-		{ 21, "BUTTON_LEFT_RIGHT_UP_DOWN" },
-		{ 22, "BUTTON_L1_R1" },
-		{ 23, "BUTTON_L2_R2" },
-		{ 24, "BUTTON_KEYBOARD" },
-		{ 25, "BUTTON_ESCAPE" },
-	};
-
-	(*g_Enums)["ZHM5HitmanHealthModifier.EHealthDrainType"] = {
-		{ 0, "eRemoveHealthInstantly" },
-		{ 1, "eDecreaseHealthToValue" },
-	};
-
-	(*g_Enums)["ERayType"] = {
-		{ 0, "ERAY_CLOSESTHIT_SIMPLE" },
-		{ 1, "ERAY_CLOSESTHIT_DETAILED" },
-	};
-
-	(*g_Enums)["ZCautiousBackupGroup.EGroupState"] = {
-		{ 0, "GS_DistanceField" },
-		{ 1, "GS_SendBackup" },
-		{ 2, "GS_Waiting" },
-		{ 3, "GS_Completed" },
-	};
-
-	(*g_Enums)["ZHM5BodyContainer.EBCBodyMode"] = {
-		{ 0, "BC_1_VICTIM" },
-		{ 1, "BC_2_VICTIMS" },
-		{ 2, "BC_1_VICTIM_FLUSHABLE" },
-		{ 3, "BC_1_VICTIM_AUTOFLUSHABLE" },
-	};
-
-	(*g_Enums)["ESoundMaterialType"] = {
-		{ 0, "eGeneric" },
-		{ 1, "eFlesh" },
-		{ 2, "eSilent" },
-	};
-
-	(*g_Enums)["EScreenAnchor"] = {
-		{ 0, "SCREEN_ANCHOR_TOP_LEFT" },
-		{ 1, "SCREEN_ANCHOR_TOP_CENTER" },
-		{ 2, "SCREEN_ANCHOR_TOP_RIGHT" },
-		{ 3, "SCREEN_ANCHOR_MIDDLE_LEFT" },
-		{ 4, "SCREEN_ANCHOR_MIDDLE_CENTER" },
-		{ 5, "SCREEN_ANCHOR_MIDDLE_RIGHT" },
-		{ 6, "SCREEN_ANCHOR_BOTTOM_LEFT" },
-		{ 7, "SCREEN_ANCHOR_BOTTOM_CENTER" },
-		{ 8, "SCREEN_ANCHOR_BOTTOM_RIGHT" },
-	};
-
-	(*g_Enums)["eHitmanPermissionReason"] = {
-		{ 1, "eHPReason_MovementContext" },
-		{ 2, "eHPReason_ItemHandlingInProcess" },
-		{ 4, "eHPReason_SniperMode" },
-		{ 128, "eHPReason_FocusInteraction" },
-		{ 64, "eHPReason_InstinctBlendIn" },
-		{ 32, "eHPReason_PlayerInput" },
-		{ 16, "eHPReason_LevelDesign" },
-		{ 8, "eHPReason_CrippleBox" },
-		{ 7, "eHPReason_NUM" },
-		{ -1, "eHPReason_ALLReasons" },
-	};
-
-	(*g_Enums)["EActorAnimationOrder"] = {
-		{ 0, "AAO_None" },
-		{ 1, "AAO_Stand" },
-		{ 2, "AAO_Move" },
-		{ 3, "AAO_React" },
-		{ 4, "AAO_Act" },
-		{ 5, "AAO_MoveToAct" },
-		{ 6, "AAO_MoveToCover" },
-		{ 7, "AAO_ShootFromCover" },
-		{ 8, "AAO_PeekFromCover" },
-		{ 9, "AAO_Death" },
-		{ 10, "AAO_Impact" },
-		{ 11, "AAO_Controlled" },
-	};
-
-	(*g_Enums)["ESpeed"] = {
-		{ 0, "eSpeed_Idle" },
-		{ 1, "eSpeed_Slow" },
-		{ 2, "eSpeed_Normal" },
-		{ 3, "eSpeed_Fast" },
-		{ 4, "eSpeed_Sprint" },
-	};
-
-	(*g_Enums)["ESeamFixMode"] = {
-		{ 0, "SEAMFIX_NONE" },
-		{ 1, "SEAMFIX_X" },
-		{ 2, "SEAMFIX_Y" },
-		{ 4, "SEAMFIX_Z" },
-		{ 5, "SEAMFIX_XZ" },
-		{ 3, "SEAMFIX_XY" },
-		{ 7, "SEAMFIX_XYZ" },
-		{ 6, "SEAMFIX_YZ" },
-	};
-
-	(*g_Enums)["ESyncEvent"] = {
-		{ 0, "eSyncEvent_None" },
-		{ 200, "eSyncEvent_RightFoot" },
-		{ 100, "eSyncEvent_LeftFoot" },
-		{ 300, "eSyncEvent_BothFeet" },
-	};
-
-	(*g_Enums)["CrowdUtil.ECrowdDirection"] = {
-		{ 0, "NORTH" },
-		{ 1, "EAST" },
-		{ 2, "SOUTH" },
-		{ 3, "WEST" },
-	};
-
-	(*g_Enums)["ZPreferenceItemEntity.EBoolOptions"] = {
-		{ 0, "EBO_INVERTVERTICAL" },
-		{ 1, "EBO_FIXEDMAP" },
-	};
-
-	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFamily"] = {
-		{ 0, "eWBC_AudioFamily_Exotics" },
-		{ 1, "eWBC_AudioFamily_Heavy" },
-		{ 2, "eWBC_AudioFamily_Light" },
-		{ 3, "eWBC_AudioFamily_NPC" },
-		{ 4, "eWBC_AudioFamily_Standard" },
-	};
-
-	(*g_Enums)["ZHeroInventoryAction.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["ZStandOffSituation.EDialogState"] = {
-		{ 0, "eDS_ReportTarget" },
-		{ 1, "eDS_ArrestReason" },
-		{ 2, "eDS_ArrestReasonWait" },
-		{ 3, "eDS_Warning" },
-		{ 4, "eDS_WarningWait" },
-		{ 5, "eDS_WeaponWarning" },
-		{ 6, "eDS_WeaponWarningWait" },
-		{ 7, "eDS_StopWait" },
-		{ 8, "eDS_Done" },
-	};
-
-	(*g_Enums)["IContractObjective.Category"] = {
-		{ 0, "PRIMARY" },
-		{ 1, "SECONDARY" },
-		{ 2, "CONDITION" },
-	};
-
-	(*g_Enums)["ZHM5LedgeMount.ELedgeEndState"] = {
-		{ 0, "eHang" },
-		{ 1, "eStand" },
-	};
-
-	(*g_Enums)["ZHUDTimerInstance.ETimeFormatChoice"] = {
-		{ 0, "YES" },
-		{ 1, "NO" },
-		{ 2, "AUTO" },
-	};
-
-	(*g_Enums)["ECollidablesType"] = {
-		{ 0, "ECST_STATIC_AND_DYNAMIC" },
-		{ 1, "ECST_STATIC_ONLY" },
-		{ 2, "ECST_DYNAMIC_ONLY" },
-	};
-
-	(*g_Enums)["EParticleModifierImpulseDirections"] = {
-		{ 0, "TARGET_ZAXIS_DIRECTION" },
-		{ 1, "TOWARDS_TARGET_PIVOT" },
-		{ 2, "AWAY_FROM_TARGET_PIVOT" },
-	};
-
-	(*g_Enums)["EItemPoisonType"] = {
-		{ 0, "POISONTYPE_NONE" },
-		{ 1, "POISONTYPE_LETHAL" },
-		{ 2, "POISONTYPE_SEDATIVE" },
-		{ 3, "POISONTYPE_EMETIC" },
-	};
-
-	(*g_Enums)["EScreenplayTriggerEvent"] = {
-		{ 0, "STT_ReportCrime" },
-		{ 1, "STT_ReportCrimeToHitman" },
-		{ 2, "STT_ReportCrimeMoveBack" },
-	};
-
-	(*g_Enums)["ETakeDownAnim"] = {
-		{ 0, "eCoverLowOverNarrowCloseFront" },
-		{ 1, "eCoverLowOverNarrowCloseBack" },
-		{ 2, "eCoverLowOverNarrowFarFront" },
-		{ 3, "eCoverLowOverNarrowFarBack" },
-		{ 4, "eCoverLowOverWideFront" },
-		{ 5, "eCoverLowOverWideBack" },
-		{ 6, "eCoverLowCornerFront" },
-		{ 7, "eCoverLowCornerBack" },
-		{ 8, "eCoverHighCornerFront" },
-		{ 9, "eCoverHighCornerBack" },
-		{ 10, "eLocomotionBack" },
-		{ 11, "eLocomotionFallback" },
-		{ 12, "eLocomotionChair" },
-		{ 13, "eChokeGroundLoop" },
-		{ 14, "eChokeGroundEndPacify" },
-		{ 15, "eChokeGroundEndKill" },
-		{ 16, "eChokeGroundFallBackLoop" },
-		{ 17, "eChokeGroundFallBackEndPacify" },
-		{ 18, "eChokeGroundFallBackEndKill" },
-		{ 19, "eChokeChairLoop" },
-		{ 20, "eChokeChairEndPacify" },
-		{ 21, "eChokeChairEndKill" },
-		{ 22, "eChokeChairEndLeft90" },
-		{ 23, "eChokeChairEndLeft45" },
-		{ 24, "eChokeChairEndFront" },
-		{ 25, "eChokeChairEndRight45" },
-		{ 26, "eChokeChairEndRight90" },
-		{ 27, "eTakeDownAnimLast" },
-	};
-
-	(*g_Enums)["ZLogicMultipleGate.EGateType"] = {
-		{ 0, "eFireEveryTime" },
-		{ 1, "eFirePortOnce" },
-		{ 2, "eFireOnce" },
-	};
-
-	(*g_Enums)["ZActBehaviorEntity.EMovementType"] = {
-		{ 0, "MT_WALK" },
-		{ 1, "MT_SNAP" },
-		{ 2, "MT_IGNORE_POSITION" },
-	};
-
-	(*g_Enums)["ZPatrolBehaviorEntity.EMovementType"] = {
-		{ 0, "MT_WALK" },
-		{ 1, "MT_SNAP" },
-		{ 2, "MT_IGNORE_POSITION" },
-	};
-
-	(*g_Enums)["EUIActionGroupIcon"] = {
-		{ 0, "EUIAGI_NoIcon" },
-		{ 1, "EUIAGI_GenericTool" },
-		{ 2, "EUIAGI_Crowbar" },
-		{ 3, "EUIAGI_Wrench" },
-		{ 4, "EUIAGI_Screwdriver" },
-		{ 5, "EUIAGI_ExplosiveDevice" },
-		{ 6, "EUIAGI_Poison" },
-		{ 7, "EUIAGI_Coin" },
-		{ 8, "EUIAGI_Lockpick" },
-		{ 9, "EUIAGI_LockpickElectic" },
-		{ 10, "EUIAGI_Card" },
-		{ 11, "EUIAGI_Key" },
-		{ 12, "EUIAGI_Password" },
-		{ 13, "EUIAGI_SAPIENZA_GolfBall" },
-		{ 14, "EUIAGI_SAPIENZA_ChemicalTube" },
-		{ 15, "EUIAGI_SAPIENZA_FlowBouquet" },
-		{ 16, "EUIAGI_SAPIENZA_Ammunitions" },
-		{ 17, "EUIAGI_RatFood" },
-		{ 18, "EUIAGI_Gunpowder" },
-		{ 19, "EUIAGI_Cannonball" },
-		{ 20, "EUIAGI_FuguFish" },
-		{ 21, "EUIAGI_CakeTopper" },
-		{ 22, "EUIAGI_Knife" },
-		{ 23, "EUIAGI_SpaghettiCan" },
-		{ 24, "EUIAGI_MAX" },
-	};
-
-	(*g_Enums)["ESilenceRating"] = {
-		{ 0, "eSR_NotSilenced" },
-		{ 1, "eSR_Silenced" },
-		{ 2, "eSR_SuperSilenced" },
-		{ 3, "eSR_CompletelySilenced" },
-	};
-
-	(*g_Enums)["EFilterMaskBit"] = {
-		{ 0, "eFilterMaskBit_ObjectCollision" },
-		{ 1, "eFilterMaskBit_OpaqueCollision" },
-		{ 2, "eFilterMaskBit_UNUSED_LAST" },
-	};
-
-	(*g_Enums)["ECollisionPriority"] = {
-		{ 0, "ECOLLISIONPRIORITY_LOW" },
-		{ 1, "ECOLLISIONPRIORITY_NORMAL" },
-		{ 2, "ECOLLISIONPRIORITY_HIGH" },
-		{ 3, "ECOLLISIONPRIORITY_CRITICAL" },
-	};
-
-	(*g_Enums)["ZActStateCondition.EState"] = {
-		{ 0, "MOVING" },
-		{ 1, "ENTERING" },
-		{ 2, "PLAYING" },
-	};
-
-	(*g_Enums)["ELedgeDismountBehavior"] = {
-		{ 0, "eLDB_DontCare" },
-		{ 1, "eLDB_Stand" },
-		{ 2, "eLDB_Crouch" },
-	};
-
-	(*g_Enums)["IContractObjective.Type"] = {
-		{ 0, "CONTRACT_OBJ_EVENT_BASED" },
-		{ 1, "CONTRACT_OBJ_SM_BASED" },
-	};
-
-	(*g_Enums)["ZValueInt_Evaluation.EEvaluationType"] = {
-		{ 0, "EQUAL" },
-		{ 1, "NOT_EQUAL" },
-		{ 2, "LESS" },
-		{ 3, "LESS_OR_EQUAL" },
-		{ 4, "HIGHER" },
-		{ 5, "HIGHER_OR_EQUAL" },
-	};
-
-	(*g_Enums)["IScatterContainerEntity.ECanvasSize"] = {
-		{ 0, "SIZE_128" },
-		{ 1, "SIZE_256" },
-		{ 2, "SIZE_512" },
-		{ 3, "SIZE_1024" },
-		{ 4, "SIZE_2048" },
-		{ 5, "SIZE_4096" },
-	};
-
-	(*g_Enums)["ZMoveToOrder.EMoveSpeed"] = {
-		{ 0, "MS_AUTO" },
-		{ 1, "MS_SPRINT" },
-		{ 2, "MS_JOG" },
-		{ 3, "MS_WALK" },
+	(*g_Enums)["ECCDUsage"] = {
+		{ 0, "ECCDUSAGE_DISABLED" },
+		{ 1, "ECCDUSAGE_AGAINST_STATIC" },
+		{ 2, "ECCDUSAGE_AGAINST_STATIC_DYNAMIC" },
 	};
 
 	(*g_Enums)["ECCDecalEffect"] = {
@@ -4816,48 +2641,622 @@ void ZHMEnums::RegisterEnums()
 		{ 11, "eCCDecalEffect_Bruise" },
 	};
 
-	(*g_Enums)["ZContractObjectiveHudHintEntity.EObjectiveHintIcon"] = {
-		{ 8, "eExclamationMark" },
-		{ 0, "eNone" },
-		{ 1, "eSuitcase" },
-		{ 3, "eObjective_A" },
-		{ 4, "eObjective_B" },
-		{ 5, "eObjective_C" },
-		{ 6, "eObjective_D" },
-		{ 7, "eInfoIcon" },
-		{ 9, "eIntelIcon" },
-		{ 10, "eDiscoveryIcon" },
-		{ 11, "eDiscoveryIcon_A" },
-		{ 12, "eDiscoveryIcon_B" },
-		{ 13, "eDiscoveryIcon_C" },
-		{ 14, "eDiscoveryIcon_A_Compleed" },
-		{ 15, "eDiscoveryIcon_B_Compleed" },
-		{ 16, "eDiscoveryIcon_C_Compleed" },
-		{ 17, "eMissionObjective" },
-		{ 18, "eExitMissionIcon" },
+	(*g_Enums)["ECCEmitterEffect"] = {
+		{ 0, "eCCEmitterEffect_None" },
+		{ 1, "eCCEmitterEffect_Stab" },
+		{ 2, "eCCEmitterEffect_Blunt1H" },
+		{ 3, "eCCEmitterEffect_Blunt2H" },
+		{ 4, "eCCEmitterEffect_Slash1H" },
+		{ 5, "eCCEmitterEffect_Shatter" },
+		{ 6, "eCCEmitterEffect_AxeCleave" },
+		{ 7, "eCCEmitterEffect_AxePull" },
+		{ 8, "eCCEmitterEffect_AxeSlitThroat" },
+		{ 9, "eCCEmitterEffect_SlitThroat" },
+		{ 10, "eCCEmitterEffect_FacePunch" },
+		{ 11, "eCCEmitterEffect_Blood" },
 	};
 
-	(*g_Enums)["IScatterContainerEntity.ECanvasClearMode"] = {
-		{ 0, "CLEAR_ALL" },
-		{ 1, "CLEAR_INTENSITY" },
-		{ 2, "CLEAR_SPECIFICMATERIAL" },
-		{ 3, "CLEAR_ALLMATERIALS" },
-		{ 4, "CLEAR_SETINTENSITYVALUECLEARMATERIAL" },
-		{ 5, "CLEAR_SETINTENSITYVALUEKEEPMATERIAL" },
-		{ 6, "CLEAR_SETINTENSITYVALUEANDMATERIAL" },
-		{ 7, "CLEAR_SETMATERIALKEEPINTENSITYVALUE" },
+	(*g_Enums)["ECCNodeSubtype"] = {
+		{ 0, "eCCNodeSubtype_Left" },
+		{ 1, "eCCNodeSubtype_Right" },
+		{ 2, "eCCNodeSubtype_Front" },
+		{ 3, "eCCNodeSubtype_Back" },
+		{ 4, "eCCNodeSubtype_StairsAbove" },
+		{ 5, "eCCNodeSubtype_StairsBelow" },
+		{ 6, "eCCNodeSubtype_StairsAbove_Back" },
+		{ 7, "eCCNodeSubtype_StairsBelow_Back" },
+		{ 8, "eCCNodeSubtype_Front_Back" },
+		{ 9, "eCCNodeSubtype_Count" },
 	};
 
-	(*g_Enums)["ESpeechPriority"] = {
-		{ 0, "SP_AMBIENT" },
-		{ 1, "SP_ALERTED" },
-		{ 2, "SP_PAIN" },
-		{ 3, "SP_ALERTED_IMPORTANT" },
-		{ 4, "SP_COMBAT" },
-		{ 5, "SP_COMBAT_IMPORTANT" },
-		{ 6, "SP_DEATH" },
-		{ 7, "SP_MAX" },
-		{ 8, "SP_COUNT__" },
+	(*g_Enums)["ECCNodeType"] = {
+		{ 0, "eCCNodeType_Counter" },
+		{ 1, "eCCNodeType_ExecutePistol" },
+		{ 2, "eCCNodeType_React" },
+		{ 3, "eCCNodeType_SilentTakeDownEnd" },
+		{ 4, "eCCNodeType_SilentKill" },
+		{ 5, "eCCNodeType_SlitThroat1H" },
+		{ 6, "eCCNodeType_Swing1H" },
+		{ 7, "eCCNodeType_Bash1H" },
+		{ 8, "eCCNodeType_Stab1H" },
+		{ 9, "eCCNodeType_Syringe1H" },
+		{ 10, "eCCNodeType_Strangle1H" },
+		{ 11, "eCCNodeType_Smash1H" },
+		{ 12, "eCCNodeType_Swing2H" },
+		{ 13, "eCCNodeType_Stab2H" },
+		{ 14, "eCCNodeType_Bash2H" },
+		{ 15, "eCCNodeType_Strangle2H" },
+		{ 16, "eCCNodeType_Axe" },
+		{ 17, "eCCNodeType_Sword1H" },
+		{ 18, "eCCNodeType_AttackChain" },
+		{ 19, "eCCNodeType_AttackChainCivilian" },
+		{ 20, "eCCNodeType_AttackChainHeavy" },
+		{ 21, "eCCNodeType_FailChain" },
+		{ 22, "eCCNodeType_FinishChainHigh" },
+		{ 23, "eCCNodeType_FinishChainLow" },
+		{ 24, "eCCNodeType_FinishChainKill" },
+		{ 25, "eCCNodeType_StairsChain" },
+		{ 26, "eCCNodeType_CounterChain" },
+		{ 27, "eCCNodeType_AttackIdle" },
+		{ 28, "eCCNodeType_AttackPassify" },
+		{ 29, "eCCNodeType_FailChainPush" },
+		{ 30, "eCCNodeType_Count" },
+	};
+
+	(*g_Enums)["ECCWeaponAnimSet"] = {
+		{ 0, "AS_SLIT_THROAT_1H" },
+		{ 1, "AS_SWING_1H" },
+		{ 2, "AS_BASH_1H" },
+		{ 3, "AS_STAB_1H" },
+		{ 4, "AS_SYRINGE_1H" },
+		{ 5, "AS_SMASH_1H" },
+		{ 6, "AS_STRANGLE" },
+		{ 7, "AS_SWING_2H" },
+		{ 8, "AS_BASH_2H" },
+		{ 9, "AS_STAB_2H" },
+		{ 10, "AS_STRANGLE_2H" },
+		{ 11, "AS_SWORD_1H" },
+		{ 12, "AS_AXE" },
+	};
+
+	(*g_Enums)["ECOMUsage"] = {
+		{ 0, "ECOMUSAGE_AUTOCOMPUTE" },
+		{ 1, "ECOMUSAGE_PIVOT" },
+	};
+
+	(*g_Enums)["ECameraAssistanceMode"] = {
+		{ 0, "eCAM_None" },
+		{ 1, "eCAM_TrackAssist" },
+		{ 2, "eCAM_AutoTrackTarget" },
+	};
+
+	(*g_Enums)["ECameraCollisionMode"] = {
+		{ 0, "ECAMERACOLLISIONMODE_COLLIDE_ALWAYS" },
+		{ 1, "ECAMERACOLLISIONMODE_CAMERA_OBSTACLE" },
+		{ 2, "ECAMERACOLLISIONMODE_COLLIDE_NEVER" },
+		{ 3, "ECAMERACOLLISIONMODE_COLLIDE_DEFAULT" },
+	};
+
+	(*g_Enums)["ECameraControls"] = {
+		{ 0, "eCameraControlsNormal" },
+		{ 1, "eCameraControlsOTS" },
+	};
+
+	(*g_Enums)["ECameraOffset_old"] = {
+		{ 0, "eCameraOffset_Center" },
+		{ 1, "eCameraOffset_Left" },
+		{ 2, "eCameraOffset_Right" },
+	};
+
+	(*g_Enums)["ECameraShakerChannel"] = {
+		{ 0, "eCameraShakerChannel_Default" },
+		{ 1, "eCameraShakerChannle_Locomotion" },
+		{ 2, "eCameraShakerChannel_Ambient" },
+		{ 3, "eCameraShakerChannel_Weapon" },
+		{ 4, "eCameraShakerChannel_CloseCombat" },
+		{ 5, "eCameraShakerChannel_Num" },
+	};
+
+	(*g_Enums)["ECameraState"] = {
+		{ 0, "eCamSneakStand" },
+		{ 1, "eCamSneakWalk" },
+		{ 2, "eCamSneakRoadyRun" },
+		{ 3, "eCamNormalStand" },
+		{ 4, "eCamNormalWalk" },
+		{ 5, "eCamNormalRun" },
+		{ 6, "eCamLocomotion" },
+		{ 7, "eCamCrowdStand" },
+		{ 8, "eCamCrowdWalk" },
+		{ 9, "eCamCrowdRun" },
+		{ 10, "eCamCrowdSneakStand" },
+		{ 11, "eCamCrowdSneakWalk" },
+		{ 12, "eCamCrowdSneakRoadyRun" },
+		{ 13, "eCamCrowdLocomotion" },
+		{ 14, "eCamDead" },
+		{ 15, "eCamLadder" },
+		{ 16, "eCamDrainPipe" },
+		{ 17, "eCamDrag" },
+		{ 18, "eCamSBTag" },
+		{ 19, "eCamSBTagOTS" },
+		{ 20, "eCamCloseCombat" },
+		{ 21, "eCamFiberWire" },
+		{ 22, "eCamWindowPull" },
+		{ 23, "eCamRailPush" },
+		{ 24, "eCamLedgeKick" },
+		{ 25, "eCamLedgePull" },
+		{ 26, "eCamLedgeHang" },
+		{ 27, "eCamLedgeWalk" },
+		{ 28, "eCamLedgeWalkOTS" },
+		{ 29, "eCamCoverLow" },
+		{ 30, "eCamCoverMedium" },
+		{ 31, "eCamCoverHigh" },
+		{ 32, "eCamCoverLowOTS" },
+		{ 33, "eCamCoverHighOTS" },
+		{ 34, "eCamCoverLowScope" },
+		{ 35, "eCamCoverHighScope" },
+		{ 36, "eCamCoverLowTakedownOver" },
+		{ 37, "eCamCoverLowTakedownCorner" },
+		{ 38, "eCamCoverHighTakedownCorner" },
+		{ 39, "eCamTakeDisguise" },
+		{ 40, "eCamOTS" },
+		{ 41, "eCamOTSHigh" },
+		{ 42, "eCamOTSLow" },
+		{ 43, "eCamUnAimedShooting" },
+		{ 44, "eCamUnAimedShootingHigh" },
+		{ 45, "eCamUnAimedShootingLow" },
+		{ 46, "eCamScope" },
+		{ 47, "eCamScopeHigh" },
+		{ 48, "eCamScopeLow" },
+		{ 49, "eCamVaultLow" },
+		{ 50, "eCamVaultHigh" },
+		{ 51, "eCamTakedown" },
+		{ 52, "eCamTakedownChair" },
+		{ 53, "eCamLockedSniping" },
+		{ 54, "eCamLockedSnipingScope" },
+		{ 55, "eCamLockedSnipingScopeHigh" },
+		{ 56, "eCamLockedSnipingScopeLow" },
+		{ 57, "eCamContainerAssemble" },
+		{ 58, "eCamNumProfiles" },
+		{ 59, "eCamAll" },
+	};
+
+	(*g_Enums)["ECausalGraphTraversal"] = {
+		{ 0, "eCGT_NONE" },
+		{ 1, "eCGT_INPUT" },
+		{ 2, "eCGT_OUTPUT" },
+		{ 3, "eCGT_BOTH" },
+	};
+
+	(*g_Enums)["ECautiousDisturbanceState"] = {
+		{ 0, "eCDS_Pending" },
+		{ 1, "eCDS_Expired" },
+		{ 2, "eCDS_Handled" },
+		{ 3, "eCDS_GetHelpGroup" },
+		{ 4, "eCDS_InvestigationGroup" },
+		{ 5, "eCDS_InvestigateAfterExplosion" },
+		{ 6, "eCDS_Ignored" },
+		{ 7, "eCDS_NoInvestigator" },
+		{ 8, "eCDS_Similar" },
+		{ 9, "eCDS_ManHunt" },
+		{ 10, "eCDS_CombatSuppressGunshots" },
+	};
+
+	(*g_Enums)["ECharSetCharacterType"] = {
+		{ 0, "ECSCT_Actor" },
+		{ 1, "ECSCT_Nude" },
+		{ 2, "ECSCT_HeroA" },
+	};
+
+	(*g_Enums)["ECharacterActionRequests"] = {
+		{ 0, "eSM_AR_None" },
+		{ 1, "eSM_AR_ReloadR" },
+		{ 2, "eSM_AR_ReloadL" },
+		{ 3, "eSM_AR_ShootR" },
+		{ 4, "eSM_AR_ShootL" },
+		{ 5, "eSM_AR_SwapHands" },
+		{ 6, "eSM_AR_HolsterR" },
+		{ 7, "eSM_AR_HolsterL" },
+		{ 8, "eSM_AR_UnholsterR" },
+		{ 9, "eSM_AR_UnholsterL" },
+		{ 10, "eSM_AR_PickupItemR" },
+		{ 11, "eSM_AR_PickupItemL" },
+		{ 12, "eSM_AR_InteractionR" },
+		{ 13, "eSM_AR_InteractionL" },
+		{ 14, "eSM_AR_InteractionSwipe" },
+		{ 15, "eSM_AR_InteractionSwipeR" },
+		{ 16, "eSM_AR_InteractionSwipeL" },
+		{ 17, "eSM_AR_OpenDoor" },
+		{ 18, "eSM_AR_OpenDoorR" },
+		{ 19, "eSM_AR_OpenDoorL" },
+		{ 20, "eSM_AR_CloseCombat" },
+		{ 21, "eSM_AR_Movement" },
+		{ 22, "eSM_AR_Pretend" },
+		{ 23, "eSM_AR_Sniping" },
+		{ 24, "eSM_AR_EndSniping" },
+		{ 25, "eSM_AR_RetrieveFromSuitcase" },
+		{ 26, "eSM_AR_Marking" },
+		{ 27, "eSM_AR_ChangeAmmo" },
+		{ 28, "eSM_AR_Assemble" },
+		{ 29, "eSM_AR_Assemble_UnequippedContainer" },
+		{ 30, "eSM_AR_Disassemble" },
+		{ 31, "eSM_AR_Disassemble_PickingUp" },
+		{ 32, "eSM_AR_AssembleUB" },
+		{ 33, "eSM_AR_DisassembleUB" },
+		{ 34, "eSM_AR_Cancel" },
+		{ 35, "eSM_AR_Sprint" },
+	};
+
+	(*g_Enums)["ECharacterActionSyncRequests"] = {
+		{ 1, "eSM_ASR_Reload" },
+		{ 2, "eSM_ASR_SwapItemHandL" },
+		{ 4, "eSM_ASR_SwapItemHandR" },
+	};
+
+	(*g_Enums)["ECharacterAnimChildNetworkSlot"] = {
+		{ 0, "eCACNS_None" },
+		{ 1, "eCACNS_FlavorIdle_FB" },
+		{ 2, "eCACNS_FlavorIdle_RH" },
+		{ 3, "eCACNS_FlavorIdle_LH" },
+		{ 4, "eCACNS_Interaction_RH" },
+		{ 5, "eCACNS_Interaction_LH" },
+	};
+
+	(*g_Enums)["ECharacterAnimEvent"] = {
+		{ 50, "eCAE_EarlyExit" },
+		{ 699, "eCAE_ReloadStarted" },
+		{ 700, "eCAE_ReloadedClip" },
+		{ 701, "eCAE_ReloadCompleted" },
+		{ 702, "eCAE_ReloadUpdate" },
+		{ 703, "eCAE_ReloadSwapRHandAttacher" },
+		{ 704, "eCAE_ReloadResetRHandSwap" },
+		{ 711, "eCAE_ReloadedOneBullet" },
+		{ 712, "eCAE_ChangeAmmoCompleted" },
+		{ 5000, "eCAE_InteractionCompleted" },
+		{ 5001, "eCAE_InteractionActivate" },
+		{ 9010, "eCAE_UnholsterAttachL" },
+		{ 9011, "eCAE_UnholsterCompletedL" },
+		{ 9012, "eCAE_UnholsterAttachR" },
+		{ 9013, "eCAE_UnholsterCompletedR" },
+		{ 9020, "eCAE_HolsterDetachL" },
+		{ 9021, "eCAE_HolsterCompletedL" },
+		{ 9022, "eCAE_HolsterDetachR" },
+		{ 9023, "eCAE_HolsterCompletedR" },
+		{ 9030, "eCAE_SwipeActivate" },
+		{ 9031, "eCAE_SwipeCompleted" },
+		{ 9040, "eCAE_SwapHandsRtoL" },
+		{ 9041, "eCAE_SwapHandsRtoLCompleted" },
+		{ 9042, "eCAE_SwapHandsLtoR" },
+		{ 9043, "eCAE_SwapHandsLtoRCompleted" },
+		{ 9050, "eCAE_OpenDoorCompleted" },
+		{ 9051, "eCAE_OpenDoorActivate" },
+		{ 9060, "eCAE_FlavorIdleCompleted" },
+		{ 9070, "eCAE_AssemblePlaceAlignCompleted" },
+		{ 9071, "eCAE_AssembleAttach" },
+		{ 9072, "eCAE_AssembleCompleted" },
+		{ 9073, "eCAE_AssembleToSneak" },
+		{ 9074, "eCAE_AssembleContainerAttach" },
+		{ 9075, "eCAE_AssembleEarlyOut" },
+		{ 10000, "eCAE_HandIKEnableLeft" },
+		{ 10001, "eCAE_HandIKDisableLeft" },
+		{ 10002, "eCAE_HandIKEnableRight" },
+		{ 10003, "eCAE_HandIKDisableRight" },
+	};
+
+	(*g_Enums)["ECharacterAnimEventState"] = {
+		{ 0, "eES_None" },
+		{ 1, "eES_Pending" },
+		{ 2, "eES_Completed" },
+		{ 3, "eES_TimedOut" },
+	};
+
+	(*g_Enums)["ECharacterBodyType"] = {
+		{ 0, "eCT_MaleRegular" },
+		{ 1, "eCT_FemaleRegular" },
+		{ 2, "eCT_Male47" },
+		{ 3, "eCT_Undefined" },
+	};
+
+	(*g_Enums)["ECharacterCollidableLayer"] = {
+		{ 0, "CCL_DYNAMIC" },
+		{ 1, "CCL_DYNAMIC_TRANSPARENT" },
+		{ 2, "CCL_DYNAMIC_NO_COLLISION" },
+		{ 3, "CCL_DYNAMIC_NO_COLLISION_TRANSPARENT" },
+		{ 4, "CCL_UNUSED_LAST" },
+	};
+
+	(*g_Enums)["ECharacterEvent"] = {
+		{ 0, "eCIET_PickUp" },
+		{ 1, "eCIET_LadderEnded" },
+		{ 2, "eCIET_AgilityEnded" },
+		{ 3, "eCIET_CCEnded" },
+		{ 4, "eCIET_Disguised" },
+		{ 5, "eCIET_HideBody" },
+		{ 6, "eCIET_WalkingOnStairs" },
+		{ 7, "eCIET_Sniping_Congratulate" },
+		{ 8, "eCIET_Sniping_Acknowledge" },
+		{ 9, "eCIET_FlavorIdleEnded" },
+		{ 10, "eCIET_StartedMoving" },
+		{ 11, "eCIET_StoppedMoving" },
+		{ 12, "eCIET_DragBody" },
+		{ 13, "eCIET_Takedown" },
+		{ 14, "eCIET_Damaged" },
+		{ 34, "eCIET_None" },
+	};
+
+	(*g_Enums)["ECharacterFullBodyStateType"] = {
+		{ 0, "eSM_FB_OldMovementPlaceholder" },
+		{ 1, "eSM_FB_Slave" },
+		{ 2, "eSM_FB_Locomotion" },
+		{ 3, "eSM_FB_CloseCombat" },
+		{ 4, "eSM_FB_FlavorIdle" },
+		{ 5, "eSM_FB_Sniping" },
+		{ 6, "eSM_FB_AssemblePutOnTheFloor" },
+		{ 7, "eSM_FB_AssembleAlignContainer" },
+		{ 8, "eSM_FB_AssembleRetrieve" },
+		{ 11, "eSM_FB_AssembleStore" },
+	};
+
+	(*g_Enums)["ECharacterIdleHandlerFullbodyType"] = {
+		{ 0, "ecIHFBT_DisguisedIdle" },
+		{ 1, "ecIHFBT_Event" },
+	};
+
+	(*g_Enums)["ECharacterIdleHandlerUpperBodyType"] = {
+		{ 0, "eCIHUBT_NothingToDoEmptySingleHand" },
+		{ 1, "eCIHUBT_NothingToDoEmptyHands" },
+		{ 2, "eCIHUBT_Event" },
+		{ 3, "eCIHUBT_Custom" },
+	};
+
+	(*g_Enums)["ECharacterIdlePriority"] = {
+		{ 0, "eCIP_Irrelevant" },
+		{ 1, "eCIP_VeryLow" },
+		{ 2, "eCIP_QuiteLow" },
+		{ 3, "eCIP_Low" },
+		{ 4, "eCIP_MediumLow" },
+		{ 5, "eCIP_Medium" },
+		{ 6, "eCIP_MediumHigh" },
+		{ 7, "eCIP_High" },
+		{ 8, "eCIP_QuiteHigh" },
+		{ 9, "eCIP_VeryHigh" },
+		{ 10, "eCIP_Urgent" },
+	};
+
+	(*g_Enums)["ECharacterResourceType"] = {
+		{ 0, "eSMT_Invalid" },
+		{ 1, "eSMT_FullBody" },
+		{ 2, "eSMT_RightHand" },
+		{ 3, "eSMT_LeftHand" },
+	};
+
+	(*g_Enums)["ECharacterStateTags"] = {
+		{ 1, "eSM_ST_UsingFullBody" },
+		{ 2, "eSM_ST_UsingRightHand" },
+		{ 4, "eSM_ST_UsingLeftHand" },
+		{ 8, "eSM_ST_EnslavingRightHand" },
+		{ 16, "eSM_ST_EnslavingLeftHand" },
+		{ 32, "eSM_ST_EnslavingFullBody" },
+		{ 64, "eSM_ST_UpperBodyRequestedControlRightHand" },
+		{ 128, "eSM_ST_UpperBodyRequestedControlLeftHand" },
+		{ 256, "eSM_ST_CanGiveUpControlRightHand" },
+		{ 512, "eSM_ST_CanGiveUpControlLeftHand" },
+		{ 1024, "eSM_ST_Pickup" },
+		{ 2048, "eSM_ST_Sniping" },
+		{ 4096, "eSM_ST_Reloading" },
+		{ 16384, "eSM_ST_EmptyStateRightHand" },
+		{ 32768, "eSM_ST_EnableOldMovement" },
+		{ 65536, "eSM_ST_UsingItemLeft" },
+		{ 131072, "eSM_ST_UsingItemRight" },
+		{ 262144, "eSM_ST_Assemble" },
+		{ 8396800, "eSM_ST_EmptyStateLeftHand" },
+	};
+
+	(*g_Enums)["ECharacterStateTransitionAttempt"] = {
+		{ 0, "eSM_TA_IfDestinationCan" },
+		{ 1, "eSM_TA_IfDestinationCanAndWants" },
+		{ 2, "eSM_TA_IfDestinationCanAndOriginDoesNotWant" },
+		{ 3, "eSM_TA_IfDestinationCanAndWantsOriginDoesNotWant" },
+		{ 4, "eSM_TA_IfDestinationCanAndOriginCanNot" },
+	};
+
+	(*g_Enums)["ECharacterSubcontrollerType"] = {
+		{ 0, "eSCT_IDGenerator" },
+		{ 1, "eSCT_Debugger" },
+		{ 2, "eSCT_Time" },
+		{ 3, "eSCT_Tags" },
+		{ 4, "eSCT_Descriptors" },
+		{ 5, "eSCT_ActionRequest" },
+		{ 6, "eSCT_Events" },
+		{ 7, "eSCT_Animator" },
+		{ 8, "eSCT_Motor" },
+		{ 9, "eSCT_Inventory" },
+		{ 10, "eSCT_FlavorIdle" },
+		{ 11, "eSCT_Lookat" },
+		{ 12, "eSCT_AimAssistant" },
+		{ 13, "eSCT_CharacterCollector" },
+		{ 14, "eSCT_SwipeMechanic" },
+		{ 15, "eSCT_OpenDoor" },
+		{ 16, "eSCT_Fullbody" },
+		{ 17, "eSCT_Aim" },
+		{ 18, "eSCT_PrecisionShot" },
+		{ 19, "eSCT_Marking" },
+		{ 20, "eSCT_Grip" },
+		{ 21, "eSCT_Suitcase" },
+	};
+
+	(*g_Enums)["ECharacterUpperBodyStateType"] = {
+		{ 0, "eSM_UB_EmptyHanded" },
+		{ 1, "eSM_UB_Unholster" },
+		{ 2, "eSM_UB_Hold" },
+		{ 3, "eSM_UB_Reload" },
+		{ 4, "eSM_UB_Holster" },
+		{ 5, "eSM_UB_Conceal" },
+		{ 6, "eSM_UB_SwapItemHand" },
+		{ 7, "eSM_UB_Aiming" },
+		{ 8, "eSM_UB_Pickup" },
+		{ 9, "eSM_UB_InteractionSwipe" },
+		{ 10, "eSM_UB_Interaction" },
+		{ 11, "eSM_UB_Slave" },
+		{ 12, "eSM_UB_OpenDoor" },
+		{ 13, "eSM_UB_FlavorIdle" },
+		{ 14, "eSM_UB_ChangeAmmo" },
+		{ 15, "eSM_UB_Assemble" },
+	};
+
+	(*g_Enums)["EChatState"] = {
+		{ 0, "NOT_TALKING" },
+		{ 1, "TALKING" },
+		{ 2, "MUTED" },
+		{ 3, "RESTRICTED" },
+	};
+
+	(*g_Enums)["ECheatGroup"] = {
+		{ 0, "eCGNone" },
+		{ 1, "eCGPistols" },
+		{ 2, "eCGSMGs" },
+		{ 3, "eCGAssaultRifles" },
+		{ 4, "eCGShotguns" },
+		{ 5, "eCGSniper" },
+		{ 6, "eCGExotics" },
+		{ 7, "eCGDevices" },
+	};
+
+	(*g_Enums)["EClipSpawnAxis"] = {
+		{ 0, "eCSA_XPos" },
+		{ 1, "eCSA_XNeg" },
+		{ 2, "eCSA_YPos" },
+		{ 3, "eCSA_YNeg" },
+		{ 4, "eCSA_ZPos" },
+		{ 5, "eCSA_ZNeg" },
+	};
+
+	(*g_Enums)["EClothBendConstrainType"] = {
+		{ 0, "eClothBendConstrainType_Stick" },
+		{ 1, "eClothBendConstrainType_Triangle" },
+	};
+
+	(*g_Enums)["EClothColliderFilter"] = {
+		{ 0, "EClothColliderFilter_Environment" },
+		{ 1, "EClothColliderFilter_Character" },
+		{ 2, "EClothColliderFilter_Character_Environment" },
+	};
+
+	(*g_Enums)["EClothStretchConstrainType"] = {
+		{ 0, "eClothBendConstrainType_Anchor" },
+		{ 1, "eClothBendConstrainType_LRA" },
+		{ 2, "eClothBendConstrainType_None" },
+	};
+
+	(*g_Enums)["ECollidableLayer"] = {
+		{ 0, "eCollLayer_COLLIDE_WITH_ALL" },
+		{ 1, "eCollLayer_STATIC_COLLIDABLES_ONLY" },
+		{ 2, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY" },
+		{ 3, "eCollLayer_STAIRS" },
+		{ 4, "eCollLayer_SHOT_ONLY_COLLISION" },
+		{ 5, "eCollLayer_DYNAMIC_TRASH_COLLIDABLES" },
+		{ 6, "eCollLayer_KINEMATIC_COLLIDABLES_ONLY" },
+		{ 7, "eCollLayer_STATIC_COLLIDABLES_ONLY_TRANSPARENT" },
+		{ 8, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY_TRANSPARENT" },
+		{ 9, "eCollLayer_KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT" },
+		{ 10, "eCollLayer_STAIRS_STEPS" },
+		{ 11, "eCollLayer_STAIRS_SLOPE" },
+		{ 12, "eCollLayer_HERO_PROXY" },
+		{ 13, "eCollLayer_ACTOR_PROXY" },
+		{ 14, "eCollLayer_CLIP" },
+		{ 15, "eCollLayer_ACTOR_RAGDOLL" },
+		{ 16, "eCollLayer_CROWD_RAGDOLL" },
+		{ 17, "eCollLayer_LEDGE_ANCHOR" },
+		{ 18, "eCollLayer_ACTOR_DYN_BODY" },
+		{ 19, "eCollLayer_HERO_DYN_BODY" },
+		{ 20, "eCollLayer_ITEMS" },
+		{ 21, "eCollLayer_WEAPONS" },
+		{ 22, "eCollLayer_COLLISION_VOLUME_HITMAN_ON" },
+		{ 23, "eCollLayer_COLLISION_VOLUME_HITMAN_OFF" },
+		{ 24, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER" },
+		{ 25, "eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER_TRANSPARENT" },
+		{ 26, "eCollLayer_COLLIDE_WITH_STATIC_ONLY" },
+		{ 27, "eCollLayer_AI_VISION_BLOCKER" },
+		{ 28, "eCollLayer_AI_VISION_BLOCKER_AMBIENT_ONLY" },
+		{ 29, "eCollayer_UNUSED_LAST" },
+	};
+
+	(*g_Enums)["ECollidableShape"] = {
+		{ 0, "ECOLLIDABLESHAPE_SPHERE" },
+		{ 1, "ECOLLIDABLESHAPE_CAPSULE" },
+		{ 2, "ECOLLIDABLESHAPE_BOX" },
+	};
+
+	(*g_Enums)["ECollidablesType"] = {
+		{ 0, "ECST_STATIC_AND_DYNAMIC" },
+		{ 1, "ECST_STATIC_ONLY" },
+		{ 2, "ECST_DYNAMIC_ONLY" },
+	};
+
+	(*g_Enums)["ECollisionNotifyGroup"] = {
+		{ 0, "eCollisionNotifyGroup_Default" },
+		{ 1, "eCollisionNotifyGroup_CollisionListener" },
+		{ 2, "eCollisionNotifyGroup_PhysicsEntity" },
+		{ 3, "eCollisionNotifyGroup_DontNotify" },
+		{ 4, "eCollisionNotifyGroup_ForceNotify" },
+	};
+
+	(*g_Enums)["ECollisionPriority"] = {
+		{ 0, "ECOLLISIONPRIORITY_LOW" },
+		{ 1, "ECOLLISIONPRIORITY_NORMAL" },
+		{ 2, "ECOLLISIONPRIORITY_HIGH" },
+		{ 3, "ECOLLISIONPRIORITY_CRITICAL" },
+	};
+
+	(*g_Enums)["ECollisionResponse"] = {
+		{ 0, "REFLECT_VELOCITY" },
+		{ 1, "SLIDE_ON" },
+		{ 2, "STAY_AT_COLLISION_POINT" },
+		{ 3, "CUSTOM" },
+	};
+
+	(*g_Enums)["ECombatZoneState"] = {
+		{ 0, "CZS_Inactive" },
+		{ 1, "CZS_Triggered" },
+		{ 2, "CZS_Engaged" },
+	};
+
+	(*g_Enums)["ECommunicationBarMessage"] = {
+		{ 0, "ECBM_Unknown" },
+		{ 1, "ECBM_Spotted" },
+		{ 2, "ECBM_Frisking" },
+		{ 3, "ECBM_HostileArea" },
+		{ 4, "ECBM_InvestigatingArea" },
+		{ 5, "ECBM_Clear" },
+		{ 6, "ECBM_Suspicious" },
+		{ 7, "ECBM_Alerted" },
+		{ 8, "ECBM_Hunting" },
+		{ 9, "ECBM_Arresting" },
+		{ 10, "ECBM_Engaging" },
+		{ 11, "ECBM_Hostile" },
+		{ 12, "ECBM_IdentityKnown" },
+		{ 13, "ECBM_Agitated" },
+		{ 14, "ECBM_VipRunsToSafeArea" },
+		{ 15, "ECBM_VipEscaping" },
+		{ 16, "ECBM_BodyFound" },
+		{ 17, "ECBM_GunshotHeard" },
+		{ 18, "ECBM_CloseCombatHeard" },
+		{ 19, "ECBM_CrimeNoticed" },
+		{ 20, "ECBM_BulletImpactNoticed" },
+		{ 21, "ECBM_SpottedByCamera" },
+		{ 22, "ECBM_UnconsciousWitness" },
+	};
+
+	(*g_Enums)["ECommunicationBarState"] = {
+		{ 0, "COMMUNICATION_BAR_NONE" },
+		{ 1, "COMMUNICATION_BAR_CLEAR" },
+		{ 2, "COMMUNICATION_BAR_SEARCHING" },
+		{ 3, "COMMUNICATION_BAR_SUSPICIOUS" },
+		{ 4, "COMMUNICATION_BAR_HUNTING" },
+		{ 5, "COMMUNICATION_BAR_HOSTILE" },
+		{ 6, "COMMUNICATION_BAR_BLOOD_FOUND" },
+		{ 7, "COMMUNICATION_BAR_BODY_FOUND" },
+		{ 8, "COMMUNICATION_BAR_GUARDS_ALERTED" },
+		{ 9, "COMMUNICATION_BAR_BACKUP_ARRIVED" },
 	};
 
 	(*g_Enums)["ECompiledBehaviorType"] = {
@@ -5054,1418 +3453,6 @@ void ZHMEnums::RegisterEnums()
 		{ 190, "BT_Invalid" },
 	};
 
-	(*g_Enums)["ECCWeaponAnimSet"] = {
-		{ 0, "AS_SLIT_THROAT_1H" },
-		{ 1, "AS_SWING_1H" },
-		{ 2, "AS_BASH_1H" },
-		{ 3, "AS_STAB_1H" },
-		{ 4, "AS_SYRINGE_1H" },
-		{ 5, "AS_SMASH_1H" },
-		{ 6, "AS_STRANGLE" },
-		{ 7, "AS_SWING_2H" },
-		{ 8, "AS_BASH_2H" },
-		{ 9, "AS_STAB_2H" },
-		{ 10, "AS_STRANGLE_2H" },
-		{ 11, "AS_SWORD_1H" },
-		{ 12, "AS_AXE" },
-	};
-
-	(*g_Enums)["EActorRole"] = {
-		{ 0, "eActorRole_Default" },
-		{ 1, "eActorRole_Bodyguard" },
-		{ 2, "eActorRole_VIP" },
-	};
-
-	(*g_Enums)["ZWaveformGeneratorEntity.ECurveType"] = {
-		{ 0, "CURVE_TYPE_SINE" },
-		{ 1, "CURVE_TYPE_SQUARE" },
-		{ 2, "CURVE_TYPE_TRIANGLE" },
-		{ 3, "CURVE_TYPE_SAWTOOTH" },
-		{ 4, "CURVE_TYPE_REVERSE_SAWTOOTH" },
-	};
-
-	(*g_Enums)["EItemHUDType"] = {
-		{ 0, "EIHT_None" },
-		{ 1, "EIHT_GhostItem" },
-		{ 2, "EIHT_OutbreakHealingItem" },
-	};
-
-	(*g_Enums)["ZDetectedInPrivateGroup.EInvestigateGroupState"] = {
-		{ 0, "IGS_Delay" },
-		{ 1, "IGS_Talk" },
-		{ 2, "IGS_Move" },
-		{ 3, "IGS_Wait" },
-		{ 4, "IGS_Completed" },
-		{ 5, "IGS_Max" },
-	};
-
-	(*g_Enums)["ZActorPickerFilterKeyword.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["ZConditionListEntity.EEvaluationType"] = {
-		{ 0, "ALL_TRUE" },
-		{ 1, "ANY_TRUE" },
-	};
-
-	(*g_Enums)["ENetworkSystemID"] = {
-		{ 0, "NSID_UNDEFINED" },
-		{ 1, "NSID_DEBUG_SWAP_PLAYER_RPC" },
-		{ 2, "NSID_ROUNTTRIPTEST_REQUEST_RPC" },
-		{ 3, "NSID_ROUNTTRIPTEST_RESOLVE_RPC" },
-		{ 4, "NSID_CONNECTION_LOCALLY_DEREFERENCE_UPDATE_RPC" },
-		{ 5, "NSID_CONNECTION_READY_FOR_REPLICATION_RPC" },
-		{ 6, "NSID_NETPLAYER_LOGIN_RPC" },
-		{ 7, "NSID_NETPLAYER_LOGIN_COLOR_SELECTION_RPC" },
-		{ 8, "NSID_NETPLAYER_REPLICA" },
-		{ 9, "NSID_NETGAME_REPLICA" },
-		{ 10, "NSID_PLAYERREGISTRY_REPLICA" },
-		{ 11, "NSID_NETPLAYER_CONTROLLER_REPLICA" },
-		{ 12, "NSID_SYNCH_POINT_PLAYER_REPLICA" },
-		{ 13, "NSID_SYNCH_POINT_REPLICA" },
-		{ 14, "NSID_GAME_CHAT_RPC" },
-		{ 15, "NSID_NETWORK_CORE_SYSTEMS_END" },
-		{ 16, "NSID_PLAYER_INPUT_RPC" },
-		{ 17, "NSID_PLAYER_INPUT_REPLICA" },
-		{ 18, "NSID_GENERAL_ENTITY_PROPERTY_REPLICA" },
-		{ 19, "NSID_ANIMATED_ACTOR_RPC" },
-		{ 20, "NSID_CAMERA_REPLICA" },
-		{ 21, "NSID_GENERAL_PIN_SIGNAL_RPC" },
-		{ 22, "NSID_PIN_SIGNAL_RPC" },
-		{ 23, "NSID_NPC_DIALOGUE_RPC" },
-		{ 24, "NSID_GAME_STATE_REPLICA" },
-		{ 25, "NSID_HERO_STATE_REPLICA" },
-		{ 26, "NSID_NPC_STATE_REPLICA" },
-		{ 27, "NSID_ANIMATION_REPLICA" },
-		{ 28, "NSID_DESTRUCTIBLE_INTERACTIONS_RPC" },
-		{ 29, "NSID_ACT_REQUEST_RPC" },
-		{ 30, "NSID_CHARACTERSPEAK_REPLICA" },
-		{ 31, "NSID_ITEM_WEAPON_RPC" },
-		{ 32, "NSID_ITEM_REPLICA" },
-		{ 33, "NSID_ACCESSORY_ITEM_REPLICA" },
-		{ 34, "NSID_BULLET_IMPACT_RPC" },
-		{ 35, "NSID_NETWORKED_TIME_CONTROL_RPC" },
-		{ 36, "NSID_REQUEST_ACTION_SYCHRONIZATION_RPC" },
-		{ 37, "NSID_PHYSICS_SYSTEM_REPLICA" },
-		{ 38, "NSID_PHYSICS_OBJECT_REPLICA" },
-		{ 39, "NSID_WATER_SPLASH_GENERATOR_RPC" },
-		{ 40, "NSID_PROJECTILE_HIT_INFO_RPC" },
-		{ 41, "NSID_PROJECTILE_HIT_EVENT_RPC" },
-		{ 42, "NSID_INTERACTION_SUBACTION_EXECUTE_REQUEST" },
-		{ 43, "NSID_INTERACTION_SUBACTION_EXECUTE_RESOLVE" },
-		{ 44, "NSID_INTERACTION_SUBACTION_EXECUTE_SIGNAL_RESOLVE" },
-		{ 45, "NSID_INTERACTION_INPUT_REQUEST_RESOLVE" },
-		{ 46, "NSID_SUBCONTROLLER_REPLICA" },
-		{ 47, "NSID_CONTRACT_EVENT_REPLICA" },
-		{ 48, "NSID_NETWORK_SYNCHRONOUS_MULTIPLAYER_END" },
-		{ 49, "NSID_SNIPERS_CHALLENGE_SCORING_EVENT_REPLICA" },
-		{ 50, "NSID_CHARACTER_GHOST_REPLICA" },
-		{ 51, "NSID_PIP_GHOST_REPLICA" },
-		{ 52, "NSID_SPATIAL_GHOST_REPLICA" },
-		{ 53, "NSID_VS_TARGET_PICKER_REPLICA" },
-		{ 54, "NSID_VS_KILL_RPC" },
-		{ 55, "NSID_VS_KILL_CONFIRM_RPC" },
-		{ 56, "NSID_VS_CLIENT_DEAD_RPC" },
-		{ 57, "NSID_VS_SETUP_SYNC_REPLICA" },
-		{ 58, "NSID_VS_PIN_SIGNAL_RPC" },
-		{ 59, "NSID_VS_ENTITY_PROPERTY_REPLICA" },
-		{ 60, "NSID_VS_GENERIC_EVENT_RPC" },
-		{ 61, "NSID_VS_PENALTY_KILL_RPC" },
-		{ 62, "NSID_VS_ITEM_PICKUP_REQUEST_RPC" },
-		{ 63, "NSID_VS_ITEM_PICKUP_RESPONSE_RPC" },
-		{ 64, "NSID_VS_OUTFIT_PICK_REQUEST_RPC" },
-		{ 65, "NSID_VS_OUTFIT_PICK_RESPONSE_RPC" },
-		{ 66, "NSID_VS_PICKUP_SPAWNER_REPLICA" },
-		{ 67, "NSID_VS_KILL_EVENT_RPC" },
-		{ 68, "NSID_VS_PRE_SCORE_TIMER_RPC" },
-		{ 69, "NSID_VS_TARGET_PACIFY_RPC" },
-		{ 70, "NSID_VS_CONFIRM_TARGET_PACIFY_RPC" },
-		{ 71, "NSID_VS_TARGET_PACIFIED_CONFIRMED_RPC" },
-		{ 72, "NSID_MAX" },
-	};
-
-	(*g_Enums)["ZHM5FaceFXReactionEventConsumer.EEvent"] = {
-		{ 0, "eHitByBullet" },
-		{ 1, "eFireRegularWeapon" },
-		{ 2, "eReloadRegularWeapon" },
-		{ 3, "eFireHeavyWeapon" },
-		{ 4, "eReloadHeavyWeapon" },
-		{ 5, "eCCAttacking" },
-		{ 6, "eCCGettingHit" },
-		{ 7, "eCoverDodgebulletLeft" },
-		{ 8, "eCoverDodgebulletRight" },
-		{ 9, "eReactToExplosion" },
-	};
-
-	(*g_Enums)["ZDebugSpatialEntity.EDrawLayer"] = {
-		{ 0, "DL_DEFAULT" },
-		{ 1, "DL_LIGHT" },
-		{ 2, "DL_PARTICLES" },
-		{ 3, "DL_PARTITIONING" },
-		{ 4, "DL_DECALS" },
-		{ 5, "DL_CROWD" },
-		{ 6, "DL_PHYSICS" },
-		{ 7, "DL_HERO" },
-		{ 8, "DL_AI" },
-		{ 9, "DL_AI_GRID" },
-		{ 10, "DL_AI_SITUATION" },
-		{ 11, "DL_NPC_LOCOMOTION" },
-		{ 12, "DL_GAME" },
-		{ 13, "DL_ALIGNMENT" },
-		{ 14, "DL_ENGINE" },
-		{ 15, "DL_SOUND" },
-		{ 16, "DL_ANIMATION" },
-		{ 17, "DL_CLOTH" },
-		{ 18, "DL_SOUND_PARTITIONING" },
-		{ 19, "DL_UI" },
-	};
-
-	(*g_Enums)["EIntelTensionLevel"] = {
-		{ 0, "eITL_Undefined" },
-		{ 1, "eITL_Ambient" },
-		{ 2, "eITL_Agitated" },
-		{ 3, "eITL_Searching" },
-		{ 4, "eITL_AlertedLow" },
-		{ 5, "eITL_AlertedHigh" },
-		{ 6, "eITL_Hunting" },
-		{ 7, "eITL_Arrest" },
-		{ 8, "eITL_Combat" },
-	};
-
-	(*g_Enums)["CrowdUtil.ECrowdSide"] = {
-		{ 0, "LEFT" },
-		{ 1, "RIGHT" },
-	};
-
-	(*g_Enums)["ESentryActionPrompt"] = {
-		{ 0, "eSAP_None" },
-		{ 1, "eSAP_Frisk" },
-		{ 2, "eSAP_ShowItem" },
-		{ 3, "eSAP_Max" },
-	};
-
-	(*g_Enums)["EInventoryConfigCustomRule"] = {
-		{ 0, "EICCR_None" },
-		{ 1, "EICCR_Surrender" },
-		{ 2, "EICCR_TempDropLeftHandItem" },
-	};
-
-	(*g_Enums)["ZItemSpawner.EPhysicsMode"] = {
-		{ 0, "EPM_DEFINED_BY_ITEM" },
-		{ 1, "EPM_DYNAMIC" },
-		{ 2, "EPM_SLEEPING" },
-		{ 3, "EPM_KINEMATIC" },
-	};
-
-	(*g_Enums)["ICameraEntity.EProjectionType"] = {
-		{ 0, "ePerspectiveRH" },
-		{ 1, "eOrtogonalRH" },
-		{ 2, "eCustom" },
-	};
-
-	(*g_Enums)["EBIEventTypes"] = {
-		{ 0, "eBIL_HM_HitNPC" },
-		{ 1, "eBIL_HM_HitNPCKilled" },
-		{ 2, "eBIL_HM_HitNPCHeadShot" },
-		{ 3, "eBIL_HM_HitNPCCloseCombatShot" },
-		{ 4, "eBIL_NPC_HitHM" },
-		{ 5, "eBIL_Geometry" },
-	};
-
-	(*g_Enums)["EInteractionInputType"] = {
-		{ 0, "EIIT_UNKNOWN" },
-		{ 1, "EIIT_PRESS" },
-		{ 2, "EIIT_HOLD" },
-		{ 3, "EIIT_HOLD_DOWN" },
-		{ 4, "EIIT_REPEAT" },
-		{ 5, "EIIT_GUIDE" },
-	};
-
-	(*g_Enums)["ZDeadBodySituation.ESituationFlavor"] = {
-		{ 0, "SF_None" },
-		{ 1, "SF_Unconscious" },
-		{ 2, "SF_DeadBody" },
-		{ 3, "SF_Accident" },
-	};
-
-	(*g_Enums)["ERatingTitleRequirement"] = {
-		{ 0, "ERatingTitleRequirement_Optional" },
-		{ 1, "ERatingTitleRequirement_Required" },
-		{ 2, "ERatingTitleRequirement_Fails" },
-	};
-
-	(*g_Enums)["ZBoxReflectionEntity.EBoundsType"] = {
-		{ 0, "eBox" },
-		{ 1, "eRoom" },
-	};
-
-	(*g_Enums)["ZSetVisibleEntity.StartBehavior"] = {
-		{ 0, "SB_Nothing" },
-		{ 1, "SB_MakeVisible" },
-		{ 2, "SB_MakeInvisible" },
-	};
-
-	(*g_Enums)["STestStruct.ETestEnum"] = {
-		{ 3, "ETomato" },
-		{ 5, "EPotato" },
-	};
-
-	(*g_Enums)["ZHM5BodySoundEventConsumer.EAnimSoundBody"] = {
-		{ 0, "eHM5AnimSoundBody_Buttocks" },
-		{ 1, "eHM5AnimSoundBody_Back" },
-		{ 2, "eHM5AnimSoundBody_Head" },
-		{ 3, "eHM5AnimSoundBody_Knee_L" },
-		{ 4, "eHM5AnimSoundBody_Knee_R" },
-		{ 5, "eHM5AnimSoundBody_Elbow_L" },
-		{ 6, "eHM5AnimSoundBody_Elbow_R" },
-		{ 7, "eHM5AnimSoundBody_Hand_L" },
-		{ 8, "eHM5AnimSoundBody_Hand_R" },
-		{ 9, "eHM5AnimSoundBody_Foot_L" },
-		{ 10, "eHM5AnimSoundBody_Foot_R" },
-		{ 11, "eHM5AnimSoundBody_Shoulder_L" },
-		{ 12, "eHM5AnimSoundBody_Shoulder_R" },
-		{ 13, "eHM5AnimSoundBody_RollFwd" },
-		{ 14, "eHM5AnimSoundBody_RollSide" },
-	};
-
-	(*g_Enums)["EMeBarState"] = {
-		{ 0, "ME_BAR_NONE" },
-		{ 1, "ME_BAR_TRESPASSING" },
-		{ 2, "ME_BAR_DEEPTRESPASSING" },
-		{ 3, "ME_BAR_VISIBLY_ARMED" },
-		{ 4, "ME_BAR_CHANGING_DISGUISE" },
-		{ 5, "ME_BAR_DISGUISE_BLOWN" },
-		{ 6, "ME_BAR_DISGUISE_SUSPICIOUS" },
-		{ 7, "ME_BAR_NEAR_BODY" },
-	};
-
-	(*g_Enums)["ECCNodeSubtype"] = {
-		{ 0, "eCCNodeSubtype_Left" },
-		{ 1, "eCCNodeSubtype_Right" },
-		{ 2, "eCCNodeSubtype_Front" },
-		{ 3, "eCCNodeSubtype_Back" },
-		{ 4, "eCCNodeSubtype_StairsAbove" },
-		{ 5, "eCCNodeSubtype_StairsBelow" },
-		{ 6, "eCCNodeSubtype_StairsAbove_Back" },
-		{ 7, "eCCNodeSubtype_StairsBelow_Back" },
-		{ 8, "eCCNodeSubtype_Front_Back" },
-		{ 9, "eCCNodeSubtype_Count" },
-	};
-
-	(*g_Enums)["ZPIPMessageEntity.EIcon"] = {
-		{ 0, "IconStart" },
-		{ 1, "MagnifyingGlass" },
-		{ 2, "ArrowRight" },
-		{ 3, "ExclamationMark" },
-		{ 4, "Target" },
-		{ 5, "SurveillanceCamera" },
-		{ 6, "Concealed" },
-		{ 7, "QuestionMark" },
-		{ 8, "IconEnd" },
-	};
-
-	(*g_Enums)["EWaypointRotationAlignment"] = {
-		{ 0, "RA_NONE" },
-		{ 1, "RA_LOOSE" },
-		{ 2, "RA_EXACT" },
-	};
-
-	(*g_Enums)["EHintMessageSoundType"] = {
-		{ 0, "EHintMessageSound_None" },
-		{ 1, "EHintMessageSound_GeneralHint" },
-		{ 2, "EHintMessageSound_UsefulItem" },
-		{ 3, "EHintMessageSound_NeedsItem" },
-		{ 4, "EHintMessageSound_ObjectiveExit" },
-		{ 5, "EHintMessageSound_Target" },
-		{ 6, "EHintMessageSound_AccidentKill" },
-		{ 7, "EHintMessageSound_Trespassing" },
-		{ 8, "EHintMessageSound_CanBeTurnedOn" },
-		{ 9, "EHintMessageSound_CanBeTurnedOff" },
-		{ 10, "EHintMessageSound_Agility" },
-	};
-
-	(*g_Enums)["EAsyncRaycastsGroup"] = {
-		{ 0, "eAsyncRaycasts_Gameplay" },
-		{ 1, "eAsyncRaycasts_ParticlesSoundCloth" },
-		{ 2, "eAsyncRaycasts_UNUSED_LAST" },
-	};
-
-	(*g_Enums)["EKnownEntityType"] = {
-		{ 0, "KET_UNKNOWN" },
-		{ 1, "KET_HITMAN" },
-		{ 2, "KET_ACTOR" },
-		{ 3, "KET_ITEM" },
-		{ 4, "KET_LOCATION" },
-		{ 5, "KET_OBJECT" },
-		{ 6, "KET_COVER" },
-		{ 7, "KET_PERCEPTIBLE" },
-		{ 8, "KET_TEMPCROWDBODY" },
-	};
-
-	(*g_Enums)["ZActorAccessoryItemCondition.EConditionTypes"] = {
-		{ 0, "ECT_HasInPool" },
-		{ 1, "ECT_HasAttached" },
-	};
-
-	(*g_Enums)["ZHM5DynamicRayCastEntity.ECollideType"] = {
-		{ 0, "eAll" },
-		{ 1, "eStaticOnly" },
-		{ 2, "eDynamicOnly" },
-		{ 3, "eBaseCharacter" },
-		{ 4, "eHitman" },
-		{ 5, "eActor" },
-	};
-
-	(*g_Enums)["ZCausalNodeEntity.ECauseEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["ESoundGateFlags"] = {
-		{ 1, "SOUNDGATE_FLAGS_AMBIENCE" },
-		{ 2, "SOUNDGATE_FLAGS_OCCLUSION" },
-		{ 255, "SOUNDGATE_FLAGS_ALL" },
-	};
-
-	(*g_Enums)["EInteractionIndicatorState"] = {
-		{ 0, "EIIS_AVAILABLE" },
-		{ 1, "EIIS_COLLAPSED" },
-		{ 2, "EIIS_ACTIVATING" },
-		{ 3, "EIIS_NOTAVAILABLE" },
-	};
-
-	(*g_Enums)["CrowdUtil.EGenderReq"] = {
-		{ 0, "eGender_Any" },
-		{ 1, "eGender_Male" },
-		{ 2, "eGender_Female" },
-	};
-
-	(*g_Enums)["EActorLookAtPriority"] = {
-		{ 0, "eALAPriority_Ambient" },
-		{ 1, "eALAPriority_AmbientHigh" },
-		{ 2, "eALAPriority_Alert" },
-		{ 3, "eALAPriority_AlertHigh" },
-		{ 4, "eALAPriority_Hunt" },
-		{ 5, "eALAPriority_HuntHigh" },
-		{ 6, "eALAPriority_Combat" },
-		{ 7, "eALAPriority_CombatHigh" },
-	};
-
-	(*g_Enums)["ECharacterAnimEventState"] = {
-		{ 0, "eES_None" },
-		{ 1, "eES_Pending" },
-		{ 2, "eES_Completed" },
-		{ 3, "eES_TimedOut" },
-	};
-
-	(*g_Enums)["ZFriskSuspectGroup.EHitmanGreetState"] = {
-		{ 0, "HGS_NotGreeted" },
-		{ 1, "HGS_Greeted" },
-		{ 2, "HGS_ShrugOff" },
-	};
-
-	(*g_Enums)["SDoorSoundDefs.EDefinition"] = {
-		{ 0, "DoorOpen" },
-		{ 1, "DoorClose" },
-		{ 2, "DoorSlam" },
-		{ 3, "DoorOpenStop" },
-	};
-
-	(*g_Enums)["ZActorPickerEffectDrama.EEffectPhaseAction"] = {
-		{ 0, "EPA_START" },
-		{ 1, "EPA_LEAVE" },
-	};
-
-	(*g_Enums)["ZAudioSequenceTrack.EPlaybackTarget"] = {
-		{ 0, "eNone" },
-		{ 1, "eTargetEntityAudioPlayer" },
-		{ 2, "eTargetEntityEmitter" },
-		{ 3, "ePreviewEmitter" },
-	};
-
-	(*g_Enums)["EItemModifierType"] = {
-		{ 0, "MODIFIER_NONE" },
-		{ 1, "MODIFIER_THROW" },
-		{ 2, "MODIFIER_CARRY" },
-		{ 3, "MODIFIER_AMMO" },
-		{ 4, "MODIFIER_PRECISION" },
-		{ 5, "MODIFIER_DAMAGE" },
-		{ 6, "MODIFIER_IMPACT" },
-		{ 7, "MODIFIER_EXPLOSIVE" },
-		{ 8, "MODIFIER_RANGE" },
-		{ 9, "MODIFIER_ZOOM" },
-		{ 10, "MODIFIER_SUPPRESSOR" },
-		{ 11, "MODIFIER_RECOIL" },
-		{ 12, "MODIFIER_RATEOFFIRE" },
-		{ 13, "MODIFIER_SCOPEBOBBING" },
-		{ 14, "MODIFIER_MUZZLEVELOCITY" },
-		{ 15, "MODIFIER_KNOCKDOWN" },
-		{ 16, "MODIFIER_FULLAUTO" },
-		{ 17, "MODIFIER_PRECISIONSHOT" },
-		{ 18, "MODIFIER_SCOPETIMESLOWDOWN" },
-		{ 19, "MODIFIER_STYLE" },
-		{ 20, "MODIFIER_RELOAD" },
-		{ 21, "MODIFIER_THRESHOLD" },
-		{ 22, "MODIFIER_PERK" },
-		{ 23, "MODIFIER_MAGAZINE" },
-		{ 24, "MODIFIER_BURST" },
-	};
-
-	(*g_Enums)["EAISituation"] = {
-		{ 0, "AIS_GENERIC" },
-		{ 1, "AIS_SPECIAL" },
-		{ 2, "AIS_SENSOR" },
-		{ 3, "AIS_TRESPASSING" },
-		{ 4, "AIS_STANDOFF" },
-		{ 5, "AIS_SMUGGLE" },
-		{ 6, "AIS_GET_HELP" },
-		{ 7, "AIS_CONVERSTION_GROUP" },
-		{ 8, "AIS_PROTO_COMBAT" },
-		{ 9, "AIS_SENTRY" },
-		{ 10, "AIS_LEAD_ESCORT" },
-		{ 11, "AIS_INVESTIGATE_WEAPON" },
-		{ 12, "AIS_INVESTIGATE_STANDING" },
-		{ 13, "AIS_INVESTIGATE_CURIOUS" },
-		{ 14, "AIS_INVESTIGATE_CAUTIOUS" },
-		{ 15, "AIS_HERO_ESCORT" },
-		{ 16, "AIS_EVACUATE" },
-		{ 17, "AIS_ESCORT" },
-		{ 18, "AIS_ENTOURAGE" },
-		{ 19, "AIS_DRAMA" },
-		{ 20, "AIS_DISGUISE" },
-		{ 21, "AIS_DEAD_BODY" },
-		{ 22, "AIS_COMBAT" },
-		{ 23, "AIS_CLOSE_COMBAT" },
-		{ 24, "AIS_AVOID_EXPLOSION" },
-		{ 25, "AIS_ACCIDENT" },
-		{ 26, "AIS_PRIVATE" },
-		{ 27, "AIS_GUARD_BODY" },
-		{ 28, "AIS_RECOVER_UNC" },
-		{ 29, "AIS_SNIPER" },
-	};
-
-	(*g_Enums)["EScreenPlayState"] = {
-		{ 0, "State_Stopped" },
-		{ 1, "State_Running" },
-		{ 2, "State_Resuming" },
-		{ 3, "State_Pausing" },
-		{ 4, "State_Paused" },
-		{ 5, "State_Done" },
-		{ 6, "State_Terminated" },
-	};
-
-	(*g_Enums)["EDramaSituationDescriptors"] = {
-		{ 64, "eDSD_ALERT" },
-		{ 0, "eDSD_NONE" },
-		{ 128, "eDSD_PARANOID" },
-		{ 32, "eDSD_DEATH" },
-		{ 16, "eDSD_SICK" },
-		{ 8, "eDSD_URGENT" },
-		{ 1, "eDSD_HERO" },
-		{ 2, "eDSD_CONVERSATION" },
-		{ 4, "eDSD_DISTRACTION" },
-		{ 256, "eDSD_SCARY" },
-		{ 512, "eDSD_TRIVIAL" },
-		{ 1024, "eDSD_PREOCCUPIED" },
-		{ 2048, "eDSD_PRIVATE" },
-	};
-
-	(*g_Enums)["ERagdollPart"] = {
-		{ 0, "ERAGDOLLPART_NONE" },
-		{ 1, "ERAGDOLLPART_BODY" },
-		{ 2, "ERAGDOLLPART_HEAD" },
-		{ 3, "ERAGDOLLPART_HAND" },
-		{ 4, "ERAGDOLLPART_FOOT" },
-	};
-
-	(*g_Enums)["EOpportunityState"] = {
-		{ 1, "OS_TRACKED" },
-		{ 2, "OS_ENABLED" },
-		{ 4, "OS_UNLOCKED" },
-		{ 8, "OS_REVEAL_PENDING" },
-	};
-
-	(*g_Enums)["ZStateControllerEntity.WrapMode"] = {
-		{ 0, "WM_Loop" },
-		{ 1, "WM_Clamp" },
-	};
-
-	(*g_Enums)["EOrderCompletionStatus"] = {
-		{ 0, "OCS_Undetermined" },
-		{ 1, "OCS_Succeeded" },
-		{ 2, "OCS_Interrupted" },
-		{ 3, "OCS_Blocked" },
-		{ 4, "OCS_Failed" },
-	};
-
-	(*g_Enums)["ZHM5ContextActionEntity.EInteraction"] = {
-		{ 0, "eIT_RotateLeftStick" },
-		{ 1, "eIT_AutoComplete" },
-		{ 2, "eIT_NoInteraction" },
-	};
-
-	(*g_Enums)["EOutbreakInfectionStage"] = {
-		{ 0, "eOIS_Stage1" },
-		{ 1, "eOIS_Stage2" },
-		{ 2, "eOIS_Stage3" },
-	};
-
-	(*g_Enums)["eActionRewardType"] = {
-		{ 0, "AR_None" },
-		{ 1, "AR_QuestItem" },
-		{ 2, "AR_Keycard" },
-		{ 3, "AR_Key" },
-	};
-
-	(*g_Enums)["ZAT2Controller.EFootstepsMovementType"] = {
-		{ 0, "MOVEMENT_WALKING" },
-		{ 1, "MOVEMENT_WALKING_SLIDING" },
-		{ 2, "MOVEMENT_RUNNING" },
-		{ 3, "MOVEMENT_STANDING" },
-	};
-
-	(*g_Enums)["ZMoveToPositionBehaviorEntity.EMovementType"] = {
-		{ 0, "MT_WALK" },
-		{ 1, "MT_SNAP" },
-		{ 2, "MT_IGNORE_POSITION" },
-	};
-
-	(*g_Enums)["ZHM5ForceCover.EFaceDirection"] = {
-		{ 0, "eFaceLeft" },
-		{ 1, "eFaceRight" },
-	};
-
-	(*g_Enums)["AudioCurve"] = {
-		{ 0, "AudioCurve_Log3" },
-		{ 1, "AudioCurve_Sine" },
-		{ 2, "AudioCurve_Log1" },
-		{ 3, "AudioCurve_InvSCurve" },
-		{ 4, "AudioCurve_Linear" },
-		{ 5, "AudioCurve_SCurve" },
-		{ 6, "AudioCurve_Exp1" },
-		{ 7, "AudioCurve_SineRecip" },
-		{ 8, "AudioCurve_Exp3" },
-		{ 9, "AudioCurve_LastFadeCurve" },
-		{ 10, "AudioCurve_Constant" },
-	};
-
-	(*g_Enums)["EActivationPriority"] = {
-		{ 0, "eActivatable_First" },
-		{ 1, "eActivatable_PlayModeAddedPhysics" },
-		{ 2, "eActivatable_DestructiblePhysics" },
-		{ 3, "eActivatable_PhysicsWind" },
-		{ 4, "eActivatable_Physics" },
-		{ 5, "eActivatable_PhysicsDone" },
-		{ 6, "eActivatable_Keywords" },
-		{ 7, "eActivatable_EventChannel" },
-		{ 8, "eActivatable_Items" },
-		{ 9, "eActivatable_Actor" },
-		{ 10, "eActivatable_Hitman" },
-		{ 11, "eActivatable_AnimPlayer" },
-		{ 12, "eActivatable_Sequence" },
-		{ 13, "eActivatable_SpawnPoint" },
-		{ 14, "eActivatable_CoverPlane" },
-		{ 15, "eActivatable_GuardPoint" },
-		{ 16, "eActivatable_Guide" },
-		{ 17, "eActivatable_CombatAct" },
-		{ 18, "eActivatable_CombatAttractor" },
-		{ 19, "eActivatable_SequenceController" },
-		{ 20, "eActivatable_KnownEntityAspects" },
-		{ 21, "eActivatable_AIReasoningGrid" },
-		{ 22, "eActivatable_HM5Zone" },
-		{ 23, "eActivatable_Crowds" },
-		{ 24, "eActivatable_ChildNetworkAct" },
-		{ 25, "eActivatable_Door" },
-		{ 26, "eActivatable_UI_Setup" },
-		{ 27, "eActivatable_NormalGameplay" },
-		{ 28, "eActivatable_NormalGameplay_Condition" },
-		{ 29, "eActivatable_NormalGameplay_Values" },
-		{ 30, "eActivatable_NormalGameplay_State" },
-		{ 31, "eActivatable_HeroSpawns" },
-		{ 32, "eActivatable_UI" },
-		{ 33, "eActivatable_Locomotion" },
-		{ 34, "eActivatable_Timers" },
-		{ 35, "eActivatable_AreaTriggers" },
-		{ 36, "eActivatable_Default" },
-		{ 37, "eActivatable_GameEventListener" },
-		{ 38, "eLAST_ACTIVATION_PRIORITY" },
-	};
-
-	(*g_Enums)["ZMenuSliderNavigationEntity.ESliderInputMode"] = {
-		{ 0, "E_HORIZONTAL" },
-		{ 1, "E_VERTICAL" },
-	};
-
-	(*g_Enums)["ZActDurationCondition.EState"] = {
-		{ 0, "MOVING" },
-		{ 1, "ENTERING" },
-		{ 2, "PLAYING" },
-		{ 3, "STOPPING" },
-	};
-
-	(*g_Enums)["ETextAlignment"] = {
-		{ 0, "TEXT_ALIGN_LEFT" },
-		{ 1, "TEXT_ALIGN_CENTER" },
-		{ 2, "TEXT_ALIGN_RIGHT" },
-	};
-
-	(*g_Enums)["eItemSize"] = {
-		{ 0, "ITEMSIZE_SMALL" },
-		{ 1, "ITEMSIZE_MEDIUM" },
-		{ 2, "ITEMSIZE_LARGE" },
-	};
-
-	(*g_Enums)["ZEscortSituation2Entity.EEscortState"] = {
-		{ 0, "EES_Idle" },
-		{ 1, "EES_Evaluate" },
-		{ 2, "EES_Escorting" },
-		{ 3, "EES_Searching" },
-		{ 4, "EES_Intermediate" },
-	};
-
-	(*g_Enums)["ZLeadEscortSituationEntity.ETargetState"] = {
-		{ 0, "ETS_Unknown" },
-		{ 1, "ETS_NoTarget" },
-		{ 2, "ETS_RunningActBehavior" },
-		{ 3, "ETS_RunningDummyBehavior" },
-		{ 4, "ETS_RunningOtherBehavior" },
-		{ 5, "ETS_Dead" },
-		{ 6, "ETS_TargetIsHitman" },
-	};
-
-	(*g_Enums)["ECharacterSubcontrollerType"] = {
-		{ 0, "eSCT_IDGenerator" },
-		{ 1, "eSCT_Debugger" },
-		{ 2, "eSCT_Time" },
-		{ 3, "eSCT_Tags" },
-		{ 4, "eSCT_Descriptors" },
-		{ 5, "eSCT_ActionRequest" },
-		{ 6, "eSCT_Events" },
-		{ 7, "eSCT_Animator" },
-		{ 8, "eSCT_Motor" },
-		{ 9, "eSCT_Inventory" },
-		{ 10, "eSCT_FlavorIdle" },
-		{ 11, "eSCT_Lookat" },
-		{ 12, "eSCT_AimAssistant" },
-		{ 13, "eSCT_CharacterCollector" },
-		{ 14, "eSCT_SwipeMechanic" },
-		{ 15, "eSCT_OpenDoor" },
-		{ 16, "eSCT_Fullbody" },
-		{ 17, "eSCT_Aim" },
-		{ 18, "eSCT_PrecisionShot" },
-		{ 19, "eSCT_Marking" },
-		{ 20, "eSCT_Grip" },
-		{ 21, "eSCT_Suitcase" },
-	};
-
-	(*g_Enums)["ECrowdFlowCandidates"] = {
-		{ 0, "NONE" },
-		{ 1, "EVERYONE" },
-		{ 2, "SPAWNED_ON_FLOW" },
-	};
-
-	(*g_Enums)["EThrownCollisionSoundLoudness"] = {
-		{ 0, "eLoudness_Default" },
-		{ 1, "eLoudness_Low" },
-		{ 2, "eLoudness_Normal" },
-		{ 3, "eLoudness_Loud" },
-	};
-
-	(*g_Enums)["EGuardPointType"] = {
-		{ 0, "GPT_Hold" },
-		{ 1, "GPT_Combat" },
-		{ 2, "GPT_CombatAndHold" },
-		{ 3, "GPT_VIPSafeRoom" },
-	};
-
-	(*g_Enums)["EUIBusyOperationId"] = {
-		{ 0, "eOperationId_GameSave" },
-		{ 1, "eOperationId_MenuTransition" },
-		{ 2, "eOperationId_ManuallyTriggered" },
-		{ 3, "eOperationId_TriggerBootFlow" },
-		{ 4, "eOperationId_SaveContract" },
-		{ 5, "eOperationId_StartContract" },
-		{ 6, "eOperationId_SessionStart" },
-		{ 7, "eOperationId_ReportContract" },
-		{ 8, "eOperationId_ConnectionFlow" },
-		{ 9, "eOperationId_LoadingTransitionDelayed" },
-		{ 10, "eOperationId_SaveSuccess" },
-		{ 11, "eOperationId_SaveFailed" },
-		{ 12, "eOperationId_SessionReconnect" },
-		{ 13, "eOperationId_NetSynchedMenuPause" },
-		{ 14, "eOperationId_NetSynchedMenuRestart" },
-		{ 15, "eOperationId_NetSynchedMenuReplan" },
-		{ 16, "eOperationId_StartingMultiplayerSession" },
-		{ 17, "eOperationId_HandlingMultiplayerRequest" },
-		{ 18, "eOperationId_PoorConnectivity" },
-		{ 19, "eOperationId_Max" },
-		{ 20, "eOperationId_Custom_Begin" },
-		{ 21, "eOperationId_Custom_02" },
-		{ 22, "eOperationId_Custom_03" },
-		{ 23, "eOperationId_Custom_04" },
-		{ 24, "eOperationId_Custom_05" },
-		{ 25, "eOperationId_Custom_06" },
-		{ 26, "eOperationId_Custom_07" },
-		{ 27, "eOperationId_Custom_08" },
-		{ 28, "eOperationId_Custom_09" },
-		{ 29, "eOperationId_Custom_10" },
-		{ 30, "eOperationId_Custom_11" },
-		{ 31, "eOperationId_Custom_12" },
-		{ 32, "eOperationId_Custom_13" },
-		{ 33, "eOperationId_Custom_14" },
-		{ 34, "eOperationId_Custom_15" },
-		{ 35, "eOperationId_Custom_16" },
-		{ 36, "eOperationId_Custom_17" },
-		{ 37, "eOperationId_Custom_18" },
-		{ 38, "eOperationId_Custom_19" },
-		{ 39, "eOperationId_Custom_20" },
-		{ 40, "eOperationId_Custom_21" },
-		{ 41, "eOperationId_Custom_22" },
-		{ 42, "eOperationId_Custom_23" },
-		{ 43, "eOperationId_Custom_24" },
-		{ 44, "eOperationId_Custom_25" },
-		{ 45, "eOperationId_Custom_End" },
-		{ 46, "eOperationId_None" },
-	};
-
-	(*g_Enums)["EAttachLocation"] = {
-		{ 0, "eALRightHand" },
-		{ 1, "eALLeftHand" },
-		{ 2, "eALFreeBone" },
-		{ 3, "eALBack" },
-		{ 4, "eALRifle" },
-		{ 5, "eALAttachCount" },
-		{ 6, "eALUndefined" },
-	};
-
-	(*g_Enums)["EEngineFrameUpdatePriority"] = {
-		{ 0, "eFUP_AILogger" },
-		{ 1, "eFUP_GridManager" },
-		{ 2, "eFrameUpdatePriority_HitmanStart" },
-		{ 3, "eFUP_ActorManager_Prepare" },
-		{ 4, "eFrameUpdatePriority_CrowdSyncAI" },
-		{ 5, "eFrameUpdatePriority_PlayerCommunicationEarly" },
-		{ 6, "eFrameUpdatePriority_Scatter" },
-		{ 7, "eFrameUpdatePriority_VolumeTriggerManager" },
-		{ 8, "eFrameUpdatePriority_DistanceToCamManager" },
-		{ 9, "eFrameUpdatePriority_Door" },
-		{ 10, "eFUP_GameEntityManager" },
-		{ 11, "eFrameUpdatePriority_AreaManager" },
-		{ 12, "eFrameUpdatePriority_SpeechManager" },
-		{ 13, "eFUP_SmoothOperator" },
-		{ 14, "eFUP_LimitedVisionArea" },
-		{ 15, "eFUP_WindManager" },
-		{ 16, "eFrameUpdatePriority_KeywordDebug" },
-		{ 17, "eFUP_DebugUPlot" },
-		{ 18, "eFUP_IntelManager" },
-		{ 19, "eFrameUpdatePriority_LocalizationManager" },
-		{ 20, "eFrameUpdatePriority_SubtitleManager" },
-		{ 21, "eFrameUpdatePriority_HttpManager" },
-		{ 22, "eFrameUpdatePriority_WebsocketManager" },
-		{ 23, "eFrameUpdatePriority_OnlineEventsClient" },
-		{ 1001, "eFrameUpdatePriority_OutfitStreamingManager" },
-		{ 24, "eFrameUpdatePriority_OnlineEventManager" },
-		{ 25, "eFrameUpdatePriority_OnlineManager" },
-		{ 26, "eFrameUpdatePriority_EntitlementManager" },
-		{ 27, "eFrameUpdatePriority_MetricsManager" },
-		{ 28, "eFUP_SoundGateManager" },
-		{ 29, "eFUP_SoundAmbienceManager" },
-		{ 30, "eFrameUpdatePriority_UserProfileManager" },
-		{ 31, "eFrameUpdatePriority_RenderManager" },
-		{ 32, "eFrameUpdatePriority_TextInputDialog" },
-		{ 33, "eFrameUpdatePriority_SystemDialog" },
-		{ 34, "eFrameUpdatePriority_ContractsManager" },
-		{ 35, "eFUP_ParticleHeirEmitting" },
-		{ 36, "eFrameUpdatePriority_EditorServer" },
-		{ 37, "eFrameUpdatePriority_DebugConsole" },
-		{ 38, "eFrameUpdatePriority_GraphicsSettingsManager" },
-		{ 39, "eFrameUpdatePriority_ContractsGameManager" },
-		{ 40, "eFrameUpdatePriority_Weapon" },
-		{ 41, "eFrameUpdatePriority_CrowdDensityEntity" },
-		{ 42, "eFrameUpdatePriority_ActBehaviorStateCondition" },
-		{ 43, "eFrameUpdatePriority_ActorCanSeeCondition" },
-		{ 44, "eFrameUpdatePriority_DebugCheckKey" },
-		{ 45, "eFrameUpdatePriority_KeyControl" },
-		{ 46, "eFUP_LookAtTrigger" },
-		{ 47, "eFUP_FootstepEventConsumer" },
-		{ 48, "eFUP_BloodSplatCreator" },
-		{ 49, "eFrameUpdatePriority_PersistentEntityManager" },
-		{ 50, "eFUP_ProjectedCrowdRegion" },
-		{ 51, "eFrameUpdatePriority_Timers" },
-		{ 52, "eFrameUpdatePriority_ConditionalTimer" },
-		{ 53, "eFrameUpdatePriority_ValueEntityManager" },
-		{ 54, "eFrameUpdatePriority_ActorCounter" },
-		{ 55, "eFrameUpdatePriority_WaveformGeneratorManager" },
-		{ 56, "eFUP_ItsATrap" },
-		{ 57, "eFrameUpdatePriority_SecurityCamera" },
-		{ 58, "eFrameUpdatePriority_QueryingAIOutput" },
-		{ 59, "eFrameUpdatePriority_Projectile" },
-		{ 60, "eFrameUpdatePriority_MassImpulseCharacterExploder" },
-		{ 61, "eFrameUpdatePriority_Hitman" },
-		{ 62, "eFrameUpdatePriority_AudioManagerWwise" },
-		{ 63, "eFUP_GridManagerWaitForJobs" },
-		{ 64, "eFUP_ActorManager_StateUpdate_Pre" },
-		{ 65, "eFUP_ActorManager_StateUpdate" },
-		{ 66, "eFrameUpdatePriority_ActorAnimUpdate" },
-		{ 67, "eFrameUpdatePriority_CrowdSyncAll" },
-		{ 68, "eFrameUpdatePriority_CrowdCulling" },
-		{ 69, "eFrameUpdatePriority_PreCrowd" },
-		{ 70, "eFrameUpdatePriority_Crowd" },
-		{ 71, "eFrameUpdatePriority_PhysicsStart" },
-		{ 200, "eFrameUpdateLinkedEntity" },
-		{ 72, "eFrameUpdatePriority_ActorManager_AIUpdate" },
-		{ 201, "eFrameUpdatePriority_RayProbeEntity" },
-		{ 73, "eFUP_SmuggleSituationManager" },
-		{ 202, "eFrameUpdatePriority_GhostEntity" },
-		{ 74, "eFrameUpdatePriority_ActorManager3" },
-		{ 203, "eFrameUpdateLinkedEntityManagerMainThread" },
-		{ 75, "eFrameUpdatePriority_CharacterTemplateAspect" },
-		{ 204, "eFUP_syncDestructionEffects" },
-		{ 76, "eFrameUpdatePriority_Hitman2" },
-		{ 205, "eFrameUpdatePriority_RaycastsStart" },
-		{ 77, "eFrameUpdatePriority_PlayerCommunicationLate" },
-		{ 206, "eFrameUpdatePriority_ActorStartNetworkUpdate" },
-		{ 78, "eFrameUpdatePriority_ParticleDecalSpawn" },
-		{ 79, "eFrameUpdatePriority_ParticleColliderEmission" },
-		{ 80, "eFrameUpdatePriority_Physics" },
-		{ 81, "eFrameUpdatePriority_EntityManager" },
-		{ 82, "eFrameUpdatePriority_FreeCameraControlEntity" },
-		{ 83, "eFrameUpdatePriority_RenderVideoPlayer" },
-		{ 84, "eFrameUpdatePriority_AnimPlayerEntityManager" },
-		{ 85, "eFrameUpdatePriority_CameraAlignedBoneAnimator" },
-		{ 86, "eFrameUpdatePriority_ClothCharacterEntity" },
-		{ 87, "eFrameUpdatePriority_TextureStreamingCameraControlEntity" },
-		{ 88, "eFrameUpdatePriority_PostFilter" },
-		{ 89, "eFrameUpdatePriority_VideoPlayerControl" },
-		{ 90, "eFrameUpdatePriority_TrackDollyController" },
-		{ 91, "eFrameUpdatePriority_TestGroup" },
-		{ 92, "eFrameUpdatePriority_LookAtEntity" },
-		{ 93, "eFUP_InfoDisplay" },
-		{ 94, "eFUP_CrowdPossedAct" },
-		{ 95, "eFUP_SoundCollisionManager" },
-		{ 96, "eFUP_AudioLevelMeter" },
-		{ 97, "eFUP_ActorInstanceEntityManager" },
-		{ 98, "eFUP_WorldInventory" },
-		{ 99, "eFUP_DestructionSystem" },
-		{ 100, "eFUP_DestructionSystemPostTick" },
-		{ 101, "eFUP_DecalSpawnManager" },
-		{ 102, "eFrameUpdatePriority_DebugHandlers" },
-		{ 103, "eFrameUpdatePriority_OSD" },
-		{ 104, "eFrameUpdatePriority_Default" },
-		{ 105, "eFrameUpdatePriority_SecuritySystemCameraUI" },
-		{ 106, "eFrameUpdatePriority_ThrownItemUI" },
-		{ 107, "eFrameUpdatePriority_SequenceManager" },
-		{ 108, "eFrameUpdatePriority_VisibilitySensorWait" },
-		{ 109, "eFrameUpdatePriority_ActionManagerStart" },
-		{ 110, "eFrameUpdatePriority_PathFinderJobManager" },
-		{ 501, "eFrameUpdatePriority_NotificationsController" },
-		{ 500, "eFrameUpdatePriority_TextureManager" },
-		{ 502, "eFUP_Pathfinder" },
-		{ 1000, "eFrameUpdatePriority_LevelManager" },
-	};
-
-	(*g_Enums)["EInformationBarMessage"] = {
-		{ 0, "eIBM_Clear" },
-		{ 1, "eIBM_LastEnemyKilledCP" },
-		{ 2, "eIBM_InvestigateStand" },
-		{ 3, "eIBM_BodyFound" },
-		{ 4, "eIBM_Suspicious" },
-		{ 5, "eIBM_DisguiseBlown" },
-		{ 6, "eIBM_Hunt" },
-		{ 7, "eIBM_Exposed" },
-		{ 8, "eIBM_LandMineArmed" },
-		{ 9, "eIBM_RadioOn" },
-		{ 10, "eIBM_Trespassing" },
-		{ 11, "eIBM_NUM" },
-	};
-
-	(*g_Enums)["ESniperScoreMessageType"] = {
-		{ 0, "ESSMT_STYLE_DEFAULT" },
-		{ 1, "ESSMT_STYLE_SCORE" },
-		{ 2, "ESSMT_STYLE_PENALTY" },
-		{ 3, "ESSMT_STYLE_STREAK" },
-		{ 4, "ESSMT_STYLE_CIVKILL" },
-	};
-
-	(*g_Enums)["ZHttpUrl.EVerb"] = {
-		{ 0, "eNONE" },
-		{ 1, "eGET" },
-		{ 2, "ePOST" },
-		{ 3, "ePUT" },
-		{ 4, "eHEAD" },
-	};
-
-	(*g_Enums)["ESmoothingMode"] = {
-		{ 0, "ESM_LINEAR" },
-		{ 1, "ESM_EXPONENTIAL" },
-	};
-
-	(*g_Enums)["ZActorPickerEffectTemplate.EEffectPhaseAction"] = {
-		{ 0, "EPA_NONE" },
-		{ 1, "EPA_START_TEMPLATE" },
-		{ 2, "EPA_STOP_TEMPLATE" },
-	};
-
-	(*g_Enums)["EActorAIDot"] = {
-		{ 0, "eAAID_None" },
-		{ 1, "eAAID_Distracted" },
-		{ 2, "eAAID_PotentialThreat" },
-		{ 3, "eAAID_PotentialThreatDistracted" },
-		{ 4, "eAAID_Aggressive" },
-		{ 5, "eAAID_EscortingOut" },
-		{ 6, "eAAID_Fleeing" },
-		{ 7, "eAAID_Unconscious" },
-		{ 8, "eAAID_Stunned" },
-		{ 9, "eAAID_Grenade" },
-		{ 100, "eAAID_PotentialThreatDisabled" },
-	};
-
-	(*g_Enums)["ZDecalControllerEntity.EScaleType"] = {
-		{ 0, "eScaleDisable" },
-		{ 1, "eScaleUniform" },
-		{ 2, "eScaleY" },
-	};
-
-	(*g_Enums)["ZUIControlEntity.EAlignmentType"] = {
-		{ 0, "E_ALIGNMENT_TYPE_Center" },
-		{ 1, "E_ALIGNMENT_TYPE_TopCenter" },
-		{ 2, "E_ALIGNMENT_TYPE_BottomCenter" },
-		{ 3, "E_ALIGNMENT_TYPE_CenterLeft" },
-		{ 4, "E_ALIGNMENT_TYPE_CenterRight" },
-		{ 5, "E_ALIGNMENT_TYPE_TopLeft" },
-		{ 6, "E_ALIGNMENT_TYPE_TopRight" },
-		{ 7, "E_ALIGNMENT_TYPE_BottomLeft" },
-		{ 8, "E_ALIGNMENT_TYPE_BottomRight" },
-	};
-
-	(*g_Enums)["ZSequenceEntity.ECommand"] = {
-		{ 0, "COMMAND_START" },
-		{ 1, "COMMAND_ENABLE_PREVIEW" },
-		{ 2, "COMMAND_STOP" },
-		{ 3, "COMMAND_DISABLE_PREVIEW" },
-		{ 4, "COMMAND_ABORT" },
-		{ 5, "COMMAND_PAUSE" },
-		{ 6, "COMMAND_UNPAUSE" },
-		{ 7, "COMMAND_SETTIME" },
-		{ 8, "COMMAND_SKIPTOEND" },
-		{ 9, "COMMAND_GAME_PAUSE" },
-		{ 10, "COMMAND_GAME_UNPAUSE" },
-		{ 11, "COMMAND_PREVIEW_PAUSE" },
-		{ 12, "COMMAND_PREVIEW_STOP" },
-		{ 13, "COMMAND_PREVIEW_PLAY" },
-		{ 14, "COMMAND_PREVIEW_LOOPED" },
-		{ 15, "COMMAND_CLEAR" },
-	};
-
-	(*g_Enums)["ZEscortSituationEntity.EEscortState"] = {
-		{ 0, "EES_Idle" },
-		{ 1, "EES_Evaluate" },
-		{ 2, "EES_Escorting" },
-		{ 3, "EES_Searching" },
-		{ 4, "EES_Intermediate" },
-	};
-
-	(*g_Enums)["SniperControllerConditionType"] = {
-		{ 0, "SCCT_Enabled" },
-		{ 1, "SCCT_PrecisionAim" },
-	};
-
-	(*g_Enums)["ZActorInstanceEntity.EFFXMode"] = {
-		{ 0, "eFFX_MODE_DISABLE" },
-		{ 1, "eFFX_MODE_OVERWRITE" },
-	};
-
-	(*g_Enums)["EMapType"] = {
-		{ 0, "E_MAPTYPE_Minimap" },
-		{ 1, "E_MAPTYPE_MainMap" },
-		{ 2, "E_MAPTYPE_MenuMap" },
-	};
-
-	(*g_Enums)["CrowdUtil.ECrowdFacing"] = {
-		{ 0, "FRONT" },
-		{ 1, "BACK" },
-	};
-
-	(*g_Enums)["EKeywordSetBehavior"] = {
-		{ 0, "EKWSB_All" },
-		{ 1, "EKWSB_None" },
-		{ 2, "EKWSB_Any" },
-		{ 3, "EKWSB_No" },
-	};
-
-	(*g_Enums)["eItemRarity"] = {
-		{ 0, "ITEMRARITY_COMMON" },
-		{ 1, "ITEMRARITY_UNCOMMON" },
-		{ 2, "ITEMRARITY_RARE" },
-	};
-
-	(*g_Enums)["eHolsterAbility"] = {
-		{ 0, "eUndecided" },
-		{ 1, "eHolsteringAllowed" },
-		{ 2, "eHolsterTemporarilyOnly" },
-		{ 3, "eHolsterSecondaryOnly" },
-		{ 4, "eHolsterQuestStorage" },
-		{ 5, "eCanNotBeHolstered" },
-	};
-
-	(*g_Enums)["EMoveEndState"] = {
-		{ 0, "MES_Moving" },
-		{ 1, "MES_Stopping" },
-		{ 2, "MES_Standing" },
-	};
-
-	(*g_Enums)["EPlaceableType"] = {
-		{ 0, "PLACEABLE_NOT" },
-		{ 1, "PLACEABLE_FULL_PHYSICS" },
-		{ 2, "PLACEABLE_SLEEP_PHYSICS" },
-		{ 3, "PLACEABLE_NO_PHYSICS" },
-		{ 4, "PLACEABLE_ATTACH" },
-	};
-
-	(*g_Enums)["ELastSoundTension"] = {
-		{ 0, "EST_Unknown" },
-		{ 1, "EST_Ambient" },
-		{ 2, "EST_Yellow" },
-		{ 3, "EST_Orange" },
-		{ 4, "EST_Red" },
-	};
-
-	(*g_Enums)["ZSequenceEntity.ELetterBoxAspect"] = {
-		{ 0, "LETTERBOXASPECT_WIDESCREEN" },
-		{ 1, "LETTERBOXASPECT_CINEMASCOPE" },
-	};
-
-	(*g_Enums)["ZHM5HIKEventConsumer.EEffector"] = {
-		{ 0, "eLeftHand" },
-		{ 1, "eRightHand" },
-	};
-
-	(*g_Enums)["ZHM5BodyContainer.EBCAnimSet"] = {
-		{ 0, "BC_CONTAINER_STANDARD" },
-		{ 1, "BC_CONTAINER_WOODCHIPPER" },
-		{ 2, "BC_CAR_STANDARD_TRUNK" },
-		{ 3, "BC_CONTAINER_CLOSET" },
-		{ 4, "BC_CONTAINER_LAUNDRYCHUTE" },
-	};
-
-	(*g_Enums)["ELedgeDismountDirection"] = {
-		{ 0, "eLDD_DontCare" },
-		{ 1, "eLDD_FaceLedge" },
-		{ 2, "eLDD_FaceLeft" },
-		{ 3, "eLDD_FaceRight" },
-		{ 4, "eLDD_Turn180" },
-	};
-
-	(*g_Enums)["ZWaypointEntity.EMovementType"] = {
-		{ 0, "MT_WALK" },
-		{ 1, "MT_WALK_IF_NOT_IN_SEQUENCE" },
-		{ 2, "MT_SNAP" },
-		{ 3, "MT_IGNORE_POSITION" },
-	};
-
-	(*g_Enums)["EInventoryStorageType"] = {
-		{ 0, "EIST_None" },
-		{ 1, "EIST_Bag" },
-		{ 2, "EIST_RightHand" },
-		{ 3, "EIST_LeftHand" },
-		{ 4, "EIST_Back" },
-		{ 5, "EIST_Support" },
-		{ 6, "EIST_Quest" },
-		{ 7, "EIST_Temporary" },
-		{ 8, "EIST_Debug" },
-	};
-
-	(*g_Enums)["EDialogEventEndReason"] = {
-		{ 0, "EDialogEvent_Completed" },
-		{ 1, "EDialogEvent_Stopped" },
-	};
-
-	(*g_Enums)["EDefaultCollidableLayer"] = {
-		{ 0, "DCL_STATIC" },
-		{ 1, "DCL_KINEMATIC" },
-		{ 2, "DCL_KINEMATIC_TRANSPARENT" },
-		{ 3, "DCL_DYNAMIC" },
-		{ 4, "DCL_DYNAMIC_TRANSPARENT" },
-		{ 5, "DCL_COLLIDE_ALL" },
-		{ 6, "DCL_STATIC_TRANSPARENT" },
-		{ 7, "DCL_COLLIDE_STATIC_ONLY" },
-		{ 8, "DCL_DYNAMIC_NO_CHARACTER" },
-		{ 9, "DCL_UNUSED_LAST" },
-	};
-
-	(*g_Enums)["eItemHands"] = {
-		{ 0, "IH_NONE" },
-		{ 1, "IH_ONEHANDED" },
-		{ 2, "IH_TWOHANDED" },
-	};
-
-	(*g_Enums)["ZActorProviderFilterKeyword.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["ZHUDUIRoot.EHUDVisibility"] = {
-		{ 0, "eHV_INSTANT_OFF" },
-		{ 1, "eHV_FADE_OUT" },
-		{ 2, "eHV_FADE_IN" },
-		{ 3, "eHV_INSTANT_ON" },
-	};
-
-	(*g_Enums)["EKillType"] = {
-		{ 0, "EKillType_Undefined" },
-		{ 1, "EKillType_Throw" },
-		{ 2, "EKillType_Fiberwire" },
-		{ 3, "EKillType_PistolExecute" },
-		{ 4, "EKillType_ItemTakeOutFront" },
-		{ 5, "EKillType_ItemTakeOutBack" },
-		{ 6, "EKillType_ChokeOut" },
-		{ 7, "EKillType_SnapNeck" },
-		{ 8, "EKillType_KnockOut" },
-		{ 9, "EKillType_Push" },
-		{ 10, "EKillType_Pull" },
-	};
-
-	(*g_Enums)["EHUDIconType"] = {
-		{ 0, "HUD_ICON_NONE" },
-		{ 1, "HUD_ICON_ALARM_TIMER" },
-		{ 2, "HUD_ICON_CLOSECOMBAT" },
-		{ 3, "HUD_ICON_BREADCRUMB" },
-		{ 4, "HUD_ICON_EXIT" },
-		{ 5, "HUD_ICON_OBJECTIVE" },
-		{ 6, "HUD_ICON_TARGET" },
-		{ 7, "HUD_ICON_TUTORIAL_ARROW" },
-	};
-
-	(*g_Enums)["ECharacterActionSyncRequests"] = {
-		{ 1, "eSM_ASR_Reload" },
-		{ 2, "eSM_ASR_SwapItemHandL" },
-		{ 4, "eSM_ASR_SwapItemHandR" },
-	};
-
-	(*g_Enums)["EActBodyType"] = {
-		{ 0, "ABT_UpperBodyOnly" },
-		{ 1, "ABT_FullBodyWithLeadIn" },
-		{ 2, "ABT_FullBodyOnly" },
-	};
-
-	(*g_Enums)["ZInvestigateCautiousSituation.ESituationState"] = {
-		{ 0, "SS_Main" },
-		{ 1, "SS_StandDownPending" },
-		{ 2, "SS_StandDown" },
-	};
-
-	(*g_Enums)["EOpportunityRevealState"] = {
-		{ 1, "ORS_REVEALING" },
-		{ 9, "ORS_REVEAL_FLAGS" },
-		{ 2, "ORS_HINT" },
-		{ 4, "ORS_DISTANCE" },
-		{ 6, "ORS_RANGE_FLAGS" },
-		{ 8, "ORS_REVEALED" },
-		{ 16, "ORS_BYPASS_MENU" },
-	};
-
-	(*g_Enums)["EGSBodyPart"] = {
-		{ 0, "GSBODYPART_UNKNOWN" },
-		{ 1, "GSBODYPART_HEAD" },
-		{ 2, "GSBODYPART_TORSO" },
-		{ 3, "GSBODYPART_ARM" },
-		{ 4, "GSBODYPART_LEG" },
-	};
-
-	(*g_Enums)["EActorSecondaryIconState"] = {
-		{ 0, "eSIS_Clear" },
-		{ 1, "eSIS_Infected" },
-		{ 2, "eSIS_Infected_Stage1" },
-		{ 3, "eSIS_Infected_Stage2" },
-		{ 4, "eSIS_Infected_Stage3" },
-	};
-
-	(*g_Enums)["ZInputListenerAxisEntity.eInputListenerAxes"] = {
-		{ 0, "EILA_HORIZONTAL" },
-		{ 1, "EILA_VERTICAL" },
-		{ 2, "EILA_TRIGGER_1" },
-		{ 3, "EILA_TRIGGER_2" },
-	};
-
-	(*g_Enums)["EActorEventTypes"] = {
-		{ 0, "eAET_OnAlive" },
-		{ 1, "eAET_OnPacified" },
-		{ 2, "eAET_OnMurdered" },
-		{ 3, "eAET_OnAccidentDeath" },
-		{ 4, "eAET_OnUnnoticableKill" },
-		{ 5, "eAET_OnBodyNoticed" },
-		{ 6, "eAET_OnBodyBagged" },
-		{ 7, "eAET_OnDying" },
-		{ 8, "eAET_OnDead" },
-		{ 9, "eAET_OnBodyHidden" },
-		{ 10, "eAET_OnBodyFlushed" },
-		{ 11, "eAET_OnBodyDumped" },
-		{ 12, "eAET_OnDelete" },
-	};
-
-	(*g_Enums)["EMultiplayerNetworkState"] = {
-		{ 0, "Base" },
-		{ 1, "Idle" },
-		{ 2, "Searching" },
-		{ 3, "Connecting" },
-		{ 4, "Joining" },
-		{ 5, "Creating" },
-		{ 6, "Connected" },
-		{ 7, "Disconnecting" },
-		{ 8, "Count" },
-	};
-
-	(*g_Enums)["EBoolCheckType"] = {
-		{ 0, "eBCT_IGNORE" },
-		{ 1, "eBCT_TRUE" },
-		{ 2, "eBCT_FALSE" },
-	};
-
-	(*g_Enums)["EActorFaction"] = {
-		{ 0, "eActorFaction_Default" },
-		{ 1, "eActorFaction_VIP_1" },
-		{ 2, "eActorFaction_VIP_2" },
-		{ 3, "eActorFaction_VIP_3" },
-		{ 4, "eActorFaction_VIP_4" },
-		{ 5, "eActorFaction_VIP_5" },
-		{ 6, "eActorFaction_VIP_6" },
-		{ 7, "eActorFaction_VIP_7" },
-	};
-
-	(*g_Enums)["SoundPlayState"] = {
-		{ 0, "ePlaying" },
-		{ 1, "eLoopBreaking" },
-		{ 2, "eStopping" },
-	};
-
-	(*g_Enums)["ECausalGraphTraversal"] = {
-		{ 0, "eCGT_NONE" },
-		{ 1, "eCGT_INPUT" },
-		{ 2, "eCGT_OUTPUT" },
-		{ 3, "eCGT_BOTH" },
-	};
-
-	(*g_Enums)["EPushNotificationType"] = {
-		{ 0, "PUSH_NOTIFICATION_OBJECTIVE" },
-		{ 1, "PUSH_NOTIFICATION_DISGUISE" },
-		{ 2, "PUSH_NOTIFICATION_CONTRACT" },
-		{ 3, "PUSH_NOTIFICATION_CHALLENGE" },
-		{ 4, "PUSH_NOTIFICATION_RATING" },
-		{ 5, "PUSH_NOTIFICATION_SPECIAL_RATING_UNLOCKED" },
-		{ 6, "PUSH_NOTIFICATION_CONTRACT_PICKED_UP" },
-		{ 7, "PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED" },
-		{ 8, "PUSH_NOTIFICATION_SCORE_COMPARISON" },
-	};
-
-	(*g_Enums)["ZCharacterSpeakCondition.EState"] = {
-		{ 0, "Started" },
-		{ 1, "Playing" },
-		{ 2, "PlayingAndAudible" },
-		{ 3, "Completed" },
-		{ 4, "SubsSeenAndCompleted" },
-		{ 5, "Failed" },
-		{ 6, "Stopped" },
-	};
-
-	(*g_Enums)["IHM5Door.EOpenDir"] = {
-		{ 0, "OD_AWAY" },
-		{ 1, "OD_TOWARS" },
-		{ 2, "OD_IN" },
-		{ 3, "OD_OUT" },
-	};
-
-	(*g_Enums)["EDamageResponse"] = {
-		{ 0, "eDR_Fractured" },
-		{ 1, "eDR_Detached" },
-		{ 2, "eDR_Destroyed" },
-		{ 3, "eDR_Collided" },
-		{ 4, "eDR_Count" },
-	};
-
-	(*g_Enums)["EInventoryConfigFormerEquippedItems"] = {
-		{ 0, "EICFEI_Equip" },
-		{ 1, "EICFEI_EquipOrPickup" },
-		{ 2, "EICFEI_Forget" },
-	};
-
-	(*g_Enums)["ESituationJoinReason"] = {
-		{ 0, "AISJR_Default" },
-		{ 1, "AISJR_HeardSound" },
-		{ 2, "AISJR_Alarm" },
-		{ 3, "AISJR_HitmanStrange" },
-		{ 4, "AISJR_HitmanIllegal" },
-		{ 5, "AISJR_Assist" },
-		{ 6, "AISJR_AssistingGuard" },
-		{ 7, "AISJR_Propagate" },
-		{ 8, "AISJR_ResumeSituation" },
-		{ 9, "AISJR_Spawned" },
-		{ 10, "AISJR_HelpCivilian" },
-		{ 11, "AISJR_Escalating" },
-		{ 12, "AISJR_DeadBody" },
-		{ 13, "AISJR_Accident" },
-		{ 14, "AISJR_StandDown" },
-		{ 15, "AISJR_Report" },
-		{ 16, "AISJR_ForcedToHold" },
-		{ 17, "AISJR_Wounded" },
-		{ 18, "AISJR_SC_HeardBulletImpact" },
-		{ 19, "AISJR_SC_HeardSetPiece" },
-	};
-
-	(*g_Enums)["UIMapLayer.EUIMapLayerID"] = {
-		{ 0, "eUIMLI_UNSPECIFIED" },
-		{ 1, "eUIMLI_STAIRCASE" },
-		{ 2, "eUIMLI_AREA_UNDISCOVERED" },
-		{ 3, "eUIMLI_TEXT" },
-		{ 4, "eUIMLI_DROPPED_ITEMS_AND_DISGUISES" },
-		{ 5, "eUIMLI_NPC" },
-		{ 6, "eUIMLI_NORTH_INDICATOR" },
-		{ 7, "eUIMLI_SECURITY_CAMERA" },
-		{ 8, "eUIMLI_AGENCY_PICKUP" },
-		{ 9, "eUIMLI_OPPORTUNITY" },
-		{ 10, "eUIMLI_EXIT" },
-		{ 11, "eUIMLI_OBJECTIVE" },
-		{ 12, "eUIMLI_TARGET" },
-		{ 13, "eUIMLI_OPPONENT" },
-		{ 14, "eUIMLI_HERO" },
-	};
-
-	(*g_Enums)["EScreenplayStateFlag"] = {
-		{ 0, "eSSF_DEFAULT" },
-		{ 8, "eSSF_RUNNING" },
-		{ 16, "eSSF_DONE" },
-		{ 32, "eSSF_TERMINATED" },
-		{ 1, "eSSF_ENABLED" },
-		{ 2, "eSSF_CAST" },
-		{ 4, "eSSF_RESUMING" },
-	};
-
-	(*g_Enums)["ENetPlayerEvent"] = {
-		{ 0, "Login" },
-		{ 1, "Logout" },
-		{ 2, "NewHost" },
-	};
-
-	(*g_Enums)["ZCoverPlane.ECoverType"] = {
-		{ 0, "eCoverOnly" },
-		{ 1, "eCoverAndRail" },
-		{ 2, "eRailOnly" },
-	};
-
-	(*g_Enums)["ECameraOffset_old"] = {
-		{ 0, "eCameraOffset_Center" },
-		{ 1, "eCameraOffset_Left" },
-		{ 2, "eCameraOffset_Right" },
-	};
-
-	(*g_Enums)["EInteractionIndicatorType"] = {
-		{ 0, "EIITYPE_STANDARD" },
-		{ 1, "EIITYPE_INTERRUPTABLE" },
-	};
-
 	(*g_Enums)["ECompiledConditionType"] = {
 		{ 0, "CT_IsCurrent" },
 		{ 1, "CT_Current" },
@@ -6628,223 +3615,126 @@ void ZHMEnums::RegisterEnums()
 		{ 158, "CT_IsAccidentBystandingGuardSearching" },
 	};
 
-	(*g_Enums)["EItemGripType"] = {
-		{ 0, "IGT_Empty" },
-		{ 1, "IGT_Suitcase" },
-		{ 2, "IGT_Suitcase_Big" },
-		{ 3, "IGT_Firearm_Pistol" },
-		{ 4, "IGT_Firearm_Pistol_Stealth" },
-		{ 5, "IGT_Firearm_AssaultRifle_Bullpup" },
-		{ 6, "IGT_Firearm_AssaultRifle_Carbine" },
-		{ 7, "IGT_Firearm_Shotgun" },
-		{ 8, "IGT_Firearm_SMG" },
-		{ 9, "IGT_Firearm_SMG02" },
-		{ 10, "IGT_Firearm_SniperRifle" },
-		{ 11, "IGT_Firearm_SniperRifle02" },
-		{ 12, "IGT_Firearm_Dartgun" },
-		{ 13, "IGT_Melee_1H_Baton" },
-		{ 14, "IGT_Melee_1H_Cleaver" },
-		{ 15, "IGT_Melee_1H_Hammer" },
-		{ 16, "IGT_Melee_1H_Knife" },
-		{ 17, "IGT_Melee_1H_Rock" },
-		{ 18, "IGT_Melee_1H_Screwdriver" },
-		{ 19, "IGT_Melee_1H_Stick" },
-		{ 20, "IGT_Melee_1H_Sword" },
-		{ 21, "IGT_Melee_1H_FireExtinguisher" },
-		{ 22, "IGT_Melee_1H_Bust" },
-		{ 23, "IGT_Melee_1H_Crowbar" },
-		{ 24, "IGT_Melee_1H_Syringe" },
-		{ 25, "IGT_Melee_2H_Axe" },
-		{ 26, "IGT_Melee_2H_Stick" },
-		{ 27, "IGT_Melee_2H_Sword" },
-		{ 28, "IGT_Gadget_Fiberwire" },
-		{ 29, "IGT_Gadget_Coin" },
-		{ 30, "IGT_Gadget_Vial" },
-		{ 31, "IGT_Gadget_C4" },
-		{ 32, "IGT_Gadget_Detonator" },
-		{ 33, "IGT_Gadget_Grenade_ThickGrip" },
-		{ 34, "IGT_Gadget_Grenade_ThinGrip" },
-		{ 35, "IGT_Gadget_Mine" },
-		{ 36, "IGT_Gadget_Remote" },
-		{ 37, "IGT_Prop_1H" },
-		{ 38, "IGT_Prop_1H_Duck" },
-		{ 39, "IGT_Prop_1h_Phone" },
-		{ 40, "IGT_None" },
+	(*g_Enums)["EContinuity"] = {
+		{ 0, "C0" },
+		{ 1, "C1" },
+		{ 2, "C2" },
 	};
 
-	(*g_Enums)["EUIBusyState"] = {
-		{ 0, "eBusyState_Saving" },
-		{ 1, "eBusyState_Saving_Failed" },
-		{ 2, "eBusyState_Saving_Success" },
-		{ 3, "eBusyState_Online_Connecting" },
-		{ 4, "eBusyState_Loading" },
-		{ 5, "eBusyState_Fetching" },
-		{ 6, "eBusyState_None" },
+	(*g_Enums)["EControlButtonName"] = {
+		{ 0, "eCN_ABORT" },
+		{ 1, "eCN_ACTION" },
+		{ 2, "eCN_ACTIVATE_PROP" },
+		{ 3, "eCN_AGILITY_DOWN" },
+		{ 4, "eCN_AGILITY_ENTERWINDOW" },
+		{ 5, "eCN_AGILITY_SNEAKPASTWINDOW" },
+		{ 6, "eCN_AGILITY_THROWOVERRAIL" },
+		{ 7, "eCN_AGILITY_UP" },
+		{ 8, "eCN_AIM" },
+		{ 9, "eCN_COVER_ENTER" },
+		{ 10, "eCN_COVER_TAKEDOWN" },
+		{ 11, "eCN_COVER_TO_COVER" },
+		{ 12, "eCN_CROUCH" },
+		{ 13, "eCN_DRAGBODY" },
+		{ 14, "eCN_DUMPBODY" },
+		{ 15, "eCN_FIBERWIRE" },
+		{ 16, "eCN_INSTINCT" },
+		{ 17, "eCN_INVENTORY_HOLSTER" },
+		{ 18, "eCN_INVENTORY_LONGRANGE" },
+		{ 19, "eCN_MARK_TARGET" },
+		{ 20, "eCN_CHANGE_AMMO_NEXT" },
+		{ 21, "eCN_CHANGE_AMMO_PREVIOUS" },
+		{ 22, "eCN_INVENTORY_PROP" },
+		{ 23, "eCN_INVENTORY_SHORTRANGE" },
+		{ 24, "eCN_ITEM_DROP" },
+		{ 25, "eCN_ITEM_THROW" },
+		{ 26, "eCN_MELEE_HIT" },
+		{ 27, "eCN_MELEE_TAKEDOWN" },
+		{ 28, "eCN_PICKUP" },
+		{ 29, "eCN_RUN" },
+		{ 30, "eCN_WALK_SLOW" },
+		{ 31, "eCN_CONCEAL_RETRIEVE" },
+		{ 32, "eCN_SB_ACTIVATE" },
+		{ 33, "eCN_SB_CANCEL" },
+		{ 34, "eCN_SB_EXECUTE" },
+		{ 35, "eCN_SB_REMOVETAG" },
+		{ 36, "eCN_SHOOT" },
+		{ 37, "eCN_NOTEBOOK" },
+		{ 38, "eCN_PAUSE" },
+		{ 39, "eCN_NO_ICON" },
 	};
 
-	(*g_Enums)["EBulletType"] = {
-		{ 0, "BULLET_TYPE_NONE" },
-		{ 1, "BULLET_TYPE_GUN" },
-		{ 2, "BULLET_TYPE_REVOLVER" },
-		{ 3, "BULLET_TYPE_SMG" },
-		{ 4, "BULLET_TYPE_MG" },
-		{ 5, "BULLET_TYPE_RIFLE" },
-		{ 6, "BULLET_TYPE_SHOTGUN" },
-		{ 7, "BULLET_TYPE_SNIPER" },
-		{ 8, "BULLET_TYPE_RPG" },
+	(*g_Enums)["EControllerButton"] = {
+		{ 0, "BUTTON_NONE" },
+		{ 1, "BUTTON_CROSS" },
+		{ 2, "BUTTON_TRIANGLE" },
+		{ 3, "BUTTON_SQUARE" },
+		{ 4, "BUTTON_CIRCLE" },
+		{ 5, "BUTTON_UP" },
+		{ 6, "BUTTON_RIGHT" },
+		{ 7, "BUTTON_DOWN" },
+		{ 8, "BUTTON_LEFT" },
+		{ 9, "BUTTON_R1" },
+		{ 10, "BUTTON_R2" },
+		{ 11, "BUTTON_R3" },
+		{ 12, "BUTTON_R_STICK" },
+		{ 13, "BUTTON_L1" },
+		{ 14, "BUTTON_L2" },
+		{ 15, "BUTTON_L3" },
+		{ 16, "BUTTON_L_STICK" },
+		{ 17, "BUTTON_START" },
+		{ 18, "BUTTON_SELECT" },
+		{ 19, "BUTTON_UP_DOWN" },
+		{ 20, "BUTTON_LEFT_RIGHT" },
+		{ 21, "BUTTON_LEFT_RIGHT_UP_DOWN" },
+		{ 22, "BUTTON_L1_R1" },
+		{ 23, "BUTTON_L2_R2" },
+		{ 24, "BUTTON_KEYBOARD" },
+		{ 25, "BUTTON_ESCAPE" },
 	};
 
-	(*g_Enums)["EPathFinderBoxType"] = {
-		{ 0, "PFBT_INCLUDE_MESH_COLLISION" },
-		{ 1, "PFBT_EXCLUDE_MESH_COLLISION" },
-		{ 2, "PFBT_CREATE_MESH_COLLISION" },
-		{ 3, "PFBT_REGION" },
-		{ 4, "PFBT_INCLUDE_PORTALS" },
-		{ 5, "PFBT_EXCLUDE_PORTALS" },
-		{ 6, "PFBT_IGNORE" },
+	(*g_Enums)["EConversationID"] = {
+		{ 0, "eCI_GuardCivilian_Distraction_Investigation" },
+		{ 1, "eCI_HearBulletImpact_Distraction_Investigation" },
+		{ 2, "eCI_HearItemImpact_Distraction_Investigation" },
+		{ 3, "eCI_HearCarAlarm_Distraction_Investigation" },
+		{ 4, "eCI_SeeItemToss_Distraction_Investigation" },
+		{ 5, "eCI_HearRadio_Distraction_Investigation" },
+		{ 6, "eCI_HearPain_Distraction_Investigation" },
+		{ 7, "eCI_HearAccident_Distraction_Investigation" },
+		{ 8, "eCI_HearCuriousItemSound_Distraction_Investigation" },
+		{ 9, "eCI_HearCuriousSound_Distraction_Investigation" },
+		{ 10, "eCI_SeeSuspiciousPerceptible_Distraction_Investigation" },
+		{ 11, "eCI_SeeInterestingItem_Distraction_Investigation" },
+		{ 12, "eCI_HearFootSteps_Distraction_Investigation" },
+		{ 13, "eCI_HearAngryDialog_Distraction_Investigation" },
+		{ 14, "eCI_HearHelpDialog_Distraction_Investigation" },
+		{ 15, "eCI_HearWarning_Distraction_Investigation" },
+		{ 16, "eCI_SightInvestigation_Distraction_Investigation" },
+		{ 17, "eCI_HearBulletImpact_Distraction_StandDown" },
+		{ 18, "eCI_HearItemImpact_Distraction_StandDown" },
+		{ 19, "eCI_HearCarAlarm_Distraction_StandDown" },
+		{ 20, "eCI_SeeItemToss_Distraction_StandDown" },
+		{ 21, "eCI_HearRadio_Distraction_StandDown" },
+		{ 22, "eCI_HearPain_Distraction_StandDown" },
+		{ 23, "eCI_HearAccident_Distraction_StandDown" },
+		{ 24, "eCI_HearCuriousItemSound_Distraction_StandDown" },
+		{ 25, "eCI_HearCuriousSound_Distraction_StandDown" },
+		{ 26, "eCI_SeeSuspiciousPerceptible_Distraction_StandDown" },
+		{ 27, "eCI_SeeInterestingItem_Distraction_StandDown" },
+		{ 28, "eCI_HearFootSteps_Distraction_StandDown" },
+		{ 29, "eCI_HearAngryDialog_Distraction_StandDown" },
+		{ 30, "eCI_HearHelpDialog_Distraction_StandDown" },
+		{ 31, "eCI_HearWarning_Distraction_StandDown" },
+		{ 32, "eCI_SightInvestigation_Distraction_StandDown" },
+		{ 33, "eCI_Suitcase_Distraction_DeliverToGuard" },
+		{ 34, "eCI_Suitcase_Distraction_RadioRequestHelp" },
+		{ 35, "eCI_Count" },
 	};
 
-	(*g_Enums)["EMotionType"] = {
-		{ 0, "MOTION_LOCKED" },
-		{ 1, "MOTION_LIMITED" },
-		{ 2, "MOTION_FREE" },
-	};
-
-	(*g_Enums)["ECharacterStateTags"] = {
-		{ 1, "eSM_ST_UsingFullBody" },
-		{ 2, "eSM_ST_UsingRightHand" },
-		{ 4, "eSM_ST_UsingLeftHand" },
-		{ 128, "eSM_ST_UpperBodyRequestedControlLeftHand" },
-		{ 64, "eSM_ST_UpperBodyRequestedControlRightHand" },
-		{ 16384, "eSM_ST_EmptyStateRightHand" },
-		{ 32768, "eSM_ST_EnableOldMovement" },
-		{ 32, "eSM_ST_EnslavingFullBody" },
-		{ 8396800, "eSM_ST_EmptyStateLeftHand" },
-		{ 16, "eSM_ST_EnslavingLeftHand" },
-		{ 4096, "eSM_ST_Reloading" },
-		{ 8, "eSM_ST_EnslavingRightHand" },
-		{ 256, "eSM_ST_CanGiveUpControlRightHand" },
-		{ 512, "eSM_ST_CanGiveUpControlLeftHand" },
-		{ 1024, "eSM_ST_Pickup" },
-		{ 2048, "eSM_ST_Sniping" },
-		{ 262144, "eSM_ST_Assemble" },
-		{ 65536, "eSM_ST_UsingItemLeft" },
-		{ 131072, "eSM_ST_UsingItemRight" },
-	};
-
-	(*g_Enums)["ECCDUsage"] = {
-		{ 0, "ECCDUSAGE_DISABLED" },
-		{ 1, "ECCDUSAGE_AGAINST_STATIC" },
-		{ 2, "ECCDUSAGE_AGAINST_STATIC_DYNAMIC" },
-	};
-
-	(*g_Enums)["EAmmoBehaviourConfigType"] = {
-		{ 0, "eAB_None" },
-		{ 1, "eAB_Explosive" },
-		{ 2, "eAB_Penetration" },
-	};
-
-	(*g_Enums)["ZHM5BodyContainer.eBCCloseMode"] = {
-		{ 0, "BC_AUTOCLOSE" },
-		{ 1, "BC_MANUALCLOSE" },
-	};
-
-	(*g_Enums)["EFSMStateStatus"] = {
-		{ 0, "eInactive" },
-		{ 1, "eActive" },
-		{ 2, "eCompleted" },
-		{ 3, "eFailed" },
-		{ 4, "eInterrupted" },
-	};
-
-	(*g_Enums)["EHM5SoundFootstepEvent"] = {
-		{ 0, "EFSE_START" },
-		{ 1, "EFSE_STOP" },
-		{ 2, "EFSE_LEFT" },
-		{ 3, "EFSE_RIGHT" },
-		{ 4, "EFSE_TURN" },
-		{ 5, "EFSE_SLIDE" },
-		{ 6, "EFSE_JUMP" },
-		{ 7, "EFSE_LAND" },
-	};
-
-	(*g_Enums)["ZHM5ValueEntity_bool.EForwardRule"] = {
-		{ 0, "eAlways" },
-		{ 1, "eValueChanged" },
-	};
-
-	(*g_Enums)["Network.PacketReliability"] = {
-		{ 0, "UNRELIABLE" },
-		{ 1, "UNRELIABLE_SEQUENCED" },
-		{ 2, "RELIABLE" },
-		{ 3, "RELIABLE_ORDERED" },
-		{ 4, "RELIABLE_SEQUENCED" },
-		{ 5, "UNRELIABLE_WITH_ACK_RECEIPT" },
-		{ 6, "RELIABLE_WITH_ACK_RECEIPT" },
-		{ 7, "RELIABLE_ORDERED_WITH_ACK_RECEIPT" },
-		{ 8, "NUMBER_OF_RELIABILITIES" },
-	};
-
-	(*g_Enums)["EHUDElement"] = {
-		{ 64, "HUD_ELEMENT_SPECIAL_BAR" },
-		{ 0, "HUD_ELEMENT_NONE" },
-		{ 128, "HUD_ELEMENT_TEXT_MESSAGES" },
-		{ 16384, "HUD_ELEMENT_ATTENTION_PEAKS" },
-		{ 32768, "HUD_ELEMENT_RATING_TRACKER" },
-		{ 32, "HUD_ELEMENT_WEAPON_SELECTOR" },
-		{ 8192, "HUD_ELEMENT_ACTION_BUTTONS" },
-		{ 2097152, "HUD_ELEMENT_OBJECTIVES" },
-		{ 16, "HUD_ELEMENT_RETICULES" },
-		{ 4096, "HUD_ELEMENT_CUSTOM_TEXTS" },
-		{ 1048576, "HUD_ELEMENT_HEALTH_BAR" },
-		{ 8, "HUD_ELEMENT_FOCUS_BAR" },
-		{ 1, "HUD_ELEMENT_MINIMAP" },
-		{ 2, "HUD_ELEMENT_DISGUISE" },
-		{ 4, "HUD_ELEMENT_WEAPON_DISPLAY" },
-		{ 256, "HUD_ELEMENT_CONTRACT_MARKS" },
-		{ 512, "HUD_ELEMENT_RATING_UPDATE" },
-		{ 1024, "HUD_ELEMENT_RANKING" },
-		{ 2048, "HUD_ELEMENT_CHALLENGES" },
-		{ 65536, "HUD_ELEMENT_TARGET_TRACKER" },
-		{ 131072, "HUD_ELEMENT_HINTS" },
-		{ 262144, "HUD_ELEMENT_CONTRACT_SCORING" },
-		{ 524288, "HUD_ELEMENT_TUTORIAL" },
-		{ 8388607, "HUD_ALL_ELEMENTS" },
-	};
-
-	(*g_Enums)["IContractObjective.State"] = {
-		{ 0, "IN_PROGRESS" },
-		{ 1, "COMPLETED" },
-		{ 2, "FAILED" },
-	};
-
-	(*g_Enums)["ZActorDebugEntity.EActorDebugColor"] = {
-		{ 8323072, "EDC_DARK_BLUE" },
-		{ 16711680, "EDC_BLUE" },
-		{ 127, "EDC_DARK_RED" },
-		{ 255, "EDC_RED" },
-		{ 32512, "EDC_DARK_GREEN" },
-		{ 65280, "EDC_GREEN" },
-		{ 8323199, "EDC_DARK_PINK" },
-		{ 16711935, "EDC_PINK" },
-		{ 0, "EDC_BLACK" },
-		{ 16777215, "EDC_WHITE" },
-	};
-
-	(*g_Enums)["EMoveSpeed"] = {
-		{ 0, "MS_Sneaking" },
-		{ 1, "MS_Walking" },
-		{ 2, "MS_Jogging" },
-		{ 3, "MS_Sprinting" },
-		{ 4, "MS_Flash" },
-	};
-
-	(*g_Enums)["EDeathContext"] = {
-		{ 0, "eDC_UNDEFINED" },
-		{ 1, "eDC_NOT_HERO" },
-		{ 2, "eDC_HIDDEN" },
-		{ 3, "eDC_ACCIDENT" },
-		{ 4, "eDC_MURDER" },
+	(*g_Enums)["EConversationRole"] = {
+		{ 0, "eCR_Leader" },
+		{ 1, "eCR_Assistant" },
 	};
 
 	(*g_Enums)["ECoordinateSpace"] = {
@@ -6855,1293 +3745,19 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "CSPACE_CHARACTER_RELATIVE" },
 	};
 
-	(*g_Enums)["ECameraAssistanceMode"] = {
-		{ 0, "eCAM_None" },
-		{ 1, "eCAM_TrackAssist" },
-		{ 2, "eCAM_AutoTrackTarget" },
-	};
-
-	(*g_Enums)["ZUIListNavigationEntity.ENavigationInputMode"] = {
-		{ 0, "E_MODE_UP_DOWN" },
-		{ 1, "E_MODE_LEFT_RIGHT" },
-		{ 2, "E_MODE_PGPREV_PGNEXT" },
-		{ 3, "E_MODE_SMART_2D" },
-	};
-
-	(*g_Enums)["EExtendedPropertyType"] = {
-		{ 0, "TYPE_RESOURCEPTR" },
-		{ 1, "TYPE_INT32" },
-		{ 2, "TYPE_UINT32" },
-		{ 3, "TYPE_FLOAT" },
-		{ 4, "TYPE_STRING" },
-		{ 5, "TYPE_BOOL" },
-		{ 6, "TYPE_ENTITYREF" },
-		{ 7, "TYPE_VARIANT" },
-	};
-
-	(*g_Enums)["ERegistrationState"] = {
-		{ 0, "eINITIAL" },
-		{ 1, "eNOP" },
-		{ 2, "ePENDING" },
-		{ 3, "eCANCELLED_REMOTELY" },
-		{ 4, "eCANCELLED_LOCALLY" },
-		{ 5, "eFOUNDMATCH" },
-	};
-
-	(*g_Enums)["EDisconnectReason"] = {
-		{ 0, "eNOTIFICATION" },
-		{ 1, "eCONNECTION_LOST" },
-		{ 2, "eNETWORK_STATE" },
-	};
-
-	(*g_Enums)["EIntelStage"] = {
-		{ 0, "eIT_MAIN" },
-		{ 1, "eIT_STAGE" },
-		{ 2, "eIT_HINT" },
-	};
-
-	(*g_Enums)["EActorVoiceVariation"] = {
-		{ 0, "eAVV_Undefined" },
-		{ 399, "eAVV_CIVFEM08" },
-		{ 1, "eAVV_ABIATTI" },
-		{ 2, "eAVV_BERG" },
-		{ 393, "eAVV_WS_WATSON" },
-		{ 3, "eAVV_BDYGRD04" },
-		{ 4, "eAVV_BDYGRD01" },
-		{ 387, "eAVV_YACHTCREW03" },
-		{ 5, "eAVV_BDYGRD02" },
-		{ 6, "eAVV_BDYGRD03" },
-		{ 397, "eAVV_CIVFEM06" },
-		{ 7, "eAVV_BUSEY" },
-		{ 8, "eAVV_CARUSO" },
-		{ 407, "eAVV_CIVMALE07" },
-		{ 9, "eAVV_CHEF01" },
-		{ 10, "eAVV_CHEF02" },
-		{ 401, "eAVV_CIVFEMES01" },
-		{ 11, "eAVV_CHEF03" },
-		{ 12, "eAVV_CHEF04" },
-		{ 395, "eAVV_BDYGRD06" },
-		{ 13, "eAVV_CHURCHSTAFF01" },
-		{ 14, "eAVV_CHURCHSTAFF02" },
-		{ 405, "eAVV_CIVFEMHI02" },
-		{ 15, "eAVV_CHURCHSTAFF03" },
-		{ 16, "eAVV_CIVFEM01" },
-		{ 415, "eAVV_CIVMALEHI02" },
-		{ 17, "eAVV_CIVFEM02" },
-		{ 18, "eAVV_CIVFEM03" },
-		{ 409, "eAVV_CIVMALE09" },
-		{ 19, "eAVV_CIVFEM04" },
-		{ 20, "eAVV_CIVFEM05" },
-		{ 403, "eAVV_CIVFEMES03" },
-		{ 21, "eAVV_CIVMALE01" },
-		{ 22, "eAVV_CIVMALE02" },
-		{ 413, "eAVV_CIVMALEES03" },
-		{ 23, "eAVV_CIVMALE03" },
-		{ 24, "eAVV_CIVMALE04" },
-		{ 25, "eAVV_CIVMALE05" },
-		{ 26, "eAVV_CIVMALE06" },
-		{ 27, "eAVV_CLEANER01" },
-		{ 28, "eAVV_CLEANER02" },
-		{ 411, "eAVV_CIVMALEES01" },
-		{ 29, "eAVV_CLEANER03" },
-		{ 30, "eAVV_CLEANERFEM01" },
-		{ 31, "eAVV_CLEANERFEM02" },
-		{ 32, "eAVV_CLEANERFEM03" },
-		{ 431, "eAVV_JANUS" },
-		{ 33, "eAVV_CREW01" },
-		{ 34, "eAVV_CREW02" },
-		{ 425, "eAVV_THUGHI02" },
-		{ 35, "eAVV_CREW04" },
-		{ 36, "eAVV_CROSS" },
-		{ 419, "eAVV_SHEEPGRD06" },
-		{ 37, "eAVV_DALIA" },
-		{ 38, "eAVV_DESANTIS" },
-		{ 429, "eAVV_DELGADO" },
-		{ 39, "eAVV_DINO_BOSCO" },
-		{ 40, "eAVV_DOCTOR01" },
-		{ 439, "eAVV_SHAH" },
-		{ 41, "eAVV_DOCTOR06" },
-		{ 42, "eAVV_DOCTORFEM03" },
-		{ 433, "eAVV_KNOX_S" },
-		{ 43, "eAVV_DOCTORFEM04" },
-		{ 44, "eAVV_ET_ADONIS" },
-		{ 427, "eAVV_CASSIDY" },
-		{ 45, "eAVV_ET_ARGUS" },
-		{ 46, "eAVV_ET_CARDINAL" },
-		{ 437, "eAVV_RANGAN" },
-		{ 47, "eAVV_ET_CONNER" },
-		{ 48, "eAVV_ET_DYLAN" },
-		{ 49, "eAVV_ET_FABA" },
-		{ 50, "eAVV_ET_GARY_LUNN" },
-		{ 441, "eAVV_ATHENASAVALAS" },
-		{ 51, "eAVV_ET_HARVERFOEK" },
-		{ 52, "eAVV_ET_LARIN" },
-		{ 435, "eAVV_MARTINEZ" },
-		{ 53, "eAVV_ET_MOXON" },
-		{ 54, "eAVV_ET_MR_GIGGLES" },
-		{ 445, "eAVV_SIERRA_KNOX" },
-		{ 55, "eAVV_ET_PHILLIPOS" },
-		{ 56, "eAVV_ET_SCOTT_SARNO" },
-		{ 391, "eAVV_WS_BOULTON" },
-		{ 57, "eAVV_ET_TORVIK" },
-		{ 58, "eAVV_ET_TROUTT" },
-		{ 385, "eAVV_YACHTCREW01" },
-		{ 59, "eAVV_ET_VITO_DURIC" },
-		{ 60, "eAVV_FILMCREW01" },
-		{ 443, "eAVV_STEVENBRADLEY" },
-		{ 61, "eAVV_FILMCREW02" },
-		{ 62, "eAVV_FILMCREW03" },
-		{ 389, "eAVV_YAMASAKI" },
-		{ 63, "eAVV_FILMCREW04" },
-		{ 64, "eAVV_FILMCREWFEM01" },
-		{ 65, "eAVV_FILMCREWFEM02" },
-		{ 66, "eAVV_FILMCREWFEM03" },
-		{ 67, "eAVV_FILMCREWFEM04" },
-		{ 68, "eAVV_FILMCREWFEM05" },
-		{ 69, "eAVV_FOD_FEM" },
-		{ 70, "eAVV_FOD_MALE" },
-		{ 71, "eAVV_GARDENER01" },
-		{ 72, "eAVV_GARDENER02" },
-		{ 73, "eAVV_GARDENER03" },
-		{ 74, "eAVV_GARDENERFEM01" },
-		{ 75, "eAVV_GARDENERFEM02" },
-		{ 76, "eAVV_GARDENERFEM03" },
-		{ 77, "eAVV_GRAVES" },
-		{ 78, "eAVV_GUARDIA02" },
-		{ 79, "eAVV_GUARDIA03" },
-		{ 80, "eAVV_HOUSSTFF01" },
-		{ 81, "eAVV_HOUSSTFF02" },
-		{ 82, "eAVV_HOUSSTFF03" },
-		{ 83, "eAVV_HOUSSTFF06" },
-		{ 84, "eAVV_HOUSSTFFEM01" },
-		{ 85, "eAVV_HOUSSTFFEM02" },
-		{ 86, "eAVV_HOUSSTFFEM03" },
-		{ 87, "eAVV_INTERN" },
-		{ 88, "eAAV_JOB_ACTORFEMHI02" },
-		{ 89, "eAAV_JOB_ACTORHI01" },
-		{ 90, "eAVV_JOB_ARCHTCTF05" },
-		{ 91, "eAVV_JOB_ARCHTCTF07" },
-		{ 92, "eAVV_JOB_ARCHTCTF08" },
-		{ 93, "eAVV_JOB_ARCHTCTF09" },
-		{ 94, "eAVV_JOB_ARCHTCTM06" },
-		{ 95, "eAVV_JOB_ARCHTCTM07" },
-		{ 96, "eAVV_JOB_ARCHTCTM08" },
-		{ 97, "eAVV_JOB_ARCHTCTM09" },
-		{ 98, "eAVV_JOB_ARCHTCTM10" },
-		{ 99, "eAVV_JOB_ARKELITE04" },
-		{ 100, "eAVV_JOB_ARKELITE05" },
-		{ 101, "eAVV_JOB_ARKELITE06" },
-		{ 102, "eAVV_JOB_ARKELITE07" },
-		{ 103, "eAVV_JOB_ARKIANF05" },
-		{ 104, "eAVV_JOB_ARKIANF06" },
-		{ 105, "eAVV_JOB_ARKIANF07" },
-		{ 106, "eAVV_JOB_ARKIANF08" },
-		{ 107, "eAVV_JOB_ARKIANF09" },
-		{ 108, "eAVV_JOB_ARKIANM06" },
-		{ 109, "eAVV_JOB_ARKIANM07" },
-		{ 110, "eAVV_JOB_ARKIANM08" },
-		{ 111, "eAVV_JOB_ARKIANM09" },
-		{ 112, "eAVV_JOB_ARKIANM10" },
-		{ 113, "eAVV_JOB_ARKPTRNF05" },
-		{ 114, "eAVV_JOB_ARKPTRNF06" },
-		{ 115, "eAVV_JOB_ARKPTRNF07" },
-		{ 116, "eAVV_JOB_ARKPTRNF08" },
-		{ 117, "eAVV_JOB_ARKPTRNF09" },
-		{ 118, "eAVV_JOB_ARKPTRNM06" },
-		{ 119, "eAVV_JOB_ARKPTRNM07" },
-		{ 120, "eAVV_JOB_ARKPTRNM08" },
-		{ 121, "eAVV_JOB_ARKPTRNM09" },
-		{ 122, "eAVV_JOB_ARKPTRNM10" },
-		{ 123, "eAVV_JOB_ARKSTAFFF05" },
-		{ 124, "eAVV_JOB_ARKSTAFFF06" },
-		{ 125, "eAVV_JOB_ARKSTAFFM06" },
-		{ 126, "eAVV_JOB_ARKSTAFFM07" },
-		{ 127, "eAVV_JOB_ARKSTAFFM08" },
-		{ 128, "eAVV_JOB_BANKERF05" },
-		{ 129, "eAVV_JOB_BANKERF06" },
-		{ 314, "eAAV_JOB_VILLAGEGDES01" },
-		{ 130, "eAVV_JOB_BANKERF08" },
-		{ 131, "eAVV_JOB_BANKERM06" },
-		{ 260, "eAVV_JOB_MUSICIANM08" },
-		{ 132, "eAVV_JOB_BANKERM07" },
-		{ 133, "eAVV_JOB_BANKERM08" },
-		{ 318, "eAVV_MAMBACREW02" },
-		{ 134, "eAVV_JOB_BANKERM09" },
-		{ 135, "eAVV_JOB_BANKGRD05" },
-		{ 312, "eAAV_JOB_THUGHI03" },
-		{ 136, "eAVV_JOB_BANKGRD06" },
-		{ 137, "eAVV_JOB_BANKGRD07" },
-		{ 258, "eAVV_JOB_MUSICIANM06" },
-		{ 138, "eAVV_JOB_BANKGRDCHF" },
-		{ 139, "eAVV_JOB_BANKIT07" },
-		{ 268, "eAVV_JOB_RAIDER06" },
-		{ 140, "eAVV_JOB_BANKMTNC08" },
-		{ 141, "eAVV_JOB_BBQGRD04" },
-		{ 262, "eAVV_JOB_MUSICIANM10" },
-		{ 142, "eAVV_JOB_BBQGRD05" },
-		{ 143, "eAVV_JOB_BBQGRD06" },
-		{ 256, "eAAV_JOB_MUMBSRVHI03" },
-		{ 144, "eAVV_JOB_BBQGRD07" },
-		{ 145, "eAAV_JOB_BOLLYCREWHI01" },
-		{ 266, "eAVV_JOB_RAIDER04" },
-		{ 146, "eAAV_JOB_BOLLYCREWHI02" },
-		{ 147, "eAAV_JOB_BOLLYCREWHI03" },
-		{ 276, "eAVV_JOB_SITEWKR08" },
-		{ 148, "eAVV_JOB_CASSIDYGRD04" },
-		{ 149, "eAVV_JOB_CASSIDYGRD05" },
-		{ 270, "eAVV_JOB_SERVANT08" },
-		{ 150, "eAVV_JOB_CASSIDYGRD06" },
-		{ 151, "eAVV_JOB_CASSIDYGRD07" },
-		{ 264, "eAVV_JOB_NITIATEM06" },
-		{ 152, "eAVV_JOB_CASTLESTFEM05" },
-		{ 153, "eAVV_JOB_CASTLESTFEM07" },
-		{ 274, "eAVV_JOB_SITEWKR06" },
-		{ 154, "eAVV_JOB_CASTLESTFF07" },
-		{ 155, "eAVV_JOB_CASTLESTFF10" },
-		{ 284, "eAVV_JOB_STINGWTRF05" },
-		{ 156, "eAAV_JOB_CAVEGDES01" },
-		{ 157, "eAAV_JOB_CAVEGDES02" },
-		{ 278, "eAVV_JOB_SITEWKRES01" },
-		{ 158, "eAVV_JOB_CAVEWKR07" },
-		{ 159, "eAVV_JOB_CAVEWKR08" },
-		{ 272, "eAVV_JOB_SERVANTES02" },
-		{ 160, "eAVV_JOB_CAVEWKRES01" },
-		{ 161, "eAVV_JOB_CAVEWKRES02" },
-		{ 162, "eAVV_JOB_CAVEWKRES03" },
-		{ 163, "eAVV_JOB_CHEFES01" },
-		{ 292, "eAVV_JOB_STINGTECHM07" },
-		{ 164, "eAVV_JOB_CHEFES02" },
-		{ 165, "eAVV_JOB_CHEFES03" },
-		{ 166, "eAVV_JOB_CHEFF07" },
-		{ 167, "eAVV_JOB_CHEFM06" },
-		{ 168, "eAVV_JOB_CHEFM07" },
-		{ 169, "eAVV_JOB_CHEFM09" },
-		{ 290, "eAVV_JOB_STINGVILLAGRD06" },
-		{ 170, "eAVV_JOB_CIVGRD04" },
-		{ 171, "eAVV_JOB_CIVGRD05" },
-		{ 300, "eAAV_JOB_QUEENGRDHI02" },
-		{ 172, "eAVV_JOB_CIVGRD06" },
-		{ 173, "eAVV_JOB_CIVGRD07" },
-		{ 294, "eAVV_JOB_STINGLIFEGRDM06" },
-		{ 174, "eAAV_JOB_CLOTHSALHI01" },
-		{ 175, "eAAV_JOB_CLOTHSALHI02" },
-		{ 288, "eAVV_JOB_STINGSEC06" },
-		{ 176, "eAVV_JOB_CNSTR08" },
-		{ 177, "eAVV_JOB_CNSTR09" },
-		{ 298, "eAVV_JOB_SUBWKR07" },
-		{ 178, "eAVV_JOB_CNSTRES01" },
-		{ 179, "eAVV_JOB_CNSTRGRD04" },
-		{ 308, "eAAV_JOB_RANGANSECHI03" },
-		{ 180, "eAVV_JOB_CNSTRGRD05" },
-		{ 181, "eAVV_JOB_CNSTRGRD06" },
-		{ 302, "eAAV_JOB_QUEENSTGHI03" },
-		{ 182, "eAVV_JOB_CNSTRGRD07" },
-		{ 183, "eAVV_JOB_COCAGRD06" },
-		{ 296, "eAVV_JOB_STINGTRAINERF06" },
-		{ 184, "eAVV_JOB_COCAGRDES02" },
-		{ 185, "eAVV_JOB_COP04" },
-		{ 306, "eAAV_JOB_RANGANSECHI01" },
-		{ 186, "eAVV_JOB_COP05" },
-		{ 187, "eAVV_JOB_COP06" },
-		{ 316, "eAVV_KONG" },
-		{ 188, "eAVV_JOB_COP07" },
-		{ 189, "eAVV_JOB_COUNSLRF08" },
-		{ 310, "eAAV_JOB_THUGHI01" },
-		{ 190, "eAVV_JOB_COUNSLRF09" },
-		{ 191, "eAVV_JOB_COUNSLRM07" },
-		{ 304, "eAAV_JOB_RANGANGRD05" },
-		{ 192, "eAVV_JOB_COUNSLRM09" },
-		{ 193, "eAVV_JOB_CUSTDNF05" },
-		{ 378, "eAVV_WAITER02" },
-		{ 194, "eAVV_JOB_CUSTDNF06" },
-		{ 195, "eAVV_JOB_CUSTDNF07" },
-		{ 324, "eAVV_MENDOLA" },
-		{ 196, "eAVV_JOB_CUSTDNF08" },
-		{ 197, "eAVV_JOB_CUSTDNF09" },
-		{ 382, "eAVV_WAITERFEM02" },
-		{ 198, "eAVV_JOB_CUSTDNM06" },
-		{ 199, "eAVV_JOB_CUSTDNM07" },
-		{ 376, "eAVV_PARVATI" },
-		{ 200, "eAVV_JOB_CUSTDNM08" },
-		{ 201, "eAVV_JOB_CUSTDNM09" },
-		{ 322, "eAVV_MECH02" },
-		{ 202, "eAVV_JOB_CUSTDNM10" },
-		{ 203, "eAVV_JOB_DRUGLABWKRES02" },
-		{ 332, "eAVV_NOVIKOV" },
-		{ 204, "eAVV_JOB_DRUGLABWKRES03" },
-		{ 205, "eAVV_JOB_FARMF05" },
-		{ 326, "eAVV_MODEL02" },
-		{ 206, "eAVV_JOB_FARMFES01" },
-		{ 207, "eAVV_JOB_FARMFES02" },
-		{ 320, "eAVV_MAMBACREW04" },
-		{ 208, "eAVV_JOB_FARMM06" },
-		{ 209, "eAVV_JOB_FARMM08" },
-		{ 330, "eAVV_MODELFEM03" },
-		{ 210, "eAVV_JOB_FARMMES01" },
-		{ 211, "eAVV_JOB_FARMMES02" },
-		{ 340, "eAVV_SCIENTIST03" },
-		{ 212, "eAVV_JOB_FARMMES03" },
-		{ 213, "eAVV_JOB_GARBAGE08" },
-		{ 334, "eAAV_PRIEST01" },
-		{ 214, "eAVV_JOB_GARBAGE09" },
-		{ 215, "eAVV_JOB_GARBAGEES01" },
-		{ 328, "eAVV_MODELFEM01" },
-		{ 216, "eAVV_JOB_GARBAGRD04" },
-		{ 217, "eAVV_JOB_GARBAGRD05" },
-		{ 338, "eAVV_SCIENTIST01" },
-		{ 218, "eAVV_JOB_GARBAGRD06" },
-		{ 219, "eAVV_JOB_GARBAGRD07" },
-		{ 348, "eAVV_SOFTGRD03" },
-		{ 220, "eAVV_JOB_GRDNR08" },
-		{ 221, "eAVV_JOB_GRDNR09" },
-		{ 342, "eAVV_SCIENTISTFEM01" },
-		{ 222, "eAVV_JOB_GRDNRES01" },
-		{ 223, "eAVV_JOB_GRDNRGRD04" },
-		{ 336, "eAVV_ROSE" },
-		{ 224, "eAVV_JOB_GRDNRGRD05" },
-		{ 225, "eAVV_JOB_GRDNRGRD06" },
-		{ 282, "eAVV_JOB_STINGSTAFFM06" },
-		{ 226, "eAVV_JOB_GRDNRGRD07" },
-		{ 227, "eAVV_JOB_GUARD04" },
-		{ 356, "eAVV_SPECOPS02" },
-		{ 228, "eAVV_JOB_GUARD05" },
-		{ 229, "eAVV_JOB_GUARD06" },
-		{ 286, "eAVV_JOB_STINGWTRM08" },
-		{ 230, "eAVV_JOB_GUARD07" },
-		{ 231, "eAVV_JOB_HSSTFFES02" },
-		{ 280, "eAVV_JOB_SITEWKRES03" },
-		{ 232, "eAVV_JOB_HSSTFMES02" },
-		{ 233, "eAVV_JOB_HSSTFFES03" },
-		{ 354, "eAVV_SOLDIERBOSS03" },
-		{ 234, "eAVV_JOB_HSSTFMES03" },
-		{ 235, "eAVV_JOB_JANUSGRD04" },
-		{ 364, "eAVV_STAFFEM03" },
-		{ 236, "eAVV_JOB_JANUSGRD05" },
-		{ 237, "eAVV_JOB_JANUSGRD06" },
-		{ 358, "eAVV_STAFFMALE01" },
-		{ 238, "eAVV_JOB_JANUSGRD07" },
-		{ 239, "eAAV_JOB_LNDRYGRDHI01" },
-		{ 352, "eAVV_SOLDIERBOSS01" },
-		{ 240, "eAAV_JOB_LNDRYGRDHI02" },
-		{ 241, "eAAV_JOB_LNDRYGRDHI03" },
-		{ 362, "eAVV_STAFFMALE05" },
-		{ 242, "eAAV_JOB_LNDRYWKRHI01" },
-		{ 243, "eAAV_JOB_LNDRYWKRHI02" },
-		{ 372, "eAVV_STYLISTFEM01" },
-		{ 244, "eAAV_JOB_LNDRYWKRHI03" },
-		{ 245, "eAAV_JOB_MANSIONGD05" },
-		{ 366, "eAVV_STAFFEM05" },
-		{ 246, "eAAV_JOB_MANSIONGD06" },
-		{ 247, "eAAV_JOB_MANSIONGD07" },
-		{ 360, "eAVV_STAFFMALE03" },
-		{ 248, "eAAV_JOB_MANSIONGDES02" },
-		{ 249, "eAAV_JOB_MTLWKRHI01" },
-		{ 370, "eAVV_STYLIST03" },
-		{ 250, "eAAV_JOB_MTLWKRHI02" },
-		{ 251, "eAAV_JOB_MTLWKRHI03" },
-		{ 380, "eAVV_WAITER04" },
-		{ 252, "eAAV_JOB_MUMBSECHI02" },
-		{ 253, "eAAV_JOB_MUMBSECHI03" },
-		{ 374, "eAVV_STYLISTFEM03" },
-		{ 254, "eAAV_JOB_MUMBSRVHI01" },
-		{ 255, "eAAV_JOB_MUMBSRVHI02" },
-		{ 368, "eAVV_STYLIST01" },
-		{ 257, "eAVV_JOB_MUSICIANF05" },
-		{ 259, "eAVV_JOB_MUSICIANM07" },
-		{ 261, "eAVV_JOB_MUSICIANM09" },
-		{ 263, "eAVV_JOB_NITIATEF05" },
-		{ 265, "eAVV_JOB_NITIATEM07" },
-		{ 267, "eAVV_JOB_RAIDER05" },
-		{ 269, "eAVV_JOB_RAIDER07" },
-		{ 271, "eAVV_JOB_SERVANT09" },
-		{ 273, "eAVV_JOB_SERVANTFEM07" },
-		{ 275, "eAVV_JOB_SITEWKR07" },
-		{ 277, "eAVV_JOB_SITEWKR09" },
-		{ 279, "eAVV_JOB_SITEWKRES02" },
-		{ 281, "eAVV_JOB_STINGSTAFFF08" },
-		{ 283, "eAVV_JOB_STINGSTAFFM08" },
-		{ 285, "eAVV_JOB_STINGWTRM07" },
-		{ 287, "eAVV_JOB_STINGSEC05" },
-		{ 289, "eAVV_JOB_STINGVILLAGRD05" },
-		{ 291, "eAVV_JOB_STINGTECHF08" },
-		{ 293, "eAVV_JOB_STINGTECHM09" },
-		{ 295, "eAVV_JOB_STINGSMASSF09" },
-		{ 297, "eAVV_JOB_SUBWKR06" },
-		{ 299, "eAAV_JOB_QUEENGRDHI01" },
-		{ 301, "eAAV_JOB_QUEENGRDHI03" },
-		{ 303, "eAAV_JOB_QUEENTGHI02" },
-		{ 305, "eAAV_JOB_RANGANGRD06" },
-		{ 307, "eAAV_JOB_RANGANSECHI02" },
-		{ 309, "eAAV_JOB_TEASERVHI02" },
-		{ 311, "eAAV_JOB_THUGHI02" },
-		{ 313, "eAAV_JOB_TRAINSERVHI01" },
-		{ 315, "eAAV_JOB_VILLAGEGDES03" },
-		{ 317, "eAVV_MAMBACREW01" },
-		{ 319, "eAVV_MAMBACREW03" },
-		{ 321, "eAVV_MECH01" },
-		{ 323, "eAVV_MECH03" },
-		{ 325, "eAVV_MODEL01" },
-		{ 327, "eAVV_MODEL03" },
-		{ 329, "eAVV_MODELFEM02" },
-		{ 331, "eAVV_MORGAN" },
-		{ 333, "eAVV_NORFOLK" },
-		{ 335, "eAVV_RITTER" },
-		{ 337, "eAVV_SANTA" },
-		{ 339, "eAVV_SCIENTIST02" },
-		{ 341, "eAVV_SCIENTIST04" },
-		{ 343, "eAVV_SCIENTISTFEM02" },
-		{ 344, "eAVV_SCIENTISTFEM03" },
-		{ 345, "eAVV_SCIENTISTFEM04" },
-		{ 346, "eAVV_SOFTGRD01" },
-		{ 347, "eAVV_SOFTGRD02" },
-		{ 349, "eAVV_SOLDIER01" },
-		{ 350, "eAVV_SOLDIER02" },
-		{ 351, "eAVV_SOLDIER03" },
-		{ 353, "eAVV_SOLDIERBOSS02" },
-		{ 355, "eAVV_SPECOPS01" },
-		{ 357, "eAVV_SPECOPS03" },
-		{ 359, "eAVV_STAFFMALE02" },
-		{ 361, "eAVV_STAFFMALE04" },
-		{ 363, "eAVV_STAFFMALE06" },
-		{ 365, "eAVV_STAFFEM04" },
-		{ 367, "eAVV_STRANDBERG" },
-		{ 369, "eAVV_STYLIST02" },
-		{ 371, "eAVV_STYLIST04" },
-		{ 373, "eAVV_STYLISTFEM02" },
-		{ 375, "eAVV_STYLISTFEM04" },
-		{ 377, "eAVV_WAITER01" },
-		{ 379, "eAVV_WAITER03" },
-		{ 381, "eAVV_WAITERFEM01" },
-		{ 383, "eAVV_WAITERFEM03" },
-		{ 384, "eAVV_WAITERFEM04" },
-		{ 386, "eAVV_YACHTCREW02" },
-		{ 388, "eAVV_YACHTCREW04" },
-		{ 390, "eAVV_ZAYDAN" },
-		{ 392, "eAVV_WS_NEWMAN" },
-		{ 394, "eAVV_BDYGRD05" },
-		{ 396, "eAVV_BDYGRD07" },
-		{ 398, "eAVV_CIVFEM07" },
-		{ 400, "eAVV_CIVFEM09" },
-		{ 402, "eAVV_CIVFEMES02" },
-		{ 404, "eAVV_CIVFEMHI01" },
-		{ 406, "eAVV_CIVFEMHI03" },
-		{ 408, "eAVV_CIVMALE08" },
-		{ 410, "eAVV_CIVMALE10" },
-		{ 412, "eAVV_CIVMALEES02" },
-		{ 414, "eAVV_CIVMALEHI01" },
-		{ 416, "eAVV_CIVMALEHI03" },
-		{ 417, "eAVV_SHEEPGRD04" },
-		{ 418, "eAVV_SHEEPGRD05" },
-		{ 420, "eAVV_SHEEPGRD07" },
-		{ 421, "eAVV_THUGES01" },
-		{ 422, "eAVV_THUGES02" },
-		{ 423, "eAVV_THUGES03" },
-		{ 424, "eAVV_THUGHI01" },
-		{ 426, "eAVV_THUGHI03" },
-		{ 428, "eAVV_CONSTANT" },
-		{ 430, "eAVV_FRANCO" },
-		{ 432, "eAVV_KNOX_R" },
-		{ 434, "eAVV_MAELSTROM" },
-		{ 436, "eAVV_ORSON" },
-		{ 438, "eAVV_REYNARD" },
-		{ 440, "eAVV_WASHINGTON" },
-		{ 442, "eAVV_LJUDMILAVETROVA" },
-		{ 444, "eAVV_TYSONWILLIAMS" },
-		{ 446, "eAVV_ROBERT_KNOX" },
-	};
-
-	(*g_Enums)["ECharacterAnimChildNetworkSlot"] = {
-		{ 0, "eCACNS_None" },
-		{ 1, "eCACNS_FlavorIdle_FB" },
-		{ 2, "eCACNS_FlavorIdle_RH" },
-		{ 3, "eCACNS_FlavorIdle_LH" },
-		{ 4, "eCACNS_Interaction_RH" },
-		{ 5, "eCACNS_Interaction_LH" },
-	};
-
-	(*g_Enums)["EStealthSituation"] = {
-		{ 0, "SS_DISGUISE_TAKEN" },
-		{ 1, "SS_DISGUISE_TRESPASSING" },
-		{ 2, "SS_DISGUISE_ILLEGAL_ACTION" },
-		{ 3, "SS_DISGUISE_REMOVED" },
-		{ 4, "SS_DISGUISE_INVESTIGATED" },
-		{ 5, "SS_DISGUISE_BLOWN" },
-		{ 6, "SS_HIDE_IN_CLOSET_FIRSTTIME" },
-		{ 7, "SS_HIDE_IN_CLOSET" },
-		{ 8, "SS_DOOR_START_LOCKPICKING" },
-		{ 9, "SS_DOOR_CANCEL_LOCKPICKING" },
-		{ 10, "SS_LANDMINE_ARMED" },
-		{ 11, "SS_RADIO_ON" },
-		{ 12, "SS_VENT_ENTER" },
-		{ 13, "SS_VENT_EXIT" },
-		{ 14, "SS_BLEND_IN_ACTIVATED" },
-		{ 15, "SS_BODY_DISCOVERED" },
-		{ 16, "SS_INVESTIGATE_GUNSHOT" },
-		{ 17, "SS_INVESTIGATE_NOISE" },
-		{ 18, "SS_INVESTIGATE_EXPLOSION" },
-		{ 19, "SS_FUSEBOX_DISABLE_UNIQUE" },
-		{ 20, "SS_FUSEBOX_DISABLE" },
-		{ 21, "SS_INVESTIGATING_FUSEBOX" },
-		{ 22, "SS_FUSEBOX_FIXED" },
-		{ 23, "SS_KEYCARD_PICKUP" },
-		{ 24, "SS_KEYCARD_USE" },
-		{ 25, "SS_BODY_PUT_IN_CONTAINER" },
-		{ 26, "SS_BODY_DRAGGING_SEEN" },
-		{ 27, "SS_BODY_OVER_RAIL" },
-		{ 28, "SS_BODY_OVER_LEDGE" },
-		{ 29, "SS_USE_HEALTH_STATION" },
-		{ 30, "SS_HITMAN_SPOTTED" },
-		{ 31, "SS_HITMAN_HIDDEN" },
-		{ 32, "SS_HITMAN_ENTERED_COMBAT" },
-		{ 33, "SS_TRESPASSING" },
-		{ 34, "SS_SECURITYTAPE_PICKUP" },
-		{ 35, "SS_NEWOBJECTIVE" },
-		{ 36, "SS_FOCUSADDED" },
-		{ 37, "SS_FOCUSFULL" },
-		{ 38, "SS_FOCUSEMPTY" },
-		{ 39, "SS_STARTED_SPRINTING" },
-		{ 40, "SS_STARTED_SNEAKING" },
-		{ 41, "SS_TOOK_COVER" },
-		{ 42, "SS_INVESTIGATE_CURIOUS" },
-		{ 43, "SS_GENERIC_PICKUP" },
-		{ 44, "SS_ATTENTION_ON" },
-		{ 45, "SS_ATTENTION_OFF" },
-		{ 46, "SS_DEADBODY_SEEN" },
-		{ 47, "SS_TARGET_EVACUATES" },
-		{ 48, "SS_UNKNOWN_BODY_SPOTTED" },
-	};
-
-	(*g_Enums)["ZHeroKeywordCondition.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-		{ 3, "ANY_TRUE_IF_NO_REQS" },
-	};
-
-	(*g_Enums)["EAudioVolumetricMixingMode"] = {
-		{ 0, "AUDIO_VOLUMETRIC_MIXING_MAX" },
-		{ 1, "AUDIO_VOLUMETRIC_MIXING_ADD" },
-	};
-
-	(*g_Enums)["ZActorBoneAttachEntity.EResetMode"] = {
-		{ 0, "eAtBoneOrigin" },
-		{ 1, "eKeepOffset" },
-	};
-
-	(*g_Enums)["EAnimBlendMode"] = {
-		{ 0, "EAnimBlendMode_InterpAttInterpPos" },
-		{ 1, "EAnimBlendMode_InterpAttAddPos" },
-		{ 2, "EAnimBlendMode_AddAttLeavePos" },
-		{ 3, "EAnimBlendMode_AddAttAddPos" },
-	};
-
-	(*g_Enums)["IHM5Door.ECPDoorLockType"] = {
-		{ 0, "CPDLT_NORMAL_LOCK" },
-		{ 1, "CPDLT_PUSH_BAR_PAD_LOCK" },
-	};
-
-	(*g_Enums)["EActorRank"] = {
-		{ 0, "AR_Default" },
-		{ 1, "AR_Elite" },
-		{ 2, "AR_Cop" },
-		{ 3, "AR_Goon" },
-	};
-
-	(*g_Enums)["EPersistentBoolDataSyncType"] = {
-		{ 0, "ePBDST_None" },
-		{ 1, "ePBDST_ServerAuthoritative" },
-		{ 2, "ePBDST_Full" },
-	};
-
-	(*g_Enums)["ESituationAvailability"] = {
-		{ 0, "ESA_AMBIENCE" },
-		{ 10000, "ESA_AMBIENCE_RESV" },
-		{ 20000, "ESA_OVR_STANDING" },
-		{ 70000, "ESA_OVR_ALL" },
-		{ 30000, "ESA_OVR_CURIOUS" },
-		{ 40000, "ESA_OVR_SENTRY" },
-		{ 50000, "ESA_OVR_CAUTIOUS" },
-		{ 60000, "ESA_OVR_COMBAT" },
-	};
-
-	(*g_Enums)["ESaveLoadStatus"] = {
-		{ 0, "ESaveLoadStatus_OK" },
-		{ 1, "ESaveLoadStatus_PROCESSING" },
-		{ 2, "ESaveLoadStatus_MISSING" },
-		{ 3, "ESaveLoadStatus_ERROR_NODISKSPACE" },
-		{ 4, "ESaveLoadStatus_ERROR_DEVICEREMOVED" },
-		{ 5, "ESaveLoadStatus_ERROR_CORRUPT" },
-		{ 6, "ESaveLoadStatus_ERROR_VERSION" },
-		{ 7, "ESaveLoadStatus_ERROR_TAMPERED" },
-		{ 8, "ESaveLoadStatus_ERROR_SAVING" },
-		{ 9, "ESaveLoadStatus_ERROR_FATAL" },
-		{ 10, "ESaveLoadStatus_ERROR_ONLINE" },
-		{ 11, "ESaveLoadStatus_ERROR_REQUIREMENTCHECK" },
-		{ 12, "ESaveLoadStatus_ERROR_INVALIDATED" },
-	};
-
-	(*g_Enums)["EHM5SoundCloseCombatEvent"] = {
-		{ 0, "ECCE_PUNCH_FACE" },
-		{ 1, "ECCE_PUNCH_BODY" },
-		{ 2, "ECCE_ATTACK_ELBOW" },
-		{ 3, "ECCE_ATTACK_KNEE" },
-		{ 4, "ECCE_ATTACK_KICK" },
-		{ 5, "ECCE_SWOOSH_SHORT" },
-		{ 6, "ECCE_SWOOSH_LONG" },
-		{ 7, "ECCE_CLOTH_SWOOSH" },
-		{ 8, "ECCE_CLOTH_RUSTLE" },
-		{ 9, "ECCE_CLOTH_STRETCH" },
-		{ 10, "ECCE_GRAB" },
-		{ 11, "ECCE_BONE_BREAK" },
-		{ 12, "ECCE_NECK_SNAP" },
-		{ 13, "ECCE_BODY_FALL" },
-		{ 14, "ECCE_SKULL_CRACK" },
-		{ 15, "ECCE_ANY" },
-	};
-
-	(*g_Enums)["EEntityOrdering"] = {
-		{ 0, "EO_LOW" },
-		{ 1, "EO_NORMAL" },
-		{ 2, "EO_HIGH" },
-	};
-
-	(*g_Enums)["EAccidentDeathContext"] = {
-		{ 0, "eADC_DeathByAccident" },
-		{ 1, "eADC_DeathBySniper" },
-		{ 2, "eADC_DeathByPoison" },
-		{ 3, "eADC_DeathByShot" },
-	};
-
-	(*g_Enums)["EActorType"] = {
-		{ 0, "eAT_Civilian" },
-		{ 1, "eAT_Guard" },
-		{ 2, "eAT_Hitman" },
-		{ 3, "eAT_Last" },
-	};
-
-	(*g_Enums)["EDialogEventItemType"] = {
-		{ 1, "eDEIT_WavFile" },
-		{ 2, "eDEIT_RandomContainer" },
-		{ 3, "eDEIT_SwitchContainer" },
-		{ 4, "eDEIT_SequenceContainer" },
-		{ 15, "eDEIT_Invalid" },
-	};
-
-	(*g_Enums)["ZAT2Controller.EFoot"] = {
-		{ 0, "FOOT_LEFT" },
-		{ 1, "FOOT_RIGHT" },
-	};
-
-	(*g_Enums)["ECharacterUpperBodyStateType"] = {
-		{ 0, "eSM_UB_EmptyHanded" },
-		{ 1, "eSM_UB_Unholster" },
-		{ 2, "eSM_UB_Hold" },
-		{ 3, "eSM_UB_Reload" },
-		{ 4, "eSM_UB_Holster" },
-		{ 5, "eSM_UB_Conceal" },
-		{ 6, "eSM_UB_SwapItemHand" },
-		{ 7, "eSM_UB_Aiming" },
-		{ 8, "eSM_UB_Pickup" },
-		{ 9, "eSM_UB_InteractionSwipe" },
-		{ 10, "eSM_UB_Interaction" },
-		{ 11, "eSM_UB_Slave" },
-		{ 12, "eSM_UB_OpenDoor" },
-		{ 13, "eSM_UB_FlavorIdle" },
-		{ 14, "eSM_UB_ChangeAmmo" },
-		{ 15, "eSM_UB_Assemble" },
-	};
-
-	(*g_Enums)["ZDecalControllerEntity.ERotationType"] = {
-		{ 0, "eRotationDisable" },
-		{ 1, "eRotationAlignRay" },
-		{ 2, "eRotationRandom" },
-	};
-
-	(*g_Enums)["IScatterContainerEntity.EBrushType"] = {
-		{ 0, "BRUSH_SQUARE" },
-		{ 1, "BRUSH_CIRCLE" },
-	};
-
-	(*g_Enums)["EBaseMovementType"] = {
-		{ 4, "eMovementCover" },
-		{ -1, "eMovementNone" },
-		{ 36, "eMovementPickupItem" },
-		{ 0, "eMovementDead" },
-		{ 1, "eMovementNewFullBody" },
-		{ 2, "eMovementAgility" },
-		{ 3, "eMovementAlign" },
-		{ 5, "eMovementDrainPipe" },
-		{ 6, "eMovementLadder" },
-		{ 7, "eMovementPullVictimFromWindow" },
-		{ 8, "eMovementFiberWireKill" },
-		{ 9, "eMovementDumpBody" },
-		{ 10, "eMovementThrowBodyOverRail" },
-		{ 11, "eMovementDumpBodyOverLedge" },
-		{ 12, "eMovementOperateCPDoor" },
-		{ 13, "eMovementDisguiseSafeZone" },
-		{ 14, "eMovementHideInCloset" },
-		{ 15, "eMovementTakeDown" },
-		{ 16, "eMovementCloseCombat" },
-		{ 17, "eMovementRecoveryFinisher" },
-		{ 18, "eMovementContextAction" },
-		{ 19, "eMovementSubaction" },
-		{ 20, "eMovementGrabVictim" },
-		{ 21, "eMovementPushVictimThroughWindowAndRail" },
-		{ 22, "eMovementContextKill" },
-		{ 23, "eMovementKickVictimOverLedge" },
-		{ 24, "eMovementDragBody" },
-		{ 25, "eMovementTakeClothes" },
-		{ 26, "eMovementCoupDeGrace" },
-		{ 27, "eMovementThrow" },
-		{ 28, "eMovementPlace" },
-		{ 29, "eMovementSurrender" },
-		{ 30, "eMovementFrisk" },
-		{ 31, "eMovementShowItem" },
-		{ 32, "eMovementPeek" },
-		{ 33, "eMovementFocusedInteraction" },
-		{ 34, "eMovementLocomotion" },
-		{ 35, "eMovementLast" },
-	};
-
-	(*g_Enums)["ZHM5LedgeMount.EFaceDirection"] = {
-		{ 0, "eFaceFront" },
-		{ 1, "eFaceLeft" },
-		{ 2, "eFaceRight" },
-	};
-
-	(*g_Enums)["ZMoveToPositionBehaviorEntity.EApproachAlignment"] = {
-		{ 0, "AA_STRICT" },
-		{ 1, "AA_LOOSE" },
-	};
-
-	(*g_Enums)["EClothBendConstrainType"] = {
-		{ 0, "eClothBendConstrainType_Stick" },
-		{ 1, "eClothBendConstrainType_Triangle" },
-	};
-
-	(*g_Enums)["ZWorldUIElementInstanceBase.EVisibility"] = {
-		{ 0, "EVIS_ALWAYS" },
-		{ 1, "EVIS_POSY" },
-		{ 2, "EVIS_NEGY" },
-		{ 3, "EVIS_POSX" },
-		{ 4, "EVIS_NEGX" },
-	};
-
-	(*g_Enums)["ERoleEvent"] = {
-		{ 0, "eRE_NONE" },
-		{ 1, "eRE_CAST" },
-		{ 2, "eRE_CLEAR" },
-		{ 3, "eRE_ENTER_DRAMA" },
-		{ 4, "eRE_REENTER_DRAMA" },
-		{ 5, "eRE_LEAVE_DRAMA" },
-		{ 6, "eRE_NEW_DRAMA" },
-		{ 7, "eRE_PAUSED" },
-		{ 8, "eRE_RESUMING" },
-		{ 9, "eRE_RUNNING" },
-	};
-
-	(*g_Enums)["EHUDIconFlags"] = {
-		{ 1, "HUD_ICON_FLAG_POSITION" },
-		{ 2, "HUD_ICON_FLAG_VALUE" },
-		{ 4, "HUD_ICON_FLAG_SCALE" },
-		{ 8, "HUD_ICON_FLAG_TEXT" },
-	};
-
-	(*g_Enums)["EDeathAnimationType"] = {
-		{ 0, "DAT_None" },
-		{ 1, "DAT_SingleShot" },
-		{ 2, "DAT_BurstShot" },
-		{ 3, "DAT_HeavyShot" },
-		{ 4, "DAT_Unknown" },
-	};
-
-	(*g_Enums)["ERestitutionCombineMode"] = {
-		{ 0, "ERestitutionCombineMode_AVERAGE" },
-		{ 1, "ERestitutionCombineMode_MIN" },
-		{ 2, "ERestitutionCombineMode_MULTIPLY" },
-		{ 3, "ERestitutionCombineMode_MAX" },
-	};
-
-	(*g_Enums)["ECharacterIdlePriority"] = {
-		{ 0, "eCIP_Irrelevant" },
-		{ 1, "eCIP_VeryLow" },
-		{ 2, "eCIP_QuiteLow" },
-		{ 3, "eCIP_Low" },
-		{ 4, "eCIP_MediumLow" },
-		{ 5, "eCIP_Medium" },
-		{ 6, "eCIP_MediumHigh" },
-		{ 7, "eCIP_High" },
-		{ 8, "eCIP_QuiteHigh" },
-		{ 9, "eCIP_VeryHigh" },
-		{ 10, "eCIP_Urgent" },
-	};
-
-	(*g_Enums)["EDisposalType"] = {
-		{ 0, "DISPOSAL_UNDEFINED" },
-		{ 1, "DISPOSAL_NOTHING" },
-		{ 2, "DISPOSAL_HOLSTER" },
-		{ 3, "DISPOSAL_HIDE" },
-		{ 4, "DISPOSAL_PLACE" },
-		{ 5, "DISPOSAL_DROP" },
-		{ 6, "DISPOSAL_DROP_HIDE" },
-		{ 7, "DISPOSAL_DESTROY" },
-		{ 8, "DISPOSAL_COUNT" },
-	};
-
-	(*g_Enums)["EDynamicVariableType"] = {
-		{ -1, "DV_Invalid" },
-		{ 4, "DV_Sounds" },
-		{ 0, "DV_Me" },
-		{ 1, "DV_Hitman" },
-		{ 2, "DV_InSight" },
-		{ 3, "DV_RecentlyInSight" },
-		{ 5, "DV_NumVariables" },
-	};
-
-	(*g_Enums)["EButtonState"] = {
-		{ -1, "BUTTON_STATE_DISABLED" },
-		{ 0, "BUTTON_STATE_NONE" },
-		{ 1, "BUTTON_STATE_ENABLED" },
-		{ 2, "BUTTON_STATE_PRESSED" },
-		{ 3, "BUTTON_STATE_BLINKING" },
-	};
-
-	(*g_Enums)["ZHM5AgilityEventConsumer.EEvent"] = {
-		{ 0, "EAE_LEFTHAND" },
-		{ 1, "EAE_RIGHTHAND" },
-		{ 2, "EAE_LEFTLEG" },
-		{ 3, "EAE_RIGHTLEG" },
-	};
-
-	(*g_Enums)["ZHM5BodyContainer.EBCState"] = {
-		{ 0, "BC_CLOSED" },
-		{ 1, "BC_OPEN" },
-		{ 2, "BC_FLUSH" },
-		{ 3, "BC_OPENING" },
-		{ 4, "BC_CLOSING" },
-		{ 5, "BC_FLUSHING" },
-	};
-
-	(*g_Enums)["ZHM5Item.EKeywordEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["InputControlNamesp.eHM5InputActionID"] = {
-		{ 0, "eIDButtonFaceDown" },
-		{ 1, "eIDButtonFaceLeft" },
-		{ 2, "eIDButtonFaceRight" },
-		{ 3, "eIDButtonFaceUp" },
-		{ 4, "eIDBumperLeft" },
-		{ 5, "eIDBumperRight" },
-		{ 6, "eIDDpadDown" },
-		{ 7, "eIDDpadLeft" },
-		{ 8, "eIDDpadRight" },
-		{ 9, "eIDDpadUp" },
-		{ 10, "eIDThumbLeft" },
-		{ 11, "eIDThumbRight" },
-		{ 12, "eIDButtonStart" },
-		{ 13, "eIDButtonSelect" },
-		{ 14, "eIDTriggerLeft" },
-		{ 15, "eIDTriggerRight" },
-		{ 16, "eIDStickLeftHorizontal" },
-		{ 17, "eIDStickLeftVertical" },
-		{ 18, "eIDStickRightHorizontal" },
-		{ 19, "eIDStickRightVertical" },
-		{ 20, "eIDKeyboard" },
-		{ 21, "eID_INVALID" },
-	};
-
-	(*g_Enums)["JSONTemplate.ETemplateType"] = {
-		{ 0, "ETT_BASE" },
-		{ 1, "ETT_DATA_VALUE" },
-		{ 2, "ETT_DATA_VALUE_CUSTOM" },
-		{ 3, "ETT_OBJECT" },
-		{ 4, "ETT_ARRAY" },
-		{ 5, "ETT_ASYNCROOT" },
-		{ 6, "ETT_IF" },
-		{ 7, "ETT_SWITCH" },
-		{ 8, "ETT_EACH" },
-		{ 9, "ETT_LOC" },
-		{ 10, "ETT_PARENTHESIS" },
-		{ 11, "ETT_FORMATSTRING" },
-		{ 12, "ETT_FORMATINT" },
-		{ 13, "ETT_INTCLAMP" },
-		{ 14, "ETT_FORMATPUBLICID" },
-		{ 15, "ETT_ISNULL" },
-		{ 16, "ETT_DATA_CONTEXT" },
-		{ 17, "ETT_ARRAY_ELEMENT" },
-		{ 18, "ETT_ARRAY_FILTER" },
-		{ 19, "ETT_ARRAY_CONVERT" },
-		{ 20, "ETT_ARRAY_SIZE" },
-		{ 21, "ETT_ARRAY_SORT" },
-		{ 22, "ETT_ARRAY_GROUPBY" },
-		{ 23, "ETT_EXPAND" },
-		{ 24, "ETT_ISNULLOREMPTY" },
-		{ 25, "ETT_NOT" },
-		{ 26, "ETT_COMPARE" },
-		{ 27, "ETT_PARENT" },
-		{ 28, "ETT_AND" },
-		{ 29, "ETT_OR" },
-		{ 30, "ETT_MERGEOBJECTS" },
-		{ 31, "ETT_MERGEARRAYS" },
-		{ 32, "ETT_LOCALE_TEXT" },
-		{ 33, "ETT_LOCALE_AUDIO" },
-		{ 34, "ETT_CURRENT_LOCALE_TEXT" },
-		{ 35, "ETT_GET_APPLICATION_OPTION" },
-		{ 36, "ETT_PLATFORM" },
-		{ 37, "ETT_REGION" },
-		{ 38, "ETT_STOREREGION" },
-		{ 39, "ETT_ISDEBUG" },
-		{ 40, "ETT_IS_CONTROLLER_AVAILABLE" },
-		{ 41, "ETT_ONLINE_RESOURCE" },
-		{ 42, "ETT_INCLUDE" },
-		{ 43, "ETT_UI_OPTION_VALUE" },
-		{ 44, "ETT_UI_OPTION_DEBUG_VALUE" },
-		{ 45, "ETT_UI_OPTION_AVAILABLE_DISPLAY_RESOLUTIONS" },
-		{ 46, "ETT_UI_OPTION_AVAILABLE_DISPLAY_FULLSCREEN" },
-		{ 47, "ETT_UI_OPTION_AVAILABLE_TEXTURE_QUALITY" },
-		{ 48, "ETT_UI_OPTION_AVAILABLE_SHADOW_QUALITY" },
-		{ 49, "ETT_UI_OPTION_AVAILABLE_SUPERSAMPLING" },
-		{ 50, "ETT_UI_OPTION_AVAILABLE_DOUBLEFRAMERATE" },
-		{ 51, "ETT_CURRENT_CONTRACT_CONTEXT" },
-		{ 52, "ETT_CURRENT_CONTRACT_SESSIONID" },
-		{ 53, "ETT_CURRENT_CONTRACT_CHARACTER_INFO" },
-		{ 54, "ETT_CURRENT_DIFFICULTY" },
-		{ 55, "ETT_CURRENT_ENGINE_MODE" },
-		{ 56, "ETT_CURRENT_GAME_MODE" },
-		{ 57, "ETT_CAN_SAVE" },
-		{ 58, "ETT_IS_SAVELIMIT_EXCEEDED" },
-		{ 59, "ETT_IS_ALLOWED_TO_RESTART" },
-		{ 60, "ETT_ACTIVE_CHALLENGES" },
-		{ 61, "ETT_USER" },
-		{ 62, "ETT_ISUSER" },
-		{ 63, "ETT_DLCCOUNT" },
-		{ 64, "ETT_PROFILEID" },
-		{ 65, "ETT_HDRGAMMAVALUERANGEMIN" },
-		{ 66, "ETT_HDRGAMMAVALUERANGEMAX" },
-		{ 67, "ETT_HDRGAMMAVALUESTEP" },
-		{ 68, "ETT_ISHDRAVAILABLE" },
-		{ 69, "ETT_ISHDRRENDERING" },
-		{ 70, "ETT_ITEM" },
-		{ 71, "ETT_REPOSITORY" },
-		{ 72, "ETT_ISONLINE" },
-		{ 73, "ETT_ISINGAME" },
-		{ 74, "ETT_ISINEDITOR" },
-		{ 75, "ETT_ISUGCRESTRICTED" },
-		{ 76, "ETT_ISPACKAGEOWNED" },
-		{ 77, "ETT_ISININVENTORY" },
-		{ 78, "ETT_ISPLATFORMENTITLEMENTOWNED" },
-		{ 79, "ETT_MULTIPLAYERLOBBYSTATE" },
-		{ 80, "ETT_MULTIPLAYERLOCALID" },
-		{ 81, "ETT_MULTIPLAYERJOINEDIDS" },
-		{ 82, "ETT_MULTIPLAYERISPLAYERREADY" },
-		{ 83, "ETT_MULTIPLAYERINFO" },
-		{ 84, "ETT_MULTIPLAYERMATCHMAKINGTIME" },
-		{ 85, "ETT_MULTIPLAYERNATTYPE" },
-		{ 86, "ETT_LOADOUT" },
-		{ 87, "ETT_PERSISTENTMENUDATA" },
-		{ 88, "ETT_GAMEPERSISTENTDATA" },
-		{ 89, "ETT_ENDGAME_PAGETRANSITION_OVERRIDE" },
-		{ 90, "ETT_VERSUSINFO" },
-		{ 91, "ETT_SNIPERINFO" },
-		{ 92, "ETT_GAMEMODE" },
-		{ 93, "ETT_CACHEDUSERCENTRICCONTRACT" },
-		{ 94, "ETT_SAVEGAMES" },
-		{ 95, "ETT_AVAILABILITY_OF_RESOURCES" },
-		{ 96, "ETT_AVAILABILITY_OF_CONTRACT" },
-		{ 97, "ETT_AS3DATE" },
-		{ 98, "ETT_IOIACCOUNT_STATUS" },
-		{ 99, "ETT_ISCONTRACT_IN_PLAYLIST" },
-		{ 100, "ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION" },
-		{ 101, "ETT_VIDEOMEMORYINFO_IS_SUPPORTED" },
-		{ 102, "ETT_VIDEOMEMORYINFO" },
-		{ 103, "ETT_NVIDIAHIGHLIGHTSAVAILABLE" },
-		{ 104, "ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS" },
-		{ 105, "ETT_DEBUG_ALLHITMANSUITS" },
-	};
-
-	(*g_Enums)["ZMirrorEntity.EMirrorQuality"] = {
-		{ 0, "QUALITY_LOW" },
-		{ 1, "QUALITY_MEDIUM" },
-		{ 2, "QUALITY_HIGH" },
-		{ 3, "QUALITY_LEAVE" },
-	};
-
-	(*g_Enums)["EWeaponAnimationCategory"] = {
-		{ 0, "eWAC_Undefined" },
-		{ 1, "eWAC_Pistol" },
-		{ 2, "eWAC_Revolver" },
-		{ 3, "eWAC_SMG_2H" },
-		{ 4, "eWAC_SMG_1H" },
-		{ 5, "eWAC_Rifle" },
-		{ 6, "eWAC_Sniper" },
-		{ 7, "eWAC_Shotgun_Pump" },
-		{ 8, "eWAC_Shotgun_Semi" },
-	};
-
-	(*g_Enums)["EAILegalType"] = {
-		{ 0, "AILT_Weapon" },
-		{ 1, "AILT_Shooting" },
-		{ 2, "AILT_Aiming" },
-		{ 3, "AILT_CloseCombat" },
-		{ 4, "AILT_ChangeOutfit" },
-		{ 5, "AILT_Count" },
-	};
-
-	(*g_Enums)["_EUIOptionKey"] = {
-		{ 2001, "UI_OPTION_GRAPHICS_SUBTITLES_SIZE" },
-		{ 220, "UI_OPTION_GAME_INVERT_INVENTORY_EMOTE" },
-		{ 100, "UI_OPTION_GAME_VIBRATION" },
-		{ 200, "UI_OPTION_GAME_AIM_ASSIST" },
-		{ 1060, "UI_OPTION_SOUND_MUTE_OTHER_PLAYER" },
-		{ 210, "UI_OPTION_GAME_AIM_CAUSAL" },
-		{ 364, "UI_OPTION_GAME_AID_ATTENTION" },
-		{ 300, "UI_OPTION_GAME_INVERT_X" },
-		{ 365, "UI_OPTION_GAME_AID_VITAL_INFO" },
-		{ 301, "UI_OPTION_GAME_INVERT_MOUSE_X" },
-		{ 2771, "UI_OPTION_GSM_AUTHORITY_END_MARKER" },
-		{ 374, "UI_OPTION_GAME_CHALLENGES_FILTER" },
-		{ 310, "UI_OPTION_GAME_INVERT_Y" },
-		{ 2000, "UI_OPTION_GRAPHICS_SUBTITLES" },
-		{ 366, "UI_OPTION_GAME_AID_INTERACTION_H" },
-		{ 2310, "UI_OPTION_DISPLAY_STEREOSCOPIC" },
-		{ 302, "UI_OPTION_GAME_INVERT_MOUSE_Y" },
-		{ 375, "UI_OPTION_GAME_AID_MISSION_TIMER" },
-		{ 2240, "UI_OPTION_DISPLAY_REFRESHRATE" },
-		{ 311, "UI_OPTION_GAME_CONTROL_SCHEME" },
-		{ 376, "UI_OPTION_GAME_DIFFICULTY_LEVEL_HUD" },
-		{ 2320, "UI_OPTION_DISPLAY_STEREO_DEPTH" },
-		{ 312, "UI_OPTION_GAME_FAST_TARGET" },
-		{ 385, "UI_OPTION_GAME_AID_AIM_TOGGLE" },
-		{ 2210, "UI_OPTION_GRAPHICS_SAFE_AREA_X" },
-		{ 321, "UI_OPTION_GAME_DIFFICULTY" },
-		{ 2743, "UI_OPTION_GRAPHICS_MOTION_BLUR" },
-		{ 330, "UI_OPTION_GAME_TRIGGER_SHOOT" },
-		{ 332, "UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA" },
-		{ 333, "UI_OPTION_GAME_LEFT_HANDED_CONTROLS" },
-		{ 334, "UI_OPTION_GAME_CAMERA_SENSITIVITY_HORZ" },
-		{ 2610, "UI_OPTION_GRAPHICS_SHADOW_QUALITY" },
-		{ 335, "UI_OPTION_GAME_CAMERA_SENSITIVITY_VERT" },
-		{ 400, "UI_OPTION_GAME_AUTOSAVE_HUD" },
-		{ 336, "UI_OPTION_GAME_MOUSE_SENSITIVITY" },
-		{ 2600, "UI_OPTION_GRAPHICS_QUALITY" },
-		{ 337, "UI_OPTION_GAME_AIM_SENSITIVITY" },
-		{ 338, "UI_OPTION_GAME_CAMERA_SENSITIVITY" },
-		{ 340, "UI_OPTION_GAME_INSTINCT_PATHS" },
-		{ 342, "UI_OPTION_GAME_INSTINCT_NPCGLOW" },
-		{ 346, "UI_OPTION_GAME_HINTS_TUTORIAL" },
-		{ 348, "UI_OPTION_GAME_HINTS_INSTINCT" },
-		{ 350, "UI_OPTION_GAME_LANG_AUDIO" },
-		{ 2690, "UI_OPTION_GRAPHICS_MIRRORS" },
-		{ 351, "UI_OPTION_GAME_LANG_TEXT" },
-		{ 352, "UI_OPTION_GAME_COVER_TOGGLE" },
-		{ 2680, "UI_OPTION_GRAPHICS_TESSELLATION" },
-		{ 353, "UI_OPTION_GAME_FIXED_MAP" },
-		{ 354, "UI_OPTION_GAME_MAP_SHOW_NORTH_INDICATOR" },
-		{ 360, "UI_OPTION_GAME_AID_OPPORTUNITIES" },
-		{ 1010, "UI_OPTION_SOUND_VOLUME_MASTER" },
-		{ 361, "UI_OPTION_GAME_AID_INSTINCT" },
-		{ 362, "UI_OPTION_GAME_AID_MINI_MAP" },
-		{ 2260, "UI_OPTION_DISPLAY_EXCLUSIVE" },
-		{ 363, "UI_OPTION_GAME_AID_NPC_ICONS" },
-		{ 1040, "UI_OPTION_SOUND_VOLUME_DIALOGUE" },
-		{ 367, "UI_OPTION_GAME_AID_OBJECTIVES" },
-		{ 2770, "UI_OPTION_GRAPHICS_FRAMERATE_LIMIT" },
-		{ 368, "UI_OPTION_GAME_AID_WEAPON_HUD" },
-		{ 1030, "UI_OPTION_SOUND_VOLUME_MUSIC" },
-		{ 369, "UI_OPTION_GAME_AID_CHALLENGEDESCRIPTION" },
-		{ 2760, "UI_OPTION_GRAPHICS_GAMMA" },
-		{ 370, "UI_OPTION_GAME_MINI_MAP_SHOW_NPCS" },
-		{ 371, "UI_OPTION_GAME_AID_TARGET_INFO" },
-		{ 2710, "UI_OPTION_GRAPHICS_LOD" },
-		{ 372, "UI_OPTION_GAME_AID_CHALLENGE_HUD" },
-		{ 2620, "UI_OPTION_GRAPHICS_SHADOW_RESOLUTION" },
-		{ 373, "UI_OPTION_GAME_MINI_MAP_SHOW_TARGETS" },
-		{ 377, "UI_OPTION_GAME_AID_GLOBAL_HINTS" },
-		{ 378, "UI_OPTION_GAME_SCORE_HUD" },
-		{ 379, "UI_OPTION_GAME_AID_LVA" },
-		{ 2741, "UI_OPTION_GRAPHICS_SCREENSPACE_SHADOWS" },
-		{ 380, "UI_OPTION_GAME_AID_PICTURE_IN_PICTURE" },
-		{ 2270, "UI_OPTION_DISPLAY_VSYNC" },
-		{ 381, "UI_OPTION_GAME_AID_INTERACTION_PROMPT" },
-		{ 2772, "UI_OPTION_GRAPHICS_HDR_GAMMA" },
-		{ 1050, "UI_OPTION_SOUND_MUTE_MICROPHONE" },
-		{ 382, "UI_OPTION_GAME_AID_SA_HUD" },
-		{ 383, "UI_OPTION_GAME_AID_RELOAD_HUD" },
-		{ 384, "UI_OPTION_GAME_AID_CAMERA_GRID" },
-		{ 1020, "UI_OPTION_SOUND_VOLUME_EFFECTS" },
-		{ 390, "UI_OPTION_GAME_AUTOSAVE" },
-		{ 1200, "UI_OPTION_SOUND_OUTPUTMODE" },
-		{ 1210, "UI_OPTION_SOUND_SIMULATION_QUALITY" },
-		{ 2742, "UI_OPTION_GRAPHICS_REFLECTION_QUALITY" },
-		{ 2220, "UI_OPTION_GRAPHICS_SAFE_AREA_Y" },
-		{ 2221, "UI_OPTION_GSM_AUTHORITY_BEGIN_MARKER" },
-		{ 2230, "UI_OPTION_DISPLAY_RESOLUTION" },
-		{ 2250, "UI_OPTION_DISPLAY_FULLSCREEN" },
-		{ 2280, "UI_OPTION_DISPLAY_MONITOR" },
-		{ 2290, "UI_OPTION_DISPLAY_QUALITY" },
-		{ 2630, "UI_OPTION_GRAPHICS_TEXTURE_QUALITY" },
-		{ 2300, "UI_OPTION_DISPLAY_ASPECT" },
-		{ 2330, "UI_OPTION_DISPLAY_STEREO_STRENGTH" },
-		{ 2640, "UI_OPTION_GRAPHICS_TEXTURE_FILTER" },
-		{ 2650, "UI_OPTION_GRAPHICS_ASSAO_QUALITY" },
-		{ 2660, "UI_OPTION_GRAPHICS_VSYNC" },
-		{ 2720, "UI_OPTION_GRAPHICS_MOTIONBLUR" },
-		{ 2740, "UI_OPTION_GRAPHICS_BOKEH" },
-		{ 2744, "UI_OPTION_GRAPHICS_DYNAMIC_SHARPENING" },
-		{ 2745, "UI_OPTION_GRAPHICS_SIMULATION_QUALITY" },
-		{ 2750, "UI_OPTION_GRAPHICS_SUPER_SAMPLING" },
-		{ 2773, "UI_OPTION_GRAPHICS_RENDERING_QUALITY" },
-	};
-
-	(*g_Enums)["ZActorPickerFilterGroup.EEvaluationType"] = {
-		{ 0, "ALL" },
-		{ 1, "NONE" },
-		{ 2, "ANY" },
-	};
-
-	(*g_Enums)["ZCautiousInvestigateGroup.EAssistantState"] = {
-		{ 0, "AS_Waiting" },
-		{ 1, "AS_CalculateFields" },
-		{ 2, "AS_RequestNode" },
-		{ 3, "AS_Moving" },
-		{ 4, "AS_Investigating" },
-		{ 5, "AS_Max" },
-	};
-
-	(*g_Enums)["EClothStretchConstrainType"] = {
-		{ 0, "eClothBendConstrainType_Anchor" },
-		{ 1, "eClothBendConstrainType_LRA" },
-		{ 2, "eClothBendConstrainType_None" },
-	};
-
-	(*g_Enums)["ENamedGameEvents"] = {
-		{ 0, "eEvent_IntroCutStart" },
-		{ 1, "eEvent_PlayingAfterLoad" },
-		{ 2, "eEvent_SetModePlaying" },
-		{ 3, "eNumNamedGameEvents" },
-	};
-
-	(*g_Enums)["ZDebugTextEntity.EVerticalAlignment"] = {
-		{ 16, "VA_TOP" },
-		{ 0, "VA_CENTER" },
-		{ 32, "VA_BOTTOM" },
-	};
-
-	(*g_Enums)["ZDistanceCondition.EObjectType"] = {
-		{ 0, "DT_ToCam" },
-		{ 1, "DT_ToPlayer" },
-	};
-
-	(*g_Enums)["EHM5SoundFootstepEmitterTarget"] = {
-		{ 0, "EFSAT_MAIN" },
-		{ 1, "EFSAT_NPC" },
-	};
-
-	(*g_Enums)["ECharacterEvent"] = {
-		{ 0, "eCIET_PickUp" },
-		{ 1, "eCIET_LadderEnded" },
-		{ 2, "eCIET_AgilityEnded" },
-		{ 3, "eCIET_CCEnded" },
-		{ 4, "eCIET_Disguised" },
-		{ 5, "eCIET_HideBody" },
-		{ 6, "eCIET_WalkingOnStairs" },
-		{ 7, "eCIET_Sniping_Congratulate" },
-		{ 8, "eCIET_Sniping_Acknowledge" },
-		{ 9, "eCIET_FlavorIdleEnded" },
-		{ 10, "eCIET_StartedMoving" },
-		{ 11, "eCIET_StoppedMoving" },
-		{ 12, "eCIET_DragBody" },
-		{ 13, "eCIET_Takedown" },
-		{ 14, "eCIET_Damaged" },
-		{ 34, "eCIET_None" },
-	};
-
-	(*g_Enums)["ECharacterIdleHandlerUpperBodyType"] = {
-		{ 0, "eCIHUBT_NothingToDoEmptySingleHand" },
-		{ 1, "eCIHUBT_NothingToDoEmptyHands" },
-		{ 2, "eCIHUBT_Event" },
-		{ 3, "eCIHUBT_Custom" },
-	};
-
-	(*g_Enums)["ECharacterBodyType"] = {
-		{ 0, "eCT_MaleRegular" },
-		{ 1, "eCT_FemaleRegular" },
-		{ 2, "eCT_Male47" },
-		{ 3, "eCT_Undefined" },
-	};
-
-	(*g_Enums)["ETargetPrintDestination"] = {
-		{ 0, "eTPD_Screen" },
-		{ 1, "eTPD_TraceViewer" },
-	};
-
-	(*g_Enums)["eParticleEmitterBoxEntity_SpawnModes"] = {
-		{ 0, "BOX_SPAWNMODE_INSIDE" },
-		{ 1, "BOX_SPAWNMODE_EDGE" },
-		{ 2, "BOX_SPAWNMODE_FACE" },
-		{ 3, "BOX_SPAWNMODE_ELLIPSOID_INSIDE" },
-		{ 4, "BOX_SPAWNMODE_ELLIPSOID" },
-	};
-
-	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioClass"] = {
-		{ 0, "eWBC_AudioClass_AssaultRifle" },
-		{ 1, "eWBC_AudioClass_Pistol" },
-		{ 2, "eWBC_AudioClass_Shotgun" },
-		{ 3, "eWBC_AudioClass_SMG" },
-		{ 4, "eWBC_AudioClass_SniperRifle" },
-	};
-
-	(*g_Enums)["EDeathType"] = {
-		{ 0, "eDT_UNDEFINED" },
-		{ 1, "eDT_PACIFY" },
-		{ 2, "eDT_KILL" },
-		{ 3, "eDT_BLOODY_KILL" },
-	};
-
-	(*g_Enums)["GameLobbyState"] = {
-		{ 0, "GLS_None" },
-		{ 1, "GLS_InHud" },
-		{ 2, "GLS_CreatingLobby" },
-		{ 3, "GLS_JoiningLobby" },
-		{ 4, "GLS_ConnectToLobby" },
-		{ 5, "GLS_ConnectingLobby" },
-		{ 6, "GLS_InLobby" },
-		{ 7, "GLS_LeavingLobby" },
-		{ 8, "GLS_InGame" },
-	};
-
-	(*g_Enums)["ETeamModeId"] = {
-		{ 0, "TeamMode_Coop" },
-		{ 1, "TeamMode_Versus" },
-	};
-
-	(*g_Enums)["EThrowType"] = {
-		{ 0, "THROW_NONE" },
-		{ 1, "THROW_COIN" },
-		{ 2, "THROW_NORMAL" },
-		{ 3, "THROW_HEAVY" },
-		{ 4, "THROW_KNOCKDOWN_LIGHT" },
-		{ 5, "THROW_KNOCKDOWN_HEAVY" },
-		{ 6, "THROW_PACIFY_LIGHT" },
-		{ 7, "THROW_PACIFY_HEAVY" },
-		{ 8, "THROW_DEADLY_LIGHT" },
-		{ 9, "THROW_DEADLY_HEAVY" },
-	};
-
-	(*g_Enums)["EDetectedNatType"] = {
-		{ 0, "NAT_UNSET" },
-		{ 1, "NAT_1" },
-		{ 2, "NAT_2" },
-		{ 3, "NAT_3" },
-	};
-
-	(*g_Enums)["ILightEntity.ERoomLightFlow"] = {
-		{ 0, "AUTOMATIC" },
-		{ 1, "LOCAL" },
-		{ 2, "ALLROOMS" },
+	(*g_Enums)["ECoverPosition"] = {
+		{ 0, "COVER_POSITION_NONE" },
+		{ 1, "COVER_POSITION_LEFT" },
+		{ 2, "COVER_POSITION_RIGHT" },
+		{ 3, "COVER_POSITION_MIDDLE" },
+	};
+
+	(*g_Enums)["ECppTypeFlags"] = {
+		{ 1, "EDITOR_ONLY" },
+		{ 2, "EDITOR_ONLY_CRITICAL" },
+		{ 4, "RESETABLE" },
+		{ 8, "RESETABLE_COND" },
+		{ 16, "RESETABLE_STATIC" },
 	};
 
 	(*g_Enums)["ECrossHairType"] = {
@@ -8161,34 +3777,727 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "CROSSHAIR_DOT" },
 	};
 
-	(*g_Enums)["EMarkerClipAlgorithm"] = {
-		{ 0, "MCA_NONE" },
-		{ 1, "MCA_SIMPLE" },
-		{ 2, "MCA_ADVANCED" },
+	(*g_Enums)["ECrowdFlowCandidates"] = {
+		{ 0, "NONE" },
+		{ 1, "EVERYONE" },
+		{ 2, "SPAWNED_ON_FLOW" },
 	};
 
-	(*g_Enums)["ZHeroBoneAttachEntity.EResetMode"] = {
-		{ 0, "eAtBoneOrigin" },
-		{ 1, "eKeepOffset" },
+	(*g_Enums)["ECustomSoundDefType"] = {
+		{ 0, "eCSDT_Distraction_InvestigationAck" },
+		{ 1, "eCSDT_Distraction_InvestigationInvestigate" },
+		{ 2, "eCSDT_Distraction_InvestigationStnd" },
 	};
 
-	(*g_Enums)["eBurstPatternType"] = {
-		{ 0, "eEBP_None" },
-		{ 1, "eEBP_Circular3Rings" },
-		{ 2, "eEBP_Box" },
+	(*g_Enums)["EDamageEvent"] = {
+		{ 0, "eDE_UNDEFINED" },
+		{ 1, "eDE_InCloset" },
+		{ 2, "eDE_Subdue" },
+		{ 4, "eDE_CloseCombat" },
+		{ 16, "eDE_PushOver" },
+		{ 32, "eDE_KickDownStairs" },
+		{ 64, "eDE_DeadlyThrow" },
+		{ 128, "eDE_Shoot" },
+		{ 256, "eDE_Sedated" },
+		{ 512, "eDE_InstantTakeDown" },
+		{ 1024, "eDE_CoupDeGrace" },
+		{ 2048, "eDE_ContextKill" },
+		{ 4096, "eDE_Garotte" },
+		{ 8192, "eDE_Poison" },
+		{ 16384, "eDE_Electric" },
+		{ 32768, "eDE_SuspendedObject" },
+		{ 65536, "eDE_Burn" },
+		{ 131072, "eDE_Drop" },
+		{ 262144, "eDE_Drown" },
 	};
 
-	(*g_Enums)["EQueryMaskType"] = {
-		{ 1, "eQueryMaskType_CameraCollision" },
-		{ 2, "eQueryMaskType_CameraObstacle" },
-		{ 4, "eQueryMaskType_ExplosionRelevant" },
+	(*g_Enums)["EDamageResponse"] = {
+		{ 0, "eDR_Fractured" },
+		{ 1, "eDR_Detached" },
+		{ 2, "eDR_Destroyed" },
+		{ 3, "eDR_Collided" },
+		{ 4, "eDR_Count" },
 	};
 
-	(*g_Enums)["ZPointOfInterestEntity.EPOIType"] = {
-		{ 0, "ePOIT_Invalid" },
-		{ 1, "ePOIT_Glance" },
-		{ 2, "ePOIT_Inspect" },
-		{ 3, "ePOIT_Stare" },
+	(*g_Enums)["EDeathAnimationType"] = {
+		{ 0, "DAT_None" },
+		{ 1, "DAT_SingleShot" },
+		{ 2, "DAT_BurstShot" },
+		{ 3, "DAT_HeavyShot" },
+		{ 4, "DAT_Unknown" },
+	};
+
+	(*g_Enums)["EDeathBehavior"] = {
+		{ 0, "eDB_IMPACT_ANIM" },
+		{ 1, "eDB_NO_IMPACT_ANIM" },
+		{ 2, "eDB_NO_VELOCITY" },
+		{ 3, "eDB_NO_RAGDOLL" },
+	};
+
+	(*g_Enums)["EDeathContext"] = {
+		{ 0, "eDC_UNDEFINED" },
+		{ 1, "eDC_NOT_HERO" },
+		{ 2, "eDC_HIDDEN" },
+		{ 3, "eDC_ACCIDENT" },
+		{ 4, "eDC_MURDER" },
+	};
+
+	(*g_Enums)["EDeathType"] = {
+		{ 0, "eDT_UNDEFINED" },
+		{ 1, "eDT_PACIFY" },
+		{ 2, "eDT_KILL" },
+		{ 3, "eDT_BLOODY_KILL" },
+	};
+
+	(*g_Enums)["EDebugExclusionLayerState"] = {
+		{ 0, "DEBUGELSTATE_UNBLOCKED" },
+		{ 1, "DEBUGELSTATE_BLOCKED" },
+		{ 2, "DEBUGELSTATE_UNKNOWN" },
+	};
+
+	(*g_Enums)["EDebugSpatialInfoVerbosity"] = {
+		{ 0, "EDSIV_Overview" },
+		{ 1, "EDSIV_HierachicalView" },
+		{ 2, "EDSIV_Full" },
+	};
+
+	(*g_Enums)["EDefaultCollidableLayer"] = {
+		{ 0, "DCL_STATIC" },
+		{ 1, "DCL_KINEMATIC" },
+		{ 2, "DCL_KINEMATIC_TRANSPARENT" },
+		{ 3, "DCL_DYNAMIC" },
+		{ 4, "DCL_DYNAMIC_TRANSPARENT" },
+		{ 5, "DCL_COLLIDE_ALL" },
+		{ 6, "DCL_STATIC_TRANSPARENT" },
+		{ 7, "DCL_COLLIDE_STATIC_ONLY" },
+		{ 8, "DCL_DYNAMIC_NO_CHARACTER" },
+		{ 9, "DCL_UNUSED_LAST" },
+	};
+
+	(*g_Enums)["EDestructibleInteractionType"] = {
+		{ 0, "eDIT_SHOT" },
+		{ 1, "eDIT_EXPLOSION" },
+		{ 2, "eDIT_COLLISION" },
+		{ 3, "eDIT_FRACTURE_AND_DETACH_ALL" },
+		{ 4, "eDIT_OUT_OF_WORLD" },
+		{ 5, "eDIT_COUNT" },
+	};
+
+	(*g_Enums)["EDetachUsage"] = {
+		{ 0, "EDU_NEVER" },
+		{ 1, "EDU_ALWAYS" },
+		{ 2, "EDU_RAGDOLL_ONLY" },
+	};
+
+	(*g_Enums)["EDetectedNatType"] = {
+		{ 0, "NAT_UNSET" },
+		{ 1, "NAT_1" },
+		{ 2, "NAT_2" },
+		{ 3, "NAT_3" },
+	};
+
+	(*g_Enums)["EDialogEventEndReason"] = {
+		{ 0, "EDialogEvent_Completed" },
+		{ 1, "EDialogEvent_Stopped" },
+	};
+
+	(*g_Enums)["EDialogEventItemType"] = {
+		{ 1, "eDEIT_WavFile" },
+		{ 2, "eDEIT_RandomContainer" },
+		{ 3, "eDEIT_SwitchContainer" },
+		{ 4, "eDEIT_SequenceContainer" },
+		{ 15, "eDEIT_Invalid" },
+	};
+
+	(*g_Enums)["EDialogueLine"] = {
+		{ 0, "Hello" },
+		{ 1, "MoveAlong" },
+		{ 2, "WhatsGoingOn" },
+		{ 3, "DropWeapon01" },
+		{ 4, "DropWeapon02" },
+		{ 5, "DropWeapon03" },
+		{ 6, "DropWeapon04" },
+		{ 7, "DropWeaponSecondWarning" },
+		{ 8, "Comply01" },
+		{ 9, "Comply02" },
+		{ 10, "YouAskedForIt" },
+		{ 11, "DropWeapon_Single01" },
+		{ 12, "DropWeapon_Double01" },
+		{ 13, "DropWeapon_Multiple01" },
+		{ 14, "DropWeapon_Comply_Single01" },
+		{ 15, "DropWeapon_Comply_Double01" },
+		{ 16, "DropWeapon_Comply_Multiple01" },
+		{ 17, "DropWeapon_RunAway01" },
+		{ 18, "DropWeapon_RunAway_Comply01" },
+		{ 19, "DropWeapon_Escalate_Single01" },
+		{ 20, "DropWeapon_Escalate_Double01" },
+		{ 21, "DropWeapon_Escalate_Multiple01" },
+	};
+
+	(*g_Enums)["EDifficultyLevel"] = {
+		{ 0, "eDL_NO_FLAGS" },
+		{ 1, "eDL_EASY" },
+		{ 2, "eDL_NORMAL" },
+		{ 4, "eDL_HARD" },
+		{ 8, "eDL_VERY_HARD" },
+		{ 15, "eDL_ALL_FLAGS" },
+	};
+
+	(*g_Enums)["EDifficultyParameter"] = {
+		{ 0, "EDP_Invalid" },
+		{ 1, "EDP_AIAttentionGainMultiplier" },
+		{ 2, "EDP_AIAudioPerceptionAlwaysEmitFootstepSoundEvents" },
+		{ 3, "EDP_AICombat_ActiveCombatants_MinimumNumber" },
+		{ 4, "EDP_AICombat_ActiveCombatants_MinimumNumberWhenAllVIPsAreDead" },
+		{ 5, "EDP_AICombat_ActiveCombatants_MaximumNumber" },
+		{ 6, "EDP_AICombat_ActiveCombatants_MinimumAmountForMedium" },
+		{ 7, "EDP_AICombat_ActiveCombatants_MinimumAmountForMany" },
+		{ 8, "EDP_AICombat_ShootingAccuracyResetPeriod_Minimum" },
+		{ 9, "EDP_AICombat_ShootingAccuracyResetPeriod_Maximum_FewCombatants" },
+		{ 10, "EDP_AICombat_ShootingAccuracyResetPeriod_Maximum_MediumCombatants" },
+		{ 11, "EDP_AICombat_ShootingAccuracyResetPeriod_Maximum_ManyCombatants" },
+		{ 12, "EDP_AICombat_Leaders_NumberOfActiveCombatantsNeededForOneLeader" },
+		{ 13, "EDP_AICombat_Leaders_NumberOfActiveCombatantsNeededForTwoLeaders" },
+		{ 14, "EDP_AICombat_MaximumInterestingCombatLifetime" },
+		{ 15, "EDP_AICombat_MaximumInterestingTimeSinceLastCombat" },
+		{ 16, "EDP_AICombat_ShootingAccuracyInitialBuildUp_MinimumDuration" },
+		{ 17, "EDP_AICombat_ShootingAccuracyInitialBuildUp_MaximumDuration" },
+		{ 18, "EDP_AICombat_ShootingAccuracy_MinimumDistance" },
+		{ 19, "EDP_AICombat_FlashGrenadeThrow_GlobalCooldown" },
+		{ 20, "EDP_AICombat_FlashGrenadeThrow_AggressionTriggerCooldown" },
+		{ 21, "EDP_AICombat_FlashGrenadeThrow_TargetCampingTriggerCooldown" },
+		{ 22, "EDP_AICombat_FlashGrenadeThrow_LargeRelocationTriggerCooldown" },
+		{ 23, "EDP_AIDisguise_FollowWarningsDelay" },
+		{ 24, "EDP_AIDisguise_BreakOnVeryCloseDistance" },
+		{ 25, "EDP_AIEscortOut_MaxForbiddenMovement" },
+		{ 26, "EDP_AIEscortOut_EscortEscalateDistance" },
+		{ 27, "EDP_AIEscortOut_MaxTimeToHonorWarning" },
+		{ 28, "EDP_AIEscortOut_EscortHardWarningDistance" },
+		{ 29, "EDP_AIIllegalActionAttentionModifier" },
+		{ 30, "EDP_AIInvestigateCautious_Disturbance_Radius" },
+		{ 31, "EDP_AIInvestigateCautious_Search_ClearDisturbanceBackRadius" },
+		{ 32, "EDP_AIInvestigateCautious_Search_ClearDisturbanceFrontRadius" },
+		{ 33, "EDP_AIInvestigateCautious_Search_ClearDisturbanceRespectSoftReservationThreshold" },
+		{ 34, "EDP_AIInvestigateCautiousAttentionToPersonEnabled" },
+		{ 35, "EDP_AIInvestigateDisguiseMembersFollowDistance" },
+		{ 36, "EDP_AILongTermMemory_DisableArrest" },
+		{ 37, "EDP_AIRunningAttentionModifier" },
+		{ 38, "EDP_AISentry_WarningDelay" },
+		{ 39, "EDP_AISuspiciousMovementDisguiseAttentionModifier" },
+		{ 40, "EDP_AISuspiciousMovementSensorEnabled" },
+		{ 41, "EDP_AISuspiciousLostTargetTime" },
+		{ 42, "EDP_AllowInstinctGlow" },
+		{ 43, "EDP_ArrestEscalateIllegalWeapon" },
+		{ 44, "EDP_ArrestEscalateMaximum" },
+		{ 45, "EDP_ArrestEscalateMoving" },
+		{ 46, "EDP_ArrestEscalateRunning" },
+		{ 47, "EDP_ArrestTargetLostTime" },
+		{ 48, "EDP_CloseCombatChainFailDamage" },
+		{ 49, "EDP_CloseCombatChoiceWindowLength" },
+		{ 50, "EDP_CloseCombatChokePressCount_Civilian" },
+		{ 51, "EDP_CloseCombatChokePressCount_Elite" },
+		{ 52, "EDP_CloseCombatChokePressCount_Guard" },
+		{ 53, "EDP_CloseCombatCounterEndLength" },
+		{ 54, "EDP_CloseCombatCounterFailDamage" },
+		{ 55, "EDP_CloseCombatShowSnapNeckPressCount_Civilian" },
+		{ 56, "EDP_CloseCombatShowSnapNeckPressCount_Elite" },
+		{ 57, "EDP_CloseCombatShowSnapNeckPressCount_Guard" },
+		{ 58, "EDP_DamageMultiplierHandgun" },
+		{ 59, "EDP_DamageMultiplierSlowgun" },
+		{ 60, "EDP_DamageMultiplierAssaultRifle" },
+		{ 61, "EDP_DamageMultiplierSMG" },
+		{ 62, "EDP_DamageMultiplierSniper" },
+		{ 63, "EDP_DamageMultiplierRPG" },
+		{ 64, "EDP_DamageMultiplierKnife" },
+		{ 65, "EDP_DamageMultiplierShotgun" },
+		{ 66, "EDP_DamageMultiplierSpotter" },
+		{ 67, "EDP_DamageMultiplierHandgun_NPC" },
+		{ 68, "EDP_DamageMultiplierSlowgun_NPC" },
+		{ 69, "EDP_DamageMultiplierAssaultRifle_NPC" },
+		{ 70, "EDP_DamageMultiplierSMG_NPC" },
+		{ 71, "EDP_DamageMultiplierSniper_NPC" },
+		{ 72, "EDP_DamageMultiplierRPG_NPC" },
+		{ 73, "EDP_DamageMultiplierKnife_NPC" },
+		{ 74, "EDP_DamageMultiplierShotgun_NPC" },
+		{ 75, "EDP_DamageMultiplierSpotter_NPC" },
+		{ 76, "EDP_DisguiseRuiningEnabled" },
+		{ 77, "EDP_GameMissionSaveLimit" },
+		{ 78, "EDP_GameOpportunitiesEnabled" },
+		{ 79, "EDP_HearRangeBulletImpact" },
+		{ 80, "EDP_HearRangeBulletImpactOnBody" },
+		{ 81, "EDP_HearRangeCloseCombatBreakNeck" },
+		{ 82, "EDP_HearRangeCloseCombatChoke" },
+		{ 83, "EDP_HearRangeCloseCombatFiberWire" },
+		{ 84, "EDP_HearRangeCloseCombatHitFromBehind" },
+		{ 85, "EDP_HearRangeCloseCombatL1" },
+		{ 86, "EDP_HearRangeCloseCombatL2" },
+		{ 87, "EDP_HearRangeCloseCombatL3" },
+		{ 88, "EDP_HearRangeEventAccident" },
+		{ 89, "EDP_HearRangeEventAlarm" },
+		{ 90, "EDP_HearRangeEventExplosion" },
+		{ 91, "EDP_HearRangeEventRadio" },
+		{ 92, "EDP_HearRangeEventStrange" },
+		{ 93, "EDP_HearRangeEventThrownItem" },
+		{ 94, "EDP_HearRangeFootstepWalkSlow" },
+		{ 95, "EDP_HearRangeFootstepWalk" },
+		{ 96, "EDP_HearRangeFootstepRun" },
+		{ 97, "EDP_HearRangeFootstepCrouchWalkSlow" },
+		{ 98, "EDP_HearRangeFootstepCrouchWalk" },
+		{ 99, "EDP_HearRangeFootstepCrouchRun" },
+		{ 100, "EDP_HearRangeFootstepVegetationLVAWalkSlow" },
+		{ 101, "EDP_HearRangeFootstepVegetationLVAWalk" },
+		{ 102, "EDP_HearRangeFootstepVegetationLVARun" },
+		{ 103, "EDP_HearRangeFootstepVegetationLVACrouchWalkSlow" },
+		{ 104, "EDP_HearRangeFootstepVegetationLVACrouchWalk" },
+		{ 105, "EDP_HearRangeFootstepVegetationLVACrouchRun" },
+		{ 106, "EDP_HearRangeGunEmpty" },
+		{ 107, "EDP_HearRangeGunShot" },
+		{ 108, "EDP_HearRangeGunSilenced" },
+		{ 109, "EDP_HearRangeGunSuperSilenced" },
+		{ 110, "EDP_HearRangeSpeakAngry" },
+		{ 111, "EDP_HearRangeSpeakHelp" },
+		{ 112, "EDP_HearRangeSpeakHelpLoud" },
+		{ 113, "EDP_HearRangeSpeakPain" },
+		{ 114, "EDP_HearRangeSpeakPainLow" },
+		{ 115, "EDP_HearRangeSpeakWarning" },
+		{ 116, "EDP_HitmanDamageReceivedMultiplier" },
+		{ 117, "EDP_InstinctModeBurnRate" },
+		{ 118, "EDP_InstinctRegenCap" },
+		{ 119, "EDP_InstinctRegenRate" },
+		{ 120, "EDP_ManhuntGroupMaxSearchTime" },
+		{ 121, "EDP_ManhuntGroupSearchAreaHackMaxDistance" },
+		{ 122, "EDP_ManhuntGroupSearchAreaRadius" },
+		{ 123, "EDP_MaxCoverShootActorCountMultiplier" },
+		{ 124, "EDP_MinAttentionToForceLookAt" },
+		{ 125, "EDP_MinAttentionToForceLookAtIfIncreasing" },
+		{ 126, "EDP_NPCDamageReceivedMultiplier" },
+		{ 127, "EDP_PlayerDamagePerSecondDistance" },
+		{ 128, "EDP_PlayerDamagePerSecondLimitFar" },
+		{ 129, "EDP_PlayerDamagePerSecondLimitNear" },
+		{ 130, "EDP_PlayerDamagePerSecondThreshold" },
+		{ 131, "EDP_PlayerHitPointsMax" },
+		{ 132, "EDP_PlayerHitPointsRegenerationDelay" },
+		{ 133, "EDP_PlayerHitPointsRegenerationPerSecond" },
+		{ 134, "EDP_SecurityCameras" },
+		{ 135, "EDP_SightReactionMinAttention" },
+		{ 136, "EDP_SightInvestigationMinAttention" },
+		{ 137, "EDP_ShootSpreadMax" },
+		{ 138, "EDP_ShootSpreadMin" },
+		{ 139, "EDP_ShootSpreadRange" },
+		{ 140, "EDP_SocialGreetingAngle" },
+		{ 141, "EDP_SocialGreetingCooldown" },
+		{ 142, "EDP_SocialGreetingCooldownAlertLevel" },
+		{ 143, "EDP_SocialGreetingCooldownLastSpeak" },
+		{ 144, "EDP_SocialGreetingCooldownPlayer" },
+		{ 145, "EDP_SocialGreetingCooldownSequence" },
+		{ 146, "EDP_SocialGreetingDistance" },
+		{ 147, "EDP_SocialLookAtTimeMax" },
+		{ 148, "EDP_SocialLookAtTimeMin" },
+		{ 149, "EDP_SocialSillyCooldown" },
+		{ 150, "EDP_SocialSillyDistance" },
+		{ 151, "EDP_SocialSillyTriggerTime" },
+		{ 152, "EDP_SocialStandingCooldown" },
+		{ 153, "EDP_SocialStandingDistance" },
+		{ 154, "EDP_SocialStandingDistanceImmediate" },
+		{ 155, "EDP_SocialStandingTriggerTime" },
+		{ 156, "EDP_SpotHitmanShootingDistance" },
+		{ 157, "EDP_StrictItemRules" },
+		{ 158, "EDP_COUNT" },
+	};
+
+	(*g_Enums)["EDisconnectReason"] = {
+		{ 0, "eNOTIFICATION" },
+		{ 1, "eCONNECTION_LOST" },
+		{ 2, "eNETWORK_STATE" },
+	};
+
+	(*g_Enums)["EDisposalType"] = {
+		{ 0, "DISPOSAL_UNDEFINED" },
+		{ 1, "DISPOSAL_NOTHING" },
+		{ 2, "DISPOSAL_HOLSTER" },
+		{ 3, "DISPOSAL_HIDE" },
+		{ 4, "DISPOSAL_PLACE" },
+		{ 5, "DISPOSAL_DROP" },
+		{ 6, "DISPOSAL_DROP_HIDE" },
+		{ 7, "DISPOSAL_DESTROY" },
+		{ 8, "DISPOSAL_COUNT" },
+	};
+
+	(*g_Enums)["EDisturbanceType"] = {
+		{ 0, "DT_Generic" },
+		{ 1, "DT_SeeWeapon" },
+		{ 2, "DT_BodyNeedsBagging" },
+		{ 3, "DT_SoundCloseCombat" },
+		{ 4, "DT_SoundGunSilenced" },
+		{ 5, "DT_SoundBulletImpact" },
+		{ 6, "DT_SoundNeckBreak" },
+		{ 7, "DT_SoundSpeakPain" },
+		{ 8, "DT_SoundGunshot" },
+		{ 9, "DT_SoundExplosion" },
+		{ 10, "DT_SeeExplosion" },
+		{ 11, "DT_DeadBody" },
+		{ 12, "DT_HitmanNearDeadBody" },
+		{ 13, "DT_HitmanNearPacifiedBody" },
+		{ 14, "DT_SeeTakeKeyCard" },
+		{ 15, "DT_SeeTakeSecurityTape" },
+		{ 16, "DT_SeeChangeOutfit" },
+		{ 17, "DT_SeeTrespasser" },
+		{ 18, "DT_SeeBrokenDisguise" },
+		{ 19, "DT_SeeIllegalWeapon" },
+		{ 20, "DT_SeeDraggingBody" },
+		{ 21, "DT_SeeDeath" },
+		{ 22, "DT_SeeKilling" },
+		{ 23, "DT_UnconsciousVictim" },
+		{ 24, "DT_HuntTarget" },
+		{ 25, "DT_CrowdAlerted" },
+		{ 26, "DT_SeeGunshotVictim" },
+		{ 27, "DT_SoundThrownItem" },
+		{ 28, "DT_SoundThrownItemSeenThrowing" },
+		{ 29, "DT_HitByItemOrCoin" },
+		{ 30, "DT_PrivateAreaViolated" },
+		{ 31, "DT_SetpieceInteraction" },
+		{ 32, "DT_IllegalAction" },
+		{ 33, "DT_KnockdownMelee" },
+		{ 34, "DT_KnockdownThrow" },
+		{ 35, "DT_BumpedTooMuch" },
+		{ 36, "DT_Murder" },
+		{ 37, "DT_Strangle" },
+		{ 38, "DT_GotShot" },
+		{ 39, "DT_MurderAttempt" },
+		{ 40, "DT_LongTermMemory" },
+		{ 41, "DT_Accident" },
+		{ 42, "DT_MAX" },
+	};
+
+	(*g_Enums)["EDramaEventAction"] = {
+		{ 0, "eDEA_NONE" },
+		{ 1, "eDEA_TERMINATE_DRAMA" },
+		{ 2, "eDEA_DONE_DRAMA" },
+		{ 4, "eDEA_STOP_BEHAVIOR" },
+		{ 8, "eDEA_DONT_STOP_SPEAK" },
+		{ 16, "eDEA_RESET_CASTING" },
+		{ 32, "eDEA_RESET_STATE" },
+	};
+
+	(*g_Enums)["EDramaSituationDescriptors"] = {
+		{ 0, "eDSD_NONE" },
+		{ 1, "eDSD_HERO" },
+		{ 2, "eDSD_CONVERSATION" },
+		{ 4, "eDSD_DISTRACTION" },
+		{ 8, "eDSD_URGENT" },
+		{ 16, "eDSD_SICK" },
+		{ 32, "eDSD_DEATH" },
+		{ 64, "eDSD_ALERT" },
+		{ 128, "eDSD_PARANOID" },
+		{ 256, "eDSD_SCARY" },
+		{ 512, "eDSD_TRIVIAL" },
+		{ 1024, "eDSD_PREOCCUPIED" },
+		{ 2048, "eDSD_PRIVATE" },
+	};
+
+	(*g_Enums)["EDramaStateFlag"] = {
+		{ 0, "eDSF_DEFAULT" },
+		{ 1, "eDSF_ENABLED" },
+		{ 2, "eDSF_CAST" },
+		{ 4, "eDSF_RESUMING" },
+		{ 8, "eDSF_RUNNING" },
+		{ 16, "eDSF_DONE" },
+		{ 32, "eDSF_TERMINATED" },
+	};
+
+	(*g_Enums)["EDynamicVariableType"] = {
+		{ -1, "DV_Invalid" },
+		{ 0, "DV_Me" },
+		{ 1, "DV_Hitman" },
+		{ 2, "DV_InSight" },
+		{ 3, "DV_RecentlyInSight" },
+		{ 4, "DV_Sounds" },
+		{ 5, "DV_NumVariables" },
+	};
+
+	(*g_Enums)["EEngineFrameUpdatePriority"] = {
+		{ 0, "eFUP_AILogger" },
+		{ 1, "eFUP_GridManager" },
+		{ 2, "eFrameUpdatePriority_HitmanStart" },
+		{ 3, "eFUP_ActorManager_Prepare" },
+		{ 4, "eFrameUpdatePriority_CrowdSyncAI" },
+		{ 5, "eFrameUpdatePriority_PlayerCommunicationEarly" },
+		{ 6, "eFrameUpdatePriority_Scatter" },
+		{ 7, "eFrameUpdatePriority_VolumeTriggerManager" },
+		{ 8, "eFrameUpdatePriority_DistanceToCamManager" },
+		{ 9, "eFrameUpdatePriority_Door" },
+		{ 10, "eFUP_GameEntityManager" },
+		{ 11, "eFrameUpdatePriority_AreaManager" },
+		{ 12, "eFrameUpdatePriority_SpeechManager" },
+		{ 13, "eFUP_SmoothOperator" },
+		{ 14, "eFUP_LimitedVisionArea" },
+		{ 15, "eFUP_WindManager" },
+		{ 16, "eFrameUpdatePriority_KeywordDebug" },
+		{ 17, "eFUP_DebugUPlot" },
+		{ 18, "eFUP_IntelManager" },
+		{ 19, "eFrameUpdatePriority_LocalizationManager" },
+		{ 20, "eFrameUpdatePriority_SubtitleManager" },
+		{ 21, "eFrameUpdatePriority_HttpManager" },
+		{ 22, "eFrameUpdatePriority_WebsocketManager" },
+		{ 23, "eFrameUpdatePriority_OnlineEventsClient" },
+		{ 24, "eFrameUpdatePriority_OnlineEventManager" },
+		{ 25, "eFrameUpdatePriority_OnlineManager" },
+		{ 26, "eFrameUpdatePriority_EntitlementManager" },
+		{ 27, "eFrameUpdatePriority_MetricsManager" },
+		{ 28, "eFUP_SoundGateManager" },
+		{ 29, "eFUP_SoundAmbienceManager" },
+		{ 30, "eFrameUpdatePriority_UserProfileManager" },
+		{ 31, "eFrameUpdatePriority_RenderManager" },
+		{ 32, "eFrameUpdatePriority_TextInputDialog" },
+		{ 33, "eFrameUpdatePriority_SystemDialog" },
+		{ 34, "eFrameUpdatePriority_ContractsManager" },
+		{ 35, "eFUP_ParticleHeirEmitting" },
+		{ 36, "eFrameUpdatePriority_EditorServer" },
+		{ 37, "eFrameUpdatePriority_DebugConsole" },
+		{ 38, "eFrameUpdatePriority_GraphicsSettingsManager" },
+		{ 39, "eFrameUpdatePriority_ContractsGameManager" },
+		{ 40, "eFrameUpdatePriority_Weapon" },
+		{ 41, "eFrameUpdatePriority_CrowdDensityEntity" },
+		{ 42, "eFrameUpdatePriority_ActBehaviorStateCondition" },
+		{ 43, "eFrameUpdatePriority_ActorCanSeeCondition" },
+		{ 44, "eFrameUpdatePriority_DebugCheckKey" },
+		{ 45, "eFrameUpdatePriority_KeyControl" },
+		{ 46, "eFUP_LookAtTrigger" },
+		{ 47, "eFUP_FootstepEventConsumer" },
+		{ 48, "eFUP_BloodSplatCreator" },
+		{ 49, "eFrameUpdatePriority_PersistentEntityManager" },
+		{ 50, "eFUP_ProjectedCrowdRegion" },
+		{ 51, "eFrameUpdatePriority_Timers" },
+		{ 52, "eFrameUpdatePriority_ConditionalTimer" },
+		{ 53, "eFrameUpdatePriority_ValueEntityManager" },
+		{ 54, "eFrameUpdatePriority_ActorCounter" },
+		{ 55, "eFrameUpdatePriority_WaveformGeneratorManager" },
+		{ 56, "eFUP_ItsATrap" },
+		{ 57, "eFrameUpdatePriority_SecurityCamera" },
+		{ 58, "eFrameUpdatePriority_QueryingAIOutput" },
+		{ 59, "eFrameUpdatePriority_Projectile" },
+		{ 60, "eFrameUpdatePriority_MassImpulseCharacterExploder" },
+		{ 61, "eFrameUpdatePriority_Hitman" },
+		{ 62, "eFrameUpdatePriority_AudioManagerWwise" },
+		{ 63, "eFUP_GridManagerWaitForJobs" },
+		{ 64, "eFUP_ActorManager_StateUpdate_Pre" },
+		{ 65, "eFUP_ActorManager_StateUpdate" },
+		{ 66, "eFrameUpdatePriority_ActorAnimUpdate" },
+		{ 67, "eFrameUpdatePriority_CrowdSyncAll" },
+		{ 68, "eFrameUpdatePriority_CrowdCulling" },
+		{ 69, "eFrameUpdatePriority_PreCrowd" },
+		{ 70, "eFrameUpdatePriority_Crowd" },
+		{ 71, "eFrameUpdatePriority_PhysicsStart" },
+		{ 72, "eFrameUpdatePriority_ActorManager_AIUpdate" },
+		{ 73, "eFUP_SmuggleSituationManager" },
+		{ 74, "eFrameUpdatePriority_ActorManager3" },
+		{ 75, "eFrameUpdatePriority_CharacterTemplateAspect" },
+		{ 76, "eFrameUpdatePriority_Hitman2" },
+		{ 77, "eFrameUpdatePriority_PlayerCommunicationLate" },
+		{ 78, "eFrameUpdatePriority_ParticleDecalSpawn" },
+		{ 79, "eFrameUpdatePriority_ParticleColliderEmission" },
+		{ 80, "eFrameUpdatePriority_Physics" },
+		{ 81, "eFrameUpdatePriority_EntityManager" },
+		{ 82, "eFrameUpdatePriority_FreeCameraControlEntity" },
+		{ 83, "eFrameUpdatePriority_RenderVideoPlayer" },
+		{ 84, "eFrameUpdatePriority_AnimPlayerEntityManager" },
+		{ 85, "eFrameUpdatePriority_CameraAlignedBoneAnimator" },
+		{ 86, "eFrameUpdatePriority_ClothCharacterEntity" },
+		{ 87, "eFrameUpdatePriority_TextureStreamingCameraControlEntity" },
+		{ 88, "eFrameUpdatePriority_PostFilter" },
+		{ 89, "eFrameUpdatePriority_VideoPlayerControl" },
+		{ 90, "eFrameUpdatePriority_TrackDollyController" },
+		{ 91, "eFrameUpdatePriority_TestGroup" },
+		{ 92, "eFrameUpdatePriority_LookAtEntity" },
+		{ 93, "eFUP_InfoDisplay" },
+		{ 94, "eFUP_CrowdPossedAct" },
+		{ 95, "eFUP_SoundCollisionManager" },
+		{ 96, "eFUP_AudioLevelMeter" },
+		{ 97, "eFUP_ActorInstanceEntityManager" },
+		{ 98, "eFUP_WorldInventory" },
+		{ 99, "eFUP_DestructionSystem" },
+		{ 100, "eFUP_DestructionSystemPostTick" },
+		{ 101, "eFUP_DecalSpawnManager" },
+		{ 102, "eFrameUpdatePriority_DebugHandlers" },
+		{ 103, "eFrameUpdatePriority_OSD" },
+		{ 104, "eFrameUpdatePriority_Default" },
+		{ 105, "eFrameUpdatePriority_SecuritySystemCameraUI" },
+		{ 106, "eFrameUpdatePriority_ThrownItemUI" },
+		{ 107, "eFrameUpdatePriority_SequenceManager" },
+		{ 108, "eFrameUpdatePriority_VisibilitySensorWait" },
+		{ 109, "eFrameUpdatePriority_ActionManagerStart" },
+		{ 110, "eFrameUpdatePriority_PathFinderJobManager" },
+		{ 200, "eFrameUpdateLinkedEntity" },
+		{ 201, "eFrameUpdatePriority_RayProbeEntity" },
+		{ 202, "eFrameUpdatePriority_GhostEntity" },
+		{ 203, "eFrameUpdateLinkedEntityManagerMainThread" },
+		{ 204, "eFUP_syncDestructionEffects" },
+		{ 205, "eFrameUpdatePriority_RaycastsStart" },
+		{ 206, "eFrameUpdatePriority_ActorStartNetworkUpdate" },
+		{ 500, "eFrameUpdatePriority_TextureManager" },
+		{ 501, "eFrameUpdatePriority_NotificationsController" },
+		{ 502, "eFUP_Pathfinder" },
+		{ 1000, "eFrameUpdatePriority_LevelManager" },
+		{ 1001, "eFrameUpdatePriority_OutfitStreamingManager" },
+	};
+
+	(*g_Enums)["EEngineModeId"] = {
+		{ -1, "EngineMode_Invalid" },
+		{ 0, "EngineMode_SinglePlayer" },
+		{ 1, "EngineMode_SplitScreen" },
+		{ 2, "EngineMode_Multiplayer" },
+		{ 3, "EngineMode_Max" },
+	};
+
+	(*g_Enums)["EEntityOrdering"] = {
+		{ 0, "EO_LOW" },
+		{ 1, "EO_NORMAL" },
+		{ 2, "EO_HIGH" },
+	};
+
+	(*g_Enums)["EEquipAbility"] = {
+		{ 0, "EA_EQUIP_IN_HANDS" },
+		{ 1, "EA_CANNOT_BE_EQUIPPED" },
+	};
+
+	(*g_Enums)["EExclusionLayer"] = {
+		{ 0, "EL_NONE" },
+		{ 1, "EL_STORY" },
+		{ 2, "EL_AMBIENT" },
+	};
+
+	(*g_Enums)["EExtendedPropertyType"] = {
+		{ 0, "TYPE_RESOURCEPTR" },
+		{ 1, "TYPE_INT32" },
+		{ 2, "TYPE_UINT32" },
+		{ 3, "TYPE_FLOAT" },
+		{ 4, "TYPE_STRING" },
+		{ 5, "TYPE_BOOL" },
+		{ 6, "TYPE_ENTITYREF" },
+		{ 7, "TYPE_VARIANT" },
+	};
+
+	(*g_Enums)["EFSMInternalEvent"] = {
+		{ 0, "eFSMEvent_Completed" },
+		{ 1, "eFSMEvent_Failed" },
+		{ 2, "eFSMEvent_Choice" },
+		{ 3, "eFSMEvent_Max" },
+	};
+
+	(*g_Enums)["EFSMStateStatus"] = {
+		{ 0, "eInactive" },
+		{ 1, "eActive" },
+		{ 2, "eCompleted" },
+		{ 3, "eFailed" },
+		{ 4, "eInterrupted" },
+	};
+
+	(*g_Enums)["EFilterMaskBit"] = {
+		{ 0, "eFilterMaskBit_ObjectCollision" },
+		{ 1, "eFilterMaskBit_OpaqueCollision" },
+		{ 2, "eFilterMaskBit_UNUSED_LAST" },
+	};
+
+	(*g_Enums)["EFocusBarState"] = {
+		{ 0, "FOCUS_BAR_NORMAL" },
+		{ 1, "FOCUS_BAR_INSTINCT" },
+		{ 2, "FOCUS_BAR_BURNING" },
+	};
+
+	(*g_Enums)["EFontFlags"] = {
+		{ 0, "FV_Normal" },
+		{ 1, "FV_Italic" },
+		{ 2, "FV_Bold" },
+		{ 3, "FV_BoldItalic" },
+		{ 4, "FV_FauxItalic" },
+		{ 8, "FV_FauxBold" },
+		{ 12, "FV_FauxBoldItalic" },
+		{ 16, "FV_Original" },
+		{ 32, "FV_NoAutoFit" },
+	};
+
+	(*g_Enums)["EGSBodyPart"] = {
+		{ 0, "GSBODYPART_UNKNOWN" },
+		{ 1, "GSBODYPART_HEAD" },
+		{ 2, "GSBODYPART_TORSO" },
+		{ 3, "GSBODYPART_ARM" },
+		{ 4, "GSBODYPART_LEG" },
+	};
+
+	(*g_Enums)["EGSEvent"] = {
+		{ 0, "GSEvent_StrayBullet" },
+		{ 1, "GSEvent_TookDamage" },
+		{ 2, "GSEvent_UsedCover" },
+		{ 3, "GSEvent_UsedRun" },
+		{ 4, "GSEvent_UsedEliminate" },
+		{ 5, "GSEvent_UsedChokeOut" },
+		{ 6, "GSEvent_UsedKnockOutByHand" },
+		{ 7, "GSEvent_Pacified" },
+		{ 8, "GSEvent_TargetPacified" },
+		{ 9, "GSEvent_Recover" },
+		{ 10, "GSEvent_CaughtArmed" },
+		{ 11, "GSEvent_BodyFound" },
+		{ 12, "GSEvent_InvestigateCurious" },
+		{ 13, "GSEvent_NPCKilled" },
+		{ 14, "GSEvent_KilledNPCHidden" },
+		{ 15, "GSEvent_InvestigateCautious" },
+		{ 16, "GSEvent_PrecisionAimedKill" },
+		{ 17, "GSEvent_BlendInActivated" },
+		{ 18, "GSEvent_PropKill" },
+		{ 19, "GSEvent_SpottedThroughDisguise" },
+		{ 20, "GSEvent_TakeOutNonLethal" },
+		{ 21, "GSEvent_TargetKilled" },
+		{ 22, "GSEvent_NonTargetKilled" },
+		{ 23, "GSEvent_AllTargetsKilled" },
+		{ 24, "GSEvent_AccidentKill" },
+		{ 25, "GSEvent_ObjectiveUpdate" },
+		{ 26, "GSEvent_TargetAccidentKill" },
+		{ 27, "GSEvent_ObjectiveActivate" },
+		{ 28, "GSEvent_Headshot" },
+		{ 29, "GSEvent_Fiberwire" },
+		{ 30, "GSEvent_UsedEliminateSilent" },
+		{ 31, "GSEvent_ItemFound" },
+		{ 32, "GSEvent_ItemStashed" },
+		{ 33, "GSEvent_BodyBagPlaced" },
+		{ 34, "GSEvent_Projectile_HeadShot" },
+		{ 35, "GSEvent_Projectile_BodyShot" },
+		{ 36, "GSEvent_Projectile_Crowd_HeadShot" },
+		{ 37, "GSEvent_Projectile_Crowd_BodyShot" },
+		{ 38, "GSEvent_Projectile_Missed" },
+		{ 39, "GSEvent_Projectile_MultiKillTargets" },
+	};
+
+	(*g_Enums)["EGSExplodingPropType"] = {
+		{ 0, "eGSExplodingProp_Unknown" },
+		{ 1, "eGSExplodingProp_Barrel" },
+		{ 2, "eGSExplodingProp_PetrolCan" },
+		{ 3, "eGSExplodingProp_GasCanister" },
+		{ 4, "eGSExplodingProp_GasTank" },
+		{ 5, "eGSExplodingProp_Mine" },
+		{ 6, "eGSExplodingProp_Pig" },
+		{ 7, "eGSExplodingProp_Pigeon" },
+		{ 8, "eGSExplodingProp_FireworksBox" },
+		{ 9, "eGSExplodingProp_Car" },
+	};
+
+	(*g_Enums)["EGSKillSituation"] = {
+		{ 0, "GSKILLSITUATION_UNKNOWN" },
+		{ 1, "GSKILLSITUATION_CLOSECOMBAT" },
+		{ 2, "GSKILLSITUATION_SILENT" },
+		{ 3, "GSKILLSITUATION_ENVIRONMENT" },
+		{ 4, "GSKILLSITUATION_ACTION" },
+		{ 5, "GSKILLSITUATION_DEADLYTHROW" },
+		{ 6, "GSKILLSITUATION_PULLTHROUGHWINDOW" },
+		{ 7, "GSKILLSITUATION_PUSHOVERRAILING" },
+		{ 8, "GSKILLSITUATION_PACIFY" },
+		{ 9, "GSKILLSITUATION_FIBERWIRE" },
+	};
+
+	(*g_Enums)["EGSKillVictim"] = {
+		{ 0, "GSKILLVICTIM_UNKNOWN" },
+		{ 1, "GSKILLVICTIM_CIVILIAN" },
+		{ 2, "GSKILLVICTIM_GUARD" },
+		{ 3, "GSKILLVICTIM_TARGET" },
 	};
 
 	(*g_Enums)["EGait"] = {
@@ -8276,153 +4585,2362 @@ void ZHMEnums::RegisterEnums()
 		{ 81, "eGait_Custom9" },
 	};
 
-	(*g_Enums)["EAIGoal"] = {
-		{ 0, "AIG_Kill" },
-		{ 1, "AIG_Arrest" },
-		{ 2, "AIG_FightSniper" },
-		{ 3, "AIG_HelpCivilian" },
-		{ 4, "AIG_HelpCivilianWeapon" },
-		{ 5, "AIG_Investigate" },
-		{ 6, "AIG_InvestigateDisguise" },
-		{ 7, "AIG_StandOffInvestigateDisguise" },
-		{ 8, "AIG_InvestigateDeadBody" },
-		{ 9, "AIG_HandleTrespasser" },
-		{ 10, "AIG_InvestigateCautious" },
-		{ 11, "AIG_HandleDistraction" },
-		{ 12, "AIG_AssistDistraction" },
-		{ 13, "AIG_GuardAssistDistraction" },
-		{ 14, "AIG_HandleSuitcase" },
-		{ 15, "AIG_InvestigateWeapon" },
-		{ 16, "AIG_DetectedInPrivate" },
-		{ 17, "AIG_RecoverUnconscious" },
-		{ 18, "AIG_RecoverUnconsciousAlerted" },
-		{ 19, "AIG_DeliverWeapon" },
-		{ 20, "AIG_AvoidExplosion" },
-		{ 21, "AIG_Hunt" },
-		{ 22, "AIG_Frisk" },
-		{ 23, "AIG_GuardBody" },
-		{ 24, "AIG_DragBody" },
-		{ 25, "AIG_LookAtAccident" },
-		{ 26, "AIG_Sentry" },
-		{ 27, "AIG_HelpGeneric" },
-		{ 28, "AIG_Evacuate" },
-		{ 29, "AIG_Entourage" },
-		{ 30, "AIG_AvoidDangerousArea" },
-		{ 31, "AIG_Spectator" },
-		{ 32, "AIG_Infected" },
-		{ 33, "AIG_SC_Combat" },
-		{ 34, "AIG_SC_Alerted" },
-		{ 35, "AIG_None" },
+	(*g_Enums)["EGameEventArgType"] = {
+		{ 0, "GE_ARGS_KILL" },
+		{ 1, "GE_ARGS_PRIORITYKILL" },
+		{ 2, "GE_ARGS_SITUATION" },
+		{ 3, "GE_ARGS_INVENTORY" },
+		{ 4, "GE_ARGS_EXPLODINGPROP" },
+		{ 5, "GE_ARGS_EVENT" },
+		{ 6, "GE_ARGS_CHECKPOINTEVENT" },
+		{ 7, "GE_ARGS_AI_SITUATION" },
 	};
 
-	(*g_Enums)["ECharacterResourceType"] = {
-		{ 0, "eSMT_Invalid" },
-		{ 1, "eSMT_FullBody" },
-		{ 2, "eSMT_RightHand" },
-		{ 3, "eSMT_LeftHand" },
+	(*g_Enums)["EGameEventType"] = {
+		{ 0, "GET_GameplayStart" },
+		{ 1, "GET_GameplayStop" },
+		{ 2, "GET_IntroCutStart" },
+		{ 3, "GET_IntroCutEnd" },
+		{ 4, "GET_ProfilingStart" },
+		{ 5, "GET_SavegameRestored" },
+		{ 6, "GET_PlayingAfterLoad" },
+		{ 7, "GET_COUNT" },
 	};
 
-	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioExoticType"] = {
-		{ 0, "eWBC_AudioExoticType_MiniPistol" },
-		{ 32768, "eWBC_AudioExoticType_None" },
-		{ 1, "eWBC_AudioExoticType_OneHandSpinReloadShotgun" },
-		{ 2, "eWBC_AudioExoticType_TranquilizerDartPistol" },
-		{ 3, "eWBC_AudioExoticType_Walter2000SniperRifle" },
-		{ 4, "eWBC_AudioExoticType_ShootingRange_NPCAssaultRifle" },
+	(*g_Enums)["EGameModeId"] = {
+		{ -1, "GameMode_Invalid" },
+		{ 0, "GameMode_Normal" },
+		{ 1, "GameMode_Sniper" },
+		{ 2, "GameMode_Versus" },
+		{ 3, "GameMode_Max" },
 	};
 
-	(*g_Enums)["EDisturbanceType"] = {
-		{ 0, "DT_Generic" },
-		{ 1, "DT_SeeWeapon" },
-		{ 2, "DT_BodyNeedsBagging" },
-		{ 3, "DT_SoundCloseCombat" },
-		{ 4, "DT_SoundGunSilenced" },
-		{ 5, "DT_SoundBulletImpact" },
-		{ 6, "DT_SoundNeckBreak" },
-		{ 7, "DT_SoundSpeakPain" },
-		{ 8, "DT_SoundGunshot" },
-		{ 9, "DT_SoundExplosion" },
-		{ 10, "DT_SeeExplosion" },
-		{ 11, "DT_DeadBody" },
-		{ 12, "DT_HitmanNearDeadBody" },
-		{ 13, "DT_HitmanNearPacifiedBody" },
-		{ 14, "DT_SeeTakeKeyCard" },
-		{ 15, "DT_SeeTakeSecurityTape" },
-		{ 16, "DT_SeeChangeOutfit" },
-		{ 17, "DT_SeeTrespasser" },
-		{ 18, "DT_SeeBrokenDisguise" },
-		{ 19, "DT_SeeIllegalWeapon" },
-		{ 20, "DT_SeeDraggingBody" },
-		{ 21, "DT_SeeDeath" },
-		{ 22, "DT_SeeKilling" },
-		{ 23, "DT_UnconsciousVictim" },
-		{ 24, "DT_HuntTarget" },
-		{ 25, "DT_CrowdAlerted" },
-		{ 26, "DT_SeeGunshotVictim" },
-		{ 27, "DT_SoundThrownItem" },
-		{ 28, "DT_SoundThrownItemSeenThrowing" },
-		{ 29, "DT_HitByItemOrCoin" },
-		{ 30, "DT_PrivateAreaViolated" },
-		{ 31, "DT_SetpieceInteraction" },
-		{ 32, "DT_IllegalAction" },
-		{ 33, "DT_KnockdownMelee" },
-		{ 34, "DT_KnockdownThrow" },
-		{ 35, "DT_BumpedTooMuch" },
-		{ 36, "DT_Murder" },
-		{ 37, "DT_Strangle" },
-		{ 38, "DT_GotShot" },
-		{ 39, "DT_MurderAttempt" },
-		{ 40, "DT_LongTermMemory" },
-		{ 41, "DT_Accident" },
-		{ 42, "DT_MAX" },
+	(*g_Enums)["EGameTension"] = {
+		{ 0, "EGT_Undefined" },
+		{ 1, "EGT_Ambient" },
+		{ 2, "EGT_Agitated" },
+		{ 3, "EGT_Searching" },
+		{ 4, "EGT_AlertedLow" },
+		{ 5, "EGT_AlertedHigh" },
+		{ 6, "EGT_Hunting" },
+		{ 7, "EGT_Arrest" },
+		{ 8, "EGT_Combat" },
+	};
+
+	(*g_Enums)["EGameUIMenu"] = {
+		{ 0, "eUIMenu_IntroMenu" },
+		{ 1, "eUIMenu_PauseMenu" },
+		{ 2, "eUIMenu_PhoneMenu" },
+		{ 3, "eUIMenu_MapMenu" },
+		{ 4, "eUIMenu_ModalDialogMenu" },
+		{ 5, "eUIMenu_GameplayMenu" },
+		{ 6, "eUIMenu_InventorySelectorMenu" },
+		{ 7, "eUIMenu_ActionSelectorMenu" },
+		{ 8, "eUIMenu_ActionSelectorInventoryMenu" },
+		{ 9, "eUIMenu_IntelSelectorMenu" },
+		{ 10, "eUIMenu_NotebookMenu" },
+		{ 11, "eUIMenu_LogbookMenu" },
+		{ 12, "eUIMenu_TutorialMenu" },
+		{ 13, "eUIMenu_SplashHintMenu" },
+		{ 14, "eUIMenu_EmoteMenu" },
+		{ 15, "eUIMenu_Count" },
+	};
+
+	(*g_Enums)["EGestureCategory"] = {
+		{ 0, "EGC_None" },
+		{ 1, "EGC_AmbientDialog" },
+		{ 2, "EGC_TrespassWarn1" },
+		{ 3, "EGC_TrespassWarn2" },
+		{ 4, "EGC_TrespassWarn3" },
+		{ 5, "EGC_StopWarn" },
+	};
+
+	(*g_Enums)["EGuardPointType"] = {
+		{ 0, "GPT_Hold" },
+		{ 1, "GPT_Combat" },
+		{ 2, "GPT_CombatAndHold" },
+		{ 3, "GPT_VIPSafeRoom" },
+	};
+
+	(*g_Enums)["EHM5GameInputFlag"] = {
+		{ 0, "eGameInputActionPerform" },
+		{ 1, "eGameInputActionPickup" },
+		{ 2, "eGameInputActionAbort" },
+		{ 3, "eGameInputActionDoor" },
+		{ 4, "eGameInputWeaponZoomIn" },
+		{ 5, "eGameInputWeaponZoomOut" },
+		{ 6, "eGameInputActionShoot" },
+		{ 7, "eGameInputActionPrecisionShoot" },
+		{ 8, "eGameInputAimOTS" },
+		{ 9, "eGameInputCoverAction" },
+		{ 10, "eGameInputCoverAlternativeAction" },
+		{ 11, "eGameInputInventoryAccept" },
+		{ 12, "eGameInputEquipShortRange" },
+		{ 13, "eGameInputEquipLongRange" },
+		{ 14, "eGameInputHolsterItem" },
+		{ 15, "eGameInputDropItem" },
+		{ 16, "eGameInputTogglePlacement" },
+		{ 17, "eGameInputActivatePropQuick" },
+		{ 18, "eGameInputActivateProp" },
+		{ 19, "eGameInputActivatePropHold" },
+		{ 20, "eGameInputActivatePropSecondary" },
+		{ 21, "eGameInputActivatePropInterruptibleStart" },
+		{ 22, "eGameInputActivatePropInterruptibleEnd" },
+		{ 23, "eGameInputConcealRetrieve" },
+		{ 24, "eGameInputGuideAction" },
+		{ 25, "eGameInputGuideActionHold" },
+		{ 26, "eGameInputGuideActionSecondary" },
+		{ 27, "eGameInputGuideEnterWindow" },
+		{ 28, "eGameInputGuideSneakPastWindow" },
+		{ 29, "eGameInputGuideSneakPastWindowHold" },
+		{ 30, "eGameInputGuideKill" },
+		{ 31, "eGameInputSlideLadder" },
+		{ 32, "eGameInputCloseCombat" },
+		{ 33, "eGameInputFiberwire" },
+		{ 34, "eGameInputCloseCombatCounter" },
+		{ 35, "eGameInputCloseCombatTakeDown" },
+		{ 36, "eGameInputCloseCombatSnapNeck" },
+		{ 37, "eGameInputSurrender" },
+		{ 38, "eGameInputShowItem" },
+		{ 39, "eGameInputReload" },
+		{ 40, "eGameInputTakeDisguise" },
+		{ 41, "eGameInputDragDropBody" },
+		{ 42, "eGameInputDumpBody" },
+		{ 43, "eGameInputSneakToggle" },
+		{ 44, "eGameInputCamSwitch" },
+		{ 45, "eGameInputActivateRun" },
+		{ 46, "eGameInputActivateWalkSlow" },
+		{ 47, "eGameInputInstinctMode" },
+		{ 48, "eGameInputContractTargetTag" },
+		{ 49, "eGameInputThrow" },
+		{ 50, "eGameInputCloseCombatChainHigh" },
+		{ 51, "eGameInputCloseCombatChainLow" },
+		{ 52, "eGameInputCloseCombatChainCounter" },
+		{ 53, "eGameInputSkipCutSequence" },
+		{ 54, "eGameInputCloseCombatChokeStart" },
+		{ 55, "eGameInputCloseCombatChoke" },
+		{ 56, "eGameInputFocusedInteractionFaceUp" },
+		{ 57, "eGameInputFocusedInteractionFaceLeft" },
+		{ 58, "eGameInputFocusedInteractionFaceDown" },
+		{ 59, "eGameInputFocusedInteractionLeftStickAnalog" },
+		{ 60, "eGameInputRemoteAction" },
+		{ 61, "eGameInputChangeAmmoNext" },
+		{ 62, "eGameInputChangeAmmoPrevious" },
+		{ 63, "eGameInputDefault" },
+		{ 64, "eGameInputActionsNUM" },
+	};
+
+	(*g_Enums)["EHM5SoundBulletType"] = {
+		{ 0, "ESBT_SMALL" },
+		{ 1, "ESBT_MEDIUM" },
+		{ 2, "ESBT_LARGE" },
+		{ 3, "ESBT_GORGEOUS" },
+		{ 4, "ESBT_ANY" },
+	};
+
+	(*g_Enums)["EHM5SoundCloseCombatEvent"] = {
+		{ 0, "ECCE_PUNCH_FACE" },
+		{ 1, "ECCE_PUNCH_BODY" },
+		{ 2, "ECCE_ATTACK_ELBOW" },
+		{ 3, "ECCE_ATTACK_KNEE" },
+		{ 4, "ECCE_ATTACK_KICK" },
+		{ 5, "ECCE_SWOOSH_SHORT" },
+		{ 6, "ECCE_SWOOSH_LONG" },
+		{ 7, "ECCE_CLOTH_SWOOSH" },
+		{ 8, "ECCE_CLOTH_RUSTLE" },
+		{ 9, "ECCE_CLOTH_STRETCH" },
+		{ 10, "ECCE_GRAB" },
+		{ 11, "ECCE_BONE_BREAK" },
+		{ 12, "ECCE_NECK_SNAP" },
+		{ 13, "ECCE_BODY_FALL" },
+		{ 14, "ECCE_SKULL_CRACK" },
+		{ 15, "ECCE_ANY" },
+	};
+
+	(*g_Enums)["EHM5SoundFootstepEmitterTarget"] = {
+		{ 0, "EFSAT_MAIN" },
+		{ 1, "EFSAT_NPC" },
+	};
+
+	(*g_Enums)["EHM5SoundFootstepEvent"] = {
+		{ 0, "EFSE_START" },
+		{ 1, "EFSE_STOP" },
+		{ 2, "EFSE_LEFT" },
+		{ 3, "EFSE_RIGHT" },
+		{ 4, "EFSE_TURN" },
+		{ 5, "EFSE_SLIDE" },
+		{ 6, "EFSE_JUMP" },
+		{ 7, "EFSE_LAND" },
+	};
+
+	(*g_Enums)["EHM5SoundFootstepStance"] = {
+		{ 0, "EFSS_SNEAK" },
+		{ 1, "EFSS_SNEAKRUN" },
+		{ 2, "EFSS_WALKSLOWLY" },
+		{ 3, "EFSS_WALK" },
+		{ 4, "EFSS_RUN" },
+		{ 5, "EFSS_ANY" },
+	};
+
+	(*g_Enums)["EHM5SoundFootwearType"] = {
+		{ 0, "EFWT_UNDEFINED" },
+		{ 1, "EFWT_BAREFOOT" },
+		{ 2, "EFWT_SLIPPERS" },
+		{ 3, "EFWT_DISPOSABLE_SLIPPERS" },
+		{ 4, "EFWT_SANDALS" },
+		{ 5, "EFWT_SNEAKERS" },
+		{ 6, "EFWT_SNEAKERS_METALLEG" },
+		{ 7, "EFWT_LEATHER" },
+		{ 8, "EFWT_FEMALE_LEATHER" },
+		{ 9, "EFWT_BOOTS" },
+		{ 10, "EFWT_COWBOY_BOOTS" },
+		{ 11, "EFWT_FEMALE_COWBOY_BOOTS" },
+		{ 12, "EFWT_RUBBER_BOOTS" },
+		{ 13, "EFWT_HIGH_HEELS" },
+		{ 14, "EFWT_LEATHER_KEYS" },
+		{ 15, "EFWT_SWAT_BOOTS" },
+	};
+
+	(*g_Enums)["EHM5SoundRicochetType"] = {
+		{ 0, "ESRT_VARIATION1" },
+		{ 1, "ESRT_VARIATION2" },
+	};
+
+	(*g_Enums)["EHUDElement"] = {
+		{ 0, "HUD_ELEMENT_NONE" },
+		{ 1, "HUD_ELEMENT_MINIMAP" },
+		{ 2, "HUD_ELEMENT_DISGUISE" },
+		{ 4, "HUD_ELEMENT_WEAPON_DISPLAY" },
+		{ 8, "HUD_ELEMENT_FOCUS_BAR" },
+		{ 16, "HUD_ELEMENT_RETICULES" },
+		{ 32, "HUD_ELEMENT_WEAPON_SELECTOR" },
+		{ 64, "HUD_ELEMENT_SPECIAL_BAR" },
+		{ 128, "HUD_ELEMENT_TEXT_MESSAGES" },
+		{ 256, "HUD_ELEMENT_CONTRACT_MARKS" },
+		{ 512, "HUD_ELEMENT_RATING_UPDATE" },
+		{ 1024, "HUD_ELEMENT_RANKING" },
+		{ 2048, "HUD_ELEMENT_CHALLENGES" },
+		{ 4096, "HUD_ELEMENT_CUSTOM_TEXTS" },
+		{ 8192, "HUD_ELEMENT_ACTION_BUTTONS" },
+		{ 16384, "HUD_ELEMENT_ATTENTION_PEAKS" },
+		{ 32768, "HUD_ELEMENT_RATING_TRACKER" },
+		{ 65536, "HUD_ELEMENT_TARGET_TRACKER" },
+		{ 131072, "HUD_ELEMENT_HINTS" },
+		{ 262144, "HUD_ELEMENT_CONTRACT_SCORING" },
+		{ 524288, "HUD_ELEMENT_TUTORIAL" },
+		{ 1048576, "HUD_ELEMENT_HEALTH_BAR" },
+		{ 2097152, "HUD_ELEMENT_OBJECTIVES" },
+		{ 8388607, "HUD_ALL_ELEMENTS" },
+	};
+
+	(*g_Enums)["EHUDIconFlags"] = {
+		{ 1, "HUD_ICON_FLAG_POSITION" },
+		{ 2, "HUD_ICON_FLAG_VALUE" },
+		{ 4, "HUD_ICON_FLAG_SCALE" },
+		{ 8, "HUD_ICON_FLAG_TEXT" },
+	};
+
+	(*g_Enums)["EHUDIconType"] = {
+		{ 0, "HUD_ICON_NONE" },
+		{ 1, "HUD_ICON_ALARM_TIMER" },
+		{ 2, "HUD_ICON_CLOSECOMBAT" },
+		{ 3, "HUD_ICON_BREADCRUMB" },
+		{ 4, "HUD_ICON_EXIT" },
+		{ 5, "HUD_ICON_OBJECTIVE" },
+		{ 6, "HUD_ICON_TARGET" },
+		{ 7, "HUD_ICON_TUTORIAL_ARROW" },
+	};
+
+	(*g_Enums)["EHUDMessageStatus"] = {
+		{ 0, "HUD_MESSAGE_UNUSED" },
+		{ 1, "HUD_MESSAGE_ATTACH" },
+		{ 2, "HUD_MESSAGE_FADEIN" },
+		{ 3, "HUD_MESSAGE_DISPLAY" },
+		{ 4, "HUD_MESSAGE_FADEOUT" },
+	};
+
+	(*g_Enums)["EHeroGameState"] = {
+		{ 0, "eHGS_Reserved_QueryALL" },
+		{ 1, "eHGS_Reserved_QueryAny" },
+		{ 2, "eHGS_InstinctModeActive" },
+		{ 3, "eHGS_IsHardToSee" },
+		{ 4, "eHGS_Sneaking" },
+		{ 5, "eHGS_InSequence" },
+		{ 6, "eHGS_InCloseCombat" },
+		{ 7, "eHGS_ItemHandlingActive" },
+		{ 8, "eHGS_CamSwitched" },
+		{ 9, "eHGS_SniperMode" },
+		{ 10, "eHGS_OTSMode" },
+		{ 11, "eHGS_DualWielding" },
+		{ 12, "eHGS_PreciseAim" },
+		{ 13, "eHGS_ActivatingAltFire" },
+		{ 14, "eHGS_FiredLastFrFocusBurnRate" },
+		{ 15, "eHGS_FiredLastFrFocusGainValue" },
+		{ 16, "eHGS_BurningFocus" },
+		{ 17, "eHGS_InsideCloset" },
+		{ 18, "eHGS_Peeking" },
+		{ 19, "eHGS_FocusedInteraction" },
+		{ 20, "eHGS_HoldsUtility" },
+		{ 21, "eHGS_FacingRight" },
+		{ 22, "eHGS_MvAgility" },
+		{ 23, "eHGS_MvCover" },
+		{ 24, "eHGS_MvDragging" },
+		{ 25, "eHGS_MvDrainPipe" },
+		{ 26, "eHGS_MvLedgeWalk" },
+		{ 27, "eHGS_MvLedgeHang" },
+		{ 28, "eHGS_MvLocomotion" },
+		{ 29, "eHGS_MvCloseCombat" },
+		{ 30, "eHGS_MvSurrendering" },
+		{ 31, "eHGS_MvFriskComplying" },
+		{ 32, "eHGS_MvShowItem" },
+		{ 33, "eHGS_MvThrow" },
+		{ 34, "eHGS_MvFiberWireKill" },
+		{ 35, "eHGS_MvAlign" },
+		{ 36, "eHGS_MvTakedown" },
+		{ 37, "eHGS_MvSubAction" },
+		{ 38, "eHGS_MvNewFullBody" },
+		{ 39, "eHGS_NUM" },
+	};
+
+	(*g_Enums)["EHintMessageSoundType"] = {
+		{ 0, "EHintMessageSound_None" },
+		{ 1, "EHintMessageSound_GeneralHint" },
+		{ 2, "EHintMessageSound_UsefulItem" },
+		{ 3, "EHintMessageSound_NeedsItem" },
+		{ 4, "EHintMessageSound_ObjectiveExit" },
+		{ 5, "EHintMessageSound_Target" },
+		{ 6, "EHintMessageSound_AccidentKill" },
+		{ 7, "EHintMessageSound_Trespassing" },
+		{ 8, "EHintMessageSound_CanBeTurnedOn" },
+		{ 9, "EHintMessageSound_CanBeTurnedOff" },
+		{ 10, "EHintMessageSound_Agility" },
+	};
+
+	(*g_Enums)["EHintMessageType"] = {
+		{ 0, "EHintMessageType_Hint" },
+		{ 1, "EHintMessageType_InstinctHint" },
+		{ 2, "EHintMessageType_InstinctPrompt" },
+		{ 3, "EHintMessageType_Tutorial" },
+	};
+
+	(*g_Enums)["EHitmanPermissionFlag"] = {
+		{ 0, "eHPFlag_InventorySelect" },
+		{ 1, "eHPFlag_CanHolsterItem" },
+		{ 2, "eHPFlag_CanDropItem" },
+		{ 3, "eHPFlag_CanDualWield" },
+		{ 4, "eHPFlag_CameraControl" },
+		{ 5, "eHPFlag_MovementControl" },
+		{ 6, "eHPFlag_AimControl" },
+		{ 7, "eHPFlag_CanOpenNotebook" },
+		{ 8, "eHPFlag_CanOpenPauseMenu" },
+		{ 9, "eHPFlag_PermissionsNUM" },
+	};
+
+	(*g_Enums)["EImpactEffectsOptions"] = {
+		{ 0, "eIE_None" },
+		{ 1, "eIE_BloodSplatter" },
+		{ 2, "eIE_Decals" },
+		{ 4, "eIE_MaterialImpactEffects" },
+		{ 8, "eIE_AmmoImpactEffect" },
+		{ 16, "eIE_All" },
+	};
+
+	(*g_Enums)["EInformationBarMessage"] = {
+		{ 0, "eIBM_Clear" },
+		{ 1, "eIBM_LastEnemyKilledCP" },
+		{ 2, "eIBM_InvestigateStand" },
+		{ 3, "eIBM_BodyFound" },
+		{ 4, "eIBM_Suspicious" },
+		{ 5, "eIBM_DisguiseBlown" },
+		{ 6, "eIBM_Hunt" },
+		{ 7, "eIBM_Exposed" },
+		{ 8, "eIBM_LandMineArmed" },
+		{ 9, "eIBM_RadioOn" },
+		{ 10, "eIBM_Trespassing" },
+		{ 11, "eIBM_NUM" },
+	};
+
+	(*g_Enums)["EIntelStage"] = {
+		{ 0, "eIT_MAIN" },
+		{ 1, "eIT_STAGE" },
+		{ 2, "eIT_HINT" },
+	};
+
+	(*g_Enums)["EIntelTensionLevel"] = {
+		{ 0, "eITL_Undefined" },
+		{ 1, "eITL_Ambient" },
+		{ 2, "eITL_Agitated" },
+		{ 3, "eITL_Searching" },
+		{ 4, "eITL_AlertedLow" },
+		{ 5, "eITL_AlertedHigh" },
+		{ 6, "eITL_Hunting" },
+		{ 7, "eITL_Arrest" },
+		{ 8, "eITL_Combat" },
+	};
+
+	(*g_Enums)["EIntelType"] = {
+		{ 0, "eIT_DATA" },
+		{ 1, "eIT_OPPORTUNITY" },
+		{ 2, "eIT_BACKGROUND" },
+		{ 3, "eIT_HANDLER" },
+		{ 4, "eIT_UNDEFINED" },
+	};
+
+	(*g_Enums)["EInteractionIndicatorState"] = {
+		{ 0, "EIIS_AVAILABLE" },
+		{ 1, "EIIS_COLLAPSED" },
+		{ 2, "EIIS_ACTIVATING" },
+		{ 3, "EIIS_NOTAVAILABLE" },
+	};
+
+	(*g_Enums)["EInteractionIndicatorType"] = {
+		{ 0, "EIITYPE_STANDARD" },
+		{ 1, "EIITYPE_INTERRUPTABLE" },
+	};
+
+	(*g_Enums)["EInteractionInputType"] = {
+		{ 0, "EIIT_UNKNOWN" },
+		{ 1, "EIIT_PRESS" },
+		{ 2, "EIIT_HOLD" },
+		{ 3, "EIIT_HOLD_DOWN" },
+		{ 4, "EIIT_REPEAT" },
+		{ 5, "EIIT_GUIDE" },
+	};
+
+	(*g_Enums)["EInventoryConfigCustomRule"] = {
+		{ 0, "EICCR_None" },
+		{ 1, "EICCR_Surrender" },
+		{ 2, "EICCR_TempDropLeftHandItem" },
+	};
+
+	(*g_Enums)["EInventoryConfigFormerEquippedItems"] = {
+		{ 0, "EICFEI_Equip" },
+		{ 1, "EICFEI_EquipOrPickup" },
+		{ 2, "EICFEI_Forget" },
+	};
+
+	(*g_Enums)["EInventoryConfigItemHandling"] = {
+		{ 0, "EICIH_Allow" },
+		{ 1, "EICIH_Store" },
+		{ 2, "EICIH_InstaStore" },
+		{ 3, "EICIH_Drop" },
+		{ 4, "EICIH_DropOrStore" },
+		{ 5, "EICIH_DropAndPickup" },
+		{ 6, "EICIH_DoNothing" },
+	};
+
+	(*g_Enums)["EInventoryStorageType"] = {
+		{ 0, "EIST_None" },
+		{ 1, "EIST_Bag" },
+		{ 2, "EIST_RightHand" },
+		{ 3, "EIST_LeftHand" },
+		{ 4, "EIST_Back" },
+		{ 5, "EIST_Support" },
+		{ 6, "EIST_Quest" },
+		{ 7, "EIST_Temporary" },
+		{ 8, "EIST_Debug" },
+	};
+
+	(*g_Enums)["EItemGripType"] = {
+		{ 0, "IGT_Empty" },
+		{ 1, "IGT_Suitcase" },
+		{ 2, "IGT_Suitcase_Big" },
+		{ 3, "IGT_Firearm_Pistol" },
+		{ 4, "IGT_Firearm_Pistol_Stealth" },
+		{ 5, "IGT_Firearm_AssaultRifle_Bullpup" },
+		{ 6, "IGT_Firearm_AssaultRifle_Carbine" },
+		{ 7, "IGT_Firearm_Shotgun" },
+		{ 8, "IGT_Firearm_SMG" },
+		{ 9, "IGT_Firearm_SMG02" },
+		{ 10, "IGT_Firearm_SniperRifle" },
+		{ 11, "IGT_Firearm_SniperRifle02" },
+		{ 12, "IGT_Firearm_Dartgun" },
+		{ 13, "IGT_Melee_1H_Baton" },
+		{ 14, "IGT_Melee_1H_Cleaver" },
+		{ 15, "IGT_Melee_1H_Hammer" },
+		{ 16, "IGT_Melee_1H_Knife" },
+		{ 17, "IGT_Melee_1H_Rock" },
+		{ 18, "IGT_Melee_1H_Screwdriver" },
+		{ 19, "IGT_Melee_1H_Stick" },
+		{ 20, "IGT_Melee_1H_Sword" },
+		{ 21, "IGT_Melee_1H_FireExtinguisher" },
+		{ 22, "IGT_Melee_1H_Bust" },
+		{ 23, "IGT_Melee_1H_Crowbar" },
+		{ 24, "IGT_Melee_1H_Syringe" },
+		{ 25, "IGT_Melee_2H_Axe" },
+		{ 26, "IGT_Melee_2H_Stick" },
+		{ 27, "IGT_Melee_2H_Sword" },
+		{ 28, "IGT_Gadget_Fiberwire" },
+		{ 29, "IGT_Gadget_Coin" },
+		{ 30, "IGT_Gadget_Vial" },
+		{ 31, "IGT_Gadget_C4" },
+		{ 32, "IGT_Gadget_Detonator" },
+		{ 33, "IGT_Gadget_Grenade_ThickGrip" },
+		{ 34, "IGT_Gadget_Grenade_ThinGrip" },
+		{ 35, "IGT_Gadget_Mine" },
+		{ 36, "IGT_Gadget_Remote" },
+		{ 37, "IGT_Prop_1H" },
+		{ 38, "IGT_Prop_1H_Duck" },
+		{ 39, "IGT_Prop_1h_Phone" },
+		{ 40, "IGT_None" },
+	};
+
+	(*g_Enums)["EItemHUDType"] = {
+		{ 0, "EIHT_None" },
+		{ 1, "EIHT_GhostItem" },
+		{ 2, "EIHT_OutbreakHealingItem" },
+	};
+
+	(*g_Enums)["EItemLocation"] = {
+		{ 0, "eIL_Anywhere" },
+		{ 1, "eIL_Inventory" },
+		{ 2, "eIL_RightHand" },
+		{ 3, "eIL_LeftHand" },
+		{ 4, "eIL_FreeBone" },
+		{ 5, "eIL_Count" },
+	};
+
+	(*g_Enums)["EItemModifierType"] = {
+		{ 0, "MODIFIER_NONE" },
+		{ 1, "MODIFIER_THROW" },
+		{ 2, "MODIFIER_CARRY" },
+		{ 3, "MODIFIER_AMMO" },
+		{ 4, "MODIFIER_PRECISION" },
+		{ 5, "MODIFIER_DAMAGE" },
+		{ 6, "MODIFIER_IMPACT" },
+		{ 7, "MODIFIER_EXPLOSIVE" },
+		{ 8, "MODIFIER_RANGE" },
+		{ 9, "MODIFIER_ZOOM" },
+		{ 10, "MODIFIER_SUPPRESSOR" },
+		{ 11, "MODIFIER_RECOIL" },
+		{ 12, "MODIFIER_RATEOFFIRE" },
+		{ 13, "MODIFIER_SCOPEBOBBING" },
+		{ 14, "MODIFIER_MUZZLEVELOCITY" },
+		{ 15, "MODIFIER_KNOCKDOWN" },
+		{ 16, "MODIFIER_FULLAUTO" },
+		{ 17, "MODIFIER_PRECISIONSHOT" },
+		{ 18, "MODIFIER_SCOPETIMESLOWDOWN" },
+		{ 19, "MODIFIER_STYLE" },
+		{ 20, "MODIFIER_RELOAD" },
+		{ 21, "MODIFIER_THRESHOLD" },
+		{ 22, "MODIFIER_PERK" },
+		{ 23, "MODIFIER_MAGAZINE" },
+		{ 24, "MODIFIER_BURST" },
+	};
+
+	(*g_Enums)["EItemPoisonType"] = {
+		{ 0, "POISONTYPE_NONE" },
+		{ 1, "POISONTYPE_LETHAL" },
+		{ 2, "POISONTYPE_SEDATIVE" },
+		{ 3, "POISONTYPE_EMETIC" },
+	};
+
+	(*g_Enums)["EItemRequirement"] = {
+		{ 0, "eIR_NoRequirement" },
+		{ 1, "eIR_RequireEmpty" },
+		{ 2, "eIR_RequireItem" },
+		{ 3, "eIR_RequireNoBigItem" },
+	};
+
+	(*g_Enums)["EKeywordSetBehavior"] = {
+		{ 0, "EKWSB_All" },
+		{ 1, "EKWSB_None" },
+		{ 2, "EKWSB_Any" },
+		{ 3, "EKWSB_No" },
+	};
+
+	(*g_Enums)["EKillType"] = {
+		{ 0, "EKillType_Undefined" },
+		{ 1, "EKillType_Throw" },
+		{ 2, "EKillType_Fiberwire" },
+		{ 3, "EKillType_PistolExecute" },
+		{ 4, "EKillType_ItemTakeOutFront" },
+		{ 5, "EKillType_ItemTakeOutBack" },
+		{ 6, "EKillType_ChokeOut" },
+		{ 7, "EKillType_SnapNeck" },
+		{ 8, "EKillType_KnockOut" },
+		{ 9, "EKillType_Push" },
+		{ 10, "EKillType_Pull" },
+	};
+
+	(*g_Enums)["EKnownEntityType"] = {
+		{ 0, "KET_UNKNOWN" },
+		{ 1, "KET_HITMAN" },
+		{ 2, "KET_ACTOR" },
+		{ 3, "KET_ITEM" },
+		{ 4, "KET_LOCATION" },
+		{ 5, "KET_OBJECT" },
+		{ 6, "KET_COVER" },
+		{ 7, "KET_PERCEPTIBLE" },
+		{ 8, "KET_TEMPCROWDBODY" },
+	};
+
+	(*g_Enums)["ELastSoundTension"] = {
+		{ 0, "EST_Unknown" },
+		{ 1, "EST_Ambient" },
+		{ 2, "EST_Yellow" },
+		{ 3, "EST_Orange" },
+		{ 4, "EST_Red" },
+	};
+
+	(*g_Enums)["ELedgeDismountBehavior"] = {
+		{ 0, "eLDB_DontCare" },
+		{ 1, "eLDB_Stand" },
+		{ 2, "eLDB_Crouch" },
+	};
+
+	(*g_Enums)["ELedgeDismountDirection"] = {
+		{ 0, "eLDD_DontCare" },
+		{ 1, "eLDD_FaceLedge" },
+		{ 2, "eLDD_FaceLeft" },
+		{ 3, "eLDD_FaceRight" },
+		{ 4, "eLDD_Turn180" },
+	};
+
+	(*g_Enums)["ELocale"] = {
+		{ 0, "Locale_En" },
+		{ 1, "Locale_Fr" },
+		{ 2, "Locale_It" },
+		{ 3, "Locale_De" },
+		{ 4, "Locale_Es" },
+		{ 5, "Locale_Ru" },
+		{ 6, "Locale_Mx" },
+		{ 7, "Locale_Br" },
+		{ 8, "Locale_Pl" },
+		{ 9, "Locale_Cn" },
+		{ 10, "Locale_Jp" },
+		{ 11, "Locale_Tc" },
+	};
+
+	(*g_Enums)["EMapType"] = {
+		{ 0, "E_MAPTYPE_Minimap" },
+		{ 1, "E_MAPTYPE_MainMap" },
+		{ 2, "E_MAPTYPE_MenuMap" },
+	};
+
+	(*g_Enums)["EMarkerClipAlgorithm"] = {
+		{ 0, "MCA_NONE" },
+		{ 1, "MCA_SIMPLE" },
+		{ 2, "MCA_ADVANCED" },
+	};
+
+	(*g_Enums)["EMarkerInclusionMode"] = {
+		{ 0, "MIM_DEFAULT" },
+		{ 1, "MIM_IF_FORCE_INCLUDED_ONLY" },
+	};
+
+	(*g_Enums)["EMassImpulseType"] = {
+		{ 0, "eMIT_None" },
+		{ 1, "eMIT_Explosion" },
+		{ 2, "eMIT_ShockWave" },
+		{ 3, "eMIT_ShockWaveNoExplosion" },
+	};
+
+	(*g_Enums)["EMatchOverCondition"] = {
+		{ 0, "CompletedNormally" },
+		{ 1, "OpponentsDisconnected" },
+		{ 2, "OpponentsAbandoned" },
+	};
+
+	(*g_Enums)["EMaterialRegistrationState"] = {
+		{ 0, "eMRS_None" },
+		{ 1, "eMRS_Pending" },
+		{ 2, "eMRS_Success" },
+		{ 3, "eMRS_Failed" },
+	};
+
+	(*g_Enums)["EMeBarState"] = {
+		{ 0, "ME_BAR_NONE" },
+		{ 1, "ME_BAR_TRESPASSING" },
+		{ 2, "ME_BAR_DEEPTRESPASSING" },
+		{ 3, "ME_BAR_VISIBLY_ARMED" },
+		{ 4, "ME_BAR_CHANGING_DISGUISE" },
+		{ 5, "ME_BAR_DISGUISE_BLOWN" },
+		{ 6, "ME_BAR_DISGUISE_SUSPICIOUS" },
+		{ 7, "ME_BAR_NEAR_BODY" },
+	};
+
+	(*g_Enums)["EMorphemeEventId"] = {
+		{ 0, "eDE_None" },
+		{ 18, "eDE_UnholsterWeapon" },
+		{ 19, "eDE_HolsterWeapon" },
+		{ 20, "eDE_FireWeapon" },
+		{ 21, "eDE_AttachWeapon" },
+		{ 22, "eDE_DetachWeapon" },
+		{ 100, "eDE_LegR" },
+		{ 101, "eDE_LegL" },
+		{ 200, "eDE_TransitionEnd_LegR" },
+		{ 201, "eDE_TransitionEnd_LegL" },
+		{ 255, "eDE_Finish" },
+		{ 300, "eDE_InterpolationStart" },
+		{ 301, "eDE_InterpolationEnd" },
+		{ 400, "eDE_TransitionSignal" },
+		{ 500, "eDE_TransitionEnd" },
+		{ 700, "eDE_DisableNPCHitmanCollision" },
+		{ 701, "eDE_EnableNPCHitmanCollision" },
+		{ 800, "eDE_EnableRagdollRangeStart" },
+		{ 801, "eDE_EnableRagdollRangeEnd" },
+		{ 850, "eDE_StartBlendingOut" },
+		{ 851, "eDE_FinishBlendingOut" },
+		{ 860, "eDE_StartOrientationBlend" },
+		{ 861, "eDE_FinishOrientationBlend" },
+		{ 862, "eDE_RecoveryPowerRagdollEnd" },
+		{ 863, "eDE_RecoveryBlendEnd" },
+		{ 900, "eDE_ImpactFinished" },
+		{ 1000, "eDE_ActFinished" },
+		{ 1001, "eDE_ActFinishedWhenMoving" },
+		{ 1005, "eDE_ActReached" },
+		{ 1050, "eDE_ActLoop" },
+		{ 1090, "eDE_ActFullbodyStartMarker" },
+		{ 1091, "eDE_ActFullbodyEndMarker" },
+		{ 1100, "eDE_ReactionFinished" },
+		{ 1500, "eDE_StandToCrouch" },
+		{ 1501, "eDE_CrouchToStand" },
+		{ 1600, "eDE_OffHandIKEnable" },
+		{ 1601, "eDE_OffHandIKDisable" },
+		{ 1700, "eDE_StandToMoveRotationToTranslation" },
+		{ 1701, "eDE_MoveToStandTranslationToRotation" },
+		{ 1800, "eDE_HeadIKEnable" },
+		{ 1801, "eDE_HeadIKDisable" },
+		{ 2000, "eDE_WindowLeaningEnable" },
+		{ 2001, "eDE_WindowLeaningDisable" },
+		{ 2002, "eDE_PreventDeathAnimations" },
+		{ 2003, "eDE_AllowDeathAnimations" },
+		{ 2010, "eDE_HeadControlEnable" },
+		{ 2011, "eDE_HeadControlDisable" },
+		{ 3000, "eDE_CombatActEndMarker" },
+		{ 3010, "eDE_CombatEnableRightHandIK" },
+		{ 3011, "eDE_CombatEnableLeftHandIK" },
+		{ 3015, "eDE_CombatEndEnableIK" },
+		{ 3020, "eDE_CombatStartDisableIK" },
+		{ 3025, "eDE_CombatEndDisableIK" },
+		{ 3030, "eDE_CombatEnableShoot" },
+		{ 3040, "eDE_CombatDisableShoot" },
+		{ 3050, "eDE_CombatEnableBlindShoot" },
+		{ 3060, "eDE_CombatDisableBlindShoot" },
+		{ 3070, "eDE_CombatUnholsterGrenade" },
+		{ 3080, "eDE_CombatThrowGrenade" },
+		{ 3100, "eDE_CombatAim" },
+		{ 4000, "eDE_ActBehaviorEventStart" },
+		{ 4001, "eDE_ActItemPickup" },
+		{ 4002, "eDE_ActItemDrop" },
+		{ 4010, "eDE_AmbientItemUseMarker" },
+		{ 4999, "eDE_ActBehaviorEventEnd" },
+		{ 10050, "eDE_Act_UB_BlendIn_End" },
+		{ 10051, "eDE_Act_FB_BlendIn_Start" },
+		{ 10052, "eDE_Act_FB_BlendIn_End" },
+		{ 10053, "eDE_Act_FB_BlendOut_End" },
+		{ 10301, "eDE_Act_LeadIn_Marker" },
+	};
+
+	(*g_Enums)["EMotionType"] = {
+		{ 0, "MOTION_LOCKED" },
+		{ 1, "MOTION_LIMITED" },
+		{ 2, "MOTION_FREE" },
+	};
+
+	(*g_Enums)["EMoveEndState"] = {
+		{ 0, "MES_Moving" },
+		{ 1, "MES_Stopping" },
+		{ 2, "MES_Standing" },
+	};
+
+	(*g_Enums)["EMoveSpeed"] = {
+		{ 0, "MS_Sneaking" },
+		{ 1, "MS_Walking" },
+		{ 2, "MS_Jogging" },
+		{ 3, "MS_Sprinting" },
+		{ 4, "MS_Flash" },
+	};
+
+	(*g_Enums)["EMultiplayerLobbyRequestType"] = {
+		{ 0, "LOBBY_REQUEST_VOID" },
+		{ 1, "LOBBY_REQUEST_IDLE" },
+		{ 2, "LOBBY_REQUEST_CREATE" },
+		{ 3, "LOBBY_REQUEST_CREATE_LOCALHOST" },
+		{ 4, "LOBBY_REQUEST_JOIN" },
+	};
+
+	(*g_Enums)["EMultiplayerNetworkState"] = {
+		{ 0, "Base" },
+		{ 1, "Idle" },
+		{ 2, "Searching" },
+		{ 3, "Connecting" },
+		{ 4, "Joining" },
+		{ 5, "Creating" },
+		{ 6, "Connected" },
+		{ 7, "Disconnecting" },
+		{ 8, "Count" },
+	};
+
+	(*g_Enums)["ENamedGameEvents"] = {
+		{ 0, "eEvent_IntroCutStart" },
+		{ 1, "eEvent_PlayingAfterLoad" },
+		{ 2, "eEvent_SetModePlaying" },
+		{ 3, "eNumNamedGameEvents" },
+	};
+
+	(*g_Enums)["ENetPlayerEvent"] = {
+		{ 0, "Login" },
+		{ 1, "Logout" },
+		{ 2, "NewHost" },
+	};
+
+	(*g_Enums)["ENetRole"] = {
+		{ 0, "None" },
+		{ 1, "Master" },
+		{ 2, "Client" },
+	};
+
+	(*g_Enums)["ENetworkSystemID"] = {
+		{ 0, "NSID_UNDEFINED" },
+		{ 1, "NSID_DEBUG_SWAP_PLAYER_RPC" },
+		{ 2, "NSID_ROUNTTRIPTEST_REQUEST_RPC" },
+		{ 3, "NSID_ROUNTTRIPTEST_RESOLVE_RPC" },
+		{ 4, "NSID_CONNECTION_LOCALLY_DEREFERENCE_UPDATE_RPC" },
+		{ 5, "NSID_CONNECTION_READY_FOR_REPLICATION_RPC" },
+		{ 6, "NSID_NETPLAYER_LOGIN_RPC" },
+		{ 7, "NSID_NETPLAYER_LOGIN_COLOR_SELECTION_RPC" },
+		{ 8, "NSID_NETPLAYER_REPLICA" },
+		{ 9, "NSID_NETGAME_REPLICA" },
+		{ 10, "NSID_PLAYERREGISTRY_REPLICA" },
+		{ 11, "NSID_NETPLAYER_CONTROLLER_REPLICA" },
+		{ 12, "NSID_SYNCH_POINT_PLAYER_REPLICA" },
+		{ 13, "NSID_SYNCH_POINT_REPLICA" },
+		{ 14, "NSID_GAME_CHAT_RPC" },
+		{ 15, "NSID_NETWORK_CORE_SYSTEMS_END" },
+		{ 16, "NSID_PLAYER_INPUT_RPC" },
+		{ 17, "NSID_PLAYER_INPUT_REPLICA" },
+		{ 18, "NSID_GENERAL_ENTITY_PROPERTY_REPLICA" },
+		{ 19, "NSID_ANIMATED_ACTOR_RPC" },
+		{ 20, "NSID_CAMERA_REPLICA" },
+		{ 21, "NSID_GENERAL_PIN_SIGNAL_RPC" },
+		{ 22, "NSID_PIN_SIGNAL_RPC" },
+		{ 23, "NSID_NPC_DIALOGUE_RPC" },
+		{ 24, "NSID_GAME_STATE_REPLICA" },
+		{ 25, "NSID_HERO_STATE_REPLICA" },
+		{ 26, "NSID_NPC_STATE_REPLICA" },
+		{ 27, "NSID_ANIMATION_REPLICA" },
+		{ 28, "NSID_DESTRUCTIBLE_INTERACTIONS_RPC" },
+		{ 29, "NSID_ACT_REQUEST_RPC" },
+		{ 30, "NSID_CHARACTERSPEAK_REPLICA" },
+		{ 31, "NSID_ITEM_WEAPON_RPC" },
+		{ 32, "NSID_ITEM_REPLICA" },
+		{ 33, "NSID_ACCESSORY_ITEM_REPLICA" },
+		{ 34, "NSID_BULLET_IMPACT_RPC" },
+		{ 35, "NSID_NETWORKED_TIME_CONTROL_RPC" },
+		{ 36, "NSID_REQUEST_ACTION_SYCHRONIZATION_RPC" },
+		{ 37, "NSID_PHYSICS_SYSTEM_REPLICA" },
+		{ 38, "NSID_PHYSICS_OBJECT_REPLICA" },
+		{ 39, "NSID_WATER_SPLASH_GENERATOR_RPC" },
+		{ 40, "NSID_PROJECTILE_HIT_INFO_RPC" },
+		{ 41, "NSID_PROJECTILE_HIT_EVENT_RPC" },
+		{ 42, "NSID_INTERACTION_SUBACTION_EXECUTE_REQUEST" },
+		{ 43, "NSID_INTERACTION_SUBACTION_EXECUTE_RESOLVE" },
+		{ 44, "NSID_INTERACTION_SUBACTION_EXECUTE_SIGNAL_RESOLVE" },
+		{ 45, "NSID_INTERACTION_INPUT_REQUEST_RESOLVE" },
+		{ 46, "NSID_SUBCONTROLLER_REPLICA" },
+		{ 47, "NSID_CONTRACT_EVENT_REPLICA" },
+		{ 48, "NSID_NETWORK_SYNCHRONOUS_MULTIPLAYER_END" },
+		{ 49, "NSID_SNIPERS_CHALLENGE_SCORING_EVENT_REPLICA" },
+		{ 50, "NSID_CHARACTER_GHOST_REPLICA" },
+		{ 51, "NSID_PIP_GHOST_REPLICA" },
+		{ 52, "NSID_SPATIAL_GHOST_REPLICA" },
+		{ 53, "NSID_VS_TARGET_PICKER_REPLICA" },
+		{ 54, "NSID_VS_KILL_RPC" },
+		{ 55, "NSID_VS_KILL_CONFIRM_RPC" },
+		{ 56, "NSID_VS_CLIENT_DEAD_RPC" },
+		{ 57, "NSID_VS_SETUP_SYNC_REPLICA" },
+		{ 58, "NSID_VS_PIN_SIGNAL_RPC" },
+		{ 59, "NSID_VS_ENTITY_PROPERTY_REPLICA" },
+		{ 60, "NSID_VS_GENERIC_EVENT_RPC" },
+		{ 61, "NSID_VS_PENALTY_KILL_RPC" },
+		{ 62, "NSID_VS_ITEM_PICKUP_REQUEST_RPC" },
+		{ 63, "NSID_VS_ITEM_PICKUP_RESPONSE_RPC" },
+		{ 64, "NSID_VS_OUTFIT_PICK_REQUEST_RPC" },
+		{ 65, "NSID_VS_OUTFIT_PICK_RESPONSE_RPC" },
+		{ 66, "NSID_VS_PICKUP_SPAWNER_REPLICA" },
+		{ 67, "NSID_VS_KILL_EVENT_RPC" },
+		{ 68, "NSID_VS_PRE_SCORE_TIMER_RPC" },
+		{ 69, "NSID_VS_TARGET_PACIFY_RPC" },
+		{ 70, "NSID_VS_CONFIRM_TARGET_PACIFY_RPC" },
+		{ 71, "NSID_VS_TARGET_PACIFIED_CONFIRMED_RPC" },
+		{ 72, "NSID_MAX" },
+	};
+
+	(*g_Enums)["EObjectiveType"] = {
+		{ 0, "OBJECTIVE_PRIMARY" },
+		{ 1, "OBJECTIVE_SECONDARY" },
+		{ 2, "OBJECTIVE_TERTIARY" },
+	};
+
+	(*g_Enums)["EOnlinTest"] = {
+		{ 0, "eHELLO" },
+		{ 1, "eWORLD" },
+	};
+
+	(*g_Enums)["EOnlineEventInvestigationType"] = {
+		{ 0, "OEIT_Generic" },
+		{ 1, "OEIT_HearBulletImpact" },
+		{ 2, "OEIT_HearFootsteps" },
+		{ 3, "OEIT_CarAlarm" },
+		{ 4, "OEIT_HearBark" },
+		{ 5, "OEIT_HearPain" },
+		{ 6, "OEIT_HearRadio" },
+		{ 7, "OEIT_HearItemToss" },
+		{ 8, "OEIT_SeeItemToss" },
+		{ 9, "OEIT_HearAccident" },
+		{ 10, "OEIT_CuriousSound" },
+		{ 11, "OEIT_CuriousItemSound" },
+		{ 12, "OEIT_SeeWeapon" },
+		{ 13, "OEIT_SeeItem" },
+		{ 14, "OEIT_Perceptible" },
+		{ 15, "OEIT_Toss" },
+		{ 16, "OEIT_CrowdCurious" },
+		{ 17, "OEIT_CameraDefect" },
+	};
+
+	(*g_Enums)["EOpportunityRevealState"] = {
+		{ 1, "ORS_REVEALING" },
+		{ 2, "ORS_HINT" },
+		{ 4, "ORS_DISTANCE" },
+		{ 6, "ORS_RANGE_FLAGS" },
+		{ 8, "ORS_REVEALED" },
+		{ 9, "ORS_REVEAL_FLAGS" },
+		{ 16, "ORS_BYPASS_MENU" },
+	};
+
+	(*g_Enums)["EOpportunityState"] = {
+		{ 1, "OS_TRACKED" },
+		{ 2, "OS_ENABLED" },
+		{ 4, "OS_UNLOCKED" },
+		{ 8, "OS_REVEAL_PENDING" },
+	};
+
+	(*g_Enums)["EOrderCompletionStatus"] = {
+		{ 0, "OCS_Undetermined" },
+		{ 1, "OCS_Succeeded" },
+		{ 2, "OCS_Interrupted" },
+		{ 3, "OCS_Blocked" },
+		{ 4, "OCS_Failed" },
+	};
+
+	(*g_Enums)["EOutbreakInfectionStage"] = {
+		{ 0, "eOIS_Stage1" },
+		{ 1, "eOIS_Stage2" },
+		{ 2, "eOIS_Stage3" },
+	};
+
+	(*g_Enums)["EOutfitAICategory"] = {
+		{ 0, "OAC_Undefined" },
+		{ 1, "OAC_Fallback" },
+		{ 2, "OAC_47Suit" },
+		{ 3, "OAC_47TRAINING" },
+		{ 4, "OAC_47MARRAKESH" },
+		{ 5, "OAC_47SAPIENZA" },
+		{ 6, "OAC_47BANGKOK" },
+		{ 7, "OAC_47COLORADO" },
+		{ 8, "OAC_47HOKKAIDO" },
+		{ 9, "OAC_47PREORDER" },
+		{ 10, "OAC_47COLUMBIA" },
+		{ 11, "OAC_47ISLAND" },
+		{ 12, "OAC_47MUMBAI" },
+		{ 13, "OAC_47NEWZEALAND" },
+		{ 14, "OAC_47STARTCLASSY" },
+		{ 15, "OAC_47STARTOUTFIT" },
+		{ 16, "OAC_47SUBURBIA" },
+		{ 17, "OAC_Bodyguard" },
+		{ 18, "OAC_CameraMan" },
+		{ 19, "OAC_Chef" },
+		{ 20, "OAC_Cleaner" },
+		{ 21, "OAC_Cop" },
+		{ 22, "OAC_Crew" },
+		{ 23, "OAC_DaSilva" },
+		{ 24, "OAC_Gardner" },
+		{ 25, "OAC_Hazmat" },
+		{ 26, "OAC_HouseStaff" },
+		{ 27, "OAC_Maintenance" },
+		{ 28, "OAC_Officer" },
+		{ 29, "OAC_Priest" },
+		{ 30, "OAC_Printer" },
+		{ 31, "OAC_Scientist" },
+		{ 32, "OAC_Security" },
+		{ 33, "OAC_Sheik" },
+		{ 34, "OAC_Stylist" },
+		{ 35, "OAC_Waiter" },
+		{ 36, "OAC_Busker" },
+		{ 37, "OAC_Caddie" },
+		{ 38, "OAC_ChurchStaff" },
+		{ 39, "OAC_Cyclist" },
+		{ 40, "OAC_Filmcrew" },
+		{ 41, "OAC_Fortune" },
+		{ 42, "OAC_Hippie" },
+		{ 43, "OAC_Investor" },
+		{ 44, "OAC_KGB" },
+		{ 45, "OAC_Lawyer" },
+		{ 46, "OAC_Kruger" },
+		{ 47, "OAC_Masseur" },
+		{ 48, "OAC_Mechanic" },
+		{ 49, "OAC_Norfolk" },
+		{ 50, "OAC_Plague" },
+		{ 51, "OAC_Psych" },
+		{ 52, "OAC_Shopkeep" },
+		{ 53, "OAC_Soldier" },
+		{ 54, "OAC_Tux" },
+		{ 55, "OAC_Vampire" },
+		{ 56, "OAC_YachtCrew" },
+		{ 57, "OAC_Exterminator" },
+		{ 58, "OAC_SoundCrew" },
+		{ 59, "OAC_Intern" },
+		{ 60, "OAC_Stalker" },
+		{ 61, "OAC_Scarecrow" },
+		{ 62, "OAC_Hacker" },
+		{ 63, "OAC_SpecOps" },
+		{ 64, "OAC_Berg" },
+		{ 65, "OAC_Morgue" },
+		{ 66, "OAC_Surgeon" },
+		{ 67, "OAC_Doctor" },
+		{ 68, "OAC_Director" },
+		{ 69, "OAC_Ninja" },
+		{ 70, "OAC_Baseball" },
+		{ 71, "OAC_KillBill" },
+		{ 72, "OAC_Pilot" },
+		{ 73, "OAC_Yoga" },
+		{ 74, "OAC_Mummy" },
+		{ 75, "OAC_Cowboy" },
+		{ 76, "OAC_Staff" },
+		{ 77, "OAC_Santa" },
+		{ 78, "OAC_MambaCrew" },
+		{ 79, "OAC_Delivery" },
+		{ 80, "OAC_GOTY_Clown" },
+		{ 81, "OAC_GOTY_Cowboy" },
+		{ 82, "OAC_GOTY_DarkSniper" },
+		{ 83, "OAC_Driver" },
+		{ 84, "OAC_Driverpale" },
+		{ 85, "OAC_Eventstff" },
+		{ 86, "OAC_Flrdaman" },
+		{ 87, "OAC_Food" },
+		{ 88, "OAC_Journal" },
+		{ 89, "OAC_Krnstdtengnr" },
+		{ 90, "OAC_Krnstdtsec" },
+		{ 91, "OAC_Ktchstff" },
+		{ 92, "OAC_Lee" },
+		{ 93, "OAC_Mascot" },
+		{ 94, "OAC_Medic" },
+		{ 95, "OAC_Mendez" },
+		{ 96, "OAC_Musician" },
+		{ 97, "OAC_Racecoord" },
+		{ 98, "OAC_Racemarsh" },
+		{ 99, "OAC_Thug" },
+		{ 100, "OAC_Worker" },
+		{ 101, "OAC_Research" },
+		{ 102, "OAC_Tatoo" },
+		{ 103, "OAC_Shaman" },
+		{ 104, "OAC_Artist" },
+		{ 105, "OAC_Barber" },
+		{ 106, "OAC_DJ" },
+		{ 107, "OAC_Kshmrn" },
+		{ 108, "OAC_Master" },
+		{ 109, "OAC_Burial" },
+		{ 110, "OAC_Ravenmaster" },
+		{ 111, "OAC_Sentinel" },
+		{ 112, "OAC_Blake" },
+		{ 113, "OAC_Actor" },
+		{ 114, "OAC_Architect" },
+		{ 115, "OAC_Arkian" },
+		{ 116, "OAC_Arkptrn" },
+		{ 117, "OAC_Bbq" },
+		{ 118, "OAC_Bollycrew" },
+		{ 119, "OAC_Cavegd" },
+		{ 120, "OAC_Civilian" },
+		{ 121, "OAC_Cavewkr" },
+		{ 122, "OAC_Clothsale" },
+		{ 123, "OAC_Counsellor" },
+		{ 124, "OAC_Cowboyhat" },
+		{ 125, "OAC_Custdn" },
+		{ 126, "OAC_Dancer" },
+		{ 127, "OAC_Dbbwll" },
+		{ 128, "OAC_Deadjanus" },
+		{ 129, "OAC_Driverch" },
+		{ 130, "OAC_Driversa" },
+		{ 131, "OAC_Driveruk" },
+		{ 132, "OAC_Driverus" },
+		{ 133, "OAC_Druglabwkr" },
+		{ 134, "OAC_Elite" },
+		{ 135, "OAC_Fakemlstrm" },
+		{ 136, "OAC_Farm" },
+		{ 137, "OAC_Fieldgrd" },
+		{ 138, "OAC_Headmaster" },
+		{ 139, "OAC_Knight" },
+		{ 140, "OAC_Laundrywkr" },
+		{ 141, "OAC_Lndrygrd" },
+		{ 142, "OAC_Mailman" },
+		{ 143, "OAC_Mansiongd" },
+		{ 144, "OAC_Mech_Miami" },
+		{ 145, "OAC_Mechch" },
+		{ 146, "OAC_Mechit" },
+		{ 147, "OAC_Mechkrnstdt" },
+		{ 148, "OAC_Mechsa" },
+		{ 149, "OAC_Mechuk" },
+		{ 150, "OAC_Mechus" },
+		{ 151, "OAC_Metalwkr" },
+		{ 152, "OAC_Militiasec" },
+		{ 153, "OAC_Mime" },
+		{ 154, "OAC_Moviemnstr" },
+		{ 155, "OAC_Mumbaiserv" },
+		{ 156, "OAC_Mumbsec" },
+		{ 157, "OAC_Nitiate" },
+		{ 158, "OAC_Nurse" },
+		{ 159, "OAC_Orson" },
+		{ 160, "OAC_Parka" },
+		{ 161, "OAC_Politicasst" },
+		{ 162, "OAC_Politician" },
+		{ 163, "OAC_Priest_VP" },
+		{ 164, "OAC_Queensgrd" },
+		{ 165, "OAC_Queenthug" },
+		{ 166, "OAC_Rangangrd" },
+		{ 167, "OAC_Rangansec" },
+		{ 168, "OAC_Realstbroke" },
+		{ 169, "OAC_Resident" },
+		{ 170, "OAC_Resortstaff" },
+		{ 171, "OAC_Sitewkr" },
+		{ 172, "OAC_Snowtrek" },
+		{ 173, "OAC_Subwkr" },
+		{ 174, "OAC_Suit" },
+		{ 175, "OAC_Tailor" },
+		{ 176, "OAC_Teaserv" },
+		{ 177, "OAC_Terminus" },
+		{ 178, "OAC_Trainserv" },
+		{ 179, "OAC_Villagegd" },
+		{ 180, "OAC_Winter" },
+		{ 181, "OAC_Wiseman" },
+		{ 182, "OAC_Investbanker" },
+		{ 183, "OAC_Bankteller" },
+		{ 184, "OAC_Robber" },
+	};
+
+	(*g_Enums)["EOutfitType"] = {
+		{ 0, "eOT_None" },
+		{ 1, "eOT_Suit" },
+		{ 2, "eOT_Guard" },
+		{ 3, "eOT_Worker" },
+		{ 4, "eOT_Waiter" },
+		{ 5, "eOT_LucasGrey" },
+	};
+
+	(*g_Enums)["EParticleColorUsage"] = {
+		{ 0, "REPLACE_PARTICLE_COLOR" },
+		{ 1, "LEAVE_PARTICLE_COLOR" },
+	};
+
+	(*g_Enums)["EParticleDecalSpawnEntity_Constraints"] = {
+		{ 0, "FACTOR_AND_RANDOMIZE" },
+		{ 1, "SIZE_RANGE" },
+	};
+
+	(*g_Enums)["EParticleModifierImpulseDirections"] = {
+		{ 0, "TARGET_ZAXIS_DIRECTION" },
+		{ 1, "TOWARDS_TARGET_PIVOT" },
+		{ 2, "AWAY_FROM_TARGET_PIVOT" },
+	};
+
+	(*g_Enums)["EParticleSpritePivotLocation"] = {
+		{ 0, "CENTER_PIVOT" },
+		{ 1, "BOTTOM_PIVOT" },
+		{ 2, "TOP_PIVOT" },
+	};
+
+	(*g_Enums)["EPathFinderBoxType"] = {
+		{ 0, "PFBT_INCLUDE_MESH_COLLISION" },
+		{ 1, "PFBT_EXCLUDE_MESH_COLLISION" },
+		{ 2, "PFBT_CREATE_MESH_COLLISION" },
+		{ 3, "PFBT_REGION" },
+		{ 4, "PFBT_INCLUDE_PORTALS" },
+		{ 5, "PFBT_EXCLUDE_PORTALS" },
+		{ 6, "PFBT_IGNORE" },
+	};
+
+	(*g_Enums)["EPersistentBoolDataSyncType"] = {
+		{ 0, "ePBDST_None" },
+		{ 1, "ePBDST_ServerAuthoritative" },
+		{ 2, "ePBDST_Full" },
+	};
+
+	(*g_Enums)["EPhysicsObjectType"] = {
+		{ 0, "EPHYSICSOBJECTTYPE_UNKNOWN" },
+		{ 1, "EPHYSICSOBJECTTYPE_DYNAMIC" },
+		{ 2, "EPHYSICSOBJECTTYPE_KINEMATIC" },
+		{ 3, "EPHYSICSOBJECTTYPE_STATIC" },
+	};
+
+	(*g_Enums)["EPlaceableType"] = {
+		{ 0, "PLACEABLE_NOT" },
+		{ 1, "PLACEABLE_FULL_PHYSICS" },
+		{ 2, "PLACEABLE_SLEEP_PHYSICS" },
+		{ 3, "PLACEABLE_NO_PHYSICS" },
+		{ 4, "PLACEABLE_ATTACH" },
+	};
+
+	(*g_Enums)["EPlayMode"] = {
+		{ 1, "PLAYMODE_STOPPED" },
+		{ 2, "PLAYMODE_PAUSED" },
+		{ 3, "PLAYMODE_PLAYING" },
+	};
+
+	(*g_Enums)["EPostProcessorComponentType"] = {
+		{ 1, "MRP_LOOKAT" },
+		{ 2, "MRP_AIM" },
+		{ 16, "MRP_LEDGEFEETLOCK" },
+		{ 32, "MRP_LEDGEHANG" },
+		{ 1024, "MRP_IMPACT" },
+		{ 2048, "MRP_BLINDFIRE" },
+	};
+
+	(*g_Enums)["EPushNotificationType"] = {
+		{ 0, "PUSH_NOTIFICATION_OBJECTIVE" },
+		{ 1, "PUSH_NOTIFICATION_DISGUISE" },
+		{ 2, "PUSH_NOTIFICATION_CONTRACT" },
+		{ 3, "PUSH_NOTIFICATION_CHALLENGE" },
+		{ 4, "PUSH_NOTIFICATION_RATING" },
+		{ 5, "PUSH_NOTIFICATION_SPECIAL_RATING_UNLOCKED" },
+		{ 6, "PUSH_NOTIFICATION_CONTRACT_PICKED_UP" },
+		{ 7, "PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED" },
+		{ 8, "PUSH_NOTIFICATION_SCORE_COMPARISON" },
+	};
+
+	(*g_Enums)["EQueryMaskType"] = {
+		{ 1, "eQueryMaskType_CameraCollision" },
+		{ 2, "eQueryMaskType_CameraObstacle" },
+		{ 4, "eQueryMaskType_ExplosionRelevant" },
+	};
+
+	(*g_Enums)["ERANDOM_DISTRIBUTION"] = {
+		{ 0, "RND_UNIFORM" },
+		{ 1, "RND_SAWTOOTH" },
+	};
+
+	(*g_Enums)["ERagdollPart"] = {
+		{ 0, "ERAGDOLLPART_NONE" },
+		{ 1, "ERAGDOLLPART_BODY" },
+		{ 2, "ERAGDOLLPART_HEAD" },
+		{ 3, "ERAGDOLLPART_HAND" },
+		{ 4, "ERAGDOLLPART_FOOT" },
+	};
+
+	(*g_Enums)["ERatingCategory"] = {
+		{ 0, "ERatingCategory_Invalid" },
+		{ 1, "ERatingCategory_Flawless" },
+		{ 2, "ERatingCategory_Violence" },
+		{ 3, "ERatingCategory_Cunning" },
+		{ 4, "ERatingCategory_Noise" },
+		{ 5, "ERatingCategory_COUNT" },
+	};
+
+	(*g_Enums)["ERatingTitle"] = {
+		{ 0, "ERatingTitle_SilentAssassin" },
+		{ 1, "ERatingTitle_PerfectAssassin" },
+		{ 2, "ERatingTitle_Ninja" },
+		{ 3, "ERatingTitle_GloryBlazer" },
+		{ 4, "ERatingTitle_Eraser" },
+		{ 5, "ERatingTitle_Exhibitionist" },
+		{ 6, "ERatingTitle_Trickster" },
+		{ 7, "ERatingTitle_Chameleon" },
+		{ 8, "ERatingTitle_Spider" },
+		{ 9, "ERatingTitle_Angel" },
+		{ 10, "ERatingTitle_COUNT" },
+	};
+
+	(*g_Enums)["ERatingTitleRequirement"] = {
+		{ 0, "ERatingTitleRequirement_Optional" },
+		{ 1, "ERatingTitleRequirement_Required" },
+		{ 2, "ERatingTitleRequirement_Fails" },
+	};
+
+	(*g_Enums)["ERayDetailLevel"] = {
+		{ 0, "RAYDETAILS_NONE" },
+		{ 1, "RAYDETAILS_BONES" },
+		{ 2, "RAYDETAILS_MESH" },
+	};
+
+	(*g_Enums)["ERayLayer"] = {
+		{ 0, "eRayLayer_COLLIDE_WITH_ALL" },
+		{ 1, "eRayLayer_CAMERA_COLI" },
+		{ 2, "eRayLayer_CAMERA_COLI_CAMERA_OBSTACE_ONLY" },
+		{ 3, "eRayLayer_HERO_FIRE" },
+		{ 4, "eRayLayer_ACTOR_FIRE" },
+		{ 5, "eRayLayer_ACTOR_LINE_OF_FIRE" },
+		{ 7, "eRayLayer_FOOTSTEPS_COLI" },
+		{ 8, "eRayLayer_BLOODSPLATDECAL_COLI" },
+		{ 9, "eRayLayer_COLLIDE_WITH_STATIC" },
+		{ 10, "eRayLayer_COLLIDE_WITH_STATIC_EXCL_TRANSPARENT" },
+		{ 11, "eRayLayer_PARTICLES" },
+		{ 12, "eRayLayer_COVERSEARCH" },
+		{ 13, "eRayLayer_ACTOR_VISIBILITY" },
+		{ 14, "eRayLayer_ACTOR_VISIBILITY_AMBIENT" },
+		{ 16, "eRayLayer_PICKUP" },
+		{ 17, "eRayLayer_HERO_PROXY" },
+		{ 19, "eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE" },
+		{ 20, "eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE_EXCL_TRANSPARENT" },
+		{ 22, "eRayLayer_HERO_PROXY_NO_VOLUMES" },
+		{ 23, "eRayLayer_PHYSICS_MANIPULATOR" },
+		{ 24, "eRayLayer_UNUSED_LAST" },
+	};
+
+	(*g_Enums)["ERayType"] = {
+		{ 0, "ERAY_CLOSESTHIT_SIMPLE" },
+		{ 1, "ERAY_CLOSESTHIT_DETAILED" },
+	};
+
+	(*g_Enums)["ERegionId"] = {
+		{ 0, "RegionId_Default" },
+		{ 1, "RegionId_Japan" },
+		{ 2, "RegionId_Asia" },
+	};
+
+	(*g_Enums)["ERegionMask"] = {
+		{ 1, "eRM_None" },
+		{ 2, "eRM_LowCover" },
+		{ 4, "eRM_HighCover" },
+		{ 8, "eRM_Stairs" },
+		{ 16, "eRM_Separator" },
+		{ 32, "eRM_User_1" },
+		{ 64, "eRM_User_2" },
+		{ 128, "eRM_User_3" },
+		{ 256, "eRM_User_4" },
+		{ 512, "eRM_User_5" },
+		{ 1024, "eRM_User_6" },
+		{ 2048, "eRM_User_7" },
+		{ 4096, "eRM_User_8" },
+	};
+
+	(*g_Enums)["ERegistrationState"] = {
+		{ 0, "eINITIAL" },
+		{ 1, "eNOP" },
+		{ 2, "ePENDING" },
+		{ 3, "eCANCELLED_REMOTELY" },
+		{ 4, "eCANCELLED_LOCALLY" },
+		{ 5, "eFOUNDMATCH" },
+	};
+
+	(*g_Enums)["ERenderGlowTypes"] = {
+		{ 0, "ERENDERGLOWTYPE_NONE" },
+		{ 1, "ERENDERGLOWTYPE_ENEMIES" },
+		{ 2, "ERENDERGLOWTYPE_ALLIES" },
+		{ 3, "ERENDERGLOWTYPE_CIVILIAN" },
+		{ 4, "ERENDERGLOWTYPE_ITEMS" },
+		{ 5, "ERENDERGLOWTYPE_STASHED_ITEMS" },
+		{ 6, "ERENDERGLOWTYPE_SETPIECE" },
+		{ 7, "ERENDERGLOWTYPE_BACKGROUND" },
+		{ 8, "ERENDERGLOWTYPE_CONTRACT_TARGET" },
+		{ 9, "ERENDERGLOWTYPE_CONTRACT_TARGET_NON_CRITICAL" },
+		{ 10, "ERENDERGLOWTYPE_CONTRACT_TARGET_SPECIAL" },
+		{ 11, "ERENDERGLOWTYPE_OBJECTIVES" },
+		{ 12, "ERENDERGLOWTYPE_ENFORCER" },
+		{ 13, "ERENDERGLOWTYPE_LTMEMORY" },
+		{ 14, "ERENDERGLOWTYPE_TAGGED" },
+		{ 15, "ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED" },
+		{ 16, "ERENDERGLOWTYPE_TAGFOCUS_TAGGED" },
+		{ 17, "ERENDERGLOWTYPE_BACKGROUNDUNMASKED" },
+		{ 18, "ERENDERGLOWTYPE_INTERACTION" },
+		{ 19, "ERENDERGLOWTYPE_INTERACTION_SELECTED" },
+		{ 20, "ERENDERGLOWTYPE_INTERACTION_DESELECTED" },
+		{ 21, "ERENDERGLOWTYPE_PLAYER_LVA" },
+		{ 22, "ERENDERGLOWTYPE_PLAYER_LVA_SEEN" },
+		{ 23, "ERENDERGLOWTYPE_VS_OPPONENT" },
+		{ 24, "ERENDERGLOWTYPE_TRAVERSAL" },
+		{ 25, "ERENDERGLOWTYPE_EMISSIVE_UI" },
+		{ 26, "ERENDERGLOWTYPE_OPPONENT" },
+	};
+
+	(*g_Enums)["EReplicaMode"] = {
+		{ 0, "E_RM_STATIC_OBJECT" },
+		{ 1, "E_RM_DYNAMIC" },
+	};
+
+	(*g_Enums)["EReplicaOperation"] = {
+		{ 0, "E_Created" },
+		{ 1, "E_Destroyed" },
+	};
+
+	(*g_Enums)["ERequirementId"] = {
+		{ 0, "EREQUIREMENT_INVALID" },
+		{ 1, "EREQUIREMENT_TOKEN_OUTFIT_LEGACY_HERO_REQUIEMSUIT" },
+		{ 2, "EREQUIREMENT_FIREARMS_HERO_PISTOL_TACTICAL_015_SU_SKIN05" },
+		{ 3, "EREQUIREMENT_PROP_DEVICE_SONYPREORDER_WHITE_RUBBERDUCK_REMOTE_EXPLOSIVE" },
+		{ 4, "EREQUIREMENT_GOTY_PATIENT_ZERO" },
+		{ 5, "EREQUIREMENT_GOTY_TOKEN_OUTFIT_PARIS_CLOWN" },
+		{ 6, "EREQUIREMENT_GOTY_TOKEN_OUTFIT_HOKKAIDO_COWBOY" },
+		{ 7, "EREQUIREMENT_GOTY_TOKEN_OUTFIT_MARRAKESH_DARK_SNIPER" },
+		{ 8, "EREQUIREMENT_ANNIVERSARY_OUTFITS" },
+		{ 9, "EREQUIREMENT_LOCATION_NEWZEALAND" },
+		{ 10, "EREQUIREMENT_S2_EXECUTIVE_PACK" },
+		{ 11, "EREQUIREMENT_S2_COLLECTORS_PACK" },
+		{ 12, "EREQUIREMENT_S2_EXPANSION_VANITY_ITEM1" },
+		{ 13, "EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2" },
+	};
+
+	(*g_Enums)["ERestitutionCombineMode"] = {
+		{ 0, "ERestitutionCombineMode_AVERAGE" },
+		{ 1, "ERestitutionCombineMode_MIN" },
+		{ 2, "ERestitutionCombineMode_MULTIPLY" },
+		{ 3, "ERestitutionCombineMode_MAX" },
+	};
+
+	(*g_Enums)["ERoleEvent"] = {
+		{ 0, "eRE_NONE" },
+		{ 1, "eRE_CAST" },
+		{ 2, "eRE_CLEAR" },
+		{ 3, "eRE_ENTER_DRAMA" },
+		{ 4, "eRE_REENTER_DRAMA" },
+		{ 5, "eRE_LEAVE_DRAMA" },
+		{ 6, "eRE_NEW_DRAMA" },
+		{ 7, "eRE_PAUSED" },
+		{ 8, "eRE_RESUMING" },
+		{ 9, "eRE_RUNNING" },
+	};
+
+	(*g_Enums)["ERuntimeMemoryAllocationState"] = {
+		{ 0, "eRMAS_NeverAllocated" },
+		{ 1, "eRMAS_Allocated" },
+		{ 2, "eRMAS_Released" },
+	};
+
+	(*g_Enums)["ESaveLoadStatus"] = {
+		{ 0, "ESaveLoadStatus_OK" },
+		{ 1, "ESaveLoadStatus_PROCESSING" },
+		{ 2, "ESaveLoadStatus_MISSING" },
+		{ 3, "ESaveLoadStatus_ERROR_NODISKSPACE" },
+		{ 4, "ESaveLoadStatus_ERROR_DEVICEREMOVED" },
+		{ 5, "ESaveLoadStatus_ERROR_CORRUPT" },
+		{ 6, "ESaveLoadStatus_ERROR_VERSION" },
+		{ 7, "ESaveLoadStatus_ERROR_TAMPERED" },
+		{ 8, "ESaveLoadStatus_ERROR_SAVING" },
+		{ 9, "ESaveLoadStatus_ERROR_FATAL" },
+		{ 10, "ESaveLoadStatus_ERROR_ONLINE" },
+		{ 11, "ESaveLoadStatus_ERROR_REQUIREMENTCHECK" },
+		{ 12, "ESaveLoadStatus_ERROR_INVALIDATED" },
+	};
+
+	(*g_Enums)["ESaveType"] = {
+		{ 0, "ESaveType_AutoSave" },
+		{ 1, "ESaveType_QuickSave" },
+		{ 2, "ESaveType_SystemData" },
+		{ 3, "ESaveType_LocalProfile" },
+	};
+
+	(*g_Enums)["EScreenAnchor"] = {
+		{ 0, "SCREEN_ANCHOR_TOP_LEFT" },
+		{ 1, "SCREEN_ANCHOR_TOP_CENTER" },
+		{ 2, "SCREEN_ANCHOR_TOP_RIGHT" },
+		{ 3, "SCREEN_ANCHOR_MIDDLE_LEFT" },
+		{ 4, "SCREEN_ANCHOR_MIDDLE_CENTER" },
+		{ 5, "SCREEN_ANCHOR_MIDDLE_RIGHT" },
+		{ 6, "SCREEN_ANCHOR_BOTTOM_LEFT" },
+		{ 7, "SCREEN_ANCHOR_BOTTOM_CENTER" },
+		{ 8, "SCREEN_ANCHOR_BOTTOM_RIGHT" },
+	};
+
+	(*g_Enums)["EScreenPlayState"] = {
+		{ 0, "State_Stopped" },
+		{ 1, "State_Running" },
+		{ 2, "State_Resuming" },
+		{ 3, "State_Pausing" },
+		{ 4, "State_Paused" },
+		{ 5, "State_Done" },
+		{ 6, "State_Terminated" },
+	};
+
+	(*g_Enums)["EScreenplayStateFlag"] = {
+		{ 0, "eSSF_DEFAULT" },
+		{ 1, "eSSF_ENABLED" },
+		{ 2, "eSSF_CAST" },
+		{ 4, "eSSF_RESUMING" },
+		{ 8, "eSSF_RUNNING" },
+		{ 16, "eSSF_DONE" },
+		{ 32, "eSSF_TERMINATED" },
+	};
+
+	(*g_Enums)["EScreenplayTriggerEvent"] = {
+		{ 0, "STT_ReportCrime" },
+		{ 1, "STT_ReportCrimeToHitman" },
+		{ 2, "STT_ReportCrimeMoveBack" },
+	};
+
+	(*g_Enums)["ESeamFixMode"] = {
+		{ 0, "SEAMFIX_NONE" },
+		{ 1, "SEAMFIX_X" },
+		{ 2, "SEAMFIX_Y" },
+		{ 3, "SEAMFIX_XY" },
+		{ 4, "SEAMFIX_Z" },
+		{ 5, "SEAMFIX_XZ" },
+		{ 6, "SEAMFIX_YZ" },
+		{ 7, "SEAMFIX_XYZ" },
+	};
+
+	(*g_Enums)["ESentryActionPrompt"] = {
+		{ 0, "eSAP_None" },
+		{ 1, "eSAP_Frisk" },
+		{ 2, "eSAP_ShowItem" },
+		{ 3, "eSAP_Max" },
+	};
+
+	(*g_Enums)["ESequencePreviewState"] = {
+		{ 0, "PREVIEW_STOPPED" },
+		{ 1, "PREVIEW_PLAYING" },
+		{ 2, "PREVIEW_PAUSED" },
+	};
+
+	(*g_Enums)["ESilenceRating"] = {
+		{ 0, "eSR_NotSilenced" },
+		{ 1, "eSR_Silenced" },
+		{ 2, "eSR_SuperSilenced" },
+		{ 3, "eSR_CompletelySilenced" },
+	};
+
+	(*g_Enums)["ESituationAvailability"] = {
+		{ 0, "ESA_AMBIENCE" },
+		{ 10000, "ESA_AMBIENCE_RESV" },
+		{ 20000, "ESA_OVR_STANDING" },
+		{ 30000, "ESA_OVR_CURIOUS" },
+		{ 40000, "ESA_OVR_SENTRY" },
+		{ 50000, "ESA_OVR_CAUTIOUS" },
+		{ 60000, "ESA_OVR_COMBAT" },
+		{ 70000, "ESA_OVR_ALL" },
+	};
+
+	(*g_Enums)["ESituationJoinReason"] = {
+		{ 0, "AISJR_Default" },
+		{ 1, "AISJR_HeardSound" },
+		{ 2, "AISJR_Alarm" },
+		{ 3, "AISJR_HitmanStrange" },
+		{ 4, "AISJR_HitmanIllegal" },
+		{ 5, "AISJR_Assist" },
+		{ 6, "AISJR_AssistingGuard" },
+		{ 7, "AISJR_Propagate" },
+		{ 8, "AISJR_ResumeSituation" },
+		{ 9, "AISJR_Spawned" },
+		{ 10, "AISJR_HelpCivilian" },
+		{ 11, "AISJR_Escalating" },
+		{ 12, "AISJR_DeadBody" },
+		{ 13, "AISJR_Accident" },
+		{ 14, "AISJR_StandDown" },
+		{ 15, "AISJR_Report" },
+		{ 16, "AISJR_ForcedToHold" },
+		{ 17, "AISJR_Wounded" },
+		{ 18, "AISJR_SC_HeardBulletImpact" },
+		{ 19, "AISJR_SC_HeardSetPiece" },
+	};
+
+	(*g_Enums)["ESituationStateChangeReason"] = {
+		{ 0, "eSSCR_NONE" },
+		{ 16, "eSSCR_C_DIED" },
+		{ 32, "eSSCR_C_DEACTIVATED" },
+		{ 64, "eSSCR_C_CONTROLLED" },
+		{ 128, "eSSCR_C_CLOSE_COMBAT" },
+		{ 256, "eSSCR_C_HERO_ACTION" },
+		{ 512, "eSSCR_C_PACIFIED" },
+		{ 1024, "eSSCR_CL_CHILD_DRAMA" },
+		{ 2048, "eSSCR_CL_OTHER_DRAMA" },
+		{ 4096, "eSSCR_CL_SYSTEMIC" },
+		{ 8192, "eSSCR_S_DISABLED" },
+		{ 16384, "eSSCR_S_DONE" },
+		{ 32768, "eSSCR_S_TERMINATED" },
+		{ 65536, "eSSCR_S_STARTED" },
+		{ 131072, "eSSCR_S_RESUMING" },
+		{ 262144, "eSSCR_S_UNPAUSE" },
+		{ 524288, "eSSCR_R_RESOURCE_UNAVAILABLE" },
+		{ 1048576, "eSSCR_PAUSED_FROM_PLAYING" },
+		{ 2097152, "eSSCR_PAUSED_FROM_RESUMING" },
+	};
+
+	(*g_Enums)["ESituationType"] = {
+		{ 0, "AIST_Any" },
+		{ 1, "AIST_DetectedInPrivate" },
+		{ 2, "AIST_HandleDistraction" },
+		{ 3, "AIST_Spectator" },
+		{ 4, "AIST_InvestigateWeapon" },
+		{ 5, "AIST_GuardBody" },
+		{ 6, "AIST_Entourage" },
+		{ 7, "AIST_HandleTrespassing" },
+		{ 8, "AIST_DeadBody" },
+		{ 9, "AIST_InvestigateCautious" },
+		{ 10, "AIST_Sentry" },
+		{ 11, "AIST_HandleDisguise" },
+		{ 12, "AIST_SC_Curious" },
+		{ 13, "AIST_SC_Alerted" },
+		{ 14, "AIST_SC_Combat" },
+		{ 15, "AIST_SniperCombat" },
+		{ 16, "AIST_Arrest" },
+		{ 17, "AIST_StandOff" },
+		{ 18, "AIST_RecoverUnconscious" },
+		{ 19, "AIST_AvoidExplosion" },
+		{ 20, "AIST_Evacuate" },
+		{ 21, "AIST_ProtoCombat" },
+		{ 22, "AIST_DangerousArea" },
+		{ 23, "AIST_CloseCombat" },
+		{ 24, "AIST_Infected" },
+		{ 25, "ESituationType_Count" },
+	};
+
+	(*g_Enums)["ESmartBehaviorOrder"] = {
+		{ 0, "SBO_Stand" },
+		{ 1, "SBO_Move" },
+		{ 2, "SBO_React" },
+		{ 3, "SBO_Act" },
+		{ 4, "SBO_MoveToAct" },
+		{ 5, "SBO_MoveToCover" },
+		{ 6, "SBO_ShootFromCover" },
+		{ 7, "SBO_Death" },
+		{ 8, "SBO_Teleport" },
+	};
+
+	(*g_Enums)["ESmartWaitCondition"] = {
+		{ 0, "SWC_Time" },
+		{ 1, "SWC_Distance" },
+		{ 2, "SWC_Executing" },
+		{ 3, "SWC_Executed" },
+	};
+
+	(*g_Enums)["ESmoothingMode"] = {
+		{ 0, "ESM_LINEAR" },
+		{ 1, "ESM_EXPONENTIAL" },
+	};
+
+	(*g_Enums)["ESniperScoreMessageType"] = {
+		{ 0, "ESSMT_STYLE_DEFAULT" },
+		{ 1, "ESSMT_STYLE_SCORE" },
+		{ 2, "ESSMT_STYLE_PENALTY" },
+		{ 3, "ESSMT_STYLE_STREAK" },
+		{ 4, "ESSMT_STYLE_CIVKILL" },
+	};
+
+	(*g_Enums)["ESoundChannelGroup"] = {
+		{ 0, "ESCG_NONE" },
+		{ 1, "SND_Default" },
+		{ 2, "SND_Phys_Rigidbody" },
+		{ 3, "SND_Phys_Shatter" },
+		{ 4, "SND_Wpn_HM" },
+		{ 5, "SND_Wpn_HM_Shot" },
+		{ 6, "SND_Wpn_NPC" },
+		{ 7, "SND_Wpn_Impacts" },
+		{ 8, "SND_Wpn_Flybys" },
+		{ 9, "SND_Characters" },
+		{ 10, "SND_Ambience" },
+		{ 11, "SND_Props" },
+		{ 12, "SND_Prop_Item" },
+		{ 13, "SND_FS_HM" },
+		{ 14, "SND_FS_NPC" },
+		{ 15, "SND_VisualFX" },
+		{ 16, "SND_VisualFX_ShotActivate" },
+		{ 17, "SND_VisualFX_Explosions" },
+		{ 18, "SND_Diag_HM" },
+		{ 19, "SND_Diag_NPC" },
+		{ 20, "SND_CS_Ingame" },
+		{ 21, "SND_CS_PreRend" },
+		{ 22, "SND_Music_Env" },
+		{ 23, "SND_MusicNonEnv" },
+		{ 24, "SND_SpecialFX_CC" },
+		{ 25, "SND_SpecialFX_Jumps" },
+		{ 26, "SND_SpecialFX_Closet" },
+		{ 27, "SND_SpecialFX_Vent" },
+		{ 28, "SND_SpecialFX_Instinct" },
+		{ 29, "SND_SpecialFX_Disguise" },
+		{ 30, "SND_SpecialFX_Agility" },
+		{ 31, "SND_Stingers_SFX" },
+		{ 32, "SND_GUI" },
+		{ 33, "SND_Test" },
+		{ 34, "ANIM_HM_Generic" },
+		{ 35, "ANIM_HM_Loco" },
+		{ 36, "ANIM_HM_Agility" },
+		{ 37, "ANIM_HM_Suit_Flap" },
+		{ 38, "ANIM_HM_Suit_Release" },
+		{ 39, "ANIM_HM_Suit_Slide" },
+		{ 40, "ANIM_HM_Suit_LandImpact" },
+		{ 41, "ANIM_HM_Suit_Grab" },
+		{ 42, "ANIM_HM_Suit_Roll" },
+		{ 43, "ANIM_HM_Suit_Swoosh_Body" },
+		{ 44, "ANIM_HM_Suit_Swoosh_Fast" },
+		{ 45, "ANIM_HM_CC_Impacts" },
+		{ 46, "ANIM_HM_CC_Movement" },
+		{ 47, "ANIM_NPC_Generic" },
+		{ 48, "ANIM_NPC_Loco" },
+		{ 49, "ANIM_NPC_CC_Impacts" },
+		{ 50, "ANIM_NPC_CC_Movement" },
+		{ 51, "SND_Wpn_HM_Tail" },
+		{ 52, "SND_Wpn_NPC_Tail" },
+		{ 53, "SND_Diag_NPC_Crowd" },
+		{ 54, "SND_Phys_RigidBody_Ragdoll" },
+		{ 55, "SND_Diag_VO" },
+		{ 56, "SND_GUI_Menu" },
+		{ 57, "SND_Props_Doors" },
+		{ 58, "SND_Wpn_HM_Handguns" },
+		{ 59, "SND_Wpn_HM_Revolvers" },
+		{ 60, "SND_Wpn_HM_Rifles" },
+		{ 61, "SND_Wpn_HM_Shotguns" },
+		{ 62, "SND_Wpn_HM_Smgs" },
+		{ 63, "SND_Wpn_HM_Snipers" },
+		{ 64, "SND_Wpn_HM_Other" },
+		{ 65, "SND_Wpn_NPC_Handguns" },
+		{ 66, "SND_Wpn_NPC_Revolvers" },
+		{ 67, "SND_Wpn_NPC_Rifles" },
+		{ 68, "SND_Wpn_NPC_Shotguns" },
+		{ 69, "SND_Wpn_NPC_Smgs" },
+		{ 70, "SND_Wpn_NPC_Snipers" },
+		{ 71, "SND_Wpn_NPC_Other" },
+		{ 72, "SND_Diag_NPC_Oneliner" },
+		{ 73, "SND_Moments" },
+	};
+
+	(*g_Enums)["ESoundCollisionObjectType"] = {
+		{ 0, "StaticRigidBody" },
+		{ 1, "DynamicRigidBody" },
+		{ 2, "Ragdoll" },
+	};
+
+	(*g_Enums)["ESoundCollisionType"] = {
+		{ 0, "Impact" },
+		{ 1, "Rolling" },
+		{ 2, "Sliding" },
+	};
+
+	(*g_Enums)["ESoundGateFlags"] = {
+		{ 1, "SOUNDGATE_FLAGS_AMBIENCE" },
+		{ 2, "SOUNDGATE_FLAGS_OCCLUSION" },
+		{ 255, "SOUNDGATE_FLAGS_ALL" },
+	};
+
+	(*g_Enums)["ESoundGateType"] = {
+		{ 0, "SOUNDGATE_TYPE_ROUND" },
+		{ 1, "SOUNDGATE_TYPE_SHARPCORNERS" },
+	};
+
+	(*g_Enums)["ESoundMaterialType"] = {
+		{ 0, "eGeneric" },
+		{ 1, "eFlesh" },
+		{ 2, "eSilent" },
+	};
+
+	(*g_Enums)["ESpeechPriority"] = {
+		{ 0, "SP_AMBIENT" },
+		{ 1, "SP_ALERTED" },
+		{ 2, "SP_PAIN" },
+		{ 3, "SP_ALERTED_IMPORTANT" },
+		{ 4, "SP_COMBAT" },
+		{ 5, "SP_COMBAT_IMPORTANT" },
+		{ 6, "SP_DEATH" },
+		{ 7, "SP_MAX" },
+		{ 8, "SP_COUNT__" },
+	};
+
+	(*g_Enums)["ESpeed"] = {
+		{ 0, "eSpeed_Idle" },
+		{ 1, "eSpeed_Slow" },
+		{ 2, "eSpeed_Normal" },
+		{ 3, "eSpeed_Fast" },
+		{ 4, "eSpeed_Sprint" },
+	};
+
+	(*g_Enums)["EStandRepositionStrategy"] = {
+		{ 0, "SRS_InPlaceRepositioning" },
+		{ 1, "SRS_NoRepositioning" },
+	};
+
+	(*g_Enums)["EStashpointContainedEntityType"] = {
+		{ 0, "PICKUP_NONE" },
+		{ 1, "PICKUP_ITEMS" },
+		{ 2, "PICKUP_OUTFIT" },
+		{ 3, "PICKUP_PICKEDUP" },
+	};
+
+	(*g_Enums)["EStealthSituation"] = {
+		{ 0, "SS_DISGUISE_TAKEN" },
+		{ 1, "SS_DISGUISE_TRESPASSING" },
+		{ 2, "SS_DISGUISE_ILLEGAL_ACTION" },
+		{ 3, "SS_DISGUISE_REMOVED" },
+		{ 4, "SS_DISGUISE_INVESTIGATED" },
+		{ 5, "SS_DISGUISE_BLOWN" },
+		{ 6, "SS_HIDE_IN_CLOSET_FIRSTTIME" },
+		{ 7, "SS_HIDE_IN_CLOSET" },
+		{ 8, "SS_DOOR_START_LOCKPICKING" },
+		{ 9, "SS_DOOR_CANCEL_LOCKPICKING" },
+		{ 10, "SS_LANDMINE_ARMED" },
+		{ 11, "SS_RADIO_ON" },
+		{ 12, "SS_VENT_ENTER" },
+		{ 13, "SS_VENT_EXIT" },
+		{ 14, "SS_BLEND_IN_ACTIVATED" },
+		{ 15, "SS_BODY_DISCOVERED" },
+		{ 16, "SS_INVESTIGATE_GUNSHOT" },
+		{ 17, "SS_INVESTIGATE_NOISE" },
+		{ 18, "SS_INVESTIGATE_EXPLOSION" },
+		{ 19, "SS_FUSEBOX_DISABLE_UNIQUE" },
+		{ 20, "SS_FUSEBOX_DISABLE" },
+		{ 21, "SS_INVESTIGATING_FUSEBOX" },
+		{ 22, "SS_FUSEBOX_FIXED" },
+		{ 23, "SS_KEYCARD_PICKUP" },
+		{ 24, "SS_KEYCARD_USE" },
+		{ 25, "SS_BODY_PUT_IN_CONTAINER" },
+		{ 26, "SS_BODY_DRAGGING_SEEN" },
+		{ 27, "SS_BODY_OVER_RAIL" },
+		{ 28, "SS_BODY_OVER_LEDGE" },
+		{ 29, "SS_USE_HEALTH_STATION" },
+		{ 30, "SS_HITMAN_SPOTTED" },
+		{ 31, "SS_HITMAN_HIDDEN" },
+		{ 32, "SS_HITMAN_ENTERED_COMBAT" },
+		{ 33, "SS_TRESPASSING" },
+		{ 34, "SS_SECURITYTAPE_PICKUP" },
+		{ 35, "SS_NEWOBJECTIVE" },
+		{ 36, "SS_FOCUSADDED" },
+		{ 37, "SS_FOCUSFULL" },
+		{ 38, "SS_FOCUSEMPTY" },
+		{ 39, "SS_STARTED_SPRINTING" },
+		{ 40, "SS_STARTED_SNEAKING" },
+		{ 41, "SS_TOOK_COVER" },
+		{ 42, "SS_INVESTIGATE_CURIOUS" },
+		{ 43, "SS_GENERIC_PICKUP" },
+		{ 44, "SS_ATTENTION_ON" },
+		{ 45, "SS_ATTENTION_OFF" },
+		{ 46, "SS_DEADBODY_SEEN" },
+		{ 47, "SS_TARGET_EVACUATES" },
+		{ 48, "SS_UNKNOWN_BODY_SPOTTED" },
+	};
+
+	(*g_Enums)["ESubcontrollerInventorySlot"] = {
+		{ 0, "eSIS_Invalid" },
+		{ 1, "eSIS_LeftHand" },
+		{ 2, "eSIS_RightHand" },
+	};
+
+	(*g_Enums)["ESyncEvent"] = {
+		{ 0, "eSyncEvent_None" },
+		{ 100, "eSyncEvent_LeftFoot" },
+		{ 200, "eSyncEvent_RightFoot" },
+		{ 300, "eSyncEvent_BothFeet" },
+	};
+
+	(*g_Enums)["ESynchronisedActionState"] = {
+		{ 0, "eSAS_INACTIVE" },
+		{ 1, "eSAS_WAITING_TO_EXECUTE" },
+		{ 2, "eSAS_COOLINGDOWN" },
+	};
+
+	(*g_Enums)["ETakeDownAnim"] = {
+		{ 0, "eCoverLowOverNarrowCloseFront" },
+		{ 1, "eCoverLowOverNarrowCloseBack" },
+		{ 2, "eCoverLowOverNarrowFarFront" },
+		{ 3, "eCoverLowOverNarrowFarBack" },
+		{ 4, "eCoverLowOverWideFront" },
+		{ 5, "eCoverLowOverWideBack" },
+		{ 6, "eCoverLowCornerFront" },
+		{ 7, "eCoverLowCornerBack" },
+		{ 8, "eCoverHighCornerFront" },
+		{ 9, "eCoverHighCornerBack" },
+		{ 10, "eLocomotionBack" },
+		{ 11, "eLocomotionFallback" },
+		{ 12, "eLocomotionChair" },
+		{ 13, "eChokeGroundLoop" },
+		{ 14, "eChokeGroundEndPacify" },
+		{ 15, "eChokeGroundEndKill" },
+		{ 16, "eChokeGroundFallBackLoop" },
+		{ 17, "eChokeGroundFallBackEndPacify" },
+		{ 18, "eChokeGroundFallBackEndKill" },
+		{ 19, "eChokeChairLoop" },
+		{ 20, "eChokeChairEndPacify" },
+		{ 21, "eChokeChairEndKill" },
+		{ 22, "eChokeChairEndLeft90" },
+		{ 23, "eChokeChairEndLeft45" },
+		{ 24, "eChokeChairEndFront" },
+		{ 25, "eChokeChairEndRight45" },
+		{ 26, "eChokeChairEndRight90" },
+		{ 27, "eTakeDownAnimLast" },
+	};
+
+	(*g_Enums)["ETakeDownState"] = {
+		{ 0, "eTD_Cover" },
+		{ 1, "eTD_Locomotion" },
+		{ 2, "eTD_ChokeLoop" },
+		{ 3, "eTD_ChokeFinish" },
+		{ 4, "eTD_Deactivating" },
+		{ 5, "eTD_Unknown" },
+	};
+
+	(*g_Enums)["ETargetPrintDestination"] = {
+		{ 0, "eTPD_Screen" },
+		{ 1, "eTPD_TraceViewer" },
+	};
+
+	(*g_Enums)["ETargetType"] = {
+		{ 0, "eTDS_None" },
+		{ 1, "eTDS_LookAtTarget" },
+		{ 2, "eTDS_Spatial" },
+		{ 3, "eTDS_Linked" },
+	};
+
+	(*g_Enums)["ETeamModeId"] = {
+		{ 0, "TeamMode_Coop" },
+		{ 1, "TeamMode_Versus" },
+	};
+
+	(*g_Enums)["ETessellationFactorMode"] = {
+		{ 0, "TESSELLATIONFACTORMODE_FIXED" },
+		{ 1, "TESSELLATIONFACTORMODE_OBJECT" },
+		{ 2, "TESSELLATIONFACTORMODE_TRIANGLE" },
+	};
+
+	(*g_Enums)["ETessellationMode"] = {
+		{ 0, "TESSELLATIONMODE_FLAT" },
+		{ 1, "TESSELLATIONMODE_PHONG" },
+	};
+
+	(*g_Enums)["ETextAlignment"] = {
+		{ 0, "TEXT_ALIGN_LEFT" },
+		{ 1, "TEXT_ALIGN_CENTER" },
+		{ 2, "TEXT_ALIGN_RIGHT" },
+	};
+
+	(*g_Enums)["EThrowType"] = {
+		{ 0, "THROW_NONE" },
+		{ 1, "THROW_COIN" },
+		{ 2, "THROW_NORMAL" },
+		{ 3, "THROW_HEAVY" },
+		{ 4, "THROW_KNOCKDOWN_LIGHT" },
+		{ 5, "THROW_KNOCKDOWN_HEAVY" },
+		{ 6, "THROW_PACIFY_LIGHT" },
+		{ 7, "THROW_PACIFY_HEAVY" },
+		{ 8, "THROW_DEADLY_LIGHT" },
+		{ 9, "THROW_DEADLY_HEAVY" },
+	};
+
+	(*g_Enums)["EThrownCollisionSoundLoudness"] = {
+		{ 0, "eLoudness_Default" },
+		{ 1, "eLoudness_Low" },
+		{ 2, "eLoudness_Normal" },
+		{ 3, "eLoudness_Loud" },
+	};
+
+	(*g_Enums)["ETimerEntityCommandType"] = {
+		{ 0, "ETECT_Add" },
+		{ 1, "ETECT_Remove" },
+		{ 2, "ETECT_Reset" },
+	};
+
+	(*g_Enums)["EUIActionGroupIcon"] = {
+		{ 0, "EUIAGI_NoIcon" },
+		{ 1, "EUIAGI_GenericTool" },
+		{ 2, "EUIAGI_Crowbar" },
+		{ 3, "EUIAGI_Wrench" },
+		{ 4, "EUIAGI_Screwdriver" },
+		{ 5, "EUIAGI_ExplosiveDevice" },
+		{ 6, "EUIAGI_Poison" },
+		{ 7, "EUIAGI_Coin" },
+		{ 8, "EUIAGI_Lockpick" },
+		{ 9, "EUIAGI_LockpickElectic" },
+		{ 10, "EUIAGI_Card" },
+		{ 11, "EUIAGI_Key" },
+		{ 12, "EUIAGI_Password" },
+		{ 13, "EUIAGI_SAPIENZA_GolfBall" },
+		{ 14, "EUIAGI_SAPIENZA_ChemicalTube" },
+		{ 15, "EUIAGI_SAPIENZA_FlowBouquet" },
+		{ 16, "EUIAGI_SAPIENZA_Ammunitions" },
+		{ 17, "EUIAGI_RatFood" },
+		{ 18, "EUIAGI_Gunpowder" },
+		{ 19, "EUIAGI_Cannonball" },
+		{ 20, "EUIAGI_FuguFish" },
+		{ 21, "EUIAGI_CakeTopper" },
+		{ 22, "EUIAGI_Knife" },
+		{ 23, "EUIAGI_SpaghettiCan" },
+		{ 24, "EUIAGI_MAX" },
+	};
+
+	(*g_Enums)["EUIBusyOperationId"] = {
+		{ 0, "eOperationId_GameSave" },
+		{ 1, "eOperationId_MenuTransition" },
+		{ 2, "eOperationId_ManuallyTriggered" },
+		{ 3, "eOperationId_TriggerBootFlow" },
+		{ 4, "eOperationId_SaveContract" },
+		{ 5, "eOperationId_StartContract" },
+		{ 6, "eOperationId_SessionStart" },
+		{ 7, "eOperationId_ReportContract" },
+		{ 8, "eOperationId_ConnectionFlow" },
+		{ 9, "eOperationId_LoadingTransitionDelayed" },
+		{ 10, "eOperationId_SaveSuccess" },
+		{ 11, "eOperationId_SaveFailed" },
+		{ 12, "eOperationId_SessionReconnect" },
+		{ 13, "eOperationId_NetSynchedMenuPause" },
+		{ 14, "eOperationId_NetSynchedMenuRestart" },
+		{ 15, "eOperationId_NetSynchedMenuReplan" },
+		{ 16, "eOperationId_StartingMultiplayerSession" },
+		{ 17, "eOperationId_HandlingMultiplayerRequest" },
+		{ 18, "eOperationId_PoorConnectivity" },
+		{ 19, "eOperationId_Max" },
+		{ 20, "eOperationId_Custom_Begin" },
+		{ 21, "eOperationId_Custom_02" },
+		{ 22, "eOperationId_Custom_03" },
+		{ 23, "eOperationId_Custom_04" },
+		{ 24, "eOperationId_Custom_05" },
+		{ 25, "eOperationId_Custom_06" },
+		{ 26, "eOperationId_Custom_07" },
+		{ 27, "eOperationId_Custom_08" },
+		{ 28, "eOperationId_Custom_09" },
+		{ 29, "eOperationId_Custom_10" },
+		{ 30, "eOperationId_Custom_11" },
+		{ 31, "eOperationId_Custom_12" },
+		{ 32, "eOperationId_Custom_13" },
+		{ 33, "eOperationId_Custom_14" },
+		{ 34, "eOperationId_Custom_15" },
+		{ 35, "eOperationId_Custom_16" },
+		{ 36, "eOperationId_Custom_17" },
+		{ 37, "eOperationId_Custom_18" },
+		{ 38, "eOperationId_Custom_19" },
+		{ 39, "eOperationId_Custom_20" },
+		{ 40, "eOperationId_Custom_21" },
+		{ 41, "eOperationId_Custom_22" },
+		{ 42, "eOperationId_Custom_23" },
+		{ 43, "eOperationId_Custom_24" },
+		{ 44, "eOperationId_Custom_25" },
+		{ 45, "eOperationId_Custom_End" },
+		{ 46, "eOperationId_None" },
+	};
+
+	(*g_Enums)["EUIBusyState"] = {
+		{ 0, "eBusyState_Saving" },
+		{ 1, "eBusyState_Saving_Failed" },
+		{ 2, "eBusyState_Saving_Success" },
+		{ 3, "eBusyState_Online_Connecting" },
+		{ 4, "eBusyState_Loading" },
+		{ 5, "eBusyState_Fetching" },
+		{ 6, "eBusyState_None" },
+	};
+
+	(*g_Enums)["EValueUpdateStrategy"] = {
+		{ 0, "UPDATE_STRATEGY_REPLACE" },
+		{ 1, "UPDATE_STRATEGY_ADD_TO" },
+		{ 2, "UPDATE_STRATEGY_MULTIPLY" },
+	};
+
+	(*g_Enums)["EVictimMovementType"] = {
+		{ -1, "eVictimMovementNone" },
+		{ 0, "eVictimMovementPullVictimFromWindow" },
+		{ 1, "eVictimMovementThrowBodyOverRail" },
+		{ 2, "eVictimMovementDumpBodyOverLedge" },
+		{ 3, "eVictimMovementTakeDown" },
+		{ 4, "eVictimMovementRecoveryFinisher" },
+		{ 5, "eVictimMovementGrabVictim" },
+		{ 6, "eVictimMovementPushVictimThroughWindowAndRail" },
+		{ 7, "eVictimMovementContextKill" },
+		{ 8, "eVictimMovementKickVictimOverLedge" },
+		{ 9, "eVictimMovementCoupDeGrace" },
+		{ 10, "eVictimMovementCloseCombat" },
+		{ 11, "eVictimMovementLast" },
+	};
+
+	(*g_Enums)["EViewportLock"] = {
+		{ 0, "VPL_None" },
+		{ 1, "VPL_Rectangular" },
+		{ 2, "VPL_Rectangular_AvoidMinimapOverlap" },
+	};
+
+	(*g_Enums)["EVolumeTriggerEntityTypeFlags"] = {
+		{ 1, "VTET_Hitman" },
+		{ 2, "VTET_ActorAlive" },
+		{ 4, "VTET_ActorDead" },
+		{ 8, "VTET_ActorPacified" },
+		{ 16, "VTET_ThrownItem" },
+		{ 32, "VTET_Spatial" },
+		{ 64, "VTET_SoundSweetener" },
+		{ 128, "VTET_ExplodeableItem" },
+		{ 256, "VTET_Item" },
+		{ 512, "VTET_SpatialVisible" },
+	};
+
+	(*g_Enums)["EVsGenericEvent"] = {
+		{ 0, "eVSGE_MATCH_WON" },
+		{ 1, "eVSGE_MATCH_LOST" },
+		{ 2, "eVSGE_MATCH_DRAW" },
+		{ 3, "eVSGE_TARGET_LEAVING" },
+		{ 4, "eVSGE_TARGET_LEFT" },
+		{ 5, "eVSGE_TARGET_ARRIVING" },
+		{ 6, "eVSGE_TARGET_ARRIVED" },
+		{ 7, "eVSGE_RESPAWNED" },
+		{ 8, "eVSGE_OPPONENT_DEAD" },
+		{ 9, "eVSGE_OPPONENT_RESPAWNED" },
+		{ 10, "eVSGE_OPPONENT_GOT_WEAPON" },
+		{ 11, "eVSGE_OPPONENT_GOT_ITEM" },
+		{ 12, "eVSGE_OPPONENT_DISGUISED" },
+		{ 13, "eVSGE_TARGET_MISSED" },
+		{ 14, "eVSGE_NEXT_TARGET_MISSED" },
+		{ 15, "eVSGE_OPPONENT_TARGET_MISSED" },
+		{ 16, "eVSGE_OPPONENT_NEXT_TARGET_MISSED" },
+		{ 17, "eVSGE_OPPONENT_FAR_FROM_TARGET" },
+		{ 18, "eVSGE_OPPONENT_CLOSE_FROM_TARGET" },
+		{ 19, "eVSGE_OPPONENT_SCOPES_TARGET" },
+		{ 20, "eVSGE_MAX" },
+	};
+
+	(*g_Enums)["EWaypointRotationAlignment"] = {
+		{ 0, "RA_NONE" },
+		{ 1, "RA_LOOSE" },
+		{ 2, "RA_EXACT" },
+	};
+
+	(*g_Enums)["EWeaponAnimationCategory"] = {
+		{ 0, "eWAC_Undefined" },
+		{ 1, "eWAC_Pistol" },
+		{ 2, "eWAC_Revolver" },
+		{ 3, "eWAC_SMG_2H" },
+		{ 4, "eWAC_SMG_1H" },
+		{ 5, "eWAC_Rifle" },
+		{ 6, "eWAC_Sniper" },
+		{ 7, "eWAC_Shotgun_Pump" },
+		{ 8, "eWAC_Shotgun_Semi" },
+	};
+
+	(*g_Enums)["EWeaponSpecialSituation"] = {
+		{ 0, "WSS_NORMAL" },
+		{ 1, "WSS_BAREHANDS" },
+		{ 2, "WSS_EXPLOSION" },
+		{ 3, "WSS_ACCIDENT" },
+		{ 4, "WSS_NPC_FRIENDLY_FIRE" },
+		{ 5, "WSS_EXECUTE_PISTOL" },
+		{ 6, "WSS_ANY_WEAPON" },
+		{ 7, "WSS_INVISIBLE" },
+	};
+
+	(*g_Enums)["EWeaponUpgradeIcon"] = {
+		{ 0, "WEAPON_UPGRADE_ICON_NONE" },
+		{ 1, "WEAPON_UPGRADE_ICON_SILENCER" },
+		{ 2, "WEAPON_UPGRADE_ICON_RED_DOT_SIGHT" },
+		{ 3, "WEAPON_UPGRADE_ICON_AMMUNITION" },
+		{ 4, "WEAPON_UPGRADE_ICON_MAGAZINE" },
+		{ 5, "WEAPON_UPGRADE_ICON_EXTCLIP" },
+		{ 6, "WEAPON_UPGRADE_ICON_SHELLS" },
+		{ 7, "WEAPON_UPGRADE_ICON_SLIDE" },
+		{ 8, "WEAPON_UPGRADE_ICON_BOLT" },
+		{ 9, "WEAPON_UPGRADE_ICON_BARREL" },
+		{ 10, "WEAPON_UPGRADE_ICON_HAMMER" },
+		{ 11, "WEAPON_UPGRADE_ICON_CHUTE" },
+		{ 12, "WEAPON_UPGRADE_ICON_DUALWIELD" },
+		{ 13, "WEAPON_UPGRADE_ICON_MAGNUM" },
+		{ 14, "WEAPON_UPGRADE_ICON_STOCK" },
+	};
+
+	(*g_Enums)["EWeaponUpgradeUse"] = {
+		{ 0, "eWUU_PrimaryOnly" },
+		{ 1, "eWUU_SecondaryOnly" },
+		{ 2, "eWUU_AllFireModes" },
+	};
+
+	(*g_Enums)["GameLobbyState"] = {
+		{ 0, "GLS_None" },
+		{ 1, "GLS_InHud" },
+		{ 2, "GLS_CreatingLobby" },
+		{ 3, "GLS_JoiningLobby" },
+		{ 4, "GLS_ConnectToLobby" },
+		{ 5, "GLS_ConnectingLobby" },
+		{ 6, "GLS_InLobby" },
+		{ 7, "GLS_LeavingLobby" },
+		{ 8, "GLS_InGame" },
+	};
+
+	(*g_Enums)["ICameraEntity.EProjectionType"] = {
+		{ 0, "ePerspectiveRH" },
+		{ 1, "eOrtogonalRH" },
+		{ 2, "eCustom" },
+	};
+
+	(*g_Enums)["ICloset.EClosetType"] = {
+		{ 0, "eTypeClosetNormal" },
+		{ 1, "eTypeClosetCake" },
+		{ 2, "eTypeClosetDumpster" },
+		{ 3, "eTypeClosetLast" },
+	};
+
+	(*g_Enums)["IContractEvaluationContextListener.EListenerType"] = {
+		{ 0, "eDEFAULT" },
+		{ 1, "eOBJECTIVECOUNTER" },
+		{ 2, "eFORCEUPDATE" },
+		{ 3, "eCUSTOM" },
+		{ 4, "eCHALLENGECOUNTER" },
+		{ 5, "eCHALLENGETREE" },
+		{ 6, "eTOGGLE" },
+		{ 7, "eMATCHARRAYS" },
+	};
+
+	(*g_Enums)["IContractObjective.Category"] = {
+		{ 0, "PRIMARY" },
+		{ 1, "SECONDARY" },
+		{ 2, "CONDITION" },
+	};
+
+	(*g_Enums)["IContractObjective.ObjectiveType"] = {
+		{ 0, "KILL" },
+		{ 1, "SETPIECE" },
+		{ 2, "CUSTOMKILL" },
+		{ 3, "CUSTOM" },
+	};
+
+	(*g_Enums)["IContractObjective.SCounterData.ECounterType"] = {
+		{ 0, "eDEFAULT" },
+		{ 1, "ePERCENTAGE" },
+	};
+
+	(*g_Enums)["IContractObjective.State"] = {
+		{ 0, "IN_PROGRESS" },
+		{ 1, "COMPLETED" },
+		{ 2, "FAILED" },
+	};
+
+	(*g_Enums)["IContractObjective.Type"] = {
+		{ 0, "CONTRACT_OBJ_EVENT_BASED" },
+		{ 1, "CONTRACT_OBJ_SM_BASED" },
+	};
+
+	(*g_Enums)["IHM5Door.ECPDoorLockType"] = {
+		{ 0, "CPDLT_NORMAL_LOCK" },
+		{ 1, "CPDLT_PUSH_BAR_PAD_LOCK" },
+	};
+
+	(*g_Enums)["IHM5Door.EInitialState"] = {
+		{ 0, "IS_CLOSED" },
+		{ 1, "IS_OPEN" },
+		{ 2, "IS_OPEN_IN" },
+		{ 3, "IS_OPEN_OUT" },
+	};
+
+	(*g_Enums)["IHM5Door.EOpenDir"] = {
+		{ 0, "OD_AWAY" },
+		{ 1, "OD_TOWARS" },
+		{ 2, "OD_IN" },
+		{ 3, "OD_OUT" },
+	};
+
+	(*g_Enums)["IHM5Door.EOpenMode"] = {
+		{ 0, "OM_TWO_WAY" },
+		{ 1, "OM_OPEN_POS_SIDE_ONLY" },
+		{ 2, "OM_OPEN_NEG_SIDE_ONLY" },
+		{ 3, "OM_DISABLED" },
+	};
+
+	(*g_Enums)["IHM5Door.eCloseMode"] = {
+		{ 0, "CM_AUTOCLOSE" },
+		{ 1, "CM_MANUALCLOSE" },
+		{ 2, "CM_NEVERCLOSE" },
+	};
+
+	(*g_Enums)["IItemWeapon.EDeadlyThrowType"] = {
+		{ 0, "DEADLYTHROW_NONE" },
+		{ 1, "DEADLYTHROW_LIGHT" },
+		{ 2, "DEADLYTHROW_HEAVY" },
+	};
+
+	(*g_Enums)["IKEndEffector"] = {
+		{ 0, "BEE_Pelvis" },
+		{ 1, "BEE_SpineOrigin" },
+		{ 2, "BEE_SpineEnd" },
+		{ 3, "BEE_Head" },
+		{ 4, "BEE_LeftUpperArm" },
+		{ 5, "BEE_RightUpperArm" },
+		{ 6, "BEE_LeftForeArm" },
+		{ 7, "BEE_RightForeArm" },
+		{ 8, "BEE_LeftHand" },
+		{ 9, "BEE_LeftHandThumb" },
+		{ 10, "BEE_LeftHandIndex" },
+		{ 11, "BEE_LeftHandMiddle" },
+		{ 12, "BEE_LeftHandRing" },
+		{ 13, "BEE_LeftHandPinky" },
+		{ 14, "BEE_RightHand" },
+		{ 15, "BEE_RightHandThumb" },
+		{ 16, "BEE_RightHandIndex" },
+		{ 17, "BEE_RightHandMiddle" },
+		{ 18, "BEE_RightHandRing" },
+		{ 19, "BEE_RightHandPinky" },
+		{ 20, "BEE_LeftFoot" },
+		{ 21, "BEE_RightFoot" },
+		{ 22, "BEE_LeftToe" },
+		{ 23, "BEE_RightToe" },
+		{ 24, "BEE_Count" },
+	};
+
+	(*g_Enums)["ILightEntity.EFrameIndexStrategy"] = {
+		{ 0, "WRAP" },
+		{ 1, "CLAMP" },
+	};
+
+	(*g_Enums)["ILightEntity.ELightType"] = {
+		{ 0, "LT_DIRECTIONAL" },
+		{ 1, "LT_ENVIRONMENT" },
+		{ 2, "LT_OMNI" },
+		{ 3, "LT_SPOT" },
+		{ 4, "LT_SQUARESPOT" },
+		{ 5, "LT_CAPSULE" },
+		{ 6, "LT_AREA_QUAD" },
+	};
+
+	(*g_Enums)["ILightEntity.ERoomLightFlow"] = {
+		{ 0, "AUTOMATIC" },
+		{ 1, "LOCAL" },
+		{ 2, "ALLROOMS" },
+	};
+
+	(*g_Enums)["IRenderCompositorEntity.EMode"] = {
+		{ 0, "eSourceA" },
+		{ 1, "eSourceB" },
+		{ 2, "eLayered" },
+		{ 3, "eAlphaLayered" },
+	};
+
+	(*g_Enums)["IRenderCompositorEntity.EViewportAnchor"] = {
+		{ 0, "eFill" },
+		{ 1, "eTopLeft" },
+		{ 2, "eTopRight" },
+		{ 3, "eBottomLeft" },
+		{ 4, "eBottomRight" },
 	};
 
 	(*g_Enums)["IRenderMaterialEntity.EModifierOperation"] = {
 		{ 0, "eLeave" },
-		{ 128, "eColor" },
 		{ 1, "eReplace" },
 		{ 2, "eModulate" },
 		{ 3, "eAdd" },
+		{ 128, "eColor" },
 	};
 
-	(*g_Enums)["ZBoxReflectionEntity.EType"] = {
-		{ 0, "eLocal" },
-		{ 1, "eFallback" },
+	(*g_Enums)["IRoomEntity.EReasoningGridImportance"] = {
+		{ 0, "RGI_NoGrid" },
+		{ 1, "RGI_Low" },
+		{ 2, "RGI_Normal" },
+		{ 3, "RGI_High" },
+		{ 4, "RGI_Extreme" },
 	};
 
-	(*g_Enums)["ZGetHelpGroup.EInvestigateGroupState"] = {
-		{ 0, "IGS_Acknowledge" },
-		{ 1, "IGS_WaitForAckDialog" },
-		{ 2, "IGS_RunToGuard" },
-		{ 3, "IGS_ReportToHitman" },
-		{ 4, "IGS_ReportToGuard" },
-		{ 5, "IGS_StartMoveBack" },
-		{ 6, "IGS_MoveBack" },
-		{ 7, "IGS_Investigate" },
-		{ 8, "IGS_Completed" },
-		{ 9, "IGS_Max" },
+	(*g_Enums)["IScatterContainerEntity.EBrushType"] = {
+		{ 0, "BRUSH_SQUARE" },
+		{ 1, "BRUSH_CIRCLE" },
 	};
 
-	(*g_Enums)["ECollisionNotifyGroup"] = {
-		{ 0, "eCollisionNotifyGroup_Default" },
-		{ 1, "eCollisionNotifyGroup_CollisionListener" },
-		{ 2, "eCollisionNotifyGroup_PhysicsEntity" },
-		{ 3, "eCollisionNotifyGroup_DontNotify" },
-		{ 4, "eCollisionNotifyGroup_ForceNotify" },
+	(*g_Enums)["IScatterContainerEntity.ECanvasClearMode"] = {
+		{ 0, "CLEAR_ALL" },
+		{ 1, "CLEAR_INTENSITY" },
+		{ 2, "CLEAR_SPECIFICMATERIAL" },
+		{ 3, "CLEAR_ALLMATERIALS" },
+		{ 4, "CLEAR_SETINTENSITYVALUECLEARMATERIAL" },
+		{ 5, "CLEAR_SETINTENSITYVALUEKEEPMATERIAL" },
+		{ 6, "CLEAR_SETINTENSITYVALUEANDMATERIAL" },
+		{ 7, "CLEAR_SETMATERIALKEEPINTENSITYVALUE" },
 	};
 
-	(*g_Enums)["ECharSetCharacterType"] = {
-		{ 0, "ECSCT_Actor" },
-		{ 1, "ECSCT_Nude" },
-		{ 2, "ECSCT_HeroA" },
+	(*g_Enums)["IScatterContainerEntity.ECanvasSize"] = {
+		{ 0, "SIZE_128" },
+		{ 1, "SIZE_256" },
+		{ 2, "SIZE_512" },
+		{ 3, "SIZE_1024" },
+		{ 4, "SIZE_2048" },
+		{ 5, "SIZE_4096" },
 	};
 
-	(*g_Enums)["EActorGroup"] = {
-		{ 0, "eAG_Group_A" },
-		{ 1, "eAG_Group_B" },
-		{ 2, "eAG_Group_C" },
-		{ 3, "eAG_Group_D" },
-		{ 4, "eAG_Count" },
+	(*g_Enums)["IScatterContainerEntity.EResizeMode"] = {
+		{ 0, "MODE_CLEAR" },
+		{ 1, "MODE_KEEPASCENTER" },
+		{ 2, "MODE_SCALE" },
 	};
 
 	(*g_Enums)["InputControlNamesp.eHM5InputAction"] = {
@@ -8553,434 +7071,1417 @@ void ZHMEnums::RegisterEnums()
 		{ 124, "eIActionsNUM" },
 	};
 
-	(*g_Enums)["EAISharedEventType"] = {
-		{ 0, "AISET_None" },
-		{ 399, "AISET_DynamicEnforcer_DeadBody" },
-		{ 1, "AISET_StandOffCrowdReactionDone" },
-		{ 2, "AISET_Shoot" },
-		{ 393, "AISET_DynamicEnforcer_CloseCombatSound" },
-		{ 3, "AISET_ShootBlind" },
-		{ 4, "AISET_Scared" },
-		{ 387, "AISET_DynamicEnforcer_PrivateArea" },
-		{ 5, "AISET_CloseCombatRunIn" },
-		{ 6, "AISET_CloseCombatArrest" },
-		{ 397, "AISET_DynamicEnforcer_SeenMurderVictimHeardGunshot" },
-		{ 7, "AISET_ReadyForCloseCombatArrest" },
-		{ 8, "AISET_DeadByAccident" },
-		{ 407, "AISET_DYNAMIC_ENFORCER_CIVILIAN_DISGUISE_ONLY_FLAG_BEGIN" },
-		{ 9, "AISET_SituationConversation" },
-		{ 10, "AISET_LAST_BOOLEAN_EVENT" },
-		{ 401, "AISET_DynamicEnforcer_Hunt" },
-		{ 11, "AISET_IllegalBehavior" },
-		{ 12, "AISET_BeingWatched" },
-		{ 395, "AISET_DynamicEnforcer_PacifyingThrowVictim" },
-		{ 13, "AISET_Sneaking" },
-		{ 14, "AISET_Squatting" },
-		{ 405, "AISET_DynamicEnforcer_Disable_CivilianInInvestigateCautious" },
-		{ 15, "AISET_Agility" },
-		{ 16, "AISET_IllegalAgility" },
-		{ 415, "AISET_DynamicEnforcer_ArrestReason_NearPacifiedBody" },
-		{ 17, "AISET_ChangingOutfit" },
-		{ 18, "AISET_ChangedOutfit" },
-		{ 409, "AISET_DYNAMIC_ENFORCER_CIVILIAN_DISGUISE_ONLY_FLAG_END" },
-		{ 19, "AISET_CoverToCover" },
-		{ 20, "AISET_Trespassing" },
-		{ 403, "AISET_DYNAMIC_ENFORCER_FLAG_END" },
-		{ 21, "AISET_InTrespassZone" },
-		{ 22, "AISET_InDisguiseZone" },
-		{ 413, "AISET_DynamicEnforcer_ArrestReason_HitByItemOrCoin" },
-		{ 23, "AISET_DraggingBody" },
-		{ 24, "AISET_KillingWithFiberwire" },
-		{ 25, "AISET_KillingWithPull" },
-		{ 26, "AISET_KillingWithPush" },
-		{ 27, "AISET_KillingWithKick" },
-		{ 28, "AISET_KillingWithKnife" },
-		{ 411, "AISET_DynamicEnforcer_ArrestReason_Murder" },
-		{ 29, "AISET_KillingWithDeadlyThrow" },
-		{ 30, "AISET_PullingFromLedge" },
-		{ 31, "AISET_PacifyingWithPull" },
-		{ 32, "AISET_PacifyingWithPush" },
-		{ 33, "AISET_PacifyingWithKick" },
-		{ 34, "AISET_PacifyingWithKnockDownThrow" },
-		{ 425, "AISET_DynamicEnforcer_ArrestReason_SillyHitman" },
-		{ 35, "AISET_PacifyingWithStrangle" },
-		{ 36, "AISET_PacifyingWithKnife" },
-		{ 419, "AISET_DynamicEnforcer_ArrestReason_Hunt" },
-		{ 37, "AISET_ThrowingSomething" },
-		{ 38, "AISET_ThrowingExplosives" },
-		{ 39, "AISET_KnockingDown" },
-		{ 40, "AISET_InCloset" },
-		{ 41, "AISET_InNpcUnreachableArea" },
-		{ 42, "AISET_Peeking" },
-		{ 43, "AISET_EnteringCloset" },
-		{ 44, "AISET_ExitingCloset" },
-		{ 45, "AISET_InCover" },
-		{ 46, "AISET_MovingInCover" },
-		{ 47, "AISET_HiddenInCover" },
-		{ 48, "AISET_HasWeapon" },
-		{ 49, "AISET_WeaponEquipped" },
-		{ 50, "AISET_WeaponFired" },
-		{ 51, "AISET_WeaponReloading" },
-		{ 52, "AISET_Aiming" },
-		{ 53, "AISET_GuardDisguise" },
-		{ 54, "AISET_PulledByHitmanOnLedge" },
-		{ 55, "AISET_CombatNoHold" },
-		{ 56, "AISET_CombatFireAtWill" },
-		{ 391, "AISET_DynamicEnforcer_GunshotSound" },
-		{ 57, "AISET_InOrderedPosition" },
-		{ 58, "AISET_ORDERS_BEGIN" },
-		{ 385, "AISET_DynamicEnforcer_Setpiece" },
-		{ 59, "AISET_Order_Act" },
-		{ 60, "AISET_Order_Investigate" },
-		{ 61, "AISET_Order_SearchPosition" },
-		{ 62, "AISET_Order_Approach" },
-		{ 389, "AISET_DYNAMIC_ENFORCER_FLAG_INCA_BEGIN" },
-		{ 63, "AISET_Order_GetHelp" },
-		{ 64, "AISET_Order_StandDown" },
-		{ 65, "AISET_Order_Escalate" },
-		{ 66, "AISET_Order_Arrest" },
-		{ 67, "AISET_Order_Avoid" },
-		{ 68, "AISET_Order_Flee" },
-		{ 69, "AISET_Order_Patrol" },
-		{ 70, "AISET_Order_Reposition" },
-		{ 71, "AISET_Order_Chase" },
-		{ 72, "AISET_Order_AimFromPosition" },
-		{ 73, "AISET_Order_HoldPosition" },
-		{ 74, "AISET_Order_HoldCoverPosition" },
-		{ 75, "AISET_Order_FightFromCover" },
-		{ 76, "AISET_Order_FightFromPosition" },
-		{ 77, "AISET_Order_ShootFromPosition" },
-		{ 78, "AISET_Order_GuardPosition" },
-		{ 79, "AISET_Order_GuardBody" },
-		{ 80, "AISET_Order_WakeUpUnconscious" },
-		{ 81, "AISET_Order_DragBody" },
-		{ 82, "AISET_Order_TriggerAlarm" },
-		{ 83, "AISET_Order_DispatchSuspectInfo" },
-		{ 84, "AISET_Order_RecieveSuspectInfo" },
-		{ 85, "AISET_Order_RequestBackup" },
-		{ 86, "AISET_Order_ThrowFlashGrenade" },
-		{ 87, "AISET_Order_CheckLastPosition" },
-		{ 88, "AISET_Order_StandoffLastWarning" },
-		{ 89, "AISET_Order_Evacuate" },
-		{ 90, "AISET_Order_AgitatedBystander" },
-		{ 91, "AISET_Order_CuriousBystander" },
-		{ 92, "AISET_Order_Face" },
-		{ 93, "AISET_Order_Holster" },
-		{ 94, "AISET_Order_Unholster" },
-		{ 95, "AISET_Order_MoveTo" },
-		{ 96, "AISET_Order_JumpTo" },
-		{ 97, "AISET_Order_FormationMove" },
-		{ 98, "AISET_Order_SentryFrisk" },
-		{ 99, "AISET_Order_SentryWarning" },
-		{ 100, "AISET_Order_SentryGreeting" },
-		{ 101, "AISET_Order_SentryCheckItem" },
-		{ 102, "AISET_Order_SentryDemandPickUpItem" },
-		{ 103, "AISET_Order_DeliverWeapon" },
-		{ 104, "AISET_Order_RecoverUnconscious" },
-		{ 105, "AISET_Order_GetOutfit" },
-		{ 106, "AISET_Order_LockdownWarning" },
-		{ 107, "AISET_Order_VIPEvacuateIdle" },
-		{ 108, "AISET_Order_VIPSafeRoom" },
-		{ 109, "AISET_Order_VIPSafeRoomTrespasser" },
-		{ 110, "AISET_Order_VIPScared" },
-		{ 111, "AISET_Order_DefendVIP" },
-		{ 112, "AISET_Order_CautiousVIP" },
-		{ 113, "AISET_Order_CautiousGuardVIP" },
-		{ 114, "AISET_Order_EscortOut" },
-		{ 115, "AISET_Order_MoveInCover" },
-		{ 116, "AISET_Order_MoveToCover" },
-		{ 117, "AISET_Order_Conversation" },
-		{ 118, "AISET_Order_AttentionToPerson" },
-		{ 119, "AISET_Order_WaitForItemHandled" },
-		{ 120, "AISET_ORDERS_END" },
-		{ 121, "AISET_IMPULSES_BEGIN" },
-		{ 122, "AISET_Impulse_ReceiveHuntTarget" },
-		{ 123, "AISET_Impulse_AckHuntTarget" },
-		{ 124, "AISET_Impulse_TransmitHuntTarget" },
-		{ 125, "AISET_Impulse_ActiveRadioCall" },
-		{ 126, "AISET_IMPULSES_END" },
-		{ 127, "AISET_ForceFullAttention" },
-		{ 128, "AISET_InCameraView2D" },
-		{ 129, "AISET_BeingLookedAt" },
-		{ 314, "AISET_SpeedBoost" },
-		{ 130, "AISET_BeingAimedAt" },
-		{ 131, "AISET_WasAimedAtRecently" },
-		{ 260, "AISET_WokenByNPC" },
-		{ 132, "AISET_BeingShotAt" },
-		{ 133, "AISET_BeingActuallyShotAt" },
-		{ 318, "AISET_Woozy" },
-		{ 134, "AISET_BeingFlanked" },
-		{ 135, "AISET_BeingBumped" },
-		{ 312, "AISET_SoundHitmanGunShotSilenced" },
-		{ 136, "AISET_BeingEscortedOut" },
-		{ 137, "AISET_EscortingOut" },
-		{ 258, "AISET_RequestShowItem" },
-		{ 138, "AISET_EscortOutFarewell" },
-		{ 139, "AISET_HMTrespassing" },
-		{ 268, "AISET_Sentry" },
-		{ 140, "AISET_HMInEntryArea" },
-		{ 141, "AISET_HMTakingDamage" },
-		{ 262, "AISET_TriggerLockDownAlarm" },
-		{ 142, "AISET_HumanShield" },
-		{ 143, "AISET_IllegalAction" },
-		{ 256, "AISET_ToldToEvacuate" },
-		{ 144, "AISET_IllegalActionSevere" },
-		{ 145, "AISET_TakingKeyCard" },
-		{ 266, "AISET_Attached" },
-		{ 146, "AISET_TakingSecurityTape" },
-		{ 147, "AISET_DumpingBody" },
-		{ 276, "AISET_FlashpointSeen" },
-		{ 148, "AISET_Shooting" },
-		{ 149, "AISET_BlindFire" },
-		{ 270, "AISET_FriskingSentry" },
-		{ 150, "AISET_ShootingBallet" },
-		{ 151, "AISET_Running" },
-		{ 264, "AISET_DontMakeFunPlease" },
-		{ 152, "AISET_Walking" },
-		{ 153, "AISET_UsingKeyCard" },
-		{ 274, "AISET_Pacified" },
-		{ 154, "AISET_WeaponDropped" },
-		{ 155, "AISET_WeaponPickedUp" },
-		{ 284, "AISET_VaultingOverObstacle" },
-		{ 156, "AISET_ItemPickedUp" },
-		{ 157, "AISET_ItemDropped" },
-		{ 278, "AISET_WeaponContextKnown" },
-		{ 158, "AISET_Surrendering" },
-		{ 159, "AISET_RequestSurrender" },
-		{ 272, "AISET_CloseCombatFinisher" },
-		{ 160, "AISET_StandOffEscalated" },
-		{ 161, "AISET_StandOffInvestigateSevere" },
-		{ 162, "AISET_Standing" },
-		{ 163, "AISET_Enforcer" },
-		{ 292, "AISET_Combat_TargetSeenAtLeastOnce" },
-		{ 164, "AISET_DisguiseEnforcer" },
-		{ 165, "AISET_Dead" },
-		{ 166, "AISET_DeadByUnnoticed" },
-		{ 167, "AISET_DeadBySniper" },
-		{ 168, "AISET_InMorgue" },
-		{ 169, "AISET_InAccident" },
-		{ 290, "AISET_Combat_CloseToGuards" },
-		{ 170, "AISET_Dying" },
-		{ 171, "AISET_InInvestigateDisguise" },
-		{ 300, "AISET_ReactedToHitAlerted" },
-		{ 172, "AISET_InArrest" },
-		{ 173, "AISET_Arrestor" },
-		{ 294, "AISET_InTheAir" },
-		{ 174, "AISET_InCombat" },
-		{ 175, "AISET_InCombatWithGuards" },
-		{ 288, "AISET_Combat_PrimaryRange" },
-		{ 176, "AISET_Hunted" },
-		{ 177, "AISET_ForceHunted" },
-		{ 298, "AISET_RecoveredFromWounded" },
-		{ 178, "AISET_CloseCombat" },
-		{ 179, "AISET_TakingProjectileDamage" },
-		{ 308, "AISET_SilentlyKilled" },
-		{ 180, "AISET_TakingHeadshotDamage" },
-		{ 181, "AISET_TakingExplosionDamage" },
-		{ 302, "AISET_HelpingCivilian" },
-		{ 182, "AISET_TakingThrowDamage" },
-		{ 183, "AISET_ForceKillHM" },
-		{ 296, "AISET_InSentrySituation" },
-		{ 184, "AISET_Armed" },
-		{ 185, "AISET_BeingHumanShield" },
-		{ 306, "AISET_InvestigateDisguiseMovingBack" },
-		{ 186, "AISET_BeingPulledOutOfWindow" },
-		{ 187, "AISET_BeingPushedOverRail" },
-		{ 316, "AISET_InvestigateDisguiseMember" },
-		{ 188, "AISET_BeingFiberwired" },
-		{ 189, "AISET_BeingPulledFromLedge" },
-		{ 310, "AISET_SoundGunShot" },
-		{ 190, "AISET_BeingDragged" },
-		{ 191, "AISET_OnScreen" },
-		{ 304, "AISET_InvestigatingMurderOrGunshot" },
-		{ 192, "AISET_ExplosionImminent" },
-		{ 193, "AISET_DisguiseSafeZone" },
-		{ 378, "AISET_Enforcer_Disable_HideInPlainSight" },
-		{ 194, "AISET_DisguiseCanBlendIn" },
-		{ 195, "AISET_DisguiseBlendIn" },
-		{ 324, "AISET_GetHelpDone" },
-		{ 196, "AISET_DisguiseBroken" },
-		{ 197, "AISET_InWarZone" },
-		{ 382, "AISET_DynamicEnforcer_NakedActor" },
-		{ 198, "AISET_HearLockdownAlarm" },
-		{ 199, "AISET_InCrowd" },
-		{ 376, "AISET_Infection_Cured" },
-		{ 200, "AISET_InCrowdHighDensity" },
-		{ 201, "AISET_InCrowdAlert" },
-		{ 322, "AISET_DontStandDownIfIdling" },
-		{ 202, "AISET_InCrowdPanic" },
-		{ 203, "AISET_HiddenByCrowd" },
-		{ 332, "AISET_InterestingLocation" },
-		{ 204, "AISET_CrowdDisguise" },
-		{ 205, "AISET_BeingStrangled" },
-		{ 326, "AISET_InDangerousArea" },
-		{ 206, "AISET_BeingSnapNecked" },
-		{ 207, "AISET_BeingKnockedDown" },
-		{ 320, "AISET_IsEscortingVIP" },
-		{ 208, "AISET_BeingContextKilled" },
-		{ 209, "AISET_CloseCombatTakedown" },
-		{ 330, "AISET_SocialCooldown" },
-		{ 210, "AISET_ContextKill" },
-		{ 211, "AISET_ExecutePistol" },
-		{ 340, "AISET_InEvacuateTrespassGroup" },
-		{ 212, "AISET_PickingUpGuardedItem" },
-		{ 213, "AISET_SedativePoison" },
-		{ 334, "AISET_HMHasVictim" },
-		{ 214, "AISET_SpawnedActor" },
-		{ 215, "AISET_SoundRadio" },
-		{ 328, "AISET_RadioCallHelpFailed" },
-		{ 216, "AISET_Weapon" },
-		{ 217, "AISET_Item" },
-		{ 338, "AISET_Dropped" },
-		{ 218, "AISET_ItemThrown" },
-		{ 219, "AISET_OwnedByHM" },
-		{ 348, "AISET_ReadytoPlayInvestigationConversation" },
-		{ 220, "AISET_Coin" },
-		{ 221, "AISET_InLimitVisionAreaZone" },
-		{ 342, "AISET_Revived" },
-		{ 222, "AISET_InsideLimitVisionArea" },
-		{ 223, "AISET_BlockedByLimitVisionArea" },
-		{ 336, "AISET_LongTermMemorySetGoal" },
-		{ 224, "AISET_AmbientOnly" },
-		{ 225, "AISET_HasBeenInCombat" },
-		{ 282, "AISET_DraggingBodyBag" },
-		{ 226, "AISET_HitByItem" },
-		{ 227, "AISET_CloseCombatAllowed" },
-		{ 356, "AISET_Distraction_Target_BeingHandled" },
-		{ 228, "AISET_CollateralTarget" },
-		{ 229, "AISET_HuntAct" },
-		{ 286, "AISET_Combat_Brave" },
-		{ 230, "AISET_Sick" },
-		{ 231, "AISET_Stunned" },
-		{ 280, "AISET_LockedInAgility" },
-		{ 232, "AISET_Naked" },
-		{ 233, "AISET_Investigated" },
-		{ 354, "AISET_Distraction_State_Resolved" },
-		{ 234, "AISET_FreshBody" },
-		{ 235, "AISET_SeenDeadlyThrowVictim" },
-		{ 364, "AISET_Arrest_Warning_Delay" },
-		{ 236, "AISET_IWillBeDeadlyThrowVictim" },
-		{ 237, "AISET_Suspect" },
-		{ 358, "AISET_Arrest_State_Escorting" },
-		{ 238, "AISET_BeingFrisked" },
-		{ 239, "AISET_RequestFrisk" },
-		{ 352, "AISET_Distraction_State_LeaderSelected" },
-		{ 240, "AISET_FriskComplying" },
-		{ 241, "AISET_FriskApproachReady" },
-		{ 362, "AISET_Arrest_Warning_2" },
-		{ 242, "AISET_FriskReady" },
-		{ 243, "AISET_Frisked" },
-		{ 372, "AISET_SC_Investigator" },
-		{ 244, "AISET_FriskFailed" },
-		{ 245, "AISET_FriskFoundWeapon" },
-		{ 366, "AISET_SC_InCombatPosition" },
-		{ 246, "AISET_AntiSocial" },
-		{ 247, "AISET_Introvert" },
-		{ 360, "AISET_Arrest_ArrestReason" },
-		{ 248, "AISET_InLockdownZone" },
-		{ 249, "AISET_EnteringLockdownZone" },
-		{ 370, "AISET_SC_CombatAct" },
-		{ 250, "AISET_InSentryZone" },
-		{ 251, "AISET_InSentryWarningZone" },
-		{ 380, "AISET_DYNAMIC_ENFORCER_FLAG_BEGIN" },
-		{ 252, "AISET_InSentryFriskWarningZone" },
-		{ 253, "AISET_SuppressTrespassing" },
-		{ 374, "AISET_Infected_Stage2" },
-		{ 254, "AISET_ReportedDisturbance" },
-		{ 255, "AISET_InLockdown" },
-		{ 368, "AISET_SC_PreventShooting" },
-		{ 257, "AISET_CurrentTarget" },
-		{ 259, "AISET_RequestComplying" },
-		{ 261, "AISET_Silly" },
-		{ 263, "AISET_CombatFromEvacuate" },
-		{ 265, "AISET_TempCrowdKnowledge" },
-		{ 267, "AISET_DontReact" },
-		{ 269, "AISET_HardSentry" },
-		{ 271, "AISET_Guarded" },
-		{ 273, "AISET_WasInCloseCombatSawAggressor" },
-		{ 275, "AISET_SomeoneIsSniping" },
-		{ 277, "AISET_SniperLocation" },
-		{ 279, "AISET_Distracted" },
-		{ 281, "AISET_ActorAlreadyAlive" },
-		{ 283, "AISET_UncosciousBlamingFailed" },
-		{ 285, "AISET_ClimbingWindow" },
-		{ 287, "AISET_Combat_OneTimeBrave" },
-		{ 289, "AISET_Combat_ThrewFlashGrenade" },
-		{ 291, "AISET_Combat_RecentlySeen" },
-		{ 293, "AISET_InTheAirDeadly" },
-		{ 295, "AISET_Landing" },
-		{ 297, "AISET_Wounded" },
-		{ 299, "AISET_ReactedToTossAlerted" },
-		{ 301, "AISET_GettingHelp" },
-		{ 303, "AISET_InvestigatingMurder" },
-		{ 305, "AISET_InvestigateDisguiseGroupLeader" },
-		{ 307, "AISET_BodyguardVIPDead" },
-		{ 309, "AISET_SilentlyKilling" },
-		{ 311, "AISET_SoundHitmanGunShot" },
-		{ 313, "AISET_ChangingOutfitFromBody" },
-		{ 315, "AISET_ManhuntMember" },
-		{ 317, "AISET_EvacuateAfterRecover" },
-		{ 319, "AISET_HasAmbientEscort" },
-		{ 321, "AISET_StrangleVictim" },
-		{ 323, "AISET_Jumping" },
-		{ 325, "AISET_VIPHandleOwnCuriousInvestigation" },
-		{ 327, "AISET_RadioCallHelpComming" },
-		{ 329, "AISET_RadioCallHelpArrived" },
-		{ 331, "AISET_VIPEscaping" },
-		{ 333, "AISET_SeeDeathExplained" },
-		{ 335, "AISET_PrivateSituationLeader" },
-		{ 337, "AISET_ThrownByHitman" },
-		{ 339, "AISET_InterestingItem" },
-		{ 341, "AISET_InRecoverUnconsciousGroup" },
-		{ 343, "AISET_IsBeggingForLife" },
-		{ 344, "AISET_HMStunnedByNPCFlashGrenade" },
-		{ 345, "AISET_Situation_Role_Leader" },
-		{ 346, "AISET_Situation_Role_Assistant" },
-		{ 347, "AISET_Situation_Role_AssitingGuard" },
-		{ 349, "AISET_ReadytoPlayStandDownConversation" },
-		{ 350, "AISET_ForcedLeader" },
-		{ 351, "AISET_PropagatedByCivilian" },
-		{ 353, "AISET_Distraction_State_Investigated" },
-		{ 355, "AISET_Distraction_State_Canceled" },
-		{ 357, "AISET_Arrest_State_Approaching" },
-		{ 359, "AISET_Arrest_State_Guarding" },
-		{ 361, "AISET_Arrest_Warning_1" },
-		{ 363, "AISET_Arrest_Warning_3" },
-		{ 365, "AISET_SC_Escalating" },
-		{ 367, "AISET_SC_Shoot" },
-		{ 369, "AISET_SC_PreventChangeCombatPosition" },
-		{ 371, "AISET_SC_InCombat" },
-		{ 373, "AISET_Infected" },
-		{ 375, "AISET_Infected_Stage3" },
-		{ 377, "AISET_ENFORCER_DISABLE_FLAG_BEGIN" },
-		{ 379, "AISET_ENFORCER_DISABLE_FLAG_END" },
-		{ 381, "AISET_DynamicEnforcer_SharedHitmanSensor" },
-		{ 383, "AISET_DynamicEnforcer_SeenItemThrown" },
-		{ 384, "AISET_DynamicEnforcer_HitByItemOrCoin" },
-		{ 386, "AISET_DynamicEnforcer_SillyHitman" },
-		{ 388, "AISET_DynamicEnforcer_SuspiciousMovement" },
-		{ 390, "AISET_DynamicEnforcer_Explosion" },
-		{ 392, "AISET_DynamicEnforcer_BulletImpactSound" },
-		{ 394, "AISET_DynamicEnforcer_DeadlyThrowVictim" },
-		{ 396, "AISET_DynamicEnforcer_SeenMurderVictimNotHeardGunshot" },
-		{ 398, "AISET_DynamicEnforcer_MurderAttempt" },
-		{ 400, "AISET_DynamicEnforcer_PacifiedBody" },
-		{ 402, "AISET_DYNAMIC_ENFORCER_FLAG_INCA_END" },
-		{ 404, "AISET_DYNAMIC_ENFORCER_DISABLE_FLAG_BEGIN" },
-		{ 406, "AISET_DYNAMIC_ENFORCER_DISABLE_FLAG_END" },
-		{ 408, "AISET_DynamicEnforcer_InvestigateWeapon" },
-		{ 410, "AISET_DYNAMIC_ENFORCER_ARREST_REASON_BEGIN" },
-		{ 412, "AISET_DynamicEnforcer_ArrestReason_MurderAttempt" },
-		{ 414, "AISET_DynamicEnforcer_ArrestReason_NearDeadBody" },
-		{ 416, "AISET_DynamicEnforcer_ArrestReason_GunshotSound" },
-		{ 417, "AISET_DynamicEnforcer_ArrestReason_CloseCombatSound" },
-		{ 418, "AISET_DynamicEnforcer_ArrestReason_BulletImpactSound" },
-		{ 420, "AISET_DynamicEnforcer_ArrestReason_Explosion" },
-		{ 421, "AISET_DynamicEnforcer_ArrestReason_PrivateArea" },
-		{ 422, "AISET_DynamicEnforcer_ArrestReason_Weapon" },
-		{ 423, "AISET_DynamicEnforcer_ArrestReason_Setpiece" },
-		{ 424, "AISET_DynamicEnforcer_ArrestReason_KnockdownThrow" },
-		{ 426, "AISET_DYNAMIC_ENFORCER_ARREST_REASON_END" },
+	(*g_Enums)["InputControlNamesp.eHM5InputActionID"] = {
+		{ 0, "eIDButtonFaceDown" },
+		{ 1, "eIDButtonFaceLeft" },
+		{ 2, "eIDButtonFaceRight" },
+		{ 3, "eIDButtonFaceUp" },
+		{ 4, "eIDBumperLeft" },
+		{ 5, "eIDBumperRight" },
+		{ 6, "eIDDpadDown" },
+		{ 7, "eIDDpadLeft" },
+		{ 8, "eIDDpadRight" },
+		{ 9, "eIDDpadUp" },
+		{ 10, "eIDThumbLeft" },
+		{ 11, "eIDThumbRight" },
+		{ 12, "eIDButtonStart" },
+		{ 13, "eIDButtonSelect" },
+		{ 14, "eIDTriggerLeft" },
+		{ 15, "eIDTriggerRight" },
+		{ 16, "eIDStickLeftHorizontal" },
+		{ 17, "eIDStickLeftVertical" },
+		{ 18, "eIDStickRightHorizontal" },
+		{ 19, "eIDStickRightVertical" },
+		{ 20, "eIDKeyboard" },
+		{ 21, "eID_INVALID" },
+	};
+
+	(*g_Enums)["InputControlNamesp.eHM5InputActionType"] = {
+		{ 0, "eTypeGet" },
+		{ 1, "eTypeHold" },
+		{ 2, "eTypeRepeat" },
+		{ 3, "eTypeTap" },
+		{ 4, "eTypeRelease" },
+		{ 5, "eTypeDownedge" },
+		{ 6, "eTypeFastTap" },
+		{ 7, "eTypeHoldDown" },
+		{ 8, "eTypeFireOnceHoldDown" },
+		{ 9, "eTypeClickHold" },
+		{ 10, "eTypePress" },
+		{ 11, "eTypeANALOG" },
+		{ 12, "eTypeANALOGRAW" },
+		{ 13, "eTypeRELATIVE" },
+		{ 14, "eTYPE_INVALID" },
+	};
+
+	(*g_Enums)["JSONTemplate.ETemplateType"] = {
+		{ 0, "ETT_BASE" },
+		{ 1, "ETT_DATA_VALUE" },
+		{ 2, "ETT_DATA_VALUE_CUSTOM" },
+		{ 3, "ETT_OBJECT" },
+		{ 4, "ETT_ARRAY" },
+		{ 5, "ETT_ASYNCROOT" },
+		{ 6, "ETT_IF" },
+		{ 7, "ETT_SWITCH" },
+		{ 8, "ETT_EACH" },
+		{ 9, "ETT_LOC" },
+		{ 10, "ETT_PARENTHESIS" },
+		{ 11, "ETT_FORMATSTRING" },
+		{ 12, "ETT_FORMATINT" },
+		{ 13, "ETT_INTCLAMP" },
+		{ 14, "ETT_FORMATPUBLICID" },
+		{ 15, "ETT_ISNULL" },
+		{ 16, "ETT_DATA_CONTEXT" },
+		{ 17, "ETT_ARRAY_ELEMENT" },
+		{ 18, "ETT_ARRAY_FILTER" },
+		{ 19, "ETT_ARRAY_CONVERT" },
+		{ 20, "ETT_ARRAY_SIZE" },
+		{ 21, "ETT_ARRAY_SORT" },
+		{ 22, "ETT_ARRAY_GROUPBY" },
+		{ 23, "ETT_EXPAND" },
+		{ 24, "ETT_ISNULLOREMPTY" },
+		{ 25, "ETT_NOT" },
+		{ 26, "ETT_COMPARE" },
+		{ 27, "ETT_PARENT" },
+		{ 28, "ETT_AND" },
+		{ 29, "ETT_OR" },
+		{ 30, "ETT_MERGEOBJECTS" },
+		{ 31, "ETT_MERGEARRAYS" },
+		{ 32, "ETT_LOCALE_TEXT" },
+		{ 33, "ETT_LOCALE_AUDIO" },
+		{ 34, "ETT_CURRENT_LOCALE_TEXT" },
+		{ 35, "ETT_GET_APPLICATION_OPTION" },
+		{ 36, "ETT_PLATFORM" },
+		{ 37, "ETT_REGION" },
+		{ 38, "ETT_STOREREGION" },
+		{ 39, "ETT_ISDEBUG" },
+		{ 40, "ETT_IS_CONTROLLER_AVAILABLE" },
+		{ 41, "ETT_ONLINE_RESOURCE" },
+		{ 42, "ETT_INCLUDE" },
+		{ 43, "ETT_UI_OPTION_VALUE" },
+		{ 44, "ETT_UI_OPTION_DEBUG_VALUE" },
+		{ 45, "ETT_UI_OPTION_AVAILABLE_DISPLAY_RESOLUTIONS" },
+		{ 46, "ETT_UI_OPTION_AVAILABLE_DISPLAY_FULLSCREEN" },
+		{ 47, "ETT_UI_OPTION_AVAILABLE_TEXTURE_QUALITY" },
+		{ 48, "ETT_UI_OPTION_AVAILABLE_SHADOW_QUALITY" },
+		{ 49, "ETT_UI_OPTION_AVAILABLE_SUPERSAMPLING" },
+		{ 50, "ETT_UI_OPTION_AVAILABLE_DOUBLEFRAMERATE" },
+		{ 51, "ETT_CURRENT_CONTRACT_CONTEXT" },
+		{ 52, "ETT_CURRENT_CONTRACT_SESSIONID" },
+		{ 53, "ETT_CURRENT_CONTRACT_CHARACTER_INFO" },
+		{ 54, "ETT_CURRENT_DIFFICULTY" },
+		{ 55, "ETT_CURRENT_ENGINE_MODE" },
+		{ 56, "ETT_CURRENT_GAME_MODE" },
+		{ 57, "ETT_CAN_SAVE" },
+		{ 58, "ETT_IS_SAVELIMIT_EXCEEDED" },
+		{ 59, "ETT_IS_ALLOWED_TO_RESTART" },
+		{ 60, "ETT_ACTIVE_CHALLENGES" },
+		{ 61, "ETT_USER" },
+		{ 62, "ETT_ISUSER" },
+		{ 63, "ETT_DLCCOUNT" },
+		{ 64, "ETT_PROFILEID" },
+		{ 65, "ETT_HDRGAMMAVALUERANGEMIN" },
+		{ 66, "ETT_HDRGAMMAVALUERANGEMAX" },
+		{ 67, "ETT_HDRGAMMAVALUESTEP" },
+		{ 68, "ETT_ISHDRAVAILABLE" },
+		{ 69, "ETT_ISHDRRENDERING" },
+		{ 70, "ETT_ITEM" },
+		{ 71, "ETT_REPOSITORY" },
+		{ 72, "ETT_ISONLINE" },
+		{ 73, "ETT_ISINGAME" },
+		{ 74, "ETT_ISINEDITOR" },
+		{ 75, "ETT_ISUGCRESTRICTED" },
+		{ 76, "ETT_ISPACKAGEOWNED" },
+		{ 77, "ETT_ISININVENTORY" },
+		{ 78, "ETT_ISPLATFORMENTITLEMENTOWNED" },
+		{ 79, "ETT_MULTIPLAYERLOBBYSTATE" },
+		{ 80, "ETT_MULTIPLAYERLOCALID" },
+		{ 81, "ETT_MULTIPLAYERJOINEDIDS" },
+		{ 82, "ETT_MULTIPLAYERISPLAYERREADY" },
+		{ 83, "ETT_MULTIPLAYERINFO" },
+		{ 84, "ETT_MULTIPLAYERMATCHMAKINGTIME" },
+		{ 85, "ETT_MULTIPLAYERNATTYPE" },
+		{ 86, "ETT_LOADOUT" },
+		{ 87, "ETT_PERSISTENTMENUDATA" },
+		{ 88, "ETT_GAMEPERSISTENTDATA" },
+		{ 89, "ETT_ENDGAME_PAGETRANSITION_OVERRIDE" },
+		{ 90, "ETT_VERSUSINFO" },
+		{ 91, "ETT_SNIPERINFO" },
+		{ 92, "ETT_GAMEMODE" },
+		{ 93, "ETT_CACHEDUSERCENTRICCONTRACT" },
+		{ 94, "ETT_SAVEGAMES" },
+		{ 95, "ETT_AVAILABILITY_OF_RESOURCES" },
+		{ 96, "ETT_AVAILABILITY_OF_CONTRACT" },
+		{ 97, "ETT_AS3DATE" },
+		{ 98, "ETT_IOIACCOUNT_STATUS" },
+		{ 99, "ETT_ISCONTRACT_IN_PLAYLIST" },
+		{ 100, "ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION" },
+		{ 101, "ETT_VIDEOMEMORYINFO_IS_SUPPORTED" },
+		{ 102, "ETT_VIDEOMEMORYINFO" },
+		{ 103, "ETT_NVIDIAHIGHLIGHTSAVAILABLE" },
+		{ 104, "ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS" },
+		{ 105, "ETT_DEBUG_ALLHITMANSUITS" },
+	};
+
+	(*g_Enums)["MenuWeaponUpgradeData.EUpgradeAction"] = {
+		{ 0, "EUPGRADE_ACTION_NONE" },
+		{ 1, "EUPGRADE_ACTION_INSTALL" },
+		{ 2, "EUPGRADE_ACTION_REMOVE" },
+		{ 3, "EUPGRADE_ACTION_UNLOCK_SLOT" },
+		{ 4, "EUPGRADE_ACTION_BUY_NEXT_LEVEL" },
+		{ 5, "EUPGRADE_ACTION_EQUIP_WEAPON" },
+		{ 6, "EUPGRADE_ACTION_UNEQUIP_WEAPON" },
+		{ 7, "EUPGRADE_ACTION_CLEAR_LEVELS" },
+	};
+
+	(*g_Enums)["Network.OrderingChannel"] = {
+		{ 0, "SYSTEM_INTERNAL" },
+		{ 1, "PLAYER_INPUT" },
+		{ 2, "SYNCH_POINT" },
+		{ 3, "CAMERA" },
+		{ 4, "PROJECTILE" },
+		{ 5, "PIN_SIGNAL" },
+		{ 6, "GAME_STATE" },
+		{ 7, "HERO_STATE" },
+		{ 8, "NPC_STATE" },
+		{ 9, "WEAPONS" },
+		{ 10, "INTERACTIONS" },
+		{ 11, "ACTS" },
+		{ 12, "ANIMATION" },
+		{ 13, "MISC" },
+		{ 16, "MAX_CHANNELS" },
+	};
+
+	(*g_Enums)["Network.PacketPriority"] = {
+		{ 0, "IMMEDIATE_PRIORITY" },
+		{ 1, "HIGH_PRIORITY" },
+		{ 2, "MEDIUM_PRIORITY" },
+		{ 3, "LOW_PRIORITY" },
+		{ 4, "NUMBER_OF_PRIORITIES" },
+	};
+
+	(*g_Enums)["Network.PacketReliability"] = {
+		{ 0, "UNRELIABLE" },
+		{ 1, "UNRELIABLE_SEQUENCED" },
+		{ 2, "RELIABLE" },
+		{ 3, "RELIABLE_ORDERED" },
+		{ 4, "RELIABLE_SEQUENCED" },
+		{ 5, "UNRELIABLE_WITH_ACK_RECEIPT" },
+		{ 6, "RELIABLE_WITH_ACK_RECEIPT" },
+		{ 7, "RELIABLE_ORDERED_WITH_ACK_RECEIPT" },
+		{ 8, "NUMBER_OF_RELIABILITIES" },
+	};
+
+	(*g_Enums)["ReverbFidelity"] = {
+		{ 0, "Low" },
+		{ 1, "Medium" },
+		{ 2, "High" },
+	};
+
+	(*g_Enums)["SActorSoundDefs.EDefinition"] = {
+		{ 0, "_NoSound" },
+	};
+
+	(*g_Enums)["SDoorSoundDefs.EDefinition"] = {
+		{ 0, "DoorOpen" },
+		{ 1, "DoorClose" },
+		{ 2, "DoorSlam" },
+		{ 3, "DoorOpenStop" },
+	};
+
+	(*g_Enums)["SFootIKEventData.EFoot"] = {
+		{ 0, "eLeft" },
+		{ 1, "eRight" },
+		{ 2, "eBoth" },
+	};
+
+	(*g_Enums)["STestStruct.ETestEnum"] = {
+		{ 3, "ETomato" },
+		{ 5, "EPotato" },
+	};
+
+	(*g_Enums)["SUITestData.ETestEnum"] = {
+		{ 1, "ETestEnum_Value_One" },
+		{ 2, "ETestEnum_Value_Two" },
+		{ 3, "ETestEnum_Value_Three" },
+	};
+
+	(*g_Enums)["SniperControllerConditionType"] = {
+		{ 0, "SCCT_Enabled" },
+		{ 1, "SCCT_PrecisionAim" },
+	};
+
+	(*g_Enums)["SoundPlayState"] = {
+		{ 0, "ePlaying" },
+		{ 1, "eLoopBreaking" },
+		{ 2, "eStopping" },
+	};
+
+	(*g_Enums)["TeleportActionType"] = {
+		{ 0, "STAY" },
+		{ 1, "TELEPORT" },
+		{ 2, "LEAVE_CROWD" },
+	};
+
+	(*g_Enums)["UIMapLayer.EUIMapLayerID"] = {
+		{ 0, "eUIMLI_UNSPECIFIED" },
+		{ 1, "eUIMLI_STAIRCASE" },
+		{ 2, "eUIMLI_AREA_UNDISCOVERED" },
+		{ 3, "eUIMLI_TEXT" },
+		{ 4, "eUIMLI_DROPPED_ITEMS_AND_DISGUISES" },
+		{ 5, "eUIMLI_NPC" },
+		{ 6, "eUIMLI_NORTH_INDICATOR" },
+		{ 7, "eUIMLI_SECURITY_CAMERA" },
+		{ 8, "eUIMLI_AGENCY_PICKUP" },
+		{ 9, "eUIMLI_OPPORTUNITY" },
+		{ 10, "eUIMLI_EXIT" },
+		{ 11, "eUIMLI_OBJECTIVE" },
+		{ 12, "eUIMLI_TARGET" },
+		{ 13, "eUIMLI_OPPONENT" },
+		{ 14, "eUIMLI_HERO" },
+	};
+
+	(*g_Enums)["WebSocketUtils.ECloseStatus"] = {
+		{ 1000, "eCS_NORMAL" },
+		{ 1001, "eCS_GOINGAWAY" },
+		{ 1002, "eCS_PROTOCOLERROR" },
+		{ 1003, "eCS_INVALIDDATA" },
+		{ 1004, "eCS_1004" },
+		{ 1005, "eCS_NOSTATUSRCVD" },
+		{ 1006, "eCS_ABNORMALCLOSURE" },
+		{ 1007, "eCS_INVALIDPAYLOAD" },
+		{ 1008, "eCS_POLICYVIOLATION" },
+		{ 1009, "eCS_MSGTOOBIG" },
+		{ 1010, "eCS_MANDATORYEXT" },
+		{ 1011, "eCS_INTERNALSRVERR" },
+		{ 1015, "eCS_TLSHANDSHAKE" },
+	};
+
+	(*g_Enums)["WebSocketUtils.EOpCode"] = {
+		{ 0, "eCONTINUATION" },
+		{ 1, "eTEXT" },
+		{ 2, "eBINARY" },
+		{ 8, "eCLOSE" },
+		{ 9, "ePING" },
+		{ 10, "ePONG" },
+		{ 15, "eNONE" },
+	};
+
+	(*g_Enums)["ZAIPerceptibleEntity.EReactionBehaviorMode"] = {
+		{ 0, "FullBehavior" },
+		{ 1, "StopOnInvestigate" },
+		{ 2, "StopOnReacted" },
+	};
+
+	(*g_Enums)["ZAISoundEvent.ELoudness"] = {
+		{ 0, "EAISEL_Default" },
+		{ 1, "EAISEL_VeryLow" },
+		{ 2, "EAISEL_Low" },
+		{ 3, "EAISEL_Normal" },
+		{ 4, "EAISEL_Loud" },
+		{ 5, "EAISEL_VeryLoud" },
+	};
+
+	(*g_Enums)["ZAT2Controller.EFoot"] = {
+		{ 0, "FOOT_LEFT" },
+		{ 1, "FOOT_RIGHT" },
+	};
+
+	(*g_Enums)["ZAT2Controller.EFootstepsMovementType"] = {
+		{ 0, "MOVEMENT_WALKING" },
+		{ 1, "MOVEMENT_WALKING_SLIDING" },
+		{ 2, "MOVEMENT_RUNNING" },
+		{ 3, "MOVEMENT_STANDING" },
+	};
+
+	(*g_Enums)["ZActBehaviorEntity.EApproachAlignment"] = {
+		{ 0, "AA_STRICT" },
+		{ 1, "AA_LOOSE" },
+	};
+
+	(*g_Enums)["ZActBehaviorEntity.EMovementType"] = {
+		{ 0, "MT_WALK" },
+		{ 1, "MT_SNAP" },
+		{ 2, "MT_IGNORE_POSITION" },
+	};
+
+	(*g_Enums)["ZActBehaviorEntity.ERotationAlignment"] = {
+		{ 0, "RA_NONE" },
+		{ 1, "RA_LOOSE" },
+		{ 2, "RA_EXACT" },
+	};
+
+	(*g_Enums)["ZActBehaviorEntity.EState"] = {
+		{ 0, "UNDEFINED" },
+		{ 1, "IDLE" },
+		{ 2, "STOPPING" },
+		{ 3, "PREPARING" },
+		{ 4, "MOVING" },
+		{ 5, "ENTERING" },
+		{ 6, "RUNNING" },
+		{ 7, "TIMEDOUT" },
+		{ 8, "COMPLETE" },
+	};
+
+	(*g_Enums)["ZActDurationCondition.EState"] = {
+		{ 0, "MOVING" },
+		{ 1, "ENTERING" },
+		{ 2, "PLAYING" },
+		{ 3, "STOPPING" },
+	};
+
+	(*g_Enums)["ZActStateCondition.EState"] = {
+		{ 0, "MOVING" },
+		{ 1, "ENTERING" },
+		{ 2, "PLAYING" },
+	};
+
+	(*g_Enums)["ZActorAccessoryItemCondition.EConditionTypes"] = {
+		{ 0, "ECT_HasInPool" },
+		{ 1, "ECT_HasAttached" },
+	};
+
+	(*g_Enums)["ZActorBoneAttachEntity.EResetMode"] = {
+		{ 0, "eAtBoneOrigin" },
+		{ 1, "eKeepOffset" },
+	};
+
+	(*g_Enums)["ZActorDebugEntity.EActorDebugColor"] = {
+		{ 0, "EDC_BLACK" },
+		{ 127, "EDC_DARK_RED" },
+		{ 255, "EDC_RED" },
+		{ 32512, "EDC_DARK_GREEN" },
+		{ 65280, "EDC_GREEN" },
+		{ 8323072, "EDC_DARK_BLUE" },
+		{ 8323199, "EDC_DARK_PINK" },
+		{ 16711680, "EDC_BLUE" },
+		{ 16711935, "EDC_PINK" },
+		{ 16777215, "EDC_WHITE" },
+	};
+
+	(*g_Enums)["ZActorInstanceEntity.EFFXMode"] = {
+		{ 0, "eFFX_MODE_DISABLE" },
+		{ 1, "eFFX_MODE_OVERWRITE" },
+	};
+
+	(*g_Enums)["ZActorKeywordCondition.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "ANY_TRUE_IF_NO_REQS" },
+	};
+
+	(*g_Enums)["ZActorKnowledgeCondition.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "ANY" },
+	};
+
+	(*g_Enums)["ZActorPicker.EKeywordEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZActorPickerEffectDrama.EEffectPhaseAction"] = {
+		{ 0, "EPA_START" },
+		{ 1, "EPA_LEAVE" },
+	};
+
+	(*g_Enums)["ZActorPickerEffectTemplate.EEffectPhaseAction"] = {
+		{ 0, "EPA_NONE" },
+		{ 1, "EPA_START_TEMPLATE" },
+		{ 2, "EPA_STOP_TEMPLATE" },
+	};
+
+	(*g_Enums)["ZActorPickerEffectTrack.EEffectPhaseAction"] = {
+		{ 0, "EPA_ATTACH" },
+		{ 1, "EPA_DETACH" },
+	};
+
+	(*g_Enums)["ZActorPickerFilterGroup.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZActorPickerFilterKeyword.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZActorProviderFilterKeyword.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZActorTensionEntity.ETensionCheckMode"] = {
+		{ 0, "ETCM_INSIDE_VOLUME_OR_LIST" },
+		{ 1, "ETCM_INSIDE_VOLUME_AND_LIST" },
+	};
+
+	(*g_Enums)["ZApproachOrder.EApproachStyle"] = {
+		{ 0, "AS_AUTO" },
+		{ 1, "AS_SPRINT" },
+		{ 2, "AS_JOG" },
+		{ 3, "AS_WALK" },
+	};
+
+	(*g_Enums)["ZAudioSequenceTrack.EPlaybackTarget"] = {
+		{ 0, "eNone" },
+		{ 1, "eTargetEntityAudioPlayer" },
+		{ 2, "eTargetEntityEmitter" },
+		{ 3, "ePreviewEmitter" },
+	};
+
+	(*g_Enums)["ZAvoidDangerousAreaGroup.EAvoidDangerousAreaGroupState"] = {
+		{ 0, "IGS_SelectDestination" },
+		{ 1, "IGS_Move" },
+		{ 2, "IGS_Jump" },
+		{ 3, "IGS_Wait" },
+		{ 4, "IGS_Completed" },
+		{ 5, "IGS_Max" },
+	};
+
+	(*g_Enums)["ZBoneAttachEntity.EResetMode"] = {
+		{ 0, "eAtBoneOrigin" },
+		{ 1, "eKeepOffset" },
+	};
+
+	(*g_Enums)["ZBoneWeightRotationEntity.eRotationAxises"] = {
+		{ 0, "AXIS_X" },
+		{ 1, "AXIS_Y" },
+		{ 2, "AXIS_Z" },
+	};
+
+	(*g_Enums)["ZBoxReflectionEntity.EBoundsType"] = {
+		{ 0, "eBox" },
+		{ 1, "eRoom" },
+	};
+
+	(*g_Enums)["ZBoxReflectionEntity.EType"] = {
+		{ 0, "eLocal" },
+		{ 1, "eFallback" },
+	};
+
+	(*g_Enums)["ZCausalNodeEntity.ECauseEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZCautiousBackupGroup.EGroupState"] = {
+		{ 0, "GS_DistanceField" },
+		{ 1, "GS_SendBackup" },
+		{ 2, "GS_Waiting" },
+		{ 3, "GS_Completed" },
+	};
+
+	(*g_Enums)["ZCautiousInvestigateGroup.EApproachOrderState"] = {
+		{ 0, "AOS_RequestHuntApproachNode" },
+		{ 1, "AOS_RequestLeaderApproachNode" },
+		{ 2, "AOS_WaitForApproachNode" },
+		{ 3, "AOS_RequestLOSNode" },
+		{ 4, "AOS_Ready" },
+		{ 5, "AOS_NoApproachNode" },
+	};
+
+	(*g_Enums)["ZCautiousInvestigateGroup.EAssistantState"] = {
+		{ 0, "AS_Waiting" },
+		{ 1, "AS_CalculateFields" },
+		{ 2, "AS_RequestNode" },
+		{ 3, "AS_Moving" },
+		{ 4, "AS_Investigating" },
+		{ 5, "AS_Max" },
+	};
+
+	(*g_Enums)["ZCautiousInvestigateGroup.EInvestigateGroupState"] = {
+		{ 0, "IGS_FindAssistant" },
+		{ 1, "IGS_PreAcknowledge" },
+		{ 2, "IGS_Acknowledge" },
+		{ 3, "IGS_Approach" },
+		{ 4, "IGS_Approaching" },
+		{ 5, "IGS_Investigating" },
+		{ 6, "IGS_DeadBody" },
+		{ 7, "IGS_Completed" },
+		{ 8, "IGS_Max" },
+	};
+
+	(*g_Enums)["ZCautiousSearchGroup.EAssistantState"] = {
+		{ 0, "AS_CalculateFields" },
+		{ 1, "AS_RequestNode" },
+		{ 2, "AS_Approach" },
+		{ 3, "AS_Approaching" },
+		{ 4, "AS_Act" },
+		{ 5, "AS_Acting" },
+	};
+
+	(*g_Enums)["ZCautiousSearchGroup.ESearchGroupState"] = {
+		{ 0, "SGS_Acknowledge" },
+		{ 1, "SGS_Approach" },
+		{ 2, "SGS_Approaching" },
+		{ 3, "SGS_Waiting" },
+		{ 4, "SGS_Completed" },
+	};
+
+	(*g_Enums)["ZChannelKeywordCondition.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "ANY_TRUE_IF_NO_REQS" },
+	};
+
+	(*g_Enums)["ZCharacterSpeakCondition.EState"] = {
+		{ 0, "Started" },
+		{ 1, "Playing" },
+		{ 2, "PlayingAndAudible" },
+		{ 3, "Completed" },
+		{ 4, "SubsSeenAndCompleted" },
+		{ 5, "Failed" },
+		{ 6, "Stopped" },
+	};
+
+	(*g_Enums)["ZConditionListEntity.EEvaluationType"] = {
+		{ 0, "ALL_TRUE" },
+		{ 1, "ANY_TRUE" },
+	};
+
+	(*g_Enums)["ZContextKillGuide.EContextKillType"] = {
+		{ 0, "eCKT_TOILET_DROWN" },
+		{ 1, "eCKT_SNAP_AND_TOSS" },
+		{ 2, "eCKT_PUSH" },
+		{ 3, "eCKT_NO_ANIMATION" },
+		{ 4, "eCKT_END" },
+	};
+
+	(*g_Enums)["ZContextKillGuide.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZContractObjectiveHudHintEntity.EObjectiveHintIcon"] = {
+		{ 0, "eNone" },
+		{ 1, "eSuitcase" },
+		{ 3, "eObjective_A" },
+		{ 4, "eObjective_B" },
+		{ 5, "eObjective_C" },
+		{ 6, "eObjective_D" },
+		{ 7, "eInfoIcon" },
+		{ 8, "eExclamationMark" },
+		{ 9, "eIntelIcon" },
+		{ 10, "eDiscoveryIcon" },
+		{ 11, "eDiscoveryIcon_A" },
+		{ 12, "eDiscoveryIcon_B" },
+		{ 13, "eDiscoveryIcon_C" },
+		{ 14, "eDiscoveryIcon_A_Compleed" },
+		{ 15, "eDiscoveryIcon_B_Compleed" },
+		{ 16, "eDiscoveryIcon_C_Compleed" },
+		{ 17, "eMissionObjective" },
+		{ 18, "eExitMissionIcon" },
+	};
+
+	(*g_Enums)["ZCoverPlane.ECoverSize"] = {
+		{ 0, "eLowCover" },
+		{ 1, "eMediumCover" },
+		{ 2, "eHighCover" },
+	};
+
+	(*g_Enums)["ZCoverPlane.ECoverType"] = {
+		{ 0, "eCoverOnly" },
+		{ 1, "eCoverAndRail" },
+		{ 2, "eRailOnly" },
+	};
+
+	(*g_Enums)["ZCrowdActorEntity.ECharacterSoundType"] = {
+		{ 0, "eSoundType_Male" },
+		{ 1, "eSoundType_Female" },
+		{ 2, "eSoundType_Female_Heels" },
+	};
+
+	(*g_Enums)["ZDeadBodySituation.ESituationFlavor"] = {
+		{ 0, "SF_None" },
+		{ 1, "SF_Unconscious" },
+		{ 2, "SF_DeadBody" },
+		{ 3, "SF_Accident" },
+	};
+
+	(*g_Enums)["ZDebugGizmoEntity.EDrawLayer"] = {
+		{ 0, "DL_DEFAULT" },
+		{ 1, "DL_LIGHT" },
+		{ 2, "DL_PARTICLES" },
+		{ 3, "DL_PARTITIONING" },
+		{ 4, "DL_DECALS" },
+		{ 5, "DL_CROWD" },
+		{ 6, "DL_PHYSICS" },
+		{ 7, "DL_HERO" },
+		{ 8, "DL_AI" },
+		{ 9, "DL_AI_GRID" },
+		{ 10, "DL_AI_SITUATION" },
+		{ 11, "DL_AI_AREA" },
+		{ 12, "DL_NPC_LOCOMOTION" },
+		{ 13, "DL_GAME" },
+		{ 14, "DL_ALIGNMENT" },
+		{ 15, "DL_ENGINE" },
+		{ 16, "DL_SOUND" },
+		{ 17, "DL_ANIMATION" },
+		{ 18, "DL_CLOTH" },
+		{ 19, "DL_SOUND_PARTITIONING" },
+		{ 20, "DL_UI" },
+	};
+
+	(*g_Enums)["ZDebugHM5GameTimeMultiplierEnt.eTMLDReason"] = {
+		{ 0, "eTMLDR_HintMessages" },
+		{ 1, "eTMLDR_Sequence" },
+		{ 2, "eTMLDR_ActionKillHeadShot" },
+		{ 3, "eTMLDR_ActionKillCCProp" },
+		{ 4, "eTMLDR_ActionKillExplosion" },
+		{ 5, "eTMLDR_ActionKillLastEnemyInEncounter" },
+		{ 6, "eTMLDR_ActionKillLastEnemyInCheckPoint" },
+		{ 7, "eTMLDR_NOTSET" },
+	};
+
+	(*g_Enums)["ZDebugSpatialEntity.EDrawLayer"] = {
+		{ 0, "DL_DEFAULT" },
+		{ 1, "DL_LIGHT" },
+		{ 2, "DL_PARTICLES" },
+		{ 3, "DL_PARTITIONING" },
+		{ 4, "DL_DECALS" },
+		{ 5, "DL_CROWD" },
+		{ 6, "DL_PHYSICS" },
+		{ 7, "DL_HERO" },
+		{ 8, "DL_AI" },
+		{ 9, "DL_AI_GRID" },
+		{ 10, "DL_AI_SITUATION" },
+		{ 11, "DL_NPC_LOCOMOTION" },
+		{ 12, "DL_GAME" },
+		{ 13, "DL_ALIGNMENT" },
+		{ 14, "DL_ENGINE" },
+		{ 15, "DL_SOUND" },
+		{ 16, "DL_ANIMATION" },
+		{ 17, "DL_CLOTH" },
+		{ 18, "DL_SOUND_PARTITIONING" },
+		{ 19, "DL_UI" },
+	};
+
+	(*g_Enums)["ZDebugTextEntity.EHorizontalAlignment"] = {
+		{ 0, "HA_CENTER" },
+		{ 1, "HA_LEFT" },
+		{ 2, "HA_RIGHT" },
+	};
+
+	(*g_Enums)["ZDebugTextEntity.EVerticalAlignment"] = {
+		{ 0, "VA_CENTER" },
+		{ 16, "VA_TOP" },
+		{ 32, "VA_BOTTOM" },
+	};
+
+	(*g_Enums)["ZDecalControllerEntity.ERotationType"] = {
+		{ 0, "eRotationDisable" },
+		{ 1, "eRotationAlignRay" },
+		{ 2, "eRotationRandom" },
+	};
+
+	(*g_Enums)["ZDecalControllerEntity.EScaleType"] = {
+		{ 0, "eScaleDisable" },
+		{ 1, "eScaleUniform" },
+		{ 2, "eScaleY" },
+	};
+
+	(*g_Enums)["ZDetectedInPrivateGroup.EInvestigateGroupState"] = {
+		{ 0, "IGS_Delay" },
+		{ 1, "IGS_Talk" },
+		{ 2, "IGS_Move" },
+		{ 3, "IGS_Wait" },
+		{ 4, "IGS_Completed" },
+		{ 5, "IGS_Max" },
+	};
+
+	(*g_Enums)["ZDistanceCondition.ECompareMethod"] = {
+		{ 0, "CM_GreaterOrEqualThan" },
+		{ 1, "CM_LessThan" },
+	};
+
+	(*g_Enums)["ZDistanceCondition.EObjectType"] = {
+		{ 0, "DT_ToCam" },
+		{ 1, "DT_ToPlayer" },
+	};
+
+	(*g_Enums)["ZDramaSituationEntity.EReentryBehavior"] = {
+		{ 0, "RB_CONTINUE" },
+		{ 1, "RB_TERMINATE" },
+		{ 2, "RB_RESTART" },
+		{ 3, "RB_RECASTANDRESTART" },
+		{ 4, "RB_RECASTANDCONTINUE" },
+	};
+
+	(*g_Enums)["ZEntityPropertyReplica.EReplicationStrategy"] = {
+		{ 0, "REP_ALL_PROPERTIES" },
+		{ 1, "REP_ALL_EXCEPT" },
+		{ 2, "REP_ONLY_SPECIFIC" },
+	};
+
+	(*g_Enums)["ZEscortSituation2Entity.EEscortState"] = {
+		{ 0, "EES_Idle" },
+		{ 1, "EES_Evaluate" },
+		{ 2, "EES_Escorting" },
+		{ 3, "EES_Searching" },
+		{ 4, "EES_Intermediate" },
+	};
+
+	(*g_Enums)["ZEscortSituation2Entity.ETargetState"] = {
+		{ 0, "ETS_Unknown" },
+		{ 1, "ETS_NoTarget" },
+		{ 2, "ETS_RunningActBehavior" },
+		{ 3, "ETS_RunningDummyBehavior" },
+		{ 4, "ETS_RunningOtherBehavior" },
+		{ 5, "ETS_Dead" },
+		{ 6, "ETS_TargetIsHitman" },
+	};
+
+	(*g_Enums)["ZEscortSituationEntity.EEscortState"] = {
+		{ 0, "EES_Idle" },
+		{ 1, "EES_Evaluate" },
+		{ 2, "EES_Escorting" },
+		{ 3, "EES_Searching" },
+		{ 4, "EES_Intermediate" },
+	};
+
+	(*g_Enums)["ZEscortSituationEntity.ETargetState"] = {
+		{ 0, "ETS_Unknown" },
+		{ 1, "ETS_NoTarget" },
+		{ 2, "ETS_RunningActBehavior" },
+		{ 3, "ETS_RunningDummyBehavior" },
+		{ 4, "ETS_RunningOtherBehavior" },
+		{ 5, "ETS_Dead" },
+		{ 6, "ETS_TargetIsHitman" },
+	};
+
+	(*g_Enums)["ZFriskSuspectGroup.EAssistantState"] = {
+		{ 0, "AS_Waiting" },
+		{ 1, "AS_Approach" },
+		{ 2, "AS_Approaching" },
+		{ 3, "AS_Covering" },
+	};
+
+	(*g_Enums)["ZFriskSuspectGroup.EHitmanGreetState"] = {
+		{ 0, "HGS_NotGreeted" },
+		{ 1, "HGS_Greeted" },
+		{ 2, "HGS_ShrugOff" },
+	};
+
+	(*g_Enums)["ZGetHelpGroup.EInvestigateGroupState"] = {
+		{ 0, "IGS_Acknowledge" },
+		{ 1, "IGS_WaitForAckDialog" },
+		{ 2, "IGS_RunToGuard" },
+		{ 3, "IGS_ReportToHitman" },
+		{ 4, "IGS_ReportToGuard" },
+		{ 5, "IGS_StartMoveBack" },
+		{ 6, "IGS_MoveBack" },
+		{ 7, "IGS_Investigate" },
+		{ 8, "IGS_Completed" },
+		{ 9, "IGS_Max" },
+	};
+
+	(*g_Enums)["ZHM5AgilityEventConsumer.EEvent"] = {
+		{ 0, "EAE_LEFTHAND" },
+		{ 1, "EAE_RIGHTHAND" },
+		{ 2, "EAE_LEFTLEG" },
+		{ 3, "EAE_RIGHTLEG" },
+	};
+
+	(*g_Enums)["ZHM5BodyContainer.EBCAnimSet"] = {
+		{ 0, "BC_CONTAINER_STANDARD" },
+		{ 1, "BC_CONTAINER_WOODCHIPPER" },
+		{ 2, "BC_CAR_STANDARD_TRUNK" },
+		{ 3, "BC_CONTAINER_CLOSET" },
+		{ 4, "BC_CONTAINER_LAUNDRYCHUTE" },
+	};
+
+	(*g_Enums)["ZHM5BodyContainer.EBCBodyMode"] = {
+		{ 0, "BC_1_VICTIM" },
+		{ 1, "BC_2_VICTIMS" },
+		{ 2, "BC_1_VICTIM_FLUSHABLE" },
+		{ 3, "BC_1_VICTIM_AUTOFLUSHABLE" },
+	};
+
+	(*g_Enums)["ZHM5BodyContainer.EBCState"] = {
+		{ 0, "BC_CLOSED" },
+		{ 1, "BC_OPEN" },
+		{ 2, "BC_FLUSH" },
+		{ 3, "BC_OPENING" },
+		{ 4, "BC_CLOSING" },
+		{ 5, "BC_FLUSHING" },
+	};
+
+	(*g_Enums)["ZHM5BodyContainer.eBCCloseMode"] = {
+		{ 0, "BC_AUTOCLOSE" },
+		{ 1, "BC_MANUALCLOSE" },
+	};
+
+	(*g_Enums)["ZHM5BodySoundEventConsumer.EAnimSoundBody"] = {
+		{ 0, "eHM5AnimSoundBody_Buttocks" },
+		{ 1, "eHM5AnimSoundBody_Back" },
+		{ 2, "eHM5AnimSoundBody_Head" },
+		{ 3, "eHM5AnimSoundBody_Knee_L" },
+		{ 4, "eHM5AnimSoundBody_Knee_R" },
+		{ 5, "eHM5AnimSoundBody_Elbow_L" },
+		{ 6, "eHM5AnimSoundBody_Elbow_R" },
+		{ 7, "eHM5AnimSoundBody_Hand_L" },
+		{ 8, "eHM5AnimSoundBody_Hand_R" },
+		{ 9, "eHM5AnimSoundBody_Foot_L" },
+		{ 10, "eHM5AnimSoundBody_Foot_R" },
+		{ 11, "eHM5AnimSoundBody_Shoulder_L" },
+		{ 12, "eHM5AnimSoundBody_Shoulder_R" },
+		{ 13, "eHM5AnimSoundBody_RollFwd" },
+		{ 14, "eHM5AnimSoundBody_RollSide" },
+	};
+
+	(*g_Enums)["ZHM5ContextActionEntity.EInteraction"] = {
+		{ 0, "eIT_RotateLeftStick" },
+		{ 1, "eIT_AutoComplete" },
+		{ 2, "eIT_NoInteraction" },
+	};
+
+	(*g_Enums)["ZHM5CrowdGenericEventConsumer.EEvent"] = {
+		{ 0, "eFootstep" },
+		{ 1, "eClothRustle" },
+		{ 2, "ePushReaction" },
+		{ 3, "ePanic" },
+		{ 4, "eGeneric00" },
+		{ 5, "eGeneric01" },
+		{ 6, "eGeneric02" },
+		{ 7, "eGeneric03" },
+	};
+
+	(*g_Enums)["ZHM5DynamicRayCastEntity.ECollideType"] = {
+		{ 0, "eAll" },
+		{ 1, "eStaticOnly" },
+		{ 2, "eDynamicOnly" },
+		{ 3, "eBaseCharacter" },
+		{ 4, "eHitman" },
+		{ 5, "eActor" },
+	};
+
+	(*g_Enums)["ZHM5FaceFXReactionEventConsumer.EEvent"] = {
+		{ 0, "eHitByBullet" },
+		{ 1, "eFireRegularWeapon" },
+		{ 2, "eReloadRegularWeapon" },
+		{ 3, "eFireHeavyWeapon" },
+		{ 4, "eReloadHeavyWeapon" },
+		{ 5, "eCCAttacking" },
+		{ 6, "eCCGettingHit" },
+		{ 7, "eCoverDodgebulletLeft" },
+		{ 8, "eCoverDodgebulletRight" },
+		{ 9, "eReactToExplosion" },
+	};
+
+	(*g_Enums)["ZHM5FaceFXSpecificEventConsumer.EEvent"] = {
+		{ 0, "eNone" },
+		{ 1, "eGetInCombatCoverExhalation" },
+		{ 2, "eLeaveCombatCoverExhalation" },
+		{ 3, "eAgilityStrainedInhaleExhale" },
+		{ 4, "eAgilityGroan" },
+		{ 5, "eCloseCombatAttackSnarl" },
+		{ 6, "eCloseCombatStainedGroan" },
+		{ 7, "eCloseCombatSilentKillShush" },
+	};
+
+	(*g_Enums)["ZHM5ForceCover.EFaceDirection"] = {
+		{ 0, "eFaceLeft" },
+		{ 1, "eFaceRight" },
+	};
+
+	(*g_Enums)["ZHM5GenericEventConsumer.EEvent"] = {
+		{ 0, "eGeneric00" },
+		{ 1, "eGeneric01" },
+		{ 2, "eGeneric02" },
+		{ 3, "eGeneric03" },
+		{ 4, "eGeneric04" },
+		{ 5, "eGeneric05" },
+		{ 6, "eGeneric06" },
+		{ 7, "eGeneric07" },
+	};
+
+	(*g_Enums)["ZHM5HIKEventConsumer.EBlend"] = {
+		{ 0, "eBlendIn" },
+		{ 1, "eBlendOut" },
+		{ 2, "eInstantOn" },
+		{ 3, "eInstantOff" },
+	};
+
+	(*g_Enums)["ZHM5HIKEventConsumer.EEffector"] = {
+		{ 0, "eLeftHand" },
+		{ 1, "eRightHand" },
+	};
+
+	(*g_Enums)["ZHM5HitmanHealthModifier.EHealthDrainType"] = {
+		{ 0, "eRemoveHealthInstantly" },
+		{ 1, "eDecreaseHealthToValue" },
+	};
+
+	(*g_Enums)["ZHM5HitmanHealthModifier.EHealthValue"] = {
+		{ 0, "eHealth0" },
+		{ 10, "eHealth10" },
+		{ 20, "eHealth20" },
+		{ 30, "eHealth30" },
+		{ 40, "eHealth40" },
+		{ 50, "eHealth50" },
+		{ 60, "eHealth60" },
+		{ 70, "eHealth70" },
+		{ 80, "eHealth80" },
+		{ 90, "eHealth90" },
+		{ 100, "eHealth100" },
+	};
+
+	(*g_Enums)["ZHM5IndicatorManager.EIndicatorType"] = {
+		{ 0, "eActorAmbient" },
+		{ 1, "eActorAlertedLow" },
+		{ 2, "eActorAlertedHigh" },
+		{ 3, "eActorArrest" },
+		{ 4, "eActorCombat" },
+		{ 5, "eExplosion" },
+		{ 6, "eObjective" },
+		{ 7, "ePointOfInterest" },
+		{ 8, "eContractExit" },
+		{ 9, "eEasterActor" },
+	};
+
+	(*g_Enums)["ZHM5Item.EKeywordEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZHM5Item.EUseTypes"] = {
+		{ 0, "EUT_CantUse" },
+		{ 1, "EUT_Toggle" },
+		{ 2, "EUT_TurnOn" },
+	};
+
+	(*g_Enums)["ZHM5ItemInteractionEventConsumer.EHM5SoundItemInteractionEvent"] = {
+		{ 0, "EIIE_ItemImpactBack" },
+		{ 1, "EIIE_ItemImpactFront" },
+		{ 2, "EIIE_ImpactLow" },
+		{ 3, "EIIE_ItemPullOut" },
+		{ 4, "EIIE_ItemOnDeadlyThrow" },
+		{ 5, "EIIE_ItemSlitThroat" },
+		{ 6, "EIIE_ItemSoundGeneric01" },
+		{ 7, "EIIE_ItemSoundGeneric02" },
+		{ 8, "EIIE_ItemSoundGeneric03" },
+	};
+
+	(*g_Enums)["ZHM5LedgeMount.EFaceDirection"] = {
+		{ 0, "eFaceFront" },
+		{ 1, "eFaceLeft" },
+		{ 2, "eFaceRight" },
+	};
+
+	(*g_Enums)["ZHM5LedgeMount.ELedgeEndState"] = {
+		{ 0, "eHang" },
+		{ 1, "eStand" },
+	};
+
+	(*g_Enums)["ZHM5ValueEntity_bool.EForwardRule"] = {
+		{ 0, "eAlways" },
+		{ 1, "eValueChanged" },
+	};
+
+	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioClass"] = {
+		{ 0, "eWBC_AudioClass_AssaultRifle" },
+		{ 1, "eWBC_AudioClass_Pistol" },
+		{ 2, "eWBC_AudioClass_Shotgun" },
+		{ 3, "eWBC_AudioClass_SMG" },
+		{ 4, "eWBC_AudioClass_SniperRifle" },
+	};
+
+	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioExoticType"] = {
+		{ 0, "eWBC_AudioExoticType_MiniPistol" },
+		{ 1, "eWBC_AudioExoticType_OneHandSpinReloadShotgun" },
+		{ 2, "eWBC_AudioExoticType_TranquilizerDartPistol" },
+		{ 3, "eWBC_AudioExoticType_Walter2000SniperRifle" },
+		{ 4, "eWBC_AudioExoticType_ShootingRange_NPCAssaultRifle" },
+		{ 32768, "eWBC_AudioExoticType_None" },
+	};
+
+	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFamily"] = {
+		{ 0, "eWBC_AudioFamily_Exotics" },
+		{ 1, "eWBC_AudioFamily_Heavy" },
+		{ 2, "eWBC_AudioFamily_Light" },
+		{ 3, "eWBC_AudioFamily_NPC" },
+		{ 4, "eWBC_AudioFamily_Standard" },
+	};
+
+	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFireType"] = {
+		{ 0, "eWBC_AudioFireType_Full_Automatic" },
+		{ 1, "eWBC_AudioFireType_Single" },
+	};
+
+	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioHeadTailType"] = {
+		{ 0, "eWBC_AudioHeadTailType_DryFire" },
+		{ 1, "eWBC_AudioHeadTailType_Normal" },
+		{ 2, "eWBC_AudioHeadTailType_NormalSweetener" },
+		{ 3, "eWBC_AudioHeadTailType_Silenced" },
+		{ 4, "eWBC_AudioHeadTailType_SilencedSweetener" },
+	};
+
+	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioImpactType"] = {
+		{ 0, "eWBC_AudioImpactType_Normal" },
+		{ 1, "eWBC_AudioImpactType_Sweetener" },
+	};
+
+	(*g_Enums)["ZHM5WeaponEventConsumer.EAnimWeapon"] = {
+		{ 0, "eHM5Weapon_HideClip" },
+		{ 1, "eHM5Weapon_ShowClip" },
+		{ 2, "eHM5Weapon_SpawnPhysicsClip" },
+		{ 3, "eHM5Weapon_EjectCartridge" },
+	};
+
+	(*g_Enums)["ZHUDTimerInstance.ETimeFormatChoice"] = {
+		{ 0, "YES" },
+		{ 1, "NO" },
+		{ 2, "AUTO" },
+	};
+
+	(*g_Enums)["ZHUDUIRoot.EHUDVisibility"] = {
+		{ 0, "eHV_INSTANT_OFF" },
+		{ 1, "eHV_FADE_OUT" },
+		{ 2, "eHV_FADE_IN" },
+		{ 3, "eHV_INSTANT_ON" },
+	};
+
+	(*g_Enums)["ZHeroBoneAttachEntity.EResetMode"] = {
+		{ 0, "eAtBoneOrigin" },
+		{ 1, "eKeepOffset" },
+	};
+
+	(*g_Enums)["ZHeroEscortSituation2Entity.EEscortState"] = {
+		{ 0, "EES_Idle" },
+		{ 1, "EES_Evaluate" },
+		{ 2, "EES_Escorting" },
+		{ 3, "EES_Intermediate" },
+		{ 4, "EES_OutOfRange" },
+	};
+
+	(*g_Enums)["ZHeroEscortSituation2Entity.ETargetState"] = {
+		{ 0, "ETS_Unknown" },
+		{ 1, "ETS_NoTarget" },
+		{ 2, "ETS_RunningActBehavior" },
+		{ 3, "ETS_RunningDummyBehavior" },
+		{ 4, "ETS_RunningOtherBehavior" },
+		{ 5, "ETS_Dead" },
+		{ 6, "ETS_TargetIsHitman" },
+	};
+
+	(*g_Enums)["ZHeroEscortSituationEntity.EEscortState"] = {
+		{ 0, "EES_Idle" },
+		{ 1, "EES_Evaluate" },
+		{ 2, "EES_Escorting" },
+		{ 3, "EES_Intermediate" },
+		{ 4, "EES_OutOfRange" },
+	};
+
+	(*g_Enums)["ZHeroEscortSituationEntity.ETargetState"] = {
+		{ 0, "ETS_Unknown" },
+		{ 1, "ETS_NoTarget" },
+		{ 2, "ETS_RunningActBehavior" },
+		{ 3, "ETS_RunningDummyBehavior" },
+		{ 4, "ETS_RunningOtherBehavior" },
+		{ 5, "ETS_Dead" },
+		{ 6, "ETS_TargetIsHitman" },
+	};
+
+	(*g_Enums)["ZHeroInventoryAction.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZHeroKeywordCondition.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "ANY_TRUE_IF_NO_REQS" },
+	};
+
+	(*g_Enums)["ZHttpUrl.EVerb"] = {
+		{ 0, "eNONE" },
+		{ 1, "eGET" },
+		{ 2, "ePOST" },
+		{ 3, "ePUT" },
+		{ 4, "eHEAD" },
+	};
+
+	(*g_Enums)["ZInputListenerActorPool.eInputListenerButtons"] = {
+		{ 0, "EILB_UP" },
+		{ 1, "EILB_LEFT" },
+		{ 2, "EILB_DOWN" },
+		{ 3, "EILB_RIGHT" },
+	};
+
+	(*g_Enums)["ZInputListenerAxisEntity.eInputListenerAxes"] = {
+		{ 0, "EILA_HORIZONTAL" },
+		{ 1, "EILA_VERTICAL" },
+		{ 2, "EILA_TRIGGER_1" },
+		{ 3, "EILA_TRIGGER_2" },
+	};
+
+	(*g_Enums)["ZInputListenerButtonEntity.eInputListenerButtons"] = {
+		{ 0, "EILB_UP" },
+		{ 1, "EILB_LEFT" },
+		{ 2, "EILB_DOWN" },
+		{ 3, "EILB_RIGHT" },
+	};
+
+	(*g_Enums)["ZInputListenerDpadEntity.eInputListenerDpad"] = {
+		{ 0, "EILDP_UP" },
+		{ 1, "EILDP_LEFT" },
+		{ 2, "EILDP_DOWN" },
+		{ 3, "EILDP_RIGHT" },
+	};
+
+	(*g_Enums)["ZInteractionData.EFilterResult"] = {
+		{ 0, "EFR_REQUESTED" },
+		{ 1, "EFR_ENABLE_INTERACTION" },
+		{ 2, "EFR_EXPANDED_NOT_INTERACTABLE" },
+		{ 3, "EFR_COLLAPSED_CANT_OPERATE" },
+		{ 4, "EFR_COLLAPSED_PRIORITY" },
+		{ 5, "EFR_COLLAPSED_GAMESTATE" },
+		{ 6, "EFR_COLLAPSED_ACTION_FILTER" },
+		{ 7, "EFR_REJECTED_OTHER" },
+		{ 8, "EFR_REJECTED_OUTOFRANGE" },
+		{ 9, "EFR_REJECTED_OCCLUDED" },
+		{ 10, "EFR_REJECTED_OUTOFVIEW" },
+		{ 11, "EFR_REJECTED_GAMESTATE" },
+		{ 12, "EFR_REJECTED_ACTION_FILTER" },
+		{ 13, "EFR_REJECTED_INVALIDDATA" },
+		{ 14, "EFR_REJECTED_PRIORITY" },
+	};
+
+	(*g_Enums)["ZInteractionEventConsumer.EEvent"] = {
+		{ 0, "eActivate" },
+		{ 1, "eRH_Place" },
+		{ 2, "eRH_Retrieve" },
+		{ 3, "eRH_Swap" },
+		{ 4, "eRH_Show" },
+		{ 5, "eRH_Hide" },
+		{ 6, "eLH_Place" },
+		{ 7, "eLH_Retrieve" },
+		{ 8, "eLH_Swap" },
+		{ 9, "eLH_Show" },
+		{ 10, "eLH_Hide" },
+		{ 11, "eObjectEvent01" },
+		{ 12, "eObjectEvent02" },
+		{ 13, "eObjectEvent03" },
+		{ 14, "eObjectEvent04" },
+		{ 15, "eSoundEvent01" },
+		{ 16, "eSoundEvent02" },
+		{ 17, "eSoundEvent03" },
+		{ 18, "eSoundEvent04" },
+	};
+
+	(*g_Enums)["ZInvestigateCautiousSituation.EBystanderState"] = {
+		{ 0, "BS_SelectCandidate" },
+		{ 1, "BS_SelectPoint" },
+		{ 2, "BS_SearchDangerField" },
+	};
+
+	(*g_Enums)["ZInvestigateCautiousSituation.ESituationState"] = {
+		{ 0, "SS_Main" },
+		{ 1, "SS_StandDownPending" },
+		{ 2, "SS_StandDown" },
+	};
+
+	(*g_Enums)["ZInvestigateDisguiseGroup.EState"] = {
+		{ 0, "eInit" },
+		{ 1, "eGuardBanter" },
+		{ 2, "eAcknowledge" },
+		{ 3, "eMain" },
+		{ 4, "eSearch" },
+		{ 5, "eMoveback" },
+		{ 6, "eStandDown" },
+		{ 7, "eEscalate" },
+		{ 8, "eDone" },
+	};
+
+	(*g_Enums)["ZItemSpawner.EPhysicsMode"] = {
+		{ 0, "EPM_DEFINED_BY_ITEM" },
+		{ 1, "EPM_DYNAMIC" },
+		{ 2, "EPM_SLEEPING" },
+		{ 3, "EPM_KINEMATIC" },
+	};
+
+	(*g_Enums)["ZKeywordCondition.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "ANY_TRUE_IF_NO_REQS" },
+		{ 4, "EQUAL" },
+		{ 5, "GREATER" },
+		{ 6, "LESS" },
+	};
+
+	(*g_Enums)["ZLeadEscortSituationEntity.EEscortState"] = {
+		{ 0, "EES_Idle" },
+		{ 1, "EES_Evaluate" },
+		{ 2, "EES_Escorting" },
+		{ 3, "EES_Intermediate" },
+	};
+
+	(*g_Enums)["ZLeadEscortSituationEntity.ETargetState"] = {
+		{ 0, "ETS_Unknown" },
+		{ 1, "ETS_NoTarget" },
+		{ 2, "ETS_RunningActBehavior" },
+		{ 3, "ETS_RunningDummyBehavior" },
+		{ 4, "ETS_RunningOtherBehavior" },
+		{ 5, "ETS_Dead" },
+		{ 6, "ETS_TargetIsHitman" },
+	};
+
+	(*g_Enums)["ZLogicMultipleGate.EGateType"] = {
+		{ 0, "eFireEveryTime" },
+		{ 1, "eFirePortOnce" },
+		{ 2, "eFireOnce" },
+	};
+
+	(*g_Enums)["ZLookAtLogic.EAxisSelect"] = {
+		{ 0, "eX" },
+		{ 1, "eX_NEG" },
+		{ 2, "eY" },
+		{ 3, "eY_NEG" },
+		{ 4, "eZ" },
+		{ 5, "eZ_NEG" },
+	};
+
+	(*g_Enums)["ZMenuSliderNavigationEntity.ESliderInputMode"] = {
+		{ 0, "E_HORIZONTAL" },
+		{ 1, "E_VERTICAL" },
+	};
+
+	(*g_Enums)["ZMirrorEntity.EMirrorQuality"] = {
+		{ 0, "QUALITY_LOW" },
+		{ 1, "QUALITY_MEDIUM" },
+		{ 2, "QUALITY_HIGH" },
+		{ 3, "QUALITY_LEAVE" },
+	};
+
+	(*g_Enums)["ZMoveToOrder.EMoveSpeed"] = {
+		{ 0, "MS_AUTO" },
+		{ 1, "MS_SPRINT" },
+		{ 2, "MS_JOG" },
+		{ 3, "MS_WALK" },
+	};
+
+	(*g_Enums)["ZMoveToPositionBehaviorEntity.EApproachAlignment"] = {
+		{ 0, "AA_STRICT" },
+		{ 1, "AA_LOOSE" },
+	};
+
+	(*g_Enums)["ZMoveToPositionBehaviorEntity.EMovementType"] = {
+		{ 0, "MT_WALK" },
+		{ 1, "MT_SNAP" },
+		{ 2, "MT_IGNORE_POSITION" },
+	};
+
+	(*g_Enums)["ZMoveToPositionBehaviorEntity.ERotationAlignment"] = {
+		{ 0, "RA_NONE" },
+		{ 1, "RA_LOOSE" },
+		{ 2, "RA_EXACT" },
+	};
+
+	(*g_Enums)["ZOnlineManager.EError"] = {
+		{ 0, "eNONE" },
+		{ 1000, "eGENERAL" },
+		{ 1001, "eNETWORK_UNKNOWN" },
+		{ 1002, "eNETWORK_SEND_FAILED" },
+		{ 1003, "eAPI_VERSION" },
+		{ 1004, "eAUTHENTICATION_UNAUTHORIZED" },
+		{ 1005, "eAUTHENTICATION_PROXY" },
+		{ 1006, "eAUTHENTICATION_SERVER_ERROR" },
+		{ 1007, "eAUTHENTICATION_USER_GONE" },
+		{ 1008, "eAUTHENTICATION_STEAM_GENERAL" },
+		{ 1009, "eAUTHENTICATION_PSN_GENERAL" },
+		{ 1010, "eAUTHENTICATION_PSN_NP_CHECK" },
+		{ 1011, "eAUTHENTICATION_NO_PRIMARY_USER" },
+		{ 1012, "eAUTHENTICATION_XBLIVE_GENERAL" },
+		{ 1013, "eAUTHENTICATION_XBLIVE_SIGNED_OUT" },
+		{ 1014, "eAUTHENTICATION_XBLIVE_USER_CHANGED" },
+		{ 1015, "ePLATFORM_USERINFO" },
+		{ 1016, "eCONFIGURATION" },
+		{ 1017, "eENTITLEMENTS" },
+		{ 1018, "ePROFILE" },
+		{ 1019, "eGAME_SESSION" },
+		{ 1020, "eGENERAL_SERVER_ERROR" },
+		{ 1021, "eGENERAL_SERVER_BUSY" },
+		{ 1022, "eGENERAL_CLIENT_ERROR" },
+		{ 1023, "eDYNAMIC_RESOURCES_CONFIG_ERROR" },
+		{ 1024, "eDYNAMIC_RESOURCES_UPDATEFAILED" },
+		{ 1025, "eDYNAMIC_RESOURCES_OUTDATED" },
+		{ 1026, "eCANCELLED" },
+		{ 1027, "eERROR_MAX" },
+	};
+
+	(*g_Enums)["ZOnlineManager.EState"] = {
+		{ 1, "eTRIGGER_FLOW" },
+		{ 2, "eOFFLINE" },
+		{ 3, "eSUSPEND" },
+		{ 4, "eDISCONNECTED" },
+		{ 5, "eBEGIN_CONNECTION_FLOW" },
+		{ 6, "ePREAUTHENTICATE" },
+		{ 7, "eFETCH_API_VERSION" },
+		{ 8, "eFETCHING_API_VERSION" },
+		{ 9, "eAPI_VERSION_RECEIVED" },
+		{ 10, "eONLINE_CONSENT_CONFIRMATION" },
+		{ 11, "ePREAUTHENTICATION_ENTITLEMENTS_SYNCHRONIZE_INPROGRESS" },
+		{ 12, "ePREAUTHENTICATION_ENTITLEMENTS_SYNCHRONIZE_DONE" },
+		{ 13, "eAUTHENTICATING" },
+		{ 14, "eAUTHENTICATION_RECEIVED" },
+		{ 15, "eENTITLEMENTS_SYNCHRONIZE_INPROGRESS" },
+		{ 16, "eENTITLEMENTS_SYNCHRONIZE_DONE" },
+		{ 17, "eAUTHENTICATING_GAMESERVICE" },
+		{ 18, "eAUTHENTICATION_GAMESERVICE_RECEIVED" },
+		{ 19, "eFETCHING_OFFLINE_CACHE_DB_DIFF" },
+		{ 20, "eFETCHING_OFFLINE_CACHE_DB_DIFF_RECEIVED" },
+		{ 21, "eFETCHING_DYNAMIC_RESOURCES" },
+		{ 22, "eDYNAMIC_RESOURCES_MOUNTED" },
+		{ 23, "eCHECK_FOR_DLC_UPDATES" },
+		{ 24, "eFETCHING_PLATFORM_USERINFO" },
+		{ 25, "ePLATFORM_USERINFO_RECEIVED" },
+		{ 26, "eFETCHING_CONFIGURATION" },
+		{ 27, "eCONFIGURATION_RECEIVED" },
+		{ 28, "eFETCHING_PROFILE" },
+		{ 29, "ePROFILE_RECEIVED" },
+		{ 30, "eSYNCHRONIZING_PROFILE" },
+		{ 31, "ePROFILE_SYNCHRONIZED" },
+		{ 32, "eRETRIEVING_EVENTS" },
+		{ 33, "eEVENTS_RETRIEVED" },
+		{ 34, "eWAITING_FOR_SYNCHRONIZING_EVENTS" },
+		{ 35, "eCONNECTED" },
+		{ 36, "eCONNECT_TO_GAME_SESSION" },
+		{ 37, "eCONNECTING_TO_GAME_SESSION" },
+		{ 38, "eRETRY_SAVE_EVENTS" },
+		{ 39, "eRETRY_SAVE_EVENTS_INTERNAL" },
+		{ 40, "eREAUTHENTICATE" },
+		{ 41, "eSTATE_MAX" },
+	};
+
+	(*g_Enums)["ZOperatorBool.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+
+	(*g_Enums)["ZPIPMessageEntity.EIcon"] = {
+		{ 0, "IconStart" },
+		{ 1, "MagnifyingGlass" },
+		{ 2, "ArrowRight" },
+		{ 3, "ExclamationMark" },
+		{ 4, "Target" },
+		{ 5, "SurveillanceCamera" },
+		{ 6, "Concealed" },
+		{ 7, "QuestionMark" },
+		{ 8, "IconEnd" },
 	};
 
 	(*g_Enums)["ZPathfinderDebugEntity.EDebugTestType"] = {
@@ -8990,145 +8491,644 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "REGION_MASK_WITHIN_RADIUS" },
 	};
 
-	(*g_Enums)["ECombatZoneState"] = {
-		{ 0, "CZS_Inactive" },
-		{ 1, "CZS_Triggered" },
-		{ 2, "CZS_Engaged" },
+	(*g_Enums)["ZPatrolBehaviorEntity.EMovementType"] = {
+		{ 0, "MT_WALK" },
+		{ 1, "MT_SNAP" },
+		{ 2, "MT_IGNORE_POSITION" },
 	};
 
-	(*g_Enums)["ELocale"] = {
-		{ 0, "Locale_En" },
-		{ 1, "Locale_Fr" },
-		{ 2, "Locale_It" },
-		{ 3, "Locale_De" },
-		{ 4, "Locale_Es" },
-		{ 5, "Locale_Ru" },
-		{ 6, "Locale_Mx" },
-		{ 7, "Locale_Br" },
-		{ 8, "Locale_Pl" },
-		{ 9, "Locale_Cn" },
-		{ 10, "Locale_Jp" },
-		{ 11, "Locale_Tc" },
+	(*g_Enums)["ZPatrolBehaviorEntity.ERotationAlignment"] = {
+		{ 0, "RA_NONE" },
+		{ 1, "RA_LOOSE" },
+		{ 2, "RA_EXACT" },
 	};
 
-	(*g_Enums)["EGameUIMenu"] = {
-		{ 0, "eUIMenu_IntroMenu" },
-		{ 1, "eUIMenu_PauseMenu" },
-		{ 2, "eUIMenu_PhoneMenu" },
-		{ 3, "eUIMenu_MapMenu" },
-		{ 4, "eUIMenu_ModalDialogMenu" },
-		{ 5, "eUIMenu_GameplayMenu" },
-		{ 6, "eUIMenu_InventorySelectorMenu" },
-		{ 7, "eUIMenu_ActionSelectorMenu" },
-		{ 8, "eUIMenu_ActionSelectorInventoryMenu" },
-		{ 9, "eUIMenu_IntelSelectorMenu" },
-		{ 10, "eUIMenu_NotebookMenu" },
-		{ 11, "eUIMenu_LogbookMenu" },
-		{ 12, "eUIMenu_TutorialMenu" },
-		{ 13, "eUIMenu_SplashHintMenu" },
-		{ 14, "eUIMenu_EmoteMenu" },
-		{ 15, "eUIMenu_Count" },
+	(*g_Enums)["ZPointOfInterestEntity.EPOIType"] = {
+		{ 0, "ePOIT_Invalid" },
+		{ 1, "ePOIT_Glance" },
+		{ 2, "ePOIT_Inspect" },
+		{ 3, "ePOIT_Stare" },
 	};
 
-	(*g_Enums)["EAutoScanMode"] = {
-		{ 0, "ASM_GEOMETRY" },
-		{ 1, "ASM_VOLUMEBOX" },
-	};
-
-	(*g_Enums)["ENetRole"] = {
-		{ 0, "None" },
-		{ 1, "Master" },
-		{ 2, "Client" },
-	};
-
-	(*g_Enums)["EActorCCPreset"] = {
-		{ 0, "ACCP_CivilianFemale" },
-		{ 1, "ACCP_CivilianeMale" },
-		{ 2, "ACCP_GuardMale" },
-		{ 3, "ACCP_GuardMaleElite" },
-		{ 4, "ACCP_GuardMaleSuperElite" },
-		{ 5, "ACCP_Ignore" },
-		{ 6, "ACCP_None" },
-	};
-
-	(*g_Enums)["EItemRequirement"] = {
-		{ 0, "eIR_NoRequirement" },
-		{ 1, "eIR_RequireEmpty" },
-		{ 2, "eIR_RequireItem" },
-		{ 3, "eIR_RequireNoBigItem" },
-	};
-
-	(*g_Enums)["ECommunicationBarMessage"] = {
-		{ 0, "ECBM_Unknown" },
-		{ 1, "ECBM_Spotted" },
-		{ 2, "ECBM_Frisking" },
-		{ 3, "ECBM_HostileArea" },
-		{ 4, "ECBM_InvestigatingArea" },
-		{ 5, "ECBM_Clear" },
-		{ 6, "ECBM_Suspicious" },
-		{ 7, "ECBM_Alerted" },
-		{ 8, "ECBM_Hunting" },
-		{ 9, "ECBM_Arresting" },
-		{ 10, "ECBM_Engaging" },
-		{ 11, "ECBM_Hostile" },
-		{ 12, "ECBM_IdentityKnown" },
-		{ 13, "ECBM_Agitated" },
-		{ 14, "ECBM_VipRunsToSafeArea" },
-		{ 15, "ECBM_VipEscaping" },
-		{ 16, "ECBM_BodyFound" },
-		{ 17, "ECBM_GunshotHeard" },
-		{ 18, "ECBM_CloseCombatHeard" },
-		{ 19, "ECBM_CrimeNoticed" },
-		{ 20, "ECBM_BulletImpactNoticed" },
-		{ 21, "ECBM_SpottedByCamera" },
-		{ 22, "ECBM_UnconsciousWitness" },
-	};
-
-	(*g_Enums)["EClothColliderFilter"] = {
-		{ 0, "EClothColliderFilter_Environment" },
-		{ 1, "EClothColliderFilter_Character" },
-		{ 2, "EClothColliderFilter_Character_Environment" },
-	};
-
-	(*g_Enums)["EVsGenericEvent"] = {
-		{ 0, "eVSGE_MATCH_WON" },
-		{ 1, "eVSGE_MATCH_LOST" },
-		{ 2, "eVSGE_MATCH_DRAW" },
-		{ 3, "eVSGE_TARGET_LEAVING" },
-		{ 4, "eVSGE_TARGET_LEFT" },
-		{ 5, "eVSGE_TARGET_ARRIVING" },
-		{ 6, "eVSGE_TARGET_ARRIVED" },
-		{ 7, "eVSGE_RESPAWNED" },
-		{ 8, "eVSGE_OPPONENT_DEAD" },
-		{ 9, "eVSGE_OPPONENT_RESPAWNED" },
-		{ 10, "eVSGE_OPPONENT_GOT_WEAPON" },
-		{ 11, "eVSGE_OPPONENT_GOT_ITEM" },
-		{ 12, "eVSGE_OPPONENT_DISGUISED" },
-		{ 13, "eVSGE_TARGET_MISSED" },
-		{ 14, "eVSGE_NEXT_TARGET_MISSED" },
-		{ 15, "eVSGE_OPPONENT_TARGET_MISSED" },
-		{ 16, "eVSGE_OPPONENT_NEXT_TARGET_MISSED" },
-		{ 17, "eVSGE_OPPONENT_FAR_FROM_TARGET" },
-		{ 18, "eVSGE_OPPONENT_CLOSE_FROM_TARGET" },
-		{ 19, "eVSGE_OPPONENT_SCOPES_TARGET" },
-		{ 20, "eVSGE_MAX" },
-	};
-
-	(*g_Enums)["ESmartBehaviorOrder"] = {
-		{ 0, "SBO_Stand" },
-		{ 1, "SBO_Move" },
-		{ 2, "SBO_React" },
-		{ 3, "SBO_Act" },
-		{ 4, "SBO_MoveToAct" },
-		{ 5, "SBO_MoveToCover" },
-		{ 6, "SBO_ShootFromCover" },
-		{ 7, "SBO_Death" },
-		{ 8, "SBO_Teleport" },
+	(*g_Enums)["ZPreferenceItemEntity.EBoolOptions"] = {
+		{ 0, "EBO_INVERTVERTICAL" },
+		{ 1, "EBO_FIXEDMAP" },
 	};
 
 	(*g_Enums)["ZRagdollAttacherEntity.EResetMode"] = {
 		{ 0, "eAtBoneOrigin" },
 		{ 1, "eKeepOffset" },
+	};
+
+	(*g_Enums)["ZRecoverUnconsciousGroup.EInvestigateGroupState"] = {
+		{ 0, "IGS_InitialState" },
+		{ 1, "IGS_WaitingForVictim" },
+		{ 2, "IGS_Recovering" },
+		{ 3, "IGS_Relocating" },
+		{ 4, "IGS_Reporting" },
+		{ 5, "IGS_Completed" },
+		{ 6, "IGS_Max" },
+	};
+
+	(*g_Enums)["ZRenderPostfilterParametersEntity.EDOFBlurType"] = {
+		{ 0, "eFastest" },
+		{ 1, "eLowRezLensBlur" },
+		{ 2, "eLowRezLensBlurSoft" },
+		{ 3, "eHighRezLensBlur" },
+	};
+
+	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRAdaptationType"] = {
+		{ 0, "eMedian" },
+		{ 1, "eGeometricMean" },
+	};
+
+	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRGlareType"] = {
+		{ 0, "eCamera" },
+		{ 1, "eNatural" },
+		{ 2, "eCheapLens" },
+		{ 3, "eFilterCrossScreen" },
+		{ 4, "eFilterCrossScreenSpectral" },
+		{ 5, "eFilterSnowCross" },
+		{ 6, "eFilterSnowCrossSpectral" },
+		{ 7, "eFilterSunnyCross" },
+		{ 8, "eFilterSunnyCrossSpectral" },
+		{ 9, "eCinecamVerticalSlits" },
+		{ 10, "eCinecamHorizontalSlits" },
+	};
+
+	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRToneMapType"] = {
+		{ 0, "eLinear" },
+		{ 1, "eReinhardRGB" },
+		{ 2, "eFilmicRGB" },
+	};
+
+	(*g_Enums)["ZScreenplay.EState"] = {
+		{ 0, "State_Idle" },
+		{ 1, "State_Running" },
+		{ 2, "State_Paused" },
+		{ 3, "State_Failed" },
+		{ 4, "State_Done" },
+	};
+
+	(*g_Enums)["ZSecuritySystemCameraConfiguration.ECameraEscalationSituations"] = {
+		{ 0, "eCES_Arrest" },
+		{ 1, "eCES_Combat" },
+	};
+
+	(*g_Enums)["ZSequenceEntity.ECommand"] = {
+		{ 0, "COMMAND_START" },
+		{ 1, "COMMAND_ENABLE_PREVIEW" },
+		{ 2, "COMMAND_STOP" },
+		{ 3, "COMMAND_DISABLE_PREVIEW" },
+		{ 4, "COMMAND_ABORT" },
+		{ 5, "COMMAND_PAUSE" },
+		{ 6, "COMMAND_UNPAUSE" },
+		{ 7, "COMMAND_SETTIME" },
+		{ 8, "COMMAND_SKIPTOEND" },
+		{ 9, "COMMAND_GAME_PAUSE" },
+		{ 10, "COMMAND_GAME_UNPAUSE" },
+		{ 11, "COMMAND_PREVIEW_PAUSE" },
+		{ 12, "COMMAND_PREVIEW_STOP" },
+		{ 13, "COMMAND_PREVIEW_PLAY" },
+		{ 14, "COMMAND_PREVIEW_LOOPED" },
+		{ 15, "COMMAND_CLEAR" },
+	};
+
+	(*g_Enums)["ZSequenceEntity.ELetterBoxAspect"] = {
+		{ 0, "LETTERBOXASPECT_WIDESCREEN" },
+		{ 1, "LETTERBOXASPECT_CINEMASCOPE" },
+	};
+
+	(*g_Enums)["ZSetVisibleEntity.StartBehavior"] = {
+		{ 0, "SB_Nothing" },
+		{ 1, "SB_MakeVisible" },
+		{ 2, "SB_MakeInvisible" },
+	};
+
+	(*g_Enums)["ZSmuggleSituationEntity.ESmuggleState"] = {
+		{ 0, "ESS_Idle" },
+		{ 1, "ESS_Evaluate" },
+		{ 2, "ESS_FindJob" },
+		{ 3, "ESS_OnRouteToLocation" },
+		{ 4, "ESS_PickingUp" },
+		{ 5, "ESS_PuttingDown" },
+		{ 6, "ESS_OnABreak" },
+	};
+
+	(*g_Enums)["ZSniperCombatGroup.EGroupState"] = {
+		{ 0, "IGS_WaitingForActors" },
+		{ 1, "IGS_Move" },
+		{ 2, "IGS_Siege" },
+		{ 3, "IGS_Completed" },
+		{ 4, "IGS_Max" },
+	};
+
+	(*g_Enums)["ZSniperCombatSituation.ESituationState"] = {
+		{ 0, "SS_Main" },
+		{ 1, "SS_StandDown" },
+		{ 2, "SS_InvalidSituation" },
+	};
+
+	(*g_Enums)["ZSoundAmbienceGroup.ESoundCollisionType"] = {
+		{ 0, "SCT_Box" },
+		{ 1, "SCT_Cylinder" },
+		{ 2, "SCT_Sphere" },
+		{ 3, "SCT_Volume" },
+	};
+
+	(*g_Enums)["ZSpatialEntity.ERoomBehaviour"] = {
+		{ 0, "ROOM_STATIC" },
+		{ 1, "ROOM_DYNAMIC" },
+		{ 2, "ROOM_STATIC_OUTSIDE_CLIENT" },
+	};
+
+	(*g_Enums)["ZStandOffSituation.EDialogState"] = {
+		{ 0, "eDS_ReportTarget" },
+		{ 1, "eDS_ArrestReason" },
+		{ 2, "eDS_ArrestReasonWait" },
+		{ 3, "eDS_Warning" },
+		{ 4, "eDS_WarningWait" },
+		{ 5, "eDS_WeaponWarning" },
+		{ 6, "eDS_WeaponWarningWait" },
+		{ 7, "eDS_StopWait" },
+		{ 8, "eDS_Done" },
+	};
+
+	(*g_Enums)["ZStandOffSituation.ESituationState"] = {
+		{ 0, "SS_Uncertain" },
+		{ 1, "SS_Main" },
+		{ 2, "SS_Arresting" },
+		{ 3, "SS_GetHelp" },
+		{ 4, "SS_Escalate" },
+		{ 5, "SS_Investigate" },
+		{ 6, "SS_GetHelpFromFleeingCivilian" },
+	};
+
+	(*g_Enums)["ZStateControllerEntity.WrapMode"] = {
+		{ 0, "WM_Loop" },
+		{ 1, "WM_Clamp" },
+	};
+
+	(*g_Enums)["ZTestGroupPath.EModifierType"] = {
+		{ 0, "EMT_PushCorners" },
+		{ 1, "EMT_PushCornersAlt" },
+	};
+
+	(*g_Enums)["ZTrackDollyControllerQueryEntity.ETrackPointQueryType"] = {
+		{ 0, "Closest" },
+		{ 1, "ClosestNext" },
+		{ 2, "ClosestPrevious" },
+	};
+
+	(*g_Enums)["ZTrespassingSituation.ESituationState"] = {
+		{ 1, "SS_Main" },
+		{ 2, "SS_StandDown" },
+		{ 3, "SS_Escalate" },
+	};
+
+	(*g_Enums)["ZUIControlEntity.EAlignmentType"] = {
+		{ 0, "E_ALIGNMENT_TYPE_Center" },
+		{ 1, "E_ALIGNMENT_TYPE_TopCenter" },
+		{ 2, "E_ALIGNMENT_TYPE_BottomCenter" },
+		{ 3, "E_ALIGNMENT_TYPE_CenterLeft" },
+		{ 4, "E_ALIGNMENT_TYPE_CenterRight" },
+		{ 5, "E_ALIGNMENT_TYPE_TopLeft" },
+		{ 6, "E_ALIGNMENT_TYPE_TopRight" },
+		{ 7, "E_ALIGNMENT_TYPE_BottomLeft" },
+		{ 8, "E_ALIGNMENT_TYPE_BottomRight" },
+	};
+
+	(*g_Enums)["ZUIControlEntity.ELayoutMode"] = {
+		{ 0, "E_LAYOUT_MODE_Absolute" },
+		{ 1, "E_LAYOUT_MODE_Proportional" },
+		{ 2, "E_LAYOUT_MODE_Proportional_MaintainAspect" },
+		{ 3, "E_LAYOUT_MODE_Proportional_MaintainAspect_Fill" },
+		{ 4, "E_LAYOUT_MODE_Proportional_Scale_Fit" },
+		{ 5, "E_LAYOUT_MODE_Proportional_Scale_MaintainAspect" },
+		{ 6, "E_LAYOUT_MODE_Proportional_Scale_MaintainAspect_Fill" },
+	};
+
+	(*g_Enums)["ZUIFlowLayoutEntity.EFlowType"] = {
+		{ 0, "E_FLOW_TYPE_HORIZONTAL" },
+		{ 1, "E_FLOW_TYPE_VERTICAL" },
+	};
+
+	(*g_Enums)["ZUIListNavigationEntity.ENavigationInputMode"] = {
+		{ 0, "E_MODE_UP_DOWN" },
+		{ 1, "E_MODE_LEFT_RIGHT" },
+		{ 2, "E_MODE_PGPREV_PGNEXT" },
+		{ 3, "E_MODE_SMART_2D" },
+	};
+
+	(*g_Enums)["ZUISplashHintDataProviderEntity.ESplashHintType"] = {
+		{ 0, "SHT_GlobalHint" },
+		{ 1, "SHT_TutorialHint" },
+		{ 2, "SHT_ControlHint" },
+	};
+
+	(*g_Enums)["ZUISubtitleDataProvider.EAlignment"] = {
+		{ 0, "ALIGN_BOTTOM" },
+		{ 1, "ALIGN_TOP" },
+	};
+
+	(*g_Enums)["ZValueBool_Operation.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "NOT_ALL" },
+		{ 4, "ALL_EQUAL" },
+		{ 5, "ONE_TRUE" },
+	};
+
+	(*g_Enums)["ZValueBool_OperationRecalc.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "NOT_ALL" },
+		{ 4, "ALL_EQUAL" },
+		{ 5, "ONE_TRUE" },
+	};
+
+	(*g_Enums)["ZValueBool_Operation_Signal.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "NOT_ALL" },
+		{ 4, "ALL_EQUAL" },
+		{ 5, "ONE_TRUE" },
+	};
+
+	(*g_Enums)["ZValueInt_Comparator.EEvaluationType"] = {
+		{ 0, "EQUAL" },
+		{ 1, "NOT_EQUAL" },
+		{ 2, "LESS" },
+		{ 3, "LESS_OR_EQUAL" },
+		{ 4, "HIGHER" },
+		{ 5, "HIGHER_OR_EQUAL" },
+	};
+
+	(*g_Enums)["ZValueInt_Comparator_Poll.EEvaluationType"] = {
+		{ 0, "EQUAL" },
+		{ 1, "NOT_EQUAL" },
+		{ 2, "LESS" },
+		{ 3, "LESS_OR_EQUAL" },
+		{ 4, "HIGHER" },
+		{ 5, "HIGHER_OR_EQUAL" },
+	};
+
+	(*g_Enums)["ZValueInt_Evaluation.EEvaluationType"] = {
+		{ 0, "EQUAL" },
+		{ 1, "NOT_EQUAL" },
+		{ 2, "LESS" },
+		{ 3, "LESS_OR_EQUAL" },
+		{ 4, "HIGHER" },
+		{ 5, "HIGHER_OR_EQUAL" },
+	};
+
+	(*g_Enums)["ZVsTargetPicker.ETargetSelectionType"] = {
+		{ 0, "eTST_Random" },
+		{ 1, "eTST_Fair" },
+		{ 2, "eTST_Max" },
+	};
+
+	(*g_Enums)["ZWaveformGeneratorEntity.ECurveType"] = {
+		{ 0, "CURVE_TYPE_SINE" },
+		{ 1, "CURVE_TYPE_SQUARE" },
+		{ 2, "CURVE_TYPE_TRIANGLE" },
+		{ 3, "CURVE_TYPE_SAWTOOTH" },
+		{ 4, "CURVE_TYPE_REVERSE_SAWTOOTH" },
+	};
+
+	(*g_Enums)["ZWaypointEntity.EMovementType"] = {
+		{ 0, "MT_WALK" },
+		{ 1, "MT_WALK_IF_NOT_IN_SEQUENCE" },
+		{ 2, "MT_SNAP" },
+		{ 3, "MT_IGNORE_POSITION" },
+	};
+
+	(*g_Enums)["ZWorldUIElementInstanceBase.EVisibility"] = {
+		{ 0, "EVIS_ALWAYS" },
+		{ 1, "EVIS_POSY" },
+		{ 2, "EVIS_NEGY" },
+		{ 3, "EVIS_POSX" },
+		{ 4, "EVIS_NEGX" },
+	};
+
+	(*g_Enums)["_EUIOptionKey"] = {
+		{ 100, "UI_OPTION_GAME_VIBRATION" },
+		{ 200, "UI_OPTION_GAME_AIM_ASSIST" },
+		{ 210, "UI_OPTION_GAME_AIM_CAUSAL" },
+		{ 220, "UI_OPTION_GAME_INVERT_INVENTORY_EMOTE" },
+		{ 300, "UI_OPTION_GAME_INVERT_X" },
+		{ 301, "UI_OPTION_GAME_INVERT_MOUSE_X" },
+		{ 302, "UI_OPTION_GAME_INVERT_MOUSE_Y" },
+		{ 310, "UI_OPTION_GAME_INVERT_Y" },
+		{ 311, "UI_OPTION_GAME_CONTROL_SCHEME" },
+		{ 312, "UI_OPTION_GAME_FAST_TARGET" },
+		{ 321, "UI_OPTION_GAME_DIFFICULTY" },
+		{ 330, "UI_OPTION_GAME_TRIGGER_SHOOT" },
+		{ 332, "UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA" },
+		{ 333, "UI_OPTION_GAME_LEFT_HANDED_CONTROLS" },
+		{ 334, "UI_OPTION_GAME_CAMERA_SENSITIVITY_HORZ" },
+		{ 335, "UI_OPTION_GAME_CAMERA_SENSITIVITY_VERT" },
+		{ 336, "UI_OPTION_GAME_MOUSE_SENSITIVITY" },
+		{ 337, "UI_OPTION_GAME_AIM_SENSITIVITY" },
+		{ 338, "UI_OPTION_GAME_CAMERA_SENSITIVITY" },
+		{ 340, "UI_OPTION_GAME_INSTINCT_PATHS" },
+		{ 342, "UI_OPTION_GAME_INSTINCT_NPCGLOW" },
+		{ 346, "UI_OPTION_GAME_HINTS_TUTORIAL" },
+		{ 348, "UI_OPTION_GAME_HINTS_INSTINCT" },
+		{ 350, "UI_OPTION_GAME_LANG_AUDIO" },
+		{ 351, "UI_OPTION_GAME_LANG_TEXT" },
+		{ 352, "UI_OPTION_GAME_COVER_TOGGLE" },
+		{ 353, "UI_OPTION_GAME_FIXED_MAP" },
+		{ 354, "UI_OPTION_GAME_MAP_SHOW_NORTH_INDICATOR" },
+		{ 360, "UI_OPTION_GAME_AID_OPPORTUNITIES" },
+		{ 361, "UI_OPTION_GAME_AID_INSTINCT" },
+		{ 362, "UI_OPTION_GAME_AID_MINI_MAP" },
+		{ 363, "UI_OPTION_GAME_AID_NPC_ICONS" },
+		{ 364, "UI_OPTION_GAME_AID_ATTENTION" },
+		{ 365, "UI_OPTION_GAME_AID_VITAL_INFO" },
+		{ 366, "UI_OPTION_GAME_AID_INTERACTION_H" },
+		{ 367, "UI_OPTION_GAME_AID_OBJECTIVES" },
+		{ 368, "UI_OPTION_GAME_AID_WEAPON_HUD" },
+		{ 369, "UI_OPTION_GAME_AID_CHALLENGEDESCRIPTION" },
+		{ 370, "UI_OPTION_GAME_MINI_MAP_SHOW_NPCS" },
+		{ 371, "UI_OPTION_GAME_AID_TARGET_INFO" },
+		{ 372, "UI_OPTION_GAME_AID_CHALLENGE_HUD" },
+		{ 373, "UI_OPTION_GAME_MINI_MAP_SHOW_TARGETS" },
+		{ 374, "UI_OPTION_GAME_CHALLENGES_FILTER" },
+		{ 375, "UI_OPTION_GAME_AID_MISSION_TIMER" },
+		{ 376, "UI_OPTION_GAME_DIFFICULTY_LEVEL_HUD" },
+		{ 377, "UI_OPTION_GAME_AID_GLOBAL_HINTS" },
+		{ 378, "UI_OPTION_GAME_SCORE_HUD" },
+		{ 379, "UI_OPTION_GAME_AID_LVA" },
+		{ 380, "UI_OPTION_GAME_AID_PICTURE_IN_PICTURE" },
+		{ 381, "UI_OPTION_GAME_AID_INTERACTION_PROMPT" },
+		{ 382, "UI_OPTION_GAME_AID_SA_HUD" },
+		{ 383, "UI_OPTION_GAME_AID_RELOAD_HUD" },
+		{ 384, "UI_OPTION_GAME_AID_CAMERA_GRID" },
+		{ 385, "UI_OPTION_GAME_AID_AIM_TOGGLE" },
+		{ 390, "UI_OPTION_GAME_AUTOSAVE" },
+		{ 400, "UI_OPTION_GAME_AUTOSAVE_HUD" },
+		{ 1010, "UI_OPTION_SOUND_VOLUME_MASTER" },
+		{ 1020, "UI_OPTION_SOUND_VOLUME_EFFECTS" },
+		{ 1030, "UI_OPTION_SOUND_VOLUME_MUSIC" },
+		{ 1040, "UI_OPTION_SOUND_VOLUME_DIALOGUE" },
+		{ 1050, "UI_OPTION_SOUND_MUTE_MICROPHONE" },
+		{ 1060, "UI_OPTION_SOUND_MUTE_OTHER_PLAYER" },
+		{ 1200, "UI_OPTION_SOUND_OUTPUTMODE" },
+		{ 1210, "UI_OPTION_SOUND_SIMULATION_QUALITY" },
+		{ 2000, "UI_OPTION_GRAPHICS_SUBTITLES" },
+		{ 2001, "UI_OPTION_GRAPHICS_SUBTITLES_SIZE" },
+		{ 2210, "UI_OPTION_GRAPHICS_SAFE_AREA_X" },
+		{ 2220, "UI_OPTION_GRAPHICS_SAFE_AREA_Y" },
+		{ 2221, "UI_OPTION_GSM_AUTHORITY_BEGIN_MARKER" },
+		{ 2230, "UI_OPTION_DISPLAY_RESOLUTION" },
+		{ 2240, "UI_OPTION_DISPLAY_REFRESHRATE" },
+		{ 2250, "UI_OPTION_DISPLAY_FULLSCREEN" },
+		{ 2260, "UI_OPTION_DISPLAY_EXCLUSIVE" },
+		{ 2270, "UI_OPTION_DISPLAY_VSYNC" },
+		{ 2280, "UI_OPTION_DISPLAY_MONITOR" },
+		{ 2290, "UI_OPTION_DISPLAY_QUALITY" },
+		{ 2300, "UI_OPTION_DISPLAY_ASPECT" },
+		{ 2310, "UI_OPTION_DISPLAY_STEREOSCOPIC" },
+		{ 2320, "UI_OPTION_DISPLAY_STEREO_DEPTH" },
+		{ 2330, "UI_OPTION_DISPLAY_STEREO_STRENGTH" },
+		{ 2600, "UI_OPTION_GRAPHICS_QUALITY" },
+		{ 2610, "UI_OPTION_GRAPHICS_SHADOW_QUALITY" },
+		{ 2620, "UI_OPTION_GRAPHICS_SHADOW_RESOLUTION" },
+		{ 2630, "UI_OPTION_GRAPHICS_TEXTURE_QUALITY" },
+		{ 2640, "UI_OPTION_GRAPHICS_TEXTURE_FILTER" },
+		{ 2650, "UI_OPTION_GRAPHICS_ASSAO_QUALITY" },
+		{ 2660, "UI_OPTION_GRAPHICS_VSYNC" },
+		{ 2680, "UI_OPTION_GRAPHICS_TESSELLATION" },
+		{ 2690, "UI_OPTION_GRAPHICS_MIRRORS" },
+		{ 2710, "UI_OPTION_GRAPHICS_LOD" },
+		{ 2720, "UI_OPTION_GRAPHICS_MOTIONBLUR" },
+		{ 2740, "UI_OPTION_GRAPHICS_BOKEH" },
+		{ 2741, "UI_OPTION_GRAPHICS_SCREENSPACE_SHADOWS" },
+		{ 2742, "UI_OPTION_GRAPHICS_REFLECTION_QUALITY" },
+		{ 2743, "UI_OPTION_GRAPHICS_MOTION_BLUR" },
+		{ 2744, "UI_OPTION_GRAPHICS_DYNAMIC_SHARPENING" },
+		{ 2745, "UI_OPTION_GRAPHICS_SIMULATION_QUALITY" },
+		{ 2750, "UI_OPTION_GRAPHICS_SUPER_SAMPLING" },
+		{ 2760, "UI_OPTION_GRAPHICS_GAMMA" },
+		{ 2770, "UI_OPTION_GRAPHICS_FRAMERATE_LIMIT" },
+		{ 2771, "UI_OPTION_GSM_AUTHORITY_END_MARKER" },
+		{ 2772, "UI_OPTION_GRAPHICS_HDR_GAMMA" },
+		{ 2773, "UI_OPTION_GRAPHICS_RENDERING_QUALITY" },
+	};
+
+	(*g_Enums)["eActionRewardType"] = {
+		{ 0, "AR_None" },
+		{ 1, "AR_QuestItem" },
+		{ 2, "AR_Keycard" },
+		{ 3, "AR_Key" },
+	};
+
+	(*g_Enums)["eAmmoType"] = {
+		{ 0, "eAmmoGun" },
+		{ 1, "eAmmoRevolver" },
+		{ 2, "eAmmoSMG" },
+		{ 3, "eAmmoRifle" },
+		{ 4, "eAmmoShotgun" },
+		{ 5, "eAmmoSniper" },
+		{ 6, "eAmmoMG" },
+		{ 7, "eAmmoRPG" },
+		{ 8, "eAmmoFake" },
+		{ 9, "eAmmoLightPistol" },
+		{ 10, "eAmmoDartTranquilizer" },
+		{ 11, "eAmmoShotgunBeanbag" },
+		{ 12, "eUnknownAmmoType" },
+	};
+
+	(*g_Enums)["eBurstPatternType"] = {
+		{ 0, "eEBP_None" },
+		{ 1, "eEBP_Circular3Rings" },
+		{ 2, "eEBP_Box" },
+	};
+
+	(*g_Enums)["eContractSessionStartError"] = {
+		{ 0, "ERROR_NONE" },
+		{ 1, "ERROR_MISSING_CONTENT" },
+		{ 2, "ERROR_SERVER_UNREACHABLE" },
+		{ 3, "ERROR_SERVER_ERROR" },
+		{ 4, "ERROR_CONTRACT_NOT_PLAYABLE_YET" },
+		{ 5, "ERROR_CONTRACT_NOT_PLAYABLE_ANYMORE" },
+		{ 6, "ERROR_CANCELED" },
+		{ 7, "ERROR_ALREADY_STARTING" },
+		{ 8, "ERROR_UNKNOWN" },
+	};
+
+	(*g_Enums)["eHitmanPermissionReason"] = {
+		{ -1, "eHPReason_ALLReasons" },
+		{ 1, "eHPReason_MovementContext" },
+		{ 2, "eHPReason_ItemHandlingInProcess" },
+		{ 4, "eHPReason_SniperMode" },
+		{ 7, "eHPReason_NUM" },
+		{ 8, "eHPReason_CrippleBox" },
+		{ 16, "eHPReason_LevelDesign" },
+		{ 32, "eHPReason_PlayerInput" },
+		{ 64, "eHPReason_InstinctBlendIn" },
+		{ 128, "eHPReason_FocusInteraction" },
+	};
+
+	(*g_Enums)["eHolsterAbility"] = {
+		{ 0, "eUndecided" },
+		{ 1, "eHolsteringAllowed" },
+		{ 2, "eHolsterTemporarilyOnly" },
+		{ 3, "eHolsterSecondaryOnly" },
+		{ 4, "eHolsterQuestStorage" },
+		{ 5, "eCanNotBeHolstered" },
+	};
+
+	(*g_Enums)["eItemHands"] = {
+		{ 0, "IH_NONE" },
+		{ 1, "IH_ONEHANDED" },
+		{ 2, "IH_TWOHANDED" },
+	};
+
+	(*g_Enums)["eItemRarity"] = {
+		{ 0, "ITEMRARITY_COMMON" },
+		{ 1, "ITEMRARITY_UNCOMMON" },
+		{ 2, "ITEMRARITY_RARE" },
+	};
+
+	(*g_Enums)["eItemSize"] = {
+		{ 0, "ITEMSIZE_SMALL" },
+		{ 1, "ITEMSIZE_MEDIUM" },
+		{ 2, "ITEMSIZE_LARGE" },
+	};
+
+	(*g_Enums)["eItemType"] = {
+		{ 0, "eCC_FireExtinguisher_01" },
+		{ 10, "eCC_Knife" },
+		{ 20, "eCC_Axe" },
+		{ 30, "eCC_PetrolCan" },
+		{ 40, "eCC_Shovel" },
+		{ 50, "eCC_Hammer" },
+		{ 60, "eCC_Cleaver" },
+		{ 70, "eCC_AntitankMine" },
+		{ 80, "eCC_C4Brick" },
+		{ 90, "eCC_RemoteExplosive" },
+		{ 100, "eDetonator" },
+		{ 110, "eCC_Wrench" },
+		{ 120, "eCC_Dildo" },
+		{ 130, "eCC_Bottle" },
+		{ 140, "eCC_Saw" },
+		{ 150, "eCC_Screwdriver" },
+		{ 160, "eCC_MetalPipe" },
+		{ 170, "eCC_Gavel" },
+		{ 180, "eCC_Radio" },
+		{ 190, "eCC_Bong" },
+		{ 200, "eCC_Statue_Bust_A" },
+		{ 210, "eGun_44AutoMag" },
+		{ 220, "eGun_44AutoMagSilenced" },
+		{ 230, "eGun_Derringer" },
+		{ 240, "eGun_Glock" },
+		{ 250, "eGun_GlockDirty" },
+		{ 260, "eGun_GlockSilenced" },
+		{ 270, "eGun_HardBaller_01" },
+		{ 280, "eGun_HardBallerSilenced" },
+		{ 290, "eGun_Sig226" },
+		{ 300, "eGun_Sig226Silenced" },
+		{ 310, "eGun_Sphinx3000" },
+		{ 320, "eGun_Taurus24_7" },
+		{ 330, "eGun_Taurus24_7Silenced" },
+		{ 340, "eGun_Spotter" },
+		{ 350, "eOther_MG" },
+		{ 360, "eOther_RPG" },
+		{ 370, "eRevolver_PoliceRevolver" },
+		{ 380, "eRevolver_Snubnosed" },
+		{ 390, "eRevolver_Taurus" },
+		{ 400, "eRifle_HK416" },
+		{ 410, "eRifle_HK416Scope" },
+		{ 420, "eRifle_HK416Silenced" },
+		{ 430, "eRifle_PumpRifle" },
+		{ 440, "eRifle_SG552" },
+		{ 450, "eRifle_SG552Scope" },
+		{ 460, "eShotgun_M500" },
+		{ 470, "eShotgun_M500New" },
+		{ 480, "eSMG_HK_UMP" },
+		{ 490, "eSMG_HK_UMPFlashlight" },
+		{ 500, "eSMG_HK_UMPScope" },
+		{ 510, "eSMG_HK_UMPSilenced" },
+		{ 520, "eSMG_TMP" },
+		{ 530, "eSniper_AS50" },
+		{ 540, "eSniper_Remington700" },
+		{ 550, "eSniper_SakoTRG" },
+		{ 560, "eSniper_SakoTRGSilenced" },
+		{ 570, "eItemAmmo" },
+		{ 580, "eCC_FiberWire" },
+		{ 590, "eOther_ZippoLighter" },
+		{ 600, "eOther_Keycard_A" },
+		{ 610, "eOther_SecurityTape" },
+		{ 620, "eCC_PowerCord" },
+		{ 630, "eCC_PoliceBaton" },
+		{ 640, "eCC_Scissor" },
+		{ 650, "eOther_ContractEnvelope" },
+		{ 660, "eItemIrrelevantWeapon" },
+		{ 670, "eCC_BaseballBat" },
+		{ 680, "eCC_GlassShiv" },
+		{ 690, "eCC_PoolCue" },
+		{ 700, "eCC_Rake" },
+		{ 710, "eCC_ToyCar" },
+		{ 720, "eCC_Crutch" },
+		{ 730, "eCC_Guitar" },
+		{ 740, "eCC_Iron" },
+		{ 760, "eRifle_Beretta_ARX160" },
+		{ 800, "eShotgun_Spas12" },
+		{ 810, "eShotgun_Spas12_Compact" },
+		{ 830, "eShotgun_Silenced" },
+		{ 860, "eSMG_AK74u" },
+		{ 880, "eSMG_STK" },
+		{ 900, "eDLC_TEST_FireArm_01" },
+		{ 901, "eDLC_TEST_FireArm_02" },
+		{ 902, "eDLC_TEST_Prop_01" },
+		{ 903, "eDLC_TEST_Prop_02" },
+		{ 910, "eHotSauceBarrel" },
+		{ 920, "eOther_GenericPickup" },
+		{ 921, "eCC_SledgeHammer" },
+		{ 922, "eCC_Katana" },
+		{ 923, "eCC_Brick" },
+		{ 924, "cCC_Book_A" },
+		{ 931, "eSyringe_Lethal" },
+		{ 932, "eSyringe_Sedative" },
+		{ 933, "eSyringe_Emetic" },
+		{ 934, "eSuitcase" },
+		{ 1337, "eUnknownItemType" },
+	};
+
+	(*g_Enums)["eParticleEmitterBoxEntity_SpawnModes"] = {
+		{ 0, "BOX_SPAWNMODE_INSIDE" },
+		{ 1, "BOX_SPAWNMODE_EDGE" },
+		{ 2, "BOX_SPAWNMODE_FACE" },
+		{ 3, "BOX_SPAWNMODE_ELLIPSOID_INSIDE" },
+		{ 4, "BOX_SPAWNMODE_ELLIPSOID" },
+	};
+
+	(*g_Enums)["eParticleEmitterMeshEntity_SpawnModes"] = {
+		{ 0, "MESH_SPAWNMODE_VERTEX" },
+		{ 1, "MESH_SPAWNMODE_EDGE" },
+		{ 2, "MESH_SPAWNMODE_FACE" },
+	};
+
+	(*g_Enums)["eWeaponOperation"] = {
+		{ 0, "WO_SEMI_AUTO" },
+		{ 1, "WO_FULL_AUTO" },
+	};
+
+	(*g_Enums)["eWeaponType"] = {
+		{ 0, "WT_HANDGUN" },
+		{ 1, "WT_SLOWGUN" },
+		{ 2, "WT_ASSAULTRIFLE" },
+		{ 3, "WT_SMG" },
+		{ 4, "WT_SNIPER" },
+		{ 5, "WT_RPG" },
+		{ 6, "WT_KNIFE" },
+		{ 7, "WT_SHOTGUN" },
+		{ 8, "WT_SPOTTER" },
 	};
 
 }
