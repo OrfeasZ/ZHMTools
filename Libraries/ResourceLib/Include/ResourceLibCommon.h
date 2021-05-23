@@ -9,7 +9,14 @@ extern "C"
 
 	struct JsonString
 	{
+		/**
+		 * The json string data. Is always null terminated.
+		 */
 		const char* JsonData;
+
+		/**
+		 * The length of the json string data. Does not include the null terminator.
+		 */
 		size_t StrSize;
 	};
 
@@ -18,7 +25,7 @@ extern "C"
 		const void* ResourceData;
 		size_t DataSize;
 	};
-
+	
 	struct ResourceTypesArray
 	{
 		const char** Types;
