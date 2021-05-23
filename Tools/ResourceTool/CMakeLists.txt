@@ -1,12 +1,10 @@
-﻿cmake_minimum_required(VERSION 3.12)
-
+﻿cmake_minimum_required(VERSION 3.15)
 
 add_executable(ResourceTool 
 	Src/ResourceTool.cpp
 )
 
 set_target_properties(ResourceTool PROPERTIES
-	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
 	CXX_STANDARD 20
 )
 

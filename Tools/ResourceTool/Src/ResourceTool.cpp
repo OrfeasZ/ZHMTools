@@ -10,9 +10,11 @@
 #if _WIN32
 #define EXECUTABLE "ResourceTool.exe"
 #define SAMPLE_PATH "C:\\path\\to\\"
+#define SAMPLE_TEMP_PATH "C:\\some\\folder\\HITMAN 3\\other\\folder\\XXXX.TEMP"
 #else
 #define EXECUTABLE "./ResourceTool"
 #define SAMPLE_PATH "/path/to/"
+#define SAMPLE_TEMP_PATH "/some/folder/HITMAN 3/other/folder/XXXX.TEMP"
 #endif
 
 enum class HitmanVersion
@@ -121,17 +123,17 @@ int TryConvertFile(const std::string& p_FilePath)
 
 	auto s_DetectedVersion = HitmanVersion::Unknown;
 
-	std::string s_InputPathStr;
+	std::string s_InputPathStr = s_InputPath.string();
 	std::ranges::transform(s_InputPathStr, s_InputPathStr.begin(), [](unsigned char c) { return std::tolower(c); });
 
-	if (s_InputPathStr.find("hitman2") != std::string::npos || s_InputPathStr.find("hitman 2") != std::string::npos || s_InputPathStr.find("hm2") != std::string::npos)
+	if (s_InputPathStr.find("hitman2") != std::string::npos || s_InputPathStr.find("hitman 2") != std::string::npos || s_InputPathStr.find("hm2") != std::string::npos || s_InputPathStr.find("h2") != std::string::npos)
 		s_DetectedVersion = HitmanVersion::Hitman2;
-	else if (s_InputPathStr.find("hitman3") != std::string::npos || s_InputPathStr.find("hitman 3") != std::string::npos || s_InputPathStr.find("hm3") != std::string::npos)
+	else if (s_InputPathStr.find("hitman3") != std::string::npos || s_InputPathStr.find("hitman 3") != std::string::npos || s_InputPathStr.find("hm3") != std::string::npos || s_InputPathStr.find("h3") != std::string::npos)
 		s_DetectedVersion = HitmanVersion::Hitman3;
 
 	if (s_DetectedVersion == HitmanVersion::Unknown)
 	{
-		fprintf(stderr, "[ERROR] Could not detect the version of the game this file is from. Make sure that the name of the game is in its path (eg. C:\\Some\\Folder\\HITMAN 3\\Other\\Folder\\XXXX.TBLU) and try again.\n");
+		fprintf(stderr, "[ERROR] Could not detect the version of the game this file is from. Make sure that the name of the game is in its path (eg. " SAMPLE_TEMP_PATH ") and try again.\n");
 		return 1;
 	}
 

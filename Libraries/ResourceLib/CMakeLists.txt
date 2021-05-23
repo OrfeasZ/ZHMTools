@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.12)
+﻿cmake_minimum_required(VERSION 3.15)
 
 set(RESOURCELIB_HEADERS
 	Include/IResourceConverter.h
@@ -72,15 +72,14 @@ add_library(ResourceLib_HM2 SHARED
 )
 
 set_target_properties(ResourceLib_HM3 ResourceLib_HM2 PROPERTIES
-	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
 	CXX_STANDARD 20
 )
 
-if(CMAKE_BUILD_TYPE STREQUAL RelWithDebInfo)
-	set(RESOURCELIB_COMPILE_FLAGS "/bigobj" "/Od" "/GL" "/Gy")
-	set(RESOURCELIB_LINK_FLAGS "/LTCG:OFF" "/DEBUG" "/OPT:REF" "/OPT:ICF")
+if(MSVC AND (CMAKE_BUILD_TYPE STREQUAL RelWithDebInfo))
+	set(RESOURCELIB_COMPILE_FLAGS "/bigobj" "/Ob0" "/GL" "/O2")
+	set(RESOURCELIB_LINK_FLAGS "/INCREMENTAL:NO" "/LTCG" "/OPT:REF" "/OPT:ICF" "/DYNAMICBASE" "/NXCOMPAT")
 else()
-	set(RESOURCELIB_COMPILE_FLAGS "/bigobj")
+	set(RESOURCELIB_COMPILE_FLAGS "/bigobj" "/sdl" "/MT")
 	set(RESOURCELIB_LINK_FLAGS "")
 endif()
 

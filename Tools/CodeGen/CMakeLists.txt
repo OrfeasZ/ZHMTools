@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.12)
+﻿cmake_minimum_required(VERSION 3.15)
 
 set(CODEGEN_SOURCES
 	Src/CodeGen.cpp
@@ -9,7 +9,6 @@ add_executable(CodeGen
 )
 
 set_target_properties(CodeGen PROPERTIES
-	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
 	CXX_STANDARD 20
 )
 
