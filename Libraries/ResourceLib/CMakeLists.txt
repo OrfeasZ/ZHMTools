@@ -1,9 +1,10 @@
 ﻿cmake_minimum_required(VERSION 3.15)
 
 set(RESOURCELIB_HEADERS
-	Include/IResourceConverter.h
-	Include/IResourceGenerator.h
+	Include/ResourceConverter.h
+	Include/ResourceGenerator.h
 	Include/ResourceLibCommon.h
+	Include/ResourceLib.h
 )
 
 set(RESOURCELIB_SOURCES
@@ -31,9 +32,10 @@ set(RESOURCELIB_SOURCES
 	Src/ZHM/ZString.h
 	Src/ZHM/ZVariant.cpp
 	Src/ZHM/ZVariant.h
-	Src/ResourceConverter.cpp
-	Src/ResourceConverter.h
-	Src/ResourceGenerator.h
+	Src/ResourceConverterImpl.cpp
+	Src/ResourceConverterImpl.h
+	Src/ResourceGeneratorImpl.cpp
+	Src/ResourceGeneratorImpl.h
 	Src/ResourceLib.cpp
 	Src/Resources.cpp
 	Src/Resources.h

@@ -28,7 +28,7 @@ public:
 		m_Position += sizeof(T);
 	}
 
-	void WriteBinary(void* p_Memory, size_t p_Size)
+	void WriteBinary(const void* p_Memory, size_t p_Size)
 	{
 		EnsureCanWrite(p_Size);
 
@@ -41,13 +41,14 @@ public:
 		// + 1 for null terminator.
 		Write<uint32_t>(p_String.size() + 1);
 
-		WriteBinary(const_cast<char*>(p_String.data()), p_String.size());
+		WriteBinary(p_String.data(), p_String.size());
 		Write<uint8_t>(0);
 	}
 
+	[[nodiscard]]
 	std::string ToString() const
 	{
-		return std::string(reinterpret_cast<char*>(m_Buffer), m_Position);
+		return std::string(static_cast<char*>(m_Buffer), m_Position);
 	}
 
 	void AlignTo(size_t p_Alignment)
@@ -60,6 +61,18 @@ public:
 			memset(CurrentPtr(), 0x00, s_BytesToSkip);
 			m_Position += s_BytesToSkip;
 		}
+	}
+
+	[[nodiscard]]
+	void* Buffer() const
+	{
+		return m_Buffer;
+	}
+
+	[[nodiscard]]
+	size_t WrittenBytes() const
+	{
+		return m_Position;
 	}
 
 private:

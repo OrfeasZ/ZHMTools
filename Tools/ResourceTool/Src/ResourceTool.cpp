@@ -1,9 +1,7 @@
 #include <cstdio>
 #include <fstream>
 #include <algorithm>
-
-#include <IResourceConverter.h>
-#include <IResourceGenerator.h>
+#include <filesystem>
 
 #include <ResourceLib_HM3.h>
 #include <ResourceLib_HM2.h>
@@ -25,7 +23,7 @@ enum class HitmanVersion
 	Hitman3,
 };
 
-bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, IResourceConverter* p_Converter, bool p_SimpleOutput)
+bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, ResourceConverter* p_Converter, bool p_SimpleOutput)
 {
 	// Read the entire file to memory.
 	const auto s_FileSize = file_size(p_InputFilePath);
@@ -35,16 +33,15 @@ bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::fil
 	s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
 
 	s_FileStream.close();
-
-	std::ofstream s_OutputStream(p_OutputFilePath, std::ios::out);
-	auto s_Result = p_Converter->ToJson(s_FileData, s_FileSize, p_SimpleOutput, s_OutputStream);
+	
+	const auto s_Result = p_Converter->FromMemoryToJsonFile(s_FileData, s_FileSize, p_OutputFilePath.string().c_str(), p_SimpleOutput);
 
 	free(s_FileData);
 
 	return s_Result;
 }
 
-bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::filesystem::path& p_OutputFilePath, IResourceGenerator* p_Generator, bool p_SimpleInput)
+bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::filesystem::path& p_OutputFilePath, ResourceGenerator* p_Generator, bool p_SimpleInput)
 {
 	if (!p_SimpleInput)
 	{
@@ -52,7 +49,7 @@ bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::fi
 		return false;
 	}
 
-	return p_Generator->GenerateFrom(p_JsonFilePath, p_OutputFilePath);
+	return p_Generator->FromJsonFileToResourceFile(p_JsonFilePath.string().c_str(), p_OutputFilePath.string().c_str(), p_SimpleInput);
 }
 
 void PrintHelp()
@@ -150,8 +147,8 @@ int TryConvertFile(const std::string& p_FilePath)
 		s_Convert = false;
 	}
 
-	IResourceConverter* s_ResourceConverter = nullptr;
-	IResourceGenerator* s_ResourceGenerator = nullptr;
+	ResourceConverter* s_ResourceConverter = nullptr;
+	ResourceGenerator* s_ResourceGenerator = nullptr;
 
 	switch (s_DetectedVersion)
 	{
@@ -248,8 +245,8 @@ int main(int argc, char** argv)
 	else if (s_GameVersionStr == "HM3")
 		s_GameVersion = HitmanVersion::Hitman3;
 	
-	IResourceConverter* s_ResourceConverter = nullptr;
-	IResourceGenerator* s_ResourceGenerator = nullptr;
+	ResourceConverter* s_ResourceConverter = nullptr;
+	ResourceGenerator* s_ResourceGenerator = nullptr;
 
 	switch (s_GameVersion)
 	{

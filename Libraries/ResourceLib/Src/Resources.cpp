@@ -1,7 +1,7 @@
 #include "Resources.h"
 
-#include "ResourceConverter.h"
-#include "ResourceGenerator.h"
+#include "ResourceConverterImpl.h"
+#include "ResourceGeneratorImpl.h"
 
 #include <ZHM/ZHMCustomTypes.h>
 
@@ -10,6 +10,8 @@
 #elif ZHM_TARGET == 2
 #include <Generated/HM2/ZHMGen.h>
 #endif
+
+#define REGISTER_RESOURCE(ResourceName, ResourceType) { #ResourceName, Resource(CreateResourceConverter<ResourceType>(), CreateResourceGenerator<ResourceType>()) },
 
 // Register all supported resource types here.
 std::unordered_map<std::string, Resource> g_Resources = {

@@ -10,7 +10,16 @@ public:
 	BinaryStreamReader(void* p_Buffer, size_t p_Size) :
 		m_Buffer(p_Buffer),
 		m_Size(p_Size),
-		m_StreamPos(0)
+		m_StreamPos(0),
+		m_CanWrite(true)
+	{
+	}
+
+	BinaryStreamReader(const void* p_Buffer, size_t p_Size) :
+		m_Buffer(const_cast<void*>(p_Buffer)),
+		m_Size(p_Size),
+		m_StreamPos(0),
+		m_CanWrite(false)
 	{
 	}
 
@@ -28,6 +37,9 @@ public:
 	template <typename T>
 	void Write(T p_Value)
 	{
+		if (!m_CanWrite)
+			throw std::runtime_error("Tried to write to a read-only stream.");
+		
 		assert(m_StreamPos + sizeof(T) <= m_Size);
 
 		*reinterpret_cast<T*>(GetCurrentPtr()) = p_Value;
@@ -100,4 +112,5 @@ private:
 	void* m_Buffer;
 	size_t m_Size;
 	uintptr_t m_StreamPos;
+	bool m_CanWrite;
 };
