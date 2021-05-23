@@ -76,13 +76,18 @@ set_target_properties(ResourceLib_HM3 ResourceLib_HM2 PROPERTIES
 	CXX_STANDARD 20
 )
 
-target_compile_options(ResourceLib_HM3
-	PUBLIC "/bigobj"
-)
+if(CMAKE_BUILD_TYPE STREQUAL RelWithDebInfo)
+	set(RESOURCELIB_COMPILE_FLAGS "/bigobj" "/Od" "/GL" "/Gy")
+	set(RESOURCELIB_LINK_FLAGS "/LTCG:OFF" "/DEBUG" "/OPT:REF" "/OPT:ICF")
+else()
+	set(RESOURCELIB_COMPILE_FLAGS "/bigobj")
+	set(RESOURCELIB_LINK_FLAGS "")
+endif()
 
-target_compile_options(ResourceLib_HM2
-	PUBLIC "/bigobj"
-)
+target_compile_options(ResourceLib_HM3 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
+target_link_options(ResourceLib_HM3 PRIVATE ${RESOURCELIB_LINK_FLAGS})
+target_compile_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
+target_link_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_LINK_FLAGS})
 
 target_compile_definitions(ResourceLib_HM3 
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=3
