@@ -100,15 +100,13 @@ jobs:
 
     - name: Build
       run: |
-        cmake --build _build
+        cmake --build _build -j
 
     - name: Copy resource tool artifacts
       run: |
         cd _build
         mkdir _resource-tool
         cp Tools/ResourceTool/ResourceTool _resource-tool/
-        cp Libraries/ResourceLib/libResourceLib_HM2.so _resource-tool/
-        cp Libraries/ResourceLib/libResourceLib_HM3.so _resource-tool/
         cp ../LICENSE _resource-tool/
 
     - name: Archive resource tool

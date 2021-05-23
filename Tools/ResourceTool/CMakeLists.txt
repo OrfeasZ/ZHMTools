@@ -17,13 +17,19 @@ target_link_libraries(ResourceTool PUBLIC
 	ResourceLib_HM2
 )
 
-# Copy over the ResourceLib binaries so the executable can find them when running.
-add_custom_command(TARGET ResourceTool POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    $<TARGET_FILE:ResourceLib_HM3> $<TARGET_FILE_DIR:ResourceTool>
-)
+if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	target_link_options(ResourceTool PRIVATE "-static")
+endif()
 
-add_custom_command(TARGET ResourceTool POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    $<TARGET_FILE:ResourceLib_HM2> $<TARGET_FILE_DIR:ResourceTool>
-)
+# Copy over the ResourceLib binaries so the executable can find them when running.
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	add_custom_command(TARGET ResourceTool POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		$<TARGET_FILE:ResourceLib_HM3> $<TARGET_FILE_DIR:ResourceTool>
+	)
+
+	add_custom_command(TARGET ResourceTool POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		$<TARGET_FILE:ResourceLib_HM2> $<TARGET_FILE_DIR:ResourceTool>
+	)
+endif()
