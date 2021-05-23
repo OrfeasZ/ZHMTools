@@ -46,7 +46,7 @@ jobs:
       run: |
         cd _build
         mkdir _resource-tool
-        Copy-Item Tools/ResourceTool/ResourceTool.dll -Destination _resource-tool/
+        Copy-Item Tools/ResourceTool/ResourceTool.exe -Destination _resource-tool/
         Copy-Item Tools/ResourceTool/ResourceTool.pdb -Destination _resource-tool/
         Copy-Item Libraries/ResourceLib/ResourceLib_HM2.dll -Destination _resource-tool/
         Copy-Item Libraries/ResourceLib/ResourceLib_HM2.pdb -Destination _resource-tool/
