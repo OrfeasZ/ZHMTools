@@ -1,4 +1,4 @@
-/* auto-generated on 2021-03-18 11:30:40 -0400. Do not edit! */
+/* auto-generated on 2021-05-20 16:23:38 -0400. Do not edit! */
 /* begin file include/simdjson.h */
 #ifndef SIMDJSON_H
 #define SIMDJSON_H
@@ -6,7 +6,7 @@
 /**
  * @mainpage
  *
- * Check the [README.md](https://github.com/lemire/simdjson/blob/master/README.md#simdjson--parsing-gigabytes-of-json-per-second).
+ * Check the [README.md](https://github.com/simdjson/simdjson/blob/master/README.md#simdjson--parsing-gigabytes-of-json-per-second).
  *
  * Sample code. See https://github.com/simdjson/simdjson/blob/master/doc/basics.md for more examples.
 
@@ -302,7 +302,7 @@ constexpr size_t SIMDJSON_MAXSIZE_BYTES = 0xFFFFFFFF;
  * the input buf should be readable up to buf + SIMDJSON_PADDING
  * this is a stopgap; there should be a better description of the
  * main loop and its behavior that abstracts over this
- * See https://github.com/lemire/simdjson/issues/174
+ * See https://github.com/simdjson/simdjson/issues/174
  */
 constexpr size_t SIMDJSON_PADDING = 32;
 
@@ -425,7 +425,7 @@ constexpr size_t DEFAULT_MAX_DEPTH = 1024;
      * the regular visual studio or clang under visual
      * studio, you still need to handle these issues.
      *
-     * Non-Windows sytems do not have this complexity.
+     * Non-Windows systems do not have this complexity.
      */
     #if SIMDJSON_BUILDING_WINDOWS_DYNAMIC_LIBRARY
     // We set SIMDJSON_BUILDING_WINDOWS_DYNAMIC_LIBRARY when we build a DLL under Windows.
@@ -479,7 +479,7 @@ constexpr size_t DEFAULT_MAX_DEPTH = 1024;
 // now it is safe to trigger the include
 #include <string_view> // though the file is there, it does not follow that we got the implementation
 #if defined(_LIBCPP_STRING_VIEW)
-// Ah! So we under libc++ which under its Library Fundamentals Technical Specification, which preceeded C++17,
+// Ah! So we under libc++ which under its Library Fundamentals Technical Specification, which preceded C++17,
 // included string_view.
 // This means that we have string_view *even though* we may not have C++17.
 #define SIMDJSON_HAS_STRING_VIEW
@@ -2045,6 +2045,22 @@ namespace std {
 #endif
 #endif
 
+#if SIMDJSON_CPLUSPLUS17
+// if we have C++, then fallthrough is a default attribute
+# define simdjson_fallthrough [[fallthrough]]
+// check if we have __attribute__ support
+#elif defined(__has_attribute)
+// check if we have the __fallthrough__ attribute
+#if __has_attribute(__fallthrough__)
+// we are good to go:
+# define simdjson_fallthrough                    __attribute__((__fallthrough__))
+#endif
+#endif
+// on some systems, we simply do not have support for fallthrough, so use a default:
+#ifndef simdjson_fallthrough
+# define simdjson_fallthrough do {} while (0)  /* fallthrough */
+#endif
+
 #endif // SIMDJSON_COMMON_DEFS_H
 /* end file include/simdjson/common_defs.h */
 
@@ -2503,7 +2519,7 @@ struct padded_string final {
    *
    * @param path the path to the file.
    **/
-  inline static simdjson_result<padded_string> load(const std::string &path) noexcept;
+  inline static simdjson_result<padded_string> load(std::string_view path) noexcept;
 
 private:
   padded_string &operator=(const padded_string &o) = delete;
@@ -2679,7 +2695,29 @@ namespace dom {
 class document;
 } // namespace dom
 
+/**
+* This enum is used with the dom_parser_implementation::stage1 function.
+* 1) The regular mode expects a fully formed JSON document.
+* 2) The streaming_partial mode expects a possibly truncated
+* input within a stream on JSON documents.
+* 3) The stream_final mode allows us to truncate final
+* unterminated strings. It is useful in conjunction with streaming_partial.
+*/
+enum class stage1_mode { regular, streaming_partial, streaming_final};
+
+/**
+ * Returns true if mode == streaming_partial or mode == streaming_final
+ */
+inline bool is_streaming(stage1_mode mode) {
+  // performance note: it is probably faster to check that mode is different
+  // from regular than checking that it is either streaming_partial or streaming_final.
+  return (mode != stage1_mode::regular);
+  // return (mode == stage1_mode::streaming_partial || mode == stage1_mode::streaming_final);
+}
+
+
 namespace internal {
+
 
 /**
  * An implementation of simdjson's DOM parser for a particular CPU architecture.
@@ -2719,7 +2757,7 @@ public:
    * @param streaming Whether this is being called by parser::parse_many.
    * @return The error code, or SUCCESS if there was no error.
    */
-  simdjson_warn_unused virtual error_code stage1(const uint8_t *buf, size_t len, bool streaming) noexcept = 0;
+  simdjson_warn_unused virtual error_code stage1(const uint8_t *buf, size_t len, stage1_mode streaming) noexcept = 0;
 
   /**
    * @private For internal implementation use
@@ -3596,11 +3634,11 @@ inline padded_string::operator padded_string_view() const noexcept {
   return padded_string_view(data(), length(), length() + SIMDJSON_PADDING);
 }
 
-inline simdjson_result<padded_string> padded_string::load(const std::string &filename) noexcept {
+inline simdjson_result<padded_string> padded_string::load(std::string_view filename) noexcept {
   // Open the file
   SIMDJSON_PUSH_DISABLE_WARNINGS
   SIMDJSON_DISABLE_DEPRECATED_WARNING // Disable CRT_SECURE warning on MSVC: manually verified this is safe
-  std::FILE *fp = std::fopen(filename.c_str(), "rb");
+  std::FILE *fp = std::fopen(filename.data(), "rb");
   SIMDJSON_POP_DISABLE_WARNINGS
 
   if (fp == nullptr) {
@@ -4593,7 +4631,7 @@ public:
 
   /**
    * @private return an error code corresponding to the last parsing attempt, see
-   * simdjson.h will return UNITIALIZED if no parsing was attempted
+   * simdjson.h will return UNINITIALIZED if no parsing was attempted
    */
   [[deprecated("Use the result of parser.parse() instead")]]
   inline int get_error_code() const noexcept;
@@ -4750,7 +4788,29 @@ public:
   simdjson_really_inline document_stream &operator=(document_stream &&other) noexcept = default;
 
   simdjson_really_inline ~document_stream() noexcept;
-
+  /**
+   * Returns the input size in bytes.
+   */
+  inline size_t size_in_bytes() const noexcept;
+  /**
+   * After iterating through the stream, this method
+   * returns the number of bytes that were not parsed at the end
+   * of the stream. If truncated_bytes() differs from zero,
+   * then the input was truncated maybe because incomplete JSON
+   * documents were found at the end of the stream. You
+   * may need to process the bytes in the interval [size_in_bytes()-truncated_bytes(), size_in_bytes()).
+   *
+   * You should only call truncated_bytes() after streaming through all
+   * documents, like so:
+   *
+   *   document_stream stream = parser.parse_many(json,window);
+   *   for(auto doc : stream) {
+   *      // do something with doc
+   *   }
+   *   size_t truncated = stream.truncated_bytes();
+   *
+   */
+  inline size_t truncated_bytes() const noexcept;
   /**
    * An iterator through a forward-only stream of documents.
    */
@@ -4764,7 +4824,7 @@ public:
     using iterator_category = std::input_iterator_tag;
 
     /**
-     * Default contructor.
+     * Default constructor.
      */
     simdjson_really_inline iterator() noexcept;
     /**
@@ -4908,7 +4968,6 @@ private:
   error_code error;
   size_t batch_start{0};
   size_t doc_index{};
-
 #ifdef SIMDJSON_THREADS_ENABLED
   /** Indicates whether we use threads. Note that this needs to be a constant during the execution of the parsing. */
   bool use_thread;
@@ -5320,7 +5379,7 @@ public:
    * The key will be matched against **unescaped** JSON:
    *
    *   dom::parser parser;
-   *   parser.parse(R"({ "a\n": 1 })"_padded)["a\n"].get_uint64().first == 1
+   *   int64_t(parser.parse(R"({ "a\n": 1 })"_padded)["a\n"]) == 1
    *   parser.parse(R"({ "a\n": 1 })"_padded)["a\\n"].get_uint64().error() == NO_SUCH_FIELD
    *
    * @return The value associated with this field, or:
@@ -5335,7 +5394,7 @@ public:
    * The key will be matched against **unescaped** JSON:
    *
    *   dom::parser parser;
-   *   parser.parse(R"({ "a\n": 1 })"_padded)["a\n"].get_uint64().first == 1
+   *   int64_t(parser.parse(R"({ "a\n": 1 })"_padded)["a\n"]) == 1
    *   parser.parse(R"({ "a\n": 1 })"_padded)["a\\n"].get_uint64().error() == NO_SUCH_FIELD
    *
    * @return The value associated with this field, or:
@@ -5407,7 +5466,7 @@ public:
    * The key will be matched against **unescaped** JSON:
    *
    *   dom::parser parser;
-   *   parser.parse(R"({ "a\n": 1 })"_padded)["a\n"].get_uint64().first == 1
+   *   int64_t(parser.parse(R"({ "a\n": 1 })"_padded)["a\n"]) == 1
    *   parser.parse(R"({ "a\n": 1 })"_padded)["a\\n"].get_uint64().error() == NO_SUCH_FIELD
    *
    * @return The value associated with this field, or:
@@ -5630,7 +5689,7 @@ public:
    * The key will be matched against **unescaped** JSON:
    *
    *   dom::parser parser;
-   *   parser.parse(R"({ "a\n": 1 })"_padded)["a\n"].get_uint64().first == 1
+   *   int64_t(parser.parse(R"({ "a\n": 1 })"_padded)["a\n"]) == 1
    *   parser.parse(R"({ "a\n": 1 })"_padded)["a\\n"].get_uint64().error() == NO_SUCH_FIELD
    *
    * This function has linear-time complexity: the keys are checked one by one.
@@ -5647,7 +5706,7 @@ public:
    * The key will be matched against **unescaped** JSON:
    *
    *   dom::parser parser;
-   *   parser.parse(R"({ "a\n": 1 })"_padded)["a\n"].get_uint64().first == 1
+   *   int64_t(parser.parse(R"({ "a\n": 1 })"_padded)["a\n"]) == 1
    *   parser.parse(R"({ "a\n": 1 })"_padded)["a\\n"].get_uint64().error() == NO_SUCH_FIELD
    *
    * This function has linear-time complexity: the keys are checked one by one.
@@ -5689,7 +5748,7 @@ public:
    * The key will be matched against **unescaped** JSON:
    *
    *   dom::parser parser;
-   *   parser.parse(R"({ "a\n": 1 })"_padded)["a\n"].get_uint64().first == 1
+   *   int64_t(parser.parse(R"({ "a\n": 1 })"_padded)["a\n"]) == 1
    *   parser.parse(R"({ "a\n": 1 })"_padded)["a\\n"].get_uint64().error() == NO_SUCH_FIELD
    *
    * This function has linear-time complexity: the keys are checked one by one.
@@ -5813,7 +5872,7 @@ public:
   inline void append(simdjson::dom::element value);
   /** Append an array to the builder (to be printed) **/
   inline void append(simdjson::dom::array value);
-  /** Append an objet to the builder (to be printed) **/
+  /** Append an object to the builder (to be printed) **/
   inline void append(simdjson::dom::object value);
   /** Reset the builder (so that it would print the empty string) **/
   simdjson_really_inline void clear();
@@ -5925,7 +5984,7 @@ inline std::ostream& operator<<(std::ostream& out, simdjson::simdjson_result<sim
  * Print JSON to an output stream.
  *
  * @param out The output stream.
- * @param value The objet.
+ * @param value The object.
  * @throw if there is an error with the underlying output stream. simdjson itself will not throw.
  */
 inline std::ostream& operator<<(std::ostream& out, simdjson::dom::object value)   {
@@ -6427,7 +6486,7 @@ public:
   // throughout return true if we can do the navigation, false
   // otherwise
 
-  // Withing a given scope (series of nodes at the same depth within either an
+  // Within a given scope (series of nodes at the same depth within either an
   // array or an object), we move forward.
   // Thus, given [true, null, {"a":1}, [1,2]], we would visit true, null, {
   // and [. At the object ({) or at the array ([), you can issue a "down" to
@@ -7301,8 +7360,15 @@ simdjson_really_inline size_t document_stream::iterator::current_index() const n
 }
 
 simdjson_really_inline std::string_view document_stream::iterator::source() const noexcept {
-  size_t next_doc_index = stream->batch_start + stream->parser->implementation->structural_indexes[stream->parser->implementation->next_structural_index];
-  return std::string_view(reinterpret_cast<const char*>(stream->buf) + current_index(), next_doc_index - current_index() - 1);
+  const char* start = reinterpret_cast<const char*>(stream->buf) + current_index();
+  bool object_or_array = ((*start == '[') || (*start == '{'));
+  if(object_or_array) {
+    size_t next_doc_index = stream->batch_start + stream->parser->implementation->structural_indexes[stream->parser->implementation->next_structural_index - 1];
+    return std::string_view(start, next_doc_index - current_index() + 1);
+  } else {
+    size_t next_doc_index = stream->batch_start + stream->parser->implementation->structural_indexes[stream->parser->implementation->next_structural_index];
+    return std::string_view(reinterpret_cast<const char*>(stream->buf) + current_index(), next_doc_index - current_index() - 1);
+  }
 }
 
 
@@ -7333,18 +7399,24 @@ inline void document_stream::next() noexcept {
     error = parser->implementation->stage2_next(parser->doc);
   }
 }
+inline size_t document_stream::size_in_bytes() const noexcept {
+  return len;
+}
+
+inline size_t document_stream::truncated_bytes() const noexcept {
+  return parser->implementation->structural_indexes[parser->implementation->n_structural_indexes] - parser->implementation->structural_indexes[parser->implementation->n_structural_indexes + 1];
+}
 
 inline size_t document_stream::next_batch_start() const noexcept {
   return batch_start + parser->implementation->structural_indexes[parser->implementation->n_structural_indexes];
 }
 
 inline error_code document_stream::run_stage1(dom::parser &p, size_t _batch_start) noexcept {
-  // If this is the final batch, pass partial = false
   size_t remaining = len - _batch_start;
   if (remaining <= batch_size) {
-    return p.implementation->stage1(&buf[_batch_start], remaining, false);
+    return p.implementation->stage1(&buf[_batch_start], remaining, stage1_mode::streaming_final);
   } else {
-    return p.implementation->stage1(&buf[_batch_start], batch_size, true);
+    return p.implementation->stage1(&buf[_batch_start], batch_size, stage1_mode::streaming_partial);
   }
 }
 
@@ -7450,7 +7522,7 @@ inline error_code document::allocate(size_t capacity) noexcept {
   // need a capacity of at least capacity + 1, but it is also possible to do
   // worse with "[7,7,7,7,6,7,7,7,6,7,7,6,[7,7,7,7,6,7,7,7,6,7,7,6,7,7,7,7,7,7,6"
   //where capacity + 1 tape elements are
-  // generated, see issue https://github.com/lemire/simdjson/issues/345
+  // generated, see issue https://github.com/simdjson/simdjson/issues/345
   size_t tape_capacity = SIMDJSON_ROUNDUP_N(capacity + 3, 64);
   // a document with only zero-length strings... could have capacity/3 string
   // and we would need capacity/3 * 5 bytes on the string buffer
@@ -8408,13 +8480,18 @@ inline simdjson_result<element> parser::parse_into_document(document& provided_d
   // Important: It is possible that provided_doc is actually the internal 'doc' within the parser!!!
   error_code _error = ensure_capacity(provided_doc, len);
   if (_error) { return _error; }
-  std::unique_ptr<uint8_t[]> tmp_buf;
   if (realloc_if_needed) {
-    tmp_buf.reset(reinterpret_cast<uint8_t *>( internal::allocate_padded_buffer(len) ));
-    if (tmp_buf.get() == nullptr) { return MEMALLOC; }
-    std::memcpy(static_cast<void *>(tmp_buf.get()), buf, len);
+    // Make sure we have enough capacity to copy len bytes
+    if (!loaded_bytes || _loaded_bytes_capacity < len) {
+      loaded_bytes.reset( internal::allocate_padded_buffer(len) );
+      if (!loaded_bytes) {
+        return MEMALLOC;
+      }
+      _loaded_bytes_capacity = len;
+    }
+    std::memcpy(static_cast<void *>(loaded_bytes.get()), buf, len);
   }
-  _error = implementation->parse(realloc_if_needed ? tmp_buf.get() : buf, len, provided_doc);
+  _error = implementation->parse(realloc_if_needed ? reinterpret_cast<const uint8_t*>(loaded_bytes.get()): buf, len, provided_doc);
 
   if (_error) { return _error; }
 
@@ -9332,7 +9409,7 @@ public:
   dom_parser_implementation &operator=(const dom_parser_implementation &) = delete;
 
   simdjson_warn_unused error_code parse(const uint8_t *buf, size_t len, dom::document &doc) noexcept final;
-  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, bool partial) noexcept final;
+  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, stage1_mode partial) noexcept final;
   simdjson_warn_unused error_code stage2(dom::document &doc) noexcept final;
   simdjson_warn_unused error_code stage2_next(dom::document &doc) noexcept final;
   inline simdjson_warn_unused error_code set_capacity(size_t capacity) noexcept final;
@@ -9437,6 +9514,40 @@ simdjson_really_inline int leading_zeroes(uint64_t input_num) {
 simdjson_really_inline int count_ones(uint64_t input_num) {
    return vaddv_u8(vcnt_u8(vcreate_u8(input_num)));
 }
+
+
+#if defined(__GNUC__) // catches clang and gcc
+/**
+ * ARM has a fast 64-bit "bit reversal function" that is handy. However,
+ * it is not generally available as an intrinsic function under Visual
+ * Studio (though this might be changing). Even under clang/gcc, we
+ * apparently need to invoke inline assembly.
+ */
+/*
+ * We use SIMDJSON_PREFER_REVERSE_BITS as a hint that algorithms that
+ * work well with bit reversal may use it.
+ */
+#define SIMDJSON_PREFER_REVERSE_BITS 1
+
+/* reverse the bits */
+simdjson_really_inline uint64_t reverse_bits(uint64_t input_num) {
+  uint64_t rev_bits;
+  __asm("rbit %0, %1" : "=r"(rev_bits) : "r"(input_num));
+  return rev_bits;
+}
+
+/**
+ * Flips bit at index 63 - lz. Thus if you have 'leading_zeroes' leading zeroes,
+ * then this will set to zero the leading bit. It is possible for leading_zeroes to be
+ * greating or equal to 63 in which case we trigger undefined behavior, but the output
+ * of such undefined behavior is never used.
+ **/
+NO_SANITIZE_UNDEFINED
+simdjson_really_inline uint64_t zero_leading_bit(uint64_t rev_bits, int leading_zeroes) {
+  return rev_bits ^ (uint64_t(0x8000000000000000) >> leading_zeroes);
+}
+
+#endif
 
 simdjson_really_inline bool add_overflow(uint64_t value1, uint64_t value2, uint64_t *result) {
 #ifdef SIMDJSON_REGULAR_VISUAL_STUDIO
@@ -9860,7 +9971,7 @@ simdjson_really_inline int8x16_t make_int8x16_t(int8_t x1,  int8_t x2,  int8_t x
     // Explicit conversion to/from unsigned
     //
     // Under Visual Studio/ARM64 uint8x16_t and int8x16_t are apparently the same type.
-    // In theory, we could check this occurence with std::same_as and std::enabled_if but it is C++14
+    // In theory, we could check this occurrence with std::same_as and std::enabled_if but it is C++14
     // and relatively ugly and hard to read.
 #ifndef SIMDJSON_REGULAR_VISUAL_STUDIO
     simdjson_really_inline explicit simd8(const uint8x16_t other): simd8(vreinterpretq_s8_u8(other)) {}
@@ -10551,8 +10662,8 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   // Both i and power_of_five_128[index] have their most significant bit set to 1 which
   // implies that the either the most or the second most significant bit of the product
   // is 1. We pack values in this manner for efficiency reasons: it maximizes the use
-  // we make of the product. It also makes it easy to reason aboutthe product: there
-  // 0 or 1 leading zero in the product.
+  // we make of the product. It also makes it easy to reason about the product: there
+  // is 0 or 1 leading zero in the product.
 
   // Unless the least significant 9 bits of the high (64-bit) part of the full
   // product are all 1s, then we know that the most significant 55 bits are
@@ -10667,7 +10778,7 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   mantissa &= ~(1ULL << 52);
   // we have to check that real_exponent is in range, otherwise we bail out
   if (simdjson_unlikely(real_exponent > 2046)) {
-    // We have an infinte value!!! We could actually throw an error here if we could.
+    // We have an infinite value!!! We could actually throw an error here if we could.
     return false;
   }
   d = to_double(mantissa, real_exponent, negative);
@@ -10830,7 +10941,7 @@ simdjson_really_inline error_code write_float(const uint8_t *const src, bool neg
   // we could extend our code by using a 128-bit integer instead
   // of a 64-bit integer. However, this is uncommon in practice.
   //
-  // 9999999999999999999 < 2**64 so we can accomodate 19 digits.
+  // 9999999999999999999 < 2**64 so we can accommodate 19 digits.
   // If we have a decimal separator, then digit_count - 1 is the number of digits, but we
   // may not have a decimal separator!
   if (simdjson_unlikely(digit_count > 19 && significant_digits(start_digits, digit_count) > 19)) {
@@ -11118,10 +11229,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // If there were no digits, or if the integer starts with 0 and has more than one digit, it's an error.
   // Optimization note: size_t is expected to be unsigned.
   size_t digit_count = size_t(p - start_digits);
-  // The longest negative 64-bit number is 19 digits.
-  // The longest positive 64-bit number is 20 digits.
-  // We do it this way so we don't trigger this branch unless we must.
-  size_t longest_digit_count = negative ? 19 : 20;
+  // We go from
+  // -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+  // so we can never represent numbers that have more than 19 digits.
+  size_t longest_digit_count = 19;
   // Optimization note: the compiler can probably merge
   // ((digit_count == 0) || (digit_count > longest_digit_count))
   // into a single  branch since digit_count is unsigned.
@@ -11134,27 +11245,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // }
   // as a single table lookup:
   if(integer_string_finisher[*p] != SUCCESS) { return error_code(integer_string_finisher[*p]); }
-  if (digit_count == longest_digit_count) {
-    if (negative) {
-      // Anything negative above INT64_MAX+1 is invalid
-      if (i > uint64_t(INT64_MAX)+1) { return INCORRECT_TYPE; }
-      return ~i+1;
-
-    // Positive overflow check:
-    // - A 20 digit number starting with 2-9 is overflow, because 18,446,744,073,709,551,615 is the
-    //   biggest uint64_t.
-    // - A 20 digit number starting with 1 is overflow if it is less than INT64_MAX.
-    //   If we got here, it's a 20 digit number starting with the digit "1".
-    // - If a 20 digit number starting with 1 overflowed (i*10+digit), the result will be smaller
-    //   than 1,553,255,926,290,448,384.
-    // - That is smaller than the smallest possible 20-digit number the user could write:
-    //   10,000,000,000,000,000,000.
-    // - Therefore, if the number is positive and lower than that, it's overflow.
-    // - The value we are looking at is less than or equal to 9,223,372,036,854,775,808 (INT64_MAX).
-    //
-    } else if (src[0] != uint8_t('1') || i <= uint64_t(INT64_MAX)) { return INCORRECT_TYPE; }
-  }
-
+  // Negative numbers have can go down to - INT64_MAX - 1 whereas positive numbers are limited to INT64_MAX.
+  // Performance note: This check is only needed when digit_count == longest_digit_count but it is
+  // so cheap that we might as well always make it.
+  if(i > uint64_t(INT64_MAX) + uint64_t(negative)) { return INCORRECT_TYPE; }
   return negative ? (~i+1) : i;
 }
 
@@ -11342,7 +11436,7 @@ public:
   dom_parser_implementation &operator=(const dom_parser_implementation &) = delete;
 
   simdjson_warn_unused error_code parse(const uint8_t *buf, size_t len, dom::document &doc) noexcept final;
-  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, bool partial) noexcept final;
+  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, stage1_mode partial) noexcept final;
   simdjson_warn_unused error_code stage2(dom::document &doc) noexcept final;
   simdjson_warn_unused error_code stage2_next(dom::document &doc) noexcept final;
   inline simdjson_warn_unused error_code set_capacity(size_t capacity) noexcept final;
@@ -11990,8 +12084,8 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   // Both i and power_of_five_128[index] have their most significant bit set to 1 which
   // implies that the either the most or the second most significant bit of the product
   // is 1. We pack values in this manner for efficiency reasons: it maximizes the use
-  // we make of the product. It also makes it easy to reason aboutthe product: there
-  // 0 or 1 leading zero in the product.
+  // we make of the product. It also makes it easy to reason about the product: there
+  // is 0 or 1 leading zero in the product.
 
   // Unless the least significant 9 bits of the high (64-bit) part of the full
   // product are all 1s, then we know that the most significant 55 bits are
@@ -12106,7 +12200,7 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   mantissa &= ~(1ULL << 52);
   // we have to check that real_exponent is in range, otherwise we bail out
   if (simdjson_unlikely(real_exponent > 2046)) {
-    // We have an infinte value!!! We could actually throw an error here if we could.
+    // We have an infinite value!!! We could actually throw an error here if we could.
     return false;
   }
   d = to_double(mantissa, real_exponent, negative);
@@ -12269,7 +12363,7 @@ simdjson_really_inline error_code write_float(const uint8_t *const src, bool neg
   // we could extend our code by using a 128-bit integer instead
   // of a 64-bit integer. However, this is uncommon in practice.
   //
-  // 9999999999999999999 < 2**64 so we can accomodate 19 digits.
+  // 9999999999999999999 < 2**64 so we can accommodate 19 digits.
   // If we have a decimal separator, then digit_count - 1 is the number of digits, but we
   // may not have a decimal separator!
   if (simdjson_unlikely(digit_count > 19 && significant_digits(start_digits, digit_count) > 19)) {
@@ -12557,10 +12651,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // If there were no digits, or if the integer starts with 0 and has more than one digit, it's an error.
   // Optimization note: size_t is expected to be unsigned.
   size_t digit_count = size_t(p - start_digits);
-  // The longest negative 64-bit number is 19 digits.
-  // The longest positive 64-bit number is 20 digits.
-  // We do it this way so we don't trigger this branch unless we must.
-  size_t longest_digit_count = negative ? 19 : 20;
+  // We go from
+  // -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+  // so we can never represent numbers that have more than 19 digits.
+  size_t longest_digit_count = 19;
   // Optimization note: the compiler can probably merge
   // ((digit_count == 0) || (digit_count > longest_digit_count))
   // into a single  branch since digit_count is unsigned.
@@ -12573,27 +12667,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // }
   // as a single table lookup:
   if(integer_string_finisher[*p] != SUCCESS) { return error_code(integer_string_finisher[*p]); }
-  if (digit_count == longest_digit_count) {
-    if (negative) {
-      // Anything negative above INT64_MAX+1 is invalid
-      if (i > uint64_t(INT64_MAX)+1) { return INCORRECT_TYPE; }
-      return ~i+1;
-
-    // Positive overflow check:
-    // - A 20 digit number starting with 2-9 is overflow, because 18,446,744,073,709,551,615 is the
-    //   biggest uint64_t.
-    // - A 20 digit number starting with 1 is overflow if it is less than INT64_MAX.
-    //   If we got here, it's a 20 digit number starting with the digit "1".
-    // - If a 20 digit number starting with 1 overflowed (i*10+digit), the result will be smaller
-    //   than 1,553,255,926,290,448,384.
-    // - That is smaller than the smallest possible 20-digit number the user could write:
-    //   10,000,000,000,000,000,000.
-    // - Therefore, if the number is positive and lower than that, it's overflow.
-    // - The value we are looking at is less than or equal to 9,223,372,036,854,775,808 (INT64_MAX).
-    //
-    } else if (src[0] != uint8_t('1') || i <= uint64_t(INT64_MAX)) { return INCORRECT_TYPE; }
-  }
-
+  // Negative numbers have can go down to - INT64_MAX - 1 whereas positive numbers are limited to INT64_MAX.
+  // Performance note: This check is only needed when digit_count == longest_digit_count but it is
+  // so cheap that we might as well always make it.
+  if(i > uint64_t(INT64_MAX) + uint64_t(negative)) { return INCORRECT_TYPE; }
   return negative ? (~i+1) : i;
 }
 
@@ -12846,7 +12923,7 @@ public:
   dom_parser_implementation &operator=(const dom_parser_implementation &) = delete;
 
   simdjson_warn_unused error_code parse(const uint8_t *buf, size_t len, dom::document &doc) noexcept final;
-  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, bool partial) noexcept final;
+  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, stage1_mode partial) noexcept final;
   simdjson_warn_unused error_code stage2(dom::document &doc) noexcept final;
   simdjson_warn_unused error_code stage2_next(dom::document &doc) noexcept final;
   inline simdjson_warn_unused error_code set_capacity(size_t capacity) noexcept final;
@@ -13914,8 +13991,8 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   // Both i and power_of_five_128[index] have their most significant bit set to 1 which
   // implies that the either the most or the second most significant bit of the product
   // is 1. We pack values in this manner for efficiency reasons: it maximizes the use
-  // we make of the product. It also makes it easy to reason aboutthe product: there
-  // 0 or 1 leading zero in the product.
+  // we make of the product. It also makes it easy to reason about the product: there
+  // is 0 or 1 leading zero in the product.
 
   // Unless the least significant 9 bits of the high (64-bit) part of the full
   // product are all 1s, then we know that the most significant 55 bits are
@@ -14030,7 +14107,7 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   mantissa &= ~(1ULL << 52);
   // we have to check that real_exponent is in range, otherwise we bail out
   if (simdjson_unlikely(real_exponent > 2046)) {
-    // We have an infinte value!!! We could actually throw an error here if we could.
+    // We have an infinite value!!! We could actually throw an error here if we could.
     return false;
   }
   d = to_double(mantissa, real_exponent, negative);
@@ -14193,7 +14270,7 @@ simdjson_really_inline error_code write_float(const uint8_t *const src, bool neg
   // we could extend our code by using a 128-bit integer instead
   // of a 64-bit integer. However, this is uncommon in practice.
   //
-  // 9999999999999999999 < 2**64 so we can accomodate 19 digits.
+  // 9999999999999999999 < 2**64 so we can accommodate 19 digits.
   // If we have a decimal separator, then digit_count - 1 is the number of digits, but we
   // may not have a decimal separator!
   if (simdjson_unlikely(digit_count > 19 && significant_digits(start_digits, digit_count) > 19)) {
@@ -14481,10 +14558,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // If there were no digits, or if the integer starts with 0 and has more than one digit, it's an error.
   // Optimization note: size_t is expected to be unsigned.
   size_t digit_count = size_t(p - start_digits);
-  // The longest negative 64-bit number is 19 digits.
-  // The longest positive 64-bit number is 20 digits.
-  // We do it this way so we don't trigger this branch unless we must.
-  size_t longest_digit_count = negative ? 19 : 20;
+  // We go from
+  // -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+  // so we can never represent numbers that have more than 19 digits.
+  size_t longest_digit_count = 19;
   // Optimization note: the compiler can probably merge
   // ((digit_count == 0) || (digit_count > longest_digit_count))
   // into a single  branch since digit_count is unsigned.
@@ -14497,27 +14574,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // }
   // as a single table lookup:
   if(integer_string_finisher[*p] != SUCCESS) { return error_code(integer_string_finisher[*p]); }
-  if (digit_count == longest_digit_count) {
-    if (negative) {
-      // Anything negative above INT64_MAX+1 is invalid
-      if (i > uint64_t(INT64_MAX)+1) { return INCORRECT_TYPE; }
-      return ~i+1;
-
-    // Positive overflow check:
-    // - A 20 digit number starting with 2-9 is overflow, because 18,446,744,073,709,551,615 is the
-    //   biggest uint64_t.
-    // - A 20 digit number starting with 1 is overflow if it is less than INT64_MAX.
-    //   If we got here, it's a 20 digit number starting with the digit "1".
-    // - If a 20 digit number starting with 1 overflowed (i*10+digit), the result will be smaller
-    //   than 1,553,255,926,290,448,384.
-    // - That is smaller than the smallest possible 20-digit number the user could write:
-    //   10,000,000,000,000,000,000.
-    // - Therefore, if the number is positive and lower than that, it's overflow.
-    // - The value we are looking at is less than or equal to 9,223,372,036,854,775,808 (INT64_MAX).
-    //
-    } else if (src[0] != uint8_t('1') || i <= uint64_t(INT64_MAX)) { return INCORRECT_TYPE; }
-  }
-
+  // Negative numbers have can go down to - INT64_MAX - 1 whereas positive numbers are limited to INT64_MAX.
+  // Performance note: This check is only needed when digit_count == longest_digit_count but it is
+  // so cheap that we might as well always make it.
+  if(i > uint64_t(INT64_MAX) + uint64_t(negative)) { return INCORRECT_TYPE; }
   return negative ? (~i+1) : i;
 }
 
@@ -14705,7 +14765,7 @@ public:
   dom_parser_implementation &operator=(const dom_parser_implementation &) = delete;
 
   simdjson_warn_unused error_code parse(const uint8_t *buf, size_t len, dom::document &doc) noexcept final;
-  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, bool partial) noexcept final;
+  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, stage1_mode partial) noexcept final;
   simdjson_warn_unused error_code stage2(dom::document &doc) noexcept final;
   simdjson_warn_unused error_code stage2_next(dom::document &doc) noexcept final;
   inline simdjson_warn_unused error_code set_capacity(size_t capacity) noexcept final;
@@ -15937,8 +15997,8 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   // Both i and power_of_five_128[index] have their most significant bit set to 1 which
   // implies that the either the most or the second most significant bit of the product
   // is 1. We pack values in this manner for efficiency reasons: it maximizes the use
-  // we make of the product. It also makes it easy to reason aboutthe product: there
-  // 0 or 1 leading zero in the product.
+  // we make of the product. It also makes it easy to reason about the product: there
+  // is 0 or 1 leading zero in the product.
 
   // Unless the least significant 9 bits of the high (64-bit) part of the full
   // product are all 1s, then we know that the most significant 55 bits are
@@ -16053,7 +16113,7 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   mantissa &= ~(1ULL << 52);
   // we have to check that real_exponent is in range, otherwise we bail out
   if (simdjson_unlikely(real_exponent > 2046)) {
-    // We have an infinte value!!! We could actually throw an error here if we could.
+    // We have an infinite value!!! We could actually throw an error here if we could.
     return false;
   }
   d = to_double(mantissa, real_exponent, negative);
@@ -16216,7 +16276,7 @@ simdjson_really_inline error_code write_float(const uint8_t *const src, bool neg
   // we could extend our code by using a 128-bit integer instead
   // of a 64-bit integer. However, this is uncommon in practice.
   //
-  // 9999999999999999999 < 2**64 so we can accomodate 19 digits.
+  // 9999999999999999999 < 2**64 so we can accommodate 19 digits.
   // If we have a decimal separator, then digit_count - 1 is the number of digits, but we
   // may not have a decimal separator!
   if (simdjson_unlikely(digit_count > 19 && significant_digits(start_digits, digit_count) > 19)) {
@@ -16504,10 +16564,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // If there were no digits, or if the integer starts with 0 and has more than one digit, it's an error.
   // Optimization note: size_t is expected to be unsigned.
   size_t digit_count = size_t(p - start_digits);
-  // The longest negative 64-bit number is 19 digits.
-  // The longest positive 64-bit number is 20 digits.
-  // We do it this way so we don't trigger this branch unless we must.
-  size_t longest_digit_count = negative ? 19 : 20;
+  // We go from
+  // -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+  // so we can never represent numbers that have more than 19 digits.
+  size_t longest_digit_count = 19;
   // Optimization note: the compiler can probably merge
   // ((digit_count == 0) || (digit_count > longest_digit_count))
   // into a single  branch since digit_count is unsigned.
@@ -16520,27 +16580,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // }
   // as a single table lookup:
   if(integer_string_finisher[*p] != SUCCESS) { return error_code(integer_string_finisher[*p]); }
-  if (digit_count == longest_digit_count) {
-    if (negative) {
-      // Anything negative above INT64_MAX+1 is invalid
-      if (i > uint64_t(INT64_MAX)+1) { return INCORRECT_TYPE; }
-      return ~i+1;
-
-    // Positive overflow check:
-    // - A 20 digit number starting with 2-9 is overflow, because 18,446,744,073,709,551,615 is the
-    //   biggest uint64_t.
-    // - A 20 digit number starting with 1 is overflow if it is less than INT64_MAX.
-    //   If we got here, it's a 20 digit number starting with the digit "1".
-    // - If a 20 digit number starting with 1 overflowed (i*10+digit), the result will be smaller
-    //   than 1,553,255,926,290,448,384.
-    // - That is smaller than the smallest possible 20-digit number the user could write:
-    //   10,000,000,000,000,000,000.
-    // - Therefore, if the number is positive and lower than that, it's overflow.
-    // - The value we are looking at is less than or equal to 9,223,372,036,854,775,808 (INT64_MAX).
-    //
-    } else if (src[0] != uint8_t('1') || i <= uint64_t(INT64_MAX)) { return INCORRECT_TYPE; }
-  }
-
+  // Negative numbers have can go down to - INT64_MAX - 1 whereas positive numbers are limited to INT64_MAX.
+  // Performance note: This check is only needed when digit_count == longest_digit_count but it is
+  // so cheap that we might as well always make it.
+  if(i > uint64_t(INT64_MAX) + uint64_t(negative)) { return INCORRECT_TYPE; }
   return negative ? (~i+1) : i;
 }
 
@@ -16769,7 +16812,7 @@ public:
   dom_parser_implementation &operator=(const dom_parser_implementation &) = delete;
 
   simdjson_warn_unused error_code parse(const uint8_t *buf, size_t len, dom::document &doc) noexcept final;
-  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, bool partial) noexcept final;
+  simdjson_warn_unused error_code stage1(const uint8_t *buf, size_t len, stage1_mode partial) noexcept final;
   simdjson_warn_unused error_code stage2(dom::document &doc) noexcept final;
   simdjson_warn_unused error_code stage2_next(dom::document &doc) noexcept final;
   inline simdjson_warn_unused error_code set_capacity(size_t capacity) noexcept final;
@@ -17818,8 +17861,8 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   // Both i and power_of_five_128[index] have their most significant bit set to 1 which
   // implies that the either the most or the second most significant bit of the product
   // is 1. We pack values in this manner for efficiency reasons: it maximizes the use
-  // we make of the product. It also makes it easy to reason aboutthe product: there
-  // 0 or 1 leading zero in the product.
+  // we make of the product. It also makes it easy to reason about the product: there
+  // is 0 or 1 leading zero in the product.
 
   // Unless the least significant 9 bits of the high (64-bit) part of the full
   // product are all 1s, then we know that the most significant 55 bits are
@@ -17934,7 +17977,7 @@ simdjson_really_inline bool compute_float_64(int64_t power, uint64_t i, bool neg
   mantissa &= ~(1ULL << 52);
   // we have to check that real_exponent is in range, otherwise we bail out
   if (simdjson_unlikely(real_exponent > 2046)) {
-    // We have an infinte value!!! We could actually throw an error here if we could.
+    // We have an infinite value!!! We could actually throw an error here if we could.
     return false;
   }
   d = to_double(mantissa, real_exponent, negative);
@@ -18097,7 +18140,7 @@ simdjson_really_inline error_code write_float(const uint8_t *const src, bool neg
   // we could extend our code by using a 128-bit integer instead
   // of a 64-bit integer. However, this is uncommon in practice.
   //
-  // 9999999999999999999 < 2**64 so we can accomodate 19 digits.
+  // 9999999999999999999 < 2**64 so we can accommodate 19 digits.
   // If we have a decimal separator, then digit_count - 1 is the number of digits, but we
   // may not have a decimal separator!
   if (simdjson_unlikely(digit_count > 19 && significant_digits(start_digits, digit_count) > 19)) {
@@ -18385,10 +18428,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // If there were no digits, or if the integer starts with 0 and has more than one digit, it's an error.
   // Optimization note: size_t is expected to be unsigned.
   size_t digit_count = size_t(p - start_digits);
-  // The longest negative 64-bit number is 19 digits.
-  // The longest positive 64-bit number is 20 digits.
-  // We do it this way so we don't trigger this branch unless we must.
-  size_t longest_digit_count = negative ? 19 : 20;
+  // We go from
+  // -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+  // so we can never represent numbers that have more than 19 digits.
+  size_t longest_digit_count = 19;
   // Optimization note: the compiler can probably merge
   // ((digit_count == 0) || (digit_count > longest_digit_count))
   // into a single  branch since digit_count is unsigned.
@@ -18401,27 +18444,10 @@ simdjson_unused simdjson_really_inline simdjson_result<int64_t> parse_integer(co
   // }
   // as a single table lookup:
   if(integer_string_finisher[*p] != SUCCESS) { return error_code(integer_string_finisher[*p]); }
-  if (digit_count == longest_digit_count) {
-    if (negative) {
-      // Anything negative above INT64_MAX+1 is invalid
-      if (i > uint64_t(INT64_MAX)+1) { return INCORRECT_TYPE; }
-      return ~i+1;
-
-    // Positive overflow check:
-    // - A 20 digit number starting with 2-9 is overflow, because 18,446,744,073,709,551,615 is the
-    //   biggest uint64_t.
-    // - A 20 digit number starting with 1 is overflow if it is less than INT64_MAX.
-    //   If we got here, it's a 20 digit number starting with the digit "1".
-    // - If a 20 digit number starting with 1 overflowed (i*10+digit), the result will be smaller
-    //   than 1,553,255,926,290,448,384.
-    // - That is smaller than the smallest possible 20-digit number the user could write:
-    //   10,000,000,000,000,000,000.
-    // - Therefore, if the number is positive and lower than that, it's overflow.
-    // - The value we are looking at is less than or equal to 9,223,372,036,854,775,808 (INT64_MAX).
-    //
-    } else if (src[0] != uint8_t('1') || i <= uint64_t(INT64_MAX)) { return INCORRECT_TYPE; }
-  }
-
+  // Negative numbers have can go down to - INT64_MAX - 1 whereas positive numbers are limited to INT64_MAX.
+  // Performance note: This check is only needed when digit_count == longest_digit_count but it is
+  // so cheap that we might as well always make it.
+  if(i > uint64_t(INT64_MAX) + uint64_t(negative)) { return INCORRECT_TYPE; }
   return negative ? (~i+1) : i;
 }
 
@@ -18773,23 +18799,26 @@ namespace logger {
   static constexpr const bool LOG_ENABLED = false;
 #endif
 
-static simdjson_really_inline void log_headers() noexcept;
-static simdjson_really_inline void log_line(const json_iterator &iter, token_position index, depth_t depth, const char *title_prefix, const char *title, std::string_view detail) noexcept;
-static simdjson_really_inline void log_line(const json_iterator &iter, const char *title_prefix, const char *title, std::string_view detail, int delta, int depth_delta) noexcept;
-static simdjson_really_inline void log_event(const json_iterator &iter, const char *type, std::string_view detail="", int delta=0, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail="") noexcept;
-static simdjson_really_inline void log_value(const json_iterator &iter, const char *type, std::string_view detail="", int delta=-1, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_start_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail="") noexcept;
-static simdjson_really_inline void log_start_value(const json_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_end_value(const json_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_error(const json_iterator &iter, token_position index, depth_t depth, const char *error, const char *detail="") noexcept;
-static simdjson_really_inline void log_error(const json_iterator &iter, const char *error, const char *detail="", int delta=-1, int depth_delta=0) noexcept;
+// We do not want these functions to be 'really inlined' since real inlining is
+// for performance purposes and if you are using the loggers, you do not care about
+// performance (or should not).
+static inline void log_headers() noexcept;
+static inline void log_line(const json_iterator &iter, token_position index, depth_t depth, const char *title_prefix, const char *title, std::string_view detail) noexcept;
+static inline void log_line(const json_iterator &iter, const char *title_prefix, const char *title, std::string_view detail, int delta, int depth_delta) noexcept;
+static inline void log_event(const json_iterator &iter, const char *type, std::string_view detail="", int delta=0, int depth_delta=0) noexcept;
+static inline void log_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail="") noexcept;
+static inline void log_value(const json_iterator &iter, const char *type, std::string_view detail="", int delta=-1, int depth_delta=0) noexcept;
+static inline void log_start_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail="") noexcept;
+static inline void log_start_value(const json_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
+static inline void log_end_value(const json_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
+static inline void log_error(const json_iterator &iter, token_position index, depth_t depth, const char *error, const char *detail="") noexcept;
+static inline void log_error(const json_iterator &iter, const char *error, const char *detail="", int delta=-1, int depth_delta=0) noexcept;
 
-static simdjson_really_inline void log_event(const value_iterator &iter, const char *type, std::string_view detail="", int delta=0, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_value(const value_iterator &iter, const char *type, std::string_view detail="", int delta=-1, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_start_value(const value_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_end_value(const value_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
-static simdjson_really_inline void log_error(const value_iterator &iter, const char *error, const char *detail="", int delta=-1, int depth_delta=0) noexcept;
+static inline void log_event(const value_iterator &iter, const char *type, std::string_view detail="", int delta=0, int depth_delta=0) noexcept;
+static inline void log_value(const value_iterator &iter, const char *type, std::string_view detail="", int delta=-1, int depth_delta=0) noexcept;
+static inline void log_start_value(const value_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
+static inline void log_end_value(const value_iterator &iter, const char *type, int delta=-1, int depth_delta=0) noexcept;
+static inline void log_error(const value_iterator &iter, const char *error, const char *detail="", int delta=-1, int depth_delta=0) noexcept;
 
 } // namespace logger
 } // namespace ondemand
@@ -18873,7 +18902,7 @@ public:
    * long strings.
    *
    * If target is a compile-time constant, and your compiler likes you,
-   * you should be able to do the following without performance penatly...
+   * you should be able to do the following without performance penalty...
    *
    *   static_assert(raw_json_string::is_free_from_unescaped_quote(target), "");
    *   s.unsafe_is_equal(target);
@@ -18887,7 +18916,7 @@ public:
    * the caller is responsible for this check. See is_free_from_unescaped_quote.
    *
    * If target is a compile-time constant, and your compiler likes you,
-   * you should be able to do the following without performance penatly...
+   * you should be able to do the following without performance penalty...
    *
    *   static_assert(raw_json_string::is_free_from_unescaped_quote(target), "");
    *   s.unsafe_is_equal(target);
@@ -19667,12 +19696,12 @@ protected:
   simdjson_really_inline bool is_at_start() const noexcept;
   simdjson_really_inline bool is_at_container_start() const noexcept;
   simdjson_really_inline bool is_at_iterator_start() const noexcept;
-  simdjson_really_inline void assert_at_start() const noexcept;
-  simdjson_really_inline void assert_at_container_start() const noexcept;
-  simdjson_really_inline void assert_at_root() const noexcept;
-  simdjson_really_inline void assert_at_child() const noexcept;
-  simdjson_really_inline void assert_at_next() const noexcept;
-  simdjson_really_inline void assert_at_non_root_start() const noexcept;
+  inline void assert_at_start() const noexcept;
+  inline void assert_at_container_start() const noexcept;
+  inline void assert_at_root() const noexcept;
+  inline void assert_at_child() const noexcept;
+  inline void assert_at_next() const noexcept;
+  inline void assert_at_non_root_start() const noexcept;
 
   friend class document;
   friend class object;
@@ -21159,6 +21188,232 @@ public:
 
 } // namespace simdjson
 /* end file include/simdjson/generic/ondemand/parser.h */
+/* begin file include/simdjson/generic/ondemand/serialization.h */
+
+namespace simdjson {
+namespace SIMDJSON_BUILTIN_IMPLEMENTATION {
+namespace ondemand {
+
+template <class formatter = simdjson::internal::mini_formatter>
+class string_builder {
+public:
+  /** Append an document to the builder (to be printed), numbers are
+   * assumed to be 64-bit floating-point numbers.
+   **/
+  inline simdjson::error_code append(document& value) noexcept;
+  /** Append an element to the builder (to be printed) **/
+  inline simdjson::error_code append(value element) noexcept;
+  /** Append an array to the builder (to be printed) **/
+  inline simdjson::error_code append(array value) noexcept;
+  /** Append an object to the builder (to be printed) **/
+  inline simdjson::error_code append(object value) noexcept;
+  /** Append a field to the builder (to be printed) **/
+  inline simdjson::error_code append(field value) noexcept;
+  /** Reset the builder (so that it would print the empty string) **/
+  simdjson_really_inline void clear();
+  /**
+   * Get access to the string. The string_view is owned by the builder
+   * and it is invalid to use it after the string_builder has been
+   * destroyed.
+   * However you can make a copy of the string_view on memory that you
+   * own.
+   */
+  simdjson_really_inline std::string_view str() const;
+private:
+  formatter format{};
+};
+
+/**
+ * Print JSON to an output stream.
+ *
+ * @param out The output stream.
+ * @param value The element.
+ * @throw if there is an error with the underlying output stream. simdjson itself will not throw.
+ */
+#if SIMDJSON_EXCEPTIONS
+inline std::ostream& operator<<(std::ostream& out, value x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto err = sb.append(x);
+    if(err == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+      throw simdjson::simdjson_error(err);
+    }
+}
+inline std::ostream& operator<<(std::ostream& out, simdjson::simdjson_result<value> x) {
+    if (x.error()) { throw simdjson::simdjson_error(x.error()); }
+    return (out << x.value());
+}
+#else
+inline std::ostream& operator<<(std::ostream& out, value x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(x);
+    if(error == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+      return (out << error);
+    }
+}
+#endif
+/**
+ * Print JSON to an output stream.
+ *
+ * @param out The output stream.
+ * @param value The array.
+ * @throw if there is an error with the underlying output stream. simdjson itself will not throw.
+ */
+#if SIMDJSON_EXCEPTIONS
+inline std::ostream& operator<<(std::ostream& out, array value) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto err = sb.append(value);
+    if(err == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+      throw simdjson::simdjson_error(err);
+    }
+}
+inline std::ostream& operator<<(std::ostream& out, simdjson::simdjson_result<array> x) {
+    if (x.error()) { throw simdjson::simdjson_error(x.error()); }
+    return (out << x.value());
+}
+#else
+inline std::ostream& operator<<(std::ostream& out, array value) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(value);
+    if(error == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+      return (out << error);
+    }
+}
+#endif
+/**
+ * Print JSON to an output stream.
+ *
+ * @param out The output stream.
+ * @param value The array.
+ * @throw if there is an error with the underlying output stream. simdjson itself will not throw.
+ */
+#if SIMDJSON_EXCEPTIONS
+inline std::ostream& operator<<(std::ostream& out, document& value)  {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto err = sb.append(value);
+    if(err == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+      throw simdjson::simdjson_error(err);
+    }
+}
+inline std::ostream& operator<<(std::ostream& out, simdjson::simdjson_result<document> x) {
+    if (x.error()) { throw simdjson::simdjson_error(x.error()); }
+    return (out << x.value());
+}
+#else
+inline std::ostream& operator<<(std::ostream& out, document& value)  {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(value);
+    if(error == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+      return (out << error);
+    }
+}
+#endif
+/**
+ * Print JSON to an output stream.
+ *
+ * @param out The output stream.
+ * @param value The object.
+ * @throw if there is an error with the underlying output stream. simdjson itself will not throw.
+ */
+#if SIMDJSON_EXCEPTIONS
+inline std::ostream& operator<<(std::ostream& out, object value) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto err = sb.append(value);
+    if(err == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+       throw simdjson::simdjson_error(err);
+    }
+}
+inline std::ostream& operator<<(std::ostream& out,  simdjson::simdjson_result<object> x) {
+    if (x.error()) { throw  simdjson::simdjson_error(x.error()); }
+    return (out << x.value());
+}
+#else
+inline std::ostream& operator<<(std::ostream& out, object value) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(value);
+    if(error == simdjson::SUCCESS) {
+      return (out << sb.str());
+    } else {
+      return (out << error);
+    }
+}
+#endif
+
+} // namespace ondemand
+} // namespace SIMDJSON_BUILTIN_IMPLEMENTATION
+} // namespace simdjson
+
+namespace simdjson {
+
+inline simdjson::simdjson_result<std::string> to_string(simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::document& x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(x);
+    if(error != simdjson::SUCCESS) { return error; }
+    std::string_view answer = sb.str();
+    return std::string(answer.data(), answer.size());
+}
+
+inline simdjson::simdjson_result<std::string> to_string(simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::value& x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(x);
+    if(error != simdjson::SUCCESS) { return error; }
+    std::string_view answer = sb.str();
+    return std::string(answer.data(), answer.size());
+}
+
+inline simdjson::simdjson_result<std::string> to_string(simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::object& x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(x);
+    if(error != simdjson::SUCCESS) { return error; }
+    std::string_view answer = sb.str();
+    return std::string(answer.data(), answer.size());
+}
+
+inline simdjson::simdjson_result<std::string> to_string(simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::array& x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::string_builder<> sb;
+    auto error = sb.append(x);
+    if(error != simdjson::SUCCESS) { return error; }
+    std::string_view answer = sb.str();
+    return std::string(answer.data(), answer.size());
+}
+
+#if SIMDJSON_EXCEPTIONS
+
+inline std::string to_string(simdjson_result<simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::document> x) {
+    if (x.error()) { throw simdjson_error(x.error()); }
+    return to_string(x.value());
+}
+
+inline std::string to_string(simdjson_result<simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::value> x) {
+    if (x.error()) { throw simdjson_error(x.error()); }
+    return to_string(x.value());
+}
+
+inline std::string to_string(simdjson_result<simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::object> x) {
+    if (x.error()) { throw simdjson_error(x.error()); }
+    return to_string(x.value());
+}
+
+inline std::string to_string(simdjson_result<simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::array> x) {
+    if (x.error()) { throw simdjson_error(x.error()); }
+    return to_string(x.value());
+}
+#endif
+} // namespace simdjson
+/* end file include/simdjson/generic/ondemand/serialization.h */
 /* end file include/simdjson/generic/ondemand.h */
 
 // Inline definitions
@@ -21290,7 +21545,7 @@ static constexpr const int LOG_SMALL_BUFFER_LEN = 10;
 static int log_depth = 0; // Not threadsafe. Log only.
 
 // Helper to turn unprintable or newline characters into spaces
-static simdjson_really_inline char printable_char(char c) {
+static inline char printable_char(char c) {
   if (c >= 0x20) {
     return c;
   } else {
@@ -21298,59 +21553,59 @@ static simdjson_really_inline char printable_char(char c) {
   }
 }
 
-simdjson_really_inline void log_event(const json_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
+inline void log_event(const json_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
   log_line(iter, "", type, detail, delta, depth_delta);
 }
 
-simdjson_really_inline void log_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail) noexcept {
+inline void log_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail) noexcept {
   log_line(iter, index, depth, "", type, detail);
 }
-simdjson_really_inline void log_value(const json_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
+inline void log_value(const json_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
   log_line(iter, "", type, detail, delta, depth_delta);
 }
 
-simdjson_really_inline void log_start_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail) noexcept {
+inline void log_start_value(const json_iterator &iter, token_position index, depth_t depth, const char *type, std::string_view detail) noexcept {
   log_line(iter, index, depth, "+", type, detail);
   if (LOG_ENABLED) { log_depth++; }
 }
-simdjson_really_inline void log_start_value(const json_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
+inline void log_start_value(const json_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
   log_line(iter, "+", type, "", delta, depth_delta);
   if (LOG_ENABLED) { log_depth++; }
 }
 
-simdjson_really_inline void log_end_value(const json_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
+inline void log_end_value(const json_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
   if (LOG_ENABLED) { log_depth--; }
   log_line(iter, "-", type, "", delta, depth_delta);
 }
 
-simdjson_really_inline void log_error(const json_iterator &iter, const char *error, const char *detail, int delta, int depth_delta) noexcept {
+inline void log_error(const json_iterator &iter, const char *error, const char *detail, int delta, int depth_delta) noexcept {
   log_line(iter, "ERROR: ", error, detail, delta, depth_delta);
 }
-simdjson_really_inline void log_error(const json_iterator &iter, token_position index, depth_t depth, const char *error, const char *detail) noexcept {
+inline void log_error(const json_iterator &iter, token_position index, depth_t depth, const char *error, const char *detail) noexcept {
   log_line(iter, index, depth, "ERROR: ", error, detail);
 }
 
-simdjson_really_inline void log_event(const value_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
+inline void log_event(const value_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
   log_event(iter.json_iter(), type, detail, delta, depth_delta);
 }
 
-simdjson_really_inline void log_value(const value_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
+inline void log_value(const value_iterator &iter, const char *type, std::string_view detail, int delta, int depth_delta) noexcept {
   log_value(iter.json_iter(), type, detail, delta, depth_delta);
 }
 
-simdjson_really_inline void log_start_value(const value_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
+inline void log_start_value(const value_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
   log_start_value(iter.json_iter(), type, delta, depth_delta);
 }
 
-simdjson_really_inline void log_end_value(const value_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
+inline void log_end_value(const value_iterator &iter, const char *type, int delta, int depth_delta) noexcept {
   log_end_value(iter.json_iter(), type, delta, depth_delta);
 }
 
-simdjson_really_inline void log_error(const value_iterator &iter, const char *error, const char *detail, int delta, int depth_delta) noexcept {
+inline void log_error(const value_iterator &iter, const char *error, const char *detail, int delta, int depth_delta) noexcept {
   log_error(iter.json_iter(), error, detail, delta, depth_delta);
 }
 
-simdjson_really_inline void log_headers() noexcept {
+inline void log_headers() noexcept {
   if (LOG_ENABLED) {
     log_depth = 0;
     printf("\n");
@@ -21373,10 +21628,10 @@ simdjson_really_inline void log_headers() noexcept {
   }
 }
 
-simdjson_really_inline void log_line(const json_iterator &iter, const char *title_prefix, const char *title, std::string_view detail, int delta, int depth_delta) noexcept {
+inline void log_line(const json_iterator &iter, const char *title_prefix, const char *title, std::string_view detail, int delta, int depth_delta) noexcept {
   log_line(iter, iter.token.index+delta, depth_t(iter.depth()+depth_delta), title_prefix, title, detail);
 }
-simdjson_really_inline void log_line(const json_iterator &iter, token_position index, depth_t depth, const char *title_prefix, const char *title, std::string_view detail) noexcept {
+inline void log_line(const json_iterator &iter, token_position index, depth_t depth, const char *title_prefix, const char *title, std::string_view detail) noexcept {
   if (LOG_ENABLED) {
     const int indent = depth*2;
     const auto buf = iter.token.buf;
@@ -21747,6 +22002,19 @@ simdjson_warn_unused simdjson_really_inline error_code json_iterator::skip_child
       _depth--;
       if (depth() <= parent_depth) { return SUCCESS; }
       break;
+    /*case '"':
+      if(*peek() == ':') {
+        // we are at a key!!! This is
+        // only possible if someone searched
+        // for a key in an object and the key
+        // was not found but our code then
+        // decided the consume the separating
+        // comma before returning.
+        logger::log_value(*this, "key");
+        advance(); // eat up the ':'
+        break; // important!!!
+      }
+      simdjson_fallthrough;*/
     // Anything else must be a scalar value
     default:
       // For the first scalar, we will have incremented depth already, so we decrement it here.
@@ -22014,7 +22282,6 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
   //    { "a": [ 1, 2 ], "b": [ 3, 4 ] }
   //      ^ (depth 2, index 1)
   //    ```
-  //
   if (at_first_field()) {
     has_value = true;
 
@@ -22035,7 +22302,7 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
     // this object iterator will blithely scan that object for fields.
     if (_json_iter->depth() < depth() - 1) { return OUT_OF_ORDER_ITERATION; }
 #endif
-    has_value = false;
+    return false;
 
   // 3. When a previous search found a field or an iterator yielded a value:
   //
@@ -22062,8 +22329,11 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
     // Get the key and colon, stopping at the value.
     raw_json_string actual_key;
     // size_t max_key_length = _json_iter->peek_length() - 2; // -2 for the two quotes
+    // field_key() advances the pointer and checks that '"' is found (corresponding to a key).
+    // The depth is left unchanged by field_key().
     if ((error = field_key().get(actual_key) )) { abandon(); return error; };
-
+    // field_value() will advance and check that we find a ':' separating the
+    // key and the value. It will also increment the depth by one.
     if ((error = field_value() )) { abandon(); return error; }
     // If it matches, stop and return
     // We could do it this way if we wanted to allow arbitrary
@@ -22075,12 +22345,18 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
     // input).
     if (actual_key.unsafe_is_equal(key)) {
       logger::log_event(*this, "match", key, -2);
+      // If we return here, then we return while pointing at the ':' that we just checked.
       return true;
     }
 
     // No match: skip the value and see if , or } is next
     logger::log_event(*this, "no match", key, -2);
+    // The call to skip_child is meant to skip over the value corresponding to the key.
+    // After skip_child(), we are right before the next comma (',') or the final brace ('}').
     SIMDJSON_TRY( skip_child() ); // Skip the value entirely
+    // The has_next_field() advances the pointer and check that either ',' or '}' is found.
+    // It returns true if ',' is found, false otherwise. If anything other than ',' or '}' is found,
+    // then we are in error and we abort.
     if ((error = has_next_field().get(has_value) )) { abandon(); return error; }
   }
 
@@ -22089,20 +22365,33 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
 }
 
 simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator::find_field_unordered_raw(const std::string_view key) noexcept {
+  /**
+   * When find_field_unordered_raw is called, we can either be pointing at the
+   * first key, pointing outside (at the closing brace) or if a key was matched
+   * we can be either pointing right afterthe ':' right before the value (that we need skip),
+   * or we may have consumed the value and we might be at a comma or at the
+   * final brace (ready for a call to has_next_field()).
+   */
   error_code error;
   bool has_value;
-  //
+
+  // First, we scan from that point to the end.
+  // If we don't find a match, we may loop back around, and scan from the beginning to that point.
+  token_position search_start = _json_iter->position();
+
+  // We want to know whether we need to go back to the beginning.
+  bool at_first = at_first_field();
+  ///////////////
   // Initially, the object can be in one of a few different places:
   //
-  // 1. The start of the object, at the first field:
+  // 1. At the first key:
   //
   //    ```
   //    { "a": [ 1, 2 ], "b": [ 3, 4 ] }
   //      ^ (depth 2, index 1)
   //    ```
   //
-  if (at_first_field()) {
-    // If we're at the beginning of the object, we definitely have a field
+  if (at_first) {
     has_value = true;
 
   // 2. When a previous search did not yield a value or the object is empty:
@@ -22115,14 +22404,16 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
   //    ```
   //
   } else if (!is_open()) {
+
 #ifdef SIMDJSON_DEVELOPMENT_CHECKS
     // If we're past the end of the object, we're being iterated out of order.
     // Note: this isn't perfect detection. It's possible the user is inside some other object; if so,
     // this object iterator will blithely scan that object for fields.
     if (_json_iter->depth() < depth() - 1) { return OUT_OF_ORDER_ITERATION; }
 #endif
-    has_value = false;
-
+    _json_iter->reenter_child(_start_position + 1, _depth);
+    at_first = true;
+    has_value = started_object();
   // 3. When a previous search found a field or an iterator yielded a value:
   //
   //    ```
@@ -22138,8 +22429,13 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
   //    ```
   //
   } else {
-    // Finish the previous value and see if , or } is next
+    // If someone queried a key but they did access the value, then we are left pointing
+    // at the ':' and we need to move forward through the value... If the value was
+    // processed then skip_child() does not move the iterator (but may adjust the depth).
     if ((error = skip_child() )) { abandon(); return error; }
+    // The has_next_field() advances the pointer and check that either ',' or '}' is found.
+    // It returns true if ',' is found, false otherwise. If anything other than ',' or '}' is found,
+    // then we are in error and we abort.
     if ((error = has_next_field().get(has_value) )) { abandon(); return error; }
 #ifdef SIMDJSON_DEVELOPMENT_CHECKS
     if (_json_iter->start_position(_depth) != _start_position) { return OUT_OF_ORDER_ITERATION; }
@@ -22160,10 +22456,6 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
   // ```
   //
 
-  // First, we scan from that point to the end.
-  // If we don't find a match, we loop back around, and scan from the beginning to that point.
-  token_position search_start = _json_iter->position();
-
   // Next, we find a match starting from the current position.
   while (has_value) {
     SIMDJSON_ASSUME( _json_iter->_depth == _depth ); // We must be at the start of a field
@@ -22171,8 +22463,11 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
     // Get the key and colon, stopping at the value.
     raw_json_string actual_key;
     // size_t max_key_length = _json_iter->peek_length() - 2; // -2 for the two quotes
-
+    // field_key() advances the pointer and checks that '"' is found (corresponding to a key).
+    // The depth is left unchanged by field_key().
     if ((error = field_key().get(actual_key) )) { abandon(); return error; };
+    // field_value() will advance and check that we find a ':' separating the
+    // key and the value. It will also increment the depth by one.
     if ((error = field_value() )) { abandon(); return error; }
 
     // If it matches, stop and return
@@ -22185,31 +22480,44 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
     // input).
     if (actual_key.unsafe_is_equal(key)) {
       logger::log_event(*this, "match", key, -2);
+      // If we return here, then we return while pointing at the ':' that we just checked.
       return true;
     }
 
     // No match: skip the value and see if , or } is next
     logger::log_event(*this, "no match", key, -2);
+    // The call to skip_child is meant to skip over the value corresponding to the key.
+    // After skip_child(), we are right before the next comma (',') or the final brace ('}').
     SIMDJSON_TRY( skip_child() );
+    // The has_next_field() advances the pointer and check that either ',' or '}' is found.
+    // It returns true if ',' is found, false otherwise. If anything other than ',' or '}' is found,
+    // then we are in error and we abort.
     if ((error = has_next_field().get(has_value) )) { abandon(); return error; }
   }
+  // Performance note: it maybe wasteful to rewind to the beginning when there might be
+  // no other query following. Indeed, it would require reskipping the whole object.
+  // Instead, you can just stay where you are. If there is a new query, there is always time
+  // to rewind.
+  if(at_first) { return false; }
 
   // If we reach the end without finding a match, search the rest of the fields starting at the
   // beginning of the object.
   // (We have already run through the object before, so we've already validated its structure. We
   // don't check errors in this bit.)
   _json_iter->reenter_child(_start_position + 1, _depth);
-
   has_value = started_object();
-  while (_json_iter->position() < search_start) {
+  while (true) {
     SIMDJSON_ASSUME(has_value); // we should reach search_start before ever reaching the end of the object
     SIMDJSON_ASSUME( _json_iter->_depth == _depth ); // We must be at the start of a field
 
     // Get the key and colon, stopping at the value.
     raw_json_string actual_key;
     // size_t max_key_length = _json_iter->peek_length() - 2; // -2 for the two quotes
-
+    // field_key() advances the pointer and checks that '"' is found (corresponding to a key).
+    // The depth is left unchanged by field_key().
     error = field_key().get(actual_key); SIMDJSON_ASSUME(!error);
+    // field_value() will advance and check that we find a ':' separating the
+    // key and the value.  It will also increment the depth by one.
     error = field_value(); SIMDJSON_ASSUME(!error);
 
     // If it matches, stop and return
@@ -22222,16 +22530,28 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<bool> value_iterator
     // input).
     if (actual_key.unsafe_is_equal(key)) {
       logger::log_event(*this, "match", key, -2);
+      // If we return here, then we return while pointing at the ':' that we just checked.
       return true;
     }
 
     // No match: skip the value and see if , or } is next
     logger::log_event(*this, "no match", key, -2);
+    // The call to skip_child is meant to skip over the value corresponding to the key.
+    // After skip_child(), we are right before the next comma (',') or the final brace ('}').
     SIMDJSON_TRY( skip_child() );
+    // If we reached the end of the key-value pair we started from, then we know
+    // that the key is not there so we return false. We are either right before
+    // the next comma or the final brace.
+    if(_json_iter->position() == search_start) { return false; }
+    // The has_next_field() advances the pointer and check that either ',' or '}' is found.
+    // It returns true if ',' is found, false otherwise. If anything other than ',' or '}' is found,
+    // then we are in error and we abort.
     error = has_next_field().get(has_value); SIMDJSON_ASSUME(!error);
+    // If we make the mistake of exiting here, then we could be left pointing at a key
+    // in the middle of an object. That's not an allowable state.
   }
-
-  // If the loop ended, we're out of fields to look at.
+  // If the loop ended, we're out of fields to look at. The program should
+  // never reach this point.
   return false;
 }
 
@@ -22502,41 +22822,41 @@ simdjson_really_inline bool value_iterator::is_at_iterator_start() const noexcep
   return delta == 1 || delta == 2;
 }
 
-simdjson_really_inline void value_iterator::assert_at_start() const noexcept {
+inline void value_iterator::assert_at_start() const noexcept {
   SIMDJSON_ASSUME( _json_iter->token.index == _start_position );
   SIMDJSON_ASSUME( _json_iter->_depth == _depth );
   SIMDJSON_ASSUME( _depth > 0 );
 }
 
-simdjson_really_inline void value_iterator::assert_at_container_start() const noexcept {
+inline void value_iterator::assert_at_container_start() const noexcept {
   SIMDJSON_ASSUME( _json_iter->token.index == _start_position + 1 );
   SIMDJSON_ASSUME( _json_iter->_depth == _depth );
   SIMDJSON_ASSUME( _depth > 0 );
 }
 
-simdjson_really_inline void value_iterator::assert_at_next() const noexcept {
+inline void value_iterator::assert_at_next() const noexcept {
   SIMDJSON_ASSUME( _json_iter->token.index > _start_position );
   SIMDJSON_ASSUME( _json_iter->_depth == _depth );
   SIMDJSON_ASSUME( _depth > 0 );
 }
 
-simdjson_really_inline void value_iterator::assert_at_child() const noexcept {
+inline void value_iterator::assert_at_child() const noexcept {
   SIMDJSON_ASSUME( _json_iter->token.index > _start_position );
   SIMDJSON_ASSUME( _json_iter->_depth == _depth + 1 );
   SIMDJSON_ASSUME( _depth > 0 );
 }
 
-simdjson_really_inline void value_iterator::assert_at_root() const noexcept {
+inline void value_iterator::assert_at_root() const noexcept {
   assert_at_start();
   SIMDJSON_ASSUME( _depth == 1 );
 }
 
-simdjson_really_inline void value_iterator::assert_at_non_root_start() const noexcept {
+inline void value_iterator::assert_at_non_root_start() const noexcept {
   assert_at_start();
   SIMDJSON_ASSUME( _depth > 1 );
 }
 
-simdjson_really_inline void value_iterator::assert_is_valid() const noexcept {
+inline void value_iterator::assert_is_valid() const noexcept {
   SIMDJSON_ASSUME( _json_iter != nullptr );
 }
 
@@ -23693,7 +24013,7 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<document> parser::it
   }
 
   // Run stage 1.
-  SIMDJSON_TRY( implementation->stage1(reinterpret_cast<const uint8_t *>(json.data()), json.length(), false) );
+  SIMDJSON_TRY( implementation->stage1(reinterpret_cast<const uint8_t *>(json.data()), json.length(), stage1_mode::regular) );
   return document::start({ reinterpret_cast<const uint8_t *>(json.data()), this });
 }
 
@@ -23736,7 +24056,7 @@ simdjson_warn_unused simdjson_really_inline simdjson_result<json_iterator> parse
   }
 
   // Run stage 1.
-  SIMDJSON_TRY( implementation->stage1(reinterpret_cast<const uint8_t *>(json.data()), json.length(), false) );
+  SIMDJSON_TRY( implementation->stage1(reinterpret_cast<const uint8_t *>(json.data()), json.length(), stage1_mode::regular) );
   return json_iterator(reinterpret_cast<const uint8_t *>(json.data()), this);
 }
 
@@ -23761,6 +24081,192 @@ simdjson_really_inline simdjson_result<SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand
 
 } // namespace simdjson
 /* end file include/simdjson/generic/ondemand/parser-inl.h */
+/* begin file include/simdjson/generic/ondemand/serialization-inl.h */
+
+
+namespace simdjson {
+namespace SIMDJSON_BUILTIN_IMPLEMENTATION {
+namespace ondemand {
+
+
+
+template <class serializer>
+inline simdjson::error_code string_builder<serializer>::append(document& element) noexcept {
+  json_type t;
+  auto e = element.type().get(t);
+  if(e != simdjson::SUCCESS) { return e; }
+  switch (t) {
+    case ondemand::json_type::array:
+      {
+        array x;
+        simdjson::error_code error = element.get_array().get(x);
+        if(error == simdjson::SUCCESS) {
+          append(x);
+        }
+        return error;
+      }
+    case ondemand::json_type::object:
+      {
+        object x;
+        simdjson::error_code error = element.get_object().get(x);
+        if(error == simdjson::SUCCESS) {
+          append(x);
+        }
+        return error;
+      }
+    case ondemand::json_type::number:
+      // Assume it fits in a double. We do not detect integer types. This could be improved.
+      {
+        double x;
+        simdjson::error_code error = element.get_double().get(x);
+        if(error == simdjson::SUCCESS) {
+          format.number(x);
+        }
+        return error;
+      }
+    case ondemand::json_type::string:
+      {
+        std::string_view x;
+        simdjson::error_code error = element.get_string().get(x);
+        if(error == simdjson::SUCCESS) {
+          format.string(x);
+        }
+        return error;
+      }
+    case ondemand::json_type::boolean:
+      {
+        bool x;
+        simdjson::error_code error = element.get_bool().get(x);
+        if(error == simdjson::SUCCESS) {
+          x ? format.true_atom() : format.false_atom();
+        }
+        return error;
+      }
+    case ondemand::json_type::null:
+      format.null_atom();
+      return simdjson::SUCCESS;
+  }
+  return simdjson::INCORRECT_TYPE;
+}
+
+template <class serializer>
+inline simdjson::error_code string_builder<serializer>::append(value element) noexcept {
+  json_type t;
+  auto e = element.type().get(t);
+  if(e != simdjson::SUCCESS) { return e; }
+  switch (t) {
+    case ondemand::json_type::array:
+      {
+        array x;
+        simdjson::error_code error = element.get_array().get(x);
+        if(error == simdjson::SUCCESS) {
+          append(x);
+        }
+        return error;
+      }
+    case ondemand::json_type::object:
+      {
+        object x;
+        simdjson::error_code error = element.get_object().get(x);
+        if(error == simdjson::SUCCESS) {
+          append(x);
+        }
+        return error;
+      }
+    case ondemand::json_type::number:
+      // Assume it fits in a double. We do not detect integer types. This could be improved.
+      {
+        double x;
+        simdjson::error_code error = element.get_double().get(x);
+        if(error == simdjson::SUCCESS) {
+          format.number(x);
+        }
+        return error;
+      }
+    case ondemand::json_type::string:
+      {
+        std::string_view x;
+        simdjson::error_code error = element.get_string().get(x);
+        if(error == simdjson::SUCCESS) {
+          format.string(x);
+        }
+        return error;
+      }
+      break;
+    case ondemand::json_type::boolean:
+      {
+        bool x;
+        simdjson::error_code error = element.get_bool().get(x);
+        if(error == simdjson::SUCCESS) {
+          x ? format.true_atom() : format.false_atom();
+        }
+        return error;
+      }
+    case ondemand::json_type::null:
+      format.null_atom();
+      return simdjson::SUCCESS;
+  }
+  return simdjson::INCORRECT_TYPE;
+}
+
+template <class serializer>
+inline simdjson::error_code string_builder<serializer>::append(simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::field x) noexcept {
+  // Performance note: There is a sizeable performance opportunity here to avoid unescaping
+  // and the re-escaping the key!!!!
+  std::string_view v;
+  auto error = x.unescaped_key().get(v);
+  if (error) { return error; }
+  format.key(v);
+  return append(x.value());
+}
+
+
+template <class serializer>
+inline simdjson::error_code string_builder<serializer>::append(simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::array x) noexcept {
+  format.start_array();
+  bool first{true};
+  for(simdjson::simdjson_result<simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::value> v: x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::value element;
+    simdjson::error_code error = std::move(v).get(element);
+    if(error != simdjson::SUCCESS) { return error; }
+    if(first) { first = false; }  else { format.comma(); };
+    error = append(element);
+    if(error != simdjson::SUCCESS) { return error; }
+  }
+  format.end_array();
+  return simdjson::SUCCESS;
+}
+
+template <class serializer>
+inline simdjson::error_code string_builder<serializer>::append(simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::object x) noexcept {
+  format.start_object();
+  bool first{true};
+  for(simdjson::simdjson_result<simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::field> r: x) {
+    simdjson::SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::field element;
+    simdjson::error_code error = std::move(r).get(element);
+    if(error != simdjson::SUCCESS) { return error; }
+    if(first) { first = false; }  else { format.comma(); };
+    error = append(element);
+    if(error != simdjson::SUCCESS) { return error; }
+  }
+  format.end_object();
+  return simdjson::SUCCESS;
+}
+
+template <class serializer>
+simdjson_really_inline void string_builder<serializer>::clear() {
+  format.clear();
+}
+
+template <class serializer>
+simdjson_really_inline std::string_view string_builder<serializer>::str() const {
+  return format.str();
+}
+
+} // namespace ondemand
+} // namespace SIMDJSON_BUILTIN_IMPLEMENTATION
+} // namespace simdjson
+/* end file include/simdjson/generic/ondemand/serialization-inl.h */
 /* end file include/simdjson/generic/ondemand-inl.h */
 
 
