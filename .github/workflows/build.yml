@@ -10,8 +10,8 @@ on:
     types: [ opened, synchronize, reopened ]
 
 jobs:
-  build:
-    name: Build
+  build_windows:
+    name: Build (Windows)
     runs-on: [ windows-latest ]
 
     steps:
@@ -67,20 +67,60 @@ jobs:
     - name: Archive resource tool
       uses: actions/upload-artifact@v2
       with:
-        name: resource-tool
+        name: ResourceTool-win-x64
         path: |
           _build/_resource-tool/*
 
     - name: Archive codegen tool
       uses: actions/upload-artifact@v2
       with:
-        name: codegen
+        name: CodeGen-win-x64
         path: |
           _build/_codegen/*
 
+  build_linux:
+    name: Build (Linux)
+    runs-on: [ ubuntu-latest ]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: Generate projects
+      run: |
+        mkdir _build
+        cd _build
+        cmake -G "Unix Makefiles" `
+          -DCMAKE_BUILD_TYPE=Release `
+          -DCMAKE_CXX_COMPILER=clang++-12 `
+          -DCMAKE_C_COMPILER=clang-12 `
+          ..
+
+    - name: Build
+      run: |
+        cmake --build _build
+
+    - name: Copy resource tool artifacts
+      run: |
+        cd _build
+        mkdir _resource-tool
+        Copy-Item Tools/ResourceTool/ResourceTool -Destination _resource-tool/
+        Copy-Item Libraries/ResourceLib/libResourceLib_HM2.so -Destination _resource-tool/
+        Copy-Item Libraries/ResourceLib/libResourceLib_HM3.so -Destination _resource-tool/
+        Copy-Item ../LICENSE -Destination _resource-tool/
+
+    - name: Archive resource tool
+      uses: actions/upload-artifact@v2
+      with:
+        name: ResourceTool-linux-x64
+        path: |
+          _build/_resource-tool/*
+
   create_release:
     name: Create release
-    needs: build
+    needs: [build_windows, build_linux]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
 
@@ -107,7 +147,7 @@ jobs:
 
     strategy:
       matrix:
-        artifact: [ resource-tool, codegen ]
+        artifact: [ ResourceTool-win-x64, ResourceTool-linux-x64, CodeGen-win-x64 ]
 
     steps:
     - name: Download artifact
