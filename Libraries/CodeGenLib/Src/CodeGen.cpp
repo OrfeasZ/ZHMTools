@@ -314,7 +314,7 @@ void GenerateArrayJsonWriter(STypeID* p_ElementType, std::ostream& p_Stream, con
 	}
 	else
 	{
-		p_Stream << p_Indentation << "\t\t" << s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName << "::WriteJson(&s_Item" << p_Depth << ", p_Stream);" << std::endl;
+		p_Stream << p_Indentation << "\t\t" << NormalizeName(s_ArrayType->m_pArrayElementType) << "::WriteJson(&s_Item" << p_Depth << ", p_Stream);" << std::endl;
 	}
 
 	p_Stream << p_Indentation << "\t\tp_Stream << \"}\";" << std::endl;
@@ -358,7 +358,7 @@ void GenerateArraySimpleJsonWriter(STypeID* p_ElementType, std::ostream& p_Strea
 	}
 	else
 	{
-		p_Stream << p_Indentation << "\t\t" << s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName << "::WriteSimpleJson(&s_Item" << p_Depth << ", p_Stream);" << std::endl;
+		p_Stream << p_Indentation << "\t\t" << NormalizeName(s_ArrayType->m_pArrayElementType) << "::WriteSimpleJson(&s_Item" << p_Depth << ", p_Stream);" << std::endl;
 	}
 
 	p_Stream << std::endl;
@@ -512,6 +512,9 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	if (s_IsNamespaced)
 		return;*/
 
+	if (s_TypeName == "AI.SFirePattern01")
+		printf("Amazing!\n");
+
 	if (s_TypeName.find_first_of('<') != std::string::npos)
 		return;
 
@@ -570,10 +573,6 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		}
 		else
 		{
-			// TODO: Remove this once we support namespacing.
-			if (std::string(s_Prop.m_pType->typeInfo()->m_pTypeName).find_first_of('.') != std::string::npos && !s_Prop.m_pType->typeInfo()->isEnum())
-				return;
-
 			if (s_Prop.m_pType->typeInfo()->isArray() || s_Prop.m_pType->typeInfo()->isFixedArray())
 			{
 				if (s_Prop.m_pType->typeInfo()->m_pTypeName != std::string("TArray"))
@@ -616,9 +615,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 			{
 				s_GenType->Dependencies.insert(s_Prop.m_pType->typeInfo()->m_pTypeName);
 			}
-
-			std::string s_PropTypeName = s_Prop.m_pType->typeInfo()->m_pTypeName;
-
+			
 			s_HeaderStream << s_Indent << "\t" << NormalizeName(s_Prop.m_pType) << " " << s_Prop.m_pName << ";";
 		}
 
@@ -661,11 +658,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 		if (s_PropTypeName == std::string("TArray"))
 			continue;
-
-		// TODO: Add support for namespaced types.
-		if (s_PropTypeName.find_first_of('.') != std::string::npos && !s_Prop.m_pType->typeInfo()->isEnum())
-			return;
-
+		
 		s_SourceStream << "\tp_Stream << JsonStr(\"" << s_Prop.m_pName << "\") << \":\";" << std::endl;
 
 		s_SourceStream << "\tp_Stream << \"{\" << JsonStr(\"$type\") << \":\" << JsonStr(\"" << s_PropTypeName << "\") << \",\" << JsonStr(\"$val\") << \":\";" << std::endl;
@@ -691,7 +684,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		}
 		else
 		{
-			s_SourceStream << "\t" << s_PropTypeName << "::WriteJson(&s_Object->" << s_Prop.m_pName << ", p_Stream);" << std::endl;
+			s_SourceStream << "\t" << NormalizeName(s_Prop.m_pType) << "::WriteJson(&s_Object->" << s_Prop.m_pName << ", p_Stream);" << std::endl;
 		}
 
 		s_SourceStream << "\tp_Stream << \"}\";" << std::endl;
@@ -726,11 +719,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 		if (s_PropTypeName == std::string("TArray"))
 			continue;
-
-		// TODO: Add support for namespaced types.
-		if (s_PropTypeName.find_first_of('.') != std::string::npos && !s_Prop.m_pType->typeInfo()->isEnum())
-			return;
-
+		
 		s_SourceStream << "\tp_Stream << JsonStr(\"" << s_Prop.m_pName << "\") << \":\";" << std::endl;
 
 		if (s_Prop.m_pType->typeInfo()->isPrimitive())
@@ -768,7 +757,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		}
 		else
 		{
-			s_SourceStream << "\t" << s_PropTypeName << "::WriteSimpleJson(&s_Object->" << s_Prop.m_pName << ", p_Stream);" << std::endl;
+			s_SourceStream << "\t" << NormalizeName(s_Prop.m_pType) << "::WriteSimpleJson(&s_Object->" << s_Prop.m_pName << ", p_Stream);" << std::endl;
 		}
 
 		if (i < s_Type->m_nPropertyCount - 1)
@@ -799,10 +788,6 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 		if (s_PropTypeName == std::string("TArray"))
 			continue;
-
-		// TODO: Add support for namespaced types.
-		if (s_PropTypeName.find_first_of('.') != std::string::npos && !s_Prop.m_pType->typeInfo()->isEnum())
-			return;
 
 		if (s_Prop.m_pType->typeInfo()->isPrimitive())
 		{
@@ -838,8 +823,8 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		else
 		{
 			s_SourceStream << "\t{" << std::endl;
-			s_SourceStream << "\t\t" << s_PropTypeName << " s_Item;" << std::endl;
-			s_SourceStream << "\t\t" << s_PropTypeName << "::FromSimpleJson(p_Document[\"" << s_Prop.m_pName << "\"], &s_Item);" << std::endl;
+			s_SourceStream << "\t\t" << NormalizeName(s_Prop.m_pType) << " s_Item;" << std::endl;
+			s_SourceStream << "\t\t" << NormalizeName(s_Prop.m_pType) << "::FromSimpleJson(p_Document[\"" << s_Prop.m_pName << "\"], &s_Item);" << std::endl;
 			s_SourceStream << "\t\ts_Object." << s_Prop.m_pName << " = s_Item;" << std::endl;
 			s_SourceStream << "\t}" << std::endl;
 		}
@@ -864,11 +849,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 		if (s_PropTypeName == std::string("TArray"))
 			continue;
-
-		// TODO: Add support for namespaced types.
-		if (s_PropTypeName.find_first_of('.') != std::string::npos && !s_Prop.m_pType->typeInfo()->isEnum())
-			return;
-
+		
 		if (!s_Prop.m_pType->typeInfo()->isPrimitive() && !s_Prop.m_pType->typeInfo()->isEnum())
 		{
 			s_SourceStream << "\t" << NormalizeName(s_Prop.m_pType) << "::Serialize(&s_Object->" << s_Prop.m_pName << ", p_Serializer, p_OwnOffset + offsetof(" << s_NormalizedName << ", " << s_Prop.m_pName << "));" << std::endl;
