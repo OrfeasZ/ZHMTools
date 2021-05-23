@@ -93,6 +93,7 @@ jobs:
         sudo apt-get update
         sudo apt-get purge -y gcc-10 gcc-11 libstdc++-10-dev libstdc++-11-dev
         sudo apt-get install -y --allow-downgrades libstdc++-9-dev g++-9 gcc-9
+        sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
     - name: Generate projects
       run: |
