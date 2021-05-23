@@ -92,10 +92,10 @@ jobs:
       run: |
         mkdir _build
         cd _build
-        cmake -G "Unix Makefiles" `
-          -DCMAKE_BUILD_TYPE=Release `
-          -DCMAKE_CXX_COMPILER=clang++-12 `
-          -DCMAKE_C_COMPILER=clang-12 `
+        cmake -G "Unix Makefiles" \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_CXX_COMPILER=clang++-12 \
+          -DCMAKE_C_COMPILER=clang-12 \
           ..
 
     - name: Build
@@ -106,10 +106,10 @@ jobs:
       run: |
         cd _build
         mkdir _resource-tool
-        Copy-Item Tools/ResourceTool/ResourceTool -Destination _resource-tool/
-        Copy-Item Libraries/ResourceLib/libResourceLib_HM2.so -Destination _resource-tool/
-        Copy-Item Libraries/ResourceLib/libResourceLib_HM3.so -Destination _resource-tool/
-        Copy-Item ../LICENSE -Destination _resource-tool/
+        cp Tools/ResourceTool/ResourceTool _resource-tool/
+        cp Libraries/ResourceLib/libResourceLib_HM2.so _resource-tool/
+        cp Libraries/ResourceLib/libResourceLib_HM3.so _resource-tool/
+        cp ../LICENSE _resource-tool/
 
     - name: Archive resource tool
       uses: actions/upload-artifact@v2
