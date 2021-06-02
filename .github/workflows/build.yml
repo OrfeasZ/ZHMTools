@@ -46,22 +46,22 @@ jobs:
       run: |
         cd _build
         mkdir _resourcetool
-        Copy-Item Tools/ResourceTool/ResourceTool.exe -Destination _resourcetool/
-        Copy-Item Tools/ResourceTool/ResourceTool.pdb -Destination _resourcetool/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM2.dll -Destination _resourcetool/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM2.pdb -Destination _resourcetool/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM3.dll -Destination _resourcetool/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM3.pdb -Destination _resourcetool/
+        Copy-Item ResourceTool.exe -Destination _resourcetool/
+        Copy-Item ResourceTool.pdb -Destination _resourcetool/
+        Copy-Item ResourceLib_HM2.dll -Destination _resourcetool/
+        Copy-Item ResourceLib_HM2.pdb -Destination _resourcetool/
+        Copy-Item ResourceLib_HM3.dll -Destination _resourcetool/
+        Copy-Item ResourceLib_HM3.pdb -Destination _resourcetool/
         Copy-Item ../LICENSE -Destination _resourcetool/
 
     - name: Copy CodeGen artifacts
       run: |
         cd _build
         mkdir _codegen
-        Copy-Item Tools/CodeGen/CodeGen.exe -Destination _codegen/
-        Copy-Item Tools/CodeGen/CodeGen.pdb -Destination _codegen/
-        Copy-Item Libraries/CodeGenLib/CodeGenLib.dll -Destination _codegen/
-        Copy-Item Libraries/CodeGenLib/CodeGenLib.pdb -Destination _codegen/
+        Copy-Item CodeGen.exe -Destination _codegen/
+        Copy-Item CodeGen.pdb -Destination _codegen/
+        Copy-Item CodeGenLib.dll -Destination _codegen/
+        Copy-Item CodeGenLib.pdb -Destination _codegen/
         Copy-Item ../LICENSE -Destination _codegen/
 
     - name: Copy ResourceLib artifacts
@@ -69,12 +69,12 @@ jobs:
         cd _build
         mkdir _resourcelib
         mkdir _resourcelib/Include
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM2.dll -Destination _resourcelib/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM2.lib -Destination _resourcelib/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM2.pdb -Destination _resourcelib/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM3.dll -Destination _resourcelib/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM3.lib -Destination _resourcelib/
-        Copy-Item Libraries/ResourceLib/ResourceLib_HM3.pdb -Destination _resourcelib/
+        Copy-Item ResourceLib_HM2.dll -Destination _resourcelib/
+        Copy-Item ResourceLib_HM2.lib -Destination _resourcelib/
+        Copy-Item ResourceLib_HM2.pdb -Destination _resourcelib/
+        Copy-Item ResourceLib_HM3.dll -Destination _resourcelib/
+        Copy-Item ResourceLib_HM3.lib -Destination _resourcelib/
+        Copy-Item ResourceLib_HM3.pdb -Destination _resourcelib/
         Copy-Item ../Libraries/ResourceLib/Include/* -Destination _resourcelib/Include/
         Copy-Item ../LICENSE -Destination _resourcelib/
 
@@ -128,7 +128,7 @@ jobs:
       run: |
         cd _build
         mkdir _resourcetool
-        cp Tools/ResourceTool/ResourceTool _resourcetool/
+        cp ResourceTool _resourcetool/
         cp ../LICENSE _resourcetool/
 
     - name: Archive resource tool

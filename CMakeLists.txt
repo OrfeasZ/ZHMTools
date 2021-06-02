@@ -6,6 +6,9 @@ endif()
 
 project("ZHMTools")
 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
 set(CMAKE_CXX_STANDARD 20)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
@@ -26,6 +29,9 @@ endif()
 
 add_subdirectory("Libraries/ResourceLib")
 add_subdirectory("Tools/ResourceTool")
+
+add_subdirectory("Libraries/NavWeakness")
+add_subdirectory("Tools/NavTool")
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	add_subdirectory("Libraries/CodeGenLib")
