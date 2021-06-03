@@ -179,6 +179,8 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		Log("Data_Unk16: %x\n", s_Descriptor->m_Unk16);
 
 		const auto s_Unk00DataEnd = s_CurrentIndex + s_Descriptor->m_NavMeshUnk00Size;
+
+		printf("const Faces = [");
 		
 		while (s_CurrentIndex < s_Unk00DataEnd)
 		{
@@ -187,6 +189,11 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 
 			Log("==== NavMesh Unk00 ====\n");
 			Log("N00_Count01: %d\n", s_Unk00->GetUnk01Count());
+
+			if (s_Unk00->GetUnk01Count() == 0)
+				continue;
+			
+			printf("[");
 			
 			for (uint32_t i = 0; i < s_Unk00->GetUnk01Count(); ++i)
 			{
@@ -204,7 +211,12 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				Log("N01_UnkFlags01: %x\n", s_Unk01->m_UnkFlags01);
 				Log("N01_Unk06: %x\n", s_Unk01->m_Unk06);
 			}
+
+
+			printf("],");
 		}
+
+		printf("];\n");
 
 		const auto* s_Unk02 = reinterpret_cast<NavMeshUnk02*>(s_FileStartPtr + s_CurrentIndex);
 		s_CurrentIndex += sizeof(NavMeshUnk02);
