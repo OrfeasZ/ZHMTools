@@ -52,10 +52,10 @@ struct NavMeshDataDescriptor
 	char _pad[252]; // 0x48
 };
 
-struct NavMeshUnk01;
+struct NavMeshSurfaceVertex;
 
 // Sizeof = 72 (0x48)
-class NavMeshUnk00
+class NavMeshSurface
 {
 public:	
 	char _pad00[56];
@@ -63,24 +63,24 @@ public:
 	char _pad01[12];
 
 public:
-	uint32_t GetUnk01Count() const
+	uint32_t GetVertexCount() const
 	{
 		return m_Flags & 0x7F;
 	}
 
-	NavMeshUnk01* GetUnk01()
+	NavMeshSurfaceVertex* GetFirstVertex()
 	{
-		return reinterpret_cast<NavMeshUnk01*>(reinterpret_cast<uintptr_t>(this) + sizeof(NavMeshUnk00));
+		return reinterpret_cast<NavMeshSurfaceVertex*>(reinterpret_cast<uintptr_t>(this) + sizeof(NavMeshSurface));
 	}
 };
 
 // Sizeof = 32 (0x20)
-struct NavMeshUnk01
+struct NavMeshSurfaceVertex
 {
-	NavMeshUnk00* m_Unk00; // 0x00
-	float m_Unk01; // 0x08
-	float m_Unk02; // 0x0C
-	float m_Unk03; // 0x10
+	NavMeshSurface* m_Unk00; // 0x00
+	float m_X; // 0x08
+	float m_Y; // 0x0C
+	float m_Z; // 0x10
 	uint32_t m_UnkFlags00; // 0x14 These two fields look like flag values
 	uint32_t m_UnkFlags01; // 0x18
 	uint32_t m_Unk06; // 0x1C Always 0
@@ -184,23 +184,23 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		
 		while (s_CurrentIndex < s_Unk00DataEnd)
 		{
-			const auto* s_Unk00 = reinterpret_cast<NavMeshUnk00*>(s_FileStartPtr + s_CurrentIndex);
-			s_CurrentIndex += sizeof(NavMeshUnk00);
+			const auto* s_Surface = reinterpret_cast<NavMeshSurface*>(s_FileStartPtr + s_CurrentIndex);
+			s_CurrentIndex += sizeof(NavMeshSurface);
 
 			Log("==== NavMesh Unk00 ====\n");
 			Log("N00_Count01: %d\n", s_Unk00->GetUnk01Count());
 
-			if (s_Unk00->GetUnk01Count() == 0)
+			if (s_Surface->GetVertexCount() == 0)
 				continue;
 			
 			printf("[");
 			
-			for (uint32_t i = 0; i < s_Unk00->GetUnk01Count(); ++i)
+			for (uint32_t i = 0; i < s_Surface->GetVertexCount(); ++i)
 			{
-				const auto* s_Unk01 = reinterpret_cast<NavMeshUnk01*>(s_FileStartPtr + s_CurrentIndex);
-				s_CurrentIndex += sizeof(NavMeshUnk01);
+				const auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
+				s_CurrentIndex += sizeof(NavMeshSurfaceVertex);
 
-				printf("[%f,%f,%f],", s_Unk01->m_Unk01, s_Unk01->m_Unk02, s_Unk01->m_Unk03);
+				printf("[%f,%f,%f],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z);
 
 				Log("==== NavMesh Unk01 ====\n");
 				Log("N01_Unk00: %p\n", s_Unk01->m_Unk00);
