@@ -100,30 +100,44 @@ struct NavMeshUnk02
 #define Log(...) printf(__VA_ARGS__)
 #define Log(...)
 
+inline uint32_t c_byteswap_ulong(uint32_t p_Value)
+{
+#if _MSC_VER
+	return _byteswap_ulong(p_Value);
+#else
+	return ((p_Value >> 24) & 0x000000FF) |
+		((p_Value >> 8) & 0x0000FF00) |
+		((p_Value << 8) & 0x00FF0000) |
+		((p_Value << 24) & 0xFF000000);
+#endif
+}
+
 uint32_t CalculateChecksum(void* p_Data, uint32_t p_Size)
 {
-	uint32_t a2 = p_Size;
+	uint32_t s_BytesToCheck = p_Size;
 
-	if (p_Size % 4 != 0)
-		a2 = p_Size - (p_Size % 4);
+	// Looks like this checksum algorithm will skip a few bytes at the end
+	// if the size is not a multiple of 4.
+	if (s_BytesToCheck % 4 != 0)
+		s_BytesToCheck -= (s_BytesToCheck % 4);
 
-	if (a2 <= 0)
+	if (s_BytesToCheck <= 0)
 		return 0;
 
-	uint32_t v5 = ((a2 - 1) >> 2) + 1;
-
 	uint32_t s_Checksum = 0;
-
-	auto* s_Data = static_cast<uint8_t*>(p_Data);
 	
-	do
-	{
-		s_Checksum += (s_Data[0] << 24) + (s_Data[1] << 16) + (s_Data[2] << 8) + s_Data[3];
-		s_Data += 4;
-		--v5;
-	}
-	while (v5 > 0);
+	// Checksum is calculated in groups of 4 bytes.
+	const uint32_t s_ByteGroupCount = s_BytesToCheck / 4;
+	auto* s_Data = static_cast<uint32_t*>(p_Data);
 
+	// This seems to be treating the data as an array of 32-bit integers
+	// which it then adds together after swapping their endianness, in order
+	// to get to the final checksum.
+	for (uint32_t i = 0; i < s_ByteGroupCount; ++i, ++s_Data)
+	{
+		s_Checksum += c_byteswap_ulong(*s_Data);
+	}
+	
 	return s_Checksum;
 }
 
