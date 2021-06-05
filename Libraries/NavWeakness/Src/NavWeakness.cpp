@@ -9,7 +9,7 @@ struct NavPowerHeader
 	uint32_t m_Unk00; // 0x00 Always 0
 	uint32_t m_Unk01; // 0x04 Always 2 (maybe version number?)
 	uint32_t m_DataSize; // 0x08 Size of the file excluding this header
-	uint32_t m_Unk02; // 0x0C Maybe some sort of checksum?
+	uint32_t m_Checksum; // 0x0C Checksum of data excluding this header
 	uint32_t m_Unk03; // 0x10 Always 0
 	uint32_t m_Unk04; // 0x14 Always 0
 };
@@ -100,6 +100,33 @@ struct NavMeshUnk02
 #define Log(...) printf(__VA_ARGS__)
 #define Log(...)
 
+uint32_t CalculateChecksum(void* p_Data, uint32_t p_Size)
+{
+	uint32_t a2 = p_Size;
+
+	if (p_Size % 4 != 0)
+		a2 = p_Size - (p_Size % 4);
+
+	if (a2 <= 0)
+		return 0;
+
+	uint32_t v5 = ((a2 - 1) >> 2) + 1;
+
+	uint32_t s_Checksum = 0;
+
+	auto* s_Data = static_cast<uint8_t*>(p_Data);
+	
+	do
+	{
+		s_Checksum += (s_Data[0] << 24) + (s_Data[1] << 16) + (s_Data[2] << 8) + s_Data[3];
+		s_Data += 4;
+		--v5;
+	}
+	while (v5 > 0);
+
+	return s_Checksum;
+}
+
 extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 {
 	if (!std::filesystem::is_regular_file(p_NavMeshPath))
@@ -123,13 +150,21 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 	Log("Hdr_Unk00: %x\n", s_Header->m_Unk00);
 	Log("Hdr_Unk01: %x\n", s_Header->m_Unk01);
 	Log("Hdr_DataSize: %x\n", s_Header->m_DataSize);
-	Log("Hdr_Unk02: %x\n", s_Header->m_Unk02);
+	Log("Hdr_Checksum: %x\n", s_Header->m_Checksum);
 	Log("Hdr_Unk03: %x\n", s_Header->m_Unk03);
 	Log("Hdr_Unk04: %x\n", s_Header->m_Unk04);
 
-	const uintptr_t s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
+	const auto s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
 	uintptr_t s_CurrentIndex = sizeof(NavPowerHeader);
 
+	const uint32_t s_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + s_CurrentIndex), s_Header->m_DataSize);
+
+	if (s_Header->m_Checksum != s_Checksum)
+	{
+		Log("[ERROR] Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_Header->m_Checksum);
+		return;
+	}
+	
 	while (s_CurrentIndex - sizeof(NavPowerHeader) < s_Header->m_DataSize)
 	{
 		const auto* s_Section = reinterpret_cast<NavMeshSection*>(s_FileStartPtr + s_CurrentIndex);
@@ -180,43 +215,43 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 
 		const auto s_Unk00DataEnd = s_CurrentIndex + s_Descriptor->m_NavMeshUnk00Size;
 
-		printf("const Faces = [");
+		//printf("const Faces = [");
 		
 		while (s_CurrentIndex < s_Unk00DataEnd)
 		{
 			const auto* s_Surface = reinterpret_cast<NavMeshSurface*>(s_FileStartPtr + s_CurrentIndex);
 			s_CurrentIndex += sizeof(NavMeshSurface);
 
-			Log("==== NavMesh Unk00 ====\n");
-			Log("N00_Count01: %d\n", s_Unk00->GetUnk01Count());
+			Log("==== NavMesh Surface ====\n");
+			Log("Surf_VertexCount: %d\n", s_Surface->GetVertexCount());
 
 			if (s_Surface->GetVertexCount() == 0)
 				continue;
 			
-			printf("[");
+			//printf("[");
 			
 			for (uint32_t i = 0; i < s_Surface->GetVertexCount(); ++i)
 			{
 				const auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
 				s_CurrentIndex += sizeof(NavMeshSurfaceVertex);
 
-				printf("[%f,%f,%f],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z);
+				//printf("[%f,%f,%f],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z);
 
-				Log("==== NavMesh Unk01 ====\n");
-				Log("N01_Unk00: %p\n", s_Unk01->m_Unk00);
-				Log("N01_Unk01: %f\n", s_Unk01->m_Unk01);
-				Log("N01_Unk02: %f\n", s_Unk01->m_Unk02);
-				Log("N01_Unk03: %f\n", s_Unk01->m_Unk03);
-				Log("N01_UnkFlags00: %x\n", s_Unk01->m_UnkFlags00);
-				Log("N01_UnkFlags01: %x\n", s_Unk01->m_UnkFlags01);
-				Log("N01_Unk06: %x\n", s_Unk01->m_Unk06);
+				Log("==== NavMesh Surface Vertex ====\n");
+				Log("Vert_Unk00: %p\n", s_Vertex->m_Unk00);
+				Log("Vert_X: %f\n", s_Vertex->m_X);
+				Log("Vert_Y: %f\n", s_Vertex->m_Y);
+				Log("Vert_Z: %f\n", s_Vertex->m_Z);
+				Log("Vert_UnkFlags00: %x\n", s_Vertex->m_UnkFlags00);
+				Log("Vert_UnkFlags01: %x\n", s_Vertex->m_UnkFlags01);
+				Log("Vert_Unk06: %x\n", s_Vertex->m_Unk06);
 			}
 
 
-			printf("],");
+			//printf("],");
 		}
 
-		printf("];\n");
+		//printf("];\n");
 
 		const auto* s_Unk02 = reinterpret_cast<NavMeshUnk02*>(s_FileStartPtr + s_CurrentIndex);
 		s_CurrentIndex += sizeof(NavMeshUnk02);
