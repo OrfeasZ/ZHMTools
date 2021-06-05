@@ -40,6 +40,35 @@ function renderFace(edges, color) {
     }
 }
 
+function renderWeirdEdges(edges) {
+    let foundOne = false;
+    let foundZero = false;
+
+    for (const edge of edges) {
+        let edgeColor = 0xff0000;
+
+        if (edge[3] === 1) {
+            foundOne = true;
+            edgeColor = 0x0000ff;
+        } else {
+            foundZero = true;
+        }
+
+        const geometry = new THREE.CircleGeometry(0.1, 5);
+        const material = new THREE.MeshBasicMaterial({ color: edgeColor, side: THREE.DoubleSide });
+
+        const circle = new THREE.Mesh(geometry, material);
+        circle.position.set(edge[1], edge[2] + 0.01, edge[0]);
+        circle.rotation.set(1.5708, 0, 0);
+
+        scene.add(circle);
+    }
+
+    if (!foundOne || !foundZero) {
+        console.log('Could not find one');
+    }
+}
+
 function renderOutline(edges) {
     const points = [];
 
@@ -125,6 +154,8 @@ function renderSurface(surface) {
     if (checkMarkedVertices.checked) {
         renderMarkedVertex(vertices[vertexIndex]);
     }
+
+    renderWeirdEdges(vertices);
 }
 
 camera.position.set(-40, 50, 80);

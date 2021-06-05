@@ -130,9 +130,27 @@ struct NavMeshSurfaceVertex
 	float m_X; // 0x08
 	float m_Y; // 0x0C
 	float m_Z; // 0x10
-	uint32_t m_UnkFlags00; // 0x14 These two fields look like flag values
-	uint32_t m_UnkFlags01; // 0x18
-	uint32_t m_Unk06; // 0x1C Always 0
+	uint32_t m_Flags; // 0x14 
+	uint32_t m_Unk01; // 0x18 Less than 0x00008b98
+	uint32_t m_Unk02; // 0x1C Always 0
+
+	uint32_t GetFlags00Unk00() const
+	{
+		// Always 0.
+		return m_Flags & 0x7FFF;
+	}
+
+	bool GetFlags00Unk01() const
+	{
+		// Sometimes true.
+		return ((m_Flags & 0x8000) >> 15) != 0;
+	}
+
+	uint32_t GetFlags00Unk02() const
+	{
+		// Always 0xffff;
+		return (m_Flags & 0xffff0000) >> 16;
+	}
 };
 
 struct NavMeshUnk02
@@ -317,16 +335,19 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				const auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
 				s_CurrentIndex += sizeof(NavMeshSurfaceVertex);
 
-				printf("[%f,%f,%f],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z);
+				printf("[%f,%f,%f,%d,%d],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z, s_Vertex->GetFlags00Unk01(), s_Vertex->m_UnkFlags01);
 
 				Log("==== NavMesh Surface Vertex ====\n");
 				Log("Vert_Unk00: %p\n", s_Vertex->m_Unk00);
 				Log("Vert_X: %f\n", s_Vertex->m_X);
 				Log("Vert_Y: %f\n", s_Vertex->m_Y);
 				Log("Vert_Z: %f\n", s_Vertex->m_Z);
-				Log("Vert_UnkFlags00: %x\n", s_Vertex->m_UnkFlags00);
-				Log("Vert_UnkFlags01: %x\n", s_Vertex->m_UnkFlags01);
-				Log("Vert_Unk06: %x\n", s_Vertex->m_Unk06);
+				Log("Vert_Flags: %x\n", s_Vertex->m_Flags);
+				Log("Vert_Unk01: %x\n", s_Vertex->m_Unk01);
+				Log("Vert_Unk02: %x\n", s_Vertex->m_Unk02);
+				Log("Vert_Flags00_0: %x\n", s_Vertex->GetFlags00Unk00());
+				Log("Vert_Flags00_1: %x\n", s_Vertex->GetFlags00Unk01());
+				Log("Vert_Flags00_2: %x\n", s_Vertex->GetFlags00Unk02());
 			}
 
 			printf("]],");
