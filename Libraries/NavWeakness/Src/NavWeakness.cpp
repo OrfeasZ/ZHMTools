@@ -54,23 +54,72 @@ struct NavMeshDataDescriptor
 
 struct NavMeshSurfaceVertex;
 
+enum class NavMeshSurfaceType : uint32_t
+{
+	Flat = 1,
+	Steps = 8,
+};
+
 // Sizeof = 72 (0x48)
 class NavMeshSurface
 {
-public:	
-	char _pad00[56];
-	uint32_t m_Flags; // 0x38
-	char _pad01[12];
+public:
+	uint64_t m_Unk00; // 0x00 Always 0
+	uint64_t m_Unk01; // 0x08 Always 0
+	uint64_t m_Unk02; // 0x10 Always 0
+	uint64_t m_Unk03; // 0x18 Always 0
+	float m_CenterX; // 0x20
+	float m_CenterY; // 0x24
+	float m_CenterZ; // 0x28
+	float m_MaxRadius; // 0x2C Distance to the further away edge from the center
+	uint32_t m_Unk04; // 0x30 Always 0xFFFFFFFF
+	NavMeshSurfaceType m_SurfaceType; // 0x34
+	uint32_t m_Flags00; // 0x38
+	uint32_t m_Flags01; // 0x3C
+	uint64_t m_Unk06; // 0x40 Always 0
 
 public:
-	uint32_t GetVertexCount() const
-	{
-		return m_Flags & 0x7F;
-	}
-
+	[[nodiscard]]
 	NavMeshSurfaceVertex* GetFirstVertex()
 	{
 		return reinterpret_cast<NavMeshSurfaceVertex*>(reinterpret_cast<uintptr_t>(this) + sizeof(NavMeshSurface));
+	}
+	
+	[[nodiscard]]
+	uint32_t GetVertexCount() const
+	{
+		// This should never be < 3.
+		return m_Flags00 & 0x7F;
+	}
+
+	uint32_t GetFlags00Unk() const
+	{
+		// Always 0x3ffff.
+		return (m_Flags00 & 0xFFFFFF80) >> 7;
+	}
+
+	uint32_t GetFlags01Unk00() const
+	{
+		// First 16 bits. Always 0.
+		return m_Flags01 & 0xFFFF;
+	}
+
+	uint32_t GetFlags01Unk01() const
+	{
+		// Next 4 bits. Always 1.
+		return (m_Flags01 & 0xF0000) >> 16;
+	}
+
+	uint32_t GetFlags01Unk02() const
+	{
+		// Next 4 bits. Always 1.
+		return (m_Flags01 & 0xF00000) >> 20;
+	}
+
+	uint32_t GetMarkedVertex() const
+	{
+		// Next 8 bits. Unknown, always >= 2 and < VertexCount.
+		return (m_Flags01 & 0xFF000000) >> 24;
 	}
 };
 
@@ -119,7 +168,7 @@ uint32_t CalculateChecksum(void* p_Data, uint32_t p_Size)
 	// Looks like this checksum algorithm will skip a few bytes at the end
 	// if the size is not a multiple of 4.
 	if (s_BytesToCheck % 4 != 0)
-		s_BytesToCheck -= (s_BytesToCheck % 4);
+		s_BytesToCheck -= s_BytesToCheck % 4;
 
 	if (s_BytesToCheck <= 0)
 		return 0;
@@ -134,9 +183,7 @@ uint32_t CalculateChecksum(void* p_Data, uint32_t p_Size)
 	// which it then adds together after swapping their endianness, in order
 	// to get to the final checksum.
 	for (uint32_t i = 0; i < s_ByteGroupCount; ++i, ++s_Data)
-	{
 		s_Checksum += c_byteswap_ulong(*s_Data);
-	}
 	
 	return s_Checksum;
 }
@@ -145,6 +192,8 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 {
 	if (!std::filesystem::is_regular_file(p_NavMeshPath))
 		return;
+
+	const std::string s_FileName = std::filesystem::path(p_NavMeshPath).filename().string();
 
 	// Read the entire file to memory.
 	const auto s_FileSize = std::filesystem::file_size(p_NavMeshPath);
@@ -228,8 +277,8 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		Log("Data_Unk16: %x\n", s_Descriptor->m_Unk16);
 
 		const auto s_Unk00DataEnd = s_CurrentIndex + s_Descriptor->m_NavMeshUnk00Size;
-
-		//printf("const Faces = [");
+		
+		printf("Surfaces['%s'] = [", s_FileName.c_str());
 		
 		while (s_CurrentIndex < s_Unk00DataEnd)
 		{
@@ -237,19 +286,38 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 			s_CurrentIndex += sizeof(NavMeshSurface);
 
 			Log("==== NavMesh Surface ====\n");
+			Log("Surf_Unk00: %llu\n", s_Surface->m_Unk00);
+			Log("Surf_Unk01: %llu\n", s_Surface->m_Unk01);
+			Log("Surf_Unk02: %llu\n", s_Surface->m_Unk02);
+			Log("Surf_Unk03: %llu\n", s_Surface->m_Unk03);
+			Log("Surf_CenterX: %f\n", s_Surface->m_CenterX);
+			Log("Surf_CenterY: %f\n", s_Surface->m_CenterY);
+			Log("Surf_CenterZ: %f\n", s_Surface->m_CenterZ);
+			Log("Surf_MaxRadius: %f\n", s_Surface->m_MaxRadius);
+			Log("Surf_Unk04: %d\n", s_Surface->m_Unk04);
+			Log("Surf_SurfaceType: %d\n", s_Surface->m_SurfaceType);
+			Log("Surf_Flags00: %x\n", s_Surface->m_Flags00);
+			Log("Surf_Flags01: %x\n", s_Surface->m_Flags01);
+			Log("Surf_Unk06: %llu\n", s_Surface->m_Unk06);
 			Log("Surf_VertexCount: %d\n", s_Surface->GetVertexCount());
+			Log("Surf_Flags00_0: %d\n", s_Surface->GetFlags00Unk());
+			Log("Surf_Flags01_0: %d\n", s_Surface->GetFlags01Unk00());
+			Log("Surf_Flags01_1: %d\n", s_Surface->GetFlags01Unk01());
+			Log("Surf_Flags01_2: %d\n", s_Surface->GetFlags01Unk02());
+			Log("Surf_MarkedVertex: %d\n", s_Surface->GetMarkedVertex());
 
-			if (s_Surface->GetVertexCount() == 0)
-				continue;
-			
-			//printf("[");
+			printf(
+				"[%f,%f,%f,%f,%d,%d,[",
+				s_Surface->m_CenterX, s_Surface->m_CenterY, s_Surface->m_CenterZ, s_Surface->m_MaxRadius,
+				s_Surface->m_SurfaceType, s_Surface->GetMarkedVertex()
+			);
 			
 			for (uint32_t i = 0; i < s_Surface->GetVertexCount(); ++i)
 			{
 				const auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
 				s_CurrentIndex += sizeof(NavMeshSurfaceVertex);
 
-				//printf("[%f,%f,%f],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z);
+				printf("[%f,%f,%f],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z);
 
 				Log("==== NavMesh Surface Vertex ====\n");
 				Log("Vert_Unk00: %p\n", s_Vertex->m_Unk00);
@@ -261,12 +329,13 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				Log("Vert_Unk06: %x\n", s_Vertex->m_Unk06);
 			}
 
-
-			//printf("],");
+			printf("]],");
 		}
 
-		//printf("];\n");
+		printf("];\n");
 
+		fflush(stdout);
+		
 		const auto* s_Unk02 = reinterpret_cast<NavMeshUnk02*>(s_FileStartPtr + s_CurrentIndex);
 		s_CurrentIndex += sizeof(NavMeshUnk02);
 
