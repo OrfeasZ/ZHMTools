@@ -73,7 +73,7 @@ public:
 	float m_CenterZ; // 0x28
 	float m_MaxRadius; // 0x2C Distance to the further away edge from the center
 	uint32_t m_Unk04; // 0x30 Always 0xFFFFFFFF
-	NavMeshSurfaceType m_SurfaceType; // 0x34
+	NavMeshSurfaceType m_SurfaceType; // 0x34 With this set to flat it stairs still appear to work.
 	uint32_t m_Flags00; // 0x38
 	uint32_t m_Flags01; // 0x3C
 	uint64_t m_Unk06; // 0x40 Always 0
@@ -131,7 +131,7 @@ struct NavMeshSurfaceVertex
 	float m_Y; // 0x0C
 	float m_Z; // 0x10
 	uint32_t m_Flags; // 0x14 
-	uint32_t m_Unk01; // 0x18 Less than 0x00008b98
+	uint32_t m_Unk01; // 0x18 Less than 0x00008b98. Setting to 0 doesn't seem to affect nav.
 	uint32_t m_Unk02; // 0x1C Always 0
 
 	uint32_t GetFlags00Unk00() const
@@ -140,16 +140,31 @@ struct NavMeshSurfaceVertex
 		return m_Flags & 0x7FFF;
 	}
 
+	void SetFlags00Unk00(uint32_t p_Value)
+	{
+		m_Flags |= p_Value & 0x7FFF;
+	}
+
 	bool GetFlags00Unk01() const
 	{
-		// Sometimes true.
+		// Sometimes true. Having it as false doesn't seem to affect nav.
 		return ((m_Flags & 0x8000) >> 15) != 0;
+	}
+
+	void SetFlags00Unk01(bool p_Value)
+	{
+		m_Flags |= (p_Value ? 1 : 0) << 15;
 	}
 
 	uint32_t GetFlags00Unk02() const
 	{
 		// Always 0xffff;
 		return (m_Flags & 0xffff0000) >> 16;
+	}
+
+	void SetFlags00Unk02(uint32_t p_Value)
+	{
+		m_Flags |= (p_Value & 0xffff) << 16;
 	}
 };
 
@@ -225,7 +240,7 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 
 	s_FileStream.close();
 
-	const auto* s_Header = static_cast<NavPowerHeader*>(s_FileData);
+	auto* s_Header = static_cast<NavPowerHeader*>(s_FileData);
 
 	Log("===== NavPower Header ====\n");
 	Log("Hdr_Unk00: %x\n", s_Header->m_Unk00);
@@ -238,7 +253,7 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 	const auto s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
 	uintptr_t s_CurrentIndex = sizeof(NavPowerHeader);
 
-	const uint32_t s_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + s_CurrentIndex), s_Header->m_DataSize);
+	const uint32_t s_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(NavPowerHeader)), s_Header->m_DataSize);
 
 	if (s_Header->m_Checksum != s_Checksum)
 	{
@@ -300,7 +315,7 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		
 		while (s_CurrentIndex < s_Unk00DataEnd)
 		{
-			const auto* s_Surface = reinterpret_cast<NavMeshSurface*>(s_FileStartPtr + s_CurrentIndex);
+			auto* s_Surface = reinterpret_cast<NavMeshSurface*>(s_FileStartPtr + s_CurrentIndex);
 			s_CurrentIndex += sizeof(NavMeshSurface);
 
 			Log("==== NavMesh Surface ====\n");
@@ -324,18 +339,20 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 			Log("Surf_Flags01_2: %d\n", s_Surface->GetFlags01Unk02());
 			Log("Surf_MarkedVertex: %d\n", s_Surface->GetMarkedVertex());
 
-			printf(
+			/*printf(
 				"[%f,%f,%f,%f,%d,%d,[",
 				s_Surface->m_CenterX, s_Surface->m_CenterY, s_Surface->m_CenterZ, s_Surface->m_MaxRadius,
 				s_Surface->m_SurfaceType, s_Surface->GetMarkedVertex()
-			);
+			);*/
+
+			s_Surface->m_SurfaceType = NavMeshSurfaceType::Flat;
 			
 			for (uint32_t i = 0; i < s_Surface->GetVertexCount(); ++i)
 			{
-				const auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
+				auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
 				s_CurrentIndex += sizeof(NavMeshSurfaceVertex);
 
-				printf("[%f,%f,%f,%d,%d],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z, s_Vertex->GetFlags00Unk01(), s_Vertex->m_UnkFlags01);
+				//printf("[%f,%f,%f,%d,%d],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z, s_Vertex->GetFlags00Unk01(), s_Vertex->m_Unk01);
 
 				Log("==== NavMesh Surface Vertex ====\n");
 				Log("Vert_Unk00: %p\n", s_Vertex->m_Unk00);
@@ -348,9 +365,12 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				Log("Vert_Flags00_0: %x\n", s_Vertex->GetFlags00Unk00());
 				Log("Vert_Flags00_1: %x\n", s_Vertex->GetFlags00Unk01());
 				Log("Vert_Flags00_2: %x\n", s_Vertex->GetFlags00Unk02());
+
+				s_Vertex->SetFlags00Unk01(false);
+				s_Vertex->m_Unk01 = 0;
 			}
 
-			printf("]],");
+			//printf("]],");
 		}
 
 		printf("];\n");
@@ -377,4 +397,14 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 			return;
 		}
 	}
+
+	// Rewrite file.
+
+	// Calculate new checksum.
+	s_Header->m_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(NavPowerHeader)), s_Header->m_DataSize);
+
+	FILE* s_OutputFile = fopen(p_NavMeshPath, "wb");
+
+	fwrite(s_FileData, s_FileSize, 1, s_OutputFile);
+	fclose(s_OutputFile);
 }
