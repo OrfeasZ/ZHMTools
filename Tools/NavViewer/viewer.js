@@ -16,6 +16,7 @@ const checkLines = document.getElementById('check-lines');
 const checkMarkedVertices = document.getElementById('check-marked-vertices');
 const checkWeirdVertices = document.getElementById('check-weird-vertices');
 const checkAABB = document.getElementById('check-aabb');
+const checkNumbers = document.getElementById('check-numbers');
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -100,7 +101,7 @@ function renderSurfaceCenter(centerX, centerY, centerZ) {
     scene.add(circle);
 }
 
-function renderMarkedVertex(vertex) {
+function renderMarkedVertex(faceIdx, vertex) {
     const geometry = new THREE.CircleGeometry(0.1, 5);
     const material = new THREE.MeshBasicMaterial({ color: 0xff00ff, side: THREE.DoubleSide });
 
@@ -109,9 +110,35 @@ function renderMarkedVertex(vertex) {
     circle.rotation.set(1.5708, 0, 0);
 
     scene.add(circle);
+
+    const text = new THREE.TextSprite({
+        alignment: 'center',
+        color: '#000000',
+        fontFamily: 'Arial',
+        fontSize: 0.12,
+        text: faceIdx.toString(),
+    });
+
+    text.position.set(vertex[1], vertex[2] + 0.05, vertex[0]);
+
+    scene.add(text);
 }
 
-function renderSurface(surface) {
+function renderSurfaceNumber(number, x, y, z) {
+    const text = new THREE.TextSprite({
+        alignment: 'center',
+        color: '#ffffff',
+        fontFamily: 'Arial',
+        fontSize: 0.2,
+        text: number.toString(),
+    });
+
+    text.position.set(y, z + 0.05, x);
+
+    scene.add(text);
+}
+
+function renderSurface(i, surface) {
     const centerX = surface[0];
     const centerY = surface[1];
     const centerZ = surface[2];
@@ -123,10 +150,6 @@ function renderSurface(surface) {
 
     if (checkRadii.checked) {
         renderSurfaceRadius(centerX, centerY, centerZ, maxRadius);
-    }
-
-    if (checkCenters.checked) {
-        renderSurfaceCenter(centerX, centerY, centerZ);
     }
 
     let faceColor = 0x00FF00;
@@ -144,11 +167,19 @@ function renderSurface(surface) {
     }
 
     if (checkMarkedVertices.checked) {
-        renderMarkedVertex(vertices[vertexIndex]);
+        renderMarkedVertex(i, vertices[vertexIndex]);
     }
 
     if (checkWeirdVertices.checked) {
         renderWeirdEdges(vertices);
+    }
+
+    if (checkCenters.checked) {
+        renderSurfaceCenter(centerX, centerY, centerZ);
+    }
+
+    if (checkNumbers.checked) {
+        renderSurfaceNumber(i, centerX, centerY, centerZ);
     }
 }
 
@@ -189,7 +220,7 @@ function reRender() {
 
     for (let i = 1; i < Surfaces[selectedMap].length; ++i) {
         const surface = Surfaces[selectedMap][i];
-        renderSurface(surface);
+        renderSurface(i, surface);
     }
 }
 
@@ -217,3 +248,4 @@ checkLines.addEventListener('change', () => reRender());
 checkMarkedVertices.addEventListener('change', () => reRender());
 checkWeirdVertices.addEventListener('change', () => reRender());
 checkAABB.addEventListener('change', () => reRender());
+checkNumbers.addEventListener('change', () => reRender());

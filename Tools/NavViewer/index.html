@@ -26,22 +26,25 @@
     </style>
 </head>
 <body>
-<div id="renderer">
-    <canvas id="render-canvas"></canvas>
-</div>
-<div id="controls">
-    <select id="map-selector"></select><br />
-    <label><input id="check-radii" type="checkbox" /> Render surface radii</label><br />
-    <label><input id="check-centers" type="checkbox" /> Render surface centers</label><br />
-    <label><input id="check-faces" type="checkbox" checked /> Render surface faces</label><br />
-    <label><input id="check-lines" type="checkbox" /> Render lines</label><br />
-    <label><input id="check-marked-vertices" type="checkbox" /> Render marked vertices</label><br />
-    <label><input id="check-weird-vertices" type="checkbox" /> Render weird vertices</label><br />
-    <label><input id="check-aabb" type="checkbox" /> Render AABB</label><br />
-</div>
-<script src="three.min.js"></script>
-<script src="OrbitControls.js"></script>
-<script src="Surfaces.js"></script>
-<script src="viewer.js"></script>
+    <div id="renderer">
+        <canvas id="render-canvas"></canvas>
+    </div>
+    <div id="controls">
+        <select id="map-selector"></select><br />
+        <label><input id="check-radii" type="checkbox" /> Render surface radii</label><br />
+        <label><input id="check-centers" type="checkbox" /> Render surface centers</label><br />
+        <label><input id="check-faces" type="checkbox" checked /> Render surface faces</label><br />
+        <label><input id="check-lines" type="checkbox" /> Render lines</label><br />
+        <label><input id="check-marked-vertices" type="checkbox" /> Render marked vertices</label><br />
+        <label><input id="check-weird-vertices" type="checkbox" /> Render weird vertices</label><br />
+        <label><input id="check-aabb" type="checkbox" /> Render AABB</label><br />
+        <label><input id="check-numbers" type="checkbox" /> Render surface numbers</label><br />
+    </div>
+    <script src="three.min.js"></script>
+    <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
+    <script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
+    <script src="OrbitControls.js"></script>
+    <script src="Surfaces.js"></script>
+    <script src="viewer.js"></script>
 </body>
 </html>
