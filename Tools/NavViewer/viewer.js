@@ -14,6 +14,8 @@ const checkCenters = document.getElementById('check-centers');
 const checkFaces = document.getElementById('check-faces');
 const checkLines = document.getElementById('check-lines');
 const checkMarkedVertices = document.getElementById('check-marked-vertices');
+const checkWeirdVertices = document.getElementById('check-weird-vertices');
+const checkAABB = document.getElementById('check-aabb');
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -41,19 +43,13 @@ function renderFace(edges, color) {
 }
 
 function renderWeirdEdges(edges) {
-    let foundOne = false;
-    let foundZero = false;
-
     for (const edge of edges) {
-        let edgeColor = 0xff0000;
-
-        if (edge[3] === 1) {
-            foundOne = true;
-            edgeColor = 0x0000ff;
-        } else {
-            foundZero = true;
+        if (edge[3] !== 1) {
+            continue;
         }
-
+        
+        const edgeColor = 0x0000ff;
+        
         const geometry = new THREE.CircleGeometry(0.1, 5);
         const material = new THREE.MeshBasicMaterial({ color: edgeColor, side: THREE.DoubleSide });
 
@@ -62,10 +58,6 @@ function renderWeirdEdges(edges) {
         circle.rotation.set(1.5708, 0, 0);
 
         scene.add(circle);
-    }
-
-    if (!foundOne || !foundZero) {
-        console.log('Could not find one');
     }
 }
 
@@ -155,7 +147,16 @@ function renderSurface(surface) {
         renderMarkedVertex(vertices[vertexIndex]);
     }
 
-    renderWeirdEdges(vertices);
+    if (checkWeirdVertices.checked) {
+        renderWeirdEdges(vertices);
+    }
+}
+
+function renderAABB(unk) {
+    const box = new THREE.Box3(new THREE.Vector3(unk[1], unk[2] + 0.01, unk[0]), new THREE.Vector3(unk[4], unk[5] + 0.01, unk[3]));
+
+    const helper = new THREE.Box3Helper(box, 0xff00ff);
+    scene.add(helper);
 }
 
 camera.position.set(-40, 50, 80);
@@ -181,8 +182,13 @@ function reRender() {
     const selectedMap = mapSelector.value;
 
     console.log('Rendering ' + selectedMap);
-    
-    for (const surface of Surfaces[selectedMap]) {
+
+    if (checkAABB.checked) {
+        renderAABB(Surfaces[selectedMap][0]);
+    }
+
+    for (let i = 1; i < Surfaces[selectedMap].length; ++i) {
+        const surface = Surfaces[selectedMap][i];
         renderSurface(surface);
     }
 }
@@ -209,3 +215,5 @@ checkCenters.addEventListener('change', () => reRender());
 checkFaces.addEventListener('change', () => reRender());
 checkLines.addEventListener('change', () => reRender());
 checkMarkedVertices.addEventListener('change', () => reRender());
+checkWeirdVertices.addEventListener('change', () => reRender());
+checkAABB.addEventListener('change', () => reRender());

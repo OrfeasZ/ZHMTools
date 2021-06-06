@@ -43,6 +43,9 @@ int main(int argc, char** argv)
 		PrintHelp();
 		return 1;
 	}
+	printf("const Surfaces = {};\n");
+	fflush(stdout);
+	
 
 	ParseNavMesh(argv[1]);
 

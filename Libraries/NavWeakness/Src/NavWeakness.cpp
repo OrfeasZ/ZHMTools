@@ -42,12 +42,12 @@ struct NavMeshDataDescriptor
 	float m_Unk07; // 0x20 Always 0.2
 	float m_Unk08; // 0x24 Always 0.3
 	float m_Unk09; // 0x28 Always 1.8
-	float m_Unk10; // 0x2C 
-	float m_Unk11; // 0x30
-	float m_Unk12; // 0x34
-	float m_Unk13; // 0x38
-	float m_Unk14; // 0x3C
-	float m_Unk15; // 0x40
+	float m_AABBMinX; // 0x2C 
+	float m_AABBMinY; // 0x30
+	float m_AABBMinZ; // 0x34
+	float m_AABBMaxX; // 0x38
+	float m_AABBMaxY; // 0x3C
+	float m_AABBMaxZ; // 0x40
 	uint32_t m_Unk16; // 0x44 Always 2
 	char _pad[252]; // 0x48
 };
@@ -119,7 +119,14 @@ public:
 	uint32_t GetMarkedVertex() const
 	{
 		// Next 8 bits. Unknown, always >= 2 and < VertexCount.
+		// TODO: Figure out what this is because it's important.
+		// If it's not right then the game gets stuck loading.
 		return (m_Flags01 & 0xFF000000) >> 24;
+	}
+
+	void SetMarkedVertex(uint32_t p_Index)
+	{
+		m_Flags01 |= (p_Index & 0xff) << 24;
 	}
 };
 
@@ -301,17 +308,21 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		Log("Data_Unk07: %f\n", s_Descriptor->m_Unk07);
 		Log("Data_Unk08: %f\n", s_Descriptor->m_Unk08);
 		Log("Data_Unk09: %f\n", s_Descriptor->m_Unk09);
-		Log("Data_Unk10: %f\n", s_Descriptor->m_Unk10);
-		Log("Data_Unk11: %f\n", s_Descriptor->m_Unk11);
-		Log("Data_Unk12: %f\n", s_Descriptor->m_Unk12);
-		Log("Data_Unk13: %f\n", s_Descriptor->m_Unk13);
-		Log("Data_Unk14: %f\n", s_Descriptor->m_Unk14);
-		Log("Data_Unk15: %f\n", s_Descriptor->m_Unk15);
+		Log("Data_AABBMinX: %f\n", s_Descriptor->m_AABBMinX);
+		Log("Data_AABBMinY: %f\n", s_Descriptor->m_AABBMinY);
+		Log("Data_AABBMinZ: %f\n", s_Descriptor->m_AABBMinZ);
+		Log("Data_AABBMaxX: %f\n", s_Descriptor->m_AABBMaxX);
+		Log("Data_AABBMaxY: %f\n", s_Descriptor->m_AABBMaxY);
+		Log("Data_AABBMaxZ: %f\n", s_Descriptor->m_AABBMaxZ);
 		Log("Data_Unk16: %x\n", s_Descriptor->m_Unk16);
 
 		const auto s_Unk00DataEnd = s_CurrentIndex + s_Descriptor->m_NavMeshUnk00Size;
 		
-		printf("Surfaces['%s'] = [", s_FileName.c_str());
+		printf(
+			"Surfaces['%s'] = [[%f,%f,%f,%f,%f,%f],", s_FileName.c_str(),
+			s_Descriptor->m_AABBMinX, s_Descriptor->m_AABBMinY, s_Descriptor->m_AABBMinZ,
+			s_Descriptor->m_AABBMaxX, s_Descriptor->m_AABBMaxY, s_Descriptor->m_AABBMaxZ
+		);
 		
 		while (s_CurrentIndex < s_Unk00DataEnd)
 		{
@@ -339,20 +350,18 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 			Log("Surf_Flags01_2: %d\n", s_Surface->GetFlags01Unk02());
 			Log("Surf_MarkedVertex: %d\n", s_Surface->GetMarkedVertex());
 
-			/*printf(
+			printf(
 				"[%f,%f,%f,%f,%d,%d,[",
 				s_Surface->m_CenterX, s_Surface->m_CenterY, s_Surface->m_CenterZ, s_Surface->m_MaxRadius,
 				s_Surface->m_SurfaceType, s_Surface->GetMarkedVertex()
-			);*/
-
-			s_Surface->m_SurfaceType = NavMeshSurfaceType::Flat;
+			);
 			
 			for (uint32_t i = 0; i < s_Surface->GetVertexCount(); ++i)
 			{
 				auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
 				s_CurrentIndex += sizeof(NavMeshSurfaceVertex);
 
-				//printf("[%f,%f,%f,%d,%d],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z, s_Vertex->GetFlags00Unk01(), s_Vertex->m_Unk01);
+				printf("[%f,%f,%f,%d,%d],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z, s_Vertex->GetFlags00Unk01(), s_Vertex->m_Unk01);
 
 				Log("==== NavMesh Surface Vertex ====\n");
 				Log("Vert_Unk00: %p\n", s_Vertex->m_Unk00);
@@ -365,12 +374,9 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				Log("Vert_Flags00_0: %x\n", s_Vertex->GetFlags00Unk00());
 				Log("Vert_Flags00_1: %x\n", s_Vertex->GetFlags00Unk01());
 				Log("Vert_Flags00_2: %x\n", s_Vertex->GetFlags00Unk02());
-
-				s_Vertex->SetFlags00Unk01(false);
-				s_Vertex->m_Unk01 = 0;
 			}
 
-			//printf("]],");
+			printf("]],");
 		}
 
 		printf("];\n");
@@ -401,10 +407,10 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 	// Rewrite file.
 
 	// Calculate new checksum.
-	s_Header->m_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(NavPowerHeader)), s_Header->m_DataSize);
+	/*s_Header->m_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(NavPowerHeader)), s_Header->m_DataSize);
 
 	FILE* s_OutputFile = fopen(p_NavMeshPath, "wb");
 
 	fwrite(s_FileData, s_FileSize, 1, s_OutputFile);
-	fclose(s_OutputFile);
+	fclose(s_OutputFile);*/
 }
