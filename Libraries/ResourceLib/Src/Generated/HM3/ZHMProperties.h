@@ -80,6 +80,7 @@ private:
 	static ZHMPropertyName g_Property_m_fNPCMaxDistanceToHitman;
 	static ZHMPropertyName g_Property_m_bUseCurve;
 	static ZHMPropertyName g_Property_exposedEntities;
+	static ZHMPropertyName g_Property_m_characterID;
 	static ZHMPropertyName g_Property_m_eChannel;
 	static ZHMPropertyName g_Property_m_nMin;
 	static ZHMPropertyName g_Property_m_NearFrustums;
@@ -280,6 +281,7 @@ private:
 	static ZHMPropertyName g_Property_m_pActMoveToTemplate;
 	static ZHMPropertyName g_Property_m_rRightHandStatesEnterConfigs;
 	static ZHMPropertyName g_Property_m_fDrawDistance;
+	static ZHMPropertyName g_Property_m_mode;
 	static ZHMPropertyName g_Property_vMin;
 	static ZHMPropertyName g_Property_m_nGoals;
 	static ZHMPropertyName g_Property_m_aTargetOffsets;
@@ -484,6 +486,7 @@ private:
 	static ZHMPropertyName g_Property_m_nGlowVSOpponentFadeSpeed;
 	static ZHMPropertyName g_Property_m_nGroupId;
 	static ZHMPropertyName g_Property_m_DebugGreenColorScoreThreshold;
+	static ZHMPropertyName g_Property_m_characterNameLocalized;
 	static ZHMPropertyName g_Property_m_fBottom;
 	static ZHMPropertyName g_Property_m_fGateDistanceExpansion;
 	static ZHMPropertyName g_Property_m_bIsIdle;
@@ -856,6 +859,7 @@ private:
 	static ZHMPropertyName g_Property_m_fRightRPM;
 	static ZHMPropertyName g_Property_pReactionEntity;
 	static ZHMPropertyName g_Property_m_fGlowSetPieceOutlineWidth;
+	static ZHMPropertyName g_Property_m_emitterType;
 	static ZHMPropertyName g_Property_m_SpatialPosOnLedge;
 	static ZHMPropertyName g_Property_m_bTriggered;
 	static ZHMPropertyName g_Property_m_eReplicationStrategy;
@@ -1316,6 +1320,7 @@ private:
 	static ZHMPropertyName g_Property_m_eSpineIK;
 	static ZHMPropertyName g_Property_m_nNumDeathsBeforeWarzone;
 	static ZHMPropertyName g_Property_m_fCombatNPCDecisionRadius;
+	static ZHMPropertyName g_Property_m_dtFadeWhenEnabled;
 	static ZHMPropertyName g_Property_m_pPropLocation;
 	static ZHMPropertyName g_Property_m_aSupportedMovements;
 	static ZHMPropertyName g_Property_m_GhostFadeSpeed;
@@ -2507,6 +2512,7 @@ private:
 	static ZHMPropertyName g_Property_m_bCollideCamera;
 	static ZHMPropertyName g_Property_m_SeasonOneHead4;
 	static ZHMPropertyName g_Property_goalType;
+	static ZHMPropertyName g_Property_m_iconLabel;
 	static ZHMPropertyName g_Property_m_bSubstract;
 	static ZHMPropertyName g_Property_m_tGroupStarted;
 	static ZHMPropertyName g_Property_m_bRegisteredForLT;
@@ -2726,6 +2732,7 @@ private:
 	static ZHMPropertyName g_Property_m_bUnlocked;
 	static ZHMPropertyName g_Property_m_animSetResourceID;
 	static ZHMPropertyName g_Property_m_bJustShowExit;
+	static ZHMPropertyName g_Property_m_pOverrideSubtitleSpeakerIndicatorPosition;
 	static ZHMPropertyName g_Property_m_sTitleText;
 	static ZHMPropertyName g_Property_m_fHMDisguiseAttention;
 	static ZHMPropertyName g_Property_m_MuzzleFlashEffect;
@@ -3270,6 +3277,7 @@ private:
 	static ZHMPropertyName g_Property_m_nCurrentFrame;
 	static ZHMPropertyName g_Property_m_nSeed;
 	static ZHMPropertyName g_Property_m_bShuffleOnEachLoop;
+	static ZHMPropertyName g_Property_m_dtFadeWhenDisabled;
 	static ZHMPropertyName g_Property_speak_false;
 	static ZHMPropertyName g_Property_m_bWasSpawned;
 	static ZHMPropertyName g_Property_m_metricName;
@@ -4093,6 +4101,7 @@ private:
 	static ZHMPropertyName g_Property_m_fAngleSpine1;
 	static ZHMPropertyName g_Property_m_rDisguisePositions;
 	static ZHMPropertyName g_Property_m_fCutoffDistance;
+	static ZHMPropertyName g_Property_m_providerType;
 	static ZHMPropertyName g_Property_m_nEscalatedActorCount;
 	static ZHMPropertyName g_Property_m_aOutOfRangeScreenplays;
 	static ZHMPropertyName g_Property_m32;
@@ -4728,6 +4737,7 @@ private:
 	static ZHMPropertyName g_Property_m_bCanBeMarked;
 	static ZHMPropertyName g_Property_m_vKnockdownRadii;
 	static ZHMPropertyName g_Property_m_nNumChainsToKill;
+	static ZHMPropertyName g_Property_m_eSubtitleSpeakerIndicatorType;
 	static ZHMPropertyName g_Property_m_bRequiresVisibleSignal;
 	static ZHMPropertyName g_Property_m_eReactionType1;
 	static ZHMPropertyName g_Property_m_fShadowedInscatterIntensity;
@@ -5611,6 +5621,7 @@ private:
 	static ZHMPropertyName g_Property_m_pAmbienceElement;
 	static ZHMPropertyName g_Property_m_replicationFrequency;
 	static ZHMPropertyName g_Property_m_bExpired;
+	static ZHMPropertyName g_Property_m_characterNameRaw;
 	static ZHMPropertyName g_Property_m_fPropagationProximityMaxDistance;
 	static ZHMPropertyName g_Property_m_bCenter2DPlane;
 	static ZHMPropertyName g_Property_m_safeRoomVIPSentActingStarted;
@@ -5711,6 +5722,7 @@ private:
 	static ZHMPropertyName g_Property_m_BoxesDefiningArea;
 	static ZHMPropertyName g_Property_m_GlowContractTargetSpecialOutlineColor;
 	static ZHMPropertyName g_Property_aAlphaCurve;
+	static ZHMPropertyName g_Property_m_bForceContractEnd;
 	static ZHMPropertyName g_Property_m_eDialogRangeStart;
 	static ZHMPropertyName g_Property_m_rItemContainer;
 	static ZHMPropertyName g_Property_m_fImpactAnimationCooldown;
@@ -5856,6 +5868,7 @@ private:
 	static ZHMPropertyName g_Property_m_nPlayState;
 	static ZHMPropertyName g_Property_m_aCharSets;
 	static ZHMPropertyName g_Property_m_ItemHandsCoverAnimLayer;
+	static ZHMPropertyName g_Property_m_hand;
 	static ZHMPropertyName g_Property_m_order;
 	static ZHMPropertyName g_Property_m_eBoneId;
 	static ZHMPropertyName g_Property_m_TokenToFind;
@@ -6268,6 +6281,7 @@ private:
 	static ZHMPropertyName g_Property_m_bDifficulty_Level2;
 	static ZHMPropertyName g_Property_m_aContext;
 	static ZHMPropertyName g_Property_m_fGlowTagFocusTaggedOutlineWidth;
+	static ZHMPropertyName g_Property_m_shouldIgnorePistolWhip;
 	static ZHMPropertyName g_Property_m13;
 	static ZHMPropertyName g_Property_m_fLayer;
 	static ZHMPropertyName g_Property_m_fDepthOfFieldBlurriness;
@@ -6460,6 +6474,7 @@ private:
 	static ZHMPropertyName g_Property_m_TrapsData;
 	static ZHMPropertyName g_Property_m_AmmoProperties;
 	static ZHMPropertyName g_Property_m_nCurrentBehaviorType;
+	static ZHMPropertyName g_Property_m_bitfieldApplicability;
 	static ZHMPropertyName g_Property_m_fScopeFOV_VR;
 	static ZHMPropertyName g_Property_m_bHandled;
 	static ZHMPropertyName g_Property_m_pCausticsMap;
