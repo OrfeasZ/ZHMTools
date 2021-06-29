@@ -20,6 +20,8 @@ set(RESOURCELIB_SOURCES
 	Src/ZHM/TPair.h
 	Src/ZHM/ZHMCustomTypes.cpp
 	Src/ZHM/ZHMCustomTypes.h
+	Src/ZHM/ZHMCustomProperties.cpp
+	Src/ZHM/ZHMCustomProperties.h
 	Src/ZHM/ZHMPrimitives.cpp
 	Src/ZHM/ZHMPrimitives.h
 	Src/ZHM/ZHMSerializer.cpp

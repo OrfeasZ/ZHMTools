@@ -4,6 +4,7 @@
 #include "ResourceGeneratorImpl.h"
 
 #include <ZHM/ZHMCustomTypes.h>
+#include <ZHM/ZHMCustomProperties.h>
 
 #if ZHM_TARGET == 3
 #include <Generated/HM3/ZHMGen.h>
