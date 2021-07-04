@@ -37,7 +37,7 @@ private:
 	void Visit(GeneratedType* p_Type, std::unordered_set<GeneratedType*>& p_Visited, std::vector<GeneratedType*>& p_Sorted);
 
 private:
-	std::map<uint32_t, std::string> m_PropertyNames;
+	std::set<std::string> m_PropertyNames;
 	std::map<std::string, std::map<int, std::string>> m_Enums;
 
 	std::map<std::string, GeneratedType*> m_ReflectiveClasses;
