@@ -11967,7 +11967,7 @@ public:
 	bool m_bForceShowOnLoadingScreen; // 0x140
 };
 
-// Size: 0x158
+// Size: 0x168
 class alignas(8) SContractObjectiveStateMachineSaveData
 {
 public:
@@ -11984,34 +11984,35 @@ public:
 	ZDynamicObject m_State; // 0x38
 	ZDynamicObject m_Definition; // 0x48
 	ZDynamicObject m_aTargets; // 0x58
-	bool m_bTargetsHidden; // 0x68
-	ZDynamicObject m_HUDTmpl; // 0x70
-	ZDynamicObject m_ActivationCondition; // 0x80
-	bool m_bActivationValue; // 0x90
-	bool m_bUpdateActivationOnCompleted; // 0x91
-	ZDynamicObject m_OnInactive; // 0x98
-	ZDynamicObject m_OnActive; // 0xA8
-	ZDynamicObject m_aExits; // 0xB8
-	float64 m_timerEndTime; // 0xC8
-	bool m_bTimerHasJustStarted; // 0xD0
-	bool m_bTimerHasJustStopped; // 0xD1
-	bool m_bIsActiveTimerVisible; // 0xD2
-	bool m_bDisplayAsKill; // 0xD3
-	bool m_bIgnoreIfInactive; // 0xD4
-	bool m_bShowInHud; // 0xD5
-	bool m_bCombinedDisplayInHud; // 0xD6
-	bool m_bIsCounterVisibleInTile; // 0xD7
-	TArray<IContractObjective_STargetCondition> m_aTargetConditions; // 0xD8
-	ZString m_sImage; // 0xF0
-	ZString m_sObjectiveType; // 0x100
-	ZString m_sBriefingName; // 0x110
-	int32 m_nObjectivesCounterCount; // 0x120
-	ZString m_sObjectivesCounterHeader; // 0x128
-	int32 m_nObjectivesCounterDeactivate; // 0x138
-	ZDynamicObject m_dObjectivesCounterExtraData; // 0x140
-	bool m_bTimerHasStopped; // 0x150
-	bool m_bForceShowOnLoadingScreen; // 0x151
-	uint8 m_nObjectivesCounterType; // 0x152
+	ZDynamicObject m_aAllies; // 0x68
+	bool m_bTargetsHidden; // 0x78
+	ZDynamicObject m_HUDTmpl; // 0x80
+	ZDynamicObject m_ActivationCondition; // 0x90
+	bool m_bActivationValue; // 0xA0
+	bool m_bUpdateActivationOnCompleted; // 0xA1
+	ZDynamicObject m_OnInactive; // 0xA8
+	ZDynamicObject m_OnActive; // 0xB8
+	ZDynamicObject m_aExits; // 0xC8
+	float64 m_timerEndTime; // 0xD8
+	bool m_bTimerHasJustStarted; // 0xE0
+	bool m_bTimerHasJustStopped; // 0xE1
+	bool m_bIsActiveTimerVisible; // 0xE2
+	bool m_bDisplayAsKill; // 0xE3
+	bool m_bIgnoreIfInactive; // 0xE4
+	bool m_bShowInHud; // 0xE5
+	bool m_bCombinedDisplayInHud; // 0xE6
+	bool m_bIsCounterVisibleInTile; // 0xE7
+	TArray<IContractObjective_STargetCondition> m_aTargetConditions; // 0xE8
+	ZString m_sImage; // 0x100
+	ZString m_sObjectiveType; // 0x110
+	ZString m_sBriefingName; // 0x120
+	int32 m_nObjectivesCounterCount; // 0x130
+	ZString m_sObjectivesCounterHeader; // 0x138
+	int32 m_nObjectivesCounterDeactivate; // 0x148
+	ZDynamicObject m_dObjectivesCounterExtraData; // 0x150
+	bool m_bTimerHasStopped; // 0x160
+	bool m_bForceShowOnLoadingScreen; // 0x161
+	uint8 m_nObjectivesCounterType; // 0x162
 };
 
 // Size: 0x8
@@ -20218,6 +20219,18 @@ enum class ZMirrorEntity_EMirrorQuality
 	QUALITY_MEDIUM = 1,
 	QUALITY_HIGH = 2,
 	QUALITY_LEAVE = 3,
+};
+
+// Size: 0x4
+enum class ZModalDialogCondition_EPriorityBit
+{
+	Critical = 1,
+	GDPRConsent = 2,
+	MultiplayerSystem = 4,
+	Disconnect = 8,
+	System = 16,
+	Normal = 32,
+	Low = 64,
 };
 
 // Size: 0x30
