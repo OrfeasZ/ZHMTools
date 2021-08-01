@@ -2165,19 +2165,16 @@ struct simdjson_error : public std::exception {
    * Create an exception from a simdjson error code.
    * @param error The error code
    */
-  simdjson_error(error_code error) noexcept : _error{error}, _last_key(simdjson::g_last_key) { }
-  /** The error message */
-  const char *what() const noexcept
+  simdjson_error(error_code error) noexcept : _error{error}, _last_key(simdjson::g_last_key)
   {
-    char error_str[1024 * 16];
-
-    if (last_key().size() > 0)
-        sprintf_s(error_str, sizeof(error_str), "%s Last field accessed: %s", error_message(error()), std::string(last_key()).c_str());
-    else
-        sprintf_s(error_str, sizeof(error_str), "%s Last field accessed: %s", error_message(error()), std::string(last_key()).c_str());
-
-    return error_str;
+    if (last_key().size() > 0) {
+      snprintf(_error_str, sizeof(_error_str), "%s Last field accessed: %s", error_message(_error), std::string(last_key()).c_str());
+    } else {
+      snprintf(_error_str, sizeof(_error_str), "%s", error_message(_error));
+    }
   }
+  /** The error message */
+  const char *what() const noexcept { return _error_str; }
   /** The error code */
   error_code error() const noexcept { return _error; }
   /** The last key accessed before this error */
@@ -2187,6 +2184,8 @@ private:
   error_code _error;
   /** The last key accessed before this error */
   std::string_view _last_key;
+  /** Buffer for the error message. */
+  char _error_str[1024 * 16];
 };
 
 namespace internal {
