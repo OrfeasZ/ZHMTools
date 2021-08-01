@@ -11,6 +11,8 @@
 #include <Generated/HM3/ZHMEnums.h>
 #elif ZHM_TARGET == 2
 #include <Generated/HM2/ZHMEnums.h>
+#elif ZHM_TARGET == 2016
+#include <Generated/HM2016/ZHMEnums.h>
 #endif
 
 std::unordered_map<std::string, IZHMTypeInfo*>* IZHMTypeInfo::g_TypeRegistry = nullptr;

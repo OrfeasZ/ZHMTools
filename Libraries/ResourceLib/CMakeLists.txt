@@ -63,6 +63,16 @@ set(RESOURCELIB_SOURCES_HM2
 	Include/ResourceLib_HM2.h
 )
 
+set(RESOURCELIB_SOURCES_HM2016
+	Src/Generated/HM2016/ZHMEnums.cpp
+	Src/Generated/HM2016/ZHMEnums.h
+	Src/Generated/HM2016/ZHMGen.cpp
+	Src/Generated/HM2016/ZHMGen.h
+	Src/Generated/HM2016/ZHMProperties.cpp
+	Src/Generated/HM2016/ZHMProperties.h
+	Include/ResourceLib_HM2016.h
+)
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	set(RESOURCELIB_TYPE SHARED)
 else()
@@ -81,7 +91,13 @@ add_library(ResourceLib_HM2 ${RESOURCELIB_TYPE}
 	${RESOURCELIB_SOURCES_HM2}
 )
 
-set_target_properties(ResourceLib_HM3 ResourceLib_HM2 PROPERTIES
+add_library(ResourceLib_HM2016 ${RESOURCELIB_TYPE}
+	${RESOURCELIB_HEADERS}
+	${RESOURCELIB_SOURCES}
+	${RESOURCELIB_SOURCES_HM2016}
+)
+
+set_target_properties(ResourceLib_HM3 ResourceLib_HM2 ResourceLib_HM2016 PROPERTIES
 	CXX_VISIBILITY_PRESET hidden
 )
 
@@ -109,12 +125,21 @@ target_compile_definitions(ResourceLib_HM2
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2
 )
 
+target_compile_definitions(ResourceLib_HM2016
+	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2016
+)
+
 target_include_directories(ResourceLib_HM3 
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
 )
 
 target_include_directories(ResourceLib_HM2 
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
+)
+
+target_include_directories(ResourceLib_HM2016
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
 )
