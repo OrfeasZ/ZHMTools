@@ -18933,6 +18933,12 @@ void SContractObjectiveStateMachineSaveData::WriteJson(void* p_Object, std::ostr
 	p_Stream << "}";
 	p_Stream << ",";
 
+	p_Stream << JsonStr("m_aAllies") << ":";
+	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("ZDynamicObject") << "," << JsonStr("$val") << ":";
+	ZDynamicObject::WriteJson(&s_Object->m_aAllies, p_Stream);
+	p_Stream << "}";
+	p_Stream << ",";
+
 	p_Stream << JsonStr("m_bTargetsHidden") << ":";
 	p_Stream << "{" << JsonStr("$type") << ":" << JsonStr("bool") << "," << JsonStr("$val") << ":";
 	p_Stream << s_Object->m_bTargetsHidden;
@@ -19148,6 +19154,10 @@ void SContractObjectiveStateMachineSaveData::WriteSimpleJson(void* p_Object, std
 	ZDynamicObject::WriteSimpleJson(&s_Object->m_aTargets, p_Stream);
 	p_Stream << ",";
 
+	p_Stream << JsonStr("m_aAllies") << ":";
+	ZDynamicObject::WriteSimpleJson(&s_Object->m_aAllies, p_Stream);
+	p_Stream << ",";
+
 	p_Stream << JsonStr("m_bTargetsHidden") << ":";
 	p_Stream << s_Object->m_bTargetsHidden;
 	p_Stream << ",";
@@ -19314,6 +19324,12 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 		s_Object.m_aTargets = s_Item;
 	}
 
+	{
+		ZDynamicObject s_Item;
+		ZDynamicObject::FromSimpleJson(p_Document["m_aAllies"], &s_Item);
+		s_Object.m_aAllies = s_Item;
+	}
+
 	s_Object.m_bTargetsHidden = bool(p_Document["m_bTargetsHidden"]);
 
 	{
@@ -19412,6 +19428,7 @@ void SContractObjectiveStateMachineSaveData::Serialize(void* p_Object, ZHMSerial
 	ZDynamicObject::Serialize(&s_Object->m_State, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveStateMachineSaveData, m_State));
 	ZDynamicObject::Serialize(&s_Object->m_Definition, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveStateMachineSaveData, m_Definition));
 	ZDynamicObject::Serialize(&s_Object->m_aTargets, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveStateMachineSaveData, m_aTargets));
+	ZDynamicObject::Serialize(&s_Object->m_aAllies, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveStateMachineSaveData, m_aAllies));
 	ZDynamicObject::Serialize(&s_Object->m_HUDTmpl, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveStateMachineSaveData, m_HUDTmpl));
 	ZDynamicObject::Serialize(&s_Object->m_ActivationCondition, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveStateMachineSaveData, m_ActivationCondition));
 	ZDynamicObject::Serialize(&s_Object->m_OnInactive, p_Serializer, p_OwnOffset + offsetof(SContractObjectiveStateMachineSaveData, m_OnInactive));

@@ -9104,6 +9104,16 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "QUALITY_LEAVE" },
 	};
 
+	(*g_Enums)["ZModalDialogCondition.EPriorityBit"] = {
+		{ 1, "Critical" },
+		{ 2, "GDPRConsent" },
+		{ 4, "MultiplayerSystem" },
+		{ 8, "Disconnect" },
+		{ 16, "System" },
+		{ 32, "Normal" },
+		{ 64, "Low" },
+	};
+
 	(*g_Enums)["ZMoveToOrder.EMoveSpeed"] = {
 		{ 0, "MS_AUTO" },
 		{ 1, "MS_SPRINT" },
