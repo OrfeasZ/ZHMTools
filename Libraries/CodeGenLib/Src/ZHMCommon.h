@@ -331,10 +331,18 @@ public:
 
 	iterator begin()
 	{
-		if (m_Info.m_nBucketCount == 0 || m_Info.m_pBuckets[0] == UINT32_MAX)
+		if (m_Info.m_nBucketCount == 0)
 			return iterator(&m_Info);
 
-		return iterator(&m_Info, 0, &m_Info.m_pNodes[m_Info.m_pBuckets[0]]);
+		for (uint32_t i = 0; i < m_Info.m_nBucketCount; ++i)
+		{
+			if (m_Info.m_pBuckets[i] == UINT32_MAX)
+				continue;
+
+			return iterator(&m_Info, 0, &m_Info.m_pNodes[m_Info.m_pBuckets[i]]);
+		}
+
+		return iterator(&m_Info);
 	}
 
 	iterator end()

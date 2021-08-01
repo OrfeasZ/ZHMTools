@@ -80,7 +80,7 @@ int main()
 {
     const auto s_ProcessIds = GetHitmanProcessIds();
 
-	if (!s_ProcessIds.Hitman2 && !s_ProcessIds.Hitman3)
+	if (!s_ProcessIds.Hitman2016 && !s_ProcessIds.Hitman2 && !s_ProcessIds.Hitman3)
 	{
         printf("Hitman is not currently running. Run the game first, wait until you get to the main menu, and then run this tool.\n");
         return 1;
@@ -112,13 +112,21 @@ int main()
     memset(s_CodeGenLibPathStr, 0x00, s_CodeGenLibPathSize + 1);
     memcpy(s_CodeGenLibPathStr, s_CodeGenLibPath.string().data(), s_CodeGenLibPathSize);
 
-	if (s_ProcessIds.Hitman2)
-	{
+    if (s_ProcessIds.Hitman2016)
+    {
+        printf("Found HITMAN 2016 running. Starting code generation...\n");
+
+        if (!InjectIntoProcess(s_ProcessIds.Hitman2016.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
+            return 1;
+    }
+	
+    if (s_ProcessIds.Hitman2)
+    {
         printf("Found HITMAN 2 running. Starting code generation...\n");
 
         if (!InjectIntoProcess(s_ProcessIds.Hitman2.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
             return 1;
-	}
+    }
 	
 	if (s_ProcessIds.Hitman3)
 	{

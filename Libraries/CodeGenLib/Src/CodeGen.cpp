@@ -378,6 +378,7 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 
 	if (s_ArrayType->isFixedArray())
 	{
+		p_Stream << p_Indentation << "\t{" << std::endl;
 		p_Stream << p_Indentation << "\tsize_t s_Index" << p_Depth << " = 0;" << std::endl;
 		p_Stream << p_Indentation << "\tfor (simdjson::ondemand::value s_Item" << p_Depth << " : " << p_ArrayName << ")" << std::endl;
 		p_Stream << p_Indentation << "\t{" << std::endl;
@@ -416,6 +417,7 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 
 		p_Stream << p_Indentation << "\t\t++s_Index" << p_Depth << ";" << std::endl;
 
+		p_Stream << p_Indentation << "\t}" << std::endl;
 		p_Stream << p_Indentation << "\t}" << std::endl;
 	}
 	else

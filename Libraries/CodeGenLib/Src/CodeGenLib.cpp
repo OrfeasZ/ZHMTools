@@ -15,8 +15,7 @@ void GenerateCode(const std::filesystem::path& p_OutputDir)
 	auto s_ModuleBase = reinterpret_cast<uintptr_t>(s_Module) + Utils::GetBaseOfCode(s_Module);
 	auto s_ModuleSize = Utils::GetSizeOfCode(s_Module);
 
-	// This pattern works for Hitman 2 and Hitman 3.
-	// Might need to adapt for 2016 and Alpha.
+	// This pattern works for Hitman 2016, Hitman 2 and Hitman 3.
 	const auto* s_Pattern = reinterpret_cast<const uint8_t*>("\x48\x8B\x1D\x00\x00\x00\x00\x48\x85\xDB\x75\x00\xE8\x00\x00\x00\x00\x48\x8B\x1D\x00\x00\x00\x00\x48\x8D\x15");
 	auto s_Target = Utils::SearchPattern(s_ModuleBase, s_ModuleSize, s_Pattern, "xxx????xxxx?x????xxx????xxx");
 
