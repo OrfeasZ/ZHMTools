@@ -52,6 +52,8 @@ jobs:
         Copy-Item ResourceLib_HM2.pdb -Destination _resourcetool/
         Copy-Item ResourceLib_HM3.dll -Destination _resourcetool/
         Copy-Item ResourceLib_HM3.pdb -Destination _resourcetool/
+        Copy-Item ResourceLib_HM2016.dll -Destination _resourcetool/
+        Copy-Item ResourceLib_HM2016.pdb -Destination _resourcetool/
         Copy-Item ../LICENSE -Destination _resourcetool/
 
     - name: Copy CodeGen artifacts
@@ -75,6 +77,9 @@ jobs:
         Copy-Item ResourceLib_HM3.dll -Destination _resourcelib/
         Copy-Item ResourceLib_HM3.lib -Destination _resourcelib/
         Copy-Item ResourceLib_HM3.pdb -Destination _resourcelib/
+        Copy-Item ResourceLib_HM2016.dll -Destination _resourcelib/
+        Copy-Item ResourceLib_HM2016.lib -Destination _resourcelib/
+        Copy-Item ResourceLib_HM2016.pdb -Destination _resourcelib/
         Copy-Item ../Libraries/ResourceLib/Include/* -Destination _resourcelib/Include/
         Copy-Item ../LICENSE -Destination _resourcelib/
 
