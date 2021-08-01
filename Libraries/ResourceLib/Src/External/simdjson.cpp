@@ -12,6 +12,8 @@ SIMDJSON_DISABLE_UNDESIRED_WARNINGS
 #include <cmath>
 
 namespace simdjson {
+
+	
 namespace internal {
 /*!
 implements the Grisu2 algorithm for binary to decimal floating-point

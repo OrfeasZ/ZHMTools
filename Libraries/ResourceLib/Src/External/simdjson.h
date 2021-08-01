@@ -2104,6 +2104,8 @@ enum {
 
 namespace simdjson {
 
+static std::string_view g_last_key = "";
+
 /**
  * All possible errors returned by simdjson.
  */
@@ -2163,14 +2165,28 @@ struct simdjson_error : public std::exception {
    * Create an exception from a simdjson error code.
    * @param error The error code
    */
-  simdjson_error(error_code error) noexcept : _error{error} { }
+  simdjson_error(error_code error) noexcept : _error{error}, _last_key(simdjson::g_last_key) { }
   /** The error message */
-  const char *what() const noexcept { return error_message(error()); }
+  const char *what() const noexcept
+  {
+    char error_str[1024 * 16];
+
+    if (last_key().size() > 0)
+        sprintf_s(error_str, sizeof(error_str), "%s Last field accessed: %s", error_message(error()), std::string(last_key()).c_str());
+    else
+        sprintf_s(error_str, sizeof(error_str), "%s Last field accessed: %s", error_message(error()), std::string(last_key()).c_str());
+
+    return error_str;
+  }
   /** The error code */
   error_code error() const noexcept { return _error; }
+  /** The last key accessed before this error */
+  std::string_view last_key() const noexcept { return _last_key; }
 private:
   /** The error code that was used */
   error_code _error;
+  /** The last key accessed before this error */
+  std::string_view _last_key;
 };
 
 namespace internal {
@@ -5055,6 +5071,29 @@ enum class element_type {
   NULL_VALUE = 'n' ///< null
 };
 
+inline std::string element_type_to_string(element_type type) {
+    switch (type) {
+    case element_type::ARRAY:
+        return "array";
+    case element_type::OBJECT:
+        return "object";
+    case element_type::INT64:
+        return "int64";
+    case element_type::UINT64:
+        return "uint64";
+    case element_type::DOUBLE:
+        return "double";
+    case element_type::STRING:
+        return "string";
+    case element_type::BOOL:
+        return "bool";
+    case element_type::NULL_VALUE:
+        return "null";
+    default:
+        return "";
+    }
+}
+
 /**
  * A JSON element.
  *
@@ -6901,6 +6940,7 @@ inline simdjson_result<bool> element::get_bool() const noexcept {
   } else if(tape.is_false()) {
     return false;
   }
+  printf("[ERROR] Expected 'bool' type but found '%s'.\n", element_type_to_string(type()).c_str());
   return INCORRECT_TYPE;
 }
 inline simdjson_result<const char *> element::get_c_str() const noexcept {
@@ -6909,6 +6949,7 @@ inline simdjson_result<const char *> element::get_c_str() const noexcept {
       return tape.get_c_str();
     }
     default:
+      printf("[ERROR] Expected 'string' type but found '%s'.\n", element_type_to_string(type()).c_str());
       return INCORRECT_TYPE;
   }
 }
@@ -6918,6 +6959,7 @@ inline simdjson_result<size_t> element::get_string_length() const noexcept {
       return tape.get_string_length();
     }
     default:
+      printf("[ERROR] Expected 'string' type but found '%s'.\n", element_type_to_string(type()).c_str());
       return INCORRECT_TYPE;
   }
 }
@@ -6926,6 +6968,7 @@ inline simdjson_result<std::string_view> element::get_string() const noexcept {
     case internal::tape_type::STRING:
       return tape.get_string_view();
     default:
+      printf("[ERROR] Expected 'string' type but found '%s'.\n", element_type_to_string(type()).c_str());
       return INCORRECT_TYPE;
   }
 }
@@ -6938,6 +6981,7 @@ inline simdjson_result<uint64_t> element::get_uint64() const noexcept {
       }
       return uint64_t(result);
     }
+    printf("[ERROR] Expected 'uint64' type but found '%s'.\n", element_type_to_string(type()).c_str());
     return INCORRECT_TYPE;
   }
   return tape.next_tape_value<int64_t>();
@@ -6952,6 +6996,7 @@ inline simdjson_result<int64_t> element::get_int64() const noexcept {
       }
       return static_cast<int64_t>(result);
     }
+    printf("[ERROR] Expected 'int64' type but found '%s'.\n", element_type_to_string(type()).c_str());
     return INCORRECT_TYPE;
   }
   return tape.next_tape_value<int64_t>();
@@ -6972,6 +7017,7 @@ inline simdjson_result<double> element::get_double() const noexcept {
     } else if(tape.is_int64()) {
       return double(tape.next_tape_value<int64_t>());
     }
+    printf("[ERROR] Expected 'double' type but found '%s'.\n", element_type_to_string(type()).c_str());
     return INCORRECT_TYPE;
   }
   // this is common:
@@ -6982,6 +7028,7 @@ inline simdjson_result<array> element::get_array() const noexcept {
     case internal::tape_type::START_ARRAY:
       return array(tape);
     default:
+      printf("[ERROR] Expected 'array' type but found '%s'.\n", element_type_to_string(type()).c_str());
       return INCORRECT_TYPE;
   }
 }
@@ -6990,6 +7037,7 @@ inline simdjson_result<object> element::get_object() const noexcept {
     case internal::tape_type::START_OBJECT:
       return object(tape);
     default:
+      printf("[ERROR] Expected 'object' type but found '%s'.\n", element_type_to_string(type()).c_str());
       return INCORRECT_TYPE;
   }
 }
@@ -7093,9 +7141,11 @@ inline simdjson_result<element> element::at(size_t index) const noexcept {
   return get<array>().at(index);
 }
 inline simdjson_result<element> element::at_key(std::string_view key) const noexcept {
+  g_last_key = key;
   return get<object>().at_key(key);
 }
 inline simdjson_result<element> element::at_key_case_insensitive(std::string_view key) const noexcept {
+  g_last_key = key;
   return get<object>().at_key_case_insensitive(key);
 }
 
@@ -7767,6 +7817,7 @@ inline simdjson_result<element> object::at_pointer(std::string_view json_pointer
 }
 
 inline simdjson_result<element> object::at_key(std::string_view key) const noexcept {
+  g_last_key = key;
   iterator end_field = end();
   for (iterator field = begin(); field != end_field; ++field) {
     if (field.key_equals(key)) {
@@ -7779,6 +7830,7 @@ inline simdjson_result<element> object::at_key(std::string_view key) const noexc
 // https://github.com/simdjson/simdjson/issues/323
 // People do seek keys in a case-insensitive manner.
 inline simdjson_result<element> object::at_key_case_insensitive(std::string_view key) const noexcept {
+  g_last_key = key;
   iterator end_field = end();
   for (iterator field = begin(); field != end_field; ++field) {
     if (field.key_equals_case_insensitive(key)) {
@@ -23867,12 +23919,14 @@ namespace SIMDJSON_BUILTIN_IMPLEMENTATION {
 namespace ondemand {
 
 simdjson_really_inline simdjson_result<value> object::find_field_unordered(const std::string_view key) & noexcept {
+  g_last_key = key;
   bool has_value;
   SIMDJSON_TRY( iter.find_field_unordered_raw(key).get(has_value) );
   if (!has_value) { return NO_SUCH_FIELD; }
   return value(iter.child());
 }
 simdjson_really_inline simdjson_result<value> object::find_field_unordered(const std::string_view key) && noexcept {
+  g_last_key = key;
   bool has_value;
   SIMDJSON_TRY( iter.find_field_unordered_raw(key).get(has_value) );
   if (!has_value) { return NO_SUCH_FIELD; }
@@ -23885,12 +23939,14 @@ simdjson_really_inline simdjson_result<value> object::operator[](const std::stri
   return std::forward<object>(*this).find_field_unordered(key);
 }
 simdjson_really_inline simdjson_result<value> object::find_field(const std::string_view key) & noexcept {
+  g_last_key = key;
   bool has_value;
   SIMDJSON_TRY( iter.find_field_raw(key).get(has_value) );
   if (!has_value) { return NO_SUCH_FIELD; }
   return value(iter.child());
 }
 simdjson_really_inline simdjson_result<value> object::find_field(const std::string_view key) && noexcept {
+  g_last_key = key;
   bool has_value;
   SIMDJSON_TRY( iter.find_field_raw(key).get(has_value) );
   if (!has_value) { return NO_SUCH_FIELD; }
@@ -23960,6 +24016,7 @@ simdjson_really_inline simdjson_result<SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand
   return std::forward<SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::object>(first).find_field_unordered(key);
 }
 simdjson_really_inline simdjson_result<SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::value> simdjson_result<SIMDJSON_BUILTIN_IMPLEMENTATION::ondemand::object>::operator[](std::string_view key) & noexcept {
+	
   if (error()) { return error(); }
   return first[key];
 }
