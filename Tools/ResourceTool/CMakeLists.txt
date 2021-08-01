@@ -11,6 +11,7 @@ target_include_directories(ResourceTool PRIVATE
 target_link_libraries(ResourceTool PUBLIC
 	ResourceLib_HM3
 	ResourceLib_HM2
+	ResourceLib_HM2016
 )
 
 if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
