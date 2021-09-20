@@ -4,6 +4,97 @@
 #include <filesystem>
 #include <fstream>
 
+struct Vec3
+{
+	Vec3() : X(0.f), Y(0.f), Z(0.f) {}
+	Vec3(float p_X, float p_Y, float p_Z) : X(p_X), Y(p_Y), Z(p_Z) {}
+	
+	float X;
+	float Y;
+	float Z;
+
+	float DistanceSquaredTo(const Vec3& p_Other) const
+	{
+		return powf(p_Other.X - X, 2.f) + powf(p_Other.Y - Y, 2.f) + powf(p_Other.Z - Z, 2.f);
+	}
+
+	float DistanceTo(const Vec3& p_Other) const
+	{
+		return sqrtf(DistanceSquaredTo(p_Other));
+	}
+
+	Vec3 MidpointTo(const Vec3& p_Other) const
+	{
+		return Vec3((p_Other.X + X) / 2.f, (p_Other.Y + Y) / 2.f, (p_Other.Z + Z) / 2.f);
+	}
+
+	Vec3 operator+(const Vec3& p_Other) const
+	{
+		return Vec3(X + p_Other.X, Y + p_Other.Y, Z + p_Other.Z);
+	}
+
+	Vec3 operator-(const Vec3& p_Other) const
+	{
+		return Vec3(X - p_Other.X, Y - p_Other.Y, Z - p_Other.Z);
+	}
+
+	Vec3 operator*(float p_Value) const
+	{
+		return Vec3(X * p_Value, Y * p_Value, Z * p_Value);
+	}
+
+	Vec3 operator/(float p_Value) const
+	{
+		return Vec3(X / p_Value, Y / p_Value, Z / p_Value);
+	}
+
+	float Dot(const Vec3& p_Other) const
+	{
+		return X * p_Other.X + Y * p_Other.Y + Z * p_Other.Z;
+	}
+
+	Vec3 Cross(const Vec3& p_Other) const
+	{
+		return Vec3(
+			Y * p_Other.Z - Z * p_Other.Y,
+			Z * p_Other.X - X * p_Other.Z,
+			X * p_Other.Y - Y * p_Other.X
+		);
+	}
+
+	float GetMagnitudeSquared() const
+	{
+		return Dot(*this);
+	}
+	
+	float GetMagnitude() const
+	{
+		return sqrtf(GetMagnitudeSquared());
+	}
+
+	Vec3 PerpendicularPointTo(Vec3 p_LineStart, Vec3 p_LineEnd) const
+	{
+		const Vec3 s_LineDirection = (p_LineEnd - p_LineStart).GetNormalized();
+		const Vec3 s_PointToLineStart = (*this - p_LineStart);
+		const float s_DistanceFromStartToPerpendicularPoint = s_PointToLineStart.Dot(s_LineDirection);
+		const Vec3 s_PerpendicularPoint = p_LineStart + (s_LineDirection * s_DistanceFromStartToPerpendicularPoint);
+
+		return s_PerpendicularPoint;
+	}
+
+	Vec3 GetNormalized() const
+	{
+		float s_Magnitude = GetMagnitude();
+
+		if (s_Magnitude <= 0.f)
+			return Vec3();
+
+		float x = 1.f / s_Magnitude;
+		
+		return Vec3(X * x, Y * x, Z * x);
+	}
+};
+
 struct NavPowerHeader
 {
 	uint32_t m_Unk00; // 0x00 Always 0
@@ -42,12 +133,8 @@ struct NavMeshDataDescriptor
 	float m_Unk07; // 0x20 Always 0.2
 	float m_Unk08; // 0x24 Always 0.3
 	float m_Unk09; // 0x28 Always 1.8
-	float m_AABBMinX; // 0x2C 
-	float m_AABBMinY; // 0x30
-	float m_AABBMinZ; // 0x34
-	float m_AABBMaxX; // 0x38
-	float m_AABBMaxY; // 0x3C
-	float m_AABBMaxZ; // 0x40
+	Vec3 m_AABBMin; // 0x2C 
+	Vec3 m_AABBMax; // 0x38
 	uint32_t m_Unk16; // 0x44 Always 2
 	char _pad[252]; // 0x48
 };
@@ -68,9 +155,7 @@ public:
 	uint64_t m_Unk01; // 0x08 Always 0
 	uint64_t m_Unk02; // 0x10 Always 0
 	uint64_t m_Unk03; // 0x18 Always 0
-	float m_CenterX; // 0x20
-	float m_CenterY; // 0x24
-	float m_CenterZ; // 0x28
+	Vec3 m_Center; // 0x20
 	float m_MaxRadius; // 0x2C Distance to the further away edge from the center
 	uint32_t m_Unk04; // 0x30 Always 0xFFFFFFFF
 	NavMeshSurfaceType m_SurfaceType; // 0x34 With this set to flat it stairs still appear to work.
@@ -116,11 +201,27 @@ public:
 		return (m_Flags01 & 0xF00000) >> 20;
 	}
 
+	// This marked vertex is calculated by drawing a line between the first and second vertex in the list
+	// and then going through each of the other vertices, finding the point perpendicular to that line for each,
+	// and picking the one with the biggest distance between the perpendicular point and the vertex.
+	//
+	// Example:
+	//            _ (c)
+	//        _ /    | \
+	//     (d)       |  \
+	//    / |        |   \
+	//   /  |        |    \
+	// (a)-(y)------(x)---(b)
+	//
+	// Assuming this is a surface comprised of vertices a, b, c, d we draw a line between a and b and then
+	// find the perpendicular points on that line for vertices c and d (in this case x and y accordingly).
+	// In this example we see that the distance between x and c is greater than the distance between y and d
+	// so the vertex we need to mark is c.
 	uint32_t GetMarkedVertex() const
 	{
-		// Next 8 bits. Unknown, always >= 2 and < VertexCount.
-		// TODO: Figure out what this is because it's important.
-		// If it's not right then the game gets stuck loading.
+		// Next 8 bits.
+
+		
 		return (m_Flags01 & 0xFF000000) >> 24;
 	}
 
@@ -134,9 +235,7 @@ public:
 struct NavMeshSurfaceVertex
 {
 	NavMeshSurface* m_Unk00; // 0x00
-	float m_X; // 0x08
-	float m_Y; // 0x0C
-	float m_Z; // 0x10
+	Vec3 m_Pos; // 0x08
 	uint32_t m_Flags; // 0x14 
 	uint32_t m_Unk01; // 0x18 Less than 0x00008b98. Setting to 0 doesn't seem to affect nav.
 	uint32_t m_Unk02; // 0x1C Always 0
@@ -165,7 +264,7 @@ struct NavMeshSurfaceVertex
 
 	uint32_t GetFlags00Unk02() const
 	{
-		// Always 0xffff;
+		// Always 0xffff.
 		return (m_Flags & 0xffff0000) >> 16;
 	}
 
@@ -355,6 +454,8 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				s_Surface->m_CenterX, s_Surface->m_CenterY, s_Surface->m_CenterZ, s_Surface->m_MaxRadius,
 				s_Surface->m_SurfaceType, s_Surface->GetMarkedVertex()
 			);
+
+			std::vector<NavMeshSurfaceVertex*> s_Vertices;
 			
 			for (uint32_t i = 0; i < s_Surface->GetVertexCount(); ++i)
 			{
@@ -374,6 +475,39 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				Log("Vert_Flags00_0: %x\n", s_Vertex->GetFlags00Unk00());
 				Log("Vert_Flags00_1: %x\n", s_Vertex->GetFlags00Unk01());
 				Log("Vert_Flags00_2: %x\n", s_Vertex->GetFlags00Unk02());
+
+				s_Vertices.push_back(s_Vertex);
+			}
+
+			size_t s_FoundVertex = 0;
+			float s_MaxDistance = -FLT_MAX;
+
+			Vec3 a = s_Vertices[0]->m_Pos;
+			Vec3 b = s_Vertices[1]->m_Pos;
+			
+			for (size_t i = 2; i < s_Vertices.size(); ++i)
+			{
+				// Find the perpendicular point from this vertex to the line formed by the first two vertices.
+				const Vec3 s_PerpendicularPoint = s_Vertices[i]->m_Pos.PerpendicularPointTo(s_Vertices[0]->m_Pos, s_Vertices[1]->m_Pos);
+
+				// Get the distance between this vertex and the perpendicular point.
+				const float s_Distance = s_PerpendicularPoint.DistanceTo(s_Vertices[i]->m_Pos);
+				
+				if (s_Distance > s_MaxDistance)
+				{
+					s_FoundVertex = i;
+					s_MaxDistance = s_Distance;
+				}
+			}
+
+			if (s_FoundVertex != s_Surface->GetMarkedVertex())
+			{
+				printf("Found vertex %d. Expected vertex %d", s_FoundVertex, s_Surface->GetMarkedVertex());
+
+				if (s_FoundVertex != s_Surface->GetMarkedVertex())
+					printf("!!!!~");
+
+				printf("\n");
 			}
 
 			printf("]],");
