@@ -20514,11 +20514,13 @@ void SCrowdCells::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 {
 	SCrowdCells s_Object;
 
+	{
 	size_t s_Index0 = 0;
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_cells"])
 	{
 		s_Object.m_cells[s_Index0] = static_cast<uint8>(int64_t(s_Item0));
 		++s_Index0;
+	}
 	}
 
 	*reinterpret_cast<SCrowdCells*>(p_Target) = s_Object;
@@ -54374,11 +54376,13 @@ void SUITestData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 		s_Object.aSubStructArray.push_back(s_ArrayItem0);
 	}
 
+	{
 	size_t s_Index0 = 0;
 	for (simdjson::ondemand::value s_Item0 : p_Document["aFixedArray"])
 	{
 		s_Object.aFixedArray[s_Index0] = static_cast<int32>(int64_t(s_Item0));
 		++s_Index0;
+	}
 	}
 
 	*reinterpret_cast<SUITestData*>(p_Target) = s_Object;
@@ -56967,11 +56971,13 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 	for (simdjson::ondemand::value s_Item0 : p_Document["data"])
 	{
 		TFixedArray<float32, 8> s_ArrayItem0;
+		{
 		size_t s_Index1 = 0;
 		for (simdjson::ondemand::value s_Item1 : s_Item0)
 		{
 			s_ArrayItem0[s_Index1] = static_cast<float32>(double(s_Item1));
 			++s_Index1;
+		}
 		}
 		s_Object.data.push_back(s_ArrayItem0);
 	}
