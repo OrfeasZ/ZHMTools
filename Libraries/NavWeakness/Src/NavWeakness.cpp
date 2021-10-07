@@ -219,9 +219,7 @@ public:
 	// so the vertex we need to mark is c.
 	uint32_t GetMarkedVertex() const
 	{
-		// Next 8 bits.
-
-		
+		// Next 8 bits.		
 		return (m_Flags01 & 0xFF000000) >> 24;
 	}
 
@@ -276,13 +274,16 @@ struct NavMeshSurfaceVertex
 
 struct NavMeshUnk02
 {
-	float m_Unk00; // 0x00
-	float m_Unk01; // 0x04
-	float m_Unk02; // 0x08
-	float m_Unk03; // 0x0C
-	float m_Unk04; // 0x10
-	float m_Unk05; // 0x14
+	// This seems to somewhat match the main AABB.
+	Vec3 m_AABBMin; // 0x00
+	Vec3 m_AABBMax; // 0x0C
 	uint32_t m_DataSize; // 0x18
+};
+
+struct NavMeshUnk02Element
+{
+	float m_Unk00;
+	float m_Unk01;
 };
 
 #define Log(...) printf(__VA_ARGS__)
@@ -407,20 +408,20 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		Log("Data_Unk07: %f\n", s_Descriptor->m_Unk07);
 		Log("Data_Unk08: %f\n", s_Descriptor->m_Unk08);
 		Log("Data_Unk09: %f\n", s_Descriptor->m_Unk09);
-		Log("Data_AABBMinX: %f\n", s_Descriptor->m_AABBMinX);
-		Log("Data_AABBMinY: %f\n", s_Descriptor->m_AABBMinY);
-		Log("Data_AABBMinZ: %f\n", s_Descriptor->m_AABBMinZ);
-		Log("Data_AABBMaxX: %f\n", s_Descriptor->m_AABBMaxX);
-		Log("Data_AABBMaxY: %f\n", s_Descriptor->m_AABBMaxY);
-		Log("Data_AABBMaxZ: %f\n", s_Descriptor->m_AABBMaxZ);
+		Log("Data_AABBMin.X: %f\n", s_Descriptor->m_AABBMin.X);
+		Log("Data_AABBMin.Y: %f\n", s_Descriptor->m_AABBMin.Y);
+		Log("Data_AABBMin.Z: %f\n", s_Descriptor->m_AABBMin.Z);
+		Log("Data_AABBMax.X: %f\n", s_Descriptor->m_AABBMax.X);
+		Log("Data_AABBMax.Y: %f\n", s_Descriptor->m_AABBMax.Y);
+		Log("Data_AABBMax.Z: %f\n", s_Descriptor->m_AABBMax.Z);
 		Log("Data_Unk16: %x\n", s_Descriptor->m_Unk16);
 
 		const auto s_Unk00DataEnd = s_CurrentIndex + s_Descriptor->m_NavMeshUnk00Size;
 		
 		printf(
 			"Surfaces['%s'] = [[%f,%f,%f,%f,%f,%f],", s_FileName.c_str(),
-			s_Descriptor->m_AABBMinX, s_Descriptor->m_AABBMinY, s_Descriptor->m_AABBMinZ,
-			s_Descriptor->m_AABBMaxX, s_Descriptor->m_AABBMaxY, s_Descriptor->m_AABBMaxZ
+			s_Descriptor->m_AABBMin.X, s_Descriptor->m_AABBMin.Y, s_Descriptor->m_AABBMin.Z,
+			s_Descriptor->m_AABBMax.X, s_Descriptor->m_AABBMax.Y, s_Descriptor->m_AABBMax.Z
 		);
 		
 		while (s_CurrentIndex < s_Unk00DataEnd)
@@ -433,9 +434,9 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 			Log("Surf_Unk01: %llu\n", s_Surface->m_Unk01);
 			Log("Surf_Unk02: %llu\n", s_Surface->m_Unk02);
 			Log("Surf_Unk03: %llu\n", s_Surface->m_Unk03);
-			Log("Surf_CenterX: %f\n", s_Surface->m_CenterX);
-			Log("Surf_CenterY: %f\n", s_Surface->m_CenterY);
-			Log("Surf_CenterZ: %f\n", s_Surface->m_CenterZ);
+			Log("Surf_Center.X: %f\n", s_Surface->m_Center.X);
+			Log("Surf_Center.Y: %f\n", s_Surface->m_Center.Y);
+			Log("Surf_Center.Z: %f\n", s_Surface->m_Center.Z);
 			Log("Surf_MaxRadius: %f\n", s_Surface->m_MaxRadius);
 			Log("Surf_Unk04: %d\n", s_Surface->m_Unk04);
 			Log("Surf_SurfaceType: %d\n", s_Surface->m_SurfaceType);
@@ -451,7 +452,7 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 
 			printf(
 				"[%f,%f,%f,%f,%d,%d,[",
-				s_Surface->m_CenterX, s_Surface->m_CenterY, s_Surface->m_CenterZ, s_Surface->m_MaxRadius,
+				s_Surface->m_Center.X, s_Surface->m_Center.Y, s_Surface->m_Center.Z, s_Surface->m_MaxRadius,
 				s_Surface->m_SurfaceType, s_Surface->GetMarkedVertex()
 			);
 
@@ -462,13 +463,13 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				auto* s_Vertex = reinterpret_cast<NavMeshSurfaceVertex*>(s_FileStartPtr + s_CurrentIndex);
 				s_CurrentIndex += sizeof(NavMeshSurfaceVertex);
 
-				printf("[%f,%f,%f,%d,%d],", s_Vertex->m_X, s_Vertex->m_Y, s_Vertex->m_Z, s_Vertex->GetFlags00Unk01(), s_Vertex->m_Unk01);
+				printf("[%f,%f,%f,%d,%d],", s_Vertex->m_Pos.X, s_Vertex->m_Pos.Y, s_Vertex->m_Pos.Z, s_Vertex->GetFlags00Unk01(), s_Vertex->m_Unk01);
 
 				Log("==== NavMesh Surface Vertex ====\n");
 				Log("Vert_Unk00: %p\n", s_Vertex->m_Unk00);
-				Log("Vert_X: %f\n", s_Vertex->m_X);
-				Log("Vert_Y: %f\n", s_Vertex->m_Y);
-				Log("Vert_Z: %f\n", s_Vertex->m_Z);
+				Log("Vert_X: %f\n", s_Vertex->m_Pos.X);
+				Log("Vert_Y: %f\n", s_Vertex->m_Pos.Y);
+				Log("Vert_Z: %f\n", s_Vertex->m_Pos.Z);
 				Log("Vert_Flags: %x\n", s_Vertex->m_Flags);
 				Log("Vert_Unk01: %x\n", s_Vertex->m_Unk01);
 				Log("Vert_Unk02: %x\n", s_Vertex->m_Unk02);
@@ -481,9 +482,6 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 
 			size_t s_FoundVertex = 0;
 			float s_MaxDistance = -FLT_MAX;
-
-			Vec3 a = s_Vertices[0]->m_Pos;
-			Vec3 b = s_Vertices[1]->m_Pos;
 			
 			for (size_t i = 2; i < s_Vertices.size(); ++i)
 			{
@@ -502,12 +500,7 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 
 			if (s_FoundVertex != s_Surface->GetMarkedVertex())
 			{
-				printf("Found vertex %d. Expected vertex %d", s_FoundVertex, s_Surface->GetMarkedVertex());
-
-				if (s_FoundVertex != s_Surface->GetMarkedVertex())
-					printf("!!!!~");
-
-				printf("\n");
+				Log("Found vertex %zu. Expected vertex %u!\n", s_FoundVertex, s_Surface->GetMarkedVertex());
 			}
 
 			printf("]],");
@@ -521,21 +514,61 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		s_CurrentIndex += sizeof(NavMeshUnk02);
 
 		Log("==== NavMesh Unk02 ====\n");
-		Log("N02_Unk00: %f\n", s_Unk02->m_Unk00);
-		Log("N02_Unk01: %f\n", s_Unk02->m_Unk01);
-		Log("N02_Unk02: %f\n", s_Unk02->m_Unk02);
-		Log("N02_Unk03: %f\n", s_Unk02->m_Unk03);
-		Log("N02_Unk04: %f\n", s_Unk02->m_Unk04);
-		Log("N02_Unk05: %f\n", s_Unk02->m_Unk05);
+		Log("N02_AABBMin.X: %f\n", s_Unk02->m_AABBMin.X);
+		Log("N02_AABBMin.Y: %f\n", s_Unk02->m_AABBMin.Y);
+		Log("N02_AABBMin.Z: %f\n", s_Unk02->m_AABBMin.Z);
+		Log("N02_AABBMax.X: %f\n", s_Unk02->m_AABBMax.X);
+		Log("N02_AABBMax.Y: %f\n", s_Unk02->m_AABBMax.Y);
+		Log("N02_AABBMax.Z: %f\n", s_Unk02->m_AABBMax.Z);
 		Log("N02_DataSize: %x\n", s_Unk02->m_DataSize);
 
-		s_CurrentIndex += s_Unk02->m_DataSize;
+		printf("Unk02['%s'] = [", s_FileName.c_str());
 
+		uint32_t s_RemainingData = s_Unk02->m_DataSize;
+
+		while (s_RemainingData > 0)
+		{
+			const auto s_FlagsValue= *reinterpret_cast<uint32_t*>(s_FileStartPtr + s_CurrentIndex);
+			s_CurrentIndex += sizeof(uint32_t);
+			s_RemainingData -= sizeof(uint32_t);
+
+			const uint32_t s_Value = s_FlagsValue & 0x7fffffff;
+			
+			// If the MSB is 0 then this is followed by two floats. Otherwise, it's just the value itself that matters.
+			if (s_FlagsValue & 0x80000000)
+			{
+				Log("==== NavMesh Unk02 Small Element ====\n");
+				Log("Value: %x\n", s_Value);
+				
+				printf("[],");
+			}
+			else
+			{
+				const auto* s_Element = reinterpret_cast<NavMeshUnk02Element*>(s_FileStartPtr + s_CurrentIndex);
+				s_CurrentIndex += sizeof(NavMeshUnk02Element);
+				s_RemainingData -= sizeof(NavMeshUnk02Element);
+
+				const uint32_t s_ElemUnk02 = (s_FlagsValue & 0x70000000) >> 28;
+				const uint32_t s_ElemUnk03 = (s_FlagsValue & 0x0fffffff);
+
+				Log("==== NavMesh Unk02 Big Element ====\n");
+				Log("Value: %x\n", s_Value);
+				Log("Unk00: %f\n", s_Element->m_Unk00);
+				Log("Unk01: %f\n", s_Element->m_Unk01);
+				Log("Unk02: %x\n", s_ElemUnk02);
+				Log("Unk03: %d\n", s_ElemUnk03);
+
+				printf("[%f, %f, %d],", s_Element->m_Unk00, s_Element->m_Unk01, s_ElemUnk02);
+			}
+		}
+		
 		if (s_CurrentIndex != s_SectionStart + s_Section->m_SectionSize)
 		{
-			Log("Some shit went bad here.\n");
+			printf("Some shit went bad here. We were left with %zu bytes.\n", s_SectionStart + s_Section->m_SectionSize - s_CurrentIndex);
 			return;
 		}
+
+		printf("];\n");
 	}
 
 	// Rewrite file.

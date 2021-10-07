@@ -17,6 +17,7 @@ const checkMarkedVertices = document.getElementById('check-marked-vertices');
 const checkWeirdVertices = document.getElementById('check-weird-vertices');
 const checkAABB = document.getElementById('check-aabb');
 const checkNumbers = document.getElementById('check-numbers');
+const checkUnknown = document.getElementById('check-unknown');
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -190,6 +191,17 @@ function renderAABB(unk) {
     scene.add(helper);
 }
 
+function renderUnknownPoint(pointX, pointY, pointZ) {
+    const geometry = new THREE.CircleGeometry(0.1, 5);
+    const material = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+
+    const circle = new THREE.Mesh(geometry, material);
+    circle.position.set(pointX, pointY, pointZ);
+    circle.rotation.set(1.5708, 0, 0);
+
+    scene.add(circle);
+}
+
 camera.position.set(-40, 50, 80);
 controls.update();
 
@@ -222,6 +234,38 @@ function reRender() {
         const surface = Surfaces[selectedMap][i];
         renderSurface(i, surface);
     }
+
+    if (checkUnknown.checked) {
+        const points = [];
+
+        const currentPoint = [0.0, 0.0];
+
+        for (const point of Unk02[selectedMap]) {
+            if (point.length === 0) {
+                continue;
+            }
+
+            if (point[2] === 0) {
+                renderUnknownPoint(point[0], 0, point[1]);
+            } else if (point[2] === 1) {
+                renderUnknownPoint(point[0], point[1], 0);
+            } else {
+                renderUnknownPoint(0, point[0], point[1]);
+            }
+            //renderUnknownPoint(currentPoint[0], 0, currentPoint[1]);
+            //points.push(new THREE.Vector3(currentPoint[0], 0, currentPoint[1]));
+
+            //currentPoint[0] += point[0];
+            //currentPoint[1] += point[1];
+        }
+
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff });
+        const line = new THREE.Line(geometry, lineMaterial);
+
+        scene.add(line);
+    }
 }
 
 let hasSelection = false;
@@ -249,3 +293,4 @@ checkMarkedVertices.addEventListener('change', () => reRender());
 checkWeirdVertices.addEventListener('change', () => reRender());
 checkAABB.addEventListener('change', () => reRender());
 checkNumbers.addEventListener('change', () => reRender());
+checkUnknown.addEventListener('change', () => reRender());
