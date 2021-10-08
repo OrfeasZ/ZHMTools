@@ -23102,6 +23102,11 @@ public:
   inline simdjson_result<const char *> current_location() noexcept;
 
   /**
+   * Returns the current position in the document.
+   */
+  inline token_position current_position() noexcept;
+
+  /**
    * Get the value associated with the given JSON pointer.  We use the RFC 6901
    * https://tools.ietf.org/html/rfc6901 standard.
    *
@@ -27336,6 +27341,10 @@ inline std::string document::to_debug_string() noexcept {
 
 inline simdjson_result<const char *> document::current_location() noexcept {
   return iter.current_location();
+}
+
+inline token_position document::current_position() noexcept {
+  return iter.position();
 }
 
 inline bool document::is_alive() noexcept {
