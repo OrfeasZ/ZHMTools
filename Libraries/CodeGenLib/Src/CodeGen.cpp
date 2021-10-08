@@ -64,6 +64,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	m_ReflectiveClassesSourceFile << "#include \"ZHMGen.h\"" << std::endl;
 	m_ReflectiveClassesSourceFile << "#include \"ZHMProperties.h\"" << std::endl;
 	m_ReflectiveClassesSourceFile << "#include \"ZHMEnums.h\"" << std::endl;
+	m_ReflectiveClassesSourceFile << "#include <External/simdjson_helpers.h>" << std::endl;
 	m_ReflectiveClassesSourceFile << std::endl;
 
 	for (auto& s_TypeDef : p_Registry->m_types)
@@ -292,22 +293,19 @@ void GenerateArrayJsonWriter(STypeID* p_ElementType, std::ostream& p_Stream, con
 	auto s_ArrayType = reinterpret_cast<IArrayType*>(p_ElementType->typeInfo());
 	auto s_ArrayTypeName = std::string(s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName);
 
-	p_Stream << p_Indentation << "\t\tp_Stream << \"{\" << JsonStr(\"$type\") << \":\" << JsonStr(\"" << s_ArrayTypeName << "\") << \",\" << JsonStr(\"$val\") << \":\";" << std::endl;
+	p_Stream << p_Indentation << "\t\tp_Stream << \"{\\\"$type\\\":\" << simdjson::as_json_string(\"" << s_ArrayTypeName << "\") << \",\\\"$val\\\":\";" << std::endl;
 
 	if (s_ArrayType->m_pArrayElementType->typeInfo()->isPrimitive())
 	{
-		if (s_ArrayTypeName == "uint8" || s_ArrayTypeName == "int8")
-			p_Stream << p_Indentation << "\t\tp_Stream << static_cast<int>(s_Item" << p_Depth << ");" << std::endl;
-		else
-			p_Stream << p_Indentation << "\t\tp_Stream << s_Item" << p_Depth << ";" << std::endl;
+		p_Stream << p_Indentation << "\t\tp_Stream << simdjson::as_json_string(s_Item" << p_Depth << ");" << std::endl;
 	}
 	else if (s_ArrayType->m_pArrayElementType->typeInfo()->isEnum())
 	{
-		p_Stream << p_Indentation << "\t\tp_Stream << \"{\" << JsonStr(\"$enumVal\") << \":\" << static_cast<int>(s_Item" << p_Depth << ") << \",\" << JsonStr(\"$enumValName\") << \":\" << JsonStr(ZHMEnums::GetEnumValueName(\"" << s_ArrayTypeName << "\", static_cast<int>(s_Item" << p_Depth << "))) << \"}\";" << std::endl;
+		p_Stream << p_Indentation << "\t\tp_Stream << \"{\\\"$enumVal\\\":\" << simdjson::as_json_string(static_cast<int64_t>(s_Item" << p_Depth << ")) << \",\\\"$enumValName\\\":\" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(\"" << s_ArrayTypeName << "\", static_cast<int>(s_Item" << p_Depth << "))) << \"}\";" << std::endl;
 	}
 	else if (s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName == std::string("ZString"))
 	{
-		p_Stream << p_Indentation << "\t\tp_Stream << JsonStr(s_Item" << p_Depth << ");" << std::endl;
+		p_Stream << p_Indentation << "\t\tp_Stream << simdjson::as_json_string(s_Item" << p_Depth << ");" << std::endl;
 	}
 	else if (s_ArrayType->m_pArrayElementType->typeInfo()->isArray() || s_ArrayType->m_pArrayElementType->typeInfo()->isFixedArray())
 	{
@@ -340,18 +338,15 @@ void GenerateArraySimpleJsonWriter(STypeID* p_ElementType, std::ostream& p_Strea
 
 	if (s_ArrayType->m_pArrayElementType->typeInfo()->isPrimitive())
 	{
-		if (s_ArrayTypeName == "uint8" || s_ArrayTypeName == "int8")
-			p_Stream << p_Indentation << "\t\tp_Stream << static_cast<int>(s_Item" << p_Depth << ");" << std::endl;
-		else
-			p_Stream << p_Indentation << "\t\tp_Stream << s_Item" << p_Depth << ";" << std::endl;
+		p_Stream << p_Indentation << "\t\tp_Stream << simdjson::as_json_string(s_Item" << p_Depth << ");" << std::endl;
 	}
 	else if (s_ArrayType->m_pArrayElementType->typeInfo()->isEnum())
 	{
-		p_Stream << p_Indentation << "\t\tp_Stream << JsonStr(ZHMEnums::GetEnumValueName(\"" << s_ArrayTypeName << "\", static_cast<int>(s_Item" << p_Depth << ")));" << std::endl;
+		p_Stream << p_Indentation << "\t\tp_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(\"" << s_ArrayTypeName << "\", static_cast<int>(s_Item" << p_Depth << ")));" << std::endl;
 	}
 	else if (s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName == std::string("ZString"))
 	{
-		p_Stream << p_Indentation << "\t\tp_Stream << JsonStr(s_Item" << p_Depth << ");" << std::endl;
+		p_Stream << p_Indentation << "\t\tp_Stream << simdjson::as_json_string(s_Item" << p_Depth << ");" << std::endl;
 	}
 	else if (s_ArrayType->m_pArrayElementType->typeInfo()->isArray() || s_ArrayType->m_pArrayElementType->typeInfo()->isFixedArray())
 	{
@@ -662,24 +657,21 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		if (s_PropTypeName == std::string("TArray"))
 			continue;
 		
-		s_SourceStream << "\tp_Stream << JsonStr(\"" << s_Prop.m_pName << "\") << \":\";" << std::endl;
+		s_SourceStream << "\tp_Stream << simdjson::as_json_string(\"" << s_Prop.m_pName << "\") << \":\";" << std::endl;
 
-		s_SourceStream << "\tp_Stream << \"{\" << JsonStr(\"$type\") << \":\" << JsonStr(\"" << s_PropTypeName << "\") << \",\" << JsonStr(\"$val\") << \":\";" << std::endl;
+		s_SourceStream << "\tp_Stream << \"{\\\"$type\\\":\" << simdjson::as_json_string(\"" << s_PropTypeName << "\") << \",\\\"$val\\\":\";" << std::endl;
 
 		if (s_Prop.m_pType->typeInfo()->isPrimitive())
 		{
-			if (s_PropTypeName == "uint8" || s_PropTypeName == "int8")
-				s_SourceStream << "\tp_Stream << static_cast<int>(s_Object->" << s_Prop.m_pName << ");" << std::endl;
-			else
-				s_SourceStream << "\tp_Stream << s_Object->" << s_Prop.m_pName << ";" << std::endl;
+			s_SourceStream << "\tp_Stream << simdjson::as_json_string(s_Object->" << s_Prop.m_pName << ");" << std::endl;
 		}
 		else if (s_Prop.m_pType->typeInfo()->isEnum())
 		{
-			s_SourceStream << "\tp_Stream << \"{\" << JsonStr(\"$enumVal\") << \":\" << static_cast<int>(s_Object->" << s_Prop.m_pName << ") << \",\" << JsonStr(\"$enumValName\") << \":\" << JsonStr(ZHMEnums::GetEnumValueName(\"" << s_PropTypeName << "\", static_cast<int>(s_Object->" << s_Prop.m_pName << "))) << \"}\";" << std::endl;
+			s_SourceStream << "\tp_Stream << \"{\\\"$enumVal\\\":\" << simdjson::as_json_string(static_cast<int64_t>(s_Object->" << s_Prop.m_pName << ")) << \",\\\"$enumValName\\\":\" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(\"" << s_PropTypeName << "\", static_cast<int>(s_Object->" << s_Prop.m_pName << "))) << \"}\";" << std::endl;
 		}
 		else if (s_Prop.m_pType->typeInfo()->m_pTypeName == std::string("ZString"))
 		{
-			s_SourceStream << "\tp_Stream << JsonStr(s_Object->" << s_Prop.m_pName << ");" << std::endl;
+			s_SourceStream << "\tp_Stream << simdjson::as_json_string(s_Object->" << s_Prop.m_pName << ");" << std::endl;
 		}
 		else if (s_Prop.m_pType->typeInfo()->isArray() || s_Prop.m_pType->typeInfo()->isFixedArray())
 		{
@@ -723,7 +715,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		if (s_PropTypeName == std::string("TArray"))
 			continue;
 		
-		s_SourceStream << "\tp_Stream << JsonStr(\"" << s_Prop.m_pName << "\") << \":\";" << std::endl;
+		s_SourceStream << "\tp_Stream << simdjson::as_json_string(\"" << s_Prop.m_pName << "\") << \":\";" << std::endl;
 
 		if (s_Prop.m_pType->typeInfo()->isPrimitive())
 		{
@@ -733,26 +725,23 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 				s_SourceStream << "\t\tauto s_PropertyName = ZHMProperties::PropertyToString(s_Object->" << s_Prop.m_pName << ");" << std::endl;
 				s_SourceStream << std::endl;
 				s_SourceStream << "\t\tif (s_PropertyName.size() == 0)" << std::endl;
-				s_SourceStream << "\t\t\tp_Stream << s_Object->" << s_Prop.m_pName << ";" << std::endl;
+				s_SourceStream << "\t\t\tp_Stream << simdjson::as_json_string(s_Object->" << s_Prop.m_pName << ");" << std::endl;
 				s_SourceStream << "\t\telse" << std::endl;
-				s_SourceStream << "\t\t\tp_Stream << JsonStr(s_PropertyName);" << std::endl;
+				s_SourceStream << "\t\t\tp_Stream << simdjson::as_json_string(s_PropertyName);" << std::endl;
 				s_SourceStream << "\t}" << std::endl;
 			}
 			else
 			{
-				if (s_PropTypeName == "uint8" || s_PropTypeName == "int8")
-					s_SourceStream << "\tp_Stream << static_cast<int>(s_Object->" << s_Prop.m_pName << ");" << std::endl;
-				else
-					s_SourceStream << "\tp_Stream << s_Object->" << s_Prop.m_pName << ";" << std::endl;
+				s_SourceStream << "\tp_Stream << simdjson::as_json_string(s_Object->" << s_Prop.m_pName << ");" << std::endl;
 			}
 		}
 		else if (s_Prop.m_pType->typeInfo()->isEnum())
 		{
-			s_SourceStream << "\tp_Stream << JsonStr(ZHMEnums::GetEnumValueName(\"" << s_PropTypeName << "\", static_cast<int>(s_Object->" << s_Prop.m_pName << ")));" << std::endl;
+			s_SourceStream << "\tp_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(\"" << s_PropTypeName << "\", static_cast<int>(s_Object->" << s_Prop.m_pName << ")));" << std::endl;
 		}
 		else if (s_Prop.m_pType->typeInfo()->m_pTypeName == std::string("ZString"))
 		{
-			s_SourceStream << "\tp_Stream << JsonStr(s_Object->" << s_Prop.m_pName << ");" << std::endl;
+			s_SourceStream << "\tp_Stream << simdjson::as_json_string(s_Object->" << s_Prop.m_pName << ");" << std::endl;
 		}
 		else if (s_Prop.m_pType->typeInfo()->isArray() || s_Prop.m_pType->typeInfo()->isFixedArray())
 		{

@@ -155,7 +155,7 @@ bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_Output
 
 	// Parse type from JSON.
 	T s_Resource;
-	T::FromSimpleJson(s_Value.resume_value(), &s_Resource);
+	T::FromSimpleJson(s_Value, &s_Resource);
 
 	return GenerateFromMemory<T>(&s_Resource, p_OutputPath);
 }
@@ -175,7 +175,7 @@ bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength,
 
 	// Parse type from JSON.
 	T s_Resource;
-	T::FromSimpleJson(s_Value.resume_value(), &s_Resource);
+	T::FromSimpleJson(s_Value, &s_Resource);
 
 	return GenerateFromMemory<T>(&s_Resource, p_OutputPath);
 }
@@ -200,7 +200,7 @@ ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_Simple
 
 	// Parse type from JSON.
 	T s_Resource;
-	T::FromSimpleJson(s_Value.resume_value(), &s_Resource);
+	T::FromSimpleJson(s_Value, &s_Resource);
 
 	return GenerateFromMemoryToMemory<T>(&s_Resource);
 }
@@ -220,7 +220,7 @@ ResourceMem* FromJsonStringToResourceMem(const char* p_JsonStr, size_t p_JsonStr
 
 	// Parse type from JSON.
 	T s_Resource;
-	T::FromSimpleJson(s_Value.resume_value(), &s_Resource);
+	T::FromSimpleJson(s_Value, &s_Resource);
 
 	return GenerateFromMemoryToMemory<T>(&s_Resource);
 }

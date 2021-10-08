@@ -7795,7 +7795,7 @@ void ZHMEnums::RegisterEnums()
 		{ 81, "ETT_ISDLSSAVAILABLE" },
 		{ 82, "ETT_ISHDRAVAILABLE" },
 		{ 83, "ETT_ISHDRRENDERING" },
-		{ 84, "ETT_ISVRSAVAILABLE" },
+		{ 84, "ETT_VARIABLERATESHADINGTIER" },
 		{ 85, "ETT_ITEM" },
 		{ 86, "ETT_REPOSITORY" },
 		{ 87, "ETT_ISONLINE" },
@@ -9527,6 +9527,13 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "E_FLOW_TYPE_VERTICAL" },
 	};
 
+	(*g_Enums)["ZUIGlobalSubtitleCondition.ESpatialType"] = {
+		{ 0, "Any" },
+		{ 1, "Audio2D" },
+		{ 2, "Volumetric" },
+		{ 3, "Point" },
+	};
+
 	(*g_Enums)["ZUIListNavigationEntity.ENavigationInputMode"] = {
 		{ 0, "E_MODE_UP_DOWN" },
 		{ 1, "E_MODE_LEFT_RIGHT" },
@@ -9674,6 +9681,7 @@ void ZHMEnums::RegisterEnums()
 		{ 310, "UI_OPTION_GAME_INVERT_Y" },
 		{ 311, "UI_OPTION_GAME_CONTROL_SCHEME" },
 		{ 312, "UI_OPTION_GAME_FAST_TARGET" },
+		{ 313, "UI_OPTION_GAME_ALLOW_CAMERA_SWITCH" },
 		{ 321, "UI_OPTION_GAME_DIFFICULTY" },
 		{ 330, "UI_OPTION_GAME_TRIGGER_SHOOT" },
 		{ 332, "UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA" },

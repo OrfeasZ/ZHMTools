@@ -5,6 +5,8 @@
 #include "ZHMSerializer.h"
 #include "Util/PortableIntrinsics.h"
 
+#include <iostream>
+
 void ZVariant::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto s_Object = static_cast<ZVariant*>(p_Object);
@@ -59,7 +61,7 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	ZVariant s_Variant;
 
-	if (p_Document.type().first == simdjson::ondemand::json_type::null)
+	if (p_Document.type().value() == simdjson::ondemand::json_type::null)
 	{
 		s_Variant.m_pTypeID = ZHMTypeInfo::GetTypeByName(std::string_view("void"));
 		s_Variant.m_pData = nullptr;

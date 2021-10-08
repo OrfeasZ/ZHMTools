@@ -10,6 +10,7 @@ set(RESOURCELIB_HEADERS
 set(RESOURCELIB_SOURCES
 	Src/External/simdjson.cpp
 	Src/External/simdjson.h
+	Src/External/simdjson_helpers.h
 	Src/Util/Base64.h
 	Src/Util/BinaryStreamReader.h
 	Src/Util/BinaryStreamWriter.h
