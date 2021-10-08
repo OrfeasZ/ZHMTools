@@ -380,12 +380,7 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 
 		if (s_ArrayType->m_pArrayElementType->typeInfo()->isPrimitive())
 		{
-			if (s_ArrayTypeName == "int8" || s_ArrayTypeName == "uint8" || s_ArrayTypeName == "int16" || s_ArrayTypeName == "uint16" || s_ArrayTypeName == "int32" || s_ArrayTypeName == "uint32")
-				p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = static_cast<" << s_ArrayTypeName << ">(int64_t(s_Item" << p_Depth << "));" << std::endl;
-			else if (s_ArrayTypeName == "float32")
-				p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = static_cast<" << s_ArrayTypeName << ">(double(s_Item" << p_Depth << "));" << std::endl;
-			else
-				p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = " << s_ArrayTypeName << "(s_Item" << p_Depth << ");" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = simdjson::from_json_" << s_ArrayTypeName << "(s_Item" << p_Depth << ");" << std::endl;
 		}
 		else if (s_ArrayType->m_pArrayElementType->typeInfo()->isEnum())
 		{
@@ -422,12 +417,7 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 
 		if (s_ArrayType->m_pArrayElementType->typeInfo()->isPrimitive())
 		{
-			if (s_ArrayTypeName == "int8" || s_ArrayTypeName == "uint8" || s_ArrayTypeName == "int16" || s_ArrayTypeName == "uint16" || s_ArrayTypeName == "int32" || s_ArrayTypeName == "uint32")
-				p_Stream << p_Indentation << "\t\t" << p_ValueName << ".push_back(static_cast<" << s_ArrayTypeName << ">(int64_t(s_Item" << p_Depth << ")));" << std::endl;
-			else if (s_ArrayTypeName == "float32")
-				p_Stream << "\t\t" << p_ValueName << ".push_back(static_cast<" << s_ArrayTypeName << ">(double(s_Item" << p_Depth << ")));" << std::endl;
-			else
-				p_Stream << p_Indentation << "\t\t" << p_ValueName << ".push_back(" << s_ArrayTypeName << "(s_Item" << p_Depth << "));" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << p_ValueName << ".push_back(simdjson::from_json_" << s_ArrayTypeName << "(s_Item" << p_Depth << "));" << std::endl;
 		}
 		else if (s_ArrayType->m_pArrayElementType->typeInfo()->isEnum())
 		{
@@ -788,16 +778,11 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 				s_SourceStream << "\tif (p_Document[\"" << s_Prop.m_pName << "\"].type() == simdjson::ondemand::json_type::string)" << std::endl;
 				s_SourceStream << "\t\ts_Object." << s_Prop.m_pName << " = Hash::Crc32(std::string_view(p_Document[\"" << s_Prop.m_pName << "\"]));" << std::endl;
 				s_SourceStream << "\telse" << std::endl;
-				s_SourceStream << "\t\ts_Object." << s_Prop.m_pName << " = static_cast<uint32>(int64_t(p_Document[\"" << s_Prop.m_pName << "\"]));" << std::endl;
+				s_SourceStream << "\t\ts_Object." << s_Prop.m_pName << " = simdjson::from_json_uint32(p_Document[\"" << s_Prop.m_pName << "\"]);" << std::endl;
 			}
 			else
 			{
-				if (s_PropTypeName == "int8" || s_PropTypeName == "uint8" || s_PropTypeName == "int16" || s_PropTypeName == "uint16" || s_PropTypeName == "int32" || s_PropTypeName == "uint32")
-					s_SourceStream << "\ts_Object." << s_Prop.m_pName << " = static_cast<" << s_PropTypeName << ">(int64_t(p_Document[\"" << s_Prop.m_pName << "\"]));" << std::endl;
-				else if (s_PropTypeName == "float32")
-					s_SourceStream << "\ts_Object." << s_Prop.m_pName << " = static_cast<" << s_PropTypeName << ">(double(p_Document[\"" << s_Prop.m_pName << "\"]));" << std::endl;
-				else
-					s_SourceStream << "\ts_Object." << s_Prop.m_pName << " = " << s_PropTypeName << "(p_Document[\"" << s_Prop.m_pName << "\"]);" << std::endl;
+				s_SourceStream << "\ts_Object." << s_Prop.m_pName << " = simdjson::from_json_" << s_PropTypeName << "(p_Document[\"" << s_Prop.m_pName << "\"]);" << std::endl;
 			}
 		}
 		else if (s_Prop.m_pType->typeInfo()->isEnum())

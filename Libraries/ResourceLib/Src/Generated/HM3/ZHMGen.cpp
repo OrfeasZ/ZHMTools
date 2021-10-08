@@ -126,17 +126,17 @@ void AI_Private_Details_SBaseStimulus_Pool_SaveData::FromSimpleJson(simdjson::on
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_SlotDetails"])
 	{
-		s_Object.m_SlotDetails.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_SlotDetails.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_UsageRepresentation"])
 	{
-		s_Object.m_UsageRepresentation.push_back(static_cast<int16>(int64_t(s_Item0)));
+		s_Object.m_UsageRepresentation.push_back(simdjson::from_json_int16(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_FreeIndices"])
 	{
-		s_Object.m_FreeIndices.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_FreeIndices.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
 	*reinterpret_cast<AI_Private_Details_SBaseStimulus_Pool_SaveData*>(p_Target) = s_Object;
@@ -182,7 +182,7 @@ void AI_Private_Details_SStimulus_AgentData_SaveData::FromSimpleJson(simdjson::o
 {
 	AI_Private_Details_SStimulus_AgentData_SaveData s_Object;
 
-	s_Object.m_AgentData = static_cast<uint32>(int64_t(p_Document["m_AgentData"]));
+	s_Object.m_AgentData = simdjson::from_json_uint32(p_Document["m_AgentData"]);
 
 	*reinterpret_cast<AI_Private_Details_SStimulus_AgentData_SaveData*>(p_Target) = s_Object;
 }
@@ -234,7 +234,7 @@ void AI_Private_SStimulusSnapshot::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	AI_Private_SStimulusSnapshot s_Object;
 
-	s_Object.SlotIndex = static_cast<uint32>(int64_t(p_Document["SlotIndex"]));
+	s_Object.SlotIndex = simdjson::from_json_uint32(p_Document["SlotIndex"]);
 
 	s_Object.StimulusData = std::string_view(p_Document["StimulusData"]);
 
@@ -332,9 +332,9 @@ void AI_Private_SPoolSnapshot::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.StimulusTypeName = std::string_view(p_Document["StimulusTypeName"]);
 
-	s_Object.StimulusTypeId = static_cast<uint32>(int64_t(p_Document["StimulusTypeId"]));
+	s_Object.StimulusTypeId = simdjson::from_json_uint32(p_Document["StimulusTypeId"]);
 
-	s_Object.PoolSize = static_cast<uint32>(int64_t(p_Document["PoolSize"]));
+	s_Object.PoolSize = simdjson::from_json_uint32(p_Document["PoolSize"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["Stimuli"])
 	{
@@ -426,9 +426,9 @@ void AI_Private_SFullDataSnapshotEvent::FromSimpleJson(simdjson::ondemand::value
 {
 	AI_Private_SFullDataSnapshotEvent s_Object;
 
-	s_Object.Timestamp = uint64(p_Document["Timestamp"]);
+	s_Object.Timestamp = simdjson::from_json_uint64(p_Document["Timestamp"]);
 
-	s_Object.EventIndex = static_cast<uint32>(int64_t(p_Document["EventIndex"]));
+	s_Object.EventIndex = simdjson::from_json_uint32(p_Document["EventIndex"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["StimulusPools"])
 	{
@@ -538,17 +538,17 @@ void AI_Private_SPoolModificationEvent::FromSimpleJson(simdjson::ondemand::value
 {
 	AI_Private_SPoolModificationEvent s_Object;
 
-	s_Object.StimulusTypeId = static_cast<uint32>(int64_t(p_Document["StimulusTypeId"]));
+	s_Object.StimulusTypeId = simdjson::from_json_uint32(p_Document["StimulusTypeId"]);
 
-	s_Object.SlotIndex = static_cast<uint32>(int64_t(p_Document["SlotIndex"]));
+	s_Object.SlotIndex = simdjson::from_json_uint32(p_Document["SlotIndex"]);
 
-	s_Object.OperationId = static_cast<uint32>(int64_t(p_Document["OperationId"]));
+	s_Object.OperationId = simdjson::from_json_uint32(p_Document["OperationId"]);
 
 	s_Object.StimulusData = std::string_view(p_Document["StimulusData"]);
 
-	s_Object.Timestamp = uint64(p_Document["Timestamp"]);
+	s_Object.Timestamp = simdjson::from_json_uint64(p_Document["Timestamp"]);
 
-	s_Object.EventIndex = static_cast<uint32>(int64_t(p_Document["EventIndex"]));
+	s_Object.EventIndex = simdjson::from_json_uint32(p_Document["EventIndex"]);
 
 	s_Object.EventMetaData = std::string_view(p_Document["EventMetaData"]);
 
@@ -695,11 +695,11 @@ void AI_SEventDescription::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	s_Object.m_eEventType = static_cast<EAIEventType>(ZHMEnums::GetEnumValueByName("EAIEventType", std::string_view(p_Document["m_eEventType"])));
 
-	s_Object.m_bPulsing = bool(p_Document["m_bPulsing"]);
+	s_Object.m_bPulsing = simdjson::from_json_bool(p_Document["m_bPulsing"]);
 
-	s_Object.m_fRange = static_cast<float32>(double(p_Document["m_fRange"]));
+	s_Object.m_fRange = simdjson::from_json_float32(p_Document["m_fRange"]);
 
-	s_Object.m_fLoudness = static_cast<float32>(double(p_Document["m_fLoudness"]));
+	s_Object.m_fLoudness = simdjson::from_json_float32(p_Document["m_fLoudness"]);
 
 	*reinterpret_cast<AI_SEventDescription*>(p_Target) = s_Object;
 }
@@ -761,11 +761,11 @@ void AI_SFirePattern01_SData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	AI_SFirePattern01_SData s_Object;
 
-	s_Object.m_BulletsToFire = static_cast<uint32>(int64_t(p_Document["m_BulletsToFire"]));
+	s_Object.m_BulletsToFire = simdjson::from_json_uint32(p_Document["m_BulletsToFire"]);
 
-	s_Object.m_WaitMinSeconds = static_cast<float32>(double(p_Document["m_WaitMinSeconds"]));
+	s_Object.m_WaitMinSeconds = simdjson::from_json_float32(p_Document["m_WaitMinSeconds"]);
 
-	s_Object.m_WaitMaxSeconds = static_cast<float32>(double(p_Document["m_WaitMaxSeconds"]));
+	s_Object.m_WaitMaxSeconds = simdjson::from_json_float32(p_Document["m_WaitMaxSeconds"]);
 
 	*reinterpret_cast<AI_SFirePattern01_SData*>(p_Target) = s_Object;
 }
@@ -906,13 +906,13 @@ void AI_SFirePattern02_SData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	AI_SFirePattern02_SData s_Object;
 
-	s_Object.m_FireMinSeconds = static_cast<float32>(double(p_Document["m_FireMinSeconds"]));
+	s_Object.m_FireMinSeconds = simdjson::from_json_float32(p_Document["m_FireMinSeconds"]);
 
-	s_Object.m_FireMaxSeconds = static_cast<float32>(double(p_Document["m_FireMaxSeconds"]));
+	s_Object.m_FireMaxSeconds = simdjson::from_json_float32(p_Document["m_FireMaxSeconds"]);
 
-	s_Object.m_WaitMinSeconds = static_cast<float32>(double(p_Document["m_WaitMinSeconds"]));
+	s_Object.m_WaitMinSeconds = simdjson::from_json_float32(p_Document["m_WaitMinSeconds"]);
 
-	s_Object.m_WaitMaxSeconds = static_cast<float32>(double(p_Document["m_WaitMaxSeconds"]));
+	s_Object.m_WaitMaxSeconds = simdjson::from_json_float32(p_Document["m_WaitMaxSeconds"]);
 
 	*reinterpret_cast<AI_SFirePattern02_SData*>(p_Target) = s_Object;
 }
@@ -1033,9 +1033,9 @@ void AI_SSoundEventModifierState::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	AI_SSoundEventModifierState s_Object;
 
-	s_Object.m_fRangeModifier = static_cast<float32>(double(p_Document["m_fRangeModifier"]));
+	s_Object.m_fRangeModifier = simdjson::from_json_float32(p_Document["m_fRangeModifier"]);
 
-	s_Object.m_fLoudnessModifier = static_cast<float32>(double(p_Document["m_fLoudnessModifier"]));
+	s_Object.m_fLoudnessModifier = simdjson::from_json_float32(p_Document["m_fLoudnessModifier"]);
 
 	*reinterpret_cast<AI_SSoundEventModifierState*>(p_Target) = s_Object;
 }
@@ -1077,7 +1077,7 @@ void AnimationEventDataTypes_SBlend::FromSimpleJson(simdjson::ondemand::value p_
 {
 	AnimationEventDataTypes_SBlend s_Object;
 
-	s_Object.m_fBlendTime = static_cast<float32>(double(p_Document["m_fBlendTime"]));
+	s_Object.m_fBlendTime = simdjson::from_json_float32(p_Document["m_fBlendTime"]);
 
 	*reinterpret_cast<AnimationEventDataTypes_SBlend*>(p_Target) = s_Object;
 }
@@ -1119,7 +1119,7 @@ void AnimationEventDataTypes_SLegacy::FromSimpleJson(simdjson::ondemand::value p
 {
 	AnimationEventDataTypes_SLegacy s_Object;
 
-	s_Object.m_nEventID = static_cast<int32>(int64_t(p_Document["m_nEventID"]));
+	s_Object.m_nEventID = simdjson::from_json_int32(p_Document["m_nEventID"]);
 
 	*reinterpret_cast<AnimationEventDataTypes_SLegacy*>(p_Target) = s_Object;
 }
@@ -1171,9 +1171,9 @@ void ZRuntimeResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	ZRuntimeResourceID s_Object;
 
-	s_Object.m_IDHigh = static_cast<uint32>(int64_t(p_Document["m_IDHigh"]));
+	s_Object.m_IDHigh = simdjson::from_json_uint32(p_Document["m_IDHigh"]);
 
-	s_Object.m_IDLow = static_cast<uint32>(int64_t(p_Document["m_IDLow"]));
+	s_Object.m_IDLow = simdjson::from_json_uint32(p_Document["m_IDLow"]);
 
 	*reinterpret_cast<ZRuntimeResourceID*>(p_Target) = s_Object;
 }
@@ -1226,7 +1226,7 @@ void AnimationTakeDataTypes_SGeneric::FromSimpleJson(simdjson::ondemand::value p
 {
 	AnimationTakeDataTypes_SGeneric s_Object;
 
-	s_Object.m_fTest = static_cast<float32>(double(p_Document["m_fTest"]));
+	s_Object.m_fTest = simdjson::from_json_float32(p_Document["m_fTest"]);
 
 	{
 		ZRuntimeResourceID s_Item;
@@ -1780,9 +1780,9 @@ void IContractObjective_SCounterData::FromSimpleJson(simdjson::ondemand::value p
 
 	s_Object.m_sHeader = std::string_view(p_Document["m_sHeader"]);
 
-	s_Object.m_nCount = static_cast<int32>(int64_t(p_Document["m_nCount"]));
+	s_Object.m_nCount = simdjson::from_json_int32(p_Document["m_nCount"]);
 
-	s_Object.m_nDeactivate = static_cast<int32>(int64_t(p_Document["m_nDeactivate"]));
+	s_Object.m_nDeactivate = simdjson::from_json_int32(p_Document["m_nDeactivate"]);
 
 	{
 		ZDynamicObject s_Item;
@@ -1934,27 +1934,27 @@ void ZGuid::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
 	ZGuid s_Object;
 
-	s_Object._a = static_cast<uint32>(int64_t(p_Document["_a"]));
+	s_Object._a = simdjson::from_json_uint32(p_Document["_a"]);
 
-	s_Object._b = static_cast<uint16>(int64_t(p_Document["_b"]));
+	s_Object._b = simdjson::from_json_uint16(p_Document["_b"]);
 
-	s_Object._c = static_cast<uint16>(int64_t(p_Document["_c"]));
+	s_Object._c = simdjson::from_json_uint16(p_Document["_c"]);
 
-	s_Object._d = static_cast<uint8>(int64_t(p_Document["_d"]));
+	s_Object._d = simdjson::from_json_uint8(p_Document["_d"]);
 
-	s_Object._e = static_cast<uint8>(int64_t(p_Document["_e"]));
+	s_Object._e = simdjson::from_json_uint8(p_Document["_e"]);
 
-	s_Object._f = static_cast<uint8>(int64_t(p_Document["_f"]));
+	s_Object._f = simdjson::from_json_uint8(p_Document["_f"]);
 
-	s_Object._g = static_cast<uint8>(int64_t(p_Document["_g"]));
+	s_Object._g = simdjson::from_json_uint8(p_Document["_g"]);
 
-	s_Object._h = static_cast<uint8>(int64_t(p_Document["_h"]));
+	s_Object._h = simdjson::from_json_uint8(p_Document["_h"]);
 
-	s_Object._i = static_cast<uint8>(int64_t(p_Document["_i"]));
+	s_Object._i = simdjson::from_json_uint8(p_Document["_i"]);
 
-	s_Object._j = static_cast<uint8>(int64_t(p_Document["_j"]));
+	s_Object._j = simdjson::from_json_uint8(p_Document["_j"]);
 
-	s_Object._k = static_cast<uint8>(int64_t(p_Document["_k"]));
+	s_Object._k = simdjson::from_json_uint8(p_Document["_k"]);
 
 	*reinterpret_cast<ZGuid*>(p_Target) = s_Object;
 }
@@ -2044,7 +2044,7 @@ void IContractObjective_STargetCondition::FromSimpleJson(simdjson::ondemand::val
 		s_Object.repositoryId = s_Item;
 	}
 
-	s_Object.hardCondition = bool(p_Document["hardCondition"]);
+	s_Object.hardCondition = simdjson::from_json_bool(p_Document["hardCondition"]);
 
 	{
 		ZGuid s_Item;
@@ -2780,9 +2780,9 @@ void S25DProjectionSettingsCurveEntry::FromSimpleJson(simdjson::ondemand::value 
 {
 	S25DProjectionSettingsCurveEntry s_Object;
 
-	s_Object.fDistance = static_cast<float32>(double(p_Document["fDistance"]));
+	s_Object.fDistance = simdjson::from_json_float32(p_Document["fDistance"]);
 
-	s_Object.fValue = static_cast<float32>(double(p_Document["fValue"]));
+	s_Object.fValue = simdjson::from_json_float32(p_Document["fValue"]);
 
 	*reinterpret_cast<S25DProjectionSettingsCurveEntry*>(p_Target) = s_Object;
 }
@@ -2874,17 +2874,17 @@ void SWorldSpaceSettings::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SWorldSpaceSettings s_Object;
 
-	s_Object.fCloseupDistance = static_cast<float32>(double(p_Document["fCloseupDistance"]));
+	s_Object.fCloseupDistance = simdjson::from_json_float32(p_Document["fCloseupDistance"]);
 
-	s_Object.fScale = static_cast<float32>(double(p_Document["fScale"]));
+	s_Object.fScale = simdjson::from_json_float32(p_Document["fScale"]);
 
-	s_Object.bDynamicScale = bool(p_Document["bDynamicScale"]);
+	s_Object.bDynamicScale = simdjson::from_json_bool(p_Document["bDynamicScale"]);
 
-	s_Object.fDynamicScaleAlpha = static_cast<float32>(double(p_Document["fDynamicScaleAlpha"]));
+	s_Object.fDynamicScaleAlpha = simdjson::from_json_float32(p_Document["fDynamicScaleAlpha"]);
 
-	s_Object.fDynamicScaleNearDistance = static_cast<float32>(double(p_Document["fDynamicScaleNearDistance"]));
+	s_Object.fDynamicScaleNearDistance = simdjson::from_json_float32(p_Document["fDynamicScaleNearDistance"]);
 
-	s_Object.fDynamicScaleBlendRange = static_cast<float32>(double(p_Document["fDynamicScaleBlendRange"]));
+	s_Object.fDynamicScaleBlendRange = simdjson::from_json_float32(p_Document["fDynamicScaleBlendRange"]);
 
 	*reinterpret_cast<SWorldSpaceSettings*>(p_Target) = s_Object;
 }
@@ -3128,29 +3128,29 @@ void S25DProjectionSettings::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	S25DProjectionSettings s_Object;
 
-	s_Object.fNearDistance = static_cast<float32>(double(p_Document["fNearDistance"]));
+	s_Object.fNearDistance = simdjson::from_json_float32(p_Document["fNearDistance"]);
 
-	s_Object.fFarDistance = static_cast<float32>(double(p_Document["fFarDistance"]));
+	s_Object.fFarDistance = simdjson::from_json_float32(p_Document["fFarDistance"]);
 
-	s_Object.fNearScale = static_cast<float32>(double(p_Document["fNearScale"]));
+	s_Object.fNearScale = simdjson::from_json_float32(p_Document["fNearScale"]);
 
-	s_Object.fFarScale = static_cast<float32>(double(p_Document["fFarScale"]));
+	s_Object.fFarScale = simdjson::from_json_float32(p_Document["fFarScale"]);
 
-	s_Object.fNearFov = static_cast<float32>(double(p_Document["fNearFov"]));
+	s_Object.fNearFov = simdjson::from_json_float32(p_Document["fNearFov"]);
 
-	s_Object.fFarFov = static_cast<float32>(double(p_Document["fFarFov"]));
+	s_Object.fFarFov = simdjson::from_json_float32(p_Document["fFarFov"]);
 
-	s_Object.fNearScaleFov = static_cast<float32>(double(p_Document["fNearScaleFov"]));
+	s_Object.fNearScaleFov = simdjson::from_json_float32(p_Document["fNearScaleFov"]);
 
-	s_Object.fFarScaleFov = static_cast<float32>(double(p_Document["fFarScaleFov"]));
+	s_Object.fFarScaleFov = simdjson::from_json_float32(p_Document["fFarScaleFov"]);
 
-	s_Object.fScaleFactor = static_cast<float32>(double(p_Document["fScaleFactor"]));
+	s_Object.fScaleFactor = simdjson::from_json_float32(p_Document["fScaleFactor"]);
 
-	s_Object.fNearAlpha = static_cast<float32>(double(p_Document["fNearAlpha"]));
+	s_Object.fNearAlpha = simdjson::from_json_float32(p_Document["fNearAlpha"]);
 
-	s_Object.fFarAlpha = static_cast<float32>(double(p_Document["fFarAlpha"]));
+	s_Object.fFarAlpha = simdjson::from_json_float32(p_Document["fFarAlpha"]);
 
-	s_Object.fAlphaFactor = static_cast<float32>(double(p_Document["fAlphaFactor"]));
+	s_Object.fAlphaFactor = simdjson::from_json_float32(p_Document["fAlphaFactor"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aScaleCurve"])
 	{
@@ -3168,7 +3168,7 @@ void S25DProjectionSettings::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.eViewportLock = static_cast<EViewportLock>(ZHMEnums::GetEnumValueByName("EViewportLock", std::string_view(p_Document["eViewportLock"])));
 
-	s_Object.fViewportGutter = static_cast<float32>(double(p_Document["fViewportGutter"]));
+	s_Object.fViewportGutter = simdjson::from_json_float32(p_Document["fViewportGutter"]);
 
 	{
 		SWorldSpaceSettings s_Item;
@@ -3229,9 +3229,9 @@ void S3rdPersonCameraSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	S3rdPersonCameraSaveData s_Object;
 
-	s_Object.m_fAngleYaw = static_cast<float32>(double(p_Document["m_fAngleYaw"]));
+	s_Object.m_fAngleYaw = simdjson::from_json_float32(p_Document["m_fAngleYaw"]);
 
-	s_Object.m_fAnglePitch = static_cast<float32>(double(p_Document["m_fAnglePitch"]));
+	s_Object.m_fAnglePitch = simdjson::from_json_float32(p_Document["m_fAnglePitch"]);
 
 	*reinterpret_cast<S3rdPersonCameraSaveData*>(p_Target) = s_Object;
 }
@@ -3273,7 +3273,7 @@ void ZGameTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	ZGameTime s_Object;
 
-	s_Object.m_nTicks = int64(p_Document["m_nTicks"]);
+	s_Object.m_nTicks = simdjson::from_json_int64(p_Document["m_nTicks"]);
 
 	*reinterpret_cast<ZGameTime*>(p_Target) = s_Object;
 }
@@ -3347,7 +3347,7 @@ void SAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	s_Object.m_eType = static_cast<EAIEventType>(ZHMEnums::GetEnumValueByName("EAIEventType", std::string_view(p_Document["m_eType"])));
 
-	s_Object.m_bHandled = bool(p_Document["m_bHandled"]);
+	s_Object.m_bHandled = simdjson::from_json_bool(p_Document["m_bHandled"]);
 
 	{
 		ZGameTime s_Item;
@@ -3503,27 +3503,27 @@ void SAIModifierServiceActorSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SAIModifierServiceActorSaveData s_Object;
 
-	s_Object.m_rActorRef = static_cast<uint32>(int64_t(p_Document["m_rActorRef"]));
+	s_Object.m_rActorRef = simdjson::from_json_uint32(p_Document["m_rActorRef"]);
 
-	s_Object.m_bNeedsVolumeUpdate = bool(p_Document["m_bNeedsVolumeUpdate"]);
+	s_Object.m_bNeedsVolumeUpdate = simdjson::from_json_bool(p_Document["m_bNeedsVolumeUpdate"]);
 
-	s_Object.m_bNeedsKnowledgeUpdate = bool(p_Document["m_bNeedsKnowledgeUpdate"]);
+	s_Object.m_bNeedsKnowledgeUpdate = simdjson::from_json_bool(p_Document["m_bNeedsKnowledgeUpdate"]);
 
-	s_Object.m_uiModVolume = static_cast<uint32>(int64_t(p_Document["m_uiModVolume"]));
+	s_Object.m_uiModVolume = simdjson::from_json_uint32(p_Document["m_uiModVolume"]);
 
-	s_Object.m_uiModBehavior = static_cast<uint32>(int64_t(p_Document["m_uiModBehavior"]));
+	s_Object.m_uiModBehavior = simdjson::from_json_uint32(p_Document["m_uiModBehavior"]);
 
-	s_Object.m_uiModRole = static_cast<uint32>(int64_t(p_Document["m_uiModRole"]));
+	s_Object.m_uiModRole = simdjson::from_json_uint32(p_Document["m_uiModRole"]);
 
-	s_Object.m_uiModItem = static_cast<uint32>(int64_t(p_Document["m_uiModItem"]));
+	s_Object.m_uiModItem = simdjson::from_json_uint32(p_Document["m_uiModItem"]);
 
-	s_Object.m_uiModSituation = static_cast<uint32>(int64_t(p_Document["m_uiModSituation"]));
+	s_Object.m_uiModSituation = simdjson::from_json_uint32(p_Document["m_uiModSituation"]);
 
-	s_Object.m_uiModOutfit = static_cast<uint32>(int64_t(p_Document["m_uiModOutfit"]));
+	s_Object.m_uiModOutfit = simdjson::from_json_uint32(p_Document["m_uiModOutfit"]);
 
-	s_Object.m_uiModOverride = static_cast<uint32>(int64_t(p_Document["m_uiModOverride"]));
+	s_Object.m_uiModOverride = simdjson::from_json_uint32(p_Document["m_uiModOverride"]);
 
-	s_Object.m_uiModStatus = static_cast<uint32>(int64_t(p_Document["m_uiModStatus"]));
+	s_Object.m_uiModStatus = simdjson::from_json_uint32(p_Document["m_uiModStatus"]);
 
 	*reinterpret_cast<SAIModifierServiceActorSaveData*>(p_Target) = s_Object;
 }
@@ -3596,7 +3596,7 @@ void SAIModifierServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SAIModifierServiceSaveData s_Object;
 
-	s_Object.m_bFullVolumeUpdate = bool(p_Document["m_bFullVolumeUpdate"]);
+	s_Object.m_bFullVolumeUpdate = simdjson::from_json_bool(p_Document["m_bFullVolumeUpdate"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActors"])
 	{
@@ -3646,7 +3646,7 @@ void SAIPerceptibleEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SAIPerceptibleEntitySaveData s_Object;
 
-	s_Object.m_bPerceptibleEnabled = bool(p_Document["m_bPerceptibleEnabled"]);
+	s_Object.m_bPerceptibleEnabled = simdjson::from_json_bool(p_Document["m_bPerceptibleEnabled"]);
 
 	*reinterpret_cast<SAIPerceptibleEntitySaveData*>(p_Target) = s_Object;
 }
@@ -3688,7 +3688,7 @@ void SAIVisionBlockerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SAIVisionBlockerSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	*reinterpret_cast<SAIVisionBlockerSaveData*>(p_Target) = s_Object;
 }
@@ -3760,13 +3760,13 @@ void SAccessoryItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SAccessoryItemSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	s_Object.m_nBoneId = static_cast<uint32>(int64_t(p_Document["m_nBoneId"]));
+	s_Object.m_nBoneId = simdjson::from_json_uint32(p_Document["m_nBoneId"]);
 
-	s_Object.m_bAttached = bool(p_Document["m_bAttached"]);
+	s_Object.m_bAttached = simdjson::from_json_bool(p_Document["m_bAttached"]);
 
-	s_Object.m_bVisible = bool(p_Document["m_bVisible"]);
+	s_Object.m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
 
 	*reinterpret_cast<SAccessoryItemSaveData*>(p_Target) = s_Object;
 }
@@ -3849,11 +3849,11 @@ void SAccidentObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SAccidentObserversGroupSaveData s_Object;
 
-	s_Object.m_target = static_cast<uint32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_uint32(p_Document["m_target"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aWaitingObservers"])
 	{
-		s_Object.m_aWaitingObservers.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aWaitingObservers.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	s_Object.m_accidentScaleContext = static_cast<EAccidentScaleContext>(ZHMEnums::GetEnumValueByName("EAccidentScaleContext", std::string_view(p_Document["m_accidentScaleContext"])));
@@ -3939,9 +3939,9 @@ void SActBehaviorEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SActBehaviorEntitySaveData s_Object;
 
-	s_Object.m_bStartedSignalSent = bool(p_Document["m_bStartedSignalSent"]);
+	s_Object.m_bStartedSignalSent = simdjson::from_json_bool(p_Document["m_bStartedSignalSent"]);
 
-	s_Object.m_bReachedSignalSent = bool(p_Document["m_bReachedSignalSent"]);
+	s_Object.m_bReachedSignalSent = simdjson::from_json_bool(p_Document["m_bReachedSignalSent"]);
 
 	s_Object.m_nState = static_cast<ZActBehaviorEntity_EState>(ZHMEnums::GetEnumValueByName("ZActBehaviorEntity.EState", std::string_view(p_Document["m_nState"])));
 
@@ -3951,7 +3951,7 @@ void SActBehaviorEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_ActStartTime = s_Item;
 	}
 
-	s_Object.m_bForceTimeout = bool(p_Document["m_bForceTimeout"]);
+	s_Object.m_bForceTimeout = simdjson::from_json_bool(p_Document["m_bForceTimeout"]);
 
 	*reinterpret_cast<SActBehaviorEntitySaveData*>(p_Target) = s_Object;
 }
@@ -4024,13 +4024,13 @@ void float4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 {
 	float4 s_Object;
 
-	s_Object.x = static_cast<float32>(double(p_Document["x"]));
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object.y = static_cast<float32>(double(p_Document["y"]));
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
-	s_Object.z = static_cast<float32>(double(p_Document["z"]));
+	s_Object.z = simdjson::from_json_float32(p_Document["z"]);
 
-	s_Object.w = static_cast<float32>(double(p_Document["w"]));
+	s_Object.w = simdjson::from_json_float32(p_Document["w"]);
 
 	*reinterpret_cast<float4*>(p_Target) = s_Object;
 }
@@ -4134,9 +4134,9 @@ void SActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object.m_sAct = std::string_view(p_Document["m_sAct"]);
 
-	s_Object.m_fDuration = static_cast<float32>(double(p_Document["m_fDuration"]));
+	s_Object.m_fDuration = simdjson::from_json_float32(p_Document["m_fDuration"]);
 
-	s_Object.m_rChildNetworkEntity = static_cast<uint32>(int64_t(p_Document["m_rChildNetworkEntity"]));
+	s_Object.m_rChildNetworkEntity = simdjson::from_json_uint32(p_Document["m_rChildNetworkEntity"]);
 
 	{
 		float4 s_Item;
@@ -4144,11 +4144,11 @@ void SActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 		s_Object.m_faceTarget = s_Item;
 	}
 
-	s_Object.m_bBlendOutImmediatelyUponTimeout = bool(p_Document["m_bBlendOutImmediatelyUponTimeout"]);
+	s_Object.m_bBlendOutImmediatelyUponTimeout = simdjson::from_json_bool(p_Document["m_bBlendOutImmediatelyUponTimeout"]);
 
-	s_Object.m_bDropCarriedItems = bool(p_Document["m_bDropCarriedItems"]);
+	s_Object.m_bDropCarriedItems = simdjson::from_json_bool(p_Document["m_bDropCarriedItems"]);
 
-	s_Object.m_bStopCurrentActFast = bool(p_Document["m_bStopCurrentActFast"]);
+	s_Object.m_bStopCurrentActFast = simdjson::from_json_bool(p_Document["m_bStopCurrentActFast"]);
 
 	*reinterpret_cast<SActOrderSaveData*>(p_Target) = s_Object;
 }
@@ -4242,15 +4242,15 @@ void SActionRadialArcDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SActionRadialArcDisplayInfo s_Object;
 
-	s_Object.hidden = bool(p_Document["hidden"]);
+	s_Object.hidden = simdjson::from_json_bool(p_Document["hidden"]);
 
-	s_Object.locked = bool(p_Document["locked"]);
+	s_Object.locked = simdjson::from_json_bool(p_Document["locked"]);
 
-	s_Object.active = bool(p_Document["active"]);
+	s_Object.active = simdjson::from_json_bool(p_Document["active"]);
 
-	s_Object.illegal = bool(p_Document["illegal"]);
+	s_Object.illegal = simdjson::from_json_bool(p_Document["illegal"]);
 
-	s_Object.icon = static_cast<int32>(int64_t(p_Document["icon"]));
+	s_Object.icon = simdjson::from_json_int32(p_Document["icon"]);
 
 	s_Object.label = std::string_view(p_Document["label"]);
 
@@ -4766,7 +4766,7 @@ void SActorAccessoryItemActionSaveData::FromSimpleJson(simdjson::ondemand::value
 {
 	SActorAccessoryItemActionSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SActorAccessoryItemActionSaveData*>(p_Target) = s_Object;
 }
@@ -4808,7 +4808,7 @@ void SActorAliveConditionSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SActorAliveConditionSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SActorAliveConditionSaveData*>(p_Target) = s_Object;
 }
@@ -4860,9 +4860,9 @@ void SActorAnimSetVariationIndexSaveData::FromSimpleJson(simdjson::ondemand::val
 {
 	SActorAnimSetVariationIndexSaveData s_Object;
 
-	s_Object.m_rAnimationSetDefinition = static_cast<uint32>(int64_t(p_Document["m_rAnimationSetDefinition"]));
+	s_Object.m_rAnimationSetDefinition = simdjson::from_json_uint32(p_Document["m_rAnimationSetDefinition"]);
 
-	s_Object.m_nIndex = static_cast<int32>(int64_t(p_Document["m_nIndex"]));
+	s_Object.m_nIndex = simdjson::from_json_int32(p_Document["m_nIndex"]);
 
 	*reinterpret_cast<SActorAnimSetVariationIndexSaveData*>(p_Target) = s_Object;
 }
@@ -5018,7 +5018,7 @@ void SActorAnimSetSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_eAnimSet = static_cast<EAnimSetType>(ZHMEnums::GetEnumValueByName("EAnimSetType", std::string_view(p_Document["m_eAnimSet"])));
 
-	s_Object.m_rCustomAnimationSet = static_cast<uint32>(int64_t(p_Document["m_rCustomAnimationSet"]));
+	s_Object.m_rCustomAnimationSet = simdjson::from_json_uint32(p_Document["m_rCustomAnimationSet"]);
 
 	s_Object.m_eVariationResourceMaxTension = static_cast<EGameTension>(ZHMEnums::GetEnumValueByName("EGameTension", std::string_view(p_Document["m_eVariationResourceMaxTension"])));
 
@@ -5094,9 +5094,9 @@ void SActorBoneAttachSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SActorBoneAttachSaveData s_Object;
 
-	s_Object.m_rAttachmentTarget = static_cast<uint32>(int64_t(p_Document["m_rAttachmentTarget"]));
+	s_Object.m_rAttachmentTarget = simdjson::from_json_uint32(p_Document["m_rAttachmentTarget"]);
 
-	s_Object.m_bIsAttached = bool(p_Document["m_bIsAttached"]);
+	s_Object.m_bIsAttached = simdjson::from_json_bool(p_Document["m_bIsAttached"]);
 
 	*reinterpret_cast<SActorBoneAttachSaveData*>(p_Target) = s_Object;
 }
@@ -5192,7 +5192,7 @@ void SActorBoneAttachmentsSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -5274,13 +5274,13 @@ void SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	SVector4 s_Object;
 
-	s_Object.x = static_cast<float32>(double(p_Document["x"]));
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object.y = static_cast<float32>(double(p_Document["y"]));
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
-	s_Object.z = static_cast<float32>(double(p_Document["z"]));
+	s_Object.z = simdjson::from_json_float32(p_Document["z"]);
 
-	s_Object.w = static_cast<float32>(double(p_Document["w"]));
+	s_Object.w = simdjson::from_json_float32(p_Document["w"]);
 
 	*reinterpret_cast<SVector4*>(p_Target) = s_Object;
 }
@@ -5636,45 +5636,45 @@ void SActorDamageControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SActorDamageControlSaveData s_Object;
 
-	s_Object.bExplosive = bool(p_Document["bExplosive"]);
+	s_Object.bExplosive = simdjson::from_json_bool(p_Document["bExplosive"]);
 
-	s_Object.bProjectile = bool(p_Document["bProjectile"]);
+	s_Object.bProjectile = simdjson::from_json_bool(p_Document["bProjectile"]);
 
-	s_Object.bHeadshot = bool(p_Document["bHeadshot"]);
+	s_Object.bHeadshot = simdjson::from_json_bool(p_Document["bHeadshot"]);
 
-	s_Object.bSniperShot = bool(p_Document["bSniperShot"]);
+	s_Object.bSniperShot = simdjson::from_json_bool(p_Document["bSniperShot"]);
 
-	s_Object.bThroughWall = bool(p_Document["bThroughWall"]);
+	s_Object.bThroughWall = simdjson::from_json_bool(p_Document["bThroughWall"]);
 
-	s_Object.bKillByAccident = bool(p_Document["bKillByAccident"]);
+	s_Object.bKillByAccident = simdjson::from_json_bool(p_Document["bKillByAccident"]);
 
-	s_Object.bWeaponSilenced = bool(p_Document["bWeaponSilenced"]);
+	s_Object.bWeaponSilenced = simdjson::from_json_bool(p_Document["bWeaponSilenced"]);
 
-	s_Object.bLongRange = bool(p_Document["bLongRange"]);
+	s_Object.bLongRange = simdjson::from_json_bool(p_Document["bLongRange"]);
 
-	s_Object.fTotalDamage = static_cast<float32>(double(p_Document["fTotalDamage"]));
+	s_Object.fTotalDamage = simdjson::from_json_float32(p_Document["fTotalDamage"]);
 
-	s_Object.fPacifyDamage = static_cast<float32>(double(p_Document["fPacifyDamage"]));
+	s_Object.fPacifyDamage = simdjson::from_json_float32(p_Document["fPacifyDamage"]);
 
-	s_Object.nImpactBodyPart = static_cast<int32>(int64_t(p_Document["nImpactBodyPart"]));
+	s_Object.nImpactBodyPart = simdjson::from_json_int32(p_Document["nImpactBodyPart"]);
 
 	s_Object.maxDeathType = static_cast<EDeathType>(ZHMEnums::GetEnumValueByName("EDeathType", std::string_view(p_Document["maxDeathType"])));
 
 	s_Object.maxDeathContext = static_cast<EDeathContext>(ZHMEnums::GetEnumValueByName("EDeathContext", std::string_view(p_Document["maxDeathContext"])));
 
-	s_Object.rAccidentSetup = static_cast<uint32>(int64_t(p_Document["rAccidentSetup"]));
+	s_Object.rAccidentSetup = simdjson::from_json_uint32(p_Document["rAccidentSetup"]);
 
-	s_Object.bFirearmPacifiesTarget = bool(p_Document["bFirearmPacifiesTarget"]);
+	s_Object.bFirearmPacifiesTarget = simdjson::from_json_bool(p_Document["bFirearmPacifiesTarget"]);
 
-	s_Object.bBulletCausesHitReaction = bool(p_Document["bBulletCausesHitReaction"]);
+	s_Object.bBulletCausesHitReaction = simdjson::from_json_bool(p_Document["bBulletCausesHitReaction"]);
 
-	s_Object.fHitsNumberTimeout = static_cast<float32>(double(p_Document["fHitsNumberTimeout"]));
+	s_Object.fHitsNumberTimeout = simdjson::from_json_float32(p_Document["fHitsNumberTimeout"]);
 
-	s_Object.fHealthPercentTimeout = static_cast<float32>(double(p_Document["fHealthPercentTimeout"]));
+	s_Object.fHealthPercentTimeout = simdjson::from_json_float32(p_Document["fHealthPercentTimeout"]);
 
-	s_Object.rCharacter = static_cast<uint32>(int64_t(p_Document["rCharacter"]));
+	s_Object.rCharacter = simdjson::from_json_uint32(p_Document["rCharacter"]);
 
-	s_Object.rSource = static_cast<uint32>(int64_t(p_Document["rSource"]));
+	s_Object.rSource = simdjson::from_json_uint32(p_Document["rSource"]);
 
 	{
 		ZRepositoryID s_Item;
@@ -5682,15 +5682,15 @@ void SActorDamageControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 		s_Object.m_accuseUnconsciousOutfit = s_Item;
 	}
 
-	s_Object.m_bValidAccuseUnconsciousOutfit = bool(p_Document["m_bValidAccuseUnconsciousOutfit"]);
+	s_Object.m_bValidAccuseUnconsciousOutfit = simdjson::from_json_bool(p_Document["m_bValidAccuseUnconsciousOutfit"]);
 
 	s_Object.eDeathSpeak = static_cast<EActorSoundDefs>(ZHMEnums::GetEnumValueByName("EActorSoundDefs", std::string_view(p_Document["eDeathSpeak"])));
 
-	s_Object.bDefaultDeathSound = bool(p_Document["bDefaultDeathSound"]);
+	s_Object.bDefaultDeathSound = simdjson::from_json_bool(p_Document["bDefaultDeathSound"]);
 
-	s_Object.iEvents = static_cast<int32>(int64_t(p_Document["iEvents"]));
+	s_Object.iEvents = simdjson::from_json_int32(p_Document["iEvents"]);
 
-	s_Object.fAgilityElementUncosciousTime = static_cast<float32>(double(p_Document["fAgilityElementUncosciousTime"]));
+	s_Object.fAgilityElementUncosciousTime = simdjson::from_json_float32(p_Document["fAgilityElementUncosciousTime"]);
 
 	*reinterpret_cast<SActorDamageControlSaveData*>(p_Target) = s_Object;
 }
@@ -5753,11 +5753,11 @@ void SActorDynamicTemplateHandlerSaveData::FromSimpleJson(simdjson::ondemand::va
 {
 	SActorDynamicTemplateHandlerSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
-	s_Object.m_rSetpiece = static_cast<uint32>(int64_t(p_Document["m_rSetpiece"]));
+	s_Object.m_rSetpiece = simdjson::from_json_uint32(p_Document["m_rSetpiece"]);
 
 	*reinterpret_cast<SActorDynamicTemplateHandlerSaveData*>(p_Target) = s_Object;
 }
@@ -5799,7 +5799,7 @@ void SActorDynamicTemplateManipulatorSaveData::FromSimpleJson(simdjson::ondemand
 {
 	SActorDynamicTemplateManipulatorSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SActorDynamicTemplateManipulatorSaveData*>(p_Target) = s_Object;
 }
@@ -5943,9 +5943,9 @@ void SActorDynamicTemplateSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 		s_Object.m_nTimeRemoveLimit = s_Item;
 	}
 
-	s_Object.m_resourceID = int64(p_Document["m_resourceID"]);
+	s_Object.m_resourceID = simdjson::from_json_int64(p_Document["m_resourceID"]);
 
-	s_Object.m_rInstance = static_cast<uint32>(int64_t(p_Document["m_rInstance"]));
+	s_Object.m_rInstance = simdjson::from_json_uint32(p_Document["m_rInstance"]);
 
 	*reinterpret_cast<SActorDynamicTemplateSaveData*>(p_Target) = s_Object;
 }
@@ -6106,22 +6106,22 @@ void SActorGoalSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aHandled"])
 	{
-		s_Object.m_aHandled.push_back(bool(s_Item0));
+		s_Object.m_aHandled.push_back(simdjson::from_json_bool(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIsCurrent"])
 	{
-		s_Object.m_aIsCurrent.push_back(bool(s_Item0));
+		s_Object.m_aIsCurrent.push_back(simdjson::from_json_bool(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_fExpiredTime"])
 	{
-		s_Object.m_fExpiredTime.push_back(static_cast<float32>(double(s_Item0)));
+		s_Object.m_fExpiredTime.push_back(simdjson::from_json_float32(s_Item0));
 	}
 
 	*reinterpret_cast<SActorGoalSaveData*>(p_Target) = s_Object;
@@ -6198,13 +6198,13 @@ void SActorIKControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SActorIKControllerSaveData s_Object;
 
-	s_Object.m_fRightHandWeight = static_cast<float32>(double(p_Document["m_fRightHandWeight"]));
+	s_Object.m_fRightHandWeight = simdjson::from_json_float32(p_Document["m_fRightHandWeight"]);
 
-	s_Object.m_fLeftHandWeight = static_cast<float32>(double(p_Document["m_fLeftHandWeight"]));
+	s_Object.m_fLeftHandWeight = simdjson::from_json_float32(p_Document["m_fLeftHandWeight"]);
 
-	s_Object.m_fRightHandTargetWeight = static_cast<float32>(double(p_Document["m_fRightHandTargetWeight"]));
+	s_Object.m_fRightHandTargetWeight = simdjson::from_json_float32(p_Document["m_fRightHandTargetWeight"]);
 
-	s_Object.m_fLeftHandTargetWeight = static_cast<float32>(double(p_Document["m_fLeftHandTargetWeight"]));
+	s_Object.m_fLeftHandTargetWeight = simdjson::from_json_float32(p_Document["m_fLeftHandTargetWeight"]);
 
 	*reinterpret_cast<SActorIKControllerSaveData*>(p_Target) = s_Object;
 }
@@ -6296,17 +6296,17 @@ void SActorInventoryItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SActorInventoryItemSaveData s_Object;
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
 	s_Object.m_eAttachLocation = static_cast<EAttachLocation>(ZHMEnums::GetEnumValueByName("EAttachLocation", std::string_view(p_Document["m_eAttachLocation"])));
 
 	s_Object.m_eMaxTension = static_cast<EGameTension>(ZHMEnums::GetEnumValueByName("EGameTension", std::string_view(p_Document["m_eMaxTension"])));
 
-	s_Object.m_bLeftHand = bool(p_Document["m_bLeftHand"]);
+	s_Object.m_bLeftHand = simdjson::from_json_bool(p_Document["m_bLeftHand"]);
 
-	s_Object.m_bWeapon = bool(p_Document["m_bWeapon"]);
+	s_Object.m_bWeapon = simdjson::from_json_bool(p_Document["m_bWeapon"]);
 
-	s_Object.m_bGrenade = bool(p_Document["m_bGrenade"]);
+	s_Object.m_bGrenade = simdjson::from_json_bool(p_Document["m_bGrenade"]);
 
 	*reinterpret_cast<SActorInventoryItemSaveData*>(p_Target) = s_Object;
 }
@@ -6427,9 +6427,9 @@ void SActorItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SActorItemActionSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
 	*reinterpret_cast<SActorItemActionSaveData*>(p_Target) = s_Object;
 }
@@ -6471,7 +6471,7 @@ void SActorKeywordProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SActorKeywordProxySaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SActorKeywordProxySaveData*>(p_Target) = s_Object;
 }
@@ -6567,7 +6567,7 @@ void SActorKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -6686,7 +6686,7 @@ void SActorProviderApproachSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SActorProviderApproachSaveData s_Object;
 
-	s_Object.m_rCastActor = static_cast<uint32>(int64_t(p_Document["m_rCastActor"]));
+	s_Object.m_rCastActor = simdjson::from_json_uint32(p_Document["m_rCastActor"]);
 
 	*reinterpret_cast<SActorProviderApproachSaveData*>(p_Target) = s_Object;
 }
@@ -6761,10 +6761,10 @@ void SActorProviderDirectSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActors"])
 	{
-		s_Object.m_aActors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aActors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_bRunning = bool(p_Document["m_bRunning"]);
+	s_Object.m_bRunning = simdjson::from_json_bool(p_Document["m_bRunning"]);
 
 	*reinterpret_cast<SActorProviderDirectSaveData*>(p_Target) = s_Object;
 }
@@ -6827,11 +6827,11 @@ void SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	SVector3 s_Object;
 
-	s_Object.x = static_cast<float32>(double(p_Document["x"]));
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object.y = static_cast<float32>(double(p_Document["y"]));
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
-	s_Object.z = static_cast<float32>(double(p_Document["z"]));
+	s_Object.z = simdjson::from_json_float32(p_Document["z"]);
 
 	*reinterpret_cast<SVector3*>(p_Target) = s_Object;
 }
@@ -6950,7 +6950,7 @@ void SActorRagdollPoseSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBoneIndices"])
 	{
-		s_Object.m_aBoneIndices.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aBoneIndices.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SActorRagdollPoseSaveData*>(p_Target) = s_Object;
@@ -7036,7 +7036,7 @@ void SActorThrowSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SActorThrowSaveData s_Object;
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
 	{
 		float4 s_Item;
@@ -7056,7 +7056,7 @@ void SActorThrowSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.m_vItemVelocity = s_Item;
 	}
 
-	s_Object.m_fDistance = static_cast<float32>(double(p_Document["m_fDistance"]));
+	s_Object.m_fDistance = simdjson::from_json_float32(p_Document["m_fDistance"]);
 
 	*reinterpret_cast<SActorThrowSaveData*>(p_Target) = s_Object;
 }
@@ -7349,7 +7349,7 @@ void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SKnownEntitySaveData s_Object;
 
-	s_Object.m_nSharedIndex = static_cast<int32>(int64_t(p_Document["m_nSharedIndex"]));
+	s_Object.m_nSharedIndex = simdjson::from_json_int32(p_Document["m_nSharedIndex"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEvents"])
 	{
@@ -7358,9 +7358,9 @@ void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_aEvents.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_nBooleanEvents = static_cast<uint32>(int64_t(p_Document["m_nBooleanEvents"]));
+	s_Object.m_nBooleanEvents = simdjson::from_json_uint32(p_Document["m_nBooleanEvents"]);
 
-	s_Object.m_nBooleanEventsHandled = static_cast<uint32>(int64_t(p_Document["m_nBooleanEventsHandled"]));
+	s_Object.m_nBooleanEventsHandled = simdjson::from_json_uint32(p_Document["m_nBooleanEventsHandled"]);
 
 	{
 		SMatrix s_Item;
@@ -7374,7 +7374,7 @@ void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_tLastWorldMatrixUpdate = s_Item;
 	}
 
-	s_Object.m_nGoals = static_cast<uint16>(int64_t(p_Document["m_nGoals"]));
+	s_Object.m_nGoals = simdjson::from_json_uint16(p_Document["m_nGoals"]);
 
 	*reinterpret_cast<SKnownEntitySaveData*>(p_Target) = s_Object;
 }
@@ -7651,15 +7651,15 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_aGoals.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_fHMAttention = static_cast<float32>(double(p_Document["m_fHMAttention"]));
+	s_Object.m_fHMAttention = simdjson::from_json_float32(p_Document["m_fHMAttention"]);
 
-	s_Object.m_fHMAttentionLastUpdate = static_cast<float32>(double(p_Document["m_fHMAttentionLastUpdate"]));
+	s_Object.m_fHMAttentionLastUpdate = simdjson::from_json_float32(p_Document["m_fHMAttentionLastUpdate"]);
 
-	s_Object.m_fHMDisguiseAttention = static_cast<float32>(double(p_Document["m_fHMDisguiseAttention"]));
+	s_Object.m_fHMDisguiseAttention = simdjson::from_json_float32(p_Document["m_fHMDisguiseAttention"]);
 
-	s_Object.m_fHMTrespassingAttention = static_cast<float32>(double(p_Document["m_fHMTrespassingAttention"]));
+	s_Object.m_fHMTrespassingAttention = simdjson::from_json_float32(p_Document["m_fHMTrespassingAttention"]);
 
-	s_Object.m_fHMLastTrespassingAttentionMax = static_cast<float32>(double(p_Document["m_fHMLastTrespassingAttentionMax"]));
+	s_Object.m_fHMLastTrespassingAttentionMax = simdjson::from_json_float32(p_Document["m_fHMLastTrespassingAttentionMax"]);
 
 	{
 		ZGameTime s_Item;
@@ -7673,9 +7673,9 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_tLastAttentionEvaluate = s_Item;
 	}
 
-	s_Object.m_fHMWeaponAttention = static_cast<float32>(double(p_Document["m_fHMWeaponAttention"]));
+	s_Object.m_fHMWeaponAttention = simdjson::from_json_float32(p_Document["m_fHMWeaponAttention"]);
 
-	s_Object.m_fHMWeaponAttentionChange = static_cast<float32>(double(p_Document["m_fHMWeaponAttentionChange"]));
+	s_Object.m_fHMWeaponAttentionChange = simdjson::from_json_float32(p_Document["m_fHMWeaponAttentionChange"]);
 
 	s_Object.m_eGameTension = static_cast<EGameTension>(ZHMEnums::GetEnumValueByName("EGameTension", std::string_view(p_Document["m_eGameTension"])));
 
@@ -7691,7 +7691,7 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_tExpiredAIModifierSuppressSocialGreeting = s_Item;
 	}
 
-	s_Object.m_behaviorModifiers = static_cast<uint32>(int64_t(p_Document["m_behaviorModifiers"]));
+	s_Object.m_behaviorModifiers = simdjson::from_json_uint32(p_Document["m_behaviorModifiers"]);
 
 	*reinterpret_cast<SKnowledgeSaveData*>(p_Target) = s_Object;
 }
@@ -7756,7 +7756,7 @@ void SLongTermMemorySaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 		s_Object.m_sOutfit = s_Item;
 	}
 
-	s_Object.m_Memory = static_cast<uint8>(int64_t(p_Document["m_Memory"]));
+	s_Object.m_Memory = simdjson::from_json_uint8(p_Document["m_Memory"]);
 
 	*reinterpret_cast<SLongTermMemorySaveData*>(p_Target) = s_Object;
 }
@@ -8453,7 +8453,7 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_ThrowHandler = s_Item;
 	}
 
-	s_Object.m_nCurrentBehaviorType = static_cast<int32>(int64_t(p_Document["m_nCurrentBehaviorType"]));
+	s_Object.m_nCurrentBehaviorType = simdjson::from_json_int32(p_Document["m_nCurrentBehaviorType"]);
 
 	{
 		ZVariant s_Item;
@@ -8463,12 +8463,12 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCurrentBehaviorEntities"])
 	{
-		s_Object.m_aCurrentBehaviorEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aCurrentBehaviorEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBehaviorEntities"])
 	{
-		s_Object.m_aBehaviorEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aBehaviorEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	{
@@ -8483,9 +8483,9 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_OutfitRepositoryId = s_Item;
 	}
 
-	s_Object.m_nOutfitCharset = static_cast<int32>(int64_t(p_Document["m_nOutfitCharset"]));
+	s_Object.m_nOutfitCharset = simdjson::from_json_int32(p_Document["m_nOutfitCharset"]);
 
-	s_Object.m_nOutfitVariation = static_cast<int32>(int64_t(p_Document["m_nOutfitVariation"]));
+	s_Object.m_nOutfitVariation = simdjson::from_json_int32(p_Document["m_nOutfitVariation"]);
 
 	{
 		ZGameTime s_Item;
@@ -8495,17 +8495,17 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	s_Object.m_nState = static_cast<EActorState>(ZHMEnums::GetEnumValueByName("EActorState", std::string_view(p_Document["m_nState"])));
 
-	s_Object.m_rBodyContainerEntity = static_cast<uint32>(int64_t(p_Document["m_rBodyContainerEntity"]));
+	s_Object.m_rBodyContainerEntity = simdjson::from_json_uint32(p_Document["m_rBodyContainerEntity"]);
 
-	s_Object.m_nBodyContainerSlot = static_cast<int32>(int64_t(p_Document["m_nBodyContainerSlot"]));
+	s_Object.m_nBodyContainerSlot = simdjson::from_json_int32(p_Document["m_nBodyContainerSlot"]);
 
 	s_Object.m_eEmotionState = static_cast<EActorEmotionState>(ZHMEnums::GetEnumValueByName("EActorEmotionState", std::string_view(p_Document["m_eEmotionState"])));
 
-	s_Object.m_rCorpseBodybagEntity = static_cast<uint32>(int64_t(p_Document["m_rCorpseBodybagEntity"]));
+	s_Object.m_rCorpseBodybagEntity = simdjson::from_json_uint32(p_Document["m_rCorpseBodybagEntity"]);
 
-	s_Object.m_rDragBodybagEntity = static_cast<uint32>(int64_t(p_Document["m_rDragBodybagEntity"]));
+	s_Object.m_rDragBodybagEntity = simdjson::from_json_uint32(p_Document["m_rDragBodybagEntity"]);
 
-	s_Object.m_AccidentContext = static_cast<uint32>(int64_t(p_Document["m_AccidentContext"]));
+	s_Object.m_AccidentContext = simdjson::from_json_uint32(p_Document["m_AccidentContext"]);
 
 	{
 		SActorDamageControlSaveData s_Item;
@@ -8519,11 +8519,11 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_AnimatedActorOrderData = s_Item;
 	}
 
-	s_Object.m_fStepsFraction = static_cast<float32>(double(p_Document["m_fStepsFraction"]));
+	s_Object.m_fStepsFraction = simdjson::from_json_float32(p_Document["m_fStepsFraction"]);
 
-	s_Object.m_fZBeforeEnteringStairs = static_cast<float32>(double(p_Document["m_fZBeforeEnteringStairs"]));
+	s_Object.m_fZBeforeEnteringStairs = simdjson::from_json_float32(p_Document["m_fZBeforeEnteringStairs"]);
 
-	s_Object.m_fZError = static_cast<float32>(double(p_Document["m_fZError"]));
+	s_Object.m_fZError = simdjson::from_json_float32(p_Document["m_fZError"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDynamicTemplates"])
 	{
@@ -8561,49 +8561,49 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_aLongTermMemorySaveData.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_AgentData = static_cast<uint32>(int64_t(p_Document["m_AgentData"]));
+	s_Object.m_AgentData = simdjson::from_json_uint32(p_Document["m_AgentData"]);
 
-	s_Object.m_KnockdownsWhileConscious = static_cast<uint32>(int64_t(p_Document["m_KnockdownsWhileConscious"]));
+	s_Object.m_KnockdownsWhileConscious = simdjson::from_json_uint32(p_Document["m_KnockdownsWhileConscious"]);
 
-	s_Object.m_SecondaryAIIconState = static_cast<uint32>(int64_t(p_Document["m_SecondaryAIIconState"]));
+	s_Object.m_SecondaryAIIconState = simdjson::from_json_uint32(p_Document["m_SecondaryAIIconState"]);
 
-	s_Object.m_SituationAvailabilityValue = static_cast<int32>(int64_t(p_Document["m_SituationAvailabilityValue"]));
+	s_Object.m_SituationAvailabilityValue = simdjson::from_json_int32(p_Document["m_SituationAvailabilityValue"]);
 
-	s_Object.m_HadValidAgent = bool(p_Document["m_HadValidAgent"]);
+	s_Object.m_HadValidAgent = simdjson::from_json_bool(p_Document["m_HadValidAgent"]);
 
-	s_Object.m_bNude = bool(p_Document["m_bNude"]);
+	s_Object.m_bNude = simdjson::from_json_bool(p_Document["m_bNude"]);
 
-	s_Object.m_bActiveEnforcer = bool(p_Document["m_bActiveEnforcer"]);
+	s_Object.m_bActiveEnforcer = simdjson::from_json_bool(p_Document["m_bActiveEnforcer"]);
 
-	s_Object.m_bIsPotentialEnforcer = bool(p_Document["m_bIsPotentialEnforcer"]);
+	s_Object.m_bIsPotentialEnforcer = simdjson::from_json_bool(p_Document["m_bIsPotentialEnforcer"]);
 
-	s_Object.m_bDynamicEnforcer = bool(p_Document["m_bDynamicEnforcer"]);
+	s_Object.m_bDynamicEnforcer = simdjson::from_json_bool(p_Document["m_bDynamicEnforcer"]);
 
-	s_Object.m_bIsCrowdCharacter = bool(p_Document["m_bIsCrowdCharacter"]);
+	s_Object.m_bIsCrowdCharacter = simdjson::from_json_bool(p_Document["m_bIsCrowdCharacter"]);
 
-	s_Object.m_bIsWoozy = bool(p_Document["m_bIsWoozy"]);
+	s_Object.m_bIsWoozy = simdjson::from_json_bool(p_Document["m_bIsWoozy"]);
 
-	s_Object.m_bBlendingOrientation = bool(p_Document["m_bBlendingOrientation"]);
+	s_Object.m_bBlendingOrientation = simdjson::from_json_bool(p_Document["m_bBlendingOrientation"]);
 
-	s_Object.m_bMakeMainWeaponUndroppable = bool(p_Document["m_bMakeMainWeaponUndroppable"]);
+	s_Object.m_bMakeMainWeaponUndroppable = simdjson::from_json_bool(p_Document["m_bMakeMainWeaponUndroppable"]);
 
-	s_Object.m_bFinalizePendingSpawnGrenade = bool(p_Document["m_bFinalizePendingSpawnGrenade"]);
+	s_Object.m_bFinalizePendingSpawnGrenade = simdjson::from_json_bool(p_Document["m_bFinalizePendingSpawnGrenade"]);
 
-	s_Object.m_bWeaponIsHidden = bool(p_Document["m_bWeaponIsHidden"]);
+	s_Object.m_bWeaponIsHidden = simdjson::from_json_bool(p_Document["m_bWeaponIsHidden"]);
 
-	s_Object.m_bRegisteredForLT = bool(p_Document["m_bRegisteredForLT"]);
+	s_Object.m_bRegisteredForLT = simdjson::from_json_bool(p_Document["m_bRegisteredForLT"]);
 
-	s_Object.m_bKeepOverrideSensorStateAfterBeingUnconscious = bool(p_Document["m_bKeepOverrideSensorStateAfterBeingUnconscious"]);
+	s_Object.m_bKeepOverrideSensorStateAfterBeingUnconscious = simdjson::from_json_bool(p_Document["m_bKeepOverrideSensorStateAfterBeingUnconscious"]);
 
-	s_Object.m_bWeaponReady = bool(p_Document["m_bWeaponReady"]);
+	s_Object.m_bWeaponReady = simdjson::from_json_bool(p_Document["m_bWeaponReady"]);
 
-	s_Object.m_bDynamicWeaponUnholstered = bool(p_Document["m_bDynamicWeaponUnholstered"]);
+	s_Object.m_bDynamicWeaponUnholstered = simdjson::from_json_bool(p_Document["m_bDynamicWeaponUnholstered"]);
 
-	s_Object.m_bForceInteractionGlow = bool(p_Document["m_bForceInteractionGlow"]);
+	s_Object.m_bForceInteractionGlow = simdjson::from_json_bool(p_Document["m_bForceInteractionGlow"]);
 
-	s_Object.m_bIsOutfitRuined = bool(p_Document["m_bIsOutfitRuined"]);
+	s_Object.m_bIsOutfitRuined = simdjson::from_json_bool(p_Document["m_bIsOutfitRuined"]);
 
-	s_Object.m_BehaviorSelectDisabled = bool(p_Document["m_BehaviorSelectDisabled"]);
+	s_Object.m_BehaviorSelectDisabled = simdjson::from_json_bool(p_Document["m_BehaviorSelectDisabled"]);
 
 	*reinterpret_cast<SActorSaveData*>(p_Target) = s_Object;
 }
@@ -8725,16 +8725,16 @@ void SCombatMetricsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SCombatMetricsSaveData s_Object;
 
-	s_Object.m_CombatProgress = static_cast<float32>(double(p_Document["m_CombatProgress"]));
+	s_Object.m_CombatProgress = simdjson::from_json_float32(p_Document["m_CombatProgress"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_DeadVIPsOrContractTargets"])
 	{
-		s_Object.m_DeadVIPsOrContractTargets.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_DeadVIPsOrContractTargets.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_DiscoveredVIPOrContractTargetBodies"])
 	{
-		s_Object.m_DiscoveredVIPOrContractTargetBodies.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_DiscoveredVIPOrContractTargetBodies.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SCombatMetricsSaveData*>(p_Target) = s_Object;
@@ -8906,7 +8906,7 @@ void SSharedKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SSharedKnowledgeSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
 	{
 		ZRepositoryID s_Item;
@@ -9033,14 +9033,14 @@ void SSituationGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	s_Object.m_sClassTypeName = std::string_view(p_Document["m_sClassTypeName"]);
 
-	s_Object.m_nSituation = static_cast<uint32>(int64_t(p_Document["m_nSituation"]));
+	s_Object.m_nSituation = simdjson::from_json_uint32(p_Document["m_nSituation"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActors"])
 	{
-		s_Object.m_aActors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aActors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_nGroupID = static_cast<int32>(int64_t(p_Document["m_nGroupID"]));
+	s_Object.m_nGroupID = simdjson::from_json_int32(p_Document["m_nGroupID"]);
 
 	{
 		ZVariant s_Item;
@@ -9151,11 +9151,11 @@ void SSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SSituationMemberSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	s_Object.m_eJoinReason = static_cast<ESituationJoinReason>(ZHMEnums::GetEnumValueByName("ESituationJoinReason", std::string_view(p_Document["m_eJoinReason"])));
 
-	s_Object.m_bIsOrderValid = bool(p_Document["m_bIsOrderValid"]);
+	s_Object.m_bIsOrderValid = simdjson::from_json_bool(p_Document["m_bIsOrderValid"]);
 
 	{
 		ZVariant s_Item;
@@ -9169,7 +9169,7 @@ void SSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 		s_Object.m_PendingOrderData = s_Item;
 	}
 
-	s_Object.m_rDramaRole = static_cast<uint32>(int64_t(p_Document["m_rDramaRole"]));
+	s_Object.m_rDramaRole = simdjson::from_json_uint32(p_Document["m_rDramaRole"]);
 
 	{
 		ZVariant s_Item;
@@ -9342,11 +9342,11 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SSituationSaveData s_Object;
 
-	s_Object.m_rSituation = static_cast<uint32>(int64_t(p_Document["m_rSituation"]));
+	s_Object.m_rSituation = simdjson::from_json_uint32(p_Document["m_rSituation"]);
 
 	s_Object.m_eType = static_cast<ESituationType>(ZHMEnums::GetEnumValueByName("ESituationType", std::string_view(p_Document["m_eType"])));
 
-	s_Object.m_nTargetSharedEntity = static_cast<int32>(int64_t(p_Document["m_nTargetSharedEntity"]));
+	s_Object.m_nTargetSharedEntity = simdjson::from_json_int32(p_Document["m_nTargetSharedEntity"]);
 
 	{
 		ZVariant s_Item;
@@ -9368,7 +9368,7 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_aGroupData.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_nNextGroupID = static_cast<int32>(int64_t(p_Document["m_nNextGroupID"]));
+	s_Object.m_nNextGroupID = simdjson::from_json_int32(p_Document["m_nNextGroupID"]);
 
 	{
 		ZGameTime s_Item;
@@ -9376,7 +9376,7 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_situationStartTime = s_Item;
 	}
 
-	s_Object.m_bSituationEnded = bool(p_Document["m_bSituationEnded"]);
+	s_Object.m_bSituationEnded = simdjson::from_json_bool(p_Document["m_bSituationEnded"]);
 
 	*reinterpret_cast<SSituationSaveData*>(p_Target) = s_Object;
 }
@@ -9422,7 +9422,7 @@ void SActorProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SActorProxySaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SActorProxySaveData*>(p_Target) = s_Object;
 }
@@ -9518,7 +9518,7 @@ void SActorProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -9622,7 +9622,7 @@ void SActorSpreadControllerCandidateSaveData::FromSimpleJson(simdjson::ondemand:
 {
 	SActorSpreadControllerCandidateSaveData s_Object;
 
-	s_Object.m_CandidateActor = static_cast<uint32>(int64_t(p_Document["m_CandidateActor"]));
+	s_Object.m_CandidateActor = simdjson::from_json_uint32(p_Document["m_CandidateActor"]);
 
 	{
 		ZGameTime s_Item;
@@ -9630,7 +9630,7 @@ void SActorSpreadControllerCandidateSaveData::FromSimpleJson(simdjson::ondemand:
 		s_Object.m_CandidateTime = s_Item;
 	}
 
-	s_Object.m_bValidCandidate = bool(p_Document["m_bValidCandidate"]);
+	s_Object.m_bValidCandidate = simdjson::from_json_bool(p_Document["m_bValidCandidate"]);
 
 	*reinterpret_cast<SActorSpreadControllerCandidateSaveData*>(p_Target) = s_Object;
 }
@@ -9890,12 +9890,12 @@ void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSpreadingActors"])
 	{
-		s_Object.m_aSpreadingActors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aSpreadingActors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDeadSpreadingActors"])
 	{
-		s_Object.m_aDeadSpreadingActors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aDeadSpreadingActors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSpreadingActorsAddedTime"])
@@ -9907,7 +9907,7 @@ void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aNewCandidates"])
 	{
-		s_Object.m_aNewCandidates.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aNewCandidates.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCandidates"])
@@ -9917,17 +9917,17 @@ void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 		s_Object.m_aCandidates.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_rCurrentSpreadingActor = static_cast<uint32>(int64_t(p_Document["m_rCurrentSpreadingActor"]));
+	s_Object.m_rCurrentSpreadingActor = simdjson::from_json_uint32(p_Document["m_rCurrentSpreadingActor"]);
 
-	s_Object.m_nCurrentActorIndex = static_cast<uint32>(int64_t(p_Document["m_nCurrentActorIndex"]));
+	s_Object.m_nCurrentActorIndex = simdjson::from_json_uint32(p_Document["m_nCurrentActorIndex"]);
 
-	s_Object.m_bPlayerCheckEnabled = bool(p_Document["m_bPlayerCheckEnabled"]);
+	s_Object.m_bPlayerCheckEnabled = simdjson::from_json_bool(p_Document["m_bPlayerCheckEnabled"]);
 
-	s_Object.m_bPlayerSpreading = bool(p_Document["m_bPlayerSpreading"]);
+	s_Object.m_bPlayerSpreading = simdjson::from_json_bool(p_Document["m_bPlayerSpreading"]);
 
-	s_Object.m_bPlayerIsValidCandidate = bool(p_Document["m_bPlayerIsValidCandidate"]);
+	s_Object.m_bPlayerIsValidCandidate = simdjson::from_json_bool(p_Document["m_bPlayerIsValidCandidate"]);
 
-	s_Object.m_bPlayerIsCandidate = bool(p_Document["m_bPlayerIsCandidate"]);
+	s_Object.m_bPlayerIsCandidate = simdjson::from_json_bool(p_Document["m_bPlayerIsCandidate"]);
 
 	{
 		ZGameTime s_Item;
@@ -9991,9 +9991,9 @@ void SActorSpreadTransitionOperatorMaterialActorSaveData::FromSimpleJson(simdjso
 {
 	SActorSpreadTransitionOperatorMaterialActorSaveData s_Object;
 
-	s_Object.m_Actor = static_cast<uint32>(int64_t(p_Document["m_Actor"]));
+	s_Object.m_Actor = simdjson::from_json_uint32(p_Document["m_Actor"]);
 
-	s_Object.m_fOpacity = static_cast<float32>(double(p_Document["m_fOpacity"]));
+	s_Object.m_fOpacity = simdjson::from_json_float32(p_Document["m_fOpacity"]);
 
 	*reinterpret_cast<SActorSpreadTransitionOperatorMaterialActorSaveData*>(p_Target) = s_Object;
 }
@@ -10104,7 +10104,7 @@ void SActorStandInSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SActorStandInSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SActorStandInSaveData*>(p_Target) = s_Object;
 }
@@ -10200,7 +10200,7 @@ void SActorStandInEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -10272,11 +10272,11 @@ void SActorTagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SActorTagSaveData s_Object;
 
-	s_Object.m_bSeen = bool(p_Document["m_bSeen"]);
+	s_Object.m_bSeen = simdjson::from_json_bool(p_Document["m_bSeen"]);
 
-	s_Object.m_bTagged = bool(p_Document["m_bTagged"]);
+	s_Object.m_bTagged = simdjson::from_json_bool(p_Document["m_bTagged"]);
 
-	s_Object.m_rActorRef = static_cast<uint32>(int64_t(p_Document["m_rActorRef"]));
+	s_Object.m_rActorRef = simdjson::from_json_uint32(p_Document["m_rActorRef"]);
 
 	*reinterpret_cast<SActorTagSaveData*>(p_Target) = s_Object;
 }
@@ -10379,13 +10379,13 @@ void SActorTagManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SActorTagManagerSaveData s_Object;
 
-	s_Object.m_bContractsCreationMode = bool(p_Document["m_bContractsCreationMode"]);
+	s_Object.m_bContractsCreationMode = simdjson::from_json_bool(p_Document["m_bContractsCreationMode"]);
 
-	s_Object.m_nTagCount = static_cast<int32>(int64_t(p_Document["m_nTagCount"]));
+	s_Object.m_nTagCount = simdjson::from_json_int32(p_Document["m_nTagCount"]);
 
-	s_Object.m_nMaxTagCount = static_cast<int32>(int64_t(p_Document["m_nMaxTagCount"]));
+	s_Object.m_nMaxTagCount = simdjson::from_json_int32(p_Document["m_nMaxTagCount"]);
 
-	s_Object.m_bTaggingEnabled = bool(p_Document["m_bTaggingEnabled"]);
+	s_Object.m_bTaggingEnabled = simdjson::from_json_bool(p_Document["m_bTaggingEnabled"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActorTagData"])
 	{
@@ -10435,7 +10435,7 @@ void SActorVisibilityConditionSaveData::FromSimpleJson(simdjson::ondemand::value
 {
 	SActorVisibilityConditionSaveData s_Object;
 
-	s_Object.m_pActor = static_cast<uint32>(int64_t(p_Document["m_pActor"]));
+	s_Object.m_pActor = simdjson::from_json_uint32(p_Document["m_pActor"]);
 
 	*reinterpret_cast<SActorVisibilityConditionSaveData*>(p_Target) = s_Object;
 }
@@ -10622,7 +10622,7 @@ void SAgitatedBystanderOrderSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SAgitatedBystanderOrderSaveData s_Object;
 
-	s_Object.m_rBystanderPoint = static_cast<uint32>(int64_t(p_Document["m_rBystanderPoint"]));
+	s_Object.m_rBystanderPoint = simdjson::from_json_uint32(p_Document["m_rBystanderPoint"]);
 
 	{
 		float4 s_Item;
@@ -10688,9 +10688,9 @@ void SAimAssistObjectSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SAimAssistObjectSaveData s_Object;
 
-	s_Object.m_bHasBeenStarted = bool(p_Document["m_bHasBeenStarted"]);
+	s_Object.m_bHasBeenStarted = simdjson::from_json_bool(p_Document["m_bHasBeenStarted"]);
 
-	s_Object.m_bWasAimAssistActivated = bool(p_Document["m_bWasAimAssistActivated"]);
+	s_Object.m_bWasAimAssistActivated = simdjson::from_json_bool(p_Document["m_bWasAimAssistActivated"]);
 
 	*reinterpret_cast<SAimAssistObjectSaveData*>(p_Target) = s_Object;
 }
@@ -10949,13 +10949,13 @@ void SAnimatedActorActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SAnimatedActorActOrderSaveData s_Object;
 
-	s_Object.m_bOverrideExistingAct = bool(p_Document["m_bOverrideExistingAct"]);
+	s_Object.m_bOverrideExistingAct = simdjson::from_json_bool(p_Document["m_bOverrideExistingAct"]);
 
-	s_Object.m_nForcedAnimationNode = static_cast<uint32>(int64_t(p_Document["m_nForcedAnimationNode"]));
+	s_Object.m_nForcedAnimationNode = simdjson::from_json_uint32(p_Document["m_nForcedAnimationNode"]);
 
-	s_Object.m_rChildNetworkAct = static_cast<uint32>(int64_t(p_Document["m_rChildNetworkAct"]));
+	s_Object.m_rChildNetworkAct = simdjson::from_json_uint32(p_Document["m_rChildNetworkAct"]);
 
-	s_Object.m_rListener = static_cast<uint32>(int64_t(p_Document["m_rListener"]));
+	s_Object.m_rListener = simdjson::from_json_uint32(p_Document["m_rListener"]);
 
 	{
 		SVector3 s_Item;
@@ -11081,15 +11081,15 @@ void SAnimatedActorMoveOrderSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SAnimatedActorMoveOrderSaveData s_Object;
 
-	s_Object.m_bPrecisePositioning = bool(p_Document["m_bPrecisePositioning"]);
+	s_Object.m_bPrecisePositioning = simdjson::from_json_bool(p_Document["m_bPrecisePositioning"]);
 
-	s_Object.m_bPreciseOrientation = bool(p_Document["m_bPreciseOrientation"]);
+	s_Object.m_bPreciseOrientation = simdjson::from_json_bool(p_Document["m_bPreciseOrientation"]);
 
-	s_Object.m_bIgnoreEndCollision = bool(p_Document["m_bIgnoreEndCollision"]);
+	s_Object.m_bIgnoreEndCollision = simdjson::from_json_bool(p_Document["m_bIgnoreEndCollision"]);
 
-	s_Object.m_bForcedEnpointSet = bool(p_Document["m_bForcedEnpointSet"]);
+	s_Object.m_bForcedEnpointSet = simdjson::from_json_bool(p_Document["m_bForcedEnpointSet"]);
 
-	s_Object.m_fStopMoveDistance = static_cast<float32>(double(p_Document["m_fStopMoveDistance"]));
+	s_Object.m_fStopMoveDistance = simdjson::from_json_float32(p_Document["m_fStopMoveDistance"]);
 
 	{
 		SVector3 s_Item;
@@ -11323,21 +11323,21 @@ void SAnimatedActorReactOrderSaveData::FromSimpleJson(simdjson::ondemand::value 
 		s_Object.m_vLookAtTarget = s_Item;
 	}
 
-	s_Object.m_rChildNetworkEntity = static_cast<uint32>(int64_t(p_Document["m_rChildNetworkEntity"]));
+	s_Object.m_rChildNetworkEntity = simdjson::from_json_uint32(p_Document["m_rChildNetworkEntity"]);
 
 	s_Object.m_targetEmotionState = static_cast<EActorEmotionState>(ZHMEnums::GetEnumValueByName("EActorEmotionState", std::string_view(p_Document["m_targetEmotionState"])));
 
-	s_Object.m_bDeadbody = bool(p_Document["m_bDeadbody"]);
+	s_Object.m_bDeadbody = simdjson::from_json_bool(p_Document["m_bDeadbody"]);
 
-	s_Object.m_bExplosion = bool(p_Document["m_bExplosion"]);
+	s_Object.m_bExplosion = simdjson::from_json_bool(p_Document["m_bExplosion"]);
 
-	s_Object.m_bTrespassing = bool(p_Document["m_bTrespassing"]);
+	s_Object.m_bTrespassing = simdjson::from_json_bool(p_Document["m_bTrespassing"]);
 
-	s_Object.m_bDropCarriedItems = bool(p_Document["m_bDropCarriedItems"]);
+	s_Object.m_bDropCarriedItems = simdjson::from_json_bool(p_Document["m_bDropCarriedItems"]);
 
-	s_Object.m_bFaceTargetSet = bool(p_Document["m_bFaceTargetSet"]);
+	s_Object.m_bFaceTargetSet = simdjson::from_json_bool(p_Document["m_bFaceTargetSet"]);
 
-	s_Object.m_bLookAtTargetSet = bool(p_Document["m_bLookAtTargetSet"]);
+	s_Object.m_bLookAtTargetSet = simdjson::from_json_bool(p_Document["m_bLookAtTargetSet"]);
 
 	s_Object.m_sAct = std::string_view(p_Document["m_sAct"]);
 
@@ -11471,15 +11471,15 @@ void SAttentionHUDUIElement::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SAttentionHUDUIElement s_Object;
 
-	s_Object.fAngle = static_cast<float32>(double(p_Document["fAngle"]));
+	s_Object.fAngle = simdjson::from_json_float32(p_Document["fAngle"]);
 
-	s_Object.fAttention = static_cast<float32>(double(p_Document["fAttention"]));
+	s_Object.fAttention = simdjson::from_json_float32(p_Document["fAttention"]);
 
-	s_Object.fAlpha = static_cast<float32>(double(p_Document["fAlpha"]));
+	s_Object.fAlpha = simdjson::from_json_float32(p_Document["fAlpha"]);
 
-	s_Object.fRadius = static_cast<float32>(double(p_Document["fRadius"]));
+	s_Object.fRadius = simdjson::from_json_float32(p_Document["fRadius"]);
 
-	s_Object.nColor = static_cast<int32>(int64_t(p_Document["nColor"]));
+	s_Object.nColor = simdjson::from_json_int32(p_Document["nColor"]);
 
 	*reinterpret_cast<SAttentionHUDUIElement*>(p_Target) = s_Object;
 }
@@ -11640,17 +11640,17 @@ void SAudioEmitterEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SAudioEmitterEventSaveData s_Object;
 
-	s_Object.m_nEventId = static_cast<uint32>(int64_t(p_Document["m_nEventId"]));
+	s_Object.m_nEventId = simdjson::from_json_uint32(p_Document["m_nEventId"]);
 
-	s_Object.m_bPaused = bool(p_Document["m_bPaused"]);
+	s_Object.m_bPaused = simdjson::from_json_bool(p_Document["m_bPaused"]);
 
-	s_Object.m_nFlags = static_cast<uint32>(int64_t(p_Document["m_nFlags"]));
+	s_Object.m_nFlags = simdjson::from_json_uint32(p_Document["m_nFlags"]);
 
-	s_Object.m_rEventSender = static_cast<uint32>(int64_t(p_Document["m_rEventSender"]));
+	s_Object.m_rEventSender = simdjson::from_json_uint32(p_Document["m_rEventSender"]);
 
-	s_Object.m_nSeekPosition = static_cast<int32>(int64_t(p_Document["m_nSeekPosition"]));
+	s_Object.m_nSeekPosition = simdjson::from_json_int32(p_Document["m_nSeekPosition"]);
 
-	s_Object.m_nPlayState = static_cast<uint8>(int64_t(p_Document["m_nPlayState"]));
+	s_Object.m_nPlayState = simdjson::from_json_uint8(p_Document["m_nPlayState"]);
 
 	*reinterpret_cast<SAudioEmitterEventSaveData*>(p_Target) = s_Object;
 }
@@ -11702,9 +11702,9 @@ void SAudioEmitterRTPCSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SAudioEmitterRTPCSaveData s_Object;
 
-	s_Object.m_nParamId = static_cast<uint32>(int64_t(p_Document["m_nParamId"]));
+	s_Object.m_nParamId = simdjson::from_json_uint32(p_Document["m_nParamId"]);
 
-	s_Object.m_fValue = static_cast<float32>(double(p_Document["m_fValue"]));
+	s_Object.m_fValue = simdjson::from_json_float32(p_Document["m_fValue"]);
 
 	*reinterpret_cast<SAudioEmitterRTPCSaveData*>(p_Target) = s_Object;
 }
@@ -11776,13 +11776,13 @@ void SAudioEmitterSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SAudioEmitterSaveData s_Object;
 
-	s_Object.m_rEmitter = static_cast<uint32>(int64_t(p_Document["m_rEmitter"]));
+	s_Object.m_rEmitter = simdjson::from_json_uint32(p_Document["m_rEmitter"]);
 
-	s_Object.m_nNumberOfEvents = static_cast<uint32>(int64_t(p_Document["m_nNumberOfEvents"]));
+	s_Object.m_nNumberOfEvents = simdjson::from_json_uint32(p_Document["m_nNumberOfEvents"]);
 
-	s_Object.m_nNumberOfRTPCs = static_cast<uint32>(int64_t(p_Document["m_nNumberOfRTPCs"]));
+	s_Object.m_nNumberOfRTPCs = simdjson::from_json_uint32(p_Document["m_nNumberOfRTPCs"]);
 
-	s_Object.m_nNumberOfSwitches = static_cast<uint32>(int64_t(p_Document["m_nNumberOfSwitches"]));
+	s_Object.m_nNumberOfSwitches = simdjson::from_json_uint32(p_Document["m_nNumberOfSwitches"]);
 
 	*reinterpret_cast<SAudioEmitterSaveData*>(p_Target) = s_Object;
 }
@@ -11834,9 +11834,9 @@ void SAudioEmitterStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SAudioEmitterStateSaveData s_Object;
 
-	s_Object.m_nGroupId = static_cast<uint32>(int64_t(p_Document["m_nGroupId"]));
+	s_Object.m_nGroupId = simdjson::from_json_uint32(p_Document["m_nGroupId"]);
 
-	s_Object.m_nStateId = static_cast<uint32>(int64_t(p_Document["m_nStateId"]));
+	s_Object.m_nStateId = simdjson::from_json_uint32(p_Document["m_nStateId"]);
 
 	*reinterpret_cast<SAudioEmitterStateSaveData*>(p_Target) = s_Object;
 }
@@ -11888,9 +11888,9 @@ void SAudioEmitterSwitchSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SAudioEmitterSwitchSaveData s_Object;
 
-	s_Object.m_nGroupId = static_cast<uint32>(int64_t(p_Document["m_nGroupId"]));
+	s_Object.m_nGroupId = simdjson::from_json_uint32(p_Document["m_nGroupId"]);
 
-	s_Object.m_nStateId = static_cast<uint32>(int64_t(p_Document["m_nStateId"]));
+	s_Object.m_nStateId = simdjson::from_json_uint32(p_Document["m_nStateId"]);
 
 	*reinterpret_cast<SAudioEmitterSwitchSaveData*>(p_Target) = s_Object;
 }
@@ -12016,9 +12016,9 @@ void SAudioMemoryMonitorEntry::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SAudioMemoryMonitorEntry s_Object;
 
-	s_Object.shortId = static_cast<uint32>(int64_t(p_Document["shortId"]));
+	s_Object.shortId = simdjson::from_json_uint32(p_Document["shortId"]);
 
-	s_Object.size = static_cast<uint32>(int64_t(p_Document["size"]));
+	s_Object.size = simdjson::from_json_uint32(p_Document["size"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["references"])
 	{
@@ -12319,7 +12319,7 @@ void SAudioSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEventsEnabledAfterInit"])
 	{
-		s_Object.m_aEventsEnabledAfterInit.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEventsEnabledAfterInit.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SAudioSaveData*>(p_Target) = s_Object;
@@ -12401,9 +12401,9 @@ void SFSMSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 	s_Object.m_eStateStatus = static_cast<EFSMStateStatus>(ZHMEnums::GetEnumValueByName("EFSMStateStatus", std::string_view(p_Document["m_eStateStatus"])));
 
-	s_Object.m_state = static_cast<int32>(int64_t(p_Document["m_state"]));
+	s_Object.m_state = simdjson::from_json_int32(p_Document["m_state"]);
 
-	s_Object.m_prevState = static_cast<int32>(int64_t(p_Document["m_prevState"]));
+	s_Object.m_prevState = simdjson::from_json_int32(p_Document["m_prevState"]);
 
 	{
 		ZGameTime s_Item;
@@ -12498,7 +12498,7 @@ void SAvoidDangerousAreaGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_rDangerousArea = static_cast<uint32>(int64_t(p_Document["m_rDangerousArea"]));
+	s_Object.m_rDangerousArea = simdjson::from_json_uint32(p_Document["m_rDangerousArea"]);
 
 	{
 		float4 s_Item;
@@ -12506,9 +12506,9 @@ void SAvoidDangerousAreaGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 		s_Object.m_vDestinationPoint = s_Item;
 	}
 
-	s_Object.m_iGridId = static_cast<int32>(int64_t(p_Document["m_iGridId"]));
+	s_Object.m_iGridId = simdjson::from_json_int32(p_Document["m_iGridId"]);
 
-	s_Object.m_bWaitUntilDangerEnds = bool(p_Document["m_bWaitUntilDangerEnds"]);
+	s_Object.m_bWaitUntilDangerEnds = simdjson::from_json_bool(p_Document["m_bWaitUntilDangerEnds"]);
 
 	*reinterpret_cast<SAvoidDangerousAreaGroupSaveData*>(p_Target) = s_Object;
 }
@@ -12562,7 +12562,7 @@ void SBehaviorTreeEntityReference::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SBehaviorTreeEntityReference s_Object;
 
-	s_Object.m_bList = bool(p_Document["m_bList"]);
+	s_Object.m_bList = simdjson::from_json_bool(p_Document["m_bList"]);
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
@@ -12627,11 +12627,11 @@ void SBehaviorTreeEvaluationLogEntry::FromSimpleJson(simdjson::ondemand::value p
 {
 	SBehaviorTreeEvaluationLogEntry s_Object;
 
-	s_Object.m_nBehaviorTreeIndex = static_cast<uint32>(int64_t(p_Document["m_nBehaviorTreeIndex"]));
+	s_Object.m_nBehaviorTreeIndex = simdjson::from_json_uint32(p_Document["m_nBehaviorTreeIndex"]);
 
-	s_Object.m_nConditionOffset = uint64(p_Document["m_nConditionOffset"]);
+	s_Object.m_nConditionOffset = simdjson::from_json_uint64(p_Document["m_nConditionOffset"]);
 
-	s_Object.m_bResult = bool(p_Document["m_bResult"]);
+	s_Object.m_bResult = simdjson::from_json_bool(p_Document["m_bResult"]);
 
 	*reinterpret_cast<SBehaviorTreeEvaluationLogEntry*>(p_Target) = s_Object;
 }
@@ -13024,11 +13024,11 @@ void SBodyContainerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.m_eBCState = static_cast<ZHM5BodyContainer_EBCState>(ZHMEnums::GetEnumValueByName("ZHM5BodyContainer.EBCState", std::string_view(p_Document["m_eBCState"])));
 
-	s_Object.m_fLidAutoCloseTime = static_cast<float32>(double(p_Document["m_fLidAutoCloseTime"]));
+	s_Object.m_fLidAutoCloseTime = simdjson::from_json_float32(p_Document["m_fLidAutoCloseTime"]);
 
-	s_Object.m_fLidOpenFraction = static_cast<float32>(double(p_Document["m_fLidOpenFraction"]));
+	s_Object.m_fLidOpenFraction = simdjson::from_json_float32(p_Document["m_fLidOpenFraction"]);
 
-	s_Object.m_bFrameUpdateActive = bool(p_Document["m_bFrameUpdateActive"]);
+	s_Object.m_bFrameUpdateActive = simdjson::from_json_bool(p_Document["m_bFrameUpdateActive"]);
 
 	*reinterpret_cast<SBodyContainerSaveData*>(p_Target) = s_Object;
 }
@@ -13124,7 +13124,7 @@ void SBodyContainersSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -13296,31 +13296,31 @@ void SBodyPartDamageMultipliers::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SBodyPartDamageMultipliers s_Object;
 
-	s_Object.m_fHeadDamageMultiplier = static_cast<float32>(double(p_Document["m_fHeadDamageMultiplier"]));
+	s_Object.m_fHeadDamageMultiplier = simdjson::from_json_float32(p_Document["m_fHeadDamageMultiplier"]);
 
-	s_Object.m_fFaceDamageMultiplier = static_cast<float32>(double(p_Document["m_fFaceDamageMultiplier"]));
+	s_Object.m_fFaceDamageMultiplier = simdjson::from_json_float32(p_Document["m_fFaceDamageMultiplier"]);
 
-	s_Object.m_fArmDamageMultiplier = static_cast<float32>(double(p_Document["m_fArmDamageMultiplier"]));
+	s_Object.m_fArmDamageMultiplier = simdjson::from_json_float32(p_Document["m_fArmDamageMultiplier"]);
 
-	s_Object.m_fLArmDamageScalar = static_cast<float32>(double(p_Document["m_fLArmDamageScalar"]));
+	s_Object.m_fLArmDamageScalar = simdjson::from_json_float32(p_Document["m_fLArmDamageScalar"]);
 
-	s_Object.m_fRArmDamageScalar = static_cast<float32>(double(p_Document["m_fRArmDamageScalar"]));
+	s_Object.m_fRArmDamageScalar = simdjson::from_json_float32(p_Document["m_fRArmDamageScalar"]);
 
-	s_Object.m_fHandDamageMultiplier = static_cast<float32>(double(p_Document["m_fHandDamageMultiplier"]));
+	s_Object.m_fHandDamageMultiplier = simdjson::from_json_float32(p_Document["m_fHandDamageMultiplier"]);
 
-	s_Object.m_fLHandDamageScalar = static_cast<float32>(double(p_Document["m_fLHandDamageScalar"]));
+	s_Object.m_fLHandDamageScalar = simdjson::from_json_float32(p_Document["m_fLHandDamageScalar"]);
 
-	s_Object.m_fRHandDamageScalar = static_cast<float32>(double(p_Document["m_fRHandDamageScalar"]));
+	s_Object.m_fRHandDamageScalar = simdjson::from_json_float32(p_Document["m_fRHandDamageScalar"]);
 
-	s_Object.m_fLegDamageMultiplier = static_cast<float32>(double(p_Document["m_fLegDamageMultiplier"]));
+	s_Object.m_fLegDamageMultiplier = simdjson::from_json_float32(p_Document["m_fLegDamageMultiplier"]);
 
-	s_Object.m_fLLegDamageScalar = static_cast<float32>(double(p_Document["m_fLLegDamageScalar"]));
+	s_Object.m_fLLegDamageScalar = simdjson::from_json_float32(p_Document["m_fLLegDamageScalar"]);
 
-	s_Object.m_fRLegDamageScalar = static_cast<float32>(double(p_Document["m_fRLegDamageScalar"]));
+	s_Object.m_fRLegDamageScalar = simdjson::from_json_float32(p_Document["m_fRLegDamageScalar"]);
 
-	s_Object.m_fTorsoDamageMultiplier = static_cast<float32>(double(p_Document["m_fTorsoDamageMultiplier"]));
+	s_Object.m_fTorsoDamageMultiplier = simdjson::from_json_float32(p_Document["m_fTorsoDamageMultiplier"]);
 
-	s_Object.m_bApplyLeftRightScalars = bool(p_Document["m_bApplyLeftRightScalars"]);
+	s_Object.m_bApplyLeftRightScalars = simdjson::from_json_bool(p_Document["m_bApplyLeftRightScalars"]);
 
 	*reinterpret_cast<SBodyPartDamageMultipliers*>(p_Target) = s_Object;
 }
@@ -13539,12 +13539,12 @@ void SBodybagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBoneIndices"])
 	{
-		s_Object.m_aBoneIndices.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aBoneIndices.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_rDeadActor = static_cast<uint32>(int64_t(p_Document["m_rDeadActor"]));
+	s_Object.m_rDeadActor = simdjson::from_json_uint32(p_Document["m_rDeadActor"]);
 
-	s_Object.m_IsInMorgue = bool(p_Document["m_IsInMorgue"]);
+	s_Object.m_IsInMorgue = simdjson::from_json_bool(p_Document["m_IsInMorgue"]);
 
 	*reinterpret_cast<SBodybagSaveData*>(p_Target) = s_Object;
 }
@@ -13600,9 +13600,9 @@ void SBoneAttachSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SBoneAttachSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	s_Object.m_bIsAttached = bool(p_Document["m_bIsAttached"]);
+	s_Object.m_bIsAttached = simdjson::from_json_bool(p_Document["m_bIsAttached"]);
 
 	*reinterpret_cast<SBoneAttachSaveData*>(p_Target) = s_Object;
 }
@@ -13779,7 +13779,7 @@ void SCamBone::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 
 	s_Object.m_eBoneId = static_cast<BoneId_Enum>(ZHMEnums::GetEnumValueByName("BoneId.Enum", std::string_view(p_Document["m_eBoneId"])));
 
-	s_Object.m_fWeight = static_cast<float32>(double(p_Document["m_fWeight"]));
+	s_Object.m_fWeight = simdjson::from_json_float32(p_Document["m_fWeight"]);
 
 	*reinterpret_cast<SCamBone*>(p_Target) = s_Object;
 }
@@ -13925,20 +13925,20 @@ void SCautiousBackupGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_eGroupState = static_cast<ZCautiousBackupGroup_EGroupState>(ZHMEnums::GetEnumValueByName("ZCautiousBackupGroup.EGroupState", std::string_view(p_Document["m_eGroupState"])));
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_nTargetNodeIndex = static_cast<uint16>(int64_t(p_Document["m_nTargetNodeIndex"]));
+	s_Object.m_nTargetNodeIndex = simdjson::from_json_uint16(p_Document["m_nTargetNodeIndex"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCandidates"])
 	{
-		s_Object.m_aCandidates.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aCandidates.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_pCandidate = static_cast<uint32>(int64_t(p_Document["m_pCandidate"]));
+	s_Object.m_pCandidate = simdjson::from_json_uint32(p_Document["m_pCandidate"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aReservedApproachNodeIndices"])
 	{
-		s_Object.m_aReservedApproachNodeIndices.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_aReservedApproachNodeIndices.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
 	{
@@ -14114,19 +14114,19 @@ void SCautiousHuntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 		s_Object.m_tShareHuntTargetCoolDown = s_Item;
 	}
 
-	s_Object.m_bAnnounceHunt = bool(p_Document["m_bAnnounceHunt"]);
+	s_Object.m_bAnnounceHunt = simdjson::from_json_bool(p_Document["m_bAnnounceHunt"]);
 
-	s_Object.m_bAnnouncedHunt = bool(p_Document["m_bAnnouncedHunt"]);
+	s_Object.m_bAnnouncedHunt = simdjson::from_json_bool(p_Document["m_bAnnouncedHunt"]);
 
-	s_Object.m_bPlayAnnouncementDialog = bool(p_Document["m_bPlayAnnouncementDialog"]);
+	s_Object.m_bPlayAnnouncementDialog = simdjson::from_json_bool(p_Document["m_bPlayAnnouncementDialog"]);
 
-	s_Object.m_bHuntTargetKnownKiller = bool(p_Document["m_bHuntTargetKnownKiller"]);
+	s_Object.m_bHuntTargetKnownKiller = simdjson::from_json_bool(p_Document["m_bHuntTargetKnownKiller"]);
 
-	s_Object.m_bSharedHuntTarget = bool(p_Document["m_bSharedHuntTarget"]);
+	s_Object.m_bSharedHuntTarget = simdjson::from_json_bool(p_Document["m_bSharedHuntTarget"]);
 
-	s_Object.m_bTargetBlamed = bool(p_Document["m_bTargetBlamed"]);
+	s_Object.m_bTargetBlamed = simdjson::from_json_bool(p_Document["m_bTargetBlamed"]);
 
-	s_Object.m_bRuleActive = bool(p_Document["m_bRuleActive"]);
+	s_Object.m_bRuleActive = simdjson::from_json_bool(p_Document["m_bRuleActive"]);
 
 	*reinterpret_cast<SCautiousHuntSaveData*>(p_Target) = s_Object;
 }
@@ -14254,20 +14254,20 @@ void SExactCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SExactCompressedGridFloatField s_Object;
 
-	s_Object.m_fInitialValue = static_cast<float32>(double(p_Document["m_fInitialValue"]));
+	s_Object.m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
 
-	s_Object.m_nFieldSize = static_cast<uint32>(int64_t(p_Document["m_nFieldSize"]));
+	s_Object.m_nFieldSize = simdjson::from_json_uint32(p_Document["m_nFieldSize"]);
 
-	s_Object.m_nGridCRC = static_cast<uint32>(int64_t(p_Document["m_nGridCRC"]));
+	s_Object.m_nGridCRC = simdjson::from_json_uint32(p_Document["m_nGridCRC"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIndices"])
 	{
-		s_Object.m_aIndices.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_aIndices.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aValues"])
 	{
-		s_Object.m_aValues.push_back(static_cast<float32>(double(s_Item0)));
+		s_Object.m_aValues.push_back(simdjson::from_json_float32(s_Item0));
 	}
 
 	*reinterpret_cast<SExactCompressedGridFloatField*>(p_Target) = s_Object;
@@ -14548,17 +14548,17 @@ void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_tGroupStarted = s_Item;
 	}
 
-	s_Object.m_target = static_cast<int32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_int32(p_Document["m_target"]);
 
 	s_Object.m_type = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_type"])));
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_pAssistant = static_cast<uint32>(int64_t(p_Document["m_pAssistant"]));
+	s_Object.m_pAssistant = simdjson::from_json_uint32(p_Document["m_pAssistant"]);
 
-	s_Object.m_nLeaderApproachNode = static_cast<int32>(int64_t(p_Document["m_nLeaderApproachNode"]));
+	s_Object.m_nLeaderApproachNode = simdjson::from_json_int32(p_Document["m_nLeaderApproachNode"]);
 
-	s_Object.m_nAssistantApproachNode = static_cast<int32>(int64_t(p_Document["m_nAssistantApproachNode"]));
+	s_Object.m_nAssistantApproachNode = simdjson::from_json_int32(p_Document["m_nAssistantApproachNode"]);
 
 	s_Object.m_eApproachOrderState = static_cast<ZCautiousInvestigateGroup_EApproachOrderState>(ZHMEnums::GetEnumValueByName("ZCautiousInvestigateGroup.EApproachOrderState", std::string_view(p_Document["m_eApproachOrderState"])));
 
@@ -14574,21 +14574,21 @@ void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_fsmAssistantState = s_Item;
 	}
 
-	s_Object.m_bUsingRecurringDialog = bool(p_Document["m_bUsingRecurringDialog"]);
+	s_Object.m_bUsingRecurringDialog = simdjson::from_json_bool(p_Document["m_bUsingRecurringDialog"]);
 
-	s_Object.m_bStartedInvestigateDialog = bool(p_Document["m_bStartedInvestigateDialog"]);
+	s_Object.m_bStartedInvestigateDialog = simdjson::from_json_bool(p_Document["m_bStartedInvestigateDialog"]);
 
-	s_Object.m_bDelayInvestigateDialog = bool(p_Document["m_bDelayInvestigateDialog"]);
+	s_Object.m_bDelayInvestigateDialog = simdjson::from_json_bool(p_Document["m_bDelayInvestigateDialog"]);
 
-	s_Object.m_bReservedOccupancy = bool(p_Document["m_bReservedOccupancy"]);
+	s_Object.m_bReservedOccupancy = simdjson::from_json_bool(p_Document["m_bReservedOccupancy"]);
 
-	s_Object.m_bSilentInvestigation = bool(p_Document["m_bSilentInvestigation"]);
+	s_Object.m_bSilentInvestigation = simdjson::from_json_bool(p_Document["m_bSilentInvestigation"]);
 
-	s_Object.m_bInvestigateDeadBody = bool(p_Document["m_bInvestigateDeadBody"]);
+	s_Object.m_bInvestigateDeadBody = simdjson::from_json_bool(p_Document["m_bInvestigateDeadBody"]);
 
-	s_Object.m_bMultipleBodies = bool(p_Document["m_bMultipleBodies"]);
+	s_Object.m_bMultipleBodies = simdjson::from_json_bool(p_Document["m_bMultipleBodies"]);
 
-	s_Object.m_bCheckSuspects = bool(p_Document["m_bCheckSuspects"]);
+	s_Object.m_bCheckSuspects = simdjson::from_json_bool(p_Document["m_bCheckSuspects"]);
 
 	{
 		float4 s_Item;
@@ -14608,11 +14608,11 @@ void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_targetLOSField = s_Item;
 	}
 
-	s_Object.m_bValidTargetDistanceField = bool(p_Document["m_bValidTargetDistanceField"]);
+	s_Object.m_bValidTargetDistanceField = simdjson::from_json_bool(p_Document["m_bValidTargetDistanceField"]);
 
-	s_Object.m_bValidTargetLOSField = bool(p_Document["m_bValidTargetLOSField"]);
+	s_Object.m_bValidTargetLOSField = simdjson::from_json_bool(p_Document["m_bValidTargetLOSField"]);
 
-	s_Object.m_bForceAcknowledge = bool(p_Document["m_bForceAcknowledge"]);
+	s_Object.m_bForceAcknowledge = simdjson::from_json_bool(p_Document["m_bForceAcknowledge"]);
 
 	*reinterpret_cast<SCautiousInvestigateGroupSaveData*>(p_Target) = s_Object;
 }
@@ -14752,22 +14752,22 @@ void SCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SCompressedGridFloatField s_Object;
 
-	s_Object.m_bIsSparse = bool(p_Document["m_bIsSparse"]);
+	s_Object.m_bIsSparse = simdjson::from_json_bool(p_Document["m_bIsSparse"]);
 
-	s_Object.m_nFieldSize = static_cast<uint32>(int64_t(p_Document["m_nFieldSize"]));
+	s_Object.m_nFieldSize = simdjson::from_json_uint32(p_Document["m_nFieldSize"]);
 
-	s_Object.m_fInitialValue = static_cast<float32>(double(p_Document["m_fInitialValue"]));
+	s_Object.m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
 
-	s_Object.m_nGridCRC = static_cast<uint32>(int64_t(p_Document["m_nGridCRC"]));
+	s_Object.m_nGridCRC = simdjson::from_json_uint32(p_Document["m_nGridCRC"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIndices"])
 	{
-		s_Object.m_aIndices.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_aIndices.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aValues"])
 	{
-		s_Object.m_aValues.push_back(static_cast<uint8>(int64_t(s_Item0)));
+		s_Object.m_aValues.push_back(simdjson::from_json_uint8(s_Item0));
 	}
 
 	*reinterpret_cast<SCompressedGridFloatField*>(p_Target) = s_Object;
@@ -14862,7 +14862,7 @@ void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SDisturbanceSaveData s_Object;
 
-	s_Object.m_object = static_cast<int32>(int64_t(p_Document["m_object"]));
+	s_Object.m_object = simdjson::from_json_int32(p_Document["m_object"]);
 
 	s_Object.m_type = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_type"])));
 
@@ -14874,9 +14874,9 @@ void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_started = s_Item;
 	}
 
-	s_Object.m_pInvestigateGroup = static_cast<int32>(int64_t(p_Document["m_pInvestigateGroup"]));
+	s_Object.m_pInvestigateGroup = simdjson::from_json_int32(p_Document["m_pInvestigateGroup"]);
 
-	s_Object.m_bLockOnHitmanPosition = bool(p_Document["m_bLockOnHitmanPosition"]);
+	s_Object.m_bLockOnHitmanPosition = simdjson::from_json_bool(p_Document["m_bLockOnHitmanPosition"]);
 
 	*reinterpret_cast<SDisturbanceSaveData*>(p_Target) = s_Object;
 }
@@ -15205,29 +15205,29 @@ void ZInvestigateCautiousSituation_SStateData::FromSimpleJson(simdjson::ondemand
 		s_Object.m_tLastPropagate = s_Item;
 	}
 
-	s_Object.m_fCombatAge = static_cast<float32>(double(p_Document["m_fCombatAge"]));
+	s_Object.m_fCombatAge = simdjson::from_json_float32(p_Document["m_fCombatAge"]);
 
-	s_Object.m_bLockdownZoneDisturbanceAdded = bool(p_Document["m_bLockdownZoneDisturbanceAdded"]);
+	s_Object.m_bLockdownZoneDisturbanceAdded = simdjson::from_json_bool(p_Document["m_bLockdownZoneDisturbanceAdded"]);
 
-	s_Object.m_bLockdownSituation = bool(p_Document["m_bLockdownSituation"]);
+	s_Object.m_bLockdownSituation = simdjson::from_json_bool(p_Document["m_bLockdownSituation"]);
 
-	s_Object.m_bLockdownFalseAlarm = bool(p_Document["m_bLockdownFalseAlarm"]);
+	s_Object.m_bLockdownFalseAlarm = simdjson::from_json_bool(p_Document["m_bLockdownFalseAlarm"]);
 
-	s_Object.m_bLockdownGracePeriod = bool(p_Document["m_bLockdownGracePeriod"]);
+	s_Object.m_bLockdownGracePeriod = simdjson::from_json_bool(p_Document["m_bLockdownGracePeriod"]);
 
-	s_Object.m_bHMInGuardDisguise = bool(p_Document["m_bHMInGuardDisguise"]);
+	s_Object.m_bHMInGuardDisguise = simdjson::from_json_bool(p_Document["m_bHMInGuardDisguise"]);
 
-	s_Object.m_bFrisked = bool(p_Document["m_bFrisked"]);
+	s_Object.m_bFrisked = simdjson::from_json_bool(p_Document["m_bFrisked"]);
 
-	s_Object.m_bAnnouncedFrisk = bool(p_Document["m_bAnnouncedFrisk"]);
+	s_Object.m_bAnnouncedFrisk = simdjson::from_json_bool(p_Document["m_bAnnouncedFrisk"]);
 
-	s_Object.m_bReasonToFrisk = bool(p_Document["m_bReasonToFrisk"]);
+	s_Object.m_bReasonToFrisk = simdjson::from_json_bool(p_Document["m_bReasonToFrisk"]);
 
-	s_Object.m_bSomeoneHasBeenInCombat = bool(p_Document["m_bSomeoneHasBeenInCombat"]);
+	s_Object.m_bSomeoneHasBeenInCombat = simdjson::from_json_bool(p_Document["m_bSomeoneHasBeenInCombat"]);
 
-	s_Object.m_bInvestigationGroupActive = bool(p_Document["m_bInvestigationGroupActive"]);
+	s_Object.m_bInvestigationGroupActive = simdjson::from_json_bool(p_Document["m_bInvestigationGroupActive"]);
 
-	s_Object.m_bStandDownGuards = bool(p_Document["m_bStandDownGuards"]);
+	s_Object.m_bStandDownGuards = simdjson::from_json_bool(p_Document["m_bStandDownGuards"]);
 
 	{
 		ZGameTime s_Item;
@@ -15237,9 +15237,9 @@ void ZInvestigateCautiousSituation_SStateData::FromSimpleJson(simdjson::ondemand
 
 	s_Object.m_eMostSevereDisturbance = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_eMostSevereDisturbance"])));
 
-	s_Object.m_bDiscoveredDeadBody = bool(p_Document["m_bDiscoveredDeadBody"]);
+	s_Object.m_bDiscoveredDeadBody = simdjson::from_json_bool(p_Document["m_bDiscoveredDeadBody"]);
 
-	s_Object.m_bDiscoveredPacifiedBody = bool(p_Document["m_bDiscoveredPacifiedBody"]);
+	s_Object.m_bDiscoveredPacifiedBody = simdjson::from_json_bool(p_Document["m_bDiscoveredPacifiedBody"]);
 
 	*reinterpret_cast<ZInvestigateCautiousSituation_SStateData*>(p_Target) = s_Object;
 }
@@ -15701,22 +15701,22 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_StateData = s_Item;
 	}
 
-	s_Object.m_pGetHelpGroup = static_cast<int32>(int64_t(p_Document["m_pGetHelpGroup"]));
+	s_Object.m_pGetHelpGroup = simdjson::from_json_int32(p_Document["m_pGetHelpGroup"]);
 
-	s_Object.m_pBackupGroup = static_cast<int32>(int64_t(p_Document["m_pBackupGroup"]));
+	s_Object.m_pBackupGroup = simdjson::from_json_int32(p_Document["m_pBackupGroup"]);
 
-	s_Object.m_rTriggerAlarmGroup = static_cast<int32>(int64_t(p_Document["m_rTriggerAlarmGroup"]));
+	s_Object.m_rTriggerAlarmGroup = simdjson::from_json_int32(p_Document["m_rTriggerAlarmGroup"]);
 
-	s_Object.m_pInvestigateDisguiseGroup = static_cast<int32>(int64_t(p_Document["m_pInvestigateDisguiseGroup"]));
+	s_Object.m_pInvestigateDisguiseGroup = simdjson::from_json_int32(p_Document["m_pInvestigateDisguiseGroup"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_cautiousVIPGroups"])
 	{
-		s_Object.m_cautiousVIPGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_cautiousVIPGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_friskGroups"])
 	{
-		s_Object.m_friskGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_friskGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	{
@@ -15737,13 +15737,13 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_tRecoverUnconsciousGroupEnd = s_Item;
 	}
 
-	s_Object.m_nHuntTarget = static_cast<int32>(int64_t(p_Document["m_nHuntTarget"]));
+	s_Object.m_nHuntTarget = simdjson::from_json_int32(p_Document["m_nHuntTarget"]);
 
-	s_Object.m_rZone = static_cast<uint32>(int64_t(p_Document["m_rZone"]));
+	s_Object.m_rZone = simdjson::from_json_uint32(p_Document["m_rZone"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGuardMembers"])
 	{
-		s_Object.m_aGuardMembers.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aGuardMembers.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_disturbances"])
@@ -15753,7 +15753,7 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_disturbances.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_bValidDisturbanceField = bool(p_Document["m_bValidDisturbanceField"]);
+	s_Object.m_bValidDisturbanceField = simdjson::from_json_bool(p_Document["m_bValidDisturbanceField"]);
 
 	{
 		SCompressedGridFloatField s_Item;
@@ -15761,9 +15761,9 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_disturbanceField = s_Item;
 	}
 
-	s_Object.m_recoverUnconsciousGroup = static_cast<int32>(int64_t(p_Document["m_recoverUnconsciousGroup"]));
+	s_Object.m_recoverUnconsciousGroup = simdjson::from_json_int32(p_Document["m_recoverUnconsciousGroup"]);
 
-	s_Object.m_bSuspendSearchOnInitialGetHelpGroup = bool(p_Document["m_bSuspendSearchOnInitialGetHelpGroup"]);
+	s_Object.m_bSuspendSearchOnInitialGetHelpGroup = simdjson::from_json_bool(p_Document["m_bSuspendSearchOnInitialGetHelpGroup"]);
 
 	s_Object.m_lastArrestReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_lastArrestReason"])));
 
@@ -15771,13 +15771,13 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.m_lastStaticCombatReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_lastStaticCombatReason"])));
 
-	s_Object.m_bAnyGunshotDisturbance = bool(p_Document["m_bAnyGunshotDisturbance"]);
+	s_Object.m_bAnyGunshotDisturbance = simdjson::from_json_bool(p_Document["m_bAnyGunshotDisturbance"]);
 
-	s_Object.m_deadBodyMassiveReported = bool(p_Document["m_deadBodyMassiveReported"]);
+	s_Object.m_deadBodyMassiveReported = simdjson::from_json_bool(p_Document["m_deadBodyMassiveReported"]);
 
-	s_Object.m_deadBodiesDiscovered = static_cast<int32>(int64_t(p_Document["m_deadBodiesDiscovered"]));
+	s_Object.m_deadBodiesDiscovered = simdjson::from_json_int32(p_Document["m_deadBodiesDiscovered"]);
 
-	s_Object.m_deadCrowdBodiesDiscovered = static_cast<int32>(int64_t(p_Document["m_deadCrowdBodiesDiscovered"]));
+	s_Object.m_deadCrowdBodiesDiscovered = simdjson::from_json_int32(p_Document["m_deadCrowdBodiesDiscovered"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDynamicEnforceEventsForSearchers"])
 	{
@@ -15792,7 +15792,7 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerGroups"])
 	{
-		s_Object.m_aAvoidDangerGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aAvoidDangerGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	{
@@ -15904,17 +15904,17 @@ void SCautiousSearchGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SCautiousSearchGroupSaveData s_Object;
 
-	s_Object.m_searchNode = static_cast<uint16>(int64_t(p_Document["m_searchNode"]));
+	s_Object.m_searchNode = simdjson::from_json_uint16(p_Document["m_searchNode"]);
 
-	s_Object.m_assistantApproachNode = static_cast<uint16>(int64_t(p_Document["m_assistantApproachNode"]));
+	s_Object.m_assistantApproachNode = simdjson::from_json_uint16(p_Document["m_assistantApproachNode"]);
 
 	s_Object.m_eGroupState = static_cast<ZCautiousSearchGroup_ESearchGroupState>(ZHMEnums::GetEnumValueByName("ZCautiousSearchGroup.ESearchGroupState", std::string_view(p_Document["m_eGroupState"])));
 
 	s_Object.m_eAssistantState = static_cast<ZCautiousSearchGroup_EAssistantState>(ZHMEnums::GetEnumValueByName("ZCautiousSearchGroup.EAssistantState", std::string_view(p_Document["m_eAssistantState"])));
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_pAssistant = static_cast<uint32>(int64_t(p_Document["m_pAssistant"]));
+	s_Object.m_pAssistant = simdjson::from_json_uint32(p_Document["m_pAssistant"]);
 
 	*reinterpret_cast<SCautiousSearchGroupSaveData*>(p_Target) = s_Object;
 }
@@ -16122,21 +16122,21 @@ void SCautiousSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value 
 		s_Object.m_tTimeIdling = s_Item;
 	}
 
-	s_Object.m_pGuardDutyPoint = static_cast<uint32>(int64_t(p_Document["m_pGuardDutyPoint"]));
+	s_Object.m_pGuardDutyPoint = simdjson::from_json_uint32(p_Document["m_pGuardDutyPoint"]);
 
-	s_Object.m_nBulletImpactsHeard = static_cast<int32>(int64_t(p_Document["m_nBulletImpactsHeard"]));
+	s_Object.m_nBulletImpactsHeard = simdjson::from_json_int32(p_Document["m_nBulletImpactsHeard"]);
 
-	s_Object.m_nPatrolWaypointIndex = static_cast<int32>(int64_t(p_Document["m_nPatrolWaypointIndex"]));
+	s_Object.m_nPatrolWaypointIndex = simdjson::from_json_int32(p_Document["m_nPatrolWaypointIndex"]);
 
-	s_Object.m_nPatrolWaypointSubIndex = static_cast<uint32>(int64_t(p_Document["m_nPatrolWaypointSubIndex"]));
+	s_Object.m_nPatrolWaypointSubIndex = simdjson::from_json_uint32(p_Document["m_nPatrolWaypointSubIndex"]);
 
-	s_Object.m_bBanterCandidate = bool(p_Document["m_bBanterCandidate"]);
+	s_Object.m_bBanterCandidate = simdjson::from_json_bool(p_Document["m_bBanterCandidate"]);
 
-	s_Object.m_bCivOccupant = bool(p_Document["m_bCivOccupant"]);
+	s_Object.m_bCivOccupant = simdjson::from_json_bool(p_Document["m_bCivOccupant"]);
 
-	s_Object.m_bRecievingNewHuntTarget = bool(p_Document["m_bRecievingNewHuntTarget"]);
+	s_Object.m_bRecievingNewHuntTarget = simdjson::from_json_bool(p_Document["m_bRecievingNewHuntTarget"]);
 
-	s_Object.m_bLockdownEnforcer = bool(p_Document["m_bLockdownEnforcer"]);
+	s_Object.m_bLockdownEnforcer = simdjson::from_json_bool(p_Document["m_bLockdownEnforcer"]);
 
 	*reinterpret_cast<SCautiousSituationMemberSaveData*>(p_Target) = s_Object;
 }
@@ -16271,7 +16271,7 @@ void SCautiousVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SCautiousVIPGroupSaveData s_Object;
 
-	s_Object.m_vip = static_cast<uint32>(int64_t(p_Document["m_vip"]));
+	s_Object.m_vip = simdjson::from_json_uint32(p_Document["m_vip"]);
 
 	{
 		SFSMSaveData s_Item;
@@ -16285,9 +16285,9 @@ void SCautiousVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.m_stateData = s_Item;
 	}
 
-	s_Object.m_vipTargetNode = static_cast<int32>(int64_t(p_Document["m_vipTargetNode"]));
+	s_Object.m_vipTargetNode = simdjson::from_json_int32(p_Document["m_vipTargetNode"]);
 
-	s_Object.m_occupancyNode = static_cast<int32>(int64_t(p_Document["m_occupancyNode"]));
+	s_Object.m_occupancyNode = simdjson::from_json_int32(p_Document["m_occupancyNode"]);
 
 	*reinterpret_cast<SCautiousVIPGroupSaveData*>(p_Target) = s_Object;
 }
@@ -16341,9 +16341,9 @@ void SChairSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SChairSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_bAttached = bool(p_Document["m_bAttached"]);
+	s_Object.m_bAttached = simdjson::from_json_bool(p_Document["m_bAttached"]);
 
 	*reinterpret_cast<SChairSaveData*>(p_Target) = s_Object;
 }
@@ -16534,11 +16534,11 @@ void SCharacterSpeakEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SCharacterSpeakEntitySaveData s_Object;
 
-	s_Object.m_fSeekPosition = static_cast<float32>(double(p_Document["m_fSeekPosition"]));
+	s_Object.m_fSeekPosition = simdjson::from_json_float32(p_Document["m_fSeekPosition"]);
 
-	s_Object.m_nRandomSelectionSeed = static_cast<uint32>(int64_t(p_Document["m_nRandomSelectionSeed"]));
+	s_Object.m_nRandomSelectionSeed = simdjson::from_json_uint32(p_Document["m_nRandomSelectionSeed"]);
 
-	s_Object.m_bWereSubtitlesSeen = bool(p_Document["m_bWereSubtitlesSeen"]);
+	s_Object.m_bWereSubtitlesSeen = simdjson::from_json_bool(p_Document["m_bWereSubtitlesSeen"]);
 
 	*reinterpret_cast<SCharacterSpeakEntitySaveData*>(p_Target) = s_Object;
 }
@@ -16630,17 +16630,17 @@ void SCheckLastPositionGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SCheckLastPositionGroupSaveData s_Object;
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_pAssistant = static_cast<uint32>(int64_t(p_Document["m_pAssistant"]));
+	s_Object.m_pAssistant = simdjson::from_json_uint32(p_Document["m_pAssistant"]);
 
-	s_Object.m_nLeaderTargetNodeIndex = static_cast<uint16>(int64_t(p_Document["m_nLeaderTargetNodeIndex"]));
+	s_Object.m_nLeaderTargetNodeIndex = simdjson::from_json_uint16(p_Document["m_nLeaderTargetNodeIndex"]);
 
-	s_Object.m_bLeaderOrderAssigned = bool(p_Document["m_bLeaderOrderAssigned"]);
+	s_Object.m_bLeaderOrderAssigned = simdjson::from_json_bool(p_Document["m_bLeaderOrderAssigned"]);
 
-	s_Object.m_bAssistantOrderAssigned = bool(p_Document["m_bAssistantOrderAssigned"]);
+	s_Object.m_bAssistantOrderAssigned = simdjson::from_json_bool(p_Document["m_bAssistantOrderAssigned"]);
 
-	s_Object.m_bSearchCompleted = bool(p_Document["m_bSearchCompleted"]);
+	s_Object.m_bSearchCompleted = simdjson::from_json_bool(p_Document["m_bSearchCompleted"]);
 
 	*reinterpret_cast<SCheckLastPositionGroupSaveData*>(p_Target) = s_Object;
 }
@@ -16750,11 +16750,11 @@ void SClothBundleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_OutfitID = s_Item;
 	}
 
-	s_Object.m_nOutfitVariation = static_cast<int32>(int64_t(p_Document["m_nOutfitVariation"]));
+	s_Object.m_nOutfitVariation = simdjson::from_json_int32(p_Document["m_nOutfitVariation"]);
 
-	s_Object.m_nOutfitCharset = static_cast<int32>(int64_t(p_Document["m_nOutfitCharset"]));
+	s_Object.m_nOutfitCharset = simdjson::from_json_int32(p_Document["m_nOutfitCharset"]);
 
-	s_Object.bSpawnedByHitman = bool(p_Document["bSpawnedByHitman"]);
+	s_Object.bSpawnedByHitman = simdjson::from_json_bool(p_Document["bSpawnedByHitman"]);
 
 	*reinterpret_cast<SClothBundleSaveData*>(p_Target) = s_Object;
 }
@@ -16799,7 +16799,7 @@ void SClothBundleSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SClothBundleSpawnSaveData s_Object;
 
-	s_Object.m_rClothbundle = static_cast<uint32>(int64_t(p_Document["m_rClothbundle"]));
+	s_Object.m_rClothbundle = simdjson::from_json_uint32(p_Document["m_rClothbundle"]);
 
 	*reinterpret_cast<SClothBundleSpawnSaveData*>(p_Target) = s_Object;
 }
@@ -16851,9 +16851,9 @@ void SClothVertex::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 {
 	SClothVertex s_Object;
 
-	s_Object.m_nColumn = static_cast<uint16>(int64_t(p_Document["m_nColumn"]));
+	s_Object.m_nColumn = simdjson::from_json_uint16(p_Document["m_nColumn"]);
 
-	s_Object.m_nRow = static_cast<uint16>(int64_t(p_Document["m_nRow"]));
+	s_Object.m_nRow = simdjson::from_json_uint16(p_Document["m_nRow"]);
 
 	*reinterpret_cast<SClothVertex*>(p_Target) = s_Object;
 }
@@ -16925,13 +16925,13 @@ void SClothWireEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SClothWireEntitySaveData s_Object;
 
-	s_Object.m_fWireLength = static_cast<float32>(double(p_Document["m_fWireLength"]));
+	s_Object.m_fWireLength = simdjson::from_json_float32(p_Document["m_fWireLength"]);
 
-	s_Object.m_bAttachToAnchorTransform = bool(p_Document["m_bAttachToAnchorTransform"]);
+	s_Object.m_bAttachToAnchorTransform = simdjson::from_json_bool(p_Document["m_bAttachToAnchorTransform"]);
 
-	s_Object.m_bSimulationEnabled = bool(p_Document["m_bSimulationEnabled"]);
+	s_Object.m_bSimulationEnabled = simdjson::from_json_bool(p_Document["m_bSimulationEnabled"]);
 
-	s_Object.m_bVisible = bool(p_Document["m_bVisible"]);
+	s_Object.m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
 
 	*reinterpret_cast<SClothWireEntitySaveData*>(p_Target) = s_Object;
 }
@@ -17031,9 +17031,9 @@ void SCollidingParticle::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_vNewVelocity = s_Item;
 	}
 
-	s_Object.m_nColor = static_cast<uint32>(int64_t(p_Document["m_nColor"]));
+	s_Object.m_nColor = simdjson::from_json_uint32(p_Document["m_nColor"]);
 
-	s_Object.m_fSize = static_cast<float32>(double(p_Document["m_fSize"]));
+	s_Object.m_fSize = simdjson::from_json_float32(p_Document["m_fSize"]);
 
 	*reinterpret_cast<SCollidingParticle*>(p_Target) = s_Object;
 }
@@ -17088,9 +17088,9 @@ void SCollisionControllerAspectSaveData::FromSimpleJson(simdjson::ondemand::valu
 {
 	SCollisionControllerAspectSaveData s_Object;
 
-	s_Object.m_bCollideHitman = bool(p_Document["m_bCollideHitman"]);
+	s_Object.m_bCollideHitman = simdjson::from_json_bool(p_Document["m_bCollideHitman"]);
 
-	s_Object.m_bCollideCamera = bool(p_Document["m_bCollideCamera"]);
+	s_Object.m_bCollideCamera = simdjson::from_json_bool(p_Document["m_bCollideCamera"]);
 
 	*reinterpret_cast<SCollisionControllerAspectSaveData*>(p_Target) = s_Object;
 }
@@ -17186,7 +17186,7 @@ void SCollisionControllerAspectsSaveData::FromSimpleJson(simdjson::ondemand::val
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -17258,11 +17258,11 @@ void SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	SColorRGB s_Object;
 
-	s_Object.r = static_cast<float32>(double(p_Document["r"]));
+	s_Object.r = simdjson::from_json_float32(p_Document["r"]);
 
-	s_Object.g = static_cast<float32>(double(p_Document["g"]));
+	s_Object.g = simdjson::from_json_float32(p_Document["g"]);
 
-	s_Object.b = static_cast<float32>(double(p_Document["b"]));
+	s_Object.b = simdjson::from_json_float32(p_Document["b"]);
 
 	*reinterpret_cast<SColorRGB*>(p_Target) = s_Object;
 }
@@ -17334,13 +17334,13 @@ void SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SColorRGBA s_Object;
 
-	s_Object.r = static_cast<float32>(double(p_Document["r"]));
+	s_Object.r = simdjson::from_json_float32(p_Document["r"]);
 
-	s_Object.g = static_cast<float32>(double(p_Document["g"]));
+	s_Object.g = simdjson::from_json_float32(p_Document["g"]);
 
-	s_Object.b = static_cast<float32>(double(p_Document["b"]));
+	s_Object.b = simdjson::from_json_float32(p_Document["b"]);
 
-	s_Object.a = static_cast<float32>(double(p_Document["a"]));
+	s_Object.a = simdjson::from_json_float32(p_Document["a"]);
 
 	*reinterpret_cast<SColorRGBA*>(p_Target) = s_Object;
 }
@@ -17436,7 +17436,7 @@ void SColorRGBSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -17514,9 +17514,9 @@ void SCombatOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_vPos = s_Item;
 	}
 
-	s_Object.m_coverPlane = static_cast<uint32>(int64_t(p_Document["m_coverPlane"]));
+	s_Object.m_coverPlane = simdjson::from_json_uint32(p_Document["m_coverPlane"]);
 
-	s_Object.m_rInteraction = static_cast<uint32>(int64_t(p_Document["m_rInteraction"]));
+	s_Object.m_rInteraction = simdjson::from_json_uint32(p_Document["m_rInteraction"]);
 
 	*reinterpret_cast<SCombatOrderSaveData*>(p_Target) = s_Object;
 }
@@ -17639,23 +17639,23 @@ void SCombatSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SCombatSituationMemberSaveData s_Object;
 
-	s_Object.m_fDistanceToTarget = static_cast<float32>(double(p_Document["m_fDistanceToTarget"]));
+	s_Object.m_fDistanceToTarget = simdjson::from_json_float32(p_Document["m_fDistanceToTarget"]);
 
-	s_Object.m_fDistanceFieldValue = static_cast<float32>(double(p_Document["m_fDistanceFieldValue"]));
+	s_Object.m_fDistanceFieldValue = simdjson::from_json_float32(p_Document["m_fDistanceFieldValue"]);
 
 	s_Object.m_civilianJoinReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_civilianJoinReason"])));
 
-	s_Object.m_bIsPreferredToFire = bool(p_Document["m_bIsPreferredToFire"]);
+	s_Object.m_bIsPreferredToFire = simdjson::from_json_bool(p_Document["m_bIsPreferredToFire"]);
 
-	s_Object.m_bDialogPreventShooting = bool(p_Document["m_bDialogPreventShooting"]);
+	s_Object.m_bDialogPreventShooting = simdjson::from_json_bool(p_Document["m_bDialogPreventShooting"]);
 
-	s_Object.m_bCanFlee = bool(p_Document["m_bCanFlee"]);
+	s_Object.m_bCanFlee = simdjson::from_json_bool(p_Document["m_bCanFlee"]);
 
-	s_Object.m_bCantFleeNoPath = bool(p_Document["m_bCantFleeNoPath"]);
+	s_Object.m_bCantFleeNoPath = simdjson::from_json_bool(p_Document["m_bCantFleeNoPath"]);
 
-	s_Object.m_bReportedToGuard = bool(p_Document["m_bReportedToGuard"]);
+	s_Object.m_bReportedToGuard = simdjson::from_json_bool(p_Document["m_bReportedToGuard"]);
 
-	s_Object.m_bStandAndShoot = bool(p_Document["m_bStandAndShoot"]);
+	s_Object.m_bStandAndShoot = simdjson::from_json_bool(p_Document["m_bStandAndShoot"]);
 
 	*reinterpret_cast<SCombatSituationMemberSaveData*>(p_Target) = s_Object;
 }
@@ -17747,9 +17747,9 @@ void SCombatZoneEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SCombatZoneEntitySaveData s_Object;
 
-	s_Object.m_bIsInLockdown = bool(p_Document["m_bIsInLockdown"]);
+	s_Object.m_bIsInLockdown = simdjson::from_json_bool(p_Document["m_bIsInLockdown"]);
 
-	s_Object.m_bIsFalseAlarm = bool(p_Document["m_bIsFalseAlarm"]);
+	s_Object.m_bIsFalseAlarm = simdjson::from_json_bool(p_Document["m_bIsFalseAlarm"]);
 
 	s_Object.m_nState = static_cast<ECombatZoneState>(ZHMEnums::GetEnumValueByName("ECombatZoneState", std::string_view(p_Document["m_nState"])));
 
@@ -17824,9 +17824,9 @@ void SComboDeviceBinding::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SComboDeviceBinding s_Object;
 
-	s_Object.type = static_cast<uint32>(int64_t(p_Document["type"]));
+	s_Object.type = simdjson::from_json_uint32(p_Document["type"]);
 
-	s_Object.button = static_cast<uint32>(int64_t(p_Document["button"]));
+	s_Object.button = simdjson::from_json_uint32(p_Document["button"]);
 
 	*reinterpret_cast<SComboDeviceBinding*>(p_Target) = s_Object;
 }
@@ -17922,7 +17922,7 @@ void SConditionBase::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	s_Object.eConditionType = static_cast<ECompiledConditionType>(ZHMEnums::GetEnumValueByName("ECompiledConditionType", std::string_view(p_Document["eConditionType"])));
 
-	s_Object.nConditionModifiers = static_cast<uint32>(int64_t(p_Document["nConditionModifiers"]));
+	s_Object.nConditionModifiers = simdjson::from_json_uint32(p_Document["nConditionModifiers"]);
 
 	{
 		ZBehaviorTreeVariable s_Item;
@@ -18001,13 +18001,13 @@ void SConditionalTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SConditionalTimerEntitySaveData s_Object;
 
-	s_Object.m_nInterval = static_cast<int32>(int64_t(p_Document["m_nInterval"]));
+	s_Object.m_nInterval = simdjson::from_json_int32(p_Document["m_nInterval"]);
 
-	s_Object.m_nRemaining = static_cast<int32>(int64_t(p_Document["m_nRemaining"]));
+	s_Object.m_nRemaining = simdjson::from_json_int32(p_Document["m_nRemaining"]);
 
-	s_Object.m_bActive = bool(p_Document["m_bActive"]);
+	s_Object.m_bActive = simdjson::from_json_bool(p_Document["m_bActive"]);
 
-	s_Object.m_bValue = bool(p_Document["m_bValue"]);
+	s_Object.m_bValue = simdjson::from_json_bool(p_Document["m_bValue"]);
 
 	*reinterpret_cast<SConditionalTimerEntitySaveData*>(p_Target) = s_Object;
 }
@@ -18280,11 +18280,11 @@ void SContextActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SContextActionSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_bTriggered = bool(p_Document["m_bTriggered"]);
+	s_Object.m_bTriggered = simdjson::from_json_bool(p_Document["m_bTriggered"]);
 
-	s_Object.m_bShouldShow = bool(p_Document["m_bShouldShow"]);
+	s_Object.m_bShouldShow = simdjson::from_json_bool(p_Document["m_bShouldShow"]);
 
 	*reinterpret_cast<SContextActionSaveData*>(p_Target) = s_Object;
 }
@@ -18386,7 +18386,7 @@ void SContractObjectiveHudHintEntitySaveData::FromSimpleJson(simdjson::ondemand:
 {
 	SContractObjectiveHudHintEntitySaveData s_Object;
 
-	s_Object.m_bVisible = bool(p_Document["m_bVisible"]);
+	s_Object.m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
 
 	*reinterpret_cast<SContractObjectiveHudHintEntitySaveData*>(p_Target) = s_Object;
 }
@@ -18758,11 +18758,11 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	s_Object.m_eCategory = static_cast<IContractObjective_Category>(ZHMEnums::GetEnumValueByName("IContractObjective.Category", std::string_view(p_Document["m_eCategory"])));
 
-	s_Object.m_bCompleted = bool(p_Document["m_bCompleted"]);
+	s_Object.m_bCompleted = simdjson::from_json_bool(p_Document["m_bCompleted"]);
 
-	s_Object.m_bFailed = bool(p_Document["m_bFailed"]);
+	s_Object.m_bFailed = simdjson::from_json_bool(p_Document["m_bFailed"]);
 
-	s_Object.m_bIsHidden = bool(p_Document["m_bIsHidden"]);
+	s_Object.m_bIsHidden = simdjson::from_json_bool(p_Document["m_bIsHidden"]);
 
 	s_Object.m_sSuccessEventName = std::string_view(p_Document["m_sSuccessEventName"]);
 
@@ -18806,13 +18806,13 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_sHUDText = s_Item;
 	}
 
-	s_Object.m_iRepeatSuccess = static_cast<int32>(int64_t(p_Document["m_iRepeatSuccess"]));
+	s_Object.m_iRepeatSuccess = simdjson::from_json_int32(p_Document["m_iRepeatSuccess"]);
 
-	s_Object.m_iRepeatFailed = static_cast<int32>(int64_t(p_Document["m_iRepeatFailed"]));
+	s_Object.m_iRepeatFailed = simdjson::from_json_int32(p_Document["m_iRepeatFailed"]);
 
-	s_Object.m_iCurrentSuccess = static_cast<int32>(int64_t(p_Document["m_iCurrentSuccess"]));
+	s_Object.m_iCurrentSuccess = simdjson::from_json_int32(p_Document["m_iCurrentSuccess"]);
 
-	s_Object.m_iCurrentFailed = static_cast<int32>(int64_t(p_Document["m_iCurrentFailed"]));
+	s_Object.m_iCurrentFailed = simdjson::from_json_int32(p_Document["m_iCurrentFailed"]);
 
 	{
 		ZDynamicObject s_Item;
@@ -18820,17 +18820,17 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_ActivationCondition = s_Item;
 	}
 
-	s_Object.m_ActivationValue = bool(p_Document["m_ActivationValue"]);
+	s_Object.m_ActivationValue = simdjson::from_json_bool(p_Document["m_ActivationValue"]);
 
-	s_Object.m_bUpdateActivationOnCompleted = bool(p_Document["m_bUpdateActivationOnCompleted"]);
+	s_Object.m_bUpdateActivationOnCompleted = simdjson::from_json_bool(p_Document["m_bUpdateActivationOnCompleted"]);
 
-	s_Object.m_bDisplayAsKill = bool(p_Document["m_bDisplayAsKill"]);
+	s_Object.m_bDisplayAsKill = simdjson::from_json_bool(p_Document["m_bDisplayAsKill"]);
 
-	s_Object.m_bIgnoreIfInactive = bool(p_Document["m_bIgnoreIfInactive"]);
+	s_Object.m_bIgnoreIfInactive = simdjson::from_json_bool(p_Document["m_bIgnoreIfInactive"]);
 
-	s_Object.m_bShowInHud = bool(p_Document["m_bShowInHud"]);
+	s_Object.m_bShowInHud = simdjson::from_json_bool(p_Document["m_bShowInHud"]);
 
-	s_Object.m_bCombinedDisplayInHud = bool(p_Document["m_bCombinedDisplayInHud"]);
+	s_Object.m_bCombinedDisplayInHud = simdjson::from_json_bool(p_Document["m_bCombinedDisplayInHud"]);
 
 	{
 		ZDynamicObject s_Item;
@@ -18856,7 +18856,7 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	s_Object.m_sBriefingName = std::string_view(p_Document["m_sBriefingName"]);
 
-	s_Object.m_bForceShowOnLoadingScreen = bool(p_Document["m_bForceShowOnLoadingScreen"]);
+	s_Object.m_bForceShowOnLoadingScreen = simdjson::from_json_bool(p_Document["m_bForceShowOnLoadingScreen"]);
 
 	*reinterpret_cast<SContractObjectiveSaveData*>(p_Target) = s_Object;
 }
@@ -19331,7 +19331,7 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 		s_Object.m_aAllies = s_Item;
 	}
 
-	s_Object.m_bTargetsHidden = bool(p_Document["m_bTargetsHidden"]);
+	s_Object.m_bTargetsHidden = simdjson::from_json_bool(p_Document["m_bTargetsHidden"]);
 
 	{
 		ZDynamicObject s_Item;
@@ -19345,9 +19345,9 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 		s_Object.m_ActivationCondition = s_Item;
 	}
 
-	s_Object.m_bActivationValue = bool(p_Document["m_bActivationValue"]);
+	s_Object.m_bActivationValue = simdjson::from_json_bool(p_Document["m_bActivationValue"]);
 
-	s_Object.m_bUpdateActivationOnCompleted = bool(p_Document["m_bUpdateActivationOnCompleted"]);
+	s_Object.m_bUpdateActivationOnCompleted = simdjson::from_json_bool(p_Document["m_bUpdateActivationOnCompleted"]);
 
 	{
 		ZDynamicObject s_Item;
@@ -19367,23 +19367,23 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 		s_Object.m_aExits = s_Item;
 	}
 
-	s_Object.m_timerEndTime = float64(p_Document["m_timerEndTime"]);
+	s_Object.m_timerEndTime = simdjson::from_json_float64(p_Document["m_timerEndTime"]);
 
-	s_Object.m_bTimerHasJustStarted = bool(p_Document["m_bTimerHasJustStarted"]);
+	s_Object.m_bTimerHasJustStarted = simdjson::from_json_bool(p_Document["m_bTimerHasJustStarted"]);
 
-	s_Object.m_bTimerHasJustStopped = bool(p_Document["m_bTimerHasJustStopped"]);
+	s_Object.m_bTimerHasJustStopped = simdjson::from_json_bool(p_Document["m_bTimerHasJustStopped"]);
 
-	s_Object.m_bIsActiveTimerVisible = bool(p_Document["m_bIsActiveTimerVisible"]);
+	s_Object.m_bIsActiveTimerVisible = simdjson::from_json_bool(p_Document["m_bIsActiveTimerVisible"]);
 
-	s_Object.m_bDisplayAsKill = bool(p_Document["m_bDisplayAsKill"]);
+	s_Object.m_bDisplayAsKill = simdjson::from_json_bool(p_Document["m_bDisplayAsKill"]);
 
-	s_Object.m_bIgnoreIfInactive = bool(p_Document["m_bIgnoreIfInactive"]);
+	s_Object.m_bIgnoreIfInactive = simdjson::from_json_bool(p_Document["m_bIgnoreIfInactive"]);
 
-	s_Object.m_bShowInHud = bool(p_Document["m_bShowInHud"]);
+	s_Object.m_bShowInHud = simdjson::from_json_bool(p_Document["m_bShowInHud"]);
 
-	s_Object.m_bCombinedDisplayInHud = bool(p_Document["m_bCombinedDisplayInHud"]);
+	s_Object.m_bCombinedDisplayInHud = simdjson::from_json_bool(p_Document["m_bCombinedDisplayInHud"]);
 
-	s_Object.m_bIsCounterVisibleInTile = bool(p_Document["m_bIsCounterVisibleInTile"]);
+	s_Object.m_bIsCounterVisibleInTile = simdjson::from_json_bool(p_Document["m_bIsCounterVisibleInTile"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTargetConditions"])
 	{
@@ -19398,11 +19398,11 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 
 	s_Object.m_sBriefingName = std::string_view(p_Document["m_sBriefingName"]);
 
-	s_Object.m_nObjectivesCounterCount = static_cast<int32>(int64_t(p_Document["m_nObjectivesCounterCount"]));
+	s_Object.m_nObjectivesCounterCount = simdjson::from_json_int32(p_Document["m_nObjectivesCounterCount"]);
 
 	s_Object.m_sObjectivesCounterHeader = std::string_view(p_Document["m_sObjectivesCounterHeader"]);
 
-	s_Object.m_nObjectivesCounterDeactivate = static_cast<int32>(int64_t(p_Document["m_nObjectivesCounterDeactivate"]));
+	s_Object.m_nObjectivesCounterDeactivate = simdjson::from_json_int32(p_Document["m_nObjectivesCounterDeactivate"]);
 
 	{
 		ZDynamicObject s_Item;
@@ -19410,11 +19410,11 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 		s_Object.m_dObjectivesCounterExtraData = s_Item;
 	}
 
-	s_Object.m_bTimerHasStopped = bool(p_Document["m_bTimerHasStopped"]);
+	s_Object.m_bTimerHasStopped = simdjson::from_json_bool(p_Document["m_bTimerHasStopped"]);
 
-	s_Object.m_bForceShowOnLoadingScreen = bool(p_Document["m_bForceShowOnLoadingScreen"]);
+	s_Object.m_bForceShowOnLoadingScreen = simdjson::from_json_bool(p_Document["m_bForceShowOnLoadingScreen"]);
 
-	s_Object.m_nObjectivesCounterType = static_cast<uint8>(int64_t(p_Document["m_nObjectivesCounterType"]));
+	s_Object.m_nObjectivesCounterType = simdjson::from_json_uint8(p_Document["m_nObjectivesCounterType"]);
 
 	*reinterpret_cast<SContractObjectiveStateMachineSaveData*>(p_Target) = s_Object;
 }
@@ -19559,7 +19559,7 @@ void SConversationPart::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SConversationPart s_Object;
 
-	s_Object.m_chance = static_cast<float32>(double(p_Document["m_chance"]));
+	s_Object.m_chance = simdjson::from_json_float32(p_Document["m_chance"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_entries"])
 	{
@@ -19629,7 +19629,7 @@ void SEntityTemplateProperty::FromSimpleJson(simdjson::ondemand::value p_Documen
 	if (p_Document["nPropertyID"].type() == simdjson::ondemand::json_type::string)
 		s_Object.nPropertyID = Hash::Crc32(std::string_view(p_Document["nPropertyID"]));
 	else
-		s_Object.nPropertyID = static_cast<uint32>(int64_t(p_Document["nPropertyID"]));
+		s_Object.nPropertyID = simdjson::from_json_uint32(p_Document["nPropertyID"]);
 
 	{
 		ZVariant s_Item;
@@ -19709,7 +19709,7 @@ void SCppEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SCppEntity s_Object;
 
-	s_Object.blueprintIndexInResourceHeader = static_cast<int32>(int64_t(p_Document["blueprintIndexInResourceHeader"]));
+	s_Object.blueprintIndexInResourceHeader = simdjson::from_json_int32(p_Document["blueprintIndexInResourceHeader"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["propertyValues"])
 	{
@@ -19771,7 +19771,7 @@ void SCppEntitySubsetInfo::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	s_Object.name = std::string_view(p_Document["name"]);
 
-	s_Object.flags = static_cast<uint32>(int64_t(p_Document["flags"]));
+	s_Object.flags = simdjson::from_json_uint32(p_Document["flags"]);
 
 	*reinterpret_cast<SCppEntitySubsetInfo*>(p_Target) = s_Object;
 }
@@ -19861,7 +19861,7 @@ void SCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.typeName = s_Item;
 	}
 
-	s_Object.typeFlags = static_cast<uint32>(int64_t(p_Document["typeFlags"]));
+	s_Object.typeFlags = simdjson::from_json_uint32(p_Document["typeFlags"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["subsets"])
 	{
@@ -19982,17 +19982,17 @@ void SRunningCrowdAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SRunningCrowdAIEventSaveData s_Object;
 
-	s_Object.m_ReactionEntity = static_cast<uint32>(int64_t(p_Document["m_ReactionEntity"]));
+	s_Object.m_ReactionEntity = simdjson::from_json_uint32(p_Document["m_ReactionEntity"]);
 
-	s_Object.m_CrowdEntity = static_cast<uint32>(int64_t(p_Document["m_CrowdEntity"]));
+	s_Object.m_CrowdEntity = simdjson::from_json_uint32(p_Document["m_CrowdEntity"]);
 
-	s_Object.m_HitmanToBlame = static_cast<uint32>(int64_t(p_Document["m_HitmanToBlame"]));
+	s_Object.m_HitmanToBlame = simdjson::from_json_uint32(p_Document["m_HitmanToBlame"]);
 
-	s_Object.m_CrowdCoreIndex = static_cast<int32>(int64_t(p_Document["m_CrowdCoreIndex"]));
+	s_Object.m_CrowdCoreIndex = simdjson::from_json_int32(p_Document["m_CrowdCoreIndex"]);
 
-	s_Object.m_TimeLeft = static_cast<float32>(double(p_Document["m_TimeLeft"]));
+	s_Object.m_TimeLeft = simdjson::from_json_float32(p_Document["m_TimeLeft"]);
 
-	s_Object.m_TimeToPulse = static_cast<float32>(double(p_Document["m_TimeToPulse"]));
+	s_Object.m_TimeToPulse = simdjson::from_json_float32(p_Document["m_TimeToPulse"]);
 
 	{
 		float4 s_Item;
@@ -20000,7 +20000,7 @@ void SRunningCrowdAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 		s_Object.m_Position = s_Item;
 	}
 
-	s_Object.m_IsInvestigated = bool(p_Document["m_IsInvestigated"]);
+	s_Object.m_IsInvestigated = simdjson::from_json_bool(p_Document["m_IsInvestigated"]);
 
 	*reinterpret_cast<SRunningCrowdAIEventSaveData*>(p_Target) = s_Object;
 }
@@ -20142,13 +20142,13 @@ void SCrowdActivitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SCrowdActivitySaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	s_Object.m_eGait = static_cast<EGait>(ZHMEnums::GetEnumValueByName("EGait", std::string_view(p_Document["m_eGait"])));
 
-	s_Object.m_nMaxEnterDelaySec = static_cast<float32>(double(p_Document["m_nMaxEnterDelaySec"]));
+	s_Object.m_nMaxEnterDelaySec = simdjson::from_json_float32(p_Document["m_nMaxEnterDelaySec"]);
 
-	s_Object.m_nMaxLeaveDelaySec = static_cast<float32>(double(p_Document["m_nMaxLeaveDelaySec"]));
+	s_Object.m_nMaxLeaveDelaySec = simdjson::from_json_float32(p_Document["m_nMaxLeaveDelaySec"]);
 
 	*reinterpret_cast<SCrowdActivitySaveData*>(p_Target) = s_Object;
 }
@@ -20270,15 +20270,15 @@ void SCrowdActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SCrowdActorSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	s_Object.m_eWantedSpeed = static_cast<ESpeed>(ZHMEnums::GetEnumValueByName("ESpeed", std::string_view(p_Document["m_eWantedSpeed"])));
 
 	s_Object.m_eWantedGait = static_cast<EGait>(ZHMEnums::GetEnumValueByName("EGait", std::string_view(p_Document["m_eWantedGait"])));
 
-	s_Object.m_nAnimSourceID = static_cast<uint32>(int64_t(p_Document["m_nAnimSourceID"]));
+	s_Object.m_nAnimSourceID = simdjson::from_json_uint32(p_Document["m_nAnimSourceID"]);
 
-	s_Object.m_nAnimSourceIndex = static_cast<uint32>(int64_t(p_Document["m_nAnimSourceIndex"]));
+	s_Object.m_nAnimSourceIndex = simdjson::from_json_uint32(p_Document["m_nAnimSourceIndex"]);
 
 	{
 		float4 s_Item;
@@ -20292,7 +20292,7 @@ void SCrowdActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.m_vForward = s_Item;
 	}
 
-	s_Object.m_fSpeed = static_cast<float32>(double(p_Document["m_fSpeed"]));
+	s_Object.m_fSpeed = simdjson::from_json_float32(p_Document["m_fSpeed"]);
 
 	s_Object.m_eMood = static_cast<CrowdUtil_ECrowdActorMood>(ZHMEnums::GetEnumValueByName("CrowdUtil.ECrowdActorMood", std::string_view(p_Document["m_eMood"])));
 
@@ -20429,17 +20429,17 @@ void SCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SCrowdBodySaveData s_Object;
 
-	s_Object.m_pCorpseBodybagEntity = static_cast<uint32>(int64_t(p_Document["m_pCorpseBodybagEntity"]));
+	s_Object.m_pCorpseBodybagEntity = simdjson::from_json_uint32(p_Document["m_pCorpseBodybagEntity"]);
 
-	s_Object.m_rCrowdEntity = static_cast<uint32>(int64_t(p_Document["m_rCrowdEntity"]));
+	s_Object.m_rCrowdEntity = simdjson::from_json_uint32(p_Document["m_rCrowdEntity"]);
 
-	s_Object.m_iActorIndex = static_cast<uint16>(int64_t(p_Document["m_iActorIndex"]));
+	s_Object.m_iActorIndex = simdjson::from_json_uint16(p_Document["m_iActorIndex"]);
 
-	s_Object.m_rPerceptibleEntity = static_cast<uint32>(int64_t(p_Document["m_rPerceptibleEntity"]));
+	s_Object.m_rPerceptibleEntity = simdjson::from_json_uint32(p_Document["m_rPerceptibleEntity"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKnownBy"])
 	{
-		s_Object.m_aKnownBy.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aKnownBy.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	{
@@ -20448,9 +20448,9 @@ void SCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_tStart = s_Item;
 	}
 
-	s_Object.m_bManaged = bool(p_Document["m_bManaged"]);
+	s_Object.m_bManaged = simdjson::from_json_bool(p_Document["m_bManaged"]);
 
-	s_Object.m_rBagSharedKnowledge = static_cast<int32>(int64_t(p_Document["m_rBagSharedKnowledge"]));
+	s_Object.m_rBagSharedKnowledge = simdjson::from_json_int32(p_Document["m_rBagSharedKnowledge"]);
 
 	*reinterpret_cast<SCrowdBodySaveData*>(p_Target) = s_Object;
 }
@@ -20519,7 +20519,7 @@ void SCrowdCells::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	size_t s_Index0 = 0;
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_cells"])
 	{
-		s_Object.m_cells[s_Index0] = static_cast<uint8>(int64_t(s_Item0));
+		s_Object.m_cells[s_Index0] = simdjson::from_json_uint8(s_Item0);
 		++s_Index0;
 	}
 	}
@@ -20729,7 +20729,7 @@ void SCrowdPoseCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SCrowdPoseCollectionSaveData s_Object;
 
-	s_Object.m_id = uint64(p_Document["m_id"]);
+	s_Object.m_id = simdjson::from_json_uint64(p_Document["m_id"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPoses"])
 	{
@@ -20938,7 +20938,7 @@ void SRegionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	SRegionSaveData s_Object;
 
-	s_Object.m_nIndex = static_cast<uint32>(int64_t(p_Document["m_nIndex"]));
+	s_Object.m_nIndex = simdjson::from_json_uint32(p_Document["m_nIndex"]);
 
 	s_Object.m_eType = static_cast<CrowdRegionType>(ZHMEnums::GetEnumValueByName("CrowdRegionType", std::string_view(p_Document["m_eType"])));
 
@@ -20948,19 +20948,19 @@ void SRegionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 		s_Object.m_vCenter = s_Item;
 	}
 
-	s_Object.m_nDirection = static_cast<float32>(double(p_Document["m_nDirection"]));
+	s_Object.m_nDirection = simdjson::from_json_float32(p_Document["m_nDirection"]);
 
-	s_Object.m_nRadius = static_cast<float32>(double(p_Document["m_nRadius"]));
+	s_Object.m_nRadius = simdjson::from_json_float32(p_Document["m_nRadius"]);
 
-	s_Object.m_nAngle = static_cast<uint32>(int64_t(p_Document["m_nAngle"]));
+	s_Object.m_nAngle = simdjson::from_json_uint32(p_Document["m_nAngle"]);
 
-	s_Object.m_nLifetime = static_cast<float32>(double(p_Document["m_nLifetime"]));
+	s_Object.m_nLifetime = simdjson::from_json_float32(p_Document["m_nLifetime"]);
 
-	s_Object.m_nAge = static_cast<float32>(double(p_Document["m_nAge"]));
+	s_Object.m_nAge = simdjson::from_json_float32(p_Document["m_nAge"]);
 
-	s_Object.m_nGroupID = static_cast<uint8>(int64_t(p_Document["m_nGroupID"]));
+	s_Object.m_nGroupID = simdjson::from_json_uint8(p_Document["m_nGroupID"]);
 
-	s_Object.m_nObstacleActorIndex = static_cast<int16>(int64_t(p_Document["m_nObstacleActorIndex"]));
+	s_Object.m_nObstacleActorIndex = simdjson::from_json_int16(p_Document["m_nObstacleActorIndex"]);
 
 	*reinterpret_cast<SRegionSaveData*>(p_Target) = s_Object;
 }
@@ -21151,7 +21151,7 @@ void SCrowdEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_RegionData.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_bIsCrowdAmbient = bool(p_Document["m_bIsCrowdAmbient"]);
+	s_Object.m_bIsCrowdAmbient = simdjson::from_json_bool(p_Document["m_bIsCrowdAmbient"]);
 
 	{
 		SCrowdDeadPoseRepositorySaveData s_Item;
@@ -21161,12 +21161,12 @@ void SCrowdEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCrowdAiPoolActorsMale"])
 	{
-		s_Object.m_aCrowdAiPoolActorsMale.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aCrowdAiPoolActorsMale.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCrowdAiPoolActorsFemale"])
 	{
-		s_Object.m_aCrowdAiPoolActorsFemale.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aCrowdAiPoolActorsFemale.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SCrowdEntitySaveData*>(p_Target) = s_Object;
@@ -21268,12 +21268,12 @@ void SCrowdFlowChannel::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFlowVectorIndex"])
 	{
-		s_Object.m_aFlowVectorIndex.push_back(static_cast<uint8>(int64_t(s_Item0)));
+		s_Object.m_aFlowVectorIndex.push_back(simdjson::from_json_uint8(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFlowCost"])
 	{
-		s_Object.m_aFlowCost.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_aFlowCost.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
 	*reinterpret_cast<SCrowdFlowChannel*>(p_Target) = s_Object;
@@ -21328,9 +21328,9 @@ void ZCrowdGridPoint::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	ZCrowdGridPoint s_Object;
 
-	s_Object.m_nHeightOffset = static_cast<int16>(int64_t(p_Document["m_nHeightOffset"]));
+	s_Object.m_nHeightOffset = simdjson::from_json_int16(p_Document["m_nHeightOffset"]);
 
-	s_Object.m_nOnNavGrid = static_cast<uint8>(int64_t(p_Document["m_nOnNavGrid"]));
+	s_Object.m_nOnNavGrid = simdjson::from_json_uint8(p_Document["m_nOnNavGrid"]);
 
 	*reinterpret_cast<ZCrowdGridPoint*>(p_Target) = s_Object;
 }
@@ -21616,7 +21616,7 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SCrowdMapData s_Object;
 
-	s_Object.m_nVersion = static_cast<uint32>(int64_t(p_Document["m_nVersion"]));
+	s_Object.m_nVersion = simdjson::from_json_uint32(p_Document["m_nVersion"]);
 
 	{
 		SVector4 s_Item;
@@ -21624,13 +21624,13 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 		s_Object.m_vCellConsts = s_Item;
 	}
 
-	s_Object.m_nGridSizeX = static_cast<uint32>(int64_t(p_Document["m_nGridSizeX"]));
+	s_Object.m_nGridSizeX = simdjson::from_json_uint32(p_Document["m_nGridSizeX"]);
 
-	s_Object.m_nGridSizeY = static_cast<uint32>(int64_t(p_Document["m_nGridSizeY"]));
+	s_Object.m_nGridSizeY = simdjson::from_json_uint32(p_Document["m_nGridSizeY"]);
 
-	s_Object.m_nCellSizeX = static_cast<uint32>(int64_t(p_Document["m_nCellSizeX"]));
+	s_Object.m_nCellSizeX = simdjson::from_json_uint32(p_Document["m_nCellSizeX"]);
 
-	s_Object.m_nCellSizeY = static_cast<uint32>(int64_t(p_Document["m_nCellSizeY"]));
+	s_Object.m_nCellSizeY = simdjson::from_json_uint32(p_Document["m_nCellSizeY"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_GridMap"])
 	{
@@ -21639,9 +21639,9 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 		s_Object.m_GridMap.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_fGridMapHeightOffsetsScale = static_cast<float32>(double(p_Document["m_fGridMapHeightOffsetsScale"]));
+	s_Object.m_fGridMapHeightOffsetsScale = simdjson::from_json_float32(p_Document["m_fGridMapHeightOffsetsScale"]);
 
-	s_Object.m_fGridMapHeightOffsetsBias = static_cast<float32>(double(p_Document["m_fGridMapHeightOffsetsBias"]));
+	s_Object.m_fGridMapHeightOffsetsBias = simdjson::from_json_float32(p_Document["m_fGridMapHeightOffsetsBias"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_CellFlags"])
 	{
@@ -21657,7 +21657,7 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 		s_Object.m_CellGroups.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_nGroupFlowStartChannel = static_cast<int32>(int64_t(p_Document["m_nGroupFlowStartChannel"]));
+	s_Object.m_nGroupFlowStartChannel = simdjson::from_json_int32(p_Document["m_nGroupFlowStartChannel"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFlowChannels"])
 	{
@@ -21666,7 +21666,7 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 		s_Object.m_aFlowChannels.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_nGridCellSize = static_cast<float32>(double(p_Document["m_nGridCellSize"]));
+	s_Object.m_nGridCellSize = simdjson::from_json_float32(p_Document["m_nGridCellSize"]);
 
 	{
 		SMatrix s_Item;
@@ -21680,7 +21680,7 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 		s_Object.m_vGlobalSize = s_Item;
 	}
 
-	s_Object.m_nGridGeneratorOffset = static_cast<float32>(double(p_Document["m_nGridGeneratorOffset"]));
+	s_Object.m_nGridGeneratorOffset = simdjson::from_json_float32(p_Document["m_nGridGeneratorOffset"]);
 
 	*reinterpret_cast<SCrowdMapData*>(p_Target) = s_Object;
 }
@@ -21769,15 +21769,15 @@ void SCrowdReactionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SCrowdReactionSaveData s_Object;
 
-	s_Object.m_nNumPacify = static_cast<uint32>(int64_t(p_Document["m_nNumPacify"]));
+	s_Object.m_nNumPacify = simdjson::from_json_uint32(p_Document["m_nNumPacify"]);
 
-	s_Object.m_nNumShotsFired = static_cast<uint32>(int64_t(p_Document["m_nNumShotsFired"]));
+	s_Object.m_nNumShotsFired = simdjson::from_json_uint32(p_Document["m_nNumShotsFired"]);
 
-	s_Object.m_nNumDeaths = static_cast<uint32>(int64_t(p_Document["m_nNumDeaths"]));
+	s_Object.m_nNumDeaths = simdjson::from_json_uint32(p_Document["m_nNumDeaths"]);
 
-	s_Object.m_nNumScared = static_cast<uint32>(int64_t(p_Document["m_nNumScared"]));
+	s_Object.m_nNumScared = simdjson::from_json_uint32(p_Document["m_nNumScared"]);
 
-	s_Object.m_bWarzoneSpawned = bool(p_Document["m_bWarzoneSpawned"]);
+	s_Object.m_bWarzoneSpawned = simdjson::from_json_bool(p_Document["m_bWarzoneSpawned"]);
 
 	*reinterpret_cast<SCrowdReactionSaveData*>(p_Target) = s_Object;
 }
@@ -21911,12 +21911,12 @@ void SCrowdServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPerceptiblePool"])
 	{
-		s_Object.m_aPerceptiblePool.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aPerceptiblePool.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPerceptibleActors"])
 	{
-		s_Object.m_aPerceptibleActors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aPerceptibleActors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SCrowdServiceSaveData*>(p_Target) = s_Object;
@@ -21978,7 +21978,7 @@ void SCuriousEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 		s_Object.m_tExpiresAt = s_Item;
 	}
 
-	s_Object.m_nKnowledgeIndex = static_cast<int32>(int64_t(p_Document["m_nKnowledgeIndex"]));
+	s_Object.m_nKnowledgeIndex = simdjson::from_json_int32(p_Document["m_nKnowledgeIndex"]);
 
 	*reinterpret_cast<SCuriousEventSaveData*>(p_Target) = s_Object;
 }
@@ -22090,7 +22090,7 @@ void SDangerousAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SDangerousAreaSaveData s_Object;
 
-	s_Object.m_bDangerous = bool(p_Document["m_bDangerous"]);
+	s_Object.m_bDangerous = simdjson::from_json_bool(p_Document["m_bDangerous"]);
 
 	*reinterpret_cast<SDangerousAreaSaveData*>(p_Target) = s_Object;
 }
@@ -22273,13 +22273,13 @@ void SDeadBodyInfoSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SDeadBodyInfoSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_rGuard = static_cast<uint32>(int64_t(p_Document["m_rGuard"]));
+	s_Object.m_rGuard = simdjson::from_json_uint32(p_Document["m_rGuard"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_knownByActors"])
 	{
-		s_Object.m_knownByActors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_knownByActors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	{
@@ -22294,21 +22294,21 @@ void SDeadBodyInfoSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 		s_Object.m_tInvestigatedSince = s_Item;
 	}
 
-	s_Object.m_bGuarded = bool(p_Document["m_bGuarded"]);
+	s_Object.m_bGuarded = simdjson::from_json_bool(p_Document["m_bGuarded"]);
 
-	s_Object.m_bBodyInvestigated = bool(p_Document["m_bBodyInvestigated"]);
+	s_Object.m_bBodyInvestigated = simdjson::from_json_bool(p_Document["m_bBodyInvestigated"]);
 
-	s_Object.m_bHidden = bool(p_Document["m_bHidden"]);
+	s_Object.m_bHidden = simdjson::from_json_bool(p_Document["m_bHidden"]);
 
-	s_Object.m_bDeadByAccident = bool(p_Document["m_bDeadByAccident"]);
+	s_Object.m_bDeadByAccident = simdjson::from_json_bool(p_Document["m_bDeadByAccident"]);
 
-	s_Object.m_bDeadByUnnoticed = bool(p_Document["m_bDeadByUnnoticed"]);
+	s_Object.m_bDeadByUnnoticed = simdjson::from_json_bool(p_Document["m_bDeadByUnnoticed"]);
 
-	s_Object.m_bHitmanSuspectedInCurrentOutfit = bool(p_Document["m_bHitmanSuspectedInCurrentOutfit"]);
+	s_Object.m_bHitmanSuspectedInCurrentOutfit = simdjson::from_json_bool(p_Document["m_bHitmanSuspectedInCurrentOutfit"]);
 
-	s_Object.m_bDeadByExplosion = bool(p_Document["m_bDeadByExplosion"]);
+	s_Object.m_bDeadByExplosion = simdjson::from_json_bool(p_Document["m_bDeadByExplosion"]);
 
-	s_Object.m_IsFoundOutsideNavmeshAndIgnored = bool(p_Document["m_IsFoundOutsideNavmeshAndIgnored"]);
+	s_Object.m_IsFoundOutsideNavmeshAndIgnored = simdjson::from_json_bool(p_Document["m_IsFoundOutsideNavmeshAndIgnored"]);
 
 	*reinterpret_cast<SDeadBodyInfoSaveData*>(p_Target) = s_Object;
 }
@@ -22391,7 +22391,7 @@ void SDeadBodySensorSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 		s_Object.m_aBodies.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_nBodyIndex = static_cast<int32>(int64_t(p_Document["m_nBodyIndex"]));
+	s_Object.m_nBodyIndex = simdjson::from_json_int32(p_Document["m_nBodyIndex"]);
 
 	*reinterpret_cast<SDeadBodySensorSaveData*>(p_Target) = s_Object;
 }
@@ -22444,9 +22444,9 @@ void SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	SVector2 s_Object;
 
-	s_Object.x = static_cast<float32>(double(p_Document["x"]));
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object.y = static_cast<float32>(double(p_Document["y"]));
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
 	*reinterpret_cast<SVector2*>(p_Target) = s_Object;
 }
@@ -22588,7 +22588,7 @@ void SDecalSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SDecalSpawnSaveData s_Object;
 
-	s_Object.m_bWasSpawned = bool(p_Document["m_bWasSpawned"]);
+	s_Object.m_bWasSpawned = simdjson::from_json_bool(p_Document["m_bWasSpawned"]);
 
 	{
 		float4 s_Item;
@@ -22620,9 +22620,9 @@ void SDecalSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.m_Color = s_Item;
 	}
 
-	s_Object.m_fAlpha = static_cast<float32>(double(p_Document["m_fAlpha"]));
+	s_Object.m_fAlpha = simdjson::from_json_float32(p_Document["m_fAlpha"]);
 
-	s_Object.m_fAngle = static_cast<float32>(double(p_Document["m_fAngle"]));
+	s_Object.m_fAngle = simdjson::from_json_float32(p_Document["m_fAngle"]);
 
 	{
 		SVector2 s_Item;
@@ -22636,7 +22636,7 @@ void SDecalSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.m_vTiling = s_Item;
 	}
 
-	s_Object.m_rBlockingSpatialEntity = static_cast<uint32>(int64_t(p_Document["m_rBlockingSpatialEntity"]));
+	s_Object.m_rBlockingSpatialEntity = simdjson::from_json_uint32(p_Document["m_rBlockingSpatialEntity"]);
 
 	*reinterpret_cast<SDecalSpawnSaveData*>(p_Target) = s_Object;
 }
@@ -22685,7 +22685,7 @@ void SDestructibleInteractionHandlerData::FromSimpleJson(simdjson::ondemand::val
 {
 	SDestructibleInteractionHandlerData s_Object;
 
-	s_Object.m_fSettleTime = static_cast<float32>(double(p_Document["m_fSettleTime"]));
+	s_Object.m_fSettleTime = simdjson::from_json_float32(p_Document["m_fSettleTime"]);
 
 	*reinterpret_cast<SDestructibleInteractionHandlerData*>(p_Target) = s_Object;
 }
@@ -22816,14 +22816,14 @@ void SDestructiblePieceSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIndices"])
 	{
-		s_Object.m_aIndices.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_aIndices.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
-	s_Object.m_fMass = static_cast<float32>(double(p_Document["m_fMass"]));
+	s_Object.m_fMass = simdjson::from_json_float32(p_Document["m_fMass"]);
 
 	s_Object.m_ePhysicsType = static_cast<EPhysicsObjectType>(ZHMEnums::GetEnumValueByName("EPhysicsObjectType", std::string_view(p_Document["m_ePhysicsType"])));
 
-	s_Object.m_bIsAwake = bool(p_Document["m_bIsAwake"]);
+	s_Object.m_bIsAwake = simdjson::from_json_bool(p_Document["m_bIsAwake"]);
 
 	{
 		float4 s_Item;
@@ -22912,11 +22912,11 @@ void SDestructibleRuntimeConnnection::FromSimpleJson(simdjson::ondemand::value p
 {
 	SDestructibleRuntimeConnnection s_Object;
 
-	s_Object.m_nPieceIndex = static_cast<uint16>(int64_t(p_Document["m_nPieceIndex"]));
+	s_Object.m_nPieceIndex = simdjson::from_json_uint16(p_Document["m_nPieceIndex"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aConnections"])
 	{
-		s_Object.m_aConnections.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_aConnections.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
 	*reinterpret_cast<SDestructibleRuntimeConnnection*>(p_Target) = s_Object;
@@ -22970,9 +22970,9 @@ void SDestructibleRuntimeDamage::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SDestructibleRuntimeDamage s_Object;
 
-	s_Object.m_nPieceIndex = static_cast<uint16>(int64_t(p_Document["m_nPieceIndex"]));
+	s_Object.m_nPieceIndex = simdjson::from_json_uint16(p_Document["m_nPieceIndex"]);
 
-	s_Object.m_fDamage = static_cast<float32>(double(p_Document["m_fDamage"]));
+	s_Object.m_fDamage = simdjson::from_json_float32(p_Document["m_fDamage"]);
 
 	*reinterpret_cast<SDestructibleRuntimeDamage*>(p_Target) = s_Object;
 }
@@ -23204,19 +23204,19 @@ void SDestructibleObjectSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 		s_Object.m_aDamageData.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_nNumAnchors = static_cast<uint16>(int64_t(p_Document["m_nNumAnchors"]));
+	s_Object.m_nNumAnchors = simdjson::from_json_uint16(p_Document["m_nNumAnchors"]);
 
 	s_Object.m_eRuntimeMemoryAllocationState = static_cast<ERuntimeMemoryAllocationState>(ZHMEnums::GetEnumValueByName("ERuntimeMemoryAllocationState", std::string_view(p_Document["m_eRuntimeMemoryAllocationState"])));
 
 	s_Object.m_eSystemPhysicsType = static_cast<EPhysicsObjectType>(ZHMEnums::GetEnumValueByName("EPhysicsObjectType", std::string_view(p_Document["m_eSystemPhysicsType"])));
 
-	s_Object.m_bHasSystemBeenDetached = bool(p_Document["m_bHasSystemBeenDetached"]);
+	s_Object.m_bHasSystemBeenDetached = simdjson::from_json_bool(p_Document["m_bHasSystemBeenDetached"]);
 
-	s_Object.m_bHasSystemBeenFractured = bool(p_Document["m_bHasSystemBeenFractured"]);
+	s_Object.m_bHasSystemBeenFractured = simdjson::from_json_bool(p_Document["m_bHasSystemBeenFractured"]);
 
-	s_Object.m_bPhysicsEnabled = bool(p_Document["m_bPhysicsEnabled"]);
+	s_Object.m_bPhysicsEnabled = simdjson::from_json_bool(p_Document["m_bPhysicsEnabled"]);
 
-	s_Object.m_bDestructionEnabled = bool(p_Document["m_bDestructionEnabled"]);
+	s_Object.m_bDestructionEnabled = simdjson::from_json_bool(p_Document["m_bDestructionEnabled"]);
 
 	*reinterpret_cast<SDestructibleObjectSaveData*>(p_Target) = s_Object;
 }
@@ -23318,15 +23318,15 @@ void SDetectedInPrivateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_fTimeWaiting = static_cast<float32>(double(p_Document["m_fTimeWaiting"]));
+	s_Object.m_fTimeWaiting = simdjson::from_json_float32(p_Document["m_fTimeWaiting"]);
 
-	s_Object.m_rLead = static_cast<uint32>(int64_t(p_Document["m_rLead"]));
+	s_Object.m_rLead = simdjson::from_json_uint32(p_Document["m_rLead"]);
 
-	s_Object.m_bDisbanded = bool(p_Document["m_bDisbanded"]);
+	s_Object.m_bDisbanded = simdjson::from_json_bool(p_Document["m_bDisbanded"]);
 
-	s_Object.m_bFirstWait = bool(p_Document["m_bFirstWait"]);
+	s_Object.m_bFirstWait = simdjson::from_json_bool(p_Document["m_bFirstWait"]);
 
-	s_Object.m_target = static_cast<int32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_int32(p_Document["m_target"]);
 
 	*reinterpret_cast<SDetectedInPrivateGroupSaveData*>(p_Target) = s_Object;
 }
@@ -23369,7 +23369,7 @@ void SDisguiseZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SDisguiseZoneSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	*reinterpret_cast<SDisguiseZoneSaveData*>(p_Target) = s_Object;
 }
@@ -23441,11 +23441,11 @@ void SDoorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SDoorSaveData s_Object;
 
-	s_Object.m_nDoorState = static_cast<int32>(int64_t(p_Document["m_nDoorState"]));
+	s_Object.m_nDoorState = simdjson::from_json_int32(p_Document["m_nDoorState"]);
 
-	s_Object.m_fAnimPercent = static_cast<float32>(double(p_Document["m_fAnimPercent"]));
+	s_Object.m_fAnimPercent = simdjson::from_json_float32(p_Document["m_fAnimPercent"]);
 
-	s_Object.m_fTargetAnimPercent = static_cast<float32>(double(p_Document["m_fTargetAnimPercent"]));
+	s_Object.m_fTargetAnimPercent = simdjson::from_json_float32(p_Document["m_fTargetAnimPercent"]);
 
 	{
 		ZGameTime s_Item;
@@ -23580,7 +23580,7 @@ void SDoorsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -23752,15 +23752,15 @@ void SDrama2ActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SDrama2ActorSaveState s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_rSequence = static_cast<uint32>(int64_t(p_Document["m_rSequence"]));
+	s_Object.m_rSequence = simdjson::from_json_uint32(p_Document["m_rSequence"]);
 
-	s_Object.m_rBehavior = static_cast<uint32>(int64_t(p_Document["m_rBehavior"]));
+	s_Object.m_rBehavior = simdjson::from_json_uint32(p_Document["m_rBehavior"]);
 
-	s_Object.m_rCurrentSpeakEntity = static_cast<uint32>(int64_t(p_Document["m_rCurrentSpeakEntity"]));
+	s_Object.m_rCurrentSpeakEntity = simdjson::from_json_uint32(p_Document["m_rCurrentSpeakEntity"]);
 
-	s_Object.m_rScreenplay = static_cast<uint32>(int64_t(p_Document["m_rScreenplay"]));
+	s_Object.m_rScreenplay = simdjson::from_json_uint32(p_Document["m_rScreenplay"]);
 
 	s_Object.m_sMatchName = std::string_view(p_Document["m_sMatchName"]);
 
@@ -23770,17 +23770,17 @@ void SDrama2ActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document,
 		s_Object.m_tActorSpeakEnd = s_Item;
 	}
 
-	s_Object.m_bIsDone = bool(p_Document["m_bIsDone"]);
+	s_Object.m_bIsDone = simdjson::from_json_bool(p_Document["m_bIsDone"]);
 
-	s_Object.m_bIsPaused = bool(p_Document["m_bIsPaused"]);
+	s_Object.m_bIsPaused = simdjson::from_json_bool(p_Document["m_bIsPaused"]);
 
-	s_Object.m_bIsSpeaking = bool(p_Document["m_bIsSpeaking"]);
+	s_Object.m_bIsSpeaking = simdjson::from_json_bool(p_Document["m_bIsSpeaking"]);
 
-	s_Object.m_bOwnsCurrentBehavior = bool(p_Document["m_bOwnsCurrentBehavior"]);
+	s_Object.m_bOwnsCurrentBehavior = simdjson::from_json_bool(p_Document["m_bOwnsCurrentBehavior"]);
 
-	s_Object.m_bActive = bool(p_Document["m_bActive"]);
+	s_Object.m_bActive = simdjson::from_json_bool(p_Document["m_bActive"]);
 
-	s_Object.m_bRequired = bool(p_Document["m_bRequired"]);
+	s_Object.m_bRequired = simdjson::from_json_bool(p_Document["m_bRequired"]);
 
 	*reinterpret_cast<SDrama2ActorSaveState*>(p_Target) = s_Object;
 }
@@ -23878,7 +23878,7 @@ void SDrama2ActorCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
@@ -23950,11 +23950,11 @@ void SDrama2SetupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SDrama2SetupSaveData s_Object;
 
-	s_Object.m_bDoneTriggered = bool(p_Document["m_bDoneTriggered"]);
+	s_Object.m_bDoneTriggered = simdjson::from_json_bool(p_Document["m_bDoneTriggered"]);
 
 	s_Object.m_eState = static_cast<EScreenPlayState>(ZHMEnums::GetEnumValueByName("EScreenPlayState", std::string_view(p_Document["m_eState"])));
 
-	s_Object.m_rSituation = static_cast<uint32>(int64_t(p_Document["m_rSituation"]));
+	s_Object.m_rSituation = simdjson::from_json_uint32(p_Document["m_rSituation"]);
 
 	*reinterpret_cast<SDrama2SetupSaveData*>(p_Target) = s_Object;
 }
@@ -24050,7 +24050,7 @@ void SDrama2SetupCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
@@ -24162,19 +24162,19 @@ void SDrama2SituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SDrama2SituationSaveData s_Object;
 
-	s_Object.m_nPriorityModifier = static_cast<float32>(double(p_Document["m_nPriorityModifier"]));
+	s_Object.m_nPriorityModifier = simdjson::from_json_float32(p_Document["m_nPriorityModifier"]);
 
-	s_Object.m_nCurrentDrama = static_cast<int32>(int64_t(p_Document["m_nCurrentDrama"]));
+	s_Object.m_nCurrentDrama = simdjson::from_json_int32(p_Document["m_nCurrentDrama"]);
 
-	s_Object.m_nDoneTime = static_cast<float32>(double(p_Document["m_nDoneTime"]));
+	s_Object.m_nDoneTime = simdjson::from_json_float32(p_Document["m_nDoneTime"]);
 
-	s_Object.m_bIsOnCooldown = bool(p_Document["m_bIsOnCooldown"]);
+	s_Object.m_bIsOnCooldown = simdjson::from_json_bool(p_Document["m_bIsOnCooldown"]);
 
-	s_Object.m_bProvidersStarted = bool(p_Document["m_bProvidersStarted"]);
+	s_Object.m_bProvidersStarted = simdjson::from_json_bool(p_Document["m_bProvidersStarted"]);
 
-	s_Object.m_bSituationRunning = bool(p_Document["m_bSituationRunning"]);
+	s_Object.m_bSituationRunning = simdjson::from_json_bool(p_Document["m_bSituationRunning"]);
 
-	s_Object.m_bIsTerminated = bool(p_Document["m_bIsTerminated"]);
+	s_Object.m_bIsTerminated = simdjson::from_json_bool(p_Document["m_bIsTerminated"]);
 
 	*reinterpret_cast<SDrama2SituationSaveData*>(p_Target) = s_Object;
 }
@@ -24270,7 +24270,7 @@ void SDrama2SituationCollectionSaveData::FromSimpleJson(simdjson::ondemand::valu
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
@@ -24412,15 +24412,15 @@ void SDramaActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SDramaActorSaveState s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_rSequence = static_cast<uint32>(int64_t(p_Document["m_rSequence"]));
+	s_Object.m_rSequence = simdjson::from_json_uint32(p_Document["m_rSequence"]);
 
-	s_Object.m_rBehavior = static_cast<uint32>(int64_t(p_Document["m_rBehavior"]));
+	s_Object.m_rBehavior = simdjson::from_json_uint32(p_Document["m_rBehavior"]);
 
-	s_Object.m_rCurrentSpeakEntity = static_cast<uint32>(int64_t(p_Document["m_rCurrentSpeakEntity"]));
+	s_Object.m_rCurrentSpeakEntity = simdjson::from_json_uint32(p_Document["m_rCurrentSpeakEntity"]);
 
-	s_Object.m_rScreenplay = static_cast<uint32>(int64_t(p_Document["m_rScreenplay"]));
+	s_Object.m_rScreenplay = simdjson::from_json_uint32(p_Document["m_rScreenplay"]);
 
 	s_Object.m_sMatchName = std::string_view(p_Document["m_sMatchName"]);
 
@@ -24430,11 +24430,11 @@ void SDramaActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_tActorSpeakEnd = s_Item;
 	}
 
-	s_Object.m_bIsDone = bool(p_Document["m_bIsDone"]);
+	s_Object.m_bIsDone = simdjson::from_json_bool(p_Document["m_bIsDone"]);
 
-	s_Object.m_bIsPaused = bool(p_Document["m_bIsPaused"]);
+	s_Object.m_bIsPaused = simdjson::from_json_bool(p_Document["m_bIsPaused"]);
 
-	s_Object.m_bIsSpeaking = bool(p_Document["m_bIsSpeaking"]);
+	s_Object.m_bIsSpeaking = simdjson::from_json_bool(p_Document["m_bIsSpeaking"]);
 
 	*reinterpret_cast<SDramaActorSaveState*>(p_Target) = s_Object;
 }
@@ -24532,7 +24532,7 @@ void SDramaActorCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
@@ -24594,9 +24594,9 @@ void SDramaControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SDramaControllerSaveData s_Object;
 
-	s_Object.m_bIsStartCondValid = bool(p_Document["m_bIsStartCondValid"]);
+	s_Object.m_bIsStartCondValid = simdjson::from_json_bool(p_Document["m_bIsStartCondValid"]);
 
-	s_Object.m_bIsEnableCondValid = bool(p_Document["m_bIsEnableCondValid"]);
+	s_Object.m_bIsEnableCondValid = simdjson::from_json_bool(p_Document["m_bIsEnableCondValid"]);
 
 	*reinterpret_cast<SDramaControllerSaveData*>(p_Target) = s_Object;
 }
@@ -24658,11 +24658,11 @@ void SDramaSetupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SDramaSetupSaveData s_Object;
 
-	s_Object.m_bDoneTriggered = bool(p_Document["m_bDoneTriggered"]);
+	s_Object.m_bDoneTriggered = simdjson::from_json_bool(p_Document["m_bDoneTriggered"]);
 
 	s_Object.m_eState = static_cast<ZScreenplay_EState>(ZHMEnums::GetEnumValueByName("ZScreenplay.EState", std::string_view(p_Document["m_eState"])));
 
-	s_Object.m_rSituation = static_cast<uint32>(int64_t(p_Document["m_rSituation"]));
+	s_Object.m_rSituation = simdjson::from_json_uint32(p_Document["m_rSituation"]);
 
 	*reinterpret_cast<SDramaSetupSaveData*>(p_Target) = s_Object;
 }
@@ -24758,7 +24758,7 @@ void SDramaSetupCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
@@ -24850,15 +24850,15 @@ void SDramaSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SDramaSituationSaveData s_Object;
 
-	s_Object.m_bSituationRunning = bool(p_Document["m_bSituationRunning"]);
+	s_Object.m_bSituationRunning = simdjson::from_json_bool(p_Document["m_bSituationRunning"]);
 
-	s_Object.m_bIsTerminated = bool(p_Document["m_bIsTerminated"]);
+	s_Object.m_bIsTerminated = simdjson::from_json_bool(p_Document["m_bIsTerminated"]);
 
-	s_Object.m_nPriorityModifier = static_cast<float32>(double(p_Document["m_nPriorityModifier"]));
+	s_Object.m_nPriorityModifier = simdjson::from_json_float32(p_Document["m_nPriorityModifier"]);
 
-	s_Object.m_nCurrentDrama = static_cast<int32>(int64_t(p_Document["m_nCurrentDrama"]));
+	s_Object.m_nCurrentDrama = simdjson::from_json_int32(p_Document["m_nCurrentDrama"]);
 
-	s_Object.m_bProvidersStarted = bool(p_Document["m_bProvidersStarted"]);
+	s_Object.m_bProvidersStarted = simdjson::from_json_bool(p_Document["m_bProvidersStarted"]);
 
 	*reinterpret_cast<SDramaSituationSaveData*>(p_Target) = s_Object;
 }
@@ -24954,7 +24954,7 @@ void SDramaSituationCollectionSaveData::FromSimpleJson(simdjson::ondemand::value
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
@@ -25036,7 +25036,7 @@ void SDynamicEnforcerCandidateSaveData::FromSimpleJson(simdjson::ondemand::value
 {
 	SDynamicEnforcerCandidateSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	{
 		float4 s_Item;
@@ -25046,7 +25046,7 @@ void SDynamicEnforcerCandidateSaveData::FromSimpleJson(simdjson::ondemand::value
 
 	s_Object.m_eType = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(p_Document["m_eType"])));
 
-	s_Object.m_fRadius = static_cast<float32>(double(p_Document["m_fRadius"]));
+	s_Object.m_fRadius = simdjson::from_json_float32(p_Document["m_fRadius"]);
 
 	*reinterpret_cast<SDynamicEnforcerCandidateSaveData*>(p_Target) = s_Object;
 }
@@ -25238,11 +25238,11 @@ void SDynamicRayCastEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SDynamicRayCastEntitySaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_bIsRayIntersecting = bool(p_Document["m_bIsRayIntersecting"]);
+	s_Object.m_bIsRayIntersecting = simdjson::from_json_bool(p_Document["m_bIsRayIntersecting"]);
 
-	s_Object.m_bIsCurrentlyEnabled = bool(p_Document["m_bIsCurrentlyEnabled"]);
+	s_Object.m_bIsCurrentlyEnabled = simdjson::from_json_bool(p_Document["m_bIsCurrentlyEnabled"]);
 
 	*reinterpret_cast<SDynamicRayCastEntitySaveData*>(p_Target) = s_Object;
 }
@@ -25315,11 +25315,11 @@ void SEntityPath::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 {
 	SEntityPath s_Object;
 
-	s_Object.m_nOwnerID = uint64(p_Document["m_nOwnerID"]);
+	s_Object.m_nOwnerID = simdjson::from_json_uint64(p_Document["m_nOwnerID"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityPath"])
 	{
-		s_Object.m_aEntityPath.push_back(uint64(s_Item0));
+		s_Object.m_aEntityPath.push_back(simdjson::from_json_uint64(s_Item0));
 	}
 
 	*reinterpret_cast<SEntityPath*>(p_Target) = s_Object;
@@ -25425,9 +25425,9 @@ void SEntityPinDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	s_Object.sHelpText = std::string_view(p_Document["sHelpText"]);
 
-	s_Object.bIsPlaceholder = bool(p_Document["bIsPlaceholder"]);
+	s_Object.bIsPlaceholder = simdjson::from_json_bool(p_Document["bIsPlaceholder"]);
 
-	s_Object.bIsHidden = bool(p_Document["bIsHidden"]);
+	s_Object.bIsHidden = simdjson::from_json_bool(p_Document["bIsHidden"]);
 
 	*reinterpret_cast<SEntityPinDescriptor*>(p_Target) = s_Object;
 }
@@ -25496,7 +25496,7 @@ void SEntityTemplateEntitySubset::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["entities"])
 	{
-		s_Object.entities.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.entities.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	*reinterpret_cast<SEntityTemplateEntitySubset*>(p_Target) = s_Object;
@@ -25570,11 +25570,11 @@ void SEntityTemplateReference::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SEntityTemplateReference s_Object;
 
-	s_Object.entityID = uint64(p_Document["entityID"]);
+	s_Object.entityID = simdjson::from_json_uint64(p_Document["entityID"]);
 
-	s_Object.externalSceneIndex = static_cast<int32>(int64_t(p_Document["externalSceneIndex"]));
+	s_Object.externalSceneIndex = simdjson::from_json_int32(p_Document["externalSceneIndex"]);
 
-	s_Object.entityIndex = static_cast<int32>(int64_t(p_Document["entityIndex"]));
+	s_Object.entityIndex = simdjson::from_json_int32(p_Document["entityIndex"]);
 
 	s_Object.exposedEntity = std::string_view(p_Document["exposedEntity"]);
 
@@ -25662,7 +25662,7 @@ void SEntityTemplateExposedEntity::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.sName = std::string_view(p_Document["sName"]);
 
-	s_Object.bIsArray = bool(p_Document["bIsArray"]);
+	s_Object.bIsArray = simdjson::from_json_bool(p_Document["bIsArray"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aTargets"])
 	{
@@ -25753,9 +25753,9 @@ void SEntityTemplatePinConnection::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SEntityTemplatePinConnection s_Object;
 
-	s_Object.fromID = static_cast<int32>(int64_t(p_Document["fromID"]));
+	s_Object.fromID = simdjson::from_json_int32(p_Document["fromID"]);
 
-	s_Object.toID = static_cast<int32>(int64_t(p_Document["toID"]));
+	s_Object.toID = simdjson::from_json_int32(p_Document["toID"]);
 
 	s_Object.fromPinName = std::string_view(p_Document["fromPinName"]);
 
@@ -25838,7 +25838,7 @@ void SEntityTemplatePlatformSpecificProperty::FromSimpleJson(simdjson::ondemand:
 
 	s_Object.platform = static_cast<EVirtualPlatformID>(ZHMEnums::GetEnumValueByName("EVirtualPlatformID", std::string_view(p_Document["platform"])));
 
-	s_Object.postInit = bool(p_Document["postInit"]);
+	s_Object.postInit = simdjson::from_json_bool(p_Document["postInit"]);
 
 	*reinterpret_cast<SEntityTemplatePlatformSpecificProperty*>(p_Target) = s_Object;
 }
@@ -25903,7 +25903,7 @@ void SEntityTemplatePropertyAlias::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.sAliasName = std::string_view(p_Document["sAliasName"]);
 
-	s_Object.entityID = static_cast<int32>(int64_t(p_Document["entityID"]));
+	s_Object.entityID = simdjson::from_json_int32(p_Document["entityID"]);
 
 	s_Object.sPropertyName = std::string_view(p_Document["sPropertyName"]);
 
@@ -26323,9 +26323,9 @@ void SEscortOutBehaviorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SEscortOutBehaviorSaveData s_Object;
 
-	s_Object.m_nSituation = static_cast<int32>(int64_t(p_Document["m_nSituation"]));
+	s_Object.m_nSituation = simdjson::from_json_int32(p_Document["m_nSituation"]);
 
-	s_Object.m_bConversationHelperPaused = bool(p_Document["m_bConversationHelperPaused"]);
+	s_Object.m_bConversationHelperPaused = simdjson::from_json_bool(p_Document["m_bConversationHelperPaused"]);
 
 	{
 		SFSMSaveData s_Item;
@@ -26345,9 +26345,9 @@ void SEscortOutBehaviorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_tWarningTime = s_Item;
 	}
 
-	s_Object.m_bHardWarning = bool(p_Document["m_bHardWarning"]);
+	s_Object.m_bHardWarning = simdjson::from_json_bool(p_Document["m_bHardWarning"]);
 
-	s_Object.m_nWarningCount = static_cast<int32>(int64_t(p_Document["m_nWarningCount"]));
+	s_Object.m_nWarningCount = simdjson::from_json_int32(p_Document["m_nWarningCount"]);
 
 	{
 		ZGameTime s_Item;
@@ -26373,11 +26373,11 @@ void SEscortOutBehaviorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_tLastLookBack = s_Item;
 	}
 
-	s_Object.m_bReachedExitPosition = bool(p_Document["m_bReachedExitPosition"]);
+	s_Object.m_bReachedExitPosition = simdjson::from_json_bool(p_Document["m_bReachedExitPosition"]);
 
-	s_Object.m_bShowExitWarningEnded = bool(p_Document["m_bShowExitWarningEnded"]);
+	s_Object.m_bShowExitWarningEnded = simdjson::from_json_bool(p_Document["m_bShowExitWarningEnded"]);
 
-	s_Object.m_bJustShowExit = bool(p_Document["m_bJustShowExit"]);
+	s_Object.m_bJustShowExit = simdjson::from_json_bool(p_Document["m_bJustShowExit"]);
 
 	*reinterpret_cast<SEscortOutBehaviorSaveData*>(p_Target) = s_Object;
 }
@@ -26555,19 +26555,19 @@ void SEscortSituation2ActorStateSaveData::FromSimpleJson(simdjson::ondemand::val
 {
 	SEscortSituation2ActorStateSaveData s_Object;
 
-	s_Object.m_nID = static_cast<uint32>(int64_t(p_Document["m_nID"]));
+	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
-	s_Object.m_bAllocatedForSituation = bool(p_Document["m_bAllocatedForSituation"]);
+	s_Object.m_bAllocatedForSituation = simdjson::from_json_bool(p_Document["m_bAllocatedForSituation"]);
 
 	s_Object.m_eState = static_cast<ZEscortSituation2Entity_EEscortState>(ZHMEnums::GetEnumValueByName("ZEscortSituation2Entity.EEscortState", std::string_view(p_Document["m_eState"])));
 
 	s_Object.m_eStatePrevious = static_cast<ZEscortSituation2Entity_EEscortState>(ZHMEnums::GetEnumValueByName("ZEscortSituation2Entity.EEscortState", std::string_view(p_Document["m_eStatePrevious"])));
 
-	s_Object.m_fDistanceToTarget = static_cast<float32>(double(p_Document["m_fDistanceToTarget"]));
+	s_Object.m_fDistanceToTarget = simdjson::from_json_float32(p_Document["m_fDistanceToTarget"]);
 
-	s_Object.m_rCurrentScreenplay = static_cast<uint32>(int64_t(p_Document["m_rCurrentScreenplay"]));
+	s_Object.m_rCurrentScreenplay = simdjson::from_json_uint32(p_Document["m_rCurrentScreenplay"]);
 
-	s_Object.m_rPreferredIntermediateScreenplay = static_cast<uint32>(int64_t(p_Document["m_rPreferredIntermediateScreenplay"]));
+	s_Object.m_rPreferredIntermediateScreenplay = simdjson::from_json_uint32(p_Document["m_rPreferredIntermediateScreenplay"]);
 
 	*reinterpret_cast<SEscortSituation2ActorStateSaveData*>(p_Target) = s_Object;
 }
@@ -26609,7 +26609,7 @@ void SEscortSituation2Actors::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SEscortSituation2Actors s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SEscortSituation2Actors*>(p_Target) = s_Object;
 }
@@ -26915,17 +26915,17 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SEscortSituation2SaveData s_Object;
 
-	s_Object.m_bActivated = bool(p_Document["m_bActivated"]);
+	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
-	s_Object.m_bMayEscort = bool(p_Document["m_bMayEscort"]);
+	s_Object.m_bMayEscort = simdjson::from_json_bool(p_Document["m_bMayEscort"]);
 
-	s_Object.m_bTargetDead = bool(p_Document["m_bTargetDead"]);
+	s_Object.m_bTargetDead = simdjson::from_json_bool(p_Document["m_bTargetDead"]);
 
-	s_Object.m_bTargetInRange = bool(p_Document["m_bTargetInRange"]);
+	s_Object.m_bTargetInRange = simdjson::from_json_bool(p_Document["m_bTargetInRange"]);
 
-	s_Object.m_bAllEscortsAreDead = bool(p_Document["m_bAllEscortsAreDead"]);
+	s_Object.m_bAllEscortsAreDead = simdjson::from_json_bool(p_Document["m_bAllEscortsAreDead"]);
 
-	s_Object.m_bForceSearch = bool(p_Document["m_bForceSearch"]);
+	s_Object.m_bForceSearch = simdjson::from_json_bool(p_Document["m_bForceSearch"]);
 
 	{
 		SVector3 s_Item;
@@ -26933,11 +26933,11 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.m_vLastPosition = s_Item;
 	}
 
-	s_Object.m_bFoundDeadTarget = bool(p_Document["m_bFoundDeadTarget"]);
+	s_Object.m_bFoundDeadTarget = simdjson::from_json_bool(p_Document["m_bFoundDeadTarget"]);
 
-	s_Object.m_nTargetDeadTime = int64(p_Document["m_nTargetDeadTime"]);
+	s_Object.m_nTargetDeadTime = simdjson::from_json_int64(p_Document["m_nTargetDeadTime"]);
 
-	s_Object.m_bTargetIsMoving = bool(p_Document["m_bTargetIsMoving"]);
+	s_Object.m_bTargetIsMoving = simdjson::from_json_bool(p_Document["m_bTargetIsMoving"]);
 
 	s_Object.m_eTargetState = static_cast<ZEscortSituation2Entity_ETargetState>(ZHMEnums::GetEnumValueByName("ZEscortSituation2Entity.ETargetState", std::string_view(p_Document["m_eTargetState"])));
 
@@ -26945,9 +26945,9 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_eTargetActState = static_cast<ZActBehaviorEntity_EState>(ZHMEnums::GetEnumValueByName("ZActBehaviorEntity.EState", std::string_view(p_Document["m_eTargetActState"])));
 
-	s_Object.m_fTargetNotMovingTime = static_cast<float32>(double(p_Document["m_fTargetNotMovingTime"]));
+	s_Object.m_fTargetNotMovingTime = simdjson::from_json_float32(p_Document["m_fTargetNotMovingTime"]);
 
-	s_Object.m_fTargetAgitationCooldownTimer = static_cast<float32>(double(p_Document["m_fTargetAgitationCooldownTimer"]));
+	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
 	{
@@ -26965,12 +26965,12 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSearchActs"])
 	{
-		s_Object.m_aSearchActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aSearchActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SEscortSituation2SaveData*>(p_Target) = s_Object;
@@ -27078,19 +27078,19 @@ void SEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::valu
 {
 	SEscortSituationActorStateSaveData s_Object;
 
-	s_Object.m_nID = static_cast<uint32>(int64_t(p_Document["m_nID"]));
+	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
-	s_Object.m_bAllocatedForSituation = bool(p_Document["m_bAllocatedForSituation"]);
+	s_Object.m_bAllocatedForSituation = simdjson::from_json_bool(p_Document["m_bAllocatedForSituation"]);
 
 	s_Object.m_eState = static_cast<ZEscortSituationEntity_EEscortState>(ZHMEnums::GetEnumValueByName("ZEscortSituationEntity.EEscortState", std::string_view(p_Document["m_eState"])));
 
 	s_Object.m_eStatePrevious = static_cast<ZEscortSituationEntity_EEscortState>(ZHMEnums::GetEnumValueByName("ZEscortSituationEntity.EEscortState", std::string_view(p_Document["m_eStatePrevious"])));
 
-	s_Object.m_fDistanceToTarget = static_cast<float32>(double(p_Document["m_fDistanceToTarget"]));
+	s_Object.m_fDistanceToTarget = simdjson::from_json_float32(p_Document["m_fDistanceToTarget"]);
 
-	s_Object.m_rCurrentScreenplay = static_cast<uint32>(int64_t(p_Document["m_rCurrentScreenplay"]));
+	s_Object.m_rCurrentScreenplay = simdjson::from_json_uint32(p_Document["m_rCurrentScreenplay"]);
 
-	s_Object.m_rPreferredIntermediateScreenplay = static_cast<uint32>(int64_t(p_Document["m_rPreferredIntermediateScreenplay"]));
+	s_Object.m_rPreferredIntermediateScreenplay = simdjson::from_json_uint32(p_Document["m_rPreferredIntermediateScreenplay"]);
 
 	*reinterpret_cast<SEscortSituationActorStateSaveData*>(p_Target) = s_Object;
 }
@@ -27132,7 +27132,7 @@ void SEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SEscortSituationActors s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SEscortSituationActors*>(p_Target) = s_Object;
 }
@@ -27438,17 +27438,17 @@ void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SEscortSituationSaveData s_Object;
 
-	s_Object.m_bActivated = bool(p_Document["m_bActivated"]);
+	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
-	s_Object.m_bMayEscort = bool(p_Document["m_bMayEscort"]);
+	s_Object.m_bMayEscort = simdjson::from_json_bool(p_Document["m_bMayEscort"]);
 
-	s_Object.m_bTargetDead = bool(p_Document["m_bTargetDead"]);
+	s_Object.m_bTargetDead = simdjson::from_json_bool(p_Document["m_bTargetDead"]);
 
-	s_Object.m_bTargetInRange = bool(p_Document["m_bTargetInRange"]);
+	s_Object.m_bTargetInRange = simdjson::from_json_bool(p_Document["m_bTargetInRange"]);
 
-	s_Object.m_bAllEscortsAreDead = bool(p_Document["m_bAllEscortsAreDead"]);
+	s_Object.m_bAllEscortsAreDead = simdjson::from_json_bool(p_Document["m_bAllEscortsAreDead"]);
 
-	s_Object.m_bForceSearch = bool(p_Document["m_bForceSearch"]);
+	s_Object.m_bForceSearch = simdjson::from_json_bool(p_Document["m_bForceSearch"]);
 
 	{
 		SVector3 s_Item;
@@ -27456,11 +27456,11 @@ void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 		s_Object.m_vLastPosition = s_Item;
 	}
 
-	s_Object.m_bFoundDeadTarget = bool(p_Document["m_bFoundDeadTarget"]);
+	s_Object.m_bFoundDeadTarget = simdjson::from_json_bool(p_Document["m_bFoundDeadTarget"]);
 
-	s_Object.m_nTargetDeadTime = int64(p_Document["m_nTargetDeadTime"]);
+	s_Object.m_nTargetDeadTime = simdjson::from_json_int64(p_Document["m_nTargetDeadTime"]);
 
-	s_Object.m_bTargetIsMoving = bool(p_Document["m_bTargetIsMoving"]);
+	s_Object.m_bTargetIsMoving = simdjson::from_json_bool(p_Document["m_bTargetIsMoving"]);
 
 	s_Object.m_eTargetState = static_cast<ZEscortSituationEntity_ETargetState>(ZHMEnums::GetEnumValueByName("ZEscortSituationEntity.ETargetState", std::string_view(p_Document["m_eTargetState"])));
 
@@ -27468,9 +27468,9 @@ void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.m_eTargetActState = static_cast<ZActBehaviorEntity_EState>(ZHMEnums::GetEnumValueByName("ZActBehaviorEntity.EState", std::string_view(p_Document["m_eTargetActState"])));
 
-	s_Object.m_fTargetNotMovingTime = static_cast<float32>(double(p_Document["m_fTargetNotMovingTime"]));
+	s_Object.m_fTargetNotMovingTime = simdjson::from_json_float32(p_Document["m_fTargetNotMovingTime"]);
 
-	s_Object.m_fTargetAgitationCooldownTimer = static_cast<float32>(double(p_Document["m_fTargetAgitationCooldownTimer"]));
+	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
 	{
@@ -27488,12 +27488,12 @@ void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSearchActs"])
 	{
-		s_Object.m_aSearchActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aSearchActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SEscortSituationSaveData*>(p_Target) = s_Object;
@@ -27561,11 +27561,11 @@ void SEvacuateSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value 
 {
 	SEvacuateSituationMemberSaveData s_Object;
 
-	s_Object.m_pGuardDutyPoint = static_cast<uint32>(int64_t(p_Document["m_pGuardDutyPoint"]));
+	s_Object.m_pGuardDutyPoint = simdjson::from_json_uint32(p_Document["m_pGuardDutyPoint"]);
 
-	s_Object.m_nPatrolWaypointIndex = static_cast<int32>(int64_t(p_Document["m_nPatrolWaypointIndex"]));
+	s_Object.m_nPatrolWaypointIndex = simdjson::from_json_int32(p_Document["m_nPatrolWaypointIndex"]);
 
-	s_Object.m_nPatrolWaypointSubIndex = static_cast<uint32>(int64_t(p_Document["m_nPatrolWaypointSubIndex"]));
+	s_Object.m_nPatrolWaypointSubIndex = simdjson::from_json_uint32(p_Document["m_nPatrolWaypointSubIndex"]);
 
 	*reinterpret_cast<SEvacuateSituationMemberSaveData*>(p_Target) = s_Object;
 }
@@ -27748,21 +27748,21 @@ void SEvacuateSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_tLastThreat = s_Item;
 	}
 
-	s_Object.m_tresspassGroup = static_cast<int32>(int64_t(p_Document["m_tresspassGroup"]));
+	s_Object.m_tresspassGroup = simdjson::from_json_int32(p_Document["m_tresspassGroup"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_evacuateGroups"])
 	{
-		s_Object.m_evacuateGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_evacuateGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_activeSafeRooms"])
 	{
-		s_Object.m_activeSafeRooms.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_activeSafeRooms.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_vipsUnderFire"])
 	{
-		s_Object.m_vipsUnderFire.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_vipsUnderFire.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SEvacuateSituationSaveData*>(p_Target) = s_Object;
@@ -27897,21 +27897,21 @@ void SEvacuateTrespassGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_target = static_cast<int32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_int32(p_Document["m_target"]);
 
-	s_Object.m_safeRoomNode = static_cast<uint32>(int64_t(p_Document["m_safeRoomNode"]));
+	s_Object.m_safeRoomNode = simdjson::from_json_uint32(p_Document["m_safeRoomNode"]);
 
-	s_Object.m_leader = static_cast<uint32>(int64_t(p_Document["m_leader"]));
+	s_Object.m_leader = simdjson::from_json_uint32(p_Document["m_leader"]);
 
-	s_Object.m_assistant = static_cast<uint32>(int64_t(p_Document["m_assistant"]));
+	s_Object.m_assistant = simdjson::from_json_uint32(p_Document["m_assistant"]);
 
-	s_Object.m_escalate = bool(p_Document["m_escalate"]);
+	s_Object.m_escalate = simdjson::from_json_bool(p_Document["m_escalate"]);
 
-	s_Object.m_completed = bool(p_Document["m_completed"]);
+	s_Object.m_completed = simdjson::from_json_bool(p_Document["m_completed"]);
 
-	s_Object.m_standDown = bool(p_Document["m_standDown"]);
+	s_Object.m_standDown = simdjson::from_json_bool(p_Document["m_standDown"]);
 
-	s_Object.m_warningCount = static_cast<int32>(int64_t(p_Document["m_warningCount"]));
+	s_Object.m_warningCount = simdjson::from_json_int32(p_Document["m_warningCount"]);
 
 	*reinterpret_cast<SEvacuateTrespassGroupSaveData*>(p_Target) = s_Object;
 }
@@ -28121,19 +28121,19 @@ void SEvacuateVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_rVIP = static_cast<uint32>(int64_t(p_Document["m_rVIP"]));
+	s_Object.m_rVIP = simdjson::from_json_uint32(p_Document["m_rVIP"]);
 
-	s_Object.m_rVIPActor = static_cast<uint32>(int64_t(p_Document["m_rVIPActor"]));
+	s_Object.m_rVIPActor = simdjson::from_json_uint32(p_Document["m_rVIPActor"]);
 
-	s_Object.m_rEvacuationNode = static_cast<uint32>(int64_t(p_Document["m_rEvacuationNode"]));
+	s_Object.m_rEvacuationNode = simdjson::from_json_uint32(p_Document["m_rEvacuationNode"]);
 
-	s_Object.m_rSafeRoomNode = static_cast<uint32>(int64_t(p_Document["m_rSafeRoomNode"]));
+	s_Object.m_rSafeRoomNode = simdjson::from_json_uint32(p_Document["m_rSafeRoomNode"]);
 
-	s_Object.m_rCompromisedEvacNode = static_cast<uint32>(int64_t(p_Document["m_rCompromisedEvacNode"]));
+	s_Object.m_rCompromisedEvacNode = simdjson::from_json_uint32(p_Document["m_rCompromisedEvacNode"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_assignedBodyguards"])
 	{
-		s_Object.m_assignedBodyguards.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_assignedBodyguards.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	{
@@ -28166,11 +28166,11 @@ void SEvacuateVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.m_tSafeRoomStandDown = s_Item;
 	}
 
-	s_Object.m_bInitialFlee = bool(p_Document["m_bInitialFlee"]);
+	s_Object.m_bInitialFlee = simdjson::from_json_bool(p_Document["m_bInitialFlee"]);
 
-	s_Object.m_safeRoomVIPSentActingStarted = bool(p_Document["m_safeRoomVIPSentActingStarted"]);
+	s_Object.m_safeRoomVIPSentActingStarted = simdjson::from_json_bool(p_Document["m_safeRoomVIPSentActingStarted"]);
 
-	s_Object.m_isSetupPhaseComplete = bool(p_Document["m_isSetupPhaseComplete"]);
+	s_Object.m_isSetupPhaseComplete = simdjson::from_json_bool(p_Document["m_isSetupPhaseComplete"]);
 
 	*reinterpret_cast<SEvacuateVIPGroupSaveData*>(p_Target) = s_Object;
 }
@@ -28219,7 +28219,7 @@ void SEventChannelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SEventChannelSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	*reinterpret_cast<SEventChannelSaveData*>(p_Target) = s_Object;
 }
@@ -28261,7 +28261,7 @@ void SExitSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SExitSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	*reinterpret_cast<SExitSaveData*>(p_Target) = s_Object;
 }
@@ -28303,7 +28303,7 @@ void SExitsActiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SExitsActiveSaveData s_Object;
 
-	s_Object.m_bIsActive = bool(p_Document["m_bIsActive"]);
+	s_Object.m_bIsActive = simdjson::from_json_bool(p_Document["m_bIsActive"]);
 
 	*reinterpret_cast<SExitsActiveSaveData*>(p_Target) = s_Object;
 }
@@ -28391,9 +28391,9 @@ void SExposedEntityDescriptor::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.sHelpText = std::string_view(p_Document["sHelpText"]);
 
-	s_Object.bIsArray = bool(p_Document["bIsArray"]);
+	s_Object.bIsArray = simdjson::from_json_bool(p_Document["bIsArray"]);
 
-	s_Object.bIsHidden = bool(p_Document["bIsHidden"]);
+	s_Object.bIsHidden = simdjson::from_json_bool(p_Document["bIsHidden"]);
 
 	*reinterpret_cast<SExposedEntityDescriptor*>(p_Target) = s_Object;
 }
@@ -28733,9 +28733,9 @@ void SExtendedCppEntityProperty::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	s_Object.propertyType = static_cast<EExtendedPropertyType>(ZHMEnums::GetEnumValueByName("EExtendedPropertyType", std::string_view(p_Document["propertyType"])));
 
-	s_Object.rtEditable = bool(p_Document["rtEditable"]);
+	s_Object.rtEditable = simdjson::from_json_bool(p_Document["rtEditable"]);
 
-	s_Object.extraData = uint64(p_Document["extraData"]);
+	s_Object.extraData = simdjson::from_json_uint64(p_Document["extraData"]);
 
 	*reinterpret_cast<SExtendedCppEntityProperty*>(p_Target) = s_Object;
 }
@@ -29004,17 +29004,17 @@ void SFaceOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SFaceOrderSaveData s_Object;
 
-	s_Object.m_bLookAt = bool(p_Document["m_bLookAt"]);
+	s_Object.m_bLookAt = simdjson::from_json_bool(p_Document["m_bLookAt"]);
 
-	s_Object.m_bAimAt = bool(p_Document["m_bAimAt"]);
+	s_Object.m_bAimAt = simdjson::from_json_bool(p_Document["m_bAimAt"]);
 
-	s_Object.m_bUpdateKnownPosition = bool(p_Document["m_bUpdateKnownPosition"]);
+	s_Object.m_bUpdateKnownPosition = simdjson::from_json_bool(p_Document["m_bUpdateKnownPosition"]);
 
-	s_Object.m_bStopActFast = bool(p_Document["m_bStopActFast"]);
+	s_Object.m_bStopActFast = simdjson::from_json_bool(p_Document["m_bStopActFast"]);
 
-	s_Object.m_fDuration = static_cast<float32>(double(p_Document["m_fDuration"]));
+	s_Object.m_fDuration = simdjson::from_json_float32(p_Document["m_fDuration"]);
 
-	s_Object.m_fDurationVariance = static_cast<float32>(double(p_Document["m_fDurationVariance"]));
+	s_Object.m_fDurationVariance = simdjson::from_json_float32(p_Document["m_fDurationVariance"]);
 
 	*reinterpret_cast<SFaceOrderSaveData*>(p_Target) = s_Object;
 }
@@ -29078,9 +29078,9 @@ void SFleeOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	s_Object.m_eHelpReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_eHelpReason"])));
 
-	s_Object.m_nGridNodeIndex = static_cast<uint16>(int64_t(p_Document["m_nGridNodeIndex"]));
+	s_Object.m_nGridNodeIndex = simdjson::from_json_uint16(p_Document["m_nGridNodeIndex"]);
 
-	s_Object.m_bFleeForHelp = bool(p_Document["m_bFleeForHelp"]);
+	s_Object.m_bFleeForHelp = simdjson::from_json_bool(p_Document["m_bFleeForHelp"]);
 
 	*reinterpret_cast<SFleeOrderSaveData*>(p_Target) = s_Object;
 }
@@ -29158,7 +29158,7 @@ void SFontDefinition::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 	s_Object.eFontFlags = static_cast<EFontFlags>(ZHMEnums::GetEnumValueByName("EFontFlags", std::string_view(p_Document["eFontFlags"])));
 
-	s_Object.fScaleFactor = static_cast<float32>(double(p_Document["fScaleFactor"]));
+	s_Object.fScaleFactor = simdjson::from_json_float32(p_Document["fScaleFactor"]);
 
 	*reinterpret_cast<SFontDefinition*>(p_Target) = s_Object;
 }
@@ -29294,7 +29294,7 @@ void SFooStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SFooStruct s_Object;
 
-	s_Object.m_eTest = static_cast<uint32>(int64_t(p_Document["m_eTest"]));
+	s_Object.m_eTest = simdjson::from_json_uint32(p_Document["m_eTest"]);
 
 	s_Object.m_sOther = std::string_view(p_Document["m_sOther"]);
 
@@ -29537,13 +29537,13 @@ void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_bHitmanIsGuard = bool(p_Document["m_bHitmanIsGuard"]);
+	s_Object.m_bHitmanIsGuard = simdjson::from_json_bool(p_Document["m_bHitmanIsGuard"]);
 
-	s_Object.m_target = static_cast<int32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_int32(p_Document["m_target"]);
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_pAssistant = static_cast<uint32>(int64_t(p_Document["m_pAssistant"]));
+	s_Object.m_pAssistant = simdjson::from_json_uint32(p_Document["m_pAssistant"]);
 
 	s_Object.m_eAssistantState = static_cast<ZFriskSuspectGroup_EAssistantState>(ZHMEnums::GetEnumValueByName("ZFriskSuspectGroup.EAssistantState", std::string_view(p_Document["m_eAssistantState"])));
 
@@ -29557,9 +29557,9 @@ void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_tHitmanGreet = s_Item;
 	}
 
-	s_Object.m_fMovingTime = static_cast<float32>(double(p_Document["m_fMovingTime"]));
+	s_Object.m_fMovingTime = simdjson::from_json_float32(p_Document["m_fMovingTime"]);
 
-	s_Object.m_fRunningTime = static_cast<float32>(double(p_Document["m_fRunningTime"]));
+	s_Object.m_fRunningTime = simdjson::from_json_float32(p_Document["m_fRunningTime"]);
 
 	{
 		ZGameTime s_Item;
@@ -29567,13 +29567,13 @@ void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_tWaitToComplyTime = s_Item;
 	}
 
-	s_Object.m_bWarnOnWeaponFound = bool(p_Document["m_bWarnOnWeaponFound"]);
+	s_Object.m_bWarnOnWeaponFound = simdjson::from_json_bool(p_Document["m_bWarnOnWeaponFound"]);
 
-	s_Object.m_bWeaponFound = bool(p_Document["m_bWeaponFound"]);
+	s_Object.m_bWeaponFound = simdjson::from_json_bool(p_Document["m_bWeaponFound"]);
 
-	s_Object.m_bMoveWarning = bool(p_Document["m_bMoveWarning"]);
+	s_Object.m_bMoveWarning = simdjson::from_json_bool(p_Document["m_bMoveWarning"]);
 
-	s_Object.m_bFirskRequestRepeated = bool(p_Document["m_bFirskRequestRepeated"]);
+	s_Object.m_bFirskRequestRepeated = simdjson::from_json_bool(p_Document["m_bFirskRequestRepeated"]);
 
 	*reinterpret_cast<SFriskSuspectGroupSaveData*>(p_Target) = s_Object;
 }
@@ -29712,13 +29712,13 @@ void SGBufferSample::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.accumulatedLight = s_Item;
 	}
 
-	s_Object.glossiness = static_cast<float32>(double(p_Document["glossiness"]));
+	s_Object.glossiness = simdjson::from_json_float32(p_Document["glossiness"]);
 
-	s_Object.translucency = static_cast<float32>(double(p_Document["translucency"]));
+	s_Object.translucency = simdjson::from_json_float32(p_Document["translucency"]);
 
-	s_Object.ao = static_cast<float32>(double(p_Document["ao"]));
+	s_Object.ao = simdjson::from_json_float32(p_Document["ao"]);
 
-	s_Object.shadingModel = static_cast<uint32>(int64_t(p_Document["shadingModel"]));
+	s_Object.shadingModel = simdjson::from_json_uint32(p_Document["shadingModel"]);
 
 	*reinterpret_cast<SGBufferSample*>(p_Target) = s_Object;
 }
@@ -29816,11 +29816,11 @@ void SGProperties::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 		s_Object.vMax = s_Item;
 	}
 
-	s_Object.nGridWidth = static_cast<int32>(int64_t(p_Document["nGridWidth"]));
+	s_Object.nGridWidth = simdjson::from_json_int32(p_Document["nGridWidth"]);
 
-	s_Object.fGridSpacing = static_cast<float32>(double(p_Document["fGridSpacing"]));
+	s_Object.fGridSpacing = simdjson::from_json_float32(p_Document["fGridSpacing"]);
 
-	s_Object.nVisibilityRange = static_cast<int32>(int64_t(p_Document["nVisibilityRange"]));
+	s_Object.nVisibilityRange = simdjson::from_json_int32(p_Document["nVisibilityRange"]);
 
 	*reinterpret_cast<SGProperties*>(p_Target) = s_Object;
 }
@@ -29894,13 +29894,13 @@ void SGUIViewPort::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 {
 	SGUIViewPort s_Object;
 
-	s_Object.x = static_cast<uint32>(int64_t(p_Document["x"]));
+	s_Object.x = simdjson::from_json_uint32(p_Document["x"]);
 
-	s_Object.y = static_cast<uint32>(int64_t(p_Document["y"]));
+	s_Object.y = simdjson::from_json_uint32(p_Document["y"]);
 
-	s_Object.h = static_cast<uint32>(int64_t(p_Document["h"]));
+	s_Object.h = simdjson::from_json_uint32(p_Document["h"]);
 
-	s_Object.w = static_cast<uint32>(int64_t(p_Document["w"]));
+	s_Object.w = simdjson::from_json_uint32(p_Document["w"]);
 
 	*reinterpret_cast<SGUIViewPort*>(p_Target) = s_Object;
 }
@@ -30042,21 +30042,21 @@ void SGWaypoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SGWaypoint s_Object;
 
-	s_Object.nNeighbor0 = static_cast<uint16>(int64_t(p_Document["nNeighbor0"]));
+	s_Object.nNeighbor0 = simdjson::from_json_uint16(p_Document["nNeighbor0"]);
 
-	s_Object.nNeighbor1 = static_cast<uint16>(int64_t(p_Document["nNeighbor1"]));
+	s_Object.nNeighbor1 = simdjson::from_json_uint16(p_Document["nNeighbor1"]);
 
-	s_Object.nNeighbor2 = static_cast<uint16>(int64_t(p_Document["nNeighbor2"]));
+	s_Object.nNeighbor2 = simdjson::from_json_uint16(p_Document["nNeighbor2"]);
 
-	s_Object.nNeighbor3 = static_cast<uint16>(int64_t(p_Document["nNeighbor3"]));
+	s_Object.nNeighbor3 = simdjson::from_json_uint16(p_Document["nNeighbor3"]);
 
-	s_Object.nNeighbor4 = static_cast<uint16>(int64_t(p_Document["nNeighbor4"]));
+	s_Object.nNeighbor4 = simdjson::from_json_uint16(p_Document["nNeighbor4"]);
 
-	s_Object.nNeighbor5 = static_cast<uint16>(int64_t(p_Document["nNeighbor5"]));
+	s_Object.nNeighbor5 = simdjson::from_json_uint16(p_Document["nNeighbor5"]);
 
-	s_Object.nNeighbor6 = static_cast<uint16>(int64_t(p_Document["nNeighbor6"]));
+	s_Object.nNeighbor6 = simdjson::from_json_uint16(p_Document["nNeighbor6"]);
 
-	s_Object.nNeighbor7 = static_cast<uint16>(int64_t(p_Document["nNeighbor7"]));
+	s_Object.nNeighbor7 = simdjson::from_json_uint16(p_Document["nNeighbor7"]);
 
 	{
 		float4 s_Item;
@@ -30064,9 +30064,9 @@ void SGWaypoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 		s_Object.vPos = s_Item;
 	}
 
-	s_Object.nVisionDataOffset = static_cast<uint32>(int64_t(p_Document["nVisionDataOffset"]));
+	s_Object.nVisionDataOffset = simdjson::from_json_uint32(p_Document["nVisionDataOffset"]);
 
-	s_Object.nLayerIndex = static_cast<int16>(int64_t(p_Document["nLayerIndex"]));
+	s_Object.nLayerIndex = simdjson::from_json_int16(p_Document["nLayerIndex"]);
 
 	*reinterpret_cast<SGWaypoint*>(p_Target) = s_Object;
 }
@@ -30173,9 +30173,9 @@ void SGameCamProfileEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SGameCamProfileEntitySaveData s_Object;
 
-	s_Object.m_bIsEnabled = bool(p_Document["m_bIsEnabled"]);
+	s_Object.m_bIsEnabled = simdjson::from_json_bool(p_Document["m_bIsEnabled"]);
 
-	s_Object.m_rHero = static_cast<uint32>(int64_t(p_Document["m_rHero"]));
+	s_Object.m_rHero = simdjson::from_json_uint32(p_Document["m_rHero"]);
 
 	*reinterpret_cast<SGameCamProfileEntitySaveData*>(p_Target) = s_Object;
 }
@@ -30217,7 +30217,7 @@ void SItemKeywordProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SItemKeywordProxySaveData s_Object;
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
 	*reinterpret_cast<SItemKeywordProxySaveData*>(p_Target) = s_Object;
 }
@@ -30313,7 +30313,7 @@ void SItemKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -30567,17 +30567,17 @@ void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 		s_Object.m_vRotation = s_Item;
 	}
 
-	s_Object.m_bShowItem = bool(p_Document["m_bShowItem"]);
+	s_Object.m_bShowItem = simdjson::from_json_bool(p_Document["m_bShowItem"]);
 
-	s_Object.m_bEnablePickup = bool(p_Document["m_bEnablePickup"]);
+	s_Object.m_bEnablePickup = simdjson::from_json_bool(p_Document["m_bEnablePickup"]);
 
-	s_Object.m_bKinematic = bool(p_Document["m_bKinematic"]);
+	s_Object.m_bKinematic = simdjson::from_json_bool(p_Document["m_bKinematic"]);
 
-	s_Object.m_bSleeping = bool(p_Document["m_bSleeping"]);
+	s_Object.m_bSleeping = simdjson::from_json_bool(p_Document["m_bSleeping"]);
 
-	s_Object.m_bIsPerceptible = bool(p_Document["m_bIsPerceptible"]);
+	s_Object.m_bIsPerceptible = simdjson::from_json_bool(p_Document["m_bIsPerceptible"]);
 
-	s_Object.m_bDestroyed = bool(p_Document["m_bDestroyed"]);
+	s_Object.m_bDestroyed = simdjson::from_json_bool(p_Document["m_bDestroyed"]);
 
 	{
 		SVector3 s_Item;
@@ -30585,25 +30585,25 @@ void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 		s_Object.m_vVelocity = s_Item;
 	}
 
-	s_Object.m_rTransformParent = static_cast<uint32>(int64_t(p_Document["m_rTransformParent"]));
+	s_Object.m_rTransformParent = simdjson::from_json_uint32(p_Document["m_rTransformParent"]);
 
-	s_Object.m_rSpawner = static_cast<uint32>(int64_t(p_Document["m_rSpawner"]));
+	s_Object.m_rSpawner = simdjson::from_json_uint32(p_Document["m_rSpawner"]);
 
-	s_Object.m_rOwner = static_cast<uint32>(int64_t(p_Document["m_rOwner"]));
+	s_Object.m_rOwner = simdjson::from_json_uint32(p_Document["m_rOwner"]);
 
-	s_Object.m_rHoldingContainer = static_cast<uint32>(int64_t(p_Document["m_rHoldingContainer"]));
+	s_Object.m_rHoldingContainer = simdjson::from_json_uint32(p_Document["m_rHoldingContainer"]);
 
-	s_Object.m_pPreviousOwner = static_cast<uint32>(int64_t(p_Document["m_pPreviousOwner"]));
+	s_Object.m_pPreviousOwner = simdjson::from_json_uint32(p_Document["m_pPreviousOwner"]);
 
-	s_Object.m_bTurnedOn = bool(p_Document["m_bTurnedOn"]);
+	s_Object.m_bTurnedOn = simdjson::from_json_bool(p_Document["m_bTurnedOn"]);
 
-	s_Object.m_bEverOwnedByHitman = bool(p_Document["m_bEverOwnedByHitman"]);
+	s_Object.m_bEverOwnedByHitman = simdjson::from_json_bool(p_Document["m_bEverOwnedByHitman"]);
 
-	s_Object.m_bWasPlacedAndAttached = bool(p_Document["m_bWasPlacedAndAttached"]);
+	s_Object.m_bWasPlacedAndAttached = simdjson::from_json_bool(p_Document["m_bWasPlacedAndAttached"]);
 
-	s_Object.m_bObjectInPhysicsWorld = bool(p_Document["m_bObjectInPhysicsWorld"]);
+	s_Object.m_bObjectInPhysicsWorld = simdjson::from_json_bool(p_Document["m_bObjectInPhysicsWorld"]);
 
-	s_Object.m_nQuantity = static_cast<int32>(int64_t(p_Document["m_nQuantity"]));
+	s_Object.m_nQuantity = simdjson::from_json_int32(p_Document["m_nQuantity"]);
 
 	s_Object.m_eGlowType = static_cast<ERenderGlowTypes>(ZHMEnums::GetEnumValueByName("ERenderGlowTypes", std::string_view(p_Document["m_eGlowType"])));
 
@@ -30704,7 +30704,7 @@ void SItemsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -30766,9 +30766,9 @@ void SLampCoreSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SLampCoreSaveState s_Object;
 
-	s_Object.m_fDiffusePower = static_cast<float32>(double(p_Document["m_fDiffusePower"]));
+	s_Object.m_fDiffusePower = simdjson::from_json_float32(p_Document["m_fDiffusePower"]);
 
-	s_Object.m_bSwitchState = bool(p_Document["m_bSwitchState"]);
+	s_Object.m_bSwitchState = simdjson::from_json_bool(p_Document["m_bSwitchState"]);
 
 	*reinterpret_cast<SLampCoreSaveState*>(p_Target) = s_Object;
 }
@@ -30864,7 +30864,7 @@ void SLampCoreSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -30948,7 +30948,7 @@ void SMathLerpSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Doc
 		s_Object.m_B = s_Item;
 	}
 
-	s_Object.m_fT = static_cast<float32>(double(p_Document["m_fT"]));
+	s_Object.m_fT = simdjson::from_json_float32(p_Document["m_fT"]);
 
 	*reinterpret_cast<SMathLerpSaveData_SColorRGB*>(p_Target) = s_Object;
 }
@@ -31046,7 +31046,7 @@ void SMathLerpsSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -31130,7 +31130,7 @@ void SMathLerpSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Do
 		s_Object.m_B = s_Item;
 	}
 
-	s_Object.m_fT = static_cast<float32>(double(p_Document["m_fT"]));
+	s_Object.m_fT = simdjson::from_json_float32(p_Document["m_fT"]);
 
 	*reinterpret_cast<SMathLerpSaveData_SColorRGBA*>(p_Target) = s_Object;
 }
@@ -31228,7 +31228,7 @@ void SMathLerpsSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_D
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -31312,7 +31312,7 @@ void SMathLerpSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_B = s_Item;
 	}
 
-	s_Object.m_fT = static_cast<float32>(double(p_Document["m_fT"]));
+	s_Object.m_fT = simdjson::from_json_float32(p_Document["m_fT"]);
 
 	*reinterpret_cast<SMathLerpSaveData_SVector2*>(p_Target) = s_Object;
 }
@@ -31410,7 +31410,7 @@ void SMathLerpsSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -31494,7 +31494,7 @@ void SMathLerpSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_B = s_Item;
 	}
 
-	s_Object.m_fT = static_cast<float32>(double(p_Document["m_fT"]));
+	s_Object.m_fT = simdjson::from_json_float32(p_Document["m_fT"]);
 
 	*reinterpret_cast<SMathLerpSaveData_SVector3*>(p_Target) = s_Object;
 }
@@ -31592,7 +31592,7 @@ void SMathLerpsSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -31676,7 +31676,7 @@ void SMathLerpSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_B = s_Item;
 	}
 
-	s_Object.m_fT = static_cast<float32>(double(p_Document["m_fT"]));
+	s_Object.m_fT = simdjson::from_json_float32(p_Document["m_fT"]);
 
 	*reinterpret_cast<SMathLerpSaveData_SVector4*>(p_Target) = s_Object;
 }
@@ -31774,7 +31774,7 @@ void SMathLerpsSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -31846,11 +31846,11 @@ void SMathLerpSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SMathLerpSaveData_float32 s_Object;
 
-	s_Object.m_A = static_cast<float32>(double(p_Document["m_A"]));
+	s_Object.m_A = simdjson::from_json_float32(p_Document["m_A"]);
 
-	s_Object.m_B = static_cast<float32>(double(p_Document["m_B"]));
+	s_Object.m_B = simdjson::from_json_float32(p_Document["m_B"]);
 
-	s_Object.m_fT = static_cast<float32>(double(p_Document["m_fT"]));
+	s_Object.m_fT = simdjson::from_json_float32(p_Document["m_fT"]);
 
 	*reinterpret_cast<SMathLerpSaveData_float32*>(p_Target) = s_Object;
 }
@@ -31946,7 +31946,7 @@ void SMathLerpsSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -32030,7 +32030,7 @@ void SMathMultiplyDivideSaveData_SVector2::FromSimpleJson(simdjson::ondemand::va
 		s_Object.m_fB = s_Item;
 	}
 
-	s_Object.m_bDivide = bool(p_Document["m_bDivide"]);
+	s_Object.m_bDivide = simdjson::from_json_bool(p_Document["m_bDivide"]);
 
 	*reinterpret_cast<SMathMultiplyDivideSaveData_SVector2*>(p_Target) = s_Object;
 }
@@ -32128,7 +32128,7 @@ void SMathMultipliesSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -32212,7 +32212,7 @@ void SMathMultiplyDivideSaveData_SVector3::FromSimpleJson(simdjson::ondemand::va
 		s_Object.m_fB = s_Item;
 	}
 
-	s_Object.m_bDivide = bool(p_Document["m_bDivide"]);
+	s_Object.m_bDivide = simdjson::from_json_bool(p_Document["m_bDivide"]);
 
 	*reinterpret_cast<SMathMultiplyDivideSaveData_SVector3*>(p_Target) = s_Object;
 }
@@ -32310,7 +32310,7 @@ void SMathMultipliesSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -32394,7 +32394,7 @@ void SMathMultiplyDivideSaveData_SVector4::FromSimpleJson(simdjson::ondemand::va
 		s_Object.m_fB = s_Item;
 	}
 
-	s_Object.m_bDivide = bool(p_Document["m_bDivide"]);
+	s_Object.m_bDivide = simdjson::from_json_bool(p_Document["m_bDivide"]);
 
 	*reinterpret_cast<SMathMultiplyDivideSaveData_SVector4*>(p_Target) = s_Object;
 }
@@ -32492,7 +32492,7 @@ void SMathMultipliesSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -32564,11 +32564,11 @@ void SMathMultiplyDivideSaveData_float32::FromSimpleJson(simdjson::ondemand::val
 {
 	SMathMultiplyDivideSaveData_float32 s_Object;
 
-	s_Object.m_fA = static_cast<float32>(double(p_Document["m_fA"]));
+	s_Object.m_fA = simdjson::from_json_float32(p_Document["m_fA"]);
 
-	s_Object.m_fB = static_cast<float32>(double(p_Document["m_fB"]));
+	s_Object.m_fB = simdjson::from_json_float32(p_Document["m_fB"]);
 
-	s_Object.m_bDivide = bool(p_Document["m_bDivide"]);
+	s_Object.m_bDivide = simdjson::from_json_bool(p_Document["m_bDivide"]);
 
 	*reinterpret_cast<SMathMultiplyDivideSaveData_float32*>(p_Target) = s_Object;
 }
@@ -32664,7 +32664,7 @@ void SMathMultipliesSaveData_float32::FromSimpleJson(simdjson::ondemand::value p
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -32726,9 +32726,9 @@ void SShotListenerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SShotListenerSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_bNPCShotProcessed = bool(p_Document["m_bNPCShotProcessed"]);
+	s_Object.m_bNPCShotProcessed = simdjson::from_json_bool(p_Document["m_bNPCShotProcessed"]);
 
 	*reinterpret_cast<SShotListenerSaveData*>(p_Target) = s_Object;
 }
@@ -32824,7 +32824,7 @@ void SShotListenersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -32886,9 +32886,9 @@ void SItsATrapSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SItsATrapSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_fTimer = static_cast<float32>(double(p_Document["m_fTimer"]));
+	s_Object.m_fTimer = simdjson::from_json_float32(p_Document["m_fTimer"]);
 
 	*reinterpret_cast<SItsATrapSaveData*>(p_Target) = s_Object;
 }
@@ -32984,7 +32984,7 @@ void STrapsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -33076,9 +33076,9 @@ void SVIPEvacuationNodeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SVIPEvacuationNodeSaveData s_Object;
 
-	s_Object.m_fPenaltyMultiplier = static_cast<float32>(double(p_Document["m_fPenaltyMultiplier"]));
+	s_Object.m_fPenaltyMultiplier = simdjson::from_json_float32(p_Document["m_fPenaltyMultiplier"]);
 
-	s_Object.m_fPenaltyDuration = static_cast<float32>(double(p_Document["m_fPenaltyDuration"]));
+	s_Object.m_fPenaltyDuration = simdjson::from_json_float32(p_Document["m_fPenaltyDuration"]);
 
 	{
 		ZGameTime s_Item;
@@ -33086,9 +33086,9 @@ void SVIPEvacuationNodeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_tPenalty = s_Item;
 	}
 
-	s_Object.m_bIsEnabled = bool(p_Document["m_bIsEnabled"]);
+	s_Object.m_bIsEnabled = simdjson::from_json_bool(p_Document["m_bIsEnabled"]);
 
-	s_Object.m_compromisedOnEnter = bool(p_Document["m_compromisedOnEnter"]);
+	s_Object.m_compromisedOnEnter = simdjson::from_json_bool(p_Document["m_compromisedOnEnter"]);
 
 	*reinterpret_cast<SVIPEvacuationNodeSaveData*>(p_Target) = s_Object;
 }
@@ -33185,7 +33185,7 @@ void SVIPEvacuationNodesSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -33247,9 +33247,9 @@ void SVolumeTriggerListenerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SVolumeTriggerListenerSaveData s_Object;
 
-	s_Object.m_bColliding = bool(p_Document["m_bColliding"]);
+	s_Object.m_bColliding = simdjson::from_json_bool(p_Document["m_bColliding"]);
 
-	s_Object.m_bInternalEnabled = bool(p_Document["m_bInternalEnabled"]);
+	s_Object.m_bInternalEnabled = simdjson::from_json_bool(p_Document["m_bInternalEnabled"]);
 
 	*reinterpret_cast<SVolumeTriggerListenerSaveData*>(p_Target) = s_Object;
 }
@@ -33345,7 +33345,7 @@ void SVolumeTriggersSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -33845,9 +33845,9 @@ void SKeywordSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 {
 	SKeywordSaveData s_Object;
 
-	s_Object.m_HolderSaveableId = static_cast<uint32>(int64_t(p_Document["m_HolderSaveableId"]));
+	s_Object.m_HolderSaveableId = simdjson::from_json_uint32(p_Document["m_HolderSaveableId"]);
 
-	s_Object.m_KeywordID = static_cast<int32>(int64_t(p_Document["m_KeywordID"]));
+	s_Object.m_KeywordID = simdjson::from_json_int32(p_Document["m_KeywordID"]);
 
 	*reinterpret_cast<SKeywordSaveData*>(p_Target) = s_Object;
 }
@@ -34100,9 +34100,9 @@ void STimerEntityCommandSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	s_Object.m_eType = static_cast<ETimerEntityCommandType>(ZHMEnums::GetEnumValueByName("ETimerEntityCommandType", std::string_view(p_Document["m_eType"])));
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	s_Object.m_fInterval = static_cast<float32>(double(p_Document["m_fInterval"]));
+	s_Object.m_fInterval = simdjson::from_json_float32(p_Document["m_fInterval"]);
 
 	*reinterpret_cast<STimerEntityCommandSaveData*>(p_Target) = s_Object;
 }
@@ -34164,11 +34164,11 @@ void STimerEntityStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	STimerEntityStateSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	s_Object.m_fNextEventTime = static_cast<float32>(double(p_Document["m_fNextEventTime"]));
+	s_Object.m_fNextEventTime = simdjson::from_json_float32(p_Document["m_fNextEventTime"]);
 
-	s_Object.m_bPending = bool(p_Document["m_bPending"]);
+	s_Object.m_bPending = simdjson::from_json_bool(p_Document["m_bPending"]);
 
 	*reinterpret_cast<STimerEntityStateSaveData*>(p_Target) = s_Object;
 }
@@ -34309,7 +34309,7 @@ void SGameTimersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPendingTimers"])
 	{
-		s_Object.m_aPendingTimers.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aPendingTimers.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SGameTimersSaveData*>(p_Target) = s_Object;
@@ -34375,11 +34375,11 @@ void SGateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SGateSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	s_Object.m_bIsOpen = bool(p_Document["m_bIsOpen"]);
+	s_Object.m_bIsOpen = simdjson::from_json_bool(p_Document["m_bIsOpen"]);
 
-	s_Object.m_fOpenFraction = static_cast<float32>(double(p_Document["m_fOpenFraction"]));
+	s_Object.m_fOpenFraction = simdjson::from_json_float32(p_Document["m_fOpenFraction"]);
 
 	*reinterpret_cast<SGateSaveData*>(p_Target) = s_Object;
 }
@@ -34461,7 +34461,7 @@ void SLightSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SLightSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
 	{
 		SColorRGB s_Item;
@@ -34469,11 +34469,11 @@ void SLightSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_DiffuseColor = s_Item;
 	}
 
-	s_Object.m_fDiffusePower = static_cast<float32>(double(p_Document["m_fDiffusePower"]));
+	s_Object.m_fDiffusePower = simdjson::from_json_float32(p_Document["m_fDiffusePower"]);
 
-	s_Object.m_fAspectXByY_Actual = static_cast<float32>(double(p_Document["m_fAspectXByY_Actual"]));
+	s_Object.m_fAspectXByY_Actual = simdjson::from_json_float32(p_Document["m_fAspectXByY_Actual"]);
 
-	s_Object.m_bVisible = bool(p_Document["m_bVisible"]);
+	s_Object.m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
 
 	*reinterpret_cast<SLightSaveData*>(p_Target) = s_Object;
 }
@@ -34566,17 +34566,17 @@ void SParticleEmitterSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SParticleEmitterSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	s_Object.m_bIsActivated = bool(p_Document["m_bIsActivated"]);
+	s_Object.m_bIsActivated = simdjson::from_json_bool(p_Document["m_bIsActivated"]);
 
-	s_Object.m_bIsVisible = bool(p_Document["m_bIsVisible"]);
+	s_Object.m_bIsVisible = simdjson::from_json_bool(p_Document["m_bIsVisible"]);
 
-	s_Object.m_fEmissionTimeLeft = static_cast<float32>(double(p_Document["m_fEmissionTimeLeft"]));
+	s_Object.m_fEmissionTimeLeft = simdjson::from_json_float32(p_Document["m_fEmissionTimeLeft"]);
 
-	s_Object.m_fEmissionTimeFraction = static_cast<float32>(double(p_Document["m_fEmissionTimeFraction"]));
+	s_Object.m_fEmissionTimeFraction = simdjson::from_json_float32(p_Document["m_fEmissionTimeFraction"]);
 
-	s_Object.m_fEmissionCntLeft = static_cast<float32>(double(p_Document["m_fEmissionCntLeft"]));
+	s_Object.m_fEmissionCntLeft = simdjson::from_json_float32(p_Document["m_fEmissionCntLeft"]);
 
 	*reinterpret_cast<SParticleEmitterSaveData*>(p_Target) = s_Object;
 }
@@ -34868,15 +34868,15 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SPostfilterParametersSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	s_Object.m_bDepthOfFieldEnabled = bool(p_Document["m_bDepthOfFieldEnabled"]);
+	s_Object.m_bDepthOfFieldEnabled = simdjson::from_json_bool(p_Document["m_bDepthOfFieldEnabled"]);
 
-	s_Object.m_fDepthOfFieldBlurriness = static_cast<float32>(double(p_Document["m_fDepthOfFieldBlurriness"]));
+	s_Object.m_fDepthOfFieldBlurriness = simdjson::from_json_float32(p_Document["m_fDepthOfFieldBlurriness"]);
 
-	s_Object.m_bRadialBlurEnabled = bool(p_Document["m_bRadialBlurEnabled"]);
+	s_Object.m_bRadialBlurEnabled = simdjson::from_json_bool(p_Document["m_bRadialBlurEnabled"]);
 
-	s_Object.m_fRadialBlurriness = static_cast<float32>(double(p_Document["m_fRadialBlurriness"]));
+	s_Object.m_fRadialBlurriness = simdjson::from_json_float32(p_Document["m_fRadialBlurriness"]);
 
 	{
 		SVector2 s_Item;
@@ -34884,11 +34884,11 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 		s_Object.m_vRadialBlurCenter = s_Item;
 	}
 
-	s_Object.m_fRadialBlurStart = static_cast<float32>(double(p_Document["m_fRadialBlurStart"]));
+	s_Object.m_fRadialBlurStart = simdjson::from_json_float32(p_Document["m_fRadialBlurStart"]);
 
-	s_Object.m_bSpatialBlurEnabled = bool(p_Document["m_bSpatialBlurEnabled"]);
+	s_Object.m_bSpatialBlurEnabled = simdjson::from_json_bool(p_Document["m_bSpatialBlurEnabled"]);
 
-	s_Object.m_fSpatialBlurriness = static_cast<float32>(double(p_Document["m_fSpatialBlurriness"]));
+	s_Object.m_fSpatialBlurriness = simdjson::from_json_float32(p_Document["m_fSpatialBlurriness"]);
 
 	{
 		SVector3 s_Item;
@@ -34896,13 +34896,13 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 		s_Object.m_vSpatialBlurCenter = s_Item;
 	}
 
-	s_Object.m_fSpatialBlurStart = static_cast<float32>(double(p_Document["m_fSpatialBlurStart"]));
+	s_Object.m_fSpatialBlurStart = simdjson::from_json_float32(p_Document["m_fSpatialBlurStart"]);
 
-	s_Object.m_fSpatialBlurFade = static_cast<float32>(double(p_Document["m_fSpatialBlurFade"]));
+	s_Object.m_fSpatialBlurFade = simdjson::from_json_float32(p_Document["m_fSpatialBlurFade"]);
 
-	s_Object.m_bDistortionWobbleEnabled = bool(p_Document["m_bDistortionWobbleEnabled"]);
+	s_Object.m_bDistortionWobbleEnabled = simdjson::from_json_bool(p_Document["m_bDistortionWobbleEnabled"]);
 
-	s_Object.m_fDistortionWobbleScale = static_cast<float32>(double(p_Document["m_fDistortionWobbleScale"]));
+	s_Object.m_fDistortionWobbleScale = simdjson::from_json_float32(p_Document["m_fDistortionWobbleScale"]);
 
 	{
 		SVector2 s_Item;
@@ -34916,11 +34916,11 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 		s_Object.m_vDistortionWobbleSpeed = s_Item;
 	}
 
-	s_Object.m_bDistortionWobbleUseRealTime = bool(p_Document["m_bDistortionWobbleUseRealTime"]);
+	s_Object.m_bDistortionWobbleUseRealTime = simdjson::from_json_bool(p_Document["m_bDistortionWobbleUseRealTime"]);
 
-	s_Object.m_bHDRActive = bool(p_Document["m_bHDRActive"]);
+	s_Object.m_bHDRActive = simdjson::from_json_bool(p_Document["m_bHDRActive"]);
 
-	s_Object.m_bHDREnabled = bool(p_Document["m_bHDREnabled"]);
+	s_Object.m_bHDREnabled = simdjson::from_json_bool(p_Document["m_bHDREnabled"]);
 
 	{
 		SVector2 s_Item;
@@ -34940,11 +34940,11 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 		s_Object.m_vHDRAdaptationMiddleGrayMinMax = s_Item;
 	}
 
-	s_Object.m_fHDRWhitePoint = static_cast<float32>(double(p_Document["m_fHDRWhitePoint"]));
+	s_Object.m_fHDRWhitePoint = simdjson::from_json_float32(p_Document["m_fHDRWhitePoint"]);
 
-	s_Object.m_fHDRBrightPassThreshold = static_cast<float32>(double(p_Document["m_fHDRBrightPassThreshold"]));
+	s_Object.m_fHDRBrightPassThreshold = simdjson::from_json_float32(p_Document["m_fHDRBrightPassThreshold"]);
 
-	s_Object.m_fHDRBrightPassMaxPercentage = static_cast<float32>(double(p_Document["m_fHDRBrightPassMaxPercentage"]));
+	s_Object.m_fHDRBrightPassMaxPercentage = simdjson::from_json_float32(p_Document["m_fHDRBrightPassMaxPercentage"]);
 
 	{
 		SColorRGB s_Item;
@@ -35041,14 +35041,14 @@ void SRenderMaterialSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SRenderMaterialSaveData s_Object;
 
-	s_Object.m_rEntity = static_cast<uint32>(int64_t(p_Document["m_rEntity"]));
+	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDynamicParametersData"])
 	{
-		s_Object.m_aDynamicParametersData.push_back(static_cast<uint8>(int64_t(s_Item0)));
+		s_Object.m_aDynamicParametersData.push_back(simdjson::from_json_uint8(s_Item0));
 	}
 
-	s_Object.m_bActive = bool(p_Document["m_bActive"]);
+	s_Object.m_bActive = simdjson::from_json_bool(p_Document["m_bActive"]);
 
 	*reinterpret_cast<SRenderMaterialSaveData*>(p_Target) = s_Object;
 }
@@ -35600,22 +35600,22 @@ void SGetHelpGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 		s_Object.m_vLastKnownTargetPosition = s_Item;
 	}
 
-	s_Object.m_rReturnNode = static_cast<uint16>(int64_t(p_Document["m_rReturnNode"]));
+	s_Object.m_rReturnNode = simdjson::from_json_uint16(p_Document["m_rReturnNode"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_blocked"])
 	{
-		s_Object.m_blocked.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_blocked.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
-	s_Object.m_bReportingToHitman = bool(p_Document["m_bReportingToHitman"]);
+	s_Object.m_bReportingToHitman = simdjson::from_json_bool(p_Document["m_bReportingToHitman"]);
 
-	s_Object.m_bStartedReportDialog = bool(p_Document["m_bStartedReportDialog"]);
+	s_Object.m_bStartedReportDialog = simdjson::from_json_bool(p_Document["m_bStartedReportDialog"]);
 
-	s_Object.m_bMultipleBodies = bool(p_Document["m_bMultipleBodies"]);
+	s_Object.m_bMultipleBodies = simdjson::from_json_bool(p_Document["m_bMultipleBodies"]);
 
-	s_Object.m_bGetHelpOrderCompleted = bool(p_Document["m_bGetHelpOrderCompleted"]);
+	s_Object.m_bGetHelpOrderCompleted = simdjson::from_json_bool(p_Document["m_bGetHelpOrderCompleted"]);
 
-	s_Object.m_bDoneReporting = bool(p_Document["m_bDoneReporting"]);
+	s_Object.m_bDoneReporting = simdjson::from_json_bool(p_Document["m_bDoneReporting"]);
 
 	{
 		ZGameTime s_Item;
@@ -35631,17 +35631,17 @@ void SGetHelpGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_type = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_type"])));
 
-	s_Object.m_target = static_cast<uint32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_uint32(p_Document["m_target"]);
 
-	s_Object.m_pReporter = static_cast<uint32>(int64_t(p_Document["m_pReporter"]));
+	s_Object.m_pReporter = simdjson::from_json_uint32(p_Document["m_pReporter"]);
 
-	s_Object.m_pGuard = static_cast<uint32>(int64_t(p_Document["m_pGuard"]));
+	s_Object.m_pGuard = simdjson::from_json_uint32(p_Document["m_pGuard"]);
 
-	s_Object.m_IllegalItem = static_cast<uint32>(int64_t(p_Document["m_IllegalItem"]));
+	s_Object.m_IllegalItem = simdjson::from_json_uint32(p_Document["m_IllegalItem"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_additionalGuards"])
 	{
-		s_Object.m_additionalGuards.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_additionalGuards.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SGetHelpGroupSaveData*>(p_Target) = s_Object;
@@ -35701,7 +35701,7 @@ void SGetHelpOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_helpType = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(p_Document["m_helpType"])));
 
-	s_Object.m_rInitialGuard = static_cast<uint32>(int64_t(p_Document["m_rInitialGuard"]));
+	s_Object.m_rInitialGuard = simdjson::from_json_uint32(p_Document["m_rInitialGuard"]);
 
 	*reinterpret_cast<SGetHelpOrderSaveData*>(p_Target) = s_Object;
 }
@@ -35753,9 +35753,9 @@ void SHelpingActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SHelpingActorSaveData s_Object;
 
-	s_Object.m_HelpTargetKnowledgeIndex = static_cast<int32>(int64_t(p_Document["m_HelpTargetKnowledgeIndex"]));
+	s_Object.m_HelpTargetKnowledgeIndex = simdjson::from_json_int32(p_Document["m_HelpTargetKnowledgeIndex"]);
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SHelpingActorSaveData*>(p_Target) = s_Object;
 }
@@ -35866,7 +35866,7 @@ void SGetIActorPositionSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SGetIActorPositionSaveData s_Object;
 
-	s_Object.m_StoredActor = static_cast<uint32>(int64_t(p_Document["m_StoredActor"]));
+	s_Object.m_StoredActor = simdjson::from_json_uint32(p_Document["m_StoredActor"]);
 
 	*reinterpret_cast<SGetIActorPositionSaveData*>(p_Target) = s_Object;
 }
@@ -35938,13 +35938,13 @@ void SGuardBodySituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value
 {
 	SGuardBodySituationMemberSaveData s_Object;
 
-	s_Object.m_bSearchingForMorgue = bool(p_Document["m_bSearchingForMorgue"]);
+	s_Object.m_bSearchingForMorgue = simdjson::from_json_bool(p_Document["m_bSearchingForMorgue"]);
 
-	s_Object.m_IsExitingSuccessfulBehavior = bool(p_Document["m_IsExitingSuccessfulBehavior"]);
+	s_Object.m_IsExitingSuccessfulBehavior = simdjson::from_json_bool(p_Document["m_IsExitingSuccessfulBehavior"]);
 
-	s_Object.m_rDeadBody = static_cast<uint32>(int64_t(p_Document["m_rDeadBody"]));
+	s_Object.m_rDeadBody = simdjson::from_json_uint32(p_Document["m_rDeadBody"]);
 
-	s_Object.m_rBodybag = static_cast<uint32>(int64_t(p_Document["m_rBodybag"]));
+	s_Object.m_rBodybag = simdjson::from_json_uint32(p_Document["m_rBodybag"]);
 
 	*reinterpret_cast<SGuardBodySituationMemberSaveData*>(p_Target) = s_Object;
 }
@@ -36026,15 +36026,15 @@ void SGuardBodySituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SGuardBodySituationSaveData s_Object;
 
-	s_Object.m_bBystanderFieldsFailed = bool(p_Document["m_bBystanderFieldsFailed"]);
+	s_Object.m_bBystanderFieldsFailed = simdjson::from_json_bool(p_Document["m_bBystanderFieldsFailed"]);
 
-	s_Object.m_bLastGetHelpGroupFailed = bool(p_Document["m_bLastGetHelpGroupFailed"]);
+	s_Object.m_bLastGetHelpGroupFailed = simdjson::from_json_bool(p_Document["m_bLastGetHelpGroupFailed"]);
 
-	s_Object.m_bSomeoneCanSeeBody = bool(p_Document["m_bSomeoneCanSeeBody"]);
+	s_Object.m_bSomeoneCanSeeBody = simdjson::from_json_bool(p_Document["m_bSomeoneCanSeeBody"]);
 
-	s_Object.m_bSomeoneHandledBodybag = bool(p_Document["m_bSomeoneHandledBodybag"]);
+	s_Object.m_bSomeoneHandledBodybag = simdjson::from_json_bool(p_Document["m_bSomeoneHandledBodybag"]);
 
-	s_Object.m_pGetHelpGroup = static_cast<int32>(int64_t(p_Document["m_pGetHelpGroup"]));
+	s_Object.m_pGetHelpGroup = simdjson::from_json_int32(p_Document["m_pGetHelpGroup"]);
 
 	*reinterpret_cast<SGuardBodySituationSaveData*>(p_Target) = s_Object;
 }
@@ -36086,9 +36086,9 @@ void SGuardPointOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SGuardPointOrderSaveData s_Object;
 
-	s_Object.m_guardPoint = static_cast<uint32>(int64_t(p_Document["m_guardPoint"]));
+	s_Object.m_guardPoint = simdjson::from_json_uint32(p_Document["m_guardPoint"]);
 
-	s_Object.m_walkOnly = bool(p_Document["m_walkOnly"]);
+	s_Object.m_walkOnly = simdjson::from_json_bool(p_Document["m_walkOnly"]);
 
 	*reinterpret_cast<SGuardPointOrderSaveData*>(p_Target) = s_Object;
 }
@@ -36660,113 +36660,113 @@ void SHM5CrippleBoxSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SHM5CrippleBoxSaveData s_Object;
 
-	s_Object.m_bInSequence = bool(p_Document["m_bInSequence"]);
+	s_Object.m_bInSequence = simdjson::from_json_bool(p_Document["m_bInSequence"]);
 
-	s_Object.m_bAllowBaseMovements = bool(p_Document["m_bAllowBaseMovements"]);
+	s_Object.m_bAllowBaseMovements = simdjson::from_json_bool(p_Document["m_bAllowBaseMovements"]);
 
-	s_Object.m_bSequenceAllowCamera = bool(p_Document["m_bSequenceAllowCamera"]);
+	s_Object.m_bSequenceAllowCamera = simdjson::from_json_bool(p_Document["m_bSequenceAllowCamera"]);
 
-	s_Object.m_bLedges = bool(p_Document["m_bLedges"]);
+	s_Object.m_bLedges = simdjson::from_json_bool(p_Document["m_bLedges"]);
 
-	s_Object.m_bCover = bool(p_Document["m_bCover"]);
+	s_Object.m_bCover = simdjson::from_json_bool(p_Document["m_bCover"]);
 
-	s_Object.m_bTakeClothes = bool(p_Document["m_bTakeClothes"]);
+	s_Object.m_bTakeClothes = simdjson::from_json_bool(p_Document["m_bTakeClothes"]);
 
-	s_Object.m_bLadder = bool(p_Document["m_bLadder"]);
+	s_Object.m_bLadder = simdjson::from_json_bool(p_Document["m_bLadder"]);
 
-	s_Object.m_bPullVictimFromWindow = bool(p_Document["m_bPullVictimFromWindow"]);
+	s_Object.m_bPullVictimFromWindow = simdjson::from_json_bool(p_Document["m_bPullVictimFromWindow"]);
 
-	s_Object.m_bFiberWireKill = bool(p_Document["m_bFiberWireKill"]);
+	s_Object.m_bFiberWireKill = simdjson::from_json_bool(p_Document["m_bFiberWireKill"]);
 
-	s_Object.m_bClimbWindow = bool(p_Document["m_bClimbWindow"]);
+	s_Object.m_bClimbWindow = simdjson::from_json_bool(p_Document["m_bClimbWindow"]);
 
-	s_Object.m_bThrowBodyOverRail = bool(p_Document["m_bThrowBodyOverRail"]);
+	s_Object.m_bThrowBodyOverRail = simdjson::from_json_bool(p_Document["m_bThrowBodyOverRail"]);
 
-	s_Object.m_bDumpBody = bool(p_Document["m_bDumpBody"]);
+	s_Object.m_bDumpBody = simdjson::from_json_bool(p_Document["m_bDumpBody"]);
 
-	s_Object.m_bOperateCPDoor = bool(p_Document["m_bOperateCPDoor"]);
+	s_Object.m_bOperateCPDoor = simdjson::from_json_bool(p_Document["m_bOperateCPDoor"]);
 
-	s_Object.m_bHideInCloset = bool(p_Document["m_bHideInCloset"]);
+	s_Object.m_bHideInCloset = simdjson::from_json_bool(p_Document["m_bHideInCloset"]);
 
-	s_Object.m_bCloseCombat = bool(p_Document["m_bCloseCombat"]);
+	s_Object.m_bCloseCombat = simdjson::from_json_bool(p_Document["m_bCloseCombat"]);
 
-	s_Object.m_bGrabVictim = bool(p_Document["m_bGrabVictim"]);
+	s_Object.m_bGrabVictim = simdjson::from_json_bool(p_Document["m_bGrabVictim"]);
 
-	s_Object.m_bPushVictimThroughWindowAndRail = bool(p_Document["m_bPushVictimThroughWindowAndRail"]);
+	s_Object.m_bPushVictimThroughWindowAndRail = simdjson::from_json_bool(p_Document["m_bPushVictimThroughWindowAndRail"]);
 
-	s_Object.m_bKickVictimOverLedge = bool(p_Document["m_bKickVictimOverLedge"]);
+	s_Object.m_bKickVictimOverLedge = simdjson::from_json_bool(p_Document["m_bKickVictimOverLedge"]);
 
-	s_Object.m_bPickupItem = bool(p_Document["m_bPickupItem"]);
+	s_Object.m_bPickupItem = simdjson::from_json_bool(p_Document["m_bPickupItem"]);
 
-	s_Object.m_bDropItem = bool(p_Document["m_bDropItem"]);
+	s_Object.m_bDropItem = simdjson::from_json_bool(p_Document["m_bDropItem"]);
 
-	s_Object.m_bDragBody = bool(p_Document["m_bDragBody"]);
+	s_Object.m_bDragBody = simdjson::from_json_bool(p_Document["m_bDragBody"]);
 
-	s_Object.m_bThrowItem = bool(p_Document["m_bThrowItem"]);
+	s_Object.m_bThrowItem = simdjson::from_json_bool(p_Document["m_bThrowItem"]);
 
-	s_Object.m_bPlaceItem = bool(p_Document["m_bPlaceItem"]);
+	s_Object.m_bPlaceItem = simdjson::from_json_bool(p_Document["m_bPlaceItem"]);
 
-	s_Object.m_bUseDeathAnimation = bool(p_Document["m_bUseDeathAnimation"]);
+	s_Object.m_bUseDeathAnimation = simdjson::from_json_bool(p_Document["m_bUseDeathAnimation"]);
 
-	s_Object.m_bLimitedAmmo = bool(p_Document["m_bLimitedAmmo"]);
+	s_Object.m_bLimitedAmmo = simdjson::from_json_bool(p_Document["m_bLimitedAmmo"]);
 
-	s_Object.m_bRun = bool(p_Document["m_bRun"]);
+	s_Object.m_bRun = simdjson::from_json_bool(p_Document["m_bRun"]);
 
-	s_Object.m_bTurn = bool(p_Document["m_bTurn"]);
+	s_Object.m_bTurn = simdjson::from_json_bool(p_Document["m_bTurn"]);
 
-	s_Object.m_bSneak = bool(p_Document["m_bSneak"]);
+	s_Object.m_bSneak = simdjson::from_json_bool(p_Document["m_bSneak"]);
 
-	s_Object.m_bNoSnapSneak = bool(p_Document["m_bNoSnapSneak"]);
+	s_Object.m_bNoSnapSneak = simdjson::from_json_bool(p_Document["m_bNoSnapSneak"]);
 
-	s_Object.m_bStandUp = bool(p_Document["m_bStandUp"]);
+	s_Object.m_bStandUp = simdjson::from_json_bool(p_Document["m_bStandUp"]);
 
-	s_Object.m_bFastWalk = bool(p_Document["m_bFastWalk"]);
+	s_Object.m_bFastWalk = simdjson::from_json_bool(p_Document["m_bFastWalk"]);
 
-	s_Object.m_bMovementAllowed = bool(p_Document["m_bMovementAllowed"]);
+	s_Object.m_bMovementAllowed = simdjson::from_json_bool(p_Document["m_bMovementAllowed"]);
 
-	s_Object.m_bIdleAnimationsAllowed = bool(p_Document["m_bIdleAnimationsAllowed"]);
+	s_Object.m_bIdleAnimationsAllowed = simdjson::from_json_bool(p_Document["m_bIdleAnimationsAllowed"]);
 
-	s_Object.m_bItems = bool(p_Document["m_bItems"]);
+	s_Object.m_bItems = simdjson::from_json_bool(p_Document["m_bItems"]);
 
-	s_Object.m_bCanHolsterItems = bool(p_Document["m_bCanHolsterItems"]);
+	s_Object.m_bCanHolsterItems = simdjson::from_json_bool(p_Document["m_bCanHolsterItems"]);
 
-	s_Object.m_bCoverTakedown = bool(p_Document["m_bCoverTakedown"]);
+	s_Object.m_bCoverTakedown = simdjson::from_json_bool(p_Document["m_bCoverTakedown"]);
 
-	s_Object.m_bCoverScale = bool(p_Document["m_bCoverScale"]);
+	s_Object.m_bCoverScale = simdjson::from_json_bool(p_Document["m_bCoverScale"]);
 
-	s_Object.m_bCoverToCover = bool(p_Document["m_bCoverToCover"]);
+	s_Object.m_bCoverToCover = simdjson::from_json_bool(p_Document["m_bCoverToCover"]);
 
-	s_Object.m_bCloseCombatSnapNeck = bool(p_Document["m_bCloseCombatSnapNeck"]);
+	s_Object.m_bCloseCombatSnapNeck = simdjson::from_json_bool(p_Document["m_bCloseCombatSnapNeck"]);
 
-	s_Object.m_bCloseCombatChoke = bool(p_Document["m_bCloseCombatChoke"]);
+	s_Object.m_bCloseCombatChoke = simdjson::from_json_bool(p_Document["m_bCloseCombatChoke"]);
 
-	s_Object.m_bCloseCombatPistolFinish = bool(p_Document["m_bCloseCombatPistolFinish"]);
+	s_Object.m_bCloseCombatPistolFinish = simdjson::from_json_bool(p_Document["m_bCloseCombatPistolFinish"]);
 
-	s_Object.m_bCloseCombatProps = bool(p_Document["m_bCloseCombatProps"]);
+	s_Object.m_bCloseCombatProps = simdjson::from_json_bool(p_Document["m_bCloseCombatProps"]);
 
-	s_Object.m_bCloseCombatStandart = bool(p_Document["m_bCloseCombatStandart"]);
+	s_Object.m_bCloseCombatStandart = simdjson::from_json_bool(p_Document["m_bCloseCombatStandart"]);
 
-	s_Object.m_bCloseCombatFakeSwing = bool(p_Document["m_bCloseCombatFakeSwing"]);
+	s_Object.m_bCloseCombatFakeSwing = simdjson::from_json_bool(p_Document["m_bCloseCombatFakeSwing"]);
 
-	s_Object.m_bGameCameraAutoAlign = bool(p_Document["m_bGameCameraAutoAlign"]);
+	s_Object.m_bGameCameraAutoAlign = simdjson::from_json_bool(p_Document["m_bGameCameraAutoAlign"]);
 
-	s_Object.m_bCameraSide = bool(p_Document["m_bCameraSide"]);
+	s_Object.m_bCameraSide = simdjson::from_json_bool(p_Document["m_bCameraSide"]);
 
-	s_Object.m_bInstinct = bool(p_Document["m_bInstinct"]);
+	s_Object.m_bInstinct = simdjson::from_json_bool(p_Document["m_bInstinct"]);
 
-	s_Object.m_bBlindFire = bool(p_Document["m_bBlindFire"]);
+	s_Object.m_bBlindFire = simdjson::from_json_bool(p_Document["m_bBlindFire"]);
 
-	s_Object.m_bAim = bool(p_Document["m_bAim"]);
+	s_Object.m_bAim = simdjson::from_json_bool(p_Document["m_bAim"]);
 
-	s_Object.m_bHairTrigger = bool(p_Document["m_bHairTrigger"]);
+	s_Object.m_bHairTrigger = simdjson::from_json_bool(p_Document["m_bHairTrigger"]);
 
-	s_Object.m_bFire = bool(p_Document["m_bFire"]);
+	s_Object.m_bFire = simdjson::from_json_bool(p_Document["m_bFire"]);
 
-	s_Object.m_bOpenLogbook = bool(p_Document["m_bOpenLogbook"]);
+	s_Object.m_bOpenLogbook = simdjson::from_json_bool(p_Document["m_bOpenLogbook"]);
 
-	s_Object.m_bOpenPauseMenu = bool(p_Document["m_bOpenPauseMenu"]);
+	s_Object.m_bOpenPauseMenu = simdjson::from_json_bool(p_Document["m_bOpenPauseMenu"]);
 
-	s_Object.m_bActivatedByPinSignal = bool(p_Document["m_bActivatedByPinSignal"]);
+	s_Object.m_bActivatedByPinSignal = simdjson::from_json_bool(p_Document["m_bActivatedByPinSignal"]);
 
 	*reinterpret_cast<SHM5CrippleBoxSaveData*>(p_Target) = s_Object;
 }
@@ -36808,7 +36808,7 @@ void SHUDPIPControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SHUDPIPControllerSaveData s_Object;
 
-	s_Object.m_bPiPEnabled = bool(p_Document["m_bPiPEnabled"]);
+	s_Object.m_bPiPEnabled = simdjson::from_json_bool(p_Document["m_bPiPEnabled"]);
 
 	*reinterpret_cast<SHUDPIPControllerSaveData*>(p_Target) = s_Object;
 }
@@ -37000,21 +37000,21 @@ void SHUDPromptDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SHUDPromptDisplayInfo s_Object;
 
-	s_Object.m_bActive = bool(p_Document["m_bActive"]);
+	s_Object.m_bActive = simdjson::from_json_bool(p_Document["m_bActive"]);
 
 	s_Object.m_eState = static_cast<EActionPromptState>(ZHMEnums::GetEnumValueByName("EActionPromptState", std::string_view(p_Document["m_eState"])));
 
-	s_Object.m_nIconId = static_cast<int32>(int64_t(p_Document["m_nIconId"]));
+	s_Object.m_nIconId = simdjson::from_json_int32(p_Document["m_nIconId"]);
 
-	s_Object.m_eTypeId = static_cast<int32>(int64_t(p_Document["m_eTypeId"]));
+	s_Object.m_eTypeId = simdjson::from_json_int32(p_Document["m_eTypeId"]);
 
-	s_Object.m_fProgress = static_cast<float32>(double(p_Document["m_fProgress"]));
+	s_Object.m_fProgress = simdjson::from_json_float32(p_Document["m_fProgress"]);
 
-	s_Object.m_fDistance = static_cast<float32>(double(p_Document["m_fDistance"]));
+	s_Object.m_fDistance = simdjson::from_json_float32(p_Document["m_fDistance"]);
 
-	s_Object.m_bShowWarning = bool(p_Document["m_bShowWarning"]);
+	s_Object.m_bShowWarning = simdjson::from_json_bool(p_Document["m_bShowWarning"]);
 
-	s_Object.m_bNoActionAvailable = bool(p_Document["m_bNoActionAvailable"]);
+	s_Object.m_bNoActionAvailable = simdjson::from_json_bool(p_Document["m_bNoActionAvailable"]);
 
 	s_Object.m_sLabel = std::string_view(p_Document["m_sLabel"]);
 
@@ -37022,15 +37022,15 @@ void SHUDPromptDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_sGlyph = std::string_view(p_Document["m_sGlyph"]);
 
-	s_Object.m_fOpacity = static_cast<float32>(double(p_Document["m_fOpacity"]));
+	s_Object.m_fOpacity = simdjson::from_json_float32(p_Document["m_fOpacity"]);
 
-	s_Object.m_bIllegalItem = bool(p_Document["m_bIllegalItem"]);
+	s_Object.m_bIllegalItem = simdjson::from_json_bool(p_Document["m_bIllegalItem"]);
 
-	s_Object.m_bSuspiciousItem = bool(p_Document["m_bSuspiciousItem"]);
+	s_Object.m_bSuspiciousItem = simdjson::from_json_bool(p_Document["m_bSuspiciousItem"]);
 
-	s_Object.m_bDropTempHolsterableItems = bool(p_Document["m_bDropTempHolsterableItems"]);
+	s_Object.m_bDropTempHolsterableItems = simdjson::from_json_bool(p_Document["m_bDropTempHolsterableItems"]);
 
-	s_Object.m_nFontSize = static_cast<int32>(int64_t(p_Document["m_nFontSize"]));
+	s_Object.m_nFontSize = simdjson::from_json_int32(p_Document["m_nFontSize"]);
 
 	*reinterpret_cast<SHUDPromptDisplayInfo*>(p_Target) = s_Object;
 }
@@ -37144,7 +37144,7 @@ void SHUDTimerControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SHUDTimerControllerSaveData s_Object;
 
-	s_Object.m_pCurrentInstance = static_cast<uint32>(int64_t(p_Document["m_pCurrentInstance"]));
+	s_Object.m_pCurrentInstance = simdjson::from_json_uint32(p_Document["m_pCurrentInstance"]);
 
 	*reinterpret_cast<SHUDTimerControllerSaveData*>(p_Target) = s_Object;
 }
@@ -37248,11 +37248,11 @@ void SHandleDistractionSituationSaveData::FromSimpleJson(simdjson::ondemand::val
 {
 	SHandleDistractionSituationSaveData s_Object;
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_pAssistant = static_cast<uint32>(int64_t(p_Document["m_pAssistant"]));
+	s_Object.m_pAssistant = simdjson::from_json_uint32(p_Document["m_pAssistant"]);
 
-	s_Object.m_pPreliminaryLeader = static_cast<uint32>(int64_t(p_Document["m_pPreliminaryLeader"]));
+	s_Object.m_pPreliminaryLeader = simdjson::from_json_uint32(p_Document["m_pPreliminaryLeader"]);
 
 	*reinterpret_cast<SHandleDistractionSituationSaveData*>(p_Target) = s_Object;
 }
@@ -37304,9 +37304,9 @@ void SHeroCameraStandInSaveState::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SHeroCameraStandInSaveState s_Object;
 
-	s_Object.m_rHero = static_cast<uint32>(int64_t(p_Document["m_rHero"]));
+	s_Object.m_rHero = simdjson::from_json_uint32(p_Document["m_rHero"]);
 
-	s_Object.m_bPaused = bool(p_Document["m_bPaused"]);
+	s_Object.m_bPaused = simdjson::from_json_bool(p_Document["m_bPaused"]);
 
 	*reinterpret_cast<SHeroCameraStandInSaveState*>(p_Target) = s_Object;
 }
@@ -37408,19 +37408,19 @@ void SHeroEscortSituation2ActorStateSaveData::FromSimpleJson(simdjson::ondemand:
 {
 	SHeroEscortSituation2ActorStateSaveData s_Object;
 
-	s_Object.m_nID = static_cast<uint32>(int64_t(p_Document["m_nID"]));
+	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
-	s_Object.m_bAllocatedForSituation = bool(p_Document["m_bAllocatedForSituation"]);
+	s_Object.m_bAllocatedForSituation = simdjson::from_json_bool(p_Document["m_bAllocatedForSituation"]);
 
 	s_Object.m_eState = static_cast<ZHeroEscortSituation2Entity_EEscortState>(ZHMEnums::GetEnumValueByName("ZHeroEscortSituation2Entity.EEscortState", std::string_view(p_Document["m_eState"])));
 
 	s_Object.m_eStatePrevious = static_cast<ZHeroEscortSituation2Entity_EEscortState>(ZHMEnums::GetEnumValueByName("ZHeroEscortSituation2Entity.EEscortState", std::string_view(p_Document["m_eStatePrevious"])));
 
-	s_Object.m_fDistanceToTarget = static_cast<float32>(double(p_Document["m_fDistanceToTarget"]));
+	s_Object.m_fDistanceToTarget = simdjson::from_json_float32(p_Document["m_fDistanceToTarget"]);
 
-	s_Object.m_rCurrentScreenplay = static_cast<uint32>(int64_t(p_Document["m_rCurrentScreenplay"]));
+	s_Object.m_rCurrentScreenplay = simdjson::from_json_uint32(p_Document["m_rCurrentScreenplay"]);
 
-	s_Object.m_rPreferredIntermediateScreenplay = static_cast<uint32>(int64_t(p_Document["m_rPreferredIntermediateScreenplay"]));
+	s_Object.m_rPreferredIntermediateScreenplay = simdjson::from_json_uint32(p_Document["m_rPreferredIntermediateScreenplay"]);
 
 	*reinterpret_cast<SHeroEscortSituation2ActorStateSaveData*>(p_Target) = s_Object;
 }
@@ -37462,7 +37462,7 @@ void SHeroEscortSituation2Actors::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SHeroEscortSituation2Actors s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SHeroEscortSituation2Actors*>(p_Target) = s_Object;
 }
@@ -37727,15 +37727,15 @@ void SHeroEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SHeroEscortSituation2SaveData s_Object;
 
-	s_Object.m_bActivated = bool(p_Document["m_bActivated"]);
+	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
-	s_Object.m_bMayEscort = bool(p_Document["m_bMayEscort"]);
+	s_Object.m_bMayEscort = simdjson::from_json_bool(p_Document["m_bMayEscort"]);
 
-	s_Object.m_bTargetDead = bool(p_Document["m_bTargetDead"]);
+	s_Object.m_bTargetDead = simdjson::from_json_bool(p_Document["m_bTargetDead"]);
 
-	s_Object.m_bTargetInRange = bool(p_Document["m_bTargetInRange"]);
+	s_Object.m_bTargetInRange = simdjson::from_json_bool(p_Document["m_bTargetInRange"]);
 
-	s_Object.m_bAllEscortsAreDead = bool(p_Document["m_bAllEscortsAreDead"]);
+	s_Object.m_bAllEscortsAreDead = simdjson::from_json_bool(p_Document["m_bAllEscortsAreDead"]);
 
 	{
 		SVector3 s_Item;
@@ -37743,7 +37743,7 @@ void SHeroEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_D
 		s_Object.m_vLastPosition = s_Item;
 	}
 
-	s_Object.m_bTargetIsMoving = bool(p_Document["m_bTargetIsMoving"]);
+	s_Object.m_bTargetIsMoving = simdjson::from_json_bool(p_Document["m_bTargetIsMoving"]);
 
 	s_Object.m_eTargetState = static_cast<ZHeroEscortSituation2Entity_ETargetState>(ZHMEnums::GetEnumValueByName("ZHeroEscortSituation2Entity.ETargetState", std::string_view(p_Document["m_eTargetState"])));
 
@@ -37751,9 +37751,9 @@ void SHeroEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	s_Object.m_eTargetActState = static_cast<ZActBehaviorEntity_EState>(ZHMEnums::GetEnumValueByName("ZActBehaviorEntity.EState", std::string_view(p_Document["m_eTargetActState"])));
 
-	s_Object.m_fTargetNotMovingTime = static_cast<float32>(double(p_Document["m_fTargetNotMovingTime"]));
+	s_Object.m_fTargetNotMovingTime = simdjson::from_json_float32(p_Document["m_fTargetNotMovingTime"]);
 
-	s_Object.m_fTargetAgitationCooldownTimer = static_cast<float32>(double(p_Document["m_fTargetAgitationCooldownTimer"]));
+	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
 	{
@@ -37771,10 +37771,10 @@ void SHeroEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_fTimeSinceLossOfSight = static_cast<float32>(double(p_Document["m_fTimeSinceLossOfSight"]));
+	s_Object.m_fTimeSinceLossOfSight = simdjson::from_json_float32(p_Document["m_fTimeSinceLossOfSight"]);
 
 	{
 		ZRepositoryID s_Item;
@@ -37887,19 +37887,19 @@ void SHeroEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::
 {
 	SHeroEscortSituationActorStateSaveData s_Object;
 
-	s_Object.m_nID = static_cast<uint32>(int64_t(p_Document["m_nID"]));
+	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
-	s_Object.m_bAllocatedForSituation = bool(p_Document["m_bAllocatedForSituation"]);
+	s_Object.m_bAllocatedForSituation = simdjson::from_json_bool(p_Document["m_bAllocatedForSituation"]);
 
 	s_Object.m_eState = static_cast<ZHeroEscortSituationEntity_EEscortState>(ZHMEnums::GetEnumValueByName("ZHeroEscortSituationEntity.EEscortState", std::string_view(p_Document["m_eState"])));
 
 	s_Object.m_eStatePrevious = static_cast<ZHeroEscortSituationEntity_EEscortState>(ZHMEnums::GetEnumValueByName("ZHeroEscortSituationEntity.EEscortState", std::string_view(p_Document["m_eStatePrevious"])));
 
-	s_Object.m_fDistanceToTarget = static_cast<float32>(double(p_Document["m_fDistanceToTarget"]));
+	s_Object.m_fDistanceToTarget = simdjson::from_json_float32(p_Document["m_fDistanceToTarget"]);
 
-	s_Object.m_rCurrentScreenplay = static_cast<uint32>(int64_t(p_Document["m_rCurrentScreenplay"]));
+	s_Object.m_rCurrentScreenplay = simdjson::from_json_uint32(p_Document["m_rCurrentScreenplay"]);
 
-	s_Object.m_rPreferredIntermediateScreenplay = static_cast<uint32>(int64_t(p_Document["m_rPreferredIntermediateScreenplay"]));
+	s_Object.m_rPreferredIntermediateScreenplay = simdjson::from_json_uint32(p_Document["m_rPreferredIntermediateScreenplay"]);
 
 	*reinterpret_cast<SHeroEscortSituationActorStateSaveData*>(p_Target) = s_Object;
 }
@@ -37941,7 +37941,7 @@ void SHeroEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SHeroEscortSituationActors s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SHeroEscortSituationActors*>(p_Target) = s_Object;
 }
@@ -38206,15 +38206,15 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SHeroEscortSituationSaveData s_Object;
 
-	s_Object.m_bActivated = bool(p_Document["m_bActivated"]);
+	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
-	s_Object.m_bMayEscort = bool(p_Document["m_bMayEscort"]);
+	s_Object.m_bMayEscort = simdjson::from_json_bool(p_Document["m_bMayEscort"]);
 
-	s_Object.m_bTargetDead = bool(p_Document["m_bTargetDead"]);
+	s_Object.m_bTargetDead = simdjson::from_json_bool(p_Document["m_bTargetDead"]);
 
-	s_Object.m_bTargetInRange = bool(p_Document["m_bTargetInRange"]);
+	s_Object.m_bTargetInRange = simdjson::from_json_bool(p_Document["m_bTargetInRange"]);
 
-	s_Object.m_bAllEscortsAreDead = bool(p_Document["m_bAllEscortsAreDead"]);
+	s_Object.m_bAllEscortsAreDead = simdjson::from_json_bool(p_Document["m_bAllEscortsAreDead"]);
 
 	{
 		SVector3 s_Item;
@@ -38222,7 +38222,7 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 		s_Object.m_vLastPosition = s_Item;
 	}
 
-	s_Object.m_bTargetIsMoving = bool(p_Document["m_bTargetIsMoving"]);
+	s_Object.m_bTargetIsMoving = simdjson::from_json_bool(p_Document["m_bTargetIsMoving"]);
 
 	s_Object.m_eTargetState = static_cast<ZHeroEscortSituationEntity_ETargetState>(ZHMEnums::GetEnumValueByName("ZHeroEscortSituationEntity.ETargetState", std::string_view(p_Document["m_eTargetState"])));
 
@@ -38230,9 +38230,9 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_eTargetActState = static_cast<ZActBehaviorEntity_EState>(ZHMEnums::GetEnumValueByName("ZActBehaviorEntity.EState", std::string_view(p_Document["m_eTargetActState"])));
 
-	s_Object.m_fTargetNotMovingTime = static_cast<float32>(double(p_Document["m_fTargetNotMovingTime"]));
+	s_Object.m_fTargetNotMovingTime = simdjson::from_json_float32(p_Document["m_fTargetNotMovingTime"]);
 
-	s_Object.m_fTargetAgitationCooldownTimer = static_cast<float32>(double(p_Document["m_fTargetAgitationCooldownTimer"]));
+	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
 	{
@@ -38250,10 +38250,10 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_fTimeSinceLossOfSight = static_cast<float32>(double(p_Document["m_fTimeSinceLossOfSight"]));
+	s_Object.m_fTimeSinceLossOfSight = simdjson::from_json_float32(p_Document["m_fTimeSinceLossOfSight"]);
 
 	{
 		ZRepositoryID s_Item;
@@ -38306,7 +38306,7 @@ void SHeroItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SHeroItemActionSaveData s_Object;
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
 	*reinterpret_cast<SHeroItemActionSaveData*>(p_Target) = s_Object;
 }
@@ -38348,7 +38348,7 @@ void SHeroItemAttachmentSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SHeroItemAttachmentSaveData s_Object;
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
 	*reinterpret_cast<SHeroItemAttachmentSaveData*>(p_Target) = s_Object;
 }
@@ -38410,11 +38410,11 @@ void SHeroStandInSaveState::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SHeroStandInSaveState s_Object;
 
-	s_Object.m_rHero = static_cast<uint32>(int64_t(p_Document["m_rHero"]));
+	s_Object.m_rHero = simdjson::from_json_uint32(p_Document["m_rHero"]);
 
-	s_Object.m_rCurrentSpeakEntity = static_cast<uint32>(int64_t(p_Document["m_rCurrentSpeakEntity"]));
+	s_Object.m_rCurrentSpeakEntity = simdjson::from_json_uint32(p_Document["m_rCurrentSpeakEntity"]);
 
-	s_Object.m_bPaused = bool(p_Document["m_bPaused"]);
+	s_Object.m_bPaused = simdjson::from_json_bool(p_Document["m_bPaused"]);
 
 	*reinterpret_cast<SHeroStandInSaveState*>(p_Target) = s_Object;
 }
@@ -38476,11 +38476,11 @@ void SHintEntrySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SHintEntrySaveData s_Object;
 
-	s_Object.m_bIsValid = bool(p_Document["m_bIsValid"]);
+	s_Object.m_bIsValid = simdjson::from_json_bool(p_Document["m_bIsValid"]);
 
-	s_Object.m_hint = static_cast<uint32>(int64_t(p_Document["m_hint"]));
+	s_Object.m_hint = simdjson::from_json_uint32(p_Document["m_hint"]);
 
-	s_Object.m_context = static_cast<uint32>(int64_t(p_Document["m_context"]));
+	s_Object.m_context = simdjson::from_json_uint32(p_Document["m_context"]);
 
 	*reinterpret_cast<SHintEntrySaveData*>(p_Target) = s_Object;
 }
@@ -38576,7 +38576,7 @@ void SHintManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_aQueue.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_bIsRunning = bool(p_Document["m_bIsRunning"]);
+	s_Object.m_bIsRunning = simdjson::from_json_bool(p_Document["m_bIsRunning"]);
 
 	*reinterpret_cast<SHintManagerSaveData*>(p_Target) = s_Object;
 }
@@ -38736,11 +38736,11 @@ void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 		s_Object.m_OutfitID = s_Item;
 	}
 
-	s_Object.m_nOutfitCharset = static_cast<int32>(int64_t(p_Document["m_nOutfitCharset"]));
+	s_Object.m_nOutfitCharset = simdjson::from_json_int32(p_Document["m_nOutfitCharset"]);
 
-	s_Object.m_nOutfitVariation = static_cast<int32>(int64_t(p_Document["m_nOutfitVariation"]));
+	s_Object.m_nOutfitVariation = simdjson::from_json_int32(p_Document["m_nOutfitVariation"]);
 
-	s_Object.m_fHealth = static_cast<float32>(double(p_Document["m_fHealth"]));
+	s_Object.m_fHealth = simdjson::from_json_float32(p_Document["m_fHealth"]);
 
 	{
 		SVector3 s_Item;
@@ -38774,9 +38774,9 @@ void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 		s_Object.m_MovementData = s_Item;
 	}
 
-	s_Object.m_bLethalAgilityElementUsed = bool(p_Document["m_bLethalAgilityElementUsed"]);
+	s_Object.m_bLethalAgilityElementUsed = simdjson::from_json_bool(p_Document["m_bLethalAgilityElementUsed"]);
 
-	s_Object.m_bIsChangingClothes = bool(p_Document["m_bIsChangingClothes"]);
+	s_Object.m_bIsChangingClothes = simdjson::from_json_bool(p_Document["m_bIsChangingClothes"]);
 
 	*reinterpret_cast<SHitmanSaveData*>(p_Target) = s_Object;
 }
@@ -38840,7 +38840,7 @@ void SHudMissionTimerControllerData::FromSimpleJson(simdjson::ondemand::value p_
 		s_Object.m_fScoreGameTimeStart = s_Item;
 	}
 
-	s_Object.m_bWasIntroCutFired = bool(p_Document["m_bWasIntroCutFired"]);
+	s_Object.m_bWasIntroCutFired = simdjson::from_json_bool(p_Document["m_bWasIntroCutFired"]);
 
 	*reinterpret_cast<SHudMissionTimerControllerData*>(p_Target) = s_Object;
 }
@@ -39094,11 +39094,11 @@ void SIntelDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SIntelDisplayInfo s_Object;
 
-	s_Object.index = static_cast<int32>(int64_t(p_Document["index"]));
+	s_Object.index = simdjson::from_json_int32(p_Document["index"]);
 
-	s_Object.selected = bool(p_Document["selected"]);
+	s_Object.selected = simdjson::from_json_bool(p_Document["selected"]);
 
-	s_Object.active = bool(p_Document["active"]);
+	s_Object.active = simdjson::from_json_bool(p_Document["active"]);
 
 	s_Object.headline = std::string_view(p_Document["headline"]);
 
@@ -39251,11 +39251,11 @@ void SIntelListDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SIntelListDisplayInfo s_Object;
 
-	s_Object.index = static_cast<int32>(int64_t(p_Document["index"]));
+	s_Object.index = simdjson::from_json_int32(p_Document["index"]);
 
-	s_Object.active = bool(p_Document["active"]);
+	s_Object.active = simdjson::from_json_bool(p_Document["active"]);
 
-	s_Object.newInfo = bool(p_Document["newInfo"]);
+	s_Object.newInfo = simdjson::from_json_bool(p_Document["newInfo"]);
 
 	s_Object.label = std::string_view(p_Document["label"]);
 
@@ -39429,19 +39429,19 @@ void SIntelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SIntelSaveData s_Object;
 
-	s_Object.m_rCurrentStage = static_cast<uint32>(int64_t(p_Document["m_rCurrentStage"]));
+	s_Object.m_rCurrentStage = simdjson::from_json_uint32(p_Document["m_rCurrentStage"]);
 
-	s_Object.m_fHandlerAudioPlayPosition = static_cast<float32>(double(p_Document["m_fHandlerAudioPlayPosition"]));
+	s_Object.m_fHandlerAudioPlayPosition = simdjson::from_json_float32(p_Document["m_fHandlerAudioPlayPosition"]);
 
-	s_Object.m_bTracked = bool(p_Document["m_bTracked"]);
+	s_Object.m_bTracked = simdjson::from_json_bool(p_Document["m_bTracked"]);
 
-	s_Object.m_bUnlocked = bool(p_Document["m_bUnlocked"]);
+	s_Object.m_bUnlocked = simdjson::from_json_bool(p_Document["m_bUnlocked"]);
 
-	s_Object.m_bRegistered = bool(p_Document["m_bRegistered"]);
+	s_Object.m_bRegistered = simdjson::from_json_bool(p_Document["m_bRegistered"]);
 
-	s_Object.m_bIsLastTriggered = bool(p_Document["m_bIsLastTriggered"]);
+	s_Object.m_bIsLastTriggered = simdjson::from_json_bool(p_Document["m_bIsLastTriggered"]);
 
-	s_Object.m_bIsHandlerAudioPlaying = bool(p_Document["m_bIsHandlerAudioPlaying"]);
+	s_Object.m_bIsHandlerAudioPlaying = simdjson::from_json_bool(p_Document["m_bIsHandlerAudioPlaying"]);
 
 	*reinterpret_cast<SIntelSaveData*>(p_Target) = s_Object;
 }
@@ -39623,13 +39623,13 @@ void SInteractionIndicatorInstanceData_SUIControlData::FromSimpleJson(simdjson::
 {
 	SInteractionIndicatorInstanceData_SUIControlData s_Object;
 
-	s_Object.m_eState = static_cast<int32>(int64_t(p_Document["m_eState"]));
+	s_Object.m_eState = simdjson::from_json_int32(p_Document["m_eState"]);
 
-	s_Object.m_eTypeId = static_cast<int32>(int64_t(p_Document["m_eTypeId"]));
+	s_Object.m_eTypeId = simdjson::from_json_int32(p_Document["m_eTypeId"]);
 
-	s_Object.m_nIconId = static_cast<int32>(int64_t(p_Document["m_nIconId"]));
+	s_Object.m_nIconId = simdjson::from_json_int32(p_Document["m_nIconId"]);
 
-	s_Object.m_fProgress = static_cast<float32>(double(p_Document["m_fProgress"]));
+	s_Object.m_fProgress = simdjson::from_json_float32(p_Document["m_fProgress"]);
 
 	s_Object.m_sLabel = std::string_view(p_Document["m_sLabel"]);
 
@@ -39637,21 +39637,21 @@ void SInteractionIndicatorInstanceData_SUIControlData::FromSimpleJson(simdjson::
 
 	s_Object.m_sGlyph = std::string_view(p_Document["m_sGlyph"]);
 
-	s_Object.m_bIllegal = bool(p_Document["m_bIllegal"]);
+	s_Object.m_bIllegal = simdjson::from_json_bool(p_Document["m_bIllegal"]);
 
-	s_Object.m_bNoActionAvailable = bool(p_Document["m_bNoActionAvailable"]);
+	s_Object.m_bNoActionAvailable = simdjson::from_json_bool(p_Document["m_bNoActionAvailable"]);
 
-	s_Object.m_bInRange = bool(p_Document["m_bInRange"]);
+	s_Object.m_bInRange = simdjson::from_json_bool(p_Document["m_bInRange"]);
 
-	s_Object.m_bIllegalItem = bool(p_Document["m_bIllegalItem"]);
+	s_Object.m_bIllegalItem = simdjson::from_json_bool(p_Document["m_bIllegalItem"]);
 
-	s_Object.m_bSuspiciousItem = bool(p_Document["m_bSuspiciousItem"]);
+	s_Object.m_bSuspiciousItem = simdjson::from_json_bool(p_Document["m_bSuspiciousItem"]);
 
-	s_Object.m_bContainsItem = bool(p_Document["m_bContainsItem"]);
+	s_Object.m_bContainsItem = simdjson::from_json_bool(p_Document["m_bContainsItem"]);
 
-	s_Object.m_nFontSize = static_cast<int32>(int64_t(p_Document["m_nFontSize"]));
+	s_Object.m_nFontSize = simdjson::from_json_int32(p_Document["m_nFontSize"]);
 
-	s_Object.m_bIsTxtDirReversed = bool(p_Document["m_bIsTxtDirReversed"]);
+	s_Object.m_bIsTxtDirReversed = simdjson::from_json_bool(p_Document["m_bIsTxtDirReversed"]);
 
 	*reinterpret_cast<SInteractionIndicatorInstanceData_SUIControlData*>(p_Target) = s_Object;
 }
@@ -39766,7 +39766,7 @@ void SInteractionIndicatorInstanceData::FromSimpleJson(simdjson::ondemand::value
 {
 	SInteractionIndicatorInstanceData s_Object;
 
-	s_Object.m_nStableID = static_cast<uint32>(int64_t(p_Document["m_nStableID"]));
+	s_Object.m_nStableID = simdjson::from_json_uint32(p_Document["m_nStableID"]);
 
 	{
 		SInteractionIndicatorInstanceData_SUIControlData s_Item;
@@ -39774,9 +39774,9 @@ void SInteractionIndicatorInstanceData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_uicData = s_Item;
 	}
 
-	s_Object.m_fAnimation = static_cast<float32>(double(p_Document["m_fAnimation"]));
+	s_Object.m_fAnimation = simdjson::from_json_float32(p_Document["m_fAnimation"]);
 
-	s_Object.m_bRotateIndicator = bool(p_Document["m_bRotateIndicator"]);
+	s_Object.m_bRotateIndicator = simdjson::from_json_bool(p_Document["m_bRotateIndicator"]);
 
 	{
 		SVector3 s_Item;
@@ -39790,9 +39790,9 @@ void SInteractionIndicatorInstanceData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_vRotation = s_Item;
 	}
 
-	s_Object.m_bNeedDataUpdate = bool(p_Document["m_bNeedDataUpdate"]);
+	s_Object.m_bNeedDataUpdate = simdjson::from_json_bool(p_Document["m_bNeedDataUpdate"]);
 
-	s_Object.m_bNeedAlphaUpdate = bool(p_Document["m_bNeedAlphaUpdate"]);
+	s_Object.m_bNeedAlphaUpdate = simdjson::from_json_bool(p_Document["m_bNeedAlphaUpdate"]);
 
 	*reinterpret_cast<SInteractionIndicatorInstanceData*>(p_Target) = s_Object;
 }
@@ -39916,9 +39916,9 @@ void SInventoryControllerItemSaveData::FromSimpleJson(simdjson::ondemand::value 
 {
 	SInventoryControllerItemSaveData s_Object;
 
-	s_Object.m_rItemEntity = static_cast<uint32>(int64_t(p_Document["m_rItemEntity"]));
+	s_Object.m_rItemEntity = simdjson::from_json_uint32(p_Document["m_rItemEntity"]);
 
-	s_Object.m_nAmmo = static_cast<uint32>(int64_t(p_Document["m_nAmmo"]));
+	s_Object.m_nAmmo = simdjson::from_json_uint32(p_Document["m_nAmmo"]);
 
 	*reinterpret_cast<SInventoryControllerItemSaveData*>(p_Target) = s_Object;
 }
@@ -40061,11 +40061,11 @@ void SStoredSlotSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SStoredSlotSaveData s_Object;
 
-	s_Object.m_iStoredInventorySlotIndex = static_cast<uint32>(int64_t(p_Document["m_iStoredInventorySlotIndex"]));
+	s_Object.m_iStoredInventorySlotIndex = simdjson::from_json_uint32(p_Document["m_iStoredInventorySlotIndex"]);
 
-	s_Object.m_iStoreReason = static_cast<uint8>(int64_t(p_Document["m_iStoreReason"]));
+	s_Object.m_iStoreReason = simdjson::from_json_uint8(p_Document["m_iStoreReason"]);
 
-	s_Object.m_bItemsStored = bool(p_Document["m_bItemsStored"]);
+	s_Object.m_bItemsStored = simdjson::from_json_bool(p_Document["m_bItemsStored"]);
 
 	*reinterpret_cast<SStoredSlotSaveData*>(p_Target) = s_Object;
 }
@@ -40409,9 +40409,9 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 		s_Object.m_aItems.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_nEquippedItemIndex = static_cast<uint32>(int64_t(p_Document["m_nEquippedItemIndex"]));
+	s_Object.m_nEquippedItemIndex = simdjson::from_json_uint32(p_Document["m_nEquippedItemIndex"]);
 
-	s_Object.m_nMostRecentItemIndex = static_cast<uint32>(int64_t(p_Document["m_nMostRecentItemIndex"]));
+	s_Object.m_nMostRecentItemIndex = simdjson::from_json_uint32(p_Document["m_nMostRecentItemIndex"]);
 
 	{
 		SStoredSlotSaveData s_Item;
@@ -40428,32 +40428,32 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPendingPickupItems"])
 	{
-		s_Object.m_aPendingPickupItems.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aPendingPickupItems.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_nAmmoCountGun = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountGun"]));
+	s_Object.m_nAmmoCountGun = simdjson::from_json_uint32(p_Document["m_nAmmoCountGun"]);
 
-	s_Object.m_nAmmoCountRevolver = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountRevolver"]));
+	s_Object.m_nAmmoCountRevolver = simdjson::from_json_uint32(p_Document["m_nAmmoCountRevolver"]);
 
-	s_Object.m_nAmmoCountSMG = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountSMG"]));
+	s_Object.m_nAmmoCountSMG = simdjson::from_json_uint32(p_Document["m_nAmmoCountSMG"]);
 
-	s_Object.m_nAmmoCountRifle = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountRifle"]));
+	s_Object.m_nAmmoCountRifle = simdjson::from_json_uint32(p_Document["m_nAmmoCountRifle"]);
 
-	s_Object.m_nAmmoCountShotgun = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountShotgun"]));
+	s_Object.m_nAmmoCountShotgun = simdjson::from_json_uint32(p_Document["m_nAmmoCountShotgun"]);
 
-	s_Object.m_nAmmoCountSniper = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountSniper"]));
+	s_Object.m_nAmmoCountSniper = simdjson::from_json_uint32(p_Document["m_nAmmoCountSniper"]);
 
-	s_Object.m_nAmmoCountMG = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountMG"]));
+	s_Object.m_nAmmoCountMG = simdjson::from_json_uint32(p_Document["m_nAmmoCountMG"]);
 
-	s_Object.m_nAmmoCountRPG = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountRPG"]));
+	s_Object.m_nAmmoCountRPG = simdjson::from_json_uint32(p_Document["m_nAmmoCountRPG"]);
 
-	s_Object.m_nAmmoCountFake = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountFake"]));
+	s_Object.m_nAmmoCountFake = simdjson::from_json_uint32(p_Document["m_nAmmoCountFake"]);
 
-	s_Object.m_nAmmoCountLightPistol = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountLightPistol"]));
+	s_Object.m_nAmmoCountLightPistol = simdjson::from_json_uint32(p_Document["m_nAmmoCountLightPistol"]);
 
-	s_Object.m_nAmmoCountDartTranquilizer = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountDartTranquilizer"]));
+	s_Object.m_nAmmoCountDartTranquilizer = simdjson::from_json_uint32(p_Document["m_nAmmoCountDartTranquilizer"]);
 
-	s_Object.m_nAmmoCountAmmoShotgunBeanbag = static_cast<uint32>(int64_t(p_Document["m_nAmmoCountAmmoShotgunBeanbag"]));
+	s_Object.m_nAmmoCountAmmoShotgunBeanbag = simdjson::from_json_uint32(p_Document["m_nAmmoCountAmmoShotgunBeanbag"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAmmoIds"])
 	{
@@ -40464,7 +40464,7 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAmmoCounts"])
 	{
-		s_Object.m_aAmmoCounts.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aAmmoCounts.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SInventoryControllerSaveData*>(p_Target) = s_Object;
@@ -40736,15 +40736,15 @@ void SInventoryMovementConfig::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.m_eCustomRule = static_cast<EInventoryConfigCustomRule>(ZHMEnums::GetEnumValueByName("EInventoryConfigCustomRule", std::string_view(p_Document["m_eCustomRule"])));
 
-	s_Object.m_bDropBackHolsteredItem = bool(p_Document["m_bDropBackHolsteredItem"]);
+	s_Object.m_bDropBackHolsteredItem = simdjson::from_json_bool(p_Document["m_bDropBackHolsteredItem"]);
 
-	s_Object.m_bSlowAnimation = bool(p_Document["m_bSlowAnimation"]);
+	s_Object.m_bSlowAnimation = simdjson::from_json_bool(p_Document["m_bSlowAnimation"]);
 
-	s_Object.m_bForceInstantInventoryChange = bool(p_Document["m_bForceInstantInventoryChange"]);
+	s_Object.m_bForceInstantInventoryChange = simdjson::from_json_bool(p_Document["m_bForceInstantInventoryChange"]);
 
-	s_Object.m_bCancelIfInventoryInUse = bool(p_Document["m_bCancelIfInventoryInUse"]);
+	s_Object.m_bCancelIfInventoryInUse = simdjson::from_json_bool(p_Document["m_bCancelIfInventoryInUse"]);
 
-	s_Object.m_bSafeDrop = bool(p_Document["m_bSafeDrop"]);
+	s_Object.m_bSafeDrop = simdjson::from_json_bool(p_Document["m_bSafeDrop"]);
 
 	{
 		float4 s_Item;
@@ -40915,11 +40915,11 @@ void SInventoryUI::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 		s_Object.mainslotsSlim.push_back(s_ArrayItem0);
 	}
 
-	s_Object.otherslotsCount = static_cast<int32>(int64_t(p_Document["otherslotsCount"]));
+	s_Object.otherslotsCount = simdjson::from_json_int32(p_Document["otherslotsCount"]);
 
-	s_Object.selectedIndex = static_cast<int32>(int64_t(p_Document["selectedIndex"]));
+	s_Object.selectedIndex = simdjson::from_json_int32(p_Document["selectedIndex"]);
 
-	s_Object.isActionInventory = bool(p_Document["isActionInventory"]);
+	s_Object.isActionInventory = simdjson::from_json_bool(p_Document["isActionInventory"]);
 
 	*reinterpret_cast<SInventoryUI*>(p_Target) = s_Object;
 }
@@ -41305,11 +41305,11 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 		s_Object.perks.push_back(std::string_view(s_Item0));
 	}
 
-	s_Object.silencer = bool(p_Document["silencer"]);
+	s_Object.silencer = simdjson::from_json_bool(p_Document["silencer"]);
 
-	s_Object.count = static_cast<int32>(int64_t(p_Document["count"]));
+	s_Object.count = simdjson::from_json_int32(p_Document["count"]);
 
-	s_Object.ammo = static_cast<int32>(int64_t(p_Document["ammo"]));
+	s_Object.ammo = simdjson::from_json_int32(p_Document["ammo"]);
 
 	{
 		ZRepositoryID s_Item;
@@ -41319,15 +41319,15 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	s_Object.weaponCategory = std::string_view(p_Document["weaponCategory"]);
 
-	s_Object.nAmmoRemaining = static_cast<int32>(int64_t(p_Document["nAmmoRemaining"]));
+	s_Object.nAmmoRemaining = simdjson::from_json_int32(p_Document["nAmmoRemaining"]);
 
-	s_Object.nAmmoTotal = static_cast<int32>(int64_t(p_Document["nAmmoTotal"]));
+	s_Object.nAmmoTotal = simdjson::from_json_int32(p_Document["nAmmoTotal"]);
 
-	s_Object.nAmmoInClip = static_cast<int32>(int64_t(p_Document["nAmmoInClip"]));
+	s_Object.nAmmoInClip = simdjson::from_json_int32(p_Document["nAmmoInClip"]);
 
-	s_Object.nWeaponType = static_cast<int32>(int64_t(p_Document["nWeaponType"]));
+	s_Object.nWeaponType = simdjson::from_json_int32(p_Document["nWeaponType"]);
 
-	s_Object.nItemHUDType = static_cast<int32>(int64_t(p_Document["nItemHUDType"]));
+	s_Object.nItemHUDType = simdjson::from_json_int32(p_Document["nItemHUDType"]);
 
 	s_Object.itemCategory = std::string_view(p_Document["itemCategory"]);
 
@@ -41335,32 +41335,32 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	s_Object.inventoryCategoryIcon = std::string_view(p_Document["inventoryCategoryIcon"]);
 
-	s_Object.isDroppable = bool(p_Document["isDroppable"]);
+	s_Object.isDroppable = simdjson::from_json_bool(p_Document["isDroppable"]);
 
-	s_Object.isContainer = bool(p_Document["isContainer"]);
+	s_Object.isContainer = simdjson::from_json_bool(p_Document["isContainer"]);
 
-	s_Object.containsItem = bool(p_Document["containsItem"]);
+	s_Object.containsItem = simdjson::from_json_bool(p_Document["containsItem"]);
 
-	s_Object.nContainedItemHUDType = static_cast<int32>(int64_t(p_Document["nContainedItemHUDType"]));
+	s_Object.nContainedItemHUDType = simdjson::from_json_int32(p_Document["nContainedItemHUDType"]);
 
-	s_Object.bContainedItemIllegal = bool(p_Document["bContainedItemIllegal"]);
+	s_Object.bContainedItemIllegal = simdjson::from_json_bool(p_Document["bContainedItemIllegal"]);
 
-	s_Object.bContainedItemSuspicious = bool(p_Document["bContainedItemSuspicious"]);
+	s_Object.bContainedItemSuspicious = simdjson::from_json_bool(p_Document["bContainedItemSuspicious"]);
 
-	s_Object.bContainedItemDetectedDuringFrisk = bool(p_Document["bContainedItemDetectedDuringFrisk"]);
+	s_Object.bContainedItemDetectedDuringFrisk = simdjson::from_json_bool(p_Document["bContainedItemDetectedDuringFrisk"]);
 
-	s_Object.detectedDuringFrisk = bool(p_Document["detectedDuringFrisk"]);
+	s_Object.detectedDuringFrisk = simdjson::from_json_bool(p_Document["detectedDuringFrisk"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["actionAndKillTypes"])
 	{
 		s_Object.actionAndKillTypes.push_back(std::string_view(s_Item0));
 	}
 
-	s_Object.suspicious = bool(p_Document["suspicious"]);
+	s_Object.suspicious = simdjson::from_json_bool(p_Document["suspicious"]);
 
-	s_Object.illegal = bool(p_Document["illegal"]);
+	s_Object.illegal = simdjson::from_json_bool(p_Document["illegal"]);
 
-	s_Object.canReload = bool(p_Document["canReload"]);
+	s_Object.canReload = simdjson::from_json_bool(p_Document["canReload"]);
 
 	s_Object.sPoisonType = std::string_view(p_Document["sPoisonType"]);
 
@@ -41811,11 +41811,11 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 
 	s_Object.m_state = static_cast<ZInvestigateDisguiseGroup_EState>(ZHMEnums::GetEnumValueByName("ZInvestigateDisguiseGroup.EState", std::string_view(p_Document["m_state"])));
 
-	s_Object.m_target = static_cast<int32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_int32(p_Document["m_target"]);
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_pPendingLeader = static_cast<uint32>(int64_t(p_Document["m_pPendingLeader"]));
+	s_Object.m_pPendingLeader = simdjson::from_json_uint32(p_Document["m_pPendingLeader"]);
 
 	{
 		ZGameTime s_Item;
@@ -41823,11 +41823,11 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_tStart = s_Item;
 	}
 
-	s_Object.m_groupAge = static_cast<float32>(double(p_Document["m_groupAge"]));
+	s_Object.m_groupAge = simdjson::from_json_float32(p_Document["m_groupAge"]);
 
-	s_Object.m_fDisguiseFollowTime = static_cast<float32>(double(p_Document["m_fDisguiseFollowTime"]));
+	s_Object.m_fDisguiseFollowTime = simdjson::from_json_float32(p_Document["m_fDisguiseFollowTime"]);
 
-	s_Object.m_fTargetRunningTime = static_cast<float32>(double(p_Document["m_fTargetRunningTime"]));
+	s_Object.m_fTargetRunningTime = simdjson::from_json_float32(p_Document["m_fTargetRunningTime"]);
 
 	{
 		ZGameTime s_Item;
@@ -41835,7 +41835,7 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_tLastWarning = s_Item;
 	}
 
-	s_Object.m_iWarningCount = static_cast<int32>(int64_t(p_Document["m_iWarningCount"]));
+	s_Object.m_iWarningCount = simdjson::from_json_int32(p_Document["m_iWarningCount"]);
 
 	s_Object.m_eLeaderMoveSpeed = static_cast<ZMoveToOrder_EMoveSpeed>(ZHMEnums::GetEnumValueByName("ZMoveToOrder.EMoveSpeed", std::string_view(p_Document["m_eLeaderMoveSpeed"])));
 
@@ -41869,19 +41869,19 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_dialogLines = s_Item;
 	}
 
-	s_Object.m_bLeaderOrderAssigned = bool(p_Document["m_bLeaderOrderAssigned"]);
+	s_Object.m_bLeaderOrderAssigned = simdjson::from_json_bool(p_Document["m_bLeaderOrderAssigned"]);
 
-	s_Object.m_bSearchCompleted = bool(p_Document["m_bSearchCompleted"]);
+	s_Object.m_bSearchCompleted = simdjson::from_json_bool(p_Document["m_bSearchCompleted"]);
 
-	s_Object.m_bLeaderMovingBack = bool(p_Document["m_bLeaderMovingBack"]);
+	s_Object.m_bLeaderMovingBack = simdjson::from_json_bool(p_Document["m_bLeaderMovingBack"]);
 
-	s_Object.m_bWaitingForDistanceStanddown = bool(p_Document["m_bWaitingForDistanceStanddown"]);
+	s_Object.m_bWaitingForDistanceStanddown = simdjson::from_json_bool(p_Document["m_bWaitingForDistanceStanddown"]);
 
-	s_Object.m_bFollow = bool(p_Document["m_bFollow"]);
+	s_Object.m_bFollow = simdjson::from_json_bool(p_Document["m_bFollow"]);
 
-	s_Object.m_bMembersFollow = bool(p_Document["m_bMembersFollow"]);
+	s_Object.m_bMembersFollow = simdjson::from_json_bool(p_Document["m_bMembersFollow"]);
 
-	s_Object.m_bRunningWarningIssued = bool(p_Document["m_bRunningWarningIssued"]);
+	s_Object.m_bRunningWarningIssued = simdjson::from_json_bool(p_Document["m_bRunningWarningIssued"]);
 
 	*reinterpret_cast<SInvestigateDisguiseGroupSaveData*>(p_Target) = s_Object;
 }
@@ -42021,15 +42021,15 @@ void SInvestigateWeaponGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SInvestigateWeaponGroupSaveData s_Object;
 
-	s_Object.m_rTarget = static_cast<uint32>(int64_t(p_Document["m_rTarget"]));
+	s_Object.m_rTarget = simdjson::from_json_uint32(p_Document["m_rTarget"]);
 
-	s_Object.m_rReporter = static_cast<uint32>(int64_t(p_Document["m_rReporter"]));
+	s_Object.m_rReporter = simdjson::from_json_uint32(p_Document["m_rReporter"]);
 
-	s_Object.m_rInvestigator = static_cast<uint32>(int64_t(p_Document["m_rInvestigator"]));
+	s_Object.m_rInvestigator = simdjson::from_json_uint32(p_Document["m_rInvestigator"]);
 
-	s_Object.m_rGuard = static_cast<uint32>(int64_t(p_Document["m_rGuard"]));
+	s_Object.m_rGuard = simdjson::from_json_uint32(p_Document["m_rGuard"]);
 
-	s_Object.m_ReporterIsVIPWithAmbientEscort = bool(p_Document["m_ReporterIsVIPWithAmbientEscort"]);
+	s_Object.m_ReporterIsVIPWithAmbientEscort = simdjson::from_json_bool(p_Document["m_ReporterIsVIPWithAmbientEscort"]);
 
 	{
 		SFSMSaveData s_Item;
@@ -42045,7 +42045,7 @@ void SInvestigateWeaponGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aUnconsciousGuards"])
 	{
-		s_Object.m_aUnconsciousGuards.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aUnconsciousGuards.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SInvestigateWeaponGroupSaveData*>(p_Target) = s_Object;
@@ -42091,7 +42091,7 @@ void SItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SItemActionSaveData s_Object;
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
 	*reinterpret_cast<SItemActionSaveData*>(p_Target) = s_Object;
 }
@@ -42190,7 +42190,7 @@ void SItemInstanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 		s_Object.m_repositoryId = s_Item;
 	}
 
-	s_Object.m_nEntityID = uint64(p_Document["m_nEntityID"]);
+	s_Object.m_nEntityID = simdjson::from_json_uint64(p_Document["m_nEntityID"]);
 
 	s_Object.m_sOnlineInstanceId = std::string_view(p_Document["m_sOnlineInstanceId"]);
 
@@ -42290,13 +42290,13 @@ void SItemLeftHandUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.icon = s_Item;
 	}
 
-	s_Object.nItemHUDType = static_cast<int32>(int64_t(p_Document["nItemHUDType"]));
+	s_Object.nItemHUDType = simdjson::from_json_int32(p_Document["nItemHUDType"]);
 
-	s_Object.bHasItemToShow = bool(p_Document["bHasItemToShow"]);
+	s_Object.bHasItemToShow = simdjson::from_json_bool(p_Document["bHasItemToShow"]);
 
-	s_Object.bSuspicious = bool(p_Document["bSuspicious"]);
+	s_Object.bSuspicious = simdjson::from_json_bool(p_Document["bSuspicious"]);
 
-	s_Object.bIllegal = bool(p_Document["bIllegal"]);
+	s_Object.bIllegal = simdjson::from_json_bool(p_Document["bIllegal"]);
 
 	*reinterpret_cast<SItemLeftHandUIData*>(p_Target) = s_Object;
 }
@@ -42385,13 +42385,13 @@ void SItemOnBackUIData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 		s_Object.icon = s_Item;
 	}
 
-	s_Object.nItemHUDType = static_cast<int32>(int64_t(p_Document["nItemHUDType"]));
+	s_Object.nItemHUDType = simdjson::from_json_int32(p_Document["nItemHUDType"]);
 
-	s_Object.bHasItemToShow = bool(p_Document["bHasItemToShow"]);
+	s_Object.bHasItemToShow = simdjson::from_json_bool(p_Document["bHasItemToShow"]);
 
-	s_Object.bSuspicious = bool(p_Document["bSuspicious"]);
+	s_Object.bSuspicious = simdjson::from_json_bool(p_Document["bSuspicious"]);
 
-	s_Object.bIllegal = bool(p_Document["bIllegal"]);
+	s_Object.bIllegal = simdjson::from_json_bool(p_Document["bIllegal"]);
 
 	*reinterpret_cast<SItemOnBackUIData*>(p_Target) = s_Object;
 }
@@ -42434,7 +42434,7 @@ void SItemSpawnerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SItemSpawnerSaveData s_Object;
 
-	s_Object.m_bItemUpdateTransformChange = bool(p_Document["m_bItemUpdateTransformChange"]);
+	s_Object.m_bItemUpdateTransformChange = simdjson::from_json_bool(p_Document["m_bItemUpdateTransformChange"]);
 
 	*reinterpret_cast<SItemSpawnerSaveData*>(p_Target) = s_Object;
 }
@@ -42507,11 +42507,11 @@ void SItemStorageSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SItemStorageSaveData s_Object;
 
-	s_Object.m_Storage = static_cast<uint32>(int64_t(p_Document["m_Storage"]));
+	s_Object.m_Storage = simdjson::from_json_uint32(p_Document["m_Storage"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_ContainedItems"])
 	{
-		s_Object.m_ContainedItems.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_ContainedItems.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SItemStorageSaveData*>(p_Target) = s_Object;
@@ -42608,10 +42608,10 @@ void SItemWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_magazineBulletsByAmmoType"])
 	{
-		s_Object.m_magazineBulletsByAmmoType.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_magazineBulletsByAmmoType.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_nExtraMagazineBullets = static_cast<uint32>(int64_t(p_Document["m_nExtraMagazineBullets"]));
+	s_Object.m_nExtraMagazineBullets = simdjson::from_json_uint32(p_Document["m_nExtraMagazineBullets"]);
 
 	s_Object.m_ePendingDeathContext = static_cast<EDeathContext>(ZHMEnums::GetEnumValueByName("EDeathContext", std::string_view(p_Document["m_ePendingDeathContext"])));
 
@@ -42668,9 +42668,9 @@ void SLayerBehaviorConfiguration::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SLayerBehaviorConfiguration s_Object;
 
-	s_Object.m_bTrigger = bool(p_Document["m_bTrigger"]);
+	s_Object.m_bTrigger = simdjson::from_json_bool(p_Document["m_bTrigger"]);
 
-	s_Object.m_bCollector = bool(p_Document["m_bCollector"]);
+	s_Object.m_bCollector = simdjson::from_json_bool(p_Document["m_bCollector"]);
 
 	*reinterpret_cast<SLayerBehaviorConfiguration*>(p_Target) = s_Object;
 }
@@ -42772,19 +42772,19 @@ void SLeadEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::
 {
 	SLeadEscortSituationActorStateSaveData s_Object;
 
-	s_Object.m_nID = static_cast<uint32>(int64_t(p_Document["m_nID"]));
+	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
-	s_Object.m_bAllocatedForSituation = bool(p_Document["m_bAllocatedForSituation"]);
+	s_Object.m_bAllocatedForSituation = simdjson::from_json_bool(p_Document["m_bAllocatedForSituation"]);
 
 	s_Object.m_eState = static_cast<ZLeadEscortSituationEntity_EEscortState>(ZHMEnums::GetEnumValueByName("ZLeadEscortSituationEntity.EEscortState", std::string_view(p_Document["m_eState"])));
 
 	s_Object.m_eStatePrevious = static_cast<ZLeadEscortSituationEntity_EEscortState>(ZHMEnums::GetEnumValueByName("ZLeadEscortSituationEntity.EEscortState", std::string_view(p_Document["m_eStatePrevious"])));
 
-	s_Object.m_fDistanceToTarget = static_cast<float32>(double(p_Document["m_fDistanceToTarget"]));
+	s_Object.m_fDistanceToTarget = simdjson::from_json_float32(p_Document["m_fDistanceToTarget"]);
 
-	s_Object.m_rCurrentScreenplay = static_cast<uint32>(int64_t(p_Document["m_rCurrentScreenplay"]));
+	s_Object.m_rCurrentScreenplay = simdjson::from_json_uint32(p_Document["m_rCurrentScreenplay"]);
 
-	s_Object.m_rPreferredIntermediateScreenplay = static_cast<uint32>(int64_t(p_Document["m_rPreferredIntermediateScreenplay"]));
+	s_Object.m_rPreferredIntermediateScreenplay = simdjson::from_json_uint32(p_Document["m_rPreferredIntermediateScreenplay"]);
 
 	*reinterpret_cast<SLeadEscortSituationActorStateSaveData*>(p_Target) = s_Object;
 }
@@ -42826,7 +42826,7 @@ void SLeadEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SLeadEscortSituationActors s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	*reinterpret_cast<SLeadEscortSituationActors*>(p_Target) = s_Object;
 }
@@ -43071,15 +43071,15 @@ void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SLeadEscortSituationSaveData s_Object;
 
-	s_Object.m_bActivated = bool(p_Document["m_bActivated"]);
+	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
-	s_Object.m_bMayEscort = bool(p_Document["m_bMayEscort"]);
+	s_Object.m_bMayEscort = simdjson::from_json_bool(p_Document["m_bMayEscort"]);
 
-	s_Object.m_bTargetDead = bool(p_Document["m_bTargetDead"]);
+	s_Object.m_bTargetDead = simdjson::from_json_bool(p_Document["m_bTargetDead"]);
 
-	s_Object.m_bTargetInRange = bool(p_Document["m_bTargetInRange"]);
+	s_Object.m_bTargetInRange = simdjson::from_json_bool(p_Document["m_bTargetInRange"]);
 
-	s_Object.m_bAllEscortsAreDead = bool(p_Document["m_bAllEscortsAreDead"]);
+	s_Object.m_bAllEscortsAreDead = simdjson::from_json_bool(p_Document["m_bAllEscortsAreDead"]);
 
 	{
 		SVector3 s_Item;
@@ -43087,7 +43087,7 @@ void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 		s_Object.m_vLastPosition = s_Item;
 	}
 
-	s_Object.m_bTargetIsMoving = bool(p_Document["m_bTargetIsMoving"]);
+	s_Object.m_bTargetIsMoving = simdjson::from_json_bool(p_Document["m_bTargetIsMoving"]);
 
 	s_Object.m_eTargetState = static_cast<ZLeadEscortSituationEntity_ETargetState>(ZHMEnums::GetEnumValueByName("ZLeadEscortSituationEntity.ETargetState", std::string_view(p_Document["m_eTargetState"])));
 
@@ -43095,9 +43095,9 @@ void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_eTargetActState = static_cast<ZActBehaviorEntity_EState>(ZHMEnums::GetEnumValueByName("ZActBehaviorEntity.EState", std::string_view(p_Document["m_eTargetActState"])));
 
-	s_Object.m_fTargetNotMovingTime = static_cast<float32>(double(p_Document["m_fTargetNotMovingTime"]));
+	s_Object.m_fTargetNotMovingTime = simdjson::from_json_float32(p_Document["m_fTargetNotMovingTime"]);
 
-	s_Object.m_fTargetAgitationCooldownTimer = static_cast<float32>(double(p_Document["m_fTargetAgitationCooldownTimer"]));
+	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
 	{
@@ -43115,7 +43115,7 @@ void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SLeadEscortSituationSaveData*>(p_Target) = s_Object;
@@ -43341,15 +43341,15 @@ void SSoundAmbienceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SSoundAmbienceSaveData s_Object;
 
-	s_Object.m_rCurrentAmbience = static_cast<uint32>(int64_t(p_Document["m_rCurrentAmbience"]));
+	s_Object.m_rCurrentAmbience = simdjson::from_json_uint32(p_Document["m_rCurrentAmbience"]);
 
-	s_Object.m_rCurrentGate = static_cast<uint32>(int64_t(p_Document["m_rCurrentGate"]));
+	s_Object.m_rCurrentGate = simdjson::from_json_uint32(p_Document["m_rCurrentGate"]);
 
-	s_Object.m_fTransitionAmount = static_cast<float32>(double(p_Document["m_fTransitionAmount"]));
+	s_Object.m_fTransitionAmount = simdjson::from_json_float32(p_Document["m_fTransitionAmount"]);
 
-	s_Object.m_bEnteredFromSide0 = bool(p_Document["m_bEnteredFromSide0"]);
+	s_Object.m_bEnteredFromSide0 = simdjson::from_json_bool(p_Document["m_bEnteredFromSide0"]);
 
-	s_Object.m_bInTransition = bool(p_Document["m_bInTransition"]);
+	s_Object.m_bInTransition = simdjson::from_json_bool(p_Document["m_bInTransition"]);
 
 	*reinterpret_cast<SSoundAmbienceSaveData*>(p_Target) = s_Object;
 }
@@ -43623,11 +43623,11 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SLevelSaveData s_Object;
 
-	s_Object.m_nGameTime = int64(p_Document["m_nGameTime"]);
+	s_Object.m_nGameTime = simdjson::from_json_int64(p_Document["m_nGameTime"]);
 
-	s_Object.m_nGameTimePrev = int64(p_Document["m_nGameTimePrev"]);
+	s_Object.m_nGameTimePrev = simdjson::from_json_int64(p_Document["m_nGameTimePrev"]);
 
-	s_Object.m_nGameTimeDelta = int64(p_Document["m_nGameTimeDelta"]);
+	s_Object.m_nGameTimeDelta = simdjson::from_json_int64(p_Document["m_nGameTimeDelta"]);
 
 	s_Object.m_sScene = std::string_view(p_Document["m_sScene"]);
 
@@ -43701,9 +43701,9 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_ChallengesSaveData = s_Item;
 	}
 
-	s_Object.m_nSaveGameLimit = static_cast<int32>(int64_t(p_Document["m_nSaveGameLimit"]));
+	s_Object.m_nSaveGameLimit = simdjson::from_json_int32(p_Document["m_nSaveGameLimit"]);
 
-	s_Object.m_fLastKillTimestamp = static_cast<float32>(double(p_Document["m_fLastKillTimestamp"]));
+	s_Object.m_fLastKillTimestamp = simdjson::from_json_float32(p_Document["m_fLastKillTimestamp"]);
 
 	*reinterpret_cast<SLevelSaveData*>(p_Target) = s_Object;
 }
@@ -43770,9 +43770,9 @@ void SLightFlickerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SLightFlickerEntitySaveData s_Object;
 
-	s_Object.m_bLightOn = bool(p_Document["m_bLightOn"]);
+	s_Object.m_bLightOn = simdjson::from_json_bool(p_Document["m_bLightOn"]);
 
-	s_Object.m_bFlickerOn = bool(p_Document["m_bFlickerOn"]);
+	s_Object.m_bFlickerOn = simdjson::from_json_bool(p_Document["m_bFlickerOn"]);
 
 	*reinterpret_cast<SLightFlickerEntitySaveData*>(p_Target) = s_Object;
 }
@@ -44069,7 +44069,7 @@ void SLockdownManagerAIZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_
 		s_Object.m_tExpiryHeroOutside = s_Item;
 	}
 
-	s_Object.m_rZone = static_cast<uint32>(int64_t(p_Document["m_rZone"]));
+	s_Object.m_rZone = simdjson::from_json_uint32(p_Document["m_rZone"]);
 
 	*reinterpret_cast<SLockdownManagerAIZoneSaveData*>(p_Target) = s_Object;
 }
@@ -44225,12 +44225,12 @@ void SManHuntServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_rGuardNodes"])
 	{
-		s_Object.m_rGuardNodes.push_back(static_cast<uint16>(int64_t(s_Item0)));
+		s_Object.m_rGuardNodes.push_back(simdjson::from_json_uint16(s_Item0));
 	}
 
-	s_Object.m_rInitialNode = static_cast<uint16>(int64_t(p_Document["m_rInitialNode"]));
+	s_Object.m_rInitialNode = simdjson::from_json_uint16(p_Document["m_rInitialNode"]);
 
-	s_Object.m_fGuardSightRange = static_cast<float32>(double(p_Document["m_fGuardSightRange"]));
+	s_Object.m_fGuardSightRange = simdjson::from_json_float32(p_Document["m_fGuardSightRange"]);
 
 	*reinterpret_cast<SManHuntServiceSaveData*>(p_Target) = s_Object;
 }
@@ -44863,37 +44863,37 @@ void SMatrix44::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	SMatrix44 s_Object;
 
-	s_Object.m11 = static_cast<float32>(double(p_Document["m11"]));
+	s_Object.m11 = simdjson::from_json_float32(p_Document["m11"]);
 
-	s_Object.m12 = static_cast<float32>(double(p_Document["m12"]));
+	s_Object.m12 = simdjson::from_json_float32(p_Document["m12"]);
 
-	s_Object.m13 = static_cast<float32>(double(p_Document["m13"]));
+	s_Object.m13 = simdjson::from_json_float32(p_Document["m13"]);
 
-	s_Object.m14 = static_cast<float32>(double(p_Document["m14"]));
+	s_Object.m14 = simdjson::from_json_float32(p_Document["m14"]);
 
-	s_Object.m21 = static_cast<float32>(double(p_Document["m21"]));
+	s_Object.m21 = simdjson::from_json_float32(p_Document["m21"]);
 
-	s_Object.m22 = static_cast<float32>(double(p_Document["m22"]));
+	s_Object.m22 = simdjson::from_json_float32(p_Document["m22"]);
 
-	s_Object.m23 = static_cast<float32>(double(p_Document["m23"]));
+	s_Object.m23 = simdjson::from_json_float32(p_Document["m23"]);
 
-	s_Object.m24 = static_cast<float32>(double(p_Document["m24"]));
+	s_Object.m24 = simdjson::from_json_float32(p_Document["m24"]);
 
-	s_Object.m31 = static_cast<float32>(double(p_Document["m31"]));
+	s_Object.m31 = simdjson::from_json_float32(p_Document["m31"]);
 
-	s_Object.m32 = static_cast<float32>(double(p_Document["m32"]));
+	s_Object.m32 = simdjson::from_json_float32(p_Document["m32"]);
 
-	s_Object.m33 = static_cast<float32>(double(p_Document["m33"]));
+	s_Object.m33 = simdjson::from_json_float32(p_Document["m33"]);
 
-	s_Object.m34 = static_cast<float32>(double(p_Document["m34"]));
+	s_Object.m34 = simdjson::from_json_float32(p_Document["m34"]);
 
-	s_Object.m41 = static_cast<float32>(double(p_Document["m41"]));
+	s_Object.m41 = simdjson::from_json_float32(p_Document["m41"]);
 
-	s_Object.m42 = static_cast<float32>(double(p_Document["m42"]));
+	s_Object.m42 = simdjson::from_json_float32(p_Document["m42"]);
 
-	s_Object.m43 = static_cast<float32>(double(p_Document["m43"]));
+	s_Object.m43 = simdjson::from_json_float32(p_Document["m43"]);
 
-	s_Object.m44 = static_cast<float32>(double(p_Document["m44"]));
+	s_Object.m44 = simdjson::from_json_float32(p_Document["m44"]);
 
 	*reinterpret_cast<SMatrix44*>(p_Target) = s_Object;
 }
@@ -44985,15 +44985,15 @@ void SMovementAgilitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SMovementAgilitySaveData s_Object;
 
-	s_Object.m_rLedgeGuide = static_cast<uint32>(int64_t(p_Document["m_rLedgeGuide"]));
+	s_Object.m_rLedgeGuide = simdjson::from_json_uint32(p_Document["m_rLedgeGuide"]);
 
-	s_Object.m_fFaceLeftRightTarget = static_cast<float32>(double(p_Document["m_fFaceLeftRightTarget"]));
+	s_Object.m_fFaceLeftRightTarget = simdjson::from_json_float32(p_Document["m_fFaceLeftRightTarget"]);
 
 	s_Object.m_ePrevAgilityState = static_cast<EAgilityState>(ZHMEnums::GetEnumValueByName("EAgilityState", std::string_view(p_Document["m_ePrevAgilityState"])));
 
 	s_Object.m_eAgilityState = static_cast<EAgilityState>(ZHMEnums::GetEnumValueByName("EAgilityState", std::string_view(p_Document["m_eAgilityState"])));
 
-	s_Object.m_nActiveAnimNode = static_cast<uint32>(int64_t(p_Document["m_nActiveAnimNode"]));
+	s_Object.m_nActiveAnimNode = simdjson::from_json_uint32(p_Document["m_nActiveAnimNode"]);
 
 	s_Object.m_eCameraOffset = static_cast<ECameraOffset_old>(ZHMEnums::GetEnumValueByName("ECameraOffset_old", std::string_view(p_Document["m_eCameraOffset"])));
 
@@ -45077,13 +45077,13 @@ void SMovementCoverSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SMovementCoverSaveData s_Object;
 
-	s_Object.m_rCoverPlane = static_cast<uint32>(int64_t(p_Document["m_rCoverPlane"]));
+	s_Object.m_rCoverPlane = simdjson::from_json_uint32(p_Document["m_rCoverPlane"]);
 
-	s_Object.m_nCoverAnimNodeID = static_cast<uint32>(int64_t(p_Document["m_nCoverAnimNodeID"]));
+	s_Object.m_nCoverAnimNodeID = simdjson::from_json_uint32(p_Document["m_nCoverAnimNodeID"]);
 
-	s_Object.m_bLeftSideFacing = bool(p_Document["m_bLeftSideFacing"]);
+	s_Object.m_bLeftSideFacing = simdjson::from_json_bool(p_Document["m_bLeftSideFacing"]);
 
-	s_Object.m_bCrouched = bool(p_Document["m_bCrouched"]);
+	s_Object.m_bCrouched = simdjson::from_json_bool(p_Document["m_bCrouched"]);
 
 	{
 		SMatrix s_Item;
@@ -45142,9 +45142,9 @@ void SMovementDisguiseSafeZoneSaveData::FromSimpleJson(simdjson::ondemand::value
 {
 	SMovementDisguiseSafeZoneSaveData s_Object;
 
-	s_Object.m_rSafeZone = static_cast<uint32>(int64_t(p_Document["m_rSafeZone"]));
+	s_Object.m_rSafeZone = simdjson::from_json_uint32(p_Document["m_rSafeZone"]);
 
-	s_Object.m_nSafeZoneAnimNode = static_cast<uint32>(int64_t(p_Document["m_nSafeZoneAnimNode"]));
+	s_Object.m_nSafeZoneAnimNode = simdjson::from_json_uint32(p_Document["m_nSafeZoneAnimNode"]);
 
 	*reinterpret_cast<SMovementDisguiseSafeZoneSaveData*>(p_Target) = s_Object;
 }
@@ -45196,9 +45196,9 @@ void SMovementDragBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SMovementDragBodySaveData s_Object;
 
-	s_Object.m_rDraggedActor = static_cast<uint32>(int64_t(p_Document["m_rDraggedActor"]));
+	s_Object.m_rDraggedActor = simdjson::from_json_uint32(p_Document["m_rDraggedActor"]);
 
-	s_Object.m_nGrabBoneID = static_cast<uint32>(int64_t(p_Document["m_nGrabBoneID"]));
+	s_Object.m_nGrabBoneID = simdjson::from_json_uint32(p_Document["m_nGrabBoneID"]);
 
 	*reinterpret_cast<SMovementDragBodySaveData*>(p_Target) = s_Object;
 }
@@ -45240,7 +45240,7 @@ void SMovementDrainPipeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SMovementDrainPipeSaveData s_Object;
 
-	s_Object.m_rDrainPipe = static_cast<uint32>(int64_t(p_Document["m_rDrainPipe"]));
+	s_Object.m_rDrainPipe = simdjson::from_json_uint32(p_Document["m_rDrainPipe"]);
 
 	*reinterpret_cast<SMovementDrainPipeSaveData*>(p_Target) = s_Object;
 }
@@ -45294,7 +45294,7 @@ void SMovementHideInClosetSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	s_Object.m_eCurrentClosetType = static_cast<ICloset_EClosetType>(ZHMEnums::GetEnumValueByName("ICloset.EClosetType", std::string_view(p_Document["m_eCurrentClosetType"])));
 
-	s_Object.m_rCloset = static_cast<uint32>(int64_t(p_Document["m_rCloset"]));
+	s_Object.m_rCloset = simdjson::from_json_uint32(p_Document["m_rCloset"]);
 
 	*reinterpret_cast<SMovementHideInClosetSaveData*>(p_Target) = s_Object;
 }
@@ -45336,7 +45336,7 @@ void SMovementLadderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SMovementLadderSaveData s_Object;
 
-	s_Object.m_rLadder = static_cast<uint32>(int64_t(p_Document["m_rLadder"]));
+	s_Object.m_rLadder = simdjson::from_json_uint32(p_Document["m_rLadder"]);
 
 	*reinterpret_cast<SMovementLadderSaveData*>(p_Target) = s_Object;
 }
@@ -45378,7 +45378,7 @@ void SMovementLocomotionSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SMovementLocomotionSaveData s_Object;
 
-	s_Object.m_bIsSneaking = bool(p_Document["m_bIsSneaking"]);
+	s_Object.m_bIsSneaking = simdjson::from_json_bool(p_Document["m_bIsSneaking"]);
 
 	*reinterpret_cast<SMovementLocomotionSaveData*>(p_Target) = s_Object;
 }
@@ -45430,9 +45430,9 @@ void SMusicGridData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SMusicGridData s_Object;
 
-	s_Object.m_fGridDurationSec = static_cast<float32>(double(p_Document["m_fGridDurationSec"]));
+	s_Object.m_fGridDurationSec = simdjson::from_json_float32(p_Document["m_fGridDurationSec"]);
 
-	s_Object.m_fGridOffsetSec = static_cast<float32>(double(p_Document["m_fGridOffsetSec"]));
+	s_Object.m_fGridOffsetSec = simdjson::from_json_float32(p_Document["m_fGridOffsetSec"]);
 
 	*reinterpret_cast<SMusicGridData*>(p_Target) = s_Object;
 }
@@ -45515,14 +45515,14 @@ void SObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SObserversGroupSaveData s_Object;
 
-	s_Object.m_target = static_cast<uint32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_uint32(p_Document["m_target"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aWaitingObservers"])
 	{
-		s_Object.m_aWaitingObservers.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aWaitingObservers.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_observerDistanceMax = static_cast<float32>(double(p_Document["m_observerDistanceMax"]));
+	s_Object.m_observerDistanceMax = simdjson::from_json_float32(p_Document["m_observerDistanceMax"]);
 
 	*reinterpret_cast<SObserversGroupSaveData*>(p_Target) = s_Object;
 }
@@ -45667,9 +45667,9 @@ void SOnlineSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
-	s_Object.m_nTimeStamp = int64(p_Document["m_nTimeStamp"]);
+	s_Object.m_nTimeStamp = simdjson::from_json_int64(p_Document["m_nTimeStamp"]);
 
-	s_Object.m_bIsOnline = bool(p_Document["m_bIsOnline"]);
+	s_Object.m_bIsOnline = simdjson::from_json_bool(p_Document["m_bIsOnline"]);
 
 	s_Object.m_sContractSessionId = std::string_view(p_Document["m_sContractSessionId"]);
 
@@ -45765,7 +45765,7 @@ void SPFObstactleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SPFObstactleSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	*reinterpret_cast<SPFObstactleSaveData*>(p_Target) = s_Object;
 }
@@ -45807,7 +45807,7 @@ void SPIPMessageManagerProxySaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SPIPMessageManagerProxySaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	*reinterpret_cast<SPIPMessageManagerProxySaveData*>(p_Target) = s_Object;
 }
@@ -45849,7 +45849,7 @@ void SPatrolGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SPatrolGroupSaveData s_Object;
 
-	s_Object.m_nRouteID = static_cast<int32>(int64_t(p_Document["m_nRouteID"]));
+	s_Object.m_nRouteID = simdjson::from_json_int32(p_Document["m_nRouteID"]);
 
 	*reinterpret_cast<SPatrolGroupSaveData*>(p_Target) = s_Object;
 }
@@ -45933,9 +45933,9 @@ void SPerceptibleCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SPerceptibleCrowdBodySaveData s_Object;
 
-	s_Object.m_rCombatZone = static_cast<uint32>(int64_t(p_Document["m_rCombatZone"]));
+	s_Object.m_rCombatZone = simdjson::from_json_uint32(p_Document["m_rCombatZone"]);
 
-	s_Object.m_rSharedKnowledge = static_cast<int32>(int64_t(p_Document["m_rSharedKnowledge"]));
+	s_Object.m_rSharedKnowledge = simdjson::from_json_int32(p_Document["m_rSharedKnowledge"]);
 
 	*reinterpret_cast<SPerceptibleCrowdBodySaveData*>(p_Target) = s_Object;
 }
@@ -46039,11 +46039,11 @@ void SPersistentEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SPersistentEntitySaveData s_Object;
 
-	s_Object.m_nResourceId = uint64(p_Document["m_nResourceId"]);
+	s_Object.m_nResourceId = simdjson::from_json_uint64(p_Document["m_nResourceId"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityIDs"])
 	{
-		s_Object.m_aEntityIDs.push_back(uint64(s_Item0));
+		s_Object.m_aEntityIDs.push_back(simdjson::from_json_uint64(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityNames"])
@@ -46185,12 +46185,12 @@ void SPersistentEntitySaveDataList::FromSimpleJson(simdjson::ondemand::value p_D
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_mDynamicObjectIDGenerationKeys"])
 	{
-		s_Object.m_mDynamicObjectIDGenerationKeys.push_back(uint64(s_Item0));
+		s_Object.m_mDynamicObjectIDGenerationKeys.push_back(simdjson::from_json_uint64(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_mDynamicObjectIDGenerationValues"])
 	{
-		s_Object.m_mDynamicObjectIDGenerationValues.push_back(uint64(s_Item0));
+		s_Object.m_mDynamicObjectIDGenerationValues.push_back(simdjson::from_json_uint64(s_Item0));
 	}
 
 	*reinterpret_cast<SPersistentEntitySaveDataList*>(p_Target) = s_Object;
@@ -46256,11 +46256,11 @@ void SPhysicsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 {
 	SPhysicsSaveData s_Object;
 
-	s_Object.m_bIsInPhysicsWorld = bool(p_Document["m_bIsInPhysicsWorld"]);
+	s_Object.m_bIsInPhysicsWorld = simdjson::from_json_bool(p_Document["m_bIsInPhysicsWorld"]);
 
-	s_Object.m_bIsKinematicBody = bool(p_Document["m_bIsKinematicBody"]);
+	s_Object.m_bIsKinematicBody = simdjson::from_json_bool(p_Document["m_bIsKinematicBody"]);
 
-	s_Object.m_bIsVisible = bool(p_Document["m_bIsVisible"]);
+	s_Object.m_bIsVisible = simdjson::from_json_bool(p_Document["m_bIsVisible"]);
 
 	*reinterpret_cast<SPhysicsSaveData*>(p_Target) = s_Object;
 }
@@ -46356,7 +46356,7 @@ void SPhysicsListSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityRefs"])
 	{
-		s_Object.m_aEntityRefs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntityRefs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityDatas"])
@@ -46449,13 +46449,13 @@ void SPrivateAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SPrivateAreaSaveData s_Object;
 
-	s_Object.m_bIsInside = bool(p_Document["m_bIsInside"]);
+	s_Object.m_bIsInside = simdjson::from_json_bool(p_Document["m_bIsInside"]);
 
-	s_Object.m_bSpotted = bool(p_Document["m_bSpotted"]);
+	s_Object.m_bSpotted = simdjson::from_json_bool(p_Document["m_bSpotted"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActiveActors"])
 	{
-		s_Object.m_aActiveActors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aActiveActors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SPrivateAreaSaveData*>(p_Target) = s_Object;
@@ -46519,11 +46519,11 @@ void SProgressTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SProgressTimerEntitySaveData s_Object;
 
-	s_Object.m_nInterval = static_cast<int32>(int64_t(p_Document["m_nInterval"]));
+	s_Object.m_nInterval = simdjson::from_json_int32(p_Document["m_nInterval"]);
 
-	s_Object.m_nRemaining = static_cast<int32>(int64_t(p_Document["m_nRemaining"]));
+	s_Object.m_nRemaining = simdjson::from_json_int32(p_Document["m_nRemaining"]);
 
-	s_Object.m_bValue = bool(p_Document["m_bValue"]);
+	s_Object.m_bValue = simdjson::from_json_bool(p_Document["m_bValue"]);
 
 	*reinterpret_cast<SProgressTimerEntitySaveData*>(p_Target) = s_Object;
 }
@@ -46615,17 +46615,17 @@ void SRandomTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SRandomTimerEntitySaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_bRegistered = bool(p_Document["m_bRegistered"]);
+	s_Object.m_bRegistered = simdjson::from_json_bool(p_Document["m_bRegistered"]);
 
-	s_Object.m_fMinTime = static_cast<float32>(double(p_Document["m_fMinTime"]));
+	s_Object.m_fMinTime = simdjson::from_json_float32(p_Document["m_fMinTime"]);
 
-	s_Object.m_fMaxTime = static_cast<float32>(double(p_Document["m_fMaxTime"]));
+	s_Object.m_fMaxTime = simdjson::from_json_float32(p_Document["m_fMaxTime"]);
 
-	s_Object.m_fProbability = static_cast<float32>(double(p_Document["m_fProbability"]));
+	s_Object.m_fProbability = simdjson::from_json_float32(p_Document["m_fProbability"]);
 
-	s_Object.m_nRemaining = static_cast<int32>(int64_t(p_Document["m_nRemaining"]));
+	s_Object.m_nRemaining = simdjson::from_json_int32(p_Document["m_nRemaining"]);
 
 	*reinterpret_cast<SRandomTimerEntitySaveData*>(p_Target) = s_Object;
 }
@@ -46721,7 +46721,7 @@ void SRandomTimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -46806,10 +46806,10 @@ void ZBitArray::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBytes"])
 	{
-		s_Object.m_aBytes.push_back(static_cast<uint8>(int64_t(s_Item0)));
+		s_Object.m_aBytes.push_back(simdjson::from_json_uint8(s_Item0));
 	}
 
-	s_Object.m_nSize = static_cast<uint32>(int64_t(p_Document["m_nSize"]));
+	s_Object.m_nSize = simdjson::from_json_uint32(p_Document["m_nSize"]);
 
 	*reinterpret_cast<ZBitArray*>(p_Target) = s_Object;
 }
@@ -46979,11 +46979,11 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_Properties = s_Item;
 	}
 
-	s_Object.m_nNodeCount = static_cast<uint32>(int64_t(p_Document["m_nNodeCount"]));
+	s_Object.m_nNodeCount = simdjson::from_json_uint32(p_Document["m_nNodeCount"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_pVisibilityData"])
 	{
-		s_Object.m_pVisibilityData.push_back(static_cast<uint8>(int64_t(s_Item0)));
+		s_Object.m_pVisibilityData.push_back(simdjson::from_json_uint8(s_Item0));
 	}
 
 	{
@@ -47104,17 +47104,17 @@ void SRecoverUnconsciousGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_rVictim = static_cast<uint32>(int64_t(p_Document["m_rVictim"]));
+	s_Object.m_rVictim = simdjson::from_json_uint32(p_Document["m_rVictim"]);
 
-	s_Object.m_rWaker = static_cast<uint32>(int64_t(p_Document["m_rWaker"]));
+	s_Object.m_rWaker = simdjson::from_json_uint32(p_Document["m_rWaker"]);
 
-	s_Object.m_fTimer = static_cast<float32>(double(p_Document["m_fTimer"]));
+	s_Object.m_fTimer = simdjson::from_json_float32(p_Document["m_fTimer"]);
 
-	s_Object.m_bEscalate = bool(p_Document["m_bEscalate"]);
+	s_Object.m_bEscalate = simdjson::from_json_bool(p_Document["m_bEscalate"]);
 
-	s_Object.m_bWokenUpInTheGroup = bool(p_Document["m_bWokenUpInTheGroup"]);
+	s_Object.m_bWokenUpInTheGroup = simdjson::from_json_bool(p_Document["m_bWokenUpInTheGroup"]);
 
-	s_Object.m_bFastWakeUp = bool(p_Document["m_bFastWakeUp"]);
+	s_Object.m_bFastWakeUp = simdjson::from_json_bool(p_Document["m_bFastWakeUp"]);
 
 	*reinterpret_cast<SRecoverUnconsciousGroupSaveData*>(p_Target) = s_Object;
 }
@@ -47180,7 +47180,7 @@ void SRememberActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_Actors"])
 	{
-		s_Object.m_Actors.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_Actors.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SRememberActorSaveData*>(p_Target) = s_Object;
@@ -47244,11 +47244,11 @@ void SRemoteControlReceiverSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SRemoteControlReceiverSaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_bReceiverActivated = bool(p_Document["m_bReceiverActivated"]);
+	s_Object.m_bReceiverActivated = simdjson::from_json_bool(p_Document["m_bReceiverActivated"]);
 
-	s_Object.m_bDestroyed = bool(p_Document["m_bDestroyed"]);
+	s_Object.m_bDestroyed = simdjson::from_json_bool(p_Document["m_bDestroyed"]);
 
 	*reinterpret_cast<SRemoteControlReceiverSaveData*>(p_Target) = s_Object;
 }
@@ -47390,21 +47390,21 @@ void SRenderVideoPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SRenderVideoPlayerSaveData s_Object;
 
-	s_Object.m_bPlaying = bool(p_Document["m_bPlaying"]);
+	s_Object.m_bPlaying = simdjson::from_json_bool(p_Document["m_bPlaying"]);
 
-	s_Object.m_bPaused = bool(p_Document["m_bPaused"]);
+	s_Object.m_bPaused = simdjson::from_json_bool(p_Document["m_bPaused"]);
 
-	s_Object.m_bLooping = bool(p_Document["m_bLooping"]);
+	s_Object.m_bLooping = simdjson::from_json_bool(p_Document["m_bLooping"]);
 
-	s_Object.m_bUseAlpha = bool(p_Document["m_bUseAlpha"]);
+	s_Object.m_bUseAlpha = simdjson::from_json_bool(p_Document["m_bUseAlpha"]);
 
-	s_Object.m_bFirstFrame = bool(p_Document["m_bFirstFrame"]);
+	s_Object.m_bFirstFrame = simdjson::from_json_bool(p_Document["m_bFirstFrame"]);
 
-	s_Object.m_bRunning = bool(p_Document["m_bRunning"]);
+	s_Object.m_bRunning = simdjson::from_json_bool(p_Document["m_bRunning"]);
 
-	s_Object.m_bVideoError = bool(p_Document["m_bVideoError"]);
+	s_Object.m_bVideoError = simdjson::from_json_bool(p_Document["m_bVideoError"]);
 
-	s_Object.m_bShouldBeStopped = bool(p_Document["m_bShouldBeStopped"]);
+	s_Object.m_bShouldBeStopped = simdjson::from_json_bool(p_Document["m_bShouldBeStopped"]);
 
 	{
 		ZGameTime s_Item;
@@ -47477,9 +47477,9 @@ void SRepositionOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SRepositionOrderSaveData s_Object;
 
-	s_Object.m_bStrafe = bool(p_Document["m_bStrafe"]);
+	s_Object.m_bStrafe = simdjson::from_json_bool(p_Document["m_bStrafe"]);
 
-	s_Object.m_bAimAtTarget = bool(p_Document["m_bAimAtTarget"]);
+	s_Object.m_bAimAtTarget = simdjson::from_json_bool(p_Document["m_bAimAtTarget"]);
 
 	*reinterpret_cast<SRepositionOrderSaveData*>(p_Target) = s_Object;
 }
@@ -47551,13 +47551,13 @@ void SRotateEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SRotateEntitySaveData s_Object;
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_fXAxisSpeed = static_cast<float32>(double(p_Document["m_fXAxisSpeed"]));
+	s_Object.m_fXAxisSpeed = simdjson::from_json_float32(p_Document["m_fXAxisSpeed"]);
 
-	s_Object.m_fYAxisSpeed = static_cast<float32>(double(p_Document["m_fYAxisSpeed"]));
+	s_Object.m_fYAxisSpeed = simdjson::from_json_float32(p_Document["m_fYAxisSpeed"]);
 
-	s_Object.m_fZAxisSpeed = static_cast<float32>(double(p_Document["m_fZAxisSpeed"]));
+	s_Object.m_fZAxisSpeed = simdjson::from_json_float32(p_Document["m_fZAxisSpeed"]);
 
 	*reinterpret_cast<SRotateEntitySaveData*>(p_Target) = s_Object;
 }
@@ -47619,11 +47619,11 @@ void SSCCuriousConfiguration::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SSCCuriousConfiguration s_Object;
 
-	s_Object.m_CanGuardsInvestigate = bool(p_Document["m_CanGuardsInvestigate"]);
+	s_Object.m_CanGuardsInvestigate = simdjson::from_json_bool(p_Document["m_CanGuardsInvestigate"]);
 
-	s_Object.m_CanCiviliansInvestigate = bool(p_Document["m_CanCiviliansInvestigate"]);
+	s_Object.m_CanCiviliansInvestigate = simdjson::from_json_bool(p_Document["m_CanCiviliansInvestigate"]);
 
-	s_Object.m_CanVIPsInvestigate = bool(p_Document["m_CanVIPsInvestigate"]);
+	s_Object.m_CanVIPsInvestigate = simdjson::from_json_bool(p_Document["m_CanVIPsInvestigate"]);
 
 	*reinterpret_cast<SSCCuriousConfiguration*>(p_Target) = s_Object;
 }
@@ -47697,7 +47697,7 @@ void SSavableData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 		s_Object.m_Data = s_Item;
 	}
 
-	s_Object.m_nId = static_cast<uint32>(int64_t(p_Document["m_nId"]));
+	s_Object.m_nId = simdjson::from_json_uint32(p_Document["m_nId"]);
 
 	*reinterpret_cast<SSavableData*>(p_Target) = s_Object;
 }
@@ -47842,7 +47842,7 @@ void SSavableEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityData"])
@@ -47956,7 +47956,7 @@ void SSaveGameData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SSaveGameData s_Object;
 
-	s_Object.m_nVersion = static_cast<uint32>(int64_t(p_Document["m_nVersion"]));
+	s_Object.m_nVersion = simdjson::from_json_uint32(p_Document["m_nVersion"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSavableObjectsData"])
 	{
@@ -48176,11 +48176,11 @@ void SSaveGameMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SSaveGameMetaData s_Object;
 
-	s_Object.nSlot = static_cast<uint8>(int64_t(p_Document["nSlot"]));
+	s_Object.nSlot = simdjson::from_json_uint8(p_Document["nSlot"]);
 
 	s_Object.eSaveType = static_cast<ESaveType>(ZHMEnums::GetEnumValueByName("ESaveType", std::string_view(p_Document["eSaveType"])));
 
-	s_Object.eDifficultyLevel = static_cast<int32>(int64_t(p_Document["eDifficultyLevel"]));
+	s_Object.eDifficultyLevel = simdjson::from_json_int32(p_Document["eDifficultyLevel"]);
 
 	s_Object.sContractId = std::string_view(p_Document["sContractId"]);
 
@@ -48194,13 +48194,13 @@ void SSaveGameMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object.sLastEventToken = std::string_view(p_Document["sLastEventToken"]);
 
-	s_Object.bIsOnline = bool(p_Document["bIsOnline"]);
+	s_Object.bIsOnline = simdjson::from_json_bool(p_Document["bIsOnline"]);
 
-	s_Object.bIsVR = bool(p_Document["bIsVR"]);
+	s_Object.bIsVR = simdjson::from_json_bool(p_Document["bIsVR"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aScreenShot"])
 	{
-		s_Object.aScreenShot.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.aScreenShot.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aRequirements"])
@@ -48306,15 +48306,15 @@ void SSaveGameHeader::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	SSaveGameHeader s_Object;
 
-	s_Object.nFourCC = static_cast<uint32>(int64_t(p_Document["nFourCC"]));
+	s_Object.nFourCC = simdjson::from_json_uint32(p_Document["nFourCC"]);
 
-	s_Object.nVersion = static_cast<uint32>(int64_t(p_Document["nVersion"]));
+	s_Object.nVersion = simdjson::from_json_uint32(p_Document["nVersion"]);
 
-	s_Object.nCrc32 = static_cast<uint32>(int64_t(p_Document["nCrc32"]));
+	s_Object.nCrc32 = simdjson::from_json_uint32(p_Document["nCrc32"]);
 
-	s_Object.nSize = static_cast<uint32>(int64_t(p_Document["nSize"]));
+	s_Object.nSize = simdjson::from_json_uint32(p_Document["nSize"]);
 
-	s_Object.nTimeStamp = int64(p_Document["nTimeStamp"]);
+	s_Object.nTimeStamp = simdjson::from_json_int64(p_Document["nTimeStamp"]);
 
 	{
 		SSaveGameMetaData s_Item;
@@ -48586,9 +48586,9 @@ void SScreenplayRole2HeroSaveState::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SScreenplayRole2HeroSaveState s_Object;
 
-	s_Object.m_rCurrentSpeakEntity = static_cast<uint32>(int64_t(p_Document["m_rCurrentSpeakEntity"]));
+	s_Object.m_rCurrentSpeakEntity = simdjson::from_json_uint32(p_Document["m_rCurrentSpeakEntity"]);
 
-	s_Object.m_bPaused = bool(p_Document["m_bPaused"]);
+	s_Object.m_bPaused = simdjson::from_json_bool(p_Document["m_bPaused"]);
 
 	*reinterpret_cast<SScreenplayRole2HeroSaveState*>(p_Target) = s_Object;
 }
@@ -48670,15 +48670,15 @@ void SSecuritySystemCameraSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SSecuritySystemCameraSaveData s_Object;
 
-	s_Object.m_nEscalation = static_cast<uint16>(int64_t(p_Document["m_nEscalation"]));
+	s_Object.m_nEscalation = simdjson::from_json_uint16(p_Document["m_nEscalation"]);
 
-	s_Object.m_bIsFunctional = bool(p_Document["m_bIsFunctional"]);
+	s_Object.m_bIsFunctional = simdjson::from_json_bool(p_Document["m_bIsFunctional"]);
 
-	s_Object.m_bHasEnteredOnce = bool(p_Document["m_bHasEnteredOnce"]);
+	s_Object.m_bHasEnteredOnce = simdjson::from_json_bool(p_Document["m_bHasEnteredOnce"]);
 
-	s_Object.m_bWasInvestigated = bool(p_Document["m_bWasInvestigated"]);
+	s_Object.m_bWasInvestigated = simdjson::from_json_bool(p_Document["m_bWasInvestigated"]);
 
-	s_Object.m_bDestroyed = bool(p_Document["m_bDestroyed"]);
+	s_Object.m_bDestroyed = simdjson::from_json_bool(p_Document["m_bDestroyed"]);
 
 	*reinterpret_cast<SSecuritySystemCameraSaveData*>(p_Target) = s_Object;
 }
@@ -48730,9 +48730,9 @@ void SSecuritySystemRecorderSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SSecuritySystemRecorderSaveData s_Object;
 
-	s_Object.m_bHasRecordings = bool(p_Document["m_bHasRecordings"]);
+	s_Object.m_bHasRecordings = simdjson::from_json_bool(p_Document["m_bHasRecordings"]);
 
-	s_Object.m_bIsFunctional = bool(p_Document["m_bIsFunctional"]);
+	s_Object.m_bIsFunctional = simdjson::from_json_bool(p_Document["m_bIsFunctional"]);
 
 	*reinterpret_cast<SSecuritySystemRecorderSaveData*>(p_Target) = s_Object;
 }
@@ -48844,11 +48844,11 @@ void SSentryGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SSentryGroupSaveData s_Object;
 
-	s_Object.m_rTarget = static_cast<uint32>(int64_t(p_Document["m_rTarget"]));
+	s_Object.m_rTarget = simdjson::from_json_uint32(p_Document["m_rTarget"]);
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	s_Object.m_rSentryZone = static_cast<uint32>(int64_t(p_Document["m_rSentryZone"]));
+	s_Object.m_rSentryZone = simdjson::from_json_uint32(p_Document["m_rSentryZone"]);
 
 	{
 		ZGameTime s_Item;
@@ -48864,9 +48864,9 @@ void SSentryGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	s_Object.m_eActionPrompt = static_cast<ESentryActionPrompt>(ZHMEnums::GetEnumValueByName("ESentryActionPrompt", std::string_view(p_Document["m_eActionPrompt"])));
 
-	s_Object.m_bRequestedAction = bool(p_Document["m_bRequestedAction"]);
+	s_Object.m_bRequestedAction = simdjson::from_json_bool(p_Document["m_bRequestedAction"]);
 
-	s_Object.m_bShowingWarning = bool(p_Document["m_bShowingWarning"]);
+	s_Object.m_bShowingWarning = simdjson::from_json_bool(p_Document["m_bShowingWarning"]);
 
 	*reinterpret_cast<SSentryGroupSaveData*>(p_Target) = s_Object;
 }
@@ -48910,7 +48910,7 @@ void SSentryOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SSentryOrderSaveData s_Object;
 
-	s_Object.m_rSentryZone = static_cast<uint32>(int64_t(p_Document["m_rSentryZone"]));
+	s_Object.m_rSentryZone = simdjson::from_json_uint32(p_Document["m_rSentryZone"]);
 
 	*reinterpret_cast<SSentryOrderSaveData*>(p_Target) = s_Object;
 }
@@ -49308,66 +49308,66 @@ void SSentryZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.m_tLoiteringCooldown = s_Item;
 	}
 
-	s_Object.m_nWarningCount = static_cast<int32>(int64_t(p_Document["m_nWarningCount"]));
+	s_Object.m_nWarningCount = simdjson::from_json_int32(p_Document["m_nWarningCount"]);
 
-	s_Object.m_bShowingWarning = bool(p_Document["m_bShowingWarning"]);
+	s_Object.m_bShowingWarning = simdjson::from_json_bool(p_Document["m_bShowingWarning"]);
 
-	s_Object.bLeftThroughWarningZone = bool(p_Document["bLeftThroughWarningZone"]);
+	s_Object.bLeftThroughWarningZone = simdjson::from_json_bool(p_Document["bLeftThroughWarningZone"]);
 
-	s_Object.bEnteredThroughEntranceZone = bool(p_Document["bEnteredThroughEntranceZone"]);
+	s_Object.bEnteredThroughEntranceZone = simdjson::from_json_bool(p_Document["bEnteredThroughEntranceZone"]);
 
-	s_Object.bInEntranceZone = bool(p_Document["bInEntranceZone"]);
+	s_Object.bInEntranceZone = simdjson::from_json_bool(p_Document["bInEntranceZone"]);
 
-	s_Object.bInWarningZone = bool(p_Document["bInWarningZone"]);
+	s_Object.bInWarningZone = simdjson::from_json_bool(p_Document["bInWarningZone"]);
 
-	s_Object.bInGreetingZone = bool(p_Document["bInGreetingZone"]);
+	s_Object.bInGreetingZone = simdjson::from_json_bool(p_Document["bInGreetingZone"]);
 
-	s_Object.bInReFriskZone = bool(p_Document["bInReFriskZone"]);
+	s_Object.bInReFriskZone = simdjson::from_json_bool(p_Document["bInReFriskZone"]);
 
-	s_Object.m_bInRequiredDisguise = bool(p_Document["m_bInRequiredDisguise"]);
+	s_Object.m_bInRequiredDisguise = simdjson::from_json_bool(p_Document["m_bInRequiredDisguise"]);
 
-	s_Object.m_bInFriskExemptDisguise = bool(p_Document["m_bInFriskExemptDisguise"]);
+	s_Object.m_bInFriskExemptDisguise = simdjson::from_json_bool(p_Document["m_bInFriskExemptDisguise"]);
 
-	s_Object.m_bHasRequiredItem = bool(p_Document["m_bHasRequiredItem"]);
+	s_Object.m_bHasRequiredItem = simdjson::from_json_bool(p_Document["m_bHasRequiredItem"]);
 
-	s_Object.m_bCanShowActionPrompt = bool(p_Document["m_bCanShowActionPrompt"]);
+	s_Object.m_bCanShowActionPrompt = simdjson::from_json_bool(p_Document["m_bCanShowActionPrompt"]);
 
-	s_Object.m_bTargetInAnyZone = bool(p_Document["m_bTargetInAnyZone"]);
+	s_Object.m_bTargetInAnyZone = simdjson::from_json_bool(p_Document["m_bTargetInAnyZone"]);
 
-	s_Object.m_bSituationActive = bool(p_Document["m_bSituationActive"]);
+	s_Object.m_bSituationActive = simdjson::from_json_bool(p_Document["m_bSituationActive"]);
 
-	s_Object.m_bFrisked = bool(p_Document["m_bFrisked"]);
+	s_Object.m_bFrisked = simdjson::from_json_bool(p_Document["m_bFrisked"]);
 
-	s_Object.m_bItemChecked = bool(p_Document["m_bItemChecked"]);
+	s_Object.m_bItemChecked = simdjson::from_json_bool(p_Document["m_bItemChecked"]);
 
-	s_Object.m_bGreeted = bool(p_Document["m_bGreeted"]);
+	s_Object.m_bGreeted = simdjson::from_json_bool(p_Document["m_bGreeted"]);
 
-	s_Object.m_bGreetedInstruction = bool(p_Document["m_bGreetedInstruction"]);
+	s_Object.m_bGreetedInstruction = simdjson::from_json_bool(p_Document["m_bGreetedInstruction"]);
 
-	s_Object.m_bGreetedLoitering = bool(p_Document["m_bGreetedLoitering"]);
+	s_Object.m_bGreetedLoitering = simdjson::from_json_bool(p_Document["m_bGreetedLoitering"]);
 
-	s_Object.m_bGreetedUnexpected = bool(p_Document["m_bGreetedUnexpected"]);
+	s_Object.m_bGreetedUnexpected = simdjson::from_json_bool(p_Document["m_bGreetedUnexpected"]);
 
-	s_Object.m_bInFriskWarningZone = bool(p_Document["m_bInFriskWarningZone"]);
+	s_Object.m_bInFriskWarningZone = simdjson::from_json_bool(p_Document["m_bInFriskWarningZone"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDisguisesAllowedDisabled"])
 	{
-		s_Object.m_aDisguisesAllowedDisabled.push_back(bool(s_Item0));
+		s_Object.m_aDisguisesAllowedDisabled.push_back(simdjson::from_json_bool(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDisguisesFriskExemptDisabled"])
 	{
-		s_Object.m_aDisguisesFriskExemptDisabled.push_back(bool(s_Item0));
+		s_Object.m_aDisguisesFriskExemptDisabled.push_back(simdjson::from_json_bool(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDisguisesDontEscalateOnLineCrossingDisabled"])
 	{
-		s_Object.m_aDisguisesDontEscalateOnLineCrossingDisabled.push_back(bool(s_Item0));
+		s_Object.m_aDisguisesDontEscalateOnLineCrossingDisabled.push_back(simdjson::from_json_bool(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_ItemsDroppedInZone"])
 	{
-		s_Object.m_ItemsDroppedInZone.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_ItemsDroppedInZone.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SSentryZoneSaveData*>(p_Target) = s_Object;
@@ -49426,7 +49426,7 @@ void SSequenceTrackSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SSequenceTrackSaveData s_Object;
 
-	s_Object.m_rTrackEntity = static_cast<uint32>(int64_t(p_Document["m_rTrackEntity"]));
+	s_Object.m_rTrackEntity = simdjson::from_json_uint32(p_Document["m_rTrackEntity"]);
 
 	{
 		ZVariant s_Item;
@@ -49638,9 +49638,9 @@ void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 		s_Object.m_sequenceTime = s_Item;
 	}
 
-	s_Object.m_sequenceOrigin = static_cast<uint32>(int64_t(p_Document["m_sequenceOrigin"]));
+	s_Object.m_sequenceOrigin = simdjson::from_json_uint32(p_Document["m_sequenceOrigin"]);
 
-	s_Object.m_bHasRunData = bool(p_Document["m_bHasRunData"]);
+	s_Object.m_bHasRunData = simdjson::from_json_bool(p_Document["m_bHasRunData"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTrackSaveData"])
 	{
@@ -49655,17 +49655,17 @@ void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 		s_Object.m_effectiveSequenceTime = s_Item;
 	}
 
-	s_Object.m_nCurrentLoop = static_cast<int32>(int64_t(p_Document["m_nCurrentLoop"]));
+	s_Object.m_nCurrentLoop = simdjson::from_json_int32(p_Document["m_nCurrentLoop"]);
 
-	s_Object.m_eStateFlags = static_cast<uint16>(int64_t(p_Document["m_eStateFlags"]));
+	s_Object.m_eStateFlags = simdjson::from_json_uint16(p_Document["m_eStateFlags"]);
 
-	s_Object.m_bPausedOnStart = bool(p_Document["m_bPausedOnStart"]);
+	s_Object.m_bPausedOnStart = simdjson::from_json_bool(p_Document["m_bPausedOnStart"]);
 
-	s_Object.m_bActivatedByIActivatable = bool(p_Document["m_bActivatedByIActivatable"]);
+	s_Object.m_bActivatedByIActivatable = simdjson::from_json_bool(p_Document["m_bActivatedByIActivatable"]);
 
-	s_Object.m_bGettingDeactivated = bool(p_Document["m_bGettingDeactivated"]);
+	s_Object.m_bGettingDeactivated = simdjson::from_json_bool(p_Document["m_bGettingDeactivated"]);
 
-	s_Object.m_bOnGameStopped = bool(p_Document["m_bOnGameStopped"]);
+	s_Object.m_bOnGameStopped = simdjson::from_json_bool(p_Document["m_bOnGameStopped"]);
 
 	*reinterpret_cast<SSequenceSaveData*>(p_Target) = s_Object;
 }
@@ -49765,7 +49765,7 @@ void SSequenceManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSequenceSaveData"])
@@ -49872,7 +49872,7 @@ void SSituationConversationGroupSaveData::FromSimpleJson(simdjson::ondemand::val
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_members"])
 	{
-		s_Object.m_members.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_members.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SSituationConversationGroupSaveData*>(p_Target) = s_Object;
@@ -49970,9 +49970,9 @@ void SSituationOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	s_Object.m_eType = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(p_Document["m_eType"])));
 
-	s_Object.m_nTarget = static_cast<int32>(int64_t(p_Document["m_nTarget"]));
+	s_Object.m_nTarget = simdjson::from_json_int32(p_Document["m_nTarget"]);
 
-	s_Object.m_bHasPosition = bool(p_Document["m_bHasPosition"]);
+	s_Object.m_bHasPosition = simdjson::from_json_bool(p_Document["m_bHasPosition"]);
 
 	{
 		float4 s_Item;
@@ -50089,19 +50089,19 @@ void SSmuggleSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::val
 {
 	SSmuggleSituationActorStateSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_bAllocatedForSituation = bool(p_Document["m_bAllocatedForSituation"]);
+	s_Object.m_bAllocatedForSituation = simdjson::from_json_bool(p_Document["m_bAllocatedForSituation"]);
 
 	s_Object.m_nState = static_cast<ZSmuggleSituationEntity_ESmuggleState>(ZHMEnums::GetEnumValueByName("ZSmuggleSituationEntity.ESmuggleState", std::string_view(p_Document["m_nState"])));
 
 	s_Object.m_nStatePrevious = static_cast<ZSmuggleSituationEntity_ESmuggleState>(ZHMEnums::GetEnumValueByName("ZSmuggleSituationEntity.ESmuggleState", std::string_view(p_Document["m_nStatePrevious"])));
 
-	s_Object.m_fStateTimer = static_cast<float32>(double(p_Document["m_fStateTimer"]));
+	s_Object.m_fStateTimer = simdjson::from_json_float32(p_Document["m_fStateTimer"]);
 
-	s_Object.m_nTargetLocationIndex = static_cast<int32>(int64_t(p_Document["m_nTargetLocationIndex"]));
+	s_Object.m_nTargetLocationIndex = simdjson::from_json_int32(p_Document["m_nTargetLocationIndex"]);
 
-	s_Object.m_rScreenplay = static_cast<uint32>(int64_t(p_Document["m_rScreenplay"]));
+	s_Object.m_rScreenplay = simdjson::from_json_uint32(p_Document["m_rScreenplay"]);
 
 	*reinterpret_cast<SSmuggleSituationActorStateSaveData*>(p_Target) = s_Object;
 }
@@ -50225,11 +50225,11 @@ void SSmuggleSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SSmuggleSituationSaveData s_Object;
 
-	s_Object.m_bIsEnabled = bool(p_Document["m_bIsEnabled"]);
+	s_Object.m_bIsEnabled = simdjson::from_json_bool(p_Document["m_bIsEnabled"]);
 
-	s_Object.m_bIsRunning = bool(p_Document["m_bIsRunning"]);
+	s_Object.m_bIsRunning = simdjson::from_json_bool(p_Document["m_bIsRunning"]);
 
-	s_Object.m_nNumberOfPickups = static_cast<int32>(int64_t(p_Document["m_nNumberOfPickups"]));
+	s_Object.m_nNumberOfPickups = simdjson::from_json_int32(p_Document["m_nNumberOfPickups"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActorsSaveData"])
 	{
@@ -50240,7 +50240,7 @@ void SSmuggleSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aMoveToActs"])
 	{
-		s_Object.m_aMoveToActs.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aMoveToActs.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<SSmuggleSituationSaveData*>(p_Target) = s_Object;
@@ -50331,9 +50331,9 @@ void SSniperCombatGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_target = static_cast<int32>(int64_t(p_Document["m_target"]));
+	s_Object.m_target = simdjson::from_json_int32(p_Document["m_target"]);
 
-	s_Object.m_bFailed = bool(p_Document["m_bFailed"]);
+	s_Object.m_bFailed = simdjson::from_json_bool(p_Document["m_bFailed"]);
 
 	{
 		ZGameTime s_Item;
@@ -50440,17 +50440,17 @@ void SSniperScoringEvent::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SSniperScoringEvent s_Object;
 
-	s_Object.m_iPoints = static_cast<int32>(int64_t(p_Document["m_iPoints"]));
+	s_Object.m_iPoints = simdjson::from_json_int32(p_Document["m_iPoints"]);
 
-	s_Object.m_iPlayer = static_cast<int32>(int64_t(p_Document["m_iPlayer"]));
+	s_Object.m_iPlayer = simdjson::from_json_int32(p_Document["m_iPlayer"]);
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
 	s_Object.m_sText = std::string_view(p_Document["m_sText"]);
 
-	s_Object.m_iType = static_cast<int32>(int64_t(p_Document["m_iType"]));
+	s_Object.m_iType = simdjson::from_json_int32(p_Document["m_iType"]);
 
-	s_Object.m_iScoringMachine = static_cast<uint8>(int64_t(p_Document["m_iScoringMachine"]));
+	s_Object.m_iScoringMachine = simdjson::from_json_uint8(p_Document["m_iScoringMachine"]);
 
 	*reinterpret_cast<SSniperScoringEvent*>(p_Target) = s_Object;
 }
@@ -50494,7 +50494,7 @@ void SSpaceCollectionBehaviorConfiguration::FromSimpleJson(simdjson::ondemand::v
 {
 	SSpaceCollectionBehaviorConfiguration s_Object;
 
-	s_Object.m_bInclusive = bool(p_Document["m_bInclusive"]);
+	s_Object.m_bInclusive = simdjson::from_json_bool(p_Document["m_bInclusive"]);
 
 	*reinterpret_cast<SSpaceCollectionBehaviorConfiguration*>(p_Target) = s_Object;
 }
@@ -50576,7 +50576,7 @@ void SSpatialMoverEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SSpatialMoverEntitySaveData s_Object;
 
-	s_Object.m_fSpeed = static_cast<float32>(double(p_Document["m_fSpeed"]));
+	s_Object.m_fSpeed = simdjson::from_json_float32(p_Document["m_fSpeed"]);
 
 	{
 		SVector3 s_Item;
@@ -50584,11 +50584,11 @@ void SSpatialMoverEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 		s_Object.m_vPosition = s_Item;
 	}
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_bBackwards = bool(p_Document["m_bBackwards"]);
+	s_Object.m_bBackwards = simdjson::from_json_bool(p_Document["m_bBackwards"]);
 
-	s_Object.m_bIsFrameUpdateRegistered = bool(p_Document["m_bIsFrameUpdateRegistered"]);
+	s_Object.m_bIsFrameUpdateRegistered = simdjson::from_json_bool(p_Document["m_bIsFrameUpdateRegistered"]);
 
 	*reinterpret_cast<SSpatialMoverEntitySaveData*>(p_Target) = s_Object;
 }
@@ -50651,7 +50651,7 @@ void SSpatialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 {
 	SSpatialSaveData s_Object;
 
-	s_Object.m_bVisible = bool(p_Document["m_bVisible"]);
+	s_Object.m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
 
 	{
 		SVector3 s_Item;
@@ -50707,7 +50707,7 @@ void SSpeakEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SSpeakEntitySaveData s_Object;
 
-	s_Object.m_fSeekPosition = static_cast<float32>(double(p_Document["m_fSeekPosition"]));
+	s_Object.m_fSeekPosition = simdjson::from_json_float32(p_Document["m_fSeekPosition"]);
 
 	*reinterpret_cast<SSpeakEntitySaveData*>(p_Target) = s_Object;
 }
@@ -50812,12 +50812,12 @@ void SStashPointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_arItems"])
 	{
-		s_Object.m_arItems.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_arItems.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_pSuitcase = static_cast<uint32>(int64_t(p_Document["m_pSuitcase"]));
+	s_Object.m_pSuitcase = simdjson::from_json_uint32(p_Document["m_pSuitcase"]);
 
-	s_Object.m_pMainItem = static_cast<uint32>(int64_t(p_Document["m_pMainItem"]));
+	s_Object.m_pMainItem = simdjson::from_json_uint32(p_Document["m_pMainItem"]);
 
 	s_Object.m_eContainedType = static_cast<EStashpointContainedEntityType>(ZHMEnums::GetEnumValueByName("EStashpointContainedEntityType", std::string_view(p_Document["m_eContainedType"])));
 
@@ -50879,9 +50879,9 @@ void SStateControllerSaveDataStruct::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SStateControllerSaveDataStruct s_Object;
 
-	s_Object.m_nIndex = static_cast<int32>(int64_t(p_Document["m_nIndex"]));
+	s_Object.m_nIndex = simdjson::from_json_int32(p_Document["m_nIndex"]);
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
 	*reinterpret_cast<SStateControllerSaveDataStruct*>(p_Target) = s_Object;
 }
@@ -50977,7 +50977,7 @@ void SStateControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -51089,19 +51089,19 @@ void SStepCounterEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SStepCounterEntitySaveData s_Object;
 
-	s_Object.m_nIndex = static_cast<float32>(double(p_Document["m_nIndex"]));
+	s_Object.m_nIndex = simdjson::from_json_float32(p_Document["m_nIndex"]);
 
-	s_Object.m_nLoopIndex = static_cast<int32>(int64_t(p_Document["m_nLoopIndex"]));
+	s_Object.m_nLoopIndex = simdjson::from_json_int32(p_Document["m_nLoopIndex"]);
 
-	s_Object.m_bFirst = bool(p_Document["m_bFirst"]);
+	s_Object.m_bFirst = simdjson::from_json_bool(p_Document["m_bFirst"]);
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_nCountFrom = static_cast<float32>(double(p_Document["m_nCountFrom"]));
+	s_Object.m_nCountFrom = simdjson::from_json_float32(p_Document["m_nCountFrom"]);
 
-	s_Object.m_nCountTo = static_cast<float32>(double(p_Document["m_nCountTo"]));
+	s_Object.m_nCountTo = simdjson::from_json_float32(p_Document["m_nCountTo"]);
 
-	s_Object.m_nStepSize = static_cast<float32>(double(p_Document["m_nStepSize"]));
+	s_Object.m_nStepSize = simdjson::from_json_float32(p_Document["m_nStepSize"]);
 
 	*reinterpret_cast<SStepCounterEntitySaveData*>(p_Target) = s_Object;
 }
@@ -51191,7 +51191,7 @@ void STargetInfoObjectiveCondition::FromSimpleJson(simdjson::ondemand::value p_D
 
 	s_Object.type = std::string_view(p_Document["type"]);
 
-	s_Object.hardCondition = bool(p_Document["hardCondition"]);
+	s_Object.hardCondition = simdjson::from_json_bool(p_Document["hardCondition"]);
 
 	*reinterpret_cast<STargetInfoObjectiveCondition*>(p_Target) = s_Object;
 }
@@ -51341,13 +51341,13 @@ void STargetInfoDisplayData::FromSimpleJson(simdjson::ondemand::value p_Document
 		s_Object.objectiveConditions.push_back(s_ArrayItem0);
 	}
 
-	s_Object.fX = static_cast<int32>(int64_t(p_Document["fX"]));
+	s_Object.fX = simdjson::from_json_int32(p_Document["fX"]);
 
-	s_Object.fY = static_cast<int32>(int64_t(p_Document["fY"]));
+	s_Object.fY = simdjson::from_json_int32(p_Document["fY"]);
 
-	s_Object.fAlpha = static_cast<float32>(double(p_Document["fAlpha"]));
+	s_Object.fAlpha = simdjson::from_json_float32(p_Document["fAlpha"]);
 
-	s_Object.bIsTarget = bool(p_Document["bIsTarget"]);
+	s_Object.bIsTarget = simdjson::from_json_bool(p_Document["bIsTarget"]);
 
 	*reinterpret_cast<STargetInfoDisplayData*>(p_Target) = s_Object;
 }
@@ -51482,7 +51482,7 @@ void STargetTrackingSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	STargetTrackingSaveData s_Object;
 
-	s_Object.m_sharedTarget = static_cast<int32>(int64_t(p_Document["m_sharedTarget"]));
+	s_Object.m_sharedTarget = simdjson::from_json_int32(p_Document["m_sharedTarget"]);
 
 	{
 		float4 s_Item;
@@ -51619,7 +51619,7 @@ void STargetableBoneConfiguration::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_eBone = static_cast<BoneId_Enum>(ZHMEnums::GetEnumValueByName("BoneId.Enum", std::string_view(p_Document["m_eBone"])));
 
-	s_Object.m_fBoneRadiusOverride = static_cast<float32>(double(p_Document["m_fBoneRadiusOverride"]));
+	s_Object.m_fBoneRadiusOverride = simdjson::from_json_float32(p_Document["m_fBoneRadiusOverride"]);
 
 	*reinterpret_cast<STargetableBoneConfiguration*>(p_Target) = s_Object;
 }
@@ -51831,11 +51831,11 @@ void STemplateBlueprintSubEntity::FromSimpleJson(simdjson::ondemand::value p_Doc
 		s_Object.logicalParent = s_Item;
 	}
 
-	s_Object.entityTypeResourceIndex = static_cast<int32>(int64_t(p_Document["entityTypeResourceIndex"]));
+	s_Object.entityTypeResourceIndex = simdjson::from_json_int32(p_Document["entityTypeResourceIndex"]);
 
-	s_Object.entityId = uint64(p_Document["entityId"]);
+	s_Object.entityId = simdjson::from_json_uint64(p_Document["entityId"]);
 
-	s_Object.editorOnly = bool(p_Document["editorOnly"]);
+	s_Object.editorOnly = simdjson::from_json_bool(p_Document["editorOnly"]);
 
 	s_Object.entityName = std::string_view(p_Document["entityName"]);
 
@@ -52171,9 +52171,9 @@ void STemplateEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	STemplateEntityBlueprint s_Object;
 
-	s_Object.subType = static_cast<int32>(int64_t(p_Document["subType"]));
+	s_Object.subType = simdjson::from_json_int32(p_Document["subType"]);
 
-	s_Object.rootEntityIndex = static_cast<int32>(int64_t(p_Document["rootEntityIndex"]));
+	s_Object.rootEntityIndex = simdjson::from_json_int32(p_Document["rootEntityIndex"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["subEntities"])
 	{
@@ -52184,7 +52184,7 @@ void STemplateEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["externalSceneTypeIndicesInResourceHeader"])
 	{
-		s_Object.externalSceneTypeIndicesInResourceHeader.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.externalSceneTypeIndicesInResourceHeader.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["pinConnections"])
@@ -52386,7 +52386,7 @@ void STemplateFactorySubEntity::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.logicalParent = s_Item;
 	}
 
-	s_Object.entityTypeResourceIndex = static_cast<int32>(int64_t(p_Document["entityTypeResourceIndex"]));
+	s_Object.entityTypeResourceIndex = simdjson::from_json_int32(p_Document["entityTypeResourceIndex"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["propertyValues"])
 	{
@@ -52566,11 +52566,11 @@ void STemplateEntityFactory::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	STemplateEntityFactory s_Object;
 
-	s_Object.subType = static_cast<int32>(int64_t(p_Document["subType"]));
+	s_Object.subType = simdjson::from_json_int32(p_Document["subType"]);
 
-	s_Object.blueprintIndexInResourceHeader = static_cast<int32>(int64_t(p_Document["blueprintIndexInResourceHeader"]));
+	s_Object.blueprintIndexInResourceHeader = simdjson::from_json_int32(p_Document["blueprintIndexInResourceHeader"]);
 
-	s_Object.rootEntityIndex = static_cast<int32>(int64_t(p_Document["rootEntityIndex"]));
+	s_Object.rootEntityIndex = simdjson::from_json_int32(p_Document["rootEntityIndex"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["subEntities"])
 	{
@@ -52588,7 +52588,7 @@ void STemplateEntityFactory::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["externalSceneTypeIndicesInResourceHeader"])
 	{
-		s_Object.externalSceneTypeIndicesInResourceHeader.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.externalSceneTypeIndicesInResourceHeader.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	*reinterpret_cast<STemplateEntityFactory*>(p_Target) = s_Object;
@@ -52666,9 +52666,9 @@ void STestStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 	s_Object.stringField = std::string_view(p_Document["stringField"]);
 
-	s_Object.intField = static_cast<uint32>(int64_t(p_Document["intField"]));
+	s_Object.intField = simdjson::from_json_uint32(p_Document["intField"]);
 
-	s_Object.floatField = static_cast<float32>(double(p_Document["floatField"]));
+	s_Object.floatField = simdjson::from_json_float32(p_Document["floatField"]);
 
 	s_Object.enumField = static_cast<STestStruct_ETestEnum>(ZHMEnums::GetEnumValueByName("STestStruct.ETestEnum", std::string_view(p_Document["enumField"])));
 
@@ -52819,11 +52819,11 @@ void STimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	STimerEntitySaveData s_Object;
 
-	s_Object.m_nInterval = static_cast<int32>(int64_t(p_Document["m_nInterval"]));
+	s_Object.m_nInterval = simdjson::from_json_int32(p_Document["m_nInterval"]);
 
-	s_Object.m_bEnabled = bool(p_Document["m_bEnabled"]);
+	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
-	s_Object.m_fTimeToNextEvent = static_cast<float32>(double(p_Document["m_fTimeToNextEvent"]));
+	s_Object.m_fTimeToNextEvent = simdjson::from_json_float32(p_Document["m_fTimeToNextEvent"]);
 
 	*reinterpret_cast<STimerEntitySaveData*>(p_Target) = s_Object;
 }
@@ -52919,7 +52919,7 @@ void STimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
@@ -53062,9 +53062,9 @@ void STokenID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	STokenID s_Object;
 
-	s_Object.m_iValue = static_cast<uint32>(int64_t(p_Document["m_iValue"]));
+	s_Object.m_iValue = simdjson::from_json_uint32(p_Document["m_iValue"]);
 
-	s_Object.m_bValid = bool(p_Document["m_bValid"]);
+	s_Object.m_bValid = simdjson::from_json_bool(p_Document["m_bValid"]);
 
 	*reinterpret_cast<STokenID*>(p_Target) = s_Object;
 }
@@ -53146,11 +53146,11 @@ void STrackDollyControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	STrackDollyControllerSaveData s_Object;
 
-	s_Object.m_rTrackEntity = static_cast<uint32>(int64_t(p_Document["m_rTrackEntity"]));
+	s_Object.m_rTrackEntity = simdjson::from_json_uint32(p_Document["m_rTrackEntity"]);
 
-	s_Object.m_fTrackPosition = static_cast<float32>(double(p_Document["m_fTrackPosition"]));
+	s_Object.m_fTrackPosition = simdjson::from_json_float32(p_Document["m_fTrackPosition"]);
 
-	s_Object.m_bIsDollyAttached = bool(p_Document["m_bIsDollyAttached"]);
+	s_Object.m_bIsDollyAttached = simdjson::from_json_bool(p_Document["m_bIsDollyAttached"]);
 
 	{
 		SVector3 s_Item;
@@ -53236,13 +53236,13 @@ void STrackerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	STrackerEntitySaveData s_Object;
 
-	s_Object.m_rTracker = static_cast<uint32>(int64_t(p_Document["m_rTracker"]));
+	s_Object.m_rTracker = simdjson::from_json_uint32(p_Document["m_rTracker"]);
 
-	s_Object.m_bIsVisible = bool(p_Document["m_bIsVisible"]);
+	s_Object.m_bIsVisible = simdjson::from_json_bool(p_Document["m_bIsVisible"]);
 
-	s_Object.m_bIsEnabled = bool(p_Document["m_bIsEnabled"]);
+	s_Object.m_bIsEnabled = simdjson::from_json_bool(p_Document["m_bIsEnabled"]);
 
-	s_Object.m_bSpatialVisibility = bool(p_Document["m_bSpatialVisibility"]);
+	s_Object.m_bSpatialVisibility = simdjson::from_json_bool(p_Document["m_bSpatialVisibility"]);
 
 	*reinterpret_cast<STrackerEntitySaveData*>(p_Target) = s_Object;
 }
@@ -53440,7 +53440,7 @@ void STrespassingRuleEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAllowedProfessionsDisabled"])
 	{
-		s_Object.m_aAllowedProfessionsDisabled.push_back(bool(s_Item0));
+		s_Object.m_aAllowedProfessionsDisabled.push_back(simdjson::from_json_bool(s_Item0));
 	}
 
 	*reinterpret_cast<STrespassingRuleEntitySaveData*>(p_Target) = s_Object;
@@ -53524,11 +53524,11 @@ void STriggerAlarmGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	STriggerAlarmGroupSaveData s_Object;
 
-	s_Object.m_rTarget = static_cast<uint32>(int64_t(p_Document["m_rTarget"]));
+	s_Object.m_rTarget = simdjson::from_json_uint32(p_Document["m_rTarget"]);
 
-	s_Object.m_rAlarm = static_cast<uint32>(int64_t(p_Document["m_rAlarm"]));
+	s_Object.m_rAlarm = simdjson::from_json_uint32(p_Document["m_rAlarm"]);
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
 	{
 		SFSMSaveData s_Item;
@@ -53536,7 +53536,7 @@ void STriggerAlarmGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_fsmState = s_Item;
 	}
 
-	s_Object.m_bTriggeredAlarm = bool(p_Document["m_bTriggeredAlarm"]);
+	s_Object.m_bTriggeredAlarm = simdjson::from_json_bool(p_Document["m_bTriggeredAlarm"]);
 
 	*reinterpret_cast<STriggerAlarmGroupSaveData*>(p_Target) = s_Object;
 }
@@ -53589,9 +53589,9 @@ void SUIBreadcrumbDataSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SUIBreadcrumbDataSaveData s_Object;
 
-	s_Object.m_fProgress = static_cast<float32>(double(p_Document["m_fProgress"]));
+	s_Object.m_fProgress = simdjson::from_json_float32(p_Document["m_fProgress"]);
 
-	s_Object.m_nState = static_cast<int32>(int64_t(p_Document["m_nState"]));
+	s_Object.m_nState = simdjson::from_json_int32(p_Document["m_nState"]);
 
 	*reinterpret_cast<SUIBreadcrumbDataSaveData*>(p_Target) = s_Object;
 }
@@ -53663,13 +53663,13 @@ void SUIGridCellPosition::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SUIGridCellPosition s_Object;
 
-	s_Object.nColumnIndex = static_cast<int32>(int64_t(p_Document["nColumnIndex"]));
+	s_Object.nColumnIndex = simdjson::from_json_int32(p_Document["nColumnIndex"]);
 
-	s_Object.nRowIndex = static_cast<int32>(int64_t(p_Document["nRowIndex"]));
+	s_Object.nRowIndex = simdjson::from_json_int32(p_Document["nRowIndex"]);
 
-	s_Object.nColumnSpan = static_cast<int32>(int64_t(p_Document["nColumnSpan"]));
+	s_Object.nColumnSpan = simdjson::from_json_int32(p_Document["nColumnSpan"]);
 
-	s_Object.nRowSpan = static_cast<int32>(int64_t(p_Document["nRowSpan"]));
+	s_Object.nRowSpan = simdjson::from_json_int32(p_Document["nRowSpan"]);
 
 	*reinterpret_cast<SUIGridCellPosition*>(p_Target) = s_Object;
 }
@@ -54017,7 +54017,7 @@ void SUIOptionsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["mappings"])
 	{
-		s_Object.mappings.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.mappings.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["cbMappingNames"])
@@ -54347,13 +54347,13 @@ void SUITestData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 {
 	SUITestData s_Object;
 
-	s_Object.nIntProp = static_cast<int32>(int64_t(p_Document["nIntProp"]));
+	s_Object.nIntProp = simdjson::from_json_int32(p_Document["nIntProp"]);
 
-	s_Object.fInt16Prop = static_cast<int16>(int64_t(p_Document["fInt16Prop"]));
+	s_Object.fInt16Prop = simdjson::from_json_int16(p_Document["fInt16Prop"]);
 
-	s_Object.fUInt32Prop = static_cast<uint32>(int64_t(p_Document["fUInt32Prop"]));
+	s_Object.fUInt32Prop = simdjson::from_json_uint32(p_Document["fUInt32Prop"]);
 
-	s_Object.fFloatProp = static_cast<float32>(double(p_Document["fFloatProp"]));
+	s_Object.fFloatProp = simdjson::from_json_float32(p_Document["fFloatProp"]);
 
 	s_Object.sStringProp = std::string_view(p_Document["sStringProp"]);
 
@@ -54381,7 +54381,7 @@ void SUITestData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	size_t s_Index0 = 0;
 	for (simdjson::ondemand::value s_Item0 : p_Document["aFixedArray"])
 	{
-		s_Object.aFixedArray[s_Index0] = static_cast<int32>(int64_t(s_Item0));
+		s_Object.aFixedArray[s_Index0] = simdjson::from_json_int32(s_Item0);
 		++s_Index0;
 	}
 	}
@@ -54513,17 +54513,17 @@ void SVRConfigCameraComponent::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.m_eHeadAnchorMode = static_cast<EVRConfigHeadAnchorMode>(ZHMEnums::GetEnumValueByName("EVRConfigHeadAnchorMode", std::string_view(p_Document["m_eHeadAnchorMode"])));
 
-	s_Object.m_uRecenterRequestCounter = static_cast<uint32>(int64_t(p_Document["m_uRecenterRequestCounter"]));
+	s_Object.m_uRecenterRequestCounter = simdjson::from_json_uint32(p_Document["m_uRecenterRequestCounter"]);
 
-	s_Object.m_fVRUserInputWeight = static_cast<float32>(double(p_Document["m_fVRUserInputWeight"]));
+	s_Object.m_fVRUserInputWeight = simdjson::from_json_float32(p_Document["m_fVRUserInputWeight"]);
 
-	s_Object.m_fGridSize = static_cast<float32>(double(p_Document["m_fGridSize"]));
+	s_Object.m_fGridSize = simdjson::from_json_float32(p_Document["m_fGridSize"]);
 
-	s_Object.m_fCapsuleHeadAttacherOffset = static_cast<float32>(double(p_Document["m_fCapsuleHeadAttacherOffset"]));
+	s_Object.m_fCapsuleHeadAttacherOffset = simdjson::from_json_float32(p_Document["m_fCapsuleHeadAttacherOffset"]);
 
-	s_Object.m_fCapsuleHeadAttacherOffsetSneaking = static_cast<float32>(double(p_Document["m_fCapsuleHeadAttacherOffsetSneaking"]));
+	s_Object.m_fCapsuleHeadAttacherOffsetSneaking = simdjson::from_json_float32(p_Document["m_fCapsuleHeadAttacherOffsetSneaking"]);
 
-	s_Object.m_fHeadBoneAttacherOffset = static_cast<float32>(double(p_Document["m_fHeadBoneAttacherOffset"]));
+	s_Object.m_fHeadBoneAttacherOffset = simdjson::from_json_float32(p_Document["m_fHeadBoneAttacherOffset"]);
 
 	{
 		float4 s_Item;
@@ -54599,11 +54599,11 @@ void SValueBoolDelayedEntitySaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SValueBoolDelayedEntitySaveData s_Object;
 
-	s_Object.m_bValue = bool(p_Document["m_bValue"]);
+	s_Object.m_bValue = simdjson::from_json_bool(p_Document["m_bValue"]);
 
-	s_Object.m_bWaitingValue = bool(p_Document["m_bWaitingValue"]);
+	s_Object.m_bWaitingValue = simdjson::from_json_bool(p_Document["m_bWaitingValue"]);
 
-	s_Object.m_fTimeToNextEvent = static_cast<float32>(double(p_Document["m_fTimeToNextEvent"]));
+	s_Object.m_fTimeToNextEvent = simdjson::from_json_float32(p_Document["m_fTimeToNextEvent"]);
 
 	*reinterpret_cast<SValueBoolDelayedEntitySaveData*>(p_Target) = s_Object;
 }
@@ -54699,12 +54699,12 @@ void SValueBoolsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
 	{
-		s_Object.m_aData.push_back(bool(s_Item0));
+		s_Object.m_aData.push_back(simdjson::from_json_bool(s_Item0));
 	}
 
 	*reinterpret_cast<SValueBoolsSaveData*>(p_Target) = s_Object;
@@ -54803,12 +54803,12 @@ void SValueFloatSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
 	{
-		s_Object.m_aData.push_back(static_cast<float32>(double(s_Item0)));
+		s_Object.m_aData.push_back(simdjson::from_json_float32(s_Item0));
 	}
 
 	*reinterpret_cast<SValueFloatSaveData*>(p_Target) = s_Object;
@@ -54907,12 +54907,12 @@ void SValueIntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
 	{
-		s_Object.m_aData.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aData.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	*reinterpret_cast<SValueIntSaveData*>(p_Target) = s_Object;
@@ -55201,7 +55201,7 @@ void SVisibilitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SVisibilitySaveData s_Object;
 
-	s_Object.m_bIsVisible = bool(p_Document["m_bIsVisible"]);
+	s_Object.m_bIsVisible = simdjson::from_json_bool(p_Document["m_bIsVisible"]);
 
 	*reinterpret_cast<SVisibilitySaveData*>(p_Target) = s_Object;
 }
@@ -55253,9 +55253,9 @@ void SVoidSignalEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 {
 	SVoidSignalEntitySaveData s_Object;
 
-	s_Object.m_bSignaling = bool(p_Document["m_bSignaling"]);
+	s_Object.m_bSignaling = simdjson::from_json_bool(p_Document["m_bSignaling"]);
 
-	s_Object.m_fFiredAtTime = static_cast<float32>(double(p_Document["m_fFiredAtTime"]));
+	s_Object.m_fFiredAtTime = simdjson::from_json_float32(p_Document["m_fFiredAtTime"]);
 
 	*reinterpret_cast<SVoidSignalEntitySaveData*>(p_Target) = s_Object;
 }
@@ -55347,17 +55347,17 @@ void SWaveformGeneratorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SWaveformGeneratorSaveData s_Object;
 
-	s_Object.m_fTime = static_cast<float32>(double(p_Document["m_fTime"]));
+	s_Object.m_fTime = simdjson::from_json_float32(p_Document["m_fTime"]);
 
-	s_Object.m_fFrequency = static_cast<float32>(double(p_Document["m_fFrequency"]));
+	s_Object.m_fFrequency = simdjson::from_json_float32(p_Document["m_fFrequency"]);
 
-	s_Object.m_fOffset = static_cast<float32>(double(p_Document["m_fOffset"]));
+	s_Object.m_fOffset = simdjson::from_json_float32(p_Document["m_fOffset"]);
 
-	s_Object.m_fScale = static_cast<float32>(double(p_Document["m_fScale"]));
+	s_Object.m_fScale = simdjson::from_json_float32(p_Document["m_fScale"]);
 
-	s_Object.m_fStartTime = static_cast<float32>(double(p_Document["m_fStartTime"]));
+	s_Object.m_fStartTime = simdjson::from_json_float32(p_Document["m_fStartTime"]);
 
-	s_Object.m_nCount = static_cast<uint32>(int64_t(p_Document["m_nCount"]));
+	s_Object.m_nCount = simdjson::from_json_uint32(p_Document["m_nCount"]);
 
 	*reinterpret_cast<SWaveformGeneratorSaveData*>(p_Target) = s_Object;
 }
@@ -55453,7 +55453,7 @@ void SWaveformGeneratorManagerSaveData::FromSimpleJson(simdjson::ondemand::value
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGenerators"])
 	{
-		s_Object.m_aGenerators.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aGenerators.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGeneratorData"])
@@ -55525,11 +55525,11 @@ void SWeaponCustomControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SWeaponCustomControlSaveData s_Object;
 
-	s_Object.m_rActor = static_cast<uint32>(int64_t(p_Document["m_rActor"]));
+	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
-	s_Object.m_rItem = static_cast<uint32>(int64_t(p_Document["m_rItem"]));
+	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
-	s_Object.m_bTargetRegistered = bool(p_Document["m_bTargetRegistered"]);
+	s_Object.m_bTargetRegistered = simdjson::from_json_bool(p_Document["m_bTargetRegistered"]);
 
 	*reinterpret_cast<SWeaponCustomControlSaveData*>(p_Target) = s_Object;
 }
@@ -55929,53 +55929,53 @@ void SWeaponStatusUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	s_Object.sContainedItemName = std::string_view(p_Document["sContainedItemName"]);
 
-	s_Object.nWeaponType = static_cast<int32>(int64_t(p_Document["nWeaponType"]));
+	s_Object.nWeaponType = simdjson::from_json_int32(p_Document["nWeaponType"]);
 
-	s_Object.nItemHUDType = static_cast<int32>(int64_t(p_Document["nItemHUDType"]));
+	s_Object.nItemHUDType = simdjson::from_json_int32(p_Document["nItemHUDType"]);
 
-	s_Object.nAmmoRemaining = static_cast<int32>(int64_t(p_Document["nAmmoRemaining"]));
+	s_Object.nAmmoRemaining = simdjson::from_json_int32(p_Document["nAmmoRemaining"]);
 
-	s_Object.nAmmoTotal = static_cast<int32>(int64_t(p_Document["nAmmoTotal"]));
+	s_Object.nAmmoTotal = simdjson::from_json_int32(p_Document["nAmmoTotal"]);
 
-	s_Object.nAmmoInClip = static_cast<int32>(int64_t(p_Document["nAmmoInClip"]));
+	s_Object.nAmmoInClip = simdjson::from_json_int32(p_Document["nAmmoInClip"]);
 
-	s_Object.bSilenced = bool(p_Document["bSilenced"]);
+	s_Object.bSilenced = simdjson::from_json_bool(p_Document["bSilenced"]);
 
-	s_Object.bIsFirearm = bool(p_Document["bIsFirearm"]);
+	s_Object.bIsFirearm = simdjson::from_json_bool(p_Document["bIsFirearm"]);
 
-	s_Object.bHolstered = bool(p_Document["bHolstered"]);
+	s_Object.bHolstered = simdjson::from_json_bool(p_Document["bHolstered"]);
 
-	s_Object.bCannotBeHolstered = bool(p_Document["bCannotBeHolstered"]);
+	s_Object.bCannotBeHolstered = simdjson::from_json_bool(p_Document["bCannotBeHolstered"]);
 
-	s_Object.bHasItemToShow = bool(p_Document["bHasItemToShow"]);
+	s_Object.bHasItemToShow = simdjson::from_json_bool(p_Document["bHasItemToShow"]);
 
-	s_Object.bSuspicious = bool(p_Document["bSuspicious"]);
+	s_Object.bSuspicious = simdjson::from_json_bool(p_Document["bSuspicious"]);
 
-	s_Object.bIllegal = bool(p_Document["bIllegal"]);
+	s_Object.bIllegal = simdjson::from_json_bool(p_Document["bIllegal"]);
 
-	s_Object.bCanReload = bool(p_Document["bCanReload"]);
+	s_Object.bCanReload = simdjson::from_json_bool(p_Document["bCanReload"]);
 
-	s_Object.bIsReloading = bool(p_Document["bIsReloading"]);
+	s_Object.bIsReloading = simdjson::from_json_bool(p_Document["bIsReloading"]);
 
-	s_Object.fReloadDuration = static_cast<float32>(double(p_Document["fReloadDuration"]));
+	s_Object.fReloadDuration = simdjson::from_json_float32(p_Document["fReloadDuration"]);
 
-	s_Object.bInfiniteAmmo = bool(p_Document["bInfiniteAmmo"]);
+	s_Object.bInfiniteAmmo = simdjson::from_json_bool(p_Document["bInfiniteAmmo"]);
 
-	s_Object.bIsContainer = bool(p_Document["bIsContainer"]);
+	s_Object.bIsContainer = simdjson::from_json_bool(p_Document["bIsContainer"]);
 
-	s_Object.bContainsItem = bool(p_Document["bContainsItem"]);
+	s_Object.bContainsItem = simdjson::from_json_bool(p_Document["bContainsItem"]);
 
-	s_Object.nContainedItemHUDType = static_cast<int32>(int64_t(p_Document["nContainedItemHUDType"]));
+	s_Object.nContainedItemHUDType = simdjson::from_json_int32(p_Document["nContainedItemHUDType"]);
 
-	s_Object.bContainedItemIllegal = bool(p_Document["bContainedItemIllegal"]);
+	s_Object.bContainedItemIllegal = simdjson::from_json_bool(p_Document["bContainedItemIllegal"]);
 
-	s_Object.bContainedItemSuspicious = bool(p_Document["bContainedItemSuspicious"]);
+	s_Object.bContainedItemSuspicious = simdjson::from_json_bool(p_Document["bContainedItemSuspicious"]);
 
-	s_Object.bContainedItemDetectedDuringFrisk = bool(p_Document["bContainedItemDetectedDuringFrisk"]);
+	s_Object.bContainedItemDetectedDuringFrisk = simdjson::from_json_bool(p_Document["bContainedItemDetectedDuringFrisk"]);
 
-	s_Object.fLastBulletFiredTime = static_cast<float32>(double(p_Document["fLastBulletFiredTime"]));
+	s_Object.fLastBulletFiredTime = simdjson::from_json_float32(p_Document["fLastBulletFiredTime"]);
 
-	s_Object.fTimeBetweenBullets = static_cast<float32>(double(p_Document["fTimeBetweenBullets"]));
+	s_Object.fTimeBetweenBullets = simdjson::from_json_float32(p_Document["fTimeBetweenBullets"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aPerks"])
 	{
@@ -55987,7 +55987,7 @@ void SWeaponStatusUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.aAmmoTypes.push_back(std::string_view(s_Item0));
 	}
 
-	s_Object.nCurrentAmmoType = static_cast<uint32>(int64_t(p_Document["nCurrentAmmoType"]));
+	s_Object.nCurrentAmmoType = simdjson::from_json_uint32(p_Document["nCurrentAmmoType"]);
 
 	*reinterpret_cast<SWeaponStatusUIData*>(p_Target) = s_Object;
 }
@@ -56104,7 +56104,7 @@ void SZHUDIgnoreVisibilitySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SZHUDIgnoreVisibilitySaveData s_Object;
 
-	s_Object.alpha = static_cast<float32>(double(p_Document["alpha"]));
+	s_Object.alpha = simdjson::from_json_float32(p_Document["alpha"]);
 
 	*reinterpret_cast<SZHUDIgnoreVisibilitySaveData*>(p_Target) = s_Object;
 }
@@ -56166,7 +56166,7 @@ void ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData::Fr
 {
 	ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData s_Object;
 
-	s_Object.m_DistractedActor = static_cast<uint32>(int64_t(p_Document["m_DistractedActor"]));
+	s_Object.m_DistractedActor = simdjson::from_json_uint32(p_Document["m_DistractedActor"]);
 
 	{
 		ZGameTime s_Item;
@@ -56174,7 +56174,7 @@ void ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData::Fr
 		s_Object.m_CooldownExpirationTimestamp = s_Item;
 	}
 
-	s_Object.m_DistractionIsActive = bool(p_Document["m_DistractionIsActive"]);
+	s_Object.m_DistractionIsActive = simdjson::from_json_bool(p_Document["m_DistractionIsActive"]);
 
 	*reinterpret_cast<ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData*>(p_Target) = s_Object;
 }
@@ -56247,11 +56247,11 @@ void ZAMDEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	ZAMDEvent s_Object;
 
-	s_Object.m_nEventID = static_cast<uint32>(int64_t(p_Document["m_nEventID"]));
+	s_Object.m_nEventID = simdjson::from_json_uint32(p_Document["m_nEventID"]);
 
-	s_Object.m_fStartFraction = static_cast<float32>(double(p_Document["m_fStartFraction"]));
+	s_Object.m_fStartFraction = simdjson::from_json_float32(p_Document["m_fStartFraction"]);
 
-	s_Object.m_fDuration = static_cast<float32>(double(p_Document["m_fDuration"]));
+	s_Object.m_fDuration = simdjson::from_json_float32(p_Document["m_fDuration"]);
 
 	{
 		ZVariant s_Item;
@@ -56436,7 +56436,7 @@ void ZAMDTake::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 		s_Object.m_customData = s_Item;
 	}
 
-	s_Object.m_nSyncTrackIndex = static_cast<int32>(int64_t(p_Document["m_nSyncTrackIndex"]));
+	s_Object.m_nSyncTrackIndex = simdjson::from_json_int32(p_Document["m_nSyncTrackIndex"]);
 
 	*reinterpret_cast<ZAMDTake*>(p_Target) = s_Object;
 }
@@ -56520,11 +56520,11 @@ void ZAT2Controller_SEventPreviewInfo::FromSimpleJson(simdjson::ondemand::value 
 {
 	ZAT2Controller_SEventPreviewInfo s_Object;
 
-	s_Object.m_nEventID = static_cast<int32>(int64_t(p_Document["m_nEventID"]));
+	s_Object.m_nEventID = simdjson::from_json_int32(p_Document["m_nEventID"]);
 
 	s_Object.m_sConsumerID = std::string_view(p_Document["m_sConsumerID"]);
 
-	s_Object.m_fDuration = static_cast<float32>(double(p_Document["m_fDuration"]));
+	s_Object.m_fDuration = simdjson::from_json_float32(p_Document["m_fDuration"]);
 
 	s_Object.m_sExtraDataTypeName = std::string_view(p_Document["m_sExtraDataTypeName"]);
 
@@ -56589,7 +56589,7 @@ void ZAT2Controller_SGeneratedFootstepEvent::FromSimpleJson(simdjson::ondemand::
 
 	s_Object.m_eFoot = static_cast<ZAT2Controller_EFoot>(ZHMEnums::GetEnumValueByName("ZAT2Controller.EFoot", std::string_view(p_Document["m_eFoot"])));
 
-	s_Object.m_fFrame = static_cast<float32>(double(p_Document["m_fFrame"]));
+	s_Object.m_fFrame = simdjson::from_json_float32(p_Document["m_fFrame"]);
 
 	*reinterpret_cast<ZAT2Controller_SGeneratedFootstepEvent*>(p_Target) = s_Object;
 }
@@ -56669,9 +56669,9 @@ void ZApproachOrder_SApproachOrderSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.m_style = static_cast<ZApproachOrder_EApproachStyle>(ZHMEnums::GetEnumValueByName("ZApproachOrder.EApproachStyle", std::string_view(p_Document["m_style"])));
 
-	s_Object.m_bForceStand = bool(p_Document["m_bForceStand"]);
+	s_Object.m_bForceStand = simdjson::from_json_bool(p_Document["m_bForceStand"]);
 
-	s_Object.m_bStopActFast = bool(p_Document["m_bStopActFast"]);
+	s_Object.m_bStopActFast = simdjson::from_json_bool(p_Document["m_bStopActFast"]);
 
 	*reinterpret_cast<ZApproachOrder_SApproachOrderSaveData*>(p_Target) = s_Object;
 }
@@ -56769,7 +56769,7 @@ void ZAvoidDangerousAreaSituation_SSituationSaveData::FromSimpleJson(simdjson::o
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerousAreaGroups"])
 	{
-		s_Object.m_aAvoidDangerousAreaGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aAvoidDangerousAreaGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	*reinterpret_cast<ZAvoidDangerousAreaSituation_SSituationSaveData*>(p_Target) = s_Object;
@@ -56976,7 +56976,7 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 		size_t s_Index1 = 0;
 		for (simdjson::ondemand::value s_Item1 : s_Item0)
 		{
-			s_ArrayItem0[s_Index1] = static_cast<float32>(double(s_Item1));
+			s_ArrayItem0[s_Index1] = simdjson::from_json_float32(s_Item1);
 			++s_Index1;
 		}
 		}
@@ -57034,9 +57034,9 @@ void ZDeadBodySituation_SIncidentSaveData::FromSimpleJson(simdjson::ondemand::va
 {
 	ZDeadBodySituation_SIncidentSaveData s_Object;
 
-	s_Object.m_body = static_cast<uint32>(int64_t(p_Document["m_body"]));
+	s_Object.m_body = simdjson::from_json_uint32(p_Document["m_body"]);
 
-	s_Object.m_bAccident = bool(p_Document["m_bAccident"]);
+	s_Object.m_bAccident = simdjson::from_json_bool(p_Document["m_bAccident"]);
 
 	*reinterpret_cast<ZDeadBodySituation_SIncidentSaveData*>(p_Target) = s_Object;
 }
@@ -57182,19 +57182,19 @@ void ZDeadBodySituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.m_tNextStanddownTime = s_Item;
 	}
 
-	s_Object.m_nSuspiciousDeaths = static_cast<int32>(int64_t(p_Document["m_nSuspiciousDeaths"]));
+	s_Object.m_nSuspiciousDeaths = simdjson::from_json_int32(p_Document["m_nSuspiciousDeaths"]);
 
-	s_Object.m_bAcknowledged = bool(p_Document["m_bAcknowledged"]);
+	s_Object.m_bAcknowledged = simdjson::from_json_bool(p_Document["m_bAcknowledged"]);
 
-	s_Object.m_bInspected = bool(p_Document["m_bInspected"]);
+	s_Object.m_bInspected = simdjson::from_json_bool(p_Document["m_bInspected"]);
 
-	s_Object.m_bAccidentsResolved = bool(p_Document["m_bAccidentsResolved"]);
+	s_Object.m_bAccidentsResolved = simdjson::from_json_bool(p_Document["m_bAccidentsResolved"]);
 
-	s_Object.m_bStanddownComplete = bool(p_Document["m_bStanddownComplete"]);
+	s_Object.m_bStanddownComplete = simdjson::from_json_bool(p_Document["m_bStanddownComplete"]);
 
-	s_Object.m_bStandDownUnconscious = bool(p_Document["m_bStandDownUnconscious"]);
+	s_Object.m_bStandDownUnconscious = simdjson::from_json_bool(p_Document["m_bStandDownUnconscious"]);
 
-	s_Object.m_bEscalateUnconscious = bool(p_Document["m_bEscalateUnconscious"]);
+	s_Object.m_bEscalateUnconscious = simdjson::from_json_bool(p_Document["m_bEscalateUnconscious"]);
 
 	*reinterpret_cast<ZDeadBodySituation_SState*>(p_Target) = s_Object;
 }
@@ -57315,7 +57315,7 @@ void ZDeadBodySituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_State = s_Item;
 	}
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIncidents"])
 	{
@@ -57324,11 +57324,11 @@ void ZDeadBodySituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_aIncidents.push_back(s_ArrayItem0);
 	}
 
-	s_Object.m_pInvestigateDisguiseGroup = static_cast<int32>(int64_t(p_Document["m_pInvestigateDisguiseGroup"]));
+	s_Object.m_pInvestigateDisguiseGroup = simdjson::from_json_int32(p_Document["m_pInvestigateDisguiseGroup"]);
 
-	s_Object.m_pObserversGroup = static_cast<int32>(int64_t(p_Document["m_pObserversGroup"]));
+	s_Object.m_pObserversGroup = simdjson::from_json_int32(p_Document["m_pObserversGroup"]);
 
-	s_Object.m_pCivilianObserversGroup = static_cast<int32>(int64_t(p_Document["m_pCivilianObserversGroup"]));
+	s_Object.m_pCivilianObserversGroup = simdjson::from_json_int32(p_Document["m_pCivilianObserversGroup"]);
 
 	*reinterpret_cast<ZDeadBodySituation_SSituationSaveData*>(p_Target) = s_Object;
 }
@@ -57372,7 +57372,7 @@ void ZDetectedInPrivateSituation_SSituationSaveData::FromSimpleJson(simdjson::on
 {
 	ZDetectedInPrivateSituation_SSituationSaveData s_Object;
 
-	s_Object.m_pDetectedInPrivateGroup = static_cast<int32>(int64_t(p_Document["m_pDetectedInPrivateGroup"]));
+	s_Object.m_pDetectedInPrivateGroup = simdjson::from_json_int32(p_Document["m_pDetectedInPrivateGroup"]);
 
 	*reinterpret_cast<ZDetectedInPrivateSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
@@ -57487,11 +57487,11 @@ void ZDisguiseSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 {
 	ZDisguiseSituation_SSituationSaveData s_Object;
 
-	s_Object.m_pLeader = static_cast<uint32>(int64_t(p_Document["m_pLeader"]));
+	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aInvestigateDisguiseGroups"])
 	{
-		s_Object.m_aInvestigateDisguiseGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aInvestigateDisguiseGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	s_Object.m_eEventSetOnEscalation = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(p_Document["m_eEventSetOnEscalation"])));
@@ -57655,7 +57655,7 @@ void ZER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
 	ZER64 s_Object;
 
-	s_Object.m_nEntityID = uint64(p_Document["m_nEntityID"]);
+	s_Object.m_nEntityID = simdjson::from_json_uint64(p_Document["m_nEntityID"]);
 
 	s_Object.m_sExposedEntity = std::string_view(p_Document["m_sExposedEntity"]);
 
@@ -57893,7 +57893,7 @@ void ZFormationMoveOrder_SFormationMoveOrderSaveData::FromSimpleJson(simdjson::o
 		s_Object.m_vStopDirection = s_Item;
 	}
 
-	s_Object.m_nObstacleBlockageFlags = static_cast<uint32>(int64_t(p_Document["m_nObstacleBlockageFlags"]));
+	s_Object.m_nObstacleBlockageFlags = simdjson::from_json_uint32(p_Document["m_nObstacleBlockageFlags"]);
 
 	s_Object.m_eMoveSpeed = static_cast<EMoveSpeed>(ZHMEnums::GetEnumValueByName("EMoveSpeed", std::string_view(p_Document["m_eMoveSpeed"])));
 
@@ -58001,11 +58001,11 @@ void ZGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	ZGridFloatField s_Object;
 
-	s_Object.m_fInitialValue = static_cast<float32>(double(p_Document["m_fInitialValue"]));
+	s_Object.m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_field"])
 	{
-		s_Object.m_field.push_back(static_cast<float32>(double(s_Item0)));
+		s_Object.m_field.push_back(simdjson::from_json_float32(s_Item0));
 	}
 
 	*reinterpret_cast<ZGridFloatField*>(p_Target) = s_Object;
@@ -58181,9 +58181,9 @@ void ZHM5AudioEventConsumer_SAudioAnimationEventData::FromSimpleJson(simdjson::o
 		s_Object.m_pAudioEventRes = s_Item;
 	}
 
-	s_Object.m_fAttenuation = static_cast<float32>(double(p_Document["m_fAttenuation"]));
+	s_Object.m_fAttenuation = simdjson::from_json_float32(p_Document["m_fAttenuation"]);
 
-	s_Object.m_fPitch = static_cast<float32>(double(p_Document["m_fPitch"]));
+	s_Object.m_fPitch = simdjson::from_json_float32(p_Document["m_fPitch"]);
 
 	*reinterpret_cast<ZHM5AudioEventConsumer_SAudioAnimationEventData*>(p_Target) = s_Object;
 }
@@ -58290,9 +58290,9 @@ void ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::FromSimpleJson(sim
 
 	s_Object.m_nEvent = static_cast<EHM5SoundCloseCombatEvent>(ZHMEnums::GetEnumValueByName("EHM5SoundCloseCombatEvent", std::string_view(p_Document["m_nEvent"])));
 
-	s_Object.m_fAttenuation = static_cast<float32>(double(p_Document["m_fAttenuation"]));
+	s_Object.m_fAttenuation = simdjson::from_json_float32(p_Document["m_fAttenuation"]);
 
-	s_Object.m_fPitch = static_cast<float32>(double(p_Document["m_fPitch"]));
+	s_Object.m_fPitch = simdjson::from_json_float32(p_Document["m_fPitch"]);
 
 	*reinterpret_cast<ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData*>(p_Target) = s_Object;
 }
@@ -58360,9 +58360,9 @@ void ZHM5CrowdEventConsumer_SCrowdSoundEventData::FromSimpleJson(simdjson::ondem
 		s_Object.m_pAudioEventRes = s_Item;
 	}
 
-	s_Object.m_fAttenuation = static_cast<float32>(double(p_Document["m_fAttenuation"]));
+	s_Object.m_fAttenuation = simdjson::from_json_float32(p_Document["m_fAttenuation"]);
 
-	s_Object.m_fPitch = static_cast<float32>(double(p_Document["m_fPitch"]));
+	s_Object.m_fPitch = simdjson::from_json_float32(p_Document["m_fPitch"]);
 
 	*reinterpret_cast<ZHM5CrowdEventConsumer_SCrowdSoundEventData*>(p_Target) = s_Object;
 }
@@ -58836,21 +58836,21 @@ void ZHUDAIGuide_SData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	ZHUDAIGuide_SData s_Object;
 
-	s_Object.bDisguiseBroken = bool(p_Document["bDisguiseBroken"]);
+	s_Object.bDisguiseBroken = simdjson::from_json_bool(p_Document["bDisguiseBroken"]);
 
-	s_Object.bTrespassing = bool(p_Document["bTrespassing"]);
+	s_Object.bTrespassing = simdjson::from_json_bool(p_Document["bTrespassing"]);
 
-	s_Object.bInsideAreaBeingInvestigated = bool(p_Document["bInsideAreaBeingInvestigated"]);
+	s_Object.bInsideAreaBeingInvestigated = simdjson::from_json_bool(p_Document["bInsideAreaBeingInvestigated"]);
 
-	s_Object.bNearDeadBody = bool(p_Document["bNearDeadBody"]);
+	s_Object.bNearDeadBody = simdjson::from_json_bool(p_Document["bNearDeadBody"]);
 
-	s_Object.bVisiblyArmed = bool(p_Document["bVisiblyArmed"]);
+	s_Object.bVisiblyArmed = simdjson::from_json_bool(p_Document["bVisiblyArmed"]);
 
-	s_Object.bDisguiseSuspicious = bool(p_Document["bDisguiseSuspicious"]);
+	s_Object.bDisguiseSuspicious = simdjson::from_json_bool(p_Document["bDisguiseSuspicious"]);
 
-	s_Object.bDeepTrespassing = bool(p_Document["bDeepTrespassing"]);
+	s_Object.bDeepTrespassing = simdjson::from_json_bool(p_Document["bDeepTrespassing"]);
 
-	s_Object.bDeepTrespassingNOTUSEDBUTNECESSARYBECAUSEOFREALLYSTRANGEPROPERTYPARSERBUG = bool(p_Document["bDeepTrespassingNOTUSEDBUTNECESSARYBECAUSEOFREALLYSTRANGEPROPERTYPARSERBUG"]);
+	s_Object.bDeepTrespassingNOTUSEDBUTNECESSARYBECAUSEOFREALLYSTRANGEPROPERTYPARSERBUG = simdjson::from_json_bool(p_Document["bDeepTrespassingNOTUSEDBUTNECESSARYBECAUSEOFREALLYSTRANGEPROPERTYPARSERBUG"]);
 
 	*reinterpret_cast<ZHUDAIGuide_SData*>(p_Target) = s_Object;
 }
@@ -59113,7 +59113,7 @@ void ZHUDOccluderTriggerEntity_SBoneTestSetup::FromSimpleJson(simdjson::ondemand
 		s_Object.localOffset = s_Item;
 	}
 
-	s_Object.radius = static_cast<float32>(double(p_Document["radius"]));
+	s_Object.radius = simdjson::from_json_float32(p_Document["radius"]);
 
 	*reinterpret_cast<ZHUDOccluderTriggerEntity_SBoneTestSetup*>(p_Target) = s_Object;
 }
@@ -59206,9 +59206,9 @@ void ZHUDUIControllerEntity_SIntelData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.repoID = s_Item;
 	}
 
-	s_Object.intelType = static_cast<int32>(int64_t(p_Document["intelType"]));
+	s_Object.intelType = simdjson::from_json_int32(p_Document["intelType"]);
 
-	s_Object.showDuration = static_cast<float32>(double(p_Document["showDuration"]));
+	s_Object.showDuration = simdjson::from_json_float32(p_Document["showDuration"]);
 
 	*reinterpret_cast<ZHUDUIControllerEntity_SIntelData*>(p_Target) = s_Object;
 }
@@ -59311,9 +59311,9 @@ void ZHUDUIControllerEntity_SWeaponViewData::FromSimpleJson(simdjson::ondemand::
 		s_Object.itemOnBackStatus = s_Item;
 	}
 
-	s_Object.bShowHolstered = bool(p_Document["bShowHolstered"]);
+	s_Object.bShowHolstered = simdjson::from_json_bool(p_Document["bShowHolstered"]);
 
-	s_Object.nDisplayMode = static_cast<int32>(int64_t(p_Document["nDisplayMode"]));
+	s_Object.nDisplayMode = simdjson::from_json_int32(p_Document["nDisplayMode"]);
 
 	*reinterpret_cast<ZHUDUIControllerEntity_SWeaponViewData*>(p_Target) = s_Object;
 }
@@ -59390,7 +59390,7 @@ void ZInfectedSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 {
 	ZInfectedSituation_SSituationSaveData s_Object;
 
-	s_Object.m_bStandingDown = bool(p_Document["m_bStandingDown"]);
+	s_Object.m_bStandingDown = simdjson::from_json_bool(p_Document["m_bStandingDown"]);
 
 	*reinterpret_cast<ZInfectedSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
@@ -59568,7 +59568,7 @@ void ZInvestigateWeaponSituation_SSituationSaveData::FromSimpleJson(simdjson::on
 {
 	ZInvestigateWeaponSituation_SSituationSaveData s_Object;
 
-	s_Object.m_nCurrentState = static_cast<int32>(int64_t(p_Document["m_nCurrentState"]));
+	s_Object.m_nCurrentState = simdjson::from_json_int32(p_Document["m_nCurrentState"]);
 
 	{
 		ZGameTime s_Item;
@@ -59582,7 +59582,7 @@ void ZInvestigateWeaponSituation_SSituationSaveData::FromSimpleJson(simdjson::on
 		s_Object.m_tLastStandDown = s_Item;
 	}
 
-	s_Object.m_nActiveInvestigationGroup = static_cast<int32>(int64_t(p_Document["m_nActiveInvestigationGroup"]));
+	s_Object.m_nActiveInvestigationGroup = simdjson::from_json_int32(p_Document["m_nActiveInvestigationGroup"]);
 
 	*reinterpret_cast<ZInvestigateWeaponSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
@@ -59713,7 +59713,7 @@ void ZKeywordCalculator_SCollection::FromSimpleJson(simdjson::ondemand::value p_
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aKeywords"])
 	{
-		s_Object.aKeywords.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.aKeywords.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	*reinterpret_cast<ZKeywordCalculator_SCollection*>(p_Target) = s_Object;
@@ -59883,29 +59883,29 @@ void ZMoveToOrder_SMoveToOrderSaveData::FromSimpleJson(simdjson::ondemand::value
 		s_Object.m_vStopDirection = s_Item;
 	}
 
-	s_Object.m_fStopDistance = static_cast<float32>(double(p_Document["m_fStopDistance"]));
+	s_Object.m_fStopDistance = simdjson::from_json_float32(p_Document["m_fStopDistance"]);
 
-	s_Object.m_fWalkDistance = static_cast<float32>(double(p_Document["m_fWalkDistance"]));
+	s_Object.m_fWalkDistance = simdjson::from_json_float32(p_Document["m_fWalkDistance"]);
 
-	s_Object.m_nObstacleBlockageFlags = static_cast<uint32>(int64_t(p_Document["m_nObstacleBlockageFlags"]));
+	s_Object.m_nObstacleBlockageFlags = simdjson::from_json_uint32(p_Document["m_nObstacleBlockageFlags"]);
 
 	s_Object.m_eMoveSpeed = static_cast<ZMoveToOrder_EMoveSpeed>(ZHMEnums::GetEnumValueByName("ZMoveToOrder.EMoveSpeed", std::string_view(p_Document["m_eMoveSpeed"])));
 
-	s_Object.m_bIgnoreEndCollision = bool(p_Document["m_bIgnoreEndCollision"]);
+	s_Object.m_bIgnoreEndCollision = simdjson::from_json_bool(p_Document["m_bIgnoreEndCollision"]);
 
-	s_Object.m_bPrecisePositioning = bool(p_Document["m_bPrecisePositioning"]);
+	s_Object.m_bPrecisePositioning = simdjson::from_json_bool(p_Document["m_bPrecisePositioning"]);
 
-	s_Object.m_bForceStand = bool(p_Document["m_bForceStand"]);
+	s_Object.m_bForceStand = simdjson::from_json_bool(p_Document["m_bForceStand"]);
 
-	s_Object.m_bLookAtTargetMustBeInSight = bool(p_Document["m_bLookAtTargetMustBeInSight"]);
+	s_Object.m_bLookAtTargetMustBeInSight = simdjson::from_json_bool(p_Document["m_bLookAtTargetMustBeInSight"]);
 
-	s_Object.m_bUseKnownPosition = bool(p_Document["m_bUseKnownPosition"]);
+	s_Object.m_bUseKnownPosition = simdjson::from_json_bool(p_Document["m_bUseKnownPosition"]);
 
-	s_Object.m_bStopActFast = bool(p_Document["m_bStopActFast"]);
+	s_Object.m_bStopActFast = simdjson::from_json_bool(p_Document["m_bStopActFast"]);
 
-	s_Object.m_bStrafe = bool(p_Document["m_bStrafe"]);
+	s_Object.m_bStrafe = simdjson::from_json_bool(p_Document["m_bStrafe"]);
 
-	s_Object.m_bEndStanding = bool(p_Document["m_bEndStanding"]);
+	s_Object.m_bEndStanding = simdjson::from_json_bool(p_Document["m_bEndStanding"]);
 
 	*reinterpret_cast<ZMoveToOrder_SMoveToOrderSaveData*>(p_Target) = s_Object;
 }
@@ -59998,7 +59998,7 @@ void ZPhotoModeMenuDataProvider_SPrompt::FromSimpleJson(simdjson::ondemand::valu
 
 	s_Object.sLabel = std::string_view(p_Document["sLabel"]);
 
-	s_Object.bIsEnabled = bool(p_Document["bIsEnabled"]);
+	s_Object.bIsEnabled = simdjson::from_json_bool(p_Document["bIsEnabled"]);
 
 	*reinterpret_cast<ZPhotoModeMenuDataProvider_SPrompt*>(p_Target) = s_Object;
 }
@@ -60114,7 +60114,7 @@ void ZPhotoModeMenuDataProvider_SData::FromSimpleJson(simdjson::ondemand::value 
 {
 	ZPhotoModeMenuDataProvider_SData s_Object;
 
-	s_Object.bIsVisible = bool(p_Document["bIsVisible"]);
+	s_Object.bIsVisible = simdjson::from_json_bool(p_Document["bIsVisible"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aMenuEntries"])
 	{
@@ -60197,9 +60197,9 @@ void ZPhotoModeMenuDataProvider_SMenuEntry::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.sLabel = std::string_view(p_Document["sLabel"]);
 
-	s_Object.bIsEnabled = bool(p_Document["bIsEnabled"]);
+	s_Object.bIsEnabled = simdjson::from_json_bool(p_Document["bIsEnabled"]);
 
-	s_Object.bIsHighlighted = bool(p_Document["bIsHighlighted"]);
+	s_Object.bIsHighlighted = simdjson::from_json_bool(p_Document["bIsHighlighted"]);
 
 	*reinterpret_cast<ZPhotoModeMenuDataProvider_SMenuEntry*>(p_Target) = s_Object;
 }
@@ -60388,17 +60388,17 @@ void ZRecoverUnconsciousSituation_SSituationSaveData::FromSimpleJson(simdjson::o
 {
 	ZRecoverUnconsciousSituation_SSituationSaveData s_Object;
 
-	s_Object.m_rVictim = static_cast<uint32>(int64_t(p_Document["m_rVictim"]));
+	s_Object.m_rVictim = simdjson::from_json_uint32(p_Document["m_rVictim"]);
 
-	s_Object.m_pInvestigateDisguiseGroup = static_cast<int32>(int64_t(p_Document["m_pInvestigateDisguiseGroup"]));
+	s_Object.m_pInvestigateDisguiseGroup = simdjson::from_json_int32(p_Document["m_pInvestigateDisguiseGroup"]);
 
-	s_Object.m_pRecoverUnconsciousGroup = static_cast<int32>(int64_t(p_Document["m_pRecoverUnconsciousGroup"]));
+	s_Object.m_pRecoverUnconsciousGroup = simdjson::from_json_int32(p_Document["m_pRecoverUnconsciousGroup"]);
 
-	s_Object.m_pObserversGroup = static_cast<int32>(int64_t(p_Document["m_pObserversGroup"]));
+	s_Object.m_pObserversGroup = simdjson::from_json_int32(p_Document["m_pObserversGroup"]);
 
-	s_Object.m_bEscalate = bool(p_Document["m_bEscalate"]);
+	s_Object.m_bEscalate = simdjson::from_json_bool(p_Document["m_bEscalate"]);
 
-	s_Object.m_bVictimPacified = bool(p_Document["m_bVictimPacified"]);
+	s_Object.m_bVictimPacified = simdjson::from_json_bool(p_Document["m_bVictimPacified"]);
 
 	*reinterpret_cast<ZRecoverUnconsciousSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
@@ -60470,13 +60470,13 @@ void ZRuntimePinConDesc::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	ZRuntimePinConDesc s_Object;
 
-	s_Object.m_nFromEntityID = uint64(p_Document["m_nFromEntityID"]);
+	s_Object.m_nFromEntityID = simdjson::from_json_uint64(p_Document["m_nFromEntityID"]);
 
-	s_Object.m_nToEntityID = uint64(p_Document["m_nToEntityID"]);
+	s_Object.m_nToEntityID = simdjson::from_json_uint64(p_Document["m_nToEntityID"]);
 
-	s_Object.m_nFromPinID = static_cast<uint32>(int64_t(p_Document["m_nFromPinID"]));
+	s_Object.m_nFromPinID = simdjson::from_json_uint32(p_Document["m_nFromPinID"]);
 
-	s_Object.m_nToPinID = static_cast<uint32>(int64_t(p_Document["m_nToPinID"]));
+	s_Object.m_nToPinID = simdjson::from_json_uint32(p_Document["m_nToPinID"]);
 
 	*reinterpret_cast<ZRuntimePinConDesc*>(p_Target) = s_Object;
 }
@@ -60557,7 +60557,7 @@ void ZScopedER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aScopePath"])
 	{
-		s_Object.m_aScopePath.push_back(uint64(s_Item0));
+		s_Object.m_aScopePath.push_back(simdjson::from_json_uint64(s_Item0));
 	}
 
 	*reinterpret_cast<ZScopedER64*>(p_Target) = s_Object;
@@ -60635,7 +60635,7 @@ void ZScopedRuntimePinConDesc::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aScopePath"])
 	{
-		s_Object.m_aScopePath.push_back(uint64(s_Item0));
+		s_Object.m_aScopePath.push_back(simdjson::from_json_uint64(s_Item0));
 	}
 
 	{
@@ -60686,7 +60686,7 @@ void ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::FromSimp
 {
 	ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule s_Object;
 
-	s_Object.m_NrGuardsToSend = static_cast<int32>(int64_t(p_Document["m_NrGuardsToSend"]));
+	s_Object.m_NrGuardsToSend = simdjson::from_json_int32(p_Document["m_NrGuardsToSend"]);
 
 	*reinterpret_cast<ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule*>(p_Target) = s_Object;
 }
@@ -60738,7 +60738,7 @@ void ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::FromSimple
 {
 	ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule s_Object;
 
-	s_Object.m_NrGuardsToSend = static_cast<int32>(int64_t(p_Document["m_NrGuardsToSend"]));
+	s_Object.m_NrGuardsToSend = simdjson::from_json_int32(p_Document["m_NrGuardsToSend"]);
 
 	s_Object.m_Situation = static_cast<ZSecuritySystemCameraConfiguration_ECameraEscalationSituations>(ZHMEnums::GetEnumValueByName("ZSecuritySystemCameraConfiguration.ECameraEscalationSituations", std::string_view(p_Document["m_Situation"])));
 
@@ -60842,7 +60842,7 @@ void ZSetPieceIconEntity_SIconData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	s_Object.sMissingToolText = std::string_view(p_Document["sMissingToolText"]);
 
-	s_Object.bShowMissingTool = bool(p_Document["bShowMissingTool"]);
+	s_Object.bShowMissingTool = simdjson::from_json_bool(p_Document["bShowMissingTool"]);
 
 	*reinterpret_cast<ZSetPieceIconEntity_SIconData*>(p_Target) = s_Object;
 }
@@ -60981,23 +60981,23 @@ void ZSharedSensorDef_SVisibilitySetting::FromSimpleJson(simdjson::ondemand::val
 
 	s_Object.m_eSensitivity = static_cast<EActorPerceptionSensitivity>(ZHMEnums::GetEnumValueByName("EActorPerceptionSensitivity", std::string_view(p_Document["m_eSensitivity"])));
 
-	s_Object.m_fCloseRange = static_cast<float32>(double(p_Document["m_fCloseRange"]));
+	s_Object.m_fCloseRange = simdjson::from_json_float32(p_Document["m_fCloseRange"]);
 
-	s_Object.m_fPeripheralAngle = static_cast<float32>(double(p_Document["m_fPeripheralAngle"]));
+	s_Object.m_fPeripheralAngle = simdjson::from_json_float32(p_Document["m_fPeripheralAngle"]);
 
-	s_Object.m_fPeripheralAngleWhileMoving = static_cast<float32>(double(p_Document["m_fPeripheralAngleWhileMoving"]));
+	s_Object.m_fPeripheralAngleWhileMoving = simdjson::from_json_float32(p_Document["m_fPeripheralAngleWhileMoving"]);
 
-	s_Object.m_fPeripheralHigh = static_cast<float32>(double(p_Document["m_fPeripheralHigh"]));
+	s_Object.m_fPeripheralHigh = simdjson::from_json_float32(p_Document["m_fPeripheralHigh"]);
 
-	s_Object.m_fPeripheralLow = static_cast<float32>(double(p_Document["m_fPeripheralLow"]));
+	s_Object.m_fPeripheralLow = simdjson::from_json_float32(p_Document["m_fPeripheralLow"]);
 
-	s_Object.m_fFocusConeWidthAngle = static_cast<float32>(double(p_Document["m_fFocusConeWidthAngle"]));
+	s_Object.m_fFocusConeWidthAngle = simdjson::from_json_float32(p_Document["m_fFocusConeWidthAngle"]);
 
-	s_Object.m_fFocusConeHeightAngle = static_cast<float32>(double(p_Document["m_fFocusConeHeightAngle"]));
+	s_Object.m_fFocusConeHeightAngle = simdjson::from_json_float32(p_Document["m_fFocusConeHeightAngle"]);
 
-	s_Object.m_fFocusConeRange = static_cast<float32>(double(p_Document["m_fFocusConeRange"]));
+	s_Object.m_fFocusConeRange = simdjson::from_json_float32(p_Document["m_fFocusConeRange"]);
 
-	s_Object.m_fFocusConeBackWidth = static_cast<float32>(double(p_Document["m_fFocusConeBackWidth"]));
+	s_Object.m_fFocusConeBackWidth = simdjson::from_json_float32(p_Document["m_fFocusConeBackWidth"]);
 
 	*reinterpret_cast<ZSharedSensorDef_SVisibilitySetting*>(p_Target) = s_Object;
 }
@@ -61129,9 +61129,9 @@ void ZSniperCombatSituation_SSniperSuspiciousArea::FromSimpleJson(simdjson::onde
 		s_Object.m_vPosition = s_Item;
 	}
 
-	s_Object.m_fRange = static_cast<float32>(double(p_Document["m_fRange"]));
+	s_Object.m_fRange = simdjson::from_json_float32(p_Document["m_fRange"]);
 
-	s_Object.m_bIsIslandEntrance = bool(p_Document["m_bIsIslandEntrance"]);
+	s_Object.m_bIsIslandEntrance = simdjson::from_json_bool(p_Document["m_bIsIslandEntrance"]);
 
 	*reinterpret_cast<ZSniperCombatSituation_SSniperSuspiciousArea*>(p_Target) = s_Object;
 }
@@ -61389,18 +61389,18 @@ void ZSniperCombatSituation_SSituationSaveData::FromSimpleJson(simdjson::ondeman
 {
 	ZSniperCombatSituation_SSituationSaveData s_Object;
 
-	s_Object.m_rSniperLocation = static_cast<uint32>(int64_t(p_Document["m_rSniperLocation"]));
+	s_Object.m_rSniperLocation = simdjson::from_json_uint32(p_Document["m_rSniperLocation"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSniperCombatGroups"])
 	{
-		s_Object.m_aSniperCombatGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aSniperCombatGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
-	s_Object.m_bAggressive = bool(p_Document["m_bAggressive"]);
+	s_Object.m_bAggressive = simdjson::from_json_bool(p_Document["m_bAggressive"]);
 
-	s_Object.m_bKiller = bool(p_Document["m_bKiller"]);
+	s_Object.m_bKiller = simdjson::from_json_bool(p_Document["m_bKiller"]);
 
-	s_Object.m_rIsland = static_cast<uint32>(int64_t(p_Document["m_rIsland"]));
+	s_Object.m_rIsland = simdjson::from_json_uint32(p_Document["m_rIsland"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSuspiciousAreas"])
 	{
@@ -61411,23 +61411,23 @@ void ZSniperCombatSituation_SSituationSaveData::FromSimpleJson(simdjson::ondeman
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aWaitingGuards"])
 	{
-		s_Object.m_aWaitingGuards.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aWaitingGuards.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFleeCandidates"])
 	{
-		s_Object.m_aFleeCandidates.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aFleeCandidates.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
-	s_Object.m_bHasFailed = bool(p_Document["m_bHasFailed"]);
+	s_Object.m_bHasFailed = simdjson::from_json_bool(p_Document["m_bHasFailed"]);
 
 	s_Object.m_eState = static_cast<ZSniperCombatSituation_ESituationState>(ZHMEnums::GetEnumValueByName("ZSniperCombatSituation.ESituationState", std::string_view(p_Document["m_eState"])));
 
-	s_Object.m_nGuards = static_cast<uint32>(int64_t(p_Document["m_nGuards"]));
+	s_Object.m_nGuards = simdjson::from_json_uint32(p_Document["m_nGuards"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerGroups"])
 	{
-		s_Object.m_aAvoidDangerGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aAvoidDangerGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	*reinterpret_cast<ZSniperCombatSituation_SSituationSaveData*>(p_Target) = s_Object;
@@ -61569,16 +61569,16 @@ void ZSpectatorSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::
 {
 	ZSpectatorSituation_SSituationSaveData s_Object;
 
-	s_Object.m_bStandingDown = bool(p_Document["m_bStandingDown"]);
+	s_Object.m_bStandingDown = simdjson::from_json_bool(p_Document["m_bStandingDown"]);
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aObserverGroupIDs"])
 	{
-		s_Object.m_aObserverGroupIDs.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aObserverGroupIDs.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aNonObserverMembers"])
 	{
-		s_Object.m_aNonObserverMembers.push_back(static_cast<uint32>(int64_t(s_Item0)));
+		s_Object.m_aNonObserverMembers.push_back(simdjson::from_json_uint32(s_Item0));
 	}
 
 	*reinterpret_cast<ZSpectatorSituation_SSituationSaveData*>(p_Target) = s_Object;
@@ -61927,29 +61927,29 @@ void ZStandOffSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_eArrestReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_eArrestReason"])));
 
-	s_Object.m_nWarningPriority = static_cast<uint32>(int64_t(p_Document["m_nWarningPriority"]));
+	s_Object.m_nWarningPriority = simdjson::from_json_uint32(p_Document["m_nWarningPriority"]);
 
-	s_Object.m_TargetHasWeaponEquipped = bool(p_Document["m_TargetHasWeaponEquipped"]);
+	s_Object.m_TargetHasWeaponEquipped = simdjson::from_json_bool(p_Document["m_TargetHasWeaponEquipped"]);
 
-	s_Object.m_ImmediateWarningDialog = bool(p_Document["m_ImmediateWarningDialog"]);
+	s_Object.m_ImmediateWarningDialog = simdjson::from_json_bool(p_Document["m_ImmediateWarningDialog"]);
 
-	s_Object.m_nResetCount = static_cast<int32>(int64_t(p_Document["m_nResetCount"]));
+	s_Object.m_nResetCount = simdjson::from_json_int32(p_Document["m_nResetCount"]);
 
-	s_Object.m_bArrestReasonStated = bool(p_Document["m_bArrestReasonStated"]);
+	s_Object.m_bArrestReasonStated = simdjson::from_json_bool(p_Document["m_bArrestReasonStated"]);
 
-	s_Object.m_bTargetOnStairs = bool(p_Document["m_bTargetOnStairs"]);
+	s_Object.m_bTargetOnStairs = simdjson::from_json_bool(p_Document["m_bTargetOnStairs"]);
 
-	s_Object.m_bUpdateApproachPositions = bool(p_Document["m_bUpdateApproachPositions"]);
+	s_Object.m_bUpdateApproachPositions = simdjson::from_json_bool(p_Document["m_bUpdateApproachPositions"]);
 
-	s_Object.m_bHelpOrderAssigned = bool(p_Document["m_bHelpOrderAssigned"]);
+	s_Object.m_bHelpOrderAssigned = simdjson::from_json_bool(p_Document["m_bHelpOrderAssigned"]);
 
-	s_Object.m_bCivilianTransferredKnowledge = bool(p_Document["m_bCivilianTransferredKnowledge"]);
+	s_Object.m_bCivilianTransferredKnowledge = simdjson::from_json_bool(p_Document["m_bCivilianTransferredKnowledge"]);
 
-	s_Object.m_bTargetLost = bool(p_Document["m_bTargetLost"]);
+	s_Object.m_bTargetLost = simdjson::from_json_bool(p_Document["m_bTargetLost"]);
 
-	s_Object.m_bGetHelpGroupStarted = bool(p_Document["m_bGetHelpGroupStarted"]);
+	s_Object.m_bGetHelpGroupStarted = simdjson::from_json_bool(p_Document["m_bGetHelpGroupStarted"]);
 
-	s_Object.m_bHandlerHasLOS = bool(p_Document["m_bHandlerHasLOS"]);
+	s_Object.m_bHandlerHasLOS = simdjson::from_json_bool(p_Document["m_bHandlerHasLOS"]);
 
 	{
 		float4 s_Item;
@@ -61957,13 +61957,13 @@ void ZStandOffSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.m_vLastKnownPosition = s_Item;
 	}
 
-	s_Object.m_fMovingTime = static_cast<float32>(double(p_Document["m_fMovingTime"]));
+	s_Object.m_fMovingTime = simdjson::from_json_float32(p_Document["m_fMovingTime"]);
 
-	s_Object.m_fRunningTime = static_cast<float32>(double(p_Document["m_fRunningTime"]));
+	s_Object.m_fRunningTime = simdjson::from_json_float32(p_Document["m_fRunningTime"]);
 
-	s_Object.m_fEquippedWeaponTime = static_cast<float32>(double(p_Document["m_fEquippedWeaponTime"]));
+	s_Object.m_fEquippedWeaponTime = simdjson::from_json_float32(p_Document["m_fEquippedWeaponTime"]);
 
-	s_Object.m_fStrangleTime = static_cast<float32>(double(p_Document["m_fStrangleTime"]));
+	s_Object.m_fStrangleTime = simdjson::from_json_float32(p_Document["m_fStrangleTime"]);
 
 	{
 		ZGameTime s_Item;
@@ -61997,17 +61997,17 @@ void ZStandOffSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_eDialogState = static_cast<ZStandOffSituation_EDialogState>(ZHMEnums::GetEnumValueByName("ZStandOffSituation.EDialogState", std::string_view(p_Document["m_eDialogState"])));
 
-	s_Object.m_nWarningCount = static_cast<int32>(int64_t(p_Document["m_nWarningCount"]));
+	s_Object.m_nWarningCount = simdjson::from_json_int32(p_Document["m_nWarningCount"]);
 
-	s_Object.m_bWarning3Given = bool(p_Document["m_bWarning3Given"]);
+	s_Object.m_bWarning3Given = simdjson::from_json_bool(p_Document["m_bWarning3Given"]);
 
-	s_Object.m_bStopWarningGiven = bool(p_Document["m_bStopWarningGiven"]);
+	s_Object.m_bStopWarningGiven = simdjson::from_json_bool(p_Document["m_bStopWarningGiven"]);
 
-	s_Object.m_reportedTarget = bool(p_Document["m_reportedTarget"]);
+	s_Object.m_reportedTarget = simdjson::from_json_bool(p_Document["m_reportedTarget"]);
 
-	s_Object.m_bTriggeredBySecurityCameras = bool(p_Document["m_bTriggeredBySecurityCameras"]);
+	s_Object.m_bTriggeredBySecurityCameras = simdjson::from_json_bool(p_Document["m_bTriggeredBySecurityCameras"]);
 
-	s_Object.m_bLOSMemberWantsToKill = bool(p_Document["m_bLOSMemberWantsToKill"]);
+	s_Object.m_bLOSMemberWantsToKill = simdjson::from_json_bool(p_Document["m_bLOSMemberWantsToKill"]);
 
 	*reinterpret_cast<ZStandOffSituation_SState*>(p_Target) = s_Object;
 }
@@ -62162,17 +62162,17 @@ void ZStandOffSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_State = s_Item;
 	}
 
-	s_Object.m_pArrestor = static_cast<uint32>(int64_t(p_Document["m_pArrestor"]));
+	s_Object.m_pArrestor = simdjson::from_json_uint32(p_Document["m_pArrestor"]);
 
-	s_Object.m_pSpeaker = static_cast<uint32>(int64_t(p_Document["m_pSpeaker"]));
+	s_Object.m_pSpeaker = simdjson::from_json_uint32(p_Document["m_pSpeaker"]);
 
-	s_Object.m_TargetWeaponItem = static_cast<uint32>(int64_t(p_Document["m_TargetWeaponItem"]));
+	s_Object.m_TargetWeaponItem = simdjson::from_json_uint32(p_Document["m_TargetWeaponItem"]);
 
-	s_Object.m_IllegalWeaponSeen = static_cast<uint32>(int64_t(p_Document["m_IllegalWeaponSeen"]));
+	s_Object.m_IllegalWeaponSeen = simdjson::from_json_uint32(p_Document["m_IllegalWeaponSeen"]);
 
-	s_Object.m_pGetHelpGroup = static_cast<int32>(int64_t(p_Document["m_pGetHelpGroup"]));
+	s_Object.m_pGetHelpGroup = simdjson::from_json_int32(p_Document["m_pGetHelpGroup"]);
 
-	s_Object.m_rIsland = static_cast<uint32>(int64_t(p_Document["m_rIsland"]));
+	s_Object.m_rIsland = simdjson::from_json_uint32(p_Document["m_rIsland"]);
 
 	{
 		ZGameTime s_Item;
@@ -62182,7 +62182,7 @@ void ZStandOffSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerGroups"])
 	{
-		s_Object.m_aAvoidDangerGroups.push_back(static_cast<int32>(int64_t(s_Item0)));
+		s_Object.m_aAvoidDangerGroups.push_back(simdjson::from_json_int32(s_Item0));
 	}
 
 	*reinterpret_cast<ZStandOffSituation_SSituationSaveData*>(p_Target) = s_Object;
@@ -62228,7 +62228,7 @@ void ZTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
 	ZTime s_Object;
 
-	s_Object.m_nValue = uint64(p_Document["m_nValue"]);
+	s_Object.m_nValue = simdjson::from_json_uint64(p_Document["m_nValue"]);
 
 	*reinterpret_cast<ZTime*>(p_Target) = s_Object;
 }
@@ -62330,7 +62330,7 @@ void ZTrespassingSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Do
 		s_Object.m_tLastTargetVisible = s_Item;
 	}
 
-	s_Object.m_bStopWarningGiven = bool(p_Document["m_bStopWarningGiven"]);
+	s_Object.m_bStopWarningGiven = simdjson::from_json_bool(p_Document["m_bStopWarningGiven"]);
 
 	*reinterpret_cast<ZTrespassingSituation_SState*>(p_Target) = s_Object;
 }
@@ -62431,9 +62431,9 @@ void ZTrespassingSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand
 		s_Object.m_State = s_Item;
 	}
 
-	s_Object.m_rEscortingMember = static_cast<uint32>(int64_t(p_Document["m_rEscortingMember"]));
+	s_Object.m_rEscortingMember = simdjson::from_json_uint32(p_Document["m_rEscortingMember"]);
 
-	s_Object.m_rHelpingGuardMember = static_cast<uint32>(int64_t(p_Document["m_rHelpingGuardMember"]));
+	s_Object.m_rHelpingGuardMember = simdjson::from_json_uint32(p_Document["m_rHelpingGuardMember"]);
 
 	{
 		float4 s_Item;
@@ -62441,9 +62441,9 @@ void ZTrespassingSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand
 		s_Object.m_vEscortOutExitLocation = s_Item;
 	}
 
-	s_Object.m_nGetHelpGroup = static_cast<int32>(int64_t(p_Document["m_nGetHelpGroup"]));
+	s_Object.m_nGetHelpGroup = simdjson::from_json_int32(p_Document["m_nGetHelpGroup"]);
 
-	s_Object.m_bPropagationEnabled = bool(p_Document["m_bPropagationEnabled"]);
+	s_Object.m_bPropagationEnabled = simdjson::from_json_bool(p_Document["m_bPropagationEnabled"]);
 
 	*reinterpret_cast<ZTrespassingSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
@@ -62679,11 +62679,11 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::
 
 	s_Object.label = std::string_view(p_Document["label"]);
 
-	s_Object.silencer = bool(p_Document["silencer"]);
+	s_Object.silencer = simdjson::from_json_bool(p_Document["silencer"]);
 
-	s_Object.count = static_cast<int32>(int64_t(p_Document["count"]));
+	s_Object.count = simdjson::from_json_int32(p_Document["count"]);
 
-	s_Object.ammo = static_cast<int32>(int64_t(p_Document["ammo"]));
+	s_Object.ammo = simdjson::from_json_int32(p_Document["ammo"]);
 
 	{
 		ZRepositoryID s_Item;
@@ -62693,13 +62693,13 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::
 
 	s_Object.weaponCategory = std::string_view(p_Document["weaponCategory"]);
 
-	s_Object.nAmmoRemaining = static_cast<int32>(int64_t(p_Document["nAmmoRemaining"]));
+	s_Object.nAmmoRemaining = simdjson::from_json_int32(p_Document["nAmmoRemaining"]);
 
-	s_Object.nAmmoTotal = static_cast<int32>(int64_t(p_Document["nAmmoTotal"]));
+	s_Object.nAmmoTotal = simdjson::from_json_int32(p_Document["nAmmoTotal"]);
 
-	s_Object.nAmmoInClip = static_cast<int32>(int64_t(p_Document["nAmmoInClip"]));
+	s_Object.nAmmoInClip = simdjson::from_json_int32(p_Document["nAmmoInClip"]);
 
-	s_Object.nWeaponType = static_cast<int32>(int64_t(p_Document["nWeaponType"]));
+	s_Object.nWeaponType = simdjson::from_json_int32(p_Document["nWeaponType"]);
 
 	s_Object.itemCategory = std::string_view(p_Document["itemCategory"]);
 
@@ -62709,9 +62709,9 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::
 
 	s_Object.sPoisonType = std::string_view(p_Document["sPoisonType"]);
 
-	s_Object.notininventory = bool(p_Document["notininventory"]);
+	s_Object.notininventory = simdjson::from_json_bool(p_Document["notininventory"]);
 
-	s_Object.isIllegal = bool(p_Document["isIllegal"]);
+	s_Object.isIllegal = simdjson::from_json_bool(p_Document["isIllegal"]);
 
 	s_Object.actionName = std::string_view(p_Document["actionName"]);
 
@@ -62985,11 +62985,11 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::FromS
 		s_Object.mainslotsSlim.push_back(s_ArrayItem0);
 	}
 
-	s_Object.otherslotsCount = static_cast<int32>(int64_t(p_Document["otherslotsCount"]));
+	s_Object.otherslotsCount = simdjson::from_json_int32(p_Document["otherslotsCount"]);
 
-	s_Object.selectedIndex = static_cast<int32>(int64_t(p_Document["selectedIndex"]));
+	s_Object.selectedIndex = simdjson::from_json_int32(p_Document["selectedIndex"]);
 
-	s_Object.isActionInventory = bool(p_Document["isActionInventory"]);
+	s_Object.isActionInventory = simdjson::from_json_bool(p_Document["isActionInventory"]);
 
 	*reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData*>(p_Target) = s_Object;
 }
@@ -63258,11 +63258,11 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::FromSimple
 
 	s_Object.containedLabel = std::string_view(p_Document["containedLabel"]);
 
-	s_Object.silencer = bool(p_Document["silencer"]);
+	s_Object.silencer = simdjson::from_json_bool(p_Document["silencer"]);
 
-	s_Object.count = static_cast<int32>(int64_t(p_Document["count"]));
+	s_Object.count = simdjson::from_json_int32(p_Document["count"]);
 
-	s_Object.ammo = static_cast<int32>(int64_t(p_Document["ammo"]));
+	s_Object.ammo = simdjson::from_json_int32(p_Document["ammo"]);
 
 	{
 		ZRepositoryID s_Item;
@@ -63272,13 +63272,13 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::FromSimple
 
 	s_Object.weaponCategory = std::string_view(p_Document["weaponCategory"]);
 
-	s_Object.nAmmoRemaining = static_cast<int32>(int64_t(p_Document["nAmmoRemaining"]));
+	s_Object.nAmmoRemaining = simdjson::from_json_int32(p_Document["nAmmoRemaining"]);
 
-	s_Object.nAmmoTotal = static_cast<int32>(int64_t(p_Document["nAmmoTotal"]));
+	s_Object.nAmmoTotal = simdjson::from_json_int32(p_Document["nAmmoTotal"]);
 
-	s_Object.nAmmoInClip = static_cast<int32>(int64_t(p_Document["nAmmoInClip"]));
+	s_Object.nAmmoInClip = simdjson::from_json_int32(p_Document["nAmmoInClip"]);
 
-	s_Object.nWeaponType = static_cast<int32>(int64_t(p_Document["nWeaponType"]));
+	s_Object.nWeaponType = simdjson::from_json_int32(p_Document["nWeaponType"]);
 
 	s_Object.itemCategory = std::string_view(p_Document["itemCategory"]);
 
@@ -63286,9 +63286,9 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::FromSimple
 
 	s_Object.inventoryCategoryIcon = std::string_view(p_Document["inventoryCategoryIcon"]);
 
-	s_Object.notininventory = bool(p_Document["notininventory"]);
+	s_Object.notininventory = simdjson::from_json_bool(p_Document["notininventory"]);
 
-	s_Object.isIllegal = bool(p_Document["isIllegal"]);
+	s_Object.isIllegal = simdjson::from_json_bool(p_Document["isIllegal"]);
 
 	s_Object.actionName = std::string_view(p_Document["actionName"]);
 
@@ -63572,11 +63572,11 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::FromSimpleJson(
 		s_Object.mainslotsSlim.push_back(s_ArrayItem0);
 	}
 
-	s_Object.otherslotsCount = static_cast<int32>(int64_t(p_Document["otherslotsCount"]));
+	s_Object.otherslotsCount = simdjson::from_json_int32(p_Document["otherslotsCount"]);
 
-	s_Object.selectedIndex = static_cast<int32>(int64_t(p_Document["selectedIndex"]));
+	s_Object.selectedIndex = simdjson::from_json_int32(p_Document["selectedIndex"]);
 
-	s_Object.isActionInventory = bool(p_Document["isActionInventory"]);
+	s_Object.isActionInventory = simdjson::from_json_bool(p_Document["isActionInventory"]);
 
 	s_Object.noItemsMessage = std::string_view(p_Document["noItemsMessage"]);
 
