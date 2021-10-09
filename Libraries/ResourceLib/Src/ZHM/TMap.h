@@ -212,6 +212,16 @@ public:
 		return m_container.m_nSize;
 	}
 
+	bool operator==(const TMap<T, Z>& p_Other) const
+	{
+		return false;
+	}
+
+	bool operator!=(const TMap<T, Z>& p_Other) const
+	{
+		return !(*this == p_Other);
+	}
+
 protected:
 	TRedBlackTree<value_type> m_container;
 };

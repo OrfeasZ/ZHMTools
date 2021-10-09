@@ -100,6 +100,19 @@ public:
 		return strncmp(c_str(), p_Other.c_str(), p_Other.size()) == 0;
 	}
 
+	bool operator==(const ZString& p_Other) const
+	{
+		if (size() != p_Other.size())
+			return false;
+
+		return string_view() == p_Other.string_view();
+	}
+
+	bool operator!=(const ZString& p_Other) const
+	{
+		return !(*this == p_Other);
+	}
+
 private:
 	void allocate(const char* str, size_t size)
 	{

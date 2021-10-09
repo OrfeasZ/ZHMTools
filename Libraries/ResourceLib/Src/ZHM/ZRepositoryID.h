@@ -132,6 +132,16 @@ public:
 		return s_GUID;
 	}
 
+	bool operator==(const ZRepositoryID& p_Other) const
+	{
+		return m_nHigh == p_Other.m_nHigh && m_nLow == p_Other.m_nLow;
+	}
+
+	bool operator!=(const ZRepositoryID& p_Other) const
+	{
+		return !(*this == p_Other);
+	}
+
 public:
 	union
 	{

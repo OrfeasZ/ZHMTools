@@ -5,52 +5,52 @@
 
 namespace simdjson
 {
-	inline int8 from_json_int8(simdjson::ondemand::value p_Value)
+	inline int8_t from_json_int8(simdjson::ondemand::value p_Value)
 	{
-		return static_cast<int8>(static_cast<int64_t>(p_Value));
+		return static_cast<int8_t>(static_cast<int64_t>(p_Value));
 	}
 
-	inline uint8 from_json_uint8(simdjson::ondemand::value p_Value)
+	inline uint8_t from_json_uint8(simdjson::ondemand::value p_Value)
 	{
-		return static_cast<uint8>(static_cast<uint64_t>(p_Value));
+		return static_cast<uint8_t>(static_cast<uint64_t>(p_Value));
 	}
 
-	inline int16 from_json_int16(simdjson::ondemand::value p_Value)
+	inline int16_t from_json_int16(simdjson::ondemand::value p_Value)
 	{
-		return static_cast<int16>(static_cast<int64_t>(p_Value));
+		return static_cast<int16_t>(static_cast<int64_t>(p_Value));
 	}
 
-	inline uint16 from_json_uint16(simdjson::ondemand::value p_Value)
+	inline uint16_t from_json_uint16(simdjson::ondemand::value p_Value)
 	{
-		return static_cast<uint16>(static_cast<uint64_t>(p_Value));
+		return static_cast<uint16_t>(static_cast<uint64_t>(p_Value));
 	}
 
-	inline int32 from_json_int32(simdjson::ondemand::value p_Value)
+	inline int32_t from_json_int32(simdjson::ondemand::value p_Value)
 	{
-		return static_cast<int32>(static_cast<int64_t>(p_Value));
+		return static_cast<int32_t>(static_cast<int64_t>(p_Value));
 	}
 
-	inline uint32 from_json_uint32(simdjson::ondemand::value p_Value)
+	inline uint32_t from_json_uint32(simdjson::ondemand::value p_Value)
 	{
-		return static_cast<uint32>(static_cast<uint64_t>(p_Value));
+		return static_cast<uint32_t>(static_cast<uint64_t>(p_Value));
 	}
 
-	inline int64 from_json_int64(simdjson::ondemand::value p_Value)
-	{
-		return p_Value;
-	}
-
-	inline uint64 from_json_uint64(simdjson::ondemand::value p_Value)
+	inline int64_t from_json_int64(simdjson::ondemand::value p_Value)
 	{
 		return p_Value;
 	}
 
-	inline float32 from_json_float32(simdjson::ondemand::value p_Value)
+	inline uint64_t from_json_uint64(simdjson::ondemand::value p_Value)
 	{
-		return static_cast<float32>(static_cast<double>(p_Value));
+		return p_Value;
 	}
 
-	inline float64 from_json_float64(simdjson::ondemand::value p_Value)
+	inline float from_json_float32(simdjson::ondemand::value p_Value)
+	{
+		return static_cast<float>(static_cast<double>(p_Value));
+	}
+
+	inline double from_json_float64(simdjson::ondemand::value p_Value)
 	{
 		return p_Value;
 	}
@@ -141,5 +141,12 @@ namespace simdjson
 	inline std::string as_json_string(bool p_Value)
 	{
 		return p_Value ? "true" : "false";
+	}
+
+	inline std::string get_obj_id(void* p_Object)
+	{
+		auto s_ID = as_json_string(reinterpret_cast<uintptr_t>(p_Object));
+		printf("%s\n", s_ID.c_str());
+		return s_ID;
 	}
 }

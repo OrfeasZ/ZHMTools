@@ -546,6 +546,10 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	s_HeaderStream << s_Indent << "\tstatic void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);" << std::endl;
 	s_HeaderStream << s_Indent << "\tstatic void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);" << std::endl;
 	s_HeaderStream << s_Indent << "\tstatic void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);" << std::endl;
+	s_HeaderStream << s_Indent << "\tstatic bool Equals(void* p_Left, void* p_Right);" << std::endl;
+	s_HeaderStream << std::endl;
+	s_HeaderStream << s_Indent << "\tbool operator==(const " << s_NormalizedName << "& p_Other) const;" << std::endl;
+	s_HeaderStream << s_Indent << "\tbool operator!=(const " << s_NormalizedName << "& p_Other) const { return !(*this == p_Other); }" << std::endl;
 	s_HeaderStream << std::endl;
 
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
@@ -626,7 +630,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 	std::ostringstream s_SourceStream;
 
-	s_SourceStream << "ZHMTypeInfo " << s_NormalizedName << "::TypeInfo = ZHMTypeInfo(\"" << s_TypeName << "\", sizeof(" << s_NormalizedName << "), alignof(" << s_NormalizedName << "), " << s_NormalizedName << "::WriteJson, " << s_NormalizedName << "::WriteSimpleJson, " << s_NormalizedName << "::FromSimpleJson, " << s_NormalizedName << "::Serialize);" << std::endl;
+	s_SourceStream << "ZHMTypeInfo " << s_NormalizedName << "::TypeInfo = ZHMTypeInfo(\"" << s_TypeName << "\", sizeof(" << s_NormalizedName << "), alignof(" << s_NormalizedName << "), " << s_NormalizedName << "::WriteJson, " << s_NormalizedName << "::WriteSimpleJson, " << s_NormalizedName << "::FromSimpleJson, " << s_NormalizedName << "::Serialize, " << s_NormalizedName << "::Equals);" << std::endl;
 	s_SourceStream << std::endl;
 
 	s_SourceStream << "void " << s_NormalizedName << "::WriteJson(void* p_Object, std::ostream& p_Stream)" << std::endl;
@@ -638,6 +642,14 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	s_SourceStream << std::endl;
 
 	s_SourceStream << "\tp_Stream << \"{\";" << std::endl;
+
+	/*s_SourceStream << "\tp_Stream << \"\\\"$id\\\":\" << simdjson::get_obj_id(s_Object)";
+
+	if (s_Type->m_nPropertyCount > 0)
+		s_SourceStream << " << \",\"";
+
+	s_SourceStream << ";";
+	s_SourceStream << std::endl;*/
 
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
 	{
@@ -696,6 +708,14 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 	s_SourceStream << "\tp_Stream << \"{\";" << std::endl;
 	s_SourceStream << std::endl;
+
+	/*s_SourceStream << "\tp_Stream << \"\\\"$id\\\":\" << simdjson::get_obj_id(s_Object)";
+
+	if (s_Type->m_nPropertyCount > 0)
+		s_SourceStream << " << \",\"";
+
+	s_SourceStream << ";";
+	s_SourceStream << std::endl;*/
 
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
 	{
@@ -838,6 +858,36 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 	s_SourceStream << "}" << std::endl;
 	s_SourceStream << std::endl;
+
+	s_SourceStream << "bool " << s_NormalizedName << "::Equals(void* p_Left, void* p_Right)" << std::endl;
+	s_SourceStream << "{" << std::endl;
+	s_SourceStream << "\tauto* s_Left = reinterpret_cast<" << s_NormalizedName << "*>(p_Left);" << std::endl;
+	s_SourceStream << "\tauto* s_Right = reinterpret_cast<" << s_NormalizedName << "*>(p_Right);" << std::endl;
+	s_SourceStream << std::endl;
+	s_SourceStream << "\treturn *s_Left == *s_Right;" << std::endl;
+	s_SourceStream << "}" << std::endl;
+	s_SourceStream << std::endl;
+
+	s_SourceStream << "bool " << s_NormalizedName << "::operator==(const " << s_NormalizedName << "& p_Other) const" << std::endl;
+	s_SourceStream << "{" << std::endl;
+
+	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
+	{
+		auto s_Prop = s_Type->m_pProperties[i];
+		auto s_PropTypeName = std::string(s_Prop.m_pType->typeInfo()->m_pTypeName);
+
+		if (s_PropTypeName == std::string("TArray"))
+			continue;
+
+		s_SourceStream << "\tif (" << s_Prop.m_pName << " != p_Other." << s_Prop.m_pName << ") return false;" << std::endl;
+	}
+
+	s_SourceStream << std::endl;
+	s_SourceStream << "\treturn true;" << std::endl;
+
+	s_SourceStream << "}" << std::endl;
+	s_SourceStream << std::endl;
+
 
 	s_SourceStream.flush();
 

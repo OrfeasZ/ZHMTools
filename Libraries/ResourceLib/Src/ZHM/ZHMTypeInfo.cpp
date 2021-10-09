@@ -66,6 +66,11 @@ public:
 		return false;
 	}
 
+	bool Equals(void* p_Left, void* p_Right) const override
+	{
+		return *reinterpret_cast<int32_t*>(p_Left) == *reinterpret_cast<int32_t*>(p_Right);
+	}
+
 private:
 	std::string m_TypeName;
 };
@@ -229,6 +234,12 @@ public:
 		return false;
 	}
 
+	bool Equals(void* p_Left, void* p_Right) const override
+	{
+		// TODO
+		return false;
+	}
+
 private:
 	IZHMTypeInfo* m_ElementType;
 };
@@ -276,6 +287,11 @@ public:
 	bool IsDummy() const override
 	{
 		return true;
+	}
+
+	bool Equals(void* p_Left, void* p_Right) const override
+	{
+		return false;
 	}
 
 private:

@@ -6,6 +6,9 @@
 #include "Util/PortableIntrinsics.h"
 
 #include <iostream>
+#include <unordered_set>
+
+#include "External/simdjson_helpers.h"
 
 void ZVariant::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -25,7 +28,7 @@ void ZVariant::WriteJson(void* p_Object, std::ostream& p_Stream)
 		return;
 	}
 
-	p_Stream << "{" << "\"$type\"" << ":" << JsonStr(s_Object->m_pTypeID->TypeName()) << "," << "\"$val\"" << ":";
+	p_Stream << "{\"$type\":" << simdjson::as_json_string(s_Object->m_pTypeID->TypeName()) << ",\"$val\"" << ":";
 
 	s_Object->m_pTypeID->WriteJson(s_Object->m_pData, p_Stream);
 
@@ -50,12 +53,14 @@ void ZVariant::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 		return;
 	}
 
-	p_Stream << "{" << "\"$type\"" << ":" << JsonStr(s_Object->m_pTypeID->TypeName()) << "," << "\"$val\"" << ":";
+	p_Stream << "{\"$type\":" << simdjson::as_json_string(s_Object->m_pTypeID->TypeName()) << ",\"$val\"" << ":";
 
 	s_Object->m_pTypeID->WriteSimpleJson(s_Object->m_pData, p_Stream);
 
 	p_Stream << "}";
 }
+
+static std::unordered_map<std::string_view, std::list<void*>> g_VariantRegistry;
 
 void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
@@ -79,16 +84,50 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 		else
 		{
 			if (s_Variant.m_pTypeID->TypeName() == "void")
+			{
 				s_Variant.m_pData = nullptr;
+			}
 			else
+			{
 				s_Variant.m_pData = c_aligned_alloc(s_Variant.m_pTypeID->Size(), s_Variant.m_pTypeID->Alignment());
+				s_Variant.m_pTypeID->CreateFromJson(p_Document["$val"], s_Variant.m_pData);
 
-			s_Variant.m_pTypeID->CreateFromJson(p_Document["$val"], s_Variant.m_pData);
+				const auto s_RegistryIt = g_VariantRegistry.find(s_TypeName);
+
+				if (s_RegistryIt != g_VariantRegistry.end())
+				{
+					bool s_FoundExisting = false;
+
+					for (const auto s_OtherObject : s_RegistryIt->second)
+					{
+						if (s_Variant.m_pTypeID->Equals(s_Variant.m_pData, s_OtherObject))
+						{
+							s_FoundExisting = true;
+							c_aligned_free(s_Variant.m_pData);
+							s_Variant.m_pData = s_OtherObject;
+							
+							break;
+						}
+					}
+
+					if (!s_FoundExisting)
+						s_RegistryIt->second.push_back(s_Variant.m_pData);
+				}
+				else
+				{
+					std::list<void*> s_ObjectList;
+					s_ObjectList.push_back(s_Variant.m_pData);
+
+					g_VariantRegistry[s_TypeName] = s_ObjectList;
+				}
+			}
 		}
 	}
 
 	*reinterpret_cast<ZVariant*>(p_Target) = s_Variant;
 }
+
+static std::unordered_map<uintptr_t, uintptr_t> g_SerializedVariants;
 
 void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
@@ -112,10 +151,21 @@ void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t 
 	}
 	else
 	{
-		auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size(), s_Object->m_pTypeID->Alignment());
+		const auto s_PreviouslySerializedIt = g_SerializedVariants.find(reinterpret_cast<uintptr_t>(s_Object->m_pData));
 
-		s_Object->m_pTypeID->Serialize(s_Object->m_pData, p_Serializer, s_ValueOffset);
-		
-		p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ValueOffset);
+		if (s_PreviouslySerializedIt == g_SerializedVariants.end())
+		{
+			const auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size(), s_Object->m_pTypeID->Alignment());
+
+			s_Object->m_pTypeID->Serialize(s_Object->m_pData, p_Serializer, s_ValueOffset);
+
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ValueOffset);
+
+			g_SerializedVariants[reinterpret_cast<uintptr_t>(s_Object->m_pData)] = s_ValueOffset;
+		}
+		else
+		{
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_PreviouslySerializedIt->second);
+		}
 	}
 }

@@ -209,6 +209,16 @@ public:
 		}
 	}
 
+	bool operator==(const TArray<T>& p_Other) const
+	{
+		return false;
+	}
+
+	bool operator!=(const TArray<T>& p_Other) const
+	{
+		return !(*this == p_Other);
+	}
+
 public:
 	T* m_pBegin;
 	T* m_pEnd;
@@ -298,6 +308,16 @@ public:
 				T::Serialize(&s_Item, p_Serializer, s_Offset);
 			}
 		}
+	}
+
+	bool operator==(const TFixedArray<T, N>& p_Other) const
+	{
+		return false;
+	}
+
+	bool operator!=(const TFixedArray<T, N>& p_Other) const
+	{
+		return !(*this == p_Other);
 	}
 
 public:
