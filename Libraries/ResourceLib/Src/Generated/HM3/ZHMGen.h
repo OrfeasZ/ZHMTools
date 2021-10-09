@@ -21,6 +21,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_Private_Details_SBaseStimulus_Pool_SaveData& p_Other) const;
+	bool operator!=(const AI_Private_Details_SBaseStimulus_Pool_SaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_SlotDetails; // 0x0
 	TArray<int16> m_UsageRepresentation; // 0x18
@@ -36,6 +40,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_Private_Details_SStimulus_AgentData_SaveData& p_Other) const;
+	bool operator!=(const AI_Private_Details_SStimulus_AgentData_SaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_AgentData; // 0x0
 };
@@ -49,6 +57,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_Private_SStimulusSnapshot& p_Other) const;
+	bool operator!=(const AI_Private_SStimulusSnapshot& p_Other) const { return !(*this == p_Other); }
 
 	uint32 SlotIndex; // 0x0
 	ZString StimulusData; // 0x8
@@ -63,6 +75,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_Private_SPoolSnapshot& p_Other) const;
+	bool operator!=(const AI_Private_SPoolSnapshot& p_Other) const { return !(*this == p_Other); }
 
 	ZString StimulusTypeName; // 0x0
 	uint32 StimulusTypeId; // 0x10
@@ -79,6 +95,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_Private_SFullDataSnapshotEvent& p_Other) const;
+	bool operator!=(const AI_Private_SFullDataSnapshotEvent& p_Other) const { return !(*this == p_Other); }
 
 	uint64 Timestamp; // 0x0
 	uint32 EventIndex; // 0x8
@@ -94,6 +114,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_Private_SPoolModificationEvent& p_Other) const;
+	bool operator!=(const AI_Private_SPoolModificationEvent& p_Other) const { return !(*this == p_Other); }
 
 	uint32 StimulusTypeId; // 0x0
 	uint32 SlotIndex; // 0x4
@@ -113,6 +137,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_Private_SPoolModificationCollectionEvent& p_Other) const;
+	bool operator!=(const AI_Private_SPoolModificationCollectionEvent& p_Other) const { return !(*this == p_Other); }
 
 	TArray<AI_Private_SPoolModificationEvent> PoolModificationEvents; // 0x0
 };
@@ -359,6 +387,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_SEventDescription& p_Other) const;
+	bool operator!=(const AI_SEventDescription& p_Other) const { return !(*this == p_Other); }
 
 	EAIEventType m_eEventType; // 0x0
 	bool m_bPulsing; // 0x4
@@ -375,6 +407,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_SFirePattern01_SData& p_Other) const;
+	bool operator!=(const AI_SFirePattern01_SData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_BulletsToFire; // 0x0
 	float32 m_WaitMinSeconds; // 0x4
@@ -390,6 +426,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_SFirePattern01& p_Other) const;
+	bool operator!=(const AI_SFirePattern01& p_Other) const { return !(*this == p_Other); }
 
 	TArray<AI_SFirePattern01_SData> m_PatternSequenceData; // 0x0
 };
@@ -403,6 +443,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_SFirePattern02_SData& p_Other) const;
+	bool operator!=(const AI_SFirePattern02_SData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_FireMinSeconds; // 0x0
 	float32 m_FireMaxSeconds; // 0x4
@@ -419,6 +463,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_SFirePattern02& p_Other) const;
+	bool operator!=(const AI_SFirePattern02& p_Other) const { return !(*this == p_Other); }
 
 	TArray<AI_SFirePattern02_SData> m_PatternSequenceData; // 0x0
 };
@@ -432,6 +480,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AI_SSoundEventModifierState& p_Other) const;
+	bool operator!=(const AI_SSoundEventModifierState& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fRangeModifier; // 0x0
 	float32 m_fLoudnessModifier; // 0x4
@@ -446,6 +498,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AnimationEventDataTypes_SBlend& p_Other) const;
+	bool operator!=(const AnimationEventDataTypes_SBlend& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fBlendTime; // 0x0
 };
@@ -459,6 +515,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AnimationEventDataTypes_SLegacy& p_Other) const;
+	bool operator!=(const AnimationEventDataTypes_SLegacy& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nEventID; // 0x0
 };
@@ -472,6 +532,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZRuntimeResourceID& p_Other) const;
+	bool operator!=(const ZRuntimeResourceID& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_IDHigh; // 0x0
 	uint32 m_IDLow; // 0x4
@@ -486,6 +550,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const AnimationTakeDataTypes_SGeneric& p_Other) const;
+	bool operator!=(const AnimationTakeDataTypes_SGeneric& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fTest; // 0x0
 	ZRuntimeResourceID m_fResourceTest; // 0x4
@@ -525,6 +593,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const BoneId& p_Other) const;
+	bool operator!=(const BoneId& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8208,6 +8280,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IActor& p_Other) const;
+	bool operator!=(const IActor& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8220,6 +8296,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IActorProvider& p_Other) const;
+	bool operator!=(const IActorProvider& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8232,6 +8312,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IActorProviderFilter& p_Other) const;
+	bool operator!=(const IActorProviderFilter& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8244,6 +8328,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IAnimPlayerEntity& p_Other) const;
+	bool operator!=(const IAnimPlayerEntity& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8256,6 +8344,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IBodybagEntity& p_Other) const;
+	bool operator!=(const IBodybagEntity& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8268,6 +8360,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IBoneAnimator& p_Other) const;
+	bool operator!=(const IBoneAnimator& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8280,6 +8376,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IBoneCollidable& p_Other) const;
+	bool operator!=(const IBoneCollidable& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8292,6 +8392,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IBulletImpactListener& p_Other) const;
+	bool operator!=(const IBulletImpactListener& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8321,6 +8425,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IComponentInterface& p_Other) const;
+	bool operator!=(const IComponentInterface& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8333,6 +8441,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IContractEvaluationContextListener& p_Other) const;
+	bool operator!=(const IContractEvaluationContextListener& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8359,6 +8471,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IContractModule& p_Other) const;
+	bool operator!=(const IContractModule& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8371,6 +8487,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IContractObjective& p_Other) const;
+	bool operator!=(const IContractObjective& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8407,6 +8527,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDynamicObject& p_Other) const;
+	bool operator!=(const ZDynamicObject& p_Other) const { return !(*this == p_Other); }
 
 	ZVariant m_value; // 0x0
 };
@@ -8420,6 +8544,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IContractObjective_SCounterData& p_Other) const;
+	bool operator!=(const IContractObjective_SCounterData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sHeader; // 0x0
 	int32 m_nCount; // 0x10
@@ -8437,6 +8565,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZGuid& p_Other) const;
+	bool operator!=(const ZGuid& p_Other) const { return !(*this == p_Other); }
 
 	uint32 _a; // 0x0
 	uint16 _b; // 0x4
@@ -8460,6 +8592,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IContractObjective_STargetCondition& p_Other) const;
+	bool operator!=(const IContractObjective_STargetCondition& p_Other) const { return !(*this == p_Other); }
 
 	ZString type; // 0x0
 	ZRepositoryID repositoryId; // 0x10
@@ -8492,6 +8628,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IEscortOutSituation& p_Other) const;
+	bool operator!=(const IEscortOutSituation& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8504,6 +8644,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IEventConsumerCollection& p_Other) const;
+	bool operator!=(const IEventConsumerCollection& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8516,6 +8660,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IFreeCameraControl& p_Other) const;
+	bool operator!=(const IFreeCameraControl& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8570,6 +8718,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IHM5WeaponInventory& p_Other) const;
+	bool operator!=(const IHM5WeaponInventory& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8582,6 +8734,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IHumanBody& p_Other) const;
+	bool operator!=(const IHumanBody& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8629,6 +8785,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IMetricValue& p_Other) const;
+	bool operator!=(const IMetricValue& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8641,6 +8801,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IMorphemeCutSequenceAnimatable& p_Other) const;
+	bool operator!=(const IMorphemeCutSequenceAnimatable& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8653,6 +8817,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IMorphemeCutSequenceAnimationEntity& p_Other) const;
+	bool operator!=(const IMorphemeCutSequenceAnimationEntity& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8665,6 +8833,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IMorphemeEventConsumer& p_Other) const;
+	bool operator!=(const IMorphemeEventConsumer& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8677,6 +8849,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const INetRelevancy& p_Other) const;
+	bool operator!=(const INetRelevancy& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8689,6 +8865,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IOnlineConfigurationListener& p_Other) const;
+	bool operator!=(const IOnlineConfigurationListener& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8701,6 +8881,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IPureWaterReflectable& p_Other) const;
+	bool operator!=(const IPureWaterReflectable& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8713,6 +8897,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IRenderCompositorEntity& p_Other) const;
+	bool operator!=(const IRenderCompositorEntity& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8803,6 +8991,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ISequenceTarget& p_Other) const;
+	bool operator!=(const ISequenceTarget& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8815,6 +9007,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ISituation& p_Other) const;
+	bool operator!=(const ISituation& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8827,6 +9023,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ISoundGateController& p_Other) const;
+	bool operator!=(const ISoundGateController& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8839,6 +9039,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ISoundMaterialDescriptor& p_Other) const;
+	bool operator!=(const ISoundMaterialDescriptor& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8851,6 +9055,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ITriggerListener& p_Other) const;
+	bool operator!=(const ITriggerListener& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8863,6 +9071,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IUIDataListener& p_Other) const;
+	bool operator!=(const IUIDataListener& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8875,6 +9087,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IValueEntity& p_Other) const;
+	bool operator!=(const IValueEntity& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -8887,6 +9103,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const IWorldMapMarker& p_Other) const;
+	bool operator!=(const IWorldMapMarker& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -9394,6 +9614,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const S25DProjectionSettingsCurveEntry& p_Other) const;
+	bool operator!=(const S25DProjectionSettingsCurveEntry& p_Other) const { return !(*this == p_Other); }
 
 	float32 fDistance; // 0x0
 	float32 fValue; // 0x4
@@ -9408,6 +9632,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SWorldSpaceSettings& p_Other) const;
+	bool operator!=(const SWorldSpaceSettings& p_Other) const { return !(*this == p_Other); }
 
 	float32 fCloseupDistance; // 0x0
 	float32 fScale; // 0x4
@@ -9426,6 +9654,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const S25DProjectionSettings& p_Other) const;
+	bool operator!=(const S25DProjectionSettings& p_Other) const { return !(*this == p_Other); }
 
 	float32 fNearDistance; // 0x0
 	float32 fFarDistance; // 0x4
@@ -9455,6 +9687,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const S3rdPersonCameraSaveData& p_Other) const;
+	bool operator!=(const S3rdPersonCameraSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fAngleYaw; // 0x0
 	float32 m_fAnglePitch; // 0x4
@@ -9469,6 +9705,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZGameTime& p_Other) const;
+	bool operator!=(const ZGameTime& p_Other) const { return !(*this == p_Other); }
 
 	int64 m_nTicks; // 0x0
 };
@@ -9482,6 +9722,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAIEventSaveData& p_Other) const;
+	bool operator!=(const SAIEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EAIEventType m_eType; // 0x0
 	bool m_bHandled; // 0x4
@@ -9498,6 +9742,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAIModifierServiceActorSaveData& p_Other) const;
+	bool operator!=(const SAIModifierServiceActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActorRef; // 0x0
 	bool m_bNeedsVolumeUpdate; // 0x4
@@ -9521,6 +9769,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAIModifierServiceSaveData& p_Other) const;
+	bool operator!=(const SAIModifierServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bFullVolumeUpdate; // 0x0
 	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
@@ -9535,6 +9787,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAIPerceptibleEntitySaveData& p_Other) const;
+	bool operator!=(const SAIPerceptibleEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bPerceptibleEnabled; // 0x0
 };
@@ -9548,6 +9804,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAIVisionBlockerSaveData& p_Other) const;
+	bool operator!=(const SAIVisionBlockerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 };
@@ -9561,6 +9821,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAccessoryItemSaveData& p_Other) const;
+	bool operator!=(const SAccessoryItemSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	uint32 m_nBoneId; // 0x4
@@ -9577,6 +9841,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAccidentObserversGroupSaveData& p_Other) const;
+	bool operator!=(const SAccidentObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_target; // 0x0
 	TArray<uint32> m_aWaitingObservers; // 0x8
@@ -9606,6 +9874,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActBehaviorEntitySaveData& p_Other) const;
+	bool operator!=(const SActBehaviorEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bStartedSignalSent; // 0x0
 	bool m_bReachedSignalSent; // 0x1
@@ -9623,6 +9895,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const float4& p_Other) const;
+	bool operator!=(const float4& p_Other) const { return !(*this == p_Other); }
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -9639,6 +9915,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActOrderSaveData& p_Other) const;
+	bool operator!=(const SActOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sAct; // 0x0
 	float32 m_fDuration; // 0x10
@@ -9658,6 +9938,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActionRadialArcDisplayInfo& p_Other) const;
+	bool operator!=(const SActionRadialArcDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	bool hidden; // 0x0
 	bool locked; // 0x1
@@ -9676,6 +9960,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActionRadialArcDisplayInfoArray_dummy& p_Other) const;
+	bool operator!=(const SActionRadialArcDisplayInfoArray_dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SActionRadialArcDisplayInfo> dummy; // 0x0
 };
@@ -9689,6 +9977,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActivity& p_Other) const;
+	bool operator!=(const SActivity& p_Other) const { return !(*this == p_Other); }
 
 	ZGuid id; // 0x0
 	ZString activityId; // 0x10
@@ -9703,6 +9995,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActivityExits& p_Other) const;
+	bool operator!=(const SActivityExits& p_Other) const { return !(*this == p_Other); }
 
 	SActivity activity; // 0x0
 	TArray<ZString> exits; // 0x20
@@ -9717,6 +10013,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActivityObjective& p_Other) const;
+	bool operator!=(const SActivityObjective& p_Other) const { return !(*this == p_Other); }
 
 	SActivity activity; // 0x0
 	TArray<SActivity> opportunities; // 0x20
@@ -9731,6 +10031,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActivityDefinition& p_Other) const;
+	bool operator!=(const SActivityDefinition& p_Other) const { return !(*this == p_Other); }
 
 	SActivity activity; // 0x0
 	TArray<SActivityObjective> objectives; // 0x20
@@ -9746,6 +10050,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActivities& p_Other) const;
+	bool operator!=(const SActivities& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SActivityDefinition> Activities; // 0x0
 };
@@ -9759,6 +10067,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorAccessoryItemActionSaveData& p_Other) const;
+	bool operator!=(const SActorAccessoryItemActionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -9772,6 +10084,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorAliveConditionSaveData& p_Other) const;
+	bool operator!=(const SActorAliveConditionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -9785,6 +10101,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorAnimSetVariationIndexSaveData& p_Other) const;
+	bool operator!=(const SActorAnimSetVariationIndexSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rAnimationSetDefinition; // 0x0
 	int32 m_nIndex; // 0x4
@@ -9799,6 +10119,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorAnimSetSaveData& p_Other) const;
+	bool operator!=(const SActorAnimSetSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EAnimSetType m_eAnimSet; // 0x0
 	uint32 m_rCustomAnimationSet; // 0x4
@@ -9819,6 +10143,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorBoneAttachSaveData& p_Other) const;
+	bool operator!=(const SActorBoneAttachSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rAttachmentTarget; // 0x0
 	bool m_bIsAttached; // 0x4
@@ -9833,6 +10161,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorBoneAttachmentsSaveData& p_Other) const;
+	bool operator!=(const SActorBoneAttachmentsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorBoneAttachSaveData> m_aData; // 0x18
@@ -9847,6 +10179,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVector4& p_Other) const;
+	bool operator!=(const SVector4& p_Other) const { return !(*this == p_Other); }
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -9863,6 +10199,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorBoneSaveData& p_Other) const;
+	bool operator!=(const SActorBoneSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -9877,6 +10217,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorDamageControlSaveData& p_Other) const;
+	bool operator!=(const SActorDamageControlSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool bExplosive; // 0x0
 	bool bProjectile; // 0x1
@@ -9915,6 +10259,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorDynamicTemplateHandlerSaveData& p_Other) const;
+	bool operator!=(const SActorDynamicTemplateHandlerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
@@ -9930,6 +10278,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorDynamicTemplateManipulatorSaveData& p_Other) const;
+	bool operator!=(const SActorDynamicTemplateManipulatorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -9943,6 +10295,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorDynamicTemplateSaveData& p_Other) const;
+	bool operator!=(const SActorDynamicTemplateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sName; // 0x0
 	EGameTension m_eTensionLimit; // 0x10
@@ -9964,6 +10320,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorGoalSaveData& p_Other) const;
+	bool operator!=(const SActorGoalSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<int32> m_aEntities; // 0x0
 	TArray<bool> m_aHandled; // 0x18
@@ -9980,6 +10340,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorIKControllerSaveData& p_Other) const;
+	bool operator!=(const SActorIKControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fRightHandWeight; // 0x0
 	float32 m_fLeftHandWeight; // 0x4
@@ -9996,6 +10360,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorInventoryItemSaveData& p_Other) const;
+	bool operator!=(const SActorInventoryItemSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
 	EAttachLocation m_eAttachLocation; // 0x4
@@ -10014,6 +10382,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorInventorySaveData& p_Other) const;
+	bool operator!=(const SActorInventorySaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
 };
@@ -10027,6 +10399,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorItemActionSaveData& p_Other) const;
+	bool operator!=(const SActorItemActionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
@@ -10041,6 +10417,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorKeywordProxySaveData& p_Other) const;
+	bool operator!=(const SActorKeywordProxySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -10054,6 +10434,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorKeywordProxiesSaveData& p_Other) const;
+	bool operator!=(const SActorKeywordProxiesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorKeywordProxySaveData> m_aData; // 0x18
@@ -10068,6 +10452,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorManagerReferencableData& p_Other) const;
+	bool operator!=(const SActorManagerReferencableData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ESituationType> m_aSituationTypes; // 0x0
 };
@@ -10081,6 +10469,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorProviderApproachSaveData& p_Other) const;
+	bool operator!=(const SActorProviderApproachSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rCastActor; // 0x0
 };
@@ -10094,6 +10486,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorProviderDirectSaveData& p_Other) const;
+	bool operator!=(const SActorProviderDirectSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aActors; // 0x0
 	bool m_bRunning; // 0x18
@@ -10108,6 +10504,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVector3& p_Other) const;
+	bool operator!=(const SVector3& p_Other) const { return !(*this == p_Other); }
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -10123,6 +10523,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorRagdollPoseSaveData& p_Other) const;
+	bool operator!=(const SActorRagdollPoseSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vBodyVelocity; // 0x0
 	TArray<SActorBoneSaveData> m_aBones; // 0x10
@@ -10138,6 +10542,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorThrowSaveData& p_Other) const;
+	bool operator!=(const SActorThrowSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
 	float4 m_vStartPosition; // 0x10
@@ -10155,6 +10563,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEventHistorySaveData& p_Other) const;
+	bool operator!=(const SEventHistorySaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZGameTime> m_aOccurences; // 0x0
 };
@@ -10168,6 +10580,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMatrix& p_Other) const;
+	bool operator!=(const SMatrix& p_Other) const { return !(*this == p_Other); }
 
 	float4 XAxis; // 0x0
 	float4 YAxis; // 0x10
@@ -10184,6 +10600,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SKnownEntitySaveData& p_Other) const;
+	bool operator!=(const SKnownEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nSharedIndex; // 0x0
 	TArray<SAIEventSaveData> m_aEvents; // 0x8
@@ -10203,6 +10623,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SKnowledgeSaveData& p_Other) const;
+	bool operator!=(const SKnowledgeSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SKnownEntitySaveData> m_aKnownEntities; // 0x0
 	TArray<EAIGoal> m_aGoalKeys; // 0x18
@@ -10231,6 +10655,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLongTermMemorySaveData& p_Other) const;
+	bool operator!=(const SLongTermMemorySaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZRepositoryID m_sOutfit; // 0x0
 	uint8 m_Memory; // 0x10
@@ -10245,6 +10673,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorSaveData& p_Other) const;
+	bool operator!=(const SActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vQuaternion; // 0xC
@@ -10312,6 +10744,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCombatMetricsSaveData& p_Other) const;
+	bool operator!=(const SCombatMetricsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_CombatProgress; // 0x0
 	TArray<uint32> m_DeadVIPsOrContractTargets; // 0x8
@@ -10327,6 +10763,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEventSaveData& p_Other) const;
+	bool operator!=(const SEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EAISharedEventType m_nType; // 0x0
 	ZGameTime m_nStart; // 0x8
@@ -10342,6 +10782,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSharedKnowledgeSaveData& p_Other) const;
+	bool operator!=(const SSharedKnowledgeSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	ZRepositoryID m_OutfitId; // 0x8
@@ -10358,6 +10802,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSituationGroupSaveData& p_Other) const;
+	bool operator!=(const SSituationGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sClassTypeName; // 0x0
 	uint32 m_nSituation; // 0x10
@@ -10375,6 +10823,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSituationMemberSaveData& p_Other) const;
+	bool operator!=(const SSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	ESituationJoinReason m_eJoinReason; // 0x4
@@ -10394,6 +10846,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSituationSaveData& p_Other) const;
+	bool operator!=(const SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rSituation; // 0x0
 	ESituationType m_eType; // 0x4
@@ -10415,6 +10871,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorProxySaveData& p_Other) const;
+	bool operator!=(const SActorProxySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -10428,6 +10888,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorProxiesSaveData& p_Other) const;
+	bool operator!=(const SActorProxiesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorProxySaveData> m_aData; // 0x18
@@ -10442,6 +10906,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorSoundDefs& p_Other) const;
+	bool operator!=(const SActorSoundDefs& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -10460,6 +10928,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorSpreadControllerCandidateSaveData& p_Other) const;
+	bool operator!=(const SActorSpreadControllerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_CandidateActor; // 0x0
 	ZGameTime m_CandidateTime; // 0x8
@@ -10475,6 +10947,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorSpreadControllerSaveData& p_Other) const;
+	bool operator!=(const SActorSpreadControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aSpreadingActors; // 0x0
 	TArray<uint32> m_aDeadSpreadingActors; // 0x18
@@ -10499,6 +10975,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorSpreadTransitionOperatorMaterialActorSaveData& p_Other) const;
+	bool operator!=(const SActorSpreadTransitionOperatorMaterialActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_Actor; // 0x0
 	float32 m_fOpacity; // 0x4
@@ -10513,6 +10993,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorSpreadTransitionOperatorMaterialSaveData& p_Other) const;
+	bool operator!=(const SActorSpreadTransitionOperatorMaterialSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SActorSpreadTransitionOperatorMaterialActorSaveData> m_aActorMaterialOverrides; // 0x0
 };
@@ -10526,6 +11010,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorStandInSaveData& p_Other) const;
+	bool operator!=(const SActorStandInSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -10539,6 +11027,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorStandInEntitiesSaveData& p_Other) const;
+	bool operator!=(const SActorStandInEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorStandInSaveData> m_aData; // 0x18
@@ -10553,6 +11045,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorTagSaveData& p_Other) const;
+	bool operator!=(const SActorTagSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bSeen; // 0x0
 	bool m_bTagged; // 0x1
@@ -10568,6 +11064,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorTagManagerSaveData& p_Other) const;
+	bool operator!=(const SActorTagManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bContractsCreationMode; // 0x0
 	int32 m_nTagCount; // 0x4
@@ -10585,6 +11085,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SActorVisibilityConditionSaveData& p_Other) const;
+	bool operator!=(const SActorVisibilityConditionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pActor; // 0x0
 };
@@ -10598,6 +11102,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAgencyPickupInfo& p_Other) const;
+	bool operator!=(const SAgencyPickupInfo& p_Other) const { return !(*this == p_Other); }
 
 	ZRepositoryID m_AgencyPickupId; // 0x0
 	TArray<ZRepositoryID> m_aItemIds; // 0x10
@@ -10613,6 +11121,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAgitatedBystanderOrderSaveData& p_Other) const;
+	bool operator!=(const SAgitatedBystanderOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rBystanderPoint; // 0x0
 	float4 m_vCover; // 0x10
@@ -10628,6 +11140,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAimAssistObjectSaveData& p_Other) const;
+	bool operator!=(const SAimAssistObjectSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bHasBeenStarted; // 0x0
 	bool m_bWasAimAssistActivated; // 0x1
@@ -10642,6 +11158,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBoneTransformSaveData& p_Other) const;
+	bool operator!=(const SBoneTransformSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -10656,6 +11176,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAnimPlayerSaveData& p_Other) const;
+	bool operator!=(const SAnimPlayerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 mTrajectoryQuaterion; // 0x0
 	SVector4 mTrajectoryTranslation; // 0x10
@@ -10671,6 +11195,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAnimatedActorActOrderSaveData& p_Other) const;
+	bool operator!=(const SAnimatedActorActOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bOverrideExistingAct; // 0x0
 	uint32 m_nForcedAnimationNode; // 0x4
@@ -10689,6 +11217,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAnimatedActorMoveOrderSaveData& p_Other) const;
+	bool operator!=(const SAnimatedActorMoveOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bPrecisePositioning; // 0x0
 	bool m_bPreciseOrientation; // 0x1
@@ -10709,6 +11241,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAnimatedActorOrderSaveData& p_Other) const;
+	bool operator!=(const SAnimatedActorOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EActorAnimationOrder m_eOrderType; // 0x0
 	ZVariant m_OrderData; // 0x8
@@ -10723,6 +11259,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAnimatedActorReactOrderSaveData& p_Other) const;
+	bool operator!=(const SAnimatedActorReactOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vFaceTarget; // 0x0
 	SVector3 m_vLookAtTarget; // 0xC
@@ -10746,6 +11286,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAnimatedActorStandOrderSaveData& p_Other) const;
+	bool operator!=(const SAnimatedActorStandOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vFacingDirection; // 0x0
 };
@@ -10759,6 +11303,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAttentionHUDUIElement& p_Other) const;
+	bool operator!=(const SAttentionHUDUIElement& p_Other) const { return !(*this == p_Other); }
 
 	float32 fAngle; // 0x0
 	float32 fAttention; // 0x4
@@ -10776,6 +11324,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAttentionHUDUIElementArray_Dummy& p_Other) const;
+	bool operator!=(const SAttentionHUDUIElementArray_Dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SAttentionHUDUIElement> dummy; // 0x0
 };
@@ -10789,6 +11341,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAudioEmitterEventSaveData& p_Other) const;
+	bool operator!=(const SAudioEmitterEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nEventId; // 0x0
 	bool m_bPaused; // 0x4
@@ -10807,6 +11363,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAudioEmitterRTPCSaveData& p_Other) const;
+	bool operator!=(const SAudioEmitterRTPCSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nParamId; // 0x0
 	float32 m_fValue; // 0x4
@@ -10821,6 +11381,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAudioEmitterSaveData& p_Other) const;
+	bool operator!=(const SAudioEmitterSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEmitter; // 0x0
 	uint32 m_nNumberOfEvents; // 0x4
@@ -10837,6 +11401,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAudioEmitterStateSaveData& p_Other) const;
+	bool operator!=(const SAudioEmitterStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nGroupId; // 0x0
 	uint32 m_nStateId; // 0x4
@@ -10851,6 +11419,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAudioEmitterSwitchSaveData& p_Other) const;
+	bool operator!=(const SAudioEmitterSwitchSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nGroupId; // 0x0
 	uint32 m_nStateId; // 0x4
@@ -10865,6 +11437,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZResourceID& p_Other) const;
+	bool operator!=(const ZResourceID& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_uri; // 0x0
 };
@@ -10878,6 +11454,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAudioMemoryMonitorEntry& p_Other) const;
+	bool operator!=(const SAudioMemoryMonitorEntry& p_Other) const { return !(*this == p_Other); }
 
 	uint32 shortId; // 0x0
 	uint32 size; // 0x4
@@ -10893,6 +11473,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAudioSaveData& p_Other) const;
+	bool operator!=(const SAudioSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SAudioEmitterSaveData> m_aEmitters; // 0x0
 	TArray<SAudioEmitterEventSaveData> m_aEmitterEvents; // 0x18
@@ -10912,6 +11496,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFSMSaveData& p_Other) const;
+	bool operator!=(const SFSMSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EFSMStateStatus m_eStateStatus; // 0x0
 	int32 m_state; // 0x4
@@ -10928,6 +11516,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SAvoidDangerousAreaGroupSaveData& p_Other) const;
+	bool operator!=(const SAvoidDangerousAreaGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rDangerousArea; // 0x18
@@ -10945,6 +11537,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBehaviorTreeEntityReference& p_Other) const;
+	bool operator!=(const SBehaviorTreeEntityReference& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bList; // 0x0
 	ZString m_sName; // 0x8
@@ -10959,6 +11555,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBehaviorTreeEvaluationLogEntry& p_Other) const;
+	bool operator!=(const SBehaviorTreeEvaluationLogEntry& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nBehaviorTreeIndex; // 0x0
 	uint64 m_nConditionOffset; // 0x8
@@ -10974,6 +11574,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBehaviorTreeEvaluationLog& p_Other) const;
+	bool operator!=(const SBehaviorTreeEvaluationLog& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZResourceID> m_BehaviorTrees; // 0x0
 	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
@@ -10988,6 +11592,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBehaviorTreeInputPinCondition& p_Other) const;
+	bool operator!=(const SBehaviorTreeInputPinCondition& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sName; // 0x0
 };
@@ -11001,6 +11609,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBehaviorTreeInfo& p_Other) const;
+	bool operator!=(const SBehaviorTreeInfo& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SBehaviorTreeEntityReference> m_references; // 0x0
 	TArray<SBehaviorTreeInputPinCondition> m_inputPinConditions; // 0x18
@@ -11015,6 +11627,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBlobsConfigResourceEntry& p_Other) const;
+	bool operator!=(const SBlobsConfigResourceEntry& p_Other) const { return !(*this == p_Other); }
 
 	ZString Id; // 0x0
 	ZRuntimeResourceID BlobRid; // 0x10
@@ -11040,6 +11656,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBodyContainerSaveData& p_Other) const;
+	bool operator!=(const SBodyContainerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5BodyContainer_EBCState m_eBCState; // 0x0
 	float32 m_fLidAutoCloseTime; // 0x4
@@ -11056,6 +11676,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBodyContainersSaveData& p_Other) const;
+	bool operator!=(const SBodyContainersSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SBodyContainerSaveData> m_aData; // 0x18
@@ -11070,6 +11694,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBodyPartDamageMultipliers& p_Other) const;
+	bool operator!=(const SBodyPartDamageMultipliers& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fHeadDamageMultiplier; // 0x0
 	float32 m_fFaceDamageMultiplier; // 0x4
@@ -11095,6 +11723,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBodybagBoneSaveData& p_Other) const;
+	bool operator!=(const SBodybagBoneSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -11109,6 +11741,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBodybagSaveData& p_Other) const;
+	bool operator!=(const SBodybagSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vLinkedPosition; // 0x0
 	SVector4 m_vLinkedQuaternionRotation; // 0xC
@@ -11127,6 +11763,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBoneAttachSaveData& p_Other) const;
+	bool operator!=(const SBoneAttachSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsAttached; // 0x4
@@ -11141,6 +11781,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SBoneScalesList& p_Other) const;
+	bool operator!=(const SBoneScalesList& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SVector3> m_aBoneScales; // 0x0
 };
@@ -11154,6 +11798,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCCEffectSet& p_Other) const;
+	bool operator!=(const SCCEffectSet& p_Other) const { return !(*this == p_Other); }
 
 	ECCDecalEffect m_eDecalEffect; // 0x0
 	ECCEmitterEffect m_eEmitterEffect; // 0x4
@@ -11168,6 +11816,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCamBone& p_Other) const;
+	bool operator!=(const SCamBone& p_Other) const { return !(*this == p_Other); }
 
 	BoneId_Enum m_eBoneId; // 0x0
 	float32 m_fWeight; // 0x4
@@ -11191,6 +11843,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousBackupGroupSaveData& p_Other) const;
+	bool operator!=(const SCautiousBackupGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZCautiousBackupGroup_EGroupState m_eGroupState; // 0x0
 	uint32 m_pLeader; // 0x4
@@ -11210,6 +11866,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousHuntSaveData& p_Other) const;
+	bool operator!=(const SCautiousHuntSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	ZGameTime m_tAnnounceHuntCoolDown; // 0x18
@@ -11233,6 +11893,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExactCompressedGridFloatField& p_Other) const;
+	bool operator!=(const SExactCompressedGridFloatField& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fInitialValue; // 0x0
 	uint32 m_nFieldSize; // 0x4
@@ -11261,6 +11925,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousInvestigateGroupSaveData& p_Other) const;
+	bool operator!=(const SCautiousInvestigateGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZGameTime m_tGroupStarted; // 0x0
 	int32 m_target; // 0x8
@@ -11297,6 +11965,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCompressedGridFloatField& p_Other) const;
+	bool operator!=(const SCompressedGridFloatField& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsSparse; // 0x0
 	uint32 m_nFieldSize; // 0x4
@@ -11315,6 +11987,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDisturbanceSaveData& p_Other) const;
+	bool operator!=(const SDisturbanceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_object; // 0x0
 	EDisturbanceType m_type; // 0x4
@@ -11349,6 +12025,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZInvestigateCautiousSituation_SStateData& p_Other) const;
+	bool operator!=(const ZInvestigateCautiousSituation_SStateData& p_Other) const { return !(*this == p_Other); }
 
 	ZInvestigateCautiousSituation_ESituationState m_state; // 0x0
 	ZInvestigateCautiousSituation_EBystanderState m_eBystanderState; // 0x4
@@ -11386,6 +12066,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousInvestigateSituationSaveData& p_Other) const;
+	bool operator!=(const SCautiousInvestigateSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZInvestigateCautiousSituation_SStateData m_StateData; // 0x0
 	int32 m_pGetHelpGroup; // 0x78
@@ -11448,6 +12132,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousSearchGroupSaveData& p_Other) const;
+	bool operator!=(const SCautiousSearchGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_searchNode; // 0x0
 	uint16 m_assistantApproachNode; // 0x2
@@ -11466,6 +12154,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousSituationMemberSaveData& p_Other) const;
+	bool operator!=(const SCautiousSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZGameTime m_tLastDisturbance; // 0x0
 	ZGameTime m_tLastSearchCalc; // 0x8
@@ -11492,6 +12184,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousVIPGroupState& p_Other) const;
+	bool operator!=(const SCautiousVIPGroupState& p_Other) const { return !(*this == p_Other); }
 
 	ZGameTime m_tMove; // 0x0
 };
@@ -11505,6 +12201,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCautiousVIPGroupSaveData& p_Other) const;
+	bool operator!=(const SCautiousVIPGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_vip; // 0x0
 	SFSMSaveData m_fsmState; // 0x8
@@ -11522,6 +12222,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SChairSaveData& p_Other) const;
+	bool operator!=(const SChairSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	bool m_bAttached; // 0x4
@@ -11536,6 +12240,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SChallengeSaveData& p_Other) const;
+	bool operator!=(const SChallengeSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sId; // 0x0
 	ZDynamicObject m_State; // 0x10
@@ -11550,6 +12258,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SChallengesSaveData& p_Other) const;
+	bool operator!=(const SChallengesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
 };
@@ -11563,6 +12275,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCharacterSpeakEntitySaveData& p_Other) const;
+	bool operator!=(const SCharacterSpeakEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fSeekPosition; // 0x0
 	uint32 m_nRandomSelectionSeed; // 0x4
@@ -11578,6 +12294,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCheckLastPositionGroupSaveData& p_Other) const;
+	bool operator!=(const SCheckLastPositionGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pLeader; // 0x0
 	uint32 m_pAssistant; // 0x4
@@ -11596,6 +12316,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SClothBundleSaveData& p_Other) const;
+	bool operator!=(const SClothBundleSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vQuaternion; // 0xC
@@ -11614,6 +12338,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SClothBundleSpawnSaveData& p_Other) const;
+	bool operator!=(const SClothBundleSpawnSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rClothbundle; // 0x0
 };
@@ -11627,6 +12355,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SClothVertex& p_Other) const;
+	bool operator!=(const SClothVertex& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nColumn; // 0x0
 	uint16 m_nRow; // 0x2
@@ -11641,6 +12373,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SClothWireEntitySaveData& p_Other) const;
+	bool operator!=(const SClothWireEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fWireLength; // 0x0
 	bool m_bAttachToAnchorTransform; // 0x4
@@ -11657,6 +12393,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCollidingParticle& p_Other) const;
+	bool operator!=(const SCollidingParticle& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vPosition; // 0x0
 	float4 m_vVelocity; // 0x10
@@ -11674,6 +12414,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCollisionControllerAspectSaveData& p_Other) const;
+	bool operator!=(const SCollisionControllerAspectSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bCollideHitman; // 0x0
 	bool m_bCollideCamera; // 0x1
@@ -11688,6 +12432,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCollisionControllerAspectsSaveData& p_Other) const;
+	bool operator!=(const SCollisionControllerAspectsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
@@ -11702,6 +12450,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SColorRGB& p_Other) const;
+	bool operator!=(const SColorRGB& p_Other) const { return !(*this == p_Other); }
 
 	float32 r; // 0x0
 	float32 g; // 0x4
@@ -11717,6 +12469,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SColorRGBA& p_Other) const;
+	bool operator!=(const SColorRGBA& p_Other) const { return !(*this == p_Other); }
 
 	float32 r; // 0x0
 	float32 g; // 0x4
@@ -11733,6 +12489,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SColorRGBSaveData& p_Other) const;
+	bool operator!=(const SColorRGBSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SColorRGB> m_aData; // 0x18
@@ -11747,6 +12507,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCombatOrderSaveData& p_Other) const;
+	bool operator!=(const SCombatOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vPos; // 0x0
 	uint32 m_coverPlane; // 0x10
@@ -11762,6 +12526,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCombatSituationMemberSaveData& p_Other) const;
+	bool operator!=(const SCombatSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fDistanceToTarget; // 0x0
 	float32 m_fDistanceFieldValue; // 0x4
@@ -11783,6 +12551,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCombatZoneEntitySaveData& p_Other) const;
+	bool operator!=(const SCombatZoneEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsInLockdown; // 0x0
 	bool m_bIsFalseAlarm; // 0x1
@@ -11801,6 +12573,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SComboDeviceBinding& p_Other) const;
+	bool operator!=(const SComboDeviceBinding& p_Other) const { return !(*this == p_Other); }
 
 	uint32 type; // 0x0
 	uint32 button; // 0x4
@@ -11815,6 +12591,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZBehaviorTreeVariable& p_Other) const;
+	bool operator!=(const ZBehaviorTreeVariable& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -11827,6 +12607,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SConditionBase& p_Other) const;
+	bool operator!=(const SConditionBase& p_Other) const { return !(*this == p_Other); }
 
 	ECompiledConditionType eConditionType; // 0x0
 	uint32 nConditionModifiers; // 0x4
@@ -11842,6 +12626,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SConditionalTimerEntitySaveData& p_Other) const;
+	bool operator!=(const SConditionalTimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nInterval; // 0x0
 	int32 m_nRemaining; // 0x4
@@ -11858,6 +12646,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryItem& p_Other) const;
+	bool operator!=(const SInventoryItem& p_Other) const { return !(*this == p_Other); }
 
 	ZString sInstanceId; // 0x0
 	ZString sUnlockableId; // 0x10
@@ -11875,6 +12667,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SContainerItemInfo& p_Other) const;
+	bool operator!=(const SContainerItemInfo& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sContainerInstanceId; // 0x0
 	SInventoryItem m_concealedItem; // 0x10
@@ -11889,6 +12685,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SContextActionSaveData& p_Other) const;
+	bool operator!=(const SContextActionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	bool m_bTriggered; // 0x1
@@ -11904,6 +12704,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SContractConfigResourceEntry& p_Other) const;
+	bool operator!=(const SContractConfigResourceEntry& p_Other) const { return !(*this == p_Other); }
 
 	ZString Id; // 0x0
 	ZRuntimeResourceID ContractRid; // 0x10
@@ -11918,6 +12722,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SContractObjectiveHudHintEntitySaveData& p_Other) const;
+	bool operator!=(const SContractObjectiveHudHintEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bVisible; // 0x0
 };
@@ -11931,6 +12739,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SContractObjectiveSaveData& p_Other) const;
+	bool operator!=(const SContractObjectiveSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZGuid m_Id; // 0x0
 	ZString m_sText; // 0x10
@@ -11976,6 +12788,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SContractObjectiveStateMachineSaveData& p_Other) const;
+	bool operator!=(const SContractObjectiveStateMachineSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZGuid m_Id; // 0x0
 	IContractObjective_Category m_eCategory; // 0x10
@@ -12024,6 +12840,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SConversationEntry& p_Other) const;
+	bool operator!=(const SConversationEntry& p_Other) const { return !(*this == p_Other); }
 
 	EConversationRole m_role; // 0x0
 	EActorSoundDefs m_sound; // 0x4
@@ -12038,6 +12858,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SConversationPart& p_Other) const;
+	bool operator!=(const SConversationPart& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_chance; // 0x0
 	TArray<SConversationEntry> m_entries; // 0x8
@@ -12052,6 +12876,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplateProperty& p_Other) const;
+	bool operator!=(const SEntityTemplateProperty& p_Other) const { return !(*this == p_Other); }
 
 	uint32 nPropertyID; // 0x0
 	ZVariant value; // 0x8
@@ -12066,6 +12894,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCppEntity& p_Other) const;
+	bool operator!=(const SCppEntity& p_Other) const { return !(*this == p_Other); }
 
 	int32 blueprintIndexInResourceHeader; // 0x0
 	TArray<SEntityTemplateProperty> propertyValues; // 0x8
@@ -12080,6 +12912,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCppEntitySubsetInfo& p_Other) const;
+	bool operator!=(const SCppEntitySubsetInfo& p_Other) const { return !(*this == p_Other); }
 
 	ZString name; // 0x0
 	uint32 flags; // 0x10
@@ -12094,6 +12930,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCppEntityBlueprint& p_Other) const;
+	bool operator!=(const SCppEntityBlueprint& p_Other) const { return !(*this == p_Other); }
 
 	TypeID typeName; // 0x0
 	uint32 typeFlags; // 0x8
@@ -12109,6 +12949,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRunningCrowdAIEventSaveData& p_Other) const;
+	bool operator!=(const SRunningCrowdAIEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_ReactionEntity; // 0x0
 	uint32 m_CrowdEntity; // 0x4
@@ -12129,6 +12973,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdAIEventSaveData& p_Other) const;
+	bool operator!=(const SCrowdAIEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SRunningCrowdAIEventSaveData> m_RunningEvents; // 0x0
 };
@@ -12142,6 +12990,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdActivitySaveData& p_Other) const;
+	bool operator!=(const SCrowdActivitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	EGait m_eGait; // 0x4
@@ -12158,6 +13010,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdActorSaveData& p_Other) const;
+	bool operator!=(const SCrowdActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	ESpeed m_eWantedSpeed; // 0x4
@@ -12179,6 +13035,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdBodySaveData& p_Other) const;
+	bool operator!=(const SCrowdBodySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pCorpseBodybagEntity; // 0x0
 	uint32 m_rCrowdEntity; // 0x4
@@ -12199,6 +13059,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdCells& p_Other) const;
+	bool operator!=(const SCrowdCells& p_Other) const { return !(*this == p_Other); }
 
 	TFixedArray<uint8, 128> m_cells; // 0x0
 };
@@ -12212,6 +13076,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdPoseBoneSaveData& p_Other) const;
+	bool operator!=(const SCrowdPoseBoneSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
@@ -12226,6 +13094,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdPoseSaveData& p_Other) const;
+	bool operator!=(const SCrowdPoseSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
 };
@@ -12239,6 +13111,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdPoseCollectionSaveData& p_Other) const;
+	bool operator!=(const SCrowdPoseCollectionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint64 m_id; // 0x0
 	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
@@ -12253,6 +13129,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdDeadPoseRepositorySaveData& p_Other) const;
+	bool operator!=(const SCrowdDeadPoseRepositorySaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
 };
@@ -12266,6 +13146,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRegionSaveData& p_Other) const;
+	bool operator!=(const SRegionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nIndex; // 0x0
 	CrowdRegionType m_eType; // 0x4
@@ -12288,6 +13172,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdEntitySaveData& p_Other) const;
+	bool operator!=(const SCrowdEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SCrowdActorSaveData> m_CrowdActorData; // 0x0
 	TArray<SRegionSaveData> m_RegionData; // 0x18
@@ -12306,6 +13194,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdFlowChannel& p_Other) const;
+	bool operator!=(const SCrowdFlowChannel& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint8> m_aFlowVectorIndex; // 0x0
 	TArray<uint16> m_aFlowCost; // 0x18
@@ -12320,6 +13212,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZCrowdGridPoint& p_Other) const;
+	bool operator!=(const ZCrowdGridPoint& p_Other) const { return !(*this == p_Other); }
 
 	int16 m_nHeightOffset; // 0x0
 	uint8 m_nOnNavGrid; // 0x2
@@ -12334,6 +13230,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdMapData& p_Other) const;
+	bool operator!=(const SCrowdMapData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nVersion; // 0x0
 	SVector4 m_vCellConsts; // 0x4
@@ -12363,6 +13263,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdReactionSaveData& p_Other) const;
+	bool operator!=(const SCrowdReactionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nNumPacify; // 0x0
 	uint32 m_nNumShotsFired; // 0x4
@@ -12380,6 +13284,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCrowdServiceSaveData& p_Other) const;
+	bool operator!=(const SCrowdServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SCrowdBodySaveData> m_aDeadBodies; // 0x0
 	TArray<uint32> m_aPerceptiblePool; // 0x18
@@ -12395,6 +13303,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCuriousEventSaveData& p_Other) const;
+	bool operator!=(const SCuriousEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZGameTime m_tExpiresAt; // 0x0
 	int32 m_nKnowledgeIndex; // 0x8
@@ -12409,6 +13321,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SCuriousEventServiceSaveData& p_Other) const;
+	bool operator!=(const SCuriousEventServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SCuriousEventSaveData> m_aCuriousEvents; // 0x0
 };
@@ -12422,6 +13338,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDangerousAreaSaveData& p_Other) const;
+	bool operator!=(const SDangerousAreaSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDangerous; // 0x0
 };
@@ -12435,6 +13355,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDeadBodyInfoSaveData& p_Other) const;
+	bool operator!=(const SDeadBodyInfoSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rGuard; // 0x4
@@ -12460,6 +13384,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDeadBodySensorSaveData& p_Other) const;
+	bool operator!=(const SDeadBodySensorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
 	int32 m_nBodyIndex; // 0x18
@@ -12474,6 +13402,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVector2& p_Other) const;
+	bool operator!=(const SVector2& p_Other) const { return !(*this == p_Other); }
 
 	float32 x; // 0x0
 	float32 y; // 0x4
@@ -12488,6 +13420,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDecalSpawnSaveData& p_Other) const;
+	bool operator!=(const SDecalSpawnSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bWasSpawned; // 0x0
 	float4 m_vPosition; // 0x10
@@ -12511,6 +13447,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDestructibleInteractionHandlerData& p_Other) const;
+	bool operator!=(const SDestructibleInteractionHandlerData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fSettleTime; // 0x0
 };
@@ -12524,6 +13464,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDestructiblePieceSaveData& p_Other) const;
+	bool operator!=(const SDestructiblePieceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SMatrix m_mTransform; // 0x0
 	TArray<uint16> m_aIndices; // 0x40
@@ -12543,6 +13487,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDestructibleRuntimeConnnection& p_Other) const;
+	bool operator!=(const SDestructibleRuntimeConnnection& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nPieceIndex; // 0x0
 	TArray<uint16> m_aConnections; // 0x8
@@ -12557,6 +13505,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDestructibleRuntimeDamage& p_Other) const;
+	bool operator!=(const SDestructibleRuntimeDamage& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nPieceIndex; // 0x0
 	float32 m_fDamage; // 0x4
@@ -12571,6 +13523,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDestructibleObjectSaveData& p_Other) const;
+	bool operator!=(const SDestructibleObjectSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SDestructibleInteractionHandlerData m_interactionData; // 0x0
 	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
@@ -12594,6 +13550,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDetectedInPrivateGroupSaveData& p_Other) const;
+	bool operator!=(const SDetectedInPrivateGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	float32 m_fTimeWaiting; // 0x18
@@ -12612,6 +13572,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDisguiseZoneSaveData& p_Other) const;
+	bool operator!=(const SDisguiseZoneSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 };
@@ -12625,6 +13589,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDoorSaveData& p_Other) const;
+	bool operator!=(const SDoorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nDoorState; // 0x0
 	float32 m_fAnimPercent; // 0x4
@@ -12641,6 +13609,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDoorSoundDefs& p_Other) const;
+	bool operator!=(const SDoorSoundDefs& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -12662,6 +13634,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDoorsSaveData& p_Other) const;
+	bool operator!=(const SDoorsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDoorSaveData> m_aData; // 0x18
@@ -12676,6 +13652,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDrama2ActorSaveState& p_Other) const;
+	bool operator!=(const SDrama2ActorSaveState& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rSequence; // 0x4
@@ -12701,6 +13681,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDrama2ActorCollectionSaveData& p_Other) const;
+	bool operator!=(const SDrama2ActorCollectionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2ActorSaveState> m_aStates; // 0x18
@@ -12715,6 +13699,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDrama2SetupSaveData& p_Other) const;
+	bool operator!=(const SDrama2SetupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDoneTriggered; // 0x0
 	EScreenPlayState m_eState; // 0x4
@@ -12730,6 +13718,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDrama2SetupCollectionSaveData& p_Other) const;
+	bool operator!=(const SDrama2SetupCollectionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2SetupSaveData> m_aStates; // 0x18
@@ -12744,6 +13736,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDrama2SituationSaveData& p_Other) const;
+	bool operator!=(const SDrama2SituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_nPriorityModifier; // 0x0
 	int32 m_nCurrentDrama; // 0x4
@@ -12763,6 +13759,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDrama2SituationCollectionSaveData& p_Other) const;
+	bool operator!=(const SDrama2SituationCollectionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2SituationSaveData> m_aStates; // 0x18
@@ -12777,6 +13777,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDramaActorSaveState& p_Other) const;
+	bool operator!=(const SDramaActorSaveState& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rSequence; // 0x4
@@ -12799,6 +13803,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDramaActorCollectionSaveData& p_Other) const;
+	bool operator!=(const SDramaActorCollectionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaActorSaveState> m_aStates; // 0x18
@@ -12813,6 +13821,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDramaControllerSaveData& p_Other) const;
+	bool operator!=(const SDramaControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsStartCondValid; // 0x0
 	bool m_bIsEnableCondValid; // 0x1
@@ -12837,6 +13849,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDramaSetupSaveData& p_Other) const;
+	bool operator!=(const SDramaSetupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDoneTriggered; // 0x0
 	ZScreenplay_EState m_eState; // 0x4
@@ -12852,6 +13868,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDramaSetupCollectionSaveData& p_Other) const;
+	bool operator!=(const SDramaSetupCollectionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaSetupSaveData> m_aStates; // 0x18
@@ -12866,6 +13886,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDramaSituationSaveData& p_Other) const;
+	bool operator!=(const SDramaSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bSituationRunning; // 0x0
 	bool m_bIsTerminated; // 0x1
@@ -12883,6 +13907,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDramaSituationCollectionSaveData& p_Other) const;
+	bool operator!=(const SDramaSituationCollectionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaSituationSaveData> m_aStates; // 0x18
@@ -12897,6 +13925,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDynamicEnforcerCandidateSaveData& p_Other) const;
+	bool operator!=(const SDynamicEnforcerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	float4 m_vPosition; // 0x10
@@ -12913,6 +13945,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDynamicEnforcerServiceSaveData& p_Other) const;
+	bool operator!=(const SDynamicEnforcerServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
 };
@@ -12926,6 +13962,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDynamicObjectKeyValuePair& p_Other) const;
+	bool operator!=(const SDynamicObjectKeyValuePair& p_Other) const { return !(*this == p_Other); }
 
 	ZString sKey; // 0x0
 	ZDynamicObject value; // 0x10
@@ -12940,6 +13980,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SDynamicRayCastEntitySaveData& p_Other) const;
+	bool operator!=(const SDynamicRayCastEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	bool m_bIsRayIntersecting; // 0x1
@@ -12955,6 +13999,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityPath& p_Other) const;
+	bool operator!=(const SEntityPath& p_Other) const { return !(*this == p_Other); }
 
 	uint64 m_nOwnerID; // 0x0
 	TArray<uint64> m_aEntityPath; // 0x8
@@ -12969,6 +14017,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityPinDescriptor& p_Other) const;
+	bool operator!=(const SEntityPinDescriptor& p_Other) const { return !(*this == p_Other); }
 
 	ZString sName; // 0x0
 	ZString sDisplayName; // 0x10
@@ -12987,6 +14039,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplateEntitySubset& p_Other) const;
+	bool operator!=(const SEntityTemplateEntitySubset& p_Other) const { return !(*this == p_Other); }
 
 	TArray<int32> entities; // 0x0
 };
@@ -13000,6 +14056,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplateReference& p_Other) const;
+	bool operator!=(const SEntityTemplateReference& p_Other) const { return !(*this == p_Other); }
 
 	uint64 entityID; // 0x0
 	int32 externalSceneIndex; // 0x8
@@ -13016,6 +14076,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplateExposedEntity& p_Other) const;
+	bool operator!=(const SEntityTemplateExposedEntity& p_Other) const { return !(*this == p_Other); }
 
 	ZString sName; // 0x0
 	bool bIsArray; // 0x10
@@ -13031,6 +14095,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplatePinConnection& p_Other) const;
+	bool operator!=(const SEntityTemplatePinConnection& p_Other) const { return !(*this == p_Other); }
 
 	int32 fromID; // 0x0
 	int32 toID; // 0x4
@@ -13048,6 +14116,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplatePlatformSpecificProperty& p_Other) const;
+	bool operator!=(const SEntityTemplatePlatformSpecificProperty& p_Other) const { return !(*this == p_Other); }
 
 	SEntityTemplateProperty propertyValue; // 0x0
 	EVirtualPlatformID platform; // 0x18
@@ -13063,6 +14135,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplatePropertyAlias& p_Other) const;
+	bool operator!=(const SEntityTemplatePropertyAlias& p_Other) const { return !(*this == p_Other); }
 
 	ZString sAliasName; // 0x0
 	int32 entityID; // 0x10
@@ -13078,6 +14154,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEntityTemplatePropertyOverride& p_Other) const;
+	bool operator!=(const SEntityTemplatePropertyOverride& p_Other) const { return !(*this == p_Other); }
 
 	SEntityTemplateReference propertyOwner; // 0x0
 	SEntityTemplateProperty propertyValue; // 0x20
@@ -13092,6 +14172,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEnvironmentConfigResourceEntry& p_Other) const;
+	bool operator!=(const SEnvironmentConfigResourceEntry& p_Other) const { return !(*this == p_Other); }
 
 	ZString Name; // 0x0
 	ZResourceID ContractsDatastoreRid; // 0x10
@@ -13109,6 +14193,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEnvironmentConfigResource& p_Other) const;
+	bool operator!=(const SEnvironmentConfigResource& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
 };
@@ -13122,6 +14210,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortOutBehaviorSaveData& p_Other) const;
+	bool operator!=(const SEscortOutBehaviorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nSituation; // 0x0
 	bool m_bConversationHelperPaused; // 0x4
@@ -13148,6 +14240,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortOutOrderSaveData& p_Other) const;
+	bool operator!=(const SEscortOutOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<float4> m_aExitPoints; // 0x0
 };
@@ -13171,6 +14267,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortSituation2ActorStateSaveData& p_Other) const;
+	bool operator!=(const SEscortSituation2ActorStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -13190,6 +14290,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortSituation2Actors& p_Other) const;
+	bool operator!=(const SEscortSituation2Actors& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -13215,6 +14319,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortSituation2SaveData& p_Other) const;
+	bool operator!=(const SEscortSituation2SaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -13256,6 +14364,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortSituationActorStateSaveData& p_Other) const;
+	bool operator!=(const SEscortSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -13275,6 +14387,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortSituationActors& p_Other) const;
+	bool operator!=(const SEscortSituationActors& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -13300,6 +14416,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEscortSituationSaveData& p_Other) const;
+	bool operator!=(const SEscortSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -13331,6 +14451,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEvacuateSituationMemberSaveData& p_Other) const;
+	bool operator!=(const SEvacuateSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pGuardDutyPoint; // 0x0
 	int32 m_nPatrolWaypointIndex; // 0x4
@@ -13346,6 +14470,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEvacuateSituationSaveData& p_Other) const;
+	bool operator!=(const SEvacuateSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	ZGameTime m_tLastSeriousSituation; // 0x18
@@ -13365,6 +14493,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEvacuateTrespassGroupSaveData& p_Other) const;
+	bool operator!=(const SEvacuateTrespassGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	int32 m_target; // 0x18
@@ -13386,6 +14518,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEvacuateVIPGroupSaveData& p_Other) const;
+	bool operator!=(const SEvacuateVIPGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rVIP; // 0x18
@@ -13413,6 +14549,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SEventChannelSaveData& p_Other) const;
+	bool operator!=(const SEventChannelSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 };
@@ -13426,6 +14566,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExitSaveData& p_Other) const;
+	bool operator!=(const SExitSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 };
@@ -13439,6 +14583,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExitsActiveSaveData& p_Other) const;
+	bool operator!=(const SExitsActiveSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsActive; // 0x0
 };
@@ -13452,6 +14600,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExposedEntityDescriptor& p_Other) const;
+	bool operator!=(const SExposedEntityDescriptor& p_Other) const { return !(*this == p_Other); }
 
 	ZString sName; // 0x0
 	ZString sDisplayName; // 0x10
@@ -13469,6 +14621,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExposedEntityTypeDescriptor& p_Other) const;
+	bool operator!=(const SExposedEntityTypeDescriptor& p_Other) const { return !(*this == p_Other); }
 
 	ZString sName; // 0x0
 	TArray<ZResourceID> types; // 0x10
@@ -13484,6 +14640,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STypeReference& p_Other) const;
+	bool operator!=(const STypeReference& p_Other) const { return !(*this == p_Other); }
 
 	ZString sEntityID; // 0x0
 	ZString sTypeArgName; // 0x10
@@ -13498,6 +14658,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExposedTypeInfo& p_Other) const;
+	bool operator!=(const SExposedTypeInfo& p_Other) const { return !(*this == p_Other); }
 
 	ZString sName; // 0x0
 	ZString sDisplayName; // 0x10
@@ -13514,6 +14678,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExtendedCppEntityProperty& p_Other) const;
+	bool operator!=(const SExtendedCppEntityProperty& p_Other) const { return !(*this == p_Other); }
 
 	ZString propertyName; // 0x0
 	EExtendedPropertyType propertyType; // 0x10
@@ -13530,6 +14698,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExtendedCppEntityBlueprint& p_Other) const;
+	bool operator!=(const SExtendedCppEntityBlueprint& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SExtendedCppEntityProperty> properties; // 0x0
 };
@@ -13543,6 +14715,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SExternalEntityTemplatePinConnection& p_Other) const;
+	bool operator!=(const SExternalEntityTemplatePinConnection& p_Other) const { return !(*this == p_Other); }
 
 	SEntityTemplateReference fromEntity; // 0x0
 	SEntityTemplateReference toEntity; // 0x20
@@ -13560,6 +14736,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFaceOrderSaveData& p_Other) const;
+	bool operator!=(const SFaceOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bLookAt; // 0x0
 	bool m_bAimAt; // 0x1
@@ -13578,6 +14758,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFleeOrderSaveData& p_Other) const;
+	bool operator!=(const SFleeOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EDisturbanceType m_eHelpReason; // 0x0
 	uint16 m_nGridNodeIndex; // 0x4
@@ -13593,6 +14777,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFontDefinition& p_Other) const;
+	bool operator!=(const SFontDefinition& p_Other) const { return !(*this == p_Other); }
 
 	ZString sFontId; // 0x0
 	ZString sFontName; // 0x10
@@ -13609,6 +14797,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFontLibraryDefinition& p_Other) const;
+	bool operator!=(const SFontLibraryDefinition& p_Other) const { return !(*this == p_Other); }
 
 	ZString sFontLocaleID; // 0x0
 	TArray<SFontDefinition> m_aFontDefinitions; // 0x10
@@ -13623,6 +14815,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFooStruct& p_Other) const;
+	bool operator!=(const SFooStruct& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_eTest; // 0x0
 	ZString m_sOther; // 0x8
@@ -13645,6 +14841,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFootIKEventData& p_Other) const;
+	bool operator!=(const SFootIKEventData& p_Other) const { return !(*this == p_Other); }
 
 	SFootIKEventData_EFoot m_Foot; // 0x0
 };
@@ -13675,6 +14875,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SFriskSuspectGroupSaveData& p_Other) const;
+	bool operator!=(const SFriskSuspectGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	bool m_bHitmanIsGuard; // 0x18
@@ -13703,6 +14907,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGBufferSample& p_Other) const;
+	bool operator!=(const SGBufferSample& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 normal; // 0x0
 	SVector3 diffuse; // 0xC
@@ -13723,6 +14931,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGProperties& p_Other) const;
+	bool operator!=(const SGProperties& p_Other) const { return !(*this == p_Other); }
 
 	float4 vMin; // 0x0
 	float4 vMax; // 0x10
@@ -13740,6 +14952,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGUIViewPort& p_Other) const;
+	bool operator!=(const SGUIViewPort& p_Other) const { return !(*this == p_Other); }
 
 	uint32 x; // 0x0
 	uint32 y; // 0x4
@@ -13756,6 +14972,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGWaypoint& p_Other) const;
+	bool operator!=(const SGWaypoint& p_Other) const { return !(*this == p_Other); }
 
 	uint16 nNeighbor0; // 0x0
 	uint16 nNeighbor1; // 0x2
@@ -13779,6 +14999,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGaitTransitionEntry& p_Other) const;
+	bool operator!=(const SGaitTransitionEntry& p_Other) const { return !(*this == p_Other); }
 
 	EGait m_gait; // 0x0
 	ESpeed m_speed; // 0x4
@@ -13793,6 +15017,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGameCamProfileEntitySaveData& p_Other) const;
+	bool operator!=(const SGameCamProfileEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsEnabled; // 0x0
 	uint32 m_rHero; // 0x4
@@ -13807,6 +15035,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemKeywordProxySaveData& p_Other) const;
+	bool operator!=(const SItemKeywordProxySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
 };
@@ -13820,6 +15052,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemKeywordProxiesSaveData& p_Other) const;
+	bool operator!=(const SItemKeywordProxiesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItemKeywordProxySaveData> m_aData; // 0x18
@@ -13834,6 +15070,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemSaveData& p_Other) const;
+	bool operator!=(const SItemSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vRotation; // 0xC
@@ -13866,6 +15106,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemsSaveData& p_Other) const;
+	bool operator!=(const SItemsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItemSaveData> m_aData; // 0x18
@@ -13880,6 +15124,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLampCoreSaveState& p_Other) const;
+	bool operator!=(const SLampCoreSaveState& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fDiffusePower; // 0x0
 	bool m_bSwitchState; // 0x4
@@ -13894,6 +15142,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLampCoreSaveData& p_Other) const;
+	bool operator!=(const SLampCoreSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SLampCoreSaveState> m_aData; // 0x18
@@ -13908,6 +15160,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpSaveData_SColorRGB& p_Other) const;
+	bool operator!=(const SMathLerpSaveData_SColorRGB& p_Other) const { return !(*this == p_Other); }
 
 	SColorRGB m_A; // 0x0
 	SColorRGB m_B; // 0xC
@@ -13923,6 +15179,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpsSaveData_SColorRGB& p_Other) const;
+	bool operator!=(const SMathLerpsSaveData_SColorRGB& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SColorRGB> m_aData; // 0x18
@@ -13937,6 +15197,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpSaveData_SColorRGBA& p_Other) const;
+	bool operator!=(const SMathLerpSaveData_SColorRGBA& p_Other) const { return !(*this == p_Other); }
 
 	SColorRGBA m_A; // 0x0
 	SColorRGBA m_B; // 0x10
@@ -13952,6 +15216,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpsSaveData_SColorRGBA& p_Other) const;
+	bool operator!=(const SMathLerpsSaveData_SColorRGBA& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
@@ -13966,6 +15234,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpSaveData_SVector2& p_Other) const;
+	bool operator!=(const SMathLerpSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
 
 	SVector2 m_A; // 0x0
 	SVector2 m_B; // 0x8
@@ -13981,6 +15253,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpsSaveData_SVector2& p_Other) const;
+	bool operator!=(const SMathLerpsSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector2> m_aData; // 0x18
@@ -13995,6 +15271,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpSaveData_SVector3& p_Other) const;
+	bool operator!=(const SMathLerpSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_A; // 0x0
 	SVector3 m_B; // 0xC
@@ -14010,6 +15290,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpsSaveData_SVector3& p_Other) const;
+	bool operator!=(const SMathLerpsSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector3> m_aData; // 0x18
@@ -14024,6 +15308,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpSaveData_SVector4& p_Other) const;
+	bool operator!=(const SMathLerpSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 m_A; // 0x0
 	SVector4 m_B; // 0x10
@@ -14039,6 +15327,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpsSaveData_SVector4& p_Other) const;
+	bool operator!=(const SMathLerpsSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
@@ -14053,6 +15345,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpSaveData_float32& p_Other) const;
+	bool operator!=(const SMathLerpSaveData_float32& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_A; // 0x0
 	float32 m_B; // 0x4
@@ -14068,6 +15364,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathLerpsSaveData_float32& p_Other) const;
+	bool operator!=(const SMathLerpsSaveData_float32& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_float32> m_aData; // 0x18
@@ -14082,6 +15382,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultiplyDivideSaveData_SVector2& p_Other) const;
+	bool operator!=(const SMathMultiplyDivideSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
 
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
@@ -14097,6 +15401,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultipliesSaveData_SVector2& p_Other) const;
+	bool operator!=(const SMathMultipliesSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
@@ -14111,6 +15419,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultiplyDivideSaveData_SVector3& p_Other) const;
+	bool operator!=(const SMathMultiplyDivideSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_fA; // 0x0
 	SVector3 m_fB; // 0xC
@@ -14126,6 +15438,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultipliesSaveData_SVector3& p_Other) const;
+	bool operator!=(const SMathMultipliesSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
@@ -14140,6 +15456,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultiplyDivideSaveData_SVector4& p_Other) const;
+	bool operator!=(const SMathMultiplyDivideSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
@@ -14155,6 +15475,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultipliesSaveData_SVector4& p_Other) const;
+	bool operator!=(const SMathMultipliesSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
@@ -14169,6 +15493,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultiplyDivideSaveData_float32& p_Other) const;
+	bool operator!=(const SMathMultiplyDivideSaveData_float32& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fA; // 0x0
 	float32 m_fB; // 0x4
@@ -14184,6 +15512,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathMultipliesSaveData_float32& p_Other) const;
+	bool operator!=(const SMathMultipliesSaveData_float32& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_float32> m_aData; // 0x18
@@ -14198,6 +15530,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SShotListenerSaveData& p_Other) const;
+	bool operator!=(const SShotListenerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	bool m_bNPCShotProcessed; // 0x1
@@ -14212,6 +15548,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SShotListenersSaveData& p_Other) const;
+	bool operator!=(const SShotListenersSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SShotListenerSaveData> m_aData; // 0x18
@@ -14226,6 +15566,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItsATrapSaveData& p_Other) const;
+	bool operator!=(const SItsATrapSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	float32 m_fTimer; // 0x4
@@ -14240,6 +15584,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STrapsSaveData& p_Other) const;
+	bool operator!=(const STrapsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItsATrapSaveData> m_aData; // 0x18
@@ -14254,6 +15602,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVIPEvacuationNodeSaveData& p_Other) const;
+	bool operator!=(const SVIPEvacuationNodeSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fPenaltyMultiplier; // 0x0
 	float32 m_fPenaltyDuration; // 0x4
@@ -14271,6 +15623,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVIPEvacuationNodesSaveData& p_Other) const;
+	bool operator!=(const SVIPEvacuationNodesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
@@ -14285,6 +15641,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVolumeTriggerListenerSaveData& p_Other) const;
+	bool operator!=(const SVolumeTriggerListenerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bColliding; // 0x0
 	bool m_bInternalEnabled; // 0x1
@@ -14299,6 +15659,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVolumeTriggersSaveData& p_Other) const;
+	bool operator!=(const SVolumeTriggersSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVolumeTriggerListenerSaveData> m_aData; // 0x18
@@ -14313,6 +15677,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGameEntitySaveData& p_Other) const;
+	bool operator!=(const SGameEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	SDoorsSaveData m_DoorData; // 0x0
 	SItemsSaveData m_ItemsData; // 0x30
@@ -14349,6 +15717,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SKeywordSaveData& p_Other) const;
+	bool operator!=(const SKeywordSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_HolderSaveableId; // 0x0
 	int32 m_KeywordID; // 0x4
@@ -14363,6 +15735,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGameKeywordManagerSaveData& p_Other) const;
+	bool operator!=(const SGameKeywordManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SKeywordSaveData> m_aKeywordsData; // 0x0
 	TArray<ZString> m_aKeywordStringData; // 0x18
@@ -14498,6 +15874,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGameStatsWeapon& p_Other) const;
+	bool operator!=(const SGameStatsWeapon& p_Other) const { return !(*this == p_Other); }
 
 	ZRepositoryID m_WeaponRepositoryID; // 0x0
 	eItemType m_eItemWeapon; // 0x10
@@ -14514,6 +15894,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STimerEntityCommandSaveData& p_Other) const;
+	bool operator!=(const STimerEntityCommandSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ETimerEntityCommandType m_eType; // 0x0
 	uint32 m_rEntity; // 0x4
@@ -14529,6 +15913,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STimerEntityStateSaveData& p_Other) const;
+	bool operator!=(const STimerEntityStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	float32 m_fNextEventTime; // 0x4
@@ -14544,6 +15932,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGameTimersSaveData& p_Other) const;
+	bool operator!=(const SGameTimersSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<STimerEntityCommandSaveData> m_aTimerEntityCommands; // 0x0
 	TArray<STimerEntityStateSaveData> m_aTimerEntityState; // 0x18
@@ -14559,6 +15951,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGateSaveData& p_Other) const;
+	bool operator!=(const SGateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsOpen; // 0x4
@@ -14574,6 +15970,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLightSaveData& p_Other) const;
+	bool operator!=(const SLightSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	SColorRGB m_DiffuseColor; // 0x4
@@ -14591,6 +15991,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SParticleEmitterSaveData& p_Other) const;
+	bool operator!=(const SParticleEmitterSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsActivated; // 0x4
@@ -14609,6 +16013,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPostfilterParametersSaveData& p_Other) const;
+	bool operator!=(const SPostfilterParametersSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	bool m_bDepthOfFieldEnabled; // 0x4
@@ -14647,6 +16055,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRenderMaterialSaveData& p_Other) const;
+	bool operator!=(const SRenderMaterialSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
 	TArray<uint8> m_aDynamicParametersData; // 0x8
@@ -14662,6 +16074,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGameplayRenderablesSaveData& p_Other) const;
+	bool operator!=(const SGameplayRenderablesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SLightSaveData> m_aLightData; // 0x0
 	TArray<SRenderMaterialSaveData> m_aMaterialData; // 0x18
@@ -14680,6 +16096,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGeomScaleSaveData& p_Other) const;
+	bool operator!=(const SGeomScaleSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 m_vPrimitiveScale; // 0x0
 };
@@ -14693,6 +16113,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGetHelpGroupSaveData& p_Other) const;
+	bool operator!=(const SGetHelpGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vLastKnownTargetPosition; // 0x0
 	uint16 m_rReturnNode; // 0x10
@@ -14721,6 +16145,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGetHelpOrderSaveData& p_Other) const;
+	bool operator!=(const SGetHelpOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EAISharedEventType m_helpType; // 0x0
 	uint32 m_rInitialGuard; // 0x4
@@ -14735,6 +16163,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHelpingActorSaveData& p_Other) const;
+	bool operator!=(const SHelpingActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_HelpTargetKnowledgeIndex; // 0x0
 	uint32 m_rActor; // 0x4
@@ -14749,6 +16181,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGetHelpServiceSaveData& p_Other) const;
+	bool operator!=(const SGetHelpServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SHelpingActorSaveData> m_aHelpingActors; // 0x0
 };
@@ -14762,6 +16198,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGetIActorPositionSaveData& p_Other) const;
+	bool operator!=(const SGetIActorPositionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_StoredActor; // 0x0
 };
@@ -14775,6 +16215,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGuardBodySituationMemberSaveData& p_Other) const;
+	bool operator!=(const SGuardBodySituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bSearchingForMorgue; // 0x0
 	bool m_IsExitingSuccessfulBehavior; // 0x1
@@ -14791,6 +16235,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGuardBodySituationSaveData& p_Other) const;
+	bool operator!=(const SGuardBodySituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bBystanderFieldsFailed; // 0x0
 	bool m_bLastGetHelpGroupFailed; // 0x1
@@ -14808,6 +16256,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SGuardPointOrderSaveData& p_Other) const;
+	bool operator!=(const SGuardPointOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_guardPoint; // 0x0
 	bool m_walkOnly; // 0x4
@@ -14822,6 +16274,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHM5CrippleBoxSaveData& p_Other) const;
+	bool operator!=(const SHM5CrippleBoxSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bInSequence; // 0x0
 	bool m_bAllowBaseMovements; // 0x1
@@ -14888,6 +16344,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHUDPIPControllerSaveData& p_Other) const;
+	bool operator!=(const SHUDPIPControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bPiPEnabled; // 0x0
 };
@@ -14901,6 +16361,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHUDPromptDisplayInfo& p_Other) const;
+	bool operator!=(const SHUDPromptDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActive; // 0x0
 	EActionPromptState m_eState; // 0x4
@@ -14929,6 +16393,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHUDPromptDisplayInfoArray_Dummy& p_Other) const;
+	bool operator!=(const SHUDPromptDisplayInfoArray_Dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
 };
@@ -14942,6 +16410,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHUDTimerControllerSaveData& p_Other) const;
+	bool operator!=(const SHUDTimerControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pCurrentInstance; // 0x0
 };
@@ -14964,6 +16436,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHUDVisibilityController2SaveData& p_Other) const;
+	bool operator!=(const SHUDVisibilityController2SaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZHUDUIRoot_EHUDVisibility m_eCurrentRequest; // 0x0
 };
@@ -14977,6 +16453,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHandleDistractionSituationSaveData& p_Other) const;
+	bool operator!=(const SHandleDistractionSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pLeader; // 0x0
 	uint32 m_pAssistant; // 0x4
@@ -14992,6 +16472,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroCameraStandInSaveState& p_Other) const;
+	bool operator!=(const SHeroCameraStandInSaveState& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rHero; // 0x0
 	bool m_bPaused; // 0x4
@@ -15016,6 +16500,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroEscortSituation2ActorStateSaveData& p_Other) const;
+	bool operator!=(const SHeroEscortSituation2ActorStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -15035,6 +16523,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroEscortSituation2Actors& p_Other) const;
+	bool operator!=(const SHeroEscortSituation2Actors& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -15060,6 +16552,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroEscortSituation2SaveData& p_Other) const;
+	bool operator!=(const SHeroEscortSituation2SaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -15099,6 +16595,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroEscortSituationActorStateSaveData& p_Other) const;
+	bool operator!=(const SHeroEscortSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -15118,6 +16618,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroEscortSituationActors& p_Other) const;
+	bool operator!=(const SHeroEscortSituationActors& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -15143,6 +16647,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroEscortSituationSaveData& p_Other) const;
+	bool operator!=(const SHeroEscortSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -15172,6 +16680,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroItemActionSaveData& p_Other) const;
+	bool operator!=(const SHeroItemActionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
 };
@@ -15185,6 +16697,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroItemAttachmentSaveData& p_Other) const;
+	bool operator!=(const SHeroItemAttachmentSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
 };
@@ -15198,6 +16714,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHeroStandInSaveState& p_Other) const;
+	bool operator!=(const SHeroStandInSaveState& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rHero; // 0x0
 	uint32 m_rCurrentSpeakEntity; // 0x4
@@ -15213,6 +16733,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHintEntrySaveData& p_Other) const;
+	bool operator!=(const SHintEntrySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsValid; // 0x0
 	uint32 m_hint; // 0x4
@@ -15228,6 +16752,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHintManagerSaveData& p_Other) const;
+	bool operator!=(const SHintManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SHintEntrySaveData m_activeHint; // 0x0
 	TArray<SHintEntrySaveData> m_aQueue; // 0x10
@@ -15243,6 +16771,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHitmanSaveData& p_Other) const;
+	bool operator!=(const SHitmanSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZRepositoryID m_OutfitID; // 0x0
 	int32 m_nOutfitCharset; // 0x10
@@ -15267,6 +16799,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SHudMissionTimerControllerData& p_Other) const;
+	bool operator!=(const SHudMissionTimerControllerData& p_Other) const { return !(*this == p_Other); }
 
 	ZGameTime m_fScoreGameTimeStart; // 0x0
 	bool m_bWasIntroCutFired; // 0x8
@@ -15281,6 +16817,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SIntelData& p_Other) const;
+	bool operator!=(const SIntelData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sHeadline; // 0x0
 	ZString m_sBodyHeadline; // 0x10
@@ -15297,6 +16837,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SIntelDataArray_dummy& p_Other) const;
+	bool operator!=(const SIntelDataArray_dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SIntelData> dummy; // 0x0
 };
@@ -15310,6 +16854,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SIntelDisplayInfo& p_Other) const;
+	bool operator!=(const SIntelDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	int32 index; // 0x0
 	bool selected; // 0x4
@@ -15329,6 +16877,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SIntelDisplayInfoArray_dummy& p_Other) const;
+	bool operator!=(const SIntelDisplayInfoArray_dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SIntelDisplayInfo> dummy; // 0x0
 };
@@ -15342,6 +16894,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SIntelListDisplayInfo& p_Other) const;
+	bool operator!=(const SIntelListDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	int32 index; // 0x0
 	bool active; // 0x4
@@ -15358,6 +16914,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SIntelListDisplayInfoArray_dummy& p_Other) const;
+	bool operator!=(const SIntelListDisplayInfoArray_dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SIntelListDisplayInfo> dummy; // 0x0
 };
@@ -15371,6 +16931,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SIntelSaveData& p_Other) const;
+	bool operator!=(const SIntelSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rCurrentStage; // 0x0
 	float32 m_fHandlerAudioPlayPosition; // 0x4
@@ -15390,6 +16954,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInteractionIndicatorInstanceData_SUIControlData& p_Other) const;
+	bool operator!=(const SInteractionIndicatorInstanceData_SUIControlData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_eState; // 0x0
 	int32 m_eTypeId; // 0x4
@@ -15417,6 +16985,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInteractionIndicatorInstanceData& p_Other) const;
+	bool operator!=(const SInteractionIndicatorInstanceData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nStableID; // 0x0
 	SInteractionIndicatorInstanceData_SUIControlData m_uicData; // 0x8
@@ -15437,6 +17009,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInteractionIndicatorInstanceDataArray_Dummy& p_Other) const;
+	bool operator!=(const SInteractionIndicatorInstanceDataArray_Dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SInteractionIndicatorInstanceData> dummy; // 0x0
 };
@@ -15450,6 +17026,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryControllerItemSaveData& p_Other) const;
+	bool operator!=(const SInventoryControllerItemSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItemEntity; // 0x0
 	uint32 m_nAmmo; // 0x4
@@ -15464,6 +17044,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryControllerSlotSaveData& p_Other) const;
+	bool operator!=(const SInventoryControllerSlotSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
 	EInventoryStorageType m_eStorageType; // 0x18
@@ -15478,6 +17062,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SStoredSlotSaveData& p_Other) const;
+	bool operator!=(const SStoredSlotSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_iStoredInventorySlotIndex; // 0x0
 	uint8 m_iStoreReason; // 0x4
@@ -15493,6 +17081,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryControllerSaveData& p_Other) const;
+	bool operator!=(const SInventoryControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
 	uint32 m_nEquippedItemIndex; // 0x18
@@ -15525,6 +17117,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryInfo& p_Other) const;
+	bool operator!=(const SInventoryInfo& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SInventoryItem> m_aPockets; // 0x0
 	SInventoryItem m_CarriedItem; // 0x18
@@ -15540,6 +17136,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryMovementConfig& p_Other) const;
+	bool operator!=(const SInventoryMovementConfig& p_Other) const { return !(*this == p_Other); }
 
 	EInventoryConfigItemHandling m_eItemHandlingRightHand; // 0x0
 	EInventoryConfigItemHandling m_eItemHandlingLeftHand; // 0x4
@@ -15562,6 +17162,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryUISlotSlim& p_Other) const;
+	bool operator!=(const SInventoryUISlotSlim& p_Other) const { return !(*this == p_Other); }
 
 	ZVariant icon; // 0x0
 	ZVariant containedIcon; // 0x10
@@ -15576,6 +17180,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryUI& p_Other) const;
+	bool operator!=(const SInventoryUI& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SInventoryUISlotSlim> mainslotsSlim; // 0x0
 	int32 otherslotsCount; // 0x18
@@ -15592,6 +17200,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryUISlot& p_Other) const;
+	bool operator!=(const SInventoryUISlot& p_Other) const { return !(*this == p_Other); }
 
 	ZString label; // 0x0
 	ZString containedLabel; // 0x10
@@ -15634,6 +17246,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInventoryUICache& p_Other) const;
+	bool operator!=(const SInventoryUICache& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SInventoryUISlot> mainslots; // 0x0
 	TArray<SInventoryUISlot> otherslots; // 0x18
@@ -15662,6 +17278,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZInvestigateDisguiseGroup_SDialogLines& p_Other) const;
+	bool operator!=(const ZInvestigateDisguiseGroup_SDialogLines& p_Other) const { return !(*this == p_Other); }
 
 	EActorSoundDefs m_eFirstWarning; // 0x0
 	EActorSoundDefs m_eSecondWarning; // 0x4
@@ -15686,6 +17306,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInvestigateDisguiseGroupSaveData& p_Other) const;
+	bool operator!=(const SInvestigateDisguiseGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZInvestigateDisguiseGroup_EState m_state; // 0x0
 	int32 m_target; // 0x4
@@ -15721,6 +17345,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SInvestigateWeaponGroupSaveData& p_Other) const;
+	bool operator!=(const SInvestigateWeaponGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTarget; // 0x0
 	uint32 m_rReporter; // 0x4
@@ -15741,6 +17369,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemActionSaveData& p_Other) const;
+	bool operator!=(const SItemActionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
 };
@@ -15754,6 +17386,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemInstanceSaveData& p_Other) const;
+	bool operator!=(const SItemInstanceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZRepositoryID m_repositoryId; // 0x0
 	uint64 m_nEntityID; // 0x10
@@ -15770,6 +17406,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemLeftHandUIData& p_Other) const;
+	bool operator!=(const SItemLeftHandUIData& p_Other) const { return !(*this == p_Other); }
 
 	ZRuntimeResourceID icon; // 0x0
 	int32 nItemHUDType; // 0x8
@@ -15787,6 +17427,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemOnBackUIData& p_Other) const;
+	bool operator!=(const SItemOnBackUIData& p_Other) const { return !(*this == p_Other); }
 
 	ZRuntimeResourceID icon; // 0x0
 	int32 nItemHUDType; // 0x8
@@ -15804,6 +17448,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemSpawnerSaveData& p_Other) const;
+	bool operator!=(const SItemSpawnerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bItemUpdateTransformChange; // 0x0
 };
@@ -15817,6 +17465,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemStorageSaveData& p_Other) const;
+	bool operator!=(const SItemStorageSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_Storage; // 0x0
 	TArray<uint32> m_ContainedItems; // 0x8
@@ -15831,6 +17483,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SItemWeaponSaveData& p_Other) const;
+	bool operator!=(const SItemWeaponSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_magazineBulletsByAmmoType; // 0x0
 	uint32 m_nExtraMagazineBullets; // 0x18
@@ -15847,6 +17503,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLayerBehaviorConfiguration& p_Other) const;
+	bool operator!=(const SLayerBehaviorConfiguration& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bTrigger; // 0x0
 	bool m_bCollector; // 0x1
@@ -15870,6 +17530,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLeadEscortSituationActorStateSaveData& p_Other) const;
+	bool operator!=(const SLeadEscortSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -15889,6 +17553,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLeadEscortSituationActors& p_Other) const;
+	bool operator!=(const SLeadEscortSituationActors& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 };
@@ -15914,6 +17582,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLeadEscortSituationSaveData& p_Other) const;
+	bool operator!=(const SLeadEscortSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActivated; // 0x0
 	bool m_bMayEscort; // 0x1
@@ -15941,6 +17613,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLevelReferenceableEntitieSaveData& p_Other) const;
+	bool operator!=(const SLevelReferenceableEntitieSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sSceneResource; // 0x0
 	TArray<ZString> m_aAdditionalBrickResources; // 0x10
@@ -15955,6 +17631,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SObjetiveSaveData& p_Other) const;
+	bool operator!=(const SObjetiveSaveData& p_Other) const { return !(*this == p_Other); }
 
 	IContractObjective_Type m_eType; // 0x0
 	ZVariant m_SaveData; // 0x8
@@ -15969,6 +17649,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSoundAmbienceSaveData& p_Other) const;
+	bool operator!=(const SSoundAmbienceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rCurrentAmbience; // 0x0
 	uint32 m_rCurrentGate; // 0x4
@@ -15986,6 +17670,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLevelSaveData& p_Other) const;
+	bool operator!=(const SLevelSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int64 m_nGameTime; // 0x0
 	int64 m_nGameTimePrev; // 0x8
@@ -16018,6 +17706,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLightFlickerEntitySaveData& p_Other) const;
+	bool operator!=(const SLightFlickerEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bLightOn; // 0x0
 	bool m_bFlickerOn; // 0x1
@@ -16032,6 +17724,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLoadRuntimeResourceResult& p_Other) const;
+	bool operator!=(const SLoadRuntimeResourceResult& p_Other) const { return !(*this == p_Other); }
 
 	ZString sFilePath; // 0x0
 };
@@ -16045,6 +17741,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLocalizedVideoData& p_Other) const;
+	bool operator!=(const SLocalizedVideoData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZString> AudioLanguages; // 0x0
 	TArray<ZRuntimeResourceID> VideoRidsPerAudioLanguage; // 0x18
@@ -16061,6 +17761,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLockdownManagerAIZoneSaveData& p_Other) const;
+	bool operator!=(const SLockdownManagerAIZoneSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZGameTime m_tExpiry; // 0x0
 	ZGameTime m_tExpiryHeroOutside; // 0x8
@@ -16076,6 +17780,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SLockdownManagerSaveData& p_Other) const;
+	bool operator!=(const SLockdownManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SLockdownManagerAIZoneSaveData> m_aAIZones; // 0x0
 };
@@ -16089,6 +17797,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SManHuntServiceSaveData& p_Other) const;
+	bool operator!=(const SManHuntServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint16> m_rGuardNodes; // 0x0
 	uint16 m_rInitialNode; // 0x18
@@ -16104,6 +17816,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMapMarkerData& p_Other) const;
+	bool operator!=(const SMapMarkerData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SVector2> pathPoints; // 0x0
 };
@@ -16117,6 +17833,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathDistanceSaveData_SVector2& p_Other) const;
+	bool operator!=(const SMathDistanceSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
 
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
@@ -16131,6 +17851,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathDistanceSaveData_SVector3& p_Other) const;
+	bool operator!=(const SMathDistanceSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_fA; // 0x0
 	SVector3 m_fB; // 0xC
@@ -16145,6 +17869,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMathDistanceSaveData_SVector4& p_Other) const;
+	bool operator!=(const SMathDistanceSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
 
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
@@ -16159,6 +17887,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMatrix33& p_Other) const;
+	bool operator!=(const SMatrix33& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 XAxis; // 0x0
 	SVector3 YAxis; // 0xC
@@ -16174,6 +17906,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMatrix43& p_Other) const;
+	bool operator!=(const SMatrix43& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 XAxis; // 0x0
 	SVector3 YAxis; // 0xC
@@ -16190,6 +17926,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMatrix44& p_Other) const;
+	bool operator!=(const SMatrix44& p_Other) const { return !(*this == p_Other); }
 
 	float32 m11; // 0x0
 	float32 m12; // 0x4
@@ -16218,6 +17958,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementAgilitySaveData& p_Other) const;
+	bool operator!=(const SMovementAgilitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rLedgeGuide; // 0x0
 	float32 m_fFaceLeftRightTarget; // 0x4
@@ -16236,6 +17980,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementCoverSaveData& p_Other) const;
+	bool operator!=(const SMovementCoverSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rCoverPlane; // 0x0
 	uint32 m_nCoverAnimNodeID; // 0x4
@@ -16253,6 +18001,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementDisguiseSafeZoneSaveData& p_Other) const;
+	bool operator!=(const SMovementDisguiseSafeZoneSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rSafeZone; // 0x0
 	uint32 m_nSafeZoneAnimNode; // 0x4
@@ -16267,6 +18019,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementDragBodySaveData& p_Other) const;
+	bool operator!=(const SMovementDragBodySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rDraggedActor; // 0x0
 	uint32 m_nGrabBoneID; // 0x4
@@ -16281,6 +18037,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementDrainPipeSaveData& p_Other) const;
+	bool operator!=(const SMovementDrainPipeSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rDrainPipe; // 0x0
 };
@@ -16294,6 +18054,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementHideInClosetSaveData& p_Other) const;
+	bool operator!=(const SMovementHideInClosetSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ICloset_EClosetType m_eCurrentClosetType; // 0x0
 	uint32 m_rCloset; // 0x4
@@ -16308,6 +18072,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementLadderSaveData& p_Other) const;
+	bool operator!=(const SMovementLadderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rLadder; // 0x0
 };
@@ -16321,6 +18089,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMovementLocomotionSaveData& p_Other) const;
+	bool operator!=(const SMovementLocomotionSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsSneaking; // 0x0
 };
@@ -16334,6 +18106,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SMusicGridData& p_Other) const;
+	bool operator!=(const SMusicGridData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fGridDurationSec; // 0x0
 	float32 m_fGridOffsetSec; // 0x4
@@ -16348,6 +18124,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SObserversGroupSaveData& p_Other) const;
+	bool operator!=(const SObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_target; // 0x0
 	TArray<uint32> m_aWaitingObservers; // 0x8
@@ -16363,6 +18143,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SOnlineEvent& p_Other) const;
+	bool operator!=(const SOnlineEvent& p_Other) const { return !(*this == p_Other); }
 
 	ZString sName; // 0x0
 	ZDynamicObject data; // 0x10
@@ -16377,6 +18161,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SOnlineSaveData& p_Other) const;
+	bool operator!=(const SOnlineSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sName; // 0x0
 	int64 m_nTimeStamp; // 0x10
@@ -16394,6 +18182,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SOptionValueSaveData& p_Other) const;
+	bool operator!=(const SOptionValueSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZVariant m_Value; // 0x0
 };
@@ -16407,6 +18199,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPFObstactleSaveData& p_Other) const;
+	bool operator!=(const SPFObstactleSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 };
@@ -16420,6 +18216,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPIPMessageManagerProxySaveData& p_Other) const;
+	bool operator!=(const SPIPMessageManagerProxySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 };
@@ -16433,6 +18233,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPatrolGroupSaveData& p_Other) const;
+	bool operator!=(const SPatrolGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nRouteID; // 0x0
 };
@@ -16446,6 +18250,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPatrolOrderSaveData& p_Other) const;
+	bool operator!=(const SPatrolOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -16458,6 +18266,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPerceptibleCrowdBodySaveData& p_Other) const;
+	bool operator!=(const SPerceptibleCrowdBodySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rCombatZone; // 0x0
 	int32 m_rSharedKnowledge; // 0x4
@@ -16472,6 +18284,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPersistentEntitySaveData& p_Other) const;
+	bool operator!=(const SPersistentEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint64 m_nResourceId; // 0x0
 	TArray<uint64> m_aEntityIDs; // 0x8
@@ -16487,6 +18303,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPersistentEntitySaveDataList& p_Other) const;
+	bool operator!=(const SPersistentEntitySaveDataList& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SPersistentEntitySaveData> m_aEntityDatas; // 0x0
 	TArray<uint64> m_mDynamicObjectIDGenerationKeys; // 0x18
@@ -16502,6 +18322,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPhysicsSaveData& p_Other) const;
+	bool operator!=(const SPhysicsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsInPhysicsWorld; // 0x0
 	bool m_bIsKinematicBody; // 0x1
@@ -16517,6 +18341,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPhysicsListSaveData& p_Other) const;
+	bool operator!=(const SPhysicsListSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntityRefs; // 0x0
 	TArray<SPhysicsSaveData> m_aEntityDatas; // 0x18
@@ -16531,6 +18359,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SPrivateAreaSaveData& p_Other) const;
+	bool operator!=(const SPrivateAreaSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsInside; // 0x0
 	bool m_bSpotted; // 0x1
@@ -16546,6 +18378,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SProgressTimerEntitySaveData& p_Other) const;
+	bool operator!=(const SProgressTimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nInterval; // 0x0
 	int32 m_nRemaining; // 0x4
@@ -16561,6 +18397,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRandomTimerEntitySaveData& p_Other) const;
+	bool operator!=(const SRandomTimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	bool m_bRegistered; // 0x1
@@ -16579,6 +18419,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRandomTimerEntitiesSaveData& p_Other) const;
+	bool operator!=(const SRandomTimerEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
@@ -16593,6 +18437,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZBitArray& p_Other) const;
+	bool operator!=(const ZBitArray& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint8> m_aBytes; // 0x0
 	uint32 m_nSize; // 0x18
@@ -16607,6 +18455,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SReasoningGrid& p_Other) const;
+	bool operator!=(const SReasoningGrid& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SGWaypoint> m_WaypointList; // 0x0
 	ZBitArray m_LowVisibilityBits; // 0x18
@@ -16626,6 +18478,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRecoverUnconsciousGroupSaveData& p_Other) const;
+	bool operator!=(const SRecoverUnconsciousGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rVictim; // 0x18
@@ -16645,6 +18501,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRememberActorSaveData& p_Other) const;
+	bool operator!=(const SRememberActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_Actors; // 0x0
 };
@@ -16658,6 +18518,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRemoteControlReceiverSaveData& p_Other) const;
+	bool operator!=(const SRemoteControlReceiverSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	bool m_bReceiverActivated; // 0x1
@@ -16673,6 +18537,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRenderVideoPlayerSaveData& p_Other) const;
+	bool operator!=(const SRenderVideoPlayerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bPlaying; // 0x0
 	bool m_bPaused; // 0x1
@@ -16696,6 +18564,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRepositionOrderSaveData& p_Other) const;
+	bool operator!=(const SRepositionOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bStrafe; // 0x0
 	bool m_bAimAtTarget; // 0x1
@@ -16710,6 +18582,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SRotateEntitySaveData& p_Other) const;
+	bool operator!=(const SRotateEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
 	float32 m_fXAxisSpeed; // 0x4
@@ -16726,6 +18602,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSCCuriousConfiguration& p_Other) const;
+	bool operator!=(const SSCCuriousConfiguration& p_Other) const { return !(*this == p_Other); }
 
 	bool m_CanGuardsInvestigate; // 0x0
 	bool m_CanCiviliansInvestigate; // 0x1
@@ -16741,6 +18621,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSavableData& p_Other) const;
+	bool operator!=(const SSavableData& p_Other) const { return !(*this == p_Other); }
 
 	ZVariant m_EntitiesData; // 0x0
 	ZVariant m_Data; // 0x10
@@ -16756,6 +18640,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVariantStruct& p_Other) const;
+	bool operator!=(const SVariantStruct& p_Other) const { return !(*this == p_Other); }
 
 	ZVariant m_Data; // 0x0
 };
@@ -16769,6 +18657,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSavableEntitiesSaveData& p_Other) const;
+	bool operator!=(const SSavableEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVariantStruct> m_aEntityData; // 0x18
@@ -16783,6 +18675,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSaveGameData& p_Other) const;
+	bool operator!=(const SSaveGameData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nVersion; // 0x0
 	TArray<SSavableData> m_aSavableObjectsData; // 0x8
@@ -16798,6 +18694,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSaveGameMetaData& p_Other) const;
+	bool operator!=(const SSaveGameMetaData& p_Other) const { return !(*this == p_Other); }
 
 	uint8 nSlot; // 0x0
 	ESaveType eSaveType; // 0x4
@@ -16823,6 +18723,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSaveGameHeader& p_Other) const;
+	bool operator!=(const SSaveGameHeader& p_Other) const { return !(*this == p_Other); }
 
 	uint32 nFourCC; // 0x0
 	uint32 nVersion; // 0x4
@@ -16841,6 +18745,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SScreenplay2ManagerSaveData& p_Other) const;
+	bool operator!=(const SScreenplay2ManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SDramaActorCollectionSaveData m_DramaActorData; // 0x0
 	SDramaSituationCollectionSaveData m_DramaSituationData; // 0x30
@@ -16859,6 +18767,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SScreenplayManagerSaveData& p_Other) const;
+	bool operator!=(const SScreenplayManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SDramaActorCollectionSaveData m_DramaActorData; // 0x0
 	SDramaSituationCollectionSaveData m_DramaSituationData; // 0x30
@@ -16874,6 +18786,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SScreenplayRole2HeroSaveState& p_Other) const;
+	bool operator!=(const SScreenplayRole2HeroSaveState& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rCurrentSpeakEntity; // 0x0
 	bool m_bPaused; // 0x4
@@ -16888,6 +18804,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSecuritySystemCameraSaveData& p_Other) const;
+	bool operator!=(const SSecuritySystemCameraSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nEscalation; // 0x0
 	bool m_bIsFunctional; // 0x2
@@ -16905,6 +18825,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSecuritySystemRecorderSaveData& p_Other) const;
+	bool operator!=(const SSecuritySystemRecorderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bHasRecordings; // 0x0
 	bool m_bIsFunctional; // 0x1
@@ -16919,6 +18843,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSentryGroupSaveData& p_Other) const;
+	bool operator!=(const SSentryGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTarget; // 0x0
 	uint32 m_pLeader; // 0x4
@@ -16939,6 +18867,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSentryOrderSaveData& p_Other) const;
+	bool operator!=(const SSentryOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rSentryZone; // 0x0
 };
@@ -16952,6 +18884,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSentryZoneSaveData& p_Other) const;
+	bool operator!=(const SSentryZoneSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZGameTime m_tGreetingCooldown; // 0x0
 	ZGameTime m_tLoiteringCooldown; // 0x8
@@ -16991,6 +18927,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSequenceTrackSaveData& p_Other) const;
+	bool operator!=(const SSequenceTrackSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTrackEntity; // 0x0
 	ZVariant m_CustomTrackData; // 0x8
@@ -17026,6 +18966,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSequenceSaveData& p_Other) const;
+	bool operator!=(const SSequenceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZSequenceEntity_ECommand> m_commandQueue; // 0x0
 	ZGameTime m_sequenceTime; // 0x18
@@ -17050,6 +18994,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSequenceManagerSaveData& p_Other) const;
+	bool operator!=(const SSequenceManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SSequenceSaveData> m_aSequenceSaveData; // 0x18
@@ -17064,6 +19012,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSerializedValue& p_Other) const;
+	bool operator!=(const SSerializedValue& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -17076,6 +19028,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSituationConversationGroupSaveData& p_Other) const;
+	bool operator!=(const SSituationConversationGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_members; // 0x0
 };
@@ -17089,6 +19045,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSituationOrderSaveData& p_Other) const;
+	bool operator!=(const SSituationOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sClassTypeName; // 0x0
 	EAISharedEventType m_eType; // 0x10
@@ -17119,6 +19079,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSmuggleSituationActorStateSaveData& p_Other) const;
+	bool operator!=(const SSmuggleSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
@@ -17138,6 +19102,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSmuggleSituationSaveData& p_Other) const;
+	bool operator!=(const SSmuggleSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsEnabled; // 0x0
 	bool m_bIsRunning; // 0x1
@@ -17155,6 +19123,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSniperCombatGroupSaveData& p_Other) const;
+	bool operator!=(const SSniperCombatGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SFSMSaveData m_fsmState; // 0x0
 	int32 m_target; // 0x18
@@ -17172,6 +19144,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSniperScoringEvent& p_Other) const;
+	bool operator!=(const SSniperScoringEvent& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_iPoints; // 0x0
 	int32 m_iPlayer; // 0x4
@@ -17190,6 +19166,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSpaceCollectionBehaviorConfiguration& p_Other) const;
+	bool operator!=(const SSpaceCollectionBehaviorConfiguration& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bInclusive; // 0x0
 };
@@ -17203,6 +19183,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSpatialMoverEntitySaveData& p_Other) const;
+	bool operator!=(const SSpatialMoverEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fSpeed; // 0x0
 	SVector3 m_vPosition; // 0x4
@@ -17220,6 +19204,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSpatialSaveData& p_Other) const;
+	bool operator!=(const SSpatialSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bVisible; // 0x0
 	SVector3 m_vPosition; // 0x4
@@ -17235,6 +19223,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SSpeakEntitySaveData& p_Other) const;
+	bool operator!=(const SSpeakEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fSeekPosition; // 0x0
 };
@@ -17248,6 +19240,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SStashPointSaveData& p_Other) const;
+	bool operator!=(const SStashPointSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_arItems; // 0x0
 	uint32 m_pSuitcase; // 0x18
@@ -17265,6 +19261,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SStateControllerSaveDataStruct& p_Other) const;
+	bool operator!=(const SStateControllerSaveDataStruct& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nIndex; // 0x0
 	bool m_bEnabled; // 0x4
@@ -17279,6 +19279,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SStateControllerSaveData& p_Other) const;
+	bool operator!=(const SStateControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SStateControllerSaveDataStruct> m_aData; // 0x18
@@ -17293,6 +19297,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SStepCounterEntitySaveData& p_Other) const;
+	bool operator!=(const SStepCounterEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_nIndex; // 0x0
 	int32 m_nLoopIndex; // 0x4
@@ -17312,6 +19320,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STargetInfoObjectiveCondition& p_Other) const;
+	bool operator!=(const STargetInfoObjectiveCondition& p_Other) const { return !(*this == p_Other); }
 
 	ZString header; // 0x0
 	ZString title; // 0x10
@@ -17329,6 +19341,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STargetInfoDisplayData& p_Other) const;
+	bool operator!=(const STargetInfoDisplayData& p_Other) const { return !(*this == p_Other); }
 
 	ZString npcName; // 0x0
 	ZString disguiseName; // 0x10
@@ -17349,6 +19365,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STargetInfoDisplayData_Dummy& p_Other) const;
+	bool operator!=(const STargetInfoDisplayData_Dummy& p_Other) const { return !(*this == p_Other); }
 
 	TArray<STargetInfoDisplayData> __dummy; // 0x0
 };
@@ -17362,6 +19382,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STargetTrackingSaveData& p_Other) const;
+	bool operator!=(const STargetTrackingSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_sharedTarget; // 0x0
 	float4 m_position; // 0x10
@@ -17377,6 +19401,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STargetTrackingServiceSaveData& p_Other) const;
+	bool operator!=(const STargetTrackingServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<STargetTrackingSaveData> m_aTrackedTargets; // 0x0
 };
@@ -17390,6 +19418,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STargetableBoneConfiguration& p_Other) const;
+	bool operator!=(const STargetableBoneConfiguration& p_Other) const { return !(*this == p_Other); }
 
 	BoneId_Enum m_eBone; // 0x0
 	float32 m_fBoneRadiusOverride; // 0x4
@@ -17404,6 +19436,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STemplateBlueprintSubEntity& p_Other) const;
+	bool operator!=(const STemplateBlueprintSubEntity& p_Other) const { return !(*this == p_Other); }
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
@@ -17425,6 +19461,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STemplateEntityBlueprint& p_Other) const;
+	bool operator!=(const STemplateEntityBlueprint& p_Other) const { return !(*this == p_Other); }
 
 	int32 subType; // 0x0
 	int32 rootEntityIndex; // 0x4
@@ -17447,6 +19487,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STemplateFactorySubEntity& p_Other) const;
+	bool operator!=(const STemplateFactorySubEntity& p_Other) const { return !(*this == p_Other); }
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
@@ -17464,6 +19508,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STemplateEntityFactory& p_Other) const;
+	bool operator!=(const STemplateEntityFactory& p_Other) const { return !(*this == p_Other); }
 
 	int32 subType; // 0x0
 	int32 blueprintIndexInResourceHeader; // 0x4
@@ -17489,6 +19537,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STestStruct& p_Other) const;
+	bool operator!=(const STestStruct& p_Other) const { return !(*this == p_Other); }
 
 	ZString stringField; // 0x0
 	uint32 intField; // 0x10
@@ -17505,6 +19557,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STestStruct2& p_Other) const;
+	bool operator!=(const STestStruct2& p_Other) const { return !(*this == p_Other); }
 
 	TArray<STestStruct> arrayField; // 0x0
 	ZVariant variantField; // 0x18
@@ -17519,6 +19575,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STimerEntitySaveData& p_Other) const;
+	bool operator!=(const STimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nInterval; // 0x0
 	bool m_bEnabled; // 0x4
@@ -17534,6 +19594,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STimerEntitiesSaveData& p_Other) const;
+	bool operator!=(const STimerEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<STimerEntitySaveData> m_aData; // 0x18
@@ -17548,6 +19612,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STimerManagerSaveData& p_Other) const;
+	bool operator!=(const STimerManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	STimerEntitiesSaveData m_TimersData; // 0x0
 	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
@@ -17563,6 +19631,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STokenID& p_Other) const;
+	bool operator!=(const STokenID& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_iValue; // 0x0
 	bool m_bValid; // 0x4
@@ -17577,6 +19649,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STrackDollyControllerSaveData& p_Other) const;
+	bool operator!=(const STrackDollyControllerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTrackEntity; // 0x0
 	float32 m_fTrackPosition; // 0x4
@@ -17594,6 +19670,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STrackerEntitySaveData& p_Other) const;
+	bool operator!=(const STrackerEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTracker; // 0x0
 	bool m_bIsVisible; // 0x4
@@ -17610,6 +19690,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STrackerManagerSaveData& p_Other) const;
+	bool operator!=(const STrackerManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
 };
@@ -17623,6 +19707,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STrajectoryTrackSaveData& p_Other) const;
+	bool operator!=(const STrajectoryTrackSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SMatrix m_vOriginalEntityTransform; // 0x0
 	SMatrix m_vTargetStartTransform; // 0x40
@@ -17637,6 +19725,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STrespassingRuleEntitySaveData& p_Other) const;
+	bool operator!=(const STrespassingRuleEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<bool> m_aAllowedProfessionsDisabled; // 0x0
 };
@@ -17650,6 +19742,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const STriggerAlarmGroupSaveData& p_Other) const;
+	bool operator!=(const STriggerAlarmGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTarget; // 0x0
 	uint32 m_rAlarm; // 0x4
@@ -17667,6 +19763,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUIBreadcrumbDataSaveData& p_Other) const;
+	bool operator!=(const SUIBreadcrumbDataSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fProgress; // 0x0
 	int32 m_nState; // 0x4
@@ -17681,6 +19781,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUIGridCellPosition& p_Other) const;
+	bool operator!=(const SUIGridCellPosition& p_Other) const { return !(*this == p_Other); }
 
 	int32 nColumnIndex; // 0x0
 	int32 nRowIndex; // 0x4
@@ -17697,6 +19801,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUIOpenVRComponent& p_Other) const;
+	bool operator!=(const SUIOpenVRComponent& p_Other) const { return !(*this == p_Other); }
 
 	EUIOpenVRComponentArchetypeID idArchetype; // 0x0
 	EUIOpenVRPressDirection direction; // 0x4
@@ -17712,6 +19820,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUIOpenVRButtonConversion& p_Other) const;
+	bool operator!=(const SUIOpenVRButtonConversion& p_Other) const { return !(*this == p_Other); }
 
 	EUIGamepadButtonID idSource; // 0x0
 	SUIOpenVRComponent component; // 0x8
@@ -17862,6 +19974,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUIOptionsSaveData& p_Other) const;
+	bool operator!=(const SUIOptionsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<_EUIOptionKey> m_aKeys; // 0x0
 	TArray<SOptionValueSaveData> m_aValues; // 0x18
@@ -17887,6 +20003,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUITestData_SSubSubStruct& p_Other) const;
+	bool operator!=(const SUITestData_SSubSubStruct& p_Other) const { return !(*this == p_Other); }
 
 	ZString sDeepString; // 0x0
 };
@@ -17900,6 +20020,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUITestData_SSubStruct& p_Other) const;
+	bool operator!=(const SUITestData_SSubStruct& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SUITestData_SSubSubStruct> aSubSubStructs; // 0x0
 };
@@ -17913,6 +20037,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SUITestData& p_Other) const;
+	bool operator!=(const SUITestData& p_Other) const { return !(*this == p_Other); }
 
 	int32 nIntProp; // 0x0
 	int16 fInt16Prop; // 0x4
@@ -17935,6 +20063,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVRConfigCameraComponent& p_Other) const;
+	bool operator!=(const SVRConfigCameraComponent& p_Other) const { return !(*this == p_Other); }
 
 	EVRConfigHeadAnchorMode m_eHeadAnchorMode; // 0x0
 	uint32 m_uRecenterRequestCounter; // 0x4
@@ -17956,6 +20088,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SValueBoolDelayedEntitySaveData& p_Other) const;
+	bool operator!=(const SValueBoolDelayedEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bValue; // 0x0
 	bool m_bWaitingValue; // 0x1
@@ -17971,6 +20107,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SValueBoolsSaveData& p_Other) const;
+	bool operator!=(const SValueBoolsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<bool> m_aData; // 0x18
@@ -17985,6 +20125,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SValueFloatSaveData& p_Other) const;
+	bool operator!=(const SValueFloatSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<float32> m_aData; // 0x18
@@ -17999,6 +20143,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SValueIntSaveData& p_Other) const;
+	bool operator!=(const SValueIntSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<int32> m_aData; // 0x18
@@ -18013,6 +20161,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SValueSaveData& p_Other) const;
+	bool operator!=(const SValueSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SValueBoolsSaveData m_ValueBool; // 0x0
 	SValueFloatSaveData m_ValueFloat; // 0x30
@@ -18030,6 +20182,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVideoDatabaseEntry& p_Other) const;
+	bool operator!=(const SVideoDatabaseEntry& p_Other) const { return !(*this == p_Other); }
 
 	ZString VideoId; // 0x0
 	ZRuntimeResourceID RuntimeLocalizedVideoRid; // 0x10
@@ -18044,6 +20200,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVideoDatabaseData& p_Other) const;
+	bool operator!=(const SVideoDatabaseData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SVideoDatabaseEntry> Videos; // 0x0
 };
@@ -18057,6 +20217,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVisibilitySaveData& p_Other) const;
+	bool operator!=(const SVisibilitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsVisible; // 0x0
 };
@@ -18070,6 +20234,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SVoidSignalEntitySaveData& p_Other) const;
+	bool operator!=(const SVoidSignalEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bSignaling; // 0x0
 	float32 m_fFiredAtTime; // 0x4
@@ -18084,6 +20252,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SWaveformGeneratorSaveData& p_Other) const;
+	bool operator!=(const SWaveformGeneratorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fTime; // 0x0
 	float32 m_fFrequency; // 0x4
@@ -18102,6 +20274,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SWaveformGeneratorManagerSaveData& p_Other) const;
+	bool operator!=(const SWaveformGeneratorManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint32> m_aGenerators; // 0x0
 	TArray<SWaveformGeneratorSaveData> m_aGeneratorData; // 0x18
@@ -18116,6 +20292,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SWeaponCustomControlSaveData& p_Other) const;
+	bool operator!=(const SWeaponCustomControlSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
@@ -18131,6 +20311,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SWeaponStatusUIData& p_Other) const;
+	bool operator!=(const SWeaponStatusUIData& p_Other) const { return !(*this == p_Other); }
 
 	ZRuntimeResourceID icon; // 0x0
 	ZRuntimeResourceID containedIcon; // 0x8
@@ -18174,6 +20358,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SWorldInventoryInstanceSaveData& p_Other) const;
+	bool operator!=(const SWorldInventoryInstanceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SItemInstanceSaveData> m_aItemInstanceSaveData; // 0x0
 };
@@ -18187,6 +20375,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const SZHUDIgnoreVisibilitySaveData& p_Other) const;
+	bool operator!=(const SZHUDIgnoreVisibilitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 alpha; // 0x0
 };
@@ -18281,6 +20473,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData& p_Other) const;
+	bool operator!=(const ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_DistractedActor; // 0x0
 	ZGameTime m_CooldownExpirationTimestamp; // 0x8
@@ -18307,6 +20503,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAMDEvent& p_Other) const;
+	bool operator!=(const ZAMDEvent& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nEventID; // 0x0
 	float32 m_fStartFraction; // 0x4
@@ -18323,6 +20523,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAMDEventTrack& p_Other) const;
+	bool operator!=(const ZAMDEventTrack& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sName; // 0x0
 	TArray<ZAMDEvent> m_events; // 0x10
@@ -18337,6 +20541,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAMDTake& p_Other) const;
+	bool operator!=(const ZAMDTake& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
 	ZVariant m_customData; // 0x18
@@ -18368,6 +20576,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAT2Controller_SEventPreviewInfo& p_Other) const;
+	bool operator!=(const ZAT2Controller_SEventPreviewInfo& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nEventID; // 0x0
 	ZString m_sConsumerID; // 0x8
@@ -18385,6 +20597,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAT2Controller_SGeneratedFootstepEvent& p_Other) const;
+	bool operator!=(const ZAT2Controller_SGeneratedFootstepEvent& p_Other) const { return !(*this == p_Other); }
 
 	ZAT2Controller_EFoot m_eFoot; // 0x0
 	float32 m_fFrame; // 0x4
@@ -18561,6 +20777,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZApproachOrder_SApproachOrderSaveData& p_Other) const;
+	bool operator!=(const ZApproachOrder_SApproachOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vStopDirection; // 0x0
 	ZApproachOrder_EApproachStyle m_style; // 0x10
@@ -18586,6 +20806,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAutoNullEntityRef& p_Other) const;
+	bool operator!=(const ZAutoNullEntityRef& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -18609,6 +20833,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZAvoidDangerousAreaSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZAvoidDangerousAreaSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<int32> m_aAvoidDangerousAreaGroups; // 0x0
 };
@@ -18724,6 +20952,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZComponentCreator& p_Other) const;
+	bool operator!=(const ZComponentCreator& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sComponentName; // 0x0
 	TArray<ZVariant> m_aArgs; // 0x10
@@ -18763,6 +20995,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZContractEvaluationContext& p_Other) const;
+	bool operator!=(const ZContractEvaluationContext& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -18822,6 +21058,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZCurve& p_Other) const;
+	bool operator!=(const ZCurve& p_Other) const { return !(*this == p_Other); }
 
 	TArray<TFixedArray<float32, 8>> data; // 0x0
 };
@@ -18844,6 +21084,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDeadBodySituation_SIncidentSaveData& p_Other) const;
+	bool operator!=(const ZDeadBodySituation_SIncidentSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_body; // 0x0
 	bool m_bAccident; // 0x4
@@ -18858,6 +21102,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDeadBodySituation_SState& p_Other) const;
+	bool operator!=(const ZDeadBodySituation_SState& p_Other) const { return !(*this == p_Other); }
 
 	ZDeadBodySituation_ESituationFlavor m_eFlavor; // 0x0
 	ZGameTime m_tLastEscalateOrder; // 0x8
@@ -18880,6 +21128,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDeadBodySituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZDeadBodySituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZDeadBodySituation_SState m_State; // 0x0
 	uint32 m_pLeader; // 0x28
@@ -19005,6 +21257,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDetectedInPrivateSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZDetectedInPrivateSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_pDetectedInPrivateGroup; // 0x0
 };
@@ -19018,6 +21274,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDialogEventItemTypedIndex& p_Other) const;
+	bool operator!=(const ZDialogEventItemTypedIndex& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -19030,6 +21290,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDisguiseSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZDisguiseSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pLeader; // 0x0
 	TArray<int32> m_aInvestigateDisguiseGroups; // 0x8
@@ -19069,6 +21333,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZDynamicObject_SArrayTypesRegistrar& p_Other) const;
+	bool operator!=(const ZDynamicObject_SArrayTypesRegistrar& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SDynamicObjectKeyValuePair> _dummy; // 0x0
 	TArray<ZDynamicObject> _dummy2; // 0x18
@@ -19083,6 +21351,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZER64& p_Other) const;
+	bool operator!=(const ZER64& p_Other) const { return !(*this == p_Other); }
 
 	uint64 m_nEntityID; // 0x0
 	ZString m_sExposedEntity; // 0x8
@@ -19097,6 +21369,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZEntityID& p_Other) const;
+	bool operator!=(const ZEntityID& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sStr; // 0x0
 };
@@ -19110,6 +21386,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZEntityPath& p_Other) const;
+	bool operator!=(const ZEntityPath& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -19130,6 +21410,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZEntityRef& p_Other) const;
+	bool operator!=(const ZEntityRef& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -19142,6 +21426,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZEntityReference& p_Other) const;
+	bool operator!=(const ZEntityReference& p_Other) const { return !(*this == p_Other); }
 
 	ZEntityID m_EntityID; // 0x0
 	ZString m_sExposedEntity; // 0x10
@@ -19156,6 +21444,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZFormationMoveOrder_SFormationMoveOrderSaveData& p_Other) const;
+	bool operator!=(const ZFormationMoveOrder_SFormationMoveOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vStopDirection; // 0x0
 	uint32 m_nObstacleBlockageFlags; // 0x10
@@ -19186,6 +21478,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZGfxValueWrapper& p_Other) const;
+	bool operator!=(const ZGfxValueWrapper& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -19198,6 +21494,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZGridFloatField& p_Other) const;
+	bool operator!=(const ZGridFloatField& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_fInitialValue; // 0x4
 	TArray<float32> m_field; // 0x8
@@ -19212,6 +21512,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZGuidString& p_Other) const;
+	bool operator!=(const ZGuidString& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -19233,6 +21537,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5AgilityEventConsumer_SAgilityEventData& p_Other) const;
+	bool operator!=(const ZHM5AgilityEventConsumer_SAgilityEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5AgilityEventConsumer_EEvent m_nEvent; // 0x0
 };
@@ -19256,6 +21564,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZResourcePtr& p_Other) const;
+	bool operator!=(const ZResourcePtr& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -19268,6 +21580,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5AudioEventConsumer_SAudioAnimationEventData& p_Other) const;
+	bool operator!=(const ZHM5AudioEventConsumer_SAudioAnimationEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZResourcePtr m_pAudioEventRes; // 0x0
 	float32 m_fAttenuation; // 0x8
@@ -19329,6 +21645,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5BodySoundEventConsumer_SBodySoundEventData& p_Other) const;
+	bool operator!=(const ZHM5BodySoundEventConsumer_SBodySoundEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5BodySoundEventConsumer_EAnimSoundBody m_nEvent; // 0x0
 };
@@ -19342,6 +21662,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData& p_Other) const;
+	bool operator!=(const ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData& p_Other) const { return !(*this == p_Other); }
 
 	EHM5SoundCloseCombatEvent m_nEvent; // 0x0
 	float32 m_fAttenuation; // 0x4
@@ -19365,6 +21689,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5CrowdEventConsumer_SCrowdSoundEventData& p_Other) const;
+	bool operator!=(const ZHM5CrowdEventConsumer_SCrowdSoundEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZResourcePtr m_pAudioEventRes; // 0x0
 	float32 m_fAttenuation; // 0x8
@@ -19393,6 +21721,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData& p_Other) const;
+	bool operator!=(const ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5CrowdGenericEventConsumer_EEvent m_nEvent; // 0x0
 };
@@ -19432,6 +21764,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5FaceFXReactionEventConsumer_SFaceFXEventData& p_Other) const;
+	bool operator!=(const ZHM5FaceFXReactionEventConsumer_SFaceFXEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5FaceFXReactionEventConsumer_EEvent m_nEvent; // 0x0
 };
@@ -19458,6 +21794,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData& p_Other) const;
+	bool operator!=(const ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5FaceFXSpecificEventConsumer_EEvent m_nEvent; // 0x0
 	ZString m_sFaceExpression; // 0x8
@@ -19472,6 +21812,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5FootstepEventConsumer_SFootstepSoundEventData& p_Other) const;
+	bool operator!=(const ZHM5FootstepEventConsumer_SFootstepSoundEventData& p_Other) const { return !(*this == p_Other); }
 
 	EHM5SoundFootstepEvent m_nEvent; // 0x0
 };
@@ -19518,6 +21862,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5GenericEventConsumer_SGenericEventData& p_Other) const;
+	bool operator!=(const ZHM5GenericEventConsumer_SGenericEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5GenericEventConsumer_EEvent m_nEvent; // 0x0
 };
@@ -19547,6 +21895,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5HIKEventConsumer_SZHM5HIKEventData& p_Other) const;
+	bool operator!=(const ZHM5HIKEventConsumer_SZHM5HIKEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5HIKEventConsumer_EEffector m_nEffector; // 0x0
 	ZHM5HIKEventConsumer_EBlend m_nBlend; // 0x4
@@ -19629,6 +21981,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5ItemInteractionEventConsumer_SItemInteractionEventData& p_Other) const;
+	bool operator!=(const ZHM5ItemInteractionEventConsumer_SItemInteractionEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent m_nEvent; // 0x0
 };
@@ -19728,6 +22084,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHM5WeaponEventConsumer_SWeaponEventData& p_Other) const;
+	bool operator!=(const ZHM5WeaponEventConsumer_SWeaponEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5WeaponEventConsumer_EAnimWeapon m_nEvent; // 0x0
 };
@@ -19741,6 +22101,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHUDAIGuide_SData& p_Other) const;
+	bool operator!=(const ZHUDAIGuide_SData& p_Other) const { return !(*this == p_Other); }
 
 	bool bDisguiseBroken; // 0x0
 	bool bTrespassing; // 0x1
@@ -19785,6 +22149,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHUDCamera3DControllerEntity_SEyeToPlane& p_Other) const;
+	bool operator!=(const ZHUDCamera3DControllerEntity_SEyeToPlane& p_Other) const { return !(*this == p_Other); }
 
 	float4 posCharacter; // 0x0
 	float4 udirTowardsPlane; // 0x10
@@ -19800,6 +22168,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHUDHintController_SData& p_Other) const;
+	bool operator!=(const ZHUDHintController_SData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sTitleText; // 0x0
 	ZString m_sBodyText; // 0x10
@@ -19814,6 +22186,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHUDInventoryNotificationController_SData& p_Other) const;
+	bool operator!=(const ZHUDInventoryNotificationController_SData& p_Other) const { return !(*this == p_Other); }
 
 	ZString m_sTitleText; // 0x0
 	ZString m_sBodyText; // 0x10
@@ -19844,6 +22220,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHUDOccluderTriggerEntity_SBoneTestSetup& p_Other) const;
+	bool operator!=(const ZHUDOccluderTriggerEntity_SBoneTestSetup& p_Other) const { return !(*this == p_Other); }
 
 	BoneId_Enum boneId; // 0x0
 	SVector3 localOffset; // 0x4
@@ -19874,6 +22254,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHUDUIControllerEntity_SIntelData& p_Other) const;
+	bool operator!=(const ZHUDUIControllerEntity_SIntelData& p_Other) const { return !(*this == p_Other); }
 
 	ZString groupId; // 0x0
 	ZString intelHeadline; // 0x10
@@ -19891,6 +22275,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHUDUIControllerEntity_SWeaponViewData& p_Other) const;
+	bool operator!=(const ZHUDUIControllerEntity_SWeaponViewData& p_Other) const { return !(*this == p_Other); }
 
 	SWeaponStatusUIData weaponStatus; // 0x0
 	SItemLeftHandUIData itemLeftHandStatus; // 0xA0
@@ -19951,6 +22339,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZHttpUrl& p_Other) const;
+	bool operator!=(const ZHttpUrl& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -19973,6 +22365,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZInfectedSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZInfectedSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bStandingDown; // 0x0
 };
@@ -20024,6 +22420,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZInteractionData& p_Other) const;
+	bool operator!=(const ZInteractionData& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20080,6 +22480,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZInteractionEventConsumer_SInteractionEventData& p_Other) const;
+	bool operator!=(const ZInteractionEventConsumer_SInteractionEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZInteractionEventConsumer_EEvent m_nEvent; // 0x0
 };
@@ -20093,6 +22497,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZInteractionGuideData& p_Other) const;
+	bool operator!=(const ZInteractionGuideData& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20114,6 +22522,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZInvestigateWeaponSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZInvestigateWeaponSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nCurrentState; // 0x0
 	ZGameTime m_mainStateStartTime; // 0x8
@@ -20139,6 +22551,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZJumpToOrder_SJumpToOrderSaveData& p_Other) const;
+	bool operator!=(const ZJumpToOrder_SJumpToOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vStopDirection; // 0x0
 	float4 m_vTargetPosition; // 0x10
@@ -20153,6 +22569,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZKeywordCalculator_SCollection& p_Other) const;
+	bool operator!=(const ZKeywordCalculator_SCollection& p_Other) const { return !(*this == p_Other); }
 
 	TArray<int32> aKeywords; // 0x0
 };
@@ -20243,6 +22663,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZMoveToOrder_SMoveToOrderSaveData& p_Other) const;
+	bool operator!=(const ZMoveToOrder_SMoveToOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vStopDirection; // 0x0
 	float32 m_fStopDistance; // 0x10
@@ -20446,6 +22870,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZPhotoModeMenuDataProvider_SPrompt& p_Other) const;
+	bool operator!=(const ZPhotoModeMenuDataProvider_SPrompt& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZVariant> aIcons; // 0x0
 	ZString sLabel; // 0x18
@@ -20461,6 +22889,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZPhotoModeMenuDataProvider_SData& p_Other) const;
+	bool operator!=(const ZPhotoModeMenuDataProvider_SData& p_Other) const { return !(*this == p_Other); }
 
 	bool bIsVisible; // 0x0
 	TArray<ZVariant> aMenuEntries; // 0x8
@@ -20477,6 +22909,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZPhotoModeMenuDataProvider_SMenuEntry& p_Other) const;
+	bool operator!=(const ZPhotoModeMenuDataProvider_SMenuEntry& p_Other) const { return !(*this == p_Other); }
 
 	ZString sLabel; // 0x0
 	bool bIsEnabled; // 0x10
@@ -20492,6 +22928,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZPlanningObjectiveInfoBuilder& p_Other) const;
+	bool operator!=(const ZPlanningObjectiveInfoBuilder& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20513,6 +22953,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZPostfilterGraphBaseNode& p_Other) const;
+	bool operator!=(const ZPostfilterGraphBaseNode& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20539,6 +22983,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZRayQueryInput& p_Other) const;
+	bool operator!=(const ZRayQueryInput& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20563,6 +23011,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZRecoverUnconsciousSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZRecoverUnconsciousSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rVictim; // 0x0
 	int32 m_pInvestigateDisguiseGroup; // 0x4
@@ -20621,6 +23073,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZRuntimePinConDesc& p_Other) const;
+	bool operator!=(const ZRuntimePinConDesc& p_Other) const { return !(*this == p_Other); }
 
 	uint64 m_nFromEntityID; // 0x0
 	uint64 m_nToEntityID; // 0x8
@@ -20637,6 +23093,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZScopedER64& p_Other) const;
+	bool operator!=(const ZScopedER64& p_Other) const { return !(*this == p_Other); }
 
 	ZER64 m_er64; // 0x0
 	TArray<uint64> m_aScopePath; // 0x18
@@ -20651,6 +23111,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZScopedRuntimePinConDesc& p_Other) const;
+	bool operator!=(const ZScopedRuntimePinConDesc& p_Other) const { return !(*this == p_Other); }
 
 	TArray<uint64> m_aScopePath; // 0x0
 	ZRuntimePinConDesc m_PinConDesc; // 0x18
@@ -20672,6 +23136,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule& p_Other) const;
+	bool operator!=(const ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_NrGuardsToSend; // 0x0
 };
@@ -20685,6 +23153,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule& p_Other) const;
+	bool operator!=(const ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_NrGuardsToSend; // 0x0
 	ZSecuritySystemCameraConfiguration_ECameraEscalationSituations m_Situation; // 0x4
@@ -20706,6 +23178,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSetPieceIconEntity_SIconData& p_Other) const;
+	bool operator!=(const ZSetPieceIconEntity_SIconData& p_Other) const { return !(*this == p_Other); }
 
 	ZString iCategory; // 0x0
 	ZString iInteraction1; // 0x10
@@ -20747,6 +23223,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSharedSensorDef_SVisibilitySetting& p_Other) const;
+	bool operator!=(const ZSharedSensorDef_SVisibilitySetting& p_Other) const { return !(*this == p_Other); }
 
 	EActorPerceptionSensitivity m_eSensitivity; // 0x0
 	float32 m_fCloseRange; // 0x4
@@ -20769,6 +23249,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSituationGroup& p_Other) const;
+	bool operator!=(const ZSituationGroup& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20781,6 +23265,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSituationOrder& p_Other) const;
+	bool operator!=(const ZSituationOrder& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20811,6 +23299,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSniperCombatSituation_SSniperSuspiciousArea& p_Other) const;
+	bool operator!=(const ZSniperCombatSituation_SSniperSuspiciousArea& p_Other) const { return !(*this == p_Other); }
 
 	float4 m_vPosition; // 0x0
 	float32 m_fRange; // 0x10
@@ -20826,6 +23318,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSniperCombatSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZSniperCombatSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rSniperLocation; // 0x0
 	TArray<int32> m_aSniperCombatGroups; // 0x8
@@ -20859,6 +23355,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSoundCollisionInfo& p_Other) const;
+	bool operator!=(const ZSoundCollisionInfo& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -20879,6 +23379,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZSpectatorSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZSpectatorSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bStandingDown; // 0x0
 	TArray<int32> m_aObserverGroupIDs; // 0x8
@@ -20920,6 +23424,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZStandOffSituation_SState& p_Other) const;
+	bool operator!=(const ZStandOffSituation_SState& p_Other) const { return !(*this == p_Other); }
 
 	ZStandOffSituation_ESituationState m_eSituationState; // 0x0
 	EDisturbanceType m_eArrestReason; // 0x4
@@ -20963,6 +23471,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZStandOffSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZStandOffSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZStandOffSituation_SState m_State; // 0x0
 	uint32 m_pArrestor; // 0x80
@@ -21005,6 +23517,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZTime& p_Other) const;
+	bool operator!=(const ZTime& p_Other) const { return !(*this == p_Other); }
 
 	uint64 m_nValue; // 0x0
 };
@@ -21034,6 +23550,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZTrespassingSituation_SState& p_Other) const;
+	bool operator!=(const ZTrespassingSituation_SState& p_Other) const { return !(*this == p_Other); }
 
 	ZTrespassingSituation_ESituationState m_eSituationState; // 0x0
 	ZGameTime m_tDeepTrespassingTime; // 0x8
@@ -21051,6 +23571,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZTrespassingSituation_SSituationSaveData& p_Other) const;
+	bool operator!=(const ZTrespassingSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	ZTrespassingSituation_SState m_State; // 0x0
 	uint32 m_rEscortingMember; // 0x28
@@ -21069,6 +23593,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo& p_Other) const;
+	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	ZString label; // 0x0
 	bool silencer; // 0x10
@@ -21101,6 +23629,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorDataCache& p_Other) const;
+	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorDataCache& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo> mainslots; // 0x0
 	TArray<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo> otherslots; // 0x18
@@ -21115,6 +23647,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfoSlim& p_Other) const;
+	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfoSlim& p_Other) const { return !(*this == p_Other); }
 
 	ZRuntimeResourceID icon; // 0x0
 };
@@ -21128,6 +23664,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData& p_Other) const;
+	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfoSlim> mainslotsSlim; // 0x0
 	int32 otherslotsCount; // 0x18
@@ -21200,6 +23740,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIDataProvider& p_Other) const;
+	bool operator!=(const ZUIDataProvider& p_Other) const { return !(*this == p_Other); }
 
 };
 
@@ -21212,6 +23756,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo& p_Other) const;
+	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	ZString label; // 0x0
 	ZString containedLabel; // 0x10
@@ -21244,6 +23792,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorDataCache& p_Other) const;
+	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SActionSelectorDataCache& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo> mainslots; // 0x0
 	TArray<ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo> otherslots; // 0x18
@@ -21258,6 +23810,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfoSlim& p_Other) const;
+	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfoSlim& p_Other) const { return !(*this == p_Other); }
 
 	ZRuntimeResourceID icon; // 0x0
 };
@@ -21271,6 +23827,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData& p_Other) const;
+	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData& p_Other) const { return !(*this == p_Other); }
 
 	TArray<ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfoSlim> mainslotsSlim; // 0x0
 	int32 otherslotsCount; // 0x18
@@ -21313,6 +23873,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIMapLegendDataProvider_SLegendTracker& p_Other) const;
+	bool operator!=(const ZUIMapLegendDataProvider_SLegendTracker& p_Other) const { return !(*this == p_Other); }
 
 	ZString ControlName; // 0x0
 };
@@ -21326,6 +23890,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZUIMapLegendDataProvider_SData& p_Other) const;
+	bool operator!=(const ZUIMapLegendDataProvider_SData& p_Other) const { return !(*this == p_Other); }
 
 	ZString Location; // 0x0
 	ZString lstrLocation; // 0x10
@@ -21495,6 +24063,10 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+
+	bool operator==(const ZWorldMapMetaData& p_Other) const;
+	bool operator!=(const ZWorldMapMetaData& p_Other) const { return !(*this == p_Other); }
 
 };
 
