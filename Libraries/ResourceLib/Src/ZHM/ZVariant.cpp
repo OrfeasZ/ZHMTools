@@ -60,7 +60,7 @@ void ZVariant::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	p_Stream << "}";
 }
 
-static std::unordered_map<std::string_view, std::list<void*>> g_VariantRegistry;
+//static std::unordered_map<std::string_view, std::list<void*>> g_VariantRegistry;
 
 void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
@@ -92,7 +92,7 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 				s_Variant.m_pData = c_aligned_alloc(s_Variant.m_pTypeID->Size(), s_Variant.m_pTypeID->Alignment());
 				s_Variant.m_pTypeID->CreateFromJson(p_Document["$val"], s_Variant.m_pData);
 
-				const auto s_RegistryIt = g_VariantRegistry.find(s_TypeName);
+				/*const auto s_RegistryIt = g_VariantRegistry.find(s_TypeName);
 
 				if (s_RegistryIt != g_VariantRegistry.end())
 				{
@@ -119,7 +119,7 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 					s_ObjectList.push_back(s_Variant.m_pData);
 
 					g_VariantRegistry[s_TypeName] = s_ObjectList;
-				}
+				}*/
 			}
 		}
 	}
