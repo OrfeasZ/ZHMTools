@@ -79,9 +79,25 @@ void ZString::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 
 void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	auto* s_Object = reinterpret_cast<ZString*>(p_Object);
-	
-	const auto s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars), s_Object->size(), 4);
+	const auto* s_Object = reinterpret_cast<ZString*>(p_Object);
+
+	uintptr_t s_StrDataOffset;
+
+	if (p_Serializer.InCompatibilityMode())
+	{
+		// In compatibility mode we prepend a 32-bit integer with the length of the
+		// string (including the null terminator).
+		uint32_t s_StrLen = s_Object->size() + 1;
+		p_Serializer.WriteMemory(&s_StrLen, sizeof(s_StrLen), 4);
+
+		// And then we write the string data, unaligned.
+		s_StrDataOffset = p_Serializer.WriteMemoryUnaligned(const_cast<char*>(s_Object->m_pChars), s_Object->size());
+	}
+	else
+	{
+		// Otherwise we just write the string data alone.
+		s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars), s_Object->size(), alignof(char*));
+	}
 
 	// We append a null terminator here since it looks like some parts of the engine
 	// will just ignore the fact that ZStrings come with length specified and just read

@@ -23,7 +23,7 @@ public:
 	};
 	
 public:
-	ZHMSerializer(uint8_t p_Alignment);
+	ZHMSerializer(uint8_t p_Alignment, bool p_GenerateCompatible);
 	~ZHMSerializer();
 	
 	uintptr_t WriteMemory(void* p_Memory, size_t p_Size, size_t p_Alignment);
@@ -47,6 +47,7 @@ public:
 	std::vector<SerializerSegment> GenerateSegments();
 	
 	uintptr_t Alignment() const { return m_Alignment; }
+	bool InCompatibilityMode() const { return m_GenerateCompatible; }
 
 private:
 	std::string GenerateRelocationSegment();
@@ -62,6 +63,7 @@ private:
 	}
 
 private:
+	bool m_GenerateCompatible;
 	size_t m_CurrentSize;
 	size_t m_Capacity;
 	void* m_Buffer;

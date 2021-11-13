@@ -37,12 +37,12 @@ private:
 };
 
 template <class T>
-bool GenerateFromMemory(void* p_Memory, std::filesystem::path p_OutputPath)
+bool GenerateFromMemory(void* p_Memory, std::filesystem::path p_OutputPath, bool p_GenerateCompatible)
 {
 	const auto s_OutputPath = absolute(p_OutputPath);
 
 	// Start serializing.
-	ZHMSerializer s_Serializer(alignof(T));
+	ZHMSerializer s_Serializer(alignof(T), p_GenerateCompatible);
 	auto s_BaseOffset = s_Serializer.WriteMemory(p_Memory, sizeof(T), alignof(T));
 
 	T::Serialize(p_Memory, s_Serializer, s_BaseOffset);
@@ -95,10 +95,10 @@ bool GenerateFromMemory(void* p_Memory, std::filesystem::path p_OutputPath)
 }
 
 template <class T>
-ResourceMem* GenerateFromMemoryToMemory(void* p_Memory)
+ResourceMem* GenerateFromMemoryToMemory(void* p_Memory, bool p_GenerateCompatible)
 {
 	// Start serializing.
-	ZHMSerializer s_Serializer(alignof(T));
+	ZHMSerializer s_Serializer(alignof(T), p_GenerateCompatible);
 	auto s_BaseOffset = s_Serializer.WriteMemory(p_Memory, sizeof(T), alignof(T));
 
 	T::Serialize(p_Memory, s_Serializer, s_BaseOffset);
@@ -136,7 +136,7 @@ ResourceMem* GenerateFromMemoryToMemory(void* p_Memory)
 }
 
 template <class T>
-bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_OutputPath, bool p_Simple)
+bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_OutputPath, bool p_Simple, bool p_GenerateCompatible)
 {
 	// TODO: Support non-simple json files.
 	if (!p_Simple)
@@ -154,7 +154,7 @@ bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_Output
 	simdjson::ondemand::document s_Value = s_Parser.iterate(s_Json);
 
 	// Parse type from JSON.
-	T s_Resource;
+	T s_Resource {};
 
 	try
 	{
@@ -166,11 +166,11 @@ bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_Output
 		throw std::runtime_error(std::string(p_Error.what()) + ". Last document location: " + std::to_string(*s_CurrentPosition));
 	}
 
-	return GenerateFromMemory<T>(&s_Resource, p_OutputPath);
+	return GenerateFromMemory<T>(&s_Resource, p_OutputPath, p_GenerateCompatible);
 }
 
 template <class T>
-bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength, const char* p_OutputPath, bool p_Simple)
+bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength, const char* p_OutputPath, bool p_Simple, bool p_GenerateCompatible)
 {
 	// TODO: Support non-simple json files.
 	if (!p_Simple)
@@ -183,7 +183,7 @@ bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength,
 	simdjson::ondemand::document s_Value = s_Parser.iterate(s_Json);
 
 	// Parse type from JSON.
-	T s_Resource;
+	T s_Resource {};
 
 	try
 	{
@@ -195,11 +195,11 @@ bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength,
 		throw std::runtime_error(std::string(p_Error.what()) + ". Last document location: " + std::to_string(*s_CurrentPosition));
 	}
 
-	return GenerateFromMemory<T>(&s_Resource, p_OutputPath);
+	return GenerateFromMemory<T>(&s_Resource, p_OutputPath, p_GenerateCompatible);
 }
 
 template <class T>
-ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_Simple)
+ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_Simple, bool p_GenerateCompatible)
 {
 	// TODO: Support non-simple json files.
 	if (!p_Simple)
@@ -217,7 +217,7 @@ ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_Simple
 	simdjson::ondemand::document s_Value = s_Parser.iterate(s_Json);
 
 	// Parse type from JSON.
-	T s_Resource;
+	T s_Resource {};
 
 	try
 	{
@@ -229,11 +229,11 @@ ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_Simple
 		throw std::runtime_error(std::string(p_Error.what()) + ". Last document location: " + std::to_string(*s_CurrentPosition));
 	}
 
-	return GenerateFromMemoryToMemory<T>(&s_Resource);
+	return GenerateFromMemoryToMemory<T>(&s_Resource, p_GenerateCompatible);
 }
 
 template <class T>
-ResourceMem* FromJsonStringToResourceMem(const char* p_JsonStr, size_t p_JsonStrLength, bool p_Simple)
+ResourceMem* FromJsonStringToResourceMem(const char* p_JsonStr, size_t p_JsonStrLength, bool p_Simple, bool p_GenerateCompatible)
 {
 	// TODO: Support non-simple json files.
 	if (!p_Simple)
@@ -246,7 +246,7 @@ ResourceMem* FromJsonStringToResourceMem(const char* p_JsonStr, size_t p_JsonStr
 	simdjson::ondemand::document s_Value = s_Parser.iterate(s_Json);
 
 	// Parse type from JSON.
-	T s_Resource;
+	T s_Resource {};
 
 	try
 	{
@@ -258,8 +258,9 @@ ResourceMem* FromJsonStringToResourceMem(const char* p_JsonStr, size_t p_JsonStr
 		throw std::runtime_error(std::string(p_Error.what()) + ". Last document location: " + std::to_string(*s_CurrentPosition));
 	}
 
-	return GenerateFromMemoryToMemory<T>(&s_Resource);
+	return GenerateFromMemoryToMemory<T>(&s_Resource, p_GenerateCompatible);
 }
+
 
 template <typename T>
 ResourceGenerator* CreateResourceGenerator()

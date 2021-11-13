@@ -179,16 +179,19 @@ public:
 		}
 		else
 		{
-			// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
-			// we're adding it for compatibility with other tools.
-			// We do some weird alignment shit here to make sure that the count is always at data - 4.
-			const auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), alignof(T));
-			auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, alignof(T));
-			memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
+			if (p_Serializer.InCompatibilityMode())
+			{
+				// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
+				// we're adding it for compatibility with other tools.
+				// We do some weird alignment shit here to make sure that the count is always at data - 4.
+				const auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), alignof(T));
+				auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, alignof(T));
+				memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
 
-			*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_Object->size();
-			p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, alignof(T));
-
+				*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_Object->size();
+				p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, alignof(T));
+			}
+			
 			// And now write the array data.
 			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * s_Object->size(), alignof(T));
 

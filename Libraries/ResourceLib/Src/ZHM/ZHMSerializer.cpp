@@ -4,12 +4,16 @@
 #include "ZHMTypeInfo.h"
 #include "ZVariant.h"
 
-ZHMSerializer::ZHMSerializer(uint8_t p_Alignment)
+ZHMSerializer::ZHMSerializer(uint8_t p_Alignment, bool p_GenerateCompatible) :
+	m_GenerateCompatible(p_GenerateCompatible),
+	m_CurrentSize(0),
+	m_Capacity(256),
+	m_Buffer(malloc(m_Capacity))
 {
-	m_CurrentSize = 0;
-	m_Capacity = 256;
-	m_Buffer = malloc(m_Capacity);
-	m_Alignment = std::max(static_cast<uintptr_t>(p_Alignment), sizeof(uintptr_t));
+	if (p_GenerateCompatible)
+		m_Alignment = 4;
+	else
+		m_Alignment = std::max(static_cast<uintptr_t>(p_Alignment), sizeof(uintptr_t));
 }
 
 ZHMSerializer::~ZHMSerializer()
@@ -21,7 +25,7 @@ uintptr_t ZHMSerializer::WriteMemory(void* p_Memory, size_t p_Size, size_t p_Ali
 {
 	AlignTo(p_Alignment);
 
-	uintptr_t s_StartOffset = m_CurrentSize;
+	const uintptr_t s_StartOffset = m_CurrentSize;
 
 	// Ensure we have enough space.
 	EnsureEnough(m_CurrentSize + p_Size);
@@ -35,7 +39,7 @@ uintptr_t ZHMSerializer::WriteMemory(void* p_Memory, size_t p_Size, size_t p_Ali
 
 uintptr_t ZHMSerializer::WriteMemoryUnaligned(void* p_Memory, size_t p_Size)
 {
-	uintptr_t s_StartOffset = m_CurrentSize;
+	const uintptr_t s_StartOffset = m_CurrentSize;
 
 	// Ensure we have enough space.
 	EnsureEnough(m_CurrentSize + p_Size);
@@ -88,12 +92,20 @@ void ZHMSerializer::RegisterRuntimeResourceId(uintptr_t p_Offset)
 
 std::optional<uintptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Variant)
 {
+	if (!InCompatibilityMode())
+		return std::nullopt;
+
 	const auto s_VariantsOfTypeIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
 
 	if (s_VariantsOfTypeIt == m_VariantRegistry.end())
 		return std::nullopt;
 
 	// Go through all variants of this type and look for one that has the same data.
+	if (s_VariantsOfTypeIt->second.size() >= 10)
+	{
+		// TODO: Optimize this to use multiple comparison threads.
+	}
+
 	for (const auto& [s_Variant, s_Ptr] : s_VariantsOfTypeIt->second)
 	{
 		if (p_Variant->m_pTypeID->Equals(p_Variant->m_pData, s_Variant->m_pData))
@@ -107,6 +119,9 @@ std::optional<uintptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Var
 
 void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr)
 {
+	if (!InCompatibilityMode())
+		return;
+
 	const auto s_VariantSetIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
 
 	if (s_VariantSetIt != m_VariantRegistry.end())

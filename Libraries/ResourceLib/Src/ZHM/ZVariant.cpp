@@ -120,21 +120,34 @@ void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t 
 	}
 	else
 	{
-		const auto s_ExistingPtr = p_Serializer.GetExistingPtrForVariant(s_Object);
-
-		if (s_ExistingPtr.has_value())
+		if (p_Serializer.InCompatibilityMode())
 		{
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ExistingPtr.value());
+			// If we're in compatibility mode we try to de-duplicate ZVariants.
+			const auto s_ExistingPtr = p_Serializer.GetExistingPtrForVariant(s_Object);
+
+			if (s_ExistingPtr.has_value())
+			{
+				p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ExistingPtr.value());
+			}
+			else
+			{
+				const auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size(), s_Object->m_pTypeID->Alignment());
+
+				s_Object->m_pTypeID->Serialize(s_Object->m_pData, p_Serializer, s_ValueOffset);
+
+				p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ValueOffset);
+
+				p_Serializer.SetPtrForVariant(s_Object, s_ValueOffset);
+			}
 		}
 		else
 		{
+			// Otherwise we serialize each one individually.
 			const auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size(), s_Object->m_pTypeID->Alignment());
 
 			s_Object->m_pTypeID->Serialize(s_Object->m_pData, p_Serializer, s_ValueOffset);
 
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ValueOffset);
-
-			p_Serializer.SetPtrForVariant(s_Object, s_ValueOffset);
 		}
 	}
 }
