@@ -39,7 +39,7 @@ void AnimationEventDataTypes_SBlend::WriteSimpleJson(void* p_Object, std::ostrea
 
 void AnimationEventDataTypes_SBlend::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	AnimationEventDataTypes_SBlend s_Object;
+	AnimationEventDataTypes_SBlend s_Object {};
 
 	s_Object.m_fBlendTime = simdjson::from_json_float32(p_Document["m_fBlendTime"]);
 
@@ -99,7 +99,7 @@ void AnimationEventDataTypes_SLegacy::WriteSimpleJson(void* p_Object, std::ostre
 
 void AnimationEventDataTypes_SLegacy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	AnimationEventDataTypes_SLegacy s_Object;
+	AnimationEventDataTypes_SLegacy s_Object {};
 
 	s_Object.m_nEventID = simdjson::from_json_int32(p_Document["m_nEventID"]);
 
@@ -169,7 +169,7 @@ void ZRuntimeResourceID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZRuntimeResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZRuntimeResourceID s_Object;
+	ZRuntimeResourceID s_Object {};
 
 	s_Object.m_IDHigh = simdjson::from_json_uint32(p_Document["m_IDHigh"]);
 
@@ -243,12 +243,12 @@ void AnimationTakeDataTypes_SGeneric::WriteSimpleJson(void* p_Object, std::ostre
 
 void AnimationTakeDataTypes_SGeneric::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	AnimationTakeDataTypes_SGeneric s_Object;
+	AnimationTakeDataTypes_SGeneric s_Object {};
 
 	s_Object.m_fTest = simdjson::from_json_float32(p_Document["m_fTest"]);
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["m_fResourceTest"], &s_Item);
 		s_Object.m_fResourceTest = s_Item;
 	}
@@ -303,7 +303,7 @@ void BoneId::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void BoneId::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	BoneId s_Object;
+	BoneId s_Object {};
 
 	*reinterpret_cast<BoneId*>(p_Target) = s_Object;
 }
@@ -352,7 +352,7 @@ void IActor::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IActor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IActor s_Object;
+	IActor s_Object {};
 
 	*reinterpret_cast<IActor*>(p_Target) = s_Object;
 }
@@ -401,7 +401,7 @@ void IActorProvider::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IActorProvider::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IActorProvider s_Object;
+	IActorProvider s_Object {};
 
 	*reinterpret_cast<IActorProvider*>(p_Target) = s_Object;
 }
@@ -450,7 +450,7 @@ void IActorProviderFilter::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void IActorProviderFilter::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IActorProviderFilter s_Object;
+	IActorProviderFilter s_Object {};
 
 	*reinterpret_cast<IActorProviderFilter*>(p_Target) = s_Object;
 }
@@ -499,7 +499,7 @@ void IAnimPlayerEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IAnimPlayerEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IAnimPlayerEntity s_Object;
+	IAnimPlayerEntity s_Object {};
 
 	*reinterpret_cast<IAnimPlayerEntity*>(p_Target) = s_Object;
 }
@@ -548,7 +548,7 @@ void IAudioEmitter::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IAudioEmitter::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IAudioEmitter s_Object;
+	IAudioEmitter s_Object {};
 
 	*reinterpret_cast<IAudioEmitter*>(p_Target) = s_Object;
 }
@@ -597,7 +597,7 @@ void IBodybagEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IBodybagEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IBodybagEntity s_Object;
+	IBodybagEntity s_Object {};
 
 	*reinterpret_cast<IBodybagEntity*>(p_Target) = s_Object;
 }
@@ -646,7 +646,7 @@ void IBoneAnimator::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IBoneAnimator::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IBoneAnimator s_Object;
+	IBoneAnimator s_Object {};
 
 	*reinterpret_cast<IBoneAnimator*>(p_Target) = s_Object;
 }
@@ -695,7 +695,7 @@ void IBoneCollidable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IBoneCollidable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IBoneCollidable s_Object;
+	IBoneCollidable s_Object {};
 
 	*reinterpret_cast<IBoneCollidable*>(p_Target) = s_Object;
 }
@@ -744,7 +744,7 @@ void IBulletImpactListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void IBulletImpactListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IBulletImpactListener s_Object;
+	IBulletImpactListener s_Object {};
 
 	*reinterpret_cast<IBulletImpactListener*>(p_Target) = s_Object;
 }
@@ -793,7 +793,7 @@ void IComponentInterface::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void IComponentInterface::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IComponentInterface s_Object;
+	IComponentInterface s_Object {};
 
 	*reinterpret_cast<IComponentInterface*>(p_Target) = s_Object;
 }
@@ -842,7 +842,7 @@ void IContractEvaluationContextListener::WriteSimpleJson(void* p_Object, std::os
 
 void IContractEvaluationContextListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IContractEvaluationContextListener s_Object;
+	IContractEvaluationContextListener s_Object {};
 
 	*reinterpret_cast<IContractEvaluationContextListener*>(p_Target) = s_Object;
 }
@@ -891,7 +891,7 @@ void IContractObjective::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IContractObjective::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IContractObjective s_Object;
+	IContractObjective s_Object {};
 
 	*reinterpret_cast<IContractObjective*>(p_Target) = s_Object;
 }
@@ -1048,7 +1048,7 @@ void ZGuid::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZGuid::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZGuid s_Object;
+	ZGuid s_Object {};
 
 	s_Object._a = simdjson::from_json_uint32(p_Document["_a"]);
 
@@ -1178,12 +1178,12 @@ void IContractObjective_STargetCondition::WriteSimpleJson(void* p_Object, std::o
 
 void IContractObjective_STargetCondition::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IContractObjective_STargetCondition s_Object;
+	IContractObjective_STargetCondition s_Object {};
 
 	s_Object.type = std::string_view(p_Document["type"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["repositoryId"], &s_Item);
 		s_Object.repositoryId = s_Item;
 	}
@@ -1191,7 +1191,7 @@ void IContractObjective_STargetCondition::FromSimpleJson(simdjson::ondemand::val
 	s_Object.hardCondition = simdjson::from_json_bool(p_Document["hardCondition"]);
 
 	{
-		ZGuid s_Item;
+		ZGuid s_Item {};
 		ZGuid::FromSimpleJson(p_Document["objectiveId"], &s_Item);
 		s_Object.objectiveId = s_Item;
 	}
@@ -1254,7 +1254,7 @@ void IEscortOutSituation::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void IEscortOutSituation::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IEscortOutSituation s_Object;
+	IEscortOutSituation s_Object {};
 
 	*reinterpret_cast<IEscortOutSituation*>(p_Target) = s_Object;
 }
@@ -1303,7 +1303,7 @@ void IEventConsumerCollection::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void IEventConsumerCollection::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IEventConsumerCollection s_Object;
+	IEventConsumerCollection s_Object {};
 
 	*reinterpret_cast<IEventConsumerCollection*>(p_Target) = s_Object;
 }
@@ -1352,7 +1352,7 @@ void IFreeCameraControl::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IFreeCameraControl::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IFreeCameraControl s_Object;
+	IFreeCameraControl s_Object {};
 
 	*reinterpret_cast<IFreeCameraControl*>(p_Target) = s_Object;
 }
@@ -1401,7 +1401,7 @@ void IHM5Door::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IHM5Door::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IHM5Door s_Object;
+	IHM5Door s_Object {};
 
 	*reinterpret_cast<IHM5Door*>(p_Target) = s_Object;
 }
@@ -1450,7 +1450,7 @@ void IHM5WeaponInventory::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void IHM5WeaponInventory::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IHM5WeaponInventory s_Object;
+	IHM5WeaponInventory s_Object {};
 
 	*reinterpret_cast<IHM5WeaponInventory*>(p_Target) = s_Object;
 }
@@ -1499,7 +1499,7 @@ void IHumanBody::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IHumanBody::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IHumanBody s_Object;
+	IHumanBody s_Object {};
 
 	*reinterpret_cast<IHumanBody*>(p_Target) = s_Object;
 }
@@ -1548,7 +1548,7 @@ void IMetricValue::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IMetricValue::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IMetricValue s_Object;
+	IMetricValue s_Object {};
 
 	*reinterpret_cast<IMetricValue*>(p_Target) = s_Object;
 }
@@ -1597,7 +1597,7 @@ void IMorphemeCutSequenceAnimatable::WriteSimpleJson(void* p_Object, std::ostrea
 
 void IMorphemeCutSequenceAnimatable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IMorphemeCutSequenceAnimatable s_Object;
+	IMorphemeCutSequenceAnimatable s_Object {};
 
 	*reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Target) = s_Object;
 }
@@ -1646,7 +1646,7 @@ void IMorphemeCutSequenceAnimationEntity::WriteSimpleJson(void* p_Object, std::o
 
 void IMorphemeCutSequenceAnimationEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IMorphemeCutSequenceAnimationEntity s_Object;
+	IMorphemeCutSequenceAnimationEntity s_Object {};
 
 	*reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Target) = s_Object;
 }
@@ -1695,7 +1695,7 @@ void IMorphemeEventConsumer::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void IMorphemeEventConsumer::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IMorphemeEventConsumer s_Object;
+	IMorphemeEventConsumer s_Object {};
 
 	*reinterpret_cast<IMorphemeEventConsumer*>(p_Target) = s_Object;
 }
@@ -1744,7 +1744,7 @@ void IOnlineConfigurationListener::WriteSimpleJson(void* p_Object, std::ostream&
 
 void IOnlineConfigurationListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IOnlineConfigurationListener s_Object;
+	IOnlineConfigurationListener s_Object {};
 
 	*reinterpret_cast<IOnlineConfigurationListener*>(p_Target) = s_Object;
 }
@@ -1793,7 +1793,7 @@ void IPureWaterReflectable::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void IPureWaterReflectable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IPureWaterReflectable s_Object;
+	IPureWaterReflectable s_Object {};
 
 	*reinterpret_cast<IPureWaterReflectable*>(p_Target) = s_Object;
 }
@@ -1842,7 +1842,7 @@ void IRenderCompositorEntity::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void IRenderCompositorEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IRenderCompositorEntity s_Object;
+	IRenderCompositorEntity s_Object {};
 
 	*reinterpret_cast<IRenderCompositorEntity*>(p_Target) = s_Object;
 }
@@ -1891,7 +1891,7 @@ void IRenderMaterialDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void IRenderMaterialDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IRenderMaterialDescriptor s_Object;
+	IRenderMaterialDescriptor s_Object {};
 
 	*reinterpret_cast<IRenderMaterialDescriptor*>(p_Target) = s_Object;
 }
@@ -1940,7 +1940,7 @@ void ISequenceTarget::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ISequenceTarget::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ISequenceTarget s_Object;
+	ISequenceTarget s_Object {};
 
 	*reinterpret_cast<ISequenceTarget*>(p_Target) = s_Object;
 }
@@ -1989,7 +1989,7 @@ void ISituation::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ISituation::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ISituation s_Object;
+	ISituation s_Object {};
 
 	*reinterpret_cast<ISituation*>(p_Target) = s_Object;
 }
@@ -2038,7 +2038,7 @@ void ISoundMaterialDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void ISoundMaterialDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ISoundMaterialDescriptor s_Object;
+	ISoundMaterialDescriptor s_Object {};
 
 	*reinterpret_cast<ISoundMaterialDescriptor*>(p_Target) = s_Object;
 }
@@ -2087,7 +2087,7 @@ void ITriggerListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ITriggerListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ITriggerListener s_Object;
+	ITriggerListener s_Object {};
 
 	*reinterpret_cast<ITriggerListener*>(p_Target) = s_Object;
 }
@@ -2136,7 +2136,7 @@ void IUIDataListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IUIDataListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IUIDataListener s_Object;
+	IUIDataListener s_Object {};
 
 	*reinterpret_cast<IUIDataListener*>(p_Target) = s_Object;
 }
@@ -2185,7 +2185,7 @@ void IValueEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IValueEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IValueEntity s_Object;
+	IValueEntity s_Object {};
 
 	*reinterpret_cast<IValueEntity*>(p_Target) = s_Object;
 }
@@ -2234,7 +2234,7 @@ void IWorldMapMarker::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void IWorldMapMarker::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	IWorldMapMarker s_Object;
+	IWorldMapMarker s_Object {};
 
 	*reinterpret_cast<IWorldMapMarker*>(p_Target) = s_Object;
 }
@@ -2381,7 +2381,7 @@ void S25DProjectionSettings::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void S25DProjectionSettings::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	S25DProjectionSettings s_Object;
+	S25DProjectionSettings s_Object {};
 
 	s_Object.fNearDistance = simdjson::from_json_float32(p_Document["fNearDistance"]);
 
@@ -2478,7 +2478,7 @@ void S3rdPersonCameraSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void S3rdPersonCameraSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	S3rdPersonCameraSaveData s_Object;
+	S3rdPersonCameraSaveData s_Object {};
 
 	s_Object.m_fAngleYaw = simdjson::from_json_float32(p_Document["m_fAngleYaw"]);
 
@@ -2541,7 +2541,7 @@ void ZGameTime::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZGameTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZGameTime s_Object;
+	ZGameTime s_Object {};
 
 	s_Object.m_nTicks = simdjson::from_json_int64(p_Document["m_nTicks"]);
 
@@ -2631,20 +2631,20 @@ void SAIEventSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAIEventSaveData s_Object;
+	SAIEventSaveData s_Object {};
 
 	s_Object.m_eType = static_cast<EAIEventType>(ZHMEnums::GetEnumValueByName("EAIEventType", std::string_view(p_Document["m_eType"])));
 
 	s_Object.m_bHandled = simdjson::from_json_bool(p_Document["m_bHandled"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_nStart"], &s_Item);
 		s_Object.m_nStart = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_nEnd"], &s_Item);
 		s_Object.m_nEnd = s_Item;
 	}
@@ -2810,7 +2810,7 @@ void SAIModifierServiceActorSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SAIModifierServiceActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAIModifierServiceActorSaveData s_Object;
+	SAIModifierServiceActorSaveData s_Object {};
 
 	s_Object.m_rActorRef = simdjson::from_json_uint32(p_Document["m_rActorRef"]);
 
@@ -2931,7 +2931,7 @@ void SAIModifierServiceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SAIModifierServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAIModifierServiceSaveData s_Object;
+	SAIModifierServiceSaveData s_Object {};
 
 	s_Object.m_bFullVolumeUpdate = simdjson::from_json_bool(p_Document["m_bFullVolumeUpdate"]);
 
@@ -3000,7 +3000,7 @@ void SAIPerceptibleEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SAIPerceptibleEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAIPerceptibleEntitySaveData s_Object;
+	SAIPerceptibleEntitySaveData s_Object {};
 
 	s_Object.m_bPerceptibleEnabled = simdjson::from_json_bool(p_Document["m_bPerceptibleEnabled"]);
 
@@ -3060,7 +3060,7 @@ void SAIVisionBlockerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SAIVisionBlockerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAIVisionBlockerSaveData s_Object;
+	SAIVisionBlockerSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -3150,7 +3150,7 @@ void SAccessoryItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SAccessoryItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAccessoryItemSaveData s_Object;
+	SAccessoryItemSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
@@ -3249,7 +3249,7 @@ void SActBehaviorEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SActBehaviorEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActBehaviorEntitySaveData s_Object;
+	SActBehaviorEntitySaveData s_Object {};
 
 	s_Object.m_bStartedSignalSent = simdjson::from_json_bool(p_Document["m_bStartedSignalSent"]);
 
@@ -3258,7 +3258,7 @@ void SActBehaviorEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_nState = static_cast<ZActBehaviorEntity_EState>(ZHMEnums::GetEnumValueByName("ZActBehaviorEntity.EState", std::string_view(p_Document["m_nState"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_ActStartTime"], &s_Item);
 		s_Object.m_ActStartTime = s_Item;
 	}
@@ -3353,7 +3353,7 @@ void float4::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void float4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	float4 s_Object;
+	float4 s_Object {};
 
 	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
@@ -3482,7 +3482,7 @@ void SActOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActOrderSaveData s_Object;
+	SActOrderSaveData s_Object {};
 
 	s_Object.m_sAct = std::string_view(p_Document["m_sAct"]);
 
@@ -3491,7 +3491,7 @@ void SActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	s_Object.m_rChildNetworkEntity = simdjson::from_json_uint32(p_Document["m_rChildNetworkEntity"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_faceTarget"], &s_Item);
 		s_Object.m_faceTarget = s_Item;
 	}
@@ -3616,7 +3616,7 @@ void SActionRadialArcDisplayInfo::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SActionRadialArcDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActionRadialArcDisplayInfo s_Object;
+	SActionRadialArcDisplayInfo s_Object {};
 
 	s_Object.hidden = simdjson::from_json_bool(p_Document["hidden"]);
 
@@ -3713,7 +3713,7 @@ void SActionRadialArcDisplayInfoArray_dummy::WriteSimpleJson(void* p_Object, std
 
 void SActionRadialArcDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActionRadialArcDisplayInfoArray_dummy s_Object;
+	SActionRadialArcDisplayInfoArray_dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
 	{
@@ -3779,7 +3779,7 @@ void SActorAccessoryItemActionSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SActorAccessoryItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorAccessoryItemActionSaveData s_Object;
+	SActorAccessoryItemActionSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -3889,7 +3889,7 @@ void SActorAnimSetSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SActorAnimSetSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorAnimSetSaveData s_Object;
+	SActorAnimSetSaveData s_Object {};
 
 	s_Object.m_eAnimSet = static_cast<EAnimSetType>(ZHMEnums::GetEnumValueByName("EAnimSetType", std::string_view(p_Document["m_eAnimSet"])));
 
@@ -3974,7 +3974,7 @@ void SActorBoneAttachSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SActorBoneAttachSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorBoneAttachSaveData s_Object;
+	SActorBoneAttachSaveData s_Object {};
 
 	s_Object.m_rAttachmentTarget = simdjson::from_json_uint32(p_Document["m_rAttachmentTarget"]);
 
@@ -4089,7 +4089,7 @@ void SActorBoneAttachmentsSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SActorBoneAttachmentsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorBoneAttachmentsSaveData s_Object;
+	SActorBoneAttachmentsSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -4192,7 +4192,7 @@ void SVector4::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVector4 s_Object;
+	SVector4 s_Object {};
 
 	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
@@ -4271,16 +4271,16 @@ void SActorBoneSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SActorBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorBoneSaveData s_Object;
+	SActorBoneSaveData s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mQuaterion"], &s_Item);
 		s_Object.mQuaterion = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mTranslation"], &s_Item);
 		s_Object.mTranslation = s_Item;
 	}
@@ -4584,7 +4584,7 @@ void SActorDamageControlSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SActorDamageControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorDamageControlSaveData s_Object;
+	SActorDamageControlSaveData s_Object {};
 
 	s_Object.bExplosive = simdjson::from_json_bool(p_Document["bExplosive"]);
 
@@ -4625,7 +4625,7 @@ void SActorDamageControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	s_Object.rSource = simdjson::from_json_uint32(p_Document["rSource"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_accuseUnconsciousOutfit"], &s_Item);
 		s_Object.m_accuseUnconsciousOutfit = s_Item;
 	}
@@ -4741,7 +4741,7 @@ void SActorDynamicTemplateHandlerSaveData::WriteSimpleJson(void* p_Object, std::
 
 void SActorDynamicTemplateHandlerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorDynamicTemplateHandlerSaveData s_Object;
+	SActorDynamicTemplateHandlerSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -4807,7 +4807,7 @@ void SActorDynamicTemplateManipulatorSaveData::WriteSimpleJson(void* p_Object, s
 
 void SActorDynamicTemplateManipulatorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorDynamicTemplateManipulatorSaveData s_Object;
+	SActorDynamicTemplateManipulatorSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -4947,7 +4947,7 @@ void SActorDynamicTemplateSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SActorDynamicTemplateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorDynamicTemplateSaveData s_Object;
+	SActorDynamicTemplateSaveData s_Object {};
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
@@ -4956,7 +4956,7 @@ void SActorDynamicTemplateSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_eEmotionLimit = static_cast<EActorEmotionState>(ZHMEnums::GetEnumValueByName("EActorEmotionState", std::string_view(p_Document["m_eEmotionLimit"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_nTimeLimit"], &s_Item);
 		s_Object.m_nTimeLimit = s_Item;
 	}
@@ -4966,7 +4966,7 @@ void SActorDynamicTemplateSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_eEmotionRemoveLimit = static_cast<EActorEmotionState>(ZHMEnums::GetEnumValueByName("EActorEmotionState", std::string_view(p_Document["m_eEmotionRemoveLimit"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_nTimeRemoveLimit"], &s_Item);
 		s_Object.m_nTimeRemoveLimit = s_Item;
 	}
@@ -5156,7 +5156,7 @@ void SActorGoalSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SActorGoalSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorGoalSaveData s_Object;
+	SActorGoalSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -5281,7 +5281,7 @@ void SActorInventoryItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SActorInventoryItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorInventoryItemSaveData s_Object;
+	SActorInventoryItemSaveData s_Object {};
 
 	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
@@ -5374,7 +5374,7 @@ void SActorInventorySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SActorInventorySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorInventorySaveData s_Object;
+	SActorInventorySaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItems"])
 	{
@@ -5450,7 +5450,7 @@ void SActorItemActionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SActorItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorItemActionSaveData s_Object;
+	SActorItemActionSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -5513,7 +5513,7 @@ void SActorKeywordProxySaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SActorKeywordProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorKeywordProxySaveData s_Object;
+	SActorKeywordProxySaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -5625,7 +5625,7 @@ void SActorKeywordProxiesSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SActorKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorKeywordProxiesSaveData s_Object;
+	SActorKeywordProxiesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -5719,7 +5719,7 @@ void SActorManagerReferencableData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SActorManagerReferencableData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorManagerReferencableData s_Object;
+	SActorManagerReferencableData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSituationTypes"])
 	{
@@ -5783,7 +5783,7 @@ void SActorProviderApproachSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SActorProviderApproachSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorProviderApproachSaveData s_Object;
+	SActorProviderApproachSaveData s_Object {};
 
 	s_Object.m_rCastActor = simdjson::from_json_uint32(p_Document["m_rCastActor"]);
 
@@ -5874,7 +5874,7 @@ void SActorProviderDirectSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SActorProviderDirectSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorProviderDirectSaveData s_Object;
+	SActorProviderDirectSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActors"])
 	{
@@ -5961,7 +5961,7 @@ void SVector3::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVector3 s_Object;
+	SVector3 s_Object {};
 
 	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
@@ -6089,10 +6089,10 @@ void SActorRagdollPoseSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SActorRagdollPoseSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorRagdollPoseSaveData s_Object;
+	SActorRagdollPoseSaveData s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vBodyVelocity"], &s_Item);
 		s_Object.m_vBodyVelocity = s_Item;
 	}
@@ -6191,7 +6191,7 @@ void SEventHistorySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SEventHistorySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEventHistorySaveData s_Object;
+	SEventHistorySaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aOccurences"])
 	{
@@ -6287,28 +6287,28 @@ void SMatrix::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SMatrix::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMatrix s_Object;
+	SMatrix s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["XAxis"], &s_Item);
 		s_Object.XAxis = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["YAxis"], &s_Item);
 		s_Object.YAxis = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["ZAxis"], &s_Item);
 		s_Object.ZAxis = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["Trans"], &s_Item);
 		s_Object.Trans = s_Item;
 	}
@@ -6457,7 +6457,7 @@ void SKnownEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SKnownEntitySaveData s_Object;
+	SKnownEntitySaveData s_Object {};
 
 	s_Object.m_nSharedIndex = simdjson::from_json_int32(p_Document["m_nSharedIndex"]);
 
@@ -6473,13 +6473,13 @@ void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	s_Object.m_nBooleanEventsHandled = simdjson::from_json_uint32(p_Document["m_nBooleanEventsHandled"]);
 
 	{
-		SMatrix s_Item;
+		SMatrix s_Item {};
 		SMatrix::FromSimpleJson(p_Document["m_knownWorldMatrix"], &s_Item);
 		s_Object.m_knownWorldMatrix = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastWorldMatrixUpdate"], &s_Item);
 		s_Object.m_tLastWorldMatrixUpdate = s_Item;
 	}
@@ -6764,7 +6764,7 @@ void SKnowledgeSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SKnowledgeSaveData s_Object;
+	SKnowledgeSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKnownEntities"])
 	{
@@ -6786,7 +6786,7 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	size_t s_Index0 = 0;
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGoals"])
 	{
-		SActorGoalSaveData s_ArrayItem0;
+		SActorGoalSaveData s_ArrayItem0 {};
 		SActorGoalSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
 		s_Object.m_aGoals[s_Index0] = s_ArrayItem0;
 		++s_Index0;
@@ -6804,13 +6804,13 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	s_Object.m_fHMLastTrespassingAttentionMax = simdjson::from_json_float32(p_Document["m_fHMLastTrespassingAttentionMax"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastTrespassingAttentionGain"], &s_Item);
 		s_Object.m_tLastTrespassingAttentionGain = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastAttentionEvaluate"], &s_Item);
 		s_Object.m_tLastAttentionEvaluate = s_Item;
 	}
@@ -6822,13 +6822,13 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	s_Object.m_eGameTension = static_cast<EGameTension>(ZHMEnums::GetEnumValueByName("EGameTension", std::string_view(p_Document["m_eGameTension"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tAmbientStartTime"], &s_Item);
 		s_Object.m_tAmbientStartTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tExpiredAIModifierSuppressSocialGreeting"], &s_Item);
 		s_Object.m_tExpiredAIModifierSuppressSocialGreeting = s_Item;
 	}
@@ -6923,10 +6923,10 @@ void SLongTermMemorySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SLongTermMemorySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLongTermMemorySaveData s_Object;
+	SLongTermMemorySaveData s_Object {};
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_sOutfit"], &s_Item);
 		s_Object.m_sOutfit = s_Item;
 	}
@@ -7565,28 +7565,28 @@ void SActorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorSaveData s_Object;
+	SActorSaveData s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vQuaternion"], &s_Item);
 		s_Object.m_vQuaternion = s_Item;
 	}
 
 	{
-		SActorInventorySaveData s_Item;
+		SActorInventorySaveData s_Item {};
 		SActorInventorySaveData::FromSimpleJson(p_Document["m_Inventory"], &s_Item);
 		s_Object.m_Inventory = s_Item;
 	}
 
 	{
-		SActorAnimSetSaveData s_Item;
+		SActorAnimSetSaveData s_Item {};
 		SActorAnimSetSaveData::FromSimpleJson(p_Document["m_AnimSet"], &s_Item);
 		s_Object.m_AnimSet = s_Item;
 	}
@@ -7594,7 +7594,7 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	s_Object.m_nCurrentBehaviorType = simdjson::from_json_int32(p_Document["m_nCurrentBehaviorType"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CurrentBehaviorState"], &s_Item);
 		s_Object.m_CurrentBehaviorState = s_Item;
 	}
@@ -7610,13 +7610,13 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	}
 
 	{
-		SKnowledgeSaveData s_Item;
+		SKnowledgeSaveData s_Item {};
 		SKnowledgeSaveData::FromSimpleJson(p_Document["m_KnowledgeData"], &s_Item);
 		s_Object.m_KnowledgeData = s_Item;
 	}
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_OutfitRepositoryId"], &s_Item);
 		s_Object.m_OutfitRepositoryId = s_Item;
 	}
@@ -7626,7 +7626,7 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	s_Object.m_nOutfitVariation = simdjson::from_json_int32(p_Document["m_nOutfitVariation"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tSequenceEndTime"], &s_Item);
 		s_Object.m_tSequenceEndTime = s_Item;
 	}
@@ -7644,13 +7644,13 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	s_Object.m_rDragBodybagEntity = simdjson::from_json_uint32(p_Document["m_rDragBodybagEntity"]);
 
 	{
-		SActorDamageControlSaveData s_Item;
+		SActorDamageControlSaveData s_Item {};
 		SActorDamageControlSaveData::FromSimpleJson(p_Document["m_ActorDamageControlData"], &s_Item);
 		s_Object.m_ActorDamageControlData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_AnimatedActorOrderData"], &s_Item);
 		s_Object.m_AnimatedActorOrderData = s_Item;
 	}
@@ -7669,7 +7669,7 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	s_Object.m_fTimeSinceLastGroan = simdjson::from_json_float32(p_Document["m_fTimeSinceLastGroan"]);
 
 	{
-		SMatrix s_Item;
+		SMatrix s_Item {};
 		SMatrix::FromSimpleJson(p_Document["m_sEndOrientation"], &s_Item);
 		s_Object.m_sEndOrientation = s_Item;
 	}
@@ -7681,13 +7681,13 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	s_Object.m_fOverrideIndiciatorDrawDistance = simdjson::from_json_float32(p_Document["m_fOverrideIndiciatorDrawDistance"]);
 
 	{
-		SEventHistorySaveData s_Item;
+		SEventHistorySaveData s_Item {};
 		SEventHistorySaveData::FromSimpleJson(p_Document["m_bumpsHistory"], &s_Item);
 		s_Object.m_bumpsHistory = s_Item;
 	}
 
 	{
-		SActorRagdollPoseSaveData s_Item;
+		SActorRagdollPoseSaveData s_Item {};
 		SActorRagdollPoseSaveData::FromSimpleJson(p_Document["m_RagdollPose"], &s_Item);
 		s_Object.m_RagdollPose = s_Item;
 	}
@@ -7877,18 +7877,18 @@ void SEventSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEventSaveData s_Object;
+	SEventSaveData s_Object {};
 
 	s_Object.m_nType = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(p_Document["m_nType"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_nStart"], &s_Item);
 		s_Object.m_nStart = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_nEnd"], &s_Item);
 		s_Object.m_nEnd = s_Item;
 	}
@@ -8014,18 +8014,18 @@ void SSharedKnowledgeSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SSharedKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSharedKnowledgeSaveData s_Object;
+	SSharedKnowledgeSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_OutfitId"], &s_Item);
 		s_Object.m_OutfitId = s_Item;
 	}
 
 	{
-		SMatrix s_Item;
+		SMatrix s_Item {};
 		SMatrix::FromSimpleJson(p_Document["m_ActualMatrix"], &s_Item);
 		s_Object.m_ActualMatrix = s_Item;
 	}
@@ -8163,7 +8163,7 @@ void SSituationGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SSituationGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSituationGroupSaveData s_Object;
+	SSituationGroupSaveData s_Object {};
 
 	s_Object.m_sClassTypeName = std::string_view(p_Document["m_sClassTypeName"]);
 
@@ -8177,7 +8177,7 @@ void SSituationGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	s_Object.m_nGroupID = simdjson::from_json_int32(p_Document["m_nGroupID"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CustomData"], &s_Item);
 		s_Object.m_CustomData = s_Item;
 	}
@@ -8305,7 +8305,7 @@ void SSituationMemberSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSituationMemberSaveData s_Object;
+	SSituationMemberSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -8314,13 +8314,13 @@ void SSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	s_Object.m_bIsOrderValid = simdjson::from_json_bool(p_Document["m_bIsOrderValid"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_OrderData"], &s_Item);
 		s_Object.m_OrderData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_PendingOrderData"], &s_Item);
 		s_Object.m_PendingOrderData = s_Item;
 	}
@@ -8328,7 +8328,7 @@ void SSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	s_Object.m_rDramaRole = simdjson::from_json_uint32(p_Document["m_rDramaRole"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CustomData"], &s_Item);
 		s_Object.m_CustomData = s_Item;
 	}
@@ -8520,7 +8520,7 @@ void SSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSituationSaveData s_Object;
+	SSituationSaveData s_Object {};
 
 	s_Object.m_rSituation = simdjson::from_json_uint32(p_Document["m_rSituation"]);
 
@@ -8529,7 +8529,7 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	s_Object.m_nTargetSharedEntity = simdjson::from_json_int32(p_Document["m_nTargetSharedEntity"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_Data"], &s_Item);
 		s_Object.m_Data = s_Item;
 	}
@@ -8551,7 +8551,7 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	s_Object.m_nNextGroupID = simdjson::from_json_int32(p_Document["m_nNextGroupID"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_situationStartTime"], &s_Item);
 		s_Object.m_situationStartTime = s_Item;
 	}
@@ -8984,7 +8984,7 @@ void SActorManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SActorManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorManagerSaveData s_Object;
+	SActorManagerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSharedKnowledgeSaveData"])
 	{
@@ -9039,67 +9039,67 @@ void SActorManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_BodySensorData"], &s_Item);
 		s_Object.m_BodySensorData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CrimeSceneServiceData"], &s_Item);
 		s_Object.m_CrimeSceneServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CrowdServiceData"], &s_Item);
 		s_Object.m_CrowdServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CuriousEventServiceData"], &s_Item);
 		s_Object.m_CuriousEventServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_GetHelpServiceData"], &s_Item);
 		s_Object.m_GetHelpServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_DynamicEnforcerServiceData"], &s_Item);
 		s_Object.m_DynamicEnforcerServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_AIModifierServiceData"], &s_Item);
 		s_Object.m_AIModifierServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_LockdownManagerData"], &s_Item);
 		s_Object.m_LockdownManagerData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_DangerousAreaServiceData"], &s_Item);
 		s_Object.m_DangerousAreaServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_TargetTrackingServiceData"], &s_Item);
 		s_Object.m_TargetTrackingServiceData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_ManHuntServiceData"], &s_Item);
 		s_Object.m_ManHuntServiceData = s_Item;
 	}
@@ -9198,7 +9198,7 @@ void SActorProxySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SActorProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorProxySaveData s_Object;
+	SActorProxySaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -9310,7 +9310,7 @@ void SActorProxiesSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SActorProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorProxiesSaveData s_Object;
+	SActorProxiesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -9375,7 +9375,7 @@ void SActorSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SActorSoundDefs::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorSoundDefs s_Object;
+	SActorSoundDefs s_Object {};
 
 	*reinterpret_cast<SActorSoundDefs*>(p_Target) = s_Object;
 }
@@ -9452,12 +9452,12 @@ void SActorSpreadControllerCandidateSaveData::WriteSimpleJson(void* p_Object, st
 
 void SActorSpreadControllerCandidateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorSpreadControllerCandidateSaveData s_Object;
+	SActorSpreadControllerCandidateSaveData s_Object {};
 
 	s_Object.m_CandidateActor = simdjson::from_json_uint32(p_Document["m_CandidateActor"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_CandidateTime"], &s_Item);
 		s_Object.m_CandidateTime = s_Item;
 	}
@@ -9707,7 +9707,7 @@ void SActorSpreadControllerSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorSpreadControllerSaveData s_Object;
+	SActorSpreadControllerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSpreadingActors"])
 	{
@@ -9746,7 +9746,7 @@ void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	s_Object.m_bPlayerIsCandidate = simdjson::from_json_bool(p_Document["m_bPlayerIsCandidate"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_PlayerCandidateTime"], &s_Item);
 		s_Object.m_PlayerCandidateTime = s_Item;
 	}
@@ -9832,7 +9832,7 @@ void SActorSpreadTransitionOperatorMaterialActorSaveData::WriteSimpleJson(void* 
 
 void SActorSpreadTransitionOperatorMaterialActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorSpreadTransitionOperatorMaterialActorSaveData s_Object;
+	SActorSpreadTransitionOperatorMaterialActorSaveData s_Object {};
 
 	s_Object.m_Actor = simdjson::from_json_uint32(p_Document["m_Actor"]);
 
@@ -9916,7 +9916,7 @@ void SActorSpreadTransitionOperatorMaterialSaveData::WriteSimpleJson(void* p_Obj
 
 void SActorSpreadTransitionOperatorMaterialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorSpreadTransitionOperatorMaterialSaveData s_Object;
+	SActorSpreadTransitionOperatorMaterialSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActorMaterialOverrides"])
 	{
@@ -9982,7 +9982,7 @@ void SActorStandInSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SActorStandInSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorStandInSaveData s_Object;
+	SActorStandInSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -10094,7 +10094,7 @@ void SActorStandInEntitiesSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SActorStandInEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorStandInEntitiesSaveData s_Object;
+	SActorStandInEntitiesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -10187,7 +10187,7 @@ void SActorTagSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SActorTagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorTagSaveData s_Object;
+	SActorTagSaveData s_Object {};
 
 	s_Object.m_bSeen = simdjson::from_json_bool(p_Document["m_bSeen"]);
 
@@ -10314,7 +10314,7 @@ void SActorTagManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SActorTagManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SActorTagManagerSaveData s_Object;
+	SActorTagManagerSaveData s_Object {};
 
 	s_Object.m_bContractsCreationMode = simdjson::from_json_bool(p_Document["m_bContractsCreationMode"]);
 
@@ -10454,10 +10454,10 @@ void SAgencyPickupInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SAgencyPickupInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAgencyPickupInfo s_Object;
+	SAgencyPickupInfo s_Object {};
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_AgencyPickupId"], &s_Item);
 		s_Object.m_AgencyPickupId = s_Item;
 	}
@@ -10557,18 +10557,18 @@ void SAgitatedBystanderOrderSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SAgitatedBystanderOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAgitatedBystanderOrderSaveData s_Object;
+	SAgitatedBystanderOrderSaveData s_Object {};
 
 	s_Object.m_rBystanderPoint = simdjson::from_json_uint32(p_Document["m_rBystanderPoint"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vCover"], &s_Item);
 		s_Object.m_vCover = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vCoverDir"], &s_Item);
 		s_Object.m_vCoverDir = s_Item;
 	}
@@ -10643,16 +10643,16 @@ void SBoneTransformSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SBoneTransformSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBoneTransformSaveData s_Object;
+	SBoneTransformSaveData s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mQuaterion"], &s_Item);
 		s_Object.mQuaterion = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mTranslation"], &s_Item);
 		s_Object.mTranslation = s_Item;
 	}
@@ -10757,16 +10757,16 @@ void SAnimPlayerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SAnimPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAnimPlayerSaveData s_Object;
+	SAnimPlayerSaveData s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mTrajectoryQuaterion"], &s_Item);
 		s_Object.mTrajectoryQuaterion = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mTrajectoryTranslation"], &s_Item);
 		s_Object.mTrajectoryTranslation = s_Item;
 	}
@@ -10879,7 +10879,7 @@ void SAnimatedActorActOrderSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SAnimatedActorActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAnimatedActorActOrderSaveData s_Object;
+	SAnimatedActorActOrderSaveData s_Object {};
 
 	s_Object.m_bOverrideExistingAct = simdjson::from_json_bool(p_Document["m_bOverrideExistingAct"]);
 
@@ -10888,13 +10888,13 @@ void SAnimatedActorActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	s_Object.m_rChildNetworkAct = simdjson::from_json_uint32(p_Document["m_rChildNetworkAct"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vOriginPosition"], &s_Item);
 		s_Object.m_vOriginPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vOriginQuaternion"], &s_Item);
 		s_Object.m_vOriginQuaternion = s_Item;
 	}
@@ -11021,7 +11021,7 @@ void SAnimatedActorMoveOrderSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SAnimatedActorMoveOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAnimatedActorMoveOrderSaveData s_Object;
+	SAnimatedActorMoveOrderSaveData s_Object {};
 
 	s_Object.m_bPrecisePositioning = simdjson::from_json_bool(p_Document["m_bPrecisePositioning"]);
 
@@ -11034,13 +11034,13 @@ void SAnimatedActorMoveOrderSaveData::FromSimpleJson(simdjson::ondemand::value p
 	s_Object.m_fStopMoveDistance = simdjson::from_json_float32(p_Document["m_fStopMoveDistance"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vWaypoint"], &s_Item);
 		s_Object.m_vWaypoint = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vFacingDirection"], &s_Item);
 		s_Object.m_vFacingDirection = s_Item;
 	}
@@ -11119,12 +11119,12 @@ void SAnimatedActorOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SAnimatedActorOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAnimatedActorOrderSaveData s_Object;
+	SAnimatedActorOrderSaveData s_Object {};
 
 	s_Object.m_eOrderType = static_cast<EActorAnimationOrder>(ZHMEnums::GetEnumValueByName("EActorAnimationOrder", std::string_view(p_Document["m_eOrderType"])));
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_OrderData"], &s_Item);
 		s_Object.m_OrderData = s_Item;
 	}
@@ -11287,16 +11287,16 @@ void SAnimatedActorReactOrderSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SAnimatedActorReactOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAnimatedActorReactOrderSaveData s_Object;
+	SAnimatedActorReactOrderSaveData s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vFaceTarget"], &s_Item);
 		s_Object.m_vFaceTarget = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vLookAtTarget"], &s_Item);
 		s_Object.m_vLookAtTarget = s_Item;
 	}
@@ -11388,10 +11388,10 @@ void SAnimatedActorStandOrderSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SAnimatedActorStandOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAnimatedActorStandOrderSaveData s_Object;
+	SAnimatedActorStandOrderSaveData s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vFacingDirection"], &s_Item);
 		s_Object.m_vFacingDirection = s_Item;
 	}
@@ -11493,7 +11493,7 @@ void SAttentionHUDUIElement::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SAttentionHUDUIElement::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAttentionHUDUIElement s_Object;
+	SAttentionHUDUIElement s_Object {};
 
 	s_Object.fAngle = simdjson::from_json_float32(p_Document["fAngle"]);
 
@@ -11586,7 +11586,7 @@ void SAttentionHUDUIElementArray_Dummy::WriteSimpleJson(void* p_Object, std::ost
 
 void SAttentionHUDUIElementArray_Dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAttentionHUDUIElementArray_Dummy s_Object;
+	SAttentionHUDUIElementArray_Dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
 	{
@@ -11692,7 +11692,7 @@ void SAudioEmitterEventSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SAudioEmitterEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioEmitterEventSaveData s_Object;
+	SAudioEmitterEventSaveData s_Object {};
 
 	s_Object.m_nEventId = simdjson::from_json_uint32(p_Document["m_nEventId"]);
 
@@ -11774,7 +11774,7 @@ void SAudioEmitterRTPCSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SAudioEmitterRTPCSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioEmitterRTPCSaveData s_Object;
+	SAudioEmitterRTPCSaveData s_Object {};
 
 	s_Object.m_nParamId = simdjson::from_json_uint32(p_Document["m_nParamId"]);
 
@@ -11867,7 +11867,7 @@ void SAudioEmitterSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SAudioEmitterSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioEmitterSaveData s_Object;
+	SAudioEmitterSaveData s_Object {};
 
 	s_Object.m_rEmitter = simdjson::from_json_uint32(p_Document["m_rEmitter"]);
 
@@ -11946,7 +11946,7 @@ void SAudioEmitterStateSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SAudioEmitterStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioEmitterStateSaveData s_Object;
+	SAudioEmitterStateSaveData s_Object {};
 
 	s_Object.m_nGroupId = simdjson::from_json_uint32(p_Document["m_nGroupId"]);
 
@@ -12019,7 +12019,7 @@ void SAudioEmitterSwitchSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SAudioEmitterSwitchSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioEmitterSwitchSaveData s_Object;
+	SAudioEmitterSwitchSaveData s_Object {};
 
 	s_Object.m_nGroupId = simdjson::from_json_uint32(p_Document["m_nGroupId"]);
 
@@ -12102,7 +12102,7 @@ void SAudioEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SAudioEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioEventData s_Object;
+	SAudioEventData s_Object {};
 
 	s_Object.m_EmitterID = simdjson::from_json_uint64(p_Document["m_EmitterID"]);
 
@@ -12375,7 +12375,7 @@ void SAudioSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SAudioSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioSaveData s_Object;
+	SAudioSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEmitters"])
 	{
@@ -12523,7 +12523,7 @@ void SFSMSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SFSMSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFSMSaveData s_Object;
+	SFSMSaveData s_Object {};
 
 	s_Object.m_eStateStatus = static_cast<EFSMStateStatus>(ZHMEnums::GetEnumValueByName("EFSMStateStatus", std::string_view(p_Document["m_eStateStatus"])));
 
@@ -12532,7 +12532,7 @@ void SFSMSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	s_Object.m_prevState = simdjson::from_json_int32(p_Document["m_prevState"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tCurrentStateEnterTime"], &s_Item);
 		s_Object.m_tCurrentStateEnterTime = s_Item;
 	}
@@ -12637,10 +12637,10 @@ void SAvoidDangerousAreaGroupSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SAvoidDangerousAreaGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAvoidDangerousAreaGroupSaveData s_Object;
+	SAvoidDangerousAreaGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -12648,7 +12648,7 @@ void SAvoidDangerousAreaGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 	s_Object.m_rDangerousArea = simdjson::from_json_uint32(p_Document["m_rDangerousArea"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vDestinationPoint"], &s_Item);
 		s_Object.m_vDestinationPoint = s_Item;
 	}
@@ -12729,7 +12729,7 @@ void SBehaviorTreeEntityReference::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SBehaviorTreeEntityReference::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBehaviorTreeEntityReference s_Object;
+	SBehaviorTreeEntityReference s_Object {};
 
 	s_Object.m_bList = simdjson::from_json_bool(p_Document["m_bList"]);
 
@@ -12813,7 +12813,7 @@ void SBehaviorTreeEvaluationLogEntry::WriteSimpleJson(void* p_Object, std::ostre
 
 void SBehaviorTreeEvaluationLogEntry::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBehaviorTreeEvaluationLogEntry s_Object;
+	SBehaviorTreeEvaluationLogEntry s_Object {};
 
 	s_Object.m_nBehaviorTreeIndex = simdjson::from_json_uint32(p_Document["m_nBehaviorTreeIndex"]);
 
@@ -12879,7 +12879,7 @@ void ZResourceID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZResourceID s_Object;
+	ZResourceID s_Object {};
 
 	s_Object.m_uri = std::string_view(p_Document["m_uri"]);
 
@@ -12992,7 +12992,7 @@ void SBehaviorTreeEvaluationLog::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SBehaviorTreeEvaluationLog::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBehaviorTreeEvaluationLog s_Object;
+	SBehaviorTreeEvaluationLog s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_BehaviorTrees"])
 	{
@@ -13067,7 +13067,7 @@ void SBehaviorTreeInputPinCondition::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SBehaviorTreeInputPinCondition::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBehaviorTreeInputPinCondition s_Object;
+	SBehaviorTreeInputPinCondition s_Object {};
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
@@ -13180,7 +13180,7 @@ void SBehaviorTreeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SBehaviorTreeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBehaviorTreeInfo s_Object;
+	SBehaviorTreeInfo s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_references"])
 	{
@@ -13265,12 +13265,12 @@ void SBlobsConfigResourceEntry::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SBlobsConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBlobsConfigResourceEntry s_Object;
+	SBlobsConfigResourceEntry s_Object {};
 
 	s_Object.Id = std::string_view(p_Document["Id"]);
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["BlobRid"], &s_Item);
 		s_Object.BlobRid = s_Item;
 	}
@@ -13364,7 +13364,7 @@ void SBodyContainerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SBodyContainerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBodyContainerSaveData s_Object;
+	SBodyContainerSaveData s_Object {};
 
 	s_Object.m_eBCState = static_cast<ZHM5BodyContainer_EBCState>(ZHMEnums::GetEnumValueByName("ZHM5BodyContainer.EBCState", std::string_view(p_Document["m_eBCState"])));
 
@@ -13485,7 +13485,7 @@ void SBodyContainersSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SBodyContainersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBodyContainersSaveData s_Object;
+	SBodyContainersSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -13678,7 +13678,7 @@ void SBodyPartDamageMultipliers::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SBodyPartDamageMultipliers::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBodyPartDamageMultipliers s_Object;
+	SBodyPartDamageMultipliers s_Object {};
 
 	s_Object.m_fHeadDamageMultiplier = simdjson::from_json_float32(p_Document["m_fHeadDamageMultiplier"]);
 
@@ -13784,16 +13784,16 @@ void SBodybagBoneSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SBodybagBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBodybagBoneSaveData s_Object;
+	SBodybagBoneSaveData s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mQuaterion"], &s_Item);
 		s_Object.mQuaterion = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mTranslation"], &s_Item);
 		s_Object.mTranslation = s_Item;
 	}
@@ -13939,16 +13939,16 @@ void SBodybagSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SBodybagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBodybagSaveData s_Object;
+	SBodybagSaveData s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vLinkedPosition"], &s_Item);
 		s_Object.m_vLinkedPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vLinkedQuaternionRotation"], &s_Item);
 		s_Object.m_vLinkedQuaternionRotation = s_Item;
 	}
@@ -14041,7 +14041,7 @@ void SBoneAttachSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SBoneAttachSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBoneAttachSaveData s_Object;
+	SBoneAttachSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
@@ -14125,7 +14125,7 @@ void SBoneScalesList::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SBoneScalesList::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SBoneScalesList s_Object;
+	SBoneScalesList s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBoneScales"])
 	{
@@ -14201,7 +14201,7 @@ void SCamBone::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCamBone::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCamBone s_Object;
+	SCamBone s_Object {};
 
 	s_Object.m_eBoneId = static_cast<BoneId_Enum>(ZHMEnums::GetEnumValueByName("BoneId.Enum", std::string_view(p_Document["m_eBoneId"])));
 
@@ -14366,7 +14366,7 @@ void SCautiousBackupGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SCautiousBackupGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousBackupGroupSaveData s_Object;
+	SCautiousBackupGroupSaveData s_Object {};
 
 	s_Object.m_eGroupState = static_cast<ZCautiousBackupGroup_EGroupState>(ZHMEnums::GetEnumValueByName("ZCautiousBackupGroup.EGroupState", std::string_view(p_Document["m_eGroupState"])));
 
@@ -14387,7 +14387,7 @@ void SCautiousBackupGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStart"], &s_Item);
 		s_Object.m_tStart = s_Item;
 	}
@@ -14557,28 +14557,28 @@ void SCautiousHuntSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SCautiousHuntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousHuntSaveData s_Object;
+	SCautiousHuntSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tAnnounceHuntCoolDown"], &s_Item);
 		s_Object.m_tAnnounceHuntCoolDown = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tAnnouncedHunt"], &s_Item);
 		s_Object.m_tAnnouncedHunt = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tShareHuntTargetCoolDown"], &s_Item);
 		s_Object.m_tShareHuntTargetCoolDown = s_Item;
 	}
@@ -14749,7 +14749,7 @@ void SExactCompressedGridFloatField::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SExactCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SExactCompressedGridFloatField s_Object;
+	SExactCompressedGridFloatField s_Object {};
 
 	s_Object.m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
 
@@ -15059,10 +15059,10 @@ void SCautiousInvestigateGroupSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousInvestigateGroupSaveData s_Object;
+	SCautiousInvestigateGroupSaveData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tGroupStarted"], &s_Item);
 		s_Object.m_tGroupStarted = s_Item;
 	}
@@ -15082,13 +15082,13 @@ void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 	s_Object.m_eApproachOrderState = static_cast<ZCautiousInvestigateGroup_EApproachOrderState>(ZHMEnums::GetEnumValueByName("ZCautiousInvestigateGroup.EApproachOrderState", std::string_view(p_Document["m_eApproachOrderState"])));
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmAssistantState"], &s_Item);
 		s_Object.m_fsmAssistantState = s_Item;
 	}
@@ -15110,19 +15110,19 @@ void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 	s_Object.m_bCheckSuspects = simdjson::from_json_bool(p_Document["m_bCheckSuspects"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_investigateArea"], &s_Item);
 		s_Object.m_investigateArea = s_Item;
 	}
 
 	{
-		SExactCompressedGridFloatField s_Item;
+		SExactCompressedGridFloatField s_Item {};
 		SExactCompressedGridFloatField::FromSimpleJson(p_Document["m_targetDistanceField"], &s_Item);
 		s_Object.m_targetDistanceField = s_Item;
 	}
 
 	{
-		SExactCompressedGridFloatField s_Item;
+		SExactCompressedGridFloatField s_Item {};
 		SExactCompressedGridFloatField::FromSimpleJson(p_Document["m_targetLOSField"], &s_Item);
 		s_Object.m_targetLOSField = s_Item;
 	}
@@ -15310,7 +15310,7 @@ void SCompressedGridFloatField::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCompressedGridFloatField s_Object;
+	SCompressedGridFloatField s_Object {};
 
 	s_Object.m_bIsSparse = simdjson::from_json_bool(p_Document["m_bIsSparse"]);
 
@@ -15443,7 +15443,7 @@ void SDisturbanceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDisturbanceSaveData s_Object;
+	SDisturbanceSaveData s_Object {};
 
 	s_Object.m_object = simdjson::from_json_int32(p_Document["m_object"]);
 
@@ -15452,7 +15452,7 @@ void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	s_Object.m_state = static_cast<ECautiousDisturbanceState>(ZHMEnums::GetEnumValueByName("ECautiousDisturbanceState", std::string_view(p_Document["m_state"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_started"], &s_Item);
 		s_Object.m_started = s_Item;
 	}
@@ -15753,44 +15753,44 @@ void ZInvestigateCautiousSituation_SStateData::WriteSimpleJson(void* p_Object, s
 
 void ZInvestigateCautiousSituation_SStateData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInvestigateCautiousSituation_SStateData s_Object;
+	ZInvestigateCautiousSituation_SStateData s_Object {};
 
 	s_Object.m_state = static_cast<ZInvestigateCautiousSituation_ESituationState>(ZHMEnums::GetEnumValueByName("ZInvestigateCautiousSituation.ESituationState", std::string_view(p_Document["m_state"])));
 
 	s_Object.m_eBystanderState = static_cast<ZInvestigateCautiousSituation_EBystanderState>(ZHMEnums::GetEnumValueByName("ZInvestigateCautiousSituation.EBystanderState", std::string_view(p_Document["m_eBystanderState"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastInvestigationEnded"], &s_Item);
 		s_Object.m_tLastInvestigationEnded = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastApproachOrder"], &s_Item);
 		s_Object.m_tLastApproachOrder = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastBackupGroupEnded"], &s_Item);
 		s_Object.m_tLastBackupGroupEnded = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastHunt"], &s_Item);
 		s_Object.m_tLastHunt = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tHuntTargetLastUpdate"], &s_Item);
 		s_Object.m_tHuntTargetLastUpdate = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tNewHuntTargetTimer"], &s_Item);
 		s_Object.m_tNewHuntTargetTimer = s_Item;
 	}
@@ -15820,7 +15820,7 @@ void ZInvestigateCautiousSituation_SStateData::FromSimpleJson(simdjson::ondemand
 	s_Object.m_bStandDownGuards = simdjson::from_json_bool(p_Document["m_bStandDownGuards"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStandDownDelay"], &s_Item);
 		s_Object.m_tStandDownDelay = s_Item;
 	}
@@ -16323,10 +16323,10 @@ void SCautiousInvestigateSituationSaveData::WriteSimpleJson(void* p_Object, std:
 
 void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousInvestigateSituationSaveData s_Object;
+	SCautiousInvestigateSituationSaveData s_Object {};
 
 	{
-		ZInvestigateCautiousSituation_SStateData s_Item;
+		ZInvestigateCautiousSituation_SStateData s_Item {};
 		ZInvestigateCautiousSituation_SStateData::FromSimpleJson(p_Document["m_StateData"], &s_Item);
 		s_Object.m_StateData = s_Item;
 	}
@@ -16350,19 +16350,19 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tFriskCooldown"], &s_Item);
 		s_Object.m_tFriskCooldown = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tFriskGroupEnd"], &s_Item);
 		s_Object.m_tFriskGroupEnd = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tRecoverUnconsciousGroupEnd"], &s_Item);
 		s_Object.m_tRecoverUnconsciousGroupEnd = s_Item;
 	}
@@ -16386,7 +16386,7 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	s_Object.m_bValidDisturbanceField = simdjson::from_json_bool(p_Document["m_bValidDisturbanceField"]);
 
 	{
-		SCompressedGridFloatField s_Item;
+		SCompressedGridFloatField s_Item {};
 		SCompressedGridFloatField::FromSimpleJson(p_Document["m_disturbanceField"], &s_Item);
 		s_Object.m_disturbanceField = s_Item;
 	}
@@ -16415,7 +16415,7 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastIdleStanddown"], &s_Item);
 		s_Object.m_tLastIdleStanddown = s_Item;
 	}
@@ -16426,7 +16426,7 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	}
 
 	{
-		SCautiousHuntSaveData s_Item;
+		SCautiousHuntSaveData s_Item {};
 		SCautiousHuntSaveData::FromSimpleJson(p_Document["m_cautiousHuntData"], &s_Item);
 		s_Object.m_cautiousHuntData = s_Item;
 	}
@@ -16578,7 +16578,7 @@ void SCautiousSearchGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SCautiousSearchGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousSearchGroupSaveData s_Object;
+	SCautiousSearchGroupSaveData s_Object {};
 
 	s_Object.m_searchNode = simdjson::from_json_uint16(p_Document["m_searchNode"]);
 
@@ -16783,40 +16783,40 @@ void SCautiousSituationMemberSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SCautiousSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousSituationMemberSaveData s_Object;
+	SCautiousSituationMemberSaveData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastDisturbance"], &s_Item);
 		s_Object.m_tLastDisturbance = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastSearchCalc"], &s_Item);
 		s_Object.m_tLastSearchCalc = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastInfluenceCalc"], &s_Item);
 		s_Object.m_tLastInfluenceCalc = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastSearchCompleted"], &s_Item);
 		s_Object.m_tLastSearchCompleted = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastInvestigationCompleted"], &s_Item);
 		s_Object.m_tLastInvestigationCompleted = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tTimeIdling"], &s_Item);
 		s_Object.m_tTimeIdling = s_Item;
 	}
@@ -16912,10 +16912,10 @@ void SCautiousVIPGroupState::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SCautiousVIPGroupState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousVIPGroupState s_Object;
+	SCautiousVIPGroupState s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tMove"], &s_Item);
 		s_Object.m_tMove = s_Item;
 	}
@@ -17017,18 +17017,18 @@ void SCautiousVIPGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SCautiousVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCautiousVIPGroupSaveData s_Object;
+	SCautiousVIPGroupSaveData s_Object {};
 
 	s_Object.m_vip = simdjson::from_json_uint32(p_Document["m_vip"]);
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
 
 	{
-		SCautiousVIPGroupState s_Item;
+		SCautiousVIPGroupState s_Item {};
 		SCautiousVIPGroupState::FromSimpleJson(p_Document["m_stateData"], &s_Item);
 		s_Object.m_stateData = s_Item;
 	}
@@ -17109,7 +17109,7 @@ void SChairSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SChairSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SChairSaveData s_Object;
+	SChairSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -17172,10 +17172,10 @@ void ZDynamicObject::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZDynamicObject::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDynamicObject s_Object;
+	ZDynamicObject s_Object {};
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_value"], &s_Item);
 		s_Object.m_value = s_Item;
 	}
@@ -17247,12 +17247,12 @@ void SChallengeSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SChallengeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SChallengeSaveData s_Object;
+	SChallengeSaveData s_Object {};
 
 	s_Object.m_sId = std::string_view(p_Document["m_sId"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_State"], &s_Item);
 		s_Object.m_State = s_Item;
 	}
@@ -17337,7 +17337,7 @@ void SChallengesSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SChallengesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SChallengesSaveData s_Object;
+	SChallengesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_mChallengeStates"])
 	{
@@ -17413,7 +17413,7 @@ void SCharacterSpeakEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SCharacterSpeakEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCharacterSpeakEntitySaveData s_Object;
+	SCharacterSpeakEntitySaveData s_Object {};
 
 	s_Object.m_fSeekPosition = simdjson::from_json_float32(p_Document["m_fSeekPosition"]);
 
@@ -17526,7 +17526,7 @@ void SCheckLastPositionGroupSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SCheckLastPositionGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCheckLastPositionGroupSaveData s_Object;
+	SCheckLastPositionGroupSaveData s_Object {};
 
 	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
@@ -17651,22 +17651,22 @@ void SClothBundleSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SClothBundleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SClothBundleSaveData s_Object;
+	SClothBundleSaveData s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vQuaternion"], &s_Item);
 		s_Object.m_vQuaternion = s_Item;
 	}
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_OutfitID"], &s_Item);
 		s_Object.m_OutfitID = s_Item;
 	}
@@ -17741,7 +17741,7 @@ void SClothBundleSpawnSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SClothBundleSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SClothBundleSpawnSaveData s_Object;
+	SClothBundleSpawnSaveData s_Object {};
 
 	s_Object.m_rClothbundle = simdjson::from_json_uint32(p_Document["m_rClothbundle"]);
 
@@ -17811,7 +17811,7 @@ void SClothVertex::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SClothVertex::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SClothVertex s_Object;
+	SClothVertex s_Object {};
 
 	s_Object.m_nColumn = simdjson::from_json_uint16(p_Document["m_nColumn"]);
 
@@ -17894,7 +17894,7 @@ void SClothWireEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SClothWireEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SClothWireEntitySaveData s_Object;
+	SClothWireEntitySaveData s_Object {};
 
 	s_Object.m_fWireLength = simdjson::from_json_float32(p_Document["m_fWireLength"]);
 
@@ -18000,22 +18000,22 @@ void SCollidingParticle::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCollidingParticle::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCollidingParticle s_Object;
+	SCollidingParticle s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vVelocity"], &s_Item);
 		s_Object.m_vVelocity = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vNewVelocity"], &s_Item);
 		s_Object.m_vNewVelocity = s_Item;
 	}
@@ -18097,7 +18097,7 @@ void SCollisionControllerAspectSaveData::WriteSimpleJson(void* p_Object, std::os
 
 void SCollisionControllerAspectSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCollisionControllerAspectSaveData s_Object;
+	SCollisionControllerAspectSaveData s_Object {};
 
 	s_Object.m_bCollideHitman = simdjson::from_json_bool(p_Document["m_bCollideHitman"]);
 
@@ -18212,7 +18212,7 @@ void SCollisionControllerAspectsSaveData::WriteSimpleJson(void* p_Object, std::o
 
 void SCollisionControllerAspectsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCollisionControllerAspectsSaveData s_Object;
+	SCollisionControllerAspectsSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -18305,7 +18305,7 @@ void SColorRGB::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SColorRGB s_Object;
+	SColorRGB s_Object {};
 
 	s_Object.r = simdjson::from_json_float32(p_Document["r"]);
 
@@ -18401,7 +18401,7 @@ void SColorRGBA::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SColorRGBA s_Object;
+	SColorRGBA s_Object {};
 
 	s_Object.r = simdjson::from_json_float32(p_Document["r"]);
 
@@ -18522,7 +18522,7 @@ void SColorRGBSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SColorRGBSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SColorRGBSaveData s_Object;
+	SColorRGBSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -18615,10 +18615,10 @@ void SCombatOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SCombatOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCombatOrderSaveData s_Object;
+	SCombatOrderSaveData s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPos"], &s_Item);
 		s_Object.m_vPos = s_Item;
 	}
@@ -18806,10 +18806,10 @@ void SCombatSituationMemberSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SCombatSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCombatSituationMemberSaveData s_Object;
+	SCombatSituationMemberSaveData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tAggressiveModeTimer"], &s_Item);
 		s_Object.m_tAggressiveModeTimer = s_Item;
 	}
@@ -18957,7 +18957,7 @@ void SCombatZoneEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SCombatZoneEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCombatZoneEntitySaveData s_Object;
+	SCombatZoneEntitySaveData s_Object {};
 
 	s_Object.m_bIsInLockdown = simdjson::from_json_bool(p_Document["m_bIsInLockdown"]);
 
@@ -18966,19 +18966,19 @@ void SCombatZoneEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	s_Object.m_nState = static_cast<ECombatZoneState>(ZHMEnums::GetEnumValueByName("ECombatZoneState", std::string_view(p_Document["m_nState"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLockdownTime"], &s_Item);
 		s_Object.m_tLockdownTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tTriggerTime"], &s_Item);
 		s_Object.m_tTriggerTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tEngageTime"], &s_Item);
 		s_Object.m_tEngageTime = s_Item;
 	}
@@ -19039,7 +19039,7 @@ void ZBehaviorTreeVariable::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void ZBehaviorTreeVariable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZBehaviorTreeVariable s_Object;
+	ZBehaviorTreeVariable s_Object {};
 
 	*reinterpret_cast<ZBehaviorTreeVariable*>(p_Target) = s_Object;
 }
@@ -19116,14 +19116,14 @@ void SConditionBase::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SConditionBase::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SConditionBase s_Object;
+	SConditionBase s_Object {};
 
 	s_Object.eConditionType = static_cast<ECompiledConditionType>(ZHMEnums::GetEnumValueByName("ECompiledConditionType", std::string_view(p_Document["eConditionType"])));
 
 	s_Object.nConditionModifiers = simdjson::from_json_uint32(p_Document["nConditionModifiers"]);
 
 	{
-		ZBehaviorTreeVariable s_Item;
+		ZBehaviorTreeVariable s_Item {};
 		ZBehaviorTreeVariable::FromSimpleJson(p_Document["assignTo"], &s_Item);
 		s_Object.assignTo = s_Item;
 	}
@@ -19207,7 +19207,7 @@ void SConditionalTimerEntitySaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SConditionalTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SConditionalTimerEntitySaveData s_Object;
+	SConditionalTimerEntitySaveData s_Object {};
 
 	s_Object.m_nInterval = simdjson::from_json_int32(p_Document["m_nInterval"]);
 
@@ -19293,7 +19293,7 @@ void SContextActionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SContextActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SContextActionSaveData s_Object;
+	SContextActionSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -19369,12 +19369,12 @@ void SContractConfigResourceEntry::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SContractConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SContractConfigResourceEntry s_Object;
+	SContractConfigResourceEntry s_Object {};
 
 	s_Object.Id = std::string_view(p_Document["Id"]);
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["ContractRid"], &s_Item);
 		s_Object.ContractRid = s_Item;
 	}
@@ -19438,7 +19438,7 @@ void SContractObjectiveHudHintEntitySaveData::WriteSimpleJson(void* p_Object, st
 
 void SContractObjectiveHudHintEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SContractObjectiveHudHintEntitySaveData s_Object;
+	SContractObjectiveHudHintEntitySaveData s_Object {};
 
 	s_Object.m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
 
@@ -19808,10 +19808,10 @@ void SContractObjectiveSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SContractObjectiveSaveData s_Object;
+	SContractObjectiveSaveData s_Object {};
 
 	{
-		ZGuid s_Item;
+		ZGuid s_Item {};
 		ZGuid::FromSimpleJson(p_Document["m_Id"], &s_Item);
 		s_Object.m_Id = s_Item;
 	}
@@ -19829,7 +19829,7 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_sSuccessEventName = std::string_view(p_Document["m_sSuccessEventName"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_SuccessEventValues"], &s_Item);
 		s_Object.m_SuccessEventValues = s_Item;
 	}
@@ -19837,7 +19837,7 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_sFailedEventName = std::string_view(p_Document["m_sFailedEventName"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_FailedEventValues"], &s_Item);
 		s_Object.m_FailedEventValues = s_Item;
 	}
@@ -19845,25 +19845,25 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_sResetEventName = std::string_view(p_Document["m_sResetEventName"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_ResetEventValues"], &s_Item);
 		s_Object.m_ResetEventValues = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_sBriefingText"], &s_Item);
 		s_Object.m_sBriefingText = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_sLongBriefingText"], &s_Item);
 		s_Object.m_sLongBriefingText = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_sHUDText"], &s_Item);
 		s_Object.m_sHUDText = s_Item;
 	}
@@ -19877,7 +19877,7 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_iCurrentFailed = simdjson::from_json_int32(p_Document["m_iCurrentFailed"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_ActivationCondition"], &s_Item);
 		s_Object.m_ActivationCondition = s_Item;
 	}
@@ -19895,19 +19895,19 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_bCombinedDisplayInHud = simdjson::from_json_bool(p_Document["m_bCombinedDisplayInHud"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_OnInactive"], &s_Item);
 		s_Object.m_OnInactive = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_OnActive"], &s_Item);
 		s_Object.m_OnActive = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_aExits"], &s_Item);
 		s_Object.m_aExits = s_Item;
 	}
@@ -20334,10 +20334,10 @@ void SContractObjectiveStateMachineSaveData::WriteSimpleJson(void* p_Object, std
 
 void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SContractObjectiveStateMachineSaveData s_Object;
+	SContractObjectiveStateMachineSaveData s_Object {};
 
 	{
-		ZGuid s_Item;
+		ZGuid s_Item {};
 		ZGuid::FromSimpleJson(p_Document["m_Id"], &s_Item);
 		s_Object.m_Id = s_Item;
 	}
@@ -20345,31 +20345,31 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 	s_Object.m_eCategory = static_cast<IContractObjective_Category>(ZHMEnums::GetEnumValueByName("IContractObjective.Category", std::string_view(p_Document["m_eCategory"])));
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_sBriefingText"], &s_Item);
 		s_Object.m_sBriefingText = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_sLongBriefingText"], &s_Item);
 		s_Object.m_sLongBriefingText = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_State"], &s_Item);
 		s_Object.m_State = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_Definition"], &s_Item);
 		s_Object.m_Definition = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_aTargets"], &s_Item);
 		s_Object.m_aTargets = s_Item;
 	}
@@ -20377,13 +20377,13 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 	s_Object.m_bTargetsHidden = simdjson::from_json_bool(p_Document["m_bTargetsHidden"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_HUDTmpl"], &s_Item);
 		s_Object.m_HUDTmpl = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_ActivationCondition"], &s_Item);
 		s_Object.m_ActivationCondition = s_Item;
 	}
@@ -20393,19 +20393,19 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 	s_Object.m_bUpdateActivationOnCompleted = simdjson::from_json_bool(p_Document["m_bUpdateActivationOnCompleted"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_OnInactive"], &s_Item);
 		s_Object.m_OnInactive = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_OnActive"], &s_Item);
 		s_Object.m_OnActive = s_Item;
 	}
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["m_aExits"], &s_Item);
 		s_Object.m_aExits = s_Item;
 	}
@@ -20563,7 +20563,7 @@ void SEntityTemplateProperty::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SEntityTemplateProperty::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityTemplateProperty s_Object;
+	SEntityTemplateProperty s_Object {};
 
 	if (p_Document["nPropertyID"].type() == simdjson::ondemand::json_type::string)
 		s_Object.nPropertyID = Hash::Crc32(std::string_view(p_Document["nPropertyID"]));
@@ -20571,7 +20571,7 @@ void SEntityTemplateProperty::FromSimpleJson(simdjson::ondemand::value p_Documen
 		s_Object.nPropertyID = simdjson::from_json_uint32(p_Document["nPropertyID"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["value"], &s_Item);
 		s_Object.value = s_Item;
 	}
@@ -20665,7 +20665,7 @@ void SCppEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCppEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCppEntity s_Object;
+	SCppEntity s_Object {};
 
 	s_Object.blueprintIndexInResourceHeader = simdjson::from_json_int32(p_Document["blueprintIndexInResourceHeader"]);
 
@@ -20744,7 +20744,7 @@ void SCppEntitySubsetInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SCppEntitySubsetInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCppEntitySubsetInfo s_Object;
+	SCppEntitySubsetInfo s_Object {};
 
 	s_Object.name = std::string_view(p_Document["name"]);
 
@@ -20839,10 +20839,10 @@ void SCppEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCppEntityBlueprint s_Object;
+	SCppEntityBlueprint s_Object {};
 
 	{
-		TypeID s_Item;
+		TypeID s_Item {};
 		TypeID::FromSimpleJson(p_Document["typeName"], &s_Item);
 		s_Object.typeName = s_Item;
 	}
@@ -20963,16 +20963,16 @@ void SCrimeSceneSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SCrimeSceneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrimeSceneSaveData s_Object;
+	SCrimeSceneSaveData s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPos"], &s_Item);
 		s_Object.m_vPos = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStart"], &s_Item);
 		s_Object.m_tStart = s_Item;
 	}
@@ -21069,7 +21069,7 @@ void SCrimeSceneServiceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SCrimeSceneServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrimeSceneServiceSaveData s_Object;
+	SCrimeSceneServiceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCrimeScenes"])
 	{
@@ -21165,7 +21165,7 @@ void SCrowdActivitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SCrowdActivitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdActivitySaveData s_Object;
+	SCrowdActivitySaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -21314,7 +21314,7 @@ void SCrowdActorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SCrowdActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdActorSaveData s_Object;
+	SCrowdActorSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -21327,13 +21327,13 @@ void SCrowdActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	s_Object.m_nAnimSourceIndex = simdjson::from_json_uint32(p_Document["m_nAnimSourceIndex"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vForward"], &s_Item);
 		s_Object.m_vForward = s_Item;
 	}
@@ -21499,7 +21499,7 @@ void SCrowdBodySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdBodySaveData s_Object;
+	SCrowdBodySaveData s_Object {};
 
 	s_Object.m_pCorpseBodybagEntity = simdjson::from_json_uint32(p_Document["m_pCorpseBodybagEntity"]);
 
@@ -21515,7 +21515,7 @@ void SCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStart"], &s_Item);
 		s_Object.m_tStart = s_Item;
 	}
@@ -21610,7 +21610,7 @@ void SCrowdCells::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCrowdCells::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdCells s_Object;
+	SCrowdCells s_Object {};
 
 	{
 	size_t s_Index0 = 0;
@@ -21688,16 +21688,16 @@ void SCrowdPoseBoneSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SCrowdPoseBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdPoseBoneSaveData s_Object;
+	SCrowdPoseBoneSaveData s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mQuaterion"], &s_Item);
 		s_Object.mQuaterion = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["mTranslation"], &s_Item);
 		s_Object.mTranslation = s_Item;
 	}
@@ -21782,7 +21782,7 @@ void SCrowdPoseSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCrowdPoseSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdPoseSaveData s_Object;
+	SCrowdPoseSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBones"])
 	{
@@ -21879,7 +21879,7 @@ void SCrowdPoseCollectionSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SCrowdPoseCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdPoseCollectionSaveData s_Object;
+	SCrowdPoseCollectionSaveData s_Object {};
 
 	s_Object.m_id = simdjson::from_json_uint64(p_Document["m_id"]);
 
@@ -21969,7 +21969,7 @@ void SCrowdDeadPoseRepositorySaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SCrowdDeadPoseRepositorySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdDeadPoseRepositorySaveData s_Object;
+	SCrowdDeadPoseRepositorySaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPoseCollections"])
 	{
@@ -22125,14 +22125,14 @@ void SRegionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SRegionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRegionSaveData s_Object;
+	SRegionSaveData s_Object {};
 
 	s_Object.m_nIndex = simdjson::from_json_uint32(p_Document["m_nIndex"]);
 
 	s_Object.m_eType = static_cast<CrowdRegionType>(ZHMEnums::GetEnumValueByName("CrowdRegionType", std::string_view(p_Document["m_eType"])));
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vCenter"], &s_Item);
 		s_Object.m_vCenter = s_Item;
 	}
@@ -22351,7 +22351,7 @@ void SCrowdEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SCrowdEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdEntitySaveData s_Object;
+	SCrowdEntitySaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_CrowdActorData"])
 	{
@@ -22370,7 +22370,7 @@ void SCrowdEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	s_Object.m_bIsCrowdAmbient = simdjson::from_json_bool(p_Document["m_bIsCrowdAmbient"]);
 
 	{
-		SCrowdDeadPoseRepositorySaveData s_Item;
+		SCrowdDeadPoseRepositorySaveData s_Item {};
 		SCrowdDeadPoseRepositorySaveData::FromSimpleJson(p_Document["m_DeadPoseRepository"], &s_Item);
 		s_Object.m_DeadPoseRepository = s_Item;
 	}
@@ -22503,7 +22503,7 @@ void SCrowdFlowChannel::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCrowdFlowChannel::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdFlowChannel s_Object;
+	SCrowdFlowChannel s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFlowVectorIndex"])
 	{
@@ -22584,7 +22584,7 @@ void ZCrowdGridPoint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZCrowdGridPoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZCrowdGridPoint s_Object;
+	ZCrowdGridPoint s_Object {};
 
 	s_Object.m_nHeightOffset = simdjson::from_json_int16(p_Document["m_nHeightOffset"]);
 
@@ -22891,12 +22891,12 @@ void SCrowdMapData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdMapData s_Object;
+	SCrowdMapData s_Object {};
 
 	s_Object.m_nVersion = simdjson::from_json_uint32(p_Document["m_nVersion"]);
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vCellConsts"], &s_Item);
 		s_Object.m_vCellConsts = s_Item;
 	}
@@ -22946,13 +22946,13 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	s_Object.m_nGridCellSize = simdjson::from_json_float32(p_Document["m_nGridCellSize"]);
 
 	{
-		SMatrix s_Item;
+		SMatrix s_Item {};
 		SMatrix::FromSimpleJson(p_Document["m_mObjectToWorld"], &s_Item);
 		s_Object.m_mObjectToWorld = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vGlobalSize"], &s_Item);
 		s_Object.m_vGlobalSize = s_Item;
 	}
@@ -23078,7 +23078,7 @@ void SCrowdReactionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SCrowdReactionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdReactionSaveData s_Object;
+	SCrowdReactionSaveData s_Object {};
 
 	s_Object.m_nNumPacify = simdjson::from_json_uint32(p_Document["m_nNumPacify"]);
 
@@ -23171,7 +23171,7 @@ void SCrowdServiceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SCrowdServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCrowdServiceSaveData s_Object;
+	SCrowdServiceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDeadBodies"])
 	{
@@ -23247,10 +23247,10 @@ void SCuriousEventSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SCuriousEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCuriousEventSaveData s_Object;
+	SCuriousEventSaveData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tExpiresAt"], &s_Item);
 		s_Object.m_tExpiresAt = s_Item;
 	}
@@ -23336,7 +23336,7 @@ void SCuriousEventServiceSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SCuriousEventServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCuriousEventServiceSaveData s_Object;
+	SCuriousEventServiceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCuriousEvents"])
 	{
@@ -23502,7 +23502,7 @@ void SCuriousInvestigateGroupSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SCuriousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCuriousInvestigateGroupSaveData s_Object;
+	SCuriousInvestigateGroupSaveData s_Object {};
 
 	s_Object.m_nInvestigationId = simdjson::from_json_int32(p_Document["m_nInvestigationId"]);
 
@@ -23519,13 +23519,13 @@ void SCuriousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 	s_Object.m_state = static_cast<EInvestigationState>(ZHMEnums::GetEnumValueByName("EInvestigationState", std::string_view(p_Document["m_state"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStartTime"], &s_Item);
 		s_Object.m_tStartTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tResolveStartTime"], &s_Item);
 		s_Object.m_tResolveStartTime = s_Item;
 	}
@@ -23674,7 +23674,7 @@ void SCuriousInvestigateSituationSaveData::WriteSimpleJson(void* p_Object, std::
 
 void SCuriousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCuriousInvestigateSituationSaveData s_Object;
+	SCuriousInvestigateSituationSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aInvestigationGroupIDs"])
 	{
@@ -23689,7 +23689,7 @@ void SCuriousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::va
 	s_Object.m_nInvestigationCount = simdjson::from_json_int32(p_Document["m_nInvestigationCount"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastStandDownOrder"], &s_Item);
 		s_Object.m_tLastStandDownOrder = s_Item;
 	}
@@ -23776,10 +23776,10 @@ void SCuriousSituationMemberSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SCuriousSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SCuriousSituationMemberSaveData s_Object;
+	SCuriousSituationMemberSaveData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastDisturbance"], &s_Item);
 		s_Object.m_tLastDisturbance = s_Item;
 	}
@@ -23847,7 +23847,7 @@ void SDangerousAreaSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SDangerousAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDangerousAreaSaveData s_Object;
+	SDangerousAreaSaveData s_Object {};
 
 	s_Object.m_bDangerous = simdjson::from_json_bool(p_Document["m_bDangerous"]);
 
@@ -24058,7 +24058,7 @@ void SDeadBodyInfoSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SDeadBodyInfoSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDeadBodyInfoSaveData s_Object;
+	SDeadBodyInfoSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -24070,13 +24070,13 @@ void SDeadBodyInfoSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tKnownSince"], &s_Item);
 		s_Object.m_tKnownSince = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tInvestigatedSince"], &s_Item);
 		s_Object.m_tInvestigatedSince = s_Item;
 	}
@@ -24202,7 +24202,7 @@ void SDeadBodySensorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SDeadBodySensorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDeadBodySensorSaveData s_Object;
+	SDeadBodySensorSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBodies"])
 	{
@@ -24281,7 +24281,7 @@ void SVector2::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVector2 s_Object;
+	SVector2 s_Object {};
 
 	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
@@ -24444,36 +24444,36 @@ void SDecalSpawnSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SDecalSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDecalSpawnSaveData s_Object;
+	SDecalSpawnSaveData s_Object {};
 
 	s_Object.m_bWasSpawned = simdjson::from_json_bool(p_Document["m_bWasSpawned"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vNormal"], &s_Item);
 		s_Object.m_vNormal = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vDirection"], &s_Item);
 		s_Object.m_vDirection = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vSize"], &s_Item);
 		s_Object.m_vSize = s_Item;
 	}
 
 	{
-		SColorRGB s_Item;
+		SColorRGB s_Item {};
 		SColorRGB::FromSimpleJson(p_Document["m_Color"], &s_Item);
 		s_Object.m_Color = s_Item;
 	}
@@ -24483,13 +24483,13 @@ void SDecalSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	s_Object.m_fAngle = simdjson::from_json_float32(p_Document["m_fAngle"]);
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vUVOffset"], &s_Item);
 		s_Object.m_vUVOffset = s_Item;
 	}
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vTiling"], &s_Item);
 		s_Object.m_vTiling = s_Item;
 	}
@@ -24619,10 +24619,10 @@ void SDetectedInPrivateGroupSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SDetectedInPrivateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDetectedInPrivateGroupSaveData s_Object;
+	SDetectedInPrivateGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -24699,7 +24699,7 @@ void SDisguiseZoneSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SDisguiseZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDisguiseZoneSaveData s_Object;
+	SDisguiseZoneSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -24789,7 +24789,7 @@ void SDoorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SDoorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDoorSaveData s_Object;
+	SDoorSaveData s_Object {};
 
 	s_Object.m_nDoorState = simdjson::from_json_int32(p_Document["m_nDoorState"]);
 
@@ -24798,7 +24798,7 @@ void SDoorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	s_Object.m_fTargetAnimPercent = simdjson::from_json_float32(p_Document["m_fTargetAnimPercent"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tOpenTime"], &s_Item);
 		s_Object.m_tOpenTime = s_Item;
 	}
@@ -24855,7 +24855,7 @@ void SDoorSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SDoorSoundDefs::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDoorSoundDefs s_Object;
+	SDoorSoundDefs s_Object {};
 
 	*reinterpret_cast<SDoorSoundDefs*>(p_Target) = s_Object;
 }
@@ -24964,7 +24964,7 @@ void SDoorsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SDoorsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDoorsSaveData s_Object;
+	SDoorsSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -25127,7 +25127,7 @@ void SDramaActorSaveState::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SDramaActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDramaActorSaveState s_Object;
+	SDramaActorSaveState s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -25142,7 +25142,7 @@ void SDramaActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	s_Object.m_sMatchName = std::string_view(p_Document["m_sMatchName"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tActorSpeakEnd"], &s_Item);
 		s_Object.m_tActorSpeakEnd = s_Item;
 	}
@@ -25272,7 +25272,7 @@ void SDramaActorCollectionSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SDramaActorCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDramaActorCollectionSaveData s_Object;
+	SDramaActorCollectionSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -25365,7 +25365,7 @@ void SDramaSetupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SDramaSetupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDramaSetupSaveData s_Object;
+	SDramaSetupSaveData s_Object {};
 
 	s_Object.m_bDoneTriggered = simdjson::from_json_bool(p_Document["m_bDoneTriggered"]);
 
@@ -25483,7 +25483,7 @@ void SDramaSetupCollectionSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SDramaSetupCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDramaSetupCollectionSaveData s_Object;
+	SDramaSetupCollectionSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -25596,7 +25596,7 @@ void SDramaSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SDramaSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDramaSituationSaveData s_Object;
+	SDramaSituationSaveData s_Object {};
 
 	s_Object.m_bSituationRunning = simdjson::from_json_bool(p_Document["m_bSituationRunning"]);
 
@@ -25720,7 +25720,7 @@ void SDramaSituationCollectionSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SDramaSituationCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDramaSituationCollectionSaveData s_Object;
+	SDramaSituationCollectionSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -25823,12 +25823,12 @@ void SDynamicEnforcerCandidateSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SDynamicEnforcerCandidateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDynamicEnforcerCandidateSaveData s_Object;
+	SDynamicEnforcerCandidateSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
@@ -25918,7 +25918,7 @@ void SDynamicEnforcerServiceSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SDynamicEnforcerServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDynamicEnforcerServiceSaveData s_Object;
+	SDynamicEnforcerServiceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCandidates"])
 	{
@@ -25994,12 +25994,12 @@ void SDynamicObjectKeyValuePair::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SDynamicObjectKeyValuePair::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDynamicObjectKeyValuePair s_Object;
+	SDynamicObjectKeyValuePair s_Object {};
 
 	s_Object.sKey = std::string_view(p_Document["sKey"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["value"], &s_Item);
 		s_Object.value = s_Item;
 	}
@@ -26063,7 +26063,7 @@ void SDynamicRayCastEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SDynamicRayCastEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SDynamicRayCastEntitySaveData s_Object;
+	SDynamicRayCastEntitySaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -26154,7 +26154,7 @@ void SEntityPath::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SEntityPath::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityPath s_Object;
+	SEntityPath s_Object {};
 
 	s_Object.m_nOwnerID = simdjson::from_json_uint64(p_Document["m_nOwnerID"]);
 
@@ -26261,14 +26261,14 @@ void SEntityPinDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SEntityPinDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityPinDescriptor s_Object;
+	SEntityPinDescriptor s_Object {};
 
 	s_Object.sName = std::string_view(p_Document["sName"]);
 
 	s_Object.sDisplayName = std::string_view(p_Document["sDisplayName"]);
 
 	{
-		ZResourceID s_Item;
+		ZResourceID s_Item {};
 		ZResourceID::FromSimpleJson(p_Document["type"], &s_Item);
 		s_Object.type = s_Item;
 	}
@@ -26362,7 +26362,7 @@ void SEntityTemplateEntitySubset::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SEntityTemplateEntitySubset::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityTemplateEntitySubset s_Object;
+	SEntityTemplateEntitySubset s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["entities"])
 	{
@@ -26456,7 +26456,7 @@ void SEntityTemplatePinConnection::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SEntityTemplatePinConnection::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityTemplatePinConnection s_Object;
+	SEntityTemplatePinConnection s_Object {};
 
 	s_Object.fromID = simdjson::from_json_int32(p_Document["fromID"]);
 
@@ -26547,7 +26547,7 @@ void SEntityTemplatePropertyAlias::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SEntityTemplatePropertyAlias::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityTemplatePropertyAlias s_Object;
+	SEntityTemplatePropertyAlias s_Object {};
 
 	s_Object.sAliasName = std::string_view(p_Document["sAliasName"]);
 
@@ -26645,7 +26645,7 @@ void SEntityTemplateReference::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SEntityTemplateReference::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityTemplateReference s_Object;
+	SEntityTemplateReference s_Object {};
 
 	s_Object.entityID = simdjson::from_json_uint64(p_Document["entityID"]);
 
@@ -26725,16 +26725,16 @@ void SEntityTemplatePropertyOverride::WriteSimpleJson(void* p_Object, std::ostre
 
 void SEntityTemplatePropertyOverride::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEntityTemplatePropertyOverride s_Object;
+	SEntityTemplatePropertyOverride s_Object {};
 
 	{
-		SEntityTemplateReference s_Item;
+		SEntityTemplateReference s_Item {};
 		SEntityTemplateReference::FromSimpleJson(p_Document["propertyOwner"], &s_Item);
 		s_Object.propertyOwner = s_Item;
 	}
 
 	{
-		SEntityTemplateProperty s_Item;
+		SEntityTemplateProperty s_Item {};
 		SEntityTemplateProperty::FromSimpleJson(p_Document["propertyValue"], &s_Item);
 		s_Object.propertyValue = s_Item;
 	}
@@ -26828,24 +26828,24 @@ void SEnvironmentConfigResourceEntry::WriteSimpleJson(void* p_Object, std::ostre
 
 void SEnvironmentConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEnvironmentConfigResourceEntry s_Object;
+	SEnvironmentConfigResourceEntry s_Object {};
 
 	s_Object.Name = std::string_view(p_Document["Name"]);
 
 	{
-		ZResourceID s_Item;
+		ZResourceID s_Item {};
 		ZResourceID::FromSimpleJson(p_Document["ContractsDatastoreRid"], &s_Item);
 		s_Object.ContractsDatastoreRid = s_Item;
 	}
 
 	{
-		ZResourceID s_Item;
+		ZResourceID s_Item {};
 		ZResourceID::FromSimpleJson(p_Document["UnlockablesDatastoreRid"], &s_Item);
 		s_Object.UnlockablesDatastoreRid = s_Item;
 	}
 
 	{
-		ZResourceID s_Item;
+		ZResourceID s_Item {};
 		ZResourceID::FromSimpleJson(p_Document["BlobsDatastoreRid"], &s_Item);
 		s_Object.BlobsDatastoreRid = s_Item;
 	}
@@ -26934,7 +26934,7 @@ void SEnvironmentConfigResource::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SEnvironmentConfigResource::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEnvironmentConfigResource s_Object;
+	SEnvironmentConfigResource s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["Environments"])
 	{
@@ -27130,26 +27130,26 @@ void SEscortOutBehaviorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SEscortOutBehaviorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEscortOutBehaviorSaveData s_Object;
+	SEscortOutBehaviorSaveData s_Object {};
 
 	s_Object.m_nSituation = simdjson::from_json_int32(p_Document["m_nSituation"]);
 
 	s_Object.m_bConversationHelperPaused = simdjson::from_json_bool(p_Document["m_bConversationHelperPaused"]);
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsm"], &s_Item);
 		s_Object.m_fsm = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vExitPosition"], &s_Item);
 		s_Object.m_vExitPosition = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tWarningTime"], &s_Item);
 		s_Object.m_tWarningTime = s_Item;
 	}
@@ -27159,25 +27159,25 @@ void SEscortOutBehaviorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_nWarningCount = simdjson::from_json_int32(p_Document["m_nWarningCount"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tEscortStateSilenceTime"], &s_Item);
 		s_Object.m_tEscortStateSilenceTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tWaitHitmanToComplyWarningTime"], &s_Item);
 		s_Object.m_tWaitHitmanToComplyWarningTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tWaitHitmanToComplyStateTime"], &s_Item);
 		s_Object.m_tWaitHitmanToComplyStateTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastLookBack"], &s_Item);
 		s_Object.m_tLastLookBack = s_Item;
 	}
@@ -27285,7 +27285,7 @@ void SEscortOutOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SEscortOutOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEscortOutOrderSaveData s_Object;
+	SEscortOutOrderSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aExitPoints"])
 	{
@@ -27411,7 +27411,7 @@ void SEscortSituationActorStateSaveData::WriteSimpleJson(void* p_Object, std::os
 
 void SEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEscortSituationActorStateSaveData s_Object;
+	SEscortSituationActorStateSaveData s_Object {};
 
 	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
@@ -27489,7 +27489,7 @@ void SEscortSituationActors::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEscortSituationActors s_Object;
+	SEscortSituationActors s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -27813,7 +27813,7 @@ void SEscortSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEscortSituationSaveData s_Object;
+	SEscortSituationSaveData s_Object {};
 
 	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
@@ -27828,7 +27828,7 @@ void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	s_Object.m_bForceSearch = simdjson::from_json_bool(p_Document["m_bForceSearch"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vLastPosition"], &s_Item);
 		s_Object.m_vLastPosition = s_Item;
 	}
@@ -27972,7 +27972,7 @@ void SEvacuateSituationMemberSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SEvacuateSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEvacuateSituationMemberSaveData s_Object;
+	SEvacuateSituationMemberSaveData s_Object {};
 
 	s_Object.m_pGuardDutyPoint = simdjson::from_json_uint32(p_Document["m_pGuardDutyPoint"]);
 
@@ -28130,22 +28130,22 @@ void SEvacuateSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SEvacuateSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEvacuateSituationSaveData s_Object;
+	SEvacuateSituationSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastSeriousSituation"], &s_Item);
 		s_Object.m_tLastSeriousSituation = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastThreat"], &s_Item);
 		s_Object.m_tLastThreat = s_Item;
 	}
@@ -28308,10 +28308,10 @@ void SEvacuateTrespassGroupSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SEvacuateTrespassGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEvacuateTrespassGroupSaveData s_Object;
+	SEvacuateTrespassGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -28538,10 +28538,10 @@ void SEvacuateVIPGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SEvacuateVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEvacuateVIPGroupSaveData s_Object;
+	SEvacuateVIPGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -28562,25 +28562,25 @@ void SEvacuateVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tEvacuationStart"], &s_Item);
 		s_Object.m_tEvacuationStart = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tCornered"], &s_Item);
 		s_Object.m_tCornered = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tSafeRoom"], &s_Item);
 		s_Object.m_tSafeRoom = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tSafeRoomStandDown"], &s_Item);
 		s_Object.m_tSafeRoomStandDown = s_Item;
 	}
@@ -28663,7 +28663,7 @@ void SEventChannelSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SEventChannelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEventChannelSaveData s_Object;
+	SEventChannelSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -28723,7 +28723,7 @@ void SExitSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SExitSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SExitSaveData s_Object;
+	SExitSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -28813,7 +28813,7 @@ void SExposedEntityDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SExposedEntityDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SExposedEntityDescriptor s_Object;
+	SExposedEntityDescriptor s_Object {};
 
 	s_Object.sName = std::string_view(p_Document["sName"]);
 
@@ -28896,7 +28896,7 @@ void SFRange::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SFRange::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFRange s_Object;
+	SFRange s_Object {};
 
 	s_Object.m_fMin = simdjson::from_json_float32(p_Document["m_fMin"]);
 
@@ -29009,7 +29009,7 @@ void SFaceOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SFaceOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFaceOrderSaveData s_Object;
+	SFaceOrderSaveData s_Object {};
 
 	s_Object.m_bLookAt = simdjson::from_json_bool(p_Document["m_bLookAt"]);
 
@@ -29104,7 +29104,7 @@ void SFleeOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SFleeOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFleeOrderSaveData s_Object;
+	SFleeOrderSaveData s_Object {};
 
 	s_Object.m_eHelpReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_eHelpReason"])));
 
@@ -29200,7 +29200,7 @@ void SFontDefinition::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SFontDefinition::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFontDefinition s_Object;
+	SFontDefinition s_Object {};
 
 	s_Object.sFontId = std::string_view(p_Document["sFontId"]);
 
@@ -29302,7 +29302,7 @@ void SFontLibraryDefinition::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SFontLibraryDefinition::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFontLibraryDefinition s_Object;
+	SFontLibraryDefinition s_Object {};
 
 	s_Object.sFontLocaleID = std::string_view(p_Document["sFontLocaleID"]);
 
@@ -29372,7 +29372,7 @@ void SFootIKEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SFootIKEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFootIKEventData s_Object;
+	SFootIKEventData s_Object {};
 
 	s_Object.m_Foot = static_cast<SFootIKEventData_EFoot>(ZHMEnums::GetEnumValueByName("SFootIKEventData.EFoot", std::string_view(p_Document["m_Foot"])));
 
@@ -29582,10 +29582,10 @@ void SFriskSuspectGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SFriskSuspectGroupSaveData s_Object;
+	SFriskSuspectGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -29605,7 +29605,7 @@ void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_eHitmanGreetState = static_cast<ZFriskSuspectGroup_EHitmanGreetState>(ZHMEnums::GetEnumValueByName("ZFriskSuspectGroup.EHitmanGreetState", std::string_view(p_Document["m_eHitmanGreetState"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tHitmanGreet"], &s_Item);
 		s_Object.m_tHitmanGreet = s_Item;
 	}
@@ -29615,7 +29615,7 @@ void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_fRunningTime = simdjson::from_json_float32(p_Document["m_fRunningTime"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tWaitToComplyTime"], &s_Item);
 		s_Object.m_tWaitToComplyTime = s_Item;
 	}
@@ -29772,28 +29772,28 @@ void SGBufferSample::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SGBufferSample::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGBufferSample s_Object;
+	SGBufferSample s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["normal"], &s_Item);
 		s_Object.normal = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["diffuse"], &s_Item);
 		s_Object.diffuse = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["specular"], &s_Item);
 		s_Object.specular = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["accumulatedLight"], &s_Item);
 		s_Object.accumulatedLight = s_Item;
 	}
@@ -29913,16 +29913,16 @@ void SGProperties::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SGProperties::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGProperties s_Object;
+	SGProperties s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["vMin"], &s_Item);
 		s_Object.vMin = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["vMax"], &s_Item);
 		s_Object.vMax = s_Item;
 	}
@@ -30095,7 +30095,7 @@ void SGWaypoint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SGWaypoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGWaypoint s_Object;
+	SGWaypoint s_Object {};
 
 	s_Object.nNeighbor0 = simdjson::from_json_uint16(p_Document["nNeighbor0"]);
 
@@ -30114,7 +30114,7 @@ void SGWaypoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	s_Object.nNeighbor7 = simdjson::from_json_uint16(p_Document["nNeighbor7"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["vPos"], &s_Item);
 		s_Object.vPos = s_Item;
 	}
@@ -30190,7 +30190,7 @@ void SGameCamProfileEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SGameCamProfileEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGameCamProfileEntitySaveData s_Object;
+	SGameCamProfileEntitySaveData s_Object {};
 
 	s_Object.m_bIsEnabled = simdjson::from_json_bool(p_Document["m_bIsEnabled"]);
 
@@ -30250,7 +30250,7 @@ void SItemKeywordProxySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SItemKeywordProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemKeywordProxySaveData s_Object;
+	SItemKeywordProxySaveData s_Object {};
 
 	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
@@ -30362,7 +30362,7 @@ void SItemKeywordProxiesSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SItemKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemKeywordProxiesSaveData s_Object;
+	SItemKeywordProxiesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -30605,16 +30605,16 @@ void SItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemSaveData s_Object;
+	SItemSaveData s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vRotation"], &s_Item);
 		s_Object.m_vRotation = s_Item;
 	}
@@ -30632,13 +30632,13 @@ void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	s_Object.m_bDestroyed = simdjson::from_json_bool(p_Document["m_bDestroyed"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vVelocity"], &s_Item);
 		s_Object.m_vVelocity = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_ContainerSaveData"], &s_Item);
 		s_Object.m_ContainerSaveData = s_Item;
 	}
@@ -30788,7 +30788,7 @@ void SItemsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SItemsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemsSaveData s_Object;
+	SItemsSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -30871,7 +30871,7 @@ void SLampCoreSaveState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SLampCoreSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLampCoreSaveState s_Object;
+	SLampCoreSaveState s_Object {};
 
 	s_Object.m_fDiffusePower = simdjson::from_json_float32(p_Document["m_fDiffusePower"]);
 
@@ -30986,7 +30986,7 @@ void SLampCoreSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SLampCoreSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLampCoreSaveData s_Object;
+	SLampCoreSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -31079,16 +31079,16 @@ void SMathLerpSaveData_SColorRGB::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SMathLerpSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpSaveData_SColorRGB s_Object;
+	SMathLerpSaveData_SColorRGB s_Object {};
 
 	{
-		SColorRGB s_Item;
+		SColorRGB s_Item {};
 		SColorRGB::FromSimpleJson(p_Document["m_A"], &s_Item);
 		s_Object.m_A = s_Item;
 	}
 
 	{
-		SColorRGB s_Item;
+		SColorRGB s_Item {};
 		SColorRGB::FromSimpleJson(p_Document["m_B"], &s_Item);
 		s_Object.m_B = s_Item;
 	}
@@ -31207,7 +31207,7 @@ void SMathLerpsSaveData_SColorRGB::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SMathLerpsSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpsSaveData_SColorRGB s_Object;
+	SMathLerpsSaveData_SColorRGB s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -31300,16 +31300,16 @@ void SMathLerpSaveData_SColorRGBA::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SMathLerpSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpSaveData_SColorRGBA s_Object;
+	SMathLerpSaveData_SColorRGBA s_Object {};
 
 	{
-		SColorRGBA s_Item;
+		SColorRGBA s_Item {};
 		SColorRGBA::FromSimpleJson(p_Document["m_A"], &s_Item);
 		s_Object.m_A = s_Item;
 	}
 
 	{
-		SColorRGBA s_Item;
+		SColorRGBA s_Item {};
 		SColorRGBA::FromSimpleJson(p_Document["m_B"], &s_Item);
 		s_Object.m_B = s_Item;
 	}
@@ -31428,7 +31428,7 @@ void SMathLerpsSaveData_SColorRGBA::WriteSimpleJson(void* p_Object, std::ostream
 
 void SMathLerpsSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpsSaveData_SColorRGBA s_Object;
+	SMathLerpsSaveData_SColorRGBA s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -31521,16 +31521,16 @@ void SMathLerpSaveData_SVector2::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SMathLerpSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpSaveData_SVector2 s_Object;
+	SMathLerpSaveData_SVector2 s_Object {};
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_A"], &s_Item);
 		s_Object.m_A = s_Item;
 	}
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_B"], &s_Item);
 		s_Object.m_B = s_Item;
 	}
@@ -31649,7 +31649,7 @@ void SMathLerpsSaveData_SVector2::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SMathLerpsSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpsSaveData_SVector2 s_Object;
+	SMathLerpsSaveData_SVector2 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -31742,16 +31742,16 @@ void SMathLerpSaveData_SVector3::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SMathLerpSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpSaveData_SVector3 s_Object;
+	SMathLerpSaveData_SVector3 s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_A"], &s_Item);
 		s_Object.m_A = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_B"], &s_Item);
 		s_Object.m_B = s_Item;
 	}
@@ -31870,7 +31870,7 @@ void SMathLerpsSaveData_SVector3::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SMathLerpsSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpsSaveData_SVector3 s_Object;
+	SMathLerpsSaveData_SVector3 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -31963,16 +31963,16 @@ void SMathLerpSaveData_SVector4::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SMathLerpSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpSaveData_SVector4 s_Object;
+	SMathLerpSaveData_SVector4 s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_A"], &s_Item);
 		s_Object.m_A = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_B"], &s_Item);
 		s_Object.m_B = s_Item;
 	}
@@ -32091,7 +32091,7 @@ void SMathLerpsSaveData_SVector4::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SMathLerpsSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpsSaveData_SVector4 s_Object;
+	SMathLerpsSaveData_SVector4 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -32184,7 +32184,7 @@ void SMathLerpSaveData_float32::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SMathLerpSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpSaveData_float32 s_Object;
+	SMathLerpSaveData_float32 s_Object {};
 
 	s_Object.m_A = simdjson::from_json_float32(p_Document["m_A"]);
 
@@ -32302,7 +32302,7 @@ void SMathLerpsSaveData_float32::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SMathLerpsSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathLerpsSaveData_float32 s_Object;
+	SMathLerpsSaveData_float32 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -32395,16 +32395,16 @@ void SMathMultiplyDivideSaveData_SVector2::WriteSimpleJson(void* p_Object, std::
 
 void SMathMultiplyDivideSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultiplyDivideSaveData_SVector2 s_Object;
+	SMathMultiplyDivideSaveData_SVector2 s_Object {};
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_fA"], &s_Item);
 		s_Object.m_fA = s_Item;
 	}
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_fB"], &s_Item);
 		s_Object.m_fB = s_Item;
 	}
@@ -32523,7 +32523,7 @@ void SMathMultipliesSaveData_SVector2::WriteSimpleJson(void* p_Object, std::ostr
 
 void SMathMultipliesSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultipliesSaveData_SVector2 s_Object;
+	SMathMultipliesSaveData_SVector2 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -32616,16 +32616,16 @@ void SMathMultiplyDivideSaveData_SVector3::WriteSimpleJson(void* p_Object, std::
 
 void SMathMultiplyDivideSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultiplyDivideSaveData_SVector3 s_Object;
+	SMathMultiplyDivideSaveData_SVector3 s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_fA"], &s_Item);
 		s_Object.m_fA = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_fB"], &s_Item);
 		s_Object.m_fB = s_Item;
 	}
@@ -32744,7 +32744,7 @@ void SMathMultipliesSaveData_SVector3::WriteSimpleJson(void* p_Object, std::ostr
 
 void SMathMultipliesSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultipliesSaveData_SVector3 s_Object;
+	SMathMultipliesSaveData_SVector3 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -32837,16 +32837,16 @@ void SMathMultiplyDivideSaveData_SVector4::WriteSimpleJson(void* p_Object, std::
 
 void SMathMultiplyDivideSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultiplyDivideSaveData_SVector4 s_Object;
+	SMathMultiplyDivideSaveData_SVector4 s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_fA"], &s_Item);
 		s_Object.m_fA = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_fB"], &s_Item);
 		s_Object.m_fB = s_Item;
 	}
@@ -32965,7 +32965,7 @@ void SMathMultipliesSaveData_SVector4::WriteSimpleJson(void* p_Object, std::ostr
 
 void SMathMultipliesSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultipliesSaveData_SVector4 s_Object;
+	SMathMultipliesSaveData_SVector4 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -33058,7 +33058,7 @@ void SMathMultiplyDivideSaveData_float32::WriteSimpleJson(void* p_Object, std::o
 
 void SMathMultiplyDivideSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultiplyDivideSaveData_float32 s_Object;
+	SMathMultiplyDivideSaveData_float32 s_Object {};
 
 	s_Object.m_fA = simdjson::from_json_float32(p_Document["m_fA"]);
 
@@ -33176,7 +33176,7 @@ void SMathMultipliesSaveData_float32::WriteSimpleJson(void* p_Object, std::ostre
 
 void SMathMultipliesSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMathMultipliesSaveData_float32 s_Object;
+	SMathMultipliesSaveData_float32 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -33269,7 +33269,7 @@ void SShatterShardSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SShatterShardSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SShatterShardSaveData s_Object;
+	SShatterShardSaveData s_Object {};
 
 	s_Object.m_nShardIndex = simdjson::from_json_uint32(p_Document["m_nShardIndex"]);
 
@@ -33345,16 +33345,16 @@ void SShatterShardTransformSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SShatterShardTransformSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SShatterShardTransformSaveData s_Object;
+	SShatterShardTransformSaveData s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vBoneRotation"], &s_Item);
 		s_Object.m_vBoneRotation = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vBonePosition"], &s_Item);
 		s_Object.m_vBonePosition = s_Item;
 	}
@@ -33550,16 +33550,16 @@ void SShatterSystemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SShatterSystemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SShatterSystemSaveData s_Object;
+	SShatterSystemSaveData s_Object {};
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vRotation"], &s_Item);
 		s_Object.m_vRotation = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
@@ -33711,7 +33711,7 @@ void SShatterSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SShatterSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SShatterSaveData s_Object;
+	SShatterSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -33794,7 +33794,7 @@ void SShotListenerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SShotListenerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SShotListenerSaveData s_Object;
+	SShotListenerSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -33909,7 +33909,7 @@ void SShotListenersSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SShotListenersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SShotListenersSaveData s_Object;
+	SShotListenersSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -33992,7 +33992,7 @@ void SItsATrapSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SItsATrapSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItsATrapSaveData s_Object;
+	SItsATrapSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -34107,7 +34107,7 @@ void STrapsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STrapsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STrapsSaveData s_Object;
+	STrapsSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -34220,14 +34220,14 @@ void SVIPEvacuationNodeSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SVIPEvacuationNodeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVIPEvacuationNodeSaveData s_Object;
+	SVIPEvacuationNodeSaveData s_Object {};
 
 	s_Object.m_fPenaltyMultiplier = simdjson::from_json_float32(p_Document["m_fPenaltyMultiplier"]);
 
 	s_Object.m_fPenaltyDuration = simdjson::from_json_float32(p_Document["m_fPenaltyDuration"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tPenalty"], &s_Item);
 		s_Object.m_tPenalty = s_Item;
 	}
@@ -34349,7 +34349,7 @@ void SVIPEvacuationNodesSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SVIPEvacuationNodesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVIPEvacuationNodesSaveData s_Object;
+	SVIPEvacuationNodesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -34432,7 +34432,7 @@ void SVolumeTriggerListenerSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SVolumeTriggerListenerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVolumeTriggerListenerSaveData s_Object;
+	SVolumeTriggerListenerSaveData s_Object {};
 
 	s_Object.m_bColliding = simdjson::from_json_bool(p_Document["m_bColliding"]);
 
@@ -34547,7 +34547,7 @@ void SVolumeTriggersSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SVolumeTriggersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVolumeTriggersSaveData s_Object;
+	SVolumeTriggersSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -34860,154 +34860,154 @@ void SGameEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SGameEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGameEntitySaveData s_Object;
+	SGameEntitySaveData s_Object {};
 
 	{
-		SDoorsSaveData s_Item;
+		SDoorsSaveData s_Item {};
 		SDoorsSaveData::FromSimpleJson(p_Document["m_DoorData"], &s_Item);
 		s_Object.m_DoorData = s_Item;
 	}
 
 	{
-		SShatterSaveData s_Item;
+		SShatterSaveData s_Item {};
 		SShatterSaveData::FromSimpleJson(p_Document["m_ShatterData"], &s_Item);
 		s_Object.m_ShatterData = s_Item;
 	}
 
 	{
-		SItemsSaveData s_Item;
+		SItemsSaveData s_Item {};
 		SItemsSaveData::FromSimpleJson(p_Document["m_ItemsData"], &s_Item);
 		s_Object.m_ItemsData = s_Item;
 	}
 
 	{
-		SVolumeTriggersSaveData s_Item;
+		SVolumeTriggersSaveData s_Item {};
 		SVolumeTriggersSaveData::FromSimpleJson(p_Document["m_VolumeTriggersData"], &s_Item);
 		s_Object.m_VolumeTriggersData = s_Item;
 	}
 
 	{
-		SMathMultipliesSaveData_float32 s_Item;
+		SMathMultipliesSaveData_float32 s_Item {};
 		SMathMultipliesSaveData_float32::FromSimpleJson(p_Document["m_MathMultipliesData_float32"], &s_Item);
 		s_Object.m_MathMultipliesData_float32 = s_Item;
 	}
 
 	{
-		SMathMultipliesSaveData_SVector2 s_Item;
+		SMathMultipliesSaveData_SVector2 s_Item {};
 		SMathMultipliesSaveData_SVector2::FromSimpleJson(p_Document["m_MathMultipliesData_Vector2"], &s_Item);
 		s_Object.m_MathMultipliesData_Vector2 = s_Item;
 	}
 
 	{
-		SMathMultipliesSaveData_SVector3 s_Item;
+		SMathMultipliesSaveData_SVector3 s_Item {};
 		SMathMultipliesSaveData_SVector3::FromSimpleJson(p_Document["m_MathMultipliesData_Vector3"], &s_Item);
 		s_Object.m_MathMultipliesData_Vector3 = s_Item;
 	}
 
 	{
-		SMathMultipliesSaveData_SVector4 s_Item;
+		SMathMultipliesSaveData_SVector4 s_Item {};
 		SMathMultipliesSaveData_SVector4::FromSimpleJson(p_Document["m_MathMultipliesData_Vector4"], &s_Item);
 		s_Object.m_MathMultipliesData_Vector4 = s_Item;
 	}
 
 	{
-		SShotListenersSaveData s_Item;
+		SShotListenersSaveData s_Item {};
 		SShotListenersSaveData::FromSimpleJson(p_Document["m_ShotListenersData"], &s_Item);
 		s_Object.m_ShotListenersData = s_Item;
 	}
 
 	{
-		STrapsSaveData s_Item;
+		STrapsSaveData s_Item {};
 		STrapsSaveData::FromSimpleJson(p_Document["m_TrapsData"], &s_Item);
 		s_Object.m_TrapsData = s_Item;
 	}
 
 	{
-		SActorProxiesSaveData s_Item;
+		SActorProxiesSaveData s_Item {};
 		SActorProxiesSaveData::FromSimpleJson(p_Document["m_ActorProxiesData"], &s_Item);
 		s_Object.m_ActorProxiesData = s_Item;
 	}
 
 	{
-		SActorStandInEntitiesSaveData s_Item;
+		SActorStandInEntitiesSaveData s_Item {};
 		SActorStandInEntitiesSaveData::FromSimpleJson(p_Document["m_ActorStandInEntitiesData"], &s_Item);
 		s_Object.m_ActorStandInEntitiesData = s_Item;
 	}
 
 	{
-		SActorBoneAttachmentsSaveData s_Item;
+		SActorBoneAttachmentsSaveData s_Item {};
 		SActorBoneAttachmentsSaveData::FromSimpleJson(p_Document["m_ActorBoneAttachmentsData"], &s_Item);
 		s_Object.m_ActorBoneAttachmentsData = s_Item;
 	}
 
 	{
-		SActorKeywordProxiesSaveData s_Item;
+		SActorKeywordProxiesSaveData s_Item {};
 		SActorKeywordProxiesSaveData::FromSimpleJson(p_Document["m_ActorKeywordProxiesData"], &s_Item);
 		s_Object.m_ActorKeywordProxiesData = s_Item;
 	}
 
 	{
-		SItemKeywordProxiesSaveData s_Item;
+		SItemKeywordProxiesSaveData s_Item {};
 		SItemKeywordProxiesSaveData::FromSimpleJson(p_Document["m_ItemKeywordProxiesData"], &s_Item);
 		s_Object.m_ItemKeywordProxiesData = s_Item;
 	}
 
 	{
-		SLampCoreSaveData s_Item;
+		SLampCoreSaveData s_Item {};
 		SLampCoreSaveData::FromSimpleJson(p_Document["m_LampCoreData"], &s_Item);
 		s_Object.m_LampCoreData = s_Item;
 	}
 
 	{
-		SVIPEvacuationNodesSaveData s_Item;
+		SVIPEvacuationNodesSaveData s_Item {};
 		SVIPEvacuationNodesSaveData::FromSimpleJson(p_Document["m_VIPEvacuationNodesData"], &s_Item);
 		s_Object.m_VIPEvacuationNodesData = s_Item;
 	}
 
 	{
-		SCollisionControllerAspectsSaveData s_Item;
+		SCollisionControllerAspectsSaveData s_Item {};
 		SCollisionControllerAspectsSaveData::FromSimpleJson(p_Document["m_CollisionControllerAspectsData"], &s_Item);
 		s_Object.m_CollisionControllerAspectsData = s_Item;
 	}
 
 	{
-		SBodyContainersSaveData s_Item;
+		SBodyContainersSaveData s_Item {};
 		SBodyContainersSaveData::FromSimpleJson(p_Document["m_BodyContainersData"], &s_Item);
 		s_Object.m_BodyContainersData = s_Item;
 	}
 
 	{
-		SMathLerpsSaveData_float32 s_Item;
+		SMathLerpsSaveData_float32 s_Item {};
 		SMathLerpsSaveData_float32::FromSimpleJson(p_Document["m_MathLerpsData_float32"], &s_Item);
 		s_Object.m_MathLerpsData_float32 = s_Item;
 	}
 
 	{
-		SMathLerpsSaveData_SVector2 s_Item;
+		SMathLerpsSaveData_SVector2 s_Item {};
 		SMathLerpsSaveData_SVector2::FromSimpleJson(p_Document["m_MathLerpsData_SVector2"], &s_Item);
 		s_Object.m_MathLerpsData_SVector2 = s_Item;
 	}
 
 	{
-		SMathLerpsSaveData_SVector3 s_Item;
+		SMathLerpsSaveData_SVector3 s_Item {};
 		SMathLerpsSaveData_SVector3::FromSimpleJson(p_Document["m_MathLerpsData_SVector3"], &s_Item);
 		s_Object.m_MathLerpsData_SVector3 = s_Item;
 	}
 
 	{
-		SMathLerpsSaveData_SVector4 s_Item;
+		SMathLerpsSaveData_SVector4 s_Item {};
 		SMathLerpsSaveData_SVector4::FromSimpleJson(p_Document["m_MathLerpsData_SVector4"], &s_Item);
 		s_Object.m_MathLerpsData_SVector4 = s_Item;
 	}
 
 	{
-		SMathLerpsSaveData_SColorRGB s_Item;
+		SMathLerpsSaveData_SColorRGB s_Item {};
 		SMathLerpsSaveData_SColorRGB::FromSimpleJson(p_Document["m_MathLerpsData_SColorRGB"], &s_Item);
 		s_Object.m_MathLerpsData_SColorRGB = s_Item;
 	}
 
 	{
-		SMathLerpsSaveData_SColorRGBA s_Item;
+		SMathLerpsSaveData_SColorRGBA s_Item {};
 		SMathLerpsSaveData_SColorRGBA::FromSimpleJson(p_Document["m_MathLerpsData_SColorRGBA"], &s_Item);
 		s_Object.m_MathLerpsData_SColorRGBA = s_Item;
 	}
@@ -35127,7 +35127,7 @@ void SKeywordSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SKeywordSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SKeywordSaveData s_Object;
+	SKeywordSaveData s_Object {};
 
 	s_Object.m_HolderSaveableId = simdjson::from_json_uint32(p_Document["m_HolderSaveableId"]);
 
@@ -35242,7 +35242,7 @@ void SGameKeywordManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SGameKeywordManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGameKeywordManagerSaveData s_Object;
+	SGameKeywordManagerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKeywordsData"])
 	{
@@ -35345,10 +35345,10 @@ void SGameStatsWeapon::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SGameStatsWeapon::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGameStatsWeapon s_Object;
+	SGameStatsWeapon s_Object {};
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_WeaponRepositoryID"], &s_Item);
 		s_Object.m_WeaponRepositoryID = s_Item;
 	}
@@ -35439,7 +35439,7 @@ void STimerEntityCommandSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void STimerEntityCommandSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STimerEntityCommandSaveData s_Object;
+	STimerEntityCommandSaveData s_Object {};
 
 	s_Object.m_eType = static_cast<ETimerEntityCommandType>(ZHMEnums::GetEnumValueByName("ETimerEntityCommandType", std::string_view(p_Document["m_eType"])));
 
@@ -35525,7 +35525,7 @@ void STimerEntityStateSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void STimerEntityStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STimerEntityStateSaveData s_Object;
+	STimerEntityStateSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
@@ -35674,7 +35674,7 @@ void SGameTimersSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SGameTimersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGameTimersSaveData s_Object;
+	SGameTimersSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTimerEntityCommands"])
 	{
@@ -35776,7 +35776,7 @@ void SGateSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SGateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGateSaveData s_Object;
+	SGateSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
@@ -35882,12 +35882,12 @@ void SLightSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SLightSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLightSaveData s_Object;
+	SLightSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
 	{
-		SColorRGB s_Item;
+		SColorRGB s_Item {};
 		SColorRGB::FromSimpleJson(p_Document["m_DiffuseColor"], &s_Item);
 		s_Object.m_DiffuseColor = s_Item;
 	}
@@ -36009,7 +36009,7 @@ void SParticleEmitterSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SParticleEmitterSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SParticleEmitterSaveData s_Object;
+	SParticleEmitterSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
@@ -36334,7 +36334,7 @@ void SPostfilterParametersSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPostfilterParametersSaveData s_Object;
+	SPostfilterParametersSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
@@ -36347,7 +36347,7 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_fRadialBlurriness = simdjson::from_json_float32(p_Document["m_fRadialBlurriness"]);
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vRadialBlurCenter"], &s_Item);
 		s_Object.m_vRadialBlurCenter = s_Item;
 	}
@@ -36359,7 +36359,7 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_fSpatialBlurriness = simdjson::from_json_float32(p_Document["m_fSpatialBlurriness"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vSpatialBlurCenter"], &s_Item);
 		s_Object.m_vSpatialBlurCenter = s_Item;
 	}
@@ -36373,13 +36373,13 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_fDistortionWobbleScale = simdjson::from_json_float32(p_Document["m_fDistortionWobbleScale"]);
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vDistortionWobbleWaveLength"], &s_Item);
 		s_Object.m_vDistortionWobbleWaveLength = s_Item;
 	}
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vDistortionWobbleSpeed"], &s_Item);
 		s_Object.m_vDistortionWobbleSpeed = s_Item;
 	}
@@ -36391,19 +36391,19 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_bHDREnabled = simdjson::from_json_bool(p_Document["m_bHDREnabled"]);
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vHDRAdaptationSpeed"], &s_Item);
 		s_Object.m_vHDRAdaptationSpeed = s_Item;
 	}
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vHDRAdaptationLuminanceMinMax"], &s_Item);
 		s_Object.m_vHDRAdaptationLuminanceMinMax = s_Item;
 	}
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vHDRAdaptationMiddleGrayMinMax"], &s_Item);
 		s_Object.m_vHDRAdaptationMiddleGrayMinMax = s_Item;
 	}
@@ -36415,7 +36415,7 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_fHDRBrightPassMaxPercentage = simdjson::from_json_float32(p_Document["m_fHDRBrightPassMaxPercentage"]);
 
 	{
-		SColorRGB s_Item;
+		SColorRGB s_Item {};
 		SColorRGB::FromSimpleJson(p_Document["m_HDRColorTint"], &s_Item);
 		s_Object.m_HDRColorTint = s_Item;
 	}
@@ -36529,7 +36529,7 @@ void SRenderMaterialSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SRenderMaterialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRenderMaterialSaveData s_Object;
+	SRenderMaterialSaveData s_Object {};
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
@@ -36802,7 +36802,7 @@ void SGameplayRenderablesSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SGameplayRenderablesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGameplayRenderablesSaveData s_Object;
+	SGameplayRenderablesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aLightData"])
 	{
@@ -37102,10 +37102,10 @@ void SGetHelpGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SGetHelpGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGetHelpGroupSaveData s_Object;
+	SGetHelpGroupSaveData s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vLastKnownTargetPosition"], &s_Item);
 		s_Object.m_vLastKnownTargetPosition = s_Item;
 	}
@@ -37128,13 +37128,13 @@ void SGetHelpGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	s_Object.m_bDoneReporting = simdjson::from_json_bool(p_Document["m_bDoneReporting"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tGetHelpCompleted"], &s_Item);
 		s_Object.m_tGetHelpCompleted = s_Item;
 	}
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -37237,7 +37237,7 @@ void SGetHelpOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SGetHelpOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGetHelpOrderSaveData s_Object;
+	SGetHelpOrderSaveData s_Object {};
 
 	s_Object.m_helpType = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(p_Document["m_helpType"])));
 
@@ -37331,7 +37331,7 @@ void SHelpingActorRequestSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SHelpingActorRequestSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHelpingActorRequestSaveData s_Object;
+	SHelpingActorRequestSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCandidates"])
 	{
@@ -37339,7 +37339,7 @@ void SHelpingActorRequestSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vLocation"], &s_Item);
 		s_Object.m_vLocation = s_Item;
 	}
@@ -37413,7 +37413,7 @@ void SHelpingActorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SHelpingActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHelpingActorSaveData s_Object;
+	SHelpingActorSaveData s_Object {};
 
 	s_Object.m_nLocationKnowledgeIndex = simdjson::from_json_int32(p_Document["m_nLocationKnowledgeIndex"]);
 
@@ -37528,7 +37528,7 @@ void SGetHelpServiceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SGetHelpServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGetHelpServiceSaveData s_Object;
+	SGetHelpServiceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aHelpingActors"])
 	{
@@ -37623,7 +37623,7 @@ void SGuardBodySituationMemberSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SGuardBodySituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGuardBodySituationMemberSaveData s_Object;
+	SGuardBodySituationMemberSaveData s_Object {};
 
 	s_Object.m_bHasThingsTodo = simdjson::from_json_bool(p_Document["m_bHasThingsTodo"]);
 
@@ -37719,7 +37719,7 @@ void SGuardBodySituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SGuardBodySituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGuardBodySituationSaveData s_Object;
+	SGuardBodySituationSaveData s_Object {};
 
 	s_Object.m_bBystanderFieldsFailed = simdjson::from_json_bool(p_Document["m_bBystanderFieldsFailed"]);
 
@@ -37818,7 +37818,7 @@ void SGuardPointGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SGuardPointGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGuardPointGroupSaveData s_Object;
+	SGuardPointGroupSaveData s_Object {};
 
 	s_Object.m_bGroupEngaged = simdjson::from_json_bool(p_Document["m_bGroupEngaged"]);
 
@@ -37827,7 +37827,7 @@ void SGuardPointGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	s_Object.m_guardPointEntity = simdjson::from_json_uint32(p_Document["m_guardPointEntity"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tGroupTime"], &s_Item);
 		s_Object.m_tGroupTime = s_Item;
 	}
@@ -37902,7 +37902,7 @@ void SGuardPointOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SGuardPointOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGuardPointOrderSaveData s_Object;
+	SGuardPointOrderSaveData s_Object {};
 
 	s_Object.m_guardPoint = simdjson::from_json_uint32(p_Document["m_guardPoint"]);
 
@@ -38495,7 +38495,7 @@ void SHM5CrippleBoxSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SHM5CrippleBoxSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHM5CrippleBoxSaveData s_Object;
+	SHM5CrippleBoxSaveData s_Object {};
 
 	s_Object.m_bInSequence = simdjson::from_json_bool(p_Document["m_bInSequence"]);
 
@@ -38844,7 +38844,7 @@ void SHUDPromptDisplayInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SHUDPromptDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHUDPromptDisplayInfo s_Object;
+	SHUDPromptDisplayInfo s_Object {};
 
 	s_Object.m_bActive = simdjson::from_json_bool(p_Document["m_bActive"]);
 
@@ -38967,7 +38967,7 @@ void SHUDPromptDisplayInfoArray_Dummy::WriteSimpleJson(void* p_Object, std::ostr
 
 void SHUDPromptDisplayInfoArray_Dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHUDPromptDisplayInfoArray_Dummy s_Object;
+	SHUDPromptDisplayInfoArray_Dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
 	{
@@ -39033,7 +39033,7 @@ void SHUDTimerControllerSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SHUDTimerControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHUDTimerControllerSaveData s_Object;
+	SHUDTimerControllerSaveData s_Object {};
 
 	s_Object.m_pCurrentInstance = simdjson::from_json_uint32(p_Document["m_pCurrentInstance"]);
 
@@ -39093,7 +39093,7 @@ void SHUDVisibilityController2SaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SHUDVisibilityController2SaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHUDVisibilityController2SaveData s_Object;
+	SHUDVisibilityController2SaveData s_Object {};
 
 	s_Object.m_eCurrentRequest = static_cast<ZHUDUIRoot_EHUDVisibility>(ZHMEnums::GetEnumValueByName("ZHUDUIRoot.EHUDVisibility", std::string_view(p_Document["m_eCurrentRequest"])));
 
@@ -39173,12 +39173,12 @@ void SHandleClosetGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SHandleClosetGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHandleClosetGroupSaveData s_Object;
+	SHandleClosetGroupSaveData s_Object {};
 
 	s_Object.m_pProcessingMember = simdjson::from_json_uint32(p_Document["m_pProcessingMember"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_startTime"], &s_Item);
 		s_Object.m_startTime = s_Item;
 	}
@@ -39304,7 +39304,7 @@ void SHeroEscortSituationActorStateSaveData::WriteSimpleJson(void* p_Object, std
 
 void SHeroEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHeroEscortSituationActorStateSaveData s_Object;
+	SHeroEscortSituationActorStateSaveData s_Object {};
 
 	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
@@ -39382,7 +39382,7 @@ void SHeroEscortSituationActors::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SHeroEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHeroEscortSituationActors s_Object;
+	SHeroEscortSituationActors s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -39665,7 +39665,7 @@ void SHeroEscortSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHeroEscortSituationSaveData s_Object;
+	SHeroEscortSituationSaveData s_Object {};
 
 	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
@@ -39678,7 +39678,7 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	s_Object.m_bAllEscortsAreDead = simdjson::from_json_bool(p_Document["m_bAllEscortsAreDead"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vLastPosition"], &s_Item);
 		s_Object.m_vLastPosition = s_Item;
 	}
@@ -39717,7 +39717,7 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	s_Object.m_fTimeSinceLossOfSight = simdjson::from_json_float32(p_Document["m_fTimeSinceLossOfSight"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_RecordedHitmanOutfit"], &s_Item);
 		s_Object.m_RecordedHitmanOutfit = s_Item;
 	}
@@ -39799,7 +39799,7 @@ void SHeroItemActionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SHeroItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHeroItemActionSaveData s_Object;
+	SHeroItemActionSaveData s_Object {};
 
 	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
@@ -39859,7 +39859,7 @@ void SHeroItemAttachmentSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SHeroItemAttachmentSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHeroItemAttachmentSaveData s_Object;
+	SHeroItemAttachmentSaveData s_Object {};
 
 	s_Object.m_rItem = simdjson::from_json_uint32(p_Document["m_rItem"]);
 
@@ -39929,7 +39929,7 @@ void SHeroStandInSaveState::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SHeroStandInSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHeroStandInSaveState s_Object;
+	SHeroStandInSaveState s_Object {};
 
 	s_Object.m_rCurrentSpeakEntity = simdjson::from_json_uint32(p_Document["m_rCurrentSpeakEntity"]);
 
@@ -40012,7 +40012,7 @@ void SHintEntrySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SHintEntrySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHintEntrySaveData s_Object;
+	SHintEntrySaveData s_Object {};
 
 	s_Object.m_bIsValid = simdjson::from_json_bool(p_Document["m_bIsValid"]);
 
@@ -40119,10 +40119,10 @@ void SHintManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SHintManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHintManagerSaveData s_Object;
+	SHintManagerSaveData s_Object {};
 
 	{
-		SHintEntrySaveData s_Item;
+		SHintEntrySaveData s_Item {};
 		SHintEntrySaveData::FromSimpleJson(p_Document["m_activeHint"], &s_Item);
 		s_Object.m_activeHint = s_Item;
 	}
@@ -40306,10 +40306,10 @@ void SHitmanSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHitmanSaveData s_Object;
+	SHitmanSaveData s_Object {};
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_OutfitID"], &s_Item);
 		s_Object.m_OutfitID = s_Item;
 	}
@@ -40321,25 +40321,25 @@ void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	s_Object.m_fHealth = simdjson::from_json_float32(p_Document["m_fHealth"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vRotation"], &s_Item);
 		s_Object.m_vRotation = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_Inventory"], &s_Item);
 		s_Object.m_Inventory = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_Camera"], &s_Item);
 		s_Object.m_Camera = s_Item;
 	}
@@ -40347,7 +40347,7 @@ void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	s_Object.m_eMovementType = static_cast<EBaseMovementType>(ZHMEnums::GetEnumValueByName("EBaseMovementType", std::string_view(p_Document["m_eMovementType"])));
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_MovementData"], &s_Item);
 		s_Object.m_MovementData = s_Item;
 	}
@@ -40439,10 +40439,10 @@ void SHudMissionTimerControllerData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SHudMissionTimerControllerData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHudMissionTimerControllerData s_Object;
+	SHudMissionTimerControllerData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_fScoreGameTimeStart"], &s_Item);
 		s_Object.m_fScoreGameTimeStart = s_Item;
 	}
@@ -40587,12 +40587,12 @@ void SHumanShieldGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SHumanShieldGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SHumanShieldGroupSaveData s_Object;
+	SHumanShieldGroupSaveData s_Object {};
 
 	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tGroupTime"], &s_Item);
 		s_Object.m_tGroupTime = s_Item;
 	}
@@ -40608,13 +40608,13 @@ void SHumanShieldGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	s_Object.m_positionRequestMember = simdjson::from_json_uint32(p_Document["m_positionRequestMember"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastPositionRequest"], &s_Item);
 		s_Object.m_tLastPositionRequest = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastWeaponFiredTime"], &s_Item);
 		s_Object.m_tLastWeaponFiredTime = s_Item;
 	}
@@ -40716,7 +40716,7 @@ void SIntelData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SIntelData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SIntelData s_Object;
+	SIntelData s_Object {};
 
 	s_Object.m_sHeadline = std::string_view(p_Document["m_sHeadline"]);
 
@@ -40810,7 +40810,7 @@ void SIntelDataArray_dummy::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SIntelDataArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SIntelDataArray_dummy s_Object;
+	SIntelDataArray_dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
 	{
@@ -40936,7 +40936,7 @@ void SIntelDisplayInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SIntelDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SIntelDisplayInfo s_Object;
+	SIntelDisplayInfo s_Object {};
 
 	s_Object.index = simdjson::from_json_int32(p_Document["index"]);
 
@@ -41039,7 +41039,7 @@ void SIntelDisplayInfoArray_dummy::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SIntelDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SIntelDisplayInfoArray_dummy s_Object;
+	SIntelDisplayInfoArray_dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
 	{
@@ -41135,7 +41135,7 @@ void SIntelListDisplayInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SIntelListDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SIntelListDisplayInfo s_Object;
+	SIntelListDisplayInfo s_Object {};
 
 	s_Object.index = simdjson::from_json_int32(p_Document["index"]);
 
@@ -41226,7 +41226,7 @@ void SIntelListDisplayInfoArray_dummy::WriteSimpleJson(void* p_Object, std::ostr
 
 void SIntelListDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SIntelListDisplayInfoArray_dummy s_Object;
+	SIntelListDisplayInfoArray_dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
 	{
@@ -41332,7 +41332,7 @@ void SIntelSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SIntelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SIntelSaveData s_Object;
+	SIntelSaveData s_Object {};
 
 	s_Object.m_rCurrentStage = simdjson::from_json_uint32(p_Document["m_rCurrentStage"]);
 
@@ -41564,7 +41564,7 @@ void SInteractionIndicatorInstanceData::WriteSimpleJson(void* p_Object, std::ost
 
 void SInteractionIndicatorInstanceData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInteractionIndicatorInstanceData s_Object;
+	SInteractionIndicatorInstanceData s_Object {};
 
 	s_Object.m_eState = simdjson::from_json_int32(p_Document["m_eState"]);
 
@@ -41595,13 +41595,13 @@ void SInteractionIndicatorInstanceData::FromSimpleJson(simdjson::ondemand::value
 	s_Object.m_bRotateIndicator = simdjson::from_json_bool(p_Document["m_bRotateIndicator"]);
 
 	{
-		SVector2 s_Item;
+		SVector2 s_Item {};
 		SVector2::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vRotation"], &s_Item);
 		s_Object.m_vRotation = s_Item;
 	}
@@ -41706,7 +41706,7 @@ void SInteractionIndicatorInstanceDataArray_Dummy::WriteSimpleJson(void* p_Objec
 
 void SInteractionIndicatorInstanceDataArray_Dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInteractionIndicatorInstanceDataArray_Dummy s_Object;
+	SInteractionIndicatorInstanceDataArray_Dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
 	{
@@ -41792,7 +41792,7 @@ void SInventoryControllerItemSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SInventoryControllerItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInventoryControllerItemSaveData s_Object;
+	SInventoryControllerItemSaveData s_Object {};
 
 	s_Object.m_rItemEntity = simdjson::from_json_uint32(p_Document["m_rItemEntity"]);
 
@@ -41878,7 +41878,7 @@ void SStoredSlotSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SStoredSlotSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SStoredSlotSaveData s_Object;
+	SStoredSlotSaveData s_Object {};
 
 	s_Object.m_iStoredInventorySlotIndex = simdjson::from_json_uint32(p_Document["m_iStoredInventorySlotIndex"]);
 
@@ -42095,7 +42095,7 @@ void SInventoryControllerSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInventoryControllerSaveData s_Object;
+	SInventoryControllerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItems"])
 	{
@@ -42109,7 +42109,7 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	s_Object.m_nMostRecentItemIndex = simdjson::from_json_uint32(p_Document["m_nMostRecentItemIndex"]);
 
 	{
-		SStoredSlotSaveData s_Item;
+		SStoredSlotSaveData s_Item {};
 		SStoredSlotSaveData::FromSimpleJson(p_Document["m_StoredSlot"], &s_Item);
 		s_Object.m_StoredSlot = s_Item;
 	}
@@ -42287,14 +42287,14 @@ void SInventoryItem::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SInventoryItem::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInventoryItem s_Object;
+	SInventoryItem s_Object {};
 
 	s_Object.sInstanceId = std::string_view(p_Document["sInstanceId"]);
 
 	s_Object.sUnlockableId = std::string_view(p_Document["sUnlockableId"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["repositoryId"], &s_Item);
 		s_Object.repositoryId = s_Item;
 	}
@@ -42409,7 +42409,7 @@ void SInventoryInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SInventoryInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInventoryInfo s_Object;
+	SInventoryInfo s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPockets"])
 	{
@@ -42419,7 +42419,7 @@ void SInventoryInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	}
 
 	{
-		SInventoryItem s_Item;
+		SInventoryItem s_Item {};
 		SInventoryItem::FromSimpleJson(p_Document["m_CarriedItem"], &s_Item);
 		s_Object.m_CarriedItem = s_Item;
 	}
@@ -42775,16 +42775,16 @@ void SInventoryUISlot::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInventoryUISlot s_Object;
+	SInventoryUISlot s_Object {};
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["icon"], &s_Item);
 		s_Object.icon = s_Item;
 	}
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["containedIcon"], &s_Item);
 		s_Object.containedIcon = s_Item;
 	}
@@ -42807,7 +42807,7 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	s_Object.ammo = simdjson::from_json_int32(p_Document["ammo"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["id"], &s_Item);
 		s_Object.id = s_Item;
 	}
@@ -43014,7 +43014,7 @@ void SInventoryUI::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SInventoryUI::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInventoryUI s_Object;
+	SInventoryUI s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["mainslots"])
 	{
@@ -43115,7 +43115,7 @@ void ZInvestigateDisguiseGroup_SDialogLines::WriteSimpleJson(void* p_Object, std
 
 void ZInvestigateDisguiseGroup_SDialogLines::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInvestigateDisguiseGroup_SDialogLines s_Object;
+	ZInvestigateDisguiseGroup_SDialogLines s_Object {};
 
 	s_Object.m_eFirstWarning = static_cast<SActorSoundDefs_EDefinition>(ZHMEnums::GetEnumValueByName("SActorSoundDefs.EDefinition", std::string_view(p_Document["m_eFirstWarning"])));
 
@@ -43401,7 +43401,7 @@ void SInvestigateDisguiseGroupSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInvestigateDisguiseGroupSaveData s_Object;
+	SInvestigateDisguiseGroupSaveData s_Object {};
 
 	s_Object.m_state = static_cast<ZInvestigateDisguiseGroup_EState>(ZHMEnums::GetEnumValueByName("ZInvestigateDisguiseGroup.EState", std::string_view(p_Document["m_state"])));
 
@@ -43412,7 +43412,7 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 	s_Object.m_pPendingLeader = simdjson::from_json_uint32(p_Document["m_pPendingLeader"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStart"], &s_Item);
 		s_Object.m_tStart = s_Item;
 	}
@@ -43424,7 +43424,7 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 	s_Object.m_fTargetRunningTime = simdjson::from_json_float32(p_Document["m_fTargetRunningTime"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastWarning"], &s_Item);
 		s_Object.m_tLastWarning = s_Item;
 	}
@@ -43434,31 +43434,31 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 	s_Object.m_eLeaderMoveSpeed = static_cast<ZMoveToOrder_EMoveSpeed>(ZHMEnums::GetEnumValueByName("ZMoveToOrder.EMoveSpeed", std::string_view(p_Document["m_eLeaderMoveSpeed"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastEscalateOrder"], &s_Item);
 		s_Object.m_tLastEscalateOrder = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastStandDownOrder"], &s_Item);
 		s_Object.m_tLastStandDownOrder = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStartFollow"], &s_Item);
 		s_Object.m_tStartFollow = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vOriginalPositionLeader"], &s_Item);
 		s_Object.m_vOriginalPositionLeader = s_Item;
 	}
 
 	{
-		ZInvestigateDisguiseGroup_SDialogLines s_Item;
+		ZInvestigateDisguiseGroup_SDialogLines s_Item {};
 		ZInvestigateDisguiseGroup_SDialogLines::FromSimpleJson(p_Document["m_dialogLines"], &s_Item);
 		s_Object.m_dialogLines = s_Item;
 	}
@@ -43643,7 +43643,7 @@ void SInvestigateWeaponGroupSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SInvestigateWeaponGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SInvestigateWeaponGroupSaveData s_Object;
+	SInvestigateWeaponGroupSaveData s_Object {};
 
 	s_Object.m_rTarget = simdjson::from_json_uint32(p_Document["m_rTarget"]);
 
@@ -43654,13 +43654,13 @@ void SInvestigateWeaponGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 	s_Object.m_rGuard = simdjson::from_json_uint32(p_Document["m_rGuard"]);
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastGuardSearch"], &s_Item);
 		s_Object.m_tLastGuardSearch = s_Item;
 	}
@@ -43776,10 +43776,10 @@ void SItemInstanceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SItemInstanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemInstanceSaveData s_Object;
+	SItemInstanceSaveData s_Object {};
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_repositoryId"], &s_Item);
 		s_Object.m_repositoryId = s_Item;
 	}
@@ -43884,10 +43884,10 @@ void SItemOnBackUIData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SItemOnBackUIData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemOnBackUIData s_Object;
+	SItemOnBackUIData s_Object {};
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["icon"], &s_Item);
 		s_Object.icon = s_Item;
 	}
@@ -43958,7 +43958,7 @@ void SItemSpawnerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SItemSpawnerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemSpawnerSaveData s_Object;
+	SItemSpawnerSaveData s_Object {};
 
 	s_Object.m_bItemUpdateTransformChange = simdjson::from_json_bool(p_Document["m_bItemUpdateTransformChange"]);
 
@@ -44028,7 +44028,7 @@ void SItemStorageSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SItemStorageSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemStorageSaveData s_Object;
+	SItemStorageSaveData s_Object {};
 
 	s_Object.m_ContainedItem = simdjson::from_json_uint32(p_Document["m_ContainedItem"]);
 
@@ -44101,7 +44101,7 @@ void SItemWeaponSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SItemWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SItemWeaponSaveData s_Object;
+	SItemWeaponSaveData s_Object {};
 
 	s_Object.m_nBulletsInMagazine = simdjson::from_json_uint16(p_Document["m_nBulletsInMagazine"]);
 
@@ -44174,7 +44174,7 @@ void SLayerBehaviorConfiguration::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SLayerBehaviorConfiguration::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLayerBehaviorConfiguration s_Object;
+	SLayerBehaviorConfiguration s_Object {};
 
 	s_Object.m_bTrigger = simdjson::from_json_bool(p_Document["m_bTrigger"]);
 
@@ -44297,7 +44297,7 @@ void SLeadEscortSituationActorStateSaveData::WriteSimpleJson(void* p_Object, std
 
 void SLeadEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLeadEscortSituationActorStateSaveData s_Object;
+	SLeadEscortSituationActorStateSaveData s_Object {};
 
 	s_Object.m_nID = simdjson::from_json_uint32(p_Document["m_nID"]);
 
@@ -44375,7 +44375,7 @@ void SLeadEscortSituationActors::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SLeadEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLeadEscortSituationActors s_Object;
+	SLeadEscortSituationActors s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -44638,7 +44638,7 @@ void SLeadEscortSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLeadEscortSituationSaveData s_Object;
+	SLeadEscortSituationSaveData s_Object {};
 
 	s_Object.m_bActivated = simdjson::from_json_bool(p_Document["m_bActivated"]);
 
@@ -44651,7 +44651,7 @@ void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	s_Object.m_bAllEscortsAreDead = simdjson::from_json_bool(p_Document["m_bAllEscortsAreDead"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vLastPosition"], &s_Item);
 		s_Object.m_vLastPosition = s_Item;
 	}
@@ -44792,7 +44792,7 @@ void SLevelReferenceableEntitieSaveData::WriteSimpleJson(void* p_Object, std::os
 
 void SLevelReferenceableEntitieSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLevelReferenceableEntitieSaveData s_Object;
+	SLevelReferenceableEntitieSaveData s_Object {};
 
 	s_Object.m_sSceneResource = std::string_view(p_Document["m_sSceneResource"]);
 
@@ -44870,12 +44870,12 @@ void SObjetiveSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SObjetiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SObjetiveSaveData s_Object;
+	SObjetiveSaveData s_Object {};
 
 	s_Object.m_eType = static_cast<IContractObjective_Type>(ZHMEnums::GetEnumValueByName("IContractObjective.Type", std::string_view(p_Document["m_eType"])));
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_SaveData"], &s_Item);
 		s_Object.m_SaveData = s_Item;
 	}
@@ -44978,7 +44978,7 @@ void SSoundAmbienceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SSoundAmbienceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSoundAmbienceSaveData s_Object;
+	SSoundAmbienceSaveData s_Object {};
 
 	s_Object.m_rCurrentAmbience = simdjson::from_json_uint32(p_Document["m_rCurrentAmbience"]);
 
@@ -45262,7 +45262,7 @@ void SLevelSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLevelSaveData s_Object;
+	SLevelSaveData s_Object {};
 
 	s_Object.m_nGameTime = simdjson::from_json_int64(p_Document["m_nGameTime"]);
 
@@ -45281,31 +45281,31 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	s_Object.m_sLastEventToken = std::string_view(p_Document["m_sLastEventToken"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_EnabledEntranceId"], &s_Item);
 		s_Object.m_EnabledEntranceId = s_Item;
 	}
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_StartupDisguiseId"], &s_Item);
 		s_Object.m_StartupDisguiseId = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_contractData"], &s_Item);
 		s_Object.m_contractData = s_Item;
 	}
 
 	{
-		SInventoryInfo s_Item;
+		SInventoryInfo s_Item {};
 		SInventoryInfo::FromSimpleJson(p_Document["m_aStartupInventory"], &s_Item);
 		s_Object.m_aStartupInventory = s_Item;
 	}
 
 	{
-		SAgencyPickupInfo s_Item;
+		SAgencyPickupInfo s_Item {};
 		SAgencyPickupInfo::FromSimpleJson(p_Document["m_aStartupAgencyPickupSelection"], &s_Item);
 		s_Object.m_aStartupAgencyPickupSelection = s_Item;
 	}
@@ -45325,13 +45325,13 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	}
 
 	{
-		SSoundAmbienceSaveData s_Item;
+		SSoundAmbienceSaveData s_Item {};
 		SSoundAmbienceSaveData::FromSimpleJson(p_Document["m_SoundAmbienceData"], &s_Item);
 		s_Object.m_SoundAmbienceData = s_Item;
 	}
 
 	{
-		SChallengesSaveData s_Item;
+		SChallengesSaveData s_Item {};
 		SChallengesSaveData::FromSimpleJson(p_Document["m_ChallengesSaveData"], &s_Item);
 		s_Object.m_ChallengesSaveData = s_Item;
 	}
@@ -45435,7 +45435,7 @@ void SLightFlickerEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SLightFlickerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLightFlickerEntitySaveData s_Object;
+	SLightFlickerEntitySaveData s_Object {};
 
 	s_Object.m_bLightOn = simdjson::from_json_bool(p_Document["m_bLightOn"]);
 
@@ -45498,7 +45498,7 @@ void SLoadRuntimeResourceResult::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SLoadRuntimeResourceResult::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLoadRuntimeResourceResult s_Object;
+	SLoadRuntimeResourceResult s_Object {};
 
 	s_Object.sFilePath = std::string_view(p_Document["sFilePath"]);
 
@@ -45673,7 +45673,7 @@ void SLocalizedVideoData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SLocalizedVideoData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLocalizedVideoData s_Object;
+	SLocalizedVideoData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["AudioLanguages"])
 	{
@@ -45780,16 +45780,16 @@ void SLockdownManagerAIZoneSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SLockdownManagerAIZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLockdownManagerAIZoneSaveData s_Object;
+	SLockdownManagerAIZoneSaveData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tExpiry"], &s_Item);
 		s_Object.m_tExpiry = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tExpiryHeroOutside"], &s_Item);
 		s_Object.m_tExpiryHeroOutside = s_Item;
 	}
@@ -45877,7 +45877,7 @@ void SLockdownManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SLockdownManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLockdownManagerSaveData s_Object;
+	SLockdownManagerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAIZones"])
 	{
@@ -45984,7 +45984,7 @@ void SManHuntServiceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SManHuntServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SManHuntServiceSaveData s_Object;
+	SManHuntServiceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_rGuardNodes"])
 	{
@@ -46075,7 +46075,7 @@ void SMapMarkerData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SMapMarkerData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMapMarkerData s_Object;
+	SMapMarkerData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["pathPoints"])
 	{
@@ -46161,22 +46161,22 @@ void SMatrix33::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SMatrix33::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMatrix33 s_Object;
+	SMatrix33 s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["XAxis"], &s_Item);
 		s_Object.XAxis = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["YAxis"], &s_Item);
 		s_Object.YAxis = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["ZAxis"], &s_Item);
 		s_Object.ZAxis = s_Item;
 	}
@@ -46272,28 +46272,28 @@ void SMatrix43::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SMatrix43::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMatrix43 s_Object;
+	SMatrix43 s_Object {};
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["XAxis"], &s_Item);
 		s_Object.XAxis = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["YAxis"], &s_Item);
 		s_Object.YAxis = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["ZAxis"], &s_Item);
 		s_Object.ZAxis = s_Item;
 	}
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["Trans"], &s_Item);
 		s_Object.Trans = s_Item;
 	}
@@ -46511,7 +46511,7 @@ void SMatrix44::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SMatrix44::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMatrix44 s_Object;
+	SMatrix44 s_Object {};
 
 	s_Object.m11 = simdjson::from_json_float32(p_Document["m11"]);
 
@@ -46666,7 +46666,7 @@ void SMovementAgilitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SMovementAgilitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementAgilitySaveData s_Object;
+	SMovementAgilitySaveData s_Object {};
 
 	s_Object.m_rLedgeGuide = simdjson::from_json_uint32(p_Document["m_rLedgeGuide"]);
 
@@ -46781,7 +46781,7 @@ void SMovementCoverSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SMovementCoverSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementCoverSaveData s_Object;
+	SMovementCoverSaveData s_Object {};
 
 	s_Object.m_rCoverPlane = simdjson::from_json_uint32(p_Document["m_rCoverPlane"]);
 
@@ -46792,7 +46792,7 @@ void SMovementCoverSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	s_Object.m_bCrouched = simdjson::from_json_bool(p_Document["m_bCrouched"]);
 
 	{
-		SMatrix s_Item;
+		SMatrix s_Item {};
 		SMatrix::FromSimpleJson(p_Document["m_mPositionInCover"], &s_Item);
 		s_Object.m_mPositionInCover = s_Item;
 	}
@@ -46868,7 +46868,7 @@ void SMovementDisguiseSafeZoneSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SMovementDisguiseSafeZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementDisguiseSafeZoneSaveData s_Object;
+	SMovementDisguiseSafeZoneSaveData s_Object {};
 
 	s_Object.m_rSafeZone = simdjson::from_json_uint32(p_Document["m_rSafeZone"]);
 
@@ -46941,7 +46941,7 @@ void SMovementDragBodySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SMovementDragBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementDragBodySaveData s_Object;
+	SMovementDragBodySaveData s_Object {};
 
 	s_Object.m_rDraggedActor = simdjson::from_json_uint32(p_Document["m_rDraggedActor"]);
 
@@ -47004,7 +47004,7 @@ void SMovementDrainPipeSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SMovementDrainPipeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementDrainPipeSaveData s_Object;
+	SMovementDrainPipeSaveData s_Object {};
 
 	s_Object.m_rDrainPipe = simdjson::from_json_uint32(p_Document["m_rDrainPipe"]);
 
@@ -47074,7 +47074,7 @@ void SMovementHideInClosetSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SMovementHideInClosetSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementHideInClosetSaveData s_Object;
+	SMovementHideInClosetSaveData s_Object {};
 
 	s_Object.m_eCurrentClosetType = static_cast<ICloset_EClosetType>(ZHMEnums::GetEnumValueByName("ICloset.EClosetType", std::string_view(p_Document["m_eCurrentClosetType"])));
 
@@ -47137,7 +47137,7 @@ void SMovementLadderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SMovementLadderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementLadderSaveData s_Object;
+	SMovementLadderSaveData s_Object {};
 
 	s_Object.m_rLadder = simdjson::from_json_uint32(p_Document["m_rLadder"]);
 
@@ -47197,7 +47197,7 @@ void SMovementLocomotionSaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SMovementLocomotionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMovementLocomotionSaveData s_Object;
+	SMovementLocomotionSaveData s_Object {};
 
 	s_Object.m_bIsSneaking = simdjson::from_json_bool(p_Document["m_bIsSneaking"]);
 
@@ -47267,7 +47267,7 @@ void SMusicGridData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SMusicGridData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SMusicGridData s_Object;
+	SMusicGridData s_Object {};
 
 	s_Object.m_fGridDurationSec = simdjson::from_json_float32(p_Document["m_fGridDurationSec"]);
 
@@ -47340,7 +47340,7 @@ void SNRange::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SNRange::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SNRange s_Object;
+	SNRange s_Object {};
 
 	s_Object.m_nMin = simdjson::from_json_int32(p_Document["m_nMin"]);
 
@@ -47444,7 +47444,7 @@ void SObserversGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SObserversGroupSaveData s_Object;
+	SObserversGroupSaveData s_Object {};
 
 	s_Object.m_target = simdjson::from_json_uint32(p_Document["m_target"]);
 
@@ -47524,12 +47524,12 @@ void SOnlineEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SOnlineEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SOnlineEvent s_Object;
+	SOnlineEvent s_Object {};
 
 	s_Object.sName = std::string_view(p_Document["sName"]);
 
 	{
-		ZDynamicObject s_Item;
+		ZDynamicObject s_Item {};
 		ZDynamicObject::FromSimpleJson(p_Document["data"], &s_Item);
 		s_Object.data = s_Item;
 	}
@@ -47633,7 +47633,7 @@ void SOnlineSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SOnlineSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SOnlineSaveData s_Object;
+	SOnlineSaveData s_Object {};
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
@@ -47708,10 +47708,10 @@ void SOptionValueSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SOptionValueSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SOptionValueSaveData s_Object;
+	SOptionValueSaveData s_Object {};
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_Value"], &s_Item);
 		s_Object.m_Value = s_Item;
 	}
@@ -47773,7 +47773,7 @@ void SPFObstactleSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SPFObstactleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPFObstactleSaveData s_Object;
+	SPFObstactleSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -47833,7 +47833,7 @@ void SPatrolGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SPatrolGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPatrolGroupSaveData s_Object;
+	SPatrolGroupSaveData s_Object {};
 
 	s_Object.m_nRouteID = simdjson::from_json_int32(p_Document["m_nRouteID"]);
 
@@ -47885,7 +47885,7 @@ void SPatrolOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SPatrolOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPatrolOrderSaveData s_Object;
+	SPatrolOrderSaveData s_Object {};
 
 	*reinterpret_cast<SPatrolOrderSaveData*>(p_Target) = s_Object;
 }
@@ -47952,7 +47952,7 @@ void SPerceptibleCrowdBodySaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SPerceptibleCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPerceptibleCrowdBodySaveData s_Object;
+	SPerceptibleCrowdBodySaveData s_Object {};
 
 	s_Object.m_rCombatZone = simdjson::from_json_uint32(p_Document["m_rCombatZone"]);
 
@@ -48046,7 +48046,7 @@ void SPersistentEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SPersistentEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPersistentEntitySaveData s_Object;
+	SPersistentEntitySaveData s_Object {};
 
 	s_Object.m_nResourceId = simdjson::from_json_uint64(p_Document["m_nResourceId"]);
 
@@ -48134,7 +48134,7 @@ void SPersistentEntitySaveDataList::WriteSimpleJson(void* p_Object, std::ostream
 
 void SPersistentEntitySaveDataList::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPersistentEntitySaveDataList s_Object;
+	SPersistentEntitySaveDataList s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityDatas"])
 	{
@@ -48220,7 +48220,7 @@ void SPhysicsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SPhysicsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPhysicsSaveData s_Object;
+	SPhysicsSaveData s_Object {};
 
 	s_Object.m_bIsInPhysicsWorld = simdjson::from_json_bool(p_Document["m_bIsInPhysicsWorld"]);
 
@@ -48338,7 +48338,7 @@ void SPhysicsListSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SPhysicsListSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPhysicsListSaveData s_Object;
+	SPhysicsListSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityRefs"])
 	{
@@ -48461,7 +48461,7 @@ void SPrivateAreaSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SPrivateAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SPrivateAreaSaveData s_Object;
+	SPrivateAreaSaveData s_Object {};
 
 	s_Object.m_bIsInside = simdjson::from_json_bool(p_Document["m_bIsInside"]);
 
@@ -48472,13 +48472,13 @@ void SPrivateAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	s_Object.m_bSpotted = simdjson::from_json_bool(p_Document["m_bSpotted"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vHitmanEnterPosition"], &s_Item);
 		s_Object.m_vHitmanEnterPosition = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vHitmanExitPosition"], &s_Item);
 		s_Object.m_vHitmanExitPosition = s_Item;
 	}
@@ -48586,7 +48586,7 @@ void SRandomTimerEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SRandomTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRandomTimerEntitySaveData s_Object;
+	SRandomTimerEntitySaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -48710,7 +48710,7 @@ void SRandomTimerEntitiesSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SRandomTimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRandomTimerEntitiesSaveData s_Object;
+	SRandomTimerEntitiesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -48814,7 +48814,7 @@ void ZBitArray::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZBitArray::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZBitArray s_Object;
+	ZBitArray s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBytes"])
 	{
@@ -48983,7 +48983,7 @@ void SReasoningGrid::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SReasoningGrid s_Object;
+	SReasoningGrid s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_WaypointList"])
 	{
@@ -48993,19 +48993,19 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	}
 
 	{
-		ZBitArray s_Item;
+		ZBitArray s_Item {};
 		ZBitArray::FromSimpleJson(p_Document["m_LowVisibilityBits"], &s_Item);
 		s_Object.m_LowVisibilityBits = s_Item;
 	}
 
 	{
-		ZBitArray s_Item;
+		ZBitArray s_Item {};
 		ZBitArray::FromSimpleJson(p_Document["m_HighVisibilityBits"], &s_Item);
 		s_Object.m_HighVisibilityBits = s_Item;
 	}
 
 	{
-		SGProperties s_Item;
+		SGProperties s_Item {};
 		SGProperties::FromSimpleJson(p_Document["m_Properties"], &s_Item);
 		s_Object.m_Properties = s_Item;
 	}
@@ -49018,7 +49018,7 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	}
 
 	{
-		ZBitArray s_Item;
+		ZBitArray s_Item {};
 		ZBitArray::FromSimpleJson(p_Document["m_deadEndData"], &s_Item);
 		s_Object.m_deadEndData = s_Item;
 	}
@@ -49151,10 +49151,10 @@ void SRecoverUnconsciousGroupSaveData::WriteSimpleJson(void* p_Object, std::ostr
 
 void SRecoverUnconsciousGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRecoverUnconsciousGroupSaveData s_Object;
+	SRecoverUnconsciousGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -49254,7 +49254,7 @@ void SRemoteControlReceiverSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void SRemoteControlReceiverSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRemoteControlReceiverSaveData s_Object;
+	SRemoteControlReceiverSaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -49410,7 +49410,7 @@ void SRenderVideoPlayerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SRenderVideoPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRenderVideoPlayerSaveData s_Object;
+	SRenderVideoPlayerSaveData s_Object {};
 
 	s_Object.m_bPlaying = simdjson::from_json_bool(p_Document["m_bPlaying"]);
 
@@ -49429,13 +49429,13 @@ void SRenderVideoPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_bShouldBeStopped = simdjson::from_json_bool(p_Document["m_bShouldBeStopped"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_LastVisible"], &s_Item);
 		s_Object.m_LastVisible = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_StartTime"], &s_Item);
 		s_Object.m_StartTime = s_Item;
 	}
@@ -49517,7 +49517,7 @@ void SRepositionOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SRepositionOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRepositionOrderSaveData s_Object;
+	SRepositionOrderSaveData s_Object {};
 
 	s_Object.m_bStrafe = simdjson::from_json_bool(p_Document["m_bStrafe"]);
 
@@ -49610,7 +49610,7 @@ void SRotateEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SRotateEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SRotateEntitySaveData s_Object;
+	SRotateEntitySaveData s_Object {};
 
 	s_Object.m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
 
@@ -49699,16 +49699,16 @@ void SSavableData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSavableData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSavableData s_Object;
+	SSavableData s_Object {};
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_EntitiesData"], &s_Item);
 		s_Object.m_EntitiesData = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_Data"], &s_Item);
 		s_Object.m_Data = s_Item;
 	}
@@ -49775,10 +49775,10 @@ void SVariantStruct::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SVariantStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVariantStruct s_Object;
+	SVariantStruct s_Object {};
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_Data"], &s_Item);
 		s_Object.m_Data = s_Item;
 	}
@@ -49892,7 +49892,7 @@ void SSavableEntitiesSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SSavableEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSavableEntitiesSaveData s_Object;
+	SSavableEntitiesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -50027,7 +50027,7 @@ void SSaveGameData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSaveGameData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSaveGameData s_Object;
+	SSaveGameData s_Object {};
 
 	s_Object.m_nVersion = simdjson::from_json_uint32(p_Document["m_nVersion"]);
 
@@ -50247,7 +50247,7 @@ void SSaveGameMetaData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSaveGameMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSaveGameMetaData s_Object;
+	SSaveGameMetaData s_Object {};
 
 	s_Object.nSlot = simdjson::from_json_uint8(p_Document["nSlot"]);
 
@@ -50401,7 +50401,7 @@ void SSaveGameHeader::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSaveGameHeader::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSaveGameHeader s_Object;
+	SSaveGameHeader s_Object {};
 
 	s_Object.nFourCC = simdjson::from_json_uint32(p_Document["nFourCC"]);
 
@@ -50414,7 +50414,7 @@ void SSaveGameHeader::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	s_Object.nTimeStamp = simdjson::from_json_int64(p_Document["nTimeStamp"]);
 
 	{
-		SSaveGameMetaData s_Item;
+		SSaveGameMetaData s_Item {};
 		SSaveGameMetaData::FromSimpleJson(p_Document["MetaData"], &s_Item);
 		s_Object.MetaData = s_Item;
 	}
@@ -50501,22 +50501,22 @@ void SScreenplayManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SScreenplayManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SScreenplayManagerSaveData s_Object;
+	SScreenplayManagerSaveData s_Object {};
 
 	{
-		SDramaActorCollectionSaveData s_Item;
+		SDramaActorCollectionSaveData s_Item {};
 		SDramaActorCollectionSaveData::FromSimpleJson(p_Document["m_DramaActorData"], &s_Item);
 		s_Object.m_DramaActorData = s_Item;
 	}
 
 	{
-		SDramaSituationCollectionSaveData s_Item;
+		SDramaSituationCollectionSaveData s_Item {};
 		SDramaSituationCollectionSaveData::FromSimpleJson(p_Document["m_DramaSituationData"], &s_Item);
 		s_Object.m_DramaSituationData = s_Item;
 	}
 
 	{
-		SDramaSetupCollectionSaveData s_Item;
+		SDramaSetupCollectionSaveData s_Item {};
 		SDramaSetupCollectionSaveData::FromSimpleJson(p_Document["m_DramaSetupData"], &s_Item);
 		s_Object.m_DramaSetupData = s_Item;
 	}
@@ -50622,7 +50622,7 @@ void SSecuritySystemCameraSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void SSecuritySystemCameraSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSecuritySystemCameraSaveData s_Object;
+	SSecuritySystemCameraSaveData s_Object {};
 
 	s_Object.m_nEscalation = simdjson::from_json_uint16(p_Document["m_nEscalation"]);
 
@@ -50704,7 +50704,7 @@ void SSecuritySystemRecorderSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SSecuritySystemRecorderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSecuritySystemRecorderSaveData s_Object;
+	SSecuritySystemRecorderSaveData s_Object {};
 
 	s_Object.m_bHasRecordings = simdjson::from_json_bool(p_Document["m_bHasRecordings"]);
 
@@ -50837,7 +50837,7 @@ void SSentryGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SSentryGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSentryGroupSaveData s_Object;
+	SSentryGroupSaveData s_Object {};
 
 	s_Object.m_rTarget = simdjson::from_json_uint32(p_Document["m_rTarget"]);
 
@@ -50846,13 +50846,13 @@ void SSentryGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	s_Object.m_rSentryZone = simdjson::from_json_uint32(p_Document["m_rSentryZone"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastEscalateOrder"], &s_Item);
 		s_Object.m_tLastEscalateOrder = s_Item;
 	}
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -50928,7 +50928,7 @@ void SSentryOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SSentryOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSentryOrderSaveData s_Object;
+	SSentryOrderSaveData s_Object {};
 
 	s_Object.m_rSentryZone = simdjson::from_json_uint32(p_Document["m_rSentryZone"]);
 
@@ -51301,16 +51301,16 @@ void SSentryZoneSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SSentryZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSentryZoneSaveData s_Object;
+	SSentryZoneSaveData s_Object {};
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tGreetingCooldown"], &s_Item);
 		s_Object.m_tGreetingCooldown = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLoiteringCooldown"], &s_Item);
 		s_Object.m_tLoiteringCooldown = s_Item;
 	}
@@ -51468,12 +51468,12 @@ void SSequenceTrackSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SSequenceTrackSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSequenceTrackSaveData s_Object;
+	SSequenceTrackSaveData s_Object {};
 
 	s_Object.m_rTrackEntity = simdjson::from_json_uint32(p_Document["m_rTrackEntity"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CustomTrackData"], &s_Item);
 		s_Object.m_CustomTrackData = s_Item;
 	}
@@ -51688,7 +51688,7 @@ void SSequenceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSequenceSaveData s_Object;
+	SSequenceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_commandQueue"])
 	{
@@ -51696,7 +51696,7 @@ void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_sequenceTime"], &s_Item);
 		s_Object.m_sequenceTime = s_Item;
 	}
@@ -51713,7 +51713,7 @@ void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_effectiveSequenceTime"], &s_Item);
 		s_Object.m_effectiveSequenceTime = s_Item;
 	}
@@ -51853,7 +51853,7 @@ void SSequenceManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SSequenceManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSequenceManagerSaveData s_Object;
+	SSequenceManagerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -51918,7 +51918,7 @@ void SSerializedValue::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSerializedValue::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSerializedValue s_Object;
+	SSerializedValue s_Object {};
 
 	*reinterpret_cast<SSerializedValue*>(p_Target) = s_Object;
 }
@@ -51985,7 +51985,7 @@ void SSettingsParamMultiplier::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SSettingsParamMultiplier::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSettingsParamMultiplier s_Object;
+	SSettingsParamMultiplier s_Object {};
 
 	s_Object.m_eSettingsParam = static_cast<ESettingsParam>(ZHMEnums::GetEnumValueByName("ESettingsParam", std::string_view(p_Document["m_eSettingsParam"])));
 
@@ -52069,7 +52069,7 @@ void SSituationConversationGroupSaveData::WriteSimpleJson(void* p_Object, std::o
 
 void SSituationConversationGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSituationConversationGroupSaveData s_Object;
+	SSituationConversationGroupSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_members"])
 	{
@@ -52183,7 +52183,7 @@ void SSituationOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void SSituationOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSituationOrderSaveData s_Object;
+	SSituationOrderSaveData s_Object {};
 
 	s_Object.m_sClassTypeName = std::string_view(p_Document["m_sClassTypeName"]);
 
@@ -52194,13 +52194,13 @@ void SSituationOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	s_Object.m_bHasPosition = simdjson::from_json_bool(p_Document["m_bHasPosition"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_CustomData"], &s_Item);
 		s_Object.m_CustomData = s_Item;
 	}
@@ -52329,7 +52329,7 @@ void SSmuggleSituationActorStateSaveData::WriteSimpleJson(void* p_Object, std::o
 
 void SSmuggleSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSmuggleSituationActorStateSaveData s_Object;
+	SSmuggleSituationActorStateSaveData s_Object {};
 
 	s_Object.m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
 
@@ -52489,7 +52489,7 @@ void SSmuggleSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SSmuggleSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSmuggleSituationSaveData s_Object;
+	SSmuggleSituationSaveData s_Object {};
 
 	s_Object.m_bIsEnabled = simdjson::from_json_bool(p_Document["m_bIsEnabled"]);
 
@@ -52611,10 +52611,10 @@ void SSniperCombatGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SSniperCombatGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSniperCombatGroupSaveData s_Object;
+	SSniperCombatGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -52624,13 +52624,13 @@ void SSniperCombatGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_bFailed = simdjson::from_json_bool(p_Document["m_bFailed"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tEscapeTime"], &s_Item);
 		s_Object.m_tEscapeTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastTauntTime"], &s_Item);
 		s_Object.m_tLastTauntTime = s_Item;
 	}
@@ -52698,7 +52698,7 @@ void SSpaceCollectionBehaviorConfiguration::WriteSimpleJson(void* p_Object, std:
 
 void SSpaceCollectionBehaviorConfiguration::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSpaceCollectionBehaviorConfiguration s_Object;
+	SSpaceCollectionBehaviorConfiguration s_Object {};
 
 	s_Object.m_bInclusive = simdjson::from_json_bool(p_Document["m_bInclusive"]);
 
@@ -52798,12 +52798,12 @@ void SSpatialMoverEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void SSpatialMoverEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSpatialMoverEntitySaveData s_Object;
+	SSpatialMoverEntitySaveData s_Object {};
 
 	s_Object.m_fSpeed = simdjson::from_json_float32(p_Document["m_fSpeed"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
@@ -52895,18 +52895,18 @@ void SSpatialSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SSpatialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSpatialSaveData s_Object;
+	SSpatialSaveData s_Object {};
 
 	s_Object.m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vQuaternionRotation"], &s_Item);
 		s_Object.m_vQuaternionRotation = s_Item;
 	}
@@ -52971,7 +52971,7 @@ void SSpeakEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SSpeakEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SSpeakEntitySaveData s_Object;
+	SSpeakEntitySaveData s_Object {};
 
 	s_Object.m_fSeekPosition = simdjson::from_json_float32(p_Document["m_fSeekPosition"]);
 
@@ -53072,7 +53072,7 @@ void SStashPointSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SStashPointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SStashPointSaveData s_Object;
+	SStashPointSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_arItems"])
 	{
@@ -53082,7 +53082,7 @@ void SStashPointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	s_Object.m_eContainedType = static_cast<EStashpointContainedEntityType>(ZHMEnums::GetEnumValueByName("EStashpointContainedEntityType", std::string_view(p_Document["m_eContainedType"])));
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["m_MainItemID"], &s_Item);
 		s_Object.m_MainItemID = s_Item;
 	}
@@ -53199,7 +53199,7 @@ void SStateControllerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SStateControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SStateControllerSaveData s_Object;
+	SStateControllerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -53330,7 +53330,7 @@ void SStepCounterEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SStepCounterEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SStepCounterEntitySaveData s_Object;
+	SStepCounterEntitySaveData s_Object {};
 
 	s_Object.m_nIndex = simdjson::from_json_float32(p_Document["m_nIndex"]);
 
@@ -53448,7 +53448,7 @@ void STargetInfoObjectiveCondition::WriteSimpleJson(void* p_Object, std::ostream
 
 void STargetInfoObjectiveCondition::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STargetInfoObjectiveCondition s_Object;
+	STargetInfoObjectiveCondition s_Object {};
 
 	s_Object.header = std::string_view(p_Document["header"]);
 
@@ -53615,7 +53615,7 @@ void STargetInfoDisplayData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void STargetInfoDisplayData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STargetInfoDisplayData s_Object;
+	STargetInfoDisplayData s_Object {};
 
 	s_Object.npcName = std::string_view(p_Document["npcName"]);
 
@@ -53726,7 +53726,7 @@ void STargetInfoDisplayData_Dummy::WriteSimpleJson(void* p_Object, std::ostream&
 
 void STargetInfoDisplayData_Dummy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STargetInfoDisplayData_Dummy s_Object;
+	STargetInfoDisplayData_Dummy s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["__dummy"])
 	{
@@ -53812,18 +53812,18 @@ void STargetTrackingSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void STargetTrackingSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STargetTrackingSaveData s_Object;
+	STargetTrackingSaveData s_Object {};
 
 	s_Object.m_sharedTarget = simdjson::from_json_int32(p_Document["m_sharedTarget"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_position"], &s_Item);
 		s_Object.m_position = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_time"], &s_Item);
 		s_Object.m_time = s_Item;
 	}
@@ -53909,7 +53909,7 @@ void STargetTrackingServiceSaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void STargetTrackingServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STargetTrackingServiceSaveData s_Object;
+	STargetTrackingServiceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTrackedTargets"])
 	{
@@ -54047,10 +54047,10 @@ void STemplateSubEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STemplateSubEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STemplateSubEntity s_Object;
+	STemplateSubEntity s_Object {};
 
 	{
-		SEntityTemplateReference s_Item;
+		SEntityTemplateReference s_Item {};
 		SEntityTemplateReference::FromSimpleJson(p_Document["logicalParent"], &s_Item);
 		s_Object.logicalParent = s_Item;
 	}
@@ -54246,7 +54246,7 @@ void STemplateEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STemplateEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STemplateEntity s_Object;
+	STemplateEntity s_Object {};
 
 	s_Object.subType = simdjson::from_json_int32(p_Document["subType"]);
 
@@ -54491,10 +54491,10 @@ void STemplateSubEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void STemplateSubEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STemplateSubEntityBlueprint s_Object;
+	STemplateSubEntityBlueprint s_Object {};
 
 	{
-		SEntityTemplateReference s_Item;
+		SEntityTemplateReference s_Item {};
 		SEntityTemplateReference::FromSimpleJson(p_Document["logicalParent"], &s_Item);
 		s_Object.logicalParent = s_Item;
 	}
@@ -54798,7 +54798,7 @@ void STemplateEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void STemplateEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STemplateEntityBlueprint s_Object;
+	STemplateEntityBlueprint s_Object {};
 
 	s_Object.subType = simdjson::from_json_int32(p_Document["subType"]);
 
@@ -54933,7 +54933,7 @@ void STestMiniStruct::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STestMiniStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STestMiniStruct s_Object;
+	STestMiniStruct s_Object {};
 
 	s_Object.m_iIntValue = simdjson::from_json_int32(p_Document["m_iIntValue"]);
 
@@ -55030,7 +55030,7 @@ void STestStruct::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STestStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STestStruct s_Object;
+	STestStruct s_Object {};
 
 	s_Object.stringField = std::string_view(p_Document["stringField"]);
 
@@ -55131,7 +55131,7 @@ void STestStruct2::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STestStruct2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STestStruct2 s_Object;
+	STestStruct2 s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["arrayField"])
 	{
@@ -55141,7 +55141,7 @@ void STestStruct2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["variantField"], &s_Item);
 		s_Object.variantField = s_Item;
 	}
@@ -55245,7 +55245,7 @@ void STestStructure::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STestStructure::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STestStructure s_Object;
+	STestStructure s_Object {};
 
 	s_Object.m_fWidth = simdjson::from_json_float32(p_Document["m_fWidth"]);
 
@@ -55256,7 +55256,7 @@ void STestStructure::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	s_Object.m_sDescription = std::string_view(p_Document["m_sDescription"]);
 
 	{
-		STestMiniStruct s_Item;
+		STestMiniStruct s_Item {};
 		STestMiniStruct::FromSimpleJson(p_Document["m_Mini"], &s_Item);
 		s_Object.m_Mini = s_Item;
 	}
@@ -55343,7 +55343,7 @@ void STimerEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void STimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STimerEntitySaveData s_Object;
+	STimerEntitySaveData s_Object {};
 
 	s_Object.m_nInterval = simdjson::from_json_int32(p_Document["m_nInterval"]);
 
@@ -55461,7 +55461,7 @@ void STimerEntitiesSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void STimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STimerEntitiesSaveData s_Object;
+	STimerEntitiesSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -55554,22 +55554,22 @@ void STimerManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void STimerManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STimerManagerSaveData s_Object;
+	STimerManagerSaveData s_Object {};
 
 	{
-		STimerEntitiesSaveData s_Item;
+		STimerEntitiesSaveData s_Item {};
 		STimerEntitiesSaveData::FromSimpleJson(p_Document["m_TimersData"], &s_Item);
 		s_Object.m_TimersData = s_Item;
 	}
 
 	{
-		SRandomTimerEntitiesSaveData s_Item;
+		SRandomTimerEntitiesSaveData s_Item {};
 		SRandomTimerEntitiesSaveData::FromSimpleJson(p_Document["m_RandomTimersData"], &s_Item);
 		s_Object.m_RandomTimersData = s_Item;
 	}
 
 	{
-		SGameTimersSaveData s_Item;
+		SGameTimersSaveData s_Item {};
 		SGameTimersSaveData::FromSimpleJson(p_Document["m_GameTimersData"], &s_Item);
 		s_Object.m_GameTimersData = s_Item;
 	}
@@ -55645,7 +55645,7 @@ void STokenID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void STokenID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STokenID s_Object;
+	STokenID s_Object {};
 
 	s_Object.m_iValue = simdjson::from_json_uint32(p_Document["m_iValue"]);
 
@@ -55748,7 +55748,7 @@ void STrackDollyControllerSaveData::WriteSimpleJson(void* p_Object, std::ostream
 
 void STrackDollyControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STrackDollyControllerSaveData s_Object;
+	STrackDollyControllerSaveData s_Object {};
 
 	s_Object.m_rTrackEntity = simdjson::from_json_uint32(p_Document["m_rTrackEntity"]);
 
@@ -55757,13 +55757,13 @@ void STrackDollyControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	s_Object.m_bIsDollyAttached = simdjson::from_json_bool(p_Document["m_bIsDollyAttached"]);
 
 	{
-		SVector3 s_Item;
+		SVector3 s_Item {};
 		SVector3::FromSimpleJson(p_Document["m_vDollyPosition"], &s_Item);
 		s_Object.m_vDollyPosition = s_Item;
 	}
 
 	{
-		SVector4 s_Item;
+		SVector4 s_Item {};
 		SVector4::FromSimpleJson(p_Document["m_vDollyRotation"], &s_Item);
 		s_Object.m_vDollyRotation = s_Item;
 	}
@@ -55860,7 +55860,7 @@ void STrackerEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void STrackerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STrackerEntitySaveData s_Object;
+	STrackerEntitySaveData s_Object {};
 
 	s_Object.m_rTracker = simdjson::from_json_uint32(p_Document["m_rTracker"]);
 
@@ -55950,7 +55950,7 @@ void STrackerManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 void STrackerManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STrackerManagerSaveData s_Object;
+	STrackerManagerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTrackerData"])
 	{
@@ -56026,16 +56026,16 @@ void STrajectoryTrackSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void STrajectoryTrackSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STrajectoryTrackSaveData s_Object;
+	STrajectoryTrackSaveData s_Object {};
 
 	{
-		SMatrix s_Item;
+		SMatrix s_Item {};
 		SMatrix::FromSimpleJson(p_Document["m_vOriginalEntityTransform"], &s_Item);
 		s_Object.m_vOriginalEntityTransform = s_Item;
 	}
 
 	{
-		SMatrix s_Item;
+		SMatrix s_Item {};
 		SMatrix::FromSimpleJson(p_Document["m_vTargetStartTransform"], &s_Item);
 		s_Object.m_vTargetStartTransform = s_Item;
 	}
@@ -56120,7 +56120,7 @@ void STrespassingRuleEntitySaveData::WriteSimpleJson(void* p_Object, std::ostrea
 
 void STrespassingRuleEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STrespassingRuleEntitySaveData s_Object;
+	STrespassingRuleEntitySaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAllowedProfessionsDisabled"])
 	{
@@ -56224,7 +56224,7 @@ void STriggerAlarmGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void STriggerAlarmGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	STriggerAlarmGroupSaveData s_Object;
+	STriggerAlarmGroupSaveData s_Object {};
 
 	s_Object.m_rTarget = simdjson::from_json_uint32(p_Document["m_rTarget"]);
 
@@ -56233,7 +56233,7 @@ void STriggerAlarmGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -56331,7 +56331,7 @@ void SUIGridCellPosition::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SUIGridCellPosition::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SUIGridCellPosition s_Object;
+	SUIGridCellPosition s_Object {};
 
 	s_Object.nColumnIndex = simdjson::from_json_int32(p_Document["nColumnIndex"]);
 
@@ -56452,7 +56452,7 @@ void SUIOptionsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SUIOptionsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SUIOptionsSaveData s_Object;
+	SUIOptionsSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKeys"])
 	{
@@ -56525,7 +56525,7 @@ void SUITestData_SSubSubStruct::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SUITestData_SSubSubStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SUITestData_SSubSubStruct s_Object;
+	SUITestData_SSubSubStruct s_Object {};
 
 	s_Object.sDeepString = std::string_view(p_Document["sDeepString"]);
 
@@ -56607,7 +56607,7 @@ void SUITestData_SSubStruct::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 
 void SUITestData_SSubStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SUITestData_SSubStruct s_Object;
+	SUITestData_SSubStruct s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["aSubSubStructs"])
 	{
@@ -56826,7 +56826,7 @@ void SUITestData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SUITestData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SUITestData s_Object;
+	SUITestData s_Object {};
 
 	s_Object.nIntProp = simdjson::from_json_int32(p_Document["nIntProp"]);
 
@@ -56841,7 +56841,7 @@ void SUITestData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	s_Object.eEnumProp = static_cast<SUITestData_ETestEnum>(ZHMEnums::GetEnumValueByName("SUITestData.ETestEnum", std::string_view(p_Document["eEnumProp"])));
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["ridProp"], &s_Item);
 		s_Object.ridProp = s_Item;
 	}
@@ -57047,10 +57047,10 @@ void SVIPInvestigateGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SVIPInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVIPInvestigateGroupSaveData s_Object;
+	SVIPInvestigateGroupSaveData s_Object {};
 
 	{
-		SFSMSaveData s_Item;
+		SFSMSaveData s_Item {};
 		SFSMSaveData::FromSimpleJson(p_Document["m_fsmState"], &s_Item);
 		s_Object.m_fsmState = s_Item;
 	}
@@ -57076,7 +57076,7 @@ void SVIPInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	s_Object.m_bWait = simdjson::from_json_bool(p_Document["m_bWait"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vOriginalVIPPosition"], &s_Item);
 		s_Object.m_vOriginalVIPPosition = s_Item;
 	}
@@ -57202,7 +57202,7 @@ void SValueBoolsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SValueBoolsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SValueBoolsSaveData s_Object;
+	SValueBoolsSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -57325,7 +57325,7 @@ void SValueFloatSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SValueFloatSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SValueFloatSaveData s_Object;
+	SValueFloatSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -57448,7 +57448,7 @@ void SValueIntSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SValueIntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SValueIntSaveData s_Object;
+	SValueIntSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
@@ -57559,34 +57559,34 @@ void SValueSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SValueSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SValueSaveData s_Object;
+	SValueSaveData s_Object {};
 
 	{
-		SValueBoolsSaveData s_Item;
+		SValueBoolsSaveData s_Item {};
 		SValueBoolsSaveData::FromSimpleJson(p_Document["m_ValueBool"], &s_Item);
 		s_Object.m_ValueBool = s_Item;
 	}
 
 	{
-		SValueFloatSaveData s_Item;
+		SValueFloatSaveData s_Item {};
 		SValueFloatSaveData::FromSimpleJson(p_Document["m_ValueFloat"], &s_Item);
 		s_Object.m_ValueFloat = s_Item;
 	}
 
 	{
-		SValueIntSaveData s_Item;
+		SValueIntSaveData s_Item {};
 		SValueIntSaveData::FromSimpleJson(p_Document["m_ValueInt"], &s_Item);
 		s_Object.m_ValueInt = s_Item;
 	}
 
 	{
-		SStateControllerSaveData s_Item;
+		SStateControllerSaveData s_Item {};
 		SStateControllerSaveData::FromSimpleJson(p_Document["m_StateController"], &s_Item);
 		s_Object.m_StateController = s_Item;
 	}
 
 	{
-		SColorRGBSaveData s_Item;
+		SColorRGBSaveData s_Item {};
 		SColorRGBSaveData::FromSimpleJson(p_Document["m_ValueColorRGB"], &s_Item);
 		s_Object.m_ValueColorRGB = s_Item;
 	}
@@ -57666,12 +57666,12 @@ void SVideoDatabaseEntry::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SVideoDatabaseEntry::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVideoDatabaseEntry s_Object;
+	SVideoDatabaseEntry s_Object {};
 
 	s_Object.VideoId = std::string_view(p_Document["VideoId"]);
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["RuntimeLocalizedVideoRid"], &s_Item);
 		s_Object.RuntimeLocalizedVideoRid = s_Item;
 	}
@@ -57756,7 +57756,7 @@ void SVideoDatabaseData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SVideoDatabaseData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVideoDatabaseData s_Object;
+	SVideoDatabaseData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["Videos"])
 	{
@@ -57822,7 +57822,7 @@ void SVisibilitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SVisibilitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVisibilitySaveData s_Object;
+	SVisibilitySaveData s_Object {};
 
 	s_Object.m_bIsVisible = simdjson::from_json_bool(p_Document["m_bIsVisible"]);
 
@@ -57892,7 +57892,7 @@ void SVoidSignalEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SVoidSignalEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SVoidSignalEntitySaveData s_Object;
+	SVoidSignalEntitySaveData s_Object {};
 
 	s_Object.m_bSignaling = simdjson::from_json_bool(p_Document["m_bSignaling"]);
 
@@ -58005,7 +58005,7 @@ void SWaveformGeneratorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void SWaveformGeneratorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SWaveformGeneratorSaveData s_Object;
+	SWaveformGeneratorSaveData s_Object {};
 
 	s_Object.m_fTime = simdjson::from_json_float32(p_Document["m_fTime"]);
 
@@ -58132,7 +58132,7 @@ void SWaveformGeneratorManagerSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void SWaveformGeneratorManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SWaveformGeneratorManagerSaveData s_Object;
+	SWaveformGeneratorManagerSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGenerators"])
 	{
@@ -58197,7 +58197,7 @@ void SWeaponSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SWeaponSoundDefs::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SWeaponSoundDefs s_Object;
+	SWeaponSoundDefs s_Object {};
 
 	*reinterpret_cast<SWeaponSoundDefs*>(p_Target) = s_Object;
 }
@@ -58414,16 +58414,16 @@ void SWeaponStatusUIData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SWeaponStatusUIData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SWeaponStatusUIData s_Object;
+	SWeaponStatusUIData s_Object {};
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["icon"], &s_Item);
 		s_Object.icon = s_Item;
 	}
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["containedIcon"], &s_Item);
 		s_Object.containedIcon = s_Item;
 	}
@@ -58451,7 +58451,7 @@ void SWeaponStatusUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	s_Object.fPointShootingGaunge = simdjson::from_json_float32(p_Document["fPointShootingGaunge"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["containedItemRepoId"], &s_Item);
 		s_Object.containedItemRepoId = s_Item;
 	}
@@ -58560,7 +58560,7 @@ void SWorldInventoryInstanceSaveData::WriteSimpleJson(void* p_Object, std::ostre
 
 void SWorldInventoryInstanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SWorldInventoryInstanceSaveData s_Object;
+	SWorldInventoryInstanceSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItemInstanceSaveData"])
 	{
@@ -58656,7 +58656,7 @@ void ZAMDEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZAMDEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZAMDEvent s_Object;
+	ZAMDEvent s_Object {};
 
 	s_Object.m_nEventID = simdjson::from_json_uint32(p_Document["m_nEventID"]);
 
@@ -58665,7 +58665,7 @@ void ZAMDEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	s_Object.m_fDuration = simdjson::from_json_float32(p_Document["m_fDuration"]);
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_customData"], &s_Item);
 		s_Object.m_customData = s_Item;
 	}
@@ -58761,7 +58761,7 @@ void ZAMDEventTrack::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZAMDEventTrack::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZAMDEventTrack s_Object;
+	ZAMDEventTrack s_Object {};
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
@@ -58872,7 +58872,7 @@ void ZAMDTake::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZAMDTake::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZAMDTake s_Object;
+	ZAMDTake s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_eventTracks"])
 	{
@@ -58882,7 +58882,7 @@ void ZAMDTake::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	}
 
 	{
-		ZVariant s_Item;
+		ZVariant s_Item {};
 		ZVariant::FromSimpleJson(p_Document["m_customData"], &s_Item);
 		s_Object.m_customData = s_Item;
 	}
@@ -58989,7 +58989,7 @@ void ZAT2Controller_SEventPreviewInfo::WriteSimpleJson(void* p_Object, std::ostr
 
 void ZAT2Controller_SEventPreviewInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZAT2Controller_SEventPreviewInfo s_Object;
+	ZAT2Controller_SEventPreviewInfo s_Object {};
 
 	s_Object.m_nEventID = simdjson::from_json_int32(p_Document["m_nEventID"]);
 
@@ -59000,7 +59000,7 @@ void ZAT2Controller_SEventPreviewInfo::FromSimpleJson(simdjson::ondemand::value 
 	s_Object.m_sExtraDataTypeName = std::string_view(p_Document["m_sExtraDataTypeName"]);
 
 	{
-		TMap<ZString,ZVariant> s_Item;
+		TMap<ZString,ZVariant> s_Item {};
 		TMap<ZString,ZVariant>::FromSimpleJson(p_Document["m_extraDataProperties"], &s_Item);
 		s_Object.m_extraDataProperties = s_Item;
 	}
@@ -59078,7 +59078,7 @@ void ZAT2Controller_SGeneratedFootstepEvent::WriteSimpleJson(void* p_Object, std
 
 void ZAT2Controller_SGeneratedFootstepEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZAT2Controller_SGeneratedFootstepEvent s_Object;
+	ZAT2Controller_SGeneratedFootstepEvent s_Object {};
 
 	s_Object.m_eFoot = static_cast<ZAT2Controller_EFoot>(ZHMEnums::GetEnumValueByName("ZAT2Controller.EFoot", std::string_view(p_Document["m_eFoot"])));
 
@@ -59171,10 +59171,10 @@ void ZApproachOrder_SApproachOrderSaveData::WriteSimpleJson(void* p_Object, std:
 
 void ZApproachOrder_SApproachOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZApproachOrder_SApproachOrderSaveData s_Object;
+	ZApproachOrder_SApproachOrderSaveData s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vStopDirection"], &s_Item);
 		s_Object.m_vStopDirection = s_Item;
 	}
@@ -59237,7 +59237,7 @@ void ZAutoNullEntityRef::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZAutoNullEntityRef::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZAutoNullEntityRef s_Object;
+	ZAutoNullEntityRef s_Object {};
 
 	*reinterpret_cast<ZAutoNullEntityRef*>(p_Target) = s_Object;
 }
@@ -59315,7 +59315,7 @@ void ZAvoidDangerousAreaSituation_SSituationSaveData::WriteSimpleJson(void* p_Ob
 
 void ZAvoidDangerousAreaSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZAvoidDangerousAreaSituation_SSituationSaveData s_Object;
+	ZAvoidDangerousAreaSituation_SSituationSaveData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerousAreaGroups"])
 	{
@@ -59399,7 +59399,7 @@ void ZCloseCombatDef_SActorNoise::WriteSimpleJson(void* p_Object, std::ostream& 
 
 void ZCloseCombatDef_SActorNoise::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZCloseCombatDef_SActorNoise s_Object;
+	ZCloseCombatDef_SActorNoise s_Object {};
 
 	s_Object.m_iSpeak = static_cast<SActorSoundDefs_EDefinition>(ZHMEnums::GetEnumValueByName("SActorSoundDefs.EDefinition", std::string_view(p_Document["m_iSpeak"])));
 
@@ -59496,7 +59496,7 @@ void ZComponentCreator::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZComponentCreator::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZComponentCreator s_Object;
+	ZComponentCreator s_Object {};
 
 	s_Object.m_sComponentName = std::string_view(p_Document["m_sComponentName"]);
 
@@ -59558,7 +59558,7 @@ void ZContractEvaluationContext::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void ZContractEvaluationContext::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZContractEvaluationContext s_Object;
+	ZContractEvaluationContext s_Object {};
 
 	*reinterpret_cast<ZContractEvaluationContext*>(p_Target) = s_Object;
 }
@@ -59657,7 +59657,7 @@ void ZCurve::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZCurve s_Object;
+	ZCurve s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["data"])
 	{
@@ -59750,7 +59750,7 @@ void ZDeadBodySituation_SIncidentSaveData::WriteSimpleJson(void* p_Object, std::
 
 void ZDeadBodySituation_SIncidentSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDeadBodySituation_SIncidentSaveData s_Object;
+	ZDeadBodySituation_SIncidentSaveData s_Object {};
 
 	s_Object.m_body = simdjson::from_json_uint32(p_Document["m_body"]);
 
@@ -59906,18 +59906,18 @@ void ZDeadBodySituation_SState::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void ZDeadBodySituation_SState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDeadBodySituation_SState s_Object;
+	ZDeadBodySituation_SState s_Object {};
 
 	s_Object.m_eFlavor = static_cast<ZDeadBodySituation_ESituationFlavor>(ZHMEnums::GetEnumValueByName("ZDeadBodySituation.ESituationFlavor", std::string_view(p_Document["m_eFlavor"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastEscalateOrder"], &s_Item);
 		s_Object.m_tLastEscalateOrder = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tNextStanddownTime"], &s_Item);
 		s_Object.m_tNextStanddownTime = s_Item;
 	}
@@ -60064,10 +60064,10 @@ void ZDeadBodySituation_SSituationSaveData::WriteSimpleJson(void* p_Object, std:
 
 void ZDeadBodySituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDeadBodySituation_SSituationSaveData s_Object;
+	ZDeadBodySituation_SSituationSaveData s_Object {};
 
 	{
-		ZDeadBodySituation_SState s_Item;
+		ZDeadBodySituation_SState s_Item {};
 		ZDeadBodySituation_SState::FromSimpleJson(p_Document["m_State"], &s_Item);
 		s_Object.m_State = s_Item;
 	}
@@ -60147,7 +60147,7 @@ void ZDetectedInPrivateSituation_SSituationSaveData::WriteSimpleJson(void* p_Obj
 
 void ZDetectedInPrivateSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDetectedInPrivateSituation_SSituationSaveData s_Object;
+	ZDetectedInPrivateSituation_SSituationSaveData s_Object {};
 
 	s_Object.m_pDetectedInPrivateGroup = simdjson::from_json_int32(p_Document["m_pDetectedInPrivateGroup"]);
 
@@ -60199,7 +60199,7 @@ void ZDialogEventItemTypedIndex::WriteSimpleJson(void* p_Object, std::ostream& p
 
 void ZDialogEventItemTypedIndex::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDialogEventItemTypedIndex s_Object;
+	ZDialogEventItemTypedIndex s_Object {};
 
 	*reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Target) = s_Object;
 }
@@ -60297,7 +60297,7 @@ void ZDisguiseSituation_SSituationSaveData::WriteSimpleJson(void* p_Object, std:
 
 void ZDisguiseSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDisguiseSituation_SSituationSaveData s_Object;
+	ZDisguiseSituation_SSituationSaveData s_Object {};
 
 	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
@@ -60419,7 +60419,7 @@ void ZDynamicObject_SArrayTypesRegistrar::WriteSimpleJson(void* p_Object, std::o
 
 void ZDynamicObject_SArrayTypesRegistrar::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZDynamicObject_SArrayTypesRegistrar s_Object;
+	ZDynamicObject_SArrayTypesRegistrar s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["_dummy"])
 	{
@@ -60504,7 +60504,7 @@ void ZER64::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZER64 s_Object;
+	ZER64 s_Object {};
 
 	s_Object.m_nEntityID = simdjson::from_json_uint64(p_Document["m_nEntityID"]);
 
@@ -60568,7 +60568,7 @@ void ZEntityID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZEntityID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZEntityID s_Object;
+	ZEntityID s_Object {};
 
 	s_Object.m_sStr = std::string_view(p_Document["m_sStr"]);
 
@@ -60621,7 +60621,7 @@ void ZEntityRef::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZEntityRef::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZEntityRef s_Object;
+	ZEntityRef s_Object {};
 
 	*reinterpret_cast<ZEntityRef*>(p_Target) = s_Object;
 }
@@ -60688,10 +60688,10 @@ void ZEntityReference::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZEntityReference::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZEntityReference s_Object;
+	ZEntityReference s_Object {};
 
 	{
-		ZEntityID s_Item;
+		ZEntityID s_Item {};
 		ZEntityID::FromSimpleJson(p_Document["m_EntityID"], &s_Item);
 		s_Object.m_EntityID = s_Item;
 	}
@@ -60777,10 +60777,10 @@ void ZFormationMoveOrder_SFormationMoveOrderSaveData::WriteSimpleJson(void* p_Ob
 
 void ZFormationMoveOrder_SFormationMoveOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZFormationMoveOrder_SFormationMoveOrderSaveData s_Object;
+	ZFormationMoveOrder_SFormationMoveOrderSaveData s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vStopDirection"], &s_Item);
 		s_Object.m_vStopDirection = s_Item;
 	}
@@ -60840,7 +60840,7 @@ void ZGfxValueWrapper::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZGfxValueWrapper::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZGfxValueWrapper s_Object;
+	ZGfxValueWrapper s_Object {};
 
 	*reinterpret_cast<ZGfxValueWrapper*>(p_Target) = s_Object;
 }
@@ -60928,7 +60928,7 @@ void ZGridFloatField::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZGridFloatField s_Object;
+	ZGridFloatField s_Object {};
 
 	s_Object.m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
 
@@ -60995,7 +60995,7 @@ void ZHM5AgilityEventConsumer_SAgilityEventData::WriteSimpleJson(void* p_Object,
 
 void ZHM5AgilityEventConsumer_SAgilityEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5AgilityEventConsumer_SAgilityEventData s_Object;
+	ZHM5AgilityEventConsumer_SAgilityEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5AgilityEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZHM5AgilityEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61047,7 +61047,7 @@ void ZResourcePtr::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZResourcePtr::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZResourcePtr s_Object;
+	ZResourcePtr s_Object {};
 
 	*reinterpret_cast<ZResourcePtr*>(p_Target) = s_Object;
 }
@@ -61124,10 +61124,10 @@ void ZHM5AudioEventConsumer_SAudioAnimationEventData::WriteSimpleJson(void* p_Ob
 
 void ZHM5AudioEventConsumer_SAudioAnimationEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5AudioEventConsumer_SAudioAnimationEventData s_Object;
+	ZHM5AudioEventConsumer_SAudioAnimationEventData s_Object {};
 
 	{
-		ZResourcePtr s_Item;
+		ZResourcePtr s_Item {};
 		ZResourcePtr::FromSimpleJson(p_Document["m_pAudioEventRes"], &s_Item);
 		s_Object.m_pAudioEventRes = s_Item;
 	}
@@ -61195,7 +61195,7 @@ void ZHM5BodySoundEventConsumer_SBodySoundEventData::WriteSimpleJson(void* p_Obj
 
 void ZHM5BodySoundEventConsumer_SBodySoundEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5BodySoundEventConsumer_SBodySoundEventData s_Object;
+	ZHM5BodySoundEventConsumer_SBodySoundEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5BodySoundEventConsumer_EAnimSoundBody>(ZHMEnums::GetEnumValueByName("ZHM5BodySoundEventConsumer.EAnimSoundBody", std::string_view(p_Document["m_nEvent"])));
 
@@ -61275,7 +61275,7 @@ void ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::WriteSimpleJson(vo
 
 void ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData s_Object;
+	ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<EHM5SoundCloseCombatEvent>(ZHMEnums::GetEnumValueByName("EHM5SoundCloseCombatEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61361,10 +61361,10 @@ void ZHM5CrowdEventConsumer_SCrowdSoundEventData::WriteSimpleJson(void* p_Object
 
 void ZHM5CrowdEventConsumer_SCrowdSoundEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5CrowdEventConsumer_SCrowdSoundEventData s_Object;
+	ZHM5CrowdEventConsumer_SCrowdSoundEventData s_Object {};
 
 	{
-		ZResourcePtr s_Item;
+		ZResourcePtr s_Item {};
 		ZResourcePtr::FromSimpleJson(p_Document["m_pAudioEventRes"], &s_Item);
 		s_Object.m_pAudioEventRes = s_Item;
 	}
@@ -61432,7 +61432,7 @@ void ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData::WriteSimpleJson(
 
 void ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData s_Object;
+	ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5CrowdGenericEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZHM5CrowdGenericEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61492,7 +61492,7 @@ void ZHM5FaceFXReactionEventConsumer_SFaceFXEventData::WriteSimpleJson(void* p_O
 
 void ZHM5FaceFXReactionEventConsumer_SFaceFXEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5FaceFXReactionEventConsumer_SFaceFXEventData s_Object;
+	ZHM5FaceFXReactionEventConsumer_SFaceFXEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5FaceFXReactionEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZHM5FaceFXReactionEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61562,7 +61562,7 @@ void ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData::WriteSimpleJson(void* p_O
 
 void ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData s_Object;
+	ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5FaceFXSpecificEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZHM5FaceFXSpecificEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61626,7 +61626,7 @@ void ZHM5FootstepEventConsumer_SFootstepSoundEventData::WriteSimpleJson(void* p_
 
 void ZHM5FootstepEventConsumer_SFootstepSoundEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5FootstepEventConsumer_SFootstepSoundEventData s_Object;
+	ZHM5FootstepEventConsumer_SFootstepSoundEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<EHM5SoundFootstepEvent>(ZHMEnums::GetEnumValueByName("EHM5SoundFootstepEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61686,7 +61686,7 @@ void ZHM5GenericEventConsumer_SGenericEventData::WriteSimpleJson(void* p_Object,
 
 void ZHM5GenericEventConsumer_SGenericEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5GenericEventConsumer_SGenericEventData s_Object;
+	ZHM5GenericEventConsumer_SGenericEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5GenericEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZHM5GenericEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61756,7 +61756,7 @@ void ZHM5HIKEventConsumer_SZHM5HIKEventData::WriteSimpleJson(void* p_Object, std
 
 void ZHM5HIKEventConsumer_SZHM5HIKEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5HIKEventConsumer_SZHM5HIKEventData s_Object;
+	ZHM5HIKEventConsumer_SZHM5HIKEventData s_Object {};
 
 	s_Object.m_nEffector = static_cast<ZHM5HIKEventConsumer_EEffector>(ZHMEnums::GetEnumValueByName("ZHM5HIKEventConsumer.EEffector", std::string_view(p_Document["m_nEffector"])));
 
@@ -61819,7 +61819,7 @@ void ZHM5ItemInteractionEventConsumer_SItemInteractionEventData::WriteSimpleJson
 
 void ZHM5ItemInteractionEventConsumer_SItemInteractionEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5ItemInteractionEventConsumer_SItemInteractionEventData s_Object;
+	ZHM5ItemInteractionEventConsumer_SItemInteractionEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent>(ZHMEnums::GetEnumValueByName("ZHM5ItemInteractionEventConsumer.EHM5SoundItemInteractionEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -61879,7 +61879,7 @@ void ZHM5WeaponEventConsumer_SWeaponEventData::WriteSimpleJson(void* p_Object, s
 
 void ZHM5WeaponEventConsumer_SWeaponEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHM5WeaponEventConsumer_SWeaponEventData s_Object;
+	ZHM5WeaponEventConsumer_SWeaponEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZHM5WeaponEventConsumer_EAnimWeapon>(ZHMEnums::GetEnumValueByName("ZHM5WeaponEventConsumer.EAnimWeapon", std::string_view(p_Document["m_nEvent"])));
 
@@ -62009,7 +62009,7 @@ void ZHUDAIGuide_SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZHUDAIGuide_SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHUDAIGuide_SData s_Object;
+	ZHUDAIGuide_SData s_Object {};
 
 	s_Object.bDisguiseBroken = simdjson::from_json_bool(p_Document["bDisguiseBroken"]);
 
@@ -62100,7 +62100,7 @@ void ZHUDHintController_SData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void ZHUDHintController_SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHUDHintController_SData s_Object;
+	ZHUDHintController_SData s_Object {};
 
 	s_Object.m_sTitleText = std::string_view(p_Document["m_sTitleText"]);
 
@@ -62195,12 +62195,12 @@ void ZHUDUIControllerEntity_SIntelData::WriteSimpleJson(void* p_Object, std::ost
 
 void ZHUDUIControllerEntity_SIntelData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHUDUIControllerEntity_SIntelData s_Object;
+	ZHUDUIControllerEntity_SIntelData s_Object {};
 
 	s_Object.intelHeadline = std::string_view(p_Document["intelHeadline"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["repoID"], &s_Item);
 		s_Object.repoID = s_Item;
 	}
@@ -62290,16 +62290,16 @@ void ZHUDUIControllerEntity_SWeaponViewData::WriteSimpleJson(void* p_Object, std
 
 void ZHUDUIControllerEntity_SWeaponViewData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHUDUIControllerEntity_SWeaponViewData s_Object;
+	ZHUDUIControllerEntity_SWeaponViewData s_Object {};
 
 	{
-		SWeaponStatusUIData s_Item;
+		SWeaponStatusUIData s_Item {};
 		SWeaponStatusUIData::FromSimpleJson(p_Document["weaponStatus"], &s_Item);
 		s_Object.weaponStatus = s_Item;
 	}
 
 	{
-		SItemOnBackUIData s_Item;
+		SItemOnBackUIData s_Item {};
 		SItemOnBackUIData::FromSimpleJson(p_Document["itemOnBackStatus"], &s_Item);
 		s_Object.itemOnBackStatus = s_Item;
 	}
@@ -62358,7 +62358,7 @@ void ZHttpUrl::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZHttpUrl::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZHttpUrl s_Object;
+	ZHttpUrl s_Object {};
 
 	*reinterpret_cast<ZHttpUrl*>(p_Target) = s_Object;
 }
@@ -62407,7 +62407,7 @@ void ZInteractionData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZInteractionData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInteractionData s_Object;
+	ZInteractionData s_Object {};
 
 	*reinterpret_cast<ZInteractionData*>(p_Target) = s_Object;
 }
@@ -62464,7 +62464,7 @@ void ZInteractionEventConsumer_SInteractionEventData::WriteSimpleJson(void* p_Ob
 
 void ZInteractionEventConsumer_SInteractionEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInteractionEventConsumer_SInteractionEventData s_Object;
+	ZInteractionEventConsumer_SInteractionEventData s_Object {};
 
 	s_Object.m_nEvent = static_cast<ZInteractionEventConsumer_EEvent>(ZHMEnums::GetEnumValueByName("ZInteractionEventConsumer.EEvent", std::string_view(p_Document["m_nEvent"])));
 
@@ -62516,7 +62516,7 @@ void ZInteractionGuideData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void ZInteractionGuideData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInteractionGuideData s_Object;
+	ZInteractionGuideData s_Object {};
 
 	*reinterpret_cast<ZInteractionGuideData*>(p_Target) = s_Object;
 }
@@ -62565,7 +62565,7 @@ void ZInventorySlot::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZInventorySlot::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInventorySlot s_Object;
+	ZInventorySlot s_Object {};
 
 	*reinterpret_cast<ZInventorySlot*>(p_Target) = s_Object;
 }
@@ -62722,7 +62722,7 @@ void ZInvestigateStandingSituation_SState::WriteSimpleJson(void* p_Object, std::
 
 void ZInvestigateStandingSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInvestigateStandingSituation_SState s_Object;
+	ZInvestigateStandingSituation_SState s_Object {};
 
 	s_Object.m_bHitmanInvadingPrivacy = simdjson::from_json_bool(p_Document["m_bHitmanInvadingPrivacy"]);
 
@@ -62741,19 +62741,19 @@ void ZInvestigateStandingSituation_SState::FromSimpleJson(simdjson::ondemand::va
 	s_Object.m_eFlavor = static_cast<ZInvestigateStandingSituation_ESituationFlavor>(ZHMEnums::GetEnumValueByName("ZInvestigateStandingSituation.ESituationFlavor", std::string_view(p_Document["m_eFlavor"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tHitmanBizarre"], &s_Item);
 		s_Object.m_tHitmanBizarre = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastComment"], &s_Item);
 		s_Object.m_tLastComment = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastBump"], &s_Item);
 		s_Object.m_tLastBump = s_Item;
 	}
@@ -62837,10 +62837,10 @@ void ZInvestigateStandingSituation_SSituationSaveData::WriteSimpleJson(void* p_O
 
 void ZInvestigateStandingSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInvestigateStandingSituation_SSituationSaveData s_Object;
+	ZInvestigateStandingSituation_SSituationSaveData s_Object {};
 
 	{
-		ZInvestigateStandingSituation_SState s_Item;
+		ZInvestigateStandingSituation_SState s_Item {};
 		ZInvestigateStandingSituation_SState::FromSimpleJson(p_Document["m_State"], &s_Item);
 		s_Object.m_State = s_Item;
 	}
@@ -62935,18 +62935,18 @@ void ZInvestigateWeaponSituation_SSituationSaveData::WriteSimpleJson(void* p_Obj
 
 void ZInvestigateWeaponSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZInvestigateWeaponSituation_SSituationSaveData s_Object;
+	ZInvestigateWeaponSituation_SSituationSaveData s_Object {};
 
 	s_Object.m_nCurrentState = simdjson::from_json_int32(p_Document["m_nCurrentState"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_mainStateStartTime"], &s_Item);
 		s_Object.m_mainStateStartTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastStandDown"], &s_Item);
 		s_Object.m_tLastStandDown = s_Item;
 	}
@@ -63024,16 +63024,16 @@ void ZJumpToOrder_SJumpToOrderSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void ZJumpToOrder_SJumpToOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZJumpToOrder_SJumpToOrderSaveData s_Object;
+	ZJumpToOrder_SJumpToOrderSaveData s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vStopDirection"], &s_Item);
 		s_Object.m_vStopDirection = s_Item;
 	}
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vTargetPosition"], &s_Item);
 		s_Object.m_vTargetPosition = s_Item;
 	}
@@ -63217,10 +63217,10 @@ void ZMoveToOrder_SMoveToOrderSaveData::WriteSimpleJson(void* p_Object, std::ost
 
 void ZMoveToOrder_SMoveToOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZMoveToOrder_SMoveToOrderSaveData s_Object;
+	ZMoveToOrder_SMoveToOrderSaveData s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vStopDirection"], &s_Item);
 		s_Object.m_vStopDirection = s_Item;
 	}
@@ -63310,7 +63310,7 @@ void ZPlanningObjectiveInfoBuilder::WriteSimpleJson(void* p_Object, std::ostream
 
 void ZPlanningObjectiveInfoBuilder::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZPlanningObjectiveInfoBuilder s_Object;
+	ZPlanningObjectiveInfoBuilder s_Object {};
 
 	*reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Target) = s_Object;
 }
@@ -63359,7 +63359,7 @@ void ZPostfilterGraphBaseNode::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void ZPostfilterGraphBaseNode::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZPostfilterGraphBaseNode s_Object;
+	ZPostfilterGraphBaseNode s_Object {};
 
 	*reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Target) = s_Object;
 }
@@ -63408,7 +63408,7 @@ void ZRayQueryInput::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZRayQueryInput::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZRayQueryInput s_Object;
+	ZRayQueryInput s_Object {};
 
 	*reinterpret_cast<ZRayQueryInput*>(p_Target) = s_Object;
 }
@@ -63515,7 +63515,7 @@ void ZRecoverUnconsciousSituation_SSituationSaveData::WriteSimpleJson(void* p_Ob
 
 void ZRecoverUnconsciousSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZRecoverUnconsciousSituation_SSituationSaveData s_Object;
+	ZRecoverUnconsciousSituation_SSituationSaveData s_Object {};
 
 	s_Object.m_rVictim = simdjson::from_json_uint32(p_Document["m_rVictim"]);
 
@@ -63621,10 +63621,10 @@ void ZScopedER64::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZScopedER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZScopedER64 s_Object;
+	ZScopedER64 s_Object {};
 
 	{
-		ZER64 s_Item;
+		ZER64 s_Item {};
 		ZER64::FromSimpleJson(p_Document["m_er64"], &s_Item);
 		s_Object.m_er64 = s_Item;
 	}
@@ -63693,7 +63693,7 @@ void ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::WriteSim
 
 void ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule s_Object;
+	ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule s_Object {};
 
 	s_Object.m_NrGuardsToSend = simdjson::from_json_int32(p_Document["m_NrGuardsToSend"]);
 
@@ -63763,7 +63763,7 @@ void ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::WriteSimpl
 
 void ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule s_Object;
+	ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule s_Object {};
 
 	s_Object.m_NrGuardsToSend = simdjson::from_json_int32(p_Document["m_NrGuardsToSend"]);
 
@@ -63876,7 +63876,7 @@ void ZSetPieceIconEntity_SIconData::WriteSimpleJson(void* p_Object, std::ostream
 
 void ZSetPieceIconEntity_SIconData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSetPieceIconEntity_SIconData s_Object;
+	ZSetPieceIconEntity_SIconData s_Object {};
 
 	s_Object.iCategory = std::string_view(p_Document["iCategory"]);
 
@@ -64046,7 +64046,7 @@ void ZSharedSensorDef_SVisibilitySetting::WriteSimpleJson(void* p_Object, std::o
 
 void ZSharedSensorDef_SVisibilitySetting::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSharedSensorDef_SVisibilitySetting s_Object;
+	ZSharedSensorDef_SVisibilitySetting s_Object {};
 
 	s_Object.m_eSensitivity = static_cast<EActorPerceptionSensitivity>(ZHMEnums::GetEnumValueByName("EActorPerceptionSensitivity", std::string_view(p_Document["m_eSensitivity"])));
 
@@ -64125,7 +64125,7 @@ void ZSituationGroup::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZSituationGroup::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSituationGroup s_Object;
+	ZSituationGroup s_Object {};
 
 	*reinterpret_cast<ZSituationGroup*>(p_Target) = s_Object;
 }
@@ -64174,7 +64174,7 @@ void ZSituationOrder::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZSituationOrder::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSituationOrder s_Object;
+	ZSituationOrder s_Object {};
 
 	*reinterpret_cast<ZSituationOrder*>(p_Target) = s_Object;
 }
@@ -64251,10 +64251,10 @@ void ZSniperCombatSituation_SSniperSuspiciousArea::WriteSimpleJson(void* p_Objec
 
 void ZSniperCombatSituation_SSniperSuspiciousArea::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSniperCombatSituation_SSniperSuspiciousArea s_Object;
+	ZSniperCombatSituation_SSniperSuspiciousArea s_Object {};
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
 		s_Object.m_vPosition = s_Item;
 	}
@@ -64537,7 +64537,7 @@ void ZSniperCombatSituation_SSituationSaveData::WriteSimpleJson(void* p_Object, 
 
 void ZSniperCombatSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSniperCombatSituation_SSituationSaveData s_Object;
+	ZSniperCombatSituation_SSituationSaveData s_Object {};
 
 	s_Object.m_rSniperLocation = simdjson::from_json_uint32(p_Document["m_rSniperLocation"]);
 
@@ -64644,7 +64644,7 @@ void ZSoundCollisionInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void ZSoundCollisionInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSoundCollisionInfo s_Object;
+	ZSoundCollisionInfo s_Object {};
 
 	*reinterpret_cast<ZSoundCollisionInfo*>(p_Target) = s_Object;
 }
@@ -64722,7 +64722,7 @@ void ZSpeakerLevels::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZSpeakerLevels::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSpeakerLevels s_Object;
+	ZSpeakerLevels s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSpeakerMatrix"])
 	{
@@ -64848,7 +64848,7 @@ void ZSpectatorSituation_SSituationSaveData::WriteSimpleJson(void* p_Object, std
 
 void ZSpectatorSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZSpectatorSituation_SSituationSaveData s_Object;
+	ZSpectatorSituation_SSituationSaveData s_Object {};
 
 	s_Object.m_bStandingDown = simdjson::from_json_bool(p_Document["m_bStandingDown"]);
 
@@ -65172,7 +65172,7 @@ void ZStandOffSituation_SState::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void ZStandOffSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZStandOffSituation_SState s_Object;
+	ZStandOffSituation_SState s_Object {};
 
 	s_Object.m_eSituationState = static_cast<ZStandOffSituation_ESituationState>(ZHMEnums::GetEnumValueByName("ZStandOffSituation.ESituationState", std::string_view(p_Document["m_eSituationState"])));
 
@@ -65197,7 +65197,7 @@ void ZStandOffSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 	s_Object.m_bGetHelpGroupStarted = simdjson::from_json_bool(p_Document["m_bGetHelpGroupStarted"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vLastKnownPosition"], &s_Item);
 		s_Object.m_vLastKnownPosition = s_Item;
 	}
@@ -65211,31 +65211,31 @@ void ZStandOffSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 	s_Object.m_bWarning3Given = simdjson::from_json_bool(p_Document["m_bWarning3Given"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_mainStateStartTime"], &s_Item);
 		s_Object.m_mainStateStartTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastTimeTargetLOS"], &s_Item);
 		s_Object.m_tLastTimeTargetLOS = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastTimeGuardHadLOS"], &s_Item);
 		s_Object.m_tLastTimeGuardHadLOS = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tNextCivBark"], &s_Item);
 		s_Object.m_tNextCivBark = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStartSearchCountdown"], &s_Item);
 		s_Object.m_tStartSearchCountdown = s_Item;
 	}
@@ -65418,10 +65418,10 @@ void ZStandOffSituation_SSituationSaveData::WriteSimpleJson(void* p_Object, std:
 
 void ZStandOffSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZStandOffSituation_SSituationSaveData s_Object;
+	ZStandOffSituation_SSituationSaveData s_Object {};
 
 	{
-		ZStandOffSituation_SState s_Item;
+		ZStandOffSituation_SState s_Item {};
 		ZStandOffSituation_SState::FromSimpleJson(p_Document["m_State"], &s_Item);
 		s_Object.m_State = s_Item;
 	}
@@ -65435,7 +65435,7 @@ void ZStandOffSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	s_Object.m_rIsland = simdjson::from_json_uint32(p_Document["m_rIsland"]);
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastTimeTargetLOS"], &s_Item);
 		s_Object.m_tLastTimeTargetLOS = s_Item;
 	}
@@ -65510,7 +65510,7 @@ void ZTime::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZTime s_Object;
+	ZTime s_Object {};
 
 	s_Object.m_nValue = simdjson::from_json_uint64(p_Document["m_nValue"]);
 
@@ -65610,24 +65610,24 @@ void ZTrespassingSituation_SState::WriteSimpleJson(void* p_Object, std::ostream&
 
 void ZTrespassingSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZTrespassingSituation_SState s_Object;
+	ZTrespassingSituation_SState s_Object {};
 
 	s_Object.m_eSituationState = static_cast<ZTrespassingSituation_ESituationState>(ZHMEnums::GetEnumValueByName("ZTrespassingSituation.ESituationState", std::string_view(p_Document["m_eSituationState"])));
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tDeepTrespassingTime"], &s_Item);
 		s_Object.m_tDeepTrespassingTime = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tStartStandDown"], &s_Item);
 		s_Object.m_tStartStandDown = s_Item;
 	}
 
 	{
-		ZGameTime s_Item;
+		ZGameTime s_Item {};
 		ZGameTime::FromSimpleJson(p_Document["m_tLastTargetVisible"], &s_Item);
 		s_Object.m_tLastTargetVisible = s_Item;
 	}
@@ -65747,10 +65747,10 @@ void ZTrespassingSituation_SSituationSaveData::WriteSimpleJson(void* p_Object, s
 
 void ZTrespassingSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZTrespassingSituation_SSituationSaveData s_Object;
+	ZTrespassingSituation_SSituationSaveData s_Object {};
 
 	{
-		ZTrespassingSituation_SState s_Item;
+		ZTrespassingSituation_SState s_Item {};
 		ZTrespassingSituation_SState::FromSimpleJson(p_Document["m_State"], &s_Item);
 		s_Object.m_State = s_Item;
 	}
@@ -65760,7 +65760,7 @@ void ZTrespassingSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand
 	s_Object.m_rHelpingGuardMember = simdjson::from_json_uint32(p_Document["m_rHelpingGuardMember"]);
 
 	{
-		float4 s_Item;
+		float4 s_Item {};
 		float4::FromSimpleJson(p_Document["m_vEscortOutExitLocation"], &s_Item);
 		s_Object.m_vEscortOutExitLocation = s_Item;
 	}
@@ -66042,16 +66042,16 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::
 
 void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo s_Object;
+	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo s_Object {};
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["icon"], &s_Item);
 		s_Object.icon = s_Item;
 	}
 
 	{
-		ZRuntimeResourceID s_Item;
+		ZRuntimeResourceID s_Item {};
 		ZRuntimeResourceID::FromSimpleJson(p_Document["containedIcon"], &s_Item);
 		s_Object.containedIcon = s_Item;
 	}
@@ -66067,7 +66067,7 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::
 	s_Object.ammo = simdjson::from_json_int32(p_Document["ammo"]);
 
 	{
-		ZRepositoryID s_Item;
+		ZRepositoryID s_Item {};
 		ZRepositoryID::FromSimpleJson(p_Document["id"], &s_Item);
 		s_Object.id = s_Item;
 	}
@@ -66262,7 +66262,7 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::Write
 
 void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData s_Object;
+	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData s_Object {};
 
 	for (simdjson::ondemand::value s_Item0 : p_Document["mainslots"])
 	{
@@ -66335,7 +66335,7 @@ void ZUIDataProvider::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZUIDataProvider::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZUIDataProvider s_Object;
+	ZUIDataProvider s_Object {};
 
 	*reinterpret_cast<ZUIDataProvider*>(p_Target) = s_Object;
 }
@@ -66384,7 +66384,7 @@ void ZWorldMapMetaData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZWorldMapMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZWorldMapMetaData s_Object;
+	ZWorldMapMetaData s_Object {};
 
 	*reinterpret_cast<ZWorldMapMetaData*>(p_Target) = s_Object;
 }
