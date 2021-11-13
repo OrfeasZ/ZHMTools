@@ -56,9 +56,7 @@ void ZVariant::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	p_Stream << "{\"$type\":" << simdjson::as_json_string(s_Object->m_pTypeID->TypeName()) << ",\"$val\"" << ":";
 
 	s_Object->m_pTypeID->WriteSimpleJson(s_Object->m_pData, p_Stream);
-
-	p_Stream << ",\"$ptr\":\"0x" << std::hex << reinterpret_cast<uintptr_t>(s_Object->m_pData) << std::dec << "\"";
-
+	
 	p_Stream << "}";
 }
 
