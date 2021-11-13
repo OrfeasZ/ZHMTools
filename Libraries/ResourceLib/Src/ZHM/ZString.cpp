@@ -80,7 +80,14 @@ void ZString::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZString*>(p_Object);
-	auto s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars), s_Object->size(), alignof(char*));
+	
+	const auto s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars), s_Object->size(), 4);
+
+	// We append a null terminator here since it looks like some parts of the engine
+	// will just ignore the fact that ZStrings come with length specified and just read
+	// till they encounter a null terminator, resulting in all sorts of weird issues.
+	uint8_t s_NullTerminator = 0x00;
+	p_Serializer.WriteMemoryUnaligned(&s_NullTerminator, sizeof(s_NullTerminator));
 
 	// Some strings can have the allocated flag, so we rewrite the length without it
 	// cause otherwise the game will try to do some weird re-allocation shit and crash spectacularly.

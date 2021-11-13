@@ -27,6 +27,7 @@ public:
 	~ZHMSerializer();
 	
 	uintptr_t WriteMemory(void* p_Memory, size_t p_Size, size_t p_Alignment);
+	uintptr_t WriteMemoryUnaligned(void* p_Memory, size_t p_Size);
 	void PatchPtr(uintptr_t p_Offset, uintptr_t p_Pointer);
 	void PatchNullPtr(uintptr_t p_Offset);
 	void PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type);

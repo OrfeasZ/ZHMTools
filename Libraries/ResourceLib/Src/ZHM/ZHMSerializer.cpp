@@ -33,6 +33,20 @@ uintptr_t ZHMSerializer::WriteMemory(void* p_Memory, size_t p_Size, size_t p_Ali
 	return s_StartOffset;
 }
 
+uintptr_t ZHMSerializer::WriteMemoryUnaligned(void* p_Memory, size_t p_Size)
+{
+	uintptr_t s_StartOffset = m_CurrentSize;
+
+	// Ensure we have enough space.
+	EnsureEnough(m_CurrentSize + p_Size);
+
+	// Copy over the data.
+	memcpy(CurrentPtr(), p_Memory, p_Size);
+	m_CurrentSize += p_Size;
+
+	return s_StartOffset;
+}
+
 void ZHMSerializer::PatchPtr(uintptr_t p_Offset, uintptr_t p_Pointer)
 {
 	*reinterpret_cast<uintptr_t*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = p_Pointer;
