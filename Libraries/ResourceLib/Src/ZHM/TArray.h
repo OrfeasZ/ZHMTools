@@ -211,7 +211,20 @@ public:
 
 	bool operator==(const TArray<T>& p_Other) const
 	{
-		return false;
+		// Empty arrays are not equal.
+		if (size() == 0)
+			return false;
+
+		if (size() != p_Other.size())
+			return false;
+
+		for (size_t i = 0; i < size(); ++i)
+		{
+			if (begin()[i] != p_Other[i])
+				return false;
+		}
+
+		return true;
 	}
 
 	bool operator!=(const TArray<T>& p_Other) const
@@ -312,7 +325,20 @@ public:
 
 	bool operator==(const TFixedArray<T, N>& p_Other) const
 	{
-		return false;
+		// Empty arrays are not equal.
+		if (size() == 0)
+			return false;
+
+		if (size() != p_Other.size())
+			return false;
+
+		for (size_t i = 0; i < size(); ++i)
+		{
+			if (begin()[i] != p_Other[i])
+				return false;
+		}
+
+		return true;
 	}
 
 	bool operator!=(const TFixedArray<T, N>& p_Other) const

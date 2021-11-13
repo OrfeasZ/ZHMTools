@@ -57,10 +57,10 @@ void ZVariant::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	s_Object->m_pTypeID->WriteSimpleJson(s_Object->m_pData, p_Stream);
 
+	p_Stream << ",\"$ptr\":\"0x" << std::hex << reinterpret_cast<uintptr_t>(s_Object->m_pData) << std::dec << "\"";
+
 	p_Stream << "}";
 }
-
-//static std::unordered_map<std::string_view, std::list<void*>> g_VariantRegistry;
 
 void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
@@ -91,43 +91,12 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 			{
 				s_Variant.m_pData = c_aligned_alloc(s_Variant.m_pTypeID->Size(), s_Variant.m_pTypeID->Alignment());
 				s_Variant.m_pTypeID->CreateFromJson(p_Document["$val"], s_Variant.m_pData);
-
-				/*const auto s_RegistryIt = g_VariantRegistry.find(s_TypeName);
-
-				if (s_RegistryIt != g_VariantRegistry.end())
-				{
-					bool s_FoundExisting = false;
-
-					for (const auto s_OtherObject : s_RegistryIt->second)
-					{
-						if (s_Variant.m_pTypeID->Equals(s_Variant.m_pData, s_OtherObject))
-						{
-							s_FoundExisting = true;
-							c_aligned_free(s_Variant.m_pData);
-							s_Variant.m_pData = s_OtherObject;
-							
-							break;
-						}
-					}
-
-					if (!s_FoundExisting)
-						s_RegistryIt->second.push_back(s_Variant.m_pData);
-				}
-				else
-				{
-					std::list<void*> s_ObjectList;
-					s_ObjectList.push_back(s_Variant.m_pData);
-
-					g_VariantRegistry[s_TypeName] = s_ObjectList;
-				}*/
 			}
 		}
 	}
 
 	*reinterpret_cast<ZVariant*>(p_Target) = s_Variant;
 }
-
-static std::unordered_map<uintptr_t, uintptr_t> g_SerializedVariants;
 
 void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
@@ -151,9 +120,13 @@ void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t 
 	}
 	else
 	{
-		const auto s_PreviouslySerializedIt = g_SerializedVariants.find(reinterpret_cast<uintptr_t>(s_Object->m_pData));
+		const auto s_ExistingPtr = p_Serializer.GetExistingPtrForVariant(s_Object);
 
-		if (s_PreviouslySerializedIt == g_SerializedVariants.end())
+		if (s_ExistingPtr.has_value())
+		{
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ExistingPtr.value());
+		}
+		else
 		{
 			const auto s_ValueOffset = p_Serializer.WriteMemory(s_Object->m_pData, s_Object->m_pTypeID->Size(), s_Object->m_pTypeID->Alignment());
 
@@ -161,11 +134,7 @@ void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t 
 
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_ValueOffset);
 
-			g_SerializedVariants[reinterpret_cast<uintptr_t>(s_Object->m_pData)] = s_ValueOffset;
-		}
-		else
-		{
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZVariant, m_pData), s_PreviouslySerializedIt->second);
+			p_Serializer.SetPtrForVariant(s_Object, s_ValueOffset);
 		}
 	}
 }

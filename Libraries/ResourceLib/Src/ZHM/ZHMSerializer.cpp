@@ -2,6 +2,7 @@
 
 #include <Util/BinaryStreamWriter.h>
 #include "ZHMTypeInfo.h"
+#include "ZVariant.h"
 
 ZHMSerializer::ZHMSerializer(uint8_t p_Alignment)
 {
@@ -69,6 +70,41 @@ void ZHMSerializer::PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type)
 void ZHMSerializer::RegisterRuntimeResourceId(uintptr_t p_Offset)
 {
 	m_RuntimeResourceIdOffsets.insert(p_Offset);
+}
+
+std::optional<uintptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Variant)
+{
+	const auto s_VariantsOfTypeIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
+
+	if (s_VariantsOfTypeIt == m_VariantRegistry.end())
+		return std::nullopt;
+
+	// Go through all variants of this type and look for one that has the same data.
+	for (const auto& [s_Variant, s_Ptr] : s_VariantsOfTypeIt->second)
+	{
+		if (p_Variant->m_pTypeID->Equals(p_Variant->m_pData, s_Variant->m_pData))
+		{
+			return std::make_optional(s_Ptr);
+		}
+	}
+
+	return std::nullopt;
+}
+
+void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr)
+{
+	const auto s_VariantSetIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
+
+	if (s_VariantSetIt != m_VariantRegistry.end())
+	{
+		s_VariantSetIt->second[p_Variant] = p_Ptr;
+		return;
+	}
+
+	std::unordered_map<ZVariant*, uintptr_t> s_VariantsOfType;
+	s_VariantsOfType[p_Variant] = p_Ptr;
+
+	m_VariantRegistry[p_Variant->m_pTypeID] = s_VariantsOfType;
 }
 
 std::set<uintptr_t> ZHMSerializer::GetRelocations() const

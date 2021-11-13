@@ -121,6 +121,16 @@ public:
 		if constexpr (!std::is_fundamental_v<Z>)
 			Z::Serialize(&s_Object->second, p_Serializer, p_OwnOffset + offsetof(ThisPair, second));
 	}
+
+	bool operator==(const TPair<T, Z>& p_Other) const
+	{
+		return first == p_Other.first && second == p_Other.second;
+	}
+
+	bool operator!=(const TPair<T, Z>& p_Other) const
+	{
+		return !(*this == p_Other);
+	}
 	
 public:
 	T first;

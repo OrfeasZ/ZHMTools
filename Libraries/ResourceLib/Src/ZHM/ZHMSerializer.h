@@ -3,8 +3,12 @@
 #include <set>
 #include <string>
 #include <cstdint>
+#include <optional>
 #include <vector>
+#include <unordered_map>
+#include <unordered_set>
 
+class ZVariant;
 class IZHMTypeInfo;
 
 class ZHMSerializer
@@ -27,6 +31,8 @@ public:
 	void PatchNullPtr(uintptr_t p_Offset);
 	void PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type);
 	void RegisterRuntimeResourceId(uintptr_t p_Offset);
+	std::optional<uintptr_t> GetExistingPtrForVariant(ZVariant* p_Variant);
+	void SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr);
 
 	template <class T>
 	void PatchValue(uintptr_t p_Offset, T p_Value)
@@ -65,4 +71,6 @@ private:
 	std::set<uintptr_t> m_TypeIdOffsets;
 	
 	std::set<uintptr_t> m_RuntimeResourceIdOffsets;
+
+	std::unordered_map<IZHMTypeInfo*, std::unordered_map<ZVariant*, uintptr_t>> m_VariantRegistry;
 };

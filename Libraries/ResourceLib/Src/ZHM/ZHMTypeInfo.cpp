@@ -68,7 +68,8 @@ public:
 
 	bool Equals(void* p_Left, void* p_Right) const override
 	{
-		return *reinterpret_cast<int32_t*>(p_Left) == *reinterpret_cast<int32_t*>(p_Right);
+		// Enums don't get de-duplicated.
+		return false;
 	}
 
 private:
@@ -174,8 +175,8 @@ public:
 	{
 		auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
 
-		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->m_pEnd) - reinterpret_cast<uintptr_t>(s_Object->m_pBegin)) / s_AlignedSize;
+		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
+		const auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->m_pEnd) - reinterpret_cast<uintptr_t>(s_Object->m_pBegin)) / s_AlignedSize;
 
 		if (s_ElementCount == 0)
 		{
@@ -236,8 +237,35 @@ public:
 
 	bool Equals(void* p_Left, void* p_Right) const override
 	{
-		// TODO
-		return false;
+		auto* s_Left = reinterpret_cast<TArray<void*>*>(p_Left);
+		auto* s_Right = reinterpret_cast<TArray<void*>*>(p_Right);
+
+		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
+
+		const auto s_LeftElementCount = (reinterpret_cast<uintptr_t>(s_Left->m_pEnd) - reinterpret_cast<uintptr_t>(s_Left->m_pBegin)) / s_AlignedSize;
+		const auto s_RightElementCount = (reinterpret_cast<uintptr_t>(s_Right->m_pEnd) - reinterpret_cast<uintptr_t>(s_Right->m_pBegin)) / s_AlignedSize;
+
+		if (s_LeftElementCount != s_RightElementCount)
+			return false;
+
+		// Empty arrays are not de-duplicated.
+		if (s_LeftElementCount == 0)
+			return false;
+
+		auto s_LeftObjectPtr = reinterpret_cast<uintptr_t>(s_Left->m_pBegin);
+		auto s_RightObjectPtr = reinterpret_cast<uintptr_t>(s_Right->m_pBegin);
+
+		// Check if every element is the same.
+		for (size_t i = 0; i < s_LeftElementCount; ++i)
+		{
+			if (!m_ElementType->Equals(reinterpret_cast<void*>(s_LeftObjectPtr), reinterpret_cast<void*>(s_RightObjectPtr)))
+				return false;
+
+			s_LeftObjectPtr += s_AlignedSize;
+			s_RightObjectPtr += s_AlignedSize;
+		}
+
+		return true;
 	}
 
 private:
@@ -314,6 +342,8 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 
 			if (s_ElementType == nullptr)
 			{
+				fprintf(stderr, "[WARNING] Could not find array element type '%s'. ResourceLib might need to be updated.\n", s_ElementTypeStr.c_str());
+
 				auto s_DummyType = new ZHMDummyTypeInfo(p_Name);
 				(*g_TypeRegistry)[p_Name] = s_DummyType;
 				
@@ -334,6 +364,8 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 
 			return s_TypeInfo;
 		}
+
+		fprintf(stderr, "[WARNING] Could not find type '%s'. ResourceLib might need to be updated.\n", p_Name.c_str());
 		
 		auto s_DummyType = new ZHMDummyTypeInfo(p_Name);
 		(*g_TypeRegistry)[p_Name] = s_DummyType;
