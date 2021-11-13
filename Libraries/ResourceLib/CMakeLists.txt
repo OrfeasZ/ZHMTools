@@ -35,6 +35,7 @@ set(RESOURCELIB_SOURCES
 	Src/ZHM/ZString.h
 	Src/ZHM/ZVariant.cpp
 	Src/ZHM/ZVariant.h
+	Src/ZHM/ZHMEquality.h
 	Src/ResourceConverterImpl.cpp
 	Src/ResourceConverterImpl.h
 	Src/ResourceGeneratorImpl.cpp

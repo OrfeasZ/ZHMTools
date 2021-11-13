@@ -20,3 +20,4 @@ typedef double float64;
 #include "TPair.h"
 #include "ZVariant.h"
 #include "ZRepositoryID.h"
+#include "ZHMEquality.h"
