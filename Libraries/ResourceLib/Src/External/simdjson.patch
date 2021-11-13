@@ -1,14 +1,5 @@
-From 4c730a586bc9eb680f2fc9a67aae53c7e6ed7c3a Mon Sep 17 00:00:00 2001
-From: OrfeasZ <orfeaz@gmail.com>
-Date: Fri, 8 Oct 2021 19:38:55 +0300
-Subject: [PATCH 1/2] [ResourceLib] Re-enable error reporting
-
----
- Libraries/ResourceLib/Src/External/simdjson.h | 60 ++++++++++++++++++-
- 1 file changed, 58 insertions(+), 2 deletions(-)
-
 diff --git a/Libraries/ResourceLib/Src/External/simdjson.h b/Libraries/ResourceLib/Src/External/simdjson.h
-index df1f97b..4161316 100644
+index 026b6f1..174f134 100644
 --- a/Libraries/ResourceLib/Src/External/simdjson.h
 +++ b/Libraries/ResourceLib/Src/External/simdjson.h
 @@ -2218,6 +2218,8 @@ enum {
@@ -181,7 +172,30 @@ index df1f97b..4161316 100644
    iterator end_field = end();
    for (iterator field = begin(); field != end_field; ++field) {
      if (field.key_equals_case_insensitive(key)) {
-@@ -28454,12 +28506,14 @@ namespace SIMDJSON_BUILTIN_IMPLEMENTATION {
+@@ -23079,6 +23131,11 @@ public:
+    */
+   inline simdjson_result<const char *> current_location() noexcept;
+ 
++  /**
++   * Returns the current position in the document.
++   */
++  inline token_position current_position() noexcept;
++
+   /**
+    * Get the value associated with the given JSON pointer.  We use the RFC 6901
+    * https://tools.ietf.org/html/rfc6901 standard.
+@@ -27350,6 +27407,10 @@ inline simdjson_result<const char *> document::current_location() noexcept {
+   return iter.current_location();
+ }
+ 
++inline token_position document::current_position() noexcept {
++  return iter.position();
++}
++
+ inline bool document::is_alive() noexcept {
+   return iter.is_alive();
+ }
+@@ -28538,12 +28599,14 @@ namespace SIMDJSON_BUILTIN_IMPLEMENTATION {
  namespace ondemand {
  
  simdjson_really_inline simdjson_result<value> object::find_field_unordered(const std::string_view key) & noexcept {
@@ -196,7 +210,7 @@ index df1f97b..4161316 100644
    bool has_value;
    SIMDJSON_TRY( iter.find_field_unordered_raw(key).get(has_value) );
    if (!has_value) { return NO_SUCH_FIELD; }
-@@ -28472,12 +28526,14 @@ simdjson_really_inline simdjson_result<value> object::operator[](const std::stri
+@@ -28556,12 +28619,14 @@ simdjson_really_inline simdjson_result<value> object::operator[](const std::stri
    return std::forward<object>(*this).find_field_unordered(key);
  }
  simdjson_really_inline simdjson_result<value> object::find_field(const std::string_view key) & noexcept {
@@ -211,6 +225,3 @@ index df1f97b..4161316 100644
    bool has_value;
    SIMDJSON_TRY( iter.find_field_raw(key).get(has_value) );
    if (!has_value) { return NO_SUCH_FIELD; }
--- 
-2.31.1.windows.1
-
