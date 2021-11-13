@@ -24,6 +24,7 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
 
 	ZRepositoryID() : m_nHigh(0), m_nLow(0) {}
 

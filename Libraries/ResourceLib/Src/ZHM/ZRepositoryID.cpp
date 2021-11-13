@@ -22,5 +22,13 @@ void ZRepositoryID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 void ZRepositoryID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
-	// TODO
+	// Nothing to do here.
+}
+
+bool ZRepositoryID::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZRepositoryID*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZRepositoryID*>(p_Right);
+
+	return *s_Left == *s_Right;
 }

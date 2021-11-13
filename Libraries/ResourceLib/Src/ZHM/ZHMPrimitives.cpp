@@ -157,11 +157,11 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 			return *reinterpret_cast<bool*>(p_Left) == *reinterpret_cast<bool*>(p_Right);
 		});
 
-	new ZHMTypeInfo("ZString", sizeof(ZString), alignof(ZString), ZString::WriteJson, ZString::WriteSimpleJson, ZString::FromSimpleJson, ZString::Serialize);
+	new ZHMTypeInfo("ZString", sizeof(ZString), alignof(ZString), ZString::WriteJson, ZString::WriteSimpleJson, ZString::FromSimpleJson, ZString::Serialize, ZString::Equals);
 	
-	new ZHMTypeInfo("ZRepositoryID", sizeof(ZRepositoryID), alignof(ZRepositoryID), ZRepositoryID::WriteJson, ZRepositoryID::WriteSimpleJson, ZRepositoryID::FromSimpleJson, ZRepositoryID::Serialize);
+	new ZHMTypeInfo("ZRepositoryID", sizeof(ZRepositoryID), alignof(ZRepositoryID), ZRepositoryID::WriteJson, ZRepositoryID::WriteSimpleJson, ZRepositoryID::FromSimpleJson, ZRepositoryID::Serialize, ZRepositoryID::Equals);
 	
-	new ZHMTypeInfo("ZVariant", sizeof(ZVariant), alignof(ZVariant), ZVariant::WriteJson, ZVariant::WriteSimpleJson, ZVariant::FromSimpleJson, ZVariant::Serialize);
+	new ZHMTypeInfo("ZVariant", sizeof(ZVariant), alignof(ZVariant), ZVariant::WriteJson, ZVariant::WriteSimpleJson, ZVariant::FromSimpleJson, ZVariant::Serialize, ZVariant::Equals);
 
 	new ZHMTypeInfo("void", 0, 0,
 		[](void* p_Data, std::ostream& p_Stream)

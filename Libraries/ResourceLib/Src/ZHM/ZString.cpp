@@ -87,3 +87,11 @@ void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p
 	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(ZString, m_nLength), s_Object->size() | 0x40000000);
 	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);
 }
+
+bool ZString::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZString*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZString*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
