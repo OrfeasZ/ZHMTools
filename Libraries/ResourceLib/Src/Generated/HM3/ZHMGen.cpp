@@ -161,6 +161,9 @@ bool AI_Private_Details_SBaseStimulus_Pool_SaveData::Equals(void* p_Left, void* 
 
 bool AI_Private_Details_SBaseStimulus_Pool_SaveData::operator==(const AI_Private_Details_SBaseStimulus_Pool_SaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_Private_Details_SBaseStimulus_Pool_SaveData>)
+		return false;
+
 	if (m_SlotDetails != p_Other.m_SlotDetails) return false;
 	if (m_UsageRepresentation != p_Other.m_UsageRepresentation) return false;
 	if (m_FreeIndices != p_Other.m_FreeIndices) return false;
@@ -220,6 +223,9 @@ bool AI_Private_Details_SStimulus_AgentData_SaveData::Equals(void* p_Left, void*
 
 bool AI_Private_Details_SStimulus_AgentData_SaveData::operator==(const AI_Private_Details_SStimulus_AgentData_SaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_Private_Details_SStimulus_AgentData_SaveData>)
+		return false;
+
 	if (m_AgentData != p_Other.m_AgentData) return false;
 
 	return true;
@@ -290,6 +296,9 @@ bool AI_Private_SStimulusSnapshot::Equals(void* p_Left, void* p_Right)
 
 bool AI_Private_SStimulusSnapshot::operator==(const AI_Private_SStimulusSnapshot& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_Private_SStimulusSnapshot>)
+		return false;
+
 	if (SlotIndex != p_Other.SlotIndex) return false;
 	if (StimulusData != p_Other.StimulusData) return false;
 
@@ -412,6 +421,9 @@ bool AI_Private_SPoolSnapshot::Equals(void* p_Left, void* p_Right)
 
 bool AI_Private_SPoolSnapshot::operator==(const AI_Private_SPoolSnapshot& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_Private_SPoolSnapshot>)
+		return false;
+
 	if (StimulusTypeName != p_Other.StimulusTypeName) return false;
 	if (StimulusTypeId != p_Other.StimulusTypeId) return false;
 	if (PoolSize != p_Other.PoolSize) return false;
@@ -523,6 +535,9 @@ bool AI_Private_SFullDataSnapshotEvent::Equals(void* p_Left, void* p_Right)
 
 bool AI_Private_SFullDataSnapshotEvent::operator==(const AI_Private_SFullDataSnapshotEvent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_Private_SFullDataSnapshotEvent>)
+		return false;
+
 	if (Timestamp != p_Other.Timestamp) return false;
 	if (EventIndex != p_Other.EventIndex) return false;
 	if (StimulusPools != p_Other.StimulusPools) return false;
@@ -656,6 +671,9 @@ bool AI_Private_SPoolModificationEvent::Equals(void* p_Left, void* p_Right)
 
 bool AI_Private_SPoolModificationEvent::operator==(const AI_Private_SPoolModificationEvent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_Private_SPoolModificationEvent>)
+		return false;
+
 	if (StimulusTypeId != p_Other.StimulusTypeId) return false;
 	if (SlotIndex != p_Other.SlotIndex) return false;
 	if (OperationId != p_Other.OperationId) return false;
@@ -746,6 +764,9 @@ bool AI_Private_SPoolModificationCollectionEvent::Equals(void* p_Left, void* p_R
 
 bool AI_Private_SPoolModificationCollectionEvent::operator==(const AI_Private_SPoolModificationCollectionEvent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_Private_SPoolModificationCollectionEvent>)
+		return false;
+
 	if (PoolModificationEvents != p_Other.PoolModificationEvents) return false;
 
 	return true;
@@ -839,6 +860,9 @@ bool AI_SEventDescription::Equals(void* p_Left, void* p_Right)
 
 bool AI_SEventDescription::operator==(const AI_SEventDescription& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_SEventDescription>)
+		return false;
+
 	if (m_eEventType != p_Other.m_eEventType) return false;
 	if (m_bPulsing != p_Other.m_bPulsing) return false;
 	if (m_fRange != p_Other.m_fRange) return false;
@@ -923,6 +947,9 @@ bool AI_SFirePattern01_SData::Equals(void* p_Left, void* p_Right)
 
 bool AI_SFirePattern01_SData::operator==(const AI_SFirePattern01_SData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_SFirePattern01_SData>)
+		return false;
+
 	if (m_BulletsToFire != p_Other.m_BulletsToFire) return false;
 	if (m_WaitMinSeconds != p_Other.m_WaitMinSeconds) return false;
 	if (m_WaitMaxSeconds != p_Other.m_WaitMaxSeconds) return false;
@@ -1009,6 +1036,9 @@ bool AI_SFirePattern01::Equals(void* p_Left, void* p_Right)
 
 bool AI_SFirePattern01::operator==(const AI_SFirePattern01& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_SFirePattern01>)
+		return false;
+
 	if (m_PatternSequenceData != p_Other.m_PatternSequenceData) return false;
 
 	return true;
@@ -1102,6 +1132,9 @@ bool AI_SFirePattern02_SData::Equals(void* p_Left, void* p_Right)
 
 bool AI_SFirePattern02_SData::operator==(const AI_SFirePattern02_SData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_SFirePattern02_SData>)
+		return false;
+
 	if (m_FireMinSeconds != p_Other.m_FireMinSeconds) return false;
 	if (m_FireMaxSeconds != p_Other.m_FireMaxSeconds) return false;
 	if (m_WaitMinSeconds != p_Other.m_WaitMinSeconds) return false;
@@ -1189,6 +1222,9 @@ bool AI_SFirePattern02::Equals(void* p_Left, void* p_Right)
 
 bool AI_SFirePattern02::operator==(const AI_SFirePattern02& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_SFirePattern02>)
+		return false;
+
 	if (m_PatternSequenceData != p_Other.m_PatternSequenceData) return false;
 
 	return true;
@@ -1258,6 +1294,9 @@ bool AI_SSoundEventModifierState::Equals(void* p_Left, void* p_Right)
 
 bool AI_SSoundEventModifierState::operator==(const AI_SSoundEventModifierState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AI_SSoundEventModifierState>)
+		return false;
+
 	if (m_fRangeModifier != p_Other.m_fRangeModifier) return false;
 	if (m_fLoudnessModifier != p_Other.m_fLoudnessModifier) return false;
 
@@ -1316,6 +1355,9 @@ bool AnimationEventDataTypes_SBlend::Equals(void* p_Left, void* p_Right)
 
 bool AnimationEventDataTypes_SBlend::operator==(const AnimationEventDataTypes_SBlend& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AnimationEventDataTypes_SBlend>)
+		return false;
+
 	if (m_fBlendTime != p_Other.m_fBlendTime) return false;
 
 	return true;
@@ -1373,6 +1415,9 @@ bool AnimationEventDataTypes_SLegacy::Equals(void* p_Left, void* p_Right)
 
 bool AnimationEventDataTypes_SLegacy::operator==(const AnimationEventDataTypes_SLegacy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AnimationEventDataTypes_SLegacy>)
+		return false;
+
 	if (m_nEventID != p_Other.m_nEventID) return false;
 
 	return true;
@@ -1443,6 +1488,9 @@ bool ZRuntimeResourceID::Equals(void* p_Left, void* p_Right)
 
 bool ZRuntimeResourceID::operator==(const ZRuntimeResourceID& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZRuntimeResourceID>)
+		return false;
+
 	if (m_IDHigh != p_Other.m_IDHigh) return false;
 	if (m_IDLow != p_Other.m_IDLow) return false;
 
@@ -1518,6 +1566,9 @@ bool AnimationTakeDataTypes_SGeneric::Equals(void* p_Left, void* p_Right)
 
 bool AnimationTakeDataTypes_SGeneric::operator==(const AnimationTakeDataTypes_SGeneric& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<AnimationTakeDataTypes_SGeneric>)
+		return false;
+
 	if (m_fTest != p_Other.m_fTest) return false;
 	if (m_fResourceTest != p_Other.m_fResourceTest) return false;
 
@@ -1566,6 +1617,9 @@ bool BoneId::Equals(void* p_Left, void* p_Right)
 
 bool BoneId::operator==(const BoneId& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<BoneId>)
+		return false;
+
 
 	return true;
 }
@@ -1612,6 +1666,9 @@ bool IActor::Equals(void* p_Left, void* p_Right)
 
 bool IActor::operator==(const IActor& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IActor>)
+		return false;
+
 
 	return true;
 }
@@ -1658,6 +1715,9 @@ bool IActorProvider::Equals(void* p_Left, void* p_Right)
 
 bool IActorProvider::operator==(const IActorProvider& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IActorProvider>)
+		return false;
+
 
 	return true;
 }
@@ -1704,6 +1764,9 @@ bool IActorProviderFilter::Equals(void* p_Left, void* p_Right)
 
 bool IActorProviderFilter::operator==(const IActorProviderFilter& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IActorProviderFilter>)
+		return false;
+
 
 	return true;
 }
@@ -1750,6 +1813,9 @@ bool IAnimPlayerEntity::Equals(void* p_Left, void* p_Right)
 
 bool IAnimPlayerEntity::operator==(const IAnimPlayerEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IAnimPlayerEntity>)
+		return false;
+
 
 	return true;
 }
@@ -1796,6 +1862,9 @@ bool IBodybagEntity::Equals(void* p_Left, void* p_Right)
 
 bool IBodybagEntity::operator==(const IBodybagEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IBodybagEntity>)
+		return false;
+
 
 	return true;
 }
@@ -1842,6 +1911,9 @@ bool IBoneAnimator::Equals(void* p_Left, void* p_Right)
 
 bool IBoneAnimator::operator==(const IBoneAnimator& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IBoneAnimator>)
+		return false;
+
 
 	return true;
 }
@@ -1888,6 +1960,9 @@ bool IBoneCollidable::Equals(void* p_Left, void* p_Right)
 
 bool IBoneCollidable::operator==(const IBoneCollidable& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IBoneCollidable>)
+		return false;
+
 
 	return true;
 }
@@ -1934,6 +2009,9 @@ bool IBulletImpactListener::Equals(void* p_Left, void* p_Right)
 
 bool IBulletImpactListener::operator==(const IBulletImpactListener& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IBulletImpactListener>)
+		return false;
+
 
 	return true;
 }
@@ -1980,6 +2058,9 @@ bool IComponentInterface::Equals(void* p_Left, void* p_Right)
 
 bool IComponentInterface::operator==(const IComponentInterface& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IComponentInterface>)
+		return false;
+
 
 	return true;
 }
@@ -2026,6 +2107,9 @@ bool IContractEvaluationContextListener::Equals(void* p_Left, void* p_Right)
 
 bool IContractEvaluationContextListener::operator==(const IContractEvaluationContextListener& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IContractEvaluationContextListener>)
+		return false;
+
 
 	return true;
 }
@@ -2072,6 +2156,9 @@ bool IContractModule::Equals(void* p_Left, void* p_Right)
 
 bool IContractModule::operator==(const IContractModule& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IContractModule>)
+		return false;
+
 
 	return true;
 }
@@ -2118,6 +2205,9 @@ bool IContractObjective::Equals(void* p_Left, void* p_Right)
 
 bool IContractObjective::operator==(const IContractObjective& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IContractObjective>)
+		return false;
+
 
 	return true;
 }
@@ -2179,6 +2269,9 @@ bool ZDynamicObject::Equals(void* p_Left, void* p_Right)
 
 bool ZDynamicObject::operator==(const ZDynamicObject& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDynamicObject>)
+		return false;
+
 	if (m_value != p_Other.m_value) return false;
 
 	return true;
@@ -2290,6 +2383,9 @@ bool IContractObjective_SCounterData::Equals(void* p_Left, void* p_Right)
 
 bool IContractObjective_SCounterData::operator==(const IContractObjective_SCounterData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IContractObjective_SCounterData>)
+		return false;
+
 	if (m_sHeader != p_Other.m_sHeader) return false;
 	if (m_nCount != p_Other.m_nCount) return false;
 	if (m_nDeactivate != p_Other.m_nDeactivate) return false;
@@ -2471,6 +2567,9 @@ bool ZGuid::Equals(void* p_Left, void* p_Right)
 
 bool ZGuid::operator==(const ZGuid& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZGuid>)
+		return false;
+
 	if (_a != p_Other._a) return false;
 	if (_b != p_Other._b) return false;
 	if (_c != p_Other._c) return false;
@@ -2598,6 +2697,9 @@ bool IContractObjective_STargetCondition::Equals(void* p_Left, void* p_Right)
 
 bool IContractObjective_STargetCondition::operator==(const IContractObjective_STargetCondition& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IContractObjective_STargetCondition>)
+		return false;
+
 	if (type != p_Other.type) return false;
 	if (repositoryId != p_Other.repositoryId) return false;
 	if (hardCondition != p_Other.hardCondition) return false;
@@ -2649,6 +2751,9 @@ bool IEscortOutSituation::Equals(void* p_Left, void* p_Right)
 
 bool IEscortOutSituation::operator==(const IEscortOutSituation& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IEscortOutSituation>)
+		return false;
+
 
 	return true;
 }
@@ -2695,6 +2800,9 @@ bool IEventConsumerCollection::Equals(void* p_Left, void* p_Right)
 
 bool IEventConsumerCollection::operator==(const IEventConsumerCollection& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IEventConsumerCollection>)
+		return false;
+
 
 	return true;
 }
@@ -2741,6 +2849,9 @@ bool IFreeCameraControl::Equals(void* p_Left, void* p_Right)
 
 bool IFreeCameraControl::operator==(const IFreeCameraControl& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IFreeCameraControl>)
+		return false;
+
 
 	return true;
 }
@@ -2787,6 +2898,9 @@ bool IHM5WeaponInventory::Equals(void* p_Left, void* p_Right)
 
 bool IHM5WeaponInventory::operator==(const IHM5WeaponInventory& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IHM5WeaponInventory>)
+		return false;
+
 
 	return true;
 }
@@ -2833,6 +2947,9 @@ bool IHumanBody::Equals(void* p_Left, void* p_Right)
 
 bool IHumanBody::operator==(const IHumanBody& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IHumanBody>)
+		return false;
+
 
 	return true;
 }
@@ -2879,6 +2996,9 @@ bool IMetricValue::Equals(void* p_Left, void* p_Right)
 
 bool IMetricValue::operator==(const IMetricValue& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IMetricValue>)
+		return false;
+
 
 	return true;
 }
@@ -2925,6 +3045,9 @@ bool IMorphemeCutSequenceAnimatable::Equals(void* p_Left, void* p_Right)
 
 bool IMorphemeCutSequenceAnimatable::operator==(const IMorphemeCutSequenceAnimatable& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IMorphemeCutSequenceAnimatable>)
+		return false;
+
 
 	return true;
 }
@@ -2971,6 +3094,9 @@ bool IMorphemeCutSequenceAnimationEntity::Equals(void* p_Left, void* p_Right)
 
 bool IMorphemeCutSequenceAnimationEntity::operator==(const IMorphemeCutSequenceAnimationEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IMorphemeCutSequenceAnimationEntity>)
+		return false;
+
 
 	return true;
 }
@@ -3017,6 +3143,9 @@ bool IMorphemeEventConsumer::Equals(void* p_Left, void* p_Right)
 
 bool IMorphemeEventConsumer::operator==(const IMorphemeEventConsumer& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IMorphemeEventConsumer>)
+		return false;
+
 
 	return true;
 }
@@ -3063,6 +3192,9 @@ bool INetRelevancy::Equals(void* p_Left, void* p_Right)
 
 bool INetRelevancy::operator==(const INetRelevancy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<INetRelevancy>)
+		return false;
+
 
 	return true;
 }
@@ -3109,6 +3241,9 @@ bool IOnlineConfigurationListener::Equals(void* p_Left, void* p_Right)
 
 bool IOnlineConfigurationListener::operator==(const IOnlineConfigurationListener& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IOnlineConfigurationListener>)
+		return false;
+
 
 	return true;
 }
@@ -3155,6 +3290,9 @@ bool IPureWaterReflectable::Equals(void* p_Left, void* p_Right)
 
 bool IPureWaterReflectable::operator==(const IPureWaterReflectable& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IPureWaterReflectable>)
+		return false;
+
 
 	return true;
 }
@@ -3201,6 +3339,9 @@ bool IRenderCompositorEntity::Equals(void* p_Left, void* p_Right)
 
 bool IRenderCompositorEntity::operator==(const IRenderCompositorEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IRenderCompositorEntity>)
+		return false;
+
 
 	return true;
 }
@@ -3247,6 +3388,9 @@ bool ISequenceTarget::Equals(void* p_Left, void* p_Right)
 
 bool ISequenceTarget::operator==(const ISequenceTarget& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ISequenceTarget>)
+		return false;
+
 
 	return true;
 }
@@ -3293,6 +3437,9 @@ bool ISituation::Equals(void* p_Left, void* p_Right)
 
 bool ISituation::operator==(const ISituation& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ISituation>)
+		return false;
+
 
 	return true;
 }
@@ -3339,6 +3486,9 @@ bool ISoundGateController::Equals(void* p_Left, void* p_Right)
 
 bool ISoundGateController::operator==(const ISoundGateController& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ISoundGateController>)
+		return false;
+
 
 	return true;
 }
@@ -3385,6 +3535,9 @@ bool ISoundMaterialDescriptor::Equals(void* p_Left, void* p_Right)
 
 bool ISoundMaterialDescriptor::operator==(const ISoundMaterialDescriptor& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ISoundMaterialDescriptor>)
+		return false;
+
 
 	return true;
 }
@@ -3431,6 +3584,9 @@ bool ITriggerListener::Equals(void* p_Left, void* p_Right)
 
 bool ITriggerListener::operator==(const ITriggerListener& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ITriggerListener>)
+		return false;
+
 
 	return true;
 }
@@ -3477,6 +3633,9 @@ bool IUIDataListener::Equals(void* p_Left, void* p_Right)
 
 bool IUIDataListener::operator==(const IUIDataListener& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IUIDataListener>)
+		return false;
+
 
 	return true;
 }
@@ -3523,6 +3682,9 @@ bool IValueEntity::Equals(void* p_Left, void* p_Right)
 
 bool IValueEntity::operator==(const IValueEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IValueEntity>)
+		return false;
+
 
 	return true;
 }
@@ -3569,6 +3731,9 @@ bool IWorldMapMarker::Equals(void* p_Left, void* p_Right)
 
 bool IWorldMapMarker::operator==(const IWorldMapMarker& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<IWorldMapMarker>)
+		return false;
+
 
 	return true;
 }
@@ -3637,6 +3802,9 @@ bool S25DProjectionSettingsCurveEntry::Equals(void* p_Left, void* p_Right)
 
 bool S25DProjectionSettingsCurveEntry::operator==(const S25DProjectionSettingsCurveEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<S25DProjectionSettingsCurveEntry>)
+		return false;
+
 	if (fDistance != p_Other.fDistance) return false;
 	if (fValue != p_Other.fValue) return false;
 
@@ -3755,6 +3923,9 @@ bool SWorldSpaceSettings::Equals(void* p_Left, void* p_Right)
 
 bool SWorldSpaceSettings::operator==(const SWorldSpaceSettings& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SWorldSpaceSettings>)
+		return false;
+
 	if (fCloseupDistance != p_Other.fCloseupDistance) return false;
 	if (fScale != p_Other.fScale) return false;
 	if (bDynamicScale != p_Other.bDynamicScale) return false;
@@ -4068,6 +4239,9 @@ bool S25DProjectionSettings::Equals(void* p_Left, void* p_Right)
 
 bool S25DProjectionSettings::operator==(const S25DProjectionSettings& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<S25DProjectionSettings>)
+		return false;
+
 	if (fNearDistance != p_Other.fNearDistance) return false;
 	if (fFarDistance != p_Other.fFarDistance) return false;
 	if (fNearScale != p_Other.fNearScale) return false;
@@ -4153,6 +4327,9 @@ bool S3rdPersonCameraSaveData::Equals(void* p_Left, void* p_Right)
 
 bool S3rdPersonCameraSaveData::operator==(const S3rdPersonCameraSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<S3rdPersonCameraSaveData>)
+		return false;
+
 	if (m_fAngleYaw != p_Other.m_fAngleYaw) return false;
 	if (m_fAnglePitch != p_Other.m_fAnglePitch) return false;
 
@@ -4211,6 +4388,9 @@ bool ZGameTime::Equals(void* p_Left, void* p_Right)
 
 bool ZGameTime::operator==(const ZGameTime& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZGameTime>)
+		return false;
+
 	if (m_nTicks != p_Other.m_nTicks) return false;
 
 	return true;
@@ -4314,6 +4494,9 @@ bool SAIEventSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAIEventSaveData::operator==(const SAIEventSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAIEventSaveData>)
+		return false;
+
 	if (m_eType != p_Other.m_eType) return false;
 	if (m_bHandled != p_Other.m_bHandled) return false;
 	if (m_nStart != p_Other.m_nStart) return false;
@@ -4494,6 +4677,9 @@ bool SAIModifierServiceActorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAIModifierServiceActorSaveData::operator==(const SAIModifierServiceActorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAIModifierServiceActorSaveData>)
+		return false;
+
 	if (m_rActorRef != p_Other.m_rActorRef) return false;
 	if (m_bNeedsVolumeUpdate != p_Other.m_bNeedsVolumeUpdate) return false;
 	if (m_bNeedsKnowledgeUpdate != p_Other.m_bNeedsKnowledgeUpdate) return false;
@@ -4600,6 +4786,9 @@ bool SAIModifierServiceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAIModifierServiceSaveData::operator==(const SAIModifierServiceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAIModifierServiceSaveData>)
+		return false;
+
 	if (m_bFullVolumeUpdate != p_Other.m_bFullVolumeUpdate) return false;
 	if (m_aActors != p_Other.m_aActors) return false;
 
@@ -4658,6 +4847,9 @@ bool SAIPerceptibleEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAIPerceptibleEntitySaveData::operator==(const SAIPerceptibleEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAIPerceptibleEntitySaveData>)
+		return false;
+
 	if (m_bPerceptibleEnabled != p_Other.m_bPerceptibleEnabled) return false;
 
 	return true;
@@ -4715,6 +4907,9 @@ bool SAIVisionBlockerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAIVisionBlockerSaveData::operator==(const SAIVisionBlockerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAIVisionBlockerSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 
 	return true;
@@ -4808,6 +5003,9 @@ bool SAccessoryItemSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAccessoryItemSaveData::operator==(const SAccessoryItemSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAccessoryItemSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_nBoneId != p_Other.m_nBoneId) return false;
 	if (m_bAttached != p_Other.m_bAttached) return false;
@@ -4917,6 +5115,9 @@ bool SAccidentObserversGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAccidentObserversGroupSaveData::operator==(const SAccidentObserversGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAccidentObserversGroupSaveData>)
+		return false;
+
 	if (m_target != p_Other.m_target) return false;
 	if (m_aWaitingObservers != p_Other.m_aWaitingObservers) return false;
 	if (m_accidentScaleContext != p_Other.m_accidentScaleContext) return false;
@@ -5029,6 +5230,9 @@ bool SActBehaviorEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActBehaviorEntitySaveData::operator==(const SActBehaviorEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActBehaviorEntitySaveData>)
+		return false;
+
 	if (m_bStartedSignalSent != p_Other.m_bStartedSignalSent) return false;
 	if (m_bReachedSignalSent != p_Other.m_bReachedSignalSent) return false;
 	if (m_nState != p_Other.m_nState) return false;
@@ -5126,6 +5330,9 @@ bool float4::Equals(void* p_Left, void* p_Right)
 
 bool float4::operator==(const float4& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<float4>)
+		return false;
+
 	if (x != p_Other.x) return false;
 	if (y != p_Other.y) return false;
 	if (z != p_Other.z) return false;
@@ -5264,6 +5471,9 @@ bool SActOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActOrderSaveData::operator==(const SActOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActOrderSaveData>)
+		return false;
+
 	if (m_sAct != p_Other.m_sAct) return false;
 	if (m_fDuration != p_Other.m_fDuration) return false;
 	if (m_rChildNetworkEntity != p_Other.m_rChildNetworkEntity) return false;
@@ -5388,6 +5598,9 @@ bool SActionRadialArcDisplayInfo::Equals(void* p_Left, void* p_Right)
 
 bool SActionRadialArcDisplayInfo::operator==(const SActionRadialArcDisplayInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActionRadialArcDisplayInfo>)
+		return false;
+
 	if (hidden != p_Other.hidden) return false;
 	if (locked != p_Other.locked) return false;
 	if (active != p_Other.active) return false;
@@ -5477,6 +5690,9 @@ bool SActionRadialArcDisplayInfoArray_dummy::Equals(void* p_Left, void* p_Right)
 
 bool SActionRadialArcDisplayInfoArray_dummy::operator==(const SActionRadialArcDisplayInfoArray_dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActionRadialArcDisplayInfoArray_dummy>)
+		return false;
+
 	if (dummy != p_Other.dummy) return false;
 
 	return true;
@@ -5552,6 +5768,9 @@ bool SActivity::Equals(void* p_Left, void* p_Right)
 
 bool SActivity::operator==(const SActivity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActivity>)
+		return false;
+
 	if (id != p_Other.id) return false;
 	if (activityId != p_Other.activityId) return false;
 
@@ -5652,6 +5871,9 @@ bool SActivityExits::Equals(void* p_Left, void* p_Right)
 
 bool SActivityExits::operator==(const SActivityExits& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActivityExits>)
+		return false;
+
 	if (activity != p_Other.activity) return false;
 	if (exits != p_Other.exits) return false;
 
@@ -5754,6 +5976,9 @@ bool SActivityObjective::Equals(void* p_Left, void* p_Right)
 
 bool SActivityObjective::operator==(const SActivityObjective& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActivityObjective>)
+		return false;
+
 	if (activity != p_Other.activity) return false;
 	if (opportunities != p_Other.opportunities) return false;
 
@@ -5873,6 +6098,9 @@ bool SActivityDefinition::Equals(void* p_Left, void* p_Right)
 
 bool SActivityDefinition::operator==(const SActivityDefinition& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActivityDefinition>)
+		return false;
+
 	if (activity != p_Other.activity) return false;
 	if (objectives != p_Other.objectives) return false;
 	if (exits != p_Other.exits) return false;
@@ -5959,6 +6187,9 @@ bool SActivities::Equals(void* p_Left, void* p_Right)
 
 bool SActivities::operator==(const SActivities& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActivities>)
+		return false;
+
 	if (Activities != p_Other.Activities) return false;
 
 	return true;
@@ -6016,6 +6247,9 @@ bool SActorAccessoryItemActionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorAccessoryItemActionSaveData::operator==(const SActorAccessoryItemActionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorAccessoryItemActionSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -6073,6 +6307,9 @@ bool SActorAliveConditionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorAliveConditionSaveData::operator==(const SActorAliveConditionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorAliveConditionSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -6142,6 +6379,9 @@ bool SActorAnimSetVariationIndexSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorAnimSetVariationIndexSaveData::operator==(const SActorAnimSetVariationIndexSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorAnimSetVariationIndexSaveData>)
+		return false;
+
 	if (m_rAnimationSetDefinition != p_Other.m_rAnimationSetDefinition) return false;
 	if (m_nIndex != p_Other.m_nIndex) return false;
 
@@ -6338,6 +6578,9 @@ bool SActorAnimSetSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorAnimSetSaveData::operator==(const SActorAnimSetSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorAnimSetSaveData>)
+		return false;
+
 	if (m_eAnimSet != p_Other.m_eAnimSet) return false;
 	if (m_rCustomAnimationSet != p_Other.m_rCustomAnimationSet) return false;
 	if (m_eVariationResourceMaxTension != p_Other.m_eVariationResourceMaxTension) return false;
@@ -6414,6 +6657,9 @@ bool SActorBoneAttachSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorBoneAttachSaveData::operator==(const SActorBoneAttachSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorBoneAttachSaveData>)
+		return false;
+
 	if (m_rAttachmentTarget != p_Other.m_rAttachmentTarget) return false;
 	if (m_bIsAttached != p_Other.m_bIsAttached) return false;
 
@@ -6536,6 +6782,9 @@ bool SActorBoneAttachmentsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorBoneAttachmentsSaveData::operator==(const SActorBoneAttachmentsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorBoneAttachmentsSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -6630,6 +6879,9 @@ bool SVector4::Equals(void* p_Left, void* p_Right)
 
 bool SVector4::operator==(const SVector4& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVector4>)
+		return false;
+
 	if (x != p_Other.x) return false;
 	if (y != p_Other.y) return false;
 	if (z != p_Other.z) return false;
@@ -6712,6 +6964,9 @@ bool SActorBoneSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorBoneSaveData::operator==(const SActorBoneSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorBoneSaveData>)
+		return false;
+
 	if (mQuaterion != p_Other.mQuaterion) return false;
 	if (mTranslation != p_Other.mTranslation) return false;
 
@@ -7075,6 +7330,9 @@ bool SActorDamageControlSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorDamageControlSaveData::operator==(const SActorDamageControlSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorDamageControlSaveData>)
+		return false;
+
 	if (bExplosive != p_Other.bExplosive) return false;
 	if (bProjectile != p_Other.bProjectile) return false;
 	if (bHeadshot != p_Other.bHeadshot) return false;
@@ -7181,6 +7439,9 @@ bool SActorDynamicTemplateHandlerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorDynamicTemplateHandlerSaveData::operator==(const SActorDynamicTemplateHandlerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorDynamicTemplateHandlerSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_rItem != p_Other.m_rItem) return false;
 	if (m_rSetpiece != p_Other.m_rSetpiece) return false;
@@ -7240,6 +7501,9 @@ bool SActorDynamicTemplateManipulatorSaveData::Equals(void* p_Left, void* p_Righ
 
 bool SActorDynamicTemplateManipulatorSaveData::operator==(const SActorDynamicTemplateManipulatorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorDynamicTemplateManipulatorSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -7404,6 +7668,9 @@ bool SActorDynamicTemplateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorDynamicTemplateSaveData::operator==(const SActorDynamicTemplateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorDynamicTemplateSaveData>)
+		return false;
+
 	if (m_sName != p_Other.m_sName) return false;
 	if (m_eTensionLimit != p_Other.m_eTensionLimit) return false;
 	if (m_eEmotionLimit != p_Other.m_eEmotionLimit) return false;
@@ -7605,6 +7872,9 @@ bool SActorGoalSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorGoalSaveData::operator==(const SActorGoalSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorGoalSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aHandled != p_Other.m_aHandled) return false;
 	if (m_aIsCurrent != p_Other.m_aIsCurrent) return false;
@@ -7701,6 +7971,9 @@ bool SActorIKControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorIKControllerSaveData::operator==(const SActorIKControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorIKControllerSaveData>)
+		return false;
+
 	if (m_fRightHandWeight != p_Other.m_fRightHandWeight) return false;
 	if (m_fLeftHandWeight != p_Other.m_fLeftHandWeight) return false;
 	if (m_fRightHandTargetWeight != p_Other.m_fRightHandTargetWeight) return false;
@@ -7821,6 +8094,9 @@ bool SActorInventoryItemSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorInventoryItemSaveData::operator==(const SActorInventoryItemSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorInventoryItemSaveData>)
+		return false;
+
 	if (m_rItem != p_Other.m_rItem) return false;
 	if (m_eAttachLocation != p_Other.m_eAttachLocation) return false;
 	if (m_eMaxTension != p_Other.m_eMaxTension) return false;
@@ -7910,6 +8186,9 @@ bool SActorInventorySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorInventorySaveData::operator==(const SActorInventorySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorInventorySaveData>)
+		return false;
+
 	if (m_aItems != p_Other.m_aItems) return false;
 
 	return true;
@@ -7979,6 +8258,9 @@ bool SActorItemActionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorItemActionSaveData::operator==(const SActorItemActionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorItemActionSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_rItem != p_Other.m_rItem) return false;
 
@@ -8037,6 +8319,9 @@ bool SActorKeywordProxySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorKeywordProxySaveData::operator==(const SActorKeywordProxySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorKeywordProxySaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -8158,6 +8443,9 @@ bool SActorKeywordProxiesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorKeywordProxiesSaveData::operator==(const SActorKeywordProxiesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorKeywordProxiesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -8241,6 +8529,9 @@ bool SActorManagerReferencableData::Equals(void* p_Left, void* p_Right)
 
 bool SActorManagerReferencableData::operator==(const SActorManagerReferencableData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorManagerReferencableData>)
+		return false;
+
 	if (m_aSituationTypes != p_Other.m_aSituationTypes) return false;
 
 	return true;
@@ -8298,6 +8589,9 @@ bool SActorProviderApproachSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorProviderApproachSaveData::operator==(const SActorProviderApproachSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorProviderApproachSaveData>)
+		return false;
+
 	if (m_rCastActor != p_Other.m_rCastActor) return false;
 
 	return true;
@@ -8392,6 +8686,9 @@ bool SActorProviderDirectSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorProviderDirectSaveData::operator==(const SActorProviderDirectSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorProviderDirectSaveData>)
+		return false;
+
 	if (m_aActors != p_Other.m_aActors) return false;
 	if (m_bRunning != p_Other.m_bRunning) return false;
 
@@ -8474,6 +8771,9 @@ bool SVector3::Equals(void* p_Left, void* p_Right)
 
 bool SVector3::operator==(const SVector3& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVector3>)
+		return false;
+
 	if (x != p_Other.x) return false;
 	if (y != p_Other.y) return false;
 	if (z != p_Other.z) return false;
@@ -8614,6 +8914,9 @@ bool SActorRagdollPoseSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorRagdollPoseSaveData::operator==(const SActorRagdollPoseSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorRagdollPoseSaveData>)
+		return false;
+
 	if (m_vBodyVelocity != p_Other.m_vBodyVelocity) return false;
 	if (m_aBones != p_Other.m_aBones) return false;
 	if (m_aBoneIndices != p_Other.m_aBoneIndices) return false;
@@ -8736,6 +9039,9 @@ bool SActorThrowSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorThrowSaveData::operator==(const SActorThrowSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorThrowSaveData>)
+		return false;
+
 	if (m_rItem != p_Other.m_rItem) return false;
 	if (m_vStartPosition != p_Other.m_vStartPosition) return false;
 	if (m_vEndPosition != p_Other.m_vEndPosition) return false;
@@ -8824,6 +9130,9 @@ bool SEventHistorySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEventHistorySaveData::operator==(const SEventHistorySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEventHistorySaveData>)
+		return false;
+
 	if (m_aOccurences != p_Other.m_aOccurences) return false;
 
 	return true;
@@ -8937,6 +9246,9 @@ bool SMatrix::Equals(void* p_Left, void* p_Right)
 
 bool SMatrix::operator==(const SMatrix& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix>)
+		return false;
+
 	if (XAxis != p_Other.XAxis) return false;
 	if (YAxis != p_Other.YAxis) return false;
 	if (ZAxis != p_Other.ZAxis) return false;
@@ -9106,6 +9418,9 @@ bool SKnownEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SKnownEntitySaveData::operator==(const SKnownEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SKnownEntitySaveData>)
+		return false;
+
 	if (m_nSharedIndex != p_Other.m_nSharedIndex) return false;
 	if (m_aEvents != p_Other.m_aEvents) return false;
 	if (m_nBooleanEvents != p_Other.m_nBooleanEvents) return false;
@@ -9448,6 +9763,9 @@ bool SKnowledgeSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SKnowledgeSaveData::operator==(const SKnowledgeSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SKnowledgeSaveData>)
+		return false;
+
 	if (m_aKnownEntities != p_Other.m_aKnownEntities) return false;
 	if (m_aGoalKeys != p_Other.m_aGoalKeys) return false;
 	if (m_aGoals != p_Other.m_aGoals) return false;
@@ -9537,6 +9855,9 @@ bool SLongTermMemorySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLongTermMemorySaveData::operator==(const SLongTermMemorySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLongTermMemorySaveData>)
+		return false;
+
 	if (m_sOutfit != p_Other.m_sOutfit) return false;
 	if (m_Memory != p_Other.m_Memory) return false;
 
@@ -10417,6 +10738,9 @@ bool SActorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorSaveData::operator==(const SActorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorSaveData>)
+		return false;
+
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_vQuaternion != p_Other.m_vQuaternion) return false;
 	if (m_Inventory != p_Other.m_Inventory) return false;
@@ -10602,6 +10926,9 @@ bool SCombatMetricsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCombatMetricsSaveData::operator==(const SCombatMetricsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCombatMetricsSaveData>)
+		return false;
+
 	if (m_CombatProgress != p_Other.m_CombatProgress) return false;
 	if (m_DeadVIPsOrContractTargets != p_Other.m_DeadVIPsOrContractTargets) return false;
 	if (m_DiscoveredVIPOrContractTargetBodies != p_Other.m_DiscoveredVIPOrContractTargetBodies) return false;
@@ -10695,6 +11022,9 @@ bool SEventSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEventSaveData::operator==(const SEventSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEventSaveData>)
+		return false;
+
 	if (m_nType != p_Other.m_nType) return false;
 	if (m_nStart != p_Other.m_nStart) return false;
 	if (m_nEnd != p_Other.m_nEnd) return false;
@@ -10827,6 +11157,9 @@ bool SSharedKnowledgeSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSharedKnowledgeSaveData::operator==(const SSharedKnowledgeSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSharedKnowledgeSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_OutfitId != p_Other.m_OutfitId) return false;
 	if (m_ActualMatrix != p_Other.m_ActualMatrix) return false;
@@ -10966,6 +11299,9 @@ bool SSituationGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSituationGroupSaveData::operator==(const SSituationGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSituationGroupSaveData>)
+		return false;
+
 	if (m_sClassTypeName != p_Other.m_sClassTypeName) return false;
 	if (m_nSituation != p_Other.m_nSituation) return false;
 	if (m_aActors != p_Other.m_aActors) return false;
@@ -11114,6 +11450,9 @@ bool SSituationMemberSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSituationMemberSaveData::operator==(const SSituationMemberSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSituationMemberSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_eJoinReason != p_Other.m_eJoinReason) return false;
 	if (m_bIsOrderValid != p_Other.m_bIsOrderValid) return false;
@@ -11337,6 +11676,9 @@ bool SSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSituationSaveData::operator==(const SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSituationSaveData>)
+		return false;
+
 	if (m_rSituation != p_Other.m_rSituation) return false;
 	if (m_eType != p_Other.m_eType) return false;
 	if (m_nTargetSharedEntity != p_Other.m_nTargetSharedEntity) return false;
@@ -11402,6 +11744,9 @@ bool SActorProxySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorProxySaveData::operator==(const SActorProxySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorProxySaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -11523,6 +11868,9 @@ bool SActorProxiesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorProxiesSaveData::operator==(const SActorProxiesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorProxiesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -11571,6 +11919,9 @@ bool SActorSoundDefs::Equals(void* p_Left, void* p_Right)
 
 bool SActorSoundDefs::operator==(const SActorSoundDefs& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorSoundDefs>)
+		return false;
+
 
 	return true;
 }
@@ -11656,6 +12007,9 @@ bool SActorSpreadControllerCandidateSaveData::Equals(void* p_Left, void* p_Right
 
 bool SActorSpreadControllerCandidateSaveData::operator==(const SActorSpreadControllerCandidateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorSpreadControllerCandidateSaveData>)
+		return false;
+
 	if (m_CandidateActor != p_Other.m_CandidateActor) return false;
 	if (m_CandidateTime != p_Other.m_CandidateTime) return false;
 	if (m_bValidCandidate != p_Other.m_bValidCandidate) return false;
@@ -11981,6 +12335,9 @@ bool SActorSpreadControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorSpreadControllerSaveData::operator==(const SActorSpreadControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorSpreadControllerSaveData>)
+		return false;
+
 	if (m_aSpreadingActors != p_Other.m_aSpreadingActors) return false;
 	if (m_aDeadSpreadingActors != p_Other.m_aDeadSpreadingActors) return false;
 	if (m_aSpreadingActorsAddedTime != p_Other.m_aSpreadingActorsAddedTime) return false;
@@ -12061,6 +12418,9 @@ bool SActorSpreadTransitionOperatorMaterialActorSaveData::Equals(void* p_Left, v
 
 bool SActorSpreadTransitionOperatorMaterialActorSaveData::operator==(const SActorSpreadTransitionOperatorMaterialActorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorSpreadTransitionOperatorMaterialActorSaveData>)
+		return false;
+
 	if (m_Actor != p_Other.m_Actor) return false;
 	if (m_fOpacity != p_Other.m_fOpacity) return false;
 
@@ -12146,6 +12506,9 @@ bool SActorSpreadTransitionOperatorMaterialSaveData::Equals(void* p_Left, void* 
 
 bool SActorSpreadTransitionOperatorMaterialSaveData::operator==(const SActorSpreadTransitionOperatorMaterialSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorSpreadTransitionOperatorMaterialSaveData>)
+		return false;
+
 	if (m_aActorMaterialOverrides != p_Other.m_aActorMaterialOverrides) return false;
 
 	return true;
@@ -12203,6 +12566,9 @@ bool SActorStandInSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorStandInSaveData::operator==(const SActorStandInSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorStandInSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -12324,6 +12690,9 @@ bool SActorStandInEntitiesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorStandInEntitiesSaveData::operator==(const SActorStandInEntitiesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorStandInEntitiesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -12406,6 +12775,9 @@ bool SActorTagSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorTagSaveData::operator==(const SActorTagSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorTagSaveData>)
+		return false;
+
 	if (m_bSeen != p_Other.m_bSeen) return false;
 	if (m_bTagged != p_Other.m_bTagged) return false;
 	if (m_rActorRef != p_Other.m_rActorRef) return false;
@@ -12540,6 +12912,9 @@ bool SActorTagManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorTagManagerSaveData::operator==(const SActorTagManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorTagManagerSaveData>)
+		return false;
+
 	if (m_bContractsCreationMode != p_Other.m_bContractsCreationMode) return false;
 	if (m_nTagCount != p_Other.m_nTagCount) return false;
 	if (m_nMaxTagCount != p_Other.m_nMaxTagCount) return false;
@@ -12601,6 +12976,9 @@ bool SActorVisibilityConditionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SActorVisibilityConditionSaveData::operator==(const SActorVisibilityConditionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorVisibilityConditionSaveData>)
+		return false;
+
 	if (m_pActor != p_Other.m_pActor) return false;
 
 	return true;
@@ -12741,6 +13119,9 @@ bool SAgencyPickupInfo::Equals(void* p_Left, void* p_Right)
 
 bool SAgencyPickupInfo::operator==(const SAgencyPickupInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAgencyPickupInfo>)
+		return false;
+
 	if (m_AgencyPickupId != p_Other.m_AgencyPickupId) return false;
 	if (m_aItemIds != p_Other.m_aItemIds) return false;
 	if (m_aModifierIds != p_Other.m_aModifierIds) return false;
@@ -12834,6 +13215,9 @@ bool SAgitatedBystanderOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAgitatedBystanderOrderSaveData::operator==(const SAgitatedBystanderOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAgitatedBystanderOrderSaveData>)
+		return false;
+
 	if (m_rBystanderPoint != p_Other.m_rBystanderPoint) return false;
 	if (m_vCover != p_Other.m_vCover) return false;
 	if (m_vCoverDir != p_Other.m_vCoverDir) return false;
@@ -12905,6 +13289,9 @@ bool SAimAssistObjectSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAimAssistObjectSaveData::operator==(const SAimAssistObjectSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAimAssistObjectSaveData>)
+		return false;
+
 	if (m_bHasBeenStarted != p_Other.m_bHasBeenStarted) return false;
 	if (m_bWasAimAssistActivated != p_Other.m_bWasAimAssistActivated) return false;
 
@@ -12985,6 +13372,9 @@ bool SBoneTransformSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SBoneTransformSaveData::operator==(const SBoneTransformSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBoneTransformSaveData>)
+		return false;
+
 	if (mQuaterion != p_Other.mQuaterion) return false;
 	if (mTranslation != p_Other.mTranslation) return false;
 
@@ -13104,6 +13494,9 @@ bool SAnimPlayerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAnimPlayerSaveData::operator==(const SAnimPlayerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAnimPlayerSaveData>)
+		return false;
+
 	if (mTrajectoryQuaterion != p_Other.mTrajectoryQuaterion) return false;
 	if (mTrajectoryTranslation != p_Other.mTrajectoryTranslation) return false;
 	if (m_aBones != p_Other.m_aBones) return false;
@@ -13233,6 +13626,9 @@ bool SAnimatedActorActOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAnimatedActorActOrderSaveData::operator==(const SAnimatedActorActOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAnimatedActorActOrderSaveData>)
+		return false;
+
 	if (m_bOverrideExistingAct != p_Other.m_bOverrideExistingAct) return false;
 	if (m_nForcedAnimationNode != p_Other.m_nForcedAnimationNode) return false;
 	if (m_rChildNetworkAct != p_Other.m_rChildNetworkAct) return false;
@@ -13394,6 +13790,9 @@ bool SAnimatedActorMoveOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAnimatedActorMoveOrderSaveData::operator==(const SAnimatedActorMoveOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAnimatedActorMoveOrderSaveData>)
+		return false;
+
 	if (m_bPrecisePositioning != p_Other.m_bPrecisePositioning) return false;
 	if (m_bPreciseOrientation != p_Other.m_bPreciseOrientation) return false;
 	if (m_bIgnoreEndCollision != p_Other.m_bIgnoreEndCollision) return false;
@@ -13475,6 +13874,9 @@ bool SAnimatedActorOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAnimatedActorOrderSaveData::operator==(const SAnimatedActorOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAnimatedActorOrderSaveData>)
+		return false;
+
 	if (m_eOrderType != p_Other.m_eOrderType) return false;
 	if (m_OrderData != p_Other.m_OrderData) return false;
 
@@ -13664,6 +14066,9 @@ bool SAnimatedActorReactOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAnimatedActorReactOrderSaveData::operator==(const SAnimatedActorReactOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAnimatedActorReactOrderSaveData>)
+		return false;
+
 	if (m_vFaceTarget != p_Other.m_vFaceTarget) return false;
 	if (m_vLookAtTarget != p_Other.m_vLookAtTarget) return false;
 	if (m_rChildNetworkEntity != p_Other.m_rChildNetworkEntity) return false;
@@ -13736,6 +14141,9 @@ bool SAnimatedActorStandOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAnimatedActorStandOrderSaveData::operator==(const SAnimatedActorStandOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAnimatedActorStandOrderSaveData>)
+		return false;
+
 	if (m_vFacingDirection != p_Other.m_vFacingDirection) return false;
 
 	return true;
@@ -13841,6 +14249,9 @@ bool SAttentionHUDUIElement::Equals(void* p_Left, void* p_Right)
 
 bool SAttentionHUDUIElement::operator==(const SAttentionHUDUIElement& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAttentionHUDUIElement>)
+		return false;
+
 	if (fAngle != p_Other.fAngle) return false;
 	if (fAttention != p_Other.fAttention) return false;
 	if (fAlpha != p_Other.fAlpha) return false;
@@ -13929,6 +14340,9 @@ bool SAttentionHUDUIElementArray_Dummy::Equals(void* p_Left, void* p_Right)
 
 bool SAttentionHUDUIElementArray_Dummy::operator==(const SAttentionHUDUIElementArray_Dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAttentionHUDUIElementArray_Dummy>)
+		return false;
+
 	if (dummy != p_Other.dummy) return false;
 
 	return true;
@@ -14046,6 +14460,9 @@ bool SAudioEmitterEventSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAudioEmitterEventSaveData::operator==(const SAudioEmitterEventSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAudioEmitterEventSaveData>)
+		return false;
+
 	if (m_nEventId != p_Other.m_nEventId) return false;
 	if (m_bPaused != p_Other.m_bPaused) return false;
 	if (m_nFlags != p_Other.m_nFlags) return false;
@@ -14120,6 +14537,9 @@ bool SAudioEmitterRTPCSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAudioEmitterRTPCSaveData::operator==(const SAudioEmitterRTPCSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAudioEmitterRTPCSaveData>)
+		return false;
+
 	if (m_nParamId != p_Other.m_nParamId) return false;
 	if (m_fValue != p_Other.m_fValue) return false;
 
@@ -14214,6 +14634,9 @@ bool SAudioEmitterSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAudioEmitterSaveData::operator==(const SAudioEmitterSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAudioEmitterSaveData>)
+		return false;
+
 	if (m_rEmitter != p_Other.m_rEmitter) return false;
 	if (m_nNumberOfEvents != p_Other.m_nNumberOfEvents) return false;
 	if (m_nNumberOfRTPCs != p_Other.m_nNumberOfRTPCs) return false;
@@ -14286,6 +14709,9 @@ bool SAudioEmitterStateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAudioEmitterStateSaveData::operator==(const SAudioEmitterStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAudioEmitterStateSaveData>)
+		return false;
+
 	if (m_nGroupId != p_Other.m_nGroupId) return false;
 	if (m_nStateId != p_Other.m_nStateId) return false;
 
@@ -14356,6 +14782,9 @@ bool SAudioEmitterSwitchSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAudioEmitterSwitchSaveData::operator==(const SAudioEmitterSwitchSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAudioEmitterSwitchSaveData>)
+		return false;
+
 	if (m_nGroupId != p_Other.m_nGroupId) return false;
 	if (m_nStateId != p_Other.m_nStateId) return false;
 
@@ -14415,6 +14844,9 @@ bool ZResourceID::Equals(void* p_Left, void* p_Right)
 
 bool ZResourceID::operator==(const ZResourceID& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZResourceID>)
+		return false;
+
 	if (m_uri != p_Other.m_uri) return false;
 
 	return true;
@@ -14523,6 +14955,9 @@ bool SAudioMemoryMonitorEntry::Equals(void* p_Left, void* p_Right)
 
 bool SAudioMemoryMonitorEntry::operator==(const SAudioMemoryMonitorEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAudioMemoryMonitorEntry>)
+		return false;
+
 	if (shortId != p_Other.shortId) return false;
 	if (size != p_Other.size) return false;
 	if (references != p_Other.references) return false;
@@ -14841,6 +15276,9 @@ bool SAudioSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAudioSaveData::operator==(const SAudioSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAudioSaveData>)
+		return false;
+
 	if (m_aEmitters != p_Other.m_aEmitters) return false;
 	if (m_aEmitterEvents != p_Other.m_aEmitterEvents) return false;
 	if (m_aEmitterRTPCs != p_Other.m_aEmitterRTPCs) return false;
@@ -14945,6 +15383,9 @@ bool SFSMSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SFSMSaveData::operator==(const SFSMSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFSMSaveData>)
+		return false;
+
 	if (m_eStateStatus != p_Other.m_eStateStatus) return false;
 	if (m_state != p_Other.m_state) return false;
 	if (m_prevState != p_Other.m_prevState) return false;
@@ -15063,6 +15504,9 @@ bool SAvoidDangerousAreaGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SAvoidDangerousAreaGroupSaveData::operator==(const SAvoidDangerousAreaGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SAvoidDangerousAreaGroupSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_rDangerousArea != p_Other.m_rDangerousArea) return false;
 	if (m_vDestinationPoint != p_Other.m_vDestinationPoint) return false;
@@ -15137,6 +15581,9 @@ bool SBehaviorTreeEntityReference::Equals(void* p_Left, void* p_Right)
 
 bool SBehaviorTreeEntityReference::operator==(const SBehaviorTreeEntityReference& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeEntityReference>)
+		return false;
+
 	if (m_bList != p_Other.m_bList) return false;
 	if (m_sName != p_Other.m_sName) return false;
 
@@ -15219,6 +15666,9 @@ bool SBehaviorTreeEvaluationLogEntry::Equals(void* p_Left, void* p_Right)
 
 bool SBehaviorTreeEvaluationLogEntry::operator==(const SBehaviorTreeEvaluationLogEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeEvaluationLogEntry>)
+		return false;
+
 	if (m_nBehaviorTreeIndex != p_Other.m_nBehaviorTreeIndex) return false;
 	if (m_nConditionOffset != p_Other.m_nConditionOffset) return false;
 	if (m_bResult != p_Other.m_bResult) return false;
@@ -15344,6 +15794,9 @@ bool SBehaviorTreeEvaluationLog::Equals(void* p_Left, void* p_Right)
 
 bool SBehaviorTreeEvaluationLog::operator==(const SBehaviorTreeEvaluationLog& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeEvaluationLog>)
+		return false;
+
 	if (m_BehaviorTrees != p_Other.m_BehaviorTrees) return false;
 	if (m_Entries != p_Other.m_Entries) return false;
 
@@ -15403,6 +15856,9 @@ bool SBehaviorTreeInputPinCondition::Equals(void* p_Left, void* p_Right)
 
 bool SBehaviorTreeInputPinCondition::operator==(const SBehaviorTreeInputPinCondition& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeInputPinCondition>)
+		return false;
+
 	if (m_sName != p_Other.m_sName) return false;
 
 	return true;
@@ -15526,6 +15982,9 @@ bool SBehaviorTreeInfo::Equals(void* p_Left, void* p_Right)
 
 bool SBehaviorTreeInfo::operator==(const SBehaviorTreeInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeInfo>)
+		return false;
+
 	if (m_references != p_Other.m_references) return false;
 	if (m_inputPinConditions != p_Other.m_inputPinConditions) return false;
 
@@ -15602,6 +16061,9 @@ bool SBlobsConfigResourceEntry::Equals(void* p_Left, void* p_Right)
 
 bool SBlobsConfigResourceEntry::operator==(const SBlobsConfigResourceEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBlobsConfigResourceEntry>)
+		return false;
+
 	if (Id != p_Other.Id) return false;
 	if (BlobRid != p_Other.BlobRid) return false;
 
@@ -15696,6 +16158,9 @@ bool SBodyContainerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SBodyContainerSaveData::operator==(const SBodyContainerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBodyContainerSaveData>)
+		return false;
+
 	if (m_eBCState != p_Other.m_eBCState) return false;
 	if (m_fLidAutoCloseTime != p_Other.m_fLidAutoCloseTime) return false;
 	if (m_fLidOpenFraction != p_Other.m_fLidOpenFraction) return false;
@@ -15820,6 +16285,9 @@ bool SBodyContainersSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SBodyContainersSaveData::operator==(const SBodyContainersSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBodyContainersSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -16022,6 +16490,9 @@ bool SBodyPartDamageMultipliers::Equals(void* p_Left, void* p_Right)
 
 bool SBodyPartDamageMultipliers::operator==(const SBodyPartDamageMultipliers& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBodyPartDamageMultipliers>)
+		return false;
+
 	if (m_fHeadDamageMultiplier != p_Other.m_fHeadDamageMultiplier) return false;
 	if (m_fFaceDamageMultiplier != p_Other.m_fFaceDamageMultiplier) return false;
 	if (m_fArmDamageMultiplier != p_Other.m_fArmDamageMultiplier) return false;
@@ -16113,6 +16584,9 @@ bool SBodybagBoneSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SBodybagBoneSaveData::operator==(const SBodybagBoneSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBodybagBoneSaveData>)
+		return false;
+
 	if (mQuaterion != p_Other.mQuaterion) return false;
 	if (mTranslation != p_Other.mTranslation) return false;
 
@@ -16293,6 +16767,9 @@ bool SBodybagSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SBodybagSaveData::operator==(const SBodybagSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBodybagSaveData>)
+		return false;
+
 	if (m_vLinkedPosition != p_Other.m_vLinkedPosition) return false;
 	if (m_vLinkedQuaternionRotation != p_Other.m_vLinkedQuaternionRotation) return false;
 	if (m_aBones != p_Other.m_aBones) return false;
@@ -16367,6 +16844,9 @@ bool SBoneAttachSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SBoneAttachSaveData::operator==(const SBoneAttachSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBoneAttachSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_bIsAttached != p_Other.m_bIsAttached) return false;
 
@@ -16452,6 +16932,9 @@ bool SBoneScalesList::Equals(void* p_Left, void* p_Right)
 
 bool SBoneScalesList::operator==(const SBoneScalesList& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SBoneScalesList>)
+		return false;
+
 	if (m_aBoneScales != p_Other.m_aBoneScales) return false;
 
 	return true;
@@ -16521,6 +17004,9 @@ bool SCCEffectSet::Equals(void* p_Left, void* p_Right)
 
 bool SCCEffectSet::operator==(const SCCEffectSet& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCCEffectSet>)
+		return false;
+
 	if (m_eDecalEffect != p_Other.m_eDecalEffect) return false;
 	if (m_eEmitterEffect != p_Other.m_eEmitterEffect) return false;
 
@@ -16591,6 +17077,9 @@ bool SCamBone::Equals(void* p_Left, void* p_Right)
 
 bool SCamBone::operator==(const SCamBone& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCamBone>)
+		return false;
+
 	if (m_eBoneId != p_Other.m_eBoneId) return false;
 	if (m_fWeight != p_Other.m_fWeight) return false;
 
@@ -16776,6 +17265,9 @@ bool SCautiousBackupGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousBackupGroupSaveData::operator==(const SCautiousBackupGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousBackupGroupSaveData>)
+		return false;
+
 	if (m_eGroupState != p_Other.m_eGroupState) return false;
 	if (m_pLeader != p_Other.m_pLeader) return false;
 	if (m_nTargetNodeIndex != p_Other.m_nTargetNodeIndex) return false;
@@ -16979,6 +17471,9 @@ bool SCautiousHuntSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousHuntSaveData::operator==(const SCautiousHuntSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousHuntSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_tAnnounceHuntCoolDown != p_Other.m_tAnnounceHuntCoolDown) return false;
 	if (m_tAnnouncedHunt != p_Other.m_tAnnouncedHunt) return false;
@@ -17144,6 +17639,9 @@ bool SExactCompressedGridFloatField::Equals(void* p_Left, void* p_Right)
 
 bool SExactCompressedGridFloatField::operator==(const SExactCompressedGridFloatField& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExactCompressedGridFloatField>)
+		return false;
+
 	if (m_fInitialValue != p_Other.m_fInitialValue) return false;
 	if (m_nFieldSize != p_Other.m_nFieldSize) return false;
 	if (m_nGridCRC != p_Other.m_nGridCRC) return false;
@@ -17511,6 +18009,9 @@ bool SCautiousInvestigateGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousInvestigateGroupSaveData::operator==(const SCautiousInvestigateGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousInvestigateGroupSaveData>)
+		return false;
+
 	if (m_tGroupStarted != p_Other.m_tGroupStarted) return false;
 	if (m_target != p_Other.m_target) return false;
 	if (m_type != p_Other.m_type) return false;
@@ -17701,6 +18202,9 @@ bool SCompressedGridFloatField::Equals(void* p_Left, void* p_Right)
 
 bool SCompressedGridFloatField::operator==(const SCompressedGridFloatField& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCompressedGridFloatField>)
+		return false;
+
 	if (m_bIsSparse != p_Other.m_bIsSparse) return false;
 	if (m_nFieldSize != p_Other.m_nFieldSize) return false;
 	if (m_fInitialValue != p_Other.m_fInitialValue) return false;
@@ -17828,6 +18332,9 @@ bool SDisturbanceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDisturbanceSaveData::operator==(const SDisturbanceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDisturbanceSaveData>)
+		return false;
+
 	if (m_object != p_Other.m_object) return false;
 	if (m_type != p_Other.m_type) return false;
 	if (m_state != p_Other.m_state) return false;
@@ -18218,6 +18725,9 @@ bool ZInvestigateCautiousSituation_SStateData::Equals(void* p_Left, void* p_Righ
 
 bool ZInvestigateCautiousSituation_SStateData::operator==(const ZInvestigateCautiousSituation_SStateData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZInvestigateCautiousSituation_SStateData>)
+		return false;
+
 	if (m_state != p_Other.m_state) return false;
 	if (m_eBystanderState != p_Other.m_eBystanderState) return false;
 	if (m_tLastInvestigationEnded != p_Other.m_tLastInvestigationEnded) return false;
@@ -18822,6 +19332,9 @@ bool SCautiousInvestigateSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousInvestigateSituationSaveData::operator==(const SCautiousInvestigateSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousInvestigateSituationSaveData>)
+		return false;
+
 	if (m_StateData != p_Other.m_StateData) return false;
 	if (m_pGetHelpGroup != p_Other.m_pGetHelpGroup) return false;
 	if (m_pBackupGroup != p_Other.m_pBackupGroup) return false;
@@ -18967,6 +19480,9 @@ bool SCautiousSearchGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousSearchGroupSaveData::operator==(const SCautiousSearchGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousSearchGroupSaveData>)
+		return false;
+
 	if (m_searchNode != p_Other.m_searchNode) return false;
 	if (m_assistantApproachNode != p_Other.m_assistantApproachNode) return false;
 	if (m_eGroupState != p_Other.m_eGroupState) return false;
@@ -19215,6 +19731,9 @@ bool SCautiousSituationMemberSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousSituationMemberSaveData::operator==(const SCautiousSituationMemberSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousSituationMemberSaveData>)
+		return false;
+
 	if (m_tLastDisturbance != p_Other.m_tLastDisturbance) return false;
 	if (m_tLastSearchCalc != p_Other.m_tLastSearchCalc) return false;
 	if (m_tLastInfluenceCalc != p_Other.m_tLastInfluenceCalc) return false;
@@ -19290,6 +19809,9 @@ bool SCautiousVIPGroupState::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousVIPGroupState::operator==(const SCautiousVIPGroupState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousVIPGroupState>)
+		return false;
+
 	if (m_tMove != p_Other.m_tMove) return false;
 
 	return true;
@@ -19405,6 +19927,9 @@ bool SCautiousVIPGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCautiousVIPGroupSaveData::operator==(const SCautiousVIPGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousVIPGroupSaveData>)
+		return false;
+
 	if (m_vip != p_Other.m_vip) return false;
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_stateData != p_Other.m_stateData) return false;
@@ -19478,6 +20003,9 @@ bool SChairSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SChairSaveData::operator==(const SChairSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SChairSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_bAttached != p_Other.m_bAttached) return false;
 
@@ -19554,6 +20082,9 @@ bool SChallengeSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SChallengeSaveData::operator==(const SChallengeSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SChallengeSaveData>)
+		return false;
+
 	if (m_sId != p_Other.m_sId) return false;
 	if (m_State != p_Other.m_State) return false;
 
@@ -19639,6 +20170,9 @@ bool SChallengesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SChallengesSaveData::operator==(const SChallengesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SChallengesSaveData>)
+		return false;
+
 	if (m_mChallengeStates != p_Other.m_mChallengeStates) return false;
 
 	return true;
@@ -19720,6 +20254,9 @@ bool SCharacterSpeakEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCharacterSpeakEntitySaveData::operator==(const SCharacterSpeakEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCharacterSpeakEntitySaveData>)
+		return false;
+
 	if (m_fSeekPosition != p_Other.m_fSeekPosition) return false;
 	if (m_nRandomSelectionSeed != p_Other.m_nRandomSelectionSeed) return false;
 	if (m_bWereSubtitlesSeen != p_Other.m_bWereSubtitlesSeen) return false;
@@ -19839,6 +20376,9 @@ bool SCheckLastPositionGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCheckLastPositionGroupSaveData::operator==(const SCheckLastPositionGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCheckLastPositionGroupSaveData>)
+		return false;
+
 	if (m_pLeader != p_Other.m_pLeader) return false;
 	if (m_pAssistant != p_Other.m_pAssistant) return false;
 	if (m_nLeaderTargetNodeIndex != p_Other.m_nLeaderTargetNodeIndex) return false;
@@ -19976,6 +20516,9 @@ bool SClothBundleSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SClothBundleSaveData::operator==(const SClothBundleSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SClothBundleSaveData>)
+		return false;
+
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_vQuaternion != p_Other.m_vQuaternion) return false;
 	if (m_OutfitID != p_Other.m_OutfitID) return false;
@@ -20038,6 +20581,9 @@ bool SClothBundleSpawnSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SClothBundleSpawnSaveData::operator==(const SClothBundleSpawnSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SClothBundleSpawnSaveData>)
+		return false;
+
 	if (m_rClothbundle != p_Other.m_rClothbundle) return false;
 
 	return true;
@@ -20107,6 +20653,9 @@ bool SClothVertex::Equals(void* p_Left, void* p_Right)
 
 bool SClothVertex::operator==(const SClothVertex& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SClothVertex>)
+		return false;
+
 	if (m_nColumn != p_Other.m_nColumn) return false;
 	if (m_nRow != p_Other.m_nRow) return false;
 
@@ -20201,6 +20750,9 @@ bool SClothWireEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SClothWireEntitySaveData::operator==(const SClothWireEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SClothWireEntitySaveData>)
+		return false;
+
 	if (m_fWireLength != p_Other.m_fWireLength) return false;
 	if (m_bAttachToAnchorTransform != p_Other.m_bAttachToAnchorTransform) return false;
 	if (m_bSimulationEnabled != p_Other.m_bSimulationEnabled) return false;
@@ -20324,6 +20876,9 @@ bool SCollidingParticle::Equals(void* p_Left, void* p_Right)
 
 bool SCollidingParticle::operator==(const SCollidingParticle& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCollidingParticle>)
+		return false;
+
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_vVelocity != p_Other.m_vVelocity) return false;
 	if (m_vNewVelocity != p_Other.m_vNewVelocity) return false;
@@ -20397,6 +20952,9 @@ bool SCollisionControllerAspectSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCollisionControllerAspectSaveData::operator==(const SCollisionControllerAspectSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCollisionControllerAspectSaveData>)
+		return false;
+
 	if (m_bCollideHitman != p_Other.m_bCollideHitman) return false;
 	if (m_bCollideCamera != p_Other.m_bCollideCamera) return false;
 
@@ -20519,6 +21077,9 @@ bool SCollisionControllerAspectsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCollisionControllerAspectsSaveData::operator==(const SCollisionControllerAspectsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCollisionControllerAspectsSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -20601,6 +21162,9 @@ bool SColorRGB::Equals(void* p_Left, void* p_Right)
 
 bool SColorRGB::operator==(const SColorRGB& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SColorRGB>)
+		return false;
+
 	if (r != p_Other.r) return false;
 	if (g != p_Other.g) return false;
 	if (b != p_Other.b) return false;
@@ -20696,6 +21260,9 @@ bool SColorRGBA::Equals(void* p_Left, void* p_Right)
 
 bool SColorRGBA::operator==(const SColorRGBA& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SColorRGBA>)
+		return false;
+
 	if (r != p_Other.r) return false;
 	if (g != p_Other.g) return false;
 	if (b != p_Other.b) return false;
@@ -20820,6 +21387,9 @@ bool SColorRGBSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SColorRGBSaveData::operator==(const SColorRGBSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SColorRGBSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -20907,6 +21477,9 @@ bool SCombatOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCombatOrderSaveData::operator==(const SCombatOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCombatOrderSaveData>)
+		return false;
+
 	if (m_vPos != p_Other.m_vPos) return false;
 	if (m_coverPlane != p_Other.m_coverPlane) return false;
 	if (m_rInteraction != p_Other.m_rInteraction) return false;
@@ -21062,6 +21635,9 @@ bool SCombatSituationMemberSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCombatSituationMemberSaveData::operator==(const SCombatSituationMemberSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCombatSituationMemberSaveData>)
+		return false;
+
 	if (m_fDistanceToTarget != p_Other.m_fDistanceToTarget) return false;
 	if (m_fDistanceFieldValue != p_Other.m_fDistanceFieldValue) return false;
 	if (m_civilianJoinReason != p_Other.m_civilianJoinReason) return false;
@@ -21202,6 +21778,9 @@ bool SCombatZoneEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCombatZoneEntitySaveData::operator==(const SCombatZoneEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCombatZoneEntitySaveData>)
+		return false;
+
 	if (m_bIsInLockdown != p_Other.m_bIsInLockdown) return false;
 	if (m_bIsFalseAlarm != p_Other.m_bIsFalseAlarm) return false;
 	if (m_nState != p_Other.m_nState) return false;
@@ -21276,6 +21855,9 @@ bool SComboDeviceBinding::Equals(void* p_Left, void* p_Right)
 
 bool SComboDeviceBinding::operator==(const SComboDeviceBinding& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SComboDeviceBinding>)
+		return false;
+
 	if (type != p_Other.type) return false;
 	if (button != p_Other.button) return false;
 
@@ -21324,6 +21906,9 @@ bool ZBehaviorTreeVariable::Equals(void* p_Left, void* p_Right)
 
 bool ZBehaviorTreeVariable::operator==(const ZBehaviorTreeVariable& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZBehaviorTreeVariable>)
+		return false;
+
 
 	return true;
 }
@@ -21409,6 +21994,9 @@ bool SConditionBase::Equals(void* p_Left, void* p_Right)
 
 bool SConditionBase::operator==(const SConditionBase& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SConditionBase>)
+		return false;
+
 	if (eConditionType != p_Other.eConditionType) return false;
 	if (nConditionModifiers != p_Other.nConditionModifiers) return false;
 	if (assignTo != p_Other.assignTo) return false;
@@ -21504,6 +22092,9 @@ bool SConditionalTimerEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SConditionalTimerEntitySaveData::operator==(const SConditionalTimerEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SConditionalTimerEntitySaveData>)
+		return false;
+
 	if (m_nInterval != p_Other.m_nInterval) return false;
 	if (m_nRemaining != p_Other.m_nRemaining) return false;
 	if (m_bActive != p_Other.m_bActive) return false;
@@ -21673,6 +22264,9 @@ bool SInventoryItem::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryItem::operator==(const SInventoryItem& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryItem>)
+		return false;
+
 	if (sInstanceId != p_Other.sInstanceId) return false;
 	if (sUnlockableId != p_Other.sUnlockableId) return false;
 	if (repositoryId != p_Other.repositoryId) return false;
@@ -21752,6 +22346,9 @@ bool SContainerItemInfo::Equals(void* p_Left, void* p_Right)
 
 bool SContainerItemInfo::operator==(const SContainerItemInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SContainerItemInfo>)
+		return false;
+
 	if (m_sContainerInstanceId != p_Other.m_sContainerInstanceId) return false;
 	if (m_concealedItem != p_Other.m_concealedItem) return false;
 
@@ -21834,6 +22431,9 @@ bool SContextActionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SContextActionSaveData::operator==(const SContextActionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SContextActionSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_bTriggered != p_Other.m_bTriggered) return false;
 	if (m_bShouldShow != p_Other.m_bShouldShow) return false;
@@ -21911,6 +22511,9 @@ bool SContractConfigResourceEntry::Equals(void* p_Left, void* p_Right)
 
 bool SContractConfigResourceEntry::operator==(const SContractConfigResourceEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SContractConfigResourceEntry>)
+		return false;
+
 	if (Id != p_Other.Id) return false;
 	if (ContractRid != p_Other.ContractRid) return false;
 
@@ -21969,6 +22572,9 @@ bool SContractObjectiveHudHintEntitySaveData::Equals(void* p_Left, void* p_Right
 
 bool SContractObjectiveHudHintEntitySaveData::operator==(const SContractObjectiveHudHintEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SContractObjectiveHudHintEntitySaveData>)
+		return false;
+
 	if (m_bVisible != p_Other.m_bVisible) return false;
 
 	return true;
@@ -22472,6 +23078,9 @@ bool SContractObjectiveSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SContractObjectiveSaveData::operator==(const SContractObjectiveSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SContractObjectiveSaveData>)
+		return false;
+
 	if (m_Id != p_Other.m_Id) return false;
 	if (m_sText != p_Other.m_sText) return false;
 	if (m_eCategory != p_Other.m_eCategory) return false;
@@ -23077,6 +23686,9 @@ bool SContractObjectiveStateMachineSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SContractObjectiveStateMachineSaveData::operator==(const SContractObjectiveStateMachineSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SContractObjectiveStateMachineSaveData>)
+		return false;
+
 	if (m_Id != p_Other.m_Id) return false;
 	if (m_eCategory != p_Other.m_eCategory) return false;
 	if (m_sBriefingText != p_Other.m_sBriefingText) return false;
@@ -23181,6 +23793,9 @@ bool SConversationEntry::Equals(void* p_Left, void* p_Right)
 
 bool SConversationEntry::operator==(const SConversationEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SConversationEntry>)
+		return false;
+
 	if (m_role != p_Other.m_role) return false;
 	if (m_sound != p_Other.m_sound) return false;
 
@@ -23278,6 +23893,9 @@ bool SConversationPart::Equals(void* p_Left, void* p_Right)
 
 bool SConversationPart::operator==(const SConversationPart& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SConversationPart>)
+		return false;
+
 	if (m_chance != p_Other.m_chance) return false;
 	if (m_entries != p_Other.m_entries) return false;
 
@@ -23363,6 +23981,9 @@ bool SEntityTemplateProperty::Equals(void* p_Left, void* p_Right)
 
 bool SEntityTemplateProperty::operator==(const SEntityTemplateProperty& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplateProperty>)
+		return false;
+
 	if (nPropertyID != p_Other.nPropertyID) return false;
 	if (value != p_Other.value) return false;
 
@@ -23460,6 +24081,9 @@ bool SCppEntity::Equals(void* p_Left, void* p_Right)
 
 bool SCppEntity::operator==(const SCppEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCppEntity>)
+		return false;
+
 	if (blueprintIndexInResourceHeader != p_Other.blueprintIndexInResourceHeader) return false;
 	if (propertyValues != p_Other.propertyValues) return false;
 
@@ -23531,6 +24155,9 @@ bool SCppEntitySubsetInfo::Equals(void* p_Left, void* p_Right)
 
 bool SCppEntitySubsetInfo::operator==(const SCppEntitySubsetInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCppEntitySubsetInfo>)
+		return false;
+
 	if (name != p_Other.name) return false;
 	if (flags != p_Other.flags) return false;
 
@@ -23645,6 +24272,9 @@ bool SCppEntityBlueprint::Equals(void* p_Left, void* p_Right)
 
 bool SCppEntityBlueprint::operator==(const SCppEntityBlueprint& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCppEntityBlueprint>)
+		return false;
+
 	if (typeName != p_Other.typeName) return false;
 	if (typeFlags != p_Other.typeFlags) return false;
 	if (subsets != p_Other.subsets) return false;
@@ -23793,6 +24423,9 @@ bool SRunningCrowdAIEventSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRunningCrowdAIEventSaveData::operator==(const SRunningCrowdAIEventSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRunningCrowdAIEventSaveData>)
+		return false;
+
 	if (m_ReactionEntity != p_Other.m_ReactionEntity) return false;
 	if (m_CrowdEntity != p_Other.m_CrowdEntity) return false;
 	if (m_HitmanToBlame != p_Other.m_HitmanToBlame) return false;
@@ -23884,6 +24517,9 @@ bool SCrowdAIEventSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdAIEventSaveData::operator==(const SCrowdAIEventSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdAIEventSaveData>)
+		return false;
+
 	if (m_RunningEvents != p_Other.m_RunningEvents) return false;
 
 	return true;
@@ -23977,6 +24613,9 @@ bool SCrowdActivitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdActivitySaveData::operator==(const SCrowdActivitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdActivitySaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_eGait != p_Other.m_eGait) return false;
 	if (m_nMaxEnterDelaySec != p_Other.m_nMaxEnterDelaySec) return false;
@@ -24143,6 +24782,9 @@ bool SCrowdActorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdActorSaveData::operator==(const SCrowdActorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdActorSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_eWantedSpeed != p_Other.m_eWantedSpeed) return false;
 	if (m_eWantedGait != p_Other.m_eWantedGait) return false;
@@ -24322,6 +24964,9 @@ bool SCrowdBodySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdBodySaveData::operator==(const SCrowdBodySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdBodySaveData>)
+		return false;
+
 	if (m_pCorpseBodybagEntity != p_Other.m_pCorpseBodybagEntity) return false;
 	if (m_rCrowdEntity != p_Other.m_rCrowdEntity) return false;
 	if (m_iActorIndex != p_Other.m_iActorIndex) return false;
@@ -24415,6 +25060,9 @@ bool SCrowdCells::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdCells::operator==(const SCrowdCells& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdCells>)
+		return false;
+
 	if (m_cells != p_Other.m_cells) return false;
 
 	return true;
@@ -24494,6 +25142,9 @@ bool SCrowdPoseBoneSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdPoseBoneSaveData::operator==(const SCrowdPoseBoneSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdPoseBoneSaveData>)
+		return false;
+
 	if (mQuaterion != p_Other.mQuaterion) return false;
 	if (mTranslation != p_Other.mTranslation) return false;
 
@@ -24579,6 +25230,9 @@ bool SCrowdPoseSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdPoseSaveData::operator==(const SCrowdPoseSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdPoseSaveData>)
+		return false;
+
 	if (m_aBones != p_Other.m_aBones) return false;
 
 	return true;
@@ -24675,6 +25329,9 @@ bool SCrowdPoseCollectionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdPoseCollectionSaveData::operator==(const SCrowdPoseCollectionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdPoseCollectionSaveData>)
+		return false;
+
 	if (m_id != p_Other.m_id) return false;
 	if (m_aPoses != p_Other.m_aPoses) return false;
 
@@ -24760,6 +25417,9 @@ bool SCrowdDeadPoseRepositorySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdDeadPoseRepositorySaveData::operator==(const SCrowdDeadPoseRepositorySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdDeadPoseRepositorySaveData>)
+		return false;
+
 	if (m_aPoseCollections != p_Other.m_aPoseCollections) return false;
 
 	return true;
@@ -24930,6 +25590,9 @@ bool SRegionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRegionSaveData::operator==(const SRegionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRegionSaveData>)
+		return false;
+
 	if (m_nIndex != p_Other.m_nIndex) return false;
 	if (m_eType != p_Other.m_eType) return false;
 	if (m_vCenter != p_Other.m_vCenter) return false;
@@ -25165,6 +25828,9 @@ bool SCrowdEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdEntitySaveData::operator==(const SCrowdEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdEntitySaveData>)
+		return false;
+
 	if (m_CrowdActorData != p_Other.m_CrowdActorData) return false;
 	if (m_RegionData != p_Other.m_RegionData) return false;
 	if (m_bIsCrowdAmbient != p_Other.m_bIsCrowdAmbient) return false;
@@ -25289,6 +25955,9 @@ bool SCrowdFlowChannel::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdFlowChannel::operator==(const SCrowdFlowChannel& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdFlowChannel>)
+		return false;
+
 	if (m_aFlowVectorIndex != p_Other.m_aFlowVectorIndex) return false;
 	if (m_aFlowCost != p_Other.m_aFlowCost) return false;
 
@@ -25359,6 +26028,9 @@ bool ZCrowdGridPoint::Equals(void* p_Left, void* p_Right)
 
 bool ZCrowdGridPoint::operator==(const ZCrowdGridPoint& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZCrowdGridPoint>)
+		return false;
+
 	if (m_nHeightOffset != p_Other.m_nHeightOffset) return false;
 	if (m_nOnNavGrid != p_Other.m_nOnNavGrid) return false;
 
@@ -25732,6 +26404,9 @@ bool SCrowdMapData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdMapData::operator==(const SCrowdMapData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdMapData>)
+		return false;
+
 	if (m_nVersion != p_Other.m_nVersion) return false;
 	if (m_vCellConsts != p_Other.m_vCellConsts) return false;
 	if (m_nGridSizeX != p_Other.m_nGridSizeX) return false;
@@ -25853,6 +26528,9 @@ bool SCrowdReactionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdReactionSaveData::operator==(const SCrowdReactionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdReactionSaveData>)
+		return false;
+
 	if (m_nNumPacify != p_Other.m_nNumPacify) return false;
 	if (m_nNumShotsFired != p_Other.m_nNumShotsFired) return false;
 	if (m_nNumDeaths != p_Other.m_nNumDeaths) return false;
@@ -26015,6 +26693,9 @@ bool SCrowdServiceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCrowdServiceSaveData::operator==(const SCrowdServiceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdServiceSaveData>)
+		return false;
+
 	if (m_aDeadBodies != p_Other.m_aDeadBodies) return false;
 	if (m_aPerceptiblePool != p_Other.m_aPerceptiblePool) return false;
 	if (m_aPerceptibleActors != p_Other.m_aPerceptibleActors) return false;
@@ -26091,6 +26772,9 @@ bool SCuriousEventSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCuriousEventSaveData::operator==(const SCuriousEventSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCuriousEventSaveData>)
+		return false;
+
 	if (m_tExpiresAt != p_Other.m_tExpiresAt) return false;
 	if (m_nKnowledgeIndex != p_Other.m_nKnowledgeIndex) return false;
 
@@ -26176,6 +26860,9 @@ bool SCuriousEventServiceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SCuriousEventServiceSaveData::operator==(const SCuriousEventServiceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SCuriousEventServiceSaveData>)
+		return false;
+
 	if (m_aCuriousEvents != p_Other.m_aCuriousEvents) return false;
 
 	return true;
@@ -26233,6 +26920,9 @@ bool SDangerousAreaSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDangerousAreaSaveData::operator==(const SDangerousAreaSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDangerousAreaSaveData>)
+		return false;
+
 	if (m_bDangerous != p_Other.m_bDangerous) return false;
 
 	return true;
@@ -26469,6 +27159,9 @@ bool SDeadBodyInfoSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDeadBodyInfoSaveData::operator==(const SDeadBodyInfoSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDeadBodyInfoSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_rGuard != p_Other.m_rGuard) return false;
 	if (m_knownByActors != p_Other.m_knownByActors) return false;
@@ -26577,6 +27270,9 @@ bool SDeadBodySensorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDeadBodySensorSaveData::operator==(const SDeadBodySensorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDeadBodySensorSaveData>)
+		return false;
+
 	if (m_aBodies != p_Other.m_aBodies) return false;
 	if (m_nBodyIndex != p_Other.m_nBodyIndex) return false;
 
@@ -26647,6 +27343,9 @@ bool SVector2::Equals(void* p_Left, void* p_Right)
 
 bool SVector2::operator==(const SVector2& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVector2>)
+		return false;
+
 	if (x != p_Other.x) return false;
 	if (y != p_Other.y) return false;
 
@@ -26860,6 +27559,9 @@ bool SDecalSpawnSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDecalSpawnSaveData::operator==(const SDecalSpawnSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDecalSpawnSaveData>)
+		return false;
+
 	if (m_bWasSpawned != p_Other.m_bWasSpawned) return false;
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_vNormal != p_Other.m_vNormal) return false;
@@ -26927,6 +27629,9 @@ bool SDestructibleInteractionHandlerData::Equals(void* p_Left, void* p_Right)
 
 bool SDestructibleInteractionHandlerData::operator==(const SDestructibleInteractionHandlerData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDestructibleInteractionHandlerData>)
+		return false;
+
 	if (m_fSettleTime != p_Other.m_fSettleTime) return false;
 
 	return true;
@@ -27096,6 +27801,9 @@ bool SDestructiblePieceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDestructiblePieceSaveData::operator==(const SDestructiblePieceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDestructiblePieceSaveData>)
+		return false;
+
 	if (m_mTransform != p_Other.m_mTransform) return false;
 	if (m_aIndices != p_Other.m_aIndices) return false;
 	if (m_fMass != p_Other.m_fMass) return false;
@@ -27196,6 +27904,9 @@ bool SDestructibleRuntimeConnnection::Equals(void* p_Left, void* p_Right)
 
 bool SDestructibleRuntimeConnnection::operator==(const SDestructibleRuntimeConnnection& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDestructibleRuntimeConnnection>)
+		return false;
+
 	if (m_nPieceIndex != p_Other.m_nPieceIndex) return false;
 	if (m_aConnections != p_Other.m_aConnections) return false;
 
@@ -27266,6 +27977,9 @@ bool SDestructibleRuntimeDamage::Equals(void* p_Left, void* p_Right)
 
 bool SDestructibleRuntimeDamage::operator==(const SDestructibleRuntimeDamage& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDestructibleRuntimeDamage>)
+		return false;
+
 	if (m_nPieceIndex != p_Other.m_nPieceIndex) return false;
 	if (m_fDamage != p_Other.m_fDamage) return false;
 
@@ -27530,6 +28244,9 @@ bool SDestructibleObjectSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDestructibleObjectSaveData::operator==(const SDestructibleObjectSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDestructibleObjectSaveData>)
+		return false;
+
 	if (m_interactionData != p_Other.m_interactionData) return false;
 	if (m_aDestructiblePieces != p_Other.m_aDestructiblePieces) return false;
 	if (m_aConnectionData != p_Other.m_aConnectionData) return false;
@@ -27662,6 +28379,9 @@ bool SDetectedInPrivateGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDetectedInPrivateGroupSaveData::operator==(const SDetectedInPrivateGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDetectedInPrivateGroupSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_fTimeWaiting != p_Other.m_fTimeWaiting) return false;
 	if (m_rLead != p_Other.m_rLead) return false;
@@ -27724,6 +28444,9 @@ bool SDisguiseZoneSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDisguiseZoneSaveData::operator==(const SDisguiseZoneSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDisguiseZoneSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 
 	return true;
@@ -27822,6 +28545,9 @@ bool SDoorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDoorSaveData::operator==(const SDoorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDoorSaveData>)
+		return false;
+
 	if (m_nDoorState != p_Other.m_nDoorState) return false;
 	if (m_fAnimPercent != p_Other.m_fAnimPercent) return false;
 	if (m_fTargetAnimPercent != p_Other.m_fTargetAnimPercent) return false;
@@ -27872,6 +28598,9 @@ bool SDoorSoundDefs::Equals(void* p_Left, void* p_Right)
 
 bool SDoorSoundDefs::operator==(const SDoorSoundDefs& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDoorSoundDefs>)
+		return false;
+
 
 	return true;
 }
@@ -27992,6 +28721,9 @@ bool SDoorsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDoorsSaveData::operator==(const SDoorsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDoorsSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -28200,6 +28932,9 @@ bool SDrama2ActorSaveState::Equals(void* p_Left, void* p_Right)
 
 bool SDrama2ActorSaveState::operator==(const SDrama2ActorSaveState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDrama2ActorSaveState>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_rSequence != p_Other.m_rSequence) return false;
 	if (m_rBehavior != p_Other.m_rBehavior) return false;
@@ -28333,6 +29068,9 @@ bool SDrama2ActorCollectionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDrama2ActorCollectionSaveData::operator==(const SDrama2ActorCollectionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDrama2ActorCollectionSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aStates != p_Other.m_aStates) return false;
 
@@ -28415,6 +29153,9 @@ bool SDrama2SetupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDrama2SetupSaveData::operator==(const SDrama2SetupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDrama2SetupSaveData>)
+		return false;
+
 	if (m_bDoneTriggered != p_Other.m_bDoneTriggered) return false;
 	if (m_eState != p_Other.m_eState) return false;
 	if (m_rSituation != p_Other.m_rSituation) return false;
@@ -28538,6 +29279,9 @@ bool SDrama2SetupCollectionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDrama2SetupCollectionSaveData::operator==(const SDrama2SetupCollectionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDrama2SetupCollectionSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aStates != p_Other.m_aStates) return false;
 
@@ -28668,6 +29412,9 @@ bool SDrama2SituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDrama2SituationSaveData::operator==(const SDrama2SituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDrama2SituationSaveData>)
+		return false;
+
 	if (m_nPriorityModifier != p_Other.m_nPriorityModifier) return false;
 	if (m_nCurrentDrama != p_Other.m_nCurrentDrama) return false;
 	if (m_nDoneTime != p_Other.m_nDoneTime) return false;
@@ -28795,6 +29542,9 @@ bool SDrama2SituationCollectionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDrama2SituationCollectionSaveData::operator==(const SDrama2SituationCollectionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDrama2SituationCollectionSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aStates != p_Other.m_aStates) return false;
 
@@ -28967,6 +29717,9 @@ bool SDramaActorSaveState::Equals(void* p_Left, void* p_Right)
 
 bool SDramaActorSaveState::operator==(const SDramaActorSaveState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDramaActorSaveState>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_rSequence != p_Other.m_rSequence) return false;
 	if (m_rBehavior != p_Other.m_rBehavior) return false;
@@ -29097,6 +29850,9 @@ bool SDramaActorCollectionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDramaActorCollectionSaveData::operator==(const SDramaActorCollectionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDramaActorCollectionSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aStates != p_Other.m_aStates) return false;
 
@@ -29167,6 +29923,9 @@ bool SDramaControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDramaControllerSaveData::operator==(const SDramaControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDramaControllerSaveData>)
+		return false;
+
 	if (m_bIsStartCondValid != p_Other.m_bIsStartCondValid) return false;
 	if (m_bIsEnableCondValid != p_Other.m_bIsEnableCondValid) return false;
 
@@ -29249,6 +30008,9 @@ bool SDramaSetupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDramaSetupSaveData::operator==(const SDramaSetupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDramaSetupSaveData>)
+		return false;
+
 	if (m_bDoneTriggered != p_Other.m_bDoneTriggered) return false;
 	if (m_eState != p_Other.m_eState) return false;
 	if (m_rSituation != p_Other.m_rSituation) return false;
@@ -29372,6 +30134,9 @@ bool SDramaSetupCollectionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDramaSetupCollectionSaveData::operator==(const SDramaSetupCollectionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDramaSetupCollectionSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aStates != p_Other.m_aStates) return false;
 
@@ -29478,6 +30243,9 @@ bool SDramaSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDramaSituationSaveData::operator==(const SDramaSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDramaSituationSaveData>)
+		return false;
+
 	if (m_bSituationRunning != p_Other.m_bSituationRunning) return false;
 	if (m_bIsTerminated != p_Other.m_bIsTerminated) return false;
 	if (m_nPriorityModifier != p_Other.m_nPriorityModifier) return false;
@@ -29603,6 +30371,9 @@ bool SDramaSituationCollectionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDramaSituationCollectionSaveData::operator==(const SDramaSituationCollectionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDramaSituationCollectionSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aStates != p_Other.m_aStates) return false;
 
@@ -29702,6 +30473,9 @@ bool SDynamicEnforcerCandidateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDynamicEnforcerCandidateSaveData::operator==(const SDynamicEnforcerCandidateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDynamicEnforcerCandidateSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_eType != p_Other.m_eType) return false;
@@ -29789,6 +30563,9 @@ bool SDynamicEnforcerServiceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDynamicEnforcerServiceSaveData::operator==(const SDynamicEnforcerServiceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDynamicEnforcerServiceSaveData>)
+		return false;
+
 	if (m_aCandidates != p_Other.m_aCandidates) return false;
 
 	return true;
@@ -29864,6 +30641,9 @@ bool SDynamicObjectKeyValuePair::Equals(void* p_Left, void* p_Right)
 
 bool SDynamicObjectKeyValuePair::operator==(const SDynamicObjectKeyValuePair& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDynamicObjectKeyValuePair>)
+		return false;
+
 	if (sKey != p_Other.sKey) return false;
 	if (value != p_Other.value) return false;
 
@@ -29946,6 +30726,9 @@ bool SDynamicRayCastEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SDynamicRayCastEntitySaveData::operator==(const SDynamicRayCastEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SDynamicRayCastEntitySaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_bIsRayIntersecting != p_Other.m_bIsRayIntersecting) return false;
 	if (m_bIsCurrentlyEnabled != p_Other.m_bIsCurrentlyEnabled) return false;
@@ -30042,6 +30825,9 @@ bool SEntityPath::Equals(void* p_Left, void* p_Right)
 
 bool SEntityPath::operator==(const SEntityPath& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityPath>)
+		return false;
+
 	if (m_nOwnerID != p_Other.m_nOwnerID) return false;
 	if (m_aEntityPath != p_Other.m_aEntityPath) return false;
 
@@ -30168,6 +30954,9 @@ bool SEntityPinDescriptor::Equals(void* p_Left, void* p_Right)
 
 bool SEntityPinDescriptor::operator==(const SEntityPinDescriptor& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityPinDescriptor>)
+		return false;
+
 	if (sName != p_Other.sName) return false;
 	if (sDisplayName != p_Other.sDisplayName) return false;
 	if (type != p_Other.type) return false;
@@ -30255,6 +31044,9 @@ bool SEntityTemplateEntitySubset::Equals(void* p_Left, void* p_Right)
 
 bool SEntityTemplateEntitySubset::operator==(const SEntityTemplateEntitySubset& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplateEntitySubset>)
+		return false;
+
 	if (entities != p_Other.entities) return false;
 
 	return true;
@@ -30349,6 +31141,9 @@ bool SEntityTemplateReference::Equals(void* p_Left, void* p_Right)
 
 bool SEntityTemplateReference::operator==(const SEntityTemplateReference& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplateReference>)
+		return false;
+
 	if (entityID != p_Other.entityID) return false;
 	if (externalSceneIndex != p_Other.externalSceneIndex) return false;
 	if (entityIndex != p_Other.entityIndex) return false;
@@ -30461,6 +31256,9 @@ bool SEntityTemplateExposedEntity::Equals(void* p_Left, void* p_Right)
 
 bool SEntityTemplateExposedEntity::operator==(const SEntityTemplateExposedEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplateExposedEntity>)
+		return false;
+
 	if (sName != p_Other.sName) return false;
 	if (bIsArray != p_Other.bIsArray) return false;
 	if (aTargets != p_Other.aTargets) return false;
@@ -30575,6 +31373,9 @@ bool SEntityTemplatePinConnection::Equals(void* p_Left, void* p_Right)
 
 bool SEntityTemplatePinConnection::operator==(const SEntityTemplatePinConnection& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplatePinConnection>)
+		return false;
+
 	if (fromID != p_Other.fromID) return false;
 	if (toID != p_Other.toID) return false;
 	if (fromPinName != p_Other.fromPinName) return false;
@@ -30665,6 +31466,9 @@ bool SEntityTemplatePlatformSpecificProperty::Equals(void* p_Left, void* p_Right
 
 bool SEntityTemplatePlatformSpecificProperty::operator==(const SEntityTemplatePlatformSpecificProperty& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplatePlatformSpecificProperty>)
+		return false;
+
 	if (propertyValue != p_Other.propertyValue) return false;
 	if (platform != p_Other.platform) return false;
 	if (postInit != p_Other.postInit) return false;
@@ -30750,6 +31554,9 @@ bool SEntityTemplatePropertyAlias::Equals(void* p_Left, void* p_Right)
 
 bool SEntityTemplatePropertyAlias::operator==(const SEntityTemplatePropertyAlias& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplatePropertyAlias>)
+		return false;
+
 	if (sAliasName != p_Other.sAliasName) return false;
 	if (entityID != p_Other.entityID) return false;
 	if (sPropertyName != p_Other.sPropertyName) return false;
@@ -30831,6 +31638,9 @@ bool SEntityTemplatePropertyOverride::Equals(void* p_Left, void* p_Right)
 
 bool SEntityTemplatePropertyOverride::operator==(const SEntityTemplatePropertyOverride& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplatePropertyOverride>)
+		return false;
+
 	if (propertyOwner != p_Other.propertyOwner) return false;
 	if (propertyValue != p_Other.propertyValue) return false;
 
@@ -30958,6 +31768,9 @@ bool SEnvironmentConfigResourceEntry::Equals(void* p_Left, void* p_Right)
 
 bool SEnvironmentConfigResourceEntry::operator==(const SEnvironmentConfigResourceEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEnvironmentConfigResourceEntry>)
+		return false;
+
 	if (Name != p_Other.Name) return false;
 	if (ContractsDatastoreRid != p_Other.ContractsDatastoreRid) return false;
 	if (UnlockablesDatastoreRid != p_Other.UnlockablesDatastoreRid) return false;
@@ -31046,6 +31859,9 @@ bool SEnvironmentConfigResource::Equals(void* p_Left, void* p_Right)
 
 bool SEnvironmentConfigResource::operator==(const SEnvironmentConfigResource& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEnvironmentConfigResource>)
+		return false;
+
 	if (Environments != p_Other.Environments) return false;
 
 	return true;
@@ -31294,6 +32110,9 @@ bool SEscortOutBehaviorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEscortOutBehaviorSaveData::operator==(const SEscortOutBehaviorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortOutBehaviorSaveData>)
+		return false;
+
 	if (m_nSituation != p_Other.m_nSituation) return false;
 	if (m_bConversationHelperPaused != p_Other.m_bConversationHelperPaused) return false;
 	if (m_fsm != p_Other.m_fsm) return false;
@@ -31391,6 +32210,9 @@ bool SEscortOutOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEscortOutOrderSaveData::operator==(const SEscortOutOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortOutOrderSaveData>)
+		return false;
+
 	if (m_aExitPoints != p_Other.m_aExitPoints) return false;
 
 	return true;
@@ -31520,6 +32342,9 @@ bool SEscortSituation2ActorStateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEscortSituation2ActorStateSaveData::operator==(const SEscortSituation2ActorStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortSituation2ActorStateSaveData>)
+		return false;
+
 	if (m_nID != p_Other.m_nID) return false;
 	if (m_bAllocatedForSituation != p_Other.m_bAllocatedForSituation) return false;
 	if (m_eState != p_Other.m_eState) return false;
@@ -31583,6 +32408,9 @@ bool SEscortSituation2Actors::Equals(void* p_Left, void* p_Right)
 
 bool SEscortSituation2Actors::operator==(const SEscortSituation2Actors& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortSituation2Actors>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -31965,6 +32793,9 @@ bool SEscortSituation2SaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEscortSituation2SaveData::operator==(const SEscortSituation2SaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortSituation2SaveData>)
+		return false;
+
 	if (m_bActivated != p_Other.m_bActivated) return false;
 	if (m_bMayEscort != p_Other.m_bMayEscort) return false;
 	if (m_bTargetDead != p_Other.m_bTargetDead) return false;
@@ -32112,6 +32943,9 @@ bool SEscortSituationActorStateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEscortSituationActorStateSaveData::operator==(const SEscortSituationActorStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortSituationActorStateSaveData>)
+		return false;
+
 	if (m_nID != p_Other.m_nID) return false;
 	if (m_bAllocatedForSituation != p_Other.m_bAllocatedForSituation) return false;
 	if (m_eState != p_Other.m_eState) return false;
@@ -32175,6 +33009,9 @@ bool SEscortSituationActors::Equals(void* p_Left, void* p_Right)
 
 bool SEscortSituationActors::operator==(const SEscortSituationActors& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortSituationActors>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -32557,6 +33394,9 @@ bool SEscortSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEscortSituationSaveData::operator==(const SEscortSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEscortSituationSaveData>)
+		return false;
+
 	if (m_bActivated != p_Other.m_bActivated) return false;
 	if (m_bMayEscort != p_Other.m_bMayEscort) return false;
 	if (m_bTargetDead != p_Other.m_bTargetDead) return false;
@@ -32656,6 +33496,9 @@ bool SEvacuateSituationMemberSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEvacuateSituationMemberSaveData::operator==(const SEvacuateSituationMemberSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEvacuateSituationMemberSaveData>)
+		return false;
+
 	if (m_pGuardDutyPoint != p_Other.m_pGuardDutyPoint) return false;
 	if (m_nPatrolWaypointIndex != p_Other.m_nPatrolWaypointIndex) return false;
 	if (m_nPatrolWaypointSubIndex != p_Other.m_nPatrolWaypointSubIndex) return false;
@@ -32877,6 +33720,9 @@ bool SEvacuateSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEvacuateSituationSaveData::operator==(const SEvacuateSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEvacuateSituationSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_tLastSeriousSituation != p_Other.m_tLastSeriousSituation) return false;
 	if (m_tLastThreat != p_Other.m_tLastThreat) return false;
@@ -33041,6 +33887,9 @@ bool SEvacuateTrespassGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEvacuateTrespassGroupSaveData::operator==(const SEvacuateTrespassGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEvacuateTrespassGroupSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_target != p_Other.m_target) return false;
 	if (m_safeRoomNode != p_Other.m_safeRoomNode) return false;
@@ -33329,6 +34178,9 @@ bool SEvacuateVIPGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEvacuateVIPGroupSaveData::operator==(const SEvacuateVIPGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEvacuateVIPGroupSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_rVIP != p_Other.m_rVIP) return false;
 	if (m_rVIPActor != p_Other.m_rVIPActor) return false;
@@ -33400,6 +34252,9 @@ bool SEventChannelSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SEventChannelSaveData::operator==(const SEventChannelSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SEventChannelSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 
 	return true;
@@ -33457,6 +34312,9 @@ bool SExitSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SExitSaveData::operator==(const SExitSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExitSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 
 	return true;
@@ -33514,6 +34372,9 @@ bool SExitsActiveSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SExitsActiveSaveData::operator==(const SExitsActiveSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExitsActiveSaveData>)
+		return false;
+
 	if (m_bIsActive != p_Other.m_bIsActive) return false;
 
 	return true;
@@ -33622,6 +34483,9 @@ bool SExposedEntityDescriptor::Equals(void* p_Left, void* p_Right)
 
 bool SExposedEntityDescriptor::operator==(const SExposedEntityDescriptor& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExposedEntityDescriptor>)
+		return false;
+
 	if (sName != p_Other.sName) return false;
 	if (sDisplayName != p_Other.sDisplayName) return false;
 	if (sHelpText != p_Other.sHelpText) return false;
@@ -33760,6 +34624,9 @@ bool SExposedEntityTypeDescriptor::Equals(void* p_Left, void* p_Right)
 
 bool SExposedEntityTypeDescriptor::operator==(const SExposedEntityTypeDescriptor& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExposedEntityTypeDescriptor>)
+		return false;
+
 	if (sName != p_Other.sName) return false;
 	if (types != p_Other.types) return false;
 	if (aSupportedTypes != p_Other.aSupportedTypes) return false;
@@ -33833,6 +34700,9 @@ bool STypeReference::Equals(void* p_Left, void* p_Right)
 
 bool STypeReference::operator==(const STypeReference& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STypeReference>)
+		return false;
+
 	if (sEntityID != p_Other.sEntityID) return false;
 	if (sTypeArgName != p_Other.sTypeArgName) return false;
 
@@ -33935,6 +34805,9 @@ bool SExposedTypeInfo::Equals(void* p_Left, void* p_Right)
 
 bool SExposedTypeInfo::operator==(const SExposedTypeInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExposedTypeInfo>)
+		return false;
+
 	if (sName != p_Other.sName) return false;
 	if (sDisplayName != p_Other.sDisplayName) return false;
 	if (sHelpText != p_Other.sHelpText) return false;
@@ -34032,6 +34905,9 @@ bool SExtendedCppEntityProperty::Equals(void* p_Left, void* p_Right)
 
 bool SExtendedCppEntityProperty::operator==(const SExtendedCppEntityProperty& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExtendedCppEntityProperty>)
+		return false;
+
 	if (propertyName != p_Other.propertyName) return false;
 	if (propertyType != p_Other.propertyType) return false;
 	if (rtEditable != p_Other.rtEditable) return false;
@@ -34119,6 +34995,9 @@ bool SExtendedCppEntityBlueprint::Equals(void* p_Left, void* p_Right)
 
 bool SExtendedCppEntityBlueprint::operator==(const SExtendedCppEntityBlueprint& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExtendedCppEntityBlueprint>)
+		return false;
+
 	if (properties != p_Other.properties) return false;
 
 	return true;
@@ -34241,6 +35120,9 @@ bool SExternalEntityTemplatePinConnection::Equals(void* p_Left, void* p_Right)
 
 bool SExternalEntityTemplatePinConnection::operator==(const SExternalEntityTemplatePinConnection& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SExternalEntityTemplatePinConnection>)
+		return false;
+
 	if (fromEntity != p_Other.fromEntity) return false;
 	if (toEntity != p_Other.toEntity) return false;
 	if (fromPinName != p_Other.fromPinName) return false;
@@ -34362,6 +35244,9 @@ bool SFaceOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SFaceOrderSaveData::operator==(const SFaceOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFaceOrderSaveData>)
+		return false;
+
 	if (m_bLookAt != p_Other.m_bLookAt) return false;
 	if (m_bAimAt != p_Other.m_bAimAt) return false;
 	if (m_bUpdateKnownPosition != p_Other.m_bUpdateKnownPosition) return false;
@@ -34448,6 +35333,9 @@ bool SFleeOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SFleeOrderSaveData::operator==(const SFleeOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFleeOrderSaveData>)
+		return false;
+
 	if (m_eHelpReason != p_Other.m_eHelpReason) return false;
 	if (m_nGridNodeIndex != p_Other.m_nGridNodeIndex) return false;
 	if (m_bFleeForHelp != p_Other.m_bFleeForHelp) return false;
@@ -34545,6 +35433,9 @@ bool SFontDefinition::Equals(void* p_Left, void* p_Right)
 
 bool SFontDefinition::operator==(const SFontDefinition& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFontDefinition>)
+		return false;
+
 	if (sFontId != p_Other.sFontId) return false;
 	if (sFontName != p_Other.sFontName) return false;
 	if (eFontFlags != p_Other.eFontFlags) return false;
@@ -34645,6 +35536,9 @@ bool SFontLibraryDefinition::Equals(void* p_Left, void* p_Right)
 
 bool SFontLibraryDefinition::operator==(const SFontLibraryDefinition& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFontLibraryDefinition>)
+		return false;
+
 	if (sFontLocaleID != p_Other.sFontLocaleID) return false;
 	if (m_aFontDefinitions != p_Other.m_aFontDefinitions) return false;
 
@@ -34716,6 +35610,9 @@ bool SFooStruct::Equals(void* p_Left, void* p_Right)
 
 bool SFooStruct::operator==(const SFooStruct& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFooStruct>)
+		return false;
+
 	if (m_eTest != p_Other.m_eTest) return false;
 	if (m_sOther != p_Other.m_sOther) return false;
 
@@ -34774,6 +35671,9 @@ bool SFootIKEventData::Equals(void* p_Left, void* p_Right)
 
 bool SFootIKEventData::operator==(const SFootIKEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFootIKEventData>)
+		return false;
+
 	if (m_Foot != p_Other.m_Foot) return false;
 
 	return true;
@@ -35026,6 +35926,9 @@ bool SFriskSuspectGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SFriskSuspectGroupSaveData::operator==(const SFriskSuspectGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SFriskSuspectGroupSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_bHitmanIsGuard != p_Other.m_bHitmanIsGuard) return false;
 	if (m_target != p_Other.m_target) return false;
@@ -35202,6 +36105,9 @@ bool SGBufferSample::Equals(void* p_Left, void* p_Right)
 
 bool SGBufferSample::operator==(const SGBufferSample& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGBufferSample>)
+		return false;
+
 	if (normal != p_Other.normal) return false;
 	if (diffuse != p_Other.diffuse) return false;
 	if (specular != p_Other.specular) return false;
@@ -35324,6 +36230,9 @@ bool SGProperties::Equals(void* p_Left, void* p_Right)
 
 bool SGProperties::operator==(const SGProperties& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGProperties>)
+		return false;
+
 	if (vMin != p_Other.vMin) return false;
 	if (vMax != p_Other.vMax) return false;
 	if (nGridWidth != p_Other.nGridWidth) return false;
@@ -35421,6 +36330,9 @@ bool SGUIViewPort::Equals(void* p_Left, void* p_Right)
 
 bool SGUIViewPort::operator==(const SGUIViewPort& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGUIViewPort>)
+		return false;
+
 	if (x != p_Other.x) return false;
 	if (y != p_Other.y) return false;
 	if (h != p_Other.h) return false;
@@ -35606,6 +36518,9 @@ bool SGWaypoint::Equals(void* p_Left, void* p_Right)
 
 bool SGWaypoint::operator==(const SGWaypoint& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGWaypoint>)
+		return false;
+
 	if (nNeighbor0 != p_Other.nNeighbor0) return false;
 	if (nNeighbor1 != p_Other.nNeighbor1) return false;
 	if (nNeighbor2 != p_Other.nNeighbor2) return false;
@@ -35685,6 +36600,9 @@ bool SGaitTransitionEntry::Equals(void* p_Left, void* p_Right)
 
 bool SGaitTransitionEntry::operator==(const SGaitTransitionEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGaitTransitionEntry>)
+		return false;
+
 	if (m_gait != p_Other.m_gait) return false;
 	if (m_speed != p_Other.m_speed) return false;
 
@@ -35755,6 +36673,9 @@ bool SGameCamProfileEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGameCamProfileEntitySaveData::operator==(const SGameCamProfileEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGameCamProfileEntitySaveData>)
+		return false;
+
 	if (m_bIsEnabled != p_Other.m_bIsEnabled) return false;
 	if (m_rHero != p_Other.m_rHero) return false;
 
@@ -35813,6 +36734,9 @@ bool SItemKeywordProxySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemKeywordProxySaveData::operator==(const SItemKeywordProxySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemKeywordProxySaveData>)
+		return false;
+
 	if (m_rItem != p_Other.m_rItem) return false;
 
 	return true;
@@ -35934,6 +36858,9 @@ bool SItemKeywordProxiesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemKeywordProxiesSaveData::operator==(const SItemKeywordProxiesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemKeywordProxiesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -36235,6 +37162,9 @@ bool SItemSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemSaveData::operator==(const SItemSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemSaveData>)
+		return false;
+
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_vRotation != p_Other.m_vRotation) return false;
 	if (m_bShowItem != p_Other.m_bShowItem) return false;
@@ -36375,6 +37305,9 @@ bool SItemsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemsSaveData::operator==(const SItemsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemsSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -36445,6 +37378,9 @@ bool SLampCoreSaveState::Equals(void* p_Left, void* p_Right)
 
 bool SLampCoreSaveState::operator==(const SLampCoreSaveState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLampCoreSaveState>)
+		return false;
+
 	if (m_fDiffusePower != p_Other.m_fDiffusePower) return false;
 	if (m_bSwitchState != p_Other.m_bSwitchState) return false;
 
@@ -36567,6 +37503,9 @@ bool SLampCoreSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLampCoreSaveData::operator==(const SLampCoreSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLampCoreSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -36659,6 +37598,9 @@ bool SMathLerpSaveData_SColorRGB::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpSaveData_SColorRGB::operator==(const SMathLerpSaveData_SColorRGB& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpSaveData_SColorRGB>)
+		return false;
+
 	if (m_A != p_Other.m_A) return false;
 	if (m_B != p_Other.m_B) return false;
 	if (m_fT != p_Other.m_fT) return false;
@@ -36782,6 +37724,9 @@ bool SMathLerpsSaveData_SColorRGB::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpsSaveData_SColorRGB::operator==(const SMathLerpsSaveData_SColorRGB& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpsSaveData_SColorRGB>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -36874,6 +37819,9 @@ bool SMathLerpSaveData_SColorRGBA::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpSaveData_SColorRGBA::operator==(const SMathLerpSaveData_SColorRGBA& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpSaveData_SColorRGBA>)
+		return false;
+
 	if (m_A != p_Other.m_A) return false;
 	if (m_B != p_Other.m_B) return false;
 	if (m_fT != p_Other.m_fT) return false;
@@ -36997,6 +37945,9 @@ bool SMathLerpsSaveData_SColorRGBA::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpsSaveData_SColorRGBA::operator==(const SMathLerpsSaveData_SColorRGBA& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpsSaveData_SColorRGBA>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -37089,6 +38040,9 @@ bool SMathLerpSaveData_SVector2::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpSaveData_SVector2::operator==(const SMathLerpSaveData_SVector2& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpSaveData_SVector2>)
+		return false;
+
 	if (m_A != p_Other.m_A) return false;
 	if (m_B != p_Other.m_B) return false;
 	if (m_fT != p_Other.m_fT) return false;
@@ -37212,6 +38166,9 @@ bool SMathLerpsSaveData_SVector2::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpsSaveData_SVector2::operator==(const SMathLerpsSaveData_SVector2& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpsSaveData_SVector2>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -37304,6 +38261,9 @@ bool SMathLerpSaveData_SVector3::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpSaveData_SVector3::operator==(const SMathLerpSaveData_SVector3& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpSaveData_SVector3>)
+		return false;
+
 	if (m_A != p_Other.m_A) return false;
 	if (m_B != p_Other.m_B) return false;
 	if (m_fT != p_Other.m_fT) return false;
@@ -37427,6 +38387,9 @@ bool SMathLerpsSaveData_SVector3::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpsSaveData_SVector3::operator==(const SMathLerpsSaveData_SVector3& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpsSaveData_SVector3>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -37519,6 +38482,9 @@ bool SMathLerpSaveData_SVector4::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpSaveData_SVector4::operator==(const SMathLerpSaveData_SVector4& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpSaveData_SVector4>)
+		return false;
+
 	if (m_A != p_Other.m_A) return false;
 	if (m_B != p_Other.m_B) return false;
 	if (m_fT != p_Other.m_fT) return false;
@@ -37642,6 +38608,9 @@ bool SMathLerpsSaveData_SVector4::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpsSaveData_SVector4::operator==(const SMathLerpsSaveData_SVector4& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpsSaveData_SVector4>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -37724,6 +38693,9 @@ bool SMathLerpSaveData_float32::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpSaveData_float32::operator==(const SMathLerpSaveData_float32& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpSaveData_float32>)
+		return false;
+
 	if (m_A != p_Other.m_A) return false;
 	if (m_B != p_Other.m_B) return false;
 	if (m_fT != p_Other.m_fT) return false;
@@ -37847,6 +38819,9 @@ bool SMathLerpsSaveData_float32::Equals(void* p_Left, void* p_Right)
 
 bool SMathLerpsSaveData_float32::operator==(const SMathLerpsSaveData_float32& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathLerpsSaveData_float32>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -37939,6 +38914,9 @@ bool SMathMultiplyDivideSaveData_SVector2::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultiplyDivideSaveData_SVector2::operator==(const SMathMultiplyDivideSaveData_SVector2& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultiplyDivideSaveData_SVector2>)
+		return false;
+
 	if (m_fA != p_Other.m_fA) return false;
 	if (m_fB != p_Other.m_fB) return false;
 	if (m_bDivide != p_Other.m_bDivide) return false;
@@ -38062,6 +39040,9 @@ bool SMathMultipliesSaveData_SVector2::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultipliesSaveData_SVector2::operator==(const SMathMultipliesSaveData_SVector2& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultipliesSaveData_SVector2>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -38154,6 +39135,9 @@ bool SMathMultiplyDivideSaveData_SVector3::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultiplyDivideSaveData_SVector3::operator==(const SMathMultiplyDivideSaveData_SVector3& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultiplyDivideSaveData_SVector3>)
+		return false;
+
 	if (m_fA != p_Other.m_fA) return false;
 	if (m_fB != p_Other.m_fB) return false;
 	if (m_bDivide != p_Other.m_bDivide) return false;
@@ -38277,6 +39261,9 @@ bool SMathMultipliesSaveData_SVector3::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultipliesSaveData_SVector3::operator==(const SMathMultipliesSaveData_SVector3& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultipliesSaveData_SVector3>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -38369,6 +39356,9 @@ bool SMathMultiplyDivideSaveData_SVector4::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultiplyDivideSaveData_SVector4::operator==(const SMathMultiplyDivideSaveData_SVector4& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultiplyDivideSaveData_SVector4>)
+		return false;
+
 	if (m_fA != p_Other.m_fA) return false;
 	if (m_fB != p_Other.m_fB) return false;
 	if (m_bDivide != p_Other.m_bDivide) return false;
@@ -38492,6 +39482,9 @@ bool SMathMultipliesSaveData_SVector4::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultipliesSaveData_SVector4::operator==(const SMathMultipliesSaveData_SVector4& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultipliesSaveData_SVector4>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -38574,6 +39567,9 @@ bool SMathMultiplyDivideSaveData_float32::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultiplyDivideSaveData_float32::operator==(const SMathMultiplyDivideSaveData_float32& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultiplyDivideSaveData_float32>)
+		return false;
+
 	if (m_fA != p_Other.m_fA) return false;
 	if (m_fB != p_Other.m_fB) return false;
 	if (m_bDivide != p_Other.m_bDivide) return false;
@@ -38697,6 +39693,9 @@ bool SMathMultipliesSaveData_float32::Equals(void* p_Left, void* p_Right)
 
 bool SMathMultipliesSaveData_float32::operator==(const SMathMultipliesSaveData_float32& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathMultipliesSaveData_float32>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -38767,6 +39766,9 @@ bool SShotListenerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SShotListenerSaveData::operator==(const SShotListenerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SShotListenerSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_bNPCShotProcessed != p_Other.m_bNPCShotProcessed) return false;
 
@@ -38889,6 +39891,9 @@ bool SShotListenersSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SShotListenersSaveData::operator==(const SShotListenersSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SShotListenersSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -38959,6 +39964,9 @@ bool SItsATrapSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItsATrapSaveData::operator==(const SItsATrapSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItsATrapSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_fTimer != p_Other.m_fTimer) return false;
 
@@ -39081,6 +40089,9 @@ bool STrapsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STrapsSaveData::operator==(const STrapsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STrapsSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -39192,6 +40203,9 @@ bool SVIPEvacuationNodeSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SVIPEvacuationNodeSaveData::operator==(const SVIPEvacuationNodeSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVIPEvacuationNodeSaveData>)
+		return false;
+
 	if (m_fPenaltyMultiplier != p_Other.m_fPenaltyMultiplier) return false;
 	if (m_fPenaltyDuration != p_Other.m_fPenaltyDuration) return false;
 	if (m_tPenalty != p_Other.m_tPenalty) return false;
@@ -39317,6 +40331,9 @@ bool SVIPEvacuationNodesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SVIPEvacuationNodesSaveData::operator==(const SVIPEvacuationNodesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVIPEvacuationNodesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -39387,6 +40404,9 @@ bool SVolumeTriggerListenerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SVolumeTriggerListenerSaveData::operator==(const SVolumeTriggerListenerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVolumeTriggerListenerSaveData>)
+		return false;
+
 	if (m_bColliding != p_Other.m_bColliding) return false;
 	if (m_bInternalEnabled != p_Other.m_bInternalEnabled) return false;
 
@@ -39509,6 +40529,9 @@ bool SVolumeTriggersSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SVolumeTriggersSaveData::operator==(const SVolumeTriggersSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVolumeTriggersSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -39963,6 +40986,9 @@ bool SGameEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGameEntitySaveData::operator==(const SGameEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGameEntitySaveData>)
+		return false;
+
 	if (m_DoorData != p_Other.m_DoorData) return false;
 	if (m_ItemsData != p_Other.m_ItemsData) return false;
 	if (m_VolumeTriggersData != p_Other.m_VolumeTriggersData) return false;
@@ -40055,6 +41081,9 @@ bool SKeywordSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SKeywordSaveData::operator==(const SKeywordSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SKeywordSaveData>)
+		return false;
+
 	if (m_HolderSaveableId != p_Other.m_HolderSaveableId) return false;
 	if (m_KeywordID != p_Other.m_KeywordID) return false;
 
@@ -40177,6 +41206,9 @@ bool SGameKeywordManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGameKeywordManagerSaveData::operator==(const SGameKeywordManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGameKeywordManagerSaveData>)
+		return false;
+
 	if (m_aKeywordsData != p_Other.m_aKeywordsData) return false;
 	if (m_aKeywordStringData != p_Other.m_aKeywordStringData) return false;
 
@@ -40276,6 +41308,9 @@ bool SGameStatsWeapon::Equals(void* p_Left, void* p_Right)
 
 bool SGameStatsWeapon::operator==(const SGameStatsWeapon& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGameStatsWeapon>)
+		return false;
+
 	if (m_WeaponRepositoryID != p_Other.m_WeaponRepositoryID) return false;
 	if (m_eItemWeapon != p_Other.m_eItemWeapon) return false;
 	if (m_eSpecialSituation != p_Other.m_eSpecialSituation) return false;
@@ -40360,6 +41395,9 @@ bool STimerEntityCommandSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STimerEntityCommandSaveData::operator==(const STimerEntityCommandSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STimerEntityCommandSaveData>)
+		return false;
+
 	if (m_eType != p_Other.m_eType) return false;
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_fInterval != p_Other.m_fInterval) return false;
@@ -40443,6 +41481,9 @@ bool STimerEntityStateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STimerEntityStateSaveData::operator==(const STimerEntityStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STimerEntityStateSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_fNextEventTime != p_Other.m_fNextEventTime) return false;
 	if (m_bPending != p_Other.m_bPending) return false;
@@ -40605,6 +41646,9 @@ bool SGameTimersSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGameTimersSaveData::operator==(const SGameTimersSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGameTimersSaveData>)
+		return false;
+
 	if (m_aTimerEntityCommands != p_Other.m_aTimerEntityCommands) return false;
 	if (m_aTimerEntityState != p_Other.m_aTimerEntityState) return false;
 	if (m_aPendingTimers != p_Other.m_aPendingTimers) return false;
@@ -40688,6 +41732,9 @@ bool SGateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGateSaveData::operator==(const SGateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGateSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_bIsOpen != p_Other.m_bIsOpen) return false;
 	if (m_fOpenFraction != p_Other.m_fOpenFraction) return false;
@@ -40800,6 +41847,9 @@ bool SLightSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLightSaveData::operator==(const SLightSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLightSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_DiffuseColor != p_Other.m_DiffuseColor) return false;
 	if (m_fDiffusePower != p_Other.m_fDiffusePower) return false;
@@ -40921,6 +41971,9 @@ bool SParticleEmitterSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SParticleEmitterSaveData::operator==(const SParticleEmitterSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SParticleEmitterSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_bIsActivated != p_Other.m_bIsActivated) return false;
 	if (m_bIsVisible != p_Other.m_bIsVisible) return false;
@@ -41323,6 +42376,9 @@ bool SPostfilterParametersSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPostfilterParametersSaveData::operator==(const SPostfilterParametersSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPostfilterParametersSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_bDepthOfFieldEnabled != p_Other.m_bDepthOfFieldEnabled) return false;
 	if (m_fDepthOfFieldBlurriness != p_Other.m_fDepthOfFieldBlurriness) return false;
@@ -41454,6 +42510,9 @@ bool SRenderMaterialSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRenderMaterialSaveData::operator==(const SRenderMaterialSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRenderMaterialSaveData>)
+		return false;
+
 	if (m_rEntity != p_Other.m_rEntity) return false;
 	if (m_aDynamicParametersData != p_Other.m_aDynamicParametersData) return false;
 	if (m_bActive != p_Other.m_bActive) return false;
@@ -41735,6 +42794,9 @@ bool SGameplayRenderablesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGameplayRenderablesSaveData::operator==(const SGameplayRenderablesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGameplayRenderablesSaveData>)
+		return false;
+
 	if (m_aLightData != p_Other.m_aLightData) return false;
 	if (m_aMaterialData != p_Other.m_aMaterialData) return false;
 	if (m_aParticleData != p_Other.m_aParticleData) return false;
@@ -41802,6 +42864,9 @@ bool SGeomScaleSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGeomScaleSaveData::operator==(const SGeomScaleSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGeomScaleSaveData>)
+		return false;
+
 	if (m_vPrimitiveScale != p_Other.m_vPrimitiveScale) return false;
 
 	return true;
@@ -42104,6 +43169,9 @@ bool SGetHelpGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGetHelpGroupSaveData::operator==(const SGetHelpGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGetHelpGroupSaveData>)
+		return false;
+
 	if (m_vLastKnownTargetPosition != p_Other.m_vLastKnownTargetPosition) return false;
 	if (m_rReturnNode != p_Other.m_rReturnNode) return false;
 	if (m_blocked != p_Other.m_blocked) return false;
@@ -42188,6 +43256,9 @@ bool SGetHelpOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGetHelpOrderSaveData::operator==(const SGetHelpOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGetHelpOrderSaveData>)
+		return false;
+
 	if (m_helpType != p_Other.m_helpType) return false;
 	if (m_rInitialGuard != p_Other.m_rInitialGuard) return false;
 
@@ -42258,6 +43329,9 @@ bool SHelpingActorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHelpingActorSaveData::operator==(const SHelpingActorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHelpingActorSaveData>)
+		return false;
+
 	if (m_HelpTargetKnowledgeIndex != p_Other.m_HelpTargetKnowledgeIndex) return false;
 	if (m_rActor != p_Other.m_rActor) return false;
 
@@ -42343,6 +43417,9 @@ bool SGetHelpServiceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGetHelpServiceSaveData::operator==(const SGetHelpServiceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGetHelpServiceSaveData>)
+		return false;
+
 	if (m_aHelpingActors != p_Other.m_aHelpingActors) return false;
 
 	return true;
@@ -42400,6 +43477,9 @@ bool SGetIActorPositionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGetIActorPositionSaveData::operator==(const SGetIActorPositionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGetIActorPositionSaveData>)
+		return false;
+
 	if (m_StoredActor != p_Other.m_StoredActor) return false;
 
 	return true;
@@ -42493,6 +43573,9 @@ bool SGuardBodySituationMemberSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGuardBodySituationMemberSaveData::operator==(const SGuardBodySituationMemberSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGuardBodySituationMemberSaveData>)
+		return false;
+
 	if (m_bSearchingForMorgue != p_Other.m_bSearchingForMorgue) return false;
 	if (m_IsExitingSuccessfulBehavior != p_Other.m_IsExitingSuccessfulBehavior) return false;
 	if (m_rDeadBody != p_Other.m_rDeadBody) return false;
@@ -42601,6 +43684,9 @@ bool SGuardBodySituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGuardBodySituationSaveData::operator==(const SGuardBodySituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGuardBodySituationSaveData>)
+		return false;
+
 	if (m_bBystanderFieldsFailed != p_Other.m_bBystanderFieldsFailed) return false;
 	if (m_bLastGetHelpGroupFailed != p_Other.m_bLastGetHelpGroupFailed) return false;
 	if (m_bSomeoneCanSeeBody != p_Other.m_bSomeoneCanSeeBody) return false;
@@ -42674,6 +43760,9 @@ bool SGuardPointOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SGuardPointOrderSaveData::operator==(const SGuardPointOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SGuardPointOrderSaveData>)
+		return false;
+
 	if (m_guardPoint != p_Other.m_guardPoint) return false;
 	if (m_walkOnly != p_Other.m_walkOnly) return false;
 
@@ -43368,6 +44457,9 @@ bool SHM5CrippleBoxSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHM5CrippleBoxSaveData::operator==(const SHM5CrippleBoxSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHM5CrippleBoxSaveData>)
+		return false;
+
 	if (m_bInSequence != p_Other.m_bInSequence) return false;
 	if (m_bAllowBaseMovements != p_Other.m_bAllowBaseMovements) return false;
 	if (m_bSequenceAllowCamera != p_Other.m_bSequenceAllowCamera) return false;
@@ -43478,6 +44570,9 @@ bool SHUDPIPControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHUDPIPControllerSaveData::operator==(const SHUDPIPControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHUDPIPControllerSaveData>)
+		return false;
+
 	if (m_bPiPEnabled != p_Other.m_bPiPEnabled) return false;
 
 	return true;
@@ -43718,6 +44813,9 @@ bool SHUDPromptDisplayInfo::Equals(void* p_Left, void* p_Right)
 
 bool SHUDPromptDisplayInfo::operator==(const SHUDPromptDisplayInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHUDPromptDisplayInfo>)
+		return false;
+
 	if (m_bActive != p_Other.m_bActive) return false;
 	if (m_eState != p_Other.m_eState) return false;
 	if (m_nIconId != p_Other.m_nIconId) return false;
@@ -43817,6 +44915,9 @@ bool SHUDPromptDisplayInfoArray_Dummy::Equals(void* p_Left, void* p_Right)
 
 bool SHUDPromptDisplayInfoArray_Dummy::operator==(const SHUDPromptDisplayInfoArray_Dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHUDPromptDisplayInfoArray_Dummy>)
+		return false;
+
 	if (dummy != p_Other.dummy) return false;
 
 	return true;
@@ -43874,6 +44975,9 @@ bool SHUDTimerControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHUDTimerControllerSaveData::operator==(const SHUDTimerControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHUDTimerControllerSaveData>)
+		return false;
+
 	if (m_pCurrentInstance != p_Other.m_pCurrentInstance) return false;
 
 	return true;
@@ -43931,6 +45035,9 @@ bool SHUDVisibilityController2SaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHUDVisibilityController2SaveData::operator==(const SHUDVisibilityController2SaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHUDVisibilityController2SaveData>)
+		return false;
+
 	if (m_eCurrentRequest != p_Other.m_eCurrentRequest) return false;
 
 	return true;
@@ -44012,6 +45119,9 @@ bool SHandleDistractionSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHandleDistractionSituationSaveData::operator==(const SHandleDistractionSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHandleDistractionSituationSaveData>)
+		return false;
+
 	if (m_pLeader != p_Other.m_pLeader) return false;
 	if (m_pAssistant != p_Other.m_pAssistant) return false;
 	if (m_pPreliminaryLeader != p_Other.m_pPreliminaryLeader) return false;
@@ -44083,6 +45193,9 @@ bool SHeroCameraStandInSaveState::Equals(void* p_Left, void* p_Right)
 
 bool SHeroCameraStandInSaveState::operator==(const SHeroCameraStandInSaveState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroCameraStandInSaveState>)
+		return false;
+
 	if (m_rHero != p_Other.m_rHero) return false;
 	if (m_bPaused != p_Other.m_bPaused) return false;
 
@@ -44213,6 +45326,9 @@ bool SHeroEscortSituation2ActorStateSaveData::Equals(void* p_Left, void* p_Right
 
 bool SHeroEscortSituation2ActorStateSaveData::operator==(const SHeroEscortSituation2ActorStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroEscortSituation2ActorStateSaveData>)
+		return false;
+
 	if (m_nID != p_Other.m_nID) return false;
 	if (m_bAllocatedForSituation != p_Other.m_bAllocatedForSituation) return false;
 	if (m_eState != p_Other.m_eState) return false;
@@ -44276,6 +45392,9 @@ bool SHeroEscortSituation2Actors::Equals(void* p_Left, void* p_Right)
 
 bool SHeroEscortSituation2Actors::operator==(const SHeroEscortSituation2Actors& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroEscortSituation2Actors>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -44614,6 +45733,9 @@ bool SHeroEscortSituation2SaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHeroEscortSituation2SaveData::operator==(const SHeroEscortSituation2SaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroEscortSituation2SaveData>)
+		return false;
+
 	if (m_bActivated != p_Other.m_bActivated) return false;
 	if (m_bMayEscort != p_Other.m_bMayEscort) return false;
 	if (m_bTargetDead != p_Other.m_bTargetDead) return false;
@@ -44759,6 +45881,9 @@ bool SHeroEscortSituationActorStateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHeroEscortSituationActorStateSaveData::operator==(const SHeroEscortSituationActorStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroEscortSituationActorStateSaveData>)
+		return false;
+
 	if (m_nID != p_Other.m_nID) return false;
 	if (m_bAllocatedForSituation != p_Other.m_bAllocatedForSituation) return false;
 	if (m_eState != p_Other.m_eState) return false;
@@ -44822,6 +45947,9 @@ bool SHeroEscortSituationActors::Equals(void* p_Left, void* p_Right)
 
 bool SHeroEscortSituationActors::operator==(const SHeroEscortSituationActors& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroEscortSituationActors>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -45160,6 +46288,9 @@ bool SHeroEscortSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHeroEscortSituationSaveData::operator==(const SHeroEscortSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroEscortSituationSaveData>)
+		return false;
+
 	if (m_bActivated != p_Other.m_bActivated) return false;
 	if (m_bMayEscort != p_Other.m_bMayEscort) return false;
 	if (m_bTargetDead != p_Other.m_bTargetDead) return false;
@@ -45233,6 +46364,9 @@ bool SHeroItemActionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHeroItemActionSaveData::operator==(const SHeroItemActionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroItemActionSaveData>)
+		return false;
+
 	if (m_rItem != p_Other.m_rItem) return false;
 
 	return true;
@@ -45290,6 +46424,9 @@ bool SHeroItemAttachmentSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHeroItemAttachmentSaveData::operator==(const SHeroItemAttachmentSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroItemAttachmentSaveData>)
+		return false;
+
 	if (m_rItem != p_Other.m_rItem) return false;
 
 	return true;
@@ -45371,6 +46508,9 @@ bool SHeroStandInSaveState::Equals(void* p_Left, void* p_Right)
 
 bool SHeroStandInSaveState::operator==(const SHeroStandInSaveState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHeroStandInSaveState>)
+		return false;
+
 	if (m_rHero != p_Other.m_rHero) return false;
 	if (m_rCurrentSpeakEntity != p_Other.m_rCurrentSpeakEntity) return false;
 	if (m_bPaused != p_Other.m_bPaused) return false;
@@ -45454,6 +46594,9 @@ bool SHintEntrySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHintEntrySaveData::operator==(const SHintEntrySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHintEntrySaveData>)
+		return false;
+
 	if (m_bIsValid != p_Other.m_bIsValid) return false;
 	if (m_hint != p_Other.m_hint) return false;
 	if (m_context != p_Other.m_context) return false;
@@ -45569,6 +46712,9 @@ bool SHintManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHintManagerSaveData::operator==(const SHintManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHintManagerSaveData>)
+		return false;
+
 	if (m_activeHint != p_Other.m_activeHint) return false;
 	if (m_aQueue != p_Other.m_aQueue) return false;
 	if (m_bIsRunning != p_Other.m_bIsRunning) return false;
@@ -45790,6 +46936,9 @@ bool SHitmanSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SHitmanSaveData::operator==(const SHitmanSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHitmanSaveData>)
+		return false;
+
 	if (m_OutfitID != p_Other.m_OutfitID) return false;
 	if (m_nOutfitCharset != p_Other.m_nOutfitCharset) return false;
 	if (m_nOutfitVariation != p_Other.m_nOutfitVariation) return false;
@@ -45875,6 +47024,9 @@ bool SHudMissionTimerControllerData::Equals(void* p_Left, void* p_Right)
 
 bool SHudMissionTimerControllerData::operator==(const SHudMissionTimerControllerData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SHudMissionTimerControllerData>)
+		return false;
+
 	if (m_fScoreGameTimeStart != p_Other.m_fScoreGameTimeStart) return false;
 	if (m_bWasIntroCutFired != p_Other.m_bWasIntroCutFired) return false;
 
@@ -45973,6 +47125,9 @@ bool SIntelData::Equals(void* p_Left, void* p_Right)
 
 bool SIntelData::operator==(const SIntelData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SIntelData>)
+		return false;
+
 	if (m_sHeadline != p_Other.m_sHeadline) return false;
 	if (m_sBodyHeadline != p_Other.m_sBodyHeadline) return false;
 	if (m_sBodytext != p_Other.m_sBodytext) return false;
@@ -46060,6 +47215,9 @@ bool SIntelDataArray_dummy::Equals(void* p_Left, void* p_Right)
 
 bool SIntelDataArray_dummy::operator==(const SIntelDataArray_dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SIntelDataArray_dummy>)
+		return false;
+
 	if (dummy != p_Other.dummy) return false;
 
 	return true;
@@ -46193,6 +47351,9 @@ bool SIntelDisplayInfo::Equals(void* p_Left, void* p_Right)
 
 bool SIntelDisplayInfo::operator==(const SIntelDisplayInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SIntelDisplayInfo>)
+		return false;
+
 	if (index != p_Other.index) return false;
 	if (selected != p_Other.selected) return false;
 	if (active != p_Other.active) return false;
@@ -46283,6 +47444,9 @@ bool SIntelDisplayInfoArray_dummy::Equals(void* p_Left, void* p_Right)
 
 bool SIntelDisplayInfoArray_dummy::operator==(const SIntelDisplayInfoArray_dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SIntelDisplayInfoArray_dummy>)
+		return false;
+
 	if (dummy != p_Other.dummy) return false;
 
 	return true;
@@ -46377,6 +47541,9 @@ bool SIntelListDisplayInfo::Equals(void* p_Left, void* p_Right)
 
 bool SIntelListDisplayInfo::operator==(const SIntelListDisplayInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SIntelListDisplayInfo>)
+		return false;
+
 	if (index != p_Other.index) return false;
 	if (active != p_Other.active) return false;
 	if (newInfo != p_Other.newInfo) return false;
@@ -46464,6 +47631,9 @@ bool SIntelListDisplayInfoArray_dummy::Equals(void* p_Left, void* p_Right)
 
 bool SIntelListDisplayInfoArray_dummy::operator==(const SIntelListDisplayInfoArray_dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SIntelListDisplayInfoArray_dummy>)
+		return false;
+
 	if (dummy != p_Other.dummy) return false;
 
 	return true;
@@ -46593,6 +47763,9 @@ bool SIntelSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SIntelSaveData::operator==(const SIntelSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SIntelSaveData>)
+		return false;
+
 	if (m_rCurrentStage != p_Other.m_rCurrentStage) return false;
 	if (m_fHandlerAudioPlayPosition != p_Other.m_fHandlerAudioPlayPosition) return false;
 	if (m_bTracked != p_Other.m_bTracked) return false;
@@ -46827,6 +48000,9 @@ bool SInteractionIndicatorInstanceData_SUIControlData::Equals(void* p_Left, void
 
 bool SInteractionIndicatorInstanceData_SUIControlData::operator==(const SInteractionIndicatorInstanceData_SUIControlData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInteractionIndicatorInstanceData_SUIControlData>)
+		return false;
+
 	if (m_eState != p_Other.m_eState) return false;
 	if (m_eTypeId != p_Other.m_eTypeId) return false;
 	if (m_nIconId != p_Other.m_nIconId) return false;
@@ -46997,6 +48173,9 @@ bool SInteractionIndicatorInstanceData::Equals(void* p_Left, void* p_Right)
 
 bool SInteractionIndicatorInstanceData::operator==(const SInteractionIndicatorInstanceData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInteractionIndicatorInstanceData>)
+		return false;
+
 	if (m_nStableID != p_Other.m_nStableID) return false;
 	if (m_uicData != p_Other.m_uicData) return false;
 	if (m_fAnimation != p_Other.m_fAnimation) return false;
@@ -47088,6 +48267,9 @@ bool SInteractionIndicatorInstanceDataArray_Dummy::Equals(void* p_Left, void* p_
 
 bool SInteractionIndicatorInstanceDataArray_Dummy::operator==(const SInteractionIndicatorInstanceDataArray_Dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInteractionIndicatorInstanceDataArray_Dummy>)
+		return false;
+
 	if (dummy != p_Other.dummy) return false;
 
 	return true;
@@ -47157,6 +48339,9 @@ bool SInventoryControllerItemSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryControllerItemSaveData::operator==(const SInventoryControllerItemSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryControllerItemSaveData>)
+		return false;
+
 	if (m_rItemEntity != p_Other.m_rItemEntity) return false;
 	if (m_nAmmo != p_Other.m_nAmmo) return false;
 
@@ -47254,6 +48439,9 @@ bool SInventoryControllerSlotSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryControllerSlotSaveData::operator==(const SInventoryControllerSlotSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryControllerSlotSaveData>)
+		return false;
+
 	if (m_aItems != p_Other.m_aItems) return false;
 	if (m_eStorageType != p_Other.m_eStorageType) return false;
 
@@ -47336,6 +48524,9 @@ bool SStoredSlotSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SStoredSlotSaveData::operator==(const SStoredSlotSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SStoredSlotSaveData>)
+		return false;
+
 	if (m_iStoredInventorySlotIndex != p_Other.m_iStoredInventorySlotIndex) return false;
 	if (m_iStoreReason != p_Other.m_iStoreReason) return false;
 	if (m_bItemsStored != p_Other.m_bItemsStored) return false;
@@ -47759,6 +48950,9 @@ bool SInventoryControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryControllerSaveData::operator==(const SInventoryControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryControllerSaveData>)
+		return false;
+
 	if (m_aItems != p_Other.m_aItems) return false;
 	if (m_nEquippedItemIndex != p_Other.m_nEquippedItemIndex) return false;
 	if (m_nMostRecentItemIndex != p_Other.m_nMostRecentItemIndex) return false;
@@ -47918,6 +49112,9 @@ bool SInventoryInfo::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryInfo::operator==(const SInventoryInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryInfo>)
+		return false;
+
 	if (m_aPockets != p_Other.m_aPockets) return false;
 	if (m_CarriedItem != p_Other.m_CarriedItem) return false;
 	if (m_aContainerItems != p_Other.m_aContainerItems) return false;
@@ -48090,6 +49287,9 @@ bool SInventoryMovementConfig::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryMovementConfig::operator==(const SInventoryMovementConfig& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryMovementConfig>)
+		return false;
+
 	if (m_eItemHandlingRightHand != p_Other.m_eItemHandlingRightHand) return false;
 	if (m_eItemHandlingLeftHand != p_Other.m_eItemHandlingLeftHand) return false;
 	if (m_eFormerEquippedItems != p_Other.m_eFormerEquippedItems) return false;
@@ -48178,6 +49378,9 @@ bool SInventoryUISlotSlim::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryUISlotSlim::operator==(const SInventoryUISlotSlim& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryUISlotSlim>)
+		return false;
+
 	if (icon != p_Other.icon) return false;
 	if (containedIcon != p_Other.containedIcon) return false;
 
@@ -48299,6 +49502,9 @@ bool SInventoryUI::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryUI::operator==(const SInventoryUI& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryUI>)
+		return false;
+
 	if (mainslotsSlim != p_Other.mainslotsSlim) return false;
 	if (otherslotsCount != p_Other.otherslotsCount) return false;
 	if (selectedIndex != p_Other.selectedIndex) return false;
@@ -48770,6 +49976,9 @@ bool SInventoryUISlot::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryUISlot::operator==(const SInventoryUISlot& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryUISlot>)
+		return false;
+
 	if (label != p_Other.label) return false;
 	if (containedLabel != p_Other.containedLabel) return false;
 	if (description != p_Other.description) return false;
@@ -48922,6 +50131,9 @@ bool SInventoryUICache::Equals(void* p_Left, void* p_Right)
 
 bool SInventoryUICache::operator==(const SInventoryUICache& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInventoryUICache>)
+		return false;
+
 	if (mainslots != p_Other.mainslots) return false;
 	if (otherslots != p_Other.otherslots) return false;
 
@@ -49004,6 +50216,9 @@ bool ZInvestigateDisguiseGroup_SDialogLines::Equals(void* p_Left, void* p_Right)
 
 bool ZInvestigateDisguiseGroup_SDialogLines::operator==(const ZInvestigateDisguiseGroup_SDialogLines& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZInvestigateDisguiseGroup_SDialogLines>)
+		return false;
+
 	if (m_eFirstWarning != p_Other.m_eFirstWarning) return false;
 	if (m_eSecondWarning != p_Other.m_eSecondWarning) return false;
 	if (m_eThirdWarning != p_Other.m_eThirdWarning) return false;
@@ -49362,6 +50577,9 @@ bool SInvestigateDisguiseGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SInvestigateDisguiseGroupSaveData::operator==(const SInvestigateDisguiseGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInvestigateDisguiseGroupSaveData>)
+		return false;
+
 	if (m_state != p_Other.m_state) return false;
 	if (m_target != p_Other.m_target) return false;
 	if (m_pLeader != p_Other.m_pLeader) return false;
@@ -49560,6 +50778,9 @@ bool SInvestigateWeaponGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SInvestigateWeaponGroupSaveData::operator==(const SInvestigateWeaponGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SInvestigateWeaponGroupSaveData>)
+		return false;
+
 	if (m_rTarget != p_Other.m_rTarget) return false;
 	if (m_rReporter != p_Other.m_rReporter) return false;
 	if (m_rInvestigator != p_Other.m_rInvestigator) return false;
@@ -49624,6 +50845,9 @@ bool SItemActionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemActionSaveData::operator==(const SItemActionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemActionSaveData>)
+		return false;
+
 	if (m_rItem != p_Other.m_rItem) return false;
 
 	return true;
@@ -49750,6 +50974,9 @@ bool SItemInstanceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemInstanceSaveData::operator==(const SItemInstanceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemInstanceSaveData>)
+		return false;
+
 	if (m_repositoryId != p_Other.m_repositoryId) return false;
 	if (m_nEntityID != p_Other.m_nEntityID) return false;
 	if (m_sOnlineInstanceId != p_Other.m_sOnlineInstanceId) return false;
@@ -49863,6 +51090,9 @@ bool SItemLeftHandUIData::Equals(void* p_Left, void* p_Right)
 
 bool SItemLeftHandUIData::operator==(const SItemLeftHandUIData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemLeftHandUIData>)
+		return false;
+
 	if (icon != p_Other.icon) return false;
 	if (nItemHUDType != p_Other.nItemHUDType) return false;
 	if (bHasItemToShow != p_Other.bHasItemToShow) return false;
@@ -49977,6 +51207,9 @@ bool SItemOnBackUIData::Equals(void* p_Left, void* p_Right)
 
 bool SItemOnBackUIData::operator==(const SItemOnBackUIData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemOnBackUIData>)
+		return false;
+
 	if (icon != p_Other.icon) return false;
 	if (nItemHUDType != p_Other.nItemHUDType) return false;
 	if (bHasItemToShow != p_Other.bHasItemToShow) return false;
@@ -50038,6 +51271,9 @@ bool SItemSpawnerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemSpawnerSaveData::operator==(const SItemSpawnerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemSpawnerSaveData>)
+		return false;
+
 	if (m_bItemUpdateTransformChange != p_Other.m_bItemUpdateTransformChange) return false;
 
 	return true;
@@ -50132,6 +51368,9 @@ bool SItemStorageSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemStorageSaveData::operator==(const SItemStorageSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemStorageSaveData>)
+		return false;
+
 	if (m_Storage != p_Other.m_Storage) return false;
 	if (m_ContainedItems != p_Other.m_ContainedItems) return false;
 
@@ -50251,6 +51490,9 @@ bool SItemWeaponSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SItemWeaponSaveData::operator==(const SItemWeaponSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SItemWeaponSaveData>)
+		return false;
+
 	if (m_magazineBulletsByAmmoType != p_Other.m_magazineBulletsByAmmoType) return false;
 	if (m_nExtraMagazineBullets != p_Other.m_nExtraMagazineBullets) return false;
 	if (m_ePendingDeathContext != p_Other.m_ePendingDeathContext) return false;
@@ -50323,6 +51565,9 @@ bool SLayerBehaviorConfiguration::Equals(void* p_Left, void* p_Right)
 
 bool SLayerBehaviorConfiguration::operator==(const SLayerBehaviorConfiguration& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLayerBehaviorConfiguration>)
+		return false;
+
 	if (m_bTrigger != p_Other.m_bTrigger) return false;
 	if (m_bCollector != p_Other.m_bCollector) return false;
 
@@ -50453,6 +51698,9 @@ bool SLeadEscortSituationActorStateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLeadEscortSituationActorStateSaveData::operator==(const SLeadEscortSituationActorStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLeadEscortSituationActorStateSaveData>)
+		return false;
+
 	if (m_nID != p_Other.m_nID) return false;
 	if (m_bAllocatedForSituation != p_Other.m_bAllocatedForSituation) return false;
 	if (m_eState != p_Other.m_eState) return false;
@@ -50516,6 +51764,9 @@ bool SLeadEscortSituationActors::Equals(void* p_Left, void* p_Right)
 
 bool SLeadEscortSituationActors::operator==(const SLeadEscortSituationActors& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLeadEscortSituationActors>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 
 	return true;
@@ -50825,6 +52076,9 @@ bool SLeadEscortSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLeadEscortSituationSaveData::operator==(const SLeadEscortSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLeadEscortSituationSaveData>)
+		return false;
+
 	if (m_bActivated != p_Other.m_bActivated) return false;
 	if (m_bMayEscort != p_Other.m_bMayEscort) return false;
 	if (m_bTargetDead != p_Other.m_bTargetDead) return false;
@@ -50934,6 +52188,9 @@ bool SLevelReferenceableEntitieSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLevelReferenceableEntitieSaveData::operator==(const SLevelReferenceableEntitieSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLevelReferenceableEntitieSaveData>)
+		return false;
+
 	if (m_sSceneResource != p_Other.m_sSceneResource) return false;
 	if (m_aAdditionalBrickResources != p_Other.m_aAdditionalBrickResources) return false;
 
@@ -51009,6 +52266,9 @@ bool SObjetiveSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SObjetiveSaveData::operator==(const SObjetiveSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SObjetiveSaveData>)
+		return false;
+
 	if (m_eType != p_Other.m_eType) return false;
 	if (m_SaveData != p_Other.m_SaveData) return false;
 
@@ -51115,6 +52375,9 @@ bool SSoundAmbienceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSoundAmbienceSaveData::operator==(const SSoundAmbienceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSoundAmbienceSaveData>)
+		return false;
+
 	if (m_rCurrentAmbience != p_Other.m_rCurrentAmbience) return false;
 	if (m_rCurrentGate != p_Other.m_rCurrentGate) return false;
 	if (m_fTransitionAmount != p_Other.m_fTransitionAmount) return false;
@@ -51503,6 +52766,9 @@ bool SLevelSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLevelSaveData::operator==(const SLevelSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLevelSaveData>)
+		return false;
+
 	if (m_nGameTime != p_Other.m_nGameTime) return false;
 	if (m_nGameTimePrev != p_Other.m_nGameTimePrev) return false;
 	if (m_nGameTimeDelta != p_Other.m_nGameTimeDelta) return false;
@@ -51591,6 +52857,9 @@ bool SLightFlickerEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLightFlickerEntitySaveData::operator==(const SLightFlickerEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLightFlickerEntitySaveData>)
+		return false;
+
 	if (m_bLightOn != p_Other.m_bLightOn) return false;
 	if (m_bFlickerOn != p_Other.m_bFlickerOn) return false;
 
@@ -51650,6 +52919,9 @@ bool SLoadRuntimeResourceResult::Equals(void* p_Left, void* p_Right)
 
 bool SLoadRuntimeResourceResult::operator==(const SLoadRuntimeResourceResult& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLoadRuntimeResourceResult>)
+		return false;
+
 	if (sFilePath != p_Other.sFilePath) return false;
 
 	return true;
@@ -51845,6 +53117,9 @@ bool SLocalizedVideoData::Equals(void* p_Left, void* p_Right)
 
 bool SLocalizedVideoData::operator==(const SLocalizedVideoData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLocalizedVideoData>)
+		return false;
+
 	if (AudioLanguages != p_Other.AudioLanguages) return false;
 	if (VideoRidsPerAudioLanguage != p_Other.VideoRidsPerAudioLanguage) return false;
 	if (SubtitleLanguages != p_Other.SubtitleLanguages) return false;
@@ -51939,6 +53214,9 @@ bool SLockdownManagerAIZoneSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLockdownManagerAIZoneSaveData::operator==(const SLockdownManagerAIZoneSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLockdownManagerAIZoneSaveData>)
+		return false;
+
 	if (m_tExpiry != p_Other.m_tExpiry) return false;
 	if (m_tExpiryHeroOutside != p_Other.m_tExpiryHeroOutside) return false;
 	if (m_rZone != p_Other.m_rZone) return false;
@@ -52025,6 +53303,9 @@ bool SLockdownManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SLockdownManagerSaveData::operator==(const SLockdownManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SLockdownManagerSaveData>)
+		return false;
+
 	if (m_aAIZones != p_Other.m_aAIZones) return false;
 
 	return true;
@@ -52131,6 +53412,9 @@ bool SManHuntServiceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SManHuntServiceSaveData::operator==(const SManHuntServiceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SManHuntServiceSaveData>)
+		return false;
+
 	if (m_rGuardNodes != p_Other.m_rGuardNodes) return false;
 	if (m_rInitialNode != p_Other.m_rInitialNode) return false;
 	if (m_fGuardSightRange != p_Other.m_fGuardSightRange) return false;
@@ -52217,6 +53501,9 @@ bool SMapMarkerData::Equals(void* p_Left, void* p_Right)
 
 bool SMapMarkerData::operator==(const SMapMarkerData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMapMarkerData>)
+		return false;
+
 	if (pathPoints != p_Other.pathPoints) return false;
 
 	return true;
@@ -52296,6 +53583,9 @@ bool SMathDistanceSaveData_SVector2::Equals(void* p_Left, void* p_Right)
 
 bool SMathDistanceSaveData_SVector2::operator==(const SMathDistanceSaveData_SVector2& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathDistanceSaveData_SVector2>)
+		return false;
+
 	if (m_fA != p_Other.m_fA) return false;
 	if (m_fB != p_Other.m_fB) return false;
 
@@ -52376,6 +53666,9 @@ bool SMathDistanceSaveData_SVector3::Equals(void* p_Left, void* p_Right)
 
 bool SMathDistanceSaveData_SVector3::operator==(const SMathDistanceSaveData_SVector3& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathDistanceSaveData_SVector3>)
+		return false;
+
 	if (m_fA != p_Other.m_fA) return false;
 	if (m_fB != p_Other.m_fB) return false;
 
@@ -52456,6 +53749,9 @@ bool SMathDistanceSaveData_SVector4::Equals(void* p_Left, void* p_Right)
 
 bool SMathDistanceSaveData_SVector4::operator==(const SMathDistanceSaveData_SVector4& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMathDistanceSaveData_SVector4>)
+		return false;
+
 	if (m_fA != p_Other.m_fA) return false;
 	if (m_fB != p_Other.m_fB) return false;
 
@@ -52553,6 +53849,9 @@ bool SMatrix33::Equals(void* p_Left, void* p_Right)
 
 bool SMatrix33::operator==(const SMatrix33& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix33>)
+		return false;
+
 	if (XAxis != p_Other.XAxis) return false;
 	if (YAxis != p_Other.YAxis) return false;
 	if (ZAxis != p_Other.ZAxis) return false;
@@ -52668,6 +53967,9 @@ bool SMatrix43::Equals(void* p_Left, void* p_Right)
 
 bool SMatrix43::operator==(const SMatrix43& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix43>)
+		return false;
+
 	if (XAxis != p_Other.XAxis) return false;
 	if (YAxis != p_Other.YAxis) return false;
 	if (ZAxis != p_Other.ZAxis) return false;
@@ -52908,6 +54210,9 @@ bool SMatrix44::Equals(void* p_Left, void* p_Right)
 
 bool SMatrix44::operator==(const SMatrix44& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix44>)
+		return false;
+
 	if (m11 != p_Other.m11) return false;
 	if (m12 != p_Other.m12) return false;
 	if (m13 != p_Other.m13) return false;
@@ -53040,6 +54345,9 @@ bool SMovementAgilitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementAgilitySaveData::operator==(const SMovementAgilitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementAgilitySaveData>)
+		return false;
+
 	if (m_rLedgeGuide != p_Other.m_rLedgeGuide) return false;
 	if (m_fFaceLeftRightTarget != p_Other.m_fFaceLeftRightTarget) return false;
 	if (m_ePrevAgilityState != p_Other.m_ePrevAgilityState) return false;
@@ -53155,6 +54463,9 @@ bool SMovementCoverSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementCoverSaveData::operator==(const SMovementCoverSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementCoverSaveData>)
+		return false;
+
 	if (m_rCoverPlane != p_Other.m_rCoverPlane) return false;
 	if (m_nCoverAnimNodeID != p_Other.m_nCoverAnimNodeID) return false;
 	if (m_bLeftSideFacing != p_Other.m_bLeftSideFacing) return false;
@@ -53228,6 +54539,9 @@ bool SMovementDisguiseSafeZoneSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementDisguiseSafeZoneSaveData::operator==(const SMovementDisguiseSafeZoneSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementDisguiseSafeZoneSaveData>)
+		return false;
+
 	if (m_rSafeZone != p_Other.m_rSafeZone) return false;
 	if (m_nSafeZoneAnimNode != p_Other.m_nSafeZoneAnimNode) return false;
 
@@ -53298,6 +54612,9 @@ bool SMovementDragBodySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementDragBodySaveData::operator==(const SMovementDragBodySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementDragBodySaveData>)
+		return false;
+
 	if (m_rDraggedActor != p_Other.m_rDraggedActor) return false;
 	if (m_nGrabBoneID != p_Other.m_nGrabBoneID) return false;
 
@@ -53356,6 +54673,9 @@ bool SMovementDrainPipeSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementDrainPipeSaveData::operator==(const SMovementDrainPipeSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementDrainPipeSaveData>)
+		return false;
+
 	if (m_rDrainPipe != p_Other.m_rDrainPipe) return false;
 
 	return true;
@@ -53425,6 +54745,9 @@ bool SMovementHideInClosetSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementHideInClosetSaveData::operator==(const SMovementHideInClosetSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementHideInClosetSaveData>)
+		return false;
+
 	if (m_eCurrentClosetType != p_Other.m_eCurrentClosetType) return false;
 	if (m_rCloset != p_Other.m_rCloset) return false;
 
@@ -53483,6 +54806,9 @@ bool SMovementLadderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementLadderSaveData::operator==(const SMovementLadderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementLadderSaveData>)
+		return false;
+
 	if (m_rLadder != p_Other.m_rLadder) return false;
 
 	return true;
@@ -53540,6 +54866,9 @@ bool SMovementLocomotionSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SMovementLocomotionSaveData::operator==(const SMovementLocomotionSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMovementLocomotionSaveData>)
+		return false;
+
 	if (m_bIsSneaking != p_Other.m_bIsSneaking) return false;
 
 	return true;
@@ -53609,6 +54938,9 @@ bool SMusicGridData::Equals(void* p_Left, void* p_Right)
 
 bool SMusicGridData::operator==(const SMusicGridData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SMusicGridData>)
+		return false;
+
 	if (m_fGridDurationSec != p_Other.m_fGridDurationSec) return false;
 	if (m_fGridOffsetSec != p_Other.m_fGridOffsetSec) return false;
 
@@ -53716,6 +55048,9 @@ bool SObserversGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SObserversGroupSaveData::operator==(const SObserversGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SObserversGroupSaveData>)
+		return false;
+
 	if (m_target != p_Other.m_target) return false;
 	if (m_aWaitingObservers != p_Other.m_aWaitingObservers) return false;
 	if (m_observerDistanceMax != p_Other.m_observerDistanceMax) return false;
@@ -53793,6 +55128,9 @@ bool SOnlineEvent::Equals(void* p_Left, void* p_Right)
 
 bool SOnlineEvent::operator==(const SOnlineEvent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SOnlineEvent>)
+		return false;
+
 	if (sName != p_Other.sName) return false;
 	if (data != p_Other.data) return false;
 
@@ -53902,6 +55240,9 @@ bool SOnlineSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SOnlineSaveData::operator==(const SOnlineSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SOnlineSaveData>)
+		return false;
+
 	if (m_sName != p_Other.m_sName) return false;
 	if (m_nTimeStamp != p_Other.m_nTimeStamp) return false;
 	if (m_bIsOnline != p_Other.m_bIsOnline) return false;
@@ -53968,6 +55309,9 @@ bool SOptionValueSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SOptionValueSaveData::operator==(const SOptionValueSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SOptionValueSaveData>)
+		return false;
+
 	if (m_Value != p_Other.m_Value) return false;
 
 	return true;
@@ -54025,6 +55369,9 @@ bool SPFObstactleSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPFObstactleSaveData::operator==(const SPFObstactleSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPFObstactleSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 
 	return true;
@@ -54082,6 +55429,9 @@ bool SPIPMessageManagerProxySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPIPMessageManagerProxySaveData::operator==(const SPIPMessageManagerProxySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPIPMessageManagerProxySaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 
 	return true;
@@ -54139,6 +55489,9 @@ bool SPatrolGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPatrolGroupSaveData::operator==(const SPatrolGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPatrolGroupSaveData>)
+		return false;
+
 	if (m_nRouteID != p_Other.m_nRouteID) return false;
 
 	return true;
@@ -54186,6 +55539,9 @@ bool SPatrolOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPatrolOrderSaveData::operator==(const SPatrolOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPatrolOrderSaveData>)
+		return false;
+
 
 	return true;
 }
@@ -54254,6 +55610,9 @@ bool SPerceptibleCrowdBodySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPerceptibleCrowdBodySaveData::operator==(const SPerceptibleCrowdBodySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPerceptibleCrowdBodySaveData>)
+		return false;
+
 	if (m_rCombatZone != p_Other.m_rCombatZone) return false;
 	if (m_rSharedKnowledge != p_Other.m_rSharedKnowledge) return false;
 
@@ -54386,6 +55745,9 @@ bool SPersistentEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPersistentEntitySaveData::operator==(const SPersistentEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPersistentEntitySaveData>)
+		return false;
+
 	if (m_nResourceId != p_Other.m_nResourceId) return false;
 	if (m_aEntityIDs != p_Other.m_aEntityIDs) return false;
 	if (m_aEntityNames != p_Other.m_aEntityNames) return false;
@@ -54546,6 +55908,9 @@ bool SPersistentEntitySaveDataList::Equals(void* p_Left, void* p_Right)
 
 bool SPersistentEntitySaveDataList::operator==(const SPersistentEntitySaveDataList& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPersistentEntitySaveDataList>)
+		return false;
+
 	if (m_aEntityDatas != p_Other.m_aEntityDatas) return false;
 	if (m_mDynamicObjectIDGenerationKeys != p_Other.m_mDynamicObjectIDGenerationKeys) return false;
 	if (m_mDynamicObjectIDGenerationValues != p_Other.m_mDynamicObjectIDGenerationValues) return false;
@@ -54629,6 +55994,9 @@ bool SPhysicsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPhysicsSaveData::operator==(const SPhysicsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPhysicsSaveData>)
+		return false;
+
 	if (m_bIsInPhysicsWorld != p_Other.m_bIsInPhysicsWorld) return false;
 	if (m_bIsKinematicBody != p_Other.m_bIsKinematicBody) return false;
 	if (m_bIsVisible != p_Other.m_bIsVisible) return false;
@@ -54752,6 +56120,9 @@ bool SPhysicsListSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPhysicsListSaveData::operator==(const SPhysicsListSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPhysicsListSaveData>)
+		return false;
+
 	if (m_aEntityRefs != p_Other.m_aEntityRefs) return false;
 	if (m_aEntityDatas != p_Other.m_aEntityDatas) return false;
 
@@ -54859,6 +56230,9 @@ bool SPrivateAreaSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SPrivateAreaSaveData::operator==(const SPrivateAreaSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SPrivateAreaSaveData>)
+		return false;
+
 	if (m_bIsInside != p_Other.m_bIsInside) return false;
 	if (m_bSpotted != p_Other.m_bSpotted) return false;
 	if (m_aActiveActors != p_Other.m_aActiveActors) return false;
@@ -54942,6 +56316,9 @@ bool SProgressTimerEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SProgressTimerEntitySaveData::operator==(const SProgressTimerEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SProgressTimerEntitySaveData>)
+		return false;
+
 	if (m_nInterval != p_Other.m_nInterval) return false;
 	if (m_nRemaining != p_Other.m_nRemaining) return false;
 	if (m_bValue != p_Other.m_bValue) return false;
@@ -55061,6 +56438,9 @@ bool SRandomTimerEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRandomTimerEntitySaveData::operator==(const SRandomTimerEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRandomTimerEntitySaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_bRegistered != p_Other.m_bRegistered) return false;
 	if (m_fMinTime != p_Other.m_fMinTime) return false;
@@ -55187,6 +56567,9 @@ bool SRandomTimerEntitiesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRandomTimerEntitiesSaveData::operator==(const SRandomTimerEntitiesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRandomTimerEntitiesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -55282,6 +56665,9 @@ bool ZBitArray::Equals(void* p_Left, void* p_Right)
 
 bool ZBitArray::operator==(const ZBitArray& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZBitArray>)
+		return false;
+
 	if (m_aBytes != p_Other.m_aBytes) return false;
 	if (m_nSize != p_Other.m_nSize) return false;
 
@@ -55484,6 +56870,9 @@ bool SReasoningGrid::Equals(void* p_Left, void* p_Right)
 
 bool SReasoningGrid::operator==(const SReasoningGrid& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SReasoningGrid>)
+		return false;
+
 	if (m_WaypointList != p_Other.m_WaypointList) return false;
 	if (m_LowVisibilityBits != p_Other.m_LowVisibilityBits) return false;
 	if (m_HighVisibilityBits != p_Other.m_HighVisibilityBits) return false;
@@ -55624,6 +57013,9 @@ bool SRecoverUnconsciousGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRecoverUnconsciousGroupSaveData::operator==(const SRecoverUnconsciousGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRecoverUnconsciousGroupSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_rVictim != p_Other.m_rVictim) return false;
 	if (m_rWaker != p_Other.m_rWaker) return false;
@@ -55712,6 +57104,9 @@ bool SRememberActorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRememberActorSaveData::operator==(const SRememberActorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRememberActorSaveData>)
+		return false;
+
 	if (m_Actors != p_Other.m_Actors) return false;
 
 	return true;
@@ -55793,6 +57188,9 @@ bool SRemoteControlReceiverSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRemoteControlReceiverSaveData::operator==(const SRemoteControlReceiverSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRemoteControlReceiverSaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_bReceiverActivated != p_Other.m_bReceiverActivated) return false;
 	if (m_bDestroyed != p_Other.m_bDestroyed) return false;
@@ -55987,6 +57385,9 @@ bool SRenderVideoPlayerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRenderVideoPlayerSaveData::operator==(const SRenderVideoPlayerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRenderVideoPlayerSaveData>)
+		return false;
+
 	if (m_bPlaying != p_Other.m_bPlaying) return false;
 	if (m_bPaused != p_Other.m_bPaused) return false;
 	if (m_bLooping != p_Other.m_bLooping) return false;
@@ -56066,6 +57467,9 @@ bool SRepositionOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRepositionOrderSaveData::operator==(const SRepositionOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRepositionOrderSaveData>)
+		return false;
+
 	if (m_bStrafe != p_Other.m_bStrafe) return false;
 	if (m_bAimAtTarget != p_Other.m_bAimAtTarget) return false;
 
@@ -56160,6 +57564,9 @@ bool SRotateEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SRotateEntitySaveData::operator==(const SRotateEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SRotateEntitySaveData>)
+		return false;
+
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_fXAxisSpeed != p_Other.m_fXAxisSpeed) return false;
 	if (m_fYAxisSpeed != p_Other.m_fYAxisSpeed) return false;
@@ -56244,6 +57651,9 @@ bool SSCCuriousConfiguration::Equals(void* p_Left, void* p_Right)
 
 bool SSCCuriousConfiguration::operator==(const SSCCuriousConfiguration& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSCCuriousConfiguration>)
+		return false;
+
 	if (m_CanGuardsInvestigate != p_Other.m_CanGuardsInvestigate) return false;
 	if (m_CanCiviliansInvestigate != p_Other.m_CanCiviliansInvestigate) return false;
 	if (m_CanVIPsInvestigate != p_Other.m_CanVIPsInvestigate) return false;
@@ -56337,6 +57747,9 @@ bool SSavableData::Equals(void* p_Left, void* p_Right)
 
 bool SSavableData::operator==(const SSavableData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSavableData>)
+		return false;
+
 	if (m_EntitiesData != p_Other.m_EntitiesData) return false;
 	if (m_Data != p_Other.m_Data) return false;
 	if (m_nId != p_Other.m_nId) return false;
@@ -56401,6 +57814,9 @@ bool SVariantStruct::Equals(void* p_Left, void* p_Right)
 
 bool SVariantStruct::operator==(const SVariantStruct& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVariantStruct>)
+		return false;
+
 	if (m_Data != p_Other.m_Data) return false;
 
 	return true;
@@ -56522,6 +57938,9 @@ bool SSavableEntitiesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSavableEntitiesSaveData::operator==(const SSavableEntitiesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSavableEntitiesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aEntityData != p_Other.m_aEntityData) return false;
 
@@ -56658,6 +58077,9 @@ bool SSaveGameData::Equals(void* p_Left, void* p_Right)
 
 bool SSaveGameData::operator==(const SSaveGameData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSaveGameData>)
+		return false;
+
 	if (m_nVersion != p_Other.m_nVersion) return false;
 	if (m_aSavableObjectsData != p_Other.m_aSavableObjectsData) return false;
 	if (m_aEntityPaths != p_Other.m_aEntityPaths) return false;
@@ -56917,6 +58339,9 @@ bool SSaveGameMetaData::Equals(void* p_Left, void* p_Right)
 
 bool SSaveGameMetaData::operator==(const SSaveGameMetaData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSaveGameMetaData>)
+		return false;
+
 	if (nSlot != p_Other.nSlot) return false;
 	if (eSaveType != p_Other.eSaveType) return false;
 	if (eDifficultyLevel != p_Other.eDifficultyLevel) return false;
@@ -57051,6 +58476,9 @@ bool SSaveGameHeader::Equals(void* p_Left, void* p_Right)
 
 bool SSaveGameHeader::operator==(const SSaveGameHeader& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSaveGameHeader>)
+		return false;
+
 	if (nFourCC != p_Other.nFourCC) return false;
 	if (nVersion != p_Other.nVersion) return false;
 	if (nCrc32 != p_Other.nCrc32) return false;
@@ -57203,6 +58631,9 @@ bool SScreenplay2ManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SScreenplay2ManagerSaveData::operator==(const SScreenplay2ManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SScreenplay2ManagerSaveData>)
+		return false;
+
 	if (m_DramaActorData != p_Other.m_DramaActorData) return false;
 	if (m_DramaSituationData != p_Other.m_DramaSituationData) return false;
 	if (m_DramaSetupData != p_Other.m_DramaSetupData) return false;
@@ -57304,6 +58735,9 @@ bool SScreenplayManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SScreenplayManagerSaveData::operator==(const SScreenplayManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SScreenplayManagerSaveData>)
+		return false;
+
 	if (m_DramaActorData != p_Other.m_DramaActorData) return false;
 	if (m_DramaSituationData != p_Other.m_DramaSituationData) return false;
 	if (m_DramaSetupData != p_Other.m_DramaSetupData) return false;
@@ -57375,6 +58809,9 @@ bool SScreenplayRole2HeroSaveState::Equals(void* p_Left, void* p_Right)
 
 bool SScreenplayRole2HeroSaveState::operator==(const SScreenplayRole2HeroSaveState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SScreenplayRole2HeroSaveState>)
+		return false;
+
 	if (m_rCurrentSpeakEntity != p_Other.m_rCurrentSpeakEntity) return false;
 	if (m_bPaused != p_Other.m_bPaused) return false;
 
@@ -57481,6 +58918,9 @@ bool SSecuritySystemCameraSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSecuritySystemCameraSaveData::operator==(const SSecuritySystemCameraSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSecuritySystemCameraSaveData>)
+		return false;
+
 	if (m_nEscalation != p_Other.m_nEscalation) return false;
 	if (m_bIsFunctional != p_Other.m_bIsFunctional) return false;
 	if (m_bHasEnteredOnce != p_Other.m_bHasEnteredOnce) return false;
@@ -57554,6 +58994,9 @@ bool SSecuritySystemRecorderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSecuritySystemRecorderSaveData::operator==(const SSecuritySystemRecorderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSecuritySystemRecorderSaveData>)
+		return false;
+
 	if (m_bHasRecordings != p_Other.m_bHasRecordings) return false;
 	if (m_bIsFunctional != p_Other.m_bIsFunctional) return false;
 
@@ -57706,6 +59149,9 @@ bool SSentryGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSentryGroupSaveData::operator==(const SSentryGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSentryGroupSaveData>)
+		return false;
+
 	if (m_rTarget != p_Other.m_rTarget) return false;
 	if (m_pLeader != p_Other.m_pLeader) return false;
 	if (m_rSentryZone != p_Other.m_rSentryZone) return false;
@@ -57770,6 +59216,9 @@ bool SSentryOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSentryOrderSaveData::operator==(const SSentryOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSentryOrderSaveData>)
+		return false;
+
 	if (m_rSentryZone != p_Other.m_rSentryZone) return false;
 
 	return true;
@@ -58249,6 +59698,9 @@ bool SSentryZoneSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSentryZoneSaveData::operator==(const SSentryZoneSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSentryZoneSaveData>)
+		return false;
+
 	if (m_tGreetingCooldown != p_Other.m_tGreetingCooldown) return false;
 	if (m_tLoiteringCooldown != p_Other.m_tLoiteringCooldown) return false;
 	if (m_nWarningCount != p_Other.m_nWarningCount) return false;
@@ -58349,6 +59801,9 @@ bool SSequenceTrackSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSequenceTrackSaveData::operator==(const SSequenceTrackSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSequenceTrackSaveData>)
+		return false;
+
 	if (m_rTrackEntity != p_Other.m_rTrackEntity) return false;
 	if (m_CustomTrackData != p_Other.m_CustomTrackData) return false;
 
@@ -58601,6 +60056,9 @@ bool SSequenceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSequenceSaveData::operator==(const SSequenceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSequenceSaveData>)
+		return false;
+
 	if (m_commandQueue != p_Other.m_commandQueue) return false;
 	if (m_sequenceTime != p_Other.m_sequenceTime) return false;
 	if (m_sequenceOrigin != p_Other.m_sequenceOrigin) return false;
@@ -58733,6 +60191,9 @@ bool SSequenceManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSequenceManagerSaveData::operator==(const SSequenceManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSequenceManagerSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aSequenceSaveData != p_Other.m_aSequenceSaveData) return false;
 
@@ -58781,6 +60242,9 @@ bool SSerializedValue::Equals(void* p_Left, void* p_Right)
 
 bool SSerializedValue::operator==(const SSerializedValue& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSerializedValue>)
+		return false;
+
 
 	return true;
 }
@@ -58862,6 +60326,9 @@ bool SSituationConversationGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSituationConversationGroupSaveData::operator==(const SSituationConversationGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSituationConversationGroupSaveData>)
+		return false;
+
 	if (m_members != p_Other.m_members) return false;
 
 	return true;
@@ -58990,6 +60457,9 @@ bool SSituationOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSituationOrderSaveData::operator==(const SSituationOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSituationOrderSaveData>)
+		return false;
+
 	if (m_sClassTypeName != p_Other.m_sClassTypeName) return false;
 	if (m_eType != p_Other.m_eType) return false;
 	if (m_nTarget != p_Other.m_nTarget) return false;
@@ -59124,6 +60594,9 @@ bool SSmuggleSituationActorStateSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSmuggleSituationActorStateSaveData::operator==(const SSmuggleSituationActorStateSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSmuggleSituationActorStateSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_bAllocatedForSituation != p_Other.m_bAllocatedForSituation) return false;
 	if (m_nState != p_Other.m_nState) return false;
@@ -59287,6 +60760,9 @@ bool SSmuggleSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSmuggleSituationSaveData::operator==(const SSmuggleSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSmuggleSituationSaveData>)
+		return false;
+
 	if (m_bIsEnabled != p_Other.m_bIsEnabled) return false;
 	if (m_bIsRunning != p_Other.m_bIsRunning) return false;
 	if (m_nNumberOfPickups != p_Other.m_nNumberOfPickups) return false;
@@ -59411,6 +60887,9 @@ bool SSniperCombatGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSniperCombatGroupSaveData::operator==(const SSniperCombatGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSniperCombatGroupSaveData>)
+		return false;
+
 	if (m_fsmState != p_Other.m_fsmState) return false;
 	if (m_target != p_Other.m_target) return false;
 	if (m_bFailed != p_Other.m_bFailed) return false;
@@ -59534,6 +61013,9 @@ bool SSniperScoringEvent::Equals(void* p_Left, void* p_Right)
 
 bool SSniperScoringEvent::operator==(const SSniperScoringEvent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSniperScoringEvent>)
+		return false;
+
 	if (m_iPoints != p_Other.m_iPoints) return false;
 	if (m_iPlayer != p_Other.m_iPlayer) return false;
 	if (m_sName != p_Other.m_sName) return false;
@@ -59596,6 +61078,9 @@ bool SSpaceCollectionBehaviorConfiguration::Equals(void* p_Left, void* p_Right)
 
 bool SSpaceCollectionBehaviorConfiguration::operator==(const SSpaceCollectionBehaviorConfiguration& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSpaceCollectionBehaviorConfiguration>)
+		return false;
+
 	if (m_bInclusive != p_Other.m_bInclusive) return false;
 
 	return true;
@@ -59706,6 +61191,9 @@ bool SSpatialMoverEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSpatialMoverEntitySaveData::operator==(const SSpatialMoverEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSpatialMoverEntitySaveData>)
+		return false;
+
 	if (m_fSpeed != p_Other.m_fSpeed) return false;
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
@@ -59801,6 +61289,9 @@ bool SSpatialSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSpatialSaveData::operator==(const SSpatialSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSpatialSaveData>)
+		return false;
+
 	if (m_bVisible != p_Other.m_bVisible) return false;
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_vQuaternionRotation != p_Other.m_vQuaternionRotation) return false;
@@ -59860,6 +61351,9 @@ bool SSpeakEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SSpeakEntitySaveData::operator==(const SSpeakEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SSpeakEntitySaveData>)
+		return false;
+
 	if (m_fSeekPosition != p_Other.m_fSeekPosition) return false;
 
 	return true;
@@ -59995,6 +61489,9 @@ bool SStashPointSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SStashPointSaveData::operator==(const SStashPointSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SStashPointSaveData>)
+		return false;
+
 	if (m_arItems != p_Other.m_arItems) return false;
 	if (m_pSuitcase != p_Other.m_pSuitcase) return false;
 	if (m_pMainItem != p_Other.m_pMainItem) return false;
@@ -60068,6 +61565,9 @@ bool SStateControllerSaveDataStruct::Equals(void* p_Left, void* p_Right)
 
 bool SStateControllerSaveDataStruct::operator==(const SStateControllerSaveDataStruct& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SStateControllerSaveDataStruct>)
+		return false;
+
 	if (m_nIndex != p_Other.m_nIndex) return false;
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 
@@ -60190,6 +61690,9 @@ bool SStateControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SStateControllerSaveData::operator==(const SStateControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SStateControllerSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -60320,6 +61823,9 @@ bool SStepCounterEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SStepCounterEntitySaveData::operator==(const SStepCounterEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SStepCounterEntitySaveData>)
+		return false;
+
 	if (m_nIndex != p_Other.m_nIndex) return false;
 	if (m_nLoopIndex != p_Other.m_nLoopIndex) return false;
 	if (m_bFirst != p_Other.m_bFirst) return false;
@@ -60435,6 +61941,9 @@ bool STargetInfoObjectiveCondition::Equals(void* p_Left, void* p_Right)
 
 bool STargetInfoObjectiveCondition::operator==(const STargetInfoObjectiveCondition& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STargetInfoObjectiveCondition>)
+		return false;
+
 	if (header != p_Other.header) return false;
 	if (title != p_Other.title) return false;
 	if (icon != p_Other.icon) return false;
@@ -60610,6 +62119,9 @@ bool STargetInfoDisplayData::Equals(void* p_Left, void* p_Right)
 
 bool STargetInfoDisplayData::operator==(const STargetInfoDisplayData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STargetInfoDisplayData>)
+		return false;
+
 	if (npcName != p_Other.npcName) return false;
 	if (disguiseName != p_Other.disguiseName) return false;
 	if (objectiveType != p_Other.objectiveType) return false;
@@ -60701,6 +62213,9 @@ bool STargetInfoDisplayData_Dummy::Equals(void* p_Left, void* p_Right)
 
 bool STargetInfoDisplayData_Dummy::operator==(const STargetInfoDisplayData_Dummy& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STargetInfoDisplayData_Dummy>)
+		return false;
+
 	if (__dummy != p_Other.__dummy) return false;
 
 	return true;
@@ -60792,6 +62307,9 @@ bool STargetTrackingSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STargetTrackingSaveData::operator==(const STargetTrackingSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STargetTrackingSaveData>)
+		return false;
+
 	if (m_sharedTarget != p_Other.m_sharedTarget) return false;
 	if (m_position != p_Other.m_position) return false;
 	if (m_time != p_Other.m_time) return false;
@@ -60878,6 +62396,9 @@ bool STargetTrackingServiceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STargetTrackingServiceSaveData::operator==(const STargetTrackingServiceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STargetTrackingServiceSaveData>)
+		return false;
+
 	if (m_aTrackedTargets != p_Other.m_aTrackedTargets) return false;
 
 	return true;
@@ -60947,6 +62468,9 @@ bool STargetableBoneConfiguration::Equals(void* p_Left, void* p_Right)
 
 bool STargetableBoneConfiguration::operator==(const STargetableBoneConfiguration& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STargetableBoneConfiguration>)
+		return false;
+
 	if (m_eBone != p_Other.m_eBone) return false;
 	if (m_fBoneRadiusOverride != p_Other.m_fBoneRadiusOverride) return false;
 
@@ -61215,6 +62739,9 @@ bool STemplateBlueprintSubEntity::Equals(void* p_Left, void* p_Right)
 
 bool STemplateBlueprintSubEntity::operator==(const STemplateBlueprintSubEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STemplateBlueprintSubEntity>)
+		return false;
+
 	if (logicalParent != p_Other.logicalParent) return false;
 	if (entityTypeResourceIndex != p_Other.entityTypeResourceIndex) return false;
 	if (entityId != p_Other.entityId) return false;
@@ -61602,6 +63129,9 @@ bool STemplateEntityBlueprint::Equals(void* p_Left, void* p_Right)
 
 bool STemplateEntityBlueprint::operator==(const STemplateEntityBlueprint& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STemplateEntityBlueprint>)
+		return false;
+
 	if (subType != p_Other.subType) return false;
 	if (rootEntityIndex != p_Other.rootEntityIndex) return false;
 	if (subEntities != p_Other.subEntities) return false;
@@ -61802,6 +63332,9 @@ bool STemplateFactorySubEntity::Equals(void* p_Left, void* p_Right)
 
 bool STemplateFactorySubEntity::operator==(const STemplateFactorySubEntity& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STemplateFactorySubEntity>)
+		return false;
+
 	if (logicalParent != p_Other.logicalParent) return false;
 	if (entityTypeResourceIndex != p_Other.entityTypeResourceIndex) return false;
 	if (propertyValues != p_Other.propertyValues) return false;
@@ -62002,6 +63535,9 @@ bool STemplateEntityFactory::Equals(void* p_Left, void* p_Right)
 
 bool STemplateEntityFactory::operator==(const STemplateEntityFactory& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STemplateEntityFactory>)
+		return false;
+
 	if (subType != p_Other.subType) return false;
 	if (blueprintIndexInResourceHeader != p_Other.blueprintIndexInResourceHeader) return false;
 	if (rootEntityIndex != p_Other.rootEntityIndex) return false;
@@ -62101,6 +63637,9 @@ bool STestStruct::Equals(void* p_Left, void* p_Right)
 
 bool STestStruct::operator==(const STestStruct& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STestStruct>)
+		return false;
+
 	if (stringField != p_Other.stringField) return false;
 	if (intField != p_Other.intField) return false;
 	if (floatField != p_Other.floatField) return false;
@@ -62205,6 +63744,9 @@ bool STestStruct2::Equals(void* p_Left, void* p_Right)
 
 bool STestStruct2::operator==(const STestStruct2& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STestStruct2>)
+		return false;
+
 	if (arrayField != p_Other.arrayField) return false;
 	if (variantField != p_Other.variantField) return false;
 
@@ -62287,6 +63829,9 @@ bool STimerEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool STimerEntitySaveData::operator==(const STimerEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STimerEntitySaveData>)
+		return false;
+
 	if (m_nInterval != p_Other.m_nInterval) return false;
 	if (m_bEnabled != p_Other.m_bEnabled) return false;
 	if (m_fTimeToNextEvent != p_Other.m_fTimeToNextEvent) return false;
@@ -62410,6 +63955,9 @@ bool STimerEntitiesSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STimerEntitiesSaveData::operator==(const STimerEntitiesSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STimerEntitiesSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -62507,6 +64055,9 @@ bool STimerManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STimerManagerSaveData::operator==(const STimerManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STimerManagerSaveData>)
+		return false;
+
 	if (m_TimersData != p_Other.m_TimersData) return false;
 	if (m_RandomTimersData != p_Other.m_RandomTimersData) return false;
 	if (m_GameTimersData != p_Other.m_GameTimersData) return false;
@@ -62578,6 +64129,9 @@ bool STokenID::Equals(void* p_Left, void* p_Right)
 
 bool STokenID::operator==(const STokenID& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STokenID>)
+		return false;
+
 	if (m_iValue != p_Other.m_iValue) return false;
 	if (m_bValid != p_Other.m_bValid) return false;
 
@@ -62694,6 +64248,9 @@ bool STrackDollyControllerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STrackDollyControllerSaveData::operator==(const STrackDollyControllerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STrackDollyControllerSaveData>)
+		return false;
+
 	if (m_rTrackEntity != p_Other.m_rTrackEntity) return false;
 	if (m_fTrackPosition != p_Other.m_fTrackPosition) return false;
 	if (m_bIsDollyAttached != p_Other.m_bIsDollyAttached) return false;
@@ -62791,6 +64348,9 @@ bool STrackerEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool STrackerEntitySaveData::operator==(const STrackerEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STrackerEntitySaveData>)
+		return false;
+
 	if (m_rTracker != p_Other.m_rTracker) return false;
 	if (m_bIsVisible != p_Other.m_bIsVisible) return false;
 	if (m_bIsEnabled != p_Other.m_bIsEnabled) return false;
@@ -62878,6 +64438,9 @@ bool STrackerManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STrackerManagerSaveData::operator==(const STrackerManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STrackerManagerSaveData>)
+		return false;
+
 	if (m_aTrackerData != p_Other.m_aTrackerData) return false;
 
 	return true;
@@ -62957,6 +64520,9 @@ bool STrajectoryTrackSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STrajectoryTrackSaveData::operator==(const STrajectoryTrackSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STrajectoryTrackSaveData>)
+		return false;
+
 	if (m_vOriginalEntityTransform != p_Other.m_vOriginalEntityTransform) return false;
 	if (m_vTargetStartTransform != p_Other.m_vTargetStartTransform) return false;
 
@@ -63040,6 +64606,9 @@ bool STrespassingRuleEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool STrespassingRuleEntitySaveData::operator==(const STrespassingRuleEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STrespassingRuleEntitySaveData>)
+		return false;
+
 	if (m_aAllowedProfessionsDisabled != p_Other.m_aAllowedProfessionsDisabled) return false;
 
 	return true;
@@ -63150,6 +64719,9 @@ bool STriggerAlarmGroupSaveData::Equals(void* p_Left, void* p_Right)
 
 bool STriggerAlarmGroupSaveData::operator==(const STriggerAlarmGroupSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<STriggerAlarmGroupSaveData>)
+		return false;
+
 	if (m_rTarget != p_Other.m_rTarget) return false;
 	if (m_rAlarm != p_Other.m_rAlarm) return false;
 	if (m_pLeader != p_Other.m_pLeader) return false;
@@ -63223,6 +64795,9 @@ bool SUIBreadcrumbDataSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SUIBreadcrumbDataSaveData::operator==(const SUIBreadcrumbDataSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUIBreadcrumbDataSaveData>)
+		return false;
+
 	if (m_fProgress != p_Other.m_fProgress) return false;
 	if (m_nState != p_Other.m_nState) return false;
 
@@ -63317,6 +64892,9 @@ bool SUIGridCellPosition::Equals(void* p_Left, void* p_Right)
 
 bool SUIGridCellPosition::operator==(const SUIGridCellPosition& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUIGridCellPosition>)
+		return false;
+
 	if (nColumnIndex != p_Other.nColumnIndex) return false;
 	if (nRowIndex != p_Other.nRowIndex) return false;
 	if (nColumnSpan != p_Other.nColumnSpan) return false;
@@ -63402,6 +64980,9 @@ bool SUIOpenVRComponent::Equals(void* p_Left, void* p_Right)
 
 bool SUIOpenVRComponent::operator==(const SUIOpenVRComponent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUIOpenVRComponent>)
+		return false;
+
 	if (idArchetype != p_Other.idArchetype) return false;
 	if (direction != p_Other.direction) return false;
 	if (label != p_Other.label) return false;
@@ -63478,6 +65059,9 @@ bool SUIOpenVRButtonConversion::Equals(void* p_Left, void* p_Right)
 
 bool SUIOpenVRButtonConversion::operator==(const SUIOpenVRButtonConversion& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUIOpenVRButtonConversion>)
+		return false;
+
 	if (idSource != p_Other.idSource) return false;
 	if (component != p_Other.component) return false;
 
@@ -63739,6 +65323,9 @@ bool SUIOptionsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SUIOptionsSaveData::operator==(const SUIOptionsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUIOptionsSaveData>)
+		return false;
+
 	if (m_aKeys != p_Other.m_aKeys) return false;
 	if (m_aValues != p_Other.m_aValues) return false;
 	if (mappings != p_Other.mappings) return false;
@@ -63801,6 +65388,9 @@ bool SUITestData_SSubSubStruct::Equals(void* p_Left, void* p_Right)
 
 bool SUITestData_SSubSubStruct::operator==(const SUITestData_SSubSubStruct& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUITestData_SSubSubStruct>)
+		return false;
+
 	if (sDeepString != p_Other.sDeepString) return false;
 
 	return true;
@@ -63885,6 +65475,9 @@ bool SUITestData_SSubStruct::Equals(void* p_Left, void* p_Right)
 
 bool SUITestData_SSubStruct::operator==(const SUITestData_SSubStruct& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUITestData_SSubStruct>)
+		return false;
+
 	if (aSubSubStructs != p_Other.aSubSubStructs) return false;
 
 	return true;
@@ -64137,6 +65730,9 @@ bool SUITestData::Equals(void* p_Left, void* p_Right)
 
 bool SUITestData::operator==(const SUITestData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SUITestData>)
+		return false;
+
 	if (nIntProp != p_Other.nIntProp) return false;
 	if (fInt16Prop != p_Other.fInt16Prop) return false;
 	if (fUInt32Prop != p_Other.fUInt32Prop) return false;
@@ -64309,6 +65905,9 @@ bool SVRConfigCameraComponent::Equals(void* p_Left, void* p_Right)
 
 bool SVRConfigCameraComponent::operator==(const SVRConfigCameraComponent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVRConfigCameraComponent>)
+		return false;
+
 	if (m_eHeadAnchorMode != p_Other.m_eHeadAnchorMode) return false;
 	if (m_uRecenterRequestCounter != p_Other.m_uRecenterRequestCounter) return false;
 	if (m_fVRUserInputWeight != p_Other.m_fVRUserInputWeight) return false;
@@ -64398,6 +65997,9 @@ bool SValueBoolDelayedEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SValueBoolDelayedEntitySaveData::operator==(const SValueBoolDelayedEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SValueBoolDelayedEntitySaveData>)
+		return false;
+
 	if (m_bValue != p_Other.m_bValue) return false;
 	if (m_bWaitingValue != p_Other.m_bWaitingValue) return false;
 	if (m_fTimeToNextEvent != p_Other.m_fTimeToNextEvent) return false;
@@ -64519,6 +66121,9 @@ bool SValueBoolsSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SValueBoolsSaveData::operator==(const SValueBoolsSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SValueBoolsSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -64639,6 +66244,9 @@ bool SValueFloatSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SValueFloatSaveData::operator==(const SValueFloatSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SValueFloatSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -64759,6 +66367,9 @@ bool SValueIntSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SValueIntSaveData::operator==(const SValueIntSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SValueIntSaveData>)
+		return false;
+
 	if (m_aEntities != p_Other.m_aEntities) return false;
 	if (m_aData != p_Other.m_aData) return false;
 
@@ -64890,6 +66501,9 @@ bool SValueSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SValueSaveData::operator==(const SValueSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SValueSaveData>)
+		return false;
+
 	if (m_ValueBool != p_Other.m_ValueBool) return false;
 	if (m_ValueFloat != p_Other.m_ValueFloat) return false;
 	if (m_ValueInt != p_Other.m_ValueInt) return false;
@@ -64969,6 +66583,9 @@ bool SVideoDatabaseEntry::Equals(void* p_Left, void* p_Right)
 
 bool SVideoDatabaseEntry::operator==(const SVideoDatabaseEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVideoDatabaseEntry>)
+		return false;
+
 	if (VideoId != p_Other.VideoId) return false;
 	if (RuntimeLocalizedVideoRid != p_Other.RuntimeLocalizedVideoRid) return false;
 
@@ -65054,6 +66671,9 @@ bool SVideoDatabaseData::Equals(void* p_Left, void* p_Right)
 
 bool SVideoDatabaseData::operator==(const SVideoDatabaseData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVideoDatabaseData>)
+		return false;
+
 	if (Videos != p_Other.Videos) return false;
 
 	return true;
@@ -65111,6 +66731,9 @@ bool SVisibilitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SVisibilitySaveData::operator==(const SVisibilitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVisibilitySaveData>)
+		return false;
+
 	if (m_bIsVisible != p_Other.m_bIsVisible) return false;
 
 	return true;
@@ -65180,6 +66803,9 @@ bool SVoidSignalEntitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SVoidSignalEntitySaveData::operator==(const SVoidSignalEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoidSignalEntitySaveData>)
+		return false;
+
 	if (m_bSignaling != p_Other.m_bSignaling) return false;
 	if (m_fFiredAtTime != p_Other.m_fFiredAtTime) return false;
 
@@ -65298,6 +66924,9 @@ bool SWaveformGeneratorSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SWaveformGeneratorSaveData::operator==(const SWaveformGeneratorSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SWaveformGeneratorSaveData>)
+		return false;
+
 	if (m_fTime != p_Other.m_fTime) return false;
 	if (m_fFrequency != p_Other.m_fFrequency) return false;
 	if (m_fOffset != p_Other.m_fOffset) return false;
@@ -65424,6 +67053,9 @@ bool SWaveformGeneratorManagerSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SWaveformGeneratorManagerSaveData::operator==(const SWaveformGeneratorManagerSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SWaveformGeneratorManagerSaveData>)
+		return false;
+
 	if (m_aGenerators != p_Other.m_aGenerators) return false;
 	if (m_aGeneratorData != p_Other.m_aGeneratorData) return false;
 
@@ -65506,6 +67138,9 @@ bool SWeaponCustomControlSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SWeaponCustomControlSaveData::operator==(const SWeaponCustomControlSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SWeaponCustomControlSaveData>)
+		return false;
+
 	if (m_rActor != p_Other.m_rActor) return false;
 	if (m_rItem != p_Other.m_rItem) return false;
 	if (m_bTargetRegistered != p_Other.m_bTargetRegistered) return false;
@@ -65987,6 +67622,9 @@ bool SWeaponStatusUIData::Equals(void* p_Left, void* p_Right)
 
 bool SWeaponStatusUIData::operator==(const SWeaponStatusUIData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SWeaponStatusUIData>)
+		return false;
+
 	if (icon != p_Other.icon) return false;
 	if (containedIcon != p_Other.containedIcon) return false;
 	if (sWeaponName != p_Other.sWeaponName) return false;
@@ -66101,6 +67739,9 @@ bool SWorldInventoryInstanceSaveData::Equals(void* p_Left, void* p_Right)
 
 bool SWorldInventoryInstanceSaveData::operator==(const SWorldInventoryInstanceSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SWorldInventoryInstanceSaveData>)
+		return false;
+
 	if (m_aItemInstanceSaveData != p_Other.m_aItemInstanceSaveData) return false;
 
 	return true;
@@ -66158,6 +67799,9 @@ bool SZHUDIgnoreVisibilitySaveData::Equals(void* p_Left, void* p_Right)
 
 bool SZHUDIgnoreVisibilitySaveData::operator==(const SZHUDIgnoreVisibilitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<SZHUDIgnoreVisibilitySaveData>)
+		return false;
+
 	if (alpha != p_Other.alpha) return false;
 
 	return true;
@@ -66244,6 +67888,9 @@ bool ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData::Eq
 
 bool ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData::operator==(const ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData>)
+		return false;
+
 	if (m_DistractedActor != p_Other.m_DistractedActor) return false;
 	if (m_CooldownExpirationTimestamp != p_Other.m_CooldownExpirationTimestamp) return false;
 	if (m_DistractionIsActive != p_Other.m_DistractionIsActive) return false;
@@ -66344,6 +67991,9 @@ bool ZAMDEvent::Equals(void* p_Left, void* p_Right)
 
 bool ZAMDEvent::operator==(const ZAMDEvent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAMDEvent>)
+		return false;
+
 	if (m_nEventID != p_Other.m_nEventID) return false;
 	if (m_fStartFraction != p_Other.m_fStartFraction) return false;
 	if (m_fDuration != p_Other.m_fDuration) return false;
@@ -66444,6 +68094,9 @@ bool ZAMDEventTrack::Equals(void* p_Left, void* p_Right)
 
 bool ZAMDEventTrack::operator==(const ZAMDEventTrack& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAMDEventTrack>)
+		return false;
+
 	if (m_sName != p_Other.m_sName) return false;
 	if (m_events != p_Other.m_events) return false;
 
@@ -66558,6 +68211,9 @@ bool ZAMDTake::Equals(void* p_Left, void* p_Right)
 
 bool ZAMDTake::operator==(const ZAMDTake& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAMDTake>)
+		return false;
+
 	if (m_eventTracks != p_Other.m_eventTracks) return false;
 	if (m_customData != p_Other.m_customData) return false;
 	if (m_nSyncTrackIndex != p_Other.m_nSyncTrackIndex) return false;
@@ -66672,6 +68328,9 @@ bool ZAT2Controller_SEventPreviewInfo::Equals(void* p_Left, void* p_Right)
 
 bool ZAT2Controller_SEventPreviewInfo::operator==(const ZAT2Controller_SEventPreviewInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAT2Controller_SEventPreviewInfo>)
+		return false;
+
 	if (m_nEventID != p_Other.m_nEventID) return false;
 	if (m_sConsumerID != p_Other.m_sConsumerID) return false;
 	if (m_fDuration != p_Other.m_fDuration) return false;
@@ -66745,6 +68404,9 @@ bool ZAT2Controller_SGeneratedFootstepEvent::Equals(void* p_Left, void* p_Right)
 
 bool ZAT2Controller_SGeneratedFootstepEvent::operator==(const ZAT2Controller_SGeneratedFootstepEvent& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAT2Controller_SGeneratedFootstepEvent>)
+		return false;
+
 	if (m_eFoot != p_Other.m_eFoot) return false;
 	if (m_fFrame != p_Other.m_fFrame) return false;
 
@@ -66844,6 +68506,9 @@ bool ZApproachOrder_SApproachOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZApproachOrder_SApproachOrderSaveData::operator==(const ZApproachOrder_SApproachOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZApproachOrder_SApproachOrderSaveData>)
+		return false;
+
 	if (m_vStopDirection != p_Other.m_vStopDirection) return false;
 	if (m_style != p_Other.m_style) return false;
 	if (m_bForceStand != p_Other.m_bForceStand) return false;
@@ -66894,6 +68559,9 @@ bool ZAutoNullEntityRef::Equals(void* p_Left, void* p_Right)
 
 bool ZAutoNullEntityRef::operator==(const ZAutoNullEntityRef& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAutoNullEntityRef>)
+		return false;
+
 
 	return true;
 }
@@ -66975,6 +68643,9 @@ bool ZAvoidDangerousAreaSituation_SSituationSaveData::Equals(void* p_Left, void*
 
 bool ZAvoidDangerousAreaSituation_SSituationSaveData::operator==(const ZAvoidDangerousAreaSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAvoidDangerousAreaSituation_SSituationSaveData>)
+		return false;
+
 	if (m_aAvoidDangerousAreaGroups != p_Other.m_aAvoidDangerousAreaGroups) return false;
 
 	return true;
@@ -67072,6 +68743,9 @@ bool ZComponentCreator::Equals(void* p_Left, void* p_Right)
 
 bool ZComponentCreator::operator==(const ZComponentCreator& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZComponentCreator>)
+		return false;
+
 	if (m_sComponentName != p_Other.m_sComponentName) return false;
 	if (m_aArgs != p_Other.m_aArgs) return false;
 
@@ -67120,6 +68794,9 @@ bool ZContractEvaluationContext::Equals(void* p_Left, void* p_Right)
 
 bool ZContractEvaluationContext::operator==(const ZContractEvaluationContext& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZContractEvaluationContext>)
+		return false;
+
 
 	return true;
 }
@@ -67231,6 +68908,9 @@ bool ZCurve::Equals(void* p_Left, void* p_Right)
 
 bool ZCurve::operator==(const ZCurve& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZCurve>)
+		return false;
+
 	if (data != p_Other.data) return false;
 
 	return true;
@@ -67300,6 +68980,9 @@ bool ZDeadBodySituation_SIncidentSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZDeadBodySituation_SIncidentSaveData::operator==(const ZDeadBodySituation_SIncidentSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDeadBodySituation_SIncidentSaveData>)
+		return false;
+
 	if (m_body != p_Other.m_body) return false;
 	if (m_bAccident != p_Other.m_bAccident) return false;
 
@@ -67476,6 +69159,9 @@ bool ZDeadBodySituation_SState::Equals(void* p_Left, void* p_Right)
 
 bool ZDeadBodySituation_SState::operator==(const ZDeadBodySituation_SState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDeadBodySituation_SState>)
+		return false;
+
 	if (m_eFlavor != p_Other.m_eFlavor) return false;
 	if (m_tLastEscalateOrder != p_Other.m_tLastEscalateOrder) return false;
 	if (m_tNextStanddownTime != p_Other.m_tNextStanddownTime) return false;
@@ -67634,6 +69320,9 @@ bool ZDeadBodySituation_SSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZDeadBodySituation_SSituationSaveData::operator==(const ZDeadBodySituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDeadBodySituation_SSituationSaveData>)
+		return false;
+
 	if (m_State != p_Other.m_State) return false;
 	if (m_pLeader != p_Other.m_pLeader) return false;
 	if (m_aIncidents != p_Other.m_aIncidents) return false;
@@ -67696,6 +69385,9 @@ bool ZDetectedInPrivateSituation_SSituationSaveData::Equals(void* p_Left, void* 
 
 bool ZDetectedInPrivateSituation_SSituationSaveData::operator==(const ZDetectedInPrivateSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDetectedInPrivateSituation_SSituationSaveData>)
+		return false;
+
 	if (m_pDetectedInPrivateGroup != p_Other.m_pDetectedInPrivateGroup) return false;
 
 	return true;
@@ -67743,6 +69435,9 @@ bool ZDialogEventItemTypedIndex::Equals(void* p_Left, void* p_Right)
 
 bool ZDialogEventItemTypedIndex::operator==(const ZDialogEventItemTypedIndex& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDialogEventItemTypedIndex>)
+		return false;
+
 
 	return true;
 }
@@ -67848,6 +69543,9 @@ bool ZDisguiseSituation_SSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZDisguiseSituation_SSituationSaveData::operator==(const ZDisguiseSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDisguiseSituation_SSituationSaveData>)
+		return false;
+
 	if (m_pLeader != p_Other.m_pLeader) return false;
 	if (m_aInvestigateDisguiseGroups != p_Other.m_aInvestigateDisguiseGroups) return false;
 	if (m_eEventSetOnEscalation != p_Other.m_eEventSetOnEscalation) return false;
@@ -67973,6 +69671,9 @@ bool ZDynamicObject_SArrayTypesRegistrar::Equals(void* p_Left, void* p_Right)
 
 bool ZDynamicObject_SArrayTypesRegistrar::operator==(const ZDynamicObject_SArrayTypesRegistrar& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDynamicObject_SArrayTypesRegistrar>)
+		return false;
+
 	if (_dummy != p_Other._dummy) return false;
 	if (_dummy2 != p_Other._dummy2) return false;
 
@@ -68044,6 +69745,9 @@ bool ZER64::Equals(void* p_Left, void* p_Right)
 
 bool ZER64::operator==(const ZER64& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZER64>)
+		return false;
+
 	if (m_nEntityID != p_Other.m_nEntityID) return false;
 	if (m_sExposedEntity != p_Other.m_sExposedEntity) return false;
 
@@ -68103,6 +69807,9 @@ bool ZEntityID::Equals(void* p_Left, void* p_Right)
 
 bool ZEntityID::operator==(const ZEntityID& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityID>)
+		return false;
+
 	if (m_sStr != p_Other.m_sStr) return false;
 
 	return true;
@@ -68150,6 +69857,9 @@ bool ZEntityPath::Equals(void* p_Left, void* p_Right)
 
 bool ZEntityPath::operator==(const ZEntityPath& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityPath>)
+		return false;
+
 
 	return true;
 }
@@ -68196,6 +69906,9 @@ bool ZEntityRef::Equals(void* p_Left, void* p_Right)
 
 bool ZEntityRef::operator==(const ZEntityRef& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityRef>)
+		return false;
+
 
 	return true;
 }
@@ -68270,6 +69983,9 @@ bool ZEntityReference::Equals(void* p_Left, void* p_Right)
 
 bool ZEntityReference::operator==(const ZEntityReference& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityReference>)
+		return false;
+
 	if (m_EntityID != p_Other.m_EntityID) return false;
 	if (m_sExposedEntity != p_Other.m_sExposedEntity) return false;
 
@@ -68357,6 +70073,9 @@ bool ZFormationMoveOrder_SFormationMoveOrderSaveData::Equals(void* p_Left, void*
 
 bool ZFormationMoveOrder_SFormationMoveOrderSaveData::operator==(const ZFormationMoveOrder_SFormationMoveOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZFormationMoveOrder_SFormationMoveOrderSaveData>)
+		return false;
+
 	if (m_vStopDirection != p_Other.m_vStopDirection) return false;
 	if (m_nObstacleBlockageFlags != p_Other.m_nObstacleBlockageFlags) return false;
 	if (m_eMoveSpeed != p_Other.m_eMoveSpeed) return false;
@@ -68406,6 +70125,9 @@ bool ZGfxValueWrapper::Equals(void* p_Left, void* p_Right)
 
 bool ZGfxValueWrapper::operator==(const ZGfxValueWrapper& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZGfxValueWrapper>)
+		return false;
+
 
 	return true;
 }
@@ -68499,6 +70221,9 @@ bool ZGridFloatField::Equals(void* p_Left, void* p_Right)
 
 bool ZGridFloatField::operator==(const ZGridFloatField& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZGridFloatField>)
+		return false;
+
 	if (m_fInitialValue != p_Other.m_fInitialValue) return false;
 	if (m_field != p_Other.m_field) return false;
 
@@ -68547,6 +70272,9 @@ bool ZGuidString::Equals(void* p_Left, void* p_Right)
 
 bool ZGuidString::operator==(const ZGuidString& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZGuidString>)
+		return false;
+
 
 	return true;
 }
@@ -68603,6 +70331,9 @@ bool ZHM5AgilityEventConsumer_SAgilityEventData::Equals(void* p_Left, void* p_Ri
 
 bool ZHM5AgilityEventConsumer_SAgilityEventData::operator==(const ZHM5AgilityEventConsumer_SAgilityEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5AgilityEventConsumer_SAgilityEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -68650,6 +70381,9 @@ bool ZResourcePtr::Equals(void* p_Left, void* p_Right)
 
 bool ZResourcePtr::operator==(const ZResourcePtr& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZResourcePtr>)
+		return false;
+
 
 	return true;
 }
@@ -68735,6 +70469,9 @@ bool ZHM5AudioEventConsumer_SAudioAnimationEventData::Equals(void* p_Left, void*
 
 bool ZHM5AudioEventConsumer_SAudioAnimationEventData::operator==(const ZHM5AudioEventConsumer_SAudioAnimationEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5AudioEventConsumer_SAudioAnimationEventData>)
+		return false;
+
 	if (m_pAudioEventRes != p_Other.m_pAudioEventRes) return false;
 	if (m_fAttenuation != p_Other.m_fAttenuation) return false;
 	if (m_fPitch != p_Other.m_fPitch) return false;
@@ -68794,6 +70531,9 @@ bool ZHM5BodySoundEventConsumer_SBodySoundEventData::Equals(void* p_Left, void* 
 
 bool ZHM5BodySoundEventConsumer_SBodySoundEventData::operator==(const ZHM5BodySoundEventConsumer_SBodySoundEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5BodySoundEventConsumer_SBodySoundEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -68875,6 +70615,9 @@ bool ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::Equals(void* p_Lef
 
 bool ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::operator==(const ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 	if (m_fAttenuation != p_Other.m_fAttenuation) return false;
 	if (m_fPitch != p_Other.m_fPitch) return false;
@@ -68963,6 +70706,9 @@ bool ZHM5CrowdEventConsumer_SCrowdSoundEventData::Equals(void* p_Left, void* p_R
 
 bool ZHM5CrowdEventConsumer_SCrowdSoundEventData::operator==(const ZHM5CrowdEventConsumer_SCrowdSoundEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5CrowdEventConsumer_SCrowdSoundEventData>)
+		return false;
+
 	if (m_pAudioEventRes != p_Other.m_pAudioEventRes) return false;
 	if (m_fAttenuation != p_Other.m_fAttenuation) return false;
 	if (m_fPitch != p_Other.m_fPitch) return false;
@@ -69022,6 +70768,9 @@ bool ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData::Equals(void* p_L
 
 bool ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData::operator==(const ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -69079,6 +70828,9 @@ bool ZHM5FaceFXReactionEventConsumer_SFaceFXEventData::Equals(void* p_Left, void
 
 bool ZHM5FaceFXReactionEventConsumer_SFaceFXEventData::operator==(const ZHM5FaceFXReactionEventConsumer_SFaceFXEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5FaceFXReactionEventConsumer_SFaceFXEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -69149,6 +70901,9 @@ bool ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData::Equals(void* p_Left, void
 
 bool ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData::operator==(const ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 	if (m_sFaceExpression != p_Other.m_sFaceExpression) return false;
 
@@ -69207,6 +70962,9 @@ bool ZHM5FootstepEventConsumer_SFootstepSoundEventData::Equals(void* p_Left, voi
 
 bool ZHM5FootstepEventConsumer_SFootstepSoundEventData::operator==(const ZHM5FootstepEventConsumer_SFootstepSoundEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5FootstepEventConsumer_SFootstepSoundEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -69264,6 +71022,9 @@ bool ZHM5GenericEventConsumer_SGenericEventData::Equals(void* p_Left, void* p_Ri
 
 bool ZHM5GenericEventConsumer_SGenericEventData::operator==(const ZHM5GenericEventConsumer_SGenericEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5GenericEventConsumer_SGenericEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -69333,6 +71094,9 @@ bool ZHM5HIKEventConsumer_SZHM5HIKEventData::Equals(void* p_Left, void* p_Right)
 
 bool ZHM5HIKEventConsumer_SZHM5HIKEventData::operator==(const ZHM5HIKEventConsumer_SZHM5HIKEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5HIKEventConsumer_SZHM5HIKEventData>)
+		return false;
+
 	if (m_nEffector != p_Other.m_nEffector) return false;
 	if (m_nBlend != p_Other.m_nBlend) return false;
 
@@ -69391,6 +71155,9 @@ bool ZHM5ItemInteractionEventConsumer_SItemInteractionEventData::Equals(void* p_
 
 bool ZHM5ItemInteractionEventConsumer_SItemInteractionEventData::operator==(const ZHM5ItemInteractionEventConsumer_SItemInteractionEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5ItemInteractionEventConsumer_SItemInteractionEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -69448,6 +71215,9 @@ bool ZHM5WeaponEventConsumer_SWeaponEventData::Equals(void* p_Left, void* p_Righ
 
 bool ZHM5WeaponEventConsumer_SWeaponEventData::operator==(const ZHM5WeaponEventConsumer_SWeaponEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5WeaponEventConsumer_SWeaponEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -69589,6 +71359,9 @@ bool ZHUDAIGuide_SData::Equals(void* p_Left, void* p_Right)
 
 bool ZHUDAIGuide_SData::operator==(const ZHUDAIGuide_SData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDAIGuide_SData>)
+		return false;
+
 	if (bDisguiseBroken != p_Other.bDisguiseBroken) return false;
 	if (bTrespassing != p_Other.bTrespassing) return false;
 	if (bInsideAreaBeingInvestigated != p_Other.bInsideAreaBeingInvestigated) return false;
@@ -69692,6 +71465,9 @@ bool ZHUDCamera3DControllerEntity_SEyeToPlane::Equals(void* p_Left, void* p_Righ
 
 bool ZHUDCamera3DControllerEntity_SEyeToPlane::operator==(const ZHUDCamera3DControllerEntity_SEyeToPlane& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDCamera3DControllerEntity_SEyeToPlane>)
+		return false;
+
 	if (posCharacter != p_Other.posCharacter) return false;
 	if (udirTowardsPlane != p_Other.udirTowardsPlane) return false;
 	if (udirAnchor != p_Other.udirAnchor) return false;
@@ -69765,6 +71541,9 @@ bool ZHUDHintController_SData::Equals(void* p_Left, void* p_Right)
 
 bool ZHUDHintController_SData::operator==(const ZHUDHintController_SData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDHintController_SData>)
+		return false;
+
 	if (m_sTitleText != p_Other.m_sTitleText) return false;
 	if (m_sBodyText != p_Other.m_sBodyText) return false;
 
@@ -69837,6 +71616,9 @@ bool ZHUDInventoryNotificationController_SData::Equals(void* p_Left, void* p_Rig
 
 bool ZHUDInventoryNotificationController_SData::operator==(const ZHUDInventoryNotificationController_SData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDInventoryNotificationController_SData>)
+		return false;
+
 	if (m_sTitleText != p_Other.m_sTitleText) return false;
 	if (m_sBodyText != p_Other.m_sBodyText) return false;
 
@@ -69924,6 +71706,9 @@ bool ZHUDOccluderTriggerEntity_SBoneTestSetup::Equals(void* p_Left, void* p_Righ
 
 bool ZHUDOccluderTriggerEntity_SBoneTestSetup::operator==(const ZHUDOccluderTriggerEntity_SBoneTestSetup& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDOccluderTriggerEntity_SBoneTestSetup>)
+		return false;
+
 	if (boneId != p_Other.boneId) return false;
 	if (localOffset != p_Other.localOffset) return false;
 	if (radius != p_Other.radius) return false;
@@ -70038,6 +71823,9 @@ bool ZHUDUIControllerEntity_SIntelData::Equals(void* p_Left, void* p_Right)
 
 bool ZHUDUIControllerEntity_SIntelData::operator==(const ZHUDUIControllerEntity_SIntelData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDUIControllerEntity_SIntelData>)
+		return false;
+
 	if (groupId != p_Other.groupId) return false;
 	if (intelHeadline != p_Other.intelHeadline) return false;
 	if (repoID != p_Other.repoID) return false;
@@ -70162,6 +71950,9 @@ bool ZHUDUIControllerEntity_SWeaponViewData::Equals(void* p_Left, void* p_Right)
 
 bool ZHUDUIControllerEntity_SWeaponViewData::operator==(const ZHUDUIControllerEntity_SWeaponViewData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDUIControllerEntity_SWeaponViewData>)
+		return false;
+
 	if (weaponStatus != p_Other.weaponStatus) return false;
 	if (itemLeftHandStatus != p_Other.itemLeftHandStatus) return false;
 	if (itemOnBackStatus != p_Other.itemOnBackStatus) return false;
@@ -70213,6 +72004,9 @@ bool ZHttpUrl::Equals(void* p_Left, void* p_Right)
 
 bool ZHttpUrl::operator==(const ZHttpUrl& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHttpUrl>)
+		return false;
+
 
 	return true;
 }
@@ -70269,6 +72063,9 @@ bool ZInfectedSituation_SSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZInfectedSituation_SSituationSaveData::operator==(const ZInfectedSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZInfectedSituation_SSituationSaveData>)
+		return false;
+
 	if (m_bStandingDown != p_Other.m_bStandingDown) return false;
 
 	return true;
@@ -70316,6 +72113,9 @@ bool ZInteractionData::Equals(void* p_Left, void* p_Right)
 
 bool ZInteractionData::operator==(const ZInteractionData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZInteractionData>)
+		return false;
+
 
 	return true;
 }
@@ -70372,6 +72172,9 @@ bool ZInteractionEventConsumer_SInteractionEventData::Equals(void* p_Left, void*
 
 bool ZInteractionEventConsumer_SInteractionEventData::operator==(const ZInteractionEventConsumer_SInteractionEventData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZInteractionEventConsumer_SInteractionEventData>)
+		return false;
+
 	if (m_nEvent != p_Other.m_nEvent) return false;
 
 	return true;
@@ -70419,6 +72222,9 @@ bool ZInteractionGuideData::Equals(void* p_Left, void* p_Right)
 
 bool ZInteractionGuideData::operator==(const ZInteractionGuideData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZInteractionGuideData>)
+		return false;
+
 
 	return true;
 }
@@ -70521,6 +72327,9 @@ bool ZInvestigateWeaponSituation_SSituationSaveData::Equals(void* p_Left, void* 
 
 bool ZInvestigateWeaponSituation_SSituationSaveData::operator==(const ZInvestigateWeaponSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZInvestigateWeaponSituation_SSituationSaveData>)
+		return false;
+
 	if (m_nCurrentState != p_Other.m_nCurrentState) return false;
 	if (m_mainStateStartTime != p_Other.m_mainStateStartTime) return false;
 	if (m_tLastStandDown != p_Other.m_tLastStandDown) return false;
@@ -70603,6 +72412,9 @@ bool ZJumpToOrder_SJumpToOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZJumpToOrder_SJumpToOrderSaveData::operator==(const ZJumpToOrder_SJumpToOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZJumpToOrder_SJumpToOrderSaveData>)
+		return false;
+
 	if (m_vStopDirection != p_Other.m_vStopDirection) return false;
 	if (m_vTargetPosition != p_Other.m_vTargetPosition) return false;
 
@@ -70686,6 +72498,9 @@ bool ZKeywordCalculator_SCollection::Equals(void* p_Left, void* p_Right)
 
 bool ZKeywordCalculator_SCollection::operator==(const ZKeywordCalculator_SCollection& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZKeywordCalculator_SCollection>)
+		return false;
+
 	if (aKeywords != p_Other.aKeywords) return false;
 
 	return true;
@@ -70892,6 +72707,9 @@ bool ZMoveToOrder_SMoveToOrderSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZMoveToOrder_SMoveToOrderSaveData::operator==(const ZMoveToOrder_SMoveToOrderSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZMoveToOrder_SMoveToOrderSaveData>)
+		return false;
+
 	if (m_vStopDirection != p_Other.m_vStopDirection) return false;
 	if (m_fStopDistance != p_Other.m_fStopDistance) return false;
 	if (m_fWalkDistance != p_Other.m_fWalkDistance) return false;
@@ -71013,6 +72831,9 @@ bool ZPhotoModeMenuDataProvider_SPrompt::Equals(void* p_Left, void* p_Right)
 
 bool ZPhotoModeMenuDataProvider_SPrompt::operator==(const ZPhotoModeMenuDataProvider_SPrompt& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZPhotoModeMenuDataProvider_SPrompt>)
+		return false;
+
 	if (aIcons != p_Other.aIcons) return false;
 	if (sLabel != p_Other.sLabel) return false;
 	if (bIsEnabled != p_Other.bIsEnabled) return false;
@@ -71163,6 +72984,9 @@ bool ZPhotoModeMenuDataProvider_SData::Equals(void* p_Left, void* p_Right)
 
 bool ZPhotoModeMenuDataProvider_SData::operator==(const ZPhotoModeMenuDataProvider_SData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZPhotoModeMenuDataProvider_SData>)
+		return false;
+
 	if (bIsVisible != p_Other.bIsVisible) return false;
 	if (aMenuEntries != p_Other.aMenuEntries) return false;
 	if (sInputPlatform != p_Other.sInputPlatform) return false;
@@ -71248,6 +73072,9 @@ bool ZPhotoModeMenuDataProvider_SMenuEntry::Equals(void* p_Left, void* p_Right)
 
 bool ZPhotoModeMenuDataProvider_SMenuEntry::operator==(const ZPhotoModeMenuDataProvider_SMenuEntry& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZPhotoModeMenuDataProvider_SMenuEntry>)
+		return false;
+
 	if (sLabel != p_Other.sLabel) return false;
 	if (bIsEnabled != p_Other.bIsEnabled) return false;
 	if (bIsHighlighted != p_Other.bIsHighlighted) return false;
@@ -71297,6 +73124,9 @@ bool ZPlanningObjectiveInfoBuilder::Equals(void* p_Left, void* p_Right)
 
 bool ZPlanningObjectiveInfoBuilder::operator==(const ZPlanningObjectiveInfoBuilder& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZPlanningObjectiveInfoBuilder>)
+		return false;
+
 
 	return true;
 }
@@ -71343,6 +73173,9 @@ bool ZPostfilterGraphBaseNode::Equals(void* p_Left, void* p_Right)
 
 bool ZPostfilterGraphBaseNode::operator==(const ZPostfilterGraphBaseNode& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZPostfilterGraphBaseNode>)
+		return false;
+
 
 	return true;
 }
@@ -71389,6 +73222,9 @@ bool ZRayQueryInput::Equals(void* p_Left, void* p_Right)
 
 bool ZRayQueryInput::operator==(const ZRayQueryInput& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZRayQueryInput>)
+		return false;
+
 
 	return true;
 }
@@ -71505,6 +73341,9 @@ bool ZRecoverUnconsciousSituation_SSituationSaveData::Equals(void* p_Left, void*
 
 bool ZRecoverUnconsciousSituation_SSituationSaveData::operator==(const ZRecoverUnconsciousSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZRecoverUnconsciousSituation_SSituationSaveData>)
+		return false;
+
 	if (m_rVictim != p_Other.m_rVictim) return false;
 	if (m_pInvestigateDisguiseGroup != p_Other.m_pInvestigateDisguiseGroup) return false;
 	if (m_pRecoverUnconsciousGroup != p_Other.m_pRecoverUnconsciousGroup) return false;
@@ -71603,6 +73442,9 @@ bool ZRuntimePinConDesc::Equals(void* p_Left, void* p_Right)
 
 bool ZRuntimePinConDesc::operator==(const ZRuntimePinConDesc& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZRuntimePinConDesc>)
+		return false;
+
 	if (m_nFromEntityID != p_Other.m_nFromEntityID) return false;
 	if (m_nToEntityID != p_Other.m_nToEntityID) return false;
 	if (m_nFromPinID != p_Other.m_nFromPinID) return false;
@@ -71705,6 +73547,9 @@ bool ZScopedER64::Equals(void* p_Left, void* p_Right)
 
 bool ZScopedER64::operator==(const ZScopedER64& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZScopedER64>)
+		return false;
+
 	if (m_er64 != p_Other.m_er64) return false;
 	if (m_aScopePath != p_Other.m_aScopePath) return false;
 
@@ -71805,6 +73650,9 @@ bool ZScopedRuntimePinConDesc::Equals(void* p_Left, void* p_Right)
 
 bool ZScopedRuntimePinConDesc::operator==(const ZScopedRuntimePinConDesc& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZScopedRuntimePinConDesc>)
+		return false;
+
 	if (m_aScopePath != p_Other.m_aScopePath) return false;
 	if (m_PinConDesc != p_Other.m_PinConDesc) return false;
 
@@ -71863,6 +73711,9 @@ bool ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::Equals(v
 
 bool ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::operator==(const ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule>)
+		return false;
+
 	if (m_NrGuardsToSend != p_Other.m_NrGuardsToSend) return false;
 
 	return true;
@@ -71932,6 +73783,9 @@ bool ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::Equals(voi
 
 bool ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::operator==(const ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule>)
+		return false;
+
 	if (m_NrGuardsToSend != p_Other.m_NrGuardsToSend) return false;
 	if (m_Situation != p_Other.m_Situation) return false;
 
@@ -72055,6 +73909,9 @@ bool ZSetPieceIconEntity_SIconData::Equals(void* p_Left, void* p_Right)
 
 bool ZSetPieceIconEntity_SIconData::operator==(const ZSetPieceIconEntity_SIconData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSetPieceIconEntity_SIconData>)
+		return false;
+
 	if (iCategory != p_Other.iCategory) return false;
 	if (iInteraction1 != p_Other.iInteraction1) return false;
 	if (iInteraction2 != p_Other.iInteraction2) return false;
@@ -72225,6 +74082,9 @@ bool ZSharedSensorDef_SVisibilitySetting::Equals(void* p_Left, void* p_Right)
 
 bool ZSharedSensorDef_SVisibilitySetting::operator==(const ZSharedSensorDef_SVisibilitySetting& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSharedSensorDef_SVisibilitySetting>)
+		return false;
+
 	if (m_eSensitivity != p_Other.m_eSensitivity) return false;
 	if (m_fCloseRange != p_Other.m_fCloseRange) return false;
 	if (m_fPeripheralAngle != p_Other.m_fPeripheralAngle) return false;
@@ -72281,6 +74141,9 @@ bool ZSituationGroup::Equals(void* p_Left, void* p_Right)
 
 bool ZSituationGroup::operator==(const ZSituationGroup& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSituationGroup>)
+		return false;
+
 
 	return true;
 }
@@ -72327,6 +74190,9 @@ bool ZSituationOrder::Equals(void* p_Left, void* p_Right)
 
 bool ZSituationOrder::operator==(const ZSituationOrder& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSituationOrder>)
+		return false;
+
 
 	return true;
 }
@@ -72412,6 +74278,9 @@ bool ZSniperCombatSituation_SSniperSuspiciousArea::Equals(void* p_Left, void* p_
 
 bool ZSniperCombatSituation_SSniperSuspiciousArea::operator==(const ZSniperCombatSituation_SSniperSuspiciousArea& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSniperCombatSituation_SSniperSuspiciousArea>)
+		return false;
+
 	if (m_vPosition != p_Other.m_vPosition) return false;
 	if (m_fRange != p_Other.m_fRange) return false;
 	if (m_bIsIslandEntrance != p_Other.m_bIsIslandEntrance) return false;
@@ -72730,6 +74599,9 @@ bool ZSniperCombatSituation_SSituationSaveData::Equals(void* p_Left, void* p_Rig
 
 bool ZSniperCombatSituation_SSituationSaveData::operator==(const ZSniperCombatSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSniperCombatSituation_SSituationSaveData>)
+		return false;
+
 	if (m_rSniperLocation != p_Other.m_rSniperLocation) return false;
 	if (m_aSniperCombatGroups != p_Other.m_aSniperCombatGroups) return false;
 	if (m_bAggressive != p_Other.m_bAggressive) return false;
@@ -72788,6 +74660,9 @@ bool ZSoundCollisionInfo::Equals(void* p_Left, void* p_Right)
 
 bool ZSoundCollisionInfo::operator==(const ZSoundCollisionInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSoundCollisionInfo>)
+		return false;
+
 
 	return true;
 }
@@ -72918,6 +74793,9 @@ bool ZSpectatorSituation_SSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZSpectatorSituation_SSituationSaveData::operator==(const ZSpectatorSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSpectatorSituation_SSituationSaveData>)
+		return false;
+
 	if (m_bStandingDown != p_Other.m_bStandingDown) return false;
 	if (m_aObserverGroupIDs != p_Other.m_aObserverGroupIDs) return false;
 	if (m_aNonObserverMembers != p_Other.m_aNonObserverMembers) return false;
@@ -73367,6 +75245,9 @@ bool ZStandOffSituation_SState::Equals(void* p_Left, void* p_Right)
 
 bool ZStandOffSituation_SState::operator==(const ZStandOffSituation_SState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZStandOffSituation_SState>)
+		return false;
+
 	if (m_eSituationState != p_Other.m_eSituationState) return false;
 	if (m_eArrestReason != p_Other.m_eArrestReason) return false;
 	if (m_nWarningPriority != p_Other.m_nWarningPriority) return false;
@@ -73585,6 +75466,9 @@ bool ZStandOffSituation_SSituationSaveData::Equals(void* p_Left, void* p_Right)
 
 bool ZStandOffSituation_SSituationSaveData::operator==(const ZStandOffSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZStandOffSituation_SSituationSaveData>)
+		return false;
+
 	if (m_State != p_Other.m_State) return false;
 	if (m_pArrestor != p_Other.m_pArrestor) return false;
 	if (m_pSpeaker != p_Other.m_pSpeaker) return false;
@@ -73650,6 +75534,9 @@ bool ZTime::Equals(void* p_Left, void* p_Right)
 
 bool ZTime::operator==(const ZTime& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZTime>)
+		return false;
+
 	if (m_nValue != p_Other.m_nValue) return false;
 
 	return true;
@@ -73770,6 +75657,9 @@ bool ZTrespassingSituation_SState::Equals(void* p_Left, void* p_Right)
 
 bool ZTrespassingSituation_SState::operator==(const ZTrespassingSituation_SState& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZTrespassingSituation_SState>)
+		return false;
+
 	if (m_eSituationState != p_Other.m_eSituationState) return false;
 	if (m_tDeepTrespassingTime != p_Other.m_tDeepTrespassingTime) return false;
 	if (m_tStartStandDown != p_Other.m_tStartStandDown) return false;
@@ -73901,6 +75791,9 @@ bool ZTrespassingSituation_SSituationSaveData::Equals(void* p_Left, void* p_Righ
 
 bool ZTrespassingSituation_SSituationSaveData::operator==(const ZTrespassingSituation_SSituationSaveData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZTrespassingSituation_SSituationSaveData>)
+		return false;
+
 	if (m_State != p_Other.m_State) return false;
 	if (m_rEscortingMember != p_Other.m_rEscortingMember) return false;
 	if (m_rHelpingGuardMember != p_Other.m_rHelpingGuardMember) return false;
@@ -74206,6 +76099,9 @@ bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::
 
 bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo>)
+		return false;
+
 	if (label != p_Other.label) return false;
 	if (silencer != p_Other.silencer) return false;
 	if (count != p_Other.count) return false;
@@ -74348,6 +76244,9 @@ bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorDataCache::Equals
 
 bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorDataCache::operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorDataCache& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorDataCache>)
+		return false;
+
 	if (mainslots != p_Other.mainslots) return false;
 	if (otherslots != p_Other.otherslots) return false;
 
@@ -74411,6 +76310,9 @@ bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfoSl
 
 bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfoSlim::operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfoSlim& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfoSlim>)
+		return false;
+
 	if (icon != p_Other.icon) return false;
 
 	return true;
@@ -74531,6 +76433,9 @@ bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::Equal
 
 bool ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData>)
+		return false;
+
 	if (mainslotsSlim != p_Other.mainslotsSlim) return false;
 	if (otherslotsCount != p_Other.otherslotsCount) return false;
 	if (selectedIndex != p_Other.selectedIndex) return false;
@@ -74581,6 +76486,9 @@ bool ZUIDataProvider::Equals(void* p_Left, void* p_Right)
 
 bool ZUIDataProvider::operator==(const ZUIDataProvider& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIDataProvider>)
+		return false;
+
 
 	return true;
 }
@@ -74880,6 +76788,9 @@ bool ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::Equals(voi
 
 bool ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo>)
+		return false;
+
 	if (label != p_Other.label) return false;
 	if (containedLabel != p_Other.containedLabel) return false;
 	if (silencer != p_Other.silencer) return false;
@@ -75022,6 +76933,9 @@ bool ZUIEmoteSelectorNavigationEntity_SActionSelectorDataCache::Equals(void* p_L
 
 bool ZUIEmoteSelectorNavigationEntity_SActionSelectorDataCache::operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorDataCache& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIEmoteSelectorNavigationEntity_SActionSelectorDataCache>)
+		return false;
+
 	if (mainslots != p_Other.mainslots) return false;
 	if (otherslots != p_Other.otherslots) return false;
 
@@ -75085,6 +76999,9 @@ bool ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfoSlim::Equals
 
 bool ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfoSlim::operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfoSlim& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfoSlim>)
+		return false;
+
 	if (icon != p_Other.icon) return false;
 
 	return true;
@@ -75218,6 +77135,9 @@ bool ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::Equals(void* p_
 
 bool ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData>)
+		return false;
+
 	if (mainslotsSlim != p_Other.mainslotsSlim) return false;
 	if (otherslotsCount != p_Other.otherslotsCount) return false;
 	if (selectedIndex != p_Other.selectedIndex) return false;
@@ -75280,6 +77200,9 @@ bool ZUIMapLegendDataProvider_SLegendTracker::Equals(void* p_Left, void* p_Right
 
 bool ZUIMapLegendDataProvider_SLegendTracker::operator==(const ZUIMapLegendDataProvider_SLegendTracker& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIMapLegendDataProvider_SLegendTracker>)
+		return false;
+
 	if (ControlName != p_Other.ControlName) return false;
 
 	return true;
@@ -75390,6 +77313,9 @@ bool ZUIMapLegendDataProvider_SData::Equals(void* p_Left, void* p_Right)
 
 bool ZUIMapLegendDataProvider_SData::operator==(const ZUIMapLegendDataProvider_SData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIMapLegendDataProvider_SData>)
+		return false;
+
 	if (Location != p_Other.Location) return false;
 	if (lstrLocation != p_Other.lstrLocation) return false;
 	if (LegendTrackers != p_Other.LegendTrackers) return false;
@@ -75439,6 +77365,9 @@ bool ZWorldMapMetaData::Equals(void* p_Left, void* p_Right)
 
 bool ZWorldMapMetaData::operator==(const ZWorldMapMetaData& p_Other) const
 {
+	if constexpr (!ZHMTypeSupportsEquality_v<ZWorldMapMetaData>)
+		return false;
+
 
 	return true;
 }

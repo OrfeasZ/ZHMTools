@@ -11,12 +11,12 @@ std::unordered_map<uint32_t, std::string_view>* ZHMProperties::g_Properties = nu
 
 std::string ZHMProperties::PropertyToString(uint32_t p_PropertyId)
 {
-auto it = g_Properties->find(p_PropertyId);
+	auto it = g_Properties->find(p_PropertyId);
 
-if (it == g_Properties->end())
-return "";
+	if (it == g_Properties->end())
+		return "";
 
-return std::string(it->second);
+	return std::string(it->second);
 };
 
 ZHMPropertyRegistrar g_PropertyRegistrar = ZHMPropertyRegistrar({
