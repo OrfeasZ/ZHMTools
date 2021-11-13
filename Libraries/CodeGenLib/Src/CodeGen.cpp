@@ -392,7 +392,7 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 		}
 		else if (s_ArrayType->m_pArrayElementType->typeInfo()->isArray() || s_ArrayType->m_pArrayElementType->typeInfo()->isFixedArray())
 		{
-			p_Stream << p_Indentation << "\t\t" << s_NormalizedArrayType << " s_ArrayItem" << p_Depth << ";" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << s_NormalizedArrayType << " s_ArrayItem" << p_Depth << " {};" << std::endl;
 
 			GenerateArraySimpleJsonReader(s_ArrayType->m_pArrayElementType, p_Stream, "s_ArrayItem" + std::to_string(p_Depth), "s_Item" + std::to_string(p_Depth), p_Depth + 1, p_Indentation + "\t");
 
@@ -400,7 +400,7 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 		}
 		else
 		{
-			p_Stream << p_Indentation << "\t\t" << s_NormalizedArrayType << " s_ArrayItem" << p_Depth << ";" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << s_NormalizedArrayType << " s_ArrayItem" << p_Depth << " {};" << std::endl;
 			p_Stream << p_Indentation << "\t\t" << s_NormalizedArrayType << "::FromSimpleJson(s_Item" << p_Depth << ", &s_ArrayItem" << p_Depth << ");" << std::endl;
 			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = s_ArrayItem" << p_Depth << ";" << std::endl;
 		}
@@ -780,7 +780,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 	// TODO: Support for inherited classes.
 
-	s_SourceStream << "\t" << s_NormalizedName << " s_Object;" << std::endl;
+	s_SourceStream << "\t" << s_NormalizedName << " s_Object {};" << std::endl;
 	s_SourceStream << std::endl;
 
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
@@ -820,7 +820,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		else
 		{
 			s_SourceStream << "\t{" << std::endl;
-			s_SourceStream << "\t\t" << NormalizeName(s_Prop.m_pType) << " s_Item;" << std::endl;
+			s_SourceStream << "\t\t" << NormalizeName(s_Prop.m_pType) << " s_Item {};" << std::endl;
 			s_SourceStream << "\t\t" << NormalizeName(s_Prop.m_pType) << "::FromSimpleJson(p_Document[\"" << s_Prop.m_pName << "\"], &s_Item);" << std::endl;
 			s_SourceStream << "\t\ts_Object." << s_Prop.m_pName << " = s_Item;" << std::endl;
 			s_SourceStream << "\t}" << std::endl;
