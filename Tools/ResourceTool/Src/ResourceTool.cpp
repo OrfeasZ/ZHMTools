@@ -43,7 +43,7 @@ bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::fil
 	return s_Result;
 }
 
-bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::filesystem::path& p_OutputFilePath, ResourceGenerator* p_Generator, bool p_SimpleInput)
+bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::filesystem::path& p_OutputFilePath, ResourceGenerator* p_Generator, bool p_SimpleInput, bool p_Compatible)
 {
 	if (!p_SimpleInput)
 	{
@@ -51,7 +51,7 @@ bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::fi
 		return false;
 	}
 
-	return p_Generator->FromJsonFileToResourceFile(p_JsonFilePath.string().c_str(), p_OutputFilePath.string().c_str(), p_SimpleInput);
+	return p_Generator->FromJsonFileToResourceFile(p_JsonFilePath.string().c_str(), p_OutputFilePath.string().c_str(), p_SimpleInput, p_Compatible);
 }
 
 void PrintHelp()
@@ -124,6 +124,7 @@ void PrintHelp()
 	printf("\n");
 	printf("Options:\n");
 	printf("\t--simple\tUse when the input JSON file is generated using the \"--simple\" option when converting.\n");
+	printf("\t--compatible\tTry to generate resources that more closely resemble the original ones. Doesn't matter when producing files for use in the game, but third party tools might work better with them. Enabling this makes generation take significantly longer.\n");
 }
 
 int TryConvertFile(const std::string& p_FilePath)
@@ -212,7 +213,7 @@ int TryConvertFile(const std::string& p_FilePath)
 		}
 		else
 		{
-			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, true))
+			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, true, false))
 			{
 				return 1;
 			}
@@ -248,7 +249,16 @@ int main(int argc, char** argv)
 	const std::string s_InputPathStr(argv[4]);
 	const std::string s_OutputPathStr(argv[5]);
 
-	bool s_SimpleJson = argc >= 7 && std::string(argv[6]) == "--simple";
+	bool s_SimpleJson = false;
+	bool s_Compatible = false;
+
+	for (int i = 6; i < argc; ++i)
+	{
+		if (std::string(argv[i]) == "--simple")
+			s_SimpleJson = true;
+		else if (std::string(argv[6]) == "--compatible")
+			s_Compatible = true;
+	}
 
 	if (s_GameVersionStr != "HM2016" && s_GameVersionStr != "HM2" && s_GameVersionStr != "HM3")
 	{
@@ -325,7 +335,7 @@ int main(int argc, char** argv)
 		}
 		else if (s_OperatingMode == "generate")
 		{
-			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, s_SimpleJson))
+			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, s_SimpleJson, s_Compatible))
 			{
 				return 1;
 			}
