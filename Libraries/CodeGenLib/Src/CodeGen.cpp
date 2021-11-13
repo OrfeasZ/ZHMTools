@@ -871,6 +871,10 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	s_SourceStream << "bool " << s_NormalizedName << "::operator==(const " << s_NormalizedName << "& p_Other) const" << std::endl;
 	s_SourceStream << "{" << std::endl;
 
+	s_SourceStream << "\tif constexpr (!ZHMTypeSupportsEquality_v<" << s_NormalizedName << ">)" << std::endl;
+	s_SourceStream << "\t\treturn false;" << std::endl;
+	s_SourceStream << std::endl;
+
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
 	{
 		auto s_Prop = s_Type->m_pProperties[i];
