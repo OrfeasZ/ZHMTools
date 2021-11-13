@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <cmath>
+#include <vector>
+#include <limits>
 
 struct Vec3
 {
@@ -481,7 +484,7 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 			}
 
 			size_t s_FoundVertex = 0;
-			float s_MaxDistance = -FLT_MAX;
+			float s_MaxDistance = std::numeric_limits<float>::min();
 			
 			for (size_t i = 2; i < s_Vertices.size(); ++i)
 			{
