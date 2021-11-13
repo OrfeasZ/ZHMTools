@@ -1,0 +1,27 @@
+diff --git a/Libraries/ResourceLib/Src/External/simdjson.h b/Libraries/ResourceLib/Src/External/simdjson.h
+index 4161316..b5d2878 100644
+--- a/Libraries/ResourceLib/Src/External/simdjson.h
++++ b/Libraries/ResourceLib/Src/External/simdjson.h
+@@ -23101,6 +23101,11 @@ public:
+    */
+   inline simdjson_result<const char *> current_location() noexcept;
+ 
++  /**
++   * Returns the current position in the document.
++   */
++  inline token_position current_position() noexcept;
++
+   /**
+    * Get the value associated with the given JSON pointer.  We use the RFC 6901
+    * https://tools.ietf.org/html/rfc6901 standard.
+@@ -27338,6 +27343,10 @@ inline simdjson_result<const char *> document::current_location() noexcept {
+   return iter.current_location();
+ }
+ 
++inline token_position document::current_position() noexcept {
++  return iter.position();
++}
++
+ inline bool document::is_alive() noexcept {
+   return iter.is_alive();
+ }
