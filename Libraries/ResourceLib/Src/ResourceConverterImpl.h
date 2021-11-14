@@ -22,6 +22,9 @@ bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Str
 {
 	auto s_StructureData = ToInMemStructure(p_ResourceData, p_Size);
 
+	if (!s_StructureData)
+		return false;
+
 	// Everything should be properly reconstructed in memory by now
 	// so just cast and convert this type to json.
 	p_Stream << std::boolalpha;

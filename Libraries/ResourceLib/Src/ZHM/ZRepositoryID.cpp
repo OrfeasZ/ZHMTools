@@ -20,7 +20,7 @@ void ZRepositoryID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<ZRepositoryID*>(p_Target) = s_String;
 }
 
-void ZRepositoryID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZRepositoryID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	// Nothing to do here.
 }

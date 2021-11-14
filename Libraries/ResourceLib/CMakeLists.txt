@@ -36,6 +36,9 @@ set(RESOURCELIB_SOURCES
 	Src/ZHM/ZVariant.cpp
 	Src/ZHM/ZVariant.h
 	Src/ZHM/ZHMEquality.h
+	Src/ZHM/ZHMInt.h
+	Src/ZHM/ZHMPtr.h
+	Src/ZHM/ZHMArenas.h
 	Src/ResourceConverterImpl.cpp
 	Src/ResourceConverterImpl.h
 	Src/ResourceGeneratorImpl.cpp
@@ -75,6 +78,16 @@ set(RESOURCELIB_SOURCES_HM2016
 	Include/ResourceLib_HM2016.h
 )
 
+set(RESOURCELIB_SOURCES_HMA
+	Src/Generated/HMA/ZHMEnums.cpp
+	Src/Generated/HMA/ZHMEnums.h
+	Src/Generated/HMA/ZHMGen.cpp
+	Src/Generated/HMA/ZHMGen.h
+	Src/Generated/HMA/ZHMProperties.cpp
+	Src/Generated/HMA/ZHMProperties.h
+	Include/ResourceLib_HMA.h
+)
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	set(RESOURCELIB_TYPE SHARED)
 else()
@@ -99,7 +112,13 @@ add_library(ResourceLib_HM2016 ${RESOURCELIB_TYPE}
 	${RESOURCELIB_SOURCES_HM2016}
 )
 
-set_target_properties(ResourceLib_HM3 ResourceLib_HM2 ResourceLib_HM2016 PROPERTIES
+add_library(ResourceLib_HMA ${RESOURCELIB_TYPE}
+	${RESOURCELIB_HEADERS}
+	${RESOURCELIB_SOURCES}
+	${RESOURCELIB_SOURCES_HMA}
+)
+
+set_target_properties(ResourceLib_HM3 ResourceLib_HM2 ResourceLib_HM2016 ResourceLib_HMA PROPERTIES
 	CXX_VISIBILITY_PRESET hidden
 )
 
@@ -118,6 +137,10 @@ target_compile_options(ResourceLib_HM3 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HM3 PRIVATE ${RESOURCELIB_LINK_FLAGS})
 target_compile_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_LINK_FLAGS})
+target_compile_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
+target_link_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_LINK_FLAGS})
+target_compile_options(ResourceLib_HMA PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
+target_link_options(ResourceLib_HMA PRIVATE ${RESOURCELIB_LINK_FLAGS})
 
 target_compile_definitions(ResourceLib_HM3 
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=3
@@ -131,6 +154,10 @@ target_compile_definitions(ResourceLib_HM2016
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2016
 )
 
+target_compile_definitions(ResourceLib_HMA
+	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2012
+)
+
 target_include_directories(ResourceLib_HM3 
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
@@ -142,6 +169,11 @@ target_include_directories(ResourceLib_HM2
 )
 
 target_include_directories(ResourceLib_HM2016
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
+)
+
+target_include_directories(ResourceLib_HMA
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
 )

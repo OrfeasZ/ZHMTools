@@ -68,7 +68,7 @@ void SAudioSwitchBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SAudioSwitchBlueprintData*>(p_Target) = s_Object;
 }
 
-void SAudioSwitchBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioSwitchBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<SAudioSwitchBlueprintData*>(p_Object);
 
@@ -193,7 +193,7 @@ void SScaleformGFxResource::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SScaleformGFxResource*>(p_Target) = s_Object;
 }
 
-void SScaleformGFxResource::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SScaleformGFxResource::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
@@ -270,7 +270,7 @@ void SGlobalResourceIndexItem::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SGlobalResourceIndexItem*>(p_Target) = s_Object;
 }
 
-void SGlobalResourceIndexItem::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGlobalResourceIndexItem::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<SGlobalResourceIndexItem*>(p_Object);
 
@@ -344,7 +344,7 @@ void SGlobalResourceIndex::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SGlobalResourceIndex*>(p_Target) = s_Object;
 }
 
-void SGlobalResourceIndex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGlobalResourceIndex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<SGlobalResourceIndex*>(p_Object);
 
@@ -417,7 +417,7 @@ void SAudioStateBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SAudioStateBlueprintData*>(p_Target) = s_Object;
 }
 
-void SAudioStateBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioStateBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<SAudioStateBlueprintData*>(p_Object);
 

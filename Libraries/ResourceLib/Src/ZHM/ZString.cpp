@@ -2,6 +2,8 @@
 
 #include <ZHM/ZHMSerializer.h>
 
+#include "ZHMInt.h"
+
 std::string JsonStr(const ZString& p_String)
 {
 	std::ostringstream o;
@@ -77,7 +79,7 @@ void ZString::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 	*reinterpret_cast<ZString*>(p_Target) = s_String;
 }
 
-void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	const auto* s_Object = reinterpret_cast<ZString*>(p_Object);
 

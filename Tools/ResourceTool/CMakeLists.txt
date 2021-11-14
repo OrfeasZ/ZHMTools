@@ -12,6 +12,7 @@ target_link_libraries(ResourceTool PUBLIC
 	ResourceLib_HM3
 	ResourceLib_HM2
 	ResourceLib_HM2016
+	ResourceLib_HMA
 )
 
 if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")

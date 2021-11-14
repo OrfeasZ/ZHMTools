@@ -142,11 +142,4 @@ namespace simdjson
 	{
 		return p_Value ? "true" : "false";
 	}
-
-	inline std::string get_obj_id(void* p_Object)
-	{
-		auto s_ID = as_json_string(reinterpret_cast<uintptr_t>(p_Object));
-		printf("%s\n", s_ID.c_str());
-		return s_ID;
-	}
 }

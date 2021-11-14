@@ -8,6 +8,7 @@ struct ProcessIds
     std::optional<uint32_t> Hitman2016;
     std::optional<uint32_t> Hitman2;
     std::optional<uint32_t> Hitman3;
+    std::optional<uint32_t> HitmanAbsolution;
 };
 
 ProcessIds GetHitmanProcessIds()
@@ -29,6 +30,8 @@ ProcessIds GetHitmanProcessIds()
                 s_ProcessIds.Hitman2 = s_Process.th32ProcessID;
             else if (strcmp(s_Process.szExeFile, "HITMAN3.exe") == 0)
                 s_ProcessIds.Hitman3 = s_Process.th32ProcessID;
+            else if (strcmp(s_Process.szExeFile, "HMA.exe") == 0)
+                s_ProcessIds.HitmanAbsolution = s_Process.th32ProcessID;
         }
     }
 
@@ -60,7 +63,7 @@ bool InjectIntoProcess(uint32_t p_ProcessId, void* s_LibPathStr, size_t s_LibPat
         return false;
     }
 
-    size_t s_WrittenBytes = 0;
+    SIZE_T s_WrittenBytes = 0;
     if (!WriteProcessMemory(s_Process, s_TargetMemory, s_LibPathStr, s_LibPathSize, &s_WrittenBytes) && s_WrittenBytes != s_LibPathSize)
     {
         printf("Could not write memory in the game process. You can try re-running this with administrator privileges.\n");
@@ -80,11 +83,19 @@ int main()
 {
     const auto s_ProcessIds = GetHitmanProcessIds();
 
+#if _M_X64
 	if (!s_ProcessIds.Hitman2016 && !s_ProcessIds.Hitman2 && !s_ProcessIds.Hitman3)
 	{
         printf("Hitman is not currently running. Run the game first, wait until you get to the main menu, and then run this tool.\n");
         return 1;
 	}
+#else
+    if (!s_ProcessIds.HitmanAbsolution)
+    {
+        printf("Hitman is not currently running. Run the game first, wait until you get to the main menu, and then run this tool.\n");
+        return 1;
+    }
+#endif
     
     char s_ExePathStr[MAX_PATH];
     auto s_PathSize = GetModuleFileNameA(nullptr, s_ExePathStr, MAX_PATH);
@@ -112,6 +123,7 @@ int main()
     memset(s_CodeGenLibPathStr, 0x00, s_CodeGenLibPathSize + 1);
     memcpy(s_CodeGenLibPathStr, s_CodeGenLibPath.string().data(), s_CodeGenLibPathSize);
 
+#if defined _M_X64
     if (s_ProcessIds.Hitman2016)
     {
         printf("Found HITMAN 2016 running. Starting code generation...\n");
@@ -127,14 +139,23 @@ int main()
         if (!InjectIntoProcess(s_ProcessIds.Hitman2.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
             return 1;
     }
-	
-	if (s_ProcessIds.Hitman3)
-	{
+
+    if (s_ProcessIds.Hitman3)
+    {
         printf("Found HITMAN 3 running. Starting code generation...\n");
 
         if (!InjectIntoProcess(s_ProcessIds.Hitman3.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
             return 1;
-	}
+    }
+#else
+    if (s_ProcessIds.HitmanAbsolution)
+    {
+        printf("Found Hitman Absolution running. Starting code generation...\n");
+
+        if (!InjectIntoProcess(s_ProcessIds.HitmanAbsolution.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
+            return 1;
+    }
+#endif
 
     free(s_CodeGenLibPathStr);
 	

@@ -7,6 +7,7 @@
 #include <stdexcept>
 
 #include <ZHM/ZHMSerializer.h>
+#include <ZHM/ZHMPtr.h>
 #include <Util/PortableIntrinsics.h>
 
 template <class T>
@@ -56,7 +57,7 @@ public:
 		while (s_NewSize < p_Size)
 			s_NewSize = ceil(s_NewSize * 1.5);
 
-		if (m_pBegin == nullptr)
+		if (m_pBegin.GetPtr() == nullptr)
 		{
 			m_pBegin = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * s_NewSize, alignof(T)));
 			m_pEnd = m_pBegin + s_CurrentSize;
@@ -91,7 +92,7 @@ public:
 		if (fitsInline() && hasInlineFlag())
 			return m_nInlineCount;
 		
-		return (reinterpret_cast<uintptr_t>(m_pEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / c_get_aligned(sizeof(T), alignof(T));
+		return (reinterpret_cast<uintptr_t>(m_pEnd.GetPtr()) - reinterpret_cast<uintptr_t>(m_pBegin.GetPtr())) / c_get_aligned(sizeof(T), alignof(T));
 	}
 
 	inline size_t capacity() const
@@ -99,7 +100,7 @@ public:
 		if (fitsInline() && hasInlineFlag())
 			return m_nInlineCapacity;
 
-		return (reinterpret_cast<uintptr_t>(m_pAllocationEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / c_get_aligned(sizeof(T), alignof(T));
+		return (reinterpret_cast<uintptr_t>(m_pAllocationEnd.GetPtr()) - reinterpret_cast<uintptr_t>(m_pBegin.GetPtr())) / c_get_aligned(sizeof(T), alignof(T));
 	}
 
 	inline T& operator[](size_t p_Index) const
@@ -110,9 +111,9 @@ public:
 	inline T* begin()
 	{
 		if (fitsInline() && hasInlineFlag())
-			return reinterpret_cast<T*>(&m_pBegin);
+			return reinterpret_cast<T*>(&m_pBegin.GetPtr());
 		
-		return m_pBegin;
+		return m_pBegin.GetPtr();
 	}
 
 	inline T* end()
@@ -120,15 +121,15 @@ public:
 		if (fitsInline() && hasInlineFlag())
 			return begin() + m_nInlineCount;
 
-		return m_pEnd;
+		return m_pEnd.GetPtr();
 	}
 
 	inline T* begin() const
 	{
 		if (fitsInline() && hasInlineFlag())
-			return (T*) (&m_pBegin);
+			return (T*) (&m_pBegin.GetPtr());
 
-		return m_pBegin;
+		return m_pBegin.GetPtr();
 	}
 
 	inline T* end() const
@@ -136,7 +137,7 @@ public:
 		if (fitsInline() && hasInlineFlag())
 			return begin() + m_nInlineCount;
 
-		return m_pEnd;
+		return m_pEnd.GetPtr();
 	}
 
 	inline T* find(const T& p_Value) const
@@ -151,7 +152,7 @@ public:
 			++s_Current;
 		}
 
-		return m_pEnd;
+		return m_pEnd.GetPtr();
 	}
 
 	bool fitsInline() const
@@ -236,13 +237,13 @@ public:
 	}
 
 public:
-	T* m_pBegin;
-	T* m_pEnd;
+	ZHMPtr<T> m_pBegin;
+	ZHMPtr<T> m_pEnd;
 
 	union
 	{
-		T* m_pAllocationEnd;
-		int64_t m_nFlags;
+		ZHMPtr<T> m_pAllocationEnd;
+		zhmptrdiff_t m_nFlags;
 
 		struct
 		{
