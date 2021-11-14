@@ -1,5 +1,6 @@
 #include "ZHMCustomTypes.h"
 
+#include "External/simdjson_helpers.h"
 #include "Util/Base64.h"
 
 ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", sizeof(SAudioSwitchBlueprintData), alignof(SAudioSwitchBlueprintData), WriteJson, WriteSimpleJson, FromSimpleJson, Serialize);
@@ -10,7 +11,7 @@ void SAudioSwitchBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream
 
 	p_Stream << "{";
 
-	p_Stream << "\"m_sGroupName\"" << ":{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << JsonStr(s_Object->m_sGroupName) << "},";
+	p_Stream << "\"m_sGroupName\":{\"$type\":\"ZString\",\"$val\":" << simdjson::as_json_string(s_Object->m_sGroupName) << "},";
 
 	p_Stream << "\"m_aSwitches\"" << ":[";
 
@@ -18,7 +19,7 @@ void SAudioSwitchBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream
 	{
 		auto& s_Item = s_Object->m_aSwitches[i];
 
-		p_Stream << "{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << JsonStr(s_Item) << "}";
+		p_Stream << "{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << simdjson::as_json_string(s_Item) << "}";
 
 		if (i < s_Object->m_aSwitches.size() - 1)
 			p_Stream << ",";
@@ -35,7 +36,7 @@ void SAudioSwitchBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 	auto s_Object = static_cast<SAudioSwitchBlueprintData*>(p_Object);
 
-	p_Stream << "\"m_sGroupName\"" << ":" << JsonStr(s_Object->m_sGroupName) << ",";
+	p_Stream << "\"m_sGroupName\"" << ":" << simdjson::as_json_string(s_Object->m_sGroupName) << ",";
 	
 	p_Stream << "\"m_aSwitches\"" << ":[";
 
@@ -43,7 +44,7 @@ void SAudioSwitchBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_
 	{
 		auto& s_Item = s_Object->m_aSwitches[i];
 
-		p_Stream << JsonStr(s_Item);
+		p_Stream << simdjson::as_json_string(s_Item);
 
 		if (i < s_Object->m_aSwitches.size() - 1)
 			p_Stream << ",";
@@ -86,7 +87,7 @@ void SScaleformGFxResource::WriteJson(void* p_Object, std::ostream& p_Stream)
 
 	std::string s_SwfData(s_Object->m_pSwfData, s_Object->m_pSwfData + s_Object->m_nSwfDataSize);
 
-	p_Stream << "\"m_pSwfData\"" << ":{" << "\"$type\"" << ":" << "\"base64\"" << "," << "\"$val\"" << ":" << JsonStr(Base64::Encode(s_SwfData)) << "},";
+	p_Stream << "\"m_pSwfData\"" << ":{" << "\"$type\"" << ":" << "\"base64\"" << "," << "\"$val\"" << ":" << simdjson::as_json_string(Base64::Encode(s_SwfData)) << "},";
 
 	p_Stream << "\"m_pAdditionalFileNames\"" << ":[";
 
@@ -94,7 +95,7 @@ void SScaleformGFxResource::WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
 		auto& s_Item = s_Object->m_pAdditionalFileNames[i];
 
-		p_Stream << "{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << JsonStr(s_Item) << "}";
+		p_Stream << "{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << simdjson::as_json_string(s_Item) << "}";
 
 		if (i < s_Object->m_pAdditionalFileNames.size() - 1)
 			p_Stream << ",";
@@ -109,7 +110,7 @@ void SScaleformGFxResource::WriteJson(void* p_Object, std::ostream& p_Stream)
 		auto& s_Item = s_Object->m_pAdditionalFileData[i];
 
 		std::string s_Data(s_Item.begin(), s_Item.end());
-		p_Stream << "{" << "\"$type\"" << ":" << "\"base64\"" << "," << "\"$val\"" << ":" << JsonStr(Base64::Encode(s_Data)) << "}";
+		p_Stream << "{" << "\"$type\"" << ":" << "\"base64\"" << "," << "\"$val\"" << ":" << simdjson::as_json_string(Base64::Encode(s_Data)) << "}";
 
 		if (i < s_Object->m_pAdditionalFileData.size() - 1)
 			p_Stream << ",";
@@ -127,7 +128,7 @@ void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 	auto s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
 	std::string s_SwfData(s_Object->m_pSwfData, s_Object->m_pSwfData + s_Object->m_nSwfDataSize);
-	p_Stream << "\"m_pSwfData\"" << ":" << JsonStr(Base64::Encode(s_SwfData)) << ",";
+	p_Stream << "\"m_pSwfData\"" << ":" << simdjson::as_json_string(Base64::Encode(s_SwfData)) << ",";
 
 	p_Stream << "\"m_pAdditionalFileNames\"" << ":[";
 
@@ -135,7 +136,7 @@ void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 	{
 		auto& s_Item = s_Object->m_pAdditionalFileNames[i];
 
-		p_Stream << JsonStr(s_Item);
+		p_Stream << simdjson::as_json_string(s_Item);
 
 		if (i < s_Object->m_pAdditionalFileNames.size() - 1)
 			p_Stream << ",";
@@ -150,7 +151,7 @@ void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 		auto& s_Item = s_Object->m_pAdditionalFileData[i];
 
 		std::string s_Data(s_Item.begin(), s_Item.end());
-		p_Stream << JsonStr(Base64::Encode(s_Data));
+		p_Stream << simdjson::as_json_string(Base64::Encode(s_Data));
 
 		if (i < s_Object->m_pAdditionalFileData.size() - 1)
 			p_Stream << ",";
@@ -212,7 +213,7 @@ void SGlobalResourceIndexItem::WriteJson(void* p_Object, std::ostream& p_Stream)
 
 	auto s_Object = static_cast<SGlobalResourceIndexItem*>(p_Object);
 
-	p_Stream << "\"m_sName\"" << ":{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << JsonStr(s_Object->m_sName) << "},";
+	p_Stream << "\"m_sName\"" << ":{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << simdjson::as_json_string(s_Object->m_sName) << "},";
 
 	p_Stream << "\"m_aResourceIndices\"" << ":[";
 
@@ -237,7 +238,7 @@ void SGlobalResourceIndexItem::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	auto s_Object = static_cast<SGlobalResourceIndexItem*>(p_Object);
 
-	p_Stream << "\"m_sName\"" << ":" << JsonStr(s_Object->m_sName) << ",";
+	p_Stream << "\"m_sName\"" << ":" << simdjson::as_json_string(s_Object->m_sName) << ",";
 
 	p_Stream << "\"m_aResourceIndices\"" << ":[";
 
@@ -359,7 +360,7 @@ void SAudioStateBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 
 	auto s_Object = static_cast<SAudioStateBlueprintData*>(p_Object);
 
-	p_Stream << "\"m_sGroupName\"" << ":{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << JsonStr(s_Object->m_sGroupName) << "},";
+	p_Stream << "\"m_sGroupName\"" << ":{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << simdjson::as_json_string(s_Object->m_sGroupName) << "},";
 
 	p_Stream << "\"m_aStates\"" << ":[";
 
@@ -367,7 +368,7 @@ void SAudioStateBlueprintData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
 		auto& s_Item = s_Object->m_aStates[i];
 
-		p_Stream << "{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << JsonStr(s_Item) << "}";
+		p_Stream << "{" << "\"$type\"" << ":" << "\"ZString\"" << "," << "\"$val\"" << ":" << simdjson::as_json_string(s_Item) << "}";
 
 		if (i < s_Object->m_aStates.size() - 1)
 			p_Stream << ",";
@@ -384,7 +385,7 @@ void SAudioStateBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	auto s_Object = static_cast<SAudioStateBlueprintData*>(p_Object);
 
-	p_Stream << "\"m_sGroupName\"" << ":" << JsonStr(s_Object->m_sGroupName) << ",";
+	p_Stream << "\"m_sGroupName\"" << ":" << simdjson::as_json_string(s_Object->m_sGroupName) << ",";
 
 	p_Stream << "\"m_aStates\"" << ":[";
 
@@ -392,7 +393,7 @@ void SAudioStateBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 	{
 		auto& s_Item = s_Object->m_aStates[i];
 
-		p_Stream << JsonStr(s_Item);
+		p_Stream << simdjson::as_json_string(s_Item);
 
 		if (i < s_Object->m_aStates.size() - 1)
 			p_Stream << ",";

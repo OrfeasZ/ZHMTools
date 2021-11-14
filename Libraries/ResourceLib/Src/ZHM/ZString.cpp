@@ -3,8 +3,9 @@
 #include <ZHM/ZHMSerializer.h>
 
 #include "ZHMInt.h"
+#include "External/simdjson_helpers.h"
 
-std::string JsonStr(const ZString& p_String)
+/*std::string JsonStr(const ZString& p_String)
 {
 	std::ostringstream o;
 
@@ -59,29 +60,31 @@ std::string JsonStr(const ZString& p_String)
 	o << "\"";
 
 	return o.str();
-}
+}*/
 
 void ZString::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<ZString*>(p_Object);
-	p_Stream << JsonStr(*s_Object);
+	p_Stream << simdjson::as_json_string(*s_Object);
 }
 
 void ZString::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<ZString*>(p_Object);
-	p_Stream << JsonStr(*s_Object);
+	p_Stream << simdjson::as_json_string(*s_Object);
 }
 
 void ZString::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	ZString s_String = std::string_view(p_Document);
-	*reinterpret_cast<ZString*>(p_Target) = s_String;
+	// TODO (portable)
+	/*ZString s_String = std::string_view(p_Document);
+	*reinterpret_cast<ZString*>(p_Target) = s_String;*/
 }
 
 void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
-	const auto* s_Object = reinterpret_cast<ZString*>(p_Object);
+	// TODO (portable)
+	/*const auto* s_Object = reinterpret_cast<ZString*>(p_Object);
 
 	uintptr_t s_StrDataOffset;
 
@@ -110,7 +113,7 @@ void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_
 	// Some strings can have the allocated flag, so we rewrite the length without it
 	// cause otherwise the game will try to do some weird re-allocation shit and crash spectacularly.
 	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(ZString, m_nLength), s_Object->size() | 0x40000000);
-	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);
+	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);*/
 }
 
 bool ZString::Equals(void* p_Left, void* p_Right)

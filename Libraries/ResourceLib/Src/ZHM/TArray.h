@@ -10,6 +10,8 @@
 #include <ZHM/ZHMPtr.h>
 #include <Util/PortableIntrinsics.h>
 
+#pragma pack(push, 1)
+
 template <class T>
 class TIterator
 {
@@ -24,30 +26,28 @@ template <class T>
 class TArray
 {
 public:
-	TArray() :
-		m_pBegin(nullptr),
-		m_pEnd(nullptr),
-		m_pAllocationEnd(nullptr)
+	TArray()
 	{
 	}
 
 	void push_back(const T& p_Value)
 	{
-		// TODO: Inline support.
+		// TODO (portable)
+		/*
 		size_t s_Size = size();
 
 		// If we're at capacity we need to expand.
 		if (capacity() == s_Size)
 			resize(s_Size + 1);
 		
-		m_pBegin[s_Size] = p_Value;
-		m_pEnd = m_pBegin + (s_Size + 1);
+		m_pBegin.GetPtr()[s_Size] = p_Value;
+		m_pEnd.SetPtr(m_pBegin.GetPtr() + (s_Size + 1));*/
 	}
 
 	void resize(size_t p_Size)
 	{
-		// TODO: Inline support.
-		if (capacity() == p_Size)
+		// TODO (portable)
+		/*if (capacity() == p_Size)
 			return;
 
 		auto s_CurrentSize = size();
@@ -71,35 +71,18 @@ public:
 
 		m_pBegin = s_NewMemory;
 		m_pEnd = m_pBegin + s_CurrentSize;
-		m_pAllocationEnd = m_pBegin + s_NewSize;
+		m_pAllocationEnd = m_pBegin + s_NewSize;*/
 	}
-
-	void clear()
-	{
-		if (m_pBegin == nullptr)
-			return;
-
-		// TODO: Free individual items.
-
-		if (!fitsInline() || !hasInlineFlag())
-			free(m_pBegin);
-		
-		m_pBegin = m_pEnd = m_pAllocationEnd = nullptr;
-	}
-
+	
 	inline size_t size() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return m_nInlineCount;
-		
+		assert(!hasInlineFlag());		
 		return (reinterpret_cast<uintptr_t>(m_pEnd.GetPtr()) - reinterpret_cast<uintptr_t>(m_pBegin.GetPtr())) / c_get_aligned(sizeof(T), alignof(T));
 	}
 
 	inline size_t capacity() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return m_nInlineCapacity;
-
+		assert(!hasInlineFlag());
 		return (reinterpret_cast<uintptr_t>(m_pAllocationEnd.GetPtr()) - reinterpret_cast<uintptr_t>(m_pBegin.GetPtr())) / c_get_aligned(sizeof(T), alignof(T));
 	}
 
@@ -110,64 +93,38 @@ public:
 
 	inline T* begin()
 	{
-		if (fitsInline() && hasInlineFlag())
-			return reinterpret_cast<T*>(&m_pBegin.GetPtr());
-		
+		assert(!hasInlineFlag());
 		return m_pBegin.GetPtr();
 	}
 
 	inline T* end()
 	{
-		if (fitsInline() && hasInlineFlag())
-			return begin() + m_nInlineCount;
-
+		assert(!hasInlineFlag());
 		return m_pEnd.GetPtr();
 	}
 
 	inline T* begin() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return (T*) (&m_pBegin.GetPtr());
-
+		assert(!hasInlineFlag());
 		return m_pBegin.GetPtr();
 	}
 
 	inline T* end() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return begin() + m_nInlineCount;
-
+		assert(!hasInlineFlag());
 		return m_pEnd.GetPtr();
 	}
-
-	inline T* find(const T& p_Value) const
-	{
-		T* s_Current = begin();
-
-		while (s_Current != end())
-		{
-			if (*s_Current == p_Value)
-				return s_Current;
-
-			++s_Current;
-		}
-
-		return m_pEnd.GetPtr();
-	}
-
-	bool fitsInline() const
-	{
-		return sizeof(T) <= sizeof(T*) * 2;
-	}
-
+	
 	bool hasInlineFlag() const
 	{
-		return (m_nFlags >> 62) & 1;
+		return false;
+		//return (m_nFlags >> 62) & 1;
 	}
 
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 	{
-		auto* s_Object = reinterpret_cast<TArray<T>*>(p_Object);
+		// TODO (portable)
+		/*auto* s_Object = reinterpret_cast<TArray<T>*>(p_Object);
 		
 		if (s_Object->hasInlineFlag())
 			throw std::runtime_error("cannot serialize inline arrays");
@@ -210,7 +167,7 @@ public:
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pBegin), s_ElementsPtr);
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
-		}
+		}*/
 	}
 
 	bool operator==(const TArray<T>& p_Other) const
@@ -353,3 +310,5 @@ public:
 public:
 	T m_Elements[N];
 };
+
+#pragma pack(pop)

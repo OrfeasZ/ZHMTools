@@ -4,6 +4,10 @@
 
 #include "ZHMInt.h"
 
+#include <vector>
+
+class IZHMTypeInfo;
+
 constexpr inline zhmptr_t ZHMArenaBits = 3;
 constexpr inline zhmptr_t ZHMArenaCount = static_cast<zhmptr_t>(1) << ZHMArenaBits;
 constexpr inline zhmptr_t ZHMArenaMask = ~(~static_cast<zhmptr_t>(0) >> ZHMArenaBits);
@@ -16,10 +20,12 @@ struct ZHMArena
 	uint32_t m_Id;
 	void* m_Buffer;
 	size_t m_Size;
+	std::vector<IZHMTypeInfo*> m_TypeRegistry;
 
 	template <class T>
 	T* GetObjectAtOffset(zhmptr_t p_Offset) const
 	{
+		assert(p_Offset <= m_Size);
 		const auto s_StartAddr = reinterpret_cast<uintptr_t>(m_Buffer);
 		return reinterpret_cast<T*>(s_StartAddr + p_Offset);
 	}
@@ -47,6 +53,25 @@ struct ZHMArena
 			return ZHMNullPtr;
 
 		return s_ObjectAddr - s_ArenaStart;
+	}
+
+	void SetTypeCount(uint32_t p_TypeCount)
+	{
+		m_TypeRegistry.clear();
+		m_TypeRegistry.resize(p_TypeCount);
+	}
+
+	void SetType(uint32_t p_Index, IZHMTypeInfo* p_Type)
+	{
+		if (p_Index >= m_TypeRegistry.size())
+			m_TypeRegistry.resize(p_Index + 1);
+
+		m_TypeRegistry[p_Index] = p_Type;
+	}
+
+	IZHMTypeInfo* GetType(uint32_t p_Index)
+	{
+		return m_TypeRegistry[p_Index];
 	}
 };
 

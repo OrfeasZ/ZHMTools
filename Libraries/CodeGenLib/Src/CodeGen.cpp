@@ -668,6 +668,14 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		s_CurrentOffset += s_Prop.m_pType->typeInfo()->m_nTypeSize;
 	}
 
+	if (s_CurrentOffset != s_Type->m_nTypeSize)
+	{
+		// Add padding.
+		uintptr_t s_PaddingBytes = s_Type->m_nTypeSize - s_CurrentOffset;
+		s_HeaderStream << s_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "];" << std::endl;
+		s_CurrentOffset = s_Type->m_nTypeSize;
+	}
+
 	s_HeaderStream << s_Indent << "};" << std::endl;
 
 	if (s_IsNamespaced)

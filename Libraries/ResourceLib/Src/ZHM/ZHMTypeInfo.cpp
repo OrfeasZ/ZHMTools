@@ -7,6 +7,8 @@
 
 #include <stdexcept>
 
+#include "External/simdjson_helpers.h"
+
 #if ZHM_TARGET == 3
 #include <Generated/HM3/ZHMEnums.h>
 #elif ZHM_TARGET == 2
@@ -31,12 +33,12 @@ public:
 public:
 	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		p_Stream << "{" << "\"$enumVal\"" << ":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << "," << "\"$enumValName\"" << ":" << JsonStr(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
+		p_Stream << "{\"$enumVal\":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
 	}
 	
 	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
-		p_Stream << JsonStr(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
+		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
 	}
 	
 	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
@@ -92,11 +94,11 @@ public:
 		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 		
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Object);
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / s_AlignedSize;
+		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->end()) - reinterpret_cast<uintptr_t>(s_Array->begin())) / s_AlignedSize;
 		
 		p_Stream << "[";
 
-		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->m_pBegin);
+		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->begin());
 
 		for (size_t i = 0; i < s_ElementCount; ++i)
 		{
@@ -115,11 +117,11 @@ public:
 		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Object);
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / s_AlignedSize;
+		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->end()) - reinterpret_cast<uintptr_t>(s_Array->begin())) / s_AlignedSize;
 
 		p_Stream << "[";
 
-		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->m_pBegin);
+		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->begin());
 
 		for (size_t i = 0; i < s_ElementCount; ++i)
 		{
@@ -175,7 +177,8 @@ public:
 
 	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
 	{
-		auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
+		// TODO (portable)
+		/*auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
 
 		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 		const auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->m_pEnd) - reinterpret_cast<uintptr_t>(s_Object->m_pBegin)) / s_AlignedSize;
@@ -214,7 +217,7 @@ public:
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pBegin), s_ElementsPtr);
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pEnd), s_CurrentElement);
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pAllocationEnd), s_CurrentElement);
-		}
+		}*/
 	}
 	
 	virtual std::string TypeName() const
@@ -244,8 +247,8 @@ public:
 
 		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 
-		const auto s_LeftElementCount = (reinterpret_cast<uintptr_t>(s_Left->m_pEnd) - reinterpret_cast<uintptr_t>(s_Left->m_pBegin)) / s_AlignedSize;
-		const auto s_RightElementCount = (reinterpret_cast<uintptr_t>(s_Right->m_pEnd) - reinterpret_cast<uintptr_t>(s_Right->m_pBegin)) / s_AlignedSize;
+		const auto s_LeftElementCount = (reinterpret_cast<uintptr_t>(s_Left->end()) - reinterpret_cast<uintptr_t>(s_Left->begin())) / s_AlignedSize;
+		const auto s_RightElementCount = (reinterpret_cast<uintptr_t>(s_Right->end()) - reinterpret_cast<uintptr_t>(s_Right->begin())) / s_AlignedSize;
 
 		if (s_LeftElementCount != s_RightElementCount)
 			return false;
@@ -254,8 +257,8 @@ public:
 		if (s_LeftElementCount == 0)
 			return false;
 
-		auto s_LeftObjectPtr = reinterpret_cast<uintptr_t>(s_Left->m_pBegin);
-		auto s_RightObjectPtr = reinterpret_cast<uintptr_t>(s_Right->m_pBegin);
+		auto s_LeftObjectPtr = reinterpret_cast<uintptr_t>(s_Left->begin());
+		auto s_RightObjectPtr = reinterpret_cast<uintptr_t>(s_Right->begin());
 
 		// Check if every element is the same.
 		for (size_t i = 0; i < s_LeftElementCount; ++i)
@@ -386,13 +389,13 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(std::string_view p_Name)
 void TypeID::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+	p_Stream << simdjson::as_json_string(s_Object->m_pTypeID->TypeName());
 }
 
 void TypeID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+	p_Stream << simdjson::as_json_string(s_Object->m_pTypeID->TypeName());
 }
 
 void TypeID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)

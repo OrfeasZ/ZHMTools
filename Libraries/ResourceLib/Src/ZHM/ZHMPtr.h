@@ -3,10 +3,14 @@
 #include "ZHMInt.h"
 #include "ZHMArenas.h"
 
+#pragma pack(push, 1)
+
 template <class T>
 struct ZHMPtr
 {
 	zhmptr_t m_Ptr;
+
+	ZHMPtr() : m_Ptr(ZHMNullPtr) {}
 
 	uint32_t GetArenaId() const
 	{
@@ -33,13 +37,18 @@ struct ZHMPtr
 		SetArenaId(s_ArenaId);
 	}
 
+	bool IsNull() const
+	{
+		return m_Ptr == ZHMNullPtr;
+	}
+
 	T* GetPtr() const
 	{
 		if (m_Ptr == ZHMNullPtr)
 			return nullptr;
 
 		const auto* s_Arena = ZHMArenas::GetArena(GetArenaId());
-		return s_Arena->GetObjectAtOffset(GetPtrOffset());
+		return s_Arena->GetObjectAtOffset<T>(GetPtrOffset());
 	}
 
 	void SetPtr(T* p_Ptr)
@@ -80,3 +89,5 @@ struct ZHMPtr
 		SetPtr(p_Ptr);
 	}
 };
+
+#pragma pack(pop)

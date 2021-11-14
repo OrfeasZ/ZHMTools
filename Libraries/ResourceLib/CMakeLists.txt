@@ -38,6 +38,7 @@ set(RESOURCELIB_SOURCES
 	Src/ZHM/ZHMEquality.h
 	Src/ZHM/ZHMInt.h
 	Src/ZHM/ZHMPtr.h
+	Src/ZHM/ZHMArenas.cpp
 	Src/ZHM/ZHMArenas.h
 	Src/ResourceConverterImpl.cpp
 	Src/ResourceConverterImpl.h

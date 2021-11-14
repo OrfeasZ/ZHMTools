@@ -4,10 +4,13 @@
 #include <External/simdjson.h>
 
 #include "ZHMInt.h"
+#include "ZHMPtr.h"
 
 class IZHMTypeInfo;
 class ZHMSerializer;
 class ZString;
+
+#pragma pack(push, 1)
 
 class ZVariant
 {
@@ -21,17 +24,30 @@ public:
 public:
 	bool operator==(const ZVariant& p_Other) const
 	{
-		return m_pTypeID == p_Other.m_pTypeID && m_pData == p_Other.m_pData;
+		return GetType() == p_Other.GetType() && m_pData.GetPtr() == p_Other.m_pData.GetPtr();
 	}
 
 	bool operator!=(const ZVariant& p_Other) const
 	{
 		return !(*this == p_Other);
 	}
+
+	IZHMTypeInfo* GetType() const
+	{
+		if (m_pTypeID.IsNull())
+			return nullptr;
+
+		auto s_Arena = ZHMArenas::GetArena(m_pTypeID.GetArenaId());
+		auto s_TypeIdx = m_pTypeID.GetPtrOffset();
+
+		return s_Arena->GetType(s_TypeIdx);
+	}
 	
 public:
 	// This member (m_pTypeID) is normally an STypeID pointer, but we use our custom
 	// type information holder here so we can properly serialize the value.
-	IZHMTypeInfo* m_pTypeID;
-	void* m_pData;
+	ZHMPtr<void> m_pTypeID;
+	ZHMPtr<void> m_pData;
 };
+
+#pragma pack(pop)

@@ -95,7 +95,7 @@ std::optional<uintptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Var
 	if (!InCompatibilityMode())
 		return std::nullopt;
 
-	const auto s_VariantsOfTypeIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
+	const auto s_VariantsOfTypeIt = m_VariantRegistry.find(p_Variant->GetType());
 
 	if (s_VariantsOfTypeIt == m_VariantRegistry.end())
 		return std::nullopt;
@@ -108,7 +108,7 @@ std::optional<uintptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Var
 
 	for (const auto& [s_Variant, s_Ptr] : s_VariantsOfTypeIt->second)
 	{
-		if (p_Variant->m_pTypeID->Equals(p_Variant->m_pData, s_Variant->m_pData))
+		if (p_Variant->GetType()->Equals(p_Variant->m_pData.GetPtr(), s_Variant->m_pData.GetPtr()))
 		{
 			return std::make_optional(s_Ptr);
 		}
@@ -122,7 +122,7 @@ void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr)
 	if (!InCompatibilityMode())
 		return;
 
-	const auto s_VariantSetIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
+	const auto s_VariantSetIt = m_VariantRegistry.find(p_Variant->GetType());
 
 	if (s_VariantSetIt != m_VariantRegistry.end())
 	{
@@ -133,7 +133,7 @@ void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr)
 	std::unordered_map<ZVariant*, uintptr_t> s_VariantsOfType;
 	s_VariantsOfType[p_Variant] = p_Ptr;
 
-	m_VariantRegistry[p_Variant->m_pTypeID] = s_VariantsOfType;
+	m_VariantRegistry[p_Variant->GetType()] = s_VariantsOfType;
 }
 
 std::set<uintptr_t> ZHMSerializer::GetRelocations() const

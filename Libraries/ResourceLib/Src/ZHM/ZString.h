@@ -9,11 +9,14 @@
 #include <External/simdjson.h>
 
 #include "ZHMInt.h"
+#include "ZHMPtr.h"
 
 class ZHMSerializer;
 class ZString;
 
-extern std::string JsonStr(const ZString& p_String);
+//extern std::string JsonStr(const ZString& p_String);
+
+#pragma pack(push, 1)
 
 class ZString
 {
@@ -25,26 +28,30 @@ public:
 	static bool Equals(void* p_Left, void* p_Right);
 	
 	inline ZString() :
-		m_nLength(0x80000000),
-		m_pChars("")
+		m_nLength(0x80000000)
 	{
+		// TODO (portable)
+		//m_pChars = "";
 	}
 
 	inline ZString(std::string_view str) :
-		m_pChars(const_cast<char*>(str.data()))
+		m_nLength(0x80000000)
 	{
-		m_nLength = static_cast<uint32_t>(str.size()) | 0x80000000;
+		// TODO (portable)
+		//m_nLength = static_cast<uint32_t>(str.size()) | 0x80000000;
+		//m_pChars = str.data();
 	}
 
 	inline ZString(const char* str) :
-		m_pChars(const_cast<char*>(str))
+		m_nLength(0x80000000)
 	{
-		m_nLength = static_cast<uint32_t>(std::strlen(str)) | 0x80000000;
+		// TODO (portable)
+		//m_nLength = static_cast<uint32_t>(std::strlen(str)) | 0x80000000;
+		//m_pChars = str;
 	}
 
 	inline ZString(std::string str) :
-		m_nLength(0x80000000),
-		m_pChars("")
+		m_nLength(0x80000000)
 	{
 		allocate(str.c_str(), str.size());
 	}
@@ -64,15 +71,16 @@ public:
 
 	inline ~ZString()
 	{
-		if (is_allocated())
+		// TODO (portable)
+		/*if (is_allocated())
 		{
 			free(const_cast<char*>(m_pChars));
-		}
+		}*/
 	}
 
 	inline std::string_view string_view() const
 	{
-		return std::string_view(m_pChars, size());
+		return std::string_view(c_str(), size());
 	}
 
 	inline uint32_t size() const
@@ -82,12 +90,12 @@ public:
 
 	inline const char* c_str() const
 	{
-		return m_pChars;
+		return m_pChars.GetPtr();
 	}
 
 	inline bool operator<(const ZString& other) const
 	{
-		return strcmp(m_pChars, other.m_pChars) >> 31;
+		return strcmp(c_str(), other.c_str()) >> 31;
 	}
 
 	inline bool is_allocated() const
@@ -119,13 +127,18 @@ public:
 private:
 	void allocate(const char* str, size_t size)
 	{
-		m_nLength = static_cast<uint32_t>(size);
+		// TODO (portable)
+		/*m_nLength = static_cast<uint32_t>(size);
 		m_pChars = reinterpret_cast<char*>(malloc(size));
-		memcpy(const_cast<char*>(m_pChars), str, size);
+		memcpy(const_cast<char*>(m_pChars), str, size);*/
 	}
 
 private:
 	int32_t m_nLength;
-	const char* m_pChars;
+#if ZHM_TARGET != 2012
+	uint8_t _pad4[4];
+#endif
+	ZHMPtr<const char> m_pChars;
 };
 
+#pragma pack(pop)

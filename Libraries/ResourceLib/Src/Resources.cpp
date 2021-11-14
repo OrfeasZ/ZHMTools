@@ -21,7 +21,7 @@
 // Register all supported resource types here.
 std::unordered_map<std::string, Resource> g_Resources = {
 #if ZHM_TARGET == 2016 || ZHM_TARGET == 2012
-	REGISTER_RESOURCE(TEMP, STemplateEntity)
+	//REGISTER_RESOURCE(TEMP, STemplateEntity)
 #else
 	REGISTER_RESOURCE(TEMP, STemplateEntityFactory)
 #endif
