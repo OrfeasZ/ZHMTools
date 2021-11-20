@@ -170,6 +170,7 @@ public:
 		
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Target);
 
+		// TODO (portable)
 		s_Array->m_pBegin = reinterpret_cast<void**>(s_FinalMemory);
 		s_Array->m_pEnd = reinterpret_cast<void**>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_TotalSize);
 		s_Array->m_pAllocationEnd = s_Array->m_pEnd;
@@ -177,11 +178,10 @@ public:
 
 	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
 	{
-		// TODO (portable)
-		/*auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
+		auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
 
-		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
-		const auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->m_pEnd) - reinterpret_cast<uintptr_t>(s_Object->m_pBegin)) / s_AlignedSize;
+		const auto s_AlignedSize = m_ElementType->Size();
+		const auto s_ElementCount = (s_Object->m_pEnd.GetPtrOffset() - s_Object->m_pBegin.GetPtrOffset()) / s_AlignedSize;
 
 		if (s_ElementCount == 0)
 		{
@@ -191,21 +191,25 @@ public:
 		}
 		else
 		{
-			// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
-			// we're adding it for compatibility with other tools.
-			// We do some weird alignment shit here to make sure that the count is always at data - 4.
-			const auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), m_ElementType->Alignment());
-			auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, m_ElementType->Alignment());
-			memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
+			if (p_Serializer.InCompatibilityMode())
+			{
+				// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
+				// we're adding it for compatibility with other tools.
+				// We do some weird alignment shit here to make sure that the count is always at data - 4.
+				constexpr auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), sizeof(zhmptr_t));
+				auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, sizeof(zhmptr_t));
+				memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
 
-			*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_ElementCount;
-			p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, m_ElementType->Alignment());
+				*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_Object->size();
+				p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, sizeof(zhmptr_t));
+				c_aligned_free(s_SizePrefixBuf);
+			}
 
 			// And now write the array data.
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment()) * s_ElementCount, m_ElementType->Alignment());
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin.GetPtr(), m_ElementType->Size(), sizeof(zhmptr_t));
 			auto s_CurrentElement = s_ElementsPtr;
 
-			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin);
+			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin.GetPtr());
 
 			for (size_t i = 0; i < s_ElementCount; ++i)
 			{
@@ -217,7 +221,7 @@ public:
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pBegin), s_ElementsPtr);
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pEnd), s_CurrentElement);
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<void*>, m_pAllocationEnd), s_CurrentElement);
-		}*/
+		}
 	}
 	
 	virtual std::string TypeName() const

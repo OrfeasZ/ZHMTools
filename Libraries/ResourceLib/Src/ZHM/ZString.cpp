@@ -83,6 +83,11 @@ void ZString::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 
 void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
+	uintptr_t s_StrDataOffset = p_Serializer.WriteMemory(const_cast<void*>(reinterpret_cast<const void*>("\0")), 1, alignof(char*));
+
+	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(ZString, m_nLength), 0 | 0x40000000);
+	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);
+
 	// TODO (portable)
 	/*const auto* s_Object = reinterpret_cast<ZString*>(p_Object);
 

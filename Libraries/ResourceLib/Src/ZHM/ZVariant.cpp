@@ -99,6 +99,9 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 
 void ZVariant::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
+	p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(ZVariant, m_pTypeID));
+	p_Serializer.PatchNullPtr(p_OwnOffset + offsetof(ZVariant, m_pData));
+
 	// TODO (portable)
 	/*auto* s_Object = reinterpret_cast<ZVariant*>(p_Object);
 	

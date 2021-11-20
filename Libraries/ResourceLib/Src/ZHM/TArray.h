@@ -30,60 +30,43 @@ public:
 	{
 	}
 
-	void push_back(const T& p_Value)
+	TArray(size_t p_Size)
 	{
-		// TODO (portable)
-		/*
-		size_t s_Size = size();
-
-		// If we're at capacity we need to expand.
-		if (capacity() == s_Size)
-			resize(s_Size + 1);
-		
-		m_pBegin.GetPtr()[s_Size] = p_Value;
-		m_pEnd.SetPtr(m_pBegin.GetPtr() + (s_Size + 1));*/
+		resize(p_Size);
 	}
 
 	void resize(size_t p_Size)
 	{
-		// TODO (portable)
-		/*if (capacity() == p_Size)
+		if (capacity() >= p_Size)
 			return;
 
-		auto s_CurrentSize = size();
+		assert(m_pBegin.GetPtr() == nullptr);
 
-		size_t s_NewSize = ceil((capacity() == 0 ? 1 : capacity()) * 1.5);
+		const auto s_AllocationSize = sizeof(T) * p_Size;
+		auto* s_HeapArena = ZHMArenas::GetHeapArena();
+		const auto s_AllocationOffset = s_HeapArena->Allocate(s_AllocationSize, sizeof(zhmptr_t));
 
-		while (s_NewSize < p_Size)
-			s_NewSize = ceil(s_NewSize * 1.5);
+		m_pBegin.SetArenaId(ZHMHeapArenaId);
+		m_pBegin.SetPtrOffset(s_AllocationOffset);
 
-		if (m_pBegin.GetPtr() == nullptr)
-		{
-			m_pBegin = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * s_NewSize, alignof(T)));
-			m_pEnd = m_pBegin + s_CurrentSize;
-			m_pAllocationEnd = m_pBegin + s_NewSize;
-			return;
-		}
+		m_pEnd.SetArenaId(ZHMHeapArenaId);
+		m_pEnd.SetPtrOffset(s_AllocationOffset + s_AllocationSize);
 
-		T* s_NewMemory = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * s_NewSize, alignof(T)));
-		memcpy(s_NewMemory, m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * size());
-		c_aligned_free(m_pBegin);
+		m_pAllocationEnd = m_pEnd;
 
-		m_pBegin = s_NewMemory;
-		m_pEnd = m_pBegin + s_CurrentSize;
-		m_pAllocationEnd = m_pBegin + s_NewSize;*/
+		// Initialize all values to defaults.
+		for (size_t i = 0; i < p_Size; ++i)
+			operator[](i) = T();
 	}
 	
 	inline size_t size() const
 	{
-		assert(!hasInlineFlag());		
-		return (reinterpret_cast<uintptr_t>(m_pEnd.GetPtr()) - reinterpret_cast<uintptr_t>(m_pBegin.GetPtr())) / c_get_aligned(sizeof(T), alignof(T));
+		return (m_pEnd.GetPtrOffset() - m_pBegin.GetPtrOffset()) / sizeof(T);
 	}
 
 	inline size_t capacity() const
 	{
-		assert(!hasInlineFlag());
-		return (reinterpret_cast<uintptr_t>(m_pAllocationEnd.GetPtr()) - reinterpret_cast<uintptr_t>(m_pBegin.GetPtr())) / c_get_aligned(sizeof(T), alignof(T));
+		return (m_pAllocationEnd.GetPtrOffset() - m_pBegin.GetPtrOffset()) / sizeof(T);
 	}
 
 	inline T& operator[](size_t p_Index) const
@@ -93,41 +76,27 @@ public:
 
 	inline T* begin()
 	{
-		assert(!hasInlineFlag());
 		return m_pBegin.GetPtr();
 	}
 
 	inline T* end()
 	{
-		assert(!hasInlineFlag());
 		return m_pEnd.GetPtr();
 	}
 
 	inline T* begin() const
 	{
-		assert(!hasInlineFlag());
 		return m_pBegin.GetPtr();
 	}
 
 	inline T* end() const
 	{
-		assert(!hasInlineFlag());
 		return m_pEnd.GetPtr();
-	}
-	
-	bool hasInlineFlag() const
-	{
-		return false;
-		//return (m_nFlags >> 62) & 1;
 	}
 
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 	{
-		// TODO (portable)
-		/*auto* s_Object = reinterpret_cast<TArray<T>*>(p_Object);
-		
-		if (s_Object->hasInlineFlag())
-			throw std::runtime_error("cannot serialize inline arrays");
+		auto* s_Object = reinterpret_cast<TArray<T>*>(p_Object);
 
 		if (s_Object->size() == 0)
 		{
@@ -142,16 +111,17 @@ public:
 				// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
 				// we're adding it for compatibility with other tools.
 				// We do some weird alignment shit here to make sure that the count is always at data - 4.
-				const auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), alignof(T));
-				auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, alignof(T));
+				constexpr auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), sizeof(zhmptr_t));
+				auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, sizeof(zhmptr_t));
 				memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
 
 				*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_Object->size();
-				p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, alignof(T));
+				p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, sizeof(zhmptr_t));
+				c_aligned_free(s_SizePrefixBuf);
 			}
 			
 			// And now write the array data.
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * s_Object->size(), alignof(T));
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin.GetPtr(), sizeof(T) * s_Object->size(), sizeof(zhmptr_t));
 
 			for (size_t i = 0; i < s_Object->size(); ++i)
 			{
@@ -159,15 +129,15 @@ public:
 
 				if constexpr(!std::is_fundamental_v<T> && !std::is_enum_v<T>)
 				{
-					uintptr_t s_Offset = s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * i;
+					uintptr_t s_Offset = s_ElementsPtr + sizeof(T) * i;
 					T::Serialize(&s_Item, p_Serializer, s_Offset);
 				}
 			}
 
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pBegin), s_ElementsPtr);
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
-		}*/
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + sizeof(T) * s_Object->size());
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + sizeof(T) * s_Object->size());
+		}
 	}
 
 	bool operator==(const TArray<T>& p_Other) const
@@ -196,18 +166,7 @@ public:
 public:
 	ZHMPtr<T> m_pBegin;
 	ZHMPtr<T> m_pEnd;
-
-	union
-	{
-		ZHMPtr<T> m_pAllocationEnd;
-		zhmptrdiff_t m_nFlags;
-
-		struct
-		{
-			uint8_t m_nInlineCount;
-			uint8_t m_nInlineCapacity;
-		};
-	};
+	ZHMPtr<T> m_pAllocationEnd;
 };
 
 template<typename T, size_t N>

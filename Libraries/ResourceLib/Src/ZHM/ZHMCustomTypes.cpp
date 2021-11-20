@@ -61,9 +61,15 @@ void SAudioSwitchBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
 
-	for (auto s_Item : p_Document["m_aSwitches"])
 	{
-		s_Object.m_aSwitches.push_back(std::string_view(s_Item));
+		simdjson::ondemand::array s_Array = p_Document["m_aSwitches"];
+		s_Object.m_aSwitches.resize(s_Array.count_elements());
+
+		size_t s_Index = 0;
+		for (auto s_Item : s_Array)
+		{
+			s_Object.m_aSwitches[s_Index++] = std::string_view(s_Item);
+		}
 	}
 
 	*reinterpret_cast<SAudioSwitchBlueprintData*>(p_Target) = s_Object;
@@ -173,22 +179,34 @@ void SScaleformGFxResource::FromSimpleJson(simdjson::ondemand::value p_Document,
 	s_Object.m_pSwfData = reinterpret_cast<uint8_t*>(malloc(s_SwfData.size()));
 	memcpy(s_Object.m_pSwfData, s_SwfData.data(), s_SwfData.size());
 
-	for (auto s_Item : p_Document["m_pAdditionalFileNames"])
 	{
-		s_Object.m_pAdditionalFileNames.push_back(std::string_view(s_Item));
+		simdjson::ondemand::array s_Array = p_Document["m_pAdditionalFileNames"];
+		s_Object.m_pAdditionalFileNames.resize(s_Array.count_elements());
+
+		size_t s_Index = 0;
+		for (auto s_Item : s_Array)
+		{
+			s_Object.m_pAdditionalFileNames[s_Index++] = std::string_view(s_Item);
+		}
 	}
 
-	for (auto s_Item : p_Document["m_pAdditionalFileData"])
 	{
-		std::string s_Data;
-		Base64::Decode(std::string_view(s_Item), s_Data);
+		simdjson::ondemand::array s_Array = p_Document["m_pAdditionalFileData"];
+		s_Object.m_pAdditionalFileData.resize(s_Array.count_elements());
 
-		TArray<uint8_t> s_DataArr;
-		s_DataArr.resize(s_Data.size());
+		size_t s_Index = 0;
+		for (auto s_Item : s_Array)
+		{
+			std::string s_Data;
+			Base64::Decode(std::string_view(s_Item), s_Data);
 
-		memcpy(s_DataArr.begin(), s_Data.data(), s_Data.size());
-		
-		s_Object.m_pAdditionalFileData.push_back(s_DataArr);
+			TArray<uint8_t> s_DataArr;
+			s_DataArr.resize(s_Data.size());
+
+			memcpy(s_DataArr.begin(), s_Data.data(), s_Data.size());
+
+			s_Object.m_pAdditionalFileData[s_Index++] = s_DataArr;
+		}
 	}
 
 	*reinterpret_cast<SScaleformGFxResource*>(p_Target) = s_Object;
@@ -263,9 +281,15 @@ void SGlobalResourceIndexItem::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
-	for (auto s_Item : p_Document["m_aResourceIndices"])
 	{
-		s_Object.m_aResourceIndices.push_back(static_cast<uint32_t>(int64_t(s_Item)));
+		simdjson::ondemand::array s_Array = p_Document["m_aResourceIndices"];
+		s_Object.m_aResourceIndices.resize(s_Array.count_elements());
+
+		size_t s_Index = 0;
+		for (auto s_Item : s_Array)
+		{
+			s_Object.m_aResourceIndices[s_Index++] = static_cast<uint32_t>(int64_t(s_Item));
+		}
 	}
 
 	*reinterpret_cast<SGlobalResourceIndexItem*>(p_Target) = s_Object;
@@ -335,11 +359,17 @@ void SGlobalResourceIndex::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SGlobalResourceIndex s_Object;
 
-	for (simdjson::ondemand::value s_Item : p_Document["m_aItems"])
 	{
-		SGlobalResourceIndexItem s_Value;
-		SGlobalResourceIndexItem::FromSimpleJson(s_Item, &s_Value);
-		s_Object.m_aItems.push_back(s_Value);
+		simdjson::ondemand::array s_Array = p_Document["m_aItems"];
+		s_Object.m_aItems.resize(s_Array.count_elements());
+
+		size_t s_Index = 0;
+		for (simdjson::ondemand::value s_Item : s_Array)
+		{
+			SGlobalResourceIndexItem s_Value;
+			SGlobalResourceIndexItem::FromSimpleJson(s_Item, &s_Value);
+			s_Object.m_aItems[s_Index++] = s_Value;
+		}
 	}
 
 	*reinterpret_cast<SGlobalResourceIndex*>(p_Target) = s_Object;
@@ -410,9 +440,15 @@ void SAudioStateBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
 
-	for (auto s_Item : p_Document["m_aStates"])
 	{
-		s_Object.m_aStates.push_back(std::string_view(s_Item));
+		simdjson::ondemand::array s_Array = p_Document["m_aStates"];
+		s_Object.m_aStates.resize(s_Array.count_elements());
+
+		size_t s_Index = 0;
+		for (auto s_Item : s_Array)
+		{
+			s_Object.m_aStates[s_Index++] = std::string_view(s_Item);
+		}
 	}
 
 	*reinterpret_cast<SAudioStateBlueprintData*>(p_Target) = s_Object;
