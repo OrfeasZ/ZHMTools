@@ -137,43 +137,35 @@ public:
 	
 	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
 	{
-		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
-
-		std::vector<void*> s_Elements;
+		const auto s_ElementSize = m_ElementType->Size();
 		
-		// Parse each element.
-		size_t s_TotalSize = 0;
+		simdjson::ondemand::array s_JsonArray = p_Document;
+		const size_t s_ElementCount = s_JsonArray.count_elements();
 
-		for (simdjson::ondemand::value s_Element : p_Document)
-		{
-			// Allocate memory for this element.
-			void* s_Memory = c_aligned_alloc(m_ElementType->Size(), m_ElementType->Alignment());
-			s_TotalSize += s_AlignedSize;
-			
-			m_ElementType->CreateFromJson(s_Element, s_Memory);
-
-			s_Elements.push_back(s_Memory);
-		}
-
-		// Create a buffer to hold everything together.
-		void* s_FinalMemory = c_aligned_alloc(s_TotalSize, m_ElementType->Alignment());
-
-		size_t s_Offset = 0;
-
-		for (auto s_Element : s_Elements)
-		{
-			memcpy(reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_Offset), s_Element, s_AlignedSize);
-			c_aligned_free(s_Element);
-			
-			s_Offset += s_AlignedSize;
-		}
-		
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Target);
 
-		// TODO (portable)
-		s_Array->m_pBegin = reinterpret_cast<void**>(s_FinalMemory);
-		s_Array->m_pEnd = reinterpret_cast<void**>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_TotalSize);
-		s_Array->m_pAllocationEnd = s_Array->m_pEnd;
+		if (s_ElementCount == 0)
+		{
+			s_Array->m_pBegin.SetNull();
+			s_Array->m_pEnd.SetNull();
+			s_Array->m_pAllocationEnd.SetNull();
+		}
+		else
+		{
+			const auto s_Arena = ZHMArenas::GetHeapArena();
+			const auto s_ArrayDataOffset = s_Arena->Allocate(s_ElementSize * s_ElementCount);
+			auto* s_ArrayData = s_Arena->GetObjectAtOffset<void>(s_ArrayDataOffset);
+
+			for (const simdjson::ondemand::value& s_Element : s_JsonArray)
+			{
+				m_ElementType->CreateFromJson(s_Element, s_ArrayData);
+				s_ArrayData = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(s_ArrayData) + s_ElementSize);
+			}
+
+			s_Array->m_pBegin.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_ArrayDataOffset);
+			s_Array->m_pEnd.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_ArrayDataOffset + (s_ElementSize * s_ElementCount));
+			s_Array->m_pAllocationEnd = s_Array->m_pEnd;
+		}
 	}
 
 	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override

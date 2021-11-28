@@ -37,10 +37,18 @@ public:
 		if (m_pTypeID.IsNull())
 			return nullptr;
 
-		auto s_Arena = ZHMArenas::GetArena(m_pTypeID.GetArenaId());
-		auto s_TypeIdx = m_pTypeID.GetPtrOffset();
+		const auto s_Arena = ZHMArenas::GetArena(m_pTypeID.GetArenaId());
+		const auto s_TypeIdx = m_pTypeID.GetPtrOffset();
 
 		return s_Arena->GetType(s_TypeIdx);
+	}
+
+	void SetType(IZHMTypeInfo* p_Type)
+	{
+		const auto s_Arena = ZHMArenas::GetHeapArena();
+		const auto s_Index = s_Arena->GetTypeIndex(p_Type);
+
+		m_pTypeID.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_Index);
 	}
 	
 public:

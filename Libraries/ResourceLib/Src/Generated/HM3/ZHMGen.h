@@ -65,7 +65,7 @@ public:
 	bool operator!=(const AI_Private_SStimulusSnapshot& p_Other) const { return !(*this == p_Other); }
 
 	uint32 SlotIndex; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZString StimulusData; // 0x8
 };
 
@@ -105,7 +105,7 @@ public:
 
 	uint64 Timestamp; // 0x0
 	uint32 EventIndex; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	TArray<AI_Private_SPoolSnapshot> StimulusPools; // 0x10
 };
 
@@ -126,11 +126,11 @@ public:
 	uint32 StimulusTypeId; // 0x0
 	uint32 SlotIndex; // 0x4
 	uint32 OperationId; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZString StimulusData; // 0x10
 	uint64 Timestamp; // 0x20
 	uint32 EventIndex; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	ZString EventMetaData; // 0x30
 };
 
@@ -400,7 +400,7 @@ public:
 
 	EAIEventType m_eEventType; // 0x0
 	bool m_bPulsing; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	float32 m_fRange; // 0x8
 	float32 m_fLoudness; // 0xC
 };
@@ -605,7 +605,7 @@ public:
 	bool operator==(const BoneId& p_Other) const;
 	bool operator!=(const BoneId& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[1];
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -8293,7 +8293,7 @@ public:
 	bool operator==(const IActor& p_Other) const;
 	bool operator!=(const IActor& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8310,7 +8310,7 @@ public:
 	bool operator==(const IActorProvider& p_Other) const;
 	bool operator!=(const IActorProvider& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8327,7 +8327,7 @@ public:
 	bool operator==(const IActorProviderFilter& p_Other) const;
 	bool operator!=(const IActorProviderFilter& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8344,7 +8344,7 @@ public:
 	bool operator==(const IAnimPlayerEntity& p_Other) const;
 	bool operator!=(const IAnimPlayerEntity& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8361,7 +8361,7 @@ public:
 	bool operator==(const IBodybagEntity& p_Other) const;
 	bool operator!=(const IBodybagEntity& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8378,7 +8378,7 @@ public:
 	bool operator==(const IBoneAnimator& p_Other) const;
 	bool operator!=(const IBoneAnimator& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8395,7 +8395,7 @@ public:
 	bool operator==(const IBoneCollidable& p_Other) const;
 	bool operator!=(const IBoneCollidable& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8412,7 +8412,7 @@ public:
 	bool operator==(const IBulletImpactListener& p_Other) const;
 	bool operator!=(const IBulletImpactListener& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -8446,7 +8446,7 @@ public:
 	bool operator==(const IComponentInterface& p_Other) const;
 	bool operator!=(const IComponentInterface& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8463,7 +8463,7 @@ public:
 	bool operator==(const IContractEvaluationContextListener& p_Other) const;
 	bool operator!=(const IContractEvaluationContextListener& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -8494,7 +8494,7 @@ public:
 	bool operator==(const IContractModule& p_Other) const;
 	bool operator!=(const IContractModule& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[24];
+	uint8_t _pad0[24] {};
 };
 
 // Size: 0x8
@@ -8511,7 +8511,7 @@ public:
 	bool operator==(const IContractObjective& p_Other) const;
 	bool operator!=(const IContractObjective& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -8574,7 +8574,7 @@ public:
 	int32 m_nDeactivate; // 0x14
 	ZDynamicObject m_dExtraData; // 0x18
 	IContractObjective_SCounterData_ECounterType m_eType; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 };
 
 // Size: 0x10
@@ -8621,7 +8621,7 @@ public:
 	ZString type; // 0x0
 	ZRepositoryID repositoryId; // 0x10
 	bool hardCondition; // 0x20
-	uint8_t _pad21[7];
+	uint8_t _pad21[7] {};
 	ZGuid objectiveId; // 0x28
 	ZString sKillMethod; // 0x38
 };
@@ -8655,7 +8655,7 @@ public:
 	bool operator==(const IEscortOutSituation& p_Other) const;
 	bool operator!=(const IEscortOutSituation& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8672,7 +8672,7 @@ public:
 	bool operator==(const IEventConsumerCollection& p_Other) const;
 	bool operator!=(const IEventConsumerCollection& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8689,7 +8689,7 @@ public:
 	bool operator==(const IFreeCameraControl& p_Other) const;
 	bool operator!=(const IFreeCameraControl& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -8748,7 +8748,7 @@ public:
 	bool operator==(const IHM5WeaponInventory& p_Other) const;
 	bool operator!=(const IHM5WeaponInventory& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8765,7 +8765,7 @@ public:
 	bool operator==(const IHumanBody& p_Other) const;
 	bool operator!=(const IHumanBody& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -8817,7 +8817,7 @@ public:
 	bool operator==(const IMetricValue& p_Other) const;
 	bool operator!=(const IMetricValue& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8834,7 +8834,7 @@ public:
 	bool operator==(const IMorphemeCutSequenceAnimatable& p_Other) const;
 	bool operator!=(const IMorphemeCutSequenceAnimatable& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8851,7 +8851,7 @@ public:
 	bool operator==(const IMorphemeCutSequenceAnimationEntity& p_Other) const;
 	bool operator!=(const IMorphemeCutSequenceAnimationEntity& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8868,7 +8868,7 @@ public:
 	bool operator==(const IMorphemeEventConsumer& p_Other) const;
 	bool operator!=(const IMorphemeEventConsumer& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8885,7 +8885,7 @@ public:
 	bool operator==(const INetRelevancy& p_Other) const;
 	bool operator!=(const INetRelevancy& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8902,7 +8902,7 @@ public:
 	bool operator==(const IOnlineConfigurationListener& p_Other) const;
 	bool operator!=(const IOnlineConfigurationListener& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -8919,7 +8919,7 @@ public:
 	bool operator==(const IPureWaterReflectable& p_Other) const;
 	bool operator!=(const IPureWaterReflectable& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x1
@@ -8936,7 +8936,7 @@ public:
 	bool operator==(const IRenderCompositorEntity& p_Other) const;
 	bool operator!=(const IRenderCompositorEntity& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[1];
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -9031,7 +9031,7 @@ public:
 	bool operator==(const ISequenceTarget& p_Other) const;
 	bool operator!=(const ISequenceTarget& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -9048,7 +9048,7 @@ public:
 	bool operator==(const ISituation& p_Other) const;
 	bool operator!=(const ISituation& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -9065,7 +9065,7 @@ public:
 	bool operator==(const ISoundGateController& p_Other) const;
 	bool operator!=(const ISoundGateController& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -9082,7 +9082,7 @@ public:
 	bool operator==(const ISoundMaterialDescriptor& p_Other) const;
 	bool operator!=(const ISoundMaterialDescriptor& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -9099,7 +9099,7 @@ public:
 	bool operator==(const ITriggerListener& p_Other) const;
 	bool operator!=(const ITriggerListener& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -9116,7 +9116,7 @@ public:
 	bool operator==(const IUIDataListener& p_Other) const;
 	bool operator!=(const IUIDataListener& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -9133,7 +9133,7 @@ public:
 	bool operator==(const IValueEntity& p_Other) const;
 	bool operator!=(const IValueEntity& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x8
@@ -9150,7 +9150,7 @@ public:
 	bool operator==(const IWorldMapMarker& p_Other) const;
 	bool operator!=(const IWorldMapMarker& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -9683,7 +9683,7 @@ public:
 	float32 fCloseupDistance; // 0x0
 	float32 fScale; // 0x4
 	bool bDynamicScale; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 	float32 fDynamicScaleAlpha; // 0xC
 	float32 fDynamicScaleNearDistance; // 0x10
 	float32 fDynamicScaleBlendRange; // 0x14
@@ -9773,7 +9773,7 @@ public:
 
 	EAIEventType m_eType; // 0x0
 	bool m_bHandled; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	ZGameTime m_nStart; // 0x8
 	ZGameTime m_nEnd; // 0x10
 };
@@ -9795,7 +9795,7 @@ public:
 	uint32 m_rActorRef; // 0x0
 	bool m_bNeedsVolumeUpdate; // 0x4
 	bool m_bNeedsKnowledgeUpdate; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	uint32 m_uiModVolume; // 0x8
 	uint32 m_uiModBehavior; // 0xC
 	uint32 m_uiModRole; // 0x10
@@ -9821,7 +9821,7 @@ public:
 	bool operator!=(const SAIModifierServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bFullVolumeUpdate; // 0x0
-	uint8_t _pad1[7];
+	uint8_t _pad1[7] {};
 	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
 };
 
@@ -9877,7 +9877,7 @@ public:
 	uint32 m_nBoneId; // 0x4
 	bool m_bAttached; // 0x8
 	bool m_bVisible; // 0x9
-	uint8_t _padA[2];
+	uint8_t _padA[2] {};
 };
 
 // Size: 0x28
@@ -9895,10 +9895,10 @@ public:
 	bool operator!=(const SAccidentObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_target; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<uint32> m_aWaitingObservers; // 0x8
 	EAccidentScaleContext m_accidentScaleContext; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 };
 
 // Size: 0x4
@@ -9931,11 +9931,11 @@ public:
 
 	bool m_bStartedSignalSent; // 0x0
 	bool m_bReachedSignalSent; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	ZActBehaviorEntity_EState m_nState; // 0x4
 	ZGameTime m_ActStartTime; // 0x8
 	bool m_bForceTimeout; // 0x10
-	uint8_t _pad11[7];
+	uint8_t _pad11[7] {};
 };
 
 // Size: 0x10
@@ -9975,12 +9975,12 @@ public:
 	ZString m_sAct; // 0x0
 	float32 m_fDuration; // 0x10
 	uint32 m_rChildNetworkEntity; // 0x14
-	uint8_t _pad18[8];
+	uint8_t _pad18[8] {};
 	float4 m_faceTarget; // 0x20
 	bool m_bBlendOutImmediatelyUponTimeout; // 0x30
 	bool m_bDropCarriedItems; // 0x31
 	bool m_bStopCurrentActFast; // 0x32
-	uint8_t _pad33[13];
+	uint8_t _pad33[13] {};
 };
 
 // Size: 0x18
@@ -10204,7 +10204,7 @@ public:
 
 	uint32 m_rAttachmentTarget; // 0x0
 	bool m_bIsAttached; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x30
@@ -10293,21 +10293,21 @@ public:
 	uint32 rAccidentSetup; // 0x1C
 	bool bFirearmPacifiesTarget; // 0x20
 	bool bBulletCausesHitReaction; // 0x21
-	uint8_t _pad22[2];
+	uint8_t _pad22[2] {};
 	float32 fHitsNumberTimeout; // 0x24
 	float32 fHealthPercentTimeout; // 0x28
 	uint32 rCharacter; // 0x2C
 	uint32 rSource; // 0x30
-	uint8_t _pad34[4];
+	uint8_t _pad34[4] {};
 	ZRepositoryID m_accuseUnconsciousOutfit; // 0x38
 	bool m_bValidAccuseUnconsciousOutfit; // 0x48
-	uint8_t _pad49[3];
+	uint8_t _pad49[3] {};
 	EActorSoundDefs eDeathSpeak; // 0x4C
 	bool bDefaultDeathSound; // 0x50
-	uint8_t _pad51[3];
+	uint8_t _pad51[3] {};
 	int32 iEvents; // 0x54
 	float32 fAgilityElementUncosciousTime; // 0x58
-	uint8_t _pad5C[4];
+	uint8_t _pad5C[4] {};
 };
 
 // Size: 0xC
@@ -10369,7 +10369,7 @@ public:
 	ZGameTime m_nTimeRemoveLimit; // 0x28
 	int64 m_resourceID; // 0x30
 	uint32 m_rInstance; // 0x38
-	uint8_t _pad3C[4];
+	uint8_t _pad3C[4] {};
 };
 
 // Size: 0x60
@@ -10432,7 +10432,7 @@ public:
 	bool m_bLeftHand; // 0xC
 	bool m_bWeapon; // 0xD
 	bool m_bGrenade; // 0xE
-	uint8_t _padF[1];
+	uint8_t _padF[1] {};
 };
 
 // Size: 0x18
@@ -10555,7 +10555,7 @@ public:
 
 	TArray<uint32> m_aActors; // 0x0
 	bool m_bRunning; // 0x18
-	uint8_t _pad19[7];
+	uint8_t _pad19[7] {};
 };
 
 // Size: 0xC
@@ -10592,7 +10592,7 @@ public:
 	bool operator!=(const SActorRagdollPoseSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vBodyVelocity; // 0x0
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	TArray<SActorBoneSaveData> m_aBones; // 0x10
 	TArray<uint32> m_aBoneIndices; // 0x28
 };
@@ -10612,12 +10612,12 @@ public:
 	bool operator!=(const SActorThrowSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
-	uint8_t _pad4[12];
+	uint8_t _pad4[12] {};
 	float4 m_vStartPosition; // 0x10
 	float4 m_vEndPosition; // 0x20
 	float4 m_vItemVelocity; // 0x30
 	float32 m_fDistance; // 0x40
-	uint8_t _pad44[12];
+	uint8_t _pad44[12] {};
 };
 
 // Size: 0x18
@@ -10672,15 +10672,15 @@ public:
 	bool operator!=(const SKnownEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nSharedIndex; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<SAIEventSaveData> m_aEvents; // 0x8
 	uint32 m_nBooleanEvents; // 0x20
 	uint32 m_nBooleanEventsHandled; // 0x24
-	uint8_t _pad28[8];
+	uint8_t _pad28[8] {};
 	SMatrix m_knownWorldMatrix; // 0x30
 	ZGameTime m_tLastWorldMatrixUpdate; // 0x70
 	uint16 m_nGoals; // 0x78
-	uint8_t _pad7A[6];
+	uint8_t _pad7A[6] {};
 };
 
 // Size: 0x98
@@ -10705,17 +10705,17 @@ public:
 	float32 m_fHMDisguiseAttention; // 0x50
 	float32 m_fHMTrespassingAttention; // 0x54
 	float32 m_fHMLastTrespassingAttentionMax; // 0x58
-	uint8_t _pad5C[4];
+	uint8_t _pad5C[4] {};
 	ZGameTime m_tLastTrespassingAttentionGain; // 0x60
 	ZGameTime m_tLastAttentionEvaluate; // 0x68
 	float32 m_fHMWeaponAttention; // 0x70
 	float32 m_fHMWeaponAttentionChange; // 0x74
 	EGameTension m_eGameTension; // 0x78
-	uint8_t _pad7C[4];
+	uint8_t _pad7C[4] {};
 	ZGameTime m_tAmbientStartTime; // 0x80
 	ZGameTime m_tExpiredAIModifierSuppressSocialGreeting; // 0x88
 	uint32 m_behaviorModifiers; // 0x90
-	uint8_t _pad94[4];
+	uint8_t _pad94[4] {};
 };
 
 // Size: 0x18
@@ -10734,7 +10734,7 @@ public:
 
 	ZRepositoryID m_sOutfit; // 0x0
 	uint8 m_Memory; // 0x10
-	uint8_t _pad11[7];
+	uint8_t _pad11[7] {};
 };
 
 // Size: 0x370
@@ -10753,12 +10753,12 @@ public:
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vQuaternion; // 0xC
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	SActorInventorySaveData m_Inventory; // 0x20
 	SActorAnimSetSaveData m_AnimSet; // 0x38
 	SActorThrowSaveData m_ThrowHandler; // 0x80
 	int32 m_nCurrentBehaviorType; // 0xD0
-	uint8_t _padD4[4];
+	uint8_t _padD4[4] {};
 	ZVariant m_CurrentBehaviorState; // 0xD8
 	TArray<uint32> m_aCurrentBehaviorEntities; // 0xE8
 	TArray<uint32> m_aBehaviorEntities; // 0x100
@@ -10774,15 +10774,15 @@ public:
 	uint32 m_rCorpseBodybagEntity; // 0x1E0
 	uint32 m_rDragBodybagEntity; // 0x1E4
 	uint32 m_AccidentContext; // 0x1E8
-	uint8_t _pad1EC[4];
+	uint8_t _pad1EC[4] {};
 	SActorDamageControlSaveData m_ActorDamageControlData; // 0x1F0
 	ZVariant m_AnimatedActorOrderData; // 0x250
 	float32 m_fStepsFraction; // 0x260
 	float32 m_fZBeforeEnteringStairs; // 0x264
 	float32 m_fZError; // 0x268
-	uint8_t _pad26C[4];
+	uint8_t _pad26C[4] {};
 	TArray<SActorDynamicTemplateSaveData> m_aDynamicTemplates; // 0x270
-	uint8_t _pad288[8];
+	uint8_t _pad288[8] {};
 	SMatrix m_sEndOrientation; // 0x290
 	EActorAIState m_eOverrideSensorState; // 0x2D0
 	EDeathBehavior m_eDeathBehavior; // 0x2D4
@@ -10811,7 +10811,7 @@ public:
 	bool m_bForceInteractionGlow; // 0x367
 	bool m_bIsOutfitRuined; // 0x368
 	bool m_BehaviorSelectDisabled; // 0x369
-	uint8_t _pad36A[6];
+	uint8_t _pad36A[6] {};
 };
 
 // Size: 0x38
@@ -10829,7 +10829,7 @@ public:
 	bool operator!=(const SCombatMetricsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_CombatProgress; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<uint32> m_DeadVIPsOrContractTargets; // 0x8
 	TArray<uint32> m_DiscoveredVIPOrContractTargetBodies; // 0x20
 };
@@ -10849,7 +10849,7 @@ public:
 	bool operator!=(const SEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EAISharedEventType m_nType; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZGameTime m_nStart; // 0x8
 	ZGameTime m_nEnd; // 0x10
 };
@@ -10869,12 +10869,12 @@ public:
 	bool operator!=(const SSharedKnowledgeSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZRepositoryID m_OutfitId; // 0x8
-	uint8_t _pad18[8];
+	uint8_t _pad18[8] {};
 	SMatrix m_ActualMatrix; // 0x20
 	TArray<SEventSaveData> m_aEvents; // 0x60
-	uint8_t _pad78[8];
+	uint8_t _pad78[8] {};
 };
 
 // Size: 0x48
@@ -10893,10 +10893,10 @@ public:
 
 	ZString m_sClassTypeName; // 0x0
 	uint32 m_nSituation; // 0x10
-	uint8_t _pad14[4];
+	uint8_t _pad14[4] {};
 	TArray<uint32> m_aActors; // 0x18
 	int32 m_nGroupID; // 0x30
-	uint8_t _pad34[4];
+	uint8_t _pad34[4] {};
 	ZVariant m_CustomData; // 0x38
 };
 
@@ -10917,11 +10917,11 @@ public:
 	uint32 m_rActor; // 0x0
 	ESituationJoinReason m_eJoinReason; // 0x4
 	bool m_bIsOrderValid; // 0x8
-	uint8_t _pad9[7];
+	uint8_t _pad9[7] {};
 	ZVariant m_OrderData; // 0x10
 	ZVariant m_PendingOrderData; // 0x20
 	uint32 m_rDramaRole; // 0x30
-	uint8_t _pad34[4];
+	uint8_t _pad34[4] {};
 	ZVariant m_CustomData; // 0x38
 };
 
@@ -10942,15 +10942,15 @@ public:
 	uint32 m_rSituation; // 0x0
 	ESituationType m_eType; // 0x4
 	int32 m_nTargetSharedEntity; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZVariant m_Data; // 0x10
 	TArray<SSituationMemberSaveData> m_aMemberData; // 0x20
 	TArray<SSituationGroupSaveData> m_aGroupData; // 0x38
 	int32 m_nNextGroupID; // 0x50
-	uint8_t _pad54[4];
+	uint8_t _pad54[4] {};
 	ZGameTime m_situationStartTime; // 0x58
 	bool m_bSituationEnded; // 0x60
-	uint8_t _pad61[7];
+	uint8_t _pad61[7] {};
 };
 
 // Size: 0x4
@@ -11002,7 +11002,7 @@ public:
 	bool operator==(const SActorSoundDefs& p_Other) const;
 	bool operator!=(const SActorSoundDefs& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[1];
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -11026,10 +11026,10 @@ public:
 	bool operator!=(const SActorSpreadControllerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_CandidateActor; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZGameTime m_CandidateTime; // 0x8
 	bool m_bValidCandidate; // 0x10
-	uint8_t _pad11[7];
+	uint8_t _pad11[7] {};
 };
 
 // Size: 0x90
@@ -11057,7 +11057,7 @@ public:
 	bool m_bPlayerSpreading; // 0x81
 	bool m_bPlayerIsValidCandidate; // 0x82
 	bool m_bPlayerIsCandidate; // 0x83
-	uint8_t _pad84[4];
+	uint8_t _pad84[4] {};
 	ZGameTime m_PlayerCandidateTime; // 0x88
 };
 
@@ -11147,7 +11147,7 @@ public:
 
 	bool m_bSeen; // 0x0
 	bool m_bTagged; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	uint32 m_rActorRef; // 0x4
 };
 
@@ -11166,11 +11166,11 @@ public:
 	bool operator!=(const SActorTagManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bContractsCreationMode; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	int32 m_nTagCount; // 0x4
 	int32 m_nMaxTagCount; // 0x8
 	bool m_bTaggingEnabled; // 0xC
-	uint8_t _padD[3];
+	uint8_t _padD[3] {};
 	TArray<SActorTagSaveData> m_aActorTagData; // 0x10
 };
 
@@ -11225,7 +11225,7 @@ public:
 	bool operator!=(const SAgitatedBystanderOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rBystanderPoint; // 0x0
-	uint8_t _pad4[12];
+	uint8_t _pad4[12] {};
 	float4 m_vCover; // 0x10
 	float4 m_vCoverDir; // 0x20
 };
@@ -11300,7 +11300,7 @@ public:
 	bool operator!=(const SAnimatedActorActOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bOverrideExistingAct; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	uint32 m_nForcedAnimationNode; // 0x4
 	uint32 m_rChildNetworkAct; // 0x8
 	uint32 m_rListener; // 0xC
@@ -11347,7 +11347,7 @@ public:
 	bool operator!=(const SAnimatedActorOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EActorAnimationOrder m_eOrderType; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZVariant m_OrderData; // 0x8
 };
 
@@ -11375,7 +11375,7 @@ public:
 	bool m_bDropCarriedItems; // 0x23
 	bool m_bFaceTargetSet; // 0x24
 	bool m_bLookAtTargetSet; // 0x25
-	uint8_t _pad26[2];
+	uint8_t _pad26[2] {};
 	ZString m_sAct; // 0x28
 };
 
@@ -11450,12 +11450,12 @@ public:
 
 	uint32 m_nEventId; // 0x0
 	bool m_bPaused; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	uint32 m_nFlags; // 0x8
 	uint32 m_rEventSender; // 0xC
 	int32 m_nSeekPosition; // 0x10
 	uint8 m_nPlayState; // 0x14
-	uint8_t _pad15[3];
+	uint8_t _pad15[3] {};
 };
 
 // Size: 0x8
@@ -11608,7 +11608,7 @@ public:
 	EFSMStateStatus m_eStateStatus; // 0x0
 	int32 m_state; // 0x4
 	int32 m_prevState; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZGameTime m_tCurrentStateEnterTime; // 0x10
 };
 
@@ -11628,11 +11628,11 @@ public:
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rDangerousArea; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	float4 m_vDestinationPoint; // 0x20
 	int32 m_iGridId; // 0x30
 	bool m_bWaitUntilDangerEnds; // 0x34
-	uint8_t _pad35[11];
+	uint8_t _pad35[11] {};
 };
 
 // Size: 0x18
@@ -11650,7 +11650,7 @@ public:
 	bool operator!=(const SBehaviorTreeEntityReference& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bList; // 0x0
-	uint8_t _pad1[7];
+	uint8_t _pad1[7] {};
 	ZString m_sName; // 0x8
 };
 
@@ -11669,10 +11669,10 @@ public:
 	bool operator!=(const SBehaviorTreeEvaluationLogEntry& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nBehaviorTreeIndex; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	uint64 m_nConditionOffset; // 0x8
 	bool m_bResult; // 0x10
-	uint8_t _pad11[7];
+	uint8_t _pad11[7] {};
 };
 
 // Size: 0x30
@@ -11775,7 +11775,7 @@ public:
 	float32 m_fLidAutoCloseTime; // 0x4
 	float32 m_fLidOpenFraction; // 0x8
 	bool m_bFrameUpdateActive; // 0xC
-	uint8_t _padD[3];
+	uint8_t _padD[3] {};
 };
 
 // Size: 0x30
@@ -11823,7 +11823,7 @@ public:
 	float32 m_fRLegDamageScalar; // 0x28
 	float32 m_fTorsoDamageMultiplier; // 0x2C
 	bool m_bApplyLeftRightScalars; // 0x30
-	uint8_t _pad31[3];
+	uint8_t _pad31[3] {};
 };
 
 // Size: 0x20
@@ -11860,12 +11860,12 @@ public:
 
 	SVector3 m_vLinkedPosition; // 0x0
 	SVector4 m_vLinkedQuaternionRotation; // 0xC
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	TArray<SBodybagBoneSaveData> m_aBones; // 0x20
 	TArray<uint32> m_aBoneIndices; // 0x38
 	uint32 m_rDeadActor; // 0x50
 	bool m_IsInMorgue; // 0x54
-	uint8_t _pad55[3];
+	uint8_t _pad55[3] {};
 };
 
 // Size: 0x8
@@ -11884,7 +11884,7 @@ public:
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsAttached; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x18
@@ -11966,10 +11966,10 @@ public:
 	ZCautiousBackupGroup_EGroupState m_eGroupState; // 0x0
 	uint32 m_pLeader; // 0x4
 	uint16 m_nTargetNodeIndex; // 0x8
-	uint8_t _padA[6];
+	uint8_t _padA[6] {};
 	TArray<uint32> m_aCandidates; // 0x10
 	uint32 m_pCandidate; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<uint16> m_aReservedApproachNodeIndices; // 0x30
 	ZGameTime m_tStart; // 0x48
 };
@@ -11999,7 +11999,7 @@ public:
 	bool m_bSharedHuntTarget; // 0x34
 	bool m_bTargetBlamed; // 0x35
 	bool m_bRuleActive; // 0x36
-	uint8_t _pad37[1];
+	uint8_t _pad37[1] {};
 };
 
 // Size: 0x40
@@ -12019,7 +12019,7 @@ public:
 	float32 m_fInitialValue; // 0x0
 	uint32 m_nFieldSize; // 0x4
 	uint32 m_nGridCRC; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	TArray<uint16> m_aIndices; // 0x10
 	TArray<float32> m_aValues; // 0x28
 };
@@ -12057,7 +12057,7 @@ public:
 	int32 m_nLeaderApproachNode; // 0x18
 	int32 m_nAssistantApproachNode; // 0x1C
 	ZCautiousInvestigateGroup_EApproachOrderState m_eApproachOrderState; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 	SFSMSaveData m_fsmState; // 0x28
 	SFSMSaveData m_fsmAssistantState; // 0x40
 	bool m_bUsingRecurringDialog; // 0x58
@@ -12074,7 +12074,7 @@ public:
 	bool m_bValidTargetDistanceField; // 0xF0
 	bool m_bValidTargetLOSField; // 0xF1
 	bool m_bForceAcknowledge; // 0xF2
-	uint8_t _padF3[13];
+	uint8_t _padF3[13] {};
 };
 
 // Size: 0x40
@@ -12092,7 +12092,7 @@ public:
 	bool operator!=(const SCompressedGridFloatField& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsSparse; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	uint32 m_nFieldSize; // 0x4
 	float32 m_fInitialValue; // 0x8
 	uint32 m_nGridCRC; // 0xC
@@ -12117,11 +12117,11 @@ public:
 	int32 m_object; // 0x0
 	EDisturbanceType m_type; // 0x4
 	ECautiousDisturbanceState m_state; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZGameTime m_started; // 0x10
 	int32 m_pInvestigateGroup; // 0x18
 	bool m_bLockOnHitmanPosition; // 0x1C
-	uint8_t _pad1D[3];
+	uint8_t _pad1D[3] {};
 };
 
 // Size: 0x4
@@ -12164,7 +12164,7 @@ public:
 	ZGameTime m_tNewHuntTargetTimer; // 0x30
 	ZGameTime m_tLastPropagate; // 0x38
 	float32 m_fCombatAge; // 0x40
-	uint8_t _pad44[20];
+	uint8_t _pad44[20] {};
 	bool m_bLockdownZoneDisturbanceAdded; // 0x58
 	bool m_bLockdownSituation; // 0x59
 	bool m_bLockdownFalseAlarm; // 0x5A
@@ -12176,12 +12176,12 @@ public:
 	bool m_bSomeoneHasBeenInCombat; // 0x60
 	bool m_bInvestigationGroupActive; // 0x61
 	bool m_bStandDownGuards; // 0x62
-	uint8_t _pad63[5];
+	uint8_t _pad63[5] {};
 	ZGameTime m_tStandDownDelay; // 0x68
 	EDisturbanceType m_eMostSevereDisturbance; // 0x70
 	bool m_bDiscoveredDeadBody; // 0x74
 	bool m_bDiscoveredPacifiedBody; // 0x75
-	uint8_t _pad76[2];
+	uint8_t _pad76[2] {};
 };
 
 // Size: 0x1E0
@@ -12213,17 +12213,17 @@ public:
 	TArray<uint32> m_aGuardMembers; // 0xD8
 	TArray<SDisturbanceSaveData> m_disturbances; // 0xF0
 	bool m_bValidDisturbanceField; // 0x108
-	uint8_t _pad109[7];
+	uint8_t _pad109[7] {};
 	SCompressedGridFloatField m_disturbanceField; // 0x110
 	int32 m_recoverUnconsciousGroup; // 0x150
 	bool m_bSuspendSearchOnInitialGetHelpGroup; // 0x154
-	uint8_t _pad155[3];
+	uint8_t _pad155[3] {};
 	EDisturbanceType m_lastArrestReason; // 0x158
 	EDisturbanceType m_lastStaticArrestReason; // 0x15C
 	EDisturbanceType m_lastStaticCombatReason; // 0x160
 	bool m_bAnyGunshotDisturbance; // 0x164
 	bool m_deadBodyMassiveReported; // 0x165
-	uint8_t _pad166[2];
+	uint8_t _pad166[2] {};
 	int32 m_deadBodiesDiscovered; // 0x168
 	int32 m_deadCrowdBodiesDiscovered; // 0x16C
 	TArray<EAISharedEventType> m_aDynamicEnforceEventsForSearchers; // 0x170
@@ -12303,7 +12303,7 @@ public:
 	bool m_bCivOccupant; // 0x41
 	bool m_bRecievingNewHuntTarget; // 0x42
 	bool m_bLockdownEnforcer; // 0x43
-	uint8_t _pad44[4];
+	uint8_t _pad44[4] {};
 };
 
 // Size: 0x8
@@ -12338,7 +12338,7 @@ public:
 	bool operator!=(const SCautiousVIPGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_vip; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	SFSMSaveData m_fsmState; // 0x8
 	SCautiousVIPGroupState m_stateData; // 0x20
 	int32 m_vipTargetNode; // 0x28
@@ -12361,7 +12361,7 @@ public:
 
 	uint32 m_rActor; // 0x0
 	bool m_bAttached; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x20
@@ -12416,7 +12416,7 @@ public:
 	float32 m_fSeekPosition; // 0x0
 	uint32 m_nRandomSelectionSeed; // 0x4
 	bool m_bWereSubtitlesSeen; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 };
 
 // Size: 0x10
@@ -12439,7 +12439,7 @@ public:
 	bool m_bLeaderOrderAssigned; // 0xA
 	bool m_bAssistantOrderAssigned; // 0xB
 	bool m_bSearchCompleted; // 0xC
-	uint8_t _padD[3];
+	uint8_t _padD[3] {};
 };
 
 // Size: 0x40
@@ -12458,12 +12458,12 @@ public:
 
 	SVector3 m_vPosition; // 0x0
 	SVector4 m_vQuaternion; // 0xC
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	ZRepositoryID m_OutfitID; // 0x20
 	int32 m_nOutfitVariation; // 0x30
 	int32 m_nOutfitCharset; // 0x34
 	bool bSpawnedByHitman; // 0x38
-	uint8_t _pad39[7];
+	uint8_t _pad39[7] {};
 };
 
 // Size: 0x4
@@ -12519,7 +12519,7 @@ public:
 	bool m_bAttachToAnchorTransform; // 0x4
 	bool m_bSimulationEnabled; // 0x5
 	bool m_bVisible; // 0x6
-	uint8_t _pad7[1];
+	uint8_t _pad7[1] {};
 };
 
 // Size: 0x40
@@ -12541,7 +12541,7 @@ public:
 	float4 m_vNewVelocity; // 0x20
 	uint32 m_nColor; // 0x30
 	float32 m_fSize; // 0x34
-	uint8_t _pad38[8];
+	uint8_t _pad38[8] {};
 };
 
 // Size: 0x2
@@ -12654,7 +12654,7 @@ public:
 	float4 m_vPos; // 0x0
 	uint32 m_coverPlane; // 0x10
 	uint32 m_rInteraction; // 0x14
-	uint8_t _pad18[8];
+	uint8_t _pad18[8] {};
 };
 
 // Size: 0x14
@@ -12680,7 +12680,7 @@ public:
 	bool m_bCantFleeNoPath; // 0xF
 	bool m_bReportedToGuard; // 0x10
 	bool m_bStandAndShoot; // 0x11
-	uint8_t _pad12[2];
+	uint8_t _pad12[2] {};
 };
 
 // Size: 0x20
@@ -12699,7 +12699,7 @@ public:
 
 	bool m_bIsInLockdown; // 0x0
 	bool m_bIsFalseAlarm; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	ECombatZoneState m_nState; // 0x4
 	ZGameTime m_tLockdownTime; // 0x8
 	ZGameTime m_tTriggerTime; // 0x10
@@ -12738,7 +12738,7 @@ public:
 	bool operator==(const ZBehaviorTreeVariable& p_Other) const;
 	bool operator!=(const ZBehaviorTreeVariable& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x10
@@ -12778,7 +12778,7 @@ public:
 	int32 m_nRemaining; // 0x4
 	bool m_bActive; // 0x8
 	bool m_bValue; // 0x9
-	uint8_t _padA[2];
+	uint8_t _padA[2] {};
 };
 
 // Size: 0x60
@@ -12894,7 +12894,7 @@ public:
 	bool m_bCompleted; // 0x24
 	bool m_bFailed; // 0x25
 	bool m_bIsHidden; // 0x26
-	uint8_t _pad27[1];
+	uint8_t _pad27[1] {};
 	ZString m_sSuccessEventName; // 0x28
 	ZDynamicObject m_SuccessEventValues; // 0x38
 	ZString m_sFailedEventName; // 0x48
@@ -12915,7 +12915,7 @@ public:
 	bool m_bIgnoreIfInactive; // 0xDB
 	bool m_bShowInHud; // 0xDC
 	bool m_bCombinedDisplayInHud; // 0xDD
-	uint8_t _padDE[2];
+	uint8_t _padDE[2] {};
 	ZDynamicObject m_OnInactive; // 0xE0
 	ZDynamicObject m_OnActive; // 0xF0
 	ZDynamicObject m_aExits; // 0x100
@@ -12923,7 +12923,7 @@ public:
 	ZString m_sObjectiveType; // 0x120
 	ZString m_sBriefingName; // 0x130
 	bool m_bForceShowOnLoadingScreen; // 0x140
-	uint8_t _pad141[7];
+	uint8_t _pad141[7] {};
 };
 
 // Size: 0x168
@@ -12942,7 +12942,7 @@ public:
 
 	ZGuid m_Id; // 0x0
 	IContractObjective_Category m_eCategory; // 0x10
-	uint8_t _pad14[4];
+	uint8_t _pad14[4] {};
 	ZDynamicObject m_sBriefingText; // 0x18
 	ZDynamicObject m_sLongBriefingText; // 0x28
 	ZDynamicObject m_State; // 0x38
@@ -12950,12 +12950,12 @@ public:
 	ZDynamicObject m_aTargets; // 0x58
 	ZDynamicObject m_aAllies; // 0x68
 	bool m_bTargetsHidden; // 0x78
-	uint8_t _pad79[7];
+	uint8_t _pad79[7] {};
 	ZDynamicObject m_HUDTmpl; // 0x80
 	ZDynamicObject m_ActivationCondition; // 0x90
 	bool m_bActivationValue; // 0xA0
 	bool m_bUpdateActivationOnCompleted; // 0xA1
-	uint8_t _padA2[6];
+	uint8_t _padA2[6] {};
 	ZDynamicObject m_OnInactive; // 0xA8
 	ZDynamicObject m_OnActive; // 0xB8
 	ZDynamicObject m_aExits; // 0xC8
@@ -12973,15 +12973,15 @@ public:
 	ZString m_sObjectiveType; // 0x110
 	ZString m_sBriefingName; // 0x120
 	int32 m_nObjectivesCounterCount; // 0x130
-	uint8_t _pad134[4];
+	uint8_t _pad134[4] {};
 	ZString m_sObjectivesCounterHeader; // 0x138
 	int32 m_nObjectivesCounterDeactivate; // 0x148
-	uint8_t _pad14C[4];
+	uint8_t _pad14C[4] {};
 	ZDynamicObject m_dObjectivesCounterExtraData; // 0x150
 	bool m_bTimerHasStopped; // 0x160
 	bool m_bForceShowOnLoadingScreen; // 0x161
 	uint8 m_nObjectivesCounterType; // 0x162
-	uint8_t _pad163[5];
+	uint8_t _pad163[5] {};
 };
 
 // Size: 0x8
@@ -13017,7 +13017,7 @@ public:
 	bool operator!=(const SConversationPart& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_chance; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<SConversationEntry> m_entries; // 0x8
 };
 
@@ -13036,7 +13036,7 @@ public:
 	bool operator!=(const SEntityTemplateProperty& p_Other) const { return !(*this == p_Other); }
 
 	uint32 nPropertyID; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZVariant value; // 0x8
 };
 
@@ -13055,7 +13055,7 @@ public:
 	bool operator!=(const SCppEntity& p_Other) const { return !(*this == p_Other); }
 
 	int32 blueprintIndexInResourceHeader; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<SEntityTemplateProperty> propertyValues; // 0x8
 };
 
@@ -13075,7 +13075,7 @@ public:
 
 	ZString name; // 0x0
 	uint32 flags; // 0x10
-	uint8_t _pad14[4];
+	uint8_t _pad14[4] {};
 };
 
 // Size: 0x28
@@ -13094,7 +13094,7 @@ public:
 
 	TypeID typeName; // 0x0
 	uint32 typeFlags; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	TArray<SCppEntitySubsetInfo> subsets; // 0x10
 };
 
@@ -13118,10 +13118,10 @@ public:
 	int32 m_CrowdCoreIndex; // 0xC
 	float32 m_TimeLeft; // 0x10
 	float32 m_TimeToPulse; // 0x14
-	uint8_t _pad18[8];
+	uint8_t _pad18[8] {};
 	float4 m_Position; // 0x20
 	bool m_IsInvestigated; // 0x30
-	uint8_t _pad31[15];
+	uint8_t _pad31[15] {};
 };
 
 // Size: 0x18
@@ -13156,7 +13156,7 @@ public:
 	bool operator!=(const SCrowdActivitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	EGait m_eGait; // 0x4
 	float32 m_nMaxEnterDelaySec; // 0x8
 	float32 m_nMaxLeaveDelaySec; // 0xC
@@ -13177,17 +13177,17 @@ public:
 	bool operator!=(const SCrowdActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	ESpeed m_eWantedSpeed; // 0x4
 	EGait m_eWantedGait; // 0x8
 	uint32 m_nAnimSourceID; // 0xC
 	uint32 m_nAnimSourceIndex; // 0x10
-	uint8_t _pad14[12];
+	uint8_t _pad14[12] {};
 	float4 m_vPosition; // 0x20
 	float4 m_vForward; // 0x30
 	float32 m_fSpeed; // 0x40
 	CrowdUtil_ECrowdActorMood m_eMood; // 0x44
-	uint8_t _pad48[8];
+	uint8_t _pad48[8] {};
 };
 
 // Size: 0x38
@@ -13207,12 +13207,12 @@ public:
 	uint32 m_pCorpseBodybagEntity; // 0x0
 	uint32 m_rCrowdEntity; // 0x4
 	uint16 m_iActorIndex; // 0x8
-	uint8_t _padA[2];
+	uint8_t _padA[2] {};
 	uint32 m_rPerceptibleEntity; // 0xC
 	TArray<uint32> m_aKnownBy; // 0x10
 	ZGameTime m_tStart; // 0x28
 	bool m_bManaged; // 0x30
-	uint8_t _pad31[3];
+	uint8_t _pad31[3] {};
 	int32 m_rBagSharedKnowledge; // 0x34
 };
 
@@ -13319,7 +13319,7 @@ public:
 
 	uint32 m_nIndex; // 0x0
 	CrowdRegionType m_eType; // 0x4
-	uint8_t _pad8[8];
+	uint8_t _pad8[8] {};
 	float4 m_vCenter; // 0x10
 	float32 m_nDirection; // 0x20
 	float32 m_nRadius; // 0x24
@@ -13327,9 +13327,9 @@ public:
 	float32 m_nLifetime; // 0x2C
 	float32 m_nAge; // 0x30
 	uint8 m_nGroupID; // 0x34
-	uint8_t _pad35[1];
+	uint8_t _pad35[1] {};
 	int16 m_nObstacleActorIndex; // 0x36
-	uint8_t _pad38[8];
+	uint8_t _pad38[8] {};
 };
 
 // Size: 0x80
@@ -13349,7 +13349,7 @@ public:
 	TArray<SCrowdActorSaveData> m_CrowdActorData; // 0x0
 	TArray<SRegionSaveData> m_RegionData; // 0x18
 	bool m_bIsCrowdAmbient; // 0x30
-	uint8_t _pad31[7];
+	uint8_t _pad31[7] {};
 	SCrowdDeadPoseRepositorySaveData m_DeadPoseRepository; // 0x38
 	TArray<uint32> m_aCrowdAiPoolActorsMale; // 0x50
 	TArray<uint32> m_aCrowdAiPoolActorsFemale; // 0x68
@@ -13389,7 +13389,7 @@ public:
 
 	int16 m_nHeightOffset; // 0x0
 	uint8 m_nOnNavGrid; // 0x2
-	uint8_t _pad3[1];
+	uint8_t _pad3[1] {};
 };
 
 // Size: 0xF0
@@ -13412,17 +13412,17 @@ public:
 	uint32 m_nGridSizeY; // 0x18
 	uint32 m_nCellSizeX; // 0x1C
 	uint32 m_nCellSizeY; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 	TArray<ZCrowdGridPoint> m_GridMap; // 0x28
 	float32 m_fGridMapHeightOffsetsScale; // 0x40
 	float32 m_fGridMapHeightOffsetsBias; // 0x44
 	TArray<SCrowdCells> m_CellFlags; // 0x48
 	TArray<SCrowdCells> m_CellGroups; // 0x60
 	int32 m_nGroupFlowStartChannel; // 0x78
-	uint8_t _pad7C[4];
+	uint8_t _pad7C[4] {};
 	TArray<SCrowdFlowChannel> m_aFlowChannels; // 0x80
 	float32 m_nGridCellSize; // 0x98
-	uint8_t _pad9C[4];
+	uint8_t _pad9C[4] {};
 	SMatrix m_mObjectToWorld; // 0xA0
 	SVector3 m_vGlobalSize; // 0xE0
 	float32 m_nGridGeneratorOffset; // 0xEC
@@ -13447,7 +13447,7 @@ public:
 	uint32 m_nNumDeaths; // 0x8
 	uint32 m_nNumScared; // 0xC
 	bool m_bWarzoneSpawned; // 0x10
-	uint8_t _pad11[3];
+	uint8_t _pad11[3] {};
 };
 
 // Size: 0x48
@@ -13485,7 +13485,7 @@ public:
 
 	ZGameTime m_tExpiresAt; // 0x0
 	int32 m_nKnowledgeIndex; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 };
 
 // Size: 0x18
@@ -13567,7 +13567,7 @@ public:
 
 	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
 	int32 m_nBodyIndex; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 };
 
 // Size: 0x8
@@ -13603,7 +13603,7 @@ public:
 	bool operator!=(const SDecalSpawnSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bWasSpawned; // 0x0
-	uint8_t _pad1[15];
+	uint8_t _pad1[15] {};
 	float4 m_vPosition; // 0x10
 	float4 m_vNormal; // 0x20
 	float4 m_vDirection; // 0x30
@@ -13614,7 +13614,7 @@ public:
 	SVector2 m_vUVOffset; // 0x64
 	SVector2 m_vTiling; // 0x6C
 	uint32 m_rBlockingSpatialEntity; // 0x74
-	uint8_t _pad78[8];
+	uint8_t _pad78[8] {};
 };
 
 // Size: 0x4
@@ -13653,7 +13653,7 @@ public:
 	float32 m_fMass; // 0x58
 	EPhysicsObjectType m_ePhysicsType; // 0x5C
 	bool m_bIsAwake; // 0x60
-	uint8_t _pad61[15];
+	uint8_t _pad61[15] {};
 	float4 m_fLinearVelocity; // 0x70
 	float4 m_fAngularVelocity; // 0x80
 };
@@ -13673,7 +13673,7 @@ public:
 	bool operator!=(const SDestructibleRuntimeConnnection& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nPieceIndex; // 0x0
-	uint8_t _pad2[6];
+	uint8_t _pad2[6] {};
 	TArray<uint16> m_aConnections; // 0x8
 };
 
@@ -13692,7 +13692,7 @@ public:
 	bool operator!=(const SDestructibleRuntimeDamage& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nPieceIndex; // 0x0
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	float32 m_fDamage; // 0x4
 };
 
@@ -13711,12 +13711,12 @@ public:
 	bool operator!=(const SDestructibleObjectSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SDestructibleInteractionHandlerData m_interactionData; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
 	TArray<SDestructibleRuntimeConnnection> m_aConnectionData; // 0x20
 	TArray<SDestructibleRuntimeDamage> m_aDamageData; // 0x38
 	uint16 m_nNumAnchors; // 0x50
-	uint8_t _pad52[2];
+	uint8_t _pad52[2] {};
 	ERuntimeMemoryAllocationState m_eRuntimeMemoryAllocationState; // 0x54
 	EPhysicsObjectType m_eSystemPhysicsType; // 0x58
 	bool m_bHasSystemBeenDetached; // 0x5C
@@ -13744,7 +13744,7 @@ public:
 	uint32 m_rLead; // 0x1C
 	bool m_bDisbanded; // 0x20
 	bool m_bFirstWait; // 0x21
-	uint8_t _pad22[2];
+	uint8_t _pad22[2] {};
 	int32 m_target; // 0x24
 };
 
@@ -13782,7 +13782,7 @@ public:
 	int32 m_nDoorState; // 0x0
 	float32 m_fAnimPercent; // 0x4
 	float32 m_fTargetAnimPercent; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZGameTime m_tOpenTime; // 0x10
 };
 
@@ -13800,7 +13800,7 @@ public:
 	bool operator==(const SDoorSoundDefs& p_Other) const;
 	bool operator!=(const SDoorSoundDefs& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[1];
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -13849,7 +13849,7 @@ public:
 	uint32 m_rBehavior; // 0x8
 	uint32 m_rCurrentSpeakEntity; // 0xC
 	uint32 m_rScreenplay; // 0x10
-	uint8_t _pad14[4];
+	uint8_t _pad14[4] {};
 	ZString m_sMatchName; // 0x18
 	ZGameTime m_tActorSpeakEnd; // 0x28
 	bool m_bIsDone; // 0x30
@@ -13858,7 +13858,7 @@ public:
 	bool m_bOwnsCurrentBehavior; // 0x33
 	bool m_bActive; // 0x34
 	bool m_bRequired; // 0x35
-	uint8_t _pad36[2];
+	uint8_t _pad36[2] {};
 };
 
 // Size: 0x30
@@ -13894,7 +13894,7 @@ public:
 	bool operator!=(const SDrama2SetupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDoneTriggered; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	EScreenPlayState m_eState; // 0x4
 	uint32 m_rSituation; // 0x8
 };
@@ -13977,13 +13977,13 @@ public:
 	uint32 m_rBehavior; // 0x8
 	uint32 m_rCurrentSpeakEntity; // 0xC
 	uint32 m_rScreenplay; // 0x10
-	uint8_t _pad14[4];
+	uint8_t _pad14[4] {};
 	ZString m_sMatchName; // 0x18
 	ZGameTime m_tActorSpeakEnd; // 0x28
 	bool m_bIsDone; // 0x30
 	bool m_bIsPaused; // 0x31
 	bool m_bIsSpeaking; // 0x32
-	uint8_t _pad33[5];
+	uint8_t _pad33[5] {};
 };
 
 // Size: 0x30
@@ -14047,7 +14047,7 @@ public:
 	bool operator!=(const SDramaSetupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDoneTriggered; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	ZScreenplay_EState m_eState; // 0x4
 	uint32 m_rSituation; // 0x8
 };
@@ -14086,11 +14086,11 @@ public:
 
 	bool m_bSituationRunning; // 0x0
 	bool m_bIsTerminated; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	float32 m_nPriorityModifier; // 0x4
 	int32 m_nCurrentDrama; // 0x8
 	bool m_bProvidersStarted; // 0xC
-	uint8_t _padD[3];
+	uint8_t _padD[3] {};
 };
 
 // Size: 0x30
@@ -14126,11 +14126,11 @@ public:
 	bool operator!=(const SDynamicEnforcerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
-	uint8_t _pad4[12];
+	uint8_t _pad4[12] {};
 	float4 m_vPosition; // 0x10
 	EAISharedEventType m_eType; // 0x20
 	float32 m_fRadius; // 0x24
-	uint8_t _pad28[8];
+	uint8_t _pad28[8] {};
 };
 
 // Size: 0x18
@@ -14225,7 +14225,7 @@ public:
 	ZString sHelpText; // 0x30
 	bool bIsPlaceholder; // 0x40
 	bool bIsHidden; // 0x41
-	uint8_t _pad42[6];
+	uint8_t _pad42[6] {};
 };
 
 // Size: 0x18
@@ -14281,7 +14281,7 @@ public:
 
 	ZString sName; // 0x0
 	bool bIsArray; // 0x10
-	uint8_t _pad11[7];
+	uint8_t _pad11[7] {};
 	TArray<SEntityTemplateReference> aTargets; // 0x18
 };
 
@@ -14323,7 +14323,7 @@ public:
 	SEntityTemplateProperty propertyValue; // 0x0
 	EVirtualPlatformID platform; // 0x18
 	bool postInit; // 0x1C
-	uint8_t _pad1D[3];
+	uint8_t _pad1D[3] {};
 };
 
 // Size: 0x28
@@ -14342,7 +14342,7 @@ public:
 
 	ZString sAliasName; // 0x0
 	int32 entityID; // 0x10
-	uint8_t _pad14[4];
+	uint8_t _pad14[4] {};
 	ZString sPropertyName; // 0x18
 };
 
@@ -14418,12 +14418,12 @@ public:
 
 	int32 m_nSituation; // 0x0
 	bool m_bConversationHelperPaused; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	SFSMSaveData m_fsm; // 0x8
 	float4 m_vExitPosition; // 0x20
 	ZGameTime m_tWarningTime; // 0x30
 	bool m_bHardWarning; // 0x38
-	uint8_t _pad39[3];
+	uint8_t _pad39[3] {};
 	int32 m_nWarningCount; // 0x3C
 	ZGameTime m_tEscortStateSilenceTime; // 0x40
 	ZGameTime m_tWaitHitmanToComplyWarningTime; // 0x48
@@ -14432,7 +14432,7 @@ public:
 	bool m_bReachedExitPosition; // 0x60
 	bool m_bShowExitWarningEnded; // 0x61
 	bool m_bJustShowExit; // 0x62
-	uint8_t _pad63[13];
+	uint8_t _pad63[13] {};
 };
 
 // Size: 0x18
@@ -14478,7 +14478,7 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	ZEscortSituation2Entity_EEscortState m_eState; // 0x8
 	ZEscortSituation2Entity_EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
@@ -14535,13 +14535,13 @@ public:
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
 	bool m_bForceSearch; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bFoundDeadTarget; // 0x14
-	uint8_t _pad15[3];
+	uint8_t _pad15[3] {};
 	int64 m_nTargetDeadTime; // 0x18
 	bool m_bTargetIsMoving; // 0x20
-	uint8_t _pad21[3];
+	uint8_t _pad21[3] {};
 	ZEscortSituation2Entity_ETargetState m_eTargetState; // 0x24
 	EActorEmotionState m_eTargetEmotionState; // 0x28
 	ZActBehaviorEntity_EState m_eTargetActState; // 0x2C
@@ -14579,7 +14579,7 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	ZEscortSituationEntity_EEscortState m_eState; // 0x8
 	ZEscortSituationEntity_EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
@@ -14636,13 +14636,13 @@ public:
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
 	bool m_bForceSearch; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bFoundDeadTarget; // 0x14
-	uint8_t _pad15[3];
+	uint8_t _pad15[3] {};
 	int64 m_nTargetDeadTime; // 0x18
 	bool m_bTargetIsMoving; // 0x20
-	uint8_t _pad21[3];
+	uint8_t _pad21[3] {};
 	ZEscortSituationEntity_ETargetState m_eTargetState; // 0x24
 	EActorEmotionState m_eTargetEmotionState; // 0x28
 	ZActBehaviorEntity_EState m_eTargetActState; // 0x2C
@@ -14691,7 +14691,7 @@ public:
 	ZGameTime m_tLastSeriousSituation; // 0x18
 	ZGameTime m_tLastThreat; // 0x20
 	int32 m_tresspassGroup; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<int32> m_evacuateGroups; // 0x30
 	TArray<uint32> m_activeSafeRooms; // 0x48
 	TArray<uint32> m_vipsUnderFire; // 0x60
@@ -14719,7 +14719,7 @@ public:
 	bool m_escalate; // 0x28
 	bool m_completed; // 0x29
 	bool m_standDown; // 0x2A
-	uint8_t _pad2B[1];
+	uint8_t _pad2B[1] {};
 	int32 m_warningCount; // 0x2C
 };
 
@@ -14743,7 +14743,7 @@ public:
 	uint32 m_rEvacuationNode; // 0x20
 	uint32 m_rSafeRoomNode; // 0x24
 	uint32 m_rCompromisedEvacNode; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<uint32> m_assignedBodyguards; // 0x30
 	ZGameTime m_tEvacuationStart; // 0x48
 	ZGameTime m_tCornered; // 0x50
@@ -14753,7 +14753,7 @@ public:
 	bool m_bInitialFlee; // 0x70
 	bool m_safeRoomVIPSentActingStarted; // 0x71
 	bool m_isSetupPhaseComplete; // 0x72
-	uint8_t _pad73[5];
+	uint8_t _pad73[5] {};
 };
 
 // Size: 0x1
@@ -14826,7 +14826,7 @@ public:
 	ZString sHelpText; // 0x20
 	bool bIsArray; // 0x30
 	bool bIsHidden; // 0x31
-	uint8_t _pad32[6];
+	uint8_t _pad32[6] {};
 };
 
 // Size: 0x40
@@ -14903,7 +14903,7 @@ public:
 	ZString propertyName; // 0x0
 	EExtendedPropertyType propertyType; // 0x10
 	bool rtEditable; // 0x14
-	uint8_t _pad15[3];
+	uint8_t _pad15[3] {};
 	uint64 extraData; // 0x18
 };
 
@@ -14984,7 +14984,7 @@ public:
 	EDisturbanceType m_eHelpReason; // 0x0
 	uint16 m_nGridNodeIndex; // 0x4
 	bool m_bFleeForHelp; // 0x6
-	uint8_t _pad7[1];
+	uint8_t _pad7[1] {};
 };
 
 // Size: 0x28
@@ -15040,7 +15040,7 @@ public:
 	bool operator!=(const SFooStruct& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_eTest; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZString m_sOther; // 0x8
 };
 
@@ -15102,14 +15102,14 @@ public:
 
 	SFSMSaveData m_fsmState; // 0x0
 	bool m_bHitmanIsGuard; // 0x18
-	uint8_t _pad19[3];
+	uint8_t _pad19[3] {};
 	int32 m_target; // 0x1C
 	uint32 m_pLeader; // 0x20
 	uint32 m_pAssistant; // 0x24
 	ZFriskSuspectGroup_EAssistantState m_eAssistantState; // 0x28
 	EDisturbanceType m_eDisturbanceType; // 0x2C
 	ZFriskSuspectGroup_EHitmanGreetState m_eHitmanGreetState; // 0x30
-	uint8_t _pad34[4];
+	uint8_t _pad34[4] {};
 	ZGameTime m_tHitmanGreet; // 0x38
 	float32 m_fMovingTime; // 0x40
 	float32 m_fRunningTime; // 0x44
@@ -15118,7 +15118,7 @@ public:
 	bool m_bWeaponFound; // 0x51
 	bool m_bMoveWarning; // 0x52
 	bool m_bFirskRequestRepeated; // 0x53
-	uint8_t _pad54[4];
+	uint8_t _pad54[4] {};
 };
 
 // Size: 0x40
@@ -15164,7 +15164,7 @@ public:
 	int32 nGridWidth; // 0x20
 	float32 fGridSpacing; // 0x24
 	int32 nVisibilityRange; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 };
 
 // Size: 0x10
@@ -15212,7 +15212,7 @@ public:
 	float4 vPos; // 0x10
 	uint32 nVisionDataOffset; // 0x20
 	int16 nLayerIndex; // 0x24
-	uint8_t _pad26[10];
+	uint8_t _pad26[10] {};
 };
 
 // Size: 0x8
@@ -15248,7 +15248,7 @@ public:
 	bool operator!=(const SGameCamProfileEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsEnabled; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	uint32 m_rHero; // 0x4
 };
 
@@ -15309,7 +15309,7 @@ public:
 	bool m_bSleeping; // 0x1F
 	bool m_bIsPerceptible; // 0x20
 	bool m_bDestroyed; // 0x21
-	uint8_t _pad22[2];
+	uint8_t _pad22[2] {};
 	SVector3 m_vVelocity; // 0x24
 	uint32 m_rTransformParent; // 0x30
 	uint32 m_rSpawner; // 0x34
@@ -15322,7 +15322,7 @@ public:
 	bool m_bObjectInPhysicsWorld; // 0x47
 	int32 m_nQuantity; // 0x48
 	ERenderGlowTypes m_eGlowType; // 0x4C
-	uint8_t _pad4D[3];
+	uint8_t _pad4D[3] {};
 };
 
 // Size: 0x30
@@ -15359,7 +15359,7 @@ public:
 
 	float32 m_fDiffusePower; // 0x0
 	bool m_bSwitchState; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x30
@@ -15619,7 +15619,7 @@ public:
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
 	bool m_bDivide; // 0x10
-	uint8_t _pad11[3];
+	uint8_t _pad11[3] {};
 };
 
 // Size: 0x30
@@ -15657,7 +15657,7 @@ public:
 	SVector3 m_fA; // 0x0
 	SVector3 m_fB; // 0xC
 	bool m_bDivide; // 0x18
-	uint8_t _pad19[3];
+	uint8_t _pad19[3] {};
 };
 
 // Size: 0x30
@@ -15695,7 +15695,7 @@ public:
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
 	bool m_bDivide; // 0x20
-	uint8_t _pad21[3];
+	uint8_t _pad21[3] {};
 };
 
 // Size: 0x30
@@ -15733,7 +15733,7 @@ public:
 	float32 m_fA; // 0x0
 	float32 m_fB; // 0x4
 	bool m_bDivide; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 };
 
 // Size: 0x30
@@ -15805,7 +15805,7 @@ public:
 	bool operator!=(const SItsATrapSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	float32 m_fTimer; // 0x4
 };
 
@@ -15846,7 +15846,7 @@ public:
 	ZGameTime m_tPenalty; // 0x8
 	bool m_bIsEnabled; // 0x10
 	bool m_compromisedOnEnter; // 0x11
-	uint8_t _pad12[6];
+	uint8_t _pad12[6] {};
 };
 
 // Size: 0x30
@@ -16118,7 +16118,7 @@ public:
 	eItemType m_eItemWeapon; // 0x10
 	EWeaponSpecialSituation m_eSpecialSituation; // 0x14
 	eAmmoType m_eAmmoType; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 };
 
 // Size: 0xC
@@ -16157,7 +16157,7 @@ public:
 	uint32 m_rEntity; // 0x0
 	float32 m_fNextEventTime; // 0x4
 	bool m_bPending; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 };
 
 // Size: 0x48
@@ -16195,7 +16195,7 @@ public:
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsOpen; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	float32 m_fOpenFraction; // 0x8
 };
 
@@ -16218,7 +16218,7 @@ public:
 	float32 m_fDiffusePower; // 0x10
 	float32 m_fAspectXByY_Actual; // 0x14
 	bool m_bVisible; // 0x18
-	uint8_t _pad19[3];
+	uint8_t _pad19[3] {};
 };
 
 // Size: 0x14
@@ -16238,7 +16238,7 @@ public:
 	uint32 m_rEntity; // 0x0
 	bool m_bIsActivated; // 0x4
 	bool m_bIsVisible; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	float32 m_fEmissionTimeLeft; // 0x8
 	float32 m_fEmissionTimeFraction; // 0xC
 	float32 m_fEmissionCntLeft; // 0x10
@@ -16260,28 +16260,28 @@ public:
 
 	uint32 m_rEntity; // 0x0
 	bool m_bDepthOfFieldEnabled; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	float32 m_fDepthOfFieldBlurriness; // 0x8
 	bool m_bRadialBlurEnabled; // 0xC
-	uint8_t _padD[3];
+	uint8_t _padD[3] {};
 	float32 m_fRadialBlurriness; // 0x10
 	SVector2 m_vRadialBlurCenter; // 0x14
 	float32 m_fRadialBlurStart; // 0x1C
 	bool m_bSpatialBlurEnabled; // 0x20
-	uint8_t _pad21[3];
+	uint8_t _pad21[3] {};
 	float32 m_fSpatialBlurriness; // 0x24
 	SVector3 m_vSpatialBlurCenter; // 0x28
 	float32 m_fSpatialBlurStart; // 0x34
 	float32 m_fSpatialBlurFade; // 0x38
 	bool m_bDistortionWobbleEnabled; // 0x3C
-	uint8_t _pad3D[3];
+	uint8_t _pad3D[3] {};
 	float32 m_fDistortionWobbleScale; // 0x40
 	SVector2 m_vDistortionWobbleWaveLength; // 0x44
 	SVector2 m_vDistortionWobbleSpeed; // 0x4C
 	bool m_bDistortionWobbleUseRealTime; // 0x54
 	bool m_bHDRActive; // 0x55
 	bool m_bHDREnabled; // 0x56
-	uint8_t _pad57[1];
+	uint8_t _pad57[1] {};
 	SVector2 m_vHDRAdaptationSpeed; // 0x58
 	SVector2 m_vHDRAdaptationLuminanceMinMax; // 0x60
 	SVector2 m_vHDRAdaptationMiddleGrayMinMax; // 0x68
@@ -16306,10 +16306,10 @@ public:
 	bool operator!=(const SRenderMaterialSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<uint8> m_aDynamicParametersData; // 0x8
 	bool m_bActive; // 0x20
-	uint8_t _pad21[7];
+	uint8_t _pad21[7] {};
 };
 
 // Size: 0x90
@@ -16367,14 +16367,14 @@ public:
 
 	float4 m_vLastKnownTargetPosition; // 0x0
 	uint16 m_rReturnNode; // 0x10
-	uint8_t _pad12[6];
+	uint8_t _pad12[6] {};
 	TArray<uint16> m_blocked; // 0x18
 	bool m_bReportingToHitman; // 0x30
 	bool m_bStartedReportDialog; // 0x31
 	bool m_bMultipleBodies; // 0x32
 	bool m_bGetHelpOrderCompleted; // 0x33
 	bool m_bDoneReporting; // 0x34
-	uint8_t _pad35[3];
+	uint8_t _pad35[3] {};
 	ZGameTime m_tGetHelpCompleted; // 0x38
 	SFSMSaveData m_fsmState; // 0x40
 	EDisturbanceType m_type; // 0x58
@@ -16382,9 +16382,9 @@ public:
 	uint32 m_pReporter; // 0x60
 	uint32 m_pGuard; // 0x64
 	uint32 m_IllegalItem; // 0x68
-	uint8_t _pad6C[4];
+	uint8_t _pad6C[4] {};
 	TArray<uint32> m_additionalGuards; // 0x70
-	uint8_t _pad88[8];
+	uint8_t _pad88[8] {};
 };
 
 // Size: 0x8
@@ -16473,7 +16473,7 @@ public:
 
 	bool m_bSearchingForMorgue; // 0x0
 	bool m_IsExitingSuccessfulBehavior; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	uint32 m_rDeadBody; // 0x4
 	uint32 m_rBodybag; // 0x8
 };
@@ -16515,7 +16515,7 @@ public:
 
 	uint32 m_guardPoint; // 0x0
 	bool m_walkOnly; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x36
@@ -16620,7 +16620,7 @@ public:
 	bool operator!=(const SHUDPromptDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActive; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	EActionPromptState m_eState; // 0x4
 	int32 m_nIconId; // 0x8
 	int32 m_eTypeId; // 0xC
@@ -16628,7 +16628,7 @@ public:
 	float32 m_fDistance; // 0x14
 	bool m_bShowWarning; // 0x18
 	bool m_bNoActionAvailable; // 0x19
-	uint8_t _pad1A[6];
+	uint8_t _pad1A[6] {};
 	ZString m_sLabel; // 0x20
 	ZString m_sDescription; // 0x30
 	ZString m_sGlyph; // 0x40
@@ -16636,9 +16636,9 @@ public:
 	bool m_bIllegalItem; // 0x54
 	bool m_bSuspiciousItem; // 0x55
 	bool m_bDropTempHolsterableItems; // 0x56
-	uint8_t _pad57[1];
+	uint8_t _pad57[1] {};
 	int32 m_nFontSize; // 0x58
-	uint8_t _pad5C[4];
+	uint8_t _pad5C[4] {};
 };
 
 // Size: 0x18
@@ -16736,7 +16736,7 @@ public:
 
 	uint32 m_rHero; // 0x0
 	bool m_bPaused; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x4
@@ -16765,7 +16765,7 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	ZHeroEscortSituation2Entity_EEscortState m_eState; // 0x8
 	ZHeroEscortSituation2Entity_EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
@@ -16821,21 +16821,21 @@ public:
 	bool m_bTargetDead; // 0x2
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bTargetIsMoving; // 0x14
-	uint8_t _pad15[3];
+	uint8_t _pad15[3] {};
 	ZHeroEscortSituation2Entity_ETargetState m_eTargetState; // 0x18
 	EActorEmotionState m_eTargetEmotionState; // 0x1C
 	ZActBehaviorEntity_EState m_eTargetActState; // 0x20
 	float32 m_fTargetNotMovingTime; // 0x24
 	float32 m_fTargetAgitationCooldownTimer; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<SHeroEscortSituation2Actors> m_aAddedActors; // 0x30
 	TArray<SHeroEscortSituation2ActorStateSaveData> m_aStates; // 0x48
 	TArray<uint32> m_aEscortActs; // 0x60
 	float32 m_fTimeSinceLossOfSight; // 0x78
-	uint8_t _pad7C[4];
+	uint8_t _pad7C[4] {};
 	ZRepositoryID m_RecordedHitmanOutfit; // 0x80
 };
 
@@ -16865,7 +16865,7 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	ZHeroEscortSituationEntity_EEscortState m_eState; // 0x8
 	ZHeroEscortSituationEntity_EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
@@ -16921,21 +16921,21 @@ public:
 	bool m_bTargetDead; // 0x2
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bTargetIsMoving; // 0x14
-	uint8_t _pad15[3];
+	uint8_t _pad15[3] {};
 	ZHeroEscortSituationEntity_ETargetState m_eTargetState; // 0x18
 	EActorEmotionState m_eTargetEmotionState; // 0x1C
 	ZActBehaviorEntity_EState m_eTargetActState; // 0x20
 	float32 m_fTargetNotMovingTime; // 0x24
 	float32 m_fTargetAgitationCooldownTimer; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<SHeroEscortSituationActors> m_aAddedActors; // 0x30
 	TArray<SHeroEscortSituationActorStateSaveData> m_aStates; // 0x48
 	TArray<uint32> m_aEscortActs; // 0x60
 	float32 m_fTimeSinceLossOfSight; // 0x78
-	uint8_t _pad7C[4];
+	uint8_t _pad7C[4] {};
 	ZRepositoryID m_RecordedHitmanOutfit; // 0x80
 };
 
@@ -16990,7 +16990,7 @@ public:
 	uint32 m_rHero; // 0x0
 	uint32 m_rCurrentSpeakEntity; // 0x4
 	bool m_bPaused; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 };
 
 // Size: 0xC
@@ -17008,7 +17008,7 @@ public:
 	bool operator!=(const SHintEntrySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsValid; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	uint32 m_hint; // 0x4
 	uint32 m_context; // 0x8
 };
@@ -17028,10 +17028,10 @@ public:
 	bool operator!=(const SHintManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SHintEntrySaveData m_activeHint; // 0x0
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	TArray<SHintEntrySaveData> m_aQueue; // 0x10
 	bool m_bIsRunning; // 0x28
-	uint8_t _pad29[7];
+	uint8_t _pad29[7] {};
 };
 
 // Size: 0x78
@@ -17057,11 +17057,11 @@ public:
 	ZVariant m_Inventory; // 0x38
 	ZVariant m_Camera; // 0x48
 	EBaseMovementType m_eMovementType; // 0x58
-	uint8_t _pad5C[4];
+	uint8_t _pad5C[4] {};
 	ZVariant m_MovementData; // 0x60
 	bool m_bLethalAgilityElementUsed; // 0x70
 	bool m_bIsChangingClothes; // 0x71
-	uint8_t _pad72[6];
+	uint8_t _pad72[6] {};
 };
 
 // Size: 0x10
@@ -17080,7 +17080,7 @@ public:
 
 	ZGameTime m_fScoreGameTimeStart; // 0x0
 	bool m_bWasIntroCutFired; // 0x8
-	uint8_t _pad9[7];
+	uint8_t _pad9[7] {};
 };
 
 // Size: 0x40
@@ -17137,7 +17137,7 @@ public:
 	int32 index; // 0x0
 	bool selected; // 0x4
 	bool active; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	ZString headline; // 0x8
 	ZString bodyheadline; // 0x18
 	ZString text; // 0x28
@@ -17178,7 +17178,7 @@ public:
 	int32 index; // 0x0
 	bool active; // 0x4
 	bool newInfo; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	ZString label; // 0x8
 };
 
@@ -17220,7 +17220,7 @@ public:
 	bool m_bRegistered; // 0xA
 	bool m_bIsLastTriggered; // 0xB
 	bool m_bIsHandlerAudioPlaying; // 0xC
-	uint8_t _padD[3];
+	uint8_t _padD[3] {};
 };
 
 // Size: 0x50
@@ -17250,10 +17250,10 @@ public:
 	bool m_bIllegalItem; // 0x43
 	bool m_bSuspiciousItem; // 0x44
 	bool m_bContainsItem; // 0x45
-	uint8_t _pad46[2];
+	uint8_t _pad46[2] {};
 	int32 m_nFontSize; // 0x48
 	bool m_bIsTxtDirReversed; // 0x4C
-	uint8_t _pad4D[3];
+	uint8_t _pad4D[3] {};
 };
 
 // Size: 0x80
@@ -17271,16 +17271,16 @@ public:
 	bool operator!=(const SInteractionIndicatorInstanceData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nStableID; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	SInteractionIndicatorInstanceData_SUIControlData m_uicData; // 0x8
 	float32 m_fAnimation; // 0x58
 	bool m_bRotateIndicator; // 0x5C
-	uint8_t _pad5D[3];
+	uint8_t _pad5D[3] {};
 	SVector3 m_vPosition; // 0x60
 	SVector3 m_vRotation; // 0x6C
 	bool m_bNeedDataUpdate; // 0x78
 	bool m_bNeedAlphaUpdate; // 0x79
-	uint8_t _pad7A[6];
+	uint8_t _pad7A[6] {};
 };
 
 // Size: 0x18
@@ -17334,7 +17334,7 @@ public:
 
 	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
 	EInventoryStorageType m_eStorageType; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 };
 
 // Size: 0x8
@@ -17354,7 +17354,7 @@ public:
 	uint32 m_iStoredInventorySlotIndex; // 0x0
 	uint8 m_iStoreReason; // 0x4
 	bool m_bItemsStored; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 };
 
 // Size: 0xB8
@@ -17435,7 +17435,7 @@ public:
 	bool m_bForceInstantInventoryChange; // 0x12
 	bool m_bCancelIfInventoryInUse; // 0x13
 	bool m_bSafeDrop; // 0x14
-	uint8_t _pad15[11];
+	uint8_t _pad15[11] {};
 	float4 m_vSafeDropPosition; // 0x20
 };
 
@@ -17475,7 +17475,7 @@ public:
 	int32 otherslotsCount; // 0x18
 	int32 selectedIndex; // 0x1C
 	bool isActionInventory; // 0x20
-	uint8_t _pad21[7];
+	uint8_t _pad21[7] {};
 };
 
 // Size: 0x100
@@ -17497,10 +17497,10 @@ public:
 	ZString description; // 0x20
 	TArray<ZString> perks; // 0x30
 	bool silencer; // 0x48
-	uint8_t _pad49[3];
+	uint8_t _pad49[3] {};
 	int32 count; // 0x4C
 	int32 ammo; // 0x50
-	uint8_t _pad54[4];
+	uint8_t _pad54[4] {};
 	ZRepositoryID id; // 0x58
 	ZString weaponCategory; // 0x68
 	int32 nAmmoRemaining; // 0x78
@@ -17508,25 +17508,25 @@ public:
 	int32 nAmmoInClip; // 0x80
 	int32 nWeaponType; // 0x84
 	int32 nItemHUDType; // 0x88
-	uint8_t _pad8C[4];
+	uint8_t _pad8C[4] {};
 	ZString itemCategory; // 0x90
 	ZString itemCategoryLKey; // 0xA0
 	ZString inventoryCategoryIcon; // 0xB0
 	bool isDroppable; // 0xC0
 	bool isContainer; // 0xC1
 	bool containsItem; // 0xC2
-	uint8_t _padC3[1];
+	uint8_t _padC3[1] {};
 	int32 nContainedItemHUDType; // 0xC4
 	bool bContainedItemIllegal; // 0xC8
 	bool bContainedItemSuspicious; // 0xC9
 	bool bContainedItemDetectedDuringFrisk; // 0xCA
 	bool detectedDuringFrisk; // 0xCB
-	uint8_t _padCC[4];
+	uint8_t _padCC[4] {};
 	TArray<ZString> actionAndKillTypes; // 0xD0
 	bool suspicious; // 0xE8
 	bool illegal; // 0xE9
 	bool canReload; // 0xEA
-	uint8_t _padEB[5];
+	uint8_t _padEB[5] {};
 	ZString sPoisonType; // 0xF0
 };
 
@@ -17612,7 +17612,7 @@ public:
 	float32 m_groupAge; // 0x18
 	float32 m_fDisguiseFollowTime; // 0x1C
 	float32 m_fTargetRunningTime; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 	ZGameTime m_tLastWarning; // 0x28
 	int32 m_iWarningCount; // 0x30
 	ZMoveToOrder_EMoveSpeed m_eLeaderMoveSpeed; // 0x34
@@ -17628,7 +17628,7 @@ public:
 	bool m_bFollow; // 0x70
 	bool m_bMembersFollow; // 0x71
 	bool m_bRunningWarningIssued; // 0x72
-	uint8_t _pad73[13];
+	uint8_t _pad73[13] {};
 };
 
 // Size: 0x50
@@ -17650,7 +17650,7 @@ public:
 	uint32 m_rInvestigator; // 0x8
 	uint32 m_rGuard; // 0xC
 	bool m_ReporterIsVIPWithAmbientEscort; // 0x10
-	uint8_t _pad11[7];
+	uint8_t _pad11[7] {};
 	SFSMSaveData m_fsmState; // 0x18
 	ZGameTime m_tLastGuardSearch; // 0x30
 	TArray<uint32> m_aUnconsciousGuards; // 0x38
@@ -17712,7 +17712,7 @@ public:
 	bool bHasItemToShow; // 0xC
 	bool bSuspicious; // 0xD
 	bool bIllegal; // 0xE
-	uint8_t _padF[1];
+	uint8_t _padF[1] {};
 };
 
 // Size: 0x10
@@ -17734,7 +17734,7 @@ public:
 	bool bHasItemToShow; // 0xC
 	bool bSuspicious; // 0xD
 	bool bIllegal; // 0xE
-	uint8_t _padF[1];
+	uint8_t _padF[1] {};
 };
 
 // Size: 0x1
@@ -17769,7 +17769,7 @@ public:
 	bool operator!=(const SItemStorageSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_Storage; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<uint32> m_ContainedItems; // 0x8
 };
 
@@ -17791,7 +17791,7 @@ public:
 	uint32 m_nExtraMagazineBullets; // 0x18
 	EDeathContext m_ePendingDeathContext; // 0x1C
 	EDeathContext m_eDeathContext; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 };
 
 // Size: 0x2
@@ -17837,7 +17837,7 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	ZLeadEscortSituationEntity_EEscortState m_eState; // 0x8
 	ZLeadEscortSituationEntity_EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
@@ -17893,16 +17893,16 @@ public:
 	bool m_bTargetDead; // 0x2
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bTargetIsMoving; // 0x14
-	uint8_t _pad15[3];
+	uint8_t _pad15[3] {};
 	ZLeadEscortSituationEntity_ETargetState m_eTargetState; // 0x18
 	EActorEmotionState m_eTargetEmotionState; // 0x1C
 	ZActBehaviorEntity_EState m_eTargetActState; // 0x20
 	float32 m_fTargetNotMovingTime; // 0x24
 	float32 m_fTargetAgitationCooldownTimer; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<SLeadEscortSituationActors> m_aAddedActors; // 0x30
 	TArray<SLeadEscortSituationActorStateSaveData> m_aStates; // 0x48
 	TArray<uint32> m_aEscortActs; // 0x60
@@ -17941,7 +17941,7 @@ public:
 	bool operator!=(const SObjetiveSaveData& p_Other) const { return !(*this == p_Other); }
 
 	IContractObjective_Type m_eType; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZVariant m_SaveData; // 0x8
 };
 
@@ -17964,7 +17964,7 @@ public:
 	float32 m_fTransitionAmount; // 0x8
 	bool m_bEnteredFromSide0; // 0xC
 	bool m_bInTransition; // 0xD
-	uint8_t _padE[2];
+	uint8_t _padE[2] {};
 };
 
 // Size: 0x1D8
@@ -18075,7 +18075,7 @@ public:
 	ZGameTime m_tExpiry; // 0x0
 	ZGameTime m_tExpiryHeroOutside; // 0x8
 	uint32 m_rZone; // 0x10
-	uint8_t _pad14[4];
+	uint8_t _pad14[4] {};
 };
 
 // Size: 0x18
@@ -18111,7 +18111,7 @@ public:
 
 	TArray<uint16> m_rGuardNodes; // 0x0
 	uint16 m_rInitialNode; // 0x18
-	uint8_t _pad1A[2];
+	uint8_t _pad1A[2] {};
 	float32 m_fGuardSightRange; // 0x1C
 };
 
@@ -18297,7 +18297,7 @@ public:
 	uint32 m_nCoverAnimNodeID; // 0x4
 	bool m_bLeftSideFacing; // 0x8
 	bool m_bCrouched; // 0x9
-	uint8_t _padA[6];
+	uint8_t _padA[6] {};
 	SMatrix m_mPositionInCover; // 0x10
 };
 
@@ -18439,10 +18439,10 @@ public:
 	bool operator!=(const SObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_target; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<uint32> m_aWaitingObservers; // 0x8
 	float32 m_observerDistanceMax; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 };
 
 // Size: 0x20
@@ -18480,7 +18480,7 @@ public:
 	ZString m_sName; // 0x0
 	int64 m_nTimeStamp; // 0x10
 	bool m_bIsOnline; // 0x18
-	uint8_t _pad19[7];
+	uint8_t _pad19[7] {};
 	ZString m_sContractSessionId; // 0x20
 	ZString m_sLastEventToken; // 0x30
 };
@@ -18567,7 +18567,7 @@ public:
 	bool operator==(const SPatrolOrderSaveData& p_Other) const;
 	bool operator!=(const SPatrolOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[1];
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x8
@@ -18679,7 +18679,7 @@ public:
 
 	bool m_bIsInside; // 0x0
 	bool m_bSpotted; // 0x1
-	uint8_t _pad2[6];
+	uint8_t _pad2[6] {};
 	TArray<uint32> m_aActiveActors; // 0x8
 };
 
@@ -18700,7 +18700,7 @@ public:
 	int32 m_nInterval; // 0x0
 	int32 m_nRemaining; // 0x4
 	bool m_bValue; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 };
 
 // Size: 0x14
@@ -18719,7 +18719,7 @@ public:
 
 	bool m_bEnabled; // 0x0
 	bool m_bRegistered; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	float32 m_fMinTime; // 0x4
 	float32 m_fMaxTime; // 0x8
 	float32 m_fProbability; // 0xC
@@ -18760,7 +18760,7 @@ public:
 
 	TArray<uint8> m_aBytes; // 0x0
 	uint32 m_nSize; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 };
 
 // Size: 0xD0
@@ -18780,10 +18780,10 @@ public:
 	TArray<SGWaypoint> m_WaypointList; // 0x0
 	ZBitArray m_LowVisibilityBits; // 0x18
 	ZBitArray m_HighVisibilityBits; // 0x38
-	uint8_t _pad58[8];
+	uint8_t _pad58[8] {};
 	SGProperties m_Properties; // 0x60
 	uint32 m_nNodeCount; // 0x90
-	uint8_t _pad94[4];
+	uint8_t _pad94[4] {};
 	TArray<uint8> m_pVisibilityData; // 0x98
 	ZBitArray m_deadEndData; // 0xB0
 };
@@ -18809,7 +18809,7 @@ public:
 	bool m_bEscalate; // 0x24
 	bool m_bWokenUpInTheGroup; // 0x25
 	bool m_bFastWakeUp; // 0x26
-	uint8_t _pad27[1];
+	uint8_t _pad27[1] {};
 };
 
 // Size: 0x18
@@ -18908,7 +18908,7 @@ public:
 	bool operator!=(const SRotateEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	float32 m_fXAxisSpeed; // 0x4
 	float32 m_fYAxisSpeed; // 0x8
 	float32 m_fZAxisSpeed; // 0xC
@@ -18950,7 +18950,7 @@ public:
 	ZVariant m_EntitiesData; // 0x0
 	ZVariant m_Data; // 0x10
 	uint32 m_nId; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 };
 
 // Size: 0x10
@@ -19003,7 +19003,7 @@ public:
 	bool operator!=(const SSaveGameData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nVersion; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<SSavableData> m_aSavableObjectsData; // 0x8
 	TArray<SEntityPath> m_aEntityPaths; // 0x20
 };
@@ -19023,10 +19023,10 @@ public:
 	bool operator!=(const SSaveGameMetaData& p_Other) const { return !(*this == p_Other); }
 
 	uint8 nSlot; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	ESaveType eSaveType; // 0x4
 	int32 eDifficultyLevel; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZString sContractId; // 0x10
 	ZString sContractTitle; // 0x20
 	ZString sContractType; // 0x30
@@ -19035,7 +19035,7 @@ public:
 	ZString sLastEventToken; // 0x60
 	bool bIsOnline; // 0x70
 	bool bIsVR; // 0x71
-	uint8_t _pad72[6];
+	uint8_t _pad72[6] {};
 	TArray<uint32> aScreenShot; // 0x78
 	TArray<ERequirementId> aRequirements; // 0x90
 };
@@ -19119,7 +19119,7 @@ public:
 
 	uint32 m_rCurrentSpeakEntity; // 0x0
 	bool m_bPaused; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x6
@@ -19178,13 +19178,13 @@ public:
 	uint32 m_rTarget; // 0x0
 	uint32 m_pLeader; // 0x4
 	uint32 m_rSentryZone; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZGameTime m_tLastEscalateOrder; // 0x10
 	SFSMSaveData m_fsmState; // 0x18
 	ESentryActionPrompt m_eActionPrompt; // 0x30
 	bool m_bRequestedAction; // 0x34
 	bool m_bShowingWarning; // 0x35
-	uint8_t _pad36[2];
+	uint8_t _pad36[2] {};
 };
 
 // Size: 0x4
@@ -19262,7 +19262,7 @@ public:
 	bool operator!=(const SSequenceTrackSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTrackEntity; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZVariant m_CustomTrackData; // 0x8
 };
 
@@ -19305,7 +19305,7 @@ public:
 	ZGameTime m_sequenceTime; // 0x18
 	uint32 m_sequenceOrigin; // 0x20
 	bool m_bHasRunData; // 0x24
-	uint8_t _pad25[3];
+	uint8_t _pad25[3] {};
 	TArray<SSequenceTrackSaveData> m_aTrackSaveData; // 0x28
 	ZGameTime m_effectiveSequenceTime; // 0x40
 	int32 m_nCurrentLoop; // 0x48
@@ -19314,7 +19314,7 @@ public:
 	bool m_bActivatedByIActivatable; // 0x4F
 	bool m_bGettingDeactivated; // 0x50
 	bool m_bOnGameStopped; // 0x51
-	uint8_t _pad52[6];
+	uint8_t _pad52[6] {};
 };
 
 // Size: 0x30
@@ -19349,7 +19349,7 @@ public:
 	bool operator==(const SSerializedValue& p_Other) const;
 	bool operator!=(const SSerializedValue& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[1];
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x18
@@ -19387,7 +19387,7 @@ public:
 	EAISharedEventType m_eType; // 0x10
 	int32 m_nTarget; // 0x14
 	bool m_bHasPosition; // 0x18
-	uint8_t _pad19[7];
+	uint8_t _pad19[7] {};
 	float4 m_vPosition; // 0x20
 	ZVariant m_CustomData; // 0x30
 };
@@ -19420,7 +19420,7 @@ public:
 
 	uint32 m_rActor; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	ZSmuggleSituationEntity_ESmuggleState m_nState; // 0x8
 	ZSmuggleSituationEntity_ESmuggleState m_nStatePrevious; // 0xC
 	float32 m_fStateTimer; // 0x10
@@ -19444,7 +19444,7 @@ public:
 
 	bool m_bIsEnabled; // 0x0
 	bool m_bIsRunning; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	int32 m_nNumberOfPickups; // 0x4
 	TArray<SSmuggleSituationActorStateSaveData> m_aActorsSaveData; // 0x8
 	TArray<uint32> m_aMoveToActs; // 0x20
@@ -19467,7 +19467,7 @@ public:
 	SFSMSaveData m_fsmState; // 0x0
 	int32 m_target; // 0x18
 	bool m_bFailed; // 0x1C
-	uint8_t _pad1D[3];
+	uint8_t _pad1D[3] {};
 	ZGameTime m_tEscapeTime; // 0x20
 	ZGameTime m_tLastTauntTime; // 0x28
 };
@@ -19492,7 +19492,7 @@ public:
 	ZString m_sText; // 0x18
 	int32 m_iType; // 0x28
 	uint8 m_iScoringMachine; // 0x2C
-	uint8_t _pad2D[3];
+	uint8_t _pad2D[3] {};
 };
 
 // Size: 0x1
@@ -19531,7 +19531,7 @@ public:
 	bool m_bEnabled; // 0x10
 	bool m_bBackwards; // 0x11
 	bool m_bIsFrameUpdateRegistered; // 0x12
-	uint8_t _pad13[1];
+	uint8_t _pad13[1] {};
 };
 
 // Size: 0x20
@@ -19549,7 +19549,7 @@ public:
 	bool operator!=(const SSpatialSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bVisible; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	SVector3 m_vPosition; // 0x4
 	SVector4 m_vQuaternionRotation; // 0x10
 };
@@ -19589,7 +19589,7 @@ public:
 	uint32 m_pSuitcase; // 0x18
 	uint32 m_pMainItem; // 0x1C
 	EStashpointContainedEntityType m_eContainedType; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 	ZRepositoryID m_MainItemID; // 0x28
 };
 
@@ -19609,7 +19609,7 @@ public:
 
 	int32 m_nIndex; // 0x0
 	bool m_bEnabled; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x30
@@ -19648,7 +19648,7 @@ public:
 	int32 m_nLoopIndex; // 0x4
 	bool m_bFirst; // 0x8
 	bool m_bEnabled; // 0x9
-	uint8_t _padA[2];
+	uint8_t _padA[2] {};
 	float32 m_nCountFrom; // 0xC
 	float32 m_nCountTo; // 0x10
 	float32 m_nStepSize; // 0x14
@@ -19673,7 +19673,7 @@ public:
 	ZString icon; // 0x20
 	ZString type; // 0x30
 	bool hardCondition; // 0x40
-	uint8_t _pad41[7];
+	uint8_t _pad41[7] {};
 };
 
 // Size: 0x58
@@ -19698,7 +19698,7 @@ public:
 	int32 fY; // 0x4C
 	float32 fAlpha; // 0x50
 	bool bIsTarget; // 0x54
-	uint8_t _pad55[3];
+	uint8_t _pad55[3] {};
 };
 
 // Size: 0x18
@@ -19733,10 +19733,10 @@ public:
 	bool operator!=(const STargetTrackingSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_sharedTarget; // 0x0
-	uint8_t _pad4[12];
+	uint8_t _pad4[12] {};
 	float4 m_position; // 0x10
 	ZGameTime m_time; // 0x20
-	uint8_t _pad28[8];
+	uint8_t _pad28[8] {};
 };
 
 // Size: 0x18
@@ -19790,10 +19790,10 @@ public:
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 	uint64 entityId; // 0x28
 	bool editorOnly; // 0x30
-	uint8_t _pad31[7];
+	uint8_t _pad31[7] {};
 	ZString entityName; // 0x38
 	TArray<SEntityTemplatePropertyAlias> propertyAliases; // 0x48
 	TArray<SEntityTemplateExposedEntity> exposedEntities; // 0x60
@@ -19843,7 +19843,7 @@ public:
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 	TArray<SEntityTemplateProperty> propertyValues; // 0x28
 	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x40
 	TArray<SEntityTemplatePlatformSpecificProperty> platformSpecificPropertyValues; // 0x58
@@ -19866,7 +19866,7 @@ public:
 	int32 subType; // 0x0
 	int32 blueprintIndexInResourceHeader; // 0x4
 	int32 rootEntityIndex; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	TArray<STemplateFactorySubEntity> subEntities; // 0x10
 	TArray<SEntityTemplatePropertyOverride> propertyOverrides; // 0x28
 	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x40
@@ -19897,7 +19897,7 @@ public:
 	uint32 intField; // 0x10
 	float32 floatField; // 0x14
 	STestStruct_ETestEnum enumField; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 };
 
 // Size: 0x28
@@ -19934,7 +19934,7 @@ public:
 
 	int32 m_nInterval; // 0x0
 	bool m_bEnabled; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	float32 m_fTimeToNextEvent; // 0x8
 };
 
@@ -19991,7 +19991,7 @@ public:
 
 	uint32 m_iValue; // 0x0
 	bool m_bValid; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x28
@@ -20011,7 +20011,7 @@ public:
 	uint32 m_rTrackEntity; // 0x0
 	float32 m_fTrackPosition; // 0x4
 	bool m_bIsDollyAttached; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 	SVector3 m_vDollyPosition; // 0xC
 	SVector4 m_vDollyRotation; // 0x18
 };
@@ -20034,7 +20034,7 @@ public:
 	bool m_bIsVisible; // 0x4
 	bool m_bIsEnabled; // 0x5
 	bool m_bSpatialVisibility; // 0x6
-	uint8_t _pad7[1];
+	uint8_t _pad7[1] {};
 };
 
 // Size: 0x18
@@ -20106,10 +20106,10 @@ public:
 	uint32 m_rTarget; // 0x0
 	uint32 m_rAlarm; // 0x4
 	uint32 m_pLeader; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	SFSMSaveData m_fsmState; // 0x10
 	bool m_bTriggeredAlarm; // 0x28
-	uint8_t _pad29[7];
+	uint8_t _pad29[7] {};
 };
 
 // Size: 0x8
@@ -20184,7 +20184,7 @@ public:
 	bool operator!=(const SUIOpenVRButtonConversion& p_Other) const { return !(*this == p_Other); }
 
 	EUIGamepadButtonID idSource; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	SUIOpenVRComponent component; // 0x8
 };
 
@@ -20403,17 +20403,17 @@ public:
 
 	int32 nIntProp; // 0x0
 	int16 fInt16Prop; // 0x4
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	uint32 fUInt32Prop; // 0x8
 	float32 fFloatProp; // 0xC
 	ZString sStringProp; // 0x10
 	SUITestData_ETestEnum eEnumProp; // 0x20
 	ZRuntimeResourceID ridProp; // 0x24
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<ZString> aStringArray; // 0x30
 	TArray<SUITestData_SSubStruct> aSubStructArray; // 0x48
 	TFixedArray<int32, 3> aFixedArray; // 0x60
-	uint8_t _pad6C[4];
+	uint8_t _pad6C[4] {};
 };
 
 // Size: 0x70
@@ -20437,7 +20437,7 @@ public:
 	float32 m_fCapsuleHeadAttacherOffset; // 0x10
 	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x14
 	float32 m_fHeadBoneAttacherOffset; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	float4 m_vAnchorPosOffset; // 0x20
 	SMatrix m_mAnchorRotOffset; // 0x30
 };
@@ -20458,7 +20458,7 @@ public:
 
 	bool m_bValue; // 0x0
 	bool m_bWaitingValue; // 0x1
-	uint8_t _pad2[2];
+	uint8_t _pad2[2] {};
 	float32 m_fTimeToNextEvent; // 0x4
 };
 
@@ -20604,7 +20604,7 @@ public:
 	bool operator!=(const SVoidSignalEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bSignaling; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	float32 m_fFiredAtTime; // 0x4
 };
 
@@ -20665,7 +20665,7 @@ public:
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
 	bool m_bTargetRegistered; // 0x8
-	uint8_t _pad9[3];
+	uint8_t _pad9[3] {};
 };
 
 // Size: 0xA0
@@ -20700,23 +20700,23 @@ public:
 	bool bIllegal; // 0x4A
 	bool bCanReload; // 0x4B
 	bool bIsReloading; // 0x4C
-	uint8_t _pad4D[3];
+	uint8_t _pad4D[3] {};
 	float32 fReloadDuration; // 0x50
 	bool bInfiniteAmmo; // 0x54
 	bool bIsContainer; // 0x55
 	bool bContainsItem; // 0x56
-	uint8_t _pad57[1];
+	uint8_t _pad57[1] {};
 	int32 nContainedItemHUDType; // 0x58
 	bool bContainedItemIllegal; // 0x5C
 	bool bContainedItemSuspicious; // 0x5D
 	bool bContainedItemDetectedDuringFrisk; // 0x5E
-	uint8_t _pad5F[1];
+	uint8_t _pad5F[1] {};
 	float32 fLastBulletFiredTime; // 0x60
 	float32 fTimeBetweenBullets; // 0x64
 	TArray<ZString> aPerks; // 0x68
 	TArray<ZString> aAmmoTypes; // 0x80
 	uint32 nCurrentAmmoType; // 0x98
-	uint8_t _pad9C[4];
+	uint8_t _pad9C[4] {};
 };
 
 // Size: 0x18
@@ -20849,10 +20849,10 @@ public:
 	bool operator!=(const ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_DistractedActor; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZGameTime m_CooldownExpirationTimestamp; // 0x8
 	bool m_DistractionIsActive; // 0x10
-	uint8_t _pad11[7];
+	uint8_t _pad11[7] {};
 };
 
 // Size: 0x4
@@ -20883,7 +20883,7 @@ public:
 	uint32 m_nEventID; // 0x0
 	float32 m_fStartFraction; // 0x4
 	float32 m_fDuration; // 0x8
-	uint8_t _padC[4];
+	uint8_t _padC[4] {};
 	ZVariant m_customData; // 0x10
 };
 
@@ -20922,7 +20922,7 @@ public:
 	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
 	ZVariant m_customData; // 0x18
 	int32 m_nSyncTrackIndex; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 };
 
 // Size: 0x4
@@ -20956,10 +20956,10 @@ public:
 	bool operator!=(const ZAT2Controller_SEventPreviewInfo& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nEventID; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZString m_sConsumerID; // 0x8
 	float32 m_fDuration; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	ZString m_sExtraDataTypeName; // 0x20
 	TMap<ZString,ZVariant> m_extraDataProperties; // 0x30
 };
@@ -21162,7 +21162,7 @@ public:
 	ZApproachOrder_EApproachStyle m_style; // 0x10
 	bool m_bForceStand; // 0x14
 	bool m_bStopActFast; // 0x15
-	uint8_t _pad16[10];
+	uint8_t _pad16[10] {};
 };
 
 // Size: 0x4
@@ -21188,7 +21188,7 @@ public:
 	bool operator==(const ZAutoNullEntityRef& p_Other) const;
 	bool operator!=(const ZAutoNullEntityRef& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -21378,7 +21378,7 @@ public:
 	bool operator==(const ZContractEvaluationContext& p_Other) const;
 	bool operator!=(const ZContractEvaluationContext& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[72];
+	uint8_t _pad0[72] {};
 };
 
 // Size: 0x4
@@ -21470,7 +21470,7 @@ public:
 
 	uint32 m_body; // 0x0
 	bool m_bAccident; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x28
@@ -21488,7 +21488,7 @@ public:
 	bool operator!=(const ZDeadBodySituation_SState& p_Other) const { return !(*this == p_Other); }
 
 	ZDeadBodySituation_ESituationFlavor m_eFlavor; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZGameTime m_tLastEscalateOrder; // 0x8
 	ZGameTime m_tNextStanddownTime; // 0x10
 	int32 m_nSuspiciousDeaths; // 0x18
@@ -21498,7 +21498,7 @@ public:
 	bool m_bStanddownComplete; // 0x1F
 	bool m_bStandDownUnconscious; // 0x20
 	bool m_bEscalateUnconscious; // 0x21
-	uint8_t _pad22[6];
+	uint8_t _pad22[6] {};
 };
 
 // Size: 0x58
@@ -21517,12 +21517,12 @@ public:
 
 	ZDeadBodySituation_SState m_State; // 0x0
 	uint32 m_pLeader; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	TArray<ZDeadBodySituation_SIncidentSaveData> m_aIncidents; // 0x30
 	int32 m_pInvestigateDisguiseGroup; // 0x48
 	int32 m_pObserversGroup; // 0x4C
 	int32 m_pCivilianObserversGroup; // 0x50
-	uint8_t _pad54[4];
+	uint8_t _pad54[4] {};
 };
 
 // Size: 0x4
@@ -21663,7 +21663,7 @@ public:
 	bool operator==(const ZDialogEventItemTypedIndex& p_Other) const;
 	bool operator!=(const ZDialogEventItemTypedIndex& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[2];
+	uint8_t _pad0[2] {};
 };
 
 // Size: 0x28
@@ -21681,10 +21681,10 @@ public:
 	bool operator!=(const ZDisguiseSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_pLeader; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<int32> m_aInvestigateDisguiseGroups; // 0x8
 	EAISharedEventType m_eEventSetOnEscalation; // 0x20
-	uint8_t _pad24[4];
+	uint8_t _pad24[4] {};
 };
 
 // Size: 0x4
@@ -21778,7 +21778,7 @@ public:
 	bool operator==(const ZEntityPath& p_Other) const;
 	bool operator!=(const ZEntityPath& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[96];
+	uint8_t _pad0[96] {};
 };
 
 // Size: 0x4
@@ -21803,7 +21803,7 @@ public:
 	bool operator==(const ZEntityRef& p_Other) const;
 	bool operator!=(const ZEntityRef& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x20
@@ -21841,7 +21841,7 @@ public:
 	float4 m_vStopDirection; // 0x0
 	uint32 m_nObstacleBlockageFlags; // 0x10
 	EMoveSpeed m_eMoveSpeed; // 0x14
-	uint8_t _pad18[8];
+	uint8_t _pad18[8] {};
 };
 
 // Size: 0x4
@@ -21873,7 +21873,7 @@ public:
 	bool operator==(const ZGfxValueWrapper& p_Other) const;
 	bool operator!=(const ZGfxValueWrapper& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x20
@@ -21908,7 +21908,7 @@ public:
 	bool operator==(const ZGuidString& p_Other) const;
 	bool operator!=(const ZGuidString& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[32];
+	uint8_t _pad0[32] {};
 };
 
 // Size: 0x4
@@ -21961,7 +21961,7 @@ public:
 	bool operator==(const ZResourcePtr& p_Other) const;
 	bool operator!=(const ZResourcePtr& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x10
@@ -22193,7 +22193,7 @@ public:
 	bool operator!=(const ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData& p_Other) const { return !(*this == p_Other); }
 
 	ZHM5FaceFXSpecificEventConsumer_EEvent m_nEvent; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZString m_sFaceExpression; // 0x8
 };
 
@@ -22678,7 +22678,7 @@ public:
 	SItemLeftHandUIData itemLeftHandStatus; // 0xA0
 	SItemOnBackUIData itemOnBackStatus; // 0xB0
 	bool bShowHolstered; // 0xC0
-	uint8_t _padC1[3];
+	uint8_t _padC1[3] {};
 	int32 nDisplayMode; // 0xC4
 };
 
@@ -22739,7 +22739,7 @@ public:
 	bool operator==(const ZHttpUrl& p_Other) const;
 	bool operator!=(const ZHttpUrl& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[96];
+	uint8_t _pad0[96] {};
 };
 
 // Size: 0x4
@@ -22821,7 +22821,7 @@ public:
 	bool operator==(const ZInteractionData& p_Other) const;
 	bool operator!=(const ZInteractionData& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[320];
+	uint8_t _pad0[320] {};
 };
 
 // Size: 0x4
@@ -22899,7 +22899,7 @@ public:
 	bool operator==(const ZInteractionGuideData& p_Other) const;
 	bool operator!=(const ZInteractionGuideData& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[160];
+	uint8_t _pad0[160] {};
 };
 
 // Size: 0x4
@@ -22926,11 +22926,11 @@ public:
 	bool operator!=(const ZInvestigateWeaponSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nCurrentState; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZGameTime m_mainStateStartTime; // 0x8
 	ZGameTime m_tLastStandDown; // 0x10
 	int32 m_nActiveInvestigationGroup; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 };
 
 // Size: 0x4
@@ -23081,7 +23081,7 @@ public:
 	bool m_bStopActFast; // 0x25
 	bool m_bStrafe; // 0x26
 	bool m_bEndStanding; // 0x27
-	uint8_t _pad28[8];
+	uint8_t _pad28[8] {};
 };
 
 // Size: 0x4
@@ -23279,7 +23279,7 @@ public:
 	TArray<ZVariant> aIcons; // 0x0
 	ZString sLabel; // 0x18
 	bool bIsEnabled; // 0x28
-	uint8_t _pad29[7];
+	uint8_t _pad29[7] {};
 };
 
 // Size: 0x48
@@ -23297,7 +23297,7 @@ public:
 	bool operator!=(const ZPhotoModeMenuDataProvider_SData& p_Other) const { return !(*this == p_Other); }
 
 	bool bIsVisible; // 0x0
-	uint8_t _pad1[7];
+	uint8_t _pad1[7] {};
 	TArray<ZVariant> aMenuEntries; // 0x8
 	ZString sInputPlatform; // 0x20
 	TArray<ZPhotoModeMenuDataProvider_SPrompt> aPrompts; // 0x30
@@ -23320,7 +23320,7 @@ public:
 	ZString sLabel; // 0x0
 	bool bIsEnabled; // 0x10
 	bool bIsHighlighted; // 0x11
-	uint8_t _pad12[6];
+	uint8_t _pad12[6] {};
 };
 
 // Size: 0x8
@@ -23337,7 +23337,7 @@ public:
 	bool operator==(const ZPlanningObjectiveInfoBuilder& p_Other) const;
 	bool operator!=(const ZPlanningObjectiveInfoBuilder& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -23363,7 +23363,7 @@ public:
 	bool operator==(const ZPostfilterGraphBaseNode& p_Other) const;
 	bool operator!=(const ZPostfilterGraphBaseNode& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[8];
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -23394,7 +23394,7 @@ public:
 	bool operator==(const ZRayQueryInput& p_Other) const;
 	bool operator!=(const ZRayQueryInput& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[96];
+	uint8_t _pad0[96] {};
 };
 
 // Size: 0x4
@@ -23429,7 +23429,7 @@ public:
 	int32 m_pObserversGroup; // 0xC
 	bool m_bEscalate; // 0x10
 	bool m_bVictimPacified; // 0x11
-	uint8_t _pad12[2];
+	uint8_t _pad12[2] {};
 };
 
 // Size: 0x4
@@ -23597,7 +23597,7 @@ public:
 	ZString iInteraction3; // 0x30
 	ZString sMissingToolText; // 0x40
 	bool bShowMissingTool; // 0x50
-	uint8_t _pad51[7];
+	uint8_t _pad51[7] {};
 };
 
 // Size: 0x4
@@ -23663,7 +23663,7 @@ public:
 	bool operator==(const ZSituationGroup& p_Other) const;
 	bool operator!=(const ZSituationGroup& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[216];
+	uint8_t _pad0[216] {};
 };
 
 // Size: 0x50
@@ -23680,7 +23680,7 @@ public:
 	bool operator==(const ZSituationOrder& p_Other) const;
 	bool operator!=(const ZSituationOrder& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[80];
+	uint8_t _pad0[80] {};
 };
 
 // Size: 0x4
@@ -23718,7 +23718,7 @@ public:
 	float4 m_vPosition; // 0x0
 	float32 m_fRange; // 0x10
 	bool m_bIsIslandEntrance; // 0x14
-	uint8_t _pad15[11];
+	uint8_t _pad15[11] {};
 };
 
 // Size: 0x98
@@ -23736,20 +23736,20 @@ public:
 	bool operator!=(const ZSniperCombatSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rSniperLocation; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	TArray<int32> m_aSniperCombatGroups; // 0x8
 	bool m_bAggressive; // 0x20
 	bool m_bKiller; // 0x21
-	uint8_t _pad22[2];
+	uint8_t _pad22[2] {};
 	uint32 m_rIsland; // 0x24
 	TArray<ZSniperCombatSituation_SSniperSuspiciousArea> m_aSuspiciousAreas; // 0x28
 	TArray<uint32> m_aWaitingGuards; // 0x40
 	TArray<uint32> m_aFleeCandidates; // 0x58
 	bool m_bHasFailed; // 0x70
-	uint8_t _pad71[3];
+	uint8_t _pad71[3] {};
 	ZSniperCombatSituation_ESituationState m_eState; // 0x74
 	uint32 m_nGuards; // 0x78
-	uint8_t _pad7C[4];
+	uint8_t _pad7C[4] {};
 	TArray<int32> m_aAvoidDangerGroups; // 0x80
 };
 
@@ -23776,7 +23776,7 @@ public:
 	bool operator==(const ZSoundCollisionInfo& p_Other) const;
 	bool operator!=(const ZSoundCollisionInfo& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[352];
+	uint8_t _pad0[352] {};
 };
 
 // Size: 0x4
@@ -23802,7 +23802,7 @@ public:
 	bool operator!=(const ZSpectatorSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bStandingDown; // 0x0
-	uint8_t _pad1[7];
+	uint8_t _pad1[7] {};
 	TArray<int32> m_aObserverGroupIDs; // 0x8
 	TArray<uint32> m_aNonObserverMembers; // 0x20
 };
@@ -23852,7 +23852,7 @@ public:
 	uint32 m_nWarningPriority; // 0x8
 	bool m_TargetHasWeaponEquipped; // 0xC
 	bool m_ImmediateWarningDialog; // 0xD
-	uint8_t _padE[2];
+	uint8_t _padE[2] {};
 	int32 m_nResetCount; // 0x10
 	bool m_bArrestReasonStated; // 0x14
 	bool m_bTargetOnStairs; // 0x15
@@ -23862,7 +23862,7 @@ public:
 	bool m_bTargetLost; // 0x19
 	bool m_bGetHelpGroupStarted; // 0x1A
 	bool m_bHandlerHasLOS; // 0x1B
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	float4 m_vLastKnownPosition; // 0x20
 	float32 m_fMovingTime; // 0x30
 	float32 m_fRunningTime; // 0x34
@@ -23880,7 +23880,7 @@ public:
 	bool m_reportedTarget; // 0x72
 	bool m_bTriggeredBySecurityCameras; // 0x73
 	bool m_bLOSMemberWantsToKill; // 0x74
-	uint8_t _pad75[11];
+	uint8_t _pad75[11] {};
 };
 
 // Size: 0xC0
@@ -23906,7 +23906,7 @@ public:
 	uint32 m_rIsland; // 0x94
 	ZGameTime m_tLastTimeTargetLOS; // 0x98
 	TArray<int32> m_aAvoidDangerGroups; // 0xA0
-	uint8_t _padB8[8];
+	uint8_t _padB8[8] {};
 };
 
 // Size: 0x4
@@ -23978,12 +23978,12 @@ public:
 	bool operator!=(const ZTrespassingSituation_SState& p_Other) const { return !(*this == p_Other); }
 
 	ZTrespassingSituation_ESituationState m_eSituationState; // 0x0
-	uint8_t _pad4[4];
+	uint8_t _pad4[4] {};
 	ZGameTime m_tDeepTrespassingTime; // 0x8
 	ZGameTime m_tStartStandDown; // 0x10
 	ZGameTime m_tLastTargetVisible; // 0x18
 	bool m_bStopWarningGiven; // 0x20
-	uint8_t _pad21[7];
+	uint8_t _pad21[7] {};
 };
 
 // Size: 0x50
@@ -24006,7 +24006,7 @@ public:
 	float4 m_vEscortOutExitLocation; // 0x30
 	int32 m_nGetHelpGroup; // 0x40
 	bool m_bPropagationEnabled; // 0x44
-	uint8_t _pad45[11];
+	uint8_t _pad45[11] {};
 };
 
 // Size: 0xD8
@@ -24025,10 +24025,10 @@ public:
 
 	ZString label; // 0x0
 	bool silencer; // 0x10
-	uint8_t _pad11[3];
+	uint8_t _pad11[3] {};
 	int32 count; // 0x14
 	int32 ammo; // 0x18
-	uint8_t _pad1C[4];
+	uint8_t _pad1C[4] {};
 	ZRepositoryID id; // 0x20
 	ZString weaponCategory; // 0x30
 	int32 nAmmoRemaining; // 0x40
@@ -24041,7 +24041,7 @@ public:
 	ZString sPoisonType; // 0x80
 	bool notininventory; // 0x90
 	bool isIllegal; // 0x91
-	uint8_t _pad92[6];
+	uint8_t _pad92[6] {};
 	ZString actionName; // 0x98
 	ZString longDescription; // 0xA8
 	ZString missingText; // 0xB8
@@ -24101,7 +24101,7 @@ public:
 	int32 otherslotsCount; // 0x18
 	int32 selectedIndex; // 0x1C
 	bool isActionInventory; // 0x20
-	uint8_t _pad21[7];
+	uint8_t _pad21[7] {};
 };
 
 // Size: 0x4
@@ -24174,7 +24174,7 @@ public:
 	bool operator==(const ZUIDataProvider& p_Other) const;
 	bool operator!=(const ZUIDataProvider& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[64];
+	uint8_t _pad0[64] {};
 };
 
 // Size: 0xD8
@@ -24194,10 +24194,10 @@ public:
 	ZString label; // 0x0
 	ZString containedLabel; // 0x10
 	bool silencer; // 0x20
-	uint8_t _pad21[3];
+	uint8_t _pad21[3] {};
 	int32 count; // 0x24
 	int32 ammo; // 0x28
-	uint8_t _pad2C[4];
+	uint8_t _pad2C[4] {};
 	ZRepositoryID id; // 0x30
 	ZString weaponCategory; // 0x40
 	int32 nAmmoRemaining; // 0x50
@@ -24209,7 +24209,7 @@ public:
 	ZString inventoryCategoryIcon; // 0x80
 	bool notininventory; // 0x90
 	bool isIllegal; // 0x91
-	uint8_t _pad92[6];
+	uint8_t _pad92[6] {};
 	ZString actionName; // 0x98
 	ZString longDescription; // 0xA8
 	ZString missingText; // 0xB8
@@ -24269,7 +24269,7 @@ public:
 	int32 otherslotsCount; // 0x18
 	int32 selectedIndex; // 0x1C
 	bool isActionInventory; // 0x20
-	uint8_t _pad21[7];
+	uint8_t _pad21[7] {};
 	ZString noItemsMessage; // 0x28
 };
 
@@ -24502,7 +24502,7 @@ public:
 	bool operator==(const ZWorldMapMetaData& p_Other) const;
 	bool operator!=(const ZWorldMapMetaData& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[16];
+	uint8_t _pad0[16] {};
 };
 
 // Size: 0x4

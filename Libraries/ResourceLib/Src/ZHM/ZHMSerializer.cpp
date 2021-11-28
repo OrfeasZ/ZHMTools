@@ -13,7 +13,7 @@ ZHMSerializer::ZHMSerializer(uint8_t p_Alignment, bool p_GenerateCompatible) :
 	if (p_GenerateCompatible)
 		m_Alignment = 4;
 	else
-		m_Alignment = std::max(static_cast<uintptr_t>(p_Alignment), sizeof(uintptr_t));
+		m_Alignment = std::max(static_cast<size_t>(p_Alignment), sizeof(zhmptr_t));
 }
 
 ZHMSerializer::~ZHMSerializer()
@@ -21,11 +21,11 @@ ZHMSerializer::~ZHMSerializer()
 	free(m_Buffer);
 }
 
-uintptr_t ZHMSerializer::WriteMemory(void* p_Memory, size_t p_Size, size_t p_Alignment)
+zhmptr_t ZHMSerializer::WriteMemory(void* p_Memory, zhmptr_t p_Size, zhmptr_t p_Alignment)
 {
 	AlignTo(p_Alignment);
 
-	const uintptr_t s_StartOffset = m_CurrentSize;
+	const zhmptr_t s_StartOffset = m_CurrentSize;
 
 	// Ensure we have enough space.
 	EnsureEnough(m_CurrentSize + p_Size);
@@ -37,9 +37,9 @@ uintptr_t ZHMSerializer::WriteMemory(void* p_Memory, size_t p_Size, size_t p_Ali
 	return s_StartOffset;
 }
 
-uintptr_t ZHMSerializer::WriteMemoryUnaligned(void* p_Memory, size_t p_Size)
+zhmptr_t ZHMSerializer::WriteMemoryUnaligned(void* p_Memory, zhmptr_t p_Size)
 {
-	const uintptr_t s_StartOffset = m_CurrentSize;
+	const zhmptr_t s_StartOffset = m_CurrentSize;
 
 	// Ensure we have enough space.
 	EnsureEnough(m_CurrentSize + p_Size);
@@ -51,19 +51,19 @@ uintptr_t ZHMSerializer::WriteMemoryUnaligned(void* p_Memory, size_t p_Size)
 	return s_StartOffset;
 }
 
-void ZHMSerializer::PatchPtr(uintptr_t p_Offset, uintptr_t p_Pointer)
+void ZHMSerializer::PatchPtr(zhmptr_t p_Offset, zhmptr_t p_Pointer)
 {
-	*reinterpret_cast<uintptr_t*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = p_Pointer;
+	*reinterpret_cast<zhmptr_t*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = p_Pointer;
 	m_Relocations.insert(p_Offset);
 }
 
-void ZHMSerializer::PatchNullPtr(uintptr_t p_Offset)
+void ZHMSerializer::PatchNullPtr(zhmptr_t p_Offset)
 {
-	*reinterpret_cast<ptrdiff_t*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = -1;
+	*reinterpret_cast<zhmptr_t*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = ~zhmptr_t(0);
 	m_Relocations.insert(p_Offset);
 }
 
-void ZHMSerializer::PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type)
+void ZHMSerializer::PatchType(zhmptr_t p_Offset, IZHMTypeInfo* p_Type)
 {
 	// See if we already have this type.
 	size_t s_TypeIndex = m_Types.size();
@@ -81,16 +81,16 @@ void ZHMSerializer::PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type)
 	if (s_TypeIndex == m_Types.size())
 		m_Types.push_back(p_Type);
 
-	*reinterpret_cast<size_t*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = s_TypeIndex;
+	*reinterpret_cast<zhmptr_t*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = static_cast<zhmptr_t>(s_TypeIndex);
 	m_TypeIdOffsets.insert(p_Offset);
 }
 
-void ZHMSerializer::RegisterRuntimeResourceId(uintptr_t p_Offset)
+void ZHMSerializer::RegisterRuntimeResourceId(zhmptr_t p_Offset)
 {
 	m_RuntimeResourceIdOffsets.insert(p_Offset);
 }
 
-std::optional<uintptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Variant)
+std::optional<zhmptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Variant)
 {
 	if (!InCompatibilityMode())
 		return std::nullopt;
@@ -117,7 +117,7 @@ std::optional<uintptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Var
 	return std::nullopt;
 }
 
-void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr)
+void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, zhmptr_t p_Ptr)
 {
 	if (!InCompatibilityMode())
 		return;
@@ -130,13 +130,13 @@ void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr)
 		return;
 	}
 
-	std::unordered_map<ZVariant*, uintptr_t> s_VariantsOfType;
+	std::unordered_map<ZVariant*, zhmptr_t> s_VariantsOfType;
 	s_VariantsOfType[p_Variant] = p_Ptr;
 
 	m_VariantRegistry[p_Variant->GetType()] = s_VariantsOfType;
 }
 
-std::set<uintptr_t> ZHMSerializer::GetRelocations() const
+std::set<zhmptr_t> ZHMSerializer::GetRelocations() const
 {
 	return m_Relocations;
 }
@@ -147,7 +147,7 @@ std::string ZHMSerializer::GetBuffer()
 	return std::string(reinterpret_cast<char*>(m_Buffer), m_CurrentSize);
 }
 
-void ZHMSerializer::AlignTo(uintptr_t p_Alignment)
+void ZHMSerializer::AlignTo(zhmptr_t p_Alignment)
 {
 	auto s_Alignment = std::max(m_Alignment, p_Alignment);
 	
@@ -162,12 +162,12 @@ void ZHMSerializer::AlignTo(uintptr_t p_Alignment)
 	}
 }
 
-void ZHMSerializer::EnsureEnough(size_t p_Size)
+void ZHMSerializer::EnsureEnough(zhmptr_t p_Size)
 {
 	if (m_Capacity >= p_Size)
 		return;
 
-	size_t s_NewCapacity = ceil(m_Capacity * 1.5);
+	zhmptr_t s_NewCapacity = ceil(m_Capacity * 1.5);
 
 	while (s_NewCapacity < p_Size)
 		s_NewCapacity = ceil(s_NewCapacity * 1.5);

@@ -66,6 +66,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	m_ReflectiveClassesSourceFile << "#include \"ZHMProperties.h\"" << std::endl;
 	m_ReflectiveClassesSourceFile << "#include \"ZHMEnums.h\"" << std::endl;
 	m_ReflectiveClassesSourceFile << "#include <External/simdjson_helpers.h>" << std::endl;
+	m_ReflectiveClassesSourceFile << "#include <utility>" << std::endl;
 	m_ReflectiveClassesSourceFile << std::endl;
 
 	printf("Registry has %d types.\n", p_Registry->m_types.size());
@@ -610,7 +611,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		{
 			// Add padding.
 			uintptr_t s_PaddingBytes = s_ExpectedOffset - s_CurrentOffset;
-			s_HeaderStream << s_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "];" << std::endl;
+			s_HeaderStream << s_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "] {};" << std::endl;
 			s_CurrentOffset = s_ExpectedOffset;
 		}
 
@@ -679,7 +680,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	{
 		// Add padding.
 		uintptr_t s_PaddingBytes = s_Type->m_nTypeSize - s_CurrentOffset;
-		s_HeaderStream << s_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "];" << std::endl;
+		s_HeaderStream << s_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "] {};" << std::endl;
 		s_CurrentOffset = s_Type->m_nTypeSize;
 	}
 
@@ -904,7 +905,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		s_SourceStream << std::endl;
 	}
 
-	s_SourceStream << "\t*reinterpret_cast<" << s_NormalizedName << "*>(p_Target) = s_Object;" << std::endl;
+	s_SourceStream << "\t*reinterpret_cast<" << s_NormalizedName << "*>(p_Target) = std::move(s_Object);" << std::endl;
 
 	s_SourceStream << "}" << std::endl;
 	s_SourceStream << std::endl;

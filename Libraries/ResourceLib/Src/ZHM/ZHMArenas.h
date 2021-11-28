@@ -1,10 +1,12 @@
 #pragma once
 
 #include <cassert>
+#include <map>
+#include <unordered_map>
+#include <vector>
+#include <tuple>
 
 #include "ZHMInt.h"
-
-#include <vector>
 
 class IZHMTypeInfo;
 
@@ -22,6 +24,11 @@ struct ZHMArena
 	zhmptr_t m_Size;
 	void* m_Buffer;
 	std::vector<IZHMTypeInfo*> m_TypeRegistry;
+	std::unordered_map<IZHMTypeInfo*, uint32_t> m_TypeIndices;
+
+	typedef std::map<zhmptr_t, std::tuple<void*, zhmptr_t>> AllocationMap_t;
+
+	AllocationMap_t m_Allocations;
 
 	ZHMArena() :
 		m_Id(0),
@@ -33,85 +40,93 @@ struct ZHMArena
 	void Initialize(uint32_t p_Id)
 	{
 		m_Id = p_Id;
-	}
 
-	void Resize(zhmptr_t p_NewSize, bool p_DiscardData)
-	{
-		if (m_Size == p_NewSize)
+		if (m_Id == ZHMHeapArenaId)
 		{
-			if (p_DiscardData && m_Buffer)
-				memset(m_Buffer, 0x00, m_Size);
-
-			return;
+			// For heap arenas we allocate a 1 byte zero-byte buffer at the start
+			// which will be used for empty strings.
+			const auto s_Offset = Allocate(1);
+			memset(GetObjectAtOffset<void>(s_Offset), 0x00, 1);
 		}
-
-		void* s_OldBuffer = m_Buffer;
-		const zhmptr_t s_OldSize = m_Size;
-
-		m_Size = p_NewSize;
-		m_Buffer = malloc(m_Size);
-		memset(m_Buffer, 0x00, m_Size);
-
-		if (!p_DiscardData && s_OldBuffer)
-			memcpy(m_Buffer, s_OldBuffer, p_NewSize < s_OldSize ? p_NewSize : s_OldSize);
-
-		if (s_OldBuffer)
-			free(s_OldBuffer);
 	}
 
-	void EnsureEnough(zhmptr_t p_NeededSize)
+	[[nodiscard]] zhmptr_t Allocate(zhmptr_t p_Size)
 	{
-		if (m_Size > p_NeededSize)
-			return;
+		assert(p_Size > 0);
+		assert(m_Id == ZHMHeapArenaId);
 
-		Resize(p_NeededSize, false);
-	}
+		const auto s_AlignedSize = p_Size + (sizeof(zhmptr_t) - (p_Size % sizeof(zhmptr_t)));
 
-	zhmptr_t Allocate(zhmptr_t p_Size, zhmptr_t p_Alignment)
-	{
-		// Align to boundary.
-		if (m_Size % p_Alignment != 0)
-		{
-			const auto s_BytesToSkip = p_Alignment - (m_Size % p_Alignment);
-			EnsureEnough(m_Size + s_BytesToSkip);
-		}
+		// TODO: This is shit because we'll run out of space eventually.
+		// We should instead look for space that's been freed up.
+		const zhmptr_t s_NewSize = m_Size + s_AlignedSize;
 
+		// Check for overflow.
+		assert(s_NewSize > m_Size);
+
+		auto* s_Memory = malloc(s_AlignedSize);
+		m_Allocations[m_Size] = std::make_tuple(s_Memory, s_AlignedSize);
+		
 		const zhmptr_t s_Offset = m_Size;
-		EnsureEnough(p_Size);
+		m_Size = s_NewSize;
+
 		return s_Offset;
 	}
 
+	void Free(zhmptr_t p_Ptr)
+	{
+		assert(m_Id == ZHMHeapArenaId);
+
+		const auto it = m_Allocations.find(p_Ptr);
+
+		if (it == m_Allocations.end())
+			return;
+
+		auto [ s_Memory, s_Size ] = it->second;
+		free(s_Memory);
+
+		m_Allocations.erase(it);
+	}
+
 	template <class T>
-	T* GetObjectAtOffset(zhmptr_t p_Offset) const
+	[[nodiscard]] T* GetObjectAtOffset(zhmptr_t p_Offset) const
 	{
 		assert(p_Offset <= m_Size);
+
+		if (m_Id == ZHMHeapArenaId)
+		{
+			auto it = m_Allocations.find(p_Offset);
+
+			if (it != m_Allocations.end())
+			{
+				auto [ s_Memory, s_Size ] = it->second;
+				return reinterpret_cast<T*>(s_Memory);
+			}
+
+			// If we couldn't immediately find based on key then we look for it manually.
+			// Look for the immediate next allocation and then go backwards.
+			const auto s_UpperBound = AllocationMap_t::const_reverse_iterator(m_Allocations.upper_bound(p_Offset));
+
+			assert(s_UpperBound != m_Allocations.rend());
+
+			for (auto it = s_UpperBound; it != m_Allocations.rend(); ++it)
+			{
+				auto [ s_Memory, s_Size ] = it->second;
+
+				if (p_Offset > it->first && p_Offset <= it->first + s_Size)
+				{
+					return reinterpret_cast<T*>(s_Memory);
+				}
+
+				if (it->first + s_Size < p_Offset)
+				{
+					return nullptr;
+				}
+			}
+		}
+
 		const auto s_StartAddr = reinterpret_cast<uintptr_t>(m_Buffer);
 		return reinterpret_cast<T*>(s_StartAddr + p_Offset);
-	}
-
-	template <class T>
-	bool InArena(T* p_Object) const
-	{
-		const auto s_ObjectAddr = reinterpret_cast<uintptr_t>(p_Object);
-
-		const auto s_ArenaStart = reinterpret_cast<uintptr_t>(m_Buffer);
-		const auto s_ArenaEnd = s_ArenaStart + m_Size;
-
-		return (s_ObjectAddr >= s_ArenaStart && s_ObjectAddr < s_ArenaEnd);
-	}
-
-	template <class T>
-	zhmptr_t GetOffsetOfObject(T* p_Object) const
-	{
-		const auto s_ObjectAddr = reinterpret_cast<uintptr_t>(p_Object);
-
-		const auto s_ArenaStart = reinterpret_cast<uintptr_t>(m_Buffer);
-		const auto s_ArenaEnd = s_ArenaStart + m_Size;
-
-		if (s_ObjectAddr < s_ArenaStart || s_ObjectAddr >= s_ArenaEnd)
-			return ZHMNullPtr;
-
-		return s_ObjectAddr - s_ArenaStart;
 	}
 
 	void SetTypeCount(uint32_t p_TypeCount)
@@ -126,11 +141,29 @@ struct ZHMArena
 			m_TypeRegistry.resize(p_Index + 1);
 
 		m_TypeRegistry[p_Index] = p_Type;
+		m_TypeIndices[p_Type] = p_Index;
 	}
 
-	IZHMTypeInfo* GetType(uint32_t p_Index) const
+	[[nodiscard]] IZHMTypeInfo* GetType(uint32_t p_Index) const
 	{
 		return m_TypeRegistry[p_Index];
+	}
+
+	[[nodiscard]] uint32_t GetTypeIndex(IZHMTypeInfo* p_Type)
+	{
+		auto it = m_TypeIndices.find(p_Type);
+
+		if (it != m_TypeIndices.end())
+		{
+			return it->second;
+		}
+
+		// Type not found, add it.
+		const auto s_Index = static_cast<uint32_t>(m_TypeRegistry.size());
+		m_TypeRegistry.push_back(p_Type);
+		m_TypeIndices[p_Type] = s_Index;
+
+		return s_Index;
 	}
 };
 
@@ -144,27 +177,15 @@ struct ZHMArenas
 		}
 	}
 
-	static inline ZHMArena* GetArena(uint32_t p_ArenaId)
+	[[nodiscard]] static inline ZHMArena* GetArena(uint32_t p_ArenaId)
 	{
 		assert(p_ArenaId < ZHMArenaCount);
 		return &g_Arenas[p_ArenaId];
 	}
 
-	static inline ZHMArena* GetHeapArena()
+	[[nodiscard]] static inline ZHMArena* GetHeapArena()
 	{
 		return &g_Arenas[ZHMHeapArenaId];
-	}
-
-	template <class T>
-	static inline ZHMArena* GetArenaForObject(T* p_Object)
-	{
-		for (uint32_t i = 0; i < ZHMArenaCount; ++i)
-		{
-			if (g_Arenas[i].InArena(p_Object))
-				return &g_Arenas[i];
-		}
-
-		return nullptr;
 	}
 
 private:

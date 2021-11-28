@@ -76,20 +76,13 @@ void ZString::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void ZString::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	// TODO (portable)
-	/*ZString s_String = std::string_view(p_Document);
-	*reinterpret_cast<ZString*>(p_Target) = s_String;*/
+	ZString s_String = std::string_view(p_Document);
+	*reinterpret_cast<ZString*>(p_Target) = s_String;
 }
 
 void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
-	uintptr_t s_StrDataOffset = p_Serializer.WriteMemory(const_cast<void*>(reinterpret_cast<const void*>("\0")), 1, alignof(char*));
-
-	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(ZString, m_nLength), 0 | 0x40000000);
-	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);
-
-	// TODO (portable)
-	/*const auto* s_Object = reinterpret_cast<ZString*>(p_Object);
+	const auto* s_Object = reinterpret_cast<ZString*>(p_Object);
 
 	uintptr_t s_StrDataOffset;
 
@@ -101,12 +94,12 @@ void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_
 		p_Serializer.WriteMemory(&s_StrLen, sizeof(s_StrLen), 4);
 
 		// And then we write the string data, unaligned.
-		s_StrDataOffset = p_Serializer.WriteMemoryUnaligned(const_cast<char*>(s_Object->m_pChars), s_Object->size());
+		s_StrDataOffset = p_Serializer.WriteMemoryUnaligned(const_cast<char*>(s_Object->m_pChars.GetPtr()), s_Object->size());
 	}
 	else
 	{
 		// Otherwise we just write the string data alone.
-		s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars), s_Object->size(), alignof(char*));
+		s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars.GetPtr()), s_Object->size(), alignof(char*));
 	}
 
 	// We append a null terminator here since it looks like some parts of the engine
@@ -118,7 +111,7 @@ void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_
 	// Some strings can have the allocated flag, so we rewrite the length without it
 	// cause otherwise the game will try to do some weird re-allocation shit and crash spectacularly.
 	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(ZString, m_nLength), s_Object->size() | 0x40000000);
-	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);*/
+	p_Serializer.PatchPtr(p_OwnOffset + offsetof(ZString, m_pChars), s_StrDataOffset);
 }
 
 bool ZString::Equals(void* p_Left, void* p_Right)

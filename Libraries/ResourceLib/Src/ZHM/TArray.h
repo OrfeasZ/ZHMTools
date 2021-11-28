@@ -30,28 +30,53 @@ public:
 	{
 	}
 
+	TArray(const TArray<T>& p_Other)
+	{
+		resize(p_Other.size());
+
+		for (size_t i = 0; i < p_Other.size(); ++i)
+			operator[](i) = p_Other[i];
+	}
+
 	TArray(size_t p_Size)
 	{
 		resize(p_Size);
 	}
 
-	void resize(size_t p_Size)
+	~TArray()
 	{
-		if (capacity() >= p_Size)
+		if (capacity() == 0 || m_pBegin.IsNull() || m_pBegin.GetArenaId() != ZHMHeapArenaId)
 			return;
 
-		assert(m_pBegin.GetPtr() == nullptr);
+		auto* s_Arena = ZHMArenas::GetHeapArena();
+		s_Arena->Free(m_pBegin.GetPtrOffset());
+	}
+
+	TArray<T>& operator=(const TArray<T>& p_Other)
+	{
+		resize(p_Other.size());
+
+		for (size_t i = 0; i < p_Other.size(); ++i)
+			operator[](i) = p_Other[i];
+
+		return *this;
+	}
+
+	void resize(size_t p_Size)
+	{
+		if (capacity() == p_Size)
+			return;
+
+		// We only support resizing once.
+		assert(capacity() == 0);
 
 		const auto s_AllocationSize = sizeof(T) * p_Size;
-		auto* s_HeapArena = ZHMArenas::GetHeapArena();
-		const auto s_AllocationOffset = s_HeapArena->Allocate(s_AllocationSize, sizeof(zhmptr_t));
+		auto* s_Arena = ZHMArenas::GetHeapArena();
+	
+		const auto s_AllocationOffset = s_Arena->Allocate(s_AllocationSize);
 
-		m_pBegin.SetArenaId(ZHMHeapArenaId);
-		m_pBegin.SetPtrOffset(s_AllocationOffset);
-
-		m_pEnd.SetArenaId(ZHMHeapArenaId);
-		m_pEnd.SetPtrOffset(s_AllocationOffset + s_AllocationSize);
-
+		m_pBegin.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset);
+		m_pEnd.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset + s_AllocationSize);
 		m_pAllocationEnd = m_pEnd;
 
 		// Initialize all values to defaults.
