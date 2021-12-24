@@ -7,6 +7,8 @@
 #include <fstream>
 #include <unordered_set>
 
+#include "HMAData.h"
+
 void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p_OutputPath)
 {
 	m_PropertyNames.clear();
@@ -125,13 +127,20 @@ std::string GetPropName(const ZClassProperty& p_Prop)
 #if _M_X64
 	if (p_Prop.m_pName)
 		return p_Prop.m_pName;
-#endif
+#else
+	{
+		const auto& s_PropName = HMAData::PropertyNames.find(p_Prop.m_nPropertyID);
 
-	// TODO: Try to lookup name based on hash.
+		if (s_PropName != HMAData::PropertyNames.end())
+			return s_PropName->second;
+	}
+#endif
+	
+	printf("Could not find property name for property '%08X'.\n", p_Prop.m_nPropertyID);
 
 	// Otherwise just generate a name based on the hash.
 	char s_PropName[128];
-	sprintf_s(s_PropName, sizeof(s_PropName), "_%08X", p_Prop.m_nPropertyID);
+	sprintf_s(s_PropName, sizeof(s_PropName), "unk_%08X", p_Prop.m_nPropertyID);
 
 	return s_PropName;
 }
@@ -282,6 +291,21 @@ void CodeGen::GenerateEnum(STypeID* p_Type)
 			s_Enum[it->m_nValue] = it->m_pName;
 			s_Stream << "\t" << it->m_pName << " = " << std::dec << it->m_nValue << "," << std::endl;
 		}
+#else
+		const auto& s_EnumItems = HMAData::Enums.find(s_Type->m_pTypeName);
+
+		if (s_EnumItems == HMAData::Enums.end())
+		{
+			printf("Could not find data for enum with name '%s'.\n", s_Type->m_pTypeName);
+		}
+		else
+		{
+			for (const auto& [s_ItemName, s_ItemValue] : s_EnumItems->second)
+			{
+				s_Enum[s_ItemValue] = s_ItemName;
+				s_Stream << "\t" << s_ItemName << " = " << std::dec << s_ItemValue << "," << std::endl;
+			}
+		}
 #endif
 
 		s_Stream << "};" << std::endl << std::endl;
@@ -302,6 +326,21 @@ void CodeGen::GenerateEnum(STypeID* p_Type)
 		{
 			s_Enum[it->m_nValue] = it->m_pName;
 			s_Stream << "\t" << it->m_pName << " = " << std::dec << it->m_nValue << "," << std::endl;
+		}
+#else
+		const auto& s_EnumItems = HMAData::Enums.find(s_Type->m_pTypeName);
+
+		if (s_EnumItems == HMAData::Enums.end())
+		{
+			printf("Could not find data for enum with name '%s'.\n", s_Type->m_pTypeName);
+		}
+		else
+		{
+			for (const auto& [s_ItemName, s_ItemValue] : s_EnumItems->second)
+			{
+				s_Enum[s_ItemValue] = s_ItemName;
+				s_Stream << "\t" << s_ItemName << " = " << std::dec << s_ItemValue << "," << std::endl;
+			}
 		}
 #endif
 
@@ -998,6 +1037,20 @@ void CodeGen::GenerateReflectiveEnum(STypeID* p_Type)
 #if _M_X64
 	for (auto it = s_Type->m_entries.begin(); it != s_Type->m_entries.end(); ++it)
 		s_Stream << "\t" << it->m_pName << " = " << std::dec << it->m_nValue << "," << std::endl;
+#else
+	const auto& s_EnumItems = HMAData::Enums.find(s_Type->m_pTypeName);
+
+	if (s_EnumItems == HMAData::Enums.end())
+	{
+		printf("Could not find data for enum with name '%s'.\n", s_Type->m_pTypeName);
+	}
+	else
+	{
+		for (const auto& [s_ItemName, s_ItemValue] : s_EnumItems->second)
+		{
+			s_Stream << "\t" << s_ItemName << " = " << std::dec << s_ItemValue << "," << std::endl;
+		}
+	}
 #endif
 
 	s_Stream << "};" << std::endl << std::endl;
