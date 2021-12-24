@@ -1096,15 +1096,15 @@ void SBehaviorTreeEntityReference::WriteJson(void* p_Object, std::ostream& p_Str
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEntityReference*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_AC99E46E") << ":";
+	p_Stream << simdjson::as_json_string("m_bList") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_AC99E46E);
+	p_Stream << simdjson::as_json_string(s_Object->m_bList);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EBF2DC42") << ":";
+	p_Stream << simdjson::as_json_string("m_sName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_EBF2DC42);
+	p_Stream << simdjson::as_json_string(s_Object->m_sName);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -1116,12 +1116,12 @@ void SBehaviorTreeEntityReference::WriteSimpleJson(void* p_Object, std::ostream&
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_AC99E46E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_AC99E46E);
+	p_Stream << simdjson::as_json_string("m_bList") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bList);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EBF2DC42") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_EBF2DC42);
+	p_Stream << simdjson::as_json_string("m_sName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sName);
 
 	p_Stream << "}";
 }
@@ -1130,9 +1130,9 @@ void SBehaviorTreeEntityReference::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SBehaviorTreeEntityReference s_Object {};
 
-	s_Object._AC99E46E = simdjson::from_json_bool(p_Document["_AC99E46E"]);
+	s_Object.m_bList = simdjson::from_json_bool(p_Document["m_bList"]);
 
-	s_Object._EBF2DC42 = std::string_view(p_Document["_EBF2DC42"]);
+	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
 	*reinterpret_cast<SBehaviorTreeEntityReference*>(p_Target) = s_Object;
 }
@@ -1141,7 +1141,7 @@ void SBehaviorTreeEntityReference::Serialize(void* p_Object, ZHMSerializer& p_Se
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEntityReference*>(p_Object);
 
-	ZString::Serialize(&s_Object->_EBF2DC42, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEntityReference, _EBF2DC42));
+	ZString::Serialize(&s_Object->m_sName, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEntityReference, m_sName));
 }
 
 bool SBehaviorTreeEntityReference::Equals(void* p_Left, void* p_Right)
@@ -1157,8 +1157,8 @@ bool SBehaviorTreeEntityReference::operator==(const SBehaviorTreeEntityReference
 	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeEntityReference>)
 		return false;
 
-	if (_AC99E46E != p_Other._AC99E46E) return false;
-	if (_EBF2DC42 != p_Other._EBF2DC42) return false;
+	if (m_bList != p_Other.m_bList) return false;
+	if (m_sName != p_Other.m_sName) return false;
 
 	return true;
 }
@@ -1170,21 +1170,21 @@ void SBehaviorTreeEvaluationLogEntry::WriteJson(void* p_Object, std::ostream& p_
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLogEntry*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_7A22B22E") << ":";
+	p_Stream << simdjson::as_json_string("m_nBehaviorTreeIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7A22B22E);
+	p_Stream << simdjson::as_json_string(s_Object->m_nBehaviorTreeIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_217E868E") << ":";
+	p_Stream << simdjson::as_json_string("m_nConditionOffset") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_217E868E);
+	p_Stream << simdjson::as_json_string(s_Object->m_nConditionOffset);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7E0EAB7D") << ":";
+	p_Stream << simdjson::as_json_string("m_bResult") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7E0EAB7D);
+	p_Stream << simdjson::as_json_string(s_Object->m_bResult);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -1196,16 +1196,16 @@ void SBehaviorTreeEvaluationLogEntry::WriteSimpleJson(void* p_Object, std::ostre
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_7A22B22E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7A22B22E);
+	p_Stream << simdjson::as_json_string("m_nBehaviorTreeIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nBehaviorTreeIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_217E868E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_217E868E);
+	p_Stream << simdjson::as_json_string("m_nConditionOffset") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nConditionOffset);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7E0EAB7D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7E0EAB7D);
+	p_Stream << simdjson::as_json_string("m_bResult") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bResult);
 
 	p_Stream << "}";
 }
@@ -1214,11 +1214,11 @@ void SBehaviorTreeEvaluationLogEntry::FromSimpleJson(simdjson::ondemand::value p
 {
 	SBehaviorTreeEvaluationLogEntry s_Object {};
 
-	s_Object._7A22B22E = simdjson::from_json_uint32(p_Document["_7A22B22E"]);
+	s_Object.m_nBehaviorTreeIndex = simdjson::from_json_uint32(p_Document["m_nBehaviorTreeIndex"]);
 
-	s_Object._217E868E = simdjson::from_json_uint32(p_Document["_217E868E"]);
+	s_Object.m_nConditionOffset = simdjson::from_json_uint32(p_Document["m_nConditionOffset"]);
 
-	s_Object._7E0EAB7D = simdjson::from_json_bool(p_Document["_7E0EAB7D"]);
+	s_Object.m_bResult = simdjson::from_json_bool(p_Document["m_bResult"]);
 
 	*reinterpret_cast<SBehaviorTreeEvaluationLogEntry*>(p_Target) = s_Object;
 }
@@ -1242,9 +1242,9 @@ bool SBehaviorTreeEvaluationLogEntry::operator==(const SBehaviorTreeEvaluationLo
 	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeEvaluationLogEntry>)
 		return false;
 
-	if (_7A22B22E != p_Other._7A22B22E) return false;
-	if (_217E868E != p_Other._217E868E) return false;
-	if (_7E0EAB7D != p_Other._7E0EAB7D) return false;
+	if (m_nBehaviorTreeIndex != p_Other.m_nBehaviorTreeIndex) return false;
+	if (m_nConditionOffset != p_Other.m_nConditionOffset) return false;
+	if (m_bResult != p_Other.m_bResult) return false;
 
 	return true;
 }
@@ -1256,9 +1256,9 @@ void ZResourceID::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZResourceID*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_4FB33326") << ":";
+	p_Stream << simdjson::as_json_string("m_uri") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_4FB33326);
+	p_Stream << simdjson::as_json_string(s_Object->m_uri);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -1270,8 +1270,8 @@ void ZResourceID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_4FB33326") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_4FB33326);
+	p_Stream << simdjson::as_json_string("m_uri") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_uri);
 
 	p_Stream << "}";
 }
@@ -1280,7 +1280,7 @@ void ZResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 {
 	ZResourceID s_Object {};
 
-	s_Object._4FB33326 = std::string_view(p_Document["_4FB33326"]);
+	s_Object.m_uri = std::string_view(p_Document["m_uri"]);
 
 	*reinterpret_cast<ZResourceID*>(p_Target) = s_Object;
 }
@@ -1289,7 +1289,7 @@ void ZResourceID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_
 {
 	auto* s_Object = reinterpret_cast<ZResourceID*>(p_Object);
 
-	ZString::Serialize(&s_Object->_4FB33326, p_Serializer, p_OwnOffset + offsetof(ZResourceID, _4FB33326));
+	ZString::Serialize(&s_Object->m_uri, p_Serializer, p_OwnOffset + offsetof(ZResourceID, m_uri));
 }
 
 bool ZResourceID::Equals(void* p_Left, void* p_Right)
@@ -1305,7 +1305,7 @@ bool ZResourceID::operator==(const ZResourceID& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZResourceID>)
 		return false;
 
-	if (_4FB33326 != p_Other._4FB33326) return false;
+	if (m_uri != p_Other.m_uri) return false;
 
 	return true;
 }
@@ -1317,34 +1317,34 @@ void SBehaviorTreeEvaluationLog::WriteJson(void* p_Object, std::ostream& p_Strea
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLog*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_45584A12") << ":";
+	p_Stream << simdjson::as_json_string("m_BehaviorTrees") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<ZResourceID>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_45584A12.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_BehaviorTrees.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_45584A12[i];
+		auto& s_Item0 = s_Object->m_BehaviorTrees[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("ZResourceID") << ",\"$val\":";
 		ZResourceID::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_45584A12.size() - 1)
+		if (i < s_Object->m_BehaviorTrees.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B80AC610") << ":";
+	p_Stream << simdjson::as_json_string("m_Entries") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SBehaviorTreeEvaluationLogEntry>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B80AC610.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_Entries.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B80AC610[i];
+		auto& s_Item0 = s_Object->m_Entries[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SBehaviorTreeEvaluationLogEntry") << ",\"$val\":";
 		SBehaviorTreeEvaluationLogEntry::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_B80AC610.size() - 1)
+		if (i < s_Object->m_Entries.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -1359,28 +1359,28 @@ void SBehaviorTreeEvaluationLog::WriteSimpleJson(void* p_Object, std::ostream& p
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_45584A12") << ":";
+	p_Stream << simdjson::as_json_string("m_BehaviorTrees") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_45584A12.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_BehaviorTrees.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_45584A12[i];
+		auto& s_Item0 = s_Object->m_BehaviorTrees[i];
 		ZResourceID::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_45584A12.size() - 1)
+		if (i < s_Object->m_BehaviorTrees.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B80AC610") << ":";
+	p_Stream << simdjson::as_json_string("m_Entries") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B80AC610.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_Entries.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B80AC610[i];
+		auto& s_Item0 = s_Object->m_Entries[i];
 		SBehaviorTreeEvaluationLogEntry::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_B80AC610.size() - 1)
+		if (i < s_Object->m_Entries.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -1394,28 +1394,28 @@ void SBehaviorTreeEvaluationLog::FromSimpleJson(simdjson::ondemand::value p_Docu
 	SBehaviorTreeEvaluationLog s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_45584A12"];
-	s_Object._45584A12.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_BehaviorTrees"];
+	s_Object.m_BehaviorTrees.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZResourceID s_ArrayItem0;
 		ZResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._45584A12[s_Index0++] = s_ArrayItem0;
+		s_Object.m_BehaviorTrees[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_B80AC610"];
-	s_Object._B80AC610.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_Entries"];
+	s_Object.m_Entries.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeEvaluationLogEntry s_ArrayItem0;
 		SBehaviorTreeEvaluationLogEntry::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._B80AC610[s_Index0++] = s_ArrayItem0;
+		s_Object.m_Entries[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -1426,8 +1426,8 @@ void SBehaviorTreeEvaluationLog::Serialize(void* p_Object, ZHMSerializer& p_Seri
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLog*>(p_Object);
 
-	TArray<ZResourceID>::Serialize(&s_Object->_45584A12, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, _45584A12));
-	TArray<SBehaviorTreeEvaluationLogEntry>::Serialize(&s_Object->_B80AC610, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, _B80AC610));
+	TArray<ZResourceID>::Serialize(&s_Object->m_BehaviorTrees, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, m_BehaviorTrees));
+	TArray<SBehaviorTreeEvaluationLogEntry>::Serialize(&s_Object->m_Entries, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeEvaluationLog, m_Entries));
 }
 
 bool SBehaviorTreeEvaluationLog::Equals(void* p_Left, void* p_Right)
@@ -1443,8 +1443,8 @@ bool SBehaviorTreeEvaluationLog::operator==(const SBehaviorTreeEvaluationLog& p_
 	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeEvaluationLog>)
 		return false;
 
-	if (_45584A12 != p_Other._45584A12) return false;
-	if (_B80AC610 != p_Other._B80AC610) return false;
+	if (m_BehaviorTrees != p_Other.m_BehaviorTrees) return false;
+	if (m_Entries != p_Other.m_Entries) return false;
 
 	return true;
 }
@@ -1456,9 +1456,9 @@ void SBehaviorTreeInputPinCondition::WriteJson(void* p_Object, std::ostream& p_S
 	auto* s_Object = reinterpret_cast<SBehaviorTreeInputPinCondition*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_EBF2DC42") << ":";
+	p_Stream << simdjson::as_json_string("m_sName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_EBF2DC42);
+	p_Stream << simdjson::as_json_string(s_Object->m_sName);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -1470,8 +1470,8 @@ void SBehaviorTreeInputPinCondition::WriteSimpleJson(void* p_Object, std::ostrea
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_EBF2DC42") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_EBF2DC42);
+	p_Stream << simdjson::as_json_string("m_sName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sName);
 
 	p_Stream << "}";
 }
@@ -1480,7 +1480,7 @@ void SBehaviorTreeInputPinCondition::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SBehaviorTreeInputPinCondition s_Object {};
 
-	s_Object._EBF2DC42 = std::string_view(p_Document["_EBF2DC42"]);
+	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
 	*reinterpret_cast<SBehaviorTreeInputPinCondition*>(p_Target) = s_Object;
 }
@@ -1489,7 +1489,7 @@ void SBehaviorTreeInputPinCondition::Serialize(void* p_Object, ZHMSerializer& p_
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeInputPinCondition*>(p_Object);
 
-	ZString::Serialize(&s_Object->_EBF2DC42, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInputPinCondition, _EBF2DC42));
+	ZString::Serialize(&s_Object->m_sName, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInputPinCondition, m_sName));
 }
 
 bool SBehaviorTreeInputPinCondition::Equals(void* p_Left, void* p_Right)
@@ -1505,7 +1505,7 @@ bool SBehaviorTreeInputPinCondition::operator==(const SBehaviorTreeInputPinCondi
 	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeInputPinCondition>)
 		return false;
 
-	if (_EBF2DC42 != p_Other._EBF2DC42) return false;
+	if (m_sName != p_Other.m_sName) return false;
 
 	return true;
 }
@@ -1517,34 +1517,34 @@ void SBehaviorTreeInfo::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SBehaviorTreeInfo*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_5AFAC781") << ":";
+	p_Stream << simdjson::as_json_string("m_references") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SBehaviorTreeEntityReference>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_5AFAC781.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_references.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_5AFAC781[i];
+		auto& s_Item0 = s_Object->m_references[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SBehaviorTreeEntityReference") << ",\"$val\":";
 		SBehaviorTreeEntityReference::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_5AFAC781.size() - 1)
+		if (i < s_Object->m_references.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5940064D") << ":";
+	p_Stream << simdjson::as_json_string("m_inputPinConditions") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SBehaviorTreeInputPinCondition>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_5940064D.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_inputPinConditions.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_5940064D[i];
+		auto& s_Item0 = s_Object->m_inputPinConditions[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SBehaviorTreeInputPinCondition") << ",\"$val\":";
 		SBehaviorTreeInputPinCondition::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_5940064D.size() - 1)
+		if (i < s_Object->m_inputPinConditions.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -1559,28 +1559,28 @@ void SBehaviorTreeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_5AFAC781") << ":";
+	p_Stream << simdjson::as_json_string("m_references") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_5AFAC781.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_references.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_5AFAC781[i];
+		auto& s_Item0 = s_Object->m_references[i];
 		SBehaviorTreeEntityReference::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_5AFAC781.size() - 1)
+		if (i < s_Object->m_references.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5940064D") << ":";
+	p_Stream << simdjson::as_json_string("m_inputPinConditions") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_5940064D.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_inputPinConditions.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_5940064D[i];
+		auto& s_Item0 = s_Object->m_inputPinConditions[i];
 		SBehaviorTreeInputPinCondition::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_5940064D.size() - 1)
+		if (i < s_Object->m_inputPinConditions.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -1594,28 +1594,28 @@ void SBehaviorTreeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	SBehaviorTreeInfo s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_5AFAC781"];
-	s_Object._5AFAC781.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_references"];
+	s_Object.m_references.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeEntityReference s_ArrayItem0;
 		SBehaviorTreeEntityReference::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._5AFAC781[s_Index0++] = s_ArrayItem0;
+		s_Object.m_references[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_5940064D"];
-	s_Object._5940064D.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_inputPinConditions"];
+	s_Object.m_inputPinConditions.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeInputPinCondition s_ArrayItem0;
 		SBehaviorTreeInputPinCondition::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._5940064D[s_Index0++] = s_ArrayItem0;
+		s_Object.m_inputPinConditions[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -1626,8 +1626,8 @@ void SBehaviorTreeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, z
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeInfo*>(p_Object);
 
-	TArray<SBehaviorTreeEntityReference>::Serialize(&s_Object->_5AFAC781, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, _5AFAC781));
-	TArray<SBehaviorTreeInputPinCondition>::Serialize(&s_Object->_5940064D, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, _5940064D));
+	TArray<SBehaviorTreeEntityReference>::Serialize(&s_Object->m_references, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, m_references));
+	TArray<SBehaviorTreeInputPinCondition>::Serialize(&s_Object->m_inputPinConditions, p_Serializer, p_OwnOffset + offsetof(SBehaviorTreeInfo, m_inputPinConditions));
 }
 
 bool SBehaviorTreeInfo::Equals(void* p_Left, void* p_Right)
@@ -1643,8 +1643,8 @@ bool SBehaviorTreeInfo::operator==(const SBehaviorTreeInfo& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SBehaviorTreeInfo>)
 		return false;
 
-	if (_5AFAC781 != p_Other._5AFAC781) return false;
-	if (_5940064D != p_Other._5940064D) return false;
+	if (m_references != p_Other.m_references) return false;
+	if (m_inputPinConditions != p_Other.m_inputPinConditions) return false;
 
 	return true;
 }
@@ -1656,39 +1656,39 @@ void SBodyPartDamageMultipliers::WriteJson(void* p_Object, std::ostream& p_Strea
 	auto* s_Object = reinterpret_cast<SBodyPartDamageMultipliers*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_ADB3EF29") << ":";
+	p_Stream << simdjson::as_json_string("m_fHeadDamageMultiplier") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_ADB3EF29);
+	p_Stream << simdjson::as_json_string(s_Object->m_fHeadDamageMultiplier);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_DF51096C") << ":";
+	p_Stream << simdjson::as_json_string("m_fFaceDamageMultiplier") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_DF51096C);
+	p_Stream << simdjson::as_json_string(s_Object->m_fFaceDamageMultiplier);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EBC4AEA7") << ":";
+	p_Stream << simdjson::as_json_string("m_fArmDamageMultiplier") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_EBC4AEA7);
+	p_Stream << simdjson::as_json_string(s_Object->m_fArmDamageMultiplier);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B2A446A3") << ":";
+	p_Stream << simdjson::as_json_string("m_fHandDamageMultiplier") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B2A446A3);
+	p_Stream << simdjson::as_json_string(s_Object->m_fHandDamageMultiplier);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_214EB7BD") << ":";
+	p_Stream << simdjson::as_json_string("m_fLegDamageMultiplier") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_214EB7BD);
+	p_Stream << simdjson::as_json_string(s_Object->m_fLegDamageMultiplier);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FB25522A") << ":";
+	p_Stream << simdjson::as_json_string("m_fTorsoDamageMultiplier") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_FB25522A);
+	p_Stream << simdjson::as_json_string(s_Object->m_fTorsoDamageMultiplier);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -1700,28 +1700,28 @@ void SBodyPartDamageMultipliers::WriteSimpleJson(void* p_Object, std::ostream& p
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_ADB3EF29") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_ADB3EF29);
+	p_Stream << simdjson::as_json_string("m_fHeadDamageMultiplier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fHeadDamageMultiplier);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_DF51096C") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_DF51096C);
+	p_Stream << simdjson::as_json_string("m_fFaceDamageMultiplier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fFaceDamageMultiplier);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EBC4AEA7") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_EBC4AEA7);
+	p_Stream << simdjson::as_json_string("m_fArmDamageMultiplier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fArmDamageMultiplier);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B2A446A3") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B2A446A3);
+	p_Stream << simdjson::as_json_string("m_fHandDamageMultiplier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fHandDamageMultiplier);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_214EB7BD") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_214EB7BD);
+	p_Stream << simdjson::as_json_string("m_fLegDamageMultiplier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fLegDamageMultiplier);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FB25522A") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_FB25522A);
+	p_Stream << simdjson::as_json_string("m_fTorsoDamageMultiplier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fTorsoDamageMultiplier);
 
 	p_Stream << "}";
 }
@@ -1730,17 +1730,17 @@ void SBodyPartDamageMultipliers::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SBodyPartDamageMultipliers s_Object {};
 
-	s_Object._ADB3EF29 = simdjson::from_json_float32(p_Document["_ADB3EF29"]);
+	s_Object.m_fHeadDamageMultiplier = simdjson::from_json_float32(p_Document["m_fHeadDamageMultiplier"]);
 
-	s_Object._DF51096C = simdjson::from_json_float32(p_Document["_DF51096C"]);
+	s_Object.m_fFaceDamageMultiplier = simdjson::from_json_float32(p_Document["m_fFaceDamageMultiplier"]);
 
-	s_Object._EBC4AEA7 = simdjson::from_json_float32(p_Document["_EBC4AEA7"]);
+	s_Object.m_fArmDamageMultiplier = simdjson::from_json_float32(p_Document["m_fArmDamageMultiplier"]);
 
-	s_Object._B2A446A3 = simdjson::from_json_float32(p_Document["_B2A446A3"]);
+	s_Object.m_fHandDamageMultiplier = simdjson::from_json_float32(p_Document["m_fHandDamageMultiplier"]);
 
-	s_Object._214EB7BD = simdjson::from_json_float32(p_Document["_214EB7BD"]);
+	s_Object.m_fLegDamageMultiplier = simdjson::from_json_float32(p_Document["m_fLegDamageMultiplier"]);
 
-	s_Object._FB25522A = simdjson::from_json_float32(p_Document["_FB25522A"]);
+	s_Object.m_fTorsoDamageMultiplier = simdjson::from_json_float32(p_Document["m_fTorsoDamageMultiplier"]);
 
 	*reinterpret_cast<SBodyPartDamageMultipliers*>(p_Target) = s_Object;
 }
@@ -1764,12 +1764,12 @@ bool SBodyPartDamageMultipliers::operator==(const SBodyPartDamageMultipliers& p_
 	if constexpr (!ZHMTypeSupportsEquality_v<SBodyPartDamageMultipliers>)
 		return false;
 
-	if (_ADB3EF29 != p_Other._ADB3EF29) return false;
-	if (_DF51096C != p_Other._DF51096C) return false;
-	if (_EBC4AEA7 != p_Other._EBC4AEA7) return false;
-	if (_B2A446A3 != p_Other._B2A446A3) return false;
-	if (_214EB7BD != p_Other._214EB7BD) return false;
-	if (_FB25522A != p_Other._FB25522A) return false;
+	if (m_fHeadDamageMultiplier != p_Other.m_fHeadDamageMultiplier) return false;
+	if (m_fFaceDamageMultiplier != p_Other.m_fFaceDamageMultiplier) return false;
+	if (m_fArmDamageMultiplier != p_Other.m_fArmDamageMultiplier) return false;
+	if (m_fHandDamageMultiplier != p_Other.m_fHandDamageMultiplier) return false;
+	if (m_fLegDamageMultiplier != p_Other.m_fLegDamageMultiplier) return false;
+	if (m_fTorsoDamageMultiplier != p_Other.m_fTorsoDamageMultiplier) return false;
 
 	return true;
 }
@@ -1781,21 +1781,21 @@ void SVector3::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SVector3*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
+	p_Stream << simdjson::as_json_string("x") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
+	p_Stream << simdjson::as_json_string("y") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string(s_Object->y);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_62D277AF") << ":";
+	p_Stream << simdjson::as_json_string("z") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_62D277AF);
+	p_Stream << simdjson::as_json_string(s_Object->z);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -1807,16 +1807,16 @@ void SVector3::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string("x") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string("y") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->y);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_62D277AF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_62D277AF);
+	p_Stream << simdjson::as_json_string("z") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->z);
 
 	p_Stream << "}";
 }
@@ -1825,11 +1825,11 @@ void SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	SVector3 s_Object {};
 
-	s_Object._8CDC1683 = simdjson::from_json_float32(p_Document["_8CDC1683"]);
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object._FBDB2615 = simdjson::from_json_float32(p_Document["_FBDB2615"]);
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
-	s_Object._62D277AF = simdjson::from_json_float32(p_Document["_62D277AF"]);
+	s_Object.z = simdjson::from_json_float32(p_Document["z"]);
 
 	*reinterpret_cast<SVector3*>(p_Target) = s_Object;
 }
@@ -1853,9 +1853,9 @@ bool SVector3::operator==(const SVector3& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SVector3>)
 		return false;
 
-	if (_8CDC1683 != p_Other._8CDC1683) return false;
-	if (_FBDB2615 != p_Other._FBDB2615) return false;
-	if (_62D277AF != p_Other._62D277AF) return false;
+	if (x != p_Other.x) return false;
+	if (y != p_Other.y) return false;
+	if (z != p_Other.z) return false;
 
 	return true;
 }
@@ -1867,17 +1867,17 @@ void SBoneScalesList::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SBoneScalesList*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_DB3D5286") << ":";
+	p_Stream << simdjson::as_json_string("m_aBoneScales") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SVector3>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_DB3D5286.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aBoneScales.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_DB3D5286[i];
+		auto& s_Item0 = s_Object->m_aBoneScales[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
 		SVector3::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_DB3D5286.size() - 1)
+		if (i < s_Object->m_aBoneScales.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -1892,14 +1892,14 @@ void SBoneScalesList::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_DB3D5286") << ":";
+	p_Stream << simdjson::as_json_string("m_aBoneScales") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_DB3D5286.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aBoneScales.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_DB3D5286[i];
+		auto& s_Item0 = s_Object->m_aBoneScales[i];
 		SVector3::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_DB3D5286.size() - 1)
+		if (i < s_Object->m_aBoneScales.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -1913,15 +1913,15 @@ void SBoneScalesList::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	SBoneScalesList s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_DB3D5286"];
-	s_Object._DB3D5286.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBoneScales"];
+	s_Object.m_aBoneScales.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVector3 s_ArrayItem0;
 		SVector3::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._DB3D5286[s_Index0++] = s_ArrayItem0;
+		s_Object.m_aBoneScales[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -1932,7 +1932,7 @@ void SBoneScalesList::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhm
 {
 	auto* s_Object = reinterpret_cast<SBoneScalesList*>(p_Object);
 
-	TArray<SVector3>::Serialize(&s_Object->_DB3D5286, p_Serializer, p_OwnOffset + offsetof(SBoneScalesList, _DB3D5286));
+	TArray<SVector3>::Serialize(&s_Object->m_aBoneScales, p_Serializer, p_OwnOffset + offsetof(SBoneScalesList, m_aBoneScales));
 }
 
 bool SBoneScalesList::Equals(void* p_Left, void* p_Right)
@@ -1948,7 +1948,7 @@ bool SBoneScalesList::operator==(const SBoneScalesList& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SBoneScalesList>)
 		return false;
 
-	if (_DB3D5286 != p_Other._DB3D5286) return false;
+	if (m_aBoneScales != p_Other.m_aBoneScales) return false;
 
 	return true;
 }
@@ -1960,15 +1960,15 @@ void SCPProgressionState::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCPProgressionState*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_5B210A8A") << ":";
+	p_Stream << simdjson::as_json_string("m_iCPIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5B210A8A);
+	p_Stream << simdjson::as_json_string(s_Object->m_iCPIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7A6CA028") << ":";
+	p_Stream << simdjson::as_json_string("m_iDifficulties") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7A6CA028);
+	p_Stream << simdjson::as_json_string(s_Object->m_iDifficulties);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -1980,12 +1980,12 @@ void SCPProgressionState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_5B210A8A") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5B210A8A);
+	p_Stream << simdjson::as_json_string("m_iCPIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iCPIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7A6CA028") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7A6CA028);
+	p_Stream << simdjson::as_json_string("m_iDifficulties") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iDifficulties);
 
 	p_Stream << "}";
 }
@@ -1994,9 +1994,9 @@ void SCPProgressionState::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SCPProgressionState s_Object {};
 
-	s_Object._5B210A8A = simdjson::from_json_int32(p_Document["_5B210A8A"]);
+	s_Object.m_iCPIndex = simdjson::from_json_int32(p_Document["m_iCPIndex"]);
 
-	s_Object._7A6CA028 = simdjson::from_json_uint32(p_Document["_7A6CA028"]);
+	s_Object.m_iDifficulties = simdjson::from_json_uint32(p_Document["m_iDifficulties"]);
 
 	*reinterpret_cast<SCPProgressionState*>(p_Target) = s_Object;
 }
@@ -2020,8 +2020,8 @@ bool SCPProgressionState::operator==(const SCPProgressionState& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCPProgressionState>)
 		return false;
 
-	if (_5B210A8A != p_Other._5B210A8A) return false;
-	if (_7A6CA028 != p_Other._7A6CA028) return false;
+	if (m_iCPIndex != p_Other.m_iCPIndex) return false;
+	if (m_iDifficulties != p_Other.m_iDifficulties) return false;
 
 	return true;
 }
@@ -2033,15 +2033,15 @@ void SSubGoalProgressData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SSubGoalProgressData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_922CA259") << ":";
+	p_Stream << simdjson::as_json_string("m_nProgress") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_922CA259);
+	p_Stream << simdjson::as_json_string(s_Object->m_nProgress);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_695969C0") << ":";
+	p_Stream << simdjson::as_json_string("m_nNeeded") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_695969C0);
+	p_Stream << simdjson::as_json_string(s_Object->m_nNeeded);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -2053,12 +2053,12 @@ void SSubGoalProgressData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_922CA259") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_922CA259);
+	p_Stream << simdjson::as_json_string("m_nProgress") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nProgress);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_695969C0") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_695969C0);
+	p_Stream << simdjson::as_json_string("m_nNeeded") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nNeeded);
 
 	p_Stream << "}";
 }
@@ -2067,9 +2067,9 @@ void SSubGoalProgressData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SSubGoalProgressData s_Object {};
 
-	s_Object._922CA259 = simdjson::from_json_int32(p_Document["_922CA259"]);
+	s_Object.m_nProgress = simdjson::from_json_int32(p_Document["m_nProgress"]);
 
-	s_Object._695969C0 = simdjson::from_json_int32(p_Document["_695969C0"]);
+	s_Object.m_nNeeded = simdjson::from_json_int32(p_Document["m_nNeeded"]);
 
 	*reinterpret_cast<SSubGoalProgressData*>(p_Target) = s_Object;
 }
@@ -2093,8 +2093,8 @@ bool SSubGoalProgressData::operator==(const SSubGoalProgressData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SSubGoalProgressData>)
 		return false;
 
-	if (_922CA259 != p_Other._922CA259) return false;
-	if (_695969C0 != p_Other._695969C0) return false;
+	if (m_nProgress != p_Other.m_nProgress) return false;
+	if (m_nNeeded != p_Other.m_nNeeded) return false;
 
 	return true;
 }
@@ -2106,89 +2106,89 @@ void SFullGoalData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SFullGoalData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_F0A2AB0C") << ":";
+	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_F0A2AB0C)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_F0A2AB0C))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_26ADCCFA") << ":";
+	p_Stream << simdjson::as_json_string("m_nID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_26ADCCFA);
+	p_Stream << simdjson::as_json_string(s_Object->m_nID);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_666BDA3D") << ":";
+	p_Stream << simdjson::as_json_string("m_eMessageText") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("EUIText") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_666BDA3D)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->_666BDA3D))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eMessageText)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->m_eMessageText))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_DB5F5665") << ":";
+	p_Stream << simdjson::as_json_string("m_eFriendMessageText") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("EUIText") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_DB5F5665)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->_DB5F5665))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eFriendMessageText)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->m_eFriendMessageText))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_286EC69B") << ":";
+	p_Stream << simdjson::as_json_string("m_nTimestamp") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int64") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_286EC69B);
+	p_Stream << simdjson::as_json_string(s_Object->m_nTimestamp);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B66149DE") << ":";
+	p_Stream << simdjson::as_json_string("m_nCategory") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B66149DE);
+	p_Stream << simdjson::as_json_string(s_Object->m_nCategory);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6C30550E") << ":";
+	p_Stream << simdjson::as_json_string("m_bHasBeenSent") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C30550E);
+	p_Stream << simdjson::as_json_string(s_Object->m_bHasBeenSent);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_89E24C20") << ":";
+	p_Stream << simdjson::as_json_string("m_bIsSecurityTapeChallenge") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_89E24C20);
+	p_Stream << simdjson::as_json_string(s_Object->m_bIsSecurityTapeChallenge);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F2D0B7CB") << ":";
+	p_Stream << simdjson::as_json_string("m_bTracked") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_F2D0B7CB);
+	p_Stream << simdjson::as_json_string(s_Object->m_bTracked);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AD7C9C45") << ":";
+	p_Stream << simdjson::as_json_string("m_bCompleted") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_AD7C9C45);
+	p_Stream << simdjson::as_json_string(s_Object->m_bCompleted);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E53983D3") << ":";
+	p_Stream << simdjson::as_json_string("m_bHidden") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_E53983D3);
+	p_Stream << simdjson::as_json_string(s_Object->m_bHidden);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_87B6A2FF") << ":";
+	p_Stream << simdjson::as_json_string("m_bLocked") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_87B6A2FF);
+	p_Stream << simdjson::as_json_string(s_Object->m_bLocked);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_D4412377") << ":";
+	p_Stream << simdjson::as_json_string("m_SubgoalProgress") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SSubGoalProgressData>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_D4412377.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_SubgoalProgress.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_D4412377[i];
+		auto& s_Item0 = s_Object->m_SubgoalProgress[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SSubGoalProgressData") << ",\"$val\":";
 		SSubGoalProgressData::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_D4412377.size() - 1)
+		if (i < s_Object->m_SubgoalProgress.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -2203,62 +2203,62 @@ void SFullGoalData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_F0A2AB0C") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_F0A2AB0C)));
+	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_26ADCCFA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_26ADCCFA);
+	p_Stream << simdjson::as_json_string("m_nID") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nID);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_666BDA3D") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->_666BDA3D)));
+	p_Stream << simdjson::as_json_string("m_eMessageText") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->m_eMessageText)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_DB5F5665") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->_DB5F5665)));
+	p_Stream << simdjson::as_json_string("m_eFriendMessageText") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->m_eFriendMessageText)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_286EC69B") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_286EC69B);
+	p_Stream << simdjson::as_json_string("m_nTimestamp") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nTimestamp);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B66149DE") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B66149DE);
+	p_Stream << simdjson::as_json_string("m_nCategory") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nCategory);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6C30550E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C30550E);
+	p_Stream << simdjson::as_json_string("m_bHasBeenSent") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bHasBeenSent);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_89E24C20") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_89E24C20);
+	p_Stream << simdjson::as_json_string("m_bIsSecurityTapeChallenge") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bIsSecurityTapeChallenge);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F2D0B7CB") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_F2D0B7CB);
+	p_Stream << simdjson::as_json_string("m_bTracked") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bTracked);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AD7C9C45") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_AD7C9C45);
+	p_Stream << simdjson::as_json_string("m_bCompleted") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bCompleted);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E53983D3") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_E53983D3);
+	p_Stream << simdjson::as_json_string("m_bHidden") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bHidden);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_87B6A2FF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_87B6A2FF);
+	p_Stream << simdjson::as_json_string("m_bLocked") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bLocked);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_D4412377") << ":";
+	p_Stream << simdjson::as_json_string("m_SubgoalProgress") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_D4412377.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_SubgoalProgress.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_D4412377[i];
+		auto& s_Item0 = s_Object->m_SubgoalProgress[i];
 		SSubGoalProgressData::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_D4412377.size() - 1)
+		if (i < s_Object->m_SubgoalProgress.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -2271,40 +2271,40 @@ void SFullGoalData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SFullGoalData s_Object {};
 
-	s_Object._F0A2AB0C = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["_F0A2AB0C"])));
+	s_Object.m_eLevelIndex = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["m_eLevelIndex"])));
 
-	s_Object._26ADCCFA = simdjson::from_json_int32(p_Document["_26ADCCFA"]);
+	s_Object.m_nID = simdjson::from_json_int32(p_Document["m_nID"]);
 
-	s_Object._666BDA3D = static_cast<EUIText>(ZHMEnums::GetEnumValueByName("EUIText", std::string_view(p_Document["_666BDA3D"])));
+	s_Object.m_eMessageText = static_cast<EUIText>(ZHMEnums::GetEnumValueByName("EUIText", std::string_view(p_Document["m_eMessageText"])));
 
-	s_Object._DB5F5665 = static_cast<EUIText>(ZHMEnums::GetEnumValueByName("EUIText", std::string_view(p_Document["_DB5F5665"])));
+	s_Object.m_eFriendMessageText = static_cast<EUIText>(ZHMEnums::GetEnumValueByName("EUIText", std::string_view(p_Document["m_eFriendMessageText"])));
 
-	s_Object._286EC69B = simdjson::from_json_int64(p_Document["_286EC69B"]);
+	s_Object.m_nTimestamp = simdjson::from_json_int64(p_Document["m_nTimestamp"]);
 
-	s_Object._B66149DE = simdjson::from_json_int32(p_Document["_B66149DE"]);
+	s_Object.m_nCategory = simdjson::from_json_int32(p_Document["m_nCategory"]);
 
-	s_Object._6C30550E = simdjson::from_json_bool(p_Document["_6C30550E"]);
+	s_Object.m_bHasBeenSent = simdjson::from_json_bool(p_Document["m_bHasBeenSent"]);
 
-	s_Object._89E24C20 = simdjson::from_json_bool(p_Document["_89E24C20"]);
+	s_Object.m_bIsSecurityTapeChallenge = simdjson::from_json_bool(p_Document["m_bIsSecurityTapeChallenge"]);
 
-	s_Object._F2D0B7CB = simdjson::from_json_bool(p_Document["_F2D0B7CB"]);
+	s_Object.m_bTracked = simdjson::from_json_bool(p_Document["m_bTracked"]);
 
-	s_Object._AD7C9C45 = simdjson::from_json_bool(p_Document["_AD7C9C45"]);
+	s_Object.m_bCompleted = simdjson::from_json_bool(p_Document["m_bCompleted"]);
 
-	s_Object._E53983D3 = simdjson::from_json_bool(p_Document["_E53983D3"]);
+	s_Object.m_bHidden = simdjson::from_json_bool(p_Document["m_bHidden"]);
 
-	s_Object._87B6A2FF = simdjson::from_json_bool(p_Document["_87B6A2FF"]);
+	s_Object.m_bLocked = simdjson::from_json_bool(p_Document["m_bLocked"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_D4412377"];
-	s_Object._D4412377.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_SubgoalProgress"];
+	s_Object.m_SubgoalProgress.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSubGoalProgressData s_ArrayItem0;
 		SSubGoalProgressData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._D4412377[s_Index0++] = s_ArrayItem0;
+		s_Object.m_SubgoalProgress[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -2315,7 +2315,7 @@ void SFullGoalData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmpt
 {
 	auto* s_Object = reinterpret_cast<SFullGoalData*>(p_Object);
 
-	TArray<SSubGoalProgressData>::Serialize(&s_Object->_D4412377, p_Serializer, p_OwnOffset + offsetof(SFullGoalData, _D4412377));
+	TArray<SSubGoalProgressData>::Serialize(&s_Object->m_SubgoalProgress, p_Serializer, p_OwnOffset + offsetof(SFullGoalData, m_SubgoalProgress));
 }
 
 bool SFullGoalData::Equals(void* p_Left, void* p_Right)
@@ -2331,19 +2331,19 @@ bool SFullGoalData::operator==(const SFullGoalData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SFullGoalData>)
 		return false;
 
-	if (_F0A2AB0C != p_Other._F0A2AB0C) return false;
-	if (_26ADCCFA != p_Other._26ADCCFA) return false;
-	if (_666BDA3D != p_Other._666BDA3D) return false;
-	if (_DB5F5665 != p_Other._DB5F5665) return false;
-	if (_286EC69B != p_Other._286EC69B) return false;
-	if (_B66149DE != p_Other._B66149DE) return false;
-	if (_6C30550E != p_Other._6C30550E) return false;
-	if (_89E24C20 != p_Other._89E24C20) return false;
-	if (_F2D0B7CB != p_Other._F2D0B7CB) return false;
-	if (_AD7C9C45 != p_Other._AD7C9C45) return false;
-	if (_E53983D3 != p_Other._E53983D3) return false;
-	if (_87B6A2FF != p_Other._87B6A2FF) return false;
-	if (_D4412377 != p_Other._D4412377) return false;
+	if (m_eLevelIndex != p_Other.m_eLevelIndex) return false;
+	if (m_nID != p_Other.m_nID) return false;
+	if (m_eMessageText != p_Other.m_eMessageText) return false;
+	if (m_eFriendMessageText != p_Other.m_eFriendMessageText) return false;
+	if (m_nTimestamp != p_Other.m_nTimestamp) return false;
+	if (m_nCategory != p_Other.m_nCategory) return false;
+	if (m_bHasBeenSent != p_Other.m_bHasBeenSent) return false;
+	if (m_bIsSecurityTapeChallenge != p_Other.m_bIsSecurityTapeChallenge) return false;
+	if (m_bTracked != p_Other.m_bTracked) return false;
+	if (m_bCompleted != p_Other.m_bCompleted) return false;
+	if (m_bHidden != p_Other.m_bHidden) return false;
+	if (m_bLocked != p_Other.m_bLocked) return false;
+	if (m_SubgoalProgress != p_Other.m_SubgoalProgress) return false;
 
 	return true;
 }
@@ -2355,32 +2355,32 @@ void SChallengeData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SChallengeData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_99B680D5") << ":";
+	p_Stream << simdjson::as_json_string("m_FullGoalProgess") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SFullGoalData>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_99B680D5.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_FullGoalProgess.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_99B680D5[i];
+		auto& s_Item0 = s_Object->m_FullGoalProgess[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SFullGoalData") << ",\"$val\":";
 		SFullGoalData::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_99B680D5.size() - 1)
+		if (i < s_Object->m_FullGoalProgess.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_954912E4") << ":";
+	p_Stream << simdjson::as_json_string("m_iLastUnlockedChallenge") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_954912E4);
+	p_Stream << simdjson::as_json_string(s_Object->m_iLastUnlockedChallenge);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3A82AA93") << ":";
+	p_Stream << simdjson::as_json_string("m_iNumChallengesCompleted") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3A82AA93);
+	p_Stream << simdjson::as_json_string(s_Object->m_iNumChallengesCompleted);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -2392,26 +2392,26 @@ void SChallengeData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_99B680D5") << ":";
+	p_Stream << simdjson::as_json_string("m_FullGoalProgess") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_99B680D5.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_FullGoalProgess.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_99B680D5[i];
+		auto& s_Item0 = s_Object->m_FullGoalProgess[i];
 		SFullGoalData::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_99B680D5.size() - 1)
+		if (i < s_Object->m_FullGoalProgess.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_954912E4") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_954912E4);
+	p_Stream << simdjson::as_json_string("m_iLastUnlockedChallenge") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iLastUnlockedChallenge);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3A82AA93") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3A82AA93);
+	p_Stream << simdjson::as_json_string("m_iNumChallengesCompleted") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iNumChallengesCompleted);
 
 	p_Stream << "}";
 }
@@ -2421,21 +2421,21 @@ void SChallengeData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	SChallengeData s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_99B680D5"];
-	s_Object._99B680D5.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_FullGoalProgess"];
+	s_Object.m_FullGoalProgess.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SFullGoalData s_ArrayItem0;
 		SFullGoalData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._99B680D5[s_Index0++] = s_ArrayItem0;
+		s_Object.m_FullGoalProgess[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
-	s_Object._954912E4 = simdjson::from_json_int32(p_Document["_954912E4"]);
+	s_Object.m_iLastUnlockedChallenge = simdjson::from_json_int32(p_Document["m_iLastUnlockedChallenge"]);
 
-	s_Object._3A82AA93 = simdjson::from_json_int32(p_Document["_3A82AA93"]);
+	s_Object.m_iNumChallengesCompleted = simdjson::from_json_int32(p_Document["m_iNumChallengesCompleted"]);
 
 	*reinterpret_cast<SChallengeData*>(p_Target) = s_Object;
 }
@@ -2444,7 +2444,7 @@ void SChallengeData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 {
 	auto* s_Object = reinterpret_cast<SChallengeData*>(p_Object);
 
-	TArray<SFullGoalData>::Serialize(&s_Object->_99B680D5, p_Serializer, p_OwnOffset + offsetof(SChallengeData, _99B680D5));
+	TArray<SFullGoalData>::Serialize(&s_Object->m_FullGoalProgess, p_Serializer, p_OwnOffset + offsetof(SChallengeData, m_FullGoalProgess));
 }
 
 bool SChallengeData::Equals(void* p_Left, void* p_Right)
@@ -2460,9 +2460,9 @@ bool SChallengeData::operator==(const SChallengeData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SChallengeData>)
 		return false;
 
-	if (_99B680D5 != p_Other._99B680D5) return false;
-	if (_954912E4 != p_Other._954912E4) return false;
-	if (_3A82AA93 != p_Other._3A82AA93) return false;
+	if (m_FullGoalProgess != p_Other.m_FullGoalProgess) return false;
+	if (m_iLastUnlockedChallenge != p_Other.m_iLastUnlockedChallenge) return false;
+	if (m_iNumChallengesCompleted != p_Other.m_iNumChallengesCompleted) return false;
 
 	return true;
 }
@@ -2523,15 +2523,15 @@ void STokenID::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STokenID*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_CE3E2DE2") << ":";
+	p_Stream << simdjson::as_json_string("m_iValue") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_CE3E2DE2);
+	p_Stream << simdjson::as_json_string(s_Object->m_iValue);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3589B0EA") << ":";
+	p_Stream << simdjson::as_json_string("m_bValid") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3589B0EA);
+	p_Stream << simdjson::as_json_string(s_Object->m_bValid);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -2543,12 +2543,12 @@ void STokenID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_CE3E2DE2") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_CE3E2DE2);
+	p_Stream << simdjson::as_json_string("m_iValue") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iValue);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3589B0EA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3589B0EA);
+	p_Stream << simdjson::as_json_string("m_bValid") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bValid);
 
 	p_Stream << "}";
 }
@@ -2557,9 +2557,9 @@ void STokenID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	STokenID s_Object {};
 
-	s_Object._CE3E2DE2 = simdjson::from_json_uint32(p_Document["_CE3E2DE2"]);
+	s_Object.m_iValue = simdjson::from_json_uint32(p_Document["m_iValue"]);
 
-	s_Object._3589B0EA = simdjson::from_json_bool(p_Document["_3589B0EA"]);
+	s_Object.m_bValid = simdjson::from_json_bool(p_Document["m_bValid"]);
 
 	*reinterpret_cast<STokenID*>(p_Target) = s_Object;
 }
@@ -2583,8 +2583,8 @@ bool STokenID::operator==(const STokenID& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<STokenID>)
 		return false;
 
-	if (_CE3E2DE2 != p_Other._CE3E2DE2) return false;
-	if (_3589B0EA != p_Other._3589B0EA) return false;
+	if (m_iValue != p_Other.m_iValue) return false;
+	if (m_bValid != p_Other.m_bValid) return false;
 
 	return true;
 }
@@ -2596,15 +2596,15 @@ void SCloseCombatWeaponSaveData::WriteJson(void* p_Object, std::ostream& p_Strea
 	auto* s_Object = reinterpret_cast<SCloseCombatWeaponSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_DFE2E88A") << ":";
+	p_Stream << simdjson::as_json_string("m_ID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_DFE2E88A, p_Stream);
+	STokenID::WriteJson(&s_Object->m_ID, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_C82C9569") << ":";
+	p_Stream << simdjson::as_json_string("m_nImpactCount") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_C82C9569);
+	p_Stream << simdjson::as_json_string(s_Object->m_nImpactCount);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -2616,12 +2616,12 @@ void SCloseCombatWeaponSaveData::WriteSimpleJson(void* p_Object, std::ostream& p
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_DFE2E88A") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_DFE2E88A, p_Stream);
+	p_Stream << simdjson::as_json_string("m_ID") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_ID, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_C82C9569") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_C82C9569);
+	p_Stream << simdjson::as_json_string("m_nImpactCount") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nImpactCount);
 
 	p_Stream << "}";
 }
@@ -2632,11 +2632,11 @@ void SCloseCombatWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_DFE2E88A"], &s_Item);
-		s_Object._DFE2E88A = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_ID"], &s_Item);
+		s_Object.m_ID = s_Item;
 	}
 
-	s_Object._C82C9569 = simdjson::from_json_int32(p_Document["_C82C9569"]);
+	s_Object.m_nImpactCount = simdjson::from_json_int32(p_Document["m_nImpactCount"]);
 
 	*reinterpret_cast<SCloseCombatWeaponSaveData*>(p_Target) = s_Object;
 }
@@ -2645,7 +2645,7 @@ void SCloseCombatWeaponSaveData::Serialize(void* p_Object, ZHMSerializer& p_Seri
 {
 	auto* s_Object = reinterpret_cast<SCloseCombatWeaponSaveData*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_DFE2E88A, p_Serializer, p_OwnOffset + offsetof(SCloseCombatWeaponSaveData, _DFE2E88A));
+	STokenID::Serialize(&s_Object->m_ID, p_Serializer, p_OwnOffset + offsetof(SCloseCombatWeaponSaveData, m_ID));
 }
 
 bool SCloseCombatWeaponSaveData::Equals(void* p_Left, void* p_Right)
@@ -2661,8 +2661,8 @@ bool SCloseCombatWeaponSaveData::operator==(const SCloseCombatWeaponSaveData& p_
 	if constexpr (!ZHMTypeSupportsEquality_v<SCloseCombatWeaponSaveData>)
 		return false;
 
-	if (_DFE2E88A != p_Other._DFE2E88A) return false;
-	if (_C82C9569 != p_Other._C82C9569) return false;
+	if (m_ID != p_Other.m_ID) return false;
+	if (m_nImpactCount != p_Other.m_nImpactCount) return false;
 
 	return true;
 }
@@ -2674,9 +2674,9 @@ void SItemSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_DFE2E88A") << ":";
+	p_Stream << simdjson::as_json_string("m_ID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_DFE2E88A, p_Stream);
+	STokenID::WriteJson(&s_Object->m_ID, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -2688,8 +2688,8 @@ void SItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_DFE2E88A") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_DFE2E88A, p_Stream);
+	p_Stream << simdjson::as_json_string("m_ID") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_ID, p_Stream);
 
 	p_Stream << "}";
 }
@@ -2700,8 +2700,8 @@ void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_DFE2E88A"], &s_Item);
-		s_Object._DFE2E88A = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_ID"], &s_Item);
+		s_Object.m_ID = s_Item;
 	}
 
 	*reinterpret_cast<SItemSaveData*>(p_Target) = s_Object;
@@ -2711,7 +2711,7 @@ void SItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmpt
 {
 	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_DFE2E88A, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, _DFE2E88A));
+	STokenID::Serialize(&s_Object->m_ID, p_Serializer, p_OwnOffset + offsetof(SItemSaveData, m_ID));
 }
 
 bool SItemSaveData::Equals(void* p_Left, void* p_Right)
@@ -2727,7 +2727,7 @@ bool SItemSaveData::operator==(const SItemSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SItemSaveData>)
 		return false;
 
-	if (_DFE2E88A != p_Other._DFE2E88A) return false;
+	if (m_ID != p_Other.m_ID) return false;
 
 	return true;
 }
@@ -2739,35 +2739,35 @@ void SRangedWeaponSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SRangedWeaponSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_DFE2E88A") << ":";
+	p_Stream << simdjson::as_json_string("m_ID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_DFE2E88A, p_Stream);
+	STokenID::WriteJson(&s_Object->m_ID, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F6939C84") << ":";
+	p_Stream << simdjson::as_json_string("m_nBulletsInMagazine") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_F6939C84);
+	p_Stream << simdjson::as_json_string(s_Object->m_nBulletsInMagazine);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B00640D9") << ":";
+	p_Stream << simdjson::as_json_string("m_bAltFire") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B00640D9);
+	p_Stream << simdjson::as_json_string(s_Object->m_bAltFire);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_433E339A") << ":";
+	p_Stream << simdjson::as_json_string("m_aUpgradesState") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_433E339A.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aUpgradesState.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_433E339A[i];
+		auto& s_Item0 = s_Object->m_aUpgradesState[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_433E339A.size() - 1)
+		if (i < s_Object->m_aUpgradesState.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -2782,26 +2782,26 @@ void SRangedWeaponSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_DFE2E88A") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_DFE2E88A, p_Stream);
+	p_Stream << simdjson::as_json_string("m_ID") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_ID, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F6939C84") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_F6939C84);
+	p_Stream << simdjson::as_json_string("m_nBulletsInMagazine") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nBulletsInMagazine);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B00640D9") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B00640D9);
+	p_Stream << simdjson::as_json_string("m_bAltFire") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bAltFire);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_433E339A") << ":";
+	p_Stream << simdjson::as_json_string("m_aUpgradesState") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_433E339A.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aUpgradesState.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_433E339A[i];
+		auto& s_Item0 = s_Object->m_aUpgradesState[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_433E339A.size() - 1)
+		if (i < s_Object->m_aUpgradesState.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -2816,22 +2816,22 @@ void SRangedWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_DFE2E88A"], &s_Item);
-		s_Object._DFE2E88A = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_ID"], &s_Item);
+		s_Object.m_ID = s_Item;
 	}
 
-	s_Object._F6939C84 = simdjson::from_json_int32(p_Document["_F6939C84"]);
+	s_Object.m_nBulletsInMagazine = simdjson::from_json_int32(p_Document["m_nBulletsInMagazine"]);
 
-	s_Object._B00640D9 = simdjson::from_json_bool(p_Document["_B00640D9"]);
+	s_Object.m_bAltFire = simdjson::from_json_bool(p_Document["m_bAltFire"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_433E339A"];
-	s_Object._433E339A.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aUpgradesState"];
+	s_Object.m_aUpgradesState.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._433E339A[s_Index0++] = simdjson::from_json_bool(s_Item0);
+		s_Object.m_aUpgradesState[s_Index0++] = simdjson::from_json_bool(s_Item0);
 	}
 	}
 
@@ -2842,8 +2842,8 @@ void SRangedWeaponSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serialize
 {
 	auto* s_Object = reinterpret_cast<SRangedWeaponSaveData*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_DFE2E88A, p_Serializer, p_OwnOffset + offsetof(SRangedWeaponSaveData, _DFE2E88A));
-	TArray<bool>::Serialize(&s_Object->_433E339A, p_Serializer, p_OwnOffset + offsetof(SRangedWeaponSaveData, _433E339A));
+	STokenID::Serialize(&s_Object->m_ID, p_Serializer, p_OwnOffset + offsetof(SRangedWeaponSaveData, m_ID));
+	TArray<bool>::Serialize(&s_Object->m_aUpgradesState, p_Serializer, p_OwnOffset + offsetof(SRangedWeaponSaveData, m_aUpgradesState));
 }
 
 bool SRangedWeaponSaveData::Equals(void* p_Left, void* p_Right)
@@ -2859,10 +2859,10 @@ bool SRangedWeaponSaveData::operator==(const SRangedWeaponSaveData& p_Other) con
 	if constexpr (!ZHMTypeSupportsEquality_v<SRangedWeaponSaveData>)
 		return false;
 
-	if (_DFE2E88A != p_Other._DFE2E88A) return false;
-	if (_F6939C84 != p_Other._F6939C84) return false;
-	if (_B00640D9 != p_Other._B00640D9) return false;
-	if (_433E339A != p_Other._433E339A) return false;
+	if (m_ID != p_Other.m_ID) return false;
+	if (m_nBulletsInMagazine != p_Other.m_nBulletsInMagazine) return false;
+	if (m_bAltFire != p_Other.m_bAltFire) return false;
+	if (m_aUpgradesState != p_Other.m_aUpgradesState) return false;
 
 	return true;
 }
@@ -2874,165 +2874,165 @@ void SCheckpointSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCheckpointSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_B714BBE4") << ":";
+	p_Stream << simdjson::as_json_string("m_iCheckpointCompoundID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B714BBE4);
+	p_Stream << simdjson::as_json_string(s_Object->m_iCheckpointCompoundID);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_87B6A2FF") << ":";
+	p_Stream << simdjson::as_json_string("m_bLocked") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_87B6A2FF);
+	p_Stream << simdjson::as_json_string(s_Object->m_bLocked);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AD7C9C45") << ":";
+	p_Stream << simdjson::as_json_string("m_bCompleted") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_AD7C9C45);
+	p_Stream << simdjson::as_json_string(s_Object->m_bCompleted);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AAD1A263") << ":";
+	p_Stream << simdjson::as_json_string("m_OutfitTokenID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_AAD1A263, p_Stream);
+	STokenID::WriteJson(&s_Object->m_OutfitTokenID, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_79E8EE0C") << ":";
+	p_Stream << simdjson::as_json_string("m_nOutfitVariation") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_79E8EE0C);
+	p_Stream << simdjson::as_json_string(s_Object->m_nOutfitVariation);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A3682C66") << ":";
+	p_Stream << simdjson::as_json_string("m_nAmmoInPocket") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<uint32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_A3682C66.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_nAmmoInPocket.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_A3682C66[i];
+		auto& s_Item0 = s_Object->m_nAmmoInPocket[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_A3682C66.size() - 1)
+		if (i < s_Object->m_nAmmoInPocket.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_40DF8DEA") << ":";
+	p_Stream << simdjson::as_json_string("m_fFocus") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_40DF8DEA);
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocus);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_57F16D6E") << ":";
+	p_Stream << simdjson::as_json_string("m_fHealth") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_57F16D6E);
+	p_Stream << simdjson::as_json_string(s_Object->m_fHealth);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F6EF6776") << ":";
+	p_Stream << simdjson::as_json_string("m_BoolValues") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F6EF6776.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_BoolValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F6EF6776[i];
+		auto& s_Item0 = s_Object->m_BoolValues[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_F6EF6776.size() - 1)
+		if (i < s_Object->m_BoolValues.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F617FC96") << ":";
+	p_Stream << simdjson::as_json_string("m_FloatValues") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<float32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F617FC96.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_FloatValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F617FC96[i];
+		auto& s_Item0 = s_Object->m_FloatValues[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_F617FC96.size() - 1)
+		if (i < s_Object->m_FloatValues.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6C28792D") << ":";
+	p_Stream << simdjson::as_json_string("m_Items") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SItemSaveData>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_6C28792D.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_Items.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_6C28792D[i];
+		auto& s_Item0 = s_Object->m_Items[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SItemSaveData") << ",\"$val\":";
 		SItemSaveData::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_6C28792D.size() - 1)
+		if (i < s_Object->m_Items.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B14E7CA0") << ":";
+	p_Stream << simdjson::as_json_string("m_RangedWeapons") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SRangedWeaponSaveData>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B14E7CA0.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_RangedWeapons.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B14E7CA0[i];
+		auto& s_Item0 = s_Object->m_RangedWeapons[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SRangedWeaponSaveData") << ",\"$val\":";
 		SRangedWeaponSaveData::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_B14E7CA0.size() - 1)
+		if (i < s_Object->m_RangedWeapons.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_694B8AEB") << ":";
+	p_Stream << simdjson::as_json_string("m_CloseCombatdWeapons") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCloseCombatWeaponSaveData>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_694B8AEB.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CloseCombatdWeapons.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_694B8AEB[i];
+		auto& s_Item0 = s_Object->m_CloseCombatdWeapons[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCloseCombatWeaponSaveData") << ",\"$val\":";
 		SCloseCombatWeaponSaveData::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_694B8AEB.size() - 1)
+		if (i < s_Object->m_CloseCombatdWeapons.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A01D27FD") << ":";
+	p_Stream << simdjson::as_json_string("m_iInventorySlot") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_A01D27FD);
+	p_Stream << simdjson::as_json_string(s_Object->m_iInventorySlot);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4E143EF0") << ":";
+	p_Stream << simdjson::as_json_string("m_bInventoryDualWield") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_4E143EF0);
+	p_Stream << simdjson::as_json_string(s_Object->m_bInventoryDualWield);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6441B4DD") << ":";
+	p_Stream << simdjson::as_json_string("m_bInventoryUnholstered") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_6441B4DD);
+	p_Stream << simdjson::as_json_string(s_Object->m_bInventoryUnholstered);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3044,128 +3044,128 @@ void SCheckpointSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_B714BBE4") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B714BBE4);
+	p_Stream << simdjson::as_json_string("m_iCheckpointCompoundID") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iCheckpointCompoundID);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_87B6A2FF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_87B6A2FF);
+	p_Stream << simdjson::as_json_string("m_bLocked") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bLocked);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AD7C9C45") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_AD7C9C45);
+	p_Stream << simdjson::as_json_string("m_bCompleted") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bCompleted);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AAD1A263") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_AAD1A263, p_Stream);
+	p_Stream << simdjson::as_json_string("m_OutfitTokenID") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_OutfitTokenID, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_79E8EE0C") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_79E8EE0C);
+	p_Stream << simdjson::as_json_string("m_nOutfitVariation") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nOutfitVariation);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A3682C66") << ":";
+	p_Stream << simdjson::as_json_string("m_nAmmoInPocket") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_A3682C66.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_nAmmoInPocket.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_A3682C66[i];
+		auto& s_Item0 = s_Object->m_nAmmoInPocket[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_A3682C66.size() - 1)
+		if (i < s_Object->m_nAmmoInPocket.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_40DF8DEA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_40DF8DEA);
+	p_Stream << simdjson::as_json_string("m_fFocus") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocus);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_57F16D6E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_57F16D6E);
+	p_Stream << simdjson::as_json_string("m_fHealth") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fHealth);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F6EF6776") << ":";
+	p_Stream << simdjson::as_json_string("m_BoolValues") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F6EF6776.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_BoolValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F6EF6776[i];
+		auto& s_Item0 = s_Object->m_BoolValues[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_F6EF6776.size() - 1)
+		if (i < s_Object->m_BoolValues.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F617FC96") << ":";
+	p_Stream << simdjson::as_json_string("m_FloatValues") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F617FC96.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_FloatValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F617FC96[i];
+		auto& s_Item0 = s_Object->m_FloatValues[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_F617FC96.size() - 1)
+		if (i < s_Object->m_FloatValues.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6C28792D") << ":";
+	p_Stream << simdjson::as_json_string("m_Items") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_6C28792D.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_Items.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_6C28792D[i];
+		auto& s_Item0 = s_Object->m_Items[i];
 		SItemSaveData::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_6C28792D.size() - 1)
+		if (i < s_Object->m_Items.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B14E7CA0") << ":";
+	p_Stream << simdjson::as_json_string("m_RangedWeapons") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B14E7CA0.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_RangedWeapons.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B14E7CA0[i];
+		auto& s_Item0 = s_Object->m_RangedWeapons[i];
 		SRangedWeaponSaveData::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_B14E7CA0.size() - 1)
+		if (i < s_Object->m_RangedWeapons.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_694B8AEB") << ":";
+	p_Stream << simdjson::as_json_string("m_CloseCombatdWeapons") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_694B8AEB.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CloseCombatdWeapons.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_694B8AEB[i];
+		auto& s_Item0 = s_Object->m_CloseCombatdWeapons[i];
 		SCloseCombatWeaponSaveData::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_694B8AEB.size() - 1)
+		if (i < s_Object->m_CloseCombatdWeapons.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A01D27FD") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_A01D27FD);
+	p_Stream << simdjson::as_json_string("m_iInventorySlot") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iInventorySlot);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4E143EF0") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_4E143EF0);
+	p_Stream << simdjson::as_json_string("m_bInventoryDualWield") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bInventoryDualWield);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6441B4DD") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_6441B4DD);
+	p_Stream << simdjson::as_json_string("m_bInventoryUnholstered") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bInventoryUnholstered);
 
 	p_Stream << "}";
 }
@@ -3174,99 +3174,99 @@ void SCheckpointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SCheckpointSaveData s_Object {};
 
-	s_Object._B714BBE4 = simdjson::from_json_int32(p_Document["_B714BBE4"]);
+	s_Object.m_iCheckpointCompoundID = simdjson::from_json_int32(p_Document["m_iCheckpointCompoundID"]);
 
-	s_Object._87B6A2FF = simdjson::from_json_bool(p_Document["_87B6A2FF"]);
+	s_Object.m_bLocked = simdjson::from_json_bool(p_Document["m_bLocked"]);
 
-	s_Object._AD7C9C45 = simdjson::from_json_bool(p_Document["_AD7C9C45"]);
+	s_Object.m_bCompleted = simdjson::from_json_bool(p_Document["m_bCompleted"]);
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_AAD1A263"], &s_Item);
-		s_Object._AAD1A263 = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_OutfitTokenID"], &s_Item);
+		s_Object.m_OutfitTokenID = s_Item;
 	}
 
-	s_Object._79E8EE0C = simdjson::from_json_int32(p_Document["_79E8EE0C"]);
+	s_Object.m_nOutfitVariation = simdjson::from_json_int32(p_Document["m_nOutfitVariation"]);
 
 	{
 	size_t s_Index0 = 0;
-	for (simdjson::ondemand::value s_Item0 : p_Document["_A3682C66"])
+	for (simdjson::ondemand::value s_Item0 : p_Document["m_nAmmoInPocket"])
 	{
-		s_Object._A3682C66[s_Index0] = simdjson::from_json_uint32(s_Item0);
+		s_Object.m_nAmmoInPocket[s_Index0] = simdjson::from_json_uint32(s_Item0);
 		++s_Index0;
 	}
 	}
 
-	s_Object._40DF8DEA = simdjson::from_json_float32(p_Document["_40DF8DEA"]);
+	s_Object.m_fFocus = simdjson::from_json_float32(p_Document["m_fFocus"]);
 
-	s_Object._57F16D6E = simdjson::from_json_float32(p_Document["_57F16D6E"]);
+	s_Object.m_fHealth = simdjson::from_json_float32(p_Document["m_fHealth"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_F6EF6776"];
-	s_Object._F6EF6776.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_BoolValues"];
+	s_Object.m_BoolValues.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._F6EF6776[s_Index0++] = simdjson::from_json_bool(s_Item0);
+		s_Object.m_BoolValues[s_Index0++] = simdjson::from_json_bool(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_F617FC96"];
-	s_Object._F617FC96.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_FloatValues"];
+	s_Object.m_FloatValues.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._F617FC96[s_Index0++] = simdjson::from_json_float32(s_Item0);
+		s_Object.m_FloatValues[s_Index0++] = simdjson::from_json_float32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_6C28792D"];
-	s_Object._6C28792D.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_Items"];
+	s_Object.m_Items.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SItemSaveData s_ArrayItem0;
 		SItemSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._6C28792D[s_Index0++] = s_ArrayItem0;
+		s_Object.m_Items[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_B14E7CA0"];
-	s_Object._B14E7CA0.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_RangedWeapons"];
+	s_Object.m_RangedWeapons.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SRangedWeaponSaveData s_ArrayItem0;
 		SRangedWeaponSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._B14E7CA0[s_Index0++] = s_ArrayItem0;
+		s_Object.m_RangedWeapons[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_694B8AEB"];
-	s_Object._694B8AEB.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_CloseCombatdWeapons"];
+	s_Object.m_CloseCombatdWeapons.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCloseCombatWeaponSaveData s_ArrayItem0;
 		SCloseCombatWeaponSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._694B8AEB[s_Index0++] = s_ArrayItem0;
+		s_Object.m_CloseCombatdWeapons[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
-	s_Object._A01D27FD = simdjson::from_json_int32(p_Document["_A01D27FD"]);
+	s_Object.m_iInventorySlot = simdjson::from_json_int32(p_Document["m_iInventorySlot"]);
 
-	s_Object._4E143EF0 = simdjson::from_json_bool(p_Document["_4E143EF0"]);
+	s_Object.m_bInventoryDualWield = simdjson::from_json_bool(p_Document["m_bInventoryDualWield"]);
 
-	s_Object._6441B4DD = simdjson::from_json_bool(p_Document["_6441B4DD"]);
+	s_Object.m_bInventoryUnholstered = simdjson::from_json_bool(p_Document["m_bInventoryUnholstered"]);
 
 	*reinterpret_cast<SCheckpointSaveData*>(p_Target) = s_Object;
 }
@@ -3275,13 +3275,13 @@ void SCheckpointSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer,
 {
 	auto* s_Object = reinterpret_cast<SCheckpointSaveData*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_AAD1A263, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, _AAD1A263));
-	TFixedArray<uint32, 8>::Serialize(&s_Object->_A3682C66, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, _A3682C66));
-	TArray<bool>::Serialize(&s_Object->_F6EF6776, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, _F6EF6776));
-	TArray<float32>::Serialize(&s_Object->_F617FC96, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, _F617FC96));
-	TArray<SItemSaveData>::Serialize(&s_Object->_6C28792D, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, _6C28792D));
-	TArray<SRangedWeaponSaveData>::Serialize(&s_Object->_B14E7CA0, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, _B14E7CA0));
-	TArray<SCloseCombatWeaponSaveData>::Serialize(&s_Object->_694B8AEB, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, _694B8AEB));
+	STokenID::Serialize(&s_Object->m_OutfitTokenID, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, m_OutfitTokenID));
+	TFixedArray<uint32, 8>::Serialize(&s_Object->m_nAmmoInPocket, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, m_nAmmoInPocket));
+	TArray<bool>::Serialize(&s_Object->m_BoolValues, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, m_BoolValues));
+	TArray<float32>::Serialize(&s_Object->m_FloatValues, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, m_FloatValues));
+	TArray<SItemSaveData>::Serialize(&s_Object->m_Items, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, m_Items));
+	TArray<SRangedWeaponSaveData>::Serialize(&s_Object->m_RangedWeapons, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, m_RangedWeapons));
+	TArray<SCloseCombatWeaponSaveData>::Serialize(&s_Object->m_CloseCombatdWeapons, p_Serializer, p_OwnOffset + offsetof(SCheckpointSaveData, m_CloseCombatdWeapons));
 }
 
 bool SCheckpointSaveData::Equals(void* p_Left, void* p_Right)
@@ -3297,22 +3297,22 @@ bool SCheckpointSaveData::operator==(const SCheckpointSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCheckpointSaveData>)
 		return false;
 
-	if (_B714BBE4 != p_Other._B714BBE4) return false;
-	if (_87B6A2FF != p_Other._87B6A2FF) return false;
-	if (_AD7C9C45 != p_Other._AD7C9C45) return false;
-	if (_AAD1A263 != p_Other._AAD1A263) return false;
-	if (_79E8EE0C != p_Other._79E8EE0C) return false;
-	if (_A3682C66 != p_Other._A3682C66) return false;
-	if (_40DF8DEA != p_Other._40DF8DEA) return false;
-	if (_57F16D6E != p_Other._57F16D6E) return false;
-	if (_F6EF6776 != p_Other._F6EF6776) return false;
-	if (_F617FC96 != p_Other._F617FC96) return false;
-	if (_6C28792D != p_Other._6C28792D) return false;
-	if (_B14E7CA0 != p_Other._B14E7CA0) return false;
-	if (_694B8AEB != p_Other._694B8AEB) return false;
-	if (_A01D27FD != p_Other._A01D27FD) return false;
-	if (_4E143EF0 != p_Other._4E143EF0) return false;
-	if (_6441B4DD != p_Other._6441B4DD) return false;
+	if (m_iCheckpointCompoundID != p_Other.m_iCheckpointCompoundID) return false;
+	if (m_bLocked != p_Other.m_bLocked) return false;
+	if (m_bCompleted != p_Other.m_bCompleted) return false;
+	if (m_OutfitTokenID != p_Other.m_OutfitTokenID) return false;
+	if (m_nOutfitVariation != p_Other.m_nOutfitVariation) return false;
+	if (m_nAmmoInPocket != p_Other.m_nAmmoInPocket) return false;
+	if (m_fFocus != p_Other.m_fFocus) return false;
+	if (m_fHealth != p_Other.m_fHealth) return false;
+	if (m_BoolValues != p_Other.m_BoolValues) return false;
+	if (m_FloatValues != p_Other.m_FloatValues) return false;
+	if (m_Items != p_Other.m_Items) return false;
+	if (m_RangedWeapons != p_Other.m_RangedWeapons) return false;
+	if (m_CloseCombatdWeapons != p_Other.m_CloseCombatdWeapons) return false;
+	if (m_iInventorySlot != p_Other.m_iInventorySlot) return false;
+	if (m_bInventoryDualWield != p_Other.m_bInventoryDualWield) return false;
+	if (m_bInventoryUnholstered != p_Other.m_bInventoryUnholstered) return false;
 
 	return true;
 }
@@ -3324,27 +3324,27 @@ void float4::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<float4*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
+	p_Stream << simdjson::as_json_string("x") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
+	p_Stream << simdjson::as_json_string("y") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string(s_Object->y);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_62D277AF") << ":";
+	p_Stream << simdjson::as_json_string("z") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_62D277AF);
+	p_Stream << simdjson::as_json_string(s_Object->z);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1C630B12") << ":";
+	p_Stream << simdjson::as_json_string("w") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1C630B12);
+	p_Stream << simdjson::as_json_string(s_Object->w);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3356,20 +3356,20 @@ void float4::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string("x") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string("y") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->y);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_62D277AF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_62D277AF);
+	p_Stream << simdjson::as_json_string("z") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->z);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1C630B12") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1C630B12);
+	p_Stream << simdjson::as_json_string("w") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->w);
 
 	p_Stream << "}";
 }
@@ -3378,13 +3378,13 @@ void float4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 {
 	float4 s_Object {};
 
-	s_Object._8CDC1683 = simdjson::from_json_float32(p_Document["_8CDC1683"]);
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object._FBDB2615 = simdjson::from_json_float32(p_Document["_FBDB2615"]);
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
-	s_Object._62D277AF = simdjson::from_json_float32(p_Document["_62D277AF"]);
+	s_Object.z = simdjson::from_json_float32(p_Document["z"]);
 
-	s_Object._1C630B12 = simdjson::from_json_float32(p_Document["_1C630B12"]);
+	s_Object.w = simdjson::from_json_float32(p_Document["w"]);
 
 	*reinterpret_cast<float4*>(p_Target) = s_Object;
 }
@@ -3408,10 +3408,10 @@ bool float4::operator==(const float4& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<float4>)
 		return false;
 
-	if (_8CDC1683 != p_Other._8CDC1683) return false;
-	if (_FBDB2615 != p_Other._FBDB2615) return false;
-	if (_62D277AF != p_Other._62D277AF) return false;
-	if (_1C630B12 != p_Other._1C630B12) return false;
+	if (x != p_Other.x) return false;
+	if (y != p_Other.y) return false;
+	if (z != p_Other.z) return false;
+	if (w != p_Other.w) return false;
 
 	return true;
 }
@@ -3423,27 +3423,27 @@ void SCollidingParticle::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCollidingParticle*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_E1195483") << ":";
+	p_Stream << simdjson::as_json_string("m_vPosition") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_E1195483, p_Stream);
+	float4::WriteJson(&s_Object->m_vPosition, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_19ED66DF") << ":";
+	p_Stream << simdjson::as_json_string("m_vVelocity") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_19ED66DF, p_Stream);
+	float4::WriteJson(&s_Object->m_vVelocity, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A81A0D87") << ":";
+	p_Stream << simdjson::as_json_string("m_nColor") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_A81A0D87);
+	p_Stream << simdjson::as_json_string(s_Object->m_nColor);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EA119EDC") << ":";
+	p_Stream << simdjson::as_json_string("m_fSize") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_EA119EDC);
+	p_Stream << simdjson::as_json_string(s_Object->m_fSize);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3455,20 +3455,20 @@ void SCollidingParticle::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_E1195483") << ":";
-	float4::WriteSimpleJson(&s_Object->_E1195483, p_Stream);
+	p_Stream << simdjson::as_json_string("m_vPosition") << ":";
+	float4::WriteSimpleJson(&s_Object->m_vPosition, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_19ED66DF") << ":";
-	float4::WriteSimpleJson(&s_Object->_19ED66DF, p_Stream);
+	p_Stream << simdjson::as_json_string("m_vVelocity") << ":";
+	float4::WriteSimpleJson(&s_Object->m_vVelocity, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A81A0D87") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_A81A0D87);
+	p_Stream << simdjson::as_json_string("m_nColor") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nColor);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EA119EDC") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_EA119EDC);
+	p_Stream << simdjson::as_json_string("m_fSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fSize);
 
 	p_Stream << "}";
 }
@@ -3479,19 +3479,19 @@ void SCollidingParticle::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_E1195483"], &s_Item);
-		s_Object._E1195483 = s_Item;
+		float4::FromSimpleJson(p_Document["m_vPosition"], &s_Item);
+		s_Object.m_vPosition = s_Item;
 	}
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_19ED66DF"], &s_Item);
-		s_Object._19ED66DF = s_Item;
+		float4::FromSimpleJson(p_Document["m_vVelocity"], &s_Item);
+		s_Object.m_vVelocity = s_Item;
 	}
 
-	s_Object._A81A0D87 = simdjson::from_json_uint32(p_Document["_A81A0D87"]);
+	s_Object.m_nColor = simdjson::from_json_uint32(p_Document["m_nColor"]);
 
-	s_Object._EA119EDC = simdjson::from_json_float32(p_Document["_EA119EDC"]);
+	s_Object.m_fSize = simdjson::from_json_float32(p_Document["m_fSize"]);
 
 	*reinterpret_cast<SCollidingParticle*>(p_Target) = s_Object;
 }
@@ -3500,8 +3500,8 @@ void SCollidingParticle::Serialize(void* p_Object, ZHMSerializer& p_Serializer, 
 {
 	auto* s_Object = reinterpret_cast<SCollidingParticle*>(p_Object);
 
-	float4::Serialize(&s_Object->_E1195483, p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, _E1195483));
-	float4::Serialize(&s_Object->_19ED66DF, p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, _19ED66DF));
+	float4::Serialize(&s_Object->m_vPosition, p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vPosition));
+	float4::Serialize(&s_Object->m_vVelocity, p_Serializer, p_OwnOffset + offsetof(SCollidingParticle, m_vVelocity));
 }
 
 bool SCollidingParticle::Equals(void* p_Left, void* p_Right)
@@ -3517,10 +3517,10 @@ bool SCollidingParticle::operator==(const SCollidingParticle& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCollidingParticle>)
 		return false;
 
-	if (_E1195483 != p_Other._E1195483) return false;
-	if (_19ED66DF != p_Other._19ED66DF) return false;
-	if (_A81A0D87 != p_Other._A81A0D87) return false;
-	if (_EA119EDC != p_Other._EA119EDC) return false;
+	if (m_vPosition != p_Other.m_vPosition) return false;
+	if (m_vVelocity != p_Other.m_vVelocity) return false;
+	if (m_nColor != p_Other.m_nColor) return false;
+	if (m_fSize != p_Other.m_fSize) return false;
 
 	return true;
 }
@@ -3532,21 +3532,21 @@ void SColorRGB::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SColorRGB*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_6C09FF9D") << ":";
+	p_Stream << simdjson::as_json_string("r") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C09FF9D);
+	p_Stream << simdjson::as_json_string(s_Object->r);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_01D41B76") << ":";
+	p_Stream << simdjson::as_json_string("g") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_01D41B76);
+	p_Stream << simdjson::as_json_string(s_Object->g);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71BEEFF9") << ":";
+	p_Stream << simdjson::as_json_string("b") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_71BEEFF9);
+	p_Stream << simdjson::as_json_string(s_Object->b);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3558,16 +3558,16 @@ void SColorRGB::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_6C09FF9D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C09FF9D);
+	p_Stream << simdjson::as_json_string("r") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->r);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_01D41B76") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_01D41B76);
+	p_Stream << simdjson::as_json_string("g") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->g);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71BEEFF9") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_71BEEFF9);
+	p_Stream << simdjson::as_json_string("b") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->b);
 
 	p_Stream << "}";
 }
@@ -3576,11 +3576,11 @@ void SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	SColorRGB s_Object {};
 
-	s_Object._6C09FF9D = simdjson::from_json_float32(p_Document["_6C09FF9D"]);
+	s_Object.r = simdjson::from_json_float32(p_Document["r"]);
 
-	s_Object._01D41B76 = simdjson::from_json_float32(p_Document["_01D41B76"]);
+	s_Object.g = simdjson::from_json_float32(p_Document["g"]);
 
-	s_Object._71BEEFF9 = simdjson::from_json_float32(p_Document["_71BEEFF9"]);
+	s_Object.b = simdjson::from_json_float32(p_Document["b"]);
 
 	*reinterpret_cast<SColorRGB*>(p_Target) = s_Object;
 }
@@ -3604,9 +3604,9 @@ bool SColorRGB::operator==(const SColorRGB& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SColorRGB>)
 		return false;
 
-	if (_6C09FF9D != p_Other._6C09FF9D) return false;
-	if (_01D41B76 != p_Other._01D41B76) return false;
-	if (_71BEEFF9 != p_Other._71BEEFF9) return false;
+	if (r != p_Other.r) return false;
+	if (g != p_Other.g) return false;
+	if (b != p_Other.b) return false;
 
 	return true;
 }
@@ -3618,27 +3618,27 @@ void SColorRGBA::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SColorRGBA*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_6C09FF9D") << ":";
+	p_Stream << simdjson::as_json_string("r") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C09FF9D);
+	p_Stream << simdjson::as_json_string(s_Object->r);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_01D41B76") << ":";
+	p_Stream << simdjson::as_json_string("g") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_01D41B76);
+	p_Stream << simdjson::as_json_string(s_Object->g);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71BEEFF9") << ":";
+	p_Stream << simdjson::as_json_string("b") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_71BEEFF9);
+	p_Stream << simdjson::as_json_string(s_Object->b);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E8B7BE43") << ":";
+	p_Stream << simdjson::as_json_string("a") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_E8B7BE43);
+	p_Stream << simdjson::as_json_string(s_Object->a);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3650,20 +3650,20 @@ void SColorRGBA::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_6C09FF9D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C09FF9D);
+	p_Stream << simdjson::as_json_string("r") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->r);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_01D41B76") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_01D41B76);
+	p_Stream << simdjson::as_json_string("g") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->g);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71BEEFF9") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_71BEEFF9);
+	p_Stream << simdjson::as_json_string("b") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->b);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E8B7BE43") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_E8B7BE43);
+	p_Stream << simdjson::as_json_string("a") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->a);
 
 	p_Stream << "}";
 }
@@ -3672,13 +3672,13 @@ void SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SColorRGBA s_Object {};
 
-	s_Object._6C09FF9D = simdjson::from_json_float32(p_Document["_6C09FF9D"]);
+	s_Object.r = simdjson::from_json_float32(p_Document["r"]);
 
-	s_Object._01D41B76 = simdjson::from_json_float32(p_Document["_01D41B76"]);
+	s_Object.g = simdjson::from_json_float32(p_Document["g"]);
 
-	s_Object._71BEEFF9 = simdjson::from_json_float32(p_Document["_71BEEFF9"]);
+	s_Object.b = simdjson::from_json_float32(p_Document["b"]);
 
-	s_Object._E8B7BE43 = simdjson::from_json_float32(p_Document["_E8B7BE43"]);
+	s_Object.a = simdjson::from_json_float32(p_Document["a"]);
 
 	*reinterpret_cast<SColorRGBA*>(p_Target) = s_Object;
 }
@@ -3702,10 +3702,10 @@ bool SColorRGBA::operator==(const SColorRGBA& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SColorRGBA>)
 		return false;
 
-	if (_6C09FF9D != p_Other._6C09FF9D) return false;
-	if (_01D41B76 != p_Other._01D41B76) return false;
-	if (_71BEEFF9 != p_Other._71BEEFF9) return false;
-	if (_E8B7BE43 != p_Other._E8B7BE43) return false;
+	if (r != p_Other.r) return false;
+	if (g != p_Other.g) return false;
+	if (b != p_Other.b) return false;
+	if (a != p_Other.a) return false;
 
 	return true;
 }
@@ -3766,21 +3766,21 @@ void SConditionBase::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_4D167DA0") << ":";
+	p_Stream << simdjson::as_json_string("eConditionType") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ECompiledConditionType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_4D167DA0)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECompiledConditionType", static_cast<int>(s_Object->_4D167DA0))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->eConditionType)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECompiledConditionType", static_cast<int>(s_Object->eConditionType))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4C7AD911") << ":";
+	p_Stream << simdjson::as_json_string("nConditionModifiers") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_4C7AD911);
+	p_Stream << simdjson::as_json_string(s_Object->nConditionModifiers);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5A1512A0") << ":";
+	p_Stream << simdjson::as_json_string("assignTo") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZBehaviorTreeVariable") << ",\"$val\":";
-	ZBehaviorTreeVariable::WriteJson(&s_Object->_5A1512A0, p_Stream);
+	ZBehaviorTreeVariable::WriteJson(&s_Object->assignTo, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3792,16 +3792,16 @@ void SConditionBase::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_4D167DA0") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECompiledConditionType", static_cast<int>(s_Object->_4D167DA0)));
+	p_Stream << simdjson::as_json_string("eConditionType") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECompiledConditionType", static_cast<int>(s_Object->eConditionType)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4C7AD911") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_4C7AD911);
+	p_Stream << simdjson::as_json_string("nConditionModifiers") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nConditionModifiers);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5A1512A0") << ":";
-	ZBehaviorTreeVariable::WriteSimpleJson(&s_Object->_5A1512A0, p_Stream);
+	p_Stream << simdjson::as_json_string("assignTo") << ":";
+	ZBehaviorTreeVariable::WriteSimpleJson(&s_Object->assignTo, p_Stream);
 
 	p_Stream << "}";
 }
@@ -3810,14 +3810,14 @@ void SConditionBase::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SConditionBase s_Object {};
 
-	s_Object._4D167DA0 = static_cast<ECompiledConditionType>(ZHMEnums::GetEnumValueByName("ECompiledConditionType", std::string_view(p_Document["_4D167DA0"])));
+	s_Object.eConditionType = static_cast<ECompiledConditionType>(ZHMEnums::GetEnumValueByName("ECompiledConditionType", std::string_view(p_Document["eConditionType"])));
 
-	s_Object._4C7AD911 = simdjson::from_json_uint32(p_Document["_4C7AD911"]);
+	s_Object.nConditionModifiers = simdjson::from_json_uint32(p_Document["nConditionModifiers"]);
 
 	{
 		ZBehaviorTreeVariable s_Item {};
-		ZBehaviorTreeVariable::FromSimpleJson(p_Document["_5A1512A0"], &s_Item);
-		s_Object._5A1512A0 = s_Item;
+		ZBehaviorTreeVariable::FromSimpleJson(p_Document["assignTo"], &s_Item);
+		s_Object.assignTo = s_Item;
 	}
 
 	*reinterpret_cast<SConditionBase*>(p_Target) = s_Object;
@@ -3827,7 +3827,7 @@ void SConditionBase::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 {
 	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
 
-	ZBehaviorTreeVariable::Serialize(&s_Object->_5A1512A0, p_Serializer, p_OwnOffset + offsetof(SConditionBase, _5A1512A0));
+	ZBehaviorTreeVariable::Serialize(&s_Object->assignTo, p_Serializer, p_OwnOffset + offsetof(SConditionBase, assignTo));
 }
 
 bool SConditionBase::Equals(void* p_Left, void* p_Right)
@@ -3843,9 +3843,9 @@ bool SConditionBase::operator==(const SConditionBase& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SConditionBase>)
 		return false;
 
-	if (_4D167DA0 != p_Other._4D167DA0) return false;
-	if (_4C7AD911 != p_Other._4C7AD911) return false;
-	if (_5A1512A0 != p_Other._5A1512A0) return false;
+	if (eConditionType != p_Other.eConditionType) return false;
+	if (nConditionModifiers != p_Other.nConditionModifiers) return false;
+	if (assignTo != p_Other.assignTo) return false;
 
 	return true;
 }
@@ -3857,9 +3857,9 @@ void SContentKitBaseState::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SContentKitBaseState*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_16021251") << ":";
+	p_Stream << simdjson::as_json_string("m_iKitState") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_16021251);
+	p_Stream << simdjson::as_json_string(s_Object->m_iKitState);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3871,8 +3871,8 @@ void SContentKitBaseState::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_16021251") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_16021251);
+	p_Stream << simdjson::as_json_string("m_iKitState") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iKitState);
 
 	p_Stream << "}";
 }
@@ -3881,7 +3881,7 @@ void SContentKitBaseState::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SContentKitBaseState s_Object {};
 
-	s_Object._16021251 = simdjson::from_json_uint8(p_Document["_16021251"]);
+	s_Object.m_iKitState = simdjson::from_json_uint8(p_Document["m_iKitState"]);
 
 	*reinterpret_cast<SContentKitBaseState*>(p_Target) = s_Object;
 }
@@ -3905,7 +3905,7 @@ bool SContentKitBaseState::operator==(const SContentKitBaseState& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SContentKitBaseState>)
 		return false;
 
-	if (_16021251 != p_Other._16021251) return false;
+	if (m_iKitState != p_Other.m_iKitState) return false;
 
 	return true;
 }
@@ -3917,21 +3917,21 @@ void SContractUnlockStatus::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SContractUnlockStatus*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_09C31EA4") << ":";
+	p_Stream << simdjson::as_json_string("bUnlocked") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_09C31EA4);
+	p_Stream << simdjson::as_json_string(s_Object->bUnlocked);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9361233F") << ":";
+	p_Stream << simdjson::as_json_string("eLevelIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_9361233F)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_9361233F))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->eLevelIndex))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3BD872AF") << ":";
+	p_Stream << simdjson::as_json_string("iContractIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3BD872AF);
+	p_Stream << simdjson::as_json_string(s_Object->iContractIndex);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -3943,16 +3943,16 @@ void SContractUnlockStatus::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_09C31EA4") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_09C31EA4);
+	p_Stream << simdjson::as_json_string("bUnlocked") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->bUnlocked);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9361233F") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_9361233F)));
+	p_Stream << simdjson::as_json_string("eLevelIndex") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->eLevelIndex)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3BD872AF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3BD872AF);
+	p_Stream << simdjson::as_json_string("iContractIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->iContractIndex);
 
 	p_Stream << "}";
 }
@@ -3961,11 +3961,11 @@ void SContractUnlockStatus::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SContractUnlockStatus s_Object {};
 
-	s_Object._09C31EA4 = simdjson::from_json_bool(p_Document["_09C31EA4"]);
+	s_Object.bUnlocked = simdjson::from_json_bool(p_Document["bUnlocked"]);
 
-	s_Object._9361233F = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["_9361233F"])));
+	s_Object.eLevelIndex = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["eLevelIndex"])));
 
-	s_Object._3BD872AF = simdjson::from_json_int32(p_Document["_3BD872AF"]);
+	s_Object.iContractIndex = simdjson::from_json_int32(p_Document["iContractIndex"]);
 
 	*reinterpret_cast<SContractUnlockStatus*>(p_Target) = s_Object;
 }
@@ -3989,9 +3989,9 @@ bool SContractUnlockStatus::operator==(const SContractUnlockStatus& p_Other) con
 	if constexpr (!ZHMTypeSupportsEquality_v<SContractUnlockStatus>)
 		return false;
 
-	if (_09C31EA4 != p_Other._09C31EA4) return false;
-	if (_9361233F != p_Other._9361233F) return false;
-	if (_3BD872AF != p_Other._3BD872AF) return false;
+	if (bUnlocked != p_Other.bUnlocked) return false;
+	if (eLevelIndex != p_Other.eLevelIndex) return false;
+	if (iContractIndex != p_Other.iContractIndex) return false;
 
 	return true;
 }
@@ -4003,23 +4003,23 @@ void SContractSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SContractSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_C8FF2BBE") << ":";
+	p_Stream << simdjson::as_json_string("bTutorialPlayed") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_C8FF2BBE);
+	p_Stream << simdjson::as_json_string(s_Object->bTutorialPlayed);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5685F5AA") << ":";
+	p_Stream << simdjson::as_json_string("aLocalContractUnlockStatusData") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SContractUnlockStatus>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_5685F5AA.size(); ++i)
+	for (size_t i = 0; i < s_Object->aLocalContractUnlockStatusData.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_5685F5AA[i];
+		auto& s_Item0 = s_Object->aLocalContractUnlockStatusData[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SContractUnlockStatus") << ",\"$val\":";
 		SContractUnlockStatus::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_5685F5AA.size() - 1)
+		if (i < s_Object->aLocalContractUnlockStatusData.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -4034,18 +4034,18 @@ void SContractSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_C8FF2BBE") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_C8FF2BBE);
+	p_Stream << simdjson::as_json_string("bTutorialPlayed") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->bTutorialPlayed);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5685F5AA") << ":";
+	p_Stream << simdjson::as_json_string("aLocalContractUnlockStatusData") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_5685F5AA.size(); ++i)
+	for (size_t i = 0; i < s_Object->aLocalContractUnlockStatusData.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_5685F5AA[i];
+		auto& s_Item0 = s_Object->aLocalContractUnlockStatusData[i];
 		SContractUnlockStatus::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_5685F5AA.size() - 1)
+		if (i < s_Object->aLocalContractUnlockStatusData.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -4058,18 +4058,18 @@ void SContractSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SContractSaveData s_Object {};
 
-	s_Object._C8FF2BBE = simdjson::from_json_bool(p_Document["_C8FF2BBE"]);
+	s_Object.bTutorialPlayed = simdjson::from_json_bool(p_Document["bTutorialPlayed"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_5685F5AA"];
-	s_Object._5685F5AA.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["aLocalContractUnlockStatusData"];
+	s_Object.aLocalContractUnlockStatusData.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SContractUnlockStatus s_ArrayItem0;
 		SContractUnlockStatus::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._5685F5AA[s_Index0++] = s_ArrayItem0;
+		s_Object.aLocalContractUnlockStatusData[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -4080,7 +4080,7 @@ void SContractSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, z
 {
 	auto* s_Object = reinterpret_cast<SContractSaveData*>(p_Object);
 
-	TArray<SContractUnlockStatus>::Serialize(&s_Object->_5685F5AA, p_Serializer, p_OwnOffset + offsetof(SContractSaveData, _5685F5AA));
+	TArray<SContractUnlockStatus>::Serialize(&s_Object->aLocalContractUnlockStatusData, p_Serializer, p_OwnOffset + offsetof(SContractSaveData, aLocalContractUnlockStatusData));
 }
 
 bool SContractSaveData::Equals(void* p_Left, void* p_Right)
@@ -4096,8 +4096,8 @@ bool SContractSaveData::operator==(const SContractSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SContractSaveData>)
 		return false;
 
-	if (_C8FF2BBE != p_Other._C8FF2BBE) return false;
-	if (_5685F5AA != p_Other._5685F5AA) return false;
+	if (bTutorialPlayed != p_Other.bTutorialPlayed) return false;
+	if (aLocalContractUnlockStatusData != p_Other.aLocalContractUnlockStatusData) return false;
 
 	return true;
 }
@@ -4109,15 +4109,15 @@ void SEntityTemplateProperty::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SEntityTemplateProperty*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_DF9B3B62") << ":";
+	p_Stream << simdjson::as_json_string("nPropertyID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_DF9B3B62);
+	p_Stream << simdjson::as_json_string(s_Object->nPropertyID);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1D775834") << ":";
+	p_Stream << simdjson::as_json_string("value") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZVariant") << ",\"$val\":";
-	ZVariant::WriteJson(&s_Object->_1D775834, p_Stream);
+	ZVariant::WriteJson(&s_Object->value, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -4129,12 +4129,19 @@ void SEntityTemplateProperty::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_DF9B3B62") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_DF9B3B62);
+	p_Stream << simdjson::as_json_string("nPropertyID") << ":";
+	{
+		auto s_PropertyName = ZHMProperties::PropertyToString(s_Object->nPropertyID);
+
+		if (s_PropertyName.size() == 0)
+			p_Stream << simdjson::as_json_string(s_Object->nPropertyID);
+		else
+			p_Stream << simdjson::as_json_string(s_PropertyName);
+	}
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1D775834") << ":";
-	ZVariant::WriteSimpleJson(&s_Object->_1D775834, p_Stream);
+	p_Stream << simdjson::as_json_string("value") << ":";
+	ZVariant::WriteSimpleJson(&s_Object->value, p_Stream);
 
 	p_Stream << "}";
 }
@@ -4143,12 +4150,15 @@ void SEntityTemplateProperty::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SEntityTemplateProperty s_Object {};
 
-	s_Object._DF9B3B62 = simdjson::from_json_uint32(p_Document["_DF9B3B62"]);
+	if (p_Document["nPropertyID"].type() == simdjson::ondemand::json_type::string)
+		s_Object.nPropertyID = Hash::Crc32(std::string_view(p_Document["nPropertyID"]));
+	else
+		s_Object.nPropertyID = simdjson::from_json_uint32(p_Document["nPropertyID"]);
 
 	{
 		ZVariant s_Item {};
-		ZVariant::FromSimpleJson(p_Document["_1D775834"], &s_Item);
-		s_Object._1D775834 = s_Item;
+		ZVariant::FromSimpleJson(p_Document["value"], &s_Item);
+		s_Object.value = s_Item;
 	}
 
 	*reinterpret_cast<SEntityTemplateProperty*>(p_Target) = s_Object;
@@ -4158,7 +4168,7 @@ void SEntityTemplateProperty::Serialize(void* p_Object, ZHMSerializer& p_Seriali
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplateProperty*>(p_Object);
 
-	ZVariant::Serialize(&s_Object->_1D775834, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateProperty, _1D775834));
+	ZVariant::Serialize(&s_Object->value, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateProperty, value));
 }
 
 bool SEntityTemplateProperty::Equals(void* p_Left, void* p_Right)
@@ -4174,8 +4184,8 @@ bool SEntityTemplateProperty::operator==(const SEntityTemplateProperty& p_Other)
 	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplateProperty>)
 		return false;
 
-	if (_DF9B3B62 != p_Other._DF9B3B62) return false;
-	if (_1D775834 != p_Other._1D775834) return false;
+	if (nPropertyID != p_Other.nPropertyID) return false;
+	if (value != p_Other.value) return false;
 
 	return true;
 }
@@ -4187,23 +4197,23 @@ void SCppEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCppEntity*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_891D57ED") << ":";
+	p_Stream << simdjson::as_json_string("blueprintIndexInResourceHeader") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_891D57ED);
+	p_Stream << simdjson::as_json_string(s_Object->blueprintIndexInResourceHeader);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71206441") << ":";
+	p_Stream << simdjson::as_json_string("propertyValues") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_71206441.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_71206441[i];
+		auto& s_Item0 = s_Object->propertyValues[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
 		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_71206441.size() - 1)
+		if (i < s_Object->propertyValues.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -4218,18 +4228,18 @@ void SCppEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_891D57ED") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_891D57ED);
+	p_Stream << simdjson::as_json_string("blueprintIndexInResourceHeader") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->blueprintIndexInResourceHeader);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71206441") << ":";
+	p_Stream << simdjson::as_json_string("propertyValues") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_71206441.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_71206441[i];
+		auto& s_Item0 = s_Object->propertyValues[i];
 		SEntityTemplateProperty::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_71206441.size() - 1)
+		if (i < s_Object->propertyValues.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -4242,18 +4252,18 @@ void SCppEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SCppEntity s_Object {};
 
-	s_Object._891D57ED = simdjson::from_json_int32(p_Document["_891D57ED"]);
+	s_Object.blueprintIndexInResourceHeader = simdjson::from_json_int32(p_Document["blueprintIndexInResourceHeader"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_71206441"];
-	s_Object._71206441.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["propertyValues"];
+	s_Object.propertyValues.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._71206441[s_Index0++] = s_ArrayItem0;
+		s_Object.propertyValues[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -4264,7 +4274,7 @@ void SCppEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t
 {
 	auto* s_Object = reinterpret_cast<SCppEntity*>(p_Object);
 
-	TArray<SEntityTemplateProperty>::Serialize(&s_Object->_71206441, p_Serializer, p_OwnOffset + offsetof(SCppEntity, _71206441));
+	TArray<SEntityTemplateProperty>::Serialize(&s_Object->propertyValues, p_Serializer, p_OwnOffset + offsetof(SCppEntity, propertyValues));
 }
 
 bool SCppEntity::Equals(void* p_Left, void* p_Right)
@@ -4280,8 +4290,8 @@ bool SCppEntity::operator==(const SCppEntity& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCppEntity>)
 		return false;
 
-	if (_891D57ED != p_Other._891D57ED) return false;
-	if (_71206441 != p_Other._71206441) return false;
+	if (blueprintIndexInResourceHeader != p_Other.blueprintIndexInResourceHeader) return false;
+	if (propertyValues != p_Other.propertyValues) return false;
 
 	return true;
 }
@@ -4293,21 +4303,21 @@ void SCppEntitySubsetInfo::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCppEntitySubsetInfo*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_5E237E06") << ":";
+	p_Stream << simdjson::as_json_string("name") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5E237E06);
+	p_Stream << simdjson::as_json_string(s_Object->name);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8CDE5729") << ":";
+	p_Stream << simdjson::as_json_string("type") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->_8CDE5729, p_Stream);
+	TypeID::WriteJson(&s_Object->type, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0B0541BA") << ":";
+	p_Stream << simdjson::as_json_string("flags") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_0B0541BA);
+	p_Stream << simdjson::as_json_string(s_Object->flags);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -4319,16 +4329,16 @@ void SCppEntitySubsetInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_5E237E06") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5E237E06);
+	p_Stream << simdjson::as_json_string("name") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->name);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8CDE5729") << ":";
-	TypeID::WriteSimpleJson(&s_Object->_8CDE5729, p_Stream);
+	p_Stream << simdjson::as_json_string("type") << ":";
+	TypeID::WriteSimpleJson(&s_Object->type, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0B0541BA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_0B0541BA);
+	p_Stream << simdjson::as_json_string("flags") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->flags);
 
 	p_Stream << "}";
 }
@@ -4337,15 +4347,15 @@ void SCppEntitySubsetInfo::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SCppEntitySubsetInfo s_Object {};
 
-	s_Object._5E237E06 = std::string_view(p_Document["_5E237E06"]);
+	s_Object.name = std::string_view(p_Document["name"]);
 
 	{
 		TypeID s_Item {};
-		TypeID::FromSimpleJson(p_Document["_8CDE5729"], &s_Item);
-		s_Object._8CDE5729 = s_Item;
+		TypeID::FromSimpleJson(p_Document["type"], &s_Item);
+		s_Object.type = s_Item;
 	}
 
-	s_Object._0B0541BA = simdjson::from_json_uint32(p_Document["_0B0541BA"]);
+	s_Object.flags = simdjson::from_json_uint32(p_Document["flags"]);
 
 	*reinterpret_cast<SCppEntitySubsetInfo*>(p_Target) = s_Object;
 }
@@ -4354,8 +4364,8 @@ void SCppEntitySubsetInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer
 {
 	auto* s_Object = reinterpret_cast<SCppEntitySubsetInfo*>(p_Object);
 
-	ZString::Serialize(&s_Object->_5E237E06, p_Serializer, p_OwnOffset + offsetof(SCppEntitySubsetInfo, _5E237E06));
-	TypeID::Serialize(&s_Object->_8CDE5729, p_Serializer, p_OwnOffset + offsetof(SCppEntitySubsetInfo, _8CDE5729));
+	ZString::Serialize(&s_Object->name, p_Serializer, p_OwnOffset + offsetof(SCppEntitySubsetInfo, name));
+	TypeID::Serialize(&s_Object->type, p_Serializer, p_OwnOffset + offsetof(SCppEntitySubsetInfo, type));
 }
 
 bool SCppEntitySubsetInfo::Equals(void* p_Left, void* p_Right)
@@ -4371,9 +4381,9 @@ bool SCppEntitySubsetInfo::operator==(const SCppEntitySubsetInfo& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCppEntitySubsetInfo>)
 		return false;
 
-	if (_5E237E06 != p_Other._5E237E06) return false;
-	if (_8CDE5729 != p_Other._8CDE5729) return false;
-	if (_0B0541BA != p_Other._0B0541BA) return false;
+	if (name != p_Other.name) return false;
+	if (type != p_Other.type) return false;
+	if (flags != p_Other.flags) return false;
 
 	return true;
 }
@@ -4385,23 +4395,23 @@ void SCppEntityBlueprint::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCppEntityBlueprint*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_B16D2E23") << ":";
+	p_Stream << simdjson::as_json_string("typeName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->_B16D2E23, p_Stream);
+	TypeID::WriteJson(&s_Object->typeName, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4D38375A") << ":";
+	p_Stream << simdjson::as_json_string("subsets") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCppEntitySubsetInfo>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4D38375A.size(); ++i)
+	for (size_t i = 0; i < s_Object->subsets.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4D38375A[i];
+		auto& s_Item0 = s_Object->subsets[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCppEntitySubsetInfo") << ",\"$val\":";
 		SCppEntitySubsetInfo::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_4D38375A.size() - 1)
+		if (i < s_Object->subsets.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -4416,18 +4426,18 @@ void SCppEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_B16D2E23") << ":";
-	TypeID::WriteSimpleJson(&s_Object->_B16D2E23, p_Stream);
+	p_Stream << simdjson::as_json_string("typeName") << ":";
+	TypeID::WriteSimpleJson(&s_Object->typeName, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4D38375A") << ":";
+	p_Stream << simdjson::as_json_string("subsets") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4D38375A.size(); ++i)
+	for (size_t i = 0; i < s_Object->subsets.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4D38375A[i];
+		auto& s_Item0 = s_Object->subsets[i];
 		SCppEntitySubsetInfo::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_4D38375A.size() - 1)
+		if (i < s_Object->subsets.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -4442,20 +4452,20 @@ void SCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	{
 		TypeID s_Item {};
-		TypeID::FromSimpleJson(p_Document["_B16D2E23"], &s_Item);
-		s_Object._B16D2E23 = s_Item;
+		TypeID::FromSimpleJson(p_Document["typeName"], &s_Item);
+		s_Object.typeName = s_Item;
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_4D38375A"];
-	s_Object._4D38375A.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["subsets"];
+	s_Object.subsets.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCppEntitySubsetInfo s_ArrayItem0;
 		SCppEntitySubsetInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._4D38375A[s_Index0++] = s_ArrayItem0;
+		s_Object.subsets[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -4466,8 +4476,8 @@ void SCppEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer,
 {
 	auto* s_Object = reinterpret_cast<SCppEntityBlueprint*>(p_Object);
 
-	TypeID::Serialize(&s_Object->_B16D2E23, p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, _B16D2E23));
-	TArray<SCppEntitySubsetInfo>::Serialize(&s_Object->_4D38375A, p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, _4D38375A));
+	TypeID::Serialize(&s_Object->typeName, p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, typeName));
+	TArray<SCppEntitySubsetInfo>::Serialize(&s_Object->subsets, p_Serializer, p_OwnOffset + offsetof(SCppEntityBlueprint, subsets));
 }
 
 bool SCppEntityBlueprint::Equals(void* p_Left, void* p_Right)
@@ -4483,8 +4493,8 @@ bool SCppEntityBlueprint::operator==(const SCppEntityBlueprint& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCppEntityBlueprint>)
 		return false;
 
-	if (_B16D2E23 != p_Other._B16D2E23) return false;
-	if (_4D38375A != p_Other._4D38375A) return false;
+	if (typeName != p_Other.typeName) return false;
+	if (subsets != p_Other.subsets) return false;
 
 	return true;
 }
@@ -4496,46 +4506,46 @@ void SCppEntityTemplate::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCppEntityTemplate*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_5F09C136") << ":";
+	p_Stream << simdjson::as_json_string("moduleName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5F09C136);
+	p_Stream << simdjson::as_json_string(s_Object->moduleName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B16D2E23") << ":";
+	p_Stream << simdjson::as_json_string("typeName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->_B16D2E23, p_Stream);
+	TypeID::WriteJson(&s_Object->typeName, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71206441") << ":";
+	p_Stream << simdjson::as_json_string("propertyValues") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_71206441.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_71206441[i];
+		auto& s_Item0 = s_Object->propertyValues[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
 		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_71206441.size() - 1)
+		if (i < s_Object->propertyValues.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4D38375A") << ":";
+	p_Stream << simdjson::as_json_string("subsets") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCppEntitySubsetInfo>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4D38375A.size(); ++i)
+	for (size_t i = 0; i < s_Object->subsets.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4D38375A[i];
+		auto& s_Item0 = s_Object->subsets[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCppEntitySubsetInfo") << ",\"$val\":";
 		SCppEntitySubsetInfo::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_4D38375A.size() - 1)
+		if (i < s_Object->subsets.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -4550,36 +4560,36 @@ void SCppEntityTemplate::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_5F09C136") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5F09C136);
+	p_Stream << simdjson::as_json_string("moduleName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->moduleName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B16D2E23") << ":";
-	TypeID::WriteSimpleJson(&s_Object->_B16D2E23, p_Stream);
+	p_Stream << simdjson::as_json_string("typeName") << ":";
+	TypeID::WriteSimpleJson(&s_Object->typeName, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71206441") << ":";
+	p_Stream << simdjson::as_json_string("propertyValues") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_71206441.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_71206441[i];
+		auto& s_Item0 = s_Object->propertyValues[i];
 		SEntityTemplateProperty::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_71206441.size() - 1)
+		if (i < s_Object->propertyValues.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4D38375A") << ":";
+	p_Stream << simdjson::as_json_string("subsets") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4D38375A.size(); ++i)
+	for (size_t i = 0; i < s_Object->subsets.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4D38375A[i];
+		auto& s_Item0 = s_Object->subsets[i];
 		SCppEntitySubsetInfo::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_4D38375A.size() - 1)
+		if (i < s_Object->subsets.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -4592,37 +4602,37 @@ void SCppEntityTemplate::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SCppEntityTemplate s_Object {};
 
-	s_Object._5F09C136 = std::string_view(p_Document["_5F09C136"]);
+	s_Object.moduleName = std::string_view(p_Document["moduleName"]);
 
 	{
 		TypeID s_Item {};
-		TypeID::FromSimpleJson(p_Document["_B16D2E23"], &s_Item);
-		s_Object._B16D2E23 = s_Item;
+		TypeID::FromSimpleJson(p_Document["typeName"], &s_Item);
+		s_Object.typeName = s_Item;
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_71206441"];
-	s_Object._71206441.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["propertyValues"];
+	s_Object.propertyValues.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._71206441[s_Index0++] = s_ArrayItem0;
+		s_Object.propertyValues[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_4D38375A"];
-	s_Object._4D38375A.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["subsets"];
+	s_Object.subsets.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCppEntitySubsetInfo s_ArrayItem0;
 		SCppEntitySubsetInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._4D38375A[s_Index0++] = s_ArrayItem0;
+		s_Object.subsets[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -4633,10 +4643,10 @@ void SCppEntityTemplate::Serialize(void* p_Object, ZHMSerializer& p_Serializer, 
 {
 	auto* s_Object = reinterpret_cast<SCppEntityTemplate*>(p_Object);
 
-	ZString::Serialize(&s_Object->_5F09C136, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, _5F09C136));
-	TypeID::Serialize(&s_Object->_B16D2E23, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, _B16D2E23));
-	TArray<SEntityTemplateProperty>::Serialize(&s_Object->_71206441, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, _71206441));
-	TArray<SCppEntitySubsetInfo>::Serialize(&s_Object->_4D38375A, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, _4D38375A));
+	ZString::Serialize(&s_Object->moduleName, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, moduleName));
+	TypeID::Serialize(&s_Object->typeName, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, typeName));
+	TArray<SEntityTemplateProperty>::Serialize(&s_Object->propertyValues, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, propertyValues));
+	TArray<SCppEntitySubsetInfo>::Serialize(&s_Object->subsets, p_Serializer, p_OwnOffset + offsetof(SCppEntityTemplate, subsets));
 }
 
 bool SCppEntityTemplate::Equals(void* p_Left, void* p_Right)
@@ -4652,10 +4662,10 @@ bool SCppEntityTemplate::operator==(const SCppEntityTemplate& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCppEntityTemplate>)
 		return false;
 
-	if (_5F09C136 != p_Other._5F09C136) return false;
-	if (_B16D2E23 != p_Other._B16D2E23) return false;
-	if (_71206441 != p_Other._71206441) return false;
-	if (_4D38375A != p_Other._4D38375A) return false;
+	if (moduleName != p_Other.moduleName) return false;
+	if (typeName != p_Other.typeName) return false;
+	if (propertyValues != p_Other.propertyValues) return false;
+	if (subsets != p_Other.subsets) return false;
 
 	return true;
 }
@@ -4667,17 +4677,17 @@ void SCrowdCells::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCrowdCells*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_193674BC") << ":";
+	p_Stream << simdjson::as_json_string("m_cells") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<uint8>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_193674BC.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_cells.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_193674BC[i];
+		auto& s_Item0 = s_Object->m_cells[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_193674BC.size() - 1)
+		if (i < s_Object->m_cells.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -4692,14 +4702,14 @@ void SCrowdCells::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_193674BC") << ":";
+	p_Stream << simdjson::as_json_string("m_cells") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_193674BC.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_cells.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_193674BC[i];
+		auto& s_Item0 = s_Object->m_cells[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_193674BC.size() - 1)
+		if (i < s_Object->m_cells.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -4714,9 +4724,9 @@ void SCrowdCells::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 	{
 	size_t s_Index0 = 0;
-	for (simdjson::ondemand::value s_Item0 : p_Document["_193674BC"])
+	for (simdjson::ondemand::value s_Item0 : p_Document["m_cells"])
 	{
-		s_Object._193674BC[s_Index0] = simdjson::from_json_uint8(s_Item0);
+		s_Object.m_cells[s_Index0] = simdjson::from_json_uint8(s_Item0);
 		++s_Index0;
 	}
 	}
@@ -4728,7 +4738,7 @@ void SCrowdCells::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_
 {
 	auto* s_Object = reinterpret_cast<SCrowdCells*>(p_Object);
 
-	TFixedArray<uint8, 128>::Serialize(&s_Object->_193674BC, p_Serializer, p_OwnOffset + offsetof(SCrowdCells, _193674BC));
+	TFixedArray<uint8, 128>::Serialize(&s_Object->m_cells, p_Serializer, p_OwnOffset + offsetof(SCrowdCells, m_cells));
 }
 
 bool SCrowdCells::Equals(void* p_Left, void* p_Right)
@@ -4744,7 +4754,7 @@ bool SCrowdCells::operator==(const SCrowdCells& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdCells>)
 		return false;
 
-	if (_193674BC != p_Other._193674BC) return false;
+	if (m_cells != p_Other.m_cells) return false;
 
 	return true;
 }
@@ -4756,34 +4766,34 @@ void SCrowdFlowChannel::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCrowdFlowChannel*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_090A18A1") << ":";
+	p_Stream << simdjson::as_json_string("m_aFlowVectorIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint8>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_090A18A1.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aFlowVectorIndex.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_090A18A1[i];
+		auto& s_Item0 = s_Object->m_aFlowVectorIndex[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_090A18A1.size() - 1)
+		if (i < s_Object->m_aFlowVectorIndex.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7B24AA84") << ":";
+	p_Stream << simdjson::as_json_string("m_aFlowCost") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7B24AA84.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aFlowCost.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7B24AA84[i];
+		auto& s_Item0 = s_Object->m_aFlowCost[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint16") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_7B24AA84.size() - 1)
+		if (i < s_Object->m_aFlowCost.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -4798,28 +4808,28 @@ void SCrowdFlowChannel::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_090A18A1") << ":";
+	p_Stream << simdjson::as_json_string("m_aFlowVectorIndex") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_090A18A1.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aFlowVectorIndex.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_090A18A1[i];
+		auto& s_Item0 = s_Object->m_aFlowVectorIndex[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_090A18A1.size() - 1)
+		if (i < s_Object->m_aFlowVectorIndex.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7B24AA84") << ":";
+	p_Stream << simdjson::as_json_string("m_aFlowCost") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7B24AA84.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aFlowCost.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7B24AA84[i];
+		auto& s_Item0 = s_Object->m_aFlowCost[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_7B24AA84.size() - 1)
+		if (i < s_Object->m_aFlowCost.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -4833,24 +4843,24 @@ void SCrowdFlowChannel::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	SCrowdFlowChannel s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_090A18A1"];
-	s_Object._090A18A1.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFlowVectorIndex"];
+	s_Object.m_aFlowVectorIndex.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._090A18A1[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+		s_Object.m_aFlowVectorIndex[s_Index0++] = simdjson::from_json_uint8(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_7B24AA84"];
-	s_Object._7B24AA84.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFlowCost"];
+	s_Object.m_aFlowCost.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._7B24AA84[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+		s_Object.m_aFlowCost[s_Index0++] = simdjson::from_json_uint16(s_Item0);
 	}
 	}
 
@@ -4861,8 +4871,8 @@ void SCrowdFlowChannel::Serialize(void* p_Object, ZHMSerializer& p_Serializer, z
 {
 	auto* s_Object = reinterpret_cast<SCrowdFlowChannel*>(p_Object);
 
-	TArray<uint8>::Serialize(&s_Object->_090A18A1, p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, _090A18A1));
-	TArray<uint16>::Serialize(&s_Object->_7B24AA84, p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, _7B24AA84));
+	TArray<uint8>::Serialize(&s_Object->m_aFlowVectorIndex, p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, m_aFlowVectorIndex));
+	TArray<uint16>::Serialize(&s_Object->m_aFlowCost, p_Serializer, p_OwnOffset + offsetof(SCrowdFlowChannel, m_aFlowCost));
 }
 
 bool SCrowdFlowChannel::Equals(void* p_Left, void* p_Right)
@@ -4878,8 +4888,8 @@ bool SCrowdFlowChannel::operator==(const SCrowdFlowChannel& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdFlowChannel>)
 		return false;
 
-	if (_090A18A1 != p_Other._090A18A1) return false;
-	if (_7B24AA84 != p_Other._7B24AA84) return false;
+	if (m_aFlowVectorIndex != p_Other.m_aFlowVectorIndex) return false;
+	if (m_aFlowCost != p_Other.m_aFlowCost) return false;
 
 	return true;
 }
@@ -4891,27 +4901,27 @@ void SMatrix::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SMatrix*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_CA3885CF") << ":";
+	p_Stream << simdjson::as_json_string("XAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_CA3885CF, p_Stream);
+	float4::WriteJson(&s_Object->XAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F758AC7F") << ":";
+	p_Stream << simdjson::as_json_string("YAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_F758AC7F, p_Stream);
+	float4::WriteJson(&s_Object->YAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B0F8D6AF") << ":";
+	p_Stream << simdjson::as_json_string("ZAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_B0F8D6AF, p_Stream);
+	float4::WriteJson(&s_Object->ZAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B1E031B9") << ":";
+	p_Stream << simdjson::as_json_string("Trans") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_B1E031B9, p_Stream);
+	float4::WriteJson(&s_Object->Trans, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -4923,20 +4933,20 @@ void SMatrix::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_CA3885CF") << ":";
-	float4::WriteSimpleJson(&s_Object->_CA3885CF, p_Stream);
+	p_Stream << simdjson::as_json_string("XAxis") << ":";
+	float4::WriteSimpleJson(&s_Object->XAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F758AC7F") << ":";
-	float4::WriteSimpleJson(&s_Object->_F758AC7F, p_Stream);
+	p_Stream << simdjson::as_json_string("YAxis") << ":";
+	float4::WriteSimpleJson(&s_Object->YAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B0F8D6AF") << ":";
-	float4::WriteSimpleJson(&s_Object->_B0F8D6AF, p_Stream);
+	p_Stream << simdjson::as_json_string("ZAxis") << ":";
+	float4::WriteSimpleJson(&s_Object->ZAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B1E031B9") << ":";
-	float4::WriteSimpleJson(&s_Object->_B1E031B9, p_Stream);
+	p_Stream << simdjson::as_json_string("Trans") << ":";
+	float4::WriteSimpleJson(&s_Object->Trans, p_Stream);
 
 	p_Stream << "}";
 }
@@ -4947,26 +4957,26 @@ void SMatrix::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_CA3885CF"], &s_Item);
-		s_Object._CA3885CF = s_Item;
+		float4::FromSimpleJson(p_Document["XAxis"], &s_Item);
+		s_Object.XAxis = s_Item;
 	}
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_F758AC7F"], &s_Item);
-		s_Object._F758AC7F = s_Item;
+		float4::FromSimpleJson(p_Document["YAxis"], &s_Item);
+		s_Object.YAxis = s_Item;
 	}
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_B0F8D6AF"], &s_Item);
-		s_Object._B0F8D6AF = s_Item;
+		float4::FromSimpleJson(p_Document["ZAxis"], &s_Item);
+		s_Object.ZAxis = s_Item;
 	}
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_B1E031B9"], &s_Item);
-		s_Object._B1E031B9 = s_Item;
+		float4::FromSimpleJson(p_Document["Trans"], &s_Item);
+		s_Object.Trans = s_Item;
 	}
 
 	*reinterpret_cast<SMatrix*>(p_Target) = s_Object;
@@ -4976,10 +4986,10 @@ void SMatrix::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_
 {
 	auto* s_Object = reinterpret_cast<SMatrix*>(p_Object);
 
-	float4::Serialize(&s_Object->_CA3885CF, p_Serializer, p_OwnOffset + offsetof(SMatrix, _CA3885CF));
-	float4::Serialize(&s_Object->_F758AC7F, p_Serializer, p_OwnOffset + offsetof(SMatrix, _F758AC7F));
-	float4::Serialize(&s_Object->_B0F8D6AF, p_Serializer, p_OwnOffset + offsetof(SMatrix, _B0F8D6AF));
-	float4::Serialize(&s_Object->_B1E031B9, p_Serializer, p_OwnOffset + offsetof(SMatrix, _B1E031B9));
+	float4::Serialize(&s_Object->XAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix, XAxis));
+	float4::Serialize(&s_Object->YAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix, YAxis));
+	float4::Serialize(&s_Object->ZAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix, ZAxis));
+	float4::Serialize(&s_Object->Trans, p_Serializer, p_OwnOffset + offsetof(SMatrix, Trans));
 }
 
 bool SMatrix::Equals(void* p_Left, void* p_Right)
@@ -4995,10 +5005,10 @@ bool SMatrix::operator==(const SMatrix& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix>)
 		return false;
 
-	if (_CA3885CF != p_Other._CA3885CF) return false;
-	if (_F758AC7F != p_Other._F758AC7F) return false;
-	if (_B0F8D6AF != p_Other._B0F8D6AF) return false;
-	if (_B1E031B9 != p_Other._B1E031B9) return false;
+	if (XAxis != p_Other.XAxis) return false;
+	if (YAxis != p_Other.YAxis) return false;
+	if (ZAxis != p_Other.ZAxis) return false;
+	if (Trans != p_Other.Trans) return false;
 
 	return true;
 }
@@ -5010,27 +5020,27 @@ void SVector4::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SVector4*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
+	p_Stream << simdjson::as_json_string("x") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
+	p_Stream << simdjson::as_json_string("y") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string(s_Object->y);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_62D277AF") << ":";
+	p_Stream << simdjson::as_json_string("z") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_62D277AF);
+	p_Stream << simdjson::as_json_string(s_Object->z);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1C630B12") << ":";
+	p_Stream << simdjson::as_json_string("w") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1C630B12);
+	p_Stream << simdjson::as_json_string(s_Object->w);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -5042,20 +5052,20 @@ void SVector4::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string("x") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string("y") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->y);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_62D277AF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_62D277AF);
+	p_Stream << simdjson::as_json_string("z") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->z);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1C630B12") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1C630B12);
+	p_Stream << simdjson::as_json_string("w") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->w);
 
 	p_Stream << "}";
 }
@@ -5064,13 +5074,13 @@ void SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	SVector4 s_Object {};
 
-	s_Object._8CDC1683 = simdjson::from_json_float32(p_Document["_8CDC1683"]);
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object._FBDB2615 = simdjson::from_json_float32(p_Document["_FBDB2615"]);
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
-	s_Object._62D277AF = simdjson::from_json_float32(p_Document["_62D277AF"]);
+	s_Object.z = simdjson::from_json_float32(p_Document["z"]);
 
-	s_Object._1C630B12 = simdjson::from_json_float32(p_Document["_1C630B12"]);
+	s_Object.w = simdjson::from_json_float32(p_Document["w"]);
 
 	*reinterpret_cast<SVector4*>(p_Target) = s_Object;
 }
@@ -5094,10 +5104,10 @@ bool SVector4::operator==(const SVector4& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SVector4>)
 		return false;
 
-	if (_8CDC1683 != p_Other._8CDC1683) return false;
-	if (_FBDB2615 != p_Other._FBDB2615) return false;
-	if (_62D277AF != p_Other._62D277AF) return false;
-	if (_1C630B12 != p_Other._1C630B12) return false;
+	if (x != p_Other.x) return false;
+	if (y != p_Other.y) return false;
+	if (z != p_Other.z) return false;
+	if (w != p_Other.w) return false;
 
 	return true;
 }
@@ -5109,15 +5119,15 @@ void ZCrowdGridPoint::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZCrowdGridPoint*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_1A38845D") << ":";
+	p_Stream << simdjson::as_json_string("m_nHeightOffset") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1A38845D);
+	p_Stream << simdjson::as_json_string(s_Object->m_nHeightOffset);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2352A656") << ":";
+	p_Stream << simdjson::as_json_string("m_nOnNavGrid") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2352A656);
+	p_Stream << simdjson::as_json_string(s_Object->m_nOnNavGrid);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -5129,12 +5139,12 @@ void ZCrowdGridPoint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_1A38845D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1A38845D);
+	p_Stream << simdjson::as_json_string("m_nHeightOffset") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nHeightOffset);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2352A656") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2352A656);
+	p_Stream << simdjson::as_json_string("m_nOnNavGrid") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nOnNavGrid);
 
 	p_Stream << "}";
 }
@@ -5143,9 +5153,9 @@ void ZCrowdGridPoint::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	ZCrowdGridPoint s_Object {};
 
-	s_Object._1A38845D = simdjson::from_json_int16(p_Document["_1A38845D"]);
+	s_Object.m_nHeightOffset = simdjson::from_json_int16(p_Document["m_nHeightOffset"]);
 
-	s_Object._2352A656 = simdjson::from_json_uint8(p_Document["_2352A656"]);
+	s_Object.m_nOnNavGrid = simdjson::from_json_uint8(p_Document["m_nOnNavGrid"]);
 
 	*reinterpret_cast<ZCrowdGridPoint*>(p_Target) = s_Object;
 }
@@ -5169,8 +5179,8 @@ bool ZCrowdGridPoint::operator==(const ZCrowdGridPoint& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZCrowdGridPoint>)
 		return false;
 
-	if (_1A38845D != p_Other._1A38845D) return false;
-	if (_2352A656 != p_Other._2352A656) return false;
+	if (m_nHeightOffset != p_Other.m_nHeightOffset) return false;
+	if (m_nOnNavGrid != p_Other.m_nOnNavGrid) return false;
 
 	return true;
 }
@@ -5182,126 +5192,126 @@ void SCrowdMapData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SCrowdMapData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_42D4EEB9") << ":";
+	p_Stream << simdjson::as_json_string("m_nVersion") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_42D4EEB9);
+	p_Stream << simdjson::as_json_string(s_Object->m_nVersion);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2B471851") << ":";
+	p_Stream << simdjson::as_json_string("m_vCellConsts") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector4") << ",\"$val\":";
-	SVector4::WriteJson(&s_Object->_2B471851, p_Stream);
+	SVector4::WriteJson(&s_Object->m_vCellConsts, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2D4CACC1") << ":";
+	p_Stream << simdjson::as_json_string("m_nGridSizeX") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2D4CACC1);
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridSizeX);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5A4B9C57") << ":";
+	p_Stream << simdjson::as_json_string("m_nGridSizeY") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5A4B9C57);
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridSizeY);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B8B56835") << ":";
+	p_Stream << simdjson::as_json_string("m_nCellSizeX") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B8B56835);
+	p_Stream << simdjson::as_json_string(s_Object->m_nCellSizeX);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CFB258A3") << ":";
+	p_Stream << simdjson::as_json_string("m_nCellSizeY") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_CFB258A3);
+	p_Stream << simdjson::as_json_string(s_Object->m_nCellSizeY);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_74A2342B") << ":";
+	p_Stream << simdjson::as_json_string("m_GridMap") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<ZCrowdGridPoint>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_74A2342B.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_GridMap.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_74A2342B[i];
+		auto& s_Item0 = s_Object->m_GridMap[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("ZCrowdGridPoint") << ",\"$val\":";
 		ZCrowdGridPoint::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_74A2342B.size() - 1)
+		if (i < s_Object->m_GridMap.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_75260351") << ":";
+	p_Stream << simdjson::as_json_string("m_fGridMapHeightOffsetsScale") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_75260351);
+	p_Stream << simdjson::as_json_string(s_Object->m_fGridMapHeightOffsetsScale);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2BF00558") << ":";
+	p_Stream << simdjson::as_json_string("m_fGridMapHeightOffsetsBias") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2BF00558);
+	p_Stream << simdjson::as_json_string(s_Object->m_fGridMapHeightOffsetsBias);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F80A5618") << ":";
+	p_Stream << simdjson::as_json_string("m_CellFlags") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCrowdCells>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F80A5618.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CellFlags.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F80A5618[i];
+		auto& s_Item0 = s_Object->m_CellFlags[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCrowdCells") << ",\"$val\":";
 		SCrowdCells::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_F80A5618.size() - 1)
+		if (i < s_Object->m_CellFlags.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_95E7F03F") << ":";
+	p_Stream << simdjson::as_json_string("m_aFlowChannels") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCrowdFlowChannel>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_95E7F03F.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aFlowChannels.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_95E7F03F[i];
+		auto& s_Item0 = s_Object->m_aFlowChannels[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCrowdFlowChannel") << ",\"$val\":";
 		SCrowdFlowChannel::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_95E7F03F.size() - 1)
+		if (i < s_Object->m_aFlowChannels.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_097F70BB") << ":";
+	p_Stream << simdjson::as_json_string("m_nGridCellSize") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_097F70BB);
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridCellSize);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B8FF70AD") << ":";
+	p_Stream << simdjson::as_json_string("m_mObjectToWorld") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SMatrix") << ",\"$val\":";
-	SMatrix::WriteJson(&s_Object->_B8FF70AD, p_Stream);
+	SMatrix::WriteJson(&s_Object->m_mObjectToWorld, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_24DC3226") << ":";
+	p_Stream << simdjson::as_json_string("m_vGlobalSize") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_24DC3226, p_Stream);
+	SVector3::WriteJson(&s_Object->m_vGlobalSize, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5C6B6336") << ":";
+	p_Stream << simdjson::as_json_string("m_nGridGeneratorOffset") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5C6B6336);
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridGeneratorOffset);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -5313,94 +5323,94 @@ void SCrowdMapData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_42D4EEB9") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_42D4EEB9);
+	p_Stream << simdjson::as_json_string("m_nVersion") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nVersion);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2B471851") << ":";
-	SVector4::WriteSimpleJson(&s_Object->_2B471851, p_Stream);
+	p_Stream << simdjson::as_json_string("m_vCellConsts") << ":";
+	SVector4::WriteSimpleJson(&s_Object->m_vCellConsts, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2D4CACC1") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2D4CACC1);
+	p_Stream << simdjson::as_json_string("m_nGridSizeX") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridSizeX);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5A4B9C57") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5A4B9C57);
+	p_Stream << simdjson::as_json_string("m_nGridSizeY") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridSizeY);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B8B56835") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B8B56835);
+	p_Stream << simdjson::as_json_string("m_nCellSizeX") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nCellSizeX);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CFB258A3") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_CFB258A3);
+	p_Stream << simdjson::as_json_string("m_nCellSizeY") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nCellSizeY);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_74A2342B") << ":";
+	p_Stream << simdjson::as_json_string("m_GridMap") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_74A2342B.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_GridMap.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_74A2342B[i];
+		auto& s_Item0 = s_Object->m_GridMap[i];
 		ZCrowdGridPoint::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_74A2342B.size() - 1)
+		if (i < s_Object->m_GridMap.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_75260351") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_75260351);
+	p_Stream << simdjson::as_json_string("m_fGridMapHeightOffsetsScale") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fGridMapHeightOffsetsScale);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2BF00558") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2BF00558);
+	p_Stream << simdjson::as_json_string("m_fGridMapHeightOffsetsBias") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fGridMapHeightOffsetsBias);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F80A5618") << ":";
+	p_Stream << simdjson::as_json_string("m_CellFlags") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F80A5618.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CellFlags.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F80A5618[i];
+		auto& s_Item0 = s_Object->m_CellFlags[i];
 		SCrowdCells::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_F80A5618.size() - 1)
+		if (i < s_Object->m_CellFlags.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_95E7F03F") << ":";
+	p_Stream << simdjson::as_json_string("m_aFlowChannels") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_95E7F03F.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aFlowChannels.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_95E7F03F[i];
+		auto& s_Item0 = s_Object->m_aFlowChannels[i];
 		SCrowdFlowChannel::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_95E7F03F.size() - 1)
+		if (i < s_Object->m_aFlowChannels.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_097F70BB") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_097F70BB);
+	p_Stream << simdjson::as_json_string("m_nGridCellSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridCellSize);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B8FF70AD") << ":";
-	SMatrix::WriteSimpleJson(&s_Object->_B8FF70AD, p_Stream);
+	p_Stream << simdjson::as_json_string("m_mObjectToWorld") << ":";
+	SMatrix::WriteSimpleJson(&s_Object->m_mObjectToWorld, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_24DC3226") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_24DC3226, p_Stream);
+	p_Stream << simdjson::as_json_string("m_vGlobalSize") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vGlobalSize, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5C6B6336") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5C6B6336);
+	p_Stream << simdjson::as_json_string("m_nGridGeneratorOffset") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridGeneratorOffset);
 
 	p_Stream << "}";
 }
@@ -5409,80 +5419,80 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SCrowdMapData s_Object {};
 
-	s_Object._42D4EEB9 = simdjson::from_json_uint32(p_Document["_42D4EEB9"]);
+	s_Object.m_nVersion = simdjson::from_json_uint32(p_Document["m_nVersion"]);
 
 	{
 		SVector4 s_Item {};
-		SVector4::FromSimpleJson(p_Document["_2B471851"], &s_Item);
-		s_Object._2B471851 = s_Item;
+		SVector4::FromSimpleJson(p_Document["m_vCellConsts"], &s_Item);
+		s_Object.m_vCellConsts = s_Item;
 	}
 
-	s_Object._2D4CACC1 = simdjson::from_json_uint32(p_Document["_2D4CACC1"]);
+	s_Object.m_nGridSizeX = simdjson::from_json_uint32(p_Document["m_nGridSizeX"]);
 
-	s_Object._5A4B9C57 = simdjson::from_json_uint32(p_Document["_5A4B9C57"]);
+	s_Object.m_nGridSizeY = simdjson::from_json_uint32(p_Document["m_nGridSizeY"]);
 
-	s_Object._B8B56835 = simdjson::from_json_uint32(p_Document["_B8B56835"]);
+	s_Object.m_nCellSizeX = simdjson::from_json_uint32(p_Document["m_nCellSizeX"]);
 
-	s_Object._CFB258A3 = simdjson::from_json_uint32(p_Document["_CFB258A3"]);
+	s_Object.m_nCellSizeY = simdjson::from_json_uint32(p_Document["m_nCellSizeY"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_74A2342B"];
-	s_Object._74A2342B.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_GridMap"];
+	s_Object.m_GridMap.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZCrowdGridPoint s_ArrayItem0;
 		ZCrowdGridPoint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._74A2342B[s_Index0++] = s_ArrayItem0;
+		s_Object.m_GridMap[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
-	s_Object._75260351 = simdjson::from_json_float32(p_Document["_75260351"]);
+	s_Object.m_fGridMapHeightOffsetsScale = simdjson::from_json_float32(p_Document["m_fGridMapHeightOffsetsScale"]);
 
-	s_Object._2BF00558 = simdjson::from_json_float32(p_Document["_2BF00558"]);
+	s_Object.m_fGridMapHeightOffsetsBias = simdjson::from_json_float32(p_Document["m_fGridMapHeightOffsetsBias"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_F80A5618"];
-	s_Object._F80A5618.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_CellFlags"];
+	s_Object.m_CellFlags.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdCells s_ArrayItem0;
 		SCrowdCells::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._F80A5618[s_Index0++] = s_ArrayItem0;
+		s_Object.m_CellFlags[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_95E7F03F"];
-	s_Object._95E7F03F.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFlowChannels"];
+	s_Object.m_aFlowChannels.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdFlowChannel s_ArrayItem0;
 		SCrowdFlowChannel::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._95E7F03F[s_Index0++] = s_ArrayItem0;
+		s_Object.m_aFlowChannels[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
-	s_Object._097F70BB = simdjson::from_json_float32(p_Document["_097F70BB"]);
+	s_Object.m_nGridCellSize = simdjson::from_json_float32(p_Document["m_nGridCellSize"]);
 
 	{
 		SMatrix s_Item {};
-		SMatrix::FromSimpleJson(p_Document["_B8FF70AD"], &s_Item);
-		s_Object._B8FF70AD = s_Item;
+		SMatrix::FromSimpleJson(p_Document["m_mObjectToWorld"], &s_Item);
+		s_Object.m_mObjectToWorld = s_Item;
 	}
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_24DC3226"], &s_Item);
-		s_Object._24DC3226 = s_Item;
+		SVector3::FromSimpleJson(p_Document["m_vGlobalSize"], &s_Item);
+		s_Object.m_vGlobalSize = s_Item;
 	}
 
-	s_Object._5C6B6336 = simdjson::from_json_float32(p_Document["_5C6B6336"]);
+	s_Object.m_nGridGeneratorOffset = simdjson::from_json_float32(p_Document["m_nGridGeneratorOffset"]);
 
 	*reinterpret_cast<SCrowdMapData*>(p_Target) = s_Object;
 }
@@ -5491,12 +5501,12 @@ void SCrowdMapData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmpt
 {
 	auto* s_Object = reinterpret_cast<SCrowdMapData*>(p_Object);
 
-	SVector4::Serialize(&s_Object->_2B471851, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, _2B471851));
-	TArray<ZCrowdGridPoint>::Serialize(&s_Object->_74A2342B, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, _74A2342B));
-	TArray<SCrowdCells>::Serialize(&s_Object->_F80A5618, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, _F80A5618));
-	TArray<SCrowdFlowChannel>::Serialize(&s_Object->_95E7F03F, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, _95E7F03F));
-	SMatrix::Serialize(&s_Object->_B8FF70AD, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, _B8FF70AD));
-	SVector3::Serialize(&s_Object->_24DC3226, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, _24DC3226));
+	SVector4::Serialize(&s_Object->m_vCellConsts, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, m_vCellConsts));
+	TArray<ZCrowdGridPoint>::Serialize(&s_Object->m_GridMap, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, m_GridMap));
+	TArray<SCrowdCells>::Serialize(&s_Object->m_CellFlags, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, m_CellFlags));
+	TArray<SCrowdFlowChannel>::Serialize(&s_Object->m_aFlowChannels, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, m_aFlowChannels));
+	SMatrix::Serialize(&s_Object->m_mObjectToWorld, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, m_mObjectToWorld));
+	SVector3::Serialize(&s_Object->m_vGlobalSize, p_Serializer, p_OwnOffset + offsetof(SCrowdMapData, m_vGlobalSize));
 }
 
 bool SCrowdMapData::Equals(void* p_Left, void* p_Right)
@@ -5512,21 +5522,21 @@ bool SCrowdMapData::operator==(const SCrowdMapData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SCrowdMapData>)
 		return false;
 
-	if (_42D4EEB9 != p_Other._42D4EEB9) return false;
-	if (_2B471851 != p_Other._2B471851) return false;
-	if (_2D4CACC1 != p_Other._2D4CACC1) return false;
-	if (_5A4B9C57 != p_Other._5A4B9C57) return false;
-	if (_B8B56835 != p_Other._B8B56835) return false;
-	if (_CFB258A3 != p_Other._CFB258A3) return false;
-	if (_74A2342B != p_Other._74A2342B) return false;
-	if (_75260351 != p_Other._75260351) return false;
-	if (_2BF00558 != p_Other._2BF00558) return false;
-	if (_F80A5618 != p_Other._F80A5618) return false;
-	if (_95E7F03F != p_Other._95E7F03F) return false;
-	if (_097F70BB != p_Other._097F70BB) return false;
-	if (_B8FF70AD != p_Other._B8FF70AD) return false;
-	if (_24DC3226 != p_Other._24DC3226) return false;
-	if (_5C6B6336 != p_Other._5C6B6336) return false;
+	if (m_nVersion != p_Other.m_nVersion) return false;
+	if (m_vCellConsts != p_Other.m_vCellConsts) return false;
+	if (m_nGridSizeX != p_Other.m_nGridSizeX) return false;
+	if (m_nGridSizeY != p_Other.m_nGridSizeY) return false;
+	if (m_nCellSizeX != p_Other.m_nCellSizeX) return false;
+	if (m_nCellSizeY != p_Other.m_nCellSizeY) return false;
+	if (m_GridMap != p_Other.m_GridMap) return false;
+	if (m_fGridMapHeightOffsetsScale != p_Other.m_fGridMapHeightOffsetsScale) return false;
+	if (m_fGridMapHeightOffsetsBias != p_Other.m_fGridMapHeightOffsetsBias) return false;
+	if (m_CellFlags != p_Other.m_CellFlags) return false;
+	if (m_aFlowChannels != p_Other.m_aFlowChannels) return false;
+	if (m_nGridCellSize != p_Other.m_nGridCellSize) return false;
+	if (m_mObjectToWorld != p_Other.m_mObjectToWorld) return false;
+	if (m_vGlobalSize != p_Other.m_vGlobalSize) return false;
+	if (m_nGridGeneratorOffset != p_Other.m_nGridGeneratorOffset) return false;
 
 	return true;
 }
@@ -5538,15 +5548,15 @@ void SDLCItemSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SDLCItemSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_07186756") << ":";
+	p_Stream << simdjson::as_json_string("m_eState") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SDLCItemSaveData.EDiscoverState") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_07186756)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SDLCItemSaveData.EDiscoverState", static_cast<int>(s_Object->_07186756))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eState)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SDLCItemSaveData.EDiscoverState", static_cast<int>(s_Object->m_eState))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1942359E") << ":";
+	p_Stream << simdjson::as_json_string("m_TokenID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_1942359E, p_Stream);
+	STokenID::WriteJson(&s_Object->m_TokenID, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -5558,12 +5568,12 @@ void SDLCItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_07186756") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SDLCItemSaveData.EDiscoverState", static_cast<int>(s_Object->_07186756)));
+	p_Stream << simdjson::as_json_string("m_eState") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SDLCItemSaveData.EDiscoverState", static_cast<int>(s_Object->m_eState)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1942359E") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_1942359E, p_Stream);
+	p_Stream << simdjson::as_json_string("m_TokenID") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_TokenID, p_Stream);
 
 	p_Stream << "}";
 }
@@ -5572,12 +5582,12 @@ void SDLCItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 {
 	SDLCItemSaveData s_Object {};
 
-	s_Object._07186756 = static_cast<SDLCItemSaveData_EDiscoverState>(ZHMEnums::GetEnumValueByName("SDLCItemSaveData.EDiscoverState", std::string_view(p_Document["_07186756"])));
+	s_Object.m_eState = static_cast<SDLCItemSaveData_EDiscoverState>(ZHMEnums::GetEnumValueByName("SDLCItemSaveData.EDiscoverState", std::string_view(p_Document["m_eState"])));
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_1942359E"], &s_Item);
-		s_Object._1942359E = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_TokenID"], &s_Item);
+		s_Object.m_TokenID = s_Item;
 	}
 
 	*reinterpret_cast<SDLCItemSaveData*>(p_Target) = s_Object;
@@ -5587,7 +5597,7 @@ void SDLCItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zh
 {
 	auto* s_Object = reinterpret_cast<SDLCItemSaveData*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_1942359E, p_Serializer, p_OwnOffset + offsetof(SDLCItemSaveData, _1942359E));
+	STokenID::Serialize(&s_Object->m_TokenID, p_Serializer, p_OwnOffset + offsetof(SDLCItemSaveData, m_TokenID));
 }
 
 bool SDLCItemSaveData::Equals(void* p_Left, void* p_Right)
@@ -5603,8 +5613,8 @@ bool SDLCItemSaveData::operator==(const SDLCItemSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SDLCItemSaveData>)
 		return false;
 
-	if (_07186756 != p_Other._07186756) return false;
-	if (_1942359E != p_Other._1942359E) return false;
+	if (m_eState != p_Other.m_eState) return false;
+	if (m_TokenID != p_Other.m_TokenID) return false;
 
 	return true;
 }
@@ -5665,33 +5675,33 @@ void SEntityPinDescriptor::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SEntityPinDescriptor*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_A7056326") << ":";
+	p_Stream << simdjson::as_json_string("sName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_A7056326);
+	p_Stream << simdjson::as_json_string(s_Object->sName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A235C8C8") << ":";
+	p_Stream << simdjson::as_json_string("sDisplayName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_A235C8C8);
+	p_Stream << simdjson::as_json_string(s_Object->sDisplayName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8CDE5729") << ":";
+	p_Stream << simdjson::as_json_string("type") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZResourceID") << ",\"$val\":";
-	ZResourceID::WriteJson(&s_Object->_8CDE5729, p_Stream);
+	ZResourceID::WriteJson(&s_Object->type, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_30C8A9AF") << ":";
+	p_Stream << simdjson::as_json_string("sHelpText") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_30C8A9AF);
+	p_Stream << simdjson::as_json_string(s_Object->sHelpText);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CD395B3D") << ":";
+	p_Stream << simdjson::as_json_string("bIsPlaceholder") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_CD395B3D);
+	p_Stream << simdjson::as_json_string(s_Object->bIsPlaceholder);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -5703,24 +5713,24 @@ void SEntityPinDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_A7056326") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_A7056326);
+	p_Stream << simdjson::as_json_string("sName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A235C8C8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_A235C8C8);
+	p_Stream << simdjson::as_json_string("sDisplayName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sDisplayName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8CDE5729") << ":";
-	ZResourceID::WriteSimpleJson(&s_Object->_8CDE5729, p_Stream);
+	p_Stream << simdjson::as_json_string("type") << ":";
+	ZResourceID::WriteSimpleJson(&s_Object->type, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_30C8A9AF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_30C8A9AF);
+	p_Stream << simdjson::as_json_string("sHelpText") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sHelpText);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CD395B3D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_CD395B3D);
+	p_Stream << simdjson::as_json_string("bIsPlaceholder") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->bIsPlaceholder);
 
 	p_Stream << "}";
 }
@@ -5729,19 +5739,19 @@ void SEntityPinDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SEntityPinDescriptor s_Object {};
 
-	s_Object._A7056326 = std::string_view(p_Document["_A7056326"]);
+	s_Object.sName = std::string_view(p_Document["sName"]);
 
-	s_Object._A235C8C8 = std::string_view(p_Document["_A235C8C8"]);
+	s_Object.sDisplayName = std::string_view(p_Document["sDisplayName"]);
 
 	{
 		ZResourceID s_Item {};
-		ZResourceID::FromSimpleJson(p_Document["_8CDE5729"], &s_Item);
-		s_Object._8CDE5729 = s_Item;
+		ZResourceID::FromSimpleJson(p_Document["type"], &s_Item);
+		s_Object.type = s_Item;
 	}
 
-	s_Object._30C8A9AF = std::string_view(p_Document["_30C8A9AF"]);
+	s_Object.sHelpText = std::string_view(p_Document["sHelpText"]);
 
-	s_Object._CD395B3D = simdjson::from_json_bool(p_Document["_CD395B3D"]);
+	s_Object.bIsPlaceholder = simdjson::from_json_bool(p_Document["bIsPlaceholder"]);
 
 	*reinterpret_cast<SEntityPinDescriptor*>(p_Target) = s_Object;
 }
@@ -5750,10 +5760,10 @@ void SEntityPinDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer
 {
 	auto* s_Object = reinterpret_cast<SEntityPinDescriptor*>(p_Object);
 
-	ZString::Serialize(&s_Object->_A7056326, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, _A7056326));
-	ZString::Serialize(&s_Object->_A235C8C8, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, _A235C8C8));
-	ZResourceID::Serialize(&s_Object->_8CDE5729, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, _8CDE5729));
-	ZString::Serialize(&s_Object->_30C8A9AF, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, _30C8A9AF));
+	ZString::Serialize(&s_Object->sName, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sName));
+	ZString::Serialize(&s_Object->sDisplayName, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sDisplayName));
+	ZResourceID::Serialize(&s_Object->type, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, type));
+	ZString::Serialize(&s_Object->sHelpText, p_Serializer, p_OwnOffset + offsetof(SEntityPinDescriptor, sHelpText));
 }
 
 bool SEntityPinDescriptor::Equals(void* p_Left, void* p_Right)
@@ -5769,11 +5779,11 @@ bool SEntityPinDescriptor::operator==(const SEntityPinDescriptor& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SEntityPinDescriptor>)
 		return false;
 
-	if (_A7056326 != p_Other._A7056326) return false;
-	if (_A235C8C8 != p_Other._A235C8C8) return false;
-	if (_8CDE5729 != p_Other._8CDE5729) return false;
-	if (_30C8A9AF != p_Other._30C8A9AF) return false;
-	if (_CD395B3D != p_Other._CD395B3D) return false;
+	if (sName != p_Other.sName) return false;
+	if (sDisplayName != p_Other.sDisplayName) return false;
+	if (type != p_Other.type) return false;
+	if (sHelpText != p_Other.sHelpText) return false;
+	if (bIsPlaceholder != p_Other.bIsPlaceholder) return false;
 
 	return true;
 }
@@ -5785,23 +5795,23 @@ void SEntityTemplateEntitySubset::WriteJson(void* p_Object, std::ostream& p_Stre
 	auto* s_Object = reinterpret_cast<SEntityTemplateEntitySubset*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_524D42EA") << ":";
+	p_Stream << simdjson::as_json_string("subsetType") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->_524D42EA, p_Stream);
+	TypeID::WriteJson(&s_Object->subsetType, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_50EC64E5") << ":";
+	p_Stream << simdjson::as_json_string("entities") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_50EC64E5.size(); ++i)
+	for (size_t i = 0; i < s_Object->entities.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_50EC64E5[i];
+		auto& s_Item0 = s_Object->entities[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_50EC64E5.size() - 1)
+		if (i < s_Object->entities.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -5816,18 +5826,18 @@ void SEntityTemplateEntitySubset::WriteSimpleJson(void* p_Object, std::ostream& 
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_524D42EA") << ":";
-	TypeID::WriteSimpleJson(&s_Object->_524D42EA, p_Stream);
+	p_Stream << simdjson::as_json_string("subsetType") << ":";
+	TypeID::WriteSimpleJson(&s_Object->subsetType, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_50EC64E5") << ":";
+	p_Stream << simdjson::as_json_string("entities") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_50EC64E5.size(); ++i)
+	for (size_t i = 0; i < s_Object->entities.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_50EC64E5[i];
+		auto& s_Item0 = s_Object->entities[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_50EC64E5.size() - 1)
+		if (i < s_Object->entities.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -5842,18 +5852,18 @@ void SEntityTemplateEntitySubset::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	{
 		TypeID s_Item {};
-		TypeID::FromSimpleJson(p_Document["_524D42EA"], &s_Item);
-		s_Object._524D42EA = s_Item;
+		TypeID::FromSimpleJson(p_Document["subsetType"], &s_Item);
+		s_Object.subsetType = s_Item;
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_50EC64E5"];
-	s_Object._50EC64E5.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["entities"];
+	s_Object.entities.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._50EC64E5[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.entities[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
@@ -5864,8 +5874,8 @@ void SEntityTemplateEntitySubset::Serialize(void* p_Object, ZHMSerializer& p_Ser
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplateEntitySubset*>(p_Object);
 
-	TypeID::Serialize(&s_Object->_524D42EA, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateEntitySubset, _524D42EA));
-	TArray<int32>::Serialize(&s_Object->_50EC64E5, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateEntitySubset, _50EC64E5));
+	TypeID::Serialize(&s_Object->subsetType, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateEntitySubset, subsetType));
+	TArray<int32>::Serialize(&s_Object->entities, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateEntitySubset, entities));
 }
 
 bool SEntityTemplateEntitySubset::Equals(void* p_Left, void* p_Right)
@@ -5881,8 +5891,8 @@ bool SEntityTemplateEntitySubset::operator==(const SEntityTemplateEntitySubset& 
 	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplateEntitySubset>)
 		return false;
 
-	if (_524D42EA != p_Other._524D42EA) return false;
-	if (_50EC64E5 != p_Other._50EC64E5) return false;
+	if (subsetType != p_Other.subsetType) return false;
+	if (entities != p_Other.entities) return false;
 
 	return true;
 }
@@ -5894,27 +5904,27 @@ void SEntityTemplatePinConnection::WriteJson(void* p_Object, std::ostream& p_Str
 	auto* s_Object = reinterpret_cast<SEntityTemplatePinConnection*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_9F3D30A8") << ":";
+	p_Stream << simdjson::as_json_string("fromID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_9F3D30A8);
+	p_Stream << simdjson::as_json_string(s_Object->fromID);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_D698150F") << ":";
+	p_Stream << simdjson::as_json_string("toID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_D698150F);
+	p_Stream << simdjson::as_json_string(s_Object->toID);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1C173300") << ":";
+	p_Stream << simdjson::as_json_string("fromPinName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1C173300);
+	p_Stream << simdjson::as_json_string(s_Object->fromPinName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B7F4444D") << ":";
+	p_Stream << simdjson::as_json_string("toPinName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B7F4444D);
+	p_Stream << simdjson::as_json_string(s_Object->toPinName);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -5926,20 +5936,20 @@ void SEntityTemplatePinConnection::WriteSimpleJson(void* p_Object, std::ostream&
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_9F3D30A8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_9F3D30A8);
+	p_Stream << simdjson::as_json_string("fromID") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fromID);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_D698150F") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_D698150F);
+	p_Stream << simdjson::as_json_string("toID") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->toID);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1C173300") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1C173300);
+	p_Stream << simdjson::as_json_string("fromPinName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fromPinName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B7F4444D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B7F4444D);
+	p_Stream << simdjson::as_json_string("toPinName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->toPinName);
 
 	p_Stream << "}";
 }
@@ -5948,13 +5958,13 @@ void SEntityTemplatePinConnection::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SEntityTemplatePinConnection s_Object {};
 
-	s_Object._9F3D30A8 = simdjson::from_json_int32(p_Document["_9F3D30A8"]);
+	s_Object.fromID = simdjson::from_json_int32(p_Document["fromID"]);
 
-	s_Object._D698150F = simdjson::from_json_int32(p_Document["_D698150F"]);
+	s_Object.toID = simdjson::from_json_int32(p_Document["toID"]);
 
-	s_Object._1C173300 = std::string_view(p_Document["_1C173300"]);
+	s_Object.fromPinName = std::string_view(p_Document["fromPinName"]);
 
-	s_Object._B7F4444D = std::string_view(p_Document["_B7F4444D"]);
+	s_Object.toPinName = std::string_view(p_Document["toPinName"]);
 
 	*reinterpret_cast<SEntityTemplatePinConnection*>(p_Target) = s_Object;
 }
@@ -5963,8 +5973,8 @@ void SEntityTemplatePinConnection::Serialize(void* p_Object, ZHMSerializer& p_Se
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplatePinConnection*>(p_Object);
 
-	ZString::Serialize(&s_Object->_1C173300, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, _1C173300));
-	ZString::Serialize(&s_Object->_B7F4444D, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, _B7F4444D));
+	ZString::Serialize(&s_Object->fromPinName, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, fromPinName));
+	ZString::Serialize(&s_Object->toPinName, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePinConnection, toPinName));
 }
 
 bool SEntityTemplatePinConnection::Equals(void* p_Left, void* p_Right)
@@ -5980,10 +5990,10 @@ bool SEntityTemplatePinConnection::operator==(const SEntityTemplatePinConnection
 	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplatePinConnection>)
 		return false;
 
-	if (_9F3D30A8 != p_Other._9F3D30A8) return false;
-	if (_D698150F != p_Other._D698150F) return false;
-	if (_1C173300 != p_Other._1C173300) return false;
-	if (_B7F4444D != p_Other._B7F4444D) return false;
+	if (fromID != p_Other.fromID) return false;
+	if (toID != p_Other.toID) return false;
+	if (fromPinName != p_Other.fromPinName) return false;
+	if (toPinName != p_Other.toPinName) return false;
 
 	return true;
 }
@@ -5995,21 +6005,21 @@ void SEntityTemplatePropertyAlias::WriteJson(void* p_Object, std::ostream& p_Str
 	auto* s_Object = reinterpret_cast<SEntityTemplatePropertyAlias*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_0CF8B5AF") << ":";
+	p_Stream << simdjson::as_json_string("sAliasName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_0CF8B5AF);
+	p_Stream << simdjson::as_json_string(s_Object->sAliasName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CD460934") << ":";
+	p_Stream << simdjson::as_json_string("entityID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_CD460934);
+	p_Stream << simdjson::as_json_string(s_Object->entityID);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1AE8D74E") << ":";
+	p_Stream << simdjson::as_json_string("sPropertyName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1AE8D74E);
+	p_Stream << simdjson::as_json_string(s_Object->sPropertyName);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -6021,16 +6031,16 @@ void SEntityTemplatePropertyAlias::WriteSimpleJson(void* p_Object, std::ostream&
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_0CF8B5AF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_0CF8B5AF);
+	p_Stream << simdjson::as_json_string("sAliasName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sAliasName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CD460934") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_CD460934);
+	p_Stream << simdjson::as_json_string("entityID") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->entityID);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1AE8D74E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1AE8D74E);
+	p_Stream << simdjson::as_json_string("sPropertyName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sPropertyName);
 
 	p_Stream << "}";
 }
@@ -6039,11 +6049,11 @@ void SEntityTemplatePropertyAlias::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SEntityTemplatePropertyAlias s_Object {};
 
-	s_Object._0CF8B5AF = std::string_view(p_Document["_0CF8B5AF"]);
+	s_Object.sAliasName = std::string_view(p_Document["sAliasName"]);
 
-	s_Object._CD460934 = simdjson::from_json_int32(p_Document["_CD460934"]);
+	s_Object.entityID = simdjson::from_json_int32(p_Document["entityID"]);
 
-	s_Object._1AE8D74E = std::string_view(p_Document["_1AE8D74E"]);
+	s_Object.sPropertyName = std::string_view(p_Document["sPropertyName"]);
 
 	*reinterpret_cast<SEntityTemplatePropertyAlias*>(p_Target) = s_Object;
 }
@@ -6052,8 +6062,8 @@ void SEntityTemplatePropertyAlias::Serialize(void* p_Object, ZHMSerializer& p_Se
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplatePropertyAlias*>(p_Object);
 
-	ZString::Serialize(&s_Object->_0CF8B5AF, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, _0CF8B5AF));
-	ZString::Serialize(&s_Object->_1AE8D74E, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, _1AE8D74E));
+	ZString::Serialize(&s_Object->sAliasName, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, sAliasName));
+	ZString::Serialize(&s_Object->sPropertyName, p_Serializer, p_OwnOffset + offsetof(SEntityTemplatePropertyAlias, sPropertyName));
 }
 
 bool SEntityTemplatePropertyAlias::Equals(void* p_Left, void* p_Right)
@@ -6069,9 +6079,9 @@ bool SEntityTemplatePropertyAlias::operator==(const SEntityTemplatePropertyAlias
 	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplatePropertyAlias>)
 		return false;
 
-	if (_0CF8B5AF != p_Other._0CF8B5AF) return false;
-	if (_CD460934 != p_Other._CD460934) return false;
-	if (_1AE8D74E != p_Other._1AE8D74E) return false;
+	if (sAliasName != p_Other.sAliasName) return false;
+	if (entityID != p_Other.entityID) return false;
+	if (sPropertyName != p_Other.sPropertyName) return false;
 
 	return true;
 }
@@ -6083,15 +6093,15 @@ void SEntityTemplateReference::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SEntityTemplateReference*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_545B8135") << ":";
+	p_Stream << simdjson::as_json_string("entityIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_545B8135);
+	p_Stream << simdjson::as_json_string(s_Object->entityIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_76BA0C0F") << ":";
+	p_Stream << simdjson::as_json_string("exposedEntity") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_76BA0C0F);
+	p_Stream << simdjson::as_json_string(s_Object->exposedEntity);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -6103,12 +6113,12 @@ void SEntityTemplateReference::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_545B8135") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_545B8135);
+	p_Stream << simdjson::as_json_string("entityIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->entityIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_76BA0C0F") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_76BA0C0F);
+	p_Stream << simdjson::as_json_string("exposedEntity") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->exposedEntity);
 
 	p_Stream << "}";
 }
@@ -6117,9 +6127,9 @@ void SEntityTemplateReference::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SEntityTemplateReference s_Object {};
 
-	s_Object._545B8135 = simdjson::from_json_int32(p_Document["_545B8135"]);
+	s_Object.entityIndex = simdjson::from_json_int32(p_Document["entityIndex"]);
 
-	s_Object._76BA0C0F = std::string_view(p_Document["_76BA0C0F"]);
+	s_Object.exposedEntity = std::string_view(p_Document["exposedEntity"]);
 
 	*reinterpret_cast<SEntityTemplateReference*>(p_Target) = s_Object;
 }
@@ -6128,7 +6138,7 @@ void SEntityTemplateReference::Serialize(void* p_Object, ZHMSerializer& p_Serial
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplateReference*>(p_Object);
 
-	ZString::Serialize(&s_Object->_76BA0C0F, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateReference, _76BA0C0F));
+	ZString::Serialize(&s_Object->exposedEntity, p_Serializer, p_OwnOffset + offsetof(SEntityTemplateReference, exposedEntity));
 }
 
 bool SEntityTemplateReference::Equals(void* p_Left, void* p_Right)
@@ -6144,8 +6154,8 @@ bool SEntityTemplateReference::operator==(const SEntityTemplateReference& p_Othe
 	if constexpr (!ZHMTypeSupportsEquality_v<SEntityTemplateReference>)
 		return false;
 
-	if (_545B8135 != p_Other._545B8135) return false;
-	if (_76BA0C0F != p_Other._76BA0C0F) return false;
+	if (entityIndex != p_Other.entityIndex) return false;
+	if (exposedEntity != p_Other.exposedEntity) return false;
 
 	return true;
 }
@@ -6157,27 +6167,27 @@ void SExposedEntityDescriptor::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SExposedEntityDescriptor*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_A7056326") << ":";
+	p_Stream << simdjson::as_json_string("sName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_A7056326);
+	p_Stream << simdjson::as_json_string(s_Object->sName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A235C8C8") << ":";
+	p_Stream << simdjson::as_json_string("sDisplayName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_A235C8C8);
+	p_Stream << simdjson::as_json_string(s_Object->sDisplayName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_69FCEBFA") << ":";
+	p_Stream << simdjson::as_json_string("sUpheldContract") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_69FCEBFA);
+	p_Stream << simdjson::as_json_string(s_Object->sUpheldContract);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_30C8A9AF") << ":";
+	p_Stream << simdjson::as_json_string("sHelpText") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_30C8A9AF);
+	p_Stream << simdjson::as_json_string(s_Object->sHelpText);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -6189,20 +6199,20 @@ void SExposedEntityDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_A7056326") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_A7056326);
+	p_Stream << simdjson::as_json_string("sName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A235C8C8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_A235C8C8);
+	p_Stream << simdjson::as_json_string("sDisplayName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sDisplayName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_69FCEBFA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_69FCEBFA);
+	p_Stream << simdjson::as_json_string("sUpheldContract") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sUpheldContract);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_30C8A9AF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_30C8A9AF);
+	p_Stream << simdjson::as_json_string("sHelpText") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sHelpText);
 
 	p_Stream << "}";
 }
@@ -6211,13 +6221,13 @@ void SExposedEntityDescriptor::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SExposedEntityDescriptor s_Object {};
 
-	s_Object._A7056326 = std::string_view(p_Document["_A7056326"]);
+	s_Object.sName = std::string_view(p_Document["sName"]);
 
-	s_Object._A235C8C8 = std::string_view(p_Document["_A235C8C8"]);
+	s_Object.sDisplayName = std::string_view(p_Document["sDisplayName"]);
 
-	s_Object._69FCEBFA = std::string_view(p_Document["_69FCEBFA"]);
+	s_Object.sUpheldContract = std::string_view(p_Document["sUpheldContract"]);
 
-	s_Object._30C8A9AF = std::string_view(p_Document["_30C8A9AF"]);
+	s_Object.sHelpText = std::string_view(p_Document["sHelpText"]);
 
 	*reinterpret_cast<SExposedEntityDescriptor*>(p_Target) = s_Object;
 }
@@ -6226,10 +6236,10 @@ void SExposedEntityDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serial
 {
 	auto* s_Object = reinterpret_cast<SExposedEntityDescriptor*>(p_Object);
 
-	ZString::Serialize(&s_Object->_A7056326, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, _A7056326));
-	ZString::Serialize(&s_Object->_A235C8C8, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, _A235C8C8));
-	ZString::Serialize(&s_Object->_69FCEBFA, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, _69FCEBFA));
-	ZString::Serialize(&s_Object->_30C8A9AF, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, _30C8A9AF));
+	ZString::Serialize(&s_Object->sName, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sName));
+	ZString::Serialize(&s_Object->sDisplayName, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sDisplayName));
+	ZString::Serialize(&s_Object->sUpheldContract, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sUpheldContract));
+	ZString::Serialize(&s_Object->sHelpText, p_Serializer, p_OwnOffset + offsetof(SExposedEntityDescriptor, sHelpText));
 }
 
 bool SExposedEntityDescriptor::Equals(void* p_Left, void* p_Right)
@@ -6245,10 +6255,10 @@ bool SExposedEntityDescriptor::operator==(const SExposedEntityDescriptor& p_Othe
 	if constexpr (!ZHMTypeSupportsEquality_v<SExposedEntityDescriptor>)
 		return false;
 
-	if (_A7056326 != p_Other._A7056326) return false;
-	if (_A235C8C8 != p_Other._A235C8C8) return false;
-	if (_69FCEBFA != p_Other._69FCEBFA) return false;
-	if (_30C8A9AF != p_Other._30C8A9AF) return false;
+	if (sName != p_Other.sName) return false;
+	if (sDisplayName != p_Other.sDisplayName) return false;
+	if (sUpheldContract != p_Other.sUpheldContract) return false;
+	if (sHelpText != p_Other.sHelpText) return false;
 
 	return true;
 }
@@ -6260,15 +6270,15 @@ void SFRange::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SFRange*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_C7D1CFC0") << ":";
+	p_Stream << simdjson::as_json_string("m_fMin") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_C7D1CFC0);
+	p_Stream << simdjson::as_json_string(s_Object->m_fMin);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDCF099") << ":";
+	p_Stream << simdjson::as_json_string("m_fMax") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDCF099);
+	p_Stream << simdjson::as_json_string(s_Object->m_fMax);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -6280,12 +6290,12 @@ void SFRange::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_C7D1CFC0") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_C7D1CFC0);
+	p_Stream << simdjson::as_json_string("m_fMin") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fMin);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDCF099") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDCF099);
+	p_Stream << simdjson::as_json_string("m_fMax") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fMax);
 
 	p_Stream << "}";
 }
@@ -6294,9 +6304,9 @@ void SFRange::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 {
 	SFRange s_Object {};
 
-	s_Object._C7D1CFC0 = simdjson::from_json_float32(p_Document["_C7D1CFC0"]);
+	s_Object.m_fMin = simdjson::from_json_float32(p_Document["m_fMin"]);
 
-	s_Object._FBDCF099 = simdjson::from_json_float32(p_Document["_FBDCF099"]);
+	s_Object.m_fMax = simdjson::from_json_float32(p_Document["m_fMax"]);
 
 	*reinterpret_cast<SFRange*>(p_Target) = s_Object;
 }
@@ -6320,8 +6330,8 @@ bool SFRange::operator==(const SFRange& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SFRange>)
 		return false;
 
-	if (_C7D1CFC0 != p_Other._C7D1CFC0) return false;
-	if (_FBDCF099 != p_Other._FBDCF099) return false;
+	if (m_fMin != p_Other.m_fMin) return false;
+	if (m_fMax != p_Other.m_fMax) return false;
 
 	return true;
 }
@@ -6333,15 +6343,15 @@ void SForwardSpawnData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SForwardSpawnData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_21452EB3") << ":";
+	p_Stream << simdjson::as_json_string("m_iForwardSpawnIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_21452EB3);
+	p_Stream << simdjson::as_json_string(s_Object->m_iForwardSpawnIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3C3C4FC5") << ":";
+	p_Stream << simdjson::as_json_string("m_SaveData") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SCheckpointSaveData") << ",\"$val\":";
-	SCheckpointSaveData::WriteJson(&s_Object->_3C3C4FC5, p_Stream);
+	SCheckpointSaveData::WriteJson(&s_Object->m_SaveData, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -6353,12 +6363,12 @@ void SForwardSpawnData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_21452EB3") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_21452EB3);
+	p_Stream << simdjson::as_json_string("m_iForwardSpawnIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iForwardSpawnIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3C3C4FC5") << ":";
-	SCheckpointSaveData::WriteSimpleJson(&s_Object->_3C3C4FC5, p_Stream);
+	p_Stream << simdjson::as_json_string("m_SaveData") << ":";
+	SCheckpointSaveData::WriteSimpleJson(&s_Object->m_SaveData, p_Stream);
 
 	p_Stream << "}";
 }
@@ -6367,12 +6377,12 @@ void SForwardSpawnData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SForwardSpawnData s_Object {};
 
-	s_Object._21452EB3 = simdjson::from_json_int32(p_Document["_21452EB3"]);
+	s_Object.m_iForwardSpawnIndex = simdjson::from_json_int32(p_Document["m_iForwardSpawnIndex"]);
 
 	{
 		SCheckpointSaveData s_Item {};
-		SCheckpointSaveData::FromSimpleJson(p_Document["_3C3C4FC5"], &s_Item);
-		s_Object._3C3C4FC5 = s_Item;
+		SCheckpointSaveData::FromSimpleJson(p_Document["m_SaveData"], &s_Item);
+		s_Object.m_SaveData = s_Item;
 	}
 
 	*reinterpret_cast<SForwardSpawnData*>(p_Target) = s_Object;
@@ -6382,7 +6392,7 @@ void SForwardSpawnData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, z
 {
 	auto* s_Object = reinterpret_cast<SForwardSpawnData*>(p_Object);
 
-	SCheckpointSaveData::Serialize(&s_Object->_3C3C4FC5, p_Serializer, p_OwnOffset + offsetof(SForwardSpawnData, _3C3C4FC5));
+	SCheckpointSaveData::Serialize(&s_Object->m_SaveData, p_Serializer, p_OwnOffset + offsetof(SForwardSpawnData, m_SaveData));
 }
 
 bool SForwardSpawnData::Equals(void* p_Left, void* p_Right)
@@ -6398,8 +6408,8 @@ bool SForwardSpawnData::operator==(const SForwardSpawnData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SForwardSpawnData>)
 		return false;
 
-	if (_21452EB3 != p_Other._21452EB3) return false;
-	if (_3C3C4FC5 != p_Other._3C3C4FC5) return false;
+	if (m_iForwardSpawnIndex != p_Other.m_iForwardSpawnIndex) return false;
+	if (m_SaveData != p_Other.m_SaveData) return false;
 
 	return true;
 }
@@ -6411,27 +6421,27 @@ void SGProperties::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SGProperties*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_0967A27E") << ":";
+	p_Stream << simdjson::as_json_string("vMin") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_0967A27E, p_Stream);
+	float4::WriteJson(&s_Object->vMin, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_356A9D27") << ":";
+	p_Stream << simdjson::as_json_string("vMax") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_356A9D27, p_Stream);
+	float4::WriteJson(&s_Object->vMax, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7E907DDA") << ":";
+	p_Stream << simdjson::as_json_string("nGridWidth") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7E907DDA);
+	p_Stream << simdjson::as_json_string(s_Object->nGridWidth);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EE647576") << ":";
+	p_Stream << simdjson::as_json_string("fGridSpacing") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_EE647576);
+	p_Stream << simdjson::as_json_string(s_Object->fGridSpacing);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -6443,20 +6453,20 @@ void SGProperties::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_0967A27E") << ":";
-	float4::WriteSimpleJson(&s_Object->_0967A27E, p_Stream);
+	p_Stream << simdjson::as_json_string("vMin") << ":";
+	float4::WriteSimpleJson(&s_Object->vMin, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_356A9D27") << ":";
-	float4::WriteSimpleJson(&s_Object->_356A9D27, p_Stream);
+	p_Stream << simdjson::as_json_string("vMax") << ":";
+	float4::WriteSimpleJson(&s_Object->vMax, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7E907DDA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7E907DDA);
+	p_Stream << simdjson::as_json_string("nGridWidth") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nGridWidth);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EE647576") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_EE647576);
+	p_Stream << simdjson::as_json_string("fGridSpacing") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fGridSpacing);
 
 	p_Stream << "}";
 }
@@ -6467,19 +6477,19 @@ void SGProperties::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_0967A27E"], &s_Item);
-		s_Object._0967A27E = s_Item;
+		float4::FromSimpleJson(p_Document["vMin"], &s_Item);
+		s_Object.vMin = s_Item;
 	}
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_356A9D27"], &s_Item);
-		s_Object._356A9D27 = s_Item;
+		float4::FromSimpleJson(p_Document["vMax"], &s_Item);
+		s_Object.vMax = s_Item;
 	}
 
-	s_Object._7E907DDA = simdjson::from_json_int32(p_Document["_7E907DDA"]);
+	s_Object.nGridWidth = simdjson::from_json_int32(p_Document["nGridWidth"]);
 
-	s_Object._EE647576 = simdjson::from_json_float32(p_Document["_EE647576"]);
+	s_Object.fGridSpacing = simdjson::from_json_float32(p_Document["fGridSpacing"]);
 
 	*reinterpret_cast<SGProperties*>(p_Target) = s_Object;
 }
@@ -6488,8 +6498,8 @@ void SGProperties::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr
 {
 	auto* s_Object = reinterpret_cast<SGProperties*>(p_Object);
 
-	float4::Serialize(&s_Object->_0967A27E, p_Serializer, p_OwnOffset + offsetof(SGProperties, _0967A27E));
-	float4::Serialize(&s_Object->_356A9D27, p_Serializer, p_OwnOffset + offsetof(SGProperties, _356A9D27));
+	float4::Serialize(&s_Object->vMin, p_Serializer, p_OwnOffset + offsetof(SGProperties, vMin));
+	float4::Serialize(&s_Object->vMax, p_Serializer, p_OwnOffset + offsetof(SGProperties, vMax));
 }
 
 bool SGProperties::Equals(void* p_Left, void* p_Right)
@@ -6505,10 +6515,10 @@ bool SGProperties::operator==(const SGProperties& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SGProperties>)
 		return false;
 
-	if (_0967A27E != p_Other._0967A27E) return false;
-	if (_356A9D27 != p_Other._356A9D27) return false;
-	if (_7E907DDA != p_Other._7E907DDA) return false;
-	if (_EE647576 != p_Other._EE647576) return false;
+	if (vMin != p_Other.vMin) return false;
+	if (vMax != p_Other.vMax) return false;
+	if (nGridWidth != p_Other.nGridWidth) return false;
+	if (fGridSpacing != p_Other.fGridSpacing) return false;
 
 	return true;
 }
@@ -6520,57 +6530,57 @@ void SGWaypoint::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SGWaypoint*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_E916B8EA") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor0") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_E916B8EA);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor0);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9E11887C") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor1") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_9E11887C);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor1);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0718D9C6") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor2") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_0718D9C6);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor2);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_701FE950") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor3") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_701FE950);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor3);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EE7B7CF3") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor4") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_EE7B7CF3);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor4);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_997C4C65") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor5") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_997C4C65);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor5);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_00751DDF") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor6") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_00751DDF);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor6);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_77722D49") << ":";
+	p_Stream << simdjson::as_json_string("nNeighbor7") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_77722D49);
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor7);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_28C55902") << ":";
+	p_Stream << simdjson::as_json_string("vPos") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->_28C55902, p_Stream);
+	float4::WriteJson(&s_Object->vPos, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -6582,40 +6592,40 @@ void SGWaypoint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_E916B8EA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_E916B8EA);
+	p_Stream << simdjson::as_json_string("nNeighbor0") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor0);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9E11887C") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_9E11887C);
+	p_Stream << simdjson::as_json_string("nNeighbor1") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor1);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0718D9C6") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_0718D9C6);
+	p_Stream << simdjson::as_json_string("nNeighbor2") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor2);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_701FE950") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_701FE950);
+	p_Stream << simdjson::as_json_string("nNeighbor3") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor3);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EE7B7CF3") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_EE7B7CF3);
+	p_Stream << simdjson::as_json_string("nNeighbor4") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor4);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_997C4C65") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_997C4C65);
+	p_Stream << simdjson::as_json_string("nNeighbor5") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor5);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_00751DDF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_00751DDF);
+	p_Stream << simdjson::as_json_string("nNeighbor6") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor6);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_77722D49") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_77722D49);
+	p_Stream << simdjson::as_json_string("nNeighbor7") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbor7);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_28C55902") << ":";
-	float4::WriteSimpleJson(&s_Object->_28C55902, p_Stream);
+	p_Stream << simdjson::as_json_string("vPos") << ":";
+	float4::WriteSimpleJson(&s_Object->vPos, p_Stream);
 
 	p_Stream << "}";
 }
@@ -6624,26 +6634,26 @@ void SGWaypoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SGWaypoint s_Object {};
 
-	s_Object._E916B8EA = simdjson::from_json_int16(p_Document["_E916B8EA"]);
+	s_Object.nNeighbor0 = simdjson::from_json_int16(p_Document["nNeighbor0"]);
 
-	s_Object._9E11887C = simdjson::from_json_int16(p_Document["_9E11887C"]);
+	s_Object.nNeighbor1 = simdjson::from_json_int16(p_Document["nNeighbor1"]);
 
-	s_Object._0718D9C6 = simdjson::from_json_int16(p_Document["_0718D9C6"]);
+	s_Object.nNeighbor2 = simdjson::from_json_int16(p_Document["nNeighbor2"]);
 
-	s_Object._701FE950 = simdjson::from_json_int16(p_Document["_701FE950"]);
+	s_Object.nNeighbor3 = simdjson::from_json_int16(p_Document["nNeighbor3"]);
 
-	s_Object._EE7B7CF3 = simdjson::from_json_int16(p_Document["_EE7B7CF3"]);
+	s_Object.nNeighbor4 = simdjson::from_json_int16(p_Document["nNeighbor4"]);
 
-	s_Object._997C4C65 = simdjson::from_json_int16(p_Document["_997C4C65"]);
+	s_Object.nNeighbor5 = simdjson::from_json_int16(p_Document["nNeighbor5"]);
 
-	s_Object._00751DDF = simdjson::from_json_int16(p_Document["_00751DDF"]);
+	s_Object.nNeighbor6 = simdjson::from_json_int16(p_Document["nNeighbor6"]);
 
-	s_Object._77722D49 = simdjson::from_json_int16(p_Document["_77722D49"]);
+	s_Object.nNeighbor7 = simdjson::from_json_int16(p_Document["nNeighbor7"]);
 
 	{
 		float4 s_Item {};
-		float4::FromSimpleJson(p_Document["_28C55902"], &s_Item);
-		s_Object._28C55902 = s_Item;
+		float4::FromSimpleJson(p_Document["vPos"], &s_Item);
+		s_Object.vPos = s_Item;
 	}
 
 	*reinterpret_cast<SGWaypoint*>(p_Target) = s_Object;
@@ -6653,7 +6663,7 @@ void SGWaypoint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t
 {
 	auto* s_Object = reinterpret_cast<SGWaypoint*>(p_Object);
 
-	float4::Serialize(&s_Object->_28C55902, p_Serializer, p_OwnOffset + offsetof(SGWaypoint, _28C55902));
+	float4::Serialize(&s_Object->vPos, p_Serializer, p_OwnOffset + offsetof(SGWaypoint, vPos));
 }
 
 bool SGWaypoint::Equals(void* p_Left, void* p_Right)
@@ -6669,15 +6679,15 @@ bool SGWaypoint::operator==(const SGWaypoint& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SGWaypoint>)
 		return false;
 
-	if (_E916B8EA != p_Other._E916B8EA) return false;
-	if (_9E11887C != p_Other._9E11887C) return false;
-	if (_0718D9C6 != p_Other._0718D9C6) return false;
-	if (_701FE950 != p_Other._701FE950) return false;
-	if (_EE7B7CF3 != p_Other._EE7B7CF3) return false;
-	if (_997C4C65 != p_Other._997C4C65) return false;
-	if (_00751DDF != p_Other._00751DDF) return false;
-	if (_77722D49 != p_Other._77722D49) return false;
-	if (_28C55902 != p_Other._28C55902) return false;
+	if (nNeighbor0 != p_Other.nNeighbor0) return false;
+	if (nNeighbor1 != p_Other.nNeighbor1) return false;
+	if (nNeighbor2 != p_Other.nNeighbor2) return false;
+	if (nNeighbor3 != p_Other.nNeighbor3) return false;
+	if (nNeighbor4 != p_Other.nNeighbor4) return false;
+	if (nNeighbor5 != p_Other.nNeighbor5) return false;
+	if (nNeighbor6 != p_Other.nNeighbor6) return false;
+	if (nNeighbor7 != p_Other.nNeighbor7) return false;
+	if (vPos != p_Other.vPos) return false;
 
 	return true;
 }
@@ -6689,136 +6699,136 @@ void SGameStats::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SGameStats*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_FF455411") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsByBodyPart") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_FF455411.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsByBodyPart.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_FF455411[i];
+		auto& s_Item0 = s_Object->m_aKillsByBodyPart[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_FF455411.size() - 1)
+		if (i < s_Object->m_aKillsByBodyPart.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6DE2F9E0") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsByWeapon") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_6DE2F9E0.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsByWeapon.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_6DE2F9E0[i];
+		auto& s_Item0 = s_Object->m_aKillsByWeapon[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_6DE2F9E0.size() - 1)
+		if (i < s_Object->m_aKillsByWeapon.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3D4C74E4") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsBySituation") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_3D4C74E4.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsBySituation.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_3D4C74E4[i];
+		auto& s_Item0 = s_Object->m_aKillsBySituation[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_3D4C74E4.size() - 1)
+		if (i < s_Object->m_aKillsBySituation.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_011D512F") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsByVictim") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_011D512F.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsByVictim.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_011D512F[i];
+		auto& s_Item0 = s_Object->m_aKillsByVictim[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_011D512F.size() - 1)
+		if (i < s_Object->m_aKillsByVictim.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_56FE8642") << ":";
+	p_Stream << simdjson::as_json_string("m_aActorDamageByBodyPart") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_56FE8642.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aActorDamageByBodyPart.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_56FE8642[i];
+		auto& s_Item0 = s_Object->m_aActorDamageByBodyPart[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_56FE8642.size() - 1)
+		if (i < s_Object->m_aActorDamageByBodyPart.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7C260CE4") << ":";
+	p_Stream << simdjson::as_json_string("m_aActorDamageByWeapon") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7C260CE4.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aActorDamageByWeapon.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7C260CE4[i];
+		auto& s_Item0 = s_Object->m_aActorDamageByWeapon[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_7C260CE4.size() - 1)
+		if (i < s_Object->m_aActorDamageByWeapon.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_64EB930E") << ":";
+	p_Stream << simdjson::as_json_string("m_aStealthSituations") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_64EB930E.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aStealthSituations.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_64EB930E[i];
+		auto& s_Item0 = s_Object->m_aStealthSituations[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_64EB930E.size() - 1)
+		if (i < s_Object->m_aStealthSituations.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3289C9A4") << ":";
+	p_Stream << simdjson::as_json_string("m_aExplodingProps") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_3289C9A4.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aExplodingProps.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_3289C9A4[i];
+		auto& s_Item0 = s_Object->m_aExplodingProps[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_3289C9A4.size() - 1)
+		if (i < s_Object->m_aExplodingProps.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -6833,112 +6843,112 @@ void SGameStats::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_FF455411") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsByBodyPart") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_FF455411.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsByBodyPart.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_FF455411[i];
+		auto& s_Item0 = s_Object->m_aKillsByBodyPart[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_FF455411.size() - 1)
+		if (i < s_Object->m_aKillsByBodyPart.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6DE2F9E0") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsByWeapon") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_6DE2F9E0.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsByWeapon.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_6DE2F9E0[i];
+		auto& s_Item0 = s_Object->m_aKillsByWeapon[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_6DE2F9E0.size() - 1)
+		if (i < s_Object->m_aKillsByWeapon.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3D4C74E4") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsBySituation") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_3D4C74E4.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsBySituation.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_3D4C74E4[i];
+		auto& s_Item0 = s_Object->m_aKillsBySituation[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_3D4C74E4.size() - 1)
+		if (i < s_Object->m_aKillsBySituation.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_011D512F") << ":";
+	p_Stream << simdjson::as_json_string("m_aKillsByVictim") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_011D512F.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aKillsByVictim.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_011D512F[i];
+		auto& s_Item0 = s_Object->m_aKillsByVictim[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_011D512F.size() - 1)
+		if (i < s_Object->m_aKillsByVictim.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_56FE8642") << ":";
+	p_Stream << simdjson::as_json_string("m_aActorDamageByBodyPart") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_56FE8642.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aActorDamageByBodyPart.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_56FE8642[i];
+		auto& s_Item0 = s_Object->m_aActorDamageByBodyPart[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_56FE8642.size() - 1)
+		if (i < s_Object->m_aActorDamageByBodyPart.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7C260CE4") << ":";
+	p_Stream << simdjson::as_json_string("m_aActorDamageByWeapon") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7C260CE4.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aActorDamageByWeapon.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7C260CE4[i];
+		auto& s_Item0 = s_Object->m_aActorDamageByWeapon[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_7C260CE4.size() - 1)
+		if (i < s_Object->m_aActorDamageByWeapon.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_64EB930E") << ":";
+	p_Stream << simdjson::as_json_string("m_aStealthSituations") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_64EB930E.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aStealthSituations.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_64EB930E[i];
+		auto& s_Item0 = s_Object->m_aStealthSituations[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_64EB930E.size() - 1)
+		if (i < s_Object->m_aStealthSituations.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3289C9A4") << ":";
+	p_Stream << simdjson::as_json_string("m_aExplodingProps") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_3289C9A4.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aExplodingProps.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_3289C9A4[i];
+		auto& s_Item0 = s_Object->m_aExplodingProps[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_3289C9A4.size() - 1)
+		if (i < s_Object->m_aExplodingProps.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -6952,90 +6962,90 @@ void SGameStats::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	SGameStats s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_FF455411"];
-	s_Object._FF455411.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKillsByBodyPart"];
+	s_Object.m_aKillsByBodyPart.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._FF455411[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aKillsByBodyPart[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_6DE2F9E0"];
-	s_Object._6DE2F9E0.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKillsByWeapon"];
+	s_Object.m_aKillsByWeapon.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._6DE2F9E0[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aKillsByWeapon[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_3D4C74E4"];
-	s_Object._3D4C74E4.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKillsBySituation"];
+	s_Object.m_aKillsBySituation.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._3D4C74E4[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aKillsBySituation[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_011D512F"];
-	s_Object._011D512F.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKillsByVictim"];
+	s_Object.m_aKillsByVictim.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._011D512F[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aKillsByVictim[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_56FE8642"];
-	s_Object._56FE8642.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActorDamageByBodyPart"];
+	s_Object.m_aActorDamageByBodyPart.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._56FE8642[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aActorDamageByBodyPart[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_7C260CE4"];
-	s_Object._7C260CE4.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActorDamageByWeapon"];
+	s_Object.m_aActorDamageByWeapon.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._7C260CE4[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aActorDamageByWeapon[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_64EB930E"];
-	s_Object._64EB930E.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStealthSituations"];
+	s_Object.m_aStealthSituations.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._64EB930E[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aStealthSituations[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_3289C9A4"];
-	s_Object._3289C9A4.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aExplodingProps"];
+	s_Object.m_aExplodingProps.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._3289C9A4[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_aExplodingProps[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
@@ -7046,14 +7056,14 @@ void SGameStats::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t
 {
 	auto* s_Object = reinterpret_cast<SGameStats*>(p_Object);
 
-	TArray<int32>::Serialize(&s_Object->_FF455411, p_Serializer, p_OwnOffset + offsetof(SGameStats, _FF455411));
-	TArray<int32>::Serialize(&s_Object->_6DE2F9E0, p_Serializer, p_OwnOffset + offsetof(SGameStats, _6DE2F9E0));
-	TArray<int32>::Serialize(&s_Object->_3D4C74E4, p_Serializer, p_OwnOffset + offsetof(SGameStats, _3D4C74E4));
-	TArray<int32>::Serialize(&s_Object->_011D512F, p_Serializer, p_OwnOffset + offsetof(SGameStats, _011D512F));
-	TArray<int32>::Serialize(&s_Object->_56FE8642, p_Serializer, p_OwnOffset + offsetof(SGameStats, _56FE8642));
-	TArray<int32>::Serialize(&s_Object->_7C260CE4, p_Serializer, p_OwnOffset + offsetof(SGameStats, _7C260CE4));
-	TArray<int32>::Serialize(&s_Object->_64EB930E, p_Serializer, p_OwnOffset + offsetof(SGameStats, _64EB930E));
-	TArray<int32>::Serialize(&s_Object->_3289C9A4, p_Serializer, p_OwnOffset + offsetof(SGameStats, _3289C9A4));
+	TArray<int32>::Serialize(&s_Object->m_aKillsByBodyPart, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aKillsByBodyPart));
+	TArray<int32>::Serialize(&s_Object->m_aKillsByWeapon, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aKillsByWeapon));
+	TArray<int32>::Serialize(&s_Object->m_aKillsBySituation, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aKillsBySituation));
+	TArray<int32>::Serialize(&s_Object->m_aKillsByVictim, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aKillsByVictim));
+	TArray<int32>::Serialize(&s_Object->m_aActorDamageByBodyPart, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aActorDamageByBodyPart));
+	TArray<int32>::Serialize(&s_Object->m_aActorDamageByWeapon, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aActorDamageByWeapon));
+	TArray<int32>::Serialize(&s_Object->m_aStealthSituations, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aStealthSituations));
+	TArray<int32>::Serialize(&s_Object->m_aExplodingProps, p_Serializer, p_OwnOffset + offsetof(SGameStats, m_aExplodingProps));
 }
 
 bool SGameStats::Equals(void* p_Left, void* p_Right)
@@ -7069,14 +7079,14 @@ bool SGameStats::operator==(const SGameStats& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SGameStats>)
 		return false;
 
-	if (_FF455411 != p_Other._FF455411) return false;
-	if (_6DE2F9E0 != p_Other._6DE2F9E0) return false;
-	if (_3D4C74E4 != p_Other._3D4C74E4) return false;
-	if (_011D512F != p_Other._011D512F) return false;
-	if (_56FE8642 != p_Other._56FE8642) return false;
-	if (_7C260CE4 != p_Other._7C260CE4) return false;
-	if (_64EB930E != p_Other._64EB930E) return false;
-	if (_3289C9A4 != p_Other._3289C9A4) return false;
+	if (m_aKillsByBodyPart != p_Other.m_aKillsByBodyPart) return false;
+	if (m_aKillsByWeapon != p_Other.m_aKillsByWeapon) return false;
+	if (m_aKillsBySituation != p_Other.m_aKillsBySituation) return false;
+	if (m_aKillsByVictim != p_Other.m_aKillsByVictim) return false;
+	if (m_aActorDamageByBodyPart != p_Other.m_aActorDamageByBodyPart) return false;
+	if (m_aActorDamageByWeapon != p_Other.m_aActorDamageByWeapon) return false;
+	if (m_aStealthSituations != p_Other.m_aStealthSituations) return false;
+	if (m_aExplodingProps != p_Other.m_aExplodingProps) return false;
 
 	return true;
 }
@@ -7088,93 +7098,93 @@ void SGameStatsData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SGameStatsData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_6BAA1C04") << ":";
+	p_Stream << simdjson::as_json_string("m_nTotalKills") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_6BAA1C04);
+	p_Stream << simdjson::as_json_string(s_Object->m_nTotalKills);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_168A40C8") << ":";
+	p_Stream << simdjson::as_json_string("m_nTotalShotsFired") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_168A40C8);
+	p_Stream << simdjson::as_json_string(s_Object->m_nTotalShotsFired);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0C0BA94D") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsThatHit") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_0C0BA94D);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHit);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_77DE369D") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsFiredPistol") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_77DE369D);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredPistol);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7B2752ED") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsFiredSniper") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7B2752ED);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredSniper);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_BF6C03A5") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsFiredSMG") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_BF6C03A5);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredSMG);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3C76D906") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsFiredShotgun") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3C76D906);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredShotgun);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1E315CEB") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsFiredAssault") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1E315CEB);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredAssault);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2D71587C") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsFiredRevolver") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2D71587C);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredRevolver);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B597B3BD") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitPistol") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B597B3BD);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitPistol);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B96ED7CD") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitSniper") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B96ED7CD);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitSniper);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AC816C37") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitSMG") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_AC816C37);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitSMG);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_07DAB04B") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitShotgun") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_07DAB04B);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitShotgun);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_259D35A6") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitAssault") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_259D35A6);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitAssault);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2527C938") << ":";
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitRevolver") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2527C938);
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitRevolver);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -7186,64 +7196,64 @@ void SGameStatsData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_6BAA1C04") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_6BAA1C04);
+	p_Stream << simdjson::as_json_string("m_nTotalKills") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nTotalKills);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_168A40C8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_168A40C8);
+	p_Stream << simdjson::as_json_string("m_nTotalShotsFired") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nTotalShotsFired);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0C0BA94D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_0C0BA94D);
+	p_Stream << simdjson::as_json_string("m_nShotsThatHit") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHit);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_77DE369D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_77DE369D);
+	p_Stream << simdjson::as_json_string("m_nShotsFiredPistol") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredPistol);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7B2752ED") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7B2752ED);
+	p_Stream << simdjson::as_json_string("m_nShotsFiredSniper") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredSniper);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_BF6C03A5") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_BF6C03A5);
+	p_Stream << simdjson::as_json_string("m_nShotsFiredSMG") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredSMG);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3C76D906") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3C76D906);
+	p_Stream << simdjson::as_json_string("m_nShotsFiredShotgun") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredShotgun);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1E315CEB") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1E315CEB);
+	p_Stream << simdjson::as_json_string("m_nShotsFiredAssault") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredAssault);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2D71587C") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2D71587C);
+	p_Stream << simdjson::as_json_string("m_nShotsFiredRevolver") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredRevolver);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B597B3BD") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B597B3BD);
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitPistol") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitPistol);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B96ED7CD") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B96ED7CD);
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitSniper") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitSniper);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AC816C37") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_AC816C37);
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitSMG") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitSMG);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_07DAB04B") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_07DAB04B);
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitShotgun") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitShotgun);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_259D35A6") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_259D35A6);
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitAssault") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitAssault);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2527C938") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2527C938);
+	p_Stream << simdjson::as_json_string("m_nShotsThatHitRevolver") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitRevolver);
 
 	p_Stream << "}";
 }
@@ -7252,35 +7262,35 @@ void SGameStatsData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SGameStatsData s_Object {};
 
-	s_Object._6BAA1C04 = simdjson::from_json_int32(p_Document["_6BAA1C04"]);
+	s_Object.m_nTotalKills = simdjson::from_json_int32(p_Document["m_nTotalKills"]);
 
-	s_Object._168A40C8 = simdjson::from_json_uint32(p_Document["_168A40C8"]);
+	s_Object.m_nTotalShotsFired = simdjson::from_json_uint32(p_Document["m_nTotalShotsFired"]);
 
-	s_Object._0C0BA94D = simdjson::from_json_uint32(p_Document["_0C0BA94D"]);
+	s_Object.m_nShotsThatHit = simdjson::from_json_uint32(p_Document["m_nShotsThatHit"]);
 
-	s_Object._77DE369D = simdjson::from_json_uint32(p_Document["_77DE369D"]);
+	s_Object.m_nShotsFiredPistol = simdjson::from_json_uint32(p_Document["m_nShotsFiredPistol"]);
 
-	s_Object._7B2752ED = simdjson::from_json_uint32(p_Document["_7B2752ED"]);
+	s_Object.m_nShotsFiredSniper = simdjson::from_json_uint32(p_Document["m_nShotsFiredSniper"]);
 
-	s_Object._BF6C03A5 = simdjson::from_json_uint32(p_Document["_BF6C03A5"]);
+	s_Object.m_nShotsFiredSMG = simdjson::from_json_uint32(p_Document["m_nShotsFiredSMG"]);
 
-	s_Object._3C76D906 = simdjson::from_json_uint32(p_Document["_3C76D906"]);
+	s_Object.m_nShotsFiredShotgun = simdjson::from_json_uint32(p_Document["m_nShotsFiredShotgun"]);
 
-	s_Object._1E315CEB = simdjson::from_json_uint32(p_Document["_1E315CEB"]);
+	s_Object.m_nShotsFiredAssault = simdjson::from_json_uint32(p_Document["m_nShotsFiredAssault"]);
 
-	s_Object._2D71587C = simdjson::from_json_uint32(p_Document["_2D71587C"]);
+	s_Object.m_nShotsFiredRevolver = simdjson::from_json_uint32(p_Document["m_nShotsFiredRevolver"]);
 
-	s_Object._B597B3BD = simdjson::from_json_uint32(p_Document["_B597B3BD"]);
+	s_Object.m_nShotsThatHitPistol = simdjson::from_json_uint32(p_Document["m_nShotsThatHitPistol"]);
 
-	s_Object._B96ED7CD = simdjson::from_json_uint32(p_Document["_B96ED7CD"]);
+	s_Object.m_nShotsThatHitSniper = simdjson::from_json_uint32(p_Document["m_nShotsThatHitSniper"]);
 
-	s_Object._AC816C37 = simdjson::from_json_uint32(p_Document["_AC816C37"]);
+	s_Object.m_nShotsThatHitSMG = simdjson::from_json_uint32(p_Document["m_nShotsThatHitSMG"]);
 
-	s_Object._07DAB04B = simdjson::from_json_uint32(p_Document["_07DAB04B"]);
+	s_Object.m_nShotsThatHitShotgun = simdjson::from_json_uint32(p_Document["m_nShotsThatHitShotgun"]);
 
-	s_Object._259D35A6 = simdjson::from_json_uint32(p_Document["_259D35A6"]);
+	s_Object.m_nShotsThatHitAssault = simdjson::from_json_uint32(p_Document["m_nShotsThatHitAssault"]);
 
-	s_Object._2527C938 = simdjson::from_json_uint32(p_Document["_2527C938"]);
+	s_Object.m_nShotsThatHitRevolver = simdjson::from_json_uint32(p_Document["m_nShotsThatHitRevolver"]);
 
 	*reinterpret_cast<SGameStatsData*>(p_Target) = s_Object;
 }
@@ -7304,21 +7314,21 @@ bool SGameStatsData::operator==(const SGameStatsData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SGameStatsData>)
 		return false;
 
-	if (_6BAA1C04 != p_Other._6BAA1C04) return false;
-	if (_168A40C8 != p_Other._168A40C8) return false;
-	if (_0C0BA94D != p_Other._0C0BA94D) return false;
-	if (_77DE369D != p_Other._77DE369D) return false;
-	if (_7B2752ED != p_Other._7B2752ED) return false;
-	if (_BF6C03A5 != p_Other._BF6C03A5) return false;
-	if (_3C76D906 != p_Other._3C76D906) return false;
-	if (_1E315CEB != p_Other._1E315CEB) return false;
-	if (_2D71587C != p_Other._2D71587C) return false;
-	if (_B597B3BD != p_Other._B597B3BD) return false;
-	if (_B96ED7CD != p_Other._B96ED7CD) return false;
-	if (_AC816C37 != p_Other._AC816C37) return false;
-	if (_07DAB04B != p_Other._07DAB04B) return false;
-	if (_259D35A6 != p_Other._259D35A6) return false;
-	if (_2527C938 != p_Other._2527C938) return false;
+	if (m_nTotalKills != p_Other.m_nTotalKills) return false;
+	if (m_nTotalShotsFired != p_Other.m_nTotalShotsFired) return false;
+	if (m_nShotsThatHit != p_Other.m_nShotsThatHit) return false;
+	if (m_nShotsFiredPistol != p_Other.m_nShotsFiredPistol) return false;
+	if (m_nShotsFiredSniper != p_Other.m_nShotsFiredSniper) return false;
+	if (m_nShotsFiredSMG != p_Other.m_nShotsFiredSMG) return false;
+	if (m_nShotsFiredShotgun != p_Other.m_nShotsFiredShotgun) return false;
+	if (m_nShotsFiredAssault != p_Other.m_nShotsFiredAssault) return false;
+	if (m_nShotsFiredRevolver != p_Other.m_nShotsFiredRevolver) return false;
+	if (m_nShotsThatHitPistol != p_Other.m_nShotsThatHitPistol) return false;
+	if (m_nShotsThatHitSniper != p_Other.m_nShotsThatHitSniper) return false;
+	if (m_nShotsThatHitSMG != p_Other.m_nShotsThatHitSMG) return false;
+	if (m_nShotsThatHitShotgun != p_Other.m_nShotsThatHitShotgun) return false;
+	if (m_nShotsThatHitAssault != p_Other.m_nShotsThatHitAssault) return false;
+	if (m_nShotsThatHitRevolver != p_Other.m_nShotsThatHitRevolver) return false;
 
 	return true;
 }
@@ -7330,15 +7340,15 @@ void SGameStatsSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SGameStatsSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_936E667C") << ":";
+	p_Stream << simdjson::as_json_string("m_Data") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SGameStatsData") << ",\"$val\":";
-	SGameStatsData::WriteJson(&s_Object->_936E667C, p_Stream);
+	SGameStatsData::WriteJson(&s_Object->m_Data, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3A64A27F") << ":";
+	p_Stream << simdjson::as_json_string("m_iPreciseSniperKillCount") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3A64A27F);
+	p_Stream << simdjson::as_json_string(s_Object->m_iPreciseSniperKillCount);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -7350,12 +7360,12 @@ void SGameStatsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_936E667C") << ":";
-	SGameStatsData::WriteSimpleJson(&s_Object->_936E667C, p_Stream);
+	p_Stream << simdjson::as_json_string("m_Data") << ":";
+	SGameStatsData::WriteSimpleJson(&s_Object->m_Data, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3A64A27F") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3A64A27F);
+	p_Stream << simdjson::as_json_string("m_iPreciseSniperKillCount") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iPreciseSniperKillCount);
 
 	p_Stream << "}";
 }
@@ -7366,11 +7376,11 @@ void SGameStatsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	{
 		SGameStatsData s_Item {};
-		SGameStatsData::FromSimpleJson(p_Document["_936E667C"], &s_Item);
-		s_Object._936E667C = s_Item;
+		SGameStatsData::FromSimpleJson(p_Document["m_Data"], &s_Item);
+		s_Object.m_Data = s_Item;
 	}
 
-	s_Object._3A64A27F = simdjson::from_json_int32(p_Document["_3A64A27F"]);
+	s_Object.m_iPreciseSniperKillCount = simdjson::from_json_int32(p_Document["m_iPreciseSniperKillCount"]);
 
 	*reinterpret_cast<SGameStatsSaveData*>(p_Target) = s_Object;
 }
@@ -7379,7 +7389,7 @@ void SGameStatsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, 
 {
 	auto* s_Object = reinterpret_cast<SGameStatsSaveData*>(p_Object);
 
-	SGameStatsData::Serialize(&s_Object->_936E667C, p_Serializer, p_OwnOffset + offsetof(SGameStatsSaveData, _936E667C));
+	SGameStatsData::Serialize(&s_Object->m_Data, p_Serializer, p_OwnOffset + offsetof(SGameStatsSaveData, m_Data));
 }
 
 bool SGameStatsSaveData::Equals(void* p_Left, void* p_Right)
@@ -7395,8 +7405,8 @@ bool SGameStatsSaveData::operator==(const SGameStatsSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SGameStatsSaveData>)
 		return false;
 
-	if (_936E667C != p_Other._936E667C) return false;
-	if (_3A64A27F != p_Other._3A64A27F) return false;
+	if (m_Data != p_Other.m_Data) return false;
+	if (m_iPreciseSniperKillCount != p_Other.m_iPreciseSniperKillCount) return false;
 
 	return true;
 }
@@ -7408,27 +7418,27 @@ void SGameStatsWeapon::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SGameStatsWeapon*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_4B103D9F") << ":";
+	p_Stream << simdjson::as_json_string("m_eItemWeapon") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("eItemType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_4B103D9F)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eItemType", static_cast<int>(s_Object->_4B103D9F))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eItemWeapon)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eItemType", static_cast<int>(s_Object->m_eItemWeapon))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_23BDF767") << ":";
+	p_Stream << simdjson::as_json_string("m_WeaponTokenID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_23BDF767, p_Stream);
+	STokenID::WriteJson(&s_Object->m_WeaponTokenID, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5890F648") << ":";
+	p_Stream << simdjson::as_json_string("m_eSpecialSituation") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("EWeaponSpecialSituation") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_5890F648)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EWeaponSpecialSituation", static_cast<int>(s_Object->_5890F648))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eSpecialSituation)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EWeaponSpecialSituation", static_cast<int>(s_Object->m_eSpecialSituation))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_03DA47B8") << ":";
+	p_Stream << simdjson::as_json_string("m_eAmmoType") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("eAmmoType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_03DA47B8)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eAmmoType", static_cast<int>(s_Object->_03DA47B8))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eAmmoType)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eAmmoType", static_cast<int>(s_Object->m_eAmmoType))) << "}";
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -7440,20 +7450,20 @@ void SGameStatsWeapon::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_4B103D9F") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eItemType", static_cast<int>(s_Object->_4B103D9F)));
+	p_Stream << simdjson::as_json_string("m_eItemWeapon") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eItemType", static_cast<int>(s_Object->m_eItemWeapon)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_23BDF767") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_23BDF767, p_Stream);
+	p_Stream << simdjson::as_json_string("m_WeaponTokenID") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_WeaponTokenID, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5890F648") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EWeaponSpecialSituation", static_cast<int>(s_Object->_5890F648)));
+	p_Stream << simdjson::as_json_string("m_eSpecialSituation") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EWeaponSpecialSituation", static_cast<int>(s_Object->m_eSpecialSituation)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_03DA47B8") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eAmmoType", static_cast<int>(s_Object->_03DA47B8)));
+	p_Stream << simdjson::as_json_string("m_eAmmoType") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eAmmoType", static_cast<int>(s_Object->m_eAmmoType)));
 
 	p_Stream << "}";
 }
@@ -7462,17 +7472,17 @@ void SGameStatsWeapon::FromSimpleJson(simdjson::ondemand::value p_Document, void
 {
 	SGameStatsWeapon s_Object {};
 
-	s_Object._4B103D9F = static_cast<eItemType>(ZHMEnums::GetEnumValueByName("eItemType", std::string_view(p_Document["_4B103D9F"])));
+	s_Object.m_eItemWeapon = static_cast<eItemType>(ZHMEnums::GetEnumValueByName("eItemType", std::string_view(p_Document["m_eItemWeapon"])));
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_23BDF767"], &s_Item);
-		s_Object._23BDF767 = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_WeaponTokenID"], &s_Item);
+		s_Object.m_WeaponTokenID = s_Item;
 	}
 
-	s_Object._5890F648 = static_cast<EWeaponSpecialSituation>(ZHMEnums::GetEnumValueByName("EWeaponSpecialSituation", std::string_view(p_Document["_5890F648"])));
+	s_Object.m_eSpecialSituation = static_cast<EWeaponSpecialSituation>(ZHMEnums::GetEnumValueByName("EWeaponSpecialSituation", std::string_view(p_Document["m_eSpecialSituation"])));
 
-	s_Object._03DA47B8 = static_cast<eAmmoType>(ZHMEnums::GetEnumValueByName("eAmmoType", std::string_view(p_Document["_03DA47B8"])));
+	s_Object.m_eAmmoType = static_cast<eAmmoType>(ZHMEnums::GetEnumValueByName("eAmmoType", std::string_view(p_Document["m_eAmmoType"])));
 
 	*reinterpret_cast<SGameStatsWeapon*>(p_Target) = s_Object;
 }
@@ -7481,7 +7491,7 @@ void SGameStatsWeapon::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zh
 {
 	auto* s_Object = reinterpret_cast<SGameStatsWeapon*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_23BDF767, p_Serializer, p_OwnOffset + offsetof(SGameStatsWeapon, _23BDF767));
+	STokenID::Serialize(&s_Object->m_WeaponTokenID, p_Serializer, p_OwnOffset + offsetof(SGameStatsWeapon, m_WeaponTokenID));
 }
 
 bool SGameStatsWeapon::Equals(void* p_Left, void* p_Right)
@@ -7497,10 +7507,10 @@ bool SGameStatsWeapon::operator==(const SGameStatsWeapon& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SGameStatsWeapon>)
 		return false;
 
-	if (_4B103D9F != p_Other._4B103D9F) return false;
-	if (_23BDF767 != p_Other._23BDF767) return false;
-	if (_5890F648 != p_Other._5890F648) return false;
-	if (_03DA47B8 != p_Other._03DA47B8) return false;
+	if (m_eItemWeapon != p_Other.m_eItemWeapon) return false;
+	if (m_WeaponTokenID != p_Other.m_WeaponTokenID) return false;
+	if (m_eSpecialSituation != p_Other.m_eSpecialSituation) return false;
+	if (m_eAmmoType != p_Other.m_eAmmoType) return false;
 
 	return true;
 }
@@ -7512,23 +7522,23 @@ void SLevelCPProgressionData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SLevelCPProgressionData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_F0A2AB0C") << ":";
+	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_F0A2AB0C)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_F0A2AB0C))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F0ABDD90") << ":";
+	p_Stream << simdjson::as_json_string("m_aCPStates") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCPProgressionState>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F0ABDD90.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aCPStates.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F0ABDD90[i];
+		auto& s_Item0 = s_Object->m_aCPStates[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCPProgressionState") << ",\"$val\":";
 		SCPProgressionState::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_F0ABDD90.size() - 1)
+		if (i < s_Object->m_aCPStates.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -7543,18 +7553,18 @@ void SLevelCPProgressionData::WriteSimpleJson(void* p_Object, std::ostream& p_St
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_F0A2AB0C") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_F0A2AB0C)));
+	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F0ABDD90") << ":";
+	p_Stream << simdjson::as_json_string("m_aCPStates") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_F0ABDD90.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aCPStates.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_F0ABDD90[i];
+		auto& s_Item0 = s_Object->m_aCPStates[i];
 		SCPProgressionState::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_F0ABDD90.size() - 1)
+		if (i < s_Object->m_aCPStates.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -7567,18 +7577,18 @@ void SLevelCPProgressionData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SLevelCPProgressionData s_Object {};
 
-	s_Object._F0A2AB0C = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["_F0A2AB0C"])));
+	s_Object.m_eLevelIndex = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["m_eLevelIndex"])));
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_F0ABDD90"];
-	s_Object._F0ABDD90.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCPStates"];
+	s_Object.m_aCPStates.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCPProgressionState s_ArrayItem0;
 		SCPProgressionState::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._F0ABDD90[s_Index0++] = s_ArrayItem0;
+		s_Object.m_aCPStates[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -7589,7 +7599,7 @@ void SLevelCPProgressionData::Serialize(void* p_Object, ZHMSerializer& p_Seriali
 {
 	auto* s_Object = reinterpret_cast<SLevelCPProgressionData*>(p_Object);
 
-	TArray<SCPProgressionState>::Serialize(&s_Object->_F0ABDD90, p_Serializer, p_OwnOffset + offsetof(SLevelCPProgressionData, _F0ABDD90));
+	TArray<SCPProgressionState>::Serialize(&s_Object->m_aCPStates, p_Serializer, p_OwnOffset + offsetof(SLevelCPProgressionData, m_aCPStates));
 }
 
 bool SLevelCPProgressionData::Equals(void* p_Left, void* p_Right)
@@ -7605,8 +7615,8 @@ bool SLevelCPProgressionData::operator==(const SLevelCPProgressionData& p_Other)
 	if constexpr (!ZHMTypeSupportsEquality_v<SLevelCPProgressionData>)
 		return false;
 
-	if (_F0A2AB0C != p_Other._F0A2AB0C) return false;
-	if (_F0ABDD90 != p_Other._F0ABDD90) return false;
+	if (m_eLevelIndex != p_Other.m_eLevelIndex) return false;
+	if (m_aCPStates != p_Other.m_aCPStates) return false;
 
 	return true;
 }
@@ -7618,21 +7628,21 @@ void SLevelProgressionData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SLevelProgressionData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_F0A2AB0C") << ":";
+	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_F0A2AB0C)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_F0A2AB0C))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CB578D5E") << ":";
+	p_Stream << simdjson::as_json_string("m_nCheckpointIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_CB578D5E);
+	p_Stream << simdjson::as_json_string(s_Object->m_nCheckpointIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1D5A80A8") << ":";
+	p_Stream << simdjson::as_json_string("m_nDifficulty") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1D5A80A8);
+	p_Stream << simdjson::as_json_string(s_Object->m_nDifficulty);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -7644,16 +7654,16 @@ void SLevelProgressionData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_F0A2AB0C") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_F0A2AB0C)));
+	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CB578D5E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_CB578D5E);
+	p_Stream << simdjson::as_json_string("m_nCheckpointIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nCheckpointIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1D5A80A8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1D5A80A8);
+	p_Stream << simdjson::as_json_string("m_nDifficulty") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nDifficulty);
 
 	p_Stream << "}";
 }
@@ -7662,11 +7672,11 @@ void SLevelProgressionData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SLevelProgressionData s_Object {};
 
-	s_Object._F0A2AB0C = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["_F0A2AB0C"])));
+	s_Object.m_eLevelIndex = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["m_eLevelIndex"])));
 
-	s_Object._CB578D5E = simdjson::from_json_int32(p_Document["_CB578D5E"]);
+	s_Object.m_nCheckpointIndex = simdjson::from_json_int32(p_Document["m_nCheckpointIndex"]);
 
-	s_Object._1D5A80A8 = simdjson::from_json_int32(p_Document["_1D5A80A8"]);
+	s_Object.m_nDifficulty = simdjson::from_json_int32(p_Document["m_nDifficulty"]);
 
 	*reinterpret_cast<SLevelProgressionData*>(p_Target) = s_Object;
 }
@@ -7690,9 +7700,9 @@ bool SLevelProgressionData::operator==(const SLevelProgressionData& p_Other) con
 	if constexpr (!ZHMTypeSupportsEquality_v<SLevelProgressionData>)
 		return false;
 
-	if (_F0A2AB0C != p_Other._F0A2AB0C) return false;
-	if (_CB578D5E != p_Other._CB578D5E) return false;
-	if (_1D5A80A8 != p_Other._1D5A80A8) return false;
+	if (m_eLevelIndex != p_Other.m_eLevelIndex) return false;
+	if (m_nCheckpointIndex != p_Other.m_nCheckpointIndex) return false;
+	if (m_nDifficulty != p_Other.m_nDifficulty) return false;
 
 	return true;
 }
@@ -7704,23 +7714,23 @@ void SLevelSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SLevelSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_771C430C") << ":";
+	p_Stream << simdjson::as_json_string("m_LevelID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_771C430C)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_771C430C))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_LevelID)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_LevelID))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CA26BF0B") << ":";
+	p_Stream << simdjson::as_json_string("m_CheckpointData") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCheckpointSaveData>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_CA26BF0B.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CheckpointData.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_CA26BF0B[i];
+		auto& s_Item0 = s_Object->m_CheckpointData[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCheckpointSaveData") << ",\"$val\":";
 		SCheckpointSaveData::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_CA26BF0B.size() - 1)
+		if (i < s_Object->m_CheckpointData.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -7735,18 +7745,18 @@ void SLevelSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_771C430C") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->_771C430C)));
+	p_Stream << simdjson::as_json_string("m_LevelID") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_LevelID)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CA26BF0B") << ":";
+	p_Stream << simdjson::as_json_string("m_CheckpointData") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_CA26BF0B.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CheckpointData.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_CA26BF0B[i];
+		auto& s_Item0 = s_Object->m_CheckpointData[i];
 		SCheckpointSaveData::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_CA26BF0B.size() - 1)
+		if (i < s_Object->m_CheckpointData.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -7759,18 +7769,18 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SLevelSaveData s_Object {};
 
-	s_Object._771C430C = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["_771C430C"])));
+	s_Object.m_LevelID = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["m_LevelID"])));
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_CA26BF0B"];
-	s_Object._CA26BF0B.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_CheckpointData"];
+	s_Object.m_CheckpointData.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCheckpointSaveData s_ArrayItem0;
 		SCheckpointSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._CA26BF0B[s_Index0++] = s_ArrayItem0;
+		s_Object.m_CheckpointData[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -7781,7 +7791,7 @@ void SLevelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 {
 	auto* s_Object = reinterpret_cast<SLevelSaveData*>(p_Object);
 
-	TArray<SCheckpointSaveData>::Serialize(&s_Object->_CA26BF0B, p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, _CA26BF0B));
+	TArray<SCheckpointSaveData>::Serialize(&s_Object->m_CheckpointData, p_Serializer, p_OwnOffset + offsetof(SLevelSaveData, m_CheckpointData));
 }
 
 bool SLevelSaveData::Equals(void* p_Left, void* p_Right)
@@ -7797,8 +7807,8 @@ bool SLevelSaveData::operator==(const SLevelSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SLevelSaveData>)
 		return false;
 
-	if (_771C430C != p_Other._771C430C) return false;
-	if (_CA26BF0B != p_Other._CA26BF0B) return false;
+	if (m_LevelID != p_Other.m_LevelID) return false;
+	if (m_CheckpointData != p_Other.m_CheckpointData) return false;
 
 	return true;
 }
@@ -7810,21 +7820,21 @@ void SLoadRuntimeResourceResult::WriteJson(void* p_Object, std::ostream& p_Strea
 	auto* s_Object = reinterpret_cast<SLoadRuntimeResourceResult*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_7A3DE5D3") << ":";
+	p_Stream << simdjson::as_json_string("sFilePath") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7A3DE5D3);
+	p_Stream << simdjson::as_json_string(s_Object->sFilePath);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AF5136A7") << ":";
+	p_Stream << simdjson::as_json_string("sOutputMessage") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_AF5136A7);
+	p_Stream << simdjson::as_json_string(s_Object->sOutputMessage);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7DBB26BA") << ":";
+	p_Stream << simdjson::as_json_string("sErrorMessage") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7DBB26BA);
+	p_Stream << simdjson::as_json_string(s_Object->sErrorMessage);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -7836,16 +7846,16 @@ void SLoadRuntimeResourceResult::WriteSimpleJson(void* p_Object, std::ostream& p
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_7A3DE5D3") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7A3DE5D3);
+	p_Stream << simdjson::as_json_string("sFilePath") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sFilePath);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AF5136A7") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_AF5136A7);
+	p_Stream << simdjson::as_json_string("sOutputMessage") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sOutputMessage);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7DBB26BA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7DBB26BA);
+	p_Stream << simdjson::as_json_string("sErrorMessage") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sErrorMessage);
 
 	p_Stream << "}";
 }
@@ -7854,11 +7864,11 @@ void SLoadRuntimeResourceResult::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SLoadRuntimeResourceResult s_Object {};
 
-	s_Object._7A3DE5D3 = std::string_view(p_Document["_7A3DE5D3"]);
+	s_Object.sFilePath = std::string_view(p_Document["sFilePath"]);
 
-	s_Object._AF5136A7 = std::string_view(p_Document["_AF5136A7"]);
+	s_Object.sOutputMessage = std::string_view(p_Document["sOutputMessage"]);
 
-	s_Object._7DBB26BA = std::string_view(p_Document["_7DBB26BA"]);
+	s_Object.sErrorMessage = std::string_view(p_Document["sErrorMessage"]);
 
 	*reinterpret_cast<SLoadRuntimeResourceResult*>(p_Target) = s_Object;
 }
@@ -7867,9 +7877,9 @@ void SLoadRuntimeResourceResult::Serialize(void* p_Object, ZHMSerializer& p_Seri
 {
 	auto* s_Object = reinterpret_cast<SLoadRuntimeResourceResult*>(p_Object);
 
-	ZString::Serialize(&s_Object->_7A3DE5D3, p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, _7A3DE5D3));
-	ZString::Serialize(&s_Object->_AF5136A7, p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, _AF5136A7));
-	ZString::Serialize(&s_Object->_7DBB26BA, p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, _7DBB26BA));
+	ZString::Serialize(&s_Object->sFilePath, p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, sFilePath));
+	ZString::Serialize(&s_Object->sOutputMessage, p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, sOutputMessage));
+	ZString::Serialize(&s_Object->sErrorMessage, p_Serializer, p_OwnOffset + offsetof(SLoadRuntimeResourceResult, sErrorMessage));
 }
 
 bool SLoadRuntimeResourceResult::Equals(void* p_Left, void* p_Right)
@@ -7885,9 +7895,9 @@ bool SLoadRuntimeResourceResult::operator==(const SLoadRuntimeResourceResult& p_
 	if constexpr (!ZHMTypeSupportsEquality_v<SLoadRuntimeResourceResult>)
 		return false;
 
-	if (_7A3DE5D3 != p_Other._7A3DE5D3) return false;
-	if (_AF5136A7 != p_Other._AF5136A7) return false;
-	if (_7DBB26BA != p_Other._7DBB26BA) return false;
+	if (sFilePath != p_Other.sFilePath) return false;
+	if (sOutputMessage != p_Other.sOutputMessage) return false;
+	if (sErrorMessage != p_Other.sErrorMessage) return false;
 
 	return true;
 }
@@ -7899,21 +7909,21 @@ void SMatrix33::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SMatrix33*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_CA3885CF") << ":";
+	p_Stream << simdjson::as_json_string("XAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_CA3885CF, p_Stream);
+	SVector3::WriteJson(&s_Object->XAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F758AC7F") << ":";
+	p_Stream << simdjson::as_json_string("YAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_F758AC7F, p_Stream);
+	SVector3::WriteJson(&s_Object->YAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B0F8D6AF") << ":";
+	p_Stream << simdjson::as_json_string("ZAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_B0F8D6AF, p_Stream);
+	SVector3::WriteJson(&s_Object->ZAxis, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -7925,16 +7935,16 @@ void SMatrix33::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_CA3885CF") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_CA3885CF, p_Stream);
+	p_Stream << simdjson::as_json_string("XAxis") << ":";
+	SVector3::WriteSimpleJson(&s_Object->XAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F758AC7F") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_F758AC7F, p_Stream);
+	p_Stream << simdjson::as_json_string("YAxis") << ":";
+	SVector3::WriteSimpleJson(&s_Object->YAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B0F8D6AF") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_B0F8D6AF, p_Stream);
+	p_Stream << simdjson::as_json_string("ZAxis") << ":";
+	SVector3::WriteSimpleJson(&s_Object->ZAxis, p_Stream);
 
 	p_Stream << "}";
 }
@@ -7945,20 +7955,20 @@ void SMatrix33::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_CA3885CF"], &s_Item);
-		s_Object._CA3885CF = s_Item;
+		SVector3::FromSimpleJson(p_Document["XAxis"], &s_Item);
+		s_Object.XAxis = s_Item;
 	}
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_F758AC7F"], &s_Item);
-		s_Object._F758AC7F = s_Item;
+		SVector3::FromSimpleJson(p_Document["YAxis"], &s_Item);
+		s_Object.YAxis = s_Item;
 	}
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_B0F8D6AF"], &s_Item);
-		s_Object._B0F8D6AF = s_Item;
+		SVector3::FromSimpleJson(p_Document["ZAxis"], &s_Item);
+		s_Object.ZAxis = s_Item;
 	}
 
 	*reinterpret_cast<SMatrix33*>(p_Target) = s_Object;
@@ -7968,9 +7978,9 @@ void SMatrix33::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t 
 {
 	auto* s_Object = reinterpret_cast<SMatrix33*>(p_Object);
 
-	SVector3::Serialize(&s_Object->_CA3885CF, p_Serializer, p_OwnOffset + offsetof(SMatrix33, _CA3885CF));
-	SVector3::Serialize(&s_Object->_F758AC7F, p_Serializer, p_OwnOffset + offsetof(SMatrix33, _F758AC7F));
-	SVector3::Serialize(&s_Object->_B0F8D6AF, p_Serializer, p_OwnOffset + offsetof(SMatrix33, _B0F8D6AF));
+	SVector3::Serialize(&s_Object->XAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix33, XAxis));
+	SVector3::Serialize(&s_Object->YAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix33, YAxis));
+	SVector3::Serialize(&s_Object->ZAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix33, ZAxis));
 }
 
 bool SMatrix33::Equals(void* p_Left, void* p_Right)
@@ -7986,9 +7996,9 @@ bool SMatrix33::operator==(const SMatrix33& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix33>)
 		return false;
 
-	if (_CA3885CF != p_Other._CA3885CF) return false;
-	if (_F758AC7F != p_Other._F758AC7F) return false;
-	if (_B0F8D6AF != p_Other._B0F8D6AF) return false;
+	if (XAxis != p_Other.XAxis) return false;
+	if (YAxis != p_Other.YAxis) return false;
+	if (ZAxis != p_Other.ZAxis) return false;
 
 	return true;
 }
@@ -8000,27 +8010,27 @@ void SMatrix43::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SMatrix43*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_CA3885CF") << ":";
+	p_Stream << simdjson::as_json_string("XAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_CA3885CF, p_Stream);
+	SVector3::WriteJson(&s_Object->XAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F758AC7F") << ":";
+	p_Stream << simdjson::as_json_string("YAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_F758AC7F, p_Stream);
+	SVector3::WriteJson(&s_Object->YAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B0F8D6AF") << ":";
+	p_Stream << simdjson::as_json_string("ZAxis") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_B0F8D6AF, p_Stream);
+	SVector3::WriteJson(&s_Object->ZAxis, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B1E031B9") << ":";
+	p_Stream << simdjson::as_json_string("Trans") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->_B1E031B9, p_Stream);
+	SVector3::WriteJson(&s_Object->Trans, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -8032,20 +8042,20 @@ void SMatrix43::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_CA3885CF") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_CA3885CF, p_Stream);
+	p_Stream << simdjson::as_json_string("XAxis") << ":";
+	SVector3::WriteSimpleJson(&s_Object->XAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F758AC7F") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_F758AC7F, p_Stream);
+	p_Stream << simdjson::as_json_string("YAxis") << ":";
+	SVector3::WriteSimpleJson(&s_Object->YAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B0F8D6AF") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_B0F8D6AF, p_Stream);
+	p_Stream << simdjson::as_json_string("ZAxis") << ":";
+	SVector3::WriteSimpleJson(&s_Object->ZAxis, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B1E031B9") << ":";
-	SVector3::WriteSimpleJson(&s_Object->_B1E031B9, p_Stream);
+	p_Stream << simdjson::as_json_string("Trans") << ":";
+	SVector3::WriteSimpleJson(&s_Object->Trans, p_Stream);
 
 	p_Stream << "}";
 }
@@ -8056,26 +8066,26 @@ void SMatrix43::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_CA3885CF"], &s_Item);
-		s_Object._CA3885CF = s_Item;
+		SVector3::FromSimpleJson(p_Document["XAxis"], &s_Item);
+		s_Object.XAxis = s_Item;
 	}
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_F758AC7F"], &s_Item);
-		s_Object._F758AC7F = s_Item;
+		SVector3::FromSimpleJson(p_Document["YAxis"], &s_Item);
+		s_Object.YAxis = s_Item;
 	}
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_B0F8D6AF"], &s_Item);
-		s_Object._B0F8D6AF = s_Item;
+		SVector3::FromSimpleJson(p_Document["ZAxis"], &s_Item);
+		s_Object.ZAxis = s_Item;
 	}
 
 	{
 		SVector3 s_Item {};
-		SVector3::FromSimpleJson(p_Document["_B1E031B9"], &s_Item);
-		s_Object._B1E031B9 = s_Item;
+		SVector3::FromSimpleJson(p_Document["Trans"], &s_Item);
+		s_Object.Trans = s_Item;
 	}
 
 	*reinterpret_cast<SMatrix43*>(p_Target) = s_Object;
@@ -8085,10 +8095,10 @@ void SMatrix43::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t 
 {
 	auto* s_Object = reinterpret_cast<SMatrix43*>(p_Object);
 
-	SVector3::Serialize(&s_Object->_CA3885CF, p_Serializer, p_OwnOffset + offsetof(SMatrix43, _CA3885CF));
-	SVector3::Serialize(&s_Object->_F758AC7F, p_Serializer, p_OwnOffset + offsetof(SMatrix43, _F758AC7F));
-	SVector3::Serialize(&s_Object->_B0F8D6AF, p_Serializer, p_OwnOffset + offsetof(SMatrix43, _B0F8D6AF));
-	SVector3::Serialize(&s_Object->_B1E031B9, p_Serializer, p_OwnOffset + offsetof(SMatrix43, _B1E031B9));
+	SVector3::Serialize(&s_Object->XAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix43, XAxis));
+	SVector3::Serialize(&s_Object->YAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix43, YAxis));
+	SVector3::Serialize(&s_Object->ZAxis, p_Serializer, p_OwnOffset + offsetof(SMatrix43, ZAxis));
+	SVector3::Serialize(&s_Object->Trans, p_Serializer, p_OwnOffset + offsetof(SMatrix43, Trans));
 }
 
 bool SMatrix43::Equals(void* p_Left, void* p_Right)
@@ -8104,10 +8114,10 @@ bool SMatrix43::operator==(const SMatrix43& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix43>)
 		return false;
 
-	if (_CA3885CF != p_Other._CA3885CF) return false;
-	if (_F758AC7F != p_Other._F758AC7F) return false;
-	if (_B0F8D6AF != p_Other._B0F8D6AF) return false;
-	if (_B1E031B9 != p_Other._B1E031B9) return false;
+	if (XAxis != p_Other.XAxis) return false;
+	if (YAxis != p_Other.YAxis) return false;
+	if (ZAxis != p_Other.ZAxis) return false;
+	if (Trans != p_Other.Trans) return false;
 
 	return true;
 }
@@ -8119,99 +8129,99 @@ void SMatrix44::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SMatrix44*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_28CD86E9") << ":";
+	p_Stream << simdjson::as_json_string("m11") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_28CD86E9);
+	p_Stream << simdjson::as_json_string(s_Object->m11);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B1C4D753") << ":";
+	p_Stream << simdjson::as_json_string("m12") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B1C4D753);
+	p_Stream << simdjson::as_json_string(s_Object->m12);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_C6C3E7C5") << ":";
+	p_Stream << simdjson::as_json_string("m13") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_C6C3E7C5);
+	p_Stream << simdjson::as_json_string(s_Object->m13);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_58A77266") << ":";
+	p_Stream << simdjson::as_json_string("m14") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_58A77266);
+	p_Stream << simdjson::as_json_string(s_Object->m14);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_03E0D52A") << ":";
+	p_Stream << simdjson::as_json_string("m21") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_03E0D52A);
+	p_Stream << simdjson::as_json_string(s_Object->m21);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9AE98490") << ":";
+	p_Stream << simdjson::as_json_string("m22") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_9AE98490);
+	p_Stream << simdjson::as_json_string(s_Object->m22);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EDEEB406") << ":";
+	p_Stream << simdjson::as_json_string("m23") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_EDEEB406);
+	p_Stream << simdjson::as_json_string(s_Object->m23);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_738A21A5") << ":";
+	p_Stream << simdjson::as_json_string("m24") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_738A21A5);
+	p_Stream << simdjson::as_json_string(s_Object->m24);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1AFBE46B") << ":";
+	p_Stream << simdjson::as_json_string("m31") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_1AFBE46B);
+	p_Stream << simdjson::as_json_string(s_Object->m31);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_83F2B5D1") << ":";
+	p_Stream << simdjson::as_json_string("m32") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_83F2B5D1);
+	p_Stream << simdjson::as_json_string(s_Object->m32);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F4F58547") << ":";
+	p_Stream << simdjson::as_json_string("m33") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_F4F58547);
+	p_Stream << simdjson::as_json_string(s_Object->m33);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6A9110E4") << ":";
+	p_Stream << simdjson::as_json_string("m34") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_6A9110E4);
+	p_Stream << simdjson::as_json_string(s_Object->m34);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_55BA72AC") << ":";
+	p_Stream << simdjson::as_json_string("m41") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_55BA72AC);
+	p_Stream << simdjson::as_json_string(s_Object->m41);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CCB32316") << ":";
+	p_Stream << simdjson::as_json_string("m42") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_CCB32316);
+	p_Stream << simdjson::as_json_string(s_Object->m42);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_BBB41380") << ":";
+	p_Stream << simdjson::as_json_string("m43") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_BBB41380);
+	p_Stream << simdjson::as_json_string(s_Object->m43);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_25D08623") << ":";
+	p_Stream << simdjson::as_json_string("m44") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_25D08623);
+	p_Stream << simdjson::as_json_string(s_Object->m44);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -8223,68 +8233,68 @@ void SMatrix44::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_28CD86E9") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_28CD86E9);
+	p_Stream << simdjson::as_json_string("m11") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m11);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B1C4D753") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B1C4D753);
+	p_Stream << simdjson::as_json_string("m12") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m12);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_C6C3E7C5") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_C6C3E7C5);
+	p_Stream << simdjson::as_json_string("m13") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m13);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_58A77266") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_58A77266);
+	p_Stream << simdjson::as_json_string("m14") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m14);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_03E0D52A") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_03E0D52A);
+	p_Stream << simdjson::as_json_string("m21") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m21);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9AE98490") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_9AE98490);
+	p_Stream << simdjson::as_json_string("m22") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m22);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EDEEB406") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_EDEEB406);
+	p_Stream << simdjson::as_json_string("m23") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m23);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_738A21A5") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_738A21A5);
+	p_Stream << simdjson::as_json_string("m24") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m24);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1AFBE46B") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_1AFBE46B);
+	p_Stream << simdjson::as_json_string("m31") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m31);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_83F2B5D1") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_83F2B5D1);
+	p_Stream << simdjson::as_json_string("m32") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m32);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F4F58547") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_F4F58547);
+	p_Stream << simdjson::as_json_string("m33") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m33);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6A9110E4") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_6A9110E4);
+	p_Stream << simdjson::as_json_string("m34") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m34);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_55BA72AC") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_55BA72AC);
+	p_Stream << simdjson::as_json_string("m41") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m41);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CCB32316") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_CCB32316);
+	p_Stream << simdjson::as_json_string("m42") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m42);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_BBB41380") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_BBB41380);
+	p_Stream << simdjson::as_json_string("m43") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m43);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_25D08623") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_25D08623);
+	p_Stream << simdjson::as_json_string("m44") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m44);
 
 	p_Stream << "}";
 }
@@ -8293,37 +8303,37 @@ void SMatrix44::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	SMatrix44 s_Object {};
 
-	s_Object._28CD86E9 = simdjson::from_json_float32(p_Document["_28CD86E9"]);
+	s_Object.m11 = simdjson::from_json_float32(p_Document["m11"]);
 
-	s_Object._B1C4D753 = simdjson::from_json_float32(p_Document["_B1C4D753"]);
+	s_Object.m12 = simdjson::from_json_float32(p_Document["m12"]);
 
-	s_Object._C6C3E7C5 = simdjson::from_json_float32(p_Document["_C6C3E7C5"]);
+	s_Object.m13 = simdjson::from_json_float32(p_Document["m13"]);
 
-	s_Object._58A77266 = simdjson::from_json_float32(p_Document["_58A77266"]);
+	s_Object.m14 = simdjson::from_json_float32(p_Document["m14"]);
 
-	s_Object._03E0D52A = simdjson::from_json_float32(p_Document["_03E0D52A"]);
+	s_Object.m21 = simdjson::from_json_float32(p_Document["m21"]);
 
-	s_Object._9AE98490 = simdjson::from_json_float32(p_Document["_9AE98490"]);
+	s_Object.m22 = simdjson::from_json_float32(p_Document["m22"]);
 
-	s_Object._EDEEB406 = simdjson::from_json_float32(p_Document["_EDEEB406"]);
+	s_Object.m23 = simdjson::from_json_float32(p_Document["m23"]);
 
-	s_Object._738A21A5 = simdjson::from_json_float32(p_Document["_738A21A5"]);
+	s_Object.m24 = simdjson::from_json_float32(p_Document["m24"]);
 
-	s_Object._1AFBE46B = simdjson::from_json_float32(p_Document["_1AFBE46B"]);
+	s_Object.m31 = simdjson::from_json_float32(p_Document["m31"]);
 
-	s_Object._83F2B5D1 = simdjson::from_json_float32(p_Document["_83F2B5D1"]);
+	s_Object.m32 = simdjson::from_json_float32(p_Document["m32"]);
 
-	s_Object._F4F58547 = simdjson::from_json_float32(p_Document["_F4F58547"]);
+	s_Object.m33 = simdjson::from_json_float32(p_Document["m33"]);
 
-	s_Object._6A9110E4 = simdjson::from_json_float32(p_Document["_6A9110E4"]);
+	s_Object.m34 = simdjson::from_json_float32(p_Document["m34"]);
 
-	s_Object._55BA72AC = simdjson::from_json_float32(p_Document["_55BA72AC"]);
+	s_Object.m41 = simdjson::from_json_float32(p_Document["m41"]);
 
-	s_Object._CCB32316 = simdjson::from_json_float32(p_Document["_CCB32316"]);
+	s_Object.m42 = simdjson::from_json_float32(p_Document["m42"]);
 
-	s_Object._BBB41380 = simdjson::from_json_float32(p_Document["_BBB41380"]);
+	s_Object.m43 = simdjson::from_json_float32(p_Document["m43"]);
 
-	s_Object._25D08623 = simdjson::from_json_float32(p_Document["_25D08623"]);
+	s_Object.m44 = simdjson::from_json_float32(p_Document["m44"]);
 
 	*reinterpret_cast<SMatrix44*>(p_Target) = s_Object;
 }
@@ -8347,22 +8357,22 @@ bool SMatrix44::operator==(const SMatrix44& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SMatrix44>)
 		return false;
 
-	if (_28CD86E9 != p_Other._28CD86E9) return false;
-	if (_B1C4D753 != p_Other._B1C4D753) return false;
-	if (_C6C3E7C5 != p_Other._C6C3E7C5) return false;
-	if (_58A77266 != p_Other._58A77266) return false;
-	if (_03E0D52A != p_Other._03E0D52A) return false;
-	if (_9AE98490 != p_Other._9AE98490) return false;
-	if (_EDEEB406 != p_Other._EDEEB406) return false;
-	if (_738A21A5 != p_Other._738A21A5) return false;
-	if (_1AFBE46B != p_Other._1AFBE46B) return false;
-	if (_83F2B5D1 != p_Other._83F2B5D1) return false;
-	if (_F4F58547 != p_Other._F4F58547) return false;
-	if (_6A9110E4 != p_Other._6A9110E4) return false;
-	if (_55BA72AC != p_Other._55BA72AC) return false;
-	if (_CCB32316 != p_Other._CCB32316) return false;
-	if (_BBB41380 != p_Other._BBB41380) return false;
-	if (_25D08623 != p_Other._25D08623) return false;
+	if (m11 != p_Other.m11) return false;
+	if (m12 != p_Other.m12) return false;
+	if (m13 != p_Other.m13) return false;
+	if (m14 != p_Other.m14) return false;
+	if (m21 != p_Other.m21) return false;
+	if (m22 != p_Other.m22) return false;
+	if (m23 != p_Other.m23) return false;
+	if (m24 != p_Other.m24) return false;
+	if (m31 != p_Other.m31) return false;
+	if (m32 != p_Other.m32) return false;
+	if (m33 != p_Other.m33) return false;
+	if (m34 != p_Other.m34) return false;
+	if (m41 != p_Other.m41) return false;
+	if (m42 != p_Other.m42) return false;
+	if (m43 != p_Other.m43) return false;
+	if (m44 != p_Other.m44) return false;
 
 	return true;
 }
@@ -8374,39 +8384,39 @@ void SMiscSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SMiscSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_DBCDACAE") << ":";
+	p_Stream << simdjson::as_json_string("m_bCompletedFirstBoot") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_DBCDACAE);
+	p_Stream << simdjson::as_json_string(s_Object->m_bCompletedFirstBoot);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E6559F40") << ":";
+	p_Stream << simdjson::as_json_string("m_bContractsTutorialPlayShown") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_E6559F40);
+	p_Stream << simdjson::as_json_string(s_Object->m_bContractsTutorialPlayShown);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3C4892A2") << ":";
+	p_Stream << simdjson::as_json_string("m_bContractsTutorialCreateShown") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3C4892A2);
+	p_Stream << simdjson::as_json_string(s_Object->m_bContractsTutorialCreateShown);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9D5D650C") << ":";
+	p_Stream << simdjson::as_json_string("m_LastUnlockedOutfit") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_9D5D650C, p_Stream);
+	STokenID::WriteJson(&s_Object->m_LastUnlockedOutfit, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_C66C54EB") << ":";
+	p_Stream << simdjson::as_json_string("m_LastUnlockedWeapon") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_C66C54EB, p_Stream);
+	STokenID::WriteJson(&s_Object->m_LastUnlockedWeapon, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E9DA2719") << ":";
+	p_Stream << simdjson::as_json_string("m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_E9DA2719);
+	p_Stream << simdjson::as_json_string(s_Object->m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -8418,28 +8428,28 @@ void SMiscSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_DBCDACAE") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_DBCDACAE);
+	p_Stream << simdjson::as_json_string("m_bCompletedFirstBoot") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bCompletedFirstBoot);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E6559F40") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_E6559F40);
+	p_Stream << simdjson::as_json_string("m_bContractsTutorialPlayShown") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bContractsTutorialPlayShown);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3C4892A2") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3C4892A2);
+	p_Stream << simdjson::as_json_string("m_bContractsTutorialCreateShown") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bContractsTutorialCreateShown);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9D5D650C") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_9D5D650C, p_Stream);
+	p_Stream << simdjson::as_json_string("m_LastUnlockedOutfit") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_LastUnlockedOutfit, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_C66C54EB") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_C66C54EB, p_Stream);
+	p_Stream << simdjson::as_json_string("m_LastUnlockedWeapon") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_LastUnlockedWeapon, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E9DA2719") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_E9DA2719);
+	p_Stream << simdjson::as_json_string("m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed);
 
 	p_Stream << "}";
 }
@@ -8448,25 +8458,25 @@ void SMiscSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 {
 	SMiscSaveData s_Object {};
 
-	s_Object._DBCDACAE = simdjson::from_json_bool(p_Document["_DBCDACAE"]);
+	s_Object.m_bCompletedFirstBoot = simdjson::from_json_bool(p_Document["m_bCompletedFirstBoot"]);
 
-	s_Object._E6559F40 = simdjson::from_json_bool(p_Document["_E6559F40"]);
+	s_Object.m_bContractsTutorialPlayShown = simdjson::from_json_bool(p_Document["m_bContractsTutorialPlayShown"]);
 
-	s_Object._3C4892A2 = simdjson::from_json_bool(p_Document["_3C4892A2"]);
+	s_Object.m_bContractsTutorialCreateShown = simdjson::from_json_bool(p_Document["m_bContractsTutorialCreateShown"]);
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_9D5D650C"], &s_Item);
-		s_Object._9D5D650C = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_LastUnlockedOutfit"], &s_Item);
+		s_Object.m_LastUnlockedOutfit = s_Item;
 	}
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_C66C54EB"], &s_Item);
-		s_Object._C66C54EB = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_LastUnlockedWeapon"], &s_Item);
+		s_Object.m_LastUnlockedWeapon = s_Item;
 	}
 
-	s_Object._E9DA2719 = simdjson::from_json_uint32(p_Document["_E9DA2719"]);
+	s_Object.m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed = simdjson::from_json_uint32(p_Document["m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed"]);
 
 	*reinterpret_cast<SMiscSaveData*>(p_Target) = s_Object;
 }
@@ -8475,8 +8485,8 @@ void SMiscSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmpt
 {
 	auto* s_Object = reinterpret_cast<SMiscSaveData*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_9D5D650C, p_Serializer, p_OwnOffset + offsetof(SMiscSaveData, _9D5D650C));
-	STokenID::Serialize(&s_Object->_C66C54EB, p_Serializer, p_OwnOffset + offsetof(SMiscSaveData, _C66C54EB));
+	STokenID::Serialize(&s_Object->m_LastUnlockedOutfit, p_Serializer, p_OwnOffset + offsetof(SMiscSaveData, m_LastUnlockedOutfit));
+	STokenID::Serialize(&s_Object->m_LastUnlockedWeapon, p_Serializer, p_OwnOffset + offsetof(SMiscSaveData, m_LastUnlockedWeapon));
 }
 
 bool SMiscSaveData::Equals(void* p_Left, void* p_Right)
@@ -8492,12 +8502,12 @@ bool SMiscSaveData::operator==(const SMiscSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SMiscSaveData>)
 		return false;
 
-	if (_DBCDACAE != p_Other._DBCDACAE) return false;
-	if (_E6559F40 != p_Other._E6559F40) return false;
-	if (_3C4892A2 != p_Other._3C4892A2) return false;
-	if (_9D5D650C != p_Other._9D5D650C) return false;
-	if (_C66C54EB != p_Other._C66C54EB) return false;
-	if (_E9DA2719 != p_Other._E9DA2719) return false;
+	if (m_bCompletedFirstBoot != p_Other.m_bCompletedFirstBoot) return false;
+	if (m_bContractsTutorialPlayShown != p_Other.m_bContractsTutorialPlayShown) return false;
+	if (m_bContractsTutorialCreateShown != p_Other.m_bContractsTutorialCreateShown) return false;
+	if (m_LastUnlockedOutfit != p_Other.m_LastUnlockedOutfit) return false;
+	if (m_LastUnlockedWeapon != p_Other.m_LastUnlockedWeapon) return false;
+	if (m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed != p_Other.m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed) return false;
 
 	return true;
 }
@@ -8509,15 +8519,15 @@ void SNRange::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SNRange*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_0265E72F") << ":";
+	p_Stream << simdjson::as_json_string("m_nMin") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_0265E72F);
+	p_Stream << simdjson::as_json_string(s_Object->m_nMin);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3E68D876") << ":";
+	p_Stream << simdjson::as_json_string("m_nMax") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3E68D876);
+	p_Stream << simdjson::as_json_string(s_Object->m_nMax);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -8529,12 +8539,12 @@ void SNRange::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_0265E72F") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_0265E72F);
+	p_Stream << simdjson::as_json_string("m_nMin") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nMin);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_3E68D876") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3E68D876);
+	p_Stream << simdjson::as_json_string("m_nMax") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nMax);
 
 	p_Stream << "}";
 }
@@ -8543,9 +8553,9 @@ void SNRange::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 {
 	SNRange s_Object {};
 
-	s_Object._0265E72F = simdjson::from_json_int32(p_Document["_0265E72F"]);
+	s_Object.m_nMin = simdjson::from_json_int32(p_Document["m_nMin"]);
 
-	s_Object._3E68D876 = simdjson::from_json_int32(p_Document["_3E68D876"]);
+	s_Object.m_nMax = simdjson::from_json_int32(p_Document["m_nMax"]);
 
 	*reinterpret_cast<SNRange*>(p_Target) = s_Object;
 }
@@ -8569,8 +8579,8 @@ bool SNRange::operator==(const SNRange& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SNRange>)
 		return false;
 
-	if (_0265E72F != p_Other._0265E72F) return false;
-	if (_3E68D876 != p_Other._3E68D876) return false;
+	if (m_nMin != p_Other.m_nMin) return false;
+	if (m_nMax != p_Other.m_nMax) return false;
 
 	return true;
 }
@@ -8582,15 +8592,15 @@ void SPOISaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SPOISaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_3B757F3E") << ":";
+	p_Stream << simdjson::as_json_string("m_nProgressionPoints") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_3B757F3E);
+	p_Stream << simdjson::as_json_string(s_Object->m_nProgressionPoints);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_26E32D49") << ":";
+	p_Stream << simdjson::as_json_string("m_bLoaded") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_26E32D49);
+	p_Stream << simdjson::as_json_string(s_Object->m_bLoaded);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -8602,12 +8612,12 @@ void SPOISaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_3B757F3E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_3B757F3E);
+	p_Stream << simdjson::as_json_string("m_nProgressionPoints") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nProgressionPoints);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_26E32D49") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_26E32D49);
+	p_Stream << simdjson::as_json_string("m_bLoaded") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bLoaded);
 
 	p_Stream << "}";
 }
@@ -8616,9 +8626,9 @@ void SPOISaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 {
 	SPOISaveData s_Object {};
 
-	s_Object._3B757F3E = simdjson::from_json_int32(p_Document["_3B757F3E"]);
+	s_Object.m_nProgressionPoints = simdjson::from_json_int32(p_Document["m_nProgressionPoints"]);
 
-	s_Object._26E32D49 = simdjson::from_json_bool(p_Document["_26E32D49"]);
+	s_Object.m_bLoaded = simdjson::from_json_bool(p_Document["m_bLoaded"]);
 
 	*reinterpret_cast<SPOISaveData*>(p_Target) = s_Object;
 }
@@ -8642,8 +8652,8 @@ bool SPOISaveData::operator==(const SPOISaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SPOISaveData>)
 		return false;
 
-	if (_3B757F3E != p_Other._3B757F3E) return false;
-	if (_26E32D49 != p_Other._26E32D49) return false;
+	if (m_nProgressionPoints != p_Other.m_nProgressionPoints) return false;
+	if (m_bLoaded != p_Other.m_bLoaded) return false;
 
 	return true;
 }
@@ -8655,94 +8665,94 @@ void SRatingData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SRatingData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_64147134") << ":";
+	p_Stream << simdjson::as_json_string("m_CheckpointStyles") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_64147134.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CheckpointStyles.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_64147134[i];
+		auto& s_Item0 = s_Object->m_CheckpointStyles[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint16") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_64147134.size() - 1)
+		if (i < s_Object->m_CheckpointStyles.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_133F9C34") << ":";
+	p_Stream << simdjson::as_json_string("m_TitlesAchieved") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_133F9C34.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_TitlesAchieved.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_133F9C34[i];
+		auto& s_Item0 = s_Object->m_TitlesAchieved[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_133F9C34.size() - 1)
+		if (i < s_Object->m_TitlesAchieved.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_911A2395") << ":";
+	p_Stream << simdjson::as_json_string("m_TitlesViewed") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_911A2395.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_TitlesViewed.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_911A2395[i];
+		auto& s_Item0 = s_Object->m_TitlesViewed[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_911A2395.size() - 1)
+		if (i < s_Object->m_TitlesViewed.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EC99D89C") << ":";
+	p_Stream << simdjson::as_json_string("m_CPDifficulty") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<DifficultyLevelEnum>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_EC99D89C.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CPDifficulty.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_EC99D89C[i];
+		auto& s_Item0 = s_Object->m_CPDifficulty[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("DifficultyLevelEnum") << ",\"$val\":";
 		p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Item0)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("DifficultyLevelEnum", static_cast<int>(s_Item0))) << "}";
 		p_Stream << "}";
 
-		if (i < s_Object->_EC99D89C.size() - 1)
+		if (i < s_Object->m_CPDifficulty.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_50471093") << ":";
+	p_Stream << simdjson::as_json_string("m_CPChallenges") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_50471093.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CPChallenges.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_50471093[i];
+		auto& s_Item0 = s_Object->m_CPChallenges[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_50471093.size() - 1)
+		if (i < s_Object->m_CPChallenges.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0EBD8ED2") << ":";
+	p_Stream << simdjson::as_json_string("m_iLastUnlockedTitle") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_0EBD8ED2);
+	p_Stream << simdjson::as_json_string(s_Object->m_iLastUnlockedTitle);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -8754,78 +8764,78 @@ void SRatingData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_64147134") << ":";
+	p_Stream << simdjson::as_json_string("m_CheckpointStyles") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_64147134.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CheckpointStyles.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_64147134[i];
+		auto& s_Item0 = s_Object->m_CheckpointStyles[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_64147134.size() - 1)
+		if (i < s_Object->m_CheckpointStyles.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_133F9C34") << ":";
+	p_Stream << simdjson::as_json_string("m_TitlesAchieved") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_133F9C34.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_TitlesAchieved.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_133F9C34[i];
+		auto& s_Item0 = s_Object->m_TitlesAchieved[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_133F9C34.size() - 1)
+		if (i < s_Object->m_TitlesAchieved.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_911A2395") << ":";
+	p_Stream << simdjson::as_json_string("m_TitlesViewed") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_911A2395.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_TitlesViewed.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_911A2395[i];
+		auto& s_Item0 = s_Object->m_TitlesViewed[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_911A2395.size() - 1)
+		if (i < s_Object->m_TitlesViewed.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_EC99D89C") << ":";
+	p_Stream << simdjson::as_json_string("m_CPDifficulty") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_EC99D89C.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CPDifficulty.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_EC99D89C[i];
+		auto& s_Item0 = s_Object->m_CPDifficulty[i];
 		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("DifficultyLevelEnum", static_cast<int>(s_Item0)));
 
-		if (i < s_Object->_EC99D89C.size() - 1)
+		if (i < s_Object->m_CPDifficulty.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_50471093") << ":";
+	p_Stream << simdjson::as_json_string("m_CPChallenges") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_50471093.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_CPChallenges.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_50471093[i];
+		auto& s_Item0 = s_Object->m_CPChallenges[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_50471093.size() - 1)
+		if (i < s_Object->m_CPChallenges.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0EBD8ED2") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_0EBD8ED2);
+	p_Stream << simdjson::as_json_string("m_iLastUnlockedTitle") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iLastUnlockedTitle);
 
 	p_Stream << "}";
 }
@@ -8835,61 +8845,61 @@ void SRatingData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	SRatingData s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_64147134"];
-	s_Object._64147134.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_CheckpointStyles"];
+	s_Object.m_CheckpointStyles.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._64147134[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+		s_Object.m_CheckpointStyles[s_Index0++] = simdjson::from_json_uint16(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_133F9C34"];
-	s_Object._133F9C34.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_TitlesAchieved"];
+	s_Object.m_TitlesAchieved.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._133F9C34[s_Index0++] = simdjson::from_json_bool(s_Item0);
+		s_Object.m_TitlesAchieved[s_Index0++] = simdjson::from_json_bool(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_911A2395"];
-	s_Object._911A2395.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_TitlesViewed"];
+	s_Object.m_TitlesViewed.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._911A2395[s_Index0++] = simdjson::from_json_bool(s_Item0);
+		s_Object.m_TitlesViewed[s_Index0++] = simdjson::from_json_bool(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_EC99D89C"];
-	s_Object._EC99D89C.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_CPDifficulty"];
+	s_Object.m_CPDifficulty.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._EC99D89C[s_Index0++] = static_cast<DifficultyLevelEnum>(ZHMEnums::GetEnumValueByName("DifficultyLevelEnum", std::string_view(s_Item0)));
+		s_Object.m_CPDifficulty[s_Index0++] = static_cast<DifficultyLevelEnum>(ZHMEnums::GetEnumValueByName("DifficultyLevelEnum", std::string_view(s_Item0)));
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_50471093"];
-	s_Object._50471093.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_CPChallenges"];
+	s_Object.m_CPChallenges.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._50471093[s_Index0++] = simdjson::from_json_int32(s_Item0);
+		s_Object.m_CPChallenges[s_Index0++] = simdjson::from_json_int32(s_Item0);
 	}
 	}
 
-	s_Object._0EBD8ED2 = simdjson::from_json_int32(p_Document["_0EBD8ED2"]);
+	s_Object.m_iLastUnlockedTitle = simdjson::from_json_int32(p_Document["m_iLastUnlockedTitle"]);
 
 	*reinterpret_cast<SRatingData*>(p_Target) = s_Object;
 }
@@ -8898,11 +8908,11 @@ void SRatingData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_
 {
 	auto* s_Object = reinterpret_cast<SRatingData*>(p_Object);
 
-	TArray<uint16>::Serialize(&s_Object->_64147134, p_Serializer, p_OwnOffset + offsetof(SRatingData, _64147134));
-	TArray<bool>::Serialize(&s_Object->_133F9C34, p_Serializer, p_OwnOffset + offsetof(SRatingData, _133F9C34));
-	TArray<bool>::Serialize(&s_Object->_911A2395, p_Serializer, p_OwnOffset + offsetof(SRatingData, _911A2395));
-	TArray<DifficultyLevelEnum>::Serialize(&s_Object->_EC99D89C, p_Serializer, p_OwnOffset + offsetof(SRatingData, _EC99D89C));
-	TArray<int32>::Serialize(&s_Object->_50471093, p_Serializer, p_OwnOffset + offsetof(SRatingData, _50471093));
+	TArray<uint16>::Serialize(&s_Object->m_CheckpointStyles, p_Serializer, p_OwnOffset + offsetof(SRatingData, m_CheckpointStyles));
+	TArray<bool>::Serialize(&s_Object->m_TitlesAchieved, p_Serializer, p_OwnOffset + offsetof(SRatingData, m_TitlesAchieved));
+	TArray<bool>::Serialize(&s_Object->m_TitlesViewed, p_Serializer, p_OwnOffset + offsetof(SRatingData, m_TitlesViewed));
+	TArray<DifficultyLevelEnum>::Serialize(&s_Object->m_CPDifficulty, p_Serializer, p_OwnOffset + offsetof(SRatingData, m_CPDifficulty));
+	TArray<int32>::Serialize(&s_Object->m_CPChallenges, p_Serializer, p_OwnOffset + offsetof(SRatingData, m_CPChallenges));
 }
 
 bool SRatingData::Equals(void* p_Left, void* p_Right)
@@ -8918,12 +8928,12 @@ bool SRatingData::operator==(const SRatingData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SRatingData>)
 		return false;
 
-	if (_64147134 != p_Other._64147134) return false;
-	if (_133F9C34 != p_Other._133F9C34) return false;
-	if (_911A2395 != p_Other._911A2395) return false;
-	if (_EC99D89C != p_Other._EC99D89C) return false;
-	if (_50471093 != p_Other._50471093) return false;
-	if (_0EBD8ED2 != p_Other._0EBD8ED2) return false;
+	if (m_CheckpointStyles != p_Other.m_CheckpointStyles) return false;
+	if (m_TitlesAchieved != p_Other.m_TitlesAchieved) return false;
+	if (m_TitlesViewed != p_Other.m_TitlesViewed) return false;
+	if (m_CPDifficulty != p_Other.m_CPDifficulty) return false;
+	if (m_CPChallenges != p_Other.m_CPChallenges) return false;
+	if (m_iLastUnlockedTitle != p_Other.m_iLastUnlockedTitle) return false;
 
 	return true;
 }
@@ -8935,34 +8945,34 @@ void SRatingHighScoreData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SRatingHighScoreData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_888ACA2B") << ":";
+	p_Stream << simdjson::as_json_string("m_HighScores") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_888ACA2B.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_HighScores.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_888ACA2B[i];
+		auto& s_Item0 = s_Object->m_HighScores[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_888ACA2B.size() - 1)
+		if (i < s_Object->m_HighScores.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4E9FBCD6") << ":";
+	p_Stream << simdjson::as_json_string("m_HighTitles") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int8>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4E9FBCD6.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_HighTitles.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4E9FBCD6[i];
+		auto& s_Item0 = s_Object->m_HighTitles[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("int8") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_4E9FBCD6.size() - 1)
+		if (i < s_Object->m_HighTitles.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -8977,28 +8987,28 @@ void SRatingHighScoreData::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_888ACA2B") << ":";
+	p_Stream << simdjson::as_json_string("m_HighScores") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_888ACA2B.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_HighScores.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_888ACA2B[i];
+		auto& s_Item0 = s_Object->m_HighScores[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_888ACA2B.size() - 1)
+		if (i < s_Object->m_HighScores.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4E9FBCD6") << ":";
+	p_Stream << simdjson::as_json_string("m_HighTitles") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4E9FBCD6.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_HighTitles.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4E9FBCD6[i];
+		auto& s_Item0 = s_Object->m_HighTitles[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_4E9FBCD6.size() - 1)
+		if (i < s_Object->m_HighTitles.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -9012,24 +9022,24 @@ void SRatingHighScoreData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	SRatingHighScoreData s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_888ACA2B"];
-	s_Object._888ACA2B.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_HighScores"];
+	s_Object.m_HighScores.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._888ACA2B[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+		s_Object.m_HighScores[s_Index0++] = simdjson::from_json_uint32(s_Item0);
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_4E9FBCD6"];
-	s_Object._4E9FBCD6.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_HighTitles"];
+	s_Object.m_HighTitles.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._4E9FBCD6[s_Index0++] = simdjson::from_json_int8(s_Item0);
+		s_Object.m_HighTitles[s_Index0++] = simdjson::from_json_int8(s_Item0);
 	}
 	}
 
@@ -9040,8 +9050,8 @@ void SRatingHighScoreData::Serialize(void* p_Object, ZHMSerializer& p_Serializer
 {
 	auto* s_Object = reinterpret_cast<SRatingHighScoreData*>(p_Object);
 
-	TArray<uint32>::Serialize(&s_Object->_888ACA2B, p_Serializer, p_OwnOffset + offsetof(SRatingHighScoreData, _888ACA2B));
-	TArray<int8>::Serialize(&s_Object->_4E9FBCD6, p_Serializer, p_OwnOffset + offsetof(SRatingHighScoreData, _4E9FBCD6));
+	TArray<uint32>::Serialize(&s_Object->m_HighScores, p_Serializer, p_OwnOffset + offsetof(SRatingHighScoreData, m_HighScores));
+	TArray<int8>::Serialize(&s_Object->m_HighTitles, p_Serializer, p_OwnOffset + offsetof(SRatingHighScoreData, m_HighTitles));
 }
 
 bool SRatingHighScoreData::Equals(void* p_Left, void* p_Right)
@@ -9057,8 +9067,8 @@ bool SRatingHighScoreData::operator==(const SRatingHighScoreData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SRatingHighScoreData>)
 		return false;
 
-	if (_888ACA2B != p_Other._888ACA2B) return false;
-	if (_4E9FBCD6 != p_Other._4E9FBCD6) return false;
+	if (m_HighScores != p_Other.m_HighScores) return false;
+	if (m_HighTitles != p_Other.m_HighTitles) return false;
 
 	return true;
 }
@@ -9070,26 +9080,26 @@ void ZBitArray::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZBitArray*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_8E83B475") << ":";
+	p_Stream << simdjson::as_json_string("m_aBytes") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint8>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_8E83B475.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aBytes.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_8E83B475[i];
+		auto& s_Item0 = s_Object->m_aBytes[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_8E83B475.size() - 1)
+		if (i < s_Object->m_aBytes.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_DA61D51D") << ":";
+	p_Stream << simdjson::as_json_string("m_nSize") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_DA61D51D);
+	p_Stream << simdjson::as_json_string(s_Object->m_nSize);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -9101,22 +9111,22 @@ void ZBitArray::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_8E83B475") << ":";
+	p_Stream << simdjson::as_json_string("m_aBytes") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_8E83B475.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aBytes.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_8E83B475[i];
+		auto& s_Item0 = s_Object->m_aBytes[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_8E83B475.size() - 1)
+		if (i < s_Object->m_aBytes.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_DA61D51D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_DA61D51D);
+	p_Stream << simdjson::as_json_string("m_nSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nSize);
 
 	p_Stream << "}";
 }
@@ -9126,17 +9136,17 @@ void ZBitArray::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	ZBitArray s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_8E83B475"];
-	s_Object._8E83B475.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBytes"];
+	s_Object.m_aBytes.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._8E83B475[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+		s_Object.m_aBytes[s_Index0++] = simdjson::from_json_uint8(s_Item0);
 	}
 	}
 
-	s_Object._DA61D51D = simdjson::from_json_uint32(p_Document["_DA61D51D"]);
+	s_Object.m_nSize = simdjson::from_json_uint32(p_Document["m_nSize"]);
 
 	*reinterpret_cast<ZBitArray*>(p_Target) = s_Object;
 }
@@ -9145,7 +9155,7 @@ void ZBitArray::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t 
 {
 	auto* s_Object = reinterpret_cast<ZBitArray*>(p_Object);
 
-	TArray<uint8>::Serialize(&s_Object->_8E83B475, p_Serializer, p_OwnOffset + offsetof(ZBitArray, _8E83B475));
+	TArray<uint8>::Serialize(&s_Object->m_aBytes, p_Serializer, p_OwnOffset + offsetof(ZBitArray, m_aBytes));
 }
 
 bool ZBitArray::Equals(void* p_Left, void* p_Right)
@@ -9161,8 +9171,8 @@ bool ZBitArray::operator==(const ZBitArray& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZBitArray>)
 		return false;
 
-	if (_8E83B475 != p_Other._8E83B475) return false;
-	if (_DA61D51D != p_Other._DA61D51D) return false;
+	if (m_aBytes != p_Other.m_aBytes) return false;
+	if (m_nSize != p_Other.m_nSize) return false;
 
 	return true;
 }
@@ -9174,41 +9184,41 @@ void SReasoningGrid::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SReasoningGrid*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_0BD7E833") << ":";
+	p_Stream << simdjson::as_json_string("m_WaypointList") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SGWaypoint>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_0BD7E833.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_WaypointList.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_0BD7E833[i];
+		auto& s_Item0 = s_Object->m_WaypointList[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SGWaypoint") << ",\"$val\":";
 		SGWaypoint::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_0BD7E833.size() - 1)
+		if (i < s_Object->m_WaypointList.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0439BC82") << ":";
+	p_Stream << simdjson::as_json_string("m_LowVisibilityBits") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZBitArray") << ",\"$val\":";
-	ZBitArray::WriteJson(&s_Object->_0439BC82, p_Stream);
+	ZBitArray::WriteJson(&s_Object->m_LowVisibilityBits, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7FBA18A8") << ":";
+	p_Stream << simdjson::as_json_string("m_HighVisibilityBits") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZBitArray") << ",\"$val\":";
-	ZBitArray::WriteJson(&s_Object->_7FBA18A8, p_Stream);
+	ZBitArray::WriteJson(&s_Object->m_HighVisibilityBits, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4FCDFF9C") << ":";
+	p_Stream << simdjson::as_json_string("m_LowVisibility") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TArray<uint16>>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4FCDFF9C.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_LowVisibility.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4FCDFF9C[i];
+		auto& s_Item0 = s_Object->m_LowVisibility[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
 		p_Stream << "[";
 		for (size_t i = 0; i < s_Item0.size(); ++i)
@@ -9224,19 +9234,19 @@ void SReasoningGrid::WriteJson(void* p_Object, std::ostream& p_Stream)
 		p_Stream << "]";
 		p_Stream << "}";
 
-		if (i < s_Object->_4FCDFF9C.size() - 1)
+		if (i < s_Object->m_LowVisibility.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B6A34009") << ":";
+	p_Stream << simdjson::as_json_string("m_HighVisibility") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TArray<uint16>>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B6A34009.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_HighVisibility.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B6A34009[i];
+		auto& s_Item0 = s_Object->m_HighVisibility[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
 		p_Stream << "[";
 		for (size_t i = 0; i < s_Item0.size(); ++i)
@@ -9252,28 +9262,28 @@ void SReasoningGrid::WriteJson(void* p_Object, std::ostream& p_Stream)
 		p_Stream << "]";
 		p_Stream << "}";
 
-		if (i < s_Object->_B6A34009.size() - 1)
+		if (i < s_Object->m_HighVisibility.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0D7AD80A") << ":";
+	p_Stream << simdjson::as_json_string("m_Properties") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SGProperties") << ",\"$val\":";
-	SGProperties::WriteJson(&s_Object->_0D7AD80A, p_Stream);
+	SGProperties::WriteJson(&s_Object->m_Properties, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F7ACE02C") << ":";
+	p_Stream << simdjson::as_json_string("m_BitVisibilityCount") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_F7ACE02C);
+	p_Stream << simdjson::as_json_string(s_Object->m_BitVisibilityCount);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5321B64E") << ":";
+	p_Stream << simdjson::as_json_string("m_nNodeCount") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5321B64E);
+	p_Stream << simdjson::as_json_string(s_Object->m_nNodeCount);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -9285,33 +9295,33 @@ void SReasoningGrid::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_0BD7E833") << ":";
+	p_Stream << simdjson::as_json_string("m_WaypointList") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_0BD7E833.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_WaypointList.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_0BD7E833[i];
+		auto& s_Item0 = s_Object->m_WaypointList[i];
 		SGWaypoint::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_0BD7E833.size() - 1)
+		if (i < s_Object->m_WaypointList.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0439BC82") << ":";
-	ZBitArray::WriteSimpleJson(&s_Object->_0439BC82, p_Stream);
+	p_Stream << simdjson::as_json_string("m_LowVisibilityBits") << ":";
+	ZBitArray::WriteSimpleJson(&s_Object->m_LowVisibilityBits, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7FBA18A8") << ":";
-	ZBitArray::WriteSimpleJson(&s_Object->_7FBA18A8, p_Stream);
+	p_Stream << simdjson::as_json_string("m_HighVisibilityBits") << ":";
+	ZBitArray::WriteSimpleJson(&s_Object->m_HighVisibilityBits, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_4FCDFF9C") << ":";
+	p_Stream << simdjson::as_json_string("m_LowVisibility") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_4FCDFF9C.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_LowVisibility.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_4FCDFF9C[i];
+		auto& s_Item0 = s_Object->m_LowVisibility[i];
 		p_Stream << "[";
 		for (size_t i = 0; i < s_Item0.size(); ++i)
 		{
@@ -9324,18 +9334,18 @@ void SReasoningGrid::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 		p_Stream << "]";
 
-		if (i < s_Object->_4FCDFF9C.size() - 1)
+		if (i < s_Object->m_LowVisibility.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B6A34009") << ":";
+	p_Stream << simdjson::as_json_string("m_HighVisibility") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B6A34009.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_HighVisibility.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B6A34009[i];
+		auto& s_Item0 = s_Object->m_HighVisibility[i];
 		p_Stream << "[";
 		for (size_t i = 0; i < s_Item0.size(); ++i)
 		{
@@ -9348,23 +9358,23 @@ void SReasoningGrid::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 		p_Stream << "]";
 
-		if (i < s_Object->_B6A34009.size() - 1)
+		if (i < s_Object->m_HighVisibility.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_0D7AD80A") << ":";
-	SGProperties::WriteSimpleJson(&s_Object->_0D7AD80A, p_Stream);
+	p_Stream << simdjson::as_json_string("m_Properties") << ":";
+	SGProperties::WriteSimpleJson(&s_Object->m_Properties, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_F7ACE02C") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_F7ACE02C);
+	p_Stream << simdjson::as_json_string("m_BitVisibilityCount") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_BitVisibilityCount);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5321B64E") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5321B64E);
+	p_Stream << simdjson::as_json_string("m_nNodeCount") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nNodeCount);
 
 	p_Stream << "}";
 }
@@ -9374,33 +9384,33 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	SReasoningGrid s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_0BD7E833"];
-	s_Object._0BD7E833.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_WaypointList"];
+	s_Object.m_WaypointList.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SGWaypoint s_ArrayItem0;
 		SGWaypoint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._0BD7E833[s_Index0++] = s_ArrayItem0;
+		s_Object.m_WaypointList[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
 		ZBitArray s_Item {};
-		ZBitArray::FromSimpleJson(p_Document["_0439BC82"], &s_Item);
-		s_Object._0439BC82 = s_Item;
+		ZBitArray::FromSimpleJson(p_Document["m_LowVisibilityBits"], &s_Item);
+		s_Object.m_LowVisibilityBits = s_Item;
 	}
 
 	{
 		ZBitArray s_Item {};
-		ZBitArray::FromSimpleJson(p_Document["_7FBA18A8"], &s_Item);
-		s_Object._7FBA18A8 = s_Item;
+		ZBitArray::FromSimpleJson(p_Document["m_HighVisibilityBits"], &s_Item);
+		s_Object.m_HighVisibilityBits = s_Item;
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_4FCDFF9C"];
-	s_Object._4FCDFF9C.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_LowVisibility"];
+	s_Object.m_LowVisibility.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
@@ -9416,13 +9426,13 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 			s_ArrayItem0[s_Index1++] = simdjson::from_json_uint16(s_Item1);
 		}
 		}
-		s_Object._4FCDFF9C[s_Index0++] = s_ArrayItem0;
+		s_Object.m_LowVisibility[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_B6A34009"];
-	s_Object._B6A34009.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_HighVisibility"];
+	s_Object.m_HighVisibility.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
@@ -9438,19 +9448,19 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 			s_ArrayItem0[s_Index1++] = simdjson::from_json_uint16(s_Item1);
 		}
 		}
-		s_Object._B6A34009[s_Index0++] = s_ArrayItem0;
+		s_Object.m_HighVisibility[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
 		SGProperties s_Item {};
-		SGProperties::FromSimpleJson(p_Document["_0D7AD80A"], &s_Item);
-		s_Object._0D7AD80A = s_Item;
+		SGProperties::FromSimpleJson(p_Document["m_Properties"], &s_Item);
+		s_Object.m_Properties = s_Item;
 	}
 
-	s_Object._F7ACE02C = simdjson::from_json_uint32(p_Document["_F7ACE02C"]);
+	s_Object.m_BitVisibilityCount = simdjson::from_json_uint32(p_Document["m_BitVisibilityCount"]);
 
-	s_Object._5321B64E = simdjson::from_json_uint32(p_Document["_5321B64E"]);
+	s_Object.m_nNodeCount = simdjson::from_json_uint32(p_Document["m_nNodeCount"]);
 
 	*reinterpret_cast<SReasoningGrid*>(p_Target) = s_Object;
 }
@@ -9459,12 +9469,12 @@ void SReasoningGrid::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 {
 	auto* s_Object = reinterpret_cast<SReasoningGrid*>(p_Object);
 
-	TArray<SGWaypoint>::Serialize(&s_Object->_0BD7E833, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, _0BD7E833));
-	ZBitArray::Serialize(&s_Object->_0439BC82, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, _0439BC82));
-	ZBitArray::Serialize(&s_Object->_7FBA18A8, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, _7FBA18A8));
-	TArray<TArray<uint16>>::Serialize(&s_Object->_4FCDFF9C, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, _4FCDFF9C));
-	TArray<TArray<uint16>>::Serialize(&s_Object->_B6A34009, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, _B6A34009));
-	SGProperties::Serialize(&s_Object->_0D7AD80A, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, _0D7AD80A));
+	TArray<SGWaypoint>::Serialize(&s_Object->m_WaypointList, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_WaypointList));
+	ZBitArray::Serialize(&s_Object->m_LowVisibilityBits, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_LowVisibilityBits));
+	ZBitArray::Serialize(&s_Object->m_HighVisibilityBits, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_HighVisibilityBits));
+	TArray<TArray<uint16>>::Serialize(&s_Object->m_LowVisibility, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_LowVisibility));
+	TArray<TArray<uint16>>::Serialize(&s_Object->m_HighVisibility, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_HighVisibility));
+	SGProperties::Serialize(&s_Object->m_Properties, p_Serializer, p_OwnOffset + offsetof(SReasoningGrid, m_Properties));
 }
 
 bool SReasoningGrid::Equals(void* p_Left, void* p_Right)
@@ -9480,14 +9490,14 @@ bool SReasoningGrid::operator==(const SReasoningGrid& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SReasoningGrid>)
 		return false;
 
-	if (_0BD7E833 != p_Other._0BD7E833) return false;
-	if (_0439BC82 != p_Other._0439BC82) return false;
-	if (_7FBA18A8 != p_Other._7FBA18A8) return false;
-	if (_4FCDFF9C != p_Other._4FCDFF9C) return false;
-	if (_B6A34009 != p_Other._B6A34009) return false;
-	if (_0D7AD80A != p_Other._0D7AD80A) return false;
-	if (_F7ACE02C != p_Other._F7ACE02C) return false;
-	if (_5321B64E != p_Other._5321B64E) return false;
+	if (m_WaypointList != p_Other.m_WaypointList) return false;
+	if (m_LowVisibilityBits != p_Other.m_LowVisibilityBits) return false;
+	if (m_HighVisibilityBits != p_Other.m_HighVisibilityBits) return false;
+	if (m_LowVisibility != p_Other.m_LowVisibility) return false;
+	if (m_HighVisibility != p_Other.m_HighVisibility) return false;
+	if (m_Properties != p_Other.m_Properties) return false;
+	if (m_BitVisibilityCount != p_Other.m_BitVisibilityCount) return false;
+	if (m_nNodeCount != p_Other.m_nNodeCount) return false;
 
 	return true;
 }
@@ -9548,15 +9558,15 @@ void SSettingsParamMultiplier::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SSettingsParamMultiplier*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_EE282AB6") << ":";
+	p_Stream << simdjson::as_json_string("m_eSettingsParam") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ESettingsParam") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_EE282AB6)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ESettingsParam", static_cast<int>(s_Object->_EE282AB6))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eSettingsParam)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ESettingsParam", static_cast<int>(s_Object->m_eSettingsParam))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B868A759") << ":";
+	p_Stream << simdjson::as_json_string("m_fMultiplier") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B868A759);
+	p_Stream << simdjson::as_json_string(s_Object->m_fMultiplier);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -9568,12 +9578,12 @@ void SSettingsParamMultiplier::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_EE282AB6") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ESettingsParam", static_cast<int>(s_Object->_EE282AB6)));
+	p_Stream << simdjson::as_json_string("m_eSettingsParam") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ESettingsParam", static_cast<int>(s_Object->m_eSettingsParam)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B868A759") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B868A759);
+	p_Stream << simdjson::as_json_string("m_fMultiplier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fMultiplier);
 
 	p_Stream << "}";
 }
@@ -9582,9 +9592,9 @@ void SSettingsParamMultiplier::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SSettingsParamMultiplier s_Object {};
 
-	s_Object._EE282AB6 = static_cast<ESettingsParam>(ZHMEnums::GetEnumValueByName("ESettingsParam", std::string_view(p_Document["_EE282AB6"])));
+	s_Object.m_eSettingsParam = static_cast<ESettingsParam>(ZHMEnums::GetEnumValueByName("ESettingsParam", std::string_view(p_Document["m_eSettingsParam"])));
 
-	s_Object._B868A759 = simdjson::from_json_float32(p_Document["_B868A759"]);
+	s_Object.m_fMultiplier = simdjson::from_json_float32(p_Document["m_fMultiplier"]);
 
 	*reinterpret_cast<SSettingsParamMultiplier*>(p_Target) = s_Object;
 }
@@ -9608,8 +9618,8 @@ bool SSettingsParamMultiplier::operator==(const SSettingsParamMultiplier& p_Othe
 	if constexpr (!ZHMTypeSupportsEquality_v<SSettingsParamMultiplier>)
 		return false;
 
-	if (_EE282AB6 != p_Other._EE282AB6) return false;
-	if (_B868A759 != p_Other._B868A759) return false;
+	if (m_eSettingsParam != p_Other.m_eSettingsParam) return false;
+	if (m_fMultiplier != p_Other.m_fMultiplier) return false;
 
 	return true;
 }
@@ -9621,21 +9631,21 @@ void STechniqueUnlockState::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STechniqueUnlockState*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_6001FCE6") << ":";
+	p_Stream << simdjson::as_json_string("m_CheckpointTokenID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->_6001FCE6, p_Stream);
+	STokenID::WriteJson(&s_Object->m_CheckpointTokenID, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A2634313") << ":";
+	p_Stream << simdjson::as_json_string("m_eTechnique") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("HMTechniques.ETechnique") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_A2634313)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("HMTechniques.ETechnique", static_cast<int>(s_Object->_A2634313))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eTechnique)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("HMTechniques.ETechnique", static_cast<int>(s_Object->m_eTechnique))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_49A3B9C5") << ":";
+	p_Stream << simdjson::as_json_string("m_iLevel") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_49A3B9C5);
+	p_Stream << simdjson::as_json_string(s_Object->m_iLevel);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -9647,16 +9657,16 @@ void STechniqueUnlockState::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_6001FCE6") << ":";
-	STokenID::WriteSimpleJson(&s_Object->_6001FCE6, p_Stream);
+	p_Stream << simdjson::as_json_string("m_CheckpointTokenID") << ":";
+	STokenID::WriteSimpleJson(&s_Object->m_CheckpointTokenID, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A2634313") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("HMTechniques.ETechnique", static_cast<int>(s_Object->_A2634313)));
+	p_Stream << simdjson::as_json_string("m_eTechnique") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("HMTechniques.ETechnique", static_cast<int>(s_Object->m_eTechnique)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_49A3B9C5") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_49A3B9C5);
+	p_Stream << simdjson::as_json_string("m_iLevel") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iLevel);
 
 	p_Stream << "}";
 }
@@ -9667,13 +9677,13 @@ void STechniqueUnlockState::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	{
 		STokenID s_Item {};
-		STokenID::FromSimpleJson(p_Document["_6001FCE6"], &s_Item);
-		s_Object._6001FCE6 = s_Item;
+		STokenID::FromSimpleJson(p_Document["m_CheckpointTokenID"], &s_Item);
+		s_Object.m_CheckpointTokenID = s_Item;
 	}
 
-	s_Object._A2634313 = static_cast<HMTechniques_ETechnique>(ZHMEnums::GetEnumValueByName("HMTechniques.ETechnique", std::string_view(p_Document["_A2634313"])));
+	s_Object.m_eTechnique = static_cast<HMTechniques_ETechnique>(ZHMEnums::GetEnumValueByName("HMTechniques.ETechnique", std::string_view(p_Document["m_eTechnique"])));
 
-	s_Object._49A3B9C5 = simdjson::from_json_int32(p_Document["_49A3B9C5"]);
+	s_Object.m_iLevel = simdjson::from_json_int32(p_Document["m_iLevel"]);
 
 	*reinterpret_cast<STechniqueUnlockState*>(p_Target) = s_Object;
 }
@@ -9682,7 +9692,7 @@ void STechniqueUnlockState::Serialize(void* p_Object, ZHMSerializer& p_Serialize
 {
 	auto* s_Object = reinterpret_cast<STechniqueUnlockState*>(p_Object);
 
-	STokenID::Serialize(&s_Object->_6001FCE6, p_Serializer, p_OwnOffset + offsetof(STechniqueUnlockState, _6001FCE6));
+	STokenID::Serialize(&s_Object->m_CheckpointTokenID, p_Serializer, p_OwnOffset + offsetof(STechniqueUnlockState, m_CheckpointTokenID));
 }
 
 bool STechniqueUnlockState::Equals(void* p_Left, void* p_Right)
@@ -9698,9 +9708,9 @@ bool STechniqueUnlockState::operator==(const STechniqueUnlockState& p_Other) con
 	if constexpr (!ZHMTypeSupportsEquality_v<STechniqueUnlockState>)
 		return false;
 
-	if (_6001FCE6 != p_Other._6001FCE6) return false;
-	if (_A2634313 != p_Other._A2634313) return false;
-	if (_49A3B9C5 != p_Other._49A3B9C5) return false;
+	if (m_CheckpointTokenID != p_Other.m_CheckpointTokenID) return false;
+	if (m_eTechnique != p_Other.m_eTechnique) return false;
+	if (m_iLevel != p_Other.m_iLevel) return false;
 
 	return true;
 }
@@ -9712,60 +9722,60 @@ void STechniquesSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STechniquesSaveData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_B5537A08") << ":";
+	p_Stream << simdjson::as_json_string("m_iTechniqueUnlockedLevel") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<uint8>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B5537A08.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_iTechniqueUnlockedLevel.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B5537A08[i];
+		auto& s_Item0 = s_Object->m_iTechniqueUnlockedLevel[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_B5537A08.size() - 1)
+		if (i < s_Object->m_iTechniqueUnlockedLevel.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7ED76297") << ":";
+	p_Stream << simdjson::as_json_string("m_aUnlockState") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<STechniqueUnlockState>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7ED76297.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aUnlockState.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7ED76297[i];
+		auto& s_Item0 = s_Object->m_aUnlockState[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("STechniqueUnlockState") << ",\"$val\":";
 		STechniqueUnlockState::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_7ED76297.size() - 1)
+		if (i < s_Object->m_aUnlockState.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_949204C5") << ":";
+	p_Stream << simdjson::as_json_string("m_aViewedState") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_949204C5.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aViewedState.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_949204C5[i];
+		auto& s_Item0 = s_Object->m_aViewedState[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_949204C5.size() - 1)
+		if (i < s_Object->m_aViewedState.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1BA6F5A6") << ":";
+	p_Stream << simdjson::as_json_string("m_LastUnlockedTechnique") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STechniqueUnlockState") << ",\"$val\":";
-	STechniqueUnlockState::WriteJson(&s_Object->_1BA6F5A6, p_Stream);
+	STechniqueUnlockState::WriteJson(&s_Object->m_LastUnlockedTechnique, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -9777,50 +9787,50 @@ void STechniquesSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_B5537A08") << ":";
+	p_Stream << simdjson::as_json_string("m_iTechniqueUnlockedLevel") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B5537A08.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_iTechniqueUnlockedLevel.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B5537A08[i];
+		auto& s_Item0 = s_Object->m_iTechniqueUnlockedLevel[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_B5537A08.size() - 1)
+		if (i < s_Object->m_iTechniqueUnlockedLevel.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7ED76297") << ":";
+	p_Stream << simdjson::as_json_string("m_aUnlockState") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7ED76297.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aUnlockState.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7ED76297[i];
+		auto& s_Item0 = s_Object->m_aUnlockState[i];
 		STechniqueUnlockState::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_7ED76297.size() - 1)
+		if (i < s_Object->m_aUnlockState.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_949204C5") << ":";
+	p_Stream << simdjson::as_json_string("m_aViewedState") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_949204C5.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aViewedState.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_949204C5[i];
+		auto& s_Item0 = s_Object->m_aViewedState[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_949204C5.size() - 1)
+		if (i < s_Object->m_aViewedState.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_1BA6F5A6") << ":";
-	STechniqueUnlockState::WriteSimpleJson(&s_Object->_1BA6F5A6, p_Stream);
+	p_Stream << simdjson::as_json_string("m_LastUnlockedTechnique") << ":";
+	STechniqueUnlockState::WriteSimpleJson(&s_Object->m_LastUnlockedTechnique, p_Stream);
 
 	p_Stream << "}";
 }
@@ -9831,41 +9841,41 @@ void STechniquesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	{
 	size_t s_Index0 = 0;
-	for (simdjson::ondemand::value s_Item0 : p_Document["_B5537A08"])
+	for (simdjson::ondemand::value s_Item0 : p_Document["m_iTechniqueUnlockedLevel"])
 	{
-		s_Object._B5537A08[s_Index0] = simdjson::from_json_uint8(s_Item0);
+		s_Object.m_iTechniqueUnlockedLevel[s_Index0] = simdjson::from_json_uint8(s_Item0);
 		++s_Index0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_7ED76297"];
-	s_Object._7ED76297.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aUnlockState"];
+	s_Object.m_aUnlockState.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STechniqueUnlockState s_ArrayItem0;
 		STechniqueUnlockState::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._7ED76297[s_Index0++] = s_ArrayItem0;
+		s_Object.m_aUnlockState[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_949204C5"];
-	s_Object._949204C5.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aViewedState"];
+	s_Object.m_aViewedState.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._949204C5[s_Index0++] = simdjson::from_json_bool(s_Item0);
+		s_Object.m_aViewedState[s_Index0++] = simdjson::from_json_bool(s_Item0);
 	}
 	}
 
 	{
 		STechniqueUnlockState s_Item {};
-		STechniqueUnlockState::FromSimpleJson(p_Document["_1BA6F5A6"], &s_Item);
-		s_Object._1BA6F5A6 = s_Item;
+		STechniqueUnlockState::FromSimpleJson(p_Document["m_LastUnlockedTechnique"], &s_Item);
+		s_Object.m_LastUnlockedTechnique = s_Item;
 	}
 
 	*reinterpret_cast<STechniquesSaveData*>(p_Target) = s_Object;
@@ -9875,10 +9885,10 @@ void STechniquesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer,
 {
 	auto* s_Object = reinterpret_cast<STechniquesSaveData*>(p_Object);
 
-	TFixedArray<uint8, 10>::Serialize(&s_Object->_B5537A08, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, _B5537A08));
-	TArray<STechniqueUnlockState>::Serialize(&s_Object->_7ED76297, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, _7ED76297));
-	TArray<bool>::Serialize(&s_Object->_949204C5, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, _949204C5));
-	STechniqueUnlockState::Serialize(&s_Object->_1BA6F5A6, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, _1BA6F5A6));
+	TFixedArray<uint8, 10>::Serialize(&s_Object->m_iTechniqueUnlockedLevel, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, m_iTechniqueUnlockedLevel));
+	TArray<STechniqueUnlockState>::Serialize(&s_Object->m_aUnlockState, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, m_aUnlockState));
+	TArray<bool>::Serialize(&s_Object->m_aViewedState, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, m_aViewedState));
+	STechniqueUnlockState::Serialize(&s_Object->m_LastUnlockedTechnique, p_Serializer, p_OwnOffset + offsetof(STechniquesSaveData, m_LastUnlockedTechnique));
 }
 
 bool STechniquesSaveData::Equals(void* p_Left, void* p_Right)
@@ -9894,10 +9904,10 @@ bool STechniquesSaveData::operator==(const STechniquesSaveData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<STechniquesSaveData>)
 		return false;
 
-	if (_B5537A08 != p_Other._B5537A08) return false;
-	if (_7ED76297 != p_Other._7ED76297) return false;
-	if (_949204C5 != p_Other._949204C5) return false;
-	if (_1BA6F5A6 != p_Other._1BA6F5A6) return false;
+	if (m_iTechniqueUnlockedLevel != p_Other.m_iTechniqueUnlockedLevel) return false;
+	if (m_aUnlockState != p_Other.m_aUnlockState) return false;
+	if (m_aViewedState != p_Other.m_aViewedState) return false;
+	if (m_LastUnlockedTechnique != p_Other.m_LastUnlockedTechnique) return false;
 
 	return true;
 }
@@ -9909,46 +9919,46 @@ void STemplateSubEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STemplateSubEntity*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_21740EAA") << ":";
+	p_Stream << simdjson::as_json_string("parentIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_21740EAA);
+	p_Stream << simdjson::as_json_string(s_Object->parentIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B01F3C73") << ":";
+	p_Stream << simdjson::as_json_string("entityTypeResourceIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B01F3C73);
+	p_Stream << simdjson::as_json_string(s_Object->entityTypeResourceIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71206441") << ":";
+	p_Stream << simdjson::as_json_string("propertyValues") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_71206441.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_71206441[i];
+		auto& s_Item0 = s_Object->propertyValues[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
 		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_71206441.size() - 1)
+		if (i < s_Object->propertyValues.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E8548959") << ":";
+	p_Stream << simdjson::as_json_string("postInitPropertyValues") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_E8548959.size(); ++i)
+	for (size_t i = 0; i < s_Object->postInitPropertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_E8548959[i];
+		auto& s_Item0 = s_Object->postInitPropertyValues[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
 		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_E8548959.size() - 1)
+		if (i < s_Object->postInitPropertyValues.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -9963,36 +9973,36 @@ void STemplateSubEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_21740EAA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_21740EAA);
+	p_Stream << simdjson::as_json_string("parentIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->parentIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B01F3C73") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B01F3C73);
+	p_Stream << simdjson::as_json_string("entityTypeResourceIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->entityTypeResourceIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_71206441") << ":";
+	p_Stream << simdjson::as_json_string("propertyValues") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_71206441.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_71206441[i];
+		auto& s_Item0 = s_Object->propertyValues[i];
 		SEntityTemplateProperty::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_71206441.size() - 1)
+		if (i < s_Object->propertyValues.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E8548959") << ":";
+	p_Stream << simdjson::as_json_string("postInitPropertyValues") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_E8548959.size(); ++i)
+	for (size_t i = 0; i < s_Object->postInitPropertyValues.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_E8548959[i];
+		auto& s_Item0 = s_Object->postInitPropertyValues[i];
 		SEntityTemplateProperty::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_E8548959.size() - 1)
+		if (i < s_Object->postInitPropertyValues.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -10005,33 +10015,33 @@ void STemplateSubEntity::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	STemplateSubEntity s_Object {};
 
-	s_Object._21740EAA = simdjson::from_json_int32(p_Document["_21740EAA"]);
+	s_Object.parentIndex = simdjson::from_json_int32(p_Document["parentIndex"]);
 
-	s_Object._B01F3C73 = simdjson::from_json_int32(p_Document["_B01F3C73"]);
+	s_Object.entityTypeResourceIndex = simdjson::from_json_int32(p_Document["entityTypeResourceIndex"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_71206441"];
-	s_Object._71206441.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["propertyValues"];
+	s_Object.propertyValues.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._71206441[s_Index0++] = s_ArrayItem0;
+		s_Object.propertyValues[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_E8548959"];
-	s_Object._E8548959.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["postInitPropertyValues"];
+	s_Object.postInitPropertyValues.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._E8548959[s_Index0++] = s_ArrayItem0;
+		s_Object.postInitPropertyValues[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -10042,8 +10052,8 @@ void STemplateSubEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, 
 {
 	auto* s_Object = reinterpret_cast<STemplateSubEntity*>(p_Object);
 
-	TArray<SEntityTemplateProperty>::Serialize(&s_Object->_71206441, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntity, _71206441));
-	TArray<SEntityTemplateProperty>::Serialize(&s_Object->_E8548959, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntity, _E8548959));
+	TArray<SEntityTemplateProperty>::Serialize(&s_Object->propertyValues, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntity, propertyValues));
+	TArray<SEntityTemplateProperty>::Serialize(&s_Object->postInitPropertyValues, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntity, postInitPropertyValues));
 }
 
 bool STemplateSubEntity::Equals(void* p_Left, void* p_Right)
@@ -10059,10 +10069,10 @@ bool STemplateSubEntity::operator==(const STemplateSubEntity& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<STemplateSubEntity>)
 		return false;
 
-	if (_21740EAA != p_Other._21740EAA) return false;
-	if (_B01F3C73 != p_Other._B01F3C73) return false;
-	if (_71206441 != p_Other._71206441) return false;
-	if (_E8548959 != p_Other._E8548959) return false;
+	if (parentIndex != p_Other.parentIndex) return false;
+	if (entityTypeResourceIndex != p_Other.entityTypeResourceIndex) return false;
+	if (propertyValues != p_Other.propertyValues) return false;
+	if (postInitPropertyValues != p_Other.postInitPropertyValues) return false;
 
 	return true;
 }
@@ -10074,29 +10084,29 @@ void STemplateEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STemplateEntity*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_891D57ED") << ":";
+	p_Stream << simdjson::as_json_string("blueprintIndexInResourceHeader") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_891D57ED);
+	p_Stream << simdjson::as_json_string(s_Object->blueprintIndexInResourceHeader);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_14CF59EB") << ":";
+	p_Stream << simdjson::as_json_string("rootEntityIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_14CF59EB);
+	p_Stream << simdjson::as_json_string(s_Object->rootEntityIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_61ED060D") << ":";
+	p_Stream << simdjson::as_json_string("entityTemplates") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<STemplateSubEntity>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_61ED060D.size(); ++i)
+	for (size_t i = 0; i < s_Object->entityTemplates.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_61ED060D[i];
+		auto& s_Item0 = s_Object->entityTemplates[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("STemplateSubEntity") << ",\"$val\":";
 		STemplateSubEntity::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_61ED060D.size() - 1)
+		if (i < s_Object->entityTemplates.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -10111,22 +10121,22 @@ void STemplateEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_891D57ED") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_891D57ED);
+	p_Stream << simdjson::as_json_string("blueprintIndexInResourceHeader") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->blueprintIndexInResourceHeader);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_14CF59EB") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_14CF59EB);
+	p_Stream << simdjson::as_json_string("rootEntityIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->rootEntityIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_61ED060D") << ":";
+	p_Stream << simdjson::as_json_string("entityTemplates") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_61ED060D.size(); ++i)
+	for (size_t i = 0; i < s_Object->entityTemplates.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_61ED060D[i];
+		auto& s_Item0 = s_Object->entityTemplates[i];
 		STemplateSubEntity::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_61ED060D.size() - 1)
+		if (i < s_Object->entityTemplates.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -10139,20 +10149,20 @@ void STemplateEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	STemplateEntity s_Object {};
 
-	s_Object._891D57ED = simdjson::from_json_int32(p_Document["_891D57ED"]);
+	s_Object.blueprintIndexInResourceHeader = simdjson::from_json_int32(p_Document["blueprintIndexInResourceHeader"]);
 
-	s_Object._14CF59EB = simdjson::from_json_int32(p_Document["_14CF59EB"]);
+	s_Object.rootEntityIndex = simdjson::from_json_int32(p_Document["rootEntityIndex"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_61ED060D"];
-	s_Object._61ED060D.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["entityTemplates"];
+	s_Object.entityTemplates.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STemplateSubEntity s_ArrayItem0;
 		STemplateSubEntity::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._61ED060D[s_Index0++] = s_ArrayItem0;
+		s_Object.entityTemplates[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -10163,7 +10173,7 @@ void STemplateEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhm
 {
 	auto* s_Object = reinterpret_cast<STemplateEntity*>(p_Object);
 
-	TArray<STemplateSubEntity>::Serialize(&s_Object->_61ED060D, p_Serializer, p_OwnOffset + offsetof(STemplateEntity, _61ED060D));
+	TArray<STemplateSubEntity>::Serialize(&s_Object->entityTemplates, p_Serializer, p_OwnOffset + offsetof(STemplateEntity, entityTemplates));
 }
 
 bool STemplateEntity::Equals(void* p_Left, void* p_Right)
@@ -10179,9 +10189,9 @@ bool STemplateEntity::operator==(const STemplateEntity& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<STemplateEntity>)
 		return false;
 
-	if (_891D57ED != p_Other._891D57ED) return false;
-	if (_14CF59EB != p_Other._14CF59EB) return false;
-	if (_61ED060D != p_Other._61ED060D) return false;
+	if (blueprintIndexInResourceHeader != p_Other.blueprintIndexInResourceHeader) return false;
+	if (rootEntityIndex != p_Other.rootEntityIndex) return false;
+	if (entityTemplates != p_Other.entityTemplates) return false;
 
 	return true;
 }
@@ -10193,86 +10203,86 @@ void STemplateSubEntityBlueprint::WriteJson(void* p_Object, std::ostream& p_Stre
 	auto* s_Object = reinterpret_cast<STemplateSubEntityBlueprint*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_21740EAA") << ":";
+	p_Stream << simdjson::as_json_string("parentIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_21740EAA);
+	p_Stream << simdjson::as_json_string(s_Object->parentIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B01F3C73") << ":";
+	p_Stream << simdjson::as_json_string("entityTypeResourceIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_B01F3C73);
+	p_Stream << simdjson::as_json_string(s_Object->entityTypeResourceIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CDF5A865") << ":";
+	p_Stream << simdjson::as_json_string("entityName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_CDF5A865);
+	p_Stream << simdjson::as_json_string(s_Object->entityName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_17EB0A5A") << ":";
+	p_Stream << simdjson::as_json_string("propertyAliases") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePropertyAlias>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_17EB0A5A.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyAliases.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_17EB0A5A[i];
+		auto& s_Item0 = s_Object->propertyAliases[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePropertyAlias") << ",\"$val\":";
 		SEntityTemplatePropertyAlias::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_17EB0A5A.size() - 1)
+		if (i < s_Object->propertyAliases.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_025728B5") << ":";
+	p_Stream << simdjson::as_json_string("exposedEntities") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TPair<ZString,SEntityTemplateReference>>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_025728B5.size(); ++i)
+	for (size_t i = 0; i < s_Object->exposedEntities.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_025728B5[i];
+		auto& s_Item0 = s_Object->exposedEntities[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("TPair<ZString,SEntityTemplateReference>") << ",\"$val\":";
 		TPair<ZString,SEntityTemplateReference>::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_025728B5.size() - 1)
+		if (i < s_Object->exposedEntities.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_268997DA") << ":";
+	p_Stream << simdjson::as_json_string("exposedInterfaces") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TPair<ZString,int32>>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_268997DA.size(); ++i)
+	for (size_t i = 0; i < s_Object->exposedInterfaces.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_268997DA[i];
+		auto& s_Item0 = s_Object->exposedInterfaces[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("TPair<ZString,int32>") << ",\"$val\":";
 		TPair<ZString,int32>::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_268997DA.size() - 1)
+		if (i < s_Object->exposedInterfaces.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_BF7B57C8") << ":";
+	p_Stream << simdjson::as_json_string("entitySubsets") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TPair<ZString,SEntityTemplateEntitySubset>>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_BF7B57C8.size(); ++i)
+	for (size_t i = 0; i < s_Object->entitySubsets.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_BF7B57C8[i];
+		auto& s_Item0 = s_Object->entitySubsets[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("TPair<ZString,SEntityTemplateEntitySubset>") << ",\"$val\":";
 		TPair<ZString,SEntityTemplateEntitySubset>::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_BF7B57C8.size() - 1)
+		if (i < s_Object->entitySubsets.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -10287,68 +10297,68 @@ void STemplateSubEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& 
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_21740EAA") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_21740EAA);
+	p_Stream << simdjson::as_json_string("parentIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->parentIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B01F3C73") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_B01F3C73);
+	p_Stream << simdjson::as_json_string("entityTypeResourceIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->entityTypeResourceIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_CDF5A865") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_CDF5A865);
+	p_Stream << simdjson::as_json_string("entityName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->entityName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_17EB0A5A") << ":";
+	p_Stream << simdjson::as_json_string("propertyAliases") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_17EB0A5A.size(); ++i)
+	for (size_t i = 0; i < s_Object->propertyAliases.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_17EB0A5A[i];
+		auto& s_Item0 = s_Object->propertyAliases[i];
 		SEntityTemplatePropertyAlias::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_17EB0A5A.size() - 1)
+		if (i < s_Object->propertyAliases.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_025728B5") << ":";
+	p_Stream << simdjson::as_json_string("exposedEntities") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_025728B5.size(); ++i)
+	for (size_t i = 0; i < s_Object->exposedEntities.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_025728B5[i];
+		auto& s_Item0 = s_Object->exposedEntities[i];
 		TPair<ZString,SEntityTemplateReference>::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_025728B5.size() - 1)
+		if (i < s_Object->exposedEntities.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_268997DA") << ":";
+	p_Stream << simdjson::as_json_string("exposedInterfaces") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_268997DA.size(); ++i)
+	for (size_t i = 0; i < s_Object->exposedInterfaces.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_268997DA[i];
+		auto& s_Item0 = s_Object->exposedInterfaces[i];
 		TPair<ZString,int32>::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_268997DA.size() - 1)
+		if (i < s_Object->exposedInterfaces.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_BF7B57C8") << ":";
+	p_Stream << simdjson::as_json_string("entitySubsets") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_BF7B57C8.size(); ++i)
+	for (size_t i = 0; i < s_Object->entitySubsets.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_BF7B57C8[i];
+		auto& s_Item0 = s_Object->entitySubsets[i];
 		TPair<ZString,SEntityTemplateEntitySubset>::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_BF7B57C8.size() - 1)
+		if (i < s_Object->entitySubsets.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -10361,61 +10371,61 @@ void STemplateSubEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	STemplateSubEntityBlueprint s_Object {};
 
-	s_Object._21740EAA = simdjson::from_json_int32(p_Document["_21740EAA"]);
+	s_Object.parentIndex = simdjson::from_json_int32(p_Document["parentIndex"]);
 
-	s_Object._B01F3C73 = simdjson::from_json_int32(p_Document["_B01F3C73"]);
+	s_Object.entityTypeResourceIndex = simdjson::from_json_int32(p_Document["entityTypeResourceIndex"]);
 
-	s_Object._CDF5A865 = std::string_view(p_Document["_CDF5A865"]);
+	s_Object.entityName = std::string_view(p_Document["entityName"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_17EB0A5A"];
-	s_Object._17EB0A5A.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["propertyAliases"];
+	s_Object.propertyAliases.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePropertyAlias s_ArrayItem0;
 		SEntityTemplatePropertyAlias::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._17EB0A5A[s_Index0++] = s_ArrayItem0;
+		s_Object.propertyAliases[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_025728B5"];
-	s_Object._025728B5.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["exposedEntities"];
+	s_Object.exposedEntities.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,SEntityTemplateReference> s_ArrayItem0;
 		TPair<ZString,SEntityTemplateReference>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._025728B5[s_Index0++] = s_ArrayItem0;
+		s_Object.exposedEntities[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_268997DA"];
-	s_Object._268997DA.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["exposedInterfaces"];
+	s_Object.exposedInterfaces.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,int32> s_ArrayItem0;
 		TPair<ZString,int32>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._268997DA[s_Index0++] = s_ArrayItem0;
+		s_Object.exposedInterfaces[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_BF7B57C8"];
-	s_Object._BF7B57C8.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["entitySubsets"];
+	s_Object.entitySubsets.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,SEntityTemplateEntitySubset> s_ArrayItem0;
 		TPair<ZString,SEntityTemplateEntitySubset>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._BF7B57C8[s_Index0++] = s_ArrayItem0;
+		s_Object.entitySubsets[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -10426,11 +10436,11 @@ void STemplateSubEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Ser
 {
 	auto* s_Object = reinterpret_cast<STemplateSubEntityBlueprint*>(p_Object);
 
-	ZString::Serialize(&s_Object->_CDF5A865, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, _CDF5A865));
-	TArray<SEntityTemplatePropertyAlias>::Serialize(&s_Object->_17EB0A5A, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, _17EB0A5A));
-	TArray<TPair<ZString,SEntityTemplateReference>>::Serialize(&s_Object->_025728B5, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, _025728B5));
-	TArray<TPair<ZString,int32>>::Serialize(&s_Object->_268997DA, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, _268997DA));
-	TArray<TPair<ZString,SEntityTemplateEntitySubset>>::Serialize(&s_Object->_BF7B57C8, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, _BF7B57C8));
+	ZString::Serialize(&s_Object->entityName, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, entityName));
+	TArray<SEntityTemplatePropertyAlias>::Serialize(&s_Object->propertyAliases, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, propertyAliases));
+	TArray<TPair<ZString,SEntityTemplateReference>>::Serialize(&s_Object->exposedEntities, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, exposedEntities));
+	TArray<TPair<ZString,int32>>::Serialize(&s_Object->exposedInterfaces, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, exposedInterfaces));
+	TArray<TPair<ZString,SEntityTemplateEntitySubset>>::Serialize(&s_Object->entitySubsets, p_Serializer, p_OwnOffset + offsetof(STemplateSubEntityBlueprint, entitySubsets));
 }
 
 bool STemplateSubEntityBlueprint::Equals(void* p_Left, void* p_Right)
@@ -10446,13 +10456,13 @@ bool STemplateSubEntityBlueprint::operator==(const STemplateSubEntityBlueprint& 
 	if constexpr (!ZHMTypeSupportsEquality_v<STemplateSubEntityBlueprint>)
 		return false;
 
-	if (_21740EAA != p_Other._21740EAA) return false;
-	if (_B01F3C73 != p_Other._B01F3C73) return false;
-	if (_CDF5A865 != p_Other._CDF5A865) return false;
-	if (_17EB0A5A != p_Other._17EB0A5A) return false;
-	if (_025728B5 != p_Other._025728B5) return false;
-	if (_268997DA != p_Other._268997DA) return false;
-	if (_BF7B57C8 != p_Other._BF7B57C8) return false;
+	if (parentIndex != p_Other.parentIndex) return false;
+	if (entityTypeResourceIndex != p_Other.entityTypeResourceIndex) return false;
+	if (entityName != p_Other.entityName) return false;
+	if (propertyAliases != p_Other.propertyAliases) return false;
+	if (exposedEntities != p_Other.exposedEntities) return false;
+	if (exposedInterfaces != p_Other.exposedInterfaces) return false;
+	if (entitySubsets != p_Other.entitySubsets) return false;
 
 	return true;
 }
@@ -10464,74 +10474,74 @@ void STemplateEntityBlueprint::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STemplateEntityBlueprint*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_14CF59EB") << ":";
+	p_Stream << simdjson::as_json_string("rootEntityIndex") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_14CF59EB);
+	p_Stream << simdjson::as_json_string(s_Object->rootEntityIndex);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_61ED060D") << ":";
+	p_Stream << simdjson::as_json_string("entityTemplates") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<STemplateSubEntityBlueprint>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_61ED060D.size(); ++i)
+	for (size_t i = 0; i < s_Object->entityTemplates.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_61ED060D[i];
+		auto& s_Item0 = s_Object->entityTemplates[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("STemplateSubEntityBlueprint") << ",\"$val\":";
 		STemplateSubEntityBlueprint::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_61ED060D.size() - 1)
+		if (i < s_Object->entityTemplates.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_213C670C") << ":";
+	p_Stream << simdjson::as_json_string("pinConnections") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePinConnection>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_213C670C.size(); ++i)
+	for (size_t i = 0; i < s_Object->pinConnections.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_213C670C[i];
+		auto& s_Item0 = s_Object->pinConnections[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePinConnection") << ",\"$val\":";
 		SEntityTemplatePinConnection::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_213C670C.size() - 1)
+		if (i < s_Object->pinConnections.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_351BE901") << ":";
+	p_Stream << simdjson::as_json_string("inputPinForwardings") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePinConnection>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_351BE901.size(); ++i)
+	for (size_t i = 0; i < s_Object->inputPinForwardings.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_351BE901[i];
+		auto& s_Item0 = s_Object->inputPinForwardings[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePinConnection") << ",\"$val\":";
 		SEntityTemplatePinConnection::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_351BE901.size() - 1)
+		if (i < s_Object->inputPinForwardings.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7CF08925") << ":";
+	p_Stream << simdjson::as_json_string("outputPinForwardings") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePinConnection>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7CF08925.size(); ++i)
+	for (size_t i = 0; i < s_Object->outputPinForwardings.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7CF08925[i];
+		auto& s_Item0 = s_Object->outputPinForwardings[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePinConnection") << ",\"$val\":";
 		SEntityTemplatePinConnection::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_7CF08925.size() - 1)
+		if (i < s_Object->outputPinForwardings.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -10546,60 +10556,60 @@ void STemplateEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_14CF59EB") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_14CF59EB);
+	p_Stream << simdjson::as_json_string("rootEntityIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->rootEntityIndex);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_61ED060D") << ":";
+	p_Stream << simdjson::as_json_string("entityTemplates") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_61ED060D.size(); ++i)
+	for (size_t i = 0; i < s_Object->entityTemplates.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_61ED060D[i];
+		auto& s_Item0 = s_Object->entityTemplates[i];
 		STemplateSubEntityBlueprint::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_61ED060D.size() - 1)
+		if (i < s_Object->entityTemplates.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_213C670C") << ":";
+	p_Stream << simdjson::as_json_string("pinConnections") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_213C670C.size(); ++i)
+	for (size_t i = 0; i < s_Object->pinConnections.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_213C670C[i];
+		auto& s_Item0 = s_Object->pinConnections[i];
 		SEntityTemplatePinConnection::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_213C670C.size() - 1)
+		if (i < s_Object->pinConnections.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_351BE901") << ":";
+	p_Stream << simdjson::as_json_string("inputPinForwardings") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_351BE901.size(); ++i)
+	for (size_t i = 0; i < s_Object->inputPinForwardings.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_351BE901[i];
+		auto& s_Item0 = s_Object->inputPinForwardings[i];
 		SEntityTemplatePinConnection::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_351BE901.size() - 1)
+		if (i < s_Object->inputPinForwardings.size() - 1)
 			p_Stream << ",";
 	}
 
 	p_Stream << "]";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7CF08925") << ":";
+	p_Stream << simdjson::as_json_string("outputPinForwardings") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_7CF08925.size(); ++i)
+	for (size_t i = 0; i < s_Object->outputPinForwardings.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_7CF08925[i];
+		auto& s_Item0 = s_Object->outputPinForwardings[i];
 		SEntityTemplatePinConnection::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_7CF08925.size() - 1)
+		if (i < s_Object->outputPinForwardings.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -10612,57 +10622,57 @@ void STemplateEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	STemplateEntityBlueprint s_Object {};
 
-	s_Object._14CF59EB = simdjson::from_json_int32(p_Document["_14CF59EB"]);
+	s_Object.rootEntityIndex = simdjson::from_json_int32(p_Document["rootEntityIndex"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_61ED060D"];
-	s_Object._61ED060D.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["entityTemplates"];
+	s_Object.entityTemplates.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STemplateSubEntityBlueprint s_ArrayItem0;
 		STemplateSubEntityBlueprint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._61ED060D[s_Index0++] = s_ArrayItem0;
+		s_Object.entityTemplates[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_213C670C"];
-	s_Object._213C670C.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["pinConnections"];
+	s_Object.pinConnections.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePinConnection s_ArrayItem0;
 		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._213C670C[s_Index0++] = s_ArrayItem0;
+		s_Object.pinConnections[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_351BE901"];
-	s_Object._351BE901.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["inputPinForwardings"];
+	s_Object.inputPinForwardings.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePinConnection s_ArrayItem0;
 		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._351BE901[s_Index0++] = s_ArrayItem0;
+		s_Object.inputPinForwardings[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_7CF08925"];
-	s_Object._7CF08925.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["outputPinForwardings"];
+	s_Object.outputPinForwardings.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePinConnection s_ArrayItem0;
 		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._7CF08925[s_Index0++] = s_ArrayItem0;
+		s_Object.outputPinForwardings[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -10673,10 +10683,10 @@ void STemplateEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serial
 {
 	auto* s_Object = reinterpret_cast<STemplateEntityBlueprint*>(p_Object);
 
-	TArray<STemplateSubEntityBlueprint>::Serialize(&s_Object->_61ED060D, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, _61ED060D));
-	TArray<SEntityTemplatePinConnection>::Serialize(&s_Object->_213C670C, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, _213C670C));
-	TArray<SEntityTemplatePinConnection>::Serialize(&s_Object->_351BE901, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, _351BE901));
-	TArray<SEntityTemplatePinConnection>::Serialize(&s_Object->_7CF08925, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, _7CF08925));
+	TArray<STemplateSubEntityBlueprint>::Serialize(&s_Object->entityTemplates, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, entityTemplates));
+	TArray<SEntityTemplatePinConnection>::Serialize(&s_Object->pinConnections, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, pinConnections));
+	TArray<SEntityTemplatePinConnection>::Serialize(&s_Object->inputPinForwardings, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, inputPinForwardings));
+	TArray<SEntityTemplatePinConnection>::Serialize(&s_Object->outputPinForwardings, p_Serializer, p_OwnOffset + offsetof(STemplateEntityBlueprint, outputPinForwardings));
 }
 
 bool STemplateEntityBlueprint::Equals(void* p_Left, void* p_Right)
@@ -10692,11 +10702,11 @@ bool STemplateEntityBlueprint::operator==(const STemplateEntityBlueprint& p_Othe
 	if constexpr (!ZHMTypeSupportsEquality_v<STemplateEntityBlueprint>)
 		return false;
 
-	if (_14CF59EB != p_Other._14CF59EB) return false;
-	if (_61ED060D != p_Other._61ED060D) return false;
-	if (_213C670C != p_Other._213C670C) return false;
-	if (_351BE901 != p_Other._351BE901) return false;
-	if (_7CF08925 != p_Other._7CF08925) return false;
+	if (rootEntityIndex != p_Other.rootEntityIndex) return false;
+	if (entityTemplates != p_Other.entityTemplates) return false;
+	if (pinConnections != p_Other.pinConnections) return false;
+	if (inputPinForwardings != p_Other.inputPinForwardings) return false;
+	if (outputPinForwardings != p_Other.outputPinForwardings) return false;
 
 	return true;
 }
@@ -10708,21 +10718,21 @@ void STestMiniStruct::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STestMiniStruct*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_2F64A16D") << ":";
+	p_Stream << simdjson::as_json_string("m_iIntValue") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2F64A16D);
+	p_Stream << simdjson::as_json_string(s_Object->m_iIntValue);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_37FB5A4F") << ":";
+	p_Stream << simdjson::as_json_string("m_fFloatValue") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_37FB5A4F);
+	p_Stream << simdjson::as_json_string(s_Object->m_fFloatValue);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8E5A0583") << ":";
+	p_Stream << simdjson::as_json_string("m_sText") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_8E5A0583);
+	p_Stream << simdjson::as_json_string(s_Object->m_sText);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -10734,16 +10744,16 @@ void STestMiniStruct::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_2F64A16D") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2F64A16D);
+	p_Stream << simdjson::as_json_string("m_iIntValue") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_iIntValue);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_37FB5A4F") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_37FB5A4F);
+	p_Stream << simdjson::as_json_string("m_fFloatValue") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fFloatValue);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8E5A0583") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_8E5A0583);
+	p_Stream << simdjson::as_json_string("m_sText") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sText);
 
 	p_Stream << "}";
 }
@@ -10752,11 +10762,11 @@ void STestMiniStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	STestMiniStruct s_Object {};
 
-	s_Object._2F64A16D = simdjson::from_json_int32(p_Document["_2F64A16D"]);
+	s_Object.m_iIntValue = simdjson::from_json_int32(p_Document["m_iIntValue"]);
 
-	s_Object._37FB5A4F = simdjson::from_json_float32(p_Document["_37FB5A4F"]);
+	s_Object.m_fFloatValue = simdjson::from_json_float32(p_Document["m_fFloatValue"]);
 
-	s_Object._8E5A0583 = std::string_view(p_Document["_8E5A0583"]);
+	s_Object.m_sText = std::string_view(p_Document["m_sText"]);
 
 	*reinterpret_cast<STestMiniStruct*>(p_Target) = s_Object;
 }
@@ -10765,7 +10775,7 @@ void STestMiniStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhm
 {
 	auto* s_Object = reinterpret_cast<STestMiniStruct*>(p_Object);
 
-	ZString::Serialize(&s_Object->_8E5A0583, p_Serializer, p_OwnOffset + offsetof(STestMiniStruct, _8E5A0583));
+	ZString::Serialize(&s_Object->m_sText, p_Serializer, p_OwnOffset + offsetof(STestMiniStruct, m_sText));
 }
 
 bool STestMiniStruct::Equals(void* p_Left, void* p_Right)
@@ -10781,9 +10791,9 @@ bool STestMiniStruct::operator==(const STestMiniStruct& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<STestMiniStruct>)
 		return false;
 
-	if (_2F64A16D != p_Other._2F64A16D) return false;
-	if (_37FB5A4F != p_Other._37FB5A4F) return false;
-	if (_8E5A0583 != p_Other._8E5A0583) return false;
+	if (m_iIntValue != p_Other.m_iIntValue) return false;
+	if (m_fFloatValue != p_Other.m_fFloatValue) return false;
+	if (m_sText != p_Other.m_sText) return false;
 
 	return true;
 }
@@ -10795,33 +10805,33 @@ void STestStructure::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<STestStructure*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_AE05822C") << ":";
+	p_Stream << simdjson::as_json_string("m_fWidth") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_AE05822C);
+	p_Stream << simdjson::as_json_string(s_Object->m_fWidth);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6C66AB72") << ":";
+	p_Stream << simdjson::as_json_string("m_fHeight") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C66AB72);
+	p_Stream << simdjson::as_json_string(s_Object->m_fHeight);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_229E820A") << ":";
+	p_Stream << simdjson::as_json_string("m_fAngle") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_229E820A);
+	p_Stream << simdjson::as_json_string(s_Object->m_fAngle);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_174D49E8") << ":";
+	p_Stream << simdjson::as_json_string("m_sDescription") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_174D49E8);
+	p_Stream << simdjson::as_json_string(s_Object->m_sDescription);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5E830AA7") << ":";
+	p_Stream << simdjson::as_json_string("m_Mini") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("STestMiniStruct") << ",\"$val\":";
-	STestMiniStruct::WriteJson(&s_Object->_5E830AA7, p_Stream);
+	STestMiniStruct::WriteJson(&s_Object->m_Mini, p_Stream);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -10833,24 +10843,24 @@ void STestStructure::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_AE05822C") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_AE05822C);
+	p_Stream << simdjson::as_json_string("m_fWidth") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fWidth);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_6C66AB72") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_6C66AB72);
+	p_Stream << simdjson::as_json_string("m_fHeight") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fHeight);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_229E820A") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_229E820A);
+	p_Stream << simdjson::as_json_string("m_fAngle") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fAngle);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_174D49E8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_174D49E8);
+	p_Stream << simdjson::as_json_string("m_sDescription") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sDescription);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5E830AA7") << ":";
-	STestMiniStruct::WriteSimpleJson(&s_Object->_5E830AA7, p_Stream);
+	p_Stream << simdjson::as_json_string("m_Mini") << ":";
+	STestMiniStruct::WriteSimpleJson(&s_Object->m_Mini, p_Stream);
 
 	p_Stream << "}";
 }
@@ -10859,18 +10869,18 @@ void STestStructure::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	STestStructure s_Object {};
 
-	s_Object._AE05822C = simdjson::from_json_float32(p_Document["_AE05822C"]);
+	s_Object.m_fWidth = simdjson::from_json_float32(p_Document["m_fWidth"]);
 
-	s_Object._6C66AB72 = simdjson::from_json_float32(p_Document["_6C66AB72"]);
+	s_Object.m_fHeight = simdjson::from_json_float32(p_Document["m_fHeight"]);
 
-	s_Object._229E820A = simdjson::from_json_float32(p_Document["_229E820A"]);
+	s_Object.m_fAngle = simdjson::from_json_float32(p_Document["m_fAngle"]);
 
-	s_Object._174D49E8 = std::string_view(p_Document["_174D49E8"]);
+	s_Object.m_sDescription = std::string_view(p_Document["m_sDescription"]);
 
 	{
 		STestMiniStruct s_Item {};
-		STestMiniStruct::FromSimpleJson(p_Document["_5E830AA7"], &s_Item);
-		s_Object._5E830AA7 = s_Item;
+		STestMiniStruct::FromSimpleJson(p_Document["m_Mini"], &s_Item);
+		s_Object.m_Mini = s_Item;
 	}
 
 	*reinterpret_cast<STestStructure*>(p_Target) = s_Object;
@@ -10880,8 +10890,8 @@ void STestStructure::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 {
 	auto* s_Object = reinterpret_cast<STestStructure*>(p_Object);
 
-	ZString::Serialize(&s_Object->_174D49E8, p_Serializer, p_OwnOffset + offsetof(STestStructure, _174D49E8));
-	STestMiniStruct::Serialize(&s_Object->_5E830AA7, p_Serializer, p_OwnOffset + offsetof(STestStructure, _5E830AA7));
+	ZString::Serialize(&s_Object->m_sDescription, p_Serializer, p_OwnOffset + offsetof(STestStructure, m_sDescription));
+	STestMiniStruct::Serialize(&s_Object->m_Mini, p_Serializer, p_OwnOffset + offsetof(STestStructure, m_Mini));
 }
 
 bool STestStructure::Equals(void* p_Left, void* p_Right)
@@ -10897,11 +10907,11 @@ bool STestStructure::operator==(const STestStructure& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<STestStructure>)
 		return false;
 
-	if (_AE05822C != p_Other._AE05822C) return false;
-	if (_6C66AB72 != p_Other._6C66AB72) return false;
-	if (_229E820A != p_Other._229E820A) return false;
-	if (_174D49E8 != p_Other._174D49E8) return false;
-	if (_5E830AA7 != p_Other._5E830AA7) return false;
+	if (m_fWidth != p_Other.m_fWidth) return false;
+	if (m_fHeight != p_Other.m_fHeight) return false;
+	if (m_fAngle != p_Other.m_fAngle) return false;
+	if (m_sDescription != p_Other.m_sDescription) return false;
+	if (m_Mini != p_Other.m_Mini) return false;
 
 	return true;
 }
@@ -10913,21 +10923,21 @@ void SUIOptionValue::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SUIOptionValue*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_8A90ABA9") << ":";
+	p_Stream << simdjson::as_json_string("key") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_8A90ABA9);
+	p_Stream << simdjson::as_json_string(s_Object->key);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8CDE5729") << ":";
+	p_Stream << simdjson::as_json_string("type") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDE5729);
+	p_Stream << simdjson::as_json_string(s_Object->type);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FB289CBB") << ":";
+	p_Stream << simdjson::as_json_string("intValue") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_FB289CBB);
+	p_Stream << simdjson::as_json_string(s_Object->intValue);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -10939,16 +10949,16 @@ void SUIOptionValue::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_8A90ABA9") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_8A90ABA9);
+	p_Stream << simdjson::as_json_string("key") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->key);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_8CDE5729") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDE5729);
+	p_Stream << simdjson::as_json_string("type") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->type);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FB289CBB") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_FB289CBB);
+	p_Stream << simdjson::as_json_string("intValue") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->intValue);
 
 	p_Stream << "}";
 }
@@ -10957,11 +10967,11 @@ void SUIOptionValue::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SUIOptionValue s_Object {};
 
-	s_Object._8A90ABA9 = simdjson::from_json_uint32(p_Document["_8A90ABA9"]);
+	s_Object.key = simdjson::from_json_uint32(p_Document["key"]);
 
-	s_Object._8CDE5729 = simdjson::from_json_uint8(p_Document["_8CDE5729"]);
+	s_Object.type = simdjson::from_json_uint8(p_Document["type"]);
 
-	s_Object._FB289CBB = simdjson::from_json_int32(p_Document["_FB289CBB"]);
+	s_Object.intValue = simdjson::from_json_int32(p_Document["intValue"]);
 
 	*reinterpret_cast<SUIOptionValue*>(p_Target) = s_Object;
 }
@@ -10985,9 +10995,9 @@ bool SUIOptionValue::operator==(const SUIOptionValue& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SUIOptionValue>)
 		return false;
 
-	if (_8A90ABA9 != p_Other._8A90ABA9) return false;
-	if (_8CDE5729 != p_Other._8CDE5729) return false;
-	if (_FB289CBB != p_Other._FB289CBB) return false;
+	if (key != p_Other.key) return false;
+	if (type != p_Other.type) return false;
+	if (intValue != p_Other.intValue) return false;
 
 	return true;
 }
@@ -10999,17 +11009,17 @@ void SUIOptionsData::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SUIOptionsData*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_ADF3F363") << ":";
+	p_Stream << simdjson::as_json_string("data") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SUIOptionValue>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_ADF3F363.size(); ++i)
+	for (size_t i = 0; i < s_Object->data.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_ADF3F363[i];
+		auto& s_Item0 = s_Object->data[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("SUIOptionValue") << ",\"$val\":";
 		SUIOptionValue::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_ADF3F363.size() - 1)
+		if (i < s_Object->data.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -11024,14 +11034,14 @@ void SUIOptionsData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_ADF3F363") << ":";
+	p_Stream << simdjson::as_json_string("data") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_ADF3F363.size(); ++i)
+	for (size_t i = 0; i < s_Object->data.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_ADF3F363[i];
+		auto& s_Item0 = s_Object->data[i];
 		SUIOptionValue::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_ADF3F363.size() - 1)
+		if (i < s_Object->data.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -11045,15 +11055,15 @@ void SUIOptionsData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	SUIOptionsData s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_ADF3F363"];
-	s_Object._ADF3F363.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["data"];
+	s_Object.data.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SUIOptionValue s_ArrayItem0;
 		SUIOptionValue::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._ADF3F363[s_Index0++] = s_ArrayItem0;
+		s_Object.data[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -11064,7 +11074,7 @@ void SUIOptionsData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 {
 	auto* s_Object = reinterpret_cast<SUIOptionsData*>(p_Object);
 
-	TArray<SUIOptionValue>::Serialize(&s_Object->_ADF3F363, p_Serializer, p_OwnOffset + offsetof(SUIOptionsData, _ADF3F363));
+	TArray<SUIOptionValue>::Serialize(&s_Object->data, p_Serializer, p_OwnOffset + offsetof(SUIOptionsData, data));
 }
 
 bool SUIOptionsData::Equals(void* p_Left, void* p_Right)
@@ -11080,7 +11090,7 @@ bool SUIOptionsData::operator==(const SUIOptionsData& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SUIOptionsData>)
 		return false;
 
-	if (_ADF3F363 != p_Other._ADF3F363) return false;
+	if (data != p_Other.data) return false;
 
 	return true;
 }
@@ -11092,15 +11102,15 @@ void SVector2::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<SVector2*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
+	p_Stream << simdjson::as_json_string("x") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
+	p_Stream << simdjson::as_json_string("y") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string(s_Object->y);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -11112,12 +11122,12 @@ void SVector2::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_8CDC1683") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_8CDC1683);
+	p_Stream << simdjson::as_json_string("x") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->x);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_FBDB2615") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_FBDB2615);
+	p_Stream << simdjson::as_json_string("y") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->y);
 
 	p_Stream << "}";
 }
@@ -11126,9 +11136,9 @@ void SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	SVector2 s_Object {};
 
-	s_Object._8CDC1683 = simdjson::from_json_float32(p_Document["_8CDC1683"]);
+	s_Object.x = simdjson::from_json_float32(p_Document["x"]);
 
-	s_Object._FBDB2615 = simdjson::from_json_float32(p_Document["_FBDB2615"]);
+	s_Object.y = simdjson::from_json_float32(p_Document["y"]);
 
 	*reinterpret_cast<SVector2*>(p_Target) = s_Object;
 }
@@ -11152,8 +11162,8 @@ bool SVector2::operator==(const SVector2& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<SVector2>)
 		return false;
 
-	if (_8CDC1683 != p_Other._8CDC1683) return false;
-	if (_FBDB2615 != p_Other._FBDB2615) return false;
+	if (x != p_Other.x) return false;
+	if (y != p_Other.y) return false;
 
 	return true;
 }
@@ -11214,21 +11224,21 @@ void ZCloseCombatDef_SActorNoise::WriteJson(void* p_Object, std::ostream& p_Stre
 	auto* s_Object = reinterpret_cast<ZCloseCombatDef_SActorNoise*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_28BC53B5") << ":";
+	p_Stream << simdjson::as_json_string("m_iSpeak") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("SActorSoundDefs.EDefinition") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_28BC53B5)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SActorSoundDefs.EDefinition", static_cast<int>(s_Object->_28BC53B5))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_iSpeak)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SActorSoundDefs.EDefinition", static_cast<int>(s_Object->m_iSpeak))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_04153019") << ":";
+	p_Stream << simdjson::as_json_string("m_eAIEvent") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("EAIEventType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_04153019)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAIEventType", static_cast<int>(s_Object->_04153019))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eAIEvent)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAIEventType", static_cast<int>(s_Object->m_eAIEvent))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A120F69F") << ":";
+	p_Stream << simdjson::as_json_string("m_fAIEventDistance") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_A120F69F);
+	p_Stream << simdjson::as_json_string(s_Object->m_fAIEventDistance);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -11240,16 +11250,16 @@ void ZCloseCombatDef_SActorNoise::WriteSimpleJson(void* p_Object, std::ostream& 
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_28BC53B5") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SActorSoundDefs.EDefinition", static_cast<int>(s_Object->_28BC53B5)));
+	p_Stream << simdjson::as_json_string("m_iSpeak") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SActorSoundDefs.EDefinition", static_cast<int>(s_Object->m_iSpeak)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_04153019") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAIEventType", static_cast<int>(s_Object->_04153019)));
+	p_Stream << simdjson::as_json_string("m_eAIEvent") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAIEventType", static_cast<int>(s_Object->m_eAIEvent)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_A120F69F") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_A120F69F);
+	p_Stream << simdjson::as_json_string("m_fAIEventDistance") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fAIEventDistance);
 
 	p_Stream << "}";
 }
@@ -11258,11 +11268,11 @@ void ZCloseCombatDef_SActorNoise::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	ZCloseCombatDef_SActorNoise s_Object {};
 
-	s_Object._28BC53B5 = static_cast<SActorSoundDefs_EDefinition>(ZHMEnums::GetEnumValueByName("SActorSoundDefs.EDefinition", std::string_view(p_Document["_28BC53B5"])));
+	s_Object.m_iSpeak = static_cast<SActorSoundDefs_EDefinition>(ZHMEnums::GetEnumValueByName("SActorSoundDefs.EDefinition", std::string_view(p_Document["m_iSpeak"])));
 
-	s_Object._04153019 = static_cast<EAIEventType>(ZHMEnums::GetEnumValueByName("EAIEventType", std::string_view(p_Document["_04153019"])));
+	s_Object.m_eAIEvent = static_cast<EAIEventType>(ZHMEnums::GetEnumValueByName("EAIEventType", std::string_view(p_Document["m_eAIEvent"])));
 
-	s_Object._A120F69F = simdjson::from_json_float32(p_Document["_A120F69F"]);
+	s_Object.m_fAIEventDistance = simdjson::from_json_float32(p_Document["m_fAIEventDistance"]);
 
 	*reinterpret_cast<ZCloseCombatDef_SActorNoise*>(p_Target) = s_Object;
 }
@@ -11286,9 +11296,9 @@ bool ZCloseCombatDef_SActorNoise::operator==(const ZCloseCombatDef_SActorNoise& 
 	if constexpr (!ZHMTypeSupportsEquality_v<ZCloseCombatDef_SActorNoise>)
 		return false;
 
-	if (_28BC53B5 != p_Other._28BC53B5) return false;
-	if (_04153019 != p_Other._04153019) return false;
-	if (_A120F69F != p_Other._A120F69F) return false;
+	if (m_iSpeak != p_Other.m_iSpeak) return false;
+	if (m_eAIEvent != p_Other.m_eAIEvent) return false;
+	if (m_fAIEventDistance != p_Other.m_fAIEventDistance) return false;
 
 	return true;
 }
@@ -11300,23 +11310,23 @@ void ZComponentCreator::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZComponentCreator*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_D9EBDCBE") << ":";
+	p_Stream << simdjson::as_json_string("m_sComponentName") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_D9EBDCBE);
+	p_Stream << simdjson::as_json_string(s_Object->m_sComponentName);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B9EA4804") << ":";
+	p_Stream << simdjson::as_json_string("m_aArgs") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<ZVariant>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B9EA4804.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aArgs.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B9EA4804[i];
+		auto& s_Item0 = s_Object->m_aArgs[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("ZVariant") << ",\"$val\":";
 		ZVariant::WriteJson(&s_Item0, p_Stream);
 		p_Stream << "}";
 
-		if (i < s_Object->_B9EA4804.size() - 1)
+		if (i < s_Object->m_aArgs.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -11331,18 +11341,18 @@ void ZComponentCreator::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_D9EBDCBE") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_D9EBDCBE);
+	p_Stream << simdjson::as_json_string("m_sComponentName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sComponentName);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_B9EA4804") << ":";
+	p_Stream << simdjson::as_json_string("m_aArgs") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_B9EA4804.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aArgs.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_B9EA4804[i];
+		auto& s_Item0 = s_Object->m_aArgs[i];
 		ZVariant::WriteSimpleJson(&s_Item0, p_Stream);
 
-		if (i < s_Object->_B9EA4804.size() - 1)
+		if (i < s_Object->m_aArgs.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -11355,18 +11365,18 @@ void ZComponentCreator::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	ZComponentCreator s_Object {};
 
-	s_Object._D9EBDCBE = std::string_view(p_Document["_D9EBDCBE"]);
+	s_Object.m_sComponentName = std::string_view(p_Document["m_sComponentName"]);
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_B9EA4804"];
-	s_Object._B9EA4804.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aArgs"];
+	s_Object.m_aArgs.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZVariant s_ArrayItem0;
 		ZVariant::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._B9EA4804[s_Index0++] = s_ArrayItem0;
+		s_Object.m_aArgs[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -11377,8 +11387,8 @@ void ZComponentCreator::Serialize(void* p_Object, ZHMSerializer& p_Serializer, z
 {
 	auto* s_Object = reinterpret_cast<ZComponentCreator*>(p_Object);
 
-	ZString::Serialize(&s_Object->_D9EBDCBE, p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, _D9EBDCBE));
-	TArray<ZVariant>::Serialize(&s_Object->_B9EA4804, p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, _B9EA4804));
+	ZString::Serialize(&s_Object->m_sComponentName, p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, m_sComponentName));
+	TArray<ZVariant>::Serialize(&s_Object->m_aArgs, p_Serializer, p_OwnOffset + offsetof(ZComponentCreator, m_aArgs));
 }
 
 bool ZComponentCreator::Equals(void* p_Left, void* p_Right)
@@ -11394,8 +11404,8 @@ bool ZComponentCreator::operator==(const ZComponentCreator& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZComponentCreator>)
 		return false;
 
-	if (_D9EBDCBE != p_Other._D9EBDCBE) return false;
-	if (_B9EA4804 != p_Other._B9EA4804) return false;
+	if (m_sComponentName != p_Other.m_sComponentName) return false;
+	if (m_aArgs != p_Other.m_aArgs) return false;
 
 	return true;
 }
@@ -11407,12 +11417,12 @@ void ZCurve::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZCurve*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_ADF3F363") << ":";
+	p_Stream << simdjson::as_json_string("data") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TFixedArray<float32>>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_ADF3F363.size(); ++i)
+	for (size_t i = 0; i < s_Object->data.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_ADF3F363[i];
+		auto& s_Item0 = s_Object->data[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<float32>") << ",\"$val\":";
 		p_Stream << "[";
 		for (size_t i = 0; i < s_Item0.size(); ++i)
@@ -11428,7 +11438,7 @@ void ZCurve::WriteJson(void* p_Object, std::ostream& p_Stream)
 		p_Stream << "]";
 		p_Stream << "}";
 
-		if (i < s_Object->_ADF3F363.size() - 1)
+		if (i < s_Object->data.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -11443,11 +11453,11 @@ void ZCurve::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_ADF3F363") << ":";
+	p_Stream << simdjson::as_json_string("data") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_ADF3F363.size(); ++i)
+	for (size_t i = 0; i < s_Object->data.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_ADF3F363[i];
+		auto& s_Item0 = s_Object->data[i];
 		p_Stream << "[";
 		for (size_t i = 0; i < s_Item0.size(); ++i)
 		{
@@ -11460,7 +11470,7 @@ void ZCurve::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 		p_Stream << "]";
 
-		if (i < s_Object->_ADF3F363.size() - 1)
+		if (i < s_Object->data.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -11474,8 +11484,8 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 	ZCurve s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_ADF3F363"];
-	s_Object._ADF3F363.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["data"];
+	s_Object.data.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
@@ -11489,7 +11499,7 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 			++s_Index1;
 		}
 		}
-		s_Object._ADF3F363[s_Index0++] = s_ArrayItem0;
+		s_Object.data[s_Index0++] = s_ArrayItem0;
 	}
 	}
 
@@ -11500,7 +11510,7 @@ void ZCurve::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_O
 {
 	auto* s_Object = reinterpret_cast<ZCurve*>(p_Object);
 
-	TArray<TFixedArray<float32, 8>>::Serialize(&s_Object->_ADF3F363, p_Serializer, p_OwnOffset + offsetof(ZCurve, _ADF3F363));
+	TArray<TFixedArray<float32, 8>>::Serialize(&s_Object->data, p_Serializer, p_OwnOffset + offsetof(ZCurve, data));
 }
 
 bool ZCurve::Equals(void* p_Left, void* p_Right)
@@ -11516,7 +11526,7 @@ bool ZCurve::operator==(const ZCurve& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZCurve>)
 		return false;
 
-	if (_ADF3F363 != p_Other._ADF3F363) return false;
+	if (data != p_Other.data) return false;
 
 	return true;
 }
@@ -11528,9 +11538,9 @@ void ZEntityID::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZEntityID*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_5DC3D644") << ":";
+	p_Stream << simdjson::as_json_string("m_sStr") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5DC3D644);
+	p_Stream << simdjson::as_json_string(s_Object->m_sStr);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -11542,8 +11552,8 @@ void ZEntityID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_5DC3D644") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5DC3D644);
+	p_Stream << simdjson::as_json_string("m_sStr") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sStr);
 
 	p_Stream << "}";
 }
@@ -11552,7 +11562,7 @@ void ZEntityID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	ZEntityID s_Object {};
 
-	s_Object._5DC3D644 = std::string_view(p_Document["_5DC3D644"]);
+	s_Object.m_sStr = std::string_view(p_Document["m_sStr"]);
 
 	*reinterpret_cast<ZEntityID*>(p_Target) = s_Object;
 }
@@ -11561,7 +11571,7 @@ void ZEntityID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t 
 {
 	auto* s_Object = reinterpret_cast<ZEntityID*>(p_Object);
 
-	ZString::Serialize(&s_Object->_5DC3D644, p_Serializer, p_OwnOffset + offsetof(ZEntityID, _5DC3D644));
+	ZString::Serialize(&s_Object->m_sStr, p_Serializer, p_OwnOffset + offsetof(ZEntityID, m_sStr));
 }
 
 bool ZEntityID::Equals(void* p_Left, void* p_Right)
@@ -11577,7 +11587,7 @@ bool ZEntityID::operator==(const ZEntityID& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityID>)
 		return false;
 
-	if (_5DC3D644 != p_Other._5DC3D644) return false;
+	if (m_sStr != p_Other.m_sStr) return false;
 
 	return true;
 }
@@ -11638,15 +11648,15 @@ void ZEntityReference::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZEntityReference*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_3B6ADD1A") << ":";
+	p_Stream << simdjson::as_json_string("m_EntityID") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZEntityID") << ",\"$val\":";
-	ZEntityID::WriteJson(&s_Object->_3B6ADD1A, p_Stream);
+	ZEntityID::WriteJson(&s_Object->m_EntityID, p_Stream);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5A1F34C2") << ":";
+	p_Stream << simdjson::as_json_string("m_sExposedEntity") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_5A1F34C2);
+	p_Stream << simdjson::as_json_string(s_Object->m_sExposedEntity);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -11658,12 +11668,12 @@ void ZEntityReference::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_3B6ADD1A") << ":";
-	ZEntityID::WriteSimpleJson(&s_Object->_3B6ADD1A, p_Stream);
+	p_Stream << simdjson::as_json_string("m_EntityID") << ":";
+	ZEntityID::WriteSimpleJson(&s_Object->m_EntityID, p_Stream);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_5A1F34C2") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_5A1F34C2);
+	p_Stream << simdjson::as_json_string("m_sExposedEntity") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sExposedEntity);
 
 	p_Stream << "}";
 }
@@ -11674,11 +11684,11 @@ void ZEntityReference::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	{
 		ZEntityID s_Item {};
-		ZEntityID::FromSimpleJson(p_Document["_3B6ADD1A"], &s_Item);
-		s_Object._3B6ADD1A = s_Item;
+		ZEntityID::FromSimpleJson(p_Document["m_EntityID"], &s_Item);
+		s_Object.m_EntityID = s_Item;
 	}
 
-	s_Object._5A1F34C2 = std::string_view(p_Document["_5A1F34C2"]);
+	s_Object.m_sExposedEntity = std::string_view(p_Document["m_sExposedEntity"]);
 
 	*reinterpret_cast<ZEntityReference*>(p_Target) = s_Object;
 }
@@ -11687,8 +11697,8 @@ void ZEntityReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zh
 {
 	auto* s_Object = reinterpret_cast<ZEntityReference*>(p_Object);
 
-	ZEntityID::Serialize(&s_Object->_3B6ADD1A, p_Serializer, p_OwnOffset + offsetof(ZEntityReference, _3B6ADD1A));
-	ZString::Serialize(&s_Object->_5A1F34C2, p_Serializer, p_OwnOffset + offsetof(ZEntityReference, _5A1F34C2));
+	ZEntityID::Serialize(&s_Object->m_EntityID, p_Serializer, p_OwnOffset + offsetof(ZEntityReference, m_EntityID));
+	ZString::Serialize(&s_Object->m_sExposedEntity, p_Serializer, p_OwnOffset + offsetof(ZEntityReference, m_sExposedEntity));
 }
 
 bool ZEntityReference::Equals(void* p_Left, void* p_Right)
@@ -11704,8 +11714,8 @@ bool ZEntityReference::operator==(const ZEntityReference& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityReference>)
 		return false;
 
-	if (_3B6ADD1A != p_Other._3B6ADD1A) return false;
-	if (_5A1F34C2 != p_Other._5A1F34C2) return false;
+	if (m_EntityID != p_Other.m_EntityID) return false;
+	if (m_sExposedEntity != p_Other.m_sExposedEntity) return false;
 
 	return true;
 }
@@ -11717,9 +11727,9 @@ void ZGameTime::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZGameTime*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_4786AB66") << ":";
+	p_Stream << simdjson::as_json_string("m_nTicks") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("int64") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_4786AB66);
+	p_Stream << simdjson::as_json_string(s_Object->m_nTicks);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -11731,8 +11741,8 @@ void ZGameTime::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_4786AB66") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_4786AB66);
+	p_Stream << simdjson::as_json_string("m_nTicks") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nTicks);
 
 	p_Stream << "}";
 }
@@ -11741,7 +11751,7 @@ void ZGameTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	ZGameTime s_Object {};
 
-	s_Object._4786AB66 = simdjson::from_json_int64(p_Document["_4786AB66"]);
+	s_Object.m_nTicks = simdjson::from_json_int64(p_Document["m_nTicks"]);
 
 	*reinterpret_cast<ZGameTime*>(p_Target) = s_Object;
 }
@@ -11765,7 +11775,7 @@ bool ZGameTime::operator==(const ZGameTime& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZGameTime>)
 		return false;
 
-	if (_4786AB66 != p_Other._4786AB66) return false;
+	if (m_nTicks != p_Other.m_nTicks) return false;
 
 	return true;
 }
@@ -12120,15 +12130,15 @@ void ZRuntimeResourceID::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZRuntimeResourceID*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_0E06C207") << ":";
+	p_Stream << simdjson::as_json_string("m_IDHigh") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_0E06C207);
+	p_Stream << simdjson::as_json_string(s_Object->m_IDHigh);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9EC45A78") << ":";
+	p_Stream << simdjson::as_json_string("m_IDLow") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_9EC45A78);
+	p_Stream << simdjson::as_json_string(s_Object->m_IDLow);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -12140,12 +12150,12 @@ void ZRuntimeResourceID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_0E06C207") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_0E06C207);
+	p_Stream << simdjson::as_json_string("m_IDHigh") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_IDHigh);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_9EC45A78") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_9EC45A78);
+	p_Stream << simdjson::as_json_string("m_IDLow") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_IDLow);
 
 	p_Stream << "}";
 }
@@ -12154,9 +12164,9 @@ void ZRuntimeResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	ZRuntimeResourceID s_Object {};
 
-	s_Object._0E06C207 = simdjson::from_json_uint32(p_Document["_0E06C207"]);
+	s_Object.m_IDHigh = simdjson::from_json_uint32(p_Document["m_IDHigh"]);
 
-	s_Object._9EC45A78 = simdjson::from_json_uint32(p_Document["_9EC45A78"]);
+	s_Object.m_IDLow = simdjson::from_json_uint32(p_Document["m_IDLow"]);
 
 	*reinterpret_cast<ZRuntimeResourceID*>(p_Target) = s_Object;
 }
@@ -12181,8 +12191,8 @@ bool ZRuntimeResourceID::operator==(const ZRuntimeResourceID& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZRuntimeResourceID>)
 		return false;
 
-	if (_0E06C207 != p_Other._0E06C207) return false;
-	if (_9EC45A78 != p_Other._9EC45A78) return false;
+	if (m_IDHigh != p_Other.m_IDHigh) return false;
+	if (m_IDLow != p_Other.m_IDLow) return false;
 
 	return true;
 }
@@ -12194,57 +12204,57 @@ void ZSharedSensorDef_SVisibilitySetting::WriteJson(void* p_Object, std::ostream
 	auto* s_Object = reinterpret_cast<ZSharedSensorDef_SVisibilitySetting*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_651CEEE5") << ":";
+	p_Stream << simdjson::as_json_string("m_eSensitivity") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("EActorPerceptionSensitivity") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->_651CEEE5)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EActorPerceptionSensitivity", static_cast<int>(s_Object->_651CEEE5))) << "}";
+	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eSensitivity)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EActorPerceptionSensitivity", static_cast<int>(s_Object->m_eSensitivity))) << "}";
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_67E9CFAF") << ":";
+	p_Stream << simdjson::as_json_string("m_fCloseRange") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_67E9CFAF);
+	p_Stream << simdjson::as_json_string(s_Object->m_fCloseRange);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7E8A37B8") << ":";
+	p_Stream << simdjson::as_json_string("m_fPeripheralRange") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_7E8A37B8);
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralRange);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_ED8C28F8") << ":";
+	p_Stream << simdjson::as_json_string("m_fPeripheralAngle") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_ED8C28F8);
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralAngle);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_44EB35D5") << ":";
+	p_Stream << simdjson::as_json_string("m_fPeripheralHigh") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_44EB35D5);
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralHigh);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AC96C91C") << ":";
+	p_Stream << simdjson::as_json_string("m_fPeripheralLow") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_AC96C91C);
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralLow);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E3F48D31") << ":";
+	p_Stream << simdjson::as_json_string("m_fFocusConeWidthAngle") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_E3F48D31);
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeWidthAngle);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2D17BA18") << ":";
+	p_Stream << simdjson::as_json_string("m_fFocusConeHeightAngle") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2D17BA18);
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeHeightAngle);
 	p_Stream << "}";
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2AFC50C4") << ":";
+	p_Stream << simdjson::as_json_string("m_fFocusConeRange") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_2AFC50C4);
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeRange);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -12256,40 +12266,40 @@ void ZSharedSensorDef_SVisibilitySetting::WriteSimpleJson(void* p_Object, std::o
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_651CEEE5") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EActorPerceptionSensitivity", static_cast<int>(s_Object->_651CEEE5)));
+	p_Stream << simdjson::as_json_string("m_eSensitivity") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EActorPerceptionSensitivity", static_cast<int>(s_Object->m_eSensitivity)));
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_67E9CFAF") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_67E9CFAF);
+	p_Stream << simdjson::as_json_string("m_fCloseRange") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fCloseRange);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_7E8A37B8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_7E8A37B8);
+	p_Stream << simdjson::as_json_string("m_fPeripheralRange") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralRange);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_ED8C28F8") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_ED8C28F8);
+	p_Stream << simdjson::as_json_string("m_fPeripheralAngle") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralAngle);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_44EB35D5") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_44EB35D5);
+	p_Stream << simdjson::as_json_string("m_fPeripheralHigh") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralHigh);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_AC96C91C") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_AC96C91C);
+	p_Stream << simdjson::as_json_string("m_fPeripheralLow") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralLow);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_E3F48D31") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_E3F48D31);
+	p_Stream << simdjson::as_json_string("m_fFocusConeWidthAngle") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeWidthAngle);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2D17BA18") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2D17BA18);
+	p_Stream << simdjson::as_json_string("m_fFocusConeHeightAngle") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeHeightAngle);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("_2AFC50C4") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_2AFC50C4);
+	p_Stream << simdjson::as_json_string("m_fFocusConeRange") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeRange);
 
 	p_Stream << "}";
 }
@@ -12298,23 +12308,23 @@ void ZSharedSensorDef_SVisibilitySetting::FromSimpleJson(simdjson::ondemand::val
 {
 	ZSharedSensorDef_SVisibilitySetting s_Object {};
 
-	s_Object._651CEEE5 = static_cast<EActorPerceptionSensitivity>(ZHMEnums::GetEnumValueByName("EActorPerceptionSensitivity", std::string_view(p_Document["_651CEEE5"])));
+	s_Object.m_eSensitivity = static_cast<EActorPerceptionSensitivity>(ZHMEnums::GetEnumValueByName("EActorPerceptionSensitivity", std::string_view(p_Document["m_eSensitivity"])));
 
-	s_Object._67E9CFAF = simdjson::from_json_float32(p_Document["_67E9CFAF"]);
+	s_Object.m_fCloseRange = simdjson::from_json_float32(p_Document["m_fCloseRange"]);
 
-	s_Object._7E8A37B8 = simdjson::from_json_float32(p_Document["_7E8A37B8"]);
+	s_Object.m_fPeripheralRange = simdjson::from_json_float32(p_Document["m_fPeripheralRange"]);
 
-	s_Object._ED8C28F8 = simdjson::from_json_float32(p_Document["_ED8C28F8"]);
+	s_Object.m_fPeripheralAngle = simdjson::from_json_float32(p_Document["m_fPeripheralAngle"]);
 
-	s_Object._44EB35D5 = simdjson::from_json_float32(p_Document["_44EB35D5"]);
+	s_Object.m_fPeripheralHigh = simdjson::from_json_float32(p_Document["m_fPeripheralHigh"]);
 
-	s_Object._AC96C91C = simdjson::from_json_float32(p_Document["_AC96C91C"]);
+	s_Object.m_fPeripheralLow = simdjson::from_json_float32(p_Document["m_fPeripheralLow"]);
 
-	s_Object._E3F48D31 = simdjson::from_json_float32(p_Document["_E3F48D31"]);
+	s_Object.m_fFocusConeWidthAngle = simdjson::from_json_float32(p_Document["m_fFocusConeWidthAngle"]);
 
-	s_Object._2D17BA18 = simdjson::from_json_float32(p_Document["_2D17BA18"]);
+	s_Object.m_fFocusConeHeightAngle = simdjson::from_json_float32(p_Document["m_fFocusConeHeightAngle"]);
 
-	s_Object._2AFC50C4 = simdjson::from_json_float32(p_Document["_2AFC50C4"]);
+	s_Object.m_fFocusConeRange = simdjson::from_json_float32(p_Document["m_fFocusConeRange"]);
 
 	*reinterpret_cast<ZSharedSensorDef_SVisibilitySetting*>(p_Target) = s_Object;
 }
@@ -12338,15 +12348,15 @@ bool ZSharedSensorDef_SVisibilitySetting::operator==(const ZSharedSensorDef_SVis
 	if constexpr (!ZHMTypeSupportsEquality_v<ZSharedSensorDef_SVisibilitySetting>)
 		return false;
 
-	if (_651CEEE5 != p_Other._651CEEE5) return false;
-	if (_67E9CFAF != p_Other._67E9CFAF) return false;
-	if (_7E8A37B8 != p_Other._7E8A37B8) return false;
-	if (_ED8C28F8 != p_Other._ED8C28F8) return false;
-	if (_44EB35D5 != p_Other._44EB35D5) return false;
-	if (_AC96C91C != p_Other._AC96C91C) return false;
-	if (_E3F48D31 != p_Other._E3F48D31) return false;
-	if (_2D17BA18 != p_Other._2D17BA18) return false;
-	if (_2AFC50C4 != p_Other._2AFC50C4) return false;
+	if (m_eSensitivity != p_Other.m_eSensitivity) return false;
+	if (m_fCloseRange != p_Other.m_fCloseRange) return false;
+	if (m_fPeripheralRange != p_Other.m_fPeripheralRange) return false;
+	if (m_fPeripheralAngle != p_Other.m_fPeripheralAngle) return false;
+	if (m_fPeripheralHigh != p_Other.m_fPeripheralHigh) return false;
+	if (m_fPeripheralLow != p_Other.m_fPeripheralLow) return false;
+	if (m_fFocusConeWidthAngle != p_Other.m_fFocusConeWidthAngle) return false;
+	if (m_fFocusConeHeightAngle != p_Other.m_fFocusConeHeightAngle) return false;
+	if (m_fFocusConeRange != p_Other.m_fFocusConeRange) return false;
 
 	return true;
 }
@@ -12407,17 +12417,17 @@ void ZSpeakerLevels::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZSpeakerLevels*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_EB48D7FA") << ":";
+	p_Stream << simdjson::as_json_string("m_aSpeakerMatrix") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<float32>") << ",\"$val\":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_EB48D7FA.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aSpeakerMatrix.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_EB48D7FA[i];
+		auto& s_Item0 = s_Object->m_aSpeakerMatrix[i];
 		p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
 		p_Stream << simdjson::as_json_string(s_Item0);
 		p_Stream << "}";
 
-		if (i < s_Object->_EB48D7FA.size() - 1)
+		if (i < s_Object->m_aSpeakerMatrix.size() - 1)
 			p_Stream << ",";
 	}
 	p_Stream << "]";
@@ -12432,14 +12442,14 @@ void ZSpeakerLevels::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_EB48D7FA") << ":";
+	p_Stream << simdjson::as_json_string("m_aSpeakerMatrix") << ":";
 	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->_EB48D7FA.size(); ++i)
+	for (size_t i = 0; i < s_Object->m_aSpeakerMatrix.size(); ++i)
 	{
-		auto& s_Item0 = s_Object->_EB48D7FA[i];
+		auto& s_Item0 = s_Object->m_aSpeakerMatrix[i];
 		p_Stream << simdjson::as_json_string(s_Item0);
 
-		if (i < s_Object->_EB48D7FA.size() - 1)
+		if (i < s_Object->m_aSpeakerMatrix.size() - 1)
 			p_Stream << ",";
 	}
 
@@ -12453,13 +12463,13 @@ void ZSpeakerLevels::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	ZSpeakerLevels s_Object {};
 
 	{
-	simdjson::ondemand::array s_Array0 = p_Document["_EB48D7FA"];
-	s_Object._EB48D7FA.resize(s_Array0.count_elements());
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSpeakerMatrix"];
+	s_Object.m_aSpeakerMatrix.resize(s_Array0.count_elements());
 	size_t s_Index0 = 0;
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		s_Object._EB48D7FA[s_Index0++] = simdjson::from_json_float32(s_Item0);
+		s_Object.m_aSpeakerMatrix[s_Index0++] = simdjson::from_json_float32(s_Item0);
 	}
 	}
 
@@ -12470,7 +12480,7 @@ void ZSpeakerLevels::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 {
 	auto* s_Object = reinterpret_cast<ZSpeakerLevels*>(p_Object);
 
-	TArray<float32>::Serialize(&s_Object->_EB48D7FA, p_Serializer, p_OwnOffset + offsetof(ZSpeakerLevels, _EB48D7FA));
+	TArray<float32>::Serialize(&s_Object->m_aSpeakerMatrix, p_Serializer, p_OwnOffset + offsetof(ZSpeakerLevels, m_aSpeakerMatrix));
 }
 
 bool ZSpeakerLevels::Equals(void* p_Left, void* p_Right)
@@ -12486,7 +12496,7 @@ bool ZSpeakerLevels::operator==(const ZSpeakerLevels& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZSpeakerLevels>)
 		return false;
 
-	if (_EB48D7FA != p_Other._EB48D7FA) return false;
+	if (m_aSpeakerMatrix != p_Other.m_aSpeakerMatrix) return false;
 
 	return true;
 }
@@ -12498,9 +12508,9 @@ void ZTime::WriteJson(void* p_Object, std::ostream& p_Stream)
 	auto* s_Object = reinterpret_cast<ZTime*>(p_Object);
 
 	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("_D33B1D5A") << ":";
+	p_Stream << simdjson::as_json_string("m_nValue") << ":";
 	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint64") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->_D33B1D5A);
+	p_Stream << simdjson::as_json_string(s_Object->m_nValue);
 	p_Stream << "}";
 
 	p_Stream << "}";
@@ -12512,8 +12522,8 @@ void ZTime::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("_D33B1D5A") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->_D33B1D5A);
+	p_Stream << simdjson::as_json_string("m_nValue") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nValue);
 
 	p_Stream << "}";
 }
@@ -12522,7 +12532,7 @@ void ZTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
 	ZTime s_Object {};
 
-	s_Object._D33B1D5A = simdjson::from_json_uint64(p_Document["_D33B1D5A"]);
+	s_Object.m_nValue = simdjson::from_json_uint64(p_Document["m_nValue"]);
 
 	*reinterpret_cast<ZTime*>(p_Target) = s_Object;
 }
@@ -12546,7 +12556,7 @@ bool ZTime::operator==(const ZTime& p_Other) const
 	if constexpr (!ZHMTypeSupportsEquality_v<ZTime>)
 		return false;
 
-	if (_D33B1D5A != p_Other._D33B1D5A) return false;
+	if (m_nValue != p_Other.m_nValue) return false;
 
 	return true;
 }

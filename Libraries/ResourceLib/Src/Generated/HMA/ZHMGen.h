@@ -34,986 +34,5097 @@ public:
 // Size: 0x4
 enum class BoneId_Enum
 {
+	GROUND = 0,
+	PELVIS = 1,
+	SPINE_1 = 3,
+	SPINE = 2,
+	NECK1 = 6,
+	SPINE_2 = 4,
+	LEFT_EYE = 56,
+	NECK = 5,
+	LEFT_THIGH_TWIST1 = 11,
+	HEAD = 7,
+	BONEID_LAST = 63,
+	LEFT_THIGH_TWIST = 10,
+	PONYTAIL = 8,
+	RIGHT_EYE = 58,
+	LEFT_THIGH = 9,
+	LEFT_THIGH_TWIST2 = 12,
+	LEFT_CALF = 13,
+	RIGHT_THIGH_TWIST1 = 18,
+	LEFT_FOOT = 14,
+	LEFT_TOE = 15,
+	RIGHT_THIGH = 16,
+	RIGHT_THIGH_TWIST = 17,
+	LEFT_HAND = 32,
+	RIGHT_THIGH_TWIST2 = 19,
+	LEFT_FORETWIST2 = 31,
+	RIGHT_CALF = 20,
+	RIGHT_FOOT = 21,
+	RIGHT_UPPER_ARM_TWIST1 = 37,
+	RIGHT_TOE = 22,
+	RIGHT_HAND_ATTACHER = 47,
+	LEFT_CLAVICLE = 23,
+	LEFT_UPPER_ARM = 24,
+	LEFT_UPPER_ARM_TWIST = 25,
+	LEFT_UPPER_ARM_TWIST1 = 26,
+	LEFT_UPPER_ARM_TWIST2 = 27,
+	RIGHT_FORETWIST2 = 42,
+	RIGHT_UPPER_ARM_TWIST = 36,
+	LEFT_FOREARM = 28,
+	LEFT_FORETWIST = 29,
+	LEFT_FORETWIST1 = 30,
+	HOLSTER_ATTACHER = 62,
+	LEFT_FINGER_0 = 33,
+	RIGHT_CLAVICLE = 34,
+	RIGHT_UPPER_ARM = 35,
+	RIGHT_UPPER_ARM_TWIST2 = 38,
+	FREE_ATTACHER = 51,
+	RIGHT_FORETWIST1 = 41,
+	RIGHT_FOREARM = 39,
+	XTRA_MUS_R_HIP = 45,
+	RIGHT_FORETWIST = 40,
+	LEFT_HAND_ATTACHER = 48,
+	RIGHT_HAND = 43,
+	RIGHT_FINGER_0 = 44,
+	RIGHT_EYE_LID = 59,
+	XTRA_MUS_L_HIP = 46,
+	HIP_ATTACHER = 49,
+	BACK_ATTACHER = 50,
+	FREE_ATTACHER_PROP_02 = 55,
+	CAMERA_ATTACHER_01 = 52,
+	FREE_ATTACHER_PROP_01 = 54,
+	CAMERA_ATTACHER_02 = 53,
+	LEFT_EYE_LID = 57,
+	LOWER_LIP = 60,
+	JAW = 61,
 };
 
 // Size: 0x4
 enum class CrowdMapImpl_CellFlags
 {
+	CELLFLAG_WALKABLE = 8,
+	CELLFLAG_RESTRICTED_A = 1,
+	CELLFLAG_TELEPORT_OUT = 32,
+	CELLFLAG_RESTRICTED_B = 2,
+	CELLFLAG_GROUP = 64,
+	CELLFLAG_TELEPORT_IN = 16,
+	CELLFLAG_RESTRICTED_C = 4,
+	CELLFLAG_PANIC_ONLY = 128,
 };
 
 // Size: 0x4
 enum class CrowdRegionType
 {
+	CROWDSPHERE_NONE = 0,
+	CROWDSPHERE_POI = 1,
+	CROWDSPHERE_AVOID = 2,
+	CROWDSPHERE_GETDOWN = 6,
+	CROWDSPHERE_SCARE = 5,
+	CROWDSPHERE_STOP = 3,
+	CROWDSPHERE_ALERT = 4,
 };
 
 // Size: 0x4
 enum class CrowdUtil_ECrowdActorIdleMode
 {
+	IDLE_NORMAL = 0,
+	IDLE_ACT1 = 1,
+	IDLE_ACT2 = 2,
 };
 
 // Size: 0x4
 enum class CrowdUtil_ECrowdActorMood
 {
+	CM_AMBIENT = 0,
+	CM_ALERTED = 1,
+	CM_DISABLED = 5,
+	CM_SCARED = 2,
+	CM_DEAD = 4,
+	CM_PANICED = 3,
+	NUM_ACTOR_MOOD_TYPES = 6,
 };
 
 // Size: 0x4
 enum class CrowdUtil_ECrowdDirection
 {
+	EAST = 1,
+	NORTH = 0,
+	SOUTH = 2,
+	WEST = 3,
 };
 
 // Size: 0x4
 enum class CrowdUtil_ECrowdFacing
 {
+	FRONT = 0,
+	BACK = 1,
 };
 
 // Size: 0x4
 enum class CrowdUtil_ECrowdSide
 {
+	LEFT = 0,
+	RIGHT = 1,
 };
 
 // Size: 0x4
 enum class CrowdUtil_EDefaultStateTypes
 {
+	STATE_IDLE = 0,
+	STATE_WALK = 1,
+	STATE_PENDINGWALK = 2,
+	STATE_PRONE = 8,
+	STATE_DEAD = 3,
+	STATE_SCARED = 4,
+	STATE_ALERT = 7,
+	STATE_PENDINGSCARED = 5,
+	STATE_POSSESSED = 6,
+	NUM_DEFAULT_STATES = 9,
 };
 
 // Size: 0x4
 enum class DifficultyLevelEnum
 {
+	DL_Easy = 0,
+	DL_Medium = 1,
+	DL_Hard = 2,
+	DIFFICULTYLEVEL_COUNT = 5,
+	DL_Expert = 3,
+	DL_Purist = 4,
 };
 
 // Size: 0x4
 enum class EAIActorRelationshipType
 {
+	AIART_Boss = 0,
 };
 
 // Size: 0x4
 enum class EAIEventType
 {
+	AIET_Goal_AvoidExplosion = 17,
+	AIET_None = 0,
+	AIET_Goal_Kill = 6,
+	AIET_Ignore = 1,
+	AIET_SoundFootsteps = 31,
+	AIET_END_BOOLEAN_EVENTS = 4,
+	AIET_Order_Target = 3,
+	AIET_Goal_HandleFusebox = 16,
+	AIET_SoundAlarm = 42,
+	AIET_ShootTarget = 2,
+	AIET_DisguiseSuspicious = 23,
+	AIET_Goal_Arrest = 7,
+	AIET_LookedAt = 5,
+	AIET_ReactTarget = 54,
+	AIET_Goal_HelpCivilian = 8,
+	AIET_SoundCCChoke = 37,
+	AIET_Goal_Investigate = 9,
+	AIET_Goal_InvestigateDisguise = 10,
+	AIET_Goal_InvestigateDeadBody = 11,
+	AIET_ReactedTo = 53,
+	AIET_END_NORMAL_EVENTS = 66,
+	AIET_SoundAccident = 50,
+	AIET_Goal_HandleTrespasser = 12,
+	AIET_Goal_InvestigateCautious = 13,
+	AIET_InSight = 51,
+	AIET_Trespassing_Strike_2 = 59,
+	AIET_Goal_InvestigateCurious = 14,
+	AIET_Goal_InvestigateStanding = 15,
+	AIET_Goal_Hunt = 18,
+	AIET_Goal_Evacuate = 19,
+	AIET_SoundHitmanGunSilenced = 34,
+	AIET_Killer = 20,
+	AIET_Hunting = 21,
+	AIET_HitByItem = 57,
+	AIET_FuseboxAck = 29,
+	AIET_FullAttention = 52,
+	AIET_Suspicious = 22,
+	AIET_DamagingMe = 24,
+	AIET_KnownInCloset = 25,
+	AIET_SoundExplosion = 49,
+	AIET_KnownInVent = 26,
+	AIET_NearSabotagedFusebox = 27,
+	AIET_FuseboxSabotaged = 28,
+	AIET_SoundSpeakScream = 46,
+	AIET_SoundThrownItemCollision = 32,
+	AIET_SoundGunSilenced = 33,
+	AIET_DisablingFusebox = 30,
+	AIET_SoundEmptyGun = 35,
+	AIET_SoundCCBreakNeck = 36,
+	AIET_Trespassing_Strike_1 = 58,
+	AIET_SoundCCFiberwire = 38,
+	AIET_SoundBulletImpact = 39,
+	AIET_SoundSpeakBark = 40,
+	AIET_SoundRadio = 41,
+	AIET_SoundSpeakPainBehind = 43,
+	AIET_SoundCloseCombat = 44,
+	AIET_SoundSpeakPain = 45,
+	AIET_StanddownHolster = 55,
+	AIET_SoundGunShot = 47,
+	AIET_ForcedIllegal = 56,
+	AIET_SoundHitmanGunShot = 48,
+	AIET_Investigate_Strike_1 = 60,
+	AIET_Investigate_Strike_2 = 61,
+	AIET_Weird_Strike_1 = 62,
+	AIET_Weird_Strike_2 = 63,
+	AIET_StandingTooClose = 64,
+	AIET_IgnoreDeadBodies = 65,
 };
 
 // Size: 0x4
 enum class EAISharedEventType
 {
+	AISET_AmbientOnly = 149,
+	AISET_None = 0,
+	AISET_Dead = 106,
+	AISET_CombatNoHold = 41,
+	AISET_SoundRadio = 145,
+	AISET_InCover = 36,
+	AISET_ShootBlind = 3,
+	AISET_CombatGuard = 5,
+	AISET_Order_Flee = 56,
+	AISET_StandOffCrowdReactionDone = 1,
+	AISET_Order_HideInCover = 61,
+	AISET_Shoot = 2,
+	AISET_Scared = 7,
+	AISET_ExplosionImminent = 129,
+	AISET_DeadByUnnoticed = 108,
+	AISET_ChangingOutfit = 18,
+	AISET_FakeAgitated = 150,
+	AISET_HasWeapon = 37,
+	AISET_InDeadBodyArea = 162,
+	AISET_CombatAct = 4,
+	AISET_Order_Investigate = 48,
+	AISET_Order_HoldCoverPosition = 63,
+	AISET_Hunted = 113,
+	AISET_CombatCrouch = 6,
+	AISET_TakingDeadlyThrowDamage = 119,
+	AISET_InCrowdAlert = 137,
+	AISET_CloseCombatRunIn = 8,
+	AISET_CloseCombatArrest = 9,
+	AISET_Order_Escalate = 53,
+	AISET_CoverToCover = 19,
+	AISET_NoLOF = 10,
+	AISET_Order_AgitatedBystander = 74,
+	AISET_Order_GetHelp = 51,
+	AISET_LAST_BOOLEAN_EVENT = 11,
+	AISET_IllegalBehavior = 12,
+	AISET_ThrowingSomething = 28,
+	AISET_BeingWatched = 13,
+	AISET_ExitingVent = 35,
+	AISET_Sneaking = 14,
+	AISET_AgilityLedgeWalk = 15,
+	AISET_Trespassing = 20,
+	AISET_ShootingBallet = 97,
+	AISET_AgilityLedgeHang = 16,
+	AISET_ThrowingExplosives = 29,
+	AISET_AgilityWindow = 17,
+	AISET_BeingStrangled = 141,
+	AISET_WeaponReloading = 40,
+	AISET_OpeningCPDoor = 88,
+	AISET_Order_HoldPosition = 62,
+	AISET_InCombat = 112,
+	AISET_ForceHunted = 114,
+	AISET_DraggingBody = 21,
+	AISET_InWarZone = 135,
+	AISET_KillingWithFiberwire = 22,
+	AISET_KillingWithDeadlyThrow = 27,
+	AISET_Preferred_Investigator = 45,
+	AISET_KillingWithPull = 23,
+	AISET_CombatTargetLost = 43,
+	AISET_HitByItem = 153,
+	AISET_KillingWithPush = 24,
+	AISET_KillingWithKick = 25,
+	AISET_BloodPool = 143,
+	AISET_KillingWithKnife = 26,
+	AISET_InCloset = 30,
+	AISET_InVent = 31,
+	AISET_TakingSecurityTape = 93,
+	AISET_EnteringCloset = 32,
+	AISET_ExitingCloset = 33,
+	AISET_CombatFireAtWill = 42,
+	AISET_EnteringVent = 34,
+	AISET_Shooting = 95,
+	AISET_WeaponEquipped = 38,
+	AISET_WeaponFired = 39,
+	AISET_InOrderedPosition = 44,
+	AISET_ORDERS_BEGIN = 46,
+	AISET_Order_StandDown = 52,
+	AISET_Order_Evacuate = 73,
+	AISET_Order_Act = 47,
+	AISET_Order_SearchPosition = 49,
+	AISET_Order_Approach = 50,
+	AISET_Order_Arrest = 54,
+	AISET_SeenDeadlyThrowVictim = 164,
+	AISET_InAccident = 110,
+	AISET_Order_Avoid = 55,
+	AISET_InCrowdPanic = 138,
+	AISET_TakingHeadshotDamage = 117,
+	AISET_Order_Patrol = 57,
+	AISET_Order_Chase = 58,
+	AISET_Dying = 111,
+	AISET_HMInEntryArea = 86,
+	AISET_Order_AimFromPosition = 59,
+	AISET_Order_AimFromPositionCrouched = 60,
+	AISET_InDisguise = 105,
+	AISET_CollateralTarget = 158,
+	AISET_Order_FightFromCover = 64,
+	AISET_Order_FightFromPosition = 65,
+	AISET_Order_ShootFromPosition = 66,
+	AISET_Order_GuardPosition = 67,
+	AISET_Order_GuardCoverPosition = 68,
+	AISET_Order_HumanShieldLeader = 69,
+	AISET_Order_HumanShieldSupport = 70,
+	AISET_Order_CheckLastPosition = 71,
+	AISET_BeingLookedAt = 80,
+	AISET_Order_StandoffLastWarning = 72,
+	AISET_HMTrespassing = 85,
+	AISET_Order_Face = 75,
+	AISET_ORDERS_END = 76,
+	AISET_ForceFullAttention = 77,
+	AISET_Investigated = 161,
+	AISET_InCameraView = 78,
+	AISET_InCameraView2D = 79,
+	AISET_BeingPushedOverRail = 124,
+	AISET_BeingAimedAt = 81,
+	AISET_BeingShotAt = 82,
+	AISET_BeingFlanked = 83,
+	AISET_BeingBumped = 84,
+	AISET_HMTakingDamage = 87,
+	AISET_HumanShield = 89,
+	AISET_DisablingFusebox = 90,
+	AISET_IllegalAction = 91,
+	AISET_TakingKeyCard = 92,
+	AISET_DumpingBody = 94,
+	AISET_HuntAct = 160,
+	AISET_BeingDragged = 127,
+	AISET_BlindFire = 96,
+	AISET_Running = 98,
+	AISET_Walking = 99,
+	AISET_UsingKeyCard = 100,
+	AISET_IllegalWeapon = 101,
+	AISET_Surrendering = 102,
+	AISET_RequestSurrender = 103,
+	AISET_Standing = 104,
+	AISET_DisguiseCanBreak = 131,
+	AISET_DeadByAccident = 107,
+	AISET_ForceKillHM = 120,
+	AISET_DeadBySniper = 109,
+	AISET_CloseCombat = 115,
+	AISET_TakingProjectileDamage = 116,
+	AISET_TakingExplosionDamage = 118,
+	AISET_Armed = 121,
+	AISET_BeingHumanShield = 122,
+	AISET_BeingPulledOutOfWindow = 123,
+	AISET_BeingFiberwired = 125,
+	AISET_BeingPulledFromLedge = 126,
+	AISET_OnScreen = 128,
+	AISET_DisguiseSafeZone = 130,
+	AISET_DisguiseCanBlendIn = 132,
+	AISET_DisguiseBlendIn = 133,
+	AISET_DisguiseBroken = 134,
+	AISET_InCrowd = 136,
+	AISET_HiddenByCrowd = 139,
+	AISET_CrowdDisguise = 140,
+	AISET_Invisible = 156,
+	AISET_CloseCombatTakedown = 142,
+	AISET_SpawnedActor = 144,
+	AISET_InLimitVisionAreaZone = 146,
+	AISET_InsideLimitVisionArea = 147,
+	AISET_BlockedByLimitVisionArea = 148,
+	AISET_Agitated = 151,
+	AISET_HasBeenInCombat = 152,
+	AISET_IgnoreSillyHitman = 154,
+	AISET_CloseCombatAllowed = 155,
+	AISET_HitTarget = 157,
+	AISET_CheckedLastPosition = 159,
+	AISET_SeenThrowing = 163,
+	AISET_CurrentTarget = 165,
 };
 
 // Size: 0x4
 enum class EAchievement
 {
+	EA_NONE = -1,
+	EA_3_GET_X_PRECISION_HEADSHOTS_WITH_A_SNIPER_RIFLE = 3,
+	EA_1_COMPLETE_100_CHALLENGES = 1,
+	EA_2_COMPLETE_50_CHALLENGES = 2,
+	EA_7_LOCATE_ROOM_899 = 7,
+	EA_4_COMPLETE_10_CHALLENGES = 4,
+	EA_5_KILL_DIANA = 5,
+	EA_47_SUBDUE_AN_NPC = 47,
+	EA_46_HIDE_A_BODY = 46,
+	EA_6_ASSASSINATE_THE_KING_OF_CHINATOWN = 6,
+	EA_43_ACHIEVE_YOUR_FIRST_ACCIDENT_KILL = 43,
+	EA_30_QUEUE_A_CONTRACT_FROM_BARCODE_SOCIETY = 30,
+	EA_8_ENTER_THE_TRAIN_IN_THE_TRAINSTATION = 8,
+	EA_40_ESCAPE_ATTENTION_FROM_ENEMIES = 40,
+	EA_9_ASSASSINATE_WADES_MEN = 9,
+	EA_10_ASSASSINATE_WADE = 10,
+	EA_11_APPROACH_THE_BARTENDER = 11,
+	EA_33_BUY_AN_UPGRADE = 33,
+	EA_12_AQUIRE_THE_SILVERBALLERS = 12,
+	EA_13_PACIFY_LENNY = 13,
+	EA_48_RUN_BENCHMARK = 48,
+	EA_14_LEAVE_LENNY_IN_THE_DESERT = 14,
+	EA_42_REMAIN_UNDETECTED_IN_A_WHOLE_CHECKPOINT = 42,
+	EA_26_COLLECT_ALL_SPECIAL_RATING_PORTRAITS = 26,
+	EA_15_EXIT_THE_MINES = 15,
+	EA_16_ASSASSINATE_FACILITY_LEADERS = 16,
+	EA_17_ASSASSINATE_SANCHEZ = 17,
+	EA_39_ACCEPT_A_CHALLENGE_FROM_A_FRIEND = 39,
+	EA_18_ELIMINATE_THE_SAINTS = 18,
+	EA_19_GAIN_ACCESS_TO_THE_JAIL = 19,
+	EA_20_APPROACH_THE_CHURCH = 20,
+	EA_32_EARN_1_MILLION_CONTRACTS_DOLLARS = 32,
+	EA_21_GET_SUIT_AND_GLOVES = 21,
+	EA_24_ASSASSINATE_TRAVIS = 24,
+	EA_22_ASSASSINATE_LAYLA = 22,
+	EA_23_ASSASSINATE_DEXTER = 23,
+	EA_25_COMPLETE_THE_GAME___ANY_DIFFICULTY = 25,
+	EA_27_COLLECT_ALL_DISGUISES_AND_GUNS = 27,
+	EA_28_ACHIEVE_A_LETHAL_THROW_KILL = 28,
+	EA_29_COLLECT_ALL_SECURITY_TAPES = 29,
+	EA_31_CONTAIN_A_SITUATION_GONE_BAD_BY_NEUTRALIZING_THE_THREATS = 31,
+	EA_34_COMPLETE_THE_CONTRACTS_CREATE_TUTORIAL = 34,
+	EA_35_COMPLETE_THE_CONTRACTS_PLAY_TUTORIAL = 35,
+	EA_36_UNLOCK_A_TECHNIQUE = 36,
+	EA_37_HAVE_A_FRIEND_PLAY_A_CONTRACT_YOU_CREATED = 37,
+	EA_41_ACHIEVE_THE_RATING__SILENT_ASSASSIN = 41,
+	EA_38_SEND_A_CONTRACT_CHALLENGE_TO_A_FRIEND = 38,
+	EA_44_BLEND_IN_SUCCESFULLY = 44,
+	EA_45_EXECUTE_A_POINT_SHOOTING_WITH_3_KILLS = 45,
 };
 
 // Size: 0x4
 enum class EActBodyType
 {
+	ABT_UpperBodyOnly = 0,
+	ABT_FullBodyWithLeadIn = 1,
+	ABT_FullBodyOnly = 2,
 };
 
 // Size: 0x4
 enum class EActionType
 {
+	AT_INVALID = 0,
+	AT_RESET = 16,
+	AT_OPENDOOR = 1,
+	AT_PICKUP = 4,
+	AT_KILLHUMANSHIELD = 268435456,
+	AT_DISABLEFUSEBOX = 2097152,
+	AT_CLOSEDOOR = 2,
+	AT_STARTDIALOG = 8,
+	AT_CLOTHBUNDLE = 64,
+	AT_DRAGBODY = 128,
+	AT_OUTFIT = 32,
+	AT_HUMANSHIELD = 256,
+	AT_RELEASEHUMANSHIELD = 512,
+	AT_SWITCHBOX = 1024,
+	AT_SWAPITEM = 2048,
+	AT_SIMPLE = 65536,
+	AT_DUMPBODY = 4096,
+	AT_OPENLID = 8192,
+	AT_CLOSELID = 16384,
+	AT_CHECKPOINTDOOR = 32768,
+	AT_ENTERCLOSET = 131072,
+	AT_EXITCLOSET = 262144,
+	AT_ENTERSAFEZONE = 524288,
+	AT_CONTEXTACTION = 134217728,
+	AT_EXITSAFEZONE = 1048576,
+	AT_CONTAINERFLUSHBODY = 4194304,
+	AT_VENTILATORSHAFT = 8388608,
+	AT_HEALTHSTATION = 16777216,
+	AT_KEYCARDREADER = 33554432,
+	AT_USE = 67108864,
 };
 
 // Size: 0x4
 enum class EActorAnimationOrder
 {
+	AAO_None = 0,
+	AAO_Stand = 1,
+	AAO_Act = 4,
+	AAO_MoveToAct = 5,
+	AAO_ShootFromCover = 7,
+	AAO_Move = 2,
+	AAO_React = 3,
+	AAO_MoveToCover = 6,
+	AAO_PeekFromCover = 8,
+	AAO_Death = 9,
+	AAO_Impact = 10,
+	AAO_Controlled = 11,
 };
 
 // Size: 0x4
 enum class EActorCCPreset
 {
+	ACCP_CivilianFemale = 0,
+	ACCP_CivilianeMale = 1,
+	ACCP_BossSanchez = 6,
+	ACCP_GuardMale = 2,
+	ACCP_GuardMaleElite = 3,
+	ACCP_BossLenny = 7,
+	ACCP_GuardMaleSuperElite = 4,
+	ACCP_BossDexter = 5,
+	ACCP_Ignore = 8,
+	ACCP_None = 9,
 };
 
 // Size: 0x4
 enum class EActorDeathType
 {
+	eADT_UNDEFINED = 0,
+	eADT_BLOODY_MURDER = 6,
+	eADT_PACIFIED = 3,
+	eADT_INVISIBLE = 1,
+	eADT_ACCIDENT = 2,
+	eADT_PACIFIEDACCIDENT = 4,
+	eADT_MURDER = 5,
 };
 
 // Size: 0x4
 enum class EActorEmotionState
 {
+	AES_None = -1,
+	AES_Ambient = 0,
+	AES_Alerted = 1,
+	AES_Scared = 2,
+	AES_Hunt = 3,
+	AES_Combat = 4,
 };
 
 // Size: 0x4
 enum class EActorGroup
 {
+	eAG_Group_A = 0,
+	eAG_Group_B = 1,
+	eAG_Group_C = 2,
+	eAG_Group_D = 3,
+	eAG_Count = 4,
 };
 
 // Size: 0x4
 enum class EActorInteractionFlag
 {
+	eAIF_ContainerDump = 1,
+	eAIF_BodyDrag = 8,
+	eAIF_CloseCombat = 2,
+	eAIF_FiberWire = 4,
+	eAIF_FallScreamSoundEvent = 32,
+	eAIF_ReactToSilly = 16,
 };
 
 // Size: 0x4
 enum class EActorPerceptionSensitivity
 {
+	APS_SPIDER_SENSE = 6,
+	APS_AMBIENT_SLEEPING = 1,
+	APS_AMBIENT_DEAFBLIND = 0,
+	APS_ALERT = 4,
+	APS_AMBIENT_PREOCCUPIED = 2,
+	APS_COMBAT = 5,
+	APS_AMBIENT = 3,
 };
 
 // Size: 0x4
 enum class EActorRank
 {
+	AR_Goon = 3,
+	AR_Default = 0,
+	AR_Elite = 1,
+	AR_Cop = 2,
 };
 
 // Size: 0x4
 enum class EActorType
 {
+	eAT_Guard = 1,
+	eAT_Civilian = 0,
+	eAT_Hitman = 2,
+	eAT_Last = 3,
 };
 
 // Size: 0x4
 enum class EAimAssistMode
 {
+	eAimAssistDefault = 0,
+	eAimAssistShootingBallet = 1,
+	eAimAssistSniper = 2,
 };
 
 // Size: 0x4
 enum class EAlertedDebugMode
 {
+	ADM_Patrol = 1,
+	ADM_RandomMovement = 0,
 };
 
 // Size: 0x4
 enum class EAlignment
 {
+	TopLeft = 0,
+	TopCenter = 1,
+	TopRight = 2,
+	MiddleLeft = 3,
+	Center = 4,
+	MiddleRight = 5,
+	BottomLeft = 6,
+	BottomCenter = 7,
+	BottomRight = 8,
 };
 
 // Size: 0x4
 enum class EAnimBlendMode
 {
+	EAnimBlendMode_InterpAttInterpPos = 0,
+	EAnimBlendMode_InterpAttAddPos = 1,
+	EAnimBlendMode_AddAttAddPos = 3,
+	EAnimBlendMode_AddAttLeavePos = 2,
 };
 
 // Size: 0x4
 enum class EBaseMovementType
 {
+	eMovementNone = -1,
+	eMovementDead = 0,
+	eMovementLedgeWalk = 2,
+	eMovementLedgeHang = 1,
+	eMovementPullVictimFromWindow = 7,
+	eMovementContextAction = 18,
+	eMovementClimbWindow = 3,
+	eMovementLocomotion = 31,
+	eMovementOperateCPDoor = 12,
+	eMovementShootingBallet = 4,
+	eMovementCover = 5,
+	eMovementVentilatorShaft = 20,
+	eMovementLadder = 6,
+	eMovementFiberWireKill = 8,
+	eMovementThrowBodyOverRail = 9,
+	eMovementDumpBodyOverLedge = 10,
+	eMovementDumpBody = 11,
+	eMovementCarryCivilian = 26,
+	eMovementDisguiseSafeZone = 13,
+	eMovementHideInCloset = 14,
+	eMovementHumanShield = 15,
+	eMovementCloseCombat = 16,
+	eMovementDisableFuseBox = 17,
+	eMovementInteractiveCutsequence = 19,
+	eMovementPushVictimThroughWindowAndRail = 21,
+	eMovementTakeClothes = 25,
+	eMovementKickVictimOverLedge = 22,
+	eMovementKeyCardReader = 23,
+	eMovementDragBody = 24,
+	eMovementToss = 27,
+	eMovementSurrender = 28,
+	eMovementUseHealthStation = 29,
+	eMovementPickupItem = 30,
+	eMovementLast = 32,
 };
 
 // Size: 0x4
 enum class EBehaviorTreeVariableType
 {
+	BTVT_Invalid = -1,
+	BTVT_Dynamic = 2,
+	BTVT_SceneReference = 0,
+	BTVT_Contextual = 1,
+	BTVT_NumTypes = 3,
 };
 
 // Size: 0x4
 enum class EBodyParts
 {
+	EBODYPARTS_NONE = 0,
+	EBODYPARTS_LEFT_FOREARM = 5,
+	EBODYPARTS_HEAD = 1,
+	EBODYPARTS_RIGHT_UPPER_ARM = 4,
+	EBODYPARTS_SPINE = 2,
+	EBODYPARTS_PELVIS = 7,
+	EBODYPARTS_LEFT_UPPER_ARM = 3,
+	EBODYPARTS_RIGHT_FOREARM = 6,
+	EBODYPARTS_LEFT_THIGH = 8,
+	EBODYPARTS_RIGHT_THIGH = 9,
+	EBODYPARTS_LEFT_CALF = 10,
+	EBODYPARTS_RIGHT_CALF = 11,
 };
 
 // Size: 0x4
 enum class EBooleanOption
 {
+	BO_Off = 0,
+	BO_On = 1,
+	BO_Default = 2,
 };
 
 // Size: 0x4
 enum class EBulletType
 {
+	BULLET_TYPE_NONE = 0,
+	BULLET_TYPE_MG = 4,
+	BULLET_TYPE_SHOTGUN = 6,
+	BULLET_TYPE_GUN = 1,
+	BULLET_TYPE_SMG = 3,
+	BULLET_TYPE_REVOLVER = 2,
+	BULLET_TYPE_SNIPER = 7,
+	BULLET_TYPE_RIFLE = 5,
+	BULLET_TYPE_RPG = 8,
 };
 
 // Size: 0x4
 enum class EButtonDisplay
 {
+	BUTTON_DISPLAY_AT_EXITCLOSET = 17,
+	BUTTON_DISPLAY_AT_OPENDOOR = 0,
+	BUTTON_DISPLAY_SHOOTING_BALLET = 27,
+	BUTTON_DISPLAY_AT_PICKUP = 1,
+	BUTTON_DISPLAY_AT_STARTDIALOG = 2,
+	BUTTON_DISPLAY_AT_CLOTHBUNDLE = 5,
+	BUTTON_DISPLAY_SHOOTING_BALLET_CINEMATIC = 33,
+	BUTTON_DISPLAY_AT_DRAGBODY = 6,
+	BUTTON_DISPLAY_AT_RESET = 3,
+	BUTTON_DISPLAY_AT_OUTFIT = 4,
+	BUTTON_DISPLAY_PULLVICTIM = 63,
+	BUTTON_DISPLAY_LEDGE = 55,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_HIT = 49,
+	BUTTON_DISPLAY_AT_HUMANSHIELD = 7,
+	BUTTON_DISPLAY_SHOOTING_BALLET_START = 28,
+	BUTTON_DISPLAY_AT_RELEASEHUMANSHIELD = 8,
+	BUTTON_DISPLAY_LEDGEJUMP = 57,
+	BUTTON_DISPLAY_AT_KILLHUMANSHIELD = 9,
+	BUTTON_DISPLAY_AT_SWITCHBOX = 10,
+	BUTTON_DISPLAY_AT_SWAPITEM = 11,
+	BUTTON_DISPLAY_COVEREXITFORWARD = 68,
+	BUTTON_DISPLAY_CLOSECOMBAT_SILENT = 45,
+	BUTTON_DISPLAY_SHOOTING_BALLET_ZOOM = 29,
+	BUTTON_DISPLAY_AT_KEYCARDREADER = 25,
+	BUTTON_DISPLAY_PUSHVICTIM = 64,
+	BUTTON_DISPLAY_TAKEDISGUISE = 70,
+	BUTTON_DISPLAY_AT_DUMPBODY = 12,
+	BUTTON_DISPLAY_AT_SIMPLE = 15,
+	BUTTON_DISPLAY_ABORT_MINIGAME = 81,
+	BUTTON_DISPLAY_AT_OPENLID = 13,
+	BUTTON_DISPLAY_AT_CONTAINERFLUSHBODY = 21,
+	BUTTON_DISPLAY_DROP_ITEM = 80,
+	BUTTON_DISPLAY_AT_CHECKPOINTDOOR = 14,
+	BUTTON_DISPLAY_QUICKSWAP = 74,
+	BUTTON_DISPLAY_AT_ENTERCLOSET = 16,
+	BUTTON_DISPLAY_CONTRACT_MARK = 82,
+	BUTTON_DISPLAY_WINDOW = 61,
+	BUTTON_DISPLAY_SURRENDER = 65,
+	BUTTON_DISPLAY_AT_ENTERSAFEZONE = 18,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_HIGH = 76,
+	BUTTON_DISPLAY_AT_EXITSAFEZONE = 19,
+	BUTTON_DISPLAY_AT_CONTEXTACTION = 22,
+	BUTTON_DISPLAY_SLIDE_LADDER = 54,
+	BUTTON_DISPLAY_CLOSECOMBAT_SNAPNECK = 46,
+	BUTTON_DISPLAY_CLOSECOMBAT_TAKEDOWN = 43,
+	BUTTON_DISPLAY_AT_DISABLEFUSEBOX = 20,
+	BUTTON_DISPLAY_LEDGE_CLIMB_DOWN = 59,
+	BUTTON_DISPLAY_AT_VENTILATORSHAFT = 23,
+	BUTTON_DISPLAY_AT_HEALTHSTATION = 24,
+	BUTTON_DISPLAY_COVERCORNER = 67,
+	BUTTON_DISPLAY_AT_USE = 26,
+	BUTTON_DISPLAY_COVERTOCOVER = 66,
+	BUTTON_DISPLAY_SHOOTING_BALLET_CANCEL = 31,
+	BUTTON_DISPLAY_SHOOTING_BALLET_TAG = 30,
+	BUTTON_DISPLAY_PISTOL_FINISHER = 50,
+	BUTTON_DISPLAY_SHOOTING_BALLET_SLOWDOWN = 32,
+	BUTTON_DISPLAY_LEDGE_DROP_DOWN = 60,
+	BUTTON_DISPLAY_SHOOTING_BALLET_NEXT_CAMERA = 35,
+	BUTTON_DISPLAY_SHOOTING_BALLET_HOLD_CAMERA = 34,
+	BUTTON_DISPLAY_WINDOWSNEAK = 62,
+	BUTTON_DISPLAY_RELOAD = 36,
+	BUTTON_DISPLAY_HOLSTER = 37,
+	BUTTON_DISPLAY_LEDGE_PULL_UP = 58,
+	BUTTON_DISPLAY_OPERATE_LEVER = 75,
+	BUTTON_DISPLAY_CLOSECOMBAT_COUNTERATTACK = 44,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHOKE_TARGET = 48,
+	BUTTON_DISPLAY_VENTILATOR_EXIT = 71,
+	BUTTON_DISPLAY_CHANGE_WEAPON_MODE = 38,
+	BUTTON_DISPLAY_LEDGE_STEPON = 56,
+	BUTTON_DISPLAY_REMOTE_DETONATE = 39,
+	BUTTON_DISPLAY_DROPBODY = 72,
+	BUTTON_DISPLAY_INVENTORY_ACCEPT = 40,
+	BUTTON_DISPLAY_INVENTORY_CANCEL = 41,
+	BUTTON_DISPLAY_HINTMESSAGE_CONTINUE = 42,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHOKE = 47,
+	BUTTON_DISPLAY_PEEK_VENT = 51,
+	BUTTON_DISPLAY_PEEK_CLOSET = 52,
+	BUTTON_DISPLAY_CLIMB_LADDER = 53,
+	BUTTON_DISPLAY_COVERSCALEEXIT = 69,
+	BUTTON_DISPLAY_ABORT_CHECKPOINTDOOR = 73,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_LOW = 77,
+	BUTTON_DISPLAY_CLOSECOMBAT_CHAIN_COUNTER = 78,
+	BUTTON_DISPLAY_FIBERWIRE_KILL = 79,
+	BUTTON_DISPLAY_CONTRACT_UNMARK = 83,
+	BUTTON_DISPLAY_MAX = 84,
 };
 
 // Size: 0x4
 enum class EButtonPressType
 {
+	BUTTON_PRESS = 0,
+	BUTTON_TAP = 3,
+	BUTTON_HOLD = 1,
+	BUTTON_ROTATE_CCW = 4,
+	BUTTON_REPEAT = 2,
+	BUTTON_PRESS_TYPE_MAX = 5,
 };
 
 // Size: 0x4
 enum class EButtonState
 {
+	BUTTON_STATE_DISABLED = -1,
+	BUTTON_STATE_BLINKING = 3,
+	BUTTON_STATE_NONE = 0,
+	BUTTON_STATE_ENABLED = 1,
+	BUTTON_STATE_PRESSED = 2,
 };
 
 // Size: 0x4
 enum class EBystanderPointType
 {
+	BPT_Scared = 0,
+	BPT_Alerted = 1,
 };
 
 // Size: 0x4
 enum class ECCDUsage
 {
+	ECCDUSAGE_AGAINST_STATIC_DYNAMIC = 2,
+	ECCDUSAGE_DISABLED = 0,
+	ECCDUSAGE_AGAINST_STATIC = 1,
 };
 
 // Size: 0x4
 enum class ECCDecalEffect
 {
+	eCCDecalEffect_None = 0,
+	eCCDecalEffect_Slash1H = 4,
+	eCCDecalEffect_Stab = 1,
+	eCCDecalEffect_Blunt1H = 2,
+	eCCDecalEffect_Shatter = 5,
+	eCCDecalEffect_Blunt2H = 3,
+	eCCDecalEffect_AxeCleave = 6,
+	eCCDecalEffect_AxePull = 7,
+	eCCDecalEffect_AxeSlitThroat = 8,
+	eCCDecalEffect_SlitThroat = 9,
+	eCCDecalEffect_FacePunch = 10,
+	eCCDecalEffect_Bruise = 11,
 };
 
 // Size: 0x4
 enum class ECCEmitterEffect
 {
+	eCCEmitterEffect_Blunt1H = 2,
+	eCCEmitterEffect_None = 0,
+	eCCEmitterEffect_Stab = 1,
+	eCCEmitterEffect_Blunt2H = 3,
+	eCCEmitterEffect_Slash1H = 4,
+	eCCEmitterEffect_AxeCleave = 6,
+	eCCEmitterEffect_Shatter = 5,
+	eCCEmitterEffect_AxePull = 7,
+	eCCEmitterEffect_AxeSlitThroat = 8,
+	eCCEmitterEffect_SlitThroat = 9,
+	eCCEmitterEffect_FacePunch = 10,
+	eCCEmitterEffect_Blood = 11,
 };
 
 // Size: 0x4
 enum class ECCWeaponAnimSet
 {
+	AS_SLIT_THROAT_1H = 0,
+	AS_SWING_1H = 1,
+	AS_STRANGLE = 6,
+	AS_BASH_1H = 2,
+	AS_STAB_1H = 3,
+	AS_SMASH_1H = 5,
+	AS_SYRINGE_1H = 4,
+	AS_SWING_2H = 7,
+	AS_BASH_2H = 8,
+	AS_STAB_2H = 9,
+	AS_STRANGLE_2H = 10,
+	AS_AXE = 11,
 };
 
 // Size: 0x4
 enum class ECOMUsage
 {
+	ECOMUSAGE_AUTOCOMPUTE = 0,
+	ECOMUSAGE_PIVOT = 1,
 };
 
 // Size: 0x4
 enum class ECPEvent
 {
+	CPEvent_Activated = 0,
+	CPEvent_Deactivated = 1,
 };
 
 // Size: 0x4
 enum class ECameraControls
 {
+	eCameraControlsNormal = 0,
+	eCameraControlsOTS = 1,
 };
 
 // Size: 0x4
 enum class ECameraShakerChannel
 {
+	eCameraShakerChannel_Default = 0,
+	eCameraShakerChannle_Locomotion = 1,
+	eCameraShakerChannel_CloseCombat = 4,
+	eCameraShakerChannel_Ambient = 2,
+	eCameraShakerChannel_Weapon = 3,
+	eCameraShakerChannel_Num = 5,
 };
 
 // Size: 0x4
 enum class ECameraState
 {
+	eCamSneakStand = 0,
+	eCamCrowdStand = 7,
+	eCamSneakWalk = 1,
+	eCamCoverLowOTS = 32,
+	eCamSneakRoadyRun = 2,
+	eCamNormalStand = 3,
+	eCamLedgeHang = 26,
+	eCamScopeLow = 48,
+	eCamUnAimedShooting = 43,
+	eCamNormalWalk = 4,
+	eCamScope = 46,
+	eCamNormalRun = 5,
+	eCamLedgeKick = 24,
+	eCamLocomotion = 6,
+	eCamCoverMedium = 30,
+	eCamDrag = 16,
+	eCamCrowdWalk = 8,
+	eCamCrowdRun = 9,
+	eCamCoverLow = 29,
+	eCamCrowdSneakStand = 10,
+	eCamOTS = 40,
+	eCamCrowdSneakWalk = 11,
+	eCamSBTagOTS = 19,
+	eCamCrowdSneakRoadyRun = 12,
+	eCamScopeHigh = 47,
+	eCamCrowdLocomotion = 13,
+	eCamCoverLowTakedownOver = 36,
+	eCamDead = 14,
+	eCamLadder = 15,
+	eCamUnAimedShootingLow = 45,
+	eCamHumanShield = 17,
+	eCamAll = 50,
+	eCamCoverHighOTS = 33,
+	eCamSBTag = 18,
+	eCamCloseCombat = 20,
+	eCamFiberWire = 21,
+	eCamWindowPull = 22,
+	eCamRailPush = 23,
+	eCamLedgePull = 25,
+	eCamLedgeWalk = 27,
+	eCamLedgeWalkOTS = 28,
+	eCamCoverHigh = 31,
+	eCamCoverHighTakedownCorner = 38,
+	eCamCoverLowScope = 34,
+	eCamCoverHighScope = 35,
+	eCamCoverLowTakedownCorner = 37,
+	eCamTakeDisguise = 39,
+	eCamOTSHigh = 41,
+	eCamUnAimedShootingHigh = 44,
+	eCamOTSLow = 42,
+	eCamNumProfiles = 49,
 };
 
 // Size: 0x4
 enum class EChallengeResetMode
 {
+	RESET_NEVER = 0,
+	RESET_LEVEL = 1,
+	RESET_CHECKPOINT = 2,
 };
 
 // Size: 0x4
 enum class EChallengeReward
 {
+	CHALLENGE_REWARD_0 = 0,
+	CHALLENGE_REWARD_1 = 1,
+	CHALLENGE_REWARD_2 = 2,
+	CHALLENGE_REWARD_3 = 3,
 };
 
 // Size: 0x4
 enum class EChallengeSubType
 {
+	CHALLENGESUBTYPE_INVALID = 0,
+	CHALLENGESUBTYPE_5 = 6,
+	CHALLENGESUBTYPE_MASTER = 1,
+	CHALLENGESUBTYPE_4 = 5,
+	CHALLENGESUBTYPE_1 = 2,
+	CHALLENGESUBTYPE_2 = 3,
+	CHALLENGESUBTYPE_3 = 4,
+	CHALLENGESUBTYPE_6 = 7,
+	CHALLENGESUBTYPE_7 = 8,
+	CHALLENGESUBTYPE_8 = 9,
+	CHALLENGESUBTYPE_9 = 10,
+	CHALLENGESUBTYPE_10 = 11,
+	CHALLENGESUBTYPE_11 = 12,
+	CHALLENGESUBTYPE_COUNT = 13,
 };
 
 // Size: 0x4
 enum class ECheckpointPlayableMode
 {
+	Playable_Always = 0,
+	Playable_When_Unlocked = 1,
+	Playable_Never = 3,
+	Playable_When_Completed = 2,
 };
 
 // Size: 0x4
 enum class ECollidableLayer
 {
+	eCollLayer_COLLIDE_WITH_ALL = 0,
+	eCollLayer_DYNAMIC_TRASH_COLLIDABLES = 6,
+	eCollayer_UNUSED_LAST = 32,
+	eCollLayer_STATIC_COLLIDABLES_ONLY = 1,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY = 2,
+	eCollLayer_ACTOR_RAGDOLL = 18,
+	eCollLayer_STAIRS = 3,
+	eCollLayer_SHOT_ONLY_COLLISION = 4,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER = 27,
+	eCollLayer_KINEMATIC_COLLIDABLES_ONLY = 7,
+	eCollLayer_COLLISION_VOLUME_HITMAN_ON = 25,
+	eCollLayer_DYNAMIC_CLOTH_ONLY = 5,
+	eCollLayer_CHARACTER_CLOTHING_ONLY = 8,
+	eCollLayer_WEAPONS = 24,
+	eCollLayer_HERO_DYN_BODY = 22,
+	eCollLayer_STATIC_COLLIDABLES_ONLY_TRANSPARENT = 9,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_TRANSPARENT = 10,
+	eCollLayer_DYNAMIC_COLLIDABLES_ONLY_NO_CHARACTER_TRANSPARENT = 28,
+	eCollLayer_KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT = 11,
+	eCollLayer_STAIRS_STEPS = 12,
+	eCollLayer_STAIRS_SLOPE = 13,
+	eCollLayer_AUXILIARY = 14,
+	eCollLayer_LEDGE_ANCHOR = 20,
+	eCollLayer_HERO_PROXY = 15,
+	eCollLayer_ACTOR_PROXY = 16,
+	eCollLayer_CLIP = 17,
+	eCollLayer_CROWD_RAGDOLL = 19,
+	eCollLayer_ACTOR_DYN_BODY = 21,
+	eCollLayer_ITEMS = 23,
+	eCollLayer_COLLISION_VOLUME_HITMAN_OFF = 26,
+	eCollLayer_KINEMATIC_POINT_SHOT_ONLY_TRANSPARENT = 29,
 };
 
 // Size: 0x4
 enum class ECollidableShape
 {
+	ECOLLIDABLESHAPE_SPHERE = 0,
+	ECOLLIDABLESHAPE_CAPSULE = 1,
+	ECOLLIDABLESHAPE_BOX = 2,
 };
 
 // Size: 0x4
 enum class ECollidablesType
 {
+	ECST_STATIC_AND_DYNAMIC = 0,
+	ECST_STATIC_ONLY = 1,
+	ECST_DYNAMIC_ONLY = 2,
 };
 
 // Size: 0x4
 enum class ECollisionPriority
 {
+	ECOLLISIONPRIORITY_LOW = 0,
+	ECOLLISIONPRIORITY_NORMAL = 1,
+	ECOLLISIONPRIORITY_HIGH = 2,
+	ECOLLISIONPRIORITY_CRITICAL = 3,
 };
 
 // Size: 0x4
 enum class ECollisionResponse
 {
+	REFLECT_VELOCITY = 0,
+	CUSTOM = 3,
+	STAY_AT_COLLISION_POINT = 2,
+	SLIDE_ON = 1,
 };
 
 // Size: 0x4
 enum class ECommunicationBarMessage
 {
+	ECBM_Unknown = 0,
+	ECBM_Suspicious = 6,
+	ECBM_Clear = 1,
+	ECBM_Searching = 2,
+	ECBM_Alerted = 3,
+	ECBM_Hunting = 4,
+	ECBM_Hostile = 5,
 };
 
 // Size: 0x4
 enum class ECommunicationBarState
 {
+	COMMUNICATION_BAR_NONE = 0,
+	COMMUNICATION_BAR_CLEAR = 1,
+	COMMUNICATION_BAR_SEARCHING = 2,
+	COMMUNICATION_BAR_SUSPICIOUS = 3,
+	COMMUNICATION_BAR_BLOOD_FOUND = 6,
+	COMMUNICATION_BAR_HUNTING = 4,
+	COMMUNICATION_BAR_BODY_FOUND = 7,
+	COMMUNICATION_BAR_HOSTILE = 5,
+	COMMUNICATION_BAR_GUARDS_ALERTED = 8,
+	COMMUNICATION_BAR_BACKUP_ARRIVED = 9,
 };
 
 // Size: 0x4
 enum class ECompiledBehaviorType
 {
+	BT_ConditionScope = 0,
+	BT_Random = 1,
+	BT_AbandonOrder = 5,
+	BT_BEHAVIORS_END = 62,
+	BT_BEHAVIORS_BEGIN = 4,
+	BT_DeadBodyInvestigate = 30,
+	BT_Cagefighter = 36,
+	BT_CompleteOrder = 6,
+	BT_Smart = 61,
+	BT_AmbientWalk = 15,
+	BT_Match = 2,
+	BT_FuseBoxSabotagedReaction = 26,
+	BT_LeaveSituation = 71,
+	BT_Sequence = 3,
+	BT_Dummy = 4,
+	BT_RenewSharedEvent = 66,
+	BT_PlayAct = 7,
+	BT_FollowHitman = 57,
+	BT_SetEventHandled = 65,
+	BT_PlayReaction = 8,
+	BT_StandAndShoot = 43,
+	BT_MoveTo = 14,
+	BT_SituationAct = 9,
+	BT_CloseCombat = 37,
+	BT_SituationApproach = 10,
+	BT_Scared = 58,
+	BT_CuriousIdle = 25,
+	BT_SituationGetHelp = 11,
+	BT_Wade = 34,
+	BT_SituationFace = 12,
+	BT_ProtoApproachSearchArea = 48,
+	BT_SpeakWait = 13,
+	BT_AmbientStand = 16,
+	BT_Flee = 59,
+	BT_Escort = 54,
+	BT_ProtoCombatHandleHumanShield = 46,
+	BT_COMMANDS_END = 79,
+	BT_AlertedStand = 22,
+	BT_CrowdAmbientStand = 17,
+	BT_AgitatedGuard = 53,
+	BT_Lenny = 35,
+	BT_AimReaction = 56,
+	BT_LeadEscort = 55,
+	BT_AmbientItemUse = 18,
+	BT_AmbientLook = 19,
+	BT_SequenceBehaviorTwo = 21,
+	BT_Waypoint = 20,
+	BT_AlertedDebug = 23,
+	BT_CuriousInvestigate = 24,
+	BT_HoldCoverPosition = 44,
+	BT_FixFuseBox = 27,
+	BT_FollowDisguisedHitman = 28,
+	BT_CautiousSearchPosition = 29,
+	BT_SetTension = 73,
+	BT_StandOffArrest = 31,
+	BT_MoveToCloseCombat = 38,
+	BT_CoverFight = 41,
+	BT_StandOffReposition = 32,
+	BT_ShootTarget = 51,
+	BT_StandAndAim = 33,
+	BT_ProtoSearchPosition = 49,
+	BT_MoveAwayFromCloseCombat = 39,
+	BT_Fight = 40,
+	BT_GotoPhase = 72,
+	BT_ShootFromPosition = 42,
+	BT_CheckLastPosition = 45,
+	BT_AgitatedBystander = 60,
+	BT_ProtoSearchIdle = 47,
+	BT_Turret = 50,
+	BT_AgitatedPatrol = 52,
+	BT_COMMANDS_BEGIN = 63,
+	BT_UpdateKnownLocation = 76,
+	BT_RenewEvent = 63,
+	BT_ExpireEvent = 64,
+	BT_Log = 78,
+	BT_ExpireSharedEvent = 67,
+	BT_CreateOrJoinSituation = 68,
+	BT_JoinSituation = 69,
+	BT_JoinSituationWithActor = 70,
+	BT_TriggerSpotted = 74,
+	BT_CopyKnownLocation = 75,
+	BT_Speak = 77,
 };
 
 // Size: 0x4
 enum class ECompiledConditionType
 {
+	CT_MaxExpired = 4,
+	CT_IsCurrent = 0,
+	CT_MinActualDistance = 22,
+	CT_Current = 1,
+	CT_IsExpired = 2,
+	CT_MinAge = 5,
+	CT_MaxSituationAge = 29,
+	CT_MaxAge = 6,
+	CT_MinDistance = 20,
+	CT_MinExpired = 3,
+	CT_IsSharedEventCurrent = 7,
+	CT_SharedEventCurrent = 8,
+	CT_MinSharedEventExpired = 9,
+	CT_MinSharedEventAge = 10,
+	CT_MaxSharedEventAge = 11,
+	CT_IsNull = 12,
+	CT_IsEqual = 13,
+	CT_IsOfType = 14,
+	CT_IsOfActorType = 15,
+	CT_IsOfActorRank = 16,
+	CT_HasGoal = 17,
+	CT_HasTension = 18,
+	CT_HasSameOutfit = 19,
+	CT_MaxDistance = 21,
+	CT_MaxActualDistance = 23,
+	CT_ActualInsideSlice = 24,
+	CT_InSituation = 25,
+	CT_SituationTarget = 26,
+	CT_MinPhaseAge = 32,
+	CT_SituationFromActors = 27,
+	CT_SituationFromTarget = 28,
+	CT_MinSituationAge = 30,
+	CT_InPhase = 31,
+	CT_MaxPhaseAge = 33,
+	CT_IsOrderInvalid = 34,
+	CT_Breakpoint = 35,
+	CT_Cooldown = 36,
+	CT_Trigger = 37,
 };
 
 // Size: 0x4
 enum class EContentKitDLCInfoType
 {
+	ECKDLCIT_FireArm = 0,
+	ECKDLCIT_Disguise = 1,
 };
 
 // Size: 0x4
 enum class EContractCheckpointId
 {
+	eINVALID = -1,
+	eID06 = 60,
+	eID01 = 10,
+	eID02 = 20,
+	eID03 = 30,
+	eID04 = 40,
+	eID05 = 50,
+	eID07 = 70,
+	eID08 = 80,
+	eID09 = 90,
 };
 
 // Size: 0x4
 enum class EContractExit
 {
+	ECONTRACT_EXIT_00 = 0,
+	ECONTRACT_EXIT_01 = 1,
+	ECONTRACT_EXIT_02 = 2,
+	ECONTRACT_EXIT_03 = 3,
+	ECONTRACT_EXIT_04 = 4,
+	ECONTRACT_EXIT_05 = 5,
+	ECONTRACT_EXIT_06 = 6,
+	ECONTRACT_EXIT_07 = 7,
+	ECONTRACT_EXIT_08 = 8,
+	ECONTRACT_EXIT_09 = 9,
+	ECONTRACT_EXIT_10 = 10,
+	ECONTRACT_EXIT_11 = 11,
+	ECONTRACT_EXIT_12 = 12,
+	ECONTRACT_EXIT_13 = 13,
+	ECONTRACT_EXIT_14 = 14,
+	ECONTRACT_EXIT_15 = 15,
+	ECONTRACT_EXIT_16 = 16,
+	ECONTRACT_EXIT_17 = 17,
+	ECONTRACT_EXIT_18 = 18,
+	ECONTRACT_EXIT_19 = 19,
 };
 
 // Size: 0x4
 enum class EContractMode
 {
+	CONTRACT_MODE_PLAYER = 2,
+	CONTRACT_MODE_PASSIVE = 0,
+	CONTRACT_MODE_CREATOR = 1,
 };
 
 // Size: 0x4
 enum class EContractUnlock
 {
+	ECU_CONTRACT01 = 1,
+	ECU_INVALID = -1,
+	ECU_CONTRACT00 = 0,
+	ECU_CONTRACT02 = 2,
+	ECU_CONTRACT03 = 3,
+	ECU_CONTRACT04 = 4,
+	ECU_CONTRACT05 = 5,
+	ECU_CONTRACT06 = 6,
+	ECU_CONTRACT07 = 7,
+	ECU_CONTRACT08 = 8,
+	ECU_CONTRACT09 = 9,
 };
 
 // Size: 0x4
 enum class EControlButtonName
 {
+	eCN_ABORT = 0,
+	eCN_ACTION = 1,
+	eCN_AGILITY_THROWOVERRAIL = 6,
+	eCN_AGILITY_ENTERWINDOW = 4,
+	eCN_ACTIVATE_PROP = 2,
+	eCN_SB_ACTIVATE = 28,
+	eCN_AGILITY_DOWN = 3,
+	eCN_INSTINCT = 17,
+	eCN_INVENTORY_PROP = 20,
+	eCN_AGILITY_SNEAKPASTWINDOW = 5,
+	eCN_AGILITY_UP = 7,
+	eCN_AIM = 8,
+	eCN_COVER_ENTER = 9,
+	eCN_COVER_TAKEDOWN = 10,
+	eCN_COVER_TO_COVER = 11,
+	eCN_CROUCH = 12,
+	eCN_MELEE_TAKEDOWN = 25,
+	eCN_DRAGBODY = 13,
+	eCN_PAUSE = 34,
+	eCN_DUMPBODY = 14,
+	eCN_FIBERWIRE = 15,
+	eCN_HUMANSHIELD = 16,
+	eCN_SB_CANCEL = 29,
+	eCN_PICKUP = 26,
+	eCN_INVENTORY_HOLSTER = 18,
+	eCN_INVENTORY_LONGRANGE = 19,
+	eCN_MELEE_HIT = 24,
+	eCN_INVENTORY_SHORTRANGE = 21,
+	eCN_ITEM_DROP = 22,
+	eCN_ITEM_THROW = 23,
+	eCN_RUN = 27,
+	eCN_SB_EXECUTE = 30,
+	eCN_SB_REMOVETAG = 31,
+	eCN_SHOOT = 32,
+	eCN_NOTEBOOK = 33,
+	eCN_NO_ICON = 35,
 };
 
 // Size: 0x4
 enum class EControlledStates
 {
+	CS_CarryCivilian = 0,
+	CS_CloseCombat = 2,
+	CS_HumanShield = 1,
+	CS_PuppetAct = 3,
 };
 
 // Size: 0x4
 enum class EControllerButton
 {
+	BUTTON_NONE = 0,
+	BUTTON_RIGHT = 6,
+	BUTTON_CROSS = 1,
+	BUTTON_CIRCLE = 4,
+	BUTTON_DOWN = 7,
+	BUTTON_TRIANGLE = 2,
+	BUTTON_SQUARE = 3,
+	BUTTON_UP = 5,
+	BUTTON_LEFT = 8,
+	BUTTON_R1 = 9,
+	BUTTON_R2 = 10,
+	BUTTON_L_STICK = 16,
+	BUTTON_R3 = 11,
+	BUTTON_R_STICK = 12,
+	BUTTON_L1 = 13,
+	BUTTON_L2 = 14,
+	BUTTON_L3 = 15,
+	BUTTON_SELECT = 18,
+	BUTTON_START = 17,
+	BUTTON_UP_DOWN = 19,
+	BUTTON_LEFT_RIGHT = 20,
+	BUTTON_LEFT_RIGHT_UP_DOWN = 21,
+	BUTTON_L1_R1 = 22,
+	BUTTON_L2_R2 = 23,
+	BUTTON_KEYBOARD = 24,
+	BUTTON_ESCAPE = 25,
 };
 
 // Size: 0x4
 enum class ECoordinateSpace
 {
+	CSPACE_INVALID = 0,
+	CSPACE_CHARACTER_RELATIVE = 4,
+	CSPACE_OBJECT_TO_WORLD = 1,
+	CSPACE_SEQUENCE_ORIGIN = 3,
+	CSPACE_OBJECT_TO_PARENT = 2,
 };
 
 // Size: 0x4
 enum class ECountry
 {
+	COUNTRY_UNKNOWN = 0,
+	COUNTRY_UNITED_ARAB_EMIRATES = 1,
+	COUNTRY_MACAU = 68,
+	COUNTRY_CROATIA = 40,
+	COUNTRY_IRAQ = 46,
+	COUNTRY_BELGIUM = 8,
+	COUNTRY_LIBYA = 63,
+	COUNTRY_TUNISIA = 96,
+	COUNTRY_GREAT_BRITAIN = 34,
+	COUNTRY_AZERBAIJAN = 7,
+	COUNTRY_ALBANIA = 2,
+	COUNTRY_ITALY = 49,
+	COUNTRY_BELIZE = 15,
+	COUNTRY_ARMENIA = 3,
+	COUNTRY_ARGENTINA = 4,
+	COUNTRY_AUSTRIA = 5,
+	COUNTRY_INDONESIA = 42,
+	COUNTRY_COLOMBIA = 20,
+	COUNTRY_HUNGARY = 41,
+	COUNTRY_AUSTRALIA = 6,
+	COUNTRY_BULGARIA = 9,
+	COUNTRY_MALDIVES = 69,
+	COUNTRY_ZIMBABWE = 108,
+	COUNTRY_BAHRAIN = 10,
+	COUNTRY_BRUNEI_DARUSSALAM = 11,
+	COUNTRY_GUATEMALA = 37,
+	COUNTRY_SWITZERLAND = 17,
+	COUNTRY_BOLIVIA = 12,
+	COUNTRY_SOUTH_AFRICA = 107,
+	COUNTRY_BRAZIL = 13,
+	COUNTRY_BELARUS = 14,
+	COUNTRY_CANADA = 16,
+	COUNTRY_YEMEN = 106,
+	COUNTRY_CHILE = 18,
+	COUNTRY_GERMANY = 23,
+	COUNTRY_LITHUANIA = 60,
+	COUNTRY_CHINA = 19,
+	COUNTRY_COSTA_RICA = 21,
+	COUNTRY_JAPAN = 52,
+	COUNTRY_KENYA = 53,
+	COUNTRY_CZECH_REPUBLIC = 22,
+	COUNTRY_FAROE_ISLANDS = 32,
+	COUNTRY_HONG_KONG = 38,
+	COUNTRY_KOREA = 55,
+	COUNTRY_DENMARK = 24,
+	COUNTRY_UZBEKISTAN = 103,
+	COUNTRY_KUWAIT = 56,
+	COUNTRY_DOMINICAN_REPUBLIC = 25,
+	COUNTRY_MALTA = 110,
+	COUNTRY_ALGERIA = 26,
+	COUNTRY_THAILAND = 95,
+	COUNTRY_ECUADOR = 27,
+	COUNTRY_LATVIA = 62,
+	COUNTRY_ESTONIA = 28,
+	COUNTRY_MONACO = 65,
+	COUNTRY_EGYPT = 29,
+	COUNTRY_SPAIN = 30,
+	COUNTRY_LUXEMBOURG = 61,
+	COUNTRY_FINLAND = 31,
+	COUNTRY_FRANCE = 33,
+	COUNTRY_GEORGIA = 35,
+	COUNTRY_PARAGUAY = 84,
+	COUNTRY_KYRGYZSTAN = 54,
+	COUNTRY_GREECE = 36,
+	COUNTRY_IRELAND = 43,
+	COUNTRY_HONDURAS = 39,
+	COUNTRY_URUGUAY = 102,
+	COUNTRY_ISRAEL = 44,
+	COUNTRY_SAUDI_ARABIA = 88,
+	COUNTRY_MEXICO = 70,
+	COUNTRY_INDIA = 45,
+	COUNTRY_IRAN = 47,
+	COUNTRY_PORTUGAL = 83,
+	COUNTRY_ICELAND = 48,
+	COUNTRY_JORDAN = 51,
+	COUNTRY_JAMAICA = 50,
+	COUNTRY_NORWAY = 74,
+	COUNTRY_KAZAKHSTAN = 57,
+	COUNTRY_LEBANON = 58,
+	COUNTRY_LIECHTENSTEIN = 59,
+	COUNTRY_MOROCCO = 64,
+	COUNTRY_MACEDONIA = 66,
+	COUNTRY_MONGOLIA = 67,
+	COUNTRY_OMAN = 76,
+	COUNTRY_MALAYSIA = 71,
+	COUNTRY_NICARAGUA = 72,
+	COUNTRY_NETHERLANDS = 73,
+	COUNTRY_SWEDEN = 89,
+	COUNTRY_NEW_ZEALAND = 75,
+	COUNTRY_PANAMA = 77,
+	COUNTRY_PERU = 78,
+	COUNTRY_PHILIPPINES = 79,
+	COUNTRY_VENEZUELA = 104,
+	COUNTRY_PAKISTAN = 80,
+	COUNTRY_POLAND = 81,
+	COUNTRY_UKRAINE = 100,
+	COUNTRY_PUERTO_RICO = 82,
+	COUNTRY_QATAR = 85,
+	COUNTRY_ROMANIA = 86,
+	COUNTRY_RUSSIAN_FEDERATION = 87,
+	COUNTRY_SINGAPORE = 90,
+	COUNTRY_SLOVENIA = 91,
+	COUNTRY_SLOVAK_REPUBLIC = 92,
+	COUNTRY_EL_SALVADOR = 93,
+	COUNTRY_SYRIA = 94,
+	COUNTRY_TURKEY = 97,
+	COUNTRY_TRINIDAD_AND_TOBAGO = 98,
+	COUNTRY_TAIWAN = 99,
+	COUNTRY_UNITED_STATES = 101,
+	COUNTRY_VIET_NAM = 105,
+	COUNTRY_CYPRUS = 109,
 };
 
 // Size: 0x4
 enum class ECoverPosition
 {
+	COVER_POSITION_NONE = 0,
+	COVER_POSITION_LEFT = 1,
+	COVER_POSITION_RIGHT = 2,
+	COVER_POSITION_MIDDLE = 3,
 };
 
 // Size: 0x4
 enum class ECrossHairType
 {
+	CROSSHAIR_NONE = 0,
+	CROSSHAIR_SHOTGUN = 5,
+	CROSSHAIR_PISTOL = 1,
+	CROSSHAIR_REVOLVER = 2,
+	CROSSHAIR_SMG = 3,
+	CROSSHAIR_RIFLE = 4,
+	CROSSHAIR_SNIPER = 6,
+	CROSSHAIR_HARDBALLER = 7,
+	CROSSHAIR_UNAIMED = 8,
 };
 
 // Size: 0x4
 enum class ECrowdFlowCandidates
 {
+	NONE = 0,
+	EVERYONE = 1,
+	SPAWNED_ON_FLOW = 2,
 };
 
 // Size: 0x4
 enum class ECrowdFlowUsage
 {
+	FLOW_TWO_WAY = 2,
+	FLOW_IGNORE = 0,
+	FLOW_ONE_WAY = 1,
 };
 
 // Size: 0x4
 enum class EDeathAnimationType
 {
+	DAT_None = 0,
+	DAT_Unknown = 4,
+	DAT_SingleShot = 1,
+	DAT_BurstShot = 2,
+	DAT_HeavyShot = 3,
 };
 
 // Size: 0x4
 enum class EDetachUsage
 {
+	EDU_NEVER = 0,
+	EDU_ALWAYS = 1,
+	EDU_RAGDOLL_ONLY = 2,
 };
 
 // Size: 0x4
 enum class EDifficultyParamFloat
 {
+	eDPF_AttentionGainMultiplier = 0,
+	eDPF_VisibilityDistanceMultiplier = 2,
+	eDPF_NPCDamageReceivedMultiplier = 6,
+	eDPF_CCChainFailDamage = 19,
+	eDPF_AudioPerceptionDistanceMultiplier = 1,
+	eDPF_CCSanchezChoiceWindowLength = 21,
+	eDPF_HitmanMaxDpsThreshold = 3,
+	eDPF_HitmanMaxDpsLimit = 4,
+	eDPF_MaxCoverShootActorCountMultiplier = 7,
+	eDPF_HitmanDamageReceivedMultiplier = 5,
+	eDPF_SBPostFee = 27,
+	eDPF_HealthInterval0 = 8,
+	eDPF_CriticalHealthThreshold = 12,
+	eDPF_HealthInterval1 = 9,
+	eDPF_HealthRedTimeDelay = 10,
+	eDPF_HealthRegenPerSecond = 11,
+	eDPF_DisguiseDetectionDistanceMultiplier = 13,
+	eDPF_ShootMaxSpread = 14,
+	eDPF_ShootMinSpread = 15,
+	eDPF_ShootMaxSpreadRange = 16,
+	eDPF_CCCounterEndLength = 17,
+	eDPF_BlendInBurnRate = 29,
+	eDPF_CCChoiceWindowLength = 18,
+	eDPF_CCCounterFailDamage = 20,
+	eDPF_CCSanchezChainFailDamage = 22,
+	eDPF_CCSanchezCounterFailDamage = 23,
+	eDPF_SBBurnRateA = 24,
+	eDPF_SBBurnRateB = 25,
+	eDPF_SBTimeAB = 26,
+	eDPF_BlendInPostFee = 28,
+	eDPF_InstinctModeBurnRate = 30,
+	eDPF_InstinctRegenRate = 31,
+	eDPF_InstinctRegenCap = 32,
+	eDPF_Size = 33,
 };
 
 // Size: 0x4
 enum class EDisturbanceType
 {
+	DT_Generic = 0,
+	DT_SeeBrokenDisguise = 3,
+	DT_SeeDisableFusebox = 6,
+	DT_SeeKilling = 1,
+	DT_SeeTrespasser = 2,
+	DT_SeeIllegalWeapon = 4,
+	DT_SoundSpeakPain = 20,
+	DT_SeeDraggingBody = 5,
+	DT_SeeOpenCPDoor = 7,
+	DT_SeeChangeOutfit = 8,
+	DT_SoundBulletImpact = 18,
+	DT_SeeTakeKeyCard = 9,
+	DT_SoundScream = 15,
+	DT_SeeExplosion = 12,
+	DT_SeeTakeSecurityTape = 10,
+	DT_SeeDeath = 11,
+	DT_SoundExplosion = 13,
+	DT_SoundGunshot = 14,
+	DT_SoundCloseCombat = 16,
+	DT_SoundGunSilenced = 17,
+	DT_SoundNeckBreak = 19,
+	DT_DeadBody = 21,
+	DT_BloodPool = 22,
+	DT_HuntTarget = 23,
 };
 
 // Size: 0x4
 enum class EDynamicVariableType
 {
+	DV_Invalid = -1,
+	DV_Me = 0,
+	DV_Hitman = 1,
+	DV_Sounds = 3,
+	DV_InSight = 2,
+	DV_Goals = 4,
+	DV_NumVariables = 5,
 };
 
 // Size: 0x4
 enum class EEntityOrdering
 {
+	EO_LOW = 0,
+	EO_NORMAL = 1,
+	EO_HIGH = 2,
 };
 
 // Size: 0x4
 enum class EFocusBarState
 {
+	FOCUS_BAR_NORMAL = 0,
+	FOCUS_BAR_INSTINCT = 1,
+	FOCUS_BAR_BURNING = 2,
 };
 
 // Size: 0x4
 enum class EGSAI_Situation
 {
+	AI_GAMETENSION_AMBIENT = 0,
+	AI_GAMETENSION_COMBAT = 4,
+	AI_GAMETENSION_ALERTED_LOW = 1,
+	AI_GAMETENSION_ALERTED_HIGH = 2,
+	AI_GAMETENSION_ARREST = 3,
 };
 
 // Size: 0x4
 enum class EGSBodyPart
 {
+	GSBODYPART_ARM = 3,
+	GSBODYPART_UNKNOWN = 0,
+	GSBODYPART_HEAD = 1,
+	GSBODYPART_TORSO = 2,
+	GSBODYPART_LEG = 4,
 };
 
 // Size: 0x4
 enum class EGSEvent
 {
+	GSEvent_StrayBullet = 0,
+	GSEvent_UsedChokeOut = 5,
+	GSEvent_UsedKnockOutByHand = 6,
+	GSEvent_TookDamage = 1,
+	GSEvent_BloodPoolFound = 11,
+	GSEvent_InvestigateCautious = 15,
+	GSEvent_Headshot = 28,
+	GSEvent_UsedRun = 3,
+	GSEvent_UsedCover = 2,
+	GSEvent_UsedEliminate = 4,
+	GSEvent_Pacified = 7,
+	GSEvent_UsedEliminateSilent = 30,
+	GSEvent_TargetPacified = 8,
+	GSEvent_CaughtArmed = 9,
+	GSEvent_TargetAccidentKill = 26,
+	GSEvent_BodyFound = 10,
+	GSEvent_InvestigateCurious = 12,
+	GSEvent_NPCKilled = 13,
+	GSEvent_KilledNPCHidden = 14,
+	GSEvent_PrecisionAimedKill = 16,
+	GSEvent_BlendInActivated = 17,
+	GSEvent_PropKill = 18,
+	GSEvent_SpottedThroughDisguise = 19,
+	GSEvent_TakeOutNonLethal = 20,
+	GSEvent_TargetKilled = 21,
+	GSEvent_NonTargetKilled = 22,
+	GSEvent_AllTargetsKilled = 23,
+	GSEvent_AccidentKill = 24,
+	GSEvent_ObjectiveUpdate = 25,
+	GSEvent_ObjectiveActivate = 27,
+	GSEvent_Fiberwire = 29,
 };
 
 // Size: 0x4
 enum class EGSExplodingPropType
 {
+	eGSExplodingProp_Unknown = 0,
+	eGSExplodingProp_Barrel = 1,
+	eGSExplodingProp_GasCanister = 3,
+	eGSExplodingProp_PetrolCan = 2,
+	eGSExplodingProp_Pig = 6,
+	eGSExplodingProp_GasTank = 4,
+	eGSExplodingProp_Mine = 5,
+	eGSExplodingProp_Car = 9,
+	eGSExplodingProp_Pigeon = 7,
+	eGSExplodingProp_FireworksBox = 8,
 };
 
 // Size: 0x4
 enum class EGSKillSituation
 {
+	GSKILLSITUATION_ACTION = 4,
+	GSKILLSITUATION_UNKNOWN = 0,
+	GSKILLSITUATION_PUSHOVERRAILING = 8,
+	GSKILLSITUATION_CLOSECOMBAT = 1,
+	GSKILLSITUATION_PULLTHROUGHWINDOW = 7,
+	GSKILLSITUATION_SHOOTINGBALLET = 5,
+	GSKILLSITUATION_SILENT = 2,
+	GSKILLSITUATION_ENVIRONMENT = 3,
+	GSKILLSITUATION_DEADLYTHROW = 6,
+	GSKILLSITUATION_PACIFY = 9,
+	GSKILLSITUATION_FIBERWIRE = 10,
 };
 
 // Size: 0x4
 enum class EGSKillVictim
 {
+	GSKILLVICTIM_UNKNOWN = 0,
+	GSKILLVICTIM_GUARD = 2,
+	GSKILLVICTIM_CIVILIAN = 1,
+	GSKILLVICTIM_TARGET = 3,
 };
 
 // Size: 0x4
 enum class EGait
 {
+	eGait_Normal = 0,
+	eGait_Dead = 4,
+	eGait_Prone = 3,
+	eGait_Alert = 1,
+	eGait_Scared = 2,
 };
 
 // Size: 0x4
 enum class EGameEventArgType
 {
+	GE_ARGS_EVENT = 6,
+	GE_ARGS_SITUATION = 2,
+	GE_ARGS_PRIORITYKILL = 1,
+	GE_ARGS_KILL = 0,
+	GE_ARGS_INVENTORY = 3,
+	GE_ARGS_SHOOTINGBALLET = 4,
+	GE_ARGS_EXPLODINGPROP = 5,
+	GE_ARGS_CHECKPOINTEVENT = 7,
 };
 
 // Size: 0x4
 enum class EGameTension
 {
+	EGT_Undefined = 0,
+	EGT_Searching = 3,
+	EGT_Ambient = 1,
+	EGT_Combat = 8,
+	EGT_Arrest = 7,
+	EGT_Agitated = 2,
+	EGT_AlertedLow = 4,
+	EGT_Hunting = 6,
+	EGT_AlertedHigh = 5,
 };
 
 // Size: 0x4
 enum class EGuardPointType
 {
+	GPT_Hold = 0,
+	GPT_Combat = 1,
+	GPT_CombatAndHold = 2,
 };
 
 // Size: 0x4
 enum class EHM5CharacterSize
 {
+	eFemaleRegular = 3,
+	eUndefined = -1,
+	eMaleRegular = 0,
+	eMaleShort = 1,
+	eFemaleRegularHeels = 4,
+	eMaleLargeFat = 2,
 };
 
 // Size: 0x4
 enum class EHM5DisguiseType
 {
+	EHM5_DISGUISE_UNDEFINED = 0,
+	EHM5_DISGUISE_AGENCY_POWERWORKER = 1,
+	EHM5_DISGUISE_BODYGUARD = 5,
+	EHM5_DISGUISE_HOTSAUCE_WORKER = 13,
+	EHM5_DISGUISE_AGENCY_SOLDIER = 2,
+	EHM5_DISGUISE_ASSASSIN = 3,
+	EHM5_DISGUISE_BLACKWATER_JANITOR = 4,
+	EHM5_DISGUISE_COURT_USHER = 7,
+	EHM5_DISGUISE_PLUMBER = 18,
+	EHM5_DISGUISE_PATRIOT = 17,
+	EHM5_DISGUISE_CHIPMUNK_MASCOT = 6,
+	EHM5_DISGUISE_DEFENDANT = 8,
+	EHM5_DISGUISE_GARDENER = 10,
+	EHM5_DISGUISE_FORENSIC_TECHNICIAN = 9,
+	EHM5_DISGUISE_POLICE_CHICAGO_INDOOR = 19,
+	EHM5_DISGUISE_GUARD = 11,
+	EHM5_DISGUISE_HOTSAUCE_CHEF = 12,
+	EHM5_DISGUISE_REPAIRMAN = 22,
+	EHM5_DISGUISE_ICECREAM_TRUCKDRIVER = 14,
+	EHM5_DISGUISE_JUDGE = 15,
+	EHM5_DISGUISE_SECURITY_GUARD_ORPHANAGE = 39,
+	EHM5_DISGUISE_MECHANIC = 16,
+	EHM5_DISGUISE_POLICE_CHICAGO_REGULAR = 20,
+	EHM5_DISGUISE_POLICE_HOPE_REGULAR = 21,
+	EHM5_DISGUISE_SATELLITEDISHREPAIRMAN = 23,
+	EHM5_DISGUISE_SCIENTIST = 24,
+	EHM5_DISGUISE_SECURITY_GUARD_FACTORY = 25,
+	EHM5_DISGUISE_SECURITY_GUARD_SUPERMARKET = 26,
+	EHM5_DISGUISE_BLACKWATER_BODYGUARD = 43,
+	EHM5_DISGUISE_SECURITY_GUARD_COURT = 27,
+	EHM5_DISGUISE_SCARECROW = 42,
+	EHM5_DISGUISE_SEWER_WORKER = 28,
+	EHM5_DISGUISE_STORE_CLERK = 29,
+	EHM5_DISGUISE_BLACKWATER_RECEPTIONIST = 46,
+	EHM5_DISGUISE_STORE_STAFF = 30,
+	EHM5_DISGUISE_STORE_SUPERVISOR = 31,
+	EHM5_DISGUISE_TRUCKER = 32,
+	EHM5_DISGUISE_JANITOR = 37,
+	EHM5_DISGUISE_WEAPONS_BUYER = 33,
+	EHM5_DISGUISE_BLACKWATER_PLUMBER = 45,
+	EHM5_DISGUISE_RESEARCHER = 34,
+	EHM5_DISGUISE_BLACKWATER_SECURITY_OUTSIDE = 48,
+	EHM5_DISGUISE_DEXTERGOON = 35,
+	EHM5_DISGUISE_ELECTRICIAN = 36,
+	EHM5_DISGUISE_FEIZHU_HENCHMAN = 38,
+	EHM5_DISGUISE_LENNY_GANG = 40,
+	EHM5_DISGUISE_PATRIOT_ENTOURAGE = 41,
+	EHM5_DISGUISE_SAMURAI = 49,
+	EHM5_DISGUISE_BLACKWATER_BODYGUARD_HEAVY = 44,
+	EHM5_DISGUISE_BLACKWATER_SECURITY_INSIDE = 47,
+	EHM5_DISGUISE_POLICE_CHICAGO_SWAT = 50,
 };
 
 // Size: 0x4
 enum class EHM5GameInputFlag
 {
+	eGameInputToss = 58,
+	eGameInputActionPerform = 0,
+	eGameInputActionPickup = 1,
+	eGameInputActionAbort = 2,
+	eGameInputWeaponZoomIn = 4,
+	eGameInputCloseCombat = 39,
+	eGameInputActionDoor = 3,
+	eGameInputEquipWeapon2 = 18,
+	eGameInputSurrender = 48,
+	eGameInputActionPrecisionShoot = 7,
+	eGameInputCloseCombatChainHigh = 60,
+	eGameInputWeaponZoomOut = 5,
+	eGameInputEquipWeapon7 = 23,
+	eGameInputReload = 49,
+	eGameInputActionShoot = 6,
+	eGameInputEquipWeapon5 = 21,
+	eGameInputCamSwitch = 54,
+	eGameInputAimOTS = 8,
+	eGameInputCoverAction = 9,
+	eGameInputCoverAlternativeAction = 10,
+	eGameInputHolsterItem = 26,
+	eGameInputInventoryAccept = 11,
+	eGameInputActivateRun = 55,
+	eGameInputInventoryCancel = 12,
+	eGameInputEquipCloseCombatProps = 13,
+	eGameInputDumpBody = 52,
+	eGameInputEquipCloseCombatPropsInverse = 14,
+	eGameInputEquipWeapon1 = 17,
+	eGameInputEquipLongRange = 16,
+	eGameInputInstinctMode = 56,
+	eGameInputEquipShortRange = 15,
+	eGameInputEquipWeapon3 = 19,
+	eGameInputEquipWeapon4 = 20,
+	eGameInputGuideActionSecondary = 34,
+	eGameInputEquipWeapon6 = 22,
+	eGameInputEquipNextWeapon = 24,
+	eGameInputEquipPreviousWeapon = 25,
+	eGameInputDropItem = 27,
+	eGameInputActivateProp = 28,
+	eGameInputShowWeaponSelector = 65,
+	eGameInputSkipCutSequence = 64,
+	eGameInputTakeDisguise = 50,
+	eGameInputShootingBalletActivate = 29,
+	eGameInputGuideSneakPastWindow = 36,
+	eGameInputGuideKill = 37,
+	eGameInputShootingBalletExecute = 30,
+	eGameInputShootingBalletCancel = 31,
+	eGameInputShootingBalletHMView = 32,
+	eGameInputGuideAction = 33,
+	eGameInputCloseCombatDisarm = 43,
+	eGameInputGuideEnterWindow = 35,
+	eGameInputSlideLadder = 38,
+	eGameInputFiberwire = 40,
+	eGameInputCloseCombatCounter = 41,
+	eGameInputSneakToggle = 53,
+	eGameInputCloseCombatTakeDown = 42,
+	eGameInputInteractiveCutA = 44,
+	eGameInputInteractiveCutX = 45,
+	eGameInputInteractiveCutY = 46,
+	eGameInputInteractiveCutB = 47,
+	eGameInputToggleAlternateFire = 57,
+	eGameInputContractsAddMark = 59,
+	eGameInputCloseCombatChainCounter = 62,
+	eGameInputDragDropBody = 51,
+	eGameInputCloseCombatChainLow = 61,
+	eGameInputTakeHumanShield = 63,
+	eGameInputCoverSwitchCoverAction = 66,
+	eGameInputActionsNUM = 67,
 };
 
 // Size: 0x4
 enum class EHM5SoundBulletImpactVariation
 {
+	EBIV_VARIATION1 = 0,
 };
 
 // Size: 0x4
 enum class EHM5SoundBulletType
 {
+	ESBT_LARGE = 2,
+	ESBT_MEDIUM = 1,
+	ESBT_SMALL = 0,
+	ESBT_GORGEOUS = 3,
+	ESBT_ANY = 4,
 };
 
 // Size: 0x4
 enum class EHM5SoundCloseCombatEvent
 {
+	ECCE_PUNCH_FACE = 0,
+	ECCE_PUNCH_BODY = 1,
+	ECCE_ATTACK_ELBOW = 2,
+	ECCE_ATTACK_KNEE = 3,
+	ECCE_ATTACK_KICK = 4,
+	ECCE_ANY = 15,
+	ECCE_SWOOSH_LONG = 6,
+	ECCE_CLOTH_SWOOSH = 7,
+	ECCE_SWOOSH_SHORT = 5,
+	ECCE_CLOTH_RUSTLE = 8,
+	ECCE_CLOTH_STRETCH = 9,
+	ECCE_GRAB = 10,
+	ECCE_BONE_BREAK = 11,
+	ECCE_NECK_SNAP = 12,
+	ECCE_BODY_FALL = 13,
+	ECCE_SKULL_CRACK = 14,
 };
 
 // Size: 0x4
 enum class EHM5SoundFootstepEmitterTarget
 {
+	EFSAT_NPC = 1,
+	EFSAT_MAIN = 0,
+	EFSAT_NPC_LEG = 3,
+	EFSAT_MAIN_LEG = 2,
 };
 
 // Size: 0x4
 enum class EHM5SoundFootstepEvent
 {
+	EFSE_START = 0,
+	EFSE_STOP = 1,
+	EFSE_LEFT = 2,
+	EFSE_RIGHT = 3,
+	EFSE_STRAFE_LEFT = 4,
+	EFSE_TURN = 6,
+	EFSE_STRAFE_RIGHT = 5,
+	EFSE_SLIDE = 7,
+	EFSE_JUMP = 8,
+	EFSE_LAND = 9,
+	EFSE_AGILITY_LAND = 10,
+	EFSE_LEG_LEFT = 11,
+	EFSE_LEG_RIGHT = 12,
+	EFSE_ANY = 13,
 };
 
 // Size: 0x4
 enum class EHM5SoundFootstepStance
 {
+	EFSS_SNEAK = 0,
+	EFSS_WALK = 3,
+	EFSS_SNEAKRUN = 1,
+	EFSS_WALKSLOWLY = 2,
+	EFSS_RUN = 4,
+	EFSS_ANY = 5,
 };
 
 // Size: 0x4
 enum class EHM5SoundFootwearType
 {
+	EFWT_UNDEFINED = 0,
+	EFWT_SANDALS = 4,
+	EFWT_SNEAKERS_METALLEG = 6,
+	EFWT_BAREFOOT = 1,
+	EFWT_FEMALE_COWBOY_BOOTS = 11,
+	EFWT_SNEAKERS = 5,
+	EFWT_SLIPPERS = 2,
+	EFWT_SWAT_BOOTS = 15,
+	EFWT_LEATHER = 7,
+	EFWT_DISPOSABLE_SLIPPERS = 3,
+	EFWT_LEATHER_KEYS = 14,
+	EFWT_FEMALE_LEATHER = 8,
+	EFWT_BOOTS = 9,
+	EFWT_COWBOY_BOOTS = 10,
+	EFWT_HIGH_HEELS = 13,
+	EFWT_RUBBER_BOOTS = 12,
 };
 
 // Size: 0x4
 enum class EHM5SoundRicochetType
 {
+	ESRT_VARIATION1 = 0,
+	ESRT_VARIATION2 = 1,
 };
 
 // Size: 0x4
 enum class EHM5SoundShellImpactVariation
 {
+	ESIV_VARIATION1 = 0,
 };
 
 // Size: 0x4
 enum class EHUDElement
 {
+	HUD_ELEMENT_NONE = 0,
+	HUD_ELEMENT_DISGUISE = 2,
+	HUD_ELEMENT_MINIMAP = 1,
+	HUD_ELEMENT_WEAPON_DISPLAY = 4,
+	HUD_ELEMENT_FOCUS_BAR = 8,
+	HUD_ELEMENT_RETICULES = 16,
+	HUD_ELEMENT_RANKING = 1024,
+	HUD_ELEMENT_CONTRACT_SCORING = 262144,
+	HUD_ELEMENT_WEAPON_SELECTOR = 32,
+	HUD_ELEMENT_SPECIAL_BAR = 64,
+	HUD_ELEMENT_TEXT_MESSAGES = 128,
+	HUD_ELEMENT_CONTRACT_MARKS = 256,
+	HUD_ELEMENT_RATING_UPDATE = 512,
+	HUD_ELEMENT_TARGET_TRACKER = 65536,
+	HUD_ELEMENT_CHALLENGES = 2048,
+	HUD_ELEMENT_CUSTOM_TEXTS = 4096,
+	HUD_ELEMENT_ACTION_BUTTONS = 8192,
+	HUD_ELEMENT_ATTENTION_PEAKS = 16384,
+	HUD_ELEMENT_RATING_TRACKER = 32768,
+	HUD_ELEMENT_TUTORIAL = 524288,
+	HUD_ELEMENT_HINTS = 131072,
+	HUD_ELEMENT_HEALTH_BAR = 1048576,
+	HUD_ELEMENT_OBJECTIVES = 2097152,
+	HUD_ELEMENT_WEAPON_SELECTOR_MKB = 4194304,
+	HUD_ALL_ELEMENTS = 8388607,
 };
 
 // Size: 0x4
 enum class EHUDIconFlags
 {
+	HUD_ICON_FLAG_POSITION = 1,
+	HUD_ICON_FLAG_VALUE = 2,
+	HUD_ICON_FLAG_SCALE = 4,
+	HUD_ICON_FLAG_TEXT = 8,
 };
 
 // Size: 0x4
 enum class EHUDIconType
 {
+	HUD_ICON_CLOSECOMBAT = 2,
+	HUD_ICON_NONE = 0,
+	HUD_ICON_ALARM_TIMER = 1,
+	HUD_ICON_TARGET = 6,
+	HUD_ICON_OBJECTIVE = 5,
+	HUD_ICON_BREADCRUMB = 3,
+	HUD_ICON_TUTORIAL_ARROW = 7,
+	HUD_ICON_EXIT = 4,
 };
 
 // Size: 0x4
 enum class EHUDMessageStatus
 {
+	HUD_MESSAGE_UNUSED = 0,
+	HUD_MESSAGE_FADEIN = 2,
+	HUD_MESSAGE_ATTACH = 1,
+	HUD_MESSAGE_DISPLAY = 3,
+	HUD_MESSAGE_FADEOUT = 4,
 };
 
 // Size: 0x4
 enum class EHintMessageSoundType
 {
+	EHintMessageSound_None = 0,
+	EHintMessageSound_GeneralHint = 1,
+	EHintMessageSound_Target = 5,
+	EHintMessageSound_UsefulItem = 2,
+	EHintMessageSound_AccidentKill = 6,
+	EHintMessageSound_Trespassing = 7,
+	EHintMessageSound_NeedsItem = 3,
+	EHintMessageSound_ObjectiveExit = 4,
+	EHintMessageSound_CanBeTurnedOn = 8,
+	EHintMessageSound_CanBeTurnedOff = 9,
+	EHintMessageSound_Agility = 10,
 };
 
 // Size: 0x4
 enum class EHintMessageType
 {
+	EHintMessageType_InstinctHint = 1,
+	EHintMessageType_Hint = 0,
+	EHintMessageType_InstinctPrompt = 2,
+	EHintMessageType_Tutorial = 3,
 };
 
 // Size: 0x4
 enum class EHitmanGState
 {
+	eHGS_Reserved_QueryALL = 0,
+	eHGS_SniperMode = 10,
+	eHGS_Sneaking = 6,
+	eHGS_CamSwitched = 9,
+	eHGS_MvAgility = 19,
+	eHGS_Reserved_QueryAny = 1,
+	eHGS_MvCarryCivilian = 23,
+	eHGS_IsHardToSee = 5,
+	eHGS_MvSurrendering = 30,
+	eHGS_InstinctModeActive = 2,
+	eHGS_ItemHandlingActive = 8,
+	eHGS_BlendInActive = 4,
+	eHGS_MvCover = 20,
+	eHGS_BlendInCanStart = 3,
+	eHGS_InCloseCombat = 7,
+	eHGS_OTSMode = 11,
+	eHGS_MvHumanShield = 22,
+	eHGS_DualWielding = 12,
+	eHGS_ActivatingAltFire = 13,
+	eHGS_FiredLastFrFocusBurnRate = 14,
+	eHGS_FiredLastFrFocusGainValue = 15,
+	eHGS_MvVentilatorShaft = 24,
+	eHGS_BurningFocus = 16,
+	eHGS_InsideCloset = 17,
+	eHGS_HoldsUtility = 18,
+	eHGS_MvDragging = 21,
+	eHGS_MvLedgeWalk = 25,
+	eHGS_NUM = 31,
+	eHGS_MvLedgeHang = 26,
+	eHGS_MvLocomotion = 27,
+	eHGS_MvShootingBallet = 28,
+	eHGS_MvCloseCombat = 29,
 };
 
 // Size: 0x4
 enum class EHitmanPermissionFlag
 {
+	eHPFlag_AimControl = 5,
+	eHPFlag_InventorySelect = 0,
+	eHPFlag_CameraControl = 3,
+	eHPFlag_CanHolsterItem = 1,
+	eHPFlag_CanDualWield = 2,
+	eHPFlag_MovementControl = 4,
+	eHPFlag_CanOpenNotebook = 6,
+	eHPFlag_PermissionsNUM = 7,
 };
 
 // Size: 0x4
 enum class EInformationBarMessage
 {
+	eIBM_Clear = 0,
+	eIBM_Suspicious = 5,
+	eIBM_LandMineArmed = 9,
+	eIBM_LastEnemyKilledCP = 1,
+	eIBM_InvestigateStand = 2,
+	eIBM_DisguiseBlown = 6,
+	eIBM_BloodPoolFound = 4,
+	eIBM_Exposed = 8,
+	eIBM_BodyFound = 3,
+	eIBM_Hunt = 7,
+	eIBM_RadioOn = 10,
+	eIBM_Trespassing = 11,
+	eIBM_NUM = 12,
 };
 
 // Size: 0x4
 enum class EKillType
 {
+	EKillType_Undefined = 0,
+	EKillType_Throw = 1,
+	EKillType_Fiberwire = 2,
+	eKillType_ShootingBallet = 12,
+	EKillType_PistolExecute = 3,
+	EKillType_ItemTakeOutFront = 4,
+	EKillType_ItemTakeOutBack = 5,
+	EKillType_ChokeOut = 6,
+	EKillType_SnapNeck = 7,
+	EKillType_KnockOut = 8,
+	EKillType_Push = 9,
+	EKillType_Pull = 10,
+	EKillType_HumanShield = 11,
 };
 
 // Size: 0x4
 enum class EKitState
 {
+	EKITSTATE_LOCKED = 0,
+	EKITSTATE_UNLOCKED_NEW = 1,
+	EKITSTATE_UNLOCKED = 2,
 };
 
 // Size: 0x4
 enum class EKnownEntityPoseType
 {
+	KEPT_Stand = 0,
+	KEPT_Invalid = 4,
+	KEPT_Cover = 2,
+	KEPT_Crouched = 1,
+	KEPT_Dummy = 3,
 };
 
 // Size: 0x4
 enum class EKnownEntityType
 {
+	KET_UNKNOWN = 0,
+	KET_OBJECT = 5,
+	KET_LOCATION = 4,
+	KET_ITEM = 3,
+	KET_HITMAN = 1,
+	KET_ACTOR = 2,
+	KET_COVER = 6,
 };
 
 // Size: 0x4
 enum class ELastSoundTension
 {
+	EST_Orange = 3,
+	EST_Unknown = 0,
+	EST_Yellow = 2,
+	EST_Ambient = 1,
+	EST_Red = 4,
 };
 
 // Size: 0x4
 enum class ELevelIndex
 {
+	eL01 = 0,
+	LEVELINDEX_INVALID = -1,
+	eL08A = 21,
+	eL01B = 1,
+	eL02B = 2,
+	eL02C = 3,
+	LEVELINDEX_COUNT = 49,
+	eLS01 = 26,
+	eL08B = 22,
+	eL02D = 4,
+	eL08C = 23,
+	eL02E = 5,
+	eL03 = 6,
+	eLDLC05 = 33,
+	eL04B = 7,
+	eLDLC04 = 32,
+	eL04C = 8,
+	eLDLC03 = 31,
+	eL04D = 9,
+	eLDLC02 = 30,
+	eL04E = 10,
+	eLDLC16 = 44,
+	eL05A = 11,
+	eLDLC15 = 43,
+	eL05B = 12,
+	eLDLC14 = 42,
+	eL05C = 13,
+	eL10 = 25,
+	eL06A = 14,
+	eL06B = 15,
+	eL06C = 16,
+	eL06D = 17,
+	eL07A = 18,
+	eL07D = 19,
+	eL07E = 20,
+	eL09 = 24,
+	LEVELINDEX_GLOBAL = 27,
+	eLDLC12 = 40,
+	eLS_TownOfNoHope = 28,
+	eLDLC01 = 29,
+	eLDLC06 = 34,
+	eLDLC07 = 35,
+	eLDLC08 = 36,
+	eLDLC09 = 37,
+	eLDLC10 = 38,
+	eLDLC11 = 39,
+	eLDLC13 = 41,
+	eLDLC17 = 45,
+	eLDLC18 = 46,
+	eLDLC20 = 48,
+	eLDLC19 = 47,
 };
 
 // Size: 0x4
 enum class EMeBarState
 {
+	ME_BAR_NONE = 0,
+	ME_BAR_TRESPASSING = 1,
+	ME_BAR_DEEPTRESPASSING = 2,
+	ME_BAR_DISGUISE_BLOWN = 5,
+	ME_BAR_VISIBLY_ARMED = 3,
+	ME_BAR_NEAR_BODY = 7,
+	ME_BAR_DISGUISE_SUSPICIOUS = 6,
+	ME_BAR_CHANGING_DISGUISE = 4,
 };
 
 // Size: 0x4
 enum class EMenuActionId
 {
+	MENU_ACTION_PLAY_VIDEO = 55,
+	MENU_ACTION_NONE = 0,
+	MENU_ACTION_SUBMENU = 1,
+	MENU_ACTION_SLIDER = 4,
+	MENU_ACTION_DIFFICULTY_SELECTED_PURIST = 25,
+	MENU_ACTION_PLAY_CONTRACT_TUTORIAL_PLAY02 = 17,
+	MENU_ACTION_SCREEN = 2,
+	MENU_ACTION_TOGGLE = 3,
+	MENU_ACTION_CONTRACT_DETAILS = 38,
+	MENU_ACTION_CALLBACK = 5,
+	MENU_ACTION_MAINMENU = 31,
+	MENU_ACTION_SELECTION = 6,
+	MENU_ACTION_CONTRACT_EDIT_DESC = 48,
+	MENU_ACTION_SPINNER = 7,
+	MENU_ACTION_PCEVENT = 8,
+	MENU_ACTION_CONFIRMED = 9,
+	MENU_ACTION_CHECKPOINT_START = 13,
+	MENU_ACTION_CONTINUE = 10,
+	MENU_ACTION_DIFFICULTY_SELECTED_HARD = 23,
+	MENU_ACTION_NEW_GAME = 20,
+	MENU_ACTION_BACK = 11,
+	MENU_ACTION_CONFIRM_RESTART_CHECKPOINT = 59,
+	MENU_ACTION_CHECKPOINT_DIFFICULTY = 12,
+	MENU_ACTION_CREATE_CONTRACT = 14,
+	MENU_ACTION_PLAY_CONTRACT_TUTORIAL_CREATE = 18,
+	MENU_ACTION_PLAY_CONTRACT = 15,
+	MENU_ACTION_PLAY_CONTRACT_TUTORIAL_PLAY01 = 16,
+	MENU_ACTION_NUM = 66,
+	MENU_ACTION_CONTRACT_CHALLENGE_CONFIRM = 42,
+	MENU_ACTION_RESTARTLEVEL = 30,
+	MENU_ACTION_NEW_GAME_CHECK_SIGNED_IN = 19,
+	MENU_ACTION_CONFIRM_EXIT_TO_MENU = 57,
+	MENU_ACTION_DIFFICULTY_SELECTED_EASY = 21,
+	MENU_ACTION_CONTRACT_FLIP_TARGET_RESTRICTIONS = 53,
+	MENU_ACTION_FADE_NEXT = 65,
+	MENU_ACTION_CONTRACT_DISLIKE = 45,
+	MENU_ACTION_DIFFICULTY_SELECTED_NORMAL = 22,
+	MENU_ACTION_DIFFICULTY_SELECTED_EXPERT = 24,
+	MENU_ACTION_RESTARTCHECKPOINT_WAITASYNCSAVE = 35,
+	MENU_ACTION_PROCEED_TO_NEXT_SCENE = 26,
+	MENU_ACTION_BENCHMARK = 56,
+	MENU_ACTION_QUIT = 27,
+	MENU_ACTION_SHOW_STORE = 28,
+	MENU_ACTION_RESTARTCHECKPOINT = 29,
+	MENU_ACTION_CONTRACT_QUEUE = 52,
+	MENU_ACTION_FADE_AND_RESTARTCHECKPOINT = 32,
+	MENU_ACTION_FADE_AND_RESTARTLEVEL = 33,
+	MENU_ACTION_FADE_AND_MAINMENU = 34,
+	MENU_ACTION_RESTARTLEVEL_WAITASYNCSAVE = 36,
+	MENU_ACTION_CONTRACT_FILTER_ID = 49,
+	MENU_ACTION_MAINMENU_WAITASYNCSAVE = 37,
+	MENU_ACTION_TITLESCREEN = 54,
+	MENU_ACTION_CONTRACT_SAVE = 39,
+	MENU_ACTION_CONTRACT_PLAYER_REPORT = 46,
+	MENU_ACTION_CONTRACT_SAVE_WITH_CHALLENGE = 40,
+	MENU_ACTION_CONFIRM_RESTART_LEVEL = 61,
+	MENU_ACTION_CONTRACT_LIKE = 44,
+	MENU_ACTION_CONTRACT_CHALLENGE = 41,
+	MENU_ACTION_CONTRACT_CHALLENGE_INVITE_CONFIRM = 43,
+	MENU_ACTION_CONFIRM_RESTART_CONTRACT = 60,
+	MENU_ACTION_CONTRACT_EDIT_TITLE = 47,
+	MENU_ACTION_CONTRACT_FILTER_CONFIRM = 50,
+	MENU_ACTION_CONFIRM_NEW_GAME = 62,
+	MENU_ACTION_CONTRACT_PLAY_FEATURED = 51,
+	MENU_ACTION_CONFIRM_EXIT_TO_MENU_SAFE = 58,
+	MENU_ACTION_OPEN_MESSAGES = 63,
+	MENU_ACTION_BUTTONMAP = 64,
 };
 
 // Size: 0x4
 enum class EMenuId
 {
+	MENU_NONE = 0,
+	MENU_CHECKPOINT_LEADERBOARD = 63,
+	MENU_CONTRACTS_FILTER_CHECKPOINTS = 84,
+	MENU_CONTRACTS_BROWSE = 73,
+	MENU_OPTIONS_GRAPHICS = 15,
+	MENU_NOTEBOOK_INVENTORY = 49,
+	MENU_SAFEZONESETUP = 2,
+	MENU_LOADSAVEINTRO = 3,
+	MENU_CONTRACTS_COMPETE = 70,
+	MENU_OPTIONS_LANGUAGE_TEXT = 28,
+	MENU_LANGUAGE_SELECTION = 1,
+	MENU_STATISTICS = 41,
+	MENU_GATE = 4,
+	MENU_DIFFICULTY = 6,
+	MENU_CONTRACTS_LEADERBOARDS_RICHEST = 94,
+	MENU_LEVELEND_UNLOCKS = 61,
+	MENU_CONTRACT_EDIT_NOTEBOOK = 54,
+	MENU_OPTIONS_CONTROLS_GAMEPAD = 20,
+	MENU_MAIN = 5,
+	MENU_NOTEBOOK_SCORE = 51,
+	MENU_DIFFICULTY_LOW = 7,
+	MENU_DIFFICULTY_HIGH = 8,
+	MENU_CONTRACTS_LEADERBOARDS = 92,
+	MENU_PAUSE = 43,
+	MENU_LEVELSELECTION = 9,
+	MENU_EXTRAS_CREDITS = 30,
+	MENU_CHECKPOINTSELECTION = 10,
+	MENU_CONTRACTS_HISTORY = 77,
+	MENU_OPTIONS_DEBUG = 25,
+	MENU_OPTIONS_BENCHMARK = 23,
+	MENU_OPTIONS = 11,
+	MENU_OPTIONS_GAME = 12,
+	MENU_OPTIONS_CONTROLS = 18,
+	MENU_CONTRACTS_MY_CREATED = 83,
+	MENU_CONTRACT_PLAYER_NOTEBOOK = 55,
+	MENU_OPTIONS_DIFFICULTY = 13,
+	MENU_NOTEBOOK_CONTROLLER = 48,
+	MENU_OPTIONS_SOUND = 14,
+	MENU_OPTIONS_DISPLAY = 16,
+	MENU_CONTRACTS_QUEUE = 76,
+	MENU_NOTEBOOK_OBJECTIVES = 45,
+	MENU_OPTIONS_CHEAT = 26,
+	MENU_OPTIONS_CAMERA = 17,
+	MENU_OPTIONS_CONTROLS_MOUSEKEYBOARD = 19,
+	MENU_OPTIONS_BUTTONMAPPING = 21,
+	MENU_CONTRACTS_CHECKPOINTS = 82,
+	MENU_OPTIONS_CONTROLS_GAMEPAD_LAYOUT = 22,
+	MENU_CONTRACTS_PLAY = 69,
+	MENU_CONTRACTS_TOURNAMENTS = 75,
+	MENU_OPTIONS_SYSTEM = 24,
+	MENU_CONTRACTS_TUTORIAL = 72,
+	MENU_NOTEBOOK_RATINGS = 52,
+	MENU_OPTIONS_LANGUAGE_AUDIO = 27,
+	MENU_CONTRACTS_LEVELSELECTION = 81,
+	MENU_EXTRAS = 29,
+	MENU_CONTRACTS_DETAILS_TABS = 88,
+	MENU_PROFILE = 31,
+	MENU_MESSAGES = 32,
+	MENU_LEADERBOARD_COUNTRIES = 67,
+	MENU_CONTRACTS_WEAPON_DISGUISE_PREVIEW_PLAY = 86,
+	MENU_CONTRACTS_DETAILS_OVERVIEW = 89,
+	MENU_SAFEHOUSE = 33,
+	MENU_SAFEHOUSE_WEAPONS = 34,
+	MENU_SAFEHOUSE_WEAPON_DATA = 35,
+	MENU_SAFEHOUSE_TECHNIQUES = 36,
+	MENU_SAFEHOUSE_TECHNIQUE_DATA = 37,
+	MENU_CONTRACTS_FEATURED = 78,
+	MENU_NOTEBOOK_CHALLENGES = 47,
+	MENU_SAFEHOUSE_DISGUISES = 38,
+	MENU_SAFEHOUSE_DISGUISE_DATA = 39,
+	MENU_CHALLENGES = 40,
+	MENU_RATINGS = 42,
+	MENU_NOTEBOOK = 44,
+	MENU_NOTEBOOK_CONTRACT_BRIEFING = 46,
+	MENU_CONTRACT_PLAYER_REPORT = 59,
+	MENU_NOTEBOOK_CONTRACTS = 50,
+	MENU_CONTRACT_MAKER_NOTEBOOK = 53,
+	MENU_CONTRACT_LEADERBOARD_NOTEBOOK = 56,
+	MENU_CONTRACT_MAKER_CHALLENGE_NOTEBOOK = 57,
+	MENU_CONTRACT_PLAYER_CHALLENGE_NOTEBOOK = 58,
+	MENU_LEVELEND = 60,
+	MENU_LEVELEND_LEADERBOARD = 62,
+	MENU_CONTRACTS_DETAILS_BACKGROUND = 90,
+	MENU_LEADERBOARD_FRIENDS = 64,
+	MENU_LEADERBOARD_NATIONAL = 65,
+	MENU_LEADERBOARD_GLOBAL = 66,
+	MENU_CONTRACTS_MAIN = 68,
+	MENU_CONTRACTS_DETAILS = 87,
+	MENU_CONTRACTS_CREATE = 71,
+	MENU_CONTRACTS_FRIENDS = 74,
+	MENU_CONTRACTS_OPEN_COMPETITION = 79,
+	MENU_CONTRACTS_COMPETITION_HISTORY = 80,
+	MENU_CONTRACTS_WEAPON_DISGUISE_PREVIEW = 85,
+	MENU_CONTRACTS_END = 91,
+	MENU_CONTRACTS_LEADERBOARDS_DEADLIEST = 93,
+	MENU_NUM = 96,
+	MENU_CONTRACTS_LEADERBOARDS_POPULAR = 95,
 };
 
 // Size: 0x4
 enum class EMenuStartupState
 {
+	EMENUPHASE_NONE = 0,
+	EMENUPHASE_PRESS_START = 2,
+	EMENUPHASE_LANGUAGE_SELECTION = 1,
+	EMENUPHASE_SIGN_IN = 3,
+	EMENUPHASE_MAIN_MENU = 13,
+	EMENUPHASE_PROMPT_STORAGE_DEVICE = 4,
+	EMENUPHASE_WAIT_FOR_STORAGE_DEVICE = 5,
+	EMENUPHASE_SAVEGAME_WARNING = 7,
+	EMENUPHASE_LOAD_SAVEGAME = 6,
+	EMENUPHASE_SCREEN_RESIZE = 8,
+	EMENUPHASE_PRE_FADE_INTRO_MOVIE = 9,
+	EMENUPHASE_POST_FADE_INTRO_MOVIE = 10,
+	EMENUPHASE_INTRO_MOVIE = 11,
+	EMENUPHASE_WAIT_FOR_BENCHMARK_RESULTS = 12,
+	EMENUPHASE_WAIT_FOR_DIALOG = 14,
+	EMENUPHASE_WAIT_FOR_ASYNC_SAVE = 15,
 };
 
 // Size: 0x4
 enum class EMessageBarMessage
 {
+	ECMB_Unknown = 0,
+	ECMB_NearDeadBody = 1,
 };
 
 // Size: 0x4
 enum class EMetaContent
 {
+	Meta_Nothing = 0,
+	Meta_UnlockSpecific = 6,
+	Meta_UnlockAllWeapons = 4,
+	Meta_ContractsModeAccess = 1,
+	Meta_SniperChallengeUnlockAccess = 2,
+	Meta_UnlockAllCheckpoints = 3,
+	Meta_UnlockAllDisguises = 5,
 };
 
 // Size: 0x4
 enum class EMorphemeEventId
 {
+	eDE_LegR = 100,
+	eDE_None = 0,
+	eDE_UnholsterWeapon = 18,
+	eDE_CombatEnableRightHandIK = 3010,
+	eDE_HolsterWeapon = 19,
+	eDE_InterpolationEnd = 301,
+	eDE_MoveToStandTranslationToRotation = 1701,
+	eDE_LegL = 101,
+	eDE_DisableNPCHitmanCollision = 700,
+	eDE_FireWeapon = 20,
+	eDE_CombatEndDisableIK = 3025,
+	eDE_TransitionEnd_LegR = 200,
+	eDE_TransitionEnd_LegL = 201,
+	eDE_Finish = 255,
+	eDE_InterpolationStart = 300,
+	eDE_TransitionSignal = 400,
+	eDE_TransitionEnd = 500,
+	eDE_CombatDisableShoot = 3040,
+	eDE_EnableNPCHitmanCollision = 701,
+	eDE_EnableRagdollRangeStart = 800,
+	eDE_EnableRagdollRangeEnd = 801,
+	eDE_AmbientItemUseMarker = 4010,
+	eDE_ImpactFinished = 900,
+	eDE_ActFinished = 1000,
+	eDE_ActFinishedWhenMoving = 1001,
+	eDE_ActLoop = 1050,
+	eDE_ActFullbodyStartMarker = 1090,
+	eDE_OffHandIKDisable = 1601,
+	eDE_ActFullbodyEndMarker = 1091,
+	eDE_CrouchToStand = 1501,
+	eDE_ReactionFinished = 1100,
+	eDE_ActBehaviorEventEnd = 4999,
+	eDE_PreventDeathAnimations = 2002,
+	eDE_StandToCrouch = 1500,
+	eDE_CombatEnableLeftHandIK = 3011,
+	eDE_OffHandIKEnable = 1600,
+	eDE_ActBehaviorEventStart = 4000,
+	eDE_StandToMoveRotationToTranslation = 1700,
+	eDE_WindowLeaningEnable = 2000,
+	eDE_HeadControlEnable = 2010,
+	eDE_WindowLeaningDisable = 2001,
+	eDE_CombatDisableBlindShoot = 3060,
+	eDE_AllowDeathAnimations = 2003,
+	eDE_HeadControlDisable = 2011,
+	eDE_CombatActEndMarker = 3000,
+	eDE_CombatAim = 3100,
+	eDE_CombatEndEnableIK = 3015,
+	eDE_CombatStartDisableIK = 3020,
+	eDE_CombatEnableShoot = 3030,
+	eDE_CombatEnableBlindShoot = 3050,
 };
 
 // Size: 0x4
 enum class EMotionType
 {
+	MOTION_FREE = 2,
+	MOTION_LOCKED = 0,
+	MOTION_LIMITED = 1,
 };
 
 // Size: 0x4
 enum class EMoveEndState
 {
+	MES_Moving = 0,
+	MES_Stopping = 1,
+	MES_Standing = 2,
 };
 
 // Size: 0x4
 enum class EMoveSpeed
 {
+	MS_Sprinting = 3,
+	MS_Sneaking = 0,
+	MS_Jogging = 2,
+	MS_Walking = 1,
 };
 
 // Size: 0x4
 enum class EMusicPlayGroup
 {
+	EMusic_PlayGroup_None = 0,
+	EMusic_PlayGroup_B = 3,
+	EMusic_PlayGroup_Segment = 1,
+	EMusic_PlayGroup_C = 4,
+	EMusic_PlayGroup_Sting = 7,
+	EMusic_PlayGroup_BurstA = 8,
+	EMusic_PlayGroup_A = 2,
+	EMusic_PlayGroup_D = 5,
+	EMusic_PlayGroup_E = 6,
+	EMusic_PlayGroup_BurstB = 9,
+	EMusic_PlayGroup_BurstC = 10,
+	EMusic_PlayGroup_BurstD = 11,
+	EMusic_PlayGroup_BurstE = 12,
 };
 
 // Size: 0x4
 enum class EMusicPlayStartType
 {
+	EMusicPlayStartType_Now = 0,
+	EMusicPlayStartType_NextBeat = 1,
+	EMusicPlayStartType_NextBar = 2,
+	EMusicPlayStartType_AtEnd = 3,
 };
 
 // Size: 0x4
 enum class EMusicPlaylistPlayType
 {
+	EMusicPlaylistPlayType_First = 0,
+	EMusicPlaylistPlayType_All = 1,
+	EMusicPlaylistPlayType_Random = 2,
+	EMusicPlaylistPlayType_Shuffle = 3,
+	EMusicPlaylistPlayType_RndStart = 4,
 };
 
 // Size: 0x4
 enum class EMusicTrackExposingType
 {
+	EMusicTrackExposingType_None = 0,
+	EMusicTrackExposingType_Attenuation = 1,
+	EMusicTrackExposingType_Lowpass = 2,
 };
 
 // Size: 0x4
 enum class EMusicTransitionFadeType
 {
+	EMusicTransitionFadeType_None = 0,
+	EMusicTransitionFadeType_DestinationIn = 2,
+	EMusicTransitionFadeType_SourceOut = 1,
+	EMusicTransitionFadeType_CrossFade = 3,
 };
 
 // Size: 0x4
 enum class EMusicTransitionType
 {
+	EMusicTransitionType_Now = 0,
+	EMusicTransitionType_AtEnd = 4,
+	EMusicTransitionType_NextBar = 3,
+	EMusicTransitionType_NowAligned = 1,
+	EMusicTransitionType_NextBeat = 2,
+	EMusicTransitionType_Custom = 5,
 };
 
 // Size: 0x4
 enum class EOSQueryManagerStatus
 {
+	eIdle = 0,
+	eRunning = 1,
+	eStopped = 2,
 };
 
 // Size: 0x4
 enum class EOSWebServiceState
 {
+	eTERMINATED = 0,
+	eCONNECTED = 4,
+	eREADY = 2,
+	eCREATING = 1,
+	ePROBING = 3,
+	eDISCONNECTED = 5,
 };
 
 // Size: 0x4
 enum class EObjectiveType
 {
+	OBJECTIVE_SECONDARY = 1,
+	OBJECTIVE_PRIMARY = 0,
+	OBJECTIVE_TERTIARY = 2,
 };
 
 // Size: 0x4
 enum class EOrderCompletionStatus
 {
+	OCS_Undetermined = 0,
+	OCS_Succeeded = 1,
+	OCS_Interrupted = 2,
+	OCS_Blocked = 3,
+	OCS_Failed = 4,
 };
 
 // Size: 0x4
 enum class EParticleColorUsage
 {
+	REPLACE_PARTICLE_COLOR = 0,
+	LEAVE_PARTICLE_COLOR = 1,
 };
 
 // Size: 0x4
 enum class EParticleDecalSpawnEntity_Constraints
 {
+	FACTOR_AND_RANDOMIZE = 0,
+	SIZE_RANGE = 1,
 };
 
 // Size: 0x4
 enum class EParticleModifierImpulseDirections
 {
+	TARGET_ZAXIS_DIRECTION = 0,
+	TOWARDS_TARGET_PIVOT = 1,
+	AWAY_FROM_TARGET_PIVOT = 2,
 };
 
 // Size: 0x4
 enum class EParticleSpritePivotLocation
 {
+	CENTER_PIVOT = 0,
+	BOTTOM_PIVOT = 1,
 };
 
 // Size: 0x4
 enum class EPathFinderBoxType
 {
+	PFBT_INCLUDE_MESH_COLLISION = 0,
+	PFBT_EXCLUDE_MESH_COLLISION = 1,
+	PFBT_CREATE_MESH_COLLISION = 2,
+	PFBT_REGION = 3,
+	PFBT_IGNORE = 4,
 };
 
 // Size: 0x4
 enum class EPlayMode
 {
+	PLAYMODE_STOPPED = 1,
+	PLAYMODE_PAUSED = 2,
+	PLAYMODE_PLAYING = 3,
 };
 
 // Size: 0x4
 enum class EPostProcessorComponentType
 {
+	MRP_LOOKAT = 1,
+	MRP_LEDGEMANIPULATION = 8,
+	MRP_AIM = 2,
+	MRP_LEDGE_AIM = 4,
+	MRP_FIBERWIRE = 64,
+	MRP_LEDGEFEETLOCK = 16,
+	MRP_LEDGEHANG = 32,
+	MRP_IMPACT = 2048,
+	MRP_PELVISOFFSET = 256,
+	MRP_BLINDFIRE = 4096,
+	MRP_SHOOTINGBALLET = 1024,
 };
 
 // Size: 0x4
 enum class EPushNotificationType
 {
+	PUSH_NOTIFICATION_OBJECTIVE = 0,
+	PUSH_NOTIFICATION_SPECIAL_RATING_UNLOCKED = 5,
+	PUSH_NOTIFICATION_DISGUISE = 1,
+	PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED = 7,
+	PUSH_NOTIFICATION_CONTRACT = 2,
+	PUSH_NOTIFICATION_CHALLENGE = 3,
+	PUSH_NOTIFICATION_RATING = 4,
+	PUSH_NOTIFICATION_CONTRACT_PICKED_UP = 6,
+	PUSH_NOTIFICATION_SCORE_COMPARISON = 8,
 };
 
 // Size: 0x4
 enum class ERANDOM_DISTRIBUTION
 {
+	RND_UNIFORM = 0,
+	RND_SAWTOOTH = 1,
 };
 
 // Size: 0x4
 enum class ERatingCategory
 {
+	ERatingCategory_COUNT = 5,
+	ERatingCategory_Invalid = 0,
+	ERatingCategory_Flawless = 1,
+	ERatingCategory_Violence = 2,
+	ERatingCategory_Cunning = 3,
+	ERatingCategory_Noise = 4,
 };
 
 // Size: 0x4
 enum class ERatingTitle
 {
+	ERatingTitle_SilentAssassin = 0,
+	ERatingTitle_Ninja = 2,
+	ERatingTitle_Eraser = 4,
+	ERatingTitle_PerfectAssassin = 1,
+	ERatingTitle_GloryBlazer = 3,
+	ERatingTitle_Exhibitionist = 5,
+	ERatingTitle_Trickster = 6,
+	ERatingTitle_COUNT = 10,
+	ERatingTitle_Chameleon = 7,
+	ERatingTitle_Spider = 8,
+	ERatingTitle_Angel = 9,
 };
 
 // Size: 0x4
 enum class ERatingTitleRequirement
 {
+	ERatingTitleRequirement_Optional = 0,
+	ERatingTitleRequirement_Required = 1,
+	ERatingTitleRequirement_Fails = 2,
 };
 
 // Size: 0x4
 enum class ERayDetailLevel
 {
+	RAYDETAILS_NONE = 0,
+	RAYDETAILS_BONES = 1,
+	RAYDETAILS_MESH = 2,
 };
 
 // Size: 0x4
 enum class ERayType
 {
+	ERAY_CLOSESTHIT_SIMPLE = 0,
+	ERAY_CLOSESTHIT_DETAILED = 1,
 };
 
 // Size: 0x4
 enum class ERegionMask
 {
+	eRM_None = 1,
+	eRM_LowCover = 2,
+	eRM_HighCover = 4,
+	eRM_Stairs = 8,
+	eRM_User_2 = 64,
+	eRM_Separator = 16,
+	eRM_User_1 = 32,
+	eRM_User_3 = 128,
+	eRM_User_4 = 256,
+	eRM_User_5 = 512,
+	eRM_User_6 = 1024,
+	eRM_User_7 = 2048,
+	eRM_User_8 = 4096,
 };
 
 // Size: 0x4
 enum class ERenderGlowTypes
 {
+	ERENDERGLOWTYPE_NONE = 0,
+	ERENDERGLOWTYPE_CONTRACT_TARGET = 5,
+	ERENDERGLOWTYPE_ENEMIES = 1,
+	ERENDERGLOWTYPE_ITEMS = 3,
+	ERENDERGLOWTYPE_ALLIES = 2,
+	ERENDERGLOWTYPE_BACKGROUNDUNMASKED = 8,
+	ERENDERGLOWTYPE_BACKGROUND = 4,
+	ERENDERGLOWTYPE_OBJECTIVES = 6,
+	ERENDERGLOWTYPE_BREADCRUMB = 7,
 };
 
 // Size: 0x4
 enum class ESBCamProfileBone
 {
+	eSBCamProfileBone_Ground = 3,
+	eSBCamProfileBone_Neck = 0,
+	eSBCamProfileBone_Spine = 1,
+	eSBCamProfileBone_Hand = 2,
+	eSBCamProfileBone_Num = 4,
 };
 
 // Size: 0x4
 enum class ESBPose
 {
+	eSBPose_RifleShootPose = 0,
+	eSBPose_DualBackLeftHigh = 3,
+	eSBPose_DualFrontHigh = 2,
+	eSBPose_DualLeftHigh = 1,
+	eSBPose_DualBackRightHigh = 4,
+	eSBPose_DualRightHigh = 5,
+	eSBPose_PistolShootPose = 6,
+	eSBPose_ShotGunShootPoseHigh = 7,
+	eSBPose_ShotGunShootPoseHip = 8,
+	eSBPose_Num = 9,
 };
 
 // Size: 0x4
 enum class ESOUND_3DROLLOFF_TYPE
 {
+	SOUND_3D_LOGARITHMIC_ROLLOFF = 1,
+	SOUND_3D_LINEAR_ROLLOFF = 0,
+	SOUND_3D_CUSTOM_ROLLOFF = 2,
 };
 
 // Size: 0x4
 enum class ESOUND_MAXAUDIBLEBEHAVIOR
 {
+	SOUND_FADELOWEST = 5,
+	SOUND_FAIL = 0,
+	SOUND_STEALLOWEST = 1,
+	SOUND_STEALOLDEST = 2,
+	SOUND_STEALMOSTDISTANT = 3,
+	SOUND_FADEMOSTDISTANT = 6,
+	SOUND_STEALLEASTIMPORTANT = 4,
 };
 
 // Size: 0x4
 enum class ESaveLoadSlotStatus
 {
+	eSAVELOADSLOTSTATUS_OK = 0,
+	eSAVELOADSLOTSTATUS_PROCESSING = 1,
+	eSAVELOADSLOTSTATUS_MISSING = 2,
+	eSAVELOADSLOTSTATUS_ERROR_NODISKSPACE = 3,
+	eSAVELOADSLOTSTATUS_ERROR_FATAL = 7,
+	eSAVELOADSLOTSTATUS_ERROR_DEVICEREMOVED = 4,
+	eSAVELOADSLOTSTATUS_ERROR_CORRUPT = 5,
+	eSAVELOADSLOTSTATUS_ERROR_SAVING = 6,
 };
 
 // Size: 0x4
 enum class ESaveLoadStatus
 {
+	eSAVELOADSTATUS_OK = 0,
+	eSAVELOADSTATUS_PROCESSING = 1,
 };
 
 // Size: 0x4
 enum class EScreenAnchor
 {
+	SCREEN_ANCHOR_TOP_CENTER = 1,
+	SCREEN_ANCHOR_BOTTOM_LEFT = 6,
+	SCREEN_ANCHOR_BOTTOM_CENTER = 7,
+	SCREEN_ANCHOR_TOP_LEFT = 0,
+	SCREEN_ANCHOR_TOP_RIGHT = 2,
+	SCREEN_ANCHOR_MIDDLE_LEFT = 3,
+	SCREEN_ANCHOR_MIDDLE_CENTER = 4,
+	SCREEN_ANCHOR_MIDDLE_RIGHT = 5,
+	SCREEN_ANCHOR_BOTTOM_RIGHT = 8,
 };
 
 // Size: 0x4
 enum class ESequencePreviewState
 {
+	PREVIEW_STOPPED = 0,
+	PREVIEW_PLAYING = 1,
+	PREVIEW_PAUSED = 2,
 };
 
 // Size: 0x4
 enum class ESettingsParam
 {
+	ESP_ProjectileDamage = 0,
+	ESP_ProjectileDPSThreshold = 1,
+	ESP_AttentionGain = 2,
+	ESP_VisibilityDistance = 3,
+	ESP_VisibilityConeHeight = 4,
+	ESP_ShootMaxSpread = 5,
+	ESP_CCounterEndLength = 8,
+	ESP_ShootMinSpread = 6,
+	ESP_ShootMaxSpreadRange = 7,
+	ESP_CCChoiceWindowLength = 9,
+	ESP_CCChainFailDamage = 10,
+	ESP_CCCounterFailDamage = 11,
 };
 
 // Size: 0x4
 enum class ESingletonIconType
 {
+	SINGLETON_ICON_TYPE_NONE = 0,
+	SINGLETON_ICON_TYPE_CHALLENGE = 1,
+	SINGLETON_ICON_TYPE_OBJECTIVE = 2,
+	SINGLETON_ICON_TYPE_DISGUISE = 7,
+	SINGLETON_ICON_TYPE_CHECKPOINT = 3,
+	SINGLETON_ICON_TYPE_LEVEL = 4,
+	SINGLETON_ICON_TYPE_TECHNIQUE = 6,
+	SINGLETON_ICON_TYPE_RATING = 5,
+	SINGLETON_ICON_TYPE_WEAPON = 8,
+	SINGLETON_ICON_TYPE_PROP = 9,
 };
 
 // Size: 0x4
 enum class ESituationJoinReason
 {
+	AISJR_Default = 0,
+	AISJR_HitmanStrange = 2,
+	AISJR_Assist = 4,
+	AISJR_HeardSound = 1,
+	AISJR_HitmanIllegal = 3,
+	AISJR_Propagate = 5,
+	AISJR_Spawned = 6,
+	AISJR_HelpCivilian = 7,
+	AISJR_Escalating = 8,
+	AISJR_DeadBody = 9,
+	AISJR_Bloodpool = 10,
+	AISJR_StandDown = 11,
+	AISJR_ForcedToHold = 12,
 };
 
 // Size: 0x4
 enum class ESituationType
 {
+	AIST_Any = 0,
+	AIST_Ambient = 1,
+	AIST_Fusebox = 2,
+	AIST_InvestigateStanding = 3,
+	AIST_HandleDisguise = 5,
+	AIST_HandleTrespassing = 6,
+	AIST_InvestigateCurious = 4,
+	AIST_DeadBody = 7,
+	AIST_Agitated = 8,
+	AIST_ProtoCombat = 12,
+	AIST_InvestigateCautious = 9,
+	AIST_StandOff = 10,
+	AIST_AvoidExplosion = 11,
+	AIST_CloseCombat = 13,
 };
 
 // Size: 0x4
 enum class ESmartBehaviorOrder
 {
+	SBO_Stand = 0,
+	SBO_Act = 3,
+	SBO_MoveToAct = 4,
+	SBO_Move = 1,
+	SBO_React = 2,
+	SBO_MoveToCover = 5,
+	SBO_ShootFromCover = 6,
+	SBO_Death = 7,
+	SBO_Teleport = 8,
 };
 
 // Size: 0x4
 enum class ESmartWaitCondition
 {
+	SWC_Executed = 3,
+	SWC_Time = 0,
+	SWC_Distance = 1,
+	SWC_Executing = 2,
 };
 
 // Size: 0x4
 enum class ESmoothingMode
 {
+	ESM_EXPONENTIAL = 1,
+	ESM_LINEAR = 0,
 };
 
 // Size: 0x4
 enum class ESniperScoreMessageType
 {
+	ESSMT_STYLE_PENALTY = 2,
+	ESSMT_STYLE_DEFAULT = 0,
+	ESSMT_STYLE_CIVKILL = 4,
+	ESSMT_STYLE_STREAK = 3,
+	ESSMT_STYLE_SCORE = 1,
 };
 
 // Size: 0x4
 enum class ESoundAmbienceReverbPreset
 {
+	eSoundAmbienceReverb_Generic = 1,
+	eSoundAmbienceReverb_Off = 0,
+	eSoundAmbienceReverb_PaddedCell = 2,
+	eSoundAmbienceReverb_Livingroom = 5,
+	eSoundAmbienceReverb_StoneRoom = 6,
+	eSoundAmbienceReverb_Room = 3,
+	eSoundAmbienceReverb_Hangar = 11,
+	eSoundAmbienceReverb_Bathroom = 4,
+	eSoundAmbienceReverb_Auditorium = 7,
+	eSoundAmbienceReverb_UnderWater = 23,
+	eSoundAmbienceReverb_Forest = 16,
+	eSoundAmbienceReverb_Concerthall = 8,
+	eSoundAmbienceReverb_Cave = 9,
+	eSoundAmbienceReverb_ParkingLot = 21,
+	eSoundAmbienceReverb_City = 17,
+	eSoundAmbienceReverb_Arena = 10,
+	eSoundAmbienceReverb_CarpettedHallway = 12,
+	eSoundAmbienceReverb_Hallway = 13,
+	eSoundAmbienceReverb_StoneCorridor = 14,
+	eSoundAmbienceReverb_Alley = 15,
+	eSoundAmbienceReverb_Mountains = 18,
+	eSoundAmbienceReverb_Quarry = 19,
+	eSoundAmbienceReverb_Plain = 20,
+	eSoundAmbienceReverb_SewerPipe = 22,
 };
 
 // Size: 0x4
 enum class ESoundBlendLoopMode
 {
+	ESBLM_ONESHOT = 0,
+	ESBLM_LOOP_FINISHLOOP = 2,
+	ESBLM_LOOP_IMMEDIATESTOP = 1,
+	ESBLM_RETRIGGER = 3,
 };
 
 // Size: 0x4
 enum class ESoundChannelGroup
 {
+	ESCG_NONE = 0,
+	SND_SpecialFX_Agility = 32,
+	SND_Default = 1,
+	SND_Phys_Rigidbody = 2,
+	SND_Wpn_HM_Handguns = 60,
+	SND_Wpn_HM_Revolvers = 61,
+	SND_Ambience = 10,
+	SND_Wpn_HM_Tail = 53,
+	SND_Phys_Shatter = 3,
+	SND_Wpn_HM = 4,
+	SND_GUI_Menu = 58,
+	SND_SpecialFX_ShootingBallet = 24,
+	SND_Diag_NPC = 19,
+	SND_Wpn_HM_Shot = 5,
+	SND_Wpn_NPC = 6,
+	SND_Music_Env = 22,
+	SND_Wpn_HM_Shotguns = 63,
+	SND_Wpn_Impacts = 7,
+	SND_Diag_HM = 18,
+	SND_Wpn_Flybys = 8,
+	SND_Diag_NPC_Crowd = 55,
+	SND_CS_Ingame = 20,
+	SND_Characters = 9,
+	ANIM_HM_Suit_Swoosh_Body = 45,
+	SND_VisualFX_ShotActivate = 16,
+	ANIM_NPC_CC_Movement = 52,
+	SND_Props = 11,
+	ANIM_HM_Agility = 38,
+	SND_Prop_Item = 12,
+	SND_FS_HM = 13,
+	SND_CS_PreRend = 21,
+	SND_Wpn_NPC_Rifles = 69,
+	SND_FS_NPC = 14,
+	ANIM_NPC_Generic = 49,
+	SND_VisualFX = 15,
+	ANIM_HM_Suit_Flap = 39,
+	SND_VisualFX_Explosions = 17,
+	ANIM_HM_Generic = 36,
+	SND_MusicNonEnv = 23,
+	SND_SpecialFX_CC = 25,
+	SND_Wpn_HM_Rifles = 62,
+	SND_SpecialFX_Jumps = 26,
+	SND_SpecialFX_Closet = 27,
+	SND_Wpn_NPC_Tail = 54,
+	ANIM_NPC_CC_Impacts = 51,
+	SND_SpecialFX_Vent = 28,
+	ANIM_HM_Suit_Swoosh_Fast = 46,
+	SND_SpecialFX_Instinct = 29,
+	SND_Wpn_NPC_Smgs = 71,
+	SND_SpecialFX_HumanShield = 30,
+	SND_SpecialFX_Disguise = 31,
+	SND_Stingers_SFX = 33,
+	ANIM_HM_Loco = 37,
+	SND_Diag_VO = 57,
+	SND_GUI = 34,
+	SND_Test = 35,
+	ANIM_HM_Suit_Release = 40,
+	ANIM_HM_Suit_Roll = 44,
+	ANIM_HM_Suit_Slide = 41,
+	ANIM_HM_Suit_LandImpact = 42,
+	ANIM_HM_Suit_Grab = 43,
+	ANIM_HM_CC_Impacts = 47,
+	ANIM_HM_CC_Movement = 48,
+	ANIM_NPC_Loco = 50,
+	SND_Phys_RigidBody_Ragdoll = 56,
+	SND_Diag_NPC_Oneliner = 74,
+	SND_Props_Doors = 59,
+	SND_Wpn_HM_Smgs = 64,
+	SND_Wpn_HM_Snipers = 65,
+	SND_Wpn_HM_Other = 66,
+	SND_Wpn_NPC_Handguns = 67,
+	SND_Wpn_NPC_Revolvers = 68,
+	SND_Wpn_NPC_Shotguns = 70,
+	SND_Wpn_NPC_Snipers = 72,
+	SND_Wpn_NPC_Other = 73,
+	SND_Moments = 75,
 };
 
 // Size: 0x4
 enum class ESoundCollisionType
 {
+	ESCT_ENDED = 3,
+	ESCT_IMPACT = 0,
+	ESCT_ROLLING = 1,
+	ESCT_SLIDING = 2,
+	ESCT_SHATTER = 4,
 };
 
 // Size: 0x4
 enum class ESoundGateType
 {
+	SOUNDGATE_TYPE_ROUND = 0,
+	SOUNDGATE_TYPE_SHARPCORNERS = 1,
 };
 
 // Size: 0x4
 enum class ESoundGlobalReverb
 {
+	eSoundGlobalReverb_Ambience0 = 1,
+	eSoundGlobalReverb_AllAmbience = 3,
+	eSoundGlobalReverb_Ambience1 = 2,
 };
 
 // Size: 0x4
 enum class ESoundMaterialType
 {
+	eWood = 0,
+	eMetalSteamPipe = 7,
+	eMetal = 2,
+	eWoodPlank = 1,
+	eConcrete = 15,
+	eMetalCar = 4,
+	eMetalHeavy = 3,
+	eMetalChainLinkFence = 28,
+	eDirt = 20,
+	eMetalRattle = 5,
+	ePaperBag = 36,
+	eCloth = 24,
+	eMetalFence = 6,
+	eGlassShards = 10,
+	eMetalNoDecal = 8,
+	eGlass = 9,
+	ePlastic = 11,
+	ePlasticHollow = 12,
+	eWater = 13,
+	eMarble = 33,
+	eWaterDeep = 14,
+	eMetalWeapon = 30,
+	eGround = 16,
+	eHeroFlesh = 18,
+	eFlesh = 17,
+	eGravel = 19,
+	eGrass = 21,
+	eUndefined = 43,
+	eCeramic = 22,
+	ePaper = 23,
+	eWoodCreaky = 25,
+	eFabric = 26,
+	eMetalThin = 27,
+	eShell = 32,
+	eMetalOilBarrels = 29,
+	eRubber = 31,
+	eCatwalk = 34,
+	eWoodAwesome = 35,
+	eMetalTube = 37,
+	eInaudible = 38,
+	eRagdoll = 39,
+	eSword = 40,
+	eMetalMechanical = 41,
+	eWoodStickMetal = 42,
 };
 
 // Size: 0x4
 enum class ESoundPlayParameters
 {
+	SOUND_PLAY_SINGLE = 0,
+	SOUND_PLAY_RANDOM = 1,
+	SOUND_PLAY_SHUFFLE = 2,
 };
 
 // Size: 0x4
 enum class ESoundReverbPreset
 {
+	eOff = 0,
+	eGeneric = 1,
+	eCave = 9,
+	ePaddedCell = 2,
+	eStoneRoom = 6,
+	eLivingroom = 5,
+	eRoom = 3,
+	eBathroom = 4,
+	eParkingLot = 21,
+	eCity = 17,
+	eAuditorium = 7,
+	eConcerthall = 8,
+	eArena = 10,
+	eHangar = 11,
+	eCarpettedHallway = 12,
+	eHallway = 13,
+	eStoneCorridor = 14,
+	eUnderWater = 23,
+	eAlley = 15,
+	eForest = 16,
+	eMountains = 18,
+	eQuarry = 19,
+	ePlain = 20,
+	eSewerPipe = 22,
 };
 
 // Size: 0x4
 enum class ESpeechPriority
 {
+	SP_AMBIENT = 0,
+	SP_ALERTED = 1,
+	SP_DEATH = 6,
+	SP_PAIN = 2,
+	SP_ALERTED_IMPORTANT = 3,
+	SP_COMBAT = 4,
+	SP_MAX = 7,
+	SP_COMBAT_IMPORTANT = 5,
+	SP_COUNT__ = 8,
 };
 
 // Size: 0x4
 enum class ESpeed
 {
+	eSpeed_Idle = 0,
+	eSpeed_Slow = 1,
+	eSpeed_Normal = 2,
+	eSpeed_Fast = 3,
+	eSpeed_Sprint = 4,
 };
 
 // Size: 0x4
 enum class EStandRepositionStrategy
 {
+	SRS_InPlaceRepositioning = 0,
+	SRS_NoRepositioning = 1,
 };
 
 // Size: 0x4
 enum class EStealthSituation
 {
+	SS_DISGUISE_TAKEN = 3,
+	SS_TAKE_HUMAN_SHIELD = 0,
+	SS_BODY_DISCOVERED = 18,
+	SS_HUMAN_SHIELD_DEAD = 1,
+	SS_HUMAN_SHIELD_EXIT = 2,
+	SS_DISGUISE_REMOVED = 6,
+	SS_DISGUISE_ILLEGAL_ACTION = 5,
+	SS_DISGUISE_INVESTIGATED = 7,
+	SS_DISGUISE_TRESPASSING = 4,
+	SS_DISGUISE_BLOWN = 8,
+	SS_HIDE_IN_CLOSET_FIRSTTIME = 9,
+	SS_HIDE_IN_CLOSET = 10,
+	SS_KEYCARD_PICKUP = 28,
+	SS_DOOR_START_LOCKPICKING = 11,
+	SS_DOOR_CANCEL_LOCKPICKING = 12,
+	SS_STARTED_SPRINTING = 44,
+	SS_LANDMINE_ARMED = 13,
+	SS_TRESPASSING = 38,
+	SS_RADIO_ON = 14,
+	SS_INVESTIGATE_NOISE = 21,
+	SS_VENT_ENTER = 15,
+	SS_HITMAN_ENTERED_COMBAT = 37,
+	SS_VENT_EXIT = 16,
+	SS_BLEND_IN_ACTIVATED = 17,
+	SS_FUSEBOX_DISABLE = 25,
+	SS_BLOODPOOL_DISCOVERED = 19,
+	SS_INVESTIGATE_GUNSHOT = 20,
+	SS_INVESTIGATE_EXPLOSION = 22,
+	SS_BODY_PUT_IN_CONTAINER = 30,
+	SS_SNEAK_CLOSE_TO_GUARDS = 23,
+	SS_INVESTIGATING_FUSEBOX = 26,
+	SS_FUSEBOX_DISABLE_UNIQUE = 24,
+	SS_SECURITYTAPE_PICKUP = 39,
+	SS_FUSEBOX_FIXED = 27,
+	SS_KEYCARD_USE = 29,
+	SS_BODY_DRAGGING_SEEN = 31,
+	SS_HITMAN_HIDDEN = 36,
+	SS_BODY_OVER_RAIL = 32,
+	SS_BODY_OVER_LEDGE = 33,
+	SS_USE_HEALTH_STATION = 34,
+	SS_HITMAN_SPOTTED = 35,
+	SS_NEWOBJECTIVE = 40,
+	SS_FOCUSADDED = 41,
+	SS_FOCUSFULL = 42,
+	SS_FOCUSEMPTY = 43,
+	SS_GENERIC_PICKUP = 48,
+	SS_STARTED_SNEAKING = 45,
+	SS_TOOK_COVER = 46,
+	SS_ATTENTION_ON = 49,
+	SS_INVESTIGATE_CURIOUS = 47,
+	SS_ATTENTION_OFF = 50,
 };
 
 // Size: 0x4
 enum class ESubGoalTimerType
 {
+	SG_Exp2Timer = 2,
+	SG_NoTimer = 0,
+	SG_LinearTimer = 1,
+	SG_TIMER_TYPE_ENDS = 4,
+	SG_Exp3Timer = 3,
 };
 
 // Size: 0x4
 enum class ESyncEvent
 {
+	eSyncEvent_None = 0,
+	eSyncEvent_LeftFoot = 100,
+	eSyncEvent_RightFoot = 200,
 };
 
 // Size: 0x4
 enum class ETestEnumForPG2
 {
+	TestEnum_Alpha = 0,
+	TestEnum_Beta = 1,
+	TestEnum_Gamma = 2,
+	TestEnum_Delta = 3,
+	TestEnum_Epsilon = 4,
 };
 
 // Size: 0x4
 enum class ETextAlignment
 {
+	TEXT_ALIGN_LEFT = 0,
+	TEXT_ALIGN_CENTER = 1,
+	TEXT_ALIGN_RIGHT = 2,
 };
 
 // Size: 0x4
 enum class EUIText
 {
+	EUI_TEXT_NONE = 0,
+	EUI_TEXT_CONTRACTS_PLAYTUTORIAL_PLAY01 = -1990949011,
+	EUI_TEXT_MSG_UNLOCK_DISGUISE = -13275497,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_001 = -908540459,
+	EUI_TEXT_MAINMENU_OVERVIEW_DISGUISE_NO_DATA = 402718189,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_AA = -647122270,
+	EUI_TEXT_MENU_MESSAGECENTER_ANNOUNCEMENTS = 193124442,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_038 = -1691799886,
+	EUI_TEXT_BUTTON_LEDGE_JUMP = 120465944,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_002 = 1355912303,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_CORRECT_DISGUISE_USED = -1641625445,
+	EUI_TEXT_NOT_ENOUGH_FREE_SPACE_XBOX = -999035003,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_003 = 668378361,
+	EUI_TEXT_MSG_RATING_UPDATE_TITLE = 104216253,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_004 = -1179504294,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_048 = -731334539,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_ASPECT = 1415269573,
+	EUI_TEXT_UPGRADES_MENU_ITEM_DISGUISES = -1527494899,
+	EUI_TEXT_CONTRACTS_CREATE_TARGETS = -1285178369,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_SSAO = 305401110,
+	EUI_TEXT_MSG_UNLOCK_WEAPON = 1507322096,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_005 = -826998324,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_049 = -1552971549,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_006 = 1471959158,
+	EUI_TEXT_UPGRADES_DISGUISE_EQUIP = 59229229,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CREATION_COMPLETE_SUBLINE = -1468946574,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_007 = 549150944,
+	EUI_TEXT_CONTRACTS_SUITONLY = -1430599007,
+	EUI_TEXT_ENDLEVEL_TECHNIQUE_UNLOCK_AVAILABLE = 1799070618,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_008 = -1341883023,
+	EUI_TEXT_COMMON_OK = 1528072362,
+	EUI_TEXT_PAUSE_MENU_ITEM_RESTARTCONTRACT = -1721921107,
+	EUI_TEXT_BUTTON_ENTERSAFEZONE = 1455552734,
+	EGAME_TEXT_SL_HOSTILE = -417019547,
+	EUI_TEXT_DIFFICULTY_EASY = -1697333421,
+	EGAME_TEXT_SL_CURIOUS = -1289454997,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_031 = -487221738,
+	EUI_TEXT_CONTRACTS_MAKER_ESCAPE = 731296524,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_044 = -572591010,
+	EUI_TEXT_PAUSE_MENU_ITEM_NOTEBOOK = -1326089900,
+	EUI_TEXT_COUNTRY_BELGIUM = -266826403,
+	EUI_TEXT_CONTRACTS_ACCESS_RESTRICTED_MESSAGE_PS3 = -669356937,
+	EUI_TEXT_STATS_NPCSKILLED = 415768538,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_009 = -956084761,
+	EUI_TEXT_COMMON_CONTINUE = 822276569,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_030 = -1779259776,
+	EUI_TEXT_EXTRAS_MENU_ITEM_CUTSCENES = -274894422,
+	EUI_TEXT_COUNTRY_SAUDI_ARABIA_LONG = -2048723667,
+	EUI_TEXT_BUTTON_CLIMB_LADDER = 1455485052,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_WEAPON_SELECTOR_HIDDEN = -1264457533,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_045 = -1428568888,
+	EUI_TEXT_DLC_MENU_ITEM_UNLOCK_DLC_PS3 = 461118567,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_010 = -1480276990,
+	EUI_TEXT_BUTTON_OUTFIT = -1458594083,
+	EUI_TEXT_COUNTRY_AUSTRIA = -1652019042,
+	EUI_TEXT_STATS_RANKING = -95734662,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_011 = -792464236,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_012 = 1238017326,
+	EUI_TEXT_BUTTON_PUSH_VICTIM = 88301328,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_SERVERERROR_TITLE = -153327121,
+	EUI_TEXT_COUNTRY_CYPRUS_LONG = 211456252,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_013 = 1053660600,
+	EUI_TEXT_MAINMENU_OVERVIEW_CHALLENGES_FLYOUT_BODYTEXT = -1214837599,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_014 = -1599537125,
+	EUI_TEXT_CONTRACTS_CONTRACT_SCORE_TRACKER_WEAPON = -582758152,
+	EUI_TEXT_NOTEBOOK_ITEM_LEADERBOARD = -616275416,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_NOTEBOOK = -1032059173,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_015 = -676450163,
+	EUI_TEXT_NOTEBOOK_ITEM_LEVELEND_NEW = -1045476760,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_016 = 1319592247,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_017 = 966807969,
+	EUI_TEXT_CONTRACTS_CHALLENGE_SENDING_TO_FRIENDS = -899428240,
+	EUI_TEXT_BUTTON_COVER_CORNER = -395878902,
+	EUI_TEXT_ONLINE_MENU_LEADERBOARD_GLOBAL = -1868154021,
+	EUI_TEXT_CONTRACTS_CHALLENGE_REPLACEMENT_BRIEFING = 1826509542,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_061 = -1618845101,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_018 = -1457566672,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_RIGHT_MOUSE = -1364588758,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_060 = -393915707,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_019 = -568820570,
+	EUI_TEXT_CONTRACTS_CRITERIA_CORRECT_OUTFIT = -1735943169,
+	EUI_TEXT_CONTRACTS_FAILED_BODY = 993460340,
+	EUI_TEXT_CONTRACTS_CONTRACT_SCORE_TRACKER_ALL_COMPLETED_FAILED = -557794855,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_020 = -1930848319,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_021 = -68245673,
+	EUI_TEXT_STATS_SUCCESSFULBLENDINS = 1106303295,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CHALLENGE_FAILED = 1444473692,
+	EUI_TEXT_BUTTONLEGEND_NEXT_NOTEBOOK_PAGE = 1861754182,
+	EUI_TEXT_STATS_HITRATIOREVOLVER = -815285326,
+	EUI_TEXT_COUNTRY_CROATIA = -783765357,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_022 = 1659369197,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE_UNLOCKS = 437365177,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_023 = 367052411,
+	EUI_TEXT_CONTRACT_MENU_LEADERBOARDS = 712582912,
+	EUI_TEXT_CONTRACT_PLAYER_DETAILS = 1922895568,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_024 = -1954262056,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_025 = -58498226,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_026 = 1703555828,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_027 = 311231074,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_028 = -2110644237,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_SCROLL_DOWN = 1791597905,
+	EUI_TEXT_COUNTRY_JAPAN_LONG = 303442382,
+	EUI_TEXT_BUTTON_BODY_DISCOVERED = -1198118057,
+	EUI_TEXT_STATS_CAUGHTTRESPASSING = -1553853853,
+	EUI_TEXT_CONTRACTS_MENU_PLAY_SORT_BY = 509208437,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_029 = -181063835,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_047 = 1154983396,
+	EUI_TEXT_BUY_CONTRACT_PASS = 994134713,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_032 = 2080163756,
+	EUI_TEXT_STATS_BARRELSBLOWNUP = 194188630,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_046 = 869307762,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_033 = 217839418,
+	EUI_TEXT_CONTRACTS_GENERIC_CONTRACT_BRIEFING_3_TARGETS = -157566118,
+	EUI_TEXT_CONTRACTS_CONTINUE = -1564433863,
+	EUI_TEXT_PAUSE_MENU_ITEM_MAINMENU = 272481308,
+	EUI_TEXT_NOTEBOOK_INVENTORY_ITEMS = 1740454523,
+	EUI_TEXT_CONTRACTS_SORTING_HELPTEXT = 81174250,
+	EUI_TEXT_CONTRACTS_FILTER_CATEGORIES = -1057937530,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_041 = -1380712239,
+	EUI_TEXT_OPTIONS_MENU_ITEM_CONTROLS_GAMEPAD = 1619036012,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_034 = -1835048295,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_040 = -625790905,
+	EUI_TEXT_STATS_HEADLINE_MOVEMENT = -1495541099,
+	EUI_TEXT_OPTIONS_GRAPHICS_MSAA_4X = 15688280,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_035 = -443002353,
+	EUI_TEXT_CONTRACT_ENDSCREEN_ELIMINATED = 1120339632,
+	EUI_TEXT_MENU_MESSAGECENTER_FRIENDS_MESSAGES = -431663784,
+	EUI_TEXT_OPTIONS_MENU_ITEM_CHEAT_BUTTON = 1584682594,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_043 = 1136288253,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_036 = 2089878453,
+	EUI_TEXT_MAINMENU_SYSTEM_BUTTONLEGEND_UP_DOWN = 812158071,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_042 = 884822379,
+	EUI_TEXT_BUTTON_SWAP_ITEM = 1322306635,
+	EUI_TEXT_BUTTON_BLEND_IN = -1113503947,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_037 = 194392867,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_NO_POSTING_SCORE_PS3 = 1392034403,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_039 = -332521948,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_050 = -1012399866,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_BARE_HANDS = 1914111385,
+	EUI_TEXT_CONTRACTS_CONTRACT_SCORE_TRACKER_WEAPON_FAILED = 427993150,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_LIST = -598956098,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_051 = -1263586928,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_052 = 765878314,
+	EUI_TEXT_COUNTRY_INDIA_LONG = 483434111,
+	EUI_TEXT_CONDITION_ANYMEANS_DISGUISE = 1320073464,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_053 = 1520521404,
+	EGAME_TEXT_SL_TRESPASSING_OFF = -372201995,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_054 = -993671905,
+	EUI_TEXT_CONTRACTS_OVERVIEW = 1457543517,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_055 = -1279068791,
+	EUI_TEXT_CREDITS = -1229929571,
+	EUI_TEXT_BUTTON_INVENTORY_CANCEL = 450332594,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_056 = 717988915,
+	EUI_TEXT_MAINMENU_OVERVIEW_PLAY_OFFSHOREACCOUNT_HEADER = 1086544246,
+	EUI_TEXT_CONTRACTS_FAILED = -34527633,
+	EUI_TEXT_BUTTON_RELOAD = 968214153,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_057 = 1573688485,
+	EUI_TEXT_CONFIRMATION_RESTART_CHECKPOINT = 491747958,
+	EUI_TEXT_LEVELSELECTMENU_ITEM_STARTLEVEL = 2018264337,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_TAKE_DISGUISE = -722333739,
+	EUI_TEXT_BUTTON_OPEN_DOOR = 1452032764,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_058 = -848066252,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_059 = -1166755422,
+	EUI_TEXT_COUNTRY_RUSSIAN_FEDERATION = 290678890,
+	EUI_TEXT_CONTRACT_VIEWNAME_FROM_FRIENDS = 1427872898,
+	EUI_TEXT_NOTEBOOK_CHALLENGES_BONUSTOTALTITLE = 327078363,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_TOURNAMENT_TITLE = 425672498,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_062 = 109786089,
+	EUI_TEXT_MAINMENU_OVERVIEW_CREATED_CONTRACTS_CREATED = 1976284215,
+	EUI_TEXT_MSG_TARGETISGETTINGAWAY = -473219001,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_063 = 1905001343,
+	EUI_TEXT_BUTTONLEGEND_RESTART = -1747802887,
+	EUI_TEXT_CONTRACTS_MAKER_SAVE_CONTRACT = 959874285,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_064 = -269969700,
+	EUI_TEXT_RESTART_LEVEL = -58271540,
+	EUI_TEXT_CONTRACTS_TARGET_TITLE = -1202083006,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_065 = -1729124790,
+	EUI_TEXT_MAINMENU_OVERVIEW_PLAY_CONTRACTS_RICHEST_LB = 1889232619,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_066 = 31913968,
+	EUI_TEXT_CONTRACTS_COMPETITION_NOTIFICATION_CHALLENGED_TO_PARTICIPATE = -1442004174,
+	EUI_TEXT_CONTRACTS_CHANGE_ATTEMPTS = 481689216,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_067 = 1994508134,
+	EUI_TEXT_LEGEND_GOTO_MENU = -613223707,
+	EUI_TEXT_STATS_HITRATIO = -538643241,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_068 = -429991177,
+	EUI_TEXT_COUNTRY_LUXEMBOURG_LONG = -2135152246,
+	EUI_TEXT_CONTRACTS_COMPETITION_NOTIFICATION_COMPETITION_YOU_CREATED_COMPLETE = -1541873685,
+	EUI_TEXT_CONTRACTS_KILL_LICENSE = -283322926,
+	EUI_TEXT_ONLINE_MENU_FRIENDS = -89447114,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_069 = -1856378271,
+	EUI_TEXT_MAINMENU_OVERVIEW_DISGUISE_FLYOUT_TITLE = 733564361,
+	EUI_TEXT_OPTIONS_MENU_ITEM_DIFFICULTY_BUTTON = 1388719059,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_070 = -241278076,
+	EUI_TEXT_CONTRACTS_FEATURED_CREATOR = 1885067899,
+	EUI_TEXT_DLC_MENU_ITEM_UNLOCK_DLC_XBOX = 1067805182,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_071 = -2036772078,
+	EUI_TEXT_DIFFICULTY_NORMAL = 1811773749,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_072 = 529531560,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_073 = 1754739262,
+	EUI_TEXT_OPTIONS_GRAPHICS_FXAA = 1923874239,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_074 = -151804003,
+	EUI_TEXT_BUTTON_SIMPLE = 1517696478,
+	EUI_TEXT_OPTIONS_LANGUAGE_CONFIRM_TEXT = 1303801131,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PLAY = -972193508,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_075 = -2114676981,
+	EUI_TEXT_MAINMENU_OVERVIEW_CREATE_CONTRACTS_FLYOUT_TITLE = -293211955,
+	EUI_TEXT_BUTTONLEGEND_PRESS_START = -1099148203,
+	EUI_TEXT_CONTRACTS_MAKER_MARK_TARGET = -1634690362,
+	EGAME_TEXT_SL_SUSPICIOUSBEHAVIOUR = -951457878,
+	EUI_TEXT_BUTTON_CLOSECOMBAT_CHOKE_TARGET = 1511525730,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_076 = 419284657,
+	EUI_TEXT_STATS_SILENT_KILLS = 1295773045,
+	EUI_TEXT_TITLE_SCREEN = 1001034161,
+	EUI_TEXT_STATS_MILESWALKED = 1684130615,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_077 = 1878717991,
+	EUI_TEXT_COUNTRY_SINGAPORE = 744458595,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_078 = -12194890,
+	EUI_TEXT_REGISTER_PC = -111402035,
+	EUI_TEXT_BUTTON_COVER_EXIT_FORWARD = 77832202,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_CAMERA = -380219415,
+	EUI_TEXT_DIFFICULTY_ENHANCED = -116277104,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_079 = -2008884448,
+	EUI_TEXT_COUNTRY_COLOMBIA_LONG = -1050155993,
+	EUI_TEXT_BUTTON_RELEASE_HUMAN_SHIELD = -749618227,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_080 = 1980137291,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_081 = 16863197,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_AIM = -424020636,
+	EUI_TEXT_CONTRACT_VIEWNAME_TOURNAMENTS = -502347476,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_082 = -1744298393,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_083 = -284217615,
+	EUI_TEXT_OPTIONS_GRAPHICS_DX11_REQUIRED = -1867891828,
+	EUI_TEXT_MAINMENU_TITLE = 1253692445,
+	EUI_TEXT_DIFFICULTY_INFO_EXPERT_BULLET_2 = 1487377745,
+	EGAME_TEXT_SL_DISGUISEBLOWN = -2110037725,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_CONFIRM_TITLE = -1758164922,
+	EUI_TEXT_CONFIRM_EXIT_WITHOUT_SAV = -1982210472,
+	EUI_TEXT_CONTRACTS_MENU_ACTION_TYPE_BEAT = 172032742,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_084 = 1902885714,
+	EUI_TEXT_MAINMENU_ITEM_STARTE3DEMO = -1277941573,
+	EUI_TEXT_OPTIONS_CONTROLS_MENU_TITLE = -173070328,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_CANCEL = -1469786790,
+	EUI_TEXT_BUTTON_SWITCHBOX = 1956318847,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_BUTTONMAP_RESET_TEXT = -1336283845,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_085 = 107776964,
+	EUI_TEXT_STATS_DEADLYTHROWS = -2511423,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_086 = -1620714882,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE_CREATED_CONTRACTS = -1571531800,
+	EUI_TEXT_CONTRACTS_FRIEND_AVERAGE = -1444749415,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_087 = -396170520,
+	EUI_TEXT_CONTRACTS_FILTER_FILTER = 581579172,
+	EUI_TEXT_MAINMENU_WEAPON_STATS_ITEM_DAMAGE = -784888216,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_PISTOLS_REVOLVERS = -1742502751,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_088 = 2027812729,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_089 = 265996271,
+	EUI_TEXT_NOTEBOOK_ITEM_STATISTICS = -2073210369,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SHOW_HUD_WEAPON = 456849732,
+	EUI_TEXT_CONCEPTARTMENU_CONCEPTART_TITLE_03 = -1538735051,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_090 = 1864191498,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_ACCIDENT = 1020600636,
+	EUI_TEXT_DLC_MENU_ITEM_UNLOCK_DLC = 2034157659,
+	EUI_TEXT_BUTTON_EXITSAFEZONE = -1460742594,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_091 = 404389532,
+	EUI_TEXT_MAINMENU_WEAPONS_UPGRADE_SLOTS = 824137924,
+	EUI_TEXT_BUTTONLEGEND_PREVIOUS_LEADERBOARD = -1460694516,
+	EUI_TEXT_OPTIONS_GRAPHICS_RESTART_BODY = -2135160239,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_092 = -2129449178,
+	EUI_TEXT_NOTEBOOK_DIFFICULTY_BONUS = -261943971,
+	EUI_TEXT_BUTTONLEGEND_NEXT_TAB = 1275804032,
+	EUI_TEXT_ONLINE_MENU_XBL_CONTRACTS_SERVER_NOT_AVAILABLE = 255779776,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_093 = -166453328,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_094 = 1752205843,
+	EUI_TEXT_MSG_SPECIAL_RATING_UNLOCKED = -183175961,
+	EUI_TEXT_CONTRACTS_MAKER_UNMARK_TARGET = 1922409891,
+	EUI_TEXT_CONTRACTS_CHALLENGE_SENDING_WAGER = -1730544091,
+	EUI_TEXT_CONTRACT_MENU_REPLAY_CONTRACT = -1296747580,
+	EUI_TEXT_BUTTONLEGEND_GAMERCARD = -463568595,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_095 = 527940229,
+	EUI_TEXT_CONTRACTS_DAYS_REMAINING = -968615882,
+	EUI_TEXT_CONTRACTS_CREATE_CONDITIONS = -1018908758,
+	EUI_TEXT_COUNTRY_BRAZIL = 1212899927,
+	EUI_TEXT_CONTRACTS_MENU_LEADERBOARD_TXT_RANK = -424723331,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_096 = -2038502593,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_097 = -243672151,
+	EUI_TEXT_BUTTON_EXIT_CLOSET = 559546891,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_SHOTGUN = 1814965817,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_098 = 1640416824,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_HOLD_CAMERA = 1422011166,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_099 = 381810350,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_100 = -1088577676,
+	EUI_TEXT_MAINMENU_ITEM_LEVELSELECTION = 1606850995,
+	EUI_TEXT_CONTRACTS_MENU_COMPETE = -1252051460,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_101 = -937775134,
+	EUI_TEXT_BUTTON_ABORT_CHECKPOINTDOOR = 2143887171,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_102 = 1360264792,
+	EUI_TEXT_EXIT_TO_MAINMENU = -376908219,
+	EUI_TEXT_CONTRACTS_FEATURED_LAUNCH_TITLE = -426775361,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_PREVIOUS_WEAPON = 1657511474,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_103 = 638897870,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_104 = -1200596115,
+	EUI_TEXT_STATS_KILLSHOTSSMG = 1714791982,
+	EUI_TEXT_CONTRACTS_MENU_LEADERBOARD_FETCHING = 1126770638,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_105 = -814257157,
+	EGAME_TEXT_HL_EMPTY = -465694819,
+	EUI_TEXT_BUTTON_KEYCARD_READER = 478017972,
+	EUI_TEXT_BUTTON_HINTMESSAGE_CONTINUE = -835730078,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_106 = 1451113025,
+	EUI_TEXT_STATS_HITRATIOSHOTGUN = -1829829649,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_107 = 561580759,
+	EUI_TEXT_BUTTON_MAPPING_COVER_TO_COVER = 788272563,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_108 = -1312417978,
+	EUI_TEXT_CONTRACTS_PLAYS = 1275977082,
+	EUI_TEXT_COUNTRY_AUSTRIA_LONG = -436999304,
+	EUI_TEXT_NOTEBOOK_ITEM_PROFESSIONALISM = -685796160,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_YOUR_SCORE = 1971848922,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_109 = -960419888,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SHOW_HUD_BUTTONS = 1083731684,
+	EUI_TEXT_BUTTON_ENTER_CLOSET = -630221677,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_110 = -1509511627,
+	EUI_TEXT_CONTRACTS_MENU_TUTORIALSMENU = 1883287914,
+	EUI_TEXT_MAINMENU_WEAPON_MENU_ITEM_UNLOCK = 469670090,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_112 = 1208536857,
+	EUI_TEXT_MAINMENU_ITEM_ONLINE = -1290949106,
+	EUI_TEXT_CONTRACTS_FEATURED_WARNING_BODY = 137772022,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_114 = -1586795988,
+	EUI_TEXT_MAINMENU_WEAPON_STATS_ITEM_FIRE_RATE = 1733015374,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_115 = -697541958,
+	EUI_TEXT_CONTRACTS_NO_SURVIVORS_COUNT = -782269038,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_116 = 1332022016,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_SUIT_ONLY = -166096554,
+	EUI_TEXT_MENU_ABSOLUTION_OFFLINE_NOTIFICATIONS_111 = -788423005,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_ORDERED = 1738552909,
+	EUI_TEXT_BUTTON_AREA_HINT = -1826718792,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_SERVERERROR_4 = -1055770160,
+	EGAME_TEXT_SL_EXPOSED = -269705807,
+	EUI_TEXT_CONTRACTS_TRACKER_ELIMINATED = -1708347179,
+	EUI_TEXT_BUTTON_ARM = 976705536,
+	EUI_TEXT_BUTTON_ATTACK = -590535193,
+	EUI_TEXT_COUNTRY_UKRAINE_LONG = 1612705747,
+	EUI_TEXT_BUTTON_CANCEL_BLEND_IN = -578499175,
+	EUI_TEXT_BUTTON_CHECKPOINT_DOOR = 1455275937,
+	EUI_TEXT_BUTTON_CLIMB_WINDOW = -359025276,
+	EUI_TEXT_DIFFICULTY_INFO_EASY_BULLET_2 = -265833522,
+	EUI_TEXT_BUTTON_CLOSECOMBAT_CHOKE = 277304703,
+	EUI_TEXT_CONTRACTS_MAKER_MARK = -411979402,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_MOTIONBLUR = -875055747,
+	EUI_TEXT_LEGEND_GOTO_CONTRACT = 1362695353,
+	EUI_TEXT_COUNTRY_UNKNOWNCOUNTRY_LONG = 1936042063,
+	EUI_TEXT_BUTTON_CLOSECOMBAT_PROPATTACK = 638224950,
+	EUI_TEXT_COMMON_SKIP = -1504879867,
+	EUI_TEXT_COUNTRY_SPAIN_LONG = -236410356,
+	EUI_TEXT_BUTTON_CLOSECOMBAT_PROPATTACK_SILENT = -1995041252,
+	EUI_TEXT_STATS_HEADLINE_EXPLOSIONS = 272369517,
+	EUI_TEXT_SAVEGAME_TITLE_PS3 = 830224885,
+	EUI_TEXT_NOTEBOOK_CHECKPOINTCOMPARISONPROMT_FRIENDS = 1703679332,
+	EUI_TEXT_BUTTON_CLOSECOMBAT_SILENT = -1144528484,
+	EUI_TEXT_CONTRACTS_FILTER_CATEGORIES_ALL = -2094562973,
+	EUI_TEXT_BUTTON_BREAK_FREE = -1364482535,
+	EUI_TEXT_CONTRACTS_REPORT_THIS = 653708736,
+	EUI_TEXT_MAINMENU_OVERVIEW_UNLOCKS_FLYOUT_TITLE = 374613935,
+	EUI_TEXT_CONTRACTS_FEATURED_WARNING_HEADER = 1918158232,
+	EUI_TEXT_BUTTON_CLOSECOMBAT_SNAPNECK = -1113078021,
+	EUI_TEXT_BUTTON_CLOSECOMBAT_START = -1853452742,
+	EUI_TEXT_CONTRACT_COMPETITION_LEADER_PC = 1638347295,
+	EUI_TEXT_BUTTON_CLOSE_DOOR = -1188351618,
+	EUI_TEXT_BUTTON_CLOSE_LID = -1928058700,
+	EUI_TEXT_POI_UNLOCK_HEADER = -150001509,
+	EUI_TEXT_BUTTONLEGEND_VIEW = 704229614,
+	EUI_TEXT_CONTRACTS_CRITERIA_ALL_TARGETS_DEAD = 741395282,
+	EUI_TEXT_BUTTON_CLOTHBUNDLE = -1966973587,
+	EUI_TEXT_BUTTON_CONTAINER_FLUSH_BODY = 2098023251,
+	EUI_TEXT_OPTIONS_GRAPHICS_ANSIOTROPIC_16X = 168333619,
+	EUI_TEXT_BUTTON_COUNTER_ATTACK = -471304035,
+	EUI_TEXT_BUTTONLEGEND_CONFIRM = -514630,
+	EUI_TEXT_BUTTON_COUNTER_DISARM = 204997761,
+	EUI_TEXT_STATS_KNOCK_OUTS = -1803929832,
+	EGAME_TEXT_SL_SEARCHING = 1747746457,
+	EUI_TEXT_CONTRACTS_CRITERIA_WITHIN_TIMELIMIT = 693345828,
+	EUI_TEXT_CONTRACTS_TRACKER_FAILED = -1584004318,
+	EUI_TEXT_BUTTON_COVER = -456988123,
+	EUI_TEXT_CONTRACTS_CHANGE_WAGER_AMOUNT = 2047709634,
+	EUI_TEXT_BUTTON_COVER_SCALE_EXIT = 1942981858,
+	EUI_TEXT_BUTTON_COVER_TO_COVER = 1699365532,
+	EUI_TEXT_BUTTON_DISABLE_FUSEBOX = -1396885905,
+	EUI_TEXT_BENCHMARK_RESULTS_TEXT = -1200563827,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_NOTEBOOK = 193815445,
+	EUI_TEXT_BUTTON_DRAG_BODY = 351400216,
+	EUI_TEXT_MSG_YOU_ARE_TRESPASSING = -785200900,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_TRIGGER_SHOOT_XBOX = 525858315,
+	EUI_TEXT_COUNTRY_OMAN = 2011827799,
+	EUI_TEXT_ONLINE_MENU_NOT_SIGNED_IN_PSN = 1402945948,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_FIRE_MODE = -1308925448,
+	EUI_TEXT_CONTRACTS_CONTRACT_FILTER_POPUP_PREVIOUS = 153365872,
+	EUI_TEXT_BUTTONLEGEND_OPEN_MESSAGE = -239432890,
+	EUI_TEXT_POI_SAVE_DAMAGED_PS3 = -961567024,
+	EUI_TEXT_COMMON_ON = 729709605,
+	EUI_TEXT_BUTTON_DROP_BODY = 1511897190,
+	EUI_TEXT_LEVELSELECTMENU_ITEM_MAINMENU = -1607605638,
+	EUI_TEXT_BUTTON_DROP_ITEM = -1632725302,
+	EUI_TEXT_BUTTON_DUMP_BODY = -951607210,
+	EUI_TEXT_STATS_KILLSHOTSFROMCOVER = -2026385194,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_MOVE = 2044743350,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_TOURNAMENT_RANK = 961696489,
+	EUI_TEXT_CONTRACTS_FEE_TITLE = -316451470,
+	EUI_TEXT_CONTRACTS_FILTER_CONTRACT_ID = 1629309899,
+	EUI_TEXT_BUTTON_END_CONTRACT = 342220968,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_RELOAD = 1894936505,
+	EUI_TEXT_CONTRACTS_TIME_TO_BEAT = 1984935540,
+	EUI_TEXT_BUTTON_FIBER_WIRE_KILL = -1125439602,
+	EUI_TEXT_BUTTON_HEALTH_STATION = 1170256647,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_MESSAGECENTER_PS3 = -990187001,
+	EUI_TEXT_BUTTON_HEALTH_STATION_FOCUS = 1439860628,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_SCROLL_UP = -634800172,
+	EUI_TEXT_BUTTONLEGEND_NEXT_LEADERBOARD = 1274505047,
+	EUI_TEXT_BUTTON_HOLD = -748416076,
+	EUI_TEXT_CONTRACTS_FREE = 2013285158,
+	EUI_TEXT_STATS_COPSKILLED = 1820012290,
+	EUI_TEXT_BUTTON_HUMAN_SHIELD = 1672971984,
+	EUI_TEXT_STATS_KNOCKOUTBYHAND = -12617602,
+	EUI_TEXT_BUTTON_PEEK_VENT = 1184689942,
+	EUI_TEXT_BUTTON_INSTINCT_TAKEDOWN = 1688409246,
+	EUI_TEXT_BUTTON_INTERACTIONLIST = 1822050841,
+	EUI_TEXT_STATS_HITRATIOPISTOL = 1064211797,
+	EUI_TEXT_BUTTON_PISTOL_FINISHER = -1337952044,
+	EUI_TEXT_COUNTRY_NETHERLANDS = -766186410,
+	EUI_TEXT_BUTTON_JUMP = 1797068965,
+	EUI_TEXT_MSG_OUTOFAMMO = 800810820,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CONTRACT_COMPLETE_ADDITIONAL_SUBLINE = 335211633,
+	EUI_TEXT_CONTRACTS_DECREASE_VALUE = -816141808,
+	EUI_TEXT_BUTTON_LEDGE = -1486352949,
+	EUI_TEXT_COUNTRY_PORTUGAL_LONG = 1005389909,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_SILENCER = 509980887,
+	EUI_TEXT_BUTTON_LEDGE_CLIMB_DOWN = 492610946,
+	EUI_TEXT_BUTTON_LEDGE_DROP_DOWN = -1067802622,
+	EUI_TEXT_BUTTON_LEDGE_PULL_UP = 1905228101,
+	EUI_TEXT_COUNTRY_ROMANIA = -992459926,
+	EUI_TEXT_MAINMENU_OVERVIEW_SPECIAL_RATINGS_FLYOUT_TITLE = 1099141314,
+	EUI_TEXT_ACTIVE_LANGUAGE_DLC_REMOVED = 710531407,
+	EUI_TEXT_MSG_RATING_UPDATE_BODY = -653701011,
+	EUI_TEXT_CONTRACTS_MENU_CATEGORY_DISGUISE = -112143835,
+	EUI_TEXT_BUTTON_LOOK_AT = 523151215,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_TITLE = 1948078429,
+	EUI_TEXT_OPENTRUNK = -1287574117,
+	EUI_TEXT_SAVE_DAMAGED_XBOX = -437330286,
+	EUI_TEXT_MENU_MESSAGECENTER_SENDER_CHALLENGES = -1927178069,
+	EUI_TEXT_BUTTON_OPEN_LID = -8945417,
+	EUI_TEXT_CONTRACTS_BRIEFING_COMPETITION_ADDITIONAL_DATA_CURRENTBEST = -4182772,
+	EUI_TEXT_NOTEBOOK_CHALLENGES_DISPLAYMODE_MINIMAL = 1864719739,
+	EUI_TEXT_BUTTON_OPERATE_LEVER = 437895206,
+	EUI_TEXT_CONTRACTS_SAVE_AND_CONTINUE = 1254450470,
+	EUI_TEXT_BUTTON_PEEK_CLOSET = 1862578249,
+	EUI_TEXT_CONTRACTS_TITLESLATE_BY = 1620757701,
+	EUI_TEXT_OPTIONS_MENU_ITEM_STORAGEDEVICE_BUTTON = 49244211,
+	EUI_TEXT_BUTTON_PICKUP = -627887839,
+	EUI_TEXT_CONTRACTS_FRIEND_WORLD_AVERAGE = -474475369,
+	EUI_TEXT_BUTTON_PULL_VICTIM = -227484598,
+	EUI_TEXT_BUTTON_QUICKSWAP = 994462943,
+	EUI_TEXT_BUTTONLEGEND_PREVIOUS_NOTEBOOK_PAGE = -94340014,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_ZOOM = 2270961,
+	EUI_TEXT_BUTTON_REMOTE_DETONATE = -1514505989,
+	EUI_TEXT_MSG_LAST_COMBAT_KILL = -4232885,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_PRECISION_AIM = -2133149763,
+	EUI_TEXT_CONTRACTS_CREATE_COMPETITION = 391806821,
+	EUI_TEXT_STATS_PIGEONSKILLED = 1011014099,
+	EUI_TEXT_BUTTON_RESET = 962057133,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET = -700050687,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_TARGET_ONLY = 252131581,
+	EUI_TEXT_CONTRACTS_FRIEND_GLOBAL_TITLE = 321702667,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_ANY_WEAPON = 1523897129,
+	EUI_TEXT_COUNTRY_INDONESIA = 162000989,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_CINEMATIC = 1250422649,
+	EUI_TEXT_CONTRACTS_NO_WITNESSES_DESC = 1190938163,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_NEXT_CAMERA = 650269634,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_LOWGRAPHICS = -2011823802,
+	EUI_TEXT_STATS_HEADLINE_COMBAT = 1258526511,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_COMPETITION_COMPLETE_HIGHSCORE_LEADER_SUBLINE = -1397362596,
+	EUI_TEXT_COUNTRY_CHILE_LONG = 709103452,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_SLOWDOWN = 1778443562,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_START = 963775287,
+	EUI_TEXT_MSG_EXPLOSION_KILL = 358201785,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_TAG = -1224078883,
+	EUI_TEXT_COUNTRY_NORWAY_LONG = -1180528371,
+	EUI_TEXT_STATS_GUARDS_BODIES_DISCOVERED = -1103275927,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_MONITOR = 718336646,
+	EUI_TEXT_BUTTON_SHOOTING_BALLET_UNDO = 1417241719,
+	EUI_TEXT_BUTTON_SLIDE_LADDER = -54615358,
+	EUI_TEXT_COUNTRY_HUNGARY = 1995870442,
+	EUI_TEXT_BUTTONLEGEND_SAVE = -2107498050,
+	EGAME_TEXT_SL_SUSPICIOUS = 57116096,
+	EUI_TEXT_BUTTON_SNEAK_PAST_WINDOW = 562869186,
+	EUI_TEXT_CONTRACTS_NO_KNOCKOUTS_DESC = -1842481420,
+	EUI_TEXT_CONTRACTS_INFOCARD_PAYOFF = -737298355,
+	EUI_TEXT_BUTTON_START_DIALOG = -431248975,
+	EUI_TEXT_MAINMENU_WEAPON_STATS_ITEM_RANGE = -701369578,
+	EUI_TEXT_BUTTON_SURRENDER = 832763249,
+	EUI_TEXT_BUTTON_TAKE_DISGUISE = 1313700175,
+	EUI_TEXT_CONTRACTS_OPTIONAL = 752687538,
+	EUI_TEXT_DLC_REMOVED_WARNING = -827887414,
+	EUI_TEXT_BUTTON_TAKE_DOWN = 1693114477,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_SHADOW_RESOLUTION = -510927406,
+	EUI_TEXT_BUTTON_USE = 920185567,
+	EUI_TEXT_READ_ERROR_PS3 = 1748052162,
+	EUI_TEXT_BUTTON_VENTILATOR_EXIT = 766200491,
+	EUI_TEXT_MAINMENU_DLC_OPEN_STORE_PS3 = 219856298,
+	EUI_TEXT_MAINMENU_SYSTEM_SERVER_SYNCHRONISATION_HEADER = 1664189905,
+	EUI_TEXT_BUTTON_INVENTORY_ACCEPT = -1986572,
+	EUI_TEXT_CONFIRM_SPOILER_HEADER = -43541772,
+	EUI_TEXT_BUTTON_CAR_ALARM = 147111628,
+	EUI_TEXT_BUTTON_MINIGAME = 434990069,
+	EUI_TEXT_STATS_MONEYEARNEDFROMCOMPLETINGCONTRACTS = 975683093,
+	EUI_TEXT_BUTTON_VENTILATOR_SHAFT = 913555356,
+	EUI_TEXT_PAUSE_MENU_ITEM_OPTIONS_BUTTON = -2086160267,
+	EUI_TEXT_CONTRACTS_LEADERBOARD_TITLE = -1639921978,
+	EUI_TEXT_CONFIRMATION_RESTART_LEVEL = -1524050868,
+	EUI_TEXT_STATS_PULLOFLEDGES = 462295178,
+	EUI_TEXT_BUTTONLEGEND_EXIT = 1124966254,
+	EUI_TEXT_COUNTRY_FINLAND = 11378642,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_SERVERERROR_5 = -1240135354,
+	EUI_TEXT_COUNTRY_ARGENTINA_LONG = 8722314,
+	EUI_TEXT_BUTTONLEGEND_CHALLENGE = -150530250,
+	EUI_TEXT_CONTRACTS_FEATURED_ALSO_AVAILLABLE = 1203362982,
+	EUI_TEXT_BUTTONLEGEND_SELECT = 176200677,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_LOSTCON_STEAM = -1063259225,
+	EUI_TEXT_DIFFICULTY_INFO_NORMAL = -655018774,
+	EUI_TEXT_STATS_KILLSHOTSASSAULT = -1621837391,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_TIME_BONUS = 1016528563,
+	EUI_TEXT_BUTTONLEGEND_BACK = -1161110953,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_NOWITNESSES = 1947758731,
+	EUI_TEXT_STATS_HEADLINE_CONTRACTS = -1848602752,
+	EUI_TEXT_CONTRACTS_CRITERIA_TITLE = -614869653,
+	EUI_TEXT_EXTRAS_MENU_TITLE = -2113256048,
+	EUI_TEXT_CONTRACTS_BRIEFING_ADDITIONAL_DATA_FRIENDSCORE = 497846225,
+	EUI_TEXT_BUTTONLEGEND_VIEW_MESSAGES = -961126256,
+	EUI_TEXT_SELECT_LANGUAGE_TITLE = -919641474,
+	EUI_TEXT_BUTTONLEGEND_CLEAR_LEADERBOARD = -1335462847,
+	EUI_TEXT_MAINMENU_OVERVIEW_COMPETE_CONTRACTS_TROPHIES_EARNED = -1464992974,
+	EUI_TEXT_BUTTONLEGEND_PLAY = -1987197478,
+	EUI_TEXT_COUNTRY_SWITZERLAND = 845787207,
+	EUI_TEXT_BUTTONLEGEND_PAUSE = -1584277658,
+	EUI_TEXT_CONTRACTS_SAVE_TO_QUEUE = 474591352,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_LEFT_MOUSE = -1370395589,
+	EUI_TEXT_COUNTRY_THAILAND_LONG = -1231082249,
+	EUI_TEXT_BUTTONLEGEND_PREVIOUS_TAB = 1994024827,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_ELIMINATION = -399583799,
+	EUI_TEXT_COUNTRY_AUSTRALIA = 1708009145,
+	EUI_TEXT_BUTTONLEGEND_SCROLL_UP = -1546997991,
+	EUI_TEXT_CONTRACTS_MENU_LEADERBOARD_TXT_USERID = 1744704781,
+	EUI_TEXT_STATS_CONTRACTSCREATED = 1171763398,
+	EUI_TEXT_BUTTONLEGEND_BUTTONMAP_RESET = 1623679334,
+	EUI_TEXT_COUNTRY_THAILAND = 1776812878,
+	EUI_TEXT_BUTTONLEGEND_SCROLL_DOWN = 133289447,
+	EUI_TEXT_BUTTONLEGEND_SELECT_LEADERBOARD = -1833176270,
+	EUI_TEXT_BUTTONLEGEND_SELECT_MENU = -2028307908,
+	EUI_TEXT_BUTTONLEGEND_EXPAND = -224393342,
+	EUI_TEXT_BUTTONLEGEND_COLLAPSE = -352943407,
+	EUI_TEXT_BUTTONLEGEND_SCROLL_UP_DOWN = 379915656,
+	EUI_TEXT_BUTTONLEGEND_COMPARE_SUBMENU_SCROLL_UP_DOWN = 1406580913,
+	EUI_TEXT_NOTEBOOK_UNLOCK_NEXT = 333609940,
+	EUI_TEXT_MAINMENU_PURCHASE_DISGUISE_SUCCESS = -1272106463,
+	EUI_TEXT_BUTTONLEGEND_COMPARE_SUBMENU_GAMERCARD = 470371309,
+	EUI_TEXT_STATS_PIGSBLOWNUP = -4068464,
+	EUI_TEXT_MENU_BUTTONLEGEND_031 = -1229777916,
+	EUI_TEXT_COUNTRY_MALTA_LONG = 527308655,
+	EUI_TEXT_COMMON_NO = 1164082674,
+	EUI_TEXT_COMMON_OFF = -833934565,
+	EUI_TEXT_COMMON_CANCEL = -123584038,
+	EUI_TEXT_COMMON_WARNING = -1551686832,
+	EUI_TEXT_MAINMENU_OVERVIEW_CHALLENGES_FLYOUT_TITLE = -746455051,
+	EUI_TEXT_COMMON_EXIT = -902657418,
+	EUI_TEXT_NUMBER_SEPARATOR_DECIMALS = -1099418206,
+	EUI_TEXT_DIFFICULTY_EXPERT = 90407571,
+	EUI_TEXT_DIFFICULTY_INFO_EASY_BULLET_1 = 1764680308,
+	EUI_TEXT_NUMBER_SEPARATOR_THOUSANDS = 1168167709,
+	EUI_TEXT_POI_UNLOCK_KEY_REQUIRED_HEADER = 307599438,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_NO_WITNESSES = -89883616,
+	EUI_TEXT_DIFFICULTY_PROFESSIONAL = 338249201,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_NO_LEADERBOARDS_PS3 = -1687960761,
+	EUI_TEXT_DIFFICULTY_HARD = 312687126,
+	EUI_TEXT_MAINMENU_OVERVIEW_COMPETE_CONTRACTS_DEADLIEST_LB = 334762041,
+	EUI_TEXT_DIFFICULTY_PURIST = 350279076,
+	EUI_TEXT_CONTRACTS_FRIENDSBEST = 1504961970,
+	EUI_TEXT_CONTRACTS_BRIEFING_COMPETITION_ADDITIONAL_DATA_DAYSREMAINING = 35372642,
+	EUI_TEXT_VISIT_WEBSITE = -223406633,
+	EUI_TEXT_MAINMENU_OVERVIEW_TECHNIQUES_FLYOUT_BODYTEXT = -1935136109,
+	EUI_TEXT_TECHNIQUE_AVAILLABLE = 1022359024,
+	EGAME_TEXT_SL_DISGUISESUSPICIOUS = 1858904117,
+	EUI_TEXT_REDEEM_CODE = 215364908,
+	EUI_TEXT_CONTRACT_COMPLETION_SCORE = -974719016,
+	EUI_TEXT_NOTEBOOK_ITEM_CONTRACT_DISLIKE = 603378304,
+	EUI_TEXT_SECRET = -1712892335,
+	EUI_TEXT_DLC_MENU_TITLE = 646756425,
+	EUI_TEXT_COUNTRY_CZECH_REPUBLIC_LONG = 1253442084,
+	EUI_TEXT_DLC_MENU_TITLE_PS3 = -1732613252,
+	EUI_TEXT_COMMON_YES = -1877982223,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_TITLE_PS3 = -451141772,
+	EGAME_TEXT_SL_DISGUISED = 1747513649,
+	EUI_TEXT_CONTRACTS_CHANGE_WEAPON = 289897137,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_HIGHGRAPHICS = -1452415263,
+	EUI_TEXT_OPTIONS_GAME_MENU_INSTINCTSENSENPC = 112350172,
+	EUI_TEXT_CONTRACTS_LIKE = -1722955171,
+	EUI_TEXT_CONTRACTS_INFOCARD_YOUR_SCORE = 580091019,
+	EUI_TEXT_STATS_CONTAINERSENTERED = 1046551133,
+	EUI_TEXT_MAINMENU_SYSTEM_BUTTONLEGEND_TAB_LEFT_RIGHT = 2052910495,
+	EUI_TEXT_CONTRACTS_GENERIC_CONTRACT_TITLE = 935651015,
+	EUI_TEXT_CONTRACTS_DISLIKE = -698732879,
+	EUI_TEXT_CONTRACTS_CREATE_PAYOFF = -1766058071,
+	EUI_TEXT_STATS_FIREWORKSBOXESBLOWNUP = -1833649450,
+	EUI_TEXT_CONTRACTS_CREATE_TIME = 1157736240,
+	EUI_TEXT_CONTRACTS_NO_KNOCKOUTS = -474221745,
+	EUI_TEXT_CONTRACTS_CREATE_STARTING_GEAR = 137202939,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_SHOOT = 795858312,
+	EUI_TEXT_MAINMENU_OVERVIEW_SPECIAL_RATINGS_FLYOUT_BODYTEXT = -1697060510,
+	EUI_TEXT_CONTRACTS_GENERIC_CONTRACT_BRIEFING = 2036672406,
+	EUI_TEXT_CONTRACTS_PLAYTUTORIAL_PLAY02 = 274585303,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_WITHIN_LIMIT = 364938424,
+	EUI_TEXT_COUNTRY_BULGARIA_LONG = 1938209524,
+	EUI_TEXT_CONTRACTS_GENERIC_CONTRACT_BRIEFING_2_TARGETS = -505368807,
+	EUI_TEXT_CONTRACTS_FRIENDS_ONLINE = -172849830,
+	EUI_TEXT_CONTRACTS_ANY_MEANS = -1887490476,
+	EGAME_TEXT_SL_CLEAR = 1218047522,
+	EUI_TEXT_LEVELSELECTMENU_TITLE = -1942708885,
+	EUI_TEXT_CONTRACTS_CHALLENGE_A_FRIEND = -2051713808,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_PERFECTSHOOTER = 1641903013,
+	EUI_TEXT_CONTRACTS_FRIEND_LEADERBOARD_TITLE = 1420768894,
+	EUI_TEXT_CONTRACTS_WALLET = 521279239,
+	EUI_TEXT_COUNTRY_FINLAND_LONG = -1752094913,
+	EUI_TEXT_CONTRACTS_FRIEND_COUNTRY_TITLE = -575529128,
+	EUI_TEXT_MAINMENU_ITEM_PROFILE = 494113718,
+	EGAME_TEXT_SL_BLOODPOOLFOUND = 1665094115,
+	EUI_TEXT_MAINMENU_OVERVIEW_CHALLENGES_NO_DATA = -1033359520,
+	EUI_TEXT_CONTRACTS_FRIEND_NATIONAL_TITLE = -1313204536,
+	EUI_TEXT_CONTRACTS_PERFECT_SHOOTER = 1029317723,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_WAIT_FOR_SERVER_TITLE = 680113737,
+	EGAME_TEXT_SL_NEARBODY = -1835548893,
+	EUI_TEXT_CONTRACTS_FRIEND_COUNTRYCODE_AVERAGE = -1368893597,
+	EUI_TEXT_OPTIONS_MENU_ITEM_CHEAT = -211900519,
+	EUI_TEXT_CONTRACTS_CLIENT_TITLE = -1482707719,
+	EUI_TEXT_PAUSE_MENU_ITEM_CONTINUE = 1433127328,
+	EUI_TEXT_CONTRACTS_BRIEFING_COMPETITION_ADDITIONAL_DATA_COMPETITION_CREATOR = 368714866,
+	EUI_TEXT_MSG_RETURNTOMENU = 40993832,
+	EUI_TEXT_CONTRACT_ENDSCREEN_NOTMET = 653370068,
+	EUI_TEXT_CONTRACTS_CHALLENGE_TITLE = -1506708506,
+	EUI_TEXT_OPTIONS_SOUND_MENU_ITEM_EFFECTS_VOLUME = -2089175773,
+	EUI_TEXT_CONTRACTS_RESTRICTION_TITLE = 273359004,
+	EUI_TEXT_CONTRACTS_BRIEFING_TITLE = -2053540710,
+	EUI_TEXT_CONTRACTS_COMPLETE = -213624635,
+	EUI_TEXT_CONTRACTS_CONTRACT_TITLE = -1460424252,
+	EUI_TEXT_UPGRADES_MENU_ITEM_WEAPONS = 565946901,
+	EUI_TEXT_CONTRACTS_TUTORIAL_PLAY02_DESCRIPTION = 406646275,
+	EUI_TEXT_CONTRACTS_CONTRACT_FILTER_POPUP_NEXT = 232328005,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MEDIUMGRAPHICS = 1131886875,
+	EUI_TEXT_CONTRACTS_CRITERIA_KILL = 1729565401,
+	EUI_TEXT_CONTRACTS_CRITERIA_ORDERED = -979422007,
+	EUI_TEXT_CONTRACTS_CRITERIA_TARGET_ALIVE = -1392521608,
+	EUI_TEXT_CONTRACTS_DISGUISE = 436681513,
+	EUI_TEXT_CONTRACTS_INVISIBLE = 1187177202,
+	EUI_TEXT_MAINMENU_OVERVIEW_QUICKPLAY_CONTRACTS_FLYOUT_TITLE = 1408700079,
+	EUI_TEXT_CONTRACTS_ERASE_TRACES = 990790422,
+	EUI_TEXT_ITEM_QUIT_CONFIRMATION = -1848618474,
+	EUI_TEXT_CONTRACTS_ERASE_TRACES_DESC = 807953976,
+	EUI_TEXT_CONTRACTS_TUTORIAL_PLAY01_TITLE = 231948075,
+	EUI_TEXT_NOTEBOOK_TARGET = 1724471959,
+	EUI_TEXT_OPTIONS_GRAPHICS_MSAA_8X_FXAA = -1269129529,
+	EUI_TEXT_NOTEBOOK_ITEM_LEVELEND_COMPLETED = -886109102,
+	EUI_TEXT_CONTRACTS_KILL_WEAPON = -1598594063,
+	EUI_TEXT_CONTRACTS_MAKER_CREATING = 159362550,
+	EUI_TEXT_CONTRACTS_MAKER_KILL = -2043931282,
+	EUI_TEXT_CONTRACTS_MAKER_TIME = -292431038,
+	EUI_TEXT_OPTIONS_GRAPHICS_MSAA_2X = 1454753246,
+	EUI_TEXT_COUNTRY_CZECH_REPUBLIC = 997495200,
+	EUI_TEXT_UPGRADES_MENU_ITEM_TECHNIQUES = -692422541,
+	EUI_TEXT_CONTRACTS_NO = 561811711,
+	EUI_TEXT_CONTRACTS_NO_WITNESSES = -2006542019,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_SCORE_TO_BEAT = -484420201,
+	EUI_TEXT_CONTRACTS_ORDERED_KILLS = -1406455931,
+	EUI_TEXT_CONTRACTS_ORDERED_KILLS_DESC = -671552619,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_INSTINCT = -650828493,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MOVE_BACKWARD = 756293493,
+	EUI_TEXT_CONTRACTS_PERFECT_SHOOTER_DESC = 190125200,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CHALLENGE_TITLE = 1865405305,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_MESSAGECENTER_PS3 = -1354871212,
+	EUI_TEXT_CONTRACTS_SECTION_EXTRA = 1648125548,
+	EUI_TEXT_CONTRACTS_SECTION_MAIN = -750828680,
+	EUI_TEXT_CONTRACTS_SECTION_SINGLE_TARGET = -701430377,
+	EUI_TEXT_CONTRACTS_CHANGE_DISGUISE = 139897387,
+	EUI_TEXT_OPTIONS_LANGUAGE_TITLE = -2000813006,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_REPORT_CONTRACT_TITLE = -1201596130,
+	EUI_TEXT_CONTRACTS_SECTION_TARGETS = 168507107,
+	EUI_TEXT_NOTEBOOK_UNLOCK_SKIP_ALL = 1933278011,
+	EUI_TEXT_MENU_ENDLEVELMENU_035 = 967213301,
+	EUI_TEXT_MSG_HEADSHOT_KILL = -1205448177,
+	EUI_TEXT_STATS_KILLS = 1899245186,
+	EUI_TEXT_CONTRACTS_SUITONLY_DESC = -1466718694,
+	EUI_TEXT_CONTRACTS_TARGET_ONLY = -2030729219,
+	EUI_TEXT_ONLINE_MENU_ITEM_CONTRACTS_BUTTON = -1234344131,
+	EUI_TEXT_COUNTRY_AUSTRALIA_LONG = 1259506408,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CONTRACT_COMPLETE_NOADDITIONAL_SUBLINE = 2144315633,
+	EUI_TEXT_CONTRACTS_TARGET_ONLY_DESC = 2130290019,
+	EUI_TEXT_MAINMENU_PURCHASE_WEAPON_SUCCESS = -560151507,
+	EUI_TEXT_CONTRACTS_YES = -289070687,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_COVER = -769413133,
+	EUI_TEXT_CONTRACT_ENDSCREEN_PAYOFF = -1989717658,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_INVERT_Y = 1760277418,
+	EUI_TEXT_MAINMENU_OVERVIEW_COMPETE_CONTRACTS_FLYOUT_TITLE = 2004627457,
+	EUI_TEXT_CONTRACT_ENDSCREEN_TARGETS = -1197359208,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_REFRESHRATE = -499096315,
+	EUI_TEXT_MAINMENU_SYSTEM_SERVER_SYNCHRONISATION_BODY = 680206575,
+	EUI_TEXT_DIFFICULTY_INFO_HARD_BULLET_1 = 1037850514,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_WINDOWMODE = 1082096315,
+	EUI_TEXT_CONTRACT_ENDSCREEN_CONDITIONS = 1991881129,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING = 971914466,
+	EUI_TEXT_CONTRACT_ENDSCREEN_TIME = 1540452977,
+	EUI_TEXT_CONTRACT_ENDSCREEN_BASE = -185527211,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_VERTICAL_CAMERA_SPEED = -1157387745,
+	EUI_TEXT_NOTEBOOK_ITEM_RATINGS = -819391406,
+	EUI_TEXT_CONTRACTS_INFOCARD_POSITION = -1466333461,
+	EUI_TEXT_CONTRACT_ENDSCREEN_BONUS = -2055803155,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_WEAPON_SELECTOR_ALWAYS = -1705493147,
+	EUI_TEXT_SAVEGAME_TITLE_XBOX = 562994099,
+	EUI_TEXT_CONTRACT_VIEWNAME_BROWSE = 2023300480,
+	EUI_TEXT_STATS_GUARDS_SNEAKED_PAST = 200069407,
+	EUI_TEXT_CREATED_ENDSCREEN_REMOVE_TARGET_CONDITIONS_SYSTEM_DIALOGUE_HEADER = 1060019989,
+	EUI_TEXT_CONTRACT_VIEWNAME_QUEUED_CONTRACTS = -1864174006,
+	EGAME_TEXT_SL_VISIBLYARMED = 1271479296,
+	EUI_TEXT_PAUSE_MENU_SUBTITLE = 340296664,
+	EUI_TEXT_ONLINE_MENU_GLOBAL = 379126409,
+	EUI_TEXT_CONTRACTS_INVITEFRIENDS = 1244267618,
+	EUI_TEXT_NOTEBOOK_ITEM_TOTALGAMESCORE = -1464591878,
+	EUI_TEXT_COUNTRY_ITALY = -1515542605,
+	EUI_TEXT_CONTRACT_VIEWNAME_FEATURED_CONTRACTS = 423785217,
+	EUI_TEXT_CONFIRMATION_EXIT_TO_MAIN_MENU = 1943767073,
+	EUI_TEXT_MAINMENU_OVERVIEW_CONTINUE_FLYOUT_BODYTEXT = -1531933814,
+	EUI_TEXT_CONTRACT_VIEWNAME_HISTORY = 1192147481,
+	EUI_TEXT_NOTEBOOK_ITEM_CHALLENGES = 1628142909,
+	EUI_TEXT_CONTRACTS_UNLOCK_FOR = -1682553635,
+	EUI_TEXT_CONTRACTS_TRACKER_AGENT = -1909648357,
+	EUI_TEXT_MAINMENU_OVERVIEW_DISGUISE_FLYOUT_BODYTEXT = 1679254537,
+	EUI_TEXT_CONTRACTS_TRACKER_NO_TARGET_IN_SIGHT = -719099726,
+	EUI_TEXT_CONTRACTS_TRACKER_PACIFIED = 1243558461,
+	EUI_TEXT_CONTRACTS_TRACKER_DASHES = 1461729481,
+	EUI_TEXT_CONDITION_ANYMEANS_WEAPON = -645840129,
+	EUI_TEXT_CONTRACTS_TRACKER_FAILED_CONDITIONS = 1981658461,
+	EUI_TEXT_COUNTRY_CHILE = -272147774,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_TESSELLATION = 1122007398,
+	EUI_TEXT_CONFIRMATION_RESTART_CONTRACT = -273074012,
+	EUI_TEXT_COUNTRY_BRAZIL_LONG = 257212344,
+	EUI_TEXT_CONTRACT_PLAYER_TIME = -1455472787,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CHALLENGE_WON = -673073984,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CHALLENGE_WON_SUBLINE = 201170672,
+	EUI_TEXT_OPTIONS_GRAPHICS_ANSIOTROPIC_4X = -802628374,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_ATTEMPTS_REMAINING = 880636282,
+	EUI_TEXT_CONTRACTS_DAYS = -557156728,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SHOW_HUD_MSGBAR = -425925736,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_NO_POSTING_SCORE_XBOX = 947988793,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CONTRACT_COMPLETE_TITLE = 191187698,
+	EUI_TEXT_MAINMENU_OVERVIEW_WEAPONS_NO_DATA = -1716391861,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CONTRACT_COMPLETE_PAYOFF = 1860551106,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_CONTRACT_COMPLETE_SUBLINE = -836795753,
+	EUI_TEXT_CONTRACTS_ACCIDENT = 1041388425,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_COMPETITION_COMPLETE_HIGHSCORE_SUBLINE = 1436789981,
+	EUI_TEXT_CONTRACTS_CONTRACT_SCORE_TRACKER_TARGET_KILLED = -1773287292,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_COMPETITION_COMPLETE_SUBLINE = 2117695125,
+	EUI_TEXT_CONTRACT_ENDSCREEN_POPUP_TOURNAMENT_SCORE = 15757320,
+	EUI_TEXT_CONTRACTS_COMPETITION_NOTIFICATION_EXPIRY_ALL_TROPHIES_CONGRATULATIONS = -1340520181,
+	EUI_TEXT_CONTRACT_MENU_SEND_TO_FRIEND = -240932073,
+	EUI_TEXT_CONTRACTS_CONTRACT_TARGET_CONDITIONS_KILL_WITH_CONDITION = 2029300724,
+	EUI_TEXT_CONTRACTS_EDIT_TITLE = 1350951441,
+	EUI_TEXT_MAINMENU_ITEM_NEWGAME = -882532903,
+	EUI_TEXT_CONTRACTS_TOTAL_CHALLENGE_AMOUNT = 491419232,
+	EUI_TEXT_MAINMENU_PURCHASE_HEADER_ERROR = -1012816680,
+	EUI_TEXT_CONTRACTS_KILLORDERAUTHORISEDBY = -426769493,
+	EUI_TEXT_CONTRACTS_EDIT_DESCRIPTION = -76484493,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_REVOLVER = -1607922306,
+	EUI_TEXT_MSG_OUTOFFOCUS = -211545497,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_PISTOL = 710424013,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_SMG = 1321164848,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_SWAP_STICK_BUTTONS_XBOX360 = 1975500366,
+	EUI_TEXT_CONTRACTS_COMPETITION_NOTIFICATION_COMPETITION_ON_YOUR_CONTRACT_COMPLETE = 133618571,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT = -123338666,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_RIFLE = 983001645,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_HISTORY = -1155656407,
+	EUI_TEXT_COUNTRY_KUWAIT = -1425460469,
+	EUI_TEXT_MENU_MESSAGECENTER_OFFLINE_XBOX = 134107904,
+	EUI_TEXT_MAINMENU_TECHNIQUE_IS_UNLOCKED = 94955306,
+	EUI_TEXT_COUNTRY_TAIWAN_LONG = -613100674,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_SNIPER_RIFLE = -1400343013,
+	EUI_TEXT_STATS_HEALTHREPLENISHED = -1618727727,
+	EUI_TEXT_CONTRACTS_WEAPON_CATEGORY_EXPLOSION = -1205295776,
+	EUI_TEXT_OPTIONS_GRAPHICS_MSAA = -1442867873,
+	EUI_TEXT_MENU_MESSAGECENTER_UNLOCKS_NOTIFICATIONS = -698589070,
+	EUI_TEXT_ENDLEVEL_NO_RATINGS_AVAILABLE = 1048117483,
+	EUI_TEXT_CONTRACTS_INFOCARD_SCORE_TO_BEAT = -773109289,
+	EUI_TEXT_CONTRACTS_CONTRACT_SCORE_TRACKER_OUTFIT_FAILED = -1863385798,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_SUITONLY = -787264044,
+	EUI_TEXT_CONTRACTS_ENDSCREEN_FRIENDS_ONLINE = -1665315950,
+	EUI_TEXT_CONTRACTS_ENDSCREEN_CHALLENGE_A_FRIEND = 512486496,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_LEADERBOARDS_DEADLIEST = -1456693252,
+	EUI_TEXT_OPTIONS_MENU_ITEM_DEBUG = 474686298,
+	EUI_TEXT_MAINMENU_ITEM_UPGRADES = 1871994844,
+	EUI_TEXT_CONTRACTS_CURRENT_SCORE = 785599544,
+	EUI_TEXT_CONTRACTS_BRIEFING_COMPETITION_ADDITIONAL_DATA_CURRENTLEADER = 2095327434,
+	EUI_TEXT_MENU_MESSAGECENTER_NOMESSAGES = -7077813,
+	EUI_TEXT_ONLINE_MENU_NOT_SIGNED_IN = -424632124,
+	EUI_TEXT_CONTRACTS_CHANGE_SELECTED_FRIENDS = 1918782439,
+	EUI_TEXT_STATS_FUSEBOXESDISABLED = -1245938451,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_ENGLISH = -1590290017,
+	EUI_TEXT_CONTRACTS_INCREASE_VALUE = -1620482584,
+	EUI_TEXT_COUNTRY_TURKEY = -1312504560,
+	EUI_TEXT_MAINMENU_OVERVIEW_CREATE_CONTRACTS_FLYOUT_BODYTEXT = 488267874,
+	EUI_TEXT_CONTRACTS_SORTBY_ALL = -2010471274,
+	EUI_TEXT_CONTRACTS_SORTBY_RECENT = -1282205764,
+	EUI_TEXT_COUNTRY_TAIWAN = 1363099163,
+	EUI_TEXT_CONTRACTS_SORTBY_POPULAR = -529594083,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_TRIGGER_SHOOT_PS3 = -2040112622,
+	EUI_TEXT_CONTRACTS_SORTBY_PLAYED = -1304588298,
+	EUI_TEXT_CONTRACTS_CHALLENGE_WAGER_SENT = -82950432,
+	EUI_TEXT_CONTRACTS_PLAYTUTORIAL_CREATE01 = -2052701731,
+	EUI_TEXT_CONTRACTS_BACKGROUND = -104505759,
+	EUI_TEXT_CONTRACTS_COMPETITION_NOTIFICATION_EXPIRY_ALL_CONGRATULATIONS = 892486188,
+	EUI_TEXT_PAUSE_MENU_ITEM_RESTARTCHECKPOINT = 1669835927,
+	EUI_TEXT_COUNTRY_UKRAINE = 893221882,
+	EUI_TEXT_CONTRACTS_COMPETITION_NOTIFICATION_CREATOR_THANKS = 262240066,
+	EUI_TEXT_COUNTRY_IRELAND = -400282510,
+	EUI_TEXT_CONTRACTS_COMPETITION_NOTIFICATION_YOU_WON = 170131594,
+	EUI_TEXT_CONTRACTS_TUTORIAL_PLAY01_DESCRIPTION = -1510571315,
+	EUI_TEXT_CONTRACTS_TUTORIAL_PLAY02_TITLE = 1010509238,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_GAMMA = 118213919,
+	EUI_TEXT_STATS_KILLSHOTSREVOLVER = -1658804805,
+	EUI_TEXT_CONTRACTS_FILTER_CHECKPOINT = -184379824,
+	EUI_TEXT_CONTRACTS_FILTER_ANY = 1723347817,
+	EUI_TEXT_COUNTRY_SWEDEN = -1824519404,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_TARGETS_ELIMINATED = 2051905307,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_CORRECT_WEAPONS_USED = -713941478,
+	EUI_TEXT_DIFFICULTY_INFO_HARD_BULLET_4 = 1303814941,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_CONDITIONS_ACHIEVED = -708897512,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_CONDITIONS_FAILED_PENALITIES = 1787745935,
+	EUI_TEXT_CONTRACTS_CONTRACT_END_SCREEN_REPORT_CONTRACT_BODY = -2060000481,
+	EUI_TEXT_CONTRACTS_CONTRACT_SCORE_TRACKER_OUTFIT = -2039291617,
+	EUI_TEXT_CONTRACTS_CONTRACT_FILTER_POPUP_SELECT = -1853821937,
+	EUI_TEXT_CONTRACTS_CONTRACT_TARGET_CONDITIONS_USE_DISGUISE_CONDITION = -813758482,
+	EUI_TEXT_CONTRACTS_MENU_OPEN_COMPETITION = 190394765,
+	EUI_TEXT_NOTEBOOK_INVENTORY_GEAR = 2068164971,
+	EUI_TEXT_COUNTRY_FRANCE = 1271299011,
+	EUI_TEXT_MAINMENU_OVERVIEW_CHALLENGES_IMAGE_TITLE = -685385568,
+	EUI_TEXT_CONTRACTS_MENU_COMPETITION_HISTORY = 1362432428,
+	EUI_TEXT_CONTRACTS_NO_CONTRACTS_FOUND = 1587003661,
+	EUI_TEXT_CONTRACTS_AVAILLABLE = 108631420,
+	EUI_TEXT_CONTRACTS_LAUNCH_AVAILLABLE_TITLE = 1815840874,
+	EUI_TEXT_CONTRACTS_EXIT_HINT = 493089757,
+	EUI_TEXT_CONTRACTS_FEATURED_BRIEFING_TITLE = -773368323,
+	EUI_TEXT_COUNTRY_GREAT_BRITAIN = -797210959,
+	EUI_TEXT_QUEUE_CONTRACT_TEXT = -813961688,
+	EUI_TEXT_DIFFICULTY_INFO_EASY_BULLET_3 = -2027912360,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_LEADERBOARDS_XBOX = 1234821882,
+	EUI_TEXT_CREATED_ENDSCREEN_REMOVE_TARGET_CONDITIONS = 232236675,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_TARGET_ONLY = 1131880251,
+	EUI_TEXT_CREATED_ENDSCREEN_REMOVE_TARGET_CONDITIONS_SYSTEM_DIALOGUE_BODY = -458040380,
+	EUI_TEXT_CONTRACTS_BRIEFING_ADDITIONAL_DATA_CURRENT_BEST = 1596904013,
+	EUI_TEXT_LEGEND_GOTO_LB = -712032336,
+	EUI_TEXT_NO_LEADERBOARD_ENTRIES = 1656221991,
+	EUI_TEXT_AUTOSAVE_WARNING_PS3 = 118870219,
+	EUI_TEXT_CONFIRM_SPOILER_BODY = 2053227715,
+	EUI_TEXT_MAINMENU_ITEM_BENCHMARK = 1944341833,
+	EUI_TEXT_CONTRACTS_ACCESS_RESTRICTED_MESSAGE_XBOX = 584130538,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_CAMERA = -832092429,
+	EUI_TEXT_STATS_FEMALESKILLED = -1576454856,
+	EUI_TEXT_CONTRACTS_ACCESS_RESTRICTED_HEADLINE = 1925604286,
+	EUI_TEXT_STATS_SHOOTINGBALLETKILLS = 215342944,
+	EUI_TEXT_CONTRACTS_CHOOSEFRIENDS = 596385892,
+	EUI_TEXT_CONTRACTS_ALLOWFRIENDS = -393071887,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_PICK_UP = -1549124736,
+	EUI_TEXT_CONTRACTS_COMPETITIONDURATION = -70026315,
+	EUI_TEXT_CONTRACTS_NO_SURVIVORS_HEADER = -386532140,
+	EUI_TEXT_CONTRACTS_FAILED_HEADER = -890575500,
+	EUI_TEXT_STATS_MILESDRAGGINGBODIES = -924710638,
+	EUI_TEXT_NO_SCORES_YET = 490460746,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_NO_LEADERBOARDS_XBOX = 72046313,
+	EUI_TEXT_MAINMENU_OVERVIEW_SPECIAL_RATINGS_IMAGE_TITLE = 130315372,
+	EUI_TEXT_MENU_CONTRACTSSHARED_239 = -936984069,
+	EUI_TEXT_COUNTRY_UNITED_ARAB_EMIRATES = -460488173,
+	EUI_TEXT_MAINMENU_WEAPON_STATS_ITEM_ACCURACY = 1069890008,
+	EUI_TEXT_COUNTRY_JAPAN = -1370208253,
+	EUI_TEXT_COUNTRY_UNITED_ARAB_EMIRATES_LONG = -473425634,
+	EUI_TEXT_COUNTRY_ARGENTINA = -1085419711,
+	EUI_TEXT_COUNTRY_BELGIUM_LONG = -1994505682,
+	EUI_TEXT_COUNTRY_BULGARIA = 96128239,
+	EUI_TEXT_COUNTRY_BAHRAIN = -2002545799,
+	EUI_TEXT_COUNTRY_BAHRAIN_LONG = 594807113,
+	EUI_TEXT_COUNTRY_CANADA = 660079255,
+	EUI_TEXT_COUNTRY_CANADA_LONG = 560122401,
+	EUI_TEXT_COUNTRY_SWITZERLAND_LONG = 233855706,
+	EUI_TEXT_COUNTRY_COLOMBIA = 1816025336,
+	EUI_TEXT_MAINMENU_DLC_OPEN_STORE_PC = 1695216891,
+	EUI_TEXT_COUNTRY_CYPRUS = 2031005961,
+	EUI_TEXT_COUNTRY_GERMANY = -1347279582,
+	EUI_TEXT_ONLINE_MENU_ITEM_LEADERBOARD_BUTTON = -1036768813,
+	EUI_TEXT_COUNTRY_GERMANY_LONG = -1819304457,
+	EUI_TEXT_COUNTRY_DENMARK = 780429609,
+	EUI_TEXT_COUNTRY_DENMARK_LONG = 937655115,
+	EUI_TEXT_COUNTRY_SPAIN = -29569467,
+	EUI_TEXT_COUNTRY_FRANCE_LONG = -1006371475,
+	EUI_TEXT_COUNTRY_GREAT_BRITAIN_LONG = 1815002666,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_INVERT_X = 535593788,
+	EUI_TEXT_COUNTRY_GREECE = 61722832,
+	EUI_TEXT_COUNTRY_GREECE_LONG = 84635639,
+	EUI_TEXT_COUNTRY_HONG_KONG = -1810589372,
+	EUI_TEXT_NOTEBOOK_PAGE_CONTRACT_CREATION = -1244506347,
+	EUI_TEXT_COUNTRY_HONG_KONG_LONG = 857612498,
+	EUI_TEXT_COUNTRY_CROATIA_LONG = 1029246907,
+	EUI_TEXT_COUNTRY_HUNGARY_LONG = 1194318607,
+	EUI_TEXT_DIFFICULTY_INFO_NORMAL_BULLET_2 = -535755424,
+	EUI_TEXT_CONFIRMATION_EXIT_TO_MAIN_MENU_SAFE = 630644132,
+	EUI_TEXT_COUNTRY_INDONESIA_LONG = 456645046,
+	EUI_TEXT_PAUSE_MENU_ITEM_OPTIONS = 828963848,
+	EUI_TEXT_CONTRACTS_MENU_FILTER_TITLE = 1805955010,
+	EUI_TEXT_MAINMENU_SYSTEM_BUTTONLEGEND_LEFT_RIGHT = 888470783,
+	EUI_TEXT_COUNTRY_IRELAND_LONG = -1875771338,
+	EUI_TEXT_COUNTRY_ISRAEL = -511295288,
+	EUI_TEXT_COUNTRY_ISRAEL_LONG = -1333040513,
+	EUI_TEXT_COUNTRY_INDIA = -220283216,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_ERASE_TRACES = 1238148619,
+	EUI_TEXT_COUNTRY_ICELAND = 548339020,
+	EUI_TEXT_COUNTRY_ICELAND_LONG = -11920579,
+	EUI_TEXT_COUNTRY_ITALY_LONG = -798754907,
+	EUI_TEXT_COUNTRY_KOREA = -2068047237,
+	EUI_TEXT_COUNTRY_KOREA_LONG = 1915357401,
+	EGAME_TEXT_SL_CHANGINGDISGUISE = -1078346503,
+	EUI_TEXT_STATS_MONEYEARNEDFROMCREATEDCONTRACTS = -1331307210,
+	EUI_TEXT_MAINMENU_OVERVIEW_WEAPONS_IMAGE_TITLE = -1971293000,
+	EUI_TEXT_COUNTRY_KUWAIT_LONG = -2025124812,
+	EUI_TEXT_COUNTRY_LEBANON = 370649689,
+	EUI_TEXT_COUNTRY_LEBANON_LONG = 1107517502,
+	EUI_TEXT_STATS_KNOCKOUTSBYPROP = -444680945,
+	EUI_TEXT_OPTIONS_GRAPHICS_RESTART_TITLE = 687931232,
+	EUI_TEXT_COUNTRY_LUXEMBOURG = 840532186,
+	EUI_TEXT_MSG_ITEM_PICKED_UP = -1661720759,
+	EUI_TEXT_COUNTRY_MALTA = -1371392638,
+	EUI_TEXT_COUNTRY_MEXICO = 994715420,
+	EUI_TEXT_NOTEBOOK_ITEM_INVENTORY = 164388300,
+	EUI_TEXT_COUNTRY_MEXICO_LONG = -1989329171,
+	EUI_TEXT_STATS_TIMESPENTINFIREFIGHTS = -870311927,
+	EUI_TEXT_COUNTRY_MALAYSIA = 1411679865,
+	EUI_TEXT_CONTRACT_COMPLETION_BEAT_TRUE = -1429569639,
+	EUI_TEXT_COUNTRY_MALAYSIA_LONG = -1924912654,
+	EUI_TEXT_COUNTRY_NETHERLANDS_LONG = -1553542691,
+	EUI_TEXT_COUNTRY_NORWAY = 1217000670,
+	EUI_TEXT_COUNTRY_NEW_ZEALAND = 1786249401,
+	EUI_TEXT_SAVE_USER_MISMATCH_PS3 = -342363637,
+	EUI_TEXT_COUNTRY_NEW_ZEALAND_LONG = -2013207449,
+	EUI_TEXT_COUNTRY_OMAN_LONG = -20911512,
+	EUI_TEXT_COUNTRY_PERU = -1710649256,
+	EUI_TEXT_SIGNEDOUT_WARNING_XBOX = -576927092,
+	EUI_TEXT_COUNTRY_PERU_LONG = 1635453046,
+	EUI_TEXT_STATS_DOGSKILLED = -119993271,
+	EUI_TEXT_NOTEBOOK_CHECKPOINTCOMPARISONPROMT_WORLD = 1949472697,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_FILTER = -760769287,
+	EUI_TEXT_EXTRAS_MENU_ITEM_CONCEPTART = 1682702764,
+	EUI_TEXT_COUNTRY_POLAND = 1034295373,
+	EUI_TEXT_COUNTRY_POLAND_LONG = -755712477,
+	EUI_TEXT_COUNTRY_PORTUGAL = -1779900314,
+	EGAME_TEXT_SL_LANDMINEARMED = 766770375,
+	EUI_TEXT_COUNTRY_QATAR = -1435756029,
+	EUI_TEXT_COUNTRY_QATAR_LONG = 1023844299,
+	EUI_TEXT_MAINMENU_OVERVIEW_CONTINUE_FLYOUT_TITLE = 2071699872,
+	EUI_TEXT_COUNTRY_ROMANIA_LONG = 638114362,
+	EGAME_TEXT_HL_HOSTILE = 946516858,
+	EUI_TEXT_COUNTRY_RUSSIAN_FEDERATION_LONG = 1075066686,
+	EUI_TEXT_COUNTRY_SAUDI_ARABIA = 1006511392,
+	EUI_TEXT_COUNTRY_SWEDEN_LONG = 951113373,
+	EUI_TEXT_COUNTRY_SINGAPORE_LONG = 1077265096,
+	EUI_TEXT_COUNTRY_SLOVENIA = 111617432,
+	EUI_TEXT_CONTRACTS_MENU_CATEGORY_MY_CREATED = -243505804,
+	EUI_TEXT_COUNTRY_SLOVENIA_LONG = -1395594375,
+	EUI_TEXT_COUNTRY_SLOVAK_REPUBLIC = -421148439,
+	EUI_TEXT_CHANGE_AUDIO_LANGUAGE_CONFIRMATION = 1934148336,
+	EUI_TEXT_STATS_WINDOWSENTERED = -452178800,
+	EUI_TEXT_OPTIONS_GRAPHICS_GAMMA_HELP = 962246957,
+	EUI_TEXT_COUNTRY_SLOVAK_REPUBLIC_LONG = 1628901793,
+	EUI_TEXT_COUNTRY_TURKEY_LONG = 439098388,
+	EUI_TEXT_COUNTRY_UNITED_STATES = -1149694462,
+	EUI_TEXT_DIFFICULTY_INFO_PURIST_BULLET_1 = -1519799682,
+	EUI_TEXT_COUNTRY_UNITED_STATES_LONG = -1775684552,
+	EUI_TEXT_COUNTRY_SOUTH_AFRICA = 680821393,
+	EUI_TEXT_MAINMENU_ITEM_UNLOCKS = -1208619541,
+	EUI_TEXT_NOTEBOOK_ITEM_CONTRACT_LIKE = 1093629518,
+	EUI_TEXT_COUNTRY_SOUTH_AFRICA_LONG = 1549204049,
+	EUI_TEXT_COUNTRY_UNKNOWNCOUNTRY = 485020622,
+	EUI_TEXT_MENU_COUNTRYCODES_061 = 1045738744,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_PLAY_XBOX = -1202105668,
+	EUI_TEXT_MSG_NEW_DISGUISE_UNLOCKED = -2125611763,
+	EUI_TEXT_RESTART_CONTRACT = -1822956898,
+	EUI_TEXT_CONTRACT_COMPLETION_BEAT_FALSE = 170830518,
+	EUI_TEXT_DIFFICULTY_INFO_HARD = 1314137473,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_TUTORIAL = 1579514672,
+	EUI_TEXT_CONTRACT_CRITERIA_CORRECT_WEAPON = -644531155,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_ALL_TARGETS_DEAD = 1599338546,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_CORRECT_OUTFIT = 1829046988,
+	EUI_TEXT_MAINMENU_NEXT_REWARD = -1128131900,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_CORRECT_WEAPON = 909392683,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_HITMAN_ALIVE = -1651303684,
+	EUI_TEXT_CONTRACT_CRITERIA_FAILURE_PERFECT_SHOOTER = 2143793215,
+	EUI_TEXT_STATS_LEVEL_COMPLETED_TIME = 1367847301,
+	EUI_TEXT_NOTEBOOK_PAGE_CONTRACT_RESULT = 90109472,
+	EUI_TEXT_NOTEBOOK_ITEM_INFILTRATION = -1977564188,
+	EUI_TEXT_OPTIONS_DEBUG_MENU_ITEM_SURVEY_MODE = 2015759277,
+	EUI_TEXT_NOTEBOOK_ITEM_CHALLENGEBONUS = 1999664042,
+	EUI_TEXT_NOTEBOOK_ITEM_TOTALLEVELSCORE = -1000186162,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_SNEAK = 337129465,
+	EUI_TEXT_MAINMENU_ITEM_QUIT = 1683414992,
+	EUI_TEXT_NOTEBOOK_ITEM_LEVELEND_REWARDS = -306257003,
+	EUI_TEXT_CONCEPTARTMENU_CONCEPTART_TITLE_04 = 975982998,
+	EUI_TEXT_NOTEBOOK_ITEM_LEVELEND_INCOMPLETE = 1768724911,
+	EUI_TEXT_NOTEBOOK_TITLE_LEVEL_END = 817956103,
+	EUI_TEXT_ENDLEVEL_NO_TECHNIQUE_AVAILABLE = -993985548,
+	EUI_TEXT_NOTEBOOK_TECHNIQUE_HEADER = 502540095,
+	EUI_TEXT_DLC_MENU_TITLE_XBOX = -1253874075,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_TITLE_XBOX = -1142601693,
+	EUI_TEXT_NOTEBOOK_CHALLENGES_DISPLAYMODE_MAXIMAL = 1826012468,
+	EUI_TEXT_ENDLEVEL_TECHNIQUE_UNLOCKED = -1799739673,
+	EUI_TEXT_ONLINE_MENU_ITEM_CONTESTMAPS_BUTTON = -222784901,
+	EUI_TEXT_ENDLEVEL_ALL_TECHNIQUES_UNLOCKED = -2031123367,
+	EUI_TEXT_OPTIONS_DISPLAY_BRIGHTNESS = 445826070,
+	EUI_TEXT_STATS_HEADSHOTS = 580554765,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_SERVERERROR_3 = 1601612915,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_NEXT_WEAPON = 25343031,
+	EUI_TEXT_STATS_BODIESHIDDEN = 1974675499,
+	EUI_TEXT_MENU_MESSAGECENTER_UNLOCKS = 777976113,
+	EUI_TEXT_STATS_DISGUISESPICKEDUP = -1228354255,
+	EUI_TEXT_STATS_CAUGHTDRAGGINGBODY = 1915085425,
+	EUI_TEXT_STATS_DISGUISESBLOWN = 20693749,
+	EUI_TEXT_STATS_WITNESSESLEFTBEHIND = 1395733120,
+	EUI_TEXT_STATS_CARSBLOWNUP = 1028984464,
+	EUI_TEXT_STATS_KILLSHOTSPISTOL = -1406295703,
+	EUI_TEXT_DIFFICULTY_INFO_EASY = -970743612,
+	EUI_TEXT_STATS_RATSKILLED = -392228676,
+	EUI_TEXT_STATS_HITRATIOSNIPER = 865595685,
+	EUI_TEXT_STATS_GASTANKSBLOWNUP = -280159151,
+	EUI_TEXT_MSG_NO_LONGER_TRESPASSING = -162605486,
+	EUI_TEXT_STATS_HITRATIOSMG = 1671793970,
+	EUI_TEXT_STATS_HITRATIOASSAULT = -1331132926,
+	EUI_TEXT_MENU_MAINMENU_158 = -1442714127,
+	EUI_TEXT_MAINMENU_ITEM_CONTINUE = -1699994362,
+	EUI_TEXT_STATS_KILLSHOTSSNIPER = -1596668647,
+	EUI_TEXT_STATS_KILLSHOTSSHOTGUN = -1122812836,
+	EUI_TEXT_MAINMENU_OVERVIEW_DISGUISE_IMAGE_TITLE = -1925608067,
+	EUI_TEXT_OPTIONS_CONTROLS_MOUSEKEYBOARD_TITLE = -1156716260,
+	EUI_TEXT_STATS_TOTALMONEYEARNED = 1316073551,
+	EUI_TEXT_STATS_TOTALMONEYSPENT = 243641439,
+	EUI_TEXT_MENU_MESSAGECENTER_VIEW_ONLINE_MESSAGES = 1221557684,
+	EUI_TEXT_STATS_MONEYEARNEDFROMCHALLENGES = -1545125942,
+	EUI_TEXT_MENU_MESSAGES_AGENT47 = 720034154,
+	EUI_TEXT_STATS_MONEYEARNEDFROMCONTRACTRANKPOSITIONS = -1959041508,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_SEARCH = 429068355,
+	EUI_TEXT_STATS_GASCANNISTERSBLOWNUP = -264833477,
+	EUI_TEXT_STATS_LANDMINESBLOWNUP = -108806354,
+	EUI_TEXT_STATS_REMOTELYDETONATIONS = -1472885639,
+	EUI_TEXT_STATS_DAMAGETAKEN = -117793405,
+	EUI_TEXT_STATS_CIVILIANSKILLED = 88101025,
+	EUI_TEXT_MAINMENU_OVERVIEW_CREATED_CONTRACTS_POPULAR_LB = -1473305116,
+	EUI_TEXT_STATS_FIBERWIRES = -1704688815,
+	EUI_TEXT_STATS_MALESKILLED = 916264039,
+	EUI_TEXT_STATS_PROPKILLS = -470421856,
+	EUI_TEXT_MAINMENU_PURCHASE_HEADER_SUCCESS = -1388062126,
+	EUI_TEXT_STATS_PUSHOVERRAILINGS = 1728763872,
+	EUI_TEXT_STATS_ACTIONKILLSTRIGGERED = 1874793352,
+	EUI_TEXT_STATS_CONTRACTSCOMPLETED = -1144361419,
+	EUI_TEXT_OPTIONS_GRAPHICS_MSAA_8X = -1403376300,
+	EUI_TEXT_STATS_TIMEPLAYED = 1893041529,
+	EUI_TEXT_CONTRACTS_MENU_PLAY_CREATED_AGENCY = 5807029,
+	EUI_TEXT_STATS_TIMESPENTININSTINCTMODE = 69804950,
+	EUI_TEXT_STATS_TIMESPENTINCOVER = -348102516,
+	EUI_TEXT_STATS_LEDGESUSED = 1225747222,
+	EUI_TEXT_STATS_MILESRUNNED = 219046310,
+	EUI_TEXT_PAUSE_MENU_ITEM_RESTARTLEVEL = 1263771555,
+	EUI_TEXT_STATS_MILESSTEALTHED = 1314237057,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_NETWORK = -64953634,
+	EUI_TEXT_STATS_HEADLINE_STEALTH = 625803531,
+	EUI_TEXT_SCREENRESIZE_HINT = 659943486,
+	EUI_TEXT_STATS_HEADLINE_KILLS = 1909078715,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_SERVERERROR_2 = 678534373,
+	EUI_TEXT_STATS_PETROLCANSBLOWNUP = -1626089755,
+	EUI_TEXT_MENU_GAMESTATS_084 = 2076491208,
+	EUI_TEXT_NOTEBOOK_ITEM_SURVEY = -381876579,
+	EUI_TEXT_NOTEBOOK_ITEM_SURVEY_MESSAGE = -1211823393,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_RELOAD = 1446203437,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_JAPANESE = 1371822696,
+	EUI_TEXT_PAUSE_MENU_TITLE = -788434542,
+	EUI_TEXT_MAINMENU_GATE_STORY_HEADER = 2017875700,
+	EUI_TEXT_MAINMENU_GATE_CONTRACTS_HEADER = 1591211283,
+	EUI_TEXT_MAINMENU_OVERVIEW_QUICKPLAY_CONTRACTS_FLYOUT_BODYTEXT = 1652401074,
+	EUI_TEXT_UPGRADES_WEAPON_EQUIP = -423827539,
+	EUI_TEXT_UPGRADES_WEAPON_UNEQUIP = 1209459229,
+	EUI_TEXT_UPGRADES_WEAPON_SLOT_BUY = -2047921250,
+	EUI_TEXT_UPGRADES_WEAPON_SLOT_SELECT_UPGRADE = 571661133,
+	EUI_TEXT_DIFFICULTY_INFO_NORMAL_BULLET_3 = -1760152074,
+	EUI_TEXT_UPGRADES_WEAPON_SLOT_REMOVE_UPGRADE = -1138019762,
+	EUI_TEXT_UPGRADES_WEAPON_UPGRADE_BUY = 1725170481,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_WAIT_FOR_SERVER_BODY = -763091696,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_PICKUP = -1256872059,
+	EUI_TEXT_MAINMENU_CHECKPOINT_LOCKED = 97950052,
+	EUI_TEXT_UPGRADES_WEAPON_UPGRADE_INSTALL = 489158212,
+	EUI_TEXT_OPTIONS_GRAPHICS_BILINEAR = -2111702201,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_AIM_ASSIST = 1318200342,
+	EUI_TEXT_MAINMENU_DISGUISE_BUY = 353332439,
+	EUI_TEXT_EXTRAS_MENU_ITEM_ACHIEVEMENTS = -736257062,
+	EUI_TEXT_NOTEBOOK_ITEM_OBJECTIVES = 168735665,
+	EUI_TEXT_EXTRAS_MENU_ITEM_CREDITS = 106304062,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MOVE_LEFT = -333221262,
+	EUI_TEXT_EXTRAS_MENU_ITEM_WEAPONS = 357529761,
+	EUI_TEXT_MAINMENU_ITEM_STATISTICS = -1938004544,
+	EUI_TEXT_MSG_NEW_OBJECTIVE = -1529621180,
+	EUI_TEXT_MAINMENU_ITEM_EXTRAS = 195327285,
+	EUI_TEXT_MAINMENU_ITEM_LEADERBOARD = 1831493153,
+	EUI_TEXT_MAINMENU_ITEM_CHALLENGES = 1763330306,
+	EUI_TEXT_MAINMENU_ITEM_RATINGS = 1385315952,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_SNEAK = 202840009,
+	EUI_TEXT_MAINMENU_ITEM_NEWGAME_CONFIRMATION = -91394603,
+	EUI_TEXT_MAINMENU_ITEM_OPTIONS = 1276232510,
+	EUI_TEXT_MAINMENU_ITEM_SAFEHOUSE = -433690726,
+	EUI_TEXT_DIFFICULTY_INFO_EASY_BULLET_4 = 423892731,
+	EUI_TEXT_DIFFICULTY_INFO_NORMAL_BULLET_1 = 2031637722,
+	EUI_TEXT_DIFFICULTY_INFO_NORMAL_BULLET_4 = 158507093,
+	EUI_TEXT_DIFFICULTY_INFO_HARD_BULLET_2 = -1529543128,
+	EUI_TEXT_OPTIONS_GRAPHICS_MSAA_2X_FXAA = 271237513,
+	EUI_TEXT_DIFFICULTY_INFO_HARD_BULLET_3 = -741198146,
+	EUI_TEXT_DIFFICULTY_INFO_EXPERT = -1234448564,
+	EUI_TEXT_DIFFICULTY_INFO_EXPERT_BULLET_1 = -1045510933,
+	EUI_TEXT_OPTIONS_MENU_ITEM_BACK = -379669742,
+	EUI_TEXT_DIFFICULTY_INFO_EXPERT_BULLET_3 = 799057351,
+	EUI_TEXT_DIFFICULTY_INFO_EXPERT_BULLET_4 = -1312542620,
+	EUI_TEXT_DIFFICULTY_INFO_PURIST = -1477928837,
+	EUI_TEXT_DIFFICULTY_INFO_PURIST_BULLET_2 = 1012982724,
+	EUI_TEXT_DIFFICULTY_INFO_PURIST_BULLET_3 = 1265095506,
+	EUI_TEXT_DIFFICULTY_INFO_PURIST_BULLET_4 = -721205519,
+	EUI_TEXT_MAINMENU_WEAPON_MENU_ITEM_CUSTOMIZE = 1599740220,
+	EUI_TEXT_MAINMENU_OVERVIEW_UNLOCKS_FLYOUT_BODYTEXT = 1776602702,
+	EUI_TEXT_MAINMENU_OVERVIEW_SAFEHOUSE_FLYOUT_TITLE = -747151889,
+	EUI_TEXT_MAINMENU_OVERVIEW_SAFEHOUSE_FLYOUT_BODYTEXT = 1858708293,
+	EUI_TEXT_MAINMENU_OVERVIEW_WEAPONS_FLYOUT_TITLE = -1062157809,
+	EUI_TEXT_MAINMENU_OVERVIEW_WEAPONS_FLYOUT_BODYTEXT = 888320560,
+	EUI_TEXT_MAINMENU_OVERVIEW_TECHNIQUES_FLYOUT_TITLE = 615519325,
+	EUI_TEXT_MAINMENU_OVERVIEW_COMPETE_CONTRACTS_FLYOUT_BODYTEXT = -1976266199,
+	EUI_TEXT_MAINMENU_OVERVIEW_PLAY_CONTRACTS_PLAYED = -1304724742,
+	EUI_TEXT_CONTRACTS_MENU_ACTION_TYPE_LIKES = -1028960621,
+	EUI_TEXT_MAINMENU_DLC_UNAVAILABLE_PS3 = -2064502837,
+	EUI_TEXT_CONTRACTS_MENU_PLAY_MOST_PLAYED = -236861781,
+	EUI_TEXT_MAINMENU_OVERVIEW_COMPETE_CONTRACTS_PLAYED = 346837216,
+	EUI_TEXT_MAINMENU_OVERVIEW_CREATED_CONTRACTS_LIKES_RECEIVED = -201460523,
+	EUI_TEXT_MAINMENU_OVERVIEW_PROGRESS_COMPLETED = 2043313735,
+	EUI_TEXT_MAINMENU_OVERVIEW_TECHNIQUES_IMAGE_TITLE = -2070336204,
+	EUI_TEXT_MAINMENU_OVERVIEW_SPECIAL_RATINGS_NO_DATA = 1972368053,
+	EUI_TEXT_MAINMENU_OVERVIEW_TECHNIQUES_NO_DATA = -515512097,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_SERVERERROR_0 = -964690487,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MORMALGRAPHICS = 334123378,
+	EUI_TEXT_MAINMENU_SERVER_DIALOGUE_SERVERERROR_1 = -1317483169,
+	EUI_TEXT_MAINMENU_CURRENT_SCORE = -157810478,
+	EUI_TEXT_MAINMENU_WEAPONS_AVAILABLE_UPGRADES = -264084867,
+	EUI_TEXT_MAINMENU_SYSTEM_DIALOGUE_SYNCHRONISATION = -1176079987,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_TAKE_DISGUISE = 1802885387,
+	EUI_TEXT_MAINMENU_DLC_UNAVAILABLE_XBOX = -530970610,
+	EUI_TEXT_MAINMENU_DLC_GET_MENU_ITEM_PS3 = -1419714867,
+	EUI_TEXT_MAINMENU_DLC_GET_MENU_ITEM_XBOX = 152453066,
+	EUI_TEXT_READ_ERROR_XBOX = -1721076819,
+	EUI_TEXT_MAINMENU_DLC_OPEN_STORE_XBOX = -630804142,
+	EUI_TEXT_MENU_MESSAGECENTER_ALL_NEW = -1453906846,
+	EUI_TEXT_MENU_MESSAGECENTER_NO_ENTRIES = 971264650,
+	EUI_TEXT_MENU_MESSAGECENTER_RETRIEVING = 1484919567,
+	EUI_TEXT_MENU_MESSAGECENTER_OFFLINE = 761924823,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_PAUSE = -1544146022,
+	EUI_TEXT_MENU_MESSAGECENTER_VIEW_ONLINE_MESSAGES_XBOX = -841574131,
+	EGAME_TEXT_HL_CAUTIOUS = 50345292,
+	EGAME_TEXT_SL_BODYFOUND = -1549117600,
+	EGAME_TEXT_SL_IDENTIFIED = 1700982650,
+	EGAME_TEXT_SL_RADIOON = -700360260,
+	EGAME_TEXT_SL_TRESPASSING_ON = -1297008556,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_AIM_CASUAL = 1742664558,
+	EUI_TEXT_MSG_AMMO_PICKED_UP = -1033938318,
+	EUI_TEXT_MSG_BODYSHOT_KILL = -884377006,
+	EUI_TEXT_MSG_DISGUISE_BLOWN = 2072622583,
+	EUI_TEXT_MSG_LAST_CHECKPOINT_KILL = -665316690,
+	EUI_TEXT_MSG_PROFESSIONAL = -2078712811,
+	EUI_TEXT_MSG_UNPROFESSIONAL = -446399700,
+	EUI_TEXT_NOTEBOOK_CHECKPOINTCOMPARISONPROMT_COUNTRY = 387034219,
+	EUI_TEXT_MSG_NEW_RATING = 1244886583,
+	EUI_TEXT_MSG_CONTRACT_PICKED_UP = -1514971492,
+	EUI_TEXT_OPTIONS_GAME_MENU_SUBTITLE = 1885737140,
+	EUI_TEXT_MSG_CONTINUE_FROM_LAST_CHECKPOINT = -980839302,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_NO_MESSAGECENTER_PS3 = -1993849324,
+	EUI_TEXT_MSG_OBJECTIVE_FAILED = 337283983,
+	EGAME_TEXT_SL_HUNTING = 18987013,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_RUSSIAN = 1725164266,
+	EGAME_TEXT_SL_GUARDSALERTED = 180622376,
+	EGAME_TEXT_SL_HOSTILEAREA = -1140724641,
+	EUI_TEXT_NOTEBOOK_CHALLENGES_DISPLAYMODE_OFF = 90320529,
+	EUI_TEXT_NOTEBOOK_ITEM_CONTRACTS = -1313751415,
+	EUI_TEXT_NOTEBOOK_ITEM_CONTRACT_CHALLENGE = -672562827,
+	EUI_TEXT_NOTEBOOK_ITEM_CONTROLLER = 709672007,
+	EUI_TEXT_NOTEBOOK_TECHNIQUE_HAS_BEEN_UNLOCKED_DISPLAYED_IN_NOTEBOOK = 2029609645,
+	EUI_TEXT_NOTEBOOK_ITEM_DISGUISES = -1465965725,
+	EUI_TEXT_OPTIONS_BENCHMARK_MENU_TITLE = 1539393233,
+	EUI_TEXT_NOTEBOOK_DISGUISES_DOES_NOT_FOOL = -1123712301,
+	EUI_TEXT_NOTEBOOK_ITEM_LEVELINFOS = -1133194310,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_LOSTCON_BACKMENU_PS3 = 592482860,
+	EUI_TEXT_NOTEBOOK_DISGUISES_WEAPONS_ALLOWED = 1544284516,
+	EUI_TEXT_NOTEBOOK_DISGUISES_GIVES_ACCESS_TO = 671493268,
+	EUI_TEXT_NOTEBOOK_DISGUISES_ARMOUR = 1761731164,
+	EUI_TEXT_NOTEBOOK_CONDITIONS = -1076034301,
+	EUI_TEXT_NOTEBOOK_SKIP = 76449326,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_ULTRAGRAPHICS = -313495651,
+	EUI_TEXT_NOTEBOOK_COMPLETE = 1256964912,
+	EUI_TEXT_NOTEBOOK_ITEM_WEAPONS = 1402054778,
+	EUI_TEXT_NOTEBOOK_CHALLENGE_BONUS = -1049260450,
+	EUI_TEXT_NOTEBOOK_CHALLENGES_BONUSPERCHALLENGETITLE = -1992833297,
+	EUI_TEXT_NOTEBOOK_CHALLENGES_CANNOTBEUNLOCKED = 571068646,
+	EUI_TEXT_NOTEBOOK_ITEM_SCORE = 1411982621,
+	EUI_TEXT_NOTEBOOK_DIFFICULTY_MODIFIER = 930937757,
+	EUI_TEXT_NOTEBOOK_TECHNIQUE_REWARDHEADER = -238700477,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MOUSE_BUTTON = 797917269,
+	EUI_TEXT_NOTEBOOK_TECHNIQUE_SUBHEADER = -1724670378,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_MESSAGECENTER_XBOX = -2134816070,
+	EUI_TEXT_NOTEBOOK_RATINGS_DISABLED = 1696244673,
+	EUI_TEXT_NOTEBOOK_LEADERBOARD_HEADLINE = -29134336,
+	EUI_TEXT_NOTEBOOK_INVENTORY_WEAPONS_HEADLINE = 1257651727,
+	EUI_TEXT_NOTEBOOK_INVENTORY_ITEMS_HEADLINE = 984857518,
+	EUI_TEXT_NOTEBOOK_INVENTORY_INFO = -1148660825,
+	EUI_TEXT_NOTEBOOK_LOSTANDFOUND_TITLE = 1998759357,
+	EUI_TEXT_NOTEBOOK_NOT_ON_THIS_CHECKPOINT = -1987054244,
+	EUI_TEXT_NOTEBOOK_TECHNIQUE_IS_UNLOCKED = 1116941654,
+	EUI_TEXT_MENU_NOTEBOOK_045 = 690909883,
+	EUI_TEXT_NOTEBOOK_ABOUTTOSAVEANDSENDCONTRACT_HEADER = -943079089,
+	EUI_TEXT_NOTEBOOK_ABOUTTOSAVEANDSENDCONTRACT = 1113229130,
+	EUI_TEXT_MENU_NOTEBOOK_052 = -1370368423,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_DIFFICULTY_LEVEL_HARD = 1835181328,
+	EUI_TEXT_ONLINE_MENU_LEADERBOARD_NATIONAL = -1130920222,
+	EUI_TEXT_SAVEGAME_NEW_PS3 = -1231867830,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_TARGETS = -1618081854,
+	EUI_TEXT_ONLINE_MENU_LEADERBOARD_FRIENDS = -1829721609,
+	EUI_TEXT_ONLINE_MENU_NATIONAL = 1352413000,
+	EUI_TEXT_ONLINE_MENU_PERFORMANCE = -783009658,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_FEATURED = -1537352435,
+	EUI_TEXT_ONLINE_MENU_NO_LEADERBOARDS = 932873670,
+	EUI_TEXT_ONLINE_MENU_NO_POSTING_SCORE = -935363388,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_LEADERBOARDS_POPULAR = 661934479,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_LEADERBOARDS_RICHEST = 2110205890,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_LEADERBOARDS = -223399919,
+	EUI_TEXT_CONTRACTS_MENU_CATEGORY_MY_RECENTLY_PLAYED = 1307159964,
+	EUI_TEXT_HINT_LOADING_005 = 1613807900,
+	EUI_TEXT_CONTRACTS_MENU_CATEGORY_ALL = -798534951,
+	EUI_TEXT_ONLINE_MENU_NOT_SIGNED = 33579994,
+	EUI_TEXT_CONTRACTS_MENU_CATEGORY_STEALTH = 1466140939,
+	EUI_TEXT_CONTRACTS_MENU_CATEGORY_IMPROVISED = 1237422552,
+	EUI_TEXT_CONTRACTS_MENU_CATEGORY_ACTION = -1468957213,
+	EUI_TEXT_OPTIONS_CHEAT_MENU_TITLE = 2133850819,
+	EUI_TEXT_CONTRACTS_MENU_ACTION_TYPE_CHALLENGE = -776973664,
+	EUI_TEXT_CONTRACTS_MENU_ACTION_TYPE_COMMENT = -94174459,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_MELEE_WEAPONS_EXPLOSIVES = 1785480215,
+	EUI_TEXT_CONTRACTS_MENU_ACTION_TYPE_DISLIKES = 580735092,
+	EUI_TEXT_OPTIONS_MENU_ITEM_DEBUG_BUTTON = 12373030,
+	EUI_TEXT_CONTRACTS_MENU_ACTION_TYPE_RECOMMENDED = -305835236,
+	EUI_TEXT_CONTRACTS_MENU_BULLETINBOARD_FETCHING = -517738339,
+	EUI_TEXT_CONTRACTS_MENU_CONTRACT_ID = -115596886,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_ERASETRACES = -522573058,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_FETCHING = -1077951137,
+	EUI_TEXT_HINT_PRECISION_AIM_ONSCREEN_HINT = 1452154878,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_ORDERED = -203487672,
+	EUI_TEXT_CONTRACTS_MENU_DETAILS_RESTRICTIONS = 1330185867,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_CREATE = 582298399,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_GET_FROM_SERVER = 1114589114,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_GET_FROM_XML = -983214460,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_LIST_BUTTON = -1239471366,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE = 502517613,
+	EUI_TEXT_OPTIONS_MENU_ITEM_GAME = -1480899671,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE_AGENCIES = -86141311,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE_ASSASSIN_PROFILE = 85678335,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE_GLOBAL_LEADERBOARD = 33305761,
+	EUI_TEXT_CONTROLLER_DISCONNECTED_PS3 = 1316341999,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE_STATISTICS = -801754157,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_PROFILE_TRANSACTIONS = -1939880063,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_USE = -2122165226,
+	EUI_TEXT_OPTIONS_MENU_TITLE = 101325493,
+	EUI_TEXT_CONTRACTS_MENU_LEADERBOARD_TXT_SCORE = -145892805,
+	EUI_TEXT_CONTRACTS_MENU_PLAY_CREATED_FRIENDS = -393033550,
+	EUI_TEXT_CONTRACTS_MENU_PLAY_DEVELOPER = -1697925877,
+	EUI_TEXT_CONTRACTS_MENU_PLAY_MOST_LIKED = 879229727,
+	EUI_TEXT_CONTRACTS_MENU_ITEM_TUTORIAL_CONFIRMATION = -2048695234,
+	EUI_TEXT_CONTRACTS_WEAPON_DISGUISE_DISCLAIMER = 1894254520,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_TRIGGER_SHOOT = -1730563044,
+	EUI_TEXT_CONTRACTS_MENU_TITLE = -124013557,
+	EUI_TEXT_ONLINE_MENU_ITEM_CONTESTMAPS = 1654263545,
+	EUI_TEXT_ONLINE_MENU_PSN_CONTRACTS_SERVER_NOT_AVAILABLE = 664924773,
+	EUI_TEXT_ONLINE_MENU_ITEM_CONTRACTS = -1660245006,
+	EUI_TEXT_ONLINE_MENU_ITEM_LEADERBOARD = 2052196933,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_TITLE = 2116698746,
+	EUI_TEXT_ONLINE_MENU_TITLE = 1671693523,
+	EUI_TEXT_OPTIONS_CHEAT_MENU_SUBTITLE = 2107083710,
+	EUI_TEXT_OPTIONS_SELECT_DIFFICULTY = 1750213704,
+	EUI_TEXT_OPTIONS_CHANGE_VALUE = 625696276,
+	EUI_TEXT_OPTIONS_DEBUG_MENU_SUBTITLE = -2087111558,
+	EUI_TEXT_OPTIONS_DEBUG_MENU_TITLE = 338503994,
+	EUI_TEXT_OPTIONS_DIFFICULTY_CONFIRM_CANCEL = -1208902930,
+	EUI_TEXT_OPTIONS_DIFFICULTY_CONFIRM_CONFIRM = 1306901436,
+	EUI_TEXT_OPTIONS_DIFFICULTY_CONFIRM_TEXT = -1616184863,
+	EUI_TEXT_OPTIONS_DIFFICULTY_CONFIRM_TITLE = -1024328704,
+	EUI_TEXT_OPTIONS_DIFFICULTY_MENU_TITLE = 616100317,
+	EUI_TEXT_OPTIONS_LANGUAGE_CONFIRM_NO = -498184076,
+	EUI_TEXT_OPTIONS_LANGUAGE_CONFIRM_YES = -1804842551,
+	EUI_TEXT_OPTIONS_LANGUAGE_CONFIRM_TITLE = -1181562054,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_SPANISH = -1179783509,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_ITALIAN = -636718512,
+	EUI_TEXT_ONLINE_MENU_PSN_ABORTING_FEATURED_CONTRACT = -1947132285,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_FRENCH = 308520033,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_POLISH = 1830378890,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_GERMAN = 522332830,
+	EUI_TEXT_POI_UNLOCK_KEY_REQUIRED_BODY = -790855475,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_TURKISH = 1012489462,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_TEXT = 1922379464,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_SHOOT = 69754313,
+	EUI_TEXT_OPTIONS_MENU_ITEM_LANG_AUDIO = -1276832443,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_CONTROL_SCHEME = 855442025,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_FAST_TARGET_SELECT = 1785675876,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_SWAP_STICK_BUTTONS_PS3 = -2059502093,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_LEFT_HANDED_CONTROLS = -1554943902,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_HORIZONTAL_CAMERA_SPEED = -460109856,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_EXCLUSIVE = 1585724480,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_DIFFICULTY_LEVEL = -375937355,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_DIFFICULTY_LEVEL_EASY = -451600299,
+	EUI_TEXT_OPTIONS_TOGGLE = 1072471904,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_DIFFICULTY_LEVEL_EXPERT = 864670721,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_DIFFICULTY_LEVEL_NORMAL = 1561800615,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_DIFFICULTY_LEVEL_PURIST = 571114294,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_SHOOTING_BALLET_AUTO = 717573846,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_VIBRATION = -1568625825,
+	EUI_TEXT_OPTIONS_GAME_MENU_TITLE = 799168286,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_BRIGHTNESS = 873269960,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SAFE_AREA_X = -81663114,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SAFE_AREA_Y = -1943610400,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SHOW_HUD_RADAR = 1168169528,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SHOW_HUD_TEXTS = 269235289,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MOVE_RIGHT = 1917904947,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_ITEM_SUBTITLES = 1684455974,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_SUBTITLE = -2126451215,
+	EUI_TEXT_OPTIONS_GRAPHICS_MENU_TITLE = 799258001,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_RESOLUTION = 70612929,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_FULLSCREEN = -646074010,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_WINDOWED = 1104668235,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_VSYNC = -1265355438,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_STEREOSCOPIC = -1925608167,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_RELOAD = 1472423587,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_STEREO_DEPTH = 1339606146,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_STEREO_STRENGTH = 1805613829,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_QUALITY = -1216913389,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_ITEM_APPLY = -1268485799,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_CUSTOMGRAPHICS = 293951199,
+	EUI_TEXT_OPTIONS_GRAPHICS_TRILINEAR = 1080307792,
+	EUI_TEXT_OPTIONS_GRAPHICS_ANSIOTROPIC_2X = -2039317652,
+	EUI_TEXT_OPTIONS_GRAPHICS_ANSIOTROPIC_8X = 2090701798,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_LOD = 233405359,
+	EUI_TEXT_OPTIONS_AUTO = 1445060340,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_TITLE = 1087344311,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_TITLE = 1162089622,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MENU_CONFIRM_TEXT = 1610125398,
+	EUI_TEXT_OPTIONS_MENU_ITEM_GRAPHICS_DISPLAY = 1995918568,
+	EUI_TEXT_OPTIONS_MENU_ITEM_GRAPHICS_QUALITY = 110376283,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_SHADOW = -1166338226,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_TEXTURE_FILTER = 763208152,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_TEXTURE_QUALITY = -1400855527,
+	EUI_TEXT_OPTIONS_MENU_ITEM_CONTROLS = -1753919590,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_SSGI = -1391652955,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_LPV = 856294521,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_MIRRORS = 1648811297,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_BOKEH = -285959110,
+	EUI_TEXT_OPTIONS_CONTROLS_GAMEPAD_TITLE = -1509420256,
+	EUI_TEXT_OPTIONS_AIM_AND_CAMERA = 663684510,
+	EUI_TEXT_OPTIONS_HINTS_INSTINCT = 164597506,
+	EUI_TEXT_OPTIONS_MENU_ITEM_CONTROLS_MOUSEKEYBOARD = 370559381,
+	EUI_TEXT_OPTIONS_MENU_ITEM_DIFFICULTY = -996352581,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_XBOX = -1667636215,
+	EUI_TEXT_OPTIONS_MENU_ITEM_GAME_BUTTON = -543589634,
+	EUI_TEXT_OPTIONS_MENU_ITEM_GRAPHICS = -1387167747,
+	EUI_TEXT_OPTIONS_MENU_ITEM_GRAPHICS_BUTTON = 1986154390,
+	EUI_TEXT_OPTIONS_MENU_ITEM_SOUND = -2006931591,
+	EUI_TEXT_OPTIONS_MENU_ITEM_SOUND_BUTTON = -274161,
+	EUI_TEXT_OPTIONS_SOUND_MENU_ITEM_MASTER_VOLUME = 698660337,
+	EUI_TEXT_OPTIONS_SOUND_MENU_ITEM_MUSIC_VOLUME = 1366548595,
+	EUI_TEXT_OPTIONS_SOUND_MENU_ITEM_VOICE_VOLUME = 57518070,
+	EUI_TEXT_OPTIONS_SOUND_MENU_SUBTITLE = 1378016216,
+	EUI_TEXT_OPTIONS_GAME_MENU_INSTINCTPATHS = -439980609,
+	EUI_TEXT_OPTIONS_GAME_MENU_HINTS_TUTORIAL = -1487254368,
+	EUI_TEXT_OPTIONS_GAME_MENU_HINTS_INSTINCT = -1945826678,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_INCREASE_ZOOM = -335267736,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_ZOOM = 1784190167,
+	EUI_TEXT_OPTIONS_SOUND_MENU_TITLE = 1339281378,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_DECREASE_ZOOM = -625279976,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_HAIRTRIGGER = -1349051392,
+	EUI_TEXT_OPTIONS_CONTROLS_LAYOUT_BUTTONMAP_RESET_TITLE = -1529334562,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_MOUSE_SENSITIVITY = 1948390752,
+	EUI_TEXT_OPTIONS_SYSTEM = -750050464,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_CAMERA_SHOULDER_SWITCH = -1710005344,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_GENERIC_XBOX = -2125279896,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_INTERACT = -603629228,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_INTERACT_AGILITY_ACTIONS = 1226509639,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_MELEE = -2000459097,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_ACTIVATE_ITEMS = 1299251169,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_TAKE_COVER = -1565722364,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_DRAG_BODY = -1477982382,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_AGILITY_ACTIONS = 1174208599,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_RUN = -2019040086,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_INSTINCT_MODE_BLEND_IN = 635116433,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_SHOOT_THROW_DROP_ITEM = -1374076051,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_AUTOMATIC_GUNS_SHOTGUNS_SNIPER_RIFLES = 1892114577,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_HOLSTER_WEAPON = 1722831392,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_SILENCER_ON_OFF = 1706628934,
+	EUI_TEXT_OPTIONS_CONTROLLERLAYOUT_BUTTONPROMPT_PAUSE_MENU = 148640039,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_TOGGLE_COVER = -1372586422,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_WEAPON_SELECTOR = -761443226,
+	EUI_TEXT_OPTIONS_GAME_MENU_ITEM_WEAPON_SELECTOR_ONUSE = -1834209812,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_DROP_ITEM = 1663002768,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_ZOOM_OUT = -1778329261,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_ZOOM_IN = -635124910,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_HOLSTER = 1776478315,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_SWITCH_CAMERA = 1914785265,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_INSTINCT = -1282472801,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_AIM = 609955155,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_RUN = 1162165405,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_ACTIVATE = -388122127,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MELEE = -1865657705,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_DRAG_BODY = -381677758,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_USE2 = -293566200,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MOVE_FORWARD = 486584554,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MIDDLE_MOUSE = 61957289,
+	EUI_TEXT_OPTIONS_GRAPHICS_QUALITY_MENU_ITEM_BLOOM = 1909294861,
+	EUI_TEXT_OPTIONS_SHOW_WEAPON_SELECTOR = -724135451,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_SURRENDER = -871167189,
+	EUI_TEXT_OPTIONS_BUTTONMAPPING_MARK_TARGET = -1906158769,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_MINIMAL = -941864246,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_LOWESTGRAPHICS = -1731815443,
+	EUI_TEXT_OPTIONS_GRAPHICS_DISPLAY_VERYLOWGRAPHICS = 1346031837,
+	EUI_TEXT_HINT_MOUSE = -1843738300,
+	EUI_TEXT_HINT_SILVERBALLERS = 1247398263,
+	EUI_TEXT_HINT_PRECISION_AIM = 1310501718,
+	EUI_TEXT_HINT_TOGGLE_SILENCERS = -1534094766,
+	EUI_TEXT_HINT_PRESS_TO_ZOOM = 929091228,
+	EUI_TEXT_ONLINE_MENU_NOT_SIGNED_IN_STEAM = -1428481135,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_MESSAGECENTER_WINDOWS = -1551138856,
+	EUI_TEXT_HINT_LOADING_006 = -113667930,
+	EUI_TEXT_BENCHMARK_RESULTS_TITLE = -2033054893,
+	EUI_TEXT_BENCHMARKING = -78016496,
+	EUI_TEXT_HINT_THROWABLE_WEAPON3 = -901081101,
+	EUI_TEXT_BUTTONMAPPING_BACKSPACE_UNMAP = 1137794056,
+	EUI_TEXT_OPTIONS_GRAPHICS_MSAA_4X_FXAA = 1945826483,
+	EUI_TEXT_CONTROLLER_RECONNECT = 1534126274,
+	EUI_TEXT_STORAGE_DEVICE_CHANGED_WARNING = -992081234,
+	EUI_TEXT_NOT_ENOUGH_FREE_SPACE_PS3 = 431358520,
+	EUI_TEXT_SAVE_DAMAGED_PS3 = 812883980,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_CONTRACTS_PS3 = -1101058504,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_LEADERBOARDS_PS3 = 1415262071,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_CONTRACTS_XBOX = -992737623,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_LEADERBOARDS_XBOX = 576544425,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_PLAY_XBOX = 1570615629,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_PLAY_PS3 = -21401541,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_LOSTCON_XBOX = 1233634653,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_LOSTCON_PS3 = -443470041,
+	EUI_TEXT_SAVE_USER_MISMATCH_NOTROPHIES_PS3 = 342323147,
+	EUI_TEXT_AUTOSAVE_WARNING_XBOX = -522588175,
+	EUI_TEXT_NO_STORAGE_DEVICE_SELECTED_XBOX = -2090019080,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_FEATURE_XBOX = -1268903668,
+	EUI_TEXT_NOT_SIGNEDIN_WARNING_FEATURE_PS3 = 1589380157,
+	EUI_TEXT_SAVEGAME_NEW_XBOX = 2060966567,
+	EUI_TEXT_STORAGE_DEVICE_REMOVED_XBOX = 612789142,
+	EUI_TEXT_SIGN_IN_EVENT_OCCURED = 895419559,
+	EUI_TEXT_SIGN_UP_REQUIRED_PS3 = 798448706,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_MESSAGECENTER_XBOX = 1925746248,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_LEADERBOARDS_PS3 = -71923673,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_NO_MESSAGECENTER_XBOX = -163898078,
+	EUI_TEXT_ITEM_QUIT = 1650171584,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_PLAY_PS3 = -270234378,
+	EUI_TEXT_ONLINE_MENU_SERVER_DISCONNECTED_GENERIC_PS3 = -406283755,
+	EUI_TEXT_SCREENRESIZE_TITLE = 591976117,
+	EUI_TEXT_SAVEGAME_SUBTITLE_PS3 = 196320781,
+	EUI_TEXT_CHANGE_TEXT_LANGUAGE_CONFIRMATION = 1551800660,
+	EUI_TEXT_POI_UNLOCK_BODY = -1147489775,
+	EUI_TEXT_ONLINE_MENU_PSN_CONNECTION_LOST = 1322720176,
+	EUI_TEXT_ONLINE_MENU_XBL_CONNECTION_LOST = 1388018699,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_PSN_FEATURE_LOCKOUT = 1906060991,
+	EUI_TEXT_ONLINE_MENU_PARENTAL_XBL_FEATURE_LOCKOUT = 1844463876,
+	EUI_TEXT_ONLINE_MENU_NOT_SIGNED_IN_XBL = -530886120,
+	EUI_TEXT_ONLINE_MENU_XBL_ABORTING_FEATURED_CONTRACT = 1428401817,
+	EUI_TEXT_POI_SAVE_DAMAGED_XBOX = 1786616939,
+	EUI_TEXT_CONTROLLER_RECONNECT_XBOX = -1640536757,
+	EUI_TEXT_CONTROLLER_RECONNECT_PS3 = 1491326918,
+	EUI_TEXT_CONTROLLER_DISCONNECTED_XBOX = -594318536,
+	EUI_TEXT_CONTROLLER_DISCONNECTED = 1713613676,
 };
 
 // Size: 0x4
 enum class EValueUpdateStrategy
 {
+	UPDATE_STRATEGY_REPLACE = 0,
+	UPDATE_STRATEGY_ADD_TO = 1,
+	UPDATE_STRATEGY_MULTIPLY = 2,
 };
 
 // Size: 0x4
 enum class EVideoBufferSize
 {
+	VIDEO_BUFFER_DEFAULT = 0,
+	VIDEO_BUFFER_LARGE = 3,
+	VIDEO_BUFFER_MEDIUM = 2,
+	VIDEO_BUFFER_SMALL = 1,
 };
 
 // Size: 0x4
 enum class EVolumeTriggerEntityTypeFlags
 {
+	VTET_Hitman = 1,
+	VTET_Spatial = 16,
+	VTET_ActorAlive = 2,
+	VTET_ActorDead = 4,
+	VTET_SoundSweetener = 32,
+	VTET_ThrownItem = 8,
+	VTET_ExplodeableItem = 64,
 };
 
 // Size: 0x4
 enum class EWaypointRotationAlignment
 {
+	RA_NONE = 0,
+	RA_LOOSE = 1,
+	RA_EXACT = 2,
 };
 
 // Size: 0x4
 enum class EWeaponAnimationCategory
 {
+	eWAC_Undefined = 0,
+	eWAC_Pistol = 1,
+	eWAC_SMG_1H = 4,
+	eWAC_Sniper = 6,
+	eWAC_Revolver = 2,
+	eWAC_SMG_2H = 3,
+	eWAC_Rifle = 5,
+	eWAC_Shotgun_Pump = 7,
+	eWAC_Shotgun_Semi = 8,
 };
 
 // Size: 0x4
 enum class EWeaponSpecialSituation
 {
+	WSS_NORMAL = 0,
+	WSS_BAREHANDS = 1,
+	WSS_INVISIBLE = 7,
+	WSS_EXPLOSION = 2,
+	WSS_ACCIDENT = 3,
+	WSS_NPC_FRIENDLY_FIRE = 4,
+	WSS_ANY_WEAPON = 6,
+	WSS_EXECUTE_PISTOL = 5,
 };
 
 // Size: 0x4
 enum class EWeaponUpgradeIcon
 {
+	WEAPON_UPGRADE_ICON_NONE = 0,
+	WEAPON_UPGRADE_ICON_MAGAZINE = 4,
+	WEAPON_UPGRADE_ICON_EXTCLIP = 5,
+	WEAPON_UPGRADE_ICON_SILENCER = 1,
+	WEAPON_UPGRADE_ICON_RED_DOT_SIGHT = 2,
+	WEAPON_UPGRADE_ICON_SHELLS = 6,
+	WEAPON_UPGRADE_ICON_SLIDE = 7,
+	WEAPON_UPGRADE_ICON_AMMUNITION = 3,
+	WEAPON_UPGRADE_ICON_CHUTE = 11,
+	WEAPON_UPGRADE_ICON_BOLT = 8,
+	WEAPON_UPGRADE_ICON_BARREL = 9,
+	WEAPON_UPGRADE_ICON_HAMMER = 10,
+	WEAPON_UPGRADE_ICON_DUALWIELD = 12,
+	WEAPON_UPGRADE_ICON_MAGNUM = 13,
+	WEAPON_UPGRADE_ICON_STOCK = 14,
 };
 
 // Size: 0x4
 enum class EWeaponUpgradeUse
 {
+	eWUU_PrimaryOnly = 0,
+	eWUU_SecondaryOnly = 1,
+	eWUU_AllFireModes = 2,
 };
 
 // Size: 0x4
 enum class HMTechniques_ETechnique
 {
+	eTEC_Focus = 0,
+	eTEC_InstictiveShot = 5,
+	eTEC_Gunman = 1,
+	eTEC_Breathing = 2,
+	eTEC_Chameleon = 3,
+	eTEC_PainSupression = 4,
+	eTEC_DualWield = 7,
+	eTEC_HandToHand = 6,
+	eTEC_RunSpeed = 8,
+	eTEC_ThrowingForce = 9,
 };
 
 // Size: 0x4
@@ -1087,6 +5198,9 @@ public:
 // Size: 0x4
 enum class ICameraEntity_EProjectionType
 {
+	ePerspectiveRH = 0,
+	eCustom = 2,
+	eOrtogonalRH = 1,
 };
 
 // Size: 0x4
@@ -1143,31 +5257,51 @@ public:
 // Size: 0x4
 enum class IHM5Door_ECPDoorLockType
 {
+	CPDLT_NORMAL_LOCK = 0,
+	CPDLT_PUSH_BAR_PAD_LOCK = 1,
 };
 
 // Size: 0x4
 enum class IHM5Door_EInitialState
 {
+	IS_CLOSED = 0,
+	IS_OPEN = 1,
+	IS_OPEN_IN = 2,
+	IS_OPEN_OUT = 3,
 };
 
 // Size: 0x4
 enum class IHM5Door_EOpenDir
 {
+	OD_OUT = 3,
+	OD_TOWARS = 1,
+	OD_AWAY = 0,
+	OD_IN = 2,
 };
 
 // Size: 0x4
 enum class IHM5Door_EOpenMode
 {
+	OM_TWO_WAY = 0,
+	OM_OPEN_NEG_SIDE_ONLY = 2,
+	OM_OPEN_POS_SIDE_ONLY = 1,
+	OM_DISABLED = 3,
 };
 
 // Size: 0x4
 enum class IHM5Door_eCloseMode
 {
+	CM_AUTOCLOSE = 0,
+	CM_NEVERCLOSE = 2,
+	CM_MANUALCLOSE = 1,
 };
 
 // Size: 0x4
 enum class IHM5ItemWeapon_EHM5DeadlyThrowType
 {
+	DEADLYTHROW_NONE = 0,
+	DEADLYTHROW_LIGHT = 1,
+	DEADLYTHROW_HEAVY = 2,
 };
 
 // Size: 0x4
@@ -1190,21 +5324,42 @@ public:
 // Size: 0x4
 enum class IHM5Zone_EZoneId
 {
+	eZI_NotSet = 0,
+	eZI_ZoneC = 8,
+	eZI_ZoneDefault = 1,
+	eZI_ZoneA = 2,
+	eZI_ZoneB = 4,
+	eZI_ZoneD = 16,
+	eZI_ZoneE = 32,
+	eZI_ZoneF = 64,
+	eZI_ZoneG = 128,
+	eZI_ZoneH = 256,
 };
 
 // Size: 0x4
 enum class ILightEntity_EFrameIndexStrategy
 {
+	WRAP = 0,
+	CLAMP = 1,
 };
 
 // Size: 0x4
 enum class ILightEntity_ELightType
 {
+	LT_SPOT = 3,
+	LT_DIRECTIONAL = 0,
+	LT_ENVIRONMENT = 1,
+	LT_OMNI = 2,
+	LT_SQUARESPOT = 4,
+	LT_CAPSULE = 5,
 };
 
 // Size: 0x4
 enum class ILightEntity_ERoomLightFlow
 {
+	ROOM_LOCAL = 0,
+	THROUGH_GATES = 1,
+	ALL_ROOMS = 2,
 };
 
 // Size: 0x4
@@ -1261,11 +5416,21 @@ public:
 // Size: 0x4
 enum class IRenderCompositorEntity_EMode
 {
+	eLayered = 3,
+	eSourceA = 0,
+	eSourceAandHUD = 1,
+	eSourceB = 2,
+	eAlphaLayered = 4,
 };
 
 // Size: 0x4
 enum class IRenderCompositorEntity_EViewportAnchor
 {
+	eFill = 0,
+	eBottomLeft = 3,
+	eTopLeft = 1,
+	eBottomRight = 4,
+	eTopRight = 2,
 };
 
 // Size: 0x4
@@ -1288,36 +5453,68 @@ public:
 // Size: 0x4
 enum class IRenderMaterialEntity_EModifierOperation
 {
+	eColor = 128,
+	eModulate = 2,
+	eLeave = 0,
+	eReplace = 1,
+	eAdd = 3,
 };
 
 // Size: 0x4
 enum class IRoomEntity_EReasoningGridImportance
 {
+	RGI_NoGrid = 0,
+	RGI_Low = 1,
+	RGI_Normal = 2,
+	RGI_Extreme = 4,
+	RGI_High = 3,
 };
 
 // Size: 0x4
 enum class IScatterContainerEntity_EBrushStampMode
 {
+	BRUSHSTAMP_SOLID = 2,
+	BRUSHSTAMP_ADD = 0,
+	BRUSHSTAMP_SUB = 1,
 };
 
 // Size: 0x4
 enum class IScatterContainerEntity_EBrushType
 {
+	BRUSH_SQUARE = 0,
+	BRUSH_CIRCLE = 1,
 };
 
 // Size: 0x4
 enum class IScatterContainerEntity_ECanvasClearMode
 {
+	CLEAR_SPECIFICMATERIAL = 2,
+	CLEAR_ALL = 0,
+	CLEAR_ALLMATERIALS = 3,
+	CLEAR_INTENSITY = 1,
+	CLEAR_SETINTENSITYVALUEANDMATERIAL = 6,
+	CLEAR_SETINTENSITYVALUECLEARMATERIAL = 4,
+	CLEAR_SETMATERIALKEEPINTENSITYVALUE = 7,
+	CLEAR_SETINTENSITYVALUEKEEPMATERIAL = 5,
 };
 
 // Size: 0x4
 enum class IScatterContainerEntity_ECanvasSize
 {
+	SIZE_128 = 0,
+	SIZE_4096 = 5,
+	SIZE_1024 = 3,
+	SIZE_256 = 1,
+	SIZE_2048 = 4,
+	SIZE_512 = 2,
 };
 
 // Size: 0x4
 enum class IScatterContainerEntity_EResizeMode
 {
+	MODE_CLEAR = 0,
+	MODE_SCALE = 2,
+	MODE_KEEPASCENTER = 1,
 };
 
 // Size: 0x4
@@ -1459,21 +5656,162 @@ public:
 // Size: 0x4
 enum class InputControlNamesp_eHM5InputAction
 {
+	eIAButtonFaceDown_Downedge = 0,
+	eIAStickRightVertical_Raw = 88,
+	eIAButtonFaceDown_FastTap = 1,
+	eIAKBMWeapon6 = 66,
+	eIAThumbRight_Downedge = 29,
+	eIAButtonFaceDown_HldDwnOnce = 2,
+	eIAButtonFaceDown_HoldDown = 4,
+	eIAKBMUse = 41,
+	eIAButtonFaceRight_Tap = 14,
+	eIAButtonFaceDown_Hold = 3,
+	eIAKBMFireMode = 58,
+	eIAButtonFaceLeft_Hold = 7,
+	eIAKBMShowWeaponSelector = 75,
+	eIAStickLeftHorizontal_Raw = 85,
+	eIAKBMPickup = 45,
+	eIAButtonFaceLeft_Downedge = 5,
+	eIAButtonFaceLeft_HldDwnOnce = 6,
+	eIAKBMHumanShieldHold = 44,
+	eIAButtonFaceLeft_FastTap = 8,
+	eIAKBMUseHold = 42,
+	eIAButtonFaceLeft_Tap = 9,
+	eIAButtonFaceRight_Downedge = 10,
+	eIAButtonFaceRight_HldDwnOnce = 11,
+	eIAKBMPause = 60,
+	eIAKBMCamSwitch = 55,
+	eIATriggerLeft_Hold = 33,
+	eIAButtonFaceRight_Hold = 12,
+	eIATriggerLeft_FastTap = 32,
+	eIAButtonFaceRight_FastTap = 13,
+	eIAKBMInstinct = 54,
+	eIAButtonFaceUp_Hold = 18,
+	eIAButtonFaceUp_Downedge = 15,
+	eIAKBMSneak = 56,
+	eIAButtonFaceUp_FastTap = 16,
+	eIAKBMHumanShield = 43,
+	eIAKBMMoveUp = 37,
+	eIAButtonFaceUp_HldDwnOnce = 17,
+	eIAKBMNextWeapon = 68,
+	eIAKBMMoveHorizontal = 91,
+	eIAStickRightVertical_Analog = 84,
+	eIABumperRight_Hold = 22,
+	eIAKBMPreviousWeapon = 69,
+	eIABumperLeft_FastTap = 19,
+	eIABumperLeft_Hold = 20,
+	eIABumperRight_FastTap = 21,
+	eIADpadUp_Downedge = 23,
+	eIAThumbLeft_DownEdge = 31,
+	eIADpadDown_Downedge = 24,
+	eIADpadDown_FastTap = 25,
+	eIADpadDown_HldDwnOnce = 26,
+	eIADpadLeft_Downedge = 27,
+	eIAKBMMoveLeft = 39,
+	eIAKBMWeapon1 = 61,
+	eIAKBMMoveVertical = 92,
+	eIAKBMShoot = 52,
+	eIADpadRight_Downedge = 28,
+	eIAThumbLeft_Hold = 30,
+	eIATriggerRight_Hold = 35,
+	eIATriggerRight_FastTap = 34,
+	eIAKBMWeapon2 = 62,
+	eIAGenericStart_Hold = 36,
+	eIAKBMMoveDown = 38,
+	eIAKBMMoveRight = 40,
+	eIAKBMCover = 46,
+	eIAStickLeftHorizontal_Analog = 81,
+	eIAKBMDragBody = 47,
+	eIAKBMOkay = 77,
+	eIAKBMMelee = 48,
+	eIAKBMMarkTarget = 74,
+	eIAKBMTakeDisguise = 49,
+	eIAKBMRun = 50,
+	eIAKBMAim = 51,
+	eIAKBMReload = 53,
+	eIAKBMHolster = 57,
+	eIAKBMNotebook = 59,
+	eIAKBMWeapon3 = 63,
+	eIAKBMWeapon4 = 64,
+	eIAKBMWeapon5 = 65,
+	eIAKBMWeapon7 = 67,
+	eIAKBMPrecisionAim = 70,
+	eIAKBMZoomIn = 71,
+	eIAKBMZoomOut = 72,
+	eIAKBMDropItem = 73,
+	eIAKBMSwitchCover = 76,
+	eIAKBMCancel = 78,
+	eIATriggerLeft_Analog = 79,
+	eIATriggerRight_Analog = 80,
+	eIAStickLeftVertical_Analog = 82,
+	eIAStickRightHorizontal_Analog = 83,
+	eIAStickLeftVertical_Raw = 86,
+	eIAStickRightHorizontal_Raw = 87,
+	eIABumperLeft_Analog = 89,
+	eIABumperRight_Analog = 90,
+	eIAKBMLookHorizontal = 93,
+	eIAKBMLookVertical = 94,
+	eIActionsNUM = 95,
 };
 
 // Size: 0x4
 enum class InputControlNamesp_eHM5InputActionID
 {
+	eIDButtonFaceDown = 0,
+	eIDBumperRight = 5,
+	eIDButtonFaceLeft = 1,
+	eIDButtonSelect = 13,
+	eIDButtonFaceRight = 2,
+	eIDButtonFaceUp = 3,
+	eIDStickRightVertical = 19,
+	eIDDpadLeft = 7,
+	eIDBumperLeft = 4,
+	eIDDpadDown = 6,
+	eIDDpadRight = 8,
+	eIDDpadUp = 9,
+	eIDThumbLeft = 10,
+	eIDThumbRight = 11,
+	eIDButtonStart = 12,
+	eIDTriggerLeft = 14,
+	eIDTriggerRight = 15,
+	eIDStickLeftHorizontal = 16,
+	eIDStickLeftVertical = 17,
+	eIDStickRightHorizontal = 18,
+	eIDKeyboard = 20,
+	eID_INVALID = 21,
 };
 
 // Size: 0x4
 enum class InputControlNamesp_eHM5InputActionType
 {
+	eTypeGet = 0,
+	eTypeHold = 1,
+	eTypeTap = 3,
+	eTypeClickHold = 9,
+	eTypeRelease = 4,
+	eTypeHoldDown = 7,
+	eTypeRepeat = 2,
+	eTypeFastTap = 6,
+	eTypeDownedge = 5,
+	eTypeFireOnceHoldDown = 8,
+	eTypePress = 10,
+	eTypeANALOG = 11,
+	eTypeANALOGRAW = 12,
+	eTypeRELATIVE = 13,
+	eTYPE_INVALID = 14,
 };
 
 // Size: 0x4
 enum class MenuWeaponUpgradeData_EUpgradeAction
 {
+	EUPGRADE_ACTION_NONE = 0,
+	EUPGRADE_ACTION_INSTALL = 1,
+	EUPGRADE_ACTION_REMOVE = 2,
+	EUPGRADE_ACTION_CLEAR_LEVELS = 7,
+	EUPGRADE_ACTION_EQUIP_WEAPON = 5,
+	EUPGRADE_ACTION_BUY_NEXT_LEVEL = 4,
+	EUPGRADE_ACTION_UNLOCK_SLOT = 3,
+	EUPGRADE_ACTION_UNEQUIP_WEAPON = 6,
 };
 
 // Size: 0x1
@@ -1496,6 +5834,288 @@ public:
 // Size: 0x4
 enum class SActorSoundDefs_EDefinition
 {
+	_NoSound = 0,
+	InCu_PrpTssSeeRsp = 255,
+	Dth_Crush = 13,
+	Dth = 1,
+	Dth_BrkNck = 2,
+	Dth_Mpct = 6,
+	Cmbt_StaleMateTnt = 89,
+	InDedBdy_BloodPllAck = 207,
+	Gen_SrpsGrabFt = 27,
+	Dth_GnSht = 4,
+	InCa_Stnd = 140,
+	Dth_Fll = 3,
+	InCa_StndAgtd = 141,
+	Cmbt_HMFlnk = 50,
+	Dth_HdSht = 5,
+	Cmbt_HMTrwXplo = 62,
+	Dth_SltThrt = 7,
+	Dth_strngl = 8,
+	Dth_Xplo = 9,
+	Cmbt_Hold = 64,
+	Ar_RptX = 111,
+	Cmbt_ClsAck = 38,
+	Ar_HMSecTp = 104,
+	InCa_StndAgtdHMKnwn = 143,
+	InCa_StndAgtdHMKnwnLdr = 144,
+	Dth_PrpF = 10,
+	Gen_Mssng = 21,
+	Dth_Electro = 11,
+	Gen_Hrt = 20,
+	Gen_GrtHMCiv = 14,
+	Gen_GrtHMElite = 16,
+	Dth_Burn = 12,
+	Gen_GrtHMCop = 15,
+	InCu_NpcBrkAck = 241,
+	Cmbt_Fire = 41,
+	Gen_GrtHMGuard = 17,
+	InSt_Ack = 265,
+	Gen_SrpsGrabBk = 28,
+	ClsCmbt_Ack = 31,
+	InCa_HMAsCivAck = 130,
+	Gen_GtHlp = 18,
+	Cmbt_BackupRsp = 34,
+	Cmbt_BackupCll = 33,
+	Gen_HMHere = 22,
+	Gen_GtHlpLd = 19,
+	Cmbt_HMKllName = 54,
+	Gen_HMThere = 23,
+	InDedBdy_Massive = 212,
+	InCu_GuardStnd = 264,
+	Gen_RdoDrm = 24,
+	Cmbt_HitHM = 45,
+	Gen_Srps = 25,
+	Cmbt_GtHitCiv = 44,
+	Cmbt_HMKllCiv = 53,
+	Gen_SrpsLd = 26,
+	Gen_StndRsp = 29,
+	Cmbt_HMKllPrpTss = 55,
+	Cmbt_Relod = 83,
+	Trspss_Rsp = 225,
+	Gen_StopLd = 30,
+	ClsCmbt_Tnt = 32,
+	Cmbt_BadDsg = 35,
+	InCu_PrpTssHearInv = 246,
+	Cmbt_Beg = 36,
+	Cmbt_HMMssTnt = 57,
+	Cmbt_CllOut = 37,
+	Cmbt_HMKll = 52,
+	Cmbt_CvrFirLdr = 39,
+	Cmbt_HMCvr = 48,
+	Cmbt_GtHit = 43,
+	InCa_ScrmInvLdr = 186,
+	Cmbt_CvrFirRsp = 40,
+	Cmbt_FireLdr = 42,
+	Cmbt_HMSpttd = 61,
+	Cmbt_HMVnshd = 63,
+	Cmbt_HMClsCmbtAck = 46,
+	Cmbt_HMClsCmbtPrpAck = 47,
+	Cmbt_HumShldRlsFem1 = 70,
+	Cmbt_HMFire = 49,
+	Cmbt_HMHeadPopr = 51,
+	InCa_XploSeeRpt = 175,
+	AvoidXplo_Stnd = 92,
+	Cmbt_HMKllXplo = 56,
+	Cmbt_HMRelod = 58,
+	Cmbt_HMShrpShtr = 59,
+	Cmbt_HMSht2Blw = 60,
+	Cmbt_HoldLdr = 65,
+	Cmbt_HumShldFrndFir = 66,
+	Cmbt_HumShldRls1 = 67,
+	Ar_TrspssRpt = 113,
+	Cmbt_HumShldRls2 = 68,
+	InCu_RdoInv = 259,
+	Cmbt_HumShldRls3 = 69,
+	Cmbt_HumShldRlsFem2 = 71,
+	Cmbt_HumShldRlsFem3 = 72,
+	Cmbt_HumShldVctm = 73,
+	Cmbt_HumShldLdr = 74,
+	Cmbt_HumShldBrth = 75,
+	Cmbt_KllHM = 76,
+	Cmbt_LngLst = 77,
+	Cmbt_LngLstRsp = 78,
+	Cmbt_LstMnStn = 79,
+	Cmbt_LstSght = 80,
+	Cmbt_LstSghtRsp = 81,
+	Cmbt_NdrAttck = 82,
+	Cmbt_Scrm = 84,
+	InCa_GenLdInvLdr = 200,
+	InCa_XploSeeInv = 171,
+	Cmbt_TkDwnLdr = 85,
+	Cmbt_VntAck = 86,
+	Cmbt_Whmp = 87,
+	Cmbt_StalemateHold = 88,
+	AvoidXplo = 90,
+	AvoidXplo_Blw = 91,
+	Ar_BadDsg = 93,
+	Ar_BadDsgRpt = 94,
+	Ar_BlmeKll = 95,
+	Ar_CivRptHMKnownAck = 96,
+	Ar_ChngDsg = 97,
+	InCa_HMAsCopAck = 131,
+	Ar_ChngDsgRpt = 98,
+	InCu_FtStpsStnd = 240,
+	Ar_DrgBody = 99,
+	InCa_GnShtAck = 177,
+	Ar_DrgBodyRpt = 100,
+	Ar_FkeSrrdrTnt = 101,
+	Ar_HMCmply = 102,
+	Ar_HMDoor = 103,
+	Ar_HMSecTpRpt = 105,
+	Ar_HMFseBx = 106,
+	Ar_HMFseBxRpt = 107,
+	Ar_KyCrd = 108,
+	Ar_KyCrdRpt = 109,
+	Ar_RunAway = 110,
+	Ar_Trspss = 112,
+	Ar_WeapWrn1 = 114,
+	Ar_WeapWrn2 = 115,
+	Ar_WeapWrnMelee1 = 116,
+	Ar_WeapWrnMelee2 = 117,
+	Ar_Wrn1 = 118,
+	Ar_Wrn2 = 119,
+	FseBx_Fixing = 278,
+	Ar_Wrn3 = 120,
+	InCu_NpcBrkStnd = 244,
+	Trspss_Wrn2 = 223,
+	InCa_BackupCll = 121,
+	InCa_BackupRun = 122,
+	InCa_ChckCvr = 123,
+	InCa_ChckNdrCr = 124,
+	InCa_Idle = 136,
+	InCa_CivCmnd = 125,
+	InDedBdy_Inv = 209,
+	InCa_ClsCmbtAck = 149,
+	InCa_CivRptAck = 126,
+	InDsg_HdNPlnSght = 220,
+	InCa_CivRptFail = 127,
+	InCa_CivUpset = 128,
+	InCu_CrAlrmRsp = 236,
+	InCa_ClstTnt = 129,
+	InCa_HMAsGrdAck = 132,
+	InCa_HMAsEliteAck = 133,
+	InCa_HMSpttd = 134,
+	InCa_HMTnt = 135,
+	InCa_NitiateHMKnwn = 137,
+	InCa_SrchLdr = 138,
+	InCa_SrchRsp = 139,
+	InCa_XploLdr = 167,
+	InCa_StndAgtdLdr = 142,
+	InSt_PrpTssSee = 273,
+	InCa_StndHMKnwn = 145,
+	InCa_StndHMKnwnLdr = 146,
+	InCa_StndLdr = 147,
+	InCa_VntTnt = 148,
+	InCa_ClsCmbtInv = 150,
+	InCa_ClsCmbtInvLdr = 151,
+	InCa_ClsCmbtInvRsp = 152,
+	InCa_ClsCmbtLdr = 153,
+	InCa_ClsCmbtRpt = 154,
+	InCa_ClsCmbtRsp = 155,
+	InCa_DthAck = 156,
+	InCa_DthInv = 157,
+	InCa_DthInvLdr = 158,
+	InCa_DthInvRsp = 159,
+	InCa_DthLdr = 160,
+	InCa_DthRpt = 161,
+	InCa_DthRsp = 162,
+	InCu_BlltMpctLdr = 229,
+	InCa_XploAck = 163,
+	InCa_XploInv = 164,
+	InCa_XploInvLdr = 165,
+	InCa_XploInvRsp = 166,
+	InCa_XploRpt = 168,
+	InCa_XploRsp = 169,
+	InCa_XploSeeAck = 170,
+	InCa_XploSeeInvLdr = 172,
+	InCa_XploSeeInvRsp = 173,
+	InCa_XploSeeLdr = 174,
+	InCa_XploSeeRsp = 176,
+	InCa_GnShtInv = 178,
+	InCa_GnShtInvLdr = 179,
+	InSt_HMEntXit = 269,
+	InCa_GnShtInvRsp = 180,
+	InCa_GenRpt = 196,
+	InCa_GnShtLdr = 181,
+	InCa_GnShtRsp = 182,
+	InCa_GnShtRpt = 183,
+	InCa_ScrmAck = 184,
+	InCa_ScrmInv = 185,
+	InCa_ScrmInvRsp = 187,
+	InCa_ScrmLdr = 188,
+	InCa_GenInv = 192,
+	InCa_ScrmRpt = 189,
+	InCa_ScrmRsp = 190,
+	InCa_GenAck = 191,
+	InCa_GenInvLdr = 193,
+	InCa_GenInvRsp = 194,
+	InCa_GenLdr = 195,
+	InCa_GenRsp = 197,
+	InCa_GenLdAck = 198,
+	InCa_GenLdInv = 199,
+	InCa_GenLdInvRsp = 201,
+	InCa_GenLdLdr = 202,
+	InCa_GenLdRpt = 203,
+	InCa_GenLdRsp = 204,
+	Accdnt_Inv = 205,
+	Accdnt_Wtch = 206,
+	InDedBdy_Ack = 208,
+	InDedBdy_Rpt = 210,
+	InDedBdy_BllPllRpt = 211,
+	InDedBdy_PcfdInv = 213,
+	InDsg_Ack = 214,
+	InDsg_FllwWrn1 = 215,
+	InDsg_FllwWrn2 = 216,
+	InCu_BlltMpctAck = 227,
+	InDsg_FllwWrn3 = 217,
+	InDsg_Pzzl = 218,
+	InDsg_Stnd = 219,
+	Trspss_Stnd = 221,
+	Trspss_Wrn1 = 222,
+	InCu_PrpTssSeeInv = 253,
+	Trspss_Wrn3 = 224,
+	InCu_CivRsp = 226,
+	InSt_HMSnkng = 272,
+	InCu_BlltMpctInv = 228,
+	InCu_BlltMpctRsp = 230,
+	InCu_BlltMpctStnd = 231,
+	InSt_Wrn = 275,
+	InCu_BlltMpctStndRsp = 232,
+	InCu_CrAlrmAck = 233,
+	InCu_CrAlrmInv = 234,
+	InCu_CrAlrmLdr = 235,
+	InSt_HM2Cls = 276,
+	InCu_CrAlrmStnd = 237,
+	InCu_CrAlrmStndRsp = 238,
+	InCu_FtStpsAck = 239,
+	InCu_NpcBrkCiv = 242,
+	InCu_NpcBrkInv = 243,
+	InCu_PrpTssHearAck = 245,
+	InCu_PrpTssHearLdr = 247,
+	InCu_PrpTssHearRsp = 248,
+	InCu_PrpTssHearStnd = 249,
+	InCu_PrpTssHearStndRsp = 250,
+	InCu_PrpTssSeeAck = 251,
+	InCu_PrpTssSeeCiv = 252,
+	InCu_PrpTssSeeLdr = 254,
+	InCu_PrpTssSeeStnd = 256,
+	InCu_PrpTssSeeStndRsp = 257,
+	InCu_RdoAck = 258,
+	InCu_RdoLdr = 260,
+	InCu_RdoRsp = 261,
+	InCu_RdoStnd = 262,
+	InCu_RdoStndRsp = 263,
+	InSt_HMAglty = 266,
+	InSt_HMBz = 267,
+	InSt_HMBzStnd = 268,
+	InSt_HMInCvr = 270,
+	InSt_HMRun = 271,
+	InSt_Stnd = 274,
+	FseBx_Fixed = 277,
+	FseBx_GoFix = 279,
+	FseBx_SabAck = 280,
+	_Last = 281,
 };
 
 // Size: 0xC
@@ -1512,9 +6132,9 @@ public:
 	bool operator==(const SBehaviorTreeEntityReference& p_Other) const;
 	bool operator!=(const SBehaviorTreeEntityReference& p_Other) const { return !(*this == p_Other); }
 
-	bool _AC99E46E; // 0x0
+	bool m_bList; // 0x0
 	uint8_t _pad1[3] {};
-	ZString _EBF2DC42; // 0x4
+	ZString m_sName; // 0x4
 };
 
 // Size: 0xC
@@ -1531,9 +6151,9 @@ public:
 	bool operator==(const SBehaviorTreeEvaluationLogEntry& p_Other) const;
 	bool operator!=(const SBehaviorTreeEvaluationLogEntry& p_Other) const { return !(*this == p_Other); }
 
-	uint32 _7A22B22E; // 0x0
-	uint32 _217E868E; // 0x4
-	bool _7E0EAB7D; // 0x8
+	uint32 m_nBehaviorTreeIndex; // 0x0
+	uint32 m_nConditionOffset; // 0x4
+	bool m_bResult; // 0x8
 	uint8_t _pad9[3] {};
 };
 
@@ -1551,7 +6171,7 @@ public:
 	bool operator==(const ZResourceID& p_Other) const;
 	bool operator!=(const ZResourceID& p_Other) const { return !(*this == p_Other); }
 
-	ZString _4FB33326; // 0x0
+	ZString m_uri; // 0x0
 };
 
 // Size: 0x18
@@ -1568,8 +6188,8 @@ public:
 	bool operator==(const SBehaviorTreeEvaluationLog& p_Other) const;
 	bool operator!=(const SBehaviorTreeEvaluationLog& p_Other) const { return !(*this == p_Other); }
 
-	TArray<ZResourceID> _45584A12; // 0x0
-	TArray<SBehaviorTreeEvaluationLogEntry> _B80AC610; // 0xC
+	TArray<ZResourceID> m_BehaviorTrees; // 0x0
+	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0xC
 };
 
 // Size: 0x8
@@ -1586,7 +6206,7 @@ public:
 	bool operator==(const SBehaviorTreeInputPinCondition& p_Other) const;
 	bool operator!=(const SBehaviorTreeInputPinCondition& p_Other) const { return !(*this == p_Other); }
 
-	ZString _EBF2DC42; // 0x0
+	ZString m_sName; // 0x0
 };
 
 // Size: 0x18
@@ -1603,8 +6223,8 @@ public:
 	bool operator==(const SBehaviorTreeInfo& p_Other) const;
 	bool operator!=(const SBehaviorTreeInfo& p_Other) const { return !(*this == p_Other); }
 
-	TArray<SBehaviorTreeEntityReference> _5AFAC781; // 0x0
-	TArray<SBehaviorTreeInputPinCondition> _5940064D; // 0xC
+	TArray<SBehaviorTreeEntityReference> m_references; // 0x0
+	TArray<SBehaviorTreeInputPinCondition> m_inputPinConditions; // 0xC
 };
 
 // Size: 0x18
@@ -1621,12 +6241,12 @@ public:
 	bool operator==(const SBodyPartDamageMultipliers& p_Other) const;
 	bool operator!=(const SBodyPartDamageMultipliers& p_Other) const { return !(*this == p_Other); }
 
-	float32 _ADB3EF29; // 0x0
-	float32 _DF51096C; // 0x4
-	float32 _EBC4AEA7; // 0x8
-	float32 _B2A446A3; // 0xC
-	float32 _214EB7BD; // 0x10
-	float32 _FB25522A; // 0x14
+	float32 m_fHeadDamageMultiplier; // 0x0
+	float32 m_fFaceDamageMultiplier; // 0x4
+	float32 m_fArmDamageMultiplier; // 0x8
+	float32 m_fHandDamageMultiplier; // 0xC
+	float32 m_fLegDamageMultiplier; // 0x10
+	float32 m_fTorsoDamageMultiplier; // 0x14
 };
 
 // Size: 0xC
@@ -1643,9 +6263,9 @@ public:
 	bool operator==(const SVector3& p_Other) const;
 	bool operator!=(const SVector3& p_Other) const { return !(*this == p_Other); }
 
-	float32 _8CDC1683; // 0x0
-	float32 _FBDB2615; // 0x4
-	float32 _62D277AF; // 0x8
+	float32 x; // 0x0
+	float32 y; // 0x4
+	float32 z; // 0x8
 };
 
 // Size: 0xC
@@ -1662,7 +6282,7 @@ public:
 	bool operator==(const SBoneScalesList& p_Other) const;
 	bool operator!=(const SBoneScalesList& p_Other) const { return !(*this == p_Other); }
 
-	TArray<SVector3> _DB3D5286; // 0x0
+	TArray<SVector3> m_aBoneScales; // 0x0
 };
 
 // Size: 0x8
@@ -1679,8 +6299,8 @@ public:
 	bool operator==(const SCPProgressionState& p_Other) const;
 	bool operator!=(const SCPProgressionState& p_Other) const { return !(*this == p_Other); }
 
-	int32 _5B210A8A; // 0x0
-	uint32 _7A6CA028; // 0x4
+	int32 m_iCPIndex; // 0x0
+	uint32 m_iDifficulties; // 0x4
 };
 
 // Size: 0x8
@@ -1697,8 +6317,8 @@ public:
 	bool operator==(const SSubGoalProgressData& p_Other) const;
 	bool operator!=(const SSubGoalProgressData& p_Other) const { return !(*this == p_Other); }
 
-	int32 _922CA259; // 0x0
-	int32 _695969C0; // 0x4
+	int32 m_nProgress; // 0x0
+	int32 m_nNeeded; // 0x4
 };
 
 // Size: 0x30
@@ -1715,20 +6335,20 @@ public:
 	bool operator==(const SFullGoalData& p_Other) const;
 	bool operator!=(const SFullGoalData& p_Other) const { return !(*this == p_Other); }
 
-	ELevelIndex _F0A2AB0C; // 0x0
-	int32 _26ADCCFA; // 0x4
-	EUIText _666BDA3D; // 0x8
-	EUIText _DB5F5665; // 0xC
-	int64 _286EC69B; // 0x10
-	int32 _B66149DE; // 0x18
-	bool _6C30550E; // 0x1C
-	bool _89E24C20; // 0x1D
-	bool _F2D0B7CB; // 0x1E
-	bool _AD7C9C45; // 0x1F
-	bool _E53983D3; // 0x20
-	bool _87B6A2FF; // 0x21
+	ELevelIndex m_eLevelIndex; // 0x0
+	int32 m_nID; // 0x4
+	EUIText m_eMessageText; // 0x8
+	EUIText m_eFriendMessageText; // 0xC
+	int64 m_nTimestamp; // 0x10
+	int32 m_nCategory; // 0x18
+	bool m_bHasBeenSent; // 0x1C
+	bool m_bIsSecurityTapeChallenge; // 0x1D
+	bool m_bTracked; // 0x1E
+	bool m_bCompleted; // 0x1F
+	bool m_bHidden; // 0x20
+	bool m_bLocked; // 0x21
 	uint8_t _pad22[2] {};
-	TArray<SSubGoalProgressData> _D4412377; // 0x24
+	TArray<SSubGoalProgressData> m_SubgoalProgress; // 0x24
 };
 
 // Size: 0x14
@@ -1745,9 +6365,9 @@ public:
 	bool operator==(const SChallengeData& p_Other) const;
 	bool operator!=(const SChallengeData& p_Other) const { return !(*this == p_Other); }
 
-	TArray<SFullGoalData> _99B680D5; // 0x0
-	int32 _954912E4; // 0xC
-	int32 _3A82AA93; // 0x10
+	TArray<SFullGoalData> m_FullGoalProgess; // 0x0
+	int32 m_iLastUnlockedChallenge; // 0xC
+	int32 m_iNumChallengesCompleted; // 0x10
 };
 
 // Size: 0x1
@@ -1781,8 +6401,8 @@ public:
 	bool operator==(const STokenID& p_Other) const;
 	bool operator!=(const STokenID& p_Other) const { return !(*this == p_Other); }
 
-	uint32 _CE3E2DE2; // 0x0
-	bool _3589B0EA; // 0x4
+	uint32 m_iValue; // 0x0
+	bool m_bValid; // 0x4
 	uint8_t _pad5[3] {};
 };
 
@@ -1800,8 +6420,8 @@ public:
 	bool operator==(const SCloseCombatWeaponSaveData& p_Other) const;
 	bool operator!=(const SCloseCombatWeaponSaveData& p_Other) const { return !(*this == p_Other); }
 
-	STokenID _DFE2E88A; // 0x0
-	int32 _C82C9569; // 0x8
+	STokenID m_ID; // 0x0
+	int32 m_nImpactCount; // 0x8
 };
 
 // Size: 0x8
@@ -1818,7 +6438,7 @@ public:
 	bool operator==(const SItemSaveData& p_Other) const;
 	bool operator!=(const SItemSaveData& p_Other) const { return !(*this == p_Other); }
 
-	STokenID _DFE2E88A; // 0x0
+	STokenID m_ID; // 0x0
 };
 
 // Size: 0x1C
@@ -1835,11 +6455,11 @@ public:
 	bool operator==(const SRangedWeaponSaveData& p_Other) const;
 	bool operator!=(const SRangedWeaponSaveData& p_Other) const { return !(*this == p_Other); }
 
-	STokenID _DFE2E88A; // 0x0
-	int32 _F6939C84; // 0x8
-	bool _B00640D9; // 0xC
+	STokenID m_ID; // 0x0
+	int32 m_nBulletsInMagazine; // 0x8
+	bool m_bAltFire; // 0xC
 	uint8_t _padD[3] {};
-	TArray<bool> _433E339A; // 0x10
+	TArray<bool> m_aUpgradesState; // 0x10
 };
 
 // Size: 0x80
@@ -1856,23 +6476,23 @@ public:
 	bool operator==(const SCheckpointSaveData& p_Other) const;
 	bool operator!=(const SCheckpointSaveData& p_Other) const { return !(*this == p_Other); }
 
-	int32 _B714BBE4; // 0x0
-	bool _87B6A2FF; // 0x4
-	bool _AD7C9C45; // 0x5
+	int32 m_iCheckpointCompoundID; // 0x0
+	bool m_bLocked; // 0x4
+	bool m_bCompleted; // 0x5
 	uint8_t _pad6[2] {};
-	STokenID _AAD1A263; // 0x8
-	int32 _79E8EE0C; // 0x10
-	TFixedArray<uint32, 8> _A3682C66; // 0x14
-	float32 _40DF8DEA; // 0x34
-	float32 _57F16D6E; // 0x38
-	TArray<bool> _F6EF6776; // 0x3C
-	TArray<float32> _F617FC96; // 0x48
-	TArray<SItemSaveData> _6C28792D; // 0x54
-	TArray<SRangedWeaponSaveData> _B14E7CA0; // 0x60
-	TArray<SCloseCombatWeaponSaveData> _694B8AEB; // 0x6C
-	int32 _A01D27FD; // 0x78
-	bool _4E143EF0; // 0x7C
-	bool _6441B4DD; // 0x7D
+	STokenID m_OutfitTokenID; // 0x8
+	int32 m_nOutfitVariation; // 0x10
+	TFixedArray<uint32, 8> m_nAmmoInPocket; // 0x14
+	float32 m_fFocus; // 0x34
+	float32 m_fHealth; // 0x38
+	TArray<bool> m_BoolValues; // 0x3C
+	TArray<float32> m_FloatValues; // 0x48
+	TArray<SItemSaveData> m_Items; // 0x54
+	TArray<SRangedWeaponSaveData> m_RangedWeapons; // 0x60
+	TArray<SCloseCombatWeaponSaveData> m_CloseCombatdWeapons; // 0x6C
+	int32 m_iInventorySlot; // 0x78
+	bool m_bInventoryDualWield; // 0x7C
+	bool m_bInventoryUnholstered; // 0x7D
 	uint8_t _pad7E[2] {};
 };
 
@@ -1890,10 +6510,10 @@ public:
 	bool operator==(const float4& p_Other) const;
 	bool operator!=(const float4& p_Other) const { return !(*this == p_Other); }
 
-	float32 _8CDC1683; // 0x0
-	float32 _FBDB2615; // 0x4
-	float32 _62D277AF; // 0x8
-	float32 _1C630B12; // 0xC
+	float32 x; // 0x0
+	float32 y; // 0x4
+	float32 z; // 0x8
+	float32 w; // 0xC
 };
 
 // Size: 0x30
@@ -1910,10 +6530,10 @@ public:
 	bool operator==(const SCollidingParticle& p_Other) const;
 	bool operator!=(const SCollidingParticle& p_Other) const { return !(*this == p_Other); }
 
-	float4 _E1195483; // 0x0
-	float4 _19ED66DF; // 0x10
-	uint32 _A81A0D87; // 0x20
-	float32 _EA119EDC; // 0x24
+	float4 m_vPosition; // 0x0
+	float4 m_vVelocity; // 0x10
+	uint32 m_nColor; // 0x20
+	float32 m_fSize; // 0x24
 	uint8_t _pad28[8] {};
 };
 
@@ -1931,9 +6551,9 @@ public:
 	bool operator==(const SColorRGB& p_Other) const;
 	bool operator!=(const SColorRGB& p_Other) const { return !(*this == p_Other); }
 
-	float32 _6C09FF9D; // 0x0
-	float32 _01D41B76; // 0x4
-	float32 _71BEEFF9; // 0x8
+	float32 r; // 0x0
+	float32 g; // 0x4
+	float32 b; // 0x8
 };
 
 // Size: 0x10
@@ -1950,10 +6570,10 @@ public:
 	bool operator==(const SColorRGBA& p_Other) const;
 	bool operator!=(const SColorRGBA& p_Other) const { return !(*this == p_Other); }
 
-	float32 _6C09FF9D; // 0x0
-	float32 _01D41B76; // 0x4
-	float32 _71BEEFF9; // 0x8
-	float32 _E8B7BE43; // 0xC
+	float32 r; // 0x0
+	float32 g; // 0x4
+	float32 b; // 0x8
+	float32 a; // 0xC
 };
 
 // Size: 0x8
@@ -1987,9 +6607,9 @@ public:
 	bool operator==(const SConditionBase& p_Other) const;
 	bool operator!=(const SConditionBase& p_Other) const { return !(*this == p_Other); }
 
-	ECompiledConditionType _4D167DA0; // 0x0
-	uint32 _4C7AD911; // 0x4
-	ZBehaviorTreeVariable _5A1512A0; // 0x8
+	ECompiledConditionType eConditionType; // 0x0
+	uint32 nConditionModifiers; // 0x4
+	ZBehaviorTreeVariable assignTo; // 0x8
 };
 
 // Size: 0x1
@@ -2006,7 +6626,7 @@ public:
 	bool operator==(const SContentKitBaseState& p_Other) const;
 	bool operator!=(const SContentKitBaseState& p_Other) const { return !(*this == p_Other); }
 
-	uint8 _16021251; // 0x0
+	uint8 m_iKitState; // 0x0
 };
 
 // Size: 0xC
@@ -2023,10 +6643,10 @@ public:
 	bool operator==(const SContractUnlockStatus& p_Other) const;
 	bool operator!=(const SContractUnlockStatus& p_Other) const { return !(*this == p_Other); }
 
-	bool _09C31EA4; // 0x0
+	bool bUnlocked; // 0x0
 	uint8_t _pad1[3] {};
-	ELevelIndex _9361233F; // 0x4
-	int32 _3BD872AF; // 0x8
+	ELevelIndex eLevelIndex; // 0x4
+	int32 iContractIndex; // 0x8
 };
 
 // Size: 0x10
@@ -2043,9 +6663,9 @@ public:
 	bool operator==(const SContractSaveData& p_Other) const;
 	bool operator!=(const SContractSaveData& p_Other) const { return !(*this == p_Other); }
 
-	bool _C8FF2BBE; // 0x0
+	bool bTutorialPlayed; // 0x0
 	uint8_t _pad1[3] {};
-	TArray<SContractUnlockStatus> _5685F5AA; // 0x4
+	TArray<SContractUnlockStatus> aLocalContractUnlockStatusData; // 0x4
 };
 
 // Size: 0xC
@@ -2062,8 +6682,8 @@ public:
 	bool operator==(const SEntityTemplateProperty& p_Other) const;
 	bool operator!=(const SEntityTemplateProperty& p_Other) const { return !(*this == p_Other); }
 
-	uint32 _DF9B3B62; // 0x0
-	ZVariant _1D775834; // 0x4
+	uint32 nPropertyID; // 0x0
+	ZVariant value; // 0x4
 };
 
 // Size: 0x10
@@ -2080,8 +6700,8 @@ public:
 	bool operator==(const SCppEntity& p_Other) const;
 	bool operator!=(const SCppEntity& p_Other) const { return !(*this == p_Other); }
 
-	int32 _891D57ED; // 0x0
-	TArray<SEntityTemplateProperty> _71206441; // 0x4
+	int32 blueprintIndexInResourceHeader; // 0x0
+	TArray<SEntityTemplateProperty> propertyValues; // 0x4
 };
 
 // Size: 0x10
@@ -2098,9 +6718,9 @@ public:
 	bool operator==(const SCppEntitySubsetInfo& p_Other) const;
 	bool operator!=(const SCppEntitySubsetInfo& p_Other) const { return !(*this == p_Other); }
 
-	ZString _5E237E06; // 0x0
-	TypeID _8CDE5729; // 0x8
-	uint32 _0B0541BA; // 0xC
+	ZString name; // 0x0
+	TypeID type; // 0x8
+	uint32 flags; // 0xC
 };
 
 // Size: 0x10
@@ -2117,8 +6737,8 @@ public:
 	bool operator==(const SCppEntityBlueprint& p_Other) const;
 	bool operator!=(const SCppEntityBlueprint& p_Other) const { return !(*this == p_Other); }
 
-	TypeID _B16D2E23; // 0x0
-	TArray<SCppEntitySubsetInfo> _4D38375A; // 0x4
+	TypeID typeName; // 0x0
+	TArray<SCppEntitySubsetInfo> subsets; // 0x4
 };
 
 // Size: 0x24
@@ -2135,10 +6755,10 @@ public:
 	bool operator==(const SCppEntityTemplate& p_Other) const;
 	bool operator!=(const SCppEntityTemplate& p_Other) const { return !(*this == p_Other); }
 
-	ZString _5F09C136; // 0x0
-	TypeID _B16D2E23; // 0x8
-	TArray<SEntityTemplateProperty> _71206441; // 0xC
-	TArray<SCppEntitySubsetInfo> _4D38375A; // 0x18
+	ZString moduleName; // 0x0
+	TypeID typeName; // 0x8
+	TArray<SEntityTemplateProperty> propertyValues; // 0xC
+	TArray<SCppEntitySubsetInfo> subsets; // 0x18
 };
 
 // Size: 0x80
@@ -2155,7 +6775,7 @@ public:
 	bool operator==(const SCrowdCells& p_Other) const;
 	bool operator!=(const SCrowdCells& p_Other) const { return !(*this == p_Other); }
 
-	TFixedArray<uint8, 128> _193674BC; // 0x0
+	TFixedArray<uint8, 128> m_cells; // 0x0
 };
 
 // Size: 0x18
@@ -2172,8 +6792,8 @@ public:
 	bool operator==(const SCrowdFlowChannel& p_Other) const;
 	bool operator!=(const SCrowdFlowChannel& p_Other) const { return !(*this == p_Other); }
 
-	TArray<uint8> _090A18A1; // 0x0
-	TArray<uint16> _7B24AA84; // 0xC
+	TArray<uint8> m_aFlowVectorIndex; // 0x0
+	TArray<uint16> m_aFlowCost; // 0xC
 };
 
 // Size: 0x40
@@ -2190,10 +6810,10 @@ public:
 	bool operator==(const SMatrix& p_Other) const;
 	bool operator!=(const SMatrix& p_Other) const { return !(*this == p_Other); }
 
-	float4 _CA3885CF; // 0x0
-	float4 _F758AC7F; // 0x10
-	float4 _B0F8D6AF; // 0x20
-	float4 _B1E031B9; // 0x30
+	float4 XAxis; // 0x0
+	float4 YAxis; // 0x10
+	float4 ZAxis; // 0x20
+	float4 Trans; // 0x30
 };
 
 // Size: 0x10
@@ -2210,10 +6830,10 @@ public:
 	bool operator==(const SVector4& p_Other) const;
 	bool operator!=(const SVector4& p_Other) const { return !(*this == p_Other); }
 
-	float32 _8CDC1683; // 0x0
-	float32 _FBDB2615; // 0x4
-	float32 _62D277AF; // 0x8
-	float32 _1C630B12; // 0xC
+	float32 x; // 0x0
+	float32 y; // 0x4
+	float32 z; // 0x8
+	float32 w; // 0xC
 };
 
 // Size: 0x4
@@ -2230,8 +6850,8 @@ public:
 	bool operator==(const ZCrowdGridPoint& p_Other) const;
 	bool operator!=(const ZCrowdGridPoint& p_Other) const { return !(*this == p_Other); }
 
-	int16 _1A38845D; // 0x0
-	uint8 _2352A656; // 0x2
+	int16 m_nHeightOffset; // 0x0
+	uint8 m_nOnNavGrid; // 0x2
 	uint8_t _pad3[1] {};
 };
 
@@ -2249,27 +6869,29 @@ public:
 	bool operator==(const SCrowdMapData& p_Other) const;
 	bool operator!=(const SCrowdMapData& p_Other) const { return !(*this == p_Other); }
 
-	uint32 _42D4EEB9; // 0x0
-	SVector4 _2B471851; // 0x4
-	uint32 _2D4CACC1; // 0x14
-	uint32 _5A4B9C57; // 0x18
-	uint32 _B8B56835; // 0x1C
-	uint32 _CFB258A3; // 0x20
-	TArray<ZCrowdGridPoint> _74A2342B; // 0x24
-	float32 _75260351; // 0x30
-	float32 _2BF00558; // 0x34
-	TArray<SCrowdCells> _F80A5618; // 0x38
-	TArray<SCrowdFlowChannel> _95E7F03F; // 0x44
-	float32 _097F70BB; // 0x50
+	uint32 m_nVersion; // 0x0
+	SVector4 m_vCellConsts; // 0x4
+	uint32 m_nGridSizeX; // 0x14
+	uint32 m_nGridSizeY; // 0x18
+	uint32 m_nCellSizeX; // 0x1C
+	uint32 m_nCellSizeY; // 0x20
+	TArray<ZCrowdGridPoint> m_GridMap; // 0x24
+	float32 m_fGridMapHeightOffsetsScale; // 0x30
+	float32 m_fGridMapHeightOffsetsBias; // 0x34
+	TArray<SCrowdCells> m_CellFlags; // 0x38
+	TArray<SCrowdFlowChannel> m_aFlowChannels; // 0x44
+	float32 m_nGridCellSize; // 0x50
 	uint8_t _pad54[12] {};
-	SMatrix _B8FF70AD; // 0x60
-	SVector3 _24DC3226; // 0xA0
-	float32 _5C6B6336; // 0xAC
+	SMatrix m_mObjectToWorld; // 0x60
+	SVector3 m_vGlobalSize; // 0xA0
+	float32 m_nGridGeneratorOffset; // 0xAC
 };
 
 // Size: 0x4
 enum class SDLCItemSaveData_EDiscoverState
 {
+	DS_DISCOVERED = 0,
+	DS_REMOVED = 1,
 };
 
 // Size: 0xC
@@ -2286,8 +6908,8 @@ public:
 	bool operator==(const SDLCItemSaveData& p_Other) const;
 	bool operator!=(const SDLCItemSaveData& p_Other) const { return !(*this == p_Other); }
 
-	SDLCItemSaveData_EDiscoverState _07186756; // 0x0
-	STokenID _1942359E; // 0x4
+	SDLCItemSaveData_EDiscoverState m_eState; // 0x0
+	STokenID m_TokenID; // 0x4
 };
 
 // Size: 0x1
@@ -2310,6 +6932,10 @@ public:
 // Size: 0x4
 enum class SDoorSoundDefs_EDefinition
 {
+	DoorOpenStop = 3,
+	DoorOpen = 0,
+	DoorClose = 1,
+	DoorSlam = 2,
 };
 
 // Size: 0x24
@@ -2326,11 +6952,11 @@ public:
 	bool operator==(const SEntityPinDescriptor& p_Other) const;
 	bool operator!=(const SEntityPinDescriptor& p_Other) const { return !(*this == p_Other); }
 
-	ZString _A7056326; // 0x0
-	ZString _A235C8C8; // 0x8
-	ZResourceID _8CDE5729; // 0x10
-	ZString _30C8A9AF; // 0x18
-	bool _CD395B3D; // 0x20
+	ZString sName; // 0x0
+	ZString sDisplayName; // 0x8
+	ZResourceID type; // 0x10
+	ZString sHelpText; // 0x18
+	bool bIsPlaceholder; // 0x20
 	uint8_t _pad21[3] {};
 };
 
@@ -2348,8 +6974,8 @@ public:
 	bool operator==(const SEntityTemplateEntitySubset& p_Other) const;
 	bool operator!=(const SEntityTemplateEntitySubset& p_Other) const { return !(*this == p_Other); }
 
-	TypeID _524D42EA; // 0x0
-	TArray<int32> _50EC64E5; // 0x4
+	TypeID subsetType; // 0x0
+	TArray<int32> entities; // 0x4
 };
 
 // Size: 0x18
@@ -2366,10 +6992,10 @@ public:
 	bool operator==(const SEntityTemplatePinConnection& p_Other) const;
 	bool operator!=(const SEntityTemplatePinConnection& p_Other) const { return !(*this == p_Other); }
 
-	int32 _9F3D30A8; // 0x0
-	int32 _D698150F; // 0x4
-	ZString _1C173300; // 0x8
-	ZString _B7F4444D; // 0x10
+	int32 fromID; // 0x0
+	int32 toID; // 0x4
+	ZString fromPinName; // 0x8
+	ZString toPinName; // 0x10
 };
 
 // Size: 0x14
@@ -2386,9 +7012,9 @@ public:
 	bool operator==(const SEntityTemplatePropertyAlias& p_Other) const;
 	bool operator!=(const SEntityTemplatePropertyAlias& p_Other) const { return !(*this == p_Other); }
 
-	ZString _0CF8B5AF; // 0x0
-	int32 _CD460934; // 0x8
-	ZString _1AE8D74E; // 0xC
+	ZString sAliasName; // 0x0
+	int32 entityID; // 0x8
+	ZString sPropertyName; // 0xC
 };
 
 // Size: 0xC
@@ -2405,8 +7031,8 @@ public:
 	bool operator==(const SEntityTemplateReference& p_Other) const;
 	bool operator!=(const SEntityTemplateReference& p_Other) const { return !(*this == p_Other); }
 
-	int32 _545B8135; // 0x0
-	ZString _76BA0C0F; // 0x4
+	int32 entityIndex; // 0x0
+	ZString exposedEntity; // 0x4
 };
 
 // Size: 0x20
@@ -2423,10 +7049,10 @@ public:
 	bool operator==(const SExposedEntityDescriptor& p_Other) const;
 	bool operator!=(const SExposedEntityDescriptor& p_Other) const { return !(*this == p_Other); }
 
-	ZString _A7056326; // 0x0
-	ZString _A235C8C8; // 0x8
-	ZString _69FCEBFA; // 0x10
-	ZString _30C8A9AF; // 0x18
+	ZString sName; // 0x0
+	ZString sDisplayName; // 0x8
+	ZString sUpheldContract; // 0x10
+	ZString sHelpText; // 0x18
 };
 
 // Size: 0x8
@@ -2443,8 +7069,8 @@ public:
 	bool operator==(const SFRange& p_Other) const;
 	bool operator!=(const SFRange& p_Other) const { return !(*this == p_Other); }
 
-	float32 _C7D1CFC0; // 0x0
-	float32 _FBDCF099; // 0x4
+	float32 m_fMin; // 0x0
+	float32 m_fMax; // 0x4
 };
 
 // Size: 0x84
@@ -2461,8 +7087,8 @@ public:
 	bool operator==(const SForwardSpawnData& p_Other) const;
 	bool operator!=(const SForwardSpawnData& p_Other) const { return !(*this == p_Other); }
 
-	int32 _21452EB3; // 0x0
-	SCheckpointSaveData _3C3C4FC5; // 0x4
+	int32 m_iForwardSpawnIndex; // 0x0
+	SCheckpointSaveData m_SaveData; // 0x4
 };
 
 // Size: 0x30
@@ -2479,10 +7105,10 @@ public:
 	bool operator==(const SGProperties& p_Other) const;
 	bool operator!=(const SGProperties& p_Other) const { return !(*this == p_Other); }
 
-	float4 _0967A27E; // 0x0
-	float4 _356A9D27; // 0x10
-	int32 _7E907DDA; // 0x20
-	float32 _EE647576; // 0x24
+	float4 vMin; // 0x0
+	float4 vMax; // 0x10
+	int32 nGridWidth; // 0x20
+	float32 fGridSpacing; // 0x24
 	uint8_t _pad28[8] {};
 };
 
@@ -2500,15 +7126,15 @@ public:
 	bool operator==(const SGWaypoint& p_Other) const;
 	bool operator!=(const SGWaypoint& p_Other) const { return !(*this == p_Other); }
 
-	int16 _E916B8EA; // 0x0
-	int16 _9E11887C; // 0x2
-	int16 _0718D9C6; // 0x4
-	int16 _701FE950; // 0x6
-	int16 _EE7B7CF3; // 0x8
-	int16 _997C4C65; // 0xA
-	int16 _00751DDF; // 0xC
-	int16 _77722D49; // 0xE
-	float4 _28C55902; // 0x10
+	int16 nNeighbor0; // 0x0
+	int16 nNeighbor1; // 0x2
+	int16 nNeighbor2; // 0x4
+	int16 nNeighbor3; // 0x6
+	int16 nNeighbor4; // 0x8
+	int16 nNeighbor5; // 0xA
+	int16 nNeighbor6; // 0xC
+	int16 nNeighbor7; // 0xE
+	float4 vPos; // 0x10
 };
 
 // Size: 0x60
@@ -2525,14 +7151,14 @@ public:
 	bool operator==(const SGameStats& p_Other) const;
 	bool operator!=(const SGameStats& p_Other) const { return !(*this == p_Other); }
 
-	TArray<int32> _FF455411; // 0x0
-	TArray<int32> _6DE2F9E0; // 0xC
-	TArray<int32> _3D4C74E4; // 0x18
-	TArray<int32> _011D512F; // 0x24
-	TArray<int32> _56FE8642; // 0x30
-	TArray<int32> _7C260CE4; // 0x3C
-	TArray<int32> _64EB930E; // 0x48
-	TArray<int32> _3289C9A4; // 0x54
+	TArray<int32> m_aKillsByBodyPart; // 0x0
+	TArray<int32> m_aKillsByWeapon; // 0xC
+	TArray<int32> m_aKillsBySituation; // 0x18
+	TArray<int32> m_aKillsByVictim; // 0x24
+	TArray<int32> m_aActorDamageByBodyPart; // 0x30
+	TArray<int32> m_aActorDamageByWeapon; // 0x3C
+	TArray<int32> m_aStealthSituations; // 0x48
+	TArray<int32> m_aExplodingProps; // 0x54
 };
 
 // Size: 0x148
@@ -2549,21 +7175,21 @@ public:
 	bool operator==(const SGameStatsData& p_Other) const;
 	bool operator!=(const SGameStatsData& p_Other) const { return !(*this == p_Other); }
 
-	int32 _6BAA1C04; // 0x108
-	uint32 _168A40C8; // 0x10C
-	uint32 _0C0BA94D; // 0x110
-	uint32 _77DE369D; // 0x114
-	uint32 _7B2752ED; // 0x118
-	uint32 _BF6C03A5; // 0x11C
-	uint32 _3C76D906; // 0x120
-	uint32 _1E315CEB; // 0x124
-	uint32 _2D71587C; // 0x128
-	uint32 _B597B3BD; // 0x12C
-	uint32 _B96ED7CD; // 0x130
-	uint32 _AC816C37; // 0x134
-	uint32 _07DAB04B; // 0x138
-	uint32 _259D35A6; // 0x13C
-	uint32 _2527C938; // 0x140
+	int32 m_nTotalKills; // 0x108
+	uint32 m_nTotalShotsFired; // 0x10C
+	uint32 m_nShotsThatHit; // 0x110
+	uint32 m_nShotsFiredPistol; // 0x114
+	uint32 m_nShotsFiredSniper; // 0x118
+	uint32 m_nShotsFiredSMG; // 0x11C
+	uint32 m_nShotsFiredShotgun; // 0x120
+	uint32 m_nShotsFiredAssault; // 0x124
+	uint32 m_nShotsFiredRevolver; // 0x128
+	uint32 m_nShotsThatHitPistol; // 0x12C
+	uint32 m_nShotsThatHitSniper; // 0x130
+	uint32 m_nShotsThatHitSMG; // 0x134
+	uint32 m_nShotsThatHitShotgun; // 0x138
+	uint32 m_nShotsThatHitAssault; // 0x13C
+	uint32 m_nShotsThatHitRevolver; // 0x140
 	uint8_t _pad144[4] {};
 };
 
@@ -2581,19 +7207,120 @@ public:
 	bool operator==(const SGameStatsSaveData& p_Other) const;
 	bool operator!=(const SGameStatsSaveData& p_Other) const { return !(*this == p_Other); }
 
-	SGameStatsData _936E667C; // 0x0
-	int32 _3A64A27F; // 0x148
+	SGameStatsData m_Data; // 0x0
+	int32 m_iPreciseSniperKillCount; // 0x148
 	uint8_t _pad14C[4] {};
 };
 
 // Size: 0x4
 enum class eAmmoType
 {
+	eAmmoGun = 0,
+	eAmmoShotgun = 4,
+	eAmmoRevolver = 1,
+	eAmmoRPG = 7,
+	eAmmoSMG = 2,
+	eAmmoRifle = 3,
+	eAmmoSniper = 5,
+	eAmmoMG = 6,
+	eUnknownAmmoType = 8,
 };
 
 // Size: 0x4
 enum class eItemType
 {
+	eCC_FireExtinguisher_01 = 0,
+	eSMG_HK_UMP = 480,
+	eGun_44AutoMagSilenced = 220,
+	eCC_Knife = 10,
+	eCC_PowerCord = 620,
+	eCC_AntitankMine = 70,
+	eCC_Shovel = 40,
+	eGun_GlockDirty = 250,
+	eCC_PetrolCan = 30,
+	eGun_HardBallerSilenced = 280,
+	eCC_Axe = 20,
+	eShotgun_M500New = 470,
+	eItemIrrelevantWeapon = 660,
+	eCC_Hammer = 50,
+	eCC_Cleaver = 60,
+	eCC_C4Brick = 80,
+	eCC_ToyCar = 710,
+	eOther_SecurityTape = 610,
+	eOther_Keycard_A = 600,
+	eCC_RemoteExplosive = 90,
+	eDetonator = 100,
+	eGun_Spotter = 340,
+	eCC_Wrench = 110,
+	eSniper_AS50 = 530,
+	eCC_Dildo = 120,
+	eCC_Bottle = 130,
+	eSniper_SakoTRGSilenced = 560,
+	eCC_Saw = 140,
+	eCC_Screwdriver = 150,
+	eGun_Sphinx3000 = 310,
+	eCC_BaseballBat = 670,
+	eOther_ZippoLighter = 590,
+	eCC_MetalPipe = 160,
+	eCC_Gavel = 170,
+	eDLC_TEST_FireArm_02 = 901,
+	eCC_Radio = 180,
+	eCC_Bong = 190,
+	eCC_Statue_Bust_A = 200,
+	eGun_44AutoMag = 210,
+	eGun_Derringer = 230,
+	eGun_Glock = 240,
+	eSniper_Remington700 = 540,
+	eGun_GlockSilenced = 260,
+	eGun_HardBaller_01 = 270,
+	eCC_FiberWire = 580,
+	eHotSauceBarrel = 910,
+	eGun_Sig226 = 290,
+	eGun_Sig226Silenced = 300,
+	eDLC_TEST_FireArm_01 = 900,
+	eRifle_HK416Scope = 410,
+	eGun_Taurus24_7 = 320,
+	eRifle_SG552 = 440,
+	eGun_Taurus24_7Silenced = 330,
+	eSMG_HK_UMPScope = 500,
+	eOther_RPG = 360,
+	eOther_MG = 350,
+	eSMG_HK_UMPSilenced = 510,
+	eRevolver_PoliceRevolver = 370,
+	eRevolver_Snubnosed = 380,
+	eRevolver_Taurus = 390,
+	eRifle_HK416 = 400,
+	eRifle_HK416Silenced = 420,
+	eDLC_TEST_Prop_01 = 902,
+	eRifle_PumpRifle = 430,
+	eItemAmmo = 570,
+	eCC_Iron = 740,
+	eRifle_SG552Scope = 450,
+	eShotgun_M500 = 460,
+	cCC_Book_A = 924,
+	eSMG_HK_UMPFlashlight = 490,
+	eShotgun_Spas12 = 800,
+	eSMG_TMP = 520,
+	eSniper_SakoTRG = 550,
+	eCC_PoliceBaton = 630,
+	eCC_Scissor = 640,
+	eUnknownItemType = 1337,
+	eOther_ContractEnvelope = 650,
+	eCC_Guitar = 730,
+	eCC_GlassShiv = 680,
+	eCC_PoolCue = 690,
+	eCC_Rake = 700,
+	eCC_Crutch = 720,
+	eRifle_Beretta_ARX160 = 760,
+	eShotgun_Spas12_Compact = 810,
+	eShotgun_Silenced = 830,
+	eSMG_AK74u = 860,
+	eSMG_STK = 880,
+	eDLC_TEST_Prop_02 = 903,
+	eOther_GenericPickup = 920,
+	eCC_SledgeHammer = 921,
+	eCC_Katana = 922,
+	eCC_Brick = 923,
 };
 
 // Size: 0x14
@@ -2610,10 +7337,10 @@ public:
 	bool operator==(const SGameStatsWeapon& p_Other) const;
 	bool operator!=(const SGameStatsWeapon& p_Other) const { return !(*this == p_Other); }
 
-	eItemType _4B103D9F; // 0x0
-	STokenID _23BDF767; // 0x4
-	EWeaponSpecialSituation _5890F648; // 0xC
-	eAmmoType _03DA47B8; // 0x10
+	eItemType m_eItemWeapon; // 0x0
+	STokenID m_WeaponTokenID; // 0x4
+	EWeaponSpecialSituation m_eSpecialSituation; // 0xC
+	eAmmoType m_eAmmoType; // 0x10
 };
 
 // Size: 0x10
@@ -2630,8 +7357,8 @@ public:
 	bool operator==(const SLevelCPProgressionData& p_Other) const;
 	bool operator!=(const SLevelCPProgressionData& p_Other) const { return !(*this == p_Other); }
 
-	ELevelIndex _F0A2AB0C; // 0x0
-	TArray<SCPProgressionState> _F0ABDD90; // 0x4
+	ELevelIndex m_eLevelIndex; // 0x0
+	TArray<SCPProgressionState> m_aCPStates; // 0x4
 };
 
 // Size: 0xC
@@ -2648,9 +7375,9 @@ public:
 	bool operator==(const SLevelProgressionData& p_Other) const;
 	bool operator!=(const SLevelProgressionData& p_Other) const { return !(*this == p_Other); }
 
-	ELevelIndex _F0A2AB0C; // 0x0
-	int32 _CB578D5E; // 0x4
-	int32 _1D5A80A8; // 0x8
+	ELevelIndex m_eLevelIndex; // 0x0
+	int32 m_nCheckpointIndex; // 0x4
+	int32 m_nDifficulty; // 0x8
 };
 
 // Size: 0x10
@@ -2667,8 +7394,8 @@ public:
 	bool operator==(const SLevelSaveData& p_Other) const;
 	bool operator!=(const SLevelSaveData& p_Other) const { return !(*this == p_Other); }
 
-	ELevelIndex _771C430C; // 0x0
-	TArray<SCheckpointSaveData> _CA26BF0B; // 0x4
+	ELevelIndex m_LevelID; // 0x0
+	TArray<SCheckpointSaveData> m_CheckpointData; // 0x4
 };
 
 // Size: 0x18
@@ -2685,9 +7412,9 @@ public:
 	bool operator==(const SLoadRuntimeResourceResult& p_Other) const;
 	bool operator!=(const SLoadRuntimeResourceResult& p_Other) const { return !(*this == p_Other); }
 
-	ZString _7A3DE5D3; // 0x0
-	ZString _AF5136A7; // 0x8
-	ZString _7DBB26BA; // 0x10
+	ZString sFilePath; // 0x0
+	ZString sOutputMessage; // 0x8
+	ZString sErrorMessage; // 0x10
 };
 
 // Size: 0x24
@@ -2704,9 +7431,9 @@ public:
 	bool operator==(const SMatrix33& p_Other) const;
 	bool operator!=(const SMatrix33& p_Other) const { return !(*this == p_Other); }
 
-	SVector3 _CA3885CF; // 0x0
-	SVector3 _F758AC7F; // 0xC
-	SVector3 _B0F8D6AF; // 0x18
+	SVector3 XAxis; // 0x0
+	SVector3 YAxis; // 0xC
+	SVector3 ZAxis; // 0x18
 };
 
 // Size: 0x30
@@ -2723,10 +7450,10 @@ public:
 	bool operator==(const SMatrix43& p_Other) const;
 	bool operator!=(const SMatrix43& p_Other) const { return !(*this == p_Other); }
 
-	SVector3 _CA3885CF; // 0x0
-	SVector3 _F758AC7F; // 0xC
-	SVector3 _B0F8D6AF; // 0x18
-	SVector3 _B1E031B9; // 0x24
+	SVector3 XAxis; // 0x0
+	SVector3 YAxis; // 0xC
+	SVector3 ZAxis; // 0x18
+	SVector3 Trans; // 0x24
 };
 
 // Size: 0x40
@@ -2743,22 +7470,22 @@ public:
 	bool operator==(const SMatrix44& p_Other) const;
 	bool operator!=(const SMatrix44& p_Other) const { return !(*this == p_Other); }
 
-	float32 _28CD86E9; // 0x0
-	float32 _B1C4D753; // 0x4
-	float32 _C6C3E7C5; // 0x8
-	float32 _58A77266; // 0xC
-	float32 _03E0D52A; // 0x10
-	float32 _9AE98490; // 0x14
-	float32 _EDEEB406; // 0x18
-	float32 _738A21A5; // 0x1C
-	float32 _1AFBE46B; // 0x20
-	float32 _83F2B5D1; // 0x24
-	float32 _F4F58547; // 0x28
-	float32 _6A9110E4; // 0x2C
-	float32 _55BA72AC; // 0x30
-	float32 _CCB32316; // 0x34
-	float32 _BBB41380; // 0x38
-	float32 _25D08623; // 0x3C
+	float32 m11; // 0x0
+	float32 m12; // 0x4
+	float32 m13; // 0x8
+	float32 m14; // 0xC
+	float32 m21; // 0x10
+	float32 m22; // 0x14
+	float32 m23; // 0x18
+	float32 m24; // 0x1C
+	float32 m31; // 0x20
+	float32 m32; // 0x24
+	float32 m33; // 0x28
+	float32 m34; // 0x2C
+	float32 m41; // 0x30
+	float32 m42; // 0x34
+	float32 m43; // 0x38
+	float32 m44; // 0x3C
 };
 
 // Size: 0x18
@@ -2775,13 +7502,13 @@ public:
 	bool operator==(const SMiscSaveData& p_Other) const;
 	bool operator!=(const SMiscSaveData& p_Other) const { return !(*this == p_Other); }
 
-	bool _DBCDACAE; // 0x0
-	bool _E6559F40; // 0x1
-	bool _3C4892A2; // 0x2
+	bool m_bCompletedFirstBoot; // 0x0
+	bool m_bContractsTutorialPlayShown; // 0x1
+	bool m_bContractsTutorialCreateShown; // 0x2
 	uint8_t _pad3[1] {};
-	STokenID _9D5D650C; // 0x4
-	STokenID _C66C54EB; // 0xC
-	uint32 _E9DA2719; // 0x14
+	STokenID m_LastUnlockedOutfit; // 0x4
+	STokenID m_LastUnlockedWeapon; // 0xC
+	uint32 m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed; // 0x14
 };
 
 // Size: 0x8
@@ -2798,8 +7525,8 @@ public:
 	bool operator==(const SNRange& p_Other) const;
 	bool operator!=(const SNRange& p_Other) const { return !(*this == p_Other); }
 
-	int32 _0265E72F; // 0x0
-	int32 _3E68D876; // 0x4
+	int32 m_nMin; // 0x0
+	int32 m_nMax; // 0x4
 };
 
 // Size: 0x8
@@ -2816,8 +7543,8 @@ public:
 	bool operator==(const SPOISaveData& p_Other) const;
 	bool operator!=(const SPOISaveData& p_Other) const { return !(*this == p_Other); }
 
-	int32 _3B757F3E; // 0x0
-	bool _26E32D49; // 0x4
+	int32 m_nProgressionPoints; // 0x0
+	bool m_bLoaded; // 0x4
 	uint8_t _pad5[3] {};
 };
 
@@ -2835,12 +7562,12 @@ public:
 	bool operator==(const SRatingData& p_Other) const;
 	bool operator!=(const SRatingData& p_Other) const { return !(*this == p_Other); }
 
-	TArray<uint16> _64147134; // 0x0
-	TArray<bool> _133F9C34; // 0xC
-	TArray<bool> _911A2395; // 0x18
-	TArray<DifficultyLevelEnum> _EC99D89C; // 0x24
-	TArray<int32> _50471093; // 0x30
-	int32 _0EBD8ED2; // 0x3C
+	TArray<uint16> m_CheckpointStyles; // 0x0
+	TArray<bool> m_TitlesAchieved; // 0xC
+	TArray<bool> m_TitlesViewed; // 0x18
+	TArray<DifficultyLevelEnum> m_CPDifficulty; // 0x24
+	TArray<int32> m_CPChallenges; // 0x30
+	int32 m_iLastUnlockedTitle; // 0x3C
 };
 
 // Size: 0x18
@@ -2857,8 +7584,8 @@ public:
 	bool operator==(const SRatingHighScoreData& p_Other) const;
 	bool operator!=(const SRatingHighScoreData& p_Other) const { return !(*this == p_Other); }
 
-	TArray<uint32> _888ACA2B; // 0x0
-	TArray<int8> _4E9FBCD6; // 0xC
+	TArray<uint32> m_HighScores; // 0x0
+	TArray<int8> m_HighTitles; // 0xC
 };
 
 // Size: 0x10
@@ -2875,8 +7602,8 @@ public:
 	bool operator==(const ZBitArray& p_Other) const;
 	bool operator!=(const ZBitArray& p_Other) const { return !(*this == p_Other); }
 
-	TArray<uint8> _8E83B475; // 0x0
-	uint32 _DA61D51D; // 0xC
+	TArray<uint8> m_aBytes; // 0x0
+	uint32 m_nSize; // 0xC
 };
 
 // Size: 0x90
@@ -2893,15 +7620,15 @@ public:
 	bool operator==(const SReasoningGrid& p_Other) const;
 	bool operator!=(const SReasoningGrid& p_Other) const { return !(*this == p_Other); }
 
-	TArray<SGWaypoint> _0BD7E833; // 0x0
-	ZBitArray _0439BC82; // 0xC
-	ZBitArray _7FBA18A8; // 0x1C
-	TArray<TArray<uint16>> _4FCDFF9C; // 0x2C
-	TArray<TArray<uint16>> _B6A34009; // 0x38
+	TArray<SGWaypoint> m_WaypointList; // 0x0
+	ZBitArray m_LowVisibilityBits; // 0xC
+	ZBitArray m_HighVisibilityBits; // 0x1C
+	TArray<TArray<uint16>> m_LowVisibility; // 0x2C
+	TArray<TArray<uint16>> m_HighVisibility; // 0x38
 	uint8_t _pad44[12] {};
-	SGProperties _0D7AD80A; // 0x50
-	uint32 _F7ACE02C; // 0x80
-	uint32 _5321B64E; // 0x84
+	SGProperties m_Properties; // 0x50
+	uint32 m_BitVisibilityCount; // 0x80
+	uint32 m_nNodeCount; // 0x84
 	uint8_t _pad88[8] {};
 };
 
@@ -2936,8 +7663,8 @@ public:
 	bool operator==(const SSettingsParamMultiplier& p_Other) const;
 	bool operator!=(const SSettingsParamMultiplier& p_Other) const { return !(*this == p_Other); }
 
-	ESettingsParam _EE282AB6; // 0x0
-	float32 _B868A759; // 0x4
+	ESettingsParam m_eSettingsParam; // 0x0
+	float32 m_fMultiplier; // 0x4
 };
 
 // Size: 0x10
@@ -2954,9 +7681,9 @@ public:
 	bool operator==(const STechniqueUnlockState& p_Other) const;
 	bool operator!=(const STechniqueUnlockState& p_Other) const { return !(*this == p_Other); }
 
-	STokenID _6001FCE6; // 0x0
-	HMTechniques_ETechnique _A2634313; // 0x8
-	int32 _49A3B9C5; // 0xC
+	STokenID m_CheckpointTokenID; // 0x0
+	HMTechniques_ETechnique m_eTechnique; // 0x8
+	int32 m_iLevel; // 0xC
 };
 
 // Size: 0x34
@@ -2973,11 +7700,11 @@ public:
 	bool operator==(const STechniquesSaveData& p_Other) const;
 	bool operator!=(const STechniquesSaveData& p_Other) const { return !(*this == p_Other); }
 
-	TFixedArray<uint8, 10> _B5537A08; // 0x0
+	TFixedArray<uint8, 10> m_iTechniqueUnlockedLevel; // 0x0
 	uint8_t _padA[2] {};
-	TArray<STechniqueUnlockState> _7ED76297; // 0xC
-	TArray<bool> _949204C5; // 0x18
-	STechniqueUnlockState _1BA6F5A6; // 0x24
+	TArray<STechniqueUnlockState> m_aUnlockState; // 0xC
+	TArray<bool> m_aViewedState; // 0x18
+	STechniqueUnlockState m_LastUnlockedTechnique; // 0x24
 };
 
 // Size: 0x20
@@ -2994,10 +7721,10 @@ public:
 	bool operator==(const STemplateSubEntity& p_Other) const;
 	bool operator!=(const STemplateSubEntity& p_Other) const { return !(*this == p_Other); }
 
-	int32 _21740EAA; // 0x0
-	int32 _B01F3C73; // 0x4
-	TArray<SEntityTemplateProperty> _71206441; // 0x8
-	TArray<SEntityTemplateProperty> _E8548959; // 0x14
+	int32 parentIndex; // 0x0
+	int32 entityTypeResourceIndex; // 0x4
+	TArray<SEntityTemplateProperty> propertyValues; // 0x8
+	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x14
 };
 
 // Size: 0x14
@@ -3014,9 +7741,9 @@ public:
 	bool operator==(const STemplateEntity& p_Other) const;
 	bool operator!=(const STemplateEntity& p_Other) const { return !(*this == p_Other); }
 
-	int32 _891D57ED; // 0x0
-	int32 _14CF59EB; // 0x4
-	TArray<STemplateSubEntity> _61ED060D; // 0x8
+	int32 blueprintIndexInResourceHeader; // 0x0
+	int32 rootEntityIndex; // 0x4
+	TArray<STemplateSubEntity> entityTemplates; // 0x8
 };
 
 // Size: 0x40
@@ -3033,13 +7760,13 @@ public:
 	bool operator==(const STemplateSubEntityBlueprint& p_Other) const;
 	bool operator!=(const STemplateSubEntityBlueprint& p_Other) const { return !(*this == p_Other); }
 
-	int32 _21740EAA; // 0x0
-	int32 _B01F3C73; // 0x4
-	ZString _CDF5A865; // 0x8
-	TArray<SEntityTemplatePropertyAlias> _17EB0A5A; // 0x10
-	TArray<TPair<ZString,SEntityTemplateReference>> _025728B5; // 0x1C
-	TArray<TPair<ZString,int32>> _268997DA; // 0x28
-	TArray<TPair<ZString,SEntityTemplateEntitySubset>> _BF7B57C8; // 0x34
+	int32 parentIndex; // 0x0
+	int32 entityTypeResourceIndex; // 0x4
+	ZString entityName; // 0x8
+	TArray<SEntityTemplatePropertyAlias> propertyAliases; // 0x10
+	TArray<TPair<ZString,SEntityTemplateReference>> exposedEntities; // 0x1C
+	TArray<TPair<ZString,int32>> exposedInterfaces; // 0x28
+	TArray<TPair<ZString,SEntityTemplateEntitySubset>> entitySubsets; // 0x34
 };
 
 // Size: 0x34
@@ -3056,11 +7783,11 @@ public:
 	bool operator==(const STemplateEntityBlueprint& p_Other) const;
 	bool operator!=(const STemplateEntityBlueprint& p_Other) const { return !(*this == p_Other); }
 
-	int32 _14CF59EB; // 0x0
-	TArray<STemplateSubEntityBlueprint> _61ED060D; // 0x4
-	TArray<SEntityTemplatePinConnection> _213C670C; // 0x10
-	TArray<SEntityTemplatePinConnection> _351BE901; // 0x1C
-	TArray<SEntityTemplatePinConnection> _7CF08925; // 0x28
+	int32 rootEntityIndex; // 0x0
+	TArray<STemplateSubEntityBlueprint> entityTemplates; // 0x4
+	TArray<SEntityTemplatePinConnection> pinConnections; // 0x10
+	TArray<SEntityTemplatePinConnection> inputPinForwardings; // 0x1C
+	TArray<SEntityTemplatePinConnection> outputPinForwardings; // 0x28
 };
 
 // Size: 0x10
@@ -3077,9 +7804,9 @@ public:
 	bool operator==(const STestMiniStruct& p_Other) const;
 	bool operator!=(const STestMiniStruct& p_Other) const { return !(*this == p_Other); }
 
-	int32 _2F64A16D; // 0x0
-	float32 _37FB5A4F; // 0x4
-	ZString _8E5A0583; // 0x8
+	int32 m_iIntValue; // 0x0
+	float32 m_fFloatValue; // 0x4
+	ZString m_sText; // 0x8
 };
 
 // Size: 0x24
@@ -3096,11 +7823,11 @@ public:
 	bool operator==(const STestStructure& p_Other) const;
 	bool operator!=(const STestStructure& p_Other) const { return !(*this == p_Other); }
 
-	float32 _AE05822C; // 0x0
-	float32 _6C66AB72; // 0x4
-	float32 _229E820A; // 0x8
-	ZString _174D49E8; // 0xC
-	STestMiniStruct _5E830AA7; // 0x14
+	float32 m_fWidth; // 0x0
+	float32 m_fHeight; // 0x4
+	float32 m_fAngle; // 0x8
+	ZString m_sDescription; // 0xC
+	STestMiniStruct m_Mini; // 0x14
 };
 
 // Size: 0xC
@@ -3117,10 +7844,10 @@ public:
 	bool operator==(const SUIOptionValue& p_Other) const;
 	bool operator!=(const SUIOptionValue& p_Other) const { return !(*this == p_Other); }
 
-	uint32 _8A90ABA9; // 0x0
-	uint8 _8CDE5729; // 0x4
+	uint32 key; // 0x0
+	uint8 type; // 0x4
 	uint8_t _pad5[3] {};
-	int32 _FB289CBB; // 0x8
+	int32 intValue; // 0x8
 };
 
 // Size: 0xC
@@ -3137,7 +7864,7 @@ public:
 	bool operator==(const SUIOptionsData& p_Other) const;
 	bool operator!=(const SUIOptionsData& p_Other) const { return !(*this == p_Other); }
 
-	TArray<SUIOptionValue> _ADF3F363; // 0x0
+	TArray<SUIOptionValue> data; // 0x0
 };
 
 // Size: 0x8
@@ -3154,8 +7881,8 @@ public:
 	bool operator==(const SVector2& p_Other) const;
 	bool operator!=(const SVector2& p_Other) const { return !(*this == p_Other); }
 
-	float32 _8CDC1683; // 0x0
-	float32 _FBDB2615; // 0x4
+	float32 x; // 0x0
+	float32 y; // 0x4
 };
 
 // Size: 0x1
@@ -3178,36 +7905,57 @@ public:
 // Size: 0x4
 enum class SWeaponSoundDefs_EDefinition
 {
+	FireWeapon = 0,
+	EmptyClipFired = 1,
 };
 
 // Size: 0x4
 enum class TeleportActionType
 {
+	STAY = 0,
+	LEAVE_CROWD = 2,
+	TELEPORT = 1,
 };
 
 // Size: 0x4
 enum class UserFBInventoryInfoNamesp_EOperationMode
 {
+	WEAPON_MODE_CLOSECOMBAT = 4,
+	WEAPON_MODE_SEMI_AUTO = 0,
+	WEAPON_MODE_FULL_AUTO = 1,
+	WEAPON_MODE_SILENCED_SEMI_AUTO = 2,
+	WEAPON_MODE_INVALID = 5,
+	WEAPON_MODE_BURST_FIRE = 3,
 };
 
 // Size: 0x4
 enum class ZActor_EShootIntensity
 {
+	SHOOT_INTENSITY_LOW = 0,
+	SHOOT_INTENSITY_MEDIUM = 1,
+	SHOOT_INTENSITY_HIGH = 2,
 };
 
 // Size: 0x4
 enum class ZActorInstanceEntity_EFFXMode
 {
+	eFFX_MODE_DISABLE = 0,
+	eFFX_MODE_OVERWRITE = 1,
 };
 
 // Size: 0x4
 enum class ZBoneAttachEntity_EResetMode
 {
+	eAtBoneOrigin = 0,
+	eKeepOffset = 1,
 };
 
 // Size: 0x4
 enum class ZBoneWeightRotationEntity_eRotationAxises
 {
+	AXIS_X = 0,
+	AXIS_Y = 1,
+	AXIS_Z = 2,
 };
 
 // Size: 0xC
@@ -3224,9 +7972,9 @@ public:
 	bool operator==(const ZCloseCombatDef_SActorNoise& p_Other) const;
 	bool operator!=(const ZCloseCombatDef_SActorNoise& p_Other) const { return !(*this == p_Other); }
 
-	SActorSoundDefs_EDefinition _28BC53B5; // 0x0
-	EAIEventType _04153019; // 0x4
-	float32 _A120F69F; // 0x8
+	SActorSoundDefs_EDefinition m_iSpeak; // 0x0
+	EAIEventType m_eAIEvent; // 0x4
+	float32 m_fAIEventDistance; // 0x8
 };
 
 // Size: 0x14
@@ -3243,33 +7991,49 @@ public:
 	bool operator==(const ZComponentCreator& p_Other) const;
 	bool operator!=(const ZComponentCreator& p_Other) const { return !(*this == p_Other); }
 
-	ZString _D9EBDCBE; // 0x0
-	TArray<ZVariant> _B9EA4804; // 0x8
+	ZString m_sComponentName; // 0x0
+	TArray<ZVariant> m_aArgs; // 0x8
 };
 
 // Size: 0x4
 enum class ZConditionListEntity_EEvaluationType
 {
+	ALL_TRUE = 0,
+	ANY_TRUE = 1,
 };
 
 // Size: 0x4
 enum class ZContentKitEntity_EShowContent
 {
+	YES = 0,
+	NO = 1,
+	ONLY_WHEN_UNLOCKED = 2,
 };
 
 // Size: 0x4
 enum class ZContract_ZRestriction_EType
 {
+	ERASE_TRACES = 3,
+	INVALID = -1,
+	SUIT_ONLY = 1,
+	TARGET_ONLY = 0,
+	PERFECT_SHOOTER = 2,
+	NO_WITNESSES = 4,
 };
 
 // Size: 0x4
 enum class ZContractSearchEngineFlagEntity_EType
 {
+	RESTRICTION = 0,
+	WEAPON_SPECIAL = 2,
+	WEAPON = 1,
+	OUTFIT = 3,
 };
 
 // Size: 0x4
 enum class ZCrowdActorEntity_EActorResourceChangeFlags
 {
+	AR_MODEL = 1,
 };
 
 // Size: 0xC
@@ -3286,27 +8050,43 @@ public:
 	bool operator==(const ZCurve& p_Other) const;
 	bool operator!=(const ZCurve& p_Other) const { return !(*this == p_Other); }
 
-	TArray<TFixedArray<float32, 8>> _ADF3F363; // 0x0
+	TArray<TFixedArray<float32, 8>> data; // 0x0
 };
 
 // Size: 0x4
 enum class ZDLCDescriptor_EWhenToShowDiscoverMessage
 {
+	IgnoreDiscovery = 2,
+	OnEveryDiscovery = 0,
+	OnFirstDiscoveryOnly = 1,
 };
 
 // Size: 0x4
 enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason
 {
+	eTMLDR_ActionKillCCProp = 2,
+	eTMLDR_Sequence = 0,
+	eTMLDR_ActionKillHeadShot = 1,
+	eTMLDR_ActionKillExplosion = 3,
+	eTMLDR_ActionKillLastEnemyInEncounter = 4,
+	eTMLDR_ActionKillLastEnemyInCheckPoint = 5,
+	eTMLDR_NOTSET = 6,
 };
 
 // Size: 0x4
 enum class ZDecalControllerEntity_ERotationType
 {
+	eRotationDisable = 0,
+	eRotationRandom = 2,
+	eRotationAlignRay = 1,
 };
 
 // Size: 0x4
 enum class ZDecalControllerEntity_EScaleType
 {
+	eScaleDisable = 0,
+	eScaleUniform = 1,
+	eScaleY = 2,
 };
 
 // Size: 0x8
@@ -3323,7 +8103,7 @@ public:
 	bool operator==(const ZEntityID& p_Other) const;
 	bool operator!=(const ZEntityID& p_Other) const { return !(*this == p_Other); }
 
-	ZString _5DC3D644; // 0x0
+	ZString m_sStr; // 0x0
 };
 
 // Size: 0x4
@@ -3357,13 +8137,18 @@ public:
 	bool operator==(const ZEntityReference& p_Other) const;
 	bool operator!=(const ZEntityReference& p_Other) const { return !(*this == p_Other); }
 
-	ZEntityID _3B6ADD1A; // 0x0
-	ZString _5A1F34C2; // 0x8
+	ZEntityID m_EntityID; // 0x0
+	ZString m_sExposedEntity; // 0x8
 };
 
 // Size: 0x4
 enum class ZGameEventListenerEntity_EGameEventType
 {
+	GET_IntroCutStopped = 2,
+	GET_ActivationRootActivated = 0,
+	GET_IntroCutStarted = 1,
+	GET_ApplyingSaveData = 4,
+	GET_GameplayStarted = 3,
 };
 
 // Size: 0x8
@@ -3380,182 +8165,356 @@ public:
 	bool operator==(const ZGameTime& p_Other) const;
 	bool operator!=(const ZGameTime& p_Other) const { return !(*this == p_Other); }
 
-	int64 _4786AB66; // 0x0
+	int64 m_nTicks; // 0x0
 };
 
 // Size: 0x4
 enum class ZHM5BodyContainer_EBCAnimSet
 {
+	BC_CONTAINER_STANDARD = 0,
+	BC_CONTAINER_CLOSET = 3,
+	BC_CONTAINER_WOODCHIPPER = 1,
+	BC_CAR_STANDARD_TRUNK = 2,
+	BC_CONTAINER_LAUNDRYCHUTE = 4,
 };
 
 // Size: 0x4
 enum class ZHM5BodyContainer_EBCBodyMode
 {
+	BC_1_VICTIM_AUTOFLUSHABLE = 3,
+	BC_1_VICTIM = 0,
+	BC_2_VICTIMS = 1,
+	BC_1_VICTIM_FLUSHABLE = 2,
 };
 
 // Size: 0x4
 enum class ZHM5BodyContainer_eBCCloseMode
 {
+	BC_AUTOCLOSE = 0,
+	BC_MANUALCLOSE = 1,
 };
 
 // Size: 0x4
 enum class ZHM5BodySoundEventConsumer_EAnimSoundBody
 {
+	eHM5AnimSoundBody_Buttocks = 0,
+	eHM5AnimSoundBody_Foot_R = 10,
+	eHM5AnimSoundBody_Back = 1,
+	eHM5AnimSoundBody_Head = 2,
+	eHM5AnimSoundBody_Hand_L = 7,
+	eHM5AnimSoundBody_Knee_L = 3,
+	eHM5AnimSoundBody_Elbow_R = 6,
+	eHM5AnimSoundBody_Elbow_L = 5,
+	eHM5AnimSoundBody_Knee_R = 4,
+	eHM5AnimSoundBody_Hand_R = 8,
+	eHM5AnimSoundBody_Foot_L = 9,
+	eHM5AnimSoundBody_Shoulder_L = 11,
+	eHM5AnimSoundBody_Shoulder_R = 12,
+	eHM5AnimSoundBody_RollFwd = 13,
+	eHM5AnimSoundBody_RollSide = 14,
 };
 
 // Size: 0x4
 enum class ZHM5Closet_EClosetType
 {
+	eTypeClosetNormal = 0,
+	eTypeClosetCake = 1,
+	eTypeClosetDumpster = 2,
+	eTypeClosetLast = 3,
 };
 
 // Size: 0x4
 enum class ZHM5ContextActionEntity_EInteraction
 {
+	eIT_RotateLeftStick = 0,
+	eIT_AutoComplete = 1,
+	eIT_NoInteraction = 2,
 };
 
 // Size: 0x4
 enum class ZHM5CoverPlane_ESide
 {
+	RIGHT = 0,
+	LEFT = 1,
 };
 
 // Size: 0x4
 enum class ZHM5CoverPlane_eCoverSize
 {
+	eLowCover = 0,
+	eMediumCover = 1,
+	eHighCover = 2,
 };
 
 // Size: 0x4
 enum class ZHM5CoverPlane_eExtraPlaneProperty
 {
+	eCoverOnly = 0,
+	eCoverAndRail = 1,
+	eRailOnly = 2,
 };
 
 // Size: 0x4
 enum class ZHM5CrowdGenericEventConsumer_EEvent
 {
+	eFootstep = 0,
+	eGeneric00 = 4,
+	eClothRustle = 1,
+	eGeneric02 = 6,
+	ePushReaction = 2,
+	ePanic = 3,
+	eGeneric01 = 5,
+	eGeneric03 = 7,
 };
 
 // Size: 0x4
 enum class ZHM5DynamicRayCastEntity_ECollideType
 {
+	eHitman = 1,
+	eAnyDynamic = 0,
+	eBaseCharacter = 0,
+	eActor = 2,
 };
 
 // Size: 0x4
 enum class ZHM5FaceFXReactionEventConsumer_EEvent
 {
+	eHitByBullet = 0,
+	eFireRegularWeapon = 1,
+	eReloadHeavyWeapon = 4,
+	eReloadRegularWeapon = 2,
+	eCCGettingHit = 6,
+	eFireHeavyWeapon = 3,
+	eCoverDodgebulletLeft = 7,
+	eCCAttacking = 5,
+	eCoverDodgebulletRight = 8,
+	eReactToExplosion = 9,
 };
 
 // Size: 0x4
 enum class ZHM5FaceFXSpecificEventConsumer_EEvent
 {
+	eCloseCombatAttackSnarl = 5,
+	eNone = 0,
+	eGetInCombatCoverExhalation = 1,
+	eCloseCombatStainedGroan = 6,
+	eAgilityStrainedInhaleExhale = 3,
+	eLeaveCombatCoverExhalation = 2,
+	eAgilityGroan = 4,
+	eCloseCombatSilentKillShush = 7,
 };
 
 // Size: 0x4
 enum class ZHM5ForceCover_EFaceDirection
 {
+	eFaceLeft = 0,
+	eFaceRight = 1,
 };
 
 // Size: 0x4
 enum class ZHM5ForceVentilatorShaft_EFaceDirection
 {
+	eFaceLeft = 0,
+	eFaceRight = 1,
 };
 
 // Size: 0x4
 enum class ZHM5GenericEventConsumer_EEvent
 {
+	eGeneric00 = 0,
+	eGeneric01 = 1,
+	eGeneric02 = 2,
+	eGeneric03 = 3,
+	eGeneric04 = 4,
+	eGeneric05 = 5,
+	eGeneric06 = 6,
+	eGeneric07 = 7,
 };
 
 // Size: 0x4
 enum class ZHM5GuideJump_EForceDismountBehavior
 {
+	eDontCare = 0,
+	eForceSneak = 2,
+	eForceStand = 1,
 };
 
 // Size: 0x4
 enum class ZHM5GuideJump_EForceDropDownDirection
 {
+	eFaceDontCare = 0,
+	eTurn180 = 4,
+	eFaceLedge = 1,
+	eFaceLeft = 2,
+	eFaceRight = 3,
 };
 
 // Size: 0x4
 enum class ZHM5GuideJump_eJumpType
 {
+	eJump4m_Straight = 0,
+	eJump8_4m_Down = 1,
+	eJump6_2m_Down = 2,
+	eJump6_2m_Up = 3,
+	eJump8_4m_Down_Short_Roll = 4,
 };
 
 // Size: 0x4
 enum class ZHM5HandSoundEventConsumer_EAnimSoundHand
 {
+	eHM5AnimSoundHand_L = 0,
+	eHM5AnimSoundHand_R = 1,
 };
 
 // Size: 0x4
 enum class ZHM5HitmanFocusModifier_EFocusAddRemove
 {
+	eAddFocusInstantly = 0,
+	eDecreaseFocusToValue = 3,
+	eRemoveFocusInstantly = 1,
+	eIncreaseFocusToValue = 2,
+	eAutoAdjustFocus = 4,
 };
 
 // Size: 0x4
 enum class ZHM5HitmanFocusModifier_EFocusValue
 {
+	eFocus0 = 0,
+	eFocus10 = 10,
+	eFocus20 = 20,
+	eFocus30 = 30,
+	eFocus40 = 40,
+	eFocus50 = 50,
+	eFocus60 = 60,
+	eFocus70 = 70,
+	eFocus80 = 80,
+	eFocus90 = 90,
+	eFocus100 = 100,
 };
 
 // Size: 0x4
 enum class ZHM5HitmanHealthModifier_EHealthDrainType
 {
+	eRemoveHealthInstantly = 0,
+	eDecreaseHealthToValue = 1,
 };
 
 // Size: 0x4
 enum class ZHM5HitmanHealthModifier_EHealthValue
 {
+	eHealth0 = 0,
+	eHealth40 = 40,
+	eHealth10 = 10,
+	eHealth20 = 20,
+	eHealth30 = 30,
+	eHealth50 = 50,
+	eHealth60 = 60,
+	eHealth70 = 70,
+	eHealth80 = 80,
+	eHealth90 = 90,
+	eHealth100 = 100,
 };
 
 // Size: 0x4
 enum class ZHM5HitmanWeaponModifier_EAddAmmo
 {
+	eIncreaseClipsToValue = 0,
+	eGiveClipsUpToValue = 1,
+	eGiveFullAmmo = 2,
+	eSetAmmoToValue = 3,
 };
 
 // Size: 0x4
 enum class ZHM5HitmanWeaponModifier_EDropWeapon
 {
+	eDropAll = 3,
+	eDropFiberWire = 0,
+	eDropAllFireArms = 1,
+	eDropCCWeapons = 2,
 };
 
 // Size: 0x4
 enum class ZHM5IndicatorManager_EIndicatorType
 {
+	eActorAmbient = 0,
+	eExplosion = 5,
+	eActorAlertedLow = 1,
+	eActorAlertedHigh = 2,
+	eActorArrest = 3,
+	eActorCombat = 4,
+	eObjective = 6,
+	ePointOfInterest = 7,
+	eContractExit = 8,
+	eEasterActor = 9,
 };
 
 // Size: 0x4
 enum class ZHM5InteractiveCutsequenceInputEntity_EInputHandled
 {
+	eMash = 0,
+	eOverThreshold = 2,
+	eHold = 1,
 };
 
 // Size: 0x4
 enum class ZHM5InteractiveCutsequenceInputEntity_EInputType
 {
+	eButtonY = 2,
+	eButtonA = 0,
+	eMoveBackward = 5,
+	eButtonX = 1,
+	eMoveForward = 4,
+	eButtonB = 3,
+	eMoveLeft = 6,
+	eMoveRight = 7,
 };
 
 // Size: 0x4
 enum class ZHM5ItemCCWeapon_EUseTypes
 {
+	EUT_CantUse = 0,
+	EUT_Toggle = 1,
+	EUT_TurnOn = 2,
 };
 
 // Size: 0x4
 enum class ZHM5LedgeMount_EFaceDirection
 {
+	eFaceLeft = 1,
+	eFaceFront = 0,
+	eFaceRight = 2,
 };
 
 // Size: 0x4
 enum class ZHM5LedgeMount_ELedgeEndState
 {
+	eStand = 1,
+	eHang = 0,
 };
 
 // Size: 0x4
 enum class ZHM5SpecialSoundEventConsumer_EAnimSoundSpecial
 {
+	eHM5AnimSoundSpecial_Ladder1_L = 0,
+	eHM5AnimSoundSpecial_Ladder1_R = 1,
+	eHM5AnimSoundSpecial_Ladder2_L = 2,
+	eHM5AnimSoundSpecial_Ladder2_R = 3,
 };
 
 // Size: 0x4
 enum class ZHM5ValueEntity_bool_EForwardRule
 {
+	eAlways = 0,
+	eValueChanged = 1,
 };
 
 // Size: 0x4
 enum class ZHM5WeaponEventConsumer_EAnimWeapon
 {
+	eHM5Weapon_EjectCartridge = 3,
+	eHM5Weapon_HideClip = 0,
+	eHM5Weapon_ShowClip = 1,
+	eHM5Weapon_SpawnPhysicsClip = 2,
 };
 
 // Size: 0x4
@@ -3612,36 +8571,70 @@ public:
 // Size: 0x4
 enum class ZInventorySlot_EInventorySlotType
 {
+	eSilverBallerSlot = 0,
+	eFiberwireSlot = 7,
+	eRevolverSlot = 2,
+	eHandgunSlot = 1,
+	eSmgSlot = 5,
+	eRifleSlot = 3,
+	eSniperSlot = 4,
+	eShotgunSlot = 6,
+	eCCPropSlot = 8,
+	eRemoteControlled = 9,
+	eOther = 10,
 };
 
 // Size: 0x4
 enum class ZLogicMultipleGate_EGateType
 {
+	eFireEveryTime = 0,
+	eFirePortOnce = 1,
+	eFireOnce = 2,
 };
 
 // Size: 0x4
 enum class ZLookAtLogic_EAxisSelect
 {
+	eX = 0,
+	eX_NEG = 1,
+	eZ_NEG = 5,
+	eY = 2,
+	eY_NEG = 3,
+	eZ = 4,
 };
 
 // Size: 0x4
 enum class ZMirrorEntity_EMirrorBlur
 {
+	BLUR_HIGH = 2,
+	BLUR_DISABLED = 0,
+	BLUR_LOW = 1,
 };
 
 // Size: 0x4
 enum class ZMirrorEntity_EMirrorQuality
 {
+	QUALITY_LOW = 0,
+	QUALITY_MEDIUM = 1,
+	QUALITY_HIGH = 2,
 };
 
 // Size: 0x4
 enum class ZPathfinderDebugEntity_EDebugTestType
 {
+	PATHFINDER = 0,
+	REGION_COST_CHANGED = 4,
+	TRACELINE = 1,
+	MAP_LOCATION = 2,
+	REGION_MASK_WITHIN_RADIUS = 3,
 };
 
 // Size: 0x4
 enum class ZPointOfInterestEntity_POIType
 {
+	POIT_Glance = 1,
+	POIT_Inspect = 2,
+	POIP_Stare = 3,
 };
 
 // Size: 0x4
@@ -3681,6 +8674,8 @@ public:
 // Size: 0x4
 enum class ZRagdollAttacherEntity_EResetMode
 {
+	eAtBoneOrigin = 0,
+	eKeepOffset = 1,
 };
 
 // Size: 0x40
@@ -3703,16 +8698,33 @@ public:
 // Size: 0x4
 enum class ZRenderGlobalEntity_EToneMappingType
 {
+	eReinhard = 0,
+	eFilmic = 1,
 };
 
 // Size: 0x4
 enum class ZRenderPostfilterParametersEntity_EDOFBlurType
 {
+	eLowRezLensBlurSoft = 2,
+	eFastest = 0,
+	eLowRezLensBlur = 1,
+	eHighRezLensBlur = 3,
 };
 
 // Size: 0x4
 enum class ZRenderPostfilterParametersEntity_EHDRGlareType
 {
+	eCamera = 0,
+	eNatural = 1,
+	eFilterSnowCross = 5,
+	eFilterSunnyCrossSpectral = 8,
+	eFilterSunnyCross = 7,
+	eFilterSnowCrossSpectral = 6,
+	eCheapLens = 2,
+	eFilterCrossScreen = 3,
+	eFilterCrossScreenSpectral = 4,
+	eCinecamVerticalSlits = 9,
+	eCinecamHorizontalSlits = 10,
 };
 
 // Size: 0x4
@@ -3746,8 +8758,8 @@ public:
 	bool operator==(const ZRuntimeResourceID& p_Other) const;
 	bool operator!=(const ZRuntimeResourceID& p_Other) const { return !(*this == p_Other); }
 
-	uint32 _0E06C207; // 0x0
-	uint32 _9EC45A78; // 0x4
+	uint32 m_IDHigh; // 0x0
+	uint32 m_IDLow; // 0x4
 };
 
 // Size: 0x24
@@ -3764,15 +8776,15 @@ public:
 	bool operator==(const ZSharedSensorDef_SVisibilitySetting& p_Other) const;
 	bool operator!=(const ZSharedSensorDef_SVisibilitySetting& p_Other) const { return !(*this == p_Other); }
 
-	EActorPerceptionSensitivity _651CEEE5; // 0x0
-	float32 _67E9CFAF; // 0x4
-	float32 _7E8A37B8; // 0x8
-	float32 _ED8C28F8; // 0xC
-	float32 _44EB35D5; // 0x10
-	float32 _AC96C91C; // 0x14
-	float32 _E3F48D31; // 0x18
-	float32 _2D17BA18; // 0x1C
-	float32 _2AFC50C4; // 0x20
+	EActorPerceptionSensitivity m_eSensitivity; // 0x0
+	float32 m_fCloseRange; // 0x4
+	float32 m_fPeripheralRange; // 0x8
+	float32 m_fPeripheralAngle; // 0xC
+	float32 m_fPeripheralHigh; // 0x10
+	float32 m_fPeripheralLow; // 0x14
+	float32 m_fFocusConeWidthAngle; // 0x18
+	float32 m_fFocusConeHeightAngle; // 0x1C
+	float32 m_fFocusConeRange; // 0x20
 };
 
 // Size: 0xF0
@@ -3795,11 +8807,15 @@ public:
 // Size: 0x4
 enum class ZSoundChannelGroupDuckMaster_EDuckingChannelAttenuationMode
 {
+	eDuckingChannelAttenuationMode_Sum = 0,
+	eDuckingChannelAttenuationMode_Loudest = 1,
 };
 
 // Size: 0x4
 enum class ZSpatialEntity_ERoomBehaviour
 {
+	ROOM_STATIC = 0,
+	ROOM_DYNAMIC = 1,
 };
 
 // Size: 0xC
@@ -3816,7 +8832,7 @@ public:
 	bool operator==(const ZSpeakerLevels& p_Other) const;
 	bool operator!=(const ZSpeakerLevels& p_Other) const { return !(*this == p_Other); }
 
-	TArray<float32> _EB48D7FA; // 0x0
+	TArray<float32> m_aSpeakerMatrix; // 0x0
 };
 
 // Size: 0x8
@@ -3833,62 +8849,184 @@ public:
 	bool operator==(const ZTime& p_Other) const;
 	bool operator!=(const ZTime& p_Other) const { return !(*this == p_Other); }
 
-	uint64 _D33B1D5A; // 0x0
+	uint64 m_nValue; // 0x0
 };
 
 // Size: 0x4
 enum class ZWaveformGeneratorEntity_ECurveType
 {
+	CURVE_TYPE_SAWTOOTH = 3,
+	CURVE_TYPE_SINE = 0,
+	CURVE_TYPE_SQUARE = 1,
+	CURVE_TYPE_TRIANGLE = 2,
+	CURVE_TYPE_REVERSE_SAWTOOTH = 4,
 };
 
 // Size: 0x4
 enum class ZWaypointEntity_EMovementType
 {
+	MT_WALK = 0,
+	MT_WALK_IF_NOT_IN_SEQUENCE = 1,
+	MT_SNAP = 2,
+	MT_IGNORE_POSITION = 3,
 };
 
 // Size: 0x4
 enum class _EUIOptionKey
 {
+	UI_OPTION_GAME_VIBRATION = 100,
+	UI_OPTION_GRAPHICS_TESSELLATION = 2680,
+	UI_OPTION_GAME_INVERT_Y = 310,
+	UI_OPTION_GAME_INVERT_MOUSE_Y = 302,
+	UI_OPTION_GAME_AIM_ASSIST = 200,
+	UI_OPTION_DEBUG_HUD_INVENTORY = 7800,
+	UI_OPTION_DISPLAY_FULLSCREEN = 2250,
+	UI_OPTION_DEBUG_PRINT_LOW_FPS = 7010,
+	UI_OPTION_SOUND_VOLUME_MUSIC = 1030,
+	UI_OPTION_GAME_CONTROL_SCHEME = 311,
+	UI_OPTION_GAME_LANG_AUDIO = 350,
+	UI_OPTION_DISPLAY_QUALITY = 2290,
+	UI_OPTION_GRAPHICS_SSGI = 2660,
+	UI_OPTION_GAME_INVERT_X = 300,
+	UI_OPTION_DISPLAY_REFRESHRATE = 2240,
+	UI_OPTION_GAME_INVERT_MOUSE_X = 301,
+	UI_OPTION_GAME_AIM_CAUSAL = 210,
+	UI_OPTION_CHEAT_ACTION_CAMERA = 6430,
+	UI_OPTION_GAME_SWITCH_SNEAK_AND_CAMERA = 332,
+	UI_OPTION_SOUND_VOLUME_EFFECTS = 1020,
+	UI_OPTION_GAME_FAST_TARGET = 312,
+	UI_OPTION_GAME_DIFFICULTY = 321,
+	UI_OPTION_GAME_MOUSE_SENSITIVITY = 336,
+	UI_OPTION_GAME_TRIGGER_SHOOT = 330,
+	UI_OPTION_DISPLAY_MONITOR = 2280,
+	UI_OPTION_GAME_SHOOTING_BALLET_AUTO = 331,
+	UI_OPTION_GRAPHICS_ANTI_ALIASING = 2700,
+	UI_OPTION_GRAPHICS_QUALITY = 2600,
+	UI_OPTION_GRAPHICS_GAMMA = 2110,
+	UI_OPTION_GAME_LEFT_HANDED_CONTROLS = 333,
+	UI_OPTION_GRAPHICS_SAFE_AREA_X = 2210,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY_HORZ = 334,
+	UI_OPTION_CHEAT_INF_FOCUS = 6230,
+	UI_OPTION_GRAPHICS_SSAO = 2650,
+	UI_OPTION_GAME_INSTINCT_NPCGLOW = 342,
+	UI_OPTION_GAME_CAMERA_SENSITIVITY_VERT = 335,
+	UI_OPTION_GAME_INSTINCT_PATHS = 340,
+	UI_OPTION_DEBUG_SCREENSHOT = 7910,
+	UI_OPTION_GAME_HINTS_TUTORIAL = 346,
+	UI_OPTION_GAME_HINTS_INSTINCT = 348,
+	UI_OPTION_GRAPHICS_TEXTURE_QUALITY = 2630,
+	UI_OPTION_GAME_COVER_TOGGLE = 352,
+	UI_OPTION_GAME_LANG_TEXT = 351,
+	UI_OPTION_SOUND_VOLUME_MASTER = 1010,
+	UI_OPTION_DISPLAY_STEREO_DEPTH = 2320,
+	UI_OPTION_GAME_WEAPON_SELECTOR = 353,
+	UI_OPTION_SOUND_VOLUME_VOICE = 1040,
+	UI_OPTION_GRAPHICS_SUBTITLES = 2000,
+	UI_OPTION_GRAPHICS_SAFE_AREA_Y = 2220,
+	UI_OPTION_DISPLAY_STEREO_STRENGTH = 2330,
+	UI_OPTION_DISPLAY_RESOLUTION = 2230,
+	UI_OPTION_DISPLAY_EXCLUSIVE = 2260,
+	UI_OPTION_GRAPHICS_LPV = 2670,
+	UI_OPTION_DISPLAY_VSYNC = 2270,
+	UI_OPTION_CHEAT_INVISIBLE = 6100,
+	UI_OPTION_DISPLAY_ASPECT = 2300,
+	UI_OPTION_DISPLAY_STEREOSCOPIC = 2310,
+	UI_OPTION_DISPLAY_MSAA = 2340,
+	UI_OPTION_GRAPHICS_BLOOM = 2750,
+	UI_OPTION_GRAPHICS_SHADOW_QUALITY = 2610,
+	UI_OPTION_GRAPHICS_SHADOW_RESOLUTION = 2620,
+	UI_OPTION_GRAPHICS_TEXTURE_FILTER = 2640,
+	UI_OPTION_GRAPHICS_MIRRORS = 2690,
+	UI_OPTION_GRAPHICS_LOD = 2710,
+	UI_OPTION_DEBUG_UI_DISABLE_HUD = 7700,
+	UI_OPTION_GRAPHICS_BOKEH = 2740,
+	UI_OPTION_CHEAT_INF_CLIP = 6220,
+	UI_OPTION_CHEAT_GOD = 6000,
+	UI_OPTION_CHEAT_INF_AMMO = 6210,
+	UI_OPTION_CHEAT_ALWAYS_SHOW_CROSSHAIR = 6330,
+	UI_OPTION_CHEAT_CAMERA_AUTOCORRECTION = 6410,
+	UI_OPTION_CHEAT_INVERT_CAM_VER = 6420,
+	UI_OPTION_DEBUG_SHOW_DEBUG = 7000,
+	UI_OPTION_DEBUG_UI_THREAT_RADAR = 7771,
+	UI_OPTION_DEBUG_FORCE_LOD_INDEX = 7900,
+	UI_OPTION_DEBUG_DISABLE_ROOMS = 7920,
 };
 
 // Size: 0x4
 enum class _EUIOptionType
 {
+	UI_OPTION_VALUE_INT = 0,
+	UI_OPTION_VALUE_FLOAT = 1,
+	UI_OPTION_VALUE_BOOL = 2,
 };
 
 // Size: 0x4
 enum class eHitmanPermissionReason
 {
+	eHPReason_MovementContext = 1,
+	eHPReason_NUM = 6,
+	eHPReason_ItemHandlingInProcess = 2,
+	eHPReason_SniperMode = 4,
+	eHPReason_CrippleBox = 8,
+	eHPReason_LevelDesign = 16,
+	eHPReason_InstinctBlendIn = 64,
+	eHPReason_PlayerInput = 32,
+	eHPReason_ALLReasons = -1,
 };
 
 // Size: 0x4
 enum class eItemHands
 {
+	IH_NONE = 0,
+	IH_ONEHANDED = 1,
+	IH_TWOHANDED = 2,
 };
 
 // Size: 0x4
 enum class eItemSize
 {
+	ITEMSIZE_HUGE = 2,
+	ITEMSIZE_LARGE = 1,
+	ITEMSIZE_SMALL = 0,
 };
 
 // Size: 0x4
 enum class eParticleEmitterBoxEntity_SpawnModes
 {
+	BOX_SPAWNMODE_INSIDE = 0,
+	BOX_SPAWNMODE_ELLIPSOID = 4,
+	BOX_SPAWNMODE_FACE = 2,
+	BOX_SPAWNMODE_EDGE = 1,
+	BOX_SPAWNMODE_ELLIPSOID_INSIDE = 3,
 };
 
 // Size: 0x4
 enum class eParticleEmitterMeshEntity_SpawnModes
 {
+	MESH_SPAWNMODE_VERTEX = 0,
+	MESH_SPAWNMODE_EDGE = 1,
+	MESH_SPAWNMODE_FACE = 2,
 };
 
 // Size: 0x4
 enum class eWeaponOperation
 {
+	WO_SEMI_AUTO = 0,
+	WO_FULL_AUTO = 1,
 };
 
 // Size: 0x4
 enum class eWeaponType
 {
+	WT_HANDGUN = 0,
+	WT_SLOWGUN = 1,
+	WT_ASSAULTRIFLE = 2,
+	WT_SMG = 3,
+	WT_SNIPER = 4,
+	WT_KNIFE = 6,
+	WT_RPG = 5,
+	WT_SHOTGUN = 7,
+	WT_SPOTTER = 8,
 };
 
 #pragma pack(pop)
