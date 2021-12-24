@@ -905,7 +905,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		s_SourceStream << std::endl;
 	}
 
-	s_SourceStream << "\t*reinterpret_cast<" << s_NormalizedName << "*>(p_Target) = std::move(s_Object);" << std::endl;
+	s_SourceStream << "\t*reinterpret_cast<" << s_NormalizedName << "*>(p_Target) = s_Object;" << std::endl;
 
 	s_SourceStream << "}" << std::endl;
 	s_SourceStream << std::endl;

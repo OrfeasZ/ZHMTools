@@ -32,10 +32,7 @@ public:
 
 	TArray(const TArray<T>& p_Other)
 	{
-		resize(p_Other.size());
-
-		for (size_t i = 0; i < p_Other.size(); ++i)
-			operator[](i) = p_Other[i];
+		*this = p_Other;
 	}
 
 	TArray(size_t p_Size)
@@ -81,7 +78,10 @@ public:
 
 		// Initialize all values to defaults.
 		for (size_t i = 0; i < p_Size; ++i)
-			operator[](i) = T();
+		{
+			T s_Value {};
+			operator[](i) = s_Value;
+		}
 	}
 	
 	inline size_t size() const

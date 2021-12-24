@@ -32,15 +32,7 @@ public:
 
 	ZString(const ZString& p_Other)
 	{
-		if (p_Other.is_allocated())
-		{
-			allocate(p_Other.c_str(), p_Other.size());
-		}
-		else
-		{
-			m_nLength = p_Other.m_nLength;
-			m_pChars = p_Other.m_pChars;
-		}
+		*this = p_Other;
 	}
 
 	ZString(std::string_view p_Str)

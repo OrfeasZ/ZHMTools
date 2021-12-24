@@ -87,7 +87,6 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 			}
 			else
 			{
-				// TODO: This probably leaks.
 				auto s_HeapArena = ZHMArenas::GetHeapArena();
 				auto s_AllocOffset = s_HeapArena->Allocate(s_Variant.GetType()->Size());
 				auto s_Ptr = s_HeapArena->GetObjectAtOffset<void>(s_AllocOffset);

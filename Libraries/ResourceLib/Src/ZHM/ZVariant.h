@@ -22,6 +22,40 @@ public:
 	static bool Equals(void* p_Left, void* p_Right);
 
 public:
+	ZVariant()
+	{
+	}
+
+	ZVariant(ZVariant& p_Other)
+	{
+		*this = p_Other;
+	}
+
+	~ZVariant()
+	{
+		if (m_pData.IsNull())
+			return;
+
+		if (m_pData.GetArenaId() != ZHMHeapArenaId)
+			return;
+
+		auto* s_Arena = ZHMArenas::GetHeapArena();
+		s_Arena->Free(m_pData.GetPtrOffset());
+	}
+
+	ZVariant& operator=(ZVariant& p_Other)
+	{
+		m_pTypeID = p_Other.m_pTypeID;
+		m_pData = p_Other.m_pData;
+
+		// Avoid double allocation here by just swapping pointers.
+		// This invalidates the original object, but we shouldn't have
+		// any use for it after this.
+		p_Other.m_pData.SetNull();
+
+		return *this;
+	}
+
 	bool operator==(const ZVariant& p_Other) const
 	{
 		return GetType() == p_Other.GetType() && m_pData.GetPtr() == p_Other.m_pData.GetPtr();
