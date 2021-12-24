@@ -35,6 +35,8 @@ add_subdirectory("Tools/ResourceTool")
 add_subdirectory("Libraries/NavWeakness")
 add_subdirectory("Tools/NavTool")
 
+add_subdirectory("Tools/ModuleInfoParser")
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	add_subdirectory("Libraries/CodeGenLib")
 	add_subdirectory("Tools/CodeGen")
