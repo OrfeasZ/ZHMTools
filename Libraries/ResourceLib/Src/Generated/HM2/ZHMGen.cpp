@@ -9,6 +9,7 @@
 #include "ZHMProperties.h"
 #include "ZHMEnums.h"
 #include <External/simdjson_helpers.h>
+#include <utility>
 
 ZHMTypeInfo AI_Private_Details_SBaseStimulus_Pool_SaveData::TypeInfo = ZHMTypeInfo("AI.Private.Details.SBaseStimulus_Pool_SaveData", sizeof(AI_Private_Details_SBaseStimulus_Pool_SaveData), alignof(AI_Private_Details_SBaseStimulus_Pool_SaveData), AI_Private_Details_SBaseStimulus_Pool_SaveData::WriteJson, AI_Private_Details_SBaseStimulus_Pool_SaveData::WriteSimpleJson, AI_Private_Details_SBaseStimulus_Pool_SaveData::FromSimpleJson, AI_Private_Details_SBaseStimulus_Pool_SaveData::Serialize, AI_Private_Details_SBaseStimulus_Pool_SaveData::Equals);
 
@@ -124,25 +125,43 @@ void AI_Private_Details_SBaseStimulus_Pool_SaveData::FromSimpleJson(simdjson::on
 {
 	AI_Private_Details_SBaseStimulus_Pool_SaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_SlotDetails"])
 	{
-		s_Object.m_SlotDetails.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_SlotDetails"];
+	s_Object.m_SlotDetails.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_SlotDetails[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_UsageRepresentation"])
 	{
-		s_Object.m_UsageRepresentation.push_back(simdjson::from_json_int16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_UsageRepresentation"];
+	s_Object.m_UsageRepresentation.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_UsageRepresentation[s_Index0++] = simdjson::from_json_int16(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_FreeIndices"])
 	{
-		s_Object.m_FreeIndices.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_FreeIndices"];
+	s_Object.m_FreeIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_FreeIndices[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<AI_Private_Details_SBaseStimulus_Pool_SaveData*>(p_Target) = s_Object;
 }
 
-void AI_Private_Details_SBaseStimulus_Pool_SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_Private_Details_SBaseStimulus_Pool_SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_Private_Details_SBaseStimulus_Pool_SaveData*>(p_Object);
 
@@ -207,7 +226,7 @@ void AI_Private_Details_SStimulus_AgentData_SaveData::FromSimpleJson(simdjson::o
 	*reinterpret_cast<AI_Private_Details_SStimulus_AgentData_SaveData*>(p_Target) = s_Object;
 }
 
-void AI_Private_Details_SStimulus_AgentData_SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_Private_Details_SStimulus_AgentData_SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_Private_Details_SStimulus_AgentData_SaveData*>(p_Object);
 
@@ -279,7 +298,7 @@ void AI_Private_SStimulusSnapshot::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<AI_Private_SStimulusSnapshot*>(p_Target) = s_Object;
 }
 
-void AI_Private_SStimulusSnapshot::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_Private_SStimulusSnapshot::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_Private_SStimulusSnapshot*>(p_Object);
 
@@ -393,17 +412,23 @@ void AI_Private_SPoolSnapshot::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.PoolSize = simdjson::from_json_uint32(p_Document["PoolSize"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["Stimuli"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["Stimuli"];
+	s_Object.Stimuli.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		AI_Private_SStimulusSnapshot s_ArrayItem0;
 		AI_Private_SStimulusSnapshot::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.Stimuli.push_back(s_ArrayItem0);
+		s_Object.Stimuli[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<AI_Private_SPoolSnapshot*>(p_Target) = s_Object;
 }
 
-void AI_Private_SPoolSnapshot::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_Private_SPoolSnapshot::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_Private_SPoolSnapshot*>(p_Object);
 
@@ -508,17 +533,23 @@ void AI_Private_SFullDataSnapshotEvent::FromSimpleJson(simdjson::ondemand::value
 
 	s_Object.EventIndex = simdjson::from_json_uint32(p_Document["EventIndex"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["StimulusPools"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["StimulusPools"];
+	s_Object.StimulusPools.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		AI_Private_SPoolSnapshot s_ArrayItem0;
 		AI_Private_SPoolSnapshot::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.StimulusPools.push_back(s_ArrayItem0);
+		s_Object.StimulusPools[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<AI_Private_SFullDataSnapshotEvent*>(p_Target) = s_Object;
 }
 
-void AI_Private_SFullDataSnapshotEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_Private_SFullDataSnapshotEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_Private_SFullDataSnapshotEvent*>(p_Object);
 
@@ -653,7 +684,7 @@ void AI_Private_SPoolModificationEvent::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<AI_Private_SPoolModificationEvent*>(p_Target) = s_Object;
 }
 
-void AI_Private_SPoolModificationEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_Private_SPoolModificationEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_Private_SPoolModificationEvent*>(p_Object);
 
@@ -737,17 +768,23 @@ void AI_Private_SPoolModificationCollectionEvent::FromSimpleJson(simdjson::ondem
 {
 	AI_Private_SPoolModificationCollectionEvent s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["PoolModificationEvents"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["PoolModificationEvents"];
+	s_Object.PoolModificationEvents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		AI_Private_SPoolModificationEvent s_ArrayItem0;
 		AI_Private_SPoolModificationEvent::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.PoolModificationEvents.push_back(s_ArrayItem0);
+		s_Object.PoolModificationEvents[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<AI_Private_SPoolModificationCollectionEvent*>(p_Target) = s_Object;
 }
 
-void AI_Private_SPoolModificationCollectionEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_Private_SPoolModificationCollectionEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_Private_SPoolModificationCollectionEvent*>(p_Object);
 
@@ -844,7 +881,7 @@ void AI_SEventDescription::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<AI_SEventDescription*>(p_Target) = s_Object;
 }
 
-void AI_SEventDescription::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_SEventDescription::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_SEventDescription*>(p_Object);
 
@@ -931,7 +968,7 @@ void AI_SFirePattern01_SData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<AI_SFirePattern01_SData*>(p_Target) = s_Object;
 }
 
-void AI_SFirePattern01_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_SFirePattern01_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_SFirePattern01_SData*>(p_Object);
 
@@ -1009,17 +1046,23 @@ void AI_SFirePattern01::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	AI_SFirePattern01 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_PatternSequenceData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_PatternSequenceData"];
+	s_Object.m_PatternSequenceData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		AI_SFirePattern01_SData s_ArrayItem0;
 		AI_SFirePattern01_SData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_PatternSequenceData.push_back(s_ArrayItem0);
+		s_Object.m_PatternSequenceData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<AI_SFirePattern01*>(p_Target) = s_Object;
 }
 
-void AI_SFirePattern01::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_SFirePattern01::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_SFirePattern01*>(p_Object);
 
@@ -1116,7 +1159,7 @@ void AI_SFirePattern02_SData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<AI_SFirePattern02_SData*>(p_Target) = s_Object;
 }
 
-void AI_SFirePattern02_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_SFirePattern02_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_SFirePattern02_SData*>(p_Object);
 
@@ -1195,17 +1238,23 @@ void AI_SFirePattern02::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	AI_SFirePattern02 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_PatternSequenceData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_PatternSequenceData"];
+	s_Object.m_PatternSequenceData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		AI_SFirePattern02_SData s_ArrayItem0;
 		AI_SFirePattern02_SData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_PatternSequenceData.push_back(s_ArrayItem0);
+		s_Object.m_PatternSequenceData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<AI_SFirePattern02*>(p_Target) = s_Object;
 }
 
-void AI_SFirePattern02::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_SFirePattern02::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_SFirePattern02*>(p_Object);
 
@@ -1278,7 +1327,7 @@ void AI_SSoundEventModifierState::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<AI_SSoundEventModifierState*>(p_Target) = s_Object;
 }
 
-void AI_SSoundEventModifierState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AI_SSoundEventModifierState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AI_SSoundEventModifierState*>(p_Object);
 
@@ -1339,7 +1388,7 @@ void AnimationEventDataTypes_SBlend::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<AnimationEventDataTypes_SBlend*>(p_Target) = s_Object;
 }
 
-void AnimationEventDataTypes_SBlend::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AnimationEventDataTypes_SBlend::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AnimationEventDataTypes_SBlend*>(p_Object);
 
@@ -1399,7 +1448,7 @@ void AnimationEventDataTypes_SLegacy::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<AnimationEventDataTypes_SLegacy*>(p_Target) = s_Object;
 }
 
-void AnimationEventDataTypes_SLegacy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AnimationEventDataTypes_SLegacy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AnimationEventDataTypes_SLegacy*>(p_Object);
 
@@ -1471,7 +1520,7 @@ void ZRuntimeResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<ZRuntimeResourceID*>(p_Target) = s_Object;
 }
 
-void ZRuntimeResourceID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZRuntimeResourceID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZRuntimeResourceID*>(p_Object);
 
@@ -1549,7 +1598,7 @@ void AnimationTakeDataTypes_SGeneric::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<AnimationTakeDataTypes_SGeneric*>(p_Target) = s_Object;
 }
 
-void AnimationTakeDataTypes_SGeneric::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void AnimationTakeDataTypes_SGeneric::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<AnimationTakeDataTypes_SGeneric*>(p_Object);
 
@@ -1601,7 +1650,7 @@ void BoneId::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 	*reinterpret_cast<BoneId*>(p_Target) = s_Object;
 }
 
-void BoneId::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void BoneId::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<BoneId*>(p_Object);
 
@@ -1650,7 +1699,7 @@ void IActor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 	*reinterpret_cast<IActor*>(p_Target) = s_Object;
 }
 
-void IActor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IActor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IActor*>(p_Object);
 
@@ -1699,7 +1748,7 @@ void IActorProvider::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<IActorProvider*>(p_Target) = s_Object;
 }
 
-void IActorProvider::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IActorProvider::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IActorProvider*>(p_Object);
 
@@ -1748,7 +1797,7 @@ void IActorProviderFilter::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<IActorProviderFilter*>(p_Target) = s_Object;
 }
 
-void IActorProviderFilter::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IActorProviderFilter::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IActorProviderFilter*>(p_Object);
 
@@ -1797,7 +1846,7 @@ void IAnimPlayerEntity::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<IAnimPlayerEntity*>(p_Target) = s_Object;
 }
 
-void IAnimPlayerEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IAnimPlayerEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IAnimPlayerEntity*>(p_Object);
 
@@ -1846,7 +1895,7 @@ void IBodybagEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<IBodybagEntity*>(p_Target) = s_Object;
 }
 
-void IBodybagEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IBodybagEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IBodybagEntity*>(p_Object);
 
@@ -1895,7 +1944,7 @@ void IBoneAnimator::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<IBoneAnimator*>(p_Target) = s_Object;
 }
 
-void IBoneAnimator::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IBoneAnimator::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IBoneAnimator*>(p_Object);
 
@@ -1944,7 +1993,7 @@ void IBoneCollidable::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<IBoneCollidable*>(p_Target) = s_Object;
 }
 
-void IBoneCollidable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IBoneCollidable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IBoneCollidable*>(p_Object);
 
@@ -1993,7 +2042,7 @@ void IBulletImpactListener::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<IBulletImpactListener*>(p_Target) = s_Object;
 }
 
-void IBulletImpactListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IBulletImpactListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IBulletImpactListener*>(p_Object);
 
@@ -2042,7 +2091,7 @@ void IComponentInterface::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<IComponentInterface*>(p_Target) = s_Object;
 }
 
-void IComponentInterface::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IComponentInterface::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IComponentInterface*>(p_Object);
 
@@ -2091,7 +2140,7 @@ void IContractEvaluationContextListener::FromSimpleJson(simdjson::ondemand::valu
 	*reinterpret_cast<IContractEvaluationContextListener*>(p_Target) = s_Object;
 }
 
-void IContractEvaluationContextListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IContractEvaluationContextListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IContractEvaluationContextListener*>(p_Object);
 
@@ -2140,7 +2189,7 @@ void IContractModule::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<IContractModule*>(p_Target) = s_Object;
 }
 
-void IContractModule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IContractModule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IContractModule*>(p_Object);
 
@@ -2189,7 +2238,7 @@ void IContractObjective::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<IContractObjective*>(p_Target) = s_Object;
 }
 
-void IContractObjective::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IContractObjective::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IContractObjective*>(p_Object);
 
@@ -2252,7 +2301,7 @@ void ZDynamicObject::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<ZDynamicObject*>(p_Target) = s_Object;
 }
 
-void ZDynamicObject::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDynamicObject::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDynamicObject*>(p_Object);
 
@@ -2365,7 +2414,7 @@ void IContractObjective_SCounterData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<IContractObjective_SCounterData*>(p_Target) = s_Object;
 }
 
-void IContractObjective_SCounterData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IContractObjective_SCounterData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IContractObjective_SCounterData*>(p_Object);
 
@@ -2551,7 +2600,7 @@ void ZGuid::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 	*reinterpret_cast<ZGuid*>(p_Target) = s_Object;
 }
 
-void ZGuid::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZGuid::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZGuid*>(p_Object);
 
@@ -2677,7 +2726,7 @@ void IContractObjective_STargetCondition::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<IContractObjective_STargetCondition*>(p_Target) = s_Object;
 }
 
-void IContractObjective_STargetCondition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IContractObjective_STargetCondition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IContractObjective_STargetCondition*>(p_Object);
 
@@ -2735,7 +2784,7 @@ void IEscortOutSituation::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<IEscortOutSituation*>(p_Target) = s_Object;
 }
 
-void IEscortOutSituation::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IEscortOutSituation::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IEscortOutSituation*>(p_Object);
 
@@ -2784,7 +2833,7 @@ void IEventConsumerCollection::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<IEventConsumerCollection*>(p_Target) = s_Object;
 }
 
-void IEventConsumerCollection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IEventConsumerCollection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IEventConsumerCollection*>(p_Object);
 
@@ -2833,7 +2882,7 @@ void IFreeCameraControl::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<IFreeCameraControl*>(p_Target) = s_Object;
 }
 
-void IFreeCameraControl::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IFreeCameraControl::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IFreeCameraControl*>(p_Object);
 
@@ -2882,7 +2931,7 @@ void IHM5WeaponInventory::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<IHM5WeaponInventory*>(p_Target) = s_Object;
 }
 
-void IHM5WeaponInventory::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IHM5WeaponInventory::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IHM5WeaponInventory*>(p_Object);
 
@@ -2931,7 +2980,7 @@ void IHumanBody::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	*reinterpret_cast<IHumanBody*>(p_Target) = s_Object;
 }
 
-void IHumanBody::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IHumanBody::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IHumanBody*>(p_Object);
 
@@ -2980,7 +3029,7 @@ void IMetricValue::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<IMetricValue*>(p_Target) = s_Object;
 }
 
-void IMetricValue::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IMetricValue::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IMetricValue*>(p_Object);
 
@@ -3029,7 +3078,7 @@ void IMorphemeCutSequenceAnimatable::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Target) = s_Object;
 }
 
-void IMorphemeCutSequenceAnimatable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IMorphemeCutSequenceAnimatable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Object);
 
@@ -3078,7 +3127,7 @@ void IMorphemeCutSequenceAnimationEntity::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Target) = s_Object;
 }
 
-void IMorphemeCutSequenceAnimationEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IMorphemeCutSequenceAnimationEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Object);
 
@@ -3127,7 +3176,7 @@ void IMorphemeEventConsumer::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<IMorphemeEventConsumer*>(p_Target) = s_Object;
 }
 
-void IMorphemeEventConsumer::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IMorphemeEventConsumer::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IMorphemeEventConsumer*>(p_Object);
 
@@ -3176,7 +3225,7 @@ void INetRelevancy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<INetRelevancy*>(p_Target) = s_Object;
 }
 
-void INetRelevancy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void INetRelevancy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<INetRelevancy*>(p_Object);
 
@@ -3225,7 +3274,7 @@ void IOnlineConfigurationListener::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<IOnlineConfigurationListener*>(p_Target) = s_Object;
 }
 
-void IOnlineConfigurationListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IOnlineConfigurationListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IOnlineConfigurationListener*>(p_Object);
 
@@ -3274,7 +3323,7 @@ void IPureWaterReflectable::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<IPureWaterReflectable*>(p_Target) = s_Object;
 }
 
-void IPureWaterReflectable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IPureWaterReflectable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IPureWaterReflectable*>(p_Object);
 
@@ -3323,7 +3372,7 @@ void IRenderCompositorEntity::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<IRenderCompositorEntity*>(p_Target) = s_Object;
 }
 
-void IRenderCompositorEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IRenderCompositorEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IRenderCompositorEntity*>(p_Object);
 
@@ -3372,7 +3421,7 @@ void ISequenceTarget::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<ISequenceTarget*>(p_Target) = s_Object;
 }
 
-void ISequenceTarget::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ISequenceTarget::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ISequenceTarget*>(p_Object);
 
@@ -3421,7 +3470,7 @@ void ISituation::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	*reinterpret_cast<ISituation*>(p_Target) = s_Object;
 }
 
-void ISituation::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ISituation::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ISituation*>(p_Object);
 
@@ -3470,7 +3519,7 @@ void ISoundGateController::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<ISoundGateController*>(p_Target) = s_Object;
 }
 
-void ISoundGateController::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ISoundGateController::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ISoundGateController*>(p_Object);
 
@@ -3519,7 +3568,7 @@ void ISoundMaterialDescriptor::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<ISoundMaterialDescriptor*>(p_Target) = s_Object;
 }
 
-void ISoundMaterialDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ISoundMaterialDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ISoundMaterialDescriptor*>(p_Object);
 
@@ -3568,7 +3617,7 @@ void ITriggerListener::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<ITriggerListener*>(p_Target) = s_Object;
 }
 
-void ITriggerListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ITriggerListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ITriggerListener*>(p_Object);
 
@@ -3617,7 +3666,7 @@ void IUIDataListener::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<IUIDataListener*>(p_Target) = s_Object;
 }
 
-void IUIDataListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IUIDataListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IUIDataListener*>(p_Object);
 
@@ -3666,7 +3715,7 @@ void IValueEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<IValueEntity*>(p_Target) = s_Object;
 }
 
-void IValueEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IValueEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IValueEntity*>(p_Object);
 
@@ -3715,7 +3764,7 @@ void IWorldMapMarker::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<IWorldMapMarker*>(p_Target) = s_Object;
 }
 
-void IWorldMapMarker::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void IWorldMapMarker::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<IWorldMapMarker*>(p_Object);
 
@@ -3930,7 +3979,7 @@ void S25DProjectionSettings::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<S25DProjectionSettings*>(p_Target) = s_Object;
 }
 
-void S25DProjectionSettings::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void S25DProjectionSettings::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<S25DProjectionSettings*>(p_Object);
 
@@ -4015,7 +4064,7 @@ void S3rdPersonCameraSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<S3rdPersonCameraSaveData*>(p_Target) = s_Object;
 }
 
-void S3rdPersonCameraSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void S3rdPersonCameraSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<S3rdPersonCameraSaveData*>(p_Object);
 
@@ -4076,7 +4125,7 @@ void ZGameTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<ZGameTime*>(p_Target) = s_Object;
 }
 
-void ZGameTime::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZGameTime::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZGameTime*>(p_Object);
 
@@ -4180,7 +4229,7 @@ void SAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SAIEventSaveData*>(p_Target) = s_Object;
 }
 
-void SAIEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAIEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAIEventSaveData*>(p_Object);
 
@@ -4365,7 +4414,7 @@ void SAIModifierServiceActorSaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SAIModifierServiceActorSaveData*>(p_Target) = s_Object;
 }
 
-void SAIModifierServiceActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAIModifierServiceActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAIModifierServiceActorSaveData*>(p_Object);
 
@@ -4463,17 +4512,23 @@ void SAIModifierServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	s_Object.m_bFullVolumeUpdate = simdjson::from_json_bool(p_Document["m_bFullVolumeUpdate"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActors"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActors"];
+	s_Object.m_aActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAIModifierServiceActorSaveData s_ArrayItem0;
 		SAIModifierServiceActorSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aActors.push_back(s_ArrayItem0);
+		s_Object.m_aActors[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SAIModifierServiceSaveData*>(p_Target) = s_Object;
 }
 
-void SAIModifierServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAIModifierServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAIModifierServiceSaveData*>(p_Object);
 
@@ -4535,7 +4590,7 @@ void SAIPerceptibleEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SAIPerceptibleEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SAIPerceptibleEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAIPerceptibleEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAIPerceptibleEntitySaveData*>(p_Object);
 
@@ -4595,7 +4650,7 @@ void SAIVisionBlockerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SAIVisionBlockerSaveData*>(p_Target) = s_Object;
 }
 
-void SAIVisionBlockerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAIVisionBlockerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAIVisionBlockerSaveData*>(p_Object);
 
@@ -4691,7 +4746,7 @@ void SAccessoryItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SAccessoryItemSaveData*>(p_Target) = s_Object;
 }
 
-void SAccessoryItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAccessoryItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAccessoryItemSaveData*>(p_Object);
 
@@ -4792,9 +4847,15 @@ void SAccidentObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 
 	s_Object.m_target = simdjson::from_json_uint32(p_Document["m_target"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aWaitingObservers"])
 	{
-		s_Object.m_aWaitingObservers.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aWaitingObservers"];
+	s_Object.m_aWaitingObservers.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aWaitingObservers[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_accidentScaleContext = static_cast<EAccidentScaleContext>(ZHMEnums::GetEnumValueByName("EAccidentScaleContext", std::string_view(p_Document["m_accidentScaleContext"])));
@@ -4802,7 +4863,7 @@ void SAccidentObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SAccidentObserversGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SAccidentObserversGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAccidentObserversGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAccidentObserversGroupSaveData*>(p_Object);
 
@@ -4917,7 +4978,7 @@ void SActBehaviorEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SActBehaviorEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SActBehaviorEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActBehaviorEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActBehaviorEntitySaveData*>(p_Object);
 
@@ -5018,7 +5079,7 @@ void float4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 	*reinterpret_cast<float4*>(p_Target) = s_Object;
 }
 
-void float4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void float4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<float4*>(p_Object);
 
@@ -5157,7 +5218,7 @@ void SActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<SActOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SActOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActOrderSaveData*>(p_Object);
 
@@ -5285,7 +5346,7 @@ void SActionRadialArcDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SActionRadialArcDisplayInfo*>(p_Target) = s_Object;
 }
 
-void SActionRadialArcDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActionRadialArcDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActionRadialArcDisplayInfo*>(p_Object);
 
@@ -5367,17 +5428,23 @@ void SActionRadialArcDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::
 {
 	SActionRadialArcDisplayInfoArray_dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["dummy"];
+	s_Object.dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActionRadialArcDisplayInfo s_ArrayItem0;
 		SActionRadialArcDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.dummy.push_back(s_ArrayItem0);
+		s_Object.dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActionRadialArcDisplayInfoArray_dummy*>(p_Target) = s_Object;
 }
 
-void SActionRadialArcDisplayInfoArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActionRadialArcDisplayInfoArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActionRadialArcDisplayInfoArray_dummy*>(p_Object);
 
@@ -5438,7 +5505,7 @@ void SActorAccessoryItemActionSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SActorAccessoryItemActionSaveData*>(p_Target) = s_Object;
 }
 
-void SActorAccessoryItemActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorAccessoryItemActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorAccessoryItemActionSaveData*>(p_Object);
 
@@ -5498,7 +5565,7 @@ void SActorAliveConditionSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SActorAliveConditionSaveData*>(p_Target) = s_Object;
 }
 
-void SActorAliveConditionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorAliveConditionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorAliveConditionSaveData*>(p_Object);
 
@@ -5570,7 +5637,7 @@ void SActorAnimSetVariationIndexSaveData::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<SActorAnimSetVariationIndexSaveData*>(p_Target) = s_Object;
 }
 
-void SActorAnimSetVariationIndexSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorAnimSetVariationIndexSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorAnimSetVariationIndexSaveData*>(p_Object);
 
@@ -5750,24 +5817,36 @@ void SActorAnimSetSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_ePreCustomAnimSet = static_cast<EAnimSetType>(ZHMEnums::GetEnumValueByName("EAnimSetType", std::string_view(p_Document["m_ePreCustomAnimSet"])));
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aLocoVariationIndecies"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aLocoVariationIndecies"];
+	s_Object.m_aLocoVariationIndecies.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorAnimSetVariationIndexSaveData s_ArrayItem0;
 		SActorAnimSetVariationIndexSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aLocoVariationIndecies.push_back(s_ArrayItem0);
+		s_Object.m_aLocoVariationIndecies[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aReactVariationIndecies"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aReactVariationIndecies"];
+	s_Object.m_aReactVariationIndecies.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorAnimSetVariationIndexSaveData s_ArrayItem0;
 		SActorAnimSetVariationIndexSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aReactVariationIndecies.push_back(s_ArrayItem0);
+		s_Object.m_aReactVariationIndecies[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorAnimSetSaveData*>(p_Target) = s_Object;
 }
 
-void SActorAnimSetSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorAnimSetSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorAnimSetSaveData*>(p_Object);
 
@@ -5848,7 +5927,7 @@ void SActorBoneAttachSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SActorBoneAttachSaveData*>(p_Target) = s_Object;
 }
 
-void SActorBoneAttachSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorBoneAttachSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorBoneAttachSaveData*>(p_Object);
 
@@ -5956,22 +6035,34 @@ void SActorBoneAttachmentsSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SActorBoneAttachmentsSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorBoneAttachSaveData s_ArrayItem0;
 		SActorBoneAttachSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorBoneAttachmentsSaveData*>(p_Target) = s_Object;
 }
 
-void SActorBoneAttachmentsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorBoneAttachmentsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorBoneAttachmentsSaveData*>(p_Object);
 
@@ -6070,7 +6161,7 @@ void SVector4::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<SVector4*>(p_Target) = s_Object;
 }
 
-void SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVector4*>(p_Object);
 
@@ -6153,7 +6244,7 @@ void SActorBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SActorBoneSaveData*>(p_Target) = s_Object;
 }
 
-void SActorBoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorBoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorBoneSaveData*>(p_Object);
 
@@ -6520,7 +6611,7 @@ void SActorDamageControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SActorDamageControlSaveData*>(p_Target) = s_Object;
 }
 
-void SActorDamageControlSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorDamageControlSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorDamageControlSaveData*>(p_Object);
 
@@ -6630,7 +6721,7 @@ void SActorDynamicTemplateHandlerSaveData::FromSimpleJson(simdjson::ondemand::va
 	*reinterpret_cast<SActorDynamicTemplateHandlerSaveData*>(p_Target) = s_Object;
 }
 
-void SActorDynamicTemplateHandlerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorDynamicTemplateHandlerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorDynamicTemplateHandlerSaveData*>(p_Object);
 
@@ -6692,7 +6783,7 @@ void SActorDynamicTemplateManipulatorSaveData::FromSimpleJson(simdjson::ondemand
 	*reinterpret_cast<SActorDynamicTemplateManipulatorSaveData*>(p_Target) = s_Object;
 }
 
-void SActorDynamicTemplateManipulatorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorDynamicTemplateManipulatorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorDynamicTemplateManipulatorSaveData*>(p_Object);
 
@@ -6856,7 +6947,7 @@ void SActorDynamicTemplateSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SActorDynamicTemplateSaveData*>(p_Target) = s_Object;
 }
 
-void SActorDynamicTemplateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorDynamicTemplateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorDynamicTemplateSaveData*>(p_Object);
 
@@ -7036,30 +7127,54 @@ void SActorGoalSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SActorGoalSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aHandled"])
 	{
-		s_Object.m_aHandled.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aHandled"];
+	s_Object.m_aHandled.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aHandled[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIsCurrent"])
 	{
-		s_Object.m_aIsCurrent.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aIsCurrent"];
+	s_Object.m_aIsCurrent.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aIsCurrent[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_fExpiredTime"])
 	{
-		s_Object.m_fExpiredTime.push_back(simdjson::from_json_float32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_fExpiredTime"];
+	s_Object.m_fExpiredTime.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_fExpiredTime[s_Index0++] = simdjson::from_json_float32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SActorGoalSaveData*>(p_Target) = s_Object;
 }
 
-void SActorGoalSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorGoalSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorGoalSaveData*>(p_Object);
 
@@ -7162,7 +7277,7 @@ void SActorIKControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SActorIKControllerSaveData*>(p_Target) = s_Object;
 }
 
-void SActorIKControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorIKControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorIKControllerSaveData*>(p_Object);
 
@@ -7285,7 +7400,7 @@ void SActorInventoryItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SActorInventoryItemSaveData*>(p_Target) = s_Object;
 }
 
-void SActorInventoryItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorInventoryItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorInventoryItemSaveData*>(p_Object);
 
@@ -7366,17 +7481,23 @@ void SActorInventorySaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SActorInventorySaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItems"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aItems"];
+	s_Object.m_aItems.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorInventoryItemSaveData s_ArrayItem0;
 		SActorInventoryItemSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aItems.push_back(s_ArrayItem0);
+		s_Object.m_aItems[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorInventorySaveData*>(p_Target) = s_Object;
 }
 
-void SActorInventorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorInventorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorInventorySaveData*>(p_Object);
 
@@ -7449,7 +7570,7 @@ void SActorItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SActorItemActionSaveData*>(p_Target) = s_Object;
 }
 
-void SActorItemActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorItemActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorItemActionSaveData*>(p_Object);
 
@@ -7510,7 +7631,7 @@ void SActorKeywordProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SActorKeywordProxySaveData*>(p_Target) = s_Object;
 }
 
-void SActorKeywordProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorKeywordProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorKeywordProxySaveData*>(p_Object);
 
@@ -7617,22 +7738,34 @@ void SActorKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SActorKeywordProxiesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorKeywordProxySaveData s_ArrayItem0;
 		SActorKeywordProxySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorKeywordProxiesSaveData*>(p_Target) = s_Object;
 }
 
-void SActorKeywordProxiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorKeywordProxiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorKeywordProxiesSaveData*>(p_Object);
 
@@ -7711,15 +7844,21 @@ void SActorManagerReferencableData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SActorManagerReferencableData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSituationTypes"])
 	{
-		s_Object.m_aSituationTypes.push_back(static_cast<ESituationType>(ZHMEnums::GetEnumValueByName("ESituationType", std::string_view(s_Item0))));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSituationTypes"];
+	s_Object.m_aSituationTypes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aSituationTypes[s_Index0++] = static_cast<ESituationType>(ZHMEnums::GetEnumValueByName("ESituationType", std::string_view(s_Item0)));
+	}
 	}
 
 	*reinterpret_cast<SActorManagerReferencableData*>(p_Target) = s_Object;
 }
 
-void SActorManagerReferencableData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorManagerReferencableData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorManagerReferencableData*>(p_Object);
 
@@ -7780,7 +7919,7 @@ void SActorProviderApproachSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SActorProviderApproachSaveData*>(p_Target) = s_Object;
 }
 
-void SActorProviderApproachSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorProviderApproachSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorProviderApproachSaveData*>(p_Object);
 
@@ -7866,9 +8005,15 @@ void SActorProviderDirectSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SActorProviderDirectSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActors"])
 	{
-		s_Object.m_aActors.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActors"];
+	s_Object.m_aActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aActors[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_bRunning = simdjson::from_json_bool(p_Document["m_bRunning"]);
@@ -7876,7 +8021,7 @@ void SActorProviderDirectSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SActorProviderDirectSaveData*>(p_Target) = s_Object;
 }
 
-void SActorProviderDirectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorProviderDirectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorProviderDirectSaveData*>(p_Object);
 
@@ -7962,7 +8107,7 @@ void SVector3::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<SVector3*>(p_Target) = s_Object;
 }
 
-void SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVector3*>(p_Object);
 
@@ -8087,22 +8232,34 @@ void SActorRagdollPoseSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 		s_Object.m_vBodyVelocity = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBones"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBones"];
+	s_Object.m_aBones.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorBoneSaveData s_ArrayItem0;
 		SActorBoneSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aBones.push_back(s_ArrayItem0);
+		s_Object.m_aBones[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBoneIndices"])
 	{
-		s_Object.m_aBoneIndices.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBoneIndices"];
+	s_Object.m_aBoneIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aBoneIndices[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SActorRagdollPoseSaveData*>(p_Target) = s_Object;
 }
 
-void SActorRagdollPoseSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorRagdollPoseSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorRagdollPoseSaveData*>(p_Object);
 
@@ -8227,7 +8384,7 @@ void SActorThrowSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SActorThrowSaveData*>(p_Target) = s_Object;
 }
 
-void SActorThrowSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorThrowSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorThrowSaveData*>(p_Object);
 
@@ -8310,17 +8467,23 @@ void SEventHistorySaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SEventHistorySaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aOccurences"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aOccurences"];
+	s_Object.m_aOccurences.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZGameTime s_ArrayItem0;
 		ZGameTime::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aOccurences.push_back(s_ArrayItem0);
+		s_Object.m_aOccurences[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SEventHistorySaveData*>(p_Target) = s_Object;
 }
 
-void SEventHistorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEventHistorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEventHistorySaveData*>(p_Object);
 
@@ -8433,7 +8596,7 @@ void SMatrix::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targe
 	*reinterpret_cast<SMatrix*>(p_Target) = s_Object;
 }
 
-void SMatrix::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMatrix::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMatrix*>(p_Object);
 
@@ -8578,11 +8741,17 @@ void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	s_Object.m_nSharedIndex = simdjson::from_json_int32(p_Document["m_nSharedIndex"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEvents"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEvents"];
+	s_Object.m_aEvents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAIEventSaveData s_ArrayItem0;
 		SAIEventSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEvents.push_back(s_ArrayItem0);
+		s_Object.m_aEvents[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_nBooleanEvents = simdjson::from_json_uint32(p_Document["m_nBooleanEvents"]);
@@ -8606,7 +8775,7 @@ void SKnownEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SKnownEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SKnownEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SKnownEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SKnownEntitySaveData*>(p_Object);
 
@@ -8883,23 +9052,41 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SKnowledgeSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKnownEntities"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKnownEntities"];
+	s_Object.m_aKnownEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SKnownEntitySaveData s_ArrayItem0;
 		SKnownEntitySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aKnownEntities.push_back(s_ArrayItem0);
+		s_Object.m_aKnownEntities[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGoalKeys"])
 	{
-		s_Object.m_aGoalKeys.push_back(static_cast<EAIGoal>(ZHMEnums::GetEnumValueByName("EAIGoal", std::string_view(s_Item0))));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGoalKeys"];
+	s_Object.m_aGoalKeys.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aGoalKeys[s_Index0++] = static_cast<EAIGoal>(ZHMEnums::GetEnumValueByName("EAIGoal", std::string_view(s_Item0)));
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGoals"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGoals"];
+	s_Object.m_aGoals.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorGoalSaveData s_ArrayItem0;
 		SActorGoalSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aGoals.push_back(s_ArrayItem0);
+		s_Object.m_aGoals[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_fHMAttention = simdjson::from_json_float32(p_Document["m_fHMAttention"]);
@@ -8947,7 +9134,7 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SKnowledgeSaveData*>(p_Target) = s_Object;
 }
 
-void SKnowledgeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SKnowledgeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SKnowledgeSaveData*>(p_Object);
 
@@ -9045,7 +9232,7 @@ void SLongTermMemorySaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SLongTermMemorySaveData*>(p_Target) = s_Object;
 }
 
-void SLongTermMemorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLongTermMemorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLongTermMemorySaveData*>(p_Object);
 
@@ -9744,14 +9931,26 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_CurrentBehaviorState = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCurrentBehaviorEntities"])
 	{
-		s_Object.m_aCurrentBehaviorEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCurrentBehaviorEntities"];
+	s_Object.m_aCurrentBehaviorEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aCurrentBehaviorEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBehaviorEntities"])
 	{
-		s_Object.m_aBehaviorEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBehaviorEntities"];
+	s_Object.m_aBehaviorEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aBehaviorEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	{
@@ -9808,11 +10007,17 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	s_Object.m_fZError = simdjson::from_json_float32(p_Document["m_fZError"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDynamicTemplates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDynamicTemplates"];
+	s_Object.m_aDynamicTemplates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorDynamicTemplateSaveData s_ArrayItem0;
 		SActorDynamicTemplateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aDynamicTemplates.push_back(s_ArrayItem0);
+		s_Object.m_aDynamicTemplates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -9837,11 +10042,17 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_RagdollPose = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aLongTermMemorySaveData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aLongTermMemorySaveData"];
+	s_Object.m_aLongTermMemorySaveData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SLongTermMemorySaveData s_ArrayItem0;
 		SLongTermMemorySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aLongTermMemorySaveData.push_back(s_ArrayItem0);
+		s_Object.m_aLongTermMemorySaveData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_AgentData = simdjson::from_json_uint32(p_Document["m_AgentData"]);
@@ -9887,7 +10098,7 @@ void SActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SActorSaveData*>(p_Target) = s_Object;
 }
 
-void SActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorSaveData*>(p_Object);
 
@@ -10076,20 +10287,32 @@ void SCombatMetricsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.m_CombatProgress = simdjson::from_json_float32(p_Document["m_CombatProgress"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_DeadVIPsOrContractTargets"])
 	{
-		s_Object.m_DeadVIPsOrContractTargets.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_DeadVIPsOrContractTargets"];
+	s_Object.m_DeadVIPsOrContractTargets.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_DeadVIPsOrContractTargets[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_DiscoveredVIPOrContractTargetBodies"])
 	{
-		s_Object.m_DiscoveredVIPOrContractTargetBodies.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_DiscoveredVIPOrContractTargetBodies"];
+	s_Object.m_DiscoveredVIPOrContractTargetBodies.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_DiscoveredVIPOrContractTargetBodies[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SCombatMetricsSaveData*>(p_Target) = s_Object;
 }
 
-void SCombatMetricsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCombatMetricsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCombatMetricsSaveData*>(p_Object);
 
@@ -10185,7 +10408,7 @@ void SEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SEventSaveData*>(p_Target) = s_Object;
 }
 
-void SEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEventSaveData*>(p_Object);
 
@@ -10309,17 +10532,23 @@ void SSharedKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 		s_Object.m_ActualMatrix = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEvents"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEvents"];
+	s_Object.m_aEvents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEventSaveData s_ArrayItem0;
 		SEventSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEvents.push_back(s_ArrayItem0);
+		s_Object.m_aEvents[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SSharedKnowledgeSaveData*>(p_Target) = s_Object;
 }
 
-void SSharedKnowledgeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSharedKnowledgeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSharedKnowledgeSaveData*>(p_Object);
 
@@ -10445,9 +10674,15 @@ void SSituationGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	s_Object.m_nSituation = simdjson::from_json_uint32(p_Document["m_nSituation"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActors"])
 	{
-		s_Object.m_aActors.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActors"];
+	s_Object.m_aActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aActors[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_nGroupID = simdjson::from_json_int32(p_Document["m_nGroupID"]);
@@ -10461,7 +10696,7 @@ void SSituationGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SSituationGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SSituationGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSituationGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSituationGroupSaveData*>(p_Object);
 
@@ -10612,7 +10847,7 @@ void SSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SSituationMemberSaveData*>(p_Target) = s_Object;
 }
 
-void SSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSituationMemberSaveData*>(p_Object);
 
@@ -10810,18 +11045,30 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object.m_Data = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aMemberData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aMemberData"];
+	s_Object.m_aMemberData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSituationMemberSaveData s_ArrayItem0;
 		SSituationMemberSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aMemberData.push_back(s_ArrayItem0);
+		s_Object.m_aMemberData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGroupData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGroupData"];
+	s_Object.m_aGroupData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSituationGroupSaveData s_ArrayItem0;
 		SSituationGroupSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aGroupData.push_back(s_ArrayItem0);
+		s_Object.m_aGroupData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_nNextGroupID = simdjson::from_json_int32(p_Document["m_nNextGroupID"]);
@@ -10837,7 +11084,7 @@ void SSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSituationSaveData*>(p_Object);
 
@@ -10909,7 +11156,7 @@ void SActorProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SActorProxySaveData*>(p_Target) = s_Object;
 }
 
-void SActorProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorProxySaveData*>(p_Object);
 
@@ -11016,22 +11263,34 @@ void SActorProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SActorProxiesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorProxySaveData s_ArrayItem0;
 		SActorProxySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorProxiesSaveData*>(p_Target) = s_Object;
 }
 
-void SActorProxiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorProxiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorProxiesSaveData*>(p_Object);
 
@@ -11084,7 +11343,7 @@ void SActorSoundDefs::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<SActorSoundDefs*>(p_Target) = s_Object;
 }
 
-void SActorSoundDefs::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorSoundDefs::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorSoundDefs*>(p_Object);
 
@@ -11171,7 +11430,7 @@ void SActorSpreadControllerCandidateSaveData::FromSimpleJson(simdjson::ondemand:
 	*reinterpret_cast<SActorSpreadControllerCandidateSaveData*>(p_Target) = s_Object;
 }
 
-void SActorSpreadControllerCandidateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorSpreadControllerCandidateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorSpreadControllerCandidateSaveData*>(p_Object);
 
@@ -11444,33 +11703,63 @@ void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SActorSpreadControllerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSpreadingActors"])
 	{
-		s_Object.m_aSpreadingActors.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSpreadingActors"];
+	s_Object.m_aSpreadingActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aSpreadingActors[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDeadSpreadingActors"])
 	{
-		s_Object.m_aDeadSpreadingActors.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDeadSpreadingActors"];
+	s_Object.m_aDeadSpreadingActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aDeadSpreadingActors[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSpreadingActorsAddedTime"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSpreadingActorsAddedTime"];
+	s_Object.m_aSpreadingActorsAddedTime.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZGameTime s_ArrayItem0;
 		ZGameTime::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aSpreadingActorsAddedTime.push_back(s_ArrayItem0);
+		s_Object.m_aSpreadingActorsAddedTime[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aNewCandidates"])
 	{
-		s_Object.m_aNewCandidates.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aNewCandidates"];
+	s_Object.m_aNewCandidates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aNewCandidates[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCandidates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCandidates"];
+	s_Object.m_aCandidates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorSpreadControllerCandidateSaveData s_ArrayItem0;
 		SActorSpreadControllerCandidateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aCandidates.push_back(s_ArrayItem0);
+		s_Object.m_aCandidates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_rCurrentSpreadingActor = simdjson::from_json_uint32(p_Document["m_rCurrentSpreadingActor"]);
@@ -11494,7 +11783,7 @@ void SActorSpreadControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SActorSpreadControllerSaveData*>(p_Target) = s_Object;
 }
 
-void SActorSpreadControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorSpreadControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorSpreadControllerSaveData*>(p_Object);
 
@@ -11583,7 +11872,7 @@ void SActorSpreadTransitionOperatorMaterialActorSaveData::FromSimpleJson(simdjso
 	*reinterpret_cast<SActorSpreadTransitionOperatorMaterialActorSaveData*>(p_Target) = s_Object;
 }
 
-void SActorSpreadTransitionOperatorMaterialActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorSpreadTransitionOperatorMaterialActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorSpreadTransitionOperatorMaterialActorSaveData*>(p_Object);
 
@@ -11660,17 +11949,23 @@ void SActorSpreadTransitionOperatorMaterialSaveData::FromSimpleJson(simdjson::on
 {
 	SActorSpreadTransitionOperatorMaterialSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActorMaterialOverrides"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActorMaterialOverrides"];
+	s_Object.m_aActorMaterialOverrides.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorSpreadTransitionOperatorMaterialActorSaveData s_ArrayItem0;
 		SActorSpreadTransitionOperatorMaterialActorSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aActorMaterialOverrides.push_back(s_ArrayItem0);
+		s_Object.m_aActorMaterialOverrides[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorSpreadTransitionOperatorMaterialSaveData*>(p_Target) = s_Object;
 }
 
-void SActorSpreadTransitionOperatorMaterialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorSpreadTransitionOperatorMaterialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorSpreadTransitionOperatorMaterialSaveData*>(p_Object);
 
@@ -11731,7 +12026,7 @@ void SActorStandInSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SActorStandInSaveData*>(p_Target) = s_Object;
 }
 
-void SActorStandInSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorStandInSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorStandInSaveData*>(p_Object);
 
@@ -11838,22 +12133,34 @@ void SActorStandInEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SActorStandInEntitiesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorStandInSaveData s_ArrayItem0;
 		SActorStandInSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorStandInEntitiesSaveData*>(p_Target) = s_Object;
 }
 
-void SActorStandInEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorStandInEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorStandInEntitiesSaveData*>(p_Object);
 
@@ -11940,7 +12247,7 @@ void SActorTagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<SActorTagSaveData*>(p_Target) = s_Object;
 }
 
-void SActorTagSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorTagSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorTagSaveData*>(p_Object);
 
@@ -12066,17 +12373,23 @@ void SActorTagManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.m_bTaggingEnabled = simdjson::from_json_bool(p_Document["m_bTaggingEnabled"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActorTagData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActorTagData"];
+	s_Object.m_aActorTagData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SActorTagSaveData s_ArrayItem0;
 		SActorTagSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aActorTagData.push_back(s_ArrayItem0);
+		s_Object.m_aActorTagData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SActorTagManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SActorTagManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorTagManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorTagManagerSaveData*>(p_Object);
 
@@ -12141,7 +12454,7 @@ void SActorVisibilityConditionSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SActorVisibilityConditionSaveData*>(p_Target) = s_Object;
 }
 
-void SActorVisibilityConditionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SActorVisibilityConditionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorVisibilityConditionSaveData*>(p_Object);
 
@@ -12264,24 +12577,36 @@ void SAgencyPickupInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 		s_Object.m_AgencyPickupId = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItemIds"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aItemIds"];
+	s_Object.m_aItemIds.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZRepositoryID s_ArrayItem0;
 		ZRepositoryID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aItemIds.push_back(s_ArrayItem0);
+		s_Object.m_aItemIds[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aModifierIds"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aModifierIds"];
+	s_Object.m_aModifierIds.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZRepositoryID s_ArrayItem0;
 		ZRepositoryID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aModifierIds.push_back(s_ArrayItem0);
+		s_Object.m_aModifierIds[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SAgencyPickupInfo*>(p_Target) = s_Object;
 }
 
-void SAgencyPickupInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAgencyPickupInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAgencyPickupInfo*>(p_Object);
 
@@ -12378,7 +12703,7 @@ void SAgitatedBystanderOrderSaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SAgitatedBystanderOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SAgitatedBystanderOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAgitatedBystanderOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAgitatedBystanderOrderSaveData*>(p_Object);
 
@@ -12454,7 +12779,7 @@ void SAimAssistObjectSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SAimAssistObjectSaveData*>(p_Target) = s_Object;
 }
 
-void SAimAssistObjectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAimAssistObjectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAimAssistObjectSaveData*>(p_Object);
 
@@ -12535,7 +12860,7 @@ void SBoneTransformSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SBoneTransformSaveData*>(p_Target) = s_Object;
 }
 
-void SBoneTransformSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBoneTransformSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBoneTransformSaveData*>(p_Object);
 
@@ -12646,17 +12971,23 @@ void SAnimPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.mTrajectoryTranslation = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBones"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBones"];
+	s_Object.m_aBones.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBoneTransformSaveData s_ArrayItem0;
 		SBoneTransformSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aBones.push_back(s_ArrayItem0);
+		s_Object.m_aBones[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SAnimPlayerSaveData*>(p_Target) = s_Object;
 }
 
-void SAnimPlayerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAnimPlayerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAnimPlayerSaveData*>(p_Object);
 
@@ -12789,7 +13120,7 @@ void SAnimatedActorActOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SAnimatedActorActOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SAnimatedActorActOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAnimatedActorActOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAnimatedActorActOrderSaveData*>(p_Object);
 
@@ -12952,7 +13283,7 @@ void SAnimatedActorMoveOrderSaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SAnimatedActorMoveOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SAnimatedActorMoveOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAnimatedActorMoveOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAnimatedActorMoveOrderSaveData*>(p_Object);
 
@@ -13038,7 +13369,7 @@ void SAnimatedActorOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SAnimatedActorOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SAnimatedActorOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAnimatedActorOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAnimatedActorOrderSaveData*>(p_Object);
 
@@ -13228,7 +13559,7 @@ void SAnimatedActorReactOrderSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SAnimatedActorReactOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SAnimatedActorReactOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAnimatedActorReactOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAnimatedActorReactOrderSaveData*>(p_Object);
 
@@ -13305,7 +13636,7 @@ void SAnimatedActorStandOrderSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SAnimatedActorStandOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SAnimatedActorStandOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAnimatedActorStandOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAnimatedActorStandOrderSaveData*>(p_Object);
 
@@ -13414,7 +13745,7 @@ void SAttentionHUDUIElement::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SAttentionHUDUIElement*>(p_Target) = s_Object;
 }
 
-void SAttentionHUDUIElement::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAttentionHUDUIElement::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAttentionHUDUIElement*>(p_Object);
 
@@ -13494,17 +13825,23 @@ void SAttentionHUDUIElementArray_Dummy::FromSimpleJson(simdjson::ondemand::value
 {
 	SAttentionHUDUIElementArray_Dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["dummy"];
+	s_Object.dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAttentionHUDUIElement s_ArrayItem0;
 		SAttentionHUDUIElement::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.dummy.push_back(s_ArrayItem0);
+		s_Object.dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SAttentionHUDUIElementArray_Dummy*>(p_Target) = s_Object;
 }
 
-void SAttentionHUDUIElementArray_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAttentionHUDUIElementArray_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAttentionHUDUIElementArray_Dummy*>(p_Object);
 
@@ -13625,7 +13962,7 @@ void SAudioEmitterEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SAudioEmitterEventSaveData*>(p_Target) = s_Object;
 }
 
-void SAudioEmitterEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioEmitterEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAudioEmitterEventSaveData*>(p_Object);
 
@@ -13702,7 +14039,7 @@ void SAudioEmitterRTPCSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SAudioEmitterRTPCSaveData*>(p_Target) = s_Object;
 }
 
-void SAudioEmitterRTPCSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioEmitterRTPCSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAudioEmitterRTPCSaveData*>(p_Object);
 
@@ -13799,7 +14136,7 @@ void SAudioEmitterSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SAudioEmitterSaveData*>(p_Target) = s_Object;
 }
 
-void SAudioEmitterSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioEmitterSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAudioEmitterSaveData*>(p_Object);
 
@@ -13874,7 +14211,7 @@ void SAudioEmitterStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SAudioEmitterStateSaveData*>(p_Target) = s_Object;
 }
 
-void SAudioEmitterStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioEmitterStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAudioEmitterStateSaveData*>(p_Object);
 
@@ -13947,7 +14284,7 @@ void SAudioEmitterSwitchSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SAudioEmitterSwitchSaveData*>(p_Target) = s_Object;
 }
 
-void SAudioEmitterSwitchSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioEmitterSwitchSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAudioEmitterSwitchSaveData*>(p_Object);
 
@@ -14008,7 +14345,7 @@ void ZResourceID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	*reinterpret_cast<ZResourceID*>(p_Target) = s_Object;
 }
 
-void ZResourceID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZResourceID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZResourceID*>(p_Object);
 
@@ -14109,17 +14446,23 @@ void SAudioMemoryMonitorEntry::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.size = simdjson::from_json_uint32(p_Document["size"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["references"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["references"];
+	s_Object.references.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZResourceID s_ArrayItem0;
 		ZResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.references.push_back(s_ArrayItem0);
+		s_Object.references[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SAudioMemoryMonitorEntry*>(p_Target) = s_Object;
 }
 
-void SAudioMemoryMonitorEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioMemoryMonitorEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAudioMemoryMonitorEntry*>(p_Object);
 
@@ -14384,57 +14727,99 @@ void SAudioSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SAudioSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEmitters"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEmitters"];
+	s_Object.m_aEmitters.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAudioEmitterSaveData s_ArrayItem0;
 		SAudioEmitterSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEmitters.push_back(s_ArrayItem0);
+		s_Object.m_aEmitters[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEmitterEvents"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEmitterEvents"];
+	s_Object.m_aEmitterEvents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAudioEmitterEventSaveData s_ArrayItem0;
 		SAudioEmitterEventSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEmitterEvents.push_back(s_ArrayItem0);
+		s_Object.m_aEmitterEvents[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEmitterRTPCs"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEmitterRTPCs"];
+	s_Object.m_aEmitterRTPCs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAudioEmitterRTPCSaveData s_ArrayItem0;
 		SAudioEmitterRTPCSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEmitterRTPCs.push_back(s_ArrayItem0);
+		s_Object.m_aEmitterRTPCs[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEmitterSwitches"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEmitterSwitches"];
+	s_Object.m_aEmitterSwitches.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAudioEmitterSwitchSaveData s_ArrayItem0;
 		SAudioEmitterSwitchSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEmitterSwitches.push_back(s_ArrayItem0);
+		s_Object.m_aEmitterSwitches[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGlobalStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGlobalStates"];
+	s_Object.m_aGlobalStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAudioEmitterStateSaveData s_ArrayItem0;
 		SAudioEmitterStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aGlobalStates.push_back(s_ArrayItem0);
+		s_Object.m_aGlobalStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGlobalRTPCs"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGlobalRTPCs"];
+	s_Object.m_aGlobalRTPCs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SAudioEmitterRTPCSaveData s_ArrayItem0;
 		SAudioEmitterRTPCSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aGlobalRTPCs.push_back(s_ArrayItem0);
+		s_Object.m_aGlobalRTPCs[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEventsEnabledAfterInit"])
 	{
-		s_Object.m_aEventsEnabledAfterInit.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEventsEnabledAfterInit"];
+	s_Object.m_aEventsEnabledAfterInit.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEventsEnabledAfterInit[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SAudioSaveData*>(p_Target) = s_Object;
 }
 
-void SAudioSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAudioSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAudioSaveData*>(p_Object);
 
@@ -14547,7 +14932,7 @@ void SFSMSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<SFSMSaveData*>(p_Target) = s_Object;
 }
 
-void SFSMSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFSMSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFSMSaveData*>(p_Object);
 
@@ -14667,7 +15052,7 @@ void SAvoidDangerousAreaGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SAvoidDangerousAreaGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SAvoidDangerousAreaGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SAvoidDangerousAreaGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SAvoidDangerousAreaGroupSaveData*>(p_Object);
 
@@ -14745,7 +15130,7 @@ void SBehaviorTreeEntityReference::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SBehaviorTreeEntityReference*>(p_Target) = s_Object;
 }
 
-void SBehaviorTreeEntityReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBehaviorTreeEntityReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEntityReference*>(p_Object);
 
@@ -14831,7 +15216,7 @@ void SBehaviorTreeEvaluationLogEntry::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SBehaviorTreeEvaluationLogEntry*>(p_Target) = s_Object;
 }
 
-void SBehaviorTreeEvaluationLogEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBehaviorTreeEvaluationLogEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLogEntry*>(p_Object);
 
@@ -14940,24 +15325,36 @@ void SBehaviorTreeEvaluationLog::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SBehaviorTreeEvaluationLog s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_BehaviorTrees"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_BehaviorTrees"];
+	s_Object.m_BehaviorTrees.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZResourceID s_ArrayItem0;
 		ZResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_BehaviorTrees.push_back(s_ArrayItem0);
+		s_Object.m_BehaviorTrees[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_Entries"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_Entries"];
+	s_Object.m_Entries.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeEvaluationLogEntry s_ArrayItem0;
 		SBehaviorTreeEvaluationLogEntry::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_Entries.push_back(s_ArrayItem0);
+		s_Object.m_Entries[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SBehaviorTreeEvaluationLog*>(p_Target) = s_Object;
 }
 
-void SBehaviorTreeEvaluationLog::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBehaviorTreeEvaluationLog::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLog*>(p_Object);
 
@@ -15020,7 +15417,7 @@ void SBehaviorTreeInputPinCondition::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SBehaviorTreeInputPinCondition*>(p_Target) = s_Object;
 }
 
-void SBehaviorTreeInputPinCondition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBehaviorTreeInputPinCondition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeInputPinCondition*>(p_Object);
 
@@ -15128,24 +15525,36 @@ void SBehaviorTreeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SBehaviorTreeInfo s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_references"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_references"];
+	s_Object.m_references.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeEntityReference s_ArrayItem0;
 		SBehaviorTreeEntityReference::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_references.push_back(s_ArrayItem0);
+		s_Object.m_references[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_inputPinConditions"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_inputPinConditions"];
+	s_Object.m_inputPinConditions.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeInputPinCondition s_ArrayItem0;
 		SBehaviorTreeInputPinCondition::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_inputPinConditions.push_back(s_ArrayItem0);
+		s_Object.m_inputPinConditions[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SBehaviorTreeInfo*>(p_Target) = s_Object;
 }
 
-void SBehaviorTreeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBehaviorTreeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBehaviorTreeInfo*>(p_Object);
 
@@ -15224,7 +15633,7 @@ void SBlobsConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SBlobsConfigResourceEntry*>(p_Target) = s_Object;
 }
 
-void SBlobsConfigResourceEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBlobsConfigResourceEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBlobsConfigResourceEntry*>(p_Object);
 
@@ -15323,7 +15732,7 @@ void SBodyContainerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SBodyContainerSaveData*>(p_Target) = s_Object;
 }
 
-void SBodyContainerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBodyContainerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBodyContainerSaveData*>(p_Object);
 
@@ -15433,22 +15842,34 @@ void SBodyContainersSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SBodyContainersSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBodyContainerSaveData s_ArrayItem0;
 		SBodyContainerSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SBodyContainersSaveData*>(p_Target) = s_Object;
 }
 
-void SBodyContainersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBodyContainersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBodyContainersSaveData*>(p_Object);
 
@@ -15655,7 +16076,7 @@ void SBodyPartDamageMultipliers::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SBodyPartDamageMultipliers*>(p_Target) = s_Object;
 }
 
-void SBodyPartDamageMultipliers::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBodyPartDamageMultipliers::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBodyPartDamageMultipliers*>(p_Object);
 
@@ -15747,7 +16168,7 @@ void SBodybagBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SBodybagBoneSaveData*>(p_Target) = s_Object;
 }
 
-void SBodybagBoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBodybagBoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBodybagBoneSaveData*>(p_Object);
 
@@ -15909,16 +16330,28 @@ void SBodybagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 		s_Object.m_vLinkedQuaternionRotation = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBones"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBones"];
+	s_Object.m_aBones.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBodybagBoneSaveData s_ArrayItem0;
 		SBodybagBoneSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aBones.push_back(s_ArrayItem0);
+		s_Object.m_aBones[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBoneIndices"])
 	{
-		s_Object.m_aBoneIndices.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBoneIndices"];
+	s_Object.m_aBoneIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aBoneIndices[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_rDeadActor = simdjson::from_json_uint32(p_Document["m_rDeadActor"]);
@@ -15928,7 +16361,7 @@ void SBodybagSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SBodybagSaveData*>(p_Target) = s_Object;
 }
 
-void SBodybagSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBodybagSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBodybagSaveData*>(p_Object);
 
@@ -16009,7 +16442,7 @@ void SBoneAttachSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SBoneAttachSaveData*>(p_Target) = s_Object;
 }
 
-void SBoneAttachSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBoneAttachSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBoneAttachSaveData*>(p_Object);
 
@@ -16086,17 +16519,23 @@ void SBoneScalesList::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	SBoneScalesList s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBoneScales"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBoneScales"];
+	s_Object.m_aBoneScales.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVector3 s_ArrayItem0;
 		SVector3::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aBoneScales.push_back(s_ArrayItem0);
+		s_Object.m_aBoneScales[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SBoneScalesList*>(p_Target) = s_Object;
 }
 
-void SBoneScalesList::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SBoneScalesList::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SBoneScalesList*>(p_Object);
 
@@ -16169,7 +16608,7 @@ void SCamBone::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<SCamBone*>(p_Target) = s_Object;
 }
 
-void SCamBone::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCamBone::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCamBone*>(p_Object);
 
@@ -16333,16 +16772,28 @@ void SCautiousBackupGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_nTargetNodeIndex = simdjson::from_json_uint16(p_Document["m_nTargetNodeIndex"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCandidates"])
 	{
-		s_Object.m_aCandidates.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCandidates"];
+	s_Object.m_aCandidates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aCandidates[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_pCandidate = simdjson::from_json_uint32(p_Document["m_pCandidate"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aReservedApproachNodeIndices"])
 	{
-		s_Object.m_aReservedApproachNodeIndices.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aReservedApproachNodeIndices"];
+	s_Object.m_aReservedApproachNodeIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aReservedApproachNodeIndices[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	{
@@ -16354,7 +16805,7 @@ void SCautiousBackupGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SCautiousBackupGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SCautiousBackupGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousBackupGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousBackupGroupSaveData*>(p_Object);
 
@@ -16559,7 +17010,7 @@ void SCautiousHuntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SCautiousHuntSaveData*>(p_Target) = s_Object;
 }
 
-void SCautiousHuntSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousHuntSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousHuntSaveData*>(p_Object);
 
@@ -16716,20 +17167,32 @@ void SExactCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_
 
 	s_Object.m_nGridCRC = simdjson::from_json_uint32(p_Document["m_nGridCRC"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIndices"])
 	{
-		s_Object.m_aIndices.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aIndices"];
+	s_Object.m_aIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aIndices[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aValues"])
 	{
-		s_Object.m_aValues.push_back(simdjson::from_json_float32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aValues"];
+	s_Object.m_aValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aValues[s_Index0++] = simdjson::from_json_float32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SExactCompressedGridFloatField*>(p_Target) = s_Object;
 }
 
-void SExactCompressedGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExactCompressedGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExactCompressedGridFloatField*>(p_Object);
 
@@ -17095,7 +17558,7 @@ void SCautiousInvestigateGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SCautiousInvestigateGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SCautiousInvestigateGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousInvestigateGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousInvestigateGroupSaveData*>(p_Object);
 
@@ -17279,20 +17742,32 @@ void SCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_nGridCRC = simdjson::from_json_uint32(p_Document["m_nGridCRC"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIndices"])
 	{
-		s_Object.m_aIndices.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aIndices"];
+	s_Object.m_aIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aIndices[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aValues"])
 	{
-		s_Object.m_aValues.push_back(simdjson::from_json_uint8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aValues"];
+	s_Object.m_aValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aValues[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SCompressedGridFloatField*>(p_Target) = s_Object;
 }
 
-void SCompressedGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCompressedGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Object);
 
@@ -17423,7 +17898,7 @@ void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SDisturbanceSaveData*>(p_Target) = s_Object;
 }
 
-void SDisturbanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDisturbanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Object);
 
@@ -17793,7 +18268,7 @@ void ZInvestigateCautiousSituation_SStateData::FromSimpleJson(simdjson::ondemand
 	*reinterpret_cast<ZInvestigateCautiousSituation_SStateData*>(p_Target) = s_Object;
 }
 
-void ZInvestigateCautiousSituation_SStateData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZInvestigateCautiousSituation_SStateData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZInvestigateCautiousSituation_SStateData*>(p_Object);
 
@@ -18298,14 +18773,26 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.m_pInvestigateDisguiseGroup = simdjson::from_json_int32(p_Document["m_pInvestigateDisguiseGroup"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_cautiousVIPGroups"])
 	{
-		s_Object.m_cautiousVIPGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_cautiousVIPGroups"];
+	s_Object.m_cautiousVIPGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_cautiousVIPGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_friskGroups"])
 	{
-		s_Object.m_friskGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_friskGroups"];
+	s_Object.m_friskGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_friskGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	{
@@ -18330,16 +18817,28 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.m_rZone = simdjson::from_json_uint32(p_Document["m_rZone"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGuardMembers"])
 	{
-		s_Object.m_aGuardMembers.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGuardMembers"];
+	s_Object.m_aGuardMembers.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aGuardMembers[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_disturbances"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_disturbances"];
+	s_Object.m_disturbances.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDisturbanceSaveData s_ArrayItem0;
 		SDisturbanceSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_disturbances.push_back(s_ArrayItem0);
+		s_Object.m_disturbances[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_bValidDisturbanceField = simdjson::from_json_bool(p_Document["m_bValidDisturbanceField"]);
@@ -18368,9 +18867,15 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.m_deadCrowdBodiesDiscovered = simdjson::from_json_int32(p_Document["m_deadCrowdBodiesDiscovered"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDynamicEnforceEventsForSearchers"])
 	{
-		s_Object.m_aDynamicEnforceEventsForSearchers.push_back(static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(s_Item0))));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDynamicEnforceEventsForSearchers"];
+	s_Object.m_aDynamicEnforceEventsForSearchers.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aDynamicEnforceEventsForSearchers[s_Index0++] = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(s_Item0)));
+	}
 	}
 
 	{
@@ -18379,9 +18884,15 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_tLastIdleStanddown = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerGroups"])
 	{
-		s_Object.m_aAvoidDangerGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAvoidDangerGroups"];
+	s_Object.m_aAvoidDangerGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aAvoidDangerGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	{
@@ -18393,7 +18904,7 @@ void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	*reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SCautiousInvestigateSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousInvestigateSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Object);
 
@@ -18554,7 +19065,7 @@ void SCautiousSearchGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SCautiousSearchGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SCautiousSearchGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousSearchGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousSearchGroupSaveData*>(p_Object);
 
@@ -18799,7 +19310,7 @@ void SCautiousSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SCautiousSituationMemberSaveData*>(p_Target) = s_Object;
 }
 
-void SCautiousSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousSituationMemberSaveData*>(p_Object);
 
@@ -18882,7 +19393,7 @@ void SCautiousVIPGroupState::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SCautiousVIPGroupState*>(p_Target) = s_Object;
 }
 
-void SCautiousVIPGroupState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousVIPGroupState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousVIPGroupState*>(p_Object);
 
@@ -18999,7 +19510,7 @@ void SCautiousVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SCautiousVIPGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SCautiousVIPGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCautiousVIPGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCautiousVIPGroupSaveData*>(p_Object);
 
@@ -19077,7 +19588,7 @@ void SChairSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SChairSaveData*>(p_Target) = s_Object;
 }
 
-void SChairSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SChairSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SChairSaveData*>(p_Object);
 
@@ -19154,7 +19665,7 @@ void SChallengeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SChallengeSaveData*>(p_Target) = s_Object;
 }
 
-void SChallengeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SChallengeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SChallengeSaveData*>(p_Object);
 
@@ -19233,17 +19744,23 @@ void SChallengesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SChallengesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_mChallengeStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_mChallengeStates"];
+	s_Object.m_mChallengeStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SChallengeSaveData s_ArrayItem0;
 		SChallengeSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_mChallengeStates.push_back(s_ArrayItem0);
+		s_Object.m_mChallengeStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SChallengesSaveData*>(p_Target) = s_Object;
 }
 
-void SChallengesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SChallengesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SChallengesSaveData*>(p_Object);
 
@@ -19328,7 +19845,7 @@ void SCharacterSpeakEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SCharacterSpeakEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SCharacterSpeakEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCharacterSpeakEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCharacterSpeakEntitySaveData*>(p_Object);
 
@@ -19450,7 +19967,7 @@ void SCheckLastPositionGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SCheckLastPositionGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SCheckLastPositionGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCheckLastPositionGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCheckLastPositionGroupSaveData*>(p_Object);
 
@@ -19587,7 +20104,7 @@ void SClothBundleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SClothBundleSaveData*>(p_Target) = s_Object;
 }
 
-void SClothBundleSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SClothBundleSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SClothBundleSaveData*>(p_Object);
 
@@ -19655,7 +20172,7 @@ void SClothBundleSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SClothBundleSpawnSaveData*>(p_Target) = s_Object;
 }
 
-void SClothBundleSpawnSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SClothBundleSpawnSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SClothBundleSpawnSaveData*>(p_Object);
 
@@ -19727,7 +20244,7 @@ void SClothVertex::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<SClothVertex*>(p_Target) = s_Object;
 }
 
-void SClothVertex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SClothVertex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SClothVertex*>(p_Object);
 
@@ -19824,7 +20341,7 @@ void SClothWireEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SClothWireEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SClothWireEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SClothWireEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SClothWireEntitySaveData*>(p_Object);
 
@@ -19947,7 +20464,7 @@ void SCollidingParticle::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SCollidingParticle*>(p_Target) = s_Object;
 }
 
-void SCollidingParticle::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCollidingParticle::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCollidingParticle*>(p_Object);
 
@@ -20026,7 +20543,7 @@ void SCollisionControllerAspectSaveData::FromSimpleJson(simdjson::ondemand::valu
 	*reinterpret_cast<SCollisionControllerAspectSaveData*>(p_Target) = s_Object;
 }
 
-void SCollisionControllerAspectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCollisionControllerAspectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCollisionControllerAspectSaveData*>(p_Object);
 
@@ -20134,22 +20651,34 @@ void SCollisionControllerAspectsSaveData::FromSimpleJson(simdjson::ondemand::val
 {
 	SCollisionControllerAspectsSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCollisionControllerAspectSaveData s_ArrayItem0;
 		SCollisionControllerAspectSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCollisionControllerAspectsSaveData*>(p_Target) = s_Object;
 }
 
-void SCollisionControllerAspectsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCollisionControllerAspectsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCollisionControllerAspectsSaveData*>(p_Object);
 
@@ -20236,7 +20765,7 @@ void SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<SColorRGB*>(p_Target) = s_Object;
 }
 
-void SColorRGB::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SColorRGB::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SColorRGB*>(p_Object);
 
@@ -20334,7 +20863,7 @@ void SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	*reinterpret_cast<SColorRGBA*>(p_Target) = s_Object;
 }
 
-void SColorRGBA::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SColorRGBA::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SColorRGBA*>(p_Object);
 
@@ -20444,22 +20973,34 @@ void SColorRGBSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SColorRGBSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SColorRGB s_ArrayItem0;
 		SColorRGB::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SColorRGBSaveData*>(p_Target) = s_Object;
 }
 
-void SColorRGBSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SColorRGBSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SColorRGBSaveData*>(p_Object);
 
@@ -20550,7 +21091,7 @@ void SCombatOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SCombatOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SCombatOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCombatOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCombatOrderSaveData*>(p_Object);
 
@@ -20709,7 +21250,7 @@ void SCombatSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SCombatSituationMemberSaveData*>(p_Target) = s_Object;
 }
 
-void SCombatSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCombatSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCombatSituationMemberSaveData*>(p_Object);
 
@@ -20849,7 +21390,7 @@ void SCombatZoneEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SCombatZoneEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SCombatZoneEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCombatZoneEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCombatZoneEntitySaveData*>(p_Object);
 
@@ -20907,7 +21448,7 @@ void ZBehaviorTreeVariable::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<ZBehaviorTreeVariable*>(p_Target) = s_Object;
 }
 
-void ZBehaviorTreeVariable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZBehaviorTreeVariable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZBehaviorTreeVariable*>(p_Object);
 
@@ -20994,7 +21535,7 @@ void SConditionBase::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SConditionBase*>(p_Target) = s_Object;
 }
 
-void SConditionBase::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SConditionBase::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
 
@@ -21093,7 +21634,7 @@ void SConditionalTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SConditionalTimerEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SConditionalTimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SConditionalTimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SConditionalTimerEntitySaveData*>(p_Object);
 
@@ -21243,24 +21784,36 @@ void SInventoryItem::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.repositoryId = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aRepositoryAssetIds"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["aRepositoryAssetIds"];
+	s_Object.aRepositoryAssetIds.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZRepositoryID s_ArrayItem0;
 		ZRepositoryID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.aRepositoryAssetIds.push_back(s_ArrayItem0);
+		s_Object.aRepositoryAssetIds[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aModifierIds"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["aModifierIds"];
+	s_Object.aModifierIds.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZRepositoryID s_ArrayItem0;
 		ZRepositoryID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.aModifierIds.push_back(s_ArrayItem0);
+		s_Object.aModifierIds[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SInventoryItem*>(p_Target) = s_Object;
 }
 
-void SInventoryItem::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryItem::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryItem*>(p_Object);
 
@@ -21345,7 +21898,7 @@ void SContainerItemInfo::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SContainerItemInfo*>(p_Target) = s_Object;
 }
 
-void SContainerItemInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SContainerItemInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SContainerItemInfo*>(p_Object);
 
@@ -21432,7 +21985,7 @@ void SContextActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SContextActionSaveData*>(p_Target) = s_Object;
 }
 
-void SContextActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SContextActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SContextActionSaveData*>(p_Object);
 
@@ -21510,7 +22063,7 @@ void SContractConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SContractConfigResourceEntry*>(p_Target) = s_Object;
 }
 
-void SContractConfigResourceEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SContractConfigResourceEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SContractConfigResourceEntry*>(p_Object);
 
@@ -21573,7 +22126,7 @@ void SContractObjectiveHudHintEntitySaveData::FromSimpleJson(simdjson::ondemand:
 	*reinterpret_cast<SContractObjectiveHudHintEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SContractObjectiveHudHintEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SContractObjectiveHudHintEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SContractObjectiveHudHintEntitySaveData*>(p_Object);
 
@@ -22061,7 +22614,7 @@ void SContractObjectiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SContractObjectiveSaveData*>(p_Target) = s_Object;
 }
 
-void SContractObjectiveSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SContractObjectiveSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SContractObjectiveSaveData*>(p_Object);
 
@@ -22619,11 +23172,17 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 
 	s_Object.m_bIsCounterVisibleInTile = simdjson::from_json_bool(p_Document["m_bIsCounterVisibleInTile"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTargetConditions"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aTargetConditions"];
+	s_Object.m_aTargetConditions.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		IContractObjective_STargetCondition s_ArrayItem0;
 		IContractObjective_STargetCondition::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aTargetConditions.push_back(s_ArrayItem0);
+		s_Object.m_aTargetConditions[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_sImage = std::string_view(p_Document["m_sImage"]);
@@ -22653,7 +23212,7 @@ void SContractObjectiveStateMachineSaveData::FromSimpleJson(simdjson::ondemand::
 	*reinterpret_cast<SContractObjectiveStateMachineSaveData*>(p_Target) = s_Object;
 }
 
-void SContractObjectiveStateMachineSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SContractObjectiveStateMachineSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SContractObjectiveStateMachineSaveData*>(p_Object);
 
@@ -22776,7 +23335,7 @@ void SConversationEntry::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SConversationEntry*>(p_Target) = s_Object;
 }
 
-void SConversationEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SConversationEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SConversationEntry*>(p_Object);
 
@@ -22865,17 +23424,23 @@ void SConversationPart::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object.m_chance = simdjson::from_json_float32(p_Document["m_chance"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_entries"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_entries"];
+	s_Object.m_entries.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SConversationEntry s_ArrayItem0;
 		SConversationEntry::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_entries.push_back(s_ArrayItem0);
+		s_Object.m_entries[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SConversationPart*>(p_Target) = s_Object;
 }
 
-void SConversationPart::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SConversationPart::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SConversationPart*>(p_Object);
 
@@ -22963,7 +23528,7 @@ void SEntityTemplateProperty::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SEntityTemplateProperty*>(p_Target) = s_Object;
 }
 
-void SEntityTemplateProperty::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityTemplateProperty::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplateProperty*>(p_Object);
 
@@ -23053,17 +23618,23 @@ void SCppEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 
 	s_Object.blueprintIndexInResourceHeader = simdjson::from_json_int32(p_Document["blueprintIndexInResourceHeader"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["propertyValues"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["propertyValues"];
+	s_Object.propertyValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.propertyValues.push_back(s_ArrayItem0);
+		s_Object.propertyValues[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCppEntity*>(p_Target) = s_Object;
 }
 
-void SCppEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCppEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCppEntity*>(p_Object);
 
@@ -23137,7 +23708,7 @@ void SCppEntitySubsetInfo::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SCppEntitySubsetInfo*>(p_Target) = s_Object;
 }
 
-void SCppEntitySubsetInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCppEntitySubsetInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCppEntitySubsetInfo*>(p_Object);
 
@@ -23243,17 +23814,23 @@ void SCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	s_Object.typeFlags = simdjson::from_json_uint32(p_Document["typeFlags"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["subsets"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["subsets"];
+	s_Object.subsets.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCppEntitySubsetInfo s_ArrayItem0;
 		SCppEntitySubsetInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.subsets.push_back(s_ArrayItem0);
+		s_Object.subsets[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCppEntityBlueprint*>(p_Target) = s_Object;
 }
 
-void SCppEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCppEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCppEntityBlueprint*>(p_Object);
 
@@ -23405,7 +23982,7 @@ void SRunningCrowdAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SRunningCrowdAIEventSaveData*>(p_Target) = s_Object;
 }
 
-void SRunningCrowdAIEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRunningCrowdAIEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRunningCrowdAIEventSaveData*>(p_Object);
 
@@ -23489,17 +24066,23 @@ void SCrowdAIEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SCrowdAIEventSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_RunningEvents"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_RunningEvents"];
+	s_Object.m_RunningEvents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SRunningCrowdAIEventSaveData s_ArrayItem0;
 		SRunningCrowdAIEventSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_RunningEvents.push_back(s_ArrayItem0);
+		s_Object.m_RunningEvents[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCrowdAIEventSaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdAIEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdAIEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdAIEventSaveData*>(p_Object);
 
@@ -23596,7 +24179,7 @@ void SCrowdActivitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SCrowdActivitySaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdActivitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdActivitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdActivitySaveData*>(p_Object);
 
@@ -23763,7 +24346,7 @@ void SCrowdActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SCrowdActorSaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdActorSaveData*>(p_Object);
 
@@ -23927,9 +24510,15 @@ void SCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	s_Object.m_rPerceptibleEntity = simdjson::from_json_uint32(p_Document["m_rPerceptibleEntity"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKnownBy"])
 	{
-		s_Object.m_aKnownBy.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKnownBy"];
+	s_Object.m_aKnownBy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aKnownBy[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	{
@@ -23945,7 +24534,7 @@ void SCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SCrowdBodySaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdBodySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdBodySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdBodySaveData*>(p_Object);
 
@@ -24042,7 +24631,7 @@ void SCrowdCells::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	*reinterpret_cast<SCrowdCells*>(p_Target) = s_Object;
 }
 
-void SCrowdCells::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdCells::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdCells*>(p_Object);
 
@@ -24123,7 +24712,7 @@ void SCrowdPoseBoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SCrowdPoseBoneSaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdPoseBoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdPoseBoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdPoseBoneSaveData*>(p_Object);
 
@@ -24202,17 +24791,23 @@ void SCrowdPoseSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SCrowdPoseSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBones"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBones"];
+	s_Object.m_aBones.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdPoseBoneSaveData s_ArrayItem0;
 		SCrowdPoseBoneSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aBones.push_back(s_ArrayItem0);
+		s_Object.m_aBones[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCrowdPoseSaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdPoseSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdPoseSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdPoseSaveData*>(p_Object);
 
@@ -24301,17 +24896,23 @@ void SCrowdPoseCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_id = simdjson::from_json_uint64(p_Document["m_id"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPoses"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPoses"];
+	s_Object.m_aPoses.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdPoseSaveData s_ArrayItem0;
 		SCrowdPoseSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aPoses.push_back(s_ArrayItem0);
+		s_Object.m_aPoses[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCrowdPoseCollectionSaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdPoseCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdPoseCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdPoseCollectionSaveData*>(p_Object);
 
@@ -24389,17 +24990,23 @@ void SCrowdDeadPoseRepositorySaveData::FromSimpleJson(simdjson::ondemand::value 
 {
 	SCrowdDeadPoseRepositorySaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPoseCollections"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPoseCollections"];
+	s_Object.m_aPoseCollections.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdPoseCollectionSaveData s_ArrayItem0;
 		SCrowdPoseCollectionSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aPoseCollections.push_back(s_ArrayItem0);
+		s_Object.m_aPoseCollections[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCrowdDeadPoseRepositorySaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdDeadPoseRepositorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdDeadPoseRepositorySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdDeadPoseRepositorySaveData*>(p_Object);
 
@@ -24572,7 +25179,7 @@ void SRegionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<SRegionSaveData*>(p_Target) = s_Object;
 }
 
-void SRegionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRegionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRegionSaveData*>(p_Object);
 
@@ -24771,18 +25378,30 @@ void SCrowdEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SCrowdEntitySaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_CrowdActorData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_CrowdActorData"];
+	s_Object.m_CrowdActorData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdActorSaveData s_ArrayItem0;
 		SCrowdActorSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_CrowdActorData.push_back(s_ArrayItem0);
+		s_Object.m_CrowdActorData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_RegionData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_RegionData"];
+	s_Object.m_RegionData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SRegionSaveData s_ArrayItem0;
 		SRegionSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_RegionData.push_back(s_ArrayItem0);
+		s_Object.m_RegionData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_bIsCrowdAmbient = simdjson::from_json_bool(p_Document["m_bIsCrowdAmbient"]);
@@ -24793,20 +25412,32 @@ void SCrowdEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_DeadPoseRepository = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCrowdAiPoolActorsMale"])
 	{
-		s_Object.m_aCrowdAiPoolActorsMale.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCrowdAiPoolActorsMale"];
+	s_Object.m_aCrowdAiPoolActorsMale.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aCrowdAiPoolActorsMale[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCrowdAiPoolActorsFemale"])
 	{
-		s_Object.m_aCrowdAiPoolActorsFemale.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCrowdAiPoolActorsFemale"];
+	s_Object.m_aCrowdAiPoolActorsFemale.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aCrowdAiPoolActorsFemale[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SCrowdEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdEntitySaveData*>(p_Object);
 
@@ -24923,20 +25554,32 @@ void SCrowdFlowChannel::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SCrowdFlowChannel s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFlowVectorIndex"])
 	{
-		s_Object.m_aFlowVectorIndex.push_back(simdjson::from_json_uint8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFlowVectorIndex"];
+	s_Object.m_aFlowVectorIndex.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aFlowVectorIndex[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFlowCost"])
 	{
-		s_Object.m_aFlowCost.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFlowCost"];
+	s_Object.m_aFlowCost.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aFlowCost[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SCrowdFlowChannel*>(p_Target) = s_Object;
 }
 
-void SCrowdFlowChannel::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdFlowChannel::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdFlowChannel*>(p_Object);
 
@@ -25011,7 +25654,7 @@ void ZCrowdGridPoint::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<ZCrowdGridPoint*>(p_Target) = s_Object;
 }
 
-void ZCrowdGridPoint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZCrowdGridPoint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZCrowdGridPoint*>(p_Object);
 
@@ -25327,38 +25970,62 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 	s_Object.m_nCellSizeY = simdjson::from_json_uint32(p_Document["m_nCellSizeY"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_GridMap"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_GridMap"];
+	s_Object.m_GridMap.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZCrowdGridPoint s_ArrayItem0;
 		ZCrowdGridPoint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_GridMap.push_back(s_ArrayItem0);
+		s_Object.m_GridMap[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_fGridMapHeightOffsetsScale = simdjson::from_json_float32(p_Document["m_fGridMapHeightOffsetsScale"]);
 
 	s_Object.m_fGridMapHeightOffsetsBias = simdjson::from_json_float32(p_Document["m_fGridMapHeightOffsetsBias"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_CellFlags"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_CellFlags"];
+	s_Object.m_CellFlags.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdCells s_ArrayItem0;
 		SCrowdCells::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_CellFlags.push_back(s_ArrayItem0);
+		s_Object.m_CellFlags[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_CellGroups"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_CellGroups"];
+	s_Object.m_CellGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdCells s_ArrayItem0;
 		SCrowdCells::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_CellGroups.push_back(s_ArrayItem0);
+		s_Object.m_CellGroups[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_nGroupFlowStartChannel = simdjson::from_json_int32(p_Document["m_nGroupFlowStartChannel"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFlowChannels"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFlowChannels"];
+	s_Object.m_aFlowChannels.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdFlowChannel s_ArrayItem0;
 		SCrowdFlowChannel::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aFlowChannels.push_back(s_ArrayItem0);
+		s_Object.m_aFlowChannels[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_nGridCellSize = simdjson::from_json_float32(p_Document["m_nGridCellSize"]);
@@ -25380,7 +26047,7 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<SCrowdMapData*>(p_Target) = s_Object;
 }
 
-void SCrowdMapData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdMapData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdMapData*>(p_Object);
 
@@ -25511,7 +26178,7 @@ void SCrowdReactionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SCrowdReactionSaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdReactionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdReactionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdReactionSaveData*>(p_Object);
 
@@ -25653,27 +26320,45 @@ void SCrowdServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SCrowdServiceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDeadBodies"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDeadBodies"];
+	s_Object.m_aDeadBodies.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdBodySaveData s_ArrayItem0;
 		SCrowdBodySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aDeadBodies.push_back(s_ArrayItem0);
+		s_Object.m_aDeadBodies[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPerceptiblePool"])
 	{
-		s_Object.m_aPerceptiblePool.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPerceptiblePool"];
+	s_Object.m_aPerceptiblePool.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aPerceptiblePool[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPerceptibleActors"])
 	{
-		s_Object.m_aPerceptibleActors.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPerceptibleActors"];
+	s_Object.m_aPerceptibleActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aPerceptibleActors[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SCrowdServiceSaveData*>(p_Target) = s_Object;
 }
 
-void SCrowdServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCrowdServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCrowdServiceSaveData*>(p_Object);
 
@@ -25754,7 +26439,7 @@ void SCuriousEventSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SCuriousEventSaveData*>(p_Target) = s_Object;
 }
 
-void SCuriousEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCuriousEventSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCuriousEventSaveData*>(p_Object);
 
@@ -25832,17 +26517,23 @@ void SCuriousEventServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SCuriousEventServiceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCuriousEvents"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCuriousEvents"];
+	s_Object.m_aCuriousEvents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCuriousEventSaveData s_ArrayItem0;
 		SCuriousEventSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aCuriousEvents.push_back(s_ArrayItem0);
+		s_Object.m_aCuriousEvents[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCuriousEventServiceSaveData*>(p_Target) = s_Object;
 }
 
-void SCuriousEventServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SCuriousEventServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SCuriousEventServiceSaveData*>(p_Object);
 
@@ -25903,7 +26594,7 @@ void SDangerousAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SDangerousAreaSaveData*>(p_Target) = s_Object;
 }
 
-void SDangerousAreaSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDangerousAreaSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDangerousAreaSaveData*>(p_Object);
 
@@ -26103,9 +26794,15 @@ void SDeadBodyInfoSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_rGuard = simdjson::from_json_uint32(p_Document["m_rGuard"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_knownByActors"])
 	{
-		s_Object.m_knownByActors.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_knownByActors"];
+	s_Object.m_knownByActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_knownByActors[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	{
@@ -26139,7 +26836,7 @@ void SDeadBodyInfoSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SDeadBodyInfoSaveData*>(p_Target) = s_Object;
 }
 
-void SDeadBodyInfoSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDeadBodyInfoSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDeadBodyInfoSaveData*>(p_Object);
 
@@ -26240,11 +26937,17 @@ void SDeadBodySensorSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SDeadBodySensorSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBodies"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBodies"];
+	s_Object.m_aBodies.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDeadBodyInfoSaveData s_ArrayItem0;
 		SDeadBodyInfoSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aBodies.push_back(s_ArrayItem0);
+		s_Object.m_aBodies[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_nBodyIndex = simdjson::from_json_int32(p_Document["m_nBodyIndex"]);
@@ -26252,7 +26955,7 @@ void SDeadBodySensorSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SDeadBodySensorSaveData*>(p_Target) = s_Object;
 }
 
-void SDeadBodySensorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDeadBodySensorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDeadBodySensorSaveData*>(p_Object);
 
@@ -26326,7 +27029,7 @@ void SVector2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<SVector2*>(p_Target) = s_Object;
 }
 
-void SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVector2*>(p_Object);
 
@@ -26535,7 +27238,7 @@ void SDecalSpawnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SDecalSpawnSaveData*>(p_Target) = s_Object;
 }
 
-void SDecalSpawnSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDecalSpawnSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDecalSpawnSaveData*>(p_Object);
 
@@ -26612,7 +27315,7 @@ void SDestructibleInteractionHandlerData::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<SDestructibleInteractionHandlerData*>(p_Target) = s_Object;
 }
 
-void SDestructibleInteractionHandlerData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDestructibleInteractionHandlerData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDestructibleInteractionHandlerData*>(p_Object);
 
@@ -26754,9 +27457,15 @@ void SDestructiblePieceSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 		s_Object.m_mTransform = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIndices"])
 	{
-		s_Object.m_aIndices.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aIndices"];
+	s_Object.m_aIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aIndices[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	s_Object.m_fMass = simdjson::from_json_float32(p_Document["m_fMass"]);
@@ -26780,7 +27489,7 @@ void SDestructiblePieceSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SDestructiblePieceSaveData*>(p_Target) = s_Object;
 }
 
-void SDestructiblePieceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDestructiblePieceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDestructiblePieceSaveData*>(p_Object);
 
@@ -26878,15 +27587,21 @@ void SDestructibleRuntimeConnnection::FromSimpleJson(simdjson::ondemand::value p
 
 	s_Object.m_nPieceIndex = simdjson::from_json_uint16(p_Document["m_nPieceIndex"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aConnections"])
 	{
-		s_Object.m_aConnections.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aConnections"];
+	s_Object.m_aConnections.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aConnections[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SDestructibleRuntimeConnnection*>(p_Target) = s_Object;
 }
 
-void SDestructibleRuntimeConnnection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDestructibleRuntimeConnnection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDestructibleRuntimeConnnection*>(p_Object);
 
@@ -26960,7 +27675,7 @@ void SDestructibleRuntimeDamage::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SDestructibleRuntimeDamage*>(p_Target) = s_Object;
 }
 
-void SDestructibleRuntimeDamage::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDestructibleRuntimeDamage::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDestructibleRuntimeDamage*>(p_Object);
 
@@ -27185,25 +27900,43 @@ void SDestructibleObjectSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 		s_Object.m_interactionData = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDestructiblePieces"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDestructiblePieces"];
+	s_Object.m_aDestructiblePieces.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDestructiblePieceSaveData s_ArrayItem0;
 		SDestructiblePieceSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aDestructiblePieces.push_back(s_ArrayItem0);
+		s_Object.m_aDestructiblePieces[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aConnectionData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aConnectionData"];
+	s_Object.m_aConnectionData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDestructibleRuntimeConnnection s_ArrayItem0;
 		SDestructibleRuntimeConnnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aConnectionData.push_back(s_ArrayItem0);
+		s_Object.m_aConnectionData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDamageData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDamageData"];
+	s_Object.m_aDamageData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDestructibleRuntimeDamage s_ArrayItem0;
 		SDestructibleRuntimeDamage::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aDamageData.push_back(s_ArrayItem0);
+		s_Object.m_aDamageData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_nNumAnchors = simdjson::from_json_uint16(p_Document["m_nNumAnchors"]);
@@ -27223,7 +27956,7 @@ void SDestructibleObjectSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SDestructibleObjectSaveData*>(p_Target) = s_Object;
 }
 
-void SDestructibleObjectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDestructibleObjectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDestructibleObjectSaveData*>(p_Object);
 
@@ -27361,7 +28094,7 @@ void SDetectedInPrivateGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SDetectedInPrivateGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SDetectedInPrivateGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDetectedInPrivateGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDetectedInPrivateGroupSaveData*>(p_Object);
 
@@ -27427,7 +28160,7 @@ void SDisguiseZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SDisguiseZoneSaveData*>(p_Target) = s_Object;
 }
 
-void SDisguiseZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDisguiseZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDisguiseZoneSaveData*>(p_Object);
 
@@ -27527,7 +28260,7 @@ void SDoorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<SDoorSaveData*>(p_Target) = s_Object;
 }
 
-void SDoorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDoorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDoorSaveData*>(p_Object);
 
@@ -27581,7 +28314,7 @@ void SDoorSoundDefs::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SDoorSoundDefs*>(p_Target) = s_Object;
 }
 
-void SDoorSoundDefs::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDoorSoundDefs::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDoorSoundDefs*>(p_Object);
 
@@ -27687,22 +28420,34 @@ void SDoorsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SDoorsSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDoorSaveData s_ArrayItem0;
 		SDoorSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDoorsSaveData*>(p_Target) = s_Object;
 }
 
-void SDoorsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDoorsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDoorsSaveData*>(p_Object);
 
@@ -27913,7 +28658,7 @@ void SDrama2ActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SDrama2ActorSaveState*>(p_Target) = s_Object;
 }
 
-void SDrama2ActorSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDrama2ActorSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDrama2ActorSaveState*>(p_Object);
 
@@ -28034,22 +28779,34 @@ void SDrama2ActorCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SDrama2ActorCollectionSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDrama2ActorSaveState s_ArrayItem0;
 		SDrama2ActorSaveState::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDrama2ActorCollectionSaveData*>(p_Target) = s_Object;
 }
 
-void SDrama2ActorCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDrama2ActorCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDrama2ActorCollectionSaveData*>(p_Object);
 
@@ -28136,7 +28893,7 @@ void SDrama2SetupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SDrama2SetupSaveData*>(p_Target) = s_Object;
 }
 
-void SDrama2SetupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDrama2SetupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDrama2SetupSaveData*>(p_Object);
 
@@ -28245,22 +29002,34 @@ void SDrama2SetupCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	SDrama2SetupCollectionSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDrama2SetupSaveData s_ArrayItem0;
 		SDrama2SetupSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDrama2SetupCollectionSaveData*>(p_Target) = s_Object;
 }
 
-void SDrama2SetupCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDrama2SetupCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDrama2SetupCollectionSaveData*>(p_Object);
 
@@ -28395,7 +29164,7 @@ void SDrama2SituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SDrama2SituationSaveData*>(p_Target) = s_Object;
 }
 
-void SDrama2SituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDrama2SituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDrama2SituationSaveData*>(p_Object);
 
@@ -28508,22 +29277,34 @@ void SDrama2SituationCollectionSaveData::FromSimpleJson(simdjson::ondemand::valu
 {
 	SDrama2SituationCollectionSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDrama2SituationSaveData s_ArrayItem0;
 		SDrama2SituationSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDrama2SituationCollectionSaveData*>(p_Target) = s_Object;
 }
 
-void SDrama2SituationCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDrama2SituationCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDrama2SituationCollectionSaveData*>(p_Object);
 
@@ -28698,7 +29479,7 @@ void SDramaActorSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SDramaActorSaveState*>(p_Target) = s_Object;
 }
 
-void SDramaActorSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDramaActorSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaActorSaveState*>(p_Object);
 
@@ -28816,22 +29597,34 @@ void SDramaActorCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SDramaActorCollectionSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDramaActorSaveState s_ArrayItem0;
 		SDramaActorSaveState::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDramaActorCollectionSaveData*>(p_Target) = s_Object;
 }
 
-void SDramaActorCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDramaActorCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaActorCollectionSaveData*>(p_Object);
 
@@ -28906,7 +29699,7 @@ void SDramaControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SDramaControllerSaveData*>(p_Target) = s_Object;
 }
 
-void SDramaControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDramaControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaControllerSaveData*>(p_Object);
 
@@ -28991,7 +29784,7 @@ void SDramaSetupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SDramaSetupSaveData*>(p_Target) = s_Object;
 }
 
-void SDramaSetupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDramaSetupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaSetupSaveData*>(p_Object);
 
@@ -29100,22 +29893,34 @@ void SDramaSetupCollectionSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SDramaSetupCollectionSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDramaSetupSaveData s_ArrayItem0;
 		SDramaSetupSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDramaSetupCollectionSaveData*>(p_Target) = s_Object;
 }
 
-void SDramaSetupCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDramaSetupCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaSetupCollectionSaveData*>(p_Object);
 
@@ -29226,7 +30031,7 @@ void SDramaSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SDramaSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SDramaSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDramaSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaSituationSaveData*>(p_Object);
 
@@ -29337,22 +30142,34 @@ void SDramaSituationCollectionSaveData::FromSimpleJson(simdjson::ondemand::value
 {
 	SDramaSituationCollectionSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDramaSituationSaveData s_ArrayItem0;
 		SDramaSituationSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDramaSituationCollectionSaveData*>(p_Target) = s_Object;
 }
 
-void SDramaSituationCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDramaSituationCollectionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDramaSituationCollectionSaveData*>(p_Object);
 
@@ -29455,7 +30272,7 @@ void SDynamicEnforcerCandidateSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SDynamicEnforcerCandidateSaveData*>(p_Target) = s_Object;
 }
 
-void SDynamicEnforcerCandidateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDynamicEnforcerCandidateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDynamicEnforcerCandidateSaveData*>(p_Object);
 
@@ -29535,17 +30352,23 @@ void SDynamicEnforcerServiceSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SDynamicEnforcerServiceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aCandidates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aCandidates"];
+	s_Object.m_aCandidates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDynamicEnforcerCandidateSaveData s_ArrayItem0;
 		SDynamicEnforcerCandidateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aCandidates.push_back(s_ArrayItem0);
+		s_Object.m_aCandidates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SDynamicEnforcerServiceSaveData*>(p_Target) = s_Object;
 }
 
-void SDynamicEnforcerServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDynamicEnforcerServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDynamicEnforcerServiceSaveData*>(p_Object);
 
@@ -29622,7 +30445,7 @@ void SDynamicObjectKeyValuePair::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SDynamicObjectKeyValuePair*>(p_Target) = s_Object;
 }
 
-void SDynamicObjectKeyValuePair::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDynamicObjectKeyValuePair::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDynamicObjectKeyValuePair*>(p_Object);
 
@@ -29709,7 +30532,7 @@ void SDynamicRayCastEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SDynamicRayCastEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SDynamicRayCastEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SDynamicRayCastEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SDynamicRayCastEntitySaveData*>(p_Object);
 
@@ -29799,15 +30622,21 @@ void SEntityPath::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 
 	s_Object.m_nOwnerID = simdjson::from_json_uint64(p_Document["m_nOwnerID"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityPath"])
 	{
-		s_Object.m_aEntityPath.push_back(simdjson::from_json_uint64(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityPath"];
+	s_Object.m_aEntityPath.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntityPath[s_Index0++] = simdjson::from_json_uint64(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SEntityPath*>(p_Target) = s_Object;
 }
 
-void SEntityPath::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityPath::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityPath*>(p_Object);
 
@@ -29933,7 +30762,7 @@ void SEntityPinDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SEntityPinDescriptor*>(p_Target) = s_Object;
 }
 
-void SEntityPinDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityPinDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityPinDescriptor*>(p_Object);
 
@@ -30018,15 +30847,21 @@ void SEntityTemplateEntitySubset::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SEntityTemplateEntitySubset s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["entities"])
 	{
-		s_Object.entities.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["entities"];
+	s_Object.entities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.entities[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SEntityTemplateEntitySubset*>(p_Target) = s_Object;
 }
 
-void SEntityTemplateEntitySubset::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityTemplateEntitySubset::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplateEntitySubset*>(p_Object);
 
@@ -30123,7 +30958,7 @@ void SEntityTemplateReference::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SEntityTemplateReference*>(p_Target) = s_Object;
 }
 
-void SEntityTemplateReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityTemplateReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplateReference*>(p_Object);
 
@@ -30227,17 +31062,23 @@ void SEntityTemplateExposedEntity::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.bIsArray = simdjson::from_json_bool(p_Document["bIsArray"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aTargets"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["aTargets"];
+	s_Object.aTargets.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateReference s_ArrayItem0;
 		SEntityTemplateReference::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.aTargets.push_back(s_ArrayItem0);
+		s_Object.aTargets[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SEntityTemplateExposedEntity*>(p_Target) = s_Object;
 }
 
-void SEntityTemplateExposedEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityTemplateExposedEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplateExposedEntity*>(p_Object);
 
@@ -30353,7 +31194,7 @@ void SEntityTemplatePinConnection::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SEntityTemplatePinConnection*>(p_Target) = s_Object;
 }
 
-void SEntityTemplatePinConnection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityTemplatePinConnection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplatePinConnection*>(p_Object);
 
@@ -30444,7 +31285,7 @@ void SEntityTemplatePropertyAlias::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SEntityTemplatePropertyAlias*>(p_Target) = s_Object;
 }
 
-void SEntityTemplatePropertyAlias::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityTemplatePropertyAlias::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplatePropertyAlias*>(p_Object);
 
@@ -30528,7 +31369,7 @@ void SEntityTemplatePropertyOverride::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SEntityTemplatePropertyOverride*>(p_Target) = s_Object;
 }
 
-void SEntityTemplatePropertyOverride::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEntityTemplatePropertyOverride::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEntityTemplatePropertyOverride*>(p_Object);
 
@@ -30639,7 +31480,7 @@ void SEnvironmentConfigResourceEntry::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SEnvironmentConfigResourceEntry*>(p_Target) = s_Object;
 }
 
-void SEnvironmentConfigResourceEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEnvironmentConfigResourceEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEnvironmentConfigResourceEntry*>(p_Object);
 
@@ -30722,17 +31563,23 @@ void SEnvironmentConfigResource::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SEnvironmentConfigResource s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["Environments"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["Environments"];
+	s_Object.Environments.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEnvironmentConfigResourceEntry s_ArrayItem0;
 		SEnvironmentConfigResourceEntry::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.Environments.push_back(s_ArrayItem0);
+		s_Object.Environments[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SEnvironmentConfigResource*>(p_Target) = s_Object;
 }
 
-void SEnvironmentConfigResource::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEnvironmentConfigResource::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEnvironmentConfigResource*>(p_Object);
 
@@ -30977,7 +31824,7 @@ void SEscortOutBehaviorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SEscortOutBehaviorSaveData*>(p_Target) = s_Object;
 }
 
-void SEscortOutBehaviorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortOutBehaviorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortOutBehaviorSaveData*>(p_Object);
 
@@ -31073,17 +31920,23 @@ void SEscortOutOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SEscortOutOrderSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aExitPoints"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aExitPoints"];
+	s_Object.m_aExitPoints.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		float4 s_ArrayItem0;
 		float4::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aExitPoints.push_back(s_ArrayItem0);
+		s_Object.m_aExitPoints[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SEscortOutOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SEscortOutOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortOutOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortOutOrderSaveData*>(p_Object);
 
@@ -31216,7 +32069,7 @@ void SEscortSituation2ActorStateSaveData::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<SEscortSituation2ActorStateSaveData*>(p_Target) = s_Object;
 }
 
-void SEscortSituation2ActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortSituation2ActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortSituation2ActorStateSaveData*>(p_Object);
 
@@ -31282,7 +32135,7 @@ void SEscortSituation2Actors::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SEscortSituation2Actors*>(p_Target) = s_Object;
 }
 
-void SEscortSituation2Actors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortSituation2Actors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortSituation2Actors*>(p_Object);
 
@@ -31635,34 +32488,58 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAddedActors"];
+	s_Object.m_aAddedActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEscortSituation2Actors s_ArrayItem0;
 		SEscortSituation2Actors::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aAddedActors.push_back(s_ArrayItem0);
+		s_Object.m_aAddedActors[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEscortSituation2ActorStateSaveData s_ArrayItem0;
 		SEscortSituation2ActorStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEscortActs"];
+	s_Object.m_aEscortActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEscortActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSearchActs"])
 	{
-		s_Object.m_aSearchActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSearchActs"];
+	s_Object.m_aSearchActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aSearchActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SEscortSituation2SaveData*>(p_Target) = s_Object;
 }
 
-void SEscortSituation2SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortSituation2SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortSituation2SaveData*>(p_Object);
 
@@ -31817,7 +32694,7 @@ void SEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::valu
 	*reinterpret_cast<SEscortSituationActorStateSaveData*>(p_Target) = s_Object;
 }
 
-void SEscortSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortSituationActorStateSaveData*>(p_Object);
 
@@ -31883,7 +32760,7 @@ void SEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SEscortSituationActors*>(p_Target) = s_Object;
 }
 
-void SEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortSituationActors*>(p_Object);
 
@@ -32236,34 +33113,58 @@ void SEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAddedActors"];
+	s_Object.m_aAddedActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEscortSituationActors s_ArrayItem0;
 		SEscortSituationActors::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aAddedActors.push_back(s_ArrayItem0);
+		s_Object.m_aAddedActors[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEscortSituationActorStateSaveData s_ArrayItem0;
 		SEscortSituationActorStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEscortActs"];
+	s_Object.m_aEscortActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEscortActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSearchActs"])
 	{
-		s_Object.m_aSearchActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSearchActs"];
+	s_Object.m_aSearchActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aSearchActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SEscortSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SEscortSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEscortSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEscortSituationSaveData*>(p_Object);
 
@@ -32370,7 +33271,7 @@ void SEvacuateSituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SEvacuateSituationMemberSaveData*>(p_Target) = s_Object;
 }
 
-void SEvacuateSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEvacuateSituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEvacuateSituationMemberSaveData*>(p_Object);
 
@@ -32570,25 +33471,43 @@ void SEvacuateSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 
 	s_Object.m_tresspassGroup = simdjson::from_json_int32(p_Document["m_tresspassGroup"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_evacuateGroups"])
 	{
-		s_Object.m_evacuateGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_evacuateGroups"];
+	s_Object.m_evacuateGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_evacuateGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_activeSafeRooms"])
 	{
-		s_Object.m_activeSafeRooms.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_activeSafeRooms"];
+	s_Object.m_activeSafeRooms.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_activeSafeRooms[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_vipsUnderFire"])
 	{
-		s_Object.m_vipsUnderFire.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_vipsUnderFire"];
+	s_Object.m_vipsUnderFire.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_vipsUnderFire[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SEvacuateSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SEvacuateSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEvacuateSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEvacuateSituationSaveData*>(p_Object);
 
@@ -32760,7 +33679,7 @@ void SEvacuateTrespassGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SEvacuateTrespassGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SEvacuateTrespassGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEvacuateTrespassGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEvacuateTrespassGroupSaveData*>(p_Object);
 
@@ -32991,9 +33910,15 @@ void SEvacuateVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_rCompromisedEvacNode = simdjson::from_json_uint32(p_Document["m_rCompromisedEvacNode"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_assignedBodyguards"])
 	{
-		s_Object.m_assignedBodyguards.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_assignedBodyguards"];
+	s_Object.m_assignedBodyguards.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_assignedBodyguards[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	{
@@ -33029,7 +33954,7 @@ void SEvacuateVIPGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SEvacuateVIPGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SEvacuateVIPGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEvacuateVIPGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEvacuateVIPGroupSaveData*>(p_Object);
 
@@ -33108,7 +34033,7 @@ void SEventChannelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SEventChannelSaveData*>(p_Target) = s_Object;
 }
 
-void SEventChannelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SEventChannelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SEventChannelSaveData*>(p_Object);
 
@@ -33168,7 +34093,7 @@ void SExitSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<SExitSaveData*>(p_Target) = s_Object;
 }
 
-void SExitSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExitSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExitSaveData*>(p_Object);
 
@@ -33276,7 +34201,7 @@ void SExposedEntityDescriptor::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SExposedEntityDescriptor*>(p_Target) = s_Object;
 }
 
-void SExposedEntityDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExposedEntityDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExposedEntityDescriptor*>(p_Object);
 
@@ -33402,22 +34327,34 @@ void SExposedEntityTypeDescriptor::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.sName = std::string_view(p_Document["sName"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["types"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["types"];
+	s_Object.types.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZResourceID s_ArrayItem0;
 		ZResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.types.push_back(s_ArrayItem0);
+		s_Object.types[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aSupportedTypes"])
 	{
-		s_Object.aSupportedTypes.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["aSupportedTypes"];
+	s_Object.aSupportedTypes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.aSupportedTypes[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SExposedEntityTypeDescriptor*>(p_Target) = s_Object;
 }
 
-void SExposedEntityTypeDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExposedEntityTypeDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExposedEntityTypeDescriptor*>(p_Object);
 
@@ -33494,7 +34431,7 @@ void STypeReference::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<STypeReference*>(p_Target) = s_Object;
 }
 
-void STypeReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STypeReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STypeReference*>(p_Object);
 
@@ -33597,7 +34534,7 @@ void SExposedTypeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SExposedTypeInfo*>(p_Target) = s_Object;
 }
 
-void SExposedTypeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExposedTypeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExposedTypeInfo*>(p_Object);
 
@@ -33700,7 +34637,7 @@ void SExtendedCppEntityProperty::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SExtendedCppEntityProperty*>(p_Target) = s_Object;
 }
 
-void SExtendedCppEntityProperty::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExtendedCppEntityProperty::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExtendedCppEntityProperty*>(p_Object);
 
@@ -33780,17 +34717,23 @@ void SExtendedCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SExtendedCppEntityBlueprint s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["properties"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["properties"];
+	s_Object.properties.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SExtendedCppEntityProperty s_ArrayItem0;
 		SExtendedCppEntityProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.properties.push_back(s_ArrayItem0);
+		s_Object.properties[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SExtendedCppEntityBlueprint*>(p_Target) = s_Object;
 }
 
-void SExtendedCppEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExtendedCppEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExtendedCppEntityBlueprint*>(p_Object);
 
@@ -33911,7 +34854,7 @@ void SExternalEntityTemplatePinConnection::FromSimpleJson(simdjson::ondemand::va
 	*reinterpret_cast<SExternalEntityTemplatePinConnection*>(p_Target) = s_Object;
 }
 
-void SExternalEntityTemplatePinConnection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SExternalEntityTemplatePinConnection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SExternalEntityTemplatePinConnection*>(p_Object);
 
@@ -34040,7 +34983,7 @@ void SFaceOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SFaceOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SFaceOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFaceOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFaceOrderSaveData*>(p_Object);
 
@@ -34129,7 +35072,7 @@ void SFleeOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SFleeOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SFleeOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFleeOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFleeOrderSaveData*>(p_Object);
 
@@ -34227,7 +35170,7 @@ void SFontDefinition::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<SFontDefinition*>(p_Target) = s_Object;
 }
 
-void SFontDefinition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFontDefinition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFontDefinition*>(p_Object);
 
@@ -34320,17 +35263,23 @@ void SFontLibraryDefinition::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.sFontLocaleID = std::string_view(p_Document["sFontLocaleID"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFontDefinitions"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFontDefinitions"];
+	s_Object.m_aFontDefinitions.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SFontDefinition s_ArrayItem0;
 		SFontDefinition::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aFontDefinitions.push_back(s_ArrayItem0);
+		s_Object.m_aFontDefinitions[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SFontLibraryDefinition*>(p_Target) = s_Object;
 }
 
-void SFontLibraryDefinition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFontLibraryDefinition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFontLibraryDefinition*>(p_Object);
 
@@ -34405,7 +35354,7 @@ void SFooStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	*reinterpret_cast<SFooStruct*>(p_Target) = s_Object;
 }
 
-void SFooStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFooStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFooStruct*>(p_Object);
 
@@ -34467,7 +35416,7 @@ void SFootIKEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SFootIKEventData*>(p_Target) = s_Object;
 }
 
-void SFootIKEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFootIKEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFootIKEventData*>(p_Object);
 
@@ -34719,7 +35668,7 @@ void SFriskSuspectGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SFriskSuspectGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SFriskSuspectGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SFriskSuspectGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SFriskSuspectGroupSaveData*>(p_Object);
 
@@ -34897,7 +35846,7 @@ void SGBufferSample::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SGBufferSample*>(p_Target) = s_Object;
 }
 
-void SGBufferSample::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGBufferSample::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGBufferSample*>(p_Object);
 
@@ -35024,7 +35973,7 @@ void SGProperties::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<SGProperties*>(p_Target) = s_Object;
 }
 
-void SGProperties::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGProperties::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGProperties*>(p_Object);
 
@@ -35126,7 +36075,7 @@ void SGUIViewPort::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<SGUIViewPort*>(p_Target) = s_Object;
 }
 
-void SGUIViewPort::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGUIViewPort::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGUIViewPort*>(p_Object);
 
@@ -35313,7 +36262,7 @@ void SGWaypoint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	*reinterpret_cast<SGWaypoint*>(p_Target) = s_Object;
 }
 
-void SGWaypoint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGWaypoint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGWaypoint*>(p_Object);
 
@@ -35396,7 +36345,7 @@ void SGaitTransitionEntry::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SGaitTransitionEntry*>(p_Target) = s_Object;
 }
 
-void SGaitTransitionEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGaitTransitionEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGaitTransitionEntry*>(p_Object);
 
@@ -35469,7 +36418,7 @@ void SGameCamProfileEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SGameCamProfileEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SGameCamProfileEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGameCamProfileEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGameCamProfileEntitySaveData*>(p_Object);
 
@@ -35530,7 +36479,7 @@ void SItemKeywordProxySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SItemKeywordProxySaveData*>(p_Target) = s_Object;
 }
 
-void SItemKeywordProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemKeywordProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemKeywordProxySaveData*>(p_Object);
 
@@ -35637,22 +36586,34 @@ void SItemKeywordProxiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SItemKeywordProxiesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SItemKeywordProxySaveData s_ArrayItem0;
 		SItemKeywordProxySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SItemKeywordProxiesSaveData*>(p_Target) = s_Object;
 }
 
-void SItemKeywordProxiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemKeywordProxiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemKeywordProxiesSaveData*>(p_Object);
 
@@ -35955,7 +36916,7 @@ void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<SItemSaveData*>(p_Target) = s_Object;
 }
 
-void SItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
 
@@ -36084,22 +37045,34 @@ void SItemsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SItemsSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SItemSaveData s_ArrayItem0;
 		SItemSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SItemsSaveData*>(p_Target) = s_Object;
 }
 
-void SItemsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemsSaveData*>(p_Object);
 
@@ -36174,7 +37147,7 @@ void SLampCoreSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SLampCoreSaveState*>(p_Target) = s_Object;
 }
 
-void SLampCoreSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLampCoreSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLampCoreSaveState*>(p_Object);
 
@@ -36282,22 +37255,34 @@ void SLampCoreSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SLampCoreSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SLampCoreSaveState s_ArrayItem0;
 		SLampCoreSaveState::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SLampCoreSaveData*>(p_Target) = s_Object;
 }
 
-void SLampCoreSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLampCoreSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLampCoreSaveData*>(p_Object);
 
@@ -36392,7 +37377,7 @@ void SMathLerpSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SMathLerpSaveData_SColorRGB*>(p_Target) = s_Object;
 }
 
-void SMathLerpSaveData_SColorRGB::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpSaveData_SColorRGB::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpSaveData_SColorRGB*>(p_Object);
 
@@ -36503,22 +37488,34 @@ void SMathLerpsSaveData_SColorRGB::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SMathLerpsSaveData_SColorRGB s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathLerpSaveData_SColorRGB s_ArrayItem0;
 		SMathLerpSaveData_SColorRGB::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathLerpsSaveData_SColorRGB*>(p_Target) = s_Object;
 }
 
-void SMathLerpsSaveData_SColorRGB::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpsSaveData_SColorRGB::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpsSaveData_SColorRGB*>(p_Object);
 
@@ -36613,7 +37610,7 @@ void SMathLerpSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SMathLerpSaveData_SColorRGBA*>(p_Target) = s_Object;
 }
 
-void SMathLerpSaveData_SColorRGBA::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpSaveData_SColorRGBA::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpSaveData_SColorRGBA*>(p_Object);
 
@@ -36724,22 +37721,34 @@ void SMathLerpsSaveData_SColorRGBA::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SMathLerpsSaveData_SColorRGBA s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathLerpSaveData_SColorRGBA s_ArrayItem0;
 		SMathLerpSaveData_SColorRGBA::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathLerpsSaveData_SColorRGBA*>(p_Target) = s_Object;
 }
 
-void SMathLerpsSaveData_SColorRGBA::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpsSaveData_SColorRGBA::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpsSaveData_SColorRGBA*>(p_Object);
 
@@ -36834,7 +37843,7 @@ void SMathLerpSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SMathLerpSaveData_SVector2*>(p_Target) = s_Object;
 }
 
-void SMathLerpSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpSaveData_SVector2*>(p_Object);
 
@@ -36945,22 +37954,34 @@ void SMathLerpsSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SMathLerpsSaveData_SVector2 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathLerpSaveData_SVector2 s_ArrayItem0;
 		SMathLerpSaveData_SVector2::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathLerpsSaveData_SVector2*>(p_Target) = s_Object;
 }
 
-void SMathLerpsSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpsSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpsSaveData_SVector2*>(p_Object);
 
@@ -37055,7 +38076,7 @@ void SMathLerpSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SMathLerpSaveData_SVector3*>(p_Target) = s_Object;
 }
 
-void SMathLerpSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpSaveData_SVector3*>(p_Object);
 
@@ -37166,22 +38187,34 @@ void SMathLerpsSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SMathLerpsSaveData_SVector3 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathLerpSaveData_SVector3 s_ArrayItem0;
 		SMathLerpSaveData_SVector3::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathLerpsSaveData_SVector3*>(p_Target) = s_Object;
 }
 
-void SMathLerpsSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpsSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpsSaveData_SVector3*>(p_Object);
 
@@ -37276,7 +38309,7 @@ void SMathLerpSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SMathLerpSaveData_SVector4*>(p_Target) = s_Object;
 }
 
-void SMathLerpSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpSaveData_SVector4*>(p_Object);
 
@@ -37387,22 +38420,34 @@ void SMathLerpsSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SMathLerpsSaveData_SVector4 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathLerpSaveData_SVector4 s_ArrayItem0;
 		SMathLerpSaveData_SVector4::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathLerpsSaveData_SVector4*>(p_Target) = s_Object;
 }
 
-void SMathLerpsSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpsSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpsSaveData_SVector4*>(p_Object);
 
@@ -37489,7 +38534,7 @@ void SMathLerpSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SMathLerpSaveData_float32*>(p_Target) = s_Object;
 }
 
-void SMathLerpSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpSaveData_float32*>(p_Object);
 
@@ -37598,22 +38643,34 @@ void SMathLerpsSaveData_float32::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SMathLerpsSaveData_float32 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathLerpSaveData_float32 s_ArrayItem0;
 		SMathLerpSaveData_float32::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathLerpsSaveData_float32*>(p_Target) = s_Object;
 }
 
-void SMathLerpsSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathLerpsSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathLerpsSaveData_float32*>(p_Object);
 
@@ -37708,7 +38765,7 @@ void SMathMultiplyDivideSaveData_SVector2::FromSimpleJson(simdjson::ondemand::va
 	*reinterpret_cast<SMathMultiplyDivideSaveData_SVector2*>(p_Target) = s_Object;
 }
 
-void SMathMultiplyDivideSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultiplyDivideSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultiplyDivideSaveData_SVector2*>(p_Object);
 
@@ -37819,22 +38876,34 @@ void SMathMultipliesSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value 
 {
 	SMathMultipliesSaveData_SVector2 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathMultiplyDivideSaveData_SVector2 s_ArrayItem0;
 		SMathMultiplyDivideSaveData_SVector2::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathMultipliesSaveData_SVector2*>(p_Target) = s_Object;
 }
 
-void SMathMultipliesSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultipliesSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultipliesSaveData_SVector2*>(p_Object);
 
@@ -37929,7 +38998,7 @@ void SMathMultiplyDivideSaveData_SVector3::FromSimpleJson(simdjson::ondemand::va
 	*reinterpret_cast<SMathMultiplyDivideSaveData_SVector3*>(p_Target) = s_Object;
 }
 
-void SMathMultiplyDivideSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultiplyDivideSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultiplyDivideSaveData_SVector3*>(p_Object);
 
@@ -38040,22 +39109,34 @@ void SMathMultipliesSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value 
 {
 	SMathMultipliesSaveData_SVector3 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathMultiplyDivideSaveData_SVector3 s_ArrayItem0;
 		SMathMultiplyDivideSaveData_SVector3::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathMultipliesSaveData_SVector3*>(p_Target) = s_Object;
 }
 
-void SMathMultipliesSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultipliesSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultipliesSaveData_SVector3*>(p_Object);
 
@@ -38150,7 +39231,7 @@ void SMathMultiplyDivideSaveData_SVector4::FromSimpleJson(simdjson::ondemand::va
 	*reinterpret_cast<SMathMultiplyDivideSaveData_SVector4*>(p_Target) = s_Object;
 }
 
-void SMathMultiplyDivideSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultiplyDivideSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultiplyDivideSaveData_SVector4*>(p_Object);
 
@@ -38261,22 +39342,34 @@ void SMathMultipliesSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value 
 {
 	SMathMultipliesSaveData_SVector4 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathMultiplyDivideSaveData_SVector4 s_ArrayItem0;
 		SMathMultiplyDivideSaveData_SVector4::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathMultipliesSaveData_SVector4*>(p_Target) = s_Object;
 }
 
-void SMathMultipliesSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultipliesSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultipliesSaveData_SVector4*>(p_Object);
 
@@ -38363,7 +39456,7 @@ void SMathMultiplyDivideSaveData_float32::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<SMathMultiplyDivideSaveData_float32*>(p_Target) = s_Object;
 }
 
-void SMathMultiplyDivideSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultiplyDivideSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultiplyDivideSaveData_float32*>(p_Object);
 
@@ -38472,22 +39565,34 @@ void SMathMultipliesSaveData_float32::FromSimpleJson(simdjson::ondemand::value p
 {
 	SMathMultipliesSaveData_float32 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SMathMultiplyDivideSaveData_float32 s_ArrayItem0;
 		SMathMultiplyDivideSaveData_float32::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMathMultipliesSaveData_float32*>(p_Target) = s_Object;
 }
 
-void SMathMultipliesSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathMultipliesSaveData_float32::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathMultipliesSaveData_float32*>(p_Object);
 
@@ -38562,7 +39667,7 @@ void SShotListenerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SShotListenerSaveData*>(p_Target) = s_Object;
 }
 
-void SShotListenerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SShotListenerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SShotListenerSaveData*>(p_Object);
 
@@ -38670,22 +39775,34 @@ void SShotListenersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SShotListenersSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SShotListenerSaveData s_ArrayItem0;
 		SShotListenerSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SShotListenersSaveData*>(p_Target) = s_Object;
 }
 
-void SShotListenersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SShotListenersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SShotListenersSaveData*>(p_Object);
 
@@ -38760,7 +39877,7 @@ void SItsATrapSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<SItsATrapSaveData*>(p_Target) = s_Object;
 }
 
-void SItsATrapSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItsATrapSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItsATrapSaveData*>(p_Object);
 
@@ -38868,22 +39985,34 @@ void STrapsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	STrapsSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SItsATrapSaveData s_ArrayItem0;
 		SItsATrapSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STrapsSaveData*>(p_Target) = s_Object;
 }
 
-void STrapsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STrapsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STrapsSaveData*>(p_Object);
 
@@ -38998,7 +40127,7 @@ void SVIPEvacuationNodeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SVIPEvacuationNodeSaveData*>(p_Target) = s_Object;
 }
 
-void SVIPEvacuationNodeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVIPEvacuationNodeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVIPEvacuationNodeSaveData*>(p_Object);
 
@@ -39110,22 +40239,34 @@ void SVIPEvacuationNodesSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SVIPEvacuationNodesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVIPEvacuationNodeSaveData s_ArrayItem0;
 		SVIPEvacuationNodeSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SVIPEvacuationNodesSaveData*>(p_Target) = s_Object;
 }
 
-void SVIPEvacuationNodesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVIPEvacuationNodesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVIPEvacuationNodesSaveData*>(p_Object);
 
@@ -39200,7 +40341,7 @@ void SVolumeTriggerListenerSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SVolumeTriggerListenerSaveData*>(p_Target) = s_Object;
 }
 
-void SVolumeTriggerListenerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVolumeTriggerListenerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVolumeTriggerListenerSaveData*>(p_Object);
 
@@ -39308,22 +40449,34 @@ void SVolumeTriggersSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SVolumeTriggersSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVolumeTriggerListenerSaveData s_ArrayItem0;
 		SVolumeTriggerListenerSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SVolumeTriggersSaveData*>(p_Target) = s_Object;
 }
 
-void SVolumeTriggersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVolumeTriggersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVolumeTriggersSaveData*>(p_Object);
 
@@ -39758,7 +40911,7 @@ void SGameEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SGameEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SGameEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGameEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGameEntitySaveData*>(p_Object);
 
@@ -39877,7 +41030,7 @@ void SKeywordSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SKeywordSaveData*>(p_Target) = s_Object;
 }
 
-void SKeywordSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SKeywordSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SKeywordSaveData*>(p_Object);
 
@@ -39985,22 +41138,34 @@ void SGameKeywordManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 {
 	SGameKeywordManagerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKeywordsData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKeywordsData"];
+	s_Object.m_aKeywordsData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SKeywordSaveData s_ArrayItem0;
 		SKeywordSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aKeywordsData.push_back(s_ArrayItem0);
+		s_Object.m_aKeywordsData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKeywordStringData"])
 	{
-		s_Object.m_aKeywordStringData.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKeywordStringData"];
+	s_Object.m_aKeywordStringData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aKeywordStringData[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SGameKeywordManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SGameKeywordManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGameKeywordManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGameKeywordManagerSaveData*>(p_Object);
 
@@ -40103,7 +41268,7 @@ void SGameStatsWeapon::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SGameStatsWeapon*>(p_Target) = s_Object;
 }
 
-void SGameStatsWeapon::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGameStatsWeapon::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGameStatsWeapon*>(p_Object);
 
@@ -40191,7 +41356,7 @@ void STimerEntityCommandSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<STimerEntityCommandSaveData*>(p_Target) = s_Object;
 }
 
-void STimerEntityCommandSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STimerEntityCommandSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STimerEntityCommandSaveData*>(p_Object);
 
@@ -40277,7 +41442,7 @@ void STimerEntityStateSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<STimerEntityStateSaveData*>(p_Target) = s_Object;
 }
 
-void STimerEntityStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STimerEntityStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STimerEntityStateSaveData*>(p_Object);
 
@@ -40417,29 +41582,47 @@ void SGameTimersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SGameTimersSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTimerEntityCommands"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aTimerEntityCommands"];
+	s_Object.m_aTimerEntityCommands.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STimerEntityCommandSaveData s_ArrayItem0;
 		STimerEntityCommandSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aTimerEntityCommands.push_back(s_ArrayItem0);
+		s_Object.m_aTimerEntityCommands[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTimerEntityState"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aTimerEntityState"];
+	s_Object.m_aTimerEntityState.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STimerEntityStateSaveData s_ArrayItem0;
 		STimerEntityStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aTimerEntityState.push_back(s_ArrayItem0);
+		s_Object.m_aTimerEntityState[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPendingTimers"])
 	{
-		s_Object.m_aPendingTimers.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPendingTimers"];
+	s_Object.m_aPendingTimers.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aPendingTimers[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SGameTimersSaveData*>(p_Target) = s_Object;
 }
 
-void SGameTimersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGameTimersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGameTimersSaveData*>(p_Object);
 
@@ -40528,7 +41711,7 @@ void SGateSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<SGateSaveData*>(p_Target) = s_Object;
 }
 
-void SGateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGateSaveData*>(p_Object);
 
@@ -40642,7 +41825,7 @@ void SLightSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SLightSaveData*>(p_Target) = s_Object;
 }
 
-void SLightSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLightSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLightSaveData*>(p_Object);
 
@@ -40767,7 +41950,7 @@ void SParticleEmitterSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SParticleEmitterSaveData*>(p_Target) = s_Object;
 }
 
-void SParticleEmitterSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SParticleEmitterSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SParticleEmitterSaveData*>(p_Object);
 
@@ -41164,7 +42347,7 @@ void SPostfilterParametersSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SPostfilterParametersSaveData*>(p_Target) = s_Object;
 }
 
-void SPostfilterParametersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPostfilterParametersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPostfilterParametersSaveData*>(p_Object);
 
@@ -41295,9 +42478,15 @@ void SRenderMaterialSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	s_Object.m_rEntity = simdjson::from_json_uint32(p_Document["m_rEntity"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDynamicParametersData"])
 	{
-		s_Object.m_aDynamicParametersData.push_back(simdjson::from_json_uint8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDynamicParametersData"];
+	s_Object.m_aDynamicParametersData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aDynamicParametersData[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+	}
 	}
 
 	s_Object.m_bActive = simdjson::from_json_bool(p_Document["m_bActive"]);
@@ -41305,7 +42494,7 @@ void SRenderMaterialSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SRenderMaterialSaveData*>(p_Target) = s_Object;
 }
 
-void SRenderMaterialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRenderMaterialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRenderMaterialSaveData*>(p_Object);
 
@@ -41539,52 +42728,88 @@ void SGameplayRenderablesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SGameplayRenderablesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aLightData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aLightData"];
+	s_Object.m_aLightData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SLightSaveData s_ArrayItem0;
 		SLightSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aLightData.push_back(s_ArrayItem0);
+		s_Object.m_aLightData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aMaterialData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aMaterialData"];
+	s_Object.m_aMaterialData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SRenderMaterialSaveData s_ArrayItem0;
 		SRenderMaterialSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aMaterialData.push_back(s_ArrayItem0);
+		s_Object.m_aMaterialData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aParticleData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aParticleData"];
+	s_Object.m_aParticleData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SParticleEmitterSaveData s_ArrayItem0;
 		SParticleEmitterSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aParticleData.push_back(s_ArrayItem0);
+		s_Object.m_aParticleData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBoneAttachData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBoneAttachData"];
+	s_Object.m_aBoneAttachData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBoneAttachSaveData s_ArrayItem0;
 		SBoneAttachSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aBoneAttachData.push_back(s_ArrayItem0);
+		s_Object.m_aBoneAttachData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPostFilterParametersData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPostFilterParametersData"];
+	s_Object.m_aPostFilterParametersData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SPostfilterParametersSaveData s_ArrayItem0;
 		SPostfilterParametersSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aPostFilterParametersData.push_back(s_ArrayItem0);
+		s_Object.m_aPostFilterParametersData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGateData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGateData"];
+	s_Object.m_aGateData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SGateSaveData s_ArrayItem0;
 		SGateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aGateData.push_back(s_ArrayItem0);
+		s_Object.m_aGateData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SGameplayRenderablesSaveData*>(p_Target) = s_Object;
 }
 
-void SGameplayRenderablesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGameplayRenderablesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGameplayRenderablesSaveData*>(p_Object);
 
@@ -41659,7 +42884,7 @@ void SGeomScaleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SGeomScaleSaveData*>(p_Target) = s_Object;
 }
 
-void SGeomScaleSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGeomScaleSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGeomScaleSaveData*>(p_Object);
 
@@ -41915,9 +43140,15 @@ void SGetHelpGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_rReturnNode = simdjson::from_json_uint16(p_Document["m_rReturnNode"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_blocked"])
 	{
-		s_Object.m_blocked.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_blocked"];
+	s_Object.m_blocked.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_blocked[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	s_Object.m_bReportingToHitman = simdjson::from_json_bool(p_Document["m_bReportingToHitman"]);
@@ -41952,15 +43183,21 @@ void SGetHelpGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_IllegalItem = simdjson::from_json_uint32(p_Document["m_IllegalItem"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_additionalGuards"])
 	{
-		s_Object.m_additionalGuards.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_additionalGuards"];
+	s_Object.m_additionalGuards.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_additionalGuards[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SGetHelpGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SGetHelpGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGetHelpGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGetHelpGroupSaveData*>(p_Object);
 
@@ -42052,7 +43289,7 @@ void SGetHelpOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SGetHelpOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SGetHelpOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGetHelpOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGetHelpOrderSaveData*>(p_Object);
 
@@ -42125,7 +43362,7 @@ void SHelpingActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SHelpingActorSaveData*>(p_Target) = s_Object;
 }
 
-void SHelpingActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHelpingActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHelpingActorSaveData*>(p_Object);
 
@@ -42202,17 +43439,23 @@ void SGetHelpServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SGetHelpServiceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aHelpingActors"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aHelpingActors"];
+	s_Object.m_aHelpingActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SHelpingActorSaveData s_ArrayItem0;
 		SHelpingActorSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aHelpingActors.push_back(s_ArrayItem0);
+		s_Object.m_aHelpingActors[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SGetHelpServiceSaveData*>(p_Target) = s_Object;
 }
 
-void SGetHelpServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGetHelpServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGetHelpServiceSaveData*>(p_Object);
 
@@ -42309,7 +43552,7 @@ void SGuardBodySituationMemberSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SGuardBodySituationMemberSaveData*>(p_Target) = s_Object;
 }
 
-void SGuardBodySituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGuardBodySituationMemberSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGuardBodySituationMemberSaveData*>(p_Object);
 
@@ -42420,7 +43663,7 @@ void SGuardBodySituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SGuardBodySituationSaveData*>(p_Target) = s_Object;
 }
 
-void SGuardBodySituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGuardBodySituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGuardBodySituationSaveData*>(p_Object);
 
@@ -42496,7 +43739,7 @@ void SGuardPointOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SGuardPointOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SGuardPointOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SGuardPointOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SGuardPointOrderSaveData*>(p_Object);
 
@@ -43193,7 +44436,7 @@ void SHM5CrippleBoxSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SHM5CrippleBoxSaveData*>(p_Target) = s_Object;
 }
 
-void SHM5CrippleBoxSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHM5CrippleBoxSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHM5CrippleBoxSaveData*>(p_Object);
 
@@ -43306,7 +44549,7 @@ void SHUDPIPControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SHUDPIPControllerSaveData*>(p_Target) = s_Object;
 }
 
-void SHUDPIPControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHUDPIPControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHUDPIPControllerSaveData*>(p_Object);
 
@@ -43546,7 +44789,7 @@ void SHUDPromptDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SHUDPromptDisplayInfo*>(p_Target) = s_Object;
 }
 
-void SHUDPromptDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHUDPromptDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHUDPromptDisplayInfo*>(p_Object);
 
@@ -43640,17 +44883,23 @@ void SHUDPromptDisplayInfoArray_Dummy::FromSimpleJson(simdjson::ondemand::value 
 {
 	SHUDPromptDisplayInfoArray_Dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["dummy"];
+	s_Object.dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SHUDPromptDisplayInfo s_ArrayItem0;
 		SHUDPromptDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.dummy.push_back(s_ArrayItem0);
+		s_Object.dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SHUDPromptDisplayInfoArray_Dummy*>(p_Target) = s_Object;
 }
 
-void SHUDPromptDisplayInfoArray_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHUDPromptDisplayInfoArray_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHUDPromptDisplayInfoArray_Dummy*>(p_Object);
 
@@ -43711,7 +44960,7 @@ void SHUDTimerControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SHUDTimerControllerSaveData*>(p_Target) = s_Object;
 }
 
-void SHUDTimerControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHUDTimerControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHUDTimerControllerSaveData*>(p_Object);
 
@@ -43771,7 +45020,7 @@ void SHUDVisibilityController2SaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SHUDVisibilityController2SaveData*>(p_Target) = s_Object;
 }
 
-void SHUDVisibilityController2SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHUDVisibilityController2SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHUDVisibilityController2SaveData*>(p_Object);
 
@@ -43855,7 +45104,7 @@ void SHandleDistractionSituationSaveData::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<SHandleDistractionSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SHandleDistractionSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHandleDistractionSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHandleDistractionSituationSaveData*>(p_Object);
 
@@ -43929,7 +45178,7 @@ void SHeroCameraStandInSaveState::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SHeroCameraStandInSaveState*>(p_Target) = s_Object;
 }
 
-void SHeroCameraStandInSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroCameraStandInSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroCameraStandInSaveState*>(p_Object);
 
@@ -44062,7 +45311,7 @@ void SHeroEscortSituation2ActorStateSaveData::FromSimpleJson(simdjson::ondemand:
 	*reinterpret_cast<SHeroEscortSituation2ActorStateSaveData*>(p_Target) = s_Object;
 }
 
-void SHeroEscortSituation2ActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroEscortSituation2ActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroEscortSituation2ActorStateSaveData*>(p_Object);
 
@@ -44128,7 +45377,7 @@ void SHeroEscortSituation2Actors::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SHeroEscortSituation2Actors*>(p_Target) = s_Object;
 }
 
-void SHeroEscortSituation2Actors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroEscortSituation2Actors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroEscortSituation2Actors*>(p_Object);
 
@@ -44434,23 +45683,41 @@ void SHeroEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_D
 
 	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAddedActors"];
+	s_Object.m_aAddedActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SHeroEscortSituation2Actors s_ArrayItem0;
 		SHeroEscortSituation2Actors::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aAddedActors.push_back(s_ArrayItem0);
+		s_Object.m_aAddedActors[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SHeroEscortSituation2ActorStateSaveData s_ArrayItem0;
 		SHeroEscortSituation2ActorStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEscortActs"];
+	s_Object.m_aEscortActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEscortActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_fTimeSinceLossOfSight = simdjson::from_json_float32(p_Document["m_fTimeSinceLossOfSight"]);
@@ -44464,7 +45731,7 @@ void SHeroEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SHeroEscortSituation2SaveData*>(p_Target) = s_Object;
 }
 
-void SHeroEscortSituation2SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroEscortSituation2SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroEscortSituation2SaveData*>(p_Object);
 
@@ -44617,7 +45884,7 @@ void SHeroEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::
 	*reinterpret_cast<SHeroEscortSituationActorStateSaveData*>(p_Target) = s_Object;
 }
 
-void SHeroEscortSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroEscortSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroEscortSituationActorStateSaveData*>(p_Object);
 
@@ -44683,7 +45950,7 @@ void SHeroEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SHeroEscortSituationActors*>(p_Target) = s_Object;
 }
 
-void SHeroEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroEscortSituationActors*>(p_Object);
 
@@ -44989,23 +46256,41 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAddedActors"];
+	s_Object.m_aAddedActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SHeroEscortSituationActors s_ArrayItem0;
 		SHeroEscortSituationActors::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aAddedActors.push_back(s_ArrayItem0);
+		s_Object.m_aAddedActors[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SHeroEscortSituationActorStateSaveData s_ArrayItem0;
 		SHeroEscortSituationActorStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEscortActs"];
+	s_Object.m_aEscortActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEscortActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_fTimeSinceLossOfSight = simdjson::from_json_float32(p_Document["m_fTimeSinceLossOfSight"]);
@@ -45019,7 +46304,7 @@ void SHeroEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SHeroEscortSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SHeroEscortSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroEscortSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroEscortSituationSaveData*>(p_Object);
 
@@ -45100,7 +46385,7 @@ void SHeroItemActionSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SHeroItemActionSaveData*>(p_Target) = s_Object;
 }
 
-void SHeroItemActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroItemActionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroItemActionSaveData*>(p_Object);
 
@@ -45160,7 +46445,7 @@ void SHeroItemAttachmentSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SHeroItemAttachmentSaveData*>(p_Target) = s_Object;
 }
 
-void SHeroItemAttachmentSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroItemAttachmentSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroItemAttachmentSaveData*>(p_Object);
 
@@ -45244,7 +46529,7 @@ void SHeroStandInSaveState::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SHeroStandInSaveState*>(p_Target) = s_Object;
 }
 
-void SHeroStandInSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHeroStandInSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHeroStandInSaveState*>(p_Object);
 
@@ -45330,7 +46615,7 @@ void SHintEntrySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<SHintEntrySaveData*>(p_Target) = s_Object;
 }
 
-void SHintEntrySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHintEntrySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHintEntrySaveData*>(p_Object);
 
@@ -45434,11 +46719,17 @@ void SHintManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		s_Object.m_activeHint = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aQueue"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aQueue"];
+	s_Object.m_aQueue.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SHintEntrySaveData s_ArrayItem0;
 		SHintEntrySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aQueue.push_back(s_ArrayItem0);
+		s_Object.m_aQueue[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_bIsRunning = simdjson::from_json_bool(p_Document["m_bIsRunning"]);
@@ -45446,7 +46737,7 @@ void SHintManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SHintManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SHintManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHintManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHintManagerSaveData*>(p_Object);
 
@@ -45666,7 +46957,7 @@ void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<SHitmanSaveData*>(p_Target) = s_Object;
 }
 
-void SHitmanSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHitmanSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHitmanSaveData*>(p_Object);
 
@@ -45759,7 +47050,7 @@ void SHudMissionTimerControllerData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SHudMissionTimerControllerData*>(p_Target) = s_Object;
 }
 
-void SHudMissionTimerControllerData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SHudMissionTimerControllerData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SHudMissionTimerControllerData*>(p_Object);
 
@@ -45857,7 +47148,7 @@ void SIntelData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	*reinterpret_cast<SIntelData*>(p_Target) = s_Object;
 }
 
-void SIntelData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SIntelData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SIntelData*>(p_Object);
 
@@ -45940,17 +47231,23 @@ void SIntelDataArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SIntelDataArray_dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["dummy"];
+	s_Object.dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SIntelData s_ArrayItem0;
 		SIntelData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.dummy.push_back(s_ArrayItem0);
+		s_Object.dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SIntelDataArray_dummy*>(p_Target) = s_Object;
 }
 
-void SIntelDataArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SIntelDataArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SIntelDataArray_dummy*>(p_Object);
 
@@ -46083,7 +47380,7 @@ void SIntelDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<SIntelDisplayInfo*>(p_Target) = s_Object;
 }
 
-void SIntelDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SIntelDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SIntelDisplayInfo*>(p_Object);
 
@@ -46169,17 +47466,23 @@ void SIntelDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SIntelDisplayInfoArray_dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["dummy"];
+	s_Object.dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SIntelDisplayInfo s_ArrayItem0;
 		SIntelDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.dummy.push_back(s_ArrayItem0);
+		s_Object.dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SIntelDisplayInfoArray_dummy*>(p_Target) = s_Object;
 }
 
-void SIntelDisplayInfoArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SIntelDisplayInfoArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SIntelDisplayInfoArray_dummy*>(p_Object);
 
@@ -46276,7 +47579,7 @@ void SIntelListDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SIntelListDisplayInfo*>(p_Target) = s_Object;
 }
 
-void SIntelListDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SIntelListDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SIntelListDisplayInfo*>(p_Object);
 
@@ -46356,17 +47659,23 @@ void SIntelListDisplayInfoArray_dummy::FromSimpleJson(simdjson::ondemand::value 
 {
 	SIntelListDisplayInfoArray_dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["dummy"];
+	s_Object.dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SIntelListDisplayInfo s_ArrayItem0;
 		SIntelListDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.dummy.push_back(s_ArrayItem0);
+		s_Object.dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SIntelListDisplayInfoArray_dummy*>(p_Target) = s_Object;
 }
 
-void SIntelListDisplayInfoArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SIntelListDisplayInfoArray_dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SIntelListDisplayInfoArray_dummy*>(p_Object);
 
@@ -46499,7 +47808,7 @@ void SIntelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SIntelSaveData*>(p_Target) = s_Object;
 }
 
-void SIntelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SIntelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SIntelSaveData*>(p_Object);
 
@@ -46849,7 +48158,7 @@ void SInteractionIndicatorInstanceData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SInteractionIndicatorInstanceData*>(p_Target) = s_Object;
 }
 
-void SInteractionIndicatorInstanceData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInteractionIndicatorInstanceData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInteractionIndicatorInstanceData*>(p_Object);
 
@@ -46953,17 +48262,23 @@ void SInteractionIndicatorInstanceDataArray_Dummy::FromSimpleJson(simdjson::onde
 {
 	SInteractionIndicatorInstanceDataArray_Dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["dummy"];
+	s_Object.dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SInteractionIndicatorInstanceData s_ArrayItem0;
 		SInteractionIndicatorInstanceData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.dummy.push_back(s_ArrayItem0);
+		s_Object.dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SInteractionIndicatorInstanceDataArray_Dummy*>(p_Target) = s_Object;
 }
 
-void SInteractionIndicatorInstanceDataArray_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInteractionIndicatorInstanceDataArray_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInteractionIndicatorInstanceDataArray_Dummy*>(p_Object);
 
@@ -47036,7 +48351,7 @@ void SInventoryControllerItemSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SInventoryControllerItemSaveData*>(p_Target) = s_Object;
 }
 
-void SInventoryControllerItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryControllerItemSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryControllerItemSaveData*>(p_Object);
 
@@ -47123,11 +48438,17 @@ void SInventoryControllerSlotSaveData::FromSimpleJson(simdjson::ondemand::value 
 {
 	SInventoryControllerSlotSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItems"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aItems"];
+	s_Object.m_aItems.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SInventoryControllerItemSaveData s_ArrayItem0;
 		SInventoryControllerItemSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aItems.push_back(s_ArrayItem0);
+		s_Object.m_aItems[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_eStorageType = static_cast<EInventoryStorageType>(ZHMEnums::GetEnumValueByName("EInventoryStorageType", std::string_view(p_Document["m_eStorageType"])));
@@ -47135,7 +48456,7 @@ void SInventoryControllerSlotSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SInventoryControllerSlotSaveData*>(p_Target) = s_Object;
 }
 
-void SInventoryControllerSlotSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryControllerSlotSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryControllerSlotSaveData*>(p_Object);
 
@@ -47221,7 +48542,7 @@ void SStoredSlotSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SStoredSlotSaveData*>(p_Target) = s_Object;
 }
 
-void SStoredSlotSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SStoredSlotSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SStoredSlotSaveData*>(p_Object);
 
@@ -47573,11 +48894,17 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SInventoryControllerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItems"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aItems"];
+	s_Object.m_aItems.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SInventoryControllerItemSaveData s_ArrayItem0;
 		SInventoryControllerItemSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aItems.push_back(s_ArrayItem0);
+		s_Object.m_aItems[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_nEquippedItemIndex = simdjson::from_json_uint32(p_Document["m_nEquippedItemIndex"]);
@@ -47590,16 +48917,28 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 		s_Object.m_StoredSlot = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSlots"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSlots"];
+	s_Object.m_aSlots.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SInventoryControllerSlotSaveData s_ArrayItem0;
 		SInventoryControllerSlotSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aSlots.push_back(s_ArrayItem0);
+		s_Object.m_aSlots[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPendingPickupItems"])
 	{
-		s_Object.m_aPendingPickupItems.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPendingPickupItems"];
+	s_Object.m_aPendingPickupItems.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aPendingPickupItems[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_nAmmoCountGun = simdjson::from_json_uint32(p_Document["m_nAmmoCountGun"]);
@@ -47626,22 +48965,34 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_nAmmoCountAmmoShotgunBeanbag = simdjson::from_json_uint32(p_Document["m_nAmmoCountAmmoShotgunBeanbag"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAmmoIds"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAmmoIds"];
+	s_Object.m_aAmmoIds.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZRepositoryID s_ArrayItem0;
 		ZRepositoryID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aAmmoIds.push_back(s_ArrayItem0);
+		s_Object.m_aAmmoIds[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAmmoCounts"])
 	{
-		s_Object.m_aAmmoCounts.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAmmoCounts"];
+	s_Object.m_aAmmoCounts.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aAmmoCounts[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SInventoryControllerSaveData*>(p_Target) = s_Object;
 }
 
-void SInventoryControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryControllerSaveData*>(p_Object);
 
@@ -47783,11 +49134,17 @@ void SInventoryInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SInventoryInfo s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aPockets"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aPockets"];
+	s_Object.m_aPockets.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SInventoryItem s_ArrayItem0;
 		SInventoryItem::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aPockets.push_back(s_ArrayItem0);
+		s_Object.m_aPockets[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -47796,17 +49153,23 @@ void SInventoryInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_CarriedItem = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aContainerItems"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aContainerItems"];
+	s_Object.m_aContainerItems.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SContainerItemInfo s_ArrayItem0;
 		SContainerItemInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aContainerItems.push_back(s_ArrayItem0);
+		s_Object.m_aContainerItems[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SInventoryInfo*>(p_Target) = s_Object;
 }
 
-void SInventoryInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryInfo*>(p_Object);
 
@@ -47971,7 +49334,7 @@ void SInventoryMovementConfig::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SInventoryMovementConfig*>(p_Target) = s_Object;
 }
 
-void SInventoryMovementConfig::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryMovementConfig::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryMovementConfig*>(p_Object);
 
@@ -48415,9 +49778,15 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	s_Object.description = std::string_view(p_Document["description"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["perks"])
 	{
-		s_Object.perks.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["perks"];
+	s_Object.perks.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.perks[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	s_Object.silencer = simdjson::from_json_bool(p_Document["silencer"]);
@@ -48468,9 +49837,15 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	s_Object.detectedDuringFrisk = simdjson::from_json_bool(p_Document["detectedDuringFrisk"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["actionAndKillTypes"])
 	{
-		s_Object.actionAndKillTypes.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["actionAndKillTypes"];
+	s_Object.actionAndKillTypes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.actionAndKillTypes[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	s_Object.suspicious = simdjson::from_json_bool(p_Document["suspicious"]);
@@ -48484,7 +49859,7 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SInventoryUISlot*>(p_Target) = s_Object;
 }
 
-void SInventoryUISlot::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryUISlot::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryUISlot*>(p_Object);
 
@@ -48656,18 +50031,30 @@ void SInventoryUI::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 {
 	SInventoryUI s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["mainslots"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["mainslots"];
+	s_Object.mainslots.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SInventoryUISlot s_ArrayItem0;
 		SInventoryUISlot::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.mainslots.push_back(s_ArrayItem0);
+		s_Object.mainslots[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["otherslots"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["otherslots"];
+	s_Object.otherslots.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SInventoryUISlot s_ArrayItem0;
 		SInventoryUISlot::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.otherslots.push_back(s_ArrayItem0);
+		s_Object.otherslots[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.selectedIndex = simdjson::from_json_int32(p_Document["selectedIndex"]);
@@ -48677,7 +50064,7 @@ void SInventoryUI::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<SInventoryUI*>(p_Target) = s_Object;
 }
 
-void SInventoryUI::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInventoryUI::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInventoryUI*>(p_Object);
 
@@ -48766,7 +50153,7 @@ void ZInvestigateDisguiseGroup_SDialogLines::FromSimpleJson(simdjson::ondemand::
 	*reinterpret_cast<ZInvestigateDisguiseGroup_SDialogLines*>(p_Target) = s_Object;
 }
 
-void ZInvestigateDisguiseGroup_SDialogLines::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZInvestigateDisguiseGroup_SDialogLines::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZInvestigateDisguiseGroup_SDialogLines*>(p_Object);
 
@@ -49120,7 +50507,7 @@ void SInvestigateDisguiseGroupSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SInvestigateDisguiseGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SInvestigateDisguiseGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInvestigateDisguiseGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInvestigateDisguiseGroupSaveData*>(p_Object);
 
@@ -49317,15 +50704,21 @@ void SInvestigateWeaponGroupSaveData::FromSimpleJson(simdjson::ondemand::value p
 		s_Object.m_tLastGuardSearch = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aUnconsciousGuards"])
 	{
-		s_Object.m_aUnconsciousGuards.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aUnconsciousGuards"];
+	s_Object.m_aUnconsciousGuards.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aUnconsciousGuards[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SInvestigateWeaponGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SInvestigateWeaponGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SInvestigateWeaponGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SInvestigateWeaponGroupSaveData*>(p_Object);
 
@@ -49451,17 +50844,23 @@ void SItemInstanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_sOnlineInstanceId = std::string_view(p_Document["m_sOnlineInstanceId"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItemModifierIds"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aItemModifierIds"];
+	s_Object.m_aItemModifierIds.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZRepositoryID s_ArrayItem0;
 		ZRepositoryID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aItemModifierIds.push_back(s_ArrayItem0);
+		s_Object.m_aItemModifierIds[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SItemInstanceSaveData*>(p_Target) = s_Object;
 }
 
-void SItemInstanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemInstanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemInstanceSaveData*>(p_Object);
 
@@ -49579,7 +50978,7 @@ void SItemLeftHandUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SItemLeftHandUIData*>(p_Target) = s_Object;
 }
 
-void SItemLeftHandUIData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemLeftHandUIData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemLeftHandUIData*>(p_Object);
 
@@ -49696,7 +51095,7 @@ void SItemOnBackUIData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<SItemOnBackUIData*>(p_Target) = s_Object;
 }
 
-void SItemOnBackUIData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemOnBackUIData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemOnBackUIData*>(p_Object);
 
@@ -49761,7 +51160,7 @@ void SItemSpawnerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SItemSpawnerSaveData*>(p_Target) = s_Object;
 }
 
-void SItemSpawnerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemSpawnerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemSpawnerSaveData*>(p_Object);
 
@@ -49849,15 +51248,21 @@ void SItemStorageSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 
 	s_Object.m_Storage = simdjson::from_json_uint32(p_Document["m_Storage"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_ContainedItems"])
 	{
-		s_Object.m_ContainedItems.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_ContainedItems"];
+	s_Object.m_ContainedItems.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_ContainedItems[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SItemStorageSaveData*>(p_Target) = s_Object;
 }
 
-void SItemStorageSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemStorageSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemStorageSaveData*>(p_Object);
 
@@ -49965,9 +51370,15 @@ void SItemWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SItemWeaponSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_magazineBulletsByAmmoType"])
 	{
-		s_Object.m_magazineBulletsByAmmoType.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_magazineBulletsByAmmoType"];
+	s_Object.m_magazineBulletsByAmmoType.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_magazineBulletsByAmmoType[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_nExtraMagazineBullets = simdjson::from_json_uint32(p_Document["m_nExtraMagazineBullets"]);
@@ -49979,7 +51390,7 @@ void SItemWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SItemWeaponSaveData*>(p_Target) = s_Object;
 }
 
-void SItemWeaponSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SItemWeaponSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SItemWeaponSaveData*>(p_Object);
 
@@ -50055,7 +51466,7 @@ void SLayerBehaviorConfiguration::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SLayerBehaviorConfiguration*>(p_Target) = s_Object;
 }
 
-void SLayerBehaviorConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLayerBehaviorConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLayerBehaviorConfiguration*>(p_Object);
 
@@ -50188,7 +51599,7 @@ void SLeadEscortSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::
 	*reinterpret_cast<SLeadEscortSituationActorStateSaveData*>(p_Target) = s_Object;
 }
 
-void SLeadEscortSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLeadEscortSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLeadEscortSituationActorStateSaveData*>(p_Object);
 
@@ -50254,7 +51665,7 @@ void SLeadEscortSituationActors::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SLeadEscortSituationActors*>(p_Target) = s_Object;
 }
 
-void SLeadEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLeadEscortSituationActors::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLeadEscortSituationActors*>(p_Object);
 
@@ -50540,29 +51951,47 @@ void SLeadEscortSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_fTargetAgitationCooldownTimer = simdjson::from_json_float32(p_Document["m_fTargetAgitationCooldownTimer"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAddedActors"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAddedActors"];
+	s_Object.m_aAddedActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SLeadEscortSituationActors s_ArrayItem0;
 		SLeadEscortSituationActors::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aAddedActors.push_back(s_ArrayItem0);
+		s_Object.m_aAddedActors[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aStates"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aStates"];
+	s_Object.m_aStates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SLeadEscortSituationActorStateSaveData s_ArrayItem0;
 		SLeadEscortSituationActorStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aStates.push_back(s_ArrayItem0);
+		s_Object.m_aStates[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEscortActs"])
 	{
-		s_Object.m_aEscortActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEscortActs"];
+	s_Object.m_aEscortActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEscortActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SLeadEscortSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SLeadEscortSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLeadEscortSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLeadEscortSituationSaveData*>(p_Object);
 
@@ -50668,15 +52097,21 @@ void SLevelReferenceableEntitieSaveData::FromSimpleJson(simdjson::ondemand::valu
 
 	s_Object.m_sSceneResource = std::string_view(p_Document["m_sSceneResource"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAdditionalBrickResources"])
 	{
-		s_Object.m_aAdditionalBrickResources.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAdditionalBrickResources"];
+	s_Object.m_aAdditionalBrickResources.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aAdditionalBrickResources[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SLevelReferenceableEntitieSaveData*>(p_Target) = s_Object;
 }
 
-void SLevelReferenceableEntitieSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLevelReferenceableEntitieSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLevelReferenceableEntitieSaveData*>(p_Object);
 
@@ -50755,7 +52190,7 @@ void SObjetiveSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<SObjetiveSaveData*>(p_Target) = s_Object;
 }
 
-void SObjetiveSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SObjetiveSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SObjetiveSaveData*>(p_Object);
 
@@ -50865,7 +52300,7 @@ void SSoundAmbienceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SSoundAmbienceSaveData*>(p_Target) = s_Object;
 }
 
-void SSoundAmbienceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSoundAmbienceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSoundAmbienceSaveData*>(p_Object);
 
@@ -51208,18 +52643,30 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object.m_aStartupAgencyPickupSelection = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aObjectives"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aObjectives"];
+	s_Object.m_aObjectives.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SObjetiveSaveData s_ArrayItem0;
 		SObjetiveSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aObjectives.push_back(s_ArrayItem0);
+		s_Object.m_aObjectives[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGameChangers"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGameChangers"];
+	s_Object.m_aGameChangers.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZVariant s_ArrayItem0;
 		ZVariant::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aGameChangers.push_back(s_ArrayItem0);
+		s_Object.m_aGameChangers[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -51241,7 +52688,7 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SLevelSaveData*>(p_Target) = s_Object;
 }
 
-void SLevelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLevelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLevelSaveData*>(p_Object);
 
@@ -51347,7 +52794,7 @@ void SLightFlickerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SLightFlickerEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SLightFlickerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLightFlickerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLightFlickerEntitySaveData*>(p_Object);
 
@@ -51408,7 +52855,7 @@ void SLoadRuntimeResourceResult::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SLoadRuntimeResourceResult*>(p_Target) = s_Object;
 }
 
-void SLoadRuntimeResourceResult::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLoadRuntimeResourceResult::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLoadRuntimeResourceResult*>(p_Object);
 
@@ -51578,32 +53025,56 @@ void SLocalizedVideoData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SLocalizedVideoData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["AudioLanguages"])
 	{
-		s_Object.AudioLanguages.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["AudioLanguages"];
+	s_Object.AudioLanguages.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.AudioLanguages[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["VideoRidsPerAudioLanguage"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["VideoRidsPerAudioLanguage"];
+	s_Object.VideoRidsPerAudioLanguage.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZRuntimeResourceID s_ArrayItem0;
 		ZRuntimeResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.VideoRidsPerAudioLanguage.push_back(s_ArrayItem0);
+		s_Object.VideoRidsPerAudioLanguage[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["SubtitleLanguages"])
 	{
-		s_Object.SubtitleLanguages.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["SubtitleLanguages"];
+	s_Object.SubtitleLanguages.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.SubtitleLanguages[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["SubtitleMarkupsPerLanguage"])
 	{
-		s_Object.SubtitleMarkupsPerLanguage.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["SubtitleMarkupsPerLanguage"];
+	s_Object.SubtitleMarkupsPerLanguage.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.SubtitleMarkupsPerLanguage[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SLocalizedVideoData*>(p_Target) = s_Object;
 }
 
-void SLocalizedVideoData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLocalizedVideoData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLocalizedVideoData*>(p_Object);
 
@@ -51702,7 +53173,7 @@ void SLockdownManagerAIZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SLockdownManagerAIZoneSaveData*>(p_Target) = s_Object;
 }
 
-void SLockdownManagerAIZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLockdownManagerAIZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLockdownManagerAIZoneSaveData*>(p_Object);
 
@@ -51782,17 +53253,23 @@ void SLockdownManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SLockdownManagerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAIZones"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAIZones"];
+	s_Object.m_aAIZones.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SLockdownManagerAIZoneSaveData s_ArrayItem0;
 		SLockdownManagerAIZoneSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aAIZones.push_back(s_ArrayItem0);
+		s_Object.m_aAIZones[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SLockdownManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SLockdownManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SLockdownManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SLockdownManagerSaveData*>(p_Object);
 
@@ -51889,9 +53366,15 @@ void SManHuntServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	SManHuntServiceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_rGuardNodes"])
 	{
-		s_Object.m_rGuardNodes.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_rGuardNodes"];
+	s_Object.m_rGuardNodes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_rGuardNodes[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	s_Object.m_rInitialNode = simdjson::from_json_uint16(p_Document["m_rInitialNode"]);
@@ -51901,7 +53384,7 @@ void SManHuntServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SManHuntServiceSaveData*>(p_Target) = s_Object;
 }
 
-void SManHuntServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SManHuntServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SManHuntServiceSaveData*>(p_Object);
 
@@ -51980,17 +53463,23 @@ void SMapMarkerData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SMapMarkerData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["pathPoints"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["pathPoints"];
+	s_Object.pathPoints.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVector2 s_ArrayItem0;
 		SVector2::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.pathPoints.push_back(s_ArrayItem0);
+		s_Object.pathPoints[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SMapMarkerData*>(p_Target) = s_Object;
 }
 
-void SMapMarkerData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMapMarkerData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMapMarkerData*>(p_Object);
 
@@ -52071,7 +53560,7 @@ void SMathDistanceSaveData_SVector2::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SMathDistanceSaveData_SVector2*>(p_Target) = s_Object;
 }
 
-void SMathDistanceSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathDistanceSaveData_SVector2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathDistanceSaveData_SVector2*>(p_Object);
 
@@ -52154,7 +53643,7 @@ void SMathDistanceSaveData_SVector3::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SMathDistanceSaveData_SVector3*>(p_Target) = s_Object;
 }
 
-void SMathDistanceSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathDistanceSaveData_SVector3::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathDistanceSaveData_SVector3*>(p_Object);
 
@@ -52237,7 +53726,7 @@ void SMathDistanceSaveData_SVector4::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SMathDistanceSaveData_SVector4*>(p_Target) = s_Object;
 }
 
-void SMathDistanceSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMathDistanceSaveData_SVector4::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMathDistanceSaveData_SVector4*>(p_Object);
 
@@ -52336,7 +53825,7 @@ void SMatrix33::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<SMatrix33*>(p_Target) = s_Object;
 }
 
-void SMatrix33::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMatrix33::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMatrix33*>(p_Object);
 
@@ -52453,7 +53942,7 @@ void SMatrix43::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<SMatrix43*>(p_Target) = s_Object;
 }
 
-void SMatrix43::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMatrix43::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMatrix43*>(p_Object);
 
@@ -52700,7 +54189,7 @@ void SMatrix44::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<SMatrix44*>(p_Target) = s_Object;
 }
 
-void SMatrix44::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMatrix44::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMatrix44*>(p_Object);
 
@@ -52835,7 +54324,7 @@ void SMovementAgilitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SMovementAgilitySaveData*>(p_Target) = s_Object;
 }
 
-void SMovementAgilitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementAgilitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementAgilitySaveData*>(p_Object);
 
@@ -52952,7 +54441,7 @@ void SMovementCoverSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SMovementCoverSaveData*>(p_Target) = s_Object;
 }
 
-void SMovementCoverSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementCoverSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementCoverSaveData*>(p_Object);
 
@@ -53029,7 +54518,7 @@ void SMovementDisguiseSafeZoneSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<SMovementDisguiseSafeZoneSaveData*>(p_Target) = s_Object;
 }
 
-void SMovementDisguiseSafeZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementDisguiseSafeZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementDisguiseSafeZoneSaveData*>(p_Object);
 
@@ -53102,7 +54591,7 @@ void SMovementDragBodySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SMovementDragBodySaveData*>(p_Target) = s_Object;
 }
 
-void SMovementDragBodySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementDragBodySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementDragBodySaveData*>(p_Object);
 
@@ -53163,7 +54652,7 @@ void SMovementDrainPipeSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SMovementDrainPipeSaveData*>(p_Target) = s_Object;
 }
 
-void SMovementDrainPipeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementDrainPipeSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementDrainPipeSaveData*>(p_Object);
 
@@ -53235,7 +54724,7 @@ void SMovementHideInClosetSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SMovementHideInClosetSaveData*>(p_Target) = s_Object;
 }
 
-void SMovementHideInClosetSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementHideInClosetSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementHideInClosetSaveData*>(p_Object);
 
@@ -53296,7 +54785,7 @@ void SMovementLadderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SMovementLadderSaveData*>(p_Target) = s_Object;
 }
 
-void SMovementLadderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementLadderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementLadderSaveData*>(p_Object);
 
@@ -53356,7 +54845,7 @@ void SMovementLocomotionSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SMovementLocomotionSaveData*>(p_Target) = s_Object;
 }
 
-void SMovementLocomotionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMovementLocomotionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMovementLocomotionSaveData*>(p_Object);
 
@@ -53428,7 +54917,7 @@ void SMusicGridData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SMusicGridData*>(p_Target) = s_Object;
 }
 
-void SMusicGridData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SMusicGridData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SMusicGridData*>(p_Object);
 
@@ -53527,9 +55016,15 @@ void SObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	s_Object.m_target = simdjson::from_json_uint32(p_Document["m_target"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aWaitingObservers"])
 	{
-		s_Object.m_aWaitingObservers.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aWaitingObservers"];
+	s_Object.m_aWaitingObservers.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aWaitingObservers[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_observerDistanceMax = simdjson::from_json_float32(p_Document["m_observerDistanceMax"]);
@@ -53537,7 +55032,7 @@ void SObserversGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SObserversGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SObserversGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SObserversGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SObserversGroupSaveData*>(p_Object);
 
@@ -53616,7 +55111,7 @@ void SOnlineEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<SOnlineEvent*>(p_Target) = s_Object;
 }
 
-void SOnlineEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SOnlineEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SOnlineEvent*>(p_Object);
 
@@ -53727,7 +55222,7 @@ void SOnlineSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<SOnlineSaveData*>(p_Target) = s_Object;
 }
 
-void SOnlineSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SOnlineSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SOnlineSaveData*>(p_Object);
 
@@ -53798,7 +55293,7 @@ void SOptionValueSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SOptionValueSaveData*>(p_Target) = s_Object;
 }
 
-void SOptionValueSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SOptionValueSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SOptionValueSaveData*>(p_Object);
 
@@ -53859,7 +55354,7 @@ void SPFObstactleSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SPFObstactleSaveData*>(p_Target) = s_Object;
 }
 
-void SPFObstactleSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPFObstactleSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPFObstactleSaveData*>(p_Object);
 
@@ -53919,7 +55414,7 @@ void SPIPMessageManagerProxySaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SPIPMessageManagerProxySaveData*>(p_Target) = s_Object;
 }
 
-void SPIPMessageManagerProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPIPMessageManagerProxySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPIPMessageManagerProxySaveData*>(p_Object);
 
@@ -53979,7 +55474,7 @@ void SPatrolGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SPatrolGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SPatrolGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPatrolGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPatrolGroupSaveData*>(p_Object);
 
@@ -54029,7 +55524,7 @@ void SPatrolOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SPatrolOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SPatrolOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPatrolOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPatrolOrderSaveData*>(p_Object);
 
@@ -54100,7 +55595,7 @@ void SPerceptibleCrowdBodySaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SPerceptibleCrowdBodySaveData*>(p_Target) = s_Object;
 }
 
-void SPerceptibleCrowdBodySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPerceptibleCrowdBodySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPerceptibleCrowdBodySaveData*>(p_Object);
 
@@ -54220,20 +55715,32 @@ void SPersistentEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_nResourceId = simdjson::from_json_uint64(p_Document["m_nResourceId"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityIDs"])
 	{
-		s_Object.m_aEntityIDs.push_back(simdjson::from_json_uint64(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityIDs"];
+	s_Object.m_aEntityIDs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntityIDs[s_Index0++] = simdjson::from_json_uint64(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityNames"])
 	{
-		s_Object.m_aEntityNames.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityNames"];
+	s_Object.m_aEntityNames.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntityNames[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SPersistentEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SPersistentEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPersistentEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPersistentEntitySaveData*>(p_Object);
 
@@ -54375,27 +55882,45 @@ void SPersistentEntitySaveDataList::FromSimpleJson(simdjson::ondemand::value p_D
 {
 	SPersistentEntitySaveDataList s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityDatas"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityDatas"];
+	s_Object.m_aEntityDatas.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SPersistentEntitySaveData s_ArrayItem0;
 		SPersistentEntitySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEntityDatas.push_back(s_ArrayItem0);
+		s_Object.m_aEntityDatas[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_mDynamicObjectIDGenerationKeys"])
 	{
-		s_Object.m_mDynamicObjectIDGenerationKeys.push_back(simdjson::from_json_uint64(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_mDynamicObjectIDGenerationKeys"];
+	s_Object.m_mDynamicObjectIDGenerationKeys.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_mDynamicObjectIDGenerationKeys[s_Index0++] = simdjson::from_json_uint64(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_mDynamicObjectIDGenerationValues"])
 	{
-		s_Object.m_mDynamicObjectIDGenerationValues.push_back(simdjson::from_json_uint64(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_mDynamicObjectIDGenerationValues"];
+	s_Object.m_mDynamicObjectIDGenerationValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_mDynamicObjectIDGenerationValues[s_Index0++] = simdjson::from_json_uint64(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SPersistentEntitySaveDataList*>(p_Target) = s_Object;
 }
 
-void SPersistentEntitySaveDataList::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPersistentEntitySaveDataList::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPersistentEntitySaveDataList*>(p_Object);
 
@@ -54484,7 +56009,7 @@ void SPhysicsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SPhysicsSaveData*>(p_Target) = s_Object;
 }
 
-void SPhysicsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPhysicsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPhysicsSaveData*>(p_Object);
 
@@ -54593,22 +56118,34 @@ void SPhysicsListSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SPhysicsListSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityRefs"])
 	{
-		s_Object.m_aEntityRefs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityRefs"];
+	s_Object.m_aEntityRefs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntityRefs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityDatas"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityDatas"];
+	s_Object.m_aEntityDatas.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SPhysicsSaveData s_ArrayItem0;
 		SPhysicsSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEntityDatas.push_back(s_ArrayItem0);
+		s_Object.m_aEntityDatas[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SPhysicsListSaveData*>(p_Target) = s_Object;
 }
 
-void SPhysicsListSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPhysicsListSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPhysicsListSaveData*>(p_Object);
 
@@ -54739,7 +56276,7 @@ void SPrivateAreaSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SPrivateAreaSaveData*>(p_Target) = s_Object;
 }
 
-void SPrivateAreaSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SPrivateAreaSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SPrivateAreaSaveData*>(p_Object);
 
@@ -54830,7 +56367,7 @@ void SProgressTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SProgressTimerEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SProgressTimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SProgressTimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SProgressTimerEntitySaveData*>(p_Object);
 
@@ -54952,7 +56489,7 @@ void SRandomTimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SRandomTimerEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SRandomTimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRandomTimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRandomTimerEntitySaveData*>(p_Object);
 
@@ -55064,22 +56601,34 @@ void SRandomTimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	SRandomTimerEntitiesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SRandomTimerEntitySaveData s_ArrayItem0;
 		SRandomTimerEntitySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SRandomTimerEntitiesSaveData*>(p_Target) = s_Object;
 }
 
-void SRandomTimerEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRandomTimerEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRandomTimerEntitiesSaveData*>(p_Object);
 
@@ -55168,9 +56717,15 @@ void ZBitArray::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	ZBitArray s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aBytes"])
 	{
-		s_Object.m_aBytes.push_back(simdjson::from_json_uint8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aBytes"];
+	s_Object.m_aBytes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aBytes[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+	}
 	}
 
 	s_Object.m_nSize = simdjson::from_json_uint32(p_Document["m_nSize"]);
@@ -55178,7 +56733,7 @@ void ZBitArray::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<ZBitArray*>(p_Target) = s_Object;
 }
 
-void ZBitArray::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZBitArray::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZBitArray*>(p_Object);
 
@@ -55337,11 +56892,17 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SReasoningGrid s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_WaypointList"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_WaypointList"];
+	s_Object.m_WaypointList.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SGWaypoint s_ArrayItem0;
 		SGWaypoint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_WaypointList.push_back(s_ArrayItem0);
+		s_Object.m_WaypointList[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -55364,9 +56925,15 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	s_Object.m_nNodeCount = simdjson::from_json_uint32(p_Document["m_nNodeCount"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_pVisibilityData"])
 	{
-		s_Object.m_pVisibilityData.push_back(simdjson::from_json_uint8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_pVisibilityData"];
+	s_Object.m_pVisibilityData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_pVisibilityData[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+	}
 	}
 
 	{
@@ -55378,7 +56945,7 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SReasoningGrid*>(p_Target) = s_Object;
 }
 
-void SReasoningGrid::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SReasoningGrid::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SReasoningGrid*>(p_Object);
 
@@ -55526,7 +57093,7 @@ void SRecoverUnconsciousGroupSaveData::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<SRecoverUnconsciousGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SRecoverUnconsciousGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRecoverUnconsciousGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRecoverUnconsciousGroupSaveData*>(p_Object);
 
@@ -55617,7 +57184,7 @@ void SRemoteControlReceiverSaveData::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SRemoteControlReceiverSaveData*>(p_Target) = s_Object;
 }
 
-void SRemoteControlReceiverSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRemoteControlReceiverSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRemoteControlReceiverSaveData*>(p_Object);
 
@@ -55811,7 +57378,7 @@ void SRenderVideoPlayerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SRenderVideoPlayerSaveData*>(p_Target) = s_Object;
 }
 
-void SRenderVideoPlayerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRenderVideoPlayerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRenderVideoPlayerSaveData*>(p_Object);
 
@@ -55896,7 +57463,7 @@ void SRepositionOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<SRepositionOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SRepositionOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRepositionOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRepositionOrderSaveData*>(p_Object);
 
@@ -55993,7 +57560,7 @@ void SRotateEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<SRotateEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SRotateEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SRotateEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SRotateEntitySaveData*>(p_Object);
 
@@ -56080,7 +57647,7 @@ void SSCCuriousConfiguration::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SSCCuriousConfiguration*>(p_Target) = s_Object;
 }
 
-void SSCCuriousConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSCCuriousConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSCCuriousConfiguration*>(p_Object);
 
@@ -56174,7 +57741,7 @@ void SSavableData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<SSavableData*>(p_Target) = s_Object;
 }
 
-void SSavableData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSavableData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSavableData*>(p_Object);
 
@@ -56242,7 +57809,7 @@ void SVariantStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SVariantStruct*>(p_Target) = s_Object;
 }
 
-void SVariantStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVariantStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVariantStruct*>(p_Object);
 
@@ -56350,22 +57917,34 @@ void SSavableEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SSavableEntitiesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityData"];
+	s_Object.m_aEntityData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVariantStruct s_ArrayItem0;
 		SVariantStruct::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEntityData.push_back(s_ArrayItem0);
+		s_Object.m_aEntityData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SSavableEntitiesSaveData*>(p_Target) = s_Object;
 }
 
-void SSavableEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSavableEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSavableEntitiesSaveData*>(p_Object);
 
@@ -56487,24 +58066,36 @@ void SSaveGameData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 	s_Object.m_nVersion = simdjson::from_json_uint32(p_Document["m_nVersion"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSavableObjectsData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSavableObjectsData"];
+	s_Object.m_aSavableObjectsData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSavableData s_ArrayItem0;
 		SSavableData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aSavableObjectsData.push_back(s_ArrayItem0);
+		s_Object.m_aSavableObjectsData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntityPaths"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntityPaths"];
+	s_Object.m_aEntityPaths.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityPath s_ArrayItem0;
 		SEntityPath::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aEntityPaths.push_back(s_ArrayItem0);
+		s_Object.m_aEntityPaths[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SSaveGameData*>(p_Target) = s_Object;
 }
 
-void SSaveGameData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSaveGameData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSaveGameData*>(p_Object);
 
@@ -56735,20 +58326,32 @@ void SSaveGameMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object.bIsOnline = simdjson::from_json_bool(p_Document["bIsOnline"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aScreenShot"])
 	{
-		s_Object.aScreenShot.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["aScreenShot"];
+	s_Object.aScreenShot.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.aScreenShot[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aRequirements"])
 	{
-		s_Object.aRequirements.push_back(static_cast<ERequirementId>(ZHMEnums::GetEnumValueByName("ERequirementId", std::string_view(s_Item0))));
+	simdjson::ondemand::array s_Array0 = p_Document["aRequirements"];
+	s_Object.aRequirements.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.aRequirements[s_Index0++] = static_cast<ERequirementId>(ZHMEnums::GetEnumValueByName("ERequirementId", std::string_view(s_Item0)));
+	}
 	}
 
 	*reinterpret_cast<SSaveGameMetaData*>(p_Target) = s_Object;
 }
 
-void SSaveGameMetaData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSaveGameMetaData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSaveGameMetaData*>(p_Object);
 
@@ -56891,7 +58494,7 @@ void SSaveGameHeader::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<SSaveGameHeader*>(p_Target) = s_Object;
 }
 
-void SSaveGameHeader::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSaveGameHeader::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSaveGameHeader*>(p_Object);
 
@@ -57041,7 +58644,7 @@ void SScreenplay2ManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SScreenplay2ManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SScreenplay2ManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SScreenplay2ManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SScreenplay2ManagerSaveData*>(p_Object);
 
@@ -57148,7 +58751,7 @@ void SScreenplayManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SScreenplayManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SScreenplayManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SScreenplayManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SScreenplayManagerSaveData*>(p_Object);
 
@@ -57225,7 +58828,7 @@ void SScreenplayRole2HeroSaveState::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SScreenplayRole2HeroSaveState*>(p_Target) = s_Object;
 }
 
-void SScreenplayRole2HeroSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SScreenplayRole2HeroSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SScreenplayRole2HeroSaveState*>(p_Object);
 
@@ -57334,7 +58937,7 @@ void SSecuritySystemCameraSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<SSecuritySystemCameraSaveData*>(p_Target) = s_Object;
 }
 
-void SSecuritySystemCameraSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSecuritySystemCameraSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSecuritySystemCameraSaveData*>(p_Object);
 
@@ -57410,7 +59013,7 @@ void SSecuritySystemRecorderSaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SSecuritySystemRecorderSaveData*>(p_Target) = s_Object;
 }
 
-void SSecuritySystemRecorderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSecuritySystemRecorderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSecuritySystemRecorderSaveData*>(p_Object);
 
@@ -57563,7 +59166,7 @@ void SSentryGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SSentryGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SSentryGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSentryGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSentryGroupSaveData*>(p_Object);
 
@@ -57632,7 +59235,7 @@ void SSentryOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SSentryOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SSentryOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSentryOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSentryOrderSaveData*>(p_Object);
 
@@ -58085,30 +59688,54 @@ void SSentryZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	s_Object.m_bInFriskWarningZone = simdjson::from_json_bool(p_Document["m_bInFriskWarningZone"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDisguisesAllowedDisabled"])
 	{
-		s_Object.m_aDisguisesAllowedDisabled.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDisguisesAllowedDisabled"];
+	s_Object.m_aDisguisesAllowedDisabled.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aDisguisesAllowedDisabled[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDisguisesFriskExemptDisabled"])
 	{
-		s_Object.m_aDisguisesFriskExemptDisabled.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDisguisesFriskExemptDisabled"];
+	s_Object.m_aDisguisesFriskExemptDisabled.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aDisguisesFriskExemptDisabled[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aDisguisesDontEscalateOnLineCrossingDisabled"])
 	{
-		s_Object.m_aDisguisesDontEscalateOnLineCrossingDisabled.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDisguisesDontEscalateOnLineCrossingDisabled"];
+	s_Object.m_aDisguisesDontEscalateOnLineCrossingDisabled.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aDisguisesDontEscalateOnLineCrossingDisabled[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_ItemsDroppedInZone"])
 	{
-		s_Object.m_ItemsDroppedInZone.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_ItemsDroppedInZone"];
+	s_Object.m_ItemsDroppedInZone.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_ItemsDroppedInZone[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SSentryZoneSaveData*>(p_Target) = s_Object;
 }
 
-void SSentryZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSentryZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSentryZoneSaveData*>(p_Object);
 
@@ -58216,7 +59843,7 @@ void SSequenceTrackSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<SSequenceTrackSaveData*>(p_Target) = s_Object;
 }
 
-void SSequenceTrackSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSequenceTrackSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSequenceTrackSaveData*>(p_Object);
 
@@ -58425,9 +60052,15 @@ void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SSequenceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_commandQueue"])
 	{
-		s_Object.m_commandQueue.push_back(static_cast<ZSequenceEntity_ECommand>(ZHMEnums::GetEnumValueByName("ZSequenceEntity.ECommand", std::string_view(s_Item0))));
+	simdjson::ondemand::array s_Array0 = p_Document["m_commandQueue"];
+	s_Object.m_commandQueue.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_commandQueue[s_Index0++] = static_cast<ZSequenceEntity_ECommand>(ZHMEnums::GetEnumValueByName("ZSequenceEntity.ECommand", std::string_view(s_Item0)));
+	}
 	}
 
 	{
@@ -58440,11 +60073,17 @@ void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object.m_bHasRunData = simdjson::from_json_bool(p_Document["m_bHasRunData"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTrackSaveData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aTrackSaveData"];
+	s_Object.m_aTrackSaveData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSequenceTrackSaveData s_ArrayItem0;
 		SSequenceTrackSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aTrackSaveData.push_back(s_ArrayItem0);
+		s_Object.m_aTrackSaveData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -58468,7 +60107,7 @@ void SSequenceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<SSequenceSaveData*>(p_Target) = s_Object;
 }
 
-void SSequenceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSequenceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSequenceSaveData*>(p_Object);
 
@@ -58590,22 +60229,34 @@ void SSequenceManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SSequenceManagerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSequenceSaveData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSequenceSaveData"];
+	s_Object.m_aSequenceSaveData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSequenceSaveData s_ArrayItem0;
 		SSequenceSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aSequenceSaveData.push_back(s_ArrayItem0);
+		s_Object.m_aSequenceSaveData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SSequenceManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SSequenceManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSequenceManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSequenceManagerSaveData*>(p_Object);
 
@@ -58658,7 +60309,7 @@ void SSerializedValue::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SSerializedValue*>(p_Target) = s_Object;
 }
 
-void SSerializedValue::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSerializedValue::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSerializedValue*>(p_Object);
 
@@ -58733,15 +60384,21 @@ void SSituationConversationGroupSaveData::FromSimpleJson(simdjson::ondemand::val
 {
 	SSituationConversationGroupSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_members"])
 	{
-		s_Object.m_members.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_members"];
+	s_Object.m_members.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_members[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SSituationConversationGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SSituationConversationGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSituationConversationGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSituationConversationGroupSaveData*>(p_Object);
 
@@ -58870,7 +60527,7 @@ void SSituationOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<SSituationOrderSaveData*>(p_Target) = s_Object;
 }
 
-void SSituationOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSituationOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSituationOrderSaveData*>(p_Object);
 
@@ -59010,7 +60667,7 @@ void SSmuggleSituationActorStateSaveData::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<SSmuggleSituationActorStateSaveData*>(p_Target) = s_Object;
 }
 
-void SSmuggleSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSmuggleSituationActorStateSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSmuggleSituationActorStateSaveData*>(p_Object);
 
@@ -59159,22 +60816,34 @@ void SSmuggleSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.m_nNumberOfPickups = simdjson::from_json_int32(p_Document["m_nNumberOfPickups"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aActorsSaveData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActorsSaveData"];
+	s_Object.m_aActorsSaveData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSmuggleSituationActorStateSaveData s_ArrayItem0;
 		SSmuggleSituationActorStateSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aActorsSaveData.push_back(s_ArrayItem0);
+		s_Object.m_aActorsSaveData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aMoveToActs"])
 	{
-		s_Object.m_aMoveToActs.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aMoveToActs"];
+	s_Object.m_aMoveToActs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aMoveToActs[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SSmuggleSituationSaveData*>(p_Target) = s_Object;
 }
 
-void SSmuggleSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSmuggleSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSmuggleSituationSaveData*>(p_Object);
 
@@ -59300,7 +60969,7 @@ void SSniperCombatGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SSniperCombatGroupSaveData*>(p_Target) = s_Object;
 }
 
-void SSniperCombatGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSniperCombatGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSniperCombatGroupSaveData*>(p_Object);
 
@@ -59427,7 +61096,7 @@ void SSniperScoringEvent::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SSniperScoringEvent*>(p_Target) = s_Object;
 }
 
-void SSniperScoringEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSniperScoringEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSniperScoringEvent*>(p_Object);
 
@@ -59494,7 +61163,7 @@ void SSpaceCollectionBehaviorConfiguration::FromSimpleJson(simdjson::ondemand::v
 	*reinterpret_cast<SSpaceCollectionBehaviorConfiguration*>(p_Target) = s_Object;
 }
 
-void SSpaceCollectionBehaviorConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSpaceCollectionBehaviorConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSpaceCollectionBehaviorConfiguration*>(p_Object);
 
@@ -59606,7 +61275,7 @@ void SSpatialMoverEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Doc
 	*reinterpret_cast<SSpatialMoverEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SSpatialMoverEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSpatialMoverEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSpatialMoverEntitySaveData*>(p_Object);
 
@@ -59703,7 +61372,7 @@ void SSpatialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<SSpatialSaveData*>(p_Target) = s_Object;
 }
 
-void SSpatialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSpatialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSpatialSaveData*>(p_Object);
 
@@ -59767,7 +61436,7 @@ void SSpeakEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<SSpeakEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SSpeakEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SSpeakEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SSpeakEntitySaveData*>(p_Object);
 
@@ -59883,9 +61552,15 @@ void SStashPointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SStashPointSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_arItems"])
 	{
-		s_Object.m_arItems.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_arItems"];
+	s_Object.m_arItems.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_arItems[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_pSuitcase = simdjson::from_json_uint32(p_Document["m_pSuitcase"]);
@@ -59903,7 +61578,7 @@ void SStashPointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SStashPointSaveData*>(p_Target) = s_Object;
 }
 
-void SStashPointSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SStashPointSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SStashPointSaveData*>(p_Object);
 
@@ -59981,7 +61656,7 @@ void SStateControllerSaveDataStruct::FromSimpleJson(simdjson::ondemand::value p_
 	*reinterpret_cast<SStateControllerSaveDataStruct*>(p_Target) = s_Object;
 }
 
-void SStateControllerSaveDataStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SStateControllerSaveDataStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SStateControllerSaveDataStruct*>(p_Object);
 
@@ -60089,22 +61764,34 @@ void SStateControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	SStateControllerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SStateControllerSaveDataStruct s_ArrayItem0;
 		SStateControllerSaveDataStruct::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SStateControllerSaveData*>(p_Target) = s_Object;
 }
 
-void SStateControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SStateControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SStateControllerSaveData*>(p_Object);
 
@@ -60239,7 +61926,7 @@ void SStepCounterEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SStepCounterEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SStepCounterEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SStepCounterEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SStepCounterEntitySaveData*>(p_Object);
 
@@ -60353,7 +62040,7 @@ void STargetInfoObjectiveCondition::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<STargetInfoObjectiveCondition*>(p_Target) = s_Object;
 }
 
-void STargetInfoObjectiveCondition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STargetInfoObjectiveCondition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STargetInfoObjectiveCondition*>(p_Object);
 
@@ -60513,11 +62200,17 @@ void STargetInfoDisplayData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.objectiveType = std::string_view(p_Document["objectiveType"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["objectiveConditions"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["objectiveConditions"];
+	s_Object.objectiveConditions.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STargetInfoObjectiveCondition s_ArrayItem0;
 		STargetInfoObjectiveCondition::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.objectiveConditions.push_back(s_ArrayItem0);
+		s_Object.objectiveConditions[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.fX = simdjson::from_json_int32(p_Document["fX"]);
@@ -60531,7 +62224,7 @@ void STargetInfoDisplayData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<STargetInfoDisplayData*>(p_Target) = s_Object;
 }
 
-void STargetInfoDisplayData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STargetInfoDisplayData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STargetInfoDisplayData*>(p_Object);
 
@@ -60618,17 +62311,23 @@ void STargetInfoDisplayData_Dummy::FromSimpleJson(simdjson::ondemand::value p_Do
 {
 	STargetInfoDisplayData_Dummy s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["__dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["__dummy"];
+	s_Object.__dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STargetInfoDisplayData s_ArrayItem0;
 		STargetInfoDisplayData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.__dummy.push_back(s_ArrayItem0);
+		s_Object.__dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STargetInfoDisplayData_Dummy*>(p_Target) = s_Object;
 }
 
-void STargetInfoDisplayData_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STargetInfoDisplayData_Dummy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STargetInfoDisplayData_Dummy*>(p_Object);
 
@@ -60721,7 +62420,7 @@ void STargetTrackingSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 	*reinterpret_cast<STargetTrackingSaveData*>(p_Target) = s_Object;
 }
 
-void STargetTrackingSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STargetTrackingSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STargetTrackingSaveData*>(p_Object);
 
@@ -60801,17 +62500,23 @@ void STargetTrackingServiceSaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	STargetTrackingServiceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTrackedTargets"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aTrackedTargets"];
+	s_Object.m_aTrackedTargets.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STargetTrackingSaveData s_ArrayItem0;
 		STargetTrackingSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aTrackedTargets.push_back(s_ArrayItem0);
+		s_Object.m_aTrackedTargets[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STargetTrackingServiceSaveData*>(p_Target) = s_Object;
 }
 
-void STargetTrackingServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STargetTrackingServiceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STargetTrackingServiceSaveData*>(p_Object);
 
@@ -60884,7 +62589,7 @@ void STargetableBoneConfiguration::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<STargetableBoneConfiguration*>(p_Target) = s_Object;
 }
 
-void STargetableBoneConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STargetableBoneConfiguration::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STargetableBoneConfiguration*>(p_Object);
 
@@ -61118,38 +62823,62 @@ void STemplateBlueprintSubEntity::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	s_Object.entityName = std::string_view(p_Document["entityName"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["propertyAliases"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["propertyAliases"];
+	s_Object.propertyAliases.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePropertyAlias s_ArrayItem0;
 		SEntityTemplatePropertyAlias::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.propertyAliases.push_back(s_ArrayItem0);
+		s_Object.propertyAliases[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["exposedEntities"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["exposedEntities"];
+	s_Object.exposedEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateExposedEntity s_ArrayItem0;
 		SEntityTemplateExposedEntity::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.exposedEntities.push_back(s_ArrayItem0);
+		s_Object.exposedEntities[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["exposedInterfaces"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["exposedInterfaces"];
+	s_Object.exposedInterfaces.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,int32> s_ArrayItem0;
 		TPair<ZString,int32>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.exposedInterfaces.push_back(s_ArrayItem0);
+		s_Object.exposedInterfaces[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["entitySubsets"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["entitySubsets"];
+	s_Object.entitySubsets.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,SEntityTemplateEntitySubset> s_ArrayItem0;
 		TPair<ZString,SEntityTemplateEntitySubset>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.entitySubsets.push_back(s_ArrayItem0);
+		s_Object.entitySubsets[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STemplateBlueprintSubEntity*>(p_Target) = s_Object;
 }
 
-void STemplateBlueprintSubEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STemplateBlueprintSubEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STemplateBlueprintSubEntity*>(p_Object);
 
@@ -61480,64 +63209,112 @@ void STemplateEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.rootEntityIndex = simdjson::from_json_int32(p_Document["rootEntityIndex"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["subEntities"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["subEntities"];
+	s_Object.subEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STemplateBlueprintSubEntity s_ArrayItem0;
 		STemplateBlueprintSubEntity::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.subEntities.push_back(s_ArrayItem0);
+		s_Object.subEntities[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["externalSceneTypeIndicesInResourceHeader"])
 	{
-		s_Object.externalSceneTypeIndicesInResourceHeader.push_back(simdjson::from_json_int32(s_Item0));
-	}
+	simdjson::ondemand::array s_Array0 = p_Document["externalSceneTypeIndicesInResourceHeader"];
+	s_Object.externalSceneTypeIndicesInResourceHeader.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["pinConnections"])
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		SEntityTemplatePinConnection s_ArrayItem0;
-		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.pinConnections.push_back(s_ArrayItem0);
+		s_Object.externalSceneTypeIndicesInResourceHeader[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["inputPinForwardings"])
 	{
-		SEntityTemplatePinConnection s_ArrayItem0;
-		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.inputPinForwardings.push_back(s_ArrayItem0);
-	}
+	simdjson::ondemand::array s_Array0 = p_Document["pinConnections"];
+	s_Object.pinConnections.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["outputPinForwardings"])
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePinConnection s_ArrayItem0;
 		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.outputPinForwardings.push_back(s_ArrayItem0);
+		s_Object.pinConnections[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["overrideDeletes"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["inputPinForwardings"];
+	s_Object.inputPinForwardings.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SEntityTemplatePinConnection s_ArrayItem0;
+		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.inputPinForwardings[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["outputPinForwardings"];
+	s_Object.outputPinForwardings.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SEntityTemplatePinConnection s_ArrayItem0;
+		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.outputPinForwardings[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["overrideDeletes"];
+	s_Object.overrideDeletes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateReference s_ArrayItem0;
 		SEntityTemplateReference::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.overrideDeletes.push_back(s_ArrayItem0);
+		s_Object.overrideDeletes[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["pinConnectionOverrides"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["pinConnectionOverrides"];
+	s_Object.pinConnectionOverrides.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SExternalEntityTemplatePinConnection s_ArrayItem0;
 		SExternalEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.pinConnectionOverrides.push_back(s_ArrayItem0);
+		s_Object.pinConnectionOverrides[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["pinConnectionOverrideDeletes"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["pinConnectionOverrideDeletes"];
+	s_Object.pinConnectionOverrideDeletes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SExternalEntityTemplatePinConnection s_ArrayItem0;
 		SExternalEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.pinConnectionOverrideDeletes.push_back(s_ArrayItem0);
+		s_Object.pinConnectionOverrideDeletes[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STemplateEntityBlueprint*>(p_Target) = s_Object;
 }
 
-void STemplateEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STemplateEntityBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STemplateEntityBlueprint*>(p_Object);
 
@@ -61689,24 +63466,36 @@ void STemplateFactorySubEntity::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object.entityTypeResourceIndex = simdjson::from_json_int32(p_Document["entityTypeResourceIndex"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["propertyValues"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["propertyValues"];
+	s_Object.propertyValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.propertyValues.push_back(s_ArrayItem0);
+		s_Object.propertyValues[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["postInitPropertyValues"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["postInitPropertyValues"];
+	s_Object.postInitPropertyValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.postInitPropertyValues.push_back(s_ArrayItem0);
+		s_Object.postInitPropertyValues[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STemplateFactorySubEntity*>(p_Target) = s_Object;
 }
 
-void STemplateFactorySubEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STemplateFactorySubEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STemplateFactorySubEntity*>(p_Object);
 
@@ -61886,29 +63675,47 @@ void STemplateEntityFactory::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.rootEntityIndex = simdjson::from_json_int32(p_Document["rootEntityIndex"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["subEntities"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["subEntities"];
+	s_Object.subEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STemplateFactorySubEntity s_ArrayItem0;
 		STemplateFactorySubEntity::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.subEntities.push_back(s_ArrayItem0);
+		s_Object.subEntities[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["propertyOverrides"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["propertyOverrides"];
+	s_Object.propertyOverrides.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePropertyOverride s_ArrayItem0;
 		SEntityTemplatePropertyOverride::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.propertyOverrides.push_back(s_ArrayItem0);
+		s_Object.propertyOverrides[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["externalSceneTypeIndicesInResourceHeader"])
 	{
-		s_Object.externalSceneTypeIndicesInResourceHeader.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["externalSceneTypeIndicesInResourceHeader"];
+	s_Object.externalSceneTypeIndicesInResourceHeader.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.externalSceneTypeIndicesInResourceHeader[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<STemplateEntityFactory*>(p_Target) = s_Object;
 }
 
-void STemplateEntityFactory::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STemplateEntityFactory::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STemplateEntityFactory*>(p_Object);
 
@@ -62012,7 +63819,7 @@ void STestStruct::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	*reinterpret_cast<STestStruct*>(p_Target) = s_Object;
 }
 
-void STestStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STestStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STestStruct*>(p_Object);
 
@@ -62102,11 +63909,17 @@ void STestStruct2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 {
 	STestStruct2 s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["arrayField"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["arrayField"];
+	s_Object.arrayField.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STestStruct s_ArrayItem0;
 		STestStruct::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.arrayField.push_back(s_ArrayItem0);
+		s_Object.arrayField[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -62118,7 +63931,7 @@ void STestStruct2::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<STestStruct2*>(p_Target) = s_Object;
 }
 
-void STestStruct2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STestStruct2::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STestStruct2*>(p_Object);
 
@@ -62205,7 +64018,7 @@ void STimerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 	*reinterpret_cast<STimerEntitySaveData*>(p_Target) = s_Object;
 }
 
-void STimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STimerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STimerEntitySaveData*>(p_Object);
 
@@ -62314,22 +64127,34 @@ void STimerEntitiesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	STimerEntitiesSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STimerEntitySaveData s_ArrayItem0;
 		STimerEntitySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aData.push_back(s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STimerEntitiesSaveData*>(p_Target) = s_Object;
 }
 
-void STimerEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STimerEntitiesSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STimerEntitiesSaveData*>(p_Object);
 
@@ -62428,7 +64253,7 @@ void STimerManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<STimerManagerSaveData*>(p_Target) = s_Object;
 }
 
-void STimerManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STimerManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STimerManagerSaveData*>(p_Object);
 
@@ -62505,7 +64330,7 @@ void STokenID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<STokenID*>(p_Target) = s_Object;
 }
 
-void STokenID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STokenID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STokenID*>(p_Object);
 
@@ -62622,7 +64447,7 @@ void STrackDollyControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<STrackDollyControllerSaveData*>(p_Target) = s_Object;
 }
 
-void STrackDollyControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STrackDollyControllerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STrackDollyControllerSaveData*>(p_Object);
 
@@ -62724,7 +64549,7 @@ void STrackerEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 	*reinterpret_cast<STrackerEntitySaveData*>(p_Target) = s_Object;
 }
 
-void STrackerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STrackerEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STrackerEntitySaveData*>(p_Object);
 
@@ -62803,17 +64628,23 @@ void STrackerManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Documen
 {
 	STrackerManagerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aTrackerData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aTrackerData"];
+	s_Object.m_aTrackerData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STrackerEntitySaveData s_ArrayItem0;
 		STrackerEntitySaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aTrackerData.push_back(s_ArrayItem0);
+		s_Object.m_aTrackerData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STrackerManagerSaveData*>(p_Target) = s_Object;
 }
 
-void STrackerManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STrackerManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STrackerManagerSaveData*>(p_Object);
 
@@ -62894,7 +64725,7 @@ void STrajectoryTrackSaveData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<STrajectoryTrackSaveData*>(p_Target) = s_Object;
 }
 
-void STrajectoryTrackSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STrajectoryTrackSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STrajectoryTrackSaveData*>(p_Object);
 
@@ -62973,15 +64804,21 @@ void STrespassingRuleEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_
 {
 	STrespassingRuleEntitySaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAllowedProfessionsDisabled"])
 	{
-		s_Object.m_aAllowedProfessionsDisabled.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAllowedProfessionsDisabled"];
+	s_Object.m_aAllowedProfessionsDisabled.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aAllowedProfessionsDisabled[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<STrespassingRuleEntitySaveData*>(p_Target) = s_Object;
 }
 
-void STrespassingRuleEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STrespassingRuleEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STrespassingRuleEntitySaveData*>(p_Object);
 
@@ -63094,7 +64931,7 @@ void STriggerAlarmGroupSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<STriggerAlarmGroupSaveData*>(p_Target) = s_Object;
 }
 
-void STriggerAlarmGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void STriggerAlarmGroupSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<STriggerAlarmGroupSaveData*>(p_Object);
 
@@ -63171,7 +65008,7 @@ void SUIBreadcrumbDataSaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SUIBreadcrumbDataSaveData*>(p_Target) = s_Object;
 }
 
-void SUIBreadcrumbDataSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SUIBreadcrumbDataSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SUIBreadcrumbDataSaveData*>(p_Object);
 
@@ -63268,7 +65105,7 @@ void SUIGridCellPosition::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SUIGridCellPosition*>(p_Target) = s_Object;
 }
 
-void SUIGridCellPosition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SUIGridCellPosition::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SUIGridCellPosition*>(p_Object);
 
@@ -63378,22 +65215,34 @@ void SUIOptionsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SUIOptionsSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aKeys"])
 	{
-		s_Object.m_aKeys.push_back(static_cast<_EUIOptionKey>(ZHMEnums::GetEnumValueByName("_EUIOptionKey", std::string_view(s_Item0))));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aKeys"];
+	s_Object.m_aKeys.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aKeys[s_Index0++] = static_cast<_EUIOptionKey>(ZHMEnums::GetEnumValueByName("_EUIOptionKey", std::string_view(s_Item0)));
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aValues"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aValues"];
+	s_Object.m_aValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SOptionValueSaveData s_ArrayItem0;
 		SOptionValueSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aValues.push_back(s_ArrayItem0);
+		s_Object.m_aValues[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SUIOptionsSaveData*>(p_Target) = s_Object;
 }
 
-void SUIOptionsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SUIOptionsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SUIOptionsSaveData*>(p_Object);
 
@@ -63456,7 +65305,7 @@ void SUITestData_SSubSubStruct::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SUITestData_SSubSubStruct*>(p_Target) = s_Object;
 }
 
-void SUITestData_SSubSubStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SUITestData_SSubSubStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SUITestData_SSubSubStruct*>(p_Object);
 
@@ -63533,17 +65382,23 @@ void SUITestData_SSubStruct::FromSimpleJson(simdjson::ondemand::value p_Document
 {
 	SUITestData_SSubStruct s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aSubSubStructs"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["aSubSubStructs"];
+	s_Object.aSubSubStructs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SUITestData_SSubSubStruct s_ArrayItem0;
 		SUITestData_SSubSubStruct::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.aSubSubStructs.push_back(s_ArrayItem0);
+		s_Object.aSubSubStructs[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SUITestData_SSubStruct*>(p_Target) = s_Object;
 }
 
-void SUITestData_SSubStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SUITestData_SSubStruct::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SUITestData_SSubStruct*>(p_Object);
 
@@ -63770,16 +65625,28 @@ void SUITestData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 		s_Object.ridProp = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aStringArray"])
 	{
-		s_Object.aStringArray.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["aStringArray"];
+	s_Object.aStringArray.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.aStringArray[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aSubStructArray"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["aSubStructArray"];
+	s_Object.aSubStructArray.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SUITestData_SSubStruct s_ArrayItem0;
 		SUITestData_SSubStruct::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.aSubStructArray.push_back(s_ArrayItem0);
+		s_Object.aSubStructArray[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -63794,7 +65661,7 @@ void SUITestData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	*reinterpret_cast<SUITestData*>(p_Target) = s_Object;
 }
 
-void SUITestData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SUITestData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SUITestData*>(p_Object);
 
@@ -63892,7 +65759,7 @@ void SValueBoolDelayedEntitySaveData::FromSimpleJson(simdjson::ondemand::value p
 	*reinterpret_cast<SValueBoolDelayedEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SValueBoolDelayedEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SValueBoolDelayedEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SValueBoolDelayedEntitySaveData*>(p_Object);
 
@@ -64001,20 +65868,32 @@ void SValueBoolsSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SValueBoolsSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
 	{
-		s_Object.m_aData.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aData[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SValueBoolsSaveData*>(p_Target) = s_Object;
 }
 
-void SValueBoolsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SValueBoolsSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SValueBoolsSaveData*>(p_Object);
 
@@ -64124,20 +66003,32 @@ void SValueFloatSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 {
 	SValueFloatSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
 	{
-		s_Object.m_aData.push_back(simdjson::from_json_float32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aData[s_Index0++] = simdjson::from_json_float32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SValueFloatSaveData*>(p_Target) = s_Object;
 }
 
-void SValueFloatSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SValueFloatSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SValueFloatSaveData*>(p_Object);
 
@@ -64247,20 +66138,32 @@ void SValueIntSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SValueIntSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aEntities"])
 	{
-		s_Object.m_aEntities.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aData"])
 	{
-		s_Object.m_aData.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aData[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SValueIntSaveData*>(p_Target) = s_Object;
 }
 
-void SValueIntSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SValueIntSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SValueIntSaveData*>(p_Object);
 
@@ -64391,7 +66294,7 @@ void SValueSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<SValueSaveData*>(p_Target) = s_Object;
 }
 
-void SValueSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SValueSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SValueSaveData*>(p_Object);
 
@@ -64476,7 +66379,7 @@ void SVideoDatabaseEntry::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SVideoDatabaseEntry*>(p_Target) = s_Object;
 }
 
-void SVideoDatabaseEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVideoDatabaseEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVideoDatabaseEntry*>(p_Object);
 
@@ -64555,17 +66458,23 @@ void SVideoDatabaseData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 {
 	SVideoDatabaseData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["Videos"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["Videos"];
+	s_Object.Videos.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVideoDatabaseEntry s_ArrayItem0;
 		SVideoDatabaseEntry::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.Videos.push_back(s_ArrayItem0);
+		s_Object.Videos[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SVideoDatabaseData*>(p_Target) = s_Object;
 }
 
-void SVideoDatabaseData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVideoDatabaseData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVideoDatabaseData*>(p_Object);
 
@@ -64626,7 +66535,7 @@ void SVisibilitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SVisibilitySaveData*>(p_Target) = s_Object;
 }
 
-void SVisibilitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVisibilitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVisibilitySaveData*>(p_Object);
 
@@ -64698,7 +66607,7 @@ void SVoidSignalEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<SVoidSignalEntitySaveData*>(p_Target) = s_Object;
 }
 
-void SVoidSignalEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SVoidSignalEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SVoidSignalEntitySaveData*>(p_Object);
 
@@ -64819,7 +66728,7 @@ void SWaveformGeneratorSaveData::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<SWaveformGeneratorSaveData*>(p_Target) = s_Object;
 }
 
-void SWaveformGeneratorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SWaveformGeneratorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SWaveformGeneratorSaveData*>(p_Object);
 
@@ -64931,22 +66840,34 @@ void SWaveformGeneratorManagerSaveData::FromSimpleJson(simdjson::ondemand::value
 {
 	SWaveformGeneratorManagerSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGenerators"])
 	{
-		s_Object.m_aGenerators.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGenerators"];
+	s_Object.m_aGenerators.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aGenerators[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aGeneratorData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aGeneratorData"];
+	s_Object.m_aGeneratorData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SWaveformGeneratorSaveData s_ArrayItem0;
 		SWaveformGeneratorSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aGeneratorData.push_back(s_ArrayItem0);
+		s_Object.m_aGeneratorData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SWaveformGeneratorManagerSaveData*>(p_Target) = s_Object;
 }
 
-void SWaveformGeneratorManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SWaveformGeneratorManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SWaveformGeneratorManagerSaveData*>(p_Object);
 
@@ -65033,7 +66954,7 @@ void SWeaponCustomControlSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<SWeaponCustomControlSaveData*>(p_Target) = s_Object;
 }
 
-void SWeaponCustomControlSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SWeaponCustomControlSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SWeaponCustomControlSaveData*>(p_Object);
 
@@ -65496,14 +67417,26 @@ void SWeaponStatusUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	s_Object.fTimeBetweenBullets = simdjson::from_json_float32(p_Document["fTimeBetweenBullets"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aPerks"])
 	{
-		s_Object.aPerks.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["aPerks"];
+	s_Object.aPerks.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.aPerks[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aAmmoTypes"])
 	{
-		s_Object.aAmmoTypes.push_back(std::string_view(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["aAmmoTypes"];
+	s_Object.aAmmoTypes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.aAmmoTypes[s_Index0++] = std::string_view(s_Item0);
+	}
 	}
 
 	s_Object.nCurrentAmmoType = simdjson::from_json_uint32(p_Document["nCurrentAmmoType"]);
@@ -65511,7 +67444,7 @@ void SWeaponStatusUIData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<SWeaponStatusUIData*>(p_Target) = s_Object;
 }
 
-void SWeaponStatusUIData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SWeaponStatusUIData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SWeaponStatusUIData*>(p_Object);
 
@@ -65623,17 +67556,23 @@ void SWorldInventoryInstanceSaveData::FromSimpleJson(simdjson::ondemand::value p
 {
 	SWorldInventoryInstanceSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aItemInstanceSaveData"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aItemInstanceSaveData"];
+	s_Object.m_aItemInstanceSaveData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SItemInstanceSaveData s_ArrayItem0;
 		SItemInstanceSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aItemInstanceSaveData.push_back(s_ArrayItem0);
+		s_Object.m_aItemInstanceSaveData[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SWorldInventoryInstanceSaveData*>(p_Target) = s_Object;
 }
 
-void SWorldInventoryInstanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void SWorldInventoryInstanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SWorldInventoryInstanceSaveData*>(p_Object);
 
@@ -65722,7 +67661,7 @@ void ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData::Fr
 	*reinterpret_cast<ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData*>(p_Target) = s_Object;
 }
 
-void ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData*>(p_Object);
 
@@ -65825,7 +67764,7 @@ void ZAMDEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<ZAMDEvent*>(p_Target) = s_Object;
 }
 
-void ZAMDEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAMDEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAMDEvent*>(p_Object);
 
@@ -65917,17 +67856,23 @@ void ZAMDEventTrack::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_events"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_events"];
+	s_Object.m_events.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZAMDEvent s_ArrayItem0;
 		ZAMDEvent::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_events.push_back(s_ArrayItem0);
+		s_Object.m_events[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<ZAMDEventTrack*>(p_Target) = s_Object;
 }
 
-void ZAMDEventTrack::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAMDEventTrack::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAMDEventTrack*>(p_Object);
 
@@ -66026,11 +67971,17 @@ void ZAMDTake::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 {
 	ZAMDTake s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_eventTracks"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_eventTracks"];
+	s_Object.m_eventTracks.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZAMDEventTrack s_ArrayItem0;
 		ZAMDEventTrack::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_eventTracks.push_back(s_ArrayItem0);
+		s_Object.m_eventTracks[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -66044,7 +67995,7 @@ void ZAMDTake::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<ZAMDTake*>(p_Target) = s_Object;
 }
 
-void ZAMDTake::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAMDTake::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAMDTake*>(p_Object);
 
@@ -66160,7 +68111,7 @@ void ZAT2Controller_SEventPreviewInfo::FromSimpleJson(simdjson::ondemand::value 
 	*reinterpret_cast<ZAT2Controller_SEventPreviewInfo*>(p_Target) = s_Object;
 }
 
-void ZAT2Controller_SEventPreviewInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAT2Controller_SEventPreviewInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAT2Controller_SEventPreviewInfo*>(p_Object);
 
@@ -66239,7 +68190,7 @@ void ZAT2Controller_SGeneratedFootstepEvent::FromSimpleJson(simdjson::ondemand::
 	*reinterpret_cast<ZAT2Controller_SGeneratedFootstepEvent*>(p_Target) = s_Object;
 }
 
-void ZAT2Controller_SGeneratedFootstepEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAT2Controller_SGeneratedFootstepEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAT2Controller_SGeneratedFootstepEvent*>(p_Object);
 
@@ -66340,7 +68291,7 @@ void ZApproachOrder_SApproachOrderSaveData::FromSimpleJson(simdjson::ondemand::v
 	*reinterpret_cast<ZApproachOrder_SApproachOrderSaveData*>(p_Target) = s_Object;
 }
 
-void ZApproachOrder_SApproachOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZApproachOrder_SApproachOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZApproachOrder_SApproachOrderSaveData*>(p_Object);
 
@@ -66394,7 +68345,7 @@ void ZAutoNullEntityRef::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<ZAutoNullEntityRef*>(p_Target) = s_Object;
 }
 
-void ZAutoNullEntityRef::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAutoNullEntityRef::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAutoNullEntityRef*>(p_Object);
 
@@ -66469,15 +68420,21 @@ void ZAvoidDangerousAreaSituation_SSituationSaveData::FromSimpleJson(simdjson::o
 {
 	ZAvoidDangerousAreaSituation_SSituationSaveData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerousAreaGroups"])
 	{
-		s_Object.m_aAvoidDangerousAreaGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAvoidDangerousAreaGroups"];
+	s_Object.m_aAvoidDangerousAreaGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aAvoidDangerousAreaGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZAvoidDangerousAreaSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZAvoidDangerousAreaSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZAvoidDangerousAreaSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZAvoidDangerousAreaSituation_SSituationSaveData*>(p_Object);
 
@@ -66566,17 +68523,23 @@ void ZComponentCreator::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object.m_sComponentName = std::string_view(p_Document["m_sComponentName"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aArgs"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aArgs"];
+	s_Object.m_aArgs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZVariant s_ArrayItem0;
 		ZVariant::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aArgs.push_back(s_ArrayItem0);
+		s_Object.m_aArgs[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<ZComponentCreator*>(p_Target) = s_Object;
 }
 
-void ZComponentCreator::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZComponentCreator::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZComponentCreator*>(p_Object);
 
@@ -66629,7 +68592,7 @@ void ZContractEvaluationContext::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<ZContractEvaluationContext*>(p_Target) = s_Object;
 }
 
-void ZContractEvaluationContext::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZContractEvaluationContext::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZContractEvaluationContext*>(p_Object);
 
@@ -66725,7 +68688,12 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 {
 	ZCurve s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["data"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["data"];
+	s_Object.data.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TFixedArray<float32, 8> s_ArrayItem0;
 		{
@@ -66736,13 +68704,14 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 			++s_Index1;
 		}
 		}
-		s_Object.data.push_back(s_ArrayItem0);
+		s_Object.data[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<ZCurve*>(p_Target) = s_Object;
 }
 
-void ZCurve::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZCurve::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZCurve*>(p_Object);
 
@@ -66815,7 +68784,7 @@ void ZDeadBodySituation_SIncidentSaveData::FromSimpleJson(simdjson::ondemand::va
 	*reinterpret_cast<ZDeadBodySituation_SIncidentSaveData*>(p_Target) = s_Object;
 }
 
-void ZDeadBodySituation_SIncidentSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDeadBodySituation_SIncidentSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDeadBodySituation_SIncidentSaveData*>(p_Object);
 
@@ -66992,7 +68961,7 @@ void ZDeadBodySituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<ZDeadBodySituation_SState*>(p_Target) = s_Object;
 }
 
-void ZDeadBodySituation_SState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDeadBodySituation_SState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDeadBodySituation_SState*>(p_Object);
 
@@ -67137,11 +69106,17 @@ void ZDeadBodySituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aIncidents"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aIncidents"];
+	s_Object.m_aIncidents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZDeadBodySituation_SIncidentSaveData s_ArrayItem0;
 		ZDeadBodySituation_SIncidentSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aIncidents.push_back(s_ArrayItem0);
+		s_Object.m_aIncidents[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.m_pInvestigateDisguiseGroup = simdjson::from_json_int32(p_Document["m_pInvestigateDisguiseGroup"]);
@@ -67153,7 +69128,7 @@ void ZDeadBodySituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	*reinterpret_cast<ZDeadBodySituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZDeadBodySituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDeadBodySituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDeadBodySituation_SSituationSaveData*>(p_Object);
 
@@ -67220,7 +69195,7 @@ void ZDetectedInPrivateSituation_SSituationSaveData::FromSimpleJson(simdjson::on
 	*reinterpret_cast<ZDetectedInPrivateSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZDetectedInPrivateSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDetectedInPrivateSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDetectedInPrivateSituation_SSituationSaveData*>(p_Object);
 
@@ -67270,7 +69245,7 @@ void ZDialogEventItemTypedIndex::FromSimpleJson(simdjson::ondemand::value p_Docu
 	*reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Target) = s_Object;
 }
 
-void ZDialogEventItemTypedIndex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDialogEventItemTypedIndex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Object);
 
@@ -67367,9 +69342,15 @@ void ZDisguiseSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 
 	s_Object.m_pLeader = simdjson::from_json_uint32(p_Document["m_pLeader"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aInvestigateDisguiseGroups"])
 	{
-		s_Object.m_aInvestigateDisguiseGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aInvestigateDisguiseGroups"];
+	s_Object.m_aInvestigateDisguiseGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aInvestigateDisguiseGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	s_Object.m_eEventSetOnEscalation = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(p_Document["m_eEventSetOnEscalation"])));
@@ -67377,7 +69358,7 @@ void ZDisguiseSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	*reinterpret_cast<ZDisguiseSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZDisguiseSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDisguiseSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDisguiseSituation_SSituationSaveData*>(p_Object);
 
@@ -67487,24 +69468,36 @@ void ZDynamicObject_SArrayTypesRegistrar::FromSimpleJson(simdjson::ondemand::val
 {
 	ZDynamicObject_SArrayTypesRegistrar s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_dummy"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_dummy"];
+	s_Object._dummy.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SDynamicObjectKeyValuePair s_ArrayItem0;
 		SDynamicObjectKeyValuePair::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._dummy.push_back(s_ArrayItem0);
+		s_Object._dummy[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_dummy2"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_dummy2"];
+	s_Object._dummy2.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZDynamicObject s_ArrayItem0;
 		ZDynamicObject::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._dummy2.push_back(s_ArrayItem0);
+		s_Object._dummy2[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<ZDynamicObject_SArrayTypesRegistrar*>(p_Target) = s_Object;
 }
 
-void ZDynamicObject_SArrayTypesRegistrar::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZDynamicObject_SArrayTypesRegistrar::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZDynamicObject_SArrayTypesRegistrar*>(p_Object);
 
@@ -67579,7 +69572,7 @@ void ZER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 	*reinterpret_cast<ZER64*>(p_Target) = s_Object;
 }
 
-void ZER64::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZER64::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZER64*>(p_Object);
 
@@ -67641,7 +69634,7 @@ void ZEntityID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	*reinterpret_cast<ZEntityID*>(p_Target) = s_Object;
 }
 
-void ZEntityID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZEntityID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZEntityID*>(p_Object);
 
@@ -67692,7 +69685,7 @@ void ZEntityPath::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 	*reinterpret_cast<ZEntityPath*>(p_Target) = s_Object;
 }
 
-void ZEntityPath::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZEntityPath::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZEntityPath*>(p_Object);
 
@@ -67741,7 +69734,7 @@ void ZEntityRef::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 	*reinterpret_cast<ZEntityRef*>(p_Target) = s_Object;
 }
 
-void ZEntityRef::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZEntityRef::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZEntityRef*>(p_Object);
 
@@ -67816,7 +69809,7 @@ void ZEntityReference::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<ZEntityReference*>(p_Target) = s_Object;
 }
 
-void ZEntityReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZEntityReference::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZEntityReference*>(p_Object);
 
@@ -67907,7 +69900,7 @@ void ZFormationMoveOrder_SFormationMoveOrderSaveData::FromSimpleJson(simdjson::o
 	*reinterpret_cast<ZFormationMoveOrder_SFormationMoveOrderSaveData*>(p_Target) = s_Object;
 }
 
-void ZFormationMoveOrder_SFormationMoveOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZFormationMoveOrder_SFormationMoveOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZFormationMoveOrder_SFormationMoveOrderSaveData*>(p_Object);
 
@@ -67960,7 +69953,7 @@ void ZGfxValueWrapper::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<ZGfxValueWrapper*>(p_Target) = s_Object;
 }
 
-void ZGfxValueWrapper::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZGfxValueWrapper::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZGfxValueWrapper*>(p_Object);
 
@@ -68047,15 +70040,21 @@ void ZGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 	s_Object.m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_field"])
 	{
-		s_Object.m_field.push_back(simdjson::from_json_float32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_field"];
+	s_Object.m_field.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_field[s_Index0++] = simdjson::from_json_float32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZGridFloatField*>(p_Target) = s_Object;
 }
 
-void ZGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZGridFloatField*>(p_Object);
 
@@ -68117,7 +70116,7 @@ void ZHM5AgilityEventConsumer_SAgilityEventData::FromSimpleJson(simdjson::ondema
 	*reinterpret_cast<ZHM5AgilityEventConsumer_SAgilityEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5AgilityEventConsumer_SAgilityEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5AgilityEventConsumer_SAgilityEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5AgilityEventConsumer_SAgilityEventData*>(p_Object);
 
@@ -68167,7 +70166,7 @@ void ZResourcePtr::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_
 	*reinterpret_cast<ZResourcePtr*>(p_Target) = s_Object;
 }
 
-void ZResourcePtr::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZResourcePtr::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZResourcePtr*>(p_Object);
 
@@ -68254,7 +70253,7 @@ void ZHM5AudioEventConsumer_SAudioAnimationEventData::FromSimpleJson(simdjson::o
 	*reinterpret_cast<ZHM5AudioEventConsumer_SAudioAnimationEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5AudioEventConsumer_SAudioAnimationEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5AudioEventConsumer_SAudioAnimationEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5AudioEventConsumer_SAudioAnimationEventData*>(p_Object);
 
@@ -68317,7 +70316,7 @@ void ZHM5BodySoundEventConsumer_SBodySoundEventData::FromSimpleJson(simdjson::on
 	*reinterpret_cast<ZHM5BodySoundEventConsumer_SBodySoundEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5BodySoundEventConsumer_SBodySoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5BodySoundEventConsumer_SBodySoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5BodySoundEventConsumer_SBodySoundEventData*>(p_Object);
 
@@ -68401,7 +70400,7 @@ void ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::FromSimpleJson(sim
 	*reinterpret_cast<ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData*>(p_Object);
 
@@ -68491,7 +70490,7 @@ void ZHM5CrowdEventConsumer_SCrowdSoundEventData::FromSimpleJson(simdjson::ondem
 	*reinterpret_cast<ZHM5CrowdEventConsumer_SCrowdSoundEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5CrowdEventConsumer_SCrowdSoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5CrowdEventConsumer_SCrowdSoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5CrowdEventConsumer_SCrowdSoundEventData*>(p_Object);
 
@@ -68554,7 +70553,7 @@ void ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData::FromSimpleJson(s
 	*reinterpret_cast<ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData*>(p_Object);
 
@@ -68614,7 +70613,7 @@ void ZHM5FaceFXReactionEventConsumer_SFaceFXEventData::FromSimpleJson(simdjson::
 	*reinterpret_cast<ZHM5FaceFXReactionEventConsumer_SFaceFXEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5FaceFXReactionEventConsumer_SFaceFXEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5FaceFXReactionEventConsumer_SFaceFXEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5FaceFXReactionEventConsumer_SFaceFXEventData*>(p_Object);
 
@@ -68686,7 +70685,7 @@ void ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData::FromSimpleJson(simdjson::
 	*reinterpret_cast<ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData*>(p_Object);
 
@@ -68748,7 +70747,7 @@ void ZHM5FootstepEventConsumer_SFootstepSoundEventData::FromSimpleJson(simdjson:
 	*reinterpret_cast<ZHM5FootstepEventConsumer_SFootstepSoundEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5FootstepEventConsumer_SFootstepSoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5FootstepEventConsumer_SFootstepSoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5FootstepEventConsumer_SFootstepSoundEventData*>(p_Object);
 
@@ -68808,7 +70807,7 @@ void ZHM5GenericEventConsumer_SGenericEventData::FromSimpleJson(simdjson::ondema
 	*reinterpret_cast<ZHM5GenericEventConsumer_SGenericEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5GenericEventConsumer_SGenericEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5GenericEventConsumer_SGenericEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5GenericEventConsumer_SGenericEventData*>(p_Object);
 
@@ -68880,7 +70879,7 @@ void ZHM5HIKEventConsumer_SZHM5HIKEventData::FromSimpleJson(simdjson::ondemand::
 	*reinterpret_cast<ZHM5HIKEventConsumer_SZHM5HIKEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5HIKEventConsumer_SZHM5HIKEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5HIKEventConsumer_SZHM5HIKEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5HIKEventConsumer_SZHM5HIKEventData*>(p_Object);
 
@@ -68941,7 +70940,7 @@ void ZHM5ItemInteractionEventConsumer_SItemInteractionEventData::FromSimpleJson(
 	*reinterpret_cast<ZHM5ItemInteractionEventConsumer_SItemInteractionEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5ItemInteractionEventConsumer_SItemInteractionEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5ItemInteractionEventConsumer_SItemInteractionEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5ItemInteractionEventConsumer_SItemInteractionEventData*>(p_Object);
 
@@ -69001,7 +71000,7 @@ void ZHM5WeaponEventConsumer_SWeaponEventData::FromSimpleJson(simdjson::ondemand
 	*reinterpret_cast<ZHM5WeaponEventConsumer_SWeaponEventData*>(p_Target) = s_Object;
 }
 
-void ZHM5WeaponEventConsumer_SWeaponEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHM5WeaponEventConsumer_SWeaponEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHM5WeaponEventConsumer_SWeaponEventData*>(p_Object);
 
@@ -69145,7 +71144,7 @@ void ZHUDAIGuide_SData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<ZHUDAIGuide_SData*>(p_Target) = s_Object;
 }
 
-void ZHUDAIGuide_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHUDAIGuide_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHUDAIGuide_SData*>(p_Object);
 
@@ -69224,7 +71223,7 @@ void ZHUDHintController_SData::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<ZHUDHintController_SData*>(p_Target) = s_Object;
 }
 
-void ZHUDHintController_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHUDHintController_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHUDHintController_SData*>(p_Object);
 
@@ -69299,7 +71298,7 @@ void ZHUDInventoryNotificationController_SData::FromSimpleJson(simdjson::ondeman
 	*reinterpret_cast<ZHUDInventoryNotificationController_SData*>(p_Target) = s_Object;
 }
 
-void ZHUDInventoryNotificationController_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHUDInventoryNotificationController_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHUDInventoryNotificationController_SData*>(p_Object);
 
@@ -69402,7 +71401,7 @@ void ZHUDUIControllerEntity_SIntelData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<ZHUDUIControllerEntity_SIntelData*>(p_Target) = s_Object;
 }
 
-void ZHUDUIControllerEntity_SIntelData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHUDUIControllerEntity_SIntelData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHUDUIControllerEntity_SIntelData*>(p_Object);
 
@@ -69527,7 +71526,7 @@ void ZHUDUIControllerEntity_SWeaponViewData::FromSimpleJson(simdjson::ondemand::
 	*reinterpret_cast<ZHUDUIControllerEntity_SWeaponViewData*>(p_Target) = s_Object;
 }
 
-void ZHUDUIControllerEntity_SWeaponViewData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHUDUIControllerEntity_SWeaponViewData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHUDUIControllerEntity_SWeaponViewData*>(p_Object);
 
@@ -69584,7 +71583,7 @@ void ZHttpUrl::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 	*reinterpret_cast<ZHttpUrl*>(p_Target) = s_Object;
 }
 
-void ZHttpUrl::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZHttpUrl::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZHttpUrl*>(p_Object);
 
@@ -69643,7 +71642,7 @@ void ZInfectedSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 	*reinterpret_cast<ZInfectedSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZInfectedSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZInfectedSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZInfectedSituation_SSituationSaveData*>(p_Object);
 
@@ -69693,7 +71692,7 @@ void ZInteractionData::FromSimpleJson(simdjson::ondemand::value p_Document, void
 	*reinterpret_cast<ZInteractionData*>(p_Target) = s_Object;
 }
 
-void ZInteractionData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZInteractionData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZInteractionData*>(p_Object);
 
@@ -69752,7 +71751,7 @@ void ZInteractionEventConsumer_SInteractionEventData::FromSimpleJson(simdjson::o
 	*reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Target) = s_Object;
 }
 
-void ZInteractionEventConsumer_SInteractionEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZInteractionEventConsumer_SInteractionEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer_SInteractionEventData*>(p_Object);
 
@@ -69802,7 +71801,7 @@ void ZInteractionGuideData::FromSimpleJson(simdjson::ondemand::value p_Document,
 	*reinterpret_cast<ZInteractionGuideData*>(p_Target) = s_Object;
 }
 
-void ZInteractionGuideData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZInteractionGuideData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZInteractionGuideData*>(p_Object);
 
@@ -69905,7 +71904,7 @@ void ZInvestigateWeaponSituation_SSituationSaveData::FromSimpleJson(simdjson::on
 	*reinterpret_cast<ZInvestigateWeaponSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZInvestigateWeaponSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZInvestigateWeaponSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZInvestigateWeaponSituation_SSituationSaveData*>(p_Object);
 
@@ -69990,7 +71989,7 @@ void ZJumpToOrder_SJumpToOrderSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<ZJumpToOrder_SJumpToOrderSaveData*>(p_Target) = s_Object;
 }
 
-void ZJumpToOrder_SJumpToOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZJumpToOrder_SJumpToOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZJumpToOrder_SJumpToOrderSaveData*>(p_Object);
 
@@ -70069,15 +72068,21 @@ void ZKeywordCalculator_SCollection::FromSimpleJson(simdjson::ondemand::value p_
 {
 	ZKeywordCalculator_SCollection s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["aKeywords"])
 	{
-		s_Object.aKeywords.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["aKeywords"];
+	s_Object.aKeywords.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.aKeywords[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZKeywordCalculator_SCollection*>(p_Target) = s_Object;
 }
 
-void ZKeywordCalculator_SCollection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZKeywordCalculator_SCollection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZKeywordCalculator_SCollection*>(p_Object);
 
@@ -70286,7 +72291,7 @@ void ZMoveToOrder_SMoveToOrderSaveData::FromSimpleJson(simdjson::ondemand::value
 	*reinterpret_cast<ZMoveToOrder_SMoveToOrderSaveData*>(p_Target) = s_Object;
 }
 
-void ZMoveToOrder_SMoveToOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZMoveToOrder_SMoveToOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZMoveToOrder_SMoveToOrderSaveData*>(p_Object);
 
@@ -70349,7 +72354,7 @@ void ZPlanningObjectiveInfoBuilder::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Target) = s_Object;
 }
 
-void ZPlanningObjectiveInfoBuilder::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZPlanningObjectiveInfoBuilder::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Object);
 
@@ -70398,7 +72403,7 @@ void ZPostfilterGraphBaseNode::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Target) = s_Object;
 }
 
-void ZPostfilterGraphBaseNode::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZPostfilterGraphBaseNode::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Object);
 
@@ -70447,7 +72452,7 @@ void ZRayQueryInput::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	*reinterpret_cast<ZRayQueryInput*>(p_Target) = s_Object;
 }
 
-void ZRayQueryInput::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZRayQueryInput::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZRayQueryInput*>(p_Object);
 
@@ -70566,7 +72571,7 @@ void ZRecoverUnconsciousSituation_SSituationSaveData::FromSimpleJson(simdjson::o
 	*reinterpret_cast<ZRecoverUnconsciousSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZRecoverUnconsciousSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZRecoverUnconsciousSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZRecoverUnconsciousSituation_SSituationSaveData*>(p_Object);
 
@@ -70667,7 +72672,7 @@ void ZRuntimePinConDesc::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 	*reinterpret_cast<ZRuntimePinConDesc*>(p_Target) = s_Object;
 }
 
-void ZRuntimePinConDesc::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZRuntimePinConDesc::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZRuntimePinConDesc*>(p_Object);
 
@@ -70762,15 +72767,21 @@ void ZScopedER64::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 		s_Object.m_er64 = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aScopePath"])
 	{
-		s_Object.m_aScopePath.push_back(simdjson::from_json_uint64(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aScopePath"];
+	s_Object.m_aScopePath.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aScopePath[s_Index0++] = simdjson::from_json_uint64(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZScopedER64*>(p_Target) = s_Object;
 }
 
-void ZScopedER64::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZScopedER64::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZScopedER64*>(p_Object);
 
@@ -70859,9 +72870,15 @@ void ZScopedRuntimePinConDesc::FromSimpleJson(simdjson::ondemand::value p_Docume
 {
 	ZScopedRuntimePinConDesc s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aScopePath"])
 	{
-		s_Object.m_aScopePath.push_back(simdjson::from_json_uint64(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aScopePath"];
+	s_Object.m_aScopePath.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aScopePath[s_Index0++] = simdjson::from_json_uint64(s_Item0);
+	}
 	}
 
 	{
@@ -70873,7 +72890,7 @@ void ZScopedRuntimePinConDesc::FromSimpleJson(simdjson::ondemand::value p_Docume
 	*reinterpret_cast<ZScopedRuntimePinConDesc*>(p_Target) = s_Object;
 }
 
-void ZScopedRuntimePinConDesc::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZScopedRuntimePinConDesc::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZScopedRuntimePinConDesc*>(p_Object);
 
@@ -70936,7 +72953,7 @@ void ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::FromSimp
 	*reinterpret_cast<ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule*>(p_Target) = s_Object;
 }
 
-void ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule*>(p_Object);
 
@@ -71008,7 +73025,7 @@ void ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::FromSimple
 	*reinterpret_cast<ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule*>(p_Target) = s_Object;
 }
 
-void ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule*>(p_Object);
 
@@ -71129,7 +73146,7 @@ void ZSetPieceIconEntity_SIconData::FromSimpleJson(simdjson::ondemand::value p_D
 	*reinterpret_cast<ZSetPieceIconEntity_SIconData*>(p_Target) = s_Object;
 }
 
-void ZSetPieceIconEntity_SIconData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSetPieceIconEntity_SIconData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSetPieceIconEntity_SIconData*>(p_Object);
 
@@ -71307,7 +73324,7 @@ void ZSharedSensorDef_SVisibilitySetting::FromSimpleJson(simdjson::ondemand::val
 	*reinterpret_cast<ZSharedSensorDef_SVisibilitySetting*>(p_Target) = s_Object;
 }
 
-void ZSharedSensorDef_SVisibilitySetting::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSharedSensorDef_SVisibilitySetting::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSharedSensorDef_SVisibilitySetting*>(p_Object);
 
@@ -71366,7 +73383,7 @@ void ZSituationGroup::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<ZSituationGroup*>(p_Target) = s_Object;
 }
 
-void ZSituationGroup::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSituationGroup::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSituationGroup*>(p_Object);
 
@@ -71415,7 +73432,7 @@ void ZSituationOrder::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<ZSituationOrder*>(p_Target) = s_Object;
 }
 
-void ZSituationOrder::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSituationOrder::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSituationOrder*>(p_Object);
 
@@ -71502,7 +73519,7 @@ void ZSniperCombatSituation_SSniperSuspiciousArea::FromSimpleJson(simdjson::onde
 	*reinterpret_cast<ZSniperCombatSituation_SSniperSuspiciousArea*>(p_Target) = s_Object;
 }
 
-void ZSniperCombatSituation_SSniperSuspiciousArea::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSniperCombatSituation_SSniperSuspiciousArea::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSniperCombatSituation_SSniperSuspiciousArea*>(p_Object);
 
@@ -71777,9 +73794,15 @@ void ZSniperCombatSituation_SSituationSaveData::FromSimpleJson(simdjson::ondeman
 
 	s_Object.m_rSniperLocation = simdjson::from_json_uint32(p_Document["m_rSniperLocation"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSniperCombatGroups"])
 	{
-		s_Object.m_aSniperCombatGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSniperCombatGroups"];
+	s_Object.m_aSniperCombatGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aSniperCombatGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	s_Object.m_bAggressive = simdjson::from_json_bool(p_Document["m_bAggressive"]);
@@ -71788,21 +73811,39 @@ void ZSniperCombatSituation_SSituationSaveData::FromSimpleJson(simdjson::ondeman
 
 	s_Object.m_rIsland = simdjson::from_json_uint32(p_Document["m_rIsland"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aSuspiciousAreas"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSuspiciousAreas"];
+	s_Object.m_aSuspiciousAreas.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZSniperCombatSituation_SSniperSuspiciousArea s_ArrayItem0;
 		ZSniperCombatSituation_SSniperSuspiciousArea::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.m_aSuspiciousAreas.push_back(s_ArrayItem0);
+		s_Object.m_aSuspiciousAreas[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aWaitingGuards"])
 	{
-		s_Object.m_aWaitingGuards.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aWaitingGuards"];
+	s_Object.m_aWaitingGuards.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aWaitingGuards[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aFleeCandidates"])
 	{
-		s_Object.m_aFleeCandidates.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aFleeCandidates"];
+	s_Object.m_aFleeCandidates.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aFleeCandidates[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	s_Object.m_bHasFailed = simdjson::from_json_bool(p_Document["m_bHasFailed"]);
@@ -71811,15 +73852,21 @@ void ZSniperCombatSituation_SSituationSaveData::FromSimpleJson(simdjson::ondeman
 
 	s_Object.m_nGuards = simdjson::from_json_uint32(p_Document["m_nGuards"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerGroups"])
 	{
-		s_Object.m_aAvoidDangerGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAvoidDangerGroups"];
+	s_Object.m_aAvoidDangerGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aAvoidDangerGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZSniperCombatSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZSniperCombatSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSniperCombatSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSniperCombatSituation_SSituationSaveData*>(p_Object);
 
@@ -71885,7 +73932,7 @@ void ZSoundCollisionInfo::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	*reinterpret_cast<ZSoundCollisionInfo*>(p_Target) = s_Object;
 }
 
-void ZSoundCollisionInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSoundCollisionInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSoundCollisionInfo*>(p_Object);
 
@@ -72003,20 +74050,32 @@ void ZSpectatorSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::
 
 	s_Object.m_bStandingDown = simdjson::from_json_bool(p_Document["m_bStandingDown"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aObserverGroupIDs"])
 	{
-		s_Object.m_aObserverGroupIDs.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aObserverGroupIDs"];
+	s_Object.m_aObserverGroupIDs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aObserverGroupIDs[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aNonObserverMembers"])
 	{
-		s_Object.m_aNonObserverMembers.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aNonObserverMembers"];
+	s_Object.m_aNonObserverMembers.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aNonObserverMembers[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZSpectatorSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZSpectatorSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZSpectatorSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZSpectatorSituation_SSituationSaveData*>(p_Object);
 
@@ -72464,7 +74523,7 @@ void ZStandOffSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Docum
 	*reinterpret_cast<ZStandOffSituation_SState*>(p_Target) = s_Object;
 }
 
-void ZStandOffSituation_SState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZStandOffSituation_SState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZStandOffSituation_SState*>(p_Object);
 
@@ -72680,15 +74739,21 @@ void ZStandOffSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand::v
 		s_Object.m_tLastTimeTargetLOS = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["m_aAvoidDangerGroups"])
 	{
-		s_Object.m_aAvoidDangerGroups.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAvoidDangerGroups"];
+	s_Object.m_aAvoidDangerGroups.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aAvoidDangerGroups[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZStandOffSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZStandOffSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZStandOffSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZStandOffSituation_SSituationSaveData*>(p_Object);
 
@@ -72759,7 +74824,7 @@ void ZTime::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 	*reinterpret_cast<ZTime*>(p_Target) = s_Object;
 }
 
-void ZTime::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZTime::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZTime*>(p_Object);
 
@@ -72879,7 +74944,7 @@ void ZTrespassingSituation_SState::FromSimpleJson(simdjson::ondemand::value p_Do
 	*reinterpret_cast<ZTrespassingSituation_SState*>(p_Target) = s_Object;
 }
 
-void ZTrespassingSituation_SState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZTrespassingSituation_SState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZTrespassingSituation_SState*>(p_Object);
 
@@ -73014,7 +75079,7 @@ void ZTrespassingSituation_SSituationSaveData::FromSimpleJson(simdjson::ondemand
 	*reinterpret_cast<ZTrespassingSituation_SSituationSaveData*>(p_Target) = s_Object;
 }
 
-void ZTrespassingSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZTrespassingSituation_SSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZTrespassingSituation_SSituationSaveData*>(p_Object);
 
@@ -73357,7 +75422,7 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::
 	*reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo*>(p_Target) = s_Object;
 }
 
-void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo*>(p_Object);
 
@@ -73520,18 +75585,30 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::FromS
 {
 	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["mainslots"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["mainslots"];
+	s_Object.mainslots.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo s_ArrayItem0;
 		ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.mainslots.push_back(s_ArrayItem0);
+		s_Object.mainslots[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["otherslots"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["otherslots"];
+	s_Object.otherslots.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo s_ArrayItem0;
 		ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.otherslots.push_back(s_ArrayItem0);
+		s_Object.otherslots[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.selectedIndex = simdjson::from_json_int32(p_Document["selectedIndex"]);
@@ -73541,7 +75618,7 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::FromS
 	*reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData*>(p_Target) = s_Object;
 }
 
-void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData*>(p_Object);
 
@@ -73596,7 +75673,7 @@ void ZUIDataProvider::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 	*reinterpret_cast<ZUIDataProvider*>(p_Target) = s_Object;
 }
 
-void ZUIDataProvider::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZUIDataProvider::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZUIDataProvider*>(p_Object);
 
@@ -73919,7 +75996,7 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::FromSimple
 	*reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo*>(p_Target) = s_Object;
 }
 
-void ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo*>(p_Object);
 
@@ -74090,18 +76167,30 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::FromSimpleJson(
 {
 	ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["mainslots"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["mainslots"];
+	s_Object.mainslots.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo s_ArrayItem0;
 		ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.mainslots.push_back(s_ArrayItem0);
+		s_Object.mainslots[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["otherslots"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["otherslots"];
+	s_Object.otherslots.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo s_ArrayItem0;
 		ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object.otherslots.push_back(s_ArrayItem0);
+		s_Object.otherslots[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object.selectedIndex = simdjson::from_json_int32(p_Document["selectedIndex"]);
@@ -74113,7 +76202,7 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::FromSimpleJson(
 	*reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData*>(p_Target) = s_Object;
 }
 
-void ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData*>(p_Object);
 
@@ -74170,7 +76259,7 @@ void ZWorldMapMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 	*reinterpret_cast<ZWorldMapMetaData*>(p_Target) = s_Object;
 }
 
-void ZWorldMapMetaData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZWorldMapMetaData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<ZWorldMapMetaData*>(p_Object);
 
