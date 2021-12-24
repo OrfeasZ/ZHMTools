@@ -28,6 +28,7 @@ public:
 	bool operator==(const BoneId& p_Other) const;
 	bool operator!=(const BoneId& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -1029,6 +1030,7 @@ public:
 	bool operator==(const IActorAction& p_Other) const;
 	bool operator!=(const IActorAction& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1045,6 +1047,7 @@ public:
 	bool operator==(const IAnimPlayerEntity& p_Other) const;
 	bool operator!=(const IAnimPlayerEntity& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1061,6 +1064,7 @@ public:
 	bool operator==(const IBoneAnimator& p_Other) const;
 	bool operator!=(const IBoneAnimator& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1077,6 +1081,7 @@ public:
 	bool operator==(const IBoneCollidable& p_Other) const;
 	bool operator!=(const IBoneCollidable& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1098,6 +1103,7 @@ public:
 	bool operator==(const IComponentInterface& p_Other) const;
 	bool operator!=(const IComponentInterface& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1114,6 +1120,7 @@ public:
 	bool operator==(const IEventConsumerCollection& p_Other) const;
 	bool operator!=(const IEventConsumerCollection& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1130,6 +1137,7 @@ public:
 	bool operator==(const IHM5Door& p_Other) const;
 	bool operator!=(const IHM5Door& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1176,6 +1184,7 @@ public:
 	bool operator==(const IHM5WeaponInventory& p_Other) const;
 	bool operator!=(const IHM5WeaponInventory& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1212,6 +1221,7 @@ public:
 	bool operator==(const IMorphemeCutSequenceAnimatable& p_Other) const;
 	bool operator!=(const IMorphemeCutSequenceAnimatable& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1228,6 +1238,7 @@ public:
 	bool operator==(const IMorphemeEventConsumer& p_Other) const;
 	bool operator!=(const IMorphemeEventConsumer& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x1
@@ -1244,6 +1255,7 @@ public:
 	bool operator==(const IRenderCompositorEntity& p_Other) const;
 	bool operator!=(const IRenderCompositorEntity& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -1270,6 +1282,7 @@ public:
 	bool operator==(const IRenderMaterialDescriptor& p_Other) const;
 	bool operator!=(const IRenderMaterialDescriptor& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1321,6 +1334,7 @@ public:
 	bool operator==(const ISoundGroup& p_Other) const;
 	bool operator!=(const ISoundGroup& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1337,6 +1351,7 @@ public:
 	bool operator==(const ISoundListenerPositionReceiver& p_Other) const;
 	bool operator!=(const ISoundListenerPositionReceiver& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1353,6 +1368,7 @@ public:
 	bool operator==(const ISoundUpdateListener& p_Other) const;
 	bool operator!=(const ISoundUpdateListener& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1369,6 +1385,7 @@ public:
 	bool operator==(const ISoundVolumetricGeomSplinePoint& p_Other) const;
 	bool operator!=(const ISoundVolumetricGeomSplinePoint& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1385,6 +1402,7 @@ public:
 	bool operator==(const IStreamingStateManagerEntity& p_Other) const;
 	bool operator!=(const IStreamingStateManagerEntity& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1401,6 +1419,7 @@ public:
 	bool operator==(const ITriggerListener& p_Other) const;
 	bool operator!=(const ITriggerListener& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1417,6 +1436,7 @@ public:
 	bool operator==(const ITriggerShape& p_Other) const;
 	bool operator!=(const ITriggerShape& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1433,6 +1453,7 @@ public:
 	bool operator==(const IValueEntity& p_Other) const;
 	bool operator!=(const IValueEntity& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -1469,6 +1490,7 @@ public:
 	bool operator==(const SActorSoundDefs& p_Other) const;
 	bool operator!=(const SActorSoundDefs& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -1491,7 +1513,7 @@ public:
 	bool operator!=(const SBehaviorTreeEntityReference& p_Other) const { return !(*this == p_Other); }
 
 	bool _AC99E46E; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	ZString _EBF2DC42; // 0x4
 };
 
@@ -1512,6 +1534,7 @@ public:
 	uint32 _7A22B22E; // 0x0
 	uint32 _217E868E; // 0x4
 	bool _7E0EAB7D; // 0x8
+	uint8_t _pad9[3] {};
 };
 
 // Size: 0x8
@@ -1704,7 +1727,7 @@ public:
 	bool _AD7C9C45; // 0x1F
 	bool _E53983D3; // 0x20
 	bool _87B6A2FF; // 0x21
-	uint8_t _pad22[2];
+	uint8_t _pad22[2] {};
 	TArray<SSubGoalProgressData> _D4412377; // 0x24
 };
 
@@ -1741,6 +1764,7 @@ public:
 	bool operator==(const SCheatData& p_Other) const;
 	bool operator!=(const SCheatData& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x8
@@ -1759,6 +1783,7 @@ public:
 
 	uint32 _CE3E2DE2; // 0x0
 	bool _3589B0EA; // 0x4
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0xC
@@ -1813,7 +1838,7 @@ public:
 	STokenID _DFE2E88A; // 0x0
 	int32 _F6939C84; // 0x8
 	bool _B00640D9; // 0xC
-	uint8_t _padD[3];
+	uint8_t _padD[3] {};
 	TArray<bool> _433E339A; // 0x10
 };
 
@@ -1834,7 +1859,7 @@ public:
 	int32 _B714BBE4; // 0x0
 	bool _87B6A2FF; // 0x4
 	bool _AD7C9C45; // 0x5
-	uint8_t _pad6[2];
+	uint8_t _pad6[2] {};
 	STokenID _AAD1A263; // 0x8
 	int32 _79E8EE0C; // 0x10
 	TFixedArray<uint32, 8> _A3682C66; // 0x14
@@ -1848,6 +1873,7 @@ public:
 	int32 _A01D27FD; // 0x78
 	bool _4E143EF0; // 0x7C
 	bool _6441B4DD; // 0x7D
+	uint8_t _pad7E[2] {};
 };
 
 // Size: 0x10
@@ -1888,6 +1914,7 @@ public:
 	float4 _19ED66DF; // 0x10
 	uint32 _A81A0D87; // 0x20
 	float32 _EA119EDC; // 0x24
+	uint8_t _pad28[8] {};
 };
 
 // Size: 0xC
@@ -1943,6 +1970,7 @@ public:
 	bool operator==(const ZBehaviorTreeVariable& p_Other) const;
 	bool operator!=(const ZBehaviorTreeVariable& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x10
@@ -1996,7 +2024,7 @@ public:
 	bool operator!=(const SContractUnlockStatus& p_Other) const { return !(*this == p_Other); }
 
 	bool _09C31EA4; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	ELevelIndex _9361233F; // 0x4
 	int32 _3BD872AF; // 0x8
 };
@@ -2016,7 +2044,7 @@ public:
 	bool operator!=(const SContractSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool _C8FF2BBE; // 0x0
-	uint8_t _pad1[3];
+	uint8_t _pad1[3] {};
 	TArray<SContractUnlockStatus> _5685F5AA; // 0x4
 };
 
@@ -2204,6 +2232,7 @@ public:
 
 	int16 _1A38845D; // 0x0
 	uint8 _2352A656; // 0x2
+	uint8_t _pad3[1] {};
 };
 
 // Size: 0xB0
@@ -2232,7 +2261,7 @@ public:
 	TArray<SCrowdCells> _F80A5618; // 0x38
 	TArray<SCrowdFlowChannel> _95E7F03F; // 0x44
 	float32 _097F70BB; // 0x50
-	uint8_t _pad54[12];
+	uint8_t _pad54[12] {};
 	SMatrix _B8FF70AD; // 0x60
 	SVector3 _24DC3226; // 0xA0
 	float32 _5C6B6336; // 0xAC
@@ -2275,6 +2304,7 @@ public:
 	bool operator==(const SDoorSoundDefs& p_Other) const;
 	bool operator!=(const SDoorSoundDefs& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -2301,6 +2331,7 @@ public:
 	ZResourceID _8CDE5729; // 0x10
 	ZString _30C8A9AF; // 0x18
 	bool _CD395B3D; // 0x20
+	uint8_t _pad21[3] {};
 };
 
 // Size: 0x10
@@ -2452,6 +2483,7 @@ public:
 	float4 _356A9D27; // 0x10
 	int32 _7E907DDA; // 0x20
 	float32 _EE647576; // 0x24
+	uint8_t _pad28[8] {};
 };
 
 // Size: 0x20
@@ -2532,6 +2564,7 @@ public:
 	uint32 _07DAB04B; // 0x138
 	uint32 _259D35A6; // 0x13C
 	uint32 _2527C938; // 0x140
+	uint8_t _pad144[4] {};
 };
 
 // Size: 0x150
@@ -2550,6 +2583,7 @@ public:
 
 	SGameStatsData _936E667C; // 0x0
 	int32 _3A64A27F; // 0x148
+	uint8_t _pad14C[4] {};
 };
 
 // Size: 0x4
@@ -2744,7 +2778,7 @@ public:
 	bool _DBCDACAE; // 0x0
 	bool _E6559F40; // 0x1
 	bool _3C4892A2; // 0x2
-	uint8_t _pad3[1];
+	uint8_t _pad3[1] {};
 	STokenID _9D5D650C; // 0x4
 	STokenID _C66C54EB; // 0xC
 	uint32 _E9DA2719; // 0x14
@@ -2784,6 +2818,7 @@ public:
 
 	int32 _3B757F3E; // 0x0
 	bool _26E32D49; // 0x4
+	uint8_t _pad5[3] {};
 };
 
 // Size: 0x40
@@ -2863,10 +2898,11 @@ public:
 	ZBitArray _7FBA18A8; // 0x1C
 	TArray<TArray<uint16>> _4FCDFF9C; // 0x2C
 	TArray<TArray<uint16>> _B6A34009; // 0x38
-	uint8_t _pad44[12];
+	uint8_t _pad44[12] {};
 	SGProperties _0D7AD80A; // 0x50
 	uint32 _F7ACE02C; // 0x80
 	uint32 _5321B64E; // 0x84
+	uint8_t _pad88[8] {};
 };
 
 // Size: 0x1
@@ -2883,6 +2919,7 @@ public:
 	bool operator==(const SSerializedValue& p_Other) const;
 	bool operator!=(const SSerializedValue& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x8
@@ -2937,7 +2974,7 @@ public:
 	bool operator!=(const STechniquesSaveData& p_Other) const { return !(*this == p_Other); }
 
 	TFixedArray<uint8, 10> _B5537A08; // 0x0
-	uint8_t _padA[2];
+	uint8_t _padA[2] {};
 	TArray<STechniqueUnlockState> _7ED76297; // 0xC
 	TArray<bool> _949204C5; // 0x18
 	STechniqueUnlockState _1BA6F5A6; // 0x24
@@ -3082,7 +3119,7 @@ public:
 
 	uint32 _8A90ABA9; // 0x0
 	uint8 _8CDE5729; // 0x4
-	uint8_t _pad5[3];
+	uint8_t _pad5[3] {};
 	int32 _FB289CBB; // 0x8
 };
 
@@ -3135,6 +3172,7 @@ public:
 	bool operator==(const SWeaponSoundDefs& p_Other) const;
 	bool operator!=(const SWeaponSoundDefs& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[1] {};
 };
 
 // Size: 0x4
@@ -3302,6 +3340,7 @@ public:
 	bool operator==(const ZEntityRef& p_Other) const;
 	bool operator!=(const ZEntityRef& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x10
@@ -3533,6 +3572,7 @@ public:
 	bool operator==(const ZHitmanMorphemePostProcessorFiberWireCallback& p_Other) const;
 	bool operator!=(const ZHitmanMorphemePostProcessorFiberWireCallback& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x4
@@ -3549,6 +3589,7 @@ public:
 	bool operator==(const ZHitmanMorphemePostProcessorLedgeHangCallback& p_Other) const;
 	bool operator!=(const ZHitmanMorphemePostProcessorLedgeHangCallback& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x18
@@ -3565,6 +3606,7 @@ public:
 	bool operator==(const ZInventorySlot& p_Other) const;
 	bool operator!=(const ZInventorySlot& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[24] {};
 };
 
 // Size: 0x4
@@ -3616,6 +3658,7 @@ public:
 	bool operator==(const ZPostfilterGraphBaseNode& p_Other) const;
 	bool operator!=(const ZPostfilterGraphBaseNode& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x8
@@ -3632,6 +3675,7 @@ public:
 	bool operator==(const ZPresenceState& p_Other) const;
 	bool operator!=(const ZPresenceState& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[8] {};
 };
 
 // Size: 0x4
@@ -3653,6 +3697,7 @@ public:
 	bool operator==(const ZRayQueryInput& p_Other) const;
 	bool operator!=(const ZRayQueryInput& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[64] {};
 };
 
 // Size: 0x4
@@ -3684,6 +3729,7 @@ public:
 	bool operator==(const ZResourcePtr& p_Other) const;
 	bool operator!=(const ZResourcePtr& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x8
@@ -3743,6 +3789,7 @@ public:
 	bool operator==(const ZSoundBlendCollision& p_Other) const;
 	bool operator!=(const ZSoundBlendCollision& p_Other) const { return !(*this == p_Other); }
 
+	uint8_t _pad0[240] {};
 };
 
 // Size: 0x4

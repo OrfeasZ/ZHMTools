@@ -9,6 +9,7 @@
 #include "ZHMProperties.h"
 #include "ZHMEnums.h"
 #include <External/simdjson_helpers.h>
+#include <utility>
 
 ZHMTypeInfo BoneId::TypeInfo = ZHMTypeInfo("BoneId", sizeof(BoneId), alignof(BoneId), BoneId::WriteJson, BoneId::WriteSimpleJson, BoneId::FromSimpleJson, BoneId::Serialize, BoneId::Equals);
 
@@ -1392,18 +1393,30 @@ void SBehaviorTreeEvaluationLog::FromSimpleJson(simdjson::ondemand::value p_Docu
 {
 	SBehaviorTreeEvaluationLog s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_45584A12"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_45584A12"];
+	s_Object._45584A12.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZResourceID s_ArrayItem0;
 		ZResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._45584A12.push_back(s_ArrayItem0);
+		s_Object._45584A12[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_B80AC610"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_B80AC610"];
+	s_Object._B80AC610.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeEvaluationLogEntry s_ArrayItem0;
 		SBehaviorTreeEvaluationLogEntry::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._B80AC610.push_back(s_ArrayItem0);
+		s_Object._B80AC610[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SBehaviorTreeEvaluationLog*>(p_Target) = s_Object;
@@ -1580,18 +1593,30 @@ void SBehaviorTreeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SBehaviorTreeInfo s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_5AFAC781"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_5AFAC781"];
+	s_Object._5AFAC781.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeEntityReference s_ArrayItem0;
 		SBehaviorTreeEntityReference::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._5AFAC781.push_back(s_ArrayItem0);
+		s_Object._5AFAC781[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_5940064D"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_5940064D"];
+	s_Object._5940064D.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SBehaviorTreeInputPinCondition s_ArrayItem0;
 		SBehaviorTreeInputPinCondition::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._5940064D.push_back(s_ArrayItem0);
+		s_Object._5940064D[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SBehaviorTreeInfo*>(p_Target) = s_Object;
@@ -1887,11 +1912,17 @@ void SBoneScalesList::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 {
 	SBoneScalesList s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_DB3D5286"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_DB3D5286"];
+	s_Object._DB3D5286.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SVector3 s_ArrayItem0;
 		SVector3::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._DB3D5286.push_back(s_ArrayItem0);
+		s_Object._DB3D5286[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SBoneScalesList*>(p_Target) = s_Object;
@@ -2264,11 +2295,17 @@ void SFullGoalData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 	s_Object._87B6A2FF = simdjson::from_json_bool(p_Document["_87B6A2FF"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_D4412377"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_D4412377"];
+	s_Object._D4412377.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SSubGoalProgressData s_ArrayItem0;
 		SSubGoalProgressData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._D4412377.push_back(s_ArrayItem0);
+		s_Object._D4412377[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SFullGoalData*>(p_Target) = s_Object;
@@ -2383,11 +2420,17 @@ void SChallengeData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SChallengeData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_99B680D5"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_99B680D5"];
+	s_Object._99B680D5.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SFullGoalData s_ArrayItem0;
 		SFullGoalData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._99B680D5.push_back(s_ArrayItem0);
+		s_Object._99B680D5[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object._954912E4 = simdjson::from_json_int32(p_Document["_954912E4"]);
@@ -2781,9 +2824,15 @@ void SRangedWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object._B00640D9 = simdjson::from_json_bool(p_Document["_B00640D9"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_433E339A"])
 	{
-		s_Object._433E339A.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_433E339A"];
+	s_Object._433E339A.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._433E339A[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SRangedWeaponSaveData*>(p_Target) = s_Object;
@@ -3152,35 +3201,65 @@ void SCheckpointSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 
 	s_Object._57F16D6E = simdjson::from_json_float32(p_Document["_57F16D6E"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_F6EF6776"])
 	{
-		s_Object._F6EF6776.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_F6EF6776"];
+	s_Object._F6EF6776.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._F6EF6776[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_F617FC96"])
 	{
-		s_Object._F617FC96.push_back(simdjson::from_json_float32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_F617FC96"];
+	s_Object._F617FC96.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._F617FC96[s_Index0++] = simdjson::from_json_float32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_6C28792D"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_6C28792D"];
+	s_Object._6C28792D.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SItemSaveData s_ArrayItem0;
 		SItemSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._6C28792D.push_back(s_ArrayItem0);
+		s_Object._6C28792D[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_B14E7CA0"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_B14E7CA0"];
+	s_Object._B14E7CA0.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SRangedWeaponSaveData s_ArrayItem0;
 		SRangedWeaponSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._B14E7CA0.push_back(s_ArrayItem0);
+		s_Object._B14E7CA0[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_694B8AEB"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_694B8AEB"];
+	s_Object._694B8AEB.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCloseCombatWeaponSaveData s_ArrayItem0;
 		SCloseCombatWeaponSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._694B8AEB.push_back(s_ArrayItem0);
+		s_Object._694B8AEB[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object._A01D27FD = simdjson::from_json_int32(p_Document["_A01D27FD"]);
@@ -3981,11 +4060,17 @@ void SContractSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object._C8FF2BBE = simdjson::from_json_bool(p_Document["_C8FF2BBE"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_5685F5AA"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_5685F5AA"];
+	s_Object._5685F5AA.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SContractUnlockStatus s_ArrayItem0;
 		SContractUnlockStatus::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._5685F5AA.push_back(s_ArrayItem0);
+		s_Object._5685F5AA[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SContractSaveData*>(p_Target) = s_Object;
@@ -4159,11 +4244,17 @@ void SCppEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 
 	s_Object._891D57ED = simdjson::from_json_int32(p_Document["_891D57ED"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_71206441"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_71206441"];
+	s_Object._71206441.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._71206441.push_back(s_ArrayItem0);
+		s_Object._71206441[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCppEntity*>(p_Target) = s_Object;
@@ -4355,11 +4446,17 @@ void SCppEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object._B16D2E23 = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_4D38375A"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_4D38375A"];
+	s_Object._4D38375A.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCppEntitySubsetInfo s_ArrayItem0;
 		SCppEntitySubsetInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._4D38375A.push_back(s_ArrayItem0);
+		s_Object._4D38375A[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCppEntityBlueprint*>(p_Target) = s_Object;
@@ -4503,18 +4600,30 @@ void SCppEntityTemplate::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 		s_Object._B16D2E23 = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_71206441"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_71206441"];
+	s_Object._71206441.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._71206441.push_back(s_ArrayItem0);
+		s_Object._71206441[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_4D38375A"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_4D38375A"];
+	s_Object._4D38375A.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCppEntitySubsetInfo s_ArrayItem0;
 		SCppEntitySubsetInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._4D38375A.push_back(s_ArrayItem0);
+		s_Object._4D38375A[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SCppEntityTemplate*>(p_Target) = s_Object;
@@ -4723,14 +4832,26 @@ void SCrowdFlowChannel::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 {
 	SCrowdFlowChannel s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_090A18A1"])
 	{
-		s_Object._090A18A1.push_back(simdjson::from_json_uint8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_090A18A1"];
+	s_Object._090A18A1.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._090A18A1[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_7B24AA84"])
 	{
-		s_Object._7B24AA84.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_7B24AA84"];
+	s_Object._7B24AA84.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._7B24AA84[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SCrowdFlowChannel*>(p_Target) = s_Object;
@@ -5304,29 +5425,47 @@ void SCrowdMapData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 	s_Object._CFB258A3 = simdjson::from_json_uint32(p_Document["_CFB258A3"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_74A2342B"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_74A2342B"];
+	s_Object._74A2342B.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZCrowdGridPoint s_ArrayItem0;
 		ZCrowdGridPoint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._74A2342B.push_back(s_ArrayItem0);
+		s_Object._74A2342B[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object._75260351 = simdjson::from_json_float32(p_Document["_75260351"]);
 
 	s_Object._2BF00558 = simdjson::from_json_float32(p_Document["_2BF00558"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_F80A5618"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_F80A5618"];
+	s_Object._F80A5618.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdCells s_ArrayItem0;
 		SCrowdCells::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._F80A5618.push_back(s_ArrayItem0);
+		s_Object._F80A5618[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_95E7F03F"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_95E7F03F"];
+	s_Object._95E7F03F.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCrowdFlowChannel s_ArrayItem0;
 		SCrowdFlowChannel::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._95E7F03F.push_back(s_ArrayItem0);
+		s_Object._95E7F03F[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	s_Object._097F70BB = simdjson::from_json_float32(p_Document["_097F70BB"]);
@@ -5707,9 +5846,15 @@ void SEntityTemplateEntitySubset::FromSimpleJson(simdjson::ondemand::value p_Doc
 		s_Object._524D42EA = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_50EC64E5"])
 	{
-		s_Object._50EC64E5.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_50EC64E5"];
+	s_Object._50EC64E5.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._50EC64E5[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SEntityTemplateEntitySubset*>(p_Target) = s_Object;
@@ -6806,44 +6951,92 @@ void SGameStats::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Ta
 {
 	SGameStats s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_FF455411"])
 	{
-		s_Object._FF455411.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_FF455411"];
+	s_Object._FF455411.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._FF455411[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_6DE2F9E0"])
 	{
-		s_Object._6DE2F9E0.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_6DE2F9E0"];
+	s_Object._6DE2F9E0.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._6DE2F9E0[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_3D4C74E4"])
 	{
-		s_Object._3D4C74E4.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_3D4C74E4"];
+	s_Object._3D4C74E4.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._3D4C74E4[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_011D512F"])
 	{
-		s_Object._011D512F.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_011D512F"];
+	s_Object._011D512F.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._011D512F[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_56FE8642"])
 	{
-		s_Object._56FE8642.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_56FE8642"];
+	s_Object._56FE8642.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._56FE8642[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_7C260CE4"])
 	{
-		s_Object._7C260CE4.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_7C260CE4"];
+	s_Object._7C260CE4.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._7C260CE4[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_64EB930E"])
 	{
-		s_Object._64EB930E.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_64EB930E"];
+	s_Object._64EB930E.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._64EB930E[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_3289C9A4"])
 	{
-		s_Object._3289C9A4.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_3289C9A4"];
+	s_Object._3289C9A4.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._3289C9A4[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SGameStats*>(p_Target) = s_Object;
@@ -7376,11 +7569,17 @@ void SLevelCPProgressionData::FromSimpleJson(simdjson::ondemand::value p_Documen
 
 	s_Object._F0A2AB0C = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["_F0A2AB0C"])));
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_F0ABDD90"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_F0ABDD90"];
+	s_Object._F0ABDD90.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCPProgressionState s_ArrayItem0;
 		SCPProgressionState::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._F0ABDD90.push_back(s_ArrayItem0);
+		s_Object._F0ABDD90[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SLevelCPProgressionData*>(p_Target) = s_Object;
@@ -7562,11 +7761,17 @@ void SLevelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 
 	s_Object._771C430C = static_cast<ELevelIndex>(ZHMEnums::GetEnumValueByName("ELevelIndex", std::string_view(p_Document["_771C430C"])));
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_CA26BF0B"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_CA26BF0B"];
+	s_Object._CA26BF0B.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SCheckpointSaveData s_ArrayItem0;
 		SCheckpointSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._CA26BF0B.push_back(s_ArrayItem0);
+		s_Object._CA26BF0B[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SLevelSaveData*>(p_Target) = s_Object;
@@ -8629,29 +8834,59 @@ void SRatingData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_T
 {
 	SRatingData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_64147134"])
 	{
-		s_Object._64147134.push_back(simdjson::from_json_uint16(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_64147134"];
+	s_Object._64147134.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._64147134[s_Index0++] = simdjson::from_json_uint16(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_133F9C34"])
 	{
-		s_Object._133F9C34.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_133F9C34"];
+	s_Object._133F9C34.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._133F9C34[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_911A2395"])
 	{
-		s_Object._911A2395.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_911A2395"];
+	s_Object._911A2395.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._911A2395[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_EC99D89C"])
 	{
-		s_Object._EC99D89C.push_back(static_cast<DifficultyLevelEnum>(ZHMEnums::GetEnumValueByName("DifficultyLevelEnum", std::string_view(s_Item0))));
+	simdjson::ondemand::array s_Array0 = p_Document["_EC99D89C"];
+	s_Object._EC99D89C.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._EC99D89C[s_Index0++] = static_cast<DifficultyLevelEnum>(ZHMEnums::GetEnumValueByName("DifficultyLevelEnum", std::string_view(s_Item0)));
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_50471093"])
 	{
-		s_Object._50471093.push_back(simdjson::from_json_int32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_50471093"];
+	s_Object._50471093.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._50471093[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
 	}
 
 	s_Object._0EBD8ED2 = simdjson::from_json_int32(p_Document["_0EBD8ED2"]);
@@ -8776,14 +9011,26 @@ void SRatingHighScoreData::FromSimpleJson(simdjson::ondemand::value p_Document, 
 {
 	SRatingHighScoreData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_888ACA2B"])
 	{
-		s_Object._888ACA2B.push_back(simdjson::from_json_uint32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_888ACA2B"];
+	s_Object._888ACA2B.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._888ACA2B[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_4E9FBCD6"])
 	{
-		s_Object._4E9FBCD6.push_back(simdjson::from_json_int8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_4E9FBCD6"];
+	s_Object._4E9FBCD6.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._4E9FBCD6[s_Index0++] = simdjson::from_json_int8(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<SRatingHighScoreData*>(p_Target) = s_Object;
@@ -8878,9 +9125,15 @@ void ZBitArray::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 {
 	ZBitArray s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_8E83B475"])
 	{
-		s_Object._8E83B475.push_back(simdjson::from_json_uint8(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_8E83B475"];
+	s_Object._8E83B475.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._8E83B475[s_Index0++] = simdjson::from_json_uint8(s_Item0);
+	}
 	}
 
 	s_Object._DA61D51D = simdjson::from_json_uint32(p_Document["_DA61D51D"]);
@@ -9120,11 +9373,17 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SReasoningGrid s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_0BD7E833"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_0BD7E833"];
+	s_Object._0BD7E833.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SGWaypoint s_ArrayItem0;
 		SGWaypoint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._0BD7E833.push_back(s_ArrayItem0);
+		s_Object._0BD7E833[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -9139,24 +9398,48 @@ void SReasoningGrid::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 		s_Object._7FBA18A8 = s_Item;
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_4FCDFF9C"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_4FCDFF9C"];
+	s_Object._4FCDFF9C.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TArray<uint16> s_ArrayItem0;
-		for (simdjson::ondemand::value s_Item1 : s_Item0)
 		{
-			s_ArrayItem0.push_back(simdjson::from_json_uint16(s_Item1));
+		simdjson::ondemand::array s_Array1 = s_Item0;
+		s_ArrayItem0.resize(s_Array1.count_elements());
+		size_t s_Index1 = 0;
+
+		for (simdjson::ondemand::value s_Item1 : s_Array1)
+		{
+			s_ArrayItem0[s_Index1++] = simdjson::from_json_uint16(s_Item1);
 		}
-		s_Object._4FCDFF9C.push_back(s_ArrayItem0);
+		}
+		s_Object._4FCDFF9C[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_B6A34009"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_B6A34009"];
+	s_Object._B6A34009.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TArray<uint16> s_ArrayItem0;
-		for (simdjson::ondemand::value s_Item1 : s_Item0)
 		{
-			s_ArrayItem0.push_back(simdjson::from_json_uint16(s_Item1));
+		simdjson::ondemand::array s_Array1 = s_Item0;
+		s_ArrayItem0.resize(s_Array1.count_elements());
+		size_t s_Index1 = 0;
+
+		for (simdjson::ondemand::value s_Item1 : s_Array1)
+		{
+			s_ArrayItem0[s_Index1++] = simdjson::from_json_uint16(s_Item1);
 		}
-		s_Object._B6A34009.push_back(s_ArrayItem0);
+		}
+		s_Object._B6A34009[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	{
@@ -9555,16 +9838,28 @@ void STechniquesSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_7ED76297"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_7ED76297"];
+	s_Object._7ED76297.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STechniqueUnlockState s_ArrayItem0;
 		STechniqueUnlockState::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._7ED76297.push_back(s_ArrayItem0);
+		s_Object._7ED76297[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_949204C5"])
 	{
-		s_Object._949204C5.push_back(simdjson::from_json_bool(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_949204C5"];
+	s_Object._949204C5.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._949204C5[s_Index0++] = simdjson::from_json_bool(s_Item0);
+	}
 	}
 
 	{
@@ -9714,18 +10009,30 @@ void STemplateSubEntity::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	s_Object._B01F3C73 = simdjson::from_json_int32(p_Document["_B01F3C73"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_71206441"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_71206441"];
+	s_Object._71206441.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._71206441.push_back(s_ArrayItem0);
+		s_Object._71206441[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_E8548959"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_E8548959"];
+	s_Object._E8548959.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._E8548959.push_back(s_ArrayItem0);
+		s_Object._E8548959[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STemplateSubEntity*>(p_Target) = s_Object;
@@ -9836,11 +10143,17 @@ void STemplateEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 	s_Object._14CF59EB = simdjson::from_json_int32(p_Document["_14CF59EB"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_61ED060D"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_61ED060D"];
+	s_Object._61ED060D.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STemplateSubEntity s_ArrayItem0;
 		STemplateSubEntity::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._61ED060D.push_back(s_ArrayItem0);
+		s_Object._61ED060D[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STemplateEntity*>(p_Target) = s_Object;
@@ -10054,32 +10367,56 @@ void STemplateSubEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Doc
 
 	s_Object._CDF5A865 = std::string_view(p_Document["_CDF5A865"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_17EB0A5A"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_17EB0A5A"];
+	s_Object._17EB0A5A.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePropertyAlias s_ArrayItem0;
 		SEntityTemplatePropertyAlias::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._17EB0A5A.push_back(s_ArrayItem0);
+		s_Object._17EB0A5A[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_025728B5"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_025728B5"];
+	s_Object._025728B5.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,SEntityTemplateReference> s_ArrayItem0;
 		TPair<ZString,SEntityTemplateReference>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._025728B5.push_back(s_ArrayItem0);
+		s_Object._025728B5[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_268997DA"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_268997DA"];
+	s_Object._268997DA.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,int32> s_ArrayItem0;
 		TPair<ZString,int32>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._268997DA.push_back(s_ArrayItem0);
+		s_Object._268997DA[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_BF7B57C8"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_BF7B57C8"];
+	s_Object._BF7B57C8.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TPair<ZString,SEntityTemplateEntitySubset> s_ArrayItem0;
 		TPair<ZString,SEntityTemplateEntitySubset>::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._BF7B57C8.push_back(s_ArrayItem0);
+		s_Object._BF7B57C8[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STemplateSubEntityBlueprint*>(p_Target) = s_Object;
@@ -10277,32 +10614,56 @@ void STemplateEntityBlueprint::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object._14CF59EB = simdjson::from_json_int32(p_Document["_14CF59EB"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_61ED060D"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_61ED060D"];
+	s_Object._61ED060D.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		STemplateSubEntityBlueprint s_ArrayItem0;
 		STemplateSubEntityBlueprint::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._61ED060D.push_back(s_ArrayItem0);
+		s_Object._61ED060D[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_213C670C"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_213C670C"];
+	s_Object._213C670C.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePinConnection s_ArrayItem0;
 		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._213C670C.push_back(s_ArrayItem0);
+		s_Object._213C670C[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_351BE901"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_351BE901"];
+	s_Object._351BE901.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePinConnection s_ArrayItem0;
 		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._351BE901.push_back(s_ArrayItem0);
+		s_Object._351BE901[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_7CF08925"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_7CF08925"];
+	s_Object._7CF08925.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SEntityTemplatePinConnection s_ArrayItem0;
 		SEntityTemplatePinConnection::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._7CF08925.push_back(s_ArrayItem0);
+		s_Object._7CF08925[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<STemplateEntityBlueprint*>(p_Target) = s_Object;
@@ -10683,11 +11044,17 @@ void SUIOptionsData::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SUIOptionsData s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_ADF3F363"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_ADF3F363"];
+	s_Object._ADF3F363.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		SUIOptionValue s_ArrayItem0;
 		SUIOptionValue::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._ADF3F363.push_back(s_ArrayItem0);
+		s_Object._ADF3F363[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<SUIOptionsData*>(p_Target) = s_Object;
@@ -10990,11 +11357,17 @@ void ZComponentCreator::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object._D9EBDCBE = std::string_view(p_Document["_D9EBDCBE"]);
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_B9EA4804"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_B9EA4804"];
+	s_Object._B9EA4804.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		ZVariant s_ArrayItem0;
 		ZVariant::FromSimpleJson(s_Item0, &s_ArrayItem0);
-		s_Object._B9EA4804.push_back(s_ArrayItem0);
+		s_Object._B9EA4804[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<ZComponentCreator*>(p_Target) = s_Object;
@@ -11100,7 +11473,12 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 {
 	ZCurve s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_ADF3F363"])
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["_ADF3F363"];
+	s_Object._ADF3F363.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
 		TFixedArray<float32, 8> s_ArrayItem0;
 		{
@@ -11111,7 +11489,8 @@ void ZCurve::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target
 			++s_Index1;
 		}
 		}
-		s_Object._ADF3F363.push_back(s_ArrayItem0);
+		s_Object._ADF3F363[s_Index0++] = s_ArrayItem0;
+	}
 	}
 
 	*reinterpret_cast<ZCurve*>(p_Target) = s_Object;
@@ -12073,9 +12452,15 @@ void ZSpeakerLevels::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	ZSpeakerLevels s_Object {};
 
-	for (simdjson::ondemand::value s_Item0 : p_Document["_EB48D7FA"])
 	{
-		s_Object._EB48D7FA.push_back(simdjson::from_json_float32(s_Item0));
+	simdjson::ondemand::array s_Array0 = p_Document["_EB48D7FA"];
+	s_Object._EB48D7FA.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object._EB48D7FA[s_Index0++] = simdjson::from_json_float32(s_Item0);
+	}
 	}
 
 	*reinterpret_cast<ZSpeakerLevels*>(p_Target) = s_Object;
