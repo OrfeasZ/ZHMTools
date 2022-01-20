@@ -8,6 +8,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "ZHMInt.h"
+
 class ZVariant;
 class IZHMTypeInfo;
 
@@ -26,27 +28,27 @@ public:
 	ZHMSerializer(uint8_t p_Alignment, bool p_GenerateCompatible);
 	~ZHMSerializer();
 	
-	uintptr_t WriteMemory(void* p_Memory, size_t p_Size, size_t p_Alignment);
-	uintptr_t WriteMemoryUnaligned(void* p_Memory, size_t p_Size);
-	void PatchPtr(uintptr_t p_Offset, uintptr_t p_Pointer);
-	void PatchNullPtr(uintptr_t p_Offset);
-	void PatchType(uintptr_t p_Offset, IZHMTypeInfo* p_Type);
-	void RegisterRuntimeResourceId(uintptr_t p_Offset);
-	std::optional<uintptr_t> GetExistingPtrForVariant(ZVariant* p_Variant);
-	void SetPtrForVariant(ZVariant* p_Variant, uintptr_t p_Ptr);
+	zhmptr_t WriteMemory(void* p_Memory, zhmptr_t p_Size, zhmptr_t p_Alignment);
+	zhmptr_t WriteMemoryUnaligned(void* p_Memory, zhmptr_t p_Size);
+	void PatchPtr(zhmptr_t p_Offset, zhmptr_t p_Pointer);
+	void PatchNullPtr(zhmptr_t p_Offset);
+	void PatchType(zhmptr_t p_Offset, IZHMTypeInfo* p_Type);
+	void RegisterRuntimeResourceId(zhmptr_t p_Offset);
+	std::optional<zhmptr_t> GetExistingPtrForVariant(ZVariant* p_Variant);
+	void SetPtrForVariant(ZVariant* p_Variant, zhmptr_t p_Ptr);
 
 	template <class T>
-	void PatchValue(uintptr_t p_Offset, T p_Value)
+	void PatchValue(zhmptr_t p_Offset, T p_Value)
 	{
 		EnsureEnough(p_Offset + sizeof(T));
 		*reinterpret_cast<T*>(reinterpret_cast<uintptr_t>(m_Buffer) + p_Offset) = p_Value;
 	}
 	
-	std::set<uintptr_t> GetRelocations() const;
+	std::set<zhmptr_t> GetRelocations() const;
 	std::string GetBuffer();
 	std::vector<SerializerSegment> GenerateSegments();
 	
-	uintptr_t Alignment() const { return m_Alignment; }
+	zhmptr_t Alignment() const { return m_Alignment; }
 	bool InCompatibilityMode() const { return m_GenerateCompatible; }
 
 private:
@@ -54,8 +56,8 @@ private:
 	std::string GenerateTypeIdSegment();
 	std::string GenerateRuntimeResourceIdSegment();
 	
-	void AlignTo(uintptr_t p_Alignment);
-	void EnsureEnough(size_t p_Size);
+	void AlignTo(zhmptr_t p_Alignment);
+	void EnsureEnough(zhmptr_t p_Size);
 
 	void* CurrentPtr()
 	{
@@ -64,16 +66,16 @@ private:
 
 private:
 	bool m_GenerateCompatible;
-	size_t m_CurrentSize;
-	size_t m_Capacity;
+	zhmptr_t m_CurrentSize;
+	zhmptr_t m_Capacity;
 	void* m_Buffer;
-	uintptr_t m_Alignment;
-	std::set<uintptr_t> m_Relocations;
+	zhmptr_t m_Alignment;
+	std::set<zhmptr_t> m_Relocations;
 	
 	std::vector<IZHMTypeInfo*> m_Types;
-	std::set<uintptr_t> m_TypeIdOffsets;
+	std::set<zhmptr_t> m_TypeIdOffsets;
 	
-	std::set<uintptr_t> m_RuntimeResourceIdOffsets;
+	std::set<zhmptr_t> m_RuntimeResourceIdOffsets;
 
-	std::unordered_map<IZHMTypeInfo*, std::unordered_map<ZVariant*, uintptr_t>> m_VariantRegistry;
+	std::unordered_map<IZHMTypeInfo*, std::unordered_map<ZVariant*, zhmptr_t>> m_VariantRegistry;
 };

@@ -29,11 +29,20 @@ elseif(DEFINED LIBCPP_VERSION)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc++ -I/usr/include/c++/${LIBCPP_VERSION} -I/usr/include/x86_64-linux-gnu/c++/${LIBCPP_VERSION}")
 endif()
 
-add_subdirectory("Libraries/ResourceLib")
-add_subdirectory("Tools/ResourceTool")
+if(EMSCRIPTEN)
+    set(CMAKE_CXX_FLAGS_RELEASE "")
+endif()
 
-add_subdirectory("Libraries/NavWeakness")
-add_subdirectory("Tools/NavTool")
+add_subdirectory("Libraries/ResourceLib")
+
+if(NOT EMSCRIPTEN)
+	add_subdirectory("Tools/ResourceTool")
+
+	add_subdirectory("Libraries/NavWeakness")
+	add_subdirectory("Tools/NavTool")
+
+	add_subdirectory("Tools/ModuleInfoParser")
+endif()
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	add_subdirectory("Libraries/CodeGenLib")

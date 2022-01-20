@@ -8,10 +8,13 @@
 
 #include <External/simdjson.h>
 
+#include "ZHMInt.h"
+#include "ZHMPtr.h"
+
 class ZHMSerializer;
 class ZString;
 
-extern std::string JsonStr(const ZString& p_String);
+#pragma pack(push, 1)
 
 class ZString
 {
@@ -19,35 +22,64 @@ public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
 	
-	inline ZString() :
-		m_nLength(0x80000000),
-		m_pChars("")
+	ZString()
 	{
+		SetEmptyStr();
 	}
 
-	inline ZString(std::string_view str) :
-		m_pChars(const_cast<char*>(str.data()))
+	ZString(const ZString& p_Other)
 	{
-		m_nLength = static_cast<uint32_t>(str.size()) | 0x80000000;
+		*this = p_Other;
 	}
 
-	inline ZString(const char* str) :
-		m_pChars(const_cast<char*>(str))
+	ZString(std::string_view p_Str)
 	{
-		m_nLength = static_cast<uint32_t>(std::strlen(str)) | 0x80000000;
+		if (p_Str.empty())
+		{
+			SetEmptyStr();
+			return;
+		}
+
+		allocate(p_Str.data(), p_Str.size());
 	}
 
-	inline ZString(std::string str) :
-		m_nLength(0x80000000),
-		m_pChars("")
+	ZString(const char* p_Str)
 	{
-		allocate(str.c_str(), str.size());
+		const auto s_Size = std::strlen(p_Str);
+
+		if (s_Size == 0)
+		{
+			SetEmptyStr();
+			return;
+		}
+
+		allocate(p_Str, std::strlen(p_Str));
 	}
 
-	inline ZString(const ZString& p_Other)
+	ZString(const std::string& p_Str)
+	{
+		if (p_Str.empty())
+		{
+			SetEmptyStr();
+			return;
+		}
+
+		allocate(p_Str.c_str(), p_Str.size());
+	}
+
+	~ZString()
+	{
+		if (is_allocated())
+		{
+			auto* s_HeapArena = ZHMArenas::GetHeapArena();
+			s_HeapArena->Free(m_pChars.GetPtrOffset());
+		}
+	}
+
+	ZString& operator=(const ZString& p_Other)
 	{
 		if (p_Other.is_allocated())
 		{
@@ -58,19 +90,21 @@ public:
 			m_nLength = p_Other.m_nLength;
 			m_pChars = p_Other.m_pChars;
 		}
+
+		return *this;
 	}
 
-	inline ~ZString()
+	void SetEmptyStr()
 	{
-		if (is_allocated())
-		{
-			free(const_cast<char*>(m_pChars));
-		}
+		m_nLength = 0x80000000;
+
+		// This points to a 1-byte zeroed buffer.
+		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, 0);
 	}
 
 	inline std::string_view string_view() const
 	{
-		return std::string_view(m_pChars, size());
+		return std::string_view(c_str(), size());
 	}
 
 	inline uint32_t size() const
@@ -80,12 +114,12 @@ public:
 
 	inline const char* c_str() const
 	{
-		return m_pChars;
+		return m_pChars.GetPtr();
 	}
 
 	inline bool operator<(const ZString& other) const
 	{
-		return strcmp(m_pChars, other.m_pChars) >> 31;
+		return strcmp(c_str(), other.c_str()) >> 31;
 	}
 
 	inline bool is_allocated() const
@@ -115,15 +149,23 @@ public:
 	}
 
 private:
-	void allocate(const char* str, size_t size)
+	void allocate(const char* p_Str, size_t p_Size)
 	{
-		m_nLength = static_cast<uint32_t>(size);
-		m_pChars = reinterpret_cast<char*>(malloc(size));
-		memcpy(const_cast<char*>(m_pChars), str, size);
+		m_nLength = static_cast<uint32_t>(p_Size);
+
+		auto* s_HeapArena = ZHMArenas::GetHeapArena();
+		const auto s_CharsOffset = s_HeapArena->Allocate(p_Size);
+		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, s_CharsOffset);
+
+		memcpy(const_cast<char*>(m_pChars.GetPtr()), p_Str, p_Size);
 	}
 
 private:
-	int32_t m_nLength;
-	const char* m_pChars;
+	int32_t m_nLength = 0x80000000;
+#if ZHM_TARGET != 2012
+	uint8_t _pad4[4] {};
+#endif
+	ZHMPtr<const char> m_pChars;
 };
 
+#pragma pack(pop)

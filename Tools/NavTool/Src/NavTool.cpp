@@ -38,16 +38,19 @@ void ParseNavMesh(const std::string& p_Path)
 
 int main(int argc, char** argv)
 {	
-	if (argc < 2)
+	/*if (argc < 2)
 	{
 		PrintHelp();
 		return 1;
-	}
-	printf("const Surfaces = {};\n");
-	fflush(stdout);
-	
+	}*/
 
-	ParseNavMesh(argv[1]);
+	printf("const Surfaces = {};\n");
+	printf("const Unk02 = {};\n");
+	fflush(stdout);	
+
+	//ParseNavMesh("C:\\Research\\HITMAN3\\Nav\\00F1BA373CABEEE1.NAVP");
+	ParseNavMesh("C:\\Research\\HITMAN3\\Nav\\007F9DC59ED3860B.NAVP");
+	//ParseNavMesh(argv[1]);
 
 	/*for (const auto& s_DirEntry : std::filesystem::directory_iterator("C:\\Research\\HITMAN3\\Nav")) 
 	{

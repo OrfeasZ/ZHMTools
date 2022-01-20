@@ -77,14 +77,36 @@ public:
 
 	inline bool isPrimitive() const
 	{
+#if _M_X64
 		return m_nTypeInfoFlags & TIF_Primitive;
+#else
+		std::string s_TypeName = m_pTypeName;
+
+		return m_nTypeInfoFlags == 0 && (
+			s_TypeName == "bool" ||
+			s_TypeName == "int8" ||
+			s_TypeName == "uint8" ||
+			s_TypeName == "int16" ||
+			s_TypeName == "uint16" ||
+			s_TypeName == "int32" ||
+			s_TypeName == "uint32" ||
+			s_TypeName == "int64" ||
+			s_TypeName == "uint64" ||
+			s_TypeName == "float32" ||
+			s_TypeName == "float64");
+#endif
 	}
 
 public:
 	STypeFunctions* m_pTypeFunctions;
 	uint16_t m_nTypeSize;
+#if _M_X64
 	uint16_t m_nTypeAlignment;
 	uint16_t m_nTypeInfoFlags;
+#else
+	uint8_t m_nTypeAlignment;
+	uint8_t m_nTypeInfoFlags;
+#endif
 	char* m_pTypeName;
 	STypeID* m_pTypeID;
 	bool (*fromString)(void*, IType*, const ZString&);
@@ -102,13 +124,15 @@ public:
 class ZClassProperty
 {
 public:
+#if _M_X64
 	const char* m_pName;
+#endif
 	uint32_t m_nPropertyID;
 	STypeID* m_pType;
-	uint64_t m_nOffset;
+	uintptr_t m_nOffset;
 	uint32_t m_nFlags;
-	void (*set)(void*, void*, uint64_t, bool);
-	void (*get)(void*, void*, uint64_t);
+	void (*set)(void*, void*, uintptr_t, bool);
+	void (*get)(void*, void*, uintptr_t);
 };
 
 class ZClassConstructorInfo
@@ -132,7 +156,7 @@ class ZClassComponent
 {
 public:
 	STypeID* m_pType;
-	uint64_t m_nOffset;
+	uintptr_t m_nOffset;
 };
 
 class IClassType :
@@ -162,7 +186,9 @@ class IEnumType :
 	public IType
 {
 public:
+#if _M_X64
 	TArray<ZEnumEntry> m_entries;
+#endif
 };
 
 class SArrayFunctions
@@ -219,6 +245,10 @@ struct TypeMapHashingPolicy
 class ZTypeRegistry
 {
 public:
+#if _M_X64
 	char pad[0x40];
+#else
+	char pad[0x2C];
+#endif
 	THashMap<ZString, STypeID*, TypeMapHashingPolicy> m_types;
 };

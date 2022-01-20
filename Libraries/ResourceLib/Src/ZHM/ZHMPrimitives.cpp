@@ -11,7 +11,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<int8_t*>(p_Target) = static_cast<int8_t>(int64_t(p_Document));
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<int8_t*>(p_Left) == *reinterpret_cast<int8_t*>(p_Right);
@@ -25,7 +25,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<uint8*>(p_Target) = static_cast<uint8>(int64_t(p_Document));
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<uint8_t*>(p_Left) == *reinterpret_cast<uint8_t*>(p_Right);
@@ -39,7 +39,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<int16*>(p_Target) = static_cast<int16>(int64_t(p_Document));
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<int16_t*>(p_Left) == *reinterpret_cast<int16_t*>(p_Right);
@@ -53,7 +53,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<uint16*>(p_Target) = static_cast<uint16>(int64_t(p_Document));
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<uint16_t*>(p_Left) == *reinterpret_cast<uint16_t*>(p_Right);
@@ -67,7 +67,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<int32*>(p_Target) = static_cast<int32>(int64_t(p_Document));
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<int32_t*>(p_Left) == *reinterpret_cast<int32_t*>(p_Right);
@@ -81,7 +81,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<uint32_t*>(p_Target) = static_cast<uint32_t>(int64_t(p_Document));
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<uint32_t*>(p_Left) == *reinterpret_cast<uint32_t*>(p_Right);
@@ -95,7 +95,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<int64*>(p_Target) = int64(p_Document);
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<int64_t*>(p_Left) == *reinterpret_cast<int64_t*>(p_Right);
@@ -109,7 +109,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<uint64*>(p_Target) = uint64(p_Document);
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<uint64_t*>(p_Left) == *reinterpret_cast<uint64_t*>(p_Right);
@@ -123,7 +123,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<float32*>(p_Target) = static_cast<float32>(float64(p_Document));
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<float32*>(p_Left) == *reinterpret_cast<float32*>(p_Right);
@@ -137,7 +137,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<float64*>(p_Target) = float64(p_Document);
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<float64*>(p_Left) == *reinterpret_cast<float64*>(p_Right);
@@ -151,7 +151,7 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 			*reinterpret_cast<bool*>(p_Target) = bool(p_Document);
-		}, [](void*, ZHMSerializer&, uintptr_t) {},
+		}, [](void*, ZHMSerializer&, zhmptr_t) {},
 		[](void* p_Left, void* p_Right)
 		{
 			return *reinterpret_cast<bool*>(p_Left) == *reinterpret_cast<bool*>(p_Right);
@@ -170,5 +170,5 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		},
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
-		}, [](void*, ZHMSerializer&, uintptr_t) {});
+		}, [](void*, ZHMSerializer&, zhmptr_t) {});
 }

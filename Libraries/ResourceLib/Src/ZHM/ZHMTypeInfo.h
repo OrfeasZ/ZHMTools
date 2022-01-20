@@ -4,11 +4,13 @@
 #include "ZString.h"
 #include <External/simdjson.h>
 
+#include "ZHMPrimitives.h"
+
 class ZHMSerializer;
 
 typedef void(*WriteTypeAsJson_t)(void*, std::ostream&);
 typedef void(*CreateTypeFromJson_t)(simdjson::ondemand::value, void*);
-typedef void(*SerializeType_t)(void*, ZHMSerializer&, uintptr_t);
+typedef void(*SerializeType_t)(void*, ZHMSerializer&, zhmptr_t);
 typedef bool(*CheckEquals_t)(void*, void*);
 
 class IZHMTypeInfo

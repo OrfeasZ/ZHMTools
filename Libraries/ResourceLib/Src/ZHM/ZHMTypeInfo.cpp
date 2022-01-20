@@ -7,12 +7,16 @@
 
 #include <stdexcept>
 
+#include "External/simdjson_helpers.h"
+
 #if ZHM_TARGET == 3
 #include <Generated/HM3/ZHMEnums.h>
 #elif ZHM_TARGET == 2
 #include <Generated/HM2/ZHMEnums.h>
 #elif ZHM_TARGET == 2016
 #include <Generated/HM2016/ZHMEnums.h>
+#elif ZHM_TARGET == 2012
+#include <Generated/HMA/ZHMEnums.h>
 #endif
 
 std::unordered_map<std::string, IZHMTypeInfo*>* IZHMTypeInfo::g_TypeRegistry = nullptr;
@@ -29,12 +33,12 @@ public:
 public:
 	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
 	{
-		p_Stream << "{" << "\"$enumVal\"" << ":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << "," << "\"$enumValName\"" << ":" << JsonStr(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
+		p_Stream << "{\"$enumVal\":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
 	}
 	
 	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	{
-		p_Stream << JsonStr(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
+		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
 	}
 	
 	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
@@ -90,11 +94,11 @@ public:
 		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 		
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Object);
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / s_AlignedSize;
+		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->end()) - reinterpret_cast<uintptr_t>(s_Array->begin())) / s_AlignedSize;
 		
 		p_Stream << "[";
 
-		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->m_pBegin);
+		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->begin());
 
 		for (size_t i = 0; i < s_ElementCount; ++i)
 		{
@@ -113,11 +117,11 @@ public:
 		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Object);
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->m_pEnd) - reinterpret_cast<uintptr_t>(s_Array->m_pBegin)) / s_AlignedSize;
+		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->end()) - reinterpret_cast<uintptr_t>(s_Array->begin())) / s_AlignedSize;
 
 		p_Stream << "[";
 
-		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->m_pBegin);
+		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->begin());
 
 		for (size_t i = 0; i < s_ElementCount; ++i)
 		{
@@ -133,50 +137,43 @@ public:
 	
 	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
 	{
-		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
-
-		std::vector<void*> s_Elements;
+		const auto s_ElementSize = m_ElementType->Size();
 		
-		// Parse each element.
-		size_t s_TotalSize = 0;
+		simdjson::ondemand::array s_JsonArray = p_Document;
+		const size_t s_ElementCount = s_JsonArray.count_elements();
 
-		for (simdjson::ondemand::value s_Element : p_Document)
-		{
-			// Allocate memory for this element.
-			void* s_Memory = c_aligned_alloc(m_ElementType->Size(), m_ElementType->Alignment());
-			s_TotalSize += s_AlignedSize;
-			
-			m_ElementType->CreateFromJson(s_Element, s_Memory);
-
-			s_Elements.push_back(s_Memory);
-		}
-
-		// Create a buffer to hold everything together.
-		void* s_FinalMemory = c_aligned_alloc(s_TotalSize, m_ElementType->Alignment());
-
-		size_t s_Offset = 0;
-
-		for (auto s_Element : s_Elements)
-		{
-			memcpy(reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_Offset), s_Element, s_AlignedSize);
-			c_aligned_free(s_Element);
-			
-			s_Offset += s_AlignedSize;
-		}
-		
 		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Target);
 
-		s_Array->m_pBegin = reinterpret_cast<void**>(s_FinalMemory);
-		s_Array->m_pEnd = reinterpret_cast<void**>(reinterpret_cast<uintptr_t>(s_FinalMemory) + s_TotalSize);
-		s_Array->m_pAllocationEnd = s_Array->m_pEnd;
+		if (s_ElementCount == 0)
+		{
+			s_Array->m_pBegin.SetNull();
+			s_Array->m_pEnd.SetNull();
+			s_Array->m_pAllocationEnd.SetNull();
+		}
+		else
+		{
+			const auto s_Arena = ZHMArenas::GetHeapArena();
+			const auto s_ArrayDataOffset = s_Arena->Allocate(s_ElementSize * s_ElementCount);
+			auto* s_ArrayData = s_Arena->GetObjectAtOffset<void>(s_ArrayDataOffset);
+
+			for (const simdjson::ondemand::value& s_Element : s_JsonArray)
+			{
+				m_ElementType->CreateFromJson(s_Element, s_ArrayData);
+				s_ArrayData = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(s_ArrayData) + s_ElementSize);
+			}
+
+			s_Array->m_pBegin.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_ArrayDataOffset);
+			s_Array->m_pEnd.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_ArrayDataOffset + (s_ElementSize * s_ElementCount));
+			s_Array->m_pAllocationEnd = s_Array->m_pEnd;
+		}
 	}
 
 	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
 	{
 		auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
 
-		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
-		const auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->m_pEnd) - reinterpret_cast<uintptr_t>(s_Object->m_pBegin)) / s_AlignedSize;
+		const auto s_AlignedSize = m_ElementType->Size();
+		const auto s_ElementCount = (s_Object->m_pEnd.GetPtrOffset() - s_Object->m_pBegin.GetPtrOffset()) / s_AlignedSize;
 
 		if (s_ElementCount == 0)
 		{
@@ -186,21 +183,25 @@ public:
 		}
 		else
 		{
-			// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
-			// we're adding it for compatibility with other tools.
-			// We do some weird alignment shit here to make sure that the count is always at data - 4.
-			const auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), m_ElementType->Alignment());
-			auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, m_ElementType->Alignment());
-			memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
+			if (p_Serializer.InCompatibilityMode())
+			{
+				// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
+				// we're adding it for compatibility with other tools.
+				// We do some weird alignment shit here to make sure that the count is always at data - 4.
+				constexpr auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), sizeof(zhmptr_t));
+				auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, sizeof(zhmptr_t));
+				memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
 
-			*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_ElementCount;
-			p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, m_ElementType->Alignment());
+				*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_Object->size();
+				p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, sizeof(zhmptr_t));
+				c_aligned_free(s_SizePrefixBuf);
+			}
 
 			// And now write the array data.
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment()) * s_ElementCount, m_ElementType->Alignment());
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin.GetPtr(), m_ElementType->Size(), sizeof(zhmptr_t));
 			auto s_CurrentElement = s_ElementsPtr;
 
-			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin);
+			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin.GetPtr());
 
 			for (size_t i = 0; i < s_ElementCount; ++i)
 			{
@@ -242,8 +243,8 @@ public:
 
 		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 
-		const auto s_LeftElementCount = (reinterpret_cast<uintptr_t>(s_Left->m_pEnd) - reinterpret_cast<uintptr_t>(s_Left->m_pBegin)) / s_AlignedSize;
-		const auto s_RightElementCount = (reinterpret_cast<uintptr_t>(s_Right->m_pEnd) - reinterpret_cast<uintptr_t>(s_Right->m_pBegin)) / s_AlignedSize;
+		const auto s_LeftElementCount = (reinterpret_cast<uintptr_t>(s_Left->end()) - reinterpret_cast<uintptr_t>(s_Left->begin())) / s_AlignedSize;
+		const auto s_RightElementCount = (reinterpret_cast<uintptr_t>(s_Right->end()) - reinterpret_cast<uintptr_t>(s_Right->begin())) / s_AlignedSize;
 
 		if (s_LeftElementCount != s_RightElementCount)
 			return false;
@@ -252,8 +253,8 @@ public:
 		if (s_LeftElementCount == 0)
 			return false;
 
-		auto s_LeftObjectPtr = reinterpret_cast<uintptr_t>(s_Left->m_pBegin);
-		auto s_RightObjectPtr = reinterpret_cast<uintptr_t>(s_Right->m_pBegin);
+		auto s_LeftObjectPtr = reinterpret_cast<uintptr_t>(s_Left->begin());
+		auto s_RightObjectPtr = reinterpret_cast<uintptr_t>(s_Right->begin());
 
 		// Check if every element is the same.
 		for (size_t i = 0; i < s_LeftElementCount; ++i)
@@ -384,13 +385,13 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(std::string_view p_Name)
 void TypeID::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+	p_Stream << simdjson::as_json_string(s_Object->m_pTypeID->TypeName());
 }
 
 void TypeID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Stream << JsonStr(s_Object->m_pTypeID->TypeName());
+	p_Stream << simdjson::as_json_string(s_Object->m_pTypeID->TypeName());
 }
 
 void TypeID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)

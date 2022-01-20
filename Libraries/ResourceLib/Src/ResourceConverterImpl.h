@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <filesystem>
+#include <sstream>
 
 #include <ResourceConverter.h>
 #include <ResourceLibCommon.h>
@@ -21,6 +22,9 @@ template <class T>
 bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Stream, bool p_Simple)
 {
 	auto s_StructureData = ToInMemStructure(p_ResourceData, p_Size);
+
+	if (!s_StructureData)
+		return false;
 
 	// Everything should be properly reconstructed in memory by now
 	// so just cast and convert this type to json.

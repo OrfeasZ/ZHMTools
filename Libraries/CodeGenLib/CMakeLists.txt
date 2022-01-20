@@ -8,6 +8,8 @@ add_library(CodeGenLib SHARED
 	Src/ZHMCommon.h
 	Src/CodeGen.h
 	Src/CodeGen.cpp
+	Src/HMAData.cpp
+	Src/HMAData.h
 )
 
 target_include_directories(CodeGenLib PRIVATE

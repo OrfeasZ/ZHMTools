@@ -7,7 +7,10 @@
 #include <stdexcept>
 
 #include <ZHM/ZHMSerializer.h>
+#include <ZHM/ZHMPtr.h>
 #include <Util/PortableIntrinsics.h>
+
+#pragma pack(push, 1)
 
 template <class T>
 class TIterator
@@ -23,83 +26,72 @@ template <class T>
 class TArray
 {
 public:
-	TArray() :
-		m_pBegin(nullptr),
-		m_pEnd(nullptr),
-		m_pAllocationEnd(nullptr)
+	TArray()
 	{
 	}
 
-	void push_back(const T& p_Value)
+	TArray(const TArray<T>& p_Other)
 	{
-		// TODO: Inline support.
-		size_t s_Size = size();
+		*this = p_Other;
+	}
 
-		// If we're at capacity we need to expand.
-		if (capacity() == s_Size)
-			resize(s_Size + 1);
-		
-		m_pBegin[s_Size] = p_Value;
-		m_pEnd = m_pBegin + (s_Size + 1);
+	TArray(size_t p_Size)
+	{
+		resize(p_Size);
+	}
+
+	~TArray()
+	{
+		if (capacity() == 0 || m_pBegin.IsNull() || m_pBegin.GetArenaId() != ZHMHeapArenaId)
+			return;
+
+		auto* s_Arena = ZHMArenas::GetHeapArena();
+		s_Arena->Free(m_pBegin.GetPtrOffset());
+	}
+
+	TArray<T>& operator=(const TArray<T>& p_Other)
+	{
+		resize(p_Other.size());
+
+		for (size_t i = 0; i < p_Other.size(); ++i)
+			operator[](i) = p_Other[i];
+
+		return *this;
 	}
 
 	void resize(size_t p_Size)
 	{
-		// TODO: Inline support.
 		if (capacity() == p_Size)
 			return;
 
-		auto s_CurrentSize = size();
+		// We only support resizing once.
+		assert(capacity() == 0);
 
-		size_t s_NewSize = ceil((capacity() == 0 ? 1 : capacity()) * 1.5);
+		const auto s_AllocationSize = sizeof(T) * p_Size;
+		auto* s_Arena = ZHMArenas::GetHeapArena();
+	
+		const auto s_AllocationOffset = s_Arena->Allocate(s_AllocationSize);
 
-		while (s_NewSize < p_Size)
-			s_NewSize = ceil(s_NewSize * 1.5);
+		m_pBegin.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset);
+		m_pEnd.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset + s_AllocationSize);
+		m_pAllocationEnd = m_pEnd;
 
-		if (m_pBegin == nullptr)
+		// Initialize all values to defaults.
+		for (size_t i = 0; i < p_Size; ++i)
 		{
-			m_pBegin = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * s_NewSize, alignof(T)));
-			m_pEnd = m_pBegin + s_CurrentSize;
-			m_pAllocationEnd = m_pBegin + s_NewSize;
-			return;
+			T s_Value {};
+			operator[](i) = s_Value;
 		}
-
-		T* s_NewMemory = reinterpret_cast<T*>(c_aligned_alloc(c_get_aligned(sizeof(T), alignof(T)) * s_NewSize, alignof(T)));
-		memcpy(s_NewMemory, m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * size());
-		c_aligned_free(m_pBegin);
-
-		m_pBegin = s_NewMemory;
-		m_pEnd = m_pBegin + s_CurrentSize;
-		m_pAllocationEnd = m_pBegin + s_NewSize;
 	}
-
-	void clear()
-	{
-		if (m_pBegin == nullptr)
-			return;
-
-		// TODO: Free individual items.
-
-		if (!fitsInline() || !hasInlineFlag())
-			free(m_pBegin);
-		
-		m_pBegin = m_pEnd = m_pAllocationEnd = nullptr;
-	}
-
+	
 	inline size_t size() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return m_nInlineCount;
-		
-		return (reinterpret_cast<uintptr_t>(m_pEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / c_get_aligned(sizeof(T), alignof(T));
+		return (m_pEnd.GetPtrOffset() - m_pBegin.GetPtrOffset()) / sizeof(T);
 	}
 
 	inline size_t capacity() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return m_nInlineCapacity;
-
-		return (reinterpret_cast<uintptr_t>(m_pAllocationEnd) - reinterpret_cast<uintptr_t>(m_pBegin)) / c_get_aligned(sizeof(T), alignof(T));
+		return (m_pAllocationEnd.GetPtrOffset() - m_pBegin.GetPtrOffset()) / sizeof(T);
 	}
 
 	inline T& operator[](size_t p_Index) const
@@ -109,67 +101,27 @@ public:
 
 	inline T* begin()
 	{
-		if (fitsInline() && hasInlineFlag())
-			return reinterpret_cast<T*>(&m_pBegin);
-		
-		return m_pBegin;
+		return m_pBegin.GetPtr();
 	}
 
 	inline T* end()
 	{
-		if (fitsInline() && hasInlineFlag())
-			return begin() + m_nInlineCount;
-
-		return m_pEnd;
+		return m_pEnd.GetPtr();
 	}
 
 	inline T* begin() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return (T*) (&m_pBegin);
-
-		return m_pBegin;
+		return m_pBegin.GetPtr();
 	}
 
 	inline T* end() const
 	{
-		if (fitsInline() && hasInlineFlag())
-			return begin() + m_nInlineCount;
-
-		return m_pEnd;
-	}
-
-	inline T* find(const T& p_Value) const
-	{
-		T* s_Current = begin();
-
-		while (s_Current != end())
-		{
-			if (*s_Current == p_Value)
-				return s_Current;
-
-			++s_Current;
-		}
-
-		return m_pEnd;
-	}
-
-	bool fitsInline() const
-	{
-		return sizeof(T) <= sizeof(T*) * 2;
-	}
-
-	bool hasInlineFlag() const
-	{
-		return (m_nFlags >> 62) & 1;
+		return m_pEnd.GetPtr();
 	}
 
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 	{
 		auto* s_Object = reinterpret_cast<TArray<T>*>(p_Object);
-		
-		if (s_Object->hasInlineFlag())
-			throw std::runtime_error("cannot serialize inline arrays");
 
 		if (s_Object->size() == 0)
 		{
@@ -184,16 +136,17 @@ public:
 				// Prefix the array data with a 32-bit count of elements. This isn't used by the game but
 				// we're adding it for compatibility with other tools.
 				// We do some weird alignment shit here to make sure that the count is always at data - 4.
-				const auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), alignof(T));
-				auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, alignof(T));
+				constexpr auto s_SizePrefixBufSize = c_get_aligned(sizeof(uint32_t), sizeof(zhmptr_t));
+				auto s_SizePrefixBuf = c_aligned_alloc(s_SizePrefixBufSize, sizeof(zhmptr_t));
 				memset(s_SizePrefixBuf, 0x00, s_SizePrefixBufSize);
 
 				*reinterpret_cast<uint32_t*>(reinterpret_cast<uintptr_t>(s_SizePrefixBuf) + (s_SizePrefixBufSize - sizeof(uint32_t))) = s_Object->size();
-				p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, alignof(T));
+				p_Serializer.WriteMemory(s_SizePrefixBuf, s_SizePrefixBufSize, sizeof(zhmptr_t));
+				c_aligned_free(s_SizePrefixBuf);
 			}
 			
 			// And now write the array data.
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, c_get_aligned(sizeof(T), alignof(T)) * s_Object->size(), alignof(T));
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin.GetPtr(), sizeof(T) * s_Object->size(), sizeof(zhmptr_t));
 
 			for (size_t i = 0; i < s_Object->size(); ++i)
 			{
@@ -201,14 +154,14 @@ public:
 
 				if constexpr(!std::is_fundamental_v<T> && !std::is_enum_v<T>)
 				{
-					uintptr_t s_Offset = s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * i;
+					uintptr_t s_Offset = s_ElementsPtr + sizeof(T) * i;
 					T::Serialize(&s_Item, p_Serializer, s_Offset);
 				}
 			}
 
 			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pBegin), s_ElementsPtr);
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
-			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + c_get_aligned(sizeof(T), alignof(T)) * s_Object->size());
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pEnd), s_ElementsPtr + sizeof(T) * s_Object->size());
+			p_Serializer.PatchPtr(p_OwnOffset + offsetof(TArray<T>, m_pAllocationEnd), s_ElementsPtr + sizeof(T) * s_Object->size());
 		}
 	}
 
@@ -236,20 +189,9 @@ public:
 	}
 
 public:
-	T* m_pBegin;
-	T* m_pEnd;
-
-	union
-	{
-		T* m_pAllocationEnd;
-		int64_t m_nFlags;
-
-		struct
-		{
-			uint8_t m_nInlineCount;
-			uint8_t m_nInlineCapacity;
-		};
-	};
+	ZHMPtr<T> m_pBegin;
+	ZHMPtr<T> m_pEnd;
+	ZHMPtr<T> m_pAllocationEnd;
 };
 
 template<typename T, size_t N>
@@ -352,3 +294,5 @@ public:
 public:
 	T m_Elements[N];
 };
+
+#pragma pack(pop)

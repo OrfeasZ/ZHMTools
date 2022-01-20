@@ -1,15 +1,16 @@
 #include "ZRepositoryID.h"
+#include "External/simdjson_helpers.h"
 
 void ZRepositoryID::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<ZRepositoryID*>(p_Object);
-	p_Stream << JsonStr(s_Object->ToString());
+	p_Stream << simdjson::as_json_string(s_Object->ToString());
 }
 
 void ZRepositoryID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<ZRepositoryID*>(p_Object);
-	p_Stream << JsonStr(s_Object->ToString());
+	p_Stream << simdjson::as_json_string(s_Object->ToString());
 }
 
 void ZRepositoryID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
@@ -20,7 +21,7 @@ void ZRepositoryID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 	*reinterpret_cast<ZRepositoryID*>(p_Target) = s_String;
 }
 
-void ZRepositoryID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
+void ZRepositoryID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	// Nothing to do here.
 }
