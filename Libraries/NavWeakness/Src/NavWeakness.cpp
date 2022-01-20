@@ -285,9 +285,59 @@ struct NavMeshUnk02
 
 struct NavMeshUnk02Element
 {
+	uint32_t m_Flags;
 	float m_Unk00;
 	float m_Unk01;
+
+	bool IsUnk03() const
+	{
+		return m_Flags & 0x80000000;
+	}
+
+	uint32_t GetUnk03Value() const
+	{
+		return m_Flags & 0x7fffffff;
+	}
+
+	uint32_t GetAxis() const
+	{
+		return (m_Flags & 0x70000000) >> 28;
+	}
+
+	uint32_t GetOffsetToOther() const
+	{
+		return (m_Flags & 0x0fffffff);
+	}
+
+	const NavMeshUnk02Element* GetNext() const
+	{
+		return this + 1;
+	}
+
+	const NavMeshUnk02Element* GetOther() const
+	{
+		return reinterpret_cast<NavMeshUnk02Element*>(reinterpret_cast<uintptr_t>(this) + GetOffsetToOther());
+	}
 };
+
+void PrintNav02(const NavMeshUnk02Element* p_Element, const std::string& p_Indent = "")
+{
+	if (p_Element->IsUnk03())
+	{
+		printf((p_Indent + "========\n").c_str());
+		printf((p_Indent + "Unk03: %d\n").c_str(), p_Element->GetUnk03Value());
+		return;
+	}
+
+	printf((p_Indent + "========\n").c_str());
+	printf((p_Indent + "Axis: %d\n").c_str(), p_Element->GetAxis());
+	printf((p_Indent + "Unk00: %f\n").c_str(), p_Element->m_Unk00);
+	printf((p_Indent + "Unk01: %f\n").c_str(), p_Element->m_Unk01);
+	printf((p_Indent + "Next:\n").c_str());
+	PrintNav02(p_Element->GetNext(), p_Indent + "\t");
+	printf((p_Indent + "Other:\n").c_str());
+	PrintNav02(p_Element->GetOther(), p_Indent + "\t");
+}
 
 #define Log(...) printf(__VA_ARGS__)
 #define Log(...)
@@ -525,11 +575,15 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 		Log("N02_AABBMax.Z: %f\n", s_Unk02->m_AABBMax.Z);
 		Log("N02_DataSize: %x\n", s_Unk02->m_DataSize);
 
-		printf("Unk02['%s'] = [", s_FileName.c_str());
+		//printf("Unk02['%s'] = [", s_FileName.c_str());
 
 		uint32_t s_RemainingData = s_Unk02->m_DataSize;
 
-		while (s_RemainingData > 0)
+		const auto* s_FirstElement = reinterpret_cast<NavMeshUnk02Element*>(s_FileStartPtr + s_CurrentIndex);
+
+		PrintNav02(s_FirstElement);
+
+		/*while (s_RemainingData > 0)
 		{
 			const auto s_FlagsValue= *reinterpret_cast<uint32_t*>(s_FileStartPtr + s_CurrentIndex);
 			s_CurrentIndex += sizeof(uint32_t);
@@ -551,7 +605,7 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				s_CurrentIndex += sizeof(NavMeshUnk02Element);
 				s_RemainingData -= sizeof(NavMeshUnk02Element);
 
-				const uint32_t s_ElemUnk02 = (s_FlagsValue & 0x70000000) >> 28;
+				const uint32_t s_Axis = (s_FlagsValue & 0x70000000) >> 28;
 				const uint32_t s_ElemUnk03 = (s_FlagsValue & 0x0fffffff);
 
 				Log("==== NavMesh Unk02 Big Element ====\n");
@@ -561,9 +615,9 @@ extern "C" void ParseNavMesh(const char* p_NavMeshPath)
 				Log("Unk02: %x\n", s_ElemUnk02);
 				Log("Unk03: %d\n", s_ElemUnk03);
 
-				printf("[%f, %f, %d],", s_Element->m_Unk00, s_Element->m_Unk01, s_ElemUnk02);
+				printf("[%f, %f, %d],", s_Element->m_Unk00, s_Element->m_Unk01, s_Axis);
 			}
-		}
+		}*/
 		
 		if (s_CurrentIndex != s_SectionStart + s_Section->m_SectionSize)
 		{
