@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <vector>
 #include <tuple>
+#include <cstring>
 
 #include "ZHMInt.h"
 
