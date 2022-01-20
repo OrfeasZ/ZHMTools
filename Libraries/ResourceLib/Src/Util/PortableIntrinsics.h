@@ -17,6 +17,8 @@ inline void* c_aligned_alloc(size_t p_Size, size_t p_Alignment)
 {
 #if _MSC_VER
 	return _aligned_malloc(p_Size, p_Alignment);
+#elif __EMSCRIPTEN__
+	return aligned_alloc(p_Alignment, p_Size);
 #else
 	return std::aligned_alloc(p_Alignment, p_Size);
 #endif
@@ -26,6 +28,8 @@ inline void c_aligned_free(void* p_Memory)
 {
 #if _MSC_VER
 	return _aligned_free(p_Memory);
+#elif __EMSCRIPTEN__
+	free(p_Memory);
 #else
 	return std::free(p_Memory);
 #endif

@@ -47,7 +47,7 @@ struct ZHMPtr
 			return nullptr;
 
 		const auto* s_Arena = ZHMArenas::GetArena(GetArenaId());
-		return s_Arena->GetObjectAtOffset<T>(GetPtrOffset());
+		return s_Arena->template GetObjectAtOffset<T>(GetPtrOffset());
 	}
 
 	[[nodiscard]] T* operator*() const

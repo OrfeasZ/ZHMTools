@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <filesystem>
+#include <sstream>
 
 #include <ResourceConverter.h>
 #include <ResourceLibCommon.h>
