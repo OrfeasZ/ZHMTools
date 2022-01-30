@@ -71,6 +71,9 @@ public:
 		auto* s_Arena = ZHMArenas::GetHeapArena();
 	
 		const auto s_AllocationOffset = s_Arena->Allocate(s_AllocationSize);
+		auto* s_ArrayData = s_Arena->GetObjectAtOffset<void>(s_AllocationOffset);
+
+		memset(s_ArrayData, 0xFF, s_AllocationSize);
 
 		m_pBegin.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset);
 		m_pEnd.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset + s_AllocationSize);

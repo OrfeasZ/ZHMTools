@@ -156,6 +156,8 @@ public:
 			const auto s_ArrayDataOffset = s_Arena->Allocate(s_ElementSize * s_ElementCount);
 			auto* s_ArrayData = s_Arena->GetObjectAtOffset<void>(s_ArrayDataOffset);
 
+			memset(s_ArrayData, 0xFF, s_ElementSize * s_ElementCount);
+
 			for (const simdjson::ondemand::value& s_Element : s_JsonArray)
 			{
 				m_ElementType->CreateFromJson(s_Element, s_ArrayData);

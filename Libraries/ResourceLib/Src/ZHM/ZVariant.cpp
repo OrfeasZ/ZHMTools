@@ -90,6 +90,7 @@ void ZVariant::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Targ
 				auto s_HeapArena = ZHMArenas::GetHeapArena();
 				auto s_AllocOffset = s_HeapArena->Allocate(s_Variant.GetType()->Size());
 				auto s_Ptr = s_HeapArena->GetObjectAtOffset<void>(s_AllocOffset);
+				memset(s_Ptr, 0xFF, s_Variant.GetType()->Size());
 
 				s_Variant.GetType()->CreateFromJson(p_Document["$val"], s_Ptr);
 
