@@ -49,42 +49,148 @@ public:
 		FromString(p_Data, GuidFormat::Dashes);
 	}
 
-	void FromString(const std::string& p_Data, GuidFormat p_Format = GuidFormat::Dashes)
+private:
+	template <typename T>
+	inline bool strtoul_safe(const std::string& p_String, int p_Base, T& p_Output)
 	{
-#pragma warning(disable:4477)
+		errno = 0;
+		char* s_EndChar;
+		p_Output = static_cast<T>(strtoul(p_String.c_str(), &s_EndChar, p_Base));
+
+		if (errno != 0)
+			return false;
+
+		if (s_EndChar != p_String.data() + p_String.size())
+			return false;
+
+		return true;
+	}
+
+public:
+	void FromString(const std::string& p_String, GuidFormat p_Format = GuidFormat::Dashes)
+	{
+		std::string s_Data1;
+		std::string s_Data2;
+		std::string s_Data3;
+		std::string s_Data4_0;
+		std::string s_Data4_1;
+		std::string s_Data4_2;
+		std::string s_Data4_3;
+		std::string s_Data4_4;
+		std::string s_Data4_5;
+		std::string s_Data4_6;
+		std::string s_Data4_7;
+
 		if (p_Format == GuidFormat::Dashes)
 		{
-			sscanf_s(p_Data.c_str(),
-				"%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X",
-				&data1, &data2, &data3,
-				&data4[0], &data4[1], &data4[2], &data4[3],
-				&data4[4], &data4[5], &data4[6], &data4[7]);
+			if (p_String.size() != 36)
+				return;
+
+			if (p_String[8] != '-' || p_String[13] != '-' || p_String[18] != '-' || p_String[23] != '-')
+				return;
+
+			s_Data1 = p_String.substr(0, 8);
+			s_Data2 = p_String.substr(9, 4);
+			s_Data3 = p_String.substr(14, 4);
+			s_Data4_0 = p_String.substr(19, 2);
+			s_Data4_1 = p_String.substr(21, 2);
+			s_Data4_2 = p_String.substr(24, 2);
+			s_Data4_3 = p_String.substr(26, 2);
+			s_Data4_4 = p_String.substr(28, 2);
+			s_Data4_5 = p_String.substr(30, 2);
+			s_Data4_6 = p_String.substr(32, 2);
+			s_Data4_7 = p_String.substr(34, 2);
 		}
 		else if (p_Format == GuidFormat::NoDashes)
 		{
-			sscanf_s(p_Data.c_str(),
-				"%08X%04X%04X%02X%02X%02X%02X%02X%02X%02X%02X",
-				&data1, &data2, &data3,
-				&data4[0], &data4[1], &data4[2], &data4[3],
-				&data4[4], &data4[5], &data4[6], &data4[7]);
+			if (p_String.size() != 32)
+				return;
+
+			s_Data1 = p_String.substr(0, 8);
+			s_Data2 = p_String.substr(8, 4);
+			s_Data3 = p_String.substr(12, 4);
+			s_Data4_0 = p_String.substr(16, 2);
+			s_Data4_1 = p_String.substr(18, 2);
+			s_Data4_2 = p_String.substr(20, 2);
+			s_Data4_3 = p_String.substr(22, 2);
+			s_Data4_4 = p_String.substr(24, 2);
+			s_Data4_5 = p_String.substr(26, 2);
+			s_Data4_6 = p_String.substr(28, 2);
+			s_Data4_7 = p_String.substr(30, 2);
 		}
 		else if (p_Format == GuidFormat::Brackets)
 		{
-			sscanf_s(p_Data.c_str(),
-				"{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
-				&data1, &data2, &data3,
-				&data4[0], &data4[1], &data4[2], &data4[3],
-				&data4[4], &data4[5], &data4[6], &data4[7]);
+			if (p_String.size() != 38)
+				return;
+
+			if (p_String[9] != '-' || p_String[14] != '-' || p_String[19] != '-' || p_String[24] != '-' || p_String[0] != '{' || p_String[37] != '}')
+				return;
+
+			s_Data1 = p_String.substr(1, 8);
+			s_Data2 = p_String.substr(10, 4);
+			s_Data3 = p_String.substr(15, 4);
+			s_Data4_0 = p_String.substr(20, 2);
+			s_Data4_1 = p_String.substr(22, 2);
+			s_Data4_2 = p_String.substr(25, 2);
+			s_Data4_3 = p_String.substr(27, 2);
+			s_Data4_4 = p_String.substr(29, 2);
+			s_Data4_5 = p_String.substr(31, 2);
+			s_Data4_6 = p_String.substr(33, 2);
+			s_Data4_7 = p_String.substr(35, 2);
 		}
 		else if (p_Format == GuidFormat::Parentheses)
 		{
-			sscanf_s(p_Data.c_str(),
-				"(%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X)",
-				&data1, &data2, &data3,
-				&data4[0], &data4[1], &data4[2], &data4[3],
-				&data4[4], &data4[5], &data4[6], &data4[7]);
+			if (p_String.size() != 38)
+				return;
+
+			if (p_String[9] != '-' || p_String[14] != '-' || p_String[19] != '-' || p_String[24] != '-' || p_String[0] != '(' || p_String[37] != ')')
+				return;
+
+			s_Data1 = p_String.substr(1, 8);
+			s_Data2 = p_String.substr(10, 4);
+			s_Data3 = p_String.substr(15, 4);
+			s_Data4_0 = p_String.substr(20, 2);
+			s_Data4_1 = p_String.substr(22, 2);
+			s_Data4_2 = p_String.substr(25, 2);
+			s_Data4_3 = p_String.substr(27, 2);
+			s_Data4_4 = p_String.substr(29, 2);
+			s_Data4_5 = p_String.substr(31, 2);
+			s_Data4_6 = p_String.substr(33, 2);
+			s_Data4_7 = p_String.substr(35, 2);
 		}
-#pragma warning(default:4477)
+		
+		if (!strtoul_safe(s_Data1, 16, data1))
+			return;
+
+		if (!strtoul_safe(s_Data2, 16, data2))
+			return;
+
+		if (!strtoul_safe(s_Data3, 16, data3))
+			return;
+
+		if (!strtoul_safe(s_Data4_0, 16, data4[0]))
+			return;
+
+		if (!strtoul_safe(s_Data4_1, 16, data4[1]))
+			return;
+
+		if (!strtoul_safe(s_Data4_2, 16, data4[2]))
+			return;
+
+		if (!strtoul_safe(s_Data4_3, 16, data4[3]))
+			return;
+
+		if (!strtoul_safe(s_Data4_4, 16, data4[4]))
+			return;
+
+		if (!strtoul_safe(s_Data4_5, 16, data4[5]))
+			return;
+
+		if (!strtoul_safe(s_Data4_6, 16, data4[6]))
+			return;
+
+		if (!strtoul_safe(s_Data4_7, 16, data4[7]))
+			return;
 	}
 
 	std::string ToString(GuidFormat p_Format = GuidFormat::Dashes) const
