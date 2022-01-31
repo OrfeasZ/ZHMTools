@@ -31,17 +31,17 @@ public:
 	}
 	
 public:
-	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
+	void WriteJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		p_Stream << "{\"$enumVal\":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
 	}
 	
-	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
 	}
 	
-	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
+	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) override
 	{
 		*reinterpret_cast<int32_t*>(p_Target) = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
 	}
@@ -50,17 +50,17 @@ public:
 	{
 	}
 	
-	virtual std::string TypeName() const
+	std::string TypeName() const override
 	{
 		return m_TypeName;
 	}
 	
-	virtual size_t Size() const
+	size_t Size() const override
 	{
 		return sizeof(int);
 	}
 	
-	virtual size_t Alignment() const
+	size_t Alignment() const override
 	{
 		return alignof(int);
 	}
@@ -89,7 +89,7 @@ public:
 	}
 	
 public:
-	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
+	void WriteJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 		
@@ -112,7 +112,7 @@ public:
 		p_Stream << "]";
 	}
 	
-	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
 
@@ -135,7 +135,7 @@ public:
 		p_Stream << "]";
 	}
 	
-	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
+	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) override
 	{
 		const auto s_ElementSize = m_ElementType->Size();
 		
@@ -218,17 +218,17 @@ public:
 		}
 	}
 	
-	virtual std::string TypeName() const
+	std::string TypeName() const override
 	{
 		return "TArray<" + m_ElementType->TypeName() + ">";
 	}
 	
-	virtual size_t Size() const
+	size_t Size() const override
 	{
 		return sizeof(TArray<void*>);
 	}
 	
-	virtual size_t Alignment() const
+	size_t Alignment() const override
 	{
 		return alignof(TArray<void*>);
 	}
@@ -280,17 +280,17 @@ class ZHMDummyTypeInfo : public IZHMTypeInfo
 public:
 	ZHMDummyTypeInfo(const std::string& p_TypeName) : m_TypeName(p_TypeName) {}
 
-	virtual void WriteJson(void* p_Object, std::ostream& p_Stream)
+	void WriteJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		throw std::runtime_error("Cannot serialize value with dummy type info.");
 	}
 
-	virtual void WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		throw std::runtime_error("Cannot serialize value with dummy type info.");
 	}
 
-	virtual void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target)
+	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) override
 	{
 		throw std::runtime_error("Cannot deserialize value with dummy type info.");
 	}
@@ -300,17 +300,17 @@ public:
 		throw std::runtime_error("Cannot serialize a value with dummy type info.");
 	}
 	
-	virtual std::string TypeName() const
+	std::string TypeName() const override
 	{
 		return m_TypeName;
 	}
 
-	virtual size_t Size() const
+	size_t Size() const override
 	{
 		return 0;
 	}
 
-	virtual size_t Alignment() const
+	size_t Alignment() const override
 	{
 		return 0;
 	}
