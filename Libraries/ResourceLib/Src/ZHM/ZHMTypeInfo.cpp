@@ -200,7 +200,7 @@ public:
 			}
 
 			// And now write the array data.
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin.GetPtr(), m_ElementType->Size(), sizeof(zhmptr_t));
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin.GetPtr(), m_ElementType->Size() * s_ElementCount, sizeof(zhmptr_t));
 			auto s_CurrentElement = s_ElementsPtr;
 
 			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin.GetPtr());
