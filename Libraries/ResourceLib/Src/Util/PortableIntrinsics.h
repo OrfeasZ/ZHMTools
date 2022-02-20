@@ -18,7 +18,7 @@ inline void* c_aligned_alloc(size_t p_Size, size_t p_Alignment)
 #if _MSC_VER
 	return _aligned_malloc(p_Size, p_Alignment);
 #elif __EMSCRIPTEN__
-	return aligned_alloc(p_Alignment, p_Size);
+	return malloc((p_Size + (p_Alignment - 1)) & (-p_Alignment));
 #else
 	return std::aligned_alloc(p_Alignment, p_Size);
 #endif
