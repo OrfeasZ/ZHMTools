@@ -14,8 +14,8 @@
 
 #include <ZHM/ZHMArenas.h>
 
-extern void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
-extern void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
+extern void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream, ZHMArena* p_Arena);
+extern void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream, ZHMArena* p_Arena);
 extern void ProcessRuntimeResourceIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
 extern void* ToInMemStructure(const void* p_ResourceData, size_t p_Size, ZHMArena* p_Arena);
 extern void FreeJsonString(JsonString* p_JsonString);

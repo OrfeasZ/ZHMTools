@@ -13,21 +13,21 @@ void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader&
 	for (uint32_t i = 0; i < s_RelocationCount; ++i)
 	{
 		const auto s_RelocationOffset = p_SegmentStream.Read<uint32_t>();
-
-		// TODO (portable): In portable mode we just need to write the arena id in the pointers.
-
-		/*
+		
 		p_ResourceStream.Seek(s_RelocationOffset);
 
-		const auto s_RelocValue = p_ResourceStream.Read<zhmptrdiff_t>();
+		const auto s_RelocValue = p_ResourceStream.Read<zhmptr_t>();
 
-		zhmptr_t s_FinalValue = 0;
+		// If this is not a null pointer then we wanna rewrite it
+		// to add the current arena id to it.
+		if (s_RelocValue != ZHMNullPtr)
+		{
+			ZHMPtr<void> s_NewPtr;
+			s_NewPtr.SetArenaIdAndPtrOffset(p_Arena->m_Id, s_RelocValue);
 
-		if (s_RelocValue != -1)
-			s_FinalValue = reinterpret_cast<zhmptr_t>(p_ResourceStream.Buffer()) + s_RelocValue;
-
-		p_ResourceStream.Seek(s_RelocationOffset);
-		p_ResourceStream.Write(s_FinalValue);*/
+			p_ResourceStream.Seek(s_RelocationOffset);
+			p_ResourceStream.Write(s_NewPtr.m_Ptr);
+		}
 	}
 }
 
@@ -35,14 +35,30 @@ void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_R
 {
 	const uintptr_t s_StartOffset = p_SegmentStream.Position();
 	
-	std::unordered_map<uint32_t, zhmptr_t> s_TypeIdsToPatch;
-
 	const auto s_TypeIdsToPatchCount = p_SegmentStream.Read<uint32_t>();
-	
+
+	uint32_t s_FinalTypeIdOffset = 0;
+
 	for (uint32_t i = 0; i < s_TypeIdsToPatchCount; ++i)
 	{
 		const auto s_TypeIdOffset = p_SegmentStream.Read<uint32_t>();
-		(void) s_TypeIdOffset;
+
+#if ZHM_TARGET == 2012
+		s_FinalTypeIdOffset += s_TypeIdOffset;
+#else
+		s_FinalTypeIdOffset = s_TypeIdOffset;
+#endif
+
+		p_ResourceStream.Seek(s_FinalTypeIdOffset);
+
+		const auto s_TypeIdIndex = p_ResourceStream.Read<zhmptr_t>();
+
+		// Patch type to include arena id.
+		ZHMPtr<void> s_NewPtr;
+		s_NewPtr.SetArenaIdAndPtrOffset(p_Arena->m_Id, s_TypeIdIndex);
+
+		p_ResourceStream.Seek(s_FinalTypeIdOffset);
+		p_ResourceStream.Write(s_NewPtr.m_Ptr);
 	}
 
 	const auto s_TypeIdCount = p_SegmentStream.Read<uint32_t>();
@@ -84,6 +100,7 @@ void ProcessRuntimeResourceIds(BinaryStreamReader& p_SegmentStream, BinaryStream
 	{
 		// We read these but in reality we don't really care about them.
 		const auto s_ResourceIdOffset = p_SegmentStream.Read<uint32_t>();
+		(void) s_ResourceIdOffset;
 	}
 }
 
