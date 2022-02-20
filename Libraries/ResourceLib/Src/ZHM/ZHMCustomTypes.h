@@ -10,7 +10,6 @@ class SAudioSwitchBlueprintData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);	
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
@@ -23,7 +22,6 @@ class SScaleformGFxResource
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
@@ -38,7 +36,6 @@ class SGlobalResourceIndexItem
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
@@ -51,7 +48,6 @@ class SGlobalResourceIndex
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
@@ -63,7 +59,6 @@ class SAudioStateBlueprintData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);

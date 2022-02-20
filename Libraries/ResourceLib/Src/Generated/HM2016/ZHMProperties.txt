@@ -2009,6 +2009,7 @@ m_bIsMale
 m_bIsMoving
 m_bIsNegativeFogBox
 m_bIsOnCooldown
+m_bIsOnline
 m_bIsOnlyActiveInContractCreationMode
 m_bIsOpen
 m_bIsOrderValid
@@ -5005,6 +5006,7 @@ m_nTilesX
 m_nTilesY
 m_nTimeLimit
 m_nTimeRemoveLimit
+m_nTimeStamp
 m_nTimeout
 m_nTriggerCount
 m_nType

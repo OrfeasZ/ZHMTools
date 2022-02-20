@@ -27,7 +27,7 @@ enum class HitmanVersion
 	HitmanAbsolution,
 };
 
-bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, ResourceConverter* p_Converter, bool p_SimpleOutput)
+bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, ResourceConverter* p_Converter)
 {
 	// Read the entire file to memory.
 	const auto s_FileSize = file_size(p_InputFilePath);
@@ -38,22 +38,16 @@ bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::fil
 
 	s_FileStream.close();
 	
-	const auto s_Result = p_Converter->FromMemoryToJsonFile(s_FileData, s_FileSize, p_OutputFilePath.string().c_str(), p_SimpleOutput);
+	const auto s_Result = p_Converter->FromMemoryToJsonFile(s_FileData, s_FileSize, p_OutputFilePath.string().c_str());
 
 	free(s_FileData);
 
 	return s_Result;
 }
 
-bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::filesystem::path& p_OutputFilePath, ResourceGenerator* p_Generator, bool p_SimpleInput, bool p_Compatible)
+bool ResourceFromJson(const std::filesystem::path& p_JsonFilePath, const std::filesystem::path& p_OutputFilePath, ResourceGenerator* p_Generator, bool p_Compatible)
 {
-	if (!p_SimpleInput)
-	{
-		fprintf(stderr, "[ERROR] Only simple JSON inputs are supported currently.\n");
-		return false;
-	}
-
-	return p_Generator->FromJsonFileToResourceFile(p_JsonFilePath.string().c_str(), p_OutputFilePath.string().c_str(), p_SimpleInput, p_Compatible);
+	return p_Generator->FromJsonFileToResourceFile(p_JsonFilePath.string().c_str(), p_OutputFilePath.string().c_str(), p_Compatible);
 }
 
 void PrintHelp()
@@ -132,16 +126,12 @@ void PrintHelp()
 	printf("\tBy using the \"convert\" mode, you can convert a binary resource into a JSON file.\n");
 	printf("\tExample: " EXECUTABLE " HM3 convert TEMP " SAMPLE_PATH "file.TEMP " SAMPLE_PATH "file.json\n");
 	printf("\n");
-	printf("Options:\n");
-	printf("\t--simple\tGenerates simpler JSON output, omitting most type metadata.\n");
-	printf("\n");
 	printf("\n");
 	printf("Generating resources:\n");
 	printf("\tBy using the \"generate\" mode, you can generate a binary resource from a JSON file.\n");
 	printf("\tExample: " EXECUTABLE " HM3 generate TEMP " SAMPLE_PATH "file.json " SAMPLE_PATH "file.TEMP\n");
 	printf("\n");
 	printf("Options:\n");
-	printf("\t--simple\tUse when the input JSON file is generated using the \"--simple\" option when converting.\n");
 	printf("\t--compatible\tTry to generate resources that more closely resemble the original ones. Doesn't matter when producing files for use in the game, but third party tools might work better with them. Enabling this makes generation take significantly longer.\n");
 }
 
@@ -231,14 +221,14 @@ int TryConvertFile(const std::string& p_FilePath)
 	{
 		if (s_Convert)
 		{
-			if (!ResourceToJson(s_InputPath, s_OutputPath, s_ResourceConverter, true))
+			if (!ResourceToJson(s_InputPath, s_OutputPath, s_ResourceConverter))
 			{
 				return 1;
 			}
 		}
 		else
 		{
-			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, true, false))
+			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, false))
 			{
 				return 1;
 			}
@@ -273,15 +263,12 @@ int main(int argc, char** argv)
 	const std::string s_ResourceType(argv[3]);
 	const std::string s_InputPathStr(argv[4]);
 	const std::string s_OutputPathStr(argv[5]);
-
-	bool s_SimpleJson = false;
+	
 	bool s_Compatible = false;
 
 	for (int i = 6; i < argc; ++i)
 	{
-		if (std::string(argv[i]) == "--simple")
-			s_SimpleJson = true;
-		else if (std::string(argv[6]) == "--compatible")
+		if (std::string(argv[6]) == "--compatible")
 			s_Compatible = true;
 	}
 
@@ -360,14 +347,14 @@ int main(int argc, char** argv)
 	{
 		if (s_OperatingMode == "convert")
 		{
-			if (!ResourceToJson(s_InputPath, s_OutputPath, s_ResourceConverter, s_SimpleJson))
+			if (!ResourceToJson(s_InputPath, s_OutputPath, s_ResourceConverter))
 			{
 				return 1;
 			}
 		}
 		else if (s_OperatingMode == "generate")
 		{
-			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, s_SimpleJson, s_Compatible))
+			if (!ResourceFromJson(s_InputPath, s_OutputPath, s_ResourceGenerator, s_Compatible))
 			{
 				return 1;
 			}

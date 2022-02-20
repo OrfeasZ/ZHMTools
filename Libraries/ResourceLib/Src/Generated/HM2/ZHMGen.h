@@ -19,11 +19,11 @@ class /*alignas(8)*/ AI_Private_Details_SBaseStimulus_Pool_SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_Private_Details_SBaseStimulus_Pool_SaveData& p_Other) const;
 	bool operator!=(const AI_Private_Details_SBaseStimulus_Pool_SaveData& p_Other) const { return !(*this == p_Other); }
@@ -38,11 +38,11 @@ class /*alignas(4)*/ AI_Private_Details_SStimulus_AgentData_SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_Private_Details_SStimulus_AgentData_SaveData& p_Other) const;
 	bool operator!=(const AI_Private_Details_SStimulus_AgentData_SaveData& p_Other) const { return !(*this == p_Other); }
@@ -55,11 +55,11 @@ class /*alignas(8)*/ AI_Private_SStimulusSnapshot
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_Private_SStimulusSnapshot& p_Other) const;
 	bool operator!=(const AI_Private_SStimulusSnapshot& p_Other) const { return !(*this == p_Other); }
@@ -74,11 +74,11 @@ class /*alignas(8)*/ AI_Private_SPoolSnapshot
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_Private_SPoolSnapshot& p_Other) const;
 	bool operator!=(const AI_Private_SPoolSnapshot& p_Other) const { return !(*this == p_Other); }
@@ -94,11 +94,11 @@ class /*alignas(8)*/ AI_Private_SFullDataSnapshotEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_Private_SFullDataSnapshotEvent& p_Other) const;
 	bool operator!=(const AI_Private_SFullDataSnapshotEvent& p_Other) const { return !(*this == p_Other); }
@@ -114,11 +114,11 @@ class /*alignas(8)*/ AI_Private_SPoolModificationEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_Private_SPoolModificationEvent& p_Other) const;
 	bool operator!=(const AI_Private_SPoolModificationEvent& p_Other) const { return !(*this == p_Other); }
@@ -139,11 +139,11 @@ class /*alignas(8)*/ AI_Private_SPoolModificationCollectionEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_Private_SPoolModificationCollectionEvent& p_Other) const;
 	bool operator!=(const AI_Private_SPoolModificationCollectionEvent& p_Other) const { return !(*this == p_Other); }
@@ -388,11 +388,11 @@ class /*alignas(4)*/ AI_SEventDescription
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_SEventDescription& p_Other) const;
 	bool operator!=(const AI_SEventDescription& p_Other) const { return !(*this == p_Other); }
@@ -409,11 +409,11 @@ class /*alignas(4)*/ AI_SFirePattern01_SData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_SFirePattern01_SData& p_Other) const;
 	bool operator!=(const AI_SFirePattern01_SData& p_Other) const { return !(*this == p_Other); }
@@ -428,11 +428,11 @@ class /*alignas(8)*/ AI_SFirePattern01
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_SFirePattern01& p_Other) const;
 	bool operator!=(const AI_SFirePattern01& p_Other) const { return !(*this == p_Other); }
@@ -445,11 +445,11 @@ class /*alignas(4)*/ AI_SFirePattern02_SData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_SFirePattern02_SData& p_Other) const;
 	bool operator!=(const AI_SFirePattern02_SData& p_Other) const { return !(*this == p_Other); }
@@ -465,11 +465,11 @@ class /*alignas(8)*/ AI_SFirePattern02
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_SFirePattern02& p_Other) const;
 	bool operator!=(const AI_SFirePattern02& p_Other) const { return !(*this == p_Other); }
@@ -482,11 +482,11 @@ class /*alignas(4)*/ AI_SSoundEventModifierState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AI_SSoundEventModifierState& p_Other) const;
 	bool operator!=(const AI_SSoundEventModifierState& p_Other) const { return !(*this == p_Other); }
@@ -500,11 +500,11 @@ class /*alignas(4)*/ AnimationEventDataTypes_SBlend
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AnimationEventDataTypes_SBlend& p_Other) const;
 	bool operator!=(const AnimationEventDataTypes_SBlend& p_Other) const { return !(*this == p_Other); }
@@ -517,11 +517,11 @@ class /*alignas(4)*/ AnimationEventDataTypes_SLegacy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AnimationEventDataTypes_SLegacy& p_Other) const;
 	bool operator!=(const AnimationEventDataTypes_SLegacy& p_Other) const { return !(*this == p_Other); }
@@ -534,11 +534,11 @@ class /*alignas(4)*/ ZRuntimeResourceID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZRuntimeResourceID& p_Other) const;
 	bool operator!=(const ZRuntimeResourceID& p_Other) const { return !(*this == p_Other); }
@@ -552,11 +552,11 @@ class /*alignas(4)*/ AnimationTakeDataTypes_SGeneric
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const AnimationTakeDataTypes_SGeneric& p_Other) const;
 	bool operator!=(const AnimationTakeDataTypes_SGeneric& p_Other) const { return !(*this == p_Other); }
@@ -602,11 +602,11 @@ class /*alignas(1)*/ BoneId
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const BoneId& p_Other) const;
 	bool operator!=(const BoneId& p_Other) const { return !(*this == p_Other); }
@@ -7725,11 +7725,11 @@ class /*alignas(0)*/ IActor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IActor& p_Other) const;
 	bool operator!=(const IActor& p_Other) const { return !(*this == p_Other); }
@@ -7742,11 +7742,11 @@ class /*alignas(0)*/ IActorProvider
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IActorProvider& p_Other) const;
 	bool operator!=(const IActorProvider& p_Other) const { return !(*this == p_Other); }
@@ -7759,11 +7759,11 @@ class /*alignas(0)*/ IActorProviderFilter
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IActorProviderFilter& p_Other) const;
 	bool operator!=(const IActorProviderFilter& p_Other) const { return !(*this == p_Other); }
@@ -7776,11 +7776,11 @@ class /*alignas(0)*/ IAnimPlayerEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IAnimPlayerEntity& p_Other) const;
 	bool operator!=(const IAnimPlayerEntity& p_Other) const { return !(*this == p_Other); }
@@ -7793,11 +7793,11 @@ class /*alignas(0)*/ IBodybagEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IBodybagEntity& p_Other) const;
 	bool operator!=(const IBodybagEntity& p_Other) const { return !(*this == p_Other); }
@@ -7810,11 +7810,11 @@ class /*alignas(0)*/ IBoneAnimator
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IBoneAnimator& p_Other) const;
 	bool operator!=(const IBoneAnimator& p_Other) const { return !(*this == p_Other); }
@@ -7827,11 +7827,11 @@ class /*alignas(0)*/ IBoneCollidable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IBoneCollidable& p_Other) const;
 	bool operator!=(const IBoneCollidable& p_Other) const { return !(*this == p_Other); }
@@ -7844,11 +7844,11 @@ class /*alignas(0)*/ IBulletImpactListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IBulletImpactListener& p_Other) const;
 	bool operator!=(const IBulletImpactListener& p_Other) const { return !(*this == p_Other); }
@@ -7878,11 +7878,11 @@ class /*alignas(0)*/ IComponentInterface
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IComponentInterface& p_Other) const;
 	bool operator!=(const IComponentInterface& p_Other) const { return !(*this == p_Other); }
@@ -7895,11 +7895,11 @@ class /*alignas(0)*/ IContractEvaluationContextListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IContractEvaluationContextListener& p_Other) const;
 	bool operator!=(const IContractEvaluationContextListener& p_Other) const { return !(*this == p_Other); }
@@ -7925,11 +7925,11 @@ class /*alignas(0)*/ IContractModule
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IContractModule& p_Other) const;
 	bool operator!=(const IContractModule& p_Other) const { return !(*this == p_Other); }
@@ -7942,11 +7942,11 @@ class /*alignas(0)*/ IContractObjective
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IContractObjective& p_Other) const;
 	bool operator!=(const IContractObjective& p_Other) const { return !(*this == p_Other); }
@@ -7983,11 +7983,11 @@ class /*alignas(8)*/ ZDynamicObject
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDynamicObject& p_Other) const;
 	bool operator!=(const ZDynamicObject& p_Other) const { return !(*this == p_Other); }
@@ -8000,11 +8000,11 @@ class /*alignas(8)*/ IContractObjective_SCounterData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IContractObjective_SCounterData& p_Other) const;
 	bool operator!=(const IContractObjective_SCounterData& p_Other) const { return !(*this == p_Other); }
@@ -8022,11 +8022,11 @@ class /*alignas(8)*/ ZGuid
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZGuid& p_Other) const;
 	bool operator!=(const ZGuid& p_Other) const { return !(*this == p_Other); }
@@ -8049,11 +8049,11 @@ class /*alignas(8)*/ IContractObjective_STargetCondition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IContractObjective_STargetCondition& p_Other) const;
 	bool operator!=(const IContractObjective_STargetCondition& p_Other) const { return !(*this == p_Other); }
@@ -8086,11 +8086,11 @@ class /*alignas(0)*/ IEscortOutSituation
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IEscortOutSituation& p_Other) const;
 	bool operator!=(const IEscortOutSituation& p_Other) const { return !(*this == p_Other); }
@@ -8103,11 +8103,11 @@ class /*alignas(0)*/ IEventConsumerCollection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IEventConsumerCollection& p_Other) const;
 	bool operator!=(const IEventConsumerCollection& p_Other) const { return !(*this == p_Other); }
@@ -8120,11 +8120,11 @@ class /*alignas(0)*/ IFreeCameraControl
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IFreeCameraControl& p_Other) const;
 	bool operator!=(const IFreeCameraControl& p_Other) const { return !(*this == p_Other); }
@@ -8179,11 +8179,11 @@ class /*alignas(0)*/ IHM5WeaponInventory
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IHM5WeaponInventory& p_Other) const;
 	bool operator!=(const IHM5WeaponInventory& p_Other) const { return !(*this == p_Other); }
@@ -8196,11 +8196,11 @@ class /*alignas(0)*/ IHumanBody
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IHumanBody& p_Other) const;
 	bool operator!=(const IHumanBody& p_Other) const { return !(*this == p_Other); }
@@ -8278,11 +8278,11 @@ class /*alignas(0)*/ IMetricValue
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IMetricValue& p_Other) const;
 	bool operator!=(const IMetricValue& p_Other) const { return !(*this == p_Other); }
@@ -8295,11 +8295,11 @@ class /*alignas(0)*/ IMorphemeCutSequenceAnimatable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IMorphemeCutSequenceAnimatable& p_Other) const;
 	bool operator!=(const IMorphemeCutSequenceAnimatable& p_Other) const { return !(*this == p_Other); }
@@ -8312,11 +8312,11 @@ class /*alignas(0)*/ IMorphemeCutSequenceAnimationEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IMorphemeCutSequenceAnimationEntity& p_Other) const;
 	bool operator!=(const IMorphemeCutSequenceAnimationEntity& p_Other) const { return !(*this == p_Other); }
@@ -8329,11 +8329,11 @@ class /*alignas(0)*/ IMorphemeEventConsumer
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IMorphemeEventConsumer& p_Other) const;
 	bool operator!=(const IMorphemeEventConsumer& p_Other) const { return !(*this == p_Other); }
@@ -8346,11 +8346,11 @@ class /*alignas(8)*/ INetRelevancy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const INetRelevancy& p_Other) const;
 	bool operator!=(const INetRelevancy& p_Other) const { return !(*this == p_Other); }
@@ -8363,11 +8363,11 @@ class /*alignas(0)*/ IOnlineConfigurationListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IOnlineConfigurationListener& p_Other) const;
 	bool operator!=(const IOnlineConfigurationListener& p_Other) const { return !(*this == p_Other); }
@@ -8380,11 +8380,11 @@ class /*alignas(0)*/ IPureWaterReflectable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IPureWaterReflectable& p_Other) const;
 	bool operator!=(const IPureWaterReflectable& p_Other) const { return !(*this == p_Other); }
@@ -8397,11 +8397,11 @@ class /*alignas(1)*/ IRenderCompositorEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IRenderCompositorEntity& p_Other) const;
 	bool operator!=(const IRenderCompositorEntity& p_Other) const { return !(*this == p_Other); }
@@ -8492,11 +8492,11 @@ class /*alignas(0)*/ ISequenceTarget
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ISequenceTarget& p_Other) const;
 	bool operator!=(const ISequenceTarget& p_Other) const { return !(*this == p_Other); }
@@ -8509,11 +8509,11 @@ class /*alignas(0)*/ ISituation
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ISituation& p_Other) const;
 	bool operator!=(const ISituation& p_Other) const { return !(*this == p_Other); }
@@ -8526,11 +8526,11 @@ class /*alignas(0)*/ ISoundGateController
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ISoundGateController& p_Other) const;
 	bool operator!=(const ISoundGateController& p_Other) const { return !(*this == p_Other); }
@@ -8543,11 +8543,11 @@ class /*alignas(0)*/ ISoundMaterialDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ISoundMaterialDescriptor& p_Other) const;
 	bool operator!=(const ISoundMaterialDescriptor& p_Other) const { return !(*this == p_Other); }
@@ -8560,11 +8560,11 @@ class /*alignas(0)*/ ITriggerListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ITriggerListener& p_Other) const;
 	bool operator!=(const ITriggerListener& p_Other) const { return !(*this == p_Other); }
@@ -8577,11 +8577,11 @@ class /*alignas(0)*/ IUIDataListener
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IUIDataListener& p_Other) const;
 	bool operator!=(const IUIDataListener& p_Other) const { return !(*this == p_Other); }
@@ -8594,11 +8594,11 @@ class /*alignas(0)*/ IValueEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IValueEntity& p_Other) const;
 	bool operator!=(const IValueEntity& p_Other) const { return !(*this == p_Other); }
@@ -8611,11 +8611,11 @@ class /*alignas(0)*/ IWorldMapMarker
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const IWorldMapMarker& p_Other) const;
 	bool operator!=(const IWorldMapMarker& p_Other) const { return !(*this == p_Other); }
@@ -8982,11 +8982,11 @@ class /*alignas(4)*/ S25DProjectionSettings
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const S25DProjectionSettings& p_Other) const;
 	bool operator!=(const S25DProjectionSettings& p_Other) const { return !(*this == p_Other); }
@@ -9012,11 +9012,11 @@ class /*alignas(4)*/ S3rdPersonCameraSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const S3rdPersonCameraSaveData& p_Other) const;
 	bool operator!=(const S3rdPersonCameraSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9030,11 +9030,11 @@ class /*alignas(8)*/ ZGameTime
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZGameTime& p_Other) const;
 	bool operator!=(const ZGameTime& p_Other) const { return !(*this == p_Other); }
@@ -9047,11 +9047,11 @@ class /*alignas(8)*/ SAIEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAIEventSaveData& p_Other) const;
 	bool operator!=(const SAIEventSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9068,11 +9068,11 @@ class /*alignas(4)*/ SAIModifierServiceActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAIModifierServiceActorSaveData& p_Other) const;
 	bool operator!=(const SAIModifierServiceActorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9096,11 +9096,11 @@ class /*alignas(8)*/ SAIModifierServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAIModifierServiceSaveData& p_Other) const;
 	bool operator!=(const SAIModifierServiceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9115,11 +9115,11 @@ class /*alignas(1)*/ SAIPerceptibleEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAIPerceptibleEntitySaveData& p_Other) const;
 	bool operator!=(const SAIPerceptibleEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -9132,11 +9132,11 @@ class /*alignas(1)*/ SAIVisionBlockerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAIVisionBlockerSaveData& p_Other) const;
 	bool operator!=(const SAIVisionBlockerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9149,11 +9149,11 @@ class /*alignas(4)*/ SAccessoryItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAccessoryItemSaveData& p_Other) const;
 	bool operator!=(const SAccessoryItemSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9170,11 +9170,11 @@ class /*alignas(8)*/ SAccidentObserversGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAccidentObserversGroupSaveData& p_Other) const;
 	bool operator!=(const SAccidentObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9205,11 +9205,11 @@ class /*alignas(8)*/ SActBehaviorEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActBehaviorEntitySaveData& p_Other) const;
 	bool operator!=(const SActBehaviorEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -9228,11 +9228,11 @@ class /*alignas(16)*/ float4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const float4& p_Other) const;
 	bool operator!=(const float4& p_Other) const { return !(*this == p_Other); }
@@ -9248,11 +9248,11 @@ class /*alignas(16)*/ SActOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActOrderSaveData& p_Other) const;
 	bool operator!=(const SActOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9273,11 +9273,11 @@ class /*alignas(8)*/ SActionRadialArcDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActionRadialArcDisplayInfo& p_Other) const;
 	bool operator!=(const SActionRadialArcDisplayInfo& p_Other) const { return !(*this == p_Other); }
@@ -9295,11 +9295,11 @@ class /*alignas(8)*/ SActionRadialArcDisplayInfoArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActionRadialArcDisplayInfoArray_dummy& p_Other) const;
 	bool operator!=(const SActionRadialArcDisplayInfoArray_dummy& p_Other) const { return !(*this == p_Other); }
@@ -9312,11 +9312,11 @@ class /*alignas(4)*/ SActorAccessoryItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorAccessoryItemActionSaveData& p_Other) const;
 	bool operator!=(const SActorAccessoryItemActionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9329,11 +9329,11 @@ class /*alignas(4)*/ SActorAliveConditionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorAliveConditionSaveData& p_Other) const;
 	bool operator!=(const SActorAliveConditionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9346,11 +9346,11 @@ class /*alignas(4)*/ SActorAnimSetVariationIndexSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorAnimSetVariationIndexSaveData& p_Other) const;
 	bool operator!=(const SActorAnimSetVariationIndexSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9364,11 +9364,11 @@ class /*alignas(8)*/ SActorAnimSetSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorAnimSetSaveData& p_Other) const;
 	bool operator!=(const SActorAnimSetSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9388,11 +9388,11 @@ class /*alignas(4)*/ SActorBoneAttachSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorBoneAttachSaveData& p_Other) const;
 	bool operator!=(const SActorBoneAttachSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9407,11 +9407,11 @@ class /*alignas(8)*/ SActorBoneAttachmentsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorBoneAttachmentsSaveData& p_Other) const;
 	bool operator!=(const SActorBoneAttachmentsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9425,11 +9425,11 @@ class /*alignas(4)*/ SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVector4& p_Other) const;
 	bool operator!=(const SVector4& p_Other) const { return !(*this == p_Other); }
@@ -9445,11 +9445,11 @@ class /*alignas(4)*/ SActorBoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorBoneSaveData& p_Other) const;
 	bool operator!=(const SActorBoneSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9463,11 +9463,11 @@ class /*alignas(8)*/ SActorDamageControlSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorDamageControlSaveData& p_Other) const;
 	bool operator!=(const SActorDamageControlSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9510,11 +9510,11 @@ class /*alignas(4)*/ SActorDynamicTemplateHandlerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorDynamicTemplateHandlerSaveData& p_Other) const;
 	bool operator!=(const SActorDynamicTemplateHandlerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9529,11 +9529,11 @@ class /*alignas(4)*/ SActorDynamicTemplateManipulatorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorDynamicTemplateManipulatorSaveData& p_Other) const;
 	bool operator!=(const SActorDynamicTemplateManipulatorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9546,11 +9546,11 @@ class /*alignas(8)*/ SActorDynamicTemplateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorDynamicTemplateSaveData& p_Other) const;
 	bool operator!=(const SActorDynamicTemplateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9572,11 +9572,11 @@ class /*alignas(8)*/ SActorGoalSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorGoalSaveData& p_Other) const;
 	bool operator!=(const SActorGoalSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9592,11 +9592,11 @@ class /*alignas(4)*/ SActorIKControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorIKControllerSaveData& p_Other) const;
 	bool operator!=(const SActorIKControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9612,11 +9612,11 @@ class /*alignas(4)*/ SActorInventoryItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorInventoryItemSaveData& p_Other) const;
 	bool operator!=(const SActorInventoryItemSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9635,11 +9635,11 @@ class /*alignas(8)*/ SActorInventorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorInventorySaveData& p_Other) const;
 	bool operator!=(const SActorInventorySaveData& p_Other) const { return !(*this == p_Other); }
@@ -9652,11 +9652,11 @@ class /*alignas(4)*/ SActorItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorItemActionSaveData& p_Other) const;
 	bool operator!=(const SActorItemActionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9670,11 +9670,11 @@ class /*alignas(4)*/ SActorKeywordProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorKeywordProxySaveData& p_Other) const;
 	bool operator!=(const SActorKeywordProxySaveData& p_Other) const { return !(*this == p_Other); }
@@ -9687,11 +9687,11 @@ class /*alignas(8)*/ SActorKeywordProxiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorKeywordProxiesSaveData& p_Other) const;
 	bool operator!=(const SActorKeywordProxiesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9705,11 +9705,11 @@ class /*alignas(8)*/ SActorManagerReferencableData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorManagerReferencableData& p_Other) const;
 	bool operator!=(const SActorManagerReferencableData& p_Other) const { return !(*this == p_Other); }
@@ -9722,11 +9722,11 @@ class /*alignas(4)*/ SActorProviderApproachSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorProviderApproachSaveData& p_Other) const;
 	bool operator!=(const SActorProviderApproachSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9739,11 +9739,11 @@ class /*alignas(8)*/ SActorProviderDirectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorProviderDirectSaveData& p_Other) const;
 	bool operator!=(const SActorProviderDirectSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9758,11 +9758,11 @@ class /*alignas(4)*/ SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVector3& p_Other) const;
 	bool operator!=(const SVector3& p_Other) const { return !(*this == p_Other); }
@@ -9777,11 +9777,11 @@ class /*alignas(8)*/ SActorRagdollPoseSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorRagdollPoseSaveData& p_Other) const;
 	bool operator!=(const SActorRagdollPoseSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9797,11 +9797,11 @@ class /*alignas(16)*/ SActorThrowSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorThrowSaveData& p_Other) const;
 	bool operator!=(const SActorThrowSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9820,11 +9820,11 @@ class /*alignas(8)*/ SEventHistorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEventHistorySaveData& p_Other) const;
 	bool operator!=(const SEventHistorySaveData& p_Other) const { return !(*this == p_Other); }
@@ -9837,11 +9837,11 @@ class /*alignas(16)*/ SMatrix
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMatrix& p_Other) const;
 	bool operator!=(const SMatrix& p_Other) const { return !(*this == p_Other); }
@@ -9857,11 +9857,11 @@ class /*alignas(16)*/ SKnownEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SKnownEntitySaveData& p_Other) const;
 	bool operator!=(const SKnownEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -9883,11 +9883,11 @@ class /*alignas(8)*/ SKnowledgeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SKnowledgeSaveData& p_Other) const;
 	bool operator!=(const SKnowledgeSaveData& p_Other) const { return !(*this == p_Other); }
@@ -9918,11 +9918,11 @@ class /*alignas(8)*/ SLongTermMemorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLongTermMemorySaveData& p_Other) const;
 	bool operator!=(const SLongTermMemorySaveData& p_Other) const { return !(*this == p_Other); }
@@ -9937,11 +9937,11 @@ class /*alignas(16)*/ SActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorSaveData& p_Other) const;
 	bool operator!=(const SActorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10012,11 +10012,11 @@ class /*alignas(8)*/ SCombatMetricsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCombatMetricsSaveData& p_Other) const;
 	bool operator!=(const SCombatMetricsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10032,11 +10032,11 @@ class /*alignas(8)*/ SEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEventSaveData& p_Other) const;
 	bool operator!=(const SEventSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10052,11 +10052,11 @@ class /*alignas(16)*/ SSharedKnowledgeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSharedKnowledgeSaveData& p_Other) const;
 	bool operator!=(const SSharedKnowledgeSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10075,11 +10075,11 @@ class /*alignas(8)*/ SSituationGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSituationGroupSaveData& p_Other) const;
 	bool operator!=(const SSituationGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10098,11 +10098,11 @@ class /*alignas(8)*/ SSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSituationMemberSaveData& p_Other) const;
 	bool operator!=(const SSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10123,11 +10123,11 @@ class /*alignas(8)*/ SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSituationSaveData& p_Other) const;
 	bool operator!=(const SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10151,11 +10151,11 @@ class /*alignas(4)*/ SActorProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorProxySaveData& p_Other) const;
 	bool operator!=(const SActorProxySaveData& p_Other) const { return !(*this == p_Other); }
@@ -10168,11 +10168,11 @@ class /*alignas(8)*/ SActorProxiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorProxiesSaveData& p_Other) const;
 	bool operator!=(const SActorProxiesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10186,11 +10186,11 @@ class /*alignas(1)*/ SActorSoundDefs
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorSoundDefs& p_Other) const;
 	bool operator!=(const SActorSoundDefs& p_Other) const { return !(*this == p_Other); }
@@ -10209,11 +10209,11 @@ class /*alignas(8)*/ SActorSpreadControllerCandidateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorSpreadControllerCandidateSaveData& p_Other) const;
 	bool operator!=(const SActorSpreadControllerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10230,11 +10230,11 @@ class /*alignas(8)*/ SActorSpreadControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorSpreadControllerSaveData& p_Other) const;
 	bool operator!=(const SActorSpreadControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10259,11 +10259,11 @@ class /*alignas(4)*/ SActorSpreadTransitionOperatorMaterialActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorSpreadTransitionOperatorMaterialActorSaveData& p_Other) const;
 	bool operator!=(const SActorSpreadTransitionOperatorMaterialActorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10277,11 +10277,11 @@ class /*alignas(8)*/ SActorSpreadTransitionOperatorMaterialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorSpreadTransitionOperatorMaterialSaveData& p_Other) const;
 	bool operator!=(const SActorSpreadTransitionOperatorMaterialSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10294,11 +10294,11 @@ class /*alignas(4)*/ SActorStandInSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorStandInSaveData& p_Other) const;
 	bool operator!=(const SActorStandInSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10311,11 +10311,11 @@ class /*alignas(8)*/ SActorStandInEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorStandInEntitiesSaveData& p_Other) const;
 	bool operator!=(const SActorStandInEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10329,11 +10329,11 @@ class /*alignas(4)*/ SActorTagSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorTagSaveData& p_Other) const;
 	bool operator!=(const SActorTagSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10349,11 +10349,11 @@ class /*alignas(8)*/ SActorTagManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorTagManagerSaveData& p_Other) const;
 	bool operator!=(const SActorTagManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10372,11 +10372,11 @@ class /*alignas(4)*/ SActorVisibilityConditionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SActorVisibilityConditionSaveData& p_Other) const;
 	bool operator!=(const SActorVisibilityConditionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10389,11 +10389,11 @@ class /*alignas(8)*/ SAgencyPickupInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAgencyPickupInfo& p_Other) const;
 	bool operator!=(const SAgencyPickupInfo& p_Other) const { return !(*this == p_Other); }
@@ -10408,11 +10408,11 @@ class /*alignas(16)*/ SAgitatedBystanderOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAgitatedBystanderOrderSaveData& p_Other) const;
 	bool operator!=(const SAgitatedBystanderOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10428,11 +10428,11 @@ class /*alignas(1)*/ SAimAssistObjectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAimAssistObjectSaveData& p_Other) const;
 	bool operator!=(const SAimAssistObjectSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10446,11 +10446,11 @@ class /*alignas(4)*/ SBoneTransformSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBoneTransformSaveData& p_Other) const;
 	bool operator!=(const SBoneTransformSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10464,11 +10464,11 @@ class /*alignas(8)*/ SAnimPlayerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAnimPlayerSaveData& p_Other) const;
 	bool operator!=(const SAnimPlayerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10483,11 +10483,11 @@ class /*alignas(4)*/ SAnimatedActorActOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAnimatedActorActOrderSaveData& p_Other) const;
 	bool operator!=(const SAnimatedActorActOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10506,11 +10506,11 @@ class /*alignas(4)*/ SAnimatedActorMoveOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAnimatedActorMoveOrderSaveData& p_Other) const;
 	bool operator!=(const SAnimatedActorMoveOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10530,11 +10530,11 @@ class /*alignas(8)*/ SAnimatedActorOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAnimatedActorOrderSaveData& p_Other) const;
 	bool operator!=(const SAnimatedActorOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10549,11 +10549,11 @@ class /*alignas(8)*/ SAnimatedActorReactOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAnimatedActorReactOrderSaveData& p_Other) const;
 	bool operator!=(const SAnimatedActorReactOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10577,11 +10577,11 @@ class /*alignas(4)*/ SAnimatedActorStandOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAnimatedActorStandOrderSaveData& p_Other) const;
 	bool operator!=(const SAnimatedActorStandOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10594,11 +10594,11 @@ class /*alignas(4)*/ SAttentionHUDUIElement
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAttentionHUDUIElement& p_Other) const;
 	bool operator!=(const SAttentionHUDUIElement& p_Other) const { return !(*this == p_Other); }
@@ -10615,11 +10615,11 @@ class /*alignas(8)*/ SAttentionHUDUIElementArray_Dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAttentionHUDUIElementArray_Dummy& p_Other) const;
 	bool operator!=(const SAttentionHUDUIElementArray_Dummy& p_Other) const { return !(*this == p_Other); }
@@ -10632,11 +10632,11 @@ class /*alignas(4)*/ SAudioEmitterEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAudioEmitterEventSaveData& p_Other) const;
 	bool operator!=(const SAudioEmitterEventSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10656,11 +10656,11 @@ class /*alignas(4)*/ SAudioEmitterRTPCSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAudioEmitterRTPCSaveData& p_Other) const;
 	bool operator!=(const SAudioEmitterRTPCSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10674,11 +10674,11 @@ class /*alignas(4)*/ SAudioEmitterSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAudioEmitterSaveData& p_Other) const;
 	bool operator!=(const SAudioEmitterSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10694,11 +10694,11 @@ class /*alignas(4)*/ SAudioEmitterStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAudioEmitterStateSaveData& p_Other) const;
 	bool operator!=(const SAudioEmitterStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10712,11 +10712,11 @@ class /*alignas(4)*/ SAudioEmitterSwitchSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAudioEmitterSwitchSaveData& p_Other) const;
 	bool operator!=(const SAudioEmitterSwitchSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10730,11 +10730,11 @@ class /*alignas(8)*/ ZResourceID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZResourceID& p_Other) const;
 	bool operator!=(const ZResourceID& p_Other) const { return !(*this == p_Other); }
@@ -10747,11 +10747,11 @@ class /*alignas(8)*/ SAudioMemoryMonitorEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAudioMemoryMonitorEntry& p_Other) const;
 	bool operator!=(const SAudioMemoryMonitorEntry& p_Other) const { return !(*this == p_Other); }
@@ -10766,11 +10766,11 @@ class /*alignas(8)*/ SAudioSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAudioSaveData& p_Other) const;
 	bool operator!=(const SAudioSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10789,11 +10789,11 @@ class /*alignas(8)*/ SFSMSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFSMSaveData& p_Other) const;
 	bool operator!=(const SFSMSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10810,11 +10810,11 @@ class /*alignas(16)*/ SAvoidDangerousAreaGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SAvoidDangerousAreaGroupSaveData& p_Other) const;
 	bool operator!=(const SAvoidDangerousAreaGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10833,11 +10833,11 @@ class /*alignas(8)*/ SBehaviorTreeEntityReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBehaviorTreeEntityReference& p_Other) const;
 	bool operator!=(const SBehaviorTreeEntityReference& p_Other) const { return !(*this == p_Other); }
@@ -10852,11 +10852,11 @@ class /*alignas(8)*/ SBehaviorTreeEvaluationLogEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBehaviorTreeEvaluationLogEntry& p_Other) const;
 	bool operator!=(const SBehaviorTreeEvaluationLogEntry& p_Other) const { return !(*this == p_Other); }
@@ -10873,11 +10873,11 @@ class /*alignas(8)*/ SBehaviorTreeEvaluationLog
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBehaviorTreeEvaluationLog& p_Other) const;
 	bool operator!=(const SBehaviorTreeEvaluationLog& p_Other) const { return !(*this == p_Other); }
@@ -10891,11 +10891,11 @@ class /*alignas(8)*/ SBehaviorTreeInputPinCondition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBehaviorTreeInputPinCondition& p_Other) const;
 	bool operator!=(const SBehaviorTreeInputPinCondition& p_Other) const { return !(*this == p_Other); }
@@ -10908,11 +10908,11 @@ class /*alignas(8)*/ SBehaviorTreeInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBehaviorTreeInfo& p_Other) const;
 	bool operator!=(const SBehaviorTreeInfo& p_Other) const { return !(*this == p_Other); }
@@ -10926,11 +10926,11 @@ class /*alignas(8)*/ SBlobsConfigResourceEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBlobsConfigResourceEntry& p_Other) const;
 	bool operator!=(const SBlobsConfigResourceEntry& p_Other) const { return !(*this == p_Other); }
@@ -10955,11 +10955,11 @@ class /*alignas(4)*/ SBodyContainerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBodyContainerSaveData& p_Other) const;
 	bool operator!=(const SBodyContainerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10976,11 +10976,11 @@ class /*alignas(8)*/ SBodyContainersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBodyContainersSaveData& p_Other) const;
 	bool operator!=(const SBodyContainersSaveData& p_Other) const { return !(*this == p_Other); }
@@ -10994,11 +10994,11 @@ class /*alignas(4)*/ SBodyPartDamageMultipliers
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBodyPartDamageMultipliers& p_Other) const;
 	bool operator!=(const SBodyPartDamageMultipliers& p_Other) const { return !(*this == p_Other); }
@@ -11024,11 +11024,11 @@ class /*alignas(4)*/ SBodybagBoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBodybagBoneSaveData& p_Other) const;
 	bool operator!=(const SBodybagBoneSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11042,11 +11042,11 @@ class /*alignas(8)*/ SBodybagSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBodybagSaveData& p_Other) const;
 	bool operator!=(const SBodybagSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11066,11 +11066,11 @@ class /*alignas(4)*/ SBoneAttachSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBoneAttachSaveData& p_Other) const;
 	bool operator!=(const SBoneAttachSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11085,11 +11085,11 @@ class /*alignas(8)*/ SBoneScalesList
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SBoneScalesList& p_Other) const;
 	bool operator!=(const SBoneScalesList& p_Other) const { return !(*this == p_Other); }
@@ -11102,11 +11102,11 @@ class /*alignas(4)*/ SCamBone
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCamBone& p_Other) const;
 	bool operator!=(const SCamBone& p_Other) const { return !(*this == p_Other); }
@@ -11129,11 +11129,11 @@ class /*alignas(8)*/ SCautiousBackupGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousBackupGroupSaveData& p_Other) const;
 	bool operator!=(const SCautiousBackupGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11154,11 +11154,11 @@ class /*alignas(8)*/ SCautiousHuntSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousHuntSaveData& p_Other) const;
 	bool operator!=(const SCautiousHuntSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11182,11 +11182,11 @@ class /*alignas(8)*/ SExactCompressedGridFloatField
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExactCompressedGridFloatField& p_Other) const;
 	bool operator!=(const SExactCompressedGridFloatField& p_Other) const { return !(*this == p_Other); }
@@ -11215,11 +11215,11 @@ class /*alignas(16)*/ SCautiousInvestigateGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousInvestigateGroupSaveData& p_Other) const;
 	bool operator!=(const SCautiousInvestigateGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11257,11 +11257,11 @@ class /*alignas(8)*/ SCompressedGridFloatField
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCompressedGridFloatField& p_Other) const;
 	bool operator!=(const SCompressedGridFloatField& p_Other) const { return !(*this == p_Other); }
@@ -11280,11 +11280,11 @@ class /*alignas(8)*/ SDisturbanceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDisturbanceSaveData& p_Other) const;
 	bool operator!=(const SDisturbanceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11320,11 +11320,11 @@ class /*alignas(8)*/ ZInvestigateCautiousSituation_SStateData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZInvestigateCautiousSituation_SStateData& p_Other) const;
 	bool operator!=(const ZInvestigateCautiousSituation_SStateData& p_Other) const { return !(*this == p_Other); }
@@ -11363,11 +11363,11 @@ class /*alignas(8)*/ SCautiousInvestigateSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousInvestigateSituationSaveData& p_Other) const;
 	bool operator!=(const SCautiousInvestigateSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11432,11 +11432,11 @@ class /*alignas(4)*/ SCautiousSearchGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousSearchGroupSaveData& p_Other) const;
 	bool operator!=(const SCautiousSearchGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11454,11 +11454,11 @@ class /*alignas(8)*/ SCautiousSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousSituationMemberSaveData& p_Other) const;
 	bool operator!=(const SCautiousSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11485,11 +11485,11 @@ class /*alignas(8)*/ SCautiousVIPGroupState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousVIPGroupState& p_Other) const;
 	bool operator!=(const SCautiousVIPGroupState& p_Other) const { return !(*this == p_Other); }
@@ -11502,11 +11502,11 @@ class /*alignas(8)*/ SCautiousVIPGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCautiousVIPGroupSaveData& p_Other) const;
 	bool operator!=(const SCautiousVIPGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11524,11 +11524,11 @@ class /*alignas(4)*/ SChairSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SChairSaveData& p_Other) const;
 	bool operator!=(const SChairSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11543,11 +11543,11 @@ class /*alignas(8)*/ SChallengeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SChallengeSaveData& p_Other) const;
 	bool operator!=(const SChallengeSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11561,11 +11561,11 @@ class /*alignas(8)*/ SChallengesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SChallengesSaveData& p_Other) const;
 	bool operator!=(const SChallengesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11578,11 +11578,11 @@ class /*alignas(4)*/ SCharacterSpeakEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCharacterSpeakEntitySaveData& p_Other) const;
 	bool operator!=(const SCharacterSpeakEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -11598,11 +11598,11 @@ class /*alignas(4)*/ SCheckLastPositionGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCheckLastPositionGroupSaveData& p_Other) const;
 	bool operator!=(const SCheckLastPositionGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11621,11 +11621,11 @@ class /*alignas(8)*/ SClothBundleSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SClothBundleSaveData& p_Other) const;
 	bool operator!=(const SClothBundleSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11645,11 +11645,11 @@ class /*alignas(4)*/ SClothBundleSpawnSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SClothBundleSpawnSaveData& p_Other) const;
 	bool operator!=(const SClothBundleSpawnSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11662,11 +11662,11 @@ class /*alignas(2)*/ SClothVertex
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SClothVertex& p_Other) const;
 	bool operator!=(const SClothVertex& p_Other) const { return !(*this == p_Other); }
@@ -11680,11 +11680,11 @@ class /*alignas(4)*/ SClothWireEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SClothWireEntitySaveData& p_Other) const;
 	bool operator!=(const SClothWireEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -11701,11 +11701,11 @@ class /*alignas(16)*/ SCollidingParticle
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCollidingParticle& p_Other) const;
 	bool operator!=(const SCollidingParticle& p_Other) const { return !(*this == p_Other); }
@@ -11723,11 +11723,11 @@ class /*alignas(1)*/ SCollisionControllerAspectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCollisionControllerAspectSaveData& p_Other) const;
 	bool operator!=(const SCollisionControllerAspectSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11741,11 +11741,11 @@ class /*alignas(8)*/ SCollisionControllerAspectsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCollisionControllerAspectsSaveData& p_Other) const;
 	bool operator!=(const SCollisionControllerAspectsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11759,11 +11759,11 @@ class /*alignas(4)*/ SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SColorRGB& p_Other) const;
 	bool operator!=(const SColorRGB& p_Other) const { return !(*this == p_Other); }
@@ -11778,11 +11778,11 @@ class /*alignas(4)*/ SColorRGBA
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SColorRGBA& p_Other) const;
 	bool operator!=(const SColorRGBA& p_Other) const { return !(*this == p_Other); }
@@ -11798,11 +11798,11 @@ class /*alignas(8)*/ SColorRGBSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SColorRGBSaveData& p_Other) const;
 	bool operator!=(const SColorRGBSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11816,11 +11816,11 @@ class /*alignas(16)*/ SCombatOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCombatOrderSaveData& p_Other) const;
 	bool operator!=(const SCombatOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11836,11 +11836,11 @@ class /*alignas(4)*/ SCombatSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCombatSituationMemberSaveData& p_Other) const;
 	bool operator!=(const SCombatSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
@@ -11862,11 +11862,11 @@ class /*alignas(8)*/ SCombatZoneEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCombatZoneEntitySaveData& p_Other) const;
 	bool operator!=(const SCombatZoneEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -11885,11 +11885,11 @@ class /*alignas(4)*/ ZBehaviorTreeVariable
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZBehaviorTreeVariable& p_Other) const;
 	bool operator!=(const ZBehaviorTreeVariable& p_Other) const { return !(*this == p_Other); }
@@ -11902,11 +11902,11 @@ class /*alignas(4)*/ SConditionBase
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SConditionBase& p_Other) const;
 	bool operator!=(const SConditionBase& p_Other) const { return !(*this == p_Other); }
@@ -11921,11 +11921,11 @@ class /*alignas(4)*/ SConditionalTimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SConditionalTimerEntitySaveData& p_Other) const;
 	bool operator!=(const SConditionalTimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -11942,11 +11942,11 @@ class /*alignas(8)*/ SInventoryItem
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryItem& p_Other) const;
 	bool operator!=(const SInventoryItem& p_Other) const { return !(*this == p_Other); }
@@ -11963,11 +11963,11 @@ class /*alignas(8)*/ SContainerItemInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SContainerItemInfo& p_Other) const;
 	bool operator!=(const SContainerItemInfo& p_Other) const { return !(*this == p_Other); }
@@ -11981,11 +11981,11 @@ class /*alignas(1)*/ SContextActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SContextActionSaveData& p_Other) const;
 	bool operator!=(const SContextActionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12000,11 +12000,11 @@ class /*alignas(8)*/ SContractConfigResourceEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SContractConfigResourceEntry& p_Other) const;
 	bool operator!=(const SContractConfigResourceEntry& p_Other) const { return !(*this == p_Other); }
@@ -12018,11 +12018,11 @@ class /*alignas(1)*/ SContractObjectiveHudHintEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SContractObjectiveHudHintEntitySaveData& p_Other) const;
 	bool operator!=(const SContractObjectiveHudHintEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -12035,11 +12035,11 @@ class /*alignas(8)*/ SContractObjectiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SContractObjectiveSaveData& p_Other) const;
 	bool operator!=(const SContractObjectiveSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12087,11 +12087,11 @@ class /*alignas(8)*/ SContractObjectiveStateMachineSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SContractObjectiveStateMachineSaveData& p_Other) const;
 	bool operator!=(const SContractObjectiveStateMachineSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12144,11 +12144,11 @@ class /*alignas(4)*/ SConversationEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SConversationEntry& p_Other) const;
 	bool operator!=(const SConversationEntry& p_Other) const { return !(*this == p_Other); }
@@ -12162,11 +12162,11 @@ class /*alignas(8)*/ SConversationPart
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SConversationPart& p_Other) const;
 	bool operator!=(const SConversationPart& p_Other) const { return !(*this == p_Other); }
@@ -12181,11 +12181,11 @@ class /*alignas(8)*/ SEntityTemplateProperty
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityTemplateProperty& p_Other) const;
 	bool operator!=(const SEntityTemplateProperty& p_Other) const { return !(*this == p_Other); }
@@ -12200,11 +12200,11 @@ class /*alignas(8)*/ SCppEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCppEntity& p_Other) const;
 	bool operator!=(const SCppEntity& p_Other) const { return !(*this == p_Other); }
@@ -12219,11 +12219,11 @@ class /*alignas(8)*/ SCppEntitySubsetInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCppEntitySubsetInfo& p_Other) const;
 	bool operator!=(const SCppEntitySubsetInfo& p_Other) const { return !(*this == p_Other); }
@@ -12238,11 +12238,11 @@ class /*alignas(8)*/ SCppEntityBlueprint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCppEntityBlueprint& p_Other) const;
 	bool operator!=(const SCppEntityBlueprint& p_Other) const { return !(*this == p_Other); }
@@ -12258,11 +12258,11 @@ class /*alignas(16)*/ SRunningCrowdAIEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRunningCrowdAIEventSaveData& p_Other) const;
 	bool operator!=(const SRunningCrowdAIEventSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12284,11 +12284,11 @@ class /*alignas(8)*/ SCrowdAIEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdAIEventSaveData& p_Other) const;
 	bool operator!=(const SCrowdAIEventSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12301,11 +12301,11 @@ class /*alignas(4)*/ SCrowdActivitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdActivitySaveData& p_Other) const;
 	bool operator!=(const SCrowdActivitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -12322,11 +12322,11 @@ class /*alignas(16)*/ SCrowdActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdActorSaveData& p_Other) const;
 	bool operator!=(const SCrowdActorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12350,11 +12350,11 @@ class /*alignas(8)*/ SCrowdBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdBodySaveData& p_Other) const;
 	bool operator!=(const SCrowdBodySaveData& p_Other) const { return !(*this == p_Other); }
@@ -12376,11 +12376,11 @@ class /*alignas(128)*/ SCrowdCells
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdCells& p_Other) const;
 	bool operator!=(const SCrowdCells& p_Other) const { return !(*this == p_Other); }
@@ -12393,11 +12393,11 @@ class /*alignas(4)*/ SCrowdPoseBoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdPoseBoneSaveData& p_Other) const;
 	bool operator!=(const SCrowdPoseBoneSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12411,11 +12411,11 @@ class /*alignas(8)*/ SCrowdPoseSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdPoseSaveData& p_Other) const;
 	bool operator!=(const SCrowdPoseSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12428,11 +12428,11 @@ class /*alignas(8)*/ SCrowdPoseCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdPoseCollectionSaveData& p_Other) const;
 	bool operator!=(const SCrowdPoseCollectionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12446,11 +12446,11 @@ class /*alignas(8)*/ SCrowdDeadPoseRepositorySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdDeadPoseRepositorySaveData& p_Other) const;
 	bool operator!=(const SCrowdDeadPoseRepositorySaveData& p_Other) const { return !(*this == p_Other); }
@@ -12463,11 +12463,11 @@ class /*alignas(16)*/ SRegionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRegionSaveData& p_Other) const;
 	bool operator!=(const SRegionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12492,11 +12492,11 @@ class /*alignas(8)*/ SCrowdEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdEntitySaveData& p_Other) const;
 	bool operator!=(const SCrowdEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -12515,11 +12515,11 @@ class /*alignas(8)*/ SCrowdFlowChannel
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdFlowChannel& p_Other) const;
 	bool operator!=(const SCrowdFlowChannel& p_Other) const { return !(*this == p_Other); }
@@ -12533,11 +12533,11 @@ class /*alignas(2)*/ ZCrowdGridPoint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZCrowdGridPoint& p_Other) const;
 	bool operator!=(const ZCrowdGridPoint& p_Other) const { return !(*this == p_Other); }
@@ -12552,11 +12552,11 @@ class /*alignas(16)*/ SCrowdMapData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdMapData& p_Other) const;
 	bool operator!=(const SCrowdMapData& p_Other) const { return !(*this == p_Other); }
@@ -12588,11 +12588,11 @@ class /*alignas(4)*/ SCrowdReactionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdReactionSaveData& p_Other) const;
 	bool operator!=(const SCrowdReactionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12610,11 +12610,11 @@ class /*alignas(8)*/ SCrowdServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCrowdServiceSaveData& p_Other) const;
 	bool operator!=(const SCrowdServiceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12629,11 +12629,11 @@ class /*alignas(8)*/ SCuriousEventSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCuriousEventSaveData& p_Other) const;
 	bool operator!=(const SCuriousEventSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12648,11 +12648,11 @@ class /*alignas(8)*/ SCuriousEventServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SCuriousEventServiceSaveData& p_Other) const;
 	bool operator!=(const SCuriousEventServiceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12665,11 +12665,11 @@ class /*alignas(1)*/ SDangerousAreaSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDangerousAreaSaveData& p_Other) const;
 	bool operator!=(const SDangerousAreaSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12682,11 +12682,11 @@ class /*alignas(8)*/ SDeadBodyInfoSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDeadBodyInfoSaveData& p_Other) const;
 	bool operator!=(const SDeadBodyInfoSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12711,11 +12711,11 @@ class /*alignas(8)*/ SDeadBodySensorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDeadBodySensorSaveData& p_Other) const;
 	bool operator!=(const SDeadBodySensorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12730,11 +12730,11 @@ class /*alignas(4)*/ SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVector2& p_Other) const;
 	bool operator!=(const SVector2& p_Other) const { return !(*this == p_Other); }
@@ -12748,11 +12748,11 @@ class /*alignas(16)*/ SDecalSpawnSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDecalSpawnSaveData& p_Other) const;
 	bool operator!=(const SDecalSpawnSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12777,11 +12777,11 @@ class /*alignas(4)*/ SDestructibleInteractionHandlerData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDestructibleInteractionHandlerData& p_Other) const;
 	bool operator!=(const SDestructibleInteractionHandlerData& p_Other) const { return !(*this == p_Other); }
@@ -12794,11 +12794,11 @@ class /*alignas(16)*/ SDestructiblePieceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDestructiblePieceSaveData& p_Other) const;
 	bool operator!=(const SDestructiblePieceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12818,11 +12818,11 @@ class /*alignas(8)*/ SDestructibleRuntimeConnnection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDestructibleRuntimeConnnection& p_Other) const;
 	bool operator!=(const SDestructibleRuntimeConnnection& p_Other) const { return !(*this == p_Other); }
@@ -12837,11 +12837,11 @@ class /*alignas(4)*/ SDestructibleRuntimeDamage
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDestructibleRuntimeDamage& p_Other) const;
 	bool operator!=(const SDestructibleRuntimeDamage& p_Other) const { return !(*this == p_Other); }
@@ -12856,11 +12856,11 @@ class /*alignas(8)*/ SDestructibleObjectSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDestructibleObjectSaveData& p_Other) const;
 	bool operator!=(const SDestructibleObjectSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12885,11 +12885,11 @@ class /*alignas(8)*/ SDetectedInPrivateGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDetectedInPrivateGroupSaveData& p_Other) const;
 	bool operator!=(const SDetectedInPrivateGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12908,11 +12908,11 @@ class /*alignas(1)*/ SDisguiseZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDisguiseZoneSaveData& p_Other) const;
 	bool operator!=(const SDisguiseZoneSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12925,11 +12925,11 @@ class /*alignas(8)*/ SDoorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDoorSaveData& p_Other) const;
 	bool operator!=(const SDoorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12946,11 +12946,11 @@ class /*alignas(1)*/ SDoorSoundDefs
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDoorSoundDefs& p_Other) const;
 	bool operator!=(const SDoorSoundDefs& p_Other) const { return !(*this == p_Other); }
@@ -12972,11 +12972,11 @@ class /*alignas(8)*/ SDoorsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDoorsSaveData& p_Other) const;
 	bool operator!=(const SDoorsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -12990,11 +12990,11 @@ class /*alignas(8)*/ SDrama2ActorSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDrama2ActorSaveState& p_Other) const;
 	bool operator!=(const SDrama2ActorSaveState& p_Other) const { return !(*this == p_Other); }
@@ -13021,11 +13021,11 @@ class /*alignas(8)*/ SDrama2ActorCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDrama2ActorCollectionSaveData& p_Other) const;
 	bool operator!=(const SDrama2ActorCollectionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13039,11 +13039,11 @@ class /*alignas(4)*/ SDrama2SetupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDrama2SetupSaveData& p_Other) const;
 	bool operator!=(const SDrama2SetupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13059,11 +13059,11 @@ class /*alignas(8)*/ SDrama2SetupCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDrama2SetupCollectionSaveData& p_Other) const;
 	bool operator!=(const SDrama2SetupCollectionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13077,11 +13077,11 @@ class /*alignas(4)*/ SDrama2SituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDrama2SituationSaveData& p_Other) const;
 	bool operator!=(const SDrama2SituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13100,11 +13100,11 @@ class /*alignas(8)*/ SDrama2SituationCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDrama2SituationCollectionSaveData& p_Other) const;
 	bool operator!=(const SDrama2SituationCollectionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13118,11 +13118,11 @@ class /*alignas(8)*/ SDramaActorSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDramaActorSaveState& p_Other) const;
 	bool operator!=(const SDramaActorSaveState& p_Other) const { return !(*this == p_Other); }
@@ -13146,11 +13146,11 @@ class /*alignas(8)*/ SDramaActorCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDramaActorCollectionSaveData& p_Other) const;
 	bool operator!=(const SDramaActorCollectionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13164,11 +13164,11 @@ class /*alignas(1)*/ SDramaControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDramaControllerSaveData& p_Other) const;
 	bool operator!=(const SDramaControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13192,11 +13192,11 @@ class /*alignas(4)*/ SDramaSetupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDramaSetupSaveData& p_Other) const;
 	bool operator!=(const SDramaSetupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13212,11 +13212,11 @@ class /*alignas(8)*/ SDramaSetupCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDramaSetupCollectionSaveData& p_Other) const;
 	bool operator!=(const SDramaSetupCollectionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13230,11 +13230,11 @@ class /*alignas(4)*/ SDramaSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDramaSituationSaveData& p_Other) const;
 	bool operator!=(const SDramaSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13253,11 +13253,11 @@ class /*alignas(8)*/ SDramaSituationCollectionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDramaSituationCollectionSaveData& p_Other) const;
 	bool operator!=(const SDramaSituationCollectionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13271,11 +13271,11 @@ class /*alignas(16)*/ SDynamicEnforcerCandidateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDynamicEnforcerCandidateSaveData& p_Other) const;
 	bool operator!=(const SDynamicEnforcerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13293,11 +13293,11 @@ class /*alignas(8)*/ SDynamicEnforcerServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDynamicEnforcerServiceSaveData& p_Other) const;
 	bool operator!=(const SDynamicEnforcerServiceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13310,11 +13310,11 @@ class /*alignas(8)*/ SDynamicObjectKeyValuePair
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDynamicObjectKeyValuePair& p_Other) const;
 	bool operator!=(const SDynamicObjectKeyValuePair& p_Other) const { return !(*this == p_Other); }
@@ -13328,11 +13328,11 @@ class /*alignas(1)*/ SDynamicRayCastEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SDynamicRayCastEntitySaveData& p_Other) const;
 	bool operator!=(const SDynamicRayCastEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -13347,11 +13347,11 @@ class /*alignas(8)*/ SEntityPath
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityPath& p_Other) const;
 	bool operator!=(const SEntityPath& p_Other) const { return !(*this == p_Other); }
@@ -13365,11 +13365,11 @@ class /*alignas(8)*/ SEntityPinDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityPinDescriptor& p_Other) const;
 	bool operator!=(const SEntityPinDescriptor& p_Other) const { return !(*this == p_Other); }
@@ -13388,11 +13388,11 @@ class /*alignas(8)*/ SEntityTemplateEntitySubset
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityTemplateEntitySubset& p_Other) const;
 	bool operator!=(const SEntityTemplateEntitySubset& p_Other) const { return !(*this == p_Other); }
@@ -13405,11 +13405,11 @@ class /*alignas(8)*/ SEntityTemplateReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityTemplateReference& p_Other) const;
 	bool operator!=(const SEntityTemplateReference& p_Other) const { return !(*this == p_Other); }
@@ -13425,11 +13425,11 @@ class /*alignas(8)*/ SEntityTemplateExposedEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityTemplateExposedEntity& p_Other) const;
 	bool operator!=(const SEntityTemplateExposedEntity& p_Other) const { return !(*this == p_Other); }
@@ -13445,11 +13445,11 @@ class /*alignas(8)*/ SEntityTemplatePinConnection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityTemplatePinConnection& p_Other) const;
 	bool operator!=(const SEntityTemplatePinConnection& p_Other) const { return !(*this == p_Other); }
@@ -13466,11 +13466,11 @@ class /*alignas(8)*/ SEntityTemplatePropertyAlias
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityTemplatePropertyAlias& p_Other) const;
 	bool operator!=(const SEntityTemplatePropertyAlias& p_Other) const { return !(*this == p_Other); }
@@ -13486,11 +13486,11 @@ class /*alignas(8)*/ SEntityTemplatePropertyOverride
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEntityTemplatePropertyOverride& p_Other) const;
 	bool operator!=(const SEntityTemplatePropertyOverride& p_Other) const { return !(*this == p_Other); }
@@ -13504,11 +13504,11 @@ class /*alignas(8)*/ SEnvironmentConfigResourceEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEnvironmentConfigResourceEntry& p_Other) const;
 	bool operator!=(const SEnvironmentConfigResourceEntry& p_Other) const { return !(*this == p_Other); }
@@ -13524,11 +13524,11 @@ class /*alignas(8)*/ SEnvironmentConfigResource
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEnvironmentConfigResource& p_Other) const;
 	bool operator!=(const SEnvironmentConfigResource& p_Other) const { return !(*this == p_Other); }
@@ -13541,11 +13541,11 @@ class /*alignas(16)*/ SEscortOutBehaviorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortOutBehaviorSaveData& p_Other) const;
 	bool operator!=(const SEscortOutBehaviorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13574,11 +13574,11 @@ class /*alignas(8)*/ SEscortOutOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortOutOrderSaveData& p_Other) const;
 	bool operator!=(const SEscortOutOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13601,11 +13601,11 @@ class /*alignas(4)*/ SEscortSituation2ActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortSituation2ActorStateSaveData& p_Other) const;
 	bool operator!=(const SEscortSituation2ActorStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13625,11 +13625,11 @@ class /*alignas(4)*/ SEscortSituation2Actors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortSituation2Actors& p_Other) const;
 	bool operator!=(const SEscortSituation2Actors& p_Other) const { return !(*this == p_Other); }
@@ -13654,11 +13654,11 @@ class /*alignas(8)*/ SEscortSituation2SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortSituation2SaveData& p_Other) const;
 	bool operator!=(const SEscortSituation2SaveData& p_Other) const { return !(*this == p_Other); }
@@ -13702,11 +13702,11 @@ class /*alignas(4)*/ SEscortSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortSituationActorStateSaveData& p_Other) const;
 	bool operator!=(const SEscortSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13726,11 +13726,11 @@ class /*alignas(4)*/ SEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortSituationActors& p_Other) const;
 	bool operator!=(const SEscortSituationActors& p_Other) const { return !(*this == p_Other); }
@@ -13755,11 +13755,11 @@ class /*alignas(8)*/ SEscortSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEscortSituationSaveData& p_Other) const;
 	bool operator!=(const SEscortSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13793,11 +13793,11 @@ class /*alignas(4)*/ SEvacuateSituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEvacuateSituationMemberSaveData& p_Other) const;
 	bool operator!=(const SEvacuateSituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13812,11 +13812,11 @@ class /*alignas(8)*/ SEvacuateSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEvacuateSituationSaveData& p_Other) const;
 	bool operator!=(const SEvacuateSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13836,11 +13836,11 @@ class /*alignas(8)*/ SEvacuateTrespassGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEvacuateTrespassGroupSaveData& p_Other) const;
 	bool operator!=(const SEvacuateTrespassGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13862,11 +13862,11 @@ class /*alignas(8)*/ SEvacuateVIPGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEvacuateVIPGroupSaveData& p_Other) const;
 	bool operator!=(const SEvacuateVIPGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13894,11 +13894,11 @@ class /*alignas(1)*/ SEventChannelSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SEventChannelSaveData& p_Other) const;
 	bool operator!=(const SEventChannelSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13911,11 +13911,11 @@ class /*alignas(1)*/ SExitSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExitSaveData& p_Other) const;
 	bool operator!=(const SExitSaveData& p_Other) const { return !(*this == p_Other); }
@@ -13928,11 +13928,11 @@ class /*alignas(8)*/ SExposedEntityDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExposedEntityDescriptor& p_Other) const;
 	bool operator!=(const SExposedEntityDescriptor& p_Other) const { return !(*this == p_Other); }
@@ -13950,11 +13950,11 @@ class /*alignas(8)*/ SExposedEntityTypeDescriptor
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExposedEntityTypeDescriptor& p_Other) const;
 	bool operator!=(const SExposedEntityTypeDescriptor& p_Other) const { return !(*this == p_Other); }
@@ -13969,11 +13969,11 @@ class /*alignas(8)*/ STypeReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STypeReference& p_Other) const;
 	bool operator!=(const STypeReference& p_Other) const { return !(*this == p_Other); }
@@ -13987,11 +13987,11 @@ class /*alignas(8)*/ SExposedTypeInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExposedTypeInfo& p_Other) const;
 	bool operator!=(const SExposedTypeInfo& p_Other) const { return !(*this == p_Other); }
@@ -14007,11 +14007,11 @@ class /*alignas(8)*/ SExtendedCppEntityProperty
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExtendedCppEntityProperty& p_Other) const;
 	bool operator!=(const SExtendedCppEntityProperty& p_Other) const { return !(*this == p_Other); }
@@ -14028,11 +14028,11 @@ class /*alignas(8)*/ SExtendedCppEntityBlueprint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExtendedCppEntityBlueprint& p_Other) const;
 	bool operator!=(const SExtendedCppEntityBlueprint& p_Other) const { return !(*this == p_Other); }
@@ -14045,11 +14045,11 @@ class /*alignas(8)*/ SExternalEntityTemplatePinConnection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SExternalEntityTemplatePinConnection& p_Other) const;
 	bool operator!=(const SExternalEntityTemplatePinConnection& p_Other) const { return !(*this == p_Other); }
@@ -14066,11 +14066,11 @@ class /*alignas(4)*/ SFaceOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFaceOrderSaveData& p_Other) const;
 	bool operator!=(const SFaceOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14088,11 +14088,11 @@ class /*alignas(4)*/ SFleeOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFleeOrderSaveData& p_Other) const;
 	bool operator!=(const SFleeOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14108,11 +14108,11 @@ class /*alignas(8)*/ SFontDefinition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFontDefinition& p_Other) const;
 	bool operator!=(const SFontDefinition& p_Other) const { return !(*this == p_Other); }
@@ -14128,11 +14128,11 @@ class /*alignas(8)*/ SFontLibraryDefinition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFontLibraryDefinition& p_Other) const;
 	bool operator!=(const SFontLibraryDefinition& p_Other) const { return !(*this == p_Other); }
@@ -14146,11 +14146,11 @@ class /*alignas(8)*/ SFooStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFooStruct& p_Other) const;
 	bool operator!=(const SFooStruct& p_Other) const { return !(*this == p_Other); }
@@ -14173,11 +14173,11 @@ class /*alignas(4)*/ SFootIKEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFootIKEventData& p_Other) const;
 	bool operator!=(const SFootIKEventData& p_Other) const { return !(*this == p_Other); }
@@ -14207,11 +14207,11 @@ class /*alignas(8)*/ SFriskSuspectGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SFriskSuspectGroupSaveData& p_Other) const;
 	bool operator!=(const SFriskSuspectGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14242,11 +14242,11 @@ class /*alignas(4)*/ SGBufferSample
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGBufferSample& p_Other) const;
 	bool operator!=(const SGBufferSample& p_Other) const { return !(*this == p_Other); }
@@ -14266,11 +14266,11 @@ class /*alignas(16)*/ SGProperties
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGProperties& p_Other) const;
 	bool operator!=(const SGProperties& p_Other) const { return !(*this == p_Other); }
@@ -14288,11 +14288,11 @@ class /*alignas(4)*/ SGUIViewPort
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGUIViewPort& p_Other) const;
 	bool operator!=(const SGUIViewPort& p_Other) const { return !(*this == p_Other); }
@@ -14308,11 +14308,11 @@ class /*alignas(16)*/ SGWaypoint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGWaypoint& p_Other) const;
 	bool operator!=(const SGWaypoint& p_Other) const { return !(*this == p_Other); }
@@ -14336,11 +14336,11 @@ class /*alignas(4)*/ SGaitTransitionEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGaitTransitionEntry& p_Other) const;
 	bool operator!=(const SGaitTransitionEntry& p_Other) const { return !(*this == p_Other); }
@@ -14354,11 +14354,11 @@ class /*alignas(4)*/ SGameCamProfileEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGameCamProfileEntitySaveData& p_Other) const;
 	bool operator!=(const SGameCamProfileEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -14373,11 +14373,11 @@ class /*alignas(4)*/ SItemKeywordProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemKeywordProxySaveData& p_Other) const;
 	bool operator!=(const SItemKeywordProxySaveData& p_Other) const { return !(*this == p_Other); }
@@ -14390,11 +14390,11 @@ class /*alignas(8)*/ SItemKeywordProxiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemKeywordProxiesSaveData& p_Other) const;
 	bool operator!=(const SItemKeywordProxiesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14408,11 +14408,11 @@ class /*alignas(4)*/ SItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemSaveData& p_Other) const;
 	bool operator!=(const SItemSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14446,11 +14446,11 @@ class /*alignas(8)*/ SItemsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemsSaveData& p_Other) const;
 	bool operator!=(const SItemsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14464,11 +14464,11 @@ class /*alignas(4)*/ SLampCoreSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLampCoreSaveState& p_Other) const;
 	bool operator!=(const SLampCoreSaveState& p_Other) const { return !(*this == p_Other); }
@@ -14483,11 +14483,11 @@ class /*alignas(8)*/ SLampCoreSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLampCoreSaveData& p_Other) const;
 	bool operator!=(const SLampCoreSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14501,11 +14501,11 @@ class /*alignas(4)*/ SMathLerpSaveData_SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpSaveData_SColorRGB& p_Other) const;
 	bool operator!=(const SMathLerpSaveData_SColorRGB& p_Other) const { return !(*this == p_Other); }
@@ -14520,11 +14520,11 @@ class /*alignas(8)*/ SMathLerpsSaveData_SColorRGB
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpsSaveData_SColorRGB& p_Other) const;
 	bool operator!=(const SMathLerpsSaveData_SColorRGB& p_Other) const { return !(*this == p_Other); }
@@ -14538,11 +14538,11 @@ class /*alignas(4)*/ SMathLerpSaveData_SColorRGBA
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpSaveData_SColorRGBA& p_Other) const;
 	bool operator!=(const SMathLerpSaveData_SColorRGBA& p_Other) const { return !(*this == p_Other); }
@@ -14557,11 +14557,11 @@ class /*alignas(8)*/ SMathLerpsSaveData_SColorRGBA
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpsSaveData_SColorRGBA& p_Other) const;
 	bool operator!=(const SMathLerpsSaveData_SColorRGBA& p_Other) const { return !(*this == p_Other); }
@@ -14575,11 +14575,11 @@ class /*alignas(4)*/ SMathLerpSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpSaveData_SVector2& p_Other) const;
 	bool operator!=(const SMathLerpSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
@@ -14594,11 +14594,11 @@ class /*alignas(8)*/ SMathLerpsSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpsSaveData_SVector2& p_Other) const;
 	bool operator!=(const SMathLerpsSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
@@ -14612,11 +14612,11 @@ class /*alignas(4)*/ SMathLerpSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpSaveData_SVector3& p_Other) const;
 	bool operator!=(const SMathLerpSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
@@ -14631,11 +14631,11 @@ class /*alignas(8)*/ SMathLerpsSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpsSaveData_SVector3& p_Other) const;
 	bool operator!=(const SMathLerpsSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
@@ -14649,11 +14649,11 @@ class /*alignas(4)*/ SMathLerpSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpSaveData_SVector4& p_Other) const;
 	bool operator!=(const SMathLerpSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
@@ -14668,11 +14668,11 @@ class /*alignas(8)*/ SMathLerpsSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpsSaveData_SVector4& p_Other) const;
 	bool operator!=(const SMathLerpsSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
@@ -14686,11 +14686,11 @@ class /*alignas(4)*/ SMathLerpSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpSaveData_float32& p_Other) const;
 	bool operator!=(const SMathLerpSaveData_float32& p_Other) const { return !(*this == p_Other); }
@@ -14705,11 +14705,11 @@ class /*alignas(8)*/ SMathLerpsSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathLerpsSaveData_float32& p_Other) const;
 	bool operator!=(const SMathLerpsSaveData_float32& p_Other) const { return !(*this == p_Other); }
@@ -14723,11 +14723,11 @@ class /*alignas(4)*/ SMathMultiplyDivideSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultiplyDivideSaveData_SVector2& p_Other) const;
 	bool operator!=(const SMathMultiplyDivideSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
@@ -14743,11 +14743,11 @@ class /*alignas(8)*/ SMathMultipliesSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultipliesSaveData_SVector2& p_Other) const;
 	bool operator!=(const SMathMultipliesSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
@@ -14761,11 +14761,11 @@ class /*alignas(4)*/ SMathMultiplyDivideSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultiplyDivideSaveData_SVector3& p_Other) const;
 	bool operator!=(const SMathMultiplyDivideSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
@@ -14781,11 +14781,11 @@ class /*alignas(8)*/ SMathMultipliesSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultipliesSaveData_SVector3& p_Other) const;
 	bool operator!=(const SMathMultipliesSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
@@ -14799,11 +14799,11 @@ class /*alignas(4)*/ SMathMultiplyDivideSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultiplyDivideSaveData_SVector4& p_Other) const;
 	bool operator!=(const SMathMultiplyDivideSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
@@ -14819,11 +14819,11 @@ class /*alignas(8)*/ SMathMultipliesSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultipliesSaveData_SVector4& p_Other) const;
 	bool operator!=(const SMathMultipliesSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
@@ -14837,11 +14837,11 @@ class /*alignas(4)*/ SMathMultiplyDivideSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultiplyDivideSaveData_float32& p_Other) const;
 	bool operator!=(const SMathMultiplyDivideSaveData_float32& p_Other) const { return !(*this == p_Other); }
@@ -14857,11 +14857,11 @@ class /*alignas(8)*/ SMathMultipliesSaveData_float32
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathMultipliesSaveData_float32& p_Other) const;
 	bool operator!=(const SMathMultipliesSaveData_float32& p_Other) const { return !(*this == p_Other); }
@@ -14875,11 +14875,11 @@ class /*alignas(1)*/ SShotListenerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SShotListenerSaveData& p_Other) const;
 	bool operator!=(const SShotListenerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14893,11 +14893,11 @@ class /*alignas(8)*/ SShotListenersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SShotListenersSaveData& p_Other) const;
 	bool operator!=(const SShotListenersSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14911,11 +14911,11 @@ class /*alignas(4)*/ SItsATrapSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItsATrapSaveData& p_Other) const;
 	bool operator!=(const SItsATrapSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14930,11 +14930,11 @@ class /*alignas(8)*/ STrapsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STrapsSaveData& p_Other) const;
 	bool operator!=(const STrapsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14948,11 +14948,11 @@ class /*alignas(8)*/ SVIPEvacuationNodeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVIPEvacuationNodeSaveData& p_Other) const;
 	bool operator!=(const SVIPEvacuationNodeSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14970,11 +14970,11 @@ class /*alignas(8)*/ SVIPEvacuationNodesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVIPEvacuationNodesSaveData& p_Other) const;
 	bool operator!=(const SVIPEvacuationNodesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -14988,11 +14988,11 @@ class /*alignas(1)*/ SVolumeTriggerListenerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVolumeTriggerListenerSaveData& p_Other) const;
 	bool operator!=(const SVolumeTriggerListenerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15006,11 +15006,11 @@ class /*alignas(8)*/ SVolumeTriggersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVolumeTriggersSaveData& p_Other) const;
 	bool operator!=(const SVolumeTriggersSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15024,11 +15024,11 @@ class /*alignas(8)*/ SGameEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGameEntitySaveData& p_Other) const;
 	bool operator!=(const SGameEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -15064,11 +15064,11 @@ class /*alignas(4)*/ SKeywordSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SKeywordSaveData& p_Other) const;
 	bool operator!=(const SKeywordSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15082,11 +15082,11 @@ class /*alignas(8)*/ SGameKeywordManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGameKeywordManagerSaveData& p_Other) const;
 	bool operator!=(const SGameKeywordManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15219,11 +15219,11 @@ class /*alignas(8)*/ SGameStatsWeapon
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGameStatsWeapon& p_Other) const;
 	bool operator!=(const SGameStatsWeapon& p_Other) const { return !(*this == p_Other); }
@@ -15240,11 +15240,11 @@ class /*alignas(4)*/ STimerEntityCommandSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STimerEntityCommandSaveData& p_Other) const;
 	bool operator!=(const STimerEntityCommandSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15259,11 +15259,11 @@ class /*alignas(4)*/ STimerEntityStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STimerEntityStateSaveData& p_Other) const;
 	bool operator!=(const STimerEntityStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15279,11 +15279,11 @@ class /*alignas(8)*/ SGameTimersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGameTimersSaveData& p_Other) const;
 	bool operator!=(const SGameTimersSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15298,11 +15298,11 @@ class /*alignas(4)*/ SGateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGateSaveData& p_Other) const;
 	bool operator!=(const SGateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15318,11 +15318,11 @@ class /*alignas(4)*/ SLightSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLightSaveData& p_Other) const;
 	bool operator!=(const SLightSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15340,11 +15340,11 @@ class /*alignas(4)*/ SParticleEmitterSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SParticleEmitterSaveData& p_Other) const;
 	bool operator!=(const SParticleEmitterSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15363,11 +15363,11 @@ class /*alignas(4)*/ SPostfilterParametersSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPostfilterParametersSaveData& p_Other) const;
 	bool operator!=(const SPostfilterParametersSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15410,11 +15410,11 @@ class /*alignas(8)*/ SRenderMaterialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRenderMaterialSaveData& p_Other) const;
 	bool operator!=(const SRenderMaterialSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15431,11 +15431,11 @@ class /*alignas(8)*/ SGameplayRenderablesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGameplayRenderablesSaveData& p_Other) const;
 	bool operator!=(const SGameplayRenderablesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15453,11 +15453,11 @@ class /*alignas(4)*/ SGeomScaleSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGeomScaleSaveData& p_Other) const;
 	bool operator!=(const SGeomScaleSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15470,11 +15470,11 @@ class /*alignas(16)*/ SGetHelpGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGetHelpGroupSaveData& p_Other) const;
 	bool operator!=(const SGetHelpGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15506,11 +15506,11 @@ class /*alignas(4)*/ SGetHelpOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGetHelpOrderSaveData& p_Other) const;
 	bool operator!=(const SGetHelpOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15524,11 +15524,11 @@ class /*alignas(4)*/ SHelpingActorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHelpingActorSaveData& p_Other) const;
 	bool operator!=(const SHelpingActorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15542,11 +15542,11 @@ class /*alignas(8)*/ SGetHelpServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGetHelpServiceSaveData& p_Other) const;
 	bool operator!=(const SGetHelpServiceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15559,11 +15559,11 @@ class /*alignas(4)*/ SGuardBodySituationMemberSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGuardBodySituationMemberSaveData& p_Other) const;
 	bool operator!=(const SGuardBodySituationMemberSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15580,11 +15580,11 @@ class /*alignas(4)*/ SGuardBodySituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGuardBodySituationSaveData& p_Other) const;
 	bool operator!=(const SGuardBodySituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15601,11 +15601,11 @@ class /*alignas(4)*/ SGuardPointOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SGuardPointOrderSaveData& p_Other) const;
 	bool operator!=(const SGuardPointOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15620,11 +15620,11 @@ class /*alignas(1)*/ SHM5CrippleBoxSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHM5CrippleBoxSaveData& p_Other) const;
 	bool operator!=(const SHM5CrippleBoxSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15690,11 +15690,11 @@ class /*alignas(1)*/ SHUDPIPControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHUDPIPControllerSaveData& p_Other) const;
 	bool operator!=(const SHUDPIPControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15707,11 +15707,11 @@ class /*alignas(8)*/ SHUDPromptDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHUDPromptDisplayInfo& p_Other) const;
 	bool operator!=(const SHUDPromptDisplayInfo& p_Other) const { return !(*this == p_Other); }
@@ -15743,11 +15743,11 @@ class /*alignas(8)*/ SHUDPromptDisplayInfoArray_Dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHUDPromptDisplayInfoArray_Dummy& p_Other) const;
 	bool operator!=(const SHUDPromptDisplayInfoArray_Dummy& p_Other) const { return !(*this == p_Other); }
@@ -15760,11 +15760,11 @@ class /*alignas(4)*/ SHUDTimerControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHUDTimerControllerSaveData& p_Other) const;
 	bool operator!=(const SHUDTimerControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15786,11 +15786,11 @@ class /*alignas(4)*/ SHUDVisibilityController2SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHUDVisibilityController2SaveData& p_Other) const;
 	bool operator!=(const SHUDVisibilityController2SaveData& p_Other) const { return !(*this == p_Other); }
@@ -15803,11 +15803,11 @@ class /*alignas(4)*/ SHandleDistractionSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHandleDistractionSituationSaveData& p_Other) const;
 	bool operator!=(const SHandleDistractionSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15822,11 +15822,11 @@ class /*alignas(4)*/ SHeroCameraStandInSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroCameraStandInSaveState& p_Other) const;
 	bool operator!=(const SHeroCameraStandInSaveState& p_Other) const { return !(*this == p_Other); }
@@ -15851,11 +15851,11 @@ class /*alignas(4)*/ SHeroEscortSituation2ActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroEscortSituation2ActorStateSaveData& p_Other) const;
 	bool operator!=(const SHeroEscortSituation2ActorStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15875,11 +15875,11 @@ class /*alignas(4)*/ SHeroEscortSituation2Actors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroEscortSituation2Actors& p_Other) const;
 	bool operator!=(const SHeroEscortSituation2Actors& p_Other) const { return !(*this == p_Other); }
@@ -15904,11 +15904,11 @@ class /*alignas(8)*/ SHeroEscortSituation2SaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroEscortSituation2SaveData& p_Other) const;
 	bool operator!=(const SHeroEscortSituation2SaveData& p_Other) const { return !(*this == p_Other); }
@@ -15951,11 +15951,11 @@ class /*alignas(4)*/ SHeroEscortSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroEscortSituationActorStateSaveData& p_Other) const;
 	bool operator!=(const SHeroEscortSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -15975,11 +15975,11 @@ class /*alignas(4)*/ SHeroEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroEscortSituationActors& p_Other) const;
 	bool operator!=(const SHeroEscortSituationActors& p_Other) const { return !(*this == p_Other); }
@@ -16004,11 +16004,11 @@ class /*alignas(8)*/ SHeroEscortSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroEscortSituationSaveData& p_Other) const;
 	bool operator!=(const SHeroEscortSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16041,11 +16041,11 @@ class /*alignas(4)*/ SHeroItemActionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroItemActionSaveData& p_Other) const;
 	bool operator!=(const SHeroItemActionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16058,11 +16058,11 @@ class /*alignas(4)*/ SHeroItemAttachmentSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroItemAttachmentSaveData& p_Other) const;
 	bool operator!=(const SHeroItemAttachmentSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16075,11 +16075,11 @@ class /*alignas(4)*/ SHeroStandInSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHeroStandInSaveState& p_Other) const;
 	bool operator!=(const SHeroStandInSaveState& p_Other) const { return !(*this == p_Other); }
@@ -16095,11 +16095,11 @@ class /*alignas(4)*/ SHintEntrySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHintEntrySaveData& p_Other) const;
 	bool operator!=(const SHintEntrySaveData& p_Other) const { return !(*this == p_Other); }
@@ -16115,11 +16115,11 @@ class /*alignas(8)*/ SHintManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHintManagerSaveData& p_Other) const;
 	bool operator!=(const SHintManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16136,11 +16136,11 @@ class /*alignas(8)*/ SHitmanSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHitmanSaveData& p_Other) const;
 	bool operator!=(const SHitmanSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16166,11 +16166,11 @@ class /*alignas(8)*/ SHudMissionTimerControllerData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SHudMissionTimerControllerData& p_Other) const;
 	bool operator!=(const SHudMissionTimerControllerData& p_Other) const { return !(*this == p_Other); }
@@ -16185,11 +16185,11 @@ class /*alignas(8)*/ SIntelData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SIntelData& p_Other) const;
 	bool operator!=(const SIntelData& p_Other) const { return !(*this == p_Other); }
@@ -16205,11 +16205,11 @@ class /*alignas(8)*/ SIntelDataArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SIntelDataArray_dummy& p_Other) const;
 	bool operator!=(const SIntelDataArray_dummy& p_Other) const { return !(*this == p_Other); }
@@ -16222,11 +16222,11 @@ class /*alignas(8)*/ SIntelDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SIntelDisplayInfo& p_Other) const;
 	bool operator!=(const SIntelDisplayInfo& p_Other) const { return !(*this == p_Other); }
@@ -16246,11 +16246,11 @@ class /*alignas(8)*/ SIntelDisplayInfoArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SIntelDisplayInfoArray_dummy& p_Other) const;
 	bool operator!=(const SIntelDisplayInfoArray_dummy& p_Other) const { return !(*this == p_Other); }
@@ -16263,11 +16263,11 @@ class /*alignas(8)*/ SIntelListDisplayInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SIntelListDisplayInfo& p_Other) const;
 	bool operator!=(const SIntelListDisplayInfo& p_Other) const { return !(*this == p_Other); }
@@ -16284,11 +16284,11 @@ class /*alignas(8)*/ SIntelListDisplayInfoArray_dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SIntelListDisplayInfoArray_dummy& p_Other) const;
 	bool operator!=(const SIntelListDisplayInfoArray_dummy& p_Other) const { return !(*this == p_Other); }
@@ -16301,11 +16301,11 @@ class /*alignas(4)*/ SIntelSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SIntelSaveData& p_Other) const;
 	bool operator!=(const SIntelSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16325,11 +16325,11 @@ class /*alignas(8)*/ SInteractionIndicatorInstanceData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInteractionIndicatorInstanceData& p_Other) const;
 	bool operator!=(const SInteractionIndicatorInstanceData& p_Other) const { return !(*this == p_Other); }
@@ -16368,11 +16368,11 @@ class /*alignas(8)*/ SInteractionIndicatorInstanceDataArray_Dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInteractionIndicatorInstanceDataArray_Dummy& p_Other) const;
 	bool operator!=(const SInteractionIndicatorInstanceDataArray_Dummy& p_Other) const { return !(*this == p_Other); }
@@ -16385,11 +16385,11 @@ class /*alignas(4)*/ SInventoryControllerItemSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryControllerItemSaveData& p_Other) const;
 	bool operator!=(const SInventoryControllerItemSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16403,11 +16403,11 @@ class /*alignas(8)*/ SInventoryControllerSlotSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryControllerSlotSaveData& p_Other) const;
 	bool operator!=(const SInventoryControllerSlotSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16422,11 +16422,11 @@ class /*alignas(4)*/ SStoredSlotSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SStoredSlotSaveData& p_Other) const;
 	bool operator!=(const SStoredSlotSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16442,11 +16442,11 @@ class /*alignas(8)*/ SInventoryControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryControllerSaveData& p_Other) const;
 	bool operator!=(const SInventoryControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16478,11 +16478,11 @@ class /*alignas(8)*/ SInventoryInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryInfo& p_Other) const;
 	bool operator!=(const SInventoryInfo& p_Other) const { return !(*this == p_Other); }
@@ -16497,11 +16497,11 @@ class /*alignas(16)*/ SInventoryMovementConfig
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryMovementConfig& p_Other) const;
 	bool operator!=(const SInventoryMovementConfig& p_Other) const { return !(*this == p_Other); }
@@ -16523,11 +16523,11 @@ class /*alignas(8)*/ SInventoryUISlot
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryUISlot& p_Other) const;
 	bool operator!=(const SInventoryUISlot& p_Other) const { return !(*this == p_Other); }
@@ -16577,11 +16577,11 @@ class /*alignas(8)*/ SInventoryUI
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInventoryUI& p_Other) const;
 	bool operator!=(const SInventoryUI& p_Other) const { return !(*this == p_Other); }
@@ -16612,11 +16612,11 @@ class /*alignas(4)*/ ZInvestigateDisguiseGroup_SDialogLines
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZInvestigateDisguiseGroup_SDialogLines& p_Other) const;
 	bool operator!=(const ZInvestigateDisguiseGroup_SDialogLines& p_Other) const { return !(*this == p_Other); }
@@ -16640,11 +16640,11 @@ class /*alignas(16)*/ SInvestigateDisguiseGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInvestigateDisguiseGroupSaveData& p_Other) const;
 	bool operator!=(const SInvestigateDisguiseGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16681,11 +16681,11 @@ class /*alignas(8)*/ SInvestigateWeaponGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SInvestigateWeaponGroupSaveData& p_Other) const;
 	bool operator!=(const SInvestigateWeaponGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16706,11 +16706,11 @@ class /*alignas(8)*/ SItemInstanceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemInstanceSaveData& p_Other) const;
 	bool operator!=(const SItemInstanceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16726,11 +16726,11 @@ class /*alignas(4)*/ SItemLeftHandUIData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemLeftHandUIData& p_Other) const;
 	bool operator!=(const SItemLeftHandUIData& p_Other) const { return !(*this == p_Other); }
@@ -16748,11 +16748,11 @@ class /*alignas(4)*/ SItemOnBackUIData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemOnBackUIData& p_Other) const;
 	bool operator!=(const SItemOnBackUIData& p_Other) const { return !(*this == p_Other); }
@@ -16770,11 +16770,11 @@ class /*alignas(1)*/ SItemSpawnerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemSpawnerSaveData& p_Other) const;
 	bool operator!=(const SItemSpawnerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16787,11 +16787,11 @@ class /*alignas(8)*/ SItemStorageSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemStorageSaveData& p_Other) const;
 	bool operator!=(const SItemStorageSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16806,11 +16806,11 @@ class /*alignas(8)*/ SItemWeaponSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SItemWeaponSaveData& p_Other) const;
 	bool operator!=(const SItemWeaponSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16827,11 +16827,11 @@ class /*alignas(1)*/ SLayerBehaviorConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLayerBehaviorConfiguration& p_Other) const;
 	bool operator!=(const SLayerBehaviorConfiguration& p_Other) const { return !(*this == p_Other); }
@@ -16854,11 +16854,11 @@ class /*alignas(4)*/ SLeadEscortSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLeadEscortSituationActorStateSaveData& p_Other) const;
 	bool operator!=(const SLeadEscortSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16878,11 +16878,11 @@ class /*alignas(4)*/ SLeadEscortSituationActors
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLeadEscortSituationActors& p_Other) const;
 	bool operator!=(const SLeadEscortSituationActors& p_Other) const { return !(*this == p_Other); }
@@ -16907,11 +16907,11 @@ class /*alignas(8)*/ SLeadEscortSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLeadEscortSituationSaveData& p_Other) const;
 	bool operator!=(const SLeadEscortSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16941,11 +16941,11 @@ class /*alignas(8)*/ SLevelReferenceableEntitieSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLevelReferenceableEntitieSaveData& p_Other) const;
 	bool operator!=(const SLevelReferenceableEntitieSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16959,11 +16959,11 @@ class /*alignas(8)*/ SObjetiveSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SObjetiveSaveData& p_Other) const;
 	bool operator!=(const SObjetiveSaveData& p_Other) const { return !(*this == p_Other); }
@@ -16978,11 +16978,11 @@ class /*alignas(4)*/ SSoundAmbienceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSoundAmbienceSaveData& p_Other) const;
 	bool operator!=(const SSoundAmbienceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17000,11 +17000,11 @@ class /*alignas(8)*/ SLevelSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLevelSaveData& p_Other) const;
 	bool operator!=(const SLevelSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17036,11 +17036,11 @@ class /*alignas(1)*/ SLightFlickerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLightFlickerEntitySaveData& p_Other) const;
 	bool operator!=(const SLightFlickerEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17054,11 +17054,11 @@ class /*alignas(8)*/ SLoadRuntimeResourceResult
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLoadRuntimeResourceResult& p_Other) const;
 	bool operator!=(const SLoadRuntimeResourceResult& p_Other) const { return !(*this == p_Other); }
@@ -17071,11 +17071,11 @@ class /*alignas(8)*/ SLocalizedVideoData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLocalizedVideoData& p_Other) const;
 	bool operator!=(const SLocalizedVideoData& p_Other) const { return !(*this == p_Other); }
@@ -17091,11 +17091,11 @@ class /*alignas(8)*/ SLockdownManagerAIZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLockdownManagerAIZoneSaveData& p_Other) const;
 	bool operator!=(const SLockdownManagerAIZoneSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17111,11 +17111,11 @@ class /*alignas(8)*/ SLockdownManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SLockdownManagerSaveData& p_Other) const;
 	bool operator!=(const SLockdownManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17128,11 +17128,11 @@ class /*alignas(8)*/ SManHuntServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SManHuntServiceSaveData& p_Other) const;
 	bool operator!=(const SManHuntServiceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17148,11 +17148,11 @@ class /*alignas(8)*/ SMapMarkerData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMapMarkerData& p_Other) const;
 	bool operator!=(const SMapMarkerData& p_Other) const { return !(*this == p_Other); }
@@ -17165,11 +17165,11 @@ class /*alignas(4)*/ SMathDistanceSaveData_SVector2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathDistanceSaveData_SVector2& p_Other) const;
 	bool operator!=(const SMathDistanceSaveData_SVector2& p_Other) const { return !(*this == p_Other); }
@@ -17183,11 +17183,11 @@ class /*alignas(4)*/ SMathDistanceSaveData_SVector3
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathDistanceSaveData_SVector3& p_Other) const;
 	bool operator!=(const SMathDistanceSaveData_SVector3& p_Other) const { return !(*this == p_Other); }
@@ -17201,11 +17201,11 @@ class /*alignas(4)*/ SMathDistanceSaveData_SVector4
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMathDistanceSaveData_SVector4& p_Other) const;
 	bool operator!=(const SMathDistanceSaveData_SVector4& p_Other) const { return !(*this == p_Other); }
@@ -17219,11 +17219,11 @@ class /*alignas(4)*/ SMatrix33
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMatrix33& p_Other) const;
 	bool operator!=(const SMatrix33& p_Other) const { return !(*this == p_Other); }
@@ -17238,11 +17238,11 @@ class /*alignas(4)*/ SMatrix43
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMatrix43& p_Other) const;
 	bool operator!=(const SMatrix43& p_Other) const { return !(*this == p_Other); }
@@ -17258,11 +17258,11 @@ class /*alignas(4)*/ SMatrix44
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMatrix44& p_Other) const;
 	bool operator!=(const SMatrix44& p_Other) const { return !(*this == p_Other); }
@@ -17290,11 +17290,11 @@ class /*alignas(4)*/ SMovementAgilitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementAgilitySaveData& p_Other) const;
 	bool operator!=(const SMovementAgilitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17312,11 +17312,11 @@ class /*alignas(16)*/ SMovementCoverSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementCoverSaveData& p_Other) const;
 	bool operator!=(const SMovementCoverSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17334,11 +17334,11 @@ class /*alignas(4)*/ SMovementDisguiseSafeZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementDisguiseSafeZoneSaveData& p_Other) const;
 	bool operator!=(const SMovementDisguiseSafeZoneSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17352,11 +17352,11 @@ class /*alignas(4)*/ SMovementDragBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementDragBodySaveData& p_Other) const;
 	bool operator!=(const SMovementDragBodySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17370,11 +17370,11 @@ class /*alignas(4)*/ SMovementDrainPipeSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementDrainPipeSaveData& p_Other) const;
 	bool operator!=(const SMovementDrainPipeSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17387,11 +17387,11 @@ class /*alignas(4)*/ SMovementHideInClosetSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementHideInClosetSaveData& p_Other) const;
 	bool operator!=(const SMovementHideInClosetSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17405,11 +17405,11 @@ class /*alignas(4)*/ SMovementLadderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementLadderSaveData& p_Other) const;
 	bool operator!=(const SMovementLadderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17422,11 +17422,11 @@ class /*alignas(1)*/ SMovementLocomotionSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMovementLocomotionSaveData& p_Other) const;
 	bool operator!=(const SMovementLocomotionSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17439,11 +17439,11 @@ class /*alignas(4)*/ SMusicGridData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SMusicGridData& p_Other) const;
 	bool operator!=(const SMusicGridData& p_Other) const { return !(*this == p_Other); }
@@ -17457,11 +17457,11 @@ class /*alignas(8)*/ SObserversGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SObserversGroupSaveData& p_Other) const;
 	bool operator!=(const SObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17478,11 +17478,11 @@ class /*alignas(8)*/ SOnlineEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SOnlineEvent& p_Other) const;
 	bool operator!=(const SOnlineEvent& p_Other) const { return !(*this == p_Other); }
@@ -17496,11 +17496,11 @@ class /*alignas(8)*/ SOnlineSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SOnlineSaveData& p_Other) const;
 	bool operator!=(const SOnlineSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17518,11 +17518,11 @@ class /*alignas(8)*/ SOptionValueSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SOptionValueSaveData& p_Other) const;
 	bool operator!=(const SOptionValueSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17535,11 +17535,11 @@ class /*alignas(1)*/ SPFObstactleSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPFObstactleSaveData& p_Other) const;
 	bool operator!=(const SPFObstactleSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17552,11 +17552,11 @@ class /*alignas(1)*/ SPIPMessageManagerProxySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPIPMessageManagerProxySaveData& p_Other) const;
 	bool operator!=(const SPIPMessageManagerProxySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17569,11 +17569,11 @@ class /*alignas(4)*/ SPatrolGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPatrolGroupSaveData& p_Other) const;
 	bool operator!=(const SPatrolGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17586,11 +17586,11 @@ class /*alignas(1)*/ SPatrolOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPatrolOrderSaveData& p_Other) const;
 	bool operator!=(const SPatrolOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17603,11 +17603,11 @@ class /*alignas(4)*/ SPerceptibleCrowdBodySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPerceptibleCrowdBodySaveData& p_Other) const;
 	bool operator!=(const SPerceptibleCrowdBodySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17621,11 +17621,11 @@ class /*alignas(8)*/ SPersistentEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPersistentEntitySaveData& p_Other) const;
 	bool operator!=(const SPersistentEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17640,11 +17640,11 @@ class /*alignas(8)*/ SPersistentEntitySaveDataList
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPersistentEntitySaveDataList& p_Other) const;
 	bool operator!=(const SPersistentEntitySaveDataList& p_Other) const { return !(*this == p_Other); }
@@ -17659,11 +17659,11 @@ class /*alignas(1)*/ SPhysicsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPhysicsSaveData& p_Other) const;
 	bool operator!=(const SPhysicsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17678,11 +17678,11 @@ class /*alignas(8)*/ SPhysicsListSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPhysicsListSaveData& p_Other) const;
 	bool operator!=(const SPhysicsListSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17696,11 +17696,11 @@ class /*alignas(16)*/ SPrivateAreaSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SPrivateAreaSaveData& p_Other) const;
 	bool operator!=(const SPrivateAreaSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17719,11 +17719,11 @@ class /*alignas(4)*/ SProgressTimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SProgressTimerEntitySaveData& p_Other) const;
 	bool operator!=(const SProgressTimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17739,11 +17739,11 @@ class /*alignas(4)*/ SRandomTimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRandomTimerEntitySaveData& p_Other) const;
 	bool operator!=(const SRandomTimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17762,11 +17762,11 @@ class /*alignas(8)*/ SRandomTimerEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRandomTimerEntitiesSaveData& p_Other) const;
 	bool operator!=(const SRandomTimerEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17780,11 +17780,11 @@ class /*alignas(8)*/ ZBitArray
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZBitArray& p_Other) const;
 	bool operator!=(const ZBitArray& p_Other) const { return !(*this == p_Other); }
@@ -17799,11 +17799,11 @@ class /*alignas(16)*/ SReasoningGrid
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SReasoningGrid& p_Other) const;
 	bool operator!=(const SReasoningGrid& p_Other) const { return !(*this == p_Other); }
@@ -17824,11 +17824,11 @@ class /*alignas(8)*/ SRecoverUnconsciousGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRecoverUnconsciousGroupSaveData& p_Other) const;
 	bool operator!=(const SRecoverUnconsciousGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17848,11 +17848,11 @@ class /*alignas(1)*/ SRemoteControlReceiverSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRemoteControlReceiverSaveData& p_Other) const;
 	bool operator!=(const SRemoteControlReceiverSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17867,11 +17867,11 @@ class /*alignas(8)*/ SRenderVideoPlayerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRenderVideoPlayerSaveData& p_Other) const;
 	bool operator!=(const SRenderVideoPlayerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17894,11 +17894,11 @@ class /*alignas(1)*/ SRepositionOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRepositionOrderSaveData& p_Other) const;
 	bool operator!=(const SRepositionOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -17912,11 +17912,11 @@ class /*alignas(4)*/ SRotateEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SRotateEntitySaveData& p_Other) const;
 	bool operator!=(const SRotateEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -17933,11 +17933,11 @@ class /*alignas(1)*/ SSCCuriousConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSCCuriousConfiguration& p_Other) const;
 	bool operator!=(const SSCCuriousConfiguration& p_Other) const { return !(*this == p_Other); }
@@ -17952,11 +17952,11 @@ class /*alignas(8)*/ SSavableData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSavableData& p_Other) const;
 	bool operator!=(const SSavableData& p_Other) const { return !(*this == p_Other); }
@@ -17972,11 +17972,11 @@ class /*alignas(8)*/ SVariantStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVariantStruct& p_Other) const;
 	bool operator!=(const SVariantStruct& p_Other) const { return !(*this == p_Other); }
@@ -17989,11 +17989,11 @@ class /*alignas(8)*/ SSavableEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSavableEntitiesSaveData& p_Other) const;
 	bool operator!=(const SSavableEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18007,11 +18007,11 @@ class /*alignas(8)*/ SSaveGameData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSaveGameData& p_Other) const;
 	bool operator!=(const SSaveGameData& p_Other) const { return !(*this == p_Other); }
@@ -18027,11 +18027,11 @@ class /*alignas(8)*/ SSaveGameMetaData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSaveGameMetaData& p_Other) const;
 	bool operator!=(const SSaveGameMetaData& p_Other) const { return !(*this == p_Other); }
@@ -18058,11 +18058,11 @@ class /*alignas(8)*/ SSaveGameHeader
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSaveGameHeader& p_Other) const;
 	bool operator!=(const SSaveGameHeader& p_Other) const { return !(*this == p_Other); }
@@ -18080,11 +18080,11 @@ class /*alignas(8)*/ SScreenplay2ManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SScreenplay2ManagerSaveData& p_Other) const;
 	bool operator!=(const SScreenplay2ManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18102,11 +18102,11 @@ class /*alignas(8)*/ SScreenplayManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SScreenplayManagerSaveData& p_Other) const;
 	bool operator!=(const SScreenplayManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18121,11 +18121,11 @@ class /*alignas(4)*/ SScreenplayRole2HeroSaveState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SScreenplayRole2HeroSaveState& p_Other) const;
 	bool operator!=(const SScreenplayRole2HeroSaveState& p_Other) const { return !(*this == p_Other); }
@@ -18140,11 +18140,11 @@ class /*alignas(2)*/ SSecuritySystemCameraSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSecuritySystemCameraSaveData& p_Other) const;
 	bool operator!=(const SSecuritySystemCameraSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18161,11 +18161,11 @@ class /*alignas(1)*/ SSecuritySystemRecorderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSecuritySystemRecorderSaveData& p_Other) const;
 	bool operator!=(const SSecuritySystemRecorderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18179,11 +18179,11 @@ class /*alignas(8)*/ SSentryGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSentryGroupSaveData& p_Other) const;
 	bool operator!=(const SSentryGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18205,11 +18205,11 @@ class /*alignas(4)*/ SSentryOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSentryOrderSaveData& p_Other) const;
 	bool operator!=(const SSentryOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18222,11 +18222,11 @@ class /*alignas(8)*/ SSentryZoneSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSentryZoneSaveData& p_Other) const;
 	bool operator!=(const SSentryZoneSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18265,11 +18265,11 @@ class /*alignas(8)*/ SSequenceTrackSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSequenceTrackSaveData& p_Other) const;
 	bool operator!=(const SSequenceTrackSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18305,11 +18305,11 @@ class /*alignas(8)*/ SSequenceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSequenceSaveData& p_Other) const;
 	bool operator!=(const SSequenceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18335,11 +18335,11 @@ class /*alignas(8)*/ SSequenceManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSequenceManagerSaveData& p_Other) const;
 	bool operator!=(const SSequenceManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18353,11 +18353,11 @@ class /*alignas(1)*/ SSerializedValue
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSerializedValue& p_Other) const;
 	bool operator!=(const SSerializedValue& p_Other) const { return !(*this == p_Other); }
@@ -18370,11 +18370,11 @@ class /*alignas(8)*/ SSituationConversationGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSituationConversationGroupSaveData& p_Other) const;
 	bool operator!=(const SSituationConversationGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18387,11 +18387,11 @@ class /*alignas(16)*/ SSituationOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSituationOrderSaveData& p_Other) const;
 	bool operator!=(const SSituationOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18422,11 +18422,11 @@ class /*alignas(4)*/ SSmuggleSituationActorStateSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSmuggleSituationActorStateSaveData& p_Other) const;
 	bool operator!=(const SSmuggleSituationActorStateSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18446,11 +18446,11 @@ class /*alignas(8)*/ SSmuggleSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSmuggleSituationSaveData& p_Other) const;
 	bool operator!=(const SSmuggleSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18468,11 +18468,11 @@ class /*alignas(8)*/ SSniperCombatGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSniperCombatGroupSaveData& p_Other) const;
 	bool operator!=(const SSniperCombatGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18490,11 +18490,11 @@ class /*alignas(8)*/ SSniperScoringEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSniperScoringEvent& p_Other) const;
 	bool operator!=(const SSniperScoringEvent& p_Other) const { return !(*this == p_Other); }
@@ -18513,11 +18513,11 @@ class /*alignas(1)*/ SSpaceCollectionBehaviorConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSpaceCollectionBehaviorConfiguration& p_Other) const;
 	bool operator!=(const SSpaceCollectionBehaviorConfiguration& p_Other) const { return !(*this == p_Other); }
@@ -18530,11 +18530,11 @@ class /*alignas(4)*/ SSpatialMoverEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSpatialMoverEntitySaveData& p_Other) const;
 	bool operator!=(const SSpatialMoverEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -18552,11 +18552,11 @@ class /*alignas(4)*/ SSpatialSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSpatialSaveData& p_Other) const;
 	bool operator!=(const SSpatialSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18572,11 +18572,11 @@ class /*alignas(4)*/ SSpeakEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SSpeakEntitySaveData& p_Other) const;
 	bool operator!=(const SSpeakEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -18589,11 +18589,11 @@ class /*alignas(8)*/ SStashPointSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SStashPointSaveData& p_Other) const;
 	bool operator!=(const SStashPointSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18611,11 +18611,11 @@ class /*alignas(4)*/ SStateControllerSaveDataStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SStateControllerSaveDataStruct& p_Other) const;
 	bool operator!=(const SStateControllerSaveDataStruct& p_Other) const { return !(*this == p_Other); }
@@ -18630,11 +18630,11 @@ class /*alignas(8)*/ SStateControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SStateControllerSaveData& p_Other) const;
 	bool operator!=(const SStateControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18648,11 +18648,11 @@ class /*alignas(4)*/ SStepCounterEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SStepCounterEntitySaveData& p_Other) const;
 	bool operator!=(const SStepCounterEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -18672,11 +18672,11 @@ class /*alignas(8)*/ STargetInfoObjectiveCondition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STargetInfoObjectiveCondition& p_Other) const;
 	bool operator!=(const STargetInfoObjectiveCondition& p_Other) const { return !(*this == p_Other); }
@@ -18694,11 +18694,11 @@ class /*alignas(8)*/ STargetInfoDisplayData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STargetInfoDisplayData& p_Other) const;
 	bool operator!=(const STargetInfoDisplayData& p_Other) const { return !(*this == p_Other); }
@@ -18719,11 +18719,11 @@ class /*alignas(8)*/ STargetInfoDisplayData_Dummy
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STargetInfoDisplayData_Dummy& p_Other) const;
 	bool operator!=(const STargetInfoDisplayData_Dummy& p_Other) const { return !(*this == p_Other); }
@@ -18736,11 +18736,11 @@ class /*alignas(16)*/ STargetTrackingSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STargetTrackingSaveData& p_Other) const;
 	bool operator!=(const STargetTrackingSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18757,11 +18757,11 @@ class /*alignas(8)*/ STargetTrackingServiceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STargetTrackingServiceSaveData& p_Other) const;
 	bool operator!=(const STargetTrackingServiceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18774,11 +18774,11 @@ class /*alignas(4)*/ STargetableBoneConfiguration
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STargetableBoneConfiguration& p_Other) const;
 	bool operator!=(const STargetableBoneConfiguration& p_Other) const { return !(*this == p_Other); }
@@ -18792,11 +18792,11 @@ class /*alignas(8)*/ STemplateBlueprintSubEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STemplateBlueprintSubEntity& p_Other) const;
 	bool operator!=(const STemplateBlueprintSubEntity& p_Other) const { return !(*this == p_Other); }
@@ -18819,11 +18819,11 @@ class /*alignas(8)*/ STemplateEntityBlueprint
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STemplateEntityBlueprint& p_Other) const;
 	bool operator!=(const STemplateEntityBlueprint& p_Other) const { return !(*this == p_Other); }
@@ -18845,11 +18845,11 @@ class /*alignas(8)*/ STemplateFactorySubEntity
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STemplateFactorySubEntity& p_Other) const;
 	bool operator!=(const STemplateFactorySubEntity& p_Other) const { return !(*this == p_Other); }
@@ -18866,11 +18866,11 @@ class /*alignas(8)*/ STemplateEntityFactory
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STemplateEntityFactory& p_Other) const;
 	bool operator!=(const STemplateEntityFactory& p_Other) const { return !(*this == p_Other); }
@@ -18896,11 +18896,11 @@ class /*alignas(8)*/ STestStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STestStruct& p_Other) const;
 	bool operator!=(const STestStruct& p_Other) const { return !(*this == p_Other); }
@@ -18917,11 +18917,11 @@ class /*alignas(8)*/ STestStruct2
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STestStruct2& p_Other) const;
 	bool operator!=(const STestStruct2& p_Other) const { return !(*this == p_Other); }
@@ -18935,11 +18935,11 @@ class /*alignas(4)*/ STimerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STimerEntitySaveData& p_Other) const;
 	bool operator!=(const STimerEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -18955,11 +18955,11 @@ class /*alignas(8)*/ STimerEntitiesSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STimerEntitiesSaveData& p_Other) const;
 	bool operator!=(const STimerEntitiesSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18973,11 +18973,11 @@ class /*alignas(8)*/ STimerManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STimerManagerSaveData& p_Other) const;
 	bool operator!=(const STimerManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -18992,11 +18992,11 @@ class /*alignas(4)*/ STokenID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STokenID& p_Other) const;
 	bool operator!=(const STokenID& p_Other) const { return !(*this == p_Other); }
@@ -19011,11 +19011,11 @@ class /*alignas(4)*/ STrackDollyControllerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STrackDollyControllerSaveData& p_Other) const;
 	bool operator!=(const STrackDollyControllerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19033,11 +19033,11 @@ class /*alignas(4)*/ STrackerEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STrackerEntitySaveData& p_Other) const;
 	bool operator!=(const STrackerEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -19054,11 +19054,11 @@ class /*alignas(8)*/ STrackerManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STrackerManagerSaveData& p_Other) const;
 	bool operator!=(const STrackerManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19071,11 +19071,11 @@ class /*alignas(16)*/ STrajectoryTrackSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STrajectoryTrackSaveData& p_Other) const;
 	bool operator!=(const STrajectoryTrackSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19089,11 +19089,11 @@ class /*alignas(8)*/ STrespassingRuleEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STrespassingRuleEntitySaveData& p_Other) const;
 	bool operator!=(const STrespassingRuleEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -19106,11 +19106,11 @@ class /*alignas(8)*/ STriggerAlarmGroupSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const STriggerAlarmGroupSaveData& p_Other) const;
 	bool operator!=(const STriggerAlarmGroupSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19129,11 +19129,11 @@ class /*alignas(4)*/ SUIBreadcrumbDataSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SUIBreadcrumbDataSaveData& p_Other) const;
 	bool operator!=(const SUIBreadcrumbDataSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19147,11 +19147,11 @@ class /*alignas(4)*/ SUIGridCellPosition
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SUIGridCellPosition& p_Other) const;
 	bool operator!=(const SUIGridCellPosition& p_Other) const { return !(*this == p_Other); }
@@ -19276,11 +19276,11 @@ class /*alignas(8)*/ SUIOptionsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SUIOptionsSaveData& p_Other) const;
 	bool operator!=(const SUIOptionsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19302,11 +19302,11 @@ class /*alignas(8)*/ SUITestData_SSubSubStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SUITestData_SSubSubStruct& p_Other) const;
 	bool operator!=(const SUITestData_SSubSubStruct& p_Other) const { return !(*this == p_Other); }
@@ -19319,11 +19319,11 @@ class /*alignas(8)*/ SUITestData_SSubStruct
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SUITestData_SSubStruct& p_Other) const;
 	bool operator!=(const SUITestData_SSubStruct& p_Other) const { return !(*this == p_Other); }
@@ -19336,11 +19336,11 @@ class /*alignas(8)*/ SUITestData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SUITestData& p_Other) const;
 	bool operator!=(const SUITestData& p_Other) const { return !(*this == p_Other); }
@@ -19365,11 +19365,11 @@ class /*alignas(4)*/ SValueBoolDelayedEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SValueBoolDelayedEntitySaveData& p_Other) const;
 	bool operator!=(const SValueBoolDelayedEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -19385,11 +19385,11 @@ class /*alignas(8)*/ SValueBoolsSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SValueBoolsSaveData& p_Other) const;
 	bool operator!=(const SValueBoolsSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19403,11 +19403,11 @@ class /*alignas(8)*/ SValueFloatSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SValueFloatSaveData& p_Other) const;
 	bool operator!=(const SValueFloatSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19421,11 +19421,11 @@ class /*alignas(8)*/ SValueIntSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SValueIntSaveData& p_Other) const;
 	bool operator!=(const SValueIntSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19439,11 +19439,11 @@ class /*alignas(8)*/ SValueSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SValueSaveData& p_Other) const;
 	bool operator!=(const SValueSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19460,11 +19460,11 @@ class /*alignas(8)*/ SVideoDatabaseEntry
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVideoDatabaseEntry& p_Other) const;
 	bool operator!=(const SVideoDatabaseEntry& p_Other) const { return !(*this == p_Other); }
@@ -19478,11 +19478,11 @@ class /*alignas(8)*/ SVideoDatabaseData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVideoDatabaseData& p_Other) const;
 	bool operator!=(const SVideoDatabaseData& p_Other) const { return !(*this == p_Other); }
@@ -19495,11 +19495,11 @@ class /*alignas(1)*/ SVisibilitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVisibilitySaveData& p_Other) const;
 	bool operator!=(const SVisibilitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -19512,11 +19512,11 @@ class /*alignas(4)*/ SVoidSignalEntitySaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SVoidSignalEntitySaveData& p_Other) const;
 	bool operator!=(const SVoidSignalEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -19531,11 +19531,11 @@ class /*alignas(4)*/ SWaveformGeneratorSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SWaveformGeneratorSaveData& p_Other) const;
 	bool operator!=(const SWaveformGeneratorSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19553,11 +19553,11 @@ class /*alignas(8)*/ SWaveformGeneratorManagerSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SWaveformGeneratorManagerSaveData& p_Other) const;
 	bool operator!=(const SWaveformGeneratorManagerSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19571,11 +19571,11 @@ class /*alignas(4)*/ SWeaponCustomControlSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SWeaponCustomControlSaveData& p_Other) const;
 	bool operator!=(const SWeaponCustomControlSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19591,11 +19591,11 @@ class /*alignas(8)*/ SWeaponStatusUIData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SWeaponStatusUIData& p_Other) const;
 	bool operator!=(const SWeaponStatusUIData& p_Other) const { return !(*this == p_Other); }
@@ -19642,11 +19642,11 @@ class /*alignas(8)*/ SWorldInventoryInstanceSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const SWorldInventoryInstanceSaveData& p_Other) const;
 	bool operator!=(const SWorldInventoryInstanceSaveData& p_Other) const { return !(*this == p_Other); }
@@ -19740,11 +19740,11 @@ class /*alignas(8)*/ ZAISetpieceDistractionContextEntity_SAIDistractionContextEn
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData& p_Other) const;
 	bool operator!=(const ZAISetpieceDistractionContextEntity_SAIDistractionContextEntitySaveData& p_Other) const { return !(*this == p_Other); }
@@ -19772,11 +19772,11 @@ class /*alignas(8)*/ ZAMDEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAMDEvent& p_Other) const;
 	bool operator!=(const ZAMDEvent& p_Other) const { return !(*this == p_Other); }
@@ -19793,11 +19793,11 @@ class /*alignas(8)*/ ZAMDEventTrack
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAMDEventTrack& p_Other) const;
 	bool operator!=(const ZAMDEventTrack& p_Other) const { return !(*this == p_Other); }
@@ -19811,11 +19811,11 @@ class /*alignas(8)*/ ZAMDTake
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAMDTake& p_Other) const;
 	bool operator!=(const ZAMDTake& p_Other) const { return !(*this == p_Other); }
@@ -19847,11 +19847,11 @@ class /*alignas(8)*/ ZAT2Controller_SEventPreviewInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAT2Controller_SEventPreviewInfo& p_Other) const;
 	bool operator!=(const ZAT2Controller_SEventPreviewInfo& p_Other) const { return !(*this == p_Other); }
@@ -19870,11 +19870,11 @@ class /*alignas(4)*/ ZAT2Controller_SGeneratedFootstepEvent
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAT2Controller_SGeneratedFootstepEvent& p_Other) const;
 	bool operator!=(const ZAT2Controller_SGeneratedFootstepEvent& p_Other) const { return !(*this == p_Other); }
@@ -20050,11 +20050,11 @@ class /*alignas(16)*/ ZApproachOrder_SApproachOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZApproachOrder_SApproachOrderSaveData& p_Other) const;
 	bool operator!=(const ZApproachOrder_SApproachOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -20080,11 +20080,11 @@ class /*alignas(8)*/ ZAutoNullEntityRef
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAutoNullEntityRef& p_Other) const;
 	bool operator!=(const ZAutoNullEntityRef& p_Other) const { return !(*this == p_Other); }
@@ -20108,11 +20108,11 @@ class /*alignas(8)*/ ZAvoidDangerousAreaSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZAvoidDangerousAreaSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZAvoidDangerousAreaSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -20208,11 +20208,11 @@ class /*alignas(8)*/ ZComponentCreator
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZComponentCreator& p_Other) const;
 	bool operator!=(const ZComponentCreator& p_Other) const { return !(*this == p_Other); }
@@ -20251,11 +20251,11 @@ class /*alignas(8)*/ ZContractEvaluationContext
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZContractEvaluationContext& p_Other) const;
 	bool operator!=(const ZContractEvaluationContext& p_Other) const { return !(*this == p_Other); }
@@ -20315,11 +20315,11 @@ class /*alignas(8)*/ ZCurve
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZCurve& p_Other) const;
 	bool operator!=(const ZCurve& p_Other) const { return !(*this == p_Other); }
@@ -20341,11 +20341,11 @@ class /*alignas(4)*/ ZDeadBodySituation_SIncidentSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDeadBodySituation_SIncidentSaveData& p_Other) const;
 	bool operator!=(const ZDeadBodySituation_SIncidentSaveData& p_Other) const { return !(*this == p_Other); }
@@ -20360,11 +20360,11 @@ class /*alignas(8)*/ ZDeadBodySituation_SState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDeadBodySituation_SState& p_Other) const;
 	bool operator!=(const ZDeadBodySituation_SState& p_Other) const { return !(*this == p_Other); }
@@ -20388,11 +20388,11 @@ class /*alignas(8)*/ ZDeadBodySituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDeadBodySituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZDeadBodySituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -20519,11 +20519,11 @@ class /*alignas(4)*/ ZDetectedInPrivateSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDetectedInPrivateSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZDetectedInPrivateSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -20536,11 +20536,11 @@ class /*alignas(2)*/ ZDialogEventItemTypedIndex
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDialogEventItemTypedIndex& p_Other) const;
 	bool operator!=(const ZDialogEventItemTypedIndex& p_Other) const { return !(*this == p_Other); }
@@ -20553,11 +20553,11 @@ class /*alignas(8)*/ ZDisguiseSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDisguiseSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZDisguiseSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -20598,11 +20598,11 @@ class /*alignas(8)*/ ZDynamicObject_SArrayTypesRegistrar
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZDynamicObject_SArrayTypesRegistrar& p_Other) const;
 	bool operator!=(const ZDynamicObject_SArrayTypesRegistrar& p_Other) const { return !(*this == p_Other); }
@@ -20616,11 +20616,11 @@ class /*alignas(8)*/ ZER64
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZER64& p_Other) const;
 	bool operator!=(const ZER64& p_Other) const { return !(*this == p_Other); }
@@ -20634,11 +20634,11 @@ class /*alignas(8)*/ ZEntityID
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZEntityID& p_Other) const;
 	bool operator!=(const ZEntityID& p_Other) const { return !(*this == p_Other); }
@@ -20651,11 +20651,11 @@ class /*alignas(8)*/ ZEntityPath
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZEntityPath& p_Other) const;
 	bool operator!=(const ZEntityPath& p_Other) const { return !(*this == p_Other); }
@@ -20676,11 +20676,11 @@ class /*alignas(8)*/ ZEntityRef
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZEntityRef& p_Other) const;
 	bool operator!=(const ZEntityRef& p_Other) const { return !(*this == p_Other); }
@@ -20693,11 +20693,11 @@ class /*alignas(8)*/ ZEntityReference
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZEntityReference& p_Other) const;
 	bool operator!=(const ZEntityReference& p_Other) const { return !(*this == p_Other); }
@@ -20711,11 +20711,11 @@ class /*alignas(16)*/ ZFormationMoveOrder_SFormationMoveOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZFormationMoveOrder_SFormationMoveOrderSaveData& p_Other) const;
 	bool operator!=(const ZFormationMoveOrder_SFormationMoveOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -20746,11 +20746,11 @@ class /*alignas(8)*/ ZGfxValueWrapper
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZGfxValueWrapper& p_Other) const;
 	bool operator!=(const ZGfxValueWrapper& p_Other) const { return !(*this == p_Other); }
@@ -20763,11 +20763,11 @@ class /*alignas(8)*/ ZGridFloatField
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZGridFloatField& p_Other) const;
 	bool operator!=(const ZGridFloatField& p_Other) const { return !(*this == p_Other); }
@@ -20790,11 +20790,11 @@ class /*alignas(4)*/ ZHM5AgilityEventConsumer_SAgilityEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5AgilityEventConsumer_SAgilityEventData& p_Other) const;
 	bool operator!=(const ZHM5AgilityEventConsumer_SAgilityEventData& p_Other) const { return !(*this == p_Other); }
@@ -20807,11 +20807,11 @@ class /*alignas(4)*/ ZResourcePtr
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZResourcePtr& p_Other) const;
 	bool operator!=(const ZResourcePtr& p_Other) const { return !(*this == p_Other); }
@@ -20824,11 +20824,11 @@ class /*alignas(4)*/ ZHM5AudioEventConsumer_SAudioAnimationEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5AudioEventConsumer_SAudioAnimationEventData& p_Other) const;
 	bool operator!=(const ZHM5AudioEventConsumer_SAudioAnimationEventData& p_Other) const { return !(*this == p_Other); }
@@ -20889,11 +20889,11 @@ class /*alignas(4)*/ ZHM5BodySoundEventConsumer_SBodySoundEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5BodySoundEventConsumer_SBodySoundEventData& p_Other) const;
 	bool operator!=(const ZHM5BodySoundEventConsumer_SBodySoundEventData& p_Other) const { return !(*this == p_Other); }
@@ -20906,11 +20906,11 @@ class /*alignas(4)*/ ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData& p_Other) const;
 	bool operator!=(const ZHM5CloseCombatEventConsumer_SCloseCombatSoundEventData& p_Other) const { return !(*this == p_Other); }
@@ -20933,11 +20933,11 @@ class /*alignas(4)*/ ZHM5CrowdEventConsumer_SCrowdSoundEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5CrowdEventConsumer_SCrowdSoundEventData& p_Other) const;
 	bool operator!=(const ZHM5CrowdEventConsumer_SCrowdSoundEventData& p_Other) const { return !(*this == p_Other); }
@@ -20965,11 +20965,11 @@ class /*alignas(4)*/ ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData& p_Other) const;
 	bool operator!=(const ZHM5CrowdGenericEventConsumer_SCrowdSoundGenericEventData& p_Other) const { return !(*this == p_Other); }
@@ -21008,11 +21008,11 @@ class /*alignas(4)*/ ZHM5FaceFXReactionEventConsumer_SFaceFXEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5FaceFXReactionEventConsumer_SFaceFXEventData& p_Other) const;
 	bool operator!=(const ZHM5FaceFXReactionEventConsumer_SFaceFXEventData& p_Other) const { return !(*this == p_Other); }
@@ -21038,11 +21038,11 @@ class /*alignas(8)*/ ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData& p_Other) const;
 	bool operator!=(const ZHM5FaceFXSpecificEventConsumer_SFaceFXEventData& p_Other) const { return !(*this == p_Other); }
@@ -21057,11 +21057,11 @@ class /*alignas(4)*/ ZHM5FootstepEventConsumer_SFootstepSoundEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5FootstepEventConsumer_SFootstepSoundEventData& p_Other) const;
 	bool operator!=(const ZHM5FootstepEventConsumer_SFootstepSoundEventData& p_Other) const { return !(*this == p_Other); }
@@ -21094,11 +21094,11 @@ class /*alignas(4)*/ ZHM5GenericEventConsumer_SGenericEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5GenericEventConsumer_SGenericEventData& p_Other) const;
 	bool operator!=(const ZHM5GenericEventConsumer_SGenericEventData& p_Other) const { return !(*this == p_Other); }
@@ -21127,11 +21127,11 @@ class /*alignas(4)*/ ZHM5HIKEventConsumer_SZHM5HIKEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5HIKEventConsumer_SZHM5HIKEventData& p_Other) const;
 	bool operator!=(const ZHM5HIKEventConsumer_SZHM5HIKEventData& p_Other) const { return !(*this == p_Other); }
@@ -21213,11 +21213,11 @@ class /*alignas(4)*/ ZHM5ItemInteractionEventConsumer_SItemInteractionEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5ItemInteractionEventConsumer_SItemInteractionEventData& p_Other) const;
 	bool operator!=(const ZHM5ItemInteractionEventConsumer_SItemInteractionEventData& p_Other) const { return !(*this == p_Other); }
@@ -21316,11 +21316,11 @@ class /*alignas(4)*/ ZHM5WeaponEventConsumer_SWeaponEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHM5WeaponEventConsumer_SWeaponEventData& p_Other) const;
 	bool operator!=(const ZHM5WeaponEventConsumer_SWeaponEventData& p_Other) const { return !(*this == p_Other); }
@@ -21333,11 +21333,11 @@ class /*alignas(1)*/ ZHUDAIGuide_SData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHUDAIGuide_SData& p_Other) const;
 	bool operator!=(const ZHUDAIGuide_SData& p_Other) const { return !(*this == p_Other); }
@@ -21357,11 +21357,11 @@ class /*alignas(8)*/ ZHUDHintController_SData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHUDHintController_SData& p_Other) const;
 	bool operator!=(const ZHUDHintController_SData& p_Other) const { return !(*this == p_Other); }
@@ -21375,11 +21375,11 @@ class /*alignas(8)*/ ZHUDInventoryNotificationController_SData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHUDInventoryNotificationController_SData& p_Other) const;
 	bool operator!=(const ZHUDInventoryNotificationController_SData& p_Other) const { return !(*this == p_Other); }
@@ -21401,11 +21401,11 @@ class /*alignas(8)*/ ZHUDUIControllerEntity_SIntelData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHUDUIControllerEntity_SIntelData& p_Other) const;
 	bool operator!=(const ZHUDUIControllerEntity_SIntelData& p_Other) const { return !(*this == p_Other); }
@@ -21421,11 +21421,11 @@ class /*alignas(8)*/ ZHUDUIControllerEntity_SWeaponViewData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHUDUIControllerEntity_SWeaponViewData& p_Other) const;
 	bool operator!=(const ZHUDUIControllerEntity_SWeaponViewData& p_Other) const { return !(*this == p_Other); }
@@ -21467,11 +21467,11 @@ class /*alignas(8)*/ ZHttpUrl
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZHttpUrl& p_Other) const;
 	bool operator!=(const ZHttpUrl& p_Other) const { return !(*this == p_Other); }
@@ -21494,11 +21494,11 @@ class /*alignas(1)*/ ZInfectedSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZInfectedSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZInfectedSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -21547,11 +21547,11 @@ class /*alignas(16)*/ ZInteractionData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZInteractionData& p_Other) const;
 	bool operator!=(const ZInteractionData& p_Other) const { return !(*this == p_Other); }
@@ -21608,11 +21608,11 @@ class /*alignas(4)*/ ZInteractionEventConsumer_SInteractionEventData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZInteractionEventConsumer_SInteractionEventData& p_Other) const;
 	bool operator!=(const ZInteractionEventConsumer_SInteractionEventData& p_Other) const { return !(*this == p_Other); }
@@ -21625,11 +21625,11 @@ class /*alignas(16)*/ ZInteractionGuideData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZInteractionGuideData& p_Other) const;
 	bool operator!=(const ZInteractionGuideData& p_Other) const { return !(*this == p_Other); }
@@ -21642,11 +21642,11 @@ class /*alignas(8)*/ ZInvestigateWeaponSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZInvestigateWeaponSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZInvestigateWeaponSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -21673,11 +21673,11 @@ class /*alignas(16)*/ ZJumpToOrder_SJumpToOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZJumpToOrder_SJumpToOrderSaveData& p_Other) const;
 	bool operator!=(const ZJumpToOrder_SJumpToOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -21691,11 +21691,11 @@ class /*alignas(8)*/ ZKeywordCalculator_SCollection
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZKeywordCalculator_SCollection& p_Other) const;
 	bool operator!=(const ZKeywordCalculator_SCollection& p_Other) const { return !(*this == p_Other); }
@@ -21755,11 +21755,11 @@ class /*alignas(16)*/ ZMoveToOrder_SMoveToOrderSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZMoveToOrder_SMoveToOrderSaveData& p_Other) const;
 	bool operator!=(const ZMoveToOrder_SMoveToOrderSaveData& p_Other) const { return !(*this == p_Other); }
@@ -21935,11 +21935,11 @@ class /*alignas(8)*/ ZPlanningObjectiveInfoBuilder
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZPlanningObjectiveInfoBuilder& p_Other) const;
 	bool operator!=(const ZPlanningObjectiveInfoBuilder& p_Other) const { return !(*this == p_Other); }
@@ -21961,11 +21961,11 @@ class /*alignas(0)*/ ZPostfilterGraphBaseNode
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZPostfilterGraphBaseNode& p_Other) const;
 	bool operator!=(const ZPostfilterGraphBaseNode& p_Other) const { return !(*this == p_Other); }
@@ -21992,11 +21992,11 @@ class /*alignas(16)*/ ZRayQueryInput
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZRayQueryInput& p_Other) const;
 	bool operator!=(const ZRayQueryInput& p_Other) const { return !(*this == p_Other); }
@@ -22021,11 +22021,11 @@ class /*alignas(4)*/ ZRecoverUnconsciousSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZRecoverUnconsciousSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZRecoverUnconsciousSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -22084,11 +22084,11 @@ class /*alignas(8)*/ ZRuntimePinConDesc
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZRuntimePinConDesc& p_Other) const;
 	bool operator!=(const ZRuntimePinConDesc& p_Other) const { return !(*this == p_Other); }
@@ -22104,11 +22104,11 @@ class /*alignas(8)*/ ZScopedER64
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZScopedER64& p_Other) const;
 	bool operator!=(const ZScopedER64& p_Other) const { return !(*this == p_Other); }
@@ -22122,11 +22122,11 @@ class /*alignas(8)*/ ZScopedRuntimePinConDesc
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZScopedRuntimePinConDesc& p_Other) const;
 	bool operator!=(const ZScopedRuntimePinConDesc& p_Other) const { return !(*this == p_Other); }
@@ -22147,11 +22147,11 @@ class /*alignas(4)*/ ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalati
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule& p_Other) const;
 	bool operator!=(const ZSecuritySystemCameraConfiguration_SDeadBodyVisibleEscalationRule& p_Other) const { return !(*this == p_Other); }
@@ -22164,11 +22164,11 @@ class /*alignas(4)*/ ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalation
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule& p_Other) const;
 	bool operator!=(const ZSecuritySystemCameraConfiguration_SHitmanVisibleEscalationRule& p_Other) const { return !(*this == p_Other); }
@@ -22189,11 +22189,11 @@ class /*alignas(8)*/ ZSetPieceIconEntity_SIconData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSetPieceIconEntity_SIconData& p_Other) const;
 	bool operator!=(const ZSetPieceIconEntity_SIconData& p_Other) const { return !(*this == p_Other); }
@@ -22220,11 +22220,11 @@ class /*alignas(4)*/ ZSharedSensorDef_SVisibilitySetting
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSharedSensorDef_SVisibilitySetting& p_Other) const;
 	bool operator!=(const ZSharedSensorDef_SVisibilitySetting& p_Other) const { return !(*this == p_Other); }
@@ -22246,11 +22246,11 @@ class /*alignas(8)*/ ZSituationGroup
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSituationGroup& p_Other) const;
 	bool operator!=(const ZSituationGroup& p_Other) const { return !(*this == p_Other); }
@@ -22263,11 +22263,11 @@ class /*alignas(16)*/ ZSituationOrder
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSituationOrder& p_Other) const;
 	bool operator!=(const ZSituationOrder& p_Other) const { return !(*this == p_Other); }
@@ -22298,11 +22298,11 @@ class /*alignas(16)*/ ZSniperCombatSituation_SSniperSuspiciousArea
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSniperCombatSituation_SSniperSuspiciousArea& p_Other) const;
 	bool operator!=(const ZSniperCombatSituation_SSniperSuspiciousArea& p_Other) const { return !(*this == p_Other); }
@@ -22318,11 +22318,11 @@ class /*alignas(8)*/ ZSniperCombatSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSniperCombatSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZSniperCombatSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -22359,11 +22359,11 @@ class /*alignas(16)*/ ZSoundCollisionInfo
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSoundCollisionInfo& p_Other) const;
 	bool operator!=(const ZSoundCollisionInfo& p_Other) const { return !(*this == p_Other); }
@@ -22384,11 +22384,11 @@ class /*alignas(8)*/ ZSpectatorSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZSpectatorSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZSpectatorSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -22430,11 +22430,11 @@ class /*alignas(16)*/ ZStandOffSituation_SState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZStandOffSituation_SState& p_Other) const;
 	bool operator!=(const ZStandOffSituation_SState& p_Other) const { return !(*this == p_Other); }
@@ -22480,11 +22480,11 @@ class /*alignas(16)*/ ZStandOffSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZStandOffSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZStandOffSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -22520,11 +22520,11 @@ class /*alignas(8)*/ ZTime
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZTime& p_Other) const;
 	bool operator!=(const ZTime& p_Other) const { return !(*this == p_Other); }
@@ -22553,11 +22553,11 @@ class /*alignas(8)*/ ZTrespassingSituation_SState
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZTrespassingSituation_SState& p_Other) const;
 	bool operator!=(const ZTrespassingSituation_SState& p_Other) const { return !(*this == p_Other); }
@@ -22576,11 +22576,11 @@ class /*alignas(16)*/ ZTrespassingSituation_SSituationSaveData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZTrespassingSituation_SSituationSaveData& p_Other) const;
 	bool operator!=(const ZTrespassingSituation_SSituationSaveData& p_Other) const { return !(*this == p_Other); }
@@ -22599,11 +22599,11 @@ class /*alignas(8)*/ ZUIActionSelectorNavigationInventoryEntity_SActionSelectorS
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo& p_Other) const;
 	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo& p_Other) const { return !(*this == p_Other); }
@@ -22641,11 +22641,11 @@ class /*alignas(8)*/ ZUIActionSelectorNavigationInventoryEntity_SActionSelectorI
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData& p_Other) const;
 	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData& p_Other) const { return !(*this == p_Other); }
@@ -22688,11 +22688,11 @@ class /*alignas(0)*/ ZUIDataProvider
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZUIDataProvider& p_Other) const;
 	bool operator!=(const ZUIDataProvider& p_Other) const { return !(*this == p_Other); }
@@ -22705,11 +22705,11 @@ class /*alignas(8)*/ ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplay
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo& p_Other) const;
 	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo& p_Other) const { return !(*this == p_Other); }
@@ -22746,11 +22746,11 @@ class /*alignas(8)*/ ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData& p_Other) const;
 	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData& p_Other) const { return !(*this == p_Other); }
@@ -22892,11 +22892,11 @@ class /*alignas(8)*/ ZWorldMapMetaData
 {
 public:
 	static ZHMTypeInfo TypeInfo;
-	static void WriteJson(void* p_Object, std::ostream& p_Stream);
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 
 	bool operator==(const ZWorldMapMetaData& p_Other) const;
 	bool operator!=(const ZWorldMapMetaData& p_Other) const { return !(*this == p_Other); }

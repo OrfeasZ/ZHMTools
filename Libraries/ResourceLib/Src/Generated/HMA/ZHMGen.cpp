@@ -11,15 +11,7 @@
 #include <External/simdjson_helpers.h>
 #include <utility>
 
-ZHMTypeInfo BoneId::TypeInfo = ZHMTypeInfo("BoneId", sizeof(BoneId), alignof(BoneId), BoneId::WriteJson, BoneId::WriteSimpleJson, BoneId::FromSimpleJson, BoneId::Serialize, BoneId::Equals);
-
-void BoneId::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<BoneId*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
-}
+ZHMTypeInfo BoneId::TypeInfo = ZHMTypeInfo("BoneId", sizeof(BoneId), alignof(BoneId), BoneId::WriteSimpleJson, BoneId::FromSimpleJson, BoneId::Serialize, BoneId::Equals, BoneId::Destroy);
 
 void BoneId::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -60,15 +52,13 @@ bool BoneId::operator==(const BoneId& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IActorAction::TypeInfo = ZHMTypeInfo("IActorAction", sizeof(IActorAction), alignof(IActorAction), IActorAction::WriteJson, IActorAction::WriteSimpleJson, IActorAction::FromSimpleJson, IActorAction::Serialize, IActorAction::Equals);
-
-void IActorAction::WriteJson(void* p_Object, std::ostream& p_Stream)
+void BoneId::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IActorAction*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<BoneId*>(p_Object);
+	s_Object->~BoneId();
 }
+
+ZHMTypeInfo IActorAction::TypeInfo = ZHMTypeInfo("IActorAction", sizeof(IActorAction), alignof(IActorAction), IActorAction::WriteSimpleJson, IActorAction::FromSimpleJson, IActorAction::Serialize, IActorAction::Equals, IActorAction::Destroy);
 
 void IActorAction::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -109,15 +99,13 @@ bool IActorAction::operator==(const IActorAction& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IAnimPlayerEntity::TypeInfo = ZHMTypeInfo("IAnimPlayerEntity", sizeof(IAnimPlayerEntity), alignof(IAnimPlayerEntity), IAnimPlayerEntity::WriteJson, IAnimPlayerEntity::WriteSimpleJson, IAnimPlayerEntity::FromSimpleJson, IAnimPlayerEntity::Serialize, IAnimPlayerEntity::Equals);
-
-void IAnimPlayerEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IActorAction::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IAnimPlayerEntity*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IActorAction*>(p_Object);
+	s_Object->~IActorAction();
 }
+
+ZHMTypeInfo IAnimPlayerEntity::TypeInfo = ZHMTypeInfo("IAnimPlayerEntity", sizeof(IAnimPlayerEntity), alignof(IAnimPlayerEntity), IAnimPlayerEntity::WriteSimpleJson, IAnimPlayerEntity::FromSimpleJson, IAnimPlayerEntity::Serialize, IAnimPlayerEntity::Equals, IAnimPlayerEntity::Destroy);
 
 void IAnimPlayerEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -158,15 +146,13 @@ bool IAnimPlayerEntity::operator==(const IAnimPlayerEntity& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IBoneAnimator::TypeInfo = ZHMTypeInfo("IBoneAnimator", sizeof(IBoneAnimator), alignof(IBoneAnimator), IBoneAnimator::WriteJson, IBoneAnimator::WriteSimpleJson, IBoneAnimator::FromSimpleJson, IBoneAnimator::Serialize, IBoneAnimator::Equals);
-
-void IBoneAnimator::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IAnimPlayerEntity::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IBoneAnimator*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IAnimPlayerEntity*>(p_Object);
+	s_Object->~IAnimPlayerEntity();
 }
+
+ZHMTypeInfo IBoneAnimator::TypeInfo = ZHMTypeInfo("IBoneAnimator", sizeof(IBoneAnimator), alignof(IBoneAnimator), IBoneAnimator::WriteSimpleJson, IBoneAnimator::FromSimpleJson, IBoneAnimator::Serialize, IBoneAnimator::Equals, IBoneAnimator::Destroy);
 
 void IBoneAnimator::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -207,15 +193,13 @@ bool IBoneAnimator::operator==(const IBoneAnimator& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IBoneCollidable::TypeInfo = ZHMTypeInfo("IBoneCollidable", sizeof(IBoneCollidable), alignof(IBoneCollidable), IBoneCollidable::WriteJson, IBoneCollidable::WriteSimpleJson, IBoneCollidable::FromSimpleJson, IBoneCollidable::Serialize, IBoneCollidable::Equals);
-
-void IBoneCollidable::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IBoneAnimator::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IBoneCollidable*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IBoneAnimator*>(p_Object);
+	s_Object->~IBoneAnimator();
 }
+
+ZHMTypeInfo IBoneCollidable::TypeInfo = ZHMTypeInfo("IBoneCollidable", sizeof(IBoneCollidable), alignof(IBoneCollidable), IBoneCollidable::WriteSimpleJson, IBoneCollidable::FromSimpleJson, IBoneCollidable::Serialize, IBoneCollidable::Equals, IBoneCollidable::Destroy);
 
 void IBoneCollidable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -256,15 +240,13 @@ bool IBoneCollidable::operator==(const IBoneCollidable& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IComponentInterface::TypeInfo = ZHMTypeInfo("IComponentInterface", sizeof(IComponentInterface), alignof(IComponentInterface), IComponentInterface::WriteJson, IComponentInterface::WriteSimpleJson, IComponentInterface::FromSimpleJson, IComponentInterface::Serialize, IComponentInterface::Equals);
-
-void IComponentInterface::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IBoneCollidable::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IComponentInterface*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IBoneCollidable*>(p_Object);
+	s_Object->~IBoneCollidable();
 }
+
+ZHMTypeInfo IComponentInterface::TypeInfo = ZHMTypeInfo("IComponentInterface", sizeof(IComponentInterface), alignof(IComponentInterface), IComponentInterface::WriteSimpleJson, IComponentInterface::FromSimpleJson, IComponentInterface::Serialize, IComponentInterface::Equals, IComponentInterface::Destroy);
 
 void IComponentInterface::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -305,15 +287,13 @@ bool IComponentInterface::operator==(const IComponentInterface& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IEventConsumerCollection::TypeInfo = ZHMTypeInfo("IEventConsumerCollection", sizeof(IEventConsumerCollection), alignof(IEventConsumerCollection), IEventConsumerCollection::WriteJson, IEventConsumerCollection::WriteSimpleJson, IEventConsumerCollection::FromSimpleJson, IEventConsumerCollection::Serialize, IEventConsumerCollection::Equals);
-
-void IEventConsumerCollection::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IComponentInterface::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IEventConsumerCollection*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IComponentInterface*>(p_Object);
+	s_Object->~IComponentInterface();
 }
+
+ZHMTypeInfo IEventConsumerCollection::TypeInfo = ZHMTypeInfo("IEventConsumerCollection", sizeof(IEventConsumerCollection), alignof(IEventConsumerCollection), IEventConsumerCollection::WriteSimpleJson, IEventConsumerCollection::FromSimpleJson, IEventConsumerCollection::Serialize, IEventConsumerCollection::Equals, IEventConsumerCollection::Destroy);
 
 void IEventConsumerCollection::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -354,15 +334,13 @@ bool IEventConsumerCollection::operator==(const IEventConsumerCollection& p_Othe
 	return true;
 }
 
-ZHMTypeInfo IHM5Door::TypeInfo = ZHMTypeInfo("IHM5Door", sizeof(IHM5Door), alignof(IHM5Door), IHM5Door::WriteJson, IHM5Door::WriteSimpleJson, IHM5Door::FromSimpleJson, IHM5Door::Serialize, IHM5Door::Equals);
-
-void IHM5Door::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IEventConsumerCollection::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IHM5Door*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IEventConsumerCollection*>(p_Object);
+	s_Object->~IEventConsumerCollection();
 }
+
+ZHMTypeInfo IHM5Door::TypeInfo = ZHMTypeInfo("IHM5Door", sizeof(IHM5Door), alignof(IHM5Door), IHM5Door::WriteSimpleJson, IHM5Door::FromSimpleJson, IHM5Door::Serialize, IHM5Door::Equals, IHM5Door::Destroy);
 
 void IHM5Door::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -403,15 +381,13 @@ bool IHM5Door::operator==(const IHM5Door& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IHM5WeaponInventory::TypeInfo = ZHMTypeInfo("IHM5WeaponInventory", sizeof(IHM5WeaponInventory), alignof(IHM5WeaponInventory), IHM5WeaponInventory::WriteJson, IHM5WeaponInventory::WriteSimpleJson, IHM5WeaponInventory::FromSimpleJson, IHM5WeaponInventory::Serialize, IHM5WeaponInventory::Equals);
-
-void IHM5WeaponInventory::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IHM5Door::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IHM5WeaponInventory*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IHM5Door*>(p_Object);
+	s_Object->~IHM5Door();
 }
+
+ZHMTypeInfo IHM5WeaponInventory::TypeInfo = ZHMTypeInfo("IHM5WeaponInventory", sizeof(IHM5WeaponInventory), alignof(IHM5WeaponInventory), IHM5WeaponInventory::WriteSimpleJson, IHM5WeaponInventory::FromSimpleJson, IHM5WeaponInventory::Serialize, IHM5WeaponInventory::Equals, IHM5WeaponInventory::Destroy);
 
 void IHM5WeaponInventory::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -452,15 +428,13 @@ bool IHM5WeaponInventory::operator==(const IHM5WeaponInventory& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IMorphemeCutSequenceAnimatable::TypeInfo = ZHMTypeInfo("IMorphemeCutSequenceAnimatable", sizeof(IMorphemeCutSequenceAnimatable), alignof(IMorphemeCutSequenceAnimatable), IMorphemeCutSequenceAnimatable::WriteJson, IMorphemeCutSequenceAnimatable::WriteSimpleJson, IMorphemeCutSequenceAnimatable::FromSimpleJson, IMorphemeCutSequenceAnimatable::Serialize, IMorphemeCutSequenceAnimatable::Equals);
-
-void IMorphemeCutSequenceAnimatable::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IHM5WeaponInventory::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IHM5WeaponInventory*>(p_Object);
+	s_Object->~IHM5WeaponInventory();
 }
+
+ZHMTypeInfo IMorphemeCutSequenceAnimatable::TypeInfo = ZHMTypeInfo("IMorphemeCutSequenceAnimatable", sizeof(IMorphemeCutSequenceAnimatable), alignof(IMorphemeCutSequenceAnimatable), IMorphemeCutSequenceAnimatable::WriteSimpleJson, IMorphemeCutSequenceAnimatable::FromSimpleJson, IMorphemeCutSequenceAnimatable::Serialize, IMorphemeCutSequenceAnimatable::Equals, IMorphemeCutSequenceAnimatable::Destroy);
 
 void IMorphemeCutSequenceAnimatable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -501,15 +475,13 @@ bool IMorphemeCutSequenceAnimatable::operator==(const IMorphemeCutSequenceAnimat
 	return true;
 }
 
-ZHMTypeInfo IMorphemeEventConsumer::TypeInfo = ZHMTypeInfo("IMorphemeEventConsumer", sizeof(IMorphemeEventConsumer), alignof(IMorphemeEventConsumer), IMorphemeEventConsumer::WriteJson, IMorphemeEventConsumer::WriteSimpleJson, IMorphemeEventConsumer::FromSimpleJson, IMorphemeEventConsumer::Serialize, IMorphemeEventConsumer::Equals);
-
-void IMorphemeEventConsumer::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IMorphemeCutSequenceAnimatable::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IMorphemeEventConsumer*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Object);
+	s_Object->~IMorphemeCutSequenceAnimatable();
 }
+
+ZHMTypeInfo IMorphemeEventConsumer::TypeInfo = ZHMTypeInfo("IMorphemeEventConsumer", sizeof(IMorphemeEventConsumer), alignof(IMorphemeEventConsumer), IMorphemeEventConsumer::WriteSimpleJson, IMorphemeEventConsumer::FromSimpleJson, IMorphemeEventConsumer::Serialize, IMorphemeEventConsumer::Equals, IMorphemeEventConsumer::Destroy);
 
 void IMorphemeEventConsumer::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -550,15 +522,13 @@ bool IMorphemeEventConsumer::operator==(const IMorphemeEventConsumer& p_Other) c
 	return true;
 }
 
-ZHMTypeInfo IRenderCompositorEntity::TypeInfo = ZHMTypeInfo("IRenderCompositorEntity", sizeof(IRenderCompositorEntity), alignof(IRenderCompositorEntity), IRenderCompositorEntity::WriteJson, IRenderCompositorEntity::WriteSimpleJson, IRenderCompositorEntity::FromSimpleJson, IRenderCompositorEntity::Serialize, IRenderCompositorEntity::Equals);
-
-void IRenderCompositorEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IMorphemeEventConsumer::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IRenderCompositorEntity*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IMorphemeEventConsumer*>(p_Object);
+	s_Object->~IMorphemeEventConsumer();
 }
+
+ZHMTypeInfo IRenderCompositorEntity::TypeInfo = ZHMTypeInfo("IRenderCompositorEntity", sizeof(IRenderCompositorEntity), alignof(IRenderCompositorEntity), IRenderCompositorEntity::WriteSimpleJson, IRenderCompositorEntity::FromSimpleJson, IRenderCompositorEntity::Serialize, IRenderCompositorEntity::Equals, IRenderCompositorEntity::Destroy);
 
 void IRenderCompositorEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -599,15 +569,13 @@ bool IRenderCompositorEntity::operator==(const IRenderCompositorEntity& p_Other)
 	return true;
 }
 
-ZHMTypeInfo IRenderMaterialDescriptor::TypeInfo = ZHMTypeInfo("IRenderMaterialDescriptor", sizeof(IRenderMaterialDescriptor), alignof(IRenderMaterialDescriptor), IRenderMaterialDescriptor::WriteJson, IRenderMaterialDescriptor::WriteSimpleJson, IRenderMaterialDescriptor::FromSimpleJson, IRenderMaterialDescriptor::Serialize, IRenderMaterialDescriptor::Equals);
-
-void IRenderMaterialDescriptor::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IRenderCompositorEntity::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IRenderMaterialDescriptor*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IRenderCompositorEntity*>(p_Object);
+	s_Object->~IRenderCompositorEntity();
 }
+
+ZHMTypeInfo IRenderMaterialDescriptor::TypeInfo = ZHMTypeInfo("IRenderMaterialDescriptor", sizeof(IRenderMaterialDescriptor), alignof(IRenderMaterialDescriptor), IRenderMaterialDescriptor::WriteSimpleJson, IRenderMaterialDescriptor::FromSimpleJson, IRenderMaterialDescriptor::Serialize, IRenderMaterialDescriptor::Equals, IRenderMaterialDescriptor::Destroy);
 
 void IRenderMaterialDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -648,15 +616,13 @@ bool IRenderMaterialDescriptor::operator==(const IRenderMaterialDescriptor& p_Ot
 	return true;
 }
 
-ZHMTypeInfo ISoundGroup::TypeInfo = ZHMTypeInfo("ISoundGroup", sizeof(ISoundGroup), alignof(ISoundGroup), ISoundGroup::WriteJson, ISoundGroup::WriteSimpleJson, ISoundGroup::FromSimpleJson, ISoundGroup::Serialize, ISoundGroup::Equals);
-
-void ISoundGroup::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IRenderMaterialDescriptor::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ISoundGroup*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IRenderMaterialDescriptor*>(p_Object);
+	s_Object->~IRenderMaterialDescriptor();
 }
+
+ZHMTypeInfo ISoundGroup::TypeInfo = ZHMTypeInfo("ISoundGroup", sizeof(ISoundGroup), alignof(ISoundGroup), ISoundGroup::WriteSimpleJson, ISoundGroup::FromSimpleJson, ISoundGroup::Serialize, ISoundGroup::Equals, ISoundGroup::Destroy);
 
 void ISoundGroup::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -697,15 +663,13 @@ bool ISoundGroup::operator==(const ISoundGroup& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ISoundListenerPositionReceiver::TypeInfo = ZHMTypeInfo("ISoundListenerPositionReceiver", sizeof(ISoundListenerPositionReceiver), alignof(ISoundListenerPositionReceiver), ISoundListenerPositionReceiver::WriteJson, ISoundListenerPositionReceiver::WriteSimpleJson, ISoundListenerPositionReceiver::FromSimpleJson, ISoundListenerPositionReceiver::Serialize, ISoundListenerPositionReceiver::Equals);
-
-void ISoundListenerPositionReceiver::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ISoundGroup::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ISoundListenerPositionReceiver*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ISoundGroup*>(p_Object);
+	s_Object->~ISoundGroup();
 }
+
+ZHMTypeInfo ISoundListenerPositionReceiver::TypeInfo = ZHMTypeInfo("ISoundListenerPositionReceiver", sizeof(ISoundListenerPositionReceiver), alignof(ISoundListenerPositionReceiver), ISoundListenerPositionReceiver::WriteSimpleJson, ISoundListenerPositionReceiver::FromSimpleJson, ISoundListenerPositionReceiver::Serialize, ISoundListenerPositionReceiver::Equals, ISoundListenerPositionReceiver::Destroy);
 
 void ISoundListenerPositionReceiver::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -746,15 +710,13 @@ bool ISoundListenerPositionReceiver::operator==(const ISoundListenerPositionRece
 	return true;
 }
 
-ZHMTypeInfo ISoundUpdateListener::TypeInfo = ZHMTypeInfo("ISoundUpdateListener", sizeof(ISoundUpdateListener), alignof(ISoundUpdateListener), ISoundUpdateListener::WriteJson, ISoundUpdateListener::WriteSimpleJson, ISoundUpdateListener::FromSimpleJson, ISoundUpdateListener::Serialize, ISoundUpdateListener::Equals);
-
-void ISoundUpdateListener::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ISoundListenerPositionReceiver::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ISoundUpdateListener*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ISoundListenerPositionReceiver*>(p_Object);
+	s_Object->~ISoundListenerPositionReceiver();
 }
+
+ZHMTypeInfo ISoundUpdateListener::TypeInfo = ZHMTypeInfo("ISoundUpdateListener", sizeof(ISoundUpdateListener), alignof(ISoundUpdateListener), ISoundUpdateListener::WriteSimpleJson, ISoundUpdateListener::FromSimpleJson, ISoundUpdateListener::Serialize, ISoundUpdateListener::Equals, ISoundUpdateListener::Destroy);
 
 void ISoundUpdateListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -795,15 +757,13 @@ bool ISoundUpdateListener::operator==(const ISoundUpdateListener& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ISoundVolumetricGeomSplinePoint::TypeInfo = ZHMTypeInfo("ISoundVolumetricGeomSplinePoint", sizeof(ISoundVolumetricGeomSplinePoint), alignof(ISoundVolumetricGeomSplinePoint), ISoundVolumetricGeomSplinePoint::WriteJson, ISoundVolumetricGeomSplinePoint::WriteSimpleJson, ISoundVolumetricGeomSplinePoint::FromSimpleJson, ISoundVolumetricGeomSplinePoint::Serialize, ISoundVolumetricGeomSplinePoint::Equals);
-
-void ISoundVolumetricGeomSplinePoint::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ISoundUpdateListener::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ISoundVolumetricGeomSplinePoint*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ISoundUpdateListener*>(p_Object);
+	s_Object->~ISoundUpdateListener();
 }
+
+ZHMTypeInfo ISoundVolumetricGeomSplinePoint::TypeInfo = ZHMTypeInfo("ISoundVolumetricGeomSplinePoint", sizeof(ISoundVolumetricGeomSplinePoint), alignof(ISoundVolumetricGeomSplinePoint), ISoundVolumetricGeomSplinePoint::WriteSimpleJson, ISoundVolumetricGeomSplinePoint::FromSimpleJson, ISoundVolumetricGeomSplinePoint::Serialize, ISoundVolumetricGeomSplinePoint::Equals, ISoundVolumetricGeomSplinePoint::Destroy);
 
 void ISoundVolumetricGeomSplinePoint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -844,15 +804,13 @@ bool ISoundVolumetricGeomSplinePoint::operator==(const ISoundVolumetricGeomSplin
 	return true;
 }
 
-ZHMTypeInfo IStreamingStateManagerEntity::TypeInfo = ZHMTypeInfo("IStreamingStateManagerEntity", sizeof(IStreamingStateManagerEntity), alignof(IStreamingStateManagerEntity), IStreamingStateManagerEntity::WriteJson, IStreamingStateManagerEntity::WriteSimpleJson, IStreamingStateManagerEntity::FromSimpleJson, IStreamingStateManagerEntity::Serialize, IStreamingStateManagerEntity::Equals);
-
-void IStreamingStateManagerEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ISoundVolumetricGeomSplinePoint::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IStreamingStateManagerEntity*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ISoundVolumetricGeomSplinePoint*>(p_Object);
+	s_Object->~ISoundVolumetricGeomSplinePoint();
 }
+
+ZHMTypeInfo IStreamingStateManagerEntity::TypeInfo = ZHMTypeInfo("IStreamingStateManagerEntity", sizeof(IStreamingStateManagerEntity), alignof(IStreamingStateManagerEntity), IStreamingStateManagerEntity::WriteSimpleJson, IStreamingStateManagerEntity::FromSimpleJson, IStreamingStateManagerEntity::Serialize, IStreamingStateManagerEntity::Equals, IStreamingStateManagerEntity::Destroy);
 
 void IStreamingStateManagerEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -893,15 +851,13 @@ bool IStreamingStateManagerEntity::operator==(const IStreamingStateManagerEntity
 	return true;
 }
 
-ZHMTypeInfo ITriggerListener::TypeInfo = ZHMTypeInfo("ITriggerListener", sizeof(ITriggerListener), alignof(ITriggerListener), ITriggerListener::WriteJson, ITriggerListener::WriteSimpleJson, ITriggerListener::FromSimpleJson, ITriggerListener::Serialize, ITriggerListener::Equals);
-
-void ITriggerListener::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IStreamingStateManagerEntity::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ITriggerListener*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IStreamingStateManagerEntity*>(p_Object);
+	s_Object->~IStreamingStateManagerEntity();
 }
+
+ZHMTypeInfo ITriggerListener::TypeInfo = ZHMTypeInfo("ITriggerListener", sizeof(ITriggerListener), alignof(ITriggerListener), ITriggerListener::WriteSimpleJson, ITriggerListener::FromSimpleJson, ITriggerListener::Serialize, ITriggerListener::Equals, ITriggerListener::Destroy);
 
 void ITriggerListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -942,15 +898,13 @@ bool ITriggerListener::operator==(const ITriggerListener& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ITriggerShape::TypeInfo = ZHMTypeInfo("ITriggerShape", sizeof(ITriggerShape), alignof(ITriggerShape), ITriggerShape::WriteJson, ITriggerShape::WriteSimpleJson, ITriggerShape::FromSimpleJson, ITriggerShape::Serialize, ITriggerShape::Equals);
-
-void ITriggerShape::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ITriggerListener::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ITriggerShape*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ITriggerListener*>(p_Object);
+	s_Object->~ITriggerListener();
 }
+
+ZHMTypeInfo ITriggerShape::TypeInfo = ZHMTypeInfo("ITriggerShape", sizeof(ITriggerShape), alignof(ITriggerShape), ITriggerShape::WriteSimpleJson, ITriggerShape::FromSimpleJson, ITriggerShape::Serialize, ITriggerShape::Equals, ITriggerShape::Destroy);
 
 void ITriggerShape::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -991,15 +945,13 @@ bool ITriggerShape::operator==(const ITriggerShape& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo IValueEntity::TypeInfo = ZHMTypeInfo("IValueEntity", sizeof(IValueEntity), alignof(IValueEntity), IValueEntity::WriteJson, IValueEntity::WriteSimpleJson, IValueEntity::FromSimpleJson, IValueEntity::Serialize, IValueEntity::Equals);
-
-void IValueEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ITriggerShape::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<IValueEntity*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ITriggerShape*>(p_Object);
+	s_Object->~ITriggerShape();
 }
+
+ZHMTypeInfo IValueEntity::TypeInfo = ZHMTypeInfo("IValueEntity", sizeof(IValueEntity), alignof(IValueEntity), IValueEntity::WriteSimpleJson, IValueEntity::FromSimpleJson, IValueEntity::Serialize, IValueEntity::Equals, IValueEntity::Destroy);
 
 void IValueEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1040,15 +992,13 @@ bool IValueEntity::operator==(const IValueEntity& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SActorSoundDefs::TypeInfo = ZHMTypeInfo("SActorSoundDefs", sizeof(SActorSoundDefs), alignof(SActorSoundDefs), SActorSoundDefs::WriteJson, SActorSoundDefs::WriteSimpleJson, SActorSoundDefs::FromSimpleJson, SActorSoundDefs::Serialize, SActorSoundDefs::Equals);
-
-void SActorSoundDefs::WriteJson(void* p_Object, std::ostream& p_Stream)
+void IValueEntity::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SActorSoundDefs*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<IValueEntity*>(p_Object);
+	s_Object->~IValueEntity();
 }
+
+ZHMTypeInfo SActorSoundDefs::TypeInfo = ZHMTypeInfo("SActorSoundDefs", sizeof(SActorSoundDefs), alignof(SActorSoundDefs), SActorSoundDefs::WriteSimpleJson, SActorSoundDefs::FromSimpleJson, SActorSoundDefs::Serialize, SActorSoundDefs::Equals, SActorSoundDefs::Destroy);
 
 void SActorSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1089,26 +1039,13 @@ bool SActorSoundDefs::operator==(const SActorSoundDefs& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SBehaviorTreeEntityReference::TypeInfo = ZHMTypeInfo("SBehaviorTreeEntityReference", sizeof(SBehaviorTreeEntityReference), alignof(SBehaviorTreeEntityReference), SBehaviorTreeEntityReference::WriteJson, SBehaviorTreeEntityReference::WriteSimpleJson, SBehaviorTreeEntityReference::FromSimpleJson, SBehaviorTreeEntityReference::Serialize, SBehaviorTreeEntityReference::Equals);
-
-void SBehaviorTreeEntityReference::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SActorSoundDefs::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SBehaviorTreeEntityReference*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_bList") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bList);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_sName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_sName);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SActorSoundDefs*>(p_Object);
+	s_Object->~SActorSoundDefs();
 }
+
+ZHMTypeInfo SBehaviorTreeEntityReference::TypeInfo = ZHMTypeInfo("SBehaviorTreeEntityReference", sizeof(SBehaviorTreeEntityReference), alignof(SBehaviorTreeEntityReference), SBehaviorTreeEntityReference::WriteSimpleJson, SBehaviorTreeEntityReference::FromSimpleJson, SBehaviorTreeEntityReference::Serialize, SBehaviorTreeEntityReference::Equals, SBehaviorTreeEntityReference::Destroy);
 
 void SBehaviorTreeEntityReference::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1163,32 +1100,13 @@ bool SBehaviorTreeEntityReference::operator==(const SBehaviorTreeEntityReference
 	return true;
 }
 
-ZHMTypeInfo SBehaviorTreeEvaluationLogEntry::TypeInfo = ZHMTypeInfo("SBehaviorTreeEvaluationLogEntry", sizeof(SBehaviorTreeEvaluationLogEntry), alignof(SBehaviorTreeEvaluationLogEntry), SBehaviorTreeEvaluationLogEntry::WriteJson, SBehaviorTreeEvaluationLogEntry::WriteSimpleJson, SBehaviorTreeEvaluationLogEntry::FromSimpleJson, SBehaviorTreeEvaluationLogEntry::Serialize, SBehaviorTreeEvaluationLogEntry::Equals);
-
-void SBehaviorTreeEvaluationLogEntry::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SBehaviorTreeEntityReference::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLogEntry*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nBehaviorTreeIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nBehaviorTreeIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nConditionOffset") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nConditionOffset);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bResult") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bResult);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SBehaviorTreeEntityReference*>(p_Object);
+	s_Object->~SBehaviorTreeEntityReference();
 }
+
+ZHMTypeInfo SBehaviorTreeEvaluationLogEntry::TypeInfo = ZHMTypeInfo("SBehaviorTreeEvaluationLogEntry", sizeof(SBehaviorTreeEvaluationLogEntry), alignof(SBehaviorTreeEvaluationLogEntry), SBehaviorTreeEvaluationLogEntry::WriteSimpleJson, SBehaviorTreeEvaluationLogEntry::FromSimpleJson, SBehaviorTreeEvaluationLogEntry::Serialize, SBehaviorTreeEvaluationLogEntry::Equals, SBehaviorTreeEvaluationLogEntry::Destroy);
 
 void SBehaviorTreeEvaluationLogEntry::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1249,20 +1167,13 @@ bool SBehaviorTreeEvaluationLogEntry::operator==(const SBehaviorTreeEvaluationLo
 	return true;
 }
 
-ZHMTypeInfo ZResourceID::TypeInfo = ZHMTypeInfo("ZResourceID", sizeof(ZResourceID), alignof(ZResourceID), ZResourceID::WriteJson, ZResourceID::WriteSimpleJson, ZResourceID::FromSimpleJson, ZResourceID::Serialize, ZResourceID::Equals);
-
-void ZResourceID::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SBehaviorTreeEvaluationLogEntry::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZResourceID*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_uri") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_uri);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLogEntry*>(p_Object);
+	s_Object->~SBehaviorTreeEvaluationLogEntry();
 }
+
+ZHMTypeInfo ZResourceID::TypeInfo = ZHMTypeInfo("ZResourceID", sizeof(ZResourceID), alignof(ZResourceID), ZResourceID::WriteSimpleJson, ZResourceID::FromSimpleJson, ZResourceID::Serialize, ZResourceID::Equals, ZResourceID::Destroy);
 
 void ZResourceID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1310,48 +1221,13 @@ bool ZResourceID::operator==(const ZResourceID& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SBehaviorTreeEvaluationLog::TypeInfo = ZHMTypeInfo("SBehaviorTreeEvaluationLog", sizeof(SBehaviorTreeEvaluationLog), alignof(SBehaviorTreeEvaluationLog), SBehaviorTreeEvaluationLog::WriteJson, SBehaviorTreeEvaluationLog::WriteSimpleJson, SBehaviorTreeEvaluationLog::FromSimpleJson, SBehaviorTreeEvaluationLog::Serialize, SBehaviorTreeEvaluationLog::Equals);
-
-void SBehaviorTreeEvaluationLog::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZResourceID::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLog*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_BehaviorTrees") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<ZResourceID>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_BehaviorTrees.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_BehaviorTrees[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("ZResourceID") << ",\"$val\":";
-		ZResourceID::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_BehaviorTrees.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_Entries") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SBehaviorTreeEvaluationLogEntry>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_Entries.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_Entries[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SBehaviorTreeEvaluationLogEntry") << ",\"$val\":";
-		SBehaviorTreeEvaluationLogEntry::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_Entries.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZResourceID*>(p_Object);
+	s_Object->~ZResourceID();
 }
+
+ZHMTypeInfo SBehaviorTreeEvaluationLog::TypeInfo = ZHMTypeInfo("SBehaviorTreeEvaluationLog", sizeof(SBehaviorTreeEvaluationLog), alignof(SBehaviorTreeEvaluationLog), SBehaviorTreeEvaluationLog::WriteSimpleJson, SBehaviorTreeEvaluationLog::FromSimpleJson, SBehaviorTreeEvaluationLog::Serialize, SBehaviorTreeEvaluationLog::Equals, SBehaviorTreeEvaluationLog::Destroy);
 
 void SBehaviorTreeEvaluationLog::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1449,20 +1325,13 @@ bool SBehaviorTreeEvaluationLog::operator==(const SBehaviorTreeEvaluationLog& p_
 	return true;
 }
 
-ZHMTypeInfo SBehaviorTreeInputPinCondition::TypeInfo = ZHMTypeInfo("SBehaviorTreeInputPinCondition", sizeof(SBehaviorTreeInputPinCondition), alignof(SBehaviorTreeInputPinCondition), SBehaviorTreeInputPinCondition::WriteJson, SBehaviorTreeInputPinCondition::WriteSimpleJson, SBehaviorTreeInputPinCondition::FromSimpleJson, SBehaviorTreeInputPinCondition::Serialize, SBehaviorTreeInputPinCondition::Equals);
-
-void SBehaviorTreeInputPinCondition::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SBehaviorTreeEvaluationLog::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SBehaviorTreeInputPinCondition*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_sName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_sName);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SBehaviorTreeEvaluationLog*>(p_Object);
+	s_Object->~SBehaviorTreeEvaluationLog();
 }
+
+ZHMTypeInfo SBehaviorTreeInputPinCondition::TypeInfo = ZHMTypeInfo("SBehaviorTreeInputPinCondition", sizeof(SBehaviorTreeInputPinCondition), alignof(SBehaviorTreeInputPinCondition), SBehaviorTreeInputPinCondition::WriteSimpleJson, SBehaviorTreeInputPinCondition::FromSimpleJson, SBehaviorTreeInputPinCondition::Serialize, SBehaviorTreeInputPinCondition::Equals, SBehaviorTreeInputPinCondition::Destroy);
 
 void SBehaviorTreeInputPinCondition::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1510,48 +1379,13 @@ bool SBehaviorTreeInputPinCondition::operator==(const SBehaviorTreeInputPinCondi
 	return true;
 }
 
-ZHMTypeInfo SBehaviorTreeInfo::TypeInfo = ZHMTypeInfo("SBehaviorTreeInfo", sizeof(SBehaviorTreeInfo), alignof(SBehaviorTreeInfo), SBehaviorTreeInfo::WriteJson, SBehaviorTreeInfo::WriteSimpleJson, SBehaviorTreeInfo::FromSimpleJson, SBehaviorTreeInfo::Serialize, SBehaviorTreeInfo::Equals);
-
-void SBehaviorTreeInfo::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SBehaviorTreeInputPinCondition::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SBehaviorTreeInfo*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_references") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SBehaviorTreeEntityReference>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_references.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_references[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SBehaviorTreeEntityReference") << ",\"$val\":";
-		SBehaviorTreeEntityReference::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_references.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_inputPinConditions") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SBehaviorTreeInputPinCondition>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_inputPinConditions.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_inputPinConditions[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SBehaviorTreeInputPinCondition") << ",\"$val\":";
-		SBehaviorTreeInputPinCondition::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_inputPinConditions.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SBehaviorTreeInputPinCondition*>(p_Object);
+	s_Object->~SBehaviorTreeInputPinCondition();
 }
+
+ZHMTypeInfo SBehaviorTreeInfo::TypeInfo = ZHMTypeInfo("SBehaviorTreeInfo", sizeof(SBehaviorTreeInfo), alignof(SBehaviorTreeInfo), SBehaviorTreeInfo::WriteSimpleJson, SBehaviorTreeInfo::FromSimpleJson, SBehaviorTreeInfo::Serialize, SBehaviorTreeInfo::Equals, SBehaviorTreeInfo::Destroy);
 
 void SBehaviorTreeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1649,50 +1483,13 @@ bool SBehaviorTreeInfo::operator==(const SBehaviorTreeInfo& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SBodyPartDamageMultipliers::TypeInfo = ZHMTypeInfo("SBodyPartDamageMultipliers", sizeof(SBodyPartDamageMultipliers), alignof(SBodyPartDamageMultipliers), SBodyPartDamageMultipliers::WriteJson, SBodyPartDamageMultipliers::WriteSimpleJson, SBodyPartDamageMultipliers::FromSimpleJson, SBodyPartDamageMultipliers::Serialize, SBodyPartDamageMultipliers::Equals);
-
-void SBodyPartDamageMultipliers::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SBehaviorTreeInfo::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SBodyPartDamageMultipliers*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_fHeadDamageMultiplier") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fHeadDamageMultiplier);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fFaceDamageMultiplier") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fFaceDamageMultiplier);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fArmDamageMultiplier") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fArmDamageMultiplier);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fHandDamageMultiplier") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fHandDamageMultiplier);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fLegDamageMultiplier") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fLegDamageMultiplier);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fTorsoDamageMultiplier") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fTorsoDamageMultiplier);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SBehaviorTreeInfo*>(p_Object);
+	s_Object->~SBehaviorTreeInfo();
 }
+
+ZHMTypeInfo SBodyPartDamageMultipliers::TypeInfo = ZHMTypeInfo("SBodyPartDamageMultipliers", sizeof(SBodyPartDamageMultipliers), alignof(SBodyPartDamageMultipliers), SBodyPartDamageMultipliers::WriteSimpleJson, SBodyPartDamageMultipliers::FromSimpleJson, SBodyPartDamageMultipliers::Serialize, SBodyPartDamageMultipliers::Equals, SBodyPartDamageMultipliers::Destroy);
 
 void SBodyPartDamageMultipliers::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1774,32 +1571,13 @@ bool SBodyPartDamageMultipliers::operator==(const SBodyPartDamageMultipliers& p_
 	return true;
 }
 
-ZHMTypeInfo SVector3::TypeInfo = ZHMTypeInfo("SVector3", sizeof(SVector3), alignof(SVector3), SVector3::WriteJson, SVector3::WriteSimpleJson, SVector3::FromSimpleJson, SVector3::Serialize, SVector3::Equals);
-
-void SVector3::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SBodyPartDamageMultipliers::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SVector3*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("x") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->x);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("y") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->y);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("z") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->z);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SBodyPartDamageMultipliers*>(p_Object);
+	s_Object->~SBodyPartDamageMultipliers();
 }
+
+ZHMTypeInfo SVector3::TypeInfo = ZHMTypeInfo("SVector3", sizeof(SVector3), alignof(SVector3), SVector3::WriteSimpleJson, SVector3::FromSimpleJson, SVector3::Serialize, SVector3::Equals, SVector3::Destroy);
 
 void SVector3::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1860,31 +1638,13 @@ bool SVector3::operator==(const SVector3& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SBoneScalesList::TypeInfo = ZHMTypeInfo("SBoneScalesList", sizeof(SBoneScalesList), alignof(SBoneScalesList), SBoneScalesList::WriteJson, SBoneScalesList::WriteSimpleJson, SBoneScalesList::FromSimpleJson, SBoneScalesList::Serialize, SBoneScalesList::Equals);
-
-void SBoneScalesList::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SVector3::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SBoneScalesList*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_aBoneScales") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SVector3>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aBoneScales.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aBoneScales[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-		SVector3::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aBoneScales.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SVector3*>(p_Object);
+	s_Object->~SVector3();
 }
+
+ZHMTypeInfo SBoneScalesList::TypeInfo = ZHMTypeInfo("SBoneScalesList", sizeof(SBoneScalesList), alignof(SBoneScalesList), SBoneScalesList::WriteSimpleJson, SBoneScalesList::FromSimpleJson, SBoneScalesList::Serialize, SBoneScalesList::Equals, SBoneScalesList::Destroy);
 
 void SBoneScalesList::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -1953,26 +1713,13 @@ bool SBoneScalesList::operator==(const SBoneScalesList& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCPProgressionState::TypeInfo = ZHMTypeInfo("SCPProgressionState", sizeof(SCPProgressionState), alignof(SCPProgressionState), SCPProgressionState::WriteJson, SCPProgressionState::WriteSimpleJson, SCPProgressionState::FromSimpleJson, SCPProgressionState::Serialize, SCPProgressionState::Equals);
-
-void SCPProgressionState::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SBoneScalesList::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCPProgressionState*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iCPIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iCPIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iDifficulties") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iDifficulties);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SBoneScalesList*>(p_Object);
+	s_Object->~SBoneScalesList();
 }
+
+ZHMTypeInfo SCPProgressionState::TypeInfo = ZHMTypeInfo("SCPProgressionState", sizeof(SCPProgressionState), alignof(SCPProgressionState), SCPProgressionState::WriteSimpleJson, SCPProgressionState::FromSimpleJson, SCPProgressionState::Serialize, SCPProgressionState::Equals, SCPProgressionState::Destroy);
 
 void SCPProgressionState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2026,26 +1773,13 @@ bool SCPProgressionState::operator==(const SCPProgressionState& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SSubGoalProgressData::TypeInfo = ZHMTypeInfo("SSubGoalProgressData", sizeof(SSubGoalProgressData), alignof(SSubGoalProgressData), SSubGoalProgressData::WriteJson, SSubGoalProgressData::WriteSimpleJson, SSubGoalProgressData::FromSimpleJson, SSubGoalProgressData::Serialize, SSubGoalProgressData::Equals);
-
-void SSubGoalProgressData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCPProgressionState::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SSubGoalProgressData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nProgress") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nProgress);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nNeeded") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nNeeded);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCPProgressionState*>(p_Object);
+	s_Object->~SCPProgressionState();
 }
+
+ZHMTypeInfo SSubGoalProgressData::TypeInfo = ZHMTypeInfo("SSubGoalProgressData", sizeof(SSubGoalProgressData), alignof(SSubGoalProgressData), SSubGoalProgressData::WriteSimpleJson, SSubGoalProgressData::FromSimpleJson, SSubGoalProgressData::Serialize, SSubGoalProgressData::Equals, SSubGoalProgressData::Destroy);
 
 void SSubGoalProgressData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2099,103 +1833,13 @@ bool SSubGoalProgressData::operator==(const SSubGoalProgressData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SFullGoalData::TypeInfo = ZHMTypeInfo("SFullGoalData", sizeof(SFullGoalData), alignof(SFullGoalData), SFullGoalData::WriteJson, SFullGoalData::WriteSimpleJson, SFullGoalData::FromSimpleJson, SFullGoalData::Serialize, SFullGoalData::Equals);
-
-void SFullGoalData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SSubGoalProgressData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SFullGoalData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nID);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eMessageText") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("EUIText") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eMessageText)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->m_eMessageText))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eFriendMessageText") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("EUIText") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eFriendMessageText)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EUIText", static_cast<int>(s_Object->m_eFriendMessageText))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nTimestamp") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int64") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nTimestamp);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nCategory") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nCategory);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bHasBeenSent") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bHasBeenSent);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bIsSecurityTapeChallenge") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bIsSecurityTapeChallenge);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bTracked") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bTracked);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bCompleted") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bCompleted);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bHidden") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bHidden);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLocked") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLocked);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_SubgoalProgress") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SSubGoalProgressData>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_SubgoalProgress.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_SubgoalProgress[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SSubGoalProgressData") << ",\"$val\":";
-		SSubGoalProgressData::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_SubgoalProgress.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SSubGoalProgressData*>(p_Object);
+	s_Object->~SSubGoalProgressData();
 }
+
+ZHMTypeInfo SFullGoalData::TypeInfo = ZHMTypeInfo("SFullGoalData", sizeof(SFullGoalData), alignof(SFullGoalData), SFullGoalData::WriteSimpleJson, SFullGoalData::FromSimpleJson, SFullGoalData::Serialize, SFullGoalData::Equals, SFullGoalData::Destroy);
 
 void SFullGoalData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2348,43 +1992,13 @@ bool SFullGoalData::operator==(const SFullGoalData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SChallengeData::TypeInfo = ZHMTypeInfo("SChallengeData", sizeof(SChallengeData), alignof(SChallengeData), SChallengeData::WriteJson, SChallengeData::WriteSimpleJson, SChallengeData::FromSimpleJson, SChallengeData::Serialize, SChallengeData::Equals);
-
-void SChallengeData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SFullGoalData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SChallengeData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_FullGoalProgess") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SFullGoalData>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_FullGoalProgess.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_FullGoalProgess[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SFullGoalData") << ",\"$val\":";
-		SFullGoalData::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_FullGoalProgess.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iLastUnlockedChallenge") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iLastUnlockedChallenge);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iNumChallengesCompleted") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iNumChallengesCompleted);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SFullGoalData*>(p_Object);
+	s_Object->~SFullGoalData();
 }
+
+ZHMTypeInfo SChallengeData::TypeInfo = ZHMTypeInfo("SChallengeData", sizeof(SChallengeData), alignof(SChallengeData), SChallengeData::WriteSimpleJson, SChallengeData::FromSimpleJson, SChallengeData::Serialize, SChallengeData::Equals, SChallengeData::Destroy);
 
 void SChallengeData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2467,15 +2081,13 @@ bool SChallengeData::operator==(const SChallengeData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCheatData::TypeInfo = ZHMTypeInfo("SCheatData", sizeof(SCheatData), alignof(SCheatData), SCheatData::WriteJson, SCheatData::WriteSimpleJson, SCheatData::FromSimpleJson, SCheatData::Serialize, SCheatData::Equals);
-
-void SCheatData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SChallengeData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCheatData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SChallengeData*>(p_Object);
+	s_Object->~SChallengeData();
 }
+
+ZHMTypeInfo SCheatData::TypeInfo = ZHMTypeInfo("SCheatData", sizeof(SCheatData), alignof(SCheatData), SCheatData::WriteSimpleJson, SCheatData::FromSimpleJson, SCheatData::Serialize, SCheatData::Equals, SCheatData::Destroy);
 
 void SCheatData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2516,26 +2128,13 @@ bool SCheatData::operator==(const SCheatData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo STokenID::TypeInfo = ZHMTypeInfo("STokenID", sizeof(STokenID), alignof(STokenID), STokenID::WriteJson, STokenID::WriteSimpleJson, STokenID::FromSimpleJson, STokenID::Serialize, STokenID::Equals);
-
-void STokenID::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCheatData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STokenID*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iValue") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iValue);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bValid") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bValid);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCheatData*>(p_Object);
+	s_Object->~SCheatData();
 }
+
+ZHMTypeInfo STokenID::TypeInfo = ZHMTypeInfo("STokenID", sizeof(STokenID), alignof(STokenID), STokenID::WriteSimpleJson, STokenID::FromSimpleJson, STokenID::Serialize, STokenID::Equals, STokenID::Destroy);
 
 void STokenID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2589,26 +2188,13 @@ bool STokenID::operator==(const STokenID& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCloseCombatWeaponSaveData::TypeInfo = ZHMTypeInfo("SCloseCombatWeaponSaveData", sizeof(SCloseCombatWeaponSaveData), alignof(SCloseCombatWeaponSaveData), SCloseCombatWeaponSaveData::WriteJson, SCloseCombatWeaponSaveData::WriteSimpleJson, SCloseCombatWeaponSaveData::FromSimpleJson, SCloseCombatWeaponSaveData::Serialize, SCloseCombatWeaponSaveData::Equals);
-
-void SCloseCombatWeaponSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STokenID::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCloseCombatWeaponSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_ID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_ID, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nImpactCount") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nImpactCount);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STokenID*>(p_Object);
+	s_Object->~STokenID();
 }
+
+ZHMTypeInfo SCloseCombatWeaponSaveData::TypeInfo = ZHMTypeInfo("SCloseCombatWeaponSaveData", sizeof(SCloseCombatWeaponSaveData), alignof(SCloseCombatWeaponSaveData), SCloseCombatWeaponSaveData::WriteSimpleJson, SCloseCombatWeaponSaveData::FromSimpleJson, SCloseCombatWeaponSaveData::Serialize, SCloseCombatWeaponSaveData::Equals, SCloseCombatWeaponSaveData::Destroy);
 
 void SCloseCombatWeaponSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2667,20 +2253,13 @@ bool SCloseCombatWeaponSaveData::operator==(const SCloseCombatWeaponSaveData& p_
 	return true;
 }
 
-ZHMTypeInfo SItemSaveData::TypeInfo = ZHMTypeInfo("SItemSaveData", sizeof(SItemSaveData), alignof(SItemSaveData), SItemSaveData::WriteJson, SItemSaveData::WriteSimpleJson, SItemSaveData::FromSimpleJson, SItemSaveData::Serialize, SItemSaveData::Equals);
-
-void SItemSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCloseCombatWeaponSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_ID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_ID, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCloseCombatWeaponSaveData*>(p_Object);
+	s_Object->~SCloseCombatWeaponSaveData();
 }
+
+ZHMTypeInfo SItemSaveData::TypeInfo = ZHMTypeInfo("SItemSaveData", sizeof(SItemSaveData), alignof(SItemSaveData), SItemSaveData::WriteSimpleJson, SItemSaveData::FromSimpleJson, SItemSaveData::Serialize, SItemSaveData::Equals, SItemSaveData::Destroy);
 
 void SItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2732,49 +2311,13 @@ bool SItemSaveData::operator==(const SItemSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SRangedWeaponSaveData::TypeInfo = ZHMTypeInfo("SRangedWeaponSaveData", sizeof(SRangedWeaponSaveData), alignof(SRangedWeaponSaveData), SRangedWeaponSaveData::WriteJson, SRangedWeaponSaveData::WriteSimpleJson, SRangedWeaponSaveData::FromSimpleJson, SRangedWeaponSaveData::Serialize, SRangedWeaponSaveData::Equals);
-
-void SRangedWeaponSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SItemSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SRangedWeaponSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_ID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_ID, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nBulletsInMagazine") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nBulletsInMagazine);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bAltFire") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bAltFire);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aUpgradesState") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aUpgradesState.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aUpgradesState[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aUpgradesState.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SItemSaveData*>(p_Object);
+	s_Object->~SItemSaveData();
 }
+
+ZHMTypeInfo SRangedWeaponSaveData::TypeInfo = ZHMTypeInfo("SRangedWeaponSaveData", sizeof(SRangedWeaponSaveData), alignof(SRangedWeaponSaveData), SRangedWeaponSaveData::WriteSimpleJson, SRangedWeaponSaveData::FromSimpleJson, SRangedWeaponSaveData::Serialize, SRangedWeaponSaveData::Equals, SRangedWeaponSaveData::Destroy);
 
 void SRangedWeaponSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -2867,176 +2410,13 @@ bool SRangedWeaponSaveData::operator==(const SRangedWeaponSaveData& p_Other) con
 	return true;
 }
 
-ZHMTypeInfo SCheckpointSaveData::TypeInfo = ZHMTypeInfo("SCheckpointSaveData", sizeof(SCheckpointSaveData), alignof(SCheckpointSaveData), SCheckpointSaveData::WriteJson, SCheckpointSaveData::WriteSimpleJson, SCheckpointSaveData::FromSimpleJson, SCheckpointSaveData::Serialize, SCheckpointSaveData::Equals);
-
-void SCheckpointSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SRangedWeaponSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCheckpointSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iCheckpointCompoundID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iCheckpointCompoundID);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLocked") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLocked);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bCompleted") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bCompleted);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_OutfitTokenID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_OutfitTokenID, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nOutfitVariation") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nOutfitVariation);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nAmmoInPocket") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<uint32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_nAmmoInPocket.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_nAmmoInPocket[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_nAmmoInPocket.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fFocus") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fFocus);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fHealth") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fHealth);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_BoolValues") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_BoolValues.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_BoolValues[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_BoolValues.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_FloatValues") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<float32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_FloatValues.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_FloatValues[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_FloatValues.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_Items") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SItemSaveData>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_Items.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_Items[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SItemSaveData") << ",\"$val\":";
-		SItemSaveData::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_Items.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_RangedWeapons") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SRangedWeaponSaveData>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_RangedWeapons.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_RangedWeapons[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SRangedWeaponSaveData") << ",\"$val\":";
-		SRangedWeaponSaveData::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_RangedWeapons.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_CloseCombatdWeapons") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCloseCombatWeaponSaveData>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_CloseCombatdWeapons.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_CloseCombatdWeapons[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCloseCombatWeaponSaveData") << ",\"$val\":";
-		SCloseCombatWeaponSaveData::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_CloseCombatdWeapons.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iInventorySlot") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iInventorySlot);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bInventoryDualWield") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bInventoryDualWield);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bInventoryUnholstered") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bInventoryUnholstered);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SRangedWeaponSaveData*>(p_Object);
+	s_Object->~SRangedWeaponSaveData();
 }
+
+ZHMTypeInfo SCheckpointSaveData::TypeInfo = ZHMTypeInfo("SCheckpointSaveData", sizeof(SCheckpointSaveData), alignof(SCheckpointSaveData), SCheckpointSaveData::WriteSimpleJson, SCheckpointSaveData::FromSimpleJson, SCheckpointSaveData::Serialize, SCheckpointSaveData::Equals, SCheckpointSaveData::Destroy);
 
 void SCheckpointSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3317,38 +2697,13 @@ bool SCheckpointSaveData::operator==(const SCheckpointSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo float4::TypeInfo = ZHMTypeInfo("float4", sizeof(float4), alignof(float4), float4::WriteJson, float4::WriteSimpleJson, float4::FromSimpleJson, float4::Serialize, float4::Equals);
-
-void float4::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCheckpointSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<float4*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("x") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->x);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("y") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->y);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("z") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->z);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("w") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->w);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCheckpointSaveData*>(p_Object);
+	s_Object->~SCheckpointSaveData();
 }
+
+ZHMTypeInfo float4::TypeInfo = ZHMTypeInfo("float4", sizeof(float4), alignof(float4), float4::WriteSimpleJson, float4::FromSimpleJson, float4::Serialize, float4::Equals, float4::Destroy);
 
 void float4::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3416,38 +2771,13 @@ bool float4::operator==(const float4& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCollidingParticle::TypeInfo = ZHMTypeInfo("SCollidingParticle", sizeof(SCollidingParticle), alignof(SCollidingParticle), SCollidingParticle::WriteJson, SCollidingParticle::WriteSimpleJson, SCollidingParticle::FromSimpleJson, SCollidingParticle::Serialize, SCollidingParticle::Equals);
-
-void SCollidingParticle::WriteJson(void* p_Object, std::ostream& p_Stream)
+void float4::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCollidingParticle*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_vPosition") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->m_vPosition, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_vVelocity") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->m_vVelocity, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nColor") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nColor);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fSize") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fSize);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<float4*>(p_Object);
+	s_Object->~float4();
 }
+
+ZHMTypeInfo SCollidingParticle::TypeInfo = ZHMTypeInfo("SCollidingParticle", sizeof(SCollidingParticle), alignof(SCollidingParticle), SCollidingParticle::WriteSimpleJson, SCollidingParticle::FromSimpleJson, SCollidingParticle::Serialize, SCollidingParticle::Equals, SCollidingParticle::Destroy);
 
 void SCollidingParticle::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3525,32 +2855,13 @@ bool SCollidingParticle::operator==(const SCollidingParticle& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SColorRGB::TypeInfo = ZHMTypeInfo("SColorRGB", sizeof(SColorRGB), alignof(SColorRGB), SColorRGB::WriteJson, SColorRGB::WriteSimpleJson, SColorRGB::FromSimpleJson, SColorRGB::Serialize, SColorRGB::Equals);
-
-void SColorRGB::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCollidingParticle::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SColorRGB*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("r") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->r);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("g") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->g);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("b") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->b);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCollidingParticle*>(p_Object);
+	s_Object->~SCollidingParticle();
 }
+
+ZHMTypeInfo SColorRGB::TypeInfo = ZHMTypeInfo("SColorRGB", sizeof(SColorRGB), alignof(SColorRGB), SColorRGB::WriteSimpleJson, SColorRGB::FromSimpleJson, SColorRGB::Serialize, SColorRGB::Equals, SColorRGB::Destroy);
 
 void SColorRGB::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3611,38 +2922,13 @@ bool SColorRGB::operator==(const SColorRGB& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SColorRGBA::TypeInfo = ZHMTypeInfo("SColorRGBA", sizeof(SColorRGBA), alignof(SColorRGBA), SColorRGBA::WriteJson, SColorRGBA::WriteSimpleJson, SColorRGBA::FromSimpleJson, SColorRGBA::Serialize, SColorRGBA::Equals);
-
-void SColorRGBA::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SColorRGB::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SColorRGBA*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("r") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->r);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("g") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->g);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("b") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->b);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("a") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->a);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SColorRGB*>(p_Object);
+	s_Object->~SColorRGB();
 }
+
+ZHMTypeInfo SColorRGBA::TypeInfo = ZHMTypeInfo("SColorRGBA", sizeof(SColorRGBA), alignof(SColorRGBA), SColorRGBA::WriteSimpleJson, SColorRGBA::FromSimpleJson, SColorRGBA::Serialize, SColorRGBA::Equals, SColorRGBA::Destroy);
 
 void SColorRGBA::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3710,15 +2996,13 @@ bool SColorRGBA::operator==(const SColorRGBA& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZBehaviorTreeVariable::TypeInfo = ZHMTypeInfo("ZBehaviorTreeVariable", sizeof(ZBehaviorTreeVariable), alignof(ZBehaviorTreeVariable), ZBehaviorTreeVariable::WriteJson, ZBehaviorTreeVariable::WriteSimpleJson, ZBehaviorTreeVariable::FromSimpleJson, ZBehaviorTreeVariable::Serialize, ZBehaviorTreeVariable::Equals);
-
-void ZBehaviorTreeVariable::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SColorRGBA::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZBehaviorTreeVariable*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SColorRGBA*>(p_Object);
+	s_Object->~SColorRGBA();
 }
+
+ZHMTypeInfo ZBehaviorTreeVariable::TypeInfo = ZHMTypeInfo("ZBehaviorTreeVariable", sizeof(ZBehaviorTreeVariable), alignof(ZBehaviorTreeVariable), ZBehaviorTreeVariable::WriteSimpleJson, ZBehaviorTreeVariable::FromSimpleJson, ZBehaviorTreeVariable::Serialize, ZBehaviorTreeVariable::Equals, ZBehaviorTreeVariable::Destroy);
 
 void ZBehaviorTreeVariable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3759,32 +3043,13 @@ bool ZBehaviorTreeVariable::operator==(const ZBehaviorTreeVariable& p_Other) con
 	return true;
 }
 
-ZHMTypeInfo SConditionBase::TypeInfo = ZHMTypeInfo("SConditionBase", sizeof(SConditionBase), alignof(SConditionBase), SConditionBase::WriteJson, SConditionBase::WriteSimpleJson, SConditionBase::FromSimpleJson, SConditionBase::Serialize, SConditionBase::Equals);
-
-void SConditionBase::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZBehaviorTreeVariable::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("eConditionType") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ECompiledConditionType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->eConditionType)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECompiledConditionType", static_cast<int>(s_Object->eConditionType))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nConditionModifiers") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nConditionModifiers);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("assignTo") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZBehaviorTreeVariable") << ",\"$val\":";
-	ZBehaviorTreeVariable::WriteJson(&s_Object->assignTo, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZBehaviorTreeVariable*>(p_Object);
+	s_Object->~ZBehaviorTreeVariable();
 }
+
+ZHMTypeInfo SConditionBase::TypeInfo = ZHMTypeInfo("SConditionBase", sizeof(SConditionBase), alignof(SConditionBase), SConditionBase::WriteSimpleJson, SConditionBase::FromSimpleJson, SConditionBase::Serialize, SConditionBase::Equals, SConditionBase::Destroy);
 
 void SConditionBase::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3850,20 +3115,13 @@ bool SConditionBase::operator==(const SConditionBase& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SContentKitBaseState::TypeInfo = ZHMTypeInfo("SContentKitBaseState", sizeof(SContentKitBaseState), alignof(SContentKitBaseState), SContentKitBaseState::WriteJson, SContentKitBaseState::WriteSimpleJson, SContentKitBaseState::FromSimpleJson, SContentKitBaseState::Serialize, SContentKitBaseState::Equals);
-
-void SContentKitBaseState::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SConditionBase::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SContentKitBaseState*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iKitState") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iKitState);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
+	s_Object->~SConditionBase();
 }
+
+ZHMTypeInfo SContentKitBaseState::TypeInfo = ZHMTypeInfo("SContentKitBaseState", sizeof(SContentKitBaseState), alignof(SContentKitBaseState), SContentKitBaseState::WriteSimpleJson, SContentKitBaseState::FromSimpleJson, SContentKitBaseState::Serialize, SContentKitBaseState::Equals, SContentKitBaseState::Destroy);
 
 void SContentKitBaseState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3910,32 +3168,13 @@ bool SContentKitBaseState::operator==(const SContentKitBaseState& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SContractUnlockStatus::TypeInfo = ZHMTypeInfo("SContractUnlockStatus", sizeof(SContractUnlockStatus), alignof(SContractUnlockStatus), SContractUnlockStatus::WriteJson, SContractUnlockStatus::WriteSimpleJson, SContractUnlockStatus::FromSimpleJson, SContractUnlockStatus::Serialize, SContractUnlockStatus::Equals);
-
-void SContractUnlockStatus::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SContentKitBaseState::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SContractUnlockStatus*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("bUnlocked") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->bUnlocked);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("eLevelIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->eLevelIndex))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("iContractIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->iContractIndex);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SContentKitBaseState*>(p_Object);
+	s_Object->~SContentKitBaseState();
 }
+
+ZHMTypeInfo SContractUnlockStatus::TypeInfo = ZHMTypeInfo("SContractUnlockStatus", sizeof(SContractUnlockStatus), alignof(SContractUnlockStatus), SContractUnlockStatus::WriteSimpleJson, SContractUnlockStatus::FromSimpleJson, SContractUnlockStatus::Serialize, SContractUnlockStatus::Equals, SContractUnlockStatus::Destroy);
 
 void SContractUnlockStatus::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -3996,37 +3235,13 @@ bool SContractUnlockStatus::operator==(const SContractUnlockStatus& p_Other) con
 	return true;
 }
 
-ZHMTypeInfo SContractSaveData::TypeInfo = ZHMTypeInfo("SContractSaveData", sizeof(SContractSaveData), alignof(SContractSaveData), SContractSaveData::WriteJson, SContractSaveData::WriteSimpleJson, SContractSaveData::FromSimpleJson, SContractSaveData::Serialize, SContractSaveData::Equals);
-
-void SContractSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SContractUnlockStatus::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SContractSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("bTutorialPlayed") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->bTutorialPlayed);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("aLocalContractUnlockStatusData") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SContractUnlockStatus>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->aLocalContractUnlockStatusData.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->aLocalContractUnlockStatusData[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SContractUnlockStatus") << ",\"$val\":";
-		SContractUnlockStatus::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->aLocalContractUnlockStatusData.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SContractUnlockStatus*>(p_Object);
+	s_Object->~SContractUnlockStatus();
 }
+
+ZHMTypeInfo SContractSaveData::TypeInfo = ZHMTypeInfo("SContractSaveData", sizeof(SContractSaveData), alignof(SContractSaveData), SContractSaveData::WriteSimpleJson, SContractSaveData::FromSimpleJson, SContractSaveData::Serialize, SContractSaveData::Equals, SContractSaveData::Destroy);
 
 void SContractSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4102,26 +3317,13 @@ bool SContractSaveData::operator==(const SContractSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SEntityTemplateProperty::TypeInfo = ZHMTypeInfo("SEntityTemplateProperty", sizeof(SEntityTemplateProperty), alignof(SEntityTemplateProperty), SEntityTemplateProperty::WriteJson, SEntityTemplateProperty::WriteSimpleJson, SEntityTemplateProperty::FromSimpleJson, SEntityTemplateProperty::Serialize, SEntityTemplateProperty::Equals);
-
-void SEntityTemplateProperty::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SContractSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SEntityTemplateProperty*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("nPropertyID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nPropertyID);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("value") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZVariant") << ",\"$val\":";
-	ZVariant::WriteJson(&s_Object->value, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SContractSaveData*>(p_Object);
+	s_Object->~SContractSaveData();
 }
+
+ZHMTypeInfo SEntityTemplateProperty::TypeInfo = ZHMTypeInfo("SEntityTemplateProperty", sizeof(SEntityTemplateProperty), alignof(SEntityTemplateProperty), SEntityTemplateProperty::WriteSimpleJson, SEntityTemplateProperty::FromSimpleJson, SEntityTemplateProperty::Serialize, SEntityTemplateProperty::Equals, SEntityTemplateProperty::Destroy);
 
 void SEntityTemplateProperty::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4190,37 +3392,13 @@ bool SEntityTemplateProperty::operator==(const SEntityTemplateProperty& p_Other)
 	return true;
 }
 
-ZHMTypeInfo SCppEntity::TypeInfo = ZHMTypeInfo("SCppEntity", sizeof(SCppEntity), alignof(SCppEntity), SCppEntity::WriteJson, SCppEntity::WriteSimpleJson, SCppEntity::FromSimpleJson, SCppEntity::Serialize, SCppEntity::Equals);
-
-void SCppEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SEntityTemplateProperty::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCppEntity*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("blueprintIndexInResourceHeader") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->blueprintIndexInResourceHeader);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("propertyValues") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->propertyValues[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
-		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->propertyValues.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SEntityTemplateProperty*>(p_Object);
+	s_Object->~SEntityTemplateProperty();
 }
+
+ZHMTypeInfo SCppEntity::TypeInfo = ZHMTypeInfo("SCppEntity", sizeof(SCppEntity), alignof(SCppEntity), SCppEntity::WriteSimpleJson, SCppEntity::FromSimpleJson, SCppEntity::Serialize, SCppEntity::Equals, SCppEntity::Destroy);
 
 void SCppEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4296,32 +3474,13 @@ bool SCppEntity::operator==(const SCppEntity& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCppEntitySubsetInfo::TypeInfo = ZHMTypeInfo("SCppEntitySubsetInfo", sizeof(SCppEntitySubsetInfo), alignof(SCppEntitySubsetInfo), SCppEntitySubsetInfo::WriteJson, SCppEntitySubsetInfo::WriteSimpleJson, SCppEntitySubsetInfo::FromSimpleJson, SCppEntitySubsetInfo::Serialize, SCppEntitySubsetInfo::Equals);
-
-void SCppEntitySubsetInfo::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCppEntity::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCppEntitySubsetInfo*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("name") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->name);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("type") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->type, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("flags") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->flags);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCppEntity*>(p_Object);
+	s_Object->~SCppEntity();
 }
+
+ZHMTypeInfo SCppEntitySubsetInfo::TypeInfo = ZHMTypeInfo("SCppEntitySubsetInfo", sizeof(SCppEntitySubsetInfo), alignof(SCppEntitySubsetInfo), SCppEntitySubsetInfo::WriteSimpleJson, SCppEntitySubsetInfo::FromSimpleJson, SCppEntitySubsetInfo::Serialize, SCppEntitySubsetInfo::Equals, SCppEntitySubsetInfo::Destroy);
 
 void SCppEntitySubsetInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4388,37 +3547,13 @@ bool SCppEntitySubsetInfo::operator==(const SCppEntitySubsetInfo& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCppEntityBlueprint::TypeInfo = ZHMTypeInfo("SCppEntityBlueprint", sizeof(SCppEntityBlueprint), alignof(SCppEntityBlueprint), SCppEntityBlueprint::WriteJson, SCppEntityBlueprint::WriteSimpleJson, SCppEntityBlueprint::FromSimpleJson, SCppEntityBlueprint::Serialize, SCppEntityBlueprint::Equals);
-
-void SCppEntityBlueprint::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCppEntitySubsetInfo::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCppEntityBlueprint*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("typeName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->typeName, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("subsets") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCppEntitySubsetInfo>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->subsets.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->subsets[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCppEntitySubsetInfo") << ",\"$val\":";
-		SCppEntitySubsetInfo::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->subsets.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCppEntitySubsetInfo*>(p_Object);
+	s_Object->~SCppEntitySubsetInfo();
 }
+
+ZHMTypeInfo SCppEntityBlueprint::TypeInfo = ZHMTypeInfo("SCppEntityBlueprint", sizeof(SCppEntityBlueprint), alignof(SCppEntityBlueprint), SCppEntityBlueprint::WriteSimpleJson, SCppEntityBlueprint::FromSimpleJson, SCppEntityBlueprint::Serialize, SCppEntityBlueprint::Equals, SCppEntityBlueprint::Destroy);
 
 void SCppEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4499,60 +3634,13 @@ bool SCppEntityBlueprint::operator==(const SCppEntityBlueprint& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCppEntityTemplate::TypeInfo = ZHMTypeInfo("SCppEntityTemplate", sizeof(SCppEntityTemplate), alignof(SCppEntityTemplate), SCppEntityTemplate::WriteJson, SCppEntityTemplate::WriteSimpleJson, SCppEntityTemplate::FromSimpleJson, SCppEntityTemplate::Serialize, SCppEntityTemplate::Equals);
-
-void SCppEntityTemplate::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCppEntityBlueprint::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCppEntityTemplate*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("moduleName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->moduleName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("typeName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->typeName, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("propertyValues") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->propertyValues[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
-		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->propertyValues.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("subsets") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCppEntitySubsetInfo>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->subsets.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->subsets[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCppEntitySubsetInfo") << ",\"$val\":";
-		SCppEntitySubsetInfo::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->subsets.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCppEntityBlueprint*>(p_Object);
+	s_Object->~SCppEntityBlueprint();
 }
+
+ZHMTypeInfo SCppEntityTemplate::TypeInfo = ZHMTypeInfo("SCppEntityTemplate", sizeof(SCppEntityTemplate), alignof(SCppEntityTemplate), SCppEntityTemplate::WriteSimpleJson, SCppEntityTemplate::FromSimpleJson, SCppEntityTemplate::Serialize, SCppEntityTemplate::Equals, SCppEntityTemplate::Destroy);
 
 void SCppEntityTemplate::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4670,31 +3758,13 @@ bool SCppEntityTemplate::operator==(const SCppEntityTemplate& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCrowdCells::TypeInfo = ZHMTypeInfo("SCrowdCells", sizeof(SCrowdCells), alignof(SCrowdCells), SCrowdCells::WriteJson, SCrowdCells::WriteSimpleJson, SCrowdCells::FromSimpleJson, SCrowdCells::Serialize, SCrowdCells::Equals);
-
-void SCrowdCells::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCppEntityTemplate::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCrowdCells*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_cells") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<uint8>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_cells.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_cells[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_cells.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCppEntityTemplate*>(p_Object);
+	s_Object->~SCppEntityTemplate();
 }
+
+ZHMTypeInfo SCrowdCells::TypeInfo = ZHMTypeInfo("SCrowdCells", sizeof(SCrowdCells), alignof(SCrowdCells), SCrowdCells::WriteSimpleJson, SCrowdCells::FromSimpleJson, SCrowdCells::Serialize, SCrowdCells::Equals, SCrowdCells::Destroy);
 
 void SCrowdCells::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4759,48 +3829,13 @@ bool SCrowdCells::operator==(const SCrowdCells& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCrowdFlowChannel::TypeInfo = ZHMTypeInfo("SCrowdFlowChannel", sizeof(SCrowdFlowChannel), alignof(SCrowdFlowChannel), SCrowdFlowChannel::WriteJson, SCrowdFlowChannel::WriteSimpleJson, SCrowdFlowChannel::FromSimpleJson, SCrowdFlowChannel::Serialize, SCrowdFlowChannel::Equals);
-
-void SCrowdFlowChannel::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCrowdCells::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCrowdFlowChannel*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_aFlowVectorIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint8>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aFlowVectorIndex.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aFlowVectorIndex[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aFlowVectorIndex.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aFlowCost") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aFlowCost.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aFlowCost[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint16") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aFlowCost.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCrowdCells*>(p_Object);
+	s_Object->~SCrowdCells();
 }
+
+ZHMTypeInfo SCrowdFlowChannel::TypeInfo = ZHMTypeInfo("SCrowdFlowChannel", sizeof(SCrowdFlowChannel), alignof(SCrowdFlowChannel), SCrowdFlowChannel::WriteSimpleJson, SCrowdFlowChannel::FromSimpleJson, SCrowdFlowChannel::Serialize, SCrowdFlowChannel::Equals, SCrowdFlowChannel::Destroy);
 
 void SCrowdFlowChannel::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -4894,38 +3929,13 @@ bool SCrowdFlowChannel::operator==(const SCrowdFlowChannel& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SMatrix::TypeInfo = ZHMTypeInfo("SMatrix", sizeof(SMatrix), alignof(SMatrix), SMatrix::WriteJson, SMatrix::WriteSimpleJson, SMatrix::FromSimpleJson, SMatrix::Serialize, SMatrix::Equals);
-
-void SMatrix::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCrowdFlowChannel::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SMatrix*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("XAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->XAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("YAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->YAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("ZAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->ZAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("Trans") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->Trans, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCrowdFlowChannel*>(p_Object);
+	s_Object->~SCrowdFlowChannel();
 }
+
+ZHMTypeInfo SMatrix::TypeInfo = ZHMTypeInfo("SMatrix", sizeof(SMatrix), alignof(SMatrix), SMatrix::WriteSimpleJson, SMatrix::FromSimpleJson, SMatrix::Serialize, SMatrix::Equals, SMatrix::Destroy);
 
 void SMatrix::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5013,38 +4023,13 @@ bool SMatrix::operator==(const SMatrix& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SVector4::TypeInfo = ZHMTypeInfo("SVector4", sizeof(SVector4), alignof(SVector4), SVector4::WriteJson, SVector4::WriteSimpleJson, SVector4::FromSimpleJson, SVector4::Serialize, SVector4::Equals);
-
-void SVector4::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SMatrix::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SVector4*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("x") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->x);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("y") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->y);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("z") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->z);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("w") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->w);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SMatrix*>(p_Object);
+	s_Object->~SMatrix();
 }
+
+ZHMTypeInfo SVector4::TypeInfo = ZHMTypeInfo("SVector4", sizeof(SVector4), alignof(SVector4), SVector4::WriteSimpleJson, SVector4::FromSimpleJson, SVector4::Serialize, SVector4::Equals, SVector4::Destroy);
 
 void SVector4::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5112,26 +4097,13 @@ bool SVector4::operator==(const SVector4& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZCrowdGridPoint::TypeInfo = ZHMTypeInfo("ZCrowdGridPoint", sizeof(ZCrowdGridPoint), alignof(ZCrowdGridPoint), ZCrowdGridPoint::WriteJson, ZCrowdGridPoint::WriteSimpleJson, ZCrowdGridPoint::FromSimpleJson, ZCrowdGridPoint::Serialize, ZCrowdGridPoint::Equals);
-
-void ZCrowdGridPoint::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SVector4::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZCrowdGridPoint*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nHeightOffset") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nHeightOffset);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nOnNavGrid") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nOnNavGrid);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SVector4*>(p_Object);
+	s_Object->~SVector4();
 }
+
+ZHMTypeInfo ZCrowdGridPoint::TypeInfo = ZHMTypeInfo("ZCrowdGridPoint", sizeof(ZCrowdGridPoint), alignof(ZCrowdGridPoint), ZCrowdGridPoint::WriteSimpleJson, ZCrowdGridPoint::FromSimpleJson, ZCrowdGridPoint::Serialize, ZCrowdGridPoint::Equals, ZCrowdGridPoint::Destroy);
 
 void ZCrowdGridPoint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5185,137 +4157,13 @@ bool ZCrowdGridPoint::operator==(const ZCrowdGridPoint& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SCrowdMapData::TypeInfo = ZHMTypeInfo("SCrowdMapData", sizeof(SCrowdMapData), alignof(SCrowdMapData), SCrowdMapData::WriteJson, SCrowdMapData::WriteSimpleJson, SCrowdMapData::FromSimpleJson, SCrowdMapData::Serialize, SCrowdMapData::Equals);
-
-void SCrowdMapData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZCrowdGridPoint::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SCrowdMapData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nVersion") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nVersion);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_vCellConsts") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector4") << ",\"$val\":";
-	SVector4::WriteJson(&s_Object->m_vCellConsts, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nGridSizeX") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nGridSizeX);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nGridSizeY") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nGridSizeY);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nCellSizeX") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nCellSizeX);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nCellSizeY") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nCellSizeY);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_GridMap") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<ZCrowdGridPoint>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_GridMap.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_GridMap[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("ZCrowdGridPoint") << ",\"$val\":";
-		ZCrowdGridPoint::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_GridMap.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fGridMapHeightOffsetsScale") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fGridMapHeightOffsetsScale);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fGridMapHeightOffsetsBias") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fGridMapHeightOffsetsBias);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_CellFlags") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCrowdCells>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_CellFlags.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_CellFlags[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCrowdCells") << ",\"$val\":";
-		SCrowdCells::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_CellFlags.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aFlowChannels") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCrowdFlowChannel>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aFlowChannels.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aFlowChannels[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCrowdFlowChannel") << ",\"$val\":";
-		SCrowdFlowChannel::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aFlowChannels.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nGridCellSize") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nGridCellSize);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_mObjectToWorld") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SMatrix") << ",\"$val\":";
-	SMatrix::WriteJson(&s_Object->m_mObjectToWorld, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_vGlobalSize") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->m_vGlobalSize, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nGridGeneratorOffset") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nGridGeneratorOffset);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZCrowdGridPoint*>(p_Object);
+	s_Object->~ZCrowdGridPoint();
 }
+
+ZHMTypeInfo SCrowdMapData::TypeInfo = ZHMTypeInfo("SCrowdMapData", sizeof(SCrowdMapData), alignof(SCrowdMapData), SCrowdMapData::WriteSimpleJson, SCrowdMapData::FromSimpleJson, SCrowdMapData::Serialize, SCrowdMapData::Equals, SCrowdMapData::Destroy);
 
 void SCrowdMapData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5541,26 +4389,13 @@ bool SCrowdMapData::operator==(const SCrowdMapData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SDLCItemSaveData::TypeInfo = ZHMTypeInfo("SDLCItemSaveData", sizeof(SDLCItemSaveData), alignof(SDLCItemSaveData), SDLCItemSaveData::WriteJson, SDLCItemSaveData::WriteSimpleJson, SDLCItemSaveData::FromSimpleJson, SDLCItemSaveData::Serialize, SDLCItemSaveData::Equals);
-
-void SDLCItemSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SCrowdMapData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SDLCItemSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_eState") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SDLCItemSaveData.EDiscoverState") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eState)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SDLCItemSaveData.EDiscoverState", static_cast<int>(s_Object->m_eState))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_TokenID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_TokenID, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SCrowdMapData*>(p_Object);
+	s_Object->~SCrowdMapData();
 }
+
+ZHMTypeInfo SDLCItemSaveData::TypeInfo = ZHMTypeInfo("SDLCItemSaveData", sizeof(SDLCItemSaveData), alignof(SDLCItemSaveData), SDLCItemSaveData::WriteSimpleJson, SDLCItemSaveData::FromSimpleJson, SDLCItemSaveData::Serialize, SDLCItemSaveData::Equals, SDLCItemSaveData::Destroy);
 
 void SDLCItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5619,15 +4454,13 @@ bool SDLCItemSaveData::operator==(const SDLCItemSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SDoorSoundDefs::TypeInfo = ZHMTypeInfo("SDoorSoundDefs", sizeof(SDoorSoundDefs), alignof(SDoorSoundDefs), SDoorSoundDefs::WriteJson, SDoorSoundDefs::WriteSimpleJson, SDoorSoundDefs::FromSimpleJson, SDoorSoundDefs::Serialize, SDoorSoundDefs::Equals);
-
-void SDoorSoundDefs::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SDLCItemSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SDoorSoundDefs*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SDLCItemSaveData*>(p_Object);
+	s_Object->~SDLCItemSaveData();
 }
+
+ZHMTypeInfo SDoorSoundDefs::TypeInfo = ZHMTypeInfo("SDoorSoundDefs", sizeof(SDoorSoundDefs), alignof(SDoorSoundDefs), SDoorSoundDefs::WriteSimpleJson, SDoorSoundDefs::FromSimpleJson, SDoorSoundDefs::Serialize, SDoorSoundDefs::Equals, SDoorSoundDefs::Destroy);
 
 void SDoorSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5668,44 +4501,13 @@ bool SDoorSoundDefs::operator==(const SDoorSoundDefs& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SEntityPinDescriptor::TypeInfo = ZHMTypeInfo("SEntityPinDescriptor", sizeof(SEntityPinDescriptor), alignof(SEntityPinDescriptor), SEntityPinDescriptor::WriteJson, SEntityPinDescriptor::WriteSimpleJson, SEntityPinDescriptor::FromSimpleJson, SEntityPinDescriptor::Serialize, SEntityPinDescriptor::Equals);
-
-void SEntityPinDescriptor::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SDoorSoundDefs::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SEntityPinDescriptor*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("sName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sDisplayName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sDisplayName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("type") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZResourceID") << ",\"$val\":";
-	ZResourceID::WriteJson(&s_Object->type, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sHelpText") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sHelpText);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("bIsPlaceholder") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->bIsPlaceholder);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SDoorSoundDefs*>(p_Object);
+	s_Object->~SDoorSoundDefs();
 }
+
+ZHMTypeInfo SEntityPinDescriptor::TypeInfo = ZHMTypeInfo("SEntityPinDescriptor", sizeof(SEntityPinDescriptor), alignof(SEntityPinDescriptor), SEntityPinDescriptor::WriteSimpleJson, SEntityPinDescriptor::FromSimpleJson, SEntityPinDescriptor::Serialize, SEntityPinDescriptor::Equals, SEntityPinDescriptor::Destroy);
 
 void SEntityPinDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5788,37 +4590,13 @@ bool SEntityPinDescriptor::operator==(const SEntityPinDescriptor& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SEntityTemplateEntitySubset::TypeInfo = ZHMTypeInfo("SEntityTemplateEntitySubset", sizeof(SEntityTemplateEntitySubset), alignof(SEntityTemplateEntitySubset), SEntityTemplateEntitySubset::WriteJson, SEntityTemplateEntitySubset::WriteSimpleJson, SEntityTemplateEntitySubset::FromSimpleJson, SEntityTemplateEntitySubset::Serialize, SEntityTemplateEntitySubset::Equals);
-
-void SEntityTemplateEntitySubset::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SEntityPinDescriptor::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SEntityTemplateEntitySubset*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("subsetType") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TypeID") << ",\"$val\":";
-	TypeID::WriteJson(&s_Object->subsetType, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entities") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->entities.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->entities[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->entities.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SEntityPinDescriptor*>(p_Object);
+	s_Object->~SEntityPinDescriptor();
 }
+
+ZHMTypeInfo SEntityTemplateEntitySubset::TypeInfo = ZHMTypeInfo("SEntityTemplateEntitySubset", sizeof(SEntityTemplateEntitySubset), alignof(SEntityTemplateEntitySubset), SEntityTemplateEntitySubset::WriteSimpleJson, SEntityTemplateEntitySubset::FromSimpleJson, SEntityTemplateEntitySubset::Serialize, SEntityTemplateEntitySubset::Equals, SEntityTemplateEntitySubset::Destroy);
 
 void SEntityTemplateEntitySubset::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5897,38 +4675,13 @@ bool SEntityTemplateEntitySubset::operator==(const SEntityTemplateEntitySubset& 
 	return true;
 }
 
-ZHMTypeInfo SEntityTemplatePinConnection::TypeInfo = ZHMTypeInfo("SEntityTemplatePinConnection", sizeof(SEntityTemplatePinConnection), alignof(SEntityTemplatePinConnection), SEntityTemplatePinConnection::WriteJson, SEntityTemplatePinConnection::WriteSimpleJson, SEntityTemplatePinConnection::FromSimpleJson, SEntityTemplatePinConnection::Serialize, SEntityTemplatePinConnection::Equals);
-
-void SEntityTemplatePinConnection::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SEntityTemplateEntitySubset::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SEntityTemplatePinConnection*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("fromID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->fromID);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("toID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->toID);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("fromPinName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->fromPinName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("toPinName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->toPinName);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SEntityTemplateEntitySubset*>(p_Object);
+	s_Object->~SEntityTemplateEntitySubset();
 }
+
+ZHMTypeInfo SEntityTemplatePinConnection::TypeInfo = ZHMTypeInfo("SEntityTemplatePinConnection", sizeof(SEntityTemplatePinConnection), alignof(SEntityTemplatePinConnection), SEntityTemplatePinConnection::WriteSimpleJson, SEntityTemplatePinConnection::FromSimpleJson, SEntityTemplatePinConnection::Serialize, SEntityTemplatePinConnection::Equals, SEntityTemplatePinConnection::Destroy);
 
 void SEntityTemplatePinConnection::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -5998,32 +4751,13 @@ bool SEntityTemplatePinConnection::operator==(const SEntityTemplatePinConnection
 	return true;
 }
 
-ZHMTypeInfo SEntityTemplatePropertyAlias::TypeInfo = ZHMTypeInfo("SEntityTemplatePropertyAlias", sizeof(SEntityTemplatePropertyAlias), alignof(SEntityTemplatePropertyAlias), SEntityTemplatePropertyAlias::WriteJson, SEntityTemplatePropertyAlias::WriteSimpleJson, SEntityTemplatePropertyAlias::FromSimpleJson, SEntityTemplatePropertyAlias::Serialize, SEntityTemplatePropertyAlias::Equals);
-
-void SEntityTemplatePropertyAlias::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SEntityTemplatePinConnection::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SEntityTemplatePropertyAlias*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("sAliasName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sAliasName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entityID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->entityID);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sPropertyName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sPropertyName);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SEntityTemplatePinConnection*>(p_Object);
+	s_Object->~SEntityTemplatePinConnection();
 }
+
+ZHMTypeInfo SEntityTemplatePropertyAlias::TypeInfo = ZHMTypeInfo("SEntityTemplatePropertyAlias", sizeof(SEntityTemplatePropertyAlias), alignof(SEntityTemplatePropertyAlias), SEntityTemplatePropertyAlias::WriteSimpleJson, SEntityTemplatePropertyAlias::FromSimpleJson, SEntityTemplatePropertyAlias::Serialize, SEntityTemplatePropertyAlias::Equals, SEntityTemplatePropertyAlias::Destroy);
 
 void SEntityTemplatePropertyAlias::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -6086,26 +4820,13 @@ bool SEntityTemplatePropertyAlias::operator==(const SEntityTemplatePropertyAlias
 	return true;
 }
 
-ZHMTypeInfo SEntityTemplateReference::TypeInfo = ZHMTypeInfo("SEntityTemplateReference", sizeof(SEntityTemplateReference), alignof(SEntityTemplateReference), SEntityTemplateReference::WriteJson, SEntityTemplateReference::WriteSimpleJson, SEntityTemplateReference::FromSimpleJson, SEntityTemplateReference::Serialize, SEntityTemplateReference::Equals);
-
-void SEntityTemplateReference::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SEntityTemplatePropertyAlias::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SEntityTemplateReference*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("entityIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->entityIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("exposedEntity") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->exposedEntity);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SEntityTemplatePropertyAlias*>(p_Object);
+	s_Object->~SEntityTemplatePropertyAlias();
 }
+
+ZHMTypeInfo SEntityTemplateReference::TypeInfo = ZHMTypeInfo("SEntityTemplateReference", sizeof(SEntityTemplateReference), alignof(SEntityTemplateReference), SEntityTemplateReference::WriteSimpleJson, SEntityTemplateReference::FromSimpleJson, SEntityTemplateReference::Serialize, SEntityTemplateReference::Equals, SEntityTemplateReference::Destroy);
 
 void SEntityTemplateReference::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -6160,38 +4881,13 @@ bool SEntityTemplateReference::operator==(const SEntityTemplateReference& p_Othe
 	return true;
 }
 
-ZHMTypeInfo SExposedEntityDescriptor::TypeInfo = ZHMTypeInfo("SExposedEntityDescriptor", sizeof(SExposedEntityDescriptor), alignof(SExposedEntityDescriptor), SExposedEntityDescriptor::WriteJson, SExposedEntityDescriptor::WriteSimpleJson, SExposedEntityDescriptor::FromSimpleJson, SExposedEntityDescriptor::Serialize, SExposedEntityDescriptor::Equals);
-
-void SExposedEntityDescriptor::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SEntityTemplateReference::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SExposedEntityDescriptor*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("sName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sDisplayName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sDisplayName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sUpheldContract") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sUpheldContract);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sHelpText") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sHelpText);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SEntityTemplateReference*>(p_Object);
+	s_Object->~SEntityTemplateReference();
 }
+
+ZHMTypeInfo SExposedEntityDescriptor::TypeInfo = ZHMTypeInfo("SExposedEntityDescriptor", sizeof(SExposedEntityDescriptor), alignof(SExposedEntityDescriptor), SExposedEntityDescriptor::WriteSimpleJson, SExposedEntityDescriptor::FromSimpleJson, SExposedEntityDescriptor::Serialize, SExposedEntityDescriptor::Equals, SExposedEntityDescriptor::Destroy);
 
 void SExposedEntityDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -6263,26 +4959,13 @@ bool SExposedEntityDescriptor::operator==(const SExposedEntityDescriptor& p_Othe
 	return true;
 }
 
-ZHMTypeInfo SFRange::TypeInfo = ZHMTypeInfo("SFRange", sizeof(SFRange), alignof(SFRange), SFRange::WriteJson, SFRange::WriteSimpleJson, SFRange::FromSimpleJson, SFRange::Serialize, SFRange::Equals);
-
-void SFRange::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SExposedEntityDescriptor::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SFRange*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_fMin") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fMin);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fMax") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fMax);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SExposedEntityDescriptor*>(p_Object);
+	s_Object->~SExposedEntityDescriptor();
 }
+
+ZHMTypeInfo SFRange::TypeInfo = ZHMTypeInfo("SFRange", sizeof(SFRange), alignof(SFRange), SFRange::WriteSimpleJson, SFRange::FromSimpleJson, SFRange::Serialize, SFRange::Equals, SFRange::Destroy);
 
 void SFRange::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -6336,26 +5019,13 @@ bool SFRange::operator==(const SFRange& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SForwardSpawnData::TypeInfo = ZHMTypeInfo("SForwardSpawnData", sizeof(SForwardSpawnData), alignof(SForwardSpawnData), SForwardSpawnData::WriteJson, SForwardSpawnData::WriteSimpleJson, SForwardSpawnData::FromSimpleJson, SForwardSpawnData::Serialize, SForwardSpawnData::Equals);
-
-void SForwardSpawnData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SFRange::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SForwardSpawnData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iForwardSpawnIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iForwardSpawnIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_SaveData") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SCheckpointSaveData") << ",\"$val\":";
-	SCheckpointSaveData::WriteJson(&s_Object->m_SaveData, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SFRange*>(p_Object);
+	s_Object->~SFRange();
 }
+
+ZHMTypeInfo SForwardSpawnData::TypeInfo = ZHMTypeInfo("SForwardSpawnData", sizeof(SForwardSpawnData), alignof(SForwardSpawnData), SForwardSpawnData::WriteSimpleJson, SForwardSpawnData::FromSimpleJson, SForwardSpawnData::Serialize, SForwardSpawnData::Equals, SForwardSpawnData::Destroy);
 
 void SForwardSpawnData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -6414,38 +5084,13 @@ bool SForwardSpawnData::operator==(const SForwardSpawnData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SGProperties::TypeInfo = ZHMTypeInfo("SGProperties", sizeof(SGProperties), alignof(SGProperties), SGProperties::WriteJson, SGProperties::WriteSimpleJson, SGProperties::FromSimpleJson, SGProperties::Serialize, SGProperties::Equals);
-
-void SGProperties::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SForwardSpawnData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SGProperties*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("vMin") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->vMin, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("vMax") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->vMax, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nGridWidth") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nGridWidth);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("fGridSpacing") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->fGridSpacing);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SForwardSpawnData*>(p_Object);
+	s_Object->~SForwardSpawnData();
 }
+
+ZHMTypeInfo SGProperties::TypeInfo = ZHMTypeInfo("SGProperties", sizeof(SGProperties), alignof(SGProperties), SGProperties::WriteSimpleJson, SGProperties::FromSimpleJson, SGProperties::Serialize, SGProperties::Equals, SGProperties::Destroy);
 
 void SGProperties::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -6523,68 +5168,13 @@ bool SGProperties::operator==(const SGProperties& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SGWaypoint::TypeInfo = ZHMTypeInfo("SGWaypoint", sizeof(SGWaypoint), alignof(SGWaypoint), SGWaypoint::WriteJson, SGWaypoint::WriteSimpleJson, SGWaypoint::FromSimpleJson, SGWaypoint::Serialize, SGWaypoint::Equals);
-
-void SGWaypoint::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SGProperties::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SGWaypoint*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("nNeighbor0") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor0);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nNeighbor1") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor1);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nNeighbor2") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor2);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nNeighbor3") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor3);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nNeighbor4") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor4);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nNeighbor5") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor5);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nNeighbor6") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor6);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("nNeighbor7") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int16") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->nNeighbor7);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("vPos") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float4") << ",\"$val\":";
-	float4::WriteJson(&s_Object->vPos, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SGProperties*>(p_Object);
+	s_Object->~SGProperties();
 }
+
+ZHMTypeInfo SGWaypoint::TypeInfo = ZHMTypeInfo("SGWaypoint", sizeof(SGWaypoint), alignof(SGWaypoint), SGWaypoint::WriteSimpleJson, SGWaypoint::FromSimpleJson, SGWaypoint::Serialize, SGWaypoint::Equals, SGWaypoint::Destroy);
 
 void SGWaypoint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -6692,150 +5282,13 @@ bool SGWaypoint::operator==(const SGWaypoint& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SGameStats::TypeInfo = ZHMTypeInfo("SGameStats", sizeof(SGameStats), alignof(SGameStats), SGameStats::WriteJson, SGameStats::WriteSimpleJson, SGameStats::FromSimpleJson, SGameStats::Serialize, SGameStats::Equals);
-
-void SGameStats::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SGWaypoint::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SGameStats*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_aKillsByBodyPart") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aKillsByBodyPart.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aKillsByBodyPart[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aKillsByBodyPart.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aKillsByWeapon") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aKillsByWeapon.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aKillsByWeapon[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aKillsByWeapon.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aKillsBySituation") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aKillsBySituation.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aKillsBySituation[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aKillsBySituation.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aKillsByVictim") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aKillsByVictim.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aKillsByVictim[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aKillsByVictim.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aActorDamageByBodyPart") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aActorDamageByBodyPart.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aActorDamageByBodyPart[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aActorDamageByBodyPart.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aActorDamageByWeapon") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aActorDamageByWeapon.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aActorDamageByWeapon[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aActorDamageByWeapon.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aStealthSituations") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aStealthSituations.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aStealthSituations[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aStealthSituations.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aExplodingProps") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aExplodingProps.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aExplodingProps[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aExplodingProps.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SGWaypoint*>(p_Object);
+	s_Object->~SGWaypoint();
 }
+
+ZHMTypeInfo SGameStats::TypeInfo = ZHMTypeInfo("SGameStats", sizeof(SGameStats), alignof(SGameStats), SGameStats::WriteSimpleJson, SGameStats::FromSimpleJson, SGameStats::Serialize, SGameStats::Equals, SGameStats::Destroy);
 
 void SGameStats::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7091,104 +5544,13 @@ bool SGameStats::operator==(const SGameStats& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SGameStatsData::TypeInfo = ZHMTypeInfo("SGameStatsData", sizeof(SGameStatsData), alignof(SGameStatsData), SGameStatsData::WriteJson, SGameStatsData::WriteSimpleJson, SGameStatsData::FromSimpleJson, SGameStatsData::Serialize, SGameStatsData::Equals);
-
-void SGameStatsData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SGameStats::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SGameStatsData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nTotalKills") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nTotalKills);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nTotalShotsFired") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nTotalShotsFired);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsThatHit") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHit);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsFiredPistol") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredPistol);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsFiredSniper") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredSniper);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsFiredSMG") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredSMG);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsFiredShotgun") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredShotgun);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsFiredAssault") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredAssault);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsFiredRevolver") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsFiredRevolver);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsThatHitPistol") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitPistol);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsThatHitSniper") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitSniper);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsThatHitSMG") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitSMG);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsThatHitShotgun") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitShotgun);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsThatHitAssault") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitAssault);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nShotsThatHitRevolver") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nShotsThatHitRevolver);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SGameStats*>(p_Object);
+	s_Object->~SGameStats();
 }
+
+ZHMTypeInfo SGameStatsData::TypeInfo = ZHMTypeInfo("SGameStatsData", sizeof(SGameStatsData), alignof(SGameStatsData), SGameStatsData::WriteSimpleJson, SGameStatsData::FromSimpleJson, SGameStatsData::Serialize, SGameStatsData::Equals, SGameStatsData::Destroy);
 
 void SGameStatsData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7333,26 +5695,13 @@ bool SGameStatsData::operator==(const SGameStatsData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SGameStatsSaveData::TypeInfo = ZHMTypeInfo("SGameStatsSaveData", sizeof(SGameStatsSaveData), alignof(SGameStatsSaveData), SGameStatsSaveData::WriteJson, SGameStatsSaveData::WriteSimpleJson, SGameStatsSaveData::FromSimpleJson, SGameStatsSaveData::Serialize, SGameStatsSaveData::Equals);
-
-void SGameStatsSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SGameStatsData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SGameStatsSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_Data") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SGameStatsData") << ",\"$val\":";
-	SGameStatsData::WriteJson(&s_Object->m_Data, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iPreciseSniperKillCount") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iPreciseSniperKillCount);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SGameStatsData*>(p_Object);
+	s_Object->~SGameStatsData();
 }
+
+ZHMTypeInfo SGameStatsSaveData::TypeInfo = ZHMTypeInfo("SGameStatsSaveData", sizeof(SGameStatsSaveData), alignof(SGameStatsSaveData), SGameStatsSaveData::WriteSimpleJson, SGameStatsSaveData::FromSimpleJson, SGameStatsSaveData::Serialize, SGameStatsSaveData::Equals, SGameStatsSaveData::Destroy);
 
 void SGameStatsSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7411,38 +5760,13 @@ bool SGameStatsSaveData::operator==(const SGameStatsSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SGameStatsWeapon::TypeInfo = ZHMTypeInfo("SGameStatsWeapon", sizeof(SGameStatsWeapon), alignof(SGameStatsWeapon), SGameStatsWeapon::WriteJson, SGameStatsWeapon::WriteSimpleJson, SGameStatsWeapon::FromSimpleJson, SGameStatsWeapon::Serialize, SGameStatsWeapon::Equals);
-
-void SGameStatsWeapon::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SGameStatsSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SGameStatsWeapon*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_eItemWeapon") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("eItemType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eItemWeapon)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eItemType", static_cast<int>(s_Object->m_eItemWeapon))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_WeaponTokenID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_WeaponTokenID, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eSpecialSituation") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("EWeaponSpecialSituation") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eSpecialSituation)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EWeaponSpecialSituation", static_cast<int>(s_Object->m_eSpecialSituation))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eAmmoType") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("eAmmoType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eAmmoType)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eAmmoType", static_cast<int>(s_Object->m_eAmmoType))) << "}";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SGameStatsSaveData*>(p_Object);
+	s_Object->~SGameStatsSaveData();
 }
+
+ZHMTypeInfo SGameStatsWeapon::TypeInfo = ZHMTypeInfo("SGameStatsWeapon", sizeof(SGameStatsWeapon), alignof(SGameStatsWeapon), SGameStatsWeapon::WriteSimpleJson, SGameStatsWeapon::FromSimpleJson, SGameStatsWeapon::Serialize, SGameStatsWeapon::Equals, SGameStatsWeapon::Destroy);
 
 void SGameStatsWeapon::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7515,37 +5839,13 @@ bool SGameStatsWeapon::operator==(const SGameStatsWeapon& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SLevelCPProgressionData::TypeInfo = ZHMTypeInfo("SLevelCPProgressionData", sizeof(SLevelCPProgressionData), alignof(SLevelCPProgressionData), SLevelCPProgressionData::WriteJson, SLevelCPProgressionData::WriteSimpleJson, SLevelCPProgressionData::FromSimpleJson, SLevelCPProgressionData::Serialize, SLevelCPProgressionData::Equals);
-
-void SLevelCPProgressionData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SGameStatsWeapon::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SLevelCPProgressionData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aCPStates") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCPProgressionState>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aCPStates.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aCPStates[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCPProgressionState") << ",\"$val\":";
-		SCPProgressionState::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aCPStates.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SGameStatsWeapon*>(p_Object);
+	s_Object->~SGameStatsWeapon();
 }
+
+ZHMTypeInfo SLevelCPProgressionData::TypeInfo = ZHMTypeInfo("SLevelCPProgressionData", sizeof(SLevelCPProgressionData), alignof(SLevelCPProgressionData), SLevelCPProgressionData::WriteSimpleJson, SLevelCPProgressionData::FromSimpleJson, SLevelCPProgressionData::Serialize, SLevelCPProgressionData::Equals, SLevelCPProgressionData::Destroy);
 
 void SLevelCPProgressionData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7621,32 +5921,13 @@ bool SLevelCPProgressionData::operator==(const SLevelCPProgressionData& p_Other)
 	return true;
 }
 
-ZHMTypeInfo SLevelProgressionData::TypeInfo = ZHMTypeInfo("SLevelProgressionData", sizeof(SLevelProgressionData), alignof(SLevelProgressionData), SLevelProgressionData::WriteJson, SLevelProgressionData::WriteSimpleJson, SLevelProgressionData::FromSimpleJson, SLevelProgressionData::Serialize, SLevelProgressionData::Equals);
-
-void SLevelProgressionData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SLevelCPProgressionData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SLevelProgressionData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_eLevelIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eLevelIndex)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_eLevelIndex))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nCheckpointIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nCheckpointIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nDifficulty") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nDifficulty);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SLevelCPProgressionData*>(p_Object);
+	s_Object->~SLevelCPProgressionData();
 }
+
+ZHMTypeInfo SLevelProgressionData::TypeInfo = ZHMTypeInfo("SLevelProgressionData", sizeof(SLevelProgressionData), alignof(SLevelProgressionData), SLevelProgressionData::WriteSimpleJson, SLevelProgressionData::FromSimpleJson, SLevelProgressionData::Serialize, SLevelProgressionData::Equals, SLevelProgressionData::Destroy);
 
 void SLevelProgressionData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7707,37 +5988,13 @@ bool SLevelProgressionData::operator==(const SLevelProgressionData& p_Other) con
 	return true;
 }
 
-ZHMTypeInfo SLevelSaveData::TypeInfo = ZHMTypeInfo("SLevelSaveData", sizeof(SLevelSaveData), alignof(SLevelSaveData), SLevelSaveData::WriteJson, SLevelSaveData::WriteSimpleJson, SLevelSaveData::FromSimpleJson, SLevelSaveData::Serialize, SLevelSaveData::Equals);
-
-void SLevelSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SLevelProgressionData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SLevelSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_LevelID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ELevelIndex") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_LevelID)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ELevelIndex", static_cast<int>(s_Object->m_LevelID))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_CheckpointData") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SCheckpointSaveData>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_CheckpointData.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_CheckpointData[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SCheckpointSaveData") << ",\"$val\":";
-		SCheckpointSaveData::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_CheckpointData.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SLevelProgressionData*>(p_Object);
+	s_Object->~SLevelProgressionData();
 }
+
+ZHMTypeInfo SLevelSaveData::TypeInfo = ZHMTypeInfo("SLevelSaveData", sizeof(SLevelSaveData), alignof(SLevelSaveData), SLevelSaveData::WriteSimpleJson, SLevelSaveData::FromSimpleJson, SLevelSaveData::Serialize, SLevelSaveData::Equals, SLevelSaveData::Destroy);
 
 void SLevelSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7813,32 +6070,13 @@ bool SLevelSaveData::operator==(const SLevelSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SLoadRuntimeResourceResult::TypeInfo = ZHMTypeInfo("SLoadRuntimeResourceResult", sizeof(SLoadRuntimeResourceResult), alignof(SLoadRuntimeResourceResult), SLoadRuntimeResourceResult::WriteJson, SLoadRuntimeResourceResult::WriteSimpleJson, SLoadRuntimeResourceResult::FromSimpleJson, SLoadRuntimeResourceResult::Serialize, SLoadRuntimeResourceResult::Equals);
-
-void SLoadRuntimeResourceResult::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SLevelSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SLoadRuntimeResourceResult*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("sFilePath") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sFilePath);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sOutputMessage") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sOutputMessage);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("sErrorMessage") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->sErrorMessage);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SLevelSaveData*>(p_Object);
+	s_Object->~SLevelSaveData();
 }
+
+ZHMTypeInfo SLoadRuntimeResourceResult::TypeInfo = ZHMTypeInfo("SLoadRuntimeResourceResult", sizeof(SLoadRuntimeResourceResult), alignof(SLoadRuntimeResourceResult), SLoadRuntimeResourceResult::WriteSimpleJson, SLoadRuntimeResourceResult::FromSimpleJson, SLoadRuntimeResourceResult::Serialize, SLoadRuntimeResourceResult::Equals, SLoadRuntimeResourceResult::Destroy);
 
 void SLoadRuntimeResourceResult::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -7902,32 +6140,13 @@ bool SLoadRuntimeResourceResult::operator==(const SLoadRuntimeResourceResult& p_
 	return true;
 }
 
-ZHMTypeInfo SMatrix33::TypeInfo = ZHMTypeInfo("SMatrix33", sizeof(SMatrix33), alignof(SMatrix33), SMatrix33::WriteJson, SMatrix33::WriteSimpleJson, SMatrix33::FromSimpleJson, SMatrix33::Serialize, SMatrix33::Equals);
-
-void SMatrix33::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SLoadRuntimeResourceResult::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SMatrix33*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("XAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->XAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("YAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->YAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("ZAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->ZAxis, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SLoadRuntimeResourceResult*>(p_Object);
+	s_Object->~SLoadRuntimeResourceResult();
 }
+
+ZHMTypeInfo SMatrix33::TypeInfo = ZHMTypeInfo("SMatrix33", sizeof(SMatrix33), alignof(SMatrix33), SMatrix33::WriteSimpleJson, SMatrix33::FromSimpleJson, SMatrix33::Serialize, SMatrix33::Equals, SMatrix33::Destroy);
 
 void SMatrix33::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -8003,38 +6222,13 @@ bool SMatrix33::operator==(const SMatrix33& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SMatrix43::TypeInfo = ZHMTypeInfo("SMatrix43", sizeof(SMatrix43), alignof(SMatrix43), SMatrix43::WriteJson, SMatrix43::WriteSimpleJson, SMatrix43::FromSimpleJson, SMatrix43::Serialize, SMatrix43::Equals);
-
-void SMatrix43::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SMatrix33::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SMatrix43*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("XAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->XAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("YAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->YAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("ZAxis") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->ZAxis, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("Trans") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SVector3") << ",\"$val\":";
-	SVector3::WriteJson(&s_Object->Trans, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SMatrix33*>(p_Object);
+	s_Object->~SMatrix33();
 }
+
+ZHMTypeInfo SMatrix43::TypeInfo = ZHMTypeInfo("SMatrix43", sizeof(SMatrix43), alignof(SMatrix43), SMatrix43::WriteSimpleJson, SMatrix43::FromSimpleJson, SMatrix43::Serialize, SMatrix43::Equals, SMatrix43::Destroy);
 
 void SMatrix43::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -8122,110 +6316,13 @@ bool SMatrix43::operator==(const SMatrix43& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SMatrix44::TypeInfo = ZHMTypeInfo("SMatrix44", sizeof(SMatrix44), alignof(SMatrix44), SMatrix44::WriteJson, SMatrix44::WriteSimpleJson, SMatrix44::FromSimpleJson, SMatrix44::Serialize, SMatrix44::Equals);
-
-void SMatrix44::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SMatrix43::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SMatrix44*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m11") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m11);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m12") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m12);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m13") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m13);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m14") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m14);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m21") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m21);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m22") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m22);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m23") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m23);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m24") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m24);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m31") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m31);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m32") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m32);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m33") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m33);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m34") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m34);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m41") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m41);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m42") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m42);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m43") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m43);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m44") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m44);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SMatrix43*>(p_Object);
+	s_Object->~SMatrix43();
 }
+
+ZHMTypeInfo SMatrix44::TypeInfo = ZHMTypeInfo("SMatrix44", sizeof(SMatrix44), alignof(SMatrix44), SMatrix44::WriteSimpleJson, SMatrix44::FromSimpleJson, SMatrix44::Serialize, SMatrix44::Equals, SMatrix44::Destroy);
 
 void SMatrix44::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -8377,50 +6474,13 @@ bool SMatrix44::operator==(const SMatrix44& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SMiscSaveData::TypeInfo = ZHMTypeInfo("SMiscSaveData", sizeof(SMiscSaveData), alignof(SMiscSaveData), SMiscSaveData::WriteJson, SMiscSaveData::WriteSimpleJson, SMiscSaveData::FromSimpleJson, SMiscSaveData::Serialize, SMiscSaveData::Equals);
-
-void SMiscSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SMatrix44::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SMiscSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_bCompletedFirstBoot") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bCompletedFirstBoot);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bContractsTutorialPlayShown") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bContractsTutorialPlayShown);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bContractsTutorialCreateShown") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bContractsTutorialCreateShown);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_LastUnlockedOutfit") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_LastUnlockedOutfit, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_LastUnlockedWeapon") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_LastUnlockedWeapon, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iPOIProgressPointsWhenUnlockKeyMesageDisplayed);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SMatrix44*>(p_Object);
+	s_Object->~SMatrix44();
 }
+
+ZHMTypeInfo SMiscSaveData::TypeInfo = ZHMTypeInfo("SMiscSaveData", sizeof(SMiscSaveData), alignof(SMiscSaveData), SMiscSaveData::WriteSimpleJson, SMiscSaveData::FromSimpleJson, SMiscSaveData::Serialize, SMiscSaveData::Equals, SMiscSaveData::Destroy);
 
 void SMiscSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -8512,26 +6572,13 @@ bool SMiscSaveData::operator==(const SMiscSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SNRange::TypeInfo = ZHMTypeInfo("SNRange", sizeof(SNRange), alignof(SNRange), SNRange::WriteJson, SNRange::WriteSimpleJson, SNRange::FromSimpleJson, SNRange::Serialize, SNRange::Equals);
-
-void SNRange::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SMiscSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SNRange*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nMin") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nMin);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nMax") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nMax);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SMiscSaveData*>(p_Object);
+	s_Object->~SMiscSaveData();
 }
+
+ZHMTypeInfo SNRange::TypeInfo = ZHMTypeInfo("SNRange", sizeof(SNRange), alignof(SNRange), SNRange::WriteSimpleJson, SNRange::FromSimpleJson, SNRange::Serialize, SNRange::Equals, SNRange::Destroy);
 
 void SNRange::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -8585,26 +6632,13 @@ bool SNRange::operator==(const SNRange& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SPOISaveData::TypeInfo = ZHMTypeInfo("SPOISaveData", sizeof(SPOISaveData), alignof(SPOISaveData), SPOISaveData::WriteJson, SPOISaveData::WriteSimpleJson, SPOISaveData::FromSimpleJson, SPOISaveData::Serialize, SPOISaveData::Equals);
-
-void SPOISaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SNRange::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SPOISaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nProgressionPoints") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nProgressionPoints);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLoaded") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLoaded);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SNRange*>(p_Object);
+	s_Object->~SNRange();
 }
+
+ZHMTypeInfo SPOISaveData::TypeInfo = ZHMTypeInfo("SPOISaveData", sizeof(SPOISaveData), alignof(SPOISaveData), SPOISaveData::WriteSimpleJson, SPOISaveData::FromSimpleJson, SPOISaveData::Serialize, SPOISaveData::Equals, SPOISaveData::Destroy);
 
 void SPOISaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -8658,105 +6692,13 @@ bool SPOISaveData::operator==(const SPOISaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SRatingData::TypeInfo = ZHMTypeInfo("SRatingData", sizeof(SRatingData), alignof(SRatingData), SRatingData::WriteJson, SRatingData::WriteSimpleJson, SRatingData::FromSimpleJson, SRatingData::Serialize, SRatingData::Equals);
-
-void SRatingData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SPOISaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SRatingData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_CheckpointStyles") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_CheckpointStyles.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_CheckpointStyles[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint16") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_CheckpointStyles.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_TitlesAchieved") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_TitlesAchieved.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_TitlesAchieved[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_TitlesAchieved.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_TitlesViewed") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_TitlesViewed.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_TitlesViewed[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_TitlesViewed.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_CPDifficulty") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<DifficultyLevelEnum>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_CPDifficulty.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_CPDifficulty[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("DifficultyLevelEnum") << ",\"$val\":";
-		p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Item0)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("DifficultyLevelEnum", static_cast<int>(s_Item0))) << "}";
-		p_Stream << "}";
-
-		if (i < s_Object->m_CPDifficulty.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_CPChallenges") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_CPChallenges.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_CPChallenges[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_CPChallenges.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iLastUnlockedTitle") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iLastUnlockedTitle);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SPOISaveData*>(p_Object);
+	s_Object->~SPOISaveData();
 }
+
+ZHMTypeInfo SRatingData::TypeInfo = ZHMTypeInfo("SRatingData", sizeof(SRatingData), alignof(SRatingData), SRatingData::WriteSimpleJson, SRatingData::FromSimpleJson, SRatingData::Serialize, SRatingData::Equals, SRatingData::Destroy);
 
 void SRatingData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -8938,48 +6880,13 @@ bool SRatingData::operator==(const SRatingData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SRatingHighScoreData::TypeInfo = ZHMTypeInfo("SRatingHighScoreData", sizeof(SRatingHighScoreData), alignof(SRatingHighScoreData), SRatingHighScoreData::WriteJson, SRatingHighScoreData::WriteSimpleJson, SRatingHighScoreData::FromSimpleJson, SRatingHighScoreData::Serialize, SRatingHighScoreData::Equals);
-
-void SRatingHighScoreData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SRatingData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SRatingHighScoreData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_HighScores") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_HighScores.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_HighScores[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_HighScores.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_HighTitles") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<int8>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_HighTitles.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_HighTitles[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("int8") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_HighTitles.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SRatingData*>(p_Object);
+	s_Object->~SRatingData();
 }
+
+ZHMTypeInfo SRatingHighScoreData::TypeInfo = ZHMTypeInfo("SRatingHighScoreData", sizeof(SRatingHighScoreData), alignof(SRatingHighScoreData), SRatingHighScoreData::WriteSimpleJson, SRatingHighScoreData::FromSimpleJson, SRatingHighScoreData::Serialize, SRatingHighScoreData::Equals, SRatingHighScoreData::Destroy);
 
 void SRatingHighScoreData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -9073,37 +6980,13 @@ bool SRatingHighScoreData::operator==(const SRatingHighScoreData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZBitArray::TypeInfo = ZHMTypeInfo("ZBitArray", sizeof(ZBitArray), alignof(ZBitArray), ZBitArray::WriteJson, ZBitArray::WriteSimpleJson, ZBitArray::FromSimpleJson, ZBitArray::Serialize, ZBitArray::Equals);
-
-void ZBitArray::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SRatingHighScoreData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZBitArray*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_aBytes") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint8>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aBytes.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aBytes[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aBytes.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nSize") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nSize);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SRatingHighScoreData*>(p_Object);
+	s_Object->~SRatingHighScoreData();
 }
+
+ZHMTypeInfo ZBitArray::TypeInfo = ZHMTypeInfo("ZBitArray", sizeof(ZBitArray), alignof(ZBitArray), ZBitArray::WriteSimpleJson, ZBitArray::FromSimpleJson, ZBitArray::Serialize, ZBitArray::Equals, ZBitArray::Destroy);
 
 void ZBitArray::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -9177,117 +7060,13 @@ bool ZBitArray::operator==(const ZBitArray& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SReasoningGrid::TypeInfo = ZHMTypeInfo("SReasoningGrid", sizeof(SReasoningGrid), alignof(SReasoningGrid), SReasoningGrid::WriteJson, SReasoningGrid::WriteSimpleJson, SReasoningGrid::FromSimpleJson, SReasoningGrid::Serialize, SReasoningGrid::Equals);
-
-void SReasoningGrid::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZBitArray::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SReasoningGrid*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_WaypointList") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SGWaypoint>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_WaypointList.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_WaypointList[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SGWaypoint") << ",\"$val\":";
-		SGWaypoint::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_WaypointList.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_LowVisibilityBits") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZBitArray") << ",\"$val\":";
-	ZBitArray::WriteJson(&s_Object->m_LowVisibilityBits, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_HighVisibilityBits") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZBitArray") << ",\"$val\":";
-	ZBitArray::WriteJson(&s_Object->m_HighVisibilityBits, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_LowVisibility") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TArray<uint16>>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_LowVisibility.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_LowVisibility[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
-		p_Stream << "[";
-		for (size_t i = 0; i < s_Item0.size(); ++i)
-		{
-			auto& s_Item1 = s_Item0[i];
-			p_Stream << "{\"$type\":" << simdjson::as_json_string("uint16") << ",\"$val\":";
-			p_Stream << simdjson::as_json_string(s_Item1);
-			p_Stream << "}";
-
-			if (i < s_Item0.size() - 1)
-				p_Stream << ",";
-		}
-		p_Stream << "]";
-		p_Stream << "}";
-
-		if (i < s_Object->m_LowVisibility.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_HighVisibility") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TArray<uint16>>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_HighVisibility.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_HighVisibility[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<uint16>") << ",\"$val\":";
-		p_Stream << "[";
-		for (size_t i = 0; i < s_Item0.size(); ++i)
-		{
-			auto& s_Item1 = s_Item0[i];
-			p_Stream << "{\"$type\":" << simdjson::as_json_string("uint16") << ",\"$val\":";
-			p_Stream << simdjson::as_json_string(s_Item1);
-			p_Stream << "}";
-
-			if (i < s_Item0.size() - 1)
-				p_Stream << ",";
-		}
-		p_Stream << "]";
-		p_Stream << "}";
-
-		if (i < s_Object->m_HighVisibility.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_Properties") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SGProperties") << ",\"$val\":";
-	SGProperties::WriteJson(&s_Object->m_Properties, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_BitVisibilityCount") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_BitVisibilityCount);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nNodeCount") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nNodeCount);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZBitArray*>(p_Object);
+	s_Object->~ZBitArray();
 }
+
+ZHMTypeInfo SReasoningGrid::TypeInfo = ZHMTypeInfo("SReasoningGrid", sizeof(SReasoningGrid), alignof(SReasoningGrid), SReasoningGrid::WriteSimpleJson, SReasoningGrid::FromSimpleJson, SReasoningGrid::Serialize, SReasoningGrid::Equals, SReasoningGrid::Destroy);
 
 void SReasoningGrid::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -9502,15 +7281,13 @@ bool SReasoningGrid::operator==(const SReasoningGrid& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SSerializedValue::TypeInfo = ZHMTypeInfo("SSerializedValue", sizeof(SSerializedValue), alignof(SSerializedValue), SSerializedValue::WriteJson, SSerializedValue::WriteSimpleJson, SSerializedValue::FromSimpleJson, SSerializedValue::Serialize, SSerializedValue::Equals);
-
-void SSerializedValue::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SReasoningGrid::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SSerializedValue*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SReasoningGrid*>(p_Object);
+	s_Object->~SReasoningGrid();
 }
+
+ZHMTypeInfo SSerializedValue::TypeInfo = ZHMTypeInfo("SSerializedValue", sizeof(SSerializedValue), alignof(SSerializedValue), SSerializedValue::WriteSimpleJson, SSerializedValue::FromSimpleJson, SSerializedValue::Serialize, SSerializedValue::Equals, SSerializedValue::Destroy);
 
 void SSerializedValue::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -9551,26 +7328,13 @@ bool SSerializedValue::operator==(const SSerializedValue& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SSettingsParamMultiplier::TypeInfo = ZHMTypeInfo("SSettingsParamMultiplier", sizeof(SSettingsParamMultiplier), alignof(SSettingsParamMultiplier), SSettingsParamMultiplier::WriteJson, SSettingsParamMultiplier::WriteSimpleJson, SSettingsParamMultiplier::FromSimpleJson, SSettingsParamMultiplier::Serialize, SSettingsParamMultiplier::Equals);
-
-void SSettingsParamMultiplier::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SSerializedValue::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SSettingsParamMultiplier*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_eSettingsParam") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ESettingsParam") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eSettingsParam)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ESettingsParam", static_cast<int>(s_Object->m_eSettingsParam))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fMultiplier") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fMultiplier);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SSerializedValue*>(p_Object);
+	s_Object->~SSerializedValue();
 }
+
+ZHMTypeInfo SSettingsParamMultiplier::TypeInfo = ZHMTypeInfo("SSettingsParamMultiplier", sizeof(SSettingsParamMultiplier), alignof(SSettingsParamMultiplier), SSettingsParamMultiplier::WriteSimpleJson, SSettingsParamMultiplier::FromSimpleJson, SSettingsParamMultiplier::Serialize, SSettingsParamMultiplier::Equals, SSettingsParamMultiplier::Destroy);
 
 void SSettingsParamMultiplier::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -9624,32 +7388,13 @@ bool SSettingsParamMultiplier::operator==(const SSettingsParamMultiplier& p_Othe
 	return true;
 }
 
-ZHMTypeInfo STechniqueUnlockState::TypeInfo = ZHMTypeInfo("STechniqueUnlockState", sizeof(STechniqueUnlockState), alignof(STechniqueUnlockState), STechniqueUnlockState::WriteJson, STechniqueUnlockState::WriteSimpleJson, STechniqueUnlockState::FromSimpleJson, STechniqueUnlockState::Serialize, STechniqueUnlockState::Equals);
-
-void STechniqueUnlockState::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SSettingsParamMultiplier::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STechniqueUnlockState*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_CheckpointTokenID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STokenID") << ",\"$val\":";
-	STokenID::WriteJson(&s_Object->m_CheckpointTokenID, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eTechnique") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("HMTechniques.ETechnique") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eTechnique)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("HMTechniques.ETechnique", static_cast<int>(s_Object->m_eTechnique))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_iLevel") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iLevel);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SSettingsParamMultiplier*>(p_Object);
+	s_Object->~SSettingsParamMultiplier();
 }
+
+ZHMTypeInfo STechniqueUnlockState::TypeInfo = ZHMTypeInfo("STechniqueUnlockState", sizeof(STechniqueUnlockState), alignof(STechniqueUnlockState), STechniqueUnlockState::WriteSimpleJson, STechniqueUnlockState::FromSimpleJson, STechniqueUnlockState::Serialize, STechniqueUnlockState::Equals, STechniqueUnlockState::Destroy);
 
 void STechniqueUnlockState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -9715,71 +7460,13 @@ bool STechniqueUnlockState::operator==(const STechniqueUnlockState& p_Other) con
 	return true;
 }
 
-ZHMTypeInfo STechniquesSaveData::TypeInfo = ZHMTypeInfo("STechniquesSaveData", sizeof(STechniquesSaveData), alignof(STechniquesSaveData), STechniquesSaveData::WriteJson, STechniquesSaveData::WriteSimpleJson, STechniquesSaveData::FromSimpleJson, STechniquesSaveData::Serialize, STechniquesSaveData::Equals);
-
-void STechniquesSaveData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STechniqueUnlockState::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STechniquesSaveData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iTechniqueUnlockedLevel") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<uint8>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_iTechniqueUnlockedLevel.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_iTechniqueUnlockedLevel[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_iTechniqueUnlockedLevel.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aUnlockState") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<STechniqueUnlockState>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aUnlockState.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aUnlockState[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("STechniqueUnlockState") << ",\"$val\":";
-		STechniqueUnlockState::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aUnlockState.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aViewedState") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<bool>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aViewedState.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aViewedState[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("bool") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aViewedState.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_LastUnlockedTechnique") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STechniqueUnlockState") << ",\"$val\":";
-	STechniqueUnlockState::WriteJson(&s_Object->m_LastUnlockedTechnique, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STechniqueUnlockState*>(p_Object);
+	s_Object->~STechniqueUnlockState();
 }
+
+ZHMTypeInfo STechniquesSaveData::TypeInfo = ZHMTypeInfo("STechniquesSaveData", sizeof(STechniquesSaveData), alignof(STechniquesSaveData), STechniquesSaveData::WriteSimpleJson, STechniquesSaveData::FromSimpleJson, STechniquesSaveData::Serialize, STechniquesSaveData::Equals, STechniquesSaveData::Destroy);
 
 void STechniquesSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -9912,60 +7599,13 @@ bool STechniquesSaveData::operator==(const STechniquesSaveData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo STemplateSubEntity::TypeInfo = ZHMTypeInfo("STemplateSubEntity", sizeof(STemplateSubEntity), alignof(STemplateSubEntity), STemplateSubEntity::WriteJson, STemplateSubEntity::WriteSimpleJson, STemplateSubEntity::FromSimpleJson, STemplateSubEntity::Serialize, STemplateSubEntity::Equals);
-
-void STemplateSubEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STechniquesSaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STemplateSubEntity*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("parentIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->parentIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entityTypeResourceIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->entityTypeResourceIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("propertyValues") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->propertyValues.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->propertyValues[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
-		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->propertyValues.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("postInitPropertyValues") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplateProperty>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->postInitPropertyValues.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->postInitPropertyValues[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplateProperty") << ",\"$val\":";
-		SEntityTemplateProperty::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->postInitPropertyValues.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STechniquesSaveData*>(p_Object);
+	s_Object->~STechniquesSaveData();
 }
+
+ZHMTypeInfo STemplateSubEntity::TypeInfo = ZHMTypeInfo("STemplateSubEntity", sizeof(STemplateSubEntity), alignof(STemplateSubEntity), STemplateSubEntity::WriteSimpleJson, STemplateSubEntity::FromSimpleJson, STemplateSubEntity::Serialize, STemplateSubEntity::Equals, STemplateSubEntity::Destroy);
 
 void STemplateSubEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -10077,43 +7717,13 @@ bool STemplateSubEntity::operator==(const STemplateSubEntity& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo STemplateEntity::TypeInfo = ZHMTypeInfo("STemplateEntity", sizeof(STemplateEntity), alignof(STemplateEntity), STemplateEntity::WriteJson, STemplateEntity::WriteSimpleJson, STemplateEntity::FromSimpleJson, STemplateEntity::Serialize, STemplateEntity::Equals);
-
-void STemplateEntity::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STemplateSubEntity::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STemplateEntity*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("blueprintIndexInResourceHeader") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->blueprintIndexInResourceHeader);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("rootEntityIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->rootEntityIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entityTemplates") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<STemplateSubEntity>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->entityTemplates.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->entityTemplates[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("STemplateSubEntity") << ",\"$val\":";
-		STemplateSubEntity::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->entityTemplates.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STemplateSubEntity*>(p_Object);
+	s_Object->~STemplateSubEntity();
 }
+
+ZHMTypeInfo STemplateEntity::TypeInfo = ZHMTypeInfo("STemplateEntity", sizeof(STemplateEntity), alignof(STemplateEntity), STemplateEntity::WriteSimpleJson, STemplateEntity::FromSimpleJson, STemplateEntity::Serialize, STemplateEntity::Equals, STemplateEntity::Destroy);
 
 void STemplateEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -10196,100 +7806,13 @@ bool STemplateEntity::operator==(const STemplateEntity& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo STemplateSubEntityBlueprint::TypeInfo = ZHMTypeInfo("STemplateSubEntityBlueprint", sizeof(STemplateSubEntityBlueprint), alignof(STemplateSubEntityBlueprint), STemplateSubEntityBlueprint::WriteJson, STemplateSubEntityBlueprint::WriteSimpleJson, STemplateSubEntityBlueprint::FromSimpleJson, STemplateSubEntityBlueprint::Serialize, STemplateSubEntityBlueprint::Equals);
-
-void STemplateSubEntityBlueprint::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STemplateEntity::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STemplateSubEntityBlueprint*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("parentIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->parentIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entityTypeResourceIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->entityTypeResourceIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entityName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->entityName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("propertyAliases") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePropertyAlias>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->propertyAliases.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->propertyAliases[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePropertyAlias") << ",\"$val\":";
-		SEntityTemplatePropertyAlias::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->propertyAliases.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("exposedEntities") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TPair<ZString,SEntityTemplateReference>>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->exposedEntities.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->exposedEntities[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("TPair<ZString,SEntityTemplateReference>") << ",\"$val\":";
-		TPair<ZString,SEntityTemplateReference>::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->exposedEntities.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("exposedInterfaces") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TPair<ZString,int32>>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->exposedInterfaces.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->exposedInterfaces[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("TPair<ZString,int32>") << ",\"$val\":";
-		TPair<ZString,int32>::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->exposedInterfaces.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entitySubsets") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TPair<ZString,SEntityTemplateEntitySubset>>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->entitySubsets.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->entitySubsets[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("TPair<ZString,SEntityTemplateEntitySubset>") << ",\"$val\":";
-		TPair<ZString,SEntityTemplateEntitySubset>::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->entitySubsets.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STemplateEntity*>(p_Object);
+	s_Object->~STemplateEntity();
 }
+
+ZHMTypeInfo STemplateSubEntityBlueprint::TypeInfo = ZHMTypeInfo("STemplateSubEntityBlueprint", sizeof(STemplateSubEntityBlueprint), alignof(STemplateSubEntityBlueprint), STemplateSubEntityBlueprint::WriteSimpleJson, STemplateSubEntityBlueprint::FromSimpleJson, STemplateSubEntityBlueprint::Serialize, STemplateSubEntityBlueprint::Equals, STemplateSubEntityBlueprint::Destroy);
 
 void STemplateSubEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -10467,88 +7990,13 @@ bool STemplateSubEntityBlueprint::operator==(const STemplateSubEntityBlueprint& 
 	return true;
 }
 
-ZHMTypeInfo STemplateEntityBlueprint::TypeInfo = ZHMTypeInfo("STemplateEntityBlueprint", sizeof(STemplateEntityBlueprint), alignof(STemplateEntityBlueprint), STemplateEntityBlueprint::WriteJson, STemplateEntityBlueprint::WriteSimpleJson, STemplateEntityBlueprint::FromSimpleJson, STemplateEntityBlueprint::Serialize, STemplateEntityBlueprint::Equals);
-
-void STemplateEntityBlueprint::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STemplateSubEntityBlueprint::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STemplateEntityBlueprint*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("rootEntityIndex") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->rootEntityIndex);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("entityTemplates") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<STemplateSubEntityBlueprint>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->entityTemplates.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->entityTemplates[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("STemplateSubEntityBlueprint") << ",\"$val\":";
-		STemplateSubEntityBlueprint::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->entityTemplates.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("pinConnections") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePinConnection>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->pinConnections.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->pinConnections[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePinConnection") << ",\"$val\":";
-		SEntityTemplatePinConnection::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->pinConnections.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("inputPinForwardings") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePinConnection>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->inputPinForwardings.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->inputPinForwardings[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePinConnection") << ",\"$val\":";
-		SEntityTemplatePinConnection::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->inputPinForwardings.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("outputPinForwardings") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SEntityTemplatePinConnection>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->outputPinForwardings.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->outputPinForwardings[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SEntityTemplatePinConnection") << ",\"$val\":";
-		SEntityTemplatePinConnection::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->outputPinForwardings.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STemplateSubEntityBlueprint*>(p_Object);
+	s_Object->~STemplateSubEntityBlueprint();
 }
+
+ZHMTypeInfo STemplateEntityBlueprint::TypeInfo = ZHMTypeInfo("STemplateEntityBlueprint", sizeof(STemplateEntityBlueprint), alignof(STemplateEntityBlueprint), STemplateEntityBlueprint::WriteSimpleJson, STemplateEntityBlueprint::FromSimpleJson, STemplateEntityBlueprint::Serialize, STemplateEntityBlueprint::Equals, STemplateEntityBlueprint::Destroy);
 
 void STemplateEntityBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -10711,32 +8159,13 @@ bool STemplateEntityBlueprint::operator==(const STemplateEntityBlueprint& p_Othe
 	return true;
 }
 
-ZHMTypeInfo STestMiniStruct::TypeInfo = ZHMTypeInfo("STestMiniStruct", sizeof(STestMiniStruct), alignof(STestMiniStruct), STestMiniStruct::WriteJson, STestMiniStruct::WriteSimpleJson, STestMiniStruct::FromSimpleJson, STestMiniStruct::Serialize, STestMiniStruct::Equals);
-
-void STestMiniStruct::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STemplateEntityBlueprint::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STestMiniStruct*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iIntValue") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_iIntValue);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fFloatValue") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fFloatValue);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_sText") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_sText);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STemplateEntityBlueprint*>(p_Object);
+	s_Object->~STemplateEntityBlueprint();
 }
+
+ZHMTypeInfo STestMiniStruct::TypeInfo = ZHMTypeInfo("STestMiniStruct", sizeof(STestMiniStruct), alignof(STestMiniStruct), STestMiniStruct::WriteSimpleJson, STestMiniStruct::FromSimpleJson, STestMiniStruct::Serialize, STestMiniStruct::Equals, STestMiniStruct::Destroy);
 
 void STestMiniStruct::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -10798,44 +8227,13 @@ bool STestMiniStruct::operator==(const STestMiniStruct& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo STestStructure::TypeInfo = ZHMTypeInfo("STestStructure", sizeof(STestStructure), alignof(STestStructure), STestStructure::WriteJson, STestStructure::WriteSimpleJson, STestStructure::FromSimpleJson, STestStructure::Serialize, STestStructure::Equals);
-
-void STestStructure::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STestMiniStruct::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<STestStructure*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_fWidth") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fWidth);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fHeight") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fHeight);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fAngle") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fAngle);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_sDescription") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_sDescription);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_Mini") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("STestMiniStruct") << ",\"$val\":";
-	STestMiniStruct::WriteJson(&s_Object->m_Mini, p_Stream);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STestMiniStruct*>(p_Object);
+	s_Object->~STestMiniStruct();
 }
+
+ZHMTypeInfo STestStructure::TypeInfo = ZHMTypeInfo("STestStructure", sizeof(STestStructure), alignof(STestStructure), STestStructure::WriteSimpleJson, STestStructure::FromSimpleJson, STestStructure::Serialize, STestStructure::Equals, STestStructure::Destroy);
 
 void STestStructure::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -10916,32 +8314,13 @@ bool STestStructure::operator==(const STestStructure& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SUIOptionValue::TypeInfo = ZHMTypeInfo("SUIOptionValue", sizeof(SUIOptionValue), alignof(SUIOptionValue), SUIOptionValue::WriteJson, SUIOptionValue::WriteSimpleJson, SUIOptionValue::FromSimpleJson, SUIOptionValue::Serialize, SUIOptionValue::Equals);
-
-void SUIOptionValue::WriteJson(void* p_Object, std::ostream& p_Stream)
+void STestStructure::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SUIOptionValue*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("key") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->key);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("type") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint8") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->type);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("intValue") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->intValue);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<STestStructure*>(p_Object);
+	s_Object->~STestStructure();
 }
+
+ZHMTypeInfo SUIOptionValue::TypeInfo = ZHMTypeInfo("SUIOptionValue", sizeof(SUIOptionValue), alignof(SUIOptionValue), SUIOptionValue::WriteSimpleJson, SUIOptionValue::FromSimpleJson, SUIOptionValue::Serialize, SUIOptionValue::Equals, SUIOptionValue::Destroy);
 
 void SUIOptionValue::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11002,31 +8381,13 @@ bool SUIOptionValue::operator==(const SUIOptionValue& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SUIOptionsData::TypeInfo = ZHMTypeInfo("SUIOptionsData", sizeof(SUIOptionsData), alignof(SUIOptionsData), SUIOptionsData::WriteJson, SUIOptionsData::WriteSimpleJson, SUIOptionsData::FromSimpleJson, SUIOptionsData::Serialize, SUIOptionsData::Equals);
-
-void SUIOptionsData::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SUIOptionValue::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SUIOptionsData*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("data") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<SUIOptionValue>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->data.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->data[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("SUIOptionValue") << ",\"$val\":";
-		SUIOptionValue::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->data.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SUIOptionValue*>(p_Object);
+	s_Object->~SUIOptionValue();
 }
+
+ZHMTypeInfo SUIOptionsData::TypeInfo = ZHMTypeInfo("SUIOptionsData", sizeof(SUIOptionsData), alignof(SUIOptionsData), SUIOptionsData::WriteSimpleJson, SUIOptionsData::FromSimpleJson, SUIOptionsData::Serialize, SUIOptionsData::Equals, SUIOptionsData::Destroy);
 
 void SUIOptionsData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11095,26 +8456,13 @@ bool SUIOptionsData::operator==(const SUIOptionsData& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SVector2::TypeInfo = ZHMTypeInfo("SVector2", sizeof(SVector2), alignof(SVector2), SVector2::WriteJson, SVector2::WriteSimpleJson, SVector2::FromSimpleJson, SVector2::Serialize, SVector2::Equals);
-
-void SVector2::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SUIOptionsData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SVector2*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("x") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->x);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("y") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->y);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SUIOptionsData*>(p_Object);
+	s_Object->~SUIOptionsData();
 }
+
+ZHMTypeInfo SVector2::TypeInfo = ZHMTypeInfo("SVector2", sizeof(SVector2), alignof(SVector2), SVector2::WriteSimpleJson, SVector2::FromSimpleJson, SVector2::Serialize, SVector2::Equals, SVector2::Destroy);
 
 void SVector2::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11168,15 +8516,13 @@ bool SVector2::operator==(const SVector2& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo SWeaponSoundDefs::TypeInfo = ZHMTypeInfo("SWeaponSoundDefs", sizeof(SWeaponSoundDefs), alignof(SWeaponSoundDefs), SWeaponSoundDefs::WriteJson, SWeaponSoundDefs::WriteSimpleJson, SWeaponSoundDefs::FromSimpleJson, SWeaponSoundDefs::Serialize, SWeaponSoundDefs::Equals);
-
-void SWeaponSoundDefs::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SVector2::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SWeaponSoundDefs*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SVector2*>(p_Object);
+	s_Object->~SVector2();
 }
+
+ZHMTypeInfo SWeaponSoundDefs::TypeInfo = ZHMTypeInfo("SWeaponSoundDefs", sizeof(SWeaponSoundDefs), alignof(SWeaponSoundDefs), SWeaponSoundDefs::WriteSimpleJson, SWeaponSoundDefs::FromSimpleJson, SWeaponSoundDefs::Serialize, SWeaponSoundDefs::Equals, SWeaponSoundDefs::Destroy);
 
 void SWeaponSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11217,32 +8563,13 @@ bool SWeaponSoundDefs::operator==(const SWeaponSoundDefs& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZCloseCombatDef_SActorNoise::TypeInfo = ZHMTypeInfo("ZCloseCombatDef.SActorNoise", sizeof(ZCloseCombatDef_SActorNoise), alignof(ZCloseCombatDef_SActorNoise), ZCloseCombatDef_SActorNoise::WriteJson, ZCloseCombatDef_SActorNoise::WriteSimpleJson, ZCloseCombatDef_SActorNoise::FromSimpleJson, ZCloseCombatDef_SActorNoise::Serialize, ZCloseCombatDef_SActorNoise::Equals);
-
-void ZCloseCombatDef_SActorNoise::WriteJson(void* p_Object, std::ostream& p_Stream)
+void SWeaponSoundDefs::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZCloseCombatDef_SActorNoise*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_iSpeak") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("SActorSoundDefs.EDefinition") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_iSpeak)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("SActorSoundDefs.EDefinition", static_cast<int>(s_Object->m_iSpeak))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eAIEvent") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("EAIEventType") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eAIEvent)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAIEventType", static_cast<int>(s_Object->m_eAIEvent))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fAIEventDistance") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fAIEventDistance);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<SWeaponSoundDefs*>(p_Object);
+	s_Object->~SWeaponSoundDefs();
 }
+
+ZHMTypeInfo ZCloseCombatDef_SActorNoise::TypeInfo = ZHMTypeInfo("ZCloseCombatDef.SActorNoise", sizeof(ZCloseCombatDef_SActorNoise), alignof(ZCloseCombatDef_SActorNoise), ZCloseCombatDef_SActorNoise::WriteSimpleJson, ZCloseCombatDef_SActorNoise::FromSimpleJson, ZCloseCombatDef_SActorNoise::Serialize, ZCloseCombatDef_SActorNoise::Equals, ZCloseCombatDef_SActorNoise::Destroy);
 
 void ZCloseCombatDef_SActorNoise::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11303,37 +8630,13 @@ bool ZCloseCombatDef_SActorNoise::operator==(const ZCloseCombatDef_SActorNoise& 
 	return true;
 }
 
-ZHMTypeInfo ZComponentCreator::TypeInfo = ZHMTypeInfo("ZComponentCreator", sizeof(ZComponentCreator), alignof(ZComponentCreator), ZComponentCreator::WriteJson, ZComponentCreator::WriteSimpleJson, ZComponentCreator::FromSimpleJson, ZComponentCreator::Serialize, ZComponentCreator::Equals);
-
-void ZComponentCreator::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZCloseCombatDef_SActorNoise::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZComponentCreator*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_sComponentName") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_sComponentName);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aArgs") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<ZVariant>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aArgs.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aArgs[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("ZVariant") << ",\"$val\":";
-		ZVariant::WriteJson(&s_Item0, p_Stream);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aArgs.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZCloseCombatDef_SActorNoise*>(p_Object);
+	s_Object->~ZCloseCombatDef_SActorNoise();
 }
+
+ZHMTypeInfo ZComponentCreator::TypeInfo = ZHMTypeInfo("ZComponentCreator", sizeof(ZComponentCreator), alignof(ZComponentCreator), ZComponentCreator::WriteSimpleJson, ZComponentCreator::FromSimpleJson, ZComponentCreator::Serialize, ZComponentCreator::Equals, ZComponentCreator::Destroy);
 
 void ZComponentCreator::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11410,42 +8713,13 @@ bool ZComponentCreator::operator==(const ZComponentCreator& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZCurve::TypeInfo = ZHMTypeInfo("ZCurve", sizeof(ZCurve), alignof(ZCurve), ZCurve::WriteJson, ZCurve::WriteSimpleJson, ZCurve::FromSimpleJson, ZCurve::Serialize, ZCurve::Equals);
-
-void ZCurve::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZComponentCreator::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZCurve*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("data") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<TFixedArray<float32>>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->data.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->data[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("TFixedArray<float32>") << ",\"$val\":";
-		p_Stream << "[";
-		for (size_t i = 0; i < s_Item0.size(); ++i)
-		{
-			auto& s_Item1 = s_Item0[i];
-			p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-			p_Stream << simdjson::as_json_string(s_Item1);
-			p_Stream << "}";
-
-			if (i < s_Item0.size() - 1)
-				p_Stream << ",";
-		}
-		p_Stream << "]";
-		p_Stream << "}";
-
-		if (i < s_Object->data.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZComponentCreator*>(p_Object);
+	s_Object->~ZComponentCreator();
 }
+
+ZHMTypeInfo ZCurve::TypeInfo = ZHMTypeInfo("ZCurve", sizeof(ZCurve), alignof(ZCurve), ZCurve::WriteSimpleJson, ZCurve::FromSimpleJson, ZCurve::Serialize, ZCurve::Equals, ZCurve::Destroy);
 
 void ZCurve::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11531,20 +8805,13 @@ bool ZCurve::operator==(const ZCurve& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZEntityID::TypeInfo = ZHMTypeInfo("ZEntityID", sizeof(ZEntityID), alignof(ZEntityID), ZEntityID::WriteJson, ZEntityID::WriteSimpleJson, ZEntityID::FromSimpleJson, ZEntityID::Serialize, ZEntityID::Equals);
-
-void ZEntityID::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZCurve::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZEntityID*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_sStr") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_sStr);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZCurve*>(p_Object);
+	s_Object->~ZCurve();
 }
+
+ZHMTypeInfo ZEntityID::TypeInfo = ZHMTypeInfo("ZEntityID", sizeof(ZEntityID), alignof(ZEntityID), ZEntityID::WriteSimpleJson, ZEntityID::FromSimpleJson, ZEntityID::Serialize, ZEntityID::Equals, ZEntityID::Destroy);
 
 void ZEntityID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11592,15 +8859,13 @@ bool ZEntityID::operator==(const ZEntityID& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZEntityRef::TypeInfo = ZHMTypeInfo("ZEntityRef", sizeof(ZEntityRef), alignof(ZEntityRef), ZEntityRef::WriteJson, ZEntityRef::WriteSimpleJson, ZEntityRef::FromSimpleJson, ZEntityRef::Serialize, ZEntityRef::Equals);
-
-void ZEntityRef::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZEntityID::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZEntityRef*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZEntityID*>(p_Object);
+	s_Object->~ZEntityID();
 }
+
+ZHMTypeInfo ZEntityRef::TypeInfo = ZHMTypeInfo("ZEntityRef", sizeof(ZEntityRef), alignof(ZEntityRef), ZEntityRef::WriteSimpleJson, ZEntityRef::FromSimpleJson, ZEntityRef::Serialize, ZEntityRef::Equals, ZEntityRef::Destroy);
 
 void ZEntityRef::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11641,26 +8906,13 @@ bool ZEntityRef::operator==(const ZEntityRef& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZEntityReference::TypeInfo = ZHMTypeInfo("ZEntityReference", sizeof(ZEntityReference), alignof(ZEntityReference), ZEntityReference::WriteJson, ZEntityReference::WriteSimpleJson, ZEntityReference::FromSimpleJson, ZEntityReference::Serialize, ZEntityReference::Equals);
-
-void ZEntityReference::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZEntityRef::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZEntityReference*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_EntityID") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZEntityID") << ",\"$val\":";
-	ZEntityID::WriteJson(&s_Object->m_EntityID, p_Stream);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_sExposedEntity") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("ZString") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_sExposedEntity);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZEntityRef*>(p_Object);
+	s_Object->~ZEntityRef();
 }
+
+ZHMTypeInfo ZEntityReference::TypeInfo = ZHMTypeInfo("ZEntityReference", sizeof(ZEntityReference), alignof(ZEntityReference), ZEntityReference::WriteSimpleJson, ZEntityReference::FromSimpleJson, ZEntityReference::Serialize, ZEntityReference::Equals, ZEntityReference::Destroy);
 
 void ZEntityReference::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11720,20 +8972,13 @@ bool ZEntityReference::operator==(const ZEntityReference& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZGameTime::TypeInfo = ZHMTypeInfo("ZGameTime", sizeof(ZGameTime), alignof(ZGameTime), ZGameTime::WriteJson, ZGameTime::WriteSimpleJson, ZGameTime::FromSimpleJson, ZGameTime::Serialize, ZGameTime::Equals);
-
-void ZGameTime::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZEntityReference::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZGameTime*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nTicks") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("int64") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nTicks);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZEntityReference*>(p_Object);
+	s_Object->~ZEntityReference();
 }
+
+ZHMTypeInfo ZGameTime::TypeInfo = ZHMTypeInfo("ZGameTime", sizeof(ZGameTime), alignof(ZGameTime), ZGameTime::WriteSimpleJson, ZGameTime::FromSimpleJson, ZGameTime::Serialize, ZGameTime::Equals, ZGameTime::Destroy);
 
 void ZGameTime::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11780,15 +9025,13 @@ bool ZGameTime::operator==(const ZGameTime& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZHitmanMorphemePostProcessorFiberWireCallback::TypeInfo = ZHMTypeInfo("ZHitmanMorphemePostProcessorFiberWireCallback", sizeof(ZHitmanMorphemePostProcessorFiberWireCallback), alignof(ZHitmanMorphemePostProcessorFiberWireCallback), ZHitmanMorphemePostProcessorFiberWireCallback::WriteJson, ZHitmanMorphemePostProcessorFiberWireCallback::WriteSimpleJson, ZHitmanMorphemePostProcessorFiberWireCallback::FromSimpleJson, ZHitmanMorphemePostProcessorFiberWireCallback::Serialize, ZHitmanMorphemePostProcessorFiberWireCallback::Equals);
-
-void ZHitmanMorphemePostProcessorFiberWireCallback::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZGameTime::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZHitmanMorphemePostProcessorFiberWireCallback*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZGameTime*>(p_Object);
+	s_Object->~ZGameTime();
 }
+
+ZHMTypeInfo ZHitmanMorphemePostProcessorFiberWireCallback::TypeInfo = ZHMTypeInfo("ZHitmanMorphemePostProcessorFiberWireCallback", sizeof(ZHitmanMorphemePostProcessorFiberWireCallback), alignof(ZHitmanMorphemePostProcessorFiberWireCallback), ZHitmanMorphemePostProcessorFiberWireCallback::WriteSimpleJson, ZHitmanMorphemePostProcessorFiberWireCallback::FromSimpleJson, ZHitmanMorphemePostProcessorFiberWireCallback::Serialize, ZHitmanMorphemePostProcessorFiberWireCallback::Equals, ZHitmanMorphemePostProcessorFiberWireCallback::Destroy);
 
 void ZHitmanMorphemePostProcessorFiberWireCallback::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11829,15 +9072,13 @@ bool ZHitmanMorphemePostProcessorFiberWireCallback::operator==(const ZHitmanMorp
 	return true;
 }
 
-ZHMTypeInfo ZHitmanMorphemePostProcessorLedgeHangCallback::TypeInfo = ZHMTypeInfo("ZHitmanMorphemePostProcessorLedgeHangCallback", sizeof(ZHitmanMorphemePostProcessorLedgeHangCallback), alignof(ZHitmanMorphemePostProcessorLedgeHangCallback), ZHitmanMorphemePostProcessorLedgeHangCallback::WriteJson, ZHitmanMorphemePostProcessorLedgeHangCallback::WriteSimpleJson, ZHitmanMorphemePostProcessorLedgeHangCallback::FromSimpleJson, ZHitmanMorphemePostProcessorLedgeHangCallback::Serialize, ZHitmanMorphemePostProcessorLedgeHangCallback::Equals);
-
-void ZHitmanMorphemePostProcessorLedgeHangCallback::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZHitmanMorphemePostProcessorFiberWireCallback::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZHitmanMorphemePostProcessorLedgeHangCallback*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZHitmanMorphemePostProcessorFiberWireCallback*>(p_Object);
+	s_Object->~ZHitmanMorphemePostProcessorFiberWireCallback();
 }
+
+ZHMTypeInfo ZHitmanMorphemePostProcessorLedgeHangCallback::TypeInfo = ZHMTypeInfo("ZHitmanMorphemePostProcessorLedgeHangCallback", sizeof(ZHitmanMorphemePostProcessorLedgeHangCallback), alignof(ZHitmanMorphemePostProcessorLedgeHangCallback), ZHitmanMorphemePostProcessorLedgeHangCallback::WriteSimpleJson, ZHitmanMorphemePostProcessorLedgeHangCallback::FromSimpleJson, ZHitmanMorphemePostProcessorLedgeHangCallback::Serialize, ZHitmanMorphemePostProcessorLedgeHangCallback::Equals, ZHitmanMorphemePostProcessorLedgeHangCallback::Destroy);
 
 void ZHitmanMorphemePostProcessorLedgeHangCallback::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11878,15 +9119,13 @@ bool ZHitmanMorphemePostProcessorLedgeHangCallback::operator==(const ZHitmanMorp
 	return true;
 }
 
-ZHMTypeInfo ZInventorySlot::TypeInfo = ZHMTypeInfo("ZInventorySlot", sizeof(ZInventorySlot), alignof(ZInventorySlot), ZInventorySlot::WriteJson, ZInventorySlot::WriteSimpleJson, ZInventorySlot::FromSimpleJson, ZInventorySlot::Serialize, ZInventorySlot::Equals);
-
-void ZInventorySlot::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZHitmanMorphemePostProcessorLedgeHangCallback::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZInventorySlot*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZHitmanMorphemePostProcessorLedgeHangCallback*>(p_Object);
+	s_Object->~ZHitmanMorphemePostProcessorLedgeHangCallback();
 }
+
+ZHMTypeInfo ZInventorySlot::TypeInfo = ZHMTypeInfo("ZInventorySlot", sizeof(ZInventorySlot), alignof(ZInventorySlot), ZInventorySlot::WriteSimpleJson, ZInventorySlot::FromSimpleJson, ZInventorySlot::Serialize, ZInventorySlot::Equals, ZInventorySlot::Destroy);
 
 void ZInventorySlot::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11927,15 +9166,13 @@ bool ZInventorySlot::operator==(const ZInventorySlot& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZPostfilterGraphBaseNode::TypeInfo = ZHMTypeInfo("ZPostfilterGraphBaseNode", sizeof(ZPostfilterGraphBaseNode), alignof(ZPostfilterGraphBaseNode), ZPostfilterGraphBaseNode::WriteJson, ZPostfilterGraphBaseNode::WriteSimpleJson, ZPostfilterGraphBaseNode::FromSimpleJson, ZPostfilterGraphBaseNode::Serialize, ZPostfilterGraphBaseNode::Equals);
-
-void ZPostfilterGraphBaseNode::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZInventorySlot::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZInventorySlot*>(p_Object);
+	s_Object->~ZInventorySlot();
 }
+
+ZHMTypeInfo ZPostfilterGraphBaseNode::TypeInfo = ZHMTypeInfo("ZPostfilterGraphBaseNode", sizeof(ZPostfilterGraphBaseNode), alignof(ZPostfilterGraphBaseNode), ZPostfilterGraphBaseNode::WriteSimpleJson, ZPostfilterGraphBaseNode::FromSimpleJson, ZPostfilterGraphBaseNode::Serialize, ZPostfilterGraphBaseNode::Equals, ZPostfilterGraphBaseNode::Destroy);
 
 void ZPostfilterGraphBaseNode::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -11976,15 +9213,13 @@ bool ZPostfilterGraphBaseNode::operator==(const ZPostfilterGraphBaseNode& p_Othe
 	return true;
 }
 
-ZHMTypeInfo ZPresenceState::TypeInfo = ZHMTypeInfo("ZPresenceState", sizeof(ZPresenceState), alignof(ZPresenceState), ZPresenceState::WriteJson, ZPresenceState::WriteSimpleJson, ZPresenceState::FromSimpleJson, ZPresenceState::Serialize, ZPresenceState::Equals);
-
-void ZPresenceState::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZPostfilterGraphBaseNode::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZPresenceState*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Object);
+	s_Object->~ZPostfilterGraphBaseNode();
 }
+
+ZHMTypeInfo ZPresenceState::TypeInfo = ZHMTypeInfo("ZPresenceState", sizeof(ZPresenceState), alignof(ZPresenceState), ZPresenceState::WriteSimpleJson, ZPresenceState::FromSimpleJson, ZPresenceState::Serialize, ZPresenceState::Equals, ZPresenceState::Destroy);
 
 void ZPresenceState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12025,15 +9260,13 @@ bool ZPresenceState::operator==(const ZPresenceState& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZRayQueryInput::TypeInfo = ZHMTypeInfo("ZRayQueryInput", sizeof(ZRayQueryInput), alignof(ZRayQueryInput), ZRayQueryInput::WriteJson, ZRayQueryInput::WriteSimpleJson, ZRayQueryInput::FromSimpleJson, ZRayQueryInput::Serialize, ZRayQueryInput::Equals);
-
-void ZRayQueryInput::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZPresenceState::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZRayQueryInput*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZPresenceState*>(p_Object);
+	s_Object->~ZPresenceState();
 }
+
+ZHMTypeInfo ZRayQueryInput::TypeInfo = ZHMTypeInfo("ZRayQueryInput", sizeof(ZRayQueryInput), alignof(ZRayQueryInput), ZRayQueryInput::WriteSimpleJson, ZRayQueryInput::FromSimpleJson, ZRayQueryInput::Serialize, ZRayQueryInput::Equals, ZRayQueryInput::Destroy);
 
 void ZRayQueryInput::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12074,15 +9307,13 @@ bool ZRayQueryInput::operator==(const ZRayQueryInput& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZResourcePtr::TypeInfo = ZHMTypeInfo("ZResourcePtr", sizeof(ZResourcePtr), alignof(ZResourcePtr), ZResourcePtr::WriteJson, ZResourcePtr::WriteSimpleJson, ZResourcePtr::FromSimpleJson, ZResourcePtr::Serialize, ZResourcePtr::Equals);
-
-void ZResourcePtr::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZRayQueryInput::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZResourcePtr*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZRayQueryInput*>(p_Object);
+	s_Object->~ZRayQueryInput();
 }
+
+ZHMTypeInfo ZResourcePtr::TypeInfo = ZHMTypeInfo("ZResourcePtr", sizeof(ZResourcePtr), alignof(ZResourcePtr), ZResourcePtr::WriteSimpleJson, ZResourcePtr::FromSimpleJson, ZResourcePtr::Serialize, ZResourcePtr::Equals, ZResourcePtr::Destroy);
 
 void ZResourcePtr::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12123,26 +9354,13 @@ bool ZResourcePtr::operator==(const ZResourcePtr& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZRuntimeResourceID::TypeInfo = ZHMTypeInfo("ZRuntimeResourceID", sizeof(ZRuntimeResourceID), alignof(ZRuntimeResourceID), ZRuntimeResourceID::WriteJson, ZRuntimeResourceID::WriteSimpleJson, ZRuntimeResourceID::FromSimpleJson, ZRuntimeResourceID::Serialize, ZRuntimeResourceID::Equals);
-
-void ZRuntimeResourceID::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZResourcePtr::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZRuntimeResourceID*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_IDHigh") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_IDHigh);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_IDLow") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_IDLow);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZResourcePtr*>(p_Object);
+	s_Object->~ZResourcePtr();
 }
+
+ZHMTypeInfo ZRuntimeResourceID::TypeInfo = ZHMTypeInfo("ZRuntimeResourceID", sizeof(ZRuntimeResourceID), alignof(ZRuntimeResourceID), ZRuntimeResourceID::WriteSimpleJson, ZRuntimeResourceID::FromSimpleJson, ZRuntimeResourceID::Serialize, ZRuntimeResourceID::Equals, ZRuntimeResourceID::Destroy);
 
 void ZRuntimeResourceID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12197,68 +9415,13 @@ bool ZRuntimeResourceID::operator==(const ZRuntimeResourceID& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZSharedSensorDef_SVisibilitySetting::TypeInfo = ZHMTypeInfo("ZSharedSensorDef.SVisibilitySetting", sizeof(ZSharedSensorDef_SVisibilitySetting), alignof(ZSharedSensorDef_SVisibilitySetting), ZSharedSensorDef_SVisibilitySetting::WriteJson, ZSharedSensorDef_SVisibilitySetting::WriteSimpleJson, ZSharedSensorDef_SVisibilitySetting::FromSimpleJson, ZSharedSensorDef_SVisibilitySetting::Serialize, ZSharedSensorDef_SVisibilitySetting::Equals);
-
-void ZSharedSensorDef_SVisibilitySetting::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZRuntimeResourceID::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZSharedSensorDef_SVisibilitySetting*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_eSensitivity") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("EActorPerceptionSensitivity") << ",\"$val\":";
-	p_Stream << "{\"$enumVal\":" << simdjson::as_json_string(static_cast<int64_t>(s_Object->m_eSensitivity)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EActorPerceptionSensitivity", static_cast<int>(s_Object->m_eSensitivity))) << "}";
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fCloseRange") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fCloseRange);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fPeripheralRange") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralRange);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fPeripheralAngle") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralAngle);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fPeripheralHigh") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralHigh);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fPeripheralLow") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fPeripheralLow);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fFocusConeWidthAngle") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeWidthAngle);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fFocusConeHeightAngle") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeHeightAngle);
-	p_Stream << "}";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fFocusConeRange") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fFocusConeRange);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZRuntimeResourceID*>(p_Object);
+	s_Object->~ZRuntimeResourceID();
 }
+
+ZHMTypeInfo ZSharedSensorDef_SVisibilitySetting::TypeInfo = ZHMTypeInfo("ZSharedSensorDef.SVisibilitySetting", sizeof(ZSharedSensorDef_SVisibilitySetting), alignof(ZSharedSensorDef_SVisibilitySetting), ZSharedSensorDef_SVisibilitySetting::WriteSimpleJson, ZSharedSensorDef_SVisibilitySetting::FromSimpleJson, ZSharedSensorDef_SVisibilitySetting::Serialize, ZSharedSensorDef_SVisibilitySetting::Equals, ZSharedSensorDef_SVisibilitySetting::Destroy);
 
 void ZSharedSensorDef_SVisibilitySetting::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12361,15 +9524,13 @@ bool ZSharedSensorDef_SVisibilitySetting::operator==(const ZSharedSensorDef_SVis
 	return true;
 }
 
-ZHMTypeInfo ZSoundBlendCollision::TypeInfo = ZHMTypeInfo("ZSoundBlendCollision", sizeof(ZSoundBlendCollision), alignof(ZSoundBlendCollision), ZSoundBlendCollision::WriteJson, ZSoundBlendCollision::WriteSimpleJson, ZSoundBlendCollision::FromSimpleJson, ZSoundBlendCollision::Serialize, ZSoundBlendCollision::Equals);
-
-void ZSoundBlendCollision::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZSharedSensorDef_SVisibilitySetting::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZSoundBlendCollision*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZSharedSensorDef_SVisibilitySetting*>(p_Object);
+	s_Object->~ZSharedSensorDef_SVisibilitySetting();
 }
+
+ZHMTypeInfo ZSoundBlendCollision::TypeInfo = ZHMTypeInfo("ZSoundBlendCollision", sizeof(ZSoundBlendCollision), alignof(ZSoundBlendCollision), ZSoundBlendCollision::WriteSimpleJson, ZSoundBlendCollision::FromSimpleJson, ZSoundBlendCollision::Serialize, ZSoundBlendCollision::Equals, ZSoundBlendCollision::Destroy);
 
 void ZSoundBlendCollision::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12410,31 +9571,13 @@ bool ZSoundBlendCollision::operator==(const ZSoundBlendCollision& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZSpeakerLevels::TypeInfo = ZHMTypeInfo("ZSpeakerLevels", sizeof(ZSpeakerLevels), alignof(ZSpeakerLevels), ZSpeakerLevels::WriteJson, ZSpeakerLevels::WriteSimpleJson, ZSpeakerLevels::FromSimpleJson, ZSpeakerLevels::Serialize, ZSpeakerLevels::Equals);
-
-void ZSpeakerLevels::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZSoundBlendCollision::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZSpeakerLevels*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_aSpeakerMatrix") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("TArray<float32>") << ",\"$val\":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aSpeakerMatrix.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aSpeakerMatrix[i];
-		p_Stream << "{\"$type\":" << simdjson::as_json_string("float32") << ",\"$val\":";
-		p_Stream << simdjson::as_json_string(s_Item0);
-		p_Stream << "}";
-
-		if (i < s_Object->m_aSpeakerMatrix.size() - 1)
-			p_Stream << ",";
-	}
-	p_Stream << "]";
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZSoundBlendCollision*>(p_Object);
+	s_Object->~ZSoundBlendCollision();
 }
+
+ZHMTypeInfo ZSpeakerLevels::TypeInfo = ZHMTypeInfo("ZSpeakerLevels", sizeof(ZSpeakerLevels), alignof(ZSpeakerLevels), ZSpeakerLevels::WriteSimpleJson, ZSpeakerLevels::FromSimpleJson, ZSpeakerLevels::Serialize, ZSpeakerLevels::Equals, ZSpeakerLevels::Destroy);
 
 void ZSpeakerLevels::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12501,20 +9644,13 @@ bool ZSpeakerLevels::operator==(const ZSpeakerLevels& p_Other) const
 	return true;
 }
 
-ZHMTypeInfo ZTime::TypeInfo = ZHMTypeInfo("ZTime", sizeof(ZTime), alignof(ZTime), ZTime::WriteJson, ZTime::WriteSimpleJson, ZTime::FromSimpleJson, ZTime::Serialize, ZTime::Equals);
-
-void ZTime::WriteJson(void* p_Object, std::ostream& p_Stream)
+void ZSpeakerLevels::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<ZTime*>(p_Object);
-
-	p_Stream << "{";
-	p_Stream << simdjson::as_json_string("m_nValue") << ":";
-	p_Stream << "{\"$type\":" << simdjson::as_json_string("uint64") << ",\"$val\":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nValue);
-	p_Stream << "}";
-
-	p_Stream << "}";
+	auto* s_Object = reinterpret_cast<ZSpeakerLevels*>(p_Object);
+	s_Object->~ZSpeakerLevels();
 }
+
+ZHMTypeInfo ZTime::TypeInfo = ZHMTypeInfo("ZTime", sizeof(ZTime), alignof(ZTime), ZTime::WriteSimpleJson, ZTime::FromSimpleJson, ZTime::Serialize, ZTime::Equals, ZTime::Destroy);
 
 void ZTime::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -12559,5 +9695,11 @@ bool ZTime::operator==(const ZTime& p_Other) const
 	if (m_nValue != p_Other.m_nValue) return false;
 
 	return true;
+}
+
+void ZTime::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZTime*>(p_Object);
+	s_Object->~ZTime();
 }
 

@@ -136,12 +136,8 @@ ResourceMem* GenerateFromMemoryToMemory(void* p_Memory, bool p_GenerateCompatibl
 }
 
 template <class T>
-bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_OutputPath, bool p_Simple, bool p_GenerateCompatible)
+bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_OutputPath, bool p_GenerateCompatible)
 {
-	// TODO: Support non-simple json files.
-	if (!p_Simple)
-		return false;
-	
 	const auto s_JsonFilePath = std::filesystem::absolute(p_JsonFilePath);
 
 	if (!is_regular_file(s_JsonFilePath))
@@ -170,12 +166,8 @@ bool FromJsonFileToResourceFile(const char* p_JsonFilePath, const char* p_Output
 }
 
 template <class T>
-bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength, const char* p_OutputPath, bool p_Simple, bool p_GenerateCompatible)
+bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength, const char* p_OutputPath, bool p_GenerateCompatible)
 {
-	// TODO: Support non-simple json files.
-	if (!p_Simple)
-		return false;
-
 	// Load the input data as JSON.
 	simdjson::ondemand::parser s_Parser;
 	const auto s_Json = simdjson::padded_string(p_JsonStr, p_JsonStrLength);
@@ -199,12 +191,8 @@ bool FromJsonStringToResourceFile(const char* p_JsonStr, size_t p_JsonStrLength,
 }
 
 template <class T>
-ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_Simple, bool p_GenerateCompatible)
+ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_GenerateCompatible)
 {
-	// TODO: Support non-simple json files.
-	if (!p_Simple)
-		return nullptr;
-	
 	const auto s_JsonFilePath = std::filesystem::absolute(p_JsonFilePath);
 
 	if (!is_regular_file(s_JsonFilePath))
@@ -233,12 +221,8 @@ ResourceMem* FromJsonFileToResourceMem(const char* p_JsonFilePath, bool p_Simple
 }
 
 template <class T>
-ResourceMem* FromJsonStringToResourceMem(const char* p_JsonStr, size_t p_JsonStrLength, bool p_Simple, bool p_GenerateCompatible)
+ResourceMem* FromJsonStringToResourceMem(const char* p_JsonStr, size_t p_JsonStrLength, bool p_GenerateCompatible)
 {
-	// TODO: Support non-simple json files.
-	if (!p_Simple)
-		return nullptr;
-
 	// Load the input data as JSON.
 	simdjson::ondemand::parser s_Parser;
 	const auto s_Json = simdjson::padded_string(p_JsonStr, p_JsonStrLength);

@@ -19,7 +19,7 @@ extern void* ToInMemStructure(const void* p_ResourceData, size_t p_Size);
 extern void FreeJsonString(JsonString* p_JsonString);
 
 template <class T>
-bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Stream, bool p_Simple)
+bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Stream)
 {
 	auto s_StructureData = ToInMemStructure(p_ResourceData, p_Size);
 
@@ -33,29 +33,21 @@ bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Str
 
 	auto* s_Resource = static_cast<T*>(s_StructureData);
 
-	if (p_Simple)
-	{
-		T::WriteSimpleJson(s_Resource, p_Stream);
-		c_aligned_free(s_StructureData);
-
-		return true;
-	}
-
-	T::WriteJson(s_Resource, p_Stream);
+	T::WriteSimpleJson(s_Resource, p_Stream);
 	c_aligned_free(s_StructureData);
 
 	return true;
 }
 
 template <class T>
-bool FromMemoryToJsonFile(const void* p_ResourceData, size_t p_Size, const char* p_OutputFilePath, bool p_Simple)
+bool FromMemoryToJsonFile(const void* p_ResourceData, size_t p_Size, const char* p_OutputFilePath)
 {
 	std::ofstream s_OutputStream(p_OutputFilePath, std::ios::out);
-	return ToJsonStream<T>(p_ResourceData, p_Size, s_OutputStream, p_Simple);
+	return ToJsonStream<T>(p_ResourceData, p_Size, s_OutputStream);
 }
 
 template <class T>
-bool FromResourceFileToJsonFile(const char* p_ResourceFilePath, const char* p_OutputFilePath, bool p_Simple)
+bool FromResourceFileToJsonFile(const char* p_ResourceFilePath, const char* p_OutputFilePath)
 {
 	if (!std::filesystem::is_regular_file(p_ResourceFilePath))
 		return false;
@@ -72,7 +64,7 @@ bool FromResourceFileToJsonFile(const char* p_ResourceFilePath, const char* p_Ou
 
 	s_FileStream.close();
 
-	auto s_Result = FromMemoryToJsonFile<T>(s_FileData, s_FileSize, p_OutputFilePath, p_Simple);
+	auto s_Result = FromMemoryToJsonFile<T>(s_FileData, s_FileSize, p_OutputFilePath);
 
 	free(s_FileData);
 	
@@ -80,11 +72,11 @@ bool FromResourceFileToJsonFile(const char* p_ResourceFilePath, const char* p_Ou
 }
 
 template <class T>
-JsonString* FromMemoryToJsonString(const void* p_ResourceData, size_t p_Size, bool p_Simple)
+JsonString* FromMemoryToJsonString(const void* p_ResourceData, size_t p_Size)
 {
 	std::ostringstream s_Stream;
 
-	if (!ToJsonStream<T>(p_ResourceData, p_Size, s_Stream, p_Simple))
+	if (!ToJsonStream<T>(p_ResourceData, p_Size, s_Stream))
 		return nullptr;
 
 	auto* s_JsonString = new JsonString();
@@ -105,7 +97,7 @@ JsonString* FromMemoryToJsonString(const void* p_ResourceData, size_t p_Size, bo
 }
 
 template <class T>
-JsonString* FromResourceFileToJsonString(const char* p_ResourceFilePath, bool p_Simple)
+JsonString* FromResourceFileToJsonString(const char* p_ResourceFilePath)
 {
 	if (!std::filesystem::is_regular_file(p_ResourceFilePath))
 		return nullptr;
@@ -122,7 +114,7 @@ JsonString* FromResourceFileToJsonString(const char* p_ResourceFilePath, bool p_
 
 	s_FileStream.close();
 
-	auto s_Result = FromMemoryToJsonString<T>(s_FileData, s_FileSize, p_Simple);
+	auto s_Result = FromMemoryToJsonString<T>(s_FileData, s_FileSize);
 
 	free(s_FileData);
 
