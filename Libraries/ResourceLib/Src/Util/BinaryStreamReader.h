@@ -3,6 +3,7 @@
 #include <cassert>
 #include <cstring>
 #include <string>
+#include <stdexcept>
 
 class BinaryStreamReader
 {
@@ -99,6 +100,26 @@ public:
 		ReadBytes(s_String.data(), s_StringLength - 1);
 		Skip(1);
 
+		return s_String;
+	}
+
+	std::string ReadShortString()
+	{
+		const auto s_StringLength = Read<uint16_t>();
+
+		std::string s_String;
+		s_String.resize(s_StringLength);
+
+		ReadBytes(s_String.data(), s_StringLength);
+
+		return s_String;
+	}
+
+	std::string_view ReadShortStringView()
+	{
+		const auto s_StringLength = Read<uint16_t>();
+		const auto s_String = std::string_view(static_cast<const char*>(CurrentPtr()), s_StringLength);
+		Skip(s_StringLength);
 		return s_String;
 	}
 

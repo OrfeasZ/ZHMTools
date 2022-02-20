@@ -30,4 +30,14 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different
 		$<TARGET_FILE:ResourceLib_HM2> $<TARGET_FILE_DIR:ResourceTool>
 	)
+
+	add_custom_command(TARGET ResourceTool POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		$<TARGET_FILE:ResourceLib_HM2016> $<TARGET_FILE_DIR:ResourceTool>
+	)
+
+	add_custom_command(TARGET ResourceTool POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		$<TARGET_FILE:ResourceLib_HMA> $<TARGET_FILE_DIR:ResourceTool>
+	)
 endif()

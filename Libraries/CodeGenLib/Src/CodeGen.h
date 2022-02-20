@@ -52,6 +52,7 @@ private:
 
 	std::ofstream m_PropertyNamesHeaderFile;
 	std::ofstream m_PropertyNamesSourceFile;
+	std::ofstream m_PropertyNamesTextFile;
 
 	std::ofstream m_EnumsHeaderFile;
 	std::ofstream m_EnumsSourceFile;

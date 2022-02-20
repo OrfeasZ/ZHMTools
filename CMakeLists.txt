@@ -42,6 +42,7 @@ if(NOT EMSCRIPTEN)
 	add_subdirectory("Tools/NavTool")
 
 	add_subdirectory("Tools/ModuleInfoParser")
+	add_subdirectory("Tools/PropertyBundler")
 endif()
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")

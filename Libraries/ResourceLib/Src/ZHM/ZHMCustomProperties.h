@@ -9,5 +9,3 @@
 #elif ZHM_TARGET == 2012
 #include <Generated/HMA/ZHMProperties.h>
 #endif
-
-extern ZHMPropertyRegistrar g_CustomPropertyRegistrar;

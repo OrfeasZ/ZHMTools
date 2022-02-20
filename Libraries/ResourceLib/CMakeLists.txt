@@ -57,6 +57,7 @@ set(RESOURCELIB_SOURCES_HM3
 	Src/Generated/HM3/ZHMGen.h
 	Src/Generated/HM3/ZHMProperties.cpp
 	Src/Generated/HM3/ZHMProperties.h
+	Src/Generated/HM3/ZHMPropertyData.cpp
 	Include/ResourceLib_HM3.h
 )
 
@@ -67,6 +68,7 @@ set(RESOURCELIB_SOURCES_HM2
 	Src/Generated/HM2/ZHMGen.h
 	Src/Generated/HM2/ZHMProperties.cpp
 	Src/Generated/HM2/ZHMProperties.h
+	Src/Generated/HM2/ZHMPropertyData.cpp
 	Include/ResourceLib_HM2.h
 )
 
@@ -77,6 +79,7 @@ set(RESOURCELIB_SOURCES_HM2016
 	Src/Generated/HM2016/ZHMGen.h
 	Src/Generated/HM2016/ZHMProperties.cpp
 	Src/Generated/HM2016/ZHMProperties.h
+	Src/Generated/HM2016/ZHMPropertyData.cpp
 	Include/ResourceLib_HM2016.h
 )
 
@@ -87,6 +90,7 @@ set(RESOURCELIB_SOURCES_HMA
 	Src/Generated/HMA/ZHMGen.h
 	Src/Generated/HMA/ZHMProperties.cpp
 	Src/Generated/HMA/ZHMProperties.h
+	Src/Generated/HMA/ZHMPropertyData.cpp
 	Include/ResourceLib_HMA.h
 )
 

@@ -45,6 +45,12 @@ public:
 		Write<uint8_t>(0);
 	}
 
+	void WriteShortString(const std::string& p_String)
+	{
+		Write<uint16_t>(p_String.size());
+		WriteBinary(p_String.data(), p_String.size());
+	}
+
 	[[nodiscard]]
 	std::string ToString() const
 	{

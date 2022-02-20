@@ -65865,7 +65865,7 @@ void STemplateFactorySubEntity::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		SEntityTemplateProperty s_ArrayItem0{};
+		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
 		s_Object.propertyValues[s_Index0++] = s_ArrayItem0;
 	}
@@ -65878,7 +65878,7 @@ void STemplateFactorySubEntity::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		SEntityTemplateProperty s_ArrayItem0{};
+		SEntityTemplateProperty s_ArrayItem0;
 		SEntityTemplateProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
 		s_Object.postInitPropertyValues[s_Index0++] = s_ArrayItem0;
 	}
@@ -65891,7 +65891,7 @@ void STemplateFactorySubEntity::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		SEntityTemplatePlatformSpecificProperty s_ArrayItem0{};
+		SEntityTemplatePlatformSpecificProperty s_ArrayItem0;
 		SEntityTemplatePlatformSpecificProperty::FromSimpleJson(s_Item0, &s_ArrayItem0);
 		s_Object.platformSpecificPropertyValues[s_Index0++] = s_ArrayItem0;
 	}
@@ -66089,7 +66089,7 @@ void STemplateEntityFactory::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		STemplateFactorySubEntity s_ArrayItem0{};
+		STemplateFactorySubEntity s_ArrayItem0;
 		STemplateFactorySubEntity::FromSimpleJson(s_Item0, &s_ArrayItem0);
 		s_Object.subEntities[s_Index0++] = s_ArrayItem0;
 	}
@@ -66102,7 +66102,7 @@ void STemplateEntityFactory::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		SEntityTemplatePropertyOverride s_ArrayItem0{};
+		SEntityTemplatePropertyOverride s_ArrayItem0;
 		SEntityTemplatePropertyOverride::FromSimpleJson(s_Item0, &s_ArrayItem0);
 		s_Object.propertyOverrides[s_Index0++] = s_ArrayItem0;
 	}

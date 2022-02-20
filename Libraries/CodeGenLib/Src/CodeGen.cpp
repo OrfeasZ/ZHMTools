@@ -26,6 +26,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 
 	m_PropertyNamesHeaderFile.open(p_OutputPath / "ZHMProperties.h", std::ofstream::out);
 	m_PropertyNamesSourceFile.open(p_OutputPath / "ZHMProperties.cpp", std::ofstream::out);
+	m_PropertyNamesTextFile.open(p_OutputPath / "ZHMProperties.txt", std::ofstream::out);
 
 	m_EnumsHeaderFile.open(p_OutputPath / "ZHMEnums.h", std::ofstream::out);
 	m_EnumsSourceFile.open(p_OutputPath / "ZHMEnums.cpp", std::ofstream::out);
@@ -118,6 +119,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 
 	m_PropertyNamesHeaderFile.close();
 	m_PropertyNamesSourceFile.close();
+	m_PropertyNamesTextFile.close();
 
 	printf("Finished generating code.\n");
 }
@@ -1184,18 +1186,25 @@ void CodeGen::GeneratePropertyNamesFiles()
 	m_PropertyNamesHeaderFile << "{" << std::endl;
 	m_PropertyNamesHeaderFile << "public:" << std::endl;
 	m_PropertyNamesHeaderFile << "\tstatic std::string PropertyToString(uint32_t p_PropertyId);" << std::endl;
+	m_PropertyNamesHeaderFile << std::endl;
+	m_PropertyNamesHeaderFile << "private:" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic void RegisterProperties();" << std::endl;
 	m_PropertyNamesHeaderFile << "\tstatic std::unordered_map<uint32_t, std::string_view>* g_Properties;" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic const uint8_t g_PropertiesData[];" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic const size_t g_PropertiesDataSize;" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic const size_t g_PropertiesCount;" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic const uint8_t g_CustomPropertiesData[];" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic const size_t g_CustomPropertiesDataSize;" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic const size_t g_CustomPropertiesCount;" << std::endl;
+	m_PropertyNamesHeaderFile << std::endl;
+	m_PropertyNamesHeaderFile << "\tfriend class ZHMPropertyRegistrar;" << std::endl;
 	m_PropertyNamesHeaderFile << "};" << std::endl;
 	m_PropertyNamesHeaderFile << std::endl;
 	m_PropertyNamesHeaderFile << "struct ZHMPropertyRegistrar" << std::endl;
 	m_PropertyNamesHeaderFile << "{" << std::endl;
-	m_PropertyNamesHeaderFile << "\tZHMPropertyRegistrar(const std::vector<std::string_view>& p_Properties)" << std::endl;
+	m_PropertyNamesHeaderFile << "\tZHMPropertyRegistrar()" << std::endl;
 	m_PropertyNamesHeaderFile << "\t{" << std::endl;
-	m_PropertyNamesHeaderFile << "\t\tif (ZHMProperties::g_Properties == nullptr)" << std::endl;
-	m_PropertyNamesHeaderFile << "\t\t\tZHMProperties::g_Properties = new std::unordered_map<uint32_t, std::string_view>();" << std::endl;
-	m_PropertyNamesHeaderFile << std::endl;
-	m_PropertyNamesHeaderFile << "\t\tfor (auto& s_Property : p_Properties)" << std::endl;
-	m_PropertyNamesHeaderFile << "\t\t\t(*ZHMProperties::g_Properties)[Hash::Crc32(s_Property)] = s_Property;" << std::endl;
+	m_PropertyNamesHeaderFile << "\t\tZHMProperties::RegisterProperties();" << std::endl;
 	m_PropertyNamesHeaderFile << "\t}" << std::endl;
 	m_PropertyNamesHeaderFile << "};" << std::endl;
 	m_PropertyNamesHeaderFile << std::endl;
@@ -1210,6 +1219,7 @@ void CodeGen::GeneratePropertyNamesFiles()
 	m_PropertyNamesSourceFile << " */" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
 	m_PropertyNamesSourceFile << "#include \"ZHMProperties.h\"" << std::endl;
+	m_PropertyNamesSourceFile << "#include <Util/BinaryStreamReader.h>" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
 	m_PropertyNamesSourceFile << "std::unordered_map<uint32_t, std::string_view>* ZHMProperties::g_Properties = nullptr;" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
@@ -1223,15 +1233,33 @@ void CodeGen::GeneratePropertyNamesFiles()
 	m_PropertyNamesSourceFile << "\treturn std::string(it->second);" << std::endl;
 	m_PropertyNamesSourceFile << "};" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
-	m_PropertyNamesSourceFile << "ZHMPropertyRegistrar g_PropertyRegistrar = ZHMPropertyRegistrar({" << std::endl;
+	m_PropertyNamesSourceFile << "void ZHMProperties::RegisterProperties()" << std::endl;
+	m_PropertyNamesSourceFile << "{" << std::endl;
+	m_PropertyNamesSourceFile << "\tg_Properties = new std::unordered_map<uint32_t, std::string_view>();" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "\tBinaryStreamReader s_PropertyReader(g_PropertiesData, g_PropertiesDataSize);" << std::endl;
+	m_PropertyNamesSourceFile << "\tBinaryStreamReader s_CustomPropertyReader(g_CustomPropertiesData, g_CustomPropertiesDataSize);" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "\tfor (size_t i = 0; i < g_PropertiesCount; ++i)" << std::endl;
+	m_PropertyNamesSourceFile << "\t{" << std::endl;
+	m_PropertyNamesSourceFile << "\t\tconst auto s_PropertyId = s_PropertyReader.Read<uint32_t>();" << std::endl;
+	m_PropertyNamesSourceFile << "\t\t(*g_Properties)[s_PropertyId] = s_PropertyReader.ReadShortStringView();" << std::endl;
+	m_PropertyNamesSourceFile << "\t}" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "\tfor (size_t i = 0; i < g_CustomPropertiesCount; ++i)" << std::endl;
+	m_PropertyNamesSourceFile << "\t{" << std::endl;
+	m_PropertyNamesSourceFile << "\t\tconst auto s_PropertyId = s_CustomPropertyReader.Read<uint32_t>();" << std::endl;
+	m_PropertyNamesSourceFile << "\t\t(*g_Properties)[s_PropertyId] = s_CustomPropertyReader.ReadShortStringView();" << std::endl;
+	m_PropertyNamesSourceFile << "\t}" << std::endl;
+	m_PropertyNamesSourceFile << "}" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "ZHMPropertyRegistrar g_PropertyRegistrar = ZHMPropertyRegistrar();" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
 
 	for (auto& s_Property : m_PropertyNames)
 	{
-		m_PropertyNamesSourceFile << "\t\"" << s_Property << "\"," << std::endl;
+		m_PropertyNamesTextFile << s_Property << std::endl;
 	}
-
-	m_PropertyNamesSourceFile << "});" << std::endl;
-	m_PropertyNamesSourceFile << std::endl;
 }
 
 void CodeGen::GenerateEnumsFiles()

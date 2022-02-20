@@ -20,18 +20,25 @@ class ZHMProperties
 {
 public:
 	static std::string PropertyToString(uint32_t p_PropertyId);
+
+private:
+	static void RegisterProperties();
 	static std::unordered_map<uint32_t, std::string_view>* g_Properties;
+	static const uint8_t g_PropertiesData[];
+	static const size_t g_PropertiesDataSize;
+	static const size_t g_PropertiesCount;
+	static const uint8_t g_CustomPropertiesData[];
+	static const size_t g_CustomPropertiesDataSize;
+	static const size_t g_CustomPropertiesCount;
+
+	friend class ZHMPropertyRegistrar;
 };
 
 struct ZHMPropertyRegistrar
 {
-	ZHMPropertyRegistrar(const std::vector<std::string_view>& p_Properties)
+	ZHMPropertyRegistrar()
 	{
-		if (ZHMProperties::g_Properties == nullptr)
-			ZHMProperties::g_Properties = new std::unordered_map<uint32_t, std::string_view>();
-
-		for (auto& s_Property : p_Properties)
-			(*ZHMProperties::g_Properties)[Hash::Crc32(s_Property)] = s_Property;
+		ZHMProperties::RegisterProperties();
 	}
 };
 
