@@ -116,7 +116,7 @@ struct ZHMArena
 
 				if (p_Offset > it->first && p_Offset <= it->first + s_Size)
 				{
-					return reinterpret_cast<T*>(s_Memory);
+					return reinterpret_cast<T*>(reinterpret_cast<zhmptr_t>(s_Memory) + (p_Offset - it->first));
 				}
 
 				if (it->first + s_Size < p_Offset)
