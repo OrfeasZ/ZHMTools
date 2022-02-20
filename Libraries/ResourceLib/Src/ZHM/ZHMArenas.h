@@ -25,6 +25,7 @@ struct ZHMArena
 	uint32_t m_Id;
 	zhmptr_t m_Size;
 	void* m_Buffer;
+	bool m_Used;
 	std::vector<IZHMTypeInfo*> m_TypeRegistry;
 	std::unordered_map<IZHMTypeInfo*, uint32_t> m_TypeIndices;
 	mutable std::shared_mutex m_Lock;
@@ -36,7 +37,8 @@ struct ZHMArena
 	ZHMArena() :
 		m_Id(0),
 		m_Size(0),
-		m_Buffer(nullptr)
+		m_Buffer(nullptr),
+		m_Used(false)
 	{		
 	}
 
@@ -200,6 +202,27 @@ struct ZHMArenas
 	[[nodiscard]] static inline ZHMArena* GetHeapArena()
 	{
 		return &g_Arenas[ZHMHeapArenaId];
+	}
+
+	[[nodiscard]] static inline ZHMArena* GetUnusedArena()
+	{
+		// Try to find the first unused arena, ignoring the heap arena.
+		for (size_t i = 0; i < ZHMArenaCount - 1; ++i)
+		{
+			if (g_Arenas[i].m_Used)
+				continue;
+
+			return &g_Arenas[i];
+		}
+		
+		// TODO: Instead of making this return null just make it block until
+		// an arena becomes available.
+		return nullptr;
+	}
+
+	static inline void ReturnArena(ZHMArena* p_Arena)
+	{
+		p_Arena->m_Used = false;
 	}
 
 private:

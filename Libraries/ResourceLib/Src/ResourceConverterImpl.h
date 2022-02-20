@@ -12,19 +12,29 @@
 #include <Util/PortableIntrinsics.h>
 #include <Util/BinaryStreamReader.h>
 
+#include <ZHM/ZHMArenas.h>
+
 extern void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
 extern void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
 extern void ProcessRuntimeResourceIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
-extern void* ToInMemStructure(const void* p_ResourceData, size_t p_Size);
+extern void* ToInMemStructure(const void* p_ResourceData, size_t p_Size, ZHMArena* p_Arena);
 extern void FreeJsonString(JsonString* p_JsonString);
 
 template <class T>
 bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Stream)
 {
-	auto s_StructureData = ToInMemStructure(p_ResourceData, p_Size);
+	auto* s_Arena = ZHMArenas::GetUnusedArena();
+
+	if (!s_Arena)
+		return false;
+
+	auto s_StructureData = ToInMemStructure(p_ResourceData, p_Size, s_Arena);
 
 	if (!s_StructureData)
+	{
+		ZHMArenas::ReturnArena(s_Arena);
 		return false;
+	}
 
 	// Everything should be properly reconstructed in memory by now
 	// so just cast and convert this type to json.
@@ -35,6 +45,8 @@ bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Str
 
 	T::WriteSimpleJson(s_Resource, p_Stream);
 	c_aligned_free(s_StructureData);
+
+	ZHMArenas::ReturnArena(s_Arena);
 
 	return true;
 }
