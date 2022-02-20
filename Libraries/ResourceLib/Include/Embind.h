@@ -31,14 +31,14 @@ bool IsResourceTypeSupported(const std::string& p_ResourceType)
 	return ZHM_TARGET_FUNC(IsResourceTypeSupported)(p_ResourceType.c_str());
 }
 
-val ConvertResourceToJson(const std::string& p_ResourceType, const std::string& p_ResourceData, bool p_Simple)
+val ConvertResourceToJson(const std::string& p_ResourceType, const std::string& p_ResourceData)
 {
 	auto* s_Converter = ZHM_TARGET_FUNC(GetConverterForResource)(p_ResourceType.c_str());
 
 	if (s_Converter == nullptr)
 		return val::null();
 
-	auto* s_Result = s_Converter->FromMemoryToJsonString(p_ResourceData.data(), p_ResourceData.size(), p_Simple);
+	auto* s_Result = s_Converter->FromMemoryToJsonString(p_ResourceData.data(), p_ResourceData.size());
 	
 	if (s_Result == nullptr)
 		return val::null();
