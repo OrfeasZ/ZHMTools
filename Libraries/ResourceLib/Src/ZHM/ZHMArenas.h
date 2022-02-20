@@ -60,7 +60,7 @@ struct ZHMArena
 		assert(p_Size > 0);
 		assert(m_Id == ZHMHeapArenaId);
 
-		const auto s_AlignedSize = p_Size + (sizeof(zhmptr_t) - (p_Size % sizeof(zhmptr_t)));
+		const zhmptr_t s_AlignedSize = p_Size + (sizeof(zhmptr_t) - (p_Size % sizeof(zhmptr_t)));
 
 		// TODO: This is shit because we'll run out of space eventually.
 		// We should instead look for space that's been freed up.
@@ -93,6 +93,11 @@ struct ZHMArena
 		free(s_Memory);
 
 		m_Allocations.erase(it);
+
+		// If after freeing we only have one allocation then we can reset the size
+		// since nothing other than the empty string thing is allocated.
+		if (m_Allocations.size() == 1)
+			m_Size = 1 + (sizeof(zhmptr_t) - (1 % sizeof(zhmptr_t)));
 	}
 
 	template <class T>
@@ -124,7 +129,7 @@ struct ZHMArena
 
 				if (p_Offset > it->first && p_Offset <= it->first + s_Size)
 				{
-					return reinterpret_cast<T*>(reinterpret_cast<zhmptr_t>(s_Memory) + (p_Offset - it->first));
+					return reinterpret_cast<T*>(reinterpret_cast<uintptr_t>(s_Memory) + (p_Offset - it->first));
 				}
 
 				if (it->first + s_Size < p_Offset)
