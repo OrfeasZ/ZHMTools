@@ -42,7 +42,10 @@ public:
 
 	~TArray()
 	{
-		if (capacity() == 0 || m_pBegin.IsNull() || m_pBegin.GetArenaId() != ZHMHeapArenaId)
+		for (size_t i = 0; i < size(); ++i)
+			operator[](i).~T();
+
+		if (m_pBegin.IsNull() || m_pBegin.GetArenaId() != ZHMHeapArenaId)
 			return;
 
 		auto* s_Arena = ZHMArenas::GetHeapArena();
@@ -64,12 +67,14 @@ public:
 		if (capacity() == p_Size)
 			return;
 
+		assert(p_Size > 0);
+
 		// We only support resizing once.
 		assert(capacity() == 0);
 
 		const auto s_AllocationSize = sizeof(T) * p_Size;
 		auto* s_Arena = ZHMArenas::GetHeapArena();
-	
+		
 		const auto s_AllocationOffset = s_Arena->Allocate(s_AllocationSize);
 		auto* s_ArrayData = s_Arena->GetObjectAtOffset<void>(s_AllocationOffset);
 

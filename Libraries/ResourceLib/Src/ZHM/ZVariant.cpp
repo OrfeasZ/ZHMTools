@@ -10,31 +10,6 @@
 
 #include "External/simdjson_helpers.h"
 
-void ZVariant::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto s_Object = static_cast<ZVariant*>(p_Object);
-
-	if (s_Object->GetType() == nullptr)
-	{
-		fprintf(stderr, "[WARNING] Could not write ZVariant with null type\n");
-		p_Stream << "null";
-		return;
-	}
-	
-	if (s_Object->GetType()->IsDummy())
-	{
-		fprintf(stderr, "[WARNING] Could not write ZVariant with unknown type '%s'.\n", s_Object->GetType()->TypeName().c_str());
-		p_Stream << "null";
-		return;
-	}
-
-	p_Stream << "{\"$type\":" << simdjson::as_json_string(s_Object->GetType()->TypeName()) << ",\"$val\"" << ":";
-
-	s_Object->GetType()->WriteJson(s_Object->m_pData.GetPtr(), p_Stream);
-
-	p_Stream << "}";
-}
-
 void ZVariant::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto s_Object = static_cast<ZVariant*>(p_Object);
@@ -162,4 +137,25 @@ bool ZVariant::Equals(void* p_Left, void* p_Right)
 	auto* s_Right = reinterpret_cast<ZVariant*>(p_Right);
 
 	return *s_Left == *s_Right;
+}
+
+
+void ZVariant::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZVariant*>(p_Object);
+	s_Object->~ZVariant();
+}
+
+ZVariant::~ZVariant()
+{
+	if (m_pData.IsNull())
+		return;
+
+	GetType()->DestroyObject(m_pData.GetPtr());
+
+	if (m_pData.GetArenaId() != ZHMHeapArenaId)
+		return;
+	
+	auto* s_Arena = ZHMArenas::GetHeapArena();
+	s_Arena->Free(m_pData.GetPtrOffset());
 }

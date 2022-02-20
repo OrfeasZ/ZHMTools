@@ -24,6 +24,7 @@ public:
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
 	
 	ZString()
 	{
@@ -72,7 +73,7 @@ public:
 
 	~ZString()
 	{
-		if (is_allocated())
+		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
 		{
 			auto* s_HeapArena = ZHMArenas::GetHeapArena();
 			s_HeapArena->Free(m_pChars.GetPtrOffset());
@@ -81,9 +82,22 @@ public:
 
 	ZString& operator=(const ZString& p_Other)
 	{
+		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
+		{
+			auto* s_HeapArena = ZHMArenas::GetHeapArena();
+			s_HeapArena->Free(m_pChars.GetPtrOffset());
+		}
+
 		if (p_Other.is_allocated())
 		{
-			allocate(p_Other.c_str(), p_Other.size());
+			if (p_Other.size() == 0)
+			{
+				SetEmptyStr();
+			}
+			else
+			{
+				allocate(p_Other.c_str(), p_Other.size());
+			}
 		}
 		else
 		{
@@ -124,7 +138,7 @@ public:
 
 	inline bool is_allocated() const
 	{
-		return (m_nLength & 0xC0000000) == 0;
+		return m_pChars.GetArenaId() == ZHMHeapArenaId;
 	}
 
 	bool startsWith(const ZString& p_Other) const
@@ -151,8 +165,16 @@ public:
 private:
 	void allocate(const char* p_Str, size_t p_Size)
 	{
-		m_nLength = static_cast<uint32_t>(p_Size);
+		assert(p_Size > 0);
 
+		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
+		{
+			auto* s_HeapArena = ZHMArenas::GetHeapArena();
+			s_HeapArena->Free(m_pChars.GetPtrOffset());
+		}
+
+		m_nLength = static_cast<uint32_t>(p_Size);
+		
 		auto* s_HeapArena = ZHMArenas::GetHeapArena();
 		const auto s_CharsOffset = s_HeapArena->Allocate(p_Size);
 		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, s_CharsOffset);

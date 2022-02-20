@@ -5,63 +5,6 @@
 #include "ZHMInt.h"
 #include "External/simdjson_helpers.h"
 
-/*std::string JsonStr(const ZString& p_String)
-{
-	std::ostringstream o;
-
-	o << "\"";
-
-	for (int32_t i = 0; i < p_String.size(); ++i)
-	{
-		auto c = p_String.c_str()[i];
-
-		if (c == '"')
-		{
-			o << "\\\"";
-		}
-		else if (c == '\\')
-		{
-			o << "\\\\";
-		}
-		else if (c == '/')
-		{
-			o << "\\/";
-		}
-		else if (c == '\b')
-		{
-			o << "\\b";
-		}
-		else if (c == '\f')
-		{
-			o << "\\f";
-		}
-		else if (c == '\n')
-		{
-			o << "\\n";
-		}
-		else if (c == '\r')
-		{
-			o << "\\r";
-		}
-		else if (c == '\t')
-		{
-			o << "\\t";
-		}
-		else if (c >= 0 && c <= 0x1F)
-		{
-			o << "\\u" << std::hex << std::setw(4) << std::setfill('0') << static_cast<int>(c);
-		}
-		else
-		{
-			o << c;
-		}
-	}
-
-	o << "\"";
-
-	return o.str();
-}*/
-
 void ZString::WriteJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<ZString*>(p_Object);
@@ -120,4 +63,10 @@ bool ZString::Equals(void* p_Left, void* p_Right)
 	auto* s_Right = reinterpret_cast<ZString*>(p_Right);
 
 	return *s_Left == *s_Right;
+}
+
+void ZString::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZString*>(p_Object);
+	s_Object->~ZString();
 }

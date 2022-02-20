@@ -31,11 +31,6 @@ public:
 	}
 	
 public:
-	void WriteJson(void* p_Object, std::ostream& p_Stream) override
-	{
-		p_Stream << "{\"$enumVal\":" << static_cast<int>(*reinterpret_cast<int32_t*>(p_Object)) << ",\"$enumValName\":" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object))) << "}";
-	}
-	
 	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
@@ -76,6 +71,11 @@ public:
 		return false;
 	}
 
+	void DestroyObject(void* p_Object) override
+	{
+		// No-op.
+	}
+
 private:
 	std::string m_TypeName;
 };
@@ -88,30 +88,7 @@ public:
 	{		
 	}
 	
-public:
-	void WriteJson(void* p_Object, std::ostream& p_Stream) override
-	{
-		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
-		
-		auto* s_Array = reinterpret_cast<TArray<void*>*>(p_Object);
-		auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Array->end()) - reinterpret_cast<uintptr_t>(s_Array->begin())) / s_AlignedSize;
-		
-		p_Stream << "[";
-
-		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Array->begin());
-
-		for (size_t i = 0; i < s_ElementCount; ++i)
-		{
-			m_ElementType->WriteJson(reinterpret_cast<void*>(s_ObjectPtr), p_Stream);
-			s_ObjectPtr += s_AlignedSize;
-
-			if (i < s_ElementCount - 1)
-				p_Stream << ",";
-		}
-
-		p_Stream << "]";
-	}
-	
+public:	
 	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
 		auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
@@ -271,6 +248,29 @@ public:
 		return true;
 	}
 
+	void DestroyObject(void* p_Object) override
+	{
+		auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
+
+		const auto s_AlignedSize = c_get_aligned(m_ElementType->Size(), m_ElementType->Alignment());
+
+		const auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->end()) - reinterpret_cast<uintptr_t>(s_Object->begin())) / s_AlignedSize;
+
+		auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->begin());
+		
+		for (size_t i = 0; i < s_ElementCount; ++i)
+		{
+			m_ElementType->DestroyObject(reinterpret_cast<void*>(s_ObjectPtr));
+			s_ObjectPtr += s_AlignedSize;
+		}
+		
+		if (!s_Object->m_pBegin.IsNull() && s_Object->m_pBegin.GetArenaId() == ZHMHeapArenaId)
+		{
+			auto* s_Arena = ZHMArenas::GetHeapArena();
+			s_Arena->Free(s_Object->m_pBegin.GetPtrOffset());
+		}
+	}
+
 private:
 	IZHMTypeInfo* m_ElementType;
 };
@@ -279,11 +279,6 @@ class ZHMDummyTypeInfo : public IZHMTypeInfo
 {
 public:
 	ZHMDummyTypeInfo(const std::string& p_TypeName) : m_TypeName(p_TypeName) {}
-
-	void WriteJson(void* p_Object, std::ostream& p_Stream) override
-	{
-		throw std::runtime_error("Cannot serialize value with dummy type info.");
-	}
 
 	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
@@ -323,6 +318,11 @@ public:
 	bool Equals(void* p_Left, void* p_Right) const override
 	{
 		return false;
+	}
+
+	void DestroyObject(void* p_Object) override
+	{
+		// No-op.
 	}
 
 private:
@@ -382,12 +382,6 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(std::string_view p_Name)
 {
 	return GetTypeByName(std::string(p_Name.data(), p_Name.size()));
-}
-
-void TypeID::WriteJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Stream << simdjson::as_json_string(s_Object->m_pTypeID->TypeName());
 }
 
 void TypeID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
