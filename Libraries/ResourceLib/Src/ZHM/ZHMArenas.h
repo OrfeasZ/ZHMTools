@@ -6,6 +6,7 @@
 #include <vector>
 #include <tuple>
 #include <cstring>
+#include <shared_mutex>
 
 #include "ZHMInt.h"
 
@@ -26,6 +27,7 @@ struct ZHMArena
 	void* m_Buffer;
 	std::vector<IZHMTypeInfo*> m_TypeRegistry;
 	std::unordered_map<IZHMTypeInfo*, uint32_t> m_TypeIndices;
+	mutable std::shared_mutex m_Lock;
 
 	typedef std::map<zhmptr_t, std::tuple<void*, zhmptr_t>> AllocationMap_t;
 
@@ -53,6 +55,8 @@ struct ZHMArena
 
 	[[nodiscard]] zhmptr_t Allocate(zhmptr_t p_Size)
 	{
+		std::unique_lock s_Guard(m_Lock);
+
 		assert(p_Size > 0);
 		assert(m_Id == ZHMHeapArenaId);
 
@@ -76,6 +80,8 @@ struct ZHMArena
 
 	void Free(zhmptr_t p_Ptr)
 	{
+		std::unique_lock s_Guard(m_Lock);
+
 		assert(m_Id == ZHMHeapArenaId);
 
 		const auto it = m_Allocations.find(p_Ptr);
@@ -92,6 +98,8 @@ struct ZHMArena
 	template <class T>
 	[[nodiscard]] T* GetObjectAtOffset(zhmptr_t p_Offset) const
 	{
+		std::shared_lock s_Guard(m_Lock);
+
 		assert(p_Offset <= m_Size);
 
 		if (m_Id == ZHMHeapArenaId)
