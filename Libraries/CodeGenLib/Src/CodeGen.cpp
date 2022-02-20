@@ -356,50 +356,6 @@ void CodeGen::GenerateEnum(STypeID* p_Type)
 	m_Enums[s_Type->m_pTypeName] = s_Enum;
 }
 
-void GenerateArrayJsonWriter(STypeID* p_ElementType, std::ostream& p_Stream, const std::string& p_ValueName, int p_Depth = 0, const std::string& p_Indentation = "")
-{
-	p_Stream << p_Indentation << "\tp_Stream << \"[\";" << std::endl;
-
-	p_Stream << p_Indentation << "\tfor (size_t i = 0; i < " << p_ValueName << ".size(); ++i)" << std::endl;
-	p_Stream << p_Indentation << "\t{" << std::endl;
-	p_Stream << p_Indentation << "\t\tauto& s_Item" << p_Depth << " = " << p_ValueName << "[i];" << std::endl;
-
-	auto s_ArrayType = reinterpret_cast<IArrayType*>(p_ElementType->typeInfo());
-	auto s_ArrayTypeName = std::string(s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName);
-
-	p_Stream << p_Indentation << "\t\tp_Stream << \"{\\\"$type\\\":\" << simdjson::as_json_string(\"" << s_ArrayTypeName << "\") << \",\\\"$val\\\":\";" << std::endl;
-
-	if (s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName == std::string("ZString"))
-	{
-		p_Stream << p_Indentation << "\t\tp_Stream << simdjson::as_json_string(s_Item" << p_Depth << ");" << std::endl;
-	}
-	else if (s_ArrayType->m_pArrayElementType->typeInfo()->isEnum())
-	{
-		p_Stream << p_Indentation << "\t\tp_Stream << \"{\\\"$enumVal\\\":\" << simdjson::as_json_string(static_cast<int64_t>(s_Item" << p_Depth << ")) << \",\\\"$enumValName\\\":\" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(\"" << s_ArrayTypeName << "\", static_cast<int>(s_Item" << p_Depth << "))) << \"}\";" << std::endl;
-	}
-	else if (s_ArrayType->m_pArrayElementType->typeInfo()->isArray() || s_ArrayType->m_pArrayElementType->typeInfo()->isFixedArray())
-	{
-		GenerateArrayJsonWriter(s_ArrayType->m_pArrayElementType, p_Stream, "s_Item" + std::to_string(p_Depth), p_Depth + 1, p_Indentation + "\t");
-	}
-	else if (s_ArrayType->m_pArrayElementType->typeInfo()->isPrimitive())
-	{
-		p_Stream << p_Indentation << "\t\tp_Stream << simdjson::as_json_string(s_Item" << p_Depth << ");" << std::endl;
-	}
-	else
-	{
-		p_Stream << p_Indentation << "\t\t" << NormalizeName(s_ArrayType->m_pArrayElementType) << "::WriteJson(&s_Item" << p_Depth << ", p_Stream);" << std::endl;
-	}
-
-	p_Stream << p_Indentation << "\t\tp_Stream << \"}\";" << std::endl;
-	p_Stream << std::endl;
-	p_Stream << p_Indentation << "\t\tif (i < " << p_ValueName << ".size() - 1)" << std::endl;
-	p_Stream << p_Indentation << "\t\t\tp_Stream << \",\";" << std::endl;
-
-	p_Stream << p_Indentation << "\t}" << std::endl;
-
-	p_Stream << p_Indentation << "\tp_Stream << \"]\";" << std::endl;
-}
-
 void GenerateArraySimpleJsonWriter(STypeID* p_ElementType, std::ostream& p_Stream, const std::string& p_ValueName, int p_Depth = 0, const std::string& p_Indentation = "")
 {
 	p_Stream << p_Indentation << "\tp_Stream << \"[\";" << std::endl;
@@ -623,11 +579,11 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	s_HeaderStream << s_Indent << "public:" << std::endl;
 
 	s_HeaderStream << s_Indent << "\tstatic ZHMTypeInfo TypeInfo;" << std::endl;
-	s_HeaderStream << s_Indent << "\tstatic void WriteJson(void* p_Object, std::ostream& p_Stream);" << std::endl;
 	s_HeaderStream << s_Indent << "\tstatic void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);" << std::endl;
 	s_HeaderStream << s_Indent << "\tstatic void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);" << std::endl;
 	s_HeaderStream << s_Indent << "\tstatic void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);" << std::endl;
 	s_HeaderStream << s_Indent << "\tstatic bool Equals(void* p_Left, void* p_Right);" << std::endl;
+	s_HeaderStream << s_Indent << "\tstatic void Destroy(void* p_Object);" << std::endl;
 	s_HeaderStream << std::endl;
 	s_HeaderStream << s_Indent << "\tbool operator==(const " << s_NormalizedName << "& p_Other) const;" << std::endl;
 	s_HeaderStream << s_Indent << "\tbool operator!=(const " << s_NormalizedName << "& p_Other) const { return !(*this == p_Other); }" << std::endl;
@@ -741,74 +697,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 	std::ostringstream s_SourceStream;
 
-	s_SourceStream << "ZHMTypeInfo " << s_NormalizedName << "::TypeInfo = ZHMTypeInfo(\"" << s_TypeName << "\", sizeof(" << s_NormalizedName << "), alignof(" << s_NormalizedName << "), " << s_NormalizedName << "::WriteJson, " << s_NormalizedName << "::WriteSimpleJson, " << s_NormalizedName << "::FromSimpleJson, " << s_NormalizedName << "::Serialize, " << s_NormalizedName << "::Equals);" << std::endl;
-	s_SourceStream << std::endl;
-
-	s_SourceStream << "void " << s_NormalizedName << "::WriteJson(void* p_Object, std::ostream& p_Stream)" << std::endl;
-	s_SourceStream << "{" << std::endl;
-
-	// TODO: Support for inherited classes.
-
-	s_SourceStream << "\tauto* s_Object = reinterpret_cast<" << s_NormalizedName << "*>(p_Object);" << std::endl;
-	s_SourceStream << std::endl;
-
-	s_SourceStream << "\tp_Stream << \"{\";" << std::endl;
-
-	/*s_SourceStream << "\tp_Stream << \"\\\"$id\\\":\" << simdjson::get_obj_id(s_Object)";
-
-	if (s_Type->m_nPropertyCount > 0)
-		s_SourceStream << " << \",\"";
-
-	s_SourceStream << ";";
-	s_SourceStream << std::endl;*/
-
-	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
-	{
-		auto s_Prop = s_Type->m_pProperties[i];
-		auto s_PropTypeName = std::string(s_Prop.m_pType->typeInfo()->m_pTypeName);
-
-		if (s_PropTypeName == std::string("TArray"))
-			continue;
-
-		std::string s_PropName = GetPropName(s_Prop);
-
-		s_SourceStream << "\tp_Stream << simdjson::as_json_string(\"" << s_PropName << "\") << \":\";" << std::endl;
-
-		s_SourceStream << "\tp_Stream << \"{\\\"$type\\\":\" << simdjson::as_json_string(\"" << s_PropTypeName << "\") << \",\\\"$val\\\":\";" << std::endl;
-
-		if (s_Prop.m_pType->typeInfo()->m_pTypeName == std::string("ZString"))
-		{
-			s_SourceStream << "\tp_Stream << simdjson::as_json_string(s_Object->" << s_PropName << ");" << std::endl;
-		}
-		else if (s_Prop.m_pType->typeInfo()->isEnum())
-		{
-			s_SourceStream << "\tp_Stream << \"{\\\"$enumVal\\\":\" << simdjson::as_json_string(static_cast<int64_t>(s_Object->" << s_PropName << ")) << \",\\\"$enumValName\\\":\" << simdjson::as_json_string(ZHMEnums::GetEnumValueName(\"" << s_PropTypeName << "\", static_cast<int>(s_Object->" << s_PropName << "))) << \"}\";" << std::endl;
-		}
-		else if (s_Prop.m_pType->typeInfo()->isArray() || s_Prop.m_pType->typeInfo()->isFixedArray())
-		{
-			GenerateArrayJsonWriter(s_Prop.m_pType, s_SourceStream, "s_Object->" + s_PropName);
-		}
-		else if (s_Prop.m_pType->typeInfo()->isPrimitive())
-		{
-			s_SourceStream << "\tp_Stream << simdjson::as_json_string(s_Object->" << s_PropName << ");" << std::endl;
-		}
-		else
-		{
-			s_SourceStream << "\t" << NormalizeName(s_Prop.m_pType) << "::WriteJson(&s_Object->" << s_PropName << ", p_Stream);" << std::endl;
-		}
-
-		s_SourceStream << "\tp_Stream << \"}\";" << std::endl;
-
-		if (i < s_Type->m_nPropertyCount - 1)
-		{
-			s_SourceStream << "\tp_Stream << \",\";" << std::endl;
-		}
-
-		s_SourceStream << std::endl;
-	}
-
-	s_SourceStream << "\tp_Stream << \"}\";" << std::endl;
-	s_SourceStream << "}" << std::endl;
+	s_SourceStream << "ZHMTypeInfo " << s_NormalizedName << "::TypeInfo = ZHMTypeInfo(\"" << s_TypeName << "\", sizeof(" << s_NormalizedName << "), alignof(" << s_NormalizedName << "), " << s_NormalizedName << "::WriteSimpleJson, " << s_NormalizedName << "::FromSimpleJson, " << s_NormalizedName << "::Serialize, " << s_NormalizedName << "::Equals, " << s_NormalizedName << "::Destroy);" << std::endl;
 	s_SourceStream << std::endl;
 
 	s_SourceStream << "void " << s_NormalizedName << "::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)" << std::endl;
@@ -1013,6 +902,12 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	s_SourceStream << "}" << std::endl;
 	s_SourceStream << std::endl;
 
+	s_SourceStream << "void " << s_NormalizedName << "::Destroy(void* p_Object)" << std::endl;
+	s_SourceStream << "{" << std::endl;
+	s_SourceStream << "\tauto* s_Object = reinterpret_cast<" << s_NormalizedName << "*>(p_Object);" << std::endl;
+	s_SourceStream << "\ts_Object->~" << s_NormalizedName << "();" << std::endl;
+	s_SourceStream << "}" << std::endl;
+	s_SourceStream << std::endl;
 
 	s_SourceStream.flush();
 
