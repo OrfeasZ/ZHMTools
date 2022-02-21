@@ -12,22 +12,41 @@
 
 	let selectedGame = null;
 
-	const HM3 = await LoadHM3();
-	const HM2 = await LoadHM2();
-	const HM2016 = await LoadHM2016();
-	const HMA = await LoadHMA();
+	let HM3 = null;
+	let HM2 = null;
+	let HM2016 = null;
+	let HMA = null;
 
-	const selectGame = (game) => {
+	const selectGame = async (game) => {
 		game = game.toLowerCase();
+
+		domGameSelector.style.display = 'none';
+		domLoading.style.display = 'block';
 
 		// Set the correct game module.
 		if (game === 'hm3') {
+			if (HM3 === null) {
+				HM3 = await LoadHM3();
+			}
+
 			selectedGame = HM3;
 		} else if (game === 'hm2') {
+			if (HM2 === null) {
+				HM2 = await LoadHM2();
+			}
+			
 			selectedGame = HM2;
 		} else if (game === 'hm2016') {
+			if (HM2016 === null) {
+				HM2016 = await LoadHM2016();
+			}
+			
 			selectedGame = HM2016;
 		} else if (game === 'hma') {
+			if (HMA === null) {
+				HMA = await LoadHMA();
+			}
+			
 			selectedGame = HMA;
 		} else {
 			// Invalid game.
@@ -40,6 +59,7 @@
 		history.pushState({}, '', newUrl);
 
 		// Show the converter dialog.
+		domLoading.style.display = 'none';
 		domGameSelector.style.display = 'none';
 		domResourceConverter.style.display = 'block';
 	};
