@@ -1,0 +1,247 @@
+:root {
+	--face: #be9d66;
+	--lowlight: #111;
+	--side: #896c3b;
+	--side-dark: #120e08;
+	--coin-size: 7rem;
+	--coin-face: url('/hitCoin.png');
+}
+
+/***
+	The new CSS reset - version 1.4.9 (last updated 11.2.2022)
+	GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+	Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+	- The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+	all: unset;
+	display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+	cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+	list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+	max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+	border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+	white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+	-webkit-appearance: revert;
+	appearance: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+	all: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+	display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]) {
+	-moz-user-modify: read-write;
+	-webkit-user-modify: read-write;
+	overflow-wrap: break-word;
+	-webkit-line-break: after-white-space;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+	-webkit-user-drag: element;
+}
+
+/* main styles */
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background-color: #08090b;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: Roboto, sans-serif;
+	color: #ffffff;
+}
+
+#loading-coin {
+	height: var(--coin-size);
+	width: var(--coin-size);
+	margin: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#loading-coin::before {
+	content: '';
+	display: block;
+	position: relative;
+	height: var(--coin-size);
+	width: var(--coin-size);
+	border-radius: 50%;
+	background-color: var(--face);
+	animation: spin 1s linear infinite;
+	background-image: var(--coin-face);
+	background-size: 100% 100%;
+	background-position: center;
+	background-blend-mode: overlay;
+	filter: saturate(0);
+	animation-delay: -0.5s;
+}
+
+#game-selector, #resource-converter {
+	display: none;
+}
+
+.dialog {
+	width: 745px;
+}
+
+.dialog-content {
+	background: #2d3038;
+	padding: 50px 20px 80px 20px;
+}
+
+.dialog-content h1 {
+	text-transform: uppercase;
+	font-size: 40px;
+	font-weight: 900;
+	margin-bottom: 50px;
+}
+
+.dialog-content p {
+	font-size: 18px;
+	font-weight: 300;
+	margin-bottom: 12px;
+}
+
+.dialog-content p:last-child {
+	margin-bottom: 0;
+}
+
+.dialog-actions button {
+	width: 100%;
+	display: block;
+	height: 65px;
+	margin-top: 12px;
+	background: #2d3038;
+	font-size: 21px;
+	text-transform: uppercase;
+	padding: 0 20px;
+	cursor: pointer;
+}
+
+.dialog-actions button:hover {
+	background: #fa000e;
+}
+
+.dialog-actions.horizontal {
+	display: flex;
+	justify-content: space-between;
+}
+
+.dialog-actions.horizontal button {
+	height: auto;
+	margin-right: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	padding: 20px 0;
+}
+
+.dialog-actions.horizontal button:last-child {
+	margin-right: 0;
+}
+
+.drop-zone * {
+	pointer-events: none;
+}
+
+.drop-zone img {
+	max-width: 109px;
+	margin-bottom: 12px;
+}
+
+.drop-zone .over {
+	display: none;
+}
+
+.drop-zone.over {
+	background: #fa000e;
+}
+
+.drop-zone.over .normal {
+	display: none;
+}
+
+.drop-zone.over .over {
+	display: inline;
+}
+
+/* animation definitions */
+
+@keyframes spin {
+	0% {
+		width: var(--coin-size);
+		box-shadow: 0 0 0 var(--side-dark);
+		animation-timing-function: ease-in;
+	}
+	49.999% {
+		width: 0.1rem;
+		box-shadow: 0.05rem 0 0 var(--side), 0.1rem 0 0 var(--side), 0.15rem 0 0 var(--side), 0.2rem 0 0 var(--side), 0.25rem 0 0 var(--side), 0.3rem 0 0 var(--side), 0.35rem 0 0 var(--side), 0.4rem 0 0 var(--side), 0.45rem 0 0 var(--side), 0.5rem 0 0 var(--side), 0.55rem 0 0 var(--side), 0.6rem 0 0 var(--side), 0.65rem 0 0 var(--side), 0.7rem 0 0 var(--side), 0.75rem 0 0 var(--side);
+		transform: translateX(-0.375rem);
+		background-color: var(--lowlight);
+		animation-timing-function: linear;
+	}
+	50.001% {
+		width: 0.1rem;
+		box-shadow: -0.05rem 0 0 var(--side), -0.1rem 0 0 var(--side), -0.15rem 0 0 var(--side), -0.2rem 0 0 var(--side), -0.25rem 0 0 var(--side), -0.3rem 0 0 var(--side), -0.35rem 0 0 var(--side), -0.4rem 0 0 var(--side), -0.45rem 0 0 var(--side), -0.5rem 0 0 var(--side), -0.55rem 0 0 var(--side), -0.6rem 0 0 var(--side), -0.65rem 0 0 var(--side), -0.7rem 0 0 var(--side), -0.75rem 0 0 var(--side);
+		transform: translateX(0.375rem);
+		background-color: var(--lowlight);
+		animation-timing-function: ease-out;
+	}
+	100% {
+		width: var(--coin-size);
+		box-shadow: 0 0 0 var(--side-dark);
+	}
+}
