@@ -1,6 +1,9 @@
+
 # ZHMTools
 
 A collection of various tools and libraries for the Hitman game engine, Glacier.
+
+![Build status](https://github.com/OrfeasZ/ZHMTools/actions/workflows/build.yml/badge.svg) [![Download latest release](https://img.shields.io/github/v/release/OrfeasZ/ZHMTools?include_prereleases)](https://github.com/OrfeasZ/ZHMTools/releases/latest)
 
 ## Libraries
 
@@ -16,6 +19,7 @@ Currently supported games and resource types:
 | Hitman 2 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB` |
 | Hitman 2016 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB` |
 | Hitman Absolution* | `TEMP`, `TBLU`, `AIRG`, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `WSGB` |
+
 *`*` Experimental*
 
 ### [CodeGenLib](/Libraries/CodeGenLib)
