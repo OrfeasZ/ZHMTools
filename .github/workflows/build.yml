@@ -66,8 +66,8 @@ jobs:
         Copy-Item CodeGen.pdb -Destination _codegen/
         Copy-Item CodeGenLib.dll -Destination _codegen/
         Copy-Item CodeGenLib.pdb -Destination _codegen/
-        Copy-Item ResourceBundler.exe -Destination _codegen/
-        Copy-Item ResourceBundler.pdb -Destination _codegen/
+        Copy-Item PropertyBundler.exe -Destination _codegen/
+        Copy-Item PropertyBundler.pdb -Destination _codegen/
         Copy-Item ../LICENSE -Destination _codegen/
 
     - name: Copy ResourceLib artifacts
