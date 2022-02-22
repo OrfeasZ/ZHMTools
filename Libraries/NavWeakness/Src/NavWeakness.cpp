@@ -9,25 +9,6 @@
 
 #include "NavPower.h"
 
-/*void PrintNav02(const NavMeshUnk02Element* p_Element, const std::string& p_Indent = "")
-{
-	if (p_Element->IsUnk03())
-	{
-		printf((p_Indent + "========\n").c_str());
-		printf((p_Indent + "Unk03: %d\n").c_str(), p_Element->GetUnk03Value());
-		return;
-	}
-
-	printf((p_Indent + "========\n").c_str());
-	printf((p_Indent + "Axis: %d\n").c_str(), p_Element->GetAxis());
-	printf((p_Indent + "Unk00: %f\n").c_str(), p_Element->m_Unk00);
-	printf((p_Indent + "Unk01: %f\n").c_str(), p_Element->m_Unk01);
-	printf((p_Indent + "Next:\n").c_str());
-	PrintNav02(p_Element->GetNext(), p_Indent + "\t");
-	printf((p_Indent + "Other:\n").c_str());
-	PrintNav02(p_Element->GetOther(), p_Indent + "\t");
-}*/
-
 // Outputs the navmesh in a human readable format
 extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 {
