@@ -193,10 +193,6 @@ extern "C" void OutputNavMesh_VIEWER(const char *p_NavMeshPath)
 
 	const auto s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
 
-	// We calculate the checksum now as we alter the data when loading the NavMesh below
-	// In future there will be a way to calculate it from the modified data, this will do for now
-	const uint32_t s_Checksum = NavPower::CalculateChecksum(reinterpret_cast<void *>(s_FileStartPtr + sizeof(NavPower::Binary::Header)), (s_FileSize - sizeof(NavPower::Binary::Header)));
-
 	NavPower::NavMesh s_NavMesh((uintptr_t)s_FileData, s_FileSize);
 
 	printf(
