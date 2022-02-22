@@ -12,12 +12,12 @@ const mapSelector = document.getElementById('map-selector');
 const checkRadii = document.getElementById('check-radii');
 const checkCenters = document.getElementById('check-centers');
 const checkFaces = document.getElementById('check-faces');
-const checkLines = document.getElementById('check-lines');
-const checkMarkedVertices = document.getElementById('check-marked-vertices');
-const checkWeirdVertices = document.getElementById('check-weird-vertices');
-const checkAABB = document.getElementById('check-aabb');
+const checkEdges = document.getElementById('check-edges');
+const checkBasisVertices = document.getElementById('check-basis-vertices');
+const checkPortalVertices = document.getElementById('check-portal-vertices');
+const checkBBox = document.getElementById('check-bbox');
 const checkNumbers = document.getElementById('check-numbers');
-const checkUnknown = document.getElementById('check-unknown');
+const checkKDTree = document.getElementById('check-kdtree');
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -44,7 +44,7 @@ function renderFace(edges, color) {
     }
 }
 
-function renderWeirdEdges(edges) {
+function renderPortalVert(edges) {
     for (const edge of edges) {
         if (edge[3] !== 1) {
             continue;
@@ -63,7 +63,7 @@ function renderWeirdEdges(edges) {
     }
 }
 
-function renderOutline(edges) {
+function renderEdges(edges) {
     const points = [];
 
     for (const edge of edges) {
@@ -102,7 +102,7 @@ function renderSurfaceCenter(centerX, centerY, centerZ) {
     scene.add(circle);
 }
 
-function renderMarkedVertex(faceIdx, vertex) {
+function renderBasisVert(faceIdx, vertex) {
     const geometry = new THREE.CircleGeometry(0.1, 5);
     const material = new THREE.MeshBasicMaterial({ color: 0xff00ff, side: THREE.DoubleSide });
 
@@ -163,16 +163,16 @@ function renderSurface(i, surface) {
         renderFace(vertices, faceColor);
     }
     
-    if (checkLines.checked) {
-        renderOutline(vertices);
+    if (checkEdges.checked) {
+        renderEdges(vertices);
     }
 
-    if (checkMarkedVertices.checked) {
-        renderMarkedVertex(i, vertices[vertexIndex]);
+    if (checkBasisVertices.checked) {
+        renderBasisVert(i, vertices[vertexIndex]);
     }
 
-    if (checkWeirdVertices.checked) {
-        renderWeirdEdges(vertices);
+    if (checkPortalVertices.checked) {
+        renderPortalVert(vertices);
     }
 
     if (checkCenters.checked) {
@@ -184,22 +184,11 @@ function renderSurface(i, surface) {
     }
 }
 
-function renderAABB(unk) {
+function renderBBox(unk) {
     const box = new THREE.Box3(new THREE.Vector3(unk[1], unk[2] + 0.01, unk[0]), new THREE.Vector3(unk[4], unk[5] + 0.01, unk[3]));
 
     const helper = new THREE.Box3Helper(box, 0xff00ff);
     scene.add(helper);
-}
-
-function renderUnknownPoint(pointX, pointY, pointZ) {
-    const geometry = new THREE.CircleGeometry(0.1, 5);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
-
-    const circle = new THREE.Mesh(geometry, material);
-    circle.position.set(pointX, pointY, pointZ);
-    circle.rotation.set(1.5708, 0, 0);
-
-    scene.add(circle);
 }
 
 camera.position.set(-40, 50, 80);
@@ -226,51 +215,26 @@ function reRender() {
 
     console.log('Rendering ' + selectedMap);
 
-    if (checkAABB.checked) {
-        renderAABB(Surfaces[selectedMap][0]);
+    if (checkBBox.checked) {
+        renderBBox(Areas[selectedMap][0]);
     }
 
-    for (let i = 1; i < Surfaces[selectedMap].length; ++i) {
-        const surface = Surfaces[selectedMap][i];
+    for (let i = 1; i < Areas[selectedMap].length; ++i) {
+        const surface = Areas[selectedMap][i];
         renderSurface(i, surface);
     }
 
-    if (checkUnknown.checked) {
-        const points = [];
-
-        const currentPoint = [0.0, 0.0];
-
-        for (const point of Unk02[selectedMap]) {
-            if (point.length === 0) {
-                continue;
-            }
-
-            if (point[2] === 0) {
-                renderUnknownPoint(point[0], 0, point[1]);
-            } else if (point[2] === 1) {
-                renderUnknownPoint(point[0], point[1], 0);
-            } else {
-                renderUnknownPoint(0, point[0], point[1]);
-            }
-            //renderUnknownPoint(currentPoint[0], 0, currentPoint[1]);
-            //points.push(new THREE.Vector3(currentPoint[0], 0, currentPoint[1]));
-
-            //currentPoint[0] += point[0];
-            //currentPoint[1] += point[1];
+    if (checkKDTree.checked) {
+        for (const bbox of KDTree[selectedMap])
+        {
+            renderBBox(bbox);
         }
-
-        const geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff });
-        const line = new THREE.Line(geometry, lineMaterial);
-
-        scene.add(line);
     }
 }
 
 let hasSelection = false;
 
-for (const mapName in Surfaces) {
+for (const mapName in Areas) {
     const optionElement = document.createElement('option');
     optionElement.innerHTML = mapName;
 
@@ -288,9 +252,9 @@ mapSelector.addEventListener('change', () => reRender());
 checkRadii.addEventListener('change', () => reRender());
 checkCenters.addEventListener('change', () => reRender());
 checkFaces.addEventListener('change', () => reRender());
-checkLines.addEventListener('change', () => reRender());
-checkMarkedVertices.addEventListener('change', () => reRender());
-checkWeirdVertices.addEventListener('change', () => reRender());
-checkAABB.addEventListener('change', () => reRender());
+checkEdges.addEventListener('change', () => reRender());
+checkBasisVertices.addEventListener('change', () => reRender());
+checkPortalVertices.addEventListener('change', () => reRender());
+checkBBox.addEventListener('change', () => reRender());
 checkNumbers.addEventListener('change', () => reRender());
-checkUnknown.addEventListener('change', () => reRender());
+checkKDTree.addEventListener('change', () => reRender());
