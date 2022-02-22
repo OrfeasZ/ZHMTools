@@ -19,7 +19,8 @@ extern "C"
 {
 #endif
 
-	NAVWEAKNESS_API void ParseNavMesh(const char* p_NavMeshPath);
+	NAVWEAKNESS_API void OutputNavMesh_HUMAN(const char* p_NavMeshPath);
+	NAVWEAKNESS_API void OutputNavMesh_VIEWER(const char* p_NavMeshPath);
 
 #ifdef __cplusplus
 }

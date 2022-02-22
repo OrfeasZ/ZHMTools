@@ -2,6 +2,8 @@
 
 set(NAVWEAKNESS_HEADERS
 	Include/NavWeakness.h
+	Include/Vec3.h
+	Include/NavPower.h
 )
 
 set(NAVWEAKNESS_SOURCES
