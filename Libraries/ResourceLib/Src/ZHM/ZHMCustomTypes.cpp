@@ -317,3 +317,116 @@ void SAudioStateBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serial
 	ZString::Serialize(&s_Object->m_sGroupName, p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_sGroupName));
 	TArray<ZString>::Serialize(&s_Object->m_aStates, p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_aStates));
 }
+
+ZHMTypeInfo SUIControlBlueprintPin::TypeInfo = ZHMTypeInfo("SUIControlBlueprintPin", sizeof(SUIControlBlueprintPin), alignof(SUIControlBlueprintPin), WriteSimpleJson, FromSimpleJson, Serialize);
+
+void SUIControlBlueprintPin::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	p_Stream << "{";
+
+	auto s_Object = static_cast<SUIControlBlueprintPin*>(p_Object);
+
+	p_Stream << "\"m_nUnk00\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk00) << ",";
+	p_Stream << "\"m_nUnk01\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk01) << ",";
+	p_Stream << "\"m_sName\"" << ":" << simdjson::as_json_string(s_Object->m_sName);
+
+	p_Stream << "}";
+}
+
+void SUIControlBlueprintPin::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SUIControlBlueprintPin s_Object;
+
+
+	*reinterpret_cast<SUIControlBlueprintPin*>(p_Target) = s_Object;
+}
+
+void SUIControlBlueprintPin::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = static_cast<SUIControlBlueprintPin*>(p_Object);
+	
+}
+
+ZHMTypeInfo SUIControlBlueprintProperty::TypeInfo = ZHMTypeInfo("SUIControlBlueprintProperty", sizeof(SUIControlBlueprintProperty), alignof(SUIControlBlueprintProperty), WriteSimpleJson, FromSimpleJson, Serialize);
+
+void SUIControlBlueprintProperty::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	p_Stream << "{";
+
+	auto s_Object = static_cast<SUIControlBlueprintProperty*>(p_Object);
+
+	p_Stream << "\"m_nUnk00\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk00) << ",";
+	p_Stream << "\"m_nUnk01\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk01) << ",";
+	p_Stream << "\"m_sName\"" << ":" << simdjson::as_json_string(s_Object->m_sName) << ",";
+	p_Stream << "\"m_nUnk02\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk02) << ",";
+	p_Stream << "\"m_nPropertyId\"" << ":" << simdjson::as_json_string(s_Object->m_nPropertyId) << ",";
+
+	p_Stream << "}";
+}
+
+void SUIControlBlueprintProperty::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SUIControlBlueprintProperty s_Object;
+
+	*reinterpret_cast<SUIControlBlueprintProperty*>(p_Target) = s_Object;
+}
+
+void SUIControlBlueprintProperty::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = static_cast<SUIControlBlueprintProperty*>(p_Object);
+	
+}
+
+ZHMTypeInfo SUIControlBlueprint::TypeInfo = ZHMTypeInfo("SUIControlBlueprint", sizeof(SUIControlBlueprint), alignof(SUIControlBlueprint), WriteSimpleJson, FromSimpleJson, Serialize);
+
+void SUIControlBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	p_Stream << "{";
+
+	auto s_Object = static_cast<SUIControlBlueprint*>(p_Object);
+
+	p_Stream << "\"m_aPins\"" << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aPins.size(); ++i)
+	{
+		auto& s_Item = s_Object->m_aPins[i];
+
+		SUIControlBlueprintPin::WriteSimpleJson(&s_Item, p_Stream);
+
+		if (i < s_Object->m_aPins.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "],";
+
+	p_Stream << "\"m_aProperties\"" << ":[";
+
+	for (size_t i = 0; i < s_Object->m_aProperties.size(); ++i)
+	{
+		auto& s_Item = s_Object->m_aProperties[i];
+
+		SUIControlBlueprintProperty::WriteSimpleJson(&s_Item, p_Stream);
+
+		if (i < s_Object->m_aProperties.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SUIControlBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	throw std::runtime_error("Serializing SUIControlBlueprints is not currently supported.");
+
+	/*SUIControlBlueprint s_Object;
+
+	*reinterpret_cast<SUIControlBlueprint*>(p_Target) = s_Object;*/
+}
+
+void SUIControlBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = static_cast<SUIControlBlueprint*>(p_Object);
+	
+}
