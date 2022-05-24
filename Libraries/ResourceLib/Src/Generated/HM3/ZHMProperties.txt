@@ -39,6 +39,7 @@ DYNAMIC_TRASH_COLLIDABLES
 Disturbance
 ElevationDifferenceRange
 Environments
+EvacuationMaxDistance
 EventIndex
 EventMetaData
 FlagAlpha
@@ -98,6 +99,7 @@ STAIRS_SLOPE
 STAIRS_STEPS
 STATIC_COLLIDABLES_ONLY
 STATIC_COLLIDABLES_ONLY_TRANSPARENT
+ShowTargetLockdownAsTargetFleeing
 SlotIndex
 Static
 Stimuli
@@ -171,6 +173,7 @@ activityId
 actor
 actors
 age
+agenda
 aievent
 aimTarget
 alpha
@@ -269,6 +272,7 @@ data
 deathContextType
 defaultSpeak
 description
+destination
 detectedDuringFrisk
 difficultyLevel
 diffuse
@@ -388,6 +392,7 @@ iInteraction3
 icon
 id
 idArchetype
+idCrimeSector
 idSource
 illegal
 img
@@ -402,13 +407,18 @@ inventoryCategoryIcon
 isActionInventory
 isAlerted
 isAnotherSelectedToTravelNext
+isAssassinAlerted
+isAssassinNearby
 isContainer
 isDroppable
+isEntitlementAvailable
 isHotMission
 isIconCutOut
 isIconFramed
 isIllegal
 isInCampaign
+isLookoutAlerted
+isLookoutNearby
 isMenuZoomedIn
 isSelectedInMenu
 isThisSelectedToTravelNext
@@ -431,15 +441,20 @@ locked
 logic
 logicalParent
 longDescription
+lookA
 lookAtTarget
+lookB
+lookC
+lookD
 lstrBiography
-lstrCampaignName
+lstrCrimeSector
 lstrDescription
 lstrDestinationCity
 lstrDestinationCountry
 lstrDestinationFullName
 lstrFactionLieutenantCodename
 lstrHeader
+lstrLeaderCodename
 lstrLocation
 lstrMicroMessage
 lstrTitle
@@ -512,6 +527,7 @@ m_AlarmButtons
 m_AlertableActorOnScreenCooldown
 m_AlertableGuardOnScreenCooldown
 m_AlignRotation
+m_AllowDuplicates
 m_AllowedProfessions
 m_AlphaCurveEntity
 m_AmbienceSide0
@@ -533,6 +549,7 @@ m_AnimationOrigin
 m_Animator
 m_AreaBoxes
 m_Areas
+m_ArrayName
 m_AskBeforeVRModeDeactivation
 m_AttachGlow0
 m_AudioEmitter
@@ -558,7 +575,6 @@ m_BehaviorSelectDisabled
 m_BehaviorTrees
 m_BillboardRenderDestinationTexture
 m_Biography
-m_BiographyTextLines
 m_BloodEmitter
 m_BlueOfBlue
 m_BlueOfGreen
@@ -576,7 +592,6 @@ m_BoneName1
 m_BoneNameA
 m_BoneNameB
 m_BoneWeightManagerEntity
-m_BonusRequirementExclusionGroups
 m_BonusRequirements
 m_BoxCenter
 m_BoxDefiningZone
@@ -596,10 +611,7 @@ m_CameraConfig
 m_CameraSpatial
 m_CameraTransform
 m_CampaignIcon
-m_CampaignIcons
 m_CampaignManager
-m_CampaignName
-m_CampaignNameTextLines
 m_CanCiviliansInvestigate
 m_CanGuardsInvestigate
 m_CanVIPsInvestigate
@@ -608,6 +620,7 @@ m_CandidateTime
 m_CarriedItem
 m_CarryOnBack_widget
 m_CartridgeEject
+m_CashInHandValueEntity
 m_CastAsync
 m_CellFlags
 m_CellGroups
@@ -659,6 +672,9 @@ m_ContainedItems
 m_Containers
 m_ConversationParts
 m_CooldownExpirationTimestamp
+m_CrimeSectorIndex
+m_CrimeSectors
+m_CrimeType
 m_Crowd
 m_CrowdActorData
 m_CrowdAttentionCurve
@@ -760,8 +776,6 @@ m_ExclusionList
 m_Explosion
 m_ExtendedEventConsumers
 m_FacePunchEmitter
-m_FactionLieutenantCodename
-m_FactionLieutenantCodenameTextLines
 m_FadeInCurve
 m_FadeOutCurve
 m_FadeThreshold
@@ -825,6 +839,10 @@ m_GlowCivilianColor
 m_GlowCivilianOutlineColor
 m_GlowCivilianUnconsciousColor
 m_GlowCivilianUnconsciousOutlineColor
+m_GlowContractSuspectColor
+m_GlowContractSuspectOutlineColor
+m_GlowContractSuspectUnconsciousColor
+m_GlowContractSuspectUnconsciousOutlineColor
 m_GlowContractTargetColor
 m_GlowContractTargetNonCriticalColor
 m_GlowContractTargetNonCriticalOutlineColor
@@ -890,7 +908,6 @@ m_GrenadeTarget
 m_Grey
 m_GridImportance
 m_GridMap
-m_Group
 m_HDRAdaptionMiddleGrayCurveEntity
 m_HDRColorTint
 m_HDRLensFlareColorA
@@ -981,6 +998,8 @@ m_LOSShotgunFirePatterns
 m_LampCoreData
 m_LastVisible
 m_Layer
+m_LeaderCodenameIndex
+m_Leaders
 m_Left
 m_LeftHandPos
 m_LightEntity
@@ -1010,7 +1029,6 @@ m_MathMultipliesData_Vector2
 m_MathMultipliesData_Vector3
 m_MathMultipliesData_Vector4
 m_MathMultipliesData_float32
-m_MaxActive
 m_MaxCampaigns
 m_MaxColor
 m_MaxDistance
@@ -1178,12 +1196,14 @@ m_Reference
 m_ReflectionMapID
 m_RegionData
 m_Remap
+m_RemoveFirstOnly
 m_ReporterIsVIPWithAmbientEscort
 m_RepositoryId
 m_RepositoryKey
 m_RequiredItem
 m_RequiredObstaclesByDistance
 m_ResetEventValues
+m_ResetValue
 m_Resource
 m_ResourceID
 m_ResumingConditions
@@ -1197,6 +1217,7 @@ m_RunningEvents
 m_RuntimeNetworkResourceID
 m_RuntimeNetworkResourcePreloaded
 m_SaveData
+m_SaveOnChange
 m_ScaleContext
 m_ScatterData
 m_ScopeCrossHair
@@ -1305,6 +1326,7 @@ m_TargetLocation
 m_TargetRoom
 m_TargetSpatial
 m_TargetTrackingServiceData
+m_TargetTypeSelector
 m_TargetWeaponItem
 m_Targets
 m_Territories
@@ -1802,6 +1824,7 @@ m_aStopActions
 m_aStringToSignalForwarders
 m_aSubactions
 m_aSupportedMovements
+m_aSuspects
 m_aSuspiciousAreas
 m_aSuspiciousKeywords
 m_aTagBlacklist
@@ -1815,7 +1838,6 @@ m_aTargetKeywords
 m_aTargetOffsets
 m_aTargetTraitCollections
 m_aTargetTraits
-m_aTargetTypes
 m_aTargetableBones
 m_aTargets
 m_aTimerEntityCommands
@@ -1865,6 +1887,7 @@ m_accidentScaleContext
 m_accuseUnconsciousOutfit
 m_activeHint
 m_activeSafeRooms
+m_actor
 m_actorResourceID
 m_actorSlotDistanceMin
 m_actorTemplate0
@@ -1894,11 +1917,15 @@ m_animationResourceID
 m_arItems
 m_arTargets
 m_argsMicroMessage
+m_argsText
+m_argsTitle
 m_arguments
 m_asOnlineTraits
 m_assignedBodyguards
 m_assistant
 m_assistantApproachNode
+m_axis2DMouse
+m_axis3DSpace
 m_bA
 m_bAIPerceptibleOnRelease
 m_bAIShootingReactionEnabled
@@ -2032,6 +2059,7 @@ m_bAnnouncedHunt
 m_bAntiboid
 m_bAny
 m_bAnyGunshotDisturbance
+m_bAnyPausingMenu
 m_bApplyDebugEffectors
 m_bApplyG2PostProcess
 m_bApplyHeadAnchorOffset
@@ -2283,6 +2311,7 @@ m_bDefaultAnchors
 m_bDefaultFadeToBlackDuringTransition
 m_bDefaultHeroSpawn
 m_bDefaultIntroMovieIsSkippable
+m_bDeferChanges
 m_bDelayInvestigateDialog
 m_bDepthCull
 m_bDepthOfFieldEnabled
@@ -2420,6 +2449,7 @@ m_bEnableProjection
 m_bEnableRainFade
 m_bEnableReposition
 m_bEnableReverse
+m_bEnableShadowPrioritization
 m_bEnableSlowDown
 m_bEnableSmoothing
 m_bEnableSmootingAtLimits
@@ -2565,6 +2595,7 @@ m_bGlobalLightOverrideDisableSpec
 m_bGlobalLightOverrideEnable
 m_bGlobalShadowMapExcludeDSSObjects
 m_bGoIntoCoverAtWaypoint
+m_bGrabAllDrops
 m_bGrabNPCEnabled
 m_bGrabOnlyNeededActors
 m_bGrabVictim
@@ -2687,6 +2718,7 @@ m_bInputValue
 m_bInspected
 m_bInstantiateNetworkPropertyVal
 m_bInstinct
+m_bInstinctModeOnly
 m_bInstinctOnly
 m_bIntegerValues
 m_bInteractions
@@ -2831,6 +2863,7 @@ m_bJailUsher
 m_bJumpOverCover
 m_bJustShowExit
 m_bKeepAfterUnconscious
+m_bKeepCurrentStartDisguise
 m_bKeepOverrideSensorStateAfterBeingUnconscious
 m_bKeepPlayingAfterSequenceEnds
 m_bKeepPosOnLedge
@@ -2996,6 +3029,7 @@ m_bNotIgnoreWeapons
 m_bNotSelfieMode
 m_bNotWantsPrivacy
 m_bNotebookEnabled
+m_bNotebookIntelAutoSelectEnabled
 m_bNotebookIntelEnabled
 m_bNotebookInventoryEnabled
 m_bNotebookMapEnabled
@@ -3298,8 +3332,10 @@ m_bShowOnMainMap
 m_bShowOnMenuMap
 m_bShowOnMiniMap
 m_bShowOnTop
+m_bShowPositiveSign
 m_bShowProfileIndicator
 m_bShowPromptInWorld
+m_bShowTipsBackground
 m_bShowUnusableAsGrayedInteraction
 m_bShowWarning
 m_bShowWhenZoomedIn
@@ -3397,6 +3433,7 @@ m_bSubscribeToKeywordChanges
 m_bSubstract
 m_bSupportStreaming
 m_bSuppressSocialGreeting
+m_bSuppressSpatialIcons
 m_bSuppressTrespass
 m_bSuspendSearchOnInitialGetHelpGroup
 m_bSuspiciousItem
@@ -3725,11 +3762,14 @@ m_degpsecGamepadStickRate
 m_desiredLookAtLocation
 m_desiredTargetLocation
 m_destination
+m_destinationBlacklist
 m_dialogLines
 m_diegeticRoot
 m_diffuseColor
 m_direction
 m_disguiseZones
+m_displayDelay
+m_displayDuration
 m_distance
 m_disturbanceField
 m_disturbances
@@ -3745,6 +3785,7 @@ m_dtInterval
 m_dtLateralShiftDelay
 m_dtOpenTransition
 m_dtResetAnimDuration
+m_dtTransition
 m_dtZoomInBlendTime
 m_dtZoomOutBlendTime
 m_dtZoomPanBlendTime
@@ -3767,6 +3808,7 @@ m_eActorFaction
 m_eActorFraction
 m_eActorGroup
 m_eActorNearbyRequirements
+m_eActorObstacleBlockage
 m_eActorRank
 m_eActorType
 m_eAgilityState
@@ -3829,6 +3871,7 @@ m_eCinemaModeType
 m_eClearMode
 m_eClosetType
 m_eCollideType
+m_eCollisionCheckRayLayer
 m_eCollisionLayer
 m_eCollisionLayer_FullyDetached
 m_eCollisionPairType
@@ -3858,6 +3901,7 @@ m_eDeathTypeBack
 m_eDeathTypeFront
 m_eDebugTensionState
 m_eDecalEffect
+m_eDestination
 m_eDetachOnCollision
 m_eDetachOnShot
 m_eDialog
@@ -3866,6 +3910,8 @@ m_eDialogRangeEnd
 m_eDialogRangeStart
 m_eDialogState
 m_eDifficulty
+m_eDifficultyBrickOverride
+m_eDifficultyParameterOverride
 m_eDirection
 m_eDismountDownBehavior
 m_eDismountDownDirection
@@ -4159,6 +4205,7 @@ m_enabledEntranceUnlockable
 m_entity
 m_entityGroup
 m_entries
+m_entry
 m_er64
 m_escalate
 m_evacuateGroups
@@ -4166,7 +4213,6 @@ m_eval
 m_eventTracks
 m_eventType
 m_events
-m_exclusionGroup
 m_exitId
 m_extraDataProperties
 m_f2DMultichannelSpread
@@ -4206,6 +4252,7 @@ m_fAmbientInscatterFraction
 m_fAnalogPrecisionModeThreshold
 m_fAnalogShootThreshold
 m_fAnchorAdvanceDistance
+m_fAnchorPoint
 m_fAnchorTension
 m_fAngVelMax
 m_fAngVelMin
@@ -4681,6 +4728,8 @@ m_fGlowCivilianAlternate
 m_fGlowCivilianOutlineWidth
 m_fGlowContractAlternate
 m_fGlowContractNonCriticalAlternate
+m_fGlowContractSuspectAlternate
+m_fGlowContractSuspectOutlineWidth
 m_fGlowContractTargetNonCriticalOutlineWidth
 m_fGlowContractTargetOutlineWidth
 m_fGlowContractTargetSpecialAlternate
@@ -5014,6 +5063,8 @@ m_fModifier
 m_fMonitorDistance
 m_fMotionStretchFactor
 m_fMotorForce
+m_fMouseCursorLockSpeed
+m_fMouseRange
 m_fMouseSensitivityX
 m_fMouseSensitivityY
 m_fMoveCameraSeekStrength
@@ -5750,6 +5801,7 @@ m_idVideo
 m_identifier
 m_idsBonusRequirements
 m_imageRID
+m_infoType
 m_input0
 m_input1
 m_inputPinConditions
@@ -5822,7 +5874,9 @@ m_maxLODForFractionalSampling
 m_maxListSize
 m_maxSamplingBuffers
 m_maxTension
+m_maxUpdateInterval
 m_members
+m_menu
 m_menuOverlayContainer
 m_mercesPayoutHotMission
 m_mercesPayoutMildMission
@@ -5879,6 +5933,7 @@ m_nAudioWeaponClass
 m_nAudioWeaponFamily
 m_nBackTurnedCrowdAttentionMod
 m_nBackTurnedCrowdAttentionRangeMod
+m_nBasePay
 m_nBasePriority
 m_nBehaviorTreeIndex
 m_nBlend
@@ -6015,6 +6070,7 @@ m_nGlowCameraFadeSpeed
 m_nGlowCivilianFadeSpeed
 m_nGlowContractFadeSpeed
 m_nGlowContractNonCriticalFadeSpeed
+m_nGlowContractSuspectFadeSpeed
 m_nGlowContractTargetSpecialFadeSpeed
 m_nGlowEnemiesFadeSpeed
 m_nGlowEnforcerFadeSpeed
@@ -6115,6 +6171,7 @@ m_nMaxOutPinNum
 m_nMaxPistolLightAmmo
 m_nMaxRPGAmmo
 m_nMaxRaycasts
+m_nMaxRequirements
 m_nMaxRevolverAmmo
 m_nMaxRifleAmmo
 m_nMaxRowsPerBlock
@@ -6134,9 +6191,11 @@ m_nMin
 m_nMinCrowdLOSRangeMod
 m_nMinCutoff
 m_nMinDistance
+m_nMinIncludedCampaigns
 m_nMinLoopPoints
 m_nMinNeighbours
 m_nMinNumber
+m_nMinRequirements
 m_nMinSeparationDist
 m_nMinShadowLOD
 m_nMinSizeScale
@@ -6261,6 +6320,9 @@ m_nResetCount
 m_nResourceId
 m_nRestoreHealth
 m_nReusableCores
+m_nRevealedAgendas
+m_nRevealedLooks
+m_nRevealedTells
 m_nRoomPriority
 m_nRoute
 m_nRouteID
@@ -6364,11 +6426,13 @@ m_name
 m_navigationPlane
 m_nbCheckForInfiniteLoops
 m_newAimAssistConfiguration
+m_nodes
 m_normal
 m_numMules
 m_numSafes
 m_numStashes
 m_numSuppliers
+m_numSuspects
 m_numTargets
 m_numberOfElementsInDirection
 m_object
@@ -6809,6 +6873,7 @@ m_prevState
 m_priority
 m_projOp
 m_providerType
+m_pxMargin
 m_query
 m_rAbortCondition
 m_rAccessoryItem
@@ -6863,6 +6928,7 @@ m_rBCLid
 m_rBackAttacherBoneAnimator
 m_rBagSharedKnowledge
 m_rBaseCharacter
+m_rBasePay
 m_rBeaconSpatial
 m_rBehavior
 m_rBehaviorEntity
@@ -7054,6 +7120,7 @@ m_rIActor
 m_rIKConfig
 m_rIllegalActionEntity
 m_rIncludeKeywords
+m_rIncludedDestinations
 m_rInfiniteLockdown
 m_rInitialGuard
 m_rInitialNode
@@ -7097,6 +7164,7 @@ m_rLeftHandColliders
 m_rLeftHandStatesEnterConfigs
 m_rLeftHandStatesExitConfigs
 m_rLeftHandVolumeRestriction
+m_rLegacyDestinations
 m_rLinkedEntity
 m_rLinkedEntityReplicaGhost
 m_rLinkedEntityReplicator
@@ -7141,6 +7209,10 @@ m_rNode
 m_rNonExecutableDescriptionResource
 m_rNotificationBodyResource
 m_rNotificationHeadlineResource
+m_rNumAlerted
+m_rNumRequirements
+m_rNumTargets
+m_rNumTerritories
 m_rObject
 m_rObjectEmittingProxy
 m_rObjectInteractingProxy
@@ -7187,6 +7259,7 @@ m_rPlacementPrim
 m_rPlaybackEmitter
 m_rPlayerCandidateForSpreading
 m_rPlayerIsInRangeOfSpread
+m_rPlayerRank
 m_rPlayerSpreading
 m_rPoint
 m_rPosition
@@ -7326,6 +7399,7 @@ m_rStorage
 m_rSubaction
 m_rSubcontrollerContainer
 m_rSuperSpecialTriggerEffect
+m_rSuspectHandler
 m_rSuspects
 m_rSwitchAudioHeadType
 m_rSwitchAudioTailType
@@ -7404,9 +7478,9 @@ m_ragdoll
 m_ragdollBoneName
 m_rawAcceptPromptText
 m_rawBiography
-m_rawCampaignName
 m_rawCharacterName
-m_rawFactionLieutenantCodename
+m_rawCrimeSector
+m_rawLeaderCodename
 m_rawMicroMessage
 m_rawPrimary
 m_rawPromptText
@@ -7500,6 +7574,7 @@ m_sDeviceName
 m_sEndGamePageTransitionOverride
 m_sEndOrientation
 m_sEnterTextID
+m_sEntitlementId
 m_sEntranceId
 m_sEvent
 m_sEventNameFilter
@@ -7664,6 +7739,7 @@ m_showPerks
 m_sideBoxDepthMarginFar
 m_sideBoxDepthMarginNear
 m_sideBoxSize
+m_signalOnSet
 m_situation
 m_situationStartTime
 m_sound
@@ -7692,16 +7768,17 @@ m_style
 m_subject
 m_sweetAcceptPromptText
 m_sweetBiography
-m_sweetCampaignName
 m_sweetCancelPromptText
 m_sweetCharacterName
-m_sweetFactionLieutenantCodename
+m_sweetCrimeSector
+m_sweetLeaderCodename
 m_sweetMicroMessage
 m_sweetPrimary
 m_sweetPromptText
 m_sweetSecondary
 m_sweetSecondaryPCVR
 m_sweetSecondaryPS4
+m_sweetText
 m_sweetTitle
 m_tActorSpeakEnd
 m_tAmbientStartTime
@@ -7801,6 +7878,7 @@ m_timeToLiveSec
 m_timerEndTime
 m_titleDev
 m_titleResource
+m_token
 m_trackedOpportunity
 m_transitionClips
 m_tresspassGroup
@@ -7914,6 +7992,8 @@ m_vGlowCivilianVignetteRadii
 m_vGlowContractFadeNearFar
 m_vGlowContractNonCriticalFadeNearFar
 m_vGlowContractNonCriticalVignetteRadii
+m_vGlowContractSuspectFadeNearFar
+m_vGlowContractSuspectVignetteRadii
 m_vGlowContractTargetSpecialFadeNearFar
 m_vGlowContractTargetSpecialVignetteRadii
 m_vGlowContractVignetteRadii
@@ -8200,6 +8280,7 @@ references
 repoID
 repositoryId
 ridCampaignIcon
+ridCrimeSectorIcon
 ridProp
 role
 rootEntityIndex
@@ -8273,6 +8354,8 @@ tTime
 target
 targetMustBeVisible
 targets
+tellA
+tellB
 tension
 territories
 test
