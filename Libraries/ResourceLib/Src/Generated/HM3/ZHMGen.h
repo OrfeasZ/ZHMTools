@@ -1707,6 +1707,16 @@ enum class EActorFaction
 	eActorFaction_VIP_5 = 5,
 	eActorFaction_VIP_6 = 6,
 	eActorFaction_VIP_7 = 7,
+	eActorFaction_VIP_8 = 8,
+	eActorFaction_VIP_9 = 9,
+	eActorFaction_VIP_10 = 10,
+	eActorFaction_VIP_11 = 11,
+	eActorFaction_VIP_12 = 12,
+	eActorFaction_VIP_13 = 13,
+	eActorFaction_VIP_14 = 14,
+	eActorFaction_VIP_15 = 15,
+	eActorFaction_VIP_16 = 16,
+	eActorFaction_VIP_17 = 17,
 };
 
 // Size: 0x4
@@ -1757,6 +1767,17 @@ enum class EActorLookAtTargetType
 	eALAT_Hero = 4,
 	eALAT_Screenplay = 5,
 	eALAPT_Max = 6,
+};
+
+// Size: 0x4
+enum class EActorObstacleBlockage
+{
+	eAOB_Guard = 0,
+	eAOB_Civilian = 1,
+	eAOB_Threat = 2,
+	eAOB_Combat = 3,
+	eAOB_Suspect = 4,
+	eAOB_Lookout = 5,
 };
 
 // Size: 0x4
@@ -5502,7 +5523,8 @@ enum class EGameUIMenu
 	eUIMenu_TutorialMenu = 12,
 	eUIMenu_SplashHintMenu = 13,
 	eUIMenu_EmoteMenu = 14,
-	eUIMenu_Count = 15,
+	eUIMenu_WardrobeMenu = 15,
+	eUIMenu_Count = 16,
 };
 
 // Size: 0x4
@@ -6787,6 +6809,10 @@ enum class EOutfitAICategory
 	OAC_WineMkr = 202,
 	OAC_Fixer = 203,
 	OAC_Sommelier = 204,
+	OAC_Cook = 205,
+	OAC_EngineerDug = 206,
+	OAC_HavPirate = 207,
+	OAC_Pirate = 208,
 };
 
 // Size: 0x4
@@ -7054,24 +7080,25 @@ enum class ERenderGlowTypes
 	ERENDERGLOWTYPE_CONTRACT_TARGET = 8,
 	ERENDERGLOWTYPE_CONTRACT_TARGET_NON_CRITICAL = 9,
 	ERENDERGLOWTYPE_CONTRACT_TARGET_SPECIAL = 10,
-	ERENDERGLOWTYPE_OBJECTIVES = 11,
-	ERENDERGLOWTYPE_ENFORCER = 12,
-	ERENDERGLOWTYPE_LTMEMORY = 13,
-	ERENDERGLOWTYPE_TAGGED = 14,
-	ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED = 15,
-	ERENDERGLOWTYPE_TAGFOCUS_TAGGED = 16,
-	ERENDERGLOWTYPE_BACKGROUNDUNMASKED = 17,
-	ERENDERGLOWTYPE_INTERACTION = 18,
-	ERENDERGLOWTYPE_INTERACTION_SELECTED = 19,
-	ERENDERGLOWTYPE_INTERACTION_DESELECTED = 20,
-	ERENDERGLOWTYPE_PLAYER_LVA = 21,
-	ERENDERGLOWTYPE_PLAYER_LVA_SEEN = 22,
-	ERENDERGLOWTYPE_VS_OPPONENT = 23,
-	ERENDERGLOWTYPE_TRAVERSAL = 24,
-	ERENDERGLOWTYPE_EMISSIVE_UI = 25,
-	ERENDERGLOWTYPE_EMISSIVE_UI_IGNORE_DEPTH = 26,
-	ERENDERGLOWTYPE_OPPONENT = 27,
-	ERENDERGLOWTYPE_CAMERA = 28,
+	ERENDERGLOWTYPE_CONTRACT_SUSPECT = 11,
+	ERENDERGLOWTYPE_OBJECTIVES = 12,
+	ERENDERGLOWTYPE_ENFORCER = 13,
+	ERENDERGLOWTYPE_LTMEMORY = 14,
+	ERENDERGLOWTYPE_TAGGED = 15,
+	ERENDERGLOWTYPE_TAGFOCUS_UNTAGGED = 16,
+	ERENDERGLOWTYPE_TAGFOCUS_TAGGED = 17,
+	ERENDERGLOWTYPE_BACKGROUNDUNMASKED = 18,
+	ERENDERGLOWTYPE_INTERACTION = 19,
+	ERENDERGLOWTYPE_INTERACTION_SELECTED = 20,
+	ERENDERGLOWTYPE_INTERACTION_DESELECTED = 21,
+	ERENDERGLOWTYPE_PLAYER_LVA = 22,
+	ERENDERGLOWTYPE_PLAYER_LVA_SEEN = 23,
+	ERENDERGLOWTYPE_VS_OPPONENT = 24,
+	ERENDERGLOWTYPE_TRAVERSAL = 25,
+	ERENDERGLOWTYPE_EMISSIVE_UI = 26,
+	ERENDERGLOWTYPE_EMISSIVE_UI_IGNORE_DEPTH = 27,
+	ERENDERGLOWTYPE_OPPONENT = 28,
+	ERENDERGLOWTYPE_CAMERA = 29,
 };
 
 // Size: 0x4
@@ -7953,259 +7980,280 @@ enum class EUIIconLibrary
 	NONE = 0,
 	addedtolist = 1,
 	addtolist = 2,
-	ammunition = 3,
-	ammo = 4,
-	arrowdown = 5,
-	arrowleft = 6,
-	arrowright = 7,
-	arrowup = 8,
-	assaultrifle = 9,
-	audio = 10,
-	background = 11,
-	benchmarks = 12,
-	blank = 13,
-	bulletdancer = 14,
-	carriedweapon = 15,
+	ammo = 3,
+	ammunition = 4,
+	arcademode = 5,
+	arrowdown = 6,
+	arrowleft = 7,
+	arrowright = 8,
+	arrowup = 9,
+	assaultrifle = 10,
+	audio = 11,
+	background = 12,
+	benchmarks = 13,
+	blank = 14,
+	bulletdancer = 15,
 	carrieditem = 16,
-	challenge = 17,
-	challenge_category_assassination = 18,
-	challenge_category_discovery = 19,
-	challenge_category_feats = 20,
-	challenge_category_item = 21,
-	challenge_category_targets = 22,
-	check = 23,
-	civilians = 24,
-	closerange = 25,
-	completed = 26,
-	completion = 27,
-	completionlist = 28,
-	complication = 29,
-	complication_optional = 30,
-	container = 31,
-	contract = 32,
-	controller = 33,
-	concealedweapon = 34,
-	corrupt = 35,
-	creation = 36,
-	credits = 37,
-	crowdcontrol = 38,
-	cutscene = 39,
-	damage = 40,
-	difficulty = 41,
-	difficultyeasy = 42,
-	difficultynormal = 43,
-	difficultyhard = 44,
-	difficulty1 = 45,
-	difficulty2 = 46,
-	difficulty3 = 47,
+	carriedweapon = 17,
+	challenge = 18,
+	challenge_category_assassination = 19,
+	challenge_category_discovery = 20,
+	challenge_category_feats = 21,
+	challenge_category_item = 22,
+	challenge_category_targets = 23,
+	check = 24,
+	civilians = 25,
+	closerange = 26,
+	completed = 27,
+	completion = 28,
+	completionlist = 29,
+	complication = 30,
+	complication_optional = 31,
+	concealedweapon = 32,
+	container = 33,
+	contract = 34,
+	controller = 35,
+	corrupt = 36,
+	creation = 37,
+	credits = 38,
+	crowdcontrol = 39,
+	cutscene = 40,
+	damage = 41,
+	difficulty = 42,
+	difficulty1 = 43,
+	difficulty2 = 44,
+	difficulty3 = 45,
+	difficultyeasy = 46,
+	difficultyhard = 47,
 	difficultylevel = 48,
-	disguise = 49,
-	distraction = 50,
-	download = 51,
-	downloading = 52,
-	edit = 53,
-	elevation = 54,
-	elusive = 55,
-	emote = 56,
-	escalation = 57,
-	evergreen_check = 58,
-	evergreen_contracts = 59,
-	evergreen_dead_body_disposal = 60,
-	evergreen_dead_body_disposal_timed = 61,
-	evergreen_destination_not_owned = 62,
-	evergreen_do_not_get_spotted = 63,
-	evergreen_do_not_initiate_combat = 64,
-	evergreen_do_not_take_any_damage = 65,
-	evergreen_failed = 66,
-	evergreen_gearcost = 67,
-	evergreen_gearcost_1 = 68,
-	evergreen_gearcost_2 = 69,
-	evergreen_gearcost_3 = 70,
-	evergreen_gearcost_4 = 71,
-	evergreen_gearcost_5 = 72,
-	evergreen_gearcost_6 = 73,
-	evergreen_gearcost_7 = 74,
-	evergreen_gearcost_8 = 75,
-	evergreen_gearcost_9 = 76,
-	evergreen_item_removed_from_safehouse_wall = 77,
-	evergreen_kill_method_accident = 78,
-	evergreen_kill_method_assault_rifle = 79,
-	evergreen_kill_method_electric = 80,
-	evergreen_kill_method_explosive = 81,
-	evergreen_kill_method_fiber_wire = 82,
-	evergreen_kill_method_headshots_only = 83,
-	evergreen_kill_method_pistol = 84,
-	evergreen_kill_method_pistol_silenced = 85,
-	evergreen_kill_method_poison = 86,
-	evergreen_kill_method_shotgun = 87,
-	evergreen_kill_method_smg = 88,
-	evergreen_kill_method_sniper = 89,
-	evergreen_kill_method_throw = 90,
-	evergreen_kill_method_unarmed = 91,
-	evergreen_mules = 92,
-	evergreen_no_bodies_found = 93,
-	evergreen_no_compromised_disguises = 94,
-	evergreen_no_disguise_change = 95,
-	evergreen_no_lockpick = 96,
-	evergreen_no_missed_shots = 97,
-	evergreen_only_kill_targets = 98,
-	evergreen_safe = 99,
-	evergreen_search_locate = 100,
-	evergreen_showdown_mission = 101,
-	evergreen_suppliers = 102,
-	evergreen_tags = 103,
-	evergreen_target = 104,
-	exit = 105,
-	explosive = 106,
-	explosives = 107,
-	extendedmag = 108,
-	extendedmag_1 = 109,
-	extendedmag_2 = 110,
-	extendedmag_3 = 111,
-	extendedmag_4 = 112,
-	eye_tracking = 113,
-	failed = 114,
-	fastreload = 115,
-	fastreload_1 = 116,
-	fastreload_2 = 117,
-	fastreload_3 = 118,
-	fastreload_4 = 119,
-	favoritecontracts = 120,
-	featured = 121,
-	fiberwire = 122,
-	firearm = 123,
-	fixed = 124,
-	flashback = 125,
-	frisk = 126,
-	fullauto = 127,
-	game = 128,
-	gamehud = 129,
-	gear = 130,
-	goonline = 131,
-	graphics = 132,
-	hailstorm = 133,
-	hidden = 134,
-	highpressure = 135,
-	ica = 136,
-	info = 137,
-	intel = 138,
-	inventory = 139,
-	ioiaccount = 140,
-	key = 141,
-	kill = 142,
-	knockdown = 143,
-	language = 144,
-	leaderboard = 145,
-	leaderboardfriends = 146,
-	livetilenews = 147,
-	load = 148,
-	loadout = 149,
-	location = 150,
-	locked = 151,
-	longrange = 152,
-	lookup = 153,
-	map = 154,
-	marksman = 155,
-	marksman_1 = 156,
-	marksman_2 = 157,
-	marksman_3 = 158,
-	marksman_4 = 159,
-	masteryunlocked = 160,
-	melee = 161,
-	mission = 162,
-	mostplayed = 163,
-	mousekeyboard = 164,
-	mycontracts = 165,
-	myhistory = 166,
-	nextlevel = 167,
-	nodus = 168,
-	npc = 169,
-	nvidia = 170,
-	objective = 171,
-	onemanarmy = 172,
-	online = 173,
-	opportunitycompleted = 174,
-	opportunitydisabled = 175,
-	opportunitydiscovered = 176,
-	opportunityfailed = 177,
-	opportunitysearch = 178,
-	opportunitytracked = 179,
-	opportunityundiscovered = 180,
-	outbreak = 181,
-	piercing = 182,
-	pistol = 183,
-	planning = 184,
-	play = 185,
-	pointshooting = 186,
-	poison = 187,
-	profile = 188,
-	publish = 189,
-	questitem = 190,
-	quit = 191,
-	rateoffire = 192,
-	rateoffire_1 = 193,
-	rateoffire_2 = 194,
-	rateoffire_3 = 195,
-	rateoffire_4 = 196,
-	replay = 197,
-	reset = 198,
-	resetback = 199,
-	save = 200,
-	saveauto = 201,
-	savedisabled = 202,
-	savemanual = 203,
-	search = 204,
-	security = 205,
-	settings = 206,
-	shop = 207,
-	shotgun = 208,
-	smg = 209,
-	sniperrifle = 210,
-	stable = 211,
-	stable_1 = 212,
-	stable_2 = 213,
-	stable_3 = 214,
-	stable_4 = 215,
-	starting = 216,
-	stashpointempty = 217,
-	stashpointfull = 218,
-	stats = 219,
-	steadyaim = 220,
-	steadyaim_1 = 221,
-	steadyaim_2 = 222,
-	steadyaim_3 = 223,
-	steadyaim_4 = 224,
-	story = 225,
-	silent = 226,
-	subsonic = 227,
-	suitcase = 228,
-	suppressor = 229,
-	tag = 230,
-	tacticalshock = 231,
-	target = 232,
-	timed = 233,
-	titaniumcomposite = 234,
-	toggleleft = 235,
-	toggleright = 236,
-	tool = 237,
-	trashbin = 238,
-	tutorial = 239,
-	realtutorial = 240,
-	remote = 241,
-	unlocked = 242,
-	usercreated = 243,
-	variable = 244,
-	versatilescope = 245,
-	versatilescope_1 = 246,
-	versatilescope_2 = 247,
-	versatilescope_3 = 248,
-	versatilescope_4 = 249,
-	versatilescopeextended = 250,
-	versus = 251,
-	vr = 252,
-	warning = 253,
-	weapon = 254,
-	witness = 255,
+	difficultynormal = 49,
+	disguise = 50,
+	distraction = 51,
+	download = 52,
+	downloading = 53,
+	edit = 54,
+	elevation = 55,
+	elusive = 56,
+	emote = 57,
+	escalation = 58,
+	evergreen_camera_caught = 59,
+	evergreen_camera_destroy = 60,
+	evergreen_camera_destroy_recorder = 61,
+	evergreen_check = 62,
+	evergreen_contracts = 63,
+	evergreen_dead_body_disposal = 64,
+	evergreen_dead_body_disposal_timed = 65,
+	evergreen_destination_not_owned = 66,
+	evergreen_do_not_get_spotted = 67,
+	evergreen_do_not_initiate_combat = 68,
+	evergreen_do_not_take_any_damage = 69,
+	evergreen_failed = 70,
+	evergreen_gamemode = 71,
+	evergreen_gear = 72,
+	evergreen_gearcost = 73,
+	evergreen_gearcost_1 = 74,
+	evergreen_gearcost_2 = 75,
+	evergreen_gearcost_3 = 76,
+	evergreen_gearcost_4 = 77,
+	evergreen_gearcost_5 = 78,
+	evergreen_gearcost_6 = 79,
+	evergreen_gearcost_7 = 80,
+	evergreen_gearcost_8 = 81,
+	evergreen_gearcost_9 = 82,
+	evergreen_item_removed_from_safehouse_wall = 83,
+	evergreen_kill_method_accident = 84,
+	evergreen_kill_method_accident_burn = 85,
+	evergreen_kill_method_assault_rifle = 86,
+	evergreen_kill_method_drown = 87,
+	evergreen_kill_method_electric = 88,
+	evergreen_kill_method_explosive = 89,
+	evergreen_kill_method_fiber_wire = 90,
+	evergreen_kill_method_headshots_only = 91,
+	evergreen_kill_method_melee = 92,
+	evergreen_kill_method_oil_puddle = 93,
+	evergreen_kill_method_pistol = 94,
+	evergreen_kill_method_pistol_silenced = 95,
+	evergreen_kill_method_poison = 96,
+	evergreen_kill_method_push = 97,
+	evergreen_kill_method_shotgun = 98,
+	evergreen_kill_method_smg = 99,
+	evergreen_kill_method_sniper = 100,
+	evergreen_kill_method_throw = 101,
+	evergreen_kill_method_unarmed = 102,
+	evergreen_kill_method_wallbang = 103,
+	evergreen_kill_method_water_puddle = 104,
+	evergreen_merces = 105,
+	evergreen_mules = 106,
+	evergreen_no_bodies_found = 107,
+	evergreen_no_compromised_disguises = 108,
+	evergreen_no_disguise_change = 109,
+	evergreen_no_lockpick = 110,
+	evergreen_no_missed_shots = 111,
+	evergreen_only_kill_targets = 112,
+	evergreen_optin_killmethod = 113,
+	evergreen_optin_showdown = 114,
+	evergreen_optin_silentassassin = 115,
+	evergreen_optin_speedrun = 116,
+	evergreen_pacify_raremelee = 117,
+	evergreen_safe = 118,
+	evergreen_safehouse_cosmetic = 119,
+	evergreen_safehouse_unlock = 120,
+	evergreen_search_locate = 121,
+	evergreen_showdown_mission = 122,
+	evergreen_suppliers = 123,
+	evergreen_tags = 124,
+	evergreen_target = 125,
+	exit = 126,
+	explosive = 127,
+	explosives = 128,
+	extendedmag = 129,
+	extendedmag_1 = 130,
+	extendedmag_2 = 131,
+	extendedmag_3 = 132,
+	extendedmag_4 = 133,
+	eye_tracking = 134,
+	failed = 135,
+	fastreload = 136,
+	fastreload_1 = 137,
+	fastreload_2 = 138,
+	fastreload_3 = 139,
+	fastreload_4 = 140,
+	favoritecontracts = 141,
+	featured = 142,
+	fiberwire = 143,
+	firearm = 144,
+	fixed = 145,
+	flashback = 146,
+	frisk = 147,
+	fullauto = 148,
+	game = 149,
+	gamehud = 150,
+	gear = 151,
+	goonline = 152,
+	graphics = 153,
+	hailstorm = 154,
+	hidden = 155,
+	highpressure = 156,
+	ica = 157,
+	info = 158,
+	intel = 159,
+	inventory = 160,
+	ioiaccount = 161,
+	key = 162,
+	kill = 163,
+	knockdown = 164,
+	language = 165,
+	leaderboard = 166,
+	leaderboardfriends = 167,
+	livetilenews = 168,
+	load = 169,
+	loadout = 170,
+	location = 171,
+	locked = 172,
+	longrange = 173,
+	lookup = 174,
+	map = 175,
+	marksman = 176,
+	marksman_1 = 177,
+	marksman_2 = 178,
+	marksman_3 = 179,
+	marksman_4 = 180,
+	masteryunlocked = 181,
+	melee = 182,
+	mission = 183,
+	mostplayed = 184,
+	mousekeyboard = 185,
+	mycontracts = 186,
+	myhistory = 187,
+	nextlevel = 188,
+	nodus = 189,
+	npc = 190,
+	nvidia = 191,
+	objective = 192,
+	onemanarmy = 193,
+	online = 194,
+	opportunitycompleted = 195,
+	opportunitydisabled = 196,
+	opportunitydiscovered = 197,
+	opportunityfailed = 198,
+	opportunitysearch = 199,
+	opportunitytracked = 200,
+	opportunityundiscovered = 201,
+	outbreak = 202,
+	piercing = 203,
+	pistol = 204,
+	planning = 205,
+	play = 206,
+	pointshooting = 207,
+	poison = 208,
+	profile = 209,
+	publish = 210,
+	questitem = 211,
+	quit = 212,
+	rateoffire = 213,
+	rateoffire_1 = 214,
+	rateoffire_2 = 215,
+	rateoffire_3 = 216,
+	rateoffire_4 = 217,
+	realtutorial = 218,
+	remote = 219,
+	replay = 220,
+	reset = 221,
+	resetback = 222,
+	save = 223,
+	saveauto = 224,
+	savedisabled = 225,
+	savemanual = 226,
+	search = 227,
+	security = 228,
+	settings = 229,
+	shop = 230,
+	shotgun = 231,
+	silent = 232,
+	smg = 233,
+	sniperrifle = 234,
+	stable = 235,
+	stable_1 = 236,
+	stable_2 = 237,
+	stable_3 = 238,
+	stable_4 = 239,
+	starting = 240,
+	stashpointempty = 241,
+	stashpointfull = 242,
+	stats = 243,
+	steadyaim = 244,
+	steadyaim_1 = 245,
+	steadyaim_2 = 246,
+	steadyaim_3 = 247,
+	steadyaim_4 = 248,
+	story = 249,
+	subsonic = 250,
+	suitcase = 251,
+	suppressor = 252,
+	tacticalshock = 253,
+	tag = 254,
+	target = 255,
+	timed = 256,
+	titaniumcomposite = 257,
+	toggleleft = 258,
+	toggleright = 259,
+	tool = 260,
+	trashbin = 261,
+	tutorial = 262,
+	unlocked = 263,
+	usercreated = 264,
+	variable = 265,
+	versatilescope = 266,
+	versatilescope_1 = 267,
+	versatilescope_2 = 268,
+	versatilescope_3 = 269,
+	versatilescope_4 = 270,
+	versatilescopeextended = 271,
+	versus = 272,
+	vr = 273,
+	warning = 274,
+	weapon = 275,
+	witness = 276,
 };
 
 // Size: 0x4
@@ -8991,25 +9039,26 @@ public:
 // Size: 0x4
 enum class IEvergreenTerritoryDefinition_EDestination
 {
-	Bangkok = 0,
-	Berlin = 1,
-	Chongqing = 2,
-	Colorado = 3,
-	Dartmoor = 4,
-	Dubai = 5,
-	HavenIsland = 6,
-	HawkesBay = 7,
-	Hokkaido = 8,
-	IsleOfSgail = 9,
-	Marrakesh = 10,
-	Mendoza = 11,
-	Miami = 12,
-	Mumbai = 13,
-	NewYork = 14,
-	Paris = 15,
-	SantaFortuna = 16,
-	Sapienza = 17,
-	WhittletonCreek = 18,
+	AmbroseIsland = 0,
+	Bangkok = 1,
+	Berlin = 2,
+	Chongqing = 3,
+	Colorado = 4,
+	Dartmoor = 5,
+	Dubai = 6,
+	HavenIsland = 7,
+	HawkesBay = 8,
+	Hokkaido = 9,
+	IsleOfSgail = 10,
+	Marrakesh = 11,
+	Mendoza = 12,
+	Miami = 13,
+	Mumbai = 14,
+	NewYork = 15,
+	Paris = 16,
+	SantaFortuna = 17,
+	Sapienza = 18,
+	WhittletonCreek = 19,
 };
 
 // Size: 0x4
@@ -9869,64 +9918,67 @@ enum class JSONTemplate_ETemplateType
 	ETT_HDRGAMMAVALUERANGEMAX = 79,
 	ETT_HDRGAMMAVALUESTEP = 80,
 	ETT_ISDLSSAVAILABLE = 81,
-	ETT_ISHDRAVAILABLE = 82,
-	ETT_ISHDRRENDERING = 83,
-	ETT_ISRAYTRACINGAVAILABLE = 84,
-	ETT_VARIABLERATESHADINGTIER = 85,
-	ETT_ITEM = 86,
-	ETT_REPOSITORY = 87,
-	ETT_ISONLINE = 88,
-	ETT_ISINGAME = 89,
-	ETT_ISINEDITOR = 90,
-	ETT_ISUGCRESTRICTED = 91,
-	ETT_ISPACKAGEOWNED = 92,
-	ETT_ISININVENTORY = 93,
-	ETT_ISPLATFORMENTITLEMENTOWNED = 94,
-	ETT_MULTIPLAYERLOBBYSTATE = 95,
-	ETT_MULTIPLAYERLOCALID = 96,
-	ETT_MULTIPLAYERJOINEDIDS = 97,
-	ETT_MULTIPLAYERISPLAYERREADY = 98,
-	ETT_MULTIPLAYERINFO = 99,
-	ETT_MULTIPLAYERMATCHMAKINGTIME = 100,
-	ETT_MULTIPLAYERNATTYPE = 101,
-	ETT_LOADOUT = 102,
-	ETT_LOADOUT_SLOT = 103,
-	ETT_LOADOUT_AGENCY_PICKUP = 104,
-	ETT_LOADOUT_SELECTED_ENTRANCE = 105,
-	ETT_PERSISTENTMENUDATA = 106,
-	ETT_GAMEPERSISTENTDATA = 107,
-	ETT_ENDGAME_PAGETRANSITION_OVERRIDE = 108,
-	ETT_VERSUSINFO = 109,
-	ETT_SNIPERINFO = 110,
-	ETT_GAMEMODE = 111,
-	ETT_CACHEDUSERCENTRICCONTRACT = 112,
-	ETT_SAVEGAMES = 113,
-	ETT_AVAILABILITY_OF_RESOURCES = 114,
-	ETT_AVAILABILITY_OF_CONTRACT = 115,
-	ETT_AS3DATE = 116,
-	ETT_IOIACCOUNT_STATUS = 117,
-	ETT_ISCONTRACT_IN_PLAYLIST = 118,
-	ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION = 119,
-	ETT_VIDEOMEMORYINFO_IS_SUPPORTED = 120,
-	ETT_VIDEOMEMORYINFO = 121,
-	ETT_DISPLAY_SIZE = 122,
-	ETT_IS_VIDEO_VALID = 123,
-	ETT_INTEL_IDS = 124,
-	ETT_INTEL_DETAILS = 125,
-	ETT_MENU_CONFIGURATION = 126,
-	ETT_HERO_INVENTORY = 127,
-	ETT_MAP_TRACKERINFO = 128,
-	ETT_WAS_EXITGATE_TRIGGERED = 129,
-	ETT_ARE_OPPORTUNITIES_ENABLED = 130,
-	ETT_CHARACTERS = 131,
-	ETT_CHARACTERINFO = 132,
-	ETT_DATABINDING = 133,
-	ETT_DATABINDING_ROOT = 134,
-	ETT_ALLOWED_UNLOCKABLES = 135,
-	ETT_HAS_FRAMERATE_OPTION = 136,
-	ETT_NVIDIAHIGHLIGHTSAVAILABLE = 137,
-	ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 138,
-	ETT_DEBUG_ALLHITMANSUITS = 139,
+	ETT_ISXESSAVAILABLE = 82,
+	ETT_ISHDRAVAILABLE = 83,
+	ETT_ISHDRRENDERING = 84,
+	ETT_ISRAYTRACINGAVAILABLE = 85,
+	ETT_VARIABLERATESHADINGTIER = 86,
+	ETT_ITEM = 87,
+	ETT_REPOSITORY = 88,
+	ETT_ISONLINE = 89,
+	ETT_ISINGAME = 90,
+	ETT_ISINEDITOR = 91,
+	ETT_ISUGCRESTRICTED = 92,
+	ETT_ISPACKAGEOWNED = 93,
+	ETT_ISININVENTORY = 94,
+	ETT_ISPLATFORMENTITLEMENTOWNED = 95,
+	ETT_MULTIPLAYERLOBBYSTATE = 96,
+	ETT_MULTIPLAYERLOCALID = 97,
+	ETT_MULTIPLAYERJOINEDIDS = 98,
+	ETT_MULTIPLAYERISPLAYERREADY = 99,
+	ETT_MULTIPLAYERINFO = 100,
+	ETT_MULTIPLAYERMATCHMAKINGTIME = 101,
+	ETT_MULTIPLAYERNATTYPE = 102,
+	ETT_LOADOUT = 103,
+	ETT_LOADOUT_SLOT = 104,
+	ETT_LOADOUT_AGENCY_PICKUP = 105,
+	ETT_LOADOUT_SELECTED_ENTRANCE = 106,
+	ETT_PERSISTENTMENUDATA = 107,
+	ETT_GAMEPERSISTENTDATA = 108,
+	ETT_ENDGAME_PAGETRANSITION_OVERRIDE = 109,
+	ETT_VERSUSINFO = 110,
+	ETT_SNIPERINFO = 111,
+	ETT_GAMEMODE = 112,
+	ETT_CACHEDUSERCENTRICCONTRACT = 113,
+	ETT_SAVEGAMES = 114,
+	ETT_AVAILABILITY_OF_RESOURCES = 115,
+	ETT_AVAILABILITY_OF_CONTRACT = 116,
+	ETT_AVAILABILITY_OF_USER_CENTRIC_CONTRACT = 117,
+	ETT_AS3DATE = 118,
+	ETT_IOIACCOUNT_STATUS = 119,
+	ETT_ISCONTRACT_IN_PLAYLIST = 120,
+	ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION = 121,
+	ETT_VIDEOMEMORYINFO_IS_SUPPORTED = 122,
+	ETT_VIDEOMEMORYINFO = 123,
+	ETT_DISPLAY_SIZE = 124,
+	ETT_IS_VIDEO_VALID = 125,
+	ETT_INTEL_IDS = 126,
+	ETT_INTEL_DETAILS = 127,
+	ETT_MENU_CONFIGURATION = 128,
+	ETT_HERO_INVENTORY = 129,
+	ETT_MAP_TRACKERINFO = 130,
+	ETT_WAS_EXITGATE_TRIGGERED = 131,
+	ETT_ARE_OPPORTUNITIES_ENABLED = 132,
+	ETT_CHARACTERS = 133,
+	ETT_CHARACTERINFO = 134,
+	ETT_DATABINDING = 135,
+	ETT_DATABINDING_ROOT = 136,
+	ETT_ALLOWED_UNLOCKABLES = 137,
+	ETT_HAS_FRAMERATE_OPTION = 138,
+	ETT_MENU_DATAPROVIDER = 139,
+	ETT_NVIDIAHIGHLIGHTSAVAILABLE = 140,
+	ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 141,
+	ETT_DEBUG_ALLHITMANSUITS = 142,
 };
 
 // Size: 0x4
@@ -12829,6 +12881,24 @@ public:
 	uint32 m_rClothbundle; // 0x0
 };
 
+// Size: 0x2
+class /*alignas(1)*/ SClothSheetEntitySaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SClothSheetEntitySaveData& p_Other) const;
+	bool operator!=(const SClothSheetEntitySaveData& p_Other) const { return !(*this == p_Other); }
+
+	bool m_bSimulationEnabled; // 0x0
+	bool m_bVisible; // 0x1
+};
+
 // Size: 0x4
 class /*alignas(2)*/ SClothVertex
 {
@@ -13272,7 +13342,7 @@ public:
 	uint8_t _pad141[7] {};
 };
 
-// Size: 0x168
+// Size: 0x178
 class /*alignas(8)*/ SContractObjectiveStateMachineSaveData
 {
 public:
@@ -13295,39 +13365,40 @@ public:
 	ZDynamicObject m_Definition; // 0x48
 	ZDynamicObject m_aTargets; // 0x58
 	ZDynamicObject m_aAllies; // 0x68
-	bool m_bTargetsHidden; // 0x78
-	uint8_t _pad79[7] {};
-	ZDynamicObject m_HUDTmpl; // 0x80
-	ZDynamicObject m_ActivationCondition; // 0x90
-	bool m_bActivationValue; // 0xA0
-	bool m_bUpdateActivationOnCompleted; // 0xA1
-	uint8_t _padA2[6] {};
-	ZDynamicObject m_OnInactive; // 0xA8
-	ZDynamicObject m_OnActive; // 0xB8
-	ZDynamicObject m_aExits; // 0xC8
-	float64 m_timerEndTime; // 0xD8
-	bool m_bTimerHasJustStarted; // 0xE0
-	bool m_bTimerHasJustStopped; // 0xE1
-	bool m_bIsActiveTimerVisible; // 0xE2
-	bool m_bDisplayAsKill; // 0xE3
-	bool m_bIgnoreIfInactive; // 0xE4
-	bool m_bShowInHud; // 0xE5
-	bool m_bCombinedDisplayInHud; // 0xE6
-	bool m_bIsCounterVisibleInTile; // 0xE7
-	TArray<IContractObjective_STargetCondition> m_aTargetConditions; // 0xE8
-	ZString m_sImage; // 0x100
-	ZString m_sObjectiveType; // 0x110
-	ZString m_sBriefingName; // 0x120
-	int32 m_nObjectivesCounterCount; // 0x130
-	uint8_t _pad134[4] {};
-	ZString m_sObjectivesCounterHeader; // 0x138
-	int32 m_nObjectivesCounterDeactivate; // 0x148
-	uint8_t _pad14C[4] {};
-	ZDynamicObject m_dObjectivesCounterExtraData; // 0x150
-	bool m_bTimerHasStopped; // 0x160
-	bool m_bForceShowOnLoadingScreen; // 0x161
-	uint8 m_nObjectivesCounterType; // 0x162
-	uint8_t _pad163[5] {};
+	ZDynamicObject m_aSuspects; // 0x78
+	bool m_bTargetsHidden; // 0x88
+	uint8_t _pad89[7] {};
+	ZDynamicObject m_HUDTmpl; // 0x90
+	ZDynamicObject m_ActivationCondition; // 0xA0
+	bool m_bActivationValue; // 0xB0
+	bool m_bUpdateActivationOnCompleted; // 0xB1
+	uint8_t _padB2[6] {};
+	ZDynamicObject m_OnInactive; // 0xB8
+	ZDynamicObject m_OnActive; // 0xC8
+	ZDynamicObject m_aExits; // 0xD8
+	float64 m_timerEndTime; // 0xE8
+	bool m_bTimerHasJustStarted; // 0xF0
+	bool m_bTimerHasJustStopped; // 0xF1
+	bool m_bIsActiveTimerVisible; // 0xF2
+	bool m_bDisplayAsKill; // 0xF3
+	bool m_bIgnoreIfInactive; // 0xF4
+	bool m_bShowInHud; // 0xF5
+	bool m_bCombinedDisplayInHud; // 0xF6
+	bool m_bIsCounterVisibleInTile; // 0xF7
+	TArray<IContractObjective_STargetCondition> m_aTargetConditions; // 0xF8
+	ZString m_sImage; // 0x110
+	ZString m_sObjectiveType; // 0x120
+	ZString m_sBriefingName; // 0x130
+	int32 m_nObjectivesCounterCount; // 0x140
+	uint8_t _pad144[4] {};
+	ZString m_sObjectivesCounterHeader; // 0x148
+	int32 m_nObjectivesCounterDeactivate; // 0x158
+	uint8_t _pad15C[4] {};
+	ZDynamicObject m_dObjectivesCounterExtraData; // 0x160
+	bool m_bTimerHasStopped; // 0x170
+	bool m_bForceShowOnLoadingScreen; // 0x171
+	uint8 m_nObjectivesCounterType; // 0x172
+	uint8_t _pad173[5] {};
 };
 
 // Size: 0x8
@@ -20747,6 +20818,7 @@ enum class _EUIOptionKey
 	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE_VR = 1221,
 	UI_OPTION_GRAPHICS_SUBTITLES = 2000,
 	UI_OPTION_GRAPHICS_SUBTITLES_SIZE = 2001,
+	UI_OPTION_GRAPHICS_SUBTITLES_BGALPHA = 2002,
 	UI_OPTION_GRAPHICS_SUBTITLES_VR = 2010,
 	UI_OPTION_GRAPHICS_SUBTITLES_SIZE_VR = 2011,
 	UI_OPTION_GRAPHICS_SUBTITLES_SPEAKER = 2020,
@@ -20782,13 +20854,14 @@ enum class _EUIOptionKey
 	UI_OPTION_GRAPHICS_SIMULATION_QUALITY = 2745,
 	UI_OPTION_GRAPHICS_SSR = 2746,
 	UI_OPTION_GRAPHICS_VRS = 2747,
-	UI_OPTION_GRAPHICS_DLSS_MODE = 2748,
 	UI_OPTION_GRAPHICS_ATMOSPHERIC_QUALITY = 2749,
 	UI_OPTION_GRAPHICS_SUPER_SAMPLING = 2750,
 	UI_OPTION_GRAPHICS_GAMMA = 2760,
 	UI_OPTION_GRAPHICS_RT_ENABLED = 2765,
 	UI_OPTION_GRAPHICS_RT_SHADOW_QUALITY = 2766,
 	UI_OPTION_GRAPHICS_RT_REFLECTION_QUALITY = 2767,
+	UI_OPTION_GRAPHICS_SSAA_METHOD = 2768,
+	UI_OPTION_GRAPHICS_SSAA_QUALITY = 2769,
 	UI_OPTION_GRAPHICS_FRAMERATE_LIMIT = 2770,
 	UI_OPTION_GRAPHICS_HDR = 2771,
 	UI_OPTION_GSM_AUTHORITY_END_MARKER = 2771,
@@ -22320,7 +22393,7 @@ public:
 	ZString m_sExposedEntity; // 0x10
 };
 
-// Size: 0x48
+// Size: 0x58
 class /*alignas(8)*/ ZEvergreenCampaignActivatorDataProvider_STerritoryData
 {
 public:
@@ -22334,15 +22407,17 @@ public:
 	bool operator==(const ZEvergreenCampaignActivatorDataProvider_STerritoryData& p_Other) const;
 	bool operator!=(const ZEvergreenCampaignActivatorDataProvider_STerritoryData& p_Other) const { return !(*this == p_Other); }
 
-	ZString lstrDestinationCity; // 0x0
-	ZString lstrDestinationCountry; // 0x10
-	ZString lstrDestinationFullName; // 0x20
-	int32 nSuppliers; // 0x30
-	int32 nMules; // 0x34
-	int32 nSafes; // 0x38
-	int32 nTargets; // 0x3C
-	bool isAlerted; // 0x40
-	uint8_t _pad41[7] {};
+	ZString destination; // 0x0
+	ZString lstrDestinationCity; // 0x10
+	ZString lstrDestinationCountry; // 0x20
+	ZString lstrDestinationFullName; // 0x30
+	int32 nSuppliers; // 0x40
+	int32 nMules; // 0x44
+	int32 nSafes; // 0x48
+	int32 nTargets; // 0x4C
+	bool isAlerted; // 0x50
+	bool isEntitlementAvailable; // 0x51
+	uint8_t _pad52[6] {};
 };
 
 // Size: 0x60
@@ -22359,7 +22434,7 @@ public:
 	bool operator==(const ZEvergreenCampaignActivatorDataProvider_SCampaignData& p_Other) const;
 	bool operator!=(const ZEvergreenCampaignActivatorDataProvider_SCampaignData& p_Other) const { return !(*this == p_Other); }
 
-	ZString lstrCampaignName; // 0x0
+	ZString lstrCrimeSector; // 0x0
 	ZString lstrFactionLieutenantCodename; // 0x10
 	ZString lstrBiography; // 0x20
 	ZRuntimeResourceID ridCampaignIcon; // 0x30
@@ -22382,9 +22457,25 @@ enum class ZEvergreenCampaignDefinitionPollInt_EQuery
 // Size: 0x4
 enum class ZEvergreenCampaignDefinitionPollString_EQuery
 {
-	CampaignName = 0,
-	FactionLieutenantCodename = 1,
-	Biography = 2,
+	LeaderCodename = 0,
+	Biography = 1,
+};
+
+// Size: 0x4
+class /*alignas(4)*/ ZEvergreenCampaignInfoDataProvider_SCampaignInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEvergreenCampaignInfoDataProvider_SCampaignInfo& p_Other) const;
+	bool operator!=(const ZEvergreenCampaignInfoDataProvider_SCampaignInfo& p_Other) const { return !(*this == p_Other); }
+
+	int32 nDifficultyRank; // 0x0
 };
 
 // Size: 0x4
@@ -22396,6 +22487,76 @@ enum class ZEvergreenGearWallMenuEntryAddOn_EItemRarity
 	RARE = 2,
 	EPIC = 3,
 	LEGENDARY = 4,
+};
+
+// Size: 0x1
+enum class ZEvergreenIntelWallDataProvider_EAgenda
+{
+	Unknown = -1,
+	HandoverMeeting = 0,
+	BusinessMeeting = 1,
+	SecretMeeting = 2,
+	NoMeeting = 3,
+};
+
+// Size: 0x1
+enum class ZEvergreenIntelWallDataProvider_ELook
+{
+	Unknown = -1,
+	Glasses = 0,
+	Earrings = 1,
+	Necklace = 2,
+	Watch = 3,
+	Hat = 4,
+	Tattoo = 5,
+	BlackHair = 6,
+	BrownHair = 7,
+	BlondeHair = 8,
+	GreyHair = 9,
+	RedHair = 10,
+	NoHair = 11,
+};
+
+// Size: 0x1
+enum class ZEvergreenIntelWallDataProvider_ETell
+{
+	Unknown = -1,
+	Smoker = 0,
+	Allergic = 1,
+	SweetTooth = 2,
+	Bookworm = 3,
+	Nervous = 4,
+	Dehydrated = 5,
+	Foodie = 6,
+};
+
+// Size: 0x38
+class /*alignas(8)*/ ZEvergreenIntelWallDataProvider_SIntelWallData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEvergreenIntelWallDataProvider_SIntelWallData& p_Other) const;
+	bool operator!=(const ZEvergreenIntelWallDataProvider_SIntelWallData& p_Other) const { return !(*this == p_Other); }
+
+	int32 nDifficultyRank; // 0x0
+	int32 idCrimeSector; // 0x4
+	ZString lstrCrimeSector; // 0x8
+	ZRuntimeResourceID ridCrimeSectorIcon; // 0x18
+	ZString lstrLeaderCodename; // 0x20
+	ZEvergreenIntelWallDataProvider_EAgenda agenda; // 0x30
+	ZEvergreenIntelWallDataProvider_ETell tellA; // 0x31
+	ZEvergreenIntelWallDataProvider_ETell tellB; // 0x32
+	ZEvergreenIntelWallDataProvider_ELook lookA; // 0x33
+	ZEvergreenIntelWallDataProvider_ELook lookB; // 0x34
+	ZEvergreenIntelWallDataProvider_ELook lookC; // 0x35
+	ZEvergreenIntelWallDataProvider_ELook lookD; // 0x36
+	uint8_t _pad37[1] {};
 };
 
 // Size: 0x4
@@ -22428,6 +22589,23 @@ public:
 };
 
 // Size: 0x4
+enum class ZEvergreenMenuCounterScrollEntity_EAxis2DMouse
+{
+	X = 0,
+	Y = 1,
+	XInverted = 2,
+	YInverted = 3,
+};
+
+// Size: 0x4
+enum class ZEvergreenMenuCounterScrollEntity_EAxis3DSpace
+{
+	X = 0,
+	Y = 1,
+	Z = 2,
+};
+
+// Size: 0x4
 enum class ZEvergreenMenuEntryCondition_EQuery
 {
 	IS_SELECTED = 0,
@@ -22455,6 +22633,14 @@ enum class ZEvergreenMenuEntryPromptButtonAction_EInputTrigger
 };
 
 // Size: 0x4
+enum class ZEvergreenMenuGlobalCondition_EQuery
+{
+	IS_ANY_MENU_OPEN = 0,
+	IS_ANY_MENU_PROCESSING_INPUT = 1,
+	IS_ANY_MENU_SUPPRESSING_SPATIAL_ICONS = 2,
+};
+
+// Size: 0x4
 enum class ZEvergreenMenuValueFloatQuery_EQuery
 {
 	OPEN_ANIM_PROGRESS = 0,
@@ -22465,6 +22651,33 @@ enum class ZEvergreenMenuValueFloatQuery_EQuery
 enum class ZEvergreenMenuValueVector3Query_EQuery
 {
 	CENTER_OF_SELECTED_ENTITY = 0,
+};
+
+// Size: 0x4
+class /*alignas(1)*/ ZEvergreenVitalInfoBarDataProvider_SVitalInfoData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEvergreenVitalInfoBarDataProvider_SVitalInfoData& p_Other) const;
+	bool operator!=(const ZEvergreenVitalInfoBarDataProvider_SVitalInfoData& p_Other) const { return !(*this == p_Other); }
+
+	bool isAssassinNearby; // 0x0
+	bool isAssassinAlerted; // 0x1
+	bool isLookoutNearby; // 0x2
+	bool isLookoutAlerted; // 0x3
+};
+
+// Size: 0x4
+enum class ZEvergreenVitalInfoEntity_EVitalInfoType
+{
+	Assassin = 0,
+	Lookout = 1,
 };
 
 // Size: 0x4

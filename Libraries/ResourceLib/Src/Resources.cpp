@@ -51,4 +51,8 @@ std::unordered_map<std::string, Resource> g_Resources = {
 #endif
 
 	REGISTER_RESOURCE(WSGB, SAudioSwitchBlueprintData)
+
+#if ZHM_TARGET == 3
+	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
+#endif
 };
