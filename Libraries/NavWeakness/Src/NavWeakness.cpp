@@ -85,6 +85,7 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 	{
 		NavPower::Area s_curArea = s_NavMesh.m_areas.at(i);
 
+		Vec3 s_normal = s_curArea.CalculateNormal();
 		printf("==== NavGraph Area %p ====\n", s_curArea.m_area);
 		printf("Area_pProxy: %llu\n", s_curArea.m_area->m_pProxy);
 		printf("Area_dynAreaData: %llu\n", s_curArea.m_area->m_dynAreaData);
@@ -102,6 +103,9 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 		printf("Area_obCostMult: %d\n", s_curArea.m_area->m_flags.GetObCostMult());
 		printf("Area_staticCostMult: %d\n", s_curArea.m_area->m_flags.GetStaticCostMult());
 		printf("Area_basisVert: %d\n", s_curArea.m_area->m_flags.GetBasisVert());
+		printf("Area_normal.X: %f\n", s_normal.X);
+		printf("Area_normal.Y: %f\n", s_normal.Y);
+		printf("Area_normal.Z: %f\n", s_normal.Z);
 
 		for (int j = 0; j < s_curArea.m_edges.size(); j++)
 		{

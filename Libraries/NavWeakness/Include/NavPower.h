@@ -1,5 +1,5 @@
 /*
-NavPower.h - v1.0.0
+NavPower.h - v1.1.0
 A header file for use with NavPower's binary navmesh files.
 
 Licensed under the MIT License
@@ -31,8 +31,6 @@ SOFTWARE.
 #include <vector>
 
 #include "Vec3.h"
-
-#define FLT_EPSILON 1.192092896e-07F
 
 uint32_t RangeCheck(uint32_t val, uint32_t min, uint32_t max)
 {
@@ -89,8 +87,21 @@ namespace NavPower
 
     enum class AreaUsageFlags : uint32_t
     {
-        Flat = 1,
-        Steps = 8,
+        AREA_FLAT = 1,
+        AREA_STEPS = 8,
+    };
+
+    std::string AreaUsageFlagToString(AreaUsageFlags p_AreaUsageFlag)
+    {
+        switch (p_AreaUsageFlag)
+        {
+        case AreaUsageFlags::AREA_FLAT:
+            return "Flat";
+        case AreaUsageFlags::AREA_STEPS:
+            return "Steps";
+        default:
+            return "UNKNOWN!";
+        }
     };
 
     enum EdgeType
@@ -343,6 +354,19 @@ namespace NavPower
             }
 
             return (s_FoundVertex >= 2 ? s_FoundVertex : 2);
+        }
+
+        Vec3 CalculateNormal()
+        {
+            Vec3 v0 = m_edges.at(0)->m_pos;
+            Vec3 v1 = m_edges.at(1)->m_pos;
+            Vec3 basis = m_edges.at(m_area->m_flags.GetBasisVert())->m_pos;
+
+            Vec3 vec1 = v1 - v0;
+            Vec3 vec2 = basis - v0;
+            Vec3 cross = vec1.Cross(vec2);
+
+            return cross.GetUnitVec();
         }
     };
 
