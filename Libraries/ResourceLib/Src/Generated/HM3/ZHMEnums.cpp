@@ -6303,6 +6303,7 @@ void ZHMEnums::RegisterEnums()
 		{ 39, "EREQUIREMENT_H3_DEADLYSINS_GLUTTONY" },
 		{ 40, "EREQUIREMENT_H3_DEADLYSINS_WRATH" },
 		{ 41, "EREQUIREMENT_H3_DEADLYSINS_ENVY" },
+		{ 42, "EREQUIREMENT_LOCATION_ROCKY" },
 	};
 
 	(*g_Enums)["ERestitutionCombineMode"] = {
@@ -9013,6 +9014,7 @@ void ZHMEnums::RegisterEnums()
 	(*g_Enums)["ZEvergreenVitalInfoEntity.EVitalInfoType"] = {
 		{ 0, "Assassin" },
 		{ 1, "Lookout" },
+		{ 2, "Territory" },
 	};
 
 	(*g_Enums)["ZEvergreenWorldMapTerritoryDataProvider.EVisited"] = {

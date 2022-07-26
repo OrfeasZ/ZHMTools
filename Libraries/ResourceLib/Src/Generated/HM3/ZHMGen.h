@@ -7170,6 +7170,7 @@ enum class ERequirementId
 	EREQUIREMENT_H3_DEADLYSINS_GLUTTONY = 39,
 	EREQUIREMENT_H3_DEADLYSINS_WRATH = 40,
 	EREQUIREMENT_H3_DEADLYSINS_ENVY = 41,
+	EREQUIREMENT_LOCATION_ROCKY = 42,
 };
 
 // Size: 0x1
@@ -12302,6 +12303,24 @@ public:
 	TArray<SVector3> m_aBoneScales; // 0x0
 };
 
+// Size: 0x20
+class /*alignas(8)*/ SBonusRequirementData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SBonusRequirementData& p_Other) const;
+	bool operator!=(const SBonusRequirementData& p_Other) const { return !(*this == p_Other); }
+
+	ZString lstrTitle; // 0x0
+	ZString icon; // 0x10
+};
+
 // Size: 0x8
 class /*alignas(4)*/ SCCEffectSet
 {
@@ -15861,7 +15880,9 @@ public:
 	bool m_bObjectInPhysicsWorld; // 0x47
 	int32 m_nQuantity; // 0x48
 	ERenderGlowTypes m_eGlowType; // 0x4C
-	uint8_t _pad4D[3] {};
+	ERenderGlowTypes m_eOverriddenGlowType; // 0x4D
+	bool m_bGlowIsOverridden; // 0x4E
+	uint8_t _pad4F[1] {};
 };
 
 // Size: 0x30
@@ -22420,7 +22441,7 @@ public:
 	uint8_t _pad52[6] {};
 };
 
-// Size: 0x60
+// Size: 0x80
 class /*alignas(8)*/ ZEvergreenCampaignActivatorDataProvider_SCampaignData
 {
 public:
@@ -22443,6 +22464,9 @@ public:
 	int32 mercesPayoutBase; // 0x40
 	uint8_t _pad44[4] {};
 	TArray<ZEvergreenCampaignActivatorDataProvider_STerritoryData> territories; // 0x48
+	TArray<SBonusRequirementData> bonusRequirements; // 0x60
+	bool hasAllBonusRequirements; // 0x78
+	uint8_t _pad79[7] {};
 };
 
 // Size: 0x4
@@ -22476,6 +22500,27 @@ public:
 	bool operator!=(const ZEvergreenCampaignInfoDataProvider_SCampaignInfo& p_Other) const { return !(*this == p_Other); }
 
 	int32 nDifficultyRank; // 0x0
+};
+
+// Size: 0x38
+class /*alignas(8)*/ ZEvergreenCampaignProgressDataProvider_SData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEvergreenCampaignProgressDataProvider_SData& p_Other) const;
+	bool operator!=(const ZEvergreenCampaignProgressDataProvider_SData& p_Other) const { return !(*this == p_Other); }
+
+	TArray<int32> campaign; // 0x0
+	TArray<int32> completed; // 0x18
+	int32 step; // 0x30
+	bool hardcore; // 0x34
+	uint8_t _pad35[3] {};
 };
 
 // Size: 0x4
@@ -22653,7 +22698,7 @@ enum class ZEvergreenMenuValueVector3Query_EQuery
 	CENTER_OF_SELECTED_ENTITY = 0,
 };
 
-// Size: 0x4
+// Size: 0x5
 class /*alignas(1)*/ ZEvergreenVitalInfoBarDataProvider_SVitalInfoData
 {
 public:
@@ -22671,6 +22716,7 @@ public:
 	bool isAssassinAlerted; // 0x1
 	bool isLookoutNearby; // 0x2
 	bool isLookoutAlerted; // 0x3
+	bool isAllertedTerritory; // 0x4
 };
 
 // Size: 0x4
@@ -22678,6 +22724,7 @@ enum class ZEvergreenVitalInfoEntity_EVitalInfoType
 {
 	Assassin = 0,
 	Lookout = 1,
+	Territory = 2,
 };
 
 // Size: 0x4
@@ -22686,24 +22733,6 @@ enum class ZEvergreenWorldMapTerritoryDataProvider_EVisited
 	NotVisited = 0,
 	VisitedAndWon = 1,
 	VisitedAndLost = 2,
-};
-
-// Size: 0x20
-class /*alignas(8)*/ ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement& p_Other) const;
-	bool operator!=(const ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement& p_Other) const { return !(*this == p_Other); }
-
-	ZString lstrTitle; // 0x0
-	ZString icon; // 0x10
 };
 
 // Size: 0x70
@@ -22739,7 +22768,7 @@ public:
 	bool isThisSelectedToTravelNext; // 0x55
 	bool isAnotherSelectedToTravelNext; // 0x56
 	uint8_t _pad57[1] {};
-	TArray<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement> bonusRequirements; // 0x58
+	TArray<SBonusRequirementData> bonusRequirements; // 0x58
 };
 
 // Size: 0x20

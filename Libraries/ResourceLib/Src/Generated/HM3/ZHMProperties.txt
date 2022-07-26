@@ -26,6 +26,7 @@ COLLIDE_WITH_STATIC_ONLY
 COLLISION_VOLUME_HITMAN_OFF
 COLLISION_VOLUME_HITMAN_ON
 CROWD_RAGDOLL
+Campaign
 Clients
 ColorCorrectionTextureHDR
 ContractRid
@@ -252,6 +253,7 @@ boneId
 bonusRequirements
 button
 buttonprompts
+campaign
 canReload
 causalnode
 cbMappingNames
@@ -259,6 +261,7 @@ cbMappings
 character
 combatPosition
 comment
+completed
 component
 condition
 config
@@ -381,6 +384,8 @@ goalType
 groupId
 h
 hardCondition
+hardcore
+hasAllBonusRequirements
 header
 headline
 hidden
@@ -406,6 +411,7 @@ intelType
 inventoryCategoryIcon
 isActionInventory
 isAlerted
+isAllertedTerritory
 isAnotherSelectedToTravelNext
 isAssassinAlerted
 isAssassinNearby
@@ -612,6 +618,7 @@ m_CameraSpatial
 m_CameraTransform
 m_CampaignIcon
 m_CampaignManager
+m_CampaignProgressHelper
 m_CanCiviliansInvestigate
 m_CanGuardsInvestigate
 m_CanVIPsInvestigate
@@ -916,6 +923,8 @@ m_HDRLensFlareColorC
 m_HDRLensFlareColorD
 m_HUDTmpl
 m_HadValidAgent
+m_Hardcore
+m_HasAllBonusRequirements
 m_HazeColor
 m_HeadOffsetFar
 m_HeadOffsetNear
@@ -1163,6 +1172,7 @@ m_PosPlacementAttach
 m_Position
 m_PostfilterParametersID
 m_PrimitiveScale
+m_ProgressCPD
 m_Projectile
 m_ProjectorMap
 m_ProjectorRenderDestinationTexture
@@ -1292,6 +1302,7 @@ m_StateController
 m_StateData
 m_States
 m_StatusMarkersVRControl
+m_StepCPD
 m_StepRecenterHandDistance
 m_StepRecenterHeadAngle
 m_StepRecenterHeadDistance
@@ -2594,6 +2605,7 @@ m_bGlobalCollidersEnabled
 m_bGlobalLightOverrideDisableSpec
 m_bGlobalLightOverrideEnable
 m_bGlobalShadowMapExcludeDSSObjects
+m_bGlowIsOverridden
 m_bGoIntoCoverAtWaypoint
 m_bGrabAllDrops
 m_bGrabNPCEnabled
@@ -3239,6 +3251,7 @@ m_bRespondToExplosions
 m_bRespondToShots
 m_bRestoreAborted
 m_bRestoreFromStop
+m_bRestorePlayingStateOnSceneReset
 m_bRestorePreSubactionItems
 m_bRestoreValueAfterEnd
 m_bResult
@@ -4069,6 +4082,7 @@ m_eOrder
 m_eOrderType
 m_eOutfitAICategory
 m_eOutfitType
+m_eOverriddenGlowType
 m_eOverrideSensorState
 m_eParameter
 m_ePelvisIK
@@ -5835,6 +5849,7 @@ m_json
 m_jsonArguments
 m_jumpPoints
 m_key
+m_killRequirement
 m_knownByActors
 m_knownWorldMatrix
 m_lastArrestReason
@@ -7186,6 +7201,9 @@ m_rMaterialEffectMatchPrototype
 m_rMaterialOverrideFactory
 m_rMaxLoopPoints
 m_rMaxRequirements
+m_rMaxSafes
+m_rMaxStashes
+m_rMaxSuppliers
 m_rMaxTraits
 m_rMayPickupCondition
 m_rMayPlayFriskingDialogCondition
@@ -7196,6 +7214,9 @@ m_rMessageResourcePS4
 m_rMessageResourceXB1
 m_rMinLoopPoints
 m_rMinRequirements
+m_rMinSafes
+m_rMinStashes
+m_rMinSuppliers
 m_rMinTraits
 m_rMockClothbundle
 m_rMorphemeEntity
@@ -7497,6 +7518,7 @@ m_replicaNSID
 m_replicationFrequency
 m_reportedTarget
 m_repositoryId
+m_requirementBlacklist
 m_resourceID
 m_resourceId
 m_ridAlphaCurveEntity
@@ -8341,6 +8363,7 @@ speak_false
 speak_true
 specular
 speed
+step
 stoppingDistance
 stringField
 stype
