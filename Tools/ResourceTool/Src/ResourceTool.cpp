@@ -157,7 +157,7 @@ int TryConvertFile(const std::string& p_FilePath)
 	else if (s_InputPathStr.find("absolution") != std::string::npos || s_InputPathStr.find("hma") != std::string::npos || s_InputPathStr.find("hm2012") != std::string::npos || s_InputPathStr.find("h2012") != std::string::npos)
 		s_DetectedVersion = HitmanVersion::HitmanAbsolution;
 	else if (s_InputPathStr.find("hitman") != std::string::npos || s_InputPathStr.find("hm") != std::string::npos || s_InputPathStr.find("hm2016") != std::string::npos || s_InputPathStr.find("h2016") != std::string::npos)
-		s_DetectedVersion = HitmanVersion::Hitman3;
+		s_DetectedVersion = HitmanVersion::Hitman2016;
 
 	if (s_DetectedVersion == HitmanVersion::Unknown)
 	{
