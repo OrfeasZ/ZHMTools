@@ -206,6 +206,7 @@ bDynamicScale
 bEnteredThroughEntranceZone
 bExplosive
 bFirearmPacifiesTarget
+bHardcore
 bHasItemToShow
 bHeadshot
 bHolster
@@ -380,6 +381,8 @@ fromID
 fromPinName
 g
 glossiness
+goToExitObjectivesDone
+goToExitObjectivesFail
 goalType
 groupId
 h
@@ -426,6 +429,7 @@ isInCampaign
 isLookoutAlerted
 isLookoutNearby
 isMenuZoomedIn
+isPrestigeObjectiveActive
 isSelectedInMenu
 isThisSelectedToTravelNext
 item
@@ -1100,6 +1104,8 @@ m_NumStabEmitters
 m_Object
 m_ObjectToMeasureFrom
 m_ObjectiveStringID
+m_ObjectivesDone
+m_ObjectivesFail
 m_ObjectviveId
 m_ObstructionShapeRoot
 m_OcclusionTransitionCurve
@@ -7105,6 +7111,7 @@ m_rForbiddenKeywords
 m_rFormationController
 m_rFormattingResource
 m_rFromItem
+m_rGameFlowIndex
 m_rGateEntity
 m_rGeomCollectionSetup
 m_rGeomEntities
