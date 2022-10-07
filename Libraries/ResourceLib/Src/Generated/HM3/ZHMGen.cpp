@@ -54013,6 +54013,10 @@ void ZEvergreenCampaignInfoDataProvider_SCampaignInfo::WriteSimpleJson(void* p_O
 
 	p_Stream << simdjson::as_json_string("nDifficultyRank") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->nDifficultyRank);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("bHardcore") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->bHardcore);
 
 	p_Stream << "}";
 }
@@ -54022,6 +54026,8 @@ void ZEvergreenCampaignInfoDataProvider_SCampaignInfo::FromSimpleJson(simdjson::
 	ZEvergreenCampaignInfoDataProvider_SCampaignInfo s_Object {};
 
 	s_Object.nDifficultyRank = simdjson::from_json_int32(p_Document["nDifficultyRank"]);
+
+	s_Object.bHardcore = simdjson::from_json_bool(p_Document["bHardcore"]);
 
 	*reinterpret_cast<ZEvergreenCampaignInfoDataProvider_SCampaignInfo*>(p_Target) = s_Object;
 }
@@ -54046,6 +54052,7 @@ bool ZEvergreenCampaignInfoDataProvider_SCampaignInfo::operator==(const ZEvergre
 		return false;
 
 	if (nDifficultyRank != p_Other.nDifficultyRank) return false;
+	if (bHardcore != p_Other.bHardcore) return false;
 
 	return true;
 }
@@ -54098,6 +54105,14 @@ void ZEvergreenCampaignProgressDataProvider_SData::WriteSimpleJson(void* p_Objec
 
 	p_Stream << simdjson::as_json_string("hardcore") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->hardcore);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("goToExitObjectivesDone") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->goToExitObjectivesDone);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("goToExitObjectivesFail") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->goToExitObjectivesFail);
 
 	p_Stream << "}";
 }
@@ -54132,6 +54147,10 @@ void ZEvergreenCampaignProgressDataProvider_SData::FromSimpleJson(simdjson::onde
 
 	s_Object.hardcore = simdjson::from_json_bool(p_Document["hardcore"]);
 
+	s_Object.goToExitObjectivesDone = simdjson::from_json_bool(p_Document["goToExitObjectivesDone"]);
+
+	s_Object.goToExitObjectivesFail = simdjson::from_json_bool(p_Document["goToExitObjectivesFail"]);
+
 	*reinterpret_cast<ZEvergreenCampaignProgressDataProvider_SData*>(p_Target) = s_Object;
 }
 
@@ -54160,6 +54179,8 @@ bool ZEvergreenCampaignProgressDataProvider_SData::operator==(const ZEvergreenCa
 	if (completed != p_Other.completed) return false;
 	if (step != p_Other.step) return false;
 	if (hardcore != p_Other.hardcore) return false;
+	if (goToExitObjectivesDone != p_Other.goToExitObjectivesDone) return false;
+	if (goToExitObjectivesFail != p_Other.goToExitObjectivesFail) return false;
 
 	return true;
 }
@@ -54408,6 +54429,10 @@ void ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::WriteSimpleJson(void* p_
 
 	p_Stream << simdjson::as_json_string("isAllertedTerritory") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->isAllertedTerritory);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("isPrestigeObjectiveActive") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isPrestigeObjectiveActive);
 
 	p_Stream << "}";
 }
@@ -54425,6 +54450,8 @@ void ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::FromSimpleJson(simdjson:
 	s_Object.isLookoutAlerted = simdjson::from_json_bool(p_Document["isLookoutAlerted"]);
 
 	s_Object.isAllertedTerritory = simdjson::from_json_bool(p_Document["isAllertedTerritory"]);
+
+	s_Object.isPrestigeObjectiveActive = simdjson::from_json_bool(p_Document["isPrestigeObjectiveActive"]);
 
 	*reinterpret_cast<ZEvergreenVitalInfoBarDataProvider_SVitalInfoData*>(p_Target) = s_Object;
 }
@@ -54453,6 +54480,7 @@ bool ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::operator==(const ZEvergr
 	if (isLookoutNearby != p_Other.isLookoutNearby) return false;
 	if (isLookoutAlerted != p_Other.isLookoutAlerted) return false;
 	if (isAllertedTerritory != p_Other.isAllertedTerritory) return false;
+	if (isPrestigeObjectiveActive != p_Other.isPrestigeObjectiveActive) return false;
 
 	return true;
 }
