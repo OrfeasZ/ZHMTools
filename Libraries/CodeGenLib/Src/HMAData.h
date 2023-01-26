@@ -9,6 +9,7 @@
 
 #include <cstdint>
 #include <unordered_map>
+#include <string>
 
 class HMAData
 {
