@@ -58,6 +58,7 @@ Global
 HERO_DYN_BODY
 HERO_PROXY
 HERO_VR
+HideTargetFleeing
 ITEMS
 Id
 IsElevationDifferenceEnabled
@@ -255,6 +256,7 @@ bonusRequirements
 button
 buttonprompts
 campaign
+campaignActivatorInUse
 canReload
 causalnode
 cbMappingNames
@@ -306,6 +308,7 @@ eState
 eType
 eViewportLock
 editorOnly
+enableWorldSizeScaling
 entities
 entity
 entity2
@@ -317,6 +320,7 @@ entitySubsets
 entityTypeResourceIndex
 enumField
 eventType
+evergreenLoseOnWounded
 evergreenRarity
 exits
 exposedEntities
@@ -370,6 +374,9 @@ fTotalDamage
 fUInt32Prop
 fValue
 fViewportGutter
+fWorldSizeScalingBaseDistance
+fWorldSizeScalingFactorMax
+fWorldSizeScalingFactorMin
 fX
 fY
 facing
@@ -403,6 +410,7 @@ idArchetype
 idCrimeSector
 idSource
 illegal
+image
 img
 includeWeapons
 index
@@ -432,6 +440,7 @@ isMenuZoomedIn
 isPrestigeObjectiveActive
 isSelectedInMenu
 isThisSelectedToTravelNext
+isVisible
 item
 itemCategory
 itemCategoryLKey
@@ -585,6 +594,7 @@ m_BehaviorSelectDisabled
 m_BehaviorTrees
 m_BillboardRenderDestinationTexture
 m_Biography
+m_BlockInputs
 m_BloodEmitter
 m_BlueOfBlue
 m_BlueOfGreen
@@ -620,6 +630,7 @@ m_CameraBones
 m_CameraConfig
 m_CameraSpatial
 m_CameraTransform
+m_CampaignActivatorInUse
 m_CampaignIcon
 m_CampaignManager
 m_CampaignProgressHelper
@@ -707,6 +718,7 @@ m_CurveX
 m_CurveY
 m_CurveZ
 m_CustomData
+m_CustomMessage
 m_CustomTrackData
 m_DamageMultipliers
 m_DangerousAreaServiceData
@@ -737,6 +749,7 @@ m_DifficultyRank
 m_DiffuseColor
 m_Disabled
 m_DiscoveredVIPOrContractTargetBodies
+m_Discrete
 m_DisguiseAttentionDuration
 m_DisguisePeripheralAttentionDuration
 m_Display
@@ -1138,6 +1151,7 @@ m_ParticleShaderParameters
 m_PathfinderDistanceThreshold
 m_PatrolRoutes
 m_PatternSequenceData
+m_PauseGame
 m_PayoutBase
 m_PenaltyCombat
 m_PenaltyCombatUnknown
@@ -1191,6 +1205,7 @@ m_QualityDurango
 m_QualityNeo
 m_QualityOrbis
 m_QualityScorpio
+m_QueryServerOnActivation
 m_Radius
 m_RadiusInHIPS
 m_RadiusWhileInCloset
@@ -1375,6 +1390,7 @@ m_TokenToFind
 m_TrackingBones
 m_TrackingLocations
 m_TrailDecalsSpawner
+m_TransformParent
 m_TrapsData
 m_TrespassingAttentionDuration
 m_TrespassingPeripheralAttentionDuration
@@ -1491,6 +1507,7 @@ m_aAvailableLoopPoints
 m_aAvoidDangerGroups
 m_aAvoidDangerousAreaGroups
 m_aBehaviorEntities
+m_aBlockPacifiedKeywords
 m_aBodies
 m_aBodyPartCollections
 m_aBodyPartSetups
@@ -1941,6 +1958,7 @@ m_asOnlineTraits
 m_assignedBodyguards
 m_assistant
 m_assistantApproachNode
+m_autoFitViewportByFOV
 m_axis2DMouse
 m_axis3DSpace
 m_bA
@@ -2784,6 +2802,7 @@ m_bIsEnabled
 m_bIsEnabledCondValid
 m_bIsEntering
 m_bIsEscapeNode
+m_bIsEvergreenMenuSpatial
 m_bIsFadeDown
 m_bIsFalseAlarm
 m_bIsFemale
@@ -3738,9 +3757,11 @@ m_collapsedAdditionalScaleFactor3D
 m_colorFill
 m_colorStroke
 m_commandQueue
+m_compareTo
 m_completed
 m_compromisedOnEnter
 m_concealedItem
+m_condition
 m_conditions
 m_contentSizeMode
 m_contentSizeOverride
@@ -3751,6 +3772,7 @@ m_contractsBosySpottedEntity
 m_control
 m_count
 m_coverPlane
+m_crimeSectorBlacklist
 m_cursorShape
 m_cursorWidget
 m_cursorWorldSpatial
@@ -3798,6 +3820,7 @@ m_dtAnimationLength
 m_dtBlendIn
 m_dtBlendOut
 m_dtCloseTransition
+m_dtDelay
 m_dtFadeWhenDisabled
 m_dtFadeWhenEnabled
 m_dtInterval
@@ -3806,6 +3829,7 @@ m_dtOpenTransition
 m_dtResetAnimDuration
 m_dtTransition
 m_dtZoomInBlendTime
+m_dtZoomInDelayTime
 m_dtZoomOutBlendTime
 m_dtZoomPanBlendTime
 m_dummyProperty
@@ -4222,6 +4246,7 @@ m_eidParent
 m_emitterType
 m_enabledEntranceId
 m_enabledEntranceUnlockable
+m_entitlement
 m_entity
 m_entityGroup
 m_entries
@@ -4563,6 +4588,7 @@ m_fDeceleration
 m_fDefaultActivationAngle
 m_fDefaultActivationArc
 m_fDefaultAlignAngle
+m_fDefaultHeight
 m_fDefaultMessageTimeout
 m_fDefaultOcclusionFactor
 m_fDefaultRadius
@@ -5760,6 +5786,7 @@ m_footsteps
 m_formationSlotHeight
 m_formationSlotWidth
 m_formationSlots
+m_fovYDeg
 m_friskGroups
 m_fsm
 m_fsmAssistantState
@@ -5826,6 +5853,7 @@ m_input0
 m_input1
 m_inputPinConditions
 m_inputTrigger
+m_intelData
 m_interactionData
 m_investigateArea
 m_isAlerted
@@ -5901,6 +5929,7 @@ m_menu
 m_menuOverlayContainer
 m_mercesPayoutHotMission
 m_mercesPayoutMildMission
+m_messageType
 m_metricName
 m_middleBoxDepthMarginFar
 m_middleBoxDepthMarginNear
@@ -5921,6 +5950,7 @@ m_nAllowRunRadius
 m_nAmmo
 m_nAmmoCount
 m_nAmmoCountAmmoShotgunBeanbag
+m_nAmmoCountDartEmetic
 m_nAmmoCountDartTranquilizer
 m_nAmmoCountFake
 m_nAmmoCountGun
@@ -6173,6 +6203,7 @@ m_nMaxDispatchesPerCamera
 m_nMaxDistForTargetSteering
 m_nMaxDistance
 m_nMaxElement
+m_nMaxEmeticAmmo
 m_nMaxEnterDelaySec
 m_nMaxEntitiesPerRow
 m_nMaxGunAmmo
@@ -6488,6 +6519,7 @@ m_pActorEntity
 m_pActorInstance
 m_pActorList
 m_pActorModel
+m_pActorResource
 m_pActorTagController
 m_pAimAt
 m_pAlignGizmo
@@ -6890,6 +6922,7 @@ m_playerId
 m_position
 m_postfilterGraphNode
 m_precisionShotController
+m_prestigeID
 m_prevState
 m_priority
 m_projOp
@@ -7524,6 +7557,7 @@ m_rendObjList
 m_replicaNSID
 m_replicationFrequency
 m_reportedTarget
+m_repositoryID
 m_repositoryId
 m_requirementBlacklist
 m_resourceID
@@ -7558,6 +7592,7 @@ m_sAnimationEvent
 m_sAuxBusName
 m_sBaconShotText
 m_sBaseSceneResID
+m_sBlockPacifiedDescriptionID
 m_sBodyHeadline
 m_sBodyText
 m_sBodytext
@@ -7764,6 +7799,7 @@ m_sequenceTime
 m_sharedTarget
 m_shouldIgnorePistolWhip
 m_showGearCapacityCost
+m_showLatestIntelOnly
 m_showPerks
 m_sideBoxDepthMarginFar
 m_sideBoxDepthMarginNear
@@ -7913,6 +7949,7 @@ m_transitionClips
 m_tresspassGroup
 m_triggerIfSpanning
 m_triggerIfSpanningOverride
+m_triggerLatestIntelWithoutDelay
 m_triggerOnChange
 m_type
 m_uRecenterRequestCounter
@@ -8172,6 +8209,8 @@ m_vVignetteGradientLightColor
 m_vWaypoint
 m_vWorldOffset
 m_value
+m_valueWhenFalse
+m_valueWhenTrue
 m_velocity
 m_vip
 m_vipTargetNode
