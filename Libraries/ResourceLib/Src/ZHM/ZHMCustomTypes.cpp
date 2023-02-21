@@ -430,3 +430,48 @@ void SUIControlBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer,
 	auto* s_Object = static_cast<SUIControlBlueprint*>(p_Object);
 	
 }
+
+ZHMTypeInfo SEnumType::TypeInfo = ZHMTypeInfo("SEnumType", sizeof(SEnumType), alignof(SEnumType), WriteSimpleJson, FromSimpleJson, Serialize);
+
+void SEnumType::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	p_Stream << "{";
+
+	auto s_Object = static_cast<SEnumType*>(p_Object);
+
+	p_Stream << "\"Name\"" << ":" << simdjson::as_json_string(s_Object->m_sName) << ",";
+	p_Stream << "\"Items\"" << ":[";
+
+	p_Stream << "{";
+	for (size_t i = 0; i < s_Object->m_aItemNames.size(); ++i)
+	{
+		auto& s_ItemName = s_Object->m_aItemNames[i];
+		auto s_ItemValue = s_Object->m_aItemValues[i];
+
+		p_Stream << simdjson::as_json_string(s_ItemName) << ":";
+		p_Stream << s_ItemValue;
+
+		if (i < s_Object->m_aItemNames.size() - 1)
+			p_Stream << ",";
+	}
+	p_Stream << "}";
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SEnumType::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	throw std::runtime_error("Serializing SEnumTypes is not currently supported.");
+
+	/*SEnumType s_Object;
+
+	*reinterpret_cast<SEnumType*>(p_Target) = s_Object;*/
+}
+
+void SEnumType::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = static_cast<SEnumType*>(p_Object);
+	
+}

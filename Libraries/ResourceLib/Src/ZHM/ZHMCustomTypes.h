@@ -107,3 +107,16 @@ public:
 	TArray<SUIControlBlueprintPin> m_aPins;
 	TArray<SUIControlBlueprintProperty> m_aProperties;
 };
+
+class SEnumType
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+
+	ZString m_sName;
+	TArray<ZString> m_aItemNames;
+	TArray<uint32_t> m_aItemValues;
+};
