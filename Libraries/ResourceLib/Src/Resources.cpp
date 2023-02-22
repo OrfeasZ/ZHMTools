@@ -55,4 +55,8 @@ std::unordered_map<std::string, Resource> g_Resources = {
 #if ZHM_TARGET == 3
 	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
 #endif
+
+#if ZHM_TARGET == 3 || ZHM_TARGET == 2
+	REGISTER_RESOURCE(ENUM, SEnumType)
+#endif
 };
