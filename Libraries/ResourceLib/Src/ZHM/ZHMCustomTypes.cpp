@@ -66,7 +66,7 @@ void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	auto s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
-	std::string s_SwfData(s_Object->m_pSwfData, s_Object->m_pSwfData + s_Object->m_nSwfDataSize);
+	std::string s_SwfData(s_Object->m_pSwfData.GetPtr(), s_Object->m_pSwfData.GetPtr() + s_Object->m_nSwfDataSize);
 	p_Stream << "\"m_pSwfData\"" << ":" << simdjson::as_json_string(Base64::Encode(s_SwfData)) << ",";
 
 	p_Stream << "\"m_pAdditionalFileNames\"" << ":[";
@@ -105,12 +105,18 @@ void SScaleformGFxResource::FromSimpleJson(simdjson::ondemand::value p_Document,
 {
 	SScaleformGFxResource s_Object;
 
-	std::string s_SwfData;
-	Base64::Decode(std::string_view(p_Document["m_pSwfData"]), s_SwfData);
+	std::string s_SwfDataStr;
+	Base64::Decode(std::string_view(p_Document["m_pSwfData"]), s_SwfDataStr);
+	
+	auto* s_Arena = ZHMArenas::GetHeapArena();
 
-	s_Object.m_nSwfDataSize = s_SwfData.size();
-	s_Object.m_pSwfData = reinterpret_cast<uint8_t*>(malloc(s_SwfData.size()));
-	memcpy(s_Object.m_pSwfData, s_SwfData.data(), s_SwfData.size());
+	const auto s_AllocationOffset = s_Arena->Allocate(s_SwfDataStr.size());
+	auto* s_SwfData = s_Arena->GetObjectAtOffset<void>(s_AllocationOffset);
+
+	memcpy(s_SwfData, s_SwfDataStr.data(), s_SwfDataStr.size());
+
+	s_Object.m_nSwfDataSize = s_SwfDataStr.size();
+	s_Object.m_pSwfData.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset);
 
 	{
 		simdjson::ondemand::array s_Array = p_Document["m_pAdditionalFileNames"];
@@ -149,7 +155,7 @@ void SScaleformGFxResource::Serialize(void* p_Object, ZHMSerializer& p_Serialize
 {
 	auto* s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
-	auto s_DataPtr = p_Serializer.WriteMemory(s_Object->m_pSwfData, s_Object->m_nSwfDataSize, alignof(uint8_t*));
+	auto s_DataPtr = p_Serializer.WriteMemory(s_Object->m_pSwfData.GetPtr(), s_Object->m_nSwfDataSize, alignof(uint8_t*));
 	p_Serializer.PatchPtr(p_OwnOffset + offsetof(SScaleformGFxResource, m_pSwfData), s_DataPtr);
 	
 	TArray<ZString>::Serialize(&s_Object->m_pAdditionalFileNames, p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileNames));

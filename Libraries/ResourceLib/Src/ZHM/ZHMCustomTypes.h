@@ -26,7 +26,7 @@ public:
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 
-	uint8_t* m_pSwfData;
+	ZHMPtr<uint8_t> m_pSwfData;
 	size_t m_nSwfDataSize;
 	TArray<ZString> m_pAdditionalFileNames;
 	TArray<TArray<uint8_t>> m_pAdditionalFileData;
