@@ -2,6 +2,17 @@
 
 #include "External/simdjson_helpers.h"
 #include "Util/Base64.h"
+#include "Util/XTEA.h"
+
+#if ZHM_TARGET == 3
+#include <Generated/HM3/ZHMGen.h>
+#elif ZHM_TARGET == 2
+#include <Generated/HM2/ZHMGen.h>
+#elif ZHM_TARGET == 2016
+#include <Generated/HM2016/ZHMGen.h>
+#elif ZHM_TARGET == 2012
+#include <Generated/HMA/ZHMGen.h>
+#endif
 
 ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", sizeof(SAudioSwitchBlueprintData), alignof(SAudioSwitchBlueprintData), WriteSimpleJson, FromSimpleJson, Serialize);
 
@@ -494,4 +505,169 @@ void SEnumType::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t 
 	TArray<ZString>::Serialize(&s_Object->m_aItemNames, p_Serializer, p_OwnOffset + offsetof(SEnumType, m_aItemNames));
 	TArray<uint32_t>::Serialize(&s_Object->m_aItemValues, p_Serializer, p_OwnOffset + offsetof(SEnumType, m_aItemValues));
 	
+}
+
+ZHMTypeInfo SLocalizedVideoDataDecrypted::TypeInfo = ZHMTypeInfo("SLocalizedVideoDataDecrypted", sizeof(SLocalizedVideoDataDecrypted), alignof(SLocalizedVideoDataDecrypted), SLocalizedVideoDataDecrypted::WriteSimpleJson, SLocalizedVideoDataDecrypted::FromSimpleJson, SLocalizedVideoDataDecrypted::Serialize, SLocalizedVideoDataDecrypted::Equals, SLocalizedVideoDataDecrypted::Destroy);
+
+void SLocalizedVideoDataDecrypted::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("AudioLanguages") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->AudioLanguages.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->AudioLanguages[i];
+		XTEA::DecryptInPlace(s_Item0.data(), s_Item0.size(), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+		s_Item0.AdjustSizeToNullTerminator();
+
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->AudioLanguages.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("VideoRidsPerAudioLanguage") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->VideoRidsPerAudioLanguage.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->VideoRidsPerAudioLanguage[i];
+		ZRuntimeResourceID::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->VideoRidsPerAudioLanguage.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("SubtitleLanguages") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->SubtitleLanguages.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->SubtitleLanguages[i];
+		XTEA::DecryptInPlace(s_Item0.data(), s_Item0.size(), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+		s_Item0.AdjustSizeToNullTerminator();
+
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->SubtitleLanguages.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("SubtitleMarkupsPerLanguage") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->SubtitleMarkupsPerLanguage.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->SubtitleMarkupsPerLanguage[i];
+		XTEA::DecryptInPlace(s_Item0.data(), s_Item0.size(), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+		s_Item0.AdjustSizeToNullTerminator();
+
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->SubtitleMarkupsPerLanguage.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SLocalizedVideoDataDecrypted::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SLocalizedVideoDataDecrypted s_Object{};
+
+	{
+		simdjson::ondemand::array s_Array0 = p_Document["AudioLanguages"];
+		s_Object.AudioLanguages.resize(s_Array0.count_elements());
+		size_t s_Index0 = 0;
+
+		for (simdjson::ondemand::value s_Item0 : s_Array0)
+		{
+			s_Object.AudioLanguages[s_Index0++] = XTEA::Encrypt(std::string_view(s_Item0), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+		}
+	}
+
+	{
+		simdjson::ondemand::array s_Array0 = p_Document["VideoRidsPerAudioLanguage"];
+		s_Object.VideoRidsPerAudioLanguage.resize(s_Array0.count_elements());
+		size_t s_Index0 = 0;
+
+		for (simdjson::ondemand::value s_Item0 : s_Array0)
+		{
+			ZRuntimeResourceID s_ArrayItem0;
+			ZRuntimeResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
+			s_Object.VideoRidsPerAudioLanguage[s_Index0++] = s_ArrayItem0;
+		}
+	}
+
+	{
+		simdjson::ondemand::array s_Array0 = p_Document["SubtitleLanguages"];
+		s_Object.SubtitleLanguages.resize(s_Array0.count_elements());
+		size_t s_Index0 = 0;
+
+		for (simdjson::ondemand::value s_Item0 : s_Array0)
+		{
+			s_Object.SubtitleLanguages[s_Index0++] = XTEA::Encrypt(std::string_view(s_Item0), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+		}
+	}
+
+	{
+		simdjson::ondemand::array s_Array0 = p_Document["SubtitleMarkupsPerLanguage"];
+		s_Object.SubtitleMarkupsPerLanguage.resize(s_Array0.count_elements());
+		size_t s_Index0 = 0;
+
+		for (simdjson::ondemand::value s_Item0 : s_Array0)
+		{
+			s_Object.SubtitleMarkupsPerLanguage[s_Index0++] = XTEA::Encrypt(std::string_view(s_Item0), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+		}
+	}
+
+	*reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Target) = s_Object;
+}
+
+void SLocalizedVideoDataDecrypted::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Object);
+
+	TArray<ZString>::Serialize(&s_Object->AudioLanguages, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, AudioLanguages));
+	TArray<ZRuntimeResourceID>::Serialize(&s_Object->VideoRidsPerAudioLanguage, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, VideoRidsPerAudioLanguage));
+	TArray<ZString>::Serialize(&s_Object->SubtitleLanguages, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, SubtitleLanguages));
+	TArray<ZString>::Serialize(&s_Object->SubtitleMarkupsPerLanguage, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, SubtitleMarkupsPerLanguage));
+}
+
+bool SLocalizedVideoDataDecrypted::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Left);
+	auto* s_Right = reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SLocalizedVideoDataDecrypted::operator==(const SLocalizedVideoDataDecrypted& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SLocalizedVideoDataDecrypted>)
+		return false;
+
+	if (AudioLanguages != p_Other.AudioLanguages) return false;
+	if (VideoRidsPerAudioLanguage != p_Other.VideoRidsPerAudioLanguage) return false;
+	if (SubtitleLanguages != p_Other.SubtitleLanguages) return false;
+	if (SubtitleMarkupsPerLanguage != p_Other.SubtitleMarkupsPerLanguage) return false;
+
+	return true;
+}
+
+void SLocalizedVideoDataDecrypted::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Object);
+	s_Object->~SLocalizedVideoDataDecrypted();
 }

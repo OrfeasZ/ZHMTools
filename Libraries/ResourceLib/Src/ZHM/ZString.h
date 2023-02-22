@@ -116,6 +116,21 @@ public:
 		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, 0);
 	}
 
+	void AdjustSizeToNullTerminator()
+	{
+		if (size() <= 0)
+			return;
+
+		for (int32_t i = 0; i < size(); ++i)
+		{
+			if (c_str()[i] == '\0')
+			{
+				m_nLength = i;
+				return;
+			}
+		}
+	}
+
 	inline std::string_view string_view() const
 	{
 		return std::string_view(c_str(), size());
@@ -129,6 +144,11 @@ public:
 	inline const char* c_str() const
 	{
 		return m_pChars.GetPtr();
+	}
+
+	inline void* data() const
+	{
+		return const_cast<char*>(m_pChars.GetPtr());
 	}
 
 	inline bool operator<(const ZString& other) const
