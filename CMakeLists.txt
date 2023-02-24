@@ -13,6 +13,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 20)
 
+option(ZHM_BUILD_TOOLS "Whether or not tools should be built" ON)
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	set(VCPKG_CRT_LINKAGE "static")
 	set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
@@ -36,16 +38,20 @@ endif()
 add_subdirectory("Libraries/ResourceLib")
 
 if(NOT EMSCRIPTEN)
-	add_subdirectory("Tools/ResourceTool")
+	if(ZHM_BUILD_TOOLS)
+		add_subdirectory("Tools/ResourceTool")
+		add_subdirectory("Tools/NavTool")
+		add_subdirectory("Tools/ModuleInfoParser")
+		add_subdirectory("Tools/PropertyBundler")
+	endif()
 
 	add_subdirectory("Libraries/NavWeakness")
-	add_subdirectory("Tools/NavTool")
-
-	add_subdirectory("Tools/ModuleInfoParser")
-	add_subdirectory("Tools/PropertyBundler")
 endif()
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	if(ZHM_BUILD_TOOLS)
+		add_subdirectory("Tools/CodeGen")
+	endif()
+
 	add_subdirectory("Libraries/CodeGenLib")
-	add_subdirectory("Tools/CodeGen")
 endif()
