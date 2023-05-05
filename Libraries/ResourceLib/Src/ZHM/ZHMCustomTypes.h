@@ -1,6 +1,7 @@
 #pragma once
 
 #include "TArray.h"
+#include "ZEncryptedString.h"
 #include "ZHMTypeInfo.h"
 #include "ZString.h"
 
@@ -135,8 +136,8 @@ public:
 	bool operator==(const SLocalizedVideoDataDecrypted& p_Other) const;
 	bool operator!=(const SLocalizedVideoDataDecrypted& p_Other) const { return !(*this == p_Other); }
 
-	TArray<ZString> AudioLanguages; // 0x0
+	TArray<ZEncryptedString> AudioLanguages; // 0x0
 	TArray<ZRuntimeResourceID> VideoRidsPerAudioLanguage; // 0x18
-	TArray<ZString> SubtitleLanguages; // 0x30
-	TArray<ZString> SubtitleMarkupsPerLanguage; // 0x48
+	TArray<ZEncryptedString> SubtitleLanguages; // 0x30
+	TArray<ZEncryptedString> SubtitleMarkupsPerLanguage; // 0x48
 };

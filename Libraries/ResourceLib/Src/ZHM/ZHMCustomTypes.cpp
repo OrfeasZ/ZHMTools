@@ -2,7 +2,6 @@
 
 #include "External/simdjson_helpers.h"
 #include "Util/Base64.h"
-#include "Util/XTEA.h"
 
 #if ZHM_TARGET == 3
 #include <Generated/HM3/ZHMGen.h>
@@ -520,10 +519,7 @@ void SLocalizedVideoDataDecrypted::WriteSimpleJson(void* p_Object, std::ostream&
 	for (size_t i = 0; i < s_Object->AudioLanguages.size(); ++i)
 	{
 		auto& s_Item0 = s_Object->AudioLanguages[i];
-		XTEA::DecryptInPlace(s_Item0.data(), s_Item0.size(), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
-		s_Item0.AdjustSizeToNullTerminator();
-
-		p_Stream << simdjson::as_json_string(s_Item0);
+		ZEncryptedString::WriteSimpleJson(&s_Item0, p_Stream);
 
 		if (i < s_Object->AudioLanguages.size() - 1)
 			p_Stream << ",";
@@ -551,10 +547,7 @@ void SLocalizedVideoDataDecrypted::WriteSimpleJson(void* p_Object, std::ostream&
 	for (size_t i = 0; i < s_Object->SubtitleLanguages.size(); ++i)
 	{
 		auto& s_Item0 = s_Object->SubtitleLanguages[i];
-		XTEA::DecryptInPlace(s_Item0.data(), s_Item0.size(), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
-		s_Item0.AdjustSizeToNullTerminator();
-
-		p_Stream << simdjson::as_json_string(s_Item0);
+		ZEncryptedString::WriteSimpleJson(&s_Item0, p_Stream);
 
 		if (i < s_Object->SubtitleLanguages.size() - 1)
 			p_Stream << ",";
@@ -568,10 +561,7 @@ void SLocalizedVideoDataDecrypted::WriteSimpleJson(void* p_Object, std::ostream&
 	for (size_t i = 0; i < s_Object->SubtitleMarkupsPerLanguage.size(); ++i)
 	{
 		auto& s_Item0 = s_Object->SubtitleMarkupsPerLanguage[i];
-		XTEA::DecryptInPlace(s_Item0.data(), s_Item0.size(), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
-		s_Item0.AdjustSizeToNullTerminator();
-
-		p_Stream << simdjson::as_json_string(s_Item0);
+		ZEncryptedString::WriteSimpleJson(&s_Item0, p_Stream);
 
 		if (i < s_Object->SubtitleMarkupsPerLanguage.size() - 1)
 			p_Stream << ",";
@@ -593,7 +583,9 @@ void SLocalizedVideoDataDecrypted::FromSimpleJson(simdjson::ondemand::value p_Do
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			s_Object.AudioLanguages[s_Index0++] = XTEA::Encrypt(std::string_view(s_Item0), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+			ZEncryptedString s_ArrayItem0;
+			ZEncryptedString::FromSimpleJson(s_Item0, &s_ArrayItem0);
+			s_Object.AudioLanguages[s_Index0++] = s_ArrayItem0;
 		}
 	}
 
@@ -617,7 +609,9 @@ void SLocalizedVideoDataDecrypted::FromSimpleJson(simdjson::ondemand::value p_Do
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			s_Object.SubtitleLanguages[s_Index0++] = XTEA::Encrypt(std::string_view(s_Item0), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+			ZEncryptedString s_ArrayItem0;
+			ZEncryptedString::FromSimpleJson(s_Item0, &s_ArrayItem0);
+			s_Object.SubtitleLanguages[s_Index0++] = s_ArrayItem0;
 		}
 	}
 
@@ -628,7 +622,9 @@ void SLocalizedVideoDataDecrypted::FromSimpleJson(simdjson::ondemand::value p_Do
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			s_Object.SubtitleMarkupsPerLanguage[s_Index0++] = XTEA::Encrypt(std::string_view(s_Item0), XTEA::c_L10nRounds, XTEA::c_L10nKey, XTEA::c_L10nDelta);
+			ZEncryptedString s_ArrayItem0;
+			ZEncryptedString::FromSimpleJson(s_Item0, &s_ArrayItem0);
+			s_Object.SubtitleMarkupsPerLanguage[s_Index0++] = s_ArrayItem0;
 		}
 	}
 
@@ -639,10 +635,15 @@ void SLocalizedVideoDataDecrypted::Serialize(void* p_Object, ZHMSerializer& p_Se
 {
 	auto* s_Object = reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Object);
 
-	TArray<ZString>::Serialize(&s_Object->AudioLanguages, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, AudioLanguages));
-	TArray<ZRuntimeResourceID>::Serialize(&s_Object->VideoRidsPerAudioLanguage, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, VideoRidsPerAudioLanguage));
-	TArray<ZString>::Serialize(&s_Object->SubtitleLanguages, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, SubtitleLanguages));
-	TArray<ZString>::Serialize(&s_Object->SubtitleMarkupsPerLanguage, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, SubtitleMarkupsPerLanguage));
+	TArray<ZEncryptedString>::Serialize(&s_Object->AudioLanguages, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, AudioLanguages));
+
+	// We serialize this as a `SVector2` instead (which has the same size as ZRuntimeResourceID) to prevent the
+	// rrid from being registered to the serializer, which would result in a rrid segment being generated.
+	// For some reason, the game doesn't like those.
+	TArray<SVector2>::Serialize(&s_Object->VideoRidsPerAudioLanguage, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, VideoRidsPerAudioLanguage));
+
+	TArray<ZEncryptedString>::Serialize(&s_Object->SubtitleLanguages, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, SubtitleLanguages));
+	TArray<ZEncryptedString>::Serialize(&s_Object->SubtitleMarkupsPerLanguage, p_Serializer, p_OwnOffset + offsetof(SLocalizedVideoDataDecrypted, SubtitleMarkupsPerLanguage));
 }
 
 bool SLocalizedVideoDataDecrypted::Equals(void* p_Left, void* p_Right)

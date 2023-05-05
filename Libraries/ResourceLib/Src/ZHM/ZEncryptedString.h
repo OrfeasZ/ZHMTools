@@ -12,11 +12,10 @@
 #include "ZHMPtr.h"
 
 class ZHMSerializer;
-class ZString;
 
 #pragma pack(push, 1)
 
-class ZString
+class ZEncryptedString
 {
 public:
 	static void WriteJson(void* p_Object, std::ostream& p_Stream);
@@ -26,17 +25,17 @@ public:
 	static bool Equals(void* p_Left, void* p_Right);
 	static void Destroy(void* p_Object);
 	
-	ZString()
+	ZEncryptedString()
 	{
 		SetEmptyStr();
 	}
 
-	ZString(const ZString& p_Other)
+	ZEncryptedString(const ZEncryptedString& p_Other)
 	{
 		*this = p_Other;
 	}
 
-	ZString(std::string_view p_Str)
+	ZEncryptedString(std::string_view p_Str)
 	{
 		if (p_Str.empty())
 		{
@@ -47,7 +46,7 @@ public:
 		allocate(p_Str.data(), p_Str.size());
 	}
 
-	ZString(const char* p_Str)
+	ZEncryptedString(const char* p_Str)
 	{
 		const auto s_Size = std::strlen(p_Str);
 
@@ -60,7 +59,7 @@ public:
 		allocate(p_Str, std::strlen(p_Str));
 	}
 
-	ZString(const std::string& p_Str)
+	ZEncryptedString(const std::string& p_Str)
 	{
 		if (p_Str.empty())
 		{
@@ -71,7 +70,7 @@ public:
 		allocate(p_Str.c_str(), p_Str.size());
 	}
 
-	~ZString()
+	~ZEncryptedString()
 	{
 		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
 		{
@@ -80,7 +79,7 @@ public:
 		}
 	}
 
-	ZString& operator=(const ZString& p_Other)
+	ZEncryptedString& operator=(const ZEncryptedString& p_Other)
 	{
 		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
 		{
@@ -115,7 +114,10 @@ public:
 		// This points to a 1-byte zeroed buffer.
 		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, 0);
 	}
-	
+
+	void DecryptInPlace();
+	std::string EncryptToString() const;
+
 	inline std::string_view string_view() const
 	{
 		return std::string_view(c_str(), size());
@@ -136,7 +138,7 @@ public:
 		return const_cast<char*>(m_pChars.GetPtr());
 	}
 
-	inline bool operator<(const ZString& other) const
+	inline bool operator<(const ZEncryptedString& other) const
 	{
 		return strcmp(c_str(), other.c_str()) >> 31;
 	}
@@ -146,7 +148,7 @@ public:
 		return m_pChars.GetArenaId() == ZHMHeapArenaId;
 	}
 
-	bool startsWith(const ZString& p_Other) const
+	bool startsWith(const ZEncryptedString& p_Other) const
 	{
 		if (size() < p_Other.size())
 			return false;
@@ -154,7 +156,7 @@ public:
 		return strncmp(c_str(), p_Other.c_str(), p_Other.size()) == 0;
 	}
 
-	bool operator==(const ZString& p_Other) const
+	bool operator==(const ZEncryptedString& p_Other) const
 	{
 		if (size() != p_Other.size())
 			return false;
@@ -162,7 +164,7 @@ public:
 		return string_view() == p_Other.string_view();
 	}
 
-	bool operator!=(const ZString& p_Other) const
+	bool operator!=(const ZEncryptedString& p_Other) const
 	{
 		return !(*this == p_Other);
 	}
