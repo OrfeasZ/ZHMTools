@@ -68,6 +68,7 @@ AccessoryItem_Painting_Pallet
 AccessoryItem_TeaSpoon
 AccessoryItem_Teapot
 AccidentCallbackVolume
+AccidentTriggerForUnconscious
 AccidentTriggerVolume
 Accident_ObjectviveId
 AccumulatedDataBase64
@@ -376,6 +377,7 @@ AnimateOn_op
 AnimationCurve
 AnimationEmitter_Transform
 AnimationGraphs
+AnimationOffset
 AnnouncementSound
 Antenna_3D_Emitter
 Anticipation
@@ -401,7 +403,6 @@ AreaQuadLight
 AreaVolumeBoxes
 Area_A_Speed
 Area_B_Speed
-Area_Volume
 AreasEntered
 ArkMember
 ArkMemberPresent
@@ -4341,7 +4342,6 @@ Conditions_5e70c791fd5f40ce9fed1e1aefdad327
 Conditions_5e7a986e1ba54776b58574f9c0bc22ec
 Conditions_5e7ea2013207481094848cc12c2db702
 Conditions_5e8fe7db623e4c6fa73d167bf561f6c0
-Conditions_5e90d7bd02924269ae66a076b7779134
 Conditions_5e912f39b3584beab8eebc17c6c14e9e
 Conditions_5e94d35144604181aeee69144cf1158d
 Conditions_5e98746d905943d782a249806da4c223
@@ -10208,6 +10208,7 @@ DialogueGame_Mix_Depth
 Diameter
 DianaCooldown
 Diana_Ready_To_Stab
+DiffBetweenAliveAndPacifiedVolumes
 Diff_Albedo_Value
 Diff_Albedo_Value_op
 DifficultyIcon
@@ -10311,6 +10312,7 @@ DisablePhysicsBoxes
 DisablePhysicsCables
 DisablePhysicsCandles
 DisablePhysicsContents
+DisablePhysicsOnExit
 DisablePhysicsOnLights
 DisablePhysicsSpheres
 DisablePiPOutsideCond
@@ -11390,7 +11392,6 @@ FrontDoubleDoors_m_bEnabled
 FrontDoubleDoors_m_bIsLocked
 FrontDoubleDoors_m_bPathfindingObstacleEnabled
 FrontFarAttenuation
-FrontHIPSEnabled
 FrontLeftTire_Visible
 FrontLightOn
 FrontPlaneVisible
@@ -12318,6 +12319,7 @@ ItemName
 ItemPlacementTransform
 ItemPosition
 ItemPresent
+ItemReady
 ItemRequirements
 ItemSlitThroath
 ItemSpawnerSpatial
@@ -12421,7 +12423,6 @@ KillPlane
 Kill_Needs_To_Be_Out_Of_Sight
 Killboxes
 Killing_Ready
-Killstreak_id
 Kinematic
 Kissing_Ready
 KlaxonDisabledDelayTime
@@ -16585,7 +16586,6 @@ Offset_5e70c791fd5f40ce9fed1e1aefdad327
 Offset_5e7a986e1ba54776b58574f9c0bc22ec
 Offset_5e7ea2013207481094848cc12c2db702
 Offset_5e8fe7db623e4c6fa73d167bf561f6c0
-Offset_5e90d7bd02924269ae66a076b7779134
 Offset_5e912f39b3584beab8eebc17c6c14e9e
 Offset_5e94d35144604181aeee69144cf1158d
 Offset_5e98746d905943d782a249806da4c223
@@ -22376,6 +22376,7 @@ PreKnowledge_Smoker
 PreKnowledge_Sweettooth
 PreKnowledge_Thirsty
 Present
+PrestigeLevel
 PrevChall_QueryServerOnActivation
 PrimaryFailed
 PrimaryObjective
@@ -22438,6 +22439,7 @@ PromptText04
 PromptText2
 PromptTextA
 PromptTextB
+PromptTextOn
 PromptTextOpen
 PromptUsable
 PromptVisibilty
@@ -22695,6 +22697,7 @@ Re05
 Re06
 Re07
 ReTriggerDelay
+ReachableConditionActorsKeyword
 ReactToDoorKnockerAct
 ReactionNetwork
 ReadyForQuestioning
@@ -23586,6 +23589,7 @@ ShuttersOpen
 Shutters_Left
 Shutters_Right
 Shutters_Visible
+SickSpotAvailable
 SickSpotConditions
 Sickspot_Enabled
 SideDiffuseColor
@@ -25678,6 +25682,7 @@ campaignActive
 canFixBroken
 canFlag
 canMove
+canPrestige
 canRestart
 canSweep
 cellsRevealed
@@ -26894,6 +26899,13 @@ m_aEnforcerKeywords
 m_aEnterAct
 m_aEnterEffects
 m_aEntities
+m_aEntities1
+m_aEntities2
+m_aEntities3
+m_aEntities4
+m_aEntities5
+m_aEntities6
+m_aEntities7
 m_aEntities_1
 m_aEntities_2
 m_aEntities_3
@@ -32992,8 +33004,10 @@ pokerIntel
 pollGivenValue
 portable_toilet_a
 portable_toilet_a_decal
+position_VitalInfoBar
 postInitPropertyValues
 prestigeID
+prestigeRank
 prestigeTutorialized
 previousStep
 prison_numbers
