@@ -923,6 +923,7 @@ m_GlowTaggedUnconsciousColor
 m_GlowTaggedUnconsciousOutlineColor
 m_GlowTraversalColor
 m_GlowTraversalOutlineColor
+m_GlowType
 m_GlowVSOpponentColor
 m_GlowVSOpponentOutlineColor
 m_GreenOfBlue
