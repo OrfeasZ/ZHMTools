@@ -88,6 +88,7 @@ jobs:
         Copy-Item ResourceLib_HMA.lib -Destination _resourcelib/
         Copy-Item ResourceLib_HMA.pdb -Destination _resourcelib/
         Copy-Item ../Libraries/ResourceLib/Include/* -Destination _resourcelib/Include/
+        Copy-Item ../Libraries/ResourceLib/ResourceLib.cs -Destination _resourcelib/
         Copy-Item ../LICENSE -Destination _resourcelib/
 
     - name: Archive ResourceTool
