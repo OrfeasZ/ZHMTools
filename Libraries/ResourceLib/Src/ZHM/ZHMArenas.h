@@ -7,7 +7,9 @@
 #include <tuple>
 #include <cstring>
 #include <shared_mutex>
-#include <mutex>
+#if !_MSC_VER
+    #include <mutex>
+#endif
 
 #include "ZHMInt.h"
 
