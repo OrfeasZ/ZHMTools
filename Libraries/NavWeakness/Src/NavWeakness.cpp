@@ -339,7 +339,7 @@ void PrintNav02(const NavMeshUnk02Element* p_Element, const std::string& p_Inden
 	PrintNav02(p_Element->GetOther(), p_Indent + "\t");
 }
 
-#define Log(...) printf(__VA_ARGS__)
+//#define Log(...) printf(__VA_ARGS__)
 #define Log(...)
 
 inline uint32_t c_byteswap_ulong(uint32_t p_Value)

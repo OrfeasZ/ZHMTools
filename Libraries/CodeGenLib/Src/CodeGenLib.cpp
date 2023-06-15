@@ -44,7 +44,12 @@ void GenerateCode(const std::filesystem::path& p_OutputDir)
 
 	auto* s_TypeRegistry = reinterpret_cast<ZTypeRegistry**>(s_FinalAddr);
 	
-	printf("Successfully located ZTypeRegistry at address %p => %p => %p\n.", s_Target, s_TypeRegistry, *s_TypeRegistry);
+	printf(
+		"Successfully located ZTypeRegistry at address %p => %p => %p\n.", 
+		reinterpret_cast<void*>(s_Target), 
+		reinterpret_cast<void*>(s_TypeRegistry),
+		reinterpret_cast<void*>(*s_TypeRegistry)
+	);
 	
 	CodeGen s_CodeGenerator;
 	s_CodeGenerator.Generate(*s_TypeRegistry, p_OutputDir);

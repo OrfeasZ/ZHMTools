@@ -72,7 +72,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	m_ReflectiveClassesSourceFile << "#include <utility>" << std::endl;
 	m_ReflectiveClassesSourceFile << std::endl;
 
-	printf("Registry has %d types.\n", p_Registry->m_types.size());
+	printf("Registry has %zd types.\n", p_Registry->m_types.size());
 
 	size_t s_ProcessedTypes = 0;
 
@@ -101,7 +101,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 		}
 	}
 
-	printf("Processed %d types.\n", s_ProcessedTypes);
+	printf("Processed %zd types.\n", s_ProcessedTypes);
 
 	GenerateReflectiveClasses();
 	GeneratePropertyNamesFiles();
