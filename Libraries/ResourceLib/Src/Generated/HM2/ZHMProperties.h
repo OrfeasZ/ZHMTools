@@ -20,6 +20,7 @@ class ZHMProperties
 {
 public:
 	static std::string PropertyToString(uint32_t p_PropertyId);
+	static std::string_view PropertyToStringView(uint32_t p_PropertyId);
 
 private:
 	static void RegisterProperties();

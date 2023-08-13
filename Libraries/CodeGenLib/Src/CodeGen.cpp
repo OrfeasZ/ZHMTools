@@ -1081,6 +1081,7 @@ void CodeGen::GeneratePropertyNamesFiles()
 	m_PropertyNamesHeaderFile << "{" << std::endl;
 	m_PropertyNamesHeaderFile << "public:" << std::endl;
 	m_PropertyNamesHeaderFile << "\tstatic std::string PropertyToString(uint32_t p_PropertyId);" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic std::string_view PropertyToStringView(uint32_t p_PropertyId);" << std::endl;
 	m_PropertyNamesHeaderFile << std::endl;
 	m_PropertyNamesHeaderFile << "private:" << std::endl;
 	m_PropertyNamesHeaderFile << "\tstatic void RegisterProperties();" << std::endl;
@@ -1126,7 +1127,17 @@ void CodeGen::GeneratePropertyNamesFiles()
 	m_PropertyNamesSourceFile << "\t\treturn \"\";" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
 	m_PropertyNamesSourceFile << "\treturn std::string(it->second);" << std::endl;
-	m_PropertyNamesSourceFile << "};" << std::endl;
+	m_PropertyNamesSourceFile << "}" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "std::string_view ZHMProperties::PropertyToStringView(uint32_t p_PropertyId)" << std::endl;
+	m_PropertyNamesSourceFile << "{" << std::endl;
+	m_PropertyNamesSourceFile << "\tauto it = g_Properties->find(p_PropertyId);" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "\tif (it == g_Properties->end())" << std::endl;
+	m_PropertyNamesSourceFile << "\t\treturn \"\";" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "\treturn it->second;" << std::endl;
+	m_PropertyNamesSourceFile << "}" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
 	m_PropertyNamesSourceFile << "void ZHMProperties::RegisterProperties()" << std::endl;
 	m_PropertyNamesSourceFile << "{" << std::endl;

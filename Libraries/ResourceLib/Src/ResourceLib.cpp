@@ -5,6 +5,7 @@
 #include <cstring>
 
 #include "ZHM/ZHMTypeInfo.h"
+#include "ZHM/ZHMCustomProperties.h"
 
 extern "C"
 {
@@ -153,5 +154,23 @@ extern "C"
 
 		free(const_cast<char*>(p_JsonString->JsonData));
 		delete p_JsonString;
+	}
+
+	StringView ZHM_TARGET_FUNC(GetPropertyName)(uint32_t p_PropertyId)
+	{
+		const auto s_Name = ZHMProperties::PropertyToStringView(p_PropertyId);
+
+		if (s_Name.empty())
+		{
+			return {
+				.Data = nullptr,
+				.Size = 0,
+			};
+		}
+
+		return {
+			.Data = s_Name.data(),
+			.Size = s_Name.size(),
+		};
 	}
 }

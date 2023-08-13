@@ -20,6 +20,16 @@ std::string ZHMProperties::PropertyToString(uint32_t p_PropertyId)
 	return std::string(it->second);
 };
 
+std::string_view ZHMProperties::PropertyToStringView(uint32_t p_PropertyId)
+{
+	auto it = g_Properties->find(p_PropertyId);
+
+	if (it == g_Properties->end())
+		return "";
+
+	return it->second;
+};
+
 void ZHMProperties::RegisterProperties()
 {
 	g_Properties = new std::unordered_map<uint32_t, std::string_view>();

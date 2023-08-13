@@ -1,3 +1,5 @@
+#include <cstdint>
+
 #include "ResourceConverter.h"
 #include "ResourceGenerator.h"
 #include "ResourceLibCommon.h"
@@ -84,6 +86,13 @@ extern "C"
 	 * this function, and attempting to use it results in undefined behavior.
 	 */
 	EMSCRIPTEN_KEEPALIVE RESOURCELIB_API void ZHM_TARGET_FUNC(FreeJsonString)(JsonString* p_JsonString);
+
+	/**
+	 * Try to get the name of a property from its CRC32 id.
+	 * If the property name cannot be found, the resulting [StringView] will contain
+	 * a [nullptr] data pointer and a size of 0.
+	 */
+	EMSCRIPTEN_KEEPALIVE RESOURCELIB_API StringView ZHM_TARGET_FUNC(GetPropertyName)(uint32_t p_PropertyId);
 
 #ifdef __cplusplus
 }

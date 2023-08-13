@@ -32,6 +32,16 @@ extern "C"
 		size_t TypeCount;
 	};
 
+	/**
+	 * A read-only view of a string.
+	 * The string is not guaranteed to be null terminated.
+	 */
+	struct StringView
+	{
+		const char* Data;
+		size_t Size;
+	};
+
 #ifdef __cplusplus
 }
 #endif
