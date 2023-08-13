@@ -3,7 +3,6 @@
 #include "Resources.h"
 
 #include <cstring>
-#include <format>
 
 #include "ZHM/ZHMTypeInfo.h"
 
@@ -131,7 +130,8 @@ extern "C"
 			{
 				// simdjson doesn't support treating scalar document as values, so we have to cheat by wrapping it in an array,
 				// parsing it again, and then extracting the first element as a value.
-				auto s_ArrayJson = simdjson::padded_string(std::format("[{}]", std::string_view(p_JsonStr, p_JsonStrLength)));
+				const std::string s_ArrayJsonString = "[" + std::string(p_JsonStr, p_JsonStrLength) + "]";
+				const auto s_ArrayJson = simdjson::padded_string(s_ArrayJsonString);
 				simdjson::ondemand::document s_ArrayValue = s_Parser.iterate(s_ArrayJson);
 				simdjson::ondemand::value s_RealValue = s_ArrayValue.at(0);
 
