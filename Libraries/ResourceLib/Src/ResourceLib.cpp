@@ -3,6 +3,7 @@
 #include "Resources.h"
 
 #include <cstring>
+#include <format>
 
 #include "ZHM/ZHMTypeInfo.h"
 
@@ -74,24 +75,31 @@ extern "C"
 		if (p_Size < s_Type->Size())
 			return nullptr;
 
-		std::ostringstream s_Stream;
-		s_Type->WriteSimpleJson(const_cast<void*>(p_Structure), s_Stream);
+		try
+		{
+			std::ostringstream s_Stream;
+			s_Type->WriteSimpleJson(const_cast<void*>(p_Structure), s_Stream);
 
-		auto* s_JsonString = new JsonString();
+			auto* s_JsonString = new JsonString();
 
-		s_Stream.flush();
-		const std::string s_Result = s_Stream.str();
+			s_Stream.flush();
+			const std::string s_Result = s_Stream.str();
 
-		s_JsonString->StrSize = s_Result.size();
-		s_JsonString->JsonData = static_cast<const char*>(malloc(s_JsonString->StrSize + 1));
+			s_JsonString->StrSize = s_Result.size();
+			s_JsonString->JsonData = static_cast<const char*>(malloc(s_JsonString->StrSize + 1));
 
-		// Copy over string data.
-		memcpy(const_cast<char*>(s_JsonString->JsonData), s_Result.c_str(), s_JsonString->StrSize);
+			// Copy over string data.
+			memcpy(const_cast<char*>(s_JsonString->JsonData), s_Result.c_str(), s_JsonString->StrSize);
 
-		// Add null terminator.
-		const_cast<char*>(s_JsonString->JsonData)[s_JsonString->StrSize] = 0;
+			// Add null terminator.
+			const_cast<char*>(s_JsonString->JsonData)[s_JsonString->StrSize] = 0;
 
-		return s_JsonString;
+			return s_JsonString;
+		}
+		catch (std::exception&)
+		{
+			return nullptr;
+		}
 	}
 
 	bool ZHM_TARGET_FUNC(JsonToGameStruct)(const char* p_StructureType, const char* p_JsonStr, size_t p_JsonStrLength, void* p_TargetMemory, size_t p_TargetMemorySize)
@@ -109,16 +117,30 @@ extern "C"
 
 		// Load the input file as JSON.
 		simdjson::ondemand::parser s_Parser;
-		const auto s_Json = simdjson::padded_string::load(std::string_view(p_JsonStr, p_JsonStrLength));
+		const auto s_Json = simdjson::padded_string(p_JsonStr, p_JsonStrLength);
 
 		simdjson::ondemand::document s_Value = s_Parser.iterate(s_Json);
 
 		try
 		{
-			s_Type->CreateFromJson(s_Value, p_TargetMemory);
+			if (!s_Value.is_scalar())
+			{
+				s_Type->CreateFromJson(s_Value, p_TargetMemory);
+			}
+			else
+			{
+				// simdjson doesn't support treating scalar document as values, so we have to cheat by wrapping it in an array,
+				// parsing it again, and then extracting the first element as a value.
+				auto s_ArrayJson = simdjson::padded_string(std::format("[{}]", std::string_view(p_JsonStr, p_JsonStrLength)));
+				simdjson::ondemand::document s_ArrayValue = s_Parser.iterate(s_ArrayJson);
+				simdjson::ondemand::value s_RealValue = s_ArrayValue.at(0);
+
+				s_Type->CreateFromJson(s_RealValue, p_TargetMemory);
+			}
+
 			return true;
 		}
-		catch (simdjson::simdjson_error&)
+		catch (std::exception&)
 		{
 			return false;
 		}
