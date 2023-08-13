@@ -54,6 +54,12 @@ struct ZHMArena
 			const auto s_Offset = Allocate(1);
 			memset(GetObjectAtOffset<void>(s_Offset), 0x00, 1);
 		}
+		else if (m_Id == 0)
+		{
+			// The first arena is reserved, since pointers with all arena bits set to 0
+			// are considered to be real pointers.
+			m_Used = true;
+		}
 	}
 
 	[[nodiscard]] zhmptr_t Allocate(zhmptr_t p_Size)
