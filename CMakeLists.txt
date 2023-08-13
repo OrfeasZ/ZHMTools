@@ -27,6 +27,9 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	string(REPLACE "/O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO ${CMAKE_CXX_FLAGS_RELWITHDEBINFO})
 	string(REPLACE "/Ob1" "" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
 	string(REPLACE "/Ob1" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO ${CMAKE_CXX_FLAGS_RELWITHDEBINFO})
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	# In clang we want to add -fexperimental-library so we can use new stdlib features.
+	string(APPEND CMAKE_CXX_FLAGS " -fexperimental-library")
 endif()
 
 if(EMSCRIPTEN)
