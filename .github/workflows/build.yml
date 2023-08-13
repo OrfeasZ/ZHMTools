@@ -140,7 +140,7 @@ jobs:
 
     - name: Build
       run: |
-        cmake --build _build -j
+        cmake --build _build
 
     - name: Copy resource tool artifacts
       run: |
