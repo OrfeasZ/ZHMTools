@@ -40,7 +40,7 @@ jobs:
 
     - name: Build
       run: |
-        cmake --build _build
+        cmake --build _build -j2
 
     - name: Copy ResourceTool artifacts
       run: |
@@ -140,7 +140,7 @@ jobs:
 
     - name: Build
       run: |
-        cmake --build _build
+        cmake --build _build -j2
 
     - name: Copy resource tool artifacts
       run: |
