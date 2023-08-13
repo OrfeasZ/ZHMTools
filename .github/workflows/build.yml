@@ -130,7 +130,6 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_CXX_COMPILER=clang++-14 \
           -DCMAKE_C_COMPILER=clang-14 \
-          -DLIBCPP_VERSION=14 \
           ..
 
     - name: Build
