@@ -24464,6 +24464,7 @@ Texture2D_01_5
 Texture2D_01_6
 Texture2D_01_7
 Texture2D_01_enab
+Texture2D_01_dest
 Texture2D_02
 Texture2D_02_dest
 Texture2D_02_enab
@@ -24472,6 +24473,7 @@ Texture2D_03_1
 Texture2D_03_2
 Texture2D_03_3
 Texture2D_03_4
+Texture2D_03_dest
 Texture2D_03_enab
 Texture2D_04
 Texture2D_04_1
@@ -24479,8 +24481,14 @@ Texture2D_04_dest
 Texture2D_04_dest3
 Texture2D_04_enab
 Texture2D_05
+Texture2D_05_dest
+Texture2D_05_enab
 Texture2D_06
+Texture2D_06_dest
+Texture2D_06_enab
 Texture2D_07
+Texture2D_07_dest
+Texture2D_07_enab
 Texture2D_Eye
 TextureCub
 TextureCube_01
