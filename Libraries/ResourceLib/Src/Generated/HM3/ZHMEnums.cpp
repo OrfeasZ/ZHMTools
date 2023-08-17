@@ -6307,6 +6307,7 @@ void ZHMEnums::RegisterEnums()
 		{ 42, "EREQUIREMENT_LOCATION_ROCKY" },
 		{ 43, "EREQUIREMENT_H3_VANITY_CONCRETEART" },
 		{ 44, "EREQUIREMENT_H3_VANITY_MAKESHIFTSCRAP" },
+		{ 45, "EREQUIREMENT_H3_SARAJEVO_SIX" },
 	};
 
 	(*g_Enums)["ERestitutionCombineMode"] = {
