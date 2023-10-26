@@ -2851,6 +2851,7 @@ enum class EActorVoiceVariation
 	eAVV_DUGONG_PIRATE_MHI03 = 576,
 	eAVV_CREST = 577,
 	eAVV_AKKA = 578,
+	eAVV_ET_DROP = 579,
 };
 
 // Size: 0x4
