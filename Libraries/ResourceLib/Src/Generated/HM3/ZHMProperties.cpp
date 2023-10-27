@@ -18,7 +18,7 @@ std::string ZHMProperties::PropertyToString(uint32_t p_PropertyId)
 		return "";
 
 	return std::string(it->second);
-};
+}
 
 std::string_view ZHMProperties::PropertyToStringView(uint32_t p_PropertyId)
 {
@@ -28,7 +28,7 @@ std::string_view ZHMProperties::PropertyToStringView(uint32_t p_PropertyId)
 		return "";
 
 	return it->second;
-};
+}
 
 void ZHMProperties::RegisterProperties()
 {
