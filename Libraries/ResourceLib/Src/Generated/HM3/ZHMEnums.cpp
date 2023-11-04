@@ -2450,6 +2450,7 @@ void ZHMEnums::RegisterEnums()
 		{ 576, "eAVV_DUGONG_PIRATE_MHI03" },
 		{ 577, "eAVV_CREST" },
 		{ 578, "eAVV_AKKA" },
+		{ 579, "eAVV_ET_DROP" },
 	};
 
 	(*g_Enums)["EAgilityState"] = {

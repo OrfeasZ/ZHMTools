@@ -363,3 +363,4 @@ FodyWeavers.xsd
 /out
 /Tools/NavViewer/Faces.js
 /Tools/NavViewer/Surfaces.js
+_build/
