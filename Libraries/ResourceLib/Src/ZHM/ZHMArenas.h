@@ -8,6 +8,7 @@
 #include <cstring>
 #include <shared_mutex>
 #include <mutex>
+#include <cstdlib>
 
 #include "ZHMInt.h"
 
