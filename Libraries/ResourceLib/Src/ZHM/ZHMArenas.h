@@ -168,10 +168,7 @@ struct ZHMArena
 		m_TypeIndices[p_Type] = p_Index;
 	}
 
-	[[nodiscard]] IZHMTypeInfo* GetType(uint32_t p_Index) const
-	{
-		return m_TypeRegistry[p_Index];
-	}
+	[[nodiscard]] IZHMTypeInfo* GetType(zhmptr_t p_Index) const;
 
 	[[nodiscard]] uint32_t GetTypeIndex(IZHMTypeInfo* p_Type)
 	{
