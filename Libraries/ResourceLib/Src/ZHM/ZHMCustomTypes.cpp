@@ -399,8 +399,8 @@ void SAttributeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 	auto* s_Object = static_cast<SAttributeInfo*>(p_Object);
 
 	// Write the kind and type
-	p_Serializer.WriteMemory(&s_Object->m_eKind, sizeof(s_Object->m_eKind), 4);
-	p_Serializer.WriteMemory(&s_Object->m_eType, sizeof(s_Object->m_eType), 4);
+	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(SAttributeInfo, m_eKind), s_Object->m_eKind);
+	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(SAttributeInfo, m_eType), s_Object->m_eType);
 
 	// And now the name
 	ZString::Serialize(&s_Object->m_sName, p_Serializer, p_OwnOffset + offsetof(SAttributeInfo, m_sName));
