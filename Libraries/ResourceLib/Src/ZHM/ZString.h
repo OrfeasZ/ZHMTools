@@ -82,6 +82,10 @@ public:
 
 	ZString& operator=(const ZString& p_Other)
 	{
+#if ZHM_TARGET != 2012
+		memcpy(_pad4, p_Other._pad4, sizeof(_pad4));
+#endif
+
 		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
 		{
 			auto* s_HeapArena = ZHMArenas::GetHeapArena();
