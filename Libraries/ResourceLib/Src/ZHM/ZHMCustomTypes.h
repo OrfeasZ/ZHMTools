@@ -91,6 +91,7 @@ public:
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 
 	TArray<SAttributeInfo> m_aAttributes;
+	TArray<bool> m_aSpecialMethods;
 };
 
 class SEnumType

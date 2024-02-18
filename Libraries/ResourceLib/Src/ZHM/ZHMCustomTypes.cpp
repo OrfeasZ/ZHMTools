@@ -352,6 +352,27 @@ std::map<uint32_t, std::string> EAttributeType = {
 	{ 6, "E_ATTRIBUTE_TYPE_OBJECT" },
 };
 
+std::map<uint32_t, std::string> ESpecialMethod = {
+	{ 0, "onAttached" },
+	{ 1, "onChildrenAttached" },
+	{ 2, "onSetData" },
+	{ 3, "onSetSize" },
+	{ 4, "onSetViewport" },
+	{ 5, "onSetVisible" },
+	{ 6, "onSetSelected" },
+	{ 7, "onSetFocused" },
+	{ 8, "onSelectedIndexChanged" },
+};
+
+uint32_t GetEnumValue(const std::map<uint32_t, std::string>& p_Map, std::string_view p_Name)
+{
+	for (const auto& s_Pair : p_Map)
+		if (s_Pair.second == p_Name)
+			return s_Pair.first;
+
+	return UINT32_MAX;
+}
+
 void SAttributeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto s_Object = static_cast<SAttributeInfo*>(p_Object);
@@ -377,17 +398,7 @@ void SAttributeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SAttributeInfo s_Object;
 
-	auto GetEnumValue = [](const std::map<uint32_t, std::string>& p_Map, std::string_view p_Name)
-	{
-		for (const auto& s_Pair : p_Map)
-			if (s_Pair.second == p_Name)
-				return s_Pair.first;
-
-		return UINT32_MAX;
-	};
-
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
-
 
 	if (p_Document["m_eKind"].type() == simdjson::ondemand::json_type::string)
 	{
@@ -429,40 +440,47 @@ void SUIControlBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 {
 	auto s_Object = *static_cast<SUIControlBlueprint*>(p_Object);
 
-	p_Stream << "{" << "\"m_aPins\":[";
+	p_Stream << "{";
 
-	// We do it this way since it's all actually just 1 array of a "control type" (SAttributeInfo)
-	// in all games, pins come before properties, so that's how the commas work.
+	p_Stream << "\"m_aAttributes\"" << ":[";
+
 	for (size_t i = 0; i < s_Object.m_aAttributes.size(); ++i)
 	{
-		auto& s_Attribute = s_Object.m_aAttributes[i];
+		auto& s_Item = s_Object.m_aAttributes[i];
 
-		// Skip properties
-		if (s_Attribute.m_eKind == 0) continue;
+		SAttributeInfo::WriteSimpleJson(&s_Item, p_Stream);
 
-		// Add comma
-		if (i != 0) p_Stream << ",";
-
-		SAttributeInfo::WriteSimpleJson(&s_Attribute, p_Stream);
-	}
-
-	p_Stream << "]," << "\"m_aProperties\":[";
-	
-	for (size_t i = 0; i < s_Object.m_aAttributes.size(); ++i)
-	{
-		auto& s_Attribute = s_Object.m_aAttributes[i];
-
-		// Skip pins
-		if (s_Attribute.m_eKind != 0) continue;
-
-		SAttributeInfo::WriteSimpleJson(&s_Attribute, p_Stream);
-
-		// Add comma
 		if (i < s_Object.m_aAttributes.size() - 1)
 			p_Stream << ",";
 	}
 
-	p_Stream << "]}";
+	p_Stream << "],";
+
+	p_Stream << "\"m_aSpecialMethods\"" << ":[";
+
+	bool s_HasSpecialMethods = false;
+
+	for (size_t i = 0; i < s_Object.m_aSpecialMethods.size(); ++i)
+	{
+		auto& s_Item = s_Object.m_aSpecialMethods[i];
+
+		if (!s_Item)
+			continue;
+
+		if (s_HasSpecialMethods)
+			p_Stream << ",";
+
+		s_HasSpecialMethods = true;
+
+		if (ESpecialMethod.find(i) == ESpecialMethod.end())
+			p_Stream << simdjson::as_json_string(i);
+		else
+			p_Stream << simdjson::as_json_string(ESpecialMethod[i]);
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
 }
 
 void SUIControlBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
@@ -470,38 +488,50 @@ void SUIControlBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	SUIControlBlueprint s_Object;
 
 	{
-		uint32_t s_Size = 0;
-		
-		simdjson::ondemand::array s_Pins = p_Document["m_aPins"];
-		s_Size += s_Pins.count_elements();
+		simdjson::ondemand::array s_Array0 = p_Document["m_aAttributes"];
+		s_Object.m_aAttributes.resize(s_Array0.count_elements());
+		size_t s_Index0 = 0;
 
-		simdjson::ondemand::array s_Properties = p_Document["m_aProperties"];
-		s_Size += s_Properties.count_elements();
-
-		s_Object.m_aAttributes.resize(s_Size);
-	}
-
-	size_t s_Index = 0;
-	{
-		simdjson::ondemand::array s_Pins = p_Document["m_aPins"];
-
-		for (simdjson::ondemand::value s_Pin : s_Pins)
+		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			SAttributeInfo s_Attribute;
-			SAttributeInfo::FromSimpleJson(s_Pin, &s_Attribute);
-			s_Object.m_aAttributes[s_Index++] = s_Attribute;
+			SAttributeInfo s_ArrayItem0;
+			SAttributeInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
+			s_Object.m_aAttributes[s_Index0++] = s_ArrayItem0;
 		}
 	}
 
 	{
-		simdjson::ondemand::array s_Properties = p_Document["m_aProperties"];
+		std::vector<uint32_t> s_SpecialMethods;
+		uint32_t s_MaxMethod = 9; // Hitman 3 has 10 special methods.
 
-		for (simdjson::ondemand::value s_Property : s_Properties)
+		simdjson::ondemand::array s_Array1 = p_Document["m_aSpecialMethods"];
+
+		for (simdjson::ondemand::value s_Item1 : s_Array1)
 		{
-			SAttributeInfo s_Attribute;
-			SAttributeInfo::FromSimpleJson(s_Property, &s_Attribute);
-			s_Object.m_aAttributes[s_Index++] = s_Attribute;
+			if (s_Item1.type() == simdjson::ondemand::json_type::string)
+			{
+				auto s_Value = GetEnumValue(ESpecialMethod, std::string_view(s_Item1));
+
+				if (s_Value == UINT32_MAX)
+					throw std::runtime_error("Invalid m_aSpecialMethods enum.");
+
+				s_SpecialMethods.push_back(s_Value);
+			}
+			else
+			{
+				const auto s_Value = simdjson::from_json_uint32(s_Item1);
+
+				if (s_Value > s_MaxMethod)
+					s_MaxMethod = s_Value;
+
+				s_SpecialMethods.push_back(s_Value);
+			}
 		}
+
+		s_Object.m_aSpecialMethods.resize(s_MaxMethod + 1);
+
+		for (auto s_Value : s_SpecialMethods)
+			s_Object.m_aSpecialMethods[s_Value] = true;
 	}
 
 	*reinterpret_cast<SUIControlBlueprint*>(p_Target) = s_Object;
@@ -512,6 +542,7 @@ void SUIControlBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer,
 	auto* s_Object = static_cast<SUIControlBlueprint*>(p_Object);
 
 	TArray<SAttributeInfo>::Serialize(&s_Object->m_aAttributes, p_Serializer, p_OwnOffset + offsetof(SUIControlBlueprint, m_aAttributes));
+	TArray<bool>::Serialize(&s_Object->m_aSpecialMethods, p_Serializer, p_OwnOffset + offsetof(SUIControlBlueprint, m_aSpecialMethods));
 }
 
 ZHMTypeInfo SEnumType::TypeInfo = ZHMTypeInfo("SEnumType", sizeof(SEnumType), alignof(SEnumType), WriteSimpleJson, FromSimpleJson, Serialize);
