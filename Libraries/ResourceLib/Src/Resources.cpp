@@ -34,6 +34,7 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	REGISTER_RESOURCE(ATMD, ZAMDTake)
 	REGISTER_RESOURCE(VIDB, SVideoDatabaseData)
 	REGISTER_RESOURCE(RTLV, SLocalizedVideoDataDecrypted)
+	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
 #endif
 
 	REGISTER_RESOURCE(CBLU, SCppEntityBlueprint)
@@ -46,10 +47,6 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	
 #if ZHM_TARGET != 2016 && ZHM_TARGET != 2012
 	REGISTER_RESOURCE(ECPB, SExtendedCppEntityBlueprint)
-#endif
-	
-#if ZHM_TARGET == 3
-	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
 #endif
 
 #if ZHM_TARGET == 3 || ZHM_TARGET == 2

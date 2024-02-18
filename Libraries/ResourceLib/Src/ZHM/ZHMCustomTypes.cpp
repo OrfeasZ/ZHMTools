@@ -334,117 +334,167 @@ void SAudioStateBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serial
 	TArray<ZString>::Serialize(&s_Object->m_aStates, p_Serializer, p_OwnOffset + offsetof(SAudioStateBlueprintData, m_aStates));
 }
 
-ZHMTypeInfo SUIControlBlueprintPin::TypeInfo = ZHMTypeInfo("SUIControlBlueprintPin", sizeof(SUIControlBlueprintPin), alignof(SUIControlBlueprintPin), WriteSimpleJson, FromSimpleJson, Serialize);
+ZHMTypeInfo SAttributeInfo::TypeInfo = ZHMTypeInfo("SAttributeInfo", sizeof(SAttributeInfo), alignof(SAttributeInfo), WriteSimpleJson, FromSimpleJson, Serialize);
 
-void SUIControlBlueprintPin::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+std::map<int32_t, std::string> EAttributeKind = {
+	{ 0, "E_ATTRIBUTE_KIND_PROPERTY" },
+	{ 1, "E_ATTRIBUTE_KIND_INPUT_PIN" },
+	{ 2, "E_ATTRIBUTE_KIND_OUTPUT_PIN" },
+};
+
+std::map<int32_t, std::string> EAttributeType = {
+	{ 0, "E_ATTRIBUTE_TYPE_VOID" },
+	{ 1, "E_ATTRIBUTE_TYPE_INT" },
+	{ 2, "E_ATTRIBUTE_TYPE_FLOAT" },
+	{ 3, "E_ATTRIBUTE_TYPE_STRING" },
+	{ 4, "E_ATTRIBUTE_TYPE_BOOL" },
+	{ 5, "E_ATTRIBUTE_TYPE_ENTITYREF" },
+	{ 6, "E_ATTRIBUTE_TYPE_OBJECT" },
+};
+
+void SAttributeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
+	auto s_Object = static_cast<SAttributeInfo*>(p_Object);
+
 	p_Stream << "{";
 
-	auto s_Object = static_cast<SUIControlBlueprintPin*>(p_Object);
-
-	p_Stream << "\"m_nUnk00\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk00) << ",";
-	p_Stream << "\"m_nUnk01\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk01) << ",";
+	p_Stream << "\"m_eKind\"" << ":" << simdjson::as_json_string(EAttributeKind.at(s_Object->m_eKind)) << ",";
+	p_Stream << "\"m_eType\"" << ":" << simdjson::as_json_string(EAttributeType.at(s_Object->m_eType)) << ",";
 	p_Stream << "\"m_sName\"" << ":" << simdjson::as_json_string(s_Object->m_sName);
 
 	p_Stream << "}";
 }
 
-void SUIControlBlueprintPin::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+void SAttributeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SUIControlBlueprintPin s_Object;
+	SAttributeInfo s_Object;
 
+	auto GetEnumValue = [](std::map<int32_t, std::string> map, std::string_view name)
+	{
+		for (auto s_Pair : map)
+			if (s_Pair.second == name)
+				return s_Pair.first;
 
-	*reinterpret_cast<SUIControlBlueprintPin*>(p_Target) = s_Object;
+		return -1;
+	};
+
+	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
+
+	// This could be simplified by just outputting a number, but this is a bit more friendly.
+	int32_t s_Value = GetEnumValue(EAttributeKind, std::string_view(p_Document["m_eKind"]));
+	if (s_Value == -1)
+		throw std::runtime_error("Invalid m_eKind enum.");
+	s_Object.m_eKind = s_Value;
+
+	s_Value = GetEnumValue(EAttributeType, std::string_view(p_Document["m_eType"]));
+	if (s_Value == -1)
+		throw std::runtime_error("Invalid m_eType enum.");
+	s_Object.m_eType = s_Value;
+
+	*reinterpret_cast<SAttributeInfo*>(p_Target) = s_Object;
 }
 
-void SUIControlBlueprintPin::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+void SAttributeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
-	auto* s_Object = static_cast<SUIControlBlueprintPin*>(p_Object);
-	
-}
+	auto* s_Object = static_cast<SAttributeInfo*>(p_Object);
 
-ZHMTypeInfo SUIControlBlueprintProperty::TypeInfo = ZHMTypeInfo("SUIControlBlueprintProperty", sizeof(SUIControlBlueprintProperty), alignof(SUIControlBlueprintProperty), WriteSimpleJson, FromSimpleJson, Serialize);
+	// Write the kind and type
+	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(SAttributeInfo, m_eKind), s_Object->m_eKind);
+	p_Serializer.PatchValue<int32_t>(p_OwnOffset + offsetof(SAttributeInfo, m_eType), s_Object->m_eType);
 
-void SUIControlBlueprintProperty::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	p_Stream << "{";
-
-	auto s_Object = static_cast<SUIControlBlueprintProperty*>(p_Object);
-
-	p_Stream << "\"m_nUnk00\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk00) << ",";
-	p_Stream << "\"m_nUnk01\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk01) << ",";
-	p_Stream << "\"m_sName\"" << ":" << simdjson::as_json_string(s_Object->m_sName) << ",";
-	p_Stream << "\"m_nUnk02\"" << ":" << simdjson::as_json_string(s_Object->m_nUnk02) << ",";
-	p_Stream << "\"m_nPropertyId\"" << ":" << simdjson::as_json_string(s_Object->m_nPropertyId) << ",";
-
-	p_Stream << "}";
-}
-
-void SUIControlBlueprintProperty::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	SUIControlBlueprintProperty s_Object;
-
-	*reinterpret_cast<SUIControlBlueprintProperty*>(p_Target) = s_Object;
-}
-
-void SUIControlBlueprintProperty::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = static_cast<SUIControlBlueprintProperty*>(p_Object);
-	
+	// And now the name
+	ZString::Serialize(&s_Object->m_sName, p_Serializer, p_OwnOffset + offsetof(SAttributeInfo, m_sName));
 }
 
 ZHMTypeInfo SUIControlBlueprint::TypeInfo = ZHMTypeInfo("SUIControlBlueprint", sizeof(SUIControlBlueprint), alignof(SUIControlBlueprint), WriteSimpleJson, FromSimpleJson, Serialize);
 
 void SUIControlBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
-	p_Stream << "{";
+	auto s_Object = *static_cast<SUIControlBlueprint*>(p_Object);
 
-	auto s_Object = static_cast<SUIControlBlueprint*>(p_Object);
+	p_Stream << "{" << "\"m_aPins\":[";
 
-	p_Stream << "\"m_aPins\"" << ":[";
-
-	for (size_t i = 0; i < s_Object->m_aPins.size(); ++i)
+	// We do it this way since it's all actually just 1 array of a "control type" (SAttributeInfo)
+	// in all games, pins come before properties, so that's how the commas work.
+	for (size_t i = 0; i < s_Object.m_aAttributes.size(); ++i)
 	{
-		auto& s_Item = s_Object->m_aPins[i];
+		auto& s_Attribute = s_Object.m_aAttributes[i];
 
-		SUIControlBlueprintPin::WriteSimpleJson(&s_Item, p_Stream);
+		// Skip properties
+		if (s_Attribute.m_eKind == 0) continue;
 
-		if (i < s_Object->m_aPins.size() - 1)
+		// Add comma
+		if (i != 0) p_Stream << ",";
+
+		SAttributeInfo::WriteSimpleJson(&s_Attribute, p_Stream);
+	}
+
+	p_Stream << "]," << "\"m_aProperties\":[";
+	
+	for (size_t i = 0; i < s_Object.m_aAttributes.size(); ++i)
+	{
+		auto& s_Attribute = s_Object.m_aAttributes[i];
+
+		// Skip pins
+		if (s_Attribute.m_eKind != 0) continue;
+
+		SAttributeInfo::WriteSimpleJson(&s_Attribute, p_Stream);
+
+		// Add comma
+		if (i < s_Object.m_aAttributes.size() - 1)
 			p_Stream << ",";
 	}
 
-	p_Stream << "],";
-
-	p_Stream << "\"m_aProperties\"" << ":[";
-
-	for (size_t i = 0; i < s_Object->m_aProperties.size(); ++i)
-	{
-		auto& s_Item = s_Object->m_aProperties[i];
-
-		SUIControlBlueprintProperty::WriteSimpleJson(&s_Item, p_Stream);
-
-		if (i < s_Object->m_aProperties.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-
-	p_Stream << "}";
+	p_Stream << "]}";
 }
 
 void SUIControlBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	throw std::runtime_error("Serializing SUIControlBlueprints is not currently supported.");
+	SUIControlBlueprint s_Object;
 
-	/*SUIControlBlueprint s_Object;
+	{
+		uint32_t s_Size = 0;
+		
+		simdjson::ondemand::array s_Pins = p_Document["m_aPins"];
+		s_Size += s_Pins.count_elements();
 
-	*reinterpret_cast<SUIControlBlueprint*>(p_Target) = s_Object;*/
+		simdjson::ondemand::array s_Properties = p_Document["m_aProperties"];
+		s_Size += s_Properties.count_elements();
+
+		s_Object.m_aAttributes.resize(s_Size);
+	}
+
+	size_t s_Index = 0;
+	{
+		simdjson::ondemand::array s_Pins = p_Document["m_aPins"];
+
+		for (simdjson::ondemand::value s_Pin : s_Pins)
+		{
+			SAttributeInfo s_Attribute;
+			SAttributeInfo::FromSimpleJson(s_Pin, &s_Attribute);
+			s_Object.m_aAttributes[s_Index++] = s_Attribute;
+		}
+	}
+
+	{
+		simdjson::ondemand::array s_Properties = p_Document["m_aProperties"];
+
+		for (simdjson::ondemand::value s_Property : s_Properties)
+		{
+			SAttributeInfo s_Attribute;
+			SAttributeInfo::FromSimpleJson(s_Property, &s_Attribute);
+			s_Object.m_aAttributes[s_Index++] = s_Attribute;
+		}
+	}
+
+	*reinterpret_cast<SUIControlBlueprint*>(p_Target) = s_Object;
 }
 
 void SUIControlBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<SUIControlBlueprint*>(p_Object);
-	
+
+	TArray<SAttributeInfo>::Serialize(&s_Object->m_aAttributes, p_Serializer, p_OwnOffset + offsetof(SUIControlBlueprint, m_aAttributes));
 }
 
 ZHMTypeInfo SEnumType::TypeInfo = ZHMTypeInfo("SEnumType", sizeof(SEnumType), alignof(SEnumType), WriteSimpleJson, FromSimpleJson, Serialize);
