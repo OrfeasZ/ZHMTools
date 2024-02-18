@@ -336,13 +336,13 @@ void SAudioStateBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serial
 
 ZHMTypeInfo SAttributeInfo::TypeInfo = ZHMTypeInfo("SAttributeInfo", sizeof(SAttributeInfo), alignof(SAttributeInfo), WriteSimpleJson, FromSimpleJson, Serialize);
 
-std::map<int32_t, std::string> EAttributeKind = {
+std::map<uint32_t, std::string> EAttributeKind = {
 	{ 0, "E_ATTRIBUTE_KIND_PROPERTY" },
 	{ 1, "E_ATTRIBUTE_KIND_INPUT_PIN" },
 	{ 2, "E_ATTRIBUTE_KIND_OUTPUT_PIN" },
 };
 
-std::map<int32_t, std::string> EAttributeType = {
+std::map<uint32_t, std::string> EAttributeType = {
 	{ 0, "E_ATTRIBUTE_TYPE_VOID" },
 	{ 1, "E_ATTRIBUTE_TYPE_INT" },
 	{ 2, "E_ATTRIBUTE_TYPE_FLOAT" },
@@ -358,8 +358,16 @@ void SAttributeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << "{";
 
-	p_Stream << "\"m_eKind\"" << ":" << simdjson::as_json_string(EAttributeKind.at(s_Object->m_eKind)) << ",";
-	p_Stream << "\"m_eType\"" << ":" << simdjson::as_json_string(EAttributeType.at(s_Object->m_eType)) << ",";
+	if (EAttributeKind.find(s_Object->m_eKind) == EAttributeKind.end())
+		p_Stream << "\"m_eKind\"" << ":" << simdjson::as_json_string(s_Object->m_eKind) << ",";
+	else
+		p_Stream << "\"m_eKind\"" << ":" << simdjson::as_json_string(EAttributeKind[s_Object->m_eKind]) << ",";
+
+	if (EAttributeType.find(s_Object->m_eType) == EAttributeType.end())
+		p_Stream << "\"m_eType\"" << ":" << simdjson::as_json_string(s_Object->m_eType) << ",";
+	else
+		p_Stream << "\"m_eType\"" << ":" << simdjson::as_json_string(EAttributeType[s_Object->m_eType]) << ",";
+
 	p_Stream << "\"m_sName\"" << ":" << simdjson::as_json_string(s_Object->m_sName);
 
 	p_Stream << "}";
@@ -369,27 +377,41 @@ void SAttributeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 {
 	SAttributeInfo s_Object;
 
-	auto GetEnumValue = [](std::map<int32_t, std::string> map, std::string_view name)
+	auto GetEnumValue = [](const std::map<uint32_t, std::string>& p_Map, std::string_view p_Name)
 	{
-		for (auto s_Pair : map)
-			if (s_Pair.second == name)
+		for (const auto& s_Pair : p_Map)
+			if (s_Pair.second == p_Name)
 				return s_Pair.first;
 
-		return -1;
+		return UINT32_MAX;
 	};
 
 	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
 
-	// This could be simplified by just outputting a number, but this is a bit more friendly.
-	int32_t s_Value = GetEnumValue(EAttributeKind, std::string_view(p_Document["m_eKind"]));
-	if (s_Value == -1)
-		throw std::runtime_error("Invalid m_eKind enum.");
-	s_Object.m_eKind = s_Value;
 
-	s_Value = GetEnumValue(EAttributeType, std::string_view(p_Document["m_eType"]));
-	if (s_Value == -1)
-		throw std::runtime_error("Invalid m_eType enum.");
-	s_Object.m_eType = s_Value;
+	if (p_Document["m_eKind"].type() == simdjson::ondemand::json_type::string)
+	{
+		s_Object.m_eKind = GetEnumValue(EAttributeKind, std::string_view(p_Document["m_eKind"]));
+
+		if (s_Object.m_eKind == UINT32_MAX)
+			throw std::runtime_error("Invalid m_eKind enum.");
+	}
+	else
+	{
+		s_Object.m_eKind = simdjson::from_json_uint32(p_Document["m_eKind"]);
+	}
+
+	if (p_Document["m_eType"].type() == simdjson::ondemand::json_type::string)
+	{
+		s_Object.m_eType = GetEnumValue(EAttributeType, std::string_view(p_Document["m_eType"]));
+
+		if (s_Object.m_eType == UINT32_MAX)
+			throw std::runtime_error("Invalid m_eType enum.");
+	}
+	else
+	{
+		s_Object.m_eType = simdjson::from_json_uint32(p_Document["m_eType"]);
+	}
 
 	*reinterpret_cast<SAttributeInfo*>(p_Target) = s_Object;
 }
