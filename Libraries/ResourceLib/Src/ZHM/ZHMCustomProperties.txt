@@ -28874,6 +28874,7 @@ m_bRemovePhysicsSpheres
 m_bRemovePhysicsUmbrella
 m_bRemovePhysics_01
 m_bRemovePhysics_02
+m_bRemovePhysics_Armrest
 m_bRemovePhysics_Arms
 m_bRemovePhysics_B
 m_bRemovePhysics_Col
@@ -28882,6 +28883,7 @@ m_bRemovePhysics_Drawer
 m_bRemovePhysics_Drawer_B
 m_bRemovePhysics_Faucet
 m_bRemovePhysics_Lid
+m_bRemovePhysics_Pillows
 m_bRemovePhysics_Props
 m_bRemovePhysics_Sink
 m_bRemovePhysics_Water
