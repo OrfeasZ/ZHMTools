@@ -173,7 +173,12 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 
 		fflush(stdout);
 	}
-}
+
+	uint32_t GetFlags00Unk02() const
+	{
+		// Always 0xffff.
+		return (m_Flags & 0xffff0000) >> 16;
+	}
 
 // Outputs the navmesh to a format useable by NavViewer
 extern "C" void OutputNavMesh_VIEWER(const char *p_NavMeshPath)

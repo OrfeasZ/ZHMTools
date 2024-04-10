@@ -212,7 +212,7 @@ public:
 
 	bool IsDummy() const override
 	{
-		return false;
+		return m_ElementType->IsDummy();
 	}
 
 	bool Equals(void* p_Left, void* p_Right) const override
@@ -297,17 +297,17 @@ public:
 	
 	std::string TypeName() const override
 	{
-		return m_TypeName;
+		throw std::runtime_error("Cannot get type name of dummy type info.");
 	}
 
 	size_t Size() const override
 	{
-		return 0;
+		throw std::runtime_error("Cannot get size of dummy type info.");
 	}
 
 	size_t Alignment() const override
 	{
-		return 0;
+		throw std::runtime_error("Cannot get alignment of dummy type info.");
 	}
 
 	bool IsDummy() const override

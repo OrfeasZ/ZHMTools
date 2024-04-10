@@ -3414,6 +3414,22 @@ void S25DProjectionSettings::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 	p_Stream << simdjson::as_json_string(s_Object->fFarScaleFov);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("enableWorldSizeScaling") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->enableWorldSizeScaling);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fWorldSizeScalingBaseDistance") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fWorldSizeScalingBaseDistance);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fWorldSizeScalingFactorMax") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fWorldSizeScalingFactorMax);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fWorldSizeScalingFactorMin") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fWorldSizeScalingFactorMin);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("fScaleFactor") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->fScaleFactor);
 	p_Stream << ",";
@@ -3492,6 +3508,14 @@ void S25DProjectionSettings::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.fFarScaleFov = simdjson::from_json_float32(p_Document["fFarScaleFov"]);
 
+	s_Object.enableWorldSizeScaling = simdjson::from_json_bool(p_Document["enableWorldSizeScaling"]);
+
+	s_Object.fWorldSizeScalingBaseDistance = simdjson::from_json_float32(p_Document["fWorldSizeScalingBaseDistance"]);
+
+	s_Object.fWorldSizeScalingFactorMax = simdjson::from_json_float32(p_Document["fWorldSizeScalingFactorMax"]);
+
+	s_Object.fWorldSizeScalingFactorMin = simdjson::from_json_float32(p_Document["fWorldSizeScalingFactorMin"]);
+
 	s_Object.fScaleFactor = simdjson::from_json_float32(p_Document["fScaleFactor"]);
 
 	s_Object.fNearAlpha = simdjson::from_json_float32(p_Document["fNearAlpha"]);
@@ -3569,6 +3593,10 @@ bool S25DProjectionSettings::operator==(const S25DProjectionSettings& p_Other) c
 	if (fFarFov != p_Other.fFarFov) return false;
 	if (fNearScaleFov != p_Other.fNearScaleFov) return false;
 	if (fFarScaleFov != p_Other.fFarScaleFov) return false;
+	if (enableWorldSizeScaling != p_Other.enableWorldSizeScaling) return false;
+	if (fWorldSizeScalingBaseDistance != p_Other.fWorldSizeScalingBaseDistance) return false;
+	if (fWorldSizeScalingFactorMax != p_Other.fWorldSizeScalingFactorMax) return false;
+	if (fWorldSizeScalingFactorMin != p_Other.fWorldSizeScalingFactorMin) return false;
 	if (fScaleFactor != p_Other.fScaleFactor) return false;
 	if (fNearAlpha != p_Other.fNearAlpha) return false;
 	if (fFarAlpha != p_Other.fFarAlpha) return false;
@@ -13222,6 +13250,68 @@ void SBoneScalesList::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SBoneScalesList*>(p_Object);
 	s_Object->~SBoneScalesList();
+}
+
+ZHMTypeInfo SBonusRequirementData::TypeInfo = ZHMTypeInfo("SBonusRequirementData", sizeof(SBonusRequirementData), alignof(SBonusRequirementData), SBonusRequirementData::WriteSimpleJson, SBonusRequirementData::FromSimpleJson, SBonusRequirementData::Serialize, SBonusRequirementData::Equals, SBonusRequirementData::Destroy);
+
+void SBonusRequirementData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SBonusRequirementData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("lstrTitle") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->lstrTitle);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("icon") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->icon);
+
+	p_Stream << "}";
+}
+
+void SBonusRequirementData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SBonusRequirementData s_Object {};
+
+	s_Object.lstrTitle = std::string_view(p_Document["lstrTitle"]);
+
+	s_Object.icon = std::string_view(p_Document["icon"]);
+
+	*reinterpret_cast<SBonusRequirementData*>(p_Target) = s_Object;
+}
+
+void SBonusRequirementData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SBonusRequirementData*>(p_Object);
+
+	ZString::Serialize(&s_Object->lstrTitle, p_Serializer, p_OwnOffset + offsetof(SBonusRequirementData, lstrTitle));
+	ZString::Serialize(&s_Object->icon, p_Serializer, p_OwnOffset + offsetof(SBonusRequirementData, icon));
+}
+
+bool SBonusRequirementData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SBonusRequirementData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SBonusRequirementData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SBonusRequirementData::operator==(const SBonusRequirementData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SBonusRequirementData>)
+		return false;
+
+	if (lstrTitle != p_Other.lstrTitle) return false;
+	if (icon != p_Other.icon) return false;
+
+	return true;
+}
+
+void SBonusRequirementData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SBonusRequirementData*>(p_Object);
+	s_Object->~SBonusRequirementData();
 }
 
 ZHMTypeInfo SCCEffectSet::TypeInfo = ZHMTypeInfo("SCCEffectSet", sizeof(SCCEffectSet), alignof(SCCEffectSet), SCCEffectSet::WriteSimpleJson, SCCEffectSet::FromSimpleJson, SCCEffectSet::Serialize, SCCEffectSet::Equals, SCCEffectSet::Destroy);
@@ -28697,6 +28787,14 @@ void SItemSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << simdjson::as_json_string("m_eGlowType") << ":";
 	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ERenderGlowTypes", static_cast<int>(s_Object->m_eGlowType)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eOverriddenGlowType") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ERenderGlowTypes", static_cast<int>(s_Object->m_eOverriddenGlowType)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bGlowIsOverridden") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bGlowIsOverridden);
 
 	p_Stream << "}";
 }
@@ -28757,6 +28855,10 @@ void SItemSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p
 
 	s_Object.m_eGlowType = static_cast<ERenderGlowTypes>(ZHMEnums::GetEnumValueByName("ERenderGlowTypes", std::string_view(p_Document["m_eGlowType"])));
 
+	s_Object.m_eOverriddenGlowType = static_cast<ERenderGlowTypes>(ZHMEnums::GetEnumValueByName("ERenderGlowTypes", std::string_view(p_Document["m_eOverriddenGlowType"])));
+
+	s_Object.m_bGlowIsOverridden = simdjson::from_json_bool(p_Document["m_bGlowIsOverridden"]);
+
 	*reinterpret_cast<SItemSaveData*>(p_Target) = s_Object;
 }
 
@@ -28802,6 +28904,8 @@ bool SItemSaveData::operator==(const SItemSaveData& p_Other) const
 	if (m_bObjectInPhysicsWorld != p_Other.m_bObjectInPhysicsWorld) return false;
 	if (m_nQuantity != p_Other.m_nQuantity) return false;
 	if (m_eGlowType != p_Other.m_eGlowType) return false;
+	if (m_eOverriddenGlowType != p_Other.m_eOverriddenGlowType) return false;
+	if (m_bGlowIsOverridden != p_Other.m_bGlowIsOverridden) return false;
 
 	return true;
 }
@@ -37422,6 +37526,10 @@ void SInventoryControllerSaveData::WriteSimpleJson(void* p_Object, std::ostream&
 	p_Stream << simdjson::as_json_string(s_Object->m_nAmmoCountDartTranquilizer);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("m_nAmmoCountDartEmetic") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nAmmoCountDartEmetic);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("m_nAmmoCountAmmoShotgunBeanbag") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_nAmmoCountAmmoShotgunBeanbag);
 	p_Stream << ",";
@@ -37529,6 +37637,8 @@ void SInventoryControllerSaveData::FromSimpleJson(simdjson::ondemand::value p_Do
 
 	s_Object.m_nAmmoCountDartTranquilizer = simdjson::from_json_uint32(p_Document["m_nAmmoCountDartTranquilizer"]);
 
+	s_Object.m_nAmmoCountDartEmetic = simdjson::from_json_uint32(p_Document["m_nAmmoCountDartEmetic"]);
+
 	s_Object.m_nAmmoCountAmmoShotgunBeanbag = simdjson::from_json_uint32(p_Document["m_nAmmoCountAmmoShotgunBeanbag"]);
 
 	{
@@ -37600,6 +37710,7 @@ bool SInventoryControllerSaveData::operator==(const SInventoryControllerSaveData
 	if (m_nAmmoCountFake != p_Other.m_nAmmoCountFake) return false;
 	if (m_nAmmoCountLightPistol != p_Other.m_nAmmoCountLightPistol) return false;
 	if (m_nAmmoCountDartTranquilizer != p_Other.m_nAmmoCountDartTranquilizer) return false;
+	if (m_nAmmoCountDartEmetic != p_Other.m_nAmmoCountDartEmetic) return false;
 	if (m_nAmmoCountAmmoShotgunBeanbag != p_Other.m_nAmmoCountAmmoShotgunBeanbag) return false;
 	if (m_aAmmoIds != p_Other.m_aAmmoIds) return false;
 	if (m_aAmmoCounts != p_Other.m_aAmmoCounts) return false;
@@ -38166,6 +38277,10 @@ void SInventoryUISlot::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << simdjson::as_json_string("evergreenRarity") << ":";
 	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("eEvergreenItemRarity", static_cast<int>(s_Object->evergreenRarity)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("evergreenLoseOnWounded") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->evergreenLoseOnWounded);
 
 	p_Stream << "}";
 }
@@ -38258,6 +38373,8 @@ void SInventoryUISlot::FromSimpleJson(simdjson::ondemand::value p_Document, void
 
 	s_Object.evergreenRarity = static_cast<eEvergreenItemRarity>(ZHMEnums::GetEnumValueByName("eEvergreenItemRarity", std::string_view(p_Document["evergreenRarity"])));
 
+	s_Object.evergreenLoseOnWounded = simdjson::from_json_bool(p_Document["evergreenLoseOnWounded"]);
+
 	*reinterpret_cast<SInventoryUISlot*>(p_Target) = s_Object;
 }
 
@@ -38322,6 +38439,7 @@ bool SInventoryUISlot::operator==(const SInventoryUISlot& p_Other) const
 	if (canReload != p_Other.canReload) return false;
 	if (sPoisonType != p_Other.sPoisonType) return false;
 	if (evergreenRarity != p_Other.evergreenRarity) return false;
+	if (evergreenLoseOnWounded != p_Other.evergreenLoseOnWounded) return false;
 
 	return true;
 }
@@ -53807,6 +53925,24 @@ void ZEvergreenCampaignActivatorDataProvider_SCampaignData::WriteSimpleJson(void
 	}
 
 	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("bonusRequirements") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->bonusRequirements.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->bonusRequirements[i];
+		SBonusRequirementData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->bonusRequirements.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("hasAllBonusRequirements") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->hasAllBonusRequirements);
 
 	p_Stream << "}";
 }
@@ -53846,6 +53982,21 @@ void ZEvergreenCampaignActivatorDataProvider_SCampaignData::FromSimpleJson(simdj
 	}
 	}
 
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["bonusRequirements"];
+	s_Object.bonusRequirements.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SBonusRequirementData s_ArrayItem0;
+		SBonusRequirementData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.bonusRequirements[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	s_Object.hasAllBonusRequirements = simdjson::from_json_bool(p_Document["hasAllBonusRequirements"]);
+
 	*reinterpret_cast<ZEvergreenCampaignActivatorDataProvider_SCampaignData*>(p_Target) = s_Object;
 }
 
@@ -53858,6 +54009,7 @@ void ZEvergreenCampaignActivatorDataProvider_SCampaignData::Serialize(void* p_Ob
 	ZString::Serialize(&s_Object->lstrBiography, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCampaignActivatorDataProvider_SCampaignData, lstrBiography));
 	ZRuntimeResourceID::Serialize(&s_Object->ridCampaignIcon, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCampaignActivatorDataProvider_SCampaignData, ridCampaignIcon));
 	TArray<ZEvergreenCampaignActivatorDataProvider_STerritoryData>::Serialize(&s_Object->territories, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCampaignActivatorDataProvider_SCampaignData, territories));
+	TArray<SBonusRequirementData>::Serialize(&s_Object->bonusRequirements, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCampaignActivatorDataProvider_SCampaignData, bonusRequirements));
 }
 
 bool ZEvergreenCampaignActivatorDataProvider_SCampaignData::Equals(void* p_Left, void* p_Right)
@@ -53881,6 +54033,8 @@ bool ZEvergreenCampaignActivatorDataProvider_SCampaignData::operator==(const ZEv
 	if (mercesDeposit != p_Other.mercesDeposit) return false;
 	if (mercesPayoutBase != p_Other.mercesPayoutBase) return false;
 	if (territories != p_Other.territories) return false;
+	if (bonusRequirements != p_Other.bonusRequirements) return false;
+	if (hasAllBonusRequirements != p_Other.hasAllBonusRequirements) return false;
 
 	return true;
 }
@@ -53901,6 +54055,10 @@ void ZEvergreenCampaignInfoDataProvider_SCampaignInfo::WriteSimpleJson(void* p_O
 
 	p_Stream << simdjson::as_json_string("nDifficultyRank") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->nDifficultyRank);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("bHardcore") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->bHardcore);
 
 	p_Stream << "}";
 }
@@ -53910,6 +54068,8 @@ void ZEvergreenCampaignInfoDataProvider_SCampaignInfo::FromSimpleJson(simdjson::
 	ZEvergreenCampaignInfoDataProvider_SCampaignInfo s_Object {};
 
 	s_Object.nDifficultyRank = simdjson::from_json_int32(p_Document["nDifficultyRank"]);
+
+	s_Object.bHardcore = simdjson::from_json_bool(p_Document["bHardcore"]);
 
 	*reinterpret_cast<ZEvergreenCampaignInfoDataProvider_SCampaignInfo*>(p_Target) = s_Object;
 }
@@ -53934,6 +54094,7 @@ bool ZEvergreenCampaignInfoDataProvider_SCampaignInfo::operator==(const ZEvergre
 		return false;
 
 	if (nDifficultyRank != p_Other.nDifficultyRank) return false;
+	if (bHardcore != p_Other.bHardcore) return false;
 
 	return true;
 }
@@ -53942,6 +54103,141 @@ void ZEvergreenCampaignInfoDataProvider_SCampaignInfo::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZEvergreenCampaignInfoDataProvider_SCampaignInfo*>(p_Object);
 	s_Object->~ZEvergreenCampaignInfoDataProvider_SCampaignInfo();
+}
+
+ZHMTypeInfo ZEvergreenCampaignProgressDataProvider_SData::TypeInfo = ZHMTypeInfo("ZEvergreenCampaignProgressDataProvider.SData", sizeof(ZEvergreenCampaignProgressDataProvider_SData), alignof(ZEvergreenCampaignProgressDataProvider_SData), ZEvergreenCampaignProgressDataProvider_SData::WriteSimpleJson, ZEvergreenCampaignProgressDataProvider_SData::FromSimpleJson, ZEvergreenCampaignProgressDataProvider_SData::Serialize, ZEvergreenCampaignProgressDataProvider_SData::Equals, ZEvergreenCampaignProgressDataProvider_SData::Destroy);
+
+void ZEvergreenCampaignProgressDataProvider_SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenCampaignProgressDataProvider_SData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("campaign") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->campaign.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->campaign[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->campaign.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("completed") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->completed.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->completed[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->completed.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("step") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->step);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("hardcore") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->hardcore);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("goToExitObjectivesDone") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->goToExitObjectivesDone);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("goToExitObjectivesFail") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->goToExitObjectivesFail);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("campaignActivatorInUse") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->campaignActivatorInUse);
+
+	p_Stream << "}";
+}
+
+void ZEvergreenCampaignProgressDataProvider_SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZEvergreenCampaignProgressDataProvider_SData s_Object {};
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["campaign"];
+	s_Object.campaign.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.campaign[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["completed"];
+	s_Object.completed.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.completed[s_Index0++] = simdjson::from_json_int32(s_Item0);
+	}
+	}
+
+	s_Object.step = simdjson::from_json_int32(p_Document["step"]);
+
+	s_Object.hardcore = simdjson::from_json_bool(p_Document["hardcore"]);
+
+	s_Object.goToExitObjectivesDone = simdjson::from_json_bool(p_Document["goToExitObjectivesDone"]);
+
+	s_Object.goToExitObjectivesFail = simdjson::from_json_bool(p_Document["goToExitObjectivesFail"]);
+
+	s_Object.campaignActivatorInUse = simdjson::from_json_bool(p_Document["campaignActivatorInUse"]);
+
+	*reinterpret_cast<ZEvergreenCampaignProgressDataProvider_SData*>(p_Target) = s_Object;
+}
+
+void ZEvergreenCampaignProgressDataProvider_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenCampaignProgressDataProvider_SData*>(p_Object);
+
+	TArray<int32>::Serialize(&s_Object->campaign, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCampaignProgressDataProvider_SData, campaign));
+	TArray<int32>::Serialize(&s_Object->completed, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCampaignProgressDataProvider_SData, completed));
+}
+
+bool ZEvergreenCampaignProgressDataProvider_SData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZEvergreenCampaignProgressDataProvider_SData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZEvergreenCampaignProgressDataProvider_SData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZEvergreenCampaignProgressDataProvider_SData::operator==(const ZEvergreenCampaignProgressDataProvider_SData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEvergreenCampaignProgressDataProvider_SData>)
+		return false;
+
+	if (campaign != p_Other.campaign) return false;
+	if (completed != p_Other.completed) return false;
+	if (step != p_Other.step) return false;
+	if (hardcore != p_Other.hardcore) return false;
+	if (goToExitObjectivesDone != p_Other.goToExitObjectivesDone) return false;
+	if (goToExitObjectivesFail != p_Other.goToExitObjectivesFail) return false;
+	if (campaignActivatorInUse != p_Other.campaignActivatorInUse) return false;
+
+	return true;
+}
+
+void ZEvergreenCampaignProgressDataProvider_SData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenCampaignProgressDataProvider_SData*>(p_Object);
+	s_Object->~ZEvergreenCampaignProgressDataProvider_SData();
 }
 
 ZHMTypeInfo ZEvergreenIntelWallDataProvider_SIntelWallData::TypeInfo = ZHMTypeInfo("ZEvergreenIntelWallDataProvider.SIntelWallData", sizeof(ZEvergreenIntelWallDataProvider_SIntelWallData), alignof(ZEvergreenIntelWallDataProvider_SIntelWallData), ZEvergreenIntelWallDataProvider_SIntelWallData::WriteSimpleJson, ZEvergreenIntelWallDataProvider_SIntelWallData::FromSimpleJson, ZEvergreenIntelWallDataProvider_SIntelWallData::Serialize, ZEvergreenIntelWallDataProvider_SIntelWallData::Equals, ZEvergreenIntelWallDataProvider_SIntelWallData::Destroy);
@@ -54081,6 +54377,80 @@ void ZEvergreenIntelWallDataProvider_SIntelWallData::Destroy(void* p_Object)
 	s_Object->~ZEvergreenIntelWallDataProvider_SIntelWallData();
 }
 
+ZHMTypeInfo ZEvergreenLocationIntelDataProvider_SData::TypeInfo = ZHMTypeInfo("ZEvergreenLocationIntelDataProvider.SData", sizeof(ZEvergreenLocationIntelDataProvider_SData), alignof(ZEvergreenLocationIntelDataProvider_SData), ZEvergreenLocationIntelDataProvider_SData::WriteSimpleJson, ZEvergreenLocationIntelDataProvider_SData::FromSimpleJson, ZEvergreenLocationIntelDataProvider_SData::Serialize, ZEvergreenLocationIntelDataProvider_SData::Equals, ZEvergreenLocationIntelDataProvider_SData::Destroy);
+
+void ZEvergreenLocationIntelDataProvider_SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenLocationIntelDataProvider_SData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("nSuppliers") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nSuppliers);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nMules") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nMules);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nSafes") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nSafes);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nTargets") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nTargets);
+
+	p_Stream << "}";
+}
+
+void ZEvergreenLocationIntelDataProvider_SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZEvergreenLocationIntelDataProvider_SData s_Object {};
+
+	s_Object.nSuppliers = simdjson::from_json_int32(p_Document["nSuppliers"]);
+
+	s_Object.nMules = simdjson::from_json_int32(p_Document["nMules"]);
+
+	s_Object.nSafes = simdjson::from_json_int32(p_Document["nSafes"]);
+
+	s_Object.nTargets = simdjson::from_json_int32(p_Document["nTargets"]);
+
+	*reinterpret_cast<ZEvergreenLocationIntelDataProvider_SData*>(p_Target) = s_Object;
+}
+
+void ZEvergreenLocationIntelDataProvider_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenLocationIntelDataProvider_SData*>(p_Object);
+
+}
+
+bool ZEvergreenLocationIntelDataProvider_SData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZEvergreenLocationIntelDataProvider_SData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZEvergreenLocationIntelDataProvider_SData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZEvergreenLocationIntelDataProvider_SData::operator==(const ZEvergreenLocationIntelDataProvider_SData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEvergreenLocationIntelDataProvider_SData>)
+		return false;
+
+	if (nSuppliers != p_Other.nSuppliers) return false;
+	if (nMules != p_Other.nMules) return false;
+	if (nSafes != p_Other.nSafes) return false;
+	if (nTargets != p_Other.nTargets) return false;
+
+	return true;
+}
+
+void ZEvergreenLocationIntelDataProvider_SData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenLocationIntelDataProvider_SData*>(p_Object);
+	s_Object->~ZEvergreenLocationIntelDataProvider_SData();
+}
+
 ZHMTypeInfo ZEvergreenMenuController_SPromptsData::TypeInfo = ZHMTypeInfo("ZEvergreenMenuController.SPromptsData", sizeof(ZEvergreenMenuController_SPromptsData), alignof(ZEvergreenMenuController_SPromptsData), ZEvergreenMenuController_SPromptsData::WriteSimpleJson, ZEvergreenMenuController_SPromptsData::FromSimpleJson, ZEvergreenMenuController_SPromptsData::Serialize, ZEvergreenMenuController_SPromptsData::Equals, ZEvergreenMenuController_SPromptsData::Destroy);
 
 void ZEvergreenMenuController_SPromptsData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -54156,6 +54526,76 @@ void ZEvergreenMenuController_SPromptsData::Destroy(void* p_Object)
 	s_Object->~ZEvergreenMenuController_SPromptsData();
 }
 
+ZHMTypeInfo ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::TypeInfo = ZHMTypeInfo("ZEvergreenPrestigeObjectiveInfoDataProvider.SPrestigeInfo", sizeof(ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo), alignof(ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo), ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::WriteSimpleJson, ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::FromSimpleJson, ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::Serialize, ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::Equals, ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::Destroy);
+
+void ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("title") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->title);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("description") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->description);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("image") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->image);
+
+	p_Stream << "}";
+}
+
+void ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo s_Object {};
+
+	s_Object.title = std::string_view(p_Document["title"]);
+
+	s_Object.description = std::string_view(p_Document["description"]);
+
+	s_Object.image = std::string_view(p_Document["image"]);
+
+	*reinterpret_cast<ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo*>(p_Target) = s_Object;
+}
+
+void ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo*>(p_Object);
+
+	ZString::Serialize(&s_Object->title, p_Serializer, p_OwnOffset + offsetof(ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo, title));
+	ZString::Serialize(&s_Object->description, p_Serializer, p_OwnOffset + offsetof(ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo, description));
+	ZString::Serialize(&s_Object->image, p_Serializer, p_OwnOffset + offsetof(ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo, image));
+}
+
+bool ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::operator==(const ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo>)
+		return false;
+
+	if (title != p_Other.title) return false;
+	if (description != p_Other.description) return false;
+	if (image != p_Other.image) return false;
+
+	return true;
+}
+
+void ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo*>(p_Object);
+	s_Object->~ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo();
+}
+
 ZHMTypeInfo ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::TypeInfo = ZHMTypeInfo("ZEvergreenVitalInfoBarDataProvider.SVitalInfoData", sizeof(ZEvergreenVitalInfoBarDataProvider_SVitalInfoData), alignof(ZEvergreenVitalInfoBarDataProvider_SVitalInfoData), ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::WriteSimpleJson, ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::FromSimpleJson, ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::Serialize, ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::Equals, ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::Destroy);
 
 void ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -54178,6 +54618,14 @@ void ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::WriteSimpleJson(void* p_
 
 	p_Stream << simdjson::as_json_string("isLookoutAlerted") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->isLookoutAlerted);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("isAllertedTerritory") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isAllertedTerritory);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("isPrestigeObjectiveActive") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isPrestigeObjectiveActive);
 
 	p_Stream << "}";
 }
@@ -54193,6 +54641,10 @@ void ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::FromSimpleJson(simdjson:
 	s_Object.isLookoutNearby = simdjson::from_json_bool(p_Document["isLookoutNearby"]);
 
 	s_Object.isLookoutAlerted = simdjson::from_json_bool(p_Document["isLookoutAlerted"]);
+
+	s_Object.isAllertedTerritory = simdjson::from_json_bool(p_Document["isAllertedTerritory"]);
+
+	s_Object.isPrestigeObjectiveActive = simdjson::from_json_bool(p_Document["isPrestigeObjectiveActive"]);
 
 	*reinterpret_cast<ZEvergreenVitalInfoBarDataProvider_SVitalInfoData*>(p_Target) = s_Object;
 }
@@ -54220,6 +54672,8 @@ bool ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::operator==(const ZEvergr
 	if (isAssassinAlerted != p_Other.isAssassinAlerted) return false;
 	if (isLookoutNearby != p_Other.isLookoutNearby) return false;
 	if (isLookoutAlerted != p_Other.isLookoutAlerted) return false;
+	if (isAllertedTerritory != p_Other.isAllertedTerritory) return false;
+	if (isPrestigeObjectiveActive != p_Other.isPrestigeObjectiveActive) return false;
 
 	return true;
 }
@@ -54228,68 +54682,6 @@ void ZEvergreenVitalInfoBarDataProvider_SVitalInfoData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZEvergreenVitalInfoBarDataProvider_SVitalInfoData*>(p_Object);
 	s_Object->~ZEvergreenVitalInfoBarDataProvider_SVitalInfoData();
-}
-
-ZHMTypeInfo ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::TypeInfo = ZHMTypeInfo("ZEvergreenWorldMapTerritoryDataProvider.SBonusRequirement", sizeof(ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement), alignof(ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement), ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::WriteSimpleJson, ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::FromSimpleJson, ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::Serialize, ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::Equals, ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::Destroy);
-
-void ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("lstrTitle") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->lstrTitle);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("icon") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->icon);
-
-	p_Stream << "}";
-}
-
-void ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement s_Object {};
-
-	s_Object.lstrTitle = std::string_view(p_Document["lstrTitle"]);
-
-	s_Object.icon = std::string_view(p_Document["icon"]);
-
-	*reinterpret_cast<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement*>(p_Target) = s_Object;
-}
-
-void ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement*>(p_Object);
-
-	ZString::Serialize(&s_Object->lstrTitle, p_Serializer, p_OwnOffset + offsetof(ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement, lstrTitle));
-	ZString::Serialize(&s_Object->icon, p_Serializer, p_OwnOffset + offsetof(ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement, icon));
-}
-
-bool ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::operator==(const ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement>)
-		return false;
-
-	if (lstrTitle != p_Other.lstrTitle) return false;
-	if (icon != p_Other.icon) return false;
-
-	return true;
-}
-
-void ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement*>(p_Object);
-	s_Object->~ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement();
 }
 
 ZHMTypeInfo ZEvergreenWorldMapTerritoryDataProvider_SData::TypeInfo = ZHMTypeInfo("ZEvergreenWorldMapTerritoryDataProvider.SData", sizeof(ZEvergreenWorldMapTerritoryDataProvider_SData), alignof(ZEvergreenWorldMapTerritoryDataProvider_SData), ZEvergreenWorldMapTerritoryDataProvider_SData::WriteSimpleJson, ZEvergreenWorldMapTerritoryDataProvider_SData::FromSimpleJson, ZEvergreenWorldMapTerritoryDataProvider_SData::Serialize, ZEvergreenWorldMapTerritoryDataProvider_SData::Equals, ZEvergreenWorldMapTerritoryDataProvider_SData::Destroy);
@@ -54369,7 +54761,7 @@ void ZEvergreenWorldMapTerritoryDataProvider_SData::WriteSimpleJson(void* p_Obje
 	for (size_t i = 0; i < s_Object->bonusRequirements.size(); ++i)
 	{
 		auto& s_Item0 = s_Object->bonusRequirements[i];
-		ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::WriteSimpleJson(&s_Item0, p_Stream);
+		SBonusRequirementData::WriteSimpleJson(&s_Item0, p_Stream);
 
 		if (i < s_Object->bonusRequirements.size() - 1)
 			p_Stream << ",";
@@ -54423,8 +54815,8 @@ void ZEvergreenWorldMapTerritoryDataProvider_SData::FromSimpleJson(simdjson::ond
 
 	for (simdjson::ondemand::value s_Item0 : s_Array0)
 	{
-		ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement s_ArrayItem0;
-		ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		SBonusRequirementData s_ArrayItem0;
+		SBonusRequirementData::FromSimpleJson(s_Item0, &s_ArrayItem0);
 		s_Object.bonusRequirements[s_Index0++] = s_ArrayItem0;
 	}
 	}
@@ -54439,7 +54831,7 @@ void ZEvergreenWorldMapTerritoryDataProvider_SData::Serialize(void* p_Object, ZH
 	ZString::Serialize(&s_Object->lstrDestinationCity, p_Serializer, p_OwnOffset + offsetof(ZEvergreenWorldMapTerritoryDataProvider_SData, lstrDestinationCity));
 	ZString::Serialize(&s_Object->lstrDestinationCountry, p_Serializer, p_OwnOffset + offsetof(ZEvergreenWorldMapTerritoryDataProvider_SData, lstrDestinationCountry));
 	ZString::Serialize(&s_Object->lstrDestinationFullName, p_Serializer, p_OwnOffset + offsetof(ZEvergreenWorldMapTerritoryDataProvider_SData, lstrDestinationFullName));
-	TArray<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement>::Serialize(&s_Object->bonusRequirements, p_Serializer, p_OwnOffset + offsetof(ZEvergreenWorldMapTerritoryDataProvider_SData, bonusRequirements));
+	TArray<SBonusRequirementData>::Serialize(&s_Object->bonusRequirements, p_Serializer, p_OwnOffset + offsetof(ZEvergreenWorldMapTerritoryDataProvider_SData, bonusRequirements));
 }
 
 bool ZEvergreenWorldMapTerritoryDataProvider_SData::Equals(void* p_Left, void* p_Right)
@@ -56093,6 +56485,67 @@ void ZHUDUIControllerEntity_SWeaponViewData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZHUDUIControllerEntity_SWeaponViewData*>(p_Object);
 	s_Object->~ZHUDUIControllerEntity_SWeaponViewData();
+}
+
+ZHMTypeInfo ZHUDWalkSpeedDataProvider_SData::TypeInfo = ZHMTypeInfo("ZHUDWalkSpeedDataProvider.SData", sizeof(ZHUDWalkSpeedDataProvider_SData), alignof(ZHUDWalkSpeedDataProvider_SData), ZHUDWalkSpeedDataProvider_SData::WriteSimpleJson, ZHUDWalkSpeedDataProvider_SData::FromSimpleJson, ZHUDWalkSpeedDataProvider_SData::Serialize, ZHUDWalkSpeedDataProvider_SData::Equals, ZHUDWalkSpeedDataProvider_SData::Destroy);
+
+void ZHUDWalkSpeedDataProvider_SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZHUDWalkSpeedDataProvider_SData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("isVisible") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isVisible);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("speed") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->speed);
+
+	p_Stream << "}";
+}
+
+void ZHUDWalkSpeedDataProvider_SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZHUDWalkSpeedDataProvider_SData s_Object {};
+
+	s_Object.isVisible = simdjson::from_json_bool(p_Document["isVisible"]);
+
+	s_Object.speed = std::string_view(p_Document["speed"]);
+
+	*reinterpret_cast<ZHUDWalkSpeedDataProvider_SData*>(p_Target) = s_Object;
+}
+
+void ZHUDWalkSpeedDataProvider_SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZHUDWalkSpeedDataProvider_SData*>(p_Object);
+
+	ZString::Serialize(&s_Object->speed, p_Serializer, p_OwnOffset + offsetof(ZHUDWalkSpeedDataProvider_SData, speed));
+}
+
+bool ZHUDWalkSpeedDataProvider_SData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZHUDWalkSpeedDataProvider_SData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZHUDWalkSpeedDataProvider_SData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZHUDWalkSpeedDataProvider_SData::operator==(const ZHUDWalkSpeedDataProvider_SData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDWalkSpeedDataProvider_SData>)
+		return false;
+
+	if (isVisible != p_Other.isVisible) return false;
+	if (speed != p_Other.speed) return false;
+
+	return true;
+}
+
+void ZHUDWalkSpeedDataProvider_SData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZHUDWalkSpeedDataProvider_SData*>(p_Object);
+	s_Object->~ZHUDWalkSpeedDataProvider_SData();
 }
 
 ZHMTypeInfo ZHttpUrl::TypeInfo = ZHMTypeInfo("ZHttpUrl", sizeof(ZHttpUrl), alignof(ZHttpUrl), ZHttpUrl::WriteSimpleJson, ZHttpUrl::FromSimpleJson, ZHttpUrl::Serialize, ZHttpUrl::Equals, ZHttpUrl::Destroy);

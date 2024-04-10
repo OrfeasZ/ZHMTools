@@ -9,15 +9,15 @@ A collection of various tools and libraries for the Hitman game engine, Glacier.
 
 ### [ResourceLib](/Libraries/ResourceLib)
 
-A collection of libraries that allow converting various game resources to JSON and back, each targetting a specific Hitman game. The library exposes a C interface that can be directly integrated into third party tools, without additional dependencies.
+A collection of libraries that allow converting various game resources to JSON and back, each targetting a specific Hitman game. The library exposes a C interface that can be directly integrated into third party tools, without additional dependencies. You can also find a C# / .NET wrapper around ResourceLib [here](/Libraries/ResourceLib/ResourceLib.cs).
 
 Currently supported games and resource types:
 
 | Game | Supported Resources |
 | ---- | ------------------- |
-| Hitman 3 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB` |
-| Hitman 2 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB` |
-| Hitman 2016 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB` |
+| Hitman 3 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB` |
+| Hitman 2 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB` |
+| Hitman 2016 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `RTLV`, `UICB` |
 | Hitman Absolution* | `TEMP`, `TBLU`, `AIRG`, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `WSGB` |
 
 *`*` Experimental*

@@ -82,6 +82,10 @@ public:
 
 	ZString& operator=(const ZString& p_Other)
 	{
+#if ZHM_TARGET != 2012
+		memcpy(_pad4, p_Other._pad4, sizeof(_pad4));
+#endif
+
 		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
 		{
 			auto* s_HeapArena = ZHMArenas::GetHeapArena();
@@ -115,7 +119,7 @@ public:
 		// This points to a 1-byte zeroed buffer.
 		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, 0);
 	}
-
+	
 	inline std::string_view string_view() const
 	{
 		return std::string_view(c_str(), size());
@@ -129,6 +133,11 @@ public:
 	inline const char* c_str() const
 	{
 		return m_pChars.GetPtr();
+	}
+
+	inline void* data() const
+	{
+		return const_cast<char*>(m_pChars.GetPtr());
 	}
 
 	inline bool operator<(const ZString& other) const

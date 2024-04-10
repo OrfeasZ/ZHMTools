@@ -50,6 +50,10 @@ public:
 
 		auto* s_Arena = ZHMArenas::GetHeapArena();
 		s_Arena->Free(m_pBegin.GetPtrOffset());
+
+		m_pBegin.SetNull();
+		m_pEnd.SetNull();
+		m_pAllocationEnd.SetNull();
 	}
 
 	TArray<T>& operator=(const TArray<T>& p_Other)

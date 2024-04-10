@@ -11,7 +11,9 @@ set(CMAKE_PDB_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
+
+option(ZHM_BUILD_TOOLS "Whether or not tools should be built" ON)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	set(VCPKG_CRT_LINKAGE "static")
@@ -25,8 +27,9 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	string(REPLACE "/O2" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO ${CMAKE_CXX_FLAGS_RELWITHDEBINFO})
 	string(REPLACE "/Ob1" "" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
 	string(REPLACE "/Ob1" "" CMAKE_CXX_FLAGS_RELWITHDEBINFO ${CMAKE_CXX_FLAGS_RELWITHDEBINFO})
-elseif(DEFINED LIBCPP_VERSION)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc++ -I/usr/include/c++/${LIBCPP_VERSION} -I/usr/include/x86_64-linux-gnu/c++/${LIBCPP_VERSION}")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	# In clang we want to add -fexperimental-library so we can use new stdlib features.
+	string(APPEND CMAKE_CXX_FLAGS " -fexperimental-library")
 endif()
 
 if(EMSCRIPTEN)
@@ -36,16 +39,20 @@ endif()
 add_subdirectory("Libraries/ResourceLib")
 
 if(NOT EMSCRIPTEN)
-	add_subdirectory("Tools/ResourceTool")
+	if(ZHM_BUILD_TOOLS)
+		add_subdirectory("Tools/ResourceTool")
+		add_subdirectory("Tools/NavTool")
+		add_subdirectory("Tools/ModuleInfoParser")
+		add_subdirectory("Tools/PropertyBundler")
+	endif()
 
 	add_subdirectory("Libraries/NavWeakness")
-	add_subdirectory("Tools/NavTool")
-
-	add_subdirectory("Tools/ModuleInfoParser")
-	add_subdirectory("Tools/PropertyBundler")
 endif()
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	if(ZHM_BUILD_TOOLS)
+		add_subdirectory("Tools/CodeGen")
+	endif()
+
 	add_subdirectory("Libraries/CodeGenLib")
-	add_subdirectory("Tools/CodeGen")
 endif()

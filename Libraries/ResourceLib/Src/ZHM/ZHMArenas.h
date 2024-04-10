@@ -7,6 +7,8 @@
 #include <tuple>
 #include <cstring>
 #include <shared_mutex>
+#include <mutex>
+#include <cstdlib>
 
 #include "ZHMInt.h"
 
@@ -52,6 +54,12 @@ struct ZHMArena
 			// which will be used for empty strings.
 			const auto s_Offset = Allocate(1);
 			memset(GetObjectAtOffset<void>(s_Offset), 0x00, 1);
+		}
+		else if (m_Id == 0)
+		{
+			// The first arena is reserved, since pointers with all arena bits set to 0
+			// are considered to be real pointers.
+			m_Used = true;
 		}
 	}
 
@@ -160,10 +168,7 @@ struct ZHMArena
 		m_TypeIndices[p_Type] = p_Index;
 	}
 
-	[[nodiscard]] IZHMTypeInfo* GetType(uint32_t p_Index) const
-	{
-		return m_TypeRegistry[p_Index];
-	}
+	[[nodiscard]] IZHMTypeInfo* GetType(zhmptr_t p_Index) const;
 
 	[[nodiscard]] uint32_t GetTypeIndex(IZHMTypeInfo* p_Type)
 	{

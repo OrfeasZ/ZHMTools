@@ -34,6 +34,8 @@ set(RESOURCELIB_SOURCES
 	Src/ZHM/ZRepositoryID.h
 	Src/ZHM/ZString.cpp
 	Src/ZHM/ZString.h
+	Src/ZHM/ZEncryptedString.cpp
+	Src/ZHM/ZEncryptedString.h
 	Src/ZHM/ZVariant.cpp
 	Src/ZHM/ZVariant.h
 	Src/ZHM/ZHMEquality.h

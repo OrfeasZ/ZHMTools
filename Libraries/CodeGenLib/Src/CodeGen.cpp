@@ -72,7 +72,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	m_ReflectiveClassesSourceFile << "#include <utility>" << std::endl;
 	m_ReflectiveClassesSourceFile << std::endl;
 
-	printf("Registry has %d types.\n", p_Registry->m_types.size());
+	printf("Registry has %zd types.\n", p_Registry->m_types.size());
 
 	size_t s_ProcessedTypes = 0;
 
@@ -101,7 +101,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 		}
 	}
 
-	printf("Processed %d types.\n", s_ProcessedTypes);
+	printf("Processed %zd types.\n", s_ProcessedTypes);
 
 	GenerateReflectiveClasses();
 	GeneratePropertyNamesFiles();
@@ -1081,6 +1081,7 @@ void CodeGen::GeneratePropertyNamesFiles()
 	m_PropertyNamesHeaderFile << "{" << std::endl;
 	m_PropertyNamesHeaderFile << "public:" << std::endl;
 	m_PropertyNamesHeaderFile << "\tstatic std::string PropertyToString(uint32_t p_PropertyId);" << std::endl;
+	m_PropertyNamesHeaderFile << "\tstatic std::string_view PropertyToStringView(uint32_t p_PropertyId);" << std::endl;
 	m_PropertyNamesHeaderFile << std::endl;
 	m_PropertyNamesHeaderFile << "private:" << std::endl;
 	m_PropertyNamesHeaderFile << "\tstatic void RegisterProperties();" << std::endl;
@@ -1126,7 +1127,17 @@ void CodeGen::GeneratePropertyNamesFiles()
 	m_PropertyNamesSourceFile << "\t\treturn \"\";" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
 	m_PropertyNamesSourceFile << "\treturn std::string(it->second);" << std::endl;
-	m_PropertyNamesSourceFile << "};" << std::endl;
+	m_PropertyNamesSourceFile << "}" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "std::string_view ZHMProperties::PropertyToStringView(uint32_t p_PropertyId)" << std::endl;
+	m_PropertyNamesSourceFile << "{" << std::endl;
+	m_PropertyNamesSourceFile << "\tauto it = g_Properties->find(p_PropertyId);" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "\tif (it == g_Properties->end())" << std::endl;
+	m_PropertyNamesSourceFile << "\t\treturn \"\";" << std::endl;
+	m_PropertyNamesSourceFile << std::endl;
+	m_PropertyNamesSourceFile << "\treturn it->second;" << std::endl;
+	m_PropertyNamesSourceFile << "}" << std::endl;
 	m_PropertyNamesSourceFile << std::endl;
 	m_PropertyNamesSourceFile << "void ZHMProperties::RegisterProperties()" << std::endl;
 	m_PropertyNamesSourceFile << "{" << std::endl;

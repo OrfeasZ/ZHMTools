@@ -2851,6 +2851,7 @@ enum class EActorVoiceVariation
 	eAVV_DUGONG_PIRATE_MHI03 = 576,
 	eAVV_CREST = 577,
 	eAVV_AKKA = 578,
+	eAVV_ET_DROP = 579,
 };
 
 // Size: 0x4
@@ -5176,6 +5177,7 @@ enum class EEvergreenMenuLabelPurpose
 	ITEMRARITY_RARE = 6,
 	ITEMRARITY_EPIC = 7,
 	ITEMRARITY_LEGENDARY = 8,
+	LOSE_ON_WOUNDED = 9,
 };
 
 // Size: 0x4
@@ -7170,6 +7172,11 @@ enum class ERequirementId
 	EREQUIREMENT_H3_DEADLYSINS_GLUTTONY = 39,
 	EREQUIREMENT_H3_DEADLYSINS_WRATH = 40,
 	EREQUIREMENT_H3_DEADLYSINS_ENVY = 41,
+	EREQUIREMENT_LOCATION_ROCKY = 42,
+	EREQUIREMENT_H3_VANITY_CONCRETEART = 43,
+	EREQUIREMENT_H3_VANITY_MAKESHIFTSCRAP = 44,
+	EREQUIREMENT_H3_SARAJEVO_SIX = 45,
+	EREQUIREMENT_H3_ET_SAMBUCA = 46,
 };
 
 // Size: 0x1
@@ -7846,6 +7853,14 @@ enum class ETimerEntityCommandType
 };
 
 // Size: 0x4
+enum class ETraceMessageType
+{
+	Message = 0,
+	Warning = 1,
+	Error = 2,
+};
+
+// Size: 0x4
 enum class EUIActionGroupIcon
 {
 	EUIAGI_NoIcon = 0,
@@ -8064,196 +8079,198 @@ enum class EUIIconLibrary
 	evergreen_kill_method_accident = 84,
 	evergreen_kill_method_accident_burn = 85,
 	evergreen_kill_method_assault_rifle = 86,
-	evergreen_kill_method_drown = 87,
-	evergreen_kill_method_electric = 88,
-	evergreen_kill_method_explosive = 89,
-	evergreen_kill_method_fiber_wire = 90,
-	evergreen_kill_method_headshots_only = 91,
-	evergreen_kill_method_melee = 92,
-	evergreen_kill_method_oil_puddle = 93,
-	evergreen_kill_method_pistol = 94,
-	evergreen_kill_method_pistol_silenced = 95,
-	evergreen_kill_method_poison = 96,
-	evergreen_kill_method_push = 97,
-	evergreen_kill_method_shotgun = 98,
-	evergreen_kill_method_smg = 99,
-	evergreen_kill_method_sniper = 100,
-	evergreen_kill_method_throw = 101,
-	evergreen_kill_method_unarmed = 102,
-	evergreen_kill_method_wallbang = 103,
-	evergreen_kill_method_water_puddle = 104,
-	evergreen_merces = 105,
-	evergreen_mules = 106,
-	evergreen_no_bodies_found = 107,
-	evergreen_no_compromised_disguises = 108,
-	evergreen_no_disguise_change = 109,
-	evergreen_no_lockpick = 110,
-	evergreen_no_missed_shots = 111,
-	evergreen_only_kill_targets = 112,
-	evergreen_optin_killmethod = 113,
-	evergreen_optin_showdown = 114,
-	evergreen_optin_silentassassin = 115,
-	evergreen_optin_speedrun = 116,
-	evergreen_pacify_raremelee = 117,
-	evergreen_safe = 118,
-	evergreen_safehouse_cosmetic = 119,
-	evergreen_safehouse_unlock = 120,
-	evergreen_search_locate = 121,
-	evergreen_showdown_mission = 122,
-	evergreen_suppliers = 123,
-	evergreen_tags = 124,
-	evergreen_target = 125,
-	exit = 126,
-	explosive = 127,
-	explosives = 128,
-	extendedmag = 129,
-	extendedmag_1 = 130,
-	extendedmag_2 = 131,
-	extendedmag_3 = 132,
-	extendedmag_4 = 133,
-	eye_tracking = 134,
-	failed = 135,
-	fastreload = 136,
-	fastreload_1 = 137,
-	fastreload_2 = 138,
-	fastreload_3 = 139,
-	fastreload_4 = 140,
-	favoritecontracts = 141,
-	featured = 142,
-	fiberwire = 143,
-	firearm = 144,
-	fixed = 145,
-	flashback = 146,
-	frisk = 147,
-	fullauto = 148,
-	game = 149,
-	gamehud = 150,
-	gear = 151,
-	goonline = 152,
-	graphics = 153,
-	hailstorm = 154,
-	hidden = 155,
-	highpressure = 156,
-	ica = 157,
-	info = 158,
-	intel = 159,
-	inventory = 160,
-	ioiaccount = 161,
-	key = 162,
-	kill = 163,
-	knockdown = 164,
-	language = 165,
-	leaderboard = 166,
-	leaderboardfriends = 167,
-	livetilenews = 168,
-	load = 169,
-	loadout = 170,
-	location = 171,
-	locked = 172,
-	longrange = 173,
-	lookup = 174,
-	map = 175,
-	marksman = 176,
-	marksman_1 = 177,
-	marksman_2 = 178,
-	marksman_3 = 179,
-	marksman_4 = 180,
-	masteryunlocked = 181,
-	melee = 182,
-	mission = 183,
-	mostplayed = 184,
-	mousekeyboard = 185,
-	mycontracts = 186,
-	myhistory = 187,
-	nextlevel = 188,
-	nodus = 189,
-	npc = 190,
-	nvidia = 191,
-	objective = 192,
-	onemanarmy = 193,
-	online = 194,
-	opportunitycompleted = 195,
-	opportunitydisabled = 196,
-	opportunitydiscovered = 197,
-	opportunityfailed = 198,
-	opportunitysearch = 199,
-	opportunitytracked = 200,
-	opportunityundiscovered = 201,
-	outbreak = 202,
-	piercing = 203,
-	pistol = 204,
-	planning = 205,
-	play = 206,
-	pointshooting = 207,
-	poison = 208,
-	profile = 209,
-	publish = 210,
-	questitem = 211,
-	quit = 212,
-	rateoffire = 213,
-	rateoffire_1 = 214,
-	rateoffire_2 = 215,
-	rateoffire_3 = 216,
-	rateoffire_4 = 217,
-	realtutorial = 218,
-	remote = 219,
-	replay = 220,
-	reset = 221,
-	resetback = 222,
-	save = 223,
-	saveauto = 224,
-	savedisabled = 225,
-	savemanual = 226,
-	search = 227,
-	security = 228,
-	settings = 229,
-	shop = 230,
-	shotgun = 231,
-	silent = 232,
-	smg = 233,
-	sniperrifle = 234,
-	stable = 235,
-	stable_1 = 236,
-	stable_2 = 237,
-	stable_3 = 238,
-	stable_4 = 239,
-	starting = 240,
-	stashpointempty = 241,
-	stashpointfull = 242,
-	stats = 243,
-	steadyaim = 244,
-	steadyaim_1 = 245,
-	steadyaim_2 = 246,
-	steadyaim_3 = 247,
-	steadyaim_4 = 248,
-	story = 249,
-	subsonic = 250,
-	suitcase = 251,
-	suppressor = 252,
-	tacticalshock = 253,
-	tag = 254,
-	target = 255,
-	timed = 256,
-	titaniumcomposite = 257,
-	toggleleft = 258,
-	toggleright = 259,
-	tool = 260,
-	trashbin = 261,
-	tutorial = 262,
-	unlocked = 263,
-	usercreated = 264,
-	variable = 265,
-	versatilescope = 266,
-	versatilescope_1 = 267,
-	versatilescope_2 = 268,
-	versatilescope_3 = 269,
-	versatilescope_4 = 270,
-	versatilescopeextended = 271,
-	versus = 272,
-	vr = 273,
-	warning = 274,
-	weapon = 275,
-	witness = 276,
+	evergreen_kill_method_axe = 87,
+	evergreen_kill_method_drown = 88,
+	evergreen_kill_method_electric = 89,
+	evergreen_kill_method_explosive = 90,
+	evergreen_kill_method_fiber_wire = 91,
+	evergreen_kill_method_headshots_only = 92,
+	evergreen_kill_method_melee = 93,
+	evergreen_kill_method_oil_puddle = 94,
+	evergreen_kill_method_pistol = 95,
+	evergreen_kill_method_pistol_silenced = 96,
+	evergreen_kill_method_poison = 97,
+	evergreen_kill_method_push = 98,
+	evergreen_kill_method_shotgun = 99,
+	evergreen_kill_method_smg = 100,
+	evergreen_kill_method_sniper = 101,
+	evergreen_kill_method_throw = 102,
+	evergreen_kill_method_unarmed = 103,
+	evergreen_kill_method_wallbang = 104,
+	evergreen_kill_method_water_puddle = 105,
+	evergreen_merces = 106,
+	evergreen_mules = 107,
+	evergreen_no_bodies_found = 108,
+	evergreen_no_compromised_disguises = 109,
+	evergreen_no_disguise_change = 110,
+	evergreen_no_lockpick = 111,
+	evergreen_no_missed_shots = 112,
+	evergreen_only_kill_targets = 113,
+	evergreen_optin_killmethod = 114,
+	evergreen_optin_showdown = 115,
+	evergreen_optin_silentassassin = 116,
+	evergreen_optin_speedrun = 117,
+	evergreen_pacify_raremelee = 118,
+	evergreen_payout = 119,
+	evergreen_safe = 120,
+	evergreen_safehouse_cosmetic = 121,
+	evergreen_safehouse_unlock = 122,
+	evergreen_search_locate = 123,
+	evergreen_showdown_mission = 124,
+	evergreen_suppliers = 125,
+	evergreen_tags = 126,
+	evergreen_target = 127,
+	exit = 128,
+	explosive = 129,
+	explosives = 130,
+	extendedmag = 131,
+	extendedmag_1 = 132,
+	extendedmag_2 = 133,
+	extendedmag_3 = 134,
+	extendedmag_4 = 135,
+	eye_tracking = 136,
+	failed = 137,
+	fastreload = 138,
+	fastreload_1 = 139,
+	fastreload_2 = 140,
+	fastreload_3 = 141,
+	fastreload_4 = 142,
+	favoritecontracts = 143,
+	featured = 144,
+	fiberwire = 145,
+	firearm = 146,
+	fixed = 147,
+	flashback = 148,
+	frisk = 149,
+	fullauto = 150,
+	game = 151,
+	gamehud = 152,
+	gear = 153,
+	goonline = 154,
+	graphics = 155,
+	hailstorm = 156,
+	hidden = 157,
+	highpressure = 158,
+	ica = 159,
+	info = 160,
+	intel = 161,
+	inventory = 162,
+	ioiaccount = 163,
+	key = 164,
+	kill = 165,
+	knockdown = 166,
+	language = 167,
+	leaderboard = 168,
+	leaderboardfriends = 169,
+	livetilenews = 170,
+	load = 171,
+	loadout = 172,
+	location = 173,
+	locked = 174,
+	longrange = 175,
+	lookup = 176,
+	map = 177,
+	marksman = 178,
+	marksman_1 = 179,
+	marksman_2 = 180,
+	marksman_3 = 181,
+	marksman_4 = 182,
+	masteryunlocked = 183,
+	melee = 184,
+	mission = 185,
+	mostplayed = 186,
+	mousekeyboard = 187,
+	mycontracts = 188,
+	myhistory = 189,
+	nextlevel = 190,
+	nodus = 191,
+	npc = 192,
+	nvidia = 193,
+	objective = 194,
+	onemanarmy = 195,
+	online = 196,
+	opportunitycompleted = 197,
+	opportunitydisabled = 198,
+	opportunitydiscovered = 199,
+	opportunityfailed = 200,
+	opportunitysearch = 201,
+	opportunitytracked = 202,
+	opportunityundiscovered = 203,
+	outbreak = 204,
+	piercing = 205,
+	pistol = 206,
+	planning = 207,
+	play = 208,
+	pointshooting = 209,
+	poison = 210,
+	profile = 211,
+	publish = 212,
+	questitem = 213,
+	quit = 214,
+	rateoffire = 215,
+	rateoffire_1 = 216,
+	rateoffire_2 = 217,
+	rateoffire_3 = 218,
+	rateoffire_4 = 219,
+	realtutorial = 220,
+	remote = 221,
+	replay = 222,
+	reset = 223,
+	resetback = 224,
+	save = 225,
+	saveauto = 226,
+	savedisabled = 227,
+	savemanual = 228,
+	search = 229,
+	security = 230,
+	settings = 231,
+	shop = 232,
+	shotgun = 233,
+	silent = 234,
+	smg = 235,
+	sniperrifle = 236,
+	stable = 237,
+	stable_1 = 238,
+	stable_2 = 239,
+	stable_3 = 240,
+	stable_4 = 241,
+	starting = 242,
+	stashpointempty = 243,
+	stashpointfull = 244,
+	stats = 245,
+	steadyaim = 246,
+	steadyaim_1 = 247,
+	steadyaim_2 = 248,
+	steadyaim_3 = 249,
+	steadyaim_4 = 250,
+	story = 251,
+	subsonic = 252,
+	suitcase = 253,
+	suppressor = 254,
+	tacticalshock = 255,
+	tag = 256,
+	target = 257,
+	timed = 258,
+	titaniumcomposite = 259,
+	toggleleft = 260,
+	toggleright = 261,
+	tool = 262,
+	trashbin = 263,
+	tutorial = 264,
+	unlocked = 265,
+	usercreated = 266,
+	variable = 267,
+	versatilescope = 268,
+	versatilescope_1 = 269,
+	versatilescope_2 = 270,
+	versatilescope_3 = 271,
+	versatilescope_4 = 272,
+	versatilescopeextended = 273,
+	versus = 274,
+	vr = 275,
+	warning = 276,
+	weapon = 277,
+	witness = 278,
 };
 
 // Size: 0x4
@@ -9848,137 +9865,142 @@ enum class JSONTemplate_ETemplateType
 	ETT_PARENTHESIS = 10,
 	ETT_FORMATSTRING = 11,
 	ETT_FORMATINT = 12,
-	ETT_INTCLAMP = 13,
-	ETT_FORMATPUBLICID = 14,
-	ETT_ISNULL = 15,
-	ETT_DATA_CONTEXT = 16,
-	ETT_ARRAY_ELEMENT = 17,
-	ETT_ARRAY_FILTER = 18,
-	ETT_ARRAY_CONVERT = 19,
-	ETT_ARRAY_SIZE = 20,
-	ETT_ARRAY_SORT = 21,
-	ETT_ARRAY_GROUPBY = 22,
-	ETT_EXPAND = 23,
-	ETT_ISNULLOREMPTY = 24,
-	ETT_NOT = 25,
-	ETT_COMPARE = 26,
-	ETT_PARENT = 27,
-	ETT_AND = 28,
-	ETT_OR = 29,
-	ETT_MERGEOBJECTS = 30,
-	ETT_MERGEARRAYS = 31,
-	ETT_LOCALE_TEXT = 32,
-	ETT_LOCALE_AUDIO = 33,
-	ETT_CURRENT_LOCALE_TEXT = 34,
-	ETT_GET_APPLICATION_OPTION = 35,
-	ETT_PLATFORM = 36,
-	ETT_REGION = 37,
-	ETT_STOREREGION = 38,
-	ETT_STORE = 39,
-	ETT_IS_DISC_RELEASE = 40,
-	ETT_ISDEBUG = 41,
-	ETT_IS_CONTROLLER_AVAILABLE = 42,
-	ETT_IS_KEYBOARD_AVAILABLE = 43,
-	ETT_IS_VR_DEVICE_AVAILABLE = 44,
-	ETT_IS_VR_DEVICE_ACTIVE = 45,
-	ETT_IS_VR_ACTIVE = 46,
-	ETT_VR_MODE = 47,
-	ETT_TEMPLATES_OVERRIDE_BEGIN = 48,
-	ETT_ONLINE_RESOURCE = 48,
-	ETT_INCLUDE = 49,
-	ETT_UI_OPTION_VALUE = 50,
-	ETT_UI_OPTION_DEFAULT_VALUE = 51,
-	ETT_UI_OPTION_DEBUG_VALUE = 52,
-	ETT_UI_OPTION_AVAILABLE_DISPLAY_RESOLUTIONS = 53,
-	ETT_UI_OPTION_AVAILABLE_DISPLAY_FULLSCREEN = 54,
-	ETT_UI_OPTION_AVAILABLE_MOTION_BLUR = 55,
-	ETT_UI_OPTION_AVAILABLE_TEXTURE_QUALITY = 56,
-	ETT_UI_OPTION_AVAILABLE_SHADOW_QUALITY = 57,
-	ETT_UI_OPTION_AVAILABLE_SUPERSAMPLING = 58,
-	ETT_UI_OPTION_AVAILABLE_DOUBLEFRAMERATE = 59,
-	ETT_UI_OPTION_AVAILABLE_VRS = 60,
-	ETT_UI_OPTION_CAN_CHANGE_DISPLAY_RESOLUTION = 61,
-	ETT_CURRENT_CONTRACT_CONTEXT = 62,
-	ETT_CURRENT_CONTRACT_OBJECTIVES = 63,
-	ETT_CURRENT_CONTRACT_SESSIONID = 64,
-	ETT_CURRENT_CONTRACT_CHARACTER_INFO = 65,
-	ETT_CURRENT_CONTRACT_TRACKED_OPPORTUNITY = 66,
-	ETT_CURRENT_DIFFICULTY = 67,
-	ETT_CURRENT_ENGINE_MODE = 68,
-	ETT_CURRENT_GAME_MODE = 69,
-	ETT_CAN_SAVE = 70,
-	ETT_IS_SAVELIMIT_EXCEEDED = 71,
-	ETT_IS_ALLOWED_TO_RESTART = 72,
-	ETT_ACTIVE_CHALLENGES = 73,
-	ETT_USER = 74,
-	ETT_ISUSER = 75,
-	ETT_DLCCOUNT = 76,
-	ETT_PROFILEID = 77,
-	ETT_HDRGAMMAVALUERANGEMIN = 78,
-	ETT_HDRGAMMAVALUERANGEMAX = 79,
-	ETT_HDRGAMMAVALUESTEP = 80,
-	ETT_ISDLSSAVAILABLE = 81,
-	ETT_ISXESSAVAILABLE = 82,
-	ETT_ISHDRAVAILABLE = 83,
-	ETT_ISHDRRENDERING = 84,
-	ETT_ISRAYTRACINGAVAILABLE = 85,
-	ETT_VARIABLERATESHADINGTIER = 86,
-	ETT_ITEM = 87,
-	ETT_REPOSITORY = 88,
-	ETT_ISONLINE = 89,
-	ETT_ISINGAME = 90,
-	ETT_ISINEDITOR = 91,
-	ETT_ISUGCRESTRICTED = 92,
-	ETT_ISPACKAGEOWNED = 93,
-	ETT_ISININVENTORY = 94,
-	ETT_ISPLATFORMENTITLEMENTOWNED = 95,
-	ETT_MULTIPLAYERLOBBYSTATE = 96,
-	ETT_MULTIPLAYERLOCALID = 97,
-	ETT_MULTIPLAYERJOINEDIDS = 98,
-	ETT_MULTIPLAYERISPLAYERREADY = 99,
-	ETT_MULTIPLAYERINFO = 100,
-	ETT_MULTIPLAYERMATCHMAKINGTIME = 101,
-	ETT_MULTIPLAYERNATTYPE = 102,
-	ETT_LOADOUT = 103,
-	ETT_LOADOUT_SLOT = 104,
-	ETT_LOADOUT_AGENCY_PICKUP = 105,
-	ETT_LOADOUT_SELECTED_ENTRANCE = 106,
-	ETT_PERSISTENTMENUDATA = 107,
-	ETT_GAMEPERSISTENTDATA = 108,
-	ETT_ENDGAME_PAGETRANSITION_OVERRIDE = 109,
-	ETT_VERSUSINFO = 110,
-	ETT_SNIPERINFO = 111,
-	ETT_GAMEMODE = 112,
-	ETT_CACHEDUSERCENTRICCONTRACT = 113,
-	ETT_SAVEGAMES = 114,
-	ETT_AVAILABILITY_OF_RESOURCES = 115,
-	ETT_AVAILABILITY_OF_CONTRACT = 116,
-	ETT_AVAILABILITY_OF_USER_CENTRIC_CONTRACT = 117,
-	ETT_AS3DATE = 118,
-	ETT_IOIACCOUNT_STATUS = 119,
-	ETT_ISCONTRACT_IN_PLAYLIST = 120,
-	ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION = 121,
-	ETT_VIDEOMEMORYINFO_IS_SUPPORTED = 122,
-	ETT_VIDEOMEMORYINFO = 123,
-	ETT_DISPLAY_SIZE = 124,
-	ETT_IS_VIDEO_VALID = 125,
-	ETT_INTEL_IDS = 126,
-	ETT_INTEL_DETAILS = 127,
-	ETT_MENU_CONFIGURATION = 128,
-	ETT_HERO_INVENTORY = 129,
-	ETT_MAP_TRACKERINFO = 130,
-	ETT_WAS_EXITGATE_TRIGGERED = 131,
-	ETT_ARE_OPPORTUNITIES_ENABLED = 132,
-	ETT_CHARACTERS = 133,
-	ETT_CHARACTERINFO = 134,
-	ETT_DATABINDING = 135,
-	ETT_DATABINDING_ROOT = 136,
-	ETT_ALLOWED_UNLOCKABLES = 137,
-	ETT_HAS_FRAMERATE_OPTION = 138,
-	ETT_MENU_DATAPROVIDER = 139,
-	ETT_NVIDIAHIGHLIGHTSAVAILABLE = 140,
-	ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 141,
-	ETT_DEBUG_ALLHITMANSUITS = 142,
+	ETT_FORMATNUMBER = 13,
+	ETT_INTCLAMP = 14,
+	ETT_FORMATPUBLICID = 15,
+	ETT_ISNULL = 16,
+	ETT_DATA_CONTEXT = 17,
+	ETT_ARRAY_ELEMENT = 18,
+	ETT_ARRAY_FILTER = 19,
+	ETT_ARRAY_CONVERT = 20,
+	ETT_ARRAY_SIZE = 21,
+	ETT_ARRAY_SORT = 22,
+	ETT_ARRAY_GROUPBY = 23,
+	ETT_EXPAND = 24,
+	ETT_ISNULLOREMPTY = 25,
+	ETT_NOT = 26,
+	ETT_COMPARE = 27,
+	ETT_PARENT = 28,
+	ETT_AND = 29,
+	ETT_OR = 30,
+	ETT_MERGEOBJECTS = 31,
+	ETT_MERGEARRAYS = 32,
+	ETT_LOCALE_TEXT = 33,
+	ETT_LOCALE_AUDIO = 34,
+	ETT_CURRENT_LOCALE_TEXT = 35,
+	ETT_GET_APPLICATION_OPTION = 36,
+	ETT_PLATFORM = 37,
+	ETT_REGION = 38,
+	ETT_STOREREGION = 39,
+	ETT_STORE = 40,
+	ETT_IS_DISC_RELEASE = 41,
+	ETT_ISDEBUG = 42,
+	ETT_INPUTCONTROLLERTYPE = 43,
+	ETT_IS_CONTROLLER_AVAILABLE = 44,
+	ETT_IS_KEYBOARD_AVAILABLE = 45,
+	ETT_IS_VR_DEVICE_AVAILABLE = 46,
+	ETT_IS_VR_DEVICE_ACTIVE = 47,
+	ETT_IS_VR_ACTIVE = 48,
+	ETT_VR_MODE = 49,
+	ETT_TEMPLATES_OVERRIDE_BEGIN = 50,
+	ETT_ONLINE_RESOURCE = 50,
+	ETT_INCLUDE = 51,
+	ETT_UI_OPTION_VALUE = 52,
+	ETT_UI_OPTION_DEFAULT_VALUE = 53,
+	ETT_UI_OPTION_DEBUG_VALUE = 54,
+	ETT_UI_OPTION_AVAILABLE = 55,
+	ETT_UI_OPTION_AVAILABLE_DISPLAY_RESOLUTIONS = 56,
+	ETT_UI_OPTION_AVAILABLE_DISPLAY_FULLSCREEN = 57,
+	ETT_UI_OPTION_AVAILABLE_MOTION_BLUR = 58,
+	ETT_UI_OPTION_AVAILABLE_TEXTURE_QUALITY = 59,
+	ETT_UI_OPTION_AVAILABLE_SHADOW_QUALITY = 60,
+	ETT_UI_OPTION_AVAILABLE_SUPERSAMPLING = 61,
+	ETT_UI_OPTION_AVAILABLE_DOUBLEFRAMERATE = 62,
+	ETT_UI_OPTION_AVAILABLE_VRS = 63,
+	ETT_UI_OPTION_CAN_CHANGE_DISPLAY_RESOLUTION = 64,
+	ETT_CURRENT_CONTRACT_CONTEXT = 65,
+	ETT_CURRENT_CONTRACT_OBJECTIVES = 66,
+	ETT_CURRENT_CONTRACT_SESSIONID = 67,
+	ETT_CURRENT_CONTRACT_CHARACTER_INFO = 68,
+	ETT_CURRENT_CONTRACT_TRACKED_OPPORTUNITY = 69,
+	ETT_CURRENT_DIFFICULTY = 70,
+	ETT_CURRENT_ENGINE_MODE = 71,
+	ETT_CURRENT_GAME_MODE = 72,
+	ETT_CAN_SAVE = 73,
+	ETT_IS_SAVELIMIT_EXCEEDED = 74,
+	ETT_IS_ALLOWED_TO_RESTART = 75,
+	ETT_ACTIVE_CHALLENGES = 76,
+	ETT_USER = 77,
+	ETT_ISUSER = 78,
+	ETT_DLCCOUNT = 79,
+	ETT_PROFILEID = 80,
+	ETT_HDRGAMMAVALUERANGEMIN = 81,
+	ETT_HDRGAMMAVALUERANGEMAX = 82,
+	ETT_HDRGAMMAVALUESTEP = 83,
+	ETT_ISDLSSAVAILABLE = 84,
+	ETT_ISXESSAVAILABLE = 85,
+	ETT_ISXESSINSTALLED = 86,
+	ETT_ISHDRAVAILABLE = 87,
+	ETT_ISHDRRENDERING = 88,
+	ETT_ISRAYTRACINGAVAILABLE = 89,
+	ETT_VARIABLERATESHADINGTIER = 90,
+	ETT_ITEM = 91,
+	ETT_REPOSITORY = 92,
+	ETT_ISONLINE = 93,
+	ETT_ISINGAME = 94,
+	ETT_ISINEDITOR = 95,
+	ETT_ISUGCRESTRICTED = 96,
+	ETT_ISPACKAGEOWNED = 97,
+	ETT_ISININVENTORY = 98,
+	ETT_ISPLATFORMENTITLEMENTOWNED = 99,
+	ETT_MULTIPLAYERLOBBYSTATE = 100,
+	ETT_MULTIPLAYERLOCALID = 101,
+	ETT_MULTIPLAYERJOINEDIDS = 102,
+	ETT_MULTIPLAYERISPLAYERREADY = 103,
+	ETT_MULTIPLAYERINFO = 104,
+	ETT_MULTIPLAYERMATCHMAKINGTIME = 105,
+	ETT_MULTIPLAYERNATTYPE = 106,
+	ETT_LOADOUT = 107,
+	ETT_LOADOUT_SLOT = 108,
+	ETT_LOADOUT_AGENCY_PICKUP = 109,
+	ETT_LOADOUT_SELECTED_ENTRANCE = 110,
+	ETT_PERSISTENTMENUDATA = 111,
+	ETT_GAMEPERSISTENTDATA = 112,
+	ETT_ENDGAME_PAGETRANSITION_OVERRIDE = 113,
+	ETT_VERSUSINFO = 114,
+	ETT_SNIPERINFO = 115,
+	ETT_GAMEMODE = 116,
+	ETT_CACHEDUSERCENTRICCONTRACT = 117,
+	ETT_SAVEGAMES = 118,
+	ETT_AVAILABILITY_OF_RESOURCES = 119,
+	ETT_AVAILABILITY_OF_CONTRACT = 120,
+	ETT_AVAILABILITY_OF_USER_CENTRIC_CONTRACT = 121,
+	ETT_AS3DATE = 122,
+	ETT_IOIACCOUNT_STATUS = 123,
+	ETT_ISCONTRACT_IN_PLAYLIST = 124,
+	ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION = 125,
+	ETT_VIDEOMEMORYINFO_IS_SUPPORTED = 126,
+	ETT_VIDEOMEMORYINFO = 127,
+	ETT_DISPLAY_SIZE = 128,
+	ETT_IS_VIDEO_VALID = 129,
+	ETT_INTEL_IDS = 130,
+	ETT_INTEL_DETAILS = 131,
+	ETT_MENU_CONFIGURATION = 132,
+	ETT_HERO_INVENTORY = 133,
+	ETT_MAP_TRACKERINFO = 134,
+	ETT_WAS_EXITGATE_TRIGGERED = 135,
+	ETT_ARE_OPPORTUNITIES_ENABLED = 136,
+	ETT_CHARACTERS = 137,
+	ETT_CHARACTERINFO = 138,
+	ETT_DATABINDING = 139,
+	ETT_DATABINDING_ROOT = 140,
+	ETT_ALLOWED_UNLOCKABLES = 141,
+	ETT_HAS_FRAMERATE_OPTION = 142,
+	ETT_MENU_DATAPROVIDER = 143,
+	ETT_INTERACTIONINDICATOR = 144,
+	ETT_NVIDIAHIGHLIGHTSAVAILABLE = 145,
+	ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 146,
+	ETT_DEBUG_ALLHITMANSUITS = 147,
 };
 
 // Size: 0x4
@@ -10087,7 +10109,7 @@ public:
 	float32 fDynamicScaleBlendRange; // 0x14
 };
 
-// Size: 0x80
+// Size: 0x90
 class /*alignas(8)*/ S25DProjectionSettings
 {
 public:
@@ -10109,15 +10131,20 @@ public:
 	float32 fFarFov; // 0x14
 	float32 fNearScaleFov; // 0x18
 	float32 fFarScaleFov; // 0x1C
-	float32 fScaleFactor; // 0x20
-	float32 fNearAlpha; // 0x24
-	float32 fFarAlpha; // 0x28
-	float32 fAlphaFactor; // 0x2C
-	TArray<S25DProjectionSettingsCurveEntry> aScaleCurve; // 0x30
-	TArray<S25DProjectionSettingsCurveEntry> aAlphaCurve; // 0x48
-	EViewportLock eViewportLock; // 0x60
-	float32 fViewportGutter; // 0x64
-	SWorldSpaceSettings sWorldSpaceSettings; // 0x68
+	bool enableWorldSizeScaling; // 0x20
+	uint8_t _pad21[3] {};
+	float32 fWorldSizeScalingBaseDistance; // 0x24
+	float32 fWorldSizeScalingFactorMax; // 0x28
+	float32 fWorldSizeScalingFactorMin; // 0x2C
+	float32 fScaleFactor; // 0x30
+	float32 fNearAlpha; // 0x34
+	float32 fFarAlpha; // 0x38
+	float32 fAlphaFactor; // 0x3C
+	TArray<S25DProjectionSettingsCurveEntry> aScaleCurve; // 0x40
+	TArray<S25DProjectionSettingsCurveEntry> aAlphaCurve; // 0x58
+	EViewportLock eViewportLock; // 0x70
+	float32 fViewportGutter; // 0x74
+	SWorldSpaceSettings sWorldSpaceSettings; // 0x78
 };
 
 // Size: 0x8
@@ -12300,6 +12327,24 @@ public:
 	bool operator!=(const SBoneScalesList& p_Other) const { return !(*this == p_Other); }
 
 	TArray<SVector3> m_aBoneScales; // 0x0
+};
+
+// Size: 0x20
+class /*alignas(8)*/ SBonusRequirementData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SBonusRequirementData& p_Other) const;
+	bool operator!=(const SBonusRequirementData& p_Other) const { return !(*this == p_Other); }
+
+	ZString lstrTitle; // 0x0
+	ZString icon; // 0x10
 };
 
 // Size: 0x8
@@ -15861,7 +15906,9 @@ public:
 	bool m_bObjectInPhysicsWorld; // 0x47
 	int32 m_nQuantity; // 0x48
 	ERenderGlowTypes m_eGlowType; // 0x4C
-	uint8_t _pad4D[3] {};
+	ERenderGlowTypes m_eOverriddenGlowType; // 0x4D
+	bool m_bGlowIsOverridden; // 0x4E
+	uint8_t _pad4F[1] {};
 };
 
 // Size: 0x30
@@ -16533,8 +16580,9 @@ enum class eAmmoType
 	eAmmoHarmless = 9,
 	eAmmoLightPistol = 10,
 	eAmmoDartTranquilizer = 11,
-	eAmmoShotgunBeanbag = 12,
-	eUnknownAmmoType = 13,
+	eAmmoDartEmetic = 12,
+	eAmmoShotgunBeanbag = 13,
+	eUnknownAmmoType = 14,
 };
 
 // Size: 0x4
@@ -17896,7 +17944,7 @@ public:
 	uint8_t _pad6[2] {};
 };
 
-// Size: 0xB8
+// Size: 0xC0
 class /*alignas(8)*/ SInventoryControllerSaveData
 {
 public:
@@ -17927,9 +17975,11 @@ public:
 	uint32 m_nAmmoCountFake; // 0x78
 	uint32 m_nAmmoCountLightPistol; // 0x7C
 	uint32 m_nAmmoCountDartTranquilizer; // 0x80
-	uint32 m_nAmmoCountAmmoShotgunBeanbag; // 0x84
-	TArray<ZRepositoryID> m_aAmmoIds; // 0x88
-	TArray<uint32> m_aAmmoCounts; // 0xA0
+	uint32 m_nAmmoCountDartEmetic; // 0x84
+	uint32 m_nAmmoCountAmmoShotgunBeanbag; // 0x88
+	uint8_t _pad8C[4] {};
+	TArray<ZRepositoryID> m_aAmmoIds; // 0x90
+	TArray<uint32> m_aAmmoCounts; // 0xA8
 };
 
 // Size: 0x90
@@ -18079,7 +18129,8 @@ public:
 	uint8_t _padEB[5] {};
 	ZString sPoisonType; // 0xF0
 	eEvergreenItemRarity evergreenRarity; // 0x100
-	uint8_t _pad104[4] {};
+	bool evergreenLoseOnWounded; // 0x104
+	uint8_t _pad105[3] {};
 };
 
 // Size: 0x30
@@ -20806,6 +20857,14 @@ enum class _EUIOptionKey
 	UI_OPTION_GAME_AUTOSAVE = 390,
 	UI_OPTION_GAME_AUTOSAVE_VR = 391,
 	UI_OPTION_GAME_AUTOSAVE_HUD = 400,
+	UI_OPTION_GAME_AID_WALK_SPEED_TOGGLE = 420,
+	UI_OPTION_GAME_AID_INSTINCT_ACTIVATION_TOGGLE = 421,
+	UI_OPTION_GAME_AID_PRECISION_AIM_TOGGLE = 422,
+	UI_OPTION_GAME_AID_ITEM_PLACEMENT_TOGGLE = 423,
+	UI_OPTION_GAME_FREELANCER_ALERTED_TERRITORY = 440,
+	UI_OPTION_GAME_FREELANCER_ASSASSIN_PROXIMITY = 441,
+	UI_OPTION_GAME_FREELANCER_LOOKOUT_PROXIMITY = 442,
+	UI_OPTION_GAME_FREELANCER_MERCES_INDICATOR = 443,
 	UI_OPTION_SOUND_VOLUME_MASTER = 1010,
 	UI_OPTION_SOUND_VOLUME_EFFECTS = 1020,
 	UI_OPTION_SOUND_VOLUME_MUSIC = 1030,
@@ -20857,6 +20916,8 @@ enum class _EUIOptionKey
 	UI_OPTION_GRAPHICS_ATMOSPHERIC_QUALITY = 2749,
 	UI_OPTION_GRAPHICS_SUPER_SAMPLING = 2750,
 	UI_OPTION_GRAPHICS_GAMMA = 2760,
+	UI_OPTION_GRAPHICS_REFLEX = 2761,
+	UI_OPTION_GRAPHICS_DLSSG = 2762,
 	UI_OPTION_GRAPHICS_RT_ENABLED = 2765,
 	UI_OPTION_GRAPHICS_RT_SHADOW_QUALITY = 2766,
 	UI_OPTION_GRAPHICS_RT_REFLECTION_QUALITY = 2767,
@@ -21324,6 +21385,17 @@ enum class SoundPlayState
 	ePlaying = 0,
 	eLoopBreaking = 1,
 	eStopping = 2,
+};
+
+// Size: 0x4
+enum class String_Comperator_Poll_EEvaluationType
+{
+	EQUAL = 0,
+	NOT_EQUAL = 1,
+	LESS = 2,
+	LESS_OR_EQUAL = 3,
+	HIGHER = 4,
+	HIGHER_OR_EQUAL = 5,
 };
 
 // Size: 0x4
@@ -22420,7 +22492,7 @@ public:
 	uint8_t _pad52[6] {};
 };
 
-// Size: 0x60
+// Size: 0x80
 class /*alignas(8)*/ ZEvergreenCampaignActivatorDataProvider_SCampaignData
 {
 public:
@@ -22443,6 +22515,9 @@ public:
 	int32 mercesPayoutBase; // 0x40
 	uint8_t _pad44[4] {};
 	TArray<ZEvergreenCampaignActivatorDataProvider_STerritoryData> territories; // 0x48
+	TArray<SBonusRequirementData> bonusRequirements; // 0x60
+	bool hasAllBonusRequirements; // 0x78
+	uint8_t _pad79[7] {};
 };
 
 // Size: 0x4
@@ -22461,7 +22536,7 @@ enum class ZEvergreenCampaignDefinitionPollString_EQuery
 	Biography = 1,
 };
 
-// Size: 0x4
+// Size: 0x8
 class /*alignas(4)*/ ZEvergreenCampaignInfoDataProvider_SCampaignInfo
 {
 public:
@@ -22476,6 +22551,47 @@ public:
 	bool operator!=(const ZEvergreenCampaignInfoDataProvider_SCampaignInfo& p_Other) const { return !(*this == p_Other); }
 
 	int32 nDifficultyRank; // 0x0
+	bool bHardcore; // 0x4
+	uint8_t _pad5[3] {};
+};
+
+// Size: 0x38
+class /*alignas(8)*/ ZEvergreenCampaignProgressDataProvider_SData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEvergreenCampaignProgressDataProvider_SData& p_Other) const;
+	bool operator!=(const ZEvergreenCampaignProgressDataProvider_SData& p_Other) const { return !(*this == p_Other); }
+
+	TArray<int32> campaign; // 0x0
+	TArray<int32> completed; // 0x18
+	int32 step; // 0x30
+	bool hardcore; // 0x34
+	bool goToExitObjectivesDone; // 0x35
+	bool goToExitObjectivesFail; // 0x36
+	bool campaignActivatorInUse; // 0x37
+};
+
+// Size: 0x4
+enum class ZEvergreenCampaignStatusPollInt_EQuery
+{
+	DifficultyRank = 0,
+	Deposit = 1,
+	PayoutBase = 2,
+	NumTerritories = 3,
+};
+
+// Size: 0x4
+enum class ZEvergreenCampaignStatusPollString_EQuery
+{
+	LeaderCodename = 0,
+	Biography = 1,
 };
 
 // Size: 0x4
@@ -22560,15 +22676,44 @@ public:
 };
 
 // Size: 0x4
+enum class ZEvergreenLocationIntelDataProvider_EVisited
+{
+	NotVisited = 0,
+	VisitedAndWon = 1,
+	VisitedAndLost = 2,
+};
+
+// Size: 0x10
+class /*alignas(4)*/ ZEvergreenLocationIntelDataProvider_SData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEvergreenLocationIntelDataProvider_SData& p_Other) const;
+	bool operator!=(const ZEvergreenLocationIntelDataProvider_SData& p_Other) const { return !(*this == p_Other); }
+
+	int32 nSuppliers; // 0x0
+	int32 nMules; // 0x4
+	int32 nSafes; // 0x8
+	int32 nTargets; // 0xC
+};
+
+// Size: 0x4
 enum class ZEvergreenMenuCondition_EQuery
 {
 	IS_OPENING = 0,
 	IS_OPEN = 1,
-	IS_CLOSING = 2,
-	IS_CLOSED = 3,
-	IS_PROCESSING_INPUT = 4,
-	IS_ZOOMED_IN = 5,
-	IS_ZOOMED_OUT = 6,
+	IS_OPENING_OR_OPEN = 2,
+	IS_CLOSING = 3,
+	IS_CLOSED = 4,
+	IS_PROCESSING_INPUT = 5,
+	IS_ZOOMED_IN = 6,
+	IS_ZOOMED_OUT = 7,
 };
 
 // Size: 0x18
@@ -22653,7 +22798,26 @@ enum class ZEvergreenMenuValueVector3Query_EQuery
 	CENTER_OF_SELECTED_ENTITY = 0,
 };
 
-// Size: 0x4
+// Size: 0x30
+class /*alignas(8)*/ ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo& p_Other) const;
+	bool operator!=(const ZEvergreenPrestigeObjectiveInfoDataProvider_SPrestigeInfo& p_Other) const { return !(*this == p_Other); }
+
+	ZString title; // 0x0
+	ZString description; // 0x10
+	ZString image; // 0x20
+};
+
+// Size: 0x6
 class /*alignas(1)*/ ZEvergreenVitalInfoBarDataProvider_SVitalInfoData
 {
 public:
@@ -22671,6 +22835,8 @@ public:
 	bool isAssassinAlerted; // 0x1
 	bool isLookoutNearby; // 0x2
 	bool isLookoutAlerted; // 0x3
+	bool isAllertedTerritory; // 0x4
+	bool isPrestigeObjectiveActive; // 0x5
 };
 
 // Size: 0x4
@@ -22678,6 +22844,8 @@ enum class ZEvergreenVitalInfoEntity_EVitalInfoType
 {
 	Assassin = 0,
 	Lookout = 1,
+	Territory = 2,
+	PrestigeObjective = 3,
 };
 
 // Size: 0x4
@@ -22686,24 +22854,6 @@ enum class ZEvergreenWorldMapTerritoryDataProvider_EVisited
 	NotVisited = 0,
 	VisitedAndWon = 1,
 	VisitedAndLost = 2,
-};
-
-// Size: 0x20
-class /*alignas(8)*/ ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement& p_Other) const;
-	bool operator!=(const ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement& p_Other) const { return !(*this == p_Other); }
-
-	ZString lstrTitle; // 0x0
-	ZString icon; // 0x10
 };
 
 // Size: 0x70
@@ -22739,7 +22889,7 @@ public:
 	bool isThisSelectedToTravelNext; // 0x55
 	bool isAnotherSelectedToTravelNext; // 0x56
 	uint8_t _pad57[1] {};
-	TArray<ZEvergreenWorldMapTerritoryDataProvider_SBonusRequirement> bonusRequirements; // 0x58
+	TArray<SBonusRequirementData> bonusRequirements; // 0x58
 };
 
 // Size: 0x20
@@ -23598,6 +23748,25 @@ public:
 	bool bShowHolstered; // 0xC0
 	uint8_t _padC1[3] {};
 	int32 nDisplayMode; // 0xC4
+};
+
+// Size: 0x18
+class /*alignas(8)*/ ZHUDWalkSpeedDataProvider_SData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZHUDWalkSpeedDataProvider_SData& p_Other) const;
+	bool operator!=(const ZHUDWalkSpeedDataProvider_SData& p_Other) const { return !(*this == p_Other); }
+
+	bool isVisible; // 0x0
+	uint8_t _pad1[7] {};
+	ZString speed; // 0x8
 };
 
 // Size: 0x4

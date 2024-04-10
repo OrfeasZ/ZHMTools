@@ -1,17 +1,26 @@
+From 50413621e5897df34aa7af8d08828746a540ea80 Mon Sep 17 00:00:00 2001
+From: OrfeasZ <orfeaz@gmail.com>
+Date: Thu, 15 Jun 2023 14:47:22 +0300
+Subject: [PATCH] Patch simdjson
+
+---
+ Libraries/ResourceLib/Src/External/simdjson.h | 66 ++++++++++++++++++-
+ 1 file changed, 64 insertions(+), 2 deletions(-)
+
 diff --git a/Libraries/ResourceLib/Src/External/simdjson.h b/Libraries/ResourceLib/Src/External/simdjson.h
-index 026b6f1..174f134 100644
+index f388062..6bd16b6 100644
 --- a/Libraries/ResourceLib/Src/External/simdjson.h
 +++ b/Libraries/ResourceLib/Src/External/simdjson.h
-@@ -2218,6 +2218,8 @@ enum {
+@@ -2343,6 +2343,8 @@ SIMDJSON_DISABLE_UNDESIRED_WARNINGS
  
  namespace simdjson {
  
 +static std::string_view g_last_key = "";
 +
  /**
-  * All possible errors returned by simdjson.
-  */
-@@ -2280,14 +2282,28 @@ struct simdjson_error : public std::exception {
+  * All possible errors returned by simdjson. These error codes are subject to change
+  * and not all simdjson kernel returns the same error code given the same input: it is not
+@@ -2411,14 +2413,28 @@ struct simdjson_error : public std::exception {
     * Create an exception from a simdjson error code.
     * @param error The error code
     */
@@ -27,7 +36,7 @@ index 026b6f1..174f134 100644
 +  }
    /** The error message */
 -  const char *what() const noexcept { return error_message(error()); }
-+  const char* what() const noexcept { return _error_str; }
++  const char *what() const noexcept { return _error_str; }
    /** The error code */
    error_code error() const noexcept { return _error; }
 +  /** The last key accessed before this error */
@@ -42,7 +51,7 @@ index 026b6f1..174f134 100644
  };
  
  namespace internal {
-@@ -5171,6 +5187,29 @@ enum class element_type {
+@@ -5415,6 +5431,30 @@ enum class element_type {
    NULL_VALUE = 'n' ///< null
  };
  
@@ -69,10 +78,11 @@ index 026b6f1..174f134 100644
 +    }
 +}
 +
++
  /**
   * A JSON element.
   *
-@@ -7017,6 +7056,7 @@ inline simdjson_result<bool> element::get_bool() const noexcept {
+@@ -7269,6 +7309,7 @@ inline simdjson_result<bool> element::get_bool() const noexcept {
    } else if(tape.is_false()) {
      return false;
    }
@@ -80,15 +90,15 @@ index 026b6f1..174f134 100644
    return INCORRECT_TYPE;
  }
  inline simdjson_result<const char *> element::get_c_str() const noexcept {
-@@ -7025,6 +7065,7 @@ inline simdjson_result<const char *> element::get_c_str() const noexcept {
+@@ -7278,6 +7319,7 @@ inline simdjson_result<const char *> element::get_c_str() const noexcept {
        return tape.get_c_str();
      }
      default:
-+      fprintf(stderr, "[ERROR] Expected 'string' type but found '%s'.\n", element_type_to_string(type()).c_str());
++    fprintf(stderr, "[ERROR] Expected 'string' type but found '%s'.\n", element_type_to_string(type()).c_str());
        return INCORRECT_TYPE;
    }
  }
-@@ -7034,6 +7075,7 @@ inline simdjson_result<size_t> element::get_string_length() const noexcept {
+@@ -7288,6 +7330,7 @@ inline simdjson_result<size_t> element::get_string_length() const noexcept {
        return tape.get_string_length();
      }
      default:
@@ -96,7 +106,7 @@ index 026b6f1..174f134 100644
        return INCORRECT_TYPE;
    }
  }
-@@ -7042,6 +7084,7 @@ inline simdjson_result<std::string_view> element::get_string() const noexcept {
+@@ -7297,6 +7340,7 @@ inline simdjson_result<std::string_view> element::get_string() const noexcept {
      case internal::tape_type::STRING:
        return tape.get_string_view();
      default:
@@ -104,7 +114,7 @@ index 026b6f1..174f134 100644
        return INCORRECT_TYPE;
    }
  }
-@@ -7054,6 +7097,7 @@ inline simdjson_result<uint64_t> element::get_uint64() const noexcept {
+@@ -7310,6 +7354,7 @@ inline simdjson_result<uint64_t> element::get_uint64() const noexcept {
        }
        return uint64_t(result);
      }
@@ -112,7 +122,7 @@ index 026b6f1..174f134 100644
      return INCORRECT_TYPE;
    }
    return tape.next_tape_value<int64_t>();
-@@ -7068,6 +7112,7 @@ inline simdjson_result<int64_t> element::get_int64() const noexcept {
+@@ -7325,6 +7370,7 @@ inline simdjson_result<int64_t> element::get_int64() const noexcept {
        }
        return static_cast<int64_t>(result);
      }
@@ -120,7 +130,7 @@ index 026b6f1..174f134 100644
      return INCORRECT_TYPE;
    }
    return tape.next_tape_value<int64_t>();
-@@ -7088,6 +7133,7 @@ inline simdjson_result<double> element::get_double() const noexcept {
+@@ -7346,6 +7392,7 @@ inline simdjson_result<double> element::get_double() const noexcept {
      } else if(tape.is_int64()) {
        return double(tape.next_tape_value<int64_t>());
      }
@@ -128,7 +138,7 @@ index 026b6f1..174f134 100644
      return INCORRECT_TYPE;
    }
    // this is common:
-@@ -7098,6 +7144,7 @@ inline simdjson_result<array> element::get_array() const noexcept {
+@@ -7357,6 +7404,7 @@ inline simdjson_result<array> element::get_array() const noexcept {
      case internal::tape_type::START_ARRAY:
        return array(tape);
      default:
@@ -136,7 +146,7 @@ index 026b6f1..174f134 100644
        return INCORRECT_TYPE;
    }
  }
-@@ -7106,6 +7153,7 @@ inline simdjson_result<object> element::get_object() const noexcept {
+@@ -7366,6 +7414,7 @@ inline simdjson_result<object> element::get_object() const noexcept {
      case internal::tape_type::START_OBJECT:
        return object(tape);
      default:
@@ -144,19 +154,7 @@ index 026b6f1..174f134 100644
        return INCORRECT_TYPE;
    }
  }
-@@ -7209,9 +7257,11 @@ inline simdjson_result<element> element::at(size_t index) const noexcept {
-   return get<array>().at(index);
- }
- inline simdjson_result<element> element::at_key(std::string_view key) const noexcept {
-+  g_last_key = key;
-   return get<object>().at_key(key);
- }
- inline simdjson_result<element> element::at_key_case_insensitive(std::string_view key) const noexcept {
-+  g_last_key = key;
-   return get<object>().at_key_case_insensitive(key);
- }
- 
-@@ -7883,6 +7933,7 @@ inline simdjson_result<element> object::at_pointer(std::string_view json_pointer
+@@ -8149,6 +8198,7 @@ inline simdjson_result<element> object::at_pointer(std::string_view json_pointer
  }
  
  inline simdjson_result<element> object::at_key(std::string_view key) const noexcept {
@@ -164,7 +162,7 @@ index 026b6f1..174f134 100644
    iterator end_field = end();
    for (iterator field = begin(); field != end_field; ++field) {
      if (field.key_equals(key)) {
-@@ -7895,6 +7946,7 @@ inline simdjson_result<element> object::at_key(std::string_view key) const noexc
+@@ -8161,6 +8211,7 @@ inline simdjson_result<element> object::at_key(std::string_view key) const noexc
  // https://github.com/simdjson/simdjson/issues/323
  // People do seek keys in a case-insensitive manner.
  inline simdjson_result<element> object::at_key_case_insensitive(std::string_view key) const noexcept {
@@ -172,9 +170,9 @@ index 026b6f1..174f134 100644
    iterator end_field = end();
    for (iterator field = begin(); field != end_field; ++field) {
      if (field.key_equals_case_insensitive(key)) {
-@@ -23079,6 +23131,11 @@ public:
+@@ -25080,6 +25131,11 @@ public:
     */
-   inline simdjson_result<const char *> current_location() noexcept;
+   inline simdjson_result<const char *> current_location() const noexcept;
  
 +  /**
 +   * Returns the current position in the document.
@@ -182,9 +180,25 @@ index 026b6f1..174f134 100644
 +  inline token_position current_position() noexcept;
 +
    /**
-    * Get the value associated with the given JSON pointer.  We use the RFC 6901
-    * https://tools.ietf.org/html/rfc6901 standard.
-@@ -27350,6 +27407,10 @@ inline simdjson_result<const char *> document::current_location() noexcept {
+    * Returns true if this document has been fully parsed.
+    * If you have consumed the whole document and at_end() returns
+@@ -28293,6 +28349,7 @@ simdjson_warn_unused simdjson_inline simdjson_result<bool> value_iterator::has_n
+ }
+ 
+ simdjson_warn_unused simdjson_inline simdjson_result<bool> value_iterator::find_field_raw(const std::string_view key) noexcept {
++  g_last_key = key;
+   error_code error;
+   bool has_value;
+   //
+@@ -28390,6 +28447,7 @@ simdjson_warn_unused simdjson_inline simdjson_result<bool> value_iterator::find_
+ SIMDJSON_PUSH_DISABLE_WARNINGS
+ SIMDJSON_DISABLE_STRICT_OVERFLOW_WARNING
+ simdjson_warn_unused simdjson_inline simdjson_result<bool> value_iterator::find_field_unordered_raw(const std::string_view key) noexcept {
++  g_last_key = key;
+   /**
+    * When find_field_unordered_raw is called, we can either be pointing at the
+    * first key, pointing outside (at the closing brace) or if a key was matched
+@@ -29662,6 +29720,10 @@ inline simdjson_result<const char *> document::current_location() const noexcept
    return iter.current_location();
  }
  
@@ -192,36 +206,9 @@ index 026b6f1..174f134 100644
 +  return iter.position();
 +}
 +
- inline bool document::is_alive() noexcept {
-   return iter.is_alive();
+ inline int32_t document::current_depth() const noexcept {
+   return iter.depth();
  }
-@@ -28538,12 +28599,14 @@ namespace SIMDJSON_BUILTIN_IMPLEMENTATION {
- namespace ondemand {
- 
- simdjson_really_inline simdjson_result<value> object::find_field_unordered(const std::string_view key) & noexcept {
-+  g_last_key = key;
-   bool has_value;
-   SIMDJSON_TRY( iter.find_field_unordered_raw(key).get(has_value) );
-   if (!has_value) { return NO_SUCH_FIELD; }
-   return value(iter.child());
- }
- simdjson_really_inline simdjson_result<value> object::find_field_unordered(const std::string_view key) && noexcept {
-+  g_last_key = key;
-   bool has_value;
-   SIMDJSON_TRY( iter.find_field_unordered_raw(key).get(has_value) );
-   if (!has_value) { return NO_SUCH_FIELD; }
-@@ -28556,12 +28619,14 @@ simdjson_really_inline simdjson_result<value> object::operator[](const std::stri
-   return std::forward<object>(*this).find_field_unordered(key);
- }
- simdjson_really_inline simdjson_result<value> object::find_field(const std::string_view key) & noexcept {
-+  g_last_key = key;
-   bool has_value;
-   SIMDJSON_TRY( iter.find_field_raw(key).get(has_value) );
-   if (!has_value) { return NO_SUCH_FIELD; }
-   return value(iter.child());
- }
- simdjson_really_inline simdjson_result<value> object::find_field(const std::string_view key) && noexcept {
-+  g_last_key = key;
-   bool has_value;
-   SIMDJSON_TRY( iter.find_field_raw(key).get(has_value) );
-   if (!has_value) { return NO_SUCH_FIELD; }
+-- 
+2.40.1.windows.1
+

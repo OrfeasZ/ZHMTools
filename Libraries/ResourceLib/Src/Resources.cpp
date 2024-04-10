@@ -32,27 +32,24 @@ std::unordered_map<std::string, Resource> g_Resources = {
 
 #if ZHM_TARGET != 2012
 	REGISTER_RESOURCE(ATMD, ZAMDTake)
+	REGISTER_RESOURCE(VIDB, SVideoDatabaseData)
+	REGISTER_RESOURCE(RTLV, SLocalizedVideoDataDecrypted)
+	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
 #endif
 
 	REGISTER_RESOURCE(CBLU, SCppEntityBlueprint)
 	REGISTER_RESOURCE(CPPT, SCppEntity)
 	REGISTER_RESOURCE(CRMD, SCrowdMapData)
 	REGISTER_RESOURCE(DSWB, SAudioSwitchBlueprintData)
+	REGISTER_RESOURCE(GFXF, SScaleformGFxResource)
+	REGISTER_RESOURCE(GIDX, SGlobalResourceIndex)
+	REGISTER_RESOURCE(WSGB, SAudioSwitchBlueprintData)
 	
 #if ZHM_TARGET != 2016 && ZHM_TARGET != 2012
 	REGISTER_RESOURCE(ECPB, SExtendedCppEntityBlueprint)
 #endif
-	
-	REGISTER_RESOURCE(GFXF, SScaleformGFxResource)
-	REGISTER_RESOURCE(GIDX, SGlobalResourceIndex)
 
-#if ZHM_TARGET != 2012
-	REGISTER_RESOURCE(VIDB, SVideoDatabaseData)
-#endif
-
-	REGISTER_RESOURCE(WSGB, SAudioSwitchBlueprintData)
-
-#if ZHM_TARGET == 3
-	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
+#if ZHM_TARGET == 3 || ZHM_TARGET == 2
+	REGISTER_RESOURCE(ENUM, SEnumType)
 #endif
 };
