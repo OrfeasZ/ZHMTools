@@ -1,6 +1,5 @@
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -63,18 +62,43 @@ function renderPortalVert(edges) {
     }
 }
 
+function setEdgeColor(edgeIndex, colors) {
+    let edgeColor; 
+    if (edgeIndex == 0) {
+        edgeColor = [1.0, 1.0, 1.0];
+    }
+    if (edgeIndex == 1) {
+        edgeColor = [1.0, 0.0, 1.0];
+    }
+    if (edgeIndex % 2 == 1) {
+        edgeColor = [1.0, 0.0, 0.0];
+    }
+    if (edgeIndex % 2 == 0) {
+        edgeColor = [0.0, 0.0, 1.0];
+    };
+    colors[edgeIndex * 3] = edgeColor[0];
+    colors[edgeIndex * 3 + 1] = edgeColor[1];
+    colors[edgeIndex * 3 + 2] = edgeColor[2];
+}
+
 function renderEdges(edges) {
     const points = [];
+    const colors = new Float32Array((edges.length + 1) * 3);
+    let edgeIndex = 0;
 
     for (const edge of edges) {
         points.push(new THREE.Vector3(edge[1], edge[2], edge[0]));
+        setEdgeColor(edgeIndex, colors);
+        edgeIndex++;
     }
 
     points.push(new THREE.Vector3(edges[0][1], edges[0][2], edges[0][0]));
+    setEdgeColor(edgeIndex, colors);
 
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00 });
+    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    
+    const lineMaterial = new THREE.LineBasicMaterial({ vertexColors: THREE.VertexColors });
     const line = new THREE.Line(geometry, lineMaterial);
 
     scene.add(line);
@@ -203,7 +227,6 @@ function animate() {
 }
 
 animate();
-
 function reRender() {
     // Clear the scene.
     while (scene.children.length > 0) {
@@ -212,7 +235,13 @@ function reRender() {
 
     // Render everything.
     const selectedMap = mapSelector.value;
-
+    if (selectedMap == "00D9307D0F1DBD8F.NAVP") {
+        camera.position.set(-500, 250, 250);
+    } else if (selectedMap == "007B459198DF1DDD.NAVP") {
+        camera.position.set(-219, 10, 67);
+    } else {
+        camera.position.set(-40, 50, 80);
+    }
     console.log('Rendering ' + selectedMap);
 
     if (checkBBox.checked) {

@@ -40,6 +40,18 @@ struct Vec3
     float X;
     float Y;
     float Z;
+    void writeBinary(std::ostream& f)
+    {
+        f.write((char*)&X, sizeof(X));
+        f.write((char*)&Y, sizeof(Y));
+        f.write((char*)&Z, sizeof(Z));
+    }
+    void readBinary(std::istream& f)
+    {
+        f.read((char*)&X, sizeof(X));
+        f.read((char*)&Y, sizeof(Y));
+        f.read((char*)&Z, sizeof(Z));
+    }
 
     float DistanceSquaredTo(const Vec3& p_Other) const
     {

@@ -29,6 +29,7 @@ SOFTWARE.
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "Vec3.h"
 
@@ -58,6 +59,16 @@ namespace NavPower
     public:
         Vec3 m_min;
         Vec3 m_max;
+        void writeBinary(std::ostream& f)
+        {
+            f.write((char*)&m_min, sizeof(m_min));
+            f.write((char*)&m_max, sizeof(m_max));
+        }
+        void readBinary(std::istream& f)
+        {
+            f.read((char*)&m_min, sizeof(m_min));
+            f.read((char*)&m_max, sizeof(m_max));
+        }
     };
 
     enum Axis
@@ -135,6 +146,24 @@ namespace NavPower
             uint32_t m_checksum;  // Checksum of data excluding this header
             uint32_t m_runtimeFlags = 0;
             uint32_t m_constantFlags = 0;
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_endianFlag, sizeof(m_endianFlag));
+                f.write((char*)&m_version, sizeof(m_version));
+                f.write((char*)&m_imageSize, sizeof(m_imageSize));
+                f.write((char*)&m_checksum, sizeof(m_checksum));
+                f.write((char*)&m_runtimeFlags, sizeof(m_runtimeFlags));
+                f.write((char*)&m_constantFlags, sizeof(m_constantFlags));
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_endianFlag, sizeof(m_endianFlag));
+                f.read((char*)&m_version, sizeof(m_version));
+                f.read((char*)&m_imageSize, sizeof(m_imageSize));
+                f.read((char*)&m_checksum, sizeof(m_checksum));
+                f.read((char*)&m_runtimeFlags, sizeof(m_runtimeFlags));
+                f.read((char*)&m_constantFlags, sizeof(m_constantFlags));
+            }
         };
 
         class SectionHeader
@@ -143,6 +172,18 @@ namespace NavPower
             uint32_t m_id = 0x10000;
             uint32_t m_size;            // Size of this section excluding this header
             uint32_t m_pointerSize = 1; // Size of pointers inside the section
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_id, sizeof(m_id));
+                f.write((char*)&m_size, sizeof(m_size));
+                f.write((char*)&m_pointerSize, sizeof(m_pointerSize));
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_id, sizeof(m_id));
+                f.read((char*)&m_size, sizeof(m_size));
+                f.read((char*)&m_pointerSize, sizeof(m_pointerSize));
+            }
         };
 
         class NavSetHeader
@@ -151,6 +192,18 @@ namespace NavPower
             uint32_t m_endianFlag = 0;
             uint32_t m_version = 0x28; // The version of the nav graph, this case it is 40
             uint32_t m_numGraphs = 1;  // Number of NavGraphs in this image
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_endianFlag, sizeof(m_endianFlag));
+                f.write((char*)&m_version, sizeof(m_version));
+                f.write((char*)&m_numGraphs, sizeof(m_numGraphs));
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_endianFlag, sizeof(m_endianFlag));
+                f.read((char*)&m_version, sizeof(m_version));
+                f.read((char*)&m_numGraphs, sizeof(m_numGraphs));
+            }
         };
 
         class NavGraphHeader
@@ -172,6 +225,40 @@ namespace NavPower
             // In NAVPs from Hitman WoA the padding isn't just 0x00
             // It is however identical in all files, changing it to all 0x00 makes NPCs disappear completely
             uint8_t m_pad[252];
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_version, sizeof(m_version));
+                f.write((char*)&m_layer, sizeof(m_version));
+                f.write((char*)&m_areaBytes, sizeof(m_areaBytes));
+                f.write((char*)&m_kdTreeBytes, sizeof(m_kdTreeBytes));
+                f.write((char*)&m_linkRecordBytes, sizeof(m_linkRecordBytes));
+                f.write((char*)&m_totalBytes, sizeof(m_totalBytes));
+                f.write((char*)&m_buildScale, sizeof(m_buildScale));
+                f.write((char*)&m_voxSize, sizeof(m_voxSize));
+                f.write((char*)&m_radius, sizeof(m_radius));
+                f.write((char*)&m_stepHeight, sizeof(m_stepHeight));
+                f.write((char*)&m_height, sizeof(m_height));
+                m_bbox.writeBinary(f);
+                f.write((char*)&m_buildUpAxis, sizeof(m_buildUpAxis));
+                f.write((char*)&m_pad, sizeof(m_pad));
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_version, sizeof(m_version));
+                f.read((char*)&m_layer, sizeof(m_version));
+                f.read((char*)&m_areaBytes, sizeof(m_areaBytes));
+                f.read((char*)&m_kdTreeBytes, sizeof(m_kdTreeBytes));
+                f.read((char*)&m_linkRecordBytes, sizeof(m_linkRecordBytes));
+                f.read((char*)&m_totalBytes, sizeof(m_totalBytes));
+                f.read((char*)&m_buildScale, sizeof(m_buildScale));
+                f.read((char*)&m_voxSize, sizeof(m_voxSize));
+                f.read((char*)&m_radius, sizeof(m_radius));
+                f.read((char*)&m_stepHeight, sizeof(m_stepHeight));
+                f.read((char*)&m_height, sizeof(m_height));
+                m_bbox.readBinary(f);
+                f.read((char*)&m_buildUpAxis, sizeof(m_buildUpAxis));
+                f.read((char*)&m_pad, sizeof(m_pad));
+            }
         };
 
         class AreaFlags
@@ -203,6 +290,20 @@ namespace NavPower
             uint32_t m_flags2;
             uint32_t m_flags3;
             uint32_t m_flags4;
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_flags1, sizeof(m_flags1));
+                f.write((char*)&m_flags2, sizeof(m_flags2));
+                f.write((char*)&m_flags3, sizeof(m_flags3));
+                f.write((char*)&m_flags4, sizeof(m_flags4));
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_flags1, sizeof(m_flags1));
+                f.read((char*)&m_flags2, sizeof(m_flags2));
+                f.read((char*)&m_flags3, sizeof(m_flags3));
+                f.read((char*)&m_flags4, sizeof(m_flags4));
+            }
         };
 
         class Edge;
@@ -223,6 +324,30 @@ namespace NavPower
             [[nodiscard]] Edge* GetFirstEdge()
             {
                 return reinterpret_cast<Edge*>(reinterpret_cast<uintptr_t>(this) + sizeof(Area));
+            }
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_pProxy, sizeof(m_pProxy));
+                f.write((char*)&m_dynAreaData, sizeof(m_dynAreaData));
+                f.write((char*)&m_pFirstLink, sizeof(m_pFirstLink));
+                f.write((char*)&m_pSearchParent, sizeof(m_pSearchParent));
+                m_pos.writeBinary(f);
+                f.write((char*)&m_radius, sizeof(m_radius));
+                f.write((char*)&m_searchCost, sizeof(m_searchCost));
+                f.write((char*)&m_usageFlags, sizeof(m_usageFlags));
+                m_flags.writeBinary(f);
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_pProxy, sizeof(m_pProxy));
+                f.read((char*)&m_dynAreaData, sizeof(m_dynAreaData));
+                f.read((char*)&m_pFirstLink, sizeof(m_pFirstLink));
+                f.read((char*)&m_pSearchParent, sizeof(m_pSearchParent));
+                m_pos.readBinary(f);
+                f.read((char*)&m_radius, sizeof(m_radius));
+                f.read((char*)&m_searchCost, sizeof(m_searchCost));
+                f.read((char*)&m_usageFlags, sizeof(m_usageFlags));
+                m_flags.readBinary(f);
             }
         };
 
@@ -253,6 +378,31 @@ namespace NavPower
             // Normal or Portal
             EdgeType GetType() const { return (EdgeType)((m_flags1 & 0x8000) >> 15); }
             void SetType(EdgeType p_EdgeType) { m_flags1 |= (p_EdgeType) << 15; }
+            void writeBinary(std::ostream& f)
+            {
+                if (m_pAdjArea != NULL)
+                {
+                    m_pAdjArea->writeBinary(f);
+                } else 
+                {
+                    f.write((char*)&m_pAdjArea, sizeof(m_pAdjArea));
+                }
+                m_pos.writeBinary(f);
+                f.write((char*)&m_flags1, sizeof(m_flags1));
+                f.write((char*)&m_flags2, sizeof(m_flags2));
+                f.write((char*)&m_pad, sizeof(m_pad));
+            }
+            void readBinary(std::istream& f)
+            {
+                if (m_pAdjArea != NULL)
+                {
+                    m_pAdjArea->readBinary(f);
+                }
+                m_pos.readBinary(f);
+                f.read((char*)&m_flags1, sizeof(m_flags1));
+                f.read((char*)&m_flags2, sizeof(m_flags2));
+                f.read((char*)&m_pad, sizeof(m_pad));
+            }
         };
 
         class KDTreeData
@@ -260,6 +410,16 @@ namespace NavPower
         public:
             BBox m_bbox;
             uint32_t m_size;
+            void writeBinary(std::ostream& f)
+            {
+                m_bbox.writeBinary(f);
+                f.write((char*)&m_size, sizeof(m_size));
+            }
+            void readBinary(std::istream& f)
+            {
+                m_bbox.readBinary(f);
+                f.read((char*)&m_size, sizeof(m_size));
+            }
         };
 
         class KDNode
@@ -274,6 +434,18 @@ namespace NavPower
             uint32_t GetRightOffset() { return m_data & 0xFFFFFFF; }
             KDNode* GetLeft() { return this + 1; }
             KDNode* GetRight() { return (KDNode*)((char*)this + GetRightOffset()); }
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_data, sizeof(m_data));
+                //f.write((char*)&m_dLeft, sizeof(m_dLeft));
+                //f.write((char*)&m_dRight, sizeof(m_dRight));
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_data, sizeof(m_data));
+                //f.read((char*)&m_dLeft, sizeof(m_dLeft));
+                //f.read((char*)&m_dRight, sizeof(m_dRight));
+            }
         };
 
         class KDLeaf
@@ -282,6 +454,14 @@ namespace NavPower
             uint32_t m_data;
 
             uint32_t GetPrimOffset() const { return m_data & 0x7FFFFFFF; }
+            void writeBinary(std::ostream& f)
+            {
+                f.write((char*)&m_data, sizeof(m_data));
+            }
+            void readBinary(std::istream& f)
+            {
+                f.read((char*)&m_data, sizeof(m_data));
+            }
         };
     }; // namespace Binary
 
@@ -315,6 +495,22 @@ namespace NavPower
     public:
         Binary::Area* m_area;
         std::vector<Binary::Edge*> m_edges;
+        void writeBinary(std::ostream& f)
+        {
+            m_area->writeBinary(f);
+            for (auto & edge : m_edges)
+            {
+                edge->writeBinary(f);
+            }
+        }
+        void readBinary(std::istream& f)
+        {
+            m_area->readBinary(f);
+            for (auto& edge : m_edges)
+            {
+                edge->readBinary(f);
+            }
+        }
 
         // This research and function was created by github.com/OrfeasZ aka NoFaTe
         // This marked vertex is calculated by drawing a line between the first and second vertex in the list
@@ -375,6 +571,16 @@ namespace NavPower
     {
         Binary::KDNode* m_node;
         BBox m_bbox;
+        void writeBinary(std::ostream& f)
+        {
+            m_node->writeBinary(f);
+            m_bbox.writeBinary(f);
+        }
+        void readBinary(std::istream& f)
+        {
+            m_node->readBinary(f);
+            m_bbox.readBinary(f);
+        }
     };
 
     class NavMesh
@@ -391,6 +597,18 @@ namespace NavPower
         NavMesh(){};
         NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
 
+        void writeBinary(std::ostream& f) {
+            m_hdr->writeBinary(f);
+            m_sectHdr->writeBinary(f);
+            m_setHdr->writeBinary(f);
+            m_graphHdr->writeBinary(f);
+            for (auto& area : m_areas)
+            {
+                area.writeBinary(f);
+            }
+            m_kdTreeData->writeBinary(f);
+            m_rootKDNode->writeBinary(f);
+        }
         void read(uintptr_t p_data, uint32_t p_filesize)
         {
             uintptr_t s_startPointer = p_data;

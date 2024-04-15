@@ -9,23 +9,31 @@
 
 #include "NavPower.h"
 
-// Outputs the navmesh in a human readable format
-extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
+class ChecksumException : public std::exception
 {
-	if (!std::filesystem::is_regular_file(p_NavMeshPath))
-		return;
+public:
+	std::string message;
+	NavPower::NavMesh s_NavMesh;
 
-	const std::string s_FileName = std::filesystem::path(p_NavMeshPath).filename().string();
+	ChecksumException(std::string msg, NavPower::NavMesh s_NavMesh) :
+		message(msg), s_NavMesh(s_NavMesh) {}
+};
+
+NavPower::NavMesh LoadNavMesh(const char* p_NavMeshPath)
+{
+	// Read the entire file to memory.
+	if (!std::filesystem::is_regular_file(p_NavMeshPath))
+		throw std::exception(std::format("[ERROR] Input path '%s' is not a regular file.", p_NavMeshPath).c_str());
 
 	// Read the entire file to memory.
-	const auto s_FileSize = std::filesystem::file_size(p_NavMeshPath);
+	const long s_FileSize = std::filesystem::file_size(p_NavMeshPath);
 	std::ifstream s_FileStream(p_NavMeshPath, std::ios::in | std::ios::binary);
 
 	if (!s_FileStream)
-		return;
+		throw std::exception("[ERROR] Error creating input file stream.");
 
-	void *s_FileData = malloc(s_FileSize);
-	s_FileStream.read(static_cast<char *>(s_FileData), s_FileSize);
+	void* s_FileData = malloc(s_FileSize);
+	s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
 
 	s_FileStream.close();
 
@@ -33,9 +41,38 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 
 	// We calculate the checksum now as we alter the data when loading the NavMesh below
 	// In future there will be a way to calculate it from the modified data, this will do for now
-	const uint32_t s_Checksum = NavPower::CalculateChecksum(reinterpret_cast<void *>(s_FileStartPtr + sizeof(NavPower::Binary::Header)), (s_FileSize - sizeof(NavPower::Binary::Header)));
+	const uint32_t s_Checksum = NavPower::CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(NavPower::Binary::Header)), (s_FileSize - sizeof(NavPower::Binary::Header)));
 
 	NavPower::NavMesh s_NavMesh((uintptr_t)s_FileData, s_FileSize);
+	if (s_NavMesh.m_hdr->m_checksum != s_Checksum)
+	{
+		throw ChecksumException(std::format("[ERROR] Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_NavMesh.m_hdr->m_checksum), s_NavMesh);
+	}
+
+	return s_NavMesh;
+}
+
+// Outputs the navmesh in a human readable format
+extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
+{
+	NavPower::NavMesh s_NavMesh;
+	bool b_checksum_match;
+	try
+	{
+		s_NavMesh = LoadNavMesh(p_NavMeshPath);
+		b_checksum_match = true;
+	}
+	catch (ChecksumException e)
+	{
+		s_NavMesh = e.s_NavMesh;
+		b_checksum_match = false;
+		printf(e.what());
+	}
+	catch (std::exception e)
+	{
+		printf(e.what());
+		return;
+	}
 
 	printf("===== NavPower Header ====\n");
 	printf("Hdr_endianFlag: %x\n", s_NavMesh.m_hdr->m_endianFlag);
@@ -45,9 +82,8 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 	printf("Hdr_runtimeFlags: %x\n", s_NavMesh.m_hdr->m_runtimeFlags);
 	printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags);
 
-	if (s_NavMesh.m_hdr->m_checksum != s_Checksum)
+	if (!b_checksum_match)
 	{
-		printf("[ERROR] Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_NavMesh.m_hdr->m_checksum);
 		return;
 	}
 
@@ -174,35 +210,50 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 		fflush(stdout);
 	}
 
-	uint32_t GetFlags00Unk02() const
-	{
-		// Always 0xffff.
-		return (m_Flags & 0xffff0000) >> 16;
-	}
+}
+
+/*uint32_t GetFlags00Unk02() const
+{
+	// Always 0xffff.
+	return (m_Flags & 0xffff0000) >> 16;
+}*/
+
+// Outputs the navmesh to binary format for use by Hitman WoA
+extern "C" void OutputNavMesh_NAVP(const char *p_NavMeshPath, const char *p_NavMeshOutputPath)
+{
+	NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
+
+	// Get output filename and delete file if it exists
+	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
+	std::filesystem::remove(s_OutputFileName);
+
+	// Write the Navmesh to NAVP binary file
+	std::ofstream fileOutputStream(s_OutputFileName, std::ios::out | std::ios::binary | std::ios::app);
+	s_NavMesh.writeBinary(fileOutputStream);
+	fileOutputStream.close();
+}
+
+// Outputs the navmesh to binary format for use by Hitman WoA
+extern "C" void OutputNavMesh_JSON(const char* p_NavMeshPath, const char* p_NavMeshOutputPath)
+{
+	printf("Not implemented yet");
+	//NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
+
+	//// Get output filename and delete file if it exists
+	//const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
+	//std::filesystem::remove(s_OutputFileName);
+
+	//// Write the navp to JSON file
+	//std::ofstream fileOutputStream(s_OutputFileName, std::ios::out | std::ios::binary | std::ios::app);
+	//s_NavMesh.writeJSON(fileOutputStream);
+	//fileOutputStream.close();
+}
 
 // Outputs the navmesh to a format useable by NavViewer
 extern "C" void OutputNavMesh_VIEWER(const char *p_NavMeshPath)
 {
-	if (!std::filesystem::is_regular_file(p_NavMeshPath))
-		return;
-
+	NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
 	const std::string s_FileName = std::filesystem::path(p_NavMeshPath).filename().string();
-
-	// Read the entire file to memory.
-	const auto s_FileSize = std::filesystem::file_size(p_NavMeshPath);
-	std::ifstream s_FileStream(p_NavMeshPath, std::ios::in | std::ios::binary);
-
-	if (!s_FileStream)
-		return;
-
-	void *s_FileData = malloc(s_FileSize);
-	s_FileStream.read(static_cast<char *>(s_FileData), s_FileSize);
-
-	s_FileStream.close();
-
-	const auto s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
-
-	NavPower::NavMesh s_NavMesh((uintptr_t)s_FileData, s_FileSize);
 
 	printf(
 		"Areas['%s'] = [[%f, %f, %f, %f, %f, %f],", s_FileName.c_str(),
