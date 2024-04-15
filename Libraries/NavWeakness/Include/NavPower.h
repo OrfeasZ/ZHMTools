@@ -29,7 +29,6 @@ SOFTWARE.
 
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "Vec3.h"
 
@@ -59,11 +58,24 @@ namespace NavPower
     public:
         Vec3 m_min;
         Vec3 m_max;
+
+        void writeJson(std::ostream& f)
+        {
+            f << "{";
+            f << "\"m_min\":";
+            m_min.writeJson(f);
+            f << ",";
+            f << "\"m_max\":";
+            m_max.writeJson(f);
+            f << "}";
+        }
+
         void writeBinary(std::ostream& f)
         {
-            f.write((char*)&m_min, sizeof(m_min));
-            f.write((char*)&m_max, sizeof(m_max));
+            m_min.writeBinary(f);
+            m_max.writeBinary(f);
         }
+
         void readBinary(std::istream& f)
         {
             f.read((char*)&m_min, sizeof(m_min));
@@ -146,6 +158,19 @@ namespace NavPower
             uint32_t m_checksum;  // Checksum of data excluding this header
             uint32_t m_runtimeFlags = 0;
             uint32_t m_constantFlags = 0;
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_endianFlag\":" << m_endianFlag << ",";
+                f << "\"m_version\":" << m_version << ",";
+                f << "\"m_imageSize\":" << m_imageSize << ",";
+                f << "\"m_checksum\":" << m_checksum << ",";
+                f << "\"m_runtimeFlags\":" << m_runtimeFlags << ",";
+                f << "\"m_constantFlags\":" << m_constantFlags;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_endianFlag, sizeof(m_endianFlag));
@@ -155,6 +180,7 @@ namespace NavPower
                 f.write((char*)&m_runtimeFlags, sizeof(m_runtimeFlags));
                 f.write((char*)&m_constantFlags, sizeof(m_constantFlags));
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_endianFlag, sizeof(m_endianFlag));
@@ -172,12 +198,23 @@ namespace NavPower
             uint32_t m_id = 0x10000;
             uint32_t m_size;            // Size of this section excluding this header
             uint32_t m_pointerSize = 1; // Size of pointers inside the section
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_id\":" << m_id << ",";
+                f << "\"m_size\":" << m_size << ",";
+                f << "\"m_pointerSize\":" << m_pointerSize;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_id, sizeof(m_id));
                 f.write((char*)&m_size, sizeof(m_size));
                 f.write((char*)&m_pointerSize, sizeof(m_pointerSize));
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_id, sizeof(m_id));
@@ -192,12 +229,23 @@ namespace NavPower
             uint32_t m_endianFlag = 0;
             uint32_t m_version = 0x28; // The version of the nav graph, this case it is 40
             uint32_t m_numGraphs = 1;  // Number of NavGraphs in this image
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_endianFlag\":" << m_endianFlag << ",";
+                f << "\"m_version\":" << m_version << ",";
+                f << "\"m_numGraphs\":" << m_numGraphs;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_endianFlag, sizeof(m_endianFlag));
                 f.write((char*)&m_version, sizeof(m_version));
                 f.write((char*)&m_numGraphs, sizeof(m_numGraphs));
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_endianFlag, sizeof(m_endianFlag));
@@ -225,6 +273,28 @@ namespace NavPower
             // In NAVPs from Hitman WoA the padding isn't just 0x00
             // It is however identical in all files, changing it to all 0x00 makes NPCs disappear completely
             uint8_t m_pad[252];
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_version\":" << m_version << ",";
+                f << "\"m_layer\":" << m_layer << ",";
+                f << "\"m_areaBytes\":" << m_areaBytes << ",";
+                f << "\"m_kdTreeBytes\":" << m_kdTreeBytes << ",";
+                f << "\"m_linkRecordBytes\":" << m_linkRecordBytes << ",";
+                f << "\"m_totalBytes\":" << m_totalBytes << ",";
+                f << "\"m_buildScale\":" << m_buildScale << ",";
+                f << "\"m_voxSize\":" << m_voxSize << ",";
+                f << "\"m_radius\":" << m_radius << ",";
+                f << "\"m_stepHeight\":" << m_stepHeight << ",";
+                f << "\"m_height\":" << m_height << ",";
+                f << "\"m_bbox\":";
+                m_bbox.writeJson(f);
+                f << ",";
+                f << "\"m_buildUpAxis\":" << m_buildUpAxis;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_version, sizeof(m_version));
@@ -242,6 +312,7 @@ namespace NavPower
                 f.write((char*)&m_buildUpAxis, sizeof(m_buildUpAxis));
                 f.write((char*)&m_pad, sizeof(m_pad));
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_version, sizeof(m_version));
@@ -290,6 +361,17 @@ namespace NavPower
             uint32_t m_flags2;
             uint32_t m_flags3;
             uint32_t m_flags4;
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_flags1\":" << m_flags1 << ",";
+                f << "\"m_flags2\":" << m_flags2 << ",";
+                f << "\"m_flags3\":" << m_flags3 << ",";
+                f << "\"m_flags4\":" << m_flags4;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_flags1, sizeof(m_flags1));
@@ -297,6 +379,7 @@ namespace NavPower
                 f.write((char*)&m_flags3, sizeof(m_flags3));
                 f.write((char*)&m_flags4, sizeof(m_flags4));
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_flags1, sizeof(m_flags1));
@@ -325,6 +408,33 @@ namespace NavPower
             {
                 return reinterpret_cast<Edge*>(reinterpret_cast<uintptr_t>(this) + sizeof(Area));
             }
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_pProxy\": " << m_pProxy << ",";
+                f << "\"m_dynAreaData\": " << m_dynAreaData << ",";
+                f << "\"m_pFirstLink\":" << m_pFirstLink << ",";
+                f << "\"m_pSearchParent\":" << m_pSearchParent << ",";
+                f << "\"m_pos\":";
+                m_pos.writeJson(f);
+                f << ",";
+                f << "\"m_radius\":" << m_radius << ",";
+                f << "\"m_searchCost\":" << m_searchCost << ",";
+                f << "\"m_usageFlags\":";
+                if (static_cast<typename std::underlying_type<AreaUsageFlags>::type>(m_usageFlags) == 1)
+                {
+                    f << "\"AREA_FLAT\",";
+                }
+                else
+                {
+                    f << "\"AREA_STEPS\",";
+                }
+                f << "\"m_flags\":";
+                m_flags.writeJson(f);
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_pProxy, sizeof(m_pProxy));
@@ -337,6 +447,7 @@ namespace NavPower
                 f.write((char*)&m_usageFlags, sizeof(m_usageFlags));
                 m_flags.writeBinary(f);
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_pProxy, sizeof(m_pProxy));
@@ -378,6 +489,26 @@ namespace NavPower
             // Normal or Portal
             EdgeType GetType() const { return (EdgeType)((m_flags1 & 0x8000) >> 15); }
             void SetType(EdgeType p_EdgeType) { m_flags1 |= (p_EdgeType) << 15; }
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_pAdjArea\":";
+                if (m_pAdjArea != NULL)
+                {
+                    m_pAdjArea->writeJson(f);
+                }
+                else
+                {
+                    f << "null";
+                }
+                f << ",\"m_pos\":";
+                m_pos.writeJson(f);
+                f << ",\"m_flags1\":" << m_flags1 << ",";
+                f << "\"m_flags2\":" << m_flags2;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 if (m_pAdjArea != NULL)
@@ -392,6 +523,7 @@ namespace NavPower
                 f.write((char*)&m_flags2, sizeof(m_flags2));
                 f.write((char*)&m_pad, sizeof(m_pad));
             }
+
             void readBinary(std::istream& f)
             {
                 if (m_pAdjArea != NULL)
@@ -410,11 +542,23 @@ namespace NavPower
         public:
             BBox m_bbox;
             uint32_t m_size;
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_bbox\":";
+                m_bbox.writeJson(f);
+                f << ",";
+                f << "\"m_size\":" << m_size;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 m_bbox.writeBinary(f);
                 f.write((char*)&m_size, sizeof(m_size));
             }
+
             void readBinary(std::istream& f)
             {
                 m_bbox.readBinary(f);
@@ -434,12 +578,23 @@ namespace NavPower
             uint32_t GetRightOffset() { return m_data & 0xFFFFFFF; }
             KDNode* GetLeft() { return this + 1; }
             KDNode* GetRight() { return (KDNode*)((char*)this + GetRightOffset()); }
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_data\":" << m_data;
+                f << "}";
+                //f.write((char*)&m_dLeft, sizeof(m_dLeft));
+                //f.write((char*)&m_dRight, sizeof(m_dRight));
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_data, sizeof(m_data));
                 //f.write((char*)&m_dLeft, sizeof(m_dLeft));
                 //f.write((char*)&m_dRight, sizeof(m_dRight));
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_data, sizeof(m_data));
@@ -454,10 +609,19 @@ namespace NavPower
             uint32_t m_data;
 
             uint32_t GetPrimOffset() const { return m_data & 0x7FFFFFFF; }
+
+            void writeJson(std::ostream& f)
+            {
+                f << "{";
+                f << "\"m_data\":" << m_data;
+                f << "}";
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_data, sizeof(m_data));
             }
+
             void readBinary(std::istream& f)
             {
                 f.read((char*)&m_data, sizeof(m_data));
@@ -495,6 +659,25 @@ namespace NavPower
     public:
         Binary::Area* m_area;
         std::vector<Binary::Edge*> m_edges;
+
+        void writeJson(std::ostream& f)
+        {
+            f << "{";
+            f << "\"m_area\":";
+            m_area->writeJson(f);
+            f << ",\"m_edges\":[";
+            Binary::Edge* back = m_edges.back();
+            for (auto& edge : m_edges)
+            {
+                edge->writeJson(f);
+                if (edge != back)
+                {
+                    f << ",";
+                }
+            }
+            f << "]}";
+        }
+
         void writeBinary(std::ostream& f)
         {
             m_area->writeBinary(f);
@@ -503,6 +686,7 @@ namespace NavPower
                 edge->writeBinary(f);
             }
         }
+
         void readBinary(std::istream& f)
         {
             m_area->readBinary(f);
@@ -571,11 +755,22 @@ namespace NavPower
     {
         Binary::KDNode* m_node;
         BBox m_bbox;
+
+        void writeJson(std::ostream& f)
+        {
+            f << "{\"m_node\":";
+            m_node->writeJson(f);
+            f << ",\"m_bbox\":";
+            m_bbox.writeJson(f);
+            f << "}";
+        }
+
         void writeBinary(std::ostream& f)
         {
             m_node->writeBinary(f);
             m_bbox.writeBinary(f);
         }
+
         void readBinary(std::istream& f)
         {
             m_node->readBinary(f);
@@ -597,6 +792,32 @@ namespace NavPower
         NavMesh(){};
         NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
 
+        void writeJson(std::ostream& f) {
+            f << "{";
+            f << "\"m_hdr\":";
+            m_hdr->writeJson(f);
+            f << ",\"m_sectHdr\":";
+            m_sectHdr->writeJson(f);
+            f << ",\"m_setHdr\":";
+            m_setHdr->writeJson(f);
+            f << ",\"m_graphHdr\":";
+            m_graphHdr->writeJson(f);
+            f << ",\"m_areas\":[";
+            Area* back = &m_areas.back();
+            for (auto& area : m_areas)
+            {
+                area.writeJson(f);
+                if (&area != back) {
+                    f << ",";
+                }
+            }
+            f << "],\"m_kdTreeData\":";
+            m_kdTreeData->writeJson(f);
+            f << ",\"m_rootKDNode\":";
+            m_rootKDNode->writeJson(f);
+            f << "}";
+        }
+
         void writeBinary(std::ostream& f) {
             m_hdr->writeBinary(f);
             m_sectHdr->writeBinary(f);
@@ -609,6 +830,7 @@ namespace NavPower
             m_kdTreeData->writeBinary(f);
             m_rootKDNode->writeBinary(f);
         }
+
         void read(uintptr_t p_data, uint32_t p_filesize)
         {
             uintptr_t s_startPointer = p_data;

@@ -40,12 +40,23 @@ struct Vec3
     float X;
     float Y;
     float Z;
+
+    void writeJson(std::ostream& f)
+    {
+        f << "{";
+        f << "\"X\":" << X << ",";
+        f << "\"Y\":" << Y << ",";
+        f << "\"Z\":" << Z;
+        f << "}";
+    }
+
     void writeBinary(std::ostream& f)
     {
         f.write((char*)&X, sizeof(X));
         f.write((char*)&Y, sizeof(Y));
         f.write((char*)&Z, sizeof(Z));
     }
+
     void readBinary(std::istream& f)
     {
         f.read((char*)&X, sizeof(X));

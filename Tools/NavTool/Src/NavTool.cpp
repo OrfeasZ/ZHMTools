@@ -17,7 +17,7 @@ void PrintHelp()
 	printf("Available options:\n");
 	printf("	--human - Outputs the NavMesh in a human readable format\n");
 	printf("	--navp <navmesh-output-path> - Outputs the NavMesh in NAVP format\n");
-	printf("	--json <navmesh-output-path> - Outputs the NavMesh in json format\n");
+	printf("	--json <navmesh-output-path> - Outputs the NavMesh in JSON format\n");
 }
 
 void ParseNavMesh(const std::string &p_Path, bool p_human = false)

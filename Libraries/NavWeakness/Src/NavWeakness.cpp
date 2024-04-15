@@ -23,14 +23,14 @@ NavPower::NavMesh LoadNavMesh(const char* p_NavMeshPath)
 {
 	// Read the entire file to memory.
 	if (!std::filesystem::is_regular_file(p_NavMeshPath))
-		throw std::exception(std::format("[ERROR] Input path '%s' is not a regular file.", p_NavMeshPath).c_str());
+		throw std::exception(std::format("Input path '%s' is not a regular file.", p_NavMeshPath).c_str());
 
 	// Read the entire file to memory.
 	const long s_FileSize = std::filesystem::file_size(p_NavMeshPath);
 	std::ifstream s_FileStream(p_NavMeshPath, std::ios::in | std::ios::binary);
 
 	if (!s_FileStream)
-		throw std::exception("[ERROR] Error creating input file stream.");
+		throw std::exception("Error creating input file stream.");
 
 	void* s_FileData = malloc(s_FileSize);
 	s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
@@ -46,7 +46,7 @@ NavPower::NavMesh LoadNavMesh(const char* p_NavMeshPath)
 	NavPower::NavMesh s_NavMesh((uintptr_t)s_FileData, s_FileSize);
 	if (s_NavMesh.m_hdr->m_checksum != s_Checksum)
 	{
-		throw ChecksumException(std::format("[ERROR] Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_NavMesh.m_hdr->m_checksum), s_NavMesh);
+		throw ChecksumException(std::format("Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_NavMesh.m_hdr->m_checksum), s_NavMesh);
 	}
 
 	return s_NavMesh;
@@ -62,15 +62,15 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 		s_NavMesh = LoadNavMesh(p_NavMeshPath);
 		b_checksum_match = true;
 	}
-	catch (ChecksumException e)
+	catch (ChecksumException &p_Exception)
 	{
-		s_NavMesh = e.s_NavMesh;
+		s_NavMesh = p_Exception.s_NavMesh;
 		b_checksum_match = false;
-		printf(e.what());
+		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
 	}
-	catch (std::exception e)
+	catch (std::exception& p_Exception)
 	{
-		printf(e.what());
+		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
 		return;
 	}
 
@@ -236,17 +236,16 @@ extern "C" void OutputNavMesh_NAVP(const char *p_NavMeshPath, const char *p_NavM
 // Outputs the navmesh to binary format for use by Hitman WoA
 extern "C" void OutputNavMesh_JSON(const char* p_NavMeshPath, const char* p_NavMeshOutputPath)
 {
-	printf("Not implemented yet");
-	//NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
+	NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
 
-	//// Get output filename and delete file if it exists
-	//const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
-	//std::filesystem::remove(s_OutputFileName);
+	// Get output filename and delete file if it exists
+	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
+	std::filesystem::remove(s_OutputFileName);
 
-	//// Write the navp to JSON file
-	//std::ofstream fileOutputStream(s_OutputFileName, std::ios::out | std::ios::binary | std::ios::app);
-	//s_NavMesh.writeJSON(fileOutputStream);
-	//fileOutputStream.close();
+	// Write the navp to JSON file
+	std::ofstream fileOutputStream(s_OutputFileName);
+	s_NavMesh.writeJson(fileOutputStream);
+	fileOutputStream.close();
 }
 
 // Outputs the navmesh to a format useable by NavViewer
