@@ -29,6 +29,9 @@ SOFTWARE.
 
 #include <string>
 #include <vector>
+#include <map>
+#include <iostream>
+#include "..\\Src\\External\\simdjson.h"
 
 #include "Vec3.h"
 
@@ -70,16 +73,18 @@ namespace NavPower
             f << "}";
         }
 
+        void readJson(auto p_Json)
+        {
+            simdjson::ondemand::object m_minJson = p_Json["m_min"];
+            m_min.readJson(m_minJson);
+            simdjson::ondemand::object m_maxJson = p_Json["m_max"];
+            m_max.readJson(m_maxJson);
+        }
+
         void writeBinary(std::ostream& f)
         {
             m_min.writeBinary(f);
             m_max.writeBinary(f);
-        }
-
-        void readBinary(std::istream& f)
-        {
-            f.read((char*)&m_min, sizeof(m_min));
-            f.read((char*)&m_max, sizeof(m_max));
         }
     };
 
@@ -127,6 +132,22 @@ namespace NavPower
         }
     };
 
+    AreaUsageFlags AreaUsageFlagStringToEnumValue(auto p_AreaUsageFlag)
+    {
+        if (p_AreaUsageFlag.compare("Flat") == 0)
+        {
+            return AreaUsageFlags::AREA_FLAT;
+        }
+        else if (p_AreaUsageFlag.compare("Steps") == 0)
+        {
+            return AreaUsageFlags::AREA_STEPS;
+        }
+        else
+        {
+            return AreaUsageFlags::AREA_FLAT;
+        }
+    };
+
     enum EdgeType
     {
         EDGE_NORMAL,
@@ -171,6 +192,16 @@ namespace NavPower
                 f << "}";
             }
 
+            void readJson(auto p_Json)
+            {
+                m_endianFlag = uint64_t(p_Json["m_endianFlag"]);
+                m_version = uint64_t(p_Json["m_version"]);
+                m_imageSize = uint64_t(p_Json["m_imageSize"]);
+                m_checksum = uint64_t(p_Json["m_checksum"]);
+                m_runtimeFlags = uint64_t(p_Json["m_runtimeFlags"]);
+                m_constantFlags = uint64_t(p_Json["m_constantFlags"]);
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_endianFlag, sizeof(m_endianFlag));
@@ -179,16 +210,6 @@ namespace NavPower
                 f.write((char*)&m_checksum, sizeof(m_checksum));
                 f.write((char*)&m_runtimeFlags, sizeof(m_runtimeFlags));
                 f.write((char*)&m_constantFlags, sizeof(m_constantFlags));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_endianFlag, sizeof(m_endianFlag));
-                f.read((char*)&m_version, sizeof(m_version));
-                f.read((char*)&m_imageSize, sizeof(m_imageSize));
-                f.read((char*)&m_checksum, sizeof(m_checksum));
-                f.read((char*)&m_runtimeFlags, sizeof(m_runtimeFlags));
-                f.read((char*)&m_constantFlags, sizeof(m_constantFlags));
             }
         };
 
@@ -208,18 +229,18 @@ namespace NavPower
                 f << "}";
             }
 
+            void readJson(auto p_Json)
+            {
+                m_id = uint64_t(p_Json["m_id"]);
+                m_size = uint64_t(p_Json["m_size"]);
+                m_pointerSize = uint64_t(p_Json["m_pointerSize"]);
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_id, sizeof(m_id));
                 f.write((char*)&m_size, sizeof(m_size));
                 f.write((char*)&m_pointerSize, sizeof(m_pointerSize));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_id, sizeof(m_id));
-                f.read((char*)&m_size, sizeof(m_size));
-                f.read((char*)&m_pointerSize, sizeof(m_pointerSize));
             }
         };
 
@@ -239,18 +260,18 @@ namespace NavPower
                 f << "}";
             }
 
+            void readJson(auto p_Json)
+            {
+                m_endianFlag = uint64_t(p_Json["m_endianFlag"]);
+                m_version = uint64_t(p_Json["m_version"]);
+                m_numGraphs = uint64_t(p_Json["m_numGraphs"]);
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_endianFlag, sizeof(m_endianFlag));
                 f.write((char*)&m_version, sizeof(m_version));
                 f.write((char*)&m_numGraphs, sizeof(m_numGraphs));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_endianFlag, sizeof(m_endianFlag));
-                f.read((char*)&m_version, sizeof(m_version));
-                f.read((char*)&m_numGraphs, sizeof(m_numGraphs));
             }
         };
 
@@ -272,7 +293,7 @@ namespace NavPower
             Axis m_buildUpAxis = Axis::Z;
             // In NAVPs from Hitman WoA the padding isn't just 0x00
             // It is however identical in all files, changing it to all 0x00 makes NPCs disappear completely
-            uint8_t m_pad[252];
+            uint8_t m_pad[252] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,20,214,126,45,220,142,102,131,239,87,73,97,255,105,143,97,205,209,30,157,156,22,114,114,230,29,240,132,79,74,119,2,215,232,57,44,83,203,201,18,30,51,116,158,12,244,213,212,159,212,164,89,126,53,207,50,34,244,204,207,211,144,45,72,211,143,117,230,217,29,42,229,192,247,43,120,129,135,68,14,95,80,0,212,97,141,190,123,5,21,7,59,51,130,31,24,112,146,218,100,84,206,177,133,62,105,21,248,70,106,4,150,115,14,217,22,47,103,104,212,247,74,74,208,87,104,118 };
 
             void writeJson(std::ostream& f)
             {
@@ -295,6 +316,25 @@ namespace NavPower
                 f << "}";
             }
 
+            void readJson(auto p_Json)
+            {
+                m_version = uint64_t(p_Json["m_version"]);
+                m_layer = uint64_t(p_Json["m_layer"]);
+                m_areaBytes = uint64_t(p_Json["m_areaBytes"]);
+                m_areaBytes = uint64_t(p_Json["m_areaBytes"]);
+                m_kdTreeBytes = uint64_t(p_Json["m_kdTreeBytes"]);
+                m_linkRecordBytes = uint64_t(p_Json["m_linkRecordBytes"]);
+                m_totalBytes = uint64_t(p_Json["m_totalBytes"]);
+                m_buildScale = double(p_Json["m_buildScale"]);
+                m_voxSize = double(p_Json["m_voxSize"]);
+                m_radius = double(p_Json["m_radius"]);
+                m_stepHeight = double(p_Json["m_stepHeight"]);
+                m_height = double(p_Json["m_height"]);
+                simdjson::ondemand::object m_bboxJson = p_Json["m_bbox"];
+                m_bbox.readJson(m_bboxJson);
+                m_buildUpAxis = Axis(uint64_t(p_Json["m_buildUpAxis"]));
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_version, sizeof(m_version));
@@ -311,24 +351,6 @@ namespace NavPower
                 m_bbox.writeBinary(f);
                 f.write((char*)&m_buildUpAxis, sizeof(m_buildUpAxis));
                 f.write((char*)&m_pad, sizeof(m_pad));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_version, sizeof(m_version));
-                f.read((char*)&m_layer, sizeof(m_version));
-                f.read((char*)&m_areaBytes, sizeof(m_areaBytes));
-                f.read((char*)&m_kdTreeBytes, sizeof(m_kdTreeBytes));
-                f.read((char*)&m_linkRecordBytes, sizeof(m_linkRecordBytes));
-                f.read((char*)&m_totalBytes, sizeof(m_totalBytes));
-                f.read((char*)&m_buildScale, sizeof(m_buildScale));
-                f.read((char*)&m_voxSize, sizeof(m_voxSize));
-                f.read((char*)&m_radius, sizeof(m_radius));
-                f.read((char*)&m_stepHeight, sizeof(m_stepHeight));
-                f.read((char*)&m_height, sizeof(m_height));
-                m_bbox.readBinary(f);
-                f.read((char*)&m_buildUpAxis, sizeof(m_buildUpAxis));
-                f.read((char*)&m_pad, sizeof(m_pad));
             }
         };
 
@@ -372,20 +394,20 @@ namespace NavPower
                 f << "}";
             }
 
+            void readJson(auto p_Json)
+            {
+                m_flags1 = uint64_t(p_Json["m_flags1"]);
+                m_flags2 = uint64_t(p_Json["m_flags2"]);
+                m_flags3 = uint64_t(p_Json["m_flags3"]);
+                m_flags4 = uint64_t(p_Json["m_flags4"]);
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_flags1, sizeof(m_flags1));
                 f.write((char*)&m_flags2, sizeof(m_flags2));
                 f.write((char*)&m_flags3, sizeof(m_flags3));
                 f.write((char*)&m_flags4, sizeof(m_flags4));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_flags1, sizeof(m_flags1));
-                f.read((char*)&m_flags2, sizeof(m_flags2));
-                f.read((char*)&m_flags3, sizeof(m_flags3));
-                f.read((char*)&m_flags4, sizeof(m_flags4));
             }
         };
 
@@ -422,17 +444,23 @@ namespace NavPower
                 f << "\"m_radius\":" << m_radius << ",";
                 f << "\"m_searchCost\":" << m_searchCost << ",";
                 f << "\"m_usageFlags\":";
-                if (static_cast<typename std::underlying_type<AreaUsageFlags>::type>(m_usageFlags) == 1)
-                {
-                    f << "\"AREA_FLAT\",";
-                }
-                else
-                {
-                    f << "\"AREA_STEPS\",";
-                }
+                f << "\"" << AreaUsageFlagToString(m_usageFlags) << "\",";
                 f << "\"m_flags\":";
                 m_flags.writeJson(f);
                 f << "}";
+            }
+
+            void readJson(auto p_Json)
+            {
+                m_pProxy = uint64_t(p_Json["m_pProxy"]);
+                m_dynAreaData = uint64_t(p_Json["m_dynAreaData"]);
+                m_pFirstLink = uint64_t(p_Json["m_pFirstLink"]);
+                m_pSearchParent = uint64_t(p_Json["m_pSearchParent"]);
+                m_pos.readJson(p_Json["m_pos"]);
+                m_radius = double(p_Json["m_radius"]);
+                m_searchCost = uint64_t(p_Json["m_searchCost"]);
+                m_usageFlags = AreaUsageFlagStringToEnumValue(std::string{ std::string_view(p_Json["m_usageFlags"]) });
+                m_flags.readJson(p_Json["m_flags"]);
             }
 
             void writeBinary(std::ostream& f)
@@ -447,19 +475,6 @@ namespace NavPower
                 f.write((char*)&m_usageFlags, sizeof(m_usageFlags));
                 m_flags.writeBinary(f);
             }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_pProxy, sizeof(m_pProxy));
-                f.read((char*)&m_dynAreaData, sizeof(m_dynAreaData));
-                f.read((char*)&m_pFirstLink, sizeof(m_pFirstLink));
-                f.read((char*)&m_pSearchParent, sizeof(m_pSearchParent));
-                m_pos.readBinary(f);
-                f.read((char*)&m_radius, sizeof(m_radius));
-                f.read((char*)&m_searchCost, sizeof(m_searchCost));
-                f.read((char*)&m_usageFlags, sizeof(m_usageFlags));
-                m_flags.readBinary(f);
-            }
         };
 
         class Edge
@@ -469,7 +484,7 @@ namespace NavPower
             Vec3 m_pos;
             uint32_t m_flags1;
             uint32_t m_flags2;
-            char m_pad[4];
+            char m_pad[4] = "\0\0\0";
 
             // flags 1
             // Obstacles
@@ -490,17 +505,26 @@ namespace NavPower
             EdgeType GetType() const { return (EdgeType)((m_flags1 & 0x8000) >> 15); }
             void SetType(EdgeType p_EdgeType) { m_flags1 |= (p_EdgeType) << 15; }
 
-            void writeJson(std::ostream& f)
+            void writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap)
             {
                 f << "{";
                 f << "\"m_pAdjArea\":";
                 if (m_pAdjArea != NULL)
                 {
-                    m_pAdjArea->writeJson(f);
+                    // Replace pointer to adjacent area with index of adjacent area + 1, with 0 being null
+                    std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToIndexMap->find(m_pAdjArea);
+                    if (s_MapPosition == p_AreaPointerToIndexMap->end()) {
+                        throw(std::exception("Area pointer not found in AreaPointerToIndexMap."));
+                    }
+                    else {
+                        uint32_t s_AdjAreaIndex = s_MapPosition->second + 1;
+                        f << s_AdjAreaIndex;
+                    }
+
                 }
                 else
                 {
-                    f << "null";
+                    f << 0;
                 }
                 f << ",\"m_pos\":";
                 m_pos.writeJson(f);
@@ -509,12 +533,35 @@ namespace NavPower
                 f << "}";
             }
 
-            void writeBinary(std::ostream& f)
+            void readJson(simdjson::ondemand::object p_Json)
+            {
+                // Store index of adjacent area + 1 in m_pAdjArea until the area addresses are calculated
+                int64_t m_pAdjAreaJson = int64_t(p_Json["m_pAdjArea"]);
+                m_pAdjArea = reinterpret_cast<Binary::Area*>(m_pAdjAreaJson);
+                simdjson::ondemand::object m_posJson = p_Json["m_pos"];
+                m_pos.readJson(m_posJson);
+                m_flags1 = uint64_t(p_Json["m_flags1"]);
+                m_flags2 = uint64_t(p_Json["m_flags2"]);
+            }
+
+            void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap)
             {
                 if (m_pAdjArea != NULL)
                 {
-                    m_pAdjArea->writeBinary(f);
-                } else 
+                    // Convert pointer to adjacent Area to Area offset
+                    Area* s_pAdjAreaFixed;
+                    std::map<Binary::Area*, Binary::Area*>::const_iterator s_MapPosition = s_AreaPointerToOffsetPointerMap->find(m_pAdjArea);
+                    if (s_MapPosition == s_AreaPointerToOffsetPointerMap->end()) {
+                        throw(std::exception("Area pointer not found in s_AreaPointerToOffsetPointerMap."));
+                    }
+                    else {
+                        s_pAdjAreaFixed = reinterpret_cast<Binary::Area*>(s_MapPosition->second);
+                    }
+
+
+                    f.write((char*)&s_pAdjAreaFixed, sizeof(m_pAdjArea));
+                }
+                else
                 {
                     f.write((char*)&m_pAdjArea, sizeof(m_pAdjArea));
                 }
@@ -522,18 +569,6 @@ namespace NavPower
                 f.write((char*)&m_flags1, sizeof(m_flags1));
                 f.write((char*)&m_flags2, sizeof(m_flags2));
                 f.write((char*)&m_pad, sizeof(m_pad));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                if (m_pAdjArea != NULL)
-                {
-                    m_pAdjArea->readBinary(f);
-                }
-                m_pos.readBinary(f);
-                f.read((char*)&m_flags1, sizeof(m_flags1));
-                f.read((char*)&m_flags2, sizeof(m_flags2));
-                f.read((char*)&m_pad, sizeof(m_pad));
             }
         };
 
@@ -553,16 +588,17 @@ namespace NavPower
                 f << "}";
             }
 
+            void readJson(auto p_Json)
+            {
+                simdjson::ondemand::object m_bboxJson = p_Json["m_bbox"];
+                m_bbox.readJson(m_bboxJson);
+                m_size = uint64_t(p_Json["m_size"]);
+            }
+
             void writeBinary(std::ostream& f)
             {
                 m_bbox.writeBinary(f);
                 f.write((char*)&m_size, sizeof(m_size));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                m_bbox.readBinary(f);
-                f.read((char*)&m_size, sizeof(m_size));
             }
         };
 
@@ -579,27 +615,62 @@ namespace NavPower
             KDNode* GetLeft() { return this + 1; }
             KDNode* GetRight() { return (KDNode*)((char*)this + GetRightOffset()); }
 
-            void writeJson(std::ostream& f)
+            void writeJson(std::ostream& f, uintptr_t p_KdTreeEnd)
             {
                 f << "{";
                 f << "\"m_data\":" << m_data;
+                if (!IsLeaf())
+                {
+
+                    f << ",\"m_dLeft\":" << m_dLeft << ",";
+                    f << "\"m_dRight\":" << m_dRight;
+                    KDNode* s_Left = GetLeft();
+                    if (reinterpret_cast<uintptr_t>(s_Left) == p_KdTreeEnd)
+                    {
+                        f << "}";
+                        return;
+                    }
+                    f << ",\"leftChild\":";
+                    s_Left->writeJson(f, p_KdTreeEnd);
+                    f << ",\"rightChild\":";
+                    KDNode* s_Right = GetRight();
+                    s_Right->writeJson(f, p_KdTreeEnd);
+                }
                 f << "}";
-                //f.write((char*)&m_dLeft, sizeof(m_dLeft));
-                //f.write((char*)&m_dRight, sizeof(m_dRight));
             }
 
-            void writeBinary(std::ostream& f)
+            void readJson(auto p_Json)
+            {
+                m_data = uint64_t(p_Json["m_data"]);
+                if (!IsLeaf()) {
+                    m_dLeft = double(p_Json["m_dLeft"]);
+                    m_dRight = double(p_Json["m_dRight"]);
+                    simdjson::ondemand::object leftChildJson;
+                    auto s_Left = p_Json["leftChild"];
+                    KDNode* leftChild = GetLeft();
+                    leftChild->readJson(s_Left);
+                    auto s_Right = p_Json["rightChild"];
+                    KDNode* rightChild = GetRight();
+                    rightChild->readJson(s_Right);
+                }
+            }
+
+            void writeBinary(std::ostream& f, uintptr_t p_KdTreeEnd)
             {
                 f.write((char*)&m_data, sizeof(m_data));
-                //f.write((char*)&m_dLeft, sizeof(m_dLeft));
-                //f.write((char*)&m_dRight, sizeof(m_dRight));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_data, sizeof(m_data));
-                //f.read((char*)&m_dLeft, sizeof(m_dLeft));
-                //f.read((char*)&m_dRight, sizeof(m_dRight));
+                if (!IsLeaf())
+                {
+                    f.write((char*)&m_dLeft, sizeof(m_dLeft));
+                    f.write((char*)&m_dRight, sizeof(m_dRight));
+                    KDNode* s_Left = GetLeft();
+                    if (reinterpret_cast<uintptr_t>(s_Left) == p_KdTreeEnd)
+                    {
+                        return;
+                    }
+                    s_Left->writeBinary(f, p_KdTreeEnd);
+                    KDNode* s_Right = GetRight();
+                    s_Right->writeBinary(f, p_KdTreeEnd);
+                }
             }
         };
 
@@ -617,14 +688,14 @@ namespace NavPower
                 f << "}";
             }
 
+            void readJson(auto p_Json)
+            {
+                m_data = uint64_t(p_Json["m_data"]);
+            }
+
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_data, sizeof(m_data));
-            }
-
-            void readBinary(std::istream& f)
-            {
-                f.read((char*)&m_data, sizeof(m_data));
             }
         };
     }; // namespace Binary
@@ -660,7 +731,7 @@ namespace NavPower
         Binary::Area* m_area;
         std::vector<Binary::Edge*> m_edges;
 
-        void writeJson(std::ostream& f)
+        void writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap)
         {
             f << "{";
             f << "\"m_area\":";
@@ -669,7 +740,7 @@ namespace NavPower
             Binary::Edge* back = m_edges.back();
             for (auto& edge : m_edges)
             {
-                edge->writeJson(f);
+                edge->writeJson(f, p_AreaPointerToIndexMap);
                 if (edge != back)
                 {
                     f << ",";
@@ -678,21 +749,26 @@ namespace NavPower
             f << "]}";
         }
 
-        void writeBinary(std::ostream& f)
+        void readJson(auto p_Json)
+        {
+            simdjson::ondemand::object m_areaJson = p_Json["m_area"];
+            m_area = new Binary::Area;
+            m_area->readJson(m_areaJson);
+            simdjson::ondemand::array m_edgesJson = p_Json["m_edges"];
+            for (auto edgeJson : m_edgesJson)
+            {
+                Binary::Edge* edge = new Binary::Edge;
+                edge->readJson(edgeJson);
+                m_edges.push_back(edge);
+            }
+        }
+
+        void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap)
         {
             m_area->writeBinary(f);
             for (auto & edge : m_edges)
             {
-                edge->writeBinary(f);
-            }
-        }
-
-        void readBinary(std::istream& f)
-        {
-            m_area->readBinary(f);
-            for (auto& edge : m_edges)
-            {
-                edge->readBinary(f);
+                edge->writeBinary(f, s_AreaPointerToOffsetPointerMap);
             }
         }
 
@@ -755,27 +831,6 @@ namespace NavPower
     {
         Binary::KDNode* m_node;
         BBox m_bbox;
-
-        void writeJson(std::ostream& f)
-        {
-            f << "{\"m_node\":";
-            m_node->writeJson(f);
-            f << ",\"m_bbox\":";
-            m_bbox.writeJson(f);
-            f << "}";
-        }
-
-        void writeBinary(std::ostream& f)
-        {
-            m_node->writeBinary(f);
-            m_bbox.writeBinary(f);
-        }
-
-        void readBinary(std::istream& f)
-        {
-            m_node->readBinary(f);
-            m_bbox.readBinary(f);
-        }
     };
 
     class NavMesh
@@ -789,10 +844,14 @@ namespace NavPower
         Binary::KDTreeData* m_kdTreeData;
         Binary::KDNode* m_rootKDNode;
 
-        NavMesh(){};
+        NavMesh() {};
+        NavMesh(const char* p_NavMeshPath) { readJson(p_NavMeshPath);};
+        
+
         NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
 
         void writeJson(std::ostream& f) {
+            f << std::fixed << std::setprecision(17);
             f << "{";
             f << "\"m_hdr\":";
             m_hdr->writeJson(f);
@@ -803,19 +862,93 @@ namespace NavPower
             f << ",\"m_graphHdr\":";
             m_graphHdr->writeJson(f);
             f << ",\"m_areas\":[";
-            Area* back = &m_areas.back();
-            for (auto& area : m_areas)
+            if (!m_areas.empty()) 
             {
-                area.writeJson(f);
-                if (&area != back) {
-                    f << ",";
+                // Build area pointer to m_areas index map so the pointers can be replaced with indices in the JSON file
+                std::map<Binary::Area*, uint32_t> s_AreaPointerToIndexMap;
+                uint32_t s_AreaIndex = 0;
+                for (Area area : m_areas)
+                {
+                    s_AreaPointerToIndexMap.emplace(area.m_area, s_AreaIndex);
+                    s_AreaIndex++;
+                }
+
+                Area* back = &m_areas.back();
+                for (auto& area : m_areas)
+                {
+                    area.writeJson(f, &s_AreaPointerToIndexMap);
+                    if (&area != back) {
+                        f << ",";
+                    }
                 }
             }
             f << "],\"m_kdTreeData\":";
             m_kdTreeData->writeJson(f);
             f << ",\"m_rootKDNode\":";
-            m_rootKDNode->writeJson(f);
+            uintptr_t p_KdTreeEnd = reinterpret_cast<uintptr_t>(m_rootKDNode) + m_kdTreeData->m_size;
+            m_rootKDNode->writeJson(f, p_KdTreeEnd);
             f << "}";
+        }
+        
+        void readJson(const char* p_NavMeshPath) {
+            simdjson::ondemand::parser p_Parser;
+            simdjson::padded_string p_Json = simdjson::padded_string::load(p_NavMeshPath);
+            simdjson::ondemand::document p_NavMeshDocument = p_Parser.iterate(p_Json);
+
+            simdjson::ondemand::object m_hdrJson = p_NavMeshDocument["m_hdr"];
+            m_hdr = new Binary::Header();
+
+            m_hdr->readJson(m_hdrJson);
+
+            simdjson::ondemand::object m_sectHdrJson = p_NavMeshDocument["m_sectHdr"];
+            m_sectHdr = new Binary::SectionHeader();
+            m_sectHdr->readJson(m_sectHdrJson);
+
+            simdjson::ondemand::object m_setHdrJson = p_NavMeshDocument["m_setHdr"];
+            m_setHdr = new Binary::NavSetHeader();
+            m_setHdr->readJson(m_setHdrJson);
+
+            simdjson::ondemand::object m_graphHdrJson = p_NavMeshDocument["m_graphHdr"];
+            m_graphHdr = new Binary::NavGraphHeader();
+            m_graphHdr->readJson(m_graphHdrJson);
+
+            simdjson::ondemand::array m_areasJson = p_NavMeshDocument["m_areas"];
+            // Build m_areas index to NavGraph offset pointer map so the indices (+1) in the JSON file can be replaced with pointers
+            std::map<uint64_t, Binary::Area*> s_AreaIndexToPointerMap;
+            uint64_t s_AreaIndex = 0;
+
+            for (auto areaJson : m_areasJson)
+            {
+                Area area;
+                area.readJson(areaJson);
+                m_areas.push_back(area);
+                s_AreaIndexToPointerMap.emplace(s_AreaIndex, area.m_area);
+                s_AreaIndex++;
+            }
+            for (Area area : m_areas)
+            {
+                for (Binary::Edge* edge : area.m_edges)
+                {
+                    if (reinterpret_cast<uint64_t>(edge->m_pAdjArea) != 0)
+                    {
+                        // Convert index of adjacent area + 1 back to Area pointer
+                        s_AreaIndex = reinterpret_cast<uint64_t>(edge->m_pAdjArea) - 1;
+                        std::map<uint64_t, Binary::Area*>::const_iterator s_MapPosition = s_AreaIndexToPointerMap.find(s_AreaIndex);
+                        if (s_MapPosition == s_AreaIndexToPointerMap.end()) {
+                            throw(std::exception("Area index not found in s_AreaIndexToPointerMap."));
+                        }
+                        else {
+                            edge->m_pAdjArea = reinterpret_cast<Binary::Area*>(s_MapPosition->second);
+                        }
+                    }
+                }
+            }
+            simdjson::ondemand::object m_kdTreeDataJson = p_NavMeshDocument["m_kdTreeData"];
+            m_kdTreeData = new Binary::KDTreeData();
+            m_kdTreeData->readJson(m_kdTreeDataJson);
+            m_rootKDNode = (Binary::KDNode*)malloc(m_kdTreeData->m_size);
+            simdjson::ondemand::object m_rootKDNodeJson = p_NavMeshDocument["m_rootKDNode"];
+            m_rootKDNode->readJson(m_rootKDNodeJson);
         }
 
         void writeBinary(std::ostream& f) {
@@ -823,12 +956,25 @@ namespace NavPower
             m_sectHdr->writeBinary(f);
             m_setHdr->writeBinary(f);
             m_graphHdr->writeBinary(f);
+            // Build m_areas area pointer to NavGraph offset pointer map so the offsets can be written instead of the memory pointers
+            std::map<Binary::Area*, Binary::Area*> s_AreaPointerToOffsetPointerMap;
+            unsigned char* s_AreaOffset = reinterpret_cast<unsigned char*>(sizeof(Binary::NavGraphHeader));
+
+            for (auto area : m_areas)
+            {
+                Binary::Area* s_areaOffsetPtr = reinterpret_cast<Binary::Area*>(s_AreaOffset);
+                s_AreaPointerToOffsetPointerMap.emplace(area.m_area, s_areaOffsetPtr);
+                s_AreaOffset += sizeof(Binary::Area);
+                s_AreaOffset += sizeof(Binary::Edge) * area.m_edges.size();
+            }
             for (auto& area : m_areas)
             {
-                area.writeBinary(f);
+                area.writeBinary(f, &s_AreaPointerToOffsetPointerMap);
             }
             m_kdTreeData->writeBinary(f);
-            m_rootKDNode->writeBinary(f);
+            
+            uintptr_t p_KdTreeEnd = reinterpret_cast<uintptr_t>(m_rootKDNode) + m_kdTreeData->m_size;
+            m_rootKDNode->writeBinary(f, p_KdTreeEnd);
         }
 
         void read(uintptr_t p_data, uint32_t p_filesize)

@@ -48,7 +48,7 @@ void ParseNavMesh(const std::string &p_Path, bool p_human = false)
 		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
 	}
 }
-void ParseAndOutputNavMesh(const std::string &p_Path, const std::string& p_OutputPath, bool p_json = false) 
+void ParseAndOutputNavMesh(const std::string &p_Path, const std::string& p_OutputPath, bool p_OutputJson = false) 
 {
 	try
 	{
@@ -60,13 +60,14 @@ void ParseAndOutputNavMesh(const std::string &p_Path, const std::string& p_Outpu
 			fprintf(stderr, "[ERROR] Could not find the file you specified.\n");
 			return;
 		}
-		if (p_json)
+		bool s_SourceIsJson = s_NavMeshPath.string().find("JSON") != -1;
+		if (p_OutputJson)
 		{
-			OutputNavMesh_JSON(s_NavMeshPath.string().c_str(), s_NavMeshOutputPath.string().c_str());
+			OutputNavMesh_JSON(s_NavMeshPath.string().c_str(), s_NavMeshOutputPath.string().c_str(), s_SourceIsJson);
 		}
 		else 
 		{
-			OutputNavMesh_NAVP(s_NavMeshPath.string().c_str(), s_NavMeshOutputPath.string().c_str());
+			OutputNavMesh_NAVP(s_NavMeshPath.string().c_str(), s_NavMeshOutputPath.string().c_str(), s_SourceIsJson);
 		}
 	}
 	catch (std::exception &p_Exception)

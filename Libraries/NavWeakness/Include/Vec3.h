@@ -50,6 +50,13 @@ struct Vec3
         f << "}";
     }
 
+    void readJson(auto p_Json)
+    {
+        X = double(p_Json["X"]);
+        Y = double(p_Json["Y"]);
+        Z = double(p_Json["Z"]);
+    }
+
     void writeBinary(std::ostream& f)
     {
         f.write((char*)&X, sizeof(X));

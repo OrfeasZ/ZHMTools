@@ -13,13 +13,13 @@ class ChecksumException : public std::exception
 {
 public:
 	std::string message;
-	NavPower::NavMesh s_NavMesh;
+	NavPower::NavMesh* p_NavMesh;
 
-	ChecksumException(std::string msg, NavPower::NavMesh s_NavMesh) :
-		message(msg), s_NavMesh(s_NavMesh) {}
+	ChecksumException(std::string msg, NavPower::NavMesh* p_NavMesh) :
+		message(msg), p_NavMesh(p_NavMesh) {}
 };
 
-NavPower::NavMesh LoadNavMesh(const char* p_NavMeshPath)
+NavPower::NavMesh LoadNavMeshFromBinary(const char* p_NavMeshPath)
 {
 	// Read the entire file to memory.
 	if (!std::filesystem::is_regular_file(p_NavMeshPath))
@@ -46,34 +46,24 @@ NavPower::NavMesh LoadNavMesh(const char* p_NavMeshPath)
 	NavPower::NavMesh s_NavMesh((uintptr_t)s_FileData, s_FileSize);
 	if (s_NavMesh.m_hdr->m_checksum != s_Checksum)
 	{
-		throw ChecksumException(std::format("Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_NavMesh.m_hdr->m_checksum), s_NavMesh);
+		throw ChecksumException(std::format("Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_NavMesh.m_hdr->m_checksum), &s_NavMesh);
 	}
 
 	return s_NavMesh;
 }
 
-// Outputs the navmesh in a human readable format
-extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
+NavPower::NavMesh LoadNavMeshFromJson(const char* p_NavMeshPath)
 {
-	NavPower::NavMesh s_NavMesh;
-	bool b_checksum_match;
-	try
-	{
-		s_NavMesh = LoadNavMesh(p_NavMeshPath);
-		b_checksum_match = true;
-	}
-	catch (ChecksumException &p_Exception)
-	{
-		s_NavMesh = p_Exception.s_NavMesh;
-		b_checksum_match = false;
-		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
-	}
-	catch (std::exception& p_Exception)
-	{
-		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
-		return;
-	}
+	// Read the entire file to memory.
+	if (!std::filesystem::is_regular_file(p_NavMeshPath))
+		throw std::exception(std::format("Input path '%s' is not a regular file.", p_NavMeshPath).c_str());
 
+	return NavPower::NavMesh(p_NavMeshPath);	
+}
+
+void OutputNavMesh_HUMAN_Print(NavPower::NavMesh* p_NavMesh)
+{
+	NavPower::NavMesh s_NavMesh = *p_NavMesh;
 	printf("===== NavPower Header ====\n");
 	printf("Hdr_endianFlag: %x\n", s_NavMesh.m_hdr->m_endianFlag);
 	printf("Hdr_version: %x\n", s_NavMesh.m_hdr->m_version);
@@ -81,11 +71,6 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 	printf("Hdr_checksum: %x\n", s_NavMesh.m_hdr->m_checksum);
 	printf("Hdr_runtimeFlags: %x\n", s_NavMesh.m_hdr->m_runtimeFlags);
 	printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags);
-
-	if (!b_checksum_match)
-	{
-		return;
-	}
 
 	printf("==== NavMesh Section Header ====\n");
 	printf("Sect_id: %x\n", s_NavMesh.m_sectHdr->m_id);
@@ -212,47 +197,95 @@ extern "C" void OutputNavMesh_HUMAN(const char *p_NavMeshPath)
 
 }
 
+// Outputs the navmesh in a human readable format
+extern "C" void OutputNavMesh_HUMAN(const char* p_NavMeshPath, bool b_SourceIsJson)
+{
+	try
+	{
+		NavPower::NavMesh s_NavMesh = LoadNavMeshFromBinary(p_NavMeshPath);
+		OutputNavMesh_HUMAN_Print(&s_NavMesh);
+
+	}
+	catch (ChecksumException& p_Exception)
+	{
+		NavPower::NavMesh s_NavMesh = *(p_Exception.p_NavMesh);
+		printf("===== NavPower Header ====\n");
+		printf("Hdr_endianFlag: %x\n", s_NavMesh.m_hdr->m_endianFlag);
+		printf("Hdr_version: %x\n", s_NavMesh.m_hdr->m_version);
+		printf("Hdr_imageSize: %x\n", s_NavMesh.m_hdr->m_imageSize);
+		printf("Hdr_checksum: %x\n", s_NavMesh.m_hdr->m_checksum);
+		printf("Hdr_runtimeFlags: %x\n", s_NavMesh.m_hdr->m_runtimeFlags);
+		printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags);
+		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
+	}
+	catch (std::exception& p_Exception)
+	{
+		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
+		return;
+	}
+}
+
 /*uint32_t GetFlags00Unk02() const
 {
 	// Always 0xffff.
 	return (m_Flags & 0xffff0000) >> 16;
 }*/
 
-// Outputs the navmesh to binary format for use by Hitman WoA
-extern "C" void OutputNavMesh_NAVP(const char *p_NavMeshPath, const char *p_NavMeshOutputPath)
+void OutputNavMesh_NAVP_Write(NavPower::NavMesh * p_NavMesh, const char* p_NavMeshOutputPath)
 {
-	NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
-
 	// Get output filename and delete file if it exists
 	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
 	std::filesystem::remove(s_OutputFileName);
 
 	// Write the Navmesh to NAVP binary file
 	std::ofstream fileOutputStream(s_OutputFileName, std::ios::out | std::ios::binary | std::ios::app);
-	s_NavMesh.writeBinary(fileOutputStream);
+	p_NavMesh->writeBinary(fileOutputStream);
 	fileOutputStream.close();
 }
 
 // Outputs the navmesh to binary format for use by Hitman WoA
-extern "C" void OutputNavMesh_JSON(const char* p_NavMeshPath, const char* p_NavMeshOutputPath)
+extern "C" void OutputNavMesh_NAVP(const char *p_NavMeshPath, const char *p_NavMeshOutputPath, bool b_SourceIsJson = false)
 {
-	NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
+	if (b_SourceIsJson)
+	{
+		NavPower::NavMesh s_NavMesh = LoadNavMeshFromJson(p_NavMeshPath);
+		OutputNavMesh_NAVP_Write(&s_NavMesh, p_NavMeshOutputPath);
+	}
+	else {
+		NavPower::NavMesh s_NavMesh = LoadNavMeshFromBinary(p_NavMeshPath);
+		OutputNavMesh_NAVP_Write(&s_NavMesh, p_NavMeshOutputPath);
+	}
+}
 
+void OutputNavMesh_JSON_Write(NavPower::NavMesh* p_NavMesh, const char* p_NavMeshOutputPath)
+{
 	// Get output filename and delete file if it exists
 	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
 	std::filesystem::remove(s_OutputFileName);
 
 	// Write the navp to JSON file
 	std::ofstream fileOutputStream(s_OutputFileName);
-	s_NavMesh.writeJson(fileOutputStream);
+	p_NavMesh->writeJson(fileOutputStream);
 	fileOutputStream.close();
 }
 
-// Outputs the navmesh to a format useable by NavViewer
-extern "C" void OutputNavMesh_VIEWER(const char *p_NavMeshPath)
+// Outputs the navmesh to binary format for use by Hitman WoA
+extern "C" void OutputNavMesh_JSON(const char* p_NavMeshPath, const char* p_NavMeshOutputPath, bool b_SourceIsJson = false)
 {
-	NavPower::NavMesh s_NavMesh = LoadNavMesh(p_NavMeshPath);
-	const std::string s_FileName = std::filesystem::path(p_NavMeshPath).filename().string();
+	if (b_SourceIsJson)
+	{
+		NavPower::NavMesh s_NavMesh = LoadNavMeshFromJson(p_NavMeshPath);
+		OutputNavMesh_JSON_Write(&s_NavMesh, p_NavMeshOutputPath);
+	}
+	else {
+		NavPower::NavMesh s_NavMesh = LoadNavMeshFromBinary(p_NavMeshPath);
+		OutputNavMesh_JSON_Write(&s_NavMesh, p_NavMeshOutputPath);
+	}
+}
+
+void OutputNavMesh_VIEWER_print(NavPower::NavMesh* p_NavMesh, const std::string s_FileName)
+{
+	NavPower::NavMesh s_NavMesh = *p_NavMesh;
 
 	printf(
 		"Areas['%s'] = [[%f, %f, %f, %f, %f, %f],", s_FileName.c_str(),
@@ -270,7 +303,7 @@ extern "C" void OutputNavMesh_VIEWER(const char *p_NavMeshPath)
 
 		for (int j = 0; j < s_curArea.m_edges.size(); j++)
 		{
-			NavPower::Binary::Edge *s_curEdge = s_curArea.m_edges.at(j);
+			NavPower::Binary::Edge* s_curEdge = s_curArea.m_edges.at(j);
 
 			printf(
 				"[%f, %f, %f, %d],",
@@ -300,4 +333,19 @@ extern "C" void OutputNavMesh_VIEWER(const char *p_NavMeshPath)
 	}
 
 	printf("];\n");
+}
+
+// Outputs the navmesh to a format useable by NavViewer
+extern "C" void OutputNavMesh_VIEWER(const char* p_NavMeshPath, bool b_SourceIsJson)
+{
+	const std::string s_FileName = std::filesystem::path(p_NavMeshPath).filename().string();
+	if (b_SourceIsJson)
+	{
+		NavPower::NavMesh s_NavMesh = LoadNavMeshFromJson(p_NavMeshPath);
+		OutputNavMesh_VIEWER_print(&s_NavMesh, s_FileName);
+	}
+	else {
+		NavPower::NavMesh s_NavMesh = LoadNavMeshFromBinary(p_NavMeshPath);
+		OutputNavMesh_VIEWER_print(&s_NavMesh, s_FileName);
+	}
 }
