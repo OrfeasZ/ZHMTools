@@ -181,34 +181,6 @@ jobs:
         path: |
           _build/_resourcetool/*
 
-    - name: Copy NavWeakness artifacts
-      run: |
-        cd _build
-        mkdir _navweakness
-        cp NavWeakness _navweakness/
-        cp ../LICENSE _navweakness/
-
-    - name: Archive NavWeakness
-      uses: actions/upload-artifact@v2
-      with:
-        name: NavWeakness-linux-x64
-        path: |
-          _build/_navweakness/*
-
-    - name: Copy NavTool artifacts
-      run: |
-        cd _build
-        mkdir _navtool
-        cp NavTool _navtool/
-        cp ../LICENSE _navtool/
-
-    - name: Archive NavTool
-      uses: actions/upload-artifact@v2
-      with:
-        name: NavTool-linux-x64
-        path: |
-          _build/_navtool/*
-
   create_release:
     name: Create release
     needs: [build_windows, build_linux]
