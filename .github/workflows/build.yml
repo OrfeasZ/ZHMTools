@@ -94,7 +94,7 @@ jobs:
     - name: Copy NavTool artifacts
       run: |
         cd _build
-        mkdir _codegen
+        mkdir _navtool
         Copy-Item NavTool.exe -Destination _navtool/
         Copy-Item NavTool.pdb -Destination _navtool/
         Copy-Item NavWeakness.dll -Destination _navtool/
