@@ -237,7 +237,7 @@ function reRender() {
     const selectedMap = mapSelector.value;
     if (selectedMap.search("00D9307D0F1DBD8F.NAVP") != -1) {
         camera.position.set(-500, 250, 250);
-    } else if (selectedMap.search("007B459198DF1DDD.NAVP" != -1) {
+    } else if (selectedMap.search("007B459198DF1DDD.NAVP") != -1) {
         camera.position.set(-219, 10, 67);
     } else {
         camera.position.set(-40, 50, 80);
