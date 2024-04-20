@@ -1,5 +1,4 @@
 #pragma once
-#include "NavPower.h"
 
 #if defined(_MSC_VER)
 #	define NAVWEAKNESS_EXPORT __declspec(dllexport)

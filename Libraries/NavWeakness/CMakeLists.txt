@@ -7,6 +7,9 @@ set(NAVWEAKNESS_HEADERS
 )
 
 set(NAVWEAKNESS_SOURCES
+	Src/External/simdjson.cpp
+	Src/External/simdjson.h
+	Src/External/simdjson_helpers.h
 	Src/NavWeakness.cpp
 )
 
