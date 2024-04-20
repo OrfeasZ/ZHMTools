@@ -35,7 +35,7 @@ SOFTWARE.
 #if _WIN32
 #define SIMD_PATH "..\\Src\\External\\simdjson.h"
 #else
-#define SIMD_PATH "../Src/External/simdjson.h/"
+#define SIMD_PATH "../Src/External/simdjson.h"
 #endif
 #include SIMD_PATH
 
