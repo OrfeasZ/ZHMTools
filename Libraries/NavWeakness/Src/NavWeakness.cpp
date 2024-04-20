@@ -42,7 +42,7 @@ NavPower::NavMesh LoadNavMeshFromBinary(const char* p_NavMeshPath)
 		printf("Hdr_imageSize: %x\n", s_NavMesh.m_hdr->m_imageSize);
 		printf("Hdr_checksum: %x\n", s_NavMesh.m_hdr->m_checksum);
 		printf("Hdr_runtimeFlags: %x\n", s_NavMesh.m_hdr->m_runtimeFlags);
-		printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags)
+		printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags);
 		throw std::runtime_error("Checksums didn't match.");
 	}
 
