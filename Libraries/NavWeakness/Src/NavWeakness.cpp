@@ -9,28 +9,18 @@
 
 #include "NavPower.h"
 
-class ChecksumException : public std::exception
-{
-public:
-	std::string message;
-	NavPower::NavMesh* p_NavMesh;
-
-	ChecksumException(std::string msg, NavPower::NavMesh* p_NavMesh) :
-		message(msg), p_NavMesh(p_NavMesh) {}
-};
-
 NavPower::NavMesh LoadNavMeshFromBinary(const char* p_NavMeshPath)
 {
 	// Read the entire file to memory.
 	if (!std::filesystem::is_regular_file(p_NavMeshPath))
-		throw std::exception(std::format("Input path '%s' is not a regular file.", p_NavMeshPath).c_str());
+		throw std::runtime_error("Input path is not a regular file.");
 
 	// Read the entire file to memory.
 	const long s_FileSize = std::filesystem::file_size(p_NavMeshPath);
 	std::ifstream s_FileStream(p_NavMeshPath, std::ios::in | std::ios::binary);
 
 	if (!s_FileStream)
-		throw std::exception("Error creating input file stream.");
+		throw std::runtime_error("Error creating input file stream.");
 
 	void* s_FileData = malloc(s_FileSize);
 	s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
@@ -46,7 +36,14 @@ NavPower::NavMesh LoadNavMeshFromBinary(const char* p_NavMeshPath)
 	NavPower::NavMesh s_NavMesh((uintptr_t)s_FileData, s_FileSize);
 	if (s_NavMesh.m_hdr->m_checksum != s_Checksum)
 	{
-		throw ChecksumException(std::format("Checksums didn't match. Expected '%x' but got '%x'.\n", s_Checksum, s_NavMesh.m_hdr->m_checksum), &s_NavMesh);
+		printf("===== NavPower Header ====\n");
+		printf("Hdr_endianFlag: %x\n", s_NavMesh.m_hdr->m_endianFlag);
+		printf("Hdr_version: %x\n", s_NavMesh.m_hdr->m_version);
+		printf("Hdr_imageSize: %x\n", s_NavMesh.m_hdr->m_imageSize);
+		printf("Hdr_checksum: %x\n", s_NavMesh.m_hdr->m_checksum);
+		printf("Hdr_runtimeFlags: %x\n", s_NavMesh.m_hdr->m_runtimeFlags);
+		printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags)
+		throw std::runtime_error("Checksums didn't match.");
 	}
 
 	return s_NavMesh;
@@ -56,7 +53,7 @@ NavPower::NavMesh LoadNavMeshFromJson(const char* p_NavMeshPath)
 {
 	// Read the entire file to memory.
 	if (!std::filesystem::is_regular_file(p_NavMeshPath))
-		throw std::exception(std::format("Input path '%s' is not a regular file.", p_NavMeshPath).c_str());
+		throw std::runtime_error("Input path is not a regular file.");
 
 	return NavPower::NavMesh(p_NavMeshPath);	
 }
@@ -206,20 +203,8 @@ extern "C" void OutputNavMesh_HUMAN(const char* p_NavMeshPath, bool b_SourceIsJs
 		OutputNavMesh_HUMAN_Print(&s_NavMesh);
 
 	}
-	catch (ChecksumException& p_Exception)
-	{
-		NavPower::NavMesh s_NavMesh = *(p_Exception.p_NavMesh);
-		printf("===== NavPower Header ====\n");
-		printf("Hdr_endianFlag: %x\n", s_NavMesh.m_hdr->m_endianFlag);
-		printf("Hdr_version: %x\n", s_NavMesh.m_hdr->m_version);
-		printf("Hdr_imageSize: %x\n", s_NavMesh.m_hdr->m_imageSize);
-		printf("Hdr_checksum: %x\n", s_NavMesh.m_hdr->m_checksum);
-		printf("Hdr_runtimeFlags: %x\n", s_NavMesh.m_hdr->m_runtimeFlags);
-		printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags);
-		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
-	}
-	catch (std::exception& p_Exception)
-	{
+	catch (std::runtime_error& p_Exception)
+	{;
 		fprintf(stderr, "[ERROR] %s\n", p_Exception.what());
 		return;
 	}

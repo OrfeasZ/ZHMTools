@@ -519,8 +519,8 @@ namespace NavPower
                 {
                     // Replace pointer to adjacent area with index of adjacent area + 1, with 0 being null
                     std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToIndexMap->find(m_pAdjArea);
-                    if (s_MapPosition == p_AreaPointerToIndexMap->end()) {
-                        throw(std::exception("Area pointer not found in AreaPointerToIndexMap."));
+                    if (s_MapPosition != p_AreaPointerToIndexMap->end()) {
+                        throw std::runtime_error("Area pointer not found in AreaPointerToIndexMap.");
                     }
                     else {
                         uint32_t s_AdjAreaIndex = s_MapPosition->second + 1;
@@ -558,7 +558,7 @@ namespace NavPower
                     Area* s_pAdjAreaFixed;
                     std::map<Binary::Area*, Binary::Area*>::const_iterator s_MapPosition = s_AreaPointerToOffsetPointerMap->find(m_pAdjArea);
                     if (s_MapPosition == s_AreaPointerToOffsetPointerMap->end()) {
-                        throw(std::exception("Area pointer not found in s_AreaPointerToOffsetPointerMap."));
+                        throw std::runtime_error("Area pointer not found in s_AreaPointerToOffsetPointerMap.");
                     }
                     else {
                         s_pAdjAreaFixed = reinterpret_cast<Binary::Area*>(s_MapPosition->second);
@@ -941,7 +941,7 @@ namespace NavPower
                         s_AreaIndex = reinterpret_cast<uint64_t>(edge->m_pAdjArea) - 1;
                         std::map<uint64_t, Binary::Area*>::const_iterator s_MapPosition = s_AreaIndexToPointerMap.find(s_AreaIndex);
                         if (s_MapPosition == s_AreaIndexToPointerMap.end()) {
-                            throw(std::exception("Area index not found in s_AreaIndexToPointerMap."));
+                            throw std::runtime_error("Area index not found in s_AreaIndexToPointerMap.");
                         }
                         else {
                             edge->m_pAdjArea = reinterpret_cast<Binary::Area*>(s_MapPosition->second);
