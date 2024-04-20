@@ -31,7 +31,13 @@ SOFTWARE.
 #include <vector>
 #include <map>
 #include <iostream>
-#include "..\\Src\\External\\simdjson.h"
+
+#if _WIN32
+#define SIMD_PATH "..\\Src\\External\\simdjson.h"
+#else
+#define SIMD_PATH "../Src/External/simdjson.h/"
+#endif
+#include SIMD_PATH
 
 #include "Vec3.h"
 
