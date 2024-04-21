@@ -146,7 +146,7 @@ jobs:
       run: |
         cd _build
         mkdir _resourcelib
-        cp ../Libraries/ResourceLib/Include _resourcelib/
+        cp -r ../Libraries/ResourceLib/Include _resourcelib/
         cp ../Libraries/ResourceLib/ResourceLib.cs _resourcelib/
         cp ResourceLib*.so _resourcelib/
         cp ../LICENSE _resourcelib/
