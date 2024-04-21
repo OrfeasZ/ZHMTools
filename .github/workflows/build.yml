@@ -142,6 +142,15 @@ jobs:
       run: |
         cmake --build _build -j2
 
+    - name: Copy resource lib artifacts
+      run: |
+        cd _build
+        mkdir _resourcelib
+        cp ../Libraries/ResourceLib/Include _resourcelib/
+        cp ../Libraries/ResourceLib/ResourceLib.cs _resourcelib/
+        cp ResourceLib*.so _resourcelib/
+        cp ../LICENSE _resourcelib/
+
     - name: Copy resource tool artifacts
       run: |
         cd _build
@@ -155,6 +164,14 @@ jobs:
         name: ResourceTool-linux-x64
         path: |
           _build/_resourcetool/*
+          _build/_resourcelib/*.so
+
+    - name: Archive resource lib
+      uses: actions/upload-artifact@v2
+      with:
+        name: ResourceLib-linux-x64
+        path: |
+          _build/_resourcelib/*
 
   create_release:
     name: Create release
@@ -185,7 +202,7 @@ jobs:
 
     strategy:
       matrix:
-        artifact: [ ResourceTool-win-x64, ResourceTool-linux-x64, CodeGen-win-x64, ResourceLib-win-x64 ]
+        artifact: [ ResourceTool-win-x64, ResourceTool-linux-x64, CodeGen-win-x64, ResourceLib-win-x64, ResourceLib-linux-x64 ]
 
     steps:
     - name: Download artifact
