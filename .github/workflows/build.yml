@@ -47,15 +47,7 @@ jobs:
         cd _build
         mkdir _resourcetool
         Copy-Item ResourceTool.exe -Destination _resourcetool/
-        Copy-Item ResourceTool.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HM3.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HM3.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2016.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2016.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HMA.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HMA.pdb -Destination _resourcetool/
+        robocopy ./ ./_resourcetool ResourceLib*.dll ResourceLib*.pdb
         Copy-Item ../LICENSE -Destination _resourcetool/
 
     - name: Copy CodeGen artifacts
@@ -75,18 +67,7 @@ jobs:
         cd _build
         mkdir _resourcelib
         mkdir _resourcelib/Include
-        Copy-Item ResourceLib_HM2.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2.pdb -Destination _resourcelib/
-        Copy-Item ResourceLib_HM3.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HM3.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HM3.pdb -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2016.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2016.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2016.pdb -Destination _resourcelib/
-        Copy-Item ResourceLib_HMA.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HMA.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HMA.pdb -Destination _resourcelib/
+        robocopy ./ ./_resourcelib ResourceLib*.dll ResourceLib*.pdb ResourceLib*.lib
         Copy-Item ../Libraries/ResourceLib/Include/* -Destination _resourcelib/Include/
         Copy-Item ../Libraries/ResourceLib/ResourceLib.cs -Destination _resourcelib/
         Copy-Item ../LICENSE -Destination _resourcelib/
@@ -156,6 +137,7 @@ jobs:
         cd _build
         mkdir _resourcetool
         cp ResourceTool _resourcetool/
+        cp ResourceLib*.so _resourcetool/
         cp ../LICENSE _resourcetool/
 
     - name: Archive resource tool
@@ -164,7 +146,6 @@ jobs:
         name: ResourceTool-linux-x64
         path: |
           _build/_resourcetool/*
-          _build/_resourcelib/*.so
 
     - name: Archive resource lib
       uses: actions/upload-artifact@v2
