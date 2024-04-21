@@ -19,7 +19,7 @@ jobs:
       uses: lukka/get-cmake@latest
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
@@ -73,21 +73,21 @@ jobs:
         Copy-Item ../LICENSE -Destination _resourcelib/
 
     - name: Archive ResourceTool
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ResourceTool-win-x64
         path: |
           _build/_resourcetool/*
 
     - name: Archive CodeGen
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: CodeGen-win-x64
         path: |
           _build/_codegen/*
 
     - name: Archive ResourceLib
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ResourceLib-win-x64
         path: |
@@ -99,7 +99,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
@@ -141,14 +141,14 @@ jobs:
         cp ../LICENSE _resourcetool/
 
     - name: Archive resource tool
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ResourceTool-linux-x64
         path: |
           _build/_resourcetool/*
 
     - name: Archive resource lib
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ResourceLib-linux-x64
         path: |
