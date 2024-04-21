@@ -17,6 +17,7 @@ const checkPortalVertices = document.getElementById('check-portal-vertices');
 const checkBBox = document.getElementById('check-bbox');
 const checkNumbers = document.getElementById('check-numbers');
 const checkKDTree = document.getElementById('check-kdtree');
+const useOrderedEdgeColors = document.getElementById('check-use-ordered-edge-colors');
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -81,27 +82,44 @@ function setEdgeColor(edgeIndex, colors) {
     colors[edgeIndex * 3 + 2] = edgeColor[2];
 }
 
-function renderEdges(edges) {
-    const points = [];
-    const colors = new Float32Array((edges.length + 1) * 3);
-    let edgeIndex = 0;
+function renderEdges(edges, useOrderedEdgeColors) {
+    if (!useOrderedEdgeColors.checked) {
+        const points = [];
 
-    for (const edge of edges) {
-        points.push(new THREE.Vector3(edge[1], edge[2], edge[0]));
-        setEdgeColor(edgeIndex, colors);
-        edgeIndex++;
+        for (const edge of edges) {
+            points.push(new THREE.Vector3(edge[1], edge[2], edge[0]));
+        }
+
+        points.push(new THREE.Vector3(edges[0][1], edges[0][2], edges[0][0]));
+
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00 });
+        const line = new THREE.Line(geometry, lineMaterial);
+
+        scene.add(line);
+    } else {
+        const points = [];
+        const colors = new Float32Array((edges.length + 1) * 3);
+        let edgeIndex = 0;
+
+        for (const edge of edges) {
+            points.push(new THREE.Vector3(edge[1], edge[2], edge[0]));
+            setEdgeColor(edgeIndex, colors, useOrderedEdgeColors);
+            edgeIndex++;
+        }
+
+        points.push(new THREE.Vector3(edges[0][1], edges[0][2], edges[0][0]));
+        setEdgeColor(edgeIndex, colors, useOrderedEdgeColors);
+
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+        const lineMaterial = new THREE.LineBasicMaterial({ vertexColors: THREE.VertexColors });
+        const line = new THREE.Line(geometry, lineMaterial);
+
+        scene.add(line);
     }
-
-    points.push(new THREE.Vector3(edges[0][1], edges[0][2], edges[0][0]));
-    setEdgeColor(edgeIndex, colors);
-
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-    
-    const lineMaterial = new THREE.LineBasicMaterial({ vertexColors: THREE.VertexColors });
-    const line = new THREE.Line(geometry, lineMaterial);
-
-    scene.add(line);
 }
 
 function renderSurfaceRadius(centerX, centerY, centerZ, maxRadius) {
@@ -188,7 +206,7 @@ function renderSurface(i, surface) {
     }
     
     if (checkEdges.checked) {
-        renderEdges(vertices);
+        renderEdges(vertices, useOrderedEdgeColors);
     }
 
     if (checkBasisVertices.checked) {
@@ -279,6 +297,7 @@ reRender();
 
 mapSelector.addEventListener('change', () => reRender());
 checkRadii.addEventListener('change', () => reRender());
+useOrderedEdgeColors.addEventListener('change', () => reRender());
 checkCenters.addEventListener('change', () => reRender());
 checkFaces.addEventListener('change', () => reRender());
 checkEdges.addEventListener('change', () => reRender());
