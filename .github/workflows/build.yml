@@ -47,7 +47,7 @@ jobs:
         cd _build
         mkdir _resourcetool
         Copy-Item ResourceTool.exe -Destination _resourcetool/
-        robocopy ./ ./_resourcetool ResourceLib*.dll ResourceLib*.pdb
+        robocopy ./ ./_resourcetool ResourceLib*.dll ResourceLib*.pdb; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
         Copy-Item ../LICENSE -Destination _resourcetool/
 
     - name: Copy CodeGen artifacts
@@ -67,7 +67,7 @@ jobs:
         cd _build
         mkdir _resourcelib
         mkdir _resourcelib/Include
-        robocopy ./ ./_resourcelib ResourceLib*.dll ResourceLib*.pdb ResourceLib*.lib
+        robocopy ./ ./_resourcelib ResourceLib*.dll ResourceLib*.pdb ResourceLib*.lib; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
         Copy-Item ../Libraries/ResourceLib/Include/* -Destination _resourcelib/Include/
         Copy-Item ../Libraries/ResourceLib/ResourceLib.cs -Destination _resourcelib/
         Copy-Item ../LICENSE -Destination _resourcelib/
