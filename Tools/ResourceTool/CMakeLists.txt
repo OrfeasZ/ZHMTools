@@ -15,10 +15,6 @@ target_link_libraries(ResourceTool PUBLIC
 	ResourceLib_HMA
 )
 
-#if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-#	target_link_options(ResourceTool PRIVATE "-static")
-#endif()
-
 # Copy over the ResourceLib binaries so the executable can find them when running.
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	add_custom_command(TARGET ResourceTool POST_BUILD
