@@ -519,7 +519,7 @@ namespace NavPower
                 {
                     // Replace pointer to adjacent area with index of adjacent area + 1, with 0 being null
                     std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToIndexMap->find(m_pAdjArea);
-                    if (s_MapPosition != p_AreaPointerToIndexMap->end()) {
+                    if (s_MapPosition == p_AreaPointerToIndexMap->end()) {
                         throw std::runtime_error("Area pointer not found in AreaPointerToIndexMap.");
                     }
                     else {
@@ -839,6 +839,8 @@ namespace NavPower
         BBox m_bbox;
     };
 
+    uint32_t CalculateChecksum(void* p_Data, uint32_t p_Size);
+
     class NavMesh
     {
     public:
@@ -895,7 +897,7 @@ namespace NavPower
             m_rootKDNode->writeJson(f, p_KdTreeEnd);
             f << "}";
         }
-        
+
         void readJson(const char* p_NavMeshPath) {
             simdjson::ondemand::parser p_Parser;
             simdjson::padded_string p_Json = simdjson::padded_string::load(p_NavMeshPath);
@@ -955,6 +957,29 @@ namespace NavPower
             m_rootKDNode = (Binary::KDNode*)malloc(m_kdTreeData->m_size);
             simdjson::ondemand::object m_rootKDNodeJson = p_NavMeshDocument["m_rootKDNode"];
             m_rootKDNode->readJson(m_rootKDNodeJson);
+
+            // Recalculate the checksum in case the JSON file was manually edited
+            // Write the Navmesh to a temporary NAVP binary file
+            std::string p_ChecksumCalculationTempPath(p_NavMeshPath);
+            p_ChecksumCalculationTempPath.append(".TEMP");
+            std::filesystem::remove(p_ChecksumCalculationTempPath);
+            std::ofstream fileOutputStream(p_ChecksumCalculationTempPath, std::ios::out | std::ios::binary | std::ios::app);
+            writeBinary(fileOutputStream);
+            // Read the entire file to memory.
+            fileOutputStream.close();
+            if (!std::filesystem::is_regular_file(p_NavMeshPath))
+                throw std::runtime_error("Input path is not a regular file.");
+            const long s_FileSize = std::filesystem::file_size(p_ChecksumCalculationTempPath);
+            std::ifstream s_FileStream(p_ChecksumCalculationTempPath, std::ios::in | std::ios::binary);
+            if (!s_FileStream)
+                throw std::runtime_error("Error creating input file stream.");
+            void* s_FileData = malloc(s_FileSize);
+            s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
+            s_FileStream.close();
+            std::filesystem::remove(p_ChecksumCalculationTempPath);
+            const auto s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
+            const uint32_t s_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(NavPower::Binary::Header)), (s_FileSize - sizeof(NavPower::Binary::Header)));
+            m_hdr->m_checksum = s_Checksum;
         }
 
         void writeBinary(std::ostream& f) {

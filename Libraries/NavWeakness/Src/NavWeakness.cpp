@@ -11,7 +11,6 @@
 
 NavPower::NavMesh LoadNavMeshFromBinary(const char* p_NavMeshPath)
 {
-	// Read the entire file to memory.
 	if (!std::filesystem::is_regular_file(p_NavMeshPath))
 		throw std::runtime_error("Input path is not a regular file.");
 
