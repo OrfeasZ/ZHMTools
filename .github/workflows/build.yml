@@ -19,7 +19,7 @@ jobs:
       uses: lukka/get-cmake@latest
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
@@ -47,15 +47,7 @@ jobs:
         cd _build
         mkdir _resourcetool
         Copy-Item ResourceTool.exe -Destination _resourcetool/
-        Copy-Item ResourceTool.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HM3.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HM3.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2016.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HM2016.pdb -Destination _resourcetool/
-        Copy-Item ResourceLib_HMA.dll -Destination _resourcetool/
-        Copy-Item ResourceLib_HMA.pdb -Destination _resourcetool/
+        robocopy ./ ./_resourcetool ResourceLib*.dll ResourceLib*.pdb; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
         Copy-Item ../LICENSE -Destination _resourcetool/
 
     - name: Copy CodeGen artifacts
@@ -75,38 +67,27 @@ jobs:
         cd _build
         mkdir _resourcelib
         mkdir _resourcelib/Include
-        Copy-Item ResourceLib_HM2.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2.pdb -Destination _resourcelib/
-        Copy-Item ResourceLib_HM3.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HM3.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HM3.pdb -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2016.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2016.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HM2016.pdb -Destination _resourcelib/
-        Copy-Item ResourceLib_HMA.dll -Destination _resourcelib/
-        Copy-Item ResourceLib_HMA.lib -Destination _resourcelib/
-        Copy-Item ResourceLib_HMA.pdb -Destination _resourcelib/
+        robocopy ./ ./_resourcelib ResourceLib*.dll ResourceLib*.pdb ResourceLib*.lib; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
         Copy-Item ../Libraries/ResourceLib/Include/* -Destination _resourcelib/Include/
         Copy-Item ../Libraries/ResourceLib/ResourceLib.cs -Destination _resourcelib/
         Copy-Item ../LICENSE -Destination _resourcelib/
 
     - name: Archive ResourceTool
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ResourceTool-win-x64
         path: |
           _build/_resourcetool/*
 
     - name: Archive CodeGen
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: CodeGen-win-x64
         path: |
           _build/_codegen/*
 
     - name: Archive ResourceLib
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ResourceLib-win-x64
         path: |
@@ -118,7 +99,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
@@ -142,19 +123,36 @@ jobs:
       run: |
         cmake --build _build -j2
 
+    - name: Copy resource lib artifacts
+      run: |
+        cd _build
+        mkdir _resourcelib
+        cp -r ../Libraries/ResourceLib/Include _resourcelib/
+        cp ../Libraries/ResourceLib/ResourceLib.cs _resourcelib/
+        cp ResourceLib*.so _resourcelib/
+        cp ../LICENSE _resourcelib/
+
     - name: Copy resource tool artifacts
       run: |
         cd _build
         mkdir _resourcetool
         cp ResourceTool _resourcetool/
+        cp ResourceLib*.so _resourcetool/
         cp ../LICENSE _resourcetool/
 
     - name: Archive resource tool
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ResourceTool-linux-x64
         path: |
           _build/_resourcetool/*
+
+    - name: Archive resource lib
+      uses: actions/upload-artifact@v4
+      with:
+        name: ResourceLib-linux-x64
+        path: |
+          _build/_resourcelib/*
 
   create_release:
     name: Create release
@@ -185,7 +183,7 @@ jobs:
 
     strategy:
       matrix:
-        artifact: [ ResourceTool-win-x64, ResourceTool-linux-x64, CodeGen-win-x64, ResourceLib-win-x64 ]
+        artifact: [ ResourceTool-win-x64, ResourceTool-linux-x64, CodeGen-win-x64, ResourceLib-win-x64, ResourceLib-linux-x64 ]
 
     steps:
     - name: Download artifact
