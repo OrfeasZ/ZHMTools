@@ -554,7 +554,7 @@ namespace NavPower
             {
                 if (m_pAdjArea != NULL)
                 {
-                    // Convert pointer to adjacent Area to Area offset
+                    // Convert adjacent Area pointer to Area file offset
                     Area* s_pAdjAreaFixed;
                     std::map<Binary::Area*, Binary::Area*>::const_iterator s_MapPosition = s_AreaPointerToOffsetPointerMap->find(m_pAdjArea);
                     if (s_MapPosition == s_AreaPointerToOffsetPointerMap->end()) {
@@ -645,19 +645,26 @@ namespace NavPower
                 f << "}";
             }
 
-            void readJson(auto p_Json)
+            uint32_t readJson(auto p_Json)
             {
                 m_data = uint64_t(p_Json["m_data"]);
                 if (!IsLeaf()) {
+                    uint32_t s_treeSize = sizeof(uint32_t);
                     m_dLeft = double(p_Json["m_dLeft"]);
                     m_dRight = double(p_Json["m_dRight"]);
+                    s_treeSize += sizeof(double) * 2;
                     simdjson::ondemand::object leftChildJson;
                     auto s_Left = p_Json["leftChild"];
                     KDNode* leftChild = GetLeft();
-                    leftChild->readJson(s_Left);
+                    s_treeSize += leftChild->readJson(s_Left);
                     auto s_Right = p_Json["rightChild"];
                     KDNode* rightChild = GetRight();
-                    rightChild->readJson(s_Right);
+                    s_treeSize += rightChild->readJson(s_Right);
+                    return s_treeSize;
+                }
+                else
+                {
+                    return sizeof(uint32_t);
                 }
             }
 
@@ -686,23 +693,6 @@ namespace NavPower
             uint32_t m_data;
 
             uint32_t GetPrimOffset() const { return m_data & 0x7FFFFFFF; }
-
-            void writeJson(std::ostream& f)
-            {
-                f << "{";
-                f << "\"m_data\":" << m_data;
-                f << "}";
-            }
-
-            void readJson(auto p_Json)
-            {
-                m_data = uint64_t(p_Json["m_data"]);
-            }
-
-            void writeBinary(std::ostream& f)
-            {
-                f.write((char*)&m_data, sizeof(m_data));
-            }
         };
     }; // namespace Binary
 
@@ -907,7 +897,7 @@ namespace NavPower
             m_hdr = new Binary::Header();
 
             m_hdr->readJson(m_hdrJson);
-
+            
             simdjson::ondemand::object m_sectHdrJson = p_NavMeshDocument["m_sectHdr"];
             m_sectHdr = new Binary::SectionHeader();
             m_sectHdr->readJson(m_sectHdrJson);
@@ -933,8 +923,11 @@ namespace NavPower
                 s_AreaIndexToPointerMap.emplace(s_AreaIndex, area.m_area);
                 s_AreaIndex++;
             }
+            uint32_t s_areaBytes = 0;
             for (Area area : m_areas)
             {
+                s_areaBytes += sizeof(Binary::Area);
+                s_areaBytes += sizeof(Binary::Edge) * area.m_edges.size();
                 for (Binary::Edge* edge : area.m_edges)
                 {
                     if (reinterpret_cast<uint64_t>(edge->m_pAdjArea) != 0)
@@ -954,9 +947,18 @@ namespace NavPower
             simdjson::ondemand::object m_kdTreeDataJson = p_NavMeshDocument["m_kdTreeData"];
             m_kdTreeData = new Binary::KDTreeData();
             m_kdTreeData->readJson(m_kdTreeDataJson);
+            
             m_rootKDNode = (Binary::KDNode*)malloc(m_kdTreeData->m_size);
             simdjson::ondemand::object m_rootKDNodeJson = p_NavMeshDocument["m_rootKDNode"];
-            m_rootKDNode->readJson(m_rootKDNodeJson);
+            uint32_t s_treeSize = m_rootKDNode->readJson(m_rootKDNodeJson);
+
+            // Set size fields
+            m_kdTreeData->m_size = s_treeSize;
+            m_graphHdr->m_areaBytes = s_areaBytes;
+            m_graphHdr->m_kdTreeBytes = sizeof(Binary::KDTreeData) + m_kdTreeData->m_size;
+            m_graphHdr->m_totalBytes = sizeof(Binary::NavGraphHeader) + m_graphHdr->m_areaBytes + m_graphHdr->m_kdTreeBytes;
+            m_sectHdr->m_size = m_graphHdr->m_totalBytes + sizeof(Binary::SectionHeader);
+            m_hdr->m_imageSize = m_sectHdr->m_size + sizeof(Binary::NavSetHeader);
 
             // Recalculate the checksum in case the JSON file was manually edited
             // Write the Navmesh to a temporary NAVP binary file

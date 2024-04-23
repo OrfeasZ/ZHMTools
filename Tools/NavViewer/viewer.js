@@ -68,13 +68,13 @@ function setEdgeColor(edgeIndex, colors) {
     if (edgeIndex == 0) {
         edgeColor = [1.0, 1.0, 1.0];
     }
-    if (edgeIndex == 1) {
+    else if (edgeIndex == 1) {
         edgeColor = [1.0, 0.0, 1.0];
     }
-    if (edgeIndex % 2 == 1) {
+    else if (edgeIndex % 2 == 1) {
         edgeColor = [1.0, 0.0, 0.0];
     }
-    if (edgeIndex % 2 == 0) {
+    else if (edgeIndex % 2 == 0) {
         edgeColor = [0.0, 0.0, 1.0];
     };
     colors[edgeIndex * 3] = edgeColor[0];
