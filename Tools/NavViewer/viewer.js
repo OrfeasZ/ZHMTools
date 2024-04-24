@@ -18,6 +18,8 @@ const checkBBox = document.getElementById('check-bbox');
 const checkNumbers = document.getElementById('check-numbers');
 const checkKDTree = document.getElementById('check-kdtree');
 const useOrderedEdgeColors = document.getElementById('check-use-ordered-edge-colors');
+const highlightArea = document.getElementById('highlight-area');
+const kdTreeDepth = document.getElementById('kd-tree-depth');
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -201,6 +203,10 @@ function renderSurface(i, surface) {
         faceColor = 0xFF69B4;
     }
 
+    if (parseInt(highlightArea.value) == i) {
+        faceColor = 0xFF0000;
+    }
+
     if (checkFaces.checked) {
         renderFace(vertices, faceColor);
     }
@@ -233,7 +239,17 @@ function renderBBox(unk) {
     scene.add(helper);
 }
 
-camera.position.set(-40, 50, 80);
+function getRangeColor(range, maxRange) {
+    const color = parseInt(128 + 0xFFFF80 * parseInt(range) / maxRange);
+    return color;
+}
+
+function renderBBoxWithColor(color, bbox) {
+    const box = new THREE.Box3(new THREE.Vector3(bbox[1], bbox[2] + 0.01, bbox[0]), new THREE.Vector3(bbox[4], bbox[5] + 0.01, bbox[3]));
+    const helper = new THREE.Box3Helper(box, color);
+    scene.add(helper);
+}
+
 controls.update();
 
 function animate() {
@@ -245,21 +261,19 @@ function animate() {
 }
 
 animate();
+
+function resetCamera() {
+    const selectedMap = mapSelector.value;
+    camera.position.set(-40, 50, 80);
+}
+
 function reRender() {
     // Clear the scene.
     while (scene.children.length > 0) {
         scene.remove(scene.children[0]);
     }
 
-    // Render everything.
     const selectedMap = mapSelector.value;
-    if (selectedMap.search("00D9307D0F1DBD8F.NAVP") != -1 || selectedMap.search("0030EFB6A5E48506.NAVP") != -1) {
-        camera.position.set(-500, 250, 250);
-    } else if (selectedMap.search("007B459198DF1DDD.NAVP") != -1) {
-        camera.position.set(-219, 10, 67);
-    } else {
-        camera.position.set(-40, 50, 80);
-    }
     console.log('Rendering ' + selectedMap);
 
     if (checkBBox.checked) {
@@ -270,11 +284,26 @@ function reRender() {
         const surface = Areas[selectedMap][i];
         renderSurface(i, surface);
     }
+    
+    let maxDepth = -1;
+    for (const [depth, bboxes] of Object.entries(KDTree[selectedMap])) {
+        maxDepth = Math.max(maxDepth, depth);
+    }
+    kdTreeDepth.min = 0;
+    kdTreeDepth.max = maxDepth;
 
     if (checkKDTree.checked) {
-        for (const bbox of KDTree[selectedMap])
+        
+        for (const [depth, bboxes] of Object.entries(KDTree[selectedMap]))
         {
-            renderBBox(bbox);
+            if (kdTreeDepth.value == -1 || kdTreeDepth.value == depth) {
+                let bboxIndex = 0;
+                for (const bbox of bboxes) {
+                    const color = getRangeColor(bboxIndex, bboxes.length);
+                    renderBBoxWithColor(color, bbox);
+                    bboxIndex++;
+                }
+            }
         }
     }
 }
@@ -293,11 +322,14 @@ for (const mapName in Areas) {
     mapSelector.appendChild(optionElement);
 }
 
+resetCamera();
 reRender();
 
-mapSelector.addEventListener('change', () => reRender());
+mapSelector.addEventListener('change', () => { resetCamera(); reRender()});
 checkRadii.addEventListener('change', () => reRender());
 useOrderedEdgeColors.addEventListener('change', () => reRender());
+highlightArea.addEventListener('input', () => reRender());
+kdTreeDepth.addEventListener('input', () => reRender());
 checkCenters.addEventListener('change', () => reRender());
 checkFaces.addEventListener('change', () => reRender());
 checkEdges.addEventListener('change', () => reRender());

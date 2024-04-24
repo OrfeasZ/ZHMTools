@@ -827,6 +827,7 @@ namespace NavPower
     {
         Binary::KDNode* m_node;
         BBox m_bbox;
+        uint32_t depth;
     };
 
     uint32_t CalculateChecksum(void* p_Data, uint32_t p_Size);
@@ -1071,42 +1072,50 @@ namespace NavPower
         }
 
         // This parses the k-d tree and outputs it as a vector of bounding boxes
-        std::vector<BBox> ParseKDTree()
+        std::map<uint32_t, std::vector<BBox>> ParseKDTree()
         {
-            std::vector<BBox> bboxes;
+            std::map<uint32_t, std::vector<BBox>> depthToBboxMap;
             std::vector<KDTreeHelper> kdNodes;
-
+            std::vector<BBox> newVector;
+            depthToBboxMap.insert({ 0,  newVector });
             kdNodes.push_back(KDTreeHelper{
                 m_rootKDNode,
-                m_kdTreeData->m_bbox});
+                m_kdTreeData->m_bbox,
+                0});
 
             while (!kdNodes.empty())
             {
                 KDTreeHelper parent = kdNodes.back();
                 kdNodes.pop_back();
-                if (parent.m_node->IsLeaf())
-                {
-                    bboxes.push_back(parent.m_bbox);
+                uint32_t depth = parent.depth + 1;
+                if (depthToBboxMap.find(depth) == depthToBboxMap.end()) {
+                    std::vector<BBox> newNodeVector;
+                    depthToBboxMap.insert({ depth, newNodeVector });
                 }
-                else
+                depthToBboxMap[depth].push_back(BBox(parent.m_bbox));
+                if (!parent.m_node->IsLeaf())
                 {
                     Axis splitAxis = parent.m_node->GetSplitAxis();
 
                     // Left Node
                     kdNodes.push_back(KDTreeHelper{
                         parent.m_node->GetLeft(),
-                        parent.m_bbox});
+                        parent.m_bbox,
+                        depth});
+
                     kdNodes.back().m_bbox.m_max[splitAxis] = parent.m_node->m_dLeft;
 
                     // Right Node
                     kdNodes.push_back(KDTreeHelper{
                         parent.m_node->GetRight(),
-                        parent.m_bbox});
+                        parent.m_bbox,
+                        depth});
+
                     kdNodes.back().m_bbox.m_min[splitAxis] = parent.m_node->m_dRight;
                 }
             }
 
-            return bboxes;
+            return depthToBboxMap;
         }
     };
 
