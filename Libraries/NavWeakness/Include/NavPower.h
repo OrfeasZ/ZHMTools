@@ -652,7 +652,7 @@ namespace NavPower
                     uint32_t s_treeSize = sizeof(uint32_t);
                     m_dLeft = double(p_Json["m_dLeft"]);
                     m_dRight = double(p_Json["m_dRight"]);
-                    s_treeSize += sizeof(double) * 2;
+                    s_treeSize += sizeof(float) * 2;
                     simdjson::ondemand::object leftChildJson;
                     auto s_Left = p_Json["leftChild"];
                     KDNode* leftChild = GetLeft();
@@ -757,6 +757,7 @@ namespace NavPower
                 edge->readJson(edgeJson);
                 m_edges.push_back(edge);
             }
+            m_area->m_flags.SetNumEdges(m_edges.size());
         }
 
         void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap)

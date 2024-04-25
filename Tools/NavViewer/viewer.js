@@ -250,6 +250,23 @@ function renderBBoxWithColor(color, bbox) {
     scene.add(helper);
 }
 
+function renderAxes() {
+        const axes = [[1,0,0], [0,1,0], [0,0,1]]
+        let color = 0x0000ff;
+        for (const edge of axes) {
+            const points = [];
+            points.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(edge[0], edge[1], edge[2]));
+            
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+            const lineMaterial = new THREE.LineBasicMaterial({ color:color  });
+            const line = new THREE.Line(geometry, lineMaterial);
+
+            scene.add(line);
+            color *= 256;
+        }
+
+}
 controls.update();
 
 function animate() {
@@ -306,6 +323,7 @@ function reRender() {
             }
         }
     }
+    renderAxes();
 }
 
 let hasSelection = false;
