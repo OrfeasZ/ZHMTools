@@ -290,9 +290,9 @@ void OutputNavMesh_VIEWER_print(NavPower::NavMesh* p_NavMesh, const std::string 
 			NavPower::Binary::Edge* s_curEdge = s_curArea.m_edges.at(j);
 
 			printf(
-				"[%f, %f, %f, %d],",
+				"[%f, %f, %f, %d, %d],",
 				s_curEdge->m_pos.X, s_curEdge->m_pos.Y, s_curEdge->m_pos.Z,
-				s_curEdge->GetType());
+				s_curEdge->GetType(), s_curEdge->m_pAdjArea != 0);
 		}
 
 		printf("]],");

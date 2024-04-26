@@ -65,26 +65,50 @@ function renderPortalVert(edges) {
     }
 }
 
-function setEdgeColor(edgeIndex, colors) {
-    let edgeColor; 
-    if (edgeIndex == 0) {
-        edgeColor = [1.0, 1.0, 1.0];
+function setLineSegmentColor(lineSegmentIndex, colors, hasAdjacentArea) {
+    let lineSegmentColor; 
+    if (hasAdjacentArea != 0) {
+        lineSegmentColor = [0.0, 0.0, 1.0];
+    } else {
+        lineSegmentColor = [0.0, 1.0, 0.0];
     }
-    else if (edgeIndex == 1) {
-        edgeColor = [1.0, 0.0, 1.0];
+    if (lineSegmentIndex == 0) {
+        colors[lineSegmentIndex * 6] = 1.0;
+        colors[lineSegmentIndex * 6 + 1] = 1.0;
+        colors[lineSegmentIndex * 6 + 2] = 1.0;
+    } else {
+        colors[lineSegmentIndex * 6] = lineSegmentColor[0];
+        colors[lineSegmentIndex * 6 + 1] = lineSegmentColor[1];
+        colors[lineSegmentIndex * 6 + 2] = lineSegmentColor[2];
     }
-    else if (edgeIndex % 2 == 1) {
-        edgeColor = [1.0, 0.0, 0.0];
-    }
-    else if (edgeIndex % 2 == 0) {
-        edgeColor = [0.0, 0.0, 1.0];
-    };
-    colors[edgeIndex * 3] = edgeColor[0];
-    colors[edgeIndex * 3 + 1] = edgeColor[1];
-    colors[edgeIndex * 3 + 2] = edgeColor[2];
+    colors[lineSegmentIndex * 6 + 3] = lineSegmentColor[0];
+    colors[lineSegmentIndex * 6 + 4] = lineSegmentColor[1];
+    colors[lineSegmentIndex * 6 + 5] = lineSegmentColor[2];
 }
 
-function renderEdges(edges, useOrderedEdgeColors) {
+function renderText(number, x, y, z) {
+    const text = new THREE.TextSprite({
+        alignment: 'center',
+        color: '#ffffff',
+        fontFamily: 'Arial',
+        fontSize: .5,
+        text: number.toString(),
+    });
+
+    text.position.set(y, z + 0.16, x);
+
+    scene.add(text);
+}
+
+function renderEdges(edges, showEdgeNumbers) {
+    if (showEdgeNumbers) {
+        let edgeIndex = 0;
+        for (const edge of edges) {
+            renderText(edgeIndex, edge[0], edge[1], edge[2]);
+            edgeIndex++;
+        }
+    }
+        
     if (!useOrderedEdgeColors.checked) {
         const points = [];
 
@@ -102,25 +126,35 @@ function renderEdges(edges, useOrderedEdgeColors) {
         scene.add(line);
     } else {
         const points = [];
-        const colors = new Float32Array((edges.length + 1) * 3);
+        const colors = new Float32Array((edges.length + 1) * 6);
         let edgeIndex = 0;
+        let lineSegmentIndex = 0;
 
         for (const edge of edges) {
             points.push(new THREE.Vector3(edge[1], edge[2], edge[0]));
-            setEdgeColor(edgeIndex, colors, useOrderedEdgeColors);
+            setLineSegmentColor(lineSegmentIndex, colors, edge[4]);
+            lineSegmentIndex++;
+            if (edgeIndex != 0) {
+                points.push(new THREE.Vector3(edge[1], edge[2], edge[0]));
+            }
             edgeIndex++;
         }
 
         points.push(new THREE.Vector3(edges[0][1], edges[0][2], edges[0][0]));
-        setEdgeColor(edgeIndex, colors, useOrderedEdgeColors);
+        setLineSegmentColor(lineSegmentIndex, colors, 0);
 
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
         const lineMaterial = new THREE.LineBasicMaterial({ vertexColors: THREE.VertexColors });
-        const line = new THREE.Line(geometry, lineMaterial);
+        lines = new THREE.Object3D();
+	    line = new THREE.LineSegments( geometry,  lineMaterial);
+        lines.add(line);
+	    scene.add(lines);
 
-        scene.add(line);
+        //const line = new THREE.Line(geometry, lineMaterial);
+
+        //scene.add(line);
     }
 }
 
@@ -169,20 +203,6 @@ function renderBasisVert(faceIdx, vertex) {
     scene.add(text);
 }
 
-function renderSurfaceNumber(number, x, y, z) {
-    const text = new THREE.TextSprite({
-        alignment: 'center',
-        color: '#ffffff',
-        fontFamily: 'Arial',
-        fontSize: 0.2,
-        text: number.toString(),
-    });
-
-    text.position.set(y, z + 0.05, x);
-
-    scene.add(text);
-}
-
 function renderSurface(i, surface) {
     const centerX = surface[0];
     const centerY = surface[1];
@@ -212,7 +232,7 @@ function renderSurface(i, surface) {
     }
     
     if (checkEdges.checked) {
-        renderEdges(vertices, useOrderedEdgeColors);
+        renderEdges(vertices, parseInt(highlightArea.value) == i);
     }
 
     if (checkBasisVertices.checked) {
@@ -228,7 +248,7 @@ function renderSurface(i, surface) {
     }
 
     if (checkNumbers.checked) {
-        renderSurfaceNumber(i, centerX, centerY, centerZ);
+        renderText(i, centerX, centerY, centerZ);
     }
 }
 
@@ -251,19 +271,20 @@ function renderBBoxWithColor(color, bbox) {
 }
 
 function renderAxes() {
-        const axes = [[1,0,0], [0,1,0], [0,0,1]]
+        const axes = [["X", [1,0,0]], ["Y", [0,1,0]], ["Z", [0,0,1]]]
         let color = 0x0000ff;
-        for (const edge of axes) {
+        for (const axis of axes) {
             const points = [];
-            points.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(edge[0], edge[1], edge[2]));
+            points.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(axis[1][1], axis[1][2], axis[1][0]));
             
             const geometry = new THREE.BufferGeometry().setFromPoints(points);
 
-            const lineMaterial = new THREE.LineBasicMaterial({ color:color  });
+            const lineMaterial = new THREE.LineBasicMaterial({ color:color });
             const line = new THREE.Line(geometry, lineMaterial);
 
             scene.add(line);
             color *= 256;
+            renderText(axis[0], axis[1][0], axis[1][1], axis[1][2]);
         }
 
 }
