@@ -119,6 +119,22 @@ namespace NavPower
         }
     }
 
+    Axis AxisStringToEnumValue(auto p_Axis)
+    {
+        if (p_Axis.compare("X-Axis") == 0)
+        {
+            return Axis::X;
+        }
+        else if (p_Axis.compare("Y-Axis") == 0)
+        {
+            return Axis::Y;
+        }
+        else
+        {
+            return Axis::Z;
+        }
+    };
+
     enum class AreaUsageFlags : uint32_t
     {
         AREA_FLAT = 1,
@@ -170,6 +186,18 @@ namespace NavPower
             return "Portal";
         default:
             return "UNKNOWN!";
+        }
+    };
+
+    EdgeType EdgeTypeStringToEnumValue(auto p_EdgeType)
+    {
+        if (p_EdgeType.compare("Normal") == 0)
+        {
+            return EdgeType::EDGE_NORMAL;
+        }
+        else
+        {
+            return EdgeType::EDGE_PORTAL;
         }
     };
 
@@ -318,7 +346,7 @@ namespace NavPower
                 f << "\"m_bbox\":";
                 m_bbox.writeJson(f);
                 f << ",";
-                f << "\"m_buildUpAxis\":" << m_buildUpAxis;
+                f << "\"m_buildUpAxis\":\"" << AxisToString(m_buildUpAxis) << "\"";
                 f << "}";
             }
 
@@ -338,7 +366,7 @@ namespace NavPower
                 m_height = double(p_Json["m_height"]);
                 simdjson::ondemand::object m_bboxJson = p_Json["m_bbox"];
                 m_bbox.readJson(m_bboxJson);
-                m_buildUpAxis = Axis(uint64_t(p_Json["m_buildUpAxis"]));
+                m_buildUpAxis = AxisStringToEnumValue(std::string{ std::string_view(p_Json["m_buildUpAxis"])});
             }
 
             void writeBinary(std::ostream& f)
@@ -393,19 +421,25 @@ namespace NavPower
             void writeJson(std::ostream& f)
             {
                 f << "{";
-                f << "\"m_flags1\":" << m_flags1 << ",";
-                f << "\"m_flags2\":" << m_flags2 << ",";
-                f << "\"m_flags3\":" << m_flags3 << ",";
-                f << "\"m_flags4\":" << m_flags4;
+                f << "\"IslandNum\":" << GetIslandNum() << ",";
+                f << "\"AreaUsageCount\":" << GetAreaUsageCount() << ",";
+                f << "\"ObCostMult\":" << GetObCostMult() << ",";
+                f << "\"StaticCostMult\":" << GetStaticCostMult() << ",";
+                f << "\"BasisVert\":" << GetBasisVert();
                 f << "}";
             }
 
             void readJson(auto p_Json)
             {
-                m_flags1 = uint64_t(p_Json["m_flags1"]);
-                m_flags2 = uint64_t(p_Json["m_flags2"]);
-                m_flags3 = uint64_t(p_Json["m_flags3"]);
-                m_flags4 = uint64_t(p_Json["m_flags4"]);
+                m_flags1 = 0x1FC0000;
+                m_flags2 = 0;
+                SetIslandNum(uint64_t(p_Json["IslandNum"]));
+                SetAreaUsageCount(uint64_t(p_Json["AreaUsageCount"]));
+                SetObCostMult(uint64_t(p_Json["ObCostMult"]));
+                SetStaticCostMult(uint64_t(p_Json["StaticCostMult"]));
+                SetBasisVert(uint64_t(p_Json["BasisVert"]));
+                m_flags3 = 0;
+                m_flags4 = 0;
             }
 
             void writeBinary(std::ostream& f)
@@ -465,7 +499,7 @@ namespace NavPower
                 m_pos.readJson(p_Json["m_pos"]);
                 m_radius = double(p_Json["m_radius"]);
                 m_searchCost = uint64_t(p_Json["m_searchCost"]);
-                m_usageFlags = AreaUsageFlagStringToEnumValue(std::string{ std::string_view(p_Json["m_usageFlags"]) });
+                m_usageFlags = AreaUsageFlagStringToEnumValue(std::string{ std::string_view(p_Json["m_usageFlags"])});
                 m_flags.readJson(p_Json["m_flags"]);
             }
 
@@ -535,7 +569,9 @@ namespace NavPower
                 f << ",\"m_pos\":";
                 m_pos.writeJson(f);
                 f << ",\"m_flags1\":" << m_flags1 << ",";
-                f << "\"m_flags2\":" << m_flags2;
+                f << "\"Partition\":" << GetPartition() << ",";
+                f << "\"ObID\":" << GetObID() << ",";
+                f << "\"Type\":\"" << EdgeTypeToString(GetType()) << "\"";
                 f << "}";
             }
 
@@ -546,8 +582,11 @@ namespace NavPower
                 m_pAdjArea = reinterpret_cast<Binary::Area*>(m_pAdjAreaJson);
                 simdjson::ondemand::object m_posJson = p_Json["m_pos"];
                 m_pos.readJson(m_posJson);
-                m_flags1 = uint64_t(p_Json["m_flags1"]);
-                m_flags2 = uint64_t(p_Json["m_flags2"]);
+                m_flags1 = 0xFFFF0000;
+                SetPartition(bool(p_Json["Partition"]));
+                SetObID(int64_t(p_Json["ObID"]));
+                SetType(EdgeTypeStringToEnumValue(std::string{ std::string_view(p_Json["Type"]) }));
+                m_flags2 = 0;
             }
 
             void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap)
@@ -614,17 +653,23 @@ namespace NavPower
             uint32_t m_data;
             float m_dLeft;
             float m_dRight;
-
+            
             bool IsLeaf() { return m_data & 0x80000000 ? true : false; }
+            void SetIsLeaf(int p_isLeaf) { m_data = (m_data & ~0x80000000) | (p_isLeaf & 0x80000000); }
             Axis GetSplitAxis() { return (Axis)((m_data >> 28) & 7); }
+            void SetSplitAxis(Axis p_axis) { m_data = (m_data & ~0x70000000) >> 28 | ((p_axis << 28) & 0x70000000); }
             uint32_t GetRightOffset() { return m_data & 0xFFFFFFF; }
+            void SetRightOffset(uint32_t p_rightOffset) { m_data = (m_data & ~0xFFFFFFF) | (p_rightOffset & 0xFFFFFFF); }
             KDNode* GetLeft() { return this + 1; }
             KDNode* GetRight() { return (KDNode*)((char*)this + GetRightOffset()); }
 
             void writeJson(std::ostream& f, uintptr_t p_KdTreeEnd)
             {
                 f << "{";
-                f << "\"m_data\":" << m_data;
+                f << "\"m_data\":" << m_data << ",";
+                f << "\"IsLeaf\":" << IsLeaf() << ",";
+                f << "\"SplitAxis\":\"" << AxisToString(GetSplitAxis()) << "\",";
+                f << "\"RightOffset\":" << GetRightOffset();
                 if (!IsLeaf())
                 {
 
@@ -656,10 +701,12 @@ namespace NavPower
                     simdjson::ondemand::object leftChildJson;
                     auto s_Left = p_Json["leftChild"];
                     KDNode* leftChild = GetLeft();
-                    s_treeSize += leftChild->readJson(s_Left);
-                    auto s_Right = p_Json["rightChild"];
+                    uint32_t s_leftChildTreeSize = leftChild->readJson(s_Left);
+                    s_treeSize += s_leftChildTreeSize;
                     KDNode* rightChild = GetRight();
+                    auto s_Right = p_Json["rightChild"];
                     s_treeSize += rightChild->readJson(s_Right);
+                    
                     return s_treeSize;
                 }
                 else
@@ -828,7 +875,8 @@ namespace NavPower
     {
         Binary::KDNode* m_node;
         BBox m_bbox;
-        uint32_t depth;
+        uint32_t m_depth;
+        uint32_t m_splitAxis;
     };
 
     uint32_t CalculateChecksum(void* p_Data, uint32_t p_Size);
@@ -851,7 +899,7 @@ namespace NavPower
         NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
 
         void writeJson(std::ostream& f) {
-            f << std::fixed << std::setprecision(17);
+            f << std::fixed << std::setprecision(17) << std::boolalpha;
             f << "{";
             f << "\"m_hdr\":";
             m_hdr->writeJson(f);
@@ -1073,27 +1121,28 @@ namespace NavPower
         }
 
         // This parses the k-d tree and outputs it as a vector of bounding boxes
-        std::map<uint32_t, std::vector<BBox>> ParseKDTree()
+        std::map<uint32_t, std::vector<std::pair<uint32_t, BBox>>> ParseKDTree()
         {
-            std::map<uint32_t, std::vector<BBox>> depthToBboxMap;
+            std::map<uint32_t, std::vector<std::pair<uint32_t, BBox>>> depthToSplitAndBboxMap;
             std::vector<KDTreeHelper> kdNodes;
-            std::vector<BBox> newVector;
-            depthToBboxMap.insert({ 0,  newVector });
+            std::vector<std::pair<uint32_t, BBox>> newVector;
+            depthToSplitAndBboxMap.insert({ 0, newVector });
             kdNodes.push_back(KDTreeHelper{
                 m_rootKDNode,
                 m_kdTreeData->m_bbox,
+                0,
                 0});
 
             while (!kdNodes.empty())
             {
                 KDTreeHelper parent = kdNodes.back();
                 kdNodes.pop_back();
-                uint32_t depth = parent.depth + 1;
-                if (depthToBboxMap.find(depth) == depthToBboxMap.end()) {
-                    std::vector<BBox> newNodeVector;
-                    depthToBboxMap.insert({ depth, newNodeVector });
+                uint32_t depth = parent.m_depth + 1;
+                if (depthToSplitAndBboxMap.find(depth) == depthToSplitAndBboxMap.end()) {
+                    std::vector<std::pair<uint32_t, BBox>> newNodeVector;
+                    depthToSplitAndBboxMap.insert({ depth, newNodeVector });
                 }
-                depthToBboxMap[depth].push_back(BBox(parent.m_bbox));
+                depthToSplitAndBboxMap[depth].push_back(std::pair<uint32_t, BBox>(parent.m_splitAxis, BBox(parent.m_bbox)));
                 if (!parent.m_node->IsLeaf())
                 {
                     Axis splitAxis = parent.m_node->GetSplitAxis();
@@ -1102,7 +1151,8 @@ namespace NavPower
                     kdNodes.push_back(KDTreeHelper{
                         parent.m_node->GetLeft(),
                         parent.m_bbox,
-                        depth});
+                        depth,
+                        uint32_t(splitAxis) });
 
                     kdNodes.back().m_bbox.m_max[splitAxis] = parent.m_node->m_dLeft;
 
@@ -1110,13 +1160,14 @@ namespace NavPower
                     kdNodes.push_back(KDTreeHelper{
                         parent.m_node->GetRight(),
                         parent.m_bbox,
-                        depth});
+                        depth,
+                        uint32_t(splitAxis) });
 
                     kdNodes.back().m_bbox.m_min[splitAxis] = parent.m_node->m_dRight;
                 }
             }
 
-            return depthToBboxMap;
+            return depthToSplitAndBboxMap;
         }
     };
 

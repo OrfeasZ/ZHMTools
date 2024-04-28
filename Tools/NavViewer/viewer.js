@@ -151,10 +151,6 @@ function renderEdges(edges, showEdgeNumbers) {
 	    line = new THREE.LineSegments( geometry,  lineMaterial);
         lines.add(line);
 	    scene.add(lines);
-
-        //const line = new THREE.Line(geometry, lineMaterial);
-
-        //scene.add(line);
     }
 }
 
@@ -259,8 +255,15 @@ function renderBBox(unk) {
     scene.add(helper);
 }
 
-function getRangeColor(range, maxRange) {
-    const color = parseInt(128 + 0xFFFF80 * parseInt(range) / maxRange);
+function getSplitAxisColor(splitAxis) {
+    let color;
+    if (splitAxis == 0) {
+        color = 0x000080;
+    } else if (splitAxis == 1) {
+        color = 0x008000;
+    } else {
+        color = 0x800000;
+    }
     return color;
 }
 
@@ -337,7 +340,7 @@ function reRender() {
             if (kdTreeDepth.value == -1 || kdTreeDepth.value == depth) {
                 let bboxIndex = 0;
                 for (const bbox of bboxes) {
-                    const color = getRangeColor(bboxIndex, bboxes.length);
+                    const color = getSplitAxisColor(bbox[6]);
                     renderBBoxWithColor(color, bbox);
                     bboxIndex++;
                 }

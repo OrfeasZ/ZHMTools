@@ -301,24 +301,25 @@ void OutputNavMesh_VIEWER_print(NavPower::NavMesh* p_NavMesh, const std::string 
 
 	printf("];\n");
 
-	std::map<uint32_t, std::vector<NavPower::BBox>> s_kdTreeDepthToBBoxesMap = s_NavMesh.ParseKDTree();
+	std::map<uint32_t, std::vector<std::pair<uint32_t, NavPower::BBox>>> s_kdTreeDepthToSplitAndBBoxesMap = s_NavMesh.ParseKDTree();
 
 	printf("KDTree['%s'] = {", s_FileName.c_str());
 
-	const auto& lastDepth = s_kdTreeDepthToBBoxesMap.rbegin()->first;
+	const auto& lastDepth = s_kdTreeDepthToSplitAndBBoxesMap.rbegin()->first;
 
-	for (auto const& s_curKDDepthToBBoxes : s_kdTreeDepthToBBoxesMap) {
-		uint32_t s_curKdDepth = s_curKDDepthToBBoxes.first;
-		std::vector<NavPower::BBox> s_curKDDepthBBoxes = s_curKDDepthToBBoxes.second;
+	for (auto const& s_curKDDepthToSplitAndBBoxes : s_kdTreeDepthToSplitAndBBoxesMap) {
+		uint32_t s_curKdDepth = s_curKDDepthToSplitAndBBoxes.first;
+		std::vector<std::pair<uint32_t, NavPower::BBox>> s_curKDDepthSplitAndBBoxes = s_curKDDepthToSplitAndBBoxes.second;
 		printf("%d:[", s_curKdDepth);
-		for (int i = 0; i < s_curKDDepthBBoxes.size(); i++)
+		for (int i = 0; i < s_curKDDepthSplitAndBBoxes.size(); i++)
 		{
-			NavPower::BBox s_curKDBBox = s_curKDDepthBBoxes.at(i);
+			uint32_t s_splitAxis = s_curKDDepthSplitAndBBoxes.at(i).first;
+			NavPower::BBox s_curKDBBox = s_curKDDepthSplitAndBBoxes.at(i).second;
 
 			printf(
-				"[%f, %f, %f, %f, %f, %f,],",
+				"[%f, %f, %f, %f, %f, %f,%d],",
 				s_curKDBBox.m_min.X, s_curKDBBox.m_min.Y, s_curKDBBox.m_min.Z,
-				s_curKDBBox.m_max.X, s_curKDBBox.m_max.Y, s_curKDBBox.m_max.Z);
+				s_curKDBBox.m_max.X, s_curKDBBox.m_max.Y, s_curKDBBox.m_max.Z, s_splitAxis);
 			fflush(stdout);
 		}
 		printf("]");
