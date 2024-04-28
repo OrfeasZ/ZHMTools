@@ -568,8 +568,7 @@ namespace NavPower
                 }
                 f << ",\"m_pos\":";
                 m_pos.writeJson(f);
-                f << ",\"m_flags1\":" << m_flags1 << ",";
-                f << "\"Partition\":" << GetPartition() << ",";
+                f << ",\"Partition\":" << GetPartition() << ",";
                 f << "\"ObID\":" << GetObID() << ",";
                 f << "\"Type\":\"" << EdgeTypeToString(GetType()) << "\"";
                 f << "}";
