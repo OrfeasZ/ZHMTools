@@ -214,28 +214,6 @@ namespace NavPower
             uint32_t m_runtimeFlags = 0;
             uint32_t m_constantFlags = 0;
 
-            void writeJson(std::ostream& f)
-            {
-                f << "{";
-                f << "\"m_endianFlag\":" << m_endianFlag << ",";
-                f << "\"m_version\":" << m_version << ",";
-                f << "\"m_imageSize\":" << m_imageSize << ",";
-                f << "\"m_checksum\":" << m_checksum << ",";
-                f << "\"m_runtimeFlags\":" << m_runtimeFlags << ",";
-                f << "\"m_constantFlags\":" << m_constantFlags;
-                f << "}";
-            }
-
-            void readJson(auto p_Json)
-            {
-                m_endianFlag = uint64_t(p_Json["m_endianFlag"]);
-                m_version = uint64_t(p_Json["m_version"]);
-                m_imageSize = uint64_t(p_Json["m_imageSize"]);
-                m_checksum = uint64_t(p_Json["m_checksum"]);
-                m_runtimeFlags = uint64_t(p_Json["m_runtimeFlags"]);
-                m_constantFlags = uint64_t(p_Json["m_constantFlags"]);
-            }
-
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_endianFlag, sizeof(m_endianFlag));
@@ -254,22 +232,6 @@ namespace NavPower
             uint32_t m_size;            // Size of this section excluding this header
             uint32_t m_pointerSize = 1; // Size of pointers inside the section
 
-            void writeJson(std::ostream& f)
-            {
-                f << "{";
-                f << "\"m_id\":" << m_id << ",";
-                f << "\"m_size\":" << m_size << ",";
-                f << "\"m_pointerSize\":" << m_pointerSize;
-                f << "}";
-            }
-
-            void readJson(auto p_Json)
-            {
-                m_id = uint64_t(p_Json["m_id"]);
-                m_size = uint64_t(p_Json["m_size"]);
-                m_pointerSize = uint64_t(p_Json["m_pointerSize"]);
-            }
-
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_id, sizeof(m_id));
@@ -284,22 +246,6 @@ namespace NavPower
             uint32_t m_endianFlag = 0;
             uint32_t m_version = 0x28; // The version of the nav graph, this case it is 40
             uint32_t m_numGraphs = 1;  // Number of NavGraphs in this image
-
-            void writeJson(std::ostream& f)
-            {
-                f << "{";
-                f << "\"m_endianFlag\":" << m_endianFlag << ",";
-                f << "\"m_version\":" << m_version << ",";
-                f << "\"m_numGraphs\":" << m_numGraphs;
-                f << "}";
-            }
-
-            void readJson(auto p_Json)
-            {
-                m_endianFlag = uint64_t(p_Json["m_endianFlag"]);
-                m_version = uint64_t(p_Json["m_version"]);
-                m_numGraphs = uint64_t(p_Json["m_numGraphs"]);
-            }
 
             void writeBinary(std::ostream& f)
             {
@@ -332,41 +278,15 @@ namespace NavPower
             void writeJson(std::ostream& f)
             {
                 f << "{";
-                f << "\"m_version\":" << m_version << ",";
-                f << "\"m_layer\":" << m_layer << ",";
-                f << "\"m_areaBytes\":" << m_areaBytes << ",";
-                f << "\"m_kdTreeBytes\":" << m_kdTreeBytes << ",";
-                f << "\"m_linkRecordBytes\":" << m_linkRecordBytes << ",";
-                f << "\"m_totalBytes\":" << m_totalBytes << ",";
-                f << "\"m_buildScale\":" << m_buildScale << ",";
-                f << "\"m_voxSize\":" << m_voxSize << ",";
-                f << "\"m_radius\":" << m_radius << ",";
-                f << "\"m_stepHeight\":" << m_stepHeight << ",";
-                f << "\"m_height\":" << m_height << ",";
                 f << "\"m_bbox\":";
                 m_bbox.writeJson(f);
-                f << ",";
-                f << "\"m_buildUpAxis\":\"" << AxisToString(m_buildUpAxis) << "\"";
                 f << "}";
             }
 
             void readJson(auto p_Json)
             {
-                m_version = uint64_t(p_Json["m_version"]);
-                m_layer = uint64_t(p_Json["m_layer"]);
-                m_areaBytes = uint64_t(p_Json["m_areaBytes"]);
-                m_areaBytes = uint64_t(p_Json["m_areaBytes"]);
-                m_kdTreeBytes = uint64_t(p_Json["m_kdTreeBytes"]);
-                m_linkRecordBytes = uint64_t(p_Json["m_linkRecordBytes"]);
-                m_totalBytes = uint64_t(p_Json["m_totalBytes"]);
-                m_buildScale = double(p_Json["m_buildScale"]);
-                m_voxSize = double(p_Json["m_voxSize"]);
-                m_radius = double(p_Json["m_radius"]);
-                m_stepHeight = double(p_Json["m_stepHeight"]);
-                m_height = double(p_Json["m_height"]);
                 simdjson::ondemand::object m_bboxJson = p_Json["m_bbox"];
                 m_bbox.readJson(m_bboxJson);
-                m_buildUpAxis = AxisStringToEnumValue(std::string{ std::string_view(p_Json["m_buildUpAxis"])});
             }
 
             void writeBinary(std::ostream& f)
@@ -421,10 +341,6 @@ namespace NavPower
             void writeJson(std::ostream& f)
             {
                 f << "{";
-                f << "\"IslandNum\":" << GetIslandNum() << ",";
-                f << "\"AreaUsageCount\":" << GetAreaUsageCount() << ",";
-                f << "\"ObCostMult\":" << GetObCostMult() << ",";
-                f << "\"StaticCostMult\":" << GetStaticCostMult() << ",";
                 f << "\"BasisVert\":" << GetBasisVert();
                 f << "}";
             }
@@ -433,10 +349,10 @@ namespace NavPower
             {
                 m_flags1 = 0x1FC0000;
                 m_flags2 = 0;
-                SetIslandNum(uint64_t(p_Json["IslandNum"]));
-                SetAreaUsageCount(uint64_t(p_Json["AreaUsageCount"]));
-                SetObCostMult(uint64_t(p_Json["ObCostMult"]));
-                SetStaticCostMult(uint64_t(p_Json["StaticCostMult"]));
+                SetIslandNum(262143);
+                SetAreaUsageCount(0);
+                SetObCostMult(1);
+                SetStaticCostMult(1);
                 SetBasisVert(uint64_t(p_Json["BasisVert"]));
                 m_flags3 = 0;
                 m_flags4 = 0;
@@ -474,15 +390,10 @@ namespace NavPower
             void writeJson(std::ostream& f)
             {
                 f << "{";
-                f << "\"m_pProxy\": " << m_pProxy << ",";
-                f << "\"m_dynAreaData\": " << m_dynAreaData << ",";
-                f << "\"m_pFirstLink\":" << m_pFirstLink << ",";
-                f << "\"m_pSearchParent\":" << m_pSearchParent << ",";
                 f << "\"m_pos\":";
                 m_pos.writeJson(f);
                 f << ",";
                 f << "\"m_radius\":" << m_radius << ",";
-                f << "\"m_searchCost\":" << m_searchCost << ",";
                 f << "\"m_usageFlags\":";
                 f << "\"" << AreaUsageFlagToString(m_usageFlags) << "\",";
                 f << "\"m_flags\":";
@@ -492,13 +403,8 @@ namespace NavPower
 
             void readJson(auto p_Json)
             {
-                m_pProxy = uint64_t(p_Json["m_pProxy"]);
-                m_dynAreaData = uint64_t(p_Json["m_dynAreaData"]);
-                m_pFirstLink = uint64_t(p_Json["m_pFirstLink"]);
-                m_pSearchParent = uint64_t(p_Json["m_pSearchParent"]);
                 m_pos.readJson(p_Json["m_pos"]);
                 m_radius = double(p_Json["m_radius"]);
-                m_searchCost = uint64_t(p_Json["m_searchCost"]);
                 m_usageFlags = AreaUsageFlagStringToEnumValue(std::string{ std::string_view(p_Json["m_usageFlags"])});
                 m_flags.readJson(p_Json["m_flags"]);
             }
@@ -568,9 +474,8 @@ namespace NavPower
                 }
                 f << ",\"m_pos\":";
                 m_pos.writeJson(f);
-                f << ",\"Partition\":" << GetPartition() << ",";
-                f << "\"ObID\":" << GetObID() << ",";
-                f << "\"Type\":\"" << EdgeTypeToString(GetType()) << "\"";
+                f << ",\"Type\":\"" << EdgeTypeToString(GetType()) << "\",";
+                f << "\"m_flags2\":" << m_flags2;
                 f << "}";
             }
 
@@ -582,10 +487,10 @@ namespace NavPower
                 simdjson::ondemand::object m_posJson = p_Json["m_pos"];
                 m_pos.readJson(m_posJson);
                 m_flags1 = 0xFFFF0000;
-                SetPartition(bool(p_Json["Partition"]));
-                SetObID(int64_t(p_Json["ObID"]));
+                SetPartition(false);
+                SetObID(0);
                 SetType(EdgeTypeStringToEnumValue(std::string{ std::string_view(p_Json["Type"]) }));
-                m_flags2 = 0;
+                m_flags2 = int64_t(p_Json["m_flags2"]);
             }
 
             void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap)
@@ -900,13 +805,7 @@ namespace NavPower
         void writeJson(std::ostream& f) {
             f << std::fixed << std::setprecision(17) << std::boolalpha;
             f << "{";
-            f << "\"m_hdr\":";
-            m_hdr->writeJson(f);
-            f << ",\"m_sectHdr\":";
-            m_sectHdr->writeJson(f);
-            f << ",\"m_setHdr\":";
-            m_setHdr->writeJson(f);
-            f << ",\"m_graphHdr\":";
+            f << "\"m_graphHdr\":";
             m_graphHdr->writeJson(f);
             f << ",\"m_areas\":[";
             if (!m_areas.empty()) 
@@ -942,18 +841,11 @@ namespace NavPower
             simdjson::padded_string p_Json = simdjson::padded_string::load(p_NavMeshPath);
             simdjson::ondemand::document p_NavMeshDocument = p_Parser.iterate(p_Json);
 
-            simdjson::ondemand::object m_hdrJson = p_NavMeshDocument["m_hdr"];
             m_hdr = new Binary::Header();
-
-            m_hdr->readJson(m_hdrJson);
             
-            simdjson::ondemand::object m_sectHdrJson = p_NavMeshDocument["m_sectHdr"];
             m_sectHdr = new Binary::SectionHeader();
-            m_sectHdr->readJson(m_sectHdrJson);
 
-            simdjson::ondemand::object m_setHdrJson = p_NavMeshDocument["m_setHdr"];
             m_setHdr = new Binary::NavSetHeader();
-            m_setHdr->readJson(m_setHdrJson);
 
             simdjson::ondemand::object m_graphHdrJson = p_NavMeshDocument["m_graphHdr"];
             m_graphHdr = new Binary::NavGraphHeader();
