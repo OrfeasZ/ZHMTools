@@ -31,6 +31,7 @@ SOFTWARE.
 #include <vector>
 #include <map>
 #include <iostream>
+#include <algorithm>
 
 #if _WIN32
 #define SIMD_PATH "..\\Src\\External\\simdjson.h"
@@ -200,6 +201,8 @@ namespace NavPower
             return EdgeType::EDGE_PORTAL;
         }
     };
+
+    class Area;
 
     // The binary formats of NavPower data structures
     namespace Binary
@@ -567,6 +570,11 @@ namespace NavPower
             KDNode* GetLeft() { return this + 1; }
             KDNode* GetRight() { return (KDNode*)((char*)this + GetRightOffset()); }
 
+            void generate(std::vector<NavPower::Area>& m_areas)
+            {
+
+            }
+
             void writeJson(std::ostream& f, uintptr_t p_KdTreeEnd)
             {
                 f << "{";
@@ -802,6 +810,31 @@ namespace NavPower
 
         NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
 
+        void generateKdTree()
+        {
+            float s_minFloat = -300000000000;
+            float s_maxFloat = 300000000000;
+            float s_minX = s_maxFloat, s_minY = s_maxFloat, s_minZ = s_maxFloat, s_maxX = s_minFloat, s_maxY = s_minFloat, s_maxZ = s_minFloat;
+            for (auto& area : m_areas)
+            {
+                for (auto& edge : area.m_edges)
+                {
+                    s_minX = std::min(s_minX, edge->m_pos.X);
+                    s_minY = std::min(s_minY, edge->m_pos.Y);
+                    s_minZ = std::min(s_minZ, edge->m_pos.Z);
+                    s_maxX = std::max(s_maxX, edge->m_pos.X);
+                    s_maxY = std::max(s_maxY, edge->m_pos.Y);
+                    s_maxZ = std::max(s_maxZ, edge->m_pos.Z);
+                }
+            }
+            m_kdTreeData->m_bbox.m_min.X = s_minX - 0.0002;
+            m_kdTreeData->m_bbox.m_min.Y = s_minY - 0.0002;
+            m_kdTreeData->m_bbox.m_min.Z = s_minZ - 0.0002;
+            m_kdTreeData->m_bbox.m_max.X = s_maxX + 0.0002;
+            m_kdTreeData->m_bbox.m_max.Y = s_maxY + 0.0002;
+            m_kdTreeData->m_bbox.m_max.Z = s_maxZ + 0.0002;
+        }
+
         void writeJson(std::ostream& f) {
             f << std::fixed << std::setprecision(17) << std::boolalpha;
             f << "{";
@@ -885,13 +918,26 @@ namespace NavPower
                     }
                 }
             }
-            simdjson::ondemand::object m_kdTreeDataJson = p_NavMeshDocument["m_kdTreeData"];
+            
+            // Read Tree from JSON
+            
             m_kdTreeData = new Binary::KDTreeData();
+            simdjson::ondemand::object m_kdTreeDataJson = p_NavMeshDocument["m_kdTreeData"];
             m_kdTreeData->readJson(m_kdTreeDataJson);
             
-            m_rootKDNode = (Binary::KDNode*)malloc(m_kdTreeData->m_size);
             simdjson::ondemand::object m_rootKDNodeJson = p_NavMeshDocument["m_rootKDNode"];
+            m_rootKDNode = (Binary::KDNode*)malloc(m_kdTreeData->m_size);
             uint32_t s_treeSize = m_rootKDNode->readJson(m_rootKDNodeJson);
+            
+            
+            // Calculate K-D Tree from Areas and Edges
+            //m_kdTreeData = new Binary::KDTreeData();
+            generateKdTree();
+
+            //uint32_t s_treeSize = 0;
+            //m_rootKDNode = new Binary::KDNode();
+            //m_rootKDNode->generate(m_areas);
+
 
             // Set size fields
             m_kdTreeData->m_size = s_treeSize;

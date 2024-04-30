@@ -330,7 +330,7 @@ function reRender() {
     for (const [depth, bboxes] of Object.entries(KDTree[selectedMap])) {
         maxDepth = Math.max(maxDepth, depth);
     }
-    kdTreeDepth.min = 0;
+    kdTreeDepth.min = -1;
     kdTreeDepth.max = maxDepth;
 
     if (checkKDTree.checked) {
