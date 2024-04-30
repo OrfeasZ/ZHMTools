@@ -278,20 +278,6 @@ namespace NavPower
             // It is however identical in all files, changing it to all 0x00 makes NPCs disappear completely
             uint8_t m_pad[252] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,20,214,126,45,220,142,102,131,239,87,73,97,255,105,143,97,205,209,30,157,156,22,114,114,230,29,240,132,79,74,119,2,215,232,57,44,83,203,201,18,30,51,116,158,12,244,213,212,159,212,164,89,126,53,207,50,34,244,204,207,211,144,45,72,211,143,117,230,217,29,42,229,192,247,43,120,129,135,68,14,95,80,0,212,97,141,190,123,5,21,7,59,51,130,31,24,112,146,218,100,84,206,177,133,62,105,21,248,70,106,4,150,115,14,217,22,47,103,104,212,247,74,74,208,87,104,118 };
 
-            void writeJson(std::ostream& f)
-            {
-                f << "{";
-                f << "\"m_bbox\":";
-                m_bbox.writeJson(f);
-                f << "}";
-            }
-
-            void readJson(auto p_Json)
-            {
-                simdjson::ondemand::object m_bboxJson = p_Json["m_bbox"];
-                m_bbox.readJson(m_bboxJson);
-            }
-
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_version, sizeof(m_version));
@@ -341,26 +327,6 @@ namespace NavPower
             uint32_t m_flags3;
             uint32_t m_flags4;
 
-            void writeJson(std::ostream& f)
-            {
-                f << "{";
-                f << "\"BasisVert\":" << GetBasisVert();
-                f << "}";
-            }
-
-            void readJson(auto p_Json)
-            {
-                m_flags1 = 0x1FC0000;
-                m_flags2 = 0;
-                SetIslandNum(262143);
-                SetAreaUsageCount(0);
-                SetObCostMult(1);
-                SetStaticCostMult(1);
-                SetBasisVert(uint64_t(p_Json["BasisVert"]));
-                m_flags3 = 0;
-                m_flags4 = 0;
-            }
-
             void writeBinary(std::ostream& f)
             {
                 f.write((char*)&m_flags1, sizeof(m_flags1));
@@ -395,21 +361,22 @@ namespace NavPower
                 f << "{";
                 f << "\"m_pos\":";
                 m_pos.writeJson(f);
-                f << ",";
-                f << "\"m_radius\":" << m_radius << ",";
-                f << "\"m_usageFlags\":";
-                f << "\"" << AreaUsageFlagToString(m_usageFlags) << "\",";
-                f << "\"m_flags\":";
-                m_flags.writeJson(f);
-                f << "}";
+                f << ",\"m_usageFlags\":";
+                f << "\"" << AreaUsageFlagToString(m_usageFlags) << "\"}";
             }
 
             void readJson(auto p_Json)
             {
                 m_pos.readJson(p_Json["m_pos"]);
-                m_radius = double(p_Json["m_radius"]);
                 m_usageFlags = AreaUsageFlagStringToEnumValue(std::string{ std::string_view(p_Json["m_usageFlags"])});
-                m_flags.readJson(p_Json["m_flags"]);
+                m_flags.m_flags1 = 0x1FC0000;
+                m_flags.m_flags2 = 0;
+                m_flags.SetIslandNum(262143);
+                m_flags.SetAreaUsageCount(0);
+                m_flags.SetObCostMult(1);
+                m_flags.SetStaticCostMult(1);
+                m_flags.m_flags3 = 0;
+                m_flags.m_flags4 = 0;
             }
 
             void writeBinary(std::ostream& f)
@@ -532,18 +499,11 @@ namespace NavPower
 
             void writeJson(std::ostream& f)
             {
-                f << "{";
-                f << "\"m_bbox\":";
-                m_bbox.writeJson(f);
-                f << ",";
-                f << "\"m_size\":" << m_size;
-                f << "}";
+                f << "{\"m_size\":" << m_size << "}";
             }
 
             void readJson(auto p_Json)
             {
-                simdjson::ondemand::object m_bboxJson = p_Json["m_bbox"];
-                m_bbox.readJson(m_bboxJson);
                 m_size = uint64_t(p_Json["m_size"]);
             }
 
@@ -717,6 +677,7 @@ namespace NavPower
                 m_edges.push_back(edge);
             }
             m_area->m_flags.SetNumEdges(m_edges.size());
+            m_area->m_flags.SetBasisVert(CalculateBasisVert());
         }
 
         void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap)
@@ -810,7 +771,7 @@ namespace NavPower
 
         NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
 
-        void generateKdTree()
+        void generateGraphHdrBBoxAndKdTree()
         {
             float s_minFloat = -300000000000;
             float s_maxFloat = 300000000000;
@@ -827,6 +788,13 @@ namespace NavPower
                     s_maxZ = std::max(s_maxZ, edge->m_pos.Z);
                 }
             }
+            m_graphHdr->m_bbox.m_min.X = s_minX;
+            m_graphHdr->m_bbox.m_min.Y = s_minY;
+            m_graphHdr->m_bbox.m_min.Z = s_minZ;
+            m_graphHdr->m_bbox.m_max.X = s_maxX;
+            m_graphHdr->m_bbox.m_max.Y = s_maxY;
+            m_graphHdr->m_bbox.m_max.Z = s_maxZ;
+
             m_kdTreeData->m_bbox.m_min.X = s_minX - 0.0002;
             m_kdTreeData->m_bbox.m_min.Y = s_minY - 0.0002;
             m_kdTreeData->m_bbox.m_min.Z = s_minZ - 0.0002;
@@ -837,10 +805,7 @@ namespace NavPower
 
         void writeJson(std::ostream& f) {
             f << std::fixed << std::setprecision(17) << std::boolalpha;
-            f << "{";
-            f << "\"m_graphHdr\":";
-            m_graphHdr->writeJson(f);
-            f << ",\"m_areas\":[";
+            f << "{\"m_areas\":[";
             if (!m_areas.empty()) 
             {
                 // Build area pointer to m_areas index map so the pointers can be replaced with indices in the JSON file
@@ -880,9 +845,7 @@ namespace NavPower
 
             m_setHdr = new Binary::NavSetHeader();
 
-            simdjson::ondemand::object m_graphHdrJson = p_NavMeshDocument["m_graphHdr"];
             m_graphHdr = new Binary::NavGraphHeader();
-            m_graphHdr->readJson(m_graphHdrJson);
 
             simdjson::ondemand::array m_areasJson = p_NavMeshDocument["m_areas"];
             // Build m_areas index to NavGraph offset pointer map so the indices (+1) in the JSON file can be replaced with pointers
@@ -902,8 +865,10 @@ namespace NavPower
             {
                 s_areaBytes += sizeof(Binary::Area);
                 s_areaBytes += sizeof(Binary::Edge) * area.m_edges.size();
+                float s_radius = -1.;
                 for (Binary::Edge* edge : area.m_edges)
                 {
+                    s_radius = std::max(s_radius, area.m_area->m_pos.DistanceTo(edge->m_pos));
                     if (reinterpret_cast<uint64_t>(edge->m_pAdjArea) != 0)
                     {
                         // Convert index of adjacent area + 1 back to Area pointer
@@ -917,6 +882,7 @@ namespace NavPower
                         }
                     }
                 }
+                area.m_area->m_radius = s_radius;
             }
             
             // Read Tree from JSON
@@ -932,7 +898,7 @@ namespace NavPower
             
             // Calculate K-D Tree from Areas and Edges
             //m_kdTreeData = new Binary::KDTreeData();
-            generateKdTree();
+            generateGraphHdrBBoxAndKdTree();
 
             //uint32_t s_treeSize = 0;
             //m_rootKDNode = new Binary::KDNode();
