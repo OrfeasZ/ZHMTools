@@ -32,6 +32,7 @@ SOFTWARE.
 #include <map>
 #include <iostream>
 #include <algorithm>
+#include <stdlib.h>
 
 #if _WIN32
 #define SIMD_PATH "..\\Src\\External\\simdjson.h"
@@ -92,6 +93,15 @@ namespace NavPower
         {
             m_min.writeBinary(f);
             m_max.writeBinary(f);
+        }
+
+        void copy(BBox o) {
+            m_min.X = o.m_min.X;
+            m_min.Y = o.m_min.Y;
+            m_min.Z = o.m_min.Z;
+            m_max.X = o.m_max.X;
+            m_max.Y = o.m_max.Y;
+            m_max.Z = o.m_max.Z;
         }
     };
 
@@ -514,6 +524,30 @@ namespace NavPower
             }
         };
 
+        class KDLeaf
+        {
+        public:
+            uint32_t m_data = 0x80000000;
+
+            uint32_t GetPrimOffset() const { return m_data & 0x7FFFFFFF; }
+            void SetPrimOffset(uint32_t primOffset) { m_data |= primOffset & 0x7FFFFFFF; }
+            void SetIsLeaf(int p_isLeaf)
+            {
+                if (p_isLeaf)
+                    m_data |= 0x80000000;
+                else
+                    m_data &= ~0x80000000;
+            }
+
+            void writeJson(std::ostream& f, uintptr_t p_KdTreeEnd)
+            {
+                f << "{";
+                f << "\"m_data\":" << m_data << ",";
+                f << "\"PrimOffset\":" << GetPrimOffset() << "";
+                f << "}";
+            }
+        };
+
         class KDNode
         {
         public:
@@ -530,22 +564,14 @@ namespace NavPower
             KDNode* GetLeft() { return this + 1; }
             KDNode* GetRight() { return (KDNode*)((char*)this + GetRightOffset()); }
 
-            void generate(std::vector<NavPower::Area>& m_areas)
-            {
-
-            }
-
             void writeJson(std::ostream& f, uintptr_t p_KdTreeEnd)
             {
-                f << "{";
-                f << "\"m_data\":" << m_data << ",";
-                f << "\"IsLeaf\":" << IsLeaf() << ",";
-                f << "\"SplitAxis\":\"" << AxisToString(GetSplitAxis()) << "\",";
-                f << "\"RightOffset\":" << GetRightOffset();
                 if (!IsLeaf())
                 {
-
-                    f << ",\"m_dLeft\":" << m_dLeft << ",";
+                    f << "{";
+                    f << "\"m_data\":" << m_data << ",";
+                    f << "\"SplitAxis\":\"" << AxisToString(GetSplitAxis()) << "\",";
+                    f << "\"m_dLeft\":" << m_dLeft << ",";
                     f << "\"m_dRight\":" << m_dRight;
                     KDNode* s_Left = GetLeft();
                     if (reinterpret_cast<uintptr_t>(s_Left) == p_KdTreeEnd)
@@ -558,32 +584,12 @@ namespace NavPower
                     f << ",\"rightChild\":";
                     KDNode* s_Right = GetRight();
                     s_Right->writeJson(f, p_KdTreeEnd);
-                }
-                f << "}";
-            }
-
-            uint32_t readJson(auto p_Json)
-            {
-                m_data = uint64_t(p_Json["m_data"]);
-                if (!IsLeaf()) {
-                    uint32_t s_treeSize = sizeof(uint32_t);
-                    m_dLeft = double(p_Json["m_dLeft"]);
-                    m_dRight = double(p_Json["m_dRight"]);
-                    s_treeSize += sizeof(float) * 2;
-                    simdjson::ondemand::object leftChildJson;
-                    auto s_Left = p_Json["leftChild"];
-                    KDNode* leftChild = GetLeft();
-                    uint32_t s_leftChildTreeSize = leftChild->readJson(s_Left);
-                    s_treeSize += s_leftChildTreeSize;
-                    KDNode* rightChild = GetRight();
-                    auto s_Right = p_Json["rightChild"];
-                    s_treeSize += rightChild->readJson(s_Right);
-                    
-                    return s_treeSize;
+                    f << "}";
                 }
                 else
                 {
-                    return sizeof(uint32_t);
+                    KDLeaf* p_thisLeaf = reinterpret_cast<KDLeaf*>(this);
+                    p_thisLeaf->writeJson(f, p_KdTreeEnd);
                 }
             }
 
@@ -604,14 +610,6 @@ namespace NavPower
                     s_Right->writeBinary(f, p_KdTreeEnd);
                 }
             }
-        };
-
-        class KDLeaf
-        {
-        public:
-            uint32_t m_data;
-
-            uint32_t GetPrimOffset() const { return m_data & 0x7FFFFFFF; }
         };
     }; // namespace Binary
 
@@ -771,36 +769,262 @@ namespace NavPower
 
         NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
 
-        void generateGraphHdrBBoxAndKdTree()
+        BBox generateBbox(std::vector<Area> s_areas)
         {
             float s_minFloat = -300000000000;
             float s_maxFloat = 300000000000;
-            float s_minX = s_maxFloat, s_minY = s_maxFloat, s_minZ = s_maxFloat, s_maxX = s_minFloat, s_maxY = s_minFloat, s_maxZ = s_minFloat;
-            for (auto& area : m_areas)
+            BBox bbox;
+            bbox.m_min.X = s_maxFloat;
+            bbox.m_min.Y = s_maxFloat;
+            bbox.m_min.Z = s_maxFloat;
+            bbox.m_max.X = s_minFloat;
+            bbox.m_max.Y = s_minFloat;
+            bbox.m_max.Z = s_minFloat;
+
+            for (auto& area : s_areas)
             {
                 for (auto& edge : area.m_edges)
                 {
-                    s_minX = std::min(s_minX, edge->m_pos.X);
-                    s_minY = std::min(s_minY, edge->m_pos.Y);
-                    s_minZ = std::min(s_minZ, edge->m_pos.Z);
-                    s_maxX = std::max(s_maxX, edge->m_pos.X);
-                    s_maxY = std::max(s_maxY, edge->m_pos.Y);
-                    s_maxZ = std::max(s_maxZ, edge->m_pos.Z);
+                    bbox.m_min.X = std::min(bbox.m_min.X, edge->m_pos.X);
+                    bbox.m_min.Y = std::min(bbox.m_min.Y, edge->m_pos.Y);
+                    bbox.m_min.Z = std::min(bbox.m_min.Z, edge->m_pos.Z);
+                    bbox.m_max.X = std::max(bbox.m_max.X, edge->m_pos.X);
+                    bbox.m_max.Y = std::max(bbox.m_max.Y, edge->m_pos.Y);
+                    bbox.m_max.Z = std::max(bbox.m_max.Z, edge->m_pos.Z);
                 }
             }
-            m_graphHdr->m_bbox.m_min.X = s_minX;
-            m_graphHdr->m_bbox.m_min.Y = s_minY;
-            m_graphHdr->m_bbox.m_min.Z = s_minZ;
-            m_graphHdr->m_bbox.m_max.X = s_maxX;
-            m_graphHdr->m_bbox.m_max.Y = s_maxY;
-            m_graphHdr->m_bbox.m_max.Z = s_maxZ;
+            return bbox;
+        }
 
-            m_kdTreeData->m_bbox.m_min.X = s_minX - 0.0002;
-            m_kdTreeData->m_bbox.m_min.Y = s_minY - 0.0002;
-            m_kdTreeData->m_bbox.m_min.Z = s_minZ - 0.0002;
-            m_kdTreeData->m_bbox.m_max.X = s_maxX + 0.0002;
-            m_kdTreeData->m_bbox.m_max.Y = s_maxY + 0.0002;
-            m_kdTreeData->m_bbox.m_max.Z = s_maxZ + 0.0002;
+        static bool compareX(Area& a1, Area& a2)
+        {
+            return a1.m_area->m_pos.X < a2.m_area->m_pos.X;
+        }
+
+        static bool compareY(Area& a1, Area& a2)
+        {
+            return a1.m_area->m_pos.Y < a2.m_area->m_pos.Y;
+        }
+
+        static bool compareZ(Area& a1, Area& a2)
+        {
+            return a1.m_area->m_pos.Z < a2.m_area->m_pos.Z;
+        }
+
+        uint32_t generateKdTree(uintptr_t s_nodePtr, std::vector<Area> s_areas, std::map<Binary::Area*, uint32_t>& p_AreaPointerToNavGraphOffsetMap)
+        {
+            std::cout << "\nNode pointer: " << s_nodePtr << "\n";
+            if (s_areas.size() == 0) {
+                std::cout << "Area list empty: " << "\n";
+                throw std::runtime_error("Area list empty.");
+                return 0;
+            }
+            if (s_areas.size() == 1) {
+                Binary::KDLeaf* leaf = new (reinterpret_cast<Binary::KDLeaf*>(s_nodePtr))Binary::KDLeaf;
+                Binary::Area* p_area = s_areas[0].m_area;
+                std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToNavGraphOffsetMap.find(p_area);
+                if (s_MapPosition != p_AreaPointerToNavGraphOffsetMap.end())
+                {
+                    leaf->m_data = 0x80000000;
+                    leaf->SetIsLeaf(true);
+                    leaf->SetPrimOffset(s_MapPosition->second);
+                    std::cout << "Leaf. Setting primoffset: " << s_MapPosition->second << " m_data: " << leaf->m_data << "\n";
+                }
+                else
+                {
+                    std::cout << "Leaf. Could not find area: " << p_area << "\n";
+                }
+                return sizeof(Binary::KDLeaf);
+            }
+            Binary::KDNode* node = new (reinterpret_cast<Binary::KDNode*>(s_nodePtr)) Binary::KDNode;
+            BBox s_areasBbox = generateBbox(s_areas);
+            std::vector<Area> areasCopy = s_areas;
+            Axis splitAxis;
+            std::vector<float> m_dLeft = { -300000000000., -300000000000., -300000000000. };
+            std::vector<float> m_dRight = { 300000000000., 300000000000., 300000000000. };
+            float min;
+            float max;
+            float mean;
+            std::vector<std::vector<Area>> left(3);
+            std::vector<std::vector<Area>> right(3);
+            for (int axisInt = Axis::X; axisInt != Axis::Z + 1; axisInt++)
+            {
+                min = 0;
+                max = 0;
+                mean = 0;
+                splitAxis = static_cast<Axis>(axisInt);
+                std::cout << "Checking " << AxisToString(splitAxis) << " Split\n";
+                if (splitAxis == Axis::X)
+                {
+                    std::sort(areasCopy.begin(), areasCopy.end(), compareX);
+
+                    for (auto& area : areasCopy)
+                    {
+                        mean += area.m_area->m_pos.X;
+                    }
+                    mean /= s_areas.size();
+                    for (auto& area : areasCopy)
+                    {
+                        if (area.m_area->m_pos.X <= mean)
+                        {
+                            left[splitAxis].push_back(area);
+                        }
+                        else
+                        {
+                            right[splitAxis].push_back(area);
+                        }
+                    }
+                }
+                else if (splitAxis == Axis::Y)
+                {
+                    std::sort(areasCopy.begin(), areasCopy.end(), compareY);
+                    for (auto& area : areasCopy)
+                    {
+                        mean += area.m_area->m_pos.Y;
+                    }
+                    mean /= s_areas.size();
+
+                    for (auto& area : areasCopy)
+                    {
+                        if (area.m_area->m_pos.Y <= mean)
+                        {
+                            left[splitAxis].push_back(area);
+                        }
+                        else
+                        {
+                            right[splitAxis].push_back(area);
+                        }
+                    }
+                }
+                else {
+                    std::sort(areasCopy.begin(), areasCopy.end(), compareZ);
+                    for (auto& area : areasCopy)
+                    {
+                        mean += area.m_area->m_pos.Z;
+                    }
+                    mean /= s_areas.size();
+                    for (auto& area : areasCopy)
+                    {
+                        if (area.m_area->m_pos.Z <= mean)
+                        {
+                            left[splitAxis].push_back(area);
+                        }
+                        else
+                        {
+                            right[splitAxis].push_back(area);
+                        }
+                    }
+                }
+                std::cout << "Original array size: " << s_areas.size() << "\n";
+                std::cout << "Left subarray size: " << left[splitAxis].size() << "\n";
+                std::cout << "Right subarray size:" << right[splitAxis].size() << "\n";
+
+                if (left[splitAxis].size() != 0)
+                {
+                    for (auto& edge : left[splitAxis].back().m_edges)
+                    {
+                        if (splitAxis == Axis::X)
+                        {
+                            m_dLeft[splitAxis] = std::max(m_dLeft[splitAxis], edge->m_pos.X);
+                        }
+                        else if (splitAxis == Axis::Y)
+                        {
+                            m_dLeft[splitAxis] = std::max(m_dLeft[splitAxis], edge->m_pos.Y);
+                        }
+                        else {
+                            m_dLeft[splitAxis] = std::max(m_dLeft[splitAxis], edge->m_pos.Z);
+                        }
+                    }
+                }
+                m_dLeft[splitAxis] += 0.0002;
+                std::cout << "m_dLeft: " << m_dLeft[splitAxis] << "\n";
+                std::cout << "Mean: " << mean << "\n";
+
+                if (right[splitAxis].size() != 0)
+                {
+                    for (auto& edge : right[splitAxis].front().m_edges)
+                    {
+                        if (splitAxis == Axis::X)
+                        {
+                            m_dRight[splitAxis] = std::min(m_dRight[splitAxis], edge->m_pos.X);
+                        }
+                        else if (splitAxis == Axis::Y)
+                        {
+                            m_dRight[splitAxis] = std::min(m_dRight[splitAxis], edge->m_pos.Y);
+                        }
+                        else {
+                            m_dRight[splitAxis] = std::min(m_dRight[splitAxis], edge->m_pos.Z);
+                        }
+                    }
+                }
+                m_dRight[splitAxis] -= 0.0002;
+
+                std::cout << "m_dRight: " << m_dRight[splitAxis] << "\n";
+                
+                if ((left[Axis::X].size() == 0 || right[Axis::X].size() == 0) &&
+                    (left[Axis::Y].size() == 0 || right[Axis::Y].size() == 0) &&
+                    (left[Axis::Z].size() == 0 || right[Axis::Z].size() == 0))
+                {
+                    if (left[splitAxis].size() == 0)
+                    {
+                        std::cout << "Left is empty. Right Areas:\n";
+                        for (auto& area : right[splitAxis])
+                        {
+                            std::cout << "Area: " << area.m_area->m_pos.X << ", " << area.m_area->m_pos.Y << ", " << area.m_area->m_pos.Z << "\n";
+                            for (auto& edge : area.m_edges)
+                            {
+                                std::cout << "   Edge: " << edge->m_pos.X << ", " << edge->m_pos.Y << ", " << edge->m_pos.Z << "\n";
+                            }
+                        }
+                    }
+                    if (right[splitAxis].size() == 0)
+                    {
+                        std::cout << "Right is empty. Left Areas:\n";
+                        for (auto& area : left[splitAxis])
+                        {
+                            std::cout << "Area: " << area.m_area->m_pos.X << ", " << area.m_area->m_pos.Y << ", " << area.m_area->m_pos.Z << "\n";
+                            for (auto& edge : area.m_edges)
+                            {
+                                std::cout << "   Edge: " << edge->m_pos.X << ", " << edge->m_pos.Y << ", " << edge->m_pos.Z << "\n";
+                            }
+                        }
+                    }
+                    throw std::runtime_error("No valid split found.");
+                }
+            }
+
+            int xDiff = abs((int)(right[Axis::X].size()) - (int)(left[Axis::X].size()));
+            int yDiff = abs((int)(right[Axis::Y].size()) - (int)(left[Axis::Y].size()));
+            int zDiff = abs((int)(right[Axis::Z].size()) - (int)(left[Axis::Z].size()));
+            if (xDiff < yDiff && xDiff < zDiff)
+            {
+                splitAxis = Axis::X;
+            }
+            else if (yDiff < xDiff && yDiff < zDiff)
+            {
+                splitAxis = Axis::Y;
+            }
+            else if (zDiff < xDiff && zDiff < yDiff)
+            {
+                splitAxis = Axis::Z;
+            }
+            else {
+                splitAxis = Axis::X;
+            }
+            std::cout << "Chose " << AxisToString(splitAxis) << " Split\n";
+            std::cout << "m_dLeft: " << m_dLeft[splitAxis] << "\n";
+            std::cout << "m_dRight: " << m_dRight[splitAxis] << "\n";
+
+            node->m_dLeft = m_dLeft[splitAxis];
+            node->m_dRight = m_dRight[splitAxis];
+
+            node->SetIsLeaf(false);
+            node->SetSplitAxis(splitAxis);
+            uint32_t s_Size = sizeof(Binary::KDNode);
+            s_Size += generateKdTree(s_nodePtr + s_Size, left[splitAxis], p_AreaPointerToNavGraphOffsetMap);
+            node->SetRightOffset(s_Size);
+            s_Size += generateKdTree(s_nodePtr + s_Size, right[splitAxis], p_AreaPointerToNavGraphOffsetMap);
+            return s_Size;
         }
 
         void writeJson(std::ostream& f) {
@@ -848,8 +1072,9 @@ namespace NavPower
             m_graphHdr = new Binary::NavGraphHeader();
 
             simdjson::ondemand::array m_areasJson = p_NavMeshDocument["m_areas"];
-            // Build m_areas index to NavGraph offset pointer map so the indices (+1) in the JSON file can be replaced with pointers
+            // Build m_areas index to pointer map so the indices (+1) in the JSON file can be replaced with pointers
             std::map<uint64_t, Binary::Area*> s_AreaIndexToPointerMap;
+
             uint64_t s_AreaIndex = 0;
 
             for (auto areaJson : m_areasJson)
@@ -861,10 +1086,15 @@ namespace NavPower
                 s_AreaIndex++;
             }
             uint32_t s_areaBytes = 0;
-            for (Area area : m_areas)
+            // Build m_areas index to NavGraph offset pointer map so the KD Tree can set the primoffset
+            std::map<Binary::Area*, uint32_t> s_AreaPointerToNavGraphOffsetMap;
+            for (auto& area : m_areas)
             {
+                std::cout << "Adding area to pointer to offset map: Area: " << &area.m_area << " offset: " << s_areaBytes + 324 << "\n";
+                s_AreaPointerToNavGraphOffsetMap.emplace(area.m_area, s_areaBytes + 324);
                 s_areaBytes += sizeof(Binary::Area);
                 s_areaBytes += sizeof(Binary::Edge) * area.m_edges.size();
+                s_AreaIndex++;
                 float s_radius = -1.;
                 for (Binary::Edge* edge : area.m_edges)
                 {
@@ -885,28 +1115,33 @@ namespace NavPower
                 area.m_area->m_radius = s_radius;
             }
             
-            // Read Tree from JSON
-            
             m_kdTreeData = new Binary::KDTreeData();
-            simdjson::ondemand::object m_kdTreeDataJson = p_NavMeshDocument["m_kdTreeData"];
-            m_kdTreeData->readJson(m_kdTreeDataJson);
-            
-            simdjson::ondemand::object m_rootKDNodeJson = p_NavMeshDocument["m_rootKDNode"];
+
+            // Calculate Bbox Areas and Edges
+            BBox bbox = generateBbox(m_areas);
+            m_graphHdr->m_bbox.copy(bbox);
+            m_kdTreeData->m_bbox.m_min.X = bbox.m_min.X - 0.0002;
+            m_kdTreeData->m_bbox.m_min.Y = bbox.m_min.Y - 0.0002;
+            m_kdTreeData->m_bbox.m_min.Z = bbox.m_min.Z - 0.0002;
+            m_kdTreeData->m_bbox.m_max.X = bbox.m_max.X + 0.0002;
+            m_kdTreeData->m_bbox.m_max.Y = bbox.m_max.Y + 0.0002;
+            m_kdTreeData->m_bbox.m_max.Z = bbox.m_max.Z + 0.0002;
+
+            // Set tree size and allocate tree memory
+            // Num Nodes = Num Areas - 1
+            // sizeof(Node) = 12
+            // Num Leaves = Num Areas
+            // sizeof(Leaf) = 4
+            // Tree size: 12 * Num Nodes + 4 * Num Leaves
+            m_kdTreeData->m_size = 12 * (m_areas.size() - 1) + 4 * m_areas.size();
             m_rootKDNode = (Binary::KDNode*)malloc(m_kdTreeData->m_size);
-            uint32_t s_treeSize = m_rootKDNode->readJson(m_rootKDNodeJson);
-            
+
+            //m_rootKDNode->readJson(m_rootKDNodeJson);
             
             // Calculate K-D Tree from Areas and Edges
-            //m_kdTreeData = new Binary::KDTreeData();
-            generateGraphHdrBBoxAndKdTree();
-
-            //uint32_t s_treeSize = 0;
-            //m_rootKDNode = new Binary::KDNode();
-            //m_rootKDNode->generate(m_areas);
-
+            generateKdTree(reinterpret_cast<uintptr_t>(m_rootKDNode), m_areas, s_AreaPointerToNavGraphOffsetMap);
 
             // Set size fields
-            m_kdTreeData->m_size = s_treeSize;
             m_graphHdr->m_areaBytes = s_areaBytes;
             m_graphHdr->m_kdTreeBytes = sizeof(Binary::KDTreeData) + m_kdTreeData->m_size;
             m_graphHdr->m_totalBytes = sizeof(Binary::NavGraphHeader) + m_graphHdr->m_areaBytes + m_graphHdr->m_kdTreeBytes;
