@@ -1105,34 +1105,31 @@ namespace NavPower
                 return left.first < right.first;
             }
         );
-        std::vector<Area> s_sortedAreas;
+        std::vector<Area> s_actualAreasInOriginalOrder;
 
         for (auto& indexAreaPair : s_originalIndexAreaPairs)
         {
-            s_sortedAreas.push_back(indexAreaPair.second);
+            s_actualAreasInOriginalOrder.push_back(indexAreaPair.second);
         }
+        std::vector<Area> s_sortedAreas = s_actualAreasInOriginalOrder;
 
+        BBox areasBbox = generateBbox(s_actualAreasInOriginalOrder);
 
         ////////////////////////////////////////////////////////////////////////////
-        // Output actual node areas
+        // Output actual node areas in original order
         ////////////////////////////////////////////////////////////////////////////
-        outputDepth(depth);
-        std::cout << "Areas bbox:\n";
-        BBox areasBbox = generateBbox(s_sortedAreas);
-        areasBbox.writeJson(std::cout);
-        std::cout << "\n";
-        outputDepth(depth);
-        std::cout << "Areas sorted by original index:\n";
-        for (int index = 0; index < s_sortedAreas.size(); index++)
-        {
-            outputDepth(depth);
-            std::cout << "area[" << index << "]: Pos: ";
-            s_sortedAreas[index].m_area->m_pos.writeJson(std::cout);
-            BBox bbox = s_sortedAreas[index].calculateBBox();
-            outputDepth(depth);
-            bbox.writeJson(std::cout);
-            std::cout << "\n";
-        }
+        //outputDepth(depth);
+        //std::cout << "Areas sorted by original index:\n";
+        //for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+        //{
+        //    outputDepth(depth);
+        //    std::cout << "area[" << index << "]: Pos: ";
+        //    s_actualAreasInOriginalOrder[index].m_area->m_pos.writeJson(std::cout);
+        //    BBox bbox = s_actualAreasInOriginalOrder[index].calculateBBox();
+        //    outputDepth(depth);
+        //    bbox.writeJson(std::cout);
+        //    std::cout << "\n";
+        //}
 
         ////////////////////////////////////////////////////////////////////////////
         // Verify Split Axis
@@ -1158,36 +1155,36 @@ namespace NavPower
         ////////////////////////////////////////////////////////////////////////////
         // Handle trivial cases: areas of size 2 and 3
         ////////////////////////////////////////////////////////////////////////////
-        if (s_sortedAreas.size() == 2 || s_sortedAreas.size() == 3)
-        {
-            BBox bbox0 = s_sortedAreas[0].calculateBBox();
-            BBox bbox1 = s_sortedAreas[1].calculateBBox();
+        //if (s_sortedAreas.size() == 2 || s_sortedAreas.size() == 3)
+        //{
+        //    BBox bbox0 = s_sortedAreas[0].calculateBBox();
+        //    BBox bbox1 = s_sortedAreas[1].calculateBBox();
 
-            if (nodeSplits.splitAxis == Axis::X)
-            {
-                nodeSplits.s_LeftSplit = bbox0.m_max.X;
-                nodeSplits.s_RightSplit = bbox1.m_min.X;
-            }
-            else if (nodeSplits.splitAxis == Axis::Y)
-            {
-                nodeSplits.s_LeftSplit = bbox0.m_max.Y;
-                nodeSplits.s_RightSplit = bbox1.m_min.Y;
-            }
-            else {
-                nodeSplits.s_LeftSplit = bbox0.m_max.Z;
-                nodeSplits.s_RightSplit = bbox1.m_min.Z;
-            }
+        //    if (nodeSplits.splitAxis == Axis::X)
+        //    {
+        //        nodeSplits.s_LeftSplit = bbox0.m_max.X;
+        //        nodeSplits.s_RightSplit = bbox1.m_min.X;
+        //    }
+        //    else if (nodeSplits.splitAxis == Axis::Y)
+        //    {
+        //        nodeSplits.s_LeftSplit = bbox0.m_max.Y;
+        //        nodeSplits.s_RightSplit = bbox1.m_min.Y;
+        //    }
+        //    else {
+        //        nodeSplits.s_LeftSplit = bbox0.m_max.Z;
+        //        nodeSplits.s_RightSplit = bbox1.m_min.Z;
+        //    }
 
-            nodeSplits.s_LeftSplit = nodeSplits.s_LeftSplit + 0.0002;
-            nodeSplits.s_RightSplit = nodeSplits.s_RightSplit - 0.0002;
-            nodeSplits.left.push_back(s_sortedAreas[0]);
-            nodeSplits.right.push_back(s_sortedAreas[1]);
-            if (s_sortedAreas.size() == 3)
-            {
-                nodeSplits.right.push_back(s_sortedAreas[2]);
-            }
-            return nodeSplits;
-        }
+        //    nodeSplits.s_LeftSplit = nodeSplits.s_LeftSplit + 0.0002;
+        //    nodeSplits.s_RightSplit = nodeSplits.s_RightSplit - 0.0002;
+        //    nodeSplits.left.push_back(s_sortedAreas[0]);
+        //    nodeSplits.right.push_back(s_sortedAreas[1]);
+        //    if (s_sortedAreas.size() == 3)
+        //    {
+        //        nodeSplits.right.push_back(s_sortedAreas[2]);
+        //    }
+        //    return nodeSplits;
+        //}
 
         ////////////////////////////////////////////////////////////////////////////
         // Calculate Mins
@@ -1272,29 +1269,120 @@ namespace NavPower
         }
 
         ////////////////////////////////////////////////////////////////////////////
-        // Split areas into two vectors
+        // Sort areas by max of split axis
         ////////////////////////////////////////////////////////////////////////////
 
         if (nodeSplits.splitAxis == Axis::X)
         {
-            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMinX);
+            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMaxX);
         }
         else if (nodeSplits.splitAxis == Axis::Y)
         {
-            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMinY);
+            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMaxY);
         }
         else
         {
-            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMinZ);
+            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMaxZ);
         }
+
+        ////////////////////////////////////////////////////////////////////////////
+        // Output actual node areas sorted by max of split axis
+        ////////////////////////////////////////////////////////////////////////////
+        outputDepth(depth);
+        std::cout << "Areas bbox:\n";
+        areasBbox.writeJson(std::cout);
+        std::cout << "\n";
+        outputDepth(depth);
+        std::cout << "Areas sorted by max of split Axis:" << AxisToString(nodeSplits.splitAxis) << "\n";
         for (int index = 0; index < s_sortedAreas.size(); index++)
         {
+            outputDepth(depth);
+            std::cout << "area[" << index << "]: Pos: ";
+            s_sortedAreas[index].m_area->m_pos.writeJson(std::cout);
+            BBox bbox = s_sortedAreas[index].calculateBBox();
+            outputDepth(depth);
+            bbox.writeJson(std::cout);
+            std::cout << "\n";
+        }
+
+        ////////////////////////////////////////////////////////////////////////////
+        // Split areas into two vectors
+        ////////////////////////////////////////////////////////////////////////////
+
+        for (int index = 0; index < s_sortedAreas.size(); index++)
+        {
+            BBox bbox = s_sortedAreas[index].calculateBBox();
+            float max = -300000000;
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                max = bbox.m_max.X;
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                max = bbox.m_max.Y;
+            }
+            else
+            {
+                max = bbox.m_max.Z;
+            }
             if (index < s_sortedAreas.size() / 2)
             {
+                if (nodeSplits.splitAxis == Axis::X)
+                {
+                    if (s_sortedAreas[index].m_area->m_pos.X > node->m_dLeft)
+                    {
+                        std::cout << "Position greater than split at index " << index << "\n";
+                    }
+                }
+                else if (nodeSplits.splitAxis == Axis::Y)
+                {
+                    if (s_sortedAreas[index].m_area->m_pos.Y > node->m_dLeft)
+                    {
+                        std::cout << "Position greater than split at index " << index << "\n";
+                    }
+                }
+                else
+                {
+                    if (s_sortedAreas[index].m_area->m_pos.Z > node->m_dLeft)
+                    {
+                        std::cout << "Position greater than split at index " << index << "\n";
+                    }
+                }
+                if (max > node->m_dLeft)
+                {
+                    std::cout << "Max greater than split at index " << index << "\n";
+                }
+
                 nodeSplits.left.push_back(s_sortedAreas[index]);
             }
             else
             {
+                if (nodeSplits.splitAxis == Axis::X)
+                {
+                    if (s_sortedAreas[index].m_area->m_pos.X < node->m_dLeft)
+                    {
+                        std::cout << "Position less than split at index " << index << "\n";
+                    }
+                }
+                else if (nodeSplits.splitAxis == Axis::Y)
+                {
+                    if (s_sortedAreas[index].m_area->m_pos.Y < node->m_dLeft)
+                    {
+                        std::cout << "Position less than split at index " << index << "\n";
+                    }
+                }
+                else
+                {
+                    if (s_sortedAreas[index].m_area->m_pos.Z < node->m_dLeft)
+                    {
+                        std::cout << "Position less than split at index " << index << "\n";
+                    }
+                }
+                if (max < node->m_dLeft)
+                {
+                    std::cout << "Max less than split at index " << index << "\n";
+                }
+
                 nodeSplits.right.push_back(s_sortedAreas[index]);
             }
         }
