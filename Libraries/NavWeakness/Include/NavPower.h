@@ -198,6 +198,7 @@ namespace NavPower
             uint32_t m_flags4;
 
             void writeBinary(std::ostream& f);
+            bool operator==(AreaFlags const& other) const;
         };
 
         class Edge;
@@ -223,6 +224,8 @@ namespace NavPower
             void writeJson(std::ostream& f, uint64_t s_areaIndex);
             void readJson(auto p_Json);
             void writeBinary(std::ostream& f);
+            bool operator==(Area const& other) const;
+
         };
 
         class Edge
@@ -256,6 +259,7 @@ namespace NavPower
             void writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap);
             void readJson(simdjson::ondemand::object p_Json);
             void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap);
+            bool operator==(Edge const& other) const;
         };
 
         class KDTreeData
@@ -325,6 +329,8 @@ namespace NavPower
         void writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap);
         void readJson(auto p_Json);
         void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap);
+        bool operator==(Area const& other) const;
+        bool operator<(Area const& other) const;
 
         // This research and function was created by github.com/OrfeasZ aka NoFaTe
         // This marked vertex is calculated by drawing a line between the first and second vertex in the list

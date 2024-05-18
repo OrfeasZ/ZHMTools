@@ -111,6 +111,11 @@ struct Vec3
         return *(&X + p_Value);
     }
 
+    bool operator==(const Vec3& p_Other) const
+    {
+        return X == p_Other.X && Y == p_Other.Y && Z == p_Other.Z;
+    }
+
     float Dot(const Vec3& p_Other) const
     {
         return X * p_Other.X + Y * p_Other.Y + Z * p_Other.Z;
