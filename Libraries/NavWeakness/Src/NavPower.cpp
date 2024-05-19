@@ -1174,7 +1174,7 @@ namespace NavPower
         BBox areasBbox = generateBbox(s_actualAreasInOriginalOrder);
 
         ////////////////////////////////////////////////////////////////////////////
-        // Sort areas by pos of split axis
+        // Sort areas by max of split axis
         ////////////////////////////////////////////////////////////////////////////
 
         if (nodeSplits.splitAxis == Axis::X)
@@ -1192,11 +1192,6 @@ namespace NavPower
         ////////////////////////////////////////////////////////////////////////////
         // Output actual node areas sorted by pos of split axis
         ////////////////////////////////////////////////////////////////////////////
-        outputDepth(depth);
-        std::cout << "Areas bbox:" << std::endl;
-        areasBbox.writeJson(std::cout);
-        std::cout << std::endl;
-        outputDepth(depth);
         //std::cout << "Areas sorted by pos of " << AxisToString(nodeSplits.splitAxis) << " Axis:" << std::endl;
         //for (int index = 0; index < s_sortedAreas.size(); index++)
         //{
@@ -1235,28 +1230,30 @@ namespace NavPower
         {
             medianValue = middleArea.m_area->m_pos.Z;
         }
-        //if (s_sortedAreas.size() % 2 == 0 && s_sortedAreas.size() > 2)
-        //{
-        //    float otherMedianValue = 0;
-        //    Area otherMiddleArea = s_sortedAreas[middleIndex - 1];
-        //    if (nodeSplits.splitAxis == Axis::X)
-        //    {
-        //        otherMedianValue = otherMiddleArea.m_area->m_pos.X;
-        //    }
-        //    else if (nodeSplits.splitAxis == Axis::Y)
-        //    {
-        //        otherMedianValue = otherMiddleArea.m_area->m_pos.Y;
-        //    }
-        //    else
-        //    {
-        //        otherMedianValue = otherMiddleArea.m_area->m_pos.Z;
-        //    }
-        //    medianValue += otherMedianValue;
-        //    medianValue /= 2;
-        //}
-        for (int index = 0; index < s_sortedAreas.size(); index++)
+        if (s_sortedAreas.size() % 2 == 0)// && s_sortedAreas.size() > 2)
         {
-            BBox bbox = s_sortedAreas[index].calculateBBox();
+            float otherMedianValue = 0;
+            Area otherMiddleArea = s_sortedAreas[middleIndex - 1];
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                otherMedianValue = otherMiddleArea.m_area->m_pos.X;
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                otherMedianValue = otherMiddleArea.m_area->m_pos.Y;
+            }
+            else
+            {
+                otherMedianValue = otherMiddleArea.m_area->m_pos.Z;
+            }
+            medianValue += otherMedianValue;
+            medianValue /= 2;
+        }
+        float middleMaxX = middleArea.max(nodeSplits.splitAxis);
+        float middleMinX = middleArea.min(nodeSplits.splitAxis);
+        for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+        {
+            BBox bbox = s_actualAreasInOriginalOrder[index].calculateBBox();
             float max = 0;
             float min = 0;
             float pos = 0;
@@ -1264,36 +1261,182 @@ namespace NavPower
             {
                 max = bbox.m_max.X;
                 min = bbox.m_min.X;
-                pos = s_sortedAreas[index].m_area->m_pos.X;
+                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.X;
             }
             else if (nodeSplits.splitAxis == Axis::Y)
             {
                 max = bbox.m_max.Y;
                 min = bbox.m_min.Y;
-                pos = s_sortedAreas[index].m_area->m_pos.Y;
+                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.Y;
             }
             else
             {
                 max = bbox.m_max.Z;
                 min = bbox.m_min.Z;
-                pos = s_sortedAreas[index].m_area->m_pos.Z;
+                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.Z;
             }
-            if (pos < medianValue)
+            //if (pos >= medianValue && nodeSplits.right.size() < s_actualAreasInOriginalOrder.size() / 2.0)
+            //{
+            //    nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
+            //}
+            //else
+            //{
+            //    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
+            //}
+            if (min <= medianValue && max >= medianValue)
             {
-                nodeSplits.left.push_back(s_sortedAreas[index]);
+                s_areasThatOverlapMedian.push_back(s_actualAreasInOriginalOrder[index]);
             }
             else
             {
-                nodeSplits.right.push_back(s_sortedAreas[index]);
-            }
-            if (min <= medianValue && max >= medianValue)
-            {
-                s_areasThatOverlapMedian.push_back(s_sortedAreas[index]);
+
+                if (pos < medianValue)// && nodeSplits.right.size() > nodeSplits.left.size())//s_actualAreasInOriginalOrder.size() / 2.0)
+                {
+                    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
+                }
+                if (pos > medianValue)
+                {
+                    nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
+                }
             }
         }
+
+        outputDepth(depth);
         std::cout << "Left size: " << nodeSplits.left.size() << " Middle size: " << s_areasThatOverlapMedian.size() << " Right size: " << nodeSplits.right.size() << std::endl;
-        BBox s_overlapBbox = generateBbox(s_areasThatOverlapMedian);
-        int s_medianOverlappingIndex = s_areasThatOverlapMedian.size() / 2;
+        int medianIndexOfOverlappingAreas = s_areasThatOverlapMedian.size() / 2;
+        float medianValueOfOverlappingAreas = 0;
+        if (s_areasThatOverlapMedian.size() > 0)
+        { 
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                medianValueOfOverlappingAreas = s_areasThatOverlapMedian[medianIndexOfOverlappingAreas].m_area->m_pos.X;
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                medianValueOfOverlappingAreas = s_areasThatOverlapMedian[medianIndexOfOverlappingAreas].m_area->m_pos.Y;
+            }
+            else
+            {
+                medianValueOfOverlappingAreas = s_areasThatOverlapMedian[medianIndexOfOverlappingAreas].m_area->m_pos.Z;
+            }
+            if (s_areasThatOverlapMedian.size() % 2 == 0)// && s_sortedAreas.size() > 2)
+            {
+                float otherOverlappingMedianValue = 0;
+                Area otherOverlappingMiddleArea = s_sortedAreas[middleIndex - 1];
+                if (nodeSplits.splitAxis == Axis::X)
+                {
+                    otherOverlappingMedianValue = otherOverlappingMiddleArea.m_area->m_pos.X;
+                }
+                else if (nodeSplits.splitAxis == Axis::Y)
+                {
+                    otherOverlappingMedianValue = otherOverlappingMiddleArea.m_area->m_pos.Y;
+                }
+                else
+                {
+                    otherOverlappingMedianValue = otherOverlappingMiddleArea.m_area->m_pos.Z;
+                }
+                medianValueOfOverlappingAreas += otherOverlappingMedianValue;
+                medianValueOfOverlappingAreas /= 2;
+            }
+            std::cout << "Overlapping areas median index: " << medianIndexOfOverlappingAreas << " Median value: " << medianValueOfOverlappingAreas << std::endl;
+        }
+
+        for (int index = 0; index < s_areasThatOverlapMedian.size(); index++)
+        {
+            BBox bbox = s_areasThatOverlapMedian[index].calculateBBox();
+            float max = 0;
+            float min = 0;
+            float pos = 0;
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                max = bbox.m_max.X;
+                min = bbox.m_min.X;
+                pos = s_areasThatOverlapMedian[index].m_area->m_pos.X;
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                max = bbox.m_max.Y;
+                min = bbox.m_min.Y;
+                pos = s_areasThatOverlapMedian[index].m_area->m_pos.Y;
+            }
+            else
+            {
+                max = bbox.m_max.Z;
+                min = bbox.m_min.Z;
+                pos = s_areasThatOverlapMedian[index].m_area->m_pos.Z;
+            }
+            //if (pos >= medianValue && nodeSplits.right.size() < s_actualAreasInOriginalOrder.size() / 2.0)
+            //{
+            //    nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
+            //}
+            //else
+            //{
+            //    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
+            //}
+            if (pos < medianValue)// && nodeSplits.right.size() > nodeSplits.left.size())//s_actualAreasInOriginalOrder.size() / 2.0)
+            {
+                nodeSplits.left.push_back(s_areasThatOverlapMedian[index]);
+            }
+            if (pos > medianValue)
+            {
+                nodeSplits.right.push_back(s_areasThatOverlapMedian[index]);
+            }
+        }
+        for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+        {
+            BBox bbox = s_actualAreasInOriginalOrder[index].calculateBBox();
+            float max = 0;
+            float min = 0;
+            float pos = 0;
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                max = bbox.m_max.X;
+                min = bbox.m_min.X;
+                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.X;
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                max = bbox.m_max.Y;
+                min = bbox.m_min.Y;
+                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.Y;
+            }
+            else
+            {
+                max = bbox.m_max.Z;
+                min = bbox.m_min.Z;
+                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.Z;
+            }
+            //if (pos >= medianValue && nodeSplits.right.size() < s_actualAreasInOriginalOrder.size() / 2.0)
+            //{
+            //    nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
+            //}
+            //else
+            //{
+            //    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
+            //}
+
+            if (pos == medianValue)
+            {
+                std::cout << "Depth: " << depth << " Position matches Median: " << medianValue << " Index: " << index << std::endl;
+                if (nodeSplits.left.size() < s_actualAreasInOriginalOrder.size() / 2)
+                {
+                    std::cout << "Pushing left" << std::endl;
+                    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
+                }
+                else
+                {
+                    std::cout << "Pushing right" << std::endl;
+                    nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
+                }
+            }
+        }
+        //if (s_actualAreasInOriginalOrder.size() == 2)
+        //{
+        //    nodeSplits.left = std::vector<Area>{};//{ s_actualAreasInOriginalOrder[1] };
+
+        //    nodeSplits.right = std::vector<Area>{};// { s_actualAreasInOriginalOrder[0] };
+        //}
+
         ////////////////////////////////////////////////////////////////////////////
         // Handle case where no areas overlap the median area
         ////////////////////////////////////////////////////////////////////////////
@@ -1324,199 +1467,448 @@ namespace NavPower
         //////////////////////////////////////////////////////////////////////////////
         //else
         //{
-            ////////////////////////////////////////////////////////////////////////////
-            // Sort overlapping areas by min of split axis
-            ////////////////////////////////////////////////////////////////////////////
 
-            if (nodeSplits.splitAxis == Axis::X)
-            {
-                sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareMinX);
-            }
-            else if (nodeSplits.splitAxis == Axis::Y)
-            {
-                sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareMinY);
-            }
-            else
-            {
-                sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareMinZ);
-            }
-            //////////////////////////////////////////////////////////////////////////////
-            //// Set left split based on max of split axis of left areas and right split based on min of split axis of right areas
-            ////////////////////////////////////////////////////////////////////////////
-            BBox leftAreasBBox = generateBbox(nodeSplits.left);
-            std::cout << "Left areas bbox: " << std::endl;
-            leftAreasBBox.writeJson(std::cout);
-            std::cout << std::endl;
-            BBox rightAreasBBox = generateBbox(nodeSplits.right);
-            std::cout << "Right areas bbox: " << std::endl;
-            rightAreasBBox.writeJson(std::cout);
-            std::cout << std::endl;
-            if (nodeSplits.splitAxis == Axis::X)
-            {
-                nodeSplits.s_LeftSplit = leftAreasBBox.m_max.X + 0.0002;
-                nodeSplits.s_RightSplit = rightAreasBBox.m_min.X - 0.0002;
-            }
-            else if (nodeSplits.splitAxis == Axis::Y)
-            {
-                nodeSplits.s_LeftSplit = leftAreasBBox.m_max.Y + 0.0002;
-                nodeSplits.s_RightSplit = rightAreasBBox.m_min.Y - 0.0002;
-            }
-            else
-            {
-                nodeSplits.s_LeftSplit = leftAreasBBox.m_max.Z + 0.0002;
-                nodeSplits.s_RightSplit = rightAreasBBox.m_min.Z - 0.0002;
-            }
-        //}
+        //////////////////////////////////////////////////////////////////////////////
+        //// Set left split based on max of split axis of left areas and right split based on min of split axis of right areas
         ////////////////////////////////////////////////////////////////////////////
-        // Output debug info
-        ////////////////////////////////////////////////////////////////////////////
-
-        std::cout << "Left size: " << nodeSplits.left.size() << " Right size: " << nodeSplits.right.size() << std::endl;
-
-        outputDepth(depth);
-        std::cout << "Depth: " << depth << " Discovered Split Axis : " << AxisToString(nodeSplits.splitAxis) << " Actual Split Axis : " << AxisToString(node->GetSplitAxis()) << " Num Areas: " << s_sortedAreas.size() << std::endl;
-
-        std::cout << std::endl;
-
-        if (s_sortedAreas.size() == 2)
+        BBox leftAreasBBox = generateBbox(nodeSplits.left);
+        BBox rightAreasBBox = generateBbox(nodeSplits.right);
+        if (nodeSplits.splitAxis == Axis::X)
         {
-            std::cout << "2 Areas: " << s_sortedAreas.size() << std::endl;
-
-            for (int index = 0; index < s_sortedAreas.size(); index++)
-            {
-                outputDepth(depth);
-                std::cout << "index: " << index << std::endl;
-                s_sortedAreas[index].m_area->m_pos.writeJson(std::cout);
-                std::cout << std::endl;
-                BBox bbox = s_sortedAreas[index].calculateBBox();
-                bbox.writeJson(std::cout);
-                std::cout << std::endl;
-            }
+            nodeSplits.s_LeftSplit = leftAreasBBox.m_max.X + 0.0002;
+            nodeSplits.s_RightSplit = rightAreasBBox.m_min.X - 0.0002;
         }
-
-        outputDepth(depth);
-        std::cout << "Actual left split: " << node->m_dLeft << std::endl;
-        outputDepth(depth);
-        std::cout << "Discovered left split: " << nodeSplits.s_LeftSplit << std::endl;
-        outputDepth(depth);
-        std::cout << "Actual right split: " << node->m_dRight << std::endl;
-        outputDepth(depth);
-        std::cout << "Discovered right split: " << nodeSplits.s_RightSplit << std::endl;
-        outputDepth(depth);
-        std::cout << "Middle index: " << middleIndex << std::endl;
-        outputDepth(depth);
-        std::cout << "Median area pos: ";
-        s_sortedAreas[middleIndex].m_area->m_pos.writeJson(std::cout);
-        std::cout << std::endl;
-        outputDepth(depth);
-        std::cout << "Median value: " << medianValue;
-        std::cout << std::endl;
-
-        outputDepth(depth);
-        std::cout << "Median area bbox: ";
-        BBox medianBBox = s_sortedAreas[middleIndex].calculateBBox();
-        outputDepth(depth);
-        medianBBox.writeJson(std::cout);
-        std::cout << std::endl;
-
-        ////////////////////////////////////////////////////////////////////////////
-        // Compare Left areas with left child areas
-        ////////////////////////////////////////////////////////////////////////////
-        sort(nodeSplits.left.begin(), nodeSplits.left.end(), compareX);
-
+        else if (nodeSplits.splitAxis == Axis::Y)
+        {
+            nodeSplits.s_LeftSplit = leftAreasBBox.m_max.Y + 0.0002;
+            nodeSplits.s_RightSplit = rightAreasBBox.m_min.Y - 0.0002;
+        }
+        else
+        {
+            nodeSplits.s_LeftSplit = leftAreasBBox.m_max.Z + 0.0002;
+            nodeSplits.s_RightSplit = rightAreasBBox.m_min.Z - 0.0002;
+        }
+        //}
 
         std::vector<Area> actualLeftAreas;
         for (auto& indexAreaPair : node->GetLeft()->GetAreas(s_navGraphOffsetToIndexMap, m_areas))
         {
             actualLeftAreas.push_back(indexAreaPair.second);
         }
-        sort(actualLeftAreas.begin(), actualLeftAreas.end(), compareX);
-
-        std::vector<Area> difference;
-
-        std::set_difference(nodeSplits.left.begin(), nodeSplits.left.end(), actualLeftAreas.begin(),
-            actualLeftAreas.end(), back_inserter(difference));
-
-        std::cout << "Areas in discovered left not in actual left: " << std::endl;
-        for (const Area& area : difference) {
-            area.m_area->m_pos.writeJson(std::cout);
-            std::cout << std::endl;
-        }
-        if (difference.size() > 0)
-        {
-
-            std::cout << "=======================Start Areas near median : ======================= " << std::endl;
-
-            for (int index = 0; index < s_sortedAreas.size(); index++)
-            {
-                if (index > s_sortedAreas.size() / 2 - 5 && index < s_sortedAreas.size() / 2 + 5)
-                {
-                    outputDepth(depth);
-                    std::cout << "index: " << index << std::endl;
-                    s_sortedAreas[index].m_area->m_pos.writeJson(std::cout);
-                    std::cout << std::endl;
-                    BBox bbox = s_sortedAreas[index].calculateBBox();
-                    bbox.writeJson(std::cout);
-                    std::cout << std::endl;
-                }
-            }
-            std::cout << "=======================End Areas near median : ======================= " << std::endl;
-        }
-        difference.clear();
-
-        std::set_difference(actualLeftAreas.begin(),
-            actualLeftAreas.end(), nodeSplits.left.begin(), nodeSplits.left.end(), back_inserter(difference));
-
-        std::cout << "Areas in actual left not in discovered left: " << std::endl;
-        for (const Area& area : difference) {
-            area.m_area->m_pos.writeJson(std::cout);
-            std::cout << std::endl;
-        }
-
-        difference.clear();
-
-        ////////////////////////////////////////////////////////////////////////////
-        // Compare Right areas with right child areas
-        ////////////////////////////////////////////////////////////////////////////
-        sort(nodeSplits.right.begin(), nodeSplits.right.end(), compareX);
-
         std::vector<Area> actualRightAreas;
         for (auto& indexAreaPair : node->GetRight()->GetAreas(s_navGraphOffsetToIndexMap, m_areas))
         {
             actualRightAreas.push_back(indexAreaPair.second);
         }
-        sort(actualRightAreas.begin(), actualRightAreas.end(), compareX);
 
-        std::set_difference(nodeSplits.right.begin(), nodeSplits.right.end(), actualRightAreas.begin(),
-            actualRightAreas.end(), back_inserter(difference));
-
-        std::cout << "Areas in discovered right not in actual right:" << std::endl;
-        for (const Area& area : difference) {
-            area.m_area->m_pos.writeJson(std::cout);
-            std::cout << std::endl;
-        }
-
-        difference.clear();
-        std::set_difference(actualRightAreas.begin(),
-            actualRightAreas.end(), nodeSplits.right.begin(), nodeSplits.right.end(), back_inserter(difference));
-
-        std::cout << "Areas in actual right not in discovered right:" << std::endl;
-        for (const Area& area : difference) {
-            area.m_area->m_pos.writeJson(std::cout);
-            std::cout << std::endl;
-        }
-
-        if (nodeSplits.s_LeftSplit != node->m_dLeft)
+        if (nodeSplits.splitAxis == Axis::X)
         {
-            std::cout << "Left Split did not match XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << std::endl;
+            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMaxX);
+        }
+        else if (nodeSplits.splitAxis == Axis::Y)
+        {
+            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMaxY);
+        }
+        else
+        {
+            sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMaxZ);
+        }
+        Area maxMiddleArea = s_sortedAreas[middleIndex];
+        float maxMedianValue = 0;
+        if (nodeSplits.splitAxis == Axis::X)
+        {
+            BBox bbox = maxMiddleArea.calculateBBox();
+            maxMedianValue = bbox.m_max.X;
+        }
+        else if (nodeSplits.splitAxis == Axis::Y)
+        {
+            BBox bbox = maxMiddleArea.calculateBBox();
+            maxMedianValue = bbox.m_max.Y;
+        }
+        else
+        {
+            BBox bbox = maxMiddleArea.calculateBBox();
+            maxMedianValue = bbox.m_max.Z;
+        }
+        //if (nodeSplits.s_LeftSplit != node->m_dLeft)
+        //{
+        //    std::cout << "Max median value (left): " << maxMedianValue << std::endl;
+        //    std::cout << "Left split was wrong, fixed it." << std::endl;
+        //    nodeSplits.s_LeftSplit = maxMedianValue + 0.0002;
+        //}
+
+        bool splitsMatch = true;
+
+        float leftDiff = nodeSplits.s_LeftSplit - node->m_dLeft;
+        if (leftDiff < 0)
+        {
+            leftDiff *= -1;
+        }
+        if (leftDiff > 0.0002)
+        {
+            splitsMatch = false;
             //throw std::runtime_error("Error: Left Split did not match");
         }
-        if (nodeSplits.s_RightSplit != node->m_dRight)
+        float rightDiff = nodeSplits.s_RightSplit - node->m_dRight;
+        if (rightDiff < 0)
         {
-            std::cout << "Right Split did not match XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << std::endl;
+            rightDiff *= -1;
+        }
+        if (rightDiff > 0.0002)
+        {
+            splitsMatch = false;
             //throw std::runtime_error("Error: Right Split did not match");
         }
-        std::cout << "==============================================================================================" << std::endl;
+        if (!splitsMatch)
+        {
+            std::cout << ">>>>==============================================================================================" << std::endl;
+            outputDepth(depth);
+            std::cout << "Splits don't match" << std::endl;
+
+            outputDepth(depth);
+            std::cout << "Depth: " << depth << " Discovered Split Axis : " << AxisToString(nodeSplits.splitAxis) << " Actual Split Axis : " << AxisToString(node->GetSplitAxis()) << " Num Areas: " << s_sortedAreas.size() << std::endl;
+            outputDepth(depth);
+
+
+            ////////////////////////////////////////////////////////////////////////////
+            // Output debug info
+            ////////////////////////////////////////////////////////////////////////////
+
+            std::cout << "Left size: " << nodeSplits.left.size() << " Right size: " << nodeSplits.right.size() << std::endl;
+
+
+            outputDepth(depth);
+            std::cout << "Actual left split: " << node->m_dLeft << std::endl;
+            outputDepth(depth);
+            std::cout << "Discovered left split: " << nodeSplits.s_LeftSplit << std::endl;
+            outputDepth(depth);
+            std::cout << "Actual right split: " << node->m_dRight << std::endl;
+            outputDepth(depth);
+            std::cout << "Discovered right split: " << nodeSplits.s_RightSplit << std::endl;
+            //outputDepth(depth);
+            //std::cout << "Middle index: " << middleIndex << std::endl;
+            outputDepth(depth);
+            std::cout << "Median area pos: ";
+            s_sortedAreas[middleIndex].m_area->m_pos.writeJson(std::cout);
+            std::cout << std::endl;
+            outputDepth(depth);
+            std::cout << "Median value: " << medianValue;
+            std::cout << std::endl;
+
+            outputDepth(depth);
+            std::cout << "Median area bbox: ";
+            BBox medianBBox = s_sortedAreas[middleIndex].calculateBBox();
+            outputDepth(depth);
+            medianBBox.writeJson(std::cout);
+            std::cout << std::endl;
+
+
+            ////////////////////////////////////////////////////////////////////////////
+            // Output areas that overlap median area
+            ////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////
+            //// Sort overlapping areas by min of split axis By min
+            //////////////////////////////////////////////////////////////////////////////
+
+            //BBox s_overlapBbox = generateBbox(s_areasThatOverlapMedian);
+            //int s_medianOverlappingIndex = s_areasThatOverlapMedian.size() / 2;
+            //if (nodeSplits.splitAxis == Axis::X)
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareX);
+            //}
+            //else if (nodeSplits.splitAxis == Axis::Y)
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareY);
+            //}
+            //else
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareZ);
+            //}
+            outputDepth(depth);
+            std::cout << "Areas that overlap median " << AxisToString(nodeSplits.splitAxis) << ": " << std::endl<<"((((((((((((((( " << std::endl;
+            for (int index = 0; index < s_areasThatOverlapMedian.size(); index++)
+            {
+                //outputDepth(depth);
+                //std::cout << "index: " << index << std::endl;
+                outputDepth(depth);
+                s_areasThatOverlapMedian[index].m_area->m_pos.writeJson(std::cout);
+                std::cout << std::endl;
+                BBox bbox = s_areasThatOverlapMedian[index].calculateBBox();
+                outputDepth(depth);
+                bbox.writeJson(std::cout);
+                std::cout << std::endl;
+            }
+
+            outputDepth(depth);
+            std::cout << " )))))))))))))) " << std::endl;
+            //std::cout << std::endl;
+            //////////////////////////////////////////////////////////////////////////////
+            //// Sort overlapping areas by min of split axis By Max
+            //////////////////////////////////////////////////////////////////////////////
+
+
+            //s_overlapBbox = generateBbox(s_areasThatOverlapMedian);
+            //s_medianOverlappingIndex = s_areasThatOverlapMedian.size() / 2;
+            //if (nodeSplits.splitAxis == Axis::X)
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareMaxX);
+            //}
+            //else if (nodeSplits.splitAxis == Axis::Y)
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareMaxY);
+            //}
+            //else
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareMaxZ);
+            //}
+            //outputDepth(depth);
+            //std::cout << "Areas that overlap median sorted by max (Left): ((((((((((((((( ";
+
+            //for (int index = 0; index < s_areasThatOverlapMedian.size(); index++)
+            //{
+            //    outputDepth(depth);
+            //    std::cout << "index: " << index << std::endl;
+            //    s_areasThatOverlapMedian[index].m_area->m_pos.writeJson(std::cout);
+            //    std::cout << std::endl;
+            //    BBox bbox = s_areasThatOverlapMedian[index].calculateBBox();
+            //    bbox.writeJson(std::cout);
+            //    std::cout << std::endl;
+            //}
+
+            //outputDepth(depth);
+            //std::cout << "Areas that overlap median: )))))))))))))) ";
+            //std::cout << std::endl;
+            //////////////////////////////////////////////////////////////////////////////
+            //// Sort overlapping areas by min of split axis By Pos
+            //////////////////////////////////////////////////////////////////////////////
+
+
+            //s_overlapBbox = generateBbox(s_areasThatOverlapMedian);
+            //s_medianOverlappingIndex = s_areasThatOverlapMedian.size() / 2;
+            //if (nodeSplits.splitAxis == Axis::X)
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareX);
+            //}
+            //else if (nodeSplits.splitAxis == Axis::Y)
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareY);
+            //}
+            //else
+            //{
+            //    sort(s_areasThatOverlapMedian.begin(), s_areasThatOverlapMedian.end(), compareZ);
+            //}
+            //outputDepth(depth);
+            //std::cout << "Areas that overlap median sorted by pos (Left): ((((((((((((((( ";
+
+            //for (int index = 0; index < s_areasThatOverlapMedian.size(); index++)
+            //{
+            //    outputDepth(depth);
+            //    std::cout << "index: " << index << std::endl;
+            //    s_areasThatOverlapMedian[index].m_area->m_pos.writeJson(std::cout);
+            //    std::cout << std::endl;
+            //    BBox bbox = s_areasThatOverlapMedian[index].calculateBBox();
+            //    bbox.writeJson(std::cout);
+            //    std::cout << std::endl;
+            //}
+
+            //outputDepth(depth);
+            //std::cout << "Areas that overlap median: )))))))))))))) ";
+            //std::cout << std::endl;
+
+            ////////////////////////////////////////////////////////////////////////////
+            // Compare Left areas with left child areas
+            ////////////////////////////////////////////////////////////////////////////
+            sort(nodeSplits.left.begin(), nodeSplits.left.end(), compareX);
+
+
+            sort(actualLeftAreas.begin(), actualLeftAreas.end(), compareX);
+
+
+            std::vector<Area> difference;
+
+            std::set_difference(nodeSplits.left.begin(), nodeSplits.left.end(), actualLeftAreas.begin(),
+                actualLeftAreas.end(), back_inserter(difference));
+
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareX);
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareY);
+            }
+            else
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareZ);
+            }
+            if (!splitsMatch || difference.size() > 0 || s_sortedAreas.size())
+            {
+
+                std::cout << "==Start Areas near median : ======================= " << std::endl;
+
+                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                {
+                    if (s_actualAreasInOriginalOrder.size() < 10 || (index > s_actualAreasInOriginalOrder.size() / 2 - 5 && index < s_actualAreasInOriginalOrder.size() / 2 + 5))
+                    {
+                        outputDepth(depth);
+                        std::cout << "index: " << index << std::endl;
+                        s_actualAreasInOriginalOrder[index].m_area->m_pos.writeJson(std::cout);
+                        std::cout << std::endl;
+                        BBox bbox = s_actualAreasInOriginalOrder[index].calculateBBox();
+                        bbox.writeJson(std::cout);
+                        std::cout << std::endl;
+                    }
+                }
+                std::cout << "==End Areas near median : ======================= " << std::endl;
+            }
+            std::cout << "Areas in discovered left not in actual left: " << std::endl;
+            for (Area& area : difference) {
+                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                {
+                    if (area == s_actualAreasInOriginalOrder[index])
+                    {
+                        std::cout << "Index: " << index << " ";
+                    }
+                }
+                area.m_area->m_pos.writeJson(std::cout);
+                std::cout << std::endl;
+                BBox bbox = area.calculateBBox();
+                bbox.writeJson(std::cout);
+                std::cout << std::endl;
+            }
+            difference.clear();
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareX);
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareY);
+            }
+            else
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareZ);
+            }
+            std::set_difference(actualLeftAreas.begin(),
+                actualLeftAreas.end(), nodeSplits.left.begin(), nodeSplits.left.end(), back_inserter(difference));
+
+            std::cout << "Areas in actual left not in discovered left: " << std::endl;
+            for (Area& area : difference) {
+                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                {
+                    if (area == s_actualAreasInOriginalOrder[index])
+                    {
+                        std::cout << "Index: " << index << " ";
+                    }
+                }
+                area.m_area->m_pos.writeJson(std::cout);
+                std::cout << std::endl;
+                BBox bbox = area.calculateBBox();
+                bbox.writeJson(std::cout);
+                std::cout << std::endl;
+            }
+
+            difference.clear();
+
+
+
+
+
+
+
+            ////////////////////////////////////////////////////////////////////////////
+            // Compare Right areas with right child areas
+            ////////////////////////////////////////////////////////////////////////////
+            sort(nodeSplits.right.begin(), nodeSplits.right.end(), compareX);
+
+            sort(actualRightAreas.begin(), actualRightAreas.end(), compareX);
+
+            std::set_difference(nodeSplits.right.begin(), nodeSplits.right.end(), actualRightAreas.begin(),
+                actualRightAreas.end(), back_inserter(difference));
+
+            std::cout << "Areas in discovered right not in actual right:" << std::endl;
+            for (Area& area : difference) {
+                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                {
+                    if (area == s_actualAreasInOriginalOrder[index])
+                    {
+                        std::cout << "Index: " << index << " ";
+                    }
+                }
+                area.m_area->m_pos.writeJson(std::cout);
+                std::cout << std::endl;
+                BBox bbox = area.calculateBBox();
+                bbox.writeJson(std::cout);
+                std::cout << std::endl;
+            }
+
+            difference.clear();
+            std::set_difference(actualRightAreas.begin(),
+                actualRightAreas.end(), nodeSplits.right.begin(), nodeSplits.right.end(), back_inserter(difference));
+
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareX);
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareY);
+            }
+            else
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareZ);
+            }
+            std::cout << "Areas in actual right not in discovered right:" << std::endl;
+            for (Area& area : difference) {
+                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                {
+                    if (area == s_actualAreasInOriginalOrder[index])
+                    {
+                        std::cout << "Index: " << index << " ";
+                    }
+                }
+                area.m_area->m_pos.writeJson(std::cout);
+                std::cout << std::endl;
+                BBox bbox = area.calculateBBox();
+                bbox.writeJson(std::cout);
+                std::cout << std::endl;
+            }
+
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMinX);
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMinY);
+            }
+            else
+            {
+                sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareMinZ);
+            }
+            Area minMiddleArea = s_sortedAreas[middleIndex];
+            float minMedianValue = 0;
+            if (nodeSplits.splitAxis == Axis::X)
+            {
+                BBox bbox = minMiddleArea.calculateBBox();
+                minMedianValue = bbox.m_min.X;
+            }
+            else if (nodeSplits.splitAxis == Axis::Y)
+            {
+                BBox bbox = minMiddleArea.calculateBBox();
+                minMedianValue = bbox.m_min.Y;
+            }
+            else
+            {
+                BBox bbox = minMiddleArea.calculateBBox();
+                minMedianValue = bbox.m_min.Z;
+            }
+            std::cout << "Min median value (right): " << minMedianValue << std::endl;
+
+
+            std::cout << "==============================================================================================" << std::endl;
+        }
+
         nodeSplits.left = actualLeftAreas;
         nodeSplits.right = actualRightAreas;
         return nodeSplits;
