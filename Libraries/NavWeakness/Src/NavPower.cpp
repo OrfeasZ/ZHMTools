@@ -1210,6 +1210,7 @@ namespace NavPower
         //  3. Completely to the right of the median
         ////////////////////////////////////////////////////////////////////////////
         std::vector<Area> s_areasThatOverlapMedian;
+        std::vector<Area> s_areasWithPosEqualToMedianValue;
         int middleIndex = s_sortedAreas.size() / 2;
         if (s_sortedAreas.size() % 2 == 0 && s_sortedAreas.size() > 2)
         {
@@ -1230,25 +1231,25 @@ namespace NavPower
         {
             medianValue = middleArea.m_area->m_pos.Z;
         }
-        if (s_sortedAreas.size() % 2 == 0)// && s_sortedAreas.size() > 2)
-        {
-            float otherMedianValue = 0;
-            Area otherMiddleArea = s_sortedAreas[middleIndex - 1];
-            if (nodeSplits.splitAxis == Axis::X)
-            {
-                otherMedianValue = otherMiddleArea.m_area->m_pos.X;
-            }
-            else if (nodeSplits.splitAxis == Axis::Y)
-            {
-                otherMedianValue = otherMiddleArea.m_area->m_pos.Y;
-            }
-            else
-            {
-                otherMedianValue = otherMiddleArea.m_area->m_pos.Z;
-            }
-            medianValue += otherMedianValue;
-            medianValue /= 2;
-        }
+        //if (s_sortedAreas.size() % 2 == 0)// && s_sortedAreas.size() > 2)
+        //{
+        //    float otherMedianValue = 0;
+        //    Area otherMiddleArea = s_sortedAreas[middleIndex - 1];
+        //    if (nodeSplits.splitAxis == Axis::X)
+        //    {
+        //        otherMedianValue = otherMiddleArea.m_area->m_pos.X;
+        //    }
+        //    else if (nodeSplits.splitAxis == Axis::Y)
+        //    {
+        //        otherMedianValue = otherMiddleArea.m_area->m_pos.Y;
+        //    }
+        //    else
+        //    {
+        //        otherMedianValue = otherMiddleArea.m_area->m_pos.Z;
+        //    }
+        //    medianValue += otherMedianValue;
+        //    medianValue /= 2;
+        //}
         float middleMaxX = middleArea.max(nodeSplits.splitAxis);
         float middleMinX = middleArea.min(nodeSplits.splitAxis);
         for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
@@ -1283,26 +1284,33 @@ namespace NavPower
             //{
             //    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
             //}
-            if (min <= medianValue && max >= medianValue)
+            if (pos == medianValue)
             {
-                s_areasThatOverlapMedian.push_back(s_actualAreasInOriginalOrder[index]);
+                s_areasWithPosEqualToMedianValue.push_back(s_actualAreasInOriginalOrder[index]);
+                std::cout << "Found area with pos split value equal to median: " << medianValue << " at index : " << index << std::endl;
             }
             else
             {
-
-                if (pos < medianValue)// && nodeSplits.right.size() > nodeSplits.left.size())//s_actualAreasInOriginalOrder.size() / 2.0)
+                if (min <= medianValue && max >= medianValue)
                 {
-                    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
+                    s_areasThatOverlapMedian.push_back(s_actualAreasInOriginalOrder[index]);
                 }
-                if (pos > medianValue)
+                else
                 {
-                    nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
+
+                    if (pos < medianValue)// && nodeSplits.right.size() > nodeSplits.left.size())//s_actualAreasInOriginalOrder.size() / 2.0)
+                    {
+                        nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
+                    }
+                    if (pos > medianValue)
+                    {
+                        nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
+                    }
                 }
             }
         }
-
-        outputDepth(depth);
-        std::cout << "Left size: " << nodeSplits.left.size() << " Middle size: " << s_areasThatOverlapMedian.size() << " Right size: " << nodeSplits.right.size() << std::endl;
+        int numBelowMedian = nodeSplits.left.size();
+        int numAboveMedian = nodeSplits.right.size();
         int medianIndexOfOverlappingAreas = s_areasThatOverlapMedian.size() / 2;
         float medianValueOfOverlappingAreas = 0;
         if (s_areasThatOverlapMedian.size() > 0)
@@ -1338,7 +1346,6 @@ namespace NavPower
                 medianValueOfOverlappingAreas += otherOverlappingMedianValue;
                 medianValueOfOverlappingAreas /= 2;
             }
-            std::cout << "Overlapping areas median index: " << medianIndexOfOverlappingAreas << " Median value: " << medianValueOfOverlappingAreas << std::endl;
         }
 
         for (int index = 0; index < s_areasThatOverlapMedian.size(); index++)
@@ -1382,9 +1389,9 @@ namespace NavPower
                 nodeSplits.right.push_back(s_areasThatOverlapMedian[index]);
             }
         }
-        for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+        for (int index = 0; index < s_areasWithPosEqualToMedianValue.size(); index++)
         {
-            BBox bbox = s_actualAreasInOriginalOrder[index].calculateBBox();
+            BBox bbox = s_areasWithPosEqualToMedianValue[index].calculateBBox();
             float max = 0;
             float min = 0;
             float pos = 0;
@@ -1392,19 +1399,19 @@ namespace NavPower
             {
                 max = bbox.m_max.X;
                 min = bbox.m_min.X;
-                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.X;
+                pos = s_areasWithPosEqualToMedianValue[index].m_area->m_pos.X;
             }
             else if (nodeSplits.splitAxis == Axis::Y)
             {
                 max = bbox.m_max.Y;
                 min = bbox.m_min.Y;
-                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.Y;
+                pos = s_areasWithPosEqualToMedianValue[index].m_area->m_pos.Y;
             }
             else
             {
                 max = bbox.m_max.Z;
                 min = bbox.m_min.Z;
-                pos = s_actualAreasInOriginalOrder[index].m_area->m_pos.Z;
+                pos = s_areasWithPosEqualToMedianValue[index].m_area->m_pos.Z;
             }
             //if (pos >= medianValue && nodeSplits.right.size() < s_actualAreasInOriginalOrder.size() / 2.0)
             //{
@@ -1415,19 +1422,27 @@ namespace NavPower
             //    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
             //}
 
-            if (pos == medianValue)
+            std::cout << "Depth: " << depth << " Position matches Median: " << medianValue << " Index: " << index << std::endl;
+            if (nodeSplits.left.size() < s_actualAreasInOriginalOrder.size() / 2)
             {
-                std::cout << "Depth: " << depth << " Position matches Median: " << medianValue << " Index: " << index << std::endl;
-                if (nodeSplits.left.size() < s_actualAreasInOriginalOrder.size() / 2)
-                {
-                    std::cout << "Pushing left" << std::endl;
-                    nodeSplits.left.push_back(s_actualAreasInOriginalOrder[index]);
-                }
-                else
-                {
-                    std::cout << "Pushing right" << std::endl;
-                    nodeSplits.right.push_back(s_actualAreasInOriginalOrder[index]);
-                }
+                std::cout << "Pushing left" << std::endl;
+                nodeSplits.left.push_back(s_areasWithPosEqualToMedianValue[index]);
+            }
+            else
+            {
+                std::cout << "Left is full. Pushing right: " << std::endl;
+                s_areasWithPosEqualToMedianValue[index].m_area->m_pos.writeJson(std::cout);
+                std::cout << std::endl;
+                BBox newBBox = s_areasWithPosEqualToMedianValue[index].calculateBBox();
+                newBBox.writeJson(std::cout);
+                std::cout << std::endl;
+                BBox lastLeftBbox = nodeSplits.left.back().calculateBBox();
+                std::cout << "Last of left: ";
+                nodeSplits.left.back().m_area->m_pos.writeJson(std::cout);
+                std::cout << std::endl;
+                lastLeftBbox.writeJson(std::cout);
+                std::cout << std::endl;
+                nodeSplits.right.push_back(s_areasWithPosEqualToMedianValue[index]);
             }
         }
         //if (s_actualAreasInOriginalOrder.size() == 2)
@@ -1562,6 +1577,9 @@ namespace NavPower
         if (!splitsMatch)
         {
             std::cout << ">>>>==============================================================================================" << std::endl;
+            outputDepth(depth);
+            std::cout << "Below median: " << numBelowMedian << " Overlapping median: " << s_areasThatOverlapMedian.size() << " Above median: " << numAboveMedian << std::endl;
+            std::cout << "Overlapping areas median index: " << medianIndexOfOverlappingAreas << " Median value: " << medianValueOfOverlappingAreas << std::endl;
             outputDepth(depth);
             std::cout << "Splits don't match" << std::endl;
 
@@ -1744,22 +1762,22 @@ namespace NavPower
             if (!splitsMatch || difference.size() > 0 || s_sortedAreas.size())
             {
 
-                std::cout << "==Start Areas near median : ======================= " << std::endl;
+                //std::cout << "==Start Areas near median : ======================= " << std::endl;
 
-                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
-                {
-                    if (s_actualAreasInOriginalOrder.size() < 10 || (index > s_actualAreasInOriginalOrder.size() / 2 - 5 && index < s_actualAreasInOriginalOrder.size() / 2 + 5))
-                    {
-                        outputDepth(depth);
-                        std::cout << "index: " << index << std::endl;
-                        s_actualAreasInOriginalOrder[index].m_area->m_pos.writeJson(std::cout);
-                        std::cout << std::endl;
-                        BBox bbox = s_actualAreasInOriginalOrder[index].calculateBBox();
-                        bbox.writeJson(std::cout);
-                        std::cout << std::endl;
-                    }
-                }
-                std::cout << "==End Areas near median : ======================= " << std::endl;
+                //for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                //{
+                //    if (s_actualAreasInOriginalOrder.size() < 10 || (index > s_actualAreasInOriginalOrder.size() / 2 - 5 && index < s_actualAreasInOriginalOrder.size() / 2 + 5))
+                //    {
+                //        outputDepth(depth);
+                //        std::cout << "index: " << index << std::endl;
+                //        s_actualAreasInOriginalOrder[index].m_area->m_pos.writeJson(std::cout);
+                //        std::cout << std::endl;
+                //        BBox bbox = s_actualAreasInOriginalOrder[index].calculateBBox();
+                //        bbox.writeJson(std::cout);
+                //        std::cout << std::endl;
+                //    }
+                //}
+                //std::cout << "==End Areas near median : ======================= " << std::endl;
             }
             std::cout << "Areas in discovered left not in actual left: " << std::endl;
             for (Area& area : difference) {
