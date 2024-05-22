@@ -942,11 +942,11 @@ namespace NavPower
         float xDiff = areasBbox.m_max.X - areasBbox.m_min.X;
         float yDiff = areasBbox.m_max.Y - areasBbox.m_min.Y;
         float zDiff = areasBbox.m_max.Z - areasBbox.m_min.Z;
-        if (yDiff > xDiff)
+        if (yDiff >= xDiff)
         {
             nodeSplits.splitAxis = Axis::Y;
         }
-        if (zDiff > xDiff && zDiff > yDiff)
+        if (zDiff >= xDiff && zDiff >= yDiff)
         {
             nodeSplits.splitAxis = Axis::Z;
         }
@@ -1152,7 +1152,7 @@ namespace NavPower
         // Get Areas from node
         ////////////////////////////////////////////////////////////////////////////
         Binary::KDNode* node = reinterpret_cast<Binary::KDNode*>(s_nodePtr);
-        nodeSplits.splitAxis = node->GetSplitAxis();
+
         std::map<uint32_t, uint32_t> s_navGraphOffsetToIndexMap = AreaNavGraphOffsetToIndexMap();
 
         std::vector<std::pair<uint32_t, Area>> s_originalIndexAreaPairs = node->GetAreas(s_navGraphOffsetToIndexMap, m_areas);
@@ -1171,6 +1171,26 @@ namespace NavPower
             s_actualAreasInOriginalOrder.push_back(indexAreaPair.second);
         }
         std::vector<Area> s_sortedAreas = s_actualAreasInOriginalOrder;
+
+        BBox areasBbox = generateBbox(s_actualAreasInOriginalOrder);
+        nodeSplits.splitAxis = Axis::X;
+        float xDiff = areasBbox.m_max.X - areasBbox.m_min.X;
+        float yDiff = areasBbox.m_max.Y - areasBbox.m_min.Y;
+        float zDiff = areasBbox.m_max.Z - areasBbox.m_min.Z;
+        if (yDiff >= xDiff)
+        {
+            nodeSplits.splitAxis = Axis::Y;
+        }
+        if (zDiff >= xDiff && zDiff >= yDiff)
+        {
+            nodeSplits.splitAxis = Axis::Z;
+        }
+        if (nodeSplits.splitAxis != node->GetSplitAxis())
+        {
+            std::cout << "Diffs: X: " << xDiff << " Y: " << yDiff << " Z: " << zDiff << " Correct split was " << AxisToString(node->GetSplitAxis()) << " but chose " << AxisToString(nodeSplits.splitAxis) << std::endl;
+            throw std::runtime_error("Split's don't match");
+        }
+        nodeSplits.splitAxis = node->GetSplitAxis();
 
         //////////////////////////////////////////////////////////////////////////////
         //// Get actual left and right areas
@@ -1255,7 +1275,7 @@ namespace NavPower
                     outputDepth(depth);
                     std::cout << "Depth: " << depth << " Split Axis " << AxisToString(node->GetSplitAxis()) << " Median Value: " << medianValue << " Outputting areas that are not in the expected sub list. Actual left size: " << actualLeftAreas.size() << " Actual right size: " << actualRightAreas.size() << std::endl;
                     outputDepth(depth);
-                    std::cout << "Median Index: (node) " << index << " of Total: " << s_actualAreasInOriginalOrder.size() << " Median Value : " << medianValue;
+                    std::cout << "Median Index: (node) " << index << " of Total: " << s_actualAreasInOriginalOrder.size() << " Median Value : " << medianValue << " ";
                     middleArea.m_area->m_pos.writeJson(std::cout);
                     BBox bbox = middleArea.calculateBBox();
                     bbox.writeJson(std::cout);
@@ -1306,7 +1326,7 @@ namespace NavPower
                     outputDepth(depth);
                     std::cout << "Depth: " << depth << " Split Axis " << AxisToString(node->GetSplitAxis()) << " Median Value: " << medianValue << " Outputting actual areas that are not in the expected sub list (> median in left or < median in right)." << std::endl;
                     outputDepth(depth);
-                    std::cout << "Median Index: (node) " << index << " of Total: " << s_actualAreasInOriginalOrder.size() << " Median Value : " << medianValue;
+                    std::cout << "Median Index: (node) " << index << " of Total: " << s_actualAreasInOriginalOrder.size() << " Median Value : " << medianValue << " ";
                     middleArea.m_area->m_pos.writeJson(std::cout);
                     BBox bbox = middleArea.calculateBBox();
                     bbox.writeJson(std::cout);
@@ -1672,23 +1692,23 @@ namespace NavPower
             std::set_difference(actualLeftAreas.begin(),
                 actualLeftAreas.end(), nodeSplits.left.begin(), nodeSplits.left.end(), back_inserter(difference));
 
-            //outputDepth(depth);
-            //std::cout << "Areas in actual left not in discovered left: " << std::endl;
-            //for (Area& area : difference) {
-            //    for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
-            //    {
-            //        if (area == s_actualAreasInOriginalOrder[index])
-            //        {
-            //            outputDepth(depth);
-            //            std::cout << "Index: (Node) " << index << " ";
-            //            break;
-            //        }
-            //    }
-            //    area.m_area->m_pos.writeJson(std::cout);
-            //    BBox bbox = area.calculateBBox();
-            //    bbox.writeJson(std::cout);
-            //    std::cout << std::endl;
-            //}
+            outputDepth(depth);
+            std::cout << "Areas in actual left not in discovered left: " << std::endl;
+            for (Area& area : difference) {
+                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                {
+                    if (area == s_actualAreasInOriginalOrder[index])
+                    {
+                        outputDepth(depth);
+                        std::cout << "Index: (Node) " << index << " ";
+                        break;
+                    }
+                }
+                area.m_area->m_pos.writeJson(std::cout);
+                BBox bbox = area.calculateBBox();
+                bbox.writeJson(std::cout);
+                std::cout << std::endl;
+            }
 
             difference.clear();
 
@@ -1738,23 +1758,23 @@ namespace NavPower
             {
                 sort(s_sortedAreas.begin(), s_sortedAreas.end(), compareZ);
             }
-            //outputDepth(depth);
-            //std::cout << "Areas in actual right not in discovered right:" << std::endl;
-            //for (Area& area : difference) {
-            //    for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
-            //    {
-            //        if (area == s_actualAreasInOriginalOrder[index])
-            //        {
-            //            outputDepth(depth);
-            //            std::cout << "Index: (Node) " << index << " ";
-            //            break;
-            //        }
-            //    }
-            //    area.m_area->m_pos.writeJson(std::cout);
-            //    BBox bbox = area.calculateBBox();
-            //    bbox.writeJson(std::cout);
-            //    std::cout << std::endl;
-            //}
+            outputDepth(depth);
+            std::cout << "Areas in actual right not in discovered right:" << std::endl;
+            for (Area& area : difference) {
+                for (int index = 0; index < s_actualAreasInOriginalOrder.size(); index++)
+                {
+                    if (area == s_actualAreasInOriginalOrder[index])
+                    {
+                        outputDepth(depth);
+                        std::cout << "Index: (Node) " << index << " ";
+                        break;
+                    }
+                }
+                area.m_area->m_pos.writeJson(std::cout);
+                BBox bbox = area.calculateBBox();
+                bbox.writeJson(std::cout);
+                std::cout << std::endl;
+            }
 
             //std::cout << "==============================================================================================" << std::endl;
         }
