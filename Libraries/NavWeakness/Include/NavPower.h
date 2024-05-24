@@ -268,7 +268,6 @@ namespace NavPower
             BBox m_bbox;
             uint32_t m_size;
 
-            void writeJson(std::ostream& f);
             void readJson(auto p_Json);
             void writeBinary(std::ostream& f);
         };
@@ -289,8 +288,6 @@ namespace NavPower
             }
 
             std::pair<uint32_t, NavPower::Area> GetArea(std::map<uint32_t, uint32_t> s_AreaNavGraphOffsetToIndexMap, std::vector<NavPower::Area>& s_NavMeshAreas);
-
-            void writeJson(std::ostream& f, std::map<uint32_t, uint32_t> s_AreaNavGraphOffsetToIndexMap, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap, std::vector<NavPower::Area>& s_NavMeshAreas);
         };
 
         class KDNode
@@ -310,7 +307,6 @@ namespace NavPower
             KDNode* GetRight() { return (KDNode*)((char*)this + GetRightOffset()); }
 
             std::vector<std::pair<uint32_t, NavPower::Area>> GetAreas(std::map<uint32_t, uint32_t> s_AreaNavGraphOffsetToIndexMap, std::vector<NavPower::Area>& s_NavMeshAreas);
-            void writeJson(std::ostream& f, uintptr_t p_KdTreeEnd, std::map<uint32_t, uint32_t> s_AreaNavGraphOffsetToIndexMap, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap, std::vector<NavPower::Area>& s_NavMeshAreas);
             void writeBinary(std::ostream& f, uintptr_t p_KdTreeEnd);
         };
     }; // namespace Binary
@@ -449,9 +445,7 @@ namespace NavPower
         };
 
         KdTreeGenerationHelper splitAreas(std::vector<Area> s_originalAreas);
-        KdTreeGenerationHelper analyzeSplits(uintptr_t s_nodePtr, int depth);
         uint32_t generateKdTree(uintptr_t s_nodePtr, std::vector<Area>& s_areas, std::map<Binary::Area*, uint32_t>& p_AreaPointerToNavGraphOffsetMap);
-        uint32_t analyzeKdTree(uintptr_t s_nodePtr, std::vector<Area>& s_areas, int depth);
         void readJson(const char* p_NavMeshPath);
         void writeBinary(std::ostream& f);
 
