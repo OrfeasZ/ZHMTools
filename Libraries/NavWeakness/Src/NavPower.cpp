@@ -658,7 +658,6 @@ namespace NavPower
         uint32_t s_areaBytes = 324;
         for (auto& area : m_areas)
         {
-            //std::cout << "Adding area to pointer to offset map: Area: " << &area.m_area << " offset: " << s_areaBytes << std::endl;
             s_AreaPointerToNavGraphOffsetMap.emplace(area.m_area, s_areaBytes);
             s_areaBytes += sizeof(Binary::Area);
             s_areaBytes += sizeof(Binary::Edge) * area.m_edges.size();
@@ -674,7 +673,6 @@ namespace NavPower
         uint32_t s_areaIndex = 1;
         for (auto& area : m_areas)
         {
-            //std::cout << "Adding area offset to index map: Area: offset: " << s_areaBytes << " Index: " << s_areaIndex << std::endl;
             s_AreaNavGraphOffsetToIndexMap.emplace(s_areaBytes, s_areaIndex);
             s_areaBytes += sizeof(Binary::Area);
             s_areaBytes += sizeof(Binary::Edge) * area.m_edges.size();
@@ -837,7 +835,6 @@ namespace NavPower
             Binary::KDLeaf* leaf = new (reinterpret_cast<Binary::KDLeaf*>(s_nodePtr))Binary::KDLeaf;
             Binary::Area* p_area = s_areas[0].m_area;
 
-            p_area->m_pos.writeJson(std::cout);
             std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToNavGraphOffsetMap.find(p_area);
             if (s_MapPosition != p_AreaPointerToNavGraphOffsetMap.end())
             {
