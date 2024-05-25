@@ -96,11 +96,7 @@ set(RESOURCELIB_SOURCES_HMA
 	Include/ResourceLib_HMA.h
 )
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-	set(RESOURCELIB_TYPE SHARED)
-else()
-	set(RESOURCELIB_TYPE STATIC)
-endif()
+set(RESOURCELIB_TYPE SHARED)
 
 if(EMSCRIPTEN)
 	add_executable(ResourceLib_HM3
@@ -178,6 +174,10 @@ elseif(EMSCRIPTEN)
 else()
 	set(RESOURCELIB_COMPILE_FLAGS "")
 	set(RESOURCELIB_LINK_FLAGS "")
+	set_target_properties(ResourceLib_HM3 PROPERTIES PREFIX "")
+	set_target_properties(ResourceLib_HM2 PROPERTIES PREFIX "")
+	set_target_properties(ResourceLib_HM2016 PROPERTIES PREFIX "")
+	set_target_properties(ResourceLib_HMA PROPERTIES PREFIX "")
 endif()
 
 target_compile_options(ResourceLib_HM3 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})

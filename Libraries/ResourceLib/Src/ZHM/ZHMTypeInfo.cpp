@@ -297,7 +297,7 @@ public:
 	
 	std::string TypeName() const override
 	{
-		throw std::runtime_error("Cannot get type name of dummy type info.");
+		return m_TypeName;
 	}
 
 	size_t Size() const override
@@ -387,17 +387,23 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(std::string_view p_Name)
 void TypeID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Stream << simdjson::as_json_string(s_Object->m_pTypeID->TypeName());
+	const auto s_Type = s_Object->GetType();
+
+	if (s_Type) {
+		p_Stream << simdjson::as_json_string(s_Object->GetType()->TypeName());
+	} else {
+		p_Stream << simdjson::as_json_string("void");
+	}
 }
 
 void TypeID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
 	auto s_TypeName = std::string_view(p_Document);
-	reinterpret_cast<TypeID*>(p_Target)->m_pTypeID = ZHMTypeInfo::GetTypeByName(s_TypeName);
+	reinterpret_cast<TypeID*>(p_Target)->SetType(ZHMTypeInfo::GetTypeByName(s_TypeName));
 }
 
 void TypeID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Serializer.PatchType(p_OwnOffset + offsetof(TypeID, m_pTypeID), s_Object->m_pTypeID);
+	p_Serializer.PatchType(p_OwnOffset + offsetof(TypeID, m_pTypeID), s_Object->GetType());
 }
