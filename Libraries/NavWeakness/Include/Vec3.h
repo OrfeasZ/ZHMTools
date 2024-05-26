@@ -151,7 +151,7 @@ struct Vec3
 
     Vec3 GetUnitVec() const
     {
-        float s_Magnitude = GetMagnitude();
+        float s_Magnitude = sqrtf(X * X + Y * Y + Z * Z);
 
         if (s_Magnitude <= 0.f)
             return Vec3();

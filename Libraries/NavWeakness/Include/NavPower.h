@@ -65,10 +65,6 @@ namespace NavPower
         Vec3 m_min;
         Vec3 m_max;
 
-        void writeJson(std::ostream& f);
-
-        void readJson(auto p_Json);
-
         void writeBinary(std::ostream& f);
 
         void copy(BBox o);
@@ -268,7 +264,6 @@ namespace NavPower
             BBox m_bbox;
             uint32_t m_size;
 
-            void readJson(auto p_Json);
             void writeBinary(std::ostream& f);
         };
 
@@ -372,18 +367,17 @@ namespace NavPower
         {
             Vec3 v0 = m_edges.at(0)->m_pos;
             Vec3 v1 = m_edges.at(1)->m_pos;
-            Vec3 basis = m_edges.at(m_area->m_flags.GetBasisVert())->m_pos;
+            Vec3 basis = m_edges.at(2)->m_pos;
 
-            Vec3 vec1 = v1 - v0;
-            Vec3 vec2 = basis - v0;
+            Vec3 vec1 = basis - v0;
+            Vec3 vec2 = v1 - v0;
             Vec3 cross = vec1.Cross(vec2);
 
             return cross.GetUnitVec();
         }
 
-        float max(Axis axis);
-        float min(Axis axis);
-        BBox calculateBBox();
+        BBox CalculateBBox();
+        Vec3 CalculateCentroid();
     };
 
     // Helps with outputting the k-d tree as Bounding Boxes
@@ -399,9 +393,6 @@ namespace NavPower
     bool compareX(Area& a1, Area& a2);
     bool compareY(Area& a1, Area& a2);
     bool compareZ(Area& a1, Area& a2);
-    float getMedian(std::vector<float> values, bool isLeft, float actual);
-    float analyzeMedian(std::vector<float> values, float actual, int depth);
-    void outputDepth(int depth);
 
     class NavMesh
     {
@@ -432,8 +423,6 @@ namespace NavPower
         // Build m_areas NavGraph offset to index map so the KD Tree can get the area index from the primoffset
         std::map<uint32_t, uint32_t> AreaNavGraphOffsetToIndexMap();
 
-        void writeJson(std::ostream& f);
-
         class KdTreeGenerationHelper
         {
         public:
@@ -446,6 +435,8 @@ namespace NavPower
 
         KdTreeGenerationHelper splitAreas(std::vector<Area> s_originalAreas);
         uint32_t generateKdTree(uintptr_t s_nodePtr, std::vector<Area>& s_areas, std::map<Binary::Area*, uint32_t>& p_AreaPointerToNavGraphOffsetMap);
+
+        void writeJson(std::ostream& f);
         void readJson(const char* p_NavMeshPath);
         void writeBinary(std::ostream& f);
 

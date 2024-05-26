@@ -130,24 +130,6 @@ namespace NavPower
         }
     }; 
 
-    void BBox::writeJson(std::ostream& f)
-    {
-        f << "{";
-        f << "\"m_min\":";
-        m_min.writeJson(f);
-        f << ",";
-        f << "\"m_max\":";
-        m_max.writeJson(f);
-        f << "}";
-    }
-    void BBox::readJson(auto p_Json)
-    {
-        simdjson::ondemand::object m_minJson = p_Json["m_min"];
-        m_min.readJson(m_minJson);
-        simdjson::ondemand::object m_maxJson = p_Json["m_max"];
-        m_max.readJson(m_maxJson);
-    }
-
     void BBox::writeBinary(std::ostream& f)
     {
         m_min.writeBinary(f);
@@ -227,17 +209,25 @@ namespace NavPower
         void Binary::Area::writeJson(std::ostream& f, uint64_t s_areaIndex)
         {
             f << "{";
-            f << "\"index\":" << s_areaIndex << ",";
-            f << "\"m_pos\":";
-            m_pos.writeJson(f);
-            f << ",\"m_usageFlags\":";
-            f << "\"" << AreaUsageFlagToString(m_usageFlags) << "\"}";
+            f << "\"Index\":" << s_areaIndex;
+            if (m_usageFlags != AreaUsageFlags::AREA_FLAT)
+            {
+                f << ",\"Type\":";
+                f << "\"" << AreaUsageFlagToString(m_usageFlags) << "\"";
+            }
+            f << "}";
         }
 
         void Binary::Area::readJson(auto p_Json)
         {
-            m_pos.readJson(p_Json["m_pos"]);
-            m_usageFlags = AreaUsageFlagStringToEnumValue(std::string{ std::string_view(p_Json["m_usageFlags"]) });
+            auto result = p_Json.find_field("Type");
+            if (result.error() == simdjson::SUCCESS) {
+                m_usageFlags = AreaUsageFlagStringToEnumValue(std::string{ std::string_view(p_Json["Type"]) });
+            }
+            else
+            {
+                m_usageFlags = AreaUsageFlags::AREA_FLAT;
+            }
             m_flags.m_flags1 = 0x1FC0000;
             m_flags.m_flags2 = 0;
             m_flags.SetIslandNum(262143);
@@ -279,9 +269,9 @@ namespace NavPower
         void Binary::Edge::writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap)
         {
             f << "{";
-            f << "\"m_pAdjArea\":";
             if (m_pAdjArea != NULL)
             {
+                f << "\"Adjacent Area\":";
                 // Replace pointer to adjacent area with index of adjacent area + 1, with 0 being null
                 std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToIndexMap->find(m_pAdjArea);
                 if (s_MapPosition == p_AreaPointerToIndexMap->end())
@@ -290,33 +280,56 @@ namespace NavPower
                 }
                 else {
                     uint32_t s_AdjAreaIndex = s_MapPosition->second;
-                    f << s_AdjAreaIndex;
+                    f << s_AdjAreaIndex << ",";
                 }
 
             }
-            else
-            {
-                f << 0;
-            }
-            f << ",\"m_pos\":";
+            f << "\"Position\":";
             m_pos.writeJson(f);
-            f << ",\"Type\":\"" << EdgeTypeToString(GetType()) << "\",";
-            f << "\"m_flags2\":" << m_flags2;
+            if (GetType() != EDGE_NORMAL)
+            {
+                f << ",\"Type\":\"" << EdgeTypeToString(GetType()) << "\"";
+            }
+            if (m_flags2 != 0)
+            {
+                f << ",\"Flags\":" << m_flags2;
+            }
             f << "}";
         }
 
         void Binary::Edge::readJson(simdjson::ondemand::object p_Json)
         {
-            // Store index of adjacent area + 1 in m_pAdjArea until the area addresses are calculated
-            int64_t m_pAdjAreaJson = int64_t(p_Json["m_pAdjArea"]);
-            m_pAdjArea = reinterpret_cast<Binary::Area*>(m_pAdjAreaJson);
-            simdjson::ondemand::object m_posJson = p_Json["m_pos"];
+            auto adjacentAreaResult = p_Json.find_field("Adjacent Area");
+            if (adjacentAreaResult.error() == simdjson::SUCCESS) {
+                int64_t m_pAdjAreaJson = int64_t(p_Json["Adjacent Area"]);
+                // Store index of adjacent area + 1 in m_pAdjArea until the area addresses are calculated
+                m_pAdjArea = reinterpret_cast<Binary::Area*>(m_pAdjAreaJson);
+            }
+            else
+            {
+                m_pAdjArea = 0;
+            }
+            simdjson::ondemand::object m_posJson = p_Json["Position"];
             m_pos.readJson(m_posJson);
             m_flags1 = 0xFFFF0000;
             SetPartition(false);
             SetObID(0);
-            SetType(EdgeTypeStringToEnumValue(std::string{ std::string_view(p_Json["Type"]) }));
-            m_flags2 = int64_t(p_Json["m_flags2"]);
+            auto result = p_Json.find_field("Type");
+            if (result.error() == simdjson::SUCCESS) {
+                SetType(EdgeTypeStringToEnumValue(std::string{ std::string_view(p_Json["Type"]) }));
+            }
+            else
+            {
+                SetType(EDGE_NORMAL);
+            }
+            auto flags2Result = p_Json.find_field("Flags");
+            if (flags2Result.error() == simdjson::SUCCESS) {
+                m_flags2 = int64_t(p_Json["Flags"]);
+            }
+            else
+            {
+                m_flags2 = 0;
+            }
         }
 
         void Binary::Edge::writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap)
@@ -355,11 +368,6 @@ namespace NavPower
             eq &= m_flags1 == other.m_flags1;
             eq &= m_flags2 == other.m_flags2;
             return eq;
-        }
-
-        void Binary::KDTreeData::readJson(auto p_Json)
-        {
-            m_size = uint64_t(p_Json["m_size"]);
         }
 
         void Binary::KDTreeData::writeBinary(std::ostream& f)
@@ -450,16 +458,14 @@ namespace NavPower
     void Area::writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap)
     {
         f << "{";
-        f << "\"m_area\":";
+        f << "\"Area\":";
         std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToIndexMap->find(m_area);
         if (s_MapPosition == p_AreaPointerToIndexMap->end())
         {
             throw std::runtime_error("Area not found");
         }
         m_area->writeJson(f, s_MapPosition->second);
-        f << ",\"BBox\":";
-        calculateBBox().writeJson(f);
-        f << ",\"m_edges\":[";
+        f << ",\"Edges\":[";
         Binary::Edge* back = m_edges.back();
         for (auto& edge : m_edges)
         {
@@ -475,16 +481,17 @@ namespace NavPower
 
     void Area::readJson(auto p_Json)
     {
-        simdjson::ondemand::object m_areaJson = p_Json["m_area"];
+        simdjson::ondemand::object m_areaJson = p_Json["Area"];
         m_area = new Binary::Area;
         m_area->readJson(m_areaJson);
-        simdjson::ondemand::array m_edgesJson = p_Json["m_edges"];
+        simdjson::ondemand::array m_edgesJson = p_Json["Edges"];
         for (auto edgeJson : m_edgesJson)
         {
             Binary::Edge* edge = new Binary::Edge;
             edge->readJson(edgeJson);
             m_edges.push_back(edge);
         }
+        m_area->m_pos = CalculateCentroid();
         m_area->m_flags.SetNumEdges(m_edges.size());
         m_area->m_flags.SetBasisVert(CalculateBasisVert());
     }
@@ -498,47 +505,7 @@ namespace NavPower
         }
     }
 
-    float Area::max(Axis axis)
-    {
-        float maxValue = -3000000000;
-        for (auto& edge : m_edges)
-        {
-            if (axis == Axis::X)
-            {
-                maxValue = std::max(maxValue, edge->m_pos.X);
-            }
-            else if (axis == Axis::Y)
-            {
-                maxValue = std::max(maxValue, edge->m_pos.Y);
-            }
-            else {
-                maxValue = std::max(maxValue, edge->m_pos.Z);
-            }
-        }
-        return maxValue;
-    }
-
-    float Area::min(Axis axis)
-    {
-        float minValue = 3000000000;
-        for (auto& edge : m_edges)
-        {
-            if (axis == Axis::X)
-            {
-                minValue = std::min(minValue, edge->m_pos.X);
-            }
-            else if (axis == Axis::Y)
-            {
-                minValue = std::min(minValue, edge->m_pos.Y);
-            }
-            else {
-                minValue = std::min(minValue, edge->m_pos.Z);
-            }
-        }
-        return minValue;
-    }
-
-    BBox Area::calculateBBox()
+    BBox Area::CalculateBBox()
     {
         float s_minFloat = -300000000000;
         float s_maxFloat = 300000000000;
@@ -559,6 +526,63 @@ namespace NavPower
             bbox.m_min.Z = std::min(bbox.m_min.Z, edge->m_pos.Z);
         }
         return bbox;
+    }
+
+    Vec3 Area::CalculateCentroid()
+    {
+        Vec3 normal = CalculateNormal();
+        Vec3 v0 = m_edges.at(0)->m_pos;
+        Vec3 v1 = m_edges.at(1)->m_pos;
+
+        Vec3 u = (v1 - v0).GetUnitVec();
+        Vec3 v = u.Cross(normal).GetUnitVec();
+
+        std::vector<Vec3> mappedPoints;
+        for (Binary::Edge* edge : m_edges) 
+        {
+            Vec3 relativePos = edge->m_pos - v0;
+            float uCoord = relativePos.Dot(u);
+            float vCoord = relativePos.Dot(v);
+            Vec3 uvv = Vec3(uCoord, vCoord, 0.0);
+            mappedPoints.push_back(uvv);
+        }
+        float sum = 0;
+        for (int i = 0; i < mappedPoints.size(); i++)
+        {
+            int nextI = (i + 1) % mappedPoints.size();
+            sum += mappedPoints[i].X * mappedPoints[nextI].Y - mappedPoints[nextI].X * mappedPoints[i].Y;
+        }
+        float area = sum / 2;
+        if (area < 0)
+        {
+            area *= -1;
+        }
+
+        float sumX = 0;
+        float sumY = 0;
+        for (int i = 0; i < mappedPoints.size(); i++) {
+            int nextI = (i + 1) % mappedPoints.size();
+            float x0 = mappedPoints[i].X;
+            float x1 = mappedPoints[nextI].X;
+            float y0 = mappedPoints[i].Y;
+            float y1 = mappedPoints[nextI].Y;
+
+            float doubleArea = (x0 * y1) - (x1 * y0);
+            sumX += (x0 + x1) * doubleArea;
+            sumY += (y0 + y1) * doubleArea;
+        }
+
+        float cu = sumX / (6.0 * area);
+        float cv = sumY / (6.0 * area);
+
+        Vec3 cucv = Vec3(1, cu, cv);
+        Vec3 xuv = Vec3(v0.X, u.X, v.X);
+        Vec3 yuv = Vec3(v0.Y, u.Y, v.Y);
+        Vec3 zuv = Vec3(v0.Z, u.Z, v.Z);
+        float x = xuv.Dot(cucv);
+        float y = yuv.Dot(cucv);
+        float z = zuv.Dot(cucv);
+        return Vec3(x, y, z);
     }
 
     bool Area::operator==(Area const& other) const
@@ -683,8 +707,8 @@ namespace NavPower
 
     void NavMesh::writeJson(std::ostream& f)
     {
-        f << std::fixed << std::setprecision(17) << std::boolalpha;
-        f << "{\"m_areas\":[";
+        f << std::fixed << std::setprecision(4) << std::boolalpha;
+        f << "{\"Areas\":[";
         if (m_areas.empty())
         {
             throw std::runtime_error("Areas empty");
@@ -701,7 +725,9 @@ namespace NavPower
                 f << ",";
             }
         }
-        f << "]}";
+        f << "],";
+        f << "\"NavpJsonVersion\": \"0.1\"";
+        f << "}";
     }
 
     NavMesh::KdTreeGenerationHelper NavMesh::splitAreas(std::vector<Area> s_originalAreas)
@@ -759,7 +785,7 @@ namespace NavPower
         //  3. Completely to the right of the median
         for (int index = 0; index < s_originalAreas.size(); index++)
         {
-            BBox bbox = s_originalAreas[index].calculateBBox();
+            BBox bbox = s_originalAreas[index].CalculateBBox();
             float pos = 0;
             if (nodeSplits.splitAxis == Axis::X)
             {
@@ -865,12 +891,17 @@ namespace NavPower
         simdjson::ondemand::parser p_Parser;
         simdjson::padded_string p_Json = simdjson::padded_string::load(p_NavMeshPath);
         simdjson::ondemand::document p_NavMeshDocument = p_Parser.iterate(p_Json);
-
+        std::string navpJsonVersion = std::string{ std::string_view(p_NavMeshDocument["NavpJsonVersion"]) };
+        if (navpJsonVersion != "0.1")
+        {
+            std::cerr << "Unknown NavpJsonVersion " << navpJsonVersion << std::endl;
+            throw std::runtime_error("This version of NavPower only supports version 0.1");
+        }
         m_hdr = new Binary::Header();
         m_sectHdr = new Binary::SectionHeader();
         m_setHdr = new Binary::NavSetHeader();
         m_graphHdr = new Binary::NavGraphHeader();
-        simdjson::ondemand::array m_areasJson = p_NavMeshDocument["m_areas"];
+        simdjson::ondemand::array m_areasJson = p_NavMeshDocument["Areas"];
 
         for (auto areaJson : m_areasJson)
         {
