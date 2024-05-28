@@ -2,9 +2,15 @@
 
 set(NAVWEAKNESS_HEADERS
 	Include/NavWeakness.h
+	Include/Vec3.h
+	Include/NavPower.h
 )
 
 set(NAVWEAKNESS_SOURCES
+	Src/External/simdjson.cpp
+	Src/External/simdjson.h
+	Src/External/simdjson_helpers.h
+	Src/NavPower.cpp
 	Src/NavWeakness.cpp
 )
 

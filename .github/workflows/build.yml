@@ -72,6 +72,17 @@ jobs:
         Copy-Item ../Libraries/ResourceLib/ResourceLib.cs -Destination _resourcelib/
         Copy-Item ../LICENSE -Destination _resourcelib/
 
+    - name: Copy NavTool artifacts
+      run: |
+        cd _build
+        mkdir _navtool
+        Copy-Item NavTool.exe -Destination _navtool/
+        Copy-Item NavTool.pdb -Destination _navtool/
+        Copy-Item NavWeakness.dll -Destination _navtool/
+        Copy-Item NavWeakness.lib -Destination _navtool/
+        Copy-Item NavWeakness.pdb -Destination _navtool/
+        Copy-Item ../LICENSE -Destination _navtool/
+
     - name: Archive ResourceTool
       uses: actions/upload-artifact@v4
       with:
@@ -92,6 +103,20 @@ jobs:
         name: ResourceLib-win-x64
         path: |
           _build/_resourcelib/*
+
+    - name: Archive NavWeakness
+      uses: actions/upload-artifact@v2
+      with:
+        name: NavWeakness-win-x64
+        path: |
+          _build/_navweakness/*
+
+    - name: Archive NavTool
+      uses: actions/upload-artifact@v2
+      with:
+        name: NavTool-win-x64
+        path: |
+          _build/_navtool/*
 
   build_linux:
     name: Build (Linux)

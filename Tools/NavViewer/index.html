@@ -31,21 +31,24 @@
     </div>
     <div id="controls">
         <select id="map-selector"></select><br />
-        <label><input id="check-radii" type="checkbox" /> Render surface radii</label><br />
-        <label><input id="check-centers" type="checkbox" /> Render surface centers</label><br />
-        <label><input id="check-faces" type="checkbox" /> Render surface faces</label><br />
-        <label><input id="check-lines" type="checkbox" /> Render lines</label><br />
-        <label><input id="check-marked-vertices" type="checkbox" /> Render marked vertices</label><br />
-        <label><input id="check-weird-vertices" type="checkbox" /> Render weird vertices</label><br />
-        <label><input id="check-aabb" type="checkbox" /> Render AABB</label><br />
+        <label><input id="check-radii" type="checkbox" /> Render area radii</label><br />
+        <label><input id="check-centers" type="checkbox" /> Render area centers</label><br />
+        <label><input id="check-faces" type="checkbox" checked /> Render area faces</label><br />
+        <label><input id="check-edges" type="checkbox" checked /> Render area edges</label><br />
+        <label><input id="check-basis-vertices" type="checkbox" /> Render basis vert</label><br />
+        <label><input id="check-portal-vertices" type="checkbox" /> Render portal vert</label><br />
+        <label><input id="check-bbox" type="checkbox" /> Render BBox</label><br />
         <label><input id="check-numbers" type="checkbox" /> Render surface numbers</label><br />
-        <label><input id="check-unknown" type="checkbox" checked /> Render unknown points</label><br />
+        <label><input id="check-kdtree" type="checkbox" /> Render k-d tree</label><br />
+        <label><input id="check-use-ordered-edge-colors" type="checkbox" /> Use ordered edge colors</label><br />
+        <label><input id="highlight-area" type="text" style='width:5em'/> Highlight area #</label><br />
+        <label><input id="kd-tree-depth" type="range" style='width:5em'/> Show KD Tree at depth</label><br />
     </div>
     <script src="three.min.js"></script>
     <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
     <script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
     <script src="OrbitControls.js"></script>
-    <script src="Surfaces.js"></script>
+    <script src="NavMeshes.js"></script>
     <script src="viewer.js"></script>
 </body>
 </html>
