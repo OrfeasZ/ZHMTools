@@ -2451,6 +2451,7 @@ void ZHMEnums::RegisterEnums()
 		{ 577, "eAVV_CREST" },
 		{ 578, "eAVV_AKKA" },
 		{ 579, "eAVV_ET_DROP" },
+		{ 580, "eAVV_ET_PEN" },
 	};
 
 	(*g_Enums)["EAgilityState"] = {
@@ -6310,6 +6311,7 @@ void ZHMEnums::RegisterEnums()
 		{ 44, "EREQUIREMENT_H3_VANITY_MAKESHIFTSCRAP" },
 		{ 45, "EREQUIREMENT_H3_SARAJEVO_SIX" },
 		{ 46, "EREQUIREMENT_H3_ET_SAMBUCA" },
+		{ 47, "EREQUIREMENT_H3_ET_PENICILLIN" },
 	};
 
 	(*g_Enums)["ERestitutionCombineMode"] = {
