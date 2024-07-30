@@ -10,6 +10,7 @@
 #include <mutex>
 #include <cstdlib>
 #include <queue>
+#include <condition_variable>
 
 #include "ZHMInt.h"
 
