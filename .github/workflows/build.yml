@@ -208,7 +208,7 @@ jobs:
 
     strategy:
       matrix:
-        artifact: [ ResourceTool-win-x64, ResourceTool-linux-x64, CodeGen-win-x64, ResourceLib-win-x64, ResourceLib-linux-x64 ]
+        artifact: [ ResourceTool-win-x64, ResourceTool-linux-x64, CodeGen-win-x64, ResourceLib-win-x64, ResourceLib-linux-x64, NavTool-win-x64 ]
 
     steps:
     - name: Download artifact
