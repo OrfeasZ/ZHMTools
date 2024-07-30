@@ -1,6 +1,9 @@
 #include "ZHMArenas.h"
 #include "ZHMTypeInfo.h"
 
+std::mutex ZHMArenas::g_ArenaMutex;
+std::condition_variable ZHMArenas::g_ArenaCondition;
+std::queue<ZHMArena*> ZHMArenas::g_ArenaQueue;
 ZHMArena ZHMArenas::g_Arenas[ZHMArenaCount];
 ZHMArenas::ZHMArenaInitializer ZHMArenas::g_ArenaInitializer;
 

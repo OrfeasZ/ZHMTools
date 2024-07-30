@@ -9,6 +9,7 @@
 #include <shared_mutex>
 #include <mutex>
 #include <cstdlib>
+#include <queue>
 
 #include "ZHMInt.h"
 
@@ -27,7 +28,6 @@ struct ZHMArena
 	uint32_t m_Id;
 	zhmptr_t m_Size;
 	void* m_Buffer;
-	bool m_Used;
 	std::vector<IZHMTypeInfo*> m_TypeRegistry;
 	std::unordered_map<IZHMTypeInfo*, uint32_t> m_TypeIndices;
 	mutable std::shared_mutex m_Lock;
@@ -39,8 +39,7 @@ struct ZHMArena
 	ZHMArena() :
 		m_Id(0),
 		m_Size(0),
-		m_Buffer(nullptr),
-		m_Used(false)
+		m_Buffer(nullptr)
 	{		
 	}
 
@@ -54,12 +53,6 @@ struct ZHMArena
 			// which will be used for empty strings.
 			const auto s_Offset = Allocate(1);
 			memset(GetObjectAtOffset<void>(s_Offset), 0x00, 1);
-		}
-		else if (m_Id == 0)
-		{
-			// The first arena is reserved, since pointers with all arena bits set to 0
-			// are considered to be real pointers.
-			m_Used = true;
 		}
 	}
 
@@ -195,6 +188,15 @@ struct ZHMArenas
 		for (size_t i = 0; i < ZHMArenaCount; ++i)
 		{
 			g_Arenas[i].Initialize(i);
+
+			// We don't want to allow using the first and last arenas.
+			// The first arena is reserved, since pointers with all arena bits set to 0
+			// are considered to be real pointers.
+			// The last arena is reserved for the heap arena.
+			if (i == 0 || i == ZHMArenaCount - 1)
+				continue;
+
+			g_ArenaQueue.push(&g_Arenas[i]);
 		}
 	}
 
@@ -211,23 +213,25 @@ struct ZHMArenas
 
 	[[nodiscard]] static inline ZHMArena* GetUnusedArena()
 	{
-		// Try to find the first unused arena, ignoring the heap arena.
-		for (size_t i = 0; i < ZHMArenaCount - 1; ++i)
-		{
-			if (g_Arenas[i].m_Used)
-				continue;
+		std::unique_lock s_Guard(g_ArenaMutex);
 
-			return &g_Arenas[i];
-		}
-		
-		// TODO: Instead of making this return null just make it block until
-		// an arena becomes available.
-		return nullptr;
+		while (g_ArenaQueue.empty())
+			g_ArenaCondition.wait(s_Guard);
+
+		auto* s_Arena = g_ArenaQueue.front();
+		g_ArenaQueue.pop();
+
+		return s_Arena;
 	}
 
 	static inline void ReturnArena(ZHMArena* p_Arena)
 	{
-		p_Arena->m_Used = false;
+		{
+			std::scoped_lock s_Guard(g_ArenaMutex);
+			g_ArenaQueue.push(p_Arena);
+		}
+
+		g_ArenaCondition.notify_one();
 	}
 
 private:
@@ -239,6 +243,9 @@ private:
 		}
 	};
 
+	static std::mutex g_ArenaMutex;
+	static std::condition_variable g_ArenaCondition;
+	static std::queue<ZHMArena*> g_ArenaQueue;
 	static ZHMArena g_Arenas[ZHMArenaCount];
 	static ZHMArenaInitializer g_ArenaInitializer;
 };
