@@ -154,7 +154,7 @@ jobs:
         mkdir _resourcelib
         cp -r ../Libraries/ResourceLib/Include _resourcelib/
         cp ../Libraries/ResourceLib/ResourceLib.cs _resourcelib/
-        cp ResourceLib*.so _resourcelib/
+        cp libResourceLib*.so _resourcelib/
         cp ../LICENSE _resourcelib/
 
     - name: Copy resource tool artifacts
@@ -162,7 +162,7 @@ jobs:
         cd _build
         mkdir _resourcetool
         cp ResourceTool _resourcetool/
-        cp ResourceLib*.so _resourcetool/
+        cp libResourceLib*.so _resourcetool/
         cp ../LICENSE _resourcetool/
 
     - name: Archive resource tool
