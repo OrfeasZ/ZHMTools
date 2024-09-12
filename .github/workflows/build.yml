@@ -105,14 +105,14 @@ jobs:
           _build/_resourcelib/*
 
     - name: Archive NavWeakness
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: NavWeakness-win-x64
         path: |
           _build/_navweakness/*
 
     - name: Archive NavTool
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: NavTool-win-x64
         path: |
