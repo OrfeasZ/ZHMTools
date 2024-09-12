@@ -11960,8 +11960,10 @@ GlowActiveConditions
 GlowColor
 GlowColorA
 GlowColorB
+GlowColorEnd
 GlowColorPlane
 GlowColorSpot
+GlowColorStart
 GlowContent
 GlowIntensity
 GlowIntensityMultiplier
@@ -29270,7 +29272,9 @@ m_bRemovePhysics_Doors
 m_bRemovePhysics_Drawer
 m_bRemovePhysics_Drawer_B
 m_bRemovePhysics_Faucet
+m_bRemovePhysics_Glasses
 m_bRemovePhysics_Lid
+m_bRemovePhysics_Mic
 m_bRemovePhysics_Pillows
 m_bRemovePhysics_Props
 m_bRemovePhysics_Sink

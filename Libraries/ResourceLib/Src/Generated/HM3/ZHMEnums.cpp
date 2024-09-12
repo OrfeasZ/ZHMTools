@@ -6312,6 +6312,7 @@ void ZHMEnums::RegisterEnums()
 		{ 45, "EREQUIREMENT_H3_SARAJEVO_SIX" },
 		{ 46, "EREQUIREMENT_H3_ET_SAMBUCA" },
 		{ 47, "EREQUIREMENT_H3_ET_PENICILLIN" },
+		{ 48, "EREQUIREMENT_H3_ET_TOMORROWLAND" },
 	};
 
 	(*g_Enums)["ERestitutionCombineMode"] = {
