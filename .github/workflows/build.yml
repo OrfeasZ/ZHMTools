@@ -72,15 +72,19 @@ jobs:
         Copy-Item ../Libraries/ResourceLib/ResourceLib.cs -Destination _resourcelib/
         Copy-Item ../LICENSE -Destination _resourcelib/
 
-    - name: Copy NavTool artifacts
+    - name: Copy NavTool and NavWeakness artifacts
       run: |
         cd _build
         mkdir _navtool
+        mkdir _navweakness
         Copy-Item NavTool.exe -Destination _navtool/
         Copy-Item NavTool.pdb -Destination _navtool/
         Copy-Item NavWeakness.dll -Destination _navtool/
         Copy-Item NavWeakness.lib -Destination _navtool/
         Copy-Item NavWeakness.pdb -Destination _navtool/
+        Copy-Item NavWeakness.dll -Destination _navweakness/
+        Copy-Item NavWeakness.lib -Destination _navweakness/
+        Copy-Item NavWeakness.pdb -Destination _navweakness/
         Copy-Item ../LICENSE -Destination _navtool/
 
     - name: Archive ResourceTool
@@ -105,14 +109,14 @@ jobs:
           _build/_resourcelib/*
 
     - name: Archive NavWeakness
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: NavWeakness-win-x64
         path: |
           _build/_navweakness/*
 
     - name: Archive NavTool
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: NavTool-win-x64
         path: |
@@ -154,7 +158,7 @@ jobs:
         mkdir _resourcelib
         cp -r ../Libraries/ResourceLib/Include _resourcelib/
         cp ../Libraries/ResourceLib/ResourceLib.cs _resourcelib/
-        cp ResourceLib*.so _resourcelib/
+        cp libResourceLib*.so _resourcelib/
         cp ../LICENSE _resourcelib/
 
     - name: Copy resource tool artifacts
@@ -162,7 +166,7 @@ jobs:
         cd _build
         mkdir _resourcetool
         cp ResourceTool _resourcetool/
-        cp ResourceLib*.so _resourcetool/
+        cp libResourceLib*.so _resourcetool/
         cp ../LICENSE _resourcetool/
 
     - name: Archive resource tool
