@@ -27516,6 +27516,7 @@ m_ActivatedCategory
 m_ActivationArea
 m_ActivationCondition
 m_ActivationValue
+m_Active
 m_Actor
 m_ActorDamageControlData
 m_ActorInstance
@@ -27674,6 +27675,7 @@ m_DebugVariableName
 m_DefaultStateCategory
 m_DefaultWeaponVariationResource
 m_Definition
+m_Delay
 m_Delegate
 m_Description
 m_DescriptionLocked
@@ -27689,6 +27691,7 @@ m_DoorLeft
 m_DoorRight
 m_Doors
 m_DoorsScale
+m_Duration
 m_Easy
 m_EasyAISensorDef
 m_EasyAISoundSensorDef
@@ -27698,6 +27701,7 @@ m_EmitterSource
 m_EnableConcealmentConditions
 m_EnableConditions
 m_EnableSickSpotConditions
+m_Enabled
 m_End
 m_EnteringConditions
 m_Entities
@@ -27735,6 +27739,7 @@ m_FireSoundEventType
 m_FixedAlpha
 m_FixedColor
 m_FogColor
+m_Follower
 m_Foot
 m_ForwardOnVariant
 m_FrameScale
@@ -27867,6 +27872,7 @@ m_JumpPointAmbience
 m_KeeperProfessions
 m_Keywords
 m_KnowledgeData
+m_Leader
 m_LeftHandIKPos
 m_LeftHandItems
 m_LeftHandPos
