@@ -7249,6 +7249,7 @@ m_rMaxTraits
 m_rMayPickupCondition
 m_rMayPlayFriskingDialogCondition
 m_rMayPlayGreetingDialogCondition
+m_rMayPlayWelcomeDialogCondition
 m_rMessageResource
 m_rMessageResourcePCVR
 m_rMessageResourcePS4
@@ -7799,6 +7800,7 @@ m_sequenceOrigin
 m_sequenceTime
 m_sharedTarget
 m_shouldIgnorePistolWhip
+m_showCursorOnEveryZoomLevel
 m_showGearCapacityCost
 m_showLatestIntelOnly
 m_showPerks
