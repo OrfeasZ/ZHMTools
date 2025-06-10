@@ -2456,6 +2456,7 @@ void ZHMEnums::RegisterEnums()
 		{ 582, "eAVV_ET_LAMBIC" },
 		{ 583, "eAVV_ET_LAMBIC_CLONE" },
 		{ 584, "eAVV_ET_LAMPICCLONE" },
+		{ 585, "eAVV_ET_FRENTINI" },
 	};
 
 	(*g_Enums)["EAgilityState"] = {
@@ -6319,6 +6320,7 @@ void ZHMEnums::RegisterEnums()
 		{ 48, "EREQUIREMENT_H3_ET_PENICILLIN" },
 		{ 49, "EREQUIREMENT_H3_ET_TOMORROWLAND" },
 		{ 50, "EREQUIREMENT_H3_ET_LAMBIC" },
+		{ 51, "EREQUIREMENT_H3_ET_FRENCHMARTINI" },
 	};
 
 	(*g_Enums)["ERestitutionCombineMode"] = {
