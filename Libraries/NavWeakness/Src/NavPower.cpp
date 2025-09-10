@@ -290,10 +290,6 @@ namespace NavPower
             {
                 f << ",\"Type\":\"" << EdgeTypeToString(GetType()) << "\"";
             }
-            if (m_flags2 != 0)
-            {
-                f << ",\"Flags\":" << m_flags2;
-            }
             f << "}";
         }
 
@@ -301,7 +297,7 @@ namespace NavPower
         {
             auto adjacentAreaResult = p_Json.find_field("Adjacent Area");
             if (adjacentAreaResult.error() == simdjson::SUCCESS) {
-                int64_t m_pAdjAreaJson = int64_t(p_Json["Adjacent Area"]);
+                const int64_t m_pAdjAreaJson = static_cast<uint64_t>(p_Json["Adjacent Area"]);
                 // Store index of adjacent area + 1 in m_pAdjArea until the area addresses are calculated
                 m_pAdjArea = reinterpret_cast<Binary::Area*>(m_pAdjAreaJson);
             }
@@ -314,17 +310,18 @@ namespace NavPower
             m_flags1 = 0xFFFF0000;
             SetPartition(false);
             SetObID(0);
-            auto result = p_Json.find_field("Type");
-            if (result.error() == simdjson::SUCCESS) {
+            if (auto result = p_Json["Type"]; result.error() == simdjson::SUCCESS) {
                 SetType(EdgeTypeStringToEnumValue(std::string{ std::string_view(p_Json["Type"]) }));
             }
             else
             {
                 SetType(EDGE_NORMAL);
             }
-            auto flags2Result = p_Json.find_field("Flags");
-            if (flags2Result.error() == simdjson::SUCCESS) {
-                m_flags2 = int64_t(p_Json["Flags"]);
+        }
+
+        void Edge::updateAdjacentDistances(const Area* m_pParentArea) {
+            if (m_pAdjArea != nullptr) {
+                m_flags2 = CalcScaledDistBetweenAreaCenters(m_pAdjArea->m_pos, m_pParentArea->m_pos);
             }
             else
             {
@@ -606,11 +603,17 @@ namespace NavPower
         return m_area->m_pos.X < other.m_area->m_pos.X;
     }
 
+    void Area::updateAdjacentDistances() const {
+        for (auto& edge : m_edges)
+        {
+            edge->updateAdjacentDistances(m_area);
+        }
+    }
 
-    BBox generateBbox(std::vector<Area> s_areas)
+    BBox generateBbox(const std::vector<Area> &s_areas)
     {
-        float s_minFloat = -300000000000;
-        float s_maxFloat = 300000000000;
+        constexpr float s_minFloat = -300000000000;
+        constexpr float s_maxFloat = 300000000000;
         BBox bbox;
         bbox.m_min.X = s_maxFloat;
         bbox.m_min.Y = s_maxFloat;
@@ -934,6 +937,11 @@ namespace NavPower
                 }
             }
             area.m_area->m_radius = s_radius;
+        }
+
+        for (auto area : m_areas)
+        {
+            area.updateAdjacentDistances();
         }
 
         m_kdTreeData = new Binary::KDTreeData();
