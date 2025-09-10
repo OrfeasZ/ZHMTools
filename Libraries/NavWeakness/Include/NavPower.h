@@ -252,9 +252,22 @@ namespace NavPower
             EdgeType GetType() const { return (EdgeType)((m_flags1 & 0x8000) >> 15); }
             void SetType(EdgeType p_EdgeType) { m_flags1 |= (p_EdgeType) << 15; }
 
-            void writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap);
+            // flags 2
+            // Distance between area centers for adjacent edges
+            // Calculate the scaled fixed point distance between the centers of two areas.
+            static uint32_t CalcScaledDistBetweenAreaCenters(const Vec3& centerPos1, const Vec3& centerPos2)
+            {
+                constexpr float scale = 2;
+                constexpr float FIXED_POINT_EDGE_COST_MULT = 1000;
+                const float distBetweenAreaCenters = (centerPos1 - centerPos2).GetMagnitude();
+                const uint32_t cost = static_cast<uint32_t>(distBetweenAreaCenters * (FIXED_POINT_EDGE_COST_MULT / scale) + 1);
+                return cost;
+            }
+
+            void writeJson(std::ostream& f, std::map<Area*, uint32_t>* p_AreaPointerToIndexMap);
             void readJson(simdjson::ondemand::object p_Json);
-            void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap);
+            void writeBinary(std::ostream& f, std::map<Area*, Area*>* s_AreaPointerToOffsetPointerMap);
+            void updateAdjacentDistances(const Area* m_pParentArea);
             bool operator==(Edge const& other) const;
         };
 
@@ -378,6 +391,7 @@ namespace NavPower
 
         BBox CalculateBBox();
         Vec3 CalculateCentroid();
+        void updateAdjacentDistances() const;
     };
 
     // Helps with outputting the k-d tree as Bounding Boxes
@@ -389,7 +403,7 @@ namespace NavPower
         uint32_t m_splitAxis;
     };
 
-    BBox generateBbox(std::vector<Area> s_areas);
+    BBox generateBbox(const std::vector<Area> &s_areas);
     bool compareX(Area& a1, Area& a2);
     bool compareY(Area& a1, Area& a2);
     bool compareZ(Area& a1, Area& a2);
