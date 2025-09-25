@@ -288,6 +288,8 @@ void CodeGen::GenerateEnum(STypeID* p_Type)
 		s_Stream << "{" << std::endl;
 
 #if _M_X64
+		// TODO: Remove this. Temporary workaround until I figure out what's going on.
+		s_Type->m_entries.m_pAllocationEnd = nullptr;
 		for (auto it = s_Type->m_entries.begin(); it != s_Type->m_entries.end(); ++it)
 		{
 			s_Enum[it->m_nValue] = it->m_pName;
@@ -324,6 +326,8 @@ void CodeGen::GenerateEnum(STypeID* p_Type)
 		s_Stream << "{" << std::endl;
 
 #if _M_X64
+		// TODO: Remove this. Temporary workaround until I figure out what's going on.
+		s_Type->m_entries.m_pAllocationEnd = nullptr;
 		for (auto it = s_Type->m_entries.begin(); it != s_Type->m_entries.end(); ++it)
 		{
 			s_Enum[it->m_nValue] = it->m_pName;
@@ -604,7 +608,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 
 		uintptr_t s_ExpectedOffset = s_Prop.m_nOffset;
 
-		if (s_CurrentOffset != s_ExpectedOffset)
+		if (s_CurrentOffset < s_ExpectedOffset)
 		{
 			// Add padding.
 			uintptr_t s_PaddingBytes = s_ExpectedOffset - s_CurrentOffset;
@@ -673,7 +677,7 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 		s_CurrentOffset += s_Prop.m_pType->typeInfo()->m_nTypeSize;
 	}
 
-	if (s_CurrentOffset != s_Type->m_nTypeSize)
+	if (s_CurrentOffset < s_Type->m_nTypeSize)
 	{
 		// Add padding.
 		uintptr_t s_PaddingBytes = s_Type->m_nTypeSize - s_CurrentOffset;
@@ -932,6 +936,8 @@ void CodeGen::GenerateReflectiveEnum(STypeID* p_Type)
 	s_Stream << "{" << std::endl;
 
 #if _M_X64
+	// TODO: Remove this. Temporary workaround until I figure out what's going on.
+	s_Type->m_entries.m_pAllocationEnd = nullptr;
 	for (auto it = s_Type->m_entries.begin(); it != s_Type->m_entries.end(); ++it)
 		s_Stream << "\t" << it->m_pName << " = " << std::dec << it->m_nValue << "," << std::endl;
 #else

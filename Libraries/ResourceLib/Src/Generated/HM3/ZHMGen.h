@@ -21605,7 +21605,6 @@ public:
 	bool operator!=(const SUpdateSelectedSlotData& p_Other) const { return !(*this == p_Other); }
 
 	SInventoryUISlot slotData; // 0x0
-	uint8_t _pad108[18446744073709551360] {};
 	TArray<SWeaponWheelPromptData> buttonprompts; // 0x8
 	ZString controllerType; // 0x20
 };
@@ -26121,7 +26120,6 @@ public:
 	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData& p_Other) const { return !(*this == p_Other); }
 
 	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo slotData; // 0x0
-	uint8_t _padD8[18446744073709551408] {};
 	TArray<SWeaponWheelPromptData> buttonprompts; // 0x8
 	ZString controllerType; // 0x20
 };
@@ -26351,7 +26349,6 @@ public:
 	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData& p_Other) const { return !(*this == p_Other); }
 
 	ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo slotData; // 0x0
-	uint8_t _padD8[18446744073709551408] {};
 	TArray<SWeaponWheelPromptData> buttonprompts; // 0x8
 	ZString controllerType; // 0x20
 };
