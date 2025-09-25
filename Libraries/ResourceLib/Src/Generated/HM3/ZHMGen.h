@@ -2858,6 +2858,7 @@ enum class EActorVoiceVariation
 	eAVV_ET_LAMBIC_CLONE = 583,
 	eAVV_ET_LAMPICCLONE = 584,
 	eAVV_ET_FRENTINI = 585,
+	eAVV_ET_BAIJ = 586,
 };
 
 // Size: 0x4
@@ -3032,6 +3033,14 @@ enum class EBIEventTypes
 	eBIL_HM_HitNPCCloseCombatShot = 3,
 	eBIL_NPC_HitHM = 4,
 	eBIL_Geometry = 5,
+};
+
+// Size: 0x4
+enum class EBallJointOverride
+{
+	HABJO_NotSet = 0,
+	HABJO_ForceOff = 1,
+	HABJO_ForceOn = 2,
 };
 
 // Size: 0x4
@@ -3600,7 +3609,7 @@ enum class ECharacterAnimEvent
 	eCAE_EarlyExit = 50,
 };
 
-// Size: 0x1
+// Size: 0x4
 enum class ECharacterAnimEventState
 {
 	eES_None = 0,
@@ -3919,6 +3928,14 @@ enum class ECollisionResponse
 	SLIDE_ON = 1,
 	STAY_AT_COLLISION_POINT = 2,
 	CUSTOM = 3,
+};
+
+// Size: 0x4
+enum class ECombatState
+{
+	CS_Combat = 0,
+	CS_CheckLastPosition = 1,
+	CS_StandDown = 2,
 };
 
 // Size: 0x4
@@ -5125,13 +5142,17 @@ enum class EEngineFrameUpdatePriority
 	eFrameUpdatePriority_DebugHandlers = 102,
 	eFrameUpdatePriority_OSD = 103,
 	eFrameUpdatePriority_Default = 104,
-	eFrameUpdatePriority_SecuritySystemCameraUI = 105,
-	eFrameUpdatePriority_ThrownItemUI = 106,
-	eFrameUpdatePriority_SequenceManager = 107,
-	eFrameUpdatePriority_StartPathfinderUpdate = 108,
-	eFrameUpdatePriority_VisibilitySensorWait = 109,
-	eFrameUpdatePriority_ActionManagerStart = 110,
-	eFrameUpdatePriority_PathFinderJobManager = 111,
+	eFUP_InputGenerator = 105,
+	eFrameUpdatePriority_SecuritySystemCameraUI = 106,
+	eFrameUpdatePriority_ThrownItemUI = 107,
+	eFrameUpdatePriority_VrTwoHandWielding = 108,
+	eFrameUpdatePriority_VrInterpolatedAlign = 109,
+	eFrameUpdatePriority_VrInterpolatedAlignManager = 110,
+	eFrameUpdatePriority_SequenceManager = 111,
+	eFrameUpdatePriority_StartPathfinderUpdate = 112,
+	eFrameUpdatePriority_VisibilitySensorWait = 113,
+	eFrameUpdatePriority_ActionManagerStart = 114,
+	eFrameUpdatePriority_PathFinderJobManager = 115,
 	eFrameUpdateLinkedEntity = 200,
 	eFrameUpdatePriority_RayProbeEntity = 201,
 	eFrameUpdatePriority_GhostEntity = 202,
@@ -5523,16 +5544,17 @@ enum class EGameUIMenu
 	eUIMenu_ModalDialogMenu = 4,
 	eUIMenu_GameplayMenu = 5,
 	eUIMenu_InventorySelectorMenu = 6,
-	eUIMenu_ActionSelectorMenu = 7,
-	eUIMenu_ActionSelectorInventoryMenu = 8,
-	eUIMenu_IntelSelectorMenu = 9,
-	eUIMenu_NotebookMenu = 10,
-	eUIMenu_LogbookMenu = 11,
-	eUIMenu_TutorialMenu = 12,
-	eUIMenu_SplashHintMenu = 13,
-	eUIMenu_EmoteMenu = 14,
-	eUIMenu_WardrobeMenu = 15,
-	eUIMenu_Count = 16,
+	eUIMenu_InventorySelectorMenuVR = 7,
+	eUIMenu_ActionSelectorMenu = 8,
+	eUIMenu_ActionSelectorInventoryMenu = 9,
+	eUIMenu_IntelSelectorMenu = 10,
+	eUIMenu_NotebookMenu = 11,
+	eUIMenu_LogbookMenu = 12,
+	eUIMenu_TutorialMenu = 13,
+	eUIMenu_SplashHintMenu = 14,
+	eUIMenu_EmoteMenu = 15,
+	eUIMenu_WardrobeMenu = 16,
+	eUIMenu_Count = 17,
 };
 
 // Size: 0x4
@@ -5556,73 +5578,120 @@ enum class EGuardPointType
 };
 
 // Size: 0x4
+enum class EHM5CrippleBoxConditionFlag
+{
+	ITEMS_SELECT = 0,
+	ITEMS_CANHOLSTER = 1,
+};
+
+// Size: 0x4
 enum class EHM5GameInputFlag
 {
 	eGameInputActionPerform = 0,
-	eGameInputActionPickup = 1,
-	eGameInputActionAbort = 2,
-	eGameInputActionDoor = 3,
-	eGameInputWeaponZoomIn = 4,
-	eGameInputWeaponZoomOut = 5,
-	eGameInputActionShoot = 6,
-	eGameInputActionPrecisionShoot = 7,
-	eGameInputAimOTS = 8,
-	eGameInputCoverAction = 9,
-	eGameInputCoverAlternativeAction = 10,
-	eGameInputInventoryAccept = 11,
-	eGameInputEquipShortRange = 12,
-	eGameInputEquipLongRange = 13,
-	eGameInputHolsterItem = 14,
-	eGameInputDropItem = 15,
-	eGameInputDropSuitcase = 16,
-	eGameInputTogglePlacement = 17,
-	eGameInputActivatePropQuick = 18,
-	eGameInputActivateProp = 19,
-	eGameInputActivatePropHold = 20,
-	eGameInputActivatePropSecondary = 21,
-	eGameInputActivatePropInterruptibleStart = 22,
-	eGameInputActivatePropInterruptibleEnd = 23,
-	eGameInputConcealRetrieve = 24,
-	eGameInputGuideAction = 25,
-	eGameInputGuideActionHold = 26,
-	eGameInputGuideActionSecondary = 27,
-	eGameInputGuideEnterWindow = 28,
-	eGameInputGuideSneakPastWindow = 29,
-	eGameInputGuideKill = 30,
-	eGameInputSlideLadder = 31,
-	eGameInputCloseCombat = 32,
-	eGameInputFiberwire = 33,
-	eGameInputCloseCombatCounter = 34,
-	eGameInputCloseCombatTakeDown = 35,
-	eGameInputCloseCombatSnapNeck = 36,
-	eGameInputSurrender = 37,
-	eGameInputShowItem = 38,
-	eGameInputReload = 39,
-	eGameInputTakeDisguise = 40,
-	eGameInputDragDropBody = 41,
-	eGameInputDumpBody = 42,
-	eGameInputSneakToggle = 43,
-	eGameInputCamSwitch = 44,
-	eGameInputActivateRun = 45,
-	eGameInputActivateWalkSlow = 46,
-	eGameInputInstinctMode = 47,
-	eGameInputContractTargetTag = 48,
-	eGameInputThrow = 49,
-	eGameInputCloseCombatChainHigh = 50,
-	eGameInputCloseCombatChainLow = 51,
-	eGameInputCloseCombatChainCounter = 52,
-	eGameInputSkipCutSequence = 53,
-	eGameInputCloseCombatChokeStart = 54,
-	eGameInputCloseCombatChoke = 55,
-	eGameInputFocusedInteractionFaceUp = 56,
-	eGameInputFocusedInteractionFaceLeft = 57,
-	eGameInputFocusedInteractionFaceDown = 58,
-	eGameInputFocusedInteractionLeftStickAnalog = 59,
-	eGameInputRemoteAction = 60,
-	eGameInputChangeAmmoNext = 61,
-	eGameInputChangeAmmoPrevious = 62,
-	eGameInputDefault = 63,
-	eGameInputActionsNUM = 64,
+	eGameInputActionPerformLeft = 1,
+	eGameInputActionGrab = 2,
+	eGameInputActionGrabLeft = 3,
+	eGameInputActionInterpolatedAlign = 4,
+	eGameInputActionInterpolatedAlignLeft = 5,
+	eGameInputActionRelease = 6,
+	eGameInputActionReleaseLeft = 7,
+	eGameInputActionPickup = 8,
+	eGameInputActionPickupLeft = 9,
+	eGameInputActionQuickGrab = 10,
+	eGameInputActionQuickGrabLeft = 11,
+	eGameInputActionQuickRelease = 12,
+	eGameInputActionQuickReleaseLeft = 13,
+	eGameInputOpenHand = 14,
+	eGameInputOpenHandLeft = 15,
+	eGameInputActionAbort = 16,
+	eGameInputActionDoor = 17,
+	eGameInputActionDoorLeft = 18,
+	eGameInputWeaponZoomIn = 19,
+	eGameInputWeaponZoomOut = 20,
+	eGameInputActionShoot = 21,
+	eGameInputActionShootLeft = 22,
+	eGameInputActionPrecisionShoot = 23,
+	eGameInputActionPrecisionShootLeft = 24,
+	eGameInputAimOTS = 25,
+	eGameInputCoverAction = 26,
+	eGameInputCoverAlternativeAction = 27,
+	eGameInputInventoryAccept = 28,
+	eGameInputEquipShortRange = 29,
+	eGameInputEquipLongRange = 30,
+	eGameInputHolsterItem = 31,
+	eGameInputHolsterItemLeft = 32,
+	eGameInputGrabItemFromOtherHand = 33,
+	eGameInputGrabItemFromOtherHandLeft = 34,
+	eGameInputSupportHandGrip = 35,
+	eGameInputSupportHandGripLeft = 36,
+	eGameInputDropItem = 37,
+	eGameInputDropItemLeft = 38,
+	eGameInputTogglePlacement = 39,
+	eGameInputActivatePropQuick = 40,
+	eGameInputActivateProp = 41,
+	eGameInputActivatePropLeft = 42,
+	eGameInputActivatePropHold = 43,
+	eGameInputActivatePropSecondary = 44,
+	eGameInputActivatePropInterruptibleStart = 45,
+	eGameInputActivatePropInterruptibleEnd = 46,
+	eGameInputConcealRetrieve = 47,
+	eGameInputGuideAction = 48,
+	eGameInputGuideActionHold = 49,
+	eGameInputGuideActionSecondary = 50,
+	eGameInputGuideEnterWindow = 51,
+	eGameInputGuideSneakPastWindow = 52,
+	eGameInputGuideKill = 53,
+	eGameInputGuideKillLeft = 54,
+	eGameInputSlideLadder = 55,
+	eGameInputCloseCombat = 56,
+	eGameInputFiberwire = 57,
+	eGameInputFiberwirePrime = 58,
+	eGameInputFiberwirePrimeLeft = 59,
+	eGameInputCloseCombatCounter = 60,
+	eGameInputCloseCombatTakeDown = 61,
+	eGameInputCloseCombatSnapNeck = 62,
+	eGameInputSurrender = 63,
+	eGameInputShowItem = 64,
+	eGameInputReload = 65,
+	eGameInputEjectClip = 66,
+	eGameInputEjectClipLeft = 67,
+	eGameInputTakeDisguise = 68,
+	eGameInputTakeDisguiseLeft = 69,
+	eGameInputDragDropBody = 70,
+	eGameInputDragDropBodyLeft = 71,
+	eGameInputDumpBody = 72,
+	eGameInputDumpBodyLeft = 73,
+	eGameInputSneakToggle = 74,
+	eGameInputCamSwitch = 75,
+	eGameInputActivateRun = 76,
+	eGameInputActivateWalkSlow = 77,
+	eGameInputInstinctMode = 78,
+	eGameInputContractTargetTag = 79,
+	eGameInputThrow = 80,
+	eGameInputThrowLeft = 81,
+	eGameInputThrowPrimeRight = 82,
+	eGameInputThrowPrimeLeft = 83,
+	eGameInputPrimeToggleRight = 84,
+	eGameInputPrimeToggleLeft = 85,
+	eGameInputCloseCombatChainHigh = 86,
+	eGameInputCloseCombatChainLow = 87,
+	eGameInputCloseCombatChainCounter = 88,
+	eGameInputSkipCutSequence = 89,
+	eGameInputCloseCombatChokeStart = 90,
+	eGameInputCloseCombatChoke = 91,
+	eGameInputFocusedInteractionFaceUp = 92,
+	eGameInputFocusedInteractionFaceLeft = 93,
+	eGameInputFocusedInteractionFaceDown = 94,
+	eGameInputFocusedInteractionLeftStickAnalog = 95,
+	eGameInputRemoteAction = 96,
+	eGameInputRemoteActionLeft = 97,
+	eGameInputRemoteActionLeftOrRight = 98,
+	eGameInputChangeAmmoNext = 99,
+	eGameInputChangeAmmoPrevious = 100,
+	eGameInputRequestVRHolsterFeedback = 101,
+	eGameInputRequestVRHolsterFeedbackLeft = 102,
+	eGameInputDefault = 103,
+	eGameInputActionsNUM = 104,
 };
 
 // Size: 0x4
@@ -5777,6 +5846,77 @@ enum class EHUDMessageStatus
 };
 
 // Size: 0x4
+enum class EHandAlignIKBones
+{
+	HAIB_None = 0,
+	HAIB_HasRight_HasLeft = 1,
+	HAIB_HasRight_MirrorLeft = 2,
+	HAIB_HasLeft_MirrorRight = 3,
+};
+
+// Size: 0x4
+enum class EHandAlignPoseType
+{
+	HAPT_NotSet = 0,
+	HAPT_Clip = 1,
+	HAPT_Slide = 2,
+	HAPT_WeaponAimAndSupport = 3,
+	HAPT_WeaponSupport = 4,
+};
+
+// Size: 0x4
+enum class EHandAlignPrimeState
+{
+	HAPS_None = 0,
+	HAPS_Primed = 1,
+	HAPS_NotPrimed = 2,
+};
+
+// Size: 0x4
+enum class EHandAlignRestriction
+{
+	HAR_None = 0,
+	HAR_LeftHandOnly = 1,
+	HAR_RightHandOnly = 2,
+};
+
+// Size: 0x4
+enum class EHandAlignRotationAxis
+{
+	HARA_None = 0,
+	HARA_XAxis = 1,
+	HARA_YAxis = 2,
+	HARA_ZAxis = 3,
+	HARA_TargetToDestinationRotationAxis = 4,
+};
+
+// Size: 0x4
+enum class EHandAttacherGripOverrideReason
+{
+	HAGOR_None = 0,
+	HAGOR_Reload = 1,
+	HAGOR_InterpolatedAlign = 2,
+	HAGOR_Unknown = 3,
+};
+
+// Size: 0x4
+enum class EHeroEmptyHandPose
+{
+	EHEHP_Nothing = 0,
+	EHEHP_Interact = 1,
+	EHEHP_Point = 2,
+	EHEHP_Fist = 3,
+	EHEHP_Open = 4,
+	EHEHP_Pickup = 5,
+	EHEHP_Threatening = 6,
+	EHEHP_Choking = 7,
+	EHEHP_Typing = 8,
+	EHEHP_PullSlide = 9,
+	EHEHP_PistolSupport = 10,
+	EHEHP_PullSlideTop = 11,
+};
+
+// Size: 0x4
 enum class EHeroGameState
 {
 	eHGS_Reserved_QueryALL = 0,
@@ -5821,11 +5961,12 @@ enum class EHeroGameState
 	eHGS_MvFiberWireKill = 39,
 	eHGS_MvAlign = 40,
 	eHGS_MvTakedown = 41,
-	eHGS_MvSubAction = 42,
-	eHGS_MvNewFullBody = 43,
-	eHGS_MvDisguiseSafeZone = 44,
-	eHGS_MvPlaceItem = 45,
-	eHGS_NUM = 46,
+	eHGS_MvSilentTakedown = 42,
+	eHGS_MvSubAction = 43,
+	eHGS_MvNewFullBody = 44,
+	eHGS_MvDisguiseSafeZone = 45,
+	eHGS_MvPlaceItem = 46,
+	eHGS_NUM = 47,
 };
 
 // Size: 0x4
@@ -5865,14 +6006,18 @@ enum class EHitmanPermissionFlag
 {
 	eHPFlag_InventorySelect = 0,
 	eHPFlag_CanHolsterItem = 1,
-	eHPFlag_CanDropItem = 2,
-	eHPFlag_CanDualWield = 3,
-	eHPFlag_CameraControl = 4,
-	eHPFlag_MovementControl = 5,
-	eHPFlag_AimControl = 6,
-	eHPFlag_CanOpenNotebook = 7,
-	eHPFlag_CanOpenPauseMenu = 8,
-	eHPFlag_PermissionsNUM = 9,
+	eHPFlag_CanHolsterItemLeft = 2,
+	eHPFlag_CanHolsterItemRight = 3,
+	eHPFlag_CanDropItem = 4,
+	eHPFlag_CanDropItemLeft = 5,
+	eHPFlag_CanDropItemRight = 6,
+	eHPFlag_CanDualWield = 7,
+	eHPFlag_CameraControl = 8,
+	eHPFlag_MovementControl = 9,
+	eHPFlag_AimControl = 10,
+	eHPFlag_CanOpenNotebook = 11,
+	eHPFlag_CanOpenPauseMenu = 12,
+	eHPFlag_PermissionsNUM = 13,
 };
 
 // Size: 0x4
@@ -5934,6 +6079,51 @@ enum class EInformationBarMessage
 };
 
 // Size: 0x4
+enum class EInputGestureState
+{
+	Invalid = 0,
+	Simple = 1,
+	Begin = 2,
+	Update = 3,
+	End = 4,
+	EndDelayed = 5,
+	Inertia = 6,
+};
+
+// Size: 0x4
+enum class EInputGestureType
+{
+	Invalid = 0,
+	Tap = 1,
+	TapLong = 2,
+	TapTwoFinger = 3,
+	PressAndTap = 4,
+	PanAbsolute = 5,
+	PanRelative = 6,
+	Rotate = 7,
+	Zoom = 8,
+	Reset = 9,
+};
+
+// Size: 0x4
+enum class EInputTouchMode
+{
+	Invalid = 0,
+	Gesture = 1,
+	TouchPoints = 2,
+};
+
+// Size: 0x4
+enum class EInputTouchState
+{
+	Invalid = 0,
+	TouchBegin = 1,
+	TouchEnd = 2,
+	TouchMove = 3,
+	TouchTap = 4,
+};
+
+// Size: 0x4
 enum class EIntelStage
 {
 	eIT_MAIN = 0,
@@ -5983,6 +6173,45 @@ enum class EInteractionInputType
 	EIIT_HOLD_DOWN = 3,
 	EIIT_REPEAT = 4,
 	EIIT_GUIDE = 5,
+};
+
+// Size: 0x4
+enum class EInterpolatedAlignActivationRequirement
+{
+	IAAR_None = 0,
+	IAAR_EnterVolume = 1,
+	IAAR_EnterVolumeAndGrab = 2,
+	IAAR_Grab = 3,
+	IAAR_SupportHandGrip = 4,
+};
+
+// Size: 0x4
+enum class EInterpolatedAlignHandSelection
+{
+	IAHS_ByEvent = 0,
+	IAHS_FirearmOffhand = 1,
+	IAHS_Left = 2,
+	IAHS_Right = 3,
+	IAHS_Any = 4,
+	IAHS_ItemHand = 5,
+	IAHS_ItemOppositeHand = 6,
+};
+
+// Size: 0x4
+enum class EInterpolatedAlignMovementType
+{
+	IAMT_Linear = 0,
+	IAMT_SnapToIteration = 1,
+};
+
+// Size: 0x4
+enum class EInterpolatedAlignState
+{
+	IAS_Inactive = 0,
+	IAS_VolumeTriggerCheck = 1,
+	IAS_Align = 2,
+	IAS_AwaitingCompletion = 3,
+	IAS_BlendingOut = 4,
 };
 
 // Size: 0x4
@@ -6070,7 +6299,11 @@ enum class EItemGripType
 	IGT_Prop_1H = 37,
 	IGT_Prop_1H_Duck = 38,
 	IGT_Prop_1h_Phone = 39,
-	IGT_None = 40,
+	IGT_Prop_Card = 40,
+	IGT_Magazine_ThickGrip = 41,
+	IGT_Magazine_ThinGrip = 42,
+	IGT_VR_Default = 43,
+	IGT_None = 44,
 };
 
 // Size: 0x4
@@ -6293,6 +6526,30 @@ enum class EMeBarState
 	ME_BAR_DISGUISE_BLOWN = 5,
 	ME_BAR_DISGUISE_SUSPICIOUS = 6,
 	ME_BAR_NEAR_BODY = 7,
+};
+
+// Size: 0x4
+enum class EMirrorTransformOperation
+{
+	MTO_None = 0,
+	MTO_X_Rotate180CCW = 1,
+	MTO_X_Rotate180CW = 2,
+	MTO_X_Rotate90CCW = 3,
+	MTO_X_Rotate90CW = 4,
+	MTO_X_RotationNegate = 5,
+	MTO_Y_Rotate180CCW = 6,
+	MTO_Y_Rotate180CW = 7,
+	MTO_Y_Rotate90CCW = 8,
+	MTO_Y_Rotate90CW = 9,
+	MTO_Y_RotationNegate = 10,
+	MTO_Z_Rotate180CCW = 11,
+	MTO_Z_Rotate180CW = 12,
+	MTO_Z_Rotate90CCW = 13,
+	MTO_Z_Rotate90CW = 14,
+	MTO_Z_RotationNegate = 15,
+	MTO_X_TranslationNegate = 16,
+	MTO_Y_TranslationNegate = 17,
+	MTO_Z_TranslationNegate = 18,
 };
 
 // Size: 0x4
@@ -6923,6 +7180,14 @@ enum class EPostProcessorComponentType
 };
 
 // Size: 0x4
+enum class EPrimedHandReason
+{
+	NotPrimed = 0,
+	Default = 1,
+	Inventory = 2,
+};
+
+// Size: 0x4
 enum class EPushNotificationType
 {
 	PUSH_NOTIFICATION_OBJECTIVE = 0,
@@ -7027,7 +7292,9 @@ enum class ERayLayer
 	eRayLayer_COLLIDE_WITH_STATIC_AND_SLOPE_EXCL_TRANSPARENT = 20,
 	eRayLayer_HERO_PROXY_NO_VOLUMES = 22,
 	eRayLayer_PHYSICS_MANIPULATOR = 23,
-	eRayLayer_UNUSED_LAST = 24,
+	eRayLayer_VR_IK_COLLISION = 24,
+	eRayLayer_VR_CAMERA = 25,
+	eRayLayer_UNUSED_LAST = 26,
 };
 
 // Size: 0x4
@@ -7201,6 +7468,10 @@ enum class ERequirementId
 	EREQUIREMENT_H3_ET_TOMORROWLAND = 62,
 	EREQUIREMENT_H3_ET_LAMBIC = 63,
 	EREQUIREMENT_H3_ET_FRENCHMARTINI = 64,
+	EREQUIREMENT_H3_PLATFORM_OUNCE = 65,
+	EREQUIREMENT_H3_SIGNATURE_PACK = 66,
+	EREQUIREMENT_H3_QUACK_PACK = 67,
+	EREQUIREMENT_H3_ET_BAIJU = 68,
 };
 
 // Size: 0x1
@@ -8013,7 +8284,7 @@ enum class EUIGamepadButtonID
 	ButtonAssistant = 27,
 };
 
-// Size: 0x4
+// Size: 0x2
 enum class EUIIconLibrary
 {
 	NONE = 0,
@@ -8022,279 +8293,316 @@ enum class EUIIconLibrary
 	ammo = 3,
 	ammunition = 4,
 	arcademode = 5,
-	arrowdown = 6,
-	arrowleft = 7,
-	arrowright = 8,
-	arrowup = 9,
-	assaultrifle = 10,
-	audio = 11,
-	background = 12,
-	benchmarks = 13,
-	blank = 14,
-	bulletdancer = 15,
-	carrieditem = 16,
-	carriedweapon = 17,
-	challenge = 18,
-	challenge_category_assassination = 19,
-	challenge_category_discovery = 20,
-	challenge_category_feats = 21,
-	challenge_category_item = 22,
-	challenge_category_targets = 23,
-	check = 24,
-	civilians = 25,
-	closerange = 26,
-	completed = 27,
-	completion = 28,
-	completionlist = 29,
-	complication = 30,
-	complication_optional = 31,
-	concealedweapon = 32,
-	container = 33,
-	contract = 34,
-	controller = 35,
-	corrupt = 36,
-	creation = 37,
-	credits = 38,
-	crowdcontrol = 39,
-	cutscene = 40,
-	damage = 41,
-	difficulty = 42,
-	difficulty1 = 43,
-	difficulty2 = 44,
-	difficulty3 = 45,
-	difficultyeasy = 46,
-	difficultyhard = 47,
-	difficultylevel = 48,
-	difficultynormal = 49,
-	disguise = 50,
-	distraction = 51,
-	download = 52,
-	downloading = 53,
-	edit = 54,
-	elevation = 55,
-	elusive = 56,
-	emote = 57,
-	escalation = 58,
-	evergreen_camera_caught = 59,
-	evergreen_camera_destroy = 60,
-	evergreen_camera_destroy_recorder = 61,
-	evergreen_check = 62,
-	evergreen_contracts = 63,
-	evergreen_dead_body_disposal = 64,
-	evergreen_dead_body_disposal_timed = 65,
-	evergreen_destination_not_owned = 66,
-	evergreen_do_not_get_spotted = 67,
-	evergreen_do_not_initiate_combat = 68,
-	evergreen_do_not_take_any_damage = 69,
-	evergreen_failed = 70,
-	evergreen_gamemode = 71,
-	evergreen_gear = 72,
-	evergreen_gearcost = 73,
-	evergreen_gearcost_1 = 74,
-	evergreen_gearcost_2 = 75,
-	evergreen_gearcost_3 = 76,
-	evergreen_gearcost_4 = 77,
-	evergreen_gearcost_5 = 78,
-	evergreen_gearcost_6 = 79,
-	evergreen_gearcost_7 = 80,
-	evergreen_gearcost_8 = 81,
-	evergreen_gearcost_9 = 82,
-	evergreen_item_removed_from_safehouse_wall = 83,
-	evergreen_kill_method_accident = 84,
-	evergreen_kill_method_accident_burn = 85,
-	evergreen_kill_method_assault_rifle = 86,
-	evergreen_kill_method_axe = 87,
-	evergreen_kill_method_drown = 88,
-	evergreen_kill_method_electric = 89,
-	evergreen_kill_method_explosive = 90,
-	evergreen_kill_method_fiber_wire = 91,
-	evergreen_kill_method_headshots_only = 92,
-	evergreen_kill_method_melee = 93,
-	evergreen_kill_method_oil_puddle = 94,
-	evergreen_kill_method_pistol = 95,
-	evergreen_kill_method_pistol_silenced = 96,
-	evergreen_kill_method_poison = 97,
-	evergreen_kill_method_push = 98,
-	evergreen_kill_method_shotgun = 99,
-	evergreen_kill_method_smg = 100,
-	evergreen_kill_method_sniper = 101,
-	evergreen_kill_method_throw = 102,
-	evergreen_kill_method_unarmed = 103,
-	evergreen_kill_method_wallbang = 104,
-	evergreen_kill_method_water_puddle = 105,
-	evergreen_merces = 106,
-	evergreen_mules = 107,
-	evergreen_no_bodies_found = 108,
-	evergreen_no_compromised_disguises = 109,
-	evergreen_no_disguise_change = 110,
-	evergreen_no_lockpick = 111,
-	evergreen_no_missed_shots = 112,
-	evergreen_only_kill_targets = 113,
-	evergreen_optin_killmethod = 114,
-	evergreen_optin_showdown = 115,
-	evergreen_optin_silentassassin = 116,
-	evergreen_optin_speedrun = 117,
-	evergreen_pacify_raremelee = 118,
-	evergreen_payout = 119,
-	evergreen_safe = 120,
-	evergreen_safehouse_cosmetic = 121,
-	evergreen_safehouse_unlock = 122,
-	evergreen_search_locate = 123,
-	evergreen_showdown_mission = 124,
-	evergreen_suppliers = 125,
-	evergreen_tags = 126,
-	evergreen_target = 127,
-	exit = 128,
-	explosive = 129,
-	explosives = 130,
-	extendedmag = 131,
-	extendedmag_1 = 132,
-	extendedmag_2 = 133,
-	extendedmag_3 = 134,
-	extendedmag_4 = 135,
-	eye_tracking = 136,
-	failed = 137,
-	fastreload = 138,
-	fastreload_1 = 139,
-	fastreload_2 = 140,
-	fastreload_3 = 141,
-	fastreload_4 = 142,
-	favoritecontracts = 143,
-	featured = 144,
-	fiberwire = 145,
-	firearm = 146,
-	fixed = 147,
-	flashback = 148,
-	frisk = 149,
-	fullauto = 150,
-	game = 151,
-	gamehud = 152,
-	gear = 153,
-	goonline = 154,
-	graphics = 155,
-	hailstorm = 156,
-	hidden = 157,
-	highpressure = 158,
-	ica = 159,
-	info = 160,
-	intel = 161,
-	inventory = 162,
-	ioiaccount = 163,
-	key = 164,
-	kill = 165,
-	knockdown = 166,
-	language = 167,
-	leaderboard = 168,
-	leaderboardfriends = 169,
-	livetilenews = 170,
-	load = 171,
-	loadout = 172,
-	location = 173,
-	locked = 174,
-	longrange = 175,
-	lookup = 176,
-	map = 177,
-	marksman = 178,
-	marksman_1 = 179,
-	marksman_2 = 180,
-	marksman_3 = 181,
-	marksman_4 = 182,
-	masteryunlocked = 183,
-	melee = 184,
-	mission = 185,
-	mostplayed = 186,
-	mousekeyboard = 187,
-	mycontracts = 188,
-	myhistory = 189,
-	nextlevel = 190,
-	nodus = 191,
-	npc = 192,
-	nvidia = 193,
-	objective = 194,
-	onemanarmy = 195,
-	online = 196,
-	opportunitycompleted = 197,
-	opportunitydisabled = 198,
-	opportunitydiscovered = 199,
-	opportunityfailed = 200,
-	opportunitysearch = 201,
-	opportunitytracked = 202,
-	opportunityundiscovered = 203,
-	outbreak = 204,
-	piercing = 205,
-	pistol = 206,
-	planning = 207,
-	play = 208,
-	pointshooting = 209,
-	poison = 210,
-	profile = 211,
-	publish = 212,
-	questitem = 213,
-	quit = 214,
-	rateoffire = 215,
-	rateoffire_1 = 216,
-	rateoffire_2 = 217,
-	rateoffire_3 = 218,
-	rateoffire_4 = 219,
-	realtutorial = 220,
-	remote = 221,
-	replay = 222,
-	reset = 223,
-	resetback = 224,
-	save = 225,
-	saveauto = 226,
-	savedisabled = 227,
-	savemanual = 228,
-	search = 229,
-	security = 230,
-	settings = 231,
-	shop = 232,
-	shotgun = 233,
-	silent = 234,
-	smg = 235,
-	sniperrifle = 236,
-	stable = 237,
-	stable_1 = 238,
-	stable_2 = 239,
-	stable_3 = 240,
-	stable_4 = 241,
-	starting = 242,
-	stashpointempty = 243,
-	stashpointfull = 244,
-	stats = 245,
-	steadyaim = 246,
-	steadyaim_1 = 247,
-	steadyaim_2 = 248,
-	steadyaim_3 = 249,
-	steadyaim_4 = 250,
-	story = 251,
-	subsonic = 252,
-	suitcase = 253,
-	suppressor = 254,
-	tacticalshock = 255,
-	tag = 256,
-	target = 257,
-	timed = 258,
-	titaniumcomposite = 259,
-	toggleleft = 260,
-	toggleright = 261,
-	tool = 262,
-	trashbin = 263,
-	tutorial = 264,
-	unlocked = 265,
-	usercreated = 266,
-	variable = 267,
-	versatilescope = 268,
-	versatilescope_1 = 269,
-	versatilescope_2 = 270,
-	versatilescope_3 = 271,
-	versatilescope_4 = 272,
-	versatilescopeextended = 273,
-	versus = 274,
-	vr = 275,
-	warning = 276,
-	weapon = 277,
-	witness = 278,
+	arrowback = 6,
+	arrowdown = 7,
+	arrowleft = 8,
+	arrowright = 9,
+	arrowup = 10,
+	assaultrifle = 11,
+	audio = 12,
+	background = 13,
+	benchmarks = 14,
+	blank = 15,
+	blend_in = 16,
+	bulletdancer = 17,
+	button_aim = 18,
+	button_cover = 19,
+	button_crouch = 20,
+	button_instinct = 21,
+	button_precision_aim = 22,
+	button_reload = 23,
+	button_shoot = 24,
+	button_stick = 25,
+	button_zoom_in = 26,
+	button_zoom_out = 27,
+	camera = 28,
+	carrieditem = 29,
+	carriedweapon = 30,
+	challenge = 31,
+	challenge_category_assassination = 32,
+	challenge_category_discovery = 33,
+	challenge_category_feats = 34,
+	challenge_category_item = 35,
+	challenge_category_targets = 36,
+	check = 37,
+	civilians = 38,
+	climb = 39,
+	climb_jump = 40,
+	closerange = 41,
+	completed = 42,
+	completion = 43,
+	completionlist = 44,
+	complication = 45,
+	complication_optional = 46,
+	concealedweapon = 47,
+	container = 48,
+	contract = 49,
+	controller = 50,
+	corrupt = 51,
+	creation = 52,
+	credits = 53,
+	crowdcontrol = 54,
+	cutscene = 55,
+	damage = 56,
+	deluxe = 57,
+	development_error_icon = 58,
+	difficulty = 59,
+	difficulty1 = 60,
+	difficulty2 = 61,
+	difficulty3 = 62,
+	difficultyeasy = 63,
+	difficultyhard = 64,
+	difficultylevel = 65,
+	difficultynormal = 66,
+	disguise = 67,
+	distraction = 68,
+	download = 69,
+	downloading = 70,
+	drag_body = 71,
+	edit = 72,
+	elevation = 73,
+	elusive = 74,
+	emote = 75,
+	escalation = 76,
+	escape = 77,
+	evergreen_camera_caught = 78,
+	evergreen_camera_destroy = 79,
+	evergreen_camera_destroy_recorder = 80,
+	evergreen_check = 81,
+	evergreen_contracts = 82,
+	evergreen_dead_body_disposal = 83,
+	evergreen_dead_body_disposal_timed = 84,
+	evergreen_destination_not_owned = 85,
+	evergreen_do_not_get_spotted = 86,
+	evergreen_do_not_initiate_combat = 87,
+	evergreen_do_not_take_any_damage = 88,
+	evergreen_failed = 89,
+	evergreen_gamemode = 90,
+	evergreen_gear = 91,
+	evergreen_gearcost = 92,
+	evergreen_gearcost_1 = 93,
+	evergreen_gearcost_2 = 94,
+	evergreen_gearcost_3 = 95,
+	evergreen_gearcost_4 = 96,
+	evergreen_gearcost_5 = 97,
+	evergreen_gearcost_6 = 98,
+	evergreen_gearcost_7 = 99,
+	evergreen_gearcost_8 = 100,
+	evergreen_gearcost_9 = 101,
+	evergreen_item_removed_from_safehouse_wall = 102,
+	evergreen_kill_method_accident = 103,
+	evergreen_kill_method_accident_burn = 104,
+	evergreen_kill_method_assault_rifle = 105,
+	evergreen_kill_method_axe = 106,
+	evergreen_kill_method_drown = 107,
+	evergreen_kill_method_electric = 108,
+	evergreen_kill_method_explosive = 109,
+	evergreen_kill_method_fiber_wire = 110,
+	evergreen_kill_method_headshots_only = 111,
+	evergreen_kill_method_melee = 112,
+	evergreen_kill_method_oil_puddle = 113,
+	evergreen_kill_method_pistol = 114,
+	evergreen_kill_method_pistol_silenced = 115,
+	evergreen_kill_method_poison = 116,
+	evergreen_kill_method_push = 117,
+	evergreen_kill_method_shotgun = 118,
+	evergreen_kill_method_smg = 119,
+	evergreen_kill_method_sniper = 120,
+	evergreen_kill_method_throw = 121,
+	evergreen_kill_method_unarmed = 122,
+	evergreen_kill_method_wallbang = 123,
+	evergreen_kill_method_water_puddle = 124,
+	evergreen_merces = 125,
+	evergreen_mules = 126,
+	evergreen_no_bodies_found = 127,
+	evergreen_no_compromised_disguises = 128,
+	evergreen_no_disguise_change = 129,
+	evergreen_no_lockpick = 130,
+	evergreen_no_missed_shots = 131,
+	evergreen_only_kill_targets = 132,
+	evergreen_optin_killmethod = 133,
+	evergreen_optin_showdown = 134,
+	evergreen_optin_silentassassin = 135,
+	evergreen_optin_speedrun = 136,
+	evergreen_pacify_raremelee = 137,
+	evergreen_payout = 138,
+	evergreen_safe = 139,
+	evergreen_safehouse_cosmetic = 140,
+	evergreen_safehouse_unlock = 141,
+	evergreen_search_locate = 142,
+	evergreen_showdown_mission = 143,
+	evergreen_suppliers = 144,
+	evergreen_tags = 145,
+	evergreen_target = 146,
+	exit = 147,
+	explosive = 148,
+	explosives = 149,
+	extendedmag = 150,
+	extendedmag_1 = 151,
+	extendedmag_2 = 152,
+	extendedmag_3 = 153,
+	extendedmag_4 = 154,
+	eye_tracking = 155,
+	failed = 156,
+	fastreload = 157,
+	fastreload_1 = 158,
+	fastreload_2 = 159,
+	fastreload_3 = 160,
+	fastreload_4 = 161,
+	favoritecontracts = 162,
+	featured = 163,
+	fiberwire = 164,
+	firearm = 165,
+	fixed = 166,
+	flashback = 167,
+	frisk = 168,
+	fullauto = 169,
+	game = 170,
+	gamehud = 171,
+	gear = 172,
+	goonline = 173,
+	graphics = 174,
+	hailstorm = 175,
+	hidden = 176,
+	highpressure = 177,
+	holster = 178,
+	ica = 179,
+	info = 180,
+	intel = 181,
+	inventory = 182,
+	ioiaccount = 183,
+	item_conceal = 184,
+	item_drop = 185,
+	item_pickup = 186,
+	item_placement = 187,
+	item_retrieve = 188,
+	item_throw = 189,
+	key = 190,
+	kill = 191,
+	knockdown = 192,
+	language = 193,
+	leaderboard = 194,
+	leaderboardfriends = 195,
+	livetilenews = 196,
+	load = 197,
+	loadout = 198,
+	location = 199,
+	locked = 200,
+	longrange = 201,
+	lookup = 202,
+	map = 203,
+	marksman = 204,
+	marksman_1 = 205,
+	marksman_2 = 206,
+	marksman_3 = 207,
+	marksman_4 = 208,
+	masteryunlocked = 209,
+	melee = 210,
+	melee_unarmed = 211,
+	mission = 212,
+	mostplayed = 213,
+	mousekeyboard = 214,
+	mycontracts = 215,
+	myhistory = 216,
+	nextlevel = 217,
+	nodus = 218,
+	npc = 219,
+	nvidia = 220,
+	objective = 221,
+	onemanarmy = 222,
+	online = 223,
+	open_close = 224,
+	opportunitycompleted = 225,
+	opportunitydisabled = 226,
+	opportunitydiscovered = 227,
+	opportunityfailed = 228,
+	opportunitysearch = 229,
+	opportunitytracked = 230,
+	opportunityundiscovered = 231,
+	outbreak = 232,
+	piercing = 233,
+	pistol = 234,
+	planning = 235,
+	play = 236,
+	pointshooting = 237,
+	poison = 238,
+	profile = 239,
+	publish = 240,
+	questitem = 241,
+	quit = 242,
+	rateoffire = 243,
+	rateoffire_1 = 244,
+	rateoffire_2 = 245,
+	rateoffire_3 = 246,
+	rateoffire_4 = 247,
+	realtutorial = 248,
+	remote = 249,
+	replay = 250,
+	reset = 251,
+	resetback = 252,
+	sabotage_crowbar = 253,
+	sabotage_screwdriver = 254,
+	sabotage_wrench = 255,
+	save = 256,
+	saveauto = 257,
+	savedisabled = 258,
+	savemanual = 259,
+	search = 260,
+	security = 261,
+	settings = 262,
+	shop = 263,
+	shotgun = 264,
+	silent = 265,
+	skip = 266,
+	smg = 267,
+	sniperrifle = 268,
+	stable = 269,
+	stable_1 = 270,
+	stable_2 = 271,
+	stable_3 = 272,
+	stable_4 = 273,
+	starting = 274,
+	stashpointempty = 275,
+	stashpointfull = 276,
+	stats = 277,
+	steadyaim = 278,
+	steadyaim_1 = 279,
+	steadyaim_2 = 280,
+	steadyaim_3 = 281,
+	steadyaim_4 = 282,
+	story = 283,
+	subdue = 284,
+	subsonic = 285,
+	suitcase = 286,
+	suppressor = 287,
+	surrender = 288,
+	tacticalshock = 289,
+	tag = 290,
+	talk = 291,
+	target = 292,
+	timed = 293,
+	titaniumcomposite = 294,
+	toggleleft = 295,
+	toggleright = 296,
+	tool = 297,
+	trashbin = 298,
+	tutorial = 299,
+	unlock = 300,
+	unlocked = 301,
+	usercreated = 302,
+	variable = 303,
+	vault = 304,
+	versatilescope = 305,
+	versatilescope_1 = 306,
+	versatilescope_2 = 307,
+	versatilescope_3 = 308,
+	versatilescope_4 = 309,
+	versatilescopeextended = 310,
+	versus = 311,
+	vr = 312,
+	warning = 313,
+	weapon = 314,
+	witness = 315,
 };
 
 // Size: 0x4
@@ -8379,6 +8687,14 @@ enum class EVRConfigCameraRotationAllowed
 };
 
 // Size: 0x4
+enum class EVRConfigCameraZoomAllowed
+{
+	EVRCCZA_ZoomEnabled = 0,
+	EVRCCZA_ZoomDisabled = 1,
+	EVRCCZA_KeepCurrent = 2,
+};
+
+// Size: 0x4
 enum class EVRConfigCapsuleGridSize
 {
 	EVRCCGS_RegularGrid = 0,
@@ -8446,6 +8762,14 @@ enum class EVRConfigCustomEvent
 };
 
 // Size: 0x4
+enum class EVRConfigFilter
+{
+	EVRF_Any = 0,
+	EVRF_True = 1,
+	EVRF_False = 2,
+};
+
+// Size: 0x4
 enum class EVRConfigHeadAnchorMode
 {
 	EVRCHAM_HeadBone = 0,
@@ -8465,10 +8789,27 @@ enum class EVRConfigRotationType
 };
 
 // Size: 0x4
+enum class EVRConfigThirdPerson
+{
+	EVRTPM_Disabled = 0,
+	EVRTPM_Enabled = 1,
+	EVRTPM_KeepCurrent = 2,
+};
+
+// Size: 0x4
 enum class EVRHUDHandedness
 {
 	ON_LEFT_HAND = 0,
 	ON_RIGHT_HAND = 1,
+};
+
+// Size: 0x4
+enum class EVRHolsterPosition
+{
+	Left = 0,
+	Right = 1,
+	Back = 2,
+	AltSlot = 3,
 };
 
 // Size: 0x4
@@ -8495,7 +8836,8 @@ enum class EVRRenderDeviceType
 	RENDER_VR_DEVICE_TYPE_OCULUS = 1,
 	RENDER_VR_DEVICE_TYPE_PSVR = 2,
 	RENDER_VR_DEVICE_TYPE_OPENVR = 3,
-	RENDER_VR_DEVICE_TYPE_COUNT = 4,
+	RENDER_VR_DEVICE_TYPE_PSVR2 = 4,
+	RENDER_VR_DEVICE_TYPE_COUNT = 5,
 };
 
 // Size: 0x4
@@ -8553,6 +8895,10 @@ enum class EVirtualPlatformID
 	PS5 = 1280,
 	XBSCARLETT = 1536,
 	XBSCARLETT_ANACONDA = 1537,
+	OUNCE = 1792,
+	DARWIN = 2048,
+	DARWIN_IOS = 2049,
+	DARWIN_MACOS = 2050,
 	VR = 65536,
 	VR_PC = 65792,
 	VR_PS4 = 66048,
@@ -8576,6 +8922,14 @@ enum class EVolumeTriggerEntityTypeFlags
 	VTET_ExplodeableItem = 128,
 	VTET_Item = 256,
 	VTET_SpatialVisible = 512,
+};
+
+// Size: 0x4
+enum class EVrSequenceCameraMode
+{
+	Default = 0,
+	Override = 1,
+	ThirdPerson = 2,
 };
 
 // Size: 0x4
@@ -9555,6 +9909,23 @@ public:
 };
 
 // Size: 0x8
+class /*alignas(8)*/ IUpdateable
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const IUpdateable& p_Other) const;
+	bool operator!=(const IUpdateable& p_Other) const { return !(*this == p_Other); }
+
+	uint8_t _pad0[8] {};
+};
+
+// Size: 0x8
 class /*alignas(0)*/ IValueEntity
 {
 public:
@@ -9567,6 +9938,23 @@ public:
 
 	bool operator==(const IValueEntity& p_Other) const;
 	bool operator!=(const IValueEntity& p_Other) const { return !(*this == p_Other); }
+
+	uint8_t _pad0[8] {};
+};
+
+// Size: 0x8
+class /*alignas(8)*/ IVrmotionInteractionDataReceiver
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const IVrmotionInteractionDataReceiver& p_Other) const;
+	bool operator!=(const IVrmotionInteractionDataReceiver& p_Other) const { return !(*this == p_Other); }
 
 	uint8_t _pad0[8] {};
 };
@@ -9596,234 +9984,248 @@ enum class InputControlNamesp_eHM5InputAction
 	eIAButtonFaceDown_HldDwnOnce = 2,
 	eIAButtonFaceDown_Hold = 3,
 	eIAButtonFaceDown_HoldDown = 4,
-	eIAButtonFaceLeft_Downedge = 5,
-	eIAButtonFaceLeft_HldDwnOnce = 6,
-	eIAButtonFaceLeft_Hold = 7,
-	eIAButtonFaceLeft_HoldDown = 8,
-	eIAButtonFaceLeft_FastTap = 9,
-	eIAButtonFaceLeft_Tap = 10,
-	eIAButtonFaceLeft_Release = 11,
-	eIAButtonFaceLeft_Repeat = 12,
-	eIAButtonFaceRight_Downedge = 13,
-	eIAButtonFaceRight_HldDwnOnce = 14,
-	eIAButtonFaceRight_Hold = 15,
-	eIAButtonFaceRight_HoldDown = 16,
-	eIAButtonFaceRight_FastTap = 17,
-	eIAButtonFaceRight_Tap = 18,
-	eIAButtonFaceRight_Release = 19,
-	eIAButtonFaceRight_Repeat = 20,
-	eIAButtonFaceUp_Downedge = 21,
-	eIAButtonFaceUp_FastTap = 22,
-	eIAButtonFaceUp_HldDwnOnce = 23,
-	eIAButtonFaceUp_Hold = 24,
-	eIAButtonFaceUp_HoldDown = 25,
-	eIABumperLeft_FastTap = 26,
-	eIABumperLeft_Downedge = 27,
-	eIABumperLeft_Hold = 28,
-	eIABumperLeft_Holddown = 29,
-	eIABumperLeft_Release = 30,
-	eIABumperRight_FastTap = 31,
-	eIABumperRight_Downedge = 32,
-	eIABumperRight_Hold = 33,
-	eIABumperRight_Holddown = 34,
-	eIABumperRight_Release = 35,
-	eIADpadUp_Downedge = 36,
-	eIADpadUp_HldDwnOnce = 37,
-	eIADpadUp_Hold = 38,
-	eIADpadDown_Hold = 39,
-	eIADpadUp_FastTap = 40,
-	eIADpadDown_Downedge = 41,
-	eIADpadDown_Release = 42,
-	eIADpadDown_FastTap = 43,
-	eIADpadDown_HldDwnOnce = 44,
-	eIADpadLeft_Downedge = 45,
-	eIADpadRight_Downedge = 46,
-	eIAThumbRight_Hold = 47,
-	eIAThumbRight_Downedge = 48,
-	eIAThumbLeft_Hold = 49,
-	eIAThumbLeft_DownEdge = 50,
-	eIATriggerLeft_Downedge = 51,
-	eIATriggerLeft_FastTap = 52,
-	eIATriggerLeft_Hold = 53,
-	eIATriggerLeft_Holddown = 54,
-	eIATriggerLeft_Release = 55,
-	eIATriggerRight_Downedge = 56,
-	eIATriggerRight_FastTap = 57,
-	eIATriggerRight_Hold = 58,
-	eIATriggerRight_Holddown = 59,
-	eIATriggerRight_Release = 60,
-	eIAGenericStart_Hold = 61,
-	eIAGCMeleeUse_Downedge = 62,
-	eIAGCMeleeUse_Hold = 63,
-	eIAGCMeleeUse_HoldDown = 64,
-	eIAGCMeleeUse_Release = 65,
-	eIAGCMeleeUse_HldDwnOnce = 66,
-	eIAGCMeleeUse_Repeat = 67,
-	eIAGCMeleeUse_Tap = 68,
-	eIAGCMeleeUse_FastTap = 69,
-	eIAGCAgilityDisguise_Downedge = 70,
-	eIAGCAgilityDisguise_Hold = 71,
-	eIAGCAgilityDisguise_HoldDown = 72,
-	eIAGCAgilityDisguise_Release = 73,
-	eIAGCAgilityDisguise_HldDwnOnce = 74,
-	eIAGCAgilityDisguise_Repeat = 75,
-	eIAGCAgilityDisguise_Tap = 76,
-	eIAGCAgilityDisguise_FastTap = 77,
-	eIAGCCoverDragBody_Downedge = 78,
-	eIAGCCoverDragBody_Hold = 79,
-	eIAGCCoverDragBody_HoldDown = 80,
-	eIAGCCoverDragBody_Release = 81,
-	eIAGCCoverDragBody_HldDwnOnce = 82,
-	eIAGCCoverDragBody_Repeat = 83,
-	eIAGCCoverDragBody_Tap = 84,
-	eIAGCCoverDragBody_FastTap = 85,
-	eIAGCInteractPickup_Downedge = 86,
-	eIAGCInteractPickup_Hold = 87,
-	eIAGCInteractPickup_HoldDown = 88,
-	eIAGCInteractPickup_Release = 89,
-	eIAGCInteractPickup_HldDwnOnce = 90,
-	eIAGCInteractPickup_Repeat = 91,
-	eIAGCInteractPickup_Tap = 92,
-	eIAGCInteractPickup_FastTap = 93,
-	eIAGCReloadInstinct_Downedge = 94,
-	eIAGCReloadInstinct_Hold = 95,
-	eIAGCReloadInstinct_HoldDown = 96,
-	eIAGCReloadInstinct_Release = 97,
-	eIAGCReloadInstinct_HldDwnOnce = 98,
-	eIAGCReloadInstinct_Repeat = 99,
-	eIAGCReloadInstinct_Tap = 100,
-	eIAGCReloadInstinct_FastTap = 101,
-	eIAGCRun_Downedge = 102,
-	eIAGCRun_Hold = 103,
-	eIAGCRun_HoldDown = 104,
-	eIAGCRun_Release = 105,
-	eIAGCRun_HldDwnOnce = 106,
-	eIAGCRun_Repeat = 107,
-	eIAGCRun_Tap = 108,
-	eIAGCRun_FastTap = 109,
-	eIAGCHolster_Downedge = 110,
-	eIAGCHolster_Hold = 111,
-	eIAGCHolster_HoldDown = 112,
-	eIAGCHolster_Release = 113,
-	eIAGCHolster_HldDwnOnce = 114,
-	eIAGCHolster_Repeat = 115,
-	eIAGCHolster_Tap = 116,
-	eIAGCHolster_FastTap = 117,
-	eIAGCInventory_Downedge = 118,
-	eIAGCInventory_Hold = 119,
-	eIAGCInventory_HoldDown = 120,
-	eIAGCInventory_Release = 121,
-	eIAGCInventory_HldDwnOnce = 122,
-	eIAGCInventory_Repeat = 123,
-	eIAGCInventory_Tap = 124,
-	eIAGCInventory_FastTap = 125,
-	eIAGCEmotes_Downedge = 126,
-	eIAGCEmotes_Hold = 127,
-	eIAGCEmotes_HoldDown = 128,
-	eIAGCEmotes_Release = 129,
-	eIAGCEmotes_HldDwnOnce = 130,
-	eIAGCEmotes_Repeat = 131,
-	eIAGCEmotes_Tap = 132,
-	eIAGCEmotes_FastTap = 133,
-	eIAGCDropItem_Downedge = 134,
-	eIAGCDropItem_Hold = 135,
-	eIAGCDropItem_HoldDown = 136,
-	eIAGCDropItem_Release = 137,
-	eIAGCDropItem_HldDwnOnce = 138,
-	eIAGCDropItem_Repeat = 139,
-	eIAGCDropItem_Tap = 140,
-	eIAGCDropItem_FastTap = 141,
-	eIAGCCrouch_Downedge = 142,
-	eIAGCCrouch_Hold = 143,
-	eIAGCCrouch_HoldDown = 144,
-	eIAGCCrouch_Release = 145,
-	eIAGCCrouch_HldDwnOnce = 146,
-	eIAGCCrouch_Repeat = 147,
-	eIAGCCrouch_Tap = 148,
-	eIAGCCrouch_FastTap = 149,
-	eIAGCCameraShoulder_Downedge = 150,
-	eIAGCCameraShoulder_Hold = 151,
-	eIAGCCameraShoulder_HoldDown = 152,
-	eIAGCCameraShoulder_Release = 153,
-	eIAGCCameraShoulder_HldDwnOnce = 154,
-	eIAGCCameraShoulder_Repeat = 155,
-	eIAGCCameraShoulder_Tap = 156,
-	eIAGCCameraShoulder_FastTap = 157,
-	eIAKBMMoveUp = 158,
-	eIAKBMMoveDown = 159,
-	eIAKBMMoveLeft = 160,
-	eIAKBMMoveRight = 161,
-	eIAKBMMarkTarget = 162,
-	eIAKBMNextAmmo = 163,
-	eIAKBMPreviousAmmo = 164,
-	eIAKBMUse = 165,
-	eIAKBMUse2 = 166,
-	eIAKBMUse2Hold = 167,
-	eIAKBMSlideDown = 168,
-	eIAKBMPickup = 169,
-	eIAKBMCover = 170,
-	eIAKBMDragBody = 171,
-	eIAKBMMelee = 172,
-	eIAKBMMelee_Repeat = 173,
-	eIAKBMActivateProp = 174,
-	eIAKBMActivateProp_HldDwnOnce = 175,
-	eIAKBMActivateProp_Hold = 176,
-	eIAKBMActivatePropSecondary = 177,
-	eIAKBMConcealRetrieve = 178,
-	eIAKBMTakeDisguise = 179,
-	eIAKBMRun = 180,
-	eIAKBMWalkSlow = 181,
-	eIAKBMAim = 182,
-	eIAKBMShoot = 183,
-	eIAKBMShoot_Downedge = 184,
-	eIAKBMShoot_Release = 185,
-	eIAKBMReload = 186,
-	eIAKBMInstinct = 187,
-	eIAKBMCamSwitch = 188,
-	eIAKBMSneak = 189,
-	eIAKBMHolster = 190,
-	eIAKBMFireMode = 191,
-	eIAKBMNotebook = 192,
-	eIAKBMNotebookMap = 193,
-	eIAKBMPause = 194,
-	eIAKBMWeapon1 = 195,
-	eIAKBMWeapon2 = 196,
-	eIAKBMWeapon3 = 197,
-	eIAKBMWeapon4 = 198,
-	eIAKBMWeapon5 = 199,
-	eIAKBMWeapon6 = 200,
-	eIAKBMWeapon7 = 201,
-	eIAKBMPrecisionAim = 202,
-	eIAKBMZoomIn = 203,
-	eIAKBMZoomOut = 204,
-	eIAKBMDropItem = 205,
-	eIAKBMInventory = 206,
-	eIAKBMEmotes = 207,
-	eIAKBMSurrender = 208,
-	eIAKBMSurrender_Hold = 209,
-	eIAKBMSurrender_HoldDown = 210,
-	eIAKBMSurrender_HoldDownOnce = 211,
-	eIAKBMTogglePlacement = 212,
-	eIAKBMOkay = 213,
-	eIAKBMCancel = 214,
-	eIAKBMAccept = 215,
-	eIATriggerLeft_Analog = 216,
-	eIATriggerRight_Analog = 217,
-	eIAStickLeftHorizontal_Analog = 218,
-	eIAStickLeftVertical_Analog = 219,
-	eIAStickRightHorizontal_Analog = 220,
-	eIAStickRightVertical_Analog = 221,
-	eIAStickLeftHorizontal_Raw = 222,
-	eIAStickLeftVertical_Raw = 223,
-	eIAStickRightHorizontal_Raw = 224,
-	eIAStickRightVertical_Raw = 225,
-	eIABumperLeft_Analog = 226,
-	eIABumperRight_Analog = 227,
-	eIAKBMMoveHorizontal = 228,
-	eIAKBMMoveVertical = 229,
-	eIAKBMLookHorizontal = 230,
-	eIAKBMLookVertical = 231,
-	eIActionsNUM = 232,
+	eIAButtonFaceDown_Touch = 5,
+	eIAButtonFaceLeft_Downedge = 6,
+	eIAButtonFaceLeft_HldDwnOnce = 7,
+	eIAButtonFaceLeft_Hold = 8,
+	eIAButtonFaceLeft_HoldDown = 9,
+	eIAButtonFaceLeft_FastTap = 10,
+	eIAButtonFaceLeft_Tap = 11,
+	eIAButtonFaceLeft_Release = 12,
+	eIAButtonFaceLeft_Repeat = 13,
+	eIAButtonFaceLeft_Touch = 14,
+	eIAButtonFaceRight_Downedge = 15,
+	eIAButtonFaceRight_HldDwnOnce = 16,
+	eIAButtonFaceRight_Hold = 17,
+	eIAButtonFaceRight_HoldDown = 18,
+	eIAButtonFaceRight_FastTap = 19,
+	eIAButtonFaceRight_Tap = 20,
+	eIAButtonFaceRight_Release = 21,
+	eIAButtonFaceRight_Repeat = 22,
+	eIAButtonFaceRight_Touch = 23,
+	eIAButtonFaceUp_Downedge = 24,
+	eIAButtonFaceUp_FastTap = 25,
+	eIAButtonFaceUp_HldDwnOnce = 26,
+	eIAButtonFaceUp_Hold = 27,
+	eIAButtonFaceUp_HoldDown = 28,
+	eIAButtonFaceUp_Touch = 29,
+	eIABumperLeft_FastTap = 30,
+	eIABumperLeft_Downedge = 31,
+	eIABumperLeft_Hold = 32,
+	eIABumperLeft_Holddown = 33,
+	eIABumperLeft_Release = 34,
+	eIABumperLeft_Touch = 35,
+	eIABumperLeft_TouchRelease = 36,
+	eIABumperLeft_TouchDownedge = 37,
+	eIABumperRight_FastTap = 38,
+	eIABumperRight_Downedge = 39,
+	eIABumperRight_Hold = 40,
+	eIABumperRight_Holddown = 41,
+	eIABumperRight_Release = 42,
+	eIABumperRight_Touch = 43,
+	eIABumperRight_TouchRelease = 44,
+	eIABumperRight_TouchDownedge = 45,
+	eIADpadUp_Downedge = 46,
+	eIADpadUp_HldDwnOnce = 47,
+	eIADpadUp_Hold = 48,
+	eIADpadDown_Hold = 49,
+	eIADpadUp_FastTap = 50,
+	eIADpadDown_Downedge = 51,
+	eIADpadDown_Release = 52,
+	eIADpadDown_FastTap = 53,
+	eIADpadDown_HldDwnOnce = 54,
+	eIADpadLeft_Downedge = 55,
+	eIADpadRight_Downedge = 56,
+	eIAThumbRight_Hold = 57,
+	eIAThumbRight_Downedge = 58,
+	eIAThumbRight_Touch = 59,
+	eIAThumbLeft_Hold = 60,
+	eIAThumbLeft_DownEdge = 61,
+	eIAThumbLeft_Touch = 62,
+	eIATriggerLeft_Downedge = 63,
+	eIATriggerLeft_FastTap = 64,
+	eIATriggerLeft_Hold = 65,
+	eIATriggerLeft_Holddown = 66,
+	eIATriggerLeft_Release = 67,
+	eIATriggerLeft_Touch = 68,
+	eIATriggerRight_Downedge = 69,
+	eIATriggerRight_FastTap = 70,
+	eIATriggerRight_Hold = 71,
+	eIATriggerRight_Holddown = 72,
+	eIATriggerRight_Release = 73,
+	eIATriggerRight_Touch = 74,
+	eIAGenericStart_Hold = 75,
+	eIAGCMeleeUse_Downedge = 76,
+	eIAGCMeleeUse_Hold = 77,
+	eIAGCMeleeUse_HoldDown = 78,
+	eIAGCMeleeUse_Release = 79,
+	eIAGCMeleeUse_HldDwnOnce = 80,
+	eIAGCMeleeUse_Repeat = 81,
+	eIAGCMeleeUse_Tap = 82,
+	eIAGCMeleeUse_FastTap = 83,
+	eIAGCAgilityDisguise_Downedge = 84,
+	eIAGCAgilityDisguise_Hold = 85,
+	eIAGCAgilityDisguise_HoldDown = 86,
+	eIAGCAgilityDisguise_Release = 87,
+	eIAGCAgilityDisguise_HldDwnOnce = 88,
+	eIAGCAgilityDisguise_Repeat = 89,
+	eIAGCAgilityDisguise_Tap = 90,
+	eIAGCAgilityDisguise_FastTap = 91,
+	eIAGCCoverDragBody_Downedge = 92,
+	eIAGCCoverDragBody_Hold = 93,
+	eIAGCCoverDragBody_HoldDown = 94,
+	eIAGCCoverDragBody_Release = 95,
+	eIAGCCoverDragBody_HldDwnOnce = 96,
+	eIAGCCoverDragBody_Repeat = 97,
+	eIAGCCoverDragBody_Tap = 98,
+	eIAGCCoverDragBody_FastTap = 99,
+	eIAGCInteractPickup_Downedge = 100,
+	eIAGCInteractPickup_Hold = 101,
+	eIAGCInteractPickup_HoldDown = 102,
+	eIAGCInteractPickup_Release = 103,
+	eIAGCInteractPickup_HldDwnOnce = 104,
+	eIAGCInteractPickup_Repeat = 105,
+	eIAGCInteractPickup_Tap = 106,
+	eIAGCInteractPickup_FastTap = 107,
+	eIAGCReloadInstinct_Downedge = 108,
+	eIAGCReloadInstinct_Hold = 109,
+	eIAGCReloadInstinct_HoldDown = 110,
+	eIAGCReloadInstinct_Release = 111,
+	eIAGCReloadInstinct_HldDwnOnce = 112,
+	eIAGCReloadInstinct_Repeat = 113,
+	eIAGCReloadInstinct_Tap = 114,
+	eIAGCReloadInstinct_FastTap = 115,
+	eIAGCRun_Downedge = 116,
+	eIAGCRun_Hold = 117,
+	eIAGCRun_HoldDown = 118,
+	eIAGCRun_Release = 119,
+	eIAGCRun_HldDwnOnce = 120,
+	eIAGCRun_Repeat = 121,
+	eIAGCRun_Tap = 122,
+	eIAGCRun_FastTap = 123,
+	eIAGCHolster_Downedge = 124,
+	eIAGCHolster_Hold = 125,
+	eIAGCHolster_HoldDown = 126,
+	eIAGCHolster_Release = 127,
+	eIAGCHolster_HldDwnOnce = 128,
+	eIAGCHolster_Repeat = 129,
+	eIAGCHolster_Tap = 130,
+	eIAGCHolster_FastTap = 131,
+	eIAGCInventory_Downedge = 132,
+	eIAGCInventory_Hold = 133,
+	eIAGCInventory_HoldDown = 134,
+	eIAGCInventory_Release = 135,
+	eIAGCInventory_HldDwnOnce = 136,
+	eIAGCInventory_Repeat = 137,
+	eIAGCInventory_Tap = 138,
+	eIAGCInventory_FastTap = 139,
+	eIAGCEmotes_Downedge = 140,
+	eIAGCEmotes_Hold = 141,
+	eIAGCEmotes_HoldDown = 142,
+	eIAGCEmotes_Release = 143,
+	eIAGCEmotes_HldDwnOnce = 144,
+	eIAGCEmotes_Repeat = 145,
+	eIAGCEmotes_Tap = 146,
+	eIAGCEmotes_FastTap = 147,
+	eIAGCDropItem_Downedge = 148,
+	eIAGCDropItem_Hold = 149,
+	eIAGCDropItem_HoldDown = 150,
+	eIAGCDropItem_Release = 151,
+	eIAGCDropItem_HldDwnOnce = 152,
+	eIAGCDropItem_Repeat = 153,
+	eIAGCDropItem_Tap = 154,
+	eIAGCDropItem_FastTap = 155,
+	eIAGCCrouch_Downedge = 156,
+	eIAGCCrouch_Hold = 157,
+	eIAGCCrouch_HoldDown = 158,
+	eIAGCCrouch_Release = 159,
+	eIAGCCrouch_HldDwnOnce = 160,
+	eIAGCCrouch_Repeat = 161,
+	eIAGCCrouch_Tap = 162,
+	eIAGCCrouch_FastTap = 163,
+	eIAGCCameraShoulder_Downedge = 164,
+	eIAGCCameraShoulder_Hold = 165,
+	eIAGCCameraShoulder_HoldDown = 166,
+	eIAGCCameraShoulder_Release = 167,
+	eIAGCCameraShoulder_HldDwnOnce = 168,
+	eIAGCCameraShoulder_Repeat = 169,
+	eIAGCCameraShoulder_Tap = 170,
+	eIAGCCameraShoulder_FastTap = 171,
+	eIAKBMMoveUp = 172,
+	eIAKBMMoveDown = 173,
+	eIAKBMMoveLeft = 174,
+	eIAKBMMoveRight = 175,
+	eIAKBMMarkTarget = 176,
+	eIAKBMNextAmmo = 177,
+	eIAKBMPreviousAmmo = 178,
+	eIAKBMUse = 179,
+	eIAKBMUse2 = 180,
+	eIAKBMUse2Hold = 181,
+	eIAKBMSlideDown = 182,
+	eIAKBMPickup = 183,
+	eIAKBMCover = 184,
+	eIAKBMDragBody = 185,
+	eIAKBMMelee = 186,
+	eIAKBMMelee_Repeat = 187,
+	eIAKBMActivateProp = 188,
+	eIAKBMActivateProp_HldDwnOnce = 189,
+	eIAKBMActivateProp_Hold = 190,
+	eIAKBMActivatePropSecondary = 191,
+	eIAKBMConcealRetrieve = 192,
+	eIAKBMTakeDisguise = 193,
+	eIAKBMRun = 194,
+	eIAKBMWalkSlow = 195,
+	eIAKBMAim = 196,
+	eIAKBMShoot = 197,
+	eIAKBMShoot_Downedge = 198,
+	eIAKBMShoot_Release = 199,
+	eIAKBMReload = 200,
+	eIAKBMInstinct = 201,
+	eIAKBMCamSwitch = 202,
+	eIAKBMSneak = 203,
+	eIAKBMHolster = 204,
+	eIAKBMFireMode = 205,
+	eIAKBMNotebook = 206,
+	eIAKBMNotebookMap = 207,
+	eIAKBMPause = 208,
+	eIAKBMWeapon1 = 209,
+	eIAKBMWeapon2 = 210,
+	eIAKBMWeapon3 = 211,
+	eIAKBMWeapon4 = 212,
+	eIAKBMWeapon5 = 213,
+	eIAKBMWeapon6 = 214,
+	eIAKBMWeapon7 = 215,
+	eIAKBMPrecisionAim = 216,
+	eIAKBMZoomIn = 217,
+	eIAKBMZoomOut = 218,
+	eIAKBMDropItem = 219,
+	eIAKBMInventory = 220,
+	eIAKBMEmotes = 221,
+	eIAKBMSurrender = 222,
+	eIAKBMSurrender_Hold = 223,
+	eIAKBMSurrender_HoldDown = 224,
+	eIAKBMSurrender_HoldDownOnce = 225,
+	eIAKBMTogglePlacement = 226,
+	eIAKBMOkay = 227,
+	eIAKBMCancel = 228,
+	eIAKBMAccept = 229,
+	eIATriggerLeft_Analog = 230,
+	eIATriggerRight_Analog = 231,
+	eIAStickLeftHorizontal_Analog = 232,
+	eIAStickLeftVertical_Analog = 233,
+	eIAStickRightHorizontal_Analog = 234,
+	eIAStickRightVertical_Analog = 235,
+	eIAStickLeftHorizontal_Raw = 236,
+	eIAStickLeftVertical_Raw = 237,
+	eIAStickRightHorizontal_Raw = 238,
+	eIAStickRightVertical_Raw = 239,
+	eIABumperLeft_Analog = 240,
+	eIABumperRight_Analog = 241,
+	eIAKBMMoveHorizontal = 242,
+	eIAKBMMoveVertical = 243,
+	eIAKBMLookHorizontal = 244,
+	eIAKBMLookVertical = 245,
+	eIActionsNUM = 246,
 };
 
 // Size: 0x4
@@ -9867,10 +10269,11 @@ enum class InputControlNamesp_eHM5InputActionType
 	eTypeFireOnceHoldDown = 8,
 	eTypeClickHold = 9,
 	eTypePress = 10,
-	eTypeANALOG = 11,
-	eTypeANALOGRAW = 12,
-	eTypeRELATIVE = 13,
-	eTYPE_INVALID = 14,
+	eTypeTouch = 11,
+	eTypeANALOG = 12,
+	eTypeANALOGRAW = 13,
+	eTypeRELATIVE = 14,
+	eTYPE_INVALID = 15,
 };
 
 // Size: 0x4
@@ -9924,112 +10327,116 @@ enum class JSONTemplate_ETemplateType
 	ETT_IS_CONTROLLER_AVAILABLE = 45,
 	ETT_IS_KEYBOARD_AVAILABLE = 46,
 	ETT_IS_NEO_VR_PLATFORM = 47,
-	ETT_IS_VR_DEVICE_AVAILABLE = 48,
-	ETT_IS_VR_DEVICE_ACTIVE = 49,
-	ETT_IS_VR_ACTIVE = 50,
-	ETT_VR_MODE = 51,
-	ETT_TEMPLATES_OVERRIDE_BEGIN = 52,
-	ETT_ONLINE_RESOURCE = 52,
-	ETT_INCLUDE = 53,
-	ETT_UI_OPTION_VALUE = 54,
-	ETT_UI_OPTION_DEFAULT_VALUE = 55,
-	ETT_UI_OPTION_DEBUG_VALUE = 56,
-	ETT_UI_OPTION_AVAILABLE = 57,
-	ETT_UI_OPTION_AVAILABLE_DISPLAY_RESOLUTIONS = 58,
-	ETT_UI_OPTION_AVAILABLE_DISPLAY_FULLSCREEN = 59,
-	ETT_UI_OPTION_AVAILABLE_MOTION_BLUR = 60,
-	ETT_UI_OPTION_AVAILABLE_TEXTURE_QUALITY = 61,
-	ETT_UI_OPTION_AVAILABLE_SHADOW_QUALITY = 62,
-	ETT_UI_OPTION_AVAILABLE_SUPERSAMPLING = 63,
-	ETT_UI_OPTION_AVAILABLE_DOUBLEFRAMERATE = 64,
-	ETT_UI_OPTION_AVAILABLE_VRS = 65,
-	ETT_UI_OPTION_CAN_CHANGE_DISPLAY_RESOLUTION = 66,
-	ETT_CURRENT_CONTRACT_CONTEXT = 67,
-	ETT_CURRENT_CONTRACT_OBJECTIVES = 68,
-	ETT_CURRENT_CONTRACT_SESSIONID = 69,
-	ETT_CURRENT_CONTRACT_CHARACTER_INFO = 70,
-	ETT_CURRENT_CONTRACT_TRACKED_OPPORTUNITY = 71,
-	ETT_CURRENT_DIFFICULTY = 72,
-	ETT_CURRENT_ENGINE_MODE = 73,
-	ETT_CURRENT_GAME_MODE = 74,
-	ETT_CAN_SAVE = 75,
-	ETT_IS_SAVELIMIT_EXCEEDED = 76,
-	ETT_IS_ALLOWED_TO_RESTART = 77,
-	ETT_IS_LUDEO_CLOUD = 78,
-	ETT_ACTIVE_CHALLENGES = 79,
-	ETT_USER = 80,
-	ETT_ISUSER = 81,
-	ETT_DLCCOUNT = 82,
-	ETT_PROFILEID = 83,
-	ETT_HDRGAMMAVALUERANGEMIN = 84,
-	ETT_HDRGAMMAVALUERANGEMAX = 85,
-	ETT_HDRGAMMAVALUESTEP = 86,
-	ETT_ISDLSSAVAILABLE = 87,
-	ETT_ISXESSAVAILABLE = 88,
-	ETT_ISXESSINSTALLED = 89,
-	ETT_ISHDRAVAILABLE = 90,
-	ETT_ISHDRRENDERING = 91,
-	ETT_ISRAYTRACINGAVAILABLE = 92,
-	ETT_VARIABLERATESHADINGTIER = 93,
-	ETT_ITEM = 94,
-	ETT_REPOSITORY = 95,
-	ETT_ISONLINE = 96,
-	ETT_ISINGAME = 97,
-	ETT_ISINEDITOR = 98,
-	ETT_ISUGCRESTRICTED = 99,
-	ETT_ISPACKAGEOWNED = 100,
-	ETT_ISININVENTORY = 101,
-	ETT_ISINLOADOUT = 102,
-	ETT_ISPLATFORMENTITLEMENTOWNED = 103,
-	ETT_MULTIPLAYERLOBBYSTATE = 104,
-	ETT_MULTIPLAYERLOCALID = 105,
-	ETT_MULTIPLAYERJOINEDIDS = 106,
-	ETT_MULTIPLAYERISPLAYERREADY = 107,
-	ETT_MULTIPLAYERINFO = 108,
-	ETT_MULTIPLAYERMATCHMAKINGTIME = 109,
-	ETT_MULTIPLAYERNATTYPE = 110,
-	ETT_LOADOUT = 111,
-	ETT_LOADOUT_SLOT = 112,
-	ETT_LOADOUT_AGENCY_PICKUP = 113,
-	ETT_LOADOUT_SELECTED_ENTRANCE = 114,
-	ETT_PERSISTENTMENUDATA = 115,
-	ETT_GAMEPERSISTENTDATA = 116,
-	ETT_ENDGAME_PAGETRANSITION_OVERRIDE = 117,
-	ETT_VERSUSINFO = 118,
-	ETT_SNIPERINFO = 119,
-	ETT_GAMEMODE = 120,
-	ETT_CACHEDUSERCENTRICCONTRACT = 121,
-	ETT_SAVEGAMES = 122,
-	ETT_AVAILABILITY_OF_RESOURCES = 123,
-	ETT_AVAILABILITY_OF_CONTRACT = 124,
-	ETT_AVAILABILITY_OF_USER_CENTRIC_CONTRACT = 125,
-	ETT_AS3DATE = 126,
-	ETT_IOIACCOUNT_STATUS = 127,
-	ETT_ISCONTRACT_IN_PLAYLIST = 128,
-	ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION = 129,
-	ETT_IS_VR_SUPPORTED_IN_CONTRACT = 130,
-	ETT_VIDEOMEMORYINFO_IS_SUPPORTED = 131,
-	ETT_VIDEOMEMORYINFO = 132,
-	ETT_DISPLAY_SIZE = 133,
-	ETT_IS_VIDEO_VALID = 134,
-	ETT_INTEL_IDS = 135,
-	ETT_INTEL_DETAILS = 136,
-	ETT_MENU_CONFIGURATION = 137,
-	ETT_HERO_INVENTORY = 138,
-	ETT_MAP_TRACKERINFO = 139,
-	ETT_WAS_EXITGATE_TRIGGERED = 140,
-	ETT_ARE_OPPORTUNITIES_ENABLED = 141,
-	ETT_CHARACTERS = 142,
-	ETT_CHARACTERINFO = 143,
-	ETT_DATABINDING = 144,
-	ETT_DATABINDING_ROOT = 145,
-	ETT_ALLOWED_UNLOCKABLES = 146,
-	ETT_HAS_FRAMERATE_OPTION = 147,
-	ETT_MENU_DATAPROVIDER = 148,
-	ETT_INTERACTIONINDICATOR = 149,
-	ETT_NVIDIAHIGHLIGHTSAVAILABLE = 150,
-	ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 151,
-	ETT_DEBUG_ALLHITMANSUITS = 152,
+	ETT_IS_TOUCH_INPUT_ACTIVE = 48,
+	ETT_IS_VR_DEVICE_AVAILABLE = 49,
+	ETT_IS_VR_DEVICE_ACTIVE = 50,
+	ETT_IS_VR_ACTIVE = 51,
+	ETT_VR_MODE = 52,
+	ETT_TEMPLATES_OVERRIDE_BEGIN = 53,
+	ETT_ONLINE_RESOURCE = 53,
+	ETT_INCLUDE = 54,
+	ETT_UI_OPTION_VALUE = 55,
+	ETT_UI_OPTION_DEFAULT_VALUE = 56,
+	ETT_UI_OPTION_DEBUG_VALUE = 57,
+	ETT_UI_OPTION_AVAILABLE = 58,
+	ETT_UI_OPTION_AVAILABLE_DISPLAY_RESOLUTIONS = 59,
+	ETT_UI_OPTION_AVAILABLE_DISPLAY_FULLSCREEN = 60,
+	ETT_UI_OPTION_AVAILABLE_MOTION_BLUR = 61,
+	ETT_UI_OPTION_AVAILABLE_TEXTURE_QUALITY = 62,
+	ETT_UI_OPTION_AVAILABLE_SHADOW_QUALITY = 63,
+	ETT_UI_OPTION_AVAILABLE_SUPERSAMPLING = 64,
+	ETT_UI_OPTION_AVAILABLE_DOUBLEFRAMERATE = 65,
+	ETT_UI_OPTION_AVAILABLE_VRS = 66,
+	ETT_UI_OPTION_CAN_CHANGE_DISPLAY_RESOLUTION = 67,
+	ETT_CURRENT_CONTRACT_CONTEXT = 68,
+	ETT_CURRENT_CONTRACT_OBJECTIVES = 69,
+	ETT_CURRENT_CONTRACT_SESSIONID = 70,
+	ETT_CURRENT_CONTRACT_CHARACTER_INFO = 71,
+	ETT_CURRENT_CONTRACT_TRACKED_OPPORTUNITY = 72,
+	ETT_CURRENT_DIFFICULTY = 73,
+	ETT_CURRENT_ENGINE_MODE = 74,
+	ETT_CURRENT_GAME_MODE = 75,
+	ETT_CAN_SAVE = 76,
+	ETT_IS_SAVELIMIT_EXCEEDED = 77,
+	ETT_IS_ALLOWED_TO_RESTART = 78,
+	ETT_IS_LUDEO_CLOUD = 79,
+	ETT_ACTIVE_CHALLENGES = 80,
+	ETT_USER = 81,
+	ETT_ISUSER = 82,
+	ETT_DLCCOUNT = 83,
+	ETT_PROFILEID = 84,
+	ETT_HDRGAMMAVALUERANGEMIN = 85,
+	ETT_HDRGAMMAVALUERANGEMAX = 86,
+	ETT_HDRGAMMAVALUESTEP = 87,
+	ETT_ISDLSSAVAILABLE = 88,
+	ETT_ISXESSAVAILABLE = 89,
+	ETT_ISXESSINSTALLED = 90,
+	ETT_ISHDRAVAILABLE = 91,
+	ETT_ISHDRRENDERING = 92,
+	ETT_ISRAYTRACINGAVAILABLE = 93,
+	ETT_VARIABLERATESHADINGTIER = 94,
+	ETT_ITEM = 95,
+	ETT_REPOSITORY = 96,
+	ETT_ISONLINE = 97,
+	ETT_ISINGAME = 98,
+	ETT_ISINEDITOR = 99,
+	ETT_ISUGCRESTRICTED = 100,
+	ETT_ISPACKAGEOWNED = 101,
+	ETT_ISININVENTORY = 102,
+	ETT_ISINLOADOUT = 103,
+	ETT_ISPLATFORMENTITLEMENTOWNED = 104,
+	ETT_MULTIPLAYERLOBBYSTATE = 105,
+	ETT_MULTIPLAYERLOCALID = 106,
+	ETT_MULTIPLAYERJOINEDIDS = 107,
+	ETT_MULTIPLAYERISPLAYERREADY = 108,
+	ETT_MULTIPLAYERINFO = 109,
+	ETT_MULTIPLAYERMATCHMAKINGTIME = 110,
+	ETT_MULTIPLAYERNATTYPE = 111,
+	ETT_LOADOUT = 112,
+	ETT_LOADOUT_SLOT = 113,
+	ETT_LOADOUT_AGENCY_PICKUP = 114,
+	ETT_LOADOUT_SELECTED_ENTRANCE = 115,
+	ETT_PERSISTENTMENUDATA = 116,
+	ETT_GAMEPERSISTENTDATA = 117,
+	ETT_ENDGAME_PAGETRANSITION_OVERRIDE = 118,
+	ETT_VERSUSINFO = 119,
+	ETT_SNIPERINFO = 120,
+	ETT_GAMEMODE = 121,
+	ETT_CACHEDUSERCENTRICCONTRACT = 122,
+	ETT_SAVEGAMES = 123,
+	ETT_STOREITEM = 124,
+	ETT_AVAILABILITY_OF_RESOURCES = 125,
+	ETT_AVAILABILITY_OF_CONTRACT = 126,
+	ETT_AVAILABILITY_OF_USER_CENTRIC_CONTRACT = 127,
+	ETT_AS3DATE = 128,
+	ETT_IOIACCOUNT_STATUS = 129,
+	ETT_ISCONTRACT_IN_PLAYLIST = 130,
+	ETT_ISCONTRACT_IN_PLAYLIST_MARKED_FOR_DELETION = 131,
+	ETT_IS_VR_SUPPORTED_IN_CONTRACT = 132,
+	ETT_VIDEOMEMORYINFO_IS_SUPPORTED = 133,
+	ETT_VIDEOMEMORYINFO = 134,
+	ETT_DISPLAY_SIZE = 135,
+	ETT_IS_VIDEO_VALID = 136,
+	ETT_INTEL_IDS = 137,
+	ETT_INTEL_DETAILS = 138,
+	ETT_MENU_CONFIGURATION = 139,
+	ETT_HERO_INVENTORY = 140,
+	ETT_MAP_TRACKERINFO = 141,
+	ETT_WAS_EXITGATE_TRIGGERED = 142,
+	ETT_ARE_OPPORTUNITIES_ENABLED = 143,
+	ETT_CHARACTERS = 144,
+	ETT_CHARACTERINFO = 145,
+	ETT_DATABINDING = 146,
+	ETT_DATABINDING_ROOT = 147,
+	ETT_ALLOWED_UNLOCKABLES = 148,
+	ETT_HAS_FRAMERATE_OPTION = 149,
+	ETT_MENU_DATAPROVIDER = 150,
+	ETT_INTERACTIONINDICATOR = 151,
+	ETT_RESOURCE_INSTALL_SIZE = 152,
+	ETT_RESOURCE_DELETE_SIZE = 153,
+	ETT_NVIDIAHIGHLIGHTSAVAILABLE = 154,
+	ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 155,
+	ETT_DEBUG_ALLHITMANSUITS = 156,
 };
 
 // Size: 0x4
@@ -10115,7 +10522,7 @@ public:
 	float32 fValue; // 0x4
 };
 
-// Size: 0x18
+// Size: 0x1C
 class /*alignas(4)*/ SWorldSpaceSettings
 {
 public:
@@ -10134,11 +10541,12 @@ public:
 	bool bDynamicScale; // 0x8
 	uint8_t _pad9[3] {};
 	float32 fDynamicScaleAlpha; // 0xC
-	float32 fDynamicScaleNearDistance; // 0x10
-	float32 fDynamicScaleBlendRange; // 0x14
+	float32 fDynamicScaleCloseupDistance; // 0x10
+	float32 fDynamicScaleNearDistance; // 0x14
+	float32 fDynamicScaleBlendRange; // 0x18
 };
 
-// Size: 0x90
+// Size: 0x98
 class /*alignas(8)*/ S25DProjectionSettings
 {
 public:
@@ -10174,6 +10582,7 @@ public:
 	EViewportLock eViewportLock; // 0x70
 	float32 fViewportGutter; // 0x74
 	SWorldSpaceSettings sWorldSpaceSettings; // 0x78
+	uint8_t _pad94[4] {};
 };
 
 // Size: 0x8
@@ -15368,7 +15777,7 @@ public:
 	TArray<SEvergreenMenuLabelData> labels; // 0x58
 };
 
-// Size: 0x20
+// Size: 0x40
 class /*alignas(8)*/ SEvergreenMenuPromptDesc
 {
 public:
@@ -15384,6 +15793,9 @@ public:
 
 	ZString actiontype; // 0x0
 	ZString actionlabel; // 0x10
+	ZString actionalticon; // 0x20
+	bool enabled; // 0x30
+	uint8_t _pad31[15] {};
 };
 
 // Size: 0x1
@@ -16482,6 +16894,41 @@ public:
 	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
 };
 
+// Size: 0x4
+class /*alignas(4)*/ SVRHolsterAttacherSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SVRHolsterAttacherSaveData& p_Other) const;
+	bool operator!=(const SVRHolsterAttacherSaveData& p_Other) const { return !(*this == p_Other); }
+
+	uint32 m_rContainedItem; // 0x0
+};
+
+// Size: 0x30
+class /*alignas(8)*/ SVRHolsterAttachersSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SVRHolsterAttachersSaveData& p_Other) const;
+	bool operator!=(const SVRHolsterAttachersSaveData& p_Other) const { return !(*this == p_Other); }
+
+	TArray<uint32> m_aEntities; // 0x0
+	TArray<SVRHolsterAttacherSaveData> m_aData; // 0x18
+};
+
 // Size: 0x2
 class /*alignas(1)*/ SVolumeTriggerListenerSaveData
 {
@@ -16518,7 +16965,7 @@ public:
 	TArray<SVolumeTriggerListenerSaveData> m_aData; // 0x18
 };
 
-// Size: 0x480
+// Size: 0x4B0
 class /*alignas(8)*/ SGameEntitySaveData
 {
 public:
@@ -16556,6 +17003,7 @@ public:
 	SMathLerpsSaveData_SVector4 m_MathLerpsData_SVector4; // 0x3F0
 	SMathLerpsSaveData_SColorRGB m_MathLerpsData_SColorRGB; // 0x420
 	SMathLerpsSaveData_SColorRGBA m_MathLerpsData_SColorRGBA; // 0x450
+	SVRHolsterAttachersSaveData m_VRHolsterAttachers; // 0x480
 };
 
 // Size: 0x8
@@ -17134,7 +17582,7 @@ public:
 	uint8_t _pad5[3] {};
 };
 
-// Size: 0x36
+// Size: 0x38
 class /*alignas(1)*/ SHM5CrippleBoxSaveData
 {
 public:
@@ -17183,25 +17631,27 @@ public:
 	bool m_bIdleAnimationsAllowed; // 0x20
 	bool m_bItems; // 0x21
 	bool m_bCanHolsterItems; // 0x22
-	bool m_bCoverTakedown; // 0x23
-	bool m_bCoverScale; // 0x24
-	bool m_bCoverToCover; // 0x25
-	bool m_bCloseCombatSnapNeck; // 0x26
-	bool m_bCloseCombatChoke; // 0x27
-	bool m_bCloseCombatPistolFinish; // 0x28
-	bool m_bCloseCombatProps; // 0x29
-	bool m_bCloseCombatStandart; // 0x2A
-	bool m_bCloseCombatFakeSwing; // 0x2B
-	bool m_bGameCameraAutoAlign; // 0x2C
-	bool m_bCameraSide; // 0x2D
-	bool m_bInstinct; // 0x2E
-	bool m_bBlindFire; // 0x2F
-	bool m_bAim; // 0x30
-	bool m_bHairTrigger; // 0x31
-	bool m_bFire; // 0x32
-	bool m_bOpenLogbook; // 0x33
-	bool m_bOpenPauseMenu; // 0x34
-	bool m_bActivatedByPinSignal; // 0x35
+	bool m_bVRInventory; // 0x23
+	bool m_bVRTurn; // 0x24
+	bool m_bCoverTakedown; // 0x25
+	bool m_bCoverScale; // 0x26
+	bool m_bCoverToCover; // 0x27
+	bool m_bCloseCombatSnapNeck; // 0x28
+	bool m_bCloseCombatChoke; // 0x29
+	bool m_bCloseCombatPistolFinish; // 0x2A
+	bool m_bCloseCombatProps; // 0x2B
+	bool m_bCloseCombatStandart; // 0x2C
+	bool m_bCloseCombatFakeSwing; // 0x2D
+	bool m_bGameCameraAutoAlign; // 0x2E
+	bool m_bCameraSide; // 0x2F
+	bool m_bInstinct; // 0x30
+	bool m_bBlindFire; // 0x31
+	bool m_bAim; // 0x32
+	bool m_bHairTrigger; // 0x33
+	bool m_bFire; // 0x34
+	bool m_bOpenLogbook; // 0x35
+	bool m_bOpenPauseMenu; // 0x36
+	bool m_bActivatedByPinSignal; // 0x37
 };
 
 // Size: 0x1
@@ -17221,7 +17671,7 @@ public:
 	bool m_bPiPEnabled; // 0x0
 };
 
-// Size: 0x60
+// Size: 0x70
 class /*alignas(8)*/ SHUDPromptDisplayInfo
 {
 public:
@@ -17244,17 +17694,19 @@ public:
 	float32 m_fDistance; // 0x14
 	bool m_bShowWarning; // 0x18
 	bool m_bNoActionAvailable; // 0x19
-	uint8_t _pad1A[6] {};
+	bool m_bIsActionBlocked; // 0x1A
+	uint8_t _pad1B[5] {};
 	ZString m_sLabel; // 0x20
 	ZString m_sDescription; // 0x30
 	ZString m_sGlyph; // 0x40
-	float32 m_fOpacity; // 0x50
-	bool m_bIllegalItem; // 0x54
-	bool m_bSuspiciousItem; // 0x55
-	bool m_bDropTempHolsterableItems; // 0x56
-	uint8_t _pad57[1] {};
-	int32 m_nFontSize; // 0x58
-	uint8_t _pad5C[4] {};
+	ZString m_sCustomIcon; // 0x50
+	float32 m_fOpacity; // 0x60
+	bool m_bIllegalItem; // 0x64
+	bool m_bSuspiciousItem; // 0x65
+	bool m_bDropTempHolsterableItems; // 0x66
+	uint8_t _pad67[1] {};
+	int32 m_nFontSize; // 0x68
+	EHM5GameInputFlag m_eGameInputFlag; // 0x6C
 };
 
 // Size: 0x18
@@ -17650,7 +18102,7 @@ public:
 	uint8_t _pad29[7] {};
 };
 
-// Size: 0x78
+// Size: 0x80
 class /*alignas(8)*/ SHitmanSaveData
 {
 public:
@@ -17677,7 +18129,10 @@ public:
 	ZVariant m_MovementData; // 0x60
 	bool m_bLethalAgilityElementUsed; // 0x70
 	bool m_bIsChangingClothes; // 0x71
-	uint8_t _pad72[6] {};
+	uint8_t _pad72[2] {};
+	uint32 m_nVRMovementState; // 0x74
+	uint32 m_rVRMovementTarget; // 0x78
+	float32 m_fVRMovementTargetExpiration; // 0x7C
 };
 
 // Size: 0x10
@@ -17839,7 +18294,7 @@ public:
 	uint8_t _padD[3] {};
 };
 
-// Size: 0x50
+// Size: 0x60
 class /*alignas(8)*/ SInteractionIndicatorInstanceData_SUIControlData
 {
 public:
@@ -17860,19 +18315,22 @@ public:
 	ZString m_sLabel; // 0x10
 	ZString m_sDescription; // 0x20
 	ZString m_sGlyph; // 0x30
-	bool m_bIllegal; // 0x40
-	bool m_bNoActionAvailable; // 0x41
-	bool m_bInRange; // 0x42
-	bool m_bIllegalItem; // 0x43
-	bool m_bSuspiciousItem; // 0x44
-	bool m_bContainsItem; // 0x45
-	uint8_t _pad46[2] {};
-	int32 m_nFontSize; // 0x48
-	bool m_bIsTxtDirReversed; // 0x4C
-	uint8_t _pad4D[3] {};
+	ZString m_sCustomIcon; // 0x40
+	bool m_bIllegal; // 0x50
+	bool m_bNoActionAvailable; // 0x51
+	bool m_bInRange; // 0x52
+	bool m_bIllegalItem; // 0x53
+	bool m_bSuspiciousItem; // 0x54
+	bool m_bContainsItem; // 0x55
+	uint8_t _pad56[2] {};
+	int32 m_nFontSize; // 0x58
+	bool m_bIsTxtDirReversed; // 0x5C
+	bool m_bHidePrompt; // 0x5D
+	bool m_bIsActionBlocked; // 0x5E
+	uint8_t _pad5F[1] {};
 };
 
-// Size: 0x80
+// Size: 0x90
 class /*alignas(8)*/ SInteractionIndicatorInstanceData
 {
 public:
@@ -17889,14 +18347,16 @@ public:
 	uint32 m_nStableID; // 0x0
 	uint8_t _pad4[4] {};
 	SInteractionIndicatorInstanceData_SUIControlData m_uicData; // 0x8
-	float32 m_fAnimation; // 0x58
-	bool m_bRotateIndicator; // 0x5C
-	uint8_t _pad5D[3] {};
-	SVector3 m_vPosition; // 0x60
-	SVector3 m_vRotation; // 0x6C
-	bool m_bNeedDataUpdate; // 0x78
-	bool m_bNeedAlphaUpdate; // 0x79
-	uint8_t _pad7A[6] {};
+	float32 m_fAnimation; // 0x68
+	bool m_bRotateIndicator; // 0x6C
+	uint8_t _pad6D[3] {};
+	SVector3 m_vPosition; // 0x70
+	SVector3 m_vRotation; // 0x7C
+	bool m_bNeedDataUpdate; // 0x88
+	bool m_bNeedAlphaUpdate; // 0x89
+	bool m_bLimit3DSize; // 0x8A
+	uint8_t _pad8B[1] {};
+	EHM5GameInputFlag m_eGameInputFlag; // 0x8C
 };
 
 // Size: 0x18
@@ -18011,7 +18471,7 @@ public:
 	TArray<uint32> m_aAmmoCounts; // 0xA8
 };
 
-// Size: 0x90
+// Size: 0xF0
 class /*alignas(8)*/ SInventoryInfo
 {
 public:
@@ -18028,6 +18488,7 @@ public:
 	TArray<SInventoryItem> m_aPockets; // 0x0
 	SInventoryItem m_CarriedItem; // 0x18
 	TArray<SContainerItemInfo> m_aContainerItems; // 0x78
+	SInventoryItem m_ConcealedWeapon; // 0x90
 };
 
 // Size: 0x30
@@ -18057,7 +18518,7 @@ public:
 	float4 m_vSafeDropPosition; // 0x20
 };
 
-// Size: 0x20
+// Size: 0x28
 class /*alignas(8)*/ SInventoryUISlotSlim
 {
 public:
@@ -18073,6 +18534,8 @@ public:
 
 	ZVariant icon; // 0x0
 	ZVariant containedIcon; // 0x10
+	bool isContainer; // 0x20
+	uint8_t _pad21[7] {};
 };
 
 // Size: 0x28
@@ -18423,7 +18886,9 @@ public:
 	uint32 m_nExtraMagazineBullets; // 0x18
 	EDeathContext m_ePendingDeathContext; // 0x1C
 	EDeathContext m_eDeathContext; // 0x20
-	uint8_t _pad24[4] {};
+	bool m_bLiveBulletInChamber; // 0x24
+	bool m_bSpentBulletInChamber; // 0x25
+	uint8_t _pad26[2] {};
 };
 
 // Size: 0x2
@@ -18599,7 +19064,7 @@ public:
 	uint8_t _padE[2] {};
 };
 
-// Size: 0x1D8
+// Size: 0x238
 class /*alignas(8)*/ SLevelSaveData
 {
 public:
@@ -18626,13 +19091,13 @@ public:
 	ZVariant m_contractData; // 0x88
 	ZGuid m_trackedOpportunity; // 0x98
 	SInventoryInfo m_aStartupInventory; // 0xA8
-	SAgencyPickupInfo m_aStartupAgencyPickupSelection; // 0x138
-	TArray<SObjetiveSaveData> m_aObjectives; // 0x178
-	TArray<ZVariant> m_aGameChangers; // 0x190
-	SSoundAmbienceSaveData m_SoundAmbienceData; // 0x1A8
-	SChallengesSaveData m_ChallengesSaveData; // 0x1B8
-	int32 m_nSaveGameLimit; // 0x1D0
-	float32 m_fLastKillTimestamp; // 0x1D4
+	SAgencyPickupInfo m_aStartupAgencyPickupSelection; // 0x198
+	TArray<SObjetiveSaveData> m_aObjectives; // 0x1D8
+	TArray<ZVariant> m_aGameChangers; // 0x1F0
+	SSoundAmbienceSaveData m_SoundAmbienceData; // 0x208
+	SChallengesSaveData m_ChallengesSaveData; // 0x218
+	int32 m_nSaveGameLimit; // 0x230
+	float32 m_fLastKillTimestamp; // 0x234
 };
 
 // Size: 0x2
@@ -20287,6 +20752,28 @@ public:
 };
 
 // Size: 0x48
+class /*alignas(8)*/ SStoreItem
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SStoreItem& p_Other) const;
+	bool operator!=(const SStoreItem& p_Other) const { return !(*this == p_Other); }
+
+	ZString Id; // 0x0
+	ZString DisplayName; // 0x10
+	ZString Description; // 0x20
+	ZString DisplayPrice; // 0x30
+	float32 Price; // 0x40
+	uint8_t _pad44[4] {};
+};
+
+// Size: 0x48
 class /*alignas(8)*/ STargetInfoObjectiveCondition
 {
 public:
@@ -20970,6 +21457,23 @@ enum class _EUIOptionKey
 	UI_OPTION_VR_MINIMUM_REPROJECTION_COLOR = 3007,
 	UI_OPTION_VR_LEFT_HAND_FOLLOW_RIGHT = 3008,
 	UI_OPTION_VR_SAFE_AREA_ENABLED = 3009,
+	UI_OPTION_VR_HAND_INVENTORY_ENABLED = 3010,
+	UI_OPTION_VR_MENU_LASER_POINTER_ENABLED = 3011,
+	UI_OPTION_VR_DOMINANT_HAND = 3012,
+	UI_OPTION_VR_HOLSTER_ADJUST_POS_X = 3013,
+	UI_OPTION_VR_HOLSTER_ADJUST_POS_Y = 3014,
+	UI_OPTION_VR_HOLSTER_ADJUST_POS_Z = 3015,
+	UI_OPTION_VR_GUN_ANGLE_ADJUST_X = 3016,
+	UI_OPTION_VR_GUN_ANGLE_ADJUST_Y = 3017,
+	UI_OPTION_VR_GUN_ANGLE_ADJUST_Z = 3018,
+	UI_OPTION_VR_PISTOL_ANGLE_ADJUST_X = 3019,
+	UI_OPTION_VR_PISTOL_ANGLE_ADJUST_Y = 3020,
+	UI_OPTION_VR_PISTOL_ANGLE_ADJUST_Z = 3021,
+	UI_OPTION_VR_SHOOTING_TRIGGER_THRESHOLD = 3022,
+	UI_OPTION_VR_TOGGLE_GRIP_ENABLED = 3023,
+	UI_OPTION_VR_THROW_SENSITIVITY = 3024,
+	UI_OPTION_VR_2HWIELD_AIM_MODE = 3025,
+	UI_OPTION_VR_FREELANCER_STATS_WIDGET = 3026,
 };
 
 // Size: 0x78
@@ -21064,6 +21568,48 @@ public:
 	uint8_t _pad6C[4] {};
 };
 
+// Size: 0x48
+class /*alignas(8)*/ SWeaponWheelPromptData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SWeaponWheelPromptData& p_Other) const;
+	bool operator!=(const SWeaponWheelPromptData& p_Other) const { return !(*this == p_Other); }
+
+	ZString actiontype; // 0x0
+	ZString actionlabel; // 0x10
+	ZString actionglyph; // 0x20
+	ZString actionalticon; // 0x30
+	int32 actionid; // 0x40
+	uint8_t _pad44[4] {};
+};
+
+// Size: 0x30
+class /*alignas(8)*/ SUpdateSelectedSlotData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SUpdateSelectedSlotData& p_Other) const;
+	bool operator!=(const SUpdateSelectedSlotData& p_Other) const { return !(*this == p_Other); }
+
+	SInventoryUISlot slotData; // 0x0
+	uint8_t _pad108[18446744073709551360] {};
+	TArray<SWeaponWheelPromptData> buttonprompts; // 0x8
+	ZString controllerType; // 0x20
+};
+
 // Size: 0x70
 class /*alignas(16)*/ SVRConfigCameraComponent
 {
@@ -21081,11 +21627,12 @@ public:
 	EVRConfigHeadAnchorMode m_eHeadAnchorMode; // 0x0
 	uint32 m_uRecenterRequestCounter; // 0x4
 	float32 m_fVRUserInputWeight; // 0x8
-	float32 m_fGridSize; // 0xC
-	float32 m_fCapsuleHeadAttacherOffset; // 0x10
-	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x14
-	float32 m_fHeadBoneAttacherOffset; // 0x18
-	uint8_t _pad1C[4] {};
+	bool m_fVRZoomAllowed; // 0xC
+	uint8_t _padD[3] {};
+	float32 m_fGridSize; // 0x10
+	float32 m_fCapsuleHeadAttacherOffset; // 0x14
+	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x18
+	float32 m_fHeadBoneAttacherOffset; // 0x1C
 	float4 m_vAnchorPosOffset; // 0x20
 	SMatrix m_mAnchorRotOffset; // 0x30
 };
@@ -21254,6 +21801,47 @@ public:
 	bool m_bSignaling; // 0x0
 	uint8_t _pad1[3] {};
 	float32 m_fFiredAtTime; // 0x4
+};
+
+// Size: 0x18
+class /*alignas(8)*/ SVrSingleHandThrowSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SVrSingleHandThrowSaveData& p_Other) const;
+	bool operator!=(const SVrSingleHandThrowSaveData& p_Other) const { return !(*this == p_Other); }
+
+	ZGameTime m_tLastThrowTimeRight; // 0x0
+	ZGameTime m_tLastThrowTimeLeft; // 0x8
+	uint32 m_eLastThrowTypeLeft; // 0x10
+	uint32 m_eLastThrowTypeRight; // 0x14
+};
+
+// Size: 0x14
+class /*alignas(4)*/ SVrTakeDisguiseSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SVrTakeDisguiseSaveData& p_Other) const;
+	bool operator!=(const SVrTakeDisguiseSaveData& p_Other) const { return !(*this == p_Other); }
+
+	float32 fLastDisguiseTakenTime; // 0x0
+	float32 fLastDisguiseYankedFromBodyTime; // 0x4
+	uint32 outfitItem; // 0x8
+	uint32 outfitRef; // 0xC
+	int32 state; // 0x10
 };
 
 // Size: 0x18
@@ -21433,6 +22021,25 @@ enum class TeleportActionType
 	STAY = 0,
 	TELEPORT = 1,
 	LEAVE_CROWD = 2,
+};
+
+// Size: 0x4
+enum class TerminationState_PRO241835
+{
+	PriorFirstRun = 0,
+	CollisionsDisabled = 1,
+	HandCollisionsDisabled = 2,
+	CheckHandCollisions = 3,
+	ItemCollisionDisabled = 4,
+	PhysicsObjectMissing = 5,
+	UsingWeaponSnapDistance = 6,
+	PhysicsObjectDisabled = 7,
+	CollidersNear = 8,
+	BlockCloseCombatInteraction = 9,
+	NoProperHit = 10,
+	NoValidActor = 11,
+	NoCollisionDuringSweep = 12,
+	HitDetected = 13,
 };
 
 // Size: 0x4
@@ -21787,6 +22394,14 @@ enum class ZActorProviderFilterKeyword_EEvaluationType
 	ANY = 2,
 };
 
+// Size: 0x1
+enum class ZActorStateCondition_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+};
+
 // Size: 0x4
 enum class ZActorTensionEntity_ETensionCheckMode
 {
@@ -22034,6 +22649,14 @@ enum class ZContextKillGuide_EEvaluationType
 	ANY = 2,
 };
 
+// Size: 0x4
+enum class ZContinousProgress_ENoProgressBehaviour
+{
+	Reset = 0,
+	Stop = 1,
+	Reverse = 2,
+};
+
 // Size: 0x48
 class /*alignas(8)*/ ZContractEvaluationContext
 {
@@ -22231,7 +22854,8 @@ enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason
 	eTMLDR_ActionKillExplosion = 4,
 	eTMLDR_ActionKillLastEnemyInEncounter = 5,
 	eTMLDR_ActionKillLastEnemyInCheckPoint = 6,
-	eTMLDR_NOTSET = 7,
+	eTMLDR_VrUiSlowDown = 7,
+	eTMLDR_NOTSET = 8,
 };
 
 // Size: 0x4
@@ -22785,6 +23409,13 @@ enum class ZEvergreenMenuEntryCondition_EQuery
 	IS_SELECTED = 0,
 	IS_SELECTED_AND_ZOOMED_OUT = 1,
 	IS_SELECTED_AND_ZOOMED_IN = 2,
+};
+
+// Size: 0x1
+enum class ZEvergreenMenuEntryEntity_EAcceptPromptVisibility
+{
+	ALWAYS_VISIBLE = 0,
+	VISIBLE_IF_ENABLED = 1,
 };
 
 // Size: 0x4
@@ -23826,6 +24457,23 @@ enum class ZHeroInventoryAction_EEvaluationType
 };
 
 // Size: 0x4
+enum class ZHeroItemCondition_ECheckKeywordsMode
+{
+	ECKM_All = 0,
+	ECKM_Any = 1,
+	ECKM_None = 2,
+	ECKM_No = 3,
+};
+
+// Size: 0x4
+enum class ZHeroItemCondition_EHandToCheck
+{
+	EHTC_Left = 0,
+	EHTC_Right = 1,
+	EHTC_Both = 2,
+};
+
+// Size: 0x4
 enum class ZHeroKeywordCondition_EEvaluationType
 {
 	ALL = 0,
@@ -23837,6 +24485,25 @@ enum class ZHeroKeywordCondition_EEvaluationType
 // Size: 0x4
 enum class ZHitmanLocomotionQuery_EEvaluationType
 {
+	ALL = 0,
+	ANY = 1,
+};
+
+// Size: 0x4
+class /*alignas(4)*/ ZHm5VrItemGripState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZHm5VrItemGripState& p_Other) const;
+	bool operator!=(const ZHm5VrItemGripState& p_Other) const { return !(*this == p_Other); }
+
+	uint8_t _pad0[4] {};
 };
 
 // Size: 0x60
@@ -23884,6 +24551,13 @@ public:
 };
 
 // Size: 0x4
+enum class ZInputControllerTypeCondition_EEvaluationType
+{
+	ANY = 0,
+	NONE = 1,
+};
+
+// Size: 0x4
 enum class ZInputListenerActorPool_eInputListenerButtons
 {
 	EILB_UP = 0,
@@ -23899,6 +24573,15 @@ enum class ZInputListenerAxisEntity_eInputListenerAxes
 	EILA_VERTICAL = 1,
 	EILA_TRIGGER_1 = 2,
 	EILA_TRIGGER_2 = 3,
+};
+
+// Size: 0x4
+enum class ZInputListenerBase_EPromptTypeVR
+{
+	Default = 0,
+	SpatialVR = 1,
+	Spatial = 2,
+	Forced2D = 3,
 };
 
 // Size: 0x4
@@ -23921,7 +24604,7 @@ enum class ZInputListenerDpadEntity_eInputListenerDpad
 	EILDP_RIGHT = 3,
 };
 
-// Size: 0x140
+// Size: 0x150
 class /*alignas(16)*/ ZInteractionData
 {
 public:
@@ -23935,7 +24618,7 @@ public:
 	bool operator==(const ZInteractionData& p_Other) const;
 	bool operator!=(const ZInteractionData& p_Other) const { return !(*this == p_Other); }
 
-	uint8_t _pad0[320] {};
+	uint8_t _pad0[336] {};
 };
 
 // Size: 0x4
@@ -23955,7 +24638,8 @@ enum class ZInteractionData_EFilterResult
 	EFR_REJECTED_GAMESTATE = 11,
 	EFR_REJECTED_ACTION_FILTER = 12,
 	EFR_REJECTED_INVALIDDATA = 13,
-	EFR_REJECTED_PRIORITY = 14,
+	EFR_REJECTED_ALTERNATIVE = 14,
+	EFR_REJECTED_PRIORITY = 15,
 };
 
 // Size: 0x4
@@ -24045,6 +24729,14 @@ public:
 	ZGameTime m_tLastStandDown; // 0x10
 	int32 m_nActiveInvestigationGroup; // 0x18
 	uint8_t _pad1C[4] {};
+};
+
+// Size: 0x4
+enum class ZIsVrTrackerInside_EVrTracker
+{
+	HandLeft = 0,
+	HandRight = 1,
+	Head = 2,
 };
 
 // Size: 0x4
@@ -24222,6 +24914,13 @@ enum class ZMoveToPositionBehaviorEntity_ERotationAlignment
 };
 
 // Size: 0x4
+enum class ZMultiMenuCondition_EEvaluationType
+{
+	ANY = 0,
+	NONE = 1,
+};
+
+// Size: 0x4
 enum class ZOnlineManager_EError
 {
 	eNONE = 0,
@@ -24238,31 +24937,35 @@ enum class ZOnlineManager_EError
 	eAUTHENTICATION_STEAM_GENERAL = 1010,
 	eAUTHENTICATION_EPIC_GENERAL = 1011,
 	eAUTHENTICATION_IZUMO_GENERAL = 1012,
-	eAUTHENTICATION_GOG_GENERAL = 1013,
-	eAUTHENTICATION_PSN_GENERAL = 1014,
-	eAUTHENTICATION_PSN_NP_CHECK = 1015,
-	eAUTHENTICATION_PSN_ACCOUNT_COLLISION = 1016,
-	eAUTHENTICATION_NO_PRIMARY_USER = 1017,
-	eAUTHENTICATION_XBLIVE_GENERAL = 1018,
-	eAUTHENTICATION_XBLIVE_SIGNED_OUT = 1019,
-	eAUTHENTICATION_XBLIVE_USER_CHANGED = 1020,
-	eAUTHENTICATION_STADIA_GENERAL = 1021,
-	ePLATFORM_USERINFO = 1022,
-	eCONFIGURATION = 1023,
-	eENTITLEMENTS = 1024,
-	ePROFILE = 1025,
-	eGAME_SESSION = 1026,
-	eCLIENT_OUTDATED = 1027,
-	eGENERAL_SERVER_ERROR = 1028,
-	eGENERAL_SERVER_BUSY = 1029,
-	eGENERAL_CLIENT_ERROR = 1030,
-	eDYNAMIC_RESOURCES_CONFIG_ERROR = 1031,
-	eDYNAMIC_RESOURCES_UPDATEFAILED = 1032,
-	eDYNAMIC_RESOURCES_OUTDATED = 1033,
-	eFSP_IOI_ACCOUNT_SIGNUP_REQUIRED = 1034,
-	eFSP_IOI_ACCOUNT_SIGNUP_ERROR = 1035,
-	eCANCELLED = 1036,
-	eERROR_MAX = 1037,
+	eAUTHENTICATION_OUNCE_GENERAL = 1013,
+	eAUTHENTICATION_GOG_GENERAL = 1014,
+	eAUTHENTICATION_PSN_GENERAL = 1015,
+	eAUTHENTICATION_PSN_NP_CHECK = 1016,
+	eAUTHENTICATION_PSN_ACCOUNT_COLLISION = 1017,
+	eAUTHENTICATION_DARWIN_GENERAL = 1018,
+	eAUTHENTICATION_DARWIN_SERVICE_ACCOUNT_UNAVAILABLE = 1019,
+	eAUTHENTICATION_DARWIN_SERVICE_ACCOUNT_ERROR = 1020,
+	eAUTHENTICATION_NO_PRIMARY_USER = 1021,
+	eAUTHENTICATION_XBLIVE_GENERAL = 1022,
+	eAUTHENTICATION_XBLIVE_SIGNED_OUT = 1023,
+	eAUTHENTICATION_XBLIVE_USER_CHANGED = 1024,
+	eAUTHENTICATION_STADIA_GENERAL = 1025,
+	ePLATFORM_USERINFO = 1026,
+	eCONFIGURATION = 1027,
+	eENTITLEMENTS = 1028,
+	ePROFILE = 1029,
+	eGAME_SESSION = 1030,
+	eCLIENT_OUTDATED = 1031,
+	eGENERAL_SERVER_ERROR = 1032,
+	eGENERAL_SERVER_BUSY = 1033,
+	eGENERAL_CLIENT_ERROR = 1034,
+	eDYNAMIC_RESOURCES_CONFIG_ERROR = 1035,
+	eDYNAMIC_RESOURCES_UPDATEFAILED = 1036,
+	eDYNAMIC_RESOURCES_OUTDATED = 1037,
+	eFSP_IOI_ACCOUNT_SIGNUP_REQUIRED = 1038,
+	eFSP_IOI_ACCOUNT_SIGNUP_ERROR = 1039,
+	eCANCELLED = 1040,
+	eERROR_MAX = 1041,
 };
 
 // Size: 0x4
@@ -24301,26 +25004,27 @@ enum class ZOnlineManager_EState
 	eFETCHING_OFFLINE_CACHE_DB_DIFF_RECEIVED = 23,
 	eFETCHING_DYNAMIC_RESOURCES = 24,
 	eDYNAMIC_RESOURCES_MOUNTED = 25,
-	eCHECK_FOR_DLC_UPDATES = 26,
-	eFETCHING_PLATFORM_USERINFO = 27,
-	ePLATFORM_USERINFO_RECEIVED = 28,
-	eFETCHING_USER_CONFIGURATION = 29,
-	eUSER_CONFIGURATION_RECEIEVED = 30,
-	eFETCHING_PROFILE = 31,
-	ePROFILE_RECEIVED = 32,
-	eSYNCHRONIZING_PROFILE = 33,
-	ePROFILE_SYNCHRONIZED = 34,
-	eRETRIEVING_EVENTS = 35,
-	eEVENTS_RETRIEVED = 36,
-	eWAITING_FOR_SYNCHRONIZING_EVENTS = 37,
-	eCONNECTED = 38,
-	eCONNECT_TO_GAME_SESSION = 39,
-	eCONNECTING_TO_GAME_SESSION = 40,
-	eRETRY_SAVE_EVENTS = 41,
-	eRETRY_SAVE_EVENTS_INTERNAL = 42,
-	eREAUTHENTICATE = 43,
-	ePLATFORM_SESSION_RECONNECT = 44,
-	eSTATE_MAX = 45,
+	eUPDATE_FRIENDS = 26,
+	eCHECK_FOR_DLC_UPDATES = 27,
+	eFETCHING_PLATFORM_USERINFO = 28,
+	ePLATFORM_USERINFO_RECEIVED = 29,
+	eFETCHING_USER_CONFIGURATION = 30,
+	eUSER_CONFIGURATION_RECEIEVED = 31,
+	eFETCHING_PROFILE = 32,
+	ePROFILE_RECEIVED = 33,
+	eSYNCHRONIZING_PROFILE = 34,
+	ePROFILE_SYNCHRONIZED = 35,
+	eRETRIEVING_EVENTS = 36,
+	eEVENTS_RETRIEVED = 37,
+	eWAITING_FOR_SYNCHRONIZING_EVENTS = 38,
+	eCONNECTED = 39,
+	eCONNECT_TO_GAME_SESSION = 40,
+	eCONNECTING_TO_GAME_SESSION = 41,
+	eRETRY_SAVE_EVENTS = 42,
+	eRETRY_SAVE_EVENTS_INTERNAL = 43,
+	eREAUTHENTICATE = 44,
+	ePLATFORM_SESSION_RECONNECT = 45,
+	eSTATE_MAX = 46,
 };
 
 // Size: 0x4
@@ -24329,6 +25033,188 @@ enum class ZOperatorBool_EEvaluationType
 	ALL = 0,
 	NONE = 1,
 	ANY = 2,
+};
+
+// Size: 0x4
+enum class ZOverlayControllerEntity_EAlignment
+{
+	TopLeft = 0,
+	TopCenter = 1,
+	TopRight = 2,
+	CenterLeft = 3,
+	Center = 4,
+	CenterRight = 5,
+	BottomLeft = 6,
+	BottomCenter = 7,
+	BottomRight = 8,
+};
+
+// Size: 0x4
+enum class ZOverlayControllerEntity_EAnalogInputType
+{
+	StickFixedPosition = 0,
+	TouchPan = 1,
+	DigitalButton_PositiveValue = 2,
+	DigitalButton_NegativeValue = 3,
+};
+
+// Size: 0x4
+enum class ZOverlayControllerEntity_EInputType
+{
+	Invalid = 0,
+	Digital = 1,
+	Analog = 2,
+};
+
+// Size: 0x4
+enum class ZOverlayControllerEntity_EPositionType
+{
+	StaticRelative = 0,
+	DynamicAbsolute = 1,
+};
+
+// Size: 0x14
+class /*alignas(4)*/ ZOverlayControllerEntity_SInputData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZOverlayControllerEntity_SInputData& p_Other) const;
+	bool operator!=(const ZOverlayControllerEntity_SInputData& p_Other) const { return !(*this == p_Other); }
+
+	SVector2 PositionOffset; // 0x0
+	float32 TouchAreaSize; // 0x8
+	float32 TouchAreaActiveSize; // 0xC
+	ZOverlayControllerEntity_EAlignment Alignment; // 0x10
+};
+
+// Size: 0x4
+class /*alignas(1)*/ ZOverlayControllerEntity_SInputState
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZOverlayControllerEntity_SInputState& p_Other) const;
+	bool operator!=(const ZOverlayControllerEntity_SInputState& p_Other) const { return !(*this == p_Other); }
+
+	bool IsEnabled; // 0x0
+	bool IsVisible; // 0x1
+	bool IsActionAvailable; // 0x2
+	bool IsActionActive; // 0x3
+};
+
+// Size: 0x30
+class /*alignas(8)*/ ZOverlayControllerEntity_SUIInputData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZOverlayControllerEntity_SUIInputData& p_Other) const;
+	bool operator!=(const ZOverlayControllerEntity_SUIInputData& p_Other) const { return !(*this == p_Other); }
+
+	int32 actiontype; // 0x0
+	uint8_t _pad4[4] {};
+	ZString customicon; // 0x8
+	float32 posX; // 0x18
+	float32 posY; // 0x1C
+	float32 size; // 0x20
+	bool isPressed; // 0x24
+	uint8_t _pad25[3] {};
+	float32 alpha; // 0x28
+	bool isVisible; // 0x2C
+	uint8_t _pad2D[3] {};
+};
+
+// Size: 0x20
+class /*alignas(8)*/ ZOverlayControllerEntity_SUIData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZOverlayControllerEntity_SUIData& p_Other) const;
+	bool operator!=(const ZOverlayControllerEntity_SUIData& p_Other) const { return !(*this == p_Other); }
+
+	TArray<ZOverlayControllerEntity_SUIInputData> buttonPromptInputs; // 0x0
+	bool isVisible; // 0x18
+	uint8_t _pad19[7] {};
+};
+
+// Size: 0x4
+enum class ZOverlayControllerGameRunAnalogInputEntity_ERunMode
+{
+	Simple = 0,
+	ForwardOnlyActivation = 1,
+};
+
+// Size: 0x50
+class /*alignas(8)*/ ZOverlayGameControllerBase
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZOverlayGameControllerBase& p_Other) const;
+	bool operator!=(const ZOverlayGameControllerBase& p_Other) const { return !(*this == p_Other); }
+
+	uint8_t _pad0[80] {};
+};
+
+// Size: 0x4
+enum class ZOverlayGameControllerBase_EAnalogAxis
+{
+	LeftAxis_X = 0,
+	LeftAxis_Y = 1,
+	RightAxis_X = 2,
+	RightAxis_Y = 3,
+	LeftTrigger = 4,
+	RightTrigger = 5,
+	COUNT = 6,
+};
+
+// Size: 0x4
+enum class ZOverlayGameControllerBase_EDigitalButton
+{
+	DPad_Up = 0,
+	DPad_Down = 1,
+	DPad_Left = 2,
+	DPad_Right = 3,
+	Menu_Start = 4,
+	View_Back = 5,
+	LeftThumb = 6,
+	RightThumb = 7,
+	LeftBumper = 8,
+	RightBumper = 9,
+	FaceButton_Down = 10,
+	FaceButton_Right = 11,
+	FaceButton_Left = 12,
+	FaceButton_Up = 13,
+	LeftTrigger = 14,
+	RightTrigger = 15,
+	COUNT = 16,
 };
 
 // Size: 0x4
@@ -25220,6 +26106,26 @@ public:
 	uint8_t _pad21[7] {};
 };
 
+// Size: 0x30
+class /*alignas(8)*/ ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData& p_Other) const;
+	bool operator!=(const ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData& p_Other) const { return !(*this == p_Other); }
+
+	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo slotData; // 0x0
+	uint8_t _padD8[18446744073709551408] {};
+	TArray<SWeaponWheelPromptData> buttonprompts; // 0x8
+	ZString controllerType; // 0x20
+};
+
 // Size: 0x4
 enum class ZUIControlEntity_EAlignment
 {
@@ -25430,6 +26336,26 @@ public:
 	ZString noItemsMessage; // 0x28
 };
 
+// Size: 0x30
+class /*alignas(8)*/ ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData& p_Other) const;
+	bool operator!=(const ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData& p_Other) const { return !(*this == p_Other); }
+
+	ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo slotData; // 0x0
+	uint8_t _padD8[18446744073709551408] {};
+	TArray<SWeaponWheelPromptData> buttonprompts; // 0x8
+	ZString controllerType; // 0x20
+};
+
 // Size: 0x4
 enum class ZUIFlowLayoutEntity_EFlowType
 {
@@ -25530,6 +26456,26 @@ enum class ZUISubtitleSpeakerDefaultIconEntity_EEmitterType
 };
 
 // Size: 0x4
+enum class ZUpdateableBoolOperation_EEvaluationType
+{
+	ALL = 0,
+	NONE = 1,
+	ANY = 2,
+	NOT_ALL = 3,
+	ALL_EQUAL = 4,
+	ONE_TRUE = 5,
+};
+
+// Size: 0x4
+enum class ZUpdateableFloatOperation_EEvaluationType
+{
+	Max = 0,
+	Min = 1,
+	Multiply = 2,
+	Add = 3,
+};
+
+// Size: 0x4
 enum class ZVRCameraEntity_EEye
 {
 	eLeftEye = 0,
@@ -25550,6 +26496,14 @@ enum class ZVRHUDWristAlignmentController_EAxis
 	X_AXIS = 0,
 	Y_AXIS = 1,
 	Z_AXIS = 2,
+};
+
+// Size: 0x4
+enum class ZVRInputAxisEntity_EInputAxis
+{
+	Horizonal = 0,
+	Vertical = 1,
+	Depth = 2,
 };
 
 // Size: 0x4
@@ -25616,6 +26570,70 @@ enum class ZValueInt_Evaluation_EEvaluationType
 	LESS_OR_EQUAL = 3,
 	HIGHER = 4,
 	HIGHER_OR_EQUAL = 5,
+};
+
+// Size: 0x4
+class /*alignas(4)*/ ZVrDoorInteraction
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZVrDoorInteraction& p_Other) const;
+	bool operator!=(const ZVrDoorInteraction& p_Other) const { return !(*this == p_Other); }
+
+	uint8_t _pad0[4] {};
+};
+
+// Size: 0x4
+enum class ZVrDragBody_EVrDragBodyState
+{
+	DBS_Ready = 0,
+	DBS_YankState = 1,
+	DBS_DraggingBody = 2,
+};
+
+// Size: 0x4
+enum class ZVrMotionMoveBetweenBoxes_ECountMode
+{
+	OnlyA = 0,
+	OnlyB = 1,
+	Both = 2,
+};
+
+// Size: 0x4
+enum class ZVrMotionMoveBetweenBoxes_EMotionHandPose
+{
+	None = 0,
+	Typing = 1,
+};
+
+// Size: 0x4
+enum class ZVrMotionMoveBetweenBoxes_EMotionTrackedPosition
+{
+	VrController = 0,
+	IndexFingerTip = 1,
+};
+
+// Size: 0x4
+enum class ZVrMotionWiggle_EWiggleType
+{
+	MoveOnly = 0,
+	RotateOnly = 1,
+	UseMoreIntense = 2,
+	Combined = 3,
+};
+
+// Size: 0x4
+enum class ZVrTakeDisguise_EVrTakeDisguiseState
+{
+	TDS_Ready = 0,
+	TDS_YankState = 1,
+	TDS_HoldingDisguise = 2,
 };
 
 // Size: 0x4
@@ -25714,7 +26732,8 @@ enum class eHitmanPermissionReason
 	eHPReason_PlayerInput = 32,
 	eHPReason_InstinctBlendIn = 64,
 	eHPReason_FocusInteraction = 128,
-	eHPReason_NUM = 7,
+	eHPReason_VrDropInteraction = 256,
+	eHPReason_NUM = 8,
 	eHPReason_ALLReasons = -1,
 };
 

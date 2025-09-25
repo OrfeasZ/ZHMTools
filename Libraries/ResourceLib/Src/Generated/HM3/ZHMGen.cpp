@@ -3132,6 +3132,53 @@ void IUIDataListener::Destroy(void* p_Object)
 	s_Object->~IUIDataListener();
 }
 
+ZHMTypeInfo IUpdateable::TypeInfo = ZHMTypeInfo("IUpdateable", sizeof(IUpdateable), alignof(IUpdateable), IUpdateable::WriteSimpleJson, IUpdateable::FromSimpleJson, IUpdateable::Serialize, IUpdateable::Equals, IUpdateable::Destroy);
+
+void IUpdateable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<IUpdateable*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << "}";
+}
+
+void IUpdateable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	IUpdateable s_Object {};
+
+	*reinterpret_cast<IUpdateable*>(p_Target) = s_Object;
+}
+
+void IUpdateable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<IUpdateable*>(p_Object);
+
+}
+
+bool IUpdateable::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<IUpdateable*>(p_Left);
+	auto* s_Right = reinterpret_cast<IUpdateable*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool IUpdateable::operator==(const IUpdateable& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<IUpdateable>)
+		return false;
+
+
+	return true;
+}
+
+void IUpdateable::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<IUpdateable*>(p_Object);
+	s_Object->~IUpdateable();
+}
+
 ZHMTypeInfo IValueEntity::TypeInfo = ZHMTypeInfo("IValueEntity", sizeof(IValueEntity), alignof(IValueEntity), IValueEntity::WriteSimpleJson, IValueEntity::FromSimpleJson, IValueEntity::Serialize, IValueEntity::Equals, IValueEntity::Destroy);
 
 void IValueEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -3177,6 +3224,53 @@ void IValueEntity::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<IValueEntity*>(p_Object);
 	s_Object->~IValueEntity();
+}
+
+ZHMTypeInfo IVrmotionInteractionDataReceiver::TypeInfo = ZHMTypeInfo("IVrmotionInteractionDataReceiver", sizeof(IVrmotionInteractionDataReceiver), alignof(IVrmotionInteractionDataReceiver), IVrmotionInteractionDataReceiver::WriteSimpleJson, IVrmotionInteractionDataReceiver::FromSimpleJson, IVrmotionInteractionDataReceiver::Serialize, IVrmotionInteractionDataReceiver::Equals, IVrmotionInteractionDataReceiver::Destroy);
+
+void IVrmotionInteractionDataReceiver::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<IVrmotionInteractionDataReceiver*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << "}";
+}
+
+void IVrmotionInteractionDataReceiver::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	IVrmotionInteractionDataReceiver s_Object {};
+
+	*reinterpret_cast<IVrmotionInteractionDataReceiver*>(p_Target) = s_Object;
+}
+
+void IVrmotionInteractionDataReceiver::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<IVrmotionInteractionDataReceiver*>(p_Object);
+
+}
+
+bool IVrmotionInteractionDataReceiver::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<IVrmotionInteractionDataReceiver*>(p_Left);
+	auto* s_Right = reinterpret_cast<IVrmotionInteractionDataReceiver*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool IVrmotionInteractionDataReceiver::operator==(const IVrmotionInteractionDataReceiver& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<IVrmotionInteractionDataReceiver>)
+		return false;
+
+
+	return true;
+}
+
+void IVrmotionInteractionDataReceiver::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<IVrmotionInteractionDataReceiver*>(p_Object);
+	s_Object->~IVrmotionInteractionDataReceiver();
 }
 
 ZHMTypeInfo IWorldMapMarker::TypeInfo = ZHMTypeInfo("IWorldMapMarker", sizeof(IWorldMapMarker), alignof(IWorldMapMarker), IWorldMapMarker::WriteSimpleJson, IWorldMapMarker::FromSimpleJson, IWorldMapMarker::Serialize, IWorldMapMarker::Equals, IWorldMapMarker::Destroy);
@@ -3310,6 +3404,10 @@ void SWorldSpaceSettings::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 	p_Stream << simdjson::as_json_string(s_Object->fDynamicScaleAlpha);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("fDynamicScaleCloseupDistance") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fDynamicScaleCloseupDistance);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("fDynamicScaleNearDistance") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->fDynamicScaleNearDistance);
 	p_Stream << ",";
@@ -3331,6 +3429,8 @@ void SWorldSpaceSettings::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	s_Object.bDynamicScale = simdjson::from_json_bool(p_Document["bDynamicScale"]);
 
 	s_Object.fDynamicScaleAlpha = simdjson::from_json_float32(p_Document["fDynamicScaleAlpha"]);
+
+	s_Object.fDynamicScaleCloseupDistance = simdjson::from_json_float32(p_Document["fDynamicScaleCloseupDistance"]);
 
 	s_Object.fDynamicScaleNearDistance = simdjson::from_json_float32(p_Document["fDynamicScaleNearDistance"]);
 
@@ -3362,6 +3462,7 @@ bool SWorldSpaceSettings::operator==(const SWorldSpaceSettings& p_Other) const
 	if (fScale != p_Other.fScale) return false;
 	if (bDynamicScale != p_Other.bDynamicScale) return false;
 	if (fDynamicScaleAlpha != p_Other.fDynamicScaleAlpha) return false;
+	if (fDynamicScaleCloseupDistance != p_Other.fDynamicScaleCloseupDistance) return false;
 	if (fDynamicScaleNearDistance != p_Other.fDynamicScaleNearDistance) return false;
 	if (fDynamicScaleBlendRange != p_Other.fDynamicScaleBlendRange) return false;
 
@@ -26670,6 +26771,14 @@ void SEvergreenMenuPromptDesc::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	p_Stream << simdjson::as_json_string("actionlabel") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->actionlabel);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("actionalticon") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->actionalticon);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("enabled") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->enabled);
 
 	p_Stream << "}";
 }
@@ -26682,6 +26791,10 @@ void SEvergreenMenuPromptDesc::FromSimpleJson(simdjson::ondemand::value p_Docume
 
 	s_Object.actionlabel = std::string_view(p_Document["actionlabel"]);
 
+	s_Object.actionalticon = std::string_view(p_Document["actionalticon"]);
+
+	s_Object.enabled = simdjson::from_json_bool(p_Document["enabled"]);
+
 	*reinterpret_cast<SEvergreenMenuPromptDesc*>(p_Target) = s_Object;
 }
 
@@ -26691,6 +26804,7 @@ void SEvergreenMenuPromptDesc::Serialize(void* p_Object, ZHMSerializer& p_Serial
 
 	ZString::Serialize(&s_Object->actiontype, p_Serializer, p_OwnOffset + offsetof(SEvergreenMenuPromptDesc, actiontype));
 	ZString::Serialize(&s_Object->actionlabel, p_Serializer, p_OwnOffset + offsetof(SEvergreenMenuPromptDesc, actionlabel));
+	ZString::Serialize(&s_Object->actionalticon, p_Serializer, p_OwnOffset + offsetof(SEvergreenMenuPromptDesc, actionalticon));
 }
 
 bool SEvergreenMenuPromptDesc::Equals(void* p_Left, void* p_Right)
@@ -26708,6 +26822,8 @@ bool SEvergreenMenuPromptDesc::operator==(const SEvergreenMenuPromptDesc& p_Othe
 
 	if (actiontype != p_Other.actiontype) return false;
 	if (actionlabel != p_Other.actionlabel) return false;
+	if (actionalticon != p_Other.actionalticon) return false;
+	if (enabled != p_Other.enabled) return false;
 
 	return true;
 }
@@ -31462,6 +31578,161 @@ void SVIPEvacuationNodesSaveData::Destroy(void* p_Object)
 	s_Object->~SVIPEvacuationNodesSaveData();
 }
 
+ZHMTypeInfo SVRHolsterAttacherSaveData::TypeInfo = ZHMTypeInfo("SVRHolsterAttacherSaveData", sizeof(SVRHolsterAttacherSaveData), alignof(SVRHolsterAttacherSaveData), SVRHolsterAttacherSaveData::WriteSimpleJson, SVRHolsterAttacherSaveData::FromSimpleJson, SVRHolsterAttacherSaveData::Serialize, SVRHolsterAttacherSaveData::Equals, SVRHolsterAttacherSaveData::Destroy);
+
+void SVRHolsterAttacherSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVRHolsterAttacherSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_rContainedItem") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_rContainedItem);
+
+	p_Stream << "}";
+}
+
+void SVRHolsterAttacherSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SVRHolsterAttacherSaveData s_Object {};
+
+	s_Object.m_rContainedItem = simdjson::from_json_uint32(p_Document["m_rContainedItem"]);
+
+	*reinterpret_cast<SVRHolsterAttacherSaveData*>(p_Target) = s_Object;
+}
+
+void SVRHolsterAttacherSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVRHolsterAttacherSaveData*>(p_Object);
+
+}
+
+bool SVRHolsterAttacherSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVRHolsterAttacherSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVRHolsterAttacherSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVRHolsterAttacherSaveData::operator==(const SVRHolsterAttacherSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVRHolsterAttacherSaveData>)
+		return false;
+
+	if (m_rContainedItem != p_Other.m_rContainedItem) return false;
+
+	return true;
+}
+
+void SVRHolsterAttacherSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVRHolsterAttacherSaveData*>(p_Object);
+	s_Object->~SVRHolsterAttacherSaveData();
+}
+
+ZHMTypeInfo SVRHolsterAttachersSaveData::TypeInfo = ZHMTypeInfo("SVRHolsterAttachersSaveData", sizeof(SVRHolsterAttachersSaveData), alignof(SVRHolsterAttachersSaveData), SVRHolsterAttachersSaveData::WriteSimpleJson, SVRHolsterAttachersSaveData::FromSimpleJson, SVRHolsterAttachersSaveData::Serialize, SVRHolsterAttachersSaveData::Equals, SVRHolsterAttachersSaveData::Destroy);
+
+void SVRHolsterAttachersSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVRHolsterAttachersSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_aEntities") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aEntities.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aEntities[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aEntities.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aData") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aData.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aData[i];
+		SVRHolsterAttacherSaveData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_aData.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SVRHolsterAttachersSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SVRHolsterAttachersSaveData s_Object {};
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aEntities"];
+	s_Object.m_aEntities.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aEntities[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aData"];
+	s_Object.m_aData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SVRHolsterAttacherSaveData s_ArrayItem0;
+		SVRHolsterAttacherSaveData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.m_aData[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	*reinterpret_cast<SVRHolsterAttachersSaveData*>(p_Target) = s_Object;
+}
+
+void SVRHolsterAttachersSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVRHolsterAttachersSaveData*>(p_Object);
+
+	TArray<uint32>::Serialize(&s_Object->m_aEntities, p_Serializer, p_OwnOffset + offsetof(SVRHolsterAttachersSaveData, m_aEntities));
+	TArray<SVRHolsterAttacherSaveData>::Serialize(&s_Object->m_aData, p_Serializer, p_OwnOffset + offsetof(SVRHolsterAttachersSaveData, m_aData));
+}
+
+bool SVRHolsterAttachersSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVRHolsterAttachersSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVRHolsterAttachersSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVRHolsterAttachersSaveData::operator==(const SVRHolsterAttachersSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVRHolsterAttachersSaveData>)
+		return false;
+
+	if (m_aEntities != p_Other.m_aEntities) return false;
+	if (m_aData != p_Other.m_aData) return false;
+
+	return true;
+}
+
+void SVRHolsterAttachersSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVRHolsterAttachersSaveData*>(p_Object);
+	s_Object->~SVRHolsterAttachersSaveData();
+}
+
 ZHMTypeInfo SVolumeTriggerListenerSaveData::TypeInfo = ZHMTypeInfo("SVolumeTriggerListenerSaveData", sizeof(SVolumeTriggerListenerSaveData), alignof(SVolumeTriggerListenerSaveData), SVolumeTriggerListenerSaveData::WriteSimpleJson, SVolumeTriggerListenerSaveData::FromSimpleJson, SVolumeTriggerListenerSaveData::Serialize, SVolumeTriggerListenerSaveData::Equals, SVolumeTriggerListenerSaveData::Destroy);
 
 void SVolumeTriggerListenerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -31726,6 +31997,10 @@ void SGameEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 	p_Stream << simdjson::as_json_string("m_MathLerpsData_SColorRGBA") << ":";
 	SMathLerpsSaveData_SColorRGBA::WriteSimpleJson(&s_Object->m_MathLerpsData_SColorRGBA, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_VRHolsterAttachers") << ":";
+	SVRHolsterAttachersSaveData::WriteSimpleJson(&s_Object->m_VRHolsterAttachers, p_Stream);
 
 	p_Stream << "}";
 }
@@ -31878,6 +32153,12 @@ void SGameEntitySaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 		s_Object.m_MathLerpsData_SColorRGBA = s_Item;
 	}
 
+	{
+		SVRHolsterAttachersSaveData s_Item {};
+		SVRHolsterAttachersSaveData::FromSimpleJson(p_Document["m_VRHolsterAttachers"], &s_Item);
+		s_Object.m_VRHolsterAttachers = s_Item;
+	}
+
 	*reinterpret_cast<SGameEntitySaveData*>(p_Target) = s_Object;
 }
 
@@ -31909,6 +32190,7 @@ void SGameEntitySaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer,
 	SMathLerpsSaveData_SVector4::Serialize(&s_Object->m_MathLerpsData_SVector4, p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SVector4));
 	SMathLerpsSaveData_SColorRGB::Serialize(&s_Object->m_MathLerpsData_SColorRGB, p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SColorRGB));
 	SMathLerpsSaveData_SColorRGBA::Serialize(&s_Object->m_MathLerpsData_SColorRGBA, p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_MathLerpsData_SColorRGBA));
+	SVRHolsterAttachersSaveData::Serialize(&s_Object->m_VRHolsterAttachers, p_Serializer, p_OwnOffset + offsetof(SGameEntitySaveData, m_VRHolsterAttachers));
 }
 
 bool SGameEntitySaveData::Equals(void* p_Left, void* p_Right)
@@ -31948,6 +32230,7 @@ bool SGameEntitySaveData::operator==(const SGameEntitySaveData& p_Other) const
 	if (m_MathLerpsData_SVector4 != p_Other.m_MathLerpsData_SVector4) return false;
 	if (m_MathLerpsData_SColorRGB != p_Other.m_MathLerpsData_SColorRGB) return false;
 	if (m_MathLerpsData_SColorRGBA != p_Other.m_MathLerpsData_SColorRGBA) return false;
+	if (m_VRHolsterAttachers != p_Other.m_VRHolsterAttachers) return false;
 
 	return true;
 }
@@ -34162,6 +34445,14 @@ void SHM5CrippleBoxSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Str
 	p_Stream << simdjson::as_json_string(s_Object->m_bCanHolsterItems);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("m_bVRInventory") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bVRInventory);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bVRTurn") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bVRTurn);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("m_bCoverTakedown") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_bCoverTakedown);
 	p_Stream << ",";
@@ -34314,6 +34605,10 @@ void SHM5CrippleBoxSaveData::FromSimpleJson(simdjson::ondemand::value p_Document
 
 	s_Object.m_bCanHolsterItems = simdjson::from_json_bool(p_Document["m_bCanHolsterItems"]);
 
+	s_Object.m_bVRInventory = simdjson::from_json_bool(p_Document["m_bVRInventory"]);
+
+	s_Object.m_bVRTurn = simdjson::from_json_bool(p_Document["m_bVRTurn"]);
+
 	s_Object.m_bCoverTakedown = simdjson::from_json_bool(p_Document["m_bCoverTakedown"]);
 
 	s_Object.m_bCoverScale = simdjson::from_json_bool(p_Document["m_bCoverScale"]);
@@ -34409,6 +34704,8 @@ bool SHM5CrippleBoxSaveData::operator==(const SHM5CrippleBoxSaveData& p_Other) c
 	if (m_bIdleAnimationsAllowed != p_Other.m_bIdleAnimationsAllowed) return false;
 	if (m_bItems != p_Other.m_bItems) return false;
 	if (m_bCanHolsterItems != p_Other.m_bCanHolsterItems) return false;
+	if (m_bVRInventory != p_Other.m_bVRInventory) return false;
+	if (m_bVRTurn != p_Other.m_bVRTurn) return false;
 	if (m_bCoverTakedown != p_Other.m_bCoverTakedown) return false;
 	if (m_bCoverScale != p_Other.m_bCoverScale) return false;
 	if (m_bCoverToCover != p_Other.m_bCoverToCover) return false;
@@ -34531,6 +34828,10 @@ void SHUDPromptDisplayInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 	p_Stream << simdjson::as_json_string(s_Object->m_bNoActionAvailable);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("m_bIsActionBlocked") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bIsActionBlocked);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("m_sLabel") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_sLabel);
 	p_Stream << ",";
@@ -34541,6 +34842,10 @@ void SHUDPromptDisplayInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	p_Stream << simdjson::as_json_string("m_sGlyph") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_sGlyph);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_sCustomIcon") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sCustomIcon);
 	p_Stream << ",";
 
 	p_Stream << simdjson::as_json_string("m_fOpacity") << ":";
@@ -34561,6 +34866,10 @@ void SHUDPromptDisplayInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	p_Stream << simdjson::as_json_string("m_nFontSize") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_nFontSize);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eGameInputFlag") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EHM5GameInputFlag", static_cast<int>(s_Object->m_eGameInputFlag)));
 
 	p_Stream << "}";
 }
@@ -34585,11 +34894,15 @@ void SHUDPromptDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_bNoActionAvailable = simdjson::from_json_bool(p_Document["m_bNoActionAvailable"]);
 
+	s_Object.m_bIsActionBlocked = simdjson::from_json_bool(p_Document["m_bIsActionBlocked"]);
+
 	s_Object.m_sLabel = std::string_view(p_Document["m_sLabel"]);
 
 	s_Object.m_sDescription = std::string_view(p_Document["m_sDescription"]);
 
 	s_Object.m_sGlyph = std::string_view(p_Document["m_sGlyph"]);
+
+	s_Object.m_sCustomIcon = std::string_view(p_Document["m_sCustomIcon"]);
 
 	s_Object.m_fOpacity = simdjson::from_json_float32(p_Document["m_fOpacity"]);
 
@@ -34601,6 +34914,8 @@ void SHUDPromptDisplayInfo::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object.m_nFontSize = simdjson::from_json_int32(p_Document["m_nFontSize"]);
 
+	s_Object.m_eGameInputFlag = static_cast<EHM5GameInputFlag>(ZHMEnums::GetEnumValueByName("EHM5GameInputFlag", std::string_view(p_Document["m_eGameInputFlag"])));
+
 	*reinterpret_cast<SHUDPromptDisplayInfo*>(p_Target) = s_Object;
 }
 
@@ -34611,6 +34926,7 @@ void SHUDPromptDisplayInfo::Serialize(void* p_Object, ZHMSerializer& p_Serialize
 	ZString::Serialize(&s_Object->m_sLabel, p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sLabel));
 	ZString::Serialize(&s_Object->m_sDescription, p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sDescription));
 	ZString::Serialize(&s_Object->m_sGlyph, p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sGlyph));
+	ZString::Serialize(&s_Object->m_sCustomIcon, p_Serializer, p_OwnOffset + offsetof(SHUDPromptDisplayInfo, m_sCustomIcon));
 }
 
 bool SHUDPromptDisplayInfo::Equals(void* p_Left, void* p_Right)
@@ -34634,14 +34950,17 @@ bool SHUDPromptDisplayInfo::operator==(const SHUDPromptDisplayInfo& p_Other) con
 	if (m_fDistance != p_Other.m_fDistance) return false;
 	if (m_bShowWarning != p_Other.m_bShowWarning) return false;
 	if (m_bNoActionAvailable != p_Other.m_bNoActionAvailable) return false;
+	if (m_bIsActionBlocked != p_Other.m_bIsActionBlocked) return false;
 	if (m_sLabel != p_Other.m_sLabel) return false;
 	if (m_sDescription != p_Other.m_sDescription) return false;
 	if (m_sGlyph != p_Other.m_sGlyph) return false;
+	if (m_sCustomIcon != p_Other.m_sCustomIcon) return false;
 	if (m_fOpacity != p_Other.m_fOpacity) return false;
 	if (m_bIllegalItem != p_Other.m_bIllegalItem) return false;
 	if (m_bSuspiciousItem != p_Other.m_bSuspiciousItem) return false;
 	if (m_bDropTempHolsterableItems != p_Other.m_bDropTempHolsterableItems) return false;
 	if (m_nFontSize != p_Other.m_nFontSize) return false;
+	if (m_eGameInputFlag != p_Other.m_eGameInputFlag) return false;
 
 	return true;
 }
@@ -36122,6 +36441,18 @@ void SHitmanSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 	p_Stream << simdjson::as_json_string("m_bIsChangingClothes") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_bIsChangingClothes);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nVRMovementState") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nVRMovementState);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_rVRMovementTarget") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_rVRMovementTarget);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_fVRMovementTargetExpiration") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fVRMovementTargetExpiration);
 
 	p_Stream << "}";
 }
@@ -36178,6 +36509,12 @@ void SHitmanSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void*
 
 	s_Object.m_bIsChangingClothes = simdjson::from_json_bool(p_Document["m_bIsChangingClothes"]);
 
+	s_Object.m_nVRMovementState = simdjson::from_json_uint32(p_Document["m_nVRMovementState"]);
+
+	s_Object.m_rVRMovementTarget = simdjson::from_json_uint32(p_Document["m_rVRMovementTarget"]);
+
+	s_Object.m_fVRMovementTargetExpiration = simdjson::from_json_float32(p_Document["m_fVRMovementTargetExpiration"]);
+
 	*reinterpret_cast<SHitmanSaveData*>(p_Target) = s_Object;
 }
 
@@ -36218,6 +36555,9 @@ bool SHitmanSaveData::operator==(const SHitmanSaveData& p_Other) const
 	if (m_MovementData != p_Other.m_MovementData) return false;
 	if (m_bLethalAgilityElementUsed != p_Other.m_bLethalAgilityElementUsed) return false;
 	if (m_bIsChangingClothes != p_Other.m_bIsChangingClothes) return false;
+	if (m_nVRMovementState != p_Other.m_nVRMovementState) return false;
+	if (m_rVRMovementTarget != p_Other.m_rVRMovementTarget) return false;
+	if (m_fVRMovementTargetExpiration != p_Other.m_fVRMovementTargetExpiration) return false;
 
 	return true;
 }
@@ -36901,6 +37241,10 @@ void SInteractionIndicatorInstanceData_SUIControlData::WriteSimpleJson(void* p_O
 	p_Stream << simdjson::as_json_string(s_Object->m_sGlyph);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("m_sCustomIcon") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_sCustomIcon);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("m_bIllegal") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_bIllegal);
 	p_Stream << ",";
@@ -36931,6 +37275,14 @@ void SInteractionIndicatorInstanceData_SUIControlData::WriteSimpleJson(void* p_O
 
 	p_Stream << simdjson::as_json_string("m_bIsTxtDirReversed") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_bIsTxtDirReversed);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bHidePrompt") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bHidePrompt);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bIsActionBlocked") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bIsActionBlocked);
 
 	p_Stream << "}";
 }
@@ -36953,6 +37305,8 @@ void SInteractionIndicatorInstanceData_SUIControlData::FromSimpleJson(simdjson::
 
 	s_Object.m_sGlyph = std::string_view(p_Document["m_sGlyph"]);
 
+	s_Object.m_sCustomIcon = std::string_view(p_Document["m_sCustomIcon"]);
+
 	s_Object.m_bIllegal = simdjson::from_json_bool(p_Document["m_bIllegal"]);
 
 	s_Object.m_bNoActionAvailable = simdjson::from_json_bool(p_Document["m_bNoActionAvailable"]);
@@ -36969,6 +37323,10 @@ void SInteractionIndicatorInstanceData_SUIControlData::FromSimpleJson(simdjson::
 
 	s_Object.m_bIsTxtDirReversed = simdjson::from_json_bool(p_Document["m_bIsTxtDirReversed"]);
 
+	s_Object.m_bHidePrompt = simdjson::from_json_bool(p_Document["m_bHidePrompt"]);
+
+	s_Object.m_bIsActionBlocked = simdjson::from_json_bool(p_Document["m_bIsActionBlocked"]);
+
 	*reinterpret_cast<SInteractionIndicatorInstanceData_SUIControlData*>(p_Target) = s_Object;
 }
 
@@ -36979,6 +37337,7 @@ void SInteractionIndicatorInstanceData_SUIControlData::Serialize(void* p_Object,
 	ZString::Serialize(&s_Object->m_sLabel, p_Serializer, p_OwnOffset + offsetof(SInteractionIndicatorInstanceData_SUIControlData, m_sLabel));
 	ZString::Serialize(&s_Object->m_sDescription, p_Serializer, p_OwnOffset + offsetof(SInteractionIndicatorInstanceData_SUIControlData, m_sDescription));
 	ZString::Serialize(&s_Object->m_sGlyph, p_Serializer, p_OwnOffset + offsetof(SInteractionIndicatorInstanceData_SUIControlData, m_sGlyph));
+	ZString::Serialize(&s_Object->m_sCustomIcon, p_Serializer, p_OwnOffset + offsetof(SInteractionIndicatorInstanceData_SUIControlData, m_sCustomIcon));
 }
 
 bool SInteractionIndicatorInstanceData_SUIControlData::Equals(void* p_Left, void* p_Right)
@@ -37001,6 +37360,7 @@ bool SInteractionIndicatorInstanceData_SUIControlData::operator==(const SInterac
 	if (m_sLabel != p_Other.m_sLabel) return false;
 	if (m_sDescription != p_Other.m_sDescription) return false;
 	if (m_sGlyph != p_Other.m_sGlyph) return false;
+	if (m_sCustomIcon != p_Other.m_sCustomIcon) return false;
 	if (m_bIllegal != p_Other.m_bIllegal) return false;
 	if (m_bNoActionAvailable != p_Other.m_bNoActionAvailable) return false;
 	if (m_bInRange != p_Other.m_bInRange) return false;
@@ -37009,6 +37369,8 @@ bool SInteractionIndicatorInstanceData_SUIControlData::operator==(const SInterac
 	if (m_bContainsItem != p_Other.m_bContainsItem) return false;
 	if (m_nFontSize != p_Other.m_nFontSize) return false;
 	if (m_bIsTxtDirReversed != p_Other.m_bIsTxtDirReversed) return false;
+	if (m_bHidePrompt != p_Other.m_bHidePrompt) return false;
+	if (m_bIsActionBlocked != p_Other.m_bIsActionBlocked) return false;
 
 	return true;
 }
@@ -37057,6 +37419,14 @@ void SInteractionIndicatorInstanceData::WriteSimpleJson(void* p_Object, std::ost
 
 	p_Stream << simdjson::as_json_string("m_bNeedAlphaUpdate") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_bNeedAlphaUpdate);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bLimit3DSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bLimit3DSize);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eGameInputFlag") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EHM5GameInputFlag", static_cast<int>(s_Object->m_eGameInputFlag)));
 
 	p_Stream << "}";
 }
@@ -37093,6 +37463,10 @@ void SInteractionIndicatorInstanceData::FromSimpleJson(simdjson::ondemand::value
 
 	s_Object.m_bNeedAlphaUpdate = simdjson::from_json_bool(p_Document["m_bNeedAlphaUpdate"]);
 
+	s_Object.m_bLimit3DSize = simdjson::from_json_bool(p_Document["m_bLimit3DSize"]);
+
+	s_Object.m_eGameInputFlag = static_cast<EHM5GameInputFlag>(ZHMEnums::GetEnumValueByName("EHM5GameInputFlag", std::string_view(p_Document["m_eGameInputFlag"])));
+
 	*reinterpret_cast<SInteractionIndicatorInstanceData*>(p_Target) = s_Object;
 }
 
@@ -37126,6 +37500,8 @@ bool SInteractionIndicatorInstanceData::operator==(const SInteractionIndicatorIn
 	if (m_vRotation != p_Other.m_vRotation) return false;
 	if (m_bNeedDataUpdate != p_Other.m_bNeedDataUpdate) return false;
 	if (m_bNeedAlphaUpdate != p_Other.m_bNeedAlphaUpdate) return false;
+	if (m_bLimit3DSize != p_Other.m_bLimit3DSize) return false;
+	if (m_eGameInputFlag != p_Other.m_eGameInputFlag) return false;
 
 	return true;
 }
@@ -37762,6 +38138,10 @@ void SInventoryInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	}
 
 	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_ConcealedWeapon") << ":";
+	SInventoryItem::WriteSimpleJson(&s_Object->m_ConcealedWeapon, p_Stream);
 
 	p_Stream << "}";
 }
@@ -37802,6 +38182,12 @@ void SInventoryInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* 
 	}
 	}
 
+	{
+		SInventoryItem s_Item {};
+		SInventoryItem::FromSimpleJson(p_Document["m_ConcealedWeapon"], &s_Item);
+		s_Object.m_ConcealedWeapon = s_Item;
+	}
+
 	*reinterpret_cast<SInventoryInfo*>(p_Target) = s_Object;
 }
 
@@ -37812,6 +38198,7 @@ void SInventoryInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmp
 	TArray<SInventoryItem>::Serialize(&s_Object->m_aPockets, p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_aPockets));
 	SInventoryItem::Serialize(&s_Object->m_CarriedItem, p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_CarriedItem));
 	TArray<SContainerItemInfo>::Serialize(&s_Object->m_aContainerItems, p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_aContainerItems));
+	SInventoryItem::Serialize(&s_Object->m_ConcealedWeapon, p_Serializer, p_OwnOffset + offsetof(SInventoryInfo, m_ConcealedWeapon));
 }
 
 bool SInventoryInfo::Equals(void* p_Left, void* p_Right)
@@ -37830,6 +38217,7 @@ bool SInventoryInfo::operator==(const SInventoryInfo& p_Other) const
 	if (m_aPockets != p_Other.m_aPockets) return false;
 	if (m_CarriedItem != p_Other.m_CarriedItem) return false;
 	if (m_aContainerItems != p_Other.m_aContainerItems) return false;
+	if (m_ConcealedWeapon != p_Other.m_ConcealedWeapon) return false;
 
 	return true;
 }
@@ -37975,6 +38363,10 @@ void SInventoryUISlotSlim::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 	p_Stream << simdjson::as_json_string("containedIcon") << ":";
 	ZVariant::WriteSimpleJson(&s_Object->containedIcon, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("isContainer") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isContainer);
 
 	p_Stream << "}";
 }
@@ -37994,6 +38386,8 @@ void SInventoryUISlotSlim::FromSimpleJson(simdjson::ondemand::value p_Document, 
 		ZVariant::FromSimpleJson(p_Document["containedIcon"], &s_Item);
 		s_Object.containedIcon = s_Item;
 	}
+
+	s_Object.isContainer = simdjson::from_json_bool(p_Document["isContainer"]);
 
 	*reinterpret_cast<SInventoryUISlotSlim*>(p_Target) = s_Object;
 }
@@ -38021,6 +38415,7 @@ bool SInventoryUISlotSlim::operator==(const SInventoryUISlotSlim& p_Other) const
 
 	if (icon != p_Other.icon) return false;
 	if (containedIcon != p_Other.containedIcon) return false;
+	if (isContainer != p_Other.isContainer) return false;
 
 	return true;
 }
@@ -39487,6 +39882,14 @@ void SItemWeaponSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 	p_Stream << simdjson::as_json_string("m_eDeathContext") << ":";
 	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EDeathContext", static_cast<int>(s_Object->m_eDeathContext)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bLiveBulletInChamber") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bLiveBulletInChamber);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bSpentBulletInChamber") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bSpentBulletInChamber);
 
 	p_Stream << "}";
 }
@@ -39511,6 +39914,10 @@ void SItemWeaponSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	s_Object.m_ePendingDeathContext = static_cast<EDeathContext>(ZHMEnums::GetEnumValueByName("EDeathContext", std::string_view(p_Document["m_ePendingDeathContext"])));
 
 	s_Object.m_eDeathContext = static_cast<EDeathContext>(ZHMEnums::GetEnumValueByName("EDeathContext", std::string_view(p_Document["m_eDeathContext"])));
+
+	s_Object.m_bLiveBulletInChamber = simdjson::from_json_bool(p_Document["m_bLiveBulletInChamber"]);
+
+	s_Object.m_bSpentBulletInChamber = simdjson::from_json_bool(p_Document["m_bSpentBulletInChamber"]);
 
 	*reinterpret_cast<SItemWeaponSaveData*>(p_Target) = s_Object;
 }
@@ -39539,6 +39946,8 @@ bool SItemWeaponSaveData::operator==(const SItemWeaponSaveData& p_Other) const
 	if (m_nExtraMagazineBullets != p_Other.m_nExtraMagazineBullets) return false;
 	if (m_ePendingDeathContext != p_Other.m_ePendingDeathContext) return false;
 	if (m_eDeathContext != p_Other.m_eDeathContext) return false;
+	if (m_bLiveBulletInChamber != p_Other.m_bLiveBulletInChamber) return false;
+	if (m_bSpentBulletInChamber != p_Other.m_bSpentBulletInChamber) return false;
 
 	return true;
 }
@@ -47425,6 +47834,91 @@ void SStepCounterEntitySaveData::Destroy(void* p_Object)
 	s_Object->~SStepCounterEntitySaveData();
 }
 
+ZHMTypeInfo SStoreItem::TypeInfo = ZHMTypeInfo("SStoreItem", sizeof(SStoreItem), alignof(SStoreItem), SStoreItem::WriteSimpleJson, SStoreItem::FromSimpleJson, SStoreItem::Serialize, SStoreItem::Equals, SStoreItem::Destroy);
+
+void SStoreItem::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SStoreItem*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("Id") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Id);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("DisplayName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->DisplayName);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("Description") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Description);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("DisplayPrice") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->DisplayPrice);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("Price") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Price);
+
+	p_Stream << "}";
+}
+
+void SStoreItem::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SStoreItem s_Object {};
+
+	s_Object.Id = std::string_view(p_Document["Id"]);
+
+	s_Object.DisplayName = std::string_view(p_Document["DisplayName"]);
+
+	s_Object.Description = std::string_view(p_Document["Description"]);
+
+	s_Object.DisplayPrice = std::string_view(p_Document["DisplayPrice"]);
+
+	s_Object.Price = simdjson::from_json_float32(p_Document["Price"]);
+
+	*reinterpret_cast<SStoreItem*>(p_Target) = s_Object;
+}
+
+void SStoreItem::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SStoreItem*>(p_Object);
+
+	ZString::Serialize(&s_Object->Id, p_Serializer, p_OwnOffset + offsetof(SStoreItem, Id));
+	ZString::Serialize(&s_Object->DisplayName, p_Serializer, p_OwnOffset + offsetof(SStoreItem, DisplayName));
+	ZString::Serialize(&s_Object->Description, p_Serializer, p_OwnOffset + offsetof(SStoreItem, Description));
+	ZString::Serialize(&s_Object->DisplayPrice, p_Serializer, p_OwnOffset + offsetof(SStoreItem, DisplayPrice));
+}
+
+bool SStoreItem::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SStoreItem*>(p_Left);
+	auto* s_Right = reinterpret_cast<SStoreItem*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SStoreItem::operator==(const SStoreItem& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SStoreItem>)
+		return false;
+
+	if (Id != p_Other.Id) return false;
+	if (DisplayName != p_Other.DisplayName) return false;
+	if (Description != p_Other.Description) return false;
+	if (DisplayPrice != p_Other.DisplayPrice) return false;
+	if (Price != p_Other.Price) return false;
+
+	return true;
+}
+
+void SStoreItem::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SStoreItem*>(p_Object);
+	s_Object->~SStoreItem();
+}
+
 ZHMTypeInfo STargetInfoObjectiveCondition::TypeInfo = ZHMTypeInfo("STargetInfoObjectiveCondition", sizeof(STargetInfoObjectiveCondition), alignof(STargetInfoObjectiveCondition), STargetInfoObjectiveCondition::WriteSimpleJson, STargetInfoObjectiveCondition::FromSimpleJson, STargetInfoObjectiveCondition::Serialize, STargetInfoObjectiveCondition::Equals, STargetInfoObjectiveCondition::Destroy);
 
 void STargetInfoObjectiveCondition::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -50447,6 +50941,186 @@ void SUITestData::Destroy(void* p_Object)
 	s_Object->~SUITestData();
 }
 
+ZHMTypeInfo SWeaponWheelPromptData::TypeInfo = ZHMTypeInfo("SWeaponWheelPromptData", sizeof(SWeaponWheelPromptData), alignof(SWeaponWheelPromptData), SWeaponWheelPromptData::WriteSimpleJson, SWeaponWheelPromptData::FromSimpleJson, SWeaponWheelPromptData::Serialize, SWeaponWheelPromptData::Equals, SWeaponWheelPromptData::Destroy);
+
+void SWeaponWheelPromptData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SWeaponWheelPromptData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("actiontype") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->actiontype);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("actionlabel") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->actionlabel);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("actionglyph") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->actionglyph);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("actionalticon") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->actionalticon);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("actionid") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->actionid);
+
+	p_Stream << "}";
+}
+
+void SWeaponWheelPromptData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SWeaponWheelPromptData s_Object {};
+
+	s_Object.actiontype = std::string_view(p_Document["actiontype"]);
+
+	s_Object.actionlabel = std::string_view(p_Document["actionlabel"]);
+
+	s_Object.actionglyph = std::string_view(p_Document["actionglyph"]);
+
+	s_Object.actionalticon = std::string_view(p_Document["actionalticon"]);
+
+	s_Object.actionid = simdjson::from_json_int32(p_Document["actionid"]);
+
+	*reinterpret_cast<SWeaponWheelPromptData*>(p_Target) = s_Object;
+}
+
+void SWeaponWheelPromptData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SWeaponWheelPromptData*>(p_Object);
+
+	ZString::Serialize(&s_Object->actiontype, p_Serializer, p_OwnOffset + offsetof(SWeaponWheelPromptData, actiontype));
+	ZString::Serialize(&s_Object->actionlabel, p_Serializer, p_OwnOffset + offsetof(SWeaponWheelPromptData, actionlabel));
+	ZString::Serialize(&s_Object->actionglyph, p_Serializer, p_OwnOffset + offsetof(SWeaponWheelPromptData, actionglyph));
+	ZString::Serialize(&s_Object->actionalticon, p_Serializer, p_OwnOffset + offsetof(SWeaponWheelPromptData, actionalticon));
+}
+
+bool SWeaponWheelPromptData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SWeaponWheelPromptData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SWeaponWheelPromptData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SWeaponWheelPromptData::operator==(const SWeaponWheelPromptData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SWeaponWheelPromptData>)
+		return false;
+
+	if (actiontype != p_Other.actiontype) return false;
+	if (actionlabel != p_Other.actionlabel) return false;
+	if (actionglyph != p_Other.actionglyph) return false;
+	if (actionalticon != p_Other.actionalticon) return false;
+	if (actionid != p_Other.actionid) return false;
+
+	return true;
+}
+
+void SWeaponWheelPromptData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SWeaponWheelPromptData*>(p_Object);
+	s_Object->~SWeaponWheelPromptData();
+}
+
+ZHMTypeInfo SUpdateSelectedSlotData::TypeInfo = ZHMTypeInfo("SUpdateSelectedSlotData", sizeof(SUpdateSelectedSlotData), alignof(SUpdateSelectedSlotData), SUpdateSelectedSlotData::WriteSimpleJson, SUpdateSelectedSlotData::FromSimpleJson, SUpdateSelectedSlotData::Serialize, SUpdateSelectedSlotData::Equals, SUpdateSelectedSlotData::Destroy);
+
+void SUpdateSelectedSlotData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SUpdateSelectedSlotData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("slotData") << ":";
+	SInventoryUISlot::WriteSimpleJson(&s_Object->slotData, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("buttonprompts") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->buttonprompts.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->buttonprompts[i];
+		SWeaponWheelPromptData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->buttonprompts.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("controllerType") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->controllerType);
+
+	p_Stream << "}";
+}
+
+void SUpdateSelectedSlotData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SUpdateSelectedSlotData s_Object {};
+
+	{
+		SInventoryUISlot s_Item {};
+		SInventoryUISlot::FromSimpleJson(p_Document["slotData"], &s_Item);
+		s_Object.slotData = s_Item;
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["buttonprompts"];
+	s_Object.buttonprompts.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SWeaponWheelPromptData s_ArrayItem0;
+		SWeaponWheelPromptData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.buttonprompts[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	s_Object.controllerType = std::string_view(p_Document["controllerType"]);
+
+	*reinterpret_cast<SUpdateSelectedSlotData*>(p_Target) = s_Object;
+}
+
+void SUpdateSelectedSlotData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SUpdateSelectedSlotData*>(p_Object);
+
+	SInventoryUISlot::Serialize(&s_Object->slotData, p_Serializer, p_OwnOffset + offsetof(SUpdateSelectedSlotData, slotData));
+	TArray<SWeaponWheelPromptData>::Serialize(&s_Object->buttonprompts, p_Serializer, p_OwnOffset + offsetof(SUpdateSelectedSlotData, buttonprompts));
+	ZString::Serialize(&s_Object->controllerType, p_Serializer, p_OwnOffset + offsetof(SUpdateSelectedSlotData, controllerType));
+}
+
+bool SUpdateSelectedSlotData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SUpdateSelectedSlotData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SUpdateSelectedSlotData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SUpdateSelectedSlotData::operator==(const SUpdateSelectedSlotData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SUpdateSelectedSlotData>)
+		return false;
+
+	if (slotData != p_Other.slotData) return false;
+	if (buttonprompts != p_Other.buttonprompts) return false;
+	if (controllerType != p_Other.controllerType) return false;
+
+	return true;
+}
+
+void SUpdateSelectedSlotData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SUpdateSelectedSlotData*>(p_Object);
+	s_Object->~SUpdateSelectedSlotData();
+}
+
 ZHMTypeInfo SVRConfigCameraComponent::TypeInfo = ZHMTypeInfo("SVRConfigCameraComponent", sizeof(SVRConfigCameraComponent), alignof(SVRConfigCameraComponent), SVRConfigCameraComponent::WriteSimpleJson, SVRConfigCameraComponent::FromSimpleJson, SVRConfigCameraComponent::Serialize, SVRConfigCameraComponent::Equals, SVRConfigCameraComponent::Destroy);
 
 void SVRConfigCameraComponent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -50465,6 +51139,10 @@ void SVRConfigCameraComponent::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 	p_Stream << simdjson::as_json_string("m_fVRUserInputWeight") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_fVRUserInputWeight);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_fVRZoomAllowed") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fVRZoomAllowed);
 	p_Stream << ",";
 
 	p_Stream << simdjson::as_json_string("m_fGridSize") << ":";
@@ -50502,6 +51180,8 @@ void SVRConfigCameraComponent::FromSimpleJson(simdjson::ondemand::value p_Docume
 	s_Object.m_uRecenterRequestCounter = simdjson::from_json_uint32(p_Document["m_uRecenterRequestCounter"]);
 
 	s_Object.m_fVRUserInputWeight = simdjson::from_json_float32(p_Document["m_fVRUserInputWeight"]);
+
+	s_Object.m_fVRZoomAllowed = simdjson::from_json_bool(p_Document["m_fVRZoomAllowed"]);
 
 	s_Object.m_fGridSize = simdjson::from_json_float32(p_Document["m_fGridSize"]);
 
@@ -50550,6 +51230,7 @@ bool SVRConfigCameraComponent::operator==(const SVRConfigCameraComponent& p_Othe
 	if (m_eHeadAnchorMode != p_Other.m_eHeadAnchorMode) return false;
 	if (m_uRecenterRequestCounter != p_Other.m_uRecenterRequestCounter) return false;
 	if (m_fVRUserInputWeight != p_Other.m_fVRUserInputWeight) return false;
+	if (m_fVRZoomAllowed != p_Other.m_fVRZoomAllowed) return false;
 	if (m_fGridSize != p_Other.m_fGridSize) return false;
 	if (m_fCapsuleHeadAttacherOffset != p_Other.m_fCapsuleHeadAttacherOffset) return false;
 	if (m_fCapsuleHeadAttacherOffsetSneaking != p_Other.m_fCapsuleHeadAttacherOffsetSneaking) return false;
@@ -51291,6 +51972,171 @@ void SVoidSignalEntitySaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SVoidSignalEntitySaveData*>(p_Object);
 	s_Object->~SVoidSignalEntitySaveData();
+}
+
+ZHMTypeInfo SVrSingleHandThrowSaveData::TypeInfo = ZHMTypeInfo("SVrSingleHandThrowSaveData", sizeof(SVrSingleHandThrowSaveData), alignof(SVrSingleHandThrowSaveData), SVrSingleHandThrowSaveData::WriteSimpleJson, SVrSingleHandThrowSaveData::FromSimpleJson, SVrSingleHandThrowSaveData::Serialize, SVrSingleHandThrowSaveData::Equals, SVrSingleHandThrowSaveData::Destroy);
+
+void SVrSingleHandThrowSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVrSingleHandThrowSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_tLastThrowTimeRight") << ":";
+	ZGameTime::WriteSimpleJson(&s_Object->m_tLastThrowTimeRight, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_tLastThrowTimeLeft") << ":";
+	ZGameTime::WriteSimpleJson(&s_Object->m_tLastThrowTimeLeft, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eLastThrowTypeLeft") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_eLastThrowTypeLeft);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eLastThrowTypeRight") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_eLastThrowTypeRight);
+
+	p_Stream << "}";
+}
+
+void SVrSingleHandThrowSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SVrSingleHandThrowSaveData s_Object {};
+
+	{
+		ZGameTime s_Item {};
+		ZGameTime::FromSimpleJson(p_Document["m_tLastThrowTimeRight"], &s_Item);
+		s_Object.m_tLastThrowTimeRight = s_Item;
+	}
+
+	{
+		ZGameTime s_Item {};
+		ZGameTime::FromSimpleJson(p_Document["m_tLastThrowTimeLeft"], &s_Item);
+		s_Object.m_tLastThrowTimeLeft = s_Item;
+	}
+
+	s_Object.m_eLastThrowTypeLeft = simdjson::from_json_uint32(p_Document["m_eLastThrowTypeLeft"]);
+
+	s_Object.m_eLastThrowTypeRight = simdjson::from_json_uint32(p_Document["m_eLastThrowTypeRight"]);
+
+	*reinterpret_cast<SVrSingleHandThrowSaveData*>(p_Target) = s_Object;
+}
+
+void SVrSingleHandThrowSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVrSingleHandThrowSaveData*>(p_Object);
+
+	ZGameTime::Serialize(&s_Object->m_tLastThrowTimeRight, p_Serializer, p_OwnOffset + offsetof(SVrSingleHandThrowSaveData, m_tLastThrowTimeRight));
+	ZGameTime::Serialize(&s_Object->m_tLastThrowTimeLeft, p_Serializer, p_OwnOffset + offsetof(SVrSingleHandThrowSaveData, m_tLastThrowTimeLeft));
+}
+
+bool SVrSingleHandThrowSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVrSingleHandThrowSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVrSingleHandThrowSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVrSingleHandThrowSaveData::operator==(const SVrSingleHandThrowSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVrSingleHandThrowSaveData>)
+		return false;
+
+	if (m_tLastThrowTimeRight != p_Other.m_tLastThrowTimeRight) return false;
+	if (m_tLastThrowTimeLeft != p_Other.m_tLastThrowTimeLeft) return false;
+	if (m_eLastThrowTypeLeft != p_Other.m_eLastThrowTypeLeft) return false;
+	if (m_eLastThrowTypeRight != p_Other.m_eLastThrowTypeRight) return false;
+
+	return true;
+}
+
+void SVrSingleHandThrowSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVrSingleHandThrowSaveData*>(p_Object);
+	s_Object->~SVrSingleHandThrowSaveData();
+}
+
+ZHMTypeInfo SVrTakeDisguiseSaveData::TypeInfo = ZHMTypeInfo("SVrTakeDisguiseSaveData", sizeof(SVrTakeDisguiseSaveData), alignof(SVrTakeDisguiseSaveData), SVrTakeDisguiseSaveData::WriteSimpleJson, SVrTakeDisguiseSaveData::FromSimpleJson, SVrTakeDisguiseSaveData::Serialize, SVrTakeDisguiseSaveData::Equals, SVrTakeDisguiseSaveData::Destroy);
+
+void SVrTakeDisguiseSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVrTakeDisguiseSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("fLastDisguiseTakenTime") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fLastDisguiseTakenTime);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fLastDisguiseYankedFromBodyTime") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fLastDisguiseYankedFromBodyTime);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("outfitItem") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->outfitItem);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("outfitRef") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->outfitRef);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("state") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->state);
+
+	p_Stream << "}";
+}
+
+void SVrTakeDisguiseSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SVrTakeDisguiseSaveData s_Object {};
+
+	s_Object.fLastDisguiseTakenTime = simdjson::from_json_float32(p_Document["fLastDisguiseTakenTime"]);
+
+	s_Object.fLastDisguiseYankedFromBodyTime = simdjson::from_json_float32(p_Document["fLastDisguiseYankedFromBodyTime"]);
+
+	s_Object.outfitItem = simdjson::from_json_uint32(p_Document["outfitItem"]);
+
+	s_Object.outfitRef = simdjson::from_json_uint32(p_Document["outfitRef"]);
+
+	s_Object.state = simdjson::from_json_int32(p_Document["state"]);
+
+	*reinterpret_cast<SVrTakeDisguiseSaveData*>(p_Target) = s_Object;
+}
+
+void SVrTakeDisguiseSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVrTakeDisguiseSaveData*>(p_Object);
+
+}
+
+bool SVrTakeDisguiseSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVrTakeDisguiseSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVrTakeDisguiseSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVrTakeDisguiseSaveData::operator==(const SVrTakeDisguiseSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVrTakeDisguiseSaveData>)
+		return false;
+
+	if (fLastDisguiseTakenTime != p_Other.fLastDisguiseTakenTime) return false;
+	if (fLastDisguiseYankedFromBodyTime != p_Other.fLastDisguiseYankedFromBodyTime) return false;
+	if (outfitItem != p_Other.outfitItem) return false;
+	if (outfitRef != p_Other.outfitRef) return false;
+	if (state != p_Other.state) return false;
+
+	return true;
+}
+
+void SVrTakeDisguiseSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVrTakeDisguiseSaveData*>(p_Object);
+	s_Object->~SVrTakeDisguiseSaveData();
 }
 
 ZHMTypeInfo SWaveformGeneratorSaveData::TypeInfo = ZHMTypeInfo("SWaveformGeneratorSaveData", sizeof(SWaveformGeneratorSaveData), alignof(SWaveformGeneratorSaveData), SWaveformGeneratorSaveData::WriteSimpleJson, SWaveformGeneratorSaveData::FromSimpleJson, SWaveformGeneratorSaveData::Serialize, SWaveformGeneratorSaveData::Equals, SWaveformGeneratorSaveData::Destroy);
@@ -56548,6 +57394,53 @@ void ZHUDWalkSpeedDataProvider_SData::Destroy(void* p_Object)
 	s_Object->~ZHUDWalkSpeedDataProvider_SData();
 }
 
+ZHMTypeInfo ZHm5VrItemGripState::TypeInfo = ZHMTypeInfo("ZHm5VrItemGripState", sizeof(ZHm5VrItemGripState), alignof(ZHm5VrItemGripState), ZHm5VrItemGripState::WriteSimpleJson, ZHm5VrItemGripState::FromSimpleJson, ZHm5VrItemGripState::Serialize, ZHm5VrItemGripState::Equals, ZHm5VrItemGripState::Destroy);
+
+void ZHm5VrItemGripState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZHm5VrItemGripState*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << "}";
+}
+
+void ZHm5VrItemGripState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZHm5VrItemGripState s_Object {};
+
+	*reinterpret_cast<ZHm5VrItemGripState*>(p_Target) = s_Object;
+}
+
+void ZHm5VrItemGripState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZHm5VrItemGripState*>(p_Object);
+
+}
+
+bool ZHm5VrItemGripState::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZHm5VrItemGripState*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZHm5VrItemGripState*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZHm5VrItemGripState::operator==(const ZHm5VrItemGripState& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHm5VrItemGripState>)
+		return false;
+
+
+	return true;
+}
+
+void ZHm5VrItemGripState::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZHm5VrItemGripState*>(p_Object);
+	s_Object->~ZHm5VrItemGripState();
+}
+
 ZHMTypeInfo ZHttpUrl::TypeInfo = ZHMTypeInfo("ZHttpUrl", sizeof(ZHttpUrl), alignof(ZHttpUrl), ZHttpUrl::WriteSimpleJson, ZHttpUrl::FromSimpleJson, ZHttpUrl::Serialize, ZHttpUrl::Equals, ZHttpUrl::Destroy);
 
 void ZHttpUrl::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -57162,6 +58055,391 @@ void ZMoveToOrder_SMoveToOrderSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZMoveToOrder_SMoveToOrderSaveData*>(p_Object);
 	s_Object->~ZMoveToOrder_SMoveToOrderSaveData();
+}
+
+ZHMTypeInfo ZOverlayControllerEntity_SInputData::TypeInfo = ZHMTypeInfo("ZOverlayControllerEntity.SInputData", sizeof(ZOverlayControllerEntity_SInputData), alignof(ZOverlayControllerEntity_SInputData), ZOverlayControllerEntity_SInputData::WriteSimpleJson, ZOverlayControllerEntity_SInputData::FromSimpleJson, ZOverlayControllerEntity_SInputData::Serialize, ZOverlayControllerEntity_SInputData::Equals, ZOverlayControllerEntity_SInputData::Destroy);
+
+void ZOverlayControllerEntity_SInputData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SInputData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("PositionOffset") << ":";
+	SVector2::WriteSimpleJson(&s_Object->PositionOffset, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("TouchAreaSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->TouchAreaSize);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("TouchAreaActiveSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->TouchAreaActiveSize);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("Alignment") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ZOverlayControllerEntity.EAlignment", static_cast<int>(s_Object->Alignment)));
+
+	p_Stream << "}";
+}
+
+void ZOverlayControllerEntity_SInputData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZOverlayControllerEntity_SInputData s_Object {};
+
+	{
+		SVector2 s_Item {};
+		SVector2::FromSimpleJson(p_Document["PositionOffset"], &s_Item);
+		s_Object.PositionOffset = s_Item;
+	}
+
+	s_Object.TouchAreaSize = simdjson::from_json_float32(p_Document["TouchAreaSize"]);
+
+	s_Object.TouchAreaActiveSize = simdjson::from_json_float32(p_Document["TouchAreaActiveSize"]);
+
+	s_Object.Alignment = static_cast<ZOverlayControllerEntity_EAlignment>(ZHMEnums::GetEnumValueByName("ZOverlayControllerEntity.EAlignment", std::string_view(p_Document["Alignment"])));
+
+	*reinterpret_cast<ZOverlayControllerEntity_SInputData*>(p_Target) = s_Object;
+}
+
+void ZOverlayControllerEntity_SInputData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SInputData*>(p_Object);
+
+	SVector2::Serialize(&s_Object->PositionOffset, p_Serializer, p_OwnOffset + offsetof(ZOverlayControllerEntity_SInputData, PositionOffset));
+}
+
+bool ZOverlayControllerEntity_SInputData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZOverlayControllerEntity_SInputData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZOverlayControllerEntity_SInputData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZOverlayControllerEntity_SInputData::operator==(const ZOverlayControllerEntity_SInputData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZOverlayControllerEntity_SInputData>)
+		return false;
+
+	if (PositionOffset != p_Other.PositionOffset) return false;
+	if (TouchAreaSize != p_Other.TouchAreaSize) return false;
+	if (TouchAreaActiveSize != p_Other.TouchAreaActiveSize) return false;
+	if (Alignment != p_Other.Alignment) return false;
+
+	return true;
+}
+
+void ZOverlayControllerEntity_SInputData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SInputData*>(p_Object);
+	s_Object->~ZOverlayControllerEntity_SInputData();
+}
+
+ZHMTypeInfo ZOverlayControllerEntity_SInputState::TypeInfo = ZHMTypeInfo("ZOverlayControllerEntity.SInputState", sizeof(ZOverlayControllerEntity_SInputState), alignof(ZOverlayControllerEntity_SInputState), ZOverlayControllerEntity_SInputState::WriteSimpleJson, ZOverlayControllerEntity_SInputState::FromSimpleJson, ZOverlayControllerEntity_SInputState::Serialize, ZOverlayControllerEntity_SInputState::Equals, ZOverlayControllerEntity_SInputState::Destroy);
+
+void ZOverlayControllerEntity_SInputState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SInputState*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("IsEnabled") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsEnabled);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("IsVisible") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsVisible);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("IsActionAvailable") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsActionAvailable);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("IsActionActive") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsActionActive);
+
+	p_Stream << "}";
+}
+
+void ZOverlayControllerEntity_SInputState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZOverlayControllerEntity_SInputState s_Object {};
+
+	s_Object.IsEnabled = simdjson::from_json_bool(p_Document["IsEnabled"]);
+
+	s_Object.IsVisible = simdjson::from_json_bool(p_Document["IsVisible"]);
+
+	s_Object.IsActionAvailable = simdjson::from_json_bool(p_Document["IsActionAvailable"]);
+
+	s_Object.IsActionActive = simdjson::from_json_bool(p_Document["IsActionActive"]);
+
+	*reinterpret_cast<ZOverlayControllerEntity_SInputState*>(p_Target) = s_Object;
+}
+
+void ZOverlayControllerEntity_SInputState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SInputState*>(p_Object);
+
+}
+
+bool ZOverlayControllerEntity_SInputState::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZOverlayControllerEntity_SInputState*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZOverlayControllerEntity_SInputState*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZOverlayControllerEntity_SInputState::operator==(const ZOverlayControllerEntity_SInputState& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZOverlayControllerEntity_SInputState>)
+		return false;
+
+	if (IsEnabled != p_Other.IsEnabled) return false;
+	if (IsVisible != p_Other.IsVisible) return false;
+	if (IsActionAvailable != p_Other.IsActionAvailable) return false;
+	if (IsActionActive != p_Other.IsActionActive) return false;
+
+	return true;
+}
+
+void ZOverlayControllerEntity_SInputState::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SInputState*>(p_Object);
+	s_Object->~ZOverlayControllerEntity_SInputState();
+}
+
+ZHMTypeInfo ZOverlayControllerEntity_SUIInputData::TypeInfo = ZHMTypeInfo("ZOverlayControllerEntity.SUIInputData", sizeof(ZOverlayControllerEntity_SUIInputData), alignof(ZOverlayControllerEntity_SUIInputData), ZOverlayControllerEntity_SUIInputData::WriteSimpleJson, ZOverlayControllerEntity_SUIInputData::FromSimpleJson, ZOverlayControllerEntity_SUIInputData::Serialize, ZOverlayControllerEntity_SUIInputData::Equals, ZOverlayControllerEntity_SUIInputData::Destroy);
+
+void ZOverlayControllerEntity_SUIInputData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SUIInputData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("actiontype") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->actiontype);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("customicon") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->customicon);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("posX") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->posX);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("posY") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->posY);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("size") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->size);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("isPressed") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isPressed);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("alpha") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->alpha);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("isVisible") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isVisible);
+
+	p_Stream << "}";
+}
+
+void ZOverlayControllerEntity_SUIInputData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZOverlayControllerEntity_SUIInputData s_Object {};
+
+	s_Object.actiontype = simdjson::from_json_int32(p_Document["actiontype"]);
+
+	s_Object.customicon = std::string_view(p_Document["customicon"]);
+
+	s_Object.posX = simdjson::from_json_float32(p_Document["posX"]);
+
+	s_Object.posY = simdjson::from_json_float32(p_Document["posY"]);
+
+	s_Object.size = simdjson::from_json_float32(p_Document["size"]);
+
+	s_Object.isPressed = simdjson::from_json_bool(p_Document["isPressed"]);
+
+	s_Object.alpha = simdjson::from_json_float32(p_Document["alpha"]);
+
+	s_Object.isVisible = simdjson::from_json_bool(p_Document["isVisible"]);
+
+	*reinterpret_cast<ZOverlayControllerEntity_SUIInputData*>(p_Target) = s_Object;
+}
+
+void ZOverlayControllerEntity_SUIInputData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SUIInputData*>(p_Object);
+
+	ZString::Serialize(&s_Object->customicon, p_Serializer, p_OwnOffset + offsetof(ZOverlayControllerEntity_SUIInputData, customicon));
+}
+
+bool ZOverlayControllerEntity_SUIInputData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZOverlayControllerEntity_SUIInputData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZOverlayControllerEntity_SUIInputData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZOverlayControllerEntity_SUIInputData::operator==(const ZOverlayControllerEntity_SUIInputData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZOverlayControllerEntity_SUIInputData>)
+		return false;
+
+	if (actiontype != p_Other.actiontype) return false;
+	if (customicon != p_Other.customicon) return false;
+	if (posX != p_Other.posX) return false;
+	if (posY != p_Other.posY) return false;
+	if (size != p_Other.size) return false;
+	if (isPressed != p_Other.isPressed) return false;
+	if (alpha != p_Other.alpha) return false;
+	if (isVisible != p_Other.isVisible) return false;
+
+	return true;
+}
+
+void ZOverlayControllerEntity_SUIInputData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SUIInputData*>(p_Object);
+	s_Object->~ZOverlayControllerEntity_SUIInputData();
+}
+
+ZHMTypeInfo ZOverlayControllerEntity_SUIData::TypeInfo = ZHMTypeInfo("ZOverlayControllerEntity.SUIData", sizeof(ZOverlayControllerEntity_SUIData), alignof(ZOverlayControllerEntity_SUIData), ZOverlayControllerEntity_SUIData::WriteSimpleJson, ZOverlayControllerEntity_SUIData::FromSimpleJson, ZOverlayControllerEntity_SUIData::Serialize, ZOverlayControllerEntity_SUIData::Equals, ZOverlayControllerEntity_SUIData::Destroy);
+
+void ZOverlayControllerEntity_SUIData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SUIData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("buttonPromptInputs") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->buttonPromptInputs.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->buttonPromptInputs[i];
+		ZOverlayControllerEntity_SUIInputData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->buttonPromptInputs.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("isVisible") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->isVisible);
+
+	p_Stream << "}";
+}
+
+void ZOverlayControllerEntity_SUIData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZOverlayControllerEntity_SUIData s_Object {};
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["buttonPromptInputs"];
+	s_Object.buttonPromptInputs.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		ZOverlayControllerEntity_SUIInputData s_ArrayItem0;
+		ZOverlayControllerEntity_SUIInputData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.buttonPromptInputs[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	s_Object.isVisible = simdjson::from_json_bool(p_Document["isVisible"]);
+
+	*reinterpret_cast<ZOverlayControllerEntity_SUIData*>(p_Target) = s_Object;
+}
+
+void ZOverlayControllerEntity_SUIData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SUIData*>(p_Object);
+
+	TArray<ZOverlayControllerEntity_SUIInputData>::Serialize(&s_Object->buttonPromptInputs, p_Serializer, p_OwnOffset + offsetof(ZOverlayControllerEntity_SUIData, buttonPromptInputs));
+}
+
+bool ZOverlayControllerEntity_SUIData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZOverlayControllerEntity_SUIData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZOverlayControllerEntity_SUIData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZOverlayControllerEntity_SUIData::operator==(const ZOverlayControllerEntity_SUIData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZOverlayControllerEntity_SUIData>)
+		return false;
+
+	if (buttonPromptInputs != p_Other.buttonPromptInputs) return false;
+	if (isVisible != p_Other.isVisible) return false;
+
+	return true;
+}
+
+void ZOverlayControllerEntity_SUIData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayControllerEntity_SUIData*>(p_Object);
+	s_Object->~ZOverlayControllerEntity_SUIData();
+}
+
+ZHMTypeInfo ZOverlayGameControllerBase::TypeInfo = ZHMTypeInfo("ZOverlayGameControllerBase", sizeof(ZOverlayGameControllerBase), alignof(ZOverlayGameControllerBase), ZOverlayGameControllerBase::WriteSimpleJson, ZOverlayGameControllerBase::FromSimpleJson, ZOverlayGameControllerBase::Serialize, ZOverlayGameControllerBase::Equals, ZOverlayGameControllerBase::Destroy);
+
+void ZOverlayGameControllerBase::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayGameControllerBase*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << "}";
+}
+
+void ZOverlayGameControllerBase::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZOverlayGameControllerBase s_Object {};
+
+	*reinterpret_cast<ZOverlayGameControllerBase*>(p_Target) = s_Object;
+}
+
+void ZOverlayGameControllerBase::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayGameControllerBase*>(p_Object);
+
+}
+
+bool ZOverlayGameControllerBase::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZOverlayGameControllerBase*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZOverlayGameControllerBase*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZOverlayGameControllerBase::operator==(const ZOverlayGameControllerBase& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZOverlayGameControllerBase>)
+		return false;
+
+
+	return true;
+}
+
+void ZOverlayGameControllerBase::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZOverlayGameControllerBase*>(p_Object);
+	s_Object->~ZOverlayGameControllerBase();
 }
 
 ZHMTypeInfo ZPhotoModeMenuDataProvider_SPrompt::TypeInfo = ZHMTypeInfo("ZPhotoModeMenuDataProvider.SPrompt", sizeof(ZPhotoModeMenuDataProvider_SPrompt), alignof(ZPhotoModeMenuDataProvider_SPrompt), ZPhotoModeMenuDataProvider_SPrompt::WriteSimpleJson, ZPhotoModeMenuDataProvider_SPrompt::FromSimpleJson, ZPhotoModeMenuDataProvider_SPrompt::Serialize, ZPhotoModeMenuDataProvider_SPrompt::Equals, ZPhotoModeMenuDataProvider_SPrompt::Destroy);
@@ -59926,6 +61204,101 @@ void ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData::Destr
 	s_Object->~ZUIActionSelectorNavigationInventoryEntity_SActionSelectorInvokeData();
 }
 
+ZHMTypeInfo ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::TypeInfo = ZHMTypeInfo("ZUIActionSelectorNavigationInventoryEntity.SUpdateSelectedActionSlotData", sizeof(ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData), alignof(ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData), ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::WriteSimpleJson, ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::FromSimpleJson, ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::Serialize, ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::Equals, ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::Destroy);
+
+void ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("slotData") << ":";
+	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::WriteSimpleJson(&s_Object->slotData, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("buttonprompts") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->buttonprompts.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->buttonprompts[i];
+		SWeaponWheelPromptData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->buttonprompts.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("controllerType") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->controllerType);
+
+	p_Stream << "}";
+}
+
+void ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData s_Object {};
+
+	{
+		ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo s_Item {};
+		ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::FromSimpleJson(p_Document["slotData"], &s_Item);
+		s_Object.slotData = s_Item;
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["buttonprompts"];
+	s_Object.buttonprompts.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SWeaponWheelPromptData s_ArrayItem0;
+		SWeaponWheelPromptData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.buttonprompts[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	s_Object.controllerType = std::string_view(p_Document["controllerType"]);
+
+	*reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData*>(p_Target) = s_Object;
+}
+
+void ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData*>(p_Object);
+
+	ZUIActionSelectorNavigationInventoryEntity_SActionSelectorSlotDisplayInfo::Serialize(&s_Object->slotData, p_Serializer, p_OwnOffset + offsetof(ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData, slotData));
+	TArray<SWeaponWheelPromptData>::Serialize(&s_Object->buttonprompts, p_Serializer, p_OwnOffset + offsetof(ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData, buttonprompts));
+	ZString::Serialize(&s_Object->controllerType, p_Serializer, p_OwnOffset + offsetof(ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData, controllerType));
+}
+
+bool ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::operator==(const ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData>)
+		return false;
+
+	if (slotData != p_Other.slotData) return false;
+	if (buttonprompts != p_Other.buttonprompts) return false;
+	if (controllerType != p_Other.controllerType) return false;
+
+	return true;
+}
+
+void ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData*>(p_Object);
+	s_Object->~ZUIActionSelectorNavigationInventoryEntity_SUpdateSelectedActionSlotData();
+}
+
 ZHMTypeInfo ZUIDataProvider::TypeInfo = ZHMTypeInfo("ZUIDataProvider", sizeof(ZUIDataProvider), alignof(ZUIDataProvider), ZUIDataProvider::WriteSimpleJson, ZUIDataProvider::FromSimpleJson, ZUIDataProvider::Serialize, ZUIDataProvider::Equals, ZUIDataProvider::Destroy);
 
 void ZUIDataProvider::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -60440,6 +61813,101 @@ void ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData::Destroy(void* p
 	s_Object->~ZUIEmoteSelectorNavigationEntity_SActionSelectorInvokeData();
 }
 
+ZHMTypeInfo ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::TypeInfo = ZHMTypeInfo("ZUIEmoteSelectorNavigationEntity.SUpdateSelectedActionSlotData", sizeof(ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData), alignof(ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData), ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::WriteSimpleJson, ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::FromSimpleJson, ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::Serialize, ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::Equals, ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::Destroy);
+
+void ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("slotData") << ":";
+	ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::WriteSimpleJson(&s_Object->slotData, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("buttonprompts") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->buttonprompts.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->buttonprompts[i];
+		SWeaponWheelPromptData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->buttonprompts.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("controllerType") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->controllerType);
+
+	p_Stream << "}";
+}
+
+void ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData s_Object {};
+
+	{
+		ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo s_Item {};
+		ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::FromSimpleJson(p_Document["slotData"], &s_Item);
+		s_Object.slotData = s_Item;
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["buttonprompts"];
+	s_Object.buttonprompts.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SWeaponWheelPromptData s_ArrayItem0;
+		SWeaponWheelPromptData::FromSimpleJson(s_Item0, &s_ArrayItem0);
+		s_Object.buttonprompts[s_Index0++] = s_ArrayItem0;
+	}
+	}
+
+	s_Object.controllerType = std::string_view(p_Document["controllerType"]);
+
+	*reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData*>(p_Target) = s_Object;
+}
+
+void ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData*>(p_Object);
+
+	ZUIEmoteSelectorNavigationEntity_SActionSelectorSlotDisplayInfo::Serialize(&s_Object->slotData, p_Serializer, p_OwnOffset + offsetof(ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData, slotData));
+	TArray<SWeaponWheelPromptData>::Serialize(&s_Object->buttonprompts, p_Serializer, p_OwnOffset + offsetof(ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData, buttonprompts));
+	ZString::Serialize(&s_Object->controllerType, p_Serializer, p_OwnOffset + offsetof(ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData, controllerType));
+}
+
+bool ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::operator==(const ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData>)
+		return false;
+
+	if (slotData != p_Other.slotData) return false;
+	if (buttonprompts != p_Other.buttonprompts) return false;
+	if (controllerType != p_Other.controllerType) return false;
+
+	return true;
+}
+
+void ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData*>(p_Object);
+	s_Object->~ZUIEmoteSelectorNavigationEntity_SUpdateSelectedActionSlotData();
+}
+
 ZHMTypeInfo ZUIMapLegendDataProvider_SLegendTracker::TypeInfo = ZHMTypeInfo("ZUIMapLegendDataProvider.SLegendTracker", sizeof(ZUIMapLegendDataProvider_SLegendTracker), alignof(ZUIMapLegendDataProvider_SLegendTracker), ZUIMapLegendDataProvider_SLegendTracker::WriteSimpleJson, ZUIMapLegendDataProvider_SLegendTracker::FromSimpleJson, ZUIMapLegendDataProvider_SLegendTracker::Serialize, ZUIMapLegendDataProvider_SLegendTracker::Equals, ZUIMapLegendDataProvider_SLegendTracker::Destroy);
 
 void ZUIMapLegendDataProvider_SLegendTracker::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -60583,6 +62051,53 @@ void ZUIMapLegendDataProvider_SData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZUIMapLegendDataProvider_SData*>(p_Object);
 	s_Object->~ZUIMapLegendDataProvider_SData();
+}
+
+ZHMTypeInfo ZVrDoorInteraction::TypeInfo = ZHMTypeInfo("ZVrDoorInteraction", sizeof(ZVrDoorInteraction), alignof(ZVrDoorInteraction), ZVrDoorInteraction::WriteSimpleJson, ZVrDoorInteraction::FromSimpleJson, ZVrDoorInteraction::Serialize, ZVrDoorInteraction::Equals, ZVrDoorInteraction::Destroy);
+
+void ZVrDoorInteraction::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZVrDoorInteraction*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << "}";
+}
+
+void ZVrDoorInteraction::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	ZVrDoorInteraction s_Object {};
+
+	*reinterpret_cast<ZVrDoorInteraction*>(p_Target) = s_Object;
+}
+
+void ZVrDoorInteraction::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZVrDoorInteraction*>(p_Object);
+
+}
+
+bool ZVrDoorInteraction::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZVrDoorInteraction*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZVrDoorInteraction*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZVrDoorInteraction::operator==(const ZVrDoorInteraction& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZVrDoorInteraction>)
+		return false;
+
+
+	return true;
+}
+
+void ZVrDoorInteraction::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZVrDoorInteraction*>(p_Object);
+	s_Object->~ZVrDoorInteraction();
 }
 
 ZHMTypeInfo ZWorldMapMetaData::TypeInfo = ZHMTypeInfo("ZWorldMapMetaData", sizeof(ZWorldMapMetaData), alignof(ZWorldMapMetaData), ZWorldMapMetaData::WriteSimpleJson, ZWorldMapMetaData::FromSimpleJson, ZWorldMapMetaData::Serialize, ZWorldMapMetaData::Equals, ZWorldMapMetaData::Destroy);
