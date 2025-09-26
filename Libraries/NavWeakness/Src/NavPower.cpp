@@ -297,7 +297,7 @@ namespace NavPower
         {
             auto adjacentAreaResult = p_Json.find_field("Adjacent Area");
             if (adjacentAreaResult.error() == simdjson::SUCCESS) {
-                const int64_t m_pAdjAreaJson = static_cast<uint64_t>(p_Json["Adjacent Area"]);
+                int64_t m_pAdjAreaJson = int64_t(p_Json["Adjacent Area"]);
                 // Store index of adjacent area + 1 in m_pAdjArea until the area addresses are calculated
                 m_pAdjArea = reinterpret_cast<Binary::Area*>(m_pAdjAreaJson);
             }
@@ -310,7 +310,8 @@ namespace NavPower
             m_flags1 = 0xFFFF0000;
             SetPartition(false);
             SetObID(0);
-            if (auto result = p_Json["Type"]; result.error() == simdjson::SUCCESS) {
+            auto result = p_Json.find_field("Type");
+            if (result.error() == simdjson::SUCCESS) {
                 SetType(EdgeTypeStringToEnumValue(std::string{ std::string_view(p_Json["Type"]) }));
             }
             else
@@ -610,10 +611,10 @@ namespace NavPower
         }
     }
 
-    BBox generateBbox(const std::vector<Area> &s_areas)
+    BBox generateBbox(std::vector<Area> s_areas)
     {
-        constexpr float s_minFloat = -300000000000;
-        constexpr float s_maxFloat = 300000000000;
+        float s_minFloat = -300000000000;
+        float s_maxFloat = 300000000000;
         BBox bbox;
         bbox.m_min.X = s_maxFloat;
         bbox.m_min.Y = s_maxFloat;
