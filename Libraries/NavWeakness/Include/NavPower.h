@@ -260,13 +260,13 @@ namespace NavPower
                 constexpr float scale = 2;
                 constexpr float FIXED_POINT_EDGE_COST_MULT = 1000;
                 const float distBetweenAreaCenters = (centerPos1 - centerPos2).GetMagnitude();
-                const uint32_t cost = static_cast<uint32_t>(distBetweenAreaCenters * (FIXED_POINT_EDGE_COST_MULT / scale) + 1);
+                const auto cost = static_cast<uint32_t>(distBetweenAreaCenters * (FIXED_POINT_EDGE_COST_MULT / scale) + 1);
                 return cost;
             }
 
-            void writeJson(std::ostream& f, std::map<Area*, uint32_t>* p_AreaPointerToIndexMap);
+            void writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap);
             void readJson(simdjson::ondemand::object p_Json);
-            void writeBinary(std::ostream& f, std::map<Area*, Area*>* s_AreaPointerToOffsetPointerMap);
+            void writeBinary(std::ostream& f, std::map<Binary::Area*, Binary::Area*>* s_AreaPointerToOffsetPointerMap);
             void updateAdjacentDistances(const Area* m_pParentArea);
             bool operator==(Edge const& other) const;
         };
@@ -403,7 +403,7 @@ namespace NavPower
         uint32_t m_splitAxis;
     };
 
-    BBox generateBbox(const std::vector<Area> &s_areas);
+    BBox generateBbox(std::vector<Area> s_areas);
     bool compareX(Area& a1, Area& a2);
     bool compareY(Area& a1, Area& a2);
     bool compareZ(Area& a1, Area& a2);
