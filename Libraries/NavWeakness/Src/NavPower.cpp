@@ -290,10 +290,6 @@ namespace NavPower
             {
                 f << ",\"Type\":\"" << EdgeTypeToString(GetType()) << "\"";
             }
-            if (m_flags2 != 0)
-            {
-                f << ",\"Flags\":" << m_flags2;
-            }
             f << "}";
         }
 
@@ -322,9 +318,11 @@ namespace NavPower
             {
                 SetType(EDGE_NORMAL);
             }
-            auto flags2Result = p_Json.find_field("Flags");
-            if (flags2Result.error() == simdjson::SUCCESS) {
-                m_flags2 = int64_t(p_Json["Flags"]);
+        }
+
+        void Edge::updateAdjacentDistances(const Area* m_pParentArea) {
+            if (m_pAdjArea != nullptr) {
+                m_flags2 = CalcScaledDistBetweenAreaCenters(m_pAdjArea->m_pos, m_pParentArea->m_pos);
             }
             else
             {
@@ -606,6 +604,12 @@ namespace NavPower
         return m_area->m_pos.X < other.m_area->m_pos.X;
     }
 
+    void Area::updateAdjacentDistances() const {
+        for (auto& edge : m_edges)
+        {
+            edge->updateAdjacentDistances(m_area);
+        }
+    }
 
     BBox generateBbox(std::vector<Area> s_areas)
     {
@@ -934,6 +938,11 @@ namespace NavPower
                 }
             }
             area.m_area->m_radius = s_radius;
+        }
+
+        for (auto area : m_areas)
+        {
+            area.updateAdjacentDistances();
         }
 
         m_kdTreeData = new Binary::KDTreeData();
