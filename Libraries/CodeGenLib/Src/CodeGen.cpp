@@ -561,9 +561,6 @@ void CodeGen::GenerateReflectiveClass(STypeID* p_Type)
 	if (s_IsNamespaced)
 		return;*/
 
-	if (s_TypeName == "AI.SFirePattern01")
-		printf("Amazing!\n");
-
 	if (s_TypeName.find_first_of('<') != std::string::npos)
 		return;
 
