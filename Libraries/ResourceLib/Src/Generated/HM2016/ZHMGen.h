@@ -85,14 +85,14 @@ public:
 };
 
 // Size: 0x1
-enum class AudioBusFlags
+enum class AudioBusFlags : int8_t
 {
 	AudioBus_Master = 1,
 	AudioBus_Primary = 2,
 };
 
 // Size: 0x1
-enum class AudioCurve
+enum class AudioCurve : int8_t
 {
 	AudioCurve_Log3 = 0,
 	AudioCurve_Sine = 1,
@@ -125,7 +125,7 @@ public:
 };
 
 // Size: 0x4
-enum class BoneId_Enum
+enum class BoneId_Enum : int32_t
 {
 	GROUND = 0,
 	PELVIS = 1,
@@ -235,7 +235,7 @@ enum class BoneId_Enum
 };
 
 // Size: 0x4
-enum class CrowdMapImpl_CellFlags
+enum class CrowdMapImpl_CellFlags : int32_t
 {
 	CELLFLAG_RESTRICTED_A = 1,
 	CELLFLAG_RESTRICTED_B = 2,
@@ -248,7 +248,7 @@ enum class CrowdMapImpl_CellFlags
 };
 
 // Size: 0x4
-enum class CrowdReactionAIEventType
+enum class CrowdReactionAIEventType : int32_t
 {
 	CROWDAIEVENT_NONE = 0,
 	CROWDAIEVENT_CURIOUS = 1,
@@ -258,7 +258,7 @@ enum class CrowdReactionAIEventType
 };
 
 // Size: 0x4
-enum class CrowdRegionType
+enum class CrowdRegionType : int32_t
 {
 	CROWDSPHERE_NONE = 0,
 	CROWDSPHERE_SAFE = 1,
@@ -273,7 +273,7 @@ enum class CrowdRegionType
 };
 
 // Size: 0x4
-enum class CrowdUtil_ECrowdActorMood
+enum class CrowdUtil_ECrowdActorMood : int32_t
 {
 	CM_AMBIENT = 0,
 	CM_ALERTED = 1,
@@ -285,7 +285,7 @@ enum class CrowdUtil_ECrowdActorMood
 };
 
 // Size: 0x4
-enum class CrowdUtil_ECrowdDirection
+enum class CrowdUtil_ECrowdDirection : int32_t
 {
 	NORTH = 0,
 	EAST = 1,
@@ -294,21 +294,21 @@ enum class CrowdUtil_ECrowdDirection
 };
 
 // Size: 0x4
-enum class CrowdUtil_ECrowdFacing
+enum class CrowdUtil_ECrowdFacing : int32_t
 {
 	FRONT = 0,
 	BACK = 1,
 };
 
 // Size: 0x4
-enum class CrowdUtil_ECrowdSide
+enum class CrowdUtil_ECrowdSide : int32_t
 {
 	LEFT = 0,
 	RIGHT = 1,
 };
 
 // Size: 0x4
-enum class CrowdUtil_ECrowdStandingPush
+enum class CrowdUtil_ECrowdStandingPush : int32_t
 {
 	PUSH_FRONT = 0,
 	PUSH_FRONT_LEFT = 1,
@@ -321,7 +321,7 @@ enum class CrowdUtil_ECrowdStandingPush
 };
 
 // Size: 0x4
-enum class CrowdUtil_EDefaultStateTypes
+enum class CrowdUtil_EDefaultStateTypes : int32_t
 {
 	STATE_IDLE = 0,
 	STATE_WALK = 1,
@@ -338,7 +338,7 @@ enum class CrowdUtil_EDefaultStateTypes
 };
 
 // Size: 0x4
-enum class CrowdUtil_EGenderReq
+enum class CrowdUtil_EGenderReq : int32_t
 {
 	eGender_Any = 0,
 	eGender_Male = 1,
@@ -346,7 +346,7 @@ enum class CrowdUtil_EGenderReq
 };
 
 // Size: 0x4
-enum class EAIEventType
+enum class EAIEventType : int32_t
 {
 	AIET_None = 0,
 	AIET_Ignore = 1,
@@ -502,7 +502,7 @@ enum class EAIEventType
 };
 
 // Size: 0x4
-enum class EAIGoal
+enum class EAIGoal : int32_t
 {
 	AIG_Kill = 0,
 	AIG_Arrest = 1,
@@ -539,7 +539,7 @@ enum class EAIGoal
 };
 
 // Size: 0x4
-enum class EAILegalType
+enum class EAILegalType : int32_t
 {
 	AILT_Weapon = 0,
 	AILT_Shooting = 1,
@@ -550,7 +550,7 @@ enum class EAILegalType
 };
 
 // Size: 0x4
-enum class EAIModifierScope
+enum class EAIModifierScope : int32_t
 {
 	AIMS_Volume = 0,
 	AIMS_Behavior = 1,
@@ -563,7 +563,7 @@ enum class EAIModifierScope
 };
 
 // Size: 0x4
-enum class EAIModifiers
+enum class EAIModifiers : int32_t
 {
 	AIM_Invalid = 0,
 	AIM_IgnoreLowNoise = 1,
@@ -599,7 +599,7 @@ enum class EAIModifiers
 };
 
 // Size: 0x4
-enum class EAISharedEventType
+enum class EAISharedEventType : int32_t
 {
 	AISET_None = 0,
 	AISET_StandOffCrowdReactionDone = 1,
@@ -997,7 +997,7 @@ enum class EAISharedEventType
 };
 
 // Size: 0x4
-enum class EAISituation
+enum class EAISituation : int32_t
 {
 	AIS_GENERIC = 0,
 	AIS_SPECIAL = 1,
@@ -1032,7 +1032,7 @@ enum class EAISituation
 };
 
 // Size: 0x4
-enum class EAISituationEvent
+enum class EAISituationEvent : int32_t
 {
 	AISE_Any = 0,
 	AISE_ActorJoined = 1,
@@ -1041,7 +1041,7 @@ enum class EAISituationEvent
 };
 
 // Size: 0x4
-enum class EAISoundEventLoudness
+enum class EAISoundEventLoudness : int32_t
 {
 	EAISEL_Default = 0,
 	EAISEL_VeryLow = 1,
@@ -1052,7 +1052,7 @@ enum class EAISoundEventLoudness
 };
 
 // Size: 0x4
-enum class EActBodyType
+enum class EActBodyType : int32_t
 {
 	ABT_UpperBodyOnly = 0,
 	ABT_FullBodyWithLeadIn = 1,
@@ -1060,7 +1060,7 @@ enum class EActBodyType
 };
 
 // Size: 0x4
-enum class EActionPromptState
+enum class EActionPromptState : int32_t
 {
 	eActionPromptState_Disabled = 0,
 	eActionPromptState_Enabled = 1,
@@ -1069,7 +1069,7 @@ enum class EActionPromptState
 };
 
 // Size: 0x4
-enum class EActionRadialArcIconType
+enum class EActionRadialArcIconType : int32_t
 {
 	EARAIT_NoIcon = 0,
 	EARAIT_Locked = 1,
@@ -1092,7 +1092,7 @@ enum class EActionRadialArcIconType
 };
 
 // Size: 0x4
-enum class EActionType
+enum class EActionType : int32_t
 {
 	AT_INVALID = 0,
 	AT_OPENDOOR = 1,
@@ -1130,7 +1130,7 @@ enum class EActionType
 };
 
 // Size: 0x4
-enum class EActorAIState
+enum class EActorAIState : int32_t
 {
 	eAAIS_None = 0,
 	eAAIS_Distracted = 1,
@@ -1147,7 +1147,7 @@ enum class EActorAIState
 };
 
 // Size: 0x4
-enum class EActorAnimationOrder
+enum class EActorAnimationOrder : int32_t
 {
 	AAO_None = 0,
 	AAO_Stand = 1,
@@ -1164,7 +1164,7 @@ enum class EActorAnimationOrder
 };
 
 // Size: 0x4
-enum class EActorCCPreset
+enum class EActorCCPreset : int32_t
 {
 	ACCP_CivilianFemale = 0,
 	ACCP_CivilianeMale = 1,
@@ -1176,7 +1176,7 @@ enum class EActorCCPreset
 };
 
 // Size: 0x4
-enum class EActorEmotionState
+enum class EActorEmotionState : int32_t
 {
 	AES_Ambient = 0,
 	AES_Alerted = 1,
@@ -1187,7 +1187,7 @@ enum class EActorEmotionState
 };
 
 // Size: 0x4
-enum class EActorEventTypes
+enum class EActorEventTypes : int32_t
 {
 	eAET_OnAlive = 0,
 	eAET_OnPacified = 1,
@@ -1205,7 +1205,7 @@ enum class EActorEventTypes
 };
 
 // Size: 0x4
-enum class EActorFaction
+enum class EActorFaction : int32_t
 {
 	eActorFaction_Default = 0,
 	eActorFaction_VIP_1 = 1,
@@ -1218,7 +1218,7 @@ enum class EActorFaction
 };
 
 // Size: 0x4
-enum class EActorGroup
+enum class EActorGroup : int32_t
 {
 	eAG_Group_A = 0,
 	eAG_Group_B = 1,
@@ -1228,7 +1228,7 @@ enum class EActorGroup
 };
 
 // Size: 0x4
-enum class EActorLookAtPriority
+enum class EActorLookAtPriority : int32_t
 {
 	eALAPriority_Ambient = 0,
 	eALAPriority_AmbientHigh = 1,
@@ -1241,7 +1241,7 @@ enum class EActorLookAtPriority
 };
 
 // Size: 0x4
-enum class EActorLookAtStopReason
+enum class EActorLookAtStopReason : int32_t
 {
 	eSR_Unknown = 0,
 	eSR_Disabled = 1,
@@ -1256,7 +1256,7 @@ enum class EActorLookAtStopReason
 };
 
 // Size: 0x4
-enum class EActorLookAtTargetType
+enum class EActorLookAtTargetType : int32_t
 {
 	eALAT_Invalid = 0,
 	eALAT_PositionTarget = 1,
@@ -1268,7 +1268,7 @@ enum class EActorLookAtTargetType
 };
 
 // Size: 0x4
-enum class EActorPerceptionSensitivity
+enum class EActorPerceptionSensitivity : int32_t
 {
 	APS_AMBIENT_DEAFBLIND = 0,
 	APS_AMBIENT_SLEEPING = 1,
@@ -1281,7 +1281,7 @@ enum class EActorPerceptionSensitivity
 };
 
 // Size: 0x4
-enum class EActorRank
+enum class EActorRank : int32_t
 {
 	AR_Default = 0,
 	AR_Elite = 1,
@@ -1290,7 +1290,7 @@ enum class EActorRank
 };
 
 // Size: 0x4
-enum class EActorRole
+enum class EActorRole : int32_t
 {
 	eActorRole_Default = 0,
 	eActorRole_Bodyguard = 1,
@@ -1298,14 +1298,14 @@ enum class EActorRole
 };
 
 // Size: 0x4
-enum class EActorSecondaryIconState
+enum class EActorSecondaryIconState : int32_t
 {
 	eSIS_Clear = 0,
 	eSIS_Infected = 1,
 };
 
 // Size: 0x4
-enum class EActorState
+enum class EActorState : int32_t
 {
 	AS_DEACTIVATED = 0,
 	AS_ALIVE = 1,
@@ -1315,7 +1315,7 @@ enum class EActorState
 };
 
 // Size: 0x4
-enum class EActorType
+enum class EActorType : int32_t
 {
 	eAT_Civilian = 0,
 	eAT_Guard = 1,
@@ -1324,7 +1324,7 @@ enum class EActorType
 };
 
 // Size: 0x4
-enum class EActorVoiceVariation
+enum class EActorVoiceVariation : int32_t
 {
 	eAVV_Undefined = 0,
 	eAVV_ABIATTI = 1,
@@ -1493,7 +1493,7 @@ enum class EActorVoiceVariation
 };
 
 // Size: 0x4
-enum class EAgilityState
+enum class EAgilityState : int32_t
 {
 	eAgState_JumpToHangFromLocomotion = 0,
 	eAgState_ClimbOnToLedgeFromLocomotion = 1,
@@ -1534,21 +1534,21 @@ enum class EAgilityState
 };
 
 // Size: 0x4
-enum class EAimAssistGameModeFilter
+enum class EAimAssistGameModeFilter : int32_t
 {
 	AATF_ANY = 0,
 	AATF_POINTSHOOTING = 1,
 };
 
 // Size: 0x4
-enum class EAlertedDebugMode
+enum class EAlertedDebugMode : int32_t
 {
 	ADM_RandomMovement = 0,
 	ADM_Patrol = 1,
 };
 
 // Size: 0x4
-enum class EAnimBlendMode
+enum class EAnimBlendMode : int32_t
 {
 	EAnimBlendMode_InterpAttInterpPos = 0,
 	EAnimBlendMode_InterpAttAddPos = 1,
@@ -1557,7 +1557,7 @@ enum class EAnimBlendMode
 };
 
 // Size: 0x4
-enum class EAnimSetState
+enum class EAnimSetState : int32_t
 {
 	EASES_DEFAULT = 0,
 	EASES_AMBIENT_ARMED = 1,
@@ -1568,7 +1568,7 @@ enum class EAnimSetState
 };
 
 // Size: 0x4
-enum class EAnimSetType
+enum class EAnimSetType : int32_t
 {
 	EAST_UNDEFINED = 0,
 	EAST_DEFAULT = 1,
@@ -1598,7 +1598,7 @@ enum class EAnimSetType
 };
 
 // Size: 0x4
-enum class EAnimationPose
+enum class EAnimationPose : int32_t
 {
 	AP_Undefined = 0,
 	AP_Standing = 1,
@@ -1611,7 +1611,7 @@ enum class EAnimationPose
 };
 
 // Size: 0x4
-enum class EAttachLocation
+enum class EAttachLocation : int32_t
 {
 	eALRightHand = 0,
 	eALLeftHand = 1,
@@ -1621,14 +1621,14 @@ enum class EAttachLocation
 };
 
 // Size: 0x4
-enum class EAutoScanMode
+enum class EAutoScanMode : int32_t
 {
 	ASM_GEOMETRY = 0,
 	ASM_VOLUMEBOX = 1,
 };
 
 // Size: 0x4
-enum class EBaseMovementType
+enum class EBaseMovementType : int32_t
 {
 	eMovementNone = -1,
 	eMovementDead = 0,
@@ -1673,7 +1673,7 @@ enum class EBaseMovementType
 };
 
 // Size: 0x4
-enum class EBehaviorTreeVariableType
+enum class EBehaviorTreeVariableType : int32_t
 {
 	BTVT_Invalid = -1,
 	BTVT_SceneReference = 0,
@@ -1683,7 +1683,7 @@ enum class EBehaviorTreeVariableType
 };
 
 // Size: 0x4
-enum class EBoolCheckType
+enum class EBoolCheckType : int32_t
 {
 	eBCT_IGNORE = 0,
 	eBCT_TRUE = 1,
@@ -1691,7 +1691,7 @@ enum class EBoolCheckType
 };
 
 // Size: 0x4
-enum class EBooleanOption
+enum class EBooleanOption : int32_t
 {
 	BO_Off = 0,
 	BO_On = 1,
@@ -1699,7 +1699,7 @@ enum class EBooleanOption
 };
 
 // Size: 0x4
-enum class EBulletType
+enum class EBulletType : int32_t
 {
 	BULLET_TYPE_NONE = 0,
 	BULLET_TYPE_GUN = 1,
@@ -1713,7 +1713,7 @@ enum class EBulletType
 };
 
 // Size: 0x4
-enum class EButtonDisplay
+enum class EButtonDisplay : int32_t
 {
 	BUTTON_DISPLAY_AT_OPENDOOR = 0,
 	BUTTON_DISPLAY_AT_PICKUP = 1,
@@ -1806,7 +1806,7 @@ enum class EButtonDisplay
 };
 
 // Size: 0x4
-enum class EButtonPressType
+enum class EButtonPressType : int32_t
 {
 	BUTTON_PRESS = 0,
 	BUTTON_HOLD = 1,
@@ -1817,7 +1817,7 @@ enum class EButtonPressType
 };
 
 // Size: 0x4
-enum class EButtonState
+enum class EButtonState : int32_t
 {
 	BUTTON_STATE_DISABLED = -1,
 	BUTTON_STATE_NONE = 0,
@@ -1827,14 +1827,14 @@ enum class EButtonState
 };
 
 // Size: 0x4
-enum class EBystanderPointType
+enum class EBystanderPointType : int32_t
 {
 	BPT_Scared = 0,
 	BPT_Alerted = 1,
 };
 
 // Size: 0x4
-enum class ECCDUsage
+enum class ECCDUsage : int32_t
 {
 	ECCDUSAGE_DISABLED = 0,
 	ECCDUSAGE_AGAINST_STATIC = 1,
@@ -1842,7 +1842,7 @@ enum class ECCDUsage
 };
 
 // Size: 0x4
-enum class ECCDecalEffect
+enum class ECCDecalEffect : int32_t
 {
 	eCCDecalEffect_None = 0,
 	eCCDecalEffect_Stab = 1,
@@ -1859,7 +1859,7 @@ enum class ECCDecalEffect
 };
 
 // Size: 0x4
-enum class ECCEmitterEffect
+enum class ECCEmitterEffect : int32_t
 {
 	eCCEmitterEffect_None = 0,
 	eCCEmitterEffect_Stab = 1,
@@ -1876,7 +1876,7 @@ enum class ECCEmitterEffect
 };
 
 // Size: 0x4
-enum class ECCNodeSubtype
+enum class ECCNodeSubtype : int32_t
 {
 	eCCNodeSubtype_Left = 0,
 	eCCNodeSubtype_Right = 1,
@@ -1891,7 +1891,7 @@ enum class ECCNodeSubtype
 };
 
 // Size: 0x4
-enum class ECCNodeType
+enum class ECCNodeType : int32_t
 {
 	eCCNodeType_Counter = 0,
 	eCCNodeType_ExecutePistol = 1,
@@ -1927,7 +1927,7 @@ enum class ECCNodeType
 };
 
 // Size: 0x4
-enum class ECCWeaponAnimSet
+enum class ECCWeaponAnimSet : int32_t
 {
 	AS_SLIT_THROAT_1H = 0,
 	AS_SWING_1H = 1,
@@ -1945,21 +1945,21 @@ enum class ECCWeaponAnimSet
 };
 
 // Size: 0x4
-enum class ECOMUsage
+enum class ECOMUsage : int32_t
 {
 	ECOMUSAGE_AUTOCOMPUTE = 0,
 	ECOMUSAGE_PIVOT = 1,
 };
 
 // Size: 0x4
-enum class ECameraControls
+enum class ECameraControls : int32_t
 {
 	eCameraControlsNormal = 0,
 	eCameraControlsOTS = 1,
 };
 
 // Size: 0x4
-enum class ECameraOffset_old
+enum class ECameraOffset_old : int32_t
 {
 	eCameraOffset_Center = 0,
 	eCameraOffset_Left = 1,
@@ -1967,7 +1967,7 @@ enum class ECameraOffset_old
 };
 
 // Size: 0x4
-enum class ECameraShakerChannel
+enum class ECameraShakerChannel : int32_t
 {
 	eCameraShakerChannel_Default = 0,
 	eCameraShakerChannle_Locomotion = 1,
@@ -1978,7 +1978,7 @@ enum class ECameraShakerChannel
 };
 
 // Size: 0x4
-enum class ECameraState
+enum class ECameraState : int32_t
 {
 	eCamSneakStand = 0,
 	eCamSneakWalk = 1,
@@ -2039,7 +2039,7 @@ enum class ECameraState
 };
 
 // Size: 0x4
-enum class ECautiousDisturbanceState
+enum class ECautiousDisturbanceState : int32_t
 {
 	eCDS_Pending = 0,
 	eCDS_Expired = 1,
@@ -2055,7 +2055,7 @@ enum class ECautiousDisturbanceState
 };
 
 // Size: 0x4
-enum class ECharSetCharacterType
+enum class ECharSetCharacterType : int32_t
 {
 	ECSCT_Actor = 0,
 	ECSCT_Nude = 1,
@@ -2065,7 +2065,7 @@ enum class ECharSetCharacterType
 };
 
 // Size: 0x4
-enum class ECheatGroup
+enum class ECheatGroup : int32_t
 {
 	eCGNone = 0,
 	eCGPistols = 1,
@@ -2078,7 +2078,7 @@ enum class ECheatGroup
 };
 
 // Size: 0x4
-enum class EClipSpawnAxis
+enum class EClipSpawnAxis : int32_t
 {
 	eCSA_XPos = 0,
 	eCSA_XNeg = 1,
@@ -2089,14 +2089,14 @@ enum class EClipSpawnAxis
 };
 
 // Size: 0x4
-enum class EClothBendConstrainType
+enum class EClothBendConstrainType : int32_t
 {
 	eClothBendConstrainType_Stick = 0,
 	eClothBendConstrainType_Triangle = 1,
 };
 
 // Size: 0x4
-enum class EClothColliderFilter
+enum class EClothColliderFilter : int32_t
 {
 	EClothColliderFilter_Environment = 0,
 	EClothColliderFilter_Character = 1,
@@ -2104,7 +2104,7 @@ enum class EClothColliderFilter
 };
 
 // Size: 0x4
-enum class EClothStretchConstrainType
+enum class EClothStretchConstrainType : int32_t
 {
 	eClothBendConstrainType_Anchor = 0,
 	eClothBendConstrainType_LRA = 1,
@@ -2112,7 +2112,7 @@ enum class EClothStretchConstrainType
 };
 
 // Size: 0x4
-enum class ECollidableLayer
+enum class ECollidableLayer : int32_t
 {
 	eCollLayer_COLLIDE_WITH_ALL = 0,
 	eCollLayer_STATIC_COLLIDABLES_ONLY = 1,
@@ -2150,7 +2150,7 @@ enum class ECollidableLayer
 };
 
 // Size: 0x4
-enum class ECollidableShape
+enum class ECollidableShape : int32_t
 {
 	ECOLLIDABLESHAPE_SPHERE = 0,
 	ECOLLIDABLESHAPE_CAPSULE = 1,
@@ -2158,7 +2158,7 @@ enum class ECollidableShape
 };
 
 // Size: 0x4
-enum class ECollidablesType
+enum class ECollidablesType : int32_t
 {
 	ECST_STATIC_AND_DYNAMIC = 0,
 	ECST_STATIC_ONLY = 1,
@@ -2166,7 +2166,7 @@ enum class ECollidablesType
 };
 
 // Size: 0x4
-enum class ECollisionPriority
+enum class ECollisionPriority : int32_t
 {
 	ECOLLISIONPRIORITY_LOW = 0,
 	ECOLLISIONPRIORITY_NORMAL = 1,
@@ -2175,7 +2175,7 @@ enum class ECollisionPriority
 };
 
 // Size: 0x1
-enum class ECollisionResponse
+enum class ECollisionResponse : int8_t
 {
 	REFLECT_VELOCITY = 0,
 	SLIDE_ON = 1,
@@ -2184,7 +2184,7 @@ enum class ECollisionResponse
 };
 
 // Size: 0x4
-enum class ECombatZoneState
+enum class ECombatZoneState : int32_t
 {
 	CZS_Inactive = 0,
 	CZS_Triggered = 1,
@@ -2192,7 +2192,7 @@ enum class ECombatZoneState
 };
 
 // Size: 0x4
-enum class ECommunicationBarMessage
+enum class ECommunicationBarMessage : int32_t
 {
 	ECBM_Unknown = 0,
 	ECBM_Spotted = 1,
@@ -2219,7 +2219,7 @@ enum class ECommunicationBarMessage
 };
 
 // Size: 0x4
-enum class ECommunicationBarState
+enum class ECommunicationBarState : int32_t
 {
 	COMMUNICATION_BAR_NONE = 0,
 	COMMUNICATION_BAR_CLEAR = 1,
@@ -2234,7 +2234,7 @@ enum class ECommunicationBarState
 };
 
 // Size: 0x4
-enum class ECompiledBehaviorType
+enum class ECompiledBehaviorType : int32_t
 {
 	BT_ConditionScope = 0,
 	BT_Random = 1,
@@ -2366,7 +2366,7 @@ enum class ECompiledBehaviorType
 };
 
 // Size: 0x4
-enum class ECompiledConditionType
+enum class ECompiledConditionType : int32_t
 {
 	CT_IsCurrent = 0,
 	CT_Current = 1,
@@ -2452,7 +2452,7 @@ enum class ECompiledConditionType
 };
 
 // Size: 0x4
-enum class EControlButtonName
+enum class EControlButtonName : int32_t
 {
 	eCN_ABORT = 0,
 	eCN_ACTION = 1,
@@ -2493,7 +2493,7 @@ enum class EControlButtonName
 };
 
 // Size: 0x4
-enum class EControlledStates
+enum class EControlledStates : int32_t
 {
 	CS_HumanShield = 0,
 	CS_CloseCombat = 1,
@@ -2501,7 +2501,7 @@ enum class EControlledStates
 };
 
 // Size: 0x4
-enum class EControllerButton
+enum class EControllerButton : int32_t
 {
 	BUTTON_NONE = 0,
 	BUTTON_CROSS = 1,
@@ -2532,7 +2532,7 @@ enum class EControllerButton
 };
 
 // Size: 0x4
-enum class ECoordinateSpace
+enum class ECoordinateSpace : int32_t
 {
 	CSPACE_INVALID = 0,
 	CSPACE_OBJECT_TO_WORLD = 1,
@@ -2542,7 +2542,7 @@ enum class ECoordinateSpace
 };
 
 // Size: 0x4
-enum class ECoverPosition
+enum class ECoverPosition : int32_t
 {
 	COVER_POSITION_NONE = 0,
 	COVER_POSITION_LEFT = 1,
@@ -2551,7 +2551,7 @@ enum class ECoverPosition
 };
 
 // Size: 0x4
-enum class ECrossHairType
+enum class ECrossHairType : int32_t
 {
 	CROSSHAIR_NONE = 0,
 	CROSSHAIR_PISTOL = 1,
@@ -2568,7 +2568,7 @@ enum class ECrossHairType
 };
 
 // Size: 0x4
-enum class ECrowdFlowCandidates
+enum class ECrowdFlowCandidates : int32_t
 {
 	NONE = 0,
 	EVERYONE = 1,
@@ -2576,7 +2576,7 @@ enum class ECrowdFlowCandidates
 };
 
 // Size: 0x4
-enum class EDamageEvent
+enum class EDamageEvent : int32_t
 {
 	eDE_UNDEFINED = 0,
 	eDE_InCloset = 1,
@@ -2601,7 +2601,7 @@ enum class EDamageEvent
 };
 
 // Size: 0x4
-enum class EDeathAnimationType
+enum class EDeathAnimationType : int32_t
 {
 	DAT_None = 0,
 	DAT_SingleShot = 1,
@@ -2611,7 +2611,7 @@ enum class EDeathAnimationType
 };
 
 // Size: 0x4
-enum class EDeathBehavior
+enum class EDeathBehavior : int32_t
 {
 	eDB_IMPACT_ANIM = 0,
 	eDB_NO_IMPACT_ANIM = 1,
@@ -2620,7 +2620,7 @@ enum class EDeathBehavior
 };
 
 // Size: 0x4
-enum class EDeathContext
+enum class EDeathContext : int32_t
 {
 	eDC_UNDEFINED = 0,
 	eDC_NOT_HERO = 1,
@@ -2630,7 +2630,7 @@ enum class EDeathContext
 };
 
 // Size: 0x4
-enum class EDeathType
+enum class EDeathType : int32_t
 {
 	eDT_UNDEFINED = 0,
 	eDT_PACIFY = 1,
@@ -2639,7 +2639,7 @@ enum class EDeathType
 };
 
 // Size: 0x4
-enum class EDefaultCollidableLayer
+enum class EDefaultCollidableLayer : int32_t
 {
 	DCL_STATIC = 0,
 	DCL_KINEMATIC = 1,
@@ -2654,7 +2654,7 @@ enum class EDefaultCollidableLayer
 };
 
 // Size: 0x4
-enum class EDetachUsage
+enum class EDetachUsage : int32_t
 {
 	EDU_NEVER = 0,
 	EDU_ALWAYS = 1,
@@ -2662,14 +2662,14 @@ enum class EDetachUsage
 };
 
 // Size: 0x4
-enum class EDialogEventEndReason
+enum class EDialogEventEndReason : int32_t
 {
 	EDialogEvent_Completed = 0,
 	EDialogEvent_Stopped = 1,
 };
 
 // Size: 0x4
-enum class EDifficultyParameter
+enum class EDifficultyParameter : int32_t
 {
 	EDP_Invalid = 0,
 	EDP_AIAttentionGainMultiplier = 1,
@@ -2790,7 +2790,7 @@ enum class EDifficultyParameter
 };
 
 // Size: 0x4
-enum class EDisposalType
+enum class EDisposalType : int32_t
 {
 	DISPOSAL_UNDEFINED = 0,
 	DISPOSAL_NOTHING = 1,
@@ -2804,7 +2804,7 @@ enum class EDisposalType
 };
 
 // Size: 0x4
-enum class EDisturbanceType
+enum class EDisturbanceType : int32_t
 {
 	DT_Generic = 0,
 	DT_SeeWeapon = 1,
@@ -2854,7 +2854,7 @@ enum class EDisturbanceType
 };
 
 // Size: 0x4
-enum class EDynamicVariableType
+enum class EDynamicVariableType : int32_t
 {
 	DV_Invalid = -1,
 	DV_Me = 0,
@@ -2866,7 +2866,7 @@ enum class EDynamicVariableType
 };
 
 // Size: 0x4
-enum class EEntityOrdering
+enum class EEntityOrdering : int32_t
 {
 	EO_LOW = 0,
 	EO_NORMAL = 1,
@@ -2874,14 +2874,14 @@ enum class EEntityOrdering
 };
 
 // Size: 0x4
-enum class EEquipAbility
+enum class EEquipAbility : int32_t
 {
 	EA_EQUIP_IN_HANDS = 0,
 	EA_CANNOT_BE_EQUIPPED = 1,
 };
 
 // Size: 0x4
-enum class EFSMInternalEvent
+enum class EFSMInternalEvent : int32_t
 {
 	eFSMEvent_Completed = 0,
 	eFSMEvent_Failed = 1,
@@ -2890,7 +2890,7 @@ enum class EFSMInternalEvent
 };
 
 // Size: 0x4
-enum class EFSMStateStatus
+enum class EFSMStateStatus : int32_t
 {
 	eInactive = 0,
 	eActive = 1,
@@ -2900,7 +2900,7 @@ enum class EFSMStateStatus
 };
 
 // Size: 0x4
-enum class EFocusBarState
+enum class EFocusBarState : int32_t
 {
 	FOCUS_BAR_NORMAL = 0,
 	FOCUS_BAR_INSTINCT = 1,
@@ -2908,7 +2908,7 @@ enum class EFocusBarState
 };
 
 // Size: 0x4
-enum class EFontFlags
+enum class EFontFlags : int32_t
 {
 	FV_Original = 16,
 	FV_NoAutoFit = 32,
@@ -2922,7 +2922,7 @@ enum class EFontFlags
 };
 
 // Size: 0x4
-enum class EGSBodyPart
+enum class EGSBodyPart : int32_t
 {
 	GSBODYPART_UNKNOWN = 0,
 	GSBODYPART_HEAD = 1,
@@ -2932,7 +2932,7 @@ enum class EGSBodyPart
 };
 
 // Size: 0x4
-enum class EGSEvent
+enum class EGSEvent : int32_t
 {
 	GSEvent_StrayBullet = 0,
 	GSEvent_TookDamage = 1,
@@ -2977,7 +2977,7 @@ enum class EGSEvent
 };
 
 // Size: 0x4
-enum class EGSExplodingPropType
+enum class EGSExplodingPropType : int32_t
 {
 	eGSExplodingProp_Unknown = 0,
 	eGSExplodingProp_Barrel = 1,
@@ -2992,7 +2992,7 @@ enum class EGSExplodingPropType
 };
 
 // Size: 0x4
-enum class EGSKillSituation
+enum class EGSKillSituation : int32_t
 {
 	GSKILLSITUATION_UNKNOWN = 0,
 	GSKILLSITUATION_CLOSECOMBAT = 1,
@@ -3008,7 +3008,7 @@ enum class EGSKillSituation
 };
 
 // Size: 0x4
-enum class EGSKillVictim
+enum class EGSKillVictim : int32_t
 {
 	GSKILLVICTIM_UNKNOWN = 0,
 	GSKILLVICTIM_CIVILIAN = 1,
@@ -3017,7 +3017,7 @@ enum class EGSKillVictim
 };
 
 // Size: 0x4
-enum class EGait
+enum class EGait : int32_t
 {
 	eGait_Normal = 0,
 	eGait_Reposition = 1,
@@ -3051,7 +3051,7 @@ enum class EGait
 };
 
 // Size: 0x4
-enum class EGameEventArgType
+enum class EGameEventArgType : int32_t
 {
 	GE_ARGS_KILL = 0,
 	GE_ARGS_PRIORITYKILL = 1,
@@ -3065,7 +3065,7 @@ enum class EGameEventArgType
 };
 
 // Size: 0x4
-enum class EGameTension
+enum class EGameTension : int32_t
 {
 	EGT_Undefined = 0,
 	EGT_Ambient = 1,
@@ -3079,7 +3079,7 @@ enum class EGameTension
 };
 
 // Size: 0x4
-enum class EGameUIMenu
+enum class EGameUIMenu : int32_t
 {
 	eUIMenu_IntroMenu = 0,
 	eUIMenu_PauseMenu = 1,
@@ -3099,7 +3099,7 @@ enum class EGameUIMenu
 };
 
 // Size: 0x4
-enum class EGestureCategory
+enum class EGestureCategory : int32_t
 {
 	EGC_None = 0,
 	EGC_AmbientDialog = 1,
@@ -3110,7 +3110,7 @@ enum class EGestureCategory
 };
 
 // Size: 0x4
-enum class EGuardPointType
+enum class EGuardPointType : int32_t
 {
 	GPT_Hold = 0,
 	GPT_Combat = 1,
@@ -3119,7 +3119,7 @@ enum class EGuardPointType
 };
 
 // Size: 0x4
-enum class EHM5GameInputFlag
+enum class EHM5GameInputFlag : int32_t
 {
 	eGameInputActionPerform = 0,
 	eGameInputActionPickup = 1,
@@ -3187,7 +3187,7 @@ enum class EHM5GameInputFlag
 };
 
 // Size: 0x4
-enum class EHM5SoundBulletType
+enum class EHM5SoundBulletType : int32_t
 {
 	ESBT_SMALL = 0,
 	ESBT_MEDIUM = 1,
@@ -3197,7 +3197,7 @@ enum class EHM5SoundBulletType
 };
 
 // Size: 0x4
-enum class EHM5SoundCloseCombatEvent
+enum class EHM5SoundCloseCombatEvent : int32_t
 {
 	ECCE_PUNCH_FACE = 0,
 	ECCE_PUNCH_BODY = 1,
@@ -3218,14 +3218,14 @@ enum class EHM5SoundCloseCombatEvent
 };
 
 // Size: 0x4
-enum class EHM5SoundFootstepEmitterTarget
+enum class EHM5SoundFootstepEmitterTarget : int32_t
 {
 	EFSAT_MAIN = 0,
 	EFSAT_NPC = 1,
 };
 
 // Size: 0x4
-enum class EHM5SoundFootstepEvent
+enum class EHM5SoundFootstepEvent : int32_t
 {
 	EFSE_START = 0,
 	EFSE_STOP = 1,
@@ -3238,7 +3238,7 @@ enum class EHM5SoundFootstepEvent
 };
 
 // Size: 0x4
-enum class EHM5SoundFootstepStance
+enum class EHM5SoundFootstepStance : int32_t
 {
 	EFSS_SNEAK = 0,
 	EFSS_SNEAKRUN = 1,
@@ -3249,7 +3249,7 @@ enum class EHM5SoundFootstepStance
 };
 
 // Size: 0x4
-enum class EHM5SoundFootwearType
+enum class EHM5SoundFootwearType : int32_t
 {
 	EFWT_UNDEFINED = 0,
 	EFWT_BAREFOOT = 1,
@@ -3270,14 +3270,14 @@ enum class EHM5SoundFootwearType
 };
 
 // Size: 0x4
-enum class EHM5SoundRicochetType
+enum class EHM5SoundRicochetType : int32_t
 {
 	ESRT_VARIATION1 = 0,
 	ESRT_VARIATION2 = 1,
 };
 
 // Size: 0x4
-enum class EHUDElement
+enum class EHUDElement : int32_t
 {
 	HUD_ELEMENT_NONE = 0,
 	HUD_ELEMENT_MINIMAP = 1,
@@ -3306,7 +3306,7 @@ enum class EHUDElement
 };
 
 // Size: 0x4
-enum class EHUDIconFlags
+enum class EHUDIconFlags : int32_t
 {
 	HUD_ICON_FLAG_POSITION = 1,
 	HUD_ICON_FLAG_VALUE = 2,
@@ -3315,7 +3315,7 @@ enum class EHUDIconFlags
 };
 
 // Size: 0x4
-enum class EHUDIconType
+enum class EHUDIconType : int32_t
 {
 	HUD_ICON_NONE = 0,
 	HUD_ICON_ALARM_TIMER = 1,
@@ -3328,7 +3328,7 @@ enum class EHUDIconType
 };
 
 // Size: 0x4
-enum class EHUDMessageStatus
+enum class EHUDMessageStatus : int32_t
 {
 	HUD_MESSAGE_UNUSED = 0,
 	HUD_MESSAGE_ATTACH = 1,
@@ -3338,7 +3338,7 @@ enum class EHUDMessageStatus
 };
 
 // Size: 0x4
-enum class EHandleClosetSpeechState
+enum class EHandleClosetSpeechState : int32_t
 {
 	HCSS_Initial = 0,
 	HCSS_Taunt = 1,
@@ -3347,7 +3347,7 @@ enum class EHandleClosetSpeechState
 };
 
 // Size: 0x4
-enum class EHeroGameState
+enum class EHeroGameState : int32_t
 {
 	eHGS_Reserved_QueryALL = 0,
 	eHGS_Reserved_QueryAny = 1,
@@ -3393,7 +3393,7 @@ enum class EHeroGameState
 };
 
 // Size: 0x4
-enum class EHintMessageSoundType
+enum class EHintMessageSoundType : int32_t
 {
 	EHintMessageSound_None = 0,
 	EHintMessageSound_GeneralHint = 1,
@@ -3409,7 +3409,7 @@ enum class EHintMessageSoundType
 };
 
 // Size: 0x4
-enum class EHintMessageType
+enum class EHintMessageType : int32_t
 {
 	EHintMessageType_Hint = 0,
 	EHintMessageType_InstinctHint = 1,
@@ -3418,7 +3418,7 @@ enum class EHintMessageType
 };
 
 // Size: 0x4
-enum class EHitmanPermissionFlag
+enum class EHitmanPermissionFlag : int32_t
 {
 	eHPFlag_InventorySelect = 0,
 	eHPFlag_CanHolsterItem = 1,
@@ -3433,7 +3433,7 @@ enum class EHitmanPermissionFlag
 };
 
 // Size: 0x4
-enum class EHumanShieldSpeechState
+enum class EHumanShieldSpeechState : int32_t
 {
 	HMSS_FirstWarning = 0,
 	HMSS_SecondWarningVictim = 1,
@@ -3445,7 +3445,7 @@ enum class EHumanShieldSpeechState
 };
 
 // Size: 0x4
-enum class EInformationBarMessage
+enum class EInformationBarMessage : int32_t
 {
 	eIBM_Clear = 0,
 	eIBM_LastEnemyKilledCP = 1,
@@ -3463,7 +3463,7 @@ enum class EInformationBarMessage
 };
 
 // Size: 0x4
-enum class EIntelStage
+enum class EIntelStage : int32_t
 {
 	eIT_MAIN = 0,
 	eIT_STAGE = 1,
@@ -3471,7 +3471,7 @@ enum class EIntelStage
 };
 
 // Size: 0x4
-enum class EIntelTensionLevel
+enum class EIntelTensionLevel : int32_t
 {
 	eITL_Undefined = 0,
 	eITL_Ambient = 1,
@@ -3485,7 +3485,7 @@ enum class EIntelTensionLevel
 };
 
 // Size: 0x4
-enum class EIntelType
+enum class EIntelType : int32_t
 {
 	eIT_DATA = 0,
 	eIT_OPPORTUNITY = 1,
@@ -3495,7 +3495,7 @@ enum class EIntelType
 };
 
 // Size: 0x4
-enum class EInteractionIndicatorState
+enum class EInteractionIndicatorState : int32_t
 {
 	EIIS_AVAILABLE = 0,
 	EIIS_COLLAPSED = 1,
@@ -3504,7 +3504,7 @@ enum class EInteractionIndicatorState
 };
 
 // Size: 0x4
-enum class EInteractionInputType
+enum class EInteractionInputType : int32_t
 {
 	EIIT_UNKNOWN = 0,
 	EIIT_PRESS = 1,
@@ -3515,7 +3515,7 @@ enum class EInteractionInputType
 };
 
 // Size: 0x4
-enum class EInvestigationState
+enum class EInvestigationState : int32_t
 {
 	IS_FindTargetLocation = 0,
 	IS_WaitForVIPGroup = 1,
@@ -3531,7 +3531,7 @@ enum class EInvestigationState
 };
 
 // Size: 0x4
-enum class EInvestigationType
+enum class EInvestigationType : int32_t
 {
 	IT_Generic = 0,
 	IT_HearBulletImpact = 1,
@@ -3554,7 +3554,7 @@ enum class EInvestigationType
 };
 
 // Size: 0x4
-enum class EItemLocation
+enum class EItemLocation : int32_t
 {
 	eIL_Anywhere = 0,
 	eIL_Inventory = 1,
@@ -3565,7 +3565,7 @@ enum class EItemLocation
 };
 
 // Size: 0x4
-enum class EItemModifierType
+enum class EItemModifierType : int32_t
 {
 	MODIFIER_NONE = 0,
 	MODIFIER_THROW = 1,
@@ -3592,7 +3592,7 @@ enum class EItemModifierType
 };
 
 // Size: 0x4
-enum class EKeywordSetBehavior
+enum class EKeywordSetBehavior : int32_t
 {
 	EKWSB_All = 0,
 	EKWSB_None = 1,
@@ -3601,7 +3601,7 @@ enum class EKeywordSetBehavior
 };
 
 // Size: 0x4
-enum class EKillType
+enum class EKillType : int32_t
 {
 	EKillType_Undefined = 0,
 	EKillType_Throw = 1,
@@ -3619,7 +3619,7 @@ enum class EKillType
 };
 
 // Size: 0x4
-enum class EKnownEntityType
+enum class EKnownEntityType : int32_t
 {
 	KET_UNKNOWN = 0,
 	KET_HITMAN = 1,
@@ -3633,7 +3633,7 @@ enum class EKnownEntityType
 };
 
 // Size: 0x4
-enum class ELastSoundTension
+enum class ELastSoundTension : int32_t
 {
 	EST_Unknown = 0,
 	EST_Ambient = 1,
@@ -3643,7 +3643,7 @@ enum class ELastSoundTension
 };
 
 // Size: 0x4
-enum class ELedgeDismountBehavior
+enum class ELedgeDismountBehavior : int32_t
 {
 	eLDB_DontCare = 0,
 	eLDB_Stand = 1,
@@ -3651,7 +3651,7 @@ enum class ELedgeDismountBehavior
 };
 
 // Size: 0x4
-enum class ELedgeDismountDirection
+enum class ELedgeDismountDirection : int32_t
 {
 	eLDD_DontCare = 0,
 	eLDD_FaceLedge = 1,
@@ -3661,7 +3661,7 @@ enum class ELedgeDismountDirection
 };
 
 // Size: 0x4
-enum class ELocale
+enum class ELocale : int32_t
 {
 	Locale_En = 0,
 	Locale_Fr = 1,
@@ -3677,7 +3677,7 @@ enum class ELocale
 };
 
 // Size: 0x4
-enum class EMarkerClipAlgorithm
+enum class EMarkerClipAlgorithm : int32_t
 {
 	MCA_NONE = 0,
 	MCA_SIMPLE = 1,
@@ -3685,14 +3685,14 @@ enum class EMarkerClipAlgorithm
 };
 
 // Size: 0x4
-enum class EMarkerInclusionMode
+enum class EMarkerInclusionMode : int32_t
 {
 	MIM_DEFAULT = 0,
 	MIM_IF_FORCE_INCLUDED_ONLY = 1,
 };
 
 // Size: 0x4
-enum class EMeBarState
+enum class EMeBarState : int32_t
 {
 	ME_BAR_NONE = 0,
 	ME_BAR_TRESPASSING = 1,
@@ -3705,7 +3705,7 @@ enum class EMeBarState
 };
 
 // Size: 0x4
-enum class EMorphemeEventId
+enum class EMorphemeEventId : int32_t
 {
 	eDE_None = 0,
 	eDE_UnholsterWeapon = 18,
@@ -3778,7 +3778,7 @@ enum class EMorphemeEventId
 };
 
 // Size: 0x4
-enum class EMotionType
+enum class EMotionType : int32_t
 {
 	MOTION_LOCKED = 0,
 	MOTION_LIMITED = 1,
@@ -3786,7 +3786,7 @@ enum class EMotionType
 };
 
 // Size: 0x4
-enum class EMoveEndState
+enum class EMoveEndState : int32_t
 {
 	MES_Moving = 0,
 	MES_Stopping = 1,
@@ -3794,7 +3794,7 @@ enum class EMoveEndState
 };
 
 // Size: 0x4
-enum class EMoveSpeed
+enum class EMoveSpeed : int32_t
 {
 	MS_Sneaking = 0,
 	MS_Walking = 1,
@@ -3804,7 +3804,7 @@ enum class EMoveSpeed
 };
 
 // Size: 0x4
-enum class EObjectiveType
+enum class EObjectiveType : int32_t
 {
 	OBJECTIVE_PRIMARY = 0,
 	OBJECTIVE_SECONDARY = 1,
@@ -3812,14 +3812,14 @@ enum class EObjectiveType
 };
 
 // Size: 0x4
-enum class EOnlinTest
+enum class EOnlinTest : int32_t
 {
 	eHELLO = 0,
 	eWORLD = 1,
 };
 
 // Size: 0x1
-enum class EOrderCompletionStatus
+enum class EOrderCompletionStatus : int8_t
 {
 	OCS_Undetermined = 0,
 	OCS_Succeeded = 1,
@@ -3829,7 +3829,7 @@ enum class EOrderCompletionStatus
 };
 
 // Size: 0x4
-enum class EOutfitAICategory
+enum class EOutfitAICategory : int32_t
 {
 	OAC_Undefined = 0,
 	OAC_Fallback = 1,
@@ -3910,21 +3910,21 @@ enum class EOutfitAICategory
 };
 
 // Size: 0x1
-enum class EParticleColorUsage
+enum class EParticleColorUsage : int8_t
 {
 	REPLACE_PARTICLE_COLOR = 0,
 	LEAVE_PARTICLE_COLOR = 1,
 };
 
 // Size: 0x4
-enum class EParticleDecalSpawnEntity_Constraints
+enum class EParticleDecalSpawnEntity_Constraints : int32_t
 {
 	FACTOR_AND_RANDOMIZE = 0,
 	SIZE_RANGE = 1,
 };
 
 // Size: 0x4
-enum class EParticleModifierImpulseDirections
+enum class EParticleModifierImpulseDirections : int32_t
 {
 	TARGET_ZAXIS_DIRECTION = 0,
 	TOWARDS_TARGET_PIVOT = 1,
@@ -3932,7 +3932,7 @@ enum class EParticleModifierImpulseDirections
 };
 
 // Size: 0x1
-enum class EParticleSpritePivotLocation
+enum class EParticleSpritePivotLocation : int8_t
 {
 	CENTER_PIVOT = 0,
 	BOTTOM_PIVOT = 1,
@@ -3940,7 +3940,7 @@ enum class EParticleSpritePivotLocation
 };
 
 // Size: 0x4
-enum class EPathFinderBoxType
+enum class EPathFinderBoxType : int32_t
 {
 	PFBT_INCLUDE_MESH_COLLISION = 0,
 	PFBT_EXCLUDE_MESH_COLLISION = 1,
@@ -3950,7 +3950,7 @@ enum class EPathFinderBoxType
 };
 
 // Size: 0x4
-enum class EPhysicsObjectType
+enum class EPhysicsObjectType : int32_t
 {
 	EPHYSICSOBJECTTYPE_UNKNOWN = 0,
 	EPHYSICSOBJECTTYPE_DYNAMIC = 1,
@@ -3959,7 +3959,7 @@ enum class EPhysicsObjectType
 };
 
 // Size: 0x4
-enum class EPlaceableType
+enum class EPlaceableType : int32_t
 {
 	PLACEABLE_NOT = 0,
 	PLACEABLE_FULL_PHYSICS = 1,
@@ -3969,7 +3969,7 @@ enum class EPlaceableType
 };
 
 // Size: 0x4
-enum class EPlayMode
+enum class EPlayMode : int32_t
 {
 	PLAYMODE_STOPPED = 1,
 	PLAYMODE_PAUSED = 2,
@@ -3977,7 +3977,7 @@ enum class EPlayMode
 };
 
 // Size: 0x4
-enum class EPostProcessorComponentType
+enum class EPostProcessorComponentType : int32_t
 {
 	MRP_LOOKAT = 1,
 	MRP_AIM = 2,
@@ -3989,7 +3989,7 @@ enum class EPostProcessorComponentType
 };
 
 // Size: 0x4
-enum class EPushNotificationType
+enum class EPushNotificationType : int32_t
 {
 	PUSH_NOTIFICATION_OBJECTIVE = 0,
 	PUSH_NOTIFICATION_DISGUISE = 1,
@@ -4003,14 +4003,14 @@ enum class EPushNotificationType
 };
 
 // Size: 0x4
-enum class ERANDOM_DISTRIBUTION
+enum class ERANDOM_DISTRIBUTION : int32_t
 {
 	RND_UNIFORM = 0,
 	RND_SAWTOOTH = 1,
 };
 
 // Size: 0x4
-enum class ERatingCategory
+enum class ERatingCategory : int32_t
 {
 	ERatingCategory_Invalid = 0,
 	ERatingCategory_Flawless = 1,
@@ -4021,7 +4021,7 @@ enum class ERatingCategory
 };
 
 // Size: 0x4
-enum class ERatingTitle
+enum class ERatingTitle : int32_t
 {
 	ERatingTitle_SilentAssassin = 0,
 	ERatingTitle_PerfectAssassin = 1,
@@ -4037,7 +4037,7 @@ enum class ERatingTitle
 };
 
 // Size: 0x4
-enum class ERatingTitleRequirement
+enum class ERatingTitleRequirement : int32_t
 {
 	ERatingTitleRequirement_Optional = 0,
 	ERatingTitleRequirement_Required = 1,
@@ -4045,7 +4045,7 @@ enum class ERatingTitleRequirement
 };
 
 // Size: 0x1
-enum class ERayDetailLevel
+enum class ERayDetailLevel : int8_t
 {
 	RAYDETAILS_NONE = 0,
 	RAYDETAILS_BONES = 1,
@@ -4053,14 +4053,14 @@ enum class ERayDetailLevel
 };
 
 // Size: 0x4
-enum class ERayType
+enum class ERayType : int32_t
 {
 	ERAY_CLOSESTHIT_SIMPLE = 0,
 	ERAY_CLOSESTHIT_DETAILED = 1,
 };
 
 // Size: 0x4
-enum class ERegionId
+enum class ERegionId : int32_t
 {
 	RegionId_Default = 0,
 	RegionId_Japan = 1,
@@ -4068,7 +4068,7 @@ enum class ERegionId
 };
 
 // Size: 0x4
-enum class ERegionMask
+enum class ERegionMask : int32_t
 {
 	eRM_None = 1,
 	eRM_LowCover = 2,
@@ -4086,7 +4086,7 @@ enum class ERegionMask
 };
 
 // Size: 0x1
-enum class ERenderGlowTypes
+enum class ERenderGlowTypes : int8_t
 {
 	ERENDERGLOWTYPE_NONE = 0,
 	ERENDERGLOWTYPE_ENEMIES = 1,
@@ -4110,7 +4110,7 @@ enum class ERenderGlowTypes
 };
 
 // Size: 0x4
-enum class ERequirementId
+enum class ERequirementId : int32_t
 {
 	EREQUIREMENT_INVALID = 0,
 	EREQUIREMENT_TOKEN_OUTFIT_LEGACY_HERO_REQUIEMSUIT = 1,
@@ -4124,7 +4124,7 @@ enum class ERequirementId
 };
 
 // Size: 0x4
-enum class ESBCamProfileBone
+enum class ESBCamProfileBone : int32_t
 {
 	eSBCamProfileBone_Neck = 0,
 	eSBCamProfileBone_Spine = 1,
@@ -4134,7 +4134,7 @@ enum class ESBCamProfileBone
 };
 
 // Size: 0x4
-enum class ESBPose
+enum class ESBPose : int32_t
 {
 	eSBPose_RifleShootPose = 0,
 	eSBPose_DualLeftHigh = 1,
@@ -4149,7 +4149,7 @@ enum class ESBPose
 };
 
 // Size: 0x4
-enum class ESOUND_3DROLLOFF_TYPE
+enum class ESOUND_3DROLLOFF_TYPE : int32_t
 {
 	SOUND_3D_LINEAR_ROLLOFF = 0,
 	SOUND_3D_LOGARITHMIC_ROLLOFF = 1,
@@ -4157,7 +4157,7 @@ enum class ESOUND_3DROLLOFF_TYPE
 };
 
 // Size: 0x4
-enum class ESaveLoadStatus
+enum class ESaveLoadStatus : int32_t
 {
 	ESaveLoadStatus_OK = 0,
 	ESaveLoadStatus_PROCESSING = 1,
@@ -4175,7 +4175,7 @@ enum class ESaveLoadStatus
 };
 
 // Size: 0x4
-enum class ESaveType
+enum class ESaveType : int32_t
 {
 	ESaveType_AutoSave = 0,
 	ESaveType_QuickSave = 1,
@@ -4184,7 +4184,7 @@ enum class ESaveType
 };
 
 // Size: 0x4
-enum class EScreenAnchor
+enum class EScreenAnchor : int32_t
 {
 	SCREEN_ANCHOR_TOP_LEFT = 0,
 	SCREEN_ANCHOR_TOP_CENTER = 1,
@@ -4198,7 +4198,7 @@ enum class EScreenAnchor
 };
 
 // Size: 0x4
-enum class EScreenplayTriggerEvent
+enum class EScreenplayTriggerEvent : int32_t
 {
 	STT_ReportCrime = 0,
 	STT_ReportCrimeToHitman = 1,
@@ -4206,7 +4206,7 @@ enum class EScreenplayTriggerEvent
 };
 
 // Size: 0x4
-enum class ESentryActionPrompt
+enum class ESentryActionPrompt : int32_t
 {
 	eSAP_None = 0,
 	eSAP_Frisk = 1,
@@ -4215,7 +4215,7 @@ enum class ESentryActionPrompt
 };
 
 // Size: 0x4
-enum class ESequencePreviewState
+enum class ESequencePreviewState : int32_t
 {
 	PREVIEW_STOPPED = 0,
 	PREVIEW_PLAYING = 1,
@@ -4223,7 +4223,7 @@ enum class ESequencePreviewState
 };
 
 // Size: 0x4
-enum class ESettingsParam
+enum class ESettingsParam : int32_t
 {
 	ESP_ProjectileDamage = 0,
 	ESP_ProjectileDPSThreshold = 1,
@@ -4240,7 +4240,7 @@ enum class ESettingsParam
 };
 
 // Size: 0x4
-enum class EShatterSystemCoreBehavior
+enum class EShatterSystemCoreBehavior : int32_t
 {
 	eSSCB_Static = 0,
 	eSSCB_Kinematic = 1,
@@ -4248,7 +4248,7 @@ enum class EShatterSystemCoreBehavior
 };
 
 // Size: 0x4
-enum class EShootIntensity
+enum class EShootIntensity : int32_t
 {
 	SHOOT_INTENSITY_LOW = 0,
 	SHOOT_INTENSITY_MEDIUM = 1,
@@ -4256,7 +4256,7 @@ enum class EShootIntensity
 };
 
 // Size: 0x4
-enum class ESituationJoinReason
+enum class ESituationJoinReason : int32_t
 {
 	AISJR_Default = 0,
 	AISJR_HeardSound = 1,
@@ -4276,7 +4276,7 @@ enum class ESituationJoinReason
 };
 
 // Size: 0x4
-enum class ESituationType
+enum class ESituationType : int32_t
 {
 	AIST_Any = 0,
 	AIST_DetectedInPrivate = 1,
@@ -4304,7 +4304,7 @@ enum class ESituationType
 };
 
 // Size: 0x4
-enum class ESmartBehaviorOrder
+enum class ESmartBehaviorOrder : int32_t
 {
 	SBO_Stand = 0,
 	SBO_Move = 1,
@@ -4318,7 +4318,7 @@ enum class ESmartBehaviorOrder
 };
 
 // Size: 0x4
-enum class ESmartWaitCondition
+enum class ESmartWaitCondition : int32_t
 {
 	SWC_Time = 0,
 	SWC_Distance = 1,
@@ -4327,14 +4327,14 @@ enum class ESmartWaitCondition
 };
 
 // Size: 0x4
-enum class ESmoothingMode
+enum class ESmoothingMode : int32_t
 {
 	ESM_LINEAR = 0,
 	ESM_EXPONENTIAL = 1,
 };
 
 // Size: 0x4
-enum class ESniperScoreMessageType
+enum class ESniperScoreMessageType : int32_t
 {
 	ESSMT_STYLE_DEFAULT = 0,
 	ESSMT_STYLE_SCORE = 1,
@@ -4344,7 +4344,7 @@ enum class ESniperScoreMessageType
 };
 
 // Size: 0x4
-enum class ESoundChannelGroup
+enum class ESoundChannelGroup : int32_t
 {
 	ESCG_NONE = 0,
 	SND_Default = 1,
@@ -4425,7 +4425,7 @@ enum class ESoundChannelGroup
 };
 
 // Size: 0x4
-enum class ESoundCollisionType
+enum class ESoundCollisionType : int32_t
 {
 	ESCT_IMPACT = 0,
 	ESCT_ROLLING = 1,
@@ -4435,7 +4435,7 @@ enum class ESoundCollisionType
 };
 
 // Size: 0x4
-enum class ESoundGateFlags
+enum class ESoundGateFlags : int32_t
 {
 	SOUNDGATE_FLAGS_AMBIENCE = 1,
 	SOUNDGATE_FLAGS_OCCLUSION = 2,
@@ -4443,14 +4443,14 @@ enum class ESoundGateFlags
 };
 
 // Size: 0x4
-enum class ESoundGateType
+enum class ESoundGateType : int32_t
 {
 	SOUNDGATE_TYPE_ROUND = 0,
 	SOUNDGATE_TYPE_SHARPCORNERS = 1,
 };
 
 // Size: 0x4
-enum class ESoundMaterialType
+enum class ESoundMaterialType : int32_t
 {
 	eWood = 0,
 	eWoodPlank = 1,
@@ -4533,7 +4533,7 @@ enum class ESoundMaterialType
 };
 
 // Size: 0x4
-enum class ESoundPlayParameters
+enum class ESoundPlayParameters : int32_t
 {
 	SOUND_PLAY_SINGLE = 0,
 	SOUND_PLAY_RANDOM = 1,
@@ -4541,7 +4541,7 @@ enum class ESoundPlayParameters
 };
 
 // Size: 0x4
-enum class ESpeechPriority
+enum class ESpeechPriority : int32_t
 {
 	SP_AMBIENT = 0,
 	SP_ALERTED = 1,
@@ -4555,7 +4555,7 @@ enum class ESpeechPriority
 };
 
 // Size: 0x4
-enum class ESpeed
+enum class ESpeed : int32_t
 {
 	eSpeed_Idle = 0,
 	eSpeed_Slow = 1,
@@ -4565,7 +4565,7 @@ enum class ESpeed
 };
 
 // Size: 0x4
-enum class EStandDownType
+enum class EStandDownType : int32_t
 {
 	SDT_None = 0,
 	SDT_Response = 1,
@@ -4573,14 +4573,14 @@ enum class EStandDownType
 };
 
 // Size: 0x4
-enum class EStandRepositionStrategy
+enum class EStandRepositionStrategy : int32_t
 {
 	SRS_InPlaceRepositioning = 0,
 	SRS_NoRepositioning = 1,
 };
 
 // Size: 0x4
-enum class EStashpointContainedEntityType
+enum class EStashpointContainedEntityType : int32_t
 {
 	PICKUP_NONE = 0,
 	PICKUP_ITEMS = 1,
@@ -4589,7 +4589,7 @@ enum class EStashpointContainedEntityType
 };
 
 // Size: 0x4
-enum class EStealthSituation
+enum class EStealthSituation : int32_t
 {
 	SS_TAKE_HUMAN_SHIELD = 0,
 	SS_HUMAN_SHIELD_DEAD = 1,
@@ -4647,7 +4647,7 @@ enum class EStealthSituation
 };
 
 // Size: 0x4
-enum class ESyncEvent
+enum class ESyncEvent : int32_t
 {
 	eSyncEvent_None = 0,
 	eSyncEvent_LeftFoot = 100,
@@ -4655,7 +4655,7 @@ enum class ESyncEvent
 };
 
 // Size: 0x4
-enum class ETakeDownAnim
+enum class ETakeDownAnim : int32_t
 {
 	eCoverLowOverNarrowCloseFront = 0,
 	eCoverLowOverNarrowCloseBack = 1,
@@ -4688,7 +4688,7 @@ enum class ETakeDownAnim
 };
 
 // Size: 0x4
-enum class ETakeDownState
+enum class ETakeDownState : int32_t
 {
 	eTD_Cover = 0,
 	eTD_Locomotion = 1,
@@ -4699,7 +4699,7 @@ enum class ETakeDownState
 };
 
 // Size: 0x1
-enum class ETessellationFactorMode
+enum class ETessellationFactorMode : int8_t
 {
 	TESSELLATIONFACTORMODE_FIXED = 0,
 	TESSELLATIONFACTORMODE_OBJECT = 1,
@@ -4707,14 +4707,14 @@ enum class ETessellationFactorMode
 };
 
 // Size: 0x1
-enum class ETessellationMode
+enum class ETessellationMode : int8_t
 {
 	TESSELLATIONMODE_FLAT = 0,
 	TESSELLATIONMODE_PHONG = 1,
 };
 
 // Size: 0x4
-enum class ETestEnumForPG2
+enum class ETestEnumForPG2 : int32_t
 {
 	TestEnum_Alpha = 0,
 	TestEnum_Beta = 1,
@@ -4724,7 +4724,7 @@ enum class ETestEnumForPG2
 };
 
 // Size: 0x4
-enum class ETextAlignment
+enum class ETextAlignment : int32_t
 {
 	TEXT_ALIGN_LEFT = 0,
 	TEXT_ALIGN_CENTER = 1,
@@ -4732,7 +4732,7 @@ enum class ETextAlignment
 };
 
 // Size: 0x4
-enum class EThrowType
+enum class EThrowType : int32_t
 {
 	THROW_NONE = 0,
 	THROW_COIN = 1,
@@ -4745,7 +4745,7 @@ enum class EThrowType
 };
 
 // Size: 0x4
-enum class EThrownCollisionSoundLoudness
+enum class EThrownCollisionSoundLoudness : int32_t
 {
 	eLoudness_Default = 0,
 	eLoudness_Low = 1,
@@ -4754,7 +4754,7 @@ enum class EThrownCollisionSoundLoudness
 };
 
 // Size: 0x4
-enum class ETimerEntityCommandType
+enum class ETimerEntityCommandType : int32_t
 {
 	ETECT_Add = 0,
 	ETECT_Remove = 1,
@@ -4762,7 +4762,7 @@ enum class ETimerEntityCommandType
 };
 
 // Size: 0x4
-enum class EUIActionGroupIcon
+enum class EUIActionGroupIcon : int32_t
 {
 	EUIAGI_NoIcon = 0,
 	EUIAGI_GenericTool = 1,
@@ -4792,7 +4792,7 @@ enum class EUIActionGroupIcon
 };
 
 // Size: 0x4
-enum class EUIBusyOperationId
+enum class EUIBusyOperationId : int32_t
 {
 	eOperationId_GameSave = 0,
 	eOperationId_MenuTransition = 1,
@@ -4840,7 +4840,7 @@ enum class EUIBusyOperationId
 };
 
 // Size: 0x4
-enum class EUIBusyState
+enum class EUIBusyState : int32_t
 {
 	eBusyState_Saving = 0,
 	eBusyState_Saving_Failed = 1,
@@ -4852,7 +4852,7 @@ enum class EUIBusyState
 };
 
 // Size: 0x4
-enum class EVIPInvestigateReason
+enum class EVIPInvestigateReason : int32_t
 {
 	VIR_Undefined = 0,
 	VIR_HearBulletImpact = 1,
@@ -4896,7 +4896,7 @@ enum class EVIPInvestigateReason
 };
 
 // Size: 0x1
-enum class EValueUpdateStrategy
+enum class EValueUpdateStrategy : int8_t
 {
 	UPDATE_STRATEGY_REPLACE = 0,
 	UPDATE_STRATEGY_ADD_TO = 1,
@@ -4904,7 +4904,7 @@ enum class EValueUpdateStrategy
 };
 
 // Size: 0x4
-enum class EVictimMovementType
+enum class EVictimMovementType : int32_t
 {
 	eVictimMovementNone = -1,
 	eVictimMovementPullVictimFromWindow = 0,
@@ -4922,7 +4922,7 @@ enum class EVictimMovementType
 };
 
 // Size: 0x4
-enum class EViewportLock
+enum class EViewportLock : int32_t
 {
 	VPL_None = 0,
 	VPL_Rectangular = 1,
@@ -4930,7 +4930,7 @@ enum class EViewportLock
 };
 
 // Size: 0x4
-enum class EVolumeTriggerEntityTypeFlags
+enum class EVolumeTriggerEntityTypeFlags : int32_t
 {
 	VTET_Hitman = 1,
 	VTET_ActorAlive = 2,
@@ -4945,7 +4945,7 @@ enum class EVolumeTriggerEntityTypeFlags
 };
 
 // Size: 0x4
-enum class EWaypointRotationAlignment
+enum class EWaypointRotationAlignment : int32_t
 {
 	RA_NONE = 0,
 	RA_LOOSE = 1,
@@ -4953,7 +4953,7 @@ enum class EWaypointRotationAlignment
 };
 
 // Size: 0x4
-enum class EWeaponAnimationCategory
+enum class EWeaponAnimationCategory : int32_t
 {
 	eWAC_Undefined = 0,
 	eWAC_Pistol = 1,
@@ -4967,7 +4967,7 @@ enum class EWeaponAnimationCategory
 };
 
 // Size: 0x4
-enum class EWeaponSpecialSituation
+enum class EWeaponSpecialSituation : int32_t
 {
 	WSS_NORMAL = 0,
 	WSS_BAREHANDS = 1,
@@ -4980,7 +4980,7 @@ enum class EWeaponSpecialSituation
 };
 
 // Size: 0x4
-enum class EWeaponUpgradeIcon
+enum class EWeaponUpgradeIcon : int32_t
 {
 	WEAPON_UPGRADE_ICON_NONE = 0,
 	WEAPON_UPGRADE_ICON_SILENCER = 1,
@@ -5000,7 +5000,7 @@ enum class EWeaponUpgradeIcon
 };
 
 // Size: 0x4
-enum class EWeaponUpgradeUse
+enum class EWeaponUpgradeUse : int32_t
 {
 	eWUU_PrimaryOnly = 0,
 	eWUU_SecondaryOnly = 1,
@@ -5161,7 +5161,7 @@ public:
 };
 
 // Size: 0x4
-enum class ICameraEntity_EProjectionType
+enum class ICameraEntity_EProjectionType : int32_t
 {
 	ePerspectiveRH = 0,
 	eOrtogonalRH = 1,
@@ -5169,7 +5169,7 @@ enum class ICameraEntity_EProjectionType
 };
 
 // Size: 0x4
-enum class ICloset_EClosetType
+enum class ICloset_EClosetType : int32_t
 {
 	eTypeClosetNormal = 0,
 	eTypeClosetCake = 1,
@@ -5229,7 +5229,7 @@ public:
 };
 
 // Size: 0x4
-enum class IContractObjective_Category
+enum class IContractObjective_Category : int32_t
 {
 	PRIMARY = 0,
 	SECONDARY = 1,
@@ -5237,7 +5237,7 @@ enum class IContractObjective_Category
 };
 
 // Size: 0x4
-enum class IContractObjective_ObjectiveType
+enum class IContractObjective_ObjectiveType : int32_t
 {
 	KILL = 0,
 	SETPIECE = 1,
@@ -5295,7 +5295,7 @@ public:
 };
 
 // Size: 0x4
-enum class IContractObjective_State
+enum class IContractObjective_State : int32_t
 {
 	IN_PROGRESS = 0,
 	COMPLETED = 1,
@@ -5303,7 +5303,7 @@ enum class IContractObjective_State
 };
 
 // Size: 0x4
-enum class IContractObjective_Type
+enum class IContractObjective_Type : int32_t
 {
 	CONTRACT_OBJ_EVENT_BASED = 0,
 	CONTRACT_OBJ_SM_BASED = 1,
@@ -5378,14 +5378,14 @@ public:
 };
 
 // Size: 0x4
-enum class IHM5Door_ECPDoorLockType
+enum class IHM5Door_ECPDoorLockType : int32_t
 {
 	CPDLT_NORMAL_LOCK = 0,
 	CPDLT_PUSH_BAR_PAD_LOCK = 1,
 };
 
 // Size: 0x4
-enum class IHM5Door_EInitialState
+enum class IHM5Door_EInitialState : int32_t
 {
 	IS_CLOSED = 0,
 	IS_OPEN = 1,
@@ -5394,7 +5394,7 @@ enum class IHM5Door_EInitialState
 };
 
 // Size: 0x4
-enum class IHM5Door_EOpenDir
+enum class IHM5Door_EOpenDir : int32_t
 {
 	OD_AWAY = 0,
 	OD_TOWARS = 1,
@@ -5403,7 +5403,7 @@ enum class IHM5Door_EOpenDir
 };
 
 // Size: 0x4
-enum class IHM5Door_EOpenMode
+enum class IHM5Door_EOpenMode : int32_t
 {
 	OM_TWO_WAY = 0,
 	OM_OPEN_POS_SIDE_ONLY = 1,
@@ -5412,7 +5412,7 @@ enum class IHM5Door_EOpenMode
 };
 
 // Size: 0x4
-enum class IHM5Door_eCloseMode
+enum class IHM5Door_eCloseMode : int32_t
 {
 	CM_AUTOCLOSE = 0,
 	CM_MANUALCLOSE = 1,
@@ -5454,7 +5454,7 @@ public:
 };
 
 // Size: 0x4
-enum class IItemWeapon_EDeadlyThrowType
+enum class IItemWeapon_EDeadlyThrowType : int32_t
 {
 	DEADLYTHROW_NONE = 0,
 	DEADLYTHROW_LIGHT = 1,
@@ -5462,7 +5462,7 @@ enum class IItemWeapon_EDeadlyThrowType
 };
 
 // Size: 0x4
-enum class IKEndEffector
+enum class IKEndEffector : int32_t
 {
 	BEE_Pelvis = 0,
 	BEE_SpineOrigin = 1,
@@ -5492,14 +5492,14 @@ enum class IKEndEffector
 };
 
 // Size: 0x4
-enum class ILightEntity_EFrameIndexStrategy
+enum class ILightEntity_EFrameIndexStrategy : int32_t
 {
 	WRAP = 0,
 	CLAMP = 1,
 };
 
 // Size: 0x1
-enum class ILightEntity_ELightType
+enum class ILightEntity_ELightType : int8_t
 {
 	LT_DIRECTIONAL = 0,
 	LT_ENVIRONMENT = 1,
@@ -5511,7 +5511,7 @@ enum class ILightEntity_ELightType
 };
 
 // Size: 0x4
-enum class ILightEntity_ERoomLightFlow
+enum class ILightEntity_ERoomLightFlow : int32_t
 {
 	AUTOMATIC = 0,
 	LOCAL = 1,
@@ -5638,7 +5638,7 @@ public:
 };
 
 // Size: 0x4
-enum class IRenderCompositorEntity_EMode
+enum class IRenderCompositorEntity_EMode : int32_t
 {
 	eSourceA = 0,
 	eSourceB = 1,
@@ -5647,7 +5647,7 @@ enum class IRenderCompositorEntity_EMode
 };
 
 // Size: 0x4
-enum class IRenderCompositorEntity_EViewportAnchor
+enum class IRenderCompositorEntity_EViewportAnchor : int32_t
 {
 	eFill = 0,
 	eTopLeft = 1,
@@ -5674,7 +5674,7 @@ public:
 };
 
 // Size: 0x4
-enum class IRenderMaterialEntity_EModifierOperation
+enum class IRenderMaterialEntity_EModifierOperation : int32_t
 {
 	eLeave = 0,
 	eReplace = 1,
@@ -5684,7 +5684,7 @@ enum class IRenderMaterialEntity_EModifierOperation
 };
 
 // Size: 0x4
-enum class IRoomEntity_EReasoningGridImportance
+enum class IRoomEntity_EReasoningGridImportance : int32_t
 {
 	RGI_NoGrid = 0,
 	RGI_Low = 1,
@@ -5694,7 +5694,7 @@ enum class IRoomEntity_EReasoningGridImportance
 };
 
 // Size: 0x4
-enum class IScatterContainerEntity_EBrushStampMode
+enum class IScatterContainerEntity_EBrushStampMode : int32_t
 {
 	BRUSHSTAMP_ADD = 0,
 	BRUSHSTAMP_SUB = 1,
@@ -5702,14 +5702,14 @@ enum class IScatterContainerEntity_EBrushStampMode
 };
 
 // Size: 0x4
-enum class IScatterContainerEntity_EBrushType
+enum class IScatterContainerEntity_EBrushType : int32_t
 {
 	BRUSH_SQUARE = 0,
 	BRUSH_CIRCLE = 1,
 };
 
 // Size: 0x4
-enum class IScatterContainerEntity_ECanvasClearMode
+enum class IScatterContainerEntity_ECanvasClearMode : int32_t
 {
 	CLEAR_ALL = 0,
 	CLEAR_INTENSITY = 1,
@@ -5722,7 +5722,7 @@ enum class IScatterContainerEntity_ECanvasClearMode
 };
 
 // Size: 0x4
-enum class IScatterContainerEntity_ECanvasSize
+enum class IScatterContainerEntity_ECanvasSize : int32_t
 {
 	SIZE_128 = 0,
 	SIZE_256 = 1,
@@ -5733,7 +5733,7 @@ enum class IScatterContainerEntity_ECanvasSize
 };
 
 // Size: 0x4
-enum class IScatterContainerEntity_EResizeMode
+enum class IScatterContainerEntity_EResizeMode : int32_t
 {
 	MODE_CLEAR = 0,
 	MODE_KEEPASCENTER = 1,
@@ -5860,7 +5860,7 @@ public:
 };
 
 // Size: 0x4
-enum class InputControlNamesp_eHM5InputAction
+enum class InputControlNamesp_eHM5InputAction : int32_t
 {
 	eIAButtonFaceDown_Downedge = 0,
 	eIAButtonFaceDown_FastTap = 1,
@@ -5980,7 +5980,7 @@ enum class InputControlNamesp_eHM5InputAction
 };
 
 // Size: 0x4
-enum class InputControlNamesp_eHM5InputActionID
+enum class InputControlNamesp_eHM5InputActionID : int32_t
 {
 	eIDButtonFaceDown = 0,
 	eIDButtonFaceLeft = 1,
@@ -6007,7 +6007,7 @@ enum class InputControlNamesp_eHM5InputActionID
 };
 
 // Size: 0x4
-enum class InputControlNamesp_eHM5InputActionType
+enum class InputControlNamesp_eHM5InputActionType : int32_t
 {
 	eTypeGet = 0,
 	eTypeHold = 1,
@@ -6027,7 +6027,7 @@ enum class InputControlNamesp_eHM5InputActionType
 };
 
 // Size: 0x4
-enum class MenuWeaponUpgradeData_EUpgradeAction
+enum class MenuWeaponUpgradeData_EUpgradeAction : int32_t
 {
 	EUPGRADE_ACTION_NONE = 0,
 	EUPGRADE_ACTION_INSTALL = 1,
@@ -6224,7 +6224,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZActBehaviorEntity_EState
+enum class ZActBehaviorEntity_EState : int32_t
 {
 	UNDEFINED = 0,
 	IDLE = 1,
@@ -6457,7 +6457,7 @@ public:
 };
 
 // Size: 0x4
-enum class SActorSoundDefs_EDefinition
+enum class SActorSoundDefs_EDefinition : int32_t
 {
 	_NoSound = 0,
 	Dth_BrkNck = 1,
@@ -8276,7 +8276,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5BodyContainer_EBCState
+enum class ZHM5BodyContainer_EBCState : int32_t
 {
 	BC_CLOSED = 0,
 	BC_OPEN = 1,
@@ -8451,7 +8451,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZCautiousBackupGroup_EGroupState
+enum class ZCautiousBackupGroup_EGroupState : int32_t
 {
 	GS_DistanceField = 0,
 	GS_SendBackup = 1,
@@ -8535,7 +8535,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZCautiousInvestigateGroup_EApproachOrderState
+enum class ZCautiousInvestigateGroup_EApproachOrderState : int32_t
 {
 	AOS_RequestHuntApproachNode = 0,
 	AOS_RequestLeaderApproachNode = 1,
@@ -8635,7 +8635,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZInvestigateCautiousSituation_EBystanderState
+enum class ZInvestigateCautiousSituation_EBystanderState : int32_t
 {
 	BS_SelectCandidate = 0,
 	BS_SelectPoint = 1,
@@ -8643,7 +8643,7 @@ enum class ZInvestigateCautiousSituation_EBystanderState
 };
 
 // Size: 0x4
-enum class ZInvestigateCautiousSituation_ESituationState
+enum class ZInvestigateCautiousSituation_ESituationState : int32_t
 {
 	SS_Main = 0,
 	SS_StandDownPending = 1,
@@ -8742,7 +8742,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZCautiousSearchGroup_EAssistantState
+enum class ZCautiousSearchGroup_EAssistantState : int32_t
 {
 	AS_CalculateFields = 0,
 	AS_RequestNode = 1,
@@ -8753,7 +8753,7 @@ enum class ZCautiousSearchGroup_EAssistantState
 };
 
 // Size: 0x4
-enum class ZCautiousSearchGroup_ESearchGroupState
+enum class ZCautiousSearchGroup_ESearchGroupState : int32_t
 {
 	SGS_Acknowledge = 0,
 	SGS_Approach = 1,
@@ -10183,7 +10183,7 @@ public:
 };
 
 // Size: 0x4
-enum class SDoorSoundDefs_EDefinition
+enum class SDoorSoundDefs_EDefinition : int32_t
 {
 	DoorOpen = 0,
 	DoorClose = 1,
@@ -10256,7 +10256,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZScreenplay_EState
+enum class ZScreenplay_EState : int32_t
 {
 	State_Idle = 0,
 	State_Running = 1,
@@ -10641,7 +10641,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZEscortSituationEntity_EEscortState
+enum class ZEscortSituationEntity_EEscortState : int32_t
 {
 	EES_Idle = 0,
 	EES_Evaluate = 1,
@@ -10692,7 +10692,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZEscortSituationEntity_ETargetState
+enum class ZEscortSituationEntity_ETargetState : int32_t
 {
 	ETS_Unknown = 0,
 	ETS_NoTarget = 1,
@@ -10993,7 +10993,7 @@ public:
 };
 
 // Size: 0x4
-enum class SFootIKEventData_EFoot
+enum class SFootIKEventData_EFoot : int32_t
 {
 	eLeft = 0,
 	eRight = 1,
@@ -11018,7 +11018,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZFriskSuspectGroup_EAssistantState
+enum class ZFriskSuspectGroup_EAssistantState : int32_t
 {
 	AS_Waiting = 0,
 	AS_Approach = 1,
@@ -11027,7 +11027,7 @@ enum class ZFriskSuspectGroup_EAssistantState
 };
 
 // Size: 0x4
-enum class ZFriskSuspectGroup_EHitmanGreetState
+enum class ZFriskSuspectGroup_EHitmanGreetState : int32_t
 {
 	HGS_NotGreeted = 0,
 	HGS_Greeted = 1,
@@ -11971,7 +11971,7 @@ public:
 };
 
 // Size: 0x4
-enum class eAmmoType
+enum class eAmmoType : int32_t
 {
 	eAmmoGun = 0,
 	eAmmoRevolver = 1,
@@ -11987,7 +11987,7 @@ enum class eAmmoType
 };
 
 // Size: 0x4
-enum class eItemType
+enum class eItemType : int32_t
 {
 	eCC_FireExtinguisher_01 = 0,
 	eCC_Knife = 10,
@@ -12645,7 +12645,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHUDUIRoot_EHUDVisibility
+enum class ZHUDUIRoot_EHUDVisibility : int32_t
 {
 	eHV_INSTANT_OFF = 0,
 	eHV_FADE_OUT = 1,
@@ -12692,7 +12692,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHeroEscortSituationEntity_EEscortState
+enum class ZHeroEscortSituationEntity_EEscortState : int32_t
 {
 	EES_Idle = 0,
 	EES_Evaluate = 1,
@@ -12743,7 +12743,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHeroEscortSituationEntity_ETargetState
+enum class ZHeroEscortSituationEntity_ETargetState : int32_t
 {
 	ETS_Unknown = 0,
 	ETS_NoTarget = 1,
@@ -13326,7 +13326,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZInvestigateDisguiseGroup_EState
+enum class ZInvestigateDisguiseGroup_EState : int32_t
 {
 	eInit = 0,
 	eGuardBanter = 1,
@@ -13359,7 +13359,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZMoveToOrder_EMoveSpeed
+enum class ZMoveToOrder_EMoveSpeed : int32_t
 {
 	MS_AUTO = 0,
 	MS_SPRINT = 1,
@@ -13543,7 +13543,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZLeadEscortSituationEntity_EEscortState
+enum class ZLeadEscortSituationEntity_EEscortState : int32_t
 {
 	EES_Idle = 0,
 	EES_Evaluate = 1,
@@ -13593,7 +13593,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZLeadEscortSituationEntity_ETargetState
+enum class ZLeadEscortSituationEntity_ETargetState : int32_t
 {
 	ETS_Unknown = 0,
 	ETS_NoTarget = 1,
@@ -14840,7 +14840,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSequenceEntity_ECommand
+enum class ZSequenceEntity_ECommand : int32_t
 {
 	COMMAND_START = 0,
 	COMMAND_ENABLE_PREVIEW = 1,
@@ -14983,7 +14983,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSmuggleSituationEntity_ESmuggleState
+enum class ZSmuggleSituationEntity_ESmuggleState : int32_t
 {
 	ESS_Idle = 0,
 	ESS_Evaluate = 1,
@@ -15415,7 +15415,7 @@ public:
 };
 
 // Size: 0x4
-enum class STestStruct_ETestEnum
+enum class STestStruct_ETestEnum : int32_t
 {
 	ETomato = 3,
 	EPotato = 5,
@@ -15697,7 +15697,7 @@ public:
 };
 
 // Size: 0x4
-enum class _EUIOptionKey
+enum class _EUIOptionKey : int32_t
 {
 	UI_OPTION_GAME_VIBRATION = 100,
 	UI_OPTION_GAME_AIM_ASSIST = 200,
@@ -15821,7 +15821,7 @@ public:
 };
 
 // Size: 0x4
-enum class SUITestData_ETestEnum
+enum class SUITestData_ETestEnum : int32_t
 {
 	ETestEnum_Value_One = 1,
 	ETestEnum_Value_Two = 2,
@@ -16124,7 +16124,7 @@ public:
 };
 
 // Size: 0x4
-enum class SWeaponSoundDefs_EDefinition
+enum class SWeaponSoundDefs_EDefinition : int32_t
 {
 	FireWeapon = 0,
 	EmptyClipFired = 1,
@@ -16182,14 +16182,14 @@ public:
 };
 
 // Size: 0x4
-enum class SniperControllerConditionType
+enum class SniperControllerConditionType : int32_t
 {
 	SCCT_Enabled = 0,
 	SCCT_PrecisionAim = 1,
 };
 
 // Size: 0x4
-enum class TeleportActionType
+enum class TeleportActionType : int32_t
 {
 	STAY = 0,
 	TELEPORT = 1,
@@ -16197,7 +16197,7 @@ enum class TeleportActionType
 };
 
 // Size: 0x4
-enum class UIMapLayer_EUIMapLayerID
+enum class UIMapLayer_EUIMapLayerID : int32_t
 {
 	eUIMLI_UNSPECIFIED = 0,
 	eUIMLI_TEXT = 1,
@@ -16215,7 +16215,7 @@ enum class UIMapLayer_EUIMapLayerID
 };
 
 // Size: 0x4
-enum class ZAIPerceptibleEntity_EReactionBehaviorMode
+enum class ZAIPerceptibleEntity_EReactionBehaviorMode : int32_t
 {
 	FullBehavior = 0,
 	StopOnInvestigate = 1,
@@ -16283,14 +16283,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZAT2Controller_EFoot
+enum class ZAT2Controller_EFoot : int32_t
 {
 	FOOT_LEFT = 0,
 	FOOT_RIGHT = 1,
 };
 
 // Size: 0x4
-enum class ZAT2Controller_EFootstepsMovementType
+enum class ZAT2Controller_EFootstepsMovementType : int32_t
 {
 	MOVEMENT_WALKING = 0,
 	MOVEMENT_WALKING_SLIDING = 1,
@@ -16340,21 +16340,21 @@ public:
 };
 
 // Size: 0x4
-enum class ZAccidentSetupEntity_EAccidentPropagation
+enum class ZAccidentSetupEntity_EAccidentPropagation : int32_t
 {
 	eAP_None = 0,
 	eAP_Far = 1,
 };
 
 // Size: 0x4
-enum class ZActBehaviorEntity_EApproachAlignment
+enum class ZActBehaviorEntity_EApproachAlignment : int32_t
 {
 	AA_STRICT = 0,
 	AA_LOOSE = 1,
 };
 
 // Size: 0x4
-enum class ZActBehaviorEntity_EMovementType
+enum class ZActBehaviorEntity_EMovementType : int32_t
 {
 	MT_WALK = 0,
 	MT_SNAP = 1,
@@ -16362,7 +16362,7 @@ enum class ZActBehaviorEntity_EMovementType
 };
 
 // Size: 0x4
-enum class ZActBehaviorEntity_ERotationAlignment
+enum class ZActBehaviorEntity_ERotationAlignment : int32_t
 {
 	RA_NONE = 0,
 	RA_LOOSE = 1,
@@ -16370,7 +16370,7 @@ enum class ZActBehaviorEntity_ERotationAlignment
 };
 
 // Size: 0x4
-enum class ZActDurationCondition_EState
+enum class ZActDurationCondition_EState : int32_t
 {
 	MOVING = 0,
 	ENTERING = 1,
@@ -16379,7 +16379,7 @@ enum class ZActDurationCondition_EState
 };
 
 // Size: 0x4
-enum class ZActStateCondition_EState
+enum class ZActStateCondition_EState : int32_t
 {
 	MOVING = 0,
 	ENTERING = 1,
@@ -16387,21 +16387,21 @@ enum class ZActStateCondition_EState
 };
 
 // Size: 0x4
-enum class ZActorAccessoryItemCondition_EConditionTypes
+enum class ZActorAccessoryItemCondition_EConditionTypes : int32_t
 {
 	ECT_HasInPool = 0,
 	ECT_HasAttached = 1,
 };
 
 // Size: 0x4
-enum class ZActorBoneAttachEntity_EResetMode
+enum class ZActorBoneAttachEntity_EResetMode : int32_t
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
 };
 
 // Size: 0x4
-enum class ZActorDebugEntity_EActorDebugColor
+enum class ZActorDebugEntity_EActorDebugColor : int32_t
 {
 	EDC_RED = 255,
 	EDC_GREEN = 65280,
@@ -16416,14 +16416,14 @@ enum class ZActorDebugEntity_EActorDebugColor
 };
 
 // Size: 0x4
-enum class ZActorInstanceEntity_EFFXMode
+enum class ZActorInstanceEntity_EFFXMode : int32_t
 {
 	eFFX_MODE_DISABLE = 0,
 	eFFX_MODE_OVERWRITE = 1,
 };
 
 // Size: 0x4
-enum class ZActorKeywordCondition_EEvaluationType
+enum class ZActorKeywordCondition_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -16431,14 +16431,14 @@ enum class ZActorKeywordCondition_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZActorKnowledgeCondition_EEvaluationType
+enum class ZActorKnowledgeCondition_EEvaluationType : int32_t
 {
 	ALL = 0,
 	ANY = 1,
 };
 
 // Size: 0x4
-enum class ZActorPicker_EKeywordEvaluationType
+enum class ZActorPicker_EKeywordEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -16446,21 +16446,21 @@ enum class ZActorPicker_EKeywordEvaluationType
 };
 
 // Size: 0x4
-enum class ZActorPickerEffectDrama_EEffectPhaseAction
+enum class ZActorPickerEffectDrama_EEffectPhaseAction : int32_t
 {
 	EPA_START = 0,
 	EPA_LEAVE = 1,
 };
 
 // Size: 0x4
-enum class ZActorPickerEffectTrack_EEffectPhaseAction
+enum class ZActorPickerEffectTrack_EEffectPhaseAction : int32_t
 {
 	EPA_ATTACH = 0,
 	EPA_DETACH = 1,
 };
 
 // Size: 0x4
-enum class ZActorPickerFilterGroup_EEvaluationType
+enum class ZActorPickerFilterGroup_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -16468,7 +16468,7 @@ enum class ZActorPickerFilterGroup_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZActorProviderFilterKeyword_EEvaluationType
+enum class ZActorProviderFilterKeyword_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -16476,14 +16476,14 @@ enum class ZActorProviderFilterKeyword_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZActorTensionEntity_ETensionCheckMode
+enum class ZActorTensionEntity_ETensionCheckMode : int32_t
 {
 	ETCM_INSIDE_VOLUME_OR_LIST = 0,
 	ETCM_INSIDE_VOLUME_AND_LIST = 1,
 };
 
 // Size: 0x4
-enum class ZApproachOrder_EApproachStyle
+enum class ZApproachOrder_EApproachStyle : int32_t
 {
 	AS_AUTO = 0,
 	AS_SPRINT = 1,
@@ -16513,7 +16513,7 @@ public:
 };
 
 // Size: 0x1
-enum class ZAudioEventBase_CullingBehavior
+enum class ZAudioEventBase_CullingBehavior : int8_t
 {
 	AutoSendStop = 0,
 	AutoSendStopAfterTriggered = 1,
@@ -16539,7 +16539,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZAvoidDangerousAreaGroup_EAvoidDangerousAreaGroupState
+enum class ZAvoidDangerousAreaGroup_EAvoidDangerousAreaGroupState : int32_t
 {
 	IGS_SelectDestination = 0,
 	IGS_Move = 1,
@@ -16567,14 +16567,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZBoneAttachEntity_EResetMode
+enum class ZBoneAttachEntity_EResetMode : int32_t
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
 };
 
 // Size: 0x4
-enum class ZBoneWeightRotationEntity_eRotationAxises
+enum class ZBoneWeightRotationEntity_eRotationAxises : int32_t
 {
 	AXIS_X = 0,
 	AXIS_Y = 1,
@@ -16582,21 +16582,21 @@ enum class ZBoneWeightRotationEntity_eRotationAxises
 };
 
 // Size: 0x4
-enum class ZBoxReflectionEntity_EBoundsType
+enum class ZBoxReflectionEntity_EBoundsType : int32_t
 {
 	eBox = 0,
 	eRoom = 1,
 };
 
 // Size: 0x4
-enum class ZBoxReflectionEntity_EType
+enum class ZBoxReflectionEntity_EType : int32_t
 {
 	eLocal = 0,
 	eFallback = 1,
 };
 
 // Size: 0x4
-enum class ZCautiousInvestigateGroup_EAssistantState
+enum class ZCautiousInvestigateGroup_EAssistantState : int32_t
 {
 	AS_Waiting = 0,
 	AS_CalculateFields = 1,
@@ -16607,7 +16607,7 @@ enum class ZCautiousInvestigateGroup_EAssistantState
 };
 
 // Size: 0x4
-enum class ZCautiousInvestigateGroup_EInvestigateGroupState
+enum class ZCautiousInvestigateGroup_EInvestigateGroupState : int32_t
 {
 	IGS_FindAssistant = 0,
 	IGS_PreAcknowledge = 1,
@@ -16621,7 +16621,7 @@ enum class ZCautiousInvestigateGroup_EInvestigateGroupState
 };
 
 // Size: 0x4
-enum class ZChannelKeywordCondition_EEvaluationType
+enum class ZChannelKeywordCondition_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -16629,7 +16629,7 @@ enum class ZChannelKeywordCondition_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZCharacterSpeakCondition_EState
+enum class ZCharacterSpeakCondition_EState : int32_t
 {
 	Started = 0,
 	Playing = 1,
@@ -16677,14 +16677,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZConditionListEntity_EEvaluationType
+enum class ZConditionListEntity_EEvaluationType : int32_t
 {
 	ALL_TRUE = 0,
 	ANY_TRUE = 1,
 };
 
 // Size: 0x4
-enum class ZContextKillGuide_EContextKillType
+enum class ZContextKillGuide_EContextKillType : int32_t
 {
 	eCKT_TOILET_DROWN = 0,
 	eCKT_SNAP_AND_TOSS = 1,
@@ -16694,7 +16694,7 @@ enum class ZContextKillGuide_EContextKillType
 };
 
 // Size: 0x4
-enum class ZContextKillGuide_EEvaluationType
+enum class ZContextKillGuide_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -16719,7 +16719,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZContractObjectiveHudHintEntity_EObjectiveHintIcon
+enum class ZContractObjectiveHudHintEntity_EObjectiveHintIcon : int32_t
 {
 	eNone = 0,
 	eInfoIcon = 7,
@@ -16727,7 +16727,7 @@ enum class ZContractObjectiveHudHintEntity_EObjectiveHintIcon
 };
 
 // Size: 0x4
-enum class ZCoverPlane_ECoverSize
+enum class ZCoverPlane_ECoverSize : int32_t
 {
 	eLowCover = 0,
 	eMediumCover = 1,
@@ -16735,7 +16735,7 @@ enum class ZCoverPlane_ECoverSize
 };
 
 // Size: 0x4
-enum class ZCoverPlane_ECoverType
+enum class ZCoverPlane_ECoverType : int32_t
 {
 	eCoverOnly = 0,
 	eCoverAndRail = 1,
@@ -16743,13 +16743,13 @@ enum class ZCoverPlane_ECoverType
 };
 
 // Size: 0x4
-enum class ZCrowdActorEntity_EActorResourceChangeFlags
+enum class ZCrowdActorEntity_EActorResourceChangeFlags : int32_t
 {
 	AR_MODEL = 1,
 };
 
 // Size: 0x4
-enum class ZCrowdActorEntity_ECharacterSoundType
+enum class ZCrowdActorEntity_ECharacterSoundType : int32_t
 {
 	eSoundType_Male = 0,
 	eSoundType_Female = 1,
@@ -16774,7 +16774,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZDeadBodySituation_ESituationFlavor
+enum class ZDeadBodySituation_ESituationFlavor : int32_t
 {
 	SF_None = 0,
 	SF_Unconscious = 1,
@@ -16854,7 +16854,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZDebugGizmoEntity_EDrawLayer
+enum class ZDebugGizmoEntity_EDrawLayer : int32_t
 {
 	DL_DEFAULT = 0,
 	DL_LIGHT = 1,
@@ -16879,7 +16879,7 @@ enum class ZDebugGizmoEntity_EDrawLayer
 };
 
 // Size: 0x4
-enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason
+enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason : int32_t
 {
 	eTMLDR_HintMessages = 0,
 	eTMLDR_Sequence = 1,
@@ -16892,7 +16892,7 @@ enum class ZDebugHM5GameTimeMultiplierEnt_eTMLDReason
 };
 
 // Size: 0x4
-enum class ZDebugSpatialEntity_EDrawLayer
+enum class ZDebugSpatialEntity_EDrawLayer : int32_t
 {
 	DL_DEFAULT = 0,
 	DL_LIGHT = 1,
@@ -16917,7 +16917,7 @@ enum class ZDebugSpatialEntity_EDrawLayer
 };
 
 // Size: 0x4
-enum class ZDebugTextEntity_EHorizontalAlignment
+enum class ZDebugTextEntity_EHorizontalAlignment : int32_t
 {
 	HA_LEFT = 1,
 	HA_CENTER = 0,
@@ -16925,7 +16925,7 @@ enum class ZDebugTextEntity_EHorizontalAlignment
 };
 
 // Size: 0x4
-enum class ZDebugTextEntity_EVerticalAlignment
+enum class ZDebugTextEntity_EVerticalAlignment : int32_t
 {
 	VA_TOP = 16,
 	VA_CENTER = 0,
@@ -16933,7 +16933,7 @@ enum class ZDebugTextEntity_EVerticalAlignment
 };
 
 // Size: 0x4
-enum class ZDecalControllerEntity_ERotationType
+enum class ZDecalControllerEntity_ERotationType : int32_t
 {
 	eRotationDisable = 0,
 	eRotationAlignRay = 1,
@@ -16941,7 +16941,7 @@ enum class ZDecalControllerEntity_ERotationType
 };
 
 // Size: 0x4
-enum class ZDecalControllerEntity_EScaleType
+enum class ZDecalControllerEntity_EScaleType : int32_t
 {
 	eScaleDisable = 0,
 	eScaleUniform = 1,
@@ -16949,7 +16949,7 @@ enum class ZDecalControllerEntity_EScaleType
 };
 
 // Size: 0x4
-enum class ZDetectedInPrivateGroup_EInvestigateGroupState
+enum class ZDetectedInPrivateGroup_EInvestigateGroupState : int32_t
 {
 	IGS_Delay = 0,
 	IGS_Talk = 1,
@@ -16977,7 +16977,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZDialogEventItemType
+enum class ZDialogEventItemType : int32_t
 {
 	eDEIT_WavFile = 1,
 	eDEIT_RandomContainer = 2,
@@ -17004,7 +17004,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZDialogOptionEntity_EDialogOptionType
+enum class ZDialogOptionEntity_EDialogOptionType : int32_t
 {
 	DOT_NORMAL = 0,
 	DOT_UNLOCKABLE = 1,
@@ -17032,21 +17032,21 @@ public:
 };
 
 // Size: 0x4
-enum class ZDistanceCondition_ECompareMethod
+enum class ZDistanceCondition_ECompareMethod : int32_t
 {
 	CM_GreaterOrEqualThan = 0,
 	CM_LessThan = 1,
 };
 
 // Size: 0x4
-enum class ZDistanceCondition_EObjectType
+enum class ZDistanceCondition_EObjectType : int32_t
 {
 	DT_ToCam = 0,
 	DT_ToPlayer = 1,
 };
 
 // Size: 0x4
-enum class ZDramaSituationEntity_EDebugExclusionLayerState
+enum class ZDramaSituationEntity_EDebugExclusionLayerState : int32_t
 {
 	DEBUGELSTATE_UNKNOWN = 0,
 	DEBUGELSTATE_BLOCKED = 1,
@@ -17054,7 +17054,7 @@ enum class ZDramaSituationEntity_EDebugExclusionLayerState
 };
 
 // Size: 0x4
-enum class ZDramaSituationEntity_EExclusionLayer
+enum class ZDramaSituationEntity_EExclusionLayer : int32_t
 {
 	EL_NONE = 0,
 	EL_STORY = 1,
@@ -17062,7 +17062,7 @@ enum class ZDramaSituationEntity_EExclusionLayer
 };
 
 // Size: 0x4
-enum class ZDramaSituationEntity_EReentryBehavior
+enum class ZDramaSituationEntity_EReentryBehavior : int32_t
 {
 	RB_CONTINUE = 0,
 	RB_TERMINATE = 1,
@@ -17180,7 +17180,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZGameEventListenerEntity_EGameEventType
+enum class ZGameEventListenerEntity_EGameEventType : int32_t
 {
 	GET_GameplayStart = 0,
 	GET_GameplayStop = 1,
@@ -17191,7 +17191,7 @@ enum class ZGameEventListenerEntity_EGameEventType
 };
 
 // Size: 0x4
-enum class ZGetHelpGroup_EInvestigateGroupState
+enum class ZGetHelpGroup_EInvestigateGroupState : int32_t
 {
 	IGS_Acknowledge = 0,
 	IGS_WaitForAckDialog = 1,
@@ -17241,7 +17241,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5AgilityEventConsumer_EEvent
+enum class ZHM5AgilityEventConsumer_EEvent : int32_t
 {
 	EAE_LEFTHAND = 0,
 	EAE_RIGHTHAND = 1,
@@ -17303,7 +17303,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5BodyContainer_EBCAnimSet
+enum class ZHM5BodyContainer_EBCAnimSet : int32_t
 {
 	BC_CONTAINER_STANDARD = 0,
 	BC_CONTAINER_WOODCHIPPER = 1,
@@ -17313,7 +17313,7 @@ enum class ZHM5BodyContainer_EBCAnimSet
 };
 
 // Size: 0x4
-enum class ZHM5BodyContainer_EBCBodyMode
+enum class ZHM5BodyContainer_EBCBodyMode : int32_t
 {
 	BC_1_VICTIM = 0,
 	BC_2_VICTIMS = 1,
@@ -17322,14 +17322,14 @@ enum class ZHM5BodyContainer_EBCBodyMode
 };
 
 // Size: 0x4
-enum class ZHM5BodyContainer_eBCCloseMode
+enum class ZHM5BodyContainer_eBCCloseMode : int32_t
 {
 	BC_AUTOCLOSE = 0,
 	BC_MANUALCLOSE = 1,
 };
 
 // Size: 0x4
-enum class ZHM5BodySoundEventConsumer_EAnimSoundBody
+enum class ZHM5BodySoundEventConsumer_EAnimSoundBody : int32_t
 {
 	eHM5AnimSoundBody_Buttocks = 0,
 	eHM5AnimSoundBody_Back = 1,
@@ -17385,7 +17385,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5ContextActionEntity_EInteraction
+enum class ZHM5ContextActionEntity_EInteraction : int32_t
 {
 	eIT_RotateLeftStick = 0,
 	eIT_AutoComplete = 1,
@@ -17412,7 +17412,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5CrowdGenericEventConsumer_EEvent
+enum class ZHM5CrowdGenericEventConsumer_EEvent : int32_t
 {
 	eFootstep = 0,
 	eClothRustle = 1,
@@ -17442,7 +17442,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5DynamicRayCastEntity_ECollideType
+enum class ZHM5DynamicRayCastEntity_ECollideType : int32_t
 {
 	eStatic = 0,
 	eAnyDynamic = 1,
@@ -17452,7 +17452,7 @@ enum class ZHM5DynamicRayCastEntity_ECollideType
 };
 
 // Size: 0x4
-enum class ZHM5FaceFXReactionEventConsumer_EEvent
+enum class ZHM5FaceFXReactionEventConsumer_EEvent : int32_t
 {
 	eHitByBullet = 0,
 	eFireRegularWeapon = 1,
@@ -17484,7 +17484,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5FaceFXSpecificEventConsumer_EEvent
+enum class ZHM5FaceFXSpecificEventConsumer_EEvent : int32_t
 {
 	eNone = 0,
 	eGetInCombatCoverExhalation = 1,
@@ -17533,21 +17533,21 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5ForceCover_EFaceDirection
+enum class ZHM5ForceCover_EFaceDirection : int32_t
 {
 	eFaceLeft = 0,
 	eFaceRight = 1,
 };
 
 // Size: 0x4
-enum class ZHM5ForceVentilatorShaft_EFaceDirection
+enum class ZHM5ForceVentilatorShaft_EFaceDirection : int32_t
 {
 	eFaceLeft = 0,
 	eFaceRight = 1,
 };
 
 // Size: 0x4
-enum class ZHM5GenericEventConsumer_EEvent
+enum class ZHM5GenericEventConsumer_EEvent : int32_t
 {
 	eGeneric00 = 0,
 	eGeneric01 = 1,
@@ -17577,7 +17577,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5HIKEventConsumer_EBlend
+enum class ZHM5HIKEventConsumer_EBlend : int32_t
 {
 	eBlendIn = 0,
 	eBlendOut = 1,
@@ -17586,7 +17586,7 @@ enum class ZHM5HIKEventConsumer_EBlend
 };
 
 // Size: 0x4
-enum class ZHM5HIKEventConsumer_EEffector
+enum class ZHM5HIKEventConsumer_EEffector : int32_t
 {
 	eLeftHand = 0,
 	eRightHand = 1,
@@ -17611,7 +17611,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5HitmanFocusModifier_EFocusAddRemove
+enum class ZHM5HitmanFocusModifier_EFocusAddRemove : int32_t
 {
 	eAddFocusInstantly = 0,
 	eRemoveFocusInstantly = 1,
@@ -17621,7 +17621,7 @@ enum class ZHM5HitmanFocusModifier_EFocusAddRemove
 };
 
 // Size: 0x4
-enum class ZHM5HitmanFocusModifier_EFocusValue
+enum class ZHM5HitmanFocusModifier_EFocusValue : int32_t
 {
 	eFocus0 = 0,
 	eFocus10 = 10,
@@ -17637,14 +17637,14 @@ enum class ZHM5HitmanFocusModifier_EFocusValue
 };
 
 // Size: 0x4
-enum class ZHM5HitmanHealthModifier_EHealthDrainType
+enum class ZHM5HitmanHealthModifier_EHealthDrainType : int32_t
 {
 	eRemoveHealthInstantly = 0,
 	eDecreaseHealthToValue = 1,
 };
 
 // Size: 0x4
-enum class ZHM5HitmanHealthModifier_EHealthValue
+enum class ZHM5HitmanHealthModifier_EHealthValue : int32_t
 {
 	eHealth0 = 0,
 	eHealth10 = 10,
@@ -17660,7 +17660,7 @@ enum class ZHM5HitmanHealthModifier_EHealthValue
 };
 
 // Size: 0x4
-enum class ZHM5HitmanWeaponModifier_EAddAmmo
+enum class ZHM5HitmanWeaponModifier_EAddAmmo : int32_t
 {
 	eIncreaseClipsToValue = 0,
 	eGiveClipsUpToValue = 1,
@@ -17669,7 +17669,7 @@ enum class ZHM5HitmanWeaponModifier_EAddAmmo
 };
 
 // Size: 0x4
-enum class ZHM5HitmanWeaponModifier_EDropWeapon
+enum class ZHM5HitmanWeaponModifier_EDropWeapon : int32_t
 {
 	eDropFiberWire = 0,
 	eDropAllFireArms = 1,
@@ -17678,7 +17678,7 @@ enum class ZHM5HitmanWeaponModifier_EDropWeapon
 };
 
 // Size: 0x4
-enum class ZHM5IndicatorManager_EIndicatorType
+enum class ZHM5IndicatorManager_EIndicatorType : int32_t
 {
 	eActorAmbient = 0,
 	eActorAlertedLow = 1,
@@ -17693,7 +17693,7 @@ enum class ZHM5IndicatorManager_EIndicatorType
 };
 
 // Size: 0x4
-enum class ZHM5Item_EKeywordEvaluationType
+enum class ZHM5Item_EKeywordEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -17701,7 +17701,7 @@ enum class ZHM5Item_EKeywordEvaluationType
 };
 
 // Size: 0x4
-enum class ZHM5Item_EUseTypes
+enum class ZHM5Item_EUseTypes : int32_t
 {
 	EUT_CantUse = 0,
 	EUT_Toggle = 1,
@@ -17709,7 +17709,7 @@ enum class ZHM5Item_EUseTypes
 };
 
 // Size: 0x4
-enum class ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent
+enum class ZHM5ItemInteractionEventConsumer_EHM5SoundItemInteractionEvent : int32_t
 {
 	EIIE_ItemImpactBack = 0,
 	EIIE_ItemImpactFront = 1,
@@ -17740,7 +17740,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHM5LedgeMount_EFaceDirection
+enum class ZHM5LedgeMount_EFaceDirection : int32_t
 {
 	eFaceFront = 0,
 	eFaceLeft = 1,
@@ -17748,21 +17748,21 @@ enum class ZHM5LedgeMount_EFaceDirection
 };
 
 // Size: 0x4
-enum class ZHM5LedgeMount_ELedgeEndState
+enum class ZHM5LedgeMount_ELedgeEndState : int32_t
 {
 	eHang = 0,
 	eStand = 1,
 };
 
 // Size: 0x4
-enum class ZHM5ValueEntity_bool_EForwardRule
+enum class ZHM5ValueEntity_bool_EForwardRule : int32_t
 {
 	eAlways = 0,
 	eValueChanged = 1,
 };
 
 // Size: 0x4
-enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioClass
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioClass : int32_t
 {
 	eWBC_AudioClass_AssaultRifle = 0,
 	eWBC_AudioClass_Pistol = 1,
@@ -17772,7 +17772,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioClass
 };
 
 // Size: 0x4
-enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioExoticType
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioExoticType : int32_t
 {
 	eWBC_AudioExoticType_MiniPistol = 0,
 	eWBC_AudioExoticType_OneHandSpinReloadShotgun = 1,
@@ -17783,7 +17783,7 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioExoticType
 };
 
 // Size: 0x4
-enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFamily
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFamily : int32_t
 {
 	eWBC_AudioFamily_Exotics = 0,
 	eWBC_AudioFamily_Heavy = 1,
@@ -17793,14 +17793,14 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFamily
 };
 
 // Size: 0x4
-enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFireType
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioFireType : int32_t
 {
 	eWBC_AudioFireType_Full_Automatic = 0,
 	eWBC_AudioFireType_Single = 1,
 };
 
 // Size: 0x4
-enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioHeadTailType
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioHeadTailType : int32_t
 {
 	eWBC_AudioHeadTailType_DryFire = 0,
 	eWBC_AudioHeadTailType_Normal = 1,
@@ -17810,14 +17810,14 @@ enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioHeadTailType
 };
 
 // Size: 0x4
-enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioImpactType
+enum class ZHM5WeaponBasicConfigEntity_EWeaponBasicConfigAudioImpactType : int32_t
 {
 	eWBC_AudioImpactType_Normal = 0,
 	eWBC_AudioImpactType_Sweetener = 1,
 };
 
 // Size: 0x4
-enum class ZHM5WeaponEventConsumer_EAnimWeapon
+enum class ZHM5WeaponEventConsumer_EAnimWeapon : int32_t
 {
 	eHM5Weapon_HideClip = 0,
 	eHM5Weapon_ShowClip = 1,
@@ -17885,7 +17885,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHUDTimerInstance_ETimeFormatChoice
+enum class ZHUDTimerInstance_ETimeFormatChoice : int32_t
 {
 	YES = 0,
 	NO = 1,
@@ -17933,14 +17933,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZHeroBoneAttachEntity_EResetMode
+enum class ZHeroBoneAttachEntity_EResetMode : int32_t
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
 };
 
 // Size: 0x4
-enum class ZHeroInventoryAction_EEvaluationType
+enum class ZHeroInventoryAction_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -17948,7 +17948,7 @@ enum class ZHeroInventoryAction_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZHeroKeywordCondition_EEvaluationType
+enum class ZHeroKeywordCondition_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -17973,7 +17973,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZHttpUrl_EVerb
+enum class ZHttpUrl_EVerb : int32_t
 {
 	eNONE = 0,
 	eGET = 1,
@@ -17983,7 +17983,7 @@ enum class ZHttpUrl_EVerb
 };
 
 // Size: 0x4
-enum class ZInputListenerAxisEntity_eInputListenerAxes
+enum class ZInputListenerAxisEntity_eInputListenerAxes : int32_t
 {
 	EILA_HORIZONTAL = 0,
 	EILA_VERTICAL = 1,
@@ -17992,7 +17992,7 @@ enum class ZInputListenerAxisEntity_eInputListenerAxes
 };
 
 // Size: 0x4
-enum class ZInputListenerButtonEntity_eInputListenerButtons
+enum class ZInputListenerButtonEntity_eInputListenerButtons : int32_t
 {
 	EILB_UP = 0,
 	EILB_LEFT = 1,
@@ -18001,7 +18001,7 @@ enum class ZInputListenerButtonEntity_eInputListenerButtons
 };
 
 // Size: 0x4
-enum class ZInputListenerDpadEntity_eInputListenerDpad
+enum class ZInputListenerDpadEntity_eInputListenerDpad : int32_t
 {
 	EILDP_UP = 0,
 	EILDP_LEFT = 1,
@@ -18027,7 +18027,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZInteractionData_EFilterResult
+enum class ZInteractionData_EFilterResult : int32_t
 {
 	EFR_REQUESTED = 0,
 	EFR_ENABLE_INTERACTION = 1,
@@ -18047,7 +18047,7 @@ enum class ZInteractionData_EFilterResult
 };
 
 // Size: 0x4
-enum class ZInteractionEventConsumer_EEvent
+enum class ZInteractionEventConsumer_EEvent : int32_t
 {
 	eActivate = 0,
 	eRH_Place = 1,
@@ -18105,7 +18105,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZInventoryController_EPendingItemType
+enum class ZInventoryController_EPendingItemType : int32_t
 {
 	EPIT_PocketItem = 0,
 	EPIT_Container = 1,
@@ -18131,7 +18131,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZInvestigateStandingSituation_ESituationFlavor
+enum class ZInvestigateStandingSituation_ESituationFlavor : int32_t
 {
 	SF_Unknown = 0,
 	SF_Sick = 1,
@@ -18154,7 +18154,7 @@ enum class ZInvestigateStandingSituation_ESituationFlavor
 };
 
 // Size: 0x4
-enum class ZInvestigateStandingSituation_ESituationState
+enum class ZInvestigateStandingSituation_ESituationState : int32_t
 {
 	SS_Main = 0,
 	SS_StandDown = 1,
@@ -18231,7 +18231,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZItemSpawner_EPhysicsMode
+enum class ZItemSpawner_EPhysicsMode : int32_t
 {
 	EPM_DEFINED_BY_ITEM = 0,
 	EPM_DYNAMIC = 1,
@@ -18258,7 +18258,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZKeywordCondition_EEvaluationType
+enum class ZKeywordCondition_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -18266,7 +18266,7 @@ enum class ZKeywordCondition_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZLogicMultipleGate_EGateType
+enum class ZLogicMultipleGate_EGateType : int32_t
 {
 	eFireEveryTime = 0,
 	eFirePortOnce = 1,
@@ -18274,7 +18274,7 @@ enum class ZLogicMultipleGate_EGateType
 };
 
 // Size: 0x4
-enum class ZLookAtLogic_EAxisSelect
+enum class ZLookAtLogic_EAxisSelect : int32_t
 {
 	eX = 0,
 	eX_NEG = 1,
@@ -18285,14 +18285,14 @@ enum class ZLookAtLogic_EAxisSelect
 };
 
 // Size: 0x4
-enum class ZMenuSliderNavigationEntity_ESliderInputMode
+enum class ZMenuSliderNavigationEntity_ESliderInputMode : int32_t
 {
 	E_HORIZONTAL = 0,
 	E_VERTICAL = 1,
 };
 
 // Size: 0x4
-enum class ZMirrorEntity_EMirrorBlur
+enum class ZMirrorEntity_EMirrorBlur : int32_t
 {
 	BLUR_DISABLED = 0,
 	BLUR_LOW = 1,
@@ -18300,7 +18300,7 @@ enum class ZMirrorEntity_EMirrorBlur
 };
 
 // Size: 0x4
-enum class ZMirrorEntity_EMirrorQuality
+enum class ZMirrorEntity_EMirrorQuality : int32_t
 {
 	QUALITY_LOW = 0,
 	QUALITY_MEDIUM = 1,
@@ -18338,14 +18338,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZMoveToPositionBehaviorEntity_EApproachAlignment
+enum class ZMoveToPositionBehaviorEntity_EApproachAlignment : int32_t
 {
 	AA_STRICT = 0,
 	AA_LOOSE = 1,
 };
 
 // Size: 0x4
-enum class ZMoveToPositionBehaviorEntity_EMovementType
+enum class ZMoveToPositionBehaviorEntity_EMovementType : int32_t
 {
 	MT_WALK = 0,
 	MT_SNAP = 1,
@@ -18353,7 +18353,7 @@ enum class ZMoveToPositionBehaviorEntity_EMovementType
 };
 
 // Size: 0x4
-enum class ZMoveToPositionBehaviorEntity_ERotationAlignment
+enum class ZMoveToPositionBehaviorEntity_ERotationAlignment : int32_t
 {
 	RA_NONE = 0,
 	RA_LOOSE = 1,
@@ -18361,7 +18361,7 @@ enum class ZMoveToPositionBehaviorEntity_ERotationAlignment
 };
 
 // Size: 0x4
-enum class ZOnlineManager_EError
+enum class ZOnlineManager_EError : int32_t
 {
 	eNONE = 0,
 	eGENERAL = 1000,
@@ -18373,30 +18373,29 @@ enum class ZOnlineManager_EError
 	eAUTHENTICATION_SERVER_ERROR = 1006,
 	eAUTHENTICATION_USER_GONE = 1007,
 	eAUTHENTICATION_STEAM_GENERAL = 1008,
-	eAUTHENTICATION_EPIC_GENERAL = 1009,
-	eAUTHENTICATION_PSN_GENERAL = 1010,
-	eAUTHENTICATION_PSN_NP_CHECK = 1011,
-	eAUTHENTICATION_NO_PRIMARY_USER = 1012,
-	eAUTHENTICATION_XBLIVE_GENERAL = 1013,
-	eAUTHENTICATION_XBLIVE_SIGNED_OUT = 1014,
-	eAUTHENTICATION_XBLIVE_USER_CHANGED = 1015,
-	ePLATFORM_USERINFO = 1016,
-	eCONFIGURATION = 1017,
-	eENTITLEMENTS = 1018,
-	ePROFILE = 1019,
-	eGAME_SESSION = 1020,
-	eGENERAL_SERVER_ERROR = 1021,
-	eGENERAL_SERVER_BUSY = 1022,
-	eGENERAL_CLIENT_ERROR = 1023,
-	eDYNAMIC_RESOURCES_CONFIG_ERROR = 1024,
-	eDYNAMIC_RESOURCES_UPDATEFAILED = 1025,
-	eDYNAMIC_RESOURCES_OUTDATED = 1026,
-	eCANCELLED = 1027,
-	eERROR_MAX = 1028,
+	eAUTHENTICATION_PSN_GENERAL = 1009,
+	eAUTHENTICATION_PSN_NP_CHECK = 1010,
+	eAUTHENTICATION_NO_PRIMARY_USER = 1011,
+	eAUTHENTICATION_XBLIVE_GENERAL = 1012,
+	eAUTHENTICATION_XBLIVE_SIGNED_OUT = 1013,
+	eAUTHENTICATION_XBLIVE_USER_CHANGED = 1014,
+	ePLATFORM_USERINFO = 1015,
+	eCONFIGURATION = 1016,
+	eENTITLEMENTS = 1017,
+	ePROFILE = 1018,
+	eGAME_SESSION = 1019,
+	eGENERAL_SERVER_ERROR = 1020,
+	eGENERAL_SERVER_BUSY = 1021,
+	eGENERAL_CLIENT_ERROR = 1022,
+	eDYNAMIC_RESOURCES_CONFIG_ERROR = 1023,
+	eDYNAMIC_RESOURCES_UPDATEFAILED = 1024,
+	eDYNAMIC_RESOURCES_OUTDATED = 1025,
+	eCANCELLED = 1026,
+	eERROR_MAX = 1027,
 };
 
 // Size: 0x4
-enum class ZOnlineManager_EState
+enum class ZOnlineManager_EState : int32_t
 {
 	eTRIGGER_FLOW = 1,
 	eOFFLINE = 2,
@@ -18441,7 +18440,7 @@ enum class ZOnlineManager_EState
 };
 
 // Size: 0x4
-enum class ZOperatorBool_EEvaluationType
+enum class ZOperatorBool_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -18449,7 +18448,7 @@ enum class ZOperatorBool_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZPathfinderDebugEntity_EDebugTestType
+enum class ZPathfinderDebugEntity_EDebugTestType : int32_t
 {
 	PATHFINDER = 0,
 	TRACELINE = 1,
@@ -18458,7 +18457,7 @@ enum class ZPathfinderDebugEntity_EDebugTestType
 };
 
 // Size: 0x4
-enum class ZPatrolBehaviorEntity_EMovementType
+enum class ZPatrolBehaviorEntity_EMovementType : int32_t
 {
 	MT_WALK = 0,
 	MT_SNAP = 1,
@@ -18466,7 +18465,7 @@ enum class ZPatrolBehaviorEntity_EMovementType
 };
 
 // Size: 0x4
-enum class ZPatrolBehaviorEntity_ERotationAlignment
+enum class ZPatrolBehaviorEntity_ERotationAlignment : int32_t
 {
 	RA_NONE = 0,
 	RA_LOOSE = 1,
@@ -18491,7 +18490,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZPointOfInterestEntity_EPOIType
+enum class ZPointOfInterestEntity_EPOIType : int32_t
 {
 	ePOIT_Invalid = 0,
 	ePOIT_Glance = 1,
@@ -18517,14 +18516,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZPreferenceItemEntity_EBoolOptions
+enum class ZPreferenceItemEntity_EBoolOptions : int32_t
 {
 	EBO_INVERTVERTICAL = 0,
 	EBO_FIXEDMAP = 1,
 };
 
 // Size: 0x4
-enum class ZRagdollAttacherEntity_EResetMode
+enum class ZRagdollAttacherEntity_EResetMode : int32_t
 {
 	eAtBoneOrigin = 0,
 	eKeepOffset = 1,
@@ -18548,7 +18547,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZRecoverUnconsciousGroup_EInvestigateGroupState
+enum class ZRecoverUnconsciousGroup_EInvestigateGroupState : int32_t
 {
 	IGS_InitialState = 0,
 	IGS_WaitingForVictim = 1,
@@ -18583,7 +18582,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZRenderPostfilterParametersEntity_EDOFBlurType
+enum class ZRenderPostfilterParametersEntity_EDOFBlurType : int32_t
 {
 	eFastest = 0,
 	eLowRezLensBlur = 1,
@@ -18592,14 +18591,14 @@ enum class ZRenderPostfilterParametersEntity_EDOFBlurType
 };
 
 // Size: 0x4
-enum class ZRenderPostfilterParametersEntity_EHDRAdaptationType
+enum class ZRenderPostfilterParametersEntity_EHDRAdaptationType : int32_t
 {
 	eMedian = 0,
 	eGeometricMean = 1,
 };
 
 // Size: 0x4
-enum class ZRenderPostfilterParametersEntity_EHDRGlareType
+enum class ZRenderPostfilterParametersEntity_EHDRGlareType : int32_t
 {
 	eCamera = 0,
 	eNatural = 1,
@@ -18615,7 +18614,7 @@ enum class ZRenderPostfilterParametersEntity_EHDRGlareType
 };
 
 // Size: 0x4
-enum class ZRenderPostfilterParametersEntity_EHDRToneMapType
+enum class ZRenderPostfilterParametersEntity_EHDRToneMapType : int32_t
 {
 	eLinear = 0,
 	eReinhardRGB = 1,
@@ -18645,7 +18644,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSecuritySystemCameraConfiguration_ECameraEscalationSituations
+enum class ZSecuritySystemCameraConfiguration_ECameraEscalationSituations : int32_t
 {
 	eCES_Arrest = 0,
 	eCES_Combat = 1,
@@ -18687,7 +18686,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSequenceEntity_ELetterBoxAspect
+enum class ZSequenceEntity_ELetterBoxAspect : int32_t
 {
 	LETTERBOXASPECT_WIDESCREEN = 0,
 	LETTERBOXASPECT_CINEMASCOPE = 1,
@@ -18717,7 +18716,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSetVisibleEntity_StartBehavior
+enum class ZSetVisibleEntity_StartBehavior : int32_t
 {
 	SB_Nothing = 0,
 	SB_MakeVisible = 1,
@@ -18785,7 +18784,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSniperCombatGroup_EGroupState
+enum class ZSniperCombatGroup_EGroupState : int32_t
 {
 	IGS_WaitingForActors = 0,
 	IGS_Move = 1,
@@ -18795,7 +18794,7 @@ enum class ZSniperCombatGroup_EGroupState
 };
 
 // Size: 0x4
-enum class ZSniperCombatSituation_ESituationState
+enum class ZSniperCombatSituation_ESituationState : int32_t
 {
 	SS_Main = 0,
 	SS_StandDown = 1,
@@ -18855,7 +18854,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSoundAmbienceGroup_ESoundCollisionType
+enum class ZSoundAmbienceGroup_ESoundCollisionType : int32_t
 {
 	SCT_Box = 0,
 	SCT_Cylinder = 1,
@@ -18880,7 +18879,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZSpatialEntity_ERoomBehaviour
+enum class ZSpatialEntity_ERoomBehaviour : int32_t
 {
 	ROOM_STATIC = 0,
 	ROOM_DYNAMIC = 1,
@@ -18925,7 +18924,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZStandOffSituation_EDialogState
+enum class ZStandOffSituation_EDialogState : int32_t
 {
 	eDS_ReportTarget = 0,
 	eDS_ArrestReason = 1,
@@ -18939,7 +18938,7 @@ enum class ZStandOffSituation_EDialogState
 };
 
 // Size: 0x4
-enum class ZStandOffSituation_ESituationState
+enum class ZStandOffSituation_ESituationState : int32_t
 {
 	SS_Uncertain = 0,
 	SS_Main = 1,
@@ -19019,14 +19018,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZStateControllerEntity_WrapMode
+enum class ZStateControllerEntity_WrapMode : int32_t
 {
 	WM_Loop = 0,
 	WM_Clamp = 1,
 };
 
 // Size: 0x4
-enum class ZTestGroupPath_EModifierType
+enum class ZTestGroupPath_EModifierType : int32_t
 {
 	EMT_PushCorners = 0,
 	EMT_PushCornersAlt = 1,
@@ -19050,7 +19049,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZTrackDollyControllerQueryEntity_ETrackPointQueryType
+enum class ZTrackDollyControllerQueryEntity_ETrackPointQueryType : int32_t
 {
 	Closest = 0,
 	ClosestNext = 1,
@@ -19058,7 +19057,7 @@ enum class ZTrackDollyControllerQueryEntity_ETrackPointQueryType
 };
 
 // Size: 0x4
-enum class ZTrespassingSituation_ESituationState
+enum class ZTrespassingSituation_ESituationState : int32_t
 {
 	SS_Main = 1,
 	SS_StandDown = 2,
@@ -19174,7 +19173,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZUIControlEntity_EAlignmentType
+enum class ZUIControlEntity_EAlignmentType : int32_t
 {
 	E_ALIGNMENT_TYPE_Center = 0,
 	E_ALIGNMENT_TYPE_TopCenter = 1,
@@ -19188,7 +19187,7 @@ enum class ZUIControlEntity_EAlignmentType
 };
 
 // Size: 0x4
-enum class ZUIControlEntity_ELayoutMode
+enum class ZUIControlEntity_ELayoutMode : int32_t
 {
 	E_LAYOUT_MODE_Absolute = 0,
 	E_LAYOUT_MODE_Proportional = 1,
@@ -19217,14 +19216,14 @@ public:
 };
 
 // Size: 0x4
-enum class ZUIFlowLayoutEntity_EFlowType
+enum class ZUIFlowLayoutEntity_EFlowType : int32_t
 {
 	E_FLOW_TYPE_HORIZONTAL = 0,
 	E_FLOW_TYPE_VERTICAL = 1,
 };
 
 // Size: 0x4
-enum class ZUIListNavigationEntity_ENavigationInputMode
+enum class ZUIListNavigationEntity_ENavigationInputMode : int32_t
 {
 	E_MODE_UP_DOWN = 0,
 	E_MODE_LEFT_RIGHT = 1,
@@ -19233,7 +19232,7 @@ enum class ZUIListNavigationEntity_ENavigationInputMode
 };
 
 // Size: 0x4
-enum class ZUISplashHintDataProviderEntity_ESplashHintType
+enum class ZUISplashHintDataProviderEntity_ESplashHintType : int32_t
 {
 	SHT_GlobalHint = 0,
 	SHT_TutorialHint = 1,
@@ -19241,14 +19240,14 @@ enum class ZUISplashHintDataProviderEntity_ESplashHintType
 };
 
 // Size: 0x4
-enum class ZUISubtitleDataProvider_EAlignment
+enum class ZUISubtitleDataProvider_EAlignment : int32_t
 {
 	ALIGN_BOTTOM = 0,
 	ALIGN_TOP = 1,
 };
 
 // Size: 0x4
-enum class ZUIWorldMapView_EMapType
+enum class ZUIWorldMapView_EMapType : int32_t
 {
 	E_MAPTYPE_Minimap = 0,
 	E_MAPTYPE_MainMap = 1,
@@ -19256,7 +19255,7 @@ enum class ZUIWorldMapView_EMapType
 };
 
 // Size: 0x4
-enum class ZVIPInvestigateGroup_EVIPInvestigateGroupState
+enum class ZVIPInvestigateGroup_EVIPInvestigateGroupState : int32_t
 {
 	IGS_FindGuard = 0,
 	IGS_WaitForGuard = 1,
@@ -19271,7 +19270,7 @@ enum class ZVIPInvestigateGroup_EVIPInvestigateGroupState
 };
 
 // Size: 0x4
-enum class ZValueBool_Operation_EEvaluationType
+enum class ZValueBool_Operation_EEvaluationType : int32_t
 {
 	ALL = 0,
 	NONE = 1,
@@ -19279,7 +19278,7 @@ enum class ZValueBool_Operation_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZValueInt_Comparator_EEvaluationType
+enum class ZValueInt_Comparator_EEvaluationType : int32_t
 {
 	EQUAL = 0,
 	NOT_EQUAL = 1,
@@ -19290,7 +19289,7 @@ enum class ZValueInt_Comparator_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZValueInt_Comparator_Poll_EEvaluationType
+enum class ZValueInt_Comparator_Poll_EEvaluationType : int32_t
 {
 	EQUAL = 0,
 	NOT_EQUAL = 1,
@@ -19301,7 +19300,7 @@ enum class ZValueInt_Comparator_Poll_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZValueInt_Evaluation_EEvaluationType
+enum class ZValueInt_Evaluation_EEvaluationType : int32_t
 {
 	EQUAL = 0,
 	NOT_EQUAL = 1,
@@ -19312,7 +19311,7 @@ enum class ZValueInt_Evaluation_EEvaluationType
 };
 
 // Size: 0x4
-enum class ZWaveformGeneratorEntity_ECurveType
+enum class ZWaveformGeneratorEntity_ECurveType : int32_t
 {
 	CURVE_TYPE_SINE = 0,
 	CURVE_TYPE_SQUARE = 1,
@@ -19322,7 +19321,7 @@ enum class ZWaveformGeneratorEntity_ECurveType
 };
 
 // Size: 0x4
-enum class ZWaypointEntity_EMovementType
+enum class ZWaypointEntity_EMovementType : int32_t
 {
 	MT_WALK = 0,
 	MT_WALK_IF_NOT_IN_SEQUENCE = 1,
@@ -19348,7 +19347,7 @@ public:
 };
 
 // Size: 0x4
-enum class ZWorldUIElementInstanceBase_EVisibility
+enum class ZWorldUIElementInstanceBase_EVisibility : int32_t
 {
 	EVIS_ALWAYS = 0,
 	EVIS_POSY = 1,
@@ -19358,7 +19357,7 @@ enum class ZWorldUIElementInstanceBase_EVisibility
 };
 
 // Size: 0x4
-enum class eBurstPatternType
+enum class eBurstPatternType : int32_t
 {
 	eEBP_None = 0,
 	eEBP_Circular3Rings = 1,
@@ -19366,7 +19365,7 @@ enum class eBurstPatternType
 };
 
 // Size: 0x4
-enum class eContractSessionStartError
+enum class eContractSessionStartError : int32_t
 {
 	ERROR_NONE = 0,
 	ERROR_MISSING_CONTENT = 1,
@@ -19380,7 +19379,7 @@ enum class eContractSessionStartError
 };
 
 // Size: 0x4
-enum class eHitmanPermissionReason
+enum class eHitmanPermissionReason : int32_t
 {
 	eHPReason_MovementContext = 1,
 	eHPReason_ItemHandlingInProcess = 2,
@@ -19395,7 +19394,7 @@ enum class eHitmanPermissionReason
 };
 
 // Size: 0x4
-enum class eHolsterAbility
+enum class eHolsterAbility : int32_t
 {
 	eUndecided = 0,
 	eHolsteringAllowed = 1,
@@ -19405,7 +19404,7 @@ enum class eHolsterAbility
 };
 
 // Size: 0x4
-enum class eItemHands
+enum class eItemHands : int32_t
 {
 	IH_NONE = 0,
 	IH_ONEHANDED = 1,
@@ -19413,7 +19412,7 @@ enum class eItemHands
 };
 
 // Size: 0x4
-enum class eItemSize
+enum class eItemSize : int32_t
 {
 	ITEMSIZE_SMALL = 0,
 	ITEMSIZE_LARGE = 1,
@@ -19421,7 +19420,7 @@ enum class eItemSize
 };
 
 // Size: 0x4
-enum class eParticleEmitterBoxEntity_SpawnModes
+enum class eParticleEmitterBoxEntity_SpawnModes : int32_t
 {
 	BOX_SPAWNMODE_INSIDE = 0,
 	BOX_SPAWNMODE_EDGE = 1,
@@ -19431,7 +19430,7 @@ enum class eParticleEmitterBoxEntity_SpawnModes
 };
 
 // Size: 0x4
-enum class eParticleEmitterMeshEntity_SpawnModes
+enum class eParticleEmitterMeshEntity_SpawnModes : int32_t
 {
 	MESH_SPAWNMODE_VERTEX = 0,
 	MESH_SPAWNMODE_EDGE = 1,
@@ -19439,14 +19438,14 @@ enum class eParticleEmitterMeshEntity_SpawnModes
 };
 
 // Size: 0x4
-enum class eWeaponOperation
+enum class eWeaponOperation : int32_t
 {
 	WO_SEMI_AUTO = 0,
 	WO_FULL_AUTO = 1,
 };
 
 // Size: 0x4
-enum class eWeaponType
+enum class eWeaponType : int32_t
 {
 	WT_HANDGUN = 0,
 	WT_SLOWGUN = 1,
