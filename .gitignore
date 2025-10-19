@@ -42,6 +42,9 @@ _build/
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 
+# JetBrains auto generated files
+/.idea/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -366,4 +369,5 @@ FodyWeavers.xsd
 /Tools/NavViewer/NavMeshes.js
 /Tools/NavViewer/Faces.js
 /Tools/NavViewer/Surfaces.js
+/Tools/NavViewer/AIGrids.js
 _build/

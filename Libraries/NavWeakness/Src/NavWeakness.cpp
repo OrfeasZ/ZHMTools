@@ -16,6 +16,10 @@ NavPower::NavMesh LoadNavMeshFromBinary(const char* p_NavMeshPath)
 
 	// Read the entire file to memory.
 	const long s_FileSize = std::filesystem::file_size(p_NavMeshPath);
+
+	if (s_FileSize < sizeof(NavPower::NavMesh))
+		throw std::runtime_error("Invalid NavMesh File.");
+
 	std::ifstream s_FileStream(p_NavMeshPath, std::ios::in | std::ios::binary);
 
 	if (!s_FileStream)
