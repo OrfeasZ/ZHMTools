@@ -338,7 +338,7 @@ void OutputNavMesh_VIEWER_print(NavPower::NavMesh* p_NavMesh, const std::string 
 // Outputs the navmesh to a format useable by NavViewer
 extern "C" void OutputNavMesh_VIEWER(const char* p_NavMeshPath, bool b_SourceIsJson)
 {
-	const std::string s_FileName = std::filesystem::path(p_NavMeshPath).string();
+	const std::string s_FileName = std::filesystem::path(p_NavMeshPath).filename().string();
 	if (b_SourceIsJson)
 	{
 		NavPower::NavMesh s_NavMesh = LoadNavMeshFromJson(p_NavMeshPath);
