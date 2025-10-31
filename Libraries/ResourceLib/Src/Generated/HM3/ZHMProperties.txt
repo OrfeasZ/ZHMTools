@@ -2151,6 +2151,7 @@ m_bAllowBaseMovements
 m_bAllowCC
 m_bAllowCloseCombat
 m_bAllowCrowdBlendin
+m_bAllowDataIntel
 m_bAllowDeath
 m_bAllowDrag
 m_bAllowDropDown
@@ -2858,6 +2859,7 @@ m_bIgnoreDistractions
 m_bIgnoreEmptyPromptDescriptionText
 m_bIgnoreEndCollision
 m_bIgnoreForProjection
+m_bIgnoreHints
 m_bIgnoreIfInactive
 m_bIgnoreLockdown
 m_bIgnoreLowNoise
@@ -3564,6 +3566,7 @@ m_bSignalOnHost
 m_bSignalOnSelf
 m_bSignaling
 m_bSignalsInEditMode
+m_bSilent
 m_bSilentInvestigation
 m_bSimulationEnabled
 m_bSituationActive
@@ -5219,6 +5222,7 @@ m_fLevelSetupMultiplier
 m_fLidAutoCloseTime
 m_fLidOpenFraction
 m_fLifeTime
+m_fLifetime
 m_fLightBleedingReduction
 m_fLightFadeDistance
 m_fLightFadeLength
@@ -7376,6 +7380,7 @@ m_rContainer
 m_rContainerGeom
 m_rContainerItem
 m_rContainerItemKey
+m_rContainerSpawner
 m_rContainsItem
 m_rContextKeywords
 m_rContextLocation
@@ -7503,6 +7508,7 @@ m_rHeadlineResource
 m_rHelpingGuardMember
 m_rHero
 m_rHeroRole
+m_rHintTextConditional
 m_rHitCrowdActor
 m_rHitEntity
 m_rHitmanCharacter

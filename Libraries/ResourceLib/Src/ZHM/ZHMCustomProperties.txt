@@ -14499,6 +14499,8 @@ Lights_On
 Lightsm_rCondition
 Lighttransform
 LigthCastShadows
+Line002_Offset
+Line003_Offset
 LineHeight
 LineHeight_op
 LineIsPlaying
@@ -30871,6 +30873,7 @@ m_aChildren
 m_aChildrenProbes
 m_aClipAlignPoses
 m_aConditionList
+m_aConditionalDescriptions
 m_aConditionalTextLines
 m_aConditions
 m_aControlPoints
@@ -31062,6 +31065,7 @@ m_aOrders
 m_aOriginalExtraData
 m_aOutOfRangeScreenplays
 m_aOuterConditions
+m_aOuterUsableConditions
 m_aOutfitKeys
 m_aOutputPipes
 m_aOutsideVolumes
@@ -31691,6 +31695,7 @@ m_bEnableDefault
 m_bEnableDefaultA
 m_bEnableDefaultB
 m_bEnableDistanceCulling
+m_bEnableDoorUnlockedEvent
 m_bEnableExplosionBlocker
 m_bEnableHolsterMaterial
 m_bEnableLightFade
@@ -31732,6 +31737,7 @@ m_bEquipRequiredItemA
 m_bEquipRequiredItemB
 m_bEscortsReactToDistactions
 m_bExclamationMark
+m_bExcludeDeadActors
 m_bExclusive
 m_bExecuteWhenInstinctRunsOut
 m_bExemptFromAttentionHUD
@@ -32547,6 +32553,8 @@ m_bSignalOnStart
 m_bSignaling
 m_bSignalsInEditMode
 m_bSilenced
+m_bSilent
+m_bSilentHintLogic
 m_bSilentInvestigation
 m_bSimulationEnabled
 m_bSingleDirection
@@ -32574,6 +32582,7 @@ m_bSoundCuriousAccident
 m_bSoundCuriousEnabled
 m_bSoundEnabled
 m_bSoundGateVisible
+m_bSoundOneShot
 m_bSpatialBlurEnabled
 m_bSpawnKinematic
 m_bSpawnOnStart
@@ -34964,6 +34973,7 @@ m_mDialTransform
 m_mDramaPackageTransform
 m_mEnd_Transform
 m_mExitTransform
+m_mFXOffsetTransform
 m_mGateTransform
 m_mGlassDetachTransform
 m_mGlassTransform
@@ -36533,6 +36543,7 @@ m_rTrackEntity
 m_rTracked
 m_rTransformReference
 m_rTriggerAlarmGroup
+m_rUnlockedCondition
 m_rUpdateCondition
 m_rUsableCondition
 m_rUsableConditionKeywordsA
@@ -37028,6 +37039,7 @@ m_vGravity
 m_vHDRAdaptationLuminanceMinMax
 m_vHDRAdaptationMiddleGrayMinMax
 m_vHDRAdaptationSpeed
+m_vHealthMeterPosition
 m_vHighBoundPos
 m_vHighlightSize
 m_vHintSize
@@ -37123,6 +37135,7 @@ m_vTargetRadiiMedium
 m_vTargetRadiiSmall
 m_vTargetStartTransform
 m_vTiling
+m_vTimeoutMeterPosition
 m_vTorque
 m_vTorqueImpulse
 m_vTrackerScaleFactor
