@@ -222,7 +222,7 @@ extern "C" void OutputNavMesh_HUMAN(const char* p_NavMeshPath, bool b_SourceIsJs
 void OutputNavMesh_NAVP_Write(NavPower::NavMesh * p_NavMesh, const char* p_NavMeshOutputPath)
 {
 	// Get output filename and delete file if it exists
-	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
+	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).string();
 	std::filesystem::remove(s_OutputFileName);
 
 	// Write the Navmesh to NAVP binary file
@@ -248,7 +248,7 @@ extern "C" void OutputNavMesh_NAVP(const char *p_NavMeshPath, const char *p_NavM
 void OutputNavMesh_JSON_Write(NavPower::NavMesh* p_NavMesh, const char* p_NavMeshOutputPath)
 {
 	// Get output filename and delete file if it exists
-	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).filename().string();
+	const std::string s_OutputFileName = std::filesystem::path(p_NavMeshOutputPath).string();
 	std::filesystem::remove(s_OutputFileName);
 
 	// Write the navp to JSON file
