@@ -9261,6 +9261,79 @@ void SSituationSaveData::Destroy(void* p_Object)
 	s_Object->~SSituationSaveData();
 }
 
+ZHMTypeInfo SActorProviderFilterQueueSaveData::TypeInfo = ZHMTypeInfo("SActorProviderFilterQueueSaveData", sizeof(SActorProviderFilterQueueSaveData), alignof(SActorProviderFilterQueueSaveData), SActorProviderFilterQueueSaveData::WriteSimpleJson, SActorProviderFilterQueueSaveData::FromSimpleJson, SActorProviderFilterQueueSaveData::Serialize, SActorProviderFilterQueueSaveData::Equals, SActorProviderFilterQueueSaveData::Destroy);
+
+void SActorProviderFilterQueueSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SActorProviderFilterQueueSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_aActors") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aActors.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aActors[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aActors.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SActorProviderFilterQueueSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	SActorProviderFilterQueueSaveData s_Object {};
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActors"];
+	s_Object.m_aActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object.m_aActors[s_Index0++] = simdjson::from_json_uint32(s_Item0);
+	}
+	}
+
+	*reinterpret_cast<SActorProviderFilterQueueSaveData*>(p_Target) = s_Object;
+}
+
+void SActorProviderFilterQueueSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SActorProviderFilterQueueSaveData*>(p_Object);
+
+	TArray<uint32>::Serialize(&s_Object->m_aActors, p_Serializer, p_OwnOffset + offsetof(SActorProviderFilterQueueSaveData, m_aActors));
+}
+
+bool SActorProviderFilterQueueSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SActorProviderFilterQueueSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SActorProviderFilterQueueSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SActorProviderFilterQueueSaveData::operator==(const SActorProviderFilterQueueSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorProviderFilterQueueSaveData>)
+		return false;
+
+	if (m_aActors != p_Other.m_aActors) return false;
+
+	return true;
+}
+
+void SActorProviderFilterQueueSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SActorProviderFilterQueueSaveData*>(p_Object);
+	s_Object->~SActorProviderFilterQueueSaveData();
+}
+
 ZHMTypeInfo SActorProxySaveData::TypeInfo = ZHMTypeInfo("SActorProxySaveData", sizeof(SActorProxySaveData), alignof(SActorProxySaveData), SActorProxySaveData::WriteSimpleJson, SActorProxySaveData::FromSimpleJson, SActorProxySaveData::Serialize, SActorProxySaveData::Equals, SActorProxySaveData::Destroy);
 
 void SActorProxySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -45107,6 +45180,10 @@ void SSaveGameMetaData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	p_Stream << simdjson::as_json_string(s_Object->sLastEventToken);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("sProfileId") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sProfileId);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("bIsOnline") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->bIsOnline);
 	p_Stream << ",";
@@ -45167,6 +45244,8 @@ void SSaveGameMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, voi
 
 	s_Object.sLastEventToken = std::string_view(p_Document["sLastEventToken"]);
 
+	s_Object.sProfileId = std::string_view(p_Document["sProfileId"]);
+
 	s_Object.bIsOnline = simdjson::from_json_bool(p_Document["bIsOnline"]);
 
 	s_Object.bIsVR = simdjson::from_json_bool(p_Document["bIsVR"]);
@@ -45206,6 +45285,7 @@ void SSaveGameMetaData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, z
 	ZString::Serialize(&s_Object->sLocationId, p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sLocationId));
 	ZString::Serialize(&s_Object->sContractSessionId, p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sContractSessionId));
 	ZString::Serialize(&s_Object->sLastEventToken, p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sLastEventToken));
+	ZString::Serialize(&s_Object->sProfileId, p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, sProfileId));
 	TArray<uint32>::Serialize(&s_Object->aScreenShot, p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, aScreenShot));
 	TArray<ERequirementId>::Serialize(&s_Object->aRequirements, p_Serializer, p_OwnOffset + offsetof(SSaveGameMetaData, aRequirements));
 }
@@ -45232,6 +45312,7 @@ bool SSaveGameMetaData::operator==(const SSaveGameMetaData& p_Other) const
 	if (sLocationId != p_Other.sLocationId) return false;
 	if (sContractSessionId != p_Other.sContractSessionId) return false;
 	if (sLastEventToken != p_Other.sLastEventToken) return false;
+	if (sProfileId != p_Other.sProfileId) return false;
 	if (bIsOnline != p_Other.bIsOnline) return false;
 	if (bIsVR != p_Other.bIsVR) return false;
 	if (aScreenShot != p_Other.aScreenShot) return false;

@@ -1793,6 +1793,7 @@ m_aInclusionSpaces
 m_aInclusionZones
 m_aInclusions
 m_aIndices
+m_aInitialQueue
 m_aInput
 m_aInputCollectionEntities
 m_aInputEntities
@@ -2167,6 +2168,7 @@ m_bAllowKinematicKinematicDestruction
 m_bAllowLockdown
 m_bAllowMouseCursor
 m_bAllowMoving
+m_bAllowOwnedItems
 m_bAllowPausedDramesToBeActive
 m_bAllowPossession
 m_bAllowPrecisionShot
@@ -2301,6 +2303,7 @@ m_bCLPDisabled
 m_bCSMRoom
 m_bCacheOnBack
 m_bCalculateInterpolationFromHandPose
+m_bCalculateOnSet
 m_bCalculateRestPose
 m_bCameraObstacle
 m_bCameraSide
@@ -2519,6 +2522,7 @@ m_bDisableRighttHandIK
 m_bDisableSavegame
 m_bDisableSpecReflProbes
 m_bDisableStaticShadows
+m_bDisableVrHeadCollision
 m_bDisableWhenUsed
 m_bDisableWind
 m_bDisabled
@@ -2618,6 +2622,7 @@ m_bEnablePitchLevelOut
 m_bEnablePositionProjection
 m_bEnableProjection
 m_bEnableRainFade
+m_bEnableRayCollision
 m_bEnableReposition
 m_bEnableReverse
 m_bEnableShadowPrioritization
@@ -2917,6 +2922,7 @@ m_bInverseHorizontalPolarity
 m_bInverseVerticalPolarity
 m_bInvertFilterMask
 m_bInvertPeekMovementSequence
+m_bInvertVRHandPushInsideCondition
 m_bInvertWholeConditionCheck
 m_bInverted
 m_bInvestigateCautiousBystander
@@ -3045,6 +3051,7 @@ m_bIsValid
 m_bIsVisible
 m_bIsVisibleInExternalBuild
 m_bIsVrCameraTranslationAllowed
+m_bIsVrHintStayInAgility
 m_bIsVrOverride
 m_bIsWalking
 m_bIsWoozy
@@ -3154,6 +3161,7 @@ m_bMakeMainWeaponUndroppable
 m_bMakeRedDot
 m_bMakeSilenced
 m_bMakeSphereCollider
+m_bManageQueue
 m_bManaged
 m_bMandatory
 m_bMarkAsDeadEnd
@@ -3196,6 +3204,7 @@ m_bNeedsLeftHand
 m_bNeedsRightHand
 m_bNeedsToPlayAlone
 m_bNeedsVolumeUpdate
+m_bNegateDirectionVector
 m_bNegativeX
 m_bNegativeY
 m_bNegativeZ
@@ -3438,6 +3447,7 @@ m_bReservedOccupancy
 m_bReset
 m_bResetAnimSetAfterAct
 m_bResetCamera
+m_bResetHero
 m_bResetOnLoad
 m_bResetOnStop
 m_bResetWhenStopped
@@ -4063,6 +4073,7 @@ m_eAgilitySubstate
 m_eAimingRequirements
 m_eAlignment
 m_eAlignmentType
+m_eAllowedMovement
 m_eAllowedRotationAxis
 m_eAmmoType
 m_eAnchor
@@ -4361,6 +4372,7 @@ m_ePreCustomAnimSet
 m_ePrevAgilityState
 m_ePrimeState
 m_ePrintDestination
+m_ePrioritizationMode
 m_ePriority
 m_eProjectionType
 m_ePromptTypeVR
@@ -8783,6 +8795,7 @@ sMissingToolText
 sName
 sParamName
 sPoisonType
+sProfileId
 sPropertyName
 sStringProp
 sSymbolName
