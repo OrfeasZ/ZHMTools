@@ -8,6 +8,13 @@
 #include <unordered_set>
 
 #include "HMAData.h"
+#include "RTTI/Image.h"
+#include "RTTI/VTableFinder.h"
+
+#include <Windows.h>
+#include <DbgHelp.h>
+
+extern "C" char *__unDName(char*, const char*, int, void*, void*, int);
 
 void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p_OutputPath)
 {
@@ -124,6 +131,31 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	m_PropertyNamesTextFile.close();
 
 	printf("Finished generating code.\n");
+
+	// Look for RTTI information.
+	Image s_Image;
+	RttiMsvc s_RTTI;
+	VTablesMsvc s_VTables;
+
+	FindMsvcVTables(s_Image, s_VTables, s_RTTI);
+
+	printf("Found %llu vtables.\n", s_VTables.size());
+
+	for (auto& s_VTable : s_VTables)
+	{
+		std::string s_RTTIName = "<none>";
+
+		if (s_VTable.second.Rtti && s_VTable.second.Rtti->TypeDescriptor)
+			s_RTTIName = s_VTable.second.Rtti->TypeDescriptor->Name;
+
+		char s_HexAddr[32];
+		sprintf_s(s_HexAddr, "%llx", static_cast<unsigned long long>(s_VTable.first));
+		printf("VTable at %s (RTTI name: %s)\n", s_HexAddr, s_RTTIName.c_str());
+
+		char s_UndercodratedName[10000];
+		__unDName(s_UndercodratedName, s_RTTIName.c_str() + 1, 10000, malloc, free, 0x2800);
+		printf("Undecorated name: %s\n", s_UndercodratedName);
+	}
 }
 
 std::string GetPropName(const ZClassProperty& p_Prop)
