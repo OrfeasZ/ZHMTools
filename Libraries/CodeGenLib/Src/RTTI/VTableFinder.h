@@ -1,3 +1,9 @@
+/**
+ * Code largely adapted from retdec.
+ * https://github.com/avast/retdec
+ * @copyright (c) 2019 Avast Software, licensed under the MIT license
+ */
+
 #pragma once
 
 #include <cstdint>
