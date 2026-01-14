@@ -442,8 +442,7 @@ std::pair<std::unordered_set<std::string>, bool> CodeGen::CollectDependencies(ST
 				continue;
 			}
 
-			if (std::string(s_Prop.m_pType->typeInfo()->m_pTypeName) == "TArray" || 
-				std::string(s_Prop.m_pType->typeInfo()->m_pTypeName) == "TResourcePtr")
+			if (std::string(s_Prop.m_pType->typeInfo()->m_pTypeName) == "TArray")
 			{
 				s_IsRlType = false;
 				continue;
@@ -787,18 +786,18 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 
 		if (s_ArrayType->m_pArrayElementType->typeInfo()->m_pTypeName == std::string("ZString"))
 		{
-			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "++] = std::string_view(s_Item" << p_Depth << ");" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = std::string_view(s_Item" << p_Depth << ");" << std::endl;
 		}
 		else if (s_ArrayType->m_pArrayElementType->typeInfo()->isEnum())
 		{
-			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "++] = static_cast<" << s_NormalizedArrayType << ">(ZHMEnums::GetEnumValueByName(\"" << s_ArrayTypeName << "\", std::string_view(s_Item" << p_Depth << ")));" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = static_cast<" << s_NormalizedArrayType << ">(ZHMEnums::GetEnumValueByName(\"" << s_ArrayTypeName << "\", std::string_view(s_Item" << p_Depth << ")));" << std::endl;
 		}
 		else if (s_ArrayType->m_pArrayElementType->typeInfo()->isArray() || s_ArrayType->m_pArrayElementType->typeInfo()->isFixedArray())
 		{
 			GenerateArraySimpleJsonReader(
 				s_ArrayType->m_pArrayElementType,
 				p_Stream,
-				p_ValueName + "[s_Index" + std::to_string(p_Depth) + "++]",
+				p_ValueName + "[s_Index" + std::to_string(p_Depth) + "]",
 				"s_Item" + std::to_string(p_Depth),
 				p_Depth + 1,
 				p_Indentation + "\t"
@@ -809,12 +808,14 @@ void GenerateArraySimpleJsonReader(STypeID* p_ElementType, std::ostream& p_Strea
 			if (s_ArrayTypeName == "char")
 				s_ArrayTypeName = "int8";
 
-			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "++] = simdjson::from_json_" << s_ArrayTypeName << "(s_Item" << p_Depth << ");" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << p_ValueName << "[s_Index" << p_Depth << "] = simdjson::from_json_" << s_ArrayTypeName << "(s_Item" << p_Depth << ");" << std::endl;
 		}
 		else
 		{
-			p_Stream << p_Indentation << "\t\t" << s_NormalizedArrayType << "::FromSimpleJson(s_Item" << p_Depth << ", &" << p_ValueName << "[s_Index" << p_Depth << "++]);" << std::endl;
+			p_Stream << p_Indentation << "\t\t" << s_NormalizedArrayType << "::FromSimpleJson(s_Item" << p_Depth << ", &" << p_ValueName << "[s_Index" << p_Depth << "]);" << std::endl;
 		}
+
+		p_Stream << p_Indentation << "\t\t++s_Index" << p_Depth << ";" << std::endl;
 
 		p_Stream << p_Indentation << "\t}" << std::endl;
 		p_Stream << p_Indentation << "\t}" << std::endl;
