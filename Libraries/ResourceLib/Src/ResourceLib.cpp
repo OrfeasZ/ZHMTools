@@ -4,8 +4,34 @@
 
 #include <cstring>
 
+#include "Util/PortableIntrinsics.h"
 #include "ZHM/ZHMTypeInfo.h"
 #include "ZHM/ZHMCustomProperties.h"
+
+static auto g_DefaultAllocator = new Allocator {
+	.Alloc = [](size_t p_Size, size_t p_Alignment) 
+	{
+#if _MSC_VER
+		return _aligned_malloc(p_Size, p_Alignment);
+#elif __EMSCRIPTEN__
+		return malloc((p_Size + (p_Alignment - 1)) & (-p_Alignment));
+#else
+		return std::aligned_alloc(p_Alignment, p_Size);
+#endif
+	},
+	.Free = [](void* p_Ptr) 
+	{
+#if _MSC_VER
+		return _aligned_free(p_Ptr);
+#elif __EMSCRIPTEN__
+		free(p_Ptr);
+#else
+		return std::free(p_Ptr);
+#endif
+	},
+};
+
+static Allocator* g_Allocator = g_DefaultAllocator;
 
 extern "C"
 {
@@ -41,7 +67,7 @@ extern "C"
 		for (auto& s_Resource : g_Resources)
 		{
 			const auto s_StringSize = s_Resource.first.size();
-			auto* s_StringMemory = malloc(s_StringSize + 1);
+			auto* s_StringMemory = c_aligned_alloc(s_StringSize + 1, alignof(char));
 
 			memset(s_StringMemory, 0x00, s_StringSize + 1);
 			memcpy(s_StringMemory, s_Resource.first.c_str(), s_StringSize);
@@ -55,7 +81,7 @@ extern "C"
 	void ZHM_TARGET_FUNC(FreeSupportedResourceTypes)(ResourceTypesArray* p_Array)
 	{
 		for (size_t i = 0; i < p_Array->TypeCount; ++i)
-			free(const_cast<char*>(p_Array->Types[i]));
+			c_aligned_free(const_cast<char*>(p_Array->Types[i]));
 
 		delete[] p_Array->Types;
 	}
@@ -86,7 +112,7 @@ extern "C"
 			const std::string s_Result = s_Stream.str();
 
 			s_JsonString->StrSize = s_Result.size();
-			s_JsonString->JsonData = static_cast<const char*>(malloc(s_JsonString->StrSize + 1));
+			s_JsonString->JsonData = static_cast<const char*>(c_aligned_alloc(s_JsonString->StrSize + 1, alignof(char)));
 
 			// Copy over string data.
 			memcpy(const_cast<char*>(s_JsonString->JsonData), s_Result.c_str(), s_JsonString->StrSize);
@@ -152,7 +178,7 @@ extern "C"
 		if (p_JsonString == nullptr || p_JsonString->JsonData == nullptr)
 			return;
 
-		free(const_cast<char*>(p_JsonString->JsonData));
+		c_aligned_free(const_cast<char*>(p_JsonString->JsonData));
 		delete p_JsonString;
 	}
 
@@ -172,5 +198,18 @@ extern "C"
 			.Data = s_Name.data(),
 			.Size = s_Name.size(),
 		};
+	}
+
+	Allocator* ZHM_TARGET_FUNC(GetAllocator)()
+	{
+		return g_Allocator;
+	}
+
+	void ZHM_TARGET_FUNC(SetAllocator)(Allocator* p_Allocator)
+	{
+		if (p_Allocator == nullptr)
+			p_Allocator = g_DefaultAllocator;
+		else
+			g_Allocator = p_Allocator;
 	}
 }

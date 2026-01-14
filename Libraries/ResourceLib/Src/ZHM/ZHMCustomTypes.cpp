@@ -3,6 +3,8 @@
 #include "External/simdjson_helpers.h"
 #include "Util/Base64.h"
 
+#include <map>
+
 #if ZHM_TARGET == 3
 #include <Generated/HM3/ZHMGen.h>
 #elif ZHM_TARGET == 2
@@ -42,22 +44,20 @@ void SAudioSwitchBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_
 
 void SAudioSwitchBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioSwitchBlueprintData s_Object;
+	auto* s_Object = reinterpret_cast<SAudioSwitchBlueprintData*>(p_Target);
 
-	s_Object.m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
+	s_Object->m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
 
 	{
 		simdjson::ondemand::array s_Array = p_Document["m_aSwitches"];
-		s_Object.m_aSwitches.resize(s_Array.count_elements());
-
+		s_Object->m_aSwitches.resize(s_Array.count_elements());
+		
 		size_t s_Index = 0;
 		for (auto s_Item : s_Array)
 		{
-			s_Object.m_aSwitches[s_Index++] = std::string_view(s_Item);
+			s_Object->m_aSwitches[s_Index++] = std::string_view(s_Item);
 		}
 	}
-
-	*reinterpret_cast<SAudioSwitchBlueprintData*>(p_Target) = s_Object;
 }
 
 void SAudioSwitchBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -68,7 +68,7 @@ void SAudioSwitchBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Seria
 	TArray<ZString>::Serialize(&s_Object->m_aSwitches, p_Serializer, p_OwnOffset + offsetof(SAudioSwitchBlueprintData, m_aSwitches));
 }
 
-ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", sizeof(SScaleformGFxResource), alignof(SScaleformGFxResource), WriteSimpleJson, FromSimpleJson, Serialize);
+ZHMTypeInfo SScaleformGFxResource::TypeInfo = ZHMTypeInfo("SScaleformGFxResource", sizeof(SScaleformGFxResource), alignof(SScaleformGFxResource), WriteSimpleJson, FromSimpleJson, Serialize, nullptr, Destroy);
 
 void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
@@ -76,7 +76,7 @@ void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	auto s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
-	std::string s_SwfData(s_Object->m_pSwfData.GetPtr(), s_Object->m_pSwfData.GetPtr() + s_Object->m_nSwfDataSize);
+	std::string s_SwfData(s_Object->m_pSwfData, s_Object->m_pSwfData + s_Object->m_nSwfDataSize);
 	p_Stream << "\"m_pSwfData\"" << ":" << simdjson::as_json_string(Base64::Encode(s_SwfData)) << ",";
 
 	p_Stream << "\"m_pAdditionalFileNames\"" << ":[";
@@ -113,35 +113,31 @@ void SScaleformGFxResource::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 void SScaleformGFxResource::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SScaleformGFxResource s_Object;
+	auto* s_Object = reinterpret_cast<SScaleformGFxResource*>(p_Target);
 
 	std::string s_SwfDataStr;
 	Base64::Decode(std::string_view(p_Document["m_pSwfData"]), s_SwfDataStr);
-	
-	auto* s_Arena = ZHMArenas::GetHeapArena();
 
-	const auto s_AllocationOffset = s_Arena->Allocate(s_SwfDataStr.size());
-	auto* s_SwfData = s_Arena->GetObjectAtOffset<void>(s_AllocationOffset);
-
+	auto* s_SwfData = c_aligned_alloc(s_SwfDataStr.size(), alignof(uint8_t*));
 	memcpy(s_SwfData, s_SwfDataStr.data(), s_SwfDataStr.size());
 
-	s_Object.m_nSwfDataSize = s_SwfDataStr.size();
-	s_Object.m_pSwfData.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_AllocationOffset);
+	s_Object->m_nSwfDataSize = s_SwfDataStr.size();
+	s_Object->m_pSwfData = reinterpret_cast<uint8_t*>(s_SwfData);
 
 	{
 		simdjson::ondemand::array s_Array = p_Document["m_pAdditionalFileNames"];
-		s_Object.m_pAdditionalFileNames.resize(s_Array.count_elements());
+		s_Object->m_pAdditionalFileNames.resize(s_Array.count_elements());
 
 		size_t s_Index = 0;
 		for (auto s_Item : s_Array)
 		{
-			s_Object.m_pAdditionalFileNames[s_Index++] = std::string_view(s_Item);
+			s_Object->m_pAdditionalFileNames[s_Index++] = std::string_view(s_Item);
 		}
 	}
 
 	{
 		simdjson::ondemand::array s_Array = p_Document["m_pAdditionalFileData"];
-		s_Object.m_pAdditionalFileData.resize(s_Array.count_elements());
+		s_Object->m_pAdditionalFileData.resize(s_Array.count_elements());
 
 		size_t s_Index = 0;
 		for (auto s_Item : s_Array)
@@ -149,27 +145,35 @@ void SScaleformGFxResource::FromSimpleJson(simdjson::ondemand::value p_Document,
 			std::string s_Data;
 			Base64::Decode(std::string_view(s_Item), s_Data);
 
-			TArray<uint8_t> s_DataArr;
-			s_DataArr.resize(s_Data.size());
+			s_Object->m_pAdditionalFileData[s_Index].resize(s_Data.size());
+			memcpy(s_Object->m_pAdditionalFileData[s_Index].begin(), s_Data.data(), s_Data.size());
 
-			memcpy(s_DataArr.begin(), s_Data.data(), s_Data.size());
-
-			s_Object.m_pAdditionalFileData[s_Index++] = s_DataArr;
+			++s_Index;
 		}
 	}
-
-	*reinterpret_cast<SScaleformGFxResource*>(p_Target) = s_Object;
 }
 
 void SScaleformGFxResource::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<SScaleformGFxResource*>(p_Object);
 
-	auto s_DataPtr = p_Serializer.WriteMemory(s_Object->m_pSwfData.GetPtr(), s_Object->m_nSwfDataSize, alignof(uint8_t*));
+	auto s_DataPtr = p_Serializer.WriteMemory(s_Object->m_pSwfData, s_Object->m_nSwfDataSize, alignof(uint8_t*));
 	p_Serializer.PatchPtr(p_OwnOffset + offsetof(SScaleformGFxResource, m_pSwfData), s_DataPtr);
 	
 	TArray<ZString>::Serialize(&s_Object->m_pAdditionalFileNames, p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileNames));
 	TArray<TArray<uint8_t>>::Serialize(&s_Object->m_pAdditionalFileData, p_Serializer, p_OwnOffset + offsetof(SScaleformGFxResource, m_pAdditionalFileData));
+}
+
+void SScaleformGFxResource::Destroy(void* p_Object)
+{
+	auto* s_Object = static_cast<SScaleformGFxResource*>(p_Object);
+
+	if (s_Object->m_pSwfData)
+	{
+		c_aligned_free(s_Object->m_pSwfData);
+		s_Object->m_pSwfData = nullptr;
+		s_Object->m_nSwfDataSize = 0;
+	}
 }
 
 ZHMTypeInfo SGlobalResourceIndexItem::TypeInfo = ZHMTypeInfo("SGlobalResourceIndexItem", sizeof(SGlobalResourceIndexItem), alignof(SGlobalResourceIndexItem), WriteSimpleJson, FromSimpleJson, Serialize);
@@ -201,22 +205,20 @@ void SGlobalResourceIndexItem::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SGlobalResourceIndexItem::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGlobalResourceIndexItem s_Object;
+	auto* s_Object = reinterpret_cast<SGlobalResourceIndexItem*>(p_Target);
 
-	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
+	s_Object->m_sName = std::string_view(p_Document["m_sName"]);
 
 	{
 		simdjson::ondemand::array s_Array = p_Document["m_aResourceIndices"];
-		s_Object.m_aResourceIndices.resize(s_Array.count_elements());
+		s_Object->m_aResourceIndices.resize(s_Array.count_elements());
 
 		size_t s_Index = 0;
 		for (auto s_Item : s_Array)
 		{
-			s_Object.m_aResourceIndices[s_Index++] = static_cast<uint32_t>(int64_t(s_Item));
+			s_Object->m_aResourceIndices[s_Index++] = static_cast<uint32_t>(int64_t(s_Item));
 		}
 	}
-
-	*reinterpret_cast<SGlobalResourceIndexItem*>(p_Target) = s_Object;
 }
 
 void SGlobalResourceIndexItem::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -254,22 +256,18 @@ void SGlobalResourceIndex::WriteSimpleJson(void* p_Object, std::ostream& p_Strea
 
 void SGlobalResourceIndex::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SGlobalResourceIndex s_Object;
+	auto* s_Object = reinterpret_cast<SGlobalResourceIndex*>(p_Target);
 
 	{
 		simdjson::ondemand::array s_Array = p_Document["m_aItems"];
-		s_Object.m_aItems.resize(s_Array.count_elements());
+		s_Object->m_aItems.resize(s_Array.count_elements());
 
 		size_t s_Index = 0;
 		for (simdjson::ondemand::value s_Item : s_Array)
 		{
-			SGlobalResourceIndexItem s_Value;
-			SGlobalResourceIndexItem::FromSimpleJson(s_Item, &s_Value);
-			s_Object.m_aItems[s_Index++] = s_Value;
+			SGlobalResourceIndexItem::FromSimpleJson(s_Item, &s_Object->m_aItems[s_Index++]);
 		}
 	}
-
-	*reinterpret_cast<SGlobalResourceIndex*>(p_Target) = s_Object;
 }
 
 void SGlobalResourceIndex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -308,22 +306,20 @@ void SAudioStateBlueprintData::WriteSimpleJson(void* p_Object, std::ostream& p_S
 
 void SAudioStateBlueprintData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAudioStateBlueprintData s_Object;
+	auto* s_Object = reinterpret_cast<SAudioStateBlueprintData*>(p_Target);
 
-	s_Object.m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
+	s_Object->m_sGroupName = std::string_view(p_Document["m_sGroupName"]);
 
 	{
 		simdjson::ondemand::array s_Array = p_Document["m_aStates"];
-		s_Object.m_aStates.resize(s_Array.count_elements());
+		s_Object->m_aStates.resize(s_Array.count_elements());
 
 		size_t s_Index = 0;
 		for (auto s_Item : s_Array)
 		{
-			s_Object.m_aStates[s_Index++] = std::string_view(s_Item);
+			s_Object->m_aStates[s_Index++] = std::string_view(s_Item);
 		}
 	}
-
-	*reinterpret_cast<SAudioStateBlueprintData*>(p_Target) = s_Object;
 }
 
 void SAudioStateBlueprintData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -396,35 +392,32 @@ void SAttributeInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SAttributeInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SAttributeInfo s_Object;
+	auto* s_Object = reinterpret_cast<SAttributeInfo*>(p_Target);
 
-	s_Object.m_sName = std::string_view(p_Document["m_sName"]);
+	s_Object->m_sName = std::string_view(p_Document["m_sName"]);
 
 	if (p_Document["m_eKind"].type() == simdjson::ondemand::json_type::string)
 	{
-		s_Object.m_eKind = GetEnumValue(EAttributeKind, std::string_view(p_Document["m_eKind"]));
-
-		if (s_Object.m_eKind == UINT32_MAX)
+		s_Object->m_eKind = GetEnumValue(EAttributeKind, std::string_view(p_Document["m_eKind"]));
+		if (s_Object->m_eKind == UINT32_MAX)
 			throw std::runtime_error("Invalid m_eKind enum.");
 	}
 	else
 	{
-		s_Object.m_eKind = simdjson::from_json_uint32(p_Document["m_eKind"]);
+		s_Object->m_eKind = simdjson::from_json_uint32(p_Document["m_eKind"]);
 	}
 
 	if (p_Document["m_eType"].type() == simdjson::ondemand::json_type::string)
 	{
-		s_Object.m_eType = GetEnumValue(EAttributeType, std::string_view(p_Document["m_eType"]));
+		s_Object->m_eType = GetEnumValue(EAttributeType, std::string_view(p_Document["m_eType"]));
 
-		if (s_Object.m_eType == UINT32_MAX)
+		if (s_Object->m_eType == UINT32_MAX)
 			throw std::runtime_error("Invalid m_eType enum.");
 	}
 	else
 	{
-		s_Object.m_eType = simdjson::from_json_uint32(p_Document["m_eType"]);
+		s_Object->m_eType = simdjson::from_json_uint32(p_Document["m_eType"]);
 	}
-
-	*reinterpret_cast<SAttributeInfo*>(p_Target) = s_Object;
 }
 
 void SAttributeInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -485,18 +478,16 @@ void SUIControlBlueprint::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 
 void SUIControlBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SUIControlBlueprint s_Object;
+	auto* s_Object = reinterpret_cast<SUIControlBlueprint*>(p_Target);
 
 	{
 		simdjson::ondemand::array s_Array0 = p_Document["m_aAttributes"];
-		s_Object.m_aAttributes.resize(s_Array0.count_elements());
+		s_Object->m_aAttributes.resize(s_Array0.count_elements());
 		size_t s_Index0 = 0;
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			SAttributeInfo s_ArrayItem0;
-			SAttributeInfo::FromSimpleJson(s_Item0, &s_ArrayItem0);
-			s_Object.m_aAttributes[s_Index0++] = s_ArrayItem0;
+			SAttributeInfo::FromSimpleJson(s_Item0, &s_Object->m_aAttributes[s_Index0++]);
 		}
 	}
 
@@ -528,13 +519,11 @@ void SUIControlBlueprint::FromSimpleJson(simdjson::ondemand::value p_Document, v
 			}
 		}
 
-		s_Object.m_aSpecialMethods.resize(s_MaxMethod + 1);
+		s_Object->m_aSpecialMethods.resize(s_MaxMethod + 1);
 
 		for (auto s_Value : s_SpecialMethods)
-			s_Object.m_aSpecialMethods[s_Value] = true;
+			s_Object->m_aSpecialMethods[s_Value] = true;
 	}
-
-	*reinterpret_cast<SUIControlBlueprint*>(p_Target) = s_Object;
 }
 
 void SUIControlBlueprint::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -575,23 +564,21 @@ void SEnumType::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 
 void SEnumType::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SEnumType s_Object;
+	auto* s_Object = reinterpret_cast<SEnumType*>(p_Target);
 
-	s_Object.m_sName = std::string_view(p_Document["Name"]);
+	s_Object->m_sName = std::string_view(p_Document["Name"]);
 
 	simdjson::ondemand::object s_Items = p_Document["Items"];
-	s_Object.m_aItemNames.resize(s_Items.count_fields());
-	s_Object.m_aItemValues.resize(s_Items.count_fields());
+	s_Object->m_aItemNames.resize(s_Items.count_fields());
+	s_Object->m_aItemValues.resize(s_Items.count_fields());
 
 	size_t s_Index = 0;
 	for (auto s_Field : s_Items)
 	{
-		s_Object.m_aItemNames[s_Index] = std::string_view(s_Field.unescaped_key());
-		s_Object.m_aItemValues[s_Index] = simdjson::from_json_uint32(s_Field.value());
+		s_Object->m_aItemNames[s_Index] = std::string_view(s_Field.unescaped_key());
+		s_Object->m_aItemValues[s_Index] = simdjson::from_json_uint32(s_Field.value());
 		s_Index++;
 	}
-
-	*reinterpret_cast<SEnumType*>(p_Target) = s_Object;
 }
 
 void SEnumType::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -672,61 +659,51 @@ void SLocalizedVideoDataDecrypted::WriteSimpleJson(void* p_Object, std::ostream&
 
 void SLocalizedVideoDataDecrypted::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	SLocalizedVideoDataDecrypted s_Object{};
+	auto* s_Object = reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Target);
 
 	{
 		simdjson::ondemand::array s_Array0 = p_Document["AudioLanguages"];
-		s_Object.AudioLanguages.resize(s_Array0.count_elements());
+		s_Object->AudioLanguages.resize(s_Array0.count_elements());
 		size_t s_Index0 = 0;
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			ZEncryptedString s_ArrayItem0;
-			ZEncryptedString::FromSimpleJson(s_Item0, &s_ArrayItem0);
-			s_Object.AudioLanguages[s_Index0++] = s_ArrayItem0;
+			ZEncryptedString::FromSimpleJson(s_Item0, &s_Object->AudioLanguages[s_Index0++]);
 		}
 	}
 
 	{
 		simdjson::ondemand::array s_Array0 = p_Document["VideoRidsPerAudioLanguage"];
-		s_Object.VideoRidsPerAudioLanguage.resize(s_Array0.count_elements());
+		s_Object->VideoRidsPerAudioLanguage.resize(s_Array0.count_elements());
 		size_t s_Index0 = 0;
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			ZRuntimeResourceID s_ArrayItem0;
-			ZRuntimeResourceID::FromSimpleJson(s_Item0, &s_ArrayItem0);
-			s_Object.VideoRidsPerAudioLanguage[s_Index0++] = s_ArrayItem0;
+			ZRuntimeResourceID::FromSimpleJson(s_Item0, &s_Object->VideoRidsPerAudioLanguage[s_Index0++]);
 		}
 	}
 
 	{
 		simdjson::ondemand::array s_Array0 = p_Document["SubtitleLanguages"];
-		s_Object.SubtitleLanguages.resize(s_Array0.count_elements());
+		s_Object->SubtitleLanguages.resize(s_Array0.count_elements());
 		size_t s_Index0 = 0;
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			ZEncryptedString s_ArrayItem0;
-			ZEncryptedString::FromSimpleJson(s_Item0, &s_ArrayItem0);
-			s_Object.SubtitleLanguages[s_Index0++] = s_ArrayItem0;
+			ZEncryptedString::FromSimpleJson(s_Item0, &s_Object->SubtitleLanguages[s_Index0++]);
 		}
 	}
 
 	{
 		simdjson::ondemand::array s_Array0 = p_Document["SubtitleMarkupsPerLanguage"];
-		s_Object.SubtitleMarkupsPerLanguage.resize(s_Array0.count_elements());
+		s_Object->SubtitleMarkupsPerLanguage.resize(s_Array0.count_elements());
 		size_t s_Index0 = 0;
 
 		for (simdjson::ondemand::value s_Item0 : s_Array0)
 		{
-			ZEncryptedString s_ArrayItem0;
-			ZEncryptedString::FromSimpleJson(s_Item0, &s_ArrayItem0);
-			s_Object.SubtitleMarkupsPerLanguage[s_Index0++] = s_ArrayItem0;
+			ZEncryptedString::FromSimpleJson(s_Item0, &s_Object->SubtitleMarkupsPerLanguage[s_Index0++]);
 		}
 	}
-
-	*reinterpret_cast<SLocalizedVideoDataDecrypted*>(p_Target) = s_Object;
 }
 
 void SLocalizedVideoDataDecrypted::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)

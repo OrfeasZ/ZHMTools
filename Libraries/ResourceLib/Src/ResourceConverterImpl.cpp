@@ -6,7 +6,7 @@
 #include <ZHM/ZHMTypeInfo.h>
 #include <ZHM/ZHMPrimitives.h>
 
-void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream, ZHMArena* p_Arena)
+void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream)
 {
 	const auto s_RelocationCount = p_SegmentStream.Read<uint32_t>();
 
@@ -16,28 +16,26 @@ void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader&
 		
 		p_ResourceStream.Seek(s_RelocationOffset);
 
-		const auto s_RelocValue = p_ResourceStream.Read<zhmptr_t>();
+		const auto s_RelocValue = p_ResourceStream.Read<zhmptrdiff_t>();
 
-		// If this is not a null pointer then we wanna rewrite it
-		// to add the current arena id to it.
-		if (s_RelocValue != ZHMNullPtr)
-		{
-			ZHMPtr<void> s_NewPtr;
-			s_NewPtr.SetArenaIdAndPtrOffset(p_Arena->m_Id, s_RelocValue);
+		zhmptr_t s_FinalValue = 0;
 
-			p_ResourceStream.Seek(s_RelocationOffset);
-			p_ResourceStream.Write(s_NewPtr.m_Ptr);
-		}
+		if (s_RelocValue != -1)
+			s_FinalValue = reinterpret_cast<zhmptr_t>(p_ResourceStream.Buffer()) + s_RelocValue;
+
+		p_ResourceStream.Seek(s_RelocationOffset);
+		p_ResourceStream.Write(s_FinalValue);
 	}
 }
 
-void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream, ZHMArena* p_Arena)
+void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream)
 {
 	const uintptr_t s_StartOffset = p_SegmentStream.Position();
 	
 	const auto s_TypeIdsToPatchCount = p_SegmentStream.Read<uint32_t>();
 
 	uint32_t s_FinalTypeIdOffset = 0;
+	std::unordered_map<uint32_t, uint64_t> s_TypeIdsToPatch;
 
 	for (uint32_t i = 0; i < s_TypeIdsToPatchCount; ++i)
 	{
@@ -49,21 +47,16 @@ void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_R
 		s_FinalTypeIdOffset = s_TypeIdOffset;
 #endif
 
-		p_ResourceStream.Seek(s_FinalTypeIdOffset);
+		p_ResourceStream.Seek(s_TypeIdOffset);
 
-		const auto s_TypeIdIndex = p_ResourceStream.Read<zhmptr_t>();
+		const auto s_TypeIdIndex = p_ResourceStream.Read<uint64_t>();
 
-		// Patch type to include arena id.
-		ZHMPtr<void> s_NewPtr;
-		s_NewPtr.SetArenaIdAndPtrOffset(p_Arena->m_Id, s_TypeIdIndex);
-
-		p_ResourceStream.Seek(s_FinalTypeIdOffset);
-		p_ResourceStream.Write(s_NewPtr.m_Ptr);
+		s_TypeIdsToPatch[s_TypeIdOffset] = s_TypeIdIndex;
 	}
 
 	const auto s_TypeIdCount = p_SegmentStream.Read<uint32_t>();
 	
-	p_Arena->SetTypeCount(s_TypeIdCount);
+	std::vector<IZHMTypeInfo*> s_Types(s_TypeIdCount);
 	
 	for (uint32_t i = 0; i < s_TypeIdCount; ++i)
 	{
@@ -88,7 +81,15 @@ void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_R
 		if (s_Type == nullptr)
 			fprintf(stderr, "[WARNING] Could not find TypeInfo for type '%s'.\n", s_TypeName.c_str());
 
-		p_Arena->SetType(s_Index, s_Type);
+		s_Types[s_Index] = s_Type;
+	}
+
+	for (auto& s_Pair : s_TypeIdsToPatch)
+	{
+		const auto* s_Type = s_Types[s_Pair.second];
+
+		p_ResourceStream.Seek(s_Pair.first);
+		p_ResourceStream.Write(reinterpret_cast<uintptr_t>(s_Type));
 	}
 }
 
@@ -104,7 +105,19 @@ void ProcessRuntimeResourceIds(BinaryStreamReader& p_SegmentStream, BinaryStream
 	}
 }
 
-void* ToInMemStructure(const void* p_ResourceData, size_t p_Size, ZHMArena* p_Arena)
+void ProcessResourcePtrs(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream)
+{
+	const auto s_ResourcePtrCount = p_SegmentStream.Read<uint32_t>();
+
+	for (uint32_t i = 0; i < s_ResourcePtrCount; ++i)
+	{
+		// We read these but in reality we don't really care about them.
+		const auto s_ResourcePtrOffset = p_SegmentStream.Read<uint32_t>();
+		(void) s_ResourcePtrOffset;
+	}
+}
+
+void* ToInMemStructure(const void* p_ResourceData, size_t p_Size)
 {
 	// Parse the resource header.
 	BinaryStreamReader s_Stream(p_ResourceData, p_Size);
@@ -138,9 +151,6 @@ void* ToInMemStructure(const void* p_ResourceData, size_t p_Size, ZHMArena* p_Ar
 
 	void* s_StructureData = c_aligned_alloc(s_DataSize, s_Alignment);
 	s_Stream.ReadBytes(s_StructureData, s_DataSize);
-	
-	p_Arena->m_Buffer = s_StructureData;
-	p_Arena->m_Size = s_DataSize;
 
 	BinaryStreamReader s_ResourceStream(s_StructureData, s_DataSize);
 
@@ -153,18 +163,20 @@ void* ToInMemStructure(const void* p_ResourceData, size_t p_Size, ZHMArena* p_Ar
 		switch (s_SegmentType)
 		{
 		case 0x12EBA5ED:
-			ProcessRelocations(s_Stream, s_ResourceStream, p_Arena);
+			ProcessRelocations(s_Stream, s_ResourceStream);
 			break;
 
 		case 0x3989BF9F:
-			ProcessTypeIds(s_Stream, s_ResourceStream, p_Arena);
+			ProcessTypeIds(s_Stream, s_ResourceStream);
 			break;
 
 		case 0x578FBCEE:
 			ProcessRuntimeResourceIds(s_Stream, s_ResourceStream);
 			break;
 
-			// TODO: Runtime Resource ID and Resource Ptr
+		case 0x64603664:
+			ProcessResourcePtrs(s_Stream, s_ResourceStream);
+			break;
 
 		default:
 			fprintf(stderr, "[WARNING] Found unrecognized segment (%x). Skipping.\n", s_SegmentType);
@@ -181,6 +193,6 @@ void FreeJsonString(JsonString* p_JsonString)
 	if (p_JsonString == nullptr || p_JsonString->JsonData == nullptr)
 		return;
 
-	free(const_cast<char*>(p_JsonString->JsonData));
+	c_aligned_free(const_cast<char*>(p_JsonString->JsonData));
 	delete p_JsonString;
 }

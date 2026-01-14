@@ -28,7 +28,7 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	
 	REGISTER_RESOURCE(TBLU, STemplateEntityBlueprint)
 	REGISTER_RESOURCE(AIRG, SReasoningGrid)
-	//REGISTER_RESOURCE(ASVA, SPackedAnimSetEntry)
+	REGISTER_RESOURCE(ASVA, TArray<SPackedAnimSetEntry>)
 
 #if ZHM_TARGET != 2012
 	REGISTER_RESOURCE(ATMD, ZAMDTake)

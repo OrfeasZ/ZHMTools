@@ -1,20 +1,15 @@
 #pragma once
 
-#include <cstdint>
 #include <cstring>
 #include <string_view>
-#include <sstream>
-#include <iomanip>
 
 #include <External/simdjson.h>
 
 #include "ZHMInt.h"
-#include "ZHMPtr.h"
+
+#include <Util/PortableIntrinsics.h>
 
 class ZHMSerializer;
-class ZString;
-
-#pragma pack(push, 1)
 
 class ZString
 {
@@ -73,23 +68,17 @@ public:
 
 	~ZString()
 	{
-		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
+		if (is_allocated() && size() > 0 && m_pChars)
 		{
-			auto* s_HeapArena = ZHMArenas::GetHeapArena();
-			s_HeapArena->Free(m_pChars.GetPtrOffset());
+			c_aligned_free(const_cast<char*>(m_pChars));
 		}
 	}
 
 	ZString& operator=(const ZString& p_Other)
 	{
-#if ZHM_TARGET != 2012
-		memcpy(_pad4, p_Other._pad4, sizeof(_pad4));
-#endif
-
-		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
+		if (is_allocated() && size() > 0 && m_pChars)
 		{
-			auto* s_HeapArena = ZHMArenas::GetHeapArena();
-			s_HeapArena->Free(m_pChars.GetPtrOffset());
+			c_aligned_free(const_cast<char*>(m_pChars));
 		}
 
 		if (p_Other.is_allocated())
@@ -115,9 +104,7 @@ public:
 	void SetEmptyStr()
 	{
 		m_nLength = 0x80000000;
-
-		// This points to a 1-byte zeroed buffer.
-		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, 0);
+		m_pChars = "";
 	}
 	
 	inline std::string_view string_view() const
@@ -132,12 +119,12 @@ public:
 
 	inline const char* c_str() const
 	{
-		return m_pChars.GetPtr();
+		return m_pChars;
 	}
 
 	inline void* data() const
 	{
-		return const_cast<char*>(m_pChars.GetPtr());
+		return const_cast<char*>(m_pChars);
 	}
 
 	inline bool operator<(const ZString& other) const
@@ -147,7 +134,7 @@ public:
 
 	inline bool is_allocated() const
 	{
-		return m_pChars.GetArenaId() == ZHMHeapArenaId;
+		return (m_nLength & 0xC0000000) == 0;
 	}
 
 	bool startsWith(const ZString& p_Other) const
@@ -176,27 +163,19 @@ private:
 	{
 		assert(p_Size > 0);
 
-		if (is_allocated() && size() > 0 && !m_pChars.IsNull())
+		if (is_allocated() && size() > 0 && m_pChars)
 		{
-			auto* s_HeapArena = ZHMArenas::GetHeapArena();
-			s_HeapArena->Free(m_pChars.GetPtrOffset());
+			c_aligned_free(const_cast<char*>(m_pChars));
 		}
 
 		m_nLength = static_cast<uint32_t>(p_Size);
-		
-		auto* s_HeapArena = ZHMArenas::GetHeapArena();
-		const auto s_CharsOffset = s_HeapArena->Allocate(p_Size);
-		m_pChars.SetArenaIdAndPtrOffset(ZHMHeapArenaId, s_CharsOffset);
-
-		memcpy(const_cast<char*>(m_pChars.GetPtr()), p_Str, p_Size);
+		m_pChars = static_cast<const char*>(c_aligned_alloc(p_Size, alignof(const char*)));
+		memcpy(const_cast<char*>(m_pChars), p_Str, p_Size);
 	}
 
-private:
+protected:
 	int32_t m_nLength = 0x80000000;
-#if ZHM_TARGET != 2012
-	uint8_t _pad4[4] {};
-#endif
-	ZHMPtr<const char> m_pChars;
+	const char* m_pChars = "";
 };
 
 #pragma pack(pop)

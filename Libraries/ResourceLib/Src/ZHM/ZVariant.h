@@ -1,17 +1,13 @@
 #pragma once
 
-#include <ostream>
 #include <External/simdjson.h>
 
 #include "ZHMInt.h"
-#include "ZHMPtr.h"
 #include "ZHMTypeInfo.h"
 
 class IZHMTypeInfo;
 class ZHMSerializer;
 class ZString;
-
-#pragma pack(push, 1)
 
 class ZVariant
 {
@@ -23,64 +19,44 @@ public:
 	static void Destroy(void* p_Object);
 
 public:
-	ZVariant()
-	{
-	}
-
-	ZVariant(ZVariant& p_Other)
-	{
-		*this = p_Other;
-	}
-
+	ZVariant() = default;
 	~ZVariant();
 
-	ZVariant& operator=(ZVariant& p_Other)
-	{
+	ZVariant(ZVariant& p_Other) = delete;
+	ZVariant& operator=(ZVariant& p_Other) = delete;
+
+	ZVariant(ZVariant&& p_Other) noexcept {
 		m_pTypeID = p_Other.m_pTypeID;
 		m_pData = p_Other.m_pData;
 
-		// Avoid double allocation here by just swapping pointers.
-		// This invalidates the original object, but we shouldn't have
-		// any use for it after this.
-		p_Other.m_pData.SetNull();
+		p_Other.m_pTypeID = nullptr;
+		p_Other.m_pData = nullptr;
+	}
+
+	ZVariant& operator=(ZVariant&& p_Other) noexcept {
+		m_pTypeID = p_Other.m_pTypeID;
+		m_pData = p_Other.m_pData;
+
+		p_Other.m_pTypeID = nullptr;
+		p_Other.m_pData = nullptr;
 
 		return *this;
 	}
 
 	bool operator==(const ZVariant& p_Other) const
 	{
-		return GetType() == p_Other.GetType() && m_pData.GetPtr() == p_Other.m_pData.GetPtr();
+		return m_pTypeID == p_Other.m_pTypeID &&
+			m_pData == p_Other.m_pData;
 	}
 
 	bool operator!=(const ZVariant& p_Other) const
 	{
 		return !(*this == p_Other);
 	}
-
-	IZHMTypeInfo* GetType() const
-	{
-		if (m_pTypeID.IsNull())
-			return nullptr;
-
-		const auto s_Arena = ZHMArenas::GetArena(m_pTypeID.GetArenaId());
-		const auto s_TypeIdx = m_pTypeID.GetPtrOffset();
-
-		return s_Arena->GetType(s_TypeIdx);
-	}
-
-	void SetType(IZHMTypeInfo* p_Type)
-	{
-		const auto s_Arena = ZHMArenas::GetHeapArena();
-		const auto s_Index = s_Arena->GetTypeIndex(p_Type);
-
-		m_pTypeID.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_Index);
-	}
 	
 public:
 	// This member (m_pTypeID) is normally an STypeID pointer, but we use our custom
 	// type information holder here so we can properly serialize the value.
-	ZHMPtr<void> m_pTypeID;
-	ZHMPtr<void> m_pData;
+	IZHMTypeInfo* m_pTypeID = nullptr;
+	void* m_pData = nullptr;
 };
-
-#pragma pack(pop)

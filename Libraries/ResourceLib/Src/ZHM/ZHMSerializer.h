@@ -34,6 +34,7 @@ public:
 	void PatchNullPtr(zhmptr_t p_Offset);
 	void PatchType(zhmptr_t p_Offset, IZHMTypeInfo* p_Type);
 	void RegisterRuntimeResourceId(zhmptr_t p_Offset);
+	void RegisterResourcePtr(zhmptr_t p_Offset);
 	std::optional<zhmptr_t> GetExistingPtrForVariant(ZVariant* p_Variant);
 	void SetPtrForVariant(ZVariant* p_Variant, zhmptr_t p_Ptr);
 
@@ -55,6 +56,7 @@ private:
 	std::string GenerateRelocationSegment();
 	std::string GenerateTypeIdSegment();
 	std::string GenerateRuntimeResourceIdSegment();
+	std::string GenerateResourcePtrSegment();
 	
 	void AlignTo(zhmptr_t p_Alignment);
 	void EnsureEnough(zhmptr_t p_Size);
@@ -76,6 +78,8 @@ private:
 	std::set<zhmptr_t> m_TypeIdOffsets;
 	
 	std::set<zhmptr_t> m_RuntimeResourceIdOffsets;
+	
+	std::set<zhmptr_t> m_ResourcePtrOffsets;
 
 	std::unordered_map<IZHMTypeInfo*, std::unordered_map<ZVariant*, zhmptr_t>> m_VariantRegistry;
 };

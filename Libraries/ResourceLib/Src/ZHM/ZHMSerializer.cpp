@@ -8,7 +8,7 @@ ZHMSerializer::ZHMSerializer(uint8_t p_Alignment, bool p_GenerateCompatible) :
 	m_GenerateCompatible(p_GenerateCompatible),
 	m_CurrentSize(0),
 	m_Capacity(256),
-	m_Buffer(malloc(m_Capacity))
+	m_Buffer(c_aligned_alloc(m_Capacity, alignof(uintptr_t)))
 {
 	if (p_GenerateCompatible)
 		m_Alignment = 4;
@@ -18,7 +18,7 @@ ZHMSerializer::ZHMSerializer(uint8_t p_Alignment, bool p_GenerateCompatible) :
 
 ZHMSerializer::~ZHMSerializer()
 {
-	free(m_Buffer);
+	c_aligned_free(m_Buffer);
 }
 
 zhmptr_t ZHMSerializer::WriteMemory(void* p_Memory, zhmptr_t p_Size, zhmptr_t p_Alignment)
@@ -90,12 +90,17 @@ void ZHMSerializer::RegisterRuntimeResourceId(zhmptr_t p_Offset)
 	m_RuntimeResourceIdOffsets.insert(p_Offset);
 }
 
+void ZHMSerializer::RegisterResourcePtr(zhmptr_t p_Offset)
+{
+	m_ResourcePtrOffsets.insert(p_Offset);
+}
+
 std::optional<zhmptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Variant)
 {
 	if (!InCompatibilityMode())
 		return std::nullopt;
 
-	const auto s_VariantsOfTypeIt = m_VariantRegistry.find(p_Variant->GetType());
+	const auto s_VariantsOfTypeIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
 
 	if (s_VariantsOfTypeIt == m_VariantRegistry.end())
 		return std::nullopt;
@@ -108,7 +113,7 @@ std::optional<zhmptr_t> ZHMSerializer::GetExistingPtrForVariant(ZVariant* p_Vari
 
 	for (const auto& [s_Variant, s_Ptr] : s_VariantsOfTypeIt->second)
 	{
-		if (p_Variant->GetType()->Equals(p_Variant->m_pData.GetPtr(), s_Variant->m_pData.GetPtr()))
+		if (p_Variant->m_pTypeID->Equals(p_Variant->m_pData, s_Variant->m_pData))
 		{
 			return std::make_optional(s_Ptr);
 		}
@@ -122,7 +127,7 @@ void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, zhmptr_t p_Ptr)
 	if (!InCompatibilityMode())
 		return;
 
-	const auto s_VariantSetIt = m_VariantRegistry.find(p_Variant->GetType());
+	const auto s_VariantSetIt = m_VariantRegistry.find(p_Variant->m_pTypeID);
 
 	if (s_VariantSetIt != m_VariantRegistry.end())
 	{
@@ -133,7 +138,7 @@ void ZHMSerializer::SetPtrForVariant(ZVariant* p_Variant, zhmptr_t p_Ptr)
 	std::unordered_map<ZVariant*, zhmptr_t> s_VariantsOfType;
 	s_VariantsOfType[p_Variant] = p_Ptr;
 
-	m_VariantRegistry[p_Variant->GetType()] = s_VariantsOfType;
+	m_VariantRegistry[p_Variant->m_pTypeID] = s_VariantsOfType;
 }
 
 std::set<zhmptr_t> ZHMSerializer::GetRelocations() const
@@ -172,9 +177,9 @@ void ZHMSerializer::EnsureEnough(zhmptr_t p_Size)
 	while (s_NewCapacity < p_Size)
 		s_NewCapacity = ceil(s_NewCapacity * 1.5);
 
-	auto s_NewBuffer = malloc(s_NewCapacity);
+	auto s_NewBuffer = c_aligned_alloc(s_NewCapacity, alignof(char));
 	memcpy(s_NewBuffer, m_Buffer, m_CurrentSize);
-	free(m_Buffer);
+	c_aligned_free(m_Buffer);
 
 	m_Buffer = s_NewBuffer;
 	m_Capacity = s_NewCapacity;
@@ -192,6 +197,9 @@ std::vector<ZHMSerializer::SerializerSegment> ZHMSerializer::GenerateSegments()
 	
 	if (!m_RuntimeResourceIdOffsets.empty())
 		s_Segments.emplace_back(0x578FBCEE, GenerateRuntimeResourceIdSegment());
+
+	if (!m_ResourcePtrOffsets.empty())
+		s_Segments.emplace_back(0x64603664, GenerateResourcePtrSegment());
 	
 	return s_Segments;
 }
@@ -238,6 +246,18 @@ std::string ZHMSerializer::GenerateRuntimeResourceIdSegment()
 	s_Writer.Write<uint32_t>(m_RuntimeResourceIdOffsets.size());
 
 	for (auto s_Offset : m_RuntimeResourceIdOffsets)
+		s_Writer.Write<uint32_t>(s_Offset);
+
+	return s_Writer.ToString();
+}
+
+std::string ZHMSerializer::GenerateResourcePtrSegment()
+{
+	BinaryStreamWriter s_Writer;
+
+	s_Writer.Write<uint32_t>(m_ResourcePtrOffsets.size());
+
+	for (auto s_Offset : m_ResourcePtrOffsets)
 		s_Writer.Write<uint32_t>(s_Offset);
 
 	return s_Writer.ToString();

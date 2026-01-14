@@ -1,6 +1,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <mutex>
 #include "ZString.h"
 #include <External/simdjson.h>
 
@@ -22,6 +23,7 @@ private:
 		PrimitiveRegistrar() { IZHMTypeInfo::RegisterPrimitiveTypes(); }
 	};
 
+	static std::recursive_mutex g_TypeRegistryMutex;
 	static std::unordered_map<std::string, IZHMTypeInfo*>* g_TypeRegistry;
 	static PrimitiveRegistrar g_PrimitiveRegistrar;
 	static void RegisterPrimitiveTypes();
@@ -66,6 +68,8 @@ public:
 		m_CheckEquals(p_CheckEquals),
 		m_DestroyObject(p_DestroyObject)
 	{
+		std::lock_guard s_Lock(g_TypeRegistryMutex);
+
 		if (g_TypeRegistry == nullptr)
 			g_TypeRegistry = new std::unordered_map<std::string, IZHMTypeInfo*>();
 		
@@ -143,7 +147,7 @@ public:
 
 	bool operator==(const TypeID& p_Other) const
 	{
-		return m_pTypeID.GetPtr() == p_Other.m_pTypeID.GetPtr();
+		return m_pTypeID == p_Other.m_pTypeID;
 	}
 
 	bool operator!=(const TypeID& p_Other) const
@@ -151,24 +155,5 @@ public:
 		return !(*this == p_Other);
 	}
 
-	IZHMTypeInfo* GetType() const
-	{
-		if (m_pTypeID.IsNull())
-			return nullptr;
-
-		const auto s_Arena = ZHMArenas::GetArena(m_pTypeID.GetArenaId());
-		const auto s_TypeIdx = m_pTypeID.GetPtrOffset();
-
-		return s_Arena->GetType(s_TypeIdx);
-	}
-
-	void SetType(IZHMTypeInfo* p_Type)
-	{
-		const auto s_Arena = ZHMArenas::GetHeapArena();
-		const auto s_Index = s_Arena->GetTypeIndex(p_Type);
-
-		m_pTypeID.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_Index);
-	}
-	
-	ZHMPtr<void> m_pTypeID;
+	IZHMTypeInfo* m_pTypeID;
 };

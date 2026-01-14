@@ -27,8 +27,9 @@ public:
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
 	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static void Destroy(void* p_Object);
 
-	ZHMPtr<uint8_t> m_pSwfData;
+	uint8_t* m_pSwfData;
 	size_t m_nSwfDataSize;
 	TArray<ZString> m_pAdditionalFileNames;
 	TArray<TArray<uint8_t>> m_pAdditionalFileData;

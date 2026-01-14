@@ -173,4 +173,35 @@ void IZHMTypeInfo::RegisterPrimitiveTypes()
 		[](simdjson::ondemand::value p_Document, void* p_Target)
 		{
 		}, [](void*, ZHMSerializer&, zhmptr_t) {});
+
+	new ZHMTypeInfo("TResourcePtr", sizeof(TResourcePtr), alignof(TResourcePtr), TResourcePtr::WriteSimpleJson, TResourcePtr::FromSimpleJson, TResourcePtr::Serialize);
+}
+
+void TResourcePtr::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<TResourcePtr*>(p_Object);
+	
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_IDHigh") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_IDHigh);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_IDLow") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_IDLow);
+
+	p_Stream << "}";
+}
+
+void TResourcePtr::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto* s_Object = reinterpret_cast<TResourcePtr*>(p_Target);
+
+	s_Object->m_IDHigh = simdjson::from_json_uint32(p_Document["m_IDHigh"]);
+	s_Object->m_IDLow = simdjson::from_json_uint32(p_Document["m_IDLow"]);
+}
+
+void TResourcePtr::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	p_Serializer.RegisterResourcePtr(p_OwnOffset);
 }

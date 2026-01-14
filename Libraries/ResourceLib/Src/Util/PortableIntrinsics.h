@@ -6,6 +6,8 @@
 #include <malloc.h>
 #endif
 
+#include <ResourceLib.h>
+
 inline unsigned char c_bittestandset(long* p_Val, long p_Bit)
 {
 	unsigned char s_BitSet = (*p_Val >> p_Bit) & 1;
@@ -15,24 +17,12 @@ inline unsigned char c_bittestandset(long* p_Val, long p_Bit)
 
 inline void* c_aligned_alloc(size_t p_Size, size_t p_Alignment)
 {
-#if _MSC_VER
-	return _aligned_malloc(p_Size, p_Alignment);
-#elif __EMSCRIPTEN__
-	return malloc((p_Size + (p_Alignment - 1)) & (-p_Alignment));
-#else
-	return std::aligned_alloc(p_Alignment, p_Size);
-#endif
+	return ZHM_TARGET_FUNC(GetAllocator)()->Alloc(p_Size, p_Alignment);
 }
 
 inline void c_aligned_free(void* p_Memory)
 {
-#if _MSC_VER
-	return _aligned_free(p_Memory);
-#elif __EMSCRIPTEN__
-	free(p_Memory);
-#else
-	return std::free(p_Memory);
-#endif
+	ZHM_TARGET_FUNC(GetAllocator)()->Free(p_Memory);
 }
 
 inline uint32_t c_byteswap_ulong(uint32_t p_Value)

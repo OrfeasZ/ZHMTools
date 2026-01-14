@@ -37,12 +37,12 @@ void ZString::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_
 		p_Serializer.WriteMemory(&s_StrLen, sizeof(s_StrLen), 4);
 
 		// And then we write the string data, unaligned.
-		s_StrDataOffset = p_Serializer.WriteMemoryUnaligned(const_cast<char*>(s_Object->m_pChars.GetPtr()), s_Object->size());
+		s_StrDataOffset = p_Serializer.WriteMemoryUnaligned(const_cast<char*>(s_Object->m_pChars), s_Object->size());
 	}
 	else
 	{
 		// Otherwise we just write the string data alone.
-		s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars.GetPtr()), s_Object->size(), alignof(char*));
+		s_StrDataOffset = p_Serializer.WriteMemory(const_cast<char*>(s_Object->m_pChars), s_Object->size(), alignof(char*));
 	}
 
 	// We append a null terminator here since it looks like some parts of the engine

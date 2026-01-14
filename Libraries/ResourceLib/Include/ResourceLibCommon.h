@@ -42,6 +42,15 @@ extern "C"
 		size_t Size;
 	};
 
+	/**
+	 * An allocator interface.
+	 */
+	struct Allocator
+	{
+		void* (*Alloc)(size_t p_Size, size_t p_Alignment);
+		void (*Free)(void* p_Ptr);
+	};
+
 #ifdef __cplusplus
 }
 #endif

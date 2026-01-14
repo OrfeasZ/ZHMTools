@@ -7,6 +7,7 @@
 
 #include <stdexcept>
 
+#include "ZHMSerializer.h"
 #include "External/simdjson_helpers.h"
 
 #if ZHM_TARGET == 3
@@ -19,6 +20,7 @@
 #include <Generated/HMA/ZHMEnums.h>
 #endif
 
+std::recursive_mutex IZHMTypeInfo::g_TypeRegistryMutex;
 std::unordered_map<std::string, IZHMTypeInfo*>* IZHMTypeInfo::g_TypeRegistry = nullptr;
 ZHMTypeInfo::PrimitiveRegistrar IZHMTypeInfo::g_PrimitiveRegistrar;
 
@@ -123,17 +125,16 @@ public:
 
 		if (s_ElementCount == 0)
 		{
-			s_Array->m_pBegin.SetNull();
-			s_Array->m_pEnd.SetNull();
-			s_Array->m_pAllocationEnd.SetNull();
+			s_Array->m_pBegin = nullptr;
+			s_Array->m_pEnd = nullptr;
+			s_Array->m_pAllocationEnd = nullptr;
 		}
 		else
 		{
-			const auto s_Arena = ZHMArenas::GetHeapArena();
-			const auto s_ArrayDataOffset = s_Arena->Allocate(s_ElementSize * s_ElementCount);
-			auto* s_ArrayData = s_Arena->GetObjectAtOffset<void>(s_ArrayDataOffset);
+			auto* s_ArrayData = c_aligned_alloc(s_ElementSize * s_ElementCount, m_ElementType->Alignment());
+			memset(s_ArrayData, 0x00, s_ElementSize * s_ElementCount);
 
-			memset(s_ArrayData, 0xFF, s_ElementSize * s_ElementCount);
+			s_Array->m_pBegin = static_cast<void**>(s_ArrayData);
 
 			for (const simdjson::ondemand::value& s_Element : s_JsonArray)
 			{
@@ -141,8 +142,7 @@ public:
 				s_ArrayData = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(s_ArrayData) + s_ElementSize);
 			}
 
-			s_Array->m_pBegin.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_ArrayDataOffset);
-			s_Array->m_pEnd.SetArenaIdAndPtrOffset(s_Arena->m_Id, s_ArrayDataOffset + (s_ElementSize * s_ElementCount));
+			s_Array->m_pEnd = static_cast<void**>(s_ArrayData);
 			s_Array->m_pAllocationEnd = s_Array->m_pEnd;
 		}
 	}
@@ -152,7 +152,7 @@ public:
 		auto* s_Object = reinterpret_cast<TArray<void*>*>(p_Object);
 
 		const auto s_AlignedSize = m_ElementType->Size();
-		const auto s_ElementCount = (s_Object->m_pEnd.GetPtrOffset() - s_Object->m_pBegin.GetPtrOffset()) / s_AlignedSize;
+		const auto s_ElementCount = (reinterpret_cast<uintptr_t>(s_Object->m_pEnd) - reinterpret_cast<uintptr_t>(s_Object->m_pBegin)) / s_AlignedSize;
 
 		if (s_ElementCount == 0)
 		{
@@ -177,10 +177,10 @@ public:
 			}
 
 			// And now write the array data.
-			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin.GetPtr(), m_ElementType->Size() * s_ElementCount, sizeof(zhmptr_t));
+			auto s_ElementsPtr = p_Serializer.WriteMemory(s_Object->m_pBegin, m_ElementType->Size() * s_ElementCount, sizeof(zhmptr_t));
 			auto s_CurrentElement = s_ElementsPtr;
 
-			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin.GetPtr());
+			auto s_ObjectPtr = reinterpret_cast<uintptr_t>(s_Object->m_pBegin);
 
 			for (size_t i = 0; i < s_ElementCount; ++i)
 			{
@@ -264,10 +264,9 @@ public:
 			s_ObjectPtr += s_AlignedSize;
 		}
 		
-		if (!s_Object->m_pBegin.IsNull() && s_Object->m_pBegin.GetArenaId() == ZHMHeapArenaId)
+		if (s_Object->m_pBegin)
 		{
-			auto* s_Arena = ZHMArenas::GetHeapArena();
-			s_Arena->Free(s_Object->m_pBegin.GetPtrOffset());
+			c_aligned_free(s_Object->m_pBegin);
 		}
 	}
 
@@ -331,6 +330,8 @@ private:
 
 IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 {
+	std::lock_guard s_Lock(g_TypeRegistryMutex);
+
 	auto it = g_TypeRegistry->find(p_Name);
 
 	if (it == g_TypeRegistry->end())
@@ -368,7 +369,13 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 			return s_TypeInfo;
 		}
 
-		fprintf(stderr, "[WARNING] Could not find type '%s'. ResourceLib might need to be updated.\n", p_Name.c_str());
+		// Only show warning if name doesn't start with 'z' and is not one of our known cppt types.
+		// Most CBLU types start with 'z' so this avoids a lot of noise.
+		const std::vector<std::string> s_KnownTypes = { "vrcrippleinventory", "hm5_osd_hud_soundcontroller", "string_comperator_poll", "hm5_osd_pausemenu_soundcontroller" };
+		const auto s_IsKnownType = std::ranges::find(s_KnownTypes, p_Name) != s_KnownTypes.end();
+
+		if (p_Name.empty() || (p_Name[0] != 'z' && !s_IsKnownType))
+			fprintf(stderr, "[WARNING] Could not find type '%s'. ResourceLib might need to be updated.\n", p_Name.c_str());
 		
 		auto s_DummyType = new ZHMDummyTypeInfo(p_Name);
 		(*g_TypeRegistry)[p_Name] = s_DummyType;
@@ -387,10 +394,10 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(std::string_view p_Name)
 void TypeID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	const auto s_Type = s_Object->GetType();
+	const auto s_Type = s_Object->m_pTypeID;
 
 	if (s_Type) {
-		p_Stream << simdjson::as_json_string(s_Object->GetType()->TypeName());
+		p_Stream << simdjson::as_json_string(s_Object->m_pTypeID->TypeName());
 	} else {
 		p_Stream << simdjson::as_json_string("void");
 	}
@@ -399,11 +406,11 @@ void TypeID::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 void TypeID::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
 	auto s_TypeName = std::string_view(p_Document);
-	reinterpret_cast<TypeID*>(p_Target)->SetType(ZHMTypeInfo::GetTypeByName(s_TypeName));
+	reinterpret_cast<TypeID*>(p_Target)->m_pTypeID = ZHMTypeInfo::GetTypeByName(s_TypeName);
 }
 
 void TypeID::Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset)
 {
 	auto* s_Object = static_cast<TypeID*>(p_Object);
-	p_Serializer.PatchType(p_OwnOffset + offsetof(TypeID, m_pTypeID), s_Object->GetType());
+	p_Serializer.PatchType(p_OwnOffset + offsetof(TypeID, m_pTypeID), s_Object->m_pTypeID);
 }

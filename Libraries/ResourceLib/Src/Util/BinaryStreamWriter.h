@@ -5,6 +5,8 @@
 #include <string>
 #include <cstring>
 
+#include "PortableIntrinsics.h"
+
 class BinaryStreamWriter
 {
 public:
@@ -12,12 +14,12 @@ public:
 	{
 		m_Position = 0;
 		m_Capacity = p_InitialCapacity;
-		m_Buffer = malloc(m_Capacity);
+		m_Buffer = c_aligned_alloc(m_Capacity, alignof(char));
 	}
 
 	~BinaryStreamWriter()
 	{
-		free(m_Buffer);
+		c_aligned_free(m_Buffer);
 	}
 
 	template <class T>
@@ -92,7 +94,10 @@ private:
 		while (s_NewCapacity < m_Position + p_AdditionalBytes)
 			s_NewCapacity = ceil( s_NewCapacity * 1.5);
 
-		m_Buffer = realloc(m_Buffer, s_NewCapacity);
+		auto* s_NewBuffer = c_aligned_alloc(s_NewCapacity, alignof(char));
+		memcpy(s_NewBuffer, m_Buffer, m_Position);
+		c_aligned_free(m_Buffer);
+		m_Buffer = s_NewBuffer;
 		m_Capacity = s_NewCapacity;
 	}
 

@@ -127,7 +127,7 @@ ResourceMem* GenerateFromMemoryToMemory(void* p_Memory, bool p_GenerateCompatibl
 
 	auto* s_ResourceMem = new ResourceMem();
 
-	s_ResourceMem->ResourceData = malloc(s_Writer.WrittenBytes());
+	s_ResourceMem->ResourceData = c_aligned_alloc(s_Writer.WrittenBytes(), alignof(char));
 	s_ResourceMem->DataSize = s_Writer.WrittenBytes();
 
 	memcpy(const_cast<void*>(s_ResourceMem->ResourceData), s_Writer.Buffer(), s_Writer.WrittenBytes());

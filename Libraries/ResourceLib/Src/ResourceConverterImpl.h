@@ -12,27 +12,19 @@
 #include <Util/PortableIntrinsics.h>
 #include <Util/BinaryStreamReader.h>
 
-#include <ZHM/ZHMArenas.h>
-
-extern void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream, ZHMArena* p_Arena);
-extern void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream, ZHMArena* p_Arena);
+extern void ProcessRelocations(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
+extern void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
 extern void ProcessRuntimeResourceIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_ResourceStream);
-extern void* ToInMemStructure(const void* p_ResourceData, size_t p_Size, ZHMArena* p_Arena);
+extern void* ToInMemStructure(const void* p_ResourceData, size_t p_Size);
 extern void FreeJsonString(JsonString* p_JsonString);
 
 template <class T>
 bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Stream)
 {
-	auto* s_Arena = ZHMArenas::GetUnusedArena();
-
-	if (!s_Arena)
-		return false;
-
-	auto s_StructureData = ToInMemStructure(p_ResourceData, p_Size, s_Arena);
+	auto s_StructureData = ToInMemStructure(p_ResourceData, p_Size);
 
 	if (!s_StructureData)
 	{
-		ZHMArenas::ReturnArena(s_Arena);
 		return false;
 	}
 
@@ -45,8 +37,6 @@ bool ToJsonStream(const void* p_ResourceData, size_t p_Size, std::ostream& p_Str
 
 	T::WriteSimpleJson(s_Resource, p_Stream);
 	c_aligned_free(s_StructureData);
-
-	ZHMArenas::ReturnArena(s_Arena);
 
 	return true;
 }
@@ -71,14 +61,14 @@ bool FromResourceFileToJsonFile(const char* p_ResourceFilePath, const char* p_Ou
 	if (!s_FileStream)
 		return false;
 
-	void* s_FileData = malloc(s_FileSize);
+	void* s_FileData = c_aligned_alloc(s_FileSize, alignof(char));
 	s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
 
 	s_FileStream.close();
 
 	auto s_Result = FromMemoryToJsonFile<T>(s_FileData, s_FileSize, p_OutputFilePath);
 
-	free(s_FileData);
+	c_aligned_free(s_FileData);
 	
 	return s_Result;
 }
@@ -97,7 +87,7 @@ JsonString* FromMemoryToJsonString(const void* p_ResourceData, size_t p_Size)
 	const std::string s_Result = s_Stream.str();
 
 	s_JsonString->StrSize = s_Result.size();
-	s_JsonString->JsonData = static_cast<const char*>(malloc(s_JsonString->StrSize + 1));
+	s_JsonString->JsonData = static_cast<const char*>(c_aligned_alloc(s_JsonString->StrSize + 1, alignof(char)));
 
 	// Copy over string data.
 	memcpy(const_cast<char*>(s_JsonString->JsonData), s_Result.c_str(), s_JsonString->StrSize);
@@ -121,14 +111,14 @@ JsonString* FromResourceFileToJsonString(const char* p_ResourceFilePath)
 	if (!s_FileStream)
 		return nullptr;
 
-	void* s_FileData = malloc(s_FileSize);
+	void* s_FileData = c_aligned_alloc(s_FileSize, alignof(char));
 	s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
 
 	s_FileStream.close();
 
 	auto s_Result = FromMemoryToJsonString<T>(s_FileData, s_FileSize);
 
-	free(s_FileData);
+	c_aligned_free(s_FileData);
 
 	return s_Result;
 }

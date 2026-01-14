@@ -18,7 +18,6 @@ set(RESOURCELIB_SOURCES
 	Src/Util/PortableIntrinsics.h
 	Src/ZHM/Hash.h
 	Src/ZHM/TArray.h
-	Src/ZHM/THashMap.h
 	Src/ZHM/TPair.h
 	Src/ZHM/ZHMCustomTypes.cpp
 	Src/ZHM/ZHMCustomTypes.h
@@ -40,9 +39,6 @@ set(RESOURCELIB_SOURCES
 	Src/ZHM/ZVariant.h
 	Src/ZHM/ZHMEquality.h
 	Src/ZHM/ZHMInt.h
-	Src/ZHM/ZHMPtr.h
-	Src/ZHM/ZHMArenas.cpp
-	Src/ZHM/ZHMArenas.h
 	Src/ResourceConverterImpl.cpp
 	Src/ResourceConverterImpl.h
 	Src/ResourceGeneratorImpl.cpp
@@ -184,7 +180,7 @@ target_compile_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_LINK_FLAGS})
 target_compile_options(ResourceLib_HMA PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HMA PRIVATE ${RESOURCELIB_LINK_FLAGS})
-
+#target_compile_options(ResourceLib_HM3 PRIVATE -fsanitize=address)
 
 target_compile_definitions(ResourceLib_HM3 
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=3

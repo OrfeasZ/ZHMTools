@@ -94,6 +94,17 @@ extern "C"
 	 */
 	EMSCRIPTEN_KEEPALIVE RESOURCELIB_API StringView ZHM_TARGET_FUNC(GetPropertyName)(uint32_t p_PropertyId);
 
+	/**
+	 * Get the current allocator.
+	 */
+	EMSCRIPTEN_KEEPALIVE RESOURCELIB_API Allocator* ZHM_TARGET_FUNC(GetAllocator)();
+
+	/**
+	 * Set the allocator to use.
+	 * Pass [nullptr] to reset to the default allocator.
+	 */
+	EMSCRIPTEN_KEEPALIVE RESOURCELIB_API void ZHM_TARGET_FUNC(SetAllocator)(Allocator* p_Allocator);
+
 #ifdef __cplusplus
 }
 #endif
