@@ -81,17 +81,6 @@ set(RESOURCELIB_SOURCES_HM2016
 	Include/ResourceLib_HM2016.h
 )
 
-set(RESOURCELIB_SOURCES_HMA
-	Src/Generated/HMA/ZHMEnums.cpp
-	Src/Generated/HMA/ZHMEnums.h
-	Src/Generated/HMA/ZHMGen.cpp
-	Src/Generated/HMA/ZHMGen.h
-	Src/Generated/HMA/ZHMProperties.cpp
-	Src/Generated/HMA/ZHMProperties.h
-	Src/Generated/HMA/ZHMPropertyData.cpp
-	Include/ResourceLib_HMA.h
-)
-
 set(RESOURCELIB_TYPE SHARED)
 
 if(EMSCRIPTEN)
@@ -112,12 +101,6 @@ if(EMSCRIPTEN)
 		${RESOURCELIB_SOURCES}
 		${RESOURCELIB_SOURCES_HM2016}
 	)
-
-	add_executable(ResourceLib_HMA
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HMA}
-	)
 else()
 	add_library(ResourceLib_HM3 ${RESOURCELIB_TYPE}
 		${RESOURCELIB_HEADERS}
@@ -136,15 +119,9 @@ else()
 		${RESOURCELIB_SOURCES}
 		${RESOURCELIB_SOURCES_HM2016}
 	)
-
-	add_library(ResourceLib_HMA ${RESOURCELIB_TYPE}
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HMA}
-	)
 endif()
 
-set_target_properties(ResourceLib_HM3 ResourceLib_HM2 ResourceLib_HM2016 ResourceLib_HMA PROPERTIES
+set_target_properties(ResourceLib_HM3 ResourceLib_HM2 ResourceLib_HM2016 PROPERTIES
 	CXX_VISIBILITY_PRESET hidden
 )
 
@@ -161,12 +138,10 @@ elseif(EMSCRIPTEN)
 	set_target_properties(ResourceLib_HM3 PROPERTIES COMPILE_FLAGS "-O3")
 	set_target_properties(ResourceLib_HM2 PROPERTIES COMPILE_FLAGS "-O3")
 	set_target_properties(ResourceLib_HM2016 PROPERTIES COMPILE_FLAGS "-O3")
-	set_target_properties(ResourceLib_HMA PROPERTIES COMPILE_FLAGS "-O3")
 
 	set_target_properties(ResourceLib_HM3 PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadHM3 -s MODULARIZE=1")
 	set_target_properties(ResourceLib_HM2 PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadHM2 -s MODULARIZE=1")
 	set_target_properties(ResourceLib_HM2016 PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadHM2016 -s MODULARIZE=1")
-	set_target_properties(ResourceLib_HMA PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadHMA -s MODULARIZE=1")
 else()
 	set(RESOURCELIB_COMPILE_FLAGS "")
 	set(RESOURCELIB_LINK_FLAGS "")
@@ -178,9 +153,6 @@ target_compile_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_LINK_FLAGS})
 target_compile_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_LINK_FLAGS})
-target_compile_options(ResourceLib_HMA PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
-target_link_options(ResourceLib_HMA PRIVATE ${RESOURCELIB_LINK_FLAGS})
-#target_compile_options(ResourceLib_HM3 PRIVATE -fsanitize=address)
 
 target_compile_definitions(ResourceLib_HM3 
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=3
@@ -194,10 +166,6 @@ target_compile_definitions(ResourceLib_HM2016
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2016
 )
 
-target_compile_definitions(ResourceLib_HMA
-	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2012
-)
-
 target_include_directories(ResourceLib_HM3 
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
@@ -209,11 +177,6 @@ target_include_directories(ResourceLib_HM2
 )
 
 target_include_directories(ResourceLib_HM2016
-	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
-	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
-)
-
-target_include_directories(ResourceLib_HMA
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
 )

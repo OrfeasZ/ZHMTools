@@ -34,18 +34,11 @@ void ProcessTypeIds(BinaryStreamReader& p_SegmentStream, BinaryStreamReader& p_R
 	
 	const auto s_TypeIdsToPatchCount = p_SegmentStream.Read<uint32_t>();
 
-	uint32_t s_FinalTypeIdOffset = 0;
 	std::unordered_map<uint32_t, uint64_t> s_TypeIdsToPatch;
 
 	for (uint32_t i = 0; i < s_TypeIdsToPatchCount; ++i)
 	{
 		const auto s_TypeIdOffset = p_SegmentStream.Read<uint32_t>();
-
-#if ZHM_TARGET == 2012
-		s_FinalTypeIdOffset += s_TypeIdOffset;
-#else
-		s_FinalTypeIdOffset = s_TypeIdOffset;
-#endif
 
 		p_ResourceStream.Seek(s_TypeIdOffset);
 

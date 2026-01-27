@@ -12,11 +12,5 @@ typedef int64_t int64;
 typedef uint64_t uint64;
 typedef float float32;
 typedef double float64;
-
-#if ZHM_TARGET == 2012
-typedef uint32_t zhmptr_t;
-typedef int32_t zhmptrdiff_t;
-#else
 typedef uint64_t zhmptr_t;
 typedef int64_t zhmptrdiff_t;
-#endif

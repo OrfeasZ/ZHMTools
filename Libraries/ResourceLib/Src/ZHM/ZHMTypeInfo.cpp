@@ -16,8 +16,6 @@
 #include <Generated/HM2/ZHMEnums.h>
 #elif ZHM_TARGET == 2016
 #include <Generated/HM2016/ZHMEnums.h>
-#elif ZHM_TARGET == 2012
-#include <Generated/HMA/ZHMEnums.h>
 #endif
 
 std::recursive_mutex IZHMTypeInfo::g_TypeRegistryMutex;

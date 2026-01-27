@@ -6,7 +6,6 @@
 #include <ResourceLib_HM3.h>
 #include <ResourceLib_HM2.h>
 #include <ResourceLib_HM2016.h>
-#include <ResourceLib_HMA.h>
 
 #if _WIN32
 #define EXECUTABLE "ResourceTool.exe"
@@ -24,7 +23,6 @@ enum class HitmanVersion
 	Hitman2016,
 	Hitman2,
 	Hitman3,
-	HitmanAbsolution,
 };
 
 bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, ResourceConverter* p_Converter)
@@ -55,24 +53,9 @@ void PrintHelp()
 	printf("Usage: " EXECUTABLE " <game> <mode> <resource-type> <input-path> <output-path> [options]\n");
 
 	printf("\n");
-	printf("game can be one of: HMA, HM2016, HM2, HM3\n");
+	printf("game can be one of: HM2016, HM2, HM3\n");
 	printf("mode can be one of: convert, generate\n");
 	printf("resource-type can be one of:\n");
-
-
-	printf("\tFor HMA: ");
-
-	auto* s_HMAResources = HM2012_GetSupportedResourceTypes();
-
-	for (size_t i = 0; i < s_HMAResources->TypeCount; ++i)
-	{
-		if (i != 0)
-			printf(", ");
-
-		printf("%s", s_HMAResources->Types[i]);
-	}
-
-	HM2012_FreeSupportedResourceTypes(s_HMAResources);
 
 	printf("\n");
 	printf("\tFor HM2016: ");
@@ -154,8 +137,6 @@ int TryConvertFile(const std::string& p_FilePath)
 		s_DetectedVersion = HitmanVersion::Hitman2;
 	else if (s_InputPathStr.find("hitman3") != std::string::npos || s_InputPathStr.find("hitman 3") != std::string::npos || s_InputPathStr.find("hm3") != std::string::npos || s_InputPathStr.find("h3") != std::string::npos)
 		s_DetectedVersion = HitmanVersion::Hitman3;
-	else if (s_InputPathStr.find("absolution") != std::string::npos || s_InputPathStr.find("hma") != std::string::npos || s_InputPathStr.find("hm2012") != std::string::npos || s_InputPathStr.find("h2012") != std::string::npos)
-		s_DetectedVersion = HitmanVersion::HitmanAbsolution;
 	else if (s_InputPathStr.find("hitman") != std::string::npos || s_InputPathStr.find("hm") != std::string::npos || s_InputPathStr.find("hm2016") != std::string::npos || s_InputPathStr.find("h2016") != std::string::npos)
 		s_DetectedVersion = HitmanVersion::Hitman2016;
 
@@ -195,11 +176,6 @@ int TryConvertFile(const std::string& p_FilePath)
 	case HitmanVersion::Hitman3:
 		s_ResourceConverter = HM3_GetConverterForResource(s_PossibleResourceType.c_str());
 		s_ResourceGenerator = HM3_GetGeneratorForResource(s_PossibleResourceType.c_str());
-		break;
-
-	case HitmanVersion::HitmanAbsolution:
-		s_ResourceConverter = HM2012_GetConverterForResource(s_PossibleResourceType.c_str());
-		s_ResourceGenerator = HM2012_GetGeneratorForResource(s_PossibleResourceType.c_str());
 		break;
 	}
 	
@@ -292,8 +268,6 @@ int main(int argc, char** argv)
 		s_GameVersion = HitmanVersion::Hitman2;
 	else if (s_GameVersionStr == "HM3")
 		s_GameVersion = HitmanVersion::Hitman3;
-	else if (s_GameVersionStr == "HMA")
-		s_GameVersion = HitmanVersion::HitmanAbsolution;
 	
 	ResourceConverter* s_ResourceConverter = nullptr;
 	ResourceGenerator* s_ResourceGenerator = nullptr;
@@ -313,11 +287,6 @@ int main(int argc, char** argv)
 	case HitmanVersion::Hitman3:
 		s_ResourceConverter = HM3_GetConverterForResource(s_ResourceType.c_str());
 		s_ResourceGenerator = HM3_GetGeneratorForResource(s_ResourceType.c_str());
-		break;
-
-	case HitmanVersion::HitmanAbsolution:
-		s_ResourceConverter = HM2012_GetConverterForResource(s_ResourceType.c_str());
-		s_ResourceGenerator = HM2012_GetGeneratorForResource(s_ResourceType.c_str());
 		break;
 	}
 

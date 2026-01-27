@@ -13,12 +13,11 @@ A collection of libraries that allow converting various game resources to JSON a
 
 Currently supported games and resource types:
 
-| Game | Supported Resources |
-| ---- | ------------------- |
-| Hitman 3 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB` |
-| Hitman 2 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB` |
-| Hitman 2016 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `RTLV`, `UICB` |
-| Hitman Absolution* | `TEMP`, `TBLU`, `AIRG`, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `WSGB` |
+| Game        | Supported Resources                                                                                                                     |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Hitman 3    | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
+| Hitman 2    | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
+| Hitman 2016 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `RTLV`, `UICB`, `ASVA`                 |
 
 *`*` Experimental*
 
