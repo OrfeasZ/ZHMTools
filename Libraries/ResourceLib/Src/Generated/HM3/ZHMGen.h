@@ -1708,6 +1708,7 @@ enum class EActorEventTypes : int32_t
 	eAET_OnBodyFlushed = 10,
 	eAET_OnBodyDumped = 11,
 	eAET_OnDelete = 12,
+	eAET_OnDeadNotHitman = 13,
 };
 
 // Size: 0x4
@@ -2874,6 +2875,7 @@ enum class EActorVoiceVariation : int32_t
 	eAVV_ET_FRENTINI = 585,
 	eAVV_ET_BAIJ = 586,
 	eAVV_ET_BELINI = 587,
+	eAVV_ET_FILUR = 588,
 };
 
 // Size: 0x4
@@ -7074,27 +7076,28 @@ enum class EOutfitAICategory : int32_t
 	OAC_TechCrew = 185,
 	OAC_Attendant = 186,
 	OAC_Critic = 187,
-	OAC_FamilyGrd = 188,
-	OAC_PrivateEye = 189,
-	OAC_Undertaker = 190,
-	OAC_Photographer = 191,
-	OAC_LawyerBd = 192,
-	OAC_Biker = 193,
-	OAC_DeliveryFox = 194,
-	OAC_Dealer = 195,
-	OAC_ClubOwner = 196,
-	OAC_Bartender = 197,
-	OAC_ClubStaff = 198,
-	OAC_ClubTech = 199,
-	OAC_Herald = 200,
-	OAC_Gaucho = 201,
-	OAC_WineMkr = 202,
-	OAC_Fixer = 203,
-	OAC_Sommelier = 204,
-	OAC_Cook = 205,
-	OAC_EngineerDug = 206,
-	OAC_HavPirate = 207,
-	OAC_Pirate = 208,
+	OAC_Outbreak = 188,
+	OAC_FamilyGrd = 189,
+	OAC_PrivateEye = 190,
+	OAC_Undertaker = 191,
+	OAC_Photographer = 192,
+	OAC_LawyerBd = 193,
+	OAC_Biker = 194,
+	OAC_DeliveryFox = 195,
+	OAC_Dealer = 196,
+	OAC_ClubOwner = 197,
+	OAC_Bartender = 198,
+	OAC_ClubStaff = 199,
+	OAC_ClubTech = 200,
+	OAC_Herald = 201,
+	OAC_Gaucho = 202,
+	OAC_WineMkr = 203,
+	OAC_Fixer = 204,
+	OAC_Sommelier = 205,
+	OAC_Cook = 206,
+	OAC_EngineerDug = 207,
+	OAC_HavPirate = 208,
+	OAC_Pirate = 209,
 };
 
 // Size: 0x4
@@ -7144,10 +7147,11 @@ enum class EPathFinderBoxType : int32_t
 	PFBT_INCLUDE_MESH_COLLISION = 0,
 	PFBT_EXCLUDE_MESH_COLLISION = 1,
 	PFBT_CREATE_MESH_COLLISION = 2,
-	PFBT_REGION = 3,
-	PFBT_INCLUDE_PORTALS = 4,
-	PFBT_EXCLUDE_PORTALS = 5,
-	PFBT_IGNORE = 6,
+	PFBT_CREATE_WALKABLE_MESH_COLLISION = 3,
+	PFBT_REGION = 4,
+	PFBT_INCLUDE_PORTALS = 5,
+	PFBT_EXCLUDE_PORTALS = 6,
+	PFBT_IGNORE = 7,
 };
 
 // Size: 0x4
@@ -7490,6 +7494,7 @@ enum class ERequirementId : int32_t
 	EREQUIREMENT_H3_QUACK_PACK = 67,
 	EREQUIREMENT_H3_ET_BAIJU = 68,
 	EREQUIREMENT_H3_ET_BELLINI = 69,
+	EREQUIREMENT_H3_ET_FILUR = 70,
 };
 
 // Size: 0x1
@@ -10907,6 +10912,7 @@ public:
 		MT_WALK = 0,
 		MT_SNAP = 1,
 		MT_IGNORE_POSITION = 2,
+		MT_SNAP_FORCED = 3,
 	};
 
 	// Size: 0x4
@@ -11745,6 +11751,22 @@ public:
 };
 
 // Size: 0x18
+class /*alignas(8)*/ SActorProviderFilterDirectSaveData{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SActorProviderFilterDirectSaveData& p_Other) const;
+	bool operator!=(const SActorProviderFilterDirectSaveData& p_Other) const { return !(*this == p_Other); }
+
+	TArray<uint32> m_aActors; // 0x0
+};
+
+// Size: 0x18
 class /*alignas(8)*/ SActorProviderFilterQueueSaveData{
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -11865,8 +11887,8 @@ public:
 	ZGameTime m_PlayerCandidateTime; // 0x88
 };
 
-// Size: 0x8
-class /*alignas(4)*/ SActorSpreadTransitionOperatorMaterialActorSaveData{
+// Size: 0x10
+class /*alignas(8)*/ SActorSpreadTransitionOperatorMaterialActorSaveData{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11880,6 +11902,7 @@ public:
 
 	uint32 m_Actor; // 0x0
 	float32 m_fOpacity; // 0x4
+	ZGameTime m_tCuredAt; // 0x8
 };
 
 // Size: 0x18
@@ -14339,6 +14362,28 @@ public:
 	bool operator!=(const SDangerousAreaSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDangerous; // 0x0
+};
+
+// Size: 0x30
+class /*alignas(16)*/ SDeadActorSaveData{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SDeadActorSaveData& p_Other) const;
+	bool operator!=(const SDeadActorSaveData& p_Other) const { return !(*this == p_Other); }
+
+	uint32 m_rActor; // 0x0
+	uint8_t _pad4[12] {};
+	float4 m_vLastPos; // 0x10
+	bool m_bInWaterVolume; // 0x20
+	uint8_t _pad21[3] {};
+	float32 m_fHiddenTimer; // 0x24
+	uint8_t _pad28[8] {};
 };
 
 // Size: 0x38
@@ -17051,6 +17096,7 @@ enum class eItemType : int32_t
 	eCC_Katana = 922,
 	eCC_Brick = 923,
 	cCC_Book_A = 924,
+	eSyringe_AntiVirusSerum = 930,
 	eSyringe_Lethal = 931,
 	eSyringe_Sedative = 932,
 	eSyringe_Emetic = 933,
@@ -17075,8 +17121,9 @@ enum class eAmmoType : int32_t
 	eAmmoLightPistol = 10,
 	eAmmoDartTranquilizer = 11,
 	eAmmoDartEmetic = 12,
-	eAmmoShotgunBeanbag = 13,
-	eUnknownAmmoType = 14,
+	eAmmoDartCure = 13,
+	eAmmoShotgunBeanbag = 14,
+	eUnknownAmmoType = 15,
 };
 
 // Size: 0xC
@@ -21315,6 +21362,22 @@ public:
 };
 
 // Size: 0x18
+class /*alignas(8)*/ SWatersplashGeneratorSaveData{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SWatersplashGeneratorSaveData& p_Other) const;
+	bool operator!=(const SWatersplashGeneratorSaveData& p_Other) const { return !(*this == p_Other); }
+
+	TArray<SDeadActorSaveData> m_aDeadActors; // 0x0
+};
+
+// Size: 0x18
 class /*alignas(4)*/ SWaveformGeneratorSaveData{
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -23230,6 +23293,7 @@ public:
 		IS_SELECTED = 0,
 		IS_SELECTED_AND_ZOOMED_OUT = 1,
 		IS_SELECTED_AND_ZOOMED_IN = 2,
+		IS_IN_MENU = 3,
 	};
 
 };
@@ -23244,6 +23308,19 @@ public:
 		CANCEL = 1,
 		ACTION_X = 2,
 		ACTION_Y = 3,
+	};
+
+};
+
+class ZEvergreenMenuEntryPromptPaginationAction
+{
+public:
+	// Size: 0x1
+	enum class EType : int8_t
+	{
+		COMBINED = 0,
+		PREVIOUS = 1,
+		NEXT = 2,
 	};
 
 };
@@ -24471,6 +24548,20 @@ public:
 
 };
 
+class ZHintManagerEntity
+{
+public:
+	// Size: 0x4
+	enum class ELowerPriorityOperation : int32_t
+	{
+		NOTHING = 0,
+		CLEAR = 1,
+		CANCEL = 2,
+		CANCEL_CLEAR = 3,
+	};
+
+};
+
 class ZHitmanLocomotionQuery
 {
 public:
@@ -24929,6 +25020,19 @@ public:
 	{
 		ANY = 0,
 		NONE = 1,
+	};
+
+};
+
+class ZNavmeshExportControlAspect
+{
+public:
+	// Size: 0x1
+	enum class EOperation : int8_t
+	{
+		EXPORT = 0,
+		IGNORE = 1,
+		IGNORE_RECURSIVE = 2,
 	};
 
 };

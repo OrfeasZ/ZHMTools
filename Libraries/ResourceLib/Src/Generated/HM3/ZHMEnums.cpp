@@ -1323,6 +1323,7 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "eAET_OnBodyFlushed" },
 		{ 11, "eAET_OnBodyDumped" },
 		{ 12, "eAET_OnDelete" },
+		{ 13, "eAET_OnDeadNotHitman" },
 	};
 
 	(*g_Enums)["EActorFaction"] = {
@@ -2461,6 +2462,7 @@ void ZHMEnums::RegisterEnums()
 		{ 585, "eAVV_ET_FRENTINI" },
 		{ 586, "eAVV_ET_BAIJ" },
 		{ 587, "eAVV_ET_BELINI" },
+		{ 588, "eAVV_ET_FILUR" },
 	};
 
 	(*g_Enums)["EAgilityState"] = {
@@ -6215,27 +6217,28 @@ void ZHMEnums::RegisterEnums()
 		{ 185, "OAC_TechCrew" },
 		{ 186, "OAC_Attendant" },
 		{ 187, "OAC_Critic" },
-		{ 188, "OAC_FamilyGrd" },
-		{ 189, "OAC_PrivateEye" },
-		{ 190, "OAC_Undertaker" },
-		{ 191, "OAC_Photographer" },
-		{ 192, "OAC_LawyerBd" },
-		{ 193, "OAC_Biker" },
-		{ 194, "OAC_DeliveryFox" },
-		{ 195, "OAC_Dealer" },
-		{ 196, "OAC_ClubOwner" },
-		{ 197, "OAC_Bartender" },
-		{ 198, "OAC_ClubStaff" },
-		{ 199, "OAC_ClubTech" },
-		{ 200, "OAC_Herald" },
-		{ 201, "OAC_Gaucho" },
-		{ 202, "OAC_WineMkr" },
-		{ 203, "OAC_Fixer" },
-		{ 204, "OAC_Sommelier" },
-		{ 205, "OAC_Cook" },
-		{ 206, "OAC_EngineerDug" },
-		{ 207, "OAC_HavPirate" },
-		{ 208, "OAC_Pirate" },
+		{ 188, "OAC_Outbreak" },
+		{ 189, "OAC_FamilyGrd" },
+		{ 190, "OAC_PrivateEye" },
+		{ 191, "OAC_Undertaker" },
+		{ 192, "OAC_Photographer" },
+		{ 193, "OAC_LawyerBd" },
+		{ 194, "OAC_Biker" },
+		{ 195, "OAC_DeliveryFox" },
+		{ 196, "OAC_Dealer" },
+		{ 197, "OAC_ClubOwner" },
+		{ 198, "OAC_Bartender" },
+		{ 199, "OAC_ClubStaff" },
+		{ 200, "OAC_ClubTech" },
+		{ 201, "OAC_Herald" },
+		{ 202, "OAC_Gaucho" },
+		{ 203, "OAC_WineMkr" },
+		{ 204, "OAC_Fixer" },
+		{ 205, "OAC_Sommelier" },
+		{ 206, "OAC_Cook" },
+		{ 207, "OAC_EngineerDug" },
+		{ 208, "OAC_HavPirate" },
+		{ 209, "OAC_Pirate" },
 	};
 
 	(*g_Enums)["EOutfitType"] = {
@@ -6273,10 +6276,11 @@ void ZHMEnums::RegisterEnums()
 		{ 0, "PFBT_INCLUDE_MESH_COLLISION" },
 		{ 1, "PFBT_EXCLUDE_MESH_COLLISION" },
 		{ 2, "PFBT_CREATE_MESH_COLLISION" },
-		{ 3, "PFBT_REGION" },
-		{ 4, "PFBT_INCLUDE_PORTALS" },
-		{ 5, "PFBT_EXCLUDE_PORTALS" },
-		{ 6, "PFBT_IGNORE" },
+		{ 3, "PFBT_CREATE_WALKABLE_MESH_COLLISION" },
+		{ 4, "PFBT_REGION" },
+		{ 5, "PFBT_INCLUDE_PORTALS" },
+		{ 6, "PFBT_EXCLUDE_PORTALS" },
+		{ 7, "PFBT_IGNORE" },
 	};
 
 	(*g_Enums)["EPersistentBoolDataSyncType"] = {
@@ -6571,6 +6575,7 @@ void ZHMEnums::RegisterEnums()
 		{ 67, "EREQUIREMENT_H3_QUACK_PACK" },
 		{ 68, "EREQUIREMENT_H3_ET_BAIJU" },
 		{ 69, "EREQUIREMENT_H3_ET_BELLINI" },
+		{ 70, "EREQUIREMENT_H3_ET_FILUR" },
 	};
 
 	(*g_Enums)["ERestitutionCombineMode"] = {
@@ -8821,6 +8826,7 @@ void ZHMEnums::RegisterEnums()
 		{ 0, "MT_WALK" },
 		{ 1, "MT_SNAP" },
 		{ 2, "MT_IGNORE_POSITION" },
+		{ 3, "MT_SNAP_FORCED" },
 	};
 
 	(*g_Enums)["ZActBehaviorEntity.ERotationAlignment"] = {
@@ -9421,6 +9427,7 @@ void ZHMEnums::RegisterEnums()
 		{ 0, "IS_SELECTED" },
 		{ 1, "IS_SELECTED_AND_ZOOMED_OUT" },
 		{ 2, "IS_SELECTED_AND_ZOOMED_IN" },
+		{ 3, "IS_IN_MENU" },
 	};
 
 	(*g_Enums)["ZEvergreenMenuEntryEntity.EAcceptPromptVisibility"] = {
@@ -9441,6 +9448,12 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "CANCEL" },
 		{ 2, "ACTION_X" },
 		{ 3, "ACTION_Y" },
+	};
+
+	(*g_Enums)["ZEvergreenMenuEntryPromptPaginationAction.EType"] = {
+		{ 0, "COMBINED" },
+		{ 1, "PREVIOUS" },
+		{ 2, "NEXT" },
 	};
 
 	(*g_Enums)["ZEvergreenMenuGlobalCondition.EQuery"] = {
@@ -9897,6 +9910,13 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "ANY_TRUE_IF_NO_REQS" },
 	};
 
+	(*g_Enums)["ZHintManagerEntity.ELowerPriorityOperation"] = {
+		{ 0, "NOTHING" },
+		{ 1, "CLEAR" },
+		{ 2, "CANCEL" },
+		{ 3, "CANCEL_CLEAR" },
+	};
+
 	(*g_Enums)["ZHitmanLocomotionQuery.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "ANY" },
@@ -10142,6 +10162,12 @@ void ZHMEnums::RegisterEnums()
 	(*g_Enums)["ZMultiMenuCondition.EEvaluationType"] = {
 		{ 0, "ANY" },
 		{ 1, "NONE" },
+	};
+
+	(*g_Enums)["ZNavmeshExportControlAspect.EOperation"] = {
+		{ 0, "EXPORT" },
+		{ 1, "IGNORE" },
+		{ 2, "IGNORE_RECURSIVE" },
 	};
 
 	(*g_Enums)["ZOnlineManager.EError"] = {
@@ -11029,8 +11055,9 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "eAmmoLightPistol" },
 		{ 11, "eAmmoDartTranquilizer" },
 		{ 12, "eAmmoDartEmetic" },
-		{ 13, "eAmmoShotgunBeanbag" },
-		{ 14, "eUnknownAmmoType" },
+		{ 13, "eAmmoDartCure" },
+		{ 14, "eAmmoShotgunBeanbag" },
+		{ 15, "eUnknownAmmoType" },
 	};
 
 	(*g_Enums)["eBurstPatternType"] = {
@@ -11192,6 +11219,7 @@ void ZHMEnums::RegisterEnums()
 		{ 922, "eCC_Katana" },
 		{ 923, "eCC_Brick" },
 		{ 924, "cCC_Book_A" },
+		{ 930, "eSyringe_AntiVirusSerum" },
 		{ 931, "eSyringe_Lethal" },
 		{ 932, "eSyringe_Sedative" },
 		{ 933, "eSyringe_Emetic" },
