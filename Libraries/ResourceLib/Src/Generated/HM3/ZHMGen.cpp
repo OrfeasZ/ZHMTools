@@ -8141,6 +8141,79 @@ void SActorProviderApproachSaveData::Destroy(void* p_Object)
 	s_Object->~SActorProviderApproachSaveData();
 }
 
+ZHMTypeInfo SActorProviderFilterDirectSaveData::TypeInfo = ZHMTypeInfo("SActorProviderFilterDirectSaveData", sizeof(SActorProviderFilterDirectSaveData), alignof(SActorProviderFilterDirectSaveData), SActorProviderFilterDirectSaveData::WriteSimpleJson, SActorProviderFilterDirectSaveData::FromSimpleJson, SActorProviderFilterDirectSaveData::Serialize, SActorProviderFilterDirectSaveData::Equals, SActorProviderFilterDirectSaveData::Destroy);
+
+void SActorProviderFilterDirectSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SActorProviderFilterDirectSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_aActors") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aActors.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aActors[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aActors.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SActorProviderFilterDirectSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SActorProviderFilterDirectSaveData*>(p_Target);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aActors"];
+	s_Object->m_aActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object->m_aActors[s_Index0] = simdjson::from_json_uint32(s_Item0);
+		++s_Index0;
+	}
+	}
+
+}
+
+void SActorProviderFilterDirectSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SActorProviderFilterDirectSaveData*>(p_Object);
+
+	TArray<uint32>::Serialize(&s_Object->m_aActors, p_Serializer, p_OwnOffset + offsetof(SActorProviderFilterDirectSaveData, m_aActors));
+}
+
+bool SActorProviderFilterDirectSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SActorProviderFilterDirectSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SActorProviderFilterDirectSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SActorProviderFilterDirectSaveData::operator==(const SActorProviderFilterDirectSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SActorProviderFilterDirectSaveData>)
+		return false;
+
+	if (m_aActors != p_Other.m_aActors) return false;
+
+	return true;
+}
+
+void SActorProviderFilterDirectSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SActorProviderFilterDirectSaveData*>(p_Object);
+	s_Object->~SActorProviderFilterDirectSaveData();
+}
+
 ZHMTypeInfo SActorProviderFilterQueueSaveData::TypeInfo = ZHMTypeInfo("SActorProviderFilterQueueSaveData", sizeof(SActorProviderFilterQueueSaveData), alignof(SActorProviderFilterQueueSaveData), SActorProviderFilterQueueSaveData::WriteSimpleJson, SActorProviderFilterQueueSaveData::FromSimpleJson, SActorProviderFilterQueueSaveData::Serialize, SActorProviderFilterQueueSaveData::Equals, SActorProviderFilterQueueSaveData::Destroy);
 
 void SActorProviderFilterQueueSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -8729,6 +8802,10 @@ void SActorSpreadTransitionOperatorMaterialActorSaveData::WriteSimpleJson(void* 
 
 	p_Stream << simdjson::as_json_string("m_fOpacity") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_fOpacity);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_tCuredAt") << ":";
+	ZGameTime::WriteSimpleJson(&s_Object->m_tCuredAt, p_Stream);
 
 	p_Stream << "}";
 }
@@ -8741,12 +8818,15 @@ void SActorSpreadTransitionOperatorMaterialActorSaveData::FromSimpleJson(simdjso
 
 	s_Object->m_fOpacity = simdjson::from_json_float32(p_Document["m_fOpacity"]);
 
+	ZGameTime::FromSimpleJson(p_Document["m_tCuredAt"], &s_Object->m_tCuredAt);
+
 }
 
 void SActorSpreadTransitionOperatorMaterialActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
 	auto* s_Object = reinterpret_cast<SActorSpreadTransitionOperatorMaterialActorSaveData*>(p_Object);
 
+	ZGameTime::Serialize(&s_Object->m_tCuredAt, p_Serializer, p_OwnOffset + offsetof(SActorSpreadTransitionOperatorMaterialActorSaveData, m_tCuredAt));
 }
 
 bool SActorSpreadTransitionOperatorMaterialActorSaveData::Equals(void* p_Left, void* p_Right)
@@ -8764,6 +8844,7 @@ bool SActorSpreadTransitionOperatorMaterialActorSaveData::operator==(const SActo
 
 	if (m_Actor != p_Other.m_Actor) return false;
 	if (m_fOpacity != p_Other.m_fOpacity) return false;
+	if (m_tCuredAt != p_Other.m_tCuredAt) return false;
 
 	return true;
 }
@@ -18531,6 +18612,80 @@ void SDangerousAreaSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SDangerousAreaSaveData*>(p_Object);
 	s_Object->~SDangerousAreaSaveData();
+}
+
+ZHMTypeInfo SDeadActorSaveData::TypeInfo = ZHMTypeInfo("SDeadActorSaveData", sizeof(SDeadActorSaveData), alignof(SDeadActorSaveData), SDeadActorSaveData::WriteSimpleJson, SDeadActorSaveData::FromSimpleJson, SDeadActorSaveData::Serialize, SDeadActorSaveData::Equals, SDeadActorSaveData::Destroy);
+
+void SDeadActorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SDeadActorSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_rActor") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_rActor);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_vLastPos") << ":";
+	float4::WriteSimpleJson(&s_Object->m_vLastPos, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bInWaterVolume") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bInWaterVolume);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_fHiddenTimer") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fHiddenTimer);
+
+	p_Stream << "}";
+}
+
+void SDeadActorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SDeadActorSaveData*>(p_Target);
+
+	s_Object->m_rActor = simdjson::from_json_uint32(p_Document["m_rActor"]);
+
+	float4::FromSimpleJson(p_Document["m_vLastPos"], &s_Object->m_vLastPos);
+
+	s_Object->m_bInWaterVolume = simdjson::from_json_bool(p_Document["m_bInWaterVolume"]);
+
+	s_Object->m_fHiddenTimer = simdjson::from_json_float32(p_Document["m_fHiddenTimer"]);
+
+}
+
+void SDeadActorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SDeadActorSaveData*>(p_Object);
+
+	float4::Serialize(&s_Object->m_vLastPos, p_Serializer, p_OwnOffset + offsetof(SDeadActorSaveData, m_vLastPos));
+}
+
+bool SDeadActorSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SDeadActorSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SDeadActorSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SDeadActorSaveData::operator==(const SDeadActorSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SDeadActorSaveData>)
+		return false;
+
+	if (m_rActor != p_Other.m_rActor) return false;
+	if (m_vLastPos != p_Other.m_vLastPos) return false;
+	if (m_bInWaterVolume != p_Other.m_bInWaterVolume) return false;
+	if (m_fHiddenTimer != p_Other.m_fHiddenTimer) return false;
+
+	return true;
+}
+
+void SDeadActorSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SDeadActorSaveData*>(p_Object);
+	s_Object->~SDeadActorSaveData();
 }
 
 ZHMTypeInfo SDeadBodyInfoSaveData::TypeInfo = ZHMTypeInfo("SDeadBodyInfoSaveData", sizeof(SDeadBodyInfoSaveData), alignof(SDeadBodyInfoSaveData), SDeadBodyInfoSaveData::WriteSimpleJson, SDeadBodyInfoSaveData::FromSimpleJson, SDeadBodyInfoSaveData::Serialize, SDeadBodyInfoSaveData::Equals, SDeadBodyInfoSaveData::Destroy);
@@ -47175,6 +47330,79 @@ void SVrTakeDisguiseSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SVrTakeDisguiseSaveData*>(p_Object);
 	s_Object->~SVrTakeDisguiseSaveData();
+}
+
+ZHMTypeInfo SWatersplashGeneratorSaveData::TypeInfo = ZHMTypeInfo("SWatersplashGeneratorSaveData", sizeof(SWatersplashGeneratorSaveData), alignof(SWatersplashGeneratorSaveData), SWatersplashGeneratorSaveData::WriteSimpleJson, SWatersplashGeneratorSaveData::FromSimpleJson, SWatersplashGeneratorSaveData::Serialize, SWatersplashGeneratorSaveData::Equals, SWatersplashGeneratorSaveData::Destroy);
+
+void SWatersplashGeneratorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SWatersplashGeneratorSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_aDeadActors") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aDeadActors.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aDeadActors[i];
+		SDeadActorSaveData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_aDeadActors.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SWatersplashGeneratorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SWatersplashGeneratorSaveData*>(p_Target);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aDeadActors"];
+	s_Object->m_aDeadActors.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SDeadActorSaveData::FromSimpleJson(s_Item0, &s_Object->m_aDeadActors[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void SWatersplashGeneratorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SWatersplashGeneratorSaveData*>(p_Object);
+
+	TArray<SDeadActorSaveData>::Serialize(&s_Object->m_aDeadActors, p_Serializer, p_OwnOffset + offsetof(SWatersplashGeneratorSaveData, m_aDeadActors));
+}
+
+bool SWatersplashGeneratorSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SWatersplashGeneratorSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SWatersplashGeneratorSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SWatersplashGeneratorSaveData::operator==(const SWatersplashGeneratorSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SWatersplashGeneratorSaveData>)
+		return false;
+
+	if (m_aDeadActors != p_Other.m_aDeadActors) return false;
+
+	return true;
+}
+
+void SWatersplashGeneratorSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SWatersplashGeneratorSaveData*>(p_Object);
+	s_Object->~SWatersplashGeneratorSaveData();
 }
 
 ZHMTypeInfo SWaveformGeneratorSaveData::TypeInfo = ZHMTypeInfo("SWaveformGeneratorSaveData", sizeof(SWaveformGeneratorSaveData), alignof(SWaveformGeneratorSaveData), SWaveformGeneratorSaveData::WriteSimpleJson, SWaveformGeneratorSaveData::FromSimpleJson, SWaveformGeneratorSaveData::Serialize, SWaveformGeneratorSaveData::Equals, SWaveformGeneratorSaveData::Destroy);
