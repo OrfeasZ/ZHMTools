@@ -1151,8 +1151,8 @@ namespace NavPower
         std::string navpJsonVersion = std::string{ std::string_view(s_NavMeshDocument["NavpJsonVersion"]) };
         if (navpJsonVersion != "0.2")
         {
-            std::cerr << "This version of NavPower only supports version 0.2. NavpJsonVersion " << navpJsonVersion << std::endl;
-            throw std::runtime_error("This version of NavPower only supports version 0.2");
+            std::cerr << "This version of NavWeakness only supports version 0.2. NavpJsonVersion " << navpJsonVersion << std::endl;
+            throw std::runtime_error("This version of NavWeakness only supports version 0.2");
         }
         m_hdr = new Binary::Header();
         auto s_SectionsJson = s_NavMeshDocument["Sections"];
@@ -1162,8 +1162,6 @@ namespace NavPower
             m_aSections.push_back(s_Section);
             // Set size fields
             m_hdr->m_imageSize += s_Section.m_hdr->m_size;
-            // TODO: Double check this
-            // m_hdr->m_imageSize += s_Section.m_hdr->m_size + sizeof(Binary::NavSetHeader);
         }
 
 
