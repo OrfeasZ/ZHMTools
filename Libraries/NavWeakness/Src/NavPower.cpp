@@ -1,5 +1,5 @@
 /*
-NavPower.cpp - v1.2.0
+NavPower.cpp - v2.0.0
 A header file for use with NavPower's binary navmesh files.
 
 Licensed under the MIT License
@@ -278,11 +278,8 @@ namespace NavPower
                 {
                     throw std::runtime_error("Area pointer not found in AreaPointerToIndexMap.");
                 }
-                else {
-                    uint32_t s_AdjAreaIndex = s_MapPosition->second;
-                    f << s_AdjAreaIndex << ",";
-                }
-
+                uint32_t s_AdjAreaIndex = s_MapPosition->second;
+                f << s_AdjAreaIndex << ",";
             }
             f << "\"Position\":";
             m_pos.writeJson(f);
@@ -455,8 +452,7 @@ namespace NavPower
 
     void Area::writeJson(std::ostream& f, std::map<Binary::Area*, uint32_t>* p_AreaPointerToIndexMap)
     {
-        f << "{";
-        f << "\"Area\":";
+        f << "{\"Area\":";
         std::map<Binary::Area*, uint32_t>::const_iterator s_MapPosition = p_AreaPointerToIndexMap->find(m_area);
         if (s_MapPosition == p_AreaPointerToIndexMap->end())
         {
@@ -464,17 +460,17 @@ namespace NavPower
         }
         m_area->writeJson(f, s_MapPosition->second);
         f << ",\"Edges\":[";
-        Binary::Edge* back = m_edges.back();
+        bool first = true;
         for (auto& edge : m_edges)
         {
-            edge->writeJson(f, p_AreaPointerToIndexMap);
-            if (edge != back)
+            if (!first)
             {
                 f << ",";
             }
+            edge->writeJson(f, p_AreaPointerToIndexMap);
+            first = false;
         }
-        f << "]";
-        f << "}";
+        f << "]}";
     }
 
     void Area::readJson(auto p_Json)
@@ -654,7 +650,7 @@ namespace NavPower
     }
 
     // Build m_areas pointer to index map so the pointers can be replaced with indices (+1) in the JSON file
-    std::map<Binary::Area*, uint32_t> NavMesh::AreaPointerToIndexMap()
+    std::map<Binary::Area*, uint32_t> NavGraph::AreaPointerToIndexMap()
     {
         std::map<Binary::Area*, uint32_t> s_AreaPointerToIndexMap;
         uint32_t s_AreaIndex = 1;
@@ -667,7 +663,7 @@ namespace NavPower
     }
 
     // Build m_areas index to pointer map so the indices (+1) in the JSON file can be replaced with pointers
-    std::map<uint64_t, Binary::Area*> NavMesh::AreaIndexToPointerMap()
+    std::map<uint64_t, Binary::Area*> NavGraph::AreaIndexToPointerMap()
     {
         std::map<uint64_t, Binary::Area*> s_AreaIndexToPointerMap;
         uint64_t s_AreaIndex = 1;
@@ -680,7 +676,7 @@ namespace NavPower
     }
 
     // Build m_areas area pointer to NavGraph offset map so the KD Tree can set the primoffset
-    std::map<Binary::Area*, uint32_t> NavMesh::AreaPointerToNavGraphOffsetMap()
+    std::map<Binary::Area*, uint32_t> NavGraph::AreaPointerToNavGraphOffsetMap()
     {
         std::map<Binary::Area*, uint32_t> s_AreaPointerToNavGraphOffsetMap;
         uint32_t s_areaBytes = 324;
@@ -694,7 +690,7 @@ namespace NavPower
     }
 
     // Build m_areas NavGraph offset to index map so the KD Tree can get the area index from the primoffset
-    std::map<uint32_t, uint32_t> NavMesh::AreaNavGraphOffsetToIndexMap()
+    std::map<uint32_t, uint32_t> NavGraph::AreaNavGraphOffsetToIndexMap()
     {
         std::map<uint32_t, uint32_t> s_AreaNavGraphOffsetToIndexMap;
         uint32_t s_areaBytes = 324;
@@ -709,7 +705,7 @@ namespace NavPower
         return s_AreaNavGraphOffsetToIndexMap;
     }
 
-    void NavMesh::writeJson(std::ostream& f)
+    void NavGraph::writeJson(std::ostream& f)
     {
         f << std::fixed << std::setprecision(4) << std::boolalpha;
         f << "{\"Areas\":[";
@@ -720,21 +716,20 @@ namespace NavPower
         // Build area pointer to m_areas index map so the pointers can be replaced with indices in the JSON file
         std::map<Binary::Area*, uint32_t> s_AreaPointerToIndexMap = AreaPointerToIndexMap();
 
-        Area* back = &m_areas.back();
+        bool first = true;
         for (auto& area : m_areas)
         {
-            area.writeJson(f, &s_AreaPointerToIndexMap);
-            if (&area != back)
+            if (!first)
             {
                 f << ",";
             }
+            area.writeJson(f, &s_AreaPointerToIndexMap);
+            first = false;
         }
-        f << "],";
-        f << "\"NavpJsonVersion\": \"0.1\"";
-        f << "}";
+        f << "]}";
     }
 
-    NavMesh::KdTreeGenerationHelper NavMesh::splitAreas(std::vector<Area> s_originalAreas)
+    NavGraph::KdTreeGenerationHelper NavGraph::splitAreas(std::vector<Area> s_originalAreas)
     {
         KdTreeGenerationHelper nodeSplits;
         BBox areasBbox = generateBbox(s_originalAreas);
@@ -854,7 +849,7 @@ namespace NavPower
         return nodeSplits;
     }
 
-    uint32_t NavMesh::generateKdTree(uintptr_t s_nodePtr, std::vector<Area>& s_areas, std::map<Binary::Area*, uint32_t>& p_AreaPointerToNavGraphOffsetMap)
+    uint32_t NavGraph::generateKdTree(uintptr_t s_nodePtr, std::vector<Area>& s_areas, std::map<Binary::Area*, uint32_t>& p_AreaPointerToNavGraphOffsetMap)
     {
         if (s_areas.size() == 0)
         {
@@ -890,28 +885,20 @@ namespace NavPower
         return s_Size;
     }
 
-    void NavMesh::readJson(const char* p_NavMeshPath)
-    {
-        simdjson::ondemand::parser p_Parser;
-        simdjson::padded_string p_Json = simdjson::padded_string::load(p_NavMeshPath);
-        simdjson::ondemand::document p_NavMeshDocument = p_Parser.iterate(p_Json);
-        std::string navpJsonVersion = std::string{ std::string_view(p_NavMeshDocument["NavpJsonVersion"]) };
-        if (navpJsonVersion != "0.1")
-        {
-            std::cerr << "Unknown NavpJsonVersion " << navpJsonVersion << std::endl;
-            throw std::runtime_error("This version of NavPower only supports version 0.1");
-        }
-        m_hdr = new Binary::Header();
-        m_sectHdr = new Binary::SectionHeader();
-        m_setHdr = new Binary::NavSetHeader();
-        m_graphHdr = new Binary::NavGraphHeader();
-        simdjson::ondemand::array m_areasJson = p_NavMeshDocument["Areas"];
+    NavGraph::NavGraph(auto s_NavGraphJson) {
+        readJson(s_NavGraphJson);
+    }
 
-        for (auto areaJson : m_areasJson)
+    void NavGraph::readJson(auto s_NavGraphJson)
+    {
+        m_hdr = new Binary::NavGraphHeader();
+        simdjson::ondemand::array s_AreasJson = s_NavGraphJson["Areas"];
+
+        for (auto areaJson : s_AreasJson)
         {
-            Area area;
-            area.readJson(areaJson);
-            m_areas.push_back(area);
+            Area a_Area;
+            a_Area.readJson(areaJson);
+            m_areas.push_back(a_Area);
         }
         uint32_t s_areaBytes = 0;
         uint64_t s_AreaIndex = 0;
@@ -949,7 +936,7 @@ namespace NavPower
 
         // Calculate Bbox Areas and Edges
         BBox bbox = generateBbox(m_areas);
-        m_graphHdr->m_bbox.copy(bbox);
+        m_hdr->m_bbox.copy(bbox);
         m_kdTreeData->m_bbox.m_min.X = bbox.m_min.X - 0.0002;
         m_kdTreeData->m_bbox.m_min.Y = bbox.m_min.Y - 0.0002;
         m_kdTreeData->m_bbox.m_min.Z = bbox.m_min.Z - 0.0002;
@@ -971,42 +958,14 @@ namespace NavPower
         generateKdTree(reinterpret_cast<uintptr_t>(m_rootKDNode), m_areas, s_AreaPointerToNavGraphOffsetMap);
 
         // Set size fields
-        m_graphHdr->m_areaBytes = s_areaBytes;
-        m_graphHdr->m_kdTreeBytes = sizeof(Binary::KDTreeData) + m_kdTreeData->m_size;
-        m_graphHdr->m_totalBytes = sizeof(Binary::NavGraphHeader) + m_graphHdr->m_areaBytes + m_graphHdr->m_kdTreeBytes;
-        m_sectHdr->m_size = m_graphHdr->m_totalBytes + sizeof(Binary::SectionHeader);
-        m_hdr->m_imageSize = m_sectHdr->m_size + sizeof(Binary::NavSetHeader);
-
-        // Recalculate the checksum in case the JSON file was manually edited
-        // Write the Navmesh to a temporary NAVP binary file
-        std::string p_ChecksumCalculationTempPath(p_NavMeshPath);
-        p_ChecksumCalculationTempPath.append(".TEMP");
-        std::filesystem::remove(p_ChecksumCalculationTempPath);
-        std::ofstream fileOutputStream(p_ChecksumCalculationTempPath, std::ios::out | std::ios::binary | std::ios::app);
-        writeBinary(fileOutputStream);
-        // Read the entire file to memory.
-        fileOutputStream.close();
-        if (!std::filesystem::is_regular_file(p_NavMeshPath))
-            throw std::runtime_error("Input path is not a regular file.");
-        const long s_FileSize = std::filesystem::file_size(p_ChecksumCalculationTempPath);
-        std::ifstream s_FileStream(p_ChecksumCalculationTempPath, std::ios::in | std::ios::binary);
-        if (!s_FileStream)
-            throw std::runtime_error("Error creating input file stream.");
-        void* s_FileData = malloc(s_FileSize);
-        s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
-        s_FileStream.close();
-        std::filesystem::remove(p_ChecksumCalculationTempPath);
-        const auto s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
-        const uint32_t s_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(Binary::Header)), (s_FileSize - sizeof(Binary::Header)));
-        m_hdr->m_checksum = s_Checksum;
+        m_hdr->m_areaBytes = s_areaBytes;
+        m_hdr->m_kdTreeBytes = sizeof(Binary::KDTreeData) + m_kdTreeData->m_size;
+        m_hdr->m_totalBytes = sizeof(Binary::NavGraphHeader) + m_hdr->m_areaBytes + m_hdr->m_kdTreeBytes;
     }
 
-    void NavMesh::writeBinary(std::ostream& f)
+    void NavGraph::writeBinary(std::ostream& f)
     {
         m_hdr->writeBinary(f);
-        m_sectHdr->writeBinary(f);
-        m_setHdr->writeBinary(f);
-        m_graphHdr->writeBinary(f);
         // Build m_areas area pointer to NavGraph offset pointer map so the offsets can be written instead of the memory pointers
         std::map<Binary::Area*, Binary::Area*> s_AreaPointerToOffsetPointerMap;
         unsigned char* s_AreaOffset = reinterpret_cast<unsigned char*>(sizeof(Binary::NavGraphHeader));
@@ -1028,26 +987,17 @@ namespace NavPower
         m_rootKDNode->writeBinary(f, p_KdTreeEnd);
     }
 
-    void NavMesh::read(uintptr_t p_data, uint32_t p_filesize)
+    void NavGraph::read(uintptr_t& p_data)
     {
         uintptr_t s_startPointer = p_data;
         uintptr_t s_endPointer{};
 
-        m_hdr = (Binary::Header*)p_data;
-        p_data += sizeof(Binary::Header);
-
-        m_sectHdr = (Binary::SectionHeader*)p_data;
-        p_data += sizeof(Binary::SectionHeader);
-
-        m_setHdr = (Binary::NavSetHeader*)p_data;
-        p_data += sizeof(Binary::NavSetHeader);
-
-        m_graphHdr = (Binary::NavGraphHeader*)p_data;
+        m_hdr = (Binary::NavGraphHeader*)p_data;
         p_data += sizeof(Binary::NavGraphHeader);
 
-        FixAreaPointers(p_data - sizeof(Binary::NavGraphHeader), m_graphHdr->m_areaBytes);
+        FixAreaPointers(p_data - sizeof(Binary::NavGraphHeader), m_hdr->m_areaBytes);
 
-        s_endPointer = p_data + m_graphHdr->m_areaBytes;
+        s_endPointer = p_data + m_hdr->m_areaBytes;
         while (p_data < s_endPointer)
         {
             Area s_area{};
@@ -1067,7 +1017,6 @@ namespace NavPower
 
         m_rootKDNode = (Binary::KDNode*)p_data;
 
-        // This is just for filesize sanity checking
         s_endPointer = p_data + m_kdTreeData->m_size;
         while (p_data < s_endPointer)
         {
@@ -1080,10 +1029,9 @@ namespace NavPower
                 p_data += sizeof(Binary::KDNode);
         }
 
-        // Sanity check
-        if ((p_data - s_startPointer) != p_filesize)
+        if ((p_data - s_startPointer) != m_hdr->m_totalBytes)
         {
-            printf("[WARNING] What we read does not equal filesize!\n");
+            printf("[WARNING] NavGraph - What we read does not match the total bytes!\n");
         }
     }
 
@@ -1113,5 +1061,152 @@ namespace NavPower
             s_Checksum += c_byteswap_ulong(*s_Data);
 
         return s_Checksum;
+    }
+    
+    void Section::read(uintptr_t& p_data)
+    {
+        m_hdr = (Binary::SectionHeader*)p_data;
+        p_data += sizeof(Binary::SectionHeader);
+
+        if (m_hdr->m_size == 0) return;
+
+        // Sectionheader->m_size excludes the header.
+        uintptr_t s_startPointer = p_data;
+        uintptr_t s_endPointer{};
+
+        m_setHdr = (Binary::NavSetHeader*)p_data;
+        p_data += sizeof(Binary::NavSetHeader);
+
+        for (uint32_t i = 0; i < m_setHdr->m_numGraphs; ++i)
+        {
+            m_aNavGraphs.push_back(NavGraph(p_data));
+            p_data += m_aNavGraphs.back().m_hdr->m_totalBytes;
+        }
+
+        if ((p_data - s_startPointer) != m_hdr->m_size)
+        {
+            printf("[WARNING] Section - What we read does not match the section size!\n");
+        }
+    }
+
+    void Section::writeJson(std::ofstream& f)
+    {
+        f << "{\"NavGraphs\":[";
+        bool first = true;
+        for (auto s_NavGraph : m_aNavGraphs)
+        {
+            if (!first) {
+                f << ",";
+            }
+            s_NavGraph.writeJson(f);
+            first = false;
+        }
+        f << "]}";
+    }
+
+    void Section::writeBinary(std::ostream& f)
+    {
+        m_hdr->writeBinary(f);
+        m_setHdr->writeBinary(f);
+        for (auto& s_NavGraph : m_aNavGraphs) {
+            s_NavGraph.writeBinary(f);
+        }
+    }
+
+    void Section::readJson(auto p_SectionJson)
+    {
+        m_hdr = new Binary::SectionHeader();
+        m_setHdr = new Binary::NavSetHeader();
+        for (const auto& navGraphJson : p_SectionJson["NavGraphs"]) {
+            NavGraph s_NavGraph;
+            s_NavGraph.readJson(navGraphJson);
+            m_hdr->m_size += s_NavGraph.m_hdr->m_totalBytes + sizeof(Binary::SectionHeader);
+            m_aNavGraphs.push_back(s_NavGraph);
+        }
+    }
+
+    NavMesh::NavMesh(const char* p_NavGraphJsonPath) {
+        readJson(p_NavGraphJsonPath);
+    }
+
+    void NavMesh::read(uintptr_t p_data, uint32_t p_filesize)
+    {
+        uintptr_t s_startPointer = p_data;
+
+        m_hdr = (Binary::Header*)p_data;
+        p_data += sizeof(Binary::Header);
+
+        // Read Sections
+        while ((p_data - s_startPointer) != p_filesize)
+        {
+            m_aSections.push_back(Section(p_data));
+        }
+    }
+
+    void NavMesh::readJson(const char* p_NavGraphJsonPath)
+    {
+        simdjson::ondemand::parser s_Parser;
+        simdjson::padded_string s_Json = simdjson::padded_string::load(p_NavGraphJsonPath);
+        simdjson::ondemand::document s_NavMeshDocument = s_Parser.iterate(s_Json);
+        std::string navpJsonVersion = std::string{ std::string_view(s_NavMeshDocument["NavpJsonVersion"]) };
+        if (navpJsonVersion != "0.2")
+        {
+            std::cerr << "This version of NavWeakness only supports version 0.2. NavpJsonVersion " << navpJsonVersion << std::endl;
+            throw std::runtime_error("This version of NavWeakness only supports version 0.2");
+        }
+        m_hdr = new Binary::Header();
+        auto s_SectionsJson = s_NavMeshDocument["Sections"];
+        for (auto s_SectionJson : s_SectionsJson) {
+            Section s_Section;
+            s_Section.readJson(s_SectionJson);
+            m_aSections.push_back(s_Section);
+            // Set size fields
+            m_hdr->m_imageSize += s_Section.m_hdr->m_size;
+        }
+
+
+        // Recalculate the checksum in case the JSON file was manually edited
+        // Write the Navmesh to a temporary NAVP binary file
+        std::string p_ChecksumCalculationTempPath(p_NavGraphJsonPath);
+        p_ChecksumCalculationTempPath.append(".TEMP");
+        std::filesystem::remove(p_ChecksumCalculationTempPath);
+        std::ofstream fileOutputStream(p_ChecksumCalculationTempPath, std::ios::out | std::ios::binary | std::ios::app);
+        writeBinary(fileOutputStream);
+        // Read the entire file to memory.
+        fileOutputStream.close();
+        if (!std::filesystem::is_regular_file(p_NavGraphJsonPath))
+            throw std::runtime_error("Input path is not a regular file.");
+        const long s_FileSize = std::filesystem::file_size(p_ChecksumCalculationTempPath);
+        std::ifstream s_FileStream(p_ChecksumCalculationTempPath, std::ios::in | std::ios::binary);
+        if (!s_FileStream)
+            throw std::runtime_error("Error creating input file stream.");
+        void* s_FileData = malloc(s_FileSize);
+        s_FileStream.read(static_cast<char*>(s_FileData), s_FileSize);
+        s_FileStream.close();
+        std::filesystem::remove(p_ChecksumCalculationTempPath);
+        const auto s_FileStartPtr = reinterpret_cast<uintptr_t>(s_FileData);
+        const uint32_t s_Checksum = CalculateChecksum(reinterpret_cast<void*>(s_FileStartPtr + sizeof(Binary::Header)), (s_FileSize - sizeof(Binary::Header)));
+        m_hdr->m_checksum = s_Checksum;
+    }
+
+    void NavMesh::writeJson(std::ofstream& f) {
+        f << "{\"NavpJsonVersion\":\"0.2\",\"Sections\":[";
+        bool first = true;
+        for (auto s_Section : m_aSections) {
+            if (!first) {
+                f << ",";
+            }
+            s_Section.writeJson(f);
+            first = false;
+        }
+        f << "]}";
+    }
+
+    void NavMesh::writeBinary(std::ostream& f)
+    {
+        m_hdr->writeBinary(f);
+        for (auto s_Section : m_aSections) {
+            s_Section.writeBinary(f);
+        }
     }
 }

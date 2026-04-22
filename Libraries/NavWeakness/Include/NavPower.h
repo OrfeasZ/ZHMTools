@@ -1,5 +1,5 @@
 /*
-NavPower.h - v1.2.0
+NavPower.h - v2.0.0
 A header file for use with NavPower's binary navmesh files.
 
 Licensed under the MIT License
@@ -149,11 +149,11 @@ namespace NavPower
             uint32_t m_kdTreeBytes;
             uint32_t m_linkRecordBytes = 0;
             uint32_t m_totalBytes;
-            float m_buildScale = 2.0;
-            float m_voxSize = 0.1;
-            float m_radius = 0.2;
-            float m_stepHeight = 0.3;
-            float m_height = 1.8; // Human Height
+            float m_buildScale = 2.0f;
+            float m_voxSize = 0.1f;
+            float m_radius = 0.2f;
+            float m_stepHeight = 0.3f;
+            float m_height = 1.8f; // Human Height
             BBox m_bbox;
             Axis m_buildUpAxis = Axis::Z;
             // In NAVPs from Hitman WoA the padding isn't just 0x00
@@ -408,22 +408,19 @@ namespace NavPower
     bool compareY(Area& a1, Area& a2);
     bool compareZ(Area& a1, Area& a2);
 
-    class NavMesh
+    class NavGraph
     {
     public:
-        Binary::Header* m_hdr;
-        Binary::SectionHeader* m_sectHdr;
-        Binary::NavSetHeader* m_setHdr;
-        Binary::NavGraphHeader* m_graphHdr;
+        Binary::NavGraphHeader* m_hdr;
         std::vector<Area> m_areas;
         Binary::KDTreeData* m_kdTreeData;
         Binary::KDNode* m_rootKDNode;
 
-        NavMesh() {};
-        NavMesh(const char* p_NavMeshPath) { readJson(p_NavMeshPath);};
+        NavGraph() {};
+        NavGraph(auto s_NavGraphJson);
         
 
-        NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
+        NavGraph(uintptr_t p_data) { read(p_data); };
 
         // Build m_areas pointer to index map so the pointers can be replaced with indices (+1) in the JSON file
         std::map<Binary::Area*, uint32_t> AreaPointerToIndexMap();
@@ -451,10 +448,10 @@ namespace NavPower
         uint32_t generateKdTree(uintptr_t s_nodePtr, std::vector<Area>& s_areas, std::map<Binary::Area*, uint32_t>& p_AreaPointerToNavGraphOffsetMap);
 
         void writeJson(std::ostream& f);
-        void readJson(const char* p_NavMeshPath);
+        void readJson(auto s_NavGraphJson);
         void writeBinary(std::ostream& f);
 
-        void read(uintptr_t p_data, uint32_t p_filesize);
+        void read(uintptr_t& p_data);
 
         // This parses the k-d tree and outputs it as a vector of bounding boxes
         std::map<uint32_t, std::vector<std::pair<uint32_t, BBox>>> ParseKDTree()
@@ -505,6 +502,44 @@ namespace NavPower
 
             return depthToSplitAndBboxMap;
         }
+    };
+
+    class Section
+    {
+    public:
+        Binary::SectionHeader* m_hdr;
+        Binary::NavSetHeader* m_setHdr;
+        std::vector<NavGraph> m_aNavGraphs;
+
+        Section(){};
+        Section(uintptr_t& p_data) { read(p_data); };
+
+        void read(uintptr_t& p_data);
+
+        void readJson(auto p_SectionJson);
+
+        void writeJson(std::ofstream& f);
+
+        void writeBinary(std::ostream& f);
+    };
+
+    class NavMesh
+    {
+    public:
+        Binary::Header* m_hdr;
+        std::vector<Section> m_aSections;
+
+        NavMesh() {};
+        NavMesh(const char* p_NavGraphJsonPath);
+        NavMesh(uintptr_t p_data, uint32_t p_filesize) { read(p_data, p_filesize); };
+
+        void read(uintptr_t p_data, uint32_t p_filesize);
+
+        void readJson(const char* p_NavGraphJsonPath);
+
+        void writeJson(std::ofstream& f);
+
+        void writeBinary(std::ostream& f);
     };
 
     // This function was made by github.com/OrfeasZ aka NoFaTe
