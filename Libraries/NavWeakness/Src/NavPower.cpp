@@ -174,7 +174,7 @@ namespace NavPower
         void Binary::NavGraphHeader::writeBinary(std::ostream& f)
         {
             f.write((char*)&m_version, sizeof(m_version));
-            f.write((char*)&m_layer, sizeof(m_version));
+            f.write((char*)&m_layer, sizeof(m_layer));
             f.write((char*)&m_areaBytes, sizeof(m_areaBytes));
             f.write((char*)&m_kdTreeBytes, sizeof(m_kdTreeBytes));
             f.write((char*)&m_linkRecordBytes, sizeof(m_linkRecordBytes));
@@ -1077,10 +1077,10 @@ namespace NavPower
         m_setHdr = (Binary::NavSetHeader*)p_data;
         p_data += sizeof(Binary::NavSetHeader);
 
-        for (uint32_t i = 0; i < m_setHdr->m_numGraphs; ++i)
-        {
-            m_aNavGraphs.push_back(NavGraph(p_data));
-            p_data += m_aNavGraphs.back().m_hdr->m_totalBytes;
+        for (uint32_t i = 0; i < m_setHdr->m_numGraphs; ++i) {
+            NavGraph s_Graph;
+            s_Graph.read(p_data);
+            m_aNavGraphs.push_back(s_Graph);
         }
 
         if ((p_data - s_startPointer) != m_hdr->m_size)
@@ -1117,12 +1117,14 @@ namespace NavPower
     {
         m_hdr = new Binary::SectionHeader();
         m_setHdr = new Binary::NavSetHeader();
+        m_hdr->m_size = sizeof(Binary::NavSetHeader);
         for (const auto& navGraphJson : p_SectionJson["NavGraphs"]) {
             NavGraph s_NavGraph;
             s_NavGraph.readJson(navGraphJson);
-            m_hdr->m_size += s_NavGraph.m_hdr->m_totalBytes + sizeof(Binary::SectionHeader);
+            m_hdr->m_size += s_NavGraph.m_hdr->m_totalBytes;
             m_aNavGraphs.push_back(s_NavGraph);
         }
+        m_setHdr->m_numGraphs = static_cast<uint32_t>(m_aNavGraphs.size());
     }
 
     NavMesh::NavMesh(const char* p_NavGraphJsonPath) {
@@ -1137,9 +1139,10 @@ namespace NavPower
         p_data += sizeof(Binary::Header);
 
         // Read Sections
-        while ((p_data - s_startPointer) != p_filesize)
-        {
-            m_aSections.push_back(Section(p_data));
+        while ((p_data - s_startPointer) < p_filesize) {
+            Section s_Section;
+            s_Section.read(p_data);
+            m_aSections.push_back(s_Section);
         }
     }
 
@@ -1155,13 +1158,14 @@ namespace NavPower
             throw std::runtime_error("This version of NavWeakness only supports version 0.2");
         }
         m_hdr = new Binary::Header();
+        m_hdr->m_imageSize = 0;
         auto s_SectionsJson = s_NavMeshDocument["Sections"];
         for (auto s_SectionJson : s_SectionsJson) {
             Section s_Section;
             s_Section.readJson(s_SectionJson);
             m_aSections.push_back(s_Section);
             // Set size fields
-            m_hdr->m_imageSize += s_Section.m_hdr->m_size;
+            m_hdr->m_imageSize += sizeof(Binary::SectionHeader) + s_Section.m_hdr->m_size;
         }
 
 
