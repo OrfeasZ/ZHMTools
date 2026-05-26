@@ -1,4 +1,5 @@
 #include "Utils.h"
+#include <filesystem>
 
 uintptr_t Utils::GetBaseOfCode(HMODULE p_Module)
 {
@@ -53,4 +54,12 @@ uintptr_t Utils::SearchPattern(uintptr_t p_BaseAddress, size_t p_ScanSize, const
 	}
 
 	return 0;
+}
+
+std::string Utils::GetProcessName()
+{
+	char path[MAX_PATH]{};
+	GetModuleFileNameA(nullptr, path, MAX_PATH);
+
+	return std::filesystem::path(path).filename().string();
 }
