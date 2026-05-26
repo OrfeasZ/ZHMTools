@@ -89,7 +89,7 @@ int main()
 #if _M_X64
 	if (!s_ProcessIds.Hitman2016 && !s_ProcessIds.Hitman2 && !s_ProcessIds.Hitman3 && !s_ProcessIds.FirstLight007)
 	{
-        printf("Hitman is not currently running. Run the game first, wait until you get to the main menu, and then run this tool.\n");
+        printf("Hitman or 007 First Light is not currently running. Run the game first, wait until you get to the main menu, and then run this tool.\n");
         return 1;
 	}
 #else
@@ -153,7 +153,7 @@ int main()
 
     if (s_ProcessIds.FirstLight007)
     {
-        printf("Found HITMAN 3 running. Starting code generation...\n");
+        printf("Found 007 First Light running. Starting code generation...\n");
 
         if (!InjectIntoProcess(s_ProcessIds.FirstLight007.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
             return 1;
