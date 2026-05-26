@@ -248,14 +248,3 @@ struct TypeMapHashingPolicy
 		return Hash::Fnv1a64_Lower(p_Value.c_str(), p_Value.size());
 	}
 };
-
-class ZTypeRegistry
-{
-public:
-#if _M_X64
-	char pad[0x40];
-#else
-	char pad[0x2C];
-#endif
-	THashMap<ZString, STypeID*, TypeMapHashingPolicy> m_types;
-};

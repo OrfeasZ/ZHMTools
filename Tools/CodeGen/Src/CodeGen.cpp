@@ -9,6 +9,7 @@ struct ProcessIds
     std::optional<uint32_t> Hitman2;
     std::optional<uint32_t> Hitman3;
     std::optional<uint32_t> HitmanAbsolution;
+    std::optional<uint32_t> FirstLight007;
 };
 
 ProcessIds GetHitmanProcessIds()
@@ -32,6 +33,8 @@ ProcessIds GetHitmanProcessIds()
                 s_ProcessIds.Hitman3 = s_Process.th32ProcessID;
             else if (strcmp(s_Process.szExeFile, "HMA.exe") == 0)
                 s_ProcessIds.HitmanAbsolution = s_Process.th32ProcessID;
+            else if (strcmp(s_Process.szExeFile, "007FirstLight.exe") == 0)
+                s_ProcessIds.FirstLight007 = s_Process.th32ProcessID;
         }
     }
 
@@ -84,7 +87,7 @@ int main()
     const auto s_ProcessIds = GetHitmanProcessIds();
 
 #if _M_X64
-	if (!s_ProcessIds.Hitman2016 && !s_ProcessIds.Hitman2 && !s_ProcessIds.Hitman3)
+	if (!s_ProcessIds.Hitman2016 && !s_ProcessIds.Hitman2 && !s_ProcessIds.Hitman3 && !s_ProcessIds.FirstLight007)
 	{
         printf("Hitman is not currently running. Run the game first, wait until you get to the main menu, and then run this tool.\n");
         return 1;
@@ -145,6 +148,14 @@ int main()
         printf("Found HITMAN 3 running. Starting code generation...\n");
 
         if (!InjectIntoProcess(s_ProcessIds.Hitman3.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
+            return 1;
+    }
+
+    if (s_ProcessIds.FirstLight007)
+    {
+        printf("Found HITMAN 3 running. Starting code generation...\n");
+
+        if (!InjectIntoProcess(s_ProcessIds.FirstLight007.value(), s_CodeGenLibPathStr, s_CodeGenLibPathSize + 1))
             return 1;
     }
 #else

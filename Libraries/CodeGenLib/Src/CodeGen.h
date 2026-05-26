@@ -10,6 +10,8 @@
 #include <memory>
 #include <string>
 
+#include "ZHMReflection.h"
+
 class ZTypeRegistry;
 class STypeID;
 struct IEnumType;
@@ -17,7 +19,7 @@ struct IEnumType;
 class CodeGen
 {
 public:
-	void Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p_OutputPath);
+	void Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Types, const std::filesystem::path& p_OutputPath);
 
 private:
 	struct TreeNode
@@ -56,7 +58,7 @@ private:
 	};
 
 	void CollectAllRttiTypes();
-	void BuildTypeTree(ZTypeRegistry* p_Registry);
+	void BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Types);
 	void SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unordered_set<std::shared_ptr<TreeNode>>& p_Visited);
 	void PrintTypeTree(const std::shared_ptr<TreeNode>& p_Node, int p_Depth = 0);
 	std::pair<std::unordered_set<std::string>, bool> CollectDependencies(STypeID* p_Type);

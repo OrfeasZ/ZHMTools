@@ -33,12 +33,12 @@ void CodeGen::WriteFileHeader(std::ostream& p_Stream)
 }
 
 
-void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p_OutputPath)
+void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Types, const std::filesystem::path& p_OutputPath)
 {
 	m_PropertyNames.clear();
 
 	printf("Generating code for types...\n");
-	
+
 	// Open our output files.
 	m_SDKHeader.open(p_OutputPath / "ZHMSdkGen.h", std::ofstream::out);
 
@@ -78,7 +78,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	m_ReflectiveClassesSourceFile << "#include <utility>" << std::endl;
 	m_ReflectiveClassesSourceFile << std::endl;
 
-	printf("Registry has %zd types.\n", p_Registry->m_types.size());
+	printf("Registry has %zd types.\n", p_Types.size());
 
 	// Look for RTTI information.
 	Image s_Image;
@@ -88,7 +88,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	FindMsvcVTables(s_Image, s_VTables, s_RTTI);
 
 	// Build RTTI lookup table by demangled name
-	for (auto &s_VTable: s_VTables | std::views::values)
+	for (auto& s_VTable : s_VTables | std::views::values)
 	{
 		if (!s_VTable.Rtti || !s_VTable.Rtti->TypeDescriptor)
 			continue;
@@ -101,7 +101,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 
 	printf("Built RTTI lookup table with %llu entries.\n", m_RttiByTypeName.size());
 
-	for (auto& [_, s_Type] : p_Registry->m_types)
+	for (auto& [_, s_Type] : p_Types)
 	{
 		if (!s_Type->typeInfo())
 			continue;
@@ -110,7 +110,7 @@ void CodeGen::Generate(ZTypeRegistry* p_Registry, const std::filesystem::path& p
 	}
 
 	CollectAllRttiTypes();
-	BuildTypeTree(p_Registry);
+	BuildTypeTree(p_Types);
 	//PrintTypeTree(m_TypeTreeRoot);
 
 	for (auto& s_Node : m_TypeTreeRoot->SortedChildren) {
@@ -162,13 +162,13 @@ void CodeGen::CollectAllRttiTypes()
 	printf("Collected %zd RTTI types.\n", m_RttiTypes.size());
 }
 
-void CodeGen::BuildTypeTree(ZTypeRegistry* p_Registry)
+void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Types)
 {
 	m_TypeTreeRoot = std::make_shared<TreeNode>();
 	m_TypeTreeRoot->Name = "";
 	m_TypeTreeRoot->Type = TreeNode::ENodeType::Namespace;
 
-	for (auto& s_Pair : p_Registry->m_types)
+	for (auto& s_Pair : p_Types)
 	{
 		std::string s_TypeName = s_Pair.first.c_str();
 

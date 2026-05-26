@@ -4,6 +4,7 @@
 
 #include "CodeGen.h"
 #include "Utils.h"
+#include "ZHMReflection.h"
 
 void GenerateCode(const std::filesystem::path& p_OutputDir)
 {
@@ -50,9 +51,26 @@ void GenerateCode(const std::filesystem::path& p_OutputDir)
 		reinterpret_cast<void*>(s_TypeRegistry),
 		reinterpret_cast<void*>(*s_TypeRegistry)
 	);
-	
+
+	size_t typesMapOffset = 0;
+
+	const std::string processName = Utils::GetProcessName();
+
+	if (processName == "007FirstLight.exe")
+	{
+		typesMapOffset = 0x38;
+	}
+	else
+	{
+		typesMapOffset = 0x40;
+	}
+
+	auto& types = *reinterpret_cast<THashMap<ZString, STypeID*, TypeMapHashingPolicy>*>(
+		reinterpret_cast<uint8_t*>(*s_TypeRegistry) + typesMapOffset
+	);
+
 	CodeGen s_CodeGenerator;
-	s_CodeGenerator.Generate(*s_TypeRegistry, p_OutputDir);
+	s_CodeGenerator.Generate(types, p_OutputDir);
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
