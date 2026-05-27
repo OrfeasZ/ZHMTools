@@ -49,7 +49,13 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	REGISTER_RESOURCE(ECPB, SExtendedCppEntityBlueprint)
 #endif
 
-#if ZHM_TARGET == 3 || ZHM_TARGET == 2
+#if ZHM_TARGET == 3 || ZHM_TARGET == 2 || ZHM_TARGET == 2026
 	REGISTER_RESOURCE(ENUM, SEnumType)
+#endif
+
+#if ZHM_TARGET == 2026
+	REGISTER_RESOURCE(KWOR, SSerializedKeyword)
+	REGISTER_RESOURCE(TDAT, STerrainResource)
+	REGISTER_RESOURCE(TDPK, STerrainDataPackage)
 #endif
 };
