@@ -3,8 +3,6 @@
 #include <type_traits>
 #include <External/simdjson.h>
 
-#pragma pack(push, 1)
-
 template <typename T, typename Z>
 class TPair
 {
@@ -138,6 +136,3 @@ public:
 	T first;
 	Z second;
 };
-
-
-#pragma pack(pop)
