@@ -1,7 +1,7 @@
 
 # ZHMTools
 
-A collection of various tools and libraries for the Hitman game engine, Glacier.
+A collection of various tools and libraries for the IOI / Hitman game engine, Glacier.
 
 ![Build status](https://github.com/OrfeasZ/ZHMTools/actions/workflows/build.yml/badge.svg) [![Download latest release](https://img.shields.io/github/v/release/OrfeasZ/ZHMTools?include_prereleases)](https://github.com/OrfeasZ/ZHMTools/releases/latest)
 
@@ -9,15 +9,16 @@ A collection of various tools and libraries for the Hitman game engine, Glacier.
 
 ### [ResourceLib](/Libraries/ResourceLib)
 
-A collection of libraries that allow converting various game resources to JSON and back, each targetting a specific Hitman game. The library exposes a C interface that can be directly integrated into third party tools, without additional dependencies. You can also find a C# / .NET wrapper around ResourceLib [here](/Libraries/ResourceLib/ResourceLib.cs).
+A collection of libraries that allow converting various game resources to JSON and back, each targeting a specific Glacier game. The library exposes a C interface that can be directly integrated into third party tools, without additional dependencies. You can also find a C# / .NET wrapper around ResourceLib [here](/Libraries/ResourceLib/ResourceLib.cs).
 
 Currently supported games and resource types:
 
-| Game        | Supported Resources                                                                                                                     |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| Hitman 3    | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
-| Hitman 2    | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
-| Hitman 2016 | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `RTLV`, `UICB`, `ASVA`                 |
+| Game            | Supported Resources                                                                                                                     |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Hitman 3        | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
+| Hitman 2        | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
+| Hitman 2016     | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `RTLV`, `UICB`, `ASVA`                 |
+| 007 First Light | `TDPK`, `KWOR`, `ENUM`, `ECPB`, `GIDX`, `WSGB`, `CBLU`, `GFXF`, `DSWB`, `CPPT`, `CRMD`, `UICB`, `RTLV`, `TBLU`, `VIDB`, `TDAT`, `TEMP`  |
 
 *`*` Experimental*
 
