@@ -35,7 +35,7 @@ static Allocator* g_Allocator = g_DefaultAllocator;
 
 extern "C"
 {
-	ResourceConverter* ZHM_TARGET_FUNC(GetConverterForResource)(const char* p_ResourceType)
+	ResourceConverter* RL_TARGET_FUNC(GetConverterForResource)(const char* p_ResourceType)
 	{
 		const auto it = g_Resources.find(p_ResourceType);
 
@@ -45,7 +45,7 @@ extern "C"
 		return it->second.Converter;
 	}
 
-	ResourceGenerator* ZHM_TARGET_FUNC(GetGeneratorForResource)(const char* p_ResourceType)
+	ResourceGenerator* RL_TARGET_FUNC(GetGeneratorForResource)(const char* p_ResourceType)
 	{
 		const auto it = g_Resources.find(p_ResourceType);
 
@@ -55,7 +55,7 @@ extern "C"
 		return it->second.Generator;
 	}
 
-	ResourceTypesArray* ZHM_TARGET_FUNC(GetSupportedResourceTypes)()
+	ResourceTypesArray* RL_TARGET_FUNC(GetSupportedResourceTypes)()
 	{
 		auto* s_Array = new ResourceTypesArray();
 
@@ -78,7 +78,7 @@ extern "C"
 		return s_Array;
 	}
 
-	void ZHM_TARGET_FUNC(FreeSupportedResourceTypes)(ResourceTypesArray* p_Array)
+	void RL_TARGET_FUNC(FreeSupportedResourceTypes)(ResourceTypesArray* p_Array)
 	{
 		for (size_t i = 0; i < p_Array->TypeCount; ++i)
 			c_aligned_free(const_cast<char*>(p_Array->Types[i]));
@@ -86,12 +86,12 @@ extern "C"
 		delete[] p_Array->Types;
 	}
 
-	bool ZHM_TARGET_FUNC(IsResourceTypeSupported)(const char* p_ResourceType)
+	bool RL_TARGET_FUNC(IsResourceTypeSupported)(const char* p_ResourceType)
 	{
 		return g_Resources.find(p_ResourceType) != g_Resources.end();
 	}
 
-	JsonString* ZHM_TARGET_FUNC(GameStructToJson)(const char* p_StructureType, const void* p_Structure, size_t p_Size)
+	JsonString* RL_TARGET_FUNC(GameStructToJson)(const char* p_StructureType, const void* p_Structure, size_t p_Size)
 	{
 		const auto s_Type = ZHMTypeInfo::GetTypeByName(std::string(p_StructureType));
 
@@ -128,7 +128,7 @@ extern "C"
 		}
 	}
 
-	bool ZHM_TARGET_FUNC(JsonToGameStruct)(const char* p_StructureType, const char* p_JsonStr, size_t p_JsonStrLength, void* p_TargetMemory, size_t p_TargetMemorySize)
+	bool RL_TARGET_FUNC(JsonToGameStruct)(const char* p_StructureType, const char* p_JsonStr, size_t p_JsonStrLength, void* p_TargetMemory, size_t p_TargetMemorySize)
 	{
 		const auto s_Type = ZHMTypeInfo::GetTypeByName(std::string(p_StructureType));
 
@@ -173,7 +173,7 @@ extern "C"
 		}
 	}
 
-	void ZHM_TARGET_FUNC(FreeJsonString)(JsonString* p_JsonString)
+	void RL_TARGET_FUNC(FreeJsonString)(JsonString* p_JsonString)
 	{
 		if (p_JsonString == nullptr || p_JsonString->JsonData == nullptr)
 			return;
@@ -182,7 +182,7 @@ extern "C"
 		delete p_JsonString;
 	}
 
-	StringView ZHM_TARGET_FUNC(GetPropertyName)(uint32_t p_PropertyId)
+	StringView RL_TARGET_FUNC(GetPropertyName)(uint32_t p_PropertyId)
 	{
 		const auto s_Name = ZHMProperties::PropertyToStringView(p_PropertyId);
 
@@ -200,12 +200,12 @@ extern "C"
 		};
 	}
 
-	Allocator* ZHM_TARGET_FUNC(GetAllocator)()
+	Allocator* RL_TARGET_FUNC(GetAllocator)()
 	{
 		return g_Allocator;
 	}
 
-	void ZHM_TARGET_FUNC(SetAllocator)(Allocator* p_Allocator)
+	void RL_TARGET_FUNC(SetAllocator)(Allocator* p_Allocator)
 	{
 		if (p_Allocator == nullptr)
 			p_Allocator = g_DefaultAllocator;

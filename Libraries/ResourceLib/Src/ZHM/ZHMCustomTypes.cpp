@@ -11,6 +11,8 @@
 #include <Generated/HM2/ZHMGen.h>
 #elif ZHM_TARGET == 2016
 #include <Generated/HM2016/ZHMGen.h>
+#elif ZHM_TARGET == 2026
+#include <Generated/KNT/ZHMGen.h>
 #endif
 
 ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", sizeof(SAudioSwitchBlueprintData), alignof(SAudioSwitchBlueprintData), WriteSimpleJson, FromSimpleJson, Serialize);

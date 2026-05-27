@@ -121,6 +121,7 @@ int main(int argc, char** argv)
 	const std::filesystem::path s_HM3PropertiesPath = s_ToolsDir / "Libraries" / "ResourceLib" / "Src" / "Generated" / "HM3" / "ZHMProperties.txt";
 	const std::filesystem::path s_HM2PropertiesPath = s_ToolsDir / "Libraries" / "ResourceLib" / "Src" / "Generated" / "HM2" / "ZHMProperties.txt";
 	const std::filesystem::path s_HM2016PropertiesPath = s_ToolsDir / "Libraries" / "ResourceLib" / "Src" / "Generated" / "HM2016" / "ZHMProperties.txt";
+	const std::filesystem::path s_KNTPropertiesPath = s_ToolsDir / "Libraries" / "ResourceLib" / "Src" / "Generated" / "KNT" / "ZHMProperties.txt";
 
 	if (!is_regular_file(s_CustomPropertiesPath))
 	{
@@ -146,10 +147,17 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
+	if (!is_regular_file(s_KNTPropertiesPath))
+	{
+		fprintf(stderr, "[ERROR] Could not find KNT ZHMProperties file.\n");
+		return 1;
+	}
+
 	ProcessFile(s_CustomPropertiesPath, true);
 	ProcessFile(s_HM3PropertiesPath, false);
 	ProcessFile(s_HM2PropertiesPath, false);
 	ProcessFile(s_HM2016PropertiesPath, false);
+	ProcessFile(s_KNTPropertiesPath, false);
 
 	return 0;
 }

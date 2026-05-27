@@ -5,7 +5,6 @@ set(RESOURCELIB_HEADERS
 	Include/ResourceGenerator.h
 	Include/ResourceLibCommon.h
 	Include/ResourceLib.h
-	Include/Embind.h
 )
 
 set(RESOURCELIB_SOURCES
@@ -81,47 +80,44 @@ set(RESOURCELIB_SOURCES_HM2016
 	Include/ResourceLib_HM2016.h
 )
 
+set(RESOURCELIB_SOURCES_KNT
+	Src/Generated/KNT/ZHMEnums.cpp
+	Src/Generated/KNT/ZHMEnums.h
+	Src/Generated/KNT/ZHMGen.cpp
+	Src/Generated/KNT/ZHMGen.h
+	Src/Generated/KNT/ZHMProperties.cpp
+	Src/Generated/KNT/ZHMProperties.h
+	Src/Generated/KNT/ZHMPropertyData.cpp
+	Include/ResourceLib_KNT.h
+)
+
 set(RESOURCELIB_TYPE SHARED)
 
-if(EMSCRIPTEN)
-	add_executable(ResourceLib_HM3
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HM3}
-	)
+add_library(ResourceLib_HM3 ${RESOURCELIB_TYPE}
+	${RESOURCELIB_HEADERS}
+	${RESOURCELIB_SOURCES}
+	${RESOURCELIB_SOURCES_HM3}
+)
 
-	add_executable(ResourceLib_HM2
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HM2}
-	)
+add_library(ResourceLib_HM2 ${RESOURCELIB_TYPE}
+	${RESOURCELIB_HEADERS}
+	${RESOURCELIB_SOURCES}
+	${RESOURCELIB_SOURCES_HM2}
+)
 
-	add_executable(ResourceLib_HM2016
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HM2016}
-	)
-else()
-	add_library(ResourceLib_HM3 ${RESOURCELIB_TYPE}
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HM3}
-	)
+add_library(ResourceLib_HM2016 ${RESOURCELIB_TYPE}
+	${RESOURCELIB_HEADERS}
+	${RESOURCELIB_SOURCES}
+	${RESOURCELIB_SOURCES_HM2016}
+)
 
-	add_library(ResourceLib_HM2 ${RESOURCELIB_TYPE}
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HM2}
-	)
+add_library(ResourceLib_KNT ${RESOURCELIB_TYPE}
+	${RESOURCELIB_HEADERS}
+	${RESOURCELIB_SOURCES}
+	${RESOURCELIB_SOURCES_KNT}
+)
 
-	add_library(ResourceLib_HM2016 ${RESOURCELIB_TYPE}
-		${RESOURCELIB_HEADERS}
-		${RESOURCELIB_SOURCES}
-		${RESOURCELIB_SOURCES_HM2016}
-	)
-endif()
-
-set_target_properties(ResourceLib_HM3 ResourceLib_HM2 ResourceLib_HM2016 PROPERTIES
+set_target_properties(ResourceLib_HM3 ResourceLib_HM2 ResourceLib_HM2016 ResourceLib_KNT PROPERTIES
 	CXX_VISIBILITY_PRESET hidden
 )
 
@@ -138,10 +134,12 @@ elseif(EMSCRIPTEN)
 	set_target_properties(ResourceLib_HM3 PROPERTIES COMPILE_FLAGS "-O3")
 	set_target_properties(ResourceLib_HM2 PROPERTIES COMPILE_FLAGS "-O3")
 	set_target_properties(ResourceLib_HM2016 PROPERTIES COMPILE_FLAGS "-O3")
+	set_target_properties(ResourceLib_KNT PROPERTIES COMPILE_FLAGS "-O3")
 
 	set_target_properties(ResourceLib_HM3 PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadHM3 -s MODULARIZE=1")
 	set_target_properties(ResourceLib_HM2 PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadHM2 -s MODULARIZE=1")
 	set_target_properties(ResourceLib_HM2016 PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadHM2016 -s MODULARIZE=1")
+	set_target_properties(ResourceLib_KNT PROPERTIES LINK_FLAGS "--bind -O3 -s TOTAL_MEMORY=1024MB -s EXPORT_NAME=LoadKNT -s MODULARIZE=1")
 else()
 	set(RESOURCELIB_COMPILE_FLAGS "")
 	set(RESOURCELIB_LINK_FLAGS "")
@@ -153,6 +151,8 @@ target_compile_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HM2 PRIVATE ${RESOURCELIB_LINK_FLAGS})
 target_compile_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
 target_link_options(ResourceLib_HM2016 PRIVATE ${RESOURCELIB_LINK_FLAGS})
+target_compile_options(ResourceLib_KNT PRIVATE ${RESOURCELIB_COMPILE_FLAGS})
+target_link_options(ResourceLib_KNT PRIVATE ${RESOURCELIB_LINK_FLAGS})
 
 target_compile_definitions(ResourceLib_HM3 
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=3
@@ -166,6 +166,10 @@ target_compile_definitions(ResourceLib_HM2016
 	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2016
 )
 
+target_compile_definitions(ResourceLib_KNT
+	PRIVATE RESOURCELIB_EXPORTS ZHM_TARGET=2026
+)
+
 target_include_directories(ResourceLib_HM3 
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
@@ -177,6 +181,11 @@ target_include_directories(ResourceLib_HM2
 )
 
 target_include_directories(ResourceLib_HM2016
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
+)
+
+target_include_directories(ResourceLib_KNT
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Src
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Include
 )

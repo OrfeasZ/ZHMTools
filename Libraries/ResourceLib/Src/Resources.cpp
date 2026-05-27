@@ -12,6 +12,8 @@
 #include <Generated/HM2/ZHMGen.h>
 #elif ZHM_TARGET == 2016
 #include <Generated/HM2016/ZHMGen.h>
+#elif ZHM_TARGET == 2026
+#include <Generated/KNT/ZHMGen.h>
 #endif
 
 #define REGISTER_RESOURCE(ResourceName, ResourceType) { #ResourceName, Resource(CreateResourceConverter<ResourceType>(), CreateResourceGenerator<ResourceType>()) },
@@ -25,9 +27,13 @@ std::unordered_map<std::string, Resource> g_Resources = {
 #endif
 	
 	REGISTER_RESOURCE(TBLU, STemplateEntityBlueprint)
+
+#if ZHM_TARGET != 2026
 	REGISTER_RESOURCE(AIRG, SReasoningGrid)
 	REGISTER_RESOURCE(ASVA, TArray<SPackedAnimSetEntry>)
 	REGISTER_RESOURCE(ATMD, ZAMDTake)
+#endif
+
 	REGISTER_RESOURCE(VIDB, SVideoDatabaseData)
 	REGISTER_RESOURCE(RTLV, SLocalizedVideoDataDecrypted)
 	REGISTER_RESOURCE(UICB, SUIControlBlueprint)

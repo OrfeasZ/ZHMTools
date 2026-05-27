@@ -1,9 +1,9 @@
 #pragma once
 
 #undef ZHM_TARGET
-#define ZHM_TARGET 3
+#define ZHM_TARGET 2026
 
 #undef RL_PREFIX
-#define RL_PREFIX HM3
+#define RL_PREFIX KNT
 
 #include "ResourceLib.h"

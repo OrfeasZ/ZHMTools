@@ -17,12 +17,12 @@ inline unsigned char c_bittestandset(long* p_Val, long p_Bit)
 
 inline void* c_aligned_alloc(size_t p_Size, size_t p_Alignment)
 {
-	return ZHM_TARGET_FUNC(GetAllocator)()->Alloc(p_Size, p_Alignment);
+	return RL_TARGET_FUNC(GetAllocator)()->Alloc(p_Size, p_Alignment);
 }
 
 inline void c_aligned_free(void* p_Memory)
 {
-	ZHM_TARGET_FUNC(GetAllocator)()->Free(p_Memory);
+	RL_TARGET_FUNC(GetAllocator)()->Free(p_Memory);
 }
 
 inline uint32_t c_byteswap_ulong(uint32_t p_Value)
