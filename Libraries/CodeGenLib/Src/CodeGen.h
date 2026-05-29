@@ -78,12 +78,43 @@ private:
 	void GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent);
 	void GeneratePropertyNamesFiles();
 	void GenerateEnumsFiles();
+	void GenerateTypesJsonFile(const std::filesystem::path& p_OutputPath);
 	std::string DemangleRTTIName(const std::string& p_MangledName);
 	static void WriteFileHeader(std::ostream& p_Stream);
+
+	struct JsonField
+	{
+		std::string Name;
+		std::string Type;
+		uint32_t Offset;
+	};
+
+	struct JsonStruct
+	{
+		std::string Name;
+		uint32_t Size;
+		uint32_t Alignment;
+		std::vector<JsonField> Fields;
+	};
+
+	struct JsonEnumValue
+	{
+		std::string Name;
+		int64_t Value;
+	};
+
+	struct JsonEnumInfo
+	{
+		std::string Name;
+		uint32_t Size;
+		std::vector<JsonEnumValue> Values;
+	};
 
 private:
 	std::set<std::string> m_PropertyNames;
 	std::map<std::string, std::map<int, std::string>> m_Enums;
+	std::vector<JsonStruct> m_JsonStructs;
+	std::vector<JsonEnumInfo> m_JsonEnums;
 
 	std::ofstream m_ReflectiveClassesHeaderFile;
 	std::ofstream m_ReflectiveClassesSourceFile;

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <cstdio>
 #include <unordered_set>
 #include <algorithm>
 #include <functional>
@@ -63,12 +64,11 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 	WriteFileHeader(m_ReflectiveClassesHeaderFile);
 	m_ReflectiveClassesHeaderFile << "#pragma once" << std::endl;
 	m_ReflectiveClassesHeaderFile << std::endl;
+	m_ReflectiveClassesHeaderFile << "#include <cstddef>" << std::endl;
 	m_ReflectiveClassesHeaderFile << "#include <ZHM/ZHMPrimitives.h>" << std::endl;
 	m_ReflectiveClassesHeaderFile << "#include <ZHM/ZHMTypeInfo.h>" << std::endl;
 	m_ReflectiveClassesHeaderFile << std::endl;
 	m_ReflectiveClassesHeaderFile << "class ZHMTypeInfo;" << std::endl;
-	m_ReflectiveClassesHeaderFile << std::endl;
-	m_ReflectiveClassesHeaderFile << "#pragma pack(push, 1)" << std::endl;
 	m_ReflectiveClassesHeaderFile << std::endl;
 
 	WriteFileHeader(m_ReflectiveClassesSourceFile);
@@ -120,8 +120,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 
 	GeneratePropertyNamesFiles();
 	GenerateEnumsFiles();
-
-	m_ReflectiveClassesHeaderFile << "#pragma pack(pop)" << std::endl;
+	GenerateTypesJsonFile(p_OutputPath);
 
 	m_ReflectiveClassesHeaderFile.close();
 	m_ReflectiveClassesSourceFile.close();
@@ -1028,6 +1027,122 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsSourceFile << std::endl;
 }
 
+static std::string EscapeJsonString(const std::string& p_Input)
+{
+	std::string s_Result;
+	s_Result.reserve(p_Input.size() + 2);
+
+	for (char c : p_Input)
+	{
+		switch (c)
+		{
+			case '"':  s_Result += "\\\""; break;
+			case '\\': s_Result += "\\\\"; break;
+			case '\b': s_Result += "\\b"; break;
+			case '\f': s_Result += "\\f"; break;
+			case '\n': s_Result += "\\n"; break;
+			case '\r': s_Result += "\\r"; break;
+			case '\t': s_Result += "\\t"; break;
+			default:
+				if (static_cast<unsigned char>(c) < 0x20)
+				{
+					char s_Buf[8];
+					snprintf(s_Buf, sizeof(s_Buf), "\\u%04x", static_cast<unsigned char>(c));
+					s_Result += s_Buf;
+				}
+				else
+				{
+					s_Result += c;
+				}
+				break;
+		}
+	}
+
+	return s_Result;
+}
+
+void CodeGen::GenerateTypesJsonFile(const std::filesystem::path& p_OutputPath)
+{
+	std::ofstream s_Stream(p_OutputPath / "ZHMTypes.json", std::ofstream::out);
+
+	s_Stream << "{" << std::endl;
+
+	s_Stream << "\t\"enums\": [";
+
+	for (size_t i = 0; i < m_JsonEnums.size(); ++i)
+	{
+		const auto& s_Enum = m_JsonEnums[i];
+
+		if (i > 0) s_Stream << ",";
+		s_Stream << std::endl;
+		s_Stream << "\t\t{" << std::endl;
+		s_Stream << "\t\t\t\"name\": \"" << EscapeJsonString(s_Enum.Name) << "\"," << std::endl;
+		s_Stream << "\t\t\t\"size\": " << s_Enum.Size << "," << std::endl;
+		s_Stream << "\t\t\t\"values\": [";
+
+		for (size_t j = 0; j < s_Enum.Values.size(); ++j)
+		{
+			const auto& s_Value = s_Enum.Values[j];
+
+			if (j > 0) s_Stream << ",";
+			s_Stream << std::endl;
+			s_Stream << "\t\t\t\t{ \"name\": \"" << EscapeJsonString(s_Value.Name) << "\", \"value\": " << s_Value.Value << " }";
+		}
+
+		if (!s_Enum.Values.empty())
+			s_Stream << std::endl << "\t\t\t";
+
+		s_Stream << "]" << std::endl;
+		s_Stream << "\t\t}";
+	}
+
+	if (!m_JsonEnums.empty())
+		s_Stream << std::endl << "\t";
+
+	s_Stream << "]," << std::endl;
+
+	s_Stream << "\t\"structs\": [";
+
+	for (size_t i = 0; i < m_JsonStructs.size(); ++i)
+	{
+		const auto& s_Struct = m_JsonStructs[i];
+
+		if (i > 0) s_Stream << ",";
+		s_Stream << std::endl;
+		s_Stream << "\t\t{" << std::endl;
+		s_Stream << "\t\t\t\"name\": \"" << EscapeJsonString(s_Struct.Name) << "\"," << std::endl;
+		s_Stream << "\t\t\t\"size\": " << s_Struct.Size << "," << std::endl;
+		s_Stream << "\t\t\t\"alignment\": " << s_Struct.Alignment << "," << std::endl;
+		s_Stream << "\t\t\t\"fields\": [";
+
+		for (size_t j = 0; j < s_Struct.Fields.size(); ++j)
+		{
+			const auto& s_Field = s_Struct.Fields[j];
+
+			if (j > 0) s_Stream << ",";
+			s_Stream << std::endl;
+			s_Stream << "\t\t\t\t{ \"name\": \"" << EscapeJsonString(s_Field.Name)
+				<< "\", \"type\": \"" << EscapeJsonString(s_Field.Type)
+				<< "\", \"offset\": " << s_Field.Offset << " }";
+		}
+
+		if (!s_Struct.Fields.empty())
+			s_Stream << std::endl << "\t\t\t";
+
+		s_Stream << "]" << std::endl;
+		s_Stream << "\t\t}";
+	}
+
+	if (!m_JsonStructs.empty())
+		s_Stream << std::endl << "\t";
+
+	s_Stream << "]" << std::endl;
+
+	s_Stream << "}" << std::endl;
+
+	s_Stream.close();
+}
+
 std::string CodeGen::DemangleRTTIName(const std::string& p_MangledName)
 {
 	if (p_MangledName.empty())
@@ -1154,7 +1269,7 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	GenerateRlClassSource(p_Node);
 
 	s_HeaderStream << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
-	s_HeaderStream << p_Indent << "class /*alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ")*/ " << p_Node->Name;
+	s_HeaderStream << p_Indent << "class /*alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ")*/ " << p_Node->Name << std::endl;;
 	s_HeaderStream << p_Indent << "{" << std::endl;
 	s_HeaderStream << p_Indent << "public:" << std::endl;
 
@@ -1180,10 +1295,10 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	s_HeaderStream << p_Indent << "\tbool operator!=(const " << p_Node->Name << "& p_Other) const { return !(*this == p_Other); }" << std::endl;
 	s_HeaderStream << std::endl;
 
-	uintptr_t s_CurrentOffset = 0;
-
-	if (s_Type->m_nPropertyCount > 0)
-		s_CurrentOffset = s_Type->m_pProperties[0].m_nOffset;
+	JsonStruct s_JsonStruct;
+	s_JsonStruct.Name = s_TypeName;
+	s_JsonStruct.Size = static_cast<uint32_t>(s_Type->m_nTypeSize);
+	s_JsonStruct.Alignment = static_cast<uint32_t>(s_Type->m_nTypeAlignment);
 
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
 	{
@@ -1193,31 +1308,33 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 
 		m_PropertyNames.insert(s_PropName);
 
-		uintptr_t s_ExpectedOffset = s_Prop.m_nOffset;
-
-		if (s_CurrentOffset < s_ExpectedOffset)
-		{
-			// Add padding.
-			uintptr_t s_PaddingBytes = s_ExpectedOffset - s_CurrentOffset;
-			s_HeaderStream << p_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "] {};" << std::endl;
-			s_CurrentOffset = s_ExpectedOffset;
-		}
-
 		s_HeaderStream << p_Indent << "\t" << NormalizeName(s_Prop.m_pType) << " " << s_PropName << ";";
 		s_HeaderStream << " // 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << std::endl;
 
-		s_CurrentOffset += s_Prop.m_pType->typeInfo()->m_nTypeSize;
+		s_JsonStruct.Fields.push_back({ s_PropName, NormalizeName(s_Prop.m_pType), static_cast<uint32_t>(s_Prop.m_nOffset) });
 	}
 
-	if (s_CurrentOffset < s_Type->m_nTypeSize)
-	{
-		// Add padding.
-		uintptr_t s_PaddingBytes = s_Type->m_nTypeSize - s_CurrentOffset;
-		s_HeaderStream << p_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "] {};" << std::endl;
-		s_CurrentOffset = s_Type->m_nTypeSize;
-	}
+	m_JsonStructs.push_back(std::move(s_JsonStruct));
 
 	s_HeaderStream << p_Indent << "};" << std::endl;
+
+	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
+	{
+		auto s_Prop = s_Type->m_pProperties[i];
+		std::string s_PropName = s_Prop.m_pName;
+
+		s_HeaderStream << p_Indent << "static_assert(offsetof(" << p_Node->Name << ", " << s_PropName
+			<< ") == 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec
+			<< ", \"Wrong offset for " << p_Node->Name << "::" << s_PropName << "\");" << std::endl;
+	}
+
+	s_HeaderStream << p_Indent << "static_assert(sizeof(" << p_Node->Name
+		<< ") == 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec
+		<< ", \"Wrong size for " << p_Node->Name << "\");" << std::endl;
+
+	s_HeaderStream << p_Indent << "static_assert(alignof(" << p_Node->Name
+		<< ") == 0x" << std::hex << std::uppercase << static_cast<int>(s_Type->m_nTypeAlignment) << std::dec
+		<< ", \"Wrong alignment for " << p_Node->Name << "\");" << std::endl;
 
 	s_HeaderStream << std::endl;
 }
@@ -1455,6 +1572,15 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	auto s_Type = reinterpret_cast<IEnumType*>(p_Node->TypeData->typeInfo());
 	std::map<int, std::string> s_Enum;
 
+	const bool s_CaptureJson = (&p_Stream == &m_ReflectiveClassesHeaderFile);
+
+	JsonEnumInfo s_JsonEnum;
+	if (s_CaptureJson)
+	{
+		s_JsonEnum.Name = s_Type->m_pTypeName;
+		s_JsonEnum.Size = static_cast<uint32_t>(s_Type->m_nTypeSize);
+	}
+
 	p_Stream << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
 	p_Stream << p_Indent << "enum class " << p_Node->Name << " : " << GetEnumUnderlyingType(p_Node->TypeData) << std::endl;
 	p_Stream << p_Indent << "{" << std::endl;
@@ -1475,6 +1601,9 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 		}
 
 		p_Stream << p_Indent << "\t" << it->m_pName << " = " << std::dec << s_Value << "," << std::endl;
+
+		if (s_CaptureJson)
+			s_JsonEnum.Values.push_back({ std::string(it->m_pName), s_Value });
 	}
 
 	p_Stream << p_Indent << "};" << std::endl << std::endl;
@@ -1484,6 +1613,9 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	}
 
 	m_Enums[s_Type->m_pTypeName] = s_Enum;
+
+	if (s_CaptureJson)
+		m_JsonEnums.push_back(std::move(s_JsonEnum));
 }
 
 void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent)
