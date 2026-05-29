@@ -255,12 +255,20 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 				if (s_BaseName.empty())
 					continue;
 
-				if (s_BaseName.find('<') != std::string::npos)
-					continue;
-
 				// Check if this base class already exists in the tree (by full type name).
 				if (m_TypeNodesByName.contains(s_BaseName))
 					continue;
+
+				if (s_BaseName.find('<') != std::string::npos)
+				{
+					auto s_NewNode = std::make_shared<TreeNode>();
+					s_NewNode->Name = s_BaseName;
+					s_NewNode->Parent = m_TypeTreeRoot;
+					s_NewNode->Type = TreeNode::ENodeType::Type;
+					m_TypeTreeRoot->Children[s_BaseName] = s_NewNode;
+					m_TypeNodesByName[s_NewNode->TypeName()] = s_NewNode;
+					continue;
+				}
 
 				// Split the base name on '.' and create the proper hierarchy.
 				std::shared_ptr<TreeNode> s_CurrentNode = m_TypeTreeRoot;
@@ -1614,16 +1622,18 @@ void CodeGen::GenerateDummyClass(const std::shared_ptr<TreeNode> &p_Node, const 
 	const bool s_WriteSdk = (p_Target == EOutputTarget::Both || p_Target == EOutputTarget::SdkOnly);
 	const bool s_WriteRl = (p_Target == EOutputTarget::Both || p_Target == EOutputTarget::RlOnly) && s_HasChildren;
 
+	const std::string s_DisplayName = NormalizeTypeName(p_Node->Name);
+
 	if (s_WriteSdk)
 	{
-		m_SDKHeader << p_Indent << "class " << p_Node->Name << std::endl;
+		m_SDKHeader << p_Indent << "class " << s_DisplayName << std::endl;
 		m_SDKHeader << p_Indent << "{" << std::endl;
 		m_SDKHeader << p_Indent << "public:" << std::endl;
 	}
 
 	if (s_WriteRl)
 	{
-		m_ReflectiveClassesHeaderFile << p_Indent << "class " << p_Node->Name << std::endl;
+		m_ReflectiveClassesHeaderFile << p_Indent << "class " << s_DisplayName << std::endl;
 		m_ReflectiveClassesHeaderFile << p_Indent << "{" << std::endl;
 		m_ReflectiveClassesHeaderFile << p_Indent << "public:" << std::endl;
 	}
