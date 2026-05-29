@@ -408,10 +408,14 @@ MaybeTemplateType ParseTemplateType(std::string p_Type)
 std::unordered_set<std::string> GetDependenciesFromTemplateType(const MaybeTemplateType& p_Type)
 {
 	static const std::vector<std::string> c_TypesToExplode = {
-		"TArray", "TFixedArray", "TPair", "TMap", "TMultiMap", "TEntityRef", "TResourcePtr", "TInterfaceRef"
+		"TArray", "TFixedArray", "TPair", "TMap", "TMultiMap", "TEntityRef", "TInterfaceRef"
 	};
 
 	std::unordered_set<std::string> s_Dependencies;
+
+	// We don't care about the type TResourcePtr refers to since we remove it when emitting.
+	if (p_Type.Name == "TResourcePtr")
+		return s_Dependencies;
 
 	if (std::ranges::find(c_TypesToExplode, p_Type.Name) != c_TypesToExplode.end())
 	{
