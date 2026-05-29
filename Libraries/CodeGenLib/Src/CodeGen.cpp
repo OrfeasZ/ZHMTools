@@ -397,7 +397,7 @@ MaybeTemplateType ParseTemplateType(std::string p_Type)
 std::unordered_set<std::string> GetDependenciesFromTemplateType(const MaybeTemplateType& p_Type)
 {
 	static const std::vector<std::string> c_TypesToExplode = {
-		"TArray", "TFixedArray", "TPair", "TMap", "TMultiMap", "TEntityRef", "TResourcePtr"
+		"TArray", "TFixedArray", "TPair", "TMap", "TMultiMap", "TEntityRef", "TResourcePtr", "TInterfaceRef"
 	};
 
 	std::unordered_set<std::string> s_Dependencies;
@@ -1035,6 +1035,28 @@ std::string CodeGen::DemangleRTTIName(const std::string& p_MangledName)
 		s_Result = s_Result.substr(7);
 	else if (s_Result.substr(0, 5) == "enum ")
 		s_Result = s_Result.substr(5);
+
+	// Get rid of prefixes in generic types (e.g. "ITEntityRefValue<class ZFoo>").
+	static const std::pair<std::string, size_t> c_KeywordsToStrip[] = {
+		{ "class ", 6 }, { "struct ", 7 }, { "enum ", 5 }
+	};
+
+	for (const auto& [s_Keyword, s_KeywordLen] : c_KeywordsToStrip)
+	{
+		size_t s_Pos = 0;
+		while ((s_Pos = s_Result.find(s_Keyword, s_Pos)) != std::string::npos)
+		{
+			// Walk back past spaces to find the introducing delimiter.
+			size_t s_Prev = s_Pos;
+			while (s_Prev > 0 && s_Result[s_Prev - 1] == ' ')
+				--s_Prev;
+
+			if (s_Prev > 0 && (s_Result[s_Prev - 1] == '<' || s_Result[s_Prev - 1] == ','))
+				s_Result.erase(s_Pos, s_KeywordLen);
+			else
+				s_Pos += s_KeywordLen;
+		}
+	}
 
 	// Convert C++ namespace separator (::) to ZHM dot separator (.)
 	size_t s_Pos = 0;
