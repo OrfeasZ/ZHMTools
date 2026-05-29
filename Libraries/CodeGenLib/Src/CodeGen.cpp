@@ -1266,10 +1266,24 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		}
 	}
 
+	if (s_Type->m_nTypeAlignment == 0)
+	{
+		log("Type %s has zero alignment. Skipping.\n", s_TypeName.c_str());
+		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
+		return;
+	}
+
+	if (s_Type->m_nTypeSize > 0 && s_Type->m_nPropertyCount == 0)
+	{
+		log("Type %s has non-zero size but no fields. Skipping.\n", s_TypeName.c_str());
+		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
+		return;
+	}
+
 	GenerateRlClassSource(p_Node);
 
 	s_HeaderStream << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
-	s_HeaderStream << p_Indent << "class /*alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ")*/ " << p_Node->Name << std::endl;;
+	s_HeaderStream << p_Indent << "class alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ") " << p_Node->Name << std::endl;
 	s_HeaderStream << p_Indent << "{" << std::endl;
 	s_HeaderStream << p_Indent << "public:" << std::endl;
 
