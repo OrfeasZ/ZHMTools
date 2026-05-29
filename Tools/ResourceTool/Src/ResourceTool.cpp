@@ -272,7 +272,7 @@ int main(int argc, char** argv)
 			s_Compatible = true;
 	}
 
-	if (s_GameVersionStr != "HM2016" && s_GameVersionStr != "HM2" && s_GameVersionStr != "HM3")
+	if (s_GameVersionStr != "HM2016" && s_GameVersionStr != "HM2" && s_GameVersionStr != "HM3" && s_GameVersionStr != "KNT")
 	{
 		PrintHelp();
 		return 1;
