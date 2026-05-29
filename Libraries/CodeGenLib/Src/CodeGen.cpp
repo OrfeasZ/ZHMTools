@@ -255,6 +255,9 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 				if (s_BaseName.empty())
 					continue;
 
+				if (s_BaseName.find('<') != std::string::npos)
+					continue;
+
 				// Check if this base class already exists in the tree (by full type name).
 				if (m_TypeNodesByName.contains(s_BaseName))
 					continue;
@@ -592,15 +595,15 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 		}
 
 		p_Node->Parent->SortedChildren.push_back(p_Node);
+
+		for (auto& s_Child : p_Node->Children)
+		{
+			SortTypeTree(s_Child.second, p_Visited);
+		}
 	}
 	else if (std::ranges::find(p_Node->Parent->SortedChildren, p_Node) == p_Node->Parent->SortedChildren.end())
 	{
 		//printf("Circular dependency for node %s UwU.\n", p_Node->Name.c_str());
-	}
-
-	for (auto& s_Child : p_Node->Children)
-	{
-		SortTypeTree(s_Child.second, p_Visited);
 	}
 }
 
@@ -652,6 +655,11 @@ std::string NormalizeName(STypeID* p_Type)
 
 	if (s_TypeName == "TArray")
 		return s_TypeName;
+
+	// Generated code doesn't care about the specific TResourcePtr type.
+	// Simplify from TResourcePtr<> to just TResourcePtr.
+	if (s_TypeName.starts_with("TResourcePtr<"))
+		return "TResourcePtr";
 
 	if (p_Type->typeInfo()->isFixedArray())
 	{
@@ -1448,7 +1456,17 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	for (auto it = s_Type->m_entries.begin(); it != s_Type->m_entries.end(); ++it)
 	{
 		s_Enum[it->m_nValue] = it->m_pName;
-		p_Stream << p_Indent << "\t" << it->m_pName << " = " << std::dec << it->m_nValue << "," << std::endl;
+
+		int64_t s_Value = it->m_nValue;
+		switch (s_Type->m_nTypeSize)
+		{
+			case 1: s_Value = static_cast<int8_t>(s_Value); break;
+			case 2: s_Value = static_cast<int16_t>(s_Value); break;
+			case 4: s_Value = static_cast<int32_t>(s_Value); break;
+			default: break;
+		}
+
+		p_Stream << p_Indent << "\t" << it->m_pName << " = " << std::dec << s_Value << "," << std::endl;
 	}
 
 	p_Stream << p_Indent << "};" << std::endl << std::endl;
