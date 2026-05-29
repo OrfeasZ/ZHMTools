@@ -1,5 +1,6 @@
 #include "CodeGen.h"
 
+#include "Log.h"
 #include "ZHMReflection.h"
 
 #include <sstream>
@@ -37,7 +38,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 {
 	m_PropertyNames.clear();
 
-	printf("Generating code for types...\n");
+	log("Generating code for types...\n");
 
 	// Open our output files.
 	m_SDKHeader.open(p_OutputPath / "ZHMSdkGen.h", std::ofstream::out);
@@ -78,7 +79,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 	m_ReflectiveClassesSourceFile << "#include <utility>" << std::endl;
 	m_ReflectiveClassesSourceFile << std::endl;
 
-	printf("Registry has %zd types.\n", p_Types.size());
+	log("Registry has %zd types.\n", p_Types.size());
 
 	// Look for RTTI information.
 	Image s_Image;
@@ -99,7 +100,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 		}
 	}
 
-	printf("Built RTTI lookup table with %llu entries.\n", m_RttiByTypeName.size());
+	log("Built RTTI lookup table with %llu entries.\n", m_RttiByTypeName.size());
 
 	for (auto& [_, s_Type] : p_Types)
 	{
@@ -134,7 +135,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 
 	m_SDKHeader.close();
 
-	printf("Finished generating code.\n");
+	log("Finished generating code.\n");
 }
 
 void CodeGen::CollectAllRttiTypes()
@@ -159,7 +160,7 @@ void CodeGen::CollectAllRttiTypes()
 		}
 	}
 
-	printf("Collected %zd RTTI types.\n", m_RttiTypes.size());
+	log("Collected %zd RTTI types.\n", m_RttiTypes.size());
 }
 
 void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Types)
@@ -311,7 +312,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 		SortTypeTree(s_Child.second, s_Visited);
 	}
 
-	printf("Built Type Tree.\n");
+	log("Built Type Tree.\n");
 }
 
 std::vector<std::string> SplitString(const std::string& p_String, char p_Delimiter)
@@ -555,7 +556,7 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 
 					if (s_TopLevelAncestor->ShouldSkip)
 					{
-						printf("Dependency '%s' (via ancestor '%s') for type '%s' should be skipped. Skipping.\n",
+						log("Dependency '%s' (via ancestor '%s') for type '%s' should be skipped. Skipping.\n",
 							s_Dependency.c_str(), s_TopLevelAncestor->Name.c_str(), p_Node->Name.c_str());
 						p_Node->ShouldSkip = true;
 						break;
@@ -568,7 +569,7 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 				// After recursion, check if the dependency should be skipped.
 				if (s_DepNode->ShouldSkip)
 				{
-					printf("Dependency '%s' for type '%s' should be skipped. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
+					log("Dependency '%s' for type '%s' should be skipped. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
 					p_Node->ShouldSkip = true;
 					break;
 				}
@@ -584,7 +585,7 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 			else
 			{
 				// Could not find a dependency for this type. Skip.
-				printf("Could not find dependency '%s' for type '%s'. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
+				log("Could not find dependency '%s' for type '%s'. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
 				p_Node->ShouldSkip = true;
 				break;
 			}
@@ -607,25 +608,25 @@ void CodeGen::PrintTypeTree(const std::shared_ptr<TreeNode>& p_Node, int p_Depth
 {
 	std::string s_Indentation(p_Depth * 2, ' ');
 	
-	printf("%s%s", s_Indentation.c_str(), p_Node->Name.c_str());
+	log("%s%s", s_Indentation.c_str(), p_Node->Name.c_str());
 
 	if (p_Node->Type == TreeNode::ENodeType::Type)
-		printf(" [type]");
+		log(" [type]");
 	else
-		printf(" [ns]");
+		log(" [ns]");
 
 	// Print dependencies
 	if (!p_Node->Dependencies.empty())
 	{
-		printf(" (deps: ");
+		log(" (deps: ");
 
 		for (const auto& s_Dependency : p_Node->Dependencies)
-			printf("%s, ", s_Dependency.c_str());
+			log("%s, ", s_Dependency.c_str());
 
-		printf(")");
+		log(")");
 	}
 	
-	printf("\n");
+	log("\n");
 
 	if (p_Node->SortedChildren.empty())
 	{
@@ -680,7 +681,7 @@ std::string GetEnumUnderlyingType(STypeID* p_Type)
 			return "int32_t";
 
 		default:
-			printf("Unsupported enum size %d for type %s. Defaulting to int32_t.\n", p_Type->typeInfo()->m_nTypeSize, p_Type->typeInfo()->m_pTypeName);
+			log("Unsupported enum size %d for type %s. Defaulting to int32_t.\n", p_Type->typeInfo()->m_nTypeSize, p_Type->typeInfo()->m_pTypeName);
 			return "int32_t";
 	}
 }
@@ -1092,7 +1093,7 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 
 	if (s_TypeName.find_first_of('<') != std::string::npos)
 	{
-		printf("Tried generating code for a templated type %s. Skipping.\n", s_TypeName.c_str());
+		log("Tried generating code for a templated type %s. Skipping.\n", s_TypeName.c_str());
 		return;
 	}
 
@@ -1101,13 +1102,13 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	{
 		if (!s_Type->m_pProperties[i].m_pType->typeInfo())
 		{
-			printf("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			log("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
 			return;
 		}
 
 		if (s_Type->m_pProperties[i].m_pType->typeInfo()->m_pTypeName == std::string("TArray"))
 		{
-			printf("TArray property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			log("TArray property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
 			return;
 		}
 	}
@@ -1195,7 +1196,7 @@ void CodeGen::GenerateRlClassSource(const std::shared_ptr<TreeNode>& p_Node)
 	{
 		if (!s_Type->m_pProperties[i].m_pType->typeInfo())
 		{
-			printf("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeInfo->m_pTypeName);
+			log("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeInfo->m_pTypeName);
 			return;
 		}
 	}
@@ -1431,7 +1432,7 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	p_Stream << p_Indent << "};" << std::endl << std::endl;
 
 	if (!p_Node->SortedChildren.empty()) {
-		printf("Enum %s has children. This is unexpected.\n", p_Node->Name.c_str());
+		log("Enum %s has children. This is unexpected.\n", p_Node->Name.c_str());
 	}
 
 	m_Enums[s_Type->m_pTypeName] = s_Enum;
@@ -1446,7 +1447,7 @@ void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const st
 
 	if (s_RttiIt == m_RttiByTypeName.end())
 	{
-		printf("Could not find RTTI for type %s. Skipping.\n", p_Node->Name.c_str());
+		log("Could not find RTTI for type %s. Skipping.\n", p_Node->Name.c_str());
 		return;
 	}
 
@@ -1606,7 +1607,7 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 {
 	if (p_Node->ShouldSkip || p_Node->Name == "ZRepositoryID")
 	{
-		printf("Skipping code generation for node %s.\n", p_Node->Name.c_str());
+		log("Skipping code generation for node %s.\n", p_Node->Name.c_str());
 		return;
 	}
 
@@ -1638,7 +1639,7 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 		{
 			if (p_Node->TypeData->typeInfo()->isPrimitive())
 			{
-				printf("Primitive type %s. Skipping generation.\n", p_Node->Name.c_str());
+				log("Primitive type %s. Skipping generation.\n", p_Node->Name.c_str());
 				return;
 			}
 
@@ -1654,7 +1655,7 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 			}
 
 			if (!p_Node->TypeData->typeInfo()->isClass()) {
-				printf("Type %s is not a class. Skipping generation.\n", p_Node->Name.c_str());
+				log("Type %s is not a class. Skipping generation.\n", p_Node->Name.c_str());
 				return;
 			}
 
