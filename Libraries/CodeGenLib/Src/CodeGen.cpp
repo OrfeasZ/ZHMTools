@@ -315,6 +315,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 
 	// Remove some known "bad" types from the tree.
 	m_TypeTreeRoot->Children["ZDynamicObject"]->Children.erase("SArrayTypesRegistrar"); // Has circular dependencies.
+	m_TypeTreeRoot->Children.erase("SGameKeywordManagerSaveData"); // Has fields that don't exist in type info.
 
 	std::unordered_set<std::shared_ptr<TreeNode>> s_Visited;
 	for (auto& s_Child : m_TypeTreeRoot->Children)
@@ -442,9 +443,6 @@ std::pair<std::unordered_set<std::string>, bool> CodeGen::CollectDependencies(ST
 	if (p_Type->typeInfo()->isClass())
 	{
 		auto s_ClassType = reinterpret_cast<IClassType*>(p_Type->typeInfo());
-
-		if (s_ClassType->m_nTypeAlignment == 0)
-			s_IsRlType = false;
 
 		if (s_ClassType->m_nTypeSize > 0 && s_ClassType->m_nPropertyCount == 0)
 			s_IsRlType = false;
@@ -1224,18 +1222,20 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		}
 	}
 
-	if (!s_IsRlType)
-	{
-		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
-		return;
-	}
-
 	auto s_Type = reinterpret_cast<IClassType*>(p_Node->TypeData->typeInfo());
 
-	// We only care about struct types basically.
-	// But we still need to generate a dummy class for types with interfaces/base classes
-	// so that nested types (like enums) are still written.
-	if (s_Type->m_nInterfaceCount > 0 || s_Type->m_nBaseClassCount > 0)
+	// Types with interfaces/base classes can't be emitted as RL structs either; we still want to
+	// generate a dummy so any nested types (like enums) are written.
+	if (s_IsRlType && (s_Type->m_nInterfaceCount > 0 || s_Type->m_nBaseClassCount > 0))
+	{
+		s_IsRlType = false;
+	}
+
+	// Persist the final determination so dependents (processed after this node) see it and demote
+	// themselves accordingly.
+	p_Node->ResourceLibType = s_IsRlType;
+
+	if (!s_IsRlType)
 	{
 		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
 		return;
@@ -1275,7 +1275,10 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	GenerateRlClassSource(p_Node);
 
 	s_HeaderStream << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
-	s_HeaderStream << p_Indent << "class alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ") " << p_Node->Name << std::endl;
+	s_HeaderStream << p_Indent << "class ";
+	if (s_Type->m_nTypeAlignment > 0)
+		s_HeaderStream << "alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ") ";
+	s_HeaderStream << p_Node->Name << std::endl;
 	s_HeaderStream << p_Indent << "{" << std::endl;
 	s_HeaderStream << p_Indent << "public:" << std::endl;
 
@@ -1337,9 +1340,12 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		<< ") == 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec
 		<< ", \"Wrong size for " << p_Node->Name << "\");" << std::endl;
 
-	s_HeaderStream << p_Indent << "static_assert(alignof(" << p_Node->Name
-		<< ") == 0x" << std::hex << std::uppercase << static_cast<int>(s_Type->m_nTypeAlignment) << std::dec
-		<< ", \"Wrong alignment for " << p_Node->Name << "\");" << std::endl;
+	if (s_Type->m_nTypeAlignment > 0)
+	{
+		s_HeaderStream << p_Indent << "static_assert(alignof(" << p_Node->Name
+			<< ") == 0x" << std::hex << std::uppercase << static_cast<int>(s_Type->m_nTypeAlignment) << std::dec
+			<< ", \"Wrong alignment for " << p_Node->Name << "\");" << std::endl;
+	}
 
 	s_HeaderStream << std::endl;
 }
@@ -1634,7 +1640,10 @@ void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const st
 	VTableMsvc* s_VTable = s_HasRtti ? s_RttiIt->second : nullptr;
 
 	m_SDKHeader << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
-	m_SDKHeader << p_Indent << (s_HasRtti ? "class " : "struct ") << p_Node->Name;
+	m_SDKHeader << p_Indent << (s_HasRtti ? "class " : "struct ");
+	if (s_Type->m_nTypeAlignment > 0)
+		m_SDKHeader << "alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ") ";
+	m_SDKHeader << p_Node->Name;
 
 	size_t s_InheritedVTableSize = 0;  // Number of inherited vtable entries
 
