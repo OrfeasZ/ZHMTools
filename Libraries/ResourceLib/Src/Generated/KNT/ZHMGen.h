@@ -361,24 +361,6 @@ namespace ChallengesService {
 		Completed = 2,
 	};
 
-	// Size: 0x30
-	class /*alignas(8)*/ SChallengeDefinition	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SChallengeDefinition& p_Other) const;
-		bool operator!=(const SChallengeDefinition& p_Other) const { return !(*this == p_Other); }
-
-		ZGuid m_id; // 0x0
-		ZString m_name; // 0x10
-		ZString m_description; // 0x20
-	};
-
 	// Size: 0x20
 	class /*alignas(8)*/ SChallengeState	{
 	public:
@@ -397,6 +379,24 @@ namespace ChallengesService {
 		int32 m_progressCurrent; // 0x14
 		int32 m_progressMax; // 0x18
 		uint8_t _pad1C[4] {};
+	};
+
+	// Size: 0x30
+	class /*alignas(8)*/ SChallengeDefinition	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SChallengeDefinition& p_Other) const;
+		bool operator!=(const SChallengeDefinition& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid m_id; // 0x0
+		ZString m_name; // 0x10
+		ZString m_description; // 0x20
 	};
 
 	// Size: 0x20
@@ -1393,12 +1393,12 @@ enum class EDiffuseGIClipmapLevelCount : int8_t
 };
 
 // Size: 0x1
-enum class EDiffuseGIProbeCountXY : uint8_t
+enum class EDiffuseGIProbeCountXY : int8_t
 {
 	DIFFUSEGIPROBECOUNTXY_LOW = 16,
 	DIFFUSEGIPROBECOUNTXY_MEDIUM = 32,
 	DIFFUSEGIPROBECOUNTXY_HIGH = 64,
-	DIFFUSEGIPROBECOUNTXY_VERY_HIGH = 128,
+	DIFFUSEGIPROBECOUNTXY_VERY_HIGH = -128,
 };
 
 // Size: 0x1
@@ -4541,65 +4541,6 @@ namespace Expression {
 
 }
 
-// Size: 0x8
-class /*alignas(4)*/ SVector2{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SVector2& p_Other) const;
-	bool operator!=(const SVector2& p_Other) const { return !(*this == p_Other); }
-
-	float32 x; // 0x0
-	float32 y; // 0x4
-};
-
-// Size: 0x1C
-class /*alignas(4)*/ SCurveKey{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SCurveKey& p_Other) const;
-	bool operator!=(const SCurveKey& p_Other) const { return !(*this == p_Other); }
-
-	float32 Time; // 0x0
-	float32 Value; // 0x4
-	SVector2 TangentIn; // 0x8
-	SVector2 TangentOut; // 0x10
-	ECurveInterpolationMode InterpolationMode; // 0x18
-	EContinuity ContinuityKind; // 0x19
-	uint8_t _pad1A[2] {};
-};
-
-// Size: 0x48
-class /*alignas(8)*/ ZCurve{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZCurve& p_Other) const;
-	bool operator!=(const ZCurve& p_Other) const { return !(*this == p_Other); }
-
-	TArray<TFixedArray<float32, 8>> data; // 0x0
-	TArray<SCurveKey> m_controlPoints; // 0x18
-	ECurveVersion m_version; // 0x30
-	uint8_t _pad31[7] {};
-	ZString m_name; // 0x38
-};
-
 // Size: 0xC
 class /*alignas(4)*/ SVector3{
 public:
@@ -4767,6 +4708,65 @@ public:
 };
 
 // Size: 0x8
+class /*alignas(4)*/ SVector2{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SVector2& p_Other) const;
+	bool operator!=(const SVector2& p_Other) const { return !(*this == p_Other); }
+
+	float32 x; // 0x0
+	float32 y; // 0x4
+};
+
+// Size: 0x1C
+class /*alignas(4)*/ SCurveKey{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SCurveKey& p_Other) const;
+	bool operator!=(const SCurveKey& p_Other) const { return !(*this == p_Other); }
+
+	float32 Time; // 0x0
+	float32 Value; // 0x4
+	SVector2 TangentIn; // 0x8
+	SVector2 TangentOut; // 0x10
+	ECurveInterpolationMode InterpolationMode; // 0x18
+	EContinuity ContinuityKind; // 0x19
+	uint8_t _pad1A[2] {};
+};
+
+// Size: 0x48
+class /*alignas(8)*/ ZCurve{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZCurve& p_Other) const;
+	bool operator!=(const ZCurve& p_Other) const { return !(*this == p_Other); }
+
+	TArray<TFixedArray<float32, 8>> data; // 0x0
+	TArray<SCurveKey> m_controlPoints; // 0x18
+	ECurveVersion m_version; // 0x30
+	uint8_t _pad31[7] {};
+	ZString m_name; // 0x38
+};
+
+// Size: 0x8
 class /*alignas(4)*/ ZResourcePtr{
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -4780,38 +4780,6 @@ public:
 	bool operator!=(const ZResourcePtr& p_Other) const { return !(*this == p_Other); }
 
 	uint8_t _pad0[8] {};
-};
-
-// Size: 0x30
-class /*alignas(4)*/ SMatrix43{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SMatrix43& p_Other) const;
-	bool operator!=(const SMatrix43& p_Other) const { return !(*this == p_Other); }
-
-	SVector3 XAxis; // 0x0
-	SVector3 YAxis; // 0xC
-	SVector3 ZAxis; // 0x18
-	SVector3 Trans; // 0x24
-};
-
-class ZSpatialEntity
-{
-public:
-	// Size: 0x4
-	enum class ERoomBehaviour : int32_t
-	{
-		ROOM_STATIC = 0,
-		ROOM_DYNAMIC = 1,
-		ROOM_STATIC_OUTSIDE_CLIENT = 2,
-	};
-
 };
 
 namespace TerrainTypes {
@@ -4995,6 +4963,38 @@ public:
 	ZString m_concreteTag; // 0xF0
 };
 
+// Size: 0x30
+class /*alignas(4)*/ SMatrix43{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SMatrix43& p_Other) const;
+	bool operator!=(const SMatrix43& p_Other) const { return !(*this == p_Other); }
+
+	SVector3 XAxis; // 0x0
+	SVector3 YAxis; // 0xC
+	SVector3 ZAxis; // 0x18
+	SVector3 Trans; // 0x24
+};
+
+class ZSpatialEntity
+{
+public:
+	// Size: 0x4
+	enum class ERoomBehaviour : int32_t
+	{
+		ROOM_STATIC = 0,
+		ROOM_DYNAMIC = 1,
+		ROOM_STATIC_OUTSIDE_CLIENT = 2,
+	};
+
+};
+
 // Size: 0x8
 class /*alignas(0)*/ IComponentInterface{
 public:
@@ -5010,6 +5010,105 @@ public:
 
 	uint8_t _pad0[8] {};
 };
+
+namespace G2PCG {
+	// Size: 0x8
+	class /*alignas(0)*/ IPointCloud	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const IPointCloud& p_Other) const;
+		bool operator!=(const IPointCloud& p_Other) const { return !(*this == p_Other); }
+
+		uint8_t _pad0[8] {};
+	};
+
+	// Size: 0x8
+	class /*alignas(0)*/ ISpawner	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const ISpawner& p_Other) const;
+		bool operator!=(const ISpawner& p_Other) const { return !(*this == p_Other); }
+
+		uint8_t _pad0[8] {};
+	};
+
+	class ZPointcloudTransformBase
+	{
+	public:
+		// Size: 0x1
+		enum class ETransformationSpace : int8_t
+		{
+			TS_LOCAL = 0,
+			TS_WORLD = 1,
+		};
+
+	};
+
+	// Size: 0x8
+	class /*alignas(0)*/ ISampler	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const ISampler& p_Other) const;
+		bool operator!=(const ISampler& p_Other) const { return !(*this == p_Other); }
+
+		uint8_t _pad0[8] {};
+	};
+
+	class ZPointcloudFilterTagEntity
+	{
+	public:
+		// Size: 0x1
+		enum class ETagCombineOperationType : int8_t
+		{
+			OP_AND = 0,
+			OP_OR = 1,
+		};
+
+		// Size: 0x1
+		enum class EOperationType : int8_t
+		{
+			OP_GREATER = 0,
+			OP_GREATER_EQUAL = 1,
+			OP_EQUAL = 2,
+			OP_LESS = 3,
+			OP_LESS_EQUAL = 4,
+		};
+
+	};
+
+	class ZSplineSampler
+	{
+	public:
+		// Size: 0x1
+		enum class ESplineOrientationType : int8_t
+		{
+			O_NONE = 0,
+			O_TANGENT = 1,
+			O_TOWARDS_CENTER = 2,
+			O_TOWARDS_NEXT = 3,
+		};
+
+	};
+
+}
 
 // Size: 0x1
 enum class GameTimeMultiplierType : int8_t
@@ -5038,22 +5137,6 @@ public:
 };
 
 // Size: 0x10
-class /*alignas(8)*/ ZEntityRef{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZEntityRef& p_Other) const;
-	bool operator!=(const ZEntityRef& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[16] {};
-};
-
-// Size: 0x10
 class /*alignas(4)*/ SVector4{
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5072,9 +5155,20 @@ public:
 	float32 w; // 0xC
 };
 
-class ZCLValueManager
-{
+// Size: 0x10
+class /*alignas(8)*/ ZEntityRef{
 public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZEntityRef& p_Other) const;
+	bool operator!=(const ZEntityRef& p_Other) const { return !(*this == p_Other); }
+
+	uint8_t _pad0[16] {};
 };
 
 // Size: 0x8
@@ -5092,6 +5186,4758 @@ public:
 
 	int64 m_nTicks; // 0x0
 };
+
+class ZCLValueManager
+{
+public:
+};
+
+namespace Gameplay {
+	// Size: 0x4
+	enum class EDashCoverSwapFacingMode : int32_t
+	{
+		KeepDashFacing = 0,
+		SwapFacingToTargetCorner = 1,
+		InputDrivenDynamicFacing = 2,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionAttributeSearchType : int8_t
+	{
+		LowestValue = 0,
+		HighestValue = 1,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionLaunchVelocityClampBehavior : int8_t
+	{
+		None = 0,
+		Signed = 1,
+		Unsigned = 2,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionReferencePointStepOperation : int8_t
+	{
+		CapsuleTransform = 0,
+		BoneTransform = 1,
+		CameraTransform = 2,
+		MoveInputOrientation = 3,
+		VelocityOrientation = 4,
+		VelocityTranslation = 5,
+		SourceMarkupWorldNormalized = 6,
+		SourceMarkupLocalNormalized = 7,
+		SourceMarkupClosestPoint = 8,
+		SourceMarkupConnectionLink = 9,
+		SourceMarkupPlaneIntersection = 10,
+		TargetMarkupWorldNormalized = 11,
+		TargetMarkupLocalNormalized = 12,
+		TargetMarkupClosestPoint = 13,
+		TargetMarkupConnectionLink = 14,
+		TargetMarkupPlaneIntersection = 15,
+		WorldTranslation = 16,
+		LocalTranslation = 17,
+		Rotation = 18,
+		AffineInverse = 19,
+		TranslationDirectionToRotation = 20,
+		RotationToTranslationDirection = 21,
+		PlanarizedRotation = 22,
+		RayTrace = 23,
+		SafeCapsuleTransformTowardsLocalRight = 24,
+	};
+
+	// Size: 0x18
+	class /*alignas(4)*/ SAgilityActionReferencePointStepDebug	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAgilityActionReferencePointStepDebug& p_Other) const;
+		bool operator!=(const SAgilityActionReferencePointStepDebug& p_Other) const { return !(*this == p_Other); }
+
+		bool m_drawEnabled; // 0x0
+		uint8_t _pad1[3] {};
+		float32 m_drawSize; // 0x4
+		float32 m_drawTime; // 0x8
+		SColorRGB m_drawColor; // 0xC
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionReferencePointStepMethod : int8_t
+	{
+		Set = 0,
+		Apply = 1,
+		Offset = 2,
+		Scale = 3,
+	};
+
+	// Size: 0x4
+	enum class EHumanoidBoneType : int32_t
+	{
+		Hip = 0,
+		Torso = 1,
+		Head = 2,
+		RightKnee = 3,
+		LeftKnee = 4,
+		RightClavicle = 5,
+		LeftClavicle = 6,
+		RightElbow = 7,
+		LeftElbow = 8,
+		BackAttacher = 9,
+		RightHandAttacher = 10,
+		RightIKHandAttacher = 11,
+		LeftHandAttacher = 12,
+		LeftIKHandAttacher = 13,
+		RightFoot = 14,
+		LeftFoot = 15,
+		FreeAttacher_Ground = 16,
+		HeadEnd = 17,
+		Ground = 18,
+		NpcVisionEffector = 19,
+		RightWrist = 20,
+		LeftWrist = 21,
+		RightShoulder = 22,
+		LeftShoulder = 23,
+		RightFemur = 24,
+		LeftFemur = 25,
+		PropAttacher = 26,
+		Spine03 = 27,
+		Nose = 28,
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SVehicleCameraRollConfiguration	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleCameraRollConfiguration& p_Other) const;
+		bool operator!=(const SVehicleCameraRollConfiguration& p_Other) const { return !(*this == p_Other); }
+
+		bool m_enabled; // 0x0
+		uint8_t _pad1[3] {};
+		float32 m_maxRoll; // 0x4
+		float32 m_rollSpringTime; // 0x8
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatReaction : int32_t
+	{
+		eCCR_Block = 0,
+		eCCR_BlockAndCounter = 1,
+		eCCR_SideStep = 2,
+		eCCR_SideStepAndCounter = 3,
+		eCCR_Wait = 4,
+		eCCR_Parry = 5,
+	};
+
+	// Size: 0x20
+	class /*alignas(4)*/ STWIStopsConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STWIStopsConfig& p_Other) const;
+		bool operator!=(const STWIStopsConfig& p_Other) const { return !(*this == p_Other); }
+
+		TResourcePtr m_queryPreset; // 0x0
+		float32 m_stopsAnticipationProbeDistance; // 0x8
+		float32 m_stopsAbortDistance; // 0xC
+		float32 m_stopsMinLowObstacleHeight; // 0x10
+		float32 m_stopsMaxLowObstacleHeight; // 0x14
+		float32 m_obstacleDetectionDepthSize; // 0x18
+		float32 m_leaveContextDuration; // 0x1C
+	};
+
+	// Size: 0x1
+	enum class EVehicleDriftingDeactivationConditionType : int8_t
+	{
+		ForwardSpeed = 0,
+		LateralSpeed = 1,
+		AngularSpeed = 2,
+		SteeringValue = 3,
+		LateralSpeedUp = 4,
+		AngularSpeedUp = 5,
+		CounterSteering = 6,
+		HandbrakeOff = 7,
+		BrakesOff = 8,
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SVehicleDriftingDeactivationCondition	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleDriftingDeactivationCondition& p_Other) const;
+		bool operator!=(const SVehicleDriftingDeactivationCondition& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::EVehicleDriftingDeactivationConditionType m_conditionType; // 0x0
+		uint8_t _pad1[3] {};
+		float32 m_thresholdValue; // 0x4
+		float32 m_time; // 0x8
+		uint8_t _padC[4] {};
+		ZGameTime m_timestampOfStartSatisfyingCondition; // 0x10
+	};
+
+	// Size: 0x14
+	class /*alignas(4)*/ SVehicleCameraControlsConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleCameraControlsConfig& p_Other) const;
+		bool operator!=(const SVehicleCameraControlsConfig& p_Other) const { return !(*this == p_Other); }
+
+		bool m_invertHorizontalOrbit; // 0x0
+		bool m_invertVerticalOrbit; // 0x1
+		uint8_t _pad2[2] {};
+		SVector2 m_maxInputAngles; // 0x4
+		SVector2 m_maxInputAnglesSpringTimes; // 0xC
+	};
+
+	// Size: 0x28
+	class /*alignas(4)*/ STWIAnticipationConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STWIAnticipationConfig& p_Other) const;
+		bool operator!=(const STWIAnticipationConfig& p_Other) const { return !(*this == p_Other); }
+
+		TResourcePtr m_queryPreset; // 0x0
+		SVector2 m_forwardLimits; // 0x8
+		SVector2 m_rightSideLimits; // 0x10
+		SVector2 m_heightLimits; // 0x18
+		SVector2 m_crouchHeightLimits; // 0x20
+	};
+
+	// Size: 0x20
+	class /*alignas(4)*/ SVehicleFollowConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleFollowConfig& p_Other) const;
+		bool operator!=(const SVehicleFollowConfig& p_Other) const { return !(*this == p_Other); }
+
+		SVector4 m_equilibriumPoint_Yaw_Pitch_Radius_FOV; // 0x0
+		SVector4 m_equilibriumPoint_Yaw_Pitch_Radius_FOV_SpringTimes; // 0x10
+	};
+
+	// Size: 0x18
+	class /*alignas(4)*/ SVehicleLookAtOffsetConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleLookAtOffsetConfig& p_Other) const;
+		bool operator!=(const SVehicleLookAtOffsetConfig& p_Other) const { return !(*this == p_Other); }
+
+		SVector3 m_lookAtOffsetXYZ; // 0x0
+		SVector3 m_lookAtOffsetXYZSpringTimes; // 0xC
+	};
+
+	// Size: 0x38
+	class /*alignas(4)*/ SVehicleCameraStateConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleCameraStateConfig& p_Other) const;
+		bool operator!=(const SVehicleCameraStateConfig& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::SVehicleFollowConfig m_followConfig; // 0x0
+		Gameplay::SVehicleLookAtOffsetConfig m_lookAtOffsetConfig; // 0x20
+	};
+
+	// Size: 0x11C
+	class /*alignas(4)*/ SVehicleCameraStatesData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleCameraStatesData& p_Other) const;
+		bool operator!=(const SVehicleCameraStatesData& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::SVehicleCameraStateConfig m_atRestStateConfig; // 0x0
+		Gameplay::SVehicleCameraStateConfig m_rollingStateConfig; // 0x38
+		Gameplay::SVehicleCameraStateConfig m_brakingStateConfig; // 0x70
+		Gameplay::SVehicleCameraStateConfig m_acceleratingStateConfig; // 0xA8
+		Gameplay::SVehicleCameraStateConfig m_acceleratingHighSpeedStateConfig; // 0xE0
+		float32 m_highSpeedThreshold; // 0x118
+	};
+
+	// Size: 0x20
+	class /*alignas(4)*/ STWITouchConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STWITouchConfig& p_Other) const;
+		bool operator!=(const STWITouchConfig& p_Other) const { return !(*this == p_Other); }
+
+		TResourcePtr m_queryPreset; // 0x0
+		float32 m_castDistance; // 0x8
+		float32 m_castSphereRadius; // 0xC
+		float32 m_castAngle; // 0x10
+		float32 m_minimumContactDuration; // 0x14
+		float32 m_maximumContactDuration; // 0x18
+		float32 m_interactionCooldown; // 0x1C
+	};
+
+	// Size: 0x4
+	enum class EDashTargetingBehaviour : int32_t
+	{
+		Default = 0,
+		ClosestTargetToPlayer = 1,
+		FurthestTargetToPlayer = 2,
+	};
+
+	// Size: 0x4
+	enum class EDashStancePolicy : int32_t
+	{
+		TryKeepStance = 0,
+		ChangeAccordingToCoverType = 1,
+	};
+
+	// Size: 0x1
+	enum class EClimbingTransitionSide : int8_t
+	{
+		Bottom = 0,
+		Top = 1,
+		Left = 2,
+		Right = 3,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionClimbingType : int8_t
+	{
+		None = 0,
+		Ladder = 1,
+		Drainpipe = 2,
+	};
+
+	// Size: 0x4
+	enum class EAIFlightRecordChannel : int32_t
+	{
+		General = 0,
+		Plan_Primary = 1,
+		Plan_Secondary = 2,
+		Plan_Tertiary = 3,
+		HTN = 4,
+		HTNPinned = 5,
+		Roles = 6,
+		Senses = 7,
+		PerceptionModifiers = 8,
+		TagAdd = 9,
+		TagRemove = 10,
+		CooldownAdd = 11,
+		CooldownRemove = 12,
+		Investigation = 13,
+		Storyline = 14,
+		Locomotion = 15,
+		Pathfinding = 16,
+		LookAt = 17,
+		StateCommunication = 18,
+		AnimationAct = 19,
+		Dialogue = 20,
+		Communication = 21,
+		StateIcon = 22,
+		TacticalEspionageArea = 23,
+		Count = 24,
+	};
+
+	// Size: 0x4
+	enum class EAIFlightRecorderEntryType : int32_t
+	{
+		Message = 0,
+		Headline = 1,
+		Warning = 2,
+		Error = 3,
+		Count = 4,
+	};
+
+	// Size: 0x1
+	enum class EActionDirection : int8_t
+	{
+		None = 0,
+		Forward = 1,
+		Back = 2,
+		Left = 3,
+		Right = 4,
+		Any = 5,
+	};
+
+	// Size: 0x1
+	enum class EActionKeywordsType : int8_t
+	{
+		Parry = 0,
+		CombatRush = 1,
+		Grab = 2,
+		Agility = 3,
+		Locomotion = 4,
+		LocomotionApproach = 5,
+		EquipItem = 6,
+		MeleeAttack = 7,
+		GadgetView = 8,
+		ContextualItemThrow = 9,
+		CloseCombatPairedAction = 10,
+		FakeSurrender = 11,
+		Sidestep = 12,
+		CoverTakedown = 13,
+		JumpAway = 14,
+		CoverTransition = 15,
+		EnterLadderClimb = 16,
+		LeaveLadderClimb = 17,
+		Crouch = 18,
+		Uncrouch = 19,
+		Interact = 20,
+		ThrowItem = 21,
+		Pickpocket = 22,
+		BlendingIn = 23,
+		UseDoor = 24,
+		PickUpItem = 25,
+		ActivateGadget = 26,
+		DropDown = 27,
+		StartStrafing = 28,
+		StopStrafing = 29,
+		StartAccelerating = 30,
+		StopAccelerating = 31,
+		Stagger = 32,
+		TrespassingStanceChange = 33,
+		AnimationAct = 34,
+		AimFirearm = 35,
+		ShootFirearm = 36,
+		GrabAttack = 37,
+		GrabRush = 38,
+		ReloadFirearm = 39,
+		Block = 40,
+		Dash = 41,
+	};
+
+	// Size: 0x1
+	enum class EAdjacentCoverType : int8_t
+	{
+		Regular = 0,
+		Corner = 1,
+		InnerCorner = 2,
+	};
+
+	// Size: 0x4
+	enum class EAgilityActionAllowance : int32_t
+	{
+		AllowWhileUsingGadget = 1,
+		AllowWhileFalling = 2,
+		AllowWhileAiming = 4,
+		AllowWhileInConfrontation = 8,
+		AllowWhileGrounded = 16,
+		AllowWhilePerformingSelf = 32,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionApproachingMovementDisplacementErrorCorrectionType : int8_t
+	{
+		None = 0,
+		BlendByRemainingDistance = 1,
+		BlendByTraveledDistance = 2,
+		BlendByRemainingRatio = 3,
+		BlendByTraveledRatio = 4,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionApproachingMovementProjectionType : int8_t
+	{
+		None = 0,
+		SourceMarkupPath = 1,
+		TargetMarkupPath = 2,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionApproachingMovementType : int8_t
+	{
+		Stationary = 0,
+		Moving = 1,
+		Dynamic = 2,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionAttributeOperatorType : int8_t
+	{
+		Distance2D = 0,
+		Distance3D = 1,
+		DistanceLocalX = 2,
+		DistanceLocalY = 3,
+		DistanceLocalZ = 4,
+		AbsOrientationYawDelta = 5,
+		InputDirectionMatch = 6,
+		LastNonZeroInputDirectionMatch = 7,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionAttributeSelectionInfluence : int8_t
+	{
+		None = 0,
+		LowerValuePriority = 1,
+		HigherValuePriority = 2,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionCollectionEvaluationType : int8_t
+	{
+		All = 0,
+		Any = 1,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionConditionConstraintType : int8_t
+	{
+		DistanceLower = 0,
+		DistanceGreater = 1,
+		DistanceXYLower = 2,
+		DistanceXYGreater = 3,
+		DistanceZLower = 4,
+		DistanceZGreater = 5,
+		RelativeLower = 6,
+		RelativeGreater = 7,
+		OrientationLower = 8,
+		OrientationGreater = 9,
+		AbsOrientationLower = 10,
+		AbsOrientationGreater = 11,
+		FacingSignLower = 12,
+		FacingSignGreater = 13,
+		InsideSlice = 14,
+		BehindOfForwardPlane = 15,
+		FrontOfForwardPlane = 16,
+		InputMagnitudeLower = 17,
+		InputMagnitudeGreater = 18,
+		InputDirectionMatch = 19,
+		InputDirectionDeltaGreater = 20,
+		InputDirectionDeltaLower = 21,
+		LastNonZeroInputDirectionMatch = 22,
+		VelocityMagnitudeLower = 23,
+		VelocityMagnitudeGreater = 24,
+		VelocityDirectionMatch = 25,
+		HasAngularVelocity = 26,
+		PerformingAgilityActionWithContentHint = 27,
+		HasOverlappingHumanoidInBox = 28,
+		HasOverlappingCollisionInBox = 29,
+		OuterConditionsOr = 30,
+		OuterConditionsAnd = 31,
+		LiteralTrue = 32,
+		LiteralFalse = 33,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionConnectionDebugDrawType : int8_t
+	{
+		None = 0,
+		Line = 1,
+		DottedLine = 2,
+		Sphere = 3,
+		Box = 4,
+	};
+
+	// Size: 0x4
+	enum class EAgilityActionConnectionNavLinkFlag : int32_t
+	{
+		ContextualJump = 1,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionConnectionTargetType : int8_t
+	{
+		Self = 0,
+		Other = 1,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionEnvironmentContextTarget : int8_t
+	{
+		SourceEnvironmentContext = 0,
+		TargetEnvironmentContext = 1,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionHumanoidState : int8_t
+	{
+		None = 0,
+		Hang = 1,
+		Sidle = 2,
+		Ladder = 3,
+		Drainpipe = 4,
+		ZipLine = 5,
+	};
+
+	// Size: 0x4
+	enum class EAgilityActionNativeHint : int32_t
+	{
+		ReorientCamera = 1,
+		Illegal = 2,
+		UnequipItem = 4,
+		CreateObstacleWhenRestricted = 8,
+		UseDefaultBoneCollisions = 16,
+		ImmuneToStagger = 32,
+		UnequipItemInstant = 64,
+		AnimatedCamera = 128,
+		InterestingCamera = 256,
+	};
+
+	// Size: 0x4
+	enum class EAgilityActionPerformance : int32_t
+	{
+		AbortWhenOpportunityLost = 1,
+		AbortWhenInputLost = 2,
+		DismountWhenAborted = 4,
+	};
+
+	// Size: 0x4
+	enum class EAgilityActionReferencePointStepFlag : int32_t
+	{
+		IgnoreRotation = 1,
+		IgnoreTranslation = 2,
+		IgnoreRotationIfIdentity = 4,
+		IgnoreTranslationIfZero = 8,
+		IgnoreTranslationsOnPositiveAxes = 16,
+		IgnoreTranslationsOnNegativeAxes = 32,
+		IgnoreTranslationIfConditionTrue = 64,
+		IgnoreRotationIfConditionTrue = 128,
+		IgnoreTranslationIfConditionFalse = 256,
+		IgnoreRotationIfConditionFalse = 512,
+	};
+
+	// Size: 0x4
+	enum class EAgilityActionRequirement : int32_t
+	{
+		RequireBeingGrounded = 1,
+	};
+
+	// Size: 0x4
+	enum class EAgilityActionRestriction : int32_t
+	{
+		CombatNearby = 1,
+		ReloadPrioritizedWhenCombatNearby = 2,
+		CoreLogic = 4,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionState : int8_t
+	{
+		NotAvailable = 0,
+		OpportunityAvailable = 1,
+		Performing = 2,
+	};
+
+	// Size: 0x1
+	enum class EAgilityActionTransitionType : int8_t
+	{
+		Instant = 0,
+		Timed = 1,
+		AnimationDriven = 2,
+		ApproachingMovement = 3,
+		Launch = 4,
+	};
+
+	// Size: 0x1
+	enum class EAgilityGoalIssuePolicy : int8_t
+	{
+		Input = 0,
+		Automatic = 1,
+		InputOrAutomatic = 2,
+	};
+
+	// Size: 0x4
+	enum class EAgilityStartingStance : int32_t
+	{
+		Crouch_Idle = 0,
+		Crouch_Walking = 1,
+		Standing_Idle = 2,
+		Standing_Walking = 3,
+		Standing_Sprinting = 4,
+	};
+
+	// Size: 0x4
+	enum class EAligningMovementIssuer : int32_t
+	{
+		Unknown = 0,
+		Block = 1,
+		MeleeAttack = 2,
+		ItemThrow = 3,
+		Grab = 4,
+		CombatRush = 5,
+		Sidestep = 6,
+		Parry = 7,
+		Doors = 8,
+		CloseCombatPairedAction = 9,
+		AttackFromAbove = 10,
+		Pickpocket = 11,
+		PrivateSpaceReaction = 12,
+		Stumble = 13,
+		VaultAttack = 14,
+		FakeSurrender = 15,
+	};
+
+	// Size: 0x1
+	enum class EAnimationActAbortCause : int8_t
+	{
+		Default = 0,
+		ConcreteBag = 1,
+		ActiveBluff = 2,
+		PhoneDart = 3,
+		Blinded = 4,
+		Combat = 5,
+	};
+
+	// Size: 0x1
+	enum class EAnimationActAbortReason : int8_t
+	{
+		None = 0,
+		Urgent = 1,
+		NonUrgent = 2,
+		Snap = 3,
+	};
+
+	// Size: 0x1
+	enum class EAnimationActLoopStance : int8_t
+	{
+		Standing = 0,
+		Crouched = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationAttackFromAboveType : int8_t
+	{
+		Falling = 0,
+		Edge = 1,
+		Railing = 2,
+		Hang = 3,
+		Sidle = 4,
+	};
+
+	// Size: 0x1
+	enum class EAnimationCombatState : int8_t
+	{
+		None = 0,
+		InCombat = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationDashState : int8_t
+	{
+		NoDash = 0,
+		Dashing_StandToCrouch = 1,
+		Dashing_StandToStand = 2,
+		Dashing_CrouchToCrouch = 3,
+		Dashing_CrouchToStand = 4,
+		Dashing_Combat = 5,
+	};
+
+	// Size: 0x1
+	enum class EAnimationDazeType : int8_t
+	{
+		Smoke = 0,
+		Electric = 1,
+		Vision = 2,
+		Physical = 3,
+		Auditory = 4,
+		TrapSetpiece = 5,
+		BodyPartWeakPoint = 6,
+		Glue = 7,
+		Oil = 8,
+	};
+
+	// Size: 0x1
+	enum class EAnimationEnvironmentalLockState : int8_t
+	{
+		Unlocked = 0,
+		Sit_100cm = 1,
+		Sit_020cm = 2,
+		Sit_000cm = 3,
+		Sit_Stool_080cm = 4,
+		Sit_Chair = 5,
+		Sit_Couch = 6,
+		Lean_120cm = 7,
+		Lean_100cm = 8,
+		Lean_075cm = 9,
+		Lean_Wall = 10,
+		Stand = 11,
+	};
+
+	// Size: 0x1
+	enum class EAnimationFirearmArmorHitState : int8_t
+	{
+		NoArmor = 0,
+		ArmorHit = 1,
+		ArmorDestroyed = 2,
+	};
+
+	// Size: 0x1
+	enum class EAnimationFirearmDisarmSource : int8_t
+	{
+		CoreLogic = 0,
+		HitReaction = 1,
+		Stagger = 2,
+	};
+
+	// Size: 0x1
+	enum class EAnimationFirearmPosture : int8_t
+	{
+		None = 0,
+		Lowered = 1,
+		Primed = 2,
+		Raised = 3,
+		AboveHead = 4,
+		BlindFiringLeft = 5,
+		BlindFiringRight = 6,
+		LeaningLeft = 7,
+		LeaningRight = 8,
+	};
+
+	// Size: 0x1
+	enum class EAnimationGrabBreakFreeType : int8_t
+	{
+		None = 0,
+		RegularGrab = 1,
+		GrabRush = 2,
+	};
+
+	// Size: 0x1
+	enum class EAnimationGrabStep : int8_t
+	{
+		ThrowingFromAttack = 0,
+		RedirectThrow = 1,
+		PreparingGrab = 2,
+		Grabbing = 3,
+		FailingGrab = 4,
+		BreakingFree = 5,
+		Throwing = 6,
+		Attacking = 7,
+		Rushing = 8,
+		RushingImpact = 9,
+		Taunting = 10,
+	};
+
+	// Size: 0x1
+	enum class EAnimationGrabbedStep : int8_t
+	{
+		BeingThrownFromAttack = 0,
+		PreparingGrab = 1,
+		Grabbing = 2,
+		Throwing = 3,
+		BreakingFree = 4,
+		BeingRedirectThrown = 5,
+		BeingRushed = 6,
+		GettingHit = 7,
+		Unused_2 = 8,
+		GettingShot = 9,
+	};
+
+	// Size: 0x1
+	enum class EAnimationHitReactionSource : int8_t
+	{
+		FireArm = 0,
+		MeleeImpact = 1,
+		Throwable = 2,
+		Explosion = 3,
+	};
+
+	// Size: 0x1
+	enum class EAnimationHumanoidHitStrength : int8_t
+	{
+		Light = 0,
+		Heavy = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationItemState : int8_t
+	{
+		Unequipped = 0,
+		Equipped = 1,
+		Equipping = 2,
+		Unequipping = 3,
+		Reloading = 4,
+		Chambering = 5,
+		Unused2 = 6,
+		PickingUp = 7,
+		Dropping = 8,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionAgility : int8_t
+	{
+		None = 0,
+		WallLedgeHang = 1,
+		OpenLedgeHang = 2,
+		LedgeSidle = 3,
+		Ladder = 4,
+		Drainpipe = 5,
+		ZipLine = 6,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionApproach : int8_t
+	{
+		None = 0,
+		Approaching = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionContext : int8_t
+	{
+		Formal = 0,
+		Casual = 1,
+		Combat = 2,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionCover : int8_t
+	{
+		None = 0,
+		RegularCover = 1,
+		MovableCover = 2,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionDash : int8_t
+	{
+		None = 0,
+		Dashing = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionDisoriented : int8_t
+	{
+		None = 0,
+		Disoriented = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionEquippedItem : int8_t
+	{
+		None = 0,
+		Firearm = 1,
+		Throwable = 2,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionFacing : int8_t
+	{
+		TrajectoryForward = 0,
+		Strafing = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionGameplayArea : int8_t
+	{
+		Social = 0,
+		SoftTrespassing = 1,
+		Trespassing = 2,
+		LicenseToKill = 3,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionSpeed : int8_t
+	{
+		Slow = 0,
+		Medium = 1,
+		Fast = 2,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionStance : int8_t
+	{
+		Standing = 0,
+		Crouching = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionStateType : int8_t
+	{
+		Speed = 0,
+		Style = 1,
+		Stance = 2,
+		Facing = 3,
+		EquippedItem = 4,
+		Cover = 5,
+		Dash = 6,
+		Approach = 7,
+		Agility = 8,
+		GameplayArea = 9,
+		PlayerStyle = 10,
+		Combat = 11,
+		Disoriented = 12,
+	};
+
+	// Size: 0x1
+	enum class EAnimationLocomotionStyle : int8_t
+	{
+		Casual = 0,
+		Tense = 1,
+		CloseCombat = 2,
+		AmbientSearch_NPC = 3,
+		RangedCombat = 4,
+		Panic = 5,
+	};
+
+	// Size: 0x1
+	enum class EAnimationParryStep : int8_t
+	{
+		None = 0,
+		Attacking = 1,
+		Impacting = 2,
+		Failing = 3,
+		Staggered = 4,
+	};
+
+	// Size: 0x4
+	enum class EAnimationPayloadEvent : int32_t
+	{
+		OnFirearmHitReaction = 0,
+		OnItemEquip = 1,
+	};
+
+	// Size: 0x1
+	enum class EAnimationStumbleImpactStrength : int8_t
+	{
+		Light = 0,
+		Heavy = 1,
+	};
+
+	// Size: 0x1
+	enum class EApproachMovementFinishPolicy : int8_t
+	{
+		OnlyOwnSource = 0,
+		AnySource = 1,
+	};
+
+	// Size: 0x1
+	enum class EApproachPathFailReason : int8_t
+	{
+		None = 0,
+		StartLocationNoNavmesh = 1,
+		EndLocationNoNavmesh = 2,
+		PathNotFound = 3,
+		PathTooShort = 4,
+	};
+
+	// Size: 0x1
+	enum class EArchetypeRoleAvailabilityType : int8_t
+	{
+		Default = 0,
+		Always = 1,
+		Never = 2,
+	};
+
+	// Size: 0x4
+	enum class EAttackFromAboveState : int32_t
+	{
+		None = 0,
+		Jump = 1,
+		Impact = 2,
+	};
+
+	// Size: 0x4
+	enum class EAttackFromAboveType : int32_t
+	{
+		Invalid = -1,
+		Falling = 0,
+		Edge = 1,
+		Railing = 2,
+		Hang = 3,
+		Sidle = 4,
+		Zipline = 5,
+	};
+
+	// Size: 0x1
+	enum class EBasCharacterSourceType : int8_t
+	{
+		Self = 0,
+		TargetEnemy = 1,
+		AnotherNPC = 2,
+		None = 3,
+	};
+
+	// Size: 0x1
+	enum class EBasValueComparisonOperationType : int8_t
+	{
+		Equal = 0,
+		NotEqual = 1,
+		Greater = 2,
+		GreaterOrEqual = 3,
+		Less = 4,
+		LessOrEqual = 5,
+	};
+
+	// Size: 0x1
+	enum class EBlastFieldComponentType : int8_t
+	{
+		WakeUpAndKinematic = 0,
+		PhysicsImpulse = 1,
+		Destruction = 2,
+		ClothImpulse = 3,
+		GameplayEvent = 4,
+	};
+
+	// Size: 0x1
+	enum class EBlastFieldDestructionType : int8_t
+	{
+		Impact = 0,
+		Explosion = 1,
+	};
+
+	// Size: 0x1
+	enum class EBlastFieldForceDirectionType : int8_t
+	{
+		BlastFieldTransform = 0,
+		CustomValue = 1,
+	};
+
+	// Size: 0x1
+	enum class EBlastFieldImpulseForceApplicationType : int8_t
+	{
+		CenterOfMass = 0,
+		BoundingBoxCenter = 1,
+		ProjectionToBoundingBox = 2,
+	};
+
+	// Size: 0x1
+	enum class EBlastFieldSensorShapeType : int8_t
+	{
+		Sphere = 0,
+		Box = 1,
+	};
+
+	// Size: 0x1
+	enum class EBlastFieldSourceType : int8_t
+	{
+		Unknown = 0,
+		CoreLogic = 1,
+		Projectiles = 2,
+		Stumbles = 3,
+		PairedActions = 4,
+		MeleeAttacks = 5,
+	};
+
+	// Size: 0x4
+	enum class EBossEncounterPhase : int32_t
+	{
+		PhaseOne = 0,
+		PhaseTwo = 1,
+		PhaseThree = 2,
+		PhaseFour = 3,
+	};
+
+	// Size: 0x1
+	enum class EBossType : int8_t
+	{
+		Assassin = 0,
+		Jaws = 1,
+		Damien = 2,
+		ExoDamien = 3,
+	};
+
+	// Size: 0x4
+	enum class ECameraMeleeTargetType : int32_t
+	{
+		CurrentTarget = 0,
+		FinisherTarget = 1,
+		CurrentTargetMidpoint = 2,
+	};
+
+	// Size: 0x4
+	enum class ECharacterProviderCharacterType : int32_t
+	{
+		NPC = 0,
+		Player = 1,
+		VoiceOver = 2,
+	};
+
+	// Size: 0x1
+	enum class ECinematicTransitionApproachTargetType : int8_t
+	{
+		AnimationTrack = 0,
+		TrajectoryTrack = 1,
+	};
+
+	// Size: 0x4
+	enum class ECinematicsDebugSequenceTargetEntityType : int32_t
+	{
+		HumanoidSequenceController = 0,
+		VehicleSequenceController = 1,
+		Others = 2,
+	};
+
+	// Size: 0x4
+	enum class ECinematicsDebugSequenceTrackType : int32_t
+	{
+		AnimationClip = 0,
+		AnimationNetworkClip = 1,
+		AnimationNetworkParameter = 2,
+		AudioSequence = 3,
+		CameraLensPreset = 4,
+		CameraSequenceClip = 5,
+		EntityProperty = 6,
+		HumanoidControl = 7,
+		VehicleControl = 8,
+		InjectedAnimationNetwork = 9,
+		Trajectory = 10,
+		Undefined = 11,
+	};
+
+	// Size: 0x1
+	enum class EClimbAction : int8_t
+	{
+		None = -1,
+		LedgeHangMount = 0,
+		LedgeHangDismount = 1,
+		LedgeHangToLedgeHang = 2,
+		LedgeHangToLedgeHangSharpTurnOut = 3,
+		LedgeHangToLedgeHangSharpTurnIn = 4,
+		LedgeHangToLedgeHangSoftTurn = 5,
+		LedgeHangToSidle = 6,
+		LedgeHangToLadder = 7,
+		LedgeHangToDrainpipe = 8,
+		LedgeHangToRailing = 9,
+		LedgeHangToWindow = 10,
+		SidleMount = 11,
+		SidleDismount = 12,
+		SidleToLedgeHang = 13,
+		SidleToSidle = 14,
+		SidleToSidleSwap = 15,
+		SidleToSidleSharpTurnOut = 16,
+		SidleToSidleSharpTurnIn = 17,
+		SidleToSidleSoftTurn = 18,
+		SidleToLadder = 19,
+		SidleToDrainpipe = 20,
+		SidleToRailingPerpendicular = 21,
+		SidleToRailingCollinear = 22,
+		SidleToWindowPerpendicular = 23,
+		SidleToWindowCollinear = 24,
+		LadderMount = 25,
+		LadderDismount = 26,
+		LadderToLedgeHang = 27,
+		LadderToSidle = 28,
+		LadderToLadder = 29,
+		LadderToDrainpipe = 30,
+		DrainpipeMount = 31,
+		DrainpipeDismount = 32,
+		DrainpipeToLedgeHang = 33,
+		DrainpipeToSidle = 34,
+		DrainpipeToLadder = 35,
+		DrainpipeToDrainpipe = 36,
+		RailingToLedgeHang = 37,
+		RailingToSidle = 38,
+		WindowToLedgeHang = 39,
+		WindowToSidle = 40,
+		EdgeStepback = 41,
+	};
+
+	// Size: 0x1
+	enum class EClimbDirection : int8_t
+	{
+		None = -1,
+		Up = 0,
+		Down = 1,
+		Right = 2,
+		Left = 3,
+	};
+
+	// Size: 0x1
+	enum class EClimbObstacleSide : int8_t
+	{
+		None = 0,
+		Right = 1,
+		Left = 2,
+	};
+
+	// Size: 0x1
+	enum class EClimbingState : int8_t
+	{
+		NotClimbing = 0,
+		CurrentlyClimbing = 1,
+		EnteringClimbFromBelow = 2,
+		EnteringClimbFromAbove = 3,
+		EnteringClimbFromLeft = 4,
+		EnteringClimbFromRight = 5,
+		LeavingClimbToBelow = 6,
+		LeavingClimbToAbove = 7,
+		LeavingClimbToLeft = 8,
+		LeavingClimbToRight = 9,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatEventType : int32_t
+	{
+		LightAttack = 0,
+		HeavyAttack = 1,
+		Parry = 2,
+		Grab = 3,
+		PairedAction = 4,
+		Throw = 5,
+		Sidestep = 6,
+		VaultAttack = 7,
+		Block = 8,
+		Invalid = -1,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatPairedActionAvailability : int32_t
+	{
+		Always = 0,
+		Mandatory = 1,
+		Forbidden = 2,
+	};
+
+	// Size: 0x1
+	enum class ECloseCombatPairedActionBlastFieldTriggerEvent : int8_t
+	{
+		AttackImpact = 0,
+		DamageVictim = 1,
+	};
+
+	// Size: 0x1
+	enum class ECloseCombatPairedActionBlastFieldTriggerOrientation : int8_t
+	{
+		CharacterForward = 0,
+		BoneVelocity = 1,
+		BoneOrientation = 2,
+		ContextualTarget = 3,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatPairedActionCheckResult : int32_t
+	{
+		NotEvaluated = 0,
+		Rejected_InstigatorIsCombatRushingAndActionIsNotAvailable = 1,
+		Rejected_InstigatorIsNotCombatRushingAndActionIsNotAvailable = 2,
+		Rejected_VictimIsFurtherThanMaxDistance = 3,
+		Rejected_RequiredContextualTargetWasNotFound = 4,
+		Rejected_ContextualTargetIsFurtherAwayThanBestOne = 5,
+		Rejected_NoClearPathFromInstigatorToSafeArea = 6,
+		Rejected_NoClearPathFromVictimToSafeArea = 7,
+		Rejected_InstigatorDoesntHonorRequiredDirectionToVictim = 8,
+		Rejected_VictimIsNotOnFloor = 9,
+		Rejected_VictimOnFloor = 10,
+		Rejected_VictimIsNotStaggerStunned = 11,
+		Rejected_VictimIsStaggerStunned = 12,
+		Rejected_VictimIsNotParryStunned = 13,
+		Rejected_VictimIsParryStunned = 14,
+		Rejected_InstigatorIsNotOnStairs = 15,
+		Rejected_InstigatorIsOnStairs = 16,
+		Rejected_VictimIsNotOnStairs = 17,
+		Rejected_VictimIsOnStairs = 18,
+		Rejected_InstigatorKeywordRequirementsNotHonored = 19,
+		Accepted_ValidCandidate = 20,
+		Selected = 21,
+	};
+
+	// Size: 0x1
+	enum class ECloseCombatPairedActionContextualTargetCheckResult : int8_t
+	{
+		NotEvaluated = 0,
+		Rejected_InstigatorIsNotPlayer = 1,
+		Rejected_MissingVictimsCache = 2,
+		Rejected_InvalidContextualTargetType = 3,
+		Rejected_MissingSelectedItemData = 4,
+		Rejected_NotInStairs = 5,
+		Rejected_NotInSlopeStairs = 6,
+		Rejected_InvalidConfigVictimDirectionToTarget = 7,
+		Rejected_ExpectedTargetNotFound = 8,
+		Rejected_WallIsInvalid = 9,
+		Rejected_WallIsLowCover = 10,
+		Rejected_WallIsHighWall = 11,
+		Rejected_WallWidthIsTooLow = 12,
+		Rejected_BullrusheableWallIgnored = 13,
+		Rejected_InstigatorTooCloseToVictim = 14,
+		Rejected_VictimTooFarFromTarget = 15,
+		Rejected_VictimTooFarFromTargetOnLateralDisplacement = 16,
+		Rejected_AngleBetweenInstigatorForwardAndDirectionToTarget = 17,
+		Rejected_AngleBetweenVictimForwardAndDirectionToTarget = 18,
+		Rejected_AngleBetweenInstigatorVictimVectorAndTargetOrientation = 19,
+		Rejected_TargetOutsideSearchDirection = 20,
+		Accepted_ValidTarget = 21,
+		Accepted_BestTarget = 22,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatPairedActionContextualTargetPriority : int32_t
+	{
+		CloserToVictimByDistance = 0,
+		CloserToSearchDirectionByAngle = 1,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatPairedActionContextualTargetRestriction : int32_t
+	{
+		PreferCurrentTargetIfSet = 0,
+		TryUseOnlyCurrentTargetIfSet = 1,
+		IgnoreCurrentTarget = 2,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatPairedActionContextualTargetType : int32_t
+	{
+		None = 0,
+		Wall = 1,
+		LowCover = 2,
+		Item = 3,
+		Guide = 4,
+		OffmetricObstacle = 5,
+		Stairs = 6,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatPairedActionPhase : int32_t
+	{
+		Preparing = 0,
+		Executing = 1,
+		Count = 2,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatPairedActionType : int32_t
+	{
+		Finisher_Melee = 0,
+		SilentTakedown = 1,
+		Finisher_Armed = 2,
+		Finisher_TaserTakedown = 3,
+		ContextualFinisher_LowCover = 4,
+		ContextualFinisher_Wall = 5,
+		ContextualFinisher_Item = 6,
+		Finisher_Disarm = 7,
+		UnusedType_1 = 8,
+		Finisher_Custom = 9,
+		Contextual_MeleeAttack = 10,
+		FakeSurrender = 11,
+		DisarmAttack = 12,
+		GrabRushOffTheLedge = 13,
+		ContextualTargetFinisher = 14,
+		Contextual_ThrowAttack = 15,
+		BrutalAttack = 16,
+	};
+
+	// Size: 0x4
+	enum class ECloseCombatReactionCounterType : int32_t
+	{
+		MeleeCounter = 0,
+		Grab = 1,
+		MeleeCombo = 2,
+	};
+
+	// Size: 0x1
+	enum class ECloseCombatStance : int8_t
+	{
+		Default = 0,
+		Parry = 1,
+		Aggressive = 2,
+		NotInCloseCombat = 3,
+		Relaxed = 4,
+	};
+
+	// Size: 0x4
+	enum class ECombatRushTargetCriteria : int32_t
+	{
+		NoValidTarget = 0,
+		NoMeleeTargetsAvailable = 1,
+		OngoingCombatRushTarget = 2,
+		InputWinner = 3,
+		ConfrontationTarget = 4,
+		OnScreen = 5,
+		InRange = 6,
+		ClosestTarget = 7,
+		TargetIsImmune = 8,
+		TargetUnreachable = 9,
+	};
+
+	// Size: 0x2
+	enum class ECombatRushType : int16_t
+	{
+		Strike = 0,
+		SilentTakedown = 1,
+		RushAndDisarm = 2,
+		Finisher = 3,
+		ContextualAttack = 4,
+		DisarmAttack = 5,
+		Grab = 6,
+		RushToAttackFromAbove = 7,
+	};
+
+	// Size: 0x1
+	enum class EConfrontationEndReason : int8_t
+	{
+		Failed = 0,
+		FakeSurrender = 1,
+		Gadget = 2,
+		Bluff = 3,
+	};
+
+	// Size: 0x1
+	enum class EConfrontationUpperbodyAnimCategoryType : int8_t
+	{
+		None = -1,
+		Apologetic = 0,
+		Confident = 1,
+		Nonchalant = 2,
+	};
+
+	// Size: 0x1
+	enum class EConfrontationUpperbodyAnimType : int8_t
+	{
+		None = 0,
+		ActiveBluffEnabled = 1,
+		ActiveBluffDone = 2,
+		ConfrontationBluffEnabled = 3,
+		ConfrontationBluffDone = 4,
+	};
+
+	// Size: 0x1
+	enum class EContextualJumpLandingSurfaceType : int8_t
+	{
+		OverWall = 0,
+		LedgeOverhang = 1,
+		OnLedgeHang = 2,
+	};
+
+	// Size: 0x1
+	enum class EContextualJumpLandingType : int8_t
+	{
+		Regular = 0,
+		Sketchy = 1,
+	};
+
+	// Size: 0x1
+	enum class EContextualJumpType : int8_t
+	{
+		None = 0,
+		Jump = 1,
+		JumpDown = 2,
+		JumpUpAndClimb = 3,
+	};
+
+	// Size: 0x4
+	enum class EContextualWallType : int32_t
+	{
+		Wall = 0,
+		LowCover = 1,
+		Invalid = 2,
+	};
+
+	// Size: 0x4
+	enum class EConversationChoiceResult : int32_t
+	{
+		Option1 = 0,
+		Option2 = 1,
+		Option3 = 2,
+		Option4 = 3,
+		TimedOut = 4,
+		Invalid = 5,
+	};
+
+	// Size: 0x4
+	enum class EConversationChoiceType : int32_t
+	{
+		Flavor = 0,
+		Progression = 1,
+		Leave = 2,
+	};
+
+	// Size: 0x4
+	enum class ECornerType : int32_t
+	{
+		Concave = 0,
+		Convex = 1,
+		None = 2,
+	};
+
+	// Size: 0x1
+	enum class ECoverCorner : int8_t
+	{
+		LeftCorner = 0,
+		RightCorner = 1,
+		NoCorner = 2,
+	};
+
+	// Size: 0x1
+	enum class ECoverCornerTurnAnimState : int8_t
+	{
+		NoTurning = 0,
+		Turning = 1,
+	};
+
+	// Size: 0x1
+	enum class ECoverEnterSource : int8_t
+	{
+		None = 0,
+		WalkIn = 1,
+		TransitionToNewAdjacentCover = 2,
+		TransitionToUpdatedCover = 3,
+		Dash = 4,
+		CoverCornerTurn = 5,
+		Cinematics = 6,
+		AimTransition = 7,
+		CoverCornerTransition = 8,
+	};
+
+	// Size: 0x1
+	enum class ECoverExitSource : int8_t
+	{
+		None = 0,
+		WalkOut = 1,
+		DashEndedOutFarFromCover = 2,
+		StandupInLowCover = 3,
+		Agility = 4,
+		Confrontation = 5,
+		MarkupChangedAndCoverNotAllowed = 6,
+		Acceleration = 7,
+		AimTransition = 8,
+		CombatRush = 9,
+		CoverSystemDisabled = 10,
+		SplineInvalidPoint = 11,
+		SplineWalkOut = 12,
+		CoverCorner = 13,
+		UntaggedCoverCorner = 14,
+		Interaction = 15,
+		FreeDash = 16,
+		Staggered = 17,
+		CloseCombatAction = 18,
+		CloseCombatHitReaction = 19,
+		AlignmentMovement = 20,
+		DestroyedMarkup = 21,
+	};
+
+	// Size: 0x1
+	enum class ECoverFacingDir : int8_t
+	{
+		Left = 0,
+		Right = 1,
+	};
+
+	// Size: 0x1
+	enum class ECoverHeight : int8_t
+	{
+		None = 0,
+		LowCover = 1,
+		HighCover = 2,
+	};
+
+	// Size: 0x1
+	enum class ECoverLeanAimingTransitionType : int8_t
+	{
+		None = 0,
+		ToOutOfCover = 1,
+		ToCover = 2,
+	};
+
+	// Size: 0x1
+	enum class ECoverState : int8_t
+	{
+		None = 0,
+		GoingOutOfCover = 1,
+		GoingIntoCover = 2,
+		BehindCover = 3,
+		OutsideCover = 4,
+	};
+
+	// Size: 0x1
+	enum class ECoverStayInLineCornerConstraint : int8_t
+	{
+		NoCornerConstraints = 0,
+		StopAtTaggedCorners = 1,
+	};
+
+	// Size: 0x1
+	enum class ECoverStayInLineInputConstraint : int8_t
+	{
+		NoInputConstraints = 0,
+		OnlyInputToRightEnd = 1,
+		OnlyInputToLeftEnd = 2,
+	};
+
+	// Size: 0x4
+	enum class ECrouchingSubsate : int32_t
+	{
+		eCS_NotCrouching = 0,
+		eCS_Idle = 1,
+		eCS_Aiming = 2,
+		eCS_Moving = 3,
+		eCS_MovingAndAiming = 4,
+	};
+
+	// Size: 0x1
+	enum class EDamageType : int8_t
+	{
+		Projectile = 1,
+		CloseCombat = 2,
+		Fall = 3,
+		Script = 4,
+		Stumble = 5,
+		ThrownItem = 6,
+		CoverTakedown = 7,
+		AttackFromAbove = 8,
+		VaultDisarm = 9,
+		VaultFinisher = 10,
+		Explosion = 11,
+		CrushedByObject = 12,
+		Vehicle = 13,
+		Electric = 14,
+		Stealth = 15,
+		Environmental = 16,
+		RailingDeath = 17,
+		OverTheLedge = 18,
+		FlashMine = 19,
+	};
+
+	// Size: 0x4
+	enum class EDangerAwarenessType : int32_t
+	{
+		Hazard = 0,
+		PotentialThreat = 1,
+		NonLethalCombat = 2,
+		LethalCombat = 3,
+	};
+
+	// Size: 0x4
+	enum class EDangerLevel : int32_t
+	{
+		EnemiesUnaware = 0,
+		EnemiesSearching = 1,
+		InCombat = 2,
+	};
+
+	// Size: 0x4
+	enum class EDashDataSource : int32_t
+	{
+		Player = 0,
+		GpwInput = 1,
+	};
+
+	// Size: 0x4
+	enum class EDashSearchBoxValidationResult : int32_t
+	{
+		Outside = 0,
+		InsideFrontBox = 1,
+		InsideBackBox = 2,
+	};
+
+	// Size: 0x4
+	enum class EDashTargetCornerType : int32_t
+	{
+		None = 0,
+		Left = 1,
+		Right = 2,
+	};
+
+	// Size: 0x4
+	enum class EDashTargetType : int32_t
+	{
+		None = 0,
+		LowCover = 1,
+		Wall = 2,
+	};
+
+	// Size: 0x4
+	enum class EDashTargetingSearchConfigType : int32_t
+	{
+		Default = 0,
+		ParallelCoverSwap = 1,
+		NoInput = 2,
+	};
+
+	// Size: 0x4
+	enum class EDashType : int32_t
+	{
+		None = 0,
+		ToCover = 1,
+		CoverSwap = 2,
+		Free = 3,
+	};
+
+	// Size: 0x4
+	enum class EDashingType : int32_t
+	{
+		None = 0,
+		DashToCover = 1,
+		DashToCoverSlide = 2,
+		Free = 3,
+	};
+
+	// Size: 0x1
+	enum class EDeathVariationType : int8_t
+	{
+		Default = 0,
+		StumbleDeath_WallImpact = 1,
+		StumbleDeath_LowcoverImpact = 2,
+		StumbleDeath_Railing = 3,
+		StumbleDeath_LowCoverRoll = 4,
+	};
+
+	// Size: 0x1
+	enum class EDebugAgilityActionOpportunityFailReason : int8_t
+	{
+		None = 0,
+		HumanoidStateRequirement = 1,
+		Allowance = 2,
+		Requirements = 3,
+		AllowedOnCandidates = 4,
+		ConnectionRequirements = 5,
+		OpportunityConditions = 6,
+		Count = 7,
+	};
+
+	// Size: 0x1
+	enum class EDebugAgilityActionOpportunityPendingReason : int8_t
+	{
+		None = 0,
+		TriggerConditions = 1,
+		Interruption = 2,
+		GadgetView = 3,
+		Count = 4,
+	};
+
+	// Size: 0x1
+	enum class EDebugAgilityActionOpportunityState : int8_t
+	{
+		None = 0,
+		Failed = 1,
+		Restricted = 2,
+		Pending = 3,
+		Performable = 4,
+		Performing = 5,
+		Count = 6,
+	};
+
+	// Size: 0x4
+	enum class EDebugNpcBehaviorType : int32_t
+	{
+		None = 0,
+		FightFromCover = 1,
+		FightFromCurrentPosition = 2,
+		ThrowGrenade = 3,
+	};
+
+	// Size: 0x4
+	enum class EDebugNpcCombatLocomotionType : int32_t
+	{
+		Default = 0,
+		Run = 1,
+		StrafeWalk = 2,
+	};
+
+	// Size: 0x1
+	enum class EDefenseAction : int8_t
+	{
+		None = 0,
+		Activate = 1,
+		Deactivate = 2,
+	};
+
+	// Size: 0x4
+	enum class EDefenseType : int32_t
+	{
+		MeleeAttack = 0,
+		Grab = 1,
+		RedirectThrow = 2,
+		StumbleHumanoidImpact = 3,
+		Explosion = 4,
+	};
+
+	// Size: 0x1
+	enum class EDetainState : int8_t
+	{
+		None = 0,
+		Starting = 1,
+		Idle = 2,
+		Struggle = 3,
+		Attack = 4,
+		HitReaction = 5,
+		BreakingFree = 6,
+		Failed = 7,
+	};
+
+	// Size: 0x1
+	enum class EDialogueActivityLevel : int8_t
+	{
+		PlayEssential = 0,
+		CombatGameplay = 1,
+		CombatAmbient = 2,
+		TensionGameplay = 3,
+		TensionAmbient = 4,
+		CalmGameplay = 5,
+		CalmAmbient = 6,
+		Vocalization = -6,
+		Ignore = -1,
+	};
+
+	// Size: 0x2
+	enum class EDialogueFactOp : int16_t
+	{
+		Add = 0,
+		Subtract = 1,
+		Set = 2,
+	};
+
+	// Size: 0x1
+	enum class EDisorientationSourceType : int8_t
+	{
+		PoisonDart = 0,
+		GasLeak = 1,
+		MigraineDevice = 2,
+		Blinded = 3,
+	};
+
+	// Size: 0x4
+	enum class EDistractionSource : int32_t
+	{
+		Default = 0,
+		Whistle = 1,
+		DartGun = 2,
+		SilentTakedown = 3,
+		Laptop = 4,
+		Radio = 5,
+		AC = 6,
+		DoorKick = 7,
+		Footsteps = 8,
+		GardenHose = 9,
+		Gadget_Smoke = 10,
+		Gadget_FlashMine = 11,
+		Gadget_FlashMineHumanTarget = 12,
+		ElectrifiedHuman = 13,
+		DisorientedGeneric = 14,
+		PoisonDart = 15,
+		Blinded = 16,
+		Shockwave = 17,
+		IncapacitatedBody = 18,
+		Explosions = 27,
+		BullectImpact = 28,
+		Touch = 29,
+		SecurityCamera = 30,
+		Fixable = 31,
+		SpotDisoriented = 32,
+	};
+
+	// Size: 0x4
+	enum class EDoorInitialState : int32_t
+	{
+		Closed = 0,
+		OpenForward = 1,
+		OpenBack = 2,
+		Locked = 3,
+		Sabotaged = 4,
+	};
+
+	// Size: 0x1
+	enum class EEarlyOutCapabilityIssuer : int8_t
+	{
+		Unknown = 0,
+		Dash = 1,
+		MeleeAttack = 2,
+		FakeSurrender = 3,
+		ContextualJump = 4,
+		Landing = 5,
+		Vaulting = 6,
+		Scaling = 7,
+		AgilityAction = 8,
+		GenericAnimDrivenAction = 9,
+		TurningAtCoverCorner = 10,
+		UseDoor = 11,
+		PairedActionInstigator = 12,
+		PairedActionVictim = 13,
+		PickUp = 14,
+		EnterLadder = 15,
+		LeaveLadder = 16,
+		Pickpocket = 17,
+		Grab = 18,
+		Parry = 19,
+		ItemThrow = 20,
+		GadgetActivation = 21,
+		CombatRush = 22,
+		FirearmReload = 23,
+		Stagger = 24,
+		Sidestep = 25,
+		Block = 26,
+		CoverTakedown = 27,
+		AttackFromAbove = 28,
+	};
+
+	// Size: 0x1
+	enum class EEavesdropUpperbodyAnimType : int8_t
+	{
+		None = 0,
+		PlayerStillStarted = 1,
+		PlayerStillEnded = 2,
+	};
+
+	// Size: 0x4
+	enum class EEnableDisableNPCAbilityType : int32_t
+	{
+		Vision = 0,
+		Hearing = 1,
+		Agility = 2,
+		DistractionReaction = 3,
+		PrivateSpace = 4,
+		Crouch = 5,
+	};
+
+	// Size: 0x1
+	enum class EEntryLocationType : int8_t
+	{
+		Default = 0,
+		Archway = 1,
+		StairsUp = 2,
+		StairsDown = 3,
+	};
+
+	// Size: 0x4
+	enum class EEnvironmentMarkupAgilityType : int32_t
+	{
+		None = 0,
+		Vaultable = 1,
+		Scalable = 2,
+		Jump = 3,
+		GenericAnimationDrivenAction = 4,
+	};
+
+	// Size: 0x4
+	enum class EEnvironmentMarkupCoverType : int32_t
+	{
+		None = 0,
+		Low = 1,
+		High = 2,
+	};
+
+	// Size: 0x4
+	enum class EEnvironmentMarkupLevelDesignBool : int32_t
+	{
+		eEMLDB_Automatic = 0,
+		eEMLDB_True = 1,
+		eEMLDB_False = 2,
+	};
+
+	// Size: 0x4
+	enum class EEnvironmentalLockState : int32_t
+	{
+		Unlocked = 0,
+		Sit_100cm = 1,
+		Sit_020cm = 2,
+		Sit_000cm = 3,
+		Sit_Stool_080cm = 4,
+		Sit_Chair = 5,
+		Sit_Couch = 6,
+		Lean_120cm = 7,
+		Lean_100cm = 8,
+		Lean_075cm = 9,
+		Lean_Wall = 10,
+		Stand = 11,
+	};
+
+	// Size: 0x1
+	enum class EEvaluatorMode : int8_t
+	{
+		Add = 0,
+		Multiply = 1,
+		Multiply_SingleEval = 2,
+	};
+
+	// Size: 0x1
+	enum class EFirearmDamageMultiplierFilter : int8_t
+	{
+		Always = 0,
+		BodyPartWeakpoint = 1,
+	};
+
+	// Size: 0x1
+	enum class EFirearmHumanoidHitState : int8_t
+	{
+		NoFlinch = 0,
+		Flinch = 1,
+		Stumble = 2,
+		HeavyHit = 3,
+		Stagger = 4,
+		AnimationFullBody = 5,
+	};
+
+	// Size: 0x4
+	enum class EFirearmPosture : int32_t
+	{
+		Lowered = 0,
+		Primed = 1,
+		Raised = 2,
+		AboveHead = 3,
+		BlindFiringLeft = 4,
+		BlindFiringRight = 5,
+		LeaningLeft = 6,
+		LeaningRight = 7,
+	};
+
+	// Size: 0x4
+	enum class EFootstepEventType : int32_t
+	{
+		Automatic = 0,
+		Normal = 1,
+		Stair = 2,
+		Jump = 3,
+		Land = 4,
+		Slide = 5,
+		Start = 6,
+		Stop = 7,
+		Turn = 8,
+		Count = 9,
+	};
+
+	// Size: 0x1
+	enum class EFootstepType : int8_t
+	{
+		Left = 0,
+		Right = 1,
+		Any = 2,
+	};
+
+	// Size: 0x4
+	enum class EGadgetActivationSlot : int32_t
+	{
+		Slot1 = 0,
+		Slot2 = 1,
+		Slot3 = 2,
+		Slot4 = 3,
+	};
+
+	// Size: 0x1
+	enum class EGadgetDisabledFlag : int8_t
+	{
+		GadgetNotAssigned = 0,
+		PlayerCantUseGadgets = 1,
+		InCooldown = 2,
+		CantBeUsedInArea = 3,
+		UnusedEntry_0 = 4,
+		NotEnoughResources = 5,
+		InvalidTarget = 6,
+		TargetOutOfRange = 7,
+		Count = 8,
+	};
+
+	// Size: 0x1
+	enum class EGadgetState : int8_t
+	{
+		None = 0,
+		TapActivate = 1,
+		HoldActivate = 2,
+	};
+
+	// Size: 0x1
+	enum class EGadgetTargetInteractionType : int8_t
+	{
+		Tap = 0,
+		Hold = 1,
+		TapAndHold = 2,
+	};
+
+	// Size: 0x4
+	enum class EGameplayAreaLocomotionContext : int32_t
+	{
+		Formal = 0,
+		Casual = 1,
+		Combat = 2,
+	};
+
+	// Size: 0x4
+	enum class EGameplayAreaType : int32_t
+	{
+		Social = 0,
+		SoftTrespassing = 1,
+		Trespassing = 2,
+		LicenseToKill = 3,
+	};
+
+	// Size: 0x4
+	enum class EGoalPriorities : int32_t
+	{
+		HIGHEST = 0,
+		STAGGER = 1,
+		CONFRONTATION_OPT_IN = 2,
+		LURE = 3,
+		BLUFF = 4,
+		ATTACK_FROM_ABOVE = 5,
+		VAULT = 6,
+		CONTEXTUAL_JUMP = 7,
+		TURN_AT_COVER_CORNER = 8,
+		AGILITY_ACTION = 9,
+		SCALE = 10,
+		DASH = 11,
+		GENERIC_ANIM_DRIVEN_ACTION = 12,
+		USE_DOOR = 13,
+		GROUND_PATH_LOCOMOTION = 14,
+		COMPLYING = 15,
+		DROP_DOWN = 16,
+		COMBATRUSH = 17,
+		PROJECTILE_SIDESTEP = 18,
+		ACTIVATE_GADGET = 19,
+		MELEE_FINISHER = 20,
+		PARRY = 21,
+		PICKPOCKET = 22,
+		GRAB = 23,
+		BLOCK = 24,
+		SIDESTEP = 25,
+		COVER_TAKEDOWN = 26,
+		CONTEXTUAL_ITEM_THROW = 27,
+		ITEM_THROW = 28,
+		JUMPING_AWAY_HAZARD = 29,
+		MELEE_ATTACK = 30,
+		COVER_TRANSITION = 31,
+		ENTER_LADDER_CLIMB = 32,
+		LEAVE_LADDER_CLIMB = 33,
+		CROUCH = 34,
+		UNCROUCH = 35,
+		SET_FIREARM_POSTURE = 36,
+		SET_THROWABLE_POSTURE = 37,
+		CHANGE_CLOSECOMBAT_STANCE = 38,
+		SET_AIM_TARGET = 39,
+		START_STRAFING = 40,
+		STOP_STRAFING = 41,
+		START_ACCELERATING = 42,
+		STOP_ACCELERATING = 43,
+		GADGET_VIEW = 44,
+		PICKUP_ITEM = 45,
+		INTERACT = 46,
+		ANIMATION_ACT = 47,
+		LOOK_AT = 48,
+		UNEQUIP_ITEM = 49,
+		EQUIP_ITEM = 50,
+		RELOAD_FIREARM = 51,
+		FAKE_SURRENDER = 52,
+		WHISTLE = 53,
+		CAMERA_FOCUS = 54,
+		PRIVATE_SPACE_INVADED_REACTION = 55,
+		AGENCY_FOCUS = 56,
+		LOWEST = 57,
+		COUNT = 58,
+	};
+
+	// Size: 0x4
+	enum class EGrabRushOffTheLedgeGroundPositionResult : int32_t
+	{
+		Invalid_NoGround = 0,
+		Invalid_OutOfReach = 1,
+		Invalid_NoNavMeshPoint = 2,
+		Valid = 3,
+	};
+
+	// Size: 0x4
+	enum class EGrabRushOffTheLedgeType : int32_t
+	{
+		Throw = 0,
+		Jump = 1,
+		Count = 2,
+	};
+
+	// Size: 0x4
+	enum class EGrabStepFlags : int32_t
+	{
+		Taunting = 1,
+		FailingGrab = 2,
+		PreparingGrab = 4,
+		Attacking = 8,
+		Throwing = 16,
+		PostThrowing = 32,
+		BreakingFree = 64,
+		Rushing = 128,
+	};
+
+	// Size: 0x4
+	enum class EGrabThrowType : int32_t
+	{
+		None = 0,
+		BasicThrow = 1,
+		ThrowFromAttack = 2,
+	};
+
+	// Size: 0x4
+	enum class EGrabVictimStatus : int32_t
+	{
+		Invalid = 0,
+		Valid_PendingSuccessCheck = 1,
+		Valid_FailedGrab = 2,
+		Valid_SuccessfulGrab = 3,
+	};
+
+	// Size: 0x4
+	enum class EGrabbingStep : int32_t
+	{
+		Taunting = 0,
+		FailingGrab = 1,
+		PreparingGrab = 2,
+		Attacking = 3,
+		Throwing = 4,
+		PostThrowing = 5,
+		BreakingFree = 6,
+		Rushing = 7,
+	};
+
+	// Size: 0x4
+	enum class EGuidanceLocomotionThresholdReachedHandlingType : int32_t
+	{
+		Disabled = 0,
+		Systemic = 1,
+	};
+
+	// Size: 0x1
+	enum class EGuideTakedownType : int8_t
+	{
+		None = 0,
+		OpenLedgeHang = 1,
+		OpenLedgeHangWithRailing = 2,
+		WallLedgeHang = 3,
+		WallLedgeHangWithRailing = 4,
+		SidleWithRailingRight = 5,
+		SidleWithRailingLeft = 6,
+	};
+
+	// Size: 0x4
+	enum class EHazardSource : int32_t
+	{
+		Default = 0,
+		Grenade = 1,
+		Chandelier = 2,
+		Spotlight = 3,
+		Lift = 4,
+		Pipe = 5,
+		AirConditioner = 6,
+		ConcreteBag = 7,
+		SmokeBomb = 8,
+	};
+
+	// Size: 0x4
+	enum class EHealingSource : int32_t
+	{
+		HealthRegen = 0,
+		CoreLogic = 1,
+	};
+
+	// Size: 0x1
+	enum class EHitReactionDefenseAction : int8_t
+	{
+		Ignore = 0,
+		Enabled = 1,
+		Disabled = 2,
+	};
+
+	// Size: 0x1
+	enum class EHitReactionDisabledSkill : int8_t
+	{
+		Aim = 0,
+		Shoot = 1,
+		Sprint = 2,
+		MeleeAttack = 3,
+		Count = 4,
+	};
+
+	// Size: 0x1
+	enum class EHitReactionSource : int8_t
+	{
+		FireArm = 0,
+		MeleeImpact = 1,
+		Throwable = 2,
+		Explosion = 3,
+	};
+
+	// Size: 0x4
+	enum class EHumanMovementCategory : int32_t
+	{
+		eHMCa_Ambient = 0,
+		eHMCa_TacticalSearch = 1,
+		eHMCa_CloseCombat = 2,
+		eHMCa_RangedCombat = 3,
+		eHMCa_AmbientSearch = 4,
+	};
+
+	// Size: 0x4
+	enum class EHumanMovementContext : int32_t
+	{
+		eHMC_Walk = 0,
+		eHMC_Run = 1,
+		eHMC_Sprint = 2,
+	};
+
+	// Size: 0x4
+	enum class EHumanoidAudioLocomotionContext : int32_t
+	{
+		Social = 0,
+		Trespassing = 1,
+		SoftTrespassing = 2,
+		CloseCombat = 3,
+		Aiming = 4,
+	};
+
+	// Size: 0x4
+	enum class EHumanoidBodyPart : int32_t
+	{
+		None = 0,
+		Torso = 1,
+		Head = 2,
+		LeftHand = 3,
+		LeftLowerArm = 4,
+		LeftUpperArm = 5,
+		LeftShoulder = 6,
+		LeftFoot = 7,
+		LeftLowerLeg = 8,
+		LeftUpperLeg = 9,
+		RightHand = 10,
+		RightLowerArm = 11,
+		RightUpperArm = 12,
+		RightShoulder = 13,
+		RightFoot = 14,
+		RightLowerLeg = 15,
+		RightUpperLeg = 16,
+		Weapon = 17,
+	};
+
+	// Size: 0x1
+	enum class EHumanoidBoneCollisionPresetType : int8_t
+	{
+		Default = 0,
+		Agility = 1,
+	};
+
+	// Size: 0x1
+	enum class EHumanoidBoneTransformFlag : int8_t
+	{
+		UseCharacterRotation = 0,
+		UseCharacterZ = 1,
+	};
+
+	// Size: 0x1
+	enum class EHumanoidCapsuleDataType : int8_t
+	{
+		Stand = 0,
+		Crouch = 1,
+		Vault = 2,
+		SqueezeThrough = 3,
+		LedgeHang = 4,
+		Ladder = 5,
+	};
+
+	// Size: 0x2
+	enum class EHumanoidCollisionDisabledSource : int16_t
+	{
+		VehicleAttachment = 0,
+		CoverTakedown = 1,
+		Death = 2,
+		CoreLogic = 3,
+		GenericAnimDrivenAction = 4,
+		AnimationEvents = 5,
+		Unknown = 6,
+		Climb = 7,
+		Guide = 8,
+		AttackFromAbove = 9,
+	};
+
+	// Size: 0x1
+	enum class EHumanoidCollisionPresetType : int8_t
+	{
+		Default = 0,
+		Agility = 1,
+		VirtualCapsule = 2,
+		AnimationAct = 3,
+	};
+
+	// Size: 0x1
+	enum class EHumanoidDamageType : int8_t
+	{
+		Unknown = 0,
+		Projectile = 1,
+		CloseCombat = 2,
+		Fall = 3,
+		Script = 4,
+		Stumble = 5,
+		ThrownItem = 6,
+		CoverTakedown = 7,
+		AttackFromAbove = 8,
+		Explosion = 9,
+		VaultDisarm = 10,
+		VaultFinisher = 11,
+		CrushedByObject = 12,
+		Vehicle = 13,
+		Electric = 14,
+		Stealth = 15,
+		Environmental = 16,
+		RailingDeath = 17,
+		OverTheLedge = 18,
+		FlashMine = 19,
+	};
+
+	// Size: 0x4
+	enum class EHumanoidGoalInterruptReason : int32_t
+	{
+		Unknown = 0,
+		Solver = 1,
+		Issuer = 2,
+		NoSkill = 3,
+		AutomatedRemoval = 4,
+		NoValidController = 5,
+		OwnerKilled = 6,
+		TargetedAction = 7,
+		HitReaction = 8,
+		Falling = 9,
+		ReferencedIdentifierDestroyed = 10,
+		InterceptedByScript = 11,
+		MissingRequiredGoal = 12,
+		InterruptedDuringEarlyOut = 13,
+		Stagger = 14,
+	};
+
+	// Size: 0x4
+	enum class EHumanoidLocomotionMovementPipeline : int32_t
+	{
+		Invalid = 0,
+		AnimationDriven = 1,
+		AnimationDrivenEnteringLadder = 2,
+		AnimationDrivenJumping = 3,
+		AnimationDrivenLanding = 4,
+		AnimationDrivenScaling = 5,
+		AnimationDrivenSequenceAnimDisplacement = 6,
+		AnimationDrivenSequenceSpatialDisplacement = 7,
+		AnimationDrivenStaggered = 8,
+		AnimationDrivenVaulting = 9,
+		Falling = 10,
+		GameplayAligning = 11,
+		IdleWithMotionPlan = 12,
+		Idle = 13,
+		Jumping = 14,
+		OnGuide = 15,
+		PathDrivenGroundLocomotion = 16,
+		PlayerDrivenGroundLocomotion = 17,
+		Sliding = 18,
+		SpatialDriven = 19,
+		SplineDriven = 20,
+		Teleporting = 21,
+		TeleportingInVehicleCar = 22,
+		TeleportingInVehicleBoat = 23,
+	};
+
+	// Size: 0x4
+	enum class EHumanoidMovementInputSpeed : int32_t
+	{
+		Stationary = 0,
+		Slow = 1,
+		Fast = 2,
+	};
+
+	// Size: 0x1
+	enum class EHumanoidOnGuideSpecialization : int8_t
+	{
+		None = 0,
+		Ledge_Hang = 1,
+		Ledge_Sidle = 2,
+	};
+
+	// Size: 0x4
+	enum class EHumanoidTrespassingStance : int32_t
+	{
+		None = 0,
+		Confident = 1,
+		Vigilant = 2,
+	};
+
+	// Size: 0x4
+	enum class EInputProbeAdjustmentType : int32_t
+	{
+		None = 0,
+		FaceTowardsSurface = 1,
+		MoveAlongSurface = 2,
+		Stop = 3,
+	};
+
+	// Size: 0x1
+	enum class EInteractionDoorAction : int8_t
+	{
+		Open = 0,
+		Close = 1,
+		Lock = 2,
+	};
+
+	// Size: 0x1
+	enum class EInteractionDoorHandleSide : int8_t
+	{
+		Left = 0,
+		Right = 1,
+	};
+
+	// Size: 0x1
+	enum class EInteractionDoorOpenStyle : int8_t
+	{
+		Normal = 0,
+		Charge = 1,
+		Kick = 2,
+	};
+
+	// Size: 0x4
+	enum class EInteractionUIAgilityType : int32_t
+	{
+		Invalid = 0,
+		AttackFromAbove = 1,
+		ClimbLadder = 2,
+		Climb = 3,
+		Vault = 4,
+		VaultAttack = 5,
+		VaultDropdown = 6,
+		VaultUp = 7,
+		Jump = 8,
+		GenericAnimDrivenAction = 9,
+		Takedown = 10,
+		Parry = 11,
+		Rush = 12,
+		Disarm = 13,
+		CombatRush = 14,
+		CombatRushStrike = 15,
+		CombatRushSilentTakedown = 16,
+		AgencyBluff = 17,
+		AgencyFinisher = 18,
+		ZiplineEnter = 19,
+		Sneak = 20,
+		FakeSurrender = 21,
+		Pickpocket = 22,
+		ItemQuickThrow = 23,
+		CoverSwap = 24,
+		Hang = 25,
+		Dismount = 26,
+		Sidle = 27,
+		ClimbDropDown = 28,
+	};
+
+	// Size: 0x4
+	enum class EInterceptableGoalType : int32_t
+	{
+		CloseCombatFinisher = 0,
+		MeleeAttack = 1,
+		VaultFinisher = 2,
+		AllAgilityActions = 3,
+		GadgetActivation = 4,
+		AllGadgetActivations = 5,
+	};
+
+	// Size: 0x1
+	enum class EInterruptionConfiguration : int8_t
+	{
+		Default = 0,
+		DoNotInterrupt = 1,
+	};
+
+	// Size: 0x1
+	enum class EItemAttachmentState : int8_t
+	{
+		Attached = 0,
+		Selected = 1,
+		Equipped = 2,
+	};
+
+	// Size: 0x4
+	enum class EItemOperationType : int32_t
+	{
+		None = 0,
+		Attach = 1,
+		Drop = 2,
+		Max = 3,
+	};
+
+	// Size: 0x1
+	enum class EKntCheckpointLoadState : int8_t
+	{
+		Initiate = 0,
+		WaitForStreamingSets = 1,
+		SpawnPlayer = 2,
+		WaitForPlayerSpawner = 3,
+		WaitForDynamicSpawners = 4,
+		Finalize = 5,
+	};
+
+	// Size: 0x4
+	enum class EKntMissionTimerType : int32_t
+	{
+		Timer = 0,
+		Stopwatch = 1,
+	};
+
+	// Size: 0x1
+	enum class ELocomotionSpeedOverrideType : int8_t
+	{
+		NoOverride = 0,
+		Slow = 1,
+		Medium = 2,
+		Fast = 3,
+	};
+
+	// Size: 0x1
+	enum class ELocomotionSpeedScalingModifier : int8_t
+	{
+		Avoidance = 0,
+		Guidance = 1,
+	};
+
+	// Size: 0x4
+	enum class ELookAtTargetMode : int32_t
+	{
+		InSocial = 0,
+		Always = 1,
+	};
+
+	// Size: 0x2
+	enum class ELureUnavailableFlag : int16_t
+	{
+		Disabled = 0,
+		NotAvailable = 1,
+		NotEnoughAgency = 2,
+		InCooldown = 3,
+		TargetInvalid = 4,
+		TargetTooClose = 5,
+		TargetInDifferentArea = 6,
+		TargetPathTooFar = 7,
+		PlayerBeingIdentifiedAsThreat = 8,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAlignmentBone : int32_t
+	{
+		Ground = 0,
+		Impact = 1,
+		Count = 2,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAlignmentType : int32_t
+	{
+		None = 0,
+		AlignGroundBoneToOpponent = 1,
+		AlignToTargetTransform = 2,
+		AlignToVictim = 3,
+		LinkToInstigatorBone = 4,
+	};
+
+	// Size: 0x4
+	enum class EMeleeApproachType : int32_t
+	{
+		NotNeeded = 0,
+		Run = 1,
+		Vault = 2,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAttackAlignmentType : int32_t
+	{
+		GameplayDriven = 0,
+		AnimationDriven_AlignToTargetBone = 1,
+	};
+
+	// Size: 0x1
+	enum class EMeleeAttackOutcome : int8_t
+	{
+		None = 0,
+		Successful = 1,
+		Blocked = 2,
+		Missed = 3,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAttackResult : int32_t
+	{
+		Unknown = 0,
+		Missed_NoVictim = 1,
+		Missed_VictimOutOfReach = 2,
+		Missed_VictimSidestepped = 3,
+		Missed_VictimCurrentlyNonAttackable = 4,
+		Missed_VictimBlocked = 5,
+		Missed_HitByMeleeAttackOnSameFrame = 6,
+		Missed_NotAttackImpactReceived = 7,
+		Missed_VictimDefensesBlock = 8,
+		Missed_VictimDefensesMiss = 9,
+		Successful_Unblocked = 11,
+		Successful_BrokeBlock = 12,
+		Count = 13,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAttackStep : int32_t
+	{
+		Inactive = 0,
+		Preparing = 1,
+		Preparing_WaitingForRetargeting = 2,
+		Preparing_WaitingForSuccessCheck = 3,
+		Attacking = 4,
+		Impacting = 5,
+		Missing = 6,
+		BeingBlocked = 7,
+		Recovering = 8,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAttackToleranceToHitPolicy : int32_t
+	{
+		ImpactBoneToTargetBone = 0,
+		CapsuleToCapsule = 1,
+		ImpactBoneToCapsule = 2,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAttackTriggerType : int32_t
+	{
+		QuickAttack = 0,
+		ChargedAttack = 1,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAttackType : int32_t
+	{
+		Light = 0,
+		Heavy = 1,
+		LongLight = 2,
+		LongHeavy = 3,
+		Counter = 4,
+		PistolAttack = 5,
+		RifleAttack = 6,
+		CombatRushShortRange = 7,
+		CombatRushLongRange = 8,
+		RedirectStrike = 9,
+	};
+
+	// Size: 0x4
+	enum class EMeleeAttackTypeFlags : int32_t
+	{
+		Light = 1,
+		Heavy = 2,
+		LongLight = 4,
+		LongHeavy = 8,
+		Counter = 16,
+		PistolAttack = 32,
+		RifleAttack = 64,
+		CombatRushShortRange = 128,
+		CombatRushLongRange = 256,
+		RedirectStrike = 512,
+	};
+
+	// Size: 0x4
+	enum class EMeleeParryStep : int32_t
+	{
+		None = 0,
+		Attacking = 1,
+		Impacting = 2,
+		Staggering = 3,
+	};
+
+	// Size: 0x4
+	enum class EMeleeParryType : int32_t
+	{
+		None = 0,
+		Parry = 1,
+		Block = 2,
+	};
+
+	// Size: 0x4
+	enum class EMeleeVariationType : int32_t
+	{
+		None = -1,
+		Straight = 0,
+		Left = 1,
+		Right = 2,
+	};
+
+	// Size: 0x4
+	enum class ENearDeathStateFinishReason : int32_t
+	{
+		Recovered = 0,
+		Died = 1,
+		Scripted = 2,
+		Quit = 3,
+	};
+
+	// Size: 0x4
+	enum class ENotificationType : int32_t
+	{
+		MainObjective = 0,
+		SubObjective = 1,
+		Hint = 2,
+		QuestItem = 3,
+		Notification = 4,
+		Opportunity = 5,
+		OpportunityStep = 6,
+	};
+
+	// Size: 0x4
+	enum class ENpcArchetype : int32_t
+	{
+		Civilian = 0,
+		Minion = 1,
+		Henchman = 2,
+		Brute = 3,
+		BossAssassin = 4,
+		PlayerCompanion = 5,
+	};
+
+	// Size: 0x4
+	enum class ENpcReinforcementsState : int32_t
+	{
+		AvailableForRequest = 0,
+		Requested = 1,
+		ActiveFromSavegame = 2,
+		Active = 3,
+	};
+
+	// Size: 0x4
+	enum class ENpcStateIconType : int32_t
+	{
+		DistractedInAmbient = 0,
+		EscalatingFromAmbient = 1,
+		Manhunt = 2,
+		ManhuntInvestigatingDisturbance = 3,
+		Combat = 4,
+		CombatDistracted = 5,
+		CallingForReinforcements = 6,
+		Confronting = 7,
+		Bluffed = 8,
+		Watcher = 9,
+		Disoriented = 10,
+		InfluencedByWatcher = 11,
+		LtkWindowOfOpportunity = 12,
+	};
+
+	// Size: 0x4
+	enum class EObjectiveDynamicDataCountDisplayType : int32_t
+	{
+		Default = 0,
+		Currency = 1,
+	};
+
+	// Size: 0x4
+	enum class EObjectiveDynamicDataType : int32_t
+	{
+		None = 0,
+		Count_Up = 1,
+		State_Progression = 2,
+		Timer = 3,
+		State_Progression_And_Percentage = 4,
+	};
+
+	// Size: 0x4
+	enum class EObjectiveUIState : int32_t
+	{
+		Active = 0,
+		Completed = 1,
+		Deactivated = 2,
+		Failed = 3,
+	};
+
+	// Size: 0x4
+	enum class EObjectiveUIType : int32_t
+	{
+		MainObjective = 0,
+		SubObjective = 1,
+		Hint = 2,
+		QuestItem = 3,
+		Opportunity = 4,
+		OpportunityStep = 5,
+	};
+
+	// Size: 0x1
+	enum class EParryVariationType : int8_t
+	{
+		None = 0,
+		Left = 1,
+		Right = 2,
+		BackLeft = 3,
+		BackRight = 4,
+	};
+
+	// Size: 0x1
+	enum class EPhysicsGameplayState : int8_t
+	{
+		PlayerStealth = 0,
+		Vaulting = 1,
+	};
+
+	// Size: 0x1
+	enum class EPhysicsObstacleStopType : int8_t
+	{
+		None = 0,
+		Cliff = 1,
+	};
+
+	// Size: 0x1
+	enum class EPickpocketMode : int8_t
+	{
+		Social = 0,
+		Trespass = 1,
+		Trespass_Bluffed = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerApproachingGoalCompletionMode : int32_t
+	{
+		BasedOnDistanceToTarget = 0,
+		BasedOnDistanceAndFacingToTarget = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerApproachingGoalOrientationMode : int32_t
+	{
+		SameAsTarget = 0,
+		SameAsApproachingDirection = 1,
+		SameAsPlayerFacingAtStart = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerApproachingGoalStopRadiusMode : int32_t
+	{
+		AnyPositionWithinRadius = 0,
+		PositionExactlyOnRadius = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerApproachingMovementType : int32_t
+	{
+		None = 0,
+		CinematicFunnelingApproach = 1,
+		CoreLogicGoal = 2,
+		CoverCorner = 3,
+		DashToCover = 4,
+		UseDoor = 5,
+		VirtualCapsule = 6,
+		AgilityAction = 7,
+		CameraFocusReorientation = 8,
+		Complying = 9,
+		FakeSurrender = 10,
+		ActiveBluff = 11,
+	};
+
+	// Size: 0x1
+	enum class EPlayerComplyingState : int8_t
+	{
+		None = 0,
+		WaitingInitialDialogues = 1,
+		FadingIn = 2,
+		Teleporting = 3,
+		FadingOut = 4,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGadgetTargetType : int32_t
+	{
+		None = 0,
+		Humanoid = 1,
+		Item = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventAgilityActionTriggerMode : int32_t
+	{
+		Start = 0,
+		End = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventAgilityActionType : int32_t
+	{
+		Vault = 0,
+		Scale = 1,
+		ContextualJump = 2,
+		Land = 3,
+		LandRoll = 4,
+		Crouch = 5,
+		StandUp = 6,
+		Dash = 7,
+		Vent = 8,
+		Cover = 9,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventContextSwitchType : int32_t
+	{
+		Entering = 0,
+		Exiting = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventContextType : int32_t
+	{
+		Any = 0,
+		Public = 1,
+		PublicFormal = 2,
+		PublicCasual = 3,
+		Trespassing = 4,
+		LicenseToKill = 5,
+		SituationContained = 6,
+		SoftTrespassing = 7,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventLocomotionTrackingAreaConstraint : int32_t
+	{
+		None = 0,
+		Public = 1,
+		Trespassing = 2,
+		LicenseToKill = 3,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventLocomotionTrackingSpatialConstraint : int32_t
+	{
+		None = 0,
+		Cover = 1,
+		Vent = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventLocomotionTrackingStanceType : int32_t
+	{
+		CrouchIdle = 0,
+		CrouchMoving = 1,
+		Idle = 2,
+		Walking = 3,
+		Running = 4,
+		Sprinting = 5,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventLocomotionTrackingTriggerMode : int32_t
+	{
+		AllConditionsAreSatified = 0,
+		AllConditionsAreSatifiedAndStateChanges = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayEventType : int32_t
+	{
+		PlayerGameplayContextSwitch = 0,
+		PlayerAgilityAction = 1,
+		PlayerLocomotionTracking = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplayRecordTimeStateFlag : int32_t
+	{
+		StandingUp = 0,
+		Crouching = 1,
+		Idle = 2,
+		Moving = 3,
+		Walking = 4,
+		Running = 5,
+		Sprinting = 6,
+		InCover = 7,
+		InsideVent = 8,
+		Aiming = 9,
+		InCloseCombat = 10,
+		InWatchView = 11,
+		InPublic = 12,
+		InTrespassing = 13,
+		InLicenseToKill = 14,
+		Count = 15,
+	};
+
+	// Size: 0x4
+	enum class EPlayerGameplaySystem : int32_t
+	{
+		CoverSystem = 0,
+		HitReaction_Stumble = 1,
+		Skill_Dash = 2,
+		Skill_StartMeleeAttack = 3,
+		Skill_StartSprinting = 4,
+		Skill_Uncrouch = 5,
+		Skill_Crouch = 6,
+		Skill_QuickThrow = 7,
+		Skill_AimedThrow = 8,
+		Skill_Aiming = 9,
+		Skill_PickupItem = 10,
+		Skill_PickupFirearm = 11,
+		Skill_SilentTakedown = 12,
+		Skill_GadgetView = 13,
+		Skill_GadgetActivation = 14,
+		Skill_TrespassingStanceChange = 15,
+		Skill_Pickpocket = 16,
+		Skill_Whistle = 17,
+		Skill_Interact = 18,
+		Skill_ActiveBluff = 19,
+		Skill_StopSprinting = 20,
+		Skill_AttackFromAbove = 21,
+		Skill_AgencyFocus = 22,
+		AgencySystem = 23,
+		AgilitySystem = 24,
+		SituationContained = 25,
+		CombatRush = 26,
+		TouchTheWorldSystem = 27,
+		VaultFinisher = 28,
+		Skill_ContextualThrow = 29,
+		Skill_ConfrontationOptIn = 30,
+		Skill_Block = 31,
+		Skill_Parry = 32,
+		Skill_Grab = 33,
+		Skill_CameraFocus = 34,
+		Skill_Finisher = 35,
+		Skill_GrabRush = 36,
+		Skill_FakeSurrender = 37,
+		Skill_Sidestep = 38,
+		Skill_CombatRushPairedAction = 39,
+		ConsumeGadgetResources = 40,
+		GadgetViewSlowmo = 41,
+		VaultDisarm = 42,
+		SelectNextFirearm = 43,
+		Skill_GrabQuickThrow = 44,
+		Skill_Disarm = 45,
+		Skill_CombatRushGrab = 46,
+		Skill_DoorKick = 47,
+		Skill_DoorRush = 48,
+		TakedownAmmoReward = 49,
+	};
+
+	// Size: 0x1
+	enum class EPlayerGameplaySystemDisabledStateLayerType : int8_t
+	{
+		Base = 0,
+		Secondary = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerInputCollisionProbesModType : int32_t
+	{
+		DisableProbes = 0,
+		ModifyMoveAlongSurfaceAngle = 1,
+		ModifyProbesDistance = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerInputSchemeType : int32_t
+	{
+		Humanoid = 0,
+		Vehicle = 1,
+		Custom = 2,
+		GameUI = 3,
+		EngineUI = 4,
+	};
+
+	// Size: 0x1
+	enum class EPlayerMovementDisabledSource : int8_t
+	{
+		CoreLogic = 0,
+		FakeSurrender = 1,
+		QuickFire = 2,
+		AIDecisionMaking = 3,
+		Confrontation = 4,
+		Comply = 5,
+	};
+
+	// Size: 0x4
+	enum class EPlayerMovementInputConstraintApplicationType : int32_t
+	{
+		Override = 0,
+		Aggregate = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerMovementInputConstraintLayerType : int32_t
+	{
+		Base = 0,
+		Secondary = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerMovementInputConstraintType : int32_t
+	{
+		InputSpeedLevel = 1,
+		InputDeviceMagnitude = 2,
+		InputDeviceDirection = 3,
+		InputDeviceSmoothing = 4,
+	};
+
+	// Size: 0x1
+	enum class EPlayerTargetLineOfSightReachType : int8_t
+	{
+		FirstContactWithTargetSurface = 0,
+		TargetCenter = 1,
+	};
+
+	// Size: 0x1
+	enum class EPlayerTargetLineOfSightType : int8_t
+	{
+		None = 0,
+		SingleRay = 1,
+		Sweep = 2,
+		MultipleRayPoints = 3,
+	};
+
+	// Size: 0x1
+	enum class EPlayerTargetSortMode : int8_t
+	{
+		DistanceToScreenCenter = 0,
+		DistanceToCamera = 1,
+		ScoreCurves = 2,
+	};
+
+	// Size: 0x1
+	enum class EPlayerTargetState : int8_t
+	{
+		Locked = 0,
+		Sticky = 1,
+	};
+
+	// Size: 0x4
+	enum class EPlayerTargetStickinessType : int32_t
+	{
+		None = 0,
+		DurationMaxScore = 1,
+		DurationMinScore = 2,
+		IncreasedAngle = 3,
+	};
+
+	// Size: 0x1
+	enum class EPlayerTimeSlowDownSource : int8_t
+	{
+		AgencyFocus = 0,
+		GadgetView = 1,
+		LastKill = 2,
+		CoreLogic = 3,
+	};
+
+	// Size: 0x4
+	enum class EPlayerVirtualCapsuleObstacleType : int32_t
+	{
+		Invalid = 0,
+		HighObstacle = 1,
+		LowObstacle = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerVirtualCapsuleResultType : int32_t
+	{
+		None = 0,
+		StopOnCollisionSurface = 1,
+		StopOnCollisionWithNPC = 2,
+		ApproachToStopOnCollisionSurface = 3,
+		MovingTowardsCover = 4,
+		RemapInputAlongCollisionSurface = 5,
+		RemapInputForNPCCollisionAvoidance = 6,
+	};
+
+	// Size: 0x4
+	enum class EPlayerVirtualCapsuleSufaceWidthEstimationType : int32_t
+	{
+		Invalid = 0,
+		NoCollision = 1,
+		DistanceToCorner = 2,
+		SingleHitVirtualCapsule = 3,
+		DistanceToSimulationEnd = 4,
+	};
+
+	// Size: 0x1
+	enum class EPotentialHazardNpcReactionType : int8_t
+	{
+		Attract = 0,
+		Repel = 1,
+	};
+
+	// Size: 0x1
+	enum class EPrivateSpaceInvadedReactionRole : int8_t
+	{
+		None = 0,
+		Invading = 1,
+		Reacting = 2,
+	};
+
+	// Size: 0x1
+	enum class EPrivateSpaceInvadedReactionType : int8_t
+	{
+		None = 0,
+		Passive = 1,
+		Mine = 2,
+		InPlace = 3,
+	};
+
+	// Size: 0x1
+	enum class EProjectileImpactBodyPart : int8_t
+	{
+		Torso = 0,
+		Head = 1,
+		LeftHand = 2,
+		LeftArm = 3,
+		LeftLeg = 4,
+		RightHand = 5,
+		RightArm = 6,
+		RightLeg = 7,
+		None = 8,
+		Weapon = 9,
+	};
+
+	// Size: 0x1
+	enum class EProjectileImpactOrigin : int8_t
+	{
+		FRONT = 0,
+		BACK = 1,
+		LEFT = 2,
+		RIGHT = 3,
+	};
+
+	// Size: 0x4
+	enum class ERangedCombatSituation : int32_t
+	{
+		Default = 0,
+		TargetInCover = 1,
+		TargetAimingFromCover = 2,
+		TargetBackInSight = 3,
+		TargetSprinting = 4,
+		TargetDashing = 5,
+		TargetVaulting = 6,
+		TargetGettingShot = 7,
+		TargetDoingFinisher = 8,
+		TargetCombatRushing = 9,
+		BeingShot = 10,
+		Flanking = 11,
+		DoingFocusedShot = 12,
+		AfterFocusedShot = 13,
+		BossAssassinBasement = 14,
+		BossAssassinTakedownGracePeriod = 15,
+		BossAssassinSniper = 16,
+		DuringCloseCombat = 17,
+		AfterCloseCombat = 18,
+		HealthThresholdCap = 19,
+		HitCap = 20,
+		HitCap2 = 21,
+		AfterFriendlyFire = 22,
+		BossExoDamien = 23,
+		TargetCoverDestroyed = 24,
+	};
+
+	// Size: 0x4
+	enum class ERulesOfEngagementLethalForceAvailability : int32_t
+	{
+		Default = 0,
+		Available = 1,
+		Unavailable = 2,
+	};
+
+	// Size: 0x1
+	enum class ESequenceControllerGpwEntityType : int8_t
+	{
+		Humanoid = 0,
+		Vehicle = 1,
+	};
+
+	// Size: 0x1
+	enum class ESequenceControllerGpwVehicleEntityType : int8_t
+	{
+		Car = 0,
+		Boat = 1,
+	};
+
+	// Size: 0x1
+	enum class ESicknessDartReaction : int8_t
+	{
+		Immune = 0,
+		ShrugOff = 1,
+		FullReaction = 2,
+	};
+
+	// Size: 0x1
+	enum class ESideStepType : int8_t
+	{
+		Hop = 0,
+		SideStep = 1,
+	};
+
+	// Size: 0x4
+	enum class ESideStepWindowType : int32_t
+	{
+		Grab = 0,
+		MeleeAttack = 1,
+		TaserShot = 2,
+	};
+
+	// Size: 0x1
+	enum class ESimulatedPlayerActiveSkill : int8_t
+	{
+		SimulatedSkill_Confrontation = 0,
+		SimulatedSkill_FakeSurrender = 1,
+	};
+
+	// Size: 0x4
+	enum class EStaggerSource : int32_t
+	{
+		ThrowableImpact = 0,
+		MeleeImpact = 1,
+		VaultImpact = 2,
+		StaggeredMovementImpact = 3,
+		GrabThrow = 4,
+		Taser = 5,
+		Flashbang = 6,
+		CoreLogic = 7,
+		Parry = 8,
+		DoorImpact = 9,
+		Firearm = 10,
+		PrivateSpacePush = 11,
+		Shockwave = 12,
+		Explosion = 13,
+		PairedAction = 14,
+		AgilityActionImpact = 15,
+		StumbleImpact = 16,
+		CapsuleOverlap = 17,
+		FlashMine = 18,
+		ElectricalSurge = 19,
+	};
+
+	// Size: 0x4
+	enum class EStaggerStrength : int32_t
+	{
+		Light = 0,
+		Medium = 1,
+		Heavy = 2,
+	};
+
+	// Size: 0x4
+	enum class EStaggerStrengthFlags : int32_t
+	{
+		Light = 1,
+		Medium = 2,
+		Heavy = 4,
+	};
+
+	// Size: 0x1
+	enum class EStaggeredLocomotionState : int8_t
+	{
+		MeleeImpact = 0,
+		Generic = 1,
+		FirearmImpact = 2,
+		Idle = 3,
+		WallImpact = 4,
+		LowCoverImpact = 5,
+		Death = 6,
+		GrabThrow = 7,
+		Parry = 8,
+		WallDeath = 9,
+		VaultAttackImpact = 10,
+		LowCoverRoll = 11,
+		HumanoidImpact = 12,
+		ThrowableImpact = 13,
+		DeathOverEdge = 14,
+		PrivateSpacePush = 15,
+		Explosion = 16,
+		PairedAction = 17,
+		Shockwave = 18,
+		FlashMine = 19,
+	};
+
+	// Size: 0x4
+	enum class EStanceChangeSource : int32_t
+	{
+		Undefined = 0,
+		CrouchAimingInLowCover = 1,
+		CrouchFromHighToLowCover = 2,
+		CrouchGoal = 3,
+		CrouchAfterScaling = 4,
+		CrouchAfterLowCoverTakedown = 5,
+		CrouchDashToLowCover = 6,
+		UncrouchGoal = 7,
+		UncrouchDashToHighCover = 8,
+		UncrouchAimingInLowCover = 9,
+		UncrouchOnCloseCombatHitReaction = 10,
+		UncrouchWhenStaggered = 11,
+		UncrouchWhenCloseCombat = 12,
+		UncrouchWhenInConfrontation = 13,
+		UncrouchWhenInSocialGameplayArea = 14,
+		UncrouchWhenAccelerating = 15,
+		MovingAndAiming = 16,
+		Moving = 17,
+		Aiming = 18,
+		Idle = 19,
+		AgilityAction = 20,
+		CrouchAfterAttackFromAbove = 21,
+	};
+
+	// Size: 0x4
+	enum class EStartMeleeAttackSkillAvailability : int32_t
+	{
+		Available = 0,
+		Unavailable_AttackNotRequested = 1,
+		Unavailable_GameplaySystemDisabled = 2,
+		Unavailable_SoftTrespassing = 3,
+		Unavailable_CombatDisabled = 4,
+		Unavailable_MotorConfig = 5,
+		Unavailable_GadgetView = 6,
+		Unavailable_InteractionAnimation = 7,
+		Unavailable_GrabCooldown = 8,
+		Unavailable_ConflictingHumanoidData = 9,
+		Unavailable_MeleeAttackingWithChainWindowClosed = 10,
+		Unavailable_Grabbing = 11,
+		Unavailable_NoValidTarget = 12,
+		Unavailable_NoValidAttack = 13,
+		Unavailable_AimTargetDriven = 14,
+		Unavailable_NoValidTargetAfterCloseCombatKillCooldown = 15,
+		Unavailable_OnGuide = 16,
+		Count = 17,
+	};
+
+	// Size: 0x4
+	enum class EStartMeleeAttackSkillVictimStatus : int32_t
+	{
+		Unknown = 0,
+		Invalid_TooFarWhenDoingFakeSurrender = 1,
+		Invalid_NoCandidateWithinMeleeAttackRange = 2,
+		Valid = 3,
+		Valid_FakeSurrenderTarget = 4,
+		Valid_BestCandidateWithinMeleeAttackRange = 5,
+	};
+
+	// Size: 0x4
+	enum class EStumbleCandidateType : int32_t
+	{
+		Undefined = 0,
+		Humanoid = 1,
+		Lowcover = 2,
+		Railing = 3,
+		Wall = 4,
+		LowcoverRoll = 5,
+		Entity = 6,
+		Count = 7,
+	};
+
+	// Size: 0x4
+	enum class EStumbleDamageEventType : int32_t
+	{
+		OnStumble = 0,
+		OnAnimationEvent = 1,
+	};
+
+	// Size: 0x2
+	enum class EStumbleImpactFlag : int16_t
+	{
+		BlockingImpact = 0,
+		Heavy = 1,
+		CausesRollOver = 2,
+		AllowsContextualAttack = 3,
+		StunsInstigator = 4,
+		UnequipWeapon = 5,
+		FallbackStumble = 6,
+		IsDamageableObject = 7,
+		IsDoor = 8,
+		WillDestroyObject = 9,
+		StaggerStumbledTarget = 10,
+		LandedDuringRollOver = 11,
+		OverrideStumble = 12,
+	};
+
+	// Size: 0x4
+	enum class EStumbleImpactType : int32_t
+	{
+		Unknown = 0,
+		HighWall = 1,
+		LowWall = 2,
+		Humanoid = 3,
+		RailingDeath = 4,
+		LowCoverRoll = 5,
+	};
+
+	// Size: 0x4
+	enum class EStumbleListenerImpactType : int32_t
+	{
+		Stumble = 0,
+		ContextualPairedAction = 1,
+	};
+
+	// Size: 0x1
+	enum class EStunType : int8_t
+	{
+		Taser = 0,
+		Flashbang = 1,
+		SlipAndKnockout = 2,
+		Stagger = 3,
+		Parry = 4,
+		Invalid = -1,
+	};
+
+	// Size: 0x4
+	enum class ETWILeaveContext : int32_t
+	{
+		None = 0,
+		StopInProgress = 1,
+		Leaving = 2,
+	};
+
+	// Size: 0x4
+	enum class ETWIRuntimeState : int32_t
+	{
+		Idle = 0,
+		Searching = 1,
+		CloseButNoSurfaceHit = 2,
+		SurfaceHit = 3,
+		Aborted = 4,
+		OnCooldown = 5,
+	};
+
+	// Size: 0x4
+	enum class ETWIStopContext : int32_t
+	{
+		None = 0,
+		HighObstacleStop = 1,
+		HighObstaclePredictedStop = 2,
+		LowObstacleStop = 3,
+		LowObstaclePredictedStop = 4,
+	};
+
+	// Size: 0x1
+	enum class ETargetingRaycastDetailLevel : int8_t
+	{
+		Simple = 0,
+		Bones = 1,
+		Detailed = 2,
+	};
+
+	// Size: 0x1
+	enum class ETraversalRaycastHitAspectFlag : int8_t
+	{
+		SlidingSurface = 0,
+	};
+
+	// Size: 0x1
+	enum class ETraversalSearchResultType : int8_t
+	{
+		None = 0,
+		Edge = 1,
+		Ramp = 2,
+		BlockingObstacle = 3,
+		NarrowObstacle = 4,
+		ObstacleToClimb = 5,
+		ObstacleToVault = 6,
+		ObstacleToJump = 7,
+		ObstacleVaultDisabled = 8,
+		ObstacleClimbDisabled = 9,
+		ObstacleMarkupWithAgilityDisabled = 10,
+		DisallowedApproachAngle = 11,
+	};
+
+	// Size: 0x1
+	enum class ETurnCoverCornerType : int8_t
+	{
+		NotAvailable = 0,
+		AvailableInactive = 1,
+		AvailableReady = 2,
+	};
+
+	// Size: 0x1
+	enum class EUseDoorSkillType : int8_t
+	{
+		Open = 0,
+		Close = 1,
+		Kick = 2,
+		Bullrush = 3,
+		Sabotage = 4,
+		TryUseSabotagedDoor = 5,
+	};
+
+	// Size: 0x4
+	enum class EVaultObstacleDepthVariations : int32_t
+	{
+		Fence = 0,
+		ShortestLowObstacle = 1,
+		ShortLowObstacle = 2,
+		DeepLowObstacle = 3,
+		DeepestLowObstacle = 4,
+	};
+
+	// Size: 0x1
+	enum class EVaultType : int8_t
+	{
+		VaultDefault = 0,
+		VaultAttack = 1,
+		VaultFinisher = 2,
+		VaultDisarm = 3,
+		None = 4,
+	};
+
+	// Size: 0x1
+	enum class EVehicleAerodynamicsDownforceMode : int8_t
+	{
+		Always = 0,
+		OnlyOnGround = 1,
+		OnlyOnAir = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleApplyForceSource : int32_t
+	{
+		Aerodynamics = 0,
+		ExternalSource = 1,
+		CollisionAssist = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleAttachmentsDriveMode : int32_t
+	{
+		PhysicsDriven = 0,
+		AnimationDriven = 1,
+		MixOfPhysicsAndAnimation = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleBoatAnimationState : int32_t
+	{
+		NotInBoat = 0,
+		Entering = 1,
+		Driving = 2,
+		Passanger = 3,
+		Exiting = 4,
+	};
+
+	// Size: 0x4
+	enum class EVehicleBoatCollisionObjectType : int32_t
+	{
+		Wall = 0,
+		AnotherBoat = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehicleBoatHardCollisionAssistType : int32_t
+	{
+		NotColliding = 0,
+		AutoSteeringWithSideCollision = 1,
+		UsingPhysicsCollision = 2,
+		ArtificialBounceOffSurface = 3,
+		HardStop = 4,
+	};
+
+	// Size: 0x4
+	enum class EVehicleBoatHumanoidAttachmentParent : int32_t
+	{
+		PhysicsSpatial = 0,
+		VisualSpatial = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehicleBoatNPCHangPointType : int32_t
+	{
+		None = -1,
+		N_0 = 0,
+		NE_1 = 1,
+		SE_2 = 2,
+		SW_3 = 3,
+		NW_4 = 4,
+	};
+
+	// Size: 0x1
+	enum class EVehicleBoatVisualsMode : int8_t
+	{
+		SimpleMesh = 0,
+		AnimatedMesh = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCameraStateType : int32_t
+	{
+		AtRest = 0,
+		Rolling = 1,
+		Accelerating = 2,
+		Braking = 3,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCameraTargetReinitializationType : int32_t
+	{
+		None = 0,
+		InitializeWithEnteringVehicleCamera = 1,
+		InitializeWithDrivingCamera = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCameraTargetSpringFollowMode : int32_t
+	{
+		SpeedBasedResponsiveness = 0,
+		AngleBasedResponsiveness = 1,
+		SpeedBasedSimpleVehicleSpring = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCameraTargetSpringFollowState : int32_t
+	{
+		InitializeWithEnteringVehicleCamera = 0,
+		InitializeWithDrivingCamera = 1,
+		InputBasedSprings = 2,
+		CooldownSprings = 3,
+		InputAssistSpringFollow = 4,
+		InputTriggeredReset = 5,
+		VehiclePhysicsSprings = 6,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCameraTargetType : int32_t
+	{
+		Default = 0,
+		VehiclePhysicsSpringFollowTarget = 1,
+		VehiclePhysicsSpringLookAtTarget = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCameraType : int32_t
+	{
+		BasedOnInputState = 0,
+		BasedOnVehiclePhysics = 1,
+	};
+
+	// Size: 0x1
+	enum class EVehicleCarAnimationState : int8_t
+	{
+		None = 0,
+		Entering = 1,
+		Driving = 2,
+		Exiting = 3,
+	};
+
+	// Size: 0x1
+	enum class EVehicleCarComponentType : int8_t
+	{
+		Drifting = 0,
+		CollisionHandling = 1,
+		Aerodynamics = 2,
+		CameraController = 3,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCarConfigOverrideType : int32_t
+	{
+		Acceleration = 0,
+		RevAcceleration = 1,
+		Deceleration = 2,
+		Steering = 3,
+		Tires = 4,
+		WheelsSteeringAndBrakes = 5,
+		WheelsAntiroll = 6,
+	};
+
+	// Size: 0x4
+	enum class EVehicleCinematicSpeedMode : int32_t
+	{
+		None = 0,
+		ForwardSpeed = 1,
+		RigidbodyVelocity = 2,
+	};
+
+	// Size: 0x1
+	enum class EVehicleCollisionCorrectionMode : int8_t
+	{
+		ImpactForceImpulse = 0,
+		ConstantLateralForce = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehicleDebugLogCategory : int32_t
+	{
+		SimulationPauseResume = 0,
+		Aerodynamics = 1,
+		Teleport = 2,
+		ExternalForces = 3,
+		SpeedModifiers = 4,
+		CollisionDetection = 5,
+		DataChanges = 6,
+		Count = 7,
+	};
+
+	// Size: 0x4
+	enum class EVehicleDriftingConfigType : int32_t
+	{
+		Brake = 0,
+		Handbrake = 1,
+		Autodrift = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleForceType : int32_t
+	{
+		Impulse = 0,
+		PointImpulse = 1,
+		Force = 2,
+		PointForce = 3,
+		TorqueImpulse = 4,
+		Torque = 5,
+	};
+
+	// Size: 0x1
+	enum class EVehicleHumanoidAttachMode : int8_t
+	{
+		Instant = 0,
+		AnimationDriven = 1,
+	};
+
+	// Size: 0x1
+	enum class EVehicleHumanoidAttachmentParent : int8_t
+	{
+		PhysicsChassis = 0,
+		SkeletonSpatial = 1,
+		VehicleSpatialAttachment = 2,
+	};
+
+	// Size: 0x1
+	enum class EVehicleHumanoidVisibility : int8_t
+	{
+		Visible = 0,
+		Invisible = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehiclePhysicalPartType : int32_t
+	{
+		WheelFrontLeft = 0,
+		WheelFrontRight = 1,
+		WheelRearLeft = 2,
+		WheelRearRight = 3,
+		Chassis = 4,
+	};
+
+	// Size: 0x4
+	enum class EVehicleSetAngularVelocitySource : int32_t
+	{
+		AerodynamicPitchConstraint = 0,
+		AerodynamicRollConstraint = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehicleSkeletonSpatialSynchronizationMode : int32_t
+	{
+		Disabled = 0,
+		PhysicsTransform = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehicleSlopeState : int32_t
+	{
+		Invalid = 0,
+		Airbone = 1,
+		Uphill = 2,
+		Downhill = 3,
+		Flat = 4,
+	};
+
+	// Size: 0x4
+	enum class EVehicleSpatialAttachmentLocalOffsetType : int32_t
+	{
+		None = 0,
+		Inline = 1,
+		External = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleSpatialAttachmentMode : int32_t
+	{
+		WorldPositionAndRotation = 0,
+		WorldPosition = 1,
+		WorldRotation = 2,
+		WorldPositionPhysicsBodyRotation = 3,
+		WorldPositionSpeedBasedWheelRotation = 4,
+		SkeletonBoneTransformFromPhysicalPart = 5,
+		SkeletonBoneTransformCustom = 6,
+		CustomVehicleSpatialPositionSpeedBasedWheelRotation = 7,
+	};
+
+	// Size: 0x4
+	enum class EVehicleSpatialAttachmentOscilationMethod : int32_t
+	{
+		Sin = 0,
+		Cos = 1,
+	};
+
+	// Size: 0x4
+	enum class EVehicleSpatialAttachmentOscilationType : int32_t
+	{
+		Yaw = 0,
+		Pitch = 1,
+		Roll = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleVelocityModifier : int32_t
+	{
+		SetForwardSpeedSingleFrame = 0,
+		AddMaxSpeedLimit = 1,
+		RemoveMaxSpeedLimit = 2,
+	};
+
+	// Size: 0x4
+	enum class EVehicleWheelIndex : int32_t
+	{
+		FrontLeft = 0,
+		FrontRight = 1,
+		RearLeft = 2,
+		RearRight = 3,
+	};
+
+	// Size: 0x4
+	enum class EVirtualCapsuleApproachReasonType : int32_t
+	{
+		None = 0,
+		EarlyExit = 1,
+		InCover = 2,
+		AnticipationWithApproach = 3,
+		CollisionStopWithoutApproach = 4,
+		InputRemap = 5,
+		NoVirtualCapsuleResult = 6,
+	};
+
+	// Size: 0x4
+	enum class EVirtualCapsuleApproachResultType : int32_t
+	{
+		None = 0,
+		AddApproach = 1,
+		RemoveApproachImmediately = 2,
+		RemoveApproachWhenFinished = 3,
+	};
+
+	// Size: 0x4
+	enum class EVirtualCapsuleNPCCollisionType : int32_t
+	{
+		Invalid = -1,
+		Front = 0,
+		LateralLeft = 1,
+		LateralRight = 2,
+	};
+
+	// Size: 0x4
+	enum class EVisualAggressionLevel : int32_t
+	{
+		None = 0,
+		Soft = 1,
+		Hard = 2,
+	};
+
+	// Size: 0x4
+	enum class PhysicalGoalStatus : int32_t
+	{
+		CreatedByPrimitiveTask = 0,
+		ScheduledToBeAbortedFromPrimitiveTask = 1,
+		PassedSolver = 2,
+		RejectedBySolver = 3,
+		AbortedBySolver = 4,
+		AbortedNoSkill = 5,
+		AbortedByAutomatedRemoval = 6,
+		AbortedFromPrimitiveTask = 7,
+		InSkill = 8,
+		Failed = 9,
+		Succeeded = 10,
+	};
+
+	namespace PlayerInteractions {
+		// Size: 0x4
+		enum class EInteractionAnimationOperationResult : int32_t
+		{
+			None = 0,
+			StartRequestAccepted = 1,
+			StartRequestRejected = 2,
+			InteractionCompleted = 3,
+			InteractionInterrupted = 4,
+		};
+
+		// Size: 0x4
+		enum class EType : int32_t
+		{
+			Standard = 0,
+			Pickpocket = 1,
+		};
+
+	}
+
+	// Size: 0xA8
+	class /*alignas(8)*/ SActiveCameraTargetTrackingConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SActiveCameraTargetTrackingConfig& p_Other) const;
+		bool operator!=(const SActiveCameraTargetTrackingConfig& p_Other) const { return !(*this == p_Other); }
+
+		bool m_isActive; // 0x0
+		uint8_t _pad1[7] {};
+		ZCurve m_speedCurve; // 0x8
+		ZCurve m_accelerationFromAngleCurve; // 0x50
+		float32 m_negativeConstraint; // 0x98
+		float32 m_positiveConstraint; // 0x9C
+		float32 m_hysteresis; // 0xA0
+		float32 m_dampingTime; // 0xA4
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SAgilityActionAttributeSearchInfo	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAgilityActionAttributeSearchInfo& p_Other) const;
+		bool operator!=(const SAgilityActionAttributeSearchInfo& p_Other) const { return !(*this == p_Other); }
+
+		uint32 m_name; // 0x0
+		Gameplay::EAgilityActionAttributeSearchType m_searchType; // 0x4
+		uint8_t _pad5[3] {};
+	};
+
+	// Size: 0x6
+	class /*alignas(1)*/ SAgilityActionLaunchVelocityClampSettings	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAgilityActionLaunchVelocityClampSettings& p_Other) const;
+		bool operator!=(const SAgilityActionLaunchVelocityClampSettings& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::EAgilityActionLaunchVelocityClampBehavior m_maximumX; // 0x0
+		Gameplay::EAgilityActionLaunchVelocityClampBehavior m_maximumY; // 0x1
+		Gameplay::EAgilityActionLaunchVelocityClampBehavior m_maximumZ; // 0x2
+		Gameplay::EAgilityActionLaunchVelocityClampBehavior m_minimumX; // 0x3
+		Gameplay::EAgilityActionLaunchVelocityClampBehavior m_minimumY; // 0x4
+		Gameplay::EAgilityActionLaunchVelocityClampBehavior m_minimumZ; // 0x5
+	};
+
+	// Size: 0x34
+	class /*alignas(4)*/ SAgilityActionReferencePointStep	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAgilityActionReferencePointStep& p_Other) const;
+		bool operator!=(const SAgilityActionReferencePointStep& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::EAgilityActionReferencePointStepMethod m_method; // 0x0
+		Gameplay::EAgilityActionReferencePointStepOperation m_operation; // 0x1
+		uint8_t _pad2[2] {};
+		uint32 m_flags; // 0x4
+		SVector4 m_data; // 0x8
+		Gameplay::EHumanoidBoneType m_bone; // 0x18
+		Gameplay::SAgilityActionReferencePointStepDebug m_debug; // 0x1C
+	};
+
+	// Size: 0x14
+	class /*alignas(4)*/ SAgilityPenaltyMultipliers	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAgilityPenaltyMultipliers& p_Other) const;
+		bool operator!=(const SAgilityPenaltyMultipliers& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_vaultPenalty; // 0x0
+		float32 m_jumpPenalty; // 0x4
+		float32 m_scalePenalty; // 0x8
+		float32 m_dropDownPenalty; // 0xC
+		float32 m_ladderPenalty; // 0x10
+	};
+
+	// Size: 0x10
+	class /*alignas(8)*/ SAnimationPayloadEnumType	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAnimationPayloadEnumType& p_Other) const;
+		bool operator!=(const SAnimationPayloadEnumType& p_Other) const { return !(*this == p_Other); }
+
+		TypeID m_enumTypeID; // 0x0
+		int32 m_enumValue; // 0x8
+		uint8_t _padC[4] {};
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SCameraOnGuideOrientationConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCameraOnGuideOrientationConfig& p_Other) const;
+		bool operator!=(const SCameraOnGuideOrientationConfig& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_orientationTime; // 0x0
+		float32 m_minAngleToTrigger; // 0x4
+		float32 m_angleToReach; // 0x8
+		bool m_allowCancelOnInput; // 0xC
+		bool m_allowPitchCorrection; // 0xD
+		uint8_t _padE[2] {};
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SCloseCombatAttackModifierSetting	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCloseCombatAttackModifierSetting& p_Other) const;
+		bool operator!=(const SCloseCombatAttackModifierSetting& p_Other) const { return !(*this == p_Other); }
+
+		uint32 m_minNumberOfOpponents; // 0x0
+		uint32 m_maxNumberOfOpponents; // 0x4
+		float32 m_timeModifier; // 0x8
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SCloseCombatAttackPatternWithResetTimer	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCloseCombatAttackPatternWithResetTimer& p_Other) const;
+		bool operator!=(const SCloseCombatAttackPatternWithResetTimer& p_Other) const { return !(*this == p_Other); }
+
+		ECloseCombatAttack m_Attack; // 0x0
+		float32 m_Weight; // 0x4
+		float32 m_WeightFalloff; // 0x8
+		float32 m_SecondsUntilResetAfterFirstFalloff; // 0xC
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SCloseCombatAttackPatternWithoutResetTimer	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCloseCombatAttackPatternWithoutResetTimer& p_Other) const;
+		bool operator!=(const SCloseCombatAttackPatternWithoutResetTimer& p_Other) const { return !(*this == p_Other); }
+
+		ECloseCombatAttack m_Attack; // 0x0
+		float32 m_Weight; // 0x4
+		float32 m_WeightFalloff; // 0x8
+	};
+
+	// Size: 0x18
+	class /*alignas(4)*/ SCloseCombatAttackTimingSetting	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCloseCombatAttackTimingSetting& p_Other) const;
+		bool operator!=(const SCloseCombatAttackTimingSetting& p_Other) const { return !(*this == p_Other); }
+
+		uint32 m_minNumberOfOpponents; // 0x0
+		uint32 m_maxNumberOfOpponents; // 0x4
+		float32 m_minTimeBetweenAttacks; // 0x8
+		float32 m_maxTimeBetweenAttacks; // 0xC
+		int32 m_minEnemyComboStrikeStepToAllowAttacking; // 0x10
+		bool m_enableRetaliationAttackAfterLastHitInCombo; // 0x14
+		bool m_enableRetaliationAttackAfterContextualAttack; // 0x15
+		bool m_enableRetaliationAttackAfterParry; // 0x16
+		uint8_t _pad17[1] {};
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SCloseCombatReactionPatternWithResetTimer	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCloseCombatReactionPatternWithResetTimer& p_Other) const;
+		bool operator!=(const SCloseCombatReactionPatternWithResetTimer& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::ECloseCombatReaction m_Reaction; // 0x0
+		float32 m_Weight; // 0x4
+		float32 m_WeightFalloff; // 0x8
+		float32 m_SecondsUntilResetAfterFirstFalloff; // 0xC
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SCloseCombatReactionPatternWithoutResetTimer	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCloseCombatReactionPatternWithoutResetTimer& p_Other) const;
+		bool operator!=(const SCloseCombatReactionPatternWithoutResetTimer& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::ECloseCombatReaction m_Reaction; // 0x0
+		float32 m_Weight; // 0x4
+		float32 m_WeightFalloff; // 0x8
+	};
+
+	// Size: 0x2C
+	class /*alignas(4)*/ SCoverSymmetricalFramingConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCoverSymmetricalFramingConfig& p_Other) const;
+		bool operator!=(const SCoverSymmetricalFramingConfig& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_offsetFromCover; // 0x0
+		float32 m_offsetInCoverFacing; // 0x4
+		float32 m_additionalOffsetInGadgetViewInCoverFacing; // 0x8
+		float32 m_additionalOffsetInGadgetViewInCoverUp; // 0xC
+		float32 m_offsetWhenCameraIsBehindPlayer; // 0x10
+		float32 m_offsetInCoverUp; // 0x14
+		float32 m_coverFacingChangeBlendTime; // 0x18
+		float32 m_defaultOffsetBlendTime; // 0x1C
+		float32 m_inCoverTransitionOffsetBlendTime; // 0x20
+		float32 m_inGadgetViewOffsetBlendTime; // 0x24
+		float32 m_behindPlayerOffsetBlendTime; // 0x28
+	};
+
+	// Size: 0x18
+	class /*alignas(4)*/ SDoorInteractionFailSafeDurations	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDoorInteractionFailSafeDurations& p_Other) const;
+		bool operator!=(const SDoorInteractionFailSafeDurations& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_approachingToleranceAngleInDegrees; // 0x0
+		float32 m_approachingDuration; // 0x4
+		float32 m_aligningDuration; // 0x8
+		float32 m_waitingForExecutionDuration; // 0xC
+		float32 m_successfulExecutingDuration; // 0x10
+		float32 m_failureExecutingDuration; // 0x14
+	};
+
+	// Size: 0x18
+	class /*alignas(4)*/ SInteractionPromptOffsets	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInteractionPromptOffsets& p_Other) const;
+		bool operator!=(const SInteractionPromptOffsets& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_attackFromAboveVerticalOffset; // 0x0
+		float32 m_climbLadderVerticalOffset; // 0x4
+		float32 m_contextualJumpVerticalOffset; // 0x8
+		float32 m_scaleVerticalOffset; // 0xC
+		float32 m_takedownVerticalOffset; // 0x10
+		float32 m_coverSwapVerticalOffset; // 0x14
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SObjectiveUIText	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SObjectiveUIText& p_Other) const;
+		bool operator!=(const SObjectiveUIText& p_Other) const { return !(*this == p_Other); }
+
+		ZString m_rawString; // 0x0
+		TResourcePtr m_sweetString; // 0x10
+	};
+
+	// Size: 0x6C
+	class /*alignas(4)*/ SPlayerTactileWorldInteractionConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPlayerTactileWorldInteractionConfig& p_Other) const;
+		bool operator!=(const SPlayerTactileWorldInteractionConfig& p_Other) const { return !(*this == p_Other); }
+
+		bool m_enabled; // 0x0
+		uint8_t _pad1[3] {};
+		Gameplay::STWIAnticipationConfig m_anticipationConfig; // 0x4
+		Gameplay::STWITouchConfig m_touchConfig; // 0x2C
+		Gameplay::STWIStopsConfig m_stopsConfig; // 0x4C
+	};
+
+	// Size: 0x24
+	class /*alignas(4)*/ SSpycraftPathToTargetConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSpycraftPathToTargetConfig& p_Other) const;
+		bool operator!=(const SSpycraftPathToTargetConfig& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_mappingTolerance; // 0x0
+		bool m_allowPlayerOnGuideOverheadLocation; // 0x4
+		uint8_t _pad5[3] {};
+		float32 m_onGuideOverheadThreshold; // 0x8
+		SVector3 m_onGuideOverheadOffset; // 0xC
+		SVector3 m_hangingOverheadOffset; // 0x18
+	};
+
+	// Size: 0x110
+	class /*alignas(8)*/ STraversalDashConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STraversalDashConfig& p_Other) const;
+		bool operator!=(const STraversalDashConfig& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_dashMaxDistance; // 0x0
+		float32 m_dashMaxDistanceSide; // 0x4
+		float32 m_dashMaxDistanceFree; // 0x8
+		float32 m_dashMaxDistanceFreeCrouch; // 0xC
+		float32 m_dashMaxDistanceNoInput; // 0x10
+		float32 m_dashMinDistance; // 0x14
+		float32 m_dashMinDistanceFree; // 0x18
+		float32 m_dashMinDistanceFreeToCorner; // 0x1C
+		float32 m_dashAngleThresholdForCoverCornerSearch; // 0x20
+		float32 m_dashAngleToFilterOutTargetsPlayerCoverSide; // 0x24
+		float32 m_dashAngleToFilterOutTargetsOppositePlayerCoverSide; // 0x28
+		float32 m_dashAngleToFilterOutTargetsWhenPlayerOutOfCover; // 0x2C
+		float32 m_dashAngleToFilterOutTargetsWhenPlayerOutOfCoverAndIdle; // 0x30
+		float32 m_dashAngleToFilterOutTargetsSideDashTargetMaxAngle; // 0x34
+		float32 m_dashAngleToFilterOutTargetsCoverSwapMaxAngle; // 0x38
+		float32 m_dashAngleToFilterOutTargetsCoverSwapCornerAngle; // 0x3C
+		float32 m_dashAngleToFilterOutTargetsCoverSwapMinDistsance; // 0x40
+		Gameplay::EDashCoverSwapFacingMode m_dashCoverSwapFacingMode; // 0x44
+		float32 m_dashCoverSwapFacingInputMagnitudeThreshold; // 0x48
+		float32 m_dashCoverSwapInputAngleLimit; // 0x4C
+		float32 m_dashCoverSwapExtendedAvailabilityTimeDuration; // 0x50
+		float32 m_dashCoverSwapExtendedAvailabilityCornerThreshold; // 0x54
+		float32 m_dashCoverCornerTargetingRadius; // 0x58
+		float32 m_dashCoverCornerTargetingIntersectDistMin; // 0x5C
+		float32 m_dashSearchCapsuleRadius; // 0x60
+		float32 m_dashSearchCenterOffset; // 0x64
+		float32 m_dashSearchWidth; // 0x68
+		float32 m_dashSearchWidthSide; // 0x6C
+		float32 m_dashSearchHeight; // 0x70
+		float32 m_dashSearchBackBoxDistance; // 0x74
+		float32 m_dashSearchBackBoxWidth; // 0x78
+		float32 m_dashSearchNearCornerFilterRadius; // 0x7C
+		float32 m_dashSearchNearCornerRightOffset; // 0x80
+		float32 m_dashSearchNearCornerLeftOffset; // 0x84
+		float32 m_dashSearchFarCornerRightOffset; // 0x88
+		float32 m_dashSearchFarCornerLeftOffset; // 0x8C
+		float32 m_dashCooldownFree; // 0x90
+		float32 m_dashMaxDuration; // 0x94
+		float32 m_dashTargetingScreenSpaceXLeftMargin; // 0x98
+		float32 m_dashTargetingScreenSpaceXRightMargin; // 0x9C
+		float32 m_dashTargetingScreenSpaceYBottomMargin; // 0xA0
+		float32 m_dashTargetingScreenSpaceYTopMargin; // 0xA4
+		float32 m_dashToCoverSlideThreshold; // 0xA8
+		float32 m_dashToCoverFacingAngleThreshold; // 0xAC
+		float32 m_dashToCoverNoInputCameraFacingAngleThreshold; // 0xB0
+		uint8_t _padB4[4] {};
+		ZCurve m_dashCameraBlendPerInputMagnitude; // 0xB8
+		Gameplay::EDashTargetingBehaviour m_dashTargetingBehaviour; // 0x100
+		Gameplay::EDashStancePolicy m_dashStancePolicy; // 0x104
+		bool m_dashTargetingEnabledToNonTaggedCorners; // 0x108
+		uint8_t _pad109[7] {};
+	};
+
+	// Size: 0x14
+	class /*alignas(4)*/ STraversalSearchAnglesConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STraversalSearchAnglesConfig& p_Other) const;
+		bool operator!=(const STraversalSearchAnglesConfig& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_searchApproachAngleMaxStart; // 0x0
+		float32 m_searchApproachAngleMaxEnd; // 0x4
+		float32 m_searchDirectionSmoothTime; // 0x8
+		float32 m_searchDirectionDampingHalfLife; // 0xC
+		float32 m_searchDirectionDampingHalfLifeWhenInputIsTowardsZero; // 0x10
+	};
+
+	// Size: 0x14
+	class /*alignas(4)*/ STraversalSlidingConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STraversalSlidingConfig& p_Other) const;
+		bool operator!=(const STraversalSlidingConfig& p_Other) const { return !(*this == p_Other); }
+
+		bool m_enabledOnlyOnSlidingSurfaces; // 0x0
+		uint8_t _pad1[3] {};
+		float32 m_slideSlopeAngleMin; // 0x4
+		float32 m_slideSlopeAngleMax; // 0x8
+		float32 m_slideMaxSpeed; // 0xC
+		float32 m_slideSidewaysAcceleration; // 0x10
+	};
+
+	// Size: 0x13C
+	class /*alignas(4)*/ SVehicleCameraConfigurationData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleCameraConfigurationData& p_Other) const;
+		bool operator!=(const SVehicleCameraConfigurationData& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::SVehicleCameraControlsConfig m_inputControls; // 0x0
+		Gameplay::SVehicleCameraStatesData m_statesConfig; // 0x14
+		Gameplay::SVehicleCameraRollConfiguration m_rollConfig; // 0x130
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SVehicleCameraFollowTargetResetData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleCameraFollowTargetResetData& p_Other) const;
+		bool operator!=(const SVehicleCameraFollowTargetResetData& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_yaw; // 0x0
+		float32 m_pitch; // 0x4
+		float32 m_radius; // 0x8
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SVehicleDriftingDeactivationConditionSet	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleDriftingDeactivationConditionSet& p_Other) const;
+		bool operator!=(const SVehicleDriftingDeactivationConditionSet& p_Other) const { return !(*this == p_Other); }
+
+		TArray<Gameplay::SVehicleDriftingDeactivationCondition> m_conditions; // 0x0
+	};
+
+	// Size: 0x4
+	class /*alignas(2)*/ ZIdentifier	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const ZIdentifier& p_Other) const;
+		bool operator!=(const ZIdentifier& p_Other) const { return !(*this == p_Other); }
+
+		uint8_t _pad0[4] {};
+	};
+
+}
 
 namespace Geppetto {
 	// Size: 0x4
@@ -5579,7 +10425,6 @@ public:
 	uint8_t _pad0[8] {};
 };
 
-
 // Size: 0x8
 class /*alignas(0)*/ ITriggerListener{
 public:
@@ -5875,6 +10720,58 @@ namespace InputControllerType {
 
 }
 
+namespace InputOverride {
+	class ZActionDeviceConfigEntity
+	{
+	public:
+		// Size: 0x4
+		enum class EDeviceType : int32_t
+		{
+			Gamepad = 1,
+			Mouse = 2,
+			Keyboard = 4,
+		};
+
+	};
+
+}
+
+// Size: 0xC
+class /*alignas(4)*/ SKeyHandle{
+public:
+	// Size: 0x4
+	enum class EInputValueType : int32_t
+	{
+		eIT_Digital = 0,
+		eIT_Analog = 1,
+	};
+
+	// Size: 0x4
+	enum class EInputType : int32_t
+	{
+		eDT_Unknown = 0,
+		eDT_Gamepad = 1,
+		eDT_Mouse = 2,
+		eDT_Keyboard = 3,
+	};
+
+
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SKeyHandle& p_Other) const;
+	bool operator!=(const SKeyHandle& p_Other) const { return !(*this == p_Other); }
+
+	int32 nInputIndex; // 0x0
+	SKeyHandle::EInputType eDeviceType; // 0x4
+	SKeyHandle::EInputValueType eInputType; // 0x8
+};
+
 // Size: 0x30
 class /*alignas(8)*/ SColorPickerData{
 public:
@@ -5916,23 +10813,6 @@ public:
 		EntitlementsMissing = 8,
 	};
 
-	// Size: 0x20
-	class /*alignas(8)*/ SMissingEntitlementInfo	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SMissingEntitlementInfo& p_Other) const;
-		bool operator!=(const SMissingEntitlementInfo& p_Other) const { return !(*this == p_Other); }
-
-		ZString Id; // 0x0
-		ZString StoreId; // 0x10
-	};
-
 	// Size: 0xC
 	class /*alignas(4)*/ SAvailabilityUtilInfo	{
 	public:
@@ -5952,6 +10832,23 @@ public:
 		ZAvailabilityUtil::EState AvailabilityState; // 0x8
 	};
 
+	// Size: 0x20
+	class /*alignas(8)*/ SMissingEntitlementInfo	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SMissingEntitlementInfo& p_Other) const;
+		bool operator!=(const SMissingEntitlementInfo& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		ZString StoreId; // 0x10
+	};
+
 
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -5965,138 +10862,6 @@ public:
 	bool operator!=(const ZAvailabilityUtil& p_Other) const { return !(*this == p_Other); }
 
 	uint8_t _pad0[1] {};
-};
-
-namespace KntLoadoutCollection {
-	// Size: 0x1
-	enum class EGameMode : int8_t
-	{
-		TacSimAndCampaign = 0,
-		TacSim = 1,
-		Campaign = 2,
-	};
-
-	// Size: 0x1
-	enum class EOwnership : int8_t
-	{
-		Owned = 0,
-		Locked = 1,
-		LockedByCheckpoint = 2,
-	};
-
-}
-
-class ZGameLoadoutManager
-{
-public:
-	// Size: 0x4
-	enum class EFirearmSlot : int32_t
-	{
-		FirearmOneHanded = 0,
-		FirearmTwoHanded = 1,
-		FirearmSpecial = 2,
-		Count = 3,
-	};
-
-	// Size: 0x4
-	enum class ELoadoutGadgetUpgradeSlots : int32_t
-	{
-		Slot1 = 0,
-		Slot2 = 1,
-		Slot3 = 2,
-	};
-
-};
-
-// Size: 0xC
-class /*alignas(4)*/ SKeyHandle{
-public:
-	// Size: 0x4
-	enum class EInputType : int32_t
-	{
-		eDT_Unknown = 0,
-		eDT_Gamepad = 1,
-		eDT_Mouse = 2,
-		eDT_Keyboard = 3,
-	};
-
-	// Size: 0x4
-	enum class EInputValueType : int32_t
-	{
-		eIT_Digital = 0,
-		eIT_Analog = 1,
-	};
-
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SKeyHandle& p_Other) const;
-	bool operator!=(const SKeyHandle& p_Other) const { return !(*this == p_Other); }
-
-	int32 nInputIndex; // 0x0
-	SKeyHandle::EInputType eDeviceType; // 0x4
-	SKeyHandle::EInputValueType eInputType; // 0x8
-};
-
-// Size: 0xC
-class /*alignas(4)*/ SInputOverrideInputData{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SInputOverrideInputData& p_Other) const;
-	bool operator!=(const SInputOverrideInputData& p_Other) const { return !(*this == p_Other); }
-
-	EEInputDevice m_device; // 0x0
-	uint32 m_digital; // 0x4
-	uint32 m_analog; // 0x8
-};
-
-// Size: 0x20
-class /*alignas(4)*/ SInputOverrideRequest{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SInputOverrideRequest& p_Other) const;
-	bool operator!=(const SInputOverrideRequest& p_Other) const { return !(*this == p_Other); }
-
-	EEGestureType m_gestureType; // 0x0
-	uint32 m_gestureTypeData; // 0x4
-	float32 m_triggerDuration; // 0x8
-	float32 m_inputLifetime; // 0xC
-	EActionMultiply m_actionMultiply; // 0x10
-	SInputOverrideInputData m_inputData; // 0x14
-};
-
-// Size: 0x10
-class /*alignas(8)*/ ZDynamicObject{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZDynamicObject& p_Other) const;
-	bool operator!=(const ZDynamicObject& p_Other) const { return !(*this == p_Other); }
-
-	ZVariant m_value; // 0x0
 };
 
 // Size: 0x8
@@ -6116,6 +10881,23 @@ public:
 };
 
 namespace onlinebackend {
+	// Size: 0x20
+	class /*alignas(8)*/ SPartyChatMessage	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPartyChatMessage& p_Other) const;
+		bool operator!=(const SPartyChatMessage& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid m_authorProfileId; // 0x0
+		ZString m_message; // 0x10
+	};
+
 	// Size: 0x1
 	enum class ESocialNotificationType : int8_t
 	{
@@ -6176,23 +10958,6 @@ namespace onlinebackend {
 		uint8_t _padB2[6] {};
 	};
 
-	// Size: 0x20
-	class /*alignas(8)*/ SPartyChatMessage	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SPartyChatMessage& p_Other) const;
-		bool operator!=(const SPartyChatMessage& p_Other) const { return !(*this == p_Other); }
-
-		ZGuid m_authorProfileId; // 0x0
-		ZString m_message; // 0x10
-	};
-
 	// Size: 0x40
 	class /*alignas(8)*/ SPartyUpdate	{
 	public:
@@ -6214,13 +10979,6 @@ namespace onlinebackend {
 }
 
 namespace UnlockableService {
-	// Size: 0x4
-	enum class EUnlockableUnlockState : int32_t
-	{
-		Locked = 0,
-		Unlocked = 1,
-	};
-
 	// Size: 0x18
 	class /*alignas(8)*/ SUnlockableItem	{
 	public:
@@ -6239,8 +10997,15 @@ namespace UnlockableService {
 		uint8_t _pad14[4] {};
 	};
 
+	// Size: 0x4
+	enum class EUnlockableUnlockState : int32_t
+	{
+		Locked = 0,
+		Unlocked = 1,
+	};
+
 	// Size: 0x28
-	class /*alignas(8)*/ SUnlockableStateChangedNotification	{
+	class /*alignas(8)*/ SUnlockableDefinition	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -6249,13 +11014,28 @@ namespace UnlockableService {
 		static bool Equals(void* p_Left, void* p_Right);
 		static void Destroy(void* p_Object);
 
-		bool operator==(const SUnlockableStateChangedNotification& p_Other) const;
-		bool operator!=(const SUnlockableStateChangedNotification& p_Other) const { return !(*this == p_Other); }
+		bool operator==(const SUnlockableDefinition& p_Other) const;
+		bool operator!=(const SUnlockableDefinition& p_Other) const { return !(*this == p_Other); }
 
-		ZGuid m_profileId; // 0x0
-		ZGuid m_unlockableId; // 0x10
-		onlinebackend::EUnlockableStateChangeFlags m_changeFlags; // 0x20
-		uint8_t _pad21[7] {};
+		ZGuid m_id; // 0x0
+		TArray<UnlockableService::SUnlockableItem> m_grantedItems; // 0x10
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SUnlockableQueueItem	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUnlockableQueueItem& p_Other) const;
+		bool operator!=(const SUnlockableQueueItem& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid m_id; // 0x0
+		UnlockableService::SUnlockableItem m_item; // 0x10
 	};
 
 	// Size: 0x18
@@ -6277,7 +11057,7 @@ namespace UnlockableService {
 	};
 
 	// Size: 0x28
-	class /*alignas(8)*/ SUnlockableQueueItem	{
+	class /*alignas(8)*/ SUnlockableStateChangedNotification	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -6286,28 +11066,13 @@ namespace UnlockableService {
 		static bool Equals(void* p_Left, void* p_Right);
 		static void Destroy(void* p_Object);
 
-		bool operator==(const SUnlockableQueueItem& p_Other) const;
-		bool operator!=(const SUnlockableQueueItem& p_Other) const { return !(*this == p_Other); }
+		bool operator==(const SUnlockableStateChangedNotification& p_Other) const;
+		bool operator!=(const SUnlockableStateChangedNotification& p_Other) const { return !(*this == p_Other); }
 
-		ZGuid m_id; // 0x0
-		UnlockableService::SUnlockableItem m_item; // 0x10
-	};
-
-	// Size: 0x28
-	class /*alignas(8)*/ SUnlockableDefinition	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SUnlockableDefinition& p_Other) const;
-		bool operator!=(const SUnlockableDefinition& p_Other) const { return !(*this == p_Other); }
-
-		ZGuid m_id; // 0x0
-		TArray<UnlockableService::SUnlockableItem> m_grantedItems; // 0x10
+		ZGuid m_profileId; // 0x0
+		ZGuid m_unlockableId; // 0x10
+		onlinebackend::EUnlockableStateChangeFlags m_changeFlags; // 0x20
+		uint8_t _pad21[7] {};
 	};
 
 }
@@ -6348,24 +11113,118 @@ public:
 	float32 Step; // 0x8
 };
 
-namespace MultiplayerService {
-	// Size: 0x4
-	enum class EMatchmakingStatus : int32_t
+namespace KntLoadoutCollection {
+	// Size: 0x1
+	enum class EGameMode : int8_t
 	{
-		eNONE = 0,
-		eWAITINGFORMATCH = 1,
-		eFOUNDMATCH = 2,
-		eCANCELLED = 3,
-		eWAITINGFORSERVER = 4,
-		eFOUNDSERVER = 5,
-		eERROR = 6,
-		eNOORCHESTRATOR = 7,
-		eERRORNOBUILD = 8,
-		eMATCHENDED = 9,
+		TacSimAndCampaign = 0,
+		TacSim = 1,
+		Campaign = 2,
 	};
 
-	// Size: 0x60
-	class /*alignas(8)*/ SGameServerRegistration	{
+	// Size: 0x1
+	enum class EOwnership : int8_t
+	{
+		Owned = 0,
+		Locked = 1,
+		LockedByCheckpoint = 2,
+	};
+
+}
+
+class ZGameLoadoutManager
+{
+public:
+	// Size: 0x4
+	enum class EFirearmSlot : int32_t
+	{
+		FirearmOneHanded = 0,
+		FirearmTwoHanded = 1,
+		FirearmSpecial = 2,
+		Count = 3,
+	};
+
+	// Size: 0x4
+	enum class ELoadoutGadgetUpgradeSlots : int32_t
+	{
+		Slot1 = 0,
+		Slot2 = 1,
+		Slot3 = 2,
+	};
+
+};
+
+// Size: 0xC
+class /*alignas(4)*/ SInputOverrideInputData{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SInputOverrideInputData& p_Other) const;
+	bool operator!=(const SInputOverrideInputData& p_Other) const { return !(*this == p_Other); }
+
+	EEInputDevice m_device; // 0x0
+	uint32 m_digital; // 0x4
+	uint32 m_analog; // 0x8
+};
+
+// Size: 0x20
+class /*alignas(4)*/ SInputOverrideRequest{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SInputOverrideRequest& p_Other) const;
+	bool operator!=(const SInputOverrideRequest& p_Other) const { return !(*this == p_Other); }
+
+	EEGestureType m_gestureType; // 0x0
+	uint32 m_gestureTypeData; // 0x4
+	float32 m_triggerDuration; // 0x8
+	float32 m_inputLifetime; // 0xC
+	EActionMultiply m_actionMultiply; // 0x10
+	SInputOverrideInputData m_inputData; // 0x14
+};
+
+// Size: 0x10
+class /*alignas(8)*/ ZDynamicObject{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZDynamicObject& p_Other) const;
+	bool operator!=(const ZDynamicObject& p_Other) const { return !(*this == p_Other); }
+
+	ZVariant m_value; // 0x0
+};
+
+class ZSubtitleTypeConfig
+{
+public:
+	// Size: 0x4
+	enum class EDirectionIndicatorType : int32_t
+	{
+		Disabled = 0,
+		OnlyShowWhenOffScreen = 1,
+		AlwaysShow = 2,
+	};
+
+};
+
+namespace JSONTemplate {
+	// Size: 0x8
+	class /*alignas(4)*/ SUIInputActionGestureConfigData	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -6374,18 +11233,2518 @@ namespace MultiplayerService {
 		static bool Equals(void* p_Left, void* p_Right);
 		static void Destroy(void* p_Object);
 
-		bool operator==(const SGameServerRegistration& p_Other) const;
-		bool operator!=(const SGameServerRegistration& p_Other) const { return !(*this == p_Other); }
+		bool operator==(const SUIInputActionGestureConfigData& p_Other) const;
+		bool operator!=(const SUIInputActionGestureConfigData& p_Other) const { return !(*this == p_Other); }
 
-		ZString m_serverId; // 0x0
-		TArray<uint8> m_networkCertificate; // 0x10
-		ZString m_serverFQDN; // 0x28
-		ZString m_serverIPv4; // 0x38
-		uint32 m_gamePort; // 0x48
-		uint8_t _pad4C[4] {};
-		ZString m_buildId; // 0x50
+		EEGestureType GestureType; // 0x0
+		uint32 GestureTypeData; // 0x4
 	};
 
+	// Size: 0x40
+	class /*alignas(8)*/ SUIInputActionPromptData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUIInputActionPromptData& p_Other) const;
+		bool operator!=(const SUIInputActionPromptData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 ActionID; // 0x0
+		int32 IconID; // 0x4
+		ZString ActionGlyph; // 0x8
+		ZString Platform; // 0x18
+		JSONTemplate::SUIInputActionGestureConfigData GestureData; // 0x28
+		bool IsAxisInverted; // 0x30
+		bool IsPressed; // 0x31
+		uint8_t _pad32[2] {};
+		SKeyHandle KeyHandle; // 0x34
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SUIInputActionCombinationData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUIInputActionCombinationData& p_Other) const;
+		bool operator!=(const SUIInputActionCombinationData& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SUIInputActionPromptData> Prompts; // 0x0
+		ECombinationMethod Method; // 0x18
+		uint8_t _pad1C[4] {};
+	};
+
+	// Size: 0xA
+	class /*alignas(2)*/ SShotMaskDateTime	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SShotMaskDateTime& p_Other) const;
+		bool operator!=(const SShotMaskDateTime& p_Other) const { return !(*this == p_Other); }
+
+		int16 m_nYear; // 0x0
+		int16 m_nMonth; // 0x2
+		int16 m_nDay; // 0x4
+		int16 m_nHour; // 0x6
+		int16 m_nMinute; // 0x8
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SArrayTestDataItem	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SArrayTestDataItem& p_Other) const;
+		bool operator!=(const SArrayTestDataItem& p_Other) const { return !(*this == p_Other); }
+
+		int32 Id; // 0x0
+		uint8_t _pad4[4] {};
+		ZString Name; // 0x8
+		int32 Count; // 0x18
+		uint8_t _pad1C[4] {};
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SAudioProfileOptionUIData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAudioProfileOptionUIData& p_Other) const;
+		bool operator!=(const SAudioProfileOptionUIData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Name; // 0x0
+		ZVariant Value; // 0x10
+	};
+
+	// Size: 0x88
+	class /*alignas(8)*/ SInputOverrideRequestConflictItemData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverrideRequestConflictItemData& p_Other) const;
+		bool operator!=(const SInputOverrideRequestConflictItemData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SUIInputActionPromptData ConflictedPrompt; // 0x0
+		JSONTemplate::SUIInputActionPromptData ResolutionPrompt; // 0x40
+		EInputOverrideConflictResolutionType ResolutionType; // 0x80
+		uint8_t _pad84[4] {};
+	};
+
+	// Size: 0x80
+	class /*alignas(8)*/ SChallengeStateData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SChallengeStateData& p_Other) const;
+		bool operator!=(const SChallengeStateData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+		ZString HighResImage; // 0x40
+		int32 XP; // 0x50
+		int32 Intel; // 0x54
+		ChallengesService::EChallengeCompletionState CompletionState; // 0x58
+		int32 ProgressCurrent; // 0x5C
+		int32 ProgressMax; // 0x60
+		bool IsNew; // 0x64
+		bool IsSpoiler; // 0x65
+		uint8_t _pad66[2] {};
+		TArray<ZString> Tags; // 0x68
+	};
+
+	// Size: 0x4
+	enum class EControllerLayoutInputType : int32_t
+	{
+		Invalid = 0,
+		Hold = 1,
+		Click = 2,
+	};
+
+	// Size: 0x4
+	enum class EDebugMenuItemType : int32_t
+	{
+		Invalid = 0,
+		Group = 1,
+		Trigger = 2,
+		Bool = 3,
+		Slider = 4,
+		ListInt = 5,
+	};
+
+	// Size: 0x80
+	class /*alignas(8)*/ SDebugMenuItemData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDebugMenuItemData& p_Other) const;
+		bool operator!=(const SDebugMenuItemData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::EDebugMenuItemType Type; // 0x0
+		uint8_t _pad4[4] {};
+		ZString TypeName; // 0x8
+		ZString Id; // 0x18
+		ZString Name; // 0x28
+		int32 OrderIndex; // 0x38
+		uint8_t _pad3C[4] {};
+		TArray<SDebugMenuItemIntEntry> ValueEntries; // 0x40
+		TArray<JSONTemplate::SDebugMenuItemData> Children; // 0x58
+		SDebugMenuItemSliderConfig SliderConfig; // 0x70
+		uint8_t _pad7C[4] {};
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SGadgetUpgradeItemData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGadgetUpgradeItemData& p_Other) const;
+		bool operator!=(const SGadgetUpgradeItemData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+		bool IsLocked; // 0x40
+		uint8_t _pad41[7] {};
+	};
+
+	// Size: 0xB8
+	class /*alignas(8)*/ SGadgetItemData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGadgetItemData& p_Other) const;
+		bool operator!=(const SGadgetItemData& p_Other) const { return !(*this == p_Other); }
+
+		ZString GadgetEntityID; // 0x0
+		ZString ResourceID; // 0x10
+		uint32 ResourceType; // 0x20
+		float32 ActivationCost; // 0x24
+		ZString Type; // 0x28
+		ZString Title; // 0x38
+		ZString Description; // 0x48
+		ZString DescriptionShort; // 0x58
+		ZString Image; // 0x68
+		ZString Thumbnail; // 0x78
+		ZString Icon; // 0x88
+		ZString Video; // 0x98
+		KntLoadoutCollection::EGameMode GameModeAvailability; // 0xA8
+		KntLoadoutCollection::EOwnership OwnershipState; // 0xA9
+		bool IsMandatory; // 0xAA
+		bool IsRecommended; // 0xAB
+		bool IsLocked; // 0xAC
+		uint8_t _padAD[3] {};
+		int32 UpgradeSlotsUnlockedCount; // 0xB0
+		int32 UpgradeSlotsTotalCount; // 0xB4
+	};
+
+	// Size: 0x98
+	class /*alignas(8)*/ SFirearmData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SFirearmData& p_Other) const;
+		bool operator!=(const SFirearmData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		ZString ResourceId; // 0x10
+		ZString Title; // 0x20
+		ZString Description; // 0x30
+		ZString IconId; // 0x40
+		ZString Image; // 0x50
+		ZString HighResImage; // 0x60
+		ZString CategoryId; // 0x70
+		ZString CategoryTitle; // 0x80
+		KntLoadoutCollection::EGameMode GameModeAvailability; // 0x90
+		bool Locked; // 0x91
+		bool IsEquipped; // 0x92
+		uint8_t _pad93[1] {};
+		ZGameLoadoutManager::EFirearmSlot Slot; // 0x94
+	};
+
+	// Size: 0x38
+	class /*alignas(8)*/ SGameChangerData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGameChangerData& p_Other) const;
+		bool operator!=(const SGameChangerData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Title; // 0x0
+		ZString Description; // 0x10
+		ZString ShortDescription; // 0x20
+		uint32 IconType; // 0x30
+		uint8_t _pad34[4] {};
+	};
+
+	// Size: 0xA8
+	class /*alignas(8)*/ SGameObjectiveOpportunityData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGameObjectiveOpportunityData& p_Other) const;
+		bool operator!=(const SGameObjectiveOpportunityData& p_Other) const { return !(*this == p_Other); }
+
+		ZString OpportunityID; // 0x0
+		ZString OpportunityTitle; // 0x10
+		ZString OpportunityDescription; // 0x20
+		ZString OpportunityImage; // 0x30
+		Gameplay::EObjectiveUIState OpportunityState; // 0x40
+		uint8_t _pad44[4] {};
+		ZString OpportunityStateHeadline; // 0x48
+		ZString OpportunityStateDescription; // 0x58
+		ZString CurrentStepID; // 0x68
+		ZString CurrentStepTitle; // 0x78
+		ZString CurrentStepDescription; // 0x88
+		int32 CurrentStepIndex; // 0x98
+		int32 TotalStepCount; // 0x9C
+		bool IsTracked; // 0xA0
+		uint8_t _padA1[7] {};
+	};
+
+	// Size: 0x78
+	class /*alignas(8)*/ SUIInputActionData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUIInputActionData& p_Other) const;
+		bool operator!=(const SUIInputActionData& p_Other) const { return !(*this == p_Other); }
+
+		ZString InputGroupName; // 0x0
+		ZString ActionName; // 0x10
+		TArray<JSONTemplate::SUIInputActionPromptData> Prompts; // 0x20
+		TArray<JSONTemplate::SUIInputActionCombinationData> Combinations; // 0x38
+		ZString ActionLabel; // 0x50
+		ZString ActionAltIcon; // 0x60
+		bool IsEnabled; // 0x70
+		bool IsPressed; // 0x71
+		uint8_t _pad72[2] {};
+		float32 PressedAnalog; // 0x74
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SGameObjectiveHintData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGameObjectiveHintData& p_Other) const;
+		bool operator!=(const SGameObjectiveHintData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 HintID; // 0x0
+		uint8_t _pad4[4] {};
+		ZString HintTitle; // 0x8
+		ZString HintDescription; // 0x18
+		ZString HintImage; // 0x28
+		ZString HintHighResImage; // 0x38
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SInputActionDeviceConfigData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputActionDeviceConfigData& p_Other) const;
+		bool operator!=(const SInputActionDeviceConfigData& p_Other) const { return !(*this == p_Other); }
+
+		bool HandlesGamepadDevice; // 0x0
+		bool HandlesMouseDevice; // 0x1
+		bool HandlesKeyboardDevice; // 0x2
+		bool AreDevicesDisabled; // 0x3
+		bool DoesOverrideInputContext; // 0x4
+		uint8_t _pad5[3] {};
+		uint32 InputContextOverride; // 0x8
+		bool CanAddInput; // 0xC
+		bool CanRemoveInput; // 0xD
+		uint8_t _padE[2] {};
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SInputOverrideRequestConflictData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverrideRequestConflictData& p_Other) const;
+		bool operator!=(const SInputOverrideRequestConflictData& p_Other) const { return !(*this == p_Other); }
+
+		ZString ActionName; // 0x0
+		TArray<JSONTemplate::SInputOverrideRequestConflictItemData> Items; // 0x10
+	};
+
+	// Size: 0x4
+	enum class EGlobalIlluminationStatus : int32_t
+	{
+		Unknown = 0,
+		Enabled = 1,
+		Disabled = 2,
+		Frozen = 3,
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SInputOverrideRequestOverlapData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverrideRequestOverlapData& p_Other) const;
+		bool operator!=(const SInputOverrideRequestOverlapData& p_Other) const { return !(*this == p_Other); }
+
+		ZString ActionName; // 0x0
+		TArray<JSONTemplate::SUIInputActionPromptData> OverlappingPrompts; // 0x10
+	};
+
+	// Size: 0x40
+	class /*alignas(8)*/ SOpportunityData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SOpportunityData& p_Other) const;
+		bool operator!=(const SOpportunityData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 OpportunityID; // 0x0
+		uint8_t _pad4[4] {};
+		ZString OpportunityTitle; // 0x8
+		uint32 CurrentStepID; // 0x18
+		uint8_t _pad1C[4] {};
+		ZString CurrentStepTitle; // 0x20
+		int32 CurrentStepIndex; // 0x30
+		int32 TotalStepCount; // 0x34
+		Gameplay::EObjectiveUIState State; // 0x38
+		bool DidStateChange; // 0x3C
+		bool IsNew; // 0x3D
+		bool IsTracked; // 0x3E
+		uint8_t _pad3F[1] {};
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SOnlineCompletionRewards	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SOnlineCompletionRewards& p_Other) const;
+		bool operator!=(const SOnlineCompletionRewards& p_Other) const { return !(*this == p_Other); }
+
+		int32 Xp; // 0x0
+		int32 Intel; // 0x4
+		TArray<ZGuid> Unlockables; // 0x8
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SPlayerFirearmAmmoPickup	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPlayerFirearmAmmoPickup& p_Other) const;
+		bool operator!=(const SPlayerFirearmAmmoPickup& p_Other) const { return !(*this == p_Other); }
+
+		uint32 Version; // 0x0
+		uint32 Amount; // 0x4
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SPlayerResourcePickup	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPlayerResourcePickup& p_Other) const;
+		bool operator!=(const SPlayerResourcePickup& p_Other) const { return !(*this == p_Other); }
+
+		uint32 Version; // 0x0
+		uint32 Type; // 0x4
+		float32 Amount; // 0x8
+	};
+
+	// Size: 0x30
+	class /*alignas(8)*/ SUILeaderboardRank	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUILeaderboardRank& p_Other) const;
+		bool operator!=(const SUILeaderboardRank& p_Other) const { return !(*this == p_Other); }
+
+		int32 Rank; // 0x0
+		int32 Score; // 0x4
+		int32 Percentile; // 0x8
+		uint8_t _padC[4] {};
+		ZGuid ProfileId; // 0x10
+		int32 Time; // 0x20
+		int32 Precision; // 0x24
+		int32 Flair; // 0x28
+		uint8_t _pad2C[4] {};
+	};
+
+	// Size: 0x50
+	class /*alignas(8)*/ SUILeaderboardPage	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUILeaderboardPage& p_Other) const;
+		bool operator!=(const SUILeaderboardPage& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SUILeaderboardRank> Entries; // 0x0
+		JSONTemplate::SUILeaderboardRank CurrentPlayer; // 0x18
+		bool HasMore; // 0x48
+		uint8_t _pad49[7] {};
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SUnlockableItemData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUnlockableItemData& p_Other) const;
+		bool operator!=(const SUnlockableItemData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid Id; // 0x0
+		ZString Title; // 0x10
+		ZString Image; // 0x20
+		ZString HighResImage; // 0x30
+		int32 Amount; // 0x40
+		uint8_t _pad44[4] {};
+	};
+
+	// Size: 0x4
+	enum class EBusyState : int32_t
+	{
+		Saving = 0,
+		SavingFailed = 1,
+		SavingSuccess = 2,
+		OnlineConnecting = 3,
+		Loading = 4,
+		Fetching = 5,
+		None = 6,
+	};
+
+	// Size: 0x4
+	enum class EEditTextDialogInputType : int32_t
+	{
+		Multiline = 0,
+		Line = 1,
+		PublicID = 2,
+		Number = 3,
+		Email = 4,
+		URL = 5,
+	};
+
+	// Size: 0x4
+	enum class EModalDialogPriority : int32_t
+	{
+		Critical = 0,
+		GDPRConsent = 1,
+		MultiplayerSystem = 2,
+		Disconnect = 3,
+		System = 4,
+		Normal = 5,
+		Low = 6,
+	};
+
+	// Size: 0x4
+	enum class ETemplateType : int32_t
+	{
+		ETT_BASE = 0,
+		ETT_DATA_VALUE = 1,
+		ETT_DATA_VALUE_CUSTOM = 2,
+		ETT_DELAY = 3,
+		ETT_OBJECT = 4,
+		ETT_ARRAY = 5,
+		ETT_ASYNCROOT = 6,
+		ETT_IF = 7,
+		ETT_SWITCH = 8,
+		ETT_EACH = 9,
+		ETT_REPEAT = 10,
+		ETT_LOC = 11,
+		ETT_TO_LOCALE_UPPER_CASE = 12,
+		ETT_PARENTHESIS = 13,
+		ETT_FORMATSTRING = 14,
+		ETT_FORMATINT = 15,
+		ETT_FORMATNUMBER = 16,
+		ETT_FORMATDATE = 17,
+		ETT_FORMATTIME = 18,
+		ETT_INTCLAMP = 19,
+		ETT_FORMATPUBLICID = 20,
+		ETT_ISNULL = 21,
+		ETT_DATA_CONTEXT = 22,
+		ETT_ARRAY_ELEMENT = 23,
+		ETT_ARRAY_FILTER = 24,
+		ETT_ARRAY_CONVERT = 25,
+		ETT_ARRAY_SIZE = 26,
+		ETT_ARRAY_SORT = 27,
+		ETT_ARRAY_GROUPBY = 28,
+		ETT_EXPAND = 29,
+		ETT_ISNULLOREMPTY = 30,
+		ETT_NOT = 31,
+		ETT_COMPARE = 32,
+		ETT_AND = 33,
+		ETT_OR = 34,
+		ETT_MERGEOBJECTS = 35,
+		ETT_MERGEARRAYS = 36,
+		ETT_LOCALE_TEXT = 37,
+		ETT_LOCALE_AUDIO = 38,
+		ETT_CURRENT_LOCALE_TEXT = 39,
+		ETT_GET_APPLICATION_OPTION = 40,
+		ETT_ACTION_REFERENCE = 41,
+		ETT_NO_TRANSFORM = 42,
+		ETT_EVAL = 43,
+		ETT_PLATFORM = 44,
+		ETT_REGION = 45,
+		ETT_STOREREGION = 46,
+		ETT_STORE = 47,
+		ETT_IS_DISC_RELEASE = 48,
+		ETT_ISDEBUG = 49,
+		ETT_INPUT_AVAILABLECONTROLLERTYPE = 50,
+		ETT_INPUTCONTROLLERTYPE = 51,
+		ETT_IS_CONTROLLER_AVAILABLE = 52,
+		ETT_IS_KEYBOARD_AVAILABLE = 53,
+		ETT_IS_VR_DEVICE_AVAILABLE = 54,
+		ETT_IS_VR_DEVICE_ACTIVE = 55,
+		ETT_IS_VR_ACTIVE = 56,
+		ETT_VR_MODE = 57,
+		ETT_DEBUG_ARRAY_TEST_DATA = 58,
+		ETT_DEBUG_PARAMETER_TEST = 59,
+		ETT_DEBUG_QUERY_TEST = 60,
+		ETT_LAST_RUNTIME_TEMPLATE = 61,
+	};
+
+	// Size: 0x4
+	enum class EUIInputActionDeviceFilter : int32_t
+	{
+		All = 0,
+		ActiveType = 1,
+		Gamepad = 2,
+		MouseAndKeyboard = 3,
+		Mouse = 4,
+		Keyboard = 5,
+	};
+
+	// Size: 0x78
+	class /*alignas(8)*/ SAccessibilityGlowModeData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAccessibilityGlowModeData& p_Other) const;
+		bool operator!=(const SAccessibilityGlowModeData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsEnabled; // 0x0
+		uint8_t _pad1[7] {};
+		SColorPickerData Color; // 0x8
+		float32 Strength; // 0x38
+		bool DefaultEnabledState; // 0x3C
+		uint8_t _pad3D[3] {};
+		SColorPickerData DefaultColor; // 0x40
+		float32 DefaultStrength; // 0x70
+		uint8_t _pad74[4] {};
+	};
+
+	// Size: 0x68
+	class /*alignas(8)*/ SActiveSubtitleData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SActiveSubtitleData& p_Other) const;
+		bool operator!=(const SActiveSubtitleData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 Id; // 0x0
+		uint32 ChannelID; // 0x4
+		uint32 SubtitleType; // 0x8
+		uint8_t _padC[4] {};
+		ZString SoundTagName; // 0x10
+		ZString SourceName; // 0x20
+		ZString SourceColor; // 0x30
+		ZString SourceTone; // 0x40
+		ZString Text; // 0x50
+		bool HasDirection; // 0x60
+		uint8_t _pad61[7] {};
+	};
+
+	// Size: 0x60
+	class /*alignas(8)*/ SActiveSubtitleInChannelData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SActiveSubtitleInChannelData& p_Other) const;
+		bool operator!=(const SActiveSubtitleInChannelData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 Id; // 0x0
+		uint8_t _pad4[4] {};
+		ZString SoundTagName; // 0x8
+		ZString SourceName; // 0x18
+		ZString SourceColor; // 0x28
+		ZString SourceTone; // 0x38
+		ZString Text; // 0x48
+		bool HasDirection; // 0x58
+		uint8_t _pad59[7] {};
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SActiveSubtitleSourceData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SActiveSubtitleSourceData& p_Other) const;
+		bool operator!=(const SActiveSubtitleSourceData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 SubtitleID; // 0x0
+		uint32 ChannelID; // 0x4
+		uint32 IconType; // 0x8
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SArrayTestDataCollection	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SArrayTestDataCollection& p_Other) const;
+		bool operator!=(const SArrayTestDataCollection& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SArrayTestDataItem> Items; // 0x0
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SAudioProfileUIData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAudioProfileUIData& p_Other) const;
+		bool operator!=(const SAudioProfileUIData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Name; // 0x0
+		TArray<JSONTemplate::SAudioProfileOptionUIData> Options; // 0x10
+	};
+
+	// Size: 0x30
+	class /*alignas(8)*/ SAvailabilityResourceData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SAvailabilityResourceData& p_Other) const;
+		bool operator!=(const SAvailabilityResourceData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsAvailable; // 0x0
+		uint8_t _pad1[3] {};
+		ZAvailabilityUtil::EState State; // 0x4
+		float32 DownloadProgress; // 0x8
+		uint8_t _padC[4] {};
+		TArray<ZAvailabilityUtil::SMissingEntitlementInfo> MissingEntitlements; // 0x10
+		int32 OutdatedDLC_Id; // 0x28
+		uint8_t _pad2C[4] {};
+	};
+
+	// Size: 0x60
+	class /*alignas(8)*/ SCampaignData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCampaignData& p_Other) const;
+		bool operator!=(const SCampaignData& p_Other) const { return !(*this == p_Other); }
+
+		ZString ID; // 0x0
+		ZString Title; // 0x10
+		ZString Image; // 0x20
+		TArray<ZString> Missions; // 0x30
+		ZString FistCheckpointName; // 0x48
+		bool IsAnyMissionUnlocked; // 0x58
+		uint8_t _pad59[7] {};
+	};
+
+	// Size: 0xF0
+	class /*alignas(8)*/ SCampaignMissionData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCampaignMissionData& p_Other) const;
+		bool operator!=(const SCampaignMissionData& p_Other) const { return !(*this == p_Other); }
+
+		ZString ID; // 0x0
+		ZGuid MissionId; // 0x10
+		ZString Title; // 0x20
+		ZString Description; // 0x30
+		ZString ShortDescription; // 0x40
+		ZString Image; // 0x50
+		ZString HighResImage; // 0x60
+		ZString PortraitImage; // 0x70
+		ZString LandscapeImage; // 0x80
+		ZString Video; // 0x90
+		TArray<ZString> CheckpointIds; // 0xA0
+		ZString CodeName; // 0xB8
+		TArray<ZString> NeededRootResources; // 0xC8
+		bool IsUnlocked; // 0xE0
+		uint8_t _padE1[3] {};
+		int32 Progress; // 0xE4
+		bool IsInterludeMission; // 0xE8
+		uint8_t _padE9[7] {};
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SCampaignMissionRecapData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCampaignMissionRecapData& p_Other) const;
+		bool operator!=(const SCampaignMissionRecapData& p_Other) const { return !(*this == p_Other); }
+
+		ZString LastCompletedImage; // 0x0
+		TArray<ZString> CompletedDescriptions; // 0x10
+	};
+
+	// Size: 0x30
+	class /*alignas(8)*/ SChallengeMosaicData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SChallengeMosaicData& p_Other) const;
+		bool operator!=(const SChallengeMosaicData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid MissionId; // 0x0
+		TArray<JSONTemplate::SChallengeStateData> Challenges; // 0x10
+		bool IsPending; // 0x28
+		uint8_t _pad29[7] {};
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SChallengesData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SChallengesData& p_Other) const;
+		bool operator!=(const SChallengesData& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SChallengeStateData> Challenges; // 0x0
+		int32 NumTotal; // 0x18
+		int32 NumComplete; // 0x1C
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SCheckpointData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCheckpointData& p_Other) const;
+		bool operator!=(const SCheckpointData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Name; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+		bool IsUnlocked; // 0x40
+		uint8_t _pad41[7] {};
+	};
+
+	// Size: 0x3
+	class /*alignas(1)*/ SCinematicSkipInfo	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCinematicSkipInfo& p_Other) const;
+		bool operator!=(const SCinematicSkipInfo& p_Other) const { return !(*this == p_Other); }
+
+		bool IsCinematicActive; // 0x0
+		bool CanShowSkipButton; // 0x1
+		bool CanShowLoadingSpinner; // 0x2
+	};
+
+	// Size: 0x88
+	class /*alignas(8)*/ SCollectibleData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCollectibleData& p_Other) const;
+		bool operator!=(const SCollectibleData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+		ZString HighResImage; // 0x40
+		ZString NotificationImage; // 0x50
+		ZString CategoryId; // 0x60
+		ZString CategoryTitle; // 0x70
+		bool IsLocked; // 0x80
+		uint8_t _pad81[7] {};
+	};
+
+	// Size: 0x50
+	class /*alignas(8)*/ SCollectiblesCategoryData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCollectiblesCategoryData& p_Other) const;
+		bool operator!=(const SCollectiblesCategoryData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+		int32 NumTotal; // 0x40
+		int32 NumOwned; // 0x44
+		float32 Progress; // 0x48
+		uint8_t _pad4C[4] {};
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SControllerLayoutForActionData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SControllerLayoutForActionData& p_Other) const;
+		bool operator!=(const SControllerLayoutForActionData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::EControllerLayoutInputType InputType; // 0x0
+		uint8_t _pad4[4] {};
+		ZString GamepadInputID; // 0x8
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SCurrencyData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SCurrencyData& p_Other) const;
+		bool operator!=(const SCurrencyData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Currency; // 0x0
+		int32 Amount; // 0x10
+		uint8_t _pad14[4] {};
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SDebugMenuItemsResult	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDebugMenuItemsResult& p_Other) const;
+		bool operator!=(const SDebugMenuItemsResult& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SDebugMenuItemData> Items; // 0x0
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SDebugQueryTestData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDebugQueryTestData& p_Other) const;
+		bool operator!=(const SDebugQueryTestData& p_Other) const { return !(*this == p_Other); }
+
+		int32 Id; // 0x0
+		uint8_t _pad4[4] {};
+		ZString Name; // 0x8
+		int32 Score; // 0x18
+		uint8_t _pad1C[4] {};
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SDlssSupportData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDlssSupportData& p_Other) const;
+		bool operator!=(const SDlssSupportData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsAvailable; // 0x0
+		bool IsFrameGenAvailable; // 0x1
+		bool IsFrameGenDynamicAvailable; // 0x2
+		uint8_t _pad3[1] {};
+		int32 MaxFrameGenCount; // 0x4
+	};
+
+	// Size: 0x38
+	class /*alignas(8)*/ SEditTextDialogRegExpValidator	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SEditTextDialogRegExpValidator& p_Other) const;
+		bool operator!=(const SEditTextDialogRegExpValidator& p_Other) const { return !(*this == p_Other); }
+
+		ZString source; // 0x0
+		ZString flags; // 0x10
+		ZString message; // 0x20
+		int32 level; // 0x30
+		uint8_t _pad34[4] {};
+	};
+
+	// Size: 0x40
+	class /*alignas(8)*/ SFirearmCategoryData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SFirearmCategoryData& p_Other) const;
+		bool operator!=(const SFirearmCategoryData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+	};
+
+	// Size: 0xA0
+	class /*alignas(8)*/ SFirearmSlotData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SFirearmSlotData& p_Other) const;
+		bool operator!=(const SFirearmSlotData& p_Other) const { return !(*this == p_Other); }
+
+		ZGameLoadoutManager::EFirearmSlot ID; // 0x0
+		bool HasFirearm; // 0x4
+		uint8_t _pad5[3] {};
+		JSONTemplate::SFirearmData Firearm; // 0x8
+	};
+
+	// Size: 0xD8
+	class /*alignas(8)*/ SGadgetSlotData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGadgetSlotData& p_Other) const;
+		bool operator!=(const SGadgetSlotData& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::EGadgetActivationSlot ID; // 0x0
+		uint8_t _pad4[4] {};
+		ZString InputScheme; // 0x8
+		bool HasGadget; // 0x18
+		uint8_t _pad19[7] {};
+		JSONTemplate::SGadgetItemData Gadget; // 0x20
+	};
+
+	// Size: 0x50
+	class /*alignas(8)*/ SGadgetUpgradeSlotData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGadgetUpgradeSlotData& p_Other) const;
+		bool operator!=(const SGadgetUpgradeSlotData& p_Other) const { return !(*this == p_Other); }
+
+		ZGameLoadoutManager::ELoadoutGadgetUpgradeSlots ID; // 0x0
+		bool IsLocked; // 0x4
+		bool HasUpgrade; // 0x5
+		uint8_t _pad6[2] {};
+		JSONTemplate::SGadgetUpgradeItemData GadgetUpgradeItem; // 0x8
+	};
+
+	// Size: 0xD8
+	class /*alignas(8)*/ SGadgetWallItemData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGadgetWallItemData& p_Other) const;
+		bool operator!=(const SGadgetWallItemData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SGadgetItemData GadgetItem; // 0x0
+		ZString GadgetWallEntityID; // 0xB8
+		ZString SpatialEntityID; // 0xC8
+	};
+
+	// Size: 0x58
+	class /*alignas(8)*/ SGameObjectiveInformation	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGameObjectiveInformation& p_Other) const;
+		bool operator!=(const SGameObjectiveInformation& p_Other) const { return !(*this == p_Other); }
+
+		uint32 ObjectiveID; // 0x0
+		uint8_t _pad4[4] {};
+		ZString Title; // 0x8
+		ZString Description; // 0x18
+		Gameplay::EObjectiveUIType Type; // 0x28
+		uint8_t _pad2C[4] {};
+		ZString Image; // 0x30
+		ZString HighResImage; // 0x40
+		Gameplay::EObjectiveUIState State; // 0x50
+		bool IsTracked; // 0x54
+		uint8_t _pad55[3] {};
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SGameObjectiveMarkerData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGameObjectiveMarkerData& p_Other) const;
+		bool operator!=(const SGameObjectiveMarkerData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		float32 Angle; // 0x10
+		float32 Distance; // 0x14
+		float32 DistanceZ; // 0x18
+		bool IsTracked; // 0x1C
+		uint8_t _pad1D[3] {};
+	};
+
+	// Size: 0xF0
+	class /*alignas(8)*/ SGameObjectiveStructureData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGameObjectiveStructureData& p_Other) const;
+		bool operator!=(const SGameObjectiveStructureData& p_Other) const { return !(*this == p_Other); }
+
+		ZString ObjectiveID; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		Gameplay::EObjectiveUIType Type; // 0x30
+		uint8_t _pad34[4] {};
+		ZString Image; // 0x38
+		ZString HighResImage; // 0x48
+		ZString NotificationImage; // 0x58
+		Gameplay::EObjectiveUIState State; // 0x68
+		bool IsTracked; // 0x6C
+		bool IsLastUpdated; // 0x6D
+		uint8_t _pad6E[2] {};
+		TArray<JSONTemplate::SGameObjectiveStructureData> ConnectedObjectives; // 0x70
+		TArray<JSONTemplate::SGameObjectiveOpportunityData> ConnectedOpportunities; // 0x88
+		TArray<JSONTemplate::SGameObjectiveOpportunityData> UnrevealedOpportunities; // 0xA0
+		TArray<JSONTemplate::SGameObjectiveHintData> ConnectedHints; // 0xB8
+		Gameplay::EObjectiveDynamicDataType DynamicDataType; // 0xD0
+		int32 CurrentCount; // 0xD4
+		int32 TargetCount; // 0xD8
+		Gameplay::EObjectiveDynamicDataCountDisplayType CountDisplayType; // 0xDC
+		ZString StateText; // 0xE0
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SHdrBrightnessRange	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SHdrBrightnessRange& p_Other) const;
+		bool operator!=(const SHdrBrightnessRange& p_Other) const { return !(*this == p_Other); }
+
+		float32 MinLuminance; // 0x0
+		float32 MaxLuminance; // 0x4
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SInputActionConfigData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputActionConfigData& p_Other) const;
+		bool operator!=(const SInputActionConfigData& p_Other) const { return !(*this == p_Other); }
+
+		ZString ActionLabel; // 0x0
+		uint32 InputContext; // 0x10
+		uint8_t _pad14[4] {};
+		TArray<JSONTemplate::SUIInputActionGestureConfigData> AvailableGestures; // 0x18
+		TArray<JSONTemplate::SInputActionDeviceConfigData> DeviceConfigs; // 0x30
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SInputOverrideConflictData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverrideConflictData& p_Other) const;
+		bool operator!=(const SInputOverrideConflictData& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SInputOverrideRequestConflictData> Conflicts; // 0x0
+		TArray<JSONTemplate::SInputOverrideRequestOverlapData> Overlaps; // 0x18
+		TArray<int32> BlockingConflicts; // 0x30
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SInputOverrideDefaultPresetData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverrideDefaultPresetData& p_Other) const;
+		bool operator!=(const SInputOverrideDefaultPresetData& p_Other) const { return !(*this == p_Other); }
+
+		ZString PresetID; // 0x0
+		ZString PresetDisplayName; // 0x10
+	};
+
+	// Size: 0x50
+	class /*alignas(8)*/ SInputOverrideNotificationData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverrideNotificationData& p_Other) const;
+		bool operator!=(const SInputOverrideNotificationData& p_Other) const { return !(*this == p_Other); }
+
+		ZString ActionLabel; // 0x0
+		JSONTemplate::SUIInputActionPromptData PromptData; // 0x10
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SInputOverridePresetData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverridePresetData& p_Other) const;
+		bool operator!=(const SInputOverridePresetData& p_Other) const { return !(*this == p_Other); }
+
+		ZString PresetDisplayName; // 0x0
+		bool IsDefaultPreset; // 0x10
+		bool CanBeCustomized; // 0x11
+		uint8_t _pad12[2] {};
+		uint32 GamepadControlSchemePreset; // 0x14
+	};
+
+	// Size: 0x2C
+	class /*alignas(4)*/ SInputOverrideRequestData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputOverrideRequestData& p_Other) const;
+		bool operator!=(const SInputOverrideRequestData& p_Other) const { return !(*this == p_Other); }
+
+		SKeyHandle KeyHandle; // 0x0
+		SInputOverrideRequest OverrideData; // 0xC
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SInspectableObjectData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInspectableObjectData& p_Other) const;
+		bool operator!=(const SInspectableObjectData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Headline; // 0x0
+		ZString Text; // 0x10
+		ZString FlipLabelOverride; // 0x20
+		ZString ExitLabelOverride; // 0x30
+		uint32 Type; // 0x40
+		bool IsActive; // 0x44
+		bool IsExitEnabled; // 0x45
+		bool IsFlipEnabled; // 0x46
+		bool IsInspectItemZoomActive; // 0x47
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ SKntIOIAccountStatusData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SKntIOIAccountStatusData& p_Other) const;
+		bool operator!=(const SKntIOIAccountStatusData& p_Other) const { return !(*this == p_Other); }
+
+		EKntIoiAccountLinkState LinkState; // 0x0
+		uint8_t _pad4[4] {};
+		ZString LinkedEmail; // 0x8
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SLetterboxStateData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLetterboxStateData& p_Other) const;
+		bool operator!=(const SLetterboxStateData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsEnabled; // 0x0
+		uint8_t _pad1[3] {};
+		float32 TransitionLength; // 0x4
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SLoadoutData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLoadoutData& p_Other) const;
+		bool operator!=(const SLoadoutData& p_Other) const { return !(*this == p_Other); }
+
+		int32 MaxGadgetCount; // 0x0
+		int32 AssignedGadgetCount; // 0x4
+	};
+
+	// Size: 0xC0
+	class /*alignas(8)*/ SLoadoutGadgetData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLoadoutGadgetData& p_Other) const;
+		bool operator!=(const SLoadoutGadgetData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SGadgetItemData GadgetItem; // 0x0
+		bool IsAssigned; // 0xB8
+		uint8_t _padB9[3] {};
+		Gameplay::EGadgetActivationSlot ActivationSlot; // 0xBC
+	};
+
+	// Size: 0x50
+	class /*alignas(8)*/ SLoadoutGadgetUpgradeData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLoadoutGadgetUpgradeData& p_Other) const;
+		bool operator!=(const SLoadoutGadgetUpgradeData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SGadgetUpgradeItemData GadgetUpgradeItem; // 0x0
+		bool IsAssigned; // 0x48
+		uint8_t _pad49[3] {};
+		ZGameLoadoutManager::ELoadoutGadgetUpgradeSlots Slot; // 0x4C
+	};
+
+	// Size: 0x38
+	class /*alignas(8)*/ SModalDialogButton	{
+	public:
+		// Size: 0x4
+		enum class EType : int32_t
+		{
+			OK = 0,
+			Cancel = 1,
+		};
+
+
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SModalDialogButton& p_Other) const;
+		bool operator!=(const SModalDialogButton& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SModalDialogButton::EType type; // 0x0
+		uint8_t _pad4[4] {};
+		ZString label; // 0x8
+		ZString icon; // 0x18
+		Expression::ZFunctionReference onButtonChosen; // 0x28
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SNextMissionId	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SNextMissionId& p_Other) const;
+		bool operator!=(const SNextMissionId& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid MissionId; // 0x0
+		ZString CheckpointName; // 0x10
+	};
+
+	// Size: 0x70
+	class /*alignas(8)*/ SNotificationInformation	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SNotificationInformation& p_Other) const;
+		bool operator!=(const SNotificationInformation& p_Other) const { return !(*this == p_Other); }
+
+		uint32 Group; // 0x0
+		uint32 Type; // 0x4
+		ZString TypeId; // 0x8
+		ZString Title; // 0x18
+		ZString Description; // 0x28
+		ZVariant Payload; // 0x38
+		bool UseTotalDisplayTime; // 0x48
+		uint8_t _pad49[3] {};
+		float32 TotalDisplayTime; // 0x4C
+		float32 RemainingDisplayTime; // 0x50
+		uint8_t _pad54[4] {};
+		ZString PageContextData; // 0x58
+		bool ShowInputPrompt; // 0x68
+		uint8_t _pad69[7] {};
+	};
+
+	// Size: 0x98
+	class /*alignas(8)*/ SObjectiveData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SObjectiveData& p_Other) const;
+		bool operator!=(const SObjectiveData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 ObjectiveID; // 0x0
+		uint8_t _pad4[4] {};
+		ZString Title; // 0x8
+		Gameplay::EObjectiveUIType Type; // 0x18
+		Gameplay::EObjectiveUIState State; // 0x1C
+		bool DidStateChange; // 0x20
+		bool IsNew; // 0x21
+		uint8_t _pad22[6] {};
+		TArray<JSONTemplate::SObjectiveData> SubObjectives; // 0x28
+		TArray<JSONTemplate::SOpportunityData> Opportunities; // 0x40
+		TArray<JSONTemplate::SOpportunityData> UnrevealedOpportunities; // 0x58
+		bool IsTracked; // 0x70
+		uint8_t _pad71[3] {};
+		Gameplay::EObjectiveDynamicDataType DynamicDataType; // 0x74
+		int32 CurrentCount; // 0x78
+		int32 TargetCount; // 0x7C
+		Gameplay::EObjectiveDynamicDataCountDisplayType CountDisplayType; // 0x80
+		uint8_t _pad84[4] {};
+		ZString StateText; // 0x88
+	};
+
+	// Size: 0x60
+	class /*alignas(8)*/ SObjectiveNotificationData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SObjectiveNotificationData& p_Other) const;
+		bool operator!=(const SObjectiveNotificationData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsValid; // 0x0
+		uint8_t _pad1[7] {};
+		ZString ObjectiveID; // 0x8
+		ZString Headline; // 0x18
+		ZString Image; // 0x28
+		ZString NotificationImage; // 0x38
+		bool Completed; // 0x48
+		uint8_t _pad49[3] {};
+		Gameplay::EObjectiveUIType NotificationType; // 0x4C
+		Gameplay::EObjectiveUIState ObjectiveState; // 0x50
+		float32 Duration; // 0x54
+		bool IsObjectiveTracked; // 0x58
+		uint8_t _pad59[7] {};
+	};
+
+	// Size: 0x1C
+	class /*alignas(4)*/ SObjectiveTimerData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SObjectiveTimerData& p_Other) const;
+		bool operator!=(const SObjectiveTimerData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 ObjectiveID; // 0x0
+		Gameplay::EObjectiveDynamicDataType DynamicDataType; // 0x4
+		float32 CurrentTime; // 0x8
+		float32 TimeLimit; // 0xC
+		bool DisplayProgression; // 0x10
+		uint8_t _pad11[3] {};
+		float32 ProgressionRate; // 0x14
+		bool ProgressionInterrupted; // 0x18
+		uint8_t _pad19[3] {};
+	};
+
+	// Size: 0x160
+	class /*alignas(8)*/ SOnlineMissionData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SOnlineMissionData& p_Other) const;
+		bool operator!=(const SOnlineMissionData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid MissionId; // 0x0
+		EKntMissionType Type; // 0x10
+		uint8_t _pad14[4] {};
+		ZString CheckpointId; // 0x18
+		ZString Title; // 0x28
+		ZString Image; // 0x38
+		ZString HighResImage; // 0x48
+		ZString Description; // 0x58
+		ZString ShortDescription; // 0x68
+		ZString Location; // 0x78
+		ZString Goal; // 0x88
+		TArray<ZString> Objectives; // 0x98
+		TArray<ZString> Requirements; // 0xB0
+		ZString RequiredCheckpoint; // 0xC8
+		TArray<JSONTemplate::SGameChangerData> GameChangers; // 0xD8
+		JSONTemplate::SOnlineCompletionRewards Rewards; // 0xF0
+		TArray<ZString> Tags; // 0x110
+		ZGuid ParentMissionId; // 0x128
+		TArray<ZGuid> Children; // 0x138
+		int32 TierCount; // 0x150
+		int32 CurrentTier; // 0x154
+		bool Completed; // 0x158
+		uint8_t _pad159[3] {};
+		float32 CompletionTime; // 0x15C
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SOnlineMissionGetSelectedData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SOnlineMissionGetSelectedData& p_Other) const;
+		bool operator!=(const SOnlineMissionGetSelectedData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid MissionId; // 0x0
+		ZString CheckpointName; // 0x10
+	};
+
+	// Size: 0x40
+	class /*alignas(8)*/ SOutfitCategoryData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SOutfitCategoryData& p_Other) const;
+		bool operator!=(const SOutfitCategoryData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+	};
+
+	// Size: 0x98
+	class /*alignas(8)*/ SOutfitData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SOutfitData& p_Other) const;
+		bool operator!=(const SOutfitData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString IconId; // 0x30
+		ZString Image; // 0x40
+		ZString HighResImage; // 0x50
+		ZString HeroImage; // 0x60
+		ZString CategoryId; // 0x70
+		ZString CategoryTitle; // 0x80
+		bool Locked; // 0x90
+		bool IsEquipped; // 0x91
+		uint8_t _pad92[6] {};
+	};
+
+	// Size: 0x18
+	class /*alignas(4)*/ SPlayerAgencyCosts	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPlayerAgencyCosts& p_Other) const;
+		bool operator!=(const SPlayerAgencyCosts& p_Other) const { return !(*this == p_Other); }
+
+		float32 BluffTier0Cost; // 0x0
+		float32 BluffTier1Cost; // 0x4
+		float32 BluffTier2Cost; // 0x8
+		float32 FocusFireCost; // 0xC
+		float32 MeleeFinisherCost; // 0x10
+		float32 InstinctCost; // 0x14
+	};
+
+	// Size: 0x14
+	class /*alignas(4)*/ SPlayerAgencyData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPlayerAgencyData& p_Other) const;
+		bool operator!=(const SPlayerAgencyData& p_Other) const { return !(*this == p_Other); }
+
+		float32 CurrentAgency; // 0x0
+		float32 MaximumAgency; // 0x4
+		uint32 PlayerChunks; // 0x8
+		uint32 MaximumChunks; // 0xC
+		uint32 AgencyCostChunks; // 0x10
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SPlayerHealthData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPlayerHealthData& p_Other) const;
+		bool operator!=(const SPlayerHealthData& p_Other) const { return !(*this == p_Other); }
+
+		float32 CurrentHealth; // 0x0
+		float32 MaxHealth; // 0x4
+		TArray<float32> ChunkMaxHealth; // 0x8
+		uint32 CurrentChunkIndex; // 0x20
+		uint32 MaxRegenChunks; // 0x24
+	};
+
+	// Size: 0x14
+	class /*alignas(4)*/ SPlayerPickup	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPlayerPickup& p_Other) const;
+		bool operator!=(const SPlayerPickup& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SPlayerFirearmAmmoPickup Ammo; // 0x0
+		JSONTemplate::SPlayerResourcePickup Resource; // 0x8
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SSaveGameFileData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSaveGameFileData& p_Other) const;
+		bool operator!=(const SSaveGameFileData& p_Other) const { return !(*this == p_Other); }
+
+		ZString m_sceneResource; // 0x0
+		ZString m_checkpointName; // 0x10
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SScreenSize	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SScreenSize& p_Other) const;
+		bool operator!=(const SScreenSize& p_Other) const { return !(*this == p_Other); }
+
+		float32 Width; // 0x0
+		float32 Height; // 0x4
+	};
+
+	// Size: 0x90
+	class /*alignas(8)*/ SSessionResultData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSessionResultData& p_Other) const;
+		bool operator!=(const SSessionResultData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid SessionId; // 0x0
+		ZGuid MissionId; // 0x10
+		int32 XP; // 0x20
+		int32 Intel; // 0x24
+		int32 TotalXP; // 0x28
+		int32 TotalIntel; // 0x2C
+		bool AnyChallengesCompleted; // 0x30
+		uint8_t _pad31[3] {};
+		int32 PlayerOldXP; // 0x34
+		int32 PlayerOldLevel; // 0x38
+		int32 PlayerOldIntel; // 0x3C
+		int32 PlayerNewXP; // 0x40
+		int32 PlayerNewLevel; // 0x44
+		int32 PlayerNewIntel; // 0x48
+		float32 CompletionTime; // 0x4C
+		int32 Score; // 0x50
+		int32 PrevScore; // 0x54
+		int32 Time; // 0x58
+		int32 Precision; // 0x5C
+		int32 Flair; // 0x60
+		int32 DiffTime; // 0x64
+		int32 DiffPrecision; // 0x68
+		int32 DiffFlair; // 0x6C
+		TArray<int32> XpThresholds; // 0x70
+		bool IsPending; // 0x88
+		uint8_t _pad89[7] {};
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SShaderCompilationProgressData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SShaderCompilationProgressData& p_Other) const;
+		bool operator!=(const SShaderCompilationProgressData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsCompiling; // 0x0
+		uint8_t _pad1[3] {};
+		float32 Progress; // 0x4
+		int32 ShaderFinished; // 0x8
+		int32 ShaderTotalCount; // 0xC
+	};
+
+	// Size: 0xA8
+	class /*alignas(8)*/ SShotMaskInformation	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SShotMaskInformation& p_Other) const;
+		bool operator!=(const SShotMaskInformation& p_Other) const { return !(*this == p_Other); }
+
+		bool IsEnabled; // 0x0
+		uint8_t _pad1[7] {};
+		ZString Cinematic; // 0x8
+		int32 CurrentFrame; // 0x18
+		int32 CurrentDurationFrame; // 0x1C
+		ZString Shot; // 0x20
+		int32 ShotCurrentFrame; // 0x30
+		int32 ShotCurrentDurationFrame; // 0x34
+		ZString Status; // 0x38
+		ZString Notes; // 0x48
+		ZString Resolution; // 0x58
+		ZString Postfilter; // 0x68
+		JSONTemplate::EGlobalIlluminationStatus GIStatus; // 0x78
+		uint8_t _pad7C[4] {};
+		ZString LensPreset; // 0x80
+		float32 FOV; // 0x90
+		float32 DOFAperture; // 0x94
+		JSONTemplate::SShotMaskDateTime ActivationDateTime; // 0x98
+		uint8_t _padA2[6] {};
+	};
+
+	// Size: 0x68
+	class /*alignas(8)*/ SSkinCollectibleData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSkinCollectibleData& p_Other) const;
+		bool operator!=(const SSkinCollectibleData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid Id; // 0x0
+		ZString EntityId; // 0x10
+		ZString Title; // 0x20
+		ZString Image; // 0x30
+		ZString HighResImage; // 0x40
+		ZString Video; // 0x50
+		bool IsLocked; // 0x60
+		bool IsSelectedInCampaign; // 0x61
+		bool IsSelectedInTacSim; // 0x62
+		uint8_t _pad63[5] {};
+	};
+
+	// Size: 0x30
+	class /*alignas(8)*/ SSlotData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSlotData& p_Other) const;
+		bool operator!=(const SSlotData& p_Other) const { return !(*this == p_Other); }
+
+		int32 Slot; // 0x0
+		bool HasData; // 0x4
+		uint8_t _pad5[3] {};
+		ZString Checkpoint; // 0x8
+		ZString Timestamp; // 0x18
+		int32 Progress; // 0x28
+		uint32 DifficultyLevel; // 0x2C
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SSubtitleDirectionData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSubtitleDirectionData& p_Other) const;
+		bool operator!=(const SSubtitleDirectionData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsSourceOnScreen; // 0x0
+		uint8_t _pad1[3] {};
+		ESubtitleSourceDirectionType SourceDirectionType; // 0x4
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SSubtitleManagerConfigData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSubtitleManagerConfigData& p_Other) const;
+		bool operator!=(const SSubtitleManagerConfigData& p_Other) const { return !(*this == p_Other); }
+
+		float32 MinSubtitleSize; // 0x0
+		float32 MaxSubtitleSize; // 0x4
+	};
+
+	// Size: 0x78
+	class /*alignas(8)*/ SSubtitleTypeConfigData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSubtitleTypeConfigData& p_Other) const;
+		bool operator!=(const SSubtitleTypeConfigData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsEnabled; // 0x0
+		uint8_t _pad1[7] {};
+		SColorPickerData BackgroundColor; // 0x8
+		float32 BackgroundOpacity; // 0x38
+		uint8_t _pad3C[4] {};
+		SColorPickerData TextColor; // 0x40
+		ZSubtitleTypeConfig::EDirectionIndicatorType DirectionIndicatorType; // 0x70
+		bool DefaultEnabledState; // 0x74
+		bool CanOverrideBackgroundColorOption; // 0x75
+		bool CanOverrideBackgroundOpacityOption; // 0x76
+		bool CanOverrideTextColorOption; // 0x77
+	};
+
+	// Size: 0x58
+	class /*alignas(8)*/ SSystemReminderModalItem	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSystemReminderModalItem& p_Other) const;
+		bool operator!=(const SSystemReminderModalItem& p_Other) const { return !(*this == p_Other); }
+
+		ZString Title; // 0x0
+		TArray<ZString> Descriptions; // 0x10
+		ZString Image; // 0x28
+		ZString Video; // 0x38
+		ZString PageContextData; // 0x48
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ SSystemReminderTipData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSystemReminderTipData& p_Other) const;
+		bool operator!=(const SSystemReminderTipData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Title; // 0x0
+		ZString Description; // 0x10
+		ZString Image; // 0x20
+		ZString PageContextData; // 0x30
+		bool IsInputActive; // 0x40
+		uint8_t _pad41[7] {};
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ STextToSpeechInstalledVoiceData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STextToSpeechInstalledVoiceData& p_Other) const;
+		bool operator!=(const STextToSpeechInstalledVoiceData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Name; // 0x0
+		ETextToSpeechVoiceItemGender Gender; // 0x10
+		uint8_t _pad14[4] {};
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ STextToSpeechItemBasicTextUIData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STextToSpeechItemBasicTextUIData& p_Other) const;
+		bool operator!=(const STextToSpeechItemBasicTextUIData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Value; // 0x0
+		uint32 ItemTypeIDOverride; // 0x10
+		uint8_t _pad14[4] {};
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ STextToSpeechItemLocTextUIData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STextToSpeechItemLocTextUIData& p_Other) const;
+		bool operator!=(const STextToSpeechItemLocTextUIData& p_Other) const { return !(*this == p_Other); }
+
+		int32 NameHash; // 0x0
+		uint8_t _pad4[4] {};
+		Expression::ZValue TextReplacementData; // 0x8
+		uint32 ItemTypeIDOverride; // 0x20
+		uint8_t _pad24[4] {};
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ STextToSpeechItemMenuElementUIData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STextToSpeechItemMenuElementUIData& p_Other) const;
+		bool operator!=(const STextToSpeechItemMenuElementUIData& p_Other) const { return !(*this == p_Other); }
+
+		ZString MenuElementID; // 0x0
+		bool StopOnElementDeactivated; // 0x10
+		uint8_t _pad11[3] {};
+		uint32 ItemTypeIDOverride; // 0x14
+	};
+
+	// Size: 0x88
+	class /*alignas(8)*/ STextToSpeechItemMenuInputUIData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STextToSpeechItemMenuInputUIData& p_Other) const;
+		bool operator!=(const STextToSpeechItemMenuInputUIData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SUIInputActionData InputActionData; // 0x0
+		int32 PromptIndex; // 0x78
+		bool IncludeActionLabel; // 0x7C
+		uint8_t _pad7D[3] {};
+		uint32 ItemTypeIDOverride; // 0x80
+		uint8_t _pad84[4] {};
+	};
+
+	// Size: 0x48
+	class /*alignas(8)*/ STextToSpeechItemMenuPromptUIData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STextToSpeechItemMenuPromptUIData& p_Other) const;
+		bool operator!=(const STextToSpeechItemMenuPromptUIData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SUIInputActionPromptData PromptData; // 0x0
+		uint32 ItemTypeIDOverride; // 0x40
+		uint8_t _pad44[4] {};
+	};
+
+	// Size: 0x78
+	class /*alignas(8)*/ STextToSpeechItemTypeConfigData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STextToSpeechItemTypeConfigData& p_Other) const;
+		bool operator!=(const STextToSpeechItemTypeConfigData& p_Other) const { return !(*this == p_Other); }
+
+		EUITextToSpeechItemTypeEnabledType EnabledType; // 0x0
+		int32 OrderNumber; // 0x4
+		Expression::ZValue ItemSpecificData; // 0x8
+		EUITextToSpeechItemTypeEnabledType DefaultEnabledType; // 0x20
+		int32 DefaultOrderNumber; // 0x24
+		Expression::ZValue DefaultItemSpecificData; // 0x28
+		ZString OptionsTitle; // 0x40
+		ZString OptionsDescription; // 0x50
+		TArray<EUITextToSpeechItemTypeEnabledType> AvailableEnabledTypes; // 0x60
+	};
+
+	// Size: 0x58
+	class /*alignas(8)*/ STooltipData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STooltipData& p_Other) const;
+		bool operator!=(const STooltipData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsActive; // 0x0
+		uint8_t _pad1[7] {};
+		ZString Type; // 0x8
+		ZString Title; // 0x18
+		ZString Description; // 0x28
+		ZString Icon; // 0x38
+		ZDynamicObject ExtraData; // 0x48
+	};
+
+	// Size: 0x18
+	class /*alignas(8)*/ STooltipInputData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STooltipInputData& p_Other) const;
+		bool operator!=(const STooltipInputData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsInputHandled; // 0x0
+		uint8_t _pad1[7] {};
+		ZString InputAction; // 0x8
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ STrespassingState	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STrespassingState& p_Other) const;
+		bool operator!=(const STrespassingState& p_Other) const { return !(*this == p_Other); }
+
+		bool IsTrespassing; // 0x0
+		uint8_t _pad1[3] {};
+		uint32 TrespassingStance; // 0x4
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ STriangulationData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const STriangulationData& p_Other) const;
+		bool operator!=(const STriangulationData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 State; // 0x0
+		bool ShowGlitches; // 0x4
+		uint8_t _pad5[3] {};
+		float32 DirectionToTarget; // 0x8
+		float32 HackProgress; // 0xC
+	};
+
+	// Size: 0x70
+	class /*alignas(8)*/ SUILeaderboardPageResult	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUILeaderboardPageResult& p_Other) const;
+		bool operator!=(const SUILeaderboardPageResult& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid MissionId; // 0x0
+		int32 Page; // 0x10
+		int32 PageSize; // 0x14
+		bool IsPending; // 0x18
+		bool AwaitingSessionEvaluation; // 0x19
+		uint8_t _pad1A[6] {};
+		JSONTemplate::SUILeaderboardPage LeaderboardData; // 0x20
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SUIOptionFavoritesData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUIOptionFavoritesData& p_Other) const;
+		bool operator!=(const SUIOptionFavoritesData& p_Other) const { return !(*this == p_Other); }
+
+		int32 MaxFavoriteCount; // 0x0
+		uint8_t _pad4[4] {};
+		TArray<ZString> FavoriteOptions; // 0x8
+	};
+
+	// Size: 0xB0
+	class /*alignas(8)*/ SUnlockableStateData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUnlockableStateData& p_Other) const;
+		bool operator!=(const SUnlockableStateData& p_Other) const { return !(*this == p_Other); }
+
+		ZGuid Id; // 0x0
+		ZString Title; // 0x10
+		ZString Description; // 0x20
+		ZString Image; // 0x30
+		ZString HighResImage; // 0x40
+		ZString FeaturedImage; // 0x50
+		UnlockableService::EUnlockableUnlockState UnlockableUnlockState; // 0x60
+		int32 RequiredXP; // 0x64
+		bool HasEnoughXP; // 0x68
+		uint8_t _pad69[7] {};
+		ZString RequiredCheckpoint; // 0x70
+		ZString PriceCurrency; // 0x80
+		int32 PriceValue; // 0x90
+		bool HasEnoughCurrency; // 0x94
+		bool IsNew; // 0x95
+		bool IsFeatured; // 0x96
+		bool CanUnlock; // 0x97
+		TArray<JSONTemplate::SUnlockableItemData> GrantedItems; // 0x98
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SVehicleAutoDriveData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleAutoDriveData& p_Other) const;
+		bool operator!=(const SVehicleAutoDriveData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsBrakeForced; // 0x0
+		uint8_t _pad1[3] {};
+		float32 ForcedSteering; // 0x4
+	};
+
+}
+
+namespace MultiplayerService {
 	// Size: 0x18
 	class /*alignas(8)*/ SLatencyMeasurement	{
 	public:
@@ -6402,6 +13761,39 @@ namespace MultiplayerService {
 		ZString m_region; // 0x0
 		uint32 m_latency; // 0x10
 		uint8_t _pad14[4] {};
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SMatchmakingRequestRetryConfiguration	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SMatchmakingRequestRetryConfiguration& p_Other) const;
+		bool operator!=(const SMatchmakingRequestRetryConfiguration& p_Other) const { return !(*this == p_Other); }
+
+		int32 m_numRetries; // 0x0
+		float32 m_retryTime; // 0x4
+		float32 m_retryBackoffIncrement; // 0x8
+	};
+
+	// Size: 0x4
+	enum class EMatchmakingStatus : int32_t
+	{
+		eNONE = 0,
+		eWAITINGFORMATCH = 1,
+		eFOUNDMATCH = 2,
+		eCANCELLED = 3,
+		eWAITINGFORSERVER = 4,
+		eFOUNDSERVER = 5,
+		eERROR = 6,
+		eNOORCHESTRATOR = 7,
+		eERRORNOBUILD = 8,
+		eMATCHENDED = 9,
 	};
 
 	// Size: 0x40
@@ -6423,41 +13815,6 @@ namespace MultiplayerService {
 		ZString m_gamertag; // 0x30
 	};
 
-	// Size: 0xC
-	class /*alignas(4)*/ SMatchmakingRequestRetryConfiguration	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SMatchmakingRequestRetryConfiguration& p_Other) const;
-		bool operator!=(const SMatchmakingRequestRetryConfiguration& p_Other) const { return !(*this == p_Other); }
-
-		int32 m_numRetries; // 0x0
-		float32 m_retryTime; // 0x4
-		float32 m_retryBackoffIncrement; // 0x8
-	};
-
-	// Size: 0x28
-	class /*alignas(8)*/ SPartyServerConnectionInfo	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SPartyServerConnectionInfo& p_Other) const;
-		bool operator!=(const SPartyServerConnectionInfo& p_Other) const { return !(*this == p_Other); }
-
-		ZString m_serverAddress; // 0x0
-		TArray<uint8> m_serverCertificate; // 0x10
-	};
-
 	// Size: 0x18
 	class /*alignas(8)*/ SServerPortUpdateModel	{
 	public:
@@ -6475,48 +13832,6 @@ namespace MultiplayerService {
 		uint16 m_port; // 0x10
 		bool m_isUDP; // 0x12
 		uint8_t _pad13[5] {};
-	};
-
-	// Size: 0x28
-	class /*alignas(8)*/ SServerPulseResponse	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SServerPulseResponse& p_Other) const;
-		bool operator!=(const SServerPulseResponse& p_Other) const { return !(*this == p_Other); }
-
-		MultiplayerService::EMatchmakingStatus m_status; // 0x0
-		uint8_t _pad4[4] {};
-		ZString m_matchId; // 0x8
-		float64 m_secondsToNextPulse; // 0x18
-		int32 m_targetPlayerCount; // 0x20
-		bool m_isBackfilling; // 0x24
-		bool m_isRegistered; // 0x25
-		uint8_t _pad26[2] {};
-	};
-
-	// Size: 0x70
-	class /*alignas(8)*/ SMatchmakingTicketInvitation	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SMatchmakingTicketInvitation& p_Other) const;
-		bool operator!=(const SMatchmakingTicketInvitation& p_Other) const { return !(*this == p_Other); }
-
-		ZString m_queueName; // 0x0
-		ZString m_groupName; // 0x10
-		ZString m_ticketId; // 0x20
-		MultiplayerService::SMatchmakingPlayer m_initiator; // 0x30
 	};
 
 	// Size: 0xB8
@@ -6547,8 +13862,8 @@ namespace MultiplayerService {
 		ZString m_requestedQueueName; // 0xA8
 	};
 
-	// Size: 0xB8
-	class /*alignas(8)*/ SMatchmakingResultNotification	{
+	// Size: 0x60
+	class /*alignas(8)*/ SGameServerRegistration	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -6557,10 +13872,39 @@ namespace MultiplayerService {
 		static bool Equals(void* p_Left, void* p_Right);
 		static void Destroy(void* p_Object);
 
-		bool operator==(const SMatchmakingResultNotification& p_Other) const;
-		bool operator!=(const SMatchmakingResultNotification& p_Other) const { return !(*this == p_Other); }
+		bool operator==(const SGameServerRegistration& p_Other) const;
+		bool operator!=(const SGameServerRegistration& p_Other) const { return !(*this == p_Other); }
 
-		MultiplayerService::SMatchmakingResultModel m_result; // 0x0
+		ZString m_serverId; // 0x0
+		TArray<uint8> m_networkCertificate; // 0x10
+		ZString m_serverFQDN; // 0x28
+		ZString m_serverIPv4; // 0x38
+		uint32 m_gamePort; // 0x48
+		uint8_t _pad4C[4] {};
+		ZString m_buildId; // 0x50
+	};
+
+	// Size: 0x58
+	class /*alignas(8)*/ SMatchmakingAttributes	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SMatchmakingAttributes& p_Other) const;
+		bool operator!=(const SMatchmakingAttributes& p_Other) const { return !(*this == p_Other); }
+
+		ZString m_serverVersion; // 0x0
+		ZString m_groupName; // 0x10
+		uint32 m_playersInTicket; // 0x20
+		uint8_t _pad24[4] {};
+		TArray<MultiplayerService::SLatencyMeasurement> m_latencyMeasurements; // 0x28
+		uint32 m_maxPlayersHint; // 0x40
+		uint8_t _pad44[4] {};
+		ZString m_serverStartupArgs; // 0x48
 	};
 
 	// Size: 0xB0
@@ -6594,8 +13938,8 @@ namespace MultiplayerService {
 		uint8_t _padAC[4] {};
 	};
 
-	// Size: 0x58
-	class /*alignas(8)*/ SMatchmakingAttributes	{
+	// Size: 0xB8
+	class /*alignas(8)*/ SMatchmakingResultNotification	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -6604,17 +13948,69 @@ namespace MultiplayerService {
 		static bool Equals(void* p_Left, void* p_Right);
 		static void Destroy(void* p_Object);
 
-		bool operator==(const SMatchmakingAttributes& p_Other) const;
-		bool operator!=(const SMatchmakingAttributes& p_Other) const { return !(*this == p_Other); }
+		bool operator==(const SMatchmakingResultNotification& p_Other) const;
+		bool operator!=(const SMatchmakingResultNotification& p_Other) const { return !(*this == p_Other); }
 
-		ZString m_serverVersion; // 0x0
+		MultiplayerService::SMatchmakingResultModel m_result; // 0x0
+	};
+
+	// Size: 0x70
+	class /*alignas(8)*/ SMatchmakingTicketInvitation	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SMatchmakingTicketInvitation& p_Other) const;
+		bool operator!=(const SMatchmakingTicketInvitation& p_Other) const { return !(*this == p_Other); }
+
+		ZString m_queueName; // 0x0
 		ZString m_groupName; // 0x10
-		uint32 m_playersInTicket; // 0x20
-		uint8_t _pad24[4] {};
-		TArray<MultiplayerService::SLatencyMeasurement> m_latencyMeasurements; // 0x28
-		uint32 m_maxPlayersHint; // 0x40
-		uint8_t _pad44[4] {};
-		ZString m_serverStartupArgs; // 0x48
+		ZString m_ticketId; // 0x20
+		MultiplayerService::SMatchmakingPlayer m_initiator; // 0x30
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SPartyServerConnectionInfo	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPartyServerConnectionInfo& p_Other) const;
+		bool operator!=(const SPartyServerConnectionInfo& p_Other) const { return !(*this == p_Other); }
+
+		ZString m_serverAddress; // 0x0
+		TArray<uint8> m_serverCertificate; // 0x10
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SServerPulseResponse	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SServerPulseResponse& p_Other) const;
+		bool operator!=(const SServerPulseResponse& p_Other) const { return !(*this == p_Other); }
+
+		MultiplayerService::EMatchmakingStatus m_status; // 0x0
+		uint8_t _pad4[4] {};
+		ZString m_matchId; // 0x8
+		float64 m_secondsToNextPulse; // 0x18
+		int32 m_targetPlayerCount; // 0x20
+		bool m_isBackfilling; // 0x24
+		bool m_isRegistered; // 0x25
+		uint8_t _pad26[2] {};
 	};
 
 }
@@ -7477,6 +14873,43 @@ public:
 	uint8_t _padC[4] {};
 	ZString Branch; // 0x10
 	ZString BuildName; // 0x20
+};
+
+// Size: 0x8
+class /*alignas(4)*/ SCLEnableDisableNPCAbilityEntry{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SCLEnableDisableNPCAbilityEntry& p_Other) const;
+	bool operator!=(const SCLEnableDisableNPCAbilityEntry& p_Other) const { return !(*this == p_Other); }
+
+	Gameplay::EEnableDisableNPCAbilityType m_targetAbility; // 0x0
+	bool m_enabled; // 0x4
+	uint8_t _pad5[3] {};
+};
+
+// Size: 0x8
+class /*alignas(4)*/ SCLGameplaySystemEnableEntry{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SCLGameplaySystemEnableEntry& p_Other) const;
+	bool operator!=(const SCLGameplaySystemEnableEntry& p_Other) const { return !(*this == p_Other); }
+
+	Gameplay::EPlayerGameplaySystem m_targetSystem; // 0x0
+	Gameplay::EPlayerGameplaySystemDisabledStateLayerType m_layerType; // 0x4
+	bool m_enabled; // 0x5
+	uint8_t _pad6[2] {};
 };
 
 // Size: 0x18
@@ -9159,6 +16592,114 @@ public:
 	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
 };
 
+// Size: 0x40
+class /*alignas(0)*/ ZUIDataProvider{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZUIDataProvider& p_Other) const;
+	bool operator!=(const ZUIDataProvider& p_Other) const { return !(*this == p_Other); }
+
+	uint8_t _pad0[64] {};
+};
+
+class ZHUDDataproviderButtonPromptBaseWidget
+{
+public:
+	// Size: 0x20
+	class /*alignas(8)*/ SPromptElementData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPromptElementData& p_Other) const;
+		bool operator!=(const SPromptElementData& p_Other) const { return !(*this == p_Other); }
+
+		int32 iconId; // 0x0
+		uint8_t _pad4[4] {};
+		ZString keyGlyph; // 0x8
+		float32 progress; // 0x18
+		bool showProgress; // 0x1C
+		bool invertColor; // 0x1D
+		uint8_t _pad1E[2] {};
+	};
+
+	// Size: 0x40
+	class /*alignas(8)*/ SPromptData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPromptData& p_Other) const;
+		bool operator!=(const SPromptData& p_Other) const { return !(*this == p_Other); }
+
+		TArray<ZHUDDataproviderButtonPromptBaseWidget::SPromptElementData> aElements; // 0x0
+		ZString controllerType; // 0x18
+		bool isEnabled; // 0x28
+		uint8_t _pad29[3] {};
+		float32 multiPromptSpacing; // 0x2C
+		ZString multiPromptSpacingIcon; // 0x30
+	};
+
+};
+
+// Size: 0x170
+class /*alignas(8)*/ SEquippedItemUIDataKnt{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SEquippedItemUIDataKnt& p_Other) const;
+	bool operator!=(const SEquippedItemUIDataKnt& p_Other) const { return !(*this == p_Other); }
+
+	EInventorySlotType SlotType; // 0x0
+	bool AreWeaponsEnabled; // 0x4
+	uint8_t _pad5[3] {};
+	ZString sItemName; // 0x8
+	ZString sIcon; // 0x18
+	ZString sIconResource; // 0x28
+	bool bIsReloading; // 0x38
+	bool bIsFirearm; // 0x39
+	bool bIsAiming; // 0x3A
+	uint8_t _pad3B[1] {};
+	float32 fReloadDuration; // 0x3C
+	float32 nRemainingAmount; // 0x40
+	float32 nMaxAmount; // 0x44
+	float32 fRechargeProgress; // 0x48
+	float32 nTotalAmount; // 0x4C
+	ZString sIconSecondary; // 0x50
+	ZString sIconSecondaryResource; // 0x60
+	ZString sIconTertiary; // 0x70
+	ZString sIconTertiaryResource; // 0x80
+	bool isDisabled; // 0x90
+	bool bIsQPistol; // 0x91
+	uint8_t _pad92[2] {};
+	uint32 nResourceType; // 0x94
+	float32 nResourceCurrentAmount; // 0x98
+	float32 nResourceMaxAmount; // 0x9C
+	ZHUDDataproviderButtonPromptBaseWidget::SPromptData nextFirearmPromptData; // 0xA0
+	ZHUDDataproviderButtonPromptBaseWidget::SPromptData specialFirearmPromptData; // 0xE0
+	ZHUDDataproviderButtonPromptBaseWidget::SPromptData dischargeSpecialFirearmPromptData; // 0x120
+	ZString sDischargeSpecialFirearmPromptTitle; // 0x160
+};
+
 // Size: 0xC
 class /*alignas(4)*/ SEscortedOut{
 public:
@@ -9495,6 +17036,26 @@ public:
 	SInputTriggerEffectConfig m_longRifle_readyToAim; // 0x1E0
 	SInputTriggerEffectConfig m_longRifle_aiming; // 0x208
 	SInputTriggerEffectConfig m_longRifle_shooting; // 0x230
+};
+
+// Size: 0x14
+class /*alignas(4)*/ SFirearmBodyPartWeakpoint{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SFirearmBodyPartWeakpoint& p_Other) const;
+	bool operator!=(const SFirearmBodyPartWeakpoint& p_Other) const { return !(*this == p_Other); }
+
+	Gameplay::EHumanoidBodyPart m_bodyPart; // 0x0
+	float32 m_recoveryDamageThreshold; // 0x4
+	float32 m_vulnerabilityDuration; // 0x8
+	float32 m_delayBeforeRegisteringDamageToWeakBodyPart; // 0xC
+	float32 m_delayBeforeRegisteringDamageToNonWeakBodyPart; // 0x10
 };
 
 // Size: 0x10
@@ -10379,6 +17940,27 @@ public:
 	uint8_t _pad12[6] {};
 };
 
+// Size: 0x10
+class /*alignas(4)*/ SHUDNPCStateIconData{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SHUDNPCStateIconData& p_Other) const;
+	bool operator!=(const SHUDNPCStateIconData& p_Other) const { return !(*this == p_Other); }
+
+	Gameplay::ENpcStateIconType m_stateIconType; // 0x0
+	EViewportLock m_viewportLock; // 0x4
+	float32 m_viewportGutter; // 0x8
+	bool m_defaultShowOnTop; // 0xC
+	bool m_viewportLockedShowOnTop; // 0xD
+	uint8_t _padE[2] {};
+};
+
 // Size: 0x1
 class /*alignas(1)*/ SHUDPIPControllerSaveData{
 public:
@@ -10462,22 +18044,6 @@ public:
 	uint32 m_pCurrentInstance; // 0x0
 };
 
-// Size: 0x40
-class /*alignas(0)*/ ZUIDataProvider{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZUIDataProvider& p_Other) const;
-	bool operator!=(const ZUIDataProvider& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[64] {};
-};
-
 class ZUIControlEntity
 {
 public:
@@ -10544,6 +18110,28 @@ public:
 };
 
 // Size: 0x10
+class /*alignas(4)*/ SHazardousEffectsContentConfig{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SHazardousEffectsContentConfig& p_Other) const;
+	bool operator!=(const SHazardousEffectsContentConfig& p_Other) const { return !(*this == p_Other); }
+
+	Gameplay::ESicknessDartReaction m_sicknessDartReaction; // 0x0
+	bool m_badSmokeKeepCoughing; // 0x1
+	uint8_t _pad2[2] {};
+	float32 m_badCoughingDuration; // 0x4
+	bool m_goodSmokeKeepCoughing; // 0x8
+	uint8_t _pad9[3] {};
+	float32 m_goodCoughingDuration; // 0xC
+};
+
+// Size: 0x10
 class /*alignas(8)*/ SHudMissionTimerControllerData{
 public:
 	static ZHMTypeInfo TypeInfo;
@@ -10580,6 +18168,114 @@ public:
 	uint32 maximumChunks; // 0xC
 	uint32 agencyCostChunks; // 0x10
 	float32 bluffTier0Cost; // 0x14
+};
+
+class ZHUDDataproviderHumanoidPrompt
+{
+public:
+	// Size: 0x1
+	enum class EPromptType : int8_t
+	{
+		Invalid = 0,
+		SilentTakedown = 1,
+		MeleeFinisher = 2,
+		AgencyFinisher = 3,
+		Grab = 4,
+		AttackFromAbove = 5,
+		Bluff = 6,
+		ConfrontationOptIn = 7,
+		CombatRush = 8,
+		FakeSurrender = 9,
+		Unused_Entry_2 = 10,
+		Unused_Entry_3 = 11,
+		Unused_Entry_4 = 12,
+		Unused_Entry_5 = 13,
+		FakeSurrenderMeleeFinisher = 14,
+		EscortedOut = 15,
+		Lure = 16,
+		Dialogue = 17,
+	};
+
+	// Size: 0x88
+	class /*alignas(8)*/ SPromptData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPromptData& p_Other) const;
+		bool operator!=(const SPromptData& p_Other) const { return !(*this == p_Other); }
+
+		ZHUDDataproviderHumanoidPrompt::EPromptType m_promptType; // 0x0
+		uint8_t _pad1[7] {};
+		TArray<ZHUDDataproviderButtonPromptBaseWidget::SPromptData> m_promptData; // 0x8
+		ZString m_label; // 0x20
+		ZString m_iconID; // 0x30
+		ZString m_actionName; // 0x40
+		ZString m_blockedLabel; // 0x50
+		Gameplay::EConversationChoiceType m_conversationChoiceType; // 0x60
+		bool m_isTapping; // 0x64
+		bool m_isAgencyPrompt; // 0x65
+		bool m_isSpecial; // 0x66
+		uint8_t _pad67[1] {};
+		float32 m_animStartTime; // 0x68
+		float32 m_animEndTime; // 0x6C
+		float32 m_timedEventStartTime; // 0x70
+		float32 m_timedEventEndTime; // 0x74
+		int32 m_numRemainingActivations; // 0x78
+		int32 m_activationCost; // 0x7C
+		bool isEnabled; // 0x80
+		bool isVisible; // 0x81
+		uint8_t _pad82[6] {};
+	};
+
+	// Size: 0x38
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		SUIAgencyCommonData m_agencyData; // 0x0
+		TArray<ZHUDDataproviderHumanoidPrompt::SPromptData> m_prompts; // 0x18
+		bool isActive; // 0x30
+		uint8_t _pad31[7] {};
+	};
+
+};
+
+// Size: 0x28
+class /*alignas(4)*/ SHumanoidInteractionPromptData{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SHumanoidInteractionPromptData& p_Other) const;
+	bool operator!=(const SHumanoidInteractionPromptData& p_Other) const { return !(*this == p_Other); }
+
+	ZHUDDataproviderHumanoidPrompt::EPromptType m_promptType; // 0x0
+	uint8_t _pad1[3] {};
+	SVector3 m_promptWorldOffset; // 0x4
+	EViewportLock m_onscreenViewportLock; // 0x10
+	float32 m_onscreenViewportGutter; // 0x14
+	EViewportLock m_offscreenViewportLock; // 0x18
+	float32 m_offscreenViewportGutter; // 0x1C
+	BoneId::Enum m_attachmentBone; // 0x20
+	bool m_useEdgeAngle; // 0x24
+	uint8_t _pad25[3] {};
 };
 
 // Size: 0x8
@@ -13882,6 +21578,25 @@ public:
 	SPlayerContext m_playerContext; // 0x20
 };
 
+// Size: 0x190
+class /*alignas(8)*/ SPlayerEquippedItemUIDataKnt{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SPlayerEquippedItemUIDataKnt& p_Other) const;
+	bool operator!=(const SPlayerEquippedItemUIDataKnt& p_Other) const { return !(*this == p_Other); }
+
+	SEquippedItemUIDataKnt ItemData; // 0x0
+	bool isAimingWatch; // 0x170
+	uint8_t _pad171[7] {};
+	SHUDGroupVisibilityCommonData hudVisibilityData; // 0x178
+};
+
 // Size: 0x8
 class /*alignas(4)*/ SPlayerFootstepsNpcPerceptionConfigurationEntry{
 public:
@@ -14727,6 +22442,25 @@ public:
 	float32 m_nCountFrom; // 0xC
 	float32 m_nCountTo; // 0x10
 	float32 m_nStepSize; // 0x14
+};
+
+// Size: 0x8
+class /*alignas(4)*/ SStumbleOverrideInfo{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SStumbleOverrideInfo& p_Other) const;
+	bool operator!=(const SStumbleOverrideInfo& p_Other) const { return !(*this == p_Other); }
+
+	bool m_stumble; // 0x0
+	bool m_stun; // 0x1
+	uint8_t _pad2[2] {};
+	Gameplay::EStumbleImpactType m_type; // 0x4
 };
 
 // Size: 0xA0
@@ -15669,6 +23403,40 @@ public:
 	SInputOverrideSaveData m_inputOverrideData; // 0x110
 };
 
+// Size: 0xA8
+class /*alignas(8)*/ SUISelectableGadgetData{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SUISelectableGadgetData& p_Other) const;
+	bool operator!=(const SUISelectableGadgetData& p_Other) const { return !(*this == p_Other); }
+
+	ZString name; // 0x0
+	ZString type; // 0x10
+	float32 ammoCount; // 0x20
+	float32 ammoMax; // 0x24
+	float32 activationCost; // 0x28
+	uint32 resourceType; // 0x2C
+	bool isRecharging; // 0x30
+	uint8_t _pad31[3] {};
+	float32 rechargingProgress; // 0x34
+	bool isEnabled; // 0x38
+	uint8_t _pad39[7] {};
+	TArray<Gameplay::EGadgetDisabledFlag> gadgetDisabledFlags; // 0x40
+	ZHUDDataproviderButtonPromptBaseWidget::SPromptData promptData; // 0x58
+	float32 cooldownDuration; // 0x98
+	float32 cooldownRemainingTime; // 0x9C
+	bool isInCooldown; // 0xA0
+	bool isPrimaryGadgetForSelectedTarget; // 0xA1
+	bool gadgetActionDigital; // 0xA2
+	uint8_t _padA3[5] {};
+};
+
 // Size: 0x70
 class /*alignas(8)*/ SUITestData{
 public:
@@ -16546,6 +24314,9 @@ enum class TeleportActionType : int32_t
 	LEAVE_CROWD = 2,
 };
 
+namespace UIArraySpawner {
+}
+
 namespace WebSocketUtils {
 	// Size: 0x4
 	enum class EOpCode : int32_t
@@ -16561,6 +24332,42 @@ namespace WebSocketUtils {
 
 }
 
+class ZCLAISoundDistractionStimulus
+{
+public:
+	// Size: 0x4
+	enum class ETier : int32_t
+	{
+		Invalid = -1,
+		QuietNoise = 0,
+		OutOfTheOrdinary = 1,
+		VerySuspicious = 2,
+		MajorEvent = 3,
+		ViolentAggressive = 4,
+	};
+
+	// Size: 0x4
+	enum class EWhitelistType : int32_t
+	{
+		Default = 0,
+		Exclusive = 1,
+		Preference = 2,
+	};
+
+};
+
+class ZStorylineRoutineConditionBaseEntity
+{
+public:
+	// Size: 0x4
+	enum class ERoutinesConditionEvaluationType : int32_t
+	{
+		eRCET_ANY = 0,
+		eRCET_ALL = 1,
+	};
+
+};
+
 class ZActorInstanceEntity
 {
 public:
@@ -16569,6 +24376,18 @@ public:
 	{
 		eFFX_MODE_DISABLE = 0,
 		eFFX_MODE_OVERWRITE = 1,
+	};
+
+};
+
+class ZAddRemoveArmorEntity
+{
+public:
+	// Size: 0x1
+	enum class EArmorOperation : int8_t
+	{
+		Add = 0,
+		Remove = 1,
 	};
 
 };
@@ -16738,6 +24557,19 @@ public:
 
 };
 
+class ZCombatantHTNDomainEntity
+{
+public:
+	// Size: 0x4
+	enum class ECombatantArchetype : int32_t
+	{
+		Minion = 0,
+		Henchman = 1,
+		Brute = 2,
+	};
+
+};
+
 class ZBoxReflectionEntity
 {
 public:
@@ -16769,6 +24601,185 @@ public:
 
 };
 
+class ZCLAIGuidanceConfigurationEntity
+{
+public:
+	// Size: 0x4
+	enum class ELinkedTargetSelectionMode : int32_t
+	{
+		StorylineParticipant = 0,
+		HumanoidCharacter = 1,
+	};
+
+	// Size: 0x4
+	enum class EDirection : int32_t
+	{
+		Behind = 0,
+		BehindLeft = 1,
+		BehindRight = 2,
+	};
+
+};
+
+class ZSplineEntity
+{
+public:
+	// Size: 0x4
+	enum class EConfigurationMode : int32_t
+	{
+		ControlPointEntities = 0,
+		GenericPointsEntity = 1,
+	};
+
+};
+
+class ZCLAddRemovePlayerDashConfigurationOverride
+{
+public:
+	// Size: 0x4
+	enum class EDashConfigurationOverrideType : int32_t
+	{
+		AddOverride = 0,
+		RemoveOverride = 1,
+	};
+
+};
+
+class ZCLAddRemoveVehicleBoatConstantInput
+{
+public:
+	// Size: 0x4
+	enum class EConstantInputAction : int32_t
+	{
+		AddConstantInput = 0,
+		RemoveConstantInput = 1,
+	};
+
+};
+
+class ZCLAddRemoveVehicleBoatFollowSpline
+{
+public:
+	// Size: 0x4
+	enum class EFollowSplineAction : int32_t
+	{
+		AddFollowBehaviour = 0,
+		RemoveFollowBehaviour = 1,
+	};
+
+};
+
+class ZCLAgilityActionStanceModifier
+{
+public:
+	// Size: 0x1
+	enum class EStance : int8_t
+	{
+		Stand = 0,
+		Crouch = 1,
+	};
+
+};
+
+class ZCLApplyForceToVehicleBoat
+{
+public:
+	// Size: 0x4
+	enum class EBoatForceMagnitudeDataType : int32_t
+	{
+		Inline = 0,
+		External = 1,
+	};
+
+	// Size: 0x4
+	enum class EBoatForceType : int32_t
+	{
+		Impulse = 0,
+		Acceleration = 1,
+	};
+
+	// Size: 0x4
+	enum class EBoatForceDirectionDataType : int32_t
+	{
+		InlineLocal = 0,
+		InlineWorldSpace = 1,
+		ExternalLocal = 2,
+		ExternalUseSpatialForward = 3,
+		ExternalTowardsSpatial = 4,
+	};
+
+};
+
+class ZCLApplyForceToVehicleCar
+{
+public:
+	// Size: 0x4
+	enum class EForceDirectionDataType : int32_t
+	{
+		InlineLocal = 0,
+		InlineWorldSpace = 1,
+		ExternalLocal = 2,
+		ExternalUseSpatialForward = 3,
+		ExternalTowardsSpatial = 4,
+	};
+
+	// Size: 0x4
+	enum class EForceMagnitudeDataType : int32_t
+	{
+		Inline = 0,
+		External = 1,
+	};
+
+};
+
+class ZCLApplyTorqueToVehicleBoat
+{
+public:
+	// Size: 0x4
+	enum class EBoatTorqueMagnitudeDataType : int32_t
+	{
+		Inline = 0,
+		External = 1,
+	};
+
+	// Size: 0x4
+	enum class EBoatTorqueType : int32_t
+	{
+		Impulse = 0,
+		Acceleration = 1,
+	};
+
+	// Size: 0x4
+	enum class EBoatTorqueAxisDataType : int32_t
+	{
+		InlineLocal = 0,
+		InlineWorldSpace = 1,
+		ExternalLocal = 2,
+		ExternalUseSpatial = 3,
+	};
+
+	// Size: 0x4
+	enum class EBoatTorqueSpatialAxisType : int32_t
+	{
+		Forward = 0,
+		Right = 1,
+		Up = 2,
+	};
+
+};
+
+class ZCLAttachOrDetachHumanoidFromVehicleBoat
+{
+public:
+	// Size: 0x4
+	enum class EAttachDetachAction : int32_t
+	{
+		AttachToBoat = 0,
+		DetachFromBoat = 1,
+	};
+
+};
+
 class ZCLBoneAttachEntity
 {
 public:
@@ -16777,6 +24788,24 @@ public:
 	{
 		eAtBoneOrigin = 0,
 		eKeepOffset = 1,
+	};
+
+};
+
+class ZCLBooleanOperationEntity
+{
+public:
+	// Size: 0x4
+	enum class EEvaluationType : int32_t
+	{
+		ALL = 0,
+		NONE = 1,
+		ANY = 2,
+		NOT_ALL = 3,
+		ALL_EQUAL = 4,
+		ONE_TRUE = 5,
+		COUNT_MIN = 6,
+		COUNT_MAX = 7,
 	};
 
 };
@@ -16799,6 +24828,22 @@ public:
 
 };
 
+class ZCLCompareStringEntity
+{
+public:
+	// Size: 0x4
+	enum class CompareType : int32_t
+	{
+		EQUALS = 0,
+		EQUALS_CASE_INSENSITIVE = 1,
+		STARTS_WITH = 2,
+		STARTS_WITH_CASE_INSENSITIVE = 3,
+		ENDS_WITH = 4,
+		ENDS_WITH_CASE_INSENSITIVE = 5,
+	};
+
+};
+
 class ZCLDateTimeMatcher
 {
 public:
@@ -16807,6 +24852,154 @@ public:
 	{
 		Local = 0,
 		UTC = 1,
+	};
+
+};
+
+class ZCLDetachItem
+{
+public:
+	// Size: 0x4
+	enum class EDetachMode : int32_t
+	{
+		PhysicalImpulse = 0,
+		TargetWorldTransform = 1,
+	};
+
+};
+
+class ZCLDismountVehicle
+{
+public:
+	// Size: 0x1
+	enum class ETransformEditorMode : int8_t
+	{
+		Inline = 0,
+		ExternalSpatials = 1,
+	};
+
+};
+
+class ZCLDismountVehicleBoat
+{
+public:
+	// Size: 0x1
+	enum class ETransformEditorMode : int8_t
+	{
+		Inline = 0,
+		ExternalSpatials = 1,
+	};
+
+};
+
+class ZCLGetAnimationNetworkFootstep
+{
+public:
+	// Size: 0x1
+	enum class EFootstepType : int8_t
+	{
+		Any = 0,
+		Left = 1,
+		Right = 2,
+	};
+
+};
+
+class ZHUDPingTargetEntity
+{
+public:
+	// Size: 0x4
+	enum class EScanState : int32_t
+	{
+		NOT_SCANNED = 1,
+		SCAN_COMPLETED_WRONG = 2,
+		SCAN_COMPLETED_RIGHT = 3,
+	};
+
+};
+
+class ZCLGiveOrRemovePlayerVehicleControls
+{
+public:
+	// Size: 0x4
+	enum class EPlayerVehicleControlsAction : int32_t
+	{
+		GiveControls = 0,
+		RemoveControls = 1,
+	};
+
+};
+
+class ZCLHumanoidStateListenerEntity
+{
+public:
+	// Size: 0x1
+	enum class EState : int8_t
+	{
+		Dead = 0,
+		Alive = 1,
+		Aiming = 2,
+		InCover = 3,
+		Crouching = 4,
+		HasGround = 5,
+		NpcActiveBluffable = 6,
+		NpcLurable = 7,
+		NpcAvailableForStorylines = 8,
+		NpcRequestingMagicPocketItem = 9,
+		DistractedInAmbient = 10,
+		AttachedToAnyVehicle = 11,
+		EnteringVehicle = 12,
+		InVehicle = 13,
+		ExitingVehicle = 14,
+		PerformingMeleeFinisher = 15,
+		PerformingSilentTakedown = 16,
+		PerformingAttackFromAbove = 17,
+		PerformingAttackFromCover = 18,
+		Staggered = 19,
+		Speaking = 20,
+		Listening = 21,
+		InConversation = 22,
+		Reloading = 23,
+		Dazed = 24,
+		Disoriented = 25,
+		DisorientedByDart = 26,
+		DisorientedByGasLeak = 27,
+		DisorientedByLaser = 28,
+		DisorientedByMigraneDevice = 29,
+		StunnedBySlipAndKnockout = 30,
+		KnockedOut = 31,
+		Tased = 32,
+		DrivingBoat = 33,
+		Bluffed = 34,
+		NearDeath = 35,
+		ChargingFirearm = 36,
+		Shooting = 37,
+		ThrowingGrenade = 38,
+		Killed = 39,
+		FootstepPlantedLeft = 40,
+		FootstepPlantedRight = 41,
+		Watcher = 42,
+		PerformingPrivateSpaceReaction = 43,
+		AffectedBySmoke = 44,
+		PerformingFakeSurrenderFinisher = 45,
+	};
+
+};
+
+class ZCLHumanoidStateConditionEntity
+{
+public:
+	// Size: 0x1
+	enum class EEvaluationType : int8_t
+	{
+		All = 0,
+		None = 1,
+		Any = 2,
+		NotAll = 3,
+		AllEqual = 4,
+		OneTrue = 5,
+		CountMin = 6,
+		CountMax = 7,
 	};
 
 };
@@ -16833,6 +25026,18 @@ public:
 
 };
 
+class ZCLIsHumanoidInGroupEntity
+{
+public:
+	// Size: 0x4
+	enum class ESelectionBehavior : int32_t
+	{
+		SpecificHumanoid = 0,
+		Any = 1,
+	};
+
+};
+
 class ZCLIsPlayerInConfrontationEntity
 {
 public:
@@ -16851,18 +25056,90 @@ class ZCLIsVisibleEntity
 {
 public:
 	// Size: 0x1
+	enum class EVisibilityQueryType : int8_t
+	{
+		RoomAccurateWithDelayedCamera = 0,
+		RoomAccurateWithDelayedCameraAndFallbackOnCameraCut = 1,
+		FallbackAlwaysWithExactCamera = 2,
+	};
+
+	// Size: 0x1
 	enum class EEvaluationType : int8_t
 	{
 		ANY = 0,
 		ALL = 1,
 	};
 
+};
+
+class ZCLLookTargetOverride
+{
+public:
 	// Size: 0x1
-	enum class EVisibilityQueryType : int8_t
+	enum class ELookTargetOverrideType : int8_t
 	{
-		RoomAccurateWithDelayedCamera = 0,
-		RoomAccurateWithDelayedCameraAndFallbackOnCameraCut = 1,
-		FallbackAlwaysWithExactCamera = 2,
+		Humanoid = 0,
+		Spatial = 1,
+	};
+
+};
+
+class ZVirtualCameraLensEntity
+{
+public:
+	// Size: 0x4
+	enum class ELensFlareMethod : int32_t
+	{
+		SCREENSPACE = 0,
+		ENTITY = 1,
+	};
+
+	// Size: 0x4
+	enum class ELensDescriptionPreset : int32_t
+	{
+		ANGENIEUX = 0,
+		HELLIONIER = 1,
+		NIKON = 2,
+		ZEISS_50MM = 3,
+		ZEISS_65MM = 4,
+		ZEISS_75MM = 5,
+		ZEISS_100MM = 6,
+	};
+
+};
+
+class ZCLPhysicsGameplayStateListener
+{
+public:
+	// Size: 0x4
+	enum class EEvaluationType : int32_t
+	{
+		AND = 0,
+		OR = 1,
+	};
+
+};
+
+class ZCLPlaceHumanoidInVehicle
+{
+public:
+	// Size: 0x1
+	enum class ETransformEditorMode : int8_t
+	{
+		Inline = 0,
+		ExternalSpatials = 1,
+	};
+
+};
+
+class ZCLPlaceHumanoidInVehicleBoat
+{
+public:
+	// Size: 0x1
+	enum class ETransformEditorMode : int8_t
+	{
+		Inline = 0,
+		ExternalSpatials = 1,
 	};
 
 };
@@ -16875,6 +25152,95 @@ public:
 	{
 		Connected = 0,
 		Disconnected = 1,
+	};
+
+};
+
+class ZCLPlayerStateListenerEntity
+{
+public:
+	// Size: 0x1
+	enum class EState : int8_t
+	{
+		Dashing = 0,
+		FreeDashing = 1,
+		EnteringVehicle = 2,
+		InVehicle = 3,
+		ExitingVehicle = 4,
+		Driving = 5,
+		Scaling = 6,
+		Bluffing = 7,
+		Vaulting = 8,
+		Sprinting = 9,
+		Running = 10,
+		InSequence = 11,
+		InsideVent = 12,
+		Trespassing = 13,
+		SoftTrespassing = 14,
+		CombatRushing = 15,
+		Impersonating = 16,
+		InPreCloseCombat = 17,
+		HasCloseCombatCameraTargets = 18,
+		InCloseCombat = 19,
+		InDangerLevel = 20,
+		LookingAtHint = 21,
+		ActiveBluffing = 22,
+		HasActiveBluffTarget = 23,
+		InQuickFireWindow = 24,
+		InConfrontationOptIn = 25,
+		InConfrontation = 26,
+		InFakeSurrender = 27,
+		InIntuitionMode = 28,
+		ContextualJumping = 29,
+		InTrespassingStance = 30,
+		ConfrontationBluffing = 31,
+		ClimbingLadder = 32,
+		IsTouchTheWorldInHitContactStateLeftSide = 33,
+		IsTouchTheWorldInHitContactStateRightSide = 34,
+		LedgeHanging = 35,
+		LedgeHangingPlainWall = 36,
+		LedgeHangingOverhang = 37,
+		LedgeSidling = 38,
+		ZipLining = 39,
+		SlidingDownLadder = 40,
+		SlidingDownDrainpipe = 41,
+		AnyAgilityActionState = 42,
+		GrabRushing = 43,
+		AttackingFromAbove = 44,
+		InCombatState = 45,
+		InCameraFocus = 46,
+		Complying = 47,
+		InsideSmokeArea = 48,
+		AgencyFocused = 49,
+		BeingEscortedIn = 50,
+		DoingAimLockOn = 51,
+		IdentifiedByAnyNPC = 52,
+		Shooting = 53,
+		PerformingSqueezeThrough = 54,
+		MeleeAttacking = 55,
+		Falling = 56,
+		InterruptedFinisherCamera = 57,
+		HasRubberCameraControls = 58,
+	};
+
+};
+
+class ZCrowdActorEntity
+{
+public:
+	// Size: 0x4
+	enum class EForwardConvention : int32_t
+	{
+		NegativeY = 0,
+		PositiveY = 1,
+	};
+
+	// Size: 0x4
+	enum class ECharacterSoundType : int32_t
+	{
+		eSoundType_Male = 0,
+		eSoundType_Female = 1,
+		eSoundType_Female_Heels = 2,
 	};
 
 };
@@ -16896,6 +25262,120 @@ public:
 		bool operator!=(const SPropertyNameString& p_Other) const { return !(*this == p_Other); }
 
 		ZString propertyName; // 0x0
+	};
+
+};
+
+class ZSequenceEntity
+{
+public:
+	// Size: 0x4
+	enum class ELetterboxAspect : int32_t
+	{
+		LETTERBOXASPECT_WIDESCREEN = 0,
+		LETTERBOXASPECT_CINEMASCOPE = 1,
+	};
+
+	// Size: 0x4
+	enum class ESequenceType : int32_t
+	{
+		CINEMATIC = 0,
+		GAMEPLAY = 1,
+	};
+
+	// Size: 0x4
+	enum class ECommand : int32_t
+	{
+		COMMAND_START = 0,
+		COMMAND_ENABLE_PREVIEW = 1,
+		COMMAND_STOP = 2,
+		COMMAND_DISABLE_PREVIEW = 3,
+		COMMAND_ABORT = 4,
+		COMMAND_PAUSE = 5,
+		COMMAND_UNPAUSE = 6,
+		COMMAND_SETTIME = 7,
+		COMMAND_SKIPTOEND = 8,
+		COMMAND_GAME_PAUSE = 9,
+		COMMAND_GAME_UNPAUSE = 10,
+		COMMAND_PREVIEW_PAUSE = 11,
+		COMMAND_PREVIEW_STOP = 12,
+		COMMAND_PREVIEW_PLAY = 13,
+		COMMAND_PREVIEW_LOOPED = 14,
+		COMMAND_CLEAR = 15,
+	};
+
+};
+
+class ZCLSetHumanoidInsideMovingVolume
+{
+public:
+	// Size: 0x4
+	enum class MovingVolumeActionType : int32_t
+	{
+		Enter = 0,
+		Exit = 1,
+	};
+
+};
+
+class ZCLSetHumanoidPlayerCrouchStance
+{
+public:
+	// Size: 0x4
+	enum class ECrouchStance : int32_t
+	{
+		Crouch = 0,
+		Uncrouch = 1,
+		Toggle = 2,
+	};
+
+};
+
+class ZCLStopOrResumeVehicleBoatPhysicsSimulation
+{
+public:
+	// Size: 0x1
+	enum class EPhysicsSimulationAction : int8_t
+	{
+		StopSimulation = 0,
+		ResumeSimulation = 1,
+	};
+
+};
+
+class ZCLTeleportVehicleBoat
+{
+public:
+	// Size: 0x4
+	enum class ETransformType : int32_t
+	{
+		Inline = 0,
+		ExternalSpatial = 1,
+	};
+
+};
+
+class ZCLTraceMessageEntity
+{
+public:
+	// Size: 0x4
+	enum class ETraceMessageType : int32_t
+	{
+		Message = 0,
+		Warning = 1,
+		Error = 2,
+	};
+
+};
+
+class ZCLTriggerPlayerStartStopSprinting
+{
+public:
+	// Size: 0x4
+	enum class ESprintAction : int32_t
+	{
+		StartSprint = 0,
+		StopSprint = 1,
 	};
 
 };
@@ -16927,6 +25407,31 @@ public:
 
 };
 
+class ZCLVehicleRemoveComponents
+{
+public:
+	// Size: 0x1
+	enum class EAction : int8_t
+	{
+		RemoveComponents = 0,
+		RemoveAllKeepDefault = 1,
+		RemoveAll = 2,
+	};
+
+};
+
+class ZCLVehicleSpeedModifier
+{
+public:
+	// Size: 0x4
+	enum class ETargetSpeedSource : int32_t
+	{
+		Inline = 0,
+		External = 1,
+	};
+
+};
+
 class ZCameraConeTriggerEntity
 {
 public:
@@ -16939,30 +25444,6 @@ public:
 		X_NEGATIVE = 3,
 		Y_NEGATIVE = 4,
 		Z_NEGATIVE = 5,
-	};
-
-};
-
-class ZVirtualCameraLensEntity
-{
-public:
-	// Size: 0x4
-	enum class ELensDescriptionPreset : int32_t
-	{
-		ANGENIEUX = 0,
-		HELLIONIER = 1,
-		NIKON = 2,
-		ZEISS_50MM = 3,
-		ZEISS_65MM = 4,
-		ZEISS_75MM = 5,
-		ZEISS_100MM = 6,
-	};
-
-	// Size: 0x4
-	enum class ELensFlareMethod : int32_t
-	{
-		SCREENSPACE = 0,
-		ENTITY = 1,
 	};
 
 };
@@ -17057,26 +25538,6 @@ public:
 		float32 m_factor; // 0x0
 		float32 m_factorBackground; // 0x4
 		float32 m_damping; // 0x8
-	};
-
-};
-
-class ZCrowdActorEntity
-{
-public:
-	// Size: 0x4
-	enum class ECharacterSoundType : int32_t
-	{
-		eSoundType_Male = 0,
-		eSoundType_Female = 1,
-		eSoundType_Female_Heels = 2,
-	};
-
-	// Size: 0x4
-	enum class EForwardConvention : int32_t
-	{
-		NegativeY = 0,
-		PositiveY = 1,
 	};
 
 };
@@ -17225,18 +25686,6 @@ public:
 	uint8_t _pad0[2] {};
 };
 
-class ZStorylineRoutineConditionBaseEntity
-{
-public:
-	// Size: 0x4
-	enum class ERoutinesConditionEvaluationType : int32_t
-	{
-		eRCET_ANY = 0,
-		eRCET_ALL = 1,
-	};
-
-};
-
 // Size: 0x18
 class /*alignas(8)*/ ZER64{
 public:
@@ -17302,6 +25751,21 @@ public:
 	ZEntityID m_EntityID; // 0x0
 	ZString m_sExposedEntity; // 0x10
 	ZString m_sProxyEntity; // 0x20
+};
+
+class ZEnvironmentalHazardAreaEntity
+{
+public:
+	// Size: 0x4
+	enum class EHazardAreaPenalties : int32_t
+	{
+		LowPenalties = 0,
+		MediumPenalties = 1,
+		HighPenalties = 2,
+		ImpassablePenalties = 3,
+		NoPenalties = 4,
+	};
+
 };
 
 // Size: 0x18
@@ -17382,6 +25846,13 @@ class ZGameCameraLensPresetEntity
 {
 public:
 	// Size: 0x4
+	enum class LensFlareMethod : int32_t
+	{
+		SCREENSPACE = 0,
+		ENTITY = 1,
+	};
+
+	// Size: 0x4
 	enum class LensDescriptionPreset : int32_t
 	{
 		ANGENIEUX = 0,
@@ -17393,11 +25864,17 @@ public:
 		ZEISS_100MM = 6,
 	};
 
-	// Size: 0x4
-	enum class LensFlareMethod : int32_t
+};
+
+class ZGameCameraShakeSourceEntity
+{
+public:
+	// Size: 0x1
+	enum class EGameCameraShakePlayType : int8_t
 	{
-		SCREENSPACE = 0,
-		ENTITY = 1,
+		OneShot = 0,
+		Instanced = 1,
+		Loop = 2,
 	};
 
 };
@@ -17417,15 +25894,6 @@ public:
 		NewWithInteraction = 6,
 	};
 
-	// Size: 0x4
-	enum class EStateType : int32_t
-	{
-		Invalid = 0,
-		Instant = 1,
-		Notification = 2,
-		PostNotification = 3,
-	};
-
 	// Size: 0x8
 	class /*alignas(4)*/ SNotificationTimings	{
 	public:
@@ -17441,6 +25909,15 @@ public:
 
 		ZGameObjectivesUIManagerEntity::EChangeType m_changeType; // 0x0
 		float32 m_notificationDuration; // 0x4
+	};
+
+	// Size: 0x4
+	enum class EStateType : int32_t
+	{
+		Invalid = 0,
+		Instant = 1,
+		Notification = 2,
+		PostNotification = 3,
 	};
 
 };
@@ -17480,6 +25957,273 @@ public:
 class ZGuideConfig
 {
 public:
+	// Size: 0x30
+	class /*alignas(4)*/ SLadderDismount	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLadderDismount& p_Other) const;
+		bool operator!=(const SLadderDismount& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_triggerDistanceMediumSpeed; // 0x0
+		float32 m_triggerDistanceFastSpeed; // 0x4
+		float32 m_toBelowMaximumHeight; // 0x8
+		SVector3 m_toAheadOffset; // 0xC
+		SVector3 m_toBehindOffset; // 0x18
+		SVector3 m_toSideOffset; // 0x24
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SLedgeHang	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLedgeHang& p_Other) const;
+		bool operator!=(const SLedgeHang& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_guideRollAngleMax; // 0x0
+		float32 m_guideWidthMinimum; // 0x4
+		SVector2 m_guideDepthRange; // 0x8
+	};
+
+	// Size: 0x8
+	class /*alignas(4)*/ SLedgeDismount	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLedgeDismount& p_Other) const;
+		bool operator!=(const SLedgeDismount& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_toBelowMaximumHeight; // 0x0
+		float32 m_toBelowLongitudinalOffset; // 0x4
+	};
+
+	// Size: 0x20
+	class /*alignas(4)*/ SRailing	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SRailing& p_Other) const;
+		bool operator!=(const SRailing& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_guideWidthMinimum; // 0x0
+		SVector2 m_guideDepthRange; // 0x4
+		SVector2 m_maximumDistance; // 0xC
+		SVector2 m_minimumDistance; // 0x14
+		float32 m_maximumFacingAngle; // 0x1C
+	};
+
+	// Size: 0xC
+	class /*alignas(4)*/ SJumpGuide	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SJumpGuide& p_Other) const;
+		bool operator!=(const SJumpGuide& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_guideWidthMinimum; // 0x0
+		SVector2 m_guideDepthRange; // 0x4
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SLedgeSidle	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLedgeSidle& p_Other) const;
+		bool operator!=(const SLedgeSidle& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_guideRollAngleMax; // 0x0
+		float32 m_guideWidthMinimum; // 0x4
+		SVector2 m_guideDepthRange; // 0x8
+	};
+
+	// Size: 0x40
+	class /*alignas(4)*/ SLedgeMount	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLedgeMount& p_Other) const;
+		bool operator!=(const SLedgeMount& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_facingAngleMax; // 0x0
+		float32 m_automaticTriggerDistance; // 0x4
+		SVector2 m_fromBelowMaximumDistance; // 0x8
+		SVector2 m_fromBelowMinimumDistance; // 0x10
+		SVector2 m_fromAboveMaximumDistance; // 0x18
+		SVector2 m_fromAboveMinimumDistance; // 0x20
+		SVector2 m_fromSideVerticalRange; // 0x28
+		SVector2 m_fromSideAngularRange; // 0x30
+		float32 m_fromSideMaximumDistance; // 0x38
+		float32 m_fromSideAutomaticTriggerDistance; // 0x3C
+	};
+
+	// Size: 0x4
+	class /*alignas(4)*/ SLadderMount	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLadderMount& p_Other) const;
+		bool operator!=(const SLadderMount& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_maximumDistance; // 0x0
+	};
+
+	// Size: 0x18
+	class /*alignas(4)*/ SLedgeGravity	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLedgeGravity& p_Other) const;
+		bool operator!=(const SLedgeGravity& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_heightDifferenceLimit; // 0x0
+		SVector2 m_longitudinalDisplacementRange; // 0x4
+		float32 m_inputMagnitudeThreshold; // 0xC
+		float32 m_ledgeStopAnimationOffsetStart; // 0x10
+		float32 m_ledgeStopAnimationOffsetEnd; // 0x14
+	};
+
+	// Size: 0x10
+	class /*alignas(4)*/ SWindow	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SWindow& p_Other) const;
+		bool operator!=(const SWindow& p_Other) const { return !(*this == p_Other); }
+
+		SVector2 m_guideWidthRange; // 0x0
+		SVector2 m_guideDepthRange; // 0x8
+	};
+
+	// Size: 0x68
+	class /*alignas(4)*/ SConnectionLedgeAndLedge	{
+	public:
+		// Size: 0x14
+		class /*alignas(4)*/ SVerticalConnection		{
+		public:
+			static ZHMTypeInfo TypeInfo;
+			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+			static bool Equals(void* p_Left, void* p_Right);
+			static void Destroy(void* p_Object);
+
+			bool operator==(const SVerticalConnection& p_Other) const;
+			bool operator!=(const SVerticalConnection& p_Other) const { return !(*this == p_Other); }
+
+			SVector2 m_maximumDistance; // 0x0
+			SVector2 m_minimumDistance; // 0x8
+			float32 m_maximumAngle; // 0x10
+		};
+
+		// Size: 0x3C
+		class /*alignas(4)*/ SSideConnection		{
+		public:
+			static ZHMTypeInfo TypeInfo;
+			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+			static bool Equals(void* p_Left, void* p_Right);
+			static void Destroy(void* p_Object);
+
+			bool operator==(const SSideConnection& p_Other) const;
+			bool operator!=(const SSideConnection& p_Other) const { return !(*this == p_Other); }
+
+			SVector3 m_maximumDistance; // 0x0
+			SVector3 m_minimumDistance; // 0xC
+			SVector3 m_maximumDistanceSwap; // 0x18
+			SVector3 m_minimumDistanceSwap; // 0x24
+			SVector2 m_angleRange; // 0x30
+			float32 m_offset; // 0x38
+		};
+
+		// Size: 0x18
+		class /*alignas(4)*/ SPointConnection		{
+		public:
+			static ZHMTypeInfo TypeInfo;
+			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+			static bool Equals(void* p_Left, void* p_Right);
+			static void Destroy(void* p_Object);
+
+			bool operator==(const SPointConnection& p_Other) const;
+			bool operator!=(const SPointConnection& p_Other) const { return !(*this == p_Other); }
+
+			float32 m_maximumDistance; // 0x0
+			SVector2 m_softCornerAngleRange; // 0x4
+			SVector2 m_sharpCornerAngleRange; // 0xC
+			float32 m_offset; // 0x14
+		};
+
+
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SConnectionLedgeAndLedge& p_Other) const;
+		bool operator!=(const SConnectionLedgeAndLedge& p_Other) const { return !(*this == p_Other); }
+
+		ZGuideConfig::SConnectionLedgeAndLedge::SVerticalConnection m_vertical; // 0x0
+		ZGuideConfig::SConnectionLedgeAndLedge::SSideConnection m_side; // 0x14
+		ZGuideConfig::SConnectionLedgeAndLedge::SPointConnection m_point; // 0x50
+	};
+
 	// Size: 0x24
 	class /*alignas(4)*/ SConnectionLedgeAndLadder	{
 	public:
@@ -17520,286 +26264,11 @@ public:
 		float32 m_offset; // 0x1C
 	};
 
-	// Size: 0xC
-	class /*alignas(4)*/ SJumpGuide	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SJumpGuide& p_Other) const;
-		bool operator!=(const SJumpGuide& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_guideWidthMinimum; // 0x0
-		SVector2 m_guideDepthRange; // 0x4
-	};
-
-	// Size: 0x30
-	class /*alignas(4)*/ SLadderDismount	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLadderDismount& p_Other) const;
-		bool operator!=(const SLadderDismount& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_triggerDistanceMediumSpeed; // 0x0
-		float32 m_triggerDistanceFastSpeed; // 0x4
-		float32 m_toBelowMaximumHeight; // 0x8
-		SVector3 m_toAheadOffset; // 0xC
-		SVector3 m_toBehindOffset; // 0x18
-		SVector3 m_toSideOffset; // 0x24
-	};
-
-	// Size: 0x4
-	class /*alignas(4)*/ SLadderMount	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLadderMount& p_Other) const;
-		bool operator!=(const SLadderMount& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_maximumDistance; // 0x0
-	};
-
-	// Size: 0x8
-	class /*alignas(4)*/ SLedgeDismount	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLedgeDismount& p_Other) const;
-		bool operator!=(const SLedgeDismount& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_toBelowMaximumHeight; // 0x0
-		float32 m_toBelowLongitudinalOffset; // 0x4
-	};
-
-	// Size: 0x18
-	class /*alignas(4)*/ SLedgeGravity	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLedgeGravity& p_Other) const;
-		bool operator!=(const SLedgeGravity& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_heightDifferenceLimit; // 0x0
-		SVector2 m_longitudinalDisplacementRange; // 0x4
-		float32 m_inputMagnitudeThreshold; // 0xC
-		float32 m_ledgeStopAnimationOffsetStart; // 0x10
-		float32 m_ledgeStopAnimationOffsetEnd; // 0x14
-	};
-
-	// Size: 0x10
-	class /*alignas(4)*/ SLedgeHang	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLedgeHang& p_Other) const;
-		bool operator!=(const SLedgeHang& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_guideRollAngleMax; // 0x0
-		float32 m_guideWidthMinimum; // 0x4
-		SVector2 m_guideDepthRange; // 0x8
-	};
-
-	// Size: 0x40
-	class /*alignas(4)*/ SLedgeMount	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLedgeMount& p_Other) const;
-		bool operator!=(const SLedgeMount& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_facingAngleMax; // 0x0
-		float32 m_automaticTriggerDistance; // 0x4
-		SVector2 m_fromBelowMaximumDistance; // 0x8
-		SVector2 m_fromBelowMinimumDistance; // 0x10
-		SVector2 m_fromAboveMaximumDistance; // 0x18
-		SVector2 m_fromAboveMinimumDistance; // 0x20
-		SVector2 m_fromSideVerticalRange; // 0x28
-		SVector2 m_fromSideAngularRange; // 0x30
-		float32 m_fromSideMaximumDistance; // 0x38
-		float32 m_fromSideAutomaticTriggerDistance; // 0x3C
-	};
-
-	// Size: 0x10
-	class /*alignas(4)*/ SLedgeSidle	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLedgeSidle& p_Other) const;
-		bool operator!=(const SLedgeSidle& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_guideRollAngleMax; // 0x0
-		float32 m_guideWidthMinimum; // 0x4
-		SVector2 m_guideDepthRange; // 0x8
-	};
-
-	// Size: 0x20
-	class /*alignas(4)*/ SRailing	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SRailing& p_Other) const;
-		bool operator!=(const SRailing& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_guideWidthMinimum; // 0x0
-		SVector2 m_guideDepthRange; // 0x4
-		SVector2 m_maximumDistance; // 0xC
-		SVector2 m_minimumDistance; // 0x14
-		float32 m_maximumFacingAngle; // 0x1C
-	};
-
-	// Size: 0x10
-	class /*alignas(4)*/ SWindow	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SWindow& p_Other) const;
-		bool operator!=(const SWindow& p_Other) const { return !(*this == p_Other); }
-
-		SVector2 m_guideWidthRange; // 0x0
-		SVector2 m_guideDepthRange; // 0x8
-	};
-
-	// Size: 0x68
-	class /*alignas(4)*/ SConnectionLedgeAndLedge	{
-	public:
-		// Size: 0x18
-		class /*alignas(4)*/ SPointConnection		{
-		public:
-			static ZHMTypeInfo TypeInfo;
-			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-			static bool Equals(void* p_Left, void* p_Right);
-			static void Destroy(void* p_Object);
-
-			bool operator==(const SPointConnection& p_Other) const;
-			bool operator!=(const SPointConnection& p_Other) const { return !(*this == p_Other); }
-
-			float32 m_maximumDistance; // 0x0
-			SVector2 m_softCornerAngleRange; // 0x4
-			SVector2 m_sharpCornerAngleRange; // 0xC
-			float32 m_offset; // 0x14
-		};
-
-		// Size: 0x3C
-		class /*alignas(4)*/ SSideConnection		{
-		public:
-			static ZHMTypeInfo TypeInfo;
-			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-			static bool Equals(void* p_Left, void* p_Right);
-			static void Destroy(void* p_Object);
-
-			bool operator==(const SSideConnection& p_Other) const;
-			bool operator!=(const SSideConnection& p_Other) const { return !(*this == p_Other); }
-
-			SVector3 m_maximumDistance; // 0x0
-			SVector3 m_minimumDistance; // 0xC
-			SVector3 m_maximumDistanceSwap; // 0x18
-			SVector3 m_minimumDistanceSwap; // 0x24
-			SVector2 m_angleRange; // 0x30
-			float32 m_offset; // 0x38
-		};
-
-		// Size: 0x14
-		class /*alignas(4)*/ SVerticalConnection		{
-		public:
-			static ZHMTypeInfo TypeInfo;
-			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-			static bool Equals(void* p_Left, void* p_Right);
-			static void Destroy(void* p_Object);
-
-			bool operator==(const SVerticalConnection& p_Other) const;
-			bool operator!=(const SVerticalConnection& p_Other) const { return !(*this == p_Other); }
-
-			SVector2 m_maximumDistance; // 0x0
-			SVector2 m_minimumDistance; // 0x8
-			float32 m_maximumAngle; // 0x10
-		};
-
-
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SConnectionLedgeAndLedge& p_Other) const;
-		bool operator!=(const SConnectionLedgeAndLedge& p_Other) const { return !(*this == p_Other); }
-
-		ZGuideConfig::SConnectionLedgeAndLedge::SVerticalConnection m_vertical; // 0x0
-		ZGuideConfig::SConnectionLedgeAndLedge::SSideConnection m_side; // 0x14
-		ZGuideConfig::SConnectionLedgeAndLedge::SPointConnection m_point; // 0x50
-	};
-
 };
 
 class ZHUDCamera3DControllerEntity
 {
 public:
-	// Size: 0x4
-	enum class EMode : int32_t
-	{
-		Auto = 0,
-		Mode2D = 1,
-		Mode3D = 2,
-	};
-
 	// Size: 0x4
 	enum class ESpace : int32_t
 	{
@@ -17814,6 +26283,14 @@ public:
 	{
 		Menu = 0,
 		HUD = 1,
+	};
+
+	// Size: 0x4
+	enum class EMode : int32_t
+	{
+		Auto = 0,
+		Mode2D = 1,
+		Mode3D = 2,
 	};
 
 	// Size: 0x30
@@ -17832,6 +26309,108 @@ public:
 		float4 posCharacter; // 0x0
 		float4 udirTowardsPlane; // 0x10
 		float4 udirAnchor; // 0x20
+	};
+
+};
+
+class ZHUDDataGadgetTargets
+{
+public:
+	// Size: 0xC
+	class /*alignas(4)*/ SGadgetTargetData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGadgetTargetData& p_Other) const;
+		bool operator!=(const SGadgetTargetData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 ID; // 0x0
+		Gameplay::EPlayerGadgetTargetType TargetType; // 0x4
+		float32 Angle; // 0x8
+	};
+
+};
+
+class ZHUDDataProviderObjectiveMarker
+{
+public:
+	// Size: 0x14
+	class /*alignas(4)*/ SObjectiveMarkerData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SObjectiveMarkerData& p_Other) const;
+		bool operator!=(const SObjectiveMarkerData& p_Other) const { return !(*this == p_Other); }
+
+		Gameplay::EObjectiveUIType type; // 0x0
+		Gameplay::EObjectiveUIState state; // 0x4
+		float32 distance; // 0x8
+		float32 distanceZ; // 0xC
+		bool isLookingAtMarker; // 0x10
+		bool shouldBeVisible; // 0x11
+		uint8_t _pad12[2] {};
+	};
+
+};
+
+class ZHUDDataproviderCircularProgressBarWidget
+{
+public:
+	// Size: 0x1
+	enum class EShapeType : int8_t
+	{
+		Circle = 0,
+		Quad = 1,
+	};
+
+	// Size: 0x1
+	enum class EFillDirection : int8_t
+	{
+		Clockwise = 0,
+		CounterClockwise = 1,
+	};
+
+	// Size: 0x50
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		float32 progress; // 0x0
+		ZHUDDataproviderCircularProgressBarWidget::EFillDirection fillDirection; // 0x4
+		ZHUDDataproviderCircularProgressBarWidget::EShapeType shapeType; // 0x5
+		uint8_t _pad6[2] {};
+		ZString backgroundTextureRID; // 0x8
+		ZString fillTextureRID; // 0x18
+		bool drawBackground; // 0x28
+		bool drawWidgetEdge; // 0x29
+		uint8_t _pad2A[2] {};
+		uint32 backgroundColor; // 0x2C
+		uint32 fillColor; // 0x30
+		uint32 widgetEdgeColor; // 0x34
+		float32 backgroundAlpha; // 0x38
+		float32 fillAlpha; // 0x3C
+		float32 widgetEdgeAlpha; // 0x40
+		float32 edgeMarginX; // 0x44
+		float32 edgeMarginY; // 0x48
+		float32 angleOffset; // 0x4C
 	};
 
 };
@@ -17857,6 +26436,37 @@ public:
 		float32 forcedSteering; // 0x4
 	};
 
+};
+
+class ZHUDDataproviderEavesdropIcon
+{
+public:
+	// Size: 0x10
+	class /*alignas(4)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		EEavesdropState m_state; // 0x0
+		bool m_infoRetrieved; // 0x1
+		uint8_t _pad2[2] {};
+		float32 m_playerDistance; // 0x4
+		float32 m_preActivationRange; // 0x8
+		float32 m_activationRange; // 0xC
+	};
+
+};
+
+class ZHUDDataproviderFilteredInteractionPrompts
+{
+public:
 };
 
 class ZHUDDataproviderGadgetDartgunReticle
@@ -17928,6 +26538,35 @@ public:
 
 };
 
+class ZHUDDataproviderGadgetSelector
+{
+public:
+	// Size: 0x30
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		bool isAimingWatch; // 0x0
+		bool isGlitching; // 0x1
+		uint8_t _pad2[2] {};
+		float32 openAnimStartX; // 0x4
+		float32 openAnimStartY; // 0x8
+		float32 openAnimEndX; // 0xC
+		float32 openAnimEndY; // 0x10
+		uint8_t _pad14[4] {};
+		TArray<SUISelectableGadgetData> selectableGadgets; // 0x18
+	};
+
+};
+
 class ZHUDDataproviderGadgetWatchBase
 {
 public:
@@ -17956,6 +26595,138 @@ public:
 		ZString StateLabel; // 0x10
 		SUIGadgetCommonData commonData; // 0x20
 		uint8_t _pad34[4] {};
+	};
+
+};
+
+class ZHUDDataproviderGadgetWatchHackReticle
+{
+public:
+	// Size: 0x4
+	enum class EWarningReason : int32_t
+	{
+		None = 0,
+		Watcher = 1,
+		InfluencedByWatcher = 2,
+	};
+
+	// Size: 0x28
+	class /*alignas(8)*/ SOutcomeResultData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SOutcomeResultData& p_Other) const;
+		bool operator!=(const SOutcomeResultData& p_Other) const { return !(*this == p_Other); }
+
+		ZString type; // 0x0
+		ZString result; // 0x10
+		uint32 iconValue; // 0x20
+		bool blocked; // 0x24
+		uint8_t _pad25[3] {};
+	};
+
+	// Size: 0x80
+	class /*alignas(8)*/ SActionData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SActionData& p_Other) const;
+		bool operator!=(const SActionData& p_Other) const { return !(*this == p_Other); }
+
+		ZString title; // 0x0
+		ZString description; // 0x10
+		ZHUDDataproviderButtonPromptBaseWidget::SPromptData promptData; // 0x20
+		ZHUDDataproviderGadgetWatchHackReticle::EWarningReason warningReason; // 0x60
+		bool readyToDisplayData; // 0x64
+		uint8_t _pad65[3] {};
+		TArray<ZHUDDataproviderGadgetWatchHackReticle::SOutcomeResultData> outcomeResults; // 0x68
+	};
+
+	// Size: 0x88
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		float32 progress; // 0x0
+		bool selected; // 0x4
+		bool isAimingWatch; // 0x5
+		uint8_t _pad6[2] {};
+		uint32 selectedId; // 0x8
+		bool isGlitching; // 0xC
+		bool isOverwatchActive; // 0xD
+		uint8_t _padE[2] {};
+		ZString gadgetTitle; // 0x10
+		ZString gadgetDescription; // 0x20
+		float32 openAnimStartX; // 0x30
+		float32 openAnimStartY; // 0x34
+		float32 openAnimEndX; // 0x38
+		float32 openAnimEndY; // 0x3C
+		TArray<ZHUDDataproviderGadgetWatchHackReticle::SActionData> actions; // 0x40
+		TArray<SUISelectableGadgetData> selectableGadgets; // 0x58
+		SUIGadgetCommonData commonData; // 0x70
+		bool invalidGadgetsForTarget; // 0x84
+		uint8_t _pad85[3] {};
+	};
+
+};
+
+class ZHUDDataproviderGadgetWatchRadar
+{
+public:
+	// Size: 0x18
+	class /*alignas(8)*/ SElementData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SElementData& p_Other) const;
+		bool operator!=(const SElementData& p_Other) const { return !(*this == p_Other); }
+
+		ZString Id; // 0x0
+		float32 Angle; // 0x10
+		uint8_t _pad14[4] {};
+	};
+
+	// Size: 0x38
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		TArray<ZHUDDataproviderGadgetWatchRadar::SElementData> Objectives; // 0x0
+		TArray<ZHUDDataGadgetTargets::SGadgetTargetData> GadgetTargets; // 0x18
+		bool IsAimingWatch; // 0x30
+		bool HasInfiniteGadgetResources; // 0x31
+		uint8_t _pad32[6] {};
 	};
 
 };
@@ -17993,7 +26764,7 @@ class ZHUDDataproviderGadgetWatchTriangulation
 {
 public:
 	// Size: 0x1
-	enum class EGadgetWatchTriangulationStateBit : uint8_t
+	enum class EGadgetWatchTriangulationStateBit : int8_t
 	{
 		Off = 1,
 		DirectionFound = 2,
@@ -18002,7 +26773,7 @@ public:
 		HackingProgress = 16,
 		HackingOutOfRange = 32,
 		HackingFailed = 64,
-		HackingComplete = 128,
+		HackingComplete = -128,
 	};
 
 	// Size: 0x48
@@ -18042,6 +26813,114 @@ public:
 
 };
 
+class ZHUDDataproviderHealth
+{
+public:
+	// Size: 0x40
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		float32 CurrentHealth; // 0x0
+		float32 MaxHealth; // 0x4
+		TArray<float32> ChunkMaxHealth; // 0x8
+		uint32 CurrentChunkIndex; // 0x20
+		uint32 MaxRegenChunks; // 0x24
+		SUIGadgetCommonData commonData; // 0x28
+		uint8_t _pad3C[4] {};
+	};
+
+};
+
+class ZHUDDataproviderIncomingAttack
+{
+public:
+	// Size: 0x58
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		int32 type; // 0x0
+		bool isWaitingToAttack; // 0x4
+		bool isAttackBuildUp; // 0x5
+		bool isParryWindowOpen; // 0x6
+		bool isPerfectParryWindowOpen; // 0x7
+		float32 attackToImpactDuration; // 0x8
+		float32 parryWindowDuration; // 0xC
+		float32 perfectParryWindowDuration; // 0x10
+		uint8_t _pad14[4] {};
+		ZHUDDataproviderButtonPromptBaseWidget::SPromptData promptData; // 0x18
+	};
+
+};
+
+class ZHUDDataproviderIncomingEnemies
+{
+public:
+	// Size: 0x2
+	class /*alignas(1)*/ SElementData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SElementData& p_Other) const;
+		bool operator!=(const SElementData& p_Other) const { return !(*this == p_Other); }
+
+		bool newCombatant; // 0x0
+		bool rangedCombatant; // 0x1
+	};
+
+};
+
+class ZHUDDataproviderIncomingMeleeAttacksWidget
+{
+public:
+	// Size: 0x14
+	class /*alignas(4)*/ SElementData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SElementData& p_Other) const;
+		bool operator!=(const SElementData& p_Other) const { return !(*this == p_Other); }
+
+		bool isActive; // 0x0
+		uint8_t _pad1[3] {};
+		uint32 humanoidID; // 0x4
+		Gameplay::EMeleeParryType eParryType; // 0x8
+		uint32 eSideStepType; // 0xC
+		bool isParrySuccess; // 0x10
+		bool isSidestepSuccess; // 0x11
+		bool isAttackerOnScreen; // 0x12
+		uint8_t _pad13[1] {};
+	};
+
+};
+
 class ZHUDDataproviderInputAgencyUnavailable
 {
 public:
@@ -18073,6 +26952,36 @@ public:
 
 };
 
+class ZHUDDataproviderInteractionPromptDoor
+{
+public:
+};
+
+class ZHUDDataproviderMarqueeOutlineWidget
+{
+public:
+	// Size: 0x14
+	class /*alignas(4)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		float32 segmentSizeX; // 0x0
+		float32 segmentSizeY; // 0x4
+		uint32 segmentSpacing; // 0x8
+		uint32 segmentColor; // 0xC
+		float32 animationSpeed; // 0x10
+	};
+
+};
+
 class ZHUDDataproviderNPCMoveToPosition
 {
 public:
@@ -18090,6 +26999,169 @@ public:
 		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
 
 		bool m_isAimingWatch; // 0x0
+	};
+
+};
+
+class ZHUDDataproviderNpcStateIcon
+{
+public:
+	// Size: 0x4C
+	class /*alignas(4)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		int32 m_state; // 0x0
+		float32 m_attentionGainProgress; // 0x4
+		float32 m_identificationThresholdToReact; // 0x8
+		float32 m_identificationThresholdToInvestigate; // 0xC
+		float32 m_stateIconAlphaValue; // 0x10
+		float32 m_stateIconReinforcementsCallProgress; // 0x14
+		float32 m_npcStateIconLastWarningProgress; // 0x18
+		float32 m_npcStateIconPreConfrontationProgress; // 0x1C
+		float32 m_npcStateIconBluffProgress; // 0x20
+		float32 m_npcStateIconDisorientedProgress; // 0x24
+		float32 m_npcStateIconWatcherInfluenceNormalized; // 0x28
+		float32 m_npcStateIconReloadingProgress; // 0x2C
+		float32 m_npcStateIconAboutToFireProgress; // 0x30
+		bool m_isNpcReloading; // 0x34
+		bool m_isNpcAboutToFire; // 0x35
+		bool m_isPossiblyDistracted; // 0x36
+		bool m_isInWatchView; // 0x37
+		bool m_isDistracted; // 0x38
+		bool m_isInfluencingNPCs; // 0x39
+		bool m_isInManhunt; // 0x3A
+		bool m_isInvestigatingDisturbance; // 0x3B
+		bool m_isInCombat; // 0x3C
+		bool m_isDistractedInCombat; // 0x3D
+		bool m_isCallingForReinforcements; // 0x3E
+		bool m_isPreConfrontation; // 0x3F
+		bool m_isConfronting; // 0x40
+		bool m_isEscortingIn; // 0x41
+		bool m_isBluffed; // 0x42
+		bool m_isWatcher; // 0x43
+		bool m_isDisoriented; // 0x44
+		bool m_isInfluencedByWatcher; // 0x45
+		bool m_isNPCCentricUIEnabled; // 0x46
+		bool m_isInFakeSurrender; // 0x47
+		bool m_isRecruit; // 0x48
+		bool m_isBluffedByPlayerDisguise; // 0x49
+		uint8_t _pad4A[2] {};
+	};
+
+};
+
+class ZHUDDataproviderPingRadar
+{
+public:
+	// Size: 0x38
+	class /*alignas(8)*/ SPingTarget	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPingTarget& p_Other) const;
+		bool operator!=(const SPingTarget& p_Other) const { return !(*this == p_Other); }
+
+		uint32 id; // 0x0
+		float32 angle; // 0x4
+		float32 distance; // 0x8
+		float32 distanceZ; // 0xC
+		ZHUDPingTargetEntity::EScanState scanState; // 0x10
+		uint8_t _pad14[4] {};
+		ZString scanCompleteMessage; // 0x18
+		ZString targetType; // 0x28
+	};
+
+	// Size: 0x20
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		float32 playerangle; // 0x0
+		uint8_t _pad4[4] {};
+		TArray<ZHUDDataproviderPingRadar::SPingTarget> targets; // 0x8
+	};
+
+};
+
+class ZHUDDataproviderPlayerAgencyMeter
+{
+public:
+	// Size: 0xA8
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		SUIGadgetCommonData commonData; // 0x0
+		SUIAgencyCommonData agencyData; // 0x14
+		uint8_t _pad2C[4] {};
+		TArray<ZHUDDataproviderHumanoidPrompt::SPromptData> agencyPrompts; // 0x30
+		ZHUDDataproviderButtonPromptBaseWidget::SPromptData promptData; // 0x48
+		ZString promptTitle; // 0x88
+		bool isLegal; // 0x98
+		bool hasFullAgency; // 0x99
+		uint8_t _pad9A[2] {};
+		uint32 maximumChunks; // 0x9C
+		bool forceShow; // 0xA0
+		uint8_t _padA1[7] {};
+	};
+
+};
+
+class ZHUDDataproviderPlayerAgencyMeterSimple
+{
+public:
+	// Size: 0x10
+	class /*alignas(4)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		bool isLethalForceEnabled; // 0x0
+		bool isTrespassing; // 0x1
+		bool isLicenseToPunch; // 0x2
+		bool isSoftTrespassing; // 0x3
+		bool isAimingWatch; // 0x4
+		bool isAnyAgencyMoveAvailable; // 0x5
+		uint8_t _pad6[2] {};
+		float32 currentAgency; // 0x8
+		float32 maximumAgency; // 0xC
 	};
 
 };
@@ -18123,6 +27195,113 @@ public:
 
 };
 
+class ZHUDDataproviderPlayerFirearmReticle
+{
+public:
+	// Size: 0xB0
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		SUIAgencyCommonData AgencyData; // 0x0
+		ZHUDDataproviderButtonPromptBaseWidget::SPromptData AgencyFocusPromptData; // 0x18
+		ZHUDDataproviderButtonPromptBaseWidget::SPromptData ReloadPromptData; // 0x58
+		ZString AgencyFocusPromptText; // 0x98
+		bool CanPerformAgencyFocus; // 0xA8
+		bool IsPlayerAiming; // 0xA9
+		bool ShowHolsteredReticle; // 0xAA
+		uint8_t _padAB[5] {};
+	};
+
+};
+
+class ZHUDDataproviderProgressBarWidget
+{
+public:
+	// Size: 0x70
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		float32 progress; // 0x0
+		float32 lerpDelay; // 0x4
+		float32 lerpSpeed; // 0x8
+		uint8_t _padC[4] {};
+		ZString backgroundTextureRID; // 0x10
+		ZString fillTextureRID; // 0x20
+		ZString lerpTextureRID; // 0x30
+		bool drawBackground; // 0x40
+		bool drawEdge; // 0x41
+		uint8_t _pad42[2] {};
+		uint32 backgroundColor; // 0x44
+		uint32 fillColor; // 0x48
+		uint32 lerpColor; // 0x4C
+		uint32 edgeColor; // 0x50
+		float32 backgroundAlpha; // 0x54
+		float32 fillAlpha; // 0x58
+		float32 lerpAlpha; // 0x5C
+		float32 edgeAlpha; // 0x60
+		float32 edgeMarginX; // 0x64
+		float32 edgeMarginY; // 0x68
+		float32 borderRadius; // 0x6C
+	};
+
+};
+
+class ZHUDDataproviderQTEPrompt
+{
+public:
+	// Size: 0x1
+	enum class EQTEState : int8_t
+	{
+		Active = 0,
+		Success = 1,
+		Fail = 2,
+	};
+
+};
+
+class ZHUDDataproviderRubberCam
+{
+public:
+	// Size: 0x68
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		ZHUDDataproviderButtonPromptBaseWidget::SPromptData prompt; // 0x0
+		ZString label; // 0x40
+		ZString promptBackgroundResourceID; // 0x50
+		bool isActive; // 0x60
+		uint8_t _pad61[7] {};
+	};
+
+};
+
 class ZHUDDataproviderSaveIndicator
 {
 public:
@@ -18140,6 +27319,130 @@ public:
 		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
 
 		bool isIndicatorActive; // 0x0
+	};
+
+};
+
+class ZHUDDataproviderSegmentProgressBarBaseWidget
+{
+public:
+	// Size: 0x1
+	enum class ESegmentEdgeType : int8_t
+	{
+		None = 0,
+		FitToSegment = 1,
+		FillSegmentSize = 2,
+	};
+
+	// Size: 0x70
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 segmentCount; // 0x0
+		uint32 segmentSpacing; // 0x4
+		ZString backgroundTextureRID; // 0x8
+		ZString segmentBackgroundTextureRID; // 0x18
+		ZString segmentFillTextureRID; // 0x28
+		bool drawBackground; // 0x38
+		bool drawSegmentBackground; // 0x39
+		bool drawWidgetEdge; // 0x3A
+		ZHUDDataproviderSegmentProgressBarBaseWidget::ESegmentEdgeType segmentEdgeType; // 0x3B
+		float32 borderRadius; // 0x3C
+		uint32 backgroundColor; // 0x40
+		uint32 segmentBackgroundColor; // 0x44
+		uint32 segmentFillColor; // 0x48
+		uint32 segmentEdgeColor; // 0x4C
+		uint32 widgetEdgeColor; // 0x50
+		float32 backgroundAlpha; // 0x54
+		float32 segmentBackgroundAlpha; // 0x58
+		float32 segmentFillAlpha; // 0x5C
+		float32 segmentEdgeAlpha; // 0x60
+		float32 widgetEdgeAlpha; // 0x64
+		float32 edgeMarginX; // 0x68
+		float32 edgeMarginY; // 0x6C
+	};
+
+};
+
+class ZHUDDataproviderSegmentProgressBarPercentageWidget
+{
+public:
+};
+
+class ZHUDDataproviderSegmentProgressBarVisibleCountWidget
+{
+public:
+};
+
+class ZHUDDataproviderSelectedInteractionPrompts
+{
+public:
+};
+
+class ZHUDDataproviderTextBoxWidget
+{
+public:
+	// Size: 0x60
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		ZString text; // 0x0
+		ZString font; // 0x10
+		float32 fontSize; // 0x20
+		uint8_t _pad24[4] {};
+		ZString fontColor; // 0x28
+		uint32 borderColor; // 0x38
+		uint8_t _pad3C[4] {};
+		ZString textAlignment; // 0x40
+		float32 alpha; // 0x50
+		bool checkForGlobalFont; // 0x54
+		bool shrinkToFitSet; // 0x55
+		bool wrapText; // 0x56
+		bool showTextFieldBorder; // 0x57
+		bool addDropShadow; // 0x58
+		uint8_t _pad59[7] {};
+	};
+
+};
+
+class ZHUDDataproviderThrowableItemReticle
+{
+public:
+	// Size: 0x48
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		ZHUDDataproviderButtonPromptBaseWidget::SPromptData quickThrowPromptData; // 0x0
+		uint32 targetId; // 0x40
+		bool showPrompt; // 0x44
+		uint8_t _pad45[3] {};
 	};
 
 };
@@ -18164,6 +27467,48 @@ public:
 		ZString description; // 0x10
 		bool isActive; // 0x20
 		uint8_t _pad21[7] {};
+	};
+
+};
+
+class ZHUDDataproviderWheelWidget
+{
+public:
+	// Size: 0x60
+	class /*alignas(8)*/ SData	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SData& p_Other) const;
+		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+		uint32 numberOfSegments; // 0x0
+		uint32 segmentSpacing; // 0x4
+		int32 selectedSegmentIndex; // 0x8
+		int32 segmentStartAngle; // 0xC
+		int32 segmentMaxAngleRange; // 0x10
+		bool layoutSegmentsByCenter; // 0x14
+		uint8_t _pad15[3] {};
+		uint32 innerRadius; // 0x18
+		uint32 outerRadius; // 0x1C
+		ZString backgroundImage; // 0x20
+		uint32 fillColor; // 0x30
+		float32 fillAlpha; // 0x34
+		uint32 selectedColor; // 0x38
+		float32 selectedAlpha; // 0x3C
+		uint32 borderWidth; // 0x40
+		uint32 borderColor; // 0x44
+		float32 borderAlpha; // 0x48
+		uint32 focusPointerWidth; // 0x4C
+		uint32 focusPointerOffset; // 0x50
+		uint32 focusPointerColor; // 0x54
+		float32 focusPointerAlpha; // 0x58
+		uint8_t _pad5C[4] {};
 	};
 
 };
@@ -18210,16 +27555,22 @@ public:
 
 };
 
-class ZHeightStampEntity
+class ZHasGameplayTagsEntity
 {
 public:
 	// Size: 0x1
-	enum class ESplineDirection : int8_t
+	enum class EEvaluationType : int8_t
 	{
-		X_ALONG_SPLINE = 0,
-		Y_ALONG_SPLINE = 1,
+		ANY = 0,
+		ALL = 1,
+		INVALID = -1,
 	};
 
+};
+
+class ZHeightStampEntity
+{
+public:
 	// Size: 0x1
 	enum class EStampBlendMode : int8_t
 	{
@@ -18237,6 +27588,13 @@ public:
 	{
 		STRETCH = 0,
 		TILE = 1,
+	};
+
+	// Size: 0x1
+	enum class ESplineDirection : int8_t
+	{
+		X_ALONG_SPLINE = 0,
+		Y_ALONG_SPLINE = 1,
 	};
 
 };
@@ -18370,6 +27728,128 @@ public:
 	uint8_t _pad0[96] {};
 };
 
+class ZHumanoidCloseCombatEventEntity
+{
+public:
+	// Size: 0x1
+	enum class ECloseCombatEvent : int8_t
+	{
+		MeleeAttackStart = 0,
+		HitReceived = 1,
+		ParrySuccesful = 2,
+		CombatRushStart = 3,
+		CombatRushFinished = 4,
+		GrabRushStart = 5,
+		BlockSuccesful = 6,
+		MeleeHitSuccessful = 7,
+		MeleeHitBlocked = 8,
+		MeleeHitBlockedByDefense = 9,
+		MeleeHitMissed = 10,
+		MeleeHitMissedByDefense = 11,
+		MeleeKill = 12,
+		FinisherStarted = 13,
+		FinisherFinished = 14,
+		FinisherKill = 15,
+		ContextualMeleeAttack_Started = 16,
+		ContextualMeleeAttack_Finished = 17,
+		ContextualMeleeAttack_Damage = 18,
+		ContextualMeleeAttack_Kill = 19,
+		ContextualThrowAttack_Started = 20,
+		ContextualThrowAttack_Finished = 21,
+		ContextualThrowAttack_Damage = 22,
+		ContextualThrowAttack_Kill = 23,
+		GrabStarted = 24,
+		GrabSuccessful = 25,
+		GrabFailed = 26,
+		GrabFinished = 27,
+		GrabRushOffTheLedgeStarted = 28,
+		GrabRushOffTheLedgeFinished = 29,
+		GrabRushOffTheLedgeDamage = 30,
+		GrabRushOffTheLedgeKill = 31,
+		ThrownOffTheLedgeStarted = 32,
+		ThrownOffTheLedgeFinished = 33,
+		SideStepStarted = 34,
+		SideStepSuccessful = 35,
+		SideStepFinished = 36,
+		GrabAttackSuccessful = 37,
+		GrabThrowStarted = 38,
+		GrabThrowFinished = 39,
+		VaultAttack = 40,
+		VaultDisarm = 41,
+		BrutalAttackStarted = 42,
+		BrutalAttackFinished = 43,
+		BrutalAttackDamaage = 44,
+		BurtalAttackKill = 45,
+		SilentTakedownStarted = 46,
+		SilentTakedownFinished = 47,
+		SilentTakedownKill = 48,
+		ParryStarted = 49,
+		BlockStarted = 50,
+		PerfectParryWindowOpened = 51,
+		RailingDeathStarted = 52,
+		RollOverStarted = 53,
+		RollOverEnded = 54,
+		RushApproachStart = 55,
+		FakeSurrenderStarted = 56,
+		FakeSurrenderFinished = 57,
+		FakeSurrenderDamage = 58,
+		FakeSurrenderKill = 59,
+	};
+
+	// Size: 0x1
+	enum class EListenerRole : int8_t
+	{
+		Instigator = 0,
+		Victim = 1,
+	};
+
+};
+
+class ZHumanoidControlItem
+{
+public:
+	// Size: 0x1
+	enum class ESpatialDrivenCapsuleProjectionMode : int8_t
+	{
+		WhenStanceIsSet = 0,
+		ProjectAlways = 1,
+		Disabled = 2,
+	};
+
+};
+
+class ZHumanoidRangedCombatEventEntity
+{
+public:
+	// Size: 0x1
+	enum class ERangedCombatEvent : int8_t
+	{
+		FirearmImpactOnHumanoid = 0,
+		LegShot = 1,
+		DoubleLegShot = 2,
+		HeadShot = 3,
+		ShootArmor = 4,
+		DestroyArmor = 5,
+		DisarmShot = 6,
+		WeaponThrow = 7,
+		WeaponThrowImpacted = 8,
+		WeaponSwitch = 9,
+		MagazineOutOfAmmo = 10,
+		OutOfAmmo = 11,
+		ItemThrow = 12,
+		ItemThrowImpacted = 13,
+		MissedShot = 14,
+	};
+
+	// Size: 0x1
+	enum class ERangeCombatListenerRole : int8_t
+	{
+		Instigator = 0,
+		Victim = 1,
+	};
+
+};
+
 class ZSetInputDefaultDeadzone
 {
 public:
@@ -18455,6 +27935,40 @@ public:
 
 };
 
+class ZKntCameraOnGuideOrientationAspect
+{
+public:
+	// Size: 0x14
+	class /*alignas(4)*/ SContentHintOrientationConfigPair	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SContentHintOrientationConfigPair& p_Other) const;
+		bool operator!=(const SContentHintOrientationConfigPair& p_Other) const { return !(*this == p_Other); }
+
+		uint32 m_contentHint; // 0x0
+		Gameplay::SCameraOnGuideOrientationConfig m_config; // 0x4
+	};
+
+};
+
+class ZKntCheckpointCompareWithCurrent
+{
+public:
+	// Size: 0x4
+	enum class ECheckpointCompareEvaluationType : int32_t
+	{
+		EARLIER_OR_EQUAL_THAN_CURRENT = 0,
+		LATER_OR_EQUAL_THAN_CURRENT = 1,
+	};
+
+};
+
 class ZKntMissionDefinitionEntity
 {
 public:
@@ -18512,14 +28026,15 @@ public:
 	uint8_t _pad0[832] {};
 };
 
-class ZSplineEntity
+class ZKntTransitionToCheckpointEntity
 {
 public:
-	// Size: 0x4
-	enum class EConfigurationMode : int32_t
+	// Size: 0x1
+	enum class ECheckpointTransitionWait : int8_t
 	{
-		ControlPointEntities = 0,
-		GenericPointsEntity = 1,
+		DoNotWait = 0,
+		CheckpointIsReady = 1,
+		CheckpointIsReadyAndSpawnersDone = 2,
 	};
 
 };
@@ -18800,6 +28315,14 @@ enum class eParticleEmitterBoxEntity_SpawnModes : int32_t
 	BOX_SPAWNMODE_ELLIPSOID = 4,
 };
 
+// Size: 0x4
+enum class eParticleEmitterMeshEntity_SpawnModes : int32_t
+{
+	MESH_SPAWNMODE_VERTEX = 0,
+	MESH_SPAWNMODE_EDGE = 1,
+	MESH_SPAWNMODE_FACE = 2,
+};
+
 class ZRenderDynamicTexBaseEntity
 {
 public:
@@ -18821,6 +28344,28 @@ public:
 
 };
 
+class ZPlayerOnGuideMovementInputConfig
+{
+public:
+	// Size: 0x10
+	class /*alignas(4)*/ SDeadZoneAngles	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDeadZoneAngles& p_Other) const;
+		bool operator!=(const SDeadZoneAngles& p_Other) const { return !(*this == p_Other); }
+
+		SVector2 m_startMovementAngles; // 0x0
+		SVector2 m_stopMovementAngles; // 0x8
+	};
+
+};
+
 // Size: 0x8
 class /*alignas(0)*/ ZPostfilterGraphBaseNode{
 public:
@@ -18835,6 +28380,57 @@ public:
 	bool operator!=(const ZPostfilterGraphBaseNode& p_Other) const { return !(*this == p_Other); }
 
 	uint8_t _pad0[8] {};
+};
+
+class ZPureWaterDeformerEntity
+{
+public:
+	// Size: 0x4
+	enum class EWaterDeformerType : int32_t
+	{
+		OneShot = 0,
+		Dynamic = 1,
+	};
+
+	// Size: 0x4
+	enum class EWaterDeformerShape : int32_t
+	{
+		Line = 0,
+		Circle = 1,
+	};
+
+	// Size: 0x4
+	enum class EWaterDeformerFalloff : int32_t
+	{
+		Linear = 0,
+		Exponential = 1,
+	};
+
+};
+
+class ZQTEPromptPoolItemControllerCallbackAspect
+{
+public:
+	// Size: 0x14
+	class /*alignas(4)*/ SSpatialControllerConfig	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSpatialControllerConfig& p_Other) const;
+		bool operator!=(const SSpatialControllerConfig& p_Other) const { return !(*this == p_Other); }
+
+		uint32 m_configType; // 0x0
+		EViewportLock m_viewportLock; // 0x4
+		float32 m_viewportGutter; // 0x8
+		float32 m_viewportGutterWidth; // 0xC
+		float32 m_viewportGutterHeight; // 0x10
+	};
+
 };
 
 class ZRenderDynamicTextureEntity
@@ -18866,45 +28462,6 @@ class ZRenderPostfilterParametersEntity
 {
 public:
 	// Size: 0x4
-	enum class EBloomMode : int32_t
-	{
-		eBloomModeLuminance = 0,
-		eBloomModeIntensity = 1,
-	};
-
-	// Size: 0x4
-	enum class EHDRAdaptationType : int32_t
-	{
-		eMedian = 0,
-		eGeometricMean = 1,
-	};
-
-	// Size: 0x4
-	enum class EHDRLocalExposureType : int32_t
-	{
-		eSimple = 0,
-		eWeighted = 1,
-		eWeightedLinear = 2,
-	};
-
-	// Size: 0x4
-	enum class EHDRToneMapType : int32_t
-	{
-		eLinear = 0,
-		eReinhardRGB = 1,
-		eFilmicRGB = 2,
-		eFilmicParametrizedRGB = 3,
-	};
-
-	// Size: 0x4
-	enum class EMotionBlurShutterSpeedAutoType : int32_t
-	{
-		eFullRate = 0,
-		eHalfRate = 1,
-		eQuarterRate = 2,
-	};
-
-	// Size: 0x4
 	enum class EMotionBlurShutterSpeedManualPresetType : int32_t
 	{
 		eShutterSpeed_24 = 0,
@@ -18923,19 +28480,50 @@ public:
 		eMANUAL = 2,
 	};
 
+	// Size: 0x4
+	enum class EMotionBlurShutterSpeedAutoType : int32_t
+	{
+		eFullRate = 0,
+		eHalfRate = 1,
+		eQuarterRate = 2,
+	};
+
+	// Size: 0x4
+	enum class EHDRToneMapType : int32_t
+	{
+		eLinear = 0,
+		eReinhardRGB = 1,
+		eFilmicRGB = 2,
+		eFilmicParametrizedRGB = 3,
+	};
+
+	// Size: 0x4
+	enum class EHDRLocalExposureType : int32_t
+	{
+		eSimple = 0,
+		eWeighted = 1,
+		eWeightedLinear = 2,
+	};
+
+	// Size: 0x4
+	enum class EBloomMode : int32_t
+	{
+		eBloomModeLuminance = 0,
+		eBloomModeIntensity = 1,
+	};
+
+	// Size: 0x4
+	enum class EHDRAdaptationType : int32_t
+	{
+		eMedian = 0,
+		eGeometricMean = 1,
+	};
+
 };
 
 class ZRenderVolumetricLightingEntity
 {
 public:
-	// Size: 0x4
-	enum class EDepthSliceQuality : int32_t
-	{
-		LOW = 0,
-		MEDIUM = 1,
-		HIGH = 2,
-	};
-
 	// Size: 0x4
 	enum class ETileSizeQuality : int32_t
 	{
@@ -18944,6 +28532,14 @@ public:
 		HIGH = 2,
 		VERY_HIGH = 3,
 		EXTREME = 4,
+	};
+
+	// Size: 0x4
+	enum class EDepthSliceQuality : int32_t
+	{
+		LOW = 0,
+		MEDIUM = 1,
+		HIGH = 2,
 	};
 
 };
@@ -19101,6 +28697,18 @@ public:
 
 };
 
+class ZSplineAttacherAspect
+{
+public:
+	// Size: 0x4
+	enum class ESplineAttacherMode : int32_t
+	{
+		Percentage = 0,
+		ArcLength = 1,
+	};
+
+};
+
 // Size: 0x140
 class /*alignas(16)*/ ZSoundCollisionInfo{
 public:
@@ -19126,18 +28734,6 @@ public:
 		SHT_GlobalHint = 0,
 		SHT_TutorialHint = 1,
 		SHT_ControlHint = 2,
-	};
-
-};
-
-class ZSplineAttacherAspect
-{
-public:
-	// Size: 0x4
-	enum class ESplineAttacherMode : int32_t
-	{
-		Percentage = 0,
-		ArcLength = 1,
 	};
 
 };
@@ -19187,6 +28783,54 @@ public:
 
 };
 
+class ZSubtitleManagerEntity
+{
+public:
+	// Size: 0x18
+	class /*alignas(8)*/ SGlobalSourceDirectionOverride	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SGlobalSourceDirectionOverride& p_Other) const;
+		bool operator!=(const SGlobalSourceDirectionOverride& p_Other) const { return !(*this == p_Other); }
+
+		ZString m_sourceName; // 0x0
+		ESubtitleSourceDirectionType m_directionType; // 0x10
+		uint8_t _pad14[4] {};
+	};
+
+};
+
+class ZTrailDecalEntity
+{
+public:
+	// Size: 0x4
+	enum class ETextureMode : int32_t
+	{
+		Tile = 0,
+		Stretch = 1,
+	};
+
+};
+
+class ZUIAnimatingEntity
+{
+public:
+	// Size: 0x1
+	enum class EAnimationMode : int8_t
+	{
+		Forward = 1,
+		Backward = 2,
+		Loop = 4,
+	};
+
+};
+
 class ZUIControlLayoutLegacyAspect
 {
 public:
@@ -19228,27 +28872,8 @@ public:
 		Cubic = 1,
 	};
 
-	// Size: 0x1C
-	class /*alignas(4)*/ SLensDistortionResult	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SLensDistortionResult& p_Other) const;
-		bool operator!=(const SLensDistortionResult& p_Other) const { return !(*this == p_Other); }
-
-		SVector3 m_viewportPositionOffset; // 0x0
-		SVector2 m_rotation; // 0xC
-		float32 m_velocityFactor; // 0x14
-		float32 m_baseZOnUnitCircle; // 0x18
-	};
-
 	// Size: 0x10
-	class /*alignas(4)*/ SPlayerVelocityDistortion	{
+	class /*alignas(4)*/ SLensDistortionSetup	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19257,12 +28882,13 @@ public:
 		static bool Equals(void* p_Left, void* p_Right);
 		static void Destroy(void* p_Object);
 
-		bool operator==(const SPlayerVelocityDistortion& p_Other) const;
-		bool operator!=(const SPlayerVelocityDistortion& p_Other) const { return !(*this == p_Other); }
+		bool operator==(const SLensDistortionSetup& p_Other) const;
+		bool operator!=(const SLensDistortionSetup& p_Other) const { return !(*this == p_Other); }
 
-		SVector2 m_uiPositionMaxOffset; // 0x0
-		float32 m_lensDistortionMin; // 0x8
-		float32 m_lensDistortionMax; // 0xC
+		float32 m_unitFactorX; // 0x0
+		float32 m_unitFactorY; // 0x4
+		float32 m_positionDistanceZ; // 0x8
+		ZUILensDistortionManagerEntity::ELensDistortionMethod m_distortionMethod; // 0xC
 	};
 
 	// Size: 0xC
@@ -19284,7 +28910,7 @@ public:
 	};
 
 	// Size: 0x10
-	class /*alignas(4)*/ SLensDistortionSetup	{
+	class /*alignas(4)*/ SPlayerVelocityDistortion	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19293,13 +28919,12 @@ public:
 		static bool Equals(void* p_Left, void* p_Right);
 		static void Destroy(void* p_Object);
 
-		bool operator==(const SLensDistortionSetup& p_Other) const;
-		bool operator!=(const SLensDistortionSetup& p_Other) const { return !(*this == p_Other); }
+		bool operator==(const SPlayerVelocityDistortion& p_Other) const;
+		bool operator!=(const SPlayerVelocityDistortion& p_Other) const { return !(*this == p_Other); }
 
-		float32 m_unitFactorX; // 0x0
-		float32 m_unitFactorY; // 0x4
-		float32 m_positionDistanceZ; // 0x8
-		ZUILensDistortionManagerEntity::ELensDistortionMethod m_distortionMethod; // 0xC
+		SVector2 m_uiPositionMaxOffset; // 0x0
+		float32 m_lensDistortionMin; // 0x8
+		float32 m_lensDistortionMax; // 0xC
 	};
 
 	// Size: 0x40
@@ -19323,6 +28948,25 @@ public:
 		uint8_t _pad35[3] {};
 		float32 m_previousVelocityFactor; // 0x38
 		float32 m_baseZOnUnitCircle; // 0x3C
+	};
+
+	// Size: 0x1C
+	class /*alignas(4)*/ SLensDistortionResult	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SLensDistortionResult& p_Other) const;
+		bool operator!=(const SLensDistortionResult& p_Other) const { return !(*this == p_Other); }
+
+		SVector3 m_viewportPositionOffset; // 0x0
+		SVector2 m_rotation; // 0xC
+		float32 m_velocityFactor; // 0x14
+		float32 m_baseZOnUnitCircle; // 0x18
 	};
 
 };
@@ -19394,20 +29038,20 @@ class ZUIControlSizeLayoutScaleboxAspect
 {
 public:
 	// Size: 0x1
-	enum class EContentSizeMode : int8_t
-	{
-		BiggestChild = 0,
-		ChildBoundingBox = 1,
-		Override = 2,
-	};
-
-	// Size: 0x1
 	enum class EScaleboxMode : int8_t
 	{
 		Fill = 0,
 		Fit = 1,
 		FitX = 2,
 		FitY = 3,
+	};
+
+	// Size: 0x1
+	enum class EContentSizeMode : int8_t
+	{
+		BiggestChild = 0,
+		ChildBoundingBox = 1,
+		Override = 2,
 	};
 
 };
@@ -19671,6 +29315,19 @@ public:
 
 };
 
+class ZVirtualCameraBehaviorOrbitLockEntity
+{
+public:
+	// Size: 0x4
+	enum class EAngleCalculationMode : int32_t
+	{
+		Auto = 0,
+		FromAngleProperties = 1,
+		FromHeadingProperty = 2,
+	};
+
+};
+
 class ZVirtualCameraBehaviorPlayerInputEntity
 {
 public:
@@ -19708,6 +29365,19 @@ public:
 
 };
 
+class ZVirtualCameraTransitionEntity
+{
+public:
+	// Size: 0x4
+	enum class Direction : int32_t
+	{
+		Unidirectional = 0,
+		Bidirectional = 1,
+		Fallback = 2,
+	};
+
+};
+
 class ZWaveformGeneratorEntity
 {
 public:
@@ -19737,14 +29407,6 @@ public:
 	bool operator!=(const ZWorldMapMetaData& p_Other) const { return !(*this == p_Other); }
 
 	uint8_t _pad0[16] {};
-};
-
-// Size: 0x4
-enum class eParticleEmitterMeshEntity_SpawnModes : int32_t
-{
-	MESH_SPAWNMODE_VERTEX = 0,
-	MESH_SPAWNMODE_EDGE = 1,
-	MESH_SPAWNMODE_FACE = 2,
 };
 
 #pragma pack(pop)

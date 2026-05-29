@@ -3597,10 +3597,3280 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "PLAYERDIED" },
 	};
 
+	(*g_Enums)["G2PCG.ZPointcloudFilterTagEntity.EOperationType"] = {
+		{ 0, "OP_GREATER" },
+		{ 1, "OP_GREATER_EQUAL" },
+		{ 2, "OP_EQUAL" },
+		{ 3, "OP_LESS" },
+		{ 4, "OP_LESS_EQUAL" },
+	};
+
+	(*g_Enums)["G2PCG.ZPointcloudFilterTagEntity.ETagCombineOperationType"] = {
+		{ 0, "OP_AND" },
+		{ 1, "OP_OR" },
+	};
+
+	(*g_Enums)["G2PCG.ZPointcloudTransformBase.ETransformationSpace"] = {
+		{ 0, "TS_LOCAL" },
+		{ 1, "TS_WORLD" },
+	};
+
+	(*g_Enums)["G2PCG.ZSplineSampler.ESplineOrientationType"] = {
+		{ 0, "O_NONE" },
+		{ 1, "O_TANGENT" },
+		{ 2, "O_TOWARDS_CENTER" },
+		{ 3, "O_TOWARDS_NEXT" },
+	};
+
 	(*g_Enums)["GameTimeMultiplierType"] = {
 		{ 0, "Game" },
 		{ 1, "Debug" },
 		{ 2, "Combined" },
+	};
+
+	(*g_Enums)["Gameplay.EAIFlightRecordChannel"] = {
+		{ 0, "General" },
+		{ 1, "Plan_Primary" },
+		{ 2, "Plan_Secondary" },
+		{ 3, "Plan_Tertiary" },
+		{ 4, "HTN" },
+		{ 5, "HTNPinned" },
+		{ 6, "Roles" },
+		{ 7, "Senses" },
+		{ 8, "PerceptionModifiers" },
+		{ 9, "TagAdd" },
+		{ 10, "TagRemove" },
+		{ 11, "CooldownAdd" },
+		{ 12, "CooldownRemove" },
+		{ 13, "Investigation" },
+		{ 14, "Storyline" },
+		{ 15, "Locomotion" },
+		{ 16, "Pathfinding" },
+		{ 17, "LookAt" },
+		{ 18, "StateCommunication" },
+		{ 19, "AnimationAct" },
+		{ 20, "Dialogue" },
+		{ 21, "Communication" },
+		{ 22, "StateIcon" },
+		{ 23, "TacticalEspionageArea" },
+		{ 24, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EAIFlightRecorderEntryType"] = {
+		{ 0, "Message" },
+		{ 1, "Headline" },
+		{ 2, "Warning" },
+		{ 3, "Error" },
+		{ 4, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EActionDirection"] = {
+		{ 0, "None" },
+		{ 1, "Forward" },
+		{ 2, "Back" },
+		{ 3, "Left" },
+		{ 4, "Right" },
+		{ 5, "Any" },
+	};
+
+	(*g_Enums)["Gameplay.EActionKeywordsType"] = {
+		{ 0, "Parry" },
+		{ 1, "CombatRush" },
+		{ 2, "Grab" },
+		{ 3, "Agility" },
+		{ 4, "Locomotion" },
+		{ 5, "LocomotionApproach" },
+		{ 6, "EquipItem" },
+		{ 7, "MeleeAttack" },
+		{ 8, "GadgetView" },
+		{ 9, "ContextualItemThrow" },
+		{ 10, "CloseCombatPairedAction" },
+		{ 11, "FakeSurrender" },
+		{ 12, "Sidestep" },
+		{ 13, "CoverTakedown" },
+		{ 14, "JumpAway" },
+		{ 15, "CoverTransition" },
+		{ 16, "EnterLadderClimb" },
+		{ 17, "LeaveLadderClimb" },
+		{ 18, "Crouch" },
+		{ 19, "Uncrouch" },
+		{ 20, "Interact" },
+		{ 21, "ThrowItem" },
+		{ 22, "Pickpocket" },
+		{ 23, "BlendingIn" },
+		{ 24, "UseDoor" },
+		{ 25, "PickUpItem" },
+		{ 26, "ActivateGadget" },
+		{ 27, "DropDown" },
+		{ 28, "StartStrafing" },
+		{ 29, "StopStrafing" },
+		{ 30, "StartAccelerating" },
+		{ 31, "StopAccelerating" },
+		{ 32, "Stagger" },
+		{ 33, "TrespassingStanceChange" },
+		{ 34, "AnimationAct" },
+		{ 35, "AimFirearm" },
+		{ 36, "ShootFirearm" },
+		{ 37, "GrabAttack" },
+		{ 38, "GrabRush" },
+		{ 39, "ReloadFirearm" },
+		{ 40, "Block" },
+		{ 41, "Dash" },
+	};
+
+	(*g_Enums)["Gameplay.EAdjacentCoverType"] = {
+		{ 0, "Regular" },
+		{ 1, "Corner" },
+		{ 2, "InnerCorner" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionAllowance"] = {
+		{ 1, "AllowWhileUsingGadget" },
+		{ 2, "AllowWhileFalling" },
+		{ 4, "AllowWhileAiming" },
+		{ 8, "AllowWhileInConfrontation" },
+		{ 16, "AllowWhileGrounded" },
+		{ 32, "AllowWhilePerformingSelf" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionApproachingMovementDisplacementErrorCorrectionType"] = {
+		{ 0, "None" },
+		{ 1, "BlendByRemainingDistance" },
+		{ 2, "BlendByTraveledDistance" },
+		{ 3, "BlendByRemainingRatio" },
+		{ 4, "BlendByTraveledRatio" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionApproachingMovementProjectionType"] = {
+		{ 0, "None" },
+		{ 1, "SourceMarkupPath" },
+		{ 2, "TargetMarkupPath" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionApproachingMovementType"] = {
+		{ 0, "Stationary" },
+		{ 1, "Moving" },
+		{ 2, "Dynamic" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionAttributeOperatorType"] = {
+		{ 0, "Distance2D" },
+		{ 1, "Distance3D" },
+		{ 2, "DistanceLocalX" },
+		{ 3, "DistanceLocalY" },
+		{ 4, "DistanceLocalZ" },
+		{ 5, "AbsOrientationYawDelta" },
+		{ 6, "InputDirectionMatch" },
+		{ 7, "LastNonZeroInputDirectionMatch" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionAttributeSearchType"] = {
+		{ 0, "LowestValue" },
+		{ 1, "HighestValue" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionAttributeSelectionInfluence"] = {
+		{ 0, "None" },
+		{ 1, "LowerValuePriority" },
+		{ 2, "HigherValuePriority" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionCollectionEvaluationType"] = {
+		{ 0, "All" },
+		{ 1, "Any" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionConditionConstraintType"] = {
+		{ 0, "DistanceLower" },
+		{ 1, "DistanceGreater" },
+		{ 2, "DistanceXYLower" },
+		{ 3, "DistanceXYGreater" },
+		{ 4, "DistanceZLower" },
+		{ 5, "DistanceZGreater" },
+		{ 6, "RelativeLower" },
+		{ 7, "RelativeGreater" },
+		{ 8, "OrientationLower" },
+		{ 9, "OrientationGreater" },
+		{ 10, "AbsOrientationLower" },
+		{ 11, "AbsOrientationGreater" },
+		{ 12, "FacingSignLower" },
+		{ 13, "FacingSignGreater" },
+		{ 14, "InsideSlice" },
+		{ 15, "BehindOfForwardPlane" },
+		{ 16, "FrontOfForwardPlane" },
+		{ 17, "InputMagnitudeLower" },
+		{ 18, "InputMagnitudeGreater" },
+		{ 19, "InputDirectionMatch" },
+		{ 20, "InputDirectionDeltaGreater" },
+		{ 21, "InputDirectionDeltaLower" },
+		{ 22, "LastNonZeroInputDirectionMatch" },
+		{ 23, "VelocityMagnitudeLower" },
+		{ 24, "VelocityMagnitudeGreater" },
+		{ 25, "VelocityDirectionMatch" },
+		{ 26, "HasAngularVelocity" },
+		{ 27, "PerformingAgilityActionWithContentHint" },
+		{ 28, "HasOverlappingHumanoidInBox" },
+		{ 29, "HasOverlappingCollisionInBox" },
+		{ 30, "OuterConditionsOr" },
+		{ 31, "OuterConditionsAnd" },
+		{ 32, "LiteralTrue" },
+		{ 33, "LiteralFalse" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionConnectionDebugDrawType"] = {
+		{ 0, "None" },
+		{ 1, "Line" },
+		{ 2, "DottedLine" },
+		{ 3, "Sphere" },
+		{ 4, "Box" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionConnectionNavLinkFlag"] = {
+		{ 1, "ContextualJump" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionConnectionTargetType"] = {
+		{ 0, "Self" },
+		{ 1, "Other" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionEnvironmentContextTarget"] = {
+		{ 0, "SourceEnvironmentContext" },
+		{ 1, "TargetEnvironmentContext" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionHumanoidState"] = {
+		{ 0, "None" },
+		{ 1, "Hang" },
+		{ 2, "Sidle" },
+		{ 3, "Ladder" },
+		{ 4, "Drainpipe" },
+		{ 5, "ZipLine" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionLaunchVelocityClampBehavior"] = {
+		{ 0, "None" },
+		{ 1, "Signed" },
+		{ 2, "Unsigned" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionNativeHint"] = {
+		{ 1, "ReorientCamera" },
+		{ 2, "Illegal" },
+		{ 4, "UnequipItem" },
+		{ 8, "CreateObstacleWhenRestricted" },
+		{ 16, "UseDefaultBoneCollisions" },
+		{ 32, "ImmuneToStagger" },
+		{ 64, "UnequipItemInstant" },
+		{ 128, "AnimatedCamera" },
+		{ 256, "InterestingCamera" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionPerformance"] = {
+		{ 1, "AbortWhenOpportunityLost" },
+		{ 2, "AbortWhenInputLost" },
+		{ 4, "DismountWhenAborted" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionReferencePointStepFlag"] = {
+		{ 1, "IgnoreRotation" },
+		{ 2, "IgnoreTranslation" },
+		{ 4, "IgnoreRotationIfIdentity" },
+		{ 8, "IgnoreTranslationIfZero" },
+		{ 16, "IgnoreTranslationsOnPositiveAxes" },
+		{ 32, "IgnoreTranslationsOnNegativeAxes" },
+		{ 64, "IgnoreTranslationIfConditionTrue" },
+		{ 128, "IgnoreRotationIfConditionTrue" },
+		{ 256, "IgnoreTranslationIfConditionFalse" },
+		{ 512, "IgnoreRotationIfConditionFalse" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionReferencePointStepMethod"] = {
+		{ 0, "Set" },
+		{ 1, "Apply" },
+		{ 2, "Offset" },
+		{ 3, "Scale" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionReferencePointStepOperation"] = {
+		{ 0, "CapsuleTransform" },
+		{ 1, "BoneTransform" },
+		{ 2, "CameraTransform" },
+		{ 3, "MoveInputOrientation" },
+		{ 4, "VelocityOrientation" },
+		{ 5, "VelocityTranslation" },
+		{ 6, "SourceMarkupWorldNormalized" },
+		{ 7, "SourceMarkupLocalNormalized" },
+		{ 8, "SourceMarkupClosestPoint" },
+		{ 9, "SourceMarkupConnectionLink" },
+		{ 10, "SourceMarkupPlaneIntersection" },
+		{ 11, "TargetMarkupWorldNormalized" },
+		{ 12, "TargetMarkupLocalNormalized" },
+		{ 13, "TargetMarkupClosestPoint" },
+		{ 14, "TargetMarkupConnectionLink" },
+		{ 15, "TargetMarkupPlaneIntersection" },
+		{ 16, "WorldTranslation" },
+		{ 17, "LocalTranslation" },
+		{ 18, "Rotation" },
+		{ 19, "AffineInverse" },
+		{ 20, "TranslationDirectionToRotation" },
+		{ 21, "RotationToTranslationDirection" },
+		{ 22, "PlanarizedRotation" },
+		{ 23, "RayTrace" },
+		{ 24, "SafeCapsuleTransformTowardsLocalRight" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionRequirement"] = {
+		{ 1, "RequireBeingGrounded" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionRestriction"] = {
+		{ 1, "CombatNearby" },
+		{ 2, "ReloadPrioritizedWhenCombatNearby" },
+		{ 4, "CoreLogic" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionState"] = {
+		{ 0, "NotAvailable" },
+		{ 1, "OpportunityAvailable" },
+		{ 2, "Performing" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityActionTransitionType"] = {
+		{ 0, "Instant" },
+		{ 1, "Timed" },
+		{ 2, "AnimationDriven" },
+		{ 3, "ApproachingMovement" },
+		{ 4, "Launch" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityGoalIssuePolicy"] = {
+		{ 0, "Input" },
+		{ 1, "Automatic" },
+		{ 2, "InputOrAutomatic" },
+	};
+
+	(*g_Enums)["Gameplay.EAgilityStartingStance"] = {
+		{ 0, "Crouch_Idle" },
+		{ 1, "Crouch_Walking" },
+		{ 2, "Standing_Idle" },
+		{ 3, "Standing_Walking" },
+		{ 4, "Standing_Sprinting" },
+	};
+
+	(*g_Enums)["Gameplay.EAligningMovementIssuer"] = {
+		{ 0, "Unknown" },
+		{ 1, "Block" },
+		{ 2, "MeleeAttack" },
+		{ 3, "ItemThrow" },
+		{ 4, "Grab" },
+		{ 5, "CombatRush" },
+		{ 6, "Sidestep" },
+		{ 7, "Parry" },
+		{ 8, "Doors" },
+		{ 9, "CloseCombatPairedAction" },
+		{ 10, "AttackFromAbove" },
+		{ 11, "Pickpocket" },
+		{ 12, "PrivateSpaceReaction" },
+		{ 13, "Stumble" },
+		{ 14, "VaultAttack" },
+		{ 15, "FakeSurrender" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationActAbortCause"] = {
+		{ 0, "Default" },
+		{ 1, "ConcreteBag" },
+		{ 2, "ActiveBluff" },
+		{ 3, "PhoneDart" },
+		{ 4, "Blinded" },
+		{ 5, "Combat" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationActAbortReason"] = {
+		{ 0, "None" },
+		{ 1, "Urgent" },
+		{ 2, "NonUrgent" },
+		{ 3, "Snap" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationActLoopStance"] = {
+		{ 0, "Standing" },
+		{ 1, "Crouched" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationAttackFromAboveType"] = {
+		{ 0, "Falling" },
+		{ 1, "Edge" },
+		{ 2, "Railing" },
+		{ 3, "Hang" },
+		{ 4, "Sidle" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationCombatState"] = {
+		{ 0, "None" },
+		{ 1, "InCombat" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationDashState"] = {
+		{ 0, "NoDash" },
+		{ 1, "Dashing_StandToCrouch" },
+		{ 2, "Dashing_StandToStand" },
+		{ 3, "Dashing_CrouchToCrouch" },
+		{ 4, "Dashing_CrouchToStand" },
+		{ 5, "Dashing_Combat" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationDazeType"] = {
+		{ 0, "Smoke" },
+		{ 1, "Electric" },
+		{ 2, "Vision" },
+		{ 3, "Physical" },
+		{ 4, "Auditory" },
+		{ 5, "TrapSetpiece" },
+		{ 6, "BodyPartWeakPoint" },
+		{ 7, "Glue" },
+		{ 8, "Oil" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationEnvironmentalLockState"] = {
+		{ 0, "Unlocked" },
+		{ 1, "Sit_100cm" },
+		{ 2, "Sit_020cm" },
+		{ 3, "Sit_000cm" },
+		{ 4, "Sit_Stool_080cm" },
+		{ 5, "Sit_Chair" },
+		{ 6, "Sit_Couch" },
+		{ 7, "Lean_120cm" },
+		{ 8, "Lean_100cm" },
+		{ 9, "Lean_075cm" },
+		{ 10, "Lean_Wall" },
+		{ 11, "Stand" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationFirearmArmorHitState"] = {
+		{ 0, "NoArmor" },
+		{ 1, "ArmorHit" },
+		{ 2, "ArmorDestroyed" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationFirearmDisarmSource"] = {
+		{ 0, "CoreLogic" },
+		{ 1, "HitReaction" },
+		{ 2, "Stagger" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationFirearmPosture"] = {
+		{ 0, "None" },
+		{ 1, "Lowered" },
+		{ 2, "Primed" },
+		{ 3, "Raised" },
+		{ 4, "AboveHead" },
+		{ 5, "BlindFiringLeft" },
+		{ 6, "BlindFiringRight" },
+		{ 7, "LeaningLeft" },
+		{ 8, "LeaningRight" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationGrabBreakFreeType"] = {
+		{ 0, "None" },
+		{ 1, "RegularGrab" },
+		{ 2, "GrabRush" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationGrabStep"] = {
+		{ 0, "ThrowingFromAttack" },
+		{ 1, "RedirectThrow" },
+		{ 2, "PreparingGrab" },
+		{ 3, "Grabbing" },
+		{ 4, "FailingGrab" },
+		{ 5, "BreakingFree" },
+		{ 6, "Throwing" },
+		{ 7, "Attacking" },
+		{ 8, "Rushing" },
+		{ 9, "RushingImpact" },
+		{ 10, "Taunting" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationGrabbedStep"] = {
+		{ 0, "BeingThrownFromAttack" },
+		{ 1, "PreparingGrab" },
+		{ 2, "Grabbing" },
+		{ 3, "Throwing" },
+		{ 4, "BreakingFree" },
+		{ 5, "BeingRedirectThrown" },
+		{ 6, "BeingRushed" },
+		{ 7, "GettingHit" },
+		{ 8, "Unused_2" },
+		{ 9, "GettingShot" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationHitReactionSource"] = {
+		{ 0, "FireArm" },
+		{ 1, "MeleeImpact" },
+		{ 2, "Throwable" },
+		{ 3, "Explosion" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationHumanoidHitStrength"] = {
+		{ 0, "Light" },
+		{ 1, "Heavy" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationItemState"] = {
+		{ 0, "Unequipped" },
+		{ 1, "Equipped" },
+		{ 2, "Equipping" },
+		{ 3, "Unequipping" },
+		{ 4, "Reloading" },
+		{ 5, "Chambering" },
+		{ 6, "Unused2" },
+		{ 7, "PickingUp" },
+		{ 8, "Dropping" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionAgility"] = {
+		{ 0, "None" },
+		{ 1, "WallLedgeHang" },
+		{ 2, "OpenLedgeHang" },
+		{ 3, "LedgeSidle" },
+		{ 4, "Ladder" },
+		{ 5, "Drainpipe" },
+		{ 6, "ZipLine" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionApproach"] = {
+		{ 0, "None" },
+		{ 1, "Approaching" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionClimbingType"] = {
+		{ 0, "None" },
+		{ 1, "Ladder" },
+		{ 2, "Drainpipe" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionContext"] = {
+		{ 0, "Formal" },
+		{ 1, "Casual" },
+		{ 2, "Combat" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionCover"] = {
+		{ 0, "None" },
+		{ 1, "RegularCover" },
+		{ 2, "MovableCover" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionDash"] = {
+		{ 0, "None" },
+		{ 1, "Dashing" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionDisoriented"] = {
+		{ 0, "None" },
+		{ 1, "Disoriented" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionEquippedItem"] = {
+		{ 0, "None" },
+		{ 1, "Firearm" },
+		{ 2, "Throwable" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionFacing"] = {
+		{ 0, "TrajectoryForward" },
+		{ 1, "Strafing" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionGameplayArea"] = {
+		{ 0, "Social" },
+		{ 1, "SoftTrespassing" },
+		{ 2, "Trespassing" },
+		{ 3, "LicenseToKill" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionSpeed"] = {
+		{ 0, "Slow" },
+		{ 1, "Medium" },
+		{ 2, "Fast" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionStance"] = {
+		{ 0, "Standing" },
+		{ 1, "Crouching" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionStateType"] = {
+		{ 0, "Speed" },
+		{ 1, "Style" },
+		{ 2, "Stance" },
+		{ 3, "Facing" },
+		{ 4, "EquippedItem" },
+		{ 5, "Cover" },
+		{ 6, "Dash" },
+		{ 7, "Approach" },
+		{ 8, "Agility" },
+		{ 9, "GameplayArea" },
+		{ 10, "PlayerStyle" },
+		{ 11, "Combat" },
+		{ 12, "Disoriented" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationLocomotionStyle"] = {
+		{ 0, "Casual" },
+		{ 1, "Tense" },
+		{ 2, "CloseCombat" },
+		{ 3, "AmbientSearch_NPC" },
+		{ 4, "RangedCombat" },
+		{ 5, "Panic" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationParryStep"] = {
+		{ 0, "None" },
+		{ 1, "Attacking" },
+		{ 2, "Impacting" },
+		{ 3, "Failing" },
+		{ 4, "Staggered" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationPayloadEvent"] = {
+		{ 0, "OnFirearmHitReaction" },
+		{ 1, "OnItemEquip" },
+	};
+
+	(*g_Enums)["Gameplay.EAnimationStumbleImpactStrength"] = {
+		{ 0, "Light" },
+		{ 1, "Heavy" },
+	};
+
+	(*g_Enums)["Gameplay.EApproachMovementFinishPolicy"] = {
+		{ 0, "OnlyOwnSource" },
+		{ 1, "AnySource" },
+	};
+
+	(*g_Enums)["Gameplay.EApproachPathFailReason"] = {
+		{ 0, "None" },
+		{ 1, "StartLocationNoNavmesh" },
+		{ 2, "EndLocationNoNavmesh" },
+		{ 3, "PathNotFound" },
+		{ 4, "PathTooShort" },
+	};
+
+	(*g_Enums)["Gameplay.EArchetypeRoleAvailabilityType"] = {
+		{ 0, "Default" },
+		{ 1, "Always" },
+		{ 2, "Never" },
+	};
+
+	(*g_Enums)["Gameplay.EAttackFromAboveState"] = {
+		{ 0, "None" },
+		{ 1, "Jump" },
+		{ 2, "Impact" },
+	};
+
+	(*g_Enums)["Gameplay.EAttackFromAboveType"] = {
+		{ -1, "Invalid" },
+		{ 0, "Falling" },
+		{ 1, "Edge" },
+		{ 2, "Railing" },
+		{ 3, "Hang" },
+		{ 4, "Sidle" },
+		{ 5, "Zipline" },
+	};
+
+	(*g_Enums)["Gameplay.EBasCharacterSourceType"] = {
+		{ 0, "Self" },
+		{ 1, "TargetEnemy" },
+		{ 2, "AnotherNPC" },
+		{ 3, "None" },
+	};
+
+	(*g_Enums)["Gameplay.EBasValueComparisonOperationType"] = {
+		{ 0, "Equal" },
+		{ 1, "NotEqual" },
+		{ 2, "Greater" },
+		{ 3, "GreaterOrEqual" },
+		{ 4, "Less" },
+		{ 5, "LessOrEqual" },
+	};
+
+	(*g_Enums)["Gameplay.EBlastFieldComponentType"] = {
+		{ 0, "WakeUpAndKinematic" },
+		{ 1, "PhysicsImpulse" },
+		{ 2, "Destruction" },
+		{ 3, "ClothImpulse" },
+		{ 4, "GameplayEvent" },
+	};
+
+	(*g_Enums)["Gameplay.EBlastFieldDestructionType"] = {
+		{ 0, "Impact" },
+		{ 1, "Explosion" },
+	};
+
+	(*g_Enums)["Gameplay.EBlastFieldForceDirectionType"] = {
+		{ 0, "BlastFieldTransform" },
+		{ 1, "CustomValue" },
+	};
+
+	(*g_Enums)["Gameplay.EBlastFieldImpulseForceApplicationType"] = {
+		{ 0, "CenterOfMass" },
+		{ 1, "BoundingBoxCenter" },
+		{ 2, "ProjectionToBoundingBox" },
+	};
+
+	(*g_Enums)["Gameplay.EBlastFieldSensorShapeType"] = {
+		{ 0, "Sphere" },
+		{ 1, "Box" },
+	};
+
+	(*g_Enums)["Gameplay.EBlastFieldSourceType"] = {
+		{ 0, "Unknown" },
+		{ 1, "CoreLogic" },
+		{ 2, "Projectiles" },
+		{ 3, "Stumbles" },
+		{ 4, "PairedActions" },
+		{ 5, "MeleeAttacks" },
+	};
+
+	(*g_Enums)["Gameplay.EBossEncounterPhase"] = {
+		{ 0, "PhaseOne" },
+		{ 1, "PhaseTwo" },
+		{ 2, "PhaseThree" },
+		{ 3, "PhaseFour" },
+	};
+
+	(*g_Enums)["Gameplay.EBossType"] = {
+		{ 0, "Assassin" },
+		{ 1, "Jaws" },
+		{ 2, "Damien" },
+		{ 3, "ExoDamien" },
+	};
+
+	(*g_Enums)["Gameplay.ECameraMeleeTargetType"] = {
+		{ 0, "CurrentTarget" },
+		{ 1, "FinisherTarget" },
+		{ 2, "CurrentTargetMidpoint" },
+	};
+
+	(*g_Enums)["Gameplay.ECharacterProviderCharacterType"] = {
+		{ 0, "NPC" },
+		{ 1, "Player" },
+		{ 2, "VoiceOver" },
+	};
+
+	(*g_Enums)["Gameplay.ECinematicTransitionApproachTargetType"] = {
+		{ 0, "AnimationTrack" },
+		{ 1, "TrajectoryTrack" },
+	};
+
+	(*g_Enums)["Gameplay.ECinematicsDebugSequenceTargetEntityType"] = {
+		{ 0, "HumanoidSequenceController" },
+		{ 1, "VehicleSequenceController" },
+		{ 2, "Others" },
+	};
+
+	(*g_Enums)["Gameplay.ECinematicsDebugSequenceTrackType"] = {
+		{ 0, "AnimationClip" },
+		{ 1, "AnimationNetworkClip" },
+		{ 2, "AnimationNetworkParameter" },
+		{ 3, "AudioSequence" },
+		{ 4, "CameraLensPreset" },
+		{ 5, "CameraSequenceClip" },
+		{ 6, "EntityProperty" },
+		{ 7, "HumanoidControl" },
+		{ 8, "VehicleControl" },
+		{ 9, "InjectedAnimationNetwork" },
+		{ 10, "Trajectory" },
+		{ 11, "Undefined" },
+	};
+
+	(*g_Enums)["Gameplay.EClimbAction"] = {
+		{ -1, "None" },
+		{ 0, "LedgeHangMount" },
+		{ 1, "LedgeHangDismount" },
+		{ 2, "LedgeHangToLedgeHang" },
+		{ 3, "LedgeHangToLedgeHangSharpTurnOut" },
+		{ 4, "LedgeHangToLedgeHangSharpTurnIn" },
+		{ 5, "LedgeHangToLedgeHangSoftTurn" },
+		{ 6, "LedgeHangToSidle" },
+		{ 7, "LedgeHangToLadder" },
+		{ 8, "LedgeHangToDrainpipe" },
+		{ 9, "LedgeHangToRailing" },
+		{ 10, "LedgeHangToWindow" },
+		{ 11, "SidleMount" },
+		{ 12, "SidleDismount" },
+		{ 13, "SidleToLedgeHang" },
+		{ 14, "SidleToSidle" },
+		{ 15, "SidleToSidleSwap" },
+		{ 16, "SidleToSidleSharpTurnOut" },
+		{ 17, "SidleToSidleSharpTurnIn" },
+		{ 18, "SidleToSidleSoftTurn" },
+		{ 19, "SidleToLadder" },
+		{ 20, "SidleToDrainpipe" },
+		{ 21, "SidleToRailingPerpendicular" },
+		{ 22, "SidleToRailingCollinear" },
+		{ 23, "SidleToWindowPerpendicular" },
+		{ 24, "SidleToWindowCollinear" },
+		{ 25, "LadderMount" },
+		{ 26, "LadderDismount" },
+		{ 27, "LadderToLedgeHang" },
+		{ 28, "LadderToSidle" },
+		{ 29, "LadderToLadder" },
+		{ 30, "LadderToDrainpipe" },
+		{ 31, "DrainpipeMount" },
+		{ 32, "DrainpipeDismount" },
+		{ 33, "DrainpipeToLedgeHang" },
+		{ 34, "DrainpipeToSidle" },
+		{ 35, "DrainpipeToLadder" },
+		{ 36, "DrainpipeToDrainpipe" },
+		{ 37, "RailingToLedgeHang" },
+		{ 38, "RailingToSidle" },
+		{ 39, "WindowToLedgeHang" },
+		{ 40, "WindowToSidle" },
+		{ 41, "EdgeStepback" },
+	};
+
+	(*g_Enums)["Gameplay.EClimbDirection"] = {
+		{ -1, "None" },
+		{ 0, "Up" },
+		{ 1, "Down" },
+		{ 2, "Right" },
+		{ 3, "Left" },
+	};
+
+	(*g_Enums)["Gameplay.EClimbObstacleSide"] = {
+		{ 0, "None" },
+		{ 1, "Right" },
+		{ 2, "Left" },
+	};
+
+	(*g_Enums)["Gameplay.EClimbingState"] = {
+		{ 0, "NotClimbing" },
+		{ 1, "CurrentlyClimbing" },
+		{ 2, "EnteringClimbFromBelow" },
+		{ 3, "EnteringClimbFromAbove" },
+		{ 4, "EnteringClimbFromLeft" },
+		{ 5, "EnteringClimbFromRight" },
+		{ 6, "LeavingClimbToBelow" },
+		{ 7, "LeavingClimbToAbove" },
+		{ 8, "LeavingClimbToLeft" },
+		{ 9, "LeavingClimbToRight" },
+	};
+
+	(*g_Enums)["Gameplay.EClimbingTransitionSide"] = {
+		{ 0, "Bottom" },
+		{ 1, "Top" },
+		{ 2, "Left" },
+		{ 3, "Right" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatEventType"] = {
+		{ -1, "Invalid" },
+		{ 0, "LightAttack" },
+		{ 1, "HeavyAttack" },
+		{ 2, "Parry" },
+		{ 3, "Grab" },
+		{ 4, "PairedAction" },
+		{ 5, "Throw" },
+		{ 6, "Sidestep" },
+		{ 7, "VaultAttack" },
+		{ 8, "Block" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionAvailability"] = {
+		{ 0, "Always" },
+		{ 1, "Mandatory" },
+		{ 2, "Forbidden" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionBlastFieldTriggerEvent"] = {
+		{ 0, "AttackImpact" },
+		{ 1, "DamageVictim" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionBlastFieldTriggerOrientation"] = {
+		{ 0, "CharacterForward" },
+		{ 1, "BoneVelocity" },
+		{ 2, "BoneOrientation" },
+		{ 3, "ContextualTarget" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionCheckResult"] = {
+		{ 0, "NotEvaluated" },
+		{ 1, "Rejected_InstigatorIsCombatRushingAndActionIsNotAvailable" },
+		{ 2, "Rejected_InstigatorIsNotCombatRushingAndActionIsNotAvailable" },
+		{ 3, "Rejected_VictimIsFurtherThanMaxDistance" },
+		{ 4, "Rejected_RequiredContextualTargetWasNotFound" },
+		{ 5, "Rejected_ContextualTargetIsFurtherAwayThanBestOne" },
+		{ 6, "Rejected_NoClearPathFromInstigatorToSafeArea" },
+		{ 7, "Rejected_NoClearPathFromVictimToSafeArea" },
+		{ 8, "Rejected_InstigatorDoesntHonorRequiredDirectionToVictim" },
+		{ 9, "Rejected_VictimIsNotOnFloor" },
+		{ 10, "Rejected_VictimOnFloor" },
+		{ 11, "Rejected_VictimIsNotStaggerStunned" },
+		{ 12, "Rejected_VictimIsStaggerStunned" },
+		{ 13, "Rejected_VictimIsNotParryStunned" },
+		{ 14, "Rejected_VictimIsParryStunned" },
+		{ 15, "Rejected_InstigatorIsNotOnStairs" },
+		{ 16, "Rejected_InstigatorIsOnStairs" },
+		{ 17, "Rejected_VictimIsNotOnStairs" },
+		{ 18, "Rejected_VictimIsOnStairs" },
+		{ 19, "Rejected_InstigatorKeywordRequirementsNotHonored" },
+		{ 20, "Accepted_ValidCandidate" },
+		{ 21, "Selected" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionContextualTargetCheckResult"] = {
+		{ 0, "NotEvaluated" },
+		{ 1, "Rejected_InstigatorIsNotPlayer" },
+		{ 2, "Rejected_MissingVictimsCache" },
+		{ 3, "Rejected_InvalidContextualTargetType" },
+		{ 4, "Rejected_MissingSelectedItemData" },
+		{ 5, "Rejected_NotInStairs" },
+		{ 6, "Rejected_NotInSlopeStairs" },
+		{ 7, "Rejected_InvalidConfigVictimDirectionToTarget" },
+		{ 8, "Rejected_ExpectedTargetNotFound" },
+		{ 9, "Rejected_WallIsInvalid" },
+		{ 10, "Rejected_WallIsLowCover" },
+		{ 11, "Rejected_WallIsHighWall" },
+		{ 12, "Rejected_WallWidthIsTooLow" },
+		{ 13, "Rejected_BullrusheableWallIgnored" },
+		{ 14, "Rejected_InstigatorTooCloseToVictim" },
+		{ 15, "Rejected_VictimTooFarFromTarget" },
+		{ 16, "Rejected_VictimTooFarFromTargetOnLateralDisplacement" },
+		{ 17, "Rejected_AngleBetweenInstigatorForwardAndDirectionToTarget" },
+		{ 18, "Rejected_AngleBetweenVictimForwardAndDirectionToTarget" },
+		{ 19, "Rejected_AngleBetweenInstigatorVictimVectorAndTargetOrientation" },
+		{ 20, "Rejected_TargetOutsideSearchDirection" },
+		{ 21, "Accepted_ValidTarget" },
+		{ 22, "Accepted_BestTarget" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionContextualTargetPriority"] = {
+		{ 0, "CloserToVictimByDistance" },
+		{ 1, "CloserToSearchDirectionByAngle" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionContextualTargetRestriction"] = {
+		{ 0, "PreferCurrentTargetIfSet" },
+		{ 1, "TryUseOnlyCurrentTargetIfSet" },
+		{ 2, "IgnoreCurrentTarget" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionContextualTargetType"] = {
+		{ 0, "None" },
+		{ 1, "Wall" },
+		{ 2, "LowCover" },
+		{ 3, "Item" },
+		{ 4, "Guide" },
+		{ 5, "OffmetricObstacle" },
+		{ 6, "Stairs" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionPhase"] = {
+		{ 0, "Preparing" },
+		{ 1, "Executing" },
+		{ 2, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatPairedActionType"] = {
+		{ 0, "Finisher_Melee" },
+		{ 1, "SilentTakedown" },
+		{ 2, "Finisher_Armed" },
+		{ 3, "Finisher_TaserTakedown" },
+		{ 4, "ContextualFinisher_LowCover" },
+		{ 5, "ContextualFinisher_Wall" },
+		{ 6, "ContextualFinisher_Item" },
+		{ 7, "Finisher_Disarm" },
+		{ 8, "UnusedType_1" },
+		{ 9, "Finisher_Custom" },
+		{ 10, "Contextual_MeleeAttack" },
+		{ 11, "FakeSurrender" },
+		{ 12, "DisarmAttack" },
+		{ 13, "GrabRushOffTheLedge" },
+		{ 14, "ContextualTargetFinisher" },
+		{ 15, "Contextual_ThrowAttack" },
+		{ 16, "BrutalAttack" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatReaction"] = {
+		{ 0, "eCCR_Block" },
+		{ 1, "eCCR_BlockAndCounter" },
+		{ 2, "eCCR_SideStep" },
+		{ 3, "eCCR_SideStepAndCounter" },
+		{ 4, "eCCR_Wait" },
+		{ 5, "eCCR_Parry" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatReactionCounterType"] = {
+		{ 0, "MeleeCounter" },
+		{ 1, "Grab" },
+		{ 2, "MeleeCombo" },
+	};
+
+	(*g_Enums)["Gameplay.ECloseCombatStance"] = {
+		{ 0, "Default" },
+		{ 1, "Parry" },
+		{ 2, "Aggressive" },
+		{ 3, "NotInCloseCombat" },
+		{ 4, "Relaxed" },
+	};
+
+	(*g_Enums)["Gameplay.ECombatRushTargetCriteria"] = {
+		{ 0, "NoValidTarget" },
+		{ 1, "NoMeleeTargetsAvailable" },
+		{ 2, "OngoingCombatRushTarget" },
+		{ 3, "InputWinner" },
+		{ 4, "ConfrontationTarget" },
+		{ 5, "OnScreen" },
+		{ 6, "InRange" },
+		{ 7, "ClosestTarget" },
+		{ 8, "TargetIsImmune" },
+		{ 9, "TargetUnreachable" },
+	};
+
+	(*g_Enums)["Gameplay.ECombatRushType"] = {
+		{ 0, "Strike" },
+		{ 1, "SilentTakedown" },
+		{ 2, "RushAndDisarm" },
+		{ 3, "Finisher" },
+		{ 4, "ContextualAttack" },
+		{ 5, "DisarmAttack" },
+		{ 6, "Grab" },
+		{ 7, "RushToAttackFromAbove" },
+	};
+
+	(*g_Enums)["Gameplay.EConfrontationEndReason"] = {
+		{ 0, "Failed" },
+		{ 1, "FakeSurrender" },
+		{ 2, "Gadget" },
+		{ 3, "Bluff" },
+	};
+
+	(*g_Enums)["Gameplay.EConfrontationUpperbodyAnimCategoryType"] = {
+		{ -1, "None" },
+		{ 0, "Apologetic" },
+		{ 1, "Confident" },
+		{ 2, "Nonchalant" },
+	};
+
+	(*g_Enums)["Gameplay.EConfrontationUpperbodyAnimType"] = {
+		{ 0, "None" },
+		{ 1, "ActiveBluffEnabled" },
+		{ 2, "ActiveBluffDone" },
+		{ 3, "ConfrontationBluffEnabled" },
+		{ 4, "ConfrontationBluffDone" },
+	};
+
+	(*g_Enums)["Gameplay.EContextualJumpLandingSurfaceType"] = {
+		{ 0, "OverWall" },
+		{ 1, "LedgeOverhang" },
+		{ 2, "OnLedgeHang" },
+	};
+
+	(*g_Enums)["Gameplay.EContextualJumpLandingType"] = {
+		{ 0, "Regular" },
+		{ 1, "Sketchy" },
+	};
+
+	(*g_Enums)["Gameplay.EContextualJumpType"] = {
+		{ 0, "None" },
+		{ 1, "Jump" },
+		{ 2, "JumpDown" },
+		{ 3, "JumpUpAndClimb" },
+	};
+
+	(*g_Enums)["Gameplay.EContextualWallType"] = {
+		{ 0, "Wall" },
+		{ 1, "LowCover" },
+		{ 2, "Invalid" },
+	};
+
+	(*g_Enums)["Gameplay.EConversationChoiceResult"] = {
+		{ 0, "Option1" },
+		{ 1, "Option2" },
+		{ 2, "Option3" },
+		{ 3, "Option4" },
+		{ 4, "TimedOut" },
+		{ 5, "Invalid" },
+	};
+
+	(*g_Enums)["Gameplay.EConversationChoiceType"] = {
+		{ 0, "Flavor" },
+		{ 1, "Progression" },
+		{ 2, "Leave" },
+	};
+
+	(*g_Enums)["Gameplay.ECornerType"] = {
+		{ 0, "Concave" },
+		{ 1, "Convex" },
+		{ 2, "None" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverCorner"] = {
+		{ 0, "LeftCorner" },
+		{ 1, "RightCorner" },
+		{ 2, "NoCorner" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverCornerTurnAnimState"] = {
+		{ 0, "NoTurning" },
+		{ 1, "Turning" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverEnterSource"] = {
+		{ 0, "None" },
+		{ 1, "WalkIn" },
+		{ 2, "TransitionToNewAdjacentCover" },
+		{ 3, "TransitionToUpdatedCover" },
+		{ 4, "Dash" },
+		{ 5, "CoverCornerTurn" },
+		{ 6, "Cinematics" },
+		{ 7, "AimTransition" },
+		{ 8, "CoverCornerTransition" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverExitSource"] = {
+		{ 0, "None" },
+		{ 1, "WalkOut" },
+		{ 2, "DashEndedOutFarFromCover" },
+		{ 3, "StandupInLowCover" },
+		{ 4, "Agility" },
+		{ 5, "Confrontation" },
+		{ 6, "MarkupChangedAndCoverNotAllowed" },
+		{ 7, "Acceleration" },
+		{ 8, "AimTransition" },
+		{ 9, "CombatRush" },
+		{ 10, "CoverSystemDisabled" },
+		{ 11, "SplineInvalidPoint" },
+		{ 12, "SplineWalkOut" },
+		{ 13, "CoverCorner" },
+		{ 14, "UntaggedCoverCorner" },
+		{ 15, "Interaction" },
+		{ 16, "FreeDash" },
+		{ 17, "Staggered" },
+		{ 18, "CloseCombatAction" },
+		{ 19, "CloseCombatHitReaction" },
+		{ 20, "AlignmentMovement" },
+		{ 21, "DestroyedMarkup" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverFacingDir"] = {
+		{ 0, "Left" },
+		{ 1, "Right" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverHeight"] = {
+		{ 0, "None" },
+		{ 1, "LowCover" },
+		{ 2, "HighCover" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverLeanAimingTransitionType"] = {
+		{ 0, "None" },
+		{ 1, "ToOutOfCover" },
+		{ 2, "ToCover" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverState"] = {
+		{ 0, "None" },
+		{ 1, "GoingOutOfCover" },
+		{ 2, "GoingIntoCover" },
+		{ 3, "BehindCover" },
+		{ 4, "OutsideCover" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverStayInLineCornerConstraint"] = {
+		{ 0, "NoCornerConstraints" },
+		{ 1, "StopAtTaggedCorners" },
+	};
+
+	(*g_Enums)["Gameplay.ECoverStayInLineInputConstraint"] = {
+		{ 0, "NoInputConstraints" },
+		{ 1, "OnlyInputToRightEnd" },
+		{ 2, "OnlyInputToLeftEnd" },
+	};
+
+	(*g_Enums)["Gameplay.ECrouchingSubsate"] = {
+		{ 0, "eCS_NotCrouching" },
+		{ 1, "eCS_Idle" },
+		{ 2, "eCS_Aiming" },
+		{ 3, "eCS_Moving" },
+		{ 4, "eCS_MovingAndAiming" },
+	};
+
+	(*g_Enums)["Gameplay.EDamageType"] = {
+		{ 1, "Projectile" },
+		{ 2, "CloseCombat" },
+		{ 3, "Fall" },
+		{ 4, "Script" },
+		{ 5, "Stumble" },
+		{ 6, "ThrownItem" },
+		{ 7, "CoverTakedown" },
+		{ 8, "AttackFromAbove" },
+		{ 9, "VaultDisarm" },
+		{ 10, "VaultFinisher" },
+		{ 11, "Explosion" },
+		{ 12, "CrushedByObject" },
+		{ 13, "Vehicle" },
+		{ 14, "Electric" },
+		{ 15, "Stealth" },
+		{ 16, "Environmental" },
+		{ 17, "RailingDeath" },
+		{ 18, "OverTheLedge" },
+		{ 19, "FlashMine" },
+	};
+
+	(*g_Enums)["Gameplay.EDangerAwarenessType"] = {
+		{ 0, "Hazard" },
+		{ 1, "PotentialThreat" },
+		{ 2, "NonLethalCombat" },
+		{ 3, "LethalCombat" },
+	};
+
+	(*g_Enums)["Gameplay.EDangerLevel"] = {
+		{ 0, "EnemiesUnaware" },
+		{ 1, "EnemiesSearching" },
+		{ 2, "InCombat" },
+	};
+
+	(*g_Enums)["Gameplay.EDashCoverSwapFacingMode"] = {
+		{ 0, "KeepDashFacing" },
+		{ 1, "SwapFacingToTargetCorner" },
+		{ 2, "InputDrivenDynamicFacing" },
+	};
+
+	(*g_Enums)["Gameplay.EDashDataSource"] = {
+		{ 0, "Player" },
+		{ 1, "GpwInput" },
+	};
+
+	(*g_Enums)["Gameplay.EDashSearchBoxValidationResult"] = {
+		{ 0, "Outside" },
+		{ 1, "InsideFrontBox" },
+		{ 2, "InsideBackBox" },
+	};
+
+	(*g_Enums)["Gameplay.EDashStancePolicy"] = {
+		{ 0, "TryKeepStance" },
+		{ 1, "ChangeAccordingToCoverType" },
+	};
+
+	(*g_Enums)["Gameplay.EDashTargetCornerType"] = {
+		{ 0, "None" },
+		{ 1, "Left" },
+		{ 2, "Right" },
+	};
+
+	(*g_Enums)["Gameplay.EDashTargetType"] = {
+		{ 0, "None" },
+		{ 1, "LowCover" },
+		{ 2, "Wall" },
+	};
+
+	(*g_Enums)["Gameplay.EDashTargetingBehaviour"] = {
+		{ 0, "Default" },
+		{ 1, "ClosestTargetToPlayer" },
+		{ 2, "FurthestTargetToPlayer" },
+	};
+
+	(*g_Enums)["Gameplay.EDashTargetingSearchConfigType"] = {
+		{ 0, "Default" },
+		{ 1, "ParallelCoverSwap" },
+		{ 2, "NoInput" },
+	};
+
+	(*g_Enums)["Gameplay.EDashType"] = {
+		{ 0, "None" },
+		{ 1, "ToCover" },
+		{ 2, "CoverSwap" },
+		{ 3, "Free" },
+	};
+
+	(*g_Enums)["Gameplay.EDashingType"] = {
+		{ 0, "None" },
+		{ 1, "DashToCover" },
+		{ 2, "DashToCoverSlide" },
+		{ 3, "Free" },
+	};
+
+	(*g_Enums)["Gameplay.EDeathVariationType"] = {
+		{ 0, "Default" },
+		{ 1, "StumbleDeath_WallImpact" },
+		{ 2, "StumbleDeath_LowcoverImpact" },
+		{ 3, "StumbleDeath_Railing" },
+		{ 4, "StumbleDeath_LowCoverRoll" },
+	};
+
+	(*g_Enums)["Gameplay.EDebugAgilityActionOpportunityFailReason"] = {
+		{ 0, "None" },
+		{ 1, "HumanoidStateRequirement" },
+		{ 2, "Allowance" },
+		{ 3, "Requirements" },
+		{ 4, "AllowedOnCandidates" },
+		{ 5, "ConnectionRequirements" },
+		{ 6, "OpportunityConditions" },
+		{ 7, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EDebugAgilityActionOpportunityPendingReason"] = {
+		{ 0, "None" },
+		{ 1, "TriggerConditions" },
+		{ 2, "Interruption" },
+		{ 3, "GadgetView" },
+		{ 4, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EDebugAgilityActionOpportunityState"] = {
+		{ 0, "None" },
+		{ 1, "Failed" },
+		{ 2, "Restricted" },
+		{ 3, "Pending" },
+		{ 4, "Performable" },
+		{ 5, "Performing" },
+		{ 6, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EDebugNpcBehaviorType"] = {
+		{ 0, "None" },
+		{ 1, "FightFromCover" },
+		{ 2, "FightFromCurrentPosition" },
+		{ 3, "ThrowGrenade" },
+	};
+
+	(*g_Enums)["Gameplay.EDebugNpcCombatLocomotionType"] = {
+		{ 0, "Default" },
+		{ 1, "Run" },
+		{ 2, "StrafeWalk" },
+	};
+
+	(*g_Enums)["Gameplay.EDefenseAction"] = {
+		{ 0, "None" },
+		{ 1, "Activate" },
+		{ 2, "Deactivate" },
+	};
+
+	(*g_Enums)["Gameplay.EDefenseType"] = {
+		{ 0, "MeleeAttack" },
+		{ 1, "Grab" },
+		{ 2, "RedirectThrow" },
+		{ 3, "StumbleHumanoidImpact" },
+		{ 4, "Explosion" },
+	};
+
+	(*g_Enums)["Gameplay.EDetainState"] = {
+		{ 0, "None" },
+		{ 1, "Starting" },
+		{ 2, "Idle" },
+		{ 3, "Struggle" },
+		{ 4, "Attack" },
+		{ 5, "HitReaction" },
+		{ 6, "BreakingFree" },
+		{ 7, "Failed" },
+	};
+
+	(*g_Enums)["Gameplay.EDialogueActivityLevel"] = {
+		{ 0, "PlayEssential" },
+		{ 1, "CombatGameplay" },
+		{ 2, "CombatAmbient" },
+		{ 3, "TensionGameplay" },
+		{ 4, "TensionAmbient" },
+		{ 5, "CalmGameplay" },
+		{ 6, "CalmAmbient" },
+		{ 250, "Vocalization" },
+		{ 255, "Ignore" },
+	};
+
+	(*g_Enums)["Gameplay.EDialogueFactOp"] = {
+		{ 0, "Add" },
+		{ 1, "Subtract" },
+		{ 2, "Set" },
+	};
+
+	(*g_Enums)["Gameplay.EDisorientationSourceType"] = {
+		{ 0, "PoisonDart" },
+		{ 1, "GasLeak" },
+		{ 2, "MigraineDevice" },
+		{ 3, "Blinded" },
+	};
+
+	(*g_Enums)["Gameplay.EDistractionSource"] = {
+		{ 0, "Default" },
+		{ 1, "Whistle" },
+		{ 2, "DartGun" },
+		{ 3, "SilentTakedown" },
+		{ 4, "Laptop" },
+		{ 5, "Radio" },
+		{ 6, "AC" },
+		{ 7, "DoorKick" },
+		{ 8, "Footsteps" },
+		{ 9, "GardenHose" },
+		{ 10, "Gadget_Smoke" },
+		{ 11, "Gadget_FlashMine" },
+		{ 12, "Gadget_FlashMineHumanTarget" },
+		{ 13, "ElectrifiedHuman" },
+		{ 14, "DisorientedGeneric" },
+		{ 15, "PoisonDart" },
+		{ 16, "Blinded" },
+		{ 17, "Shockwave" },
+		{ 18, "IncapacitatedBody" },
+		{ 27, "Explosions" },
+		{ 28, "BullectImpact" },
+		{ 29, "Touch" },
+		{ 30, "SecurityCamera" },
+		{ 31, "Fixable" },
+		{ 32, "SpotDisoriented" },
+	};
+
+	(*g_Enums)["Gameplay.EDoorInitialState"] = {
+		{ 0, "Closed" },
+		{ 1, "OpenForward" },
+		{ 2, "OpenBack" },
+		{ 3, "Locked" },
+		{ 4, "Sabotaged" },
+	};
+
+	(*g_Enums)["Gameplay.EEarlyOutCapabilityIssuer"] = {
+		{ 0, "Unknown" },
+		{ 1, "Dash" },
+		{ 2, "MeleeAttack" },
+		{ 3, "FakeSurrender" },
+		{ 4, "ContextualJump" },
+		{ 5, "Landing" },
+		{ 6, "Vaulting" },
+		{ 7, "Scaling" },
+		{ 8, "AgilityAction" },
+		{ 9, "GenericAnimDrivenAction" },
+		{ 10, "TurningAtCoverCorner" },
+		{ 11, "UseDoor" },
+		{ 12, "PairedActionInstigator" },
+		{ 13, "PairedActionVictim" },
+		{ 14, "PickUp" },
+		{ 15, "EnterLadder" },
+		{ 16, "LeaveLadder" },
+		{ 17, "Pickpocket" },
+		{ 18, "Grab" },
+		{ 19, "Parry" },
+		{ 20, "ItemThrow" },
+		{ 21, "GadgetActivation" },
+		{ 22, "CombatRush" },
+		{ 23, "FirearmReload" },
+		{ 24, "Stagger" },
+		{ 25, "Sidestep" },
+		{ 26, "Block" },
+		{ 27, "CoverTakedown" },
+		{ 28, "AttackFromAbove" },
+	};
+
+	(*g_Enums)["Gameplay.EEavesdropUpperbodyAnimType"] = {
+		{ 0, "None" },
+		{ 1, "PlayerStillStarted" },
+		{ 2, "PlayerStillEnded" },
+	};
+
+	(*g_Enums)["Gameplay.EEnableDisableNPCAbilityType"] = {
+		{ 0, "Vision" },
+		{ 1, "Hearing" },
+		{ 2, "Agility" },
+		{ 3, "DistractionReaction" },
+		{ 4, "PrivateSpace" },
+		{ 5, "Crouch" },
+	};
+
+	(*g_Enums)["Gameplay.EEntryLocationType"] = {
+		{ 0, "Default" },
+		{ 1, "Archway" },
+		{ 2, "StairsUp" },
+		{ 3, "StairsDown" },
+	};
+
+	(*g_Enums)["Gameplay.EEnvironmentMarkupAgilityType"] = {
+		{ 0, "None" },
+		{ 1, "Vaultable" },
+		{ 2, "Scalable" },
+		{ 3, "Jump" },
+		{ 4, "GenericAnimationDrivenAction" },
+	};
+
+	(*g_Enums)["Gameplay.EEnvironmentMarkupCoverType"] = {
+		{ 0, "None" },
+		{ 1, "Low" },
+		{ 2, "High" },
+	};
+
+	(*g_Enums)["Gameplay.EEnvironmentMarkupLevelDesignBool"] = {
+		{ 0, "eEMLDB_Automatic" },
+		{ 1, "eEMLDB_True" },
+		{ 2, "eEMLDB_False" },
+	};
+
+	(*g_Enums)["Gameplay.EEnvironmentalLockState"] = {
+		{ 0, "Unlocked" },
+		{ 1, "Sit_100cm" },
+		{ 2, "Sit_020cm" },
+		{ 3, "Sit_000cm" },
+		{ 4, "Sit_Stool_080cm" },
+		{ 5, "Sit_Chair" },
+		{ 6, "Sit_Couch" },
+		{ 7, "Lean_120cm" },
+		{ 8, "Lean_100cm" },
+		{ 9, "Lean_075cm" },
+		{ 10, "Lean_Wall" },
+		{ 11, "Stand" },
+	};
+
+	(*g_Enums)["Gameplay.EEvaluatorMode"] = {
+		{ 0, "Add" },
+		{ 1, "Multiply" },
+		{ 2, "Multiply_SingleEval" },
+	};
+
+	(*g_Enums)["Gameplay.EFirearmDamageMultiplierFilter"] = {
+		{ 0, "Always" },
+		{ 1, "BodyPartWeakpoint" },
+	};
+
+	(*g_Enums)["Gameplay.EFirearmHumanoidHitState"] = {
+		{ 0, "NoFlinch" },
+		{ 1, "Flinch" },
+		{ 2, "Stumble" },
+		{ 3, "HeavyHit" },
+		{ 4, "Stagger" },
+		{ 5, "AnimationFullBody" },
+	};
+
+	(*g_Enums)["Gameplay.EFirearmPosture"] = {
+		{ 0, "Lowered" },
+		{ 1, "Primed" },
+		{ 2, "Raised" },
+		{ 3, "AboveHead" },
+		{ 4, "BlindFiringLeft" },
+		{ 5, "BlindFiringRight" },
+		{ 6, "LeaningLeft" },
+		{ 7, "LeaningRight" },
+	};
+
+	(*g_Enums)["Gameplay.EFootstepEventType"] = {
+		{ 0, "Automatic" },
+		{ 1, "Normal" },
+		{ 2, "Stair" },
+		{ 3, "Jump" },
+		{ 4, "Land" },
+		{ 5, "Slide" },
+		{ 6, "Start" },
+		{ 7, "Stop" },
+		{ 8, "Turn" },
+		{ 9, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EFootstepType"] = {
+		{ 0, "Left" },
+		{ 1, "Right" },
+		{ 2, "Any" },
+	};
+
+	(*g_Enums)["Gameplay.EGadgetActivationSlot"] = {
+		{ 0, "Slot1" },
+		{ 1, "Slot2" },
+		{ 2, "Slot3" },
+		{ 3, "Slot4" },
+	};
+
+	(*g_Enums)["Gameplay.EGadgetDisabledFlag"] = {
+		{ 0, "GadgetNotAssigned" },
+		{ 1, "PlayerCantUseGadgets" },
+		{ 2, "InCooldown" },
+		{ 3, "CantBeUsedInArea" },
+		{ 4, "UnusedEntry_0" },
+		{ 5, "NotEnoughResources" },
+		{ 6, "InvalidTarget" },
+		{ 7, "TargetOutOfRange" },
+		{ 8, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EGadgetState"] = {
+		{ 0, "None" },
+		{ 1, "TapActivate" },
+		{ 2, "HoldActivate" },
+	};
+
+	(*g_Enums)["Gameplay.EGadgetTargetInteractionType"] = {
+		{ 0, "Tap" },
+		{ 1, "Hold" },
+		{ 2, "TapAndHold" },
+	};
+
+	(*g_Enums)["Gameplay.EGameplayAreaLocomotionContext"] = {
+		{ 0, "Formal" },
+		{ 1, "Casual" },
+		{ 2, "Combat" },
+	};
+
+	(*g_Enums)["Gameplay.EGameplayAreaType"] = {
+		{ 0, "Social" },
+		{ 1, "SoftTrespassing" },
+		{ 2, "Trespassing" },
+		{ 3, "LicenseToKill" },
+	};
+
+	(*g_Enums)["Gameplay.EGoalPriorities"] = {
+		{ 0, "HIGHEST" },
+		{ 1, "STAGGER" },
+		{ 2, "CONFRONTATION_OPT_IN" },
+		{ 3, "LURE" },
+		{ 4, "BLUFF" },
+		{ 5, "ATTACK_FROM_ABOVE" },
+		{ 6, "VAULT" },
+		{ 7, "CONTEXTUAL_JUMP" },
+		{ 8, "TURN_AT_COVER_CORNER" },
+		{ 9, "AGILITY_ACTION" },
+		{ 10, "SCALE" },
+		{ 11, "DASH" },
+		{ 12, "GENERIC_ANIM_DRIVEN_ACTION" },
+		{ 13, "USE_DOOR" },
+		{ 14, "GROUND_PATH_LOCOMOTION" },
+		{ 15, "COMPLYING" },
+		{ 16, "DROP_DOWN" },
+		{ 17, "COMBATRUSH" },
+		{ 18, "PROJECTILE_SIDESTEP" },
+		{ 19, "ACTIVATE_GADGET" },
+		{ 20, "MELEE_FINISHER" },
+		{ 21, "PARRY" },
+		{ 22, "PICKPOCKET" },
+		{ 23, "GRAB" },
+		{ 24, "BLOCK" },
+		{ 25, "SIDESTEP" },
+		{ 26, "COVER_TAKEDOWN" },
+		{ 27, "CONTEXTUAL_ITEM_THROW" },
+		{ 28, "ITEM_THROW" },
+		{ 29, "JUMPING_AWAY_HAZARD" },
+		{ 30, "MELEE_ATTACK" },
+		{ 31, "COVER_TRANSITION" },
+		{ 32, "ENTER_LADDER_CLIMB" },
+		{ 33, "LEAVE_LADDER_CLIMB" },
+		{ 34, "CROUCH" },
+		{ 35, "UNCROUCH" },
+		{ 36, "SET_FIREARM_POSTURE" },
+		{ 37, "SET_THROWABLE_POSTURE" },
+		{ 38, "CHANGE_CLOSECOMBAT_STANCE" },
+		{ 39, "SET_AIM_TARGET" },
+		{ 40, "START_STRAFING" },
+		{ 41, "STOP_STRAFING" },
+		{ 42, "START_ACCELERATING" },
+		{ 43, "STOP_ACCELERATING" },
+		{ 44, "GADGET_VIEW" },
+		{ 45, "PICKUP_ITEM" },
+		{ 46, "INTERACT" },
+		{ 47, "ANIMATION_ACT" },
+		{ 48, "LOOK_AT" },
+		{ 49, "UNEQUIP_ITEM" },
+		{ 50, "EQUIP_ITEM" },
+		{ 51, "RELOAD_FIREARM" },
+		{ 52, "FAKE_SURRENDER" },
+		{ 53, "WHISTLE" },
+		{ 54, "CAMERA_FOCUS" },
+		{ 55, "PRIVATE_SPACE_INVADED_REACTION" },
+		{ 56, "AGENCY_FOCUS" },
+		{ 57, "LOWEST" },
+		{ 58, "COUNT" },
+	};
+
+	(*g_Enums)["Gameplay.EGrabRushOffTheLedgeGroundPositionResult"] = {
+		{ 0, "Invalid_NoGround" },
+		{ 1, "Invalid_OutOfReach" },
+		{ 2, "Invalid_NoNavMeshPoint" },
+		{ 3, "Valid" },
+	};
+
+	(*g_Enums)["Gameplay.EGrabRushOffTheLedgeType"] = {
+		{ 0, "Throw" },
+		{ 1, "Jump" },
+		{ 2, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EGrabStepFlags"] = {
+		{ 1, "Taunting" },
+		{ 2, "FailingGrab" },
+		{ 4, "PreparingGrab" },
+		{ 8, "Attacking" },
+		{ 16, "Throwing" },
+		{ 32, "PostThrowing" },
+		{ 64, "BreakingFree" },
+		{ 128, "Rushing" },
+	};
+
+	(*g_Enums)["Gameplay.EGrabThrowType"] = {
+		{ 0, "None" },
+		{ 1, "BasicThrow" },
+		{ 2, "ThrowFromAttack" },
+	};
+
+	(*g_Enums)["Gameplay.EGrabVictimStatus"] = {
+		{ 0, "Invalid" },
+		{ 1, "Valid_PendingSuccessCheck" },
+		{ 2, "Valid_FailedGrab" },
+		{ 3, "Valid_SuccessfulGrab" },
+	};
+
+	(*g_Enums)["Gameplay.EGrabbingStep"] = {
+		{ 0, "Taunting" },
+		{ 1, "FailingGrab" },
+		{ 2, "PreparingGrab" },
+		{ 3, "Attacking" },
+		{ 4, "Throwing" },
+		{ 5, "PostThrowing" },
+		{ 6, "BreakingFree" },
+		{ 7, "Rushing" },
+	};
+
+	(*g_Enums)["Gameplay.EGuidanceLocomotionThresholdReachedHandlingType"] = {
+		{ 0, "Disabled" },
+		{ 1, "Systemic" },
+	};
+
+	(*g_Enums)["Gameplay.EGuideTakedownType"] = {
+		{ 0, "None" },
+		{ 1, "OpenLedgeHang" },
+		{ 2, "OpenLedgeHangWithRailing" },
+		{ 3, "WallLedgeHang" },
+		{ 4, "WallLedgeHangWithRailing" },
+		{ 5, "SidleWithRailingRight" },
+		{ 6, "SidleWithRailingLeft" },
+	};
+
+	(*g_Enums)["Gameplay.EHazardSource"] = {
+		{ 0, "Default" },
+		{ 1, "Grenade" },
+		{ 2, "Chandelier" },
+		{ 3, "Spotlight" },
+		{ 4, "Lift" },
+		{ 5, "Pipe" },
+		{ 6, "AirConditioner" },
+		{ 7, "ConcreteBag" },
+		{ 8, "SmokeBomb" },
+	};
+
+	(*g_Enums)["Gameplay.EHealingSource"] = {
+		{ 0, "HealthRegen" },
+		{ 1, "CoreLogic" },
+	};
+
+	(*g_Enums)["Gameplay.EHitReactionDefenseAction"] = {
+		{ 0, "Ignore" },
+		{ 1, "Enabled" },
+		{ 2, "Disabled" },
+	};
+
+	(*g_Enums)["Gameplay.EHitReactionDisabledSkill"] = {
+		{ 0, "Aim" },
+		{ 1, "Shoot" },
+		{ 2, "Sprint" },
+		{ 3, "MeleeAttack" },
+		{ 4, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EHitReactionSource"] = {
+		{ 0, "FireArm" },
+		{ 1, "MeleeImpact" },
+		{ 2, "Throwable" },
+		{ 3, "Explosion" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanMovementCategory"] = {
+		{ 0, "eHMCa_Ambient" },
+		{ 1, "eHMCa_TacticalSearch" },
+		{ 2, "eHMCa_CloseCombat" },
+		{ 3, "eHMCa_RangedCombat" },
+		{ 4, "eHMCa_AmbientSearch" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanMovementContext"] = {
+		{ 0, "eHMC_Walk" },
+		{ 1, "eHMC_Run" },
+		{ 2, "eHMC_Sprint" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidAudioLocomotionContext"] = {
+		{ 0, "Social" },
+		{ 1, "Trespassing" },
+		{ 2, "SoftTrespassing" },
+		{ 3, "CloseCombat" },
+		{ 4, "Aiming" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidBodyPart"] = {
+		{ 0, "None" },
+		{ 1, "Torso" },
+		{ 2, "Head" },
+		{ 3, "LeftHand" },
+		{ 4, "LeftLowerArm" },
+		{ 5, "LeftUpperArm" },
+		{ 6, "LeftShoulder" },
+		{ 7, "LeftFoot" },
+		{ 8, "LeftLowerLeg" },
+		{ 9, "LeftUpperLeg" },
+		{ 10, "RightHand" },
+		{ 11, "RightLowerArm" },
+		{ 12, "RightUpperArm" },
+		{ 13, "RightShoulder" },
+		{ 14, "RightFoot" },
+		{ 15, "RightLowerLeg" },
+		{ 16, "RightUpperLeg" },
+		{ 17, "Weapon" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidBoneCollisionPresetType"] = {
+		{ 0, "Default" },
+		{ 1, "Agility" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidBoneTransformFlag"] = {
+		{ 0, "UseCharacterRotation" },
+		{ 1, "UseCharacterZ" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidBoneType"] = {
+		{ 0, "Hip" },
+		{ 1, "Torso" },
+		{ 2, "Head" },
+		{ 3, "RightKnee" },
+		{ 4, "LeftKnee" },
+		{ 5, "RightClavicle" },
+		{ 6, "LeftClavicle" },
+		{ 7, "RightElbow" },
+		{ 8, "LeftElbow" },
+		{ 9, "BackAttacher" },
+		{ 10, "RightHandAttacher" },
+		{ 11, "RightIKHandAttacher" },
+		{ 12, "LeftHandAttacher" },
+		{ 13, "LeftIKHandAttacher" },
+		{ 14, "RightFoot" },
+		{ 15, "LeftFoot" },
+		{ 16, "FreeAttacher_Ground" },
+		{ 17, "HeadEnd" },
+		{ 18, "Ground" },
+		{ 19, "NpcVisionEffector" },
+		{ 20, "RightWrist" },
+		{ 21, "LeftWrist" },
+		{ 22, "RightShoulder" },
+		{ 23, "LeftShoulder" },
+		{ 24, "RightFemur" },
+		{ 25, "LeftFemur" },
+		{ 26, "PropAttacher" },
+		{ 27, "Spine03" },
+		{ 28, "Nose" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidCapsuleDataType"] = {
+		{ 0, "Stand" },
+		{ 1, "Crouch" },
+		{ 2, "Vault" },
+		{ 3, "SqueezeThrough" },
+		{ 4, "LedgeHang" },
+		{ 5, "Ladder" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidCollisionDisabledSource"] = {
+		{ 0, "VehicleAttachment" },
+		{ 1, "CoverTakedown" },
+		{ 2, "Death" },
+		{ 3, "CoreLogic" },
+		{ 4, "GenericAnimDrivenAction" },
+		{ 5, "AnimationEvents" },
+		{ 6, "Unknown" },
+		{ 7, "Climb" },
+		{ 8, "Guide" },
+		{ 9, "AttackFromAbove" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidCollisionPresetType"] = {
+		{ 0, "Default" },
+		{ 1, "Agility" },
+		{ 2, "VirtualCapsule" },
+		{ 3, "AnimationAct" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidDamageType"] = {
+		{ 0, "Unknown" },
+		{ 1, "Projectile" },
+		{ 2, "CloseCombat" },
+		{ 3, "Fall" },
+		{ 4, "Script" },
+		{ 5, "Stumble" },
+		{ 6, "ThrownItem" },
+		{ 7, "CoverTakedown" },
+		{ 8, "AttackFromAbove" },
+		{ 9, "Explosion" },
+		{ 10, "VaultDisarm" },
+		{ 11, "VaultFinisher" },
+		{ 12, "CrushedByObject" },
+		{ 13, "Vehicle" },
+		{ 14, "Electric" },
+		{ 15, "Stealth" },
+		{ 16, "Environmental" },
+		{ 17, "RailingDeath" },
+		{ 18, "OverTheLedge" },
+		{ 19, "FlashMine" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidGoalInterruptReason"] = {
+		{ 0, "Unknown" },
+		{ 1, "Solver" },
+		{ 2, "Issuer" },
+		{ 3, "NoSkill" },
+		{ 4, "AutomatedRemoval" },
+		{ 5, "NoValidController" },
+		{ 6, "OwnerKilled" },
+		{ 7, "TargetedAction" },
+		{ 8, "HitReaction" },
+		{ 9, "Falling" },
+		{ 10, "ReferencedIdentifierDestroyed" },
+		{ 11, "InterceptedByScript" },
+		{ 12, "MissingRequiredGoal" },
+		{ 13, "InterruptedDuringEarlyOut" },
+		{ 14, "Stagger" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidLocomotionMovementPipeline"] = {
+		{ 0, "Invalid" },
+		{ 1, "AnimationDriven" },
+		{ 2, "AnimationDrivenEnteringLadder" },
+		{ 3, "AnimationDrivenJumping" },
+		{ 4, "AnimationDrivenLanding" },
+		{ 5, "AnimationDrivenScaling" },
+		{ 6, "AnimationDrivenSequenceAnimDisplacement" },
+		{ 7, "AnimationDrivenSequenceSpatialDisplacement" },
+		{ 8, "AnimationDrivenStaggered" },
+		{ 9, "AnimationDrivenVaulting" },
+		{ 10, "Falling" },
+		{ 11, "GameplayAligning" },
+		{ 12, "IdleWithMotionPlan" },
+		{ 13, "Idle" },
+		{ 14, "Jumping" },
+		{ 15, "OnGuide" },
+		{ 16, "PathDrivenGroundLocomotion" },
+		{ 17, "PlayerDrivenGroundLocomotion" },
+		{ 18, "Sliding" },
+		{ 19, "SpatialDriven" },
+		{ 20, "SplineDriven" },
+		{ 21, "Teleporting" },
+		{ 22, "TeleportingInVehicleCar" },
+		{ 23, "TeleportingInVehicleBoat" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidMovementInputSpeed"] = {
+		{ 0, "Stationary" },
+		{ 1, "Slow" },
+		{ 2, "Fast" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidOnGuideSpecialization"] = {
+		{ 0, "None" },
+		{ 1, "Ledge_Hang" },
+		{ 2, "Ledge_Sidle" },
+	};
+
+	(*g_Enums)["Gameplay.EHumanoidTrespassingStance"] = {
+		{ 0, "None" },
+		{ 1, "Confident" },
+		{ 2, "Vigilant" },
+	};
+
+	(*g_Enums)["Gameplay.EInputProbeAdjustmentType"] = {
+		{ 0, "None" },
+		{ 1, "FaceTowardsSurface" },
+		{ 2, "MoveAlongSurface" },
+		{ 3, "Stop" },
+	};
+
+	(*g_Enums)["Gameplay.EInteractionDoorAction"] = {
+		{ 0, "Open" },
+		{ 1, "Close" },
+		{ 2, "Lock" },
+	};
+
+	(*g_Enums)["Gameplay.EInteractionDoorHandleSide"] = {
+		{ 0, "Left" },
+		{ 1, "Right" },
+	};
+
+	(*g_Enums)["Gameplay.EInteractionDoorOpenStyle"] = {
+		{ 0, "Normal" },
+		{ 1, "Charge" },
+		{ 2, "Kick" },
+	};
+
+	(*g_Enums)["Gameplay.EInteractionUIAgilityType"] = {
+		{ 0, "Invalid" },
+		{ 1, "AttackFromAbove" },
+		{ 2, "ClimbLadder" },
+		{ 3, "Climb" },
+		{ 4, "Vault" },
+		{ 5, "VaultAttack" },
+		{ 6, "VaultDropdown" },
+		{ 7, "VaultUp" },
+		{ 8, "Jump" },
+		{ 9, "GenericAnimDrivenAction" },
+		{ 10, "Takedown" },
+		{ 11, "Parry" },
+		{ 12, "Rush" },
+		{ 13, "Disarm" },
+		{ 14, "CombatRush" },
+		{ 15, "CombatRushStrike" },
+		{ 16, "CombatRushSilentTakedown" },
+		{ 17, "AgencyBluff" },
+		{ 18, "AgencyFinisher" },
+		{ 19, "ZiplineEnter" },
+		{ 20, "Sneak" },
+		{ 21, "FakeSurrender" },
+		{ 22, "Pickpocket" },
+		{ 23, "ItemQuickThrow" },
+		{ 24, "CoverSwap" },
+		{ 25, "Hang" },
+		{ 26, "Dismount" },
+		{ 27, "Sidle" },
+		{ 28, "ClimbDropDown" },
+	};
+
+	(*g_Enums)["Gameplay.EInterceptableGoalType"] = {
+		{ 0, "CloseCombatFinisher" },
+		{ 1, "MeleeAttack" },
+		{ 2, "VaultFinisher" },
+		{ 3, "AllAgilityActions" },
+		{ 4, "GadgetActivation" },
+		{ 5, "AllGadgetActivations" },
+	};
+
+	(*g_Enums)["Gameplay.EInterruptionConfiguration"] = {
+		{ 0, "Default" },
+		{ 1, "DoNotInterrupt" },
+	};
+
+	(*g_Enums)["Gameplay.EItemAttachmentState"] = {
+		{ 0, "Attached" },
+		{ 1, "Selected" },
+		{ 2, "Equipped" },
+	};
+
+	(*g_Enums)["Gameplay.EItemOperationType"] = {
+		{ 0, "None" },
+		{ 1, "Attach" },
+		{ 2, "Drop" },
+		{ 3, "Max" },
+	};
+
+	(*g_Enums)["Gameplay.EKntCheckpointLoadState"] = {
+		{ 0, "Initiate" },
+		{ 1, "WaitForStreamingSets" },
+		{ 2, "SpawnPlayer" },
+		{ 3, "WaitForPlayerSpawner" },
+		{ 4, "WaitForDynamicSpawners" },
+		{ 5, "Finalize" },
+	};
+
+	(*g_Enums)["Gameplay.EKntMissionTimerType"] = {
+		{ 0, "Timer" },
+		{ 1, "Stopwatch" },
+	};
+
+	(*g_Enums)["Gameplay.ELocomotionSpeedOverrideType"] = {
+		{ 0, "NoOverride" },
+		{ 1, "Slow" },
+		{ 2, "Medium" },
+		{ 3, "Fast" },
+	};
+
+	(*g_Enums)["Gameplay.ELocomotionSpeedScalingModifier"] = {
+		{ 0, "Avoidance" },
+		{ 1, "Guidance" },
+	};
+
+	(*g_Enums)["Gameplay.ELookAtTargetMode"] = {
+		{ 0, "InSocial" },
+		{ 1, "Always" },
+	};
+
+	(*g_Enums)["Gameplay.ELureUnavailableFlag"] = {
+		{ 0, "Disabled" },
+		{ 1, "NotAvailable" },
+		{ 2, "NotEnoughAgency" },
+		{ 3, "InCooldown" },
+		{ 4, "TargetInvalid" },
+		{ 5, "TargetTooClose" },
+		{ 6, "TargetInDifferentArea" },
+		{ 7, "TargetPathTooFar" },
+		{ 8, "PlayerBeingIdentifiedAsThreat" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAlignmentBone"] = {
+		{ 0, "Ground" },
+		{ 1, "Impact" },
+		{ 2, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAlignmentType"] = {
+		{ 0, "None" },
+		{ 1, "AlignGroundBoneToOpponent" },
+		{ 2, "AlignToTargetTransform" },
+		{ 3, "AlignToVictim" },
+		{ 4, "LinkToInstigatorBone" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeApproachType"] = {
+		{ 0, "NotNeeded" },
+		{ 1, "Run" },
+		{ 2, "Vault" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackAlignmentType"] = {
+		{ 0, "GameplayDriven" },
+		{ 1, "AnimationDriven_AlignToTargetBone" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackOutcome"] = {
+		{ 0, "None" },
+		{ 1, "Successful" },
+		{ 2, "Blocked" },
+		{ 3, "Missed" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackResult"] = {
+		{ 0, "Unknown" },
+		{ 1, "Missed_NoVictim" },
+		{ 2, "Missed_VictimOutOfReach" },
+		{ 3, "Missed_VictimSidestepped" },
+		{ 4, "Missed_VictimCurrentlyNonAttackable" },
+		{ 5, "Missed_VictimBlocked" },
+		{ 6, "Missed_HitByMeleeAttackOnSameFrame" },
+		{ 7, "Missed_NotAttackImpactReceived" },
+		{ 8, "Missed_VictimDefensesBlock" },
+		{ 9, "Missed_VictimDefensesMiss" },
+		{ 11, "Successful_Unblocked" },
+		{ 12, "Successful_BrokeBlock" },
+		{ 13, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackStep"] = {
+		{ 0, "Inactive" },
+		{ 1, "Preparing" },
+		{ 2, "Preparing_WaitingForRetargeting" },
+		{ 3, "Preparing_WaitingForSuccessCheck" },
+		{ 4, "Attacking" },
+		{ 5, "Impacting" },
+		{ 6, "Missing" },
+		{ 7, "BeingBlocked" },
+		{ 8, "Recovering" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackToleranceToHitPolicy"] = {
+		{ 0, "ImpactBoneToTargetBone" },
+		{ 1, "CapsuleToCapsule" },
+		{ 2, "ImpactBoneToCapsule" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackTriggerType"] = {
+		{ 0, "QuickAttack" },
+		{ 1, "ChargedAttack" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackType"] = {
+		{ 0, "Light" },
+		{ 1, "Heavy" },
+		{ 2, "LongLight" },
+		{ 3, "LongHeavy" },
+		{ 4, "Counter" },
+		{ 5, "PistolAttack" },
+		{ 6, "RifleAttack" },
+		{ 7, "CombatRushShortRange" },
+		{ 8, "CombatRushLongRange" },
+		{ 9, "RedirectStrike" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeAttackTypeFlags"] = {
+		{ 1, "Light" },
+		{ 2, "Heavy" },
+		{ 4, "LongLight" },
+		{ 8, "LongHeavy" },
+		{ 16, "Counter" },
+		{ 32, "PistolAttack" },
+		{ 64, "RifleAttack" },
+		{ 128, "CombatRushShortRange" },
+		{ 256, "CombatRushLongRange" },
+		{ 512, "RedirectStrike" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeParryStep"] = {
+		{ 0, "None" },
+		{ 1, "Attacking" },
+		{ 2, "Impacting" },
+		{ 3, "Staggering" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeParryType"] = {
+		{ 0, "None" },
+		{ 1, "Parry" },
+		{ 2, "Block" },
+	};
+
+	(*g_Enums)["Gameplay.EMeleeVariationType"] = {
+		{ -1, "None" },
+		{ 0, "Straight" },
+		{ 1, "Left" },
+		{ 2, "Right" },
+	};
+
+	(*g_Enums)["Gameplay.ENearDeathStateFinishReason"] = {
+		{ 0, "Recovered" },
+		{ 1, "Died" },
+		{ 2, "Scripted" },
+		{ 3, "Quit" },
+	};
+
+	(*g_Enums)["Gameplay.ENotificationType"] = {
+		{ 0, "MainObjective" },
+		{ 1, "SubObjective" },
+		{ 2, "Hint" },
+		{ 3, "QuestItem" },
+		{ 4, "Notification" },
+		{ 5, "Opportunity" },
+		{ 6, "OpportunityStep" },
+	};
+
+	(*g_Enums)["Gameplay.ENpcArchetype"] = {
+		{ 0, "Civilian" },
+		{ 1, "Minion" },
+		{ 2, "Henchman" },
+		{ 3, "Brute" },
+		{ 4, "BossAssassin" },
+		{ 5, "PlayerCompanion" },
+	};
+
+	(*g_Enums)["Gameplay.ENpcReinforcementsState"] = {
+		{ 0, "AvailableForRequest" },
+		{ 1, "Requested" },
+		{ 2, "ActiveFromSavegame" },
+		{ 3, "Active" },
+	};
+
+	(*g_Enums)["Gameplay.ENpcStateIconType"] = {
+		{ 0, "DistractedInAmbient" },
+		{ 1, "EscalatingFromAmbient" },
+		{ 2, "Manhunt" },
+		{ 3, "ManhuntInvestigatingDisturbance" },
+		{ 4, "Combat" },
+		{ 5, "CombatDistracted" },
+		{ 6, "CallingForReinforcements" },
+		{ 7, "Confronting" },
+		{ 8, "Bluffed" },
+		{ 9, "Watcher" },
+		{ 10, "Disoriented" },
+		{ 11, "InfluencedByWatcher" },
+		{ 12, "LtkWindowOfOpportunity" },
+	};
+
+	(*g_Enums)["Gameplay.EObjectiveDynamicDataCountDisplayType"] = {
+		{ 0, "Default" },
+		{ 1, "Currency" },
+	};
+
+	(*g_Enums)["Gameplay.EObjectiveDynamicDataType"] = {
+		{ 0, "None" },
+		{ 1, "Count_Up" },
+		{ 2, "State_Progression" },
+		{ 3, "Timer" },
+		{ 4, "State_Progression_And_Percentage" },
+	};
+
+	(*g_Enums)["Gameplay.EObjectiveUIState"] = {
+		{ 0, "Active" },
+		{ 1, "Completed" },
+		{ 2, "Deactivated" },
+		{ 3, "Failed" },
+	};
+
+	(*g_Enums)["Gameplay.EObjectiveUIType"] = {
+		{ 0, "MainObjective" },
+		{ 1, "SubObjective" },
+		{ 2, "Hint" },
+		{ 3, "QuestItem" },
+		{ 4, "Opportunity" },
+		{ 5, "OpportunityStep" },
+	};
+
+	(*g_Enums)["Gameplay.EParryVariationType"] = {
+		{ 0, "None" },
+		{ 1, "Left" },
+		{ 2, "Right" },
+		{ 3, "BackLeft" },
+		{ 4, "BackRight" },
+	};
+
+	(*g_Enums)["Gameplay.EPhysicsGameplayState"] = {
+		{ 0, "PlayerStealth" },
+		{ 1, "Vaulting" },
+	};
+
+	(*g_Enums)["Gameplay.EPhysicsObstacleStopType"] = {
+		{ 0, "None" },
+		{ 1, "Cliff" },
+	};
+
+	(*g_Enums)["Gameplay.EPickpocketMode"] = {
+		{ 0, "Social" },
+		{ 1, "Trespass" },
+		{ 2, "Trespass_Bluffed" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerApproachingGoalCompletionMode"] = {
+		{ 0, "BasedOnDistanceToTarget" },
+		{ 1, "BasedOnDistanceAndFacingToTarget" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerApproachingGoalOrientationMode"] = {
+		{ 0, "SameAsTarget" },
+		{ 1, "SameAsApproachingDirection" },
+		{ 2, "SameAsPlayerFacingAtStart" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerApproachingGoalStopRadiusMode"] = {
+		{ 0, "AnyPositionWithinRadius" },
+		{ 1, "PositionExactlyOnRadius" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerApproachingMovementType"] = {
+		{ 0, "None" },
+		{ 1, "CinematicFunnelingApproach" },
+		{ 2, "CoreLogicGoal" },
+		{ 3, "CoverCorner" },
+		{ 4, "DashToCover" },
+		{ 5, "UseDoor" },
+		{ 6, "VirtualCapsule" },
+		{ 7, "AgilityAction" },
+		{ 8, "CameraFocusReorientation" },
+		{ 9, "Complying" },
+		{ 10, "FakeSurrender" },
+		{ 11, "ActiveBluff" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerComplyingState"] = {
+		{ 0, "None" },
+		{ 1, "WaitingInitialDialogues" },
+		{ 2, "FadingIn" },
+		{ 3, "Teleporting" },
+		{ 4, "FadingOut" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGadgetTargetType"] = {
+		{ 0, "None" },
+		{ 1, "Humanoid" },
+		{ 2, "Item" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventAgilityActionTriggerMode"] = {
+		{ 0, "Start" },
+		{ 1, "End" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventAgilityActionType"] = {
+		{ 0, "Vault" },
+		{ 1, "Scale" },
+		{ 2, "ContextualJump" },
+		{ 3, "Land" },
+		{ 4, "LandRoll" },
+		{ 5, "Crouch" },
+		{ 6, "StandUp" },
+		{ 7, "Dash" },
+		{ 8, "Vent" },
+		{ 9, "Cover" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventContextSwitchType"] = {
+		{ 0, "Entering" },
+		{ 1, "Exiting" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventContextType"] = {
+		{ 0, "Any" },
+		{ 1, "Public" },
+		{ 2, "PublicFormal" },
+		{ 3, "PublicCasual" },
+		{ 4, "Trespassing" },
+		{ 5, "LicenseToKill" },
+		{ 6, "SituationContained" },
+		{ 7, "SoftTrespassing" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventLocomotionTrackingAreaConstraint"] = {
+		{ 0, "None" },
+		{ 1, "Public" },
+		{ 2, "Trespassing" },
+		{ 3, "LicenseToKill" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventLocomotionTrackingSpatialConstraint"] = {
+		{ 0, "None" },
+		{ 1, "Cover" },
+		{ 2, "Vent" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventLocomotionTrackingStanceType"] = {
+		{ 0, "CrouchIdle" },
+		{ 1, "CrouchMoving" },
+		{ 2, "Idle" },
+		{ 3, "Walking" },
+		{ 4, "Running" },
+		{ 5, "Sprinting" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventLocomotionTrackingTriggerMode"] = {
+		{ 0, "AllConditionsAreSatified" },
+		{ 1, "AllConditionsAreSatifiedAndStateChanges" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayEventType"] = {
+		{ 0, "PlayerGameplayContextSwitch" },
+		{ 1, "PlayerAgilityAction" },
+		{ 2, "PlayerLocomotionTracking" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplayRecordTimeStateFlag"] = {
+		{ 0, "StandingUp" },
+		{ 1, "Crouching" },
+		{ 2, "Idle" },
+		{ 3, "Moving" },
+		{ 4, "Walking" },
+		{ 5, "Running" },
+		{ 6, "Sprinting" },
+		{ 7, "InCover" },
+		{ 8, "InsideVent" },
+		{ 9, "Aiming" },
+		{ 10, "InCloseCombat" },
+		{ 11, "InWatchView" },
+		{ 12, "InPublic" },
+		{ 13, "InTrespassing" },
+		{ 14, "InLicenseToKill" },
+		{ 15, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplaySystem"] = {
+		{ 0, "CoverSystem" },
+		{ 1, "HitReaction_Stumble" },
+		{ 2, "Skill_Dash" },
+		{ 3, "Skill_StartMeleeAttack" },
+		{ 4, "Skill_StartSprinting" },
+		{ 5, "Skill_Uncrouch" },
+		{ 6, "Skill_Crouch" },
+		{ 7, "Skill_QuickThrow" },
+		{ 8, "Skill_AimedThrow" },
+		{ 9, "Skill_Aiming" },
+		{ 10, "Skill_PickupItem" },
+		{ 11, "Skill_PickupFirearm" },
+		{ 12, "Skill_SilentTakedown" },
+		{ 13, "Skill_GadgetView" },
+		{ 14, "Skill_GadgetActivation" },
+		{ 15, "Skill_TrespassingStanceChange" },
+		{ 16, "Skill_Pickpocket" },
+		{ 17, "Skill_Whistle" },
+		{ 18, "Skill_Interact" },
+		{ 19, "Skill_ActiveBluff" },
+		{ 20, "Skill_StopSprinting" },
+		{ 21, "Skill_AttackFromAbove" },
+		{ 22, "Skill_AgencyFocus" },
+		{ 23, "AgencySystem" },
+		{ 24, "AgilitySystem" },
+		{ 25, "SituationContained" },
+		{ 26, "CombatRush" },
+		{ 27, "TouchTheWorldSystem" },
+		{ 28, "VaultFinisher" },
+		{ 29, "Skill_ContextualThrow" },
+		{ 30, "Skill_ConfrontationOptIn" },
+		{ 31, "Skill_Block" },
+		{ 32, "Skill_Parry" },
+		{ 33, "Skill_Grab" },
+		{ 34, "Skill_CameraFocus" },
+		{ 35, "Skill_Finisher" },
+		{ 36, "Skill_GrabRush" },
+		{ 37, "Skill_FakeSurrender" },
+		{ 38, "Skill_Sidestep" },
+		{ 39, "Skill_CombatRushPairedAction" },
+		{ 40, "ConsumeGadgetResources" },
+		{ 41, "GadgetViewSlowmo" },
+		{ 42, "VaultDisarm" },
+		{ 43, "SelectNextFirearm" },
+		{ 44, "Skill_GrabQuickThrow" },
+		{ 45, "Skill_Disarm" },
+		{ 46, "Skill_CombatRushGrab" },
+		{ 47, "Skill_DoorKick" },
+		{ 48, "Skill_DoorRush" },
+		{ 49, "TakedownAmmoReward" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerGameplaySystemDisabledStateLayerType"] = {
+		{ 0, "Base" },
+		{ 1, "Secondary" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerInputCollisionProbesModType"] = {
+		{ 0, "DisableProbes" },
+		{ 1, "ModifyMoveAlongSurfaceAngle" },
+		{ 2, "ModifyProbesDistance" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerInputSchemeType"] = {
+		{ 0, "Humanoid" },
+		{ 1, "Vehicle" },
+		{ 2, "Custom" },
+		{ 3, "GameUI" },
+		{ 4, "EngineUI" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerMovementDisabledSource"] = {
+		{ 0, "CoreLogic" },
+		{ 1, "FakeSurrender" },
+		{ 2, "QuickFire" },
+		{ 3, "AIDecisionMaking" },
+		{ 4, "Confrontation" },
+		{ 5, "Comply" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerMovementInputConstraintApplicationType"] = {
+		{ 0, "Override" },
+		{ 1, "Aggregate" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerMovementInputConstraintLayerType"] = {
+		{ 0, "Base" },
+		{ 1, "Secondary" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerMovementInputConstraintType"] = {
+		{ 1, "InputSpeedLevel" },
+		{ 2, "InputDeviceMagnitude" },
+		{ 3, "InputDeviceDirection" },
+		{ 4, "InputDeviceSmoothing" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerTargetLineOfSightReachType"] = {
+		{ 0, "FirstContactWithTargetSurface" },
+		{ 1, "TargetCenter" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerTargetLineOfSightType"] = {
+		{ 0, "None" },
+		{ 1, "SingleRay" },
+		{ 2, "Sweep" },
+		{ 3, "MultipleRayPoints" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerTargetSortMode"] = {
+		{ 0, "DistanceToScreenCenter" },
+		{ 1, "DistanceToCamera" },
+		{ 2, "ScoreCurves" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerTargetState"] = {
+		{ 0, "Locked" },
+		{ 1, "Sticky" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerTargetStickinessType"] = {
+		{ 0, "None" },
+		{ 1, "DurationMaxScore" },
+		{ 2, "DurationMinScore" },
+		{ 3, "IncreasedAngle" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerTimeSlowDownSource"] = {
+		{ 0, "AgencyFocus" },
+		{ 1, "GadgetView" },
+		{ 2, "LastKill" },
+		{ 3, "CoreLogic" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerVirtualCapsuleObstacleType"] = {
+		{ 0, "Invalid" },
+		{ 1, "HighObstacle" },
+		{ 2, "LowObstacle" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerVirtualCapsuleResultType"] = {
+		{ 0, "None" },
+		{ 1, "StopOnCollisionSurface" },
+		{ 2, "StopOnCollisionWithNPC" },
+		{ 3, "ApproachToStopOnCollisionSurface" },
+		{ 4, "MovingTowardsCover" },
+		{ 5, "RemapInputAlongCollisionSurface" },
+		{ 6, "RemapInputForNPCCollisionAvoidance" },
+	};
+
+	(*g_Enums)["Gameplay.EPlayerVirtualCapsuleSufaceWidthEstimationType"] = {
+		{ 0, "Invalid" },
+		{ 1, "NoCollision" },
+		{ 2, "DistanceToCorner" },
+		{ 3, "SingleHitVirtualCapsule" },
+		{ 4, "DistanceToSimulationEnd" },
+	};
+
+	(*g_Enums)["Gameplay.EPotentialHazardNpcReactionType"] = {
+		{ 0, "Attract" },
+		{ 1, "Repel" },
+	};
+
+	(*g_Enums)["Gameplay.EPrivateSpaceInvadedReactionRole"] = {
+		{ 0, "None" },
+		{ 1, "Invading" },
+		{ 2, "Reacting" },
+	};
+
+	(*g_Enums)["Gameplay.EPrivateSpaceInvadedReactionType"] = {
+		{ 0, "None" },
+		{ 1, "Passive" },
+		{ 2, "Mine" },
+		{ 3, "InPlace" },
+	};
+
+	(*g_Enums)["Gameplay.EProjectileImpactBodyPart"] = {
+		{ 0, "Torso" },
+		{ 1, "Head" },
+		{ 2, "LeftHand" },
+		{ 3, "LeftArm" },
+		{ 4, "LeftLeg" },
+		{ 5, "RightHand" },
+		{ 6, "RightArm" },
+		{ 7, "RightLeg" },
+		{ 8, "None" },
+		{ 9, "Weapon" },
+	};
+
+	(*g_Enums)["Gameplay.EProjectileImpactOrigin"] = {
+		{ 0, "FRONT" },
+		{ 1, "BACK" },
+		{ 2, "LEFT" },
+		{ 3, "RIGHT" },
+	};
+
+	(*g_Enums)["Gameplay.ERangedCombatSituation"] = {
+		{ 0, "Default" },
+		{ 1, "TargetInCover" },
+		{ 2, "TargetAimingFromCover" },
+		{ 3, "TargetBackInSight" },
+		{ 4, "TargetSprinting" },
+		{ 5, "TargetDashing" },
+		{ 6, "TargetVaulting" },
+		{ 7, "TargetGettingShot" },
+		{ 8, "TargetDoingFinisher" },
+		{ 9, "TargetCombatRushing" },
+		{ 10, "BeingShot" },
+		{ 11, "Flanking" },
+		{ 12, "DoingFocusedShot" },
+		{ 13, "AfterFocusedShot" },
+		{ 14, "BossAssassinBasement" },
+		{ 15, "BossAssassinTakedownGracePeriod" },
+		{ 16, "BossAssassinSniper" },
+		{ 17, "DuringCloseCombat" },
+		{ 18, "AfterCloseCombat" },
+		{ 19, "HealthThresholdCap" },
+		{ 20, "HitCap" },
+		{ 21, "HitCap2" },
+		{ 22, "AfterFriendlyFire" },
+		{ 23, "BossExoDamien" },
+		{ 24, "TargetCoverDestroyed" },
+	};
+
+	(*g_Enums)["Gameplay.ERulesOfEngagementLethalForceAvailability"] = {
+		{ 0, "Default" },
+		{ 1, "Available" },
+		{ 2, "Unavailable" },
+	};
+
+	(*g_Enums)["Gameplay.ESequenceControllerGpwEntityType"] = {
+		{ 0, "Humanoid" },
+		{ 1, "Vehicle" },
+	};
+
+	(*g_Enums)["Gameplay.ESequenceControllerGpwVehicleEntityType"] = {
+		{ 0, "Car" },
+		{ 1, "Boat" },
+	};
+
+	(*g_Enums)["Gameplay.ESicknessDartReaction"] = {
+		{ 0, "Immune" },
+		{ 1, "ShrugOff" },
+		{ 2, "FullReaction" },
+	};
+
+	(*g_Enums)["Gameplay.ESideStepType"] = {
+		{ 0, "Hop" },
+		{ 1, "SideStep" },
+	};
+
+	(*g_Enums)["Gameplay.ESideStepWindowType"] = {
+		{ 0, "Grab" },
+		{ 1, "MeleeAttack" },
+		{ 2, "TaserShot" },
+	};
+
+	(*g_Enums)["Gameplay.ESimulatedPlayerActiveSkill"] = {
+		{ 0, "SimulatedSkill_Confrontation" },
+		{ 1, "SimulatedSkill_FakeSurrender" },
+	};
+
+	(*g_Enums)["Gameplay.EStaggerSource"] = {
+		{ 0, "ThrowableImpact" },
+		{ 1, "MeleeImpact" },
+		{ 2, "VaultImpact" },
+		{ 3, "StaggeredMovementImpact" },
+		{ 4, "GrabThrow" },
+		{ 5, "Taser" },
+		{ 6, "Flashbang" },
+		{ 7, "CoreLogic" },
+		{ 8, "Parry" },
+		{ 9, "DoorImpact" },
+		{ 10, "Firearm" },
+		{ 11, "PrivateSpacePush" },
+		{ 12, "Shockwave" },
+		{ 13, "Explosion" },
+		{ 14, "PairedAction" },
+		{ 15, "AgilityActionImpact" },
+		{ 16, "StumbleImpact" },
+		{ 17, "CapsuleOverlap" },
+		{ 18, "FlashMine" },
+		{ 19, "ElectricalSurge" },
+	};
+
+	(*g_Enums)["Gameplay.EStaggerStrength"] = {
+		{ 0, "Light" },
+		{ 1, "Medium" },
+		{ 2, "Heavy" },
+	};
+
+	(*g_Enums)["Gameplay.EStaggerStrengthFlags"] = {
+		{ 1, "Light" },
+		{ 2, "Medium" },
+		{ 4, "Heavy" },
+	};
+
+	(*g_Enums)["Gameplay.EStaggeredLocomotionState"] = {
+		{ 0, "MeleeImpact" },
+		{ 1, "Generic" },
+		{ 2, "FirearmImpact" },
+		{ 3, "Idle" },
+		{ 4, "WallImpact" },
+		{ 5, "LowCoverImpact" },
+		{ 6, "Death" },
+		{ 7, "GrabThrow" },
+		{ 8, "Parry" },
+		{ 9, "WallDeath" },
+		{ 10, "VaultAttackImpact" },
+		{ 11, "LowCoverRoll" },
+		{ 12, "HumanoidImpact" },
+		{ 13, "ThrowableImpact" },
+		{ 14, "DeathOverEdge" },
+		{ 15, "PrivateSpacePush" },
+		{ 16, "Explosion" },
+		{ 17, "PairedAction" },
+		{ 18, "Shockwave" },
+		{ 19, "FlashMine" },
+	};
+
+	(*g_Enums)["Gameplay.EStanceChangeSource"] = {
+		{ 0, "Undefined" },
+		{ 1, "CrouchAimingInLowCover" },
+		{ 2, "CrouchFromHighToLowCover" },
+		{ 3, "CrouchGoal" },
+		{ 4, "CrouchAfterScaling" },
+		{ 5, "CrouchAfterLowCoverTakedown" },
+		{ 6, "CrouchDashToLowCover" },
+		{ 7, "UncrouchGoal" },
+		{ 8, "UncrouchDashToHighCover" },
+		{ 9, "UncrouchAimingInLowCover" },
+		{ 10, "UncrouchOnCloseCombatHitReaction" },
+		{ 11, "UncrouchWhenStaggered" },
+		{ 12, "UncrouchWhenCloseCombat" },
+		{ 13, "UncrouchWhenInConfrontation" },
+		{ 14, "UncrouchWhenInSocialGameplayArea" },
+		{ 15, "UncrouchWhenAccelerating" },
+		{ 16, "MovingAndAiming" },
+		{ 17, "Moving" },
+		{ 18, "Aiming" },
+		{ 19, "Idle" },
+		{ 20, "AgilityAction" },
+		{ 21, "CrouchAfterAttackFromAbove" },
+	};
+
+	(*g_Enums)["Gameplay.EStartMeleeAttackSkillAvailability"] = {
+		{ 0, "Available" },
+		{ 1, "Unavailable_AttackNotRequested" },
+		{ 2, "Unavailable_GameplaySystemDisabled" },
+		{ 3, "Unavailable_SoftTrespassing" },
+		{ 4, "Unavailable_CombatDisabled" },
+		{ 5, "Unavailable_MotorConfig" },
+		{ 6, "Unavailable_GadgetView" },
+		{ 7, "Unavailable_InteractionAnimation" },
+		{ 8, "Unavailable_GrabCooldown" },
+		{ 9, "Unavailable_ConflictingHumanoidData" },
+		{ 10, "Unavailable_MeleeAttackingWithChainWindowClosed" },
+		{ 11, "Unavailable_Grabbing" },
+		{ 12, "Unavailable_NoValidTarget" },
+		{ 13, "Unavailable_NoValidAttack" },
+		{ 14, "Unavailable_AimTargetDriven" },
+		{ 15, "Unavailable_NoValidTargetAfterCloseCombatKillCooldown" },
+		{ 16, "Unavailable_OnGuide" },
+		{ 17, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EStartMeleeAttackSkillVictimStatus"] = {
+		{ 0, "Unknown" },
+		{ 1, "Invalid_TooFarWhenDoingFakeSurrender" },
+		{ 2, "Invalid_NoCandidateWithinMeleeAttackRange" },
+		{ 3, "Valid" },
+		{ 4, "Valid_FakeSurrenderTarget" },
+		{ 5, "Valid_BestCandidateWithinMeleeAttackRange" },
+	};
+
+	(*g_Enums)["Gameplay.EStumbleCandidateType"] = {
+		{ 0, "Undefined" },
+		{ 1, "Humanoid" },
+		{ 2, "Lowcover" },
+		{ 3, "Railing" },
+		{ 4, "Wall" },
+		{ 5, "LowcoverRoll" },
+		{ 6, "Entity" },
+		{ 7, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EStumbleDamageEventType"] = {
+		{ 0, "OnStumble" },
+		{ 1, "OnAnimationEvent" },
+	};
+
+	(*g_Enums)["Gameplay.EStumbleImpactFlag"] = {
+		{ 0, "BlockingImpact" },
+		{ 1, "Heavy" },
+		{ 2, "CausesRollOver" },
+		{ 3, "AllowsContextualAttack" },
+		{ 4, "StunsInstigator" },
+		{ 5, "UnequipWeapon" },
+		{ 6, "FallbackStumble" },
+		{ 7, "IsDamageableObject" },
+		{ 8, "IsDoor" },
+		{ 9, "WillDestroyObject" },
+		{ 10, "StaggerStumbledTarget" },
+		{ 11, "LandedDuringRollOver" },
+		{ 12, "OverrideStumble" },
+	};
+
+	(*g_Enums)["Gameplay.EStumbleImpactType"] = {
+		{ 0, "Unknown" },
+		{ 1, "HighWall" },
+		{ 2, "LowWall" },
+		{ 3, "Humanoid" },
+		{ 4, "RailingDeath" },
+		{ 5, "LowCoverRoll" },
+	};
+
+	(*g_Enums)["Gameplay.EStumbleListenerImpactType"] = {
+		{ 0, "Stumble" },
+		{ 1, "ContextualPairedAction" },
+	};
+
+	(*g_Enums)["Gameplay.EStunType"] = {
+		{ 0, "Taser" },
+		{ 1, "Flashbang" },
+		{ 2, "SlipAndKnockout" },
+		{ 3, "Stagger" },
+		{ 4, "Parry" },
+		{ 255, "Invalid" },
+	};
+
+	(*g_Enums)["Gameplay.ETWILeaveContext"] = {
+		{ 0, "None" },
+		{ 1, "StopInProgress" },
+		{ 2, "Leaving" },
+	};
+
+	(*g_Enums)["Gameplay.ETWIRuntimeState"] = {
+		{ 0, "Idle" },
+		{ 1, "Searching" },
+		{ 2, "CloseButNoSurfaceHit" },
+		{ 3, "SurfaceHit" },
+		{ 4, "Aborted" },
+		{ 5, "OnCooldown" },
+	};
+
+	(*g_Enums)["Gameplay.ETWIStopContext"] = {
+		{ 0, "None" },
+		{ 1, "HighObstacleStop" },
+		{ 2, "HighObstaclePredictedStop" },
+		{ 3, "LowObstacleStop" },
+		{ 4, "LowObstaclePredictedStop" },
+	};
+
+	(*g_Enums)["Gameplay.ETargetingRaycastDetailLevel"] = {
+		{ 0, "Simple" },
+		{ 1, "Bones" },
+		{ 2, "Detailed" },
+	};
+
+	(*g_Enums)["Gameplay.ETraversalRaycastHitAspectFlag"] = {
+		{ 0, "SlidingSurface" },
+	};
+
+	(*g_Enums)["Gameplay.ETraversalSearchResultType"] = {
+		{ 0, "None" },
+		{ 1, "Edge" },
+		{ 2, "Ramp" },
+		{ 3, "BlockingObstacle" },
+		{ 4, "NarrowObstacle" },
+		{ 5, "ObstacleToClimb" },
+		{ 6, "ObstacleToVault" },
+		{ 7, "ObstacleToJump" },
+		{ 8, "ObstacleVaultDisabled" },
+		{ 9, "ObstacleClimbDisabled" },
+		{ 10, "ObstacleMarkupWithAgilityDisabled" },
+		{ 11, "DisallowedApproachAngle" },
+	};
+
+	(*g_Enums)["Gameplay.ETurnCoverCornerType"] = {
+		{ 0, "NotAvailable" },
+		{ 1, "AvailableInactive" },
+		{ 2, "AvailableReady" },
+	};
+
+	(*g_Enums)["Gameplay.EUseDoorSkillType"] = {
+		{ 0, "Open" },
+		{ 1, "Close" },
+		{ 2, "Kick" },
+		{ 3, "Bullrush" },
+		{ 4, "Sabotage" },
+		{ 5, "TryUseSabotagedDoor" },
+	};
+
+	(*g_Enums)["Gameplay.EVaultObstacleDepthVariations"] = {
+		{ 0, "Fence" },
+		{ 1, "ShortestLowObstacle" },
+		{ 2, "ShortLowObstacle" },
+		{ 3, "DeepLowObstacle" },
+		{ 4, "DeepestLowObstacle" },
+	};
+
+	(*g_Enums)["Gameplay.EVaultType"] = {
+		{ 0, "VaultDefault" },
+		{ 1, "VaultAttack" },
+		{ 2, "VaultFinisher" },
+		{ 3, "VaultDisarm" },
+		{ 4, "None" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleAerodynamicsDownforceMode"] = {
+		{ 0, "Always" },
+		{ 1, "OnlyOnGround" },
+		{ 2, "OnlyOnAir" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleApplyForceSource"] = {
+		{ 0, "Aerodynamics" },
+		{ 1, "ExternalSource" },
+		{ 2, "CollisionAssist" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleAttachmentsDriveMode"] = {
+		{ 0, "PhysicsDriven" },
+		{ 1, "AnimationDriven" },
+		{ 2, "MixOfPhysicsAndAnimation" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleBoatAnimationState"] = {
+		{ 0, "NotInBoat" },
+		{ 1, "Entering" },
+		{ 2, "Driving" },
+		{ 3, "Passanger" },
+		{ 4, "Exiting" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleBoatCollisionObjectType"] = {
+		{ 0, "Wall" },
+		{ 1, "AnotherBoat" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleBoatHardCollisionAssistType"] = {
+		{ 0, "NotColliding" },
+		{ 1, "AutoSteeringWithSideCollision" },
+		{ 2, "UsingPhysicsCollision" },
+		{ 3, "ArtificialBounceOffSurface" },
+		{ 4, "HardStop" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleBoatHumanoidAttachmentParent"] = {
+		{ 0, "PhysicsSpatial" },
+		{ 1, "VisualSpatial" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleBoatNPCHangPointType"] = {
+		{ -1, "None" },
+		{ 0, "N_0" },
+		{ 1, "NE_1" },
+		{ 2, "SE_2" },
+		{ 3, "SW_3" },
+		{ 4, "NW_4" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleBoatVisualsMode"] = {
+		{ 0, "SimpleMesh" },
+		{ 1, "AnimatedMesh" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCameraStateType"] = {
+		{ 0, "AtRest" },
+		{ 1, "Rolling" },
+		{ 2, "Accelerating" },
+		{ 3, "Braking" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCameraTargetReinitializationType"] = {
+		{ 0, "None" },
+		{ 1, "InitializeWithEnteringVehicleCamera" },
+		{ 2, "InitializeWithDrivingCamera" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCameraTargetSpringFollowMode"] = {
+		{ 0, "SpeedBasedResponsiveness" },
+		{ 1, "AngleBasedResponsiveness" },
+		{ 2, "SpeedBasedSimpleVehicleSpring" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCameraTargetSpringFollowState"] = {
+		{ 0, "InitializeWithEnteringVehicleCamera" },
+		{ 1, "InitializeWithDrivingCamera" },
+		{ 2, "InputBasedSprings" },
+		{ 3, "CooldownSprings" },
+		{ 4, "InputAssistSpringFollow" },
+		{ 5, "InputTriggeredReset" },
+		{ 6, "VehiclePhysicsSprings" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCameraTargetType"] = {
+		{ 0, "Default" },
+		{ 1, "VehiclePhysicsSpringFollowTarget" },
+		{ 2, "VehiclePhysicsSpringLookAtTarget" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCameraType"] = {
+		{ 0, "BasedOnInputState" },
+		{ 1, "BasedOnVehiclePhysics" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCarAnimationState"] = {
+		{ 0, "None" },
+		{ 1, "Entering" },
+		{ 2, "Driving" },
+		{ 3, "Exiting" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCarComponentType"] = {
+		{ 0, "Drifting" },
+		{ 1, "CollisionHandling" },
+		{ 2, "Aerodynamics" },
+		{ 3, "CameraController" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCarConfigOverrideType"] = {
+		{ 0, "Acceleration" },
+		{ 1, "RevAcceleration" },
+		{ 2, "Deceleration" },
+		{ 3, "Steering" },
+		{ 4, "Tires" },
+		{ 5, "WheelsSteeringAndBrakes" },
+		{ 6, "WheelsAntiroll" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCinematicSpeedMode"] = {
+		{ 0, "None" },
+		{ 1, "ForwardSpeed" },
+		{ 2, "RigidbodyVelocity" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleCollisionCorrectionMode"] = {
+		{ 0, "ImpactForceImpulse" },
+		{ 1, "ConstantLateralForce" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleDebugLogCategory"] = {
+		{ 0, "SimulationPauseResume" },
+		{ 1, "Aerodynamics" },
+		{ 2, "Teleport" },
+		{ 3, "ExternalForces" },
+		{ 4, "SpeedModifiers" },
+		{ 5, "CollisionDetection" },
+		{ 6, "DataChanges" },
+		{ 7, "Count" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleDriftingConfigType"] = {
+		{ 0, "Brake" },
+		{ 1, "Handbrake" },
+		{ 2, "Autodrift" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleDriftingDeactivationConditionType"] = {
+		{ 0, "ForwardSpeed" },
+		{ 1, "LateralSpeed" },
+		{ 2, "AngularSpeed" },
+		{ 3, "SteeringValue" },
+		{ 4, "LateralSpeedUp" },
+		{ 5, "AngularSpeedUp" },
+		{ 6, "CounterSteering" },
+		{ 7, "HandbrakeOff" },
+		{ 8, "BrakesOff" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleForceType"] = {
+		{ 0, "Impulse" },
+		{ 1, "PointImpulse" },
+		{ 2, "Force" },
+		{ 3, "PointForce" },
+		{ 4, "TorqueImpulse" },
+		{ 5, "Torque" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleHumanoidAttachMode"] = {
+		{ 0, "Instant" },
+		{ 1, "AnimationDriven" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleHumanoidAttachmentParent"] = {
+		{ 0, "PhysicsChassis" },
+		{ 1, "SkeletonSpatial" },
+		{ 2, "VehicleSpatialAttachment" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleHumanoidVisibility"] = {
+		{ 0, "Visible" },
+		{ 1, "Invisible" },
+	};
+
+	(*g_Enums)["Gameplay.EVehiclePhysicalPartType"] = {
+		{ 0, "WheelFrontLeft" },
+		{ 1, "WheelFrontRight" },
+		{ 2, "WheelRearLeft" },
+		{ 3, "WheelRearRight" },
+		{ 4, "Chassis" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleSetAngularVelocitySource"] = {
+		{ 0, "AerodynamicPitchConstraint" },
+		{ 1, "AerodynamicRollConstraint" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleSkeletonSpatialSynchronizationMode"] = {
+		{ 0, "Disabled" },
+		{ 1, "PhysicsTransform" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleSlopeState"] = {
+		{ 0, "Invalid" },
+		{ 1, "Airbone" },
+		{ 2, "Uphill" },
+		{ 3, "Downhill" },
+		{ 4, "Flat" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleSpatialAttachmentLocalOffsetType"] = {
+		{ 0, "None" },
+		{ 1, "Inline" },
+		{ 2, "External" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleSpatialAttachmentMode"] = {
+		{ 0, "WorldPositionAndRotation" },
+		{ 1, "WorldPosition" },
+		{ 2, "WorldRotation" },
+		{ 3, "WorldPositionPhysicsBodyRotation" },
+		{ 4, "WorldPositionSpeedBasedWheelRotation" },
+		{ 5, "SkeletonBoneTransformFromPhysicalPart" },
+		{ 6, "SkeletonBoneTransformCustom" },
+		{ 7, "CustomVehicleSpatialPositionSpeedBasedWheelRotation" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleSpatialAttachmentOscilationMethod"] = {
+		{ 0, "Sin" },
+		{ 1, "Cos" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleSpatialAttachmentOscilationType"] = {
+		{ 0, "Yaw" },
+		{ 1, "Pitch" },
+		{ 2, "Roll" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleVelocityModifier"] = {
+		{ 0, "SetForwardSpeedSingleFrame" },
+		{ 1, "AddMaxSpeedLimit" },
+		{ 2, "RemoveMaxSpeedLimit" },
+	};
+
+	(*g_Enums)["Gameplay.EVehicleWheelIndex"] = {
+		{ 0, "FrontLeft" },
+		{ 1, "FrontRight" },
+		{ 2, "RearLeft" },
+		{ 3, "RearRight" },
+	};
+
+	(*g_Enums)["Gameplay.EVirtualCapsuleApproachReasonType"] = {
+		{ 0, "None" },
+		{ 1, "EarlyExit" },
+		{ 2, "InCover" },
+		{ 3, "AnticipationWithApproach" },
+		{ 4, "CollisionStopWithoutApproach" },
+		{ 5, "InputRemap" },
+		{ 6, "NoVirtualCapsuleResult" },
+	};
+
+	(*g_Enums)["Gameplay.EVirtualCapsuleApproachResultType"] = {
+		{ 0, "None" },
+		{ 1, "AddApproach" },
+		{ 2, "RemoveApproachImmediately" },
+		{ 3, "RemoveApproachWhenFinished" },
+	};
+
+	(*g_Enums)["Gameplay.EVirtualCapsuleNPCCollisionType"] = {
+		{ -1, "Invalid" },
+		{ 0, "Front" },
+		{ 1, "LateralLeft" },
+		{ 2, "LateralRight" },
+	};
+
+	(*g_Enums)["Gameplay.EVisualAggressionLevel"] = {
+		{ 0, "None" },
+		{ 1, "Soft" },
+		{ 2, "Hard" },
+	};
+
+	(*g_Enums)["Gameplay.PhysicalGoalStatus"] = {
+		{ 0, "CreatedByPrimitiveTask" },
+		{ 1, "ScheduledToBeAbortedFromPrimitiveTask" },
+		{ 2, "PassedSolver" },
+		{ 3, "RejectedBySolver" },
+		{ 4, "AbortedBySolver" },
+		{ 5, "AbortedNoSkill" },
+		{ 6, "AbortedByAutomatedRemoval" },
+		{ 7, "AbortedFromPrimitiveTask" },
+		{ 8, "InSkill" },
+		{ 9, "Failed" },
+		{ 10, "Succeeded" },
+	};
+
+	(*g_Enums)["Gameplay.PlayerInteractions.EInteractionAnimationOperationResult"] = {
+		{ 0, "None" },
+		{ 1, "StartRequestAccepted" },
+		{ 2, "StartRequestRejected" },
+		{ 3, "InteractionCompleted" },
+		{ 4, "InteractionInterrupted" },
+	};
+
+	(*g_Enums)["Gameplay.PlayerInteractions.EType"] = {
+		{ 0, "Standard" },
+		{ 1, "Pickpocket" },
 	};
 
 	(*g_Enums)["Geppetto.EFoleySoundCulling32"] = {
@@ -3738,6 +7008,142 @@ void ZHMEnums::RegisterEnums()
 		{ 11, "eOculusVR" },
 		{ 12, "eOpenVR" },
 		{ 13, "eControllerTypeCount" },
+	};
+
+	(*g_Enums)["InputOverride.ZActionDeviceConfigEntity.EDeviceType"] = {
+		{ 1, "Gamepad" },
+		{ 2, "Mouse" },
+		{ 4, "Keyboard" },
+	};
+
+	(*g_Enums)["JSONTemplate.EBusyState"] = {
+		{ 0, "Saving" },
+		{ 1, "SavingFailed" },
+		{ 2, "SavingSuccess" },
+		{ 3, "OnlineConnecting" },
+		{ 4, "Loading" },
+		{ 5, "Fetching" },
+		{ 6, "None" },
+	};
+
+	(*g_Enums)["JSONTemplate.EControllerLayoutInputType"] = {
+		{ 0, "Invalid" },
+		{ 1, "Hold" },
+		{ 2, "Click" },
+	};
+
+	(*g_Enums)["JSONTemplate.EDebugMenuItemType"] = {
+		{ 0, "Invalid" },
+		{ 1, "Group" },
+		{ 2, "Trigger" },
+		{ 3, "Bool" },
+		{ 4, "Slider" },
+		{ 5, "ListInt" },
+	};
+
+	(*g_Enums)["JSONTemplate.EEditTextDialogInputType"] = {
+		{ 0, "Multiline" },
+		{ 1, "Line" },
+		{ 2, "PublicID" },
+		{ 3, "Number" },
+		{ 4, "Email" },
+		{ 5, "URL" },
+	};
+
+	(*g_Enums)["JSONTemplate.EGlobalIlluminationStatus"] = {
+		{ 0, "Unknown" },
+		{ 1, "Enabled" },
+		{ 2, "Disabled" },
+		{ 3, "Frozen" },
+	};
+
+	(*g_Enums)["JSONTemplate.EModalDialogPriority"] = {
+		{ 0, "Critical" },
+		{ 1, "GDPRConsent" },
+		{ 2, "MultiplayerSystem" },
+		{ 3, "Disconnect" },
+		{ 4, "System" },
+		{ 5, "Normal" },
+		{ 6, "Low" },
+	};
+
+	(*g_Enums)["JSONTemplate.ETemplateType"] = {
+		{ 0, "ETT_BASE" },
+		{ 1, "ETT_DATA_VALUE" },
+		{ 2, "ETT_DATA_VALUE_CUSTOM" },
+		{ 3, "ETT_DELAY" },
+		{ 4, "ETT_OBJECT" },
+		{ 5, "ETT_ARRAY" },
+		{ 6, "ETT_ASYNCROOT" },
+		{ 7, "ETT_IF" },
+		{ 8, "ETT_SWITCH" },
+		{ 9, "ETT_EACH" },
+		{ 10, "ETT_REPEAT" },
+		{ 11, "ETT_LOC" },
+		{ 12, "ETT_TO_LOCALE_UPPER_CASE" },
+		{ 13, "ETT_PARENTHESIS" },
+		{ 14, "ETT_FORMATSTRING" },
+		{ 15, "ETT_FORMATINT" },
+		{ 16, "ETT_FORMATNUMBER" },
+		{ 17, "ETT_FORMATDATE" },
+		{ 18, "ETT_FORMATTIME" },
+		{ 19, "ETT_INTCLAMP" },
+		{ 20, "ETT_FORMATPUBLICID" },
+		{ 21, "ETT_ISNULL" },
+		{ 22, "ETT_DATA_CONTEXT" },
+		{ 23, "ETT_ARRAY_ELEMENT" },
+		{ 24, "ETT_ARRAY_FILTER" },
+		{ 25, "ETT_ARRAY_CONVERT" },
+		{ 26, "ETT_ARRAY_SIZE" },
+		{ 27, "ETT_ARRAY_SORT" },
+		{ 28, "ETT_ARRAY_GROUPBY" },
+		{ 29, "ETT_EXPAND" },
+		{ 30, "ETT_ISNULLOREMPTY" },
+		{ 31, "ETT_NOT" },
+		{ 32, "ETT_COMPARE" },
+		{ 33, "ETT_AND" },
+		{ 34, "ETT_OR" },
+		{ 35, "ETT_MERGEOBJECTS" },
+		{ 36, "ETT_MERGEARRAYS" },
+		{ 37, "ETT_LOCALE_TEXT" },
+		{ 38, "ETT_LOCALE_AUDIO" },
+		{ 39, "ETT_CURRENT_LOCALE_TEXT" },
+		{ 40, "ETT_GET_APPLICATION_OPTION" },
+		{ 41, "ETT_ACTION_REFERENCE" },
+		{ 42, "ETT_NO_TRANSFORM" },
+		{ 43, "ETT_EVAL" },
+		{ 44, "ETT_PLATFORM" },
+		{ 45, "ETT_REGION" },
+		{ 46, "ETT_STOREREGION" },
+		{ 47, "ETT_STORE" },
+		{ 48, "ETT_IS_DISC_RELEASE" },
+		{ 49, "ETT_ISDEBUG" },
+		{ 50, "ETT_INPUT_AVAILABLECONTROLLERTYPE" },
+		{ 51, "ETT_INPUTCONTROLLERTYPE" },
+		{ 52, "ETT_IS_CONTROLLER_AVAILABLE" },
+		{ 53, "ETT_IS_KEYBOARD_AVAILABLE" },
+		{ 54, "ETT_IS_VR_DEVICE_AVAILABLE" },
+		{ 55, "ETT_IS_VR_DEVICE_ACTIVE" },
+		{ 56, "ETT_IS_VR_ACTIVE" },
+		{ 57, "ETT_VR_MODE" },
+		{ 58, "ETT_DEBUG_ARRAY_TEST_DATA" },
+		{ 59, "ETT_DEBUG_PARAMETER_TEST" },
+		{ 60, "ETT_DEBUG_QUERY_TEST" },
+		{ 61, "ETT_LAST_RUNTIME_TEMPLATE" },
+	};
+
+	(*g_Enums)["JSONTemplate.EUIInputActionDeviceFilter"] = {
+		{ 0, "All" },
+		{ 1, "ActiveType" },
+		{ 2, "Gamepad" },
+		{ 3, "MouseAndKeyboard" },
+		{ 4, "Mouse" },
+		{ 5, "Keyboard" },
+	};
+
+	(*g_Enums)["JSONTemplate.SModalDialogButton.EType"] = {
+		{ 0, "OK" },
+		{ 1, "Cancel" },
 	};
 
 	(*g_Enums)["KntLoadoutCollection.EGameMode"] = {
@@ -3968,6 +7374,11 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "eFFX_MODE_OVERWRITE" },
 	};
 
+	(*g_Enums)["ZAddRemoveArmorEntity.EArmorOperation"] = {
+		{ 0, "Add" },
+		{ 1, "Remove" },
+	};
+
 	(*g_Enums)["ZAudioSequenceTrack.EPlaybackTarget"] = {
 		{ 0, "eNone" },
 		{ 1, "eTargetEntityAudioPlayer" },
@@ -4024,9 +7435,125 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "LtkWindowOfOpportunity" },
 	};
 
+	(*g_Enums)["ZCLAIGuidanceConfigurationEntity.EDirection"] = {
+		{ 0, "Behind" },
+		{ 1, "BehindLeft" },
+		{ 2, "BehindRight" },
+	};
+
+	(*g_Enums)["ZCLAIGuidanceConfigurationEntity.ELinkedTargetSelectionMode"] = {
+		{ 0, "StorylineParticipant" },
+		{ 1, "HumanoidCharacter" },
+	};
+
+	(*g_Enums)["ZCLAISoundDistractionStimulus.ETier"] = {
+		{ -1, "Invalid" },
+		{ 0, "QuietNoise" },
+		{ 1, "OutOfTheOrdinary" },
+		{ 2, "VerySuspicious" },
+		{ 3, "MajorEvent" },
+		{ 4, "ViolentAggressive" },
+	};
+
+	(*g_Enums)["ZCLAISoundDistractionStimulus.EWhitelistType"] = {
+		{ 0, "Default" },
+		{ 1, "Exclusive" },
+		{ 2, "Preference" },
+	};
+
+	(*g_Enums)["ZCLAddRemovePlayerDashConfigurationOverride.EDashConfigurationOverrideType"] = {
+		{ 0, "AddOverride" },
+		{ 1, "RemoveOverride" },
+	};
+
+	(*g_Enums)["ZCLAddRemoveVehicleBoatConstantInput.EConstantInputAction"] = {
+		{ 0, "AddConstantInput" },
+		{ 1, "RemoveConstantInput" },
+	};
+
+	(*g_Enums)["ZCLAddRemoveVehicleBoatFollowSpline.EFollowSplineAction"] = {
+		{ 0, "AddFollowBehaviour" },
+		{ 1, "RemoveFollowBehaviour" },
+	};
+
+	(*g_Enums)["ZCLAgilityActionStanceModifier.EStance"] = {
+		{ 0, "Stand" },
+		{ 1, "Crouch" },
+	};
+
+	(*g_Enums)["ZCLApplyForceToVehicleBoat.EBoatForceDirectionDataType"] = {
+		{ 0, "InlineLocal" },
+		{ 1, "InlineWorldSpace" },
+		{ 2, "ExternalLocal" },
+		{ 3, "ExternalUseSpatialForward" },
+		{ 4, "ExternalTowardsSpatial" },
+	};
+
+	(*g_Enums)["ZCLApplyForceToVehicleBoat.EBoatForceMagnitudeDataType"] = {
+		{ 0, "Inline" },
+		{ 1, "External" },
+	};
+
+	(*g_Enums)["ZCLApplyForceToVehicleBoat.EBoatForceType"] = {
+		{ 0, "Impulse" },
+		{ 1, "Acceleration" },
+	};
+
+	(*g_Enums)["ZCLApplyForceToVehicleCar.EForceDirectionDataType"] = {
+		{ 0, "InlineLocal" },
+		{ 1, "InlineWorldSpace" },
+		{ 2, "ExternalLocal" },
+		{ 3, "ExternalUseSpatialForward" },
+		{ 4, "ExternalTowardsSpatial" },
+	};
+
+	(*g_Enums)["ZCLApplyForceToVehicleCar.EForceMagnitudeDataType"] = {
+		{ 0, "Inline" },
+		{ 1, "External" },
+	};
+
+	(*g_Enums)["ZCLApplyTorqueToVehicleBoat.EBoatTorqueAxisDataType"] = {
+		{ 0, "InlineLocal" },
+		{ 1, "InlineWorldSpace" },
+		{ 2, "ExternalLocal" },
+		{ 3, "ExternalUseSpatial" },
+	};
+
+	(*g_Enums)["ZCLApplyTorqueToVehicleBoat.EBoatTorqueMagnitudeDataType"] = {
+		{ 0, "Inline" },
+		{ 1, "External" },
+	};
+
+	(*g_Enums)["ZCLApplyTorqueToVehicleBoat.EBoatTorqueSpatialAxisType"] = {
+		{ 0, "Forward" },
+		{ 1, "Right" },
+		{ 2, "Up" },
+	};
+
+	(*g_Enums)["ZCLApplyTorqueToVehicleBoat.EBoatTorqueType"] = {
+		{ 0, "Impulse" },
+		{ 1, "Acceleration" },
+	};
+
+	(*g_Enums)["ZCLAttachOrDetachHumanoidFromVehicleBoat.EAttachDetachAction"] = {
+		{ 0, "AttachToBoat" },
+		{ 1, "DetachFromBoat" },
+	};
+
 	(*g_Enums)["ZCLBoneAttachEntity.EResetMode"] = {
 		{ 0, "eAtBoneOrigin" },
 		{ 1, "eKeepOffset" },
+	};
+
+	(*g_Enums)["ZCLBooleanOperationEntity.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+		{ 3, "NOT_ALL" },
+		{ 4, "ALL_EQUAL" },
+		{ 5, "ONE_TRUE" },
+		{ 6, "COUNT_MIN" },
+		{ 7, "COUNT_MAX" },
 	};
 
 	(*g_Enums)["ZCLBooleanOperationWithNotificationEntity.EEvaluationType"] = {
@@ -4040,9 +7567,109 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "COUNT_MAX" },
 	};
 
+	(*g_Enums)["ZCLCompareStringEntity.CompareType"] = {
+		{ 0, "EQUALS" },
+		{ 1, "EQUALS_CASE_INSENSITIVE" },
+		{ 2, "STARTS_WITH" },
+		{ 3, "STARTS_WITH_CASE_INSENSITIVE" },
+		{ 4, "ENDS_WITH" },
+		{ 5, "ENDS_WITH_CASE_INSENSITIVE" },
+	};
+
 	(*g_Enums)["ZCLDateTimeMatcher.ETimeZoneType"] = {
 		{ 0, "Local" },
 		{ 1, "UTC" },
+	};
+
+	(*g_Enums)["ZCLDetachItem.EDetachMode"] = {
+		{ 0, "PhysicalImpulse" },
+		{ 1, "TargetWorldTransform" },
+	};
+
+	(*g_Enums)["ZCLDismountVehicle.ETransformEditorMode"] = {
+		{ 0, "Inline" },
+		{ 1, "ExternalSpatials" },
+	};
+
+	(*g_Enums)["ZCLDismountVehicleBoat.ETransformEditorMode"] = {
+		{ 0, "Inline" },
+		{ 1, "ExternalSpatials" },
+	};
+
+	(*g_Enums)["ZCLGetAnimationNetworkFootstep.EFootstepType"] = {
+		{ 0, "Any" },
+		{ 1, "Left" },
+		{ 2, "Right" },
+	};
+
+	(*g_Enums)["ZCLGiveOrRemovePlayerVehicleControls.EPlayerVehicleControlsAction"] = {
+		{ 0, "GiveControls" },
+		{ 1, "RemoveControls" },
+	};
+
+	(*g_Enums)["ZCLHumanoidStateConditionEntity.EEvaluationType"] = {
+		{ 0, "All" },
+		{ 1, "None" },
+		{ 2, "Any" },
+		{ 3, "NotAll" },
+		{ 4, "AllEqual" },
+		{ 5, "OneTrue" },
+		{ 6, "CountMin" },
+		{ 7, "CountMax" },
+	};
+
+	(*g_Enums)["ZCLHumanoidStateListenerEntity.EState"] = {
+		{ 0, "Dead" },
+		{ 1, "Alive" },
+		{ 2, "Aiming" },
+		{ 3, "InCover" },
+		{ 4, "Crouching" },
+		{ 5, "HasGround" },
+		{ 6, "NpcActiveBluffable" },
+		{ 7, "NpcLurable" },
+		{ 8, "NpcAvailableForStorylines" },
+		{ 9, "NpcRequestingMagicPocketItem" },
+		{ 10, "DistractedInAmbient" },
+		{ 11, "AttachedToAnyVehicle" },
+		{ 12, "EnteringVehicle" },
+		{ 13, "InVehicle" },
+		{ 14, "ExitingVehicle" },
+		{ 15, "PerformingMeleeFinisher" },
+		{ 16, "PerformingSilentTakedown" },
+		{ 17, "PerformingAttackFromAbove" },
+		{ 18, "PerformingAttackFromCover" },
+		{ 19, "Staggered" },
+		{ 20, "Speaking" },
+		{ 21, "Listening" },
+		{ 22, "InConversation" },
+		{ 23, "Reloading" },
+		{ 24, "Dazed" },
+		{ 25, "Disoriented" },
+		{ 26, "DisorientedByDart" },
+		{ 27, "DisorientedByGasLeak" },
+		{ 28, "DisorientedByLaser" },
+		{ 29, "DisorientedByMigraneDevice" },
+		{ 30, "StunnedBySlipAndKnockout" },
+		{ 31, "KnockedOut" },
+		{ 32, "Tased" },
+		{ 33, "DrivingBoat" },
+		{ 34, "Bluffed" },
+		{ 35, "NearDeath" },
+		{ 36, "ChargingFirearm" },
+		{ 37, "Shooting" },
+		{ 38, "ThrowingGrenade" },
+		{ 39, "Killed" },
+		{ 40, "FootstepPlantedLeft" },
+		{ 41, "FootstepPlantedRight" },
+		{ 42, "Watcher" },
+		{ 43, "PerformingPrivateSpaceReaction" },
+		{ 44, "AffectedBySmoke" },
+		{ 45, "PerformingFakeSurrenderFinisher" },
+	};
+
+	(*g_Enums)["ZCLIsHumanoidInGroupEntity.ESelectionBehavior"] = {
+		{ 0, "SpecificHumanoid" },
+		{ 1, "Any" },
 	};
 
 	(*g_Enums)["ZCLIsPlayerInConfrontationEntity.EConfrontationState"] = {
@@ -4063,9 +7690,134 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "FallbackAlwaysWithExactCamera" },
 	};
 
+	(*g_Enums)["ZCLLookTargetOverride.ELookTargetOverrideType"] = {
+		{ 0, "Humanoid" },
+		{ 1, "Spatial" },
+	};
+
+	(*g_Enums)["ZCLPhysicsGameplayStateListener.EEvaluationType"] = {
+		{ 0, "AND" },
+		{ 1, "OR" },
+	};
+
+	(*g_Enums)["ZCLPlaceHumanoidInVehicle.ETransformEditorMode"] = {
+		{ 0, "Inline" },
+		{ 1, "ExternalSpatials" },
+	};
+
+	(*g_Enums)["ZCLPlaceHumanoidInVehicleBoat.ETransformEditorMode"] = {
+		{ 0, "Inline" },
+		{ 1, "ExternalSpatials" },
+	};
+
 	(*g_Enums)["ZCLPlayerConnectionEvent.EPlayerConnectionEventType"] = {
 		{ 0, "Connected" },
 		{ 1, "Disconnected" },
+	};
+
+	(*g_Enums)["ZCLPlayerStateListenerEntity.EState"] = {
+		{ 0, "Dashing" },
+		{ 1, "FreeDashing" },
+		{ 2, "EnteringVehicle" },
+		{ 3, "InVehicle" },
+		{ 4, "ExitingVehicle" },
+		{ 5, "Driving" },
+		{ 6, "Scaling" },
+		{ 7, "Bluffing" },
+		{ 8, "Vaulting" },
+		{ 9, "Sprinting" },
+		{ 10, "Running" },
+		{ 11, "InSequence" },
+		{ 12, "InsideVent" },
+		{ 13, "Trespassing" },
+		{ 14, "SoftTrespassing" },
+		{ 15, "CombatRushing" },
+		{ 16, "Impersonating" },
+		{ 17, "InPreCloseCombat" },
+		{ 18, "HasCloseCombatCameraTargets" },
+		{ 19, "InCloseCombat" },
+		{ 20, "InDangerLevel" },
+		{ 21, "LookingAtHint" },
+		{ 22, "ActiveBluffing" },
+		{ 23, "HasActiveBluffTarget" },
+		{ 24, "InQuickFireWindow" },
+		{ 25, "InConfrontationOptIn" },
+		{ 26, "InConfrontation" },
+		{ 27, "InFakeSurrender" },
+		{ 28, "InIntuitionMode" },
+		{ 29, "ContextualJumping" },
+		{ 30, "InTrespassingStance" },
+		{ 31, "ConfrontationBluffing" },
+		{ 32, "ClimbingLadder" },
+		{ 33, "IsTouchTheWorldInHitContactStateLeftSide" },
+		{ 34, "IsTouchTheWorldInHitContactStateRightSide" },
+		{ 35, "LedgeHanging" },
+		{ 36, "LedgeHangingPlainWall" },
+		{ 37, "LedgeHangingOverhang" },
+		{ 38, "LedgeSidling" },
+		{ 39, "ZipLining" },
+		{ 40, "SlidingDownLadder" },
+		{ 41, "SlidingDownDrainpipe" },
+		{ 42, "AnyAgilityActionState" },
+		{ 43, "GrabRushing" },
+		{ 44, "AttackingFromAbove" },
+		{ 45, "InCombatState" },
+		{ 46, "InCameraFocus" },
+		{ 47, "Complying" },
+		{ 48, "InsideSmokeArea" },
+		{ 49, "AgencyFocused" },
+		{ 50, "BeingEscortedIn" },
+		{ 51, "DoingAimLockOn" },
+		{ 52, "IdentifiedByAnyNPC" },
+		{ 53, "Shooting" },
+		{ 54, "PerformingSqueezeThrough" },
+		{ 55, "MeleeAttacking" },
+		{ 56, "Falling" },
+		{ 57, "InterruptedFinisherCamera" },
+		{ 58, "HasRubberCameraControls" },
+	};
+
+	(*g_Enums)["ZCLSetHumanoidInsideMovingVolume.MovingVolumeActionType"] = {
+		{ 0, "Enter" },
+		{ 1, "Exit" },
+	};
+
+	(*g_Enums)["ZCLSetHumanoidPlayerCrouchStance.ECrouchStance"] = {
+		{ 0, "Crouch" },
+		{ 1, "Uncrouch" },
+		{ 2, "Toggle" },
+	};
+
+	(*g_Enums)["ZCLStopOrResumeVehicleBoatPhysicsSimulation.EPhysicsSimulationAction"] = {
+		{ 0, "StopSimulation" },
+		{ 1, "ResumeSimulation" },
+	};
+
+	(*g_Enums)["ZCLTeleportVehicleBoat.ETransformType"] = {
+		{ 0, "Inline" },
+		{ 1, "ExternalSpatial" },
+	};
+
+	(*g_Enums)["ZCLTraceMessageEntity.ETraceMessageType"] = {
+		{ 0, "Message" },
+		{ 1, "Warning" },
+		{ 2, "Error" },
+	};
+
+	(*g_Enums)["ZCLTriggerPlayerStartStopSprinting.ESprintAction"] = {
+		{ 0, "StartSprint" },
+		{ 1, "StopSprint" },
+	};
+
+	(*g_Enums)["ZCLVehicleRemoveComponents.EAction"] = {
+		{ 0, "RemoveComponents" },
+		{ 1, "RemoveAllKeepDefault" },
+		{ 2, "RemoveAll" },
+	};
+
+	(*g_Enums)["ZCLVehicleSpeedModifier.ETargetSpeedSource"] = {
+		{ 0, "Inline" },
+		{ 1, "External" },
 	};
 
 	(*g_Enums)["ZCLVehicleStateListenerEntityBase.EState"] = {
@@ -4110,6 +7862,12 @@ void ZHMEnums::RegisterEnums()
 		{ 0, "XY" },
 		{ 1, "XZ" },
 		{ 2, "YZ" },
+	};
+
+	(*g_Enums)["ZCombatantHTNDomainEntity.ECombatantArchetype"] = {
+		{ 0, "Minion" },
+		{ 1, "Henchman" },
+		{ 2, "Brute" },
 	};
 
 	(*g_Enums)["ZCombinedDataBitfieldLayerEntity.ELayerCombineOperationType"] = {
@@ -4217,6 +7975,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eScaleY" },
 	};
 
+	(*g_Enums)["ZEnvironmentalHazardAreaEntity.EHazardAreaPenalties"] = {
+		{ 0, "LowPenalties" },
+		{ 1, "MediumPenalties" },
+		{ 2, "HighPenalties" },
+		{ 3, "ImpassablePenalties" },
+		{ 4, "NoPenalties" },
+	};
+
 	(*g_Enums)["ZFogVolumeBoxEntity.EBlendType"] = {
 		{ 0, "ADDITIVE" },
 		{ 1, "OVERRIDE" },
@@ -4242,6 +8008,12 @@ void ZHMEnums::RegisterEnums()
 	(*g_Enums)["ZGameCameraLensPresetEntity.LensFlareMethod"] = {
 		{ 0, "SCREENSPACE" },
 		{ 1, "ENTITY" },
+	};
+
+	(*g_Enums)["ZGameCameraShakeSourceEntity.EGameCameraShakePlayType"] = {
+		{ 0, "OneShot" },
+		{ 1, "Instanced" },
+		{ 2, "Loop" },
 	};
 
 	(*g_Enums)["ZGameLoadoutManager.EFirearmSlot"] = {
@@ -4292,10 +8064,26 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "HUD" },
 	};
 
+	(*g_Enums)["ZHUDDataproviderCircularProgressBarWidget.EFillDirection"] = {
+		{ 0, "Clockwise" },
+		{ 1, "CounterClockwise" },
+	};
+
+	(*g_Enums)["ZHUDDataproviderCircularProgressBarWidget.EShapeType"] = {
+		{ 0, "Circle" },
+		{ 1, "Quad" },
+	};
+
 	(*g_Enums)["ZHUDDataproviderGadgetWatchBase.EPlayerState"] = {
 		{ 0, "Normal" },
 		{ 1, "Suspicious" },
 		{ 2, "Hidden" },
+	};
+
+	(*g_Enums)["ZHUDDataproviderGadgetWatchHackReticle.EWarningReason"] = {
+		{ 0, "None" },
+		{ 1, "Watcher" },
+		{ 2, "InfluencedByWatcher" },
 	};
 
 	(*g_Enums)["ZHUDDataproviderGadgetWatchTriangulation.EGadgetWatchTriangulationStateBit"] = {
@@ -4309,6 +8097,27 @@ void ZHMEnums::RegisterEnums()
 		{ 128, "HackingComplete" },
 	};
 
+	(*g_Enums)["ZHUDDataproviderHumanoidPrompt.EPromptType"] = {
+		{ 0, "Invalid" },
+		{ 1, "SilentTakedown" },
+		{ 2, "MeleeFinisher" },
+		{ 3, "AgencyFinisher" },
+		{ 4, "Grab" },
+		{ 5, "AttackFromAbove" },
+		{ 6, "Bluff" },
+		{ 7, "ConfrontationOptIn" },
+		{ 8, "CombatRush" },
+		{ 9, "FakeSurrender" },
+		{ 10, "Unused_Entry_2" },
+		{ 11, "Unused_Entry_3" },
+		{ 12, "Unused_Entry_4" },
+		{ 13, "Unused_Entry_5" },
+		{ 14, "FakeSurrenderMeleeFinisher" },
+		{ 15, "EscortedOut" },
+		{ 16, "Lure" },
+		{ 17, "Dialogue" },
+	};
+
 	(*g_Enums)["ZHUDDataproviderInputAgencyUnavailable.EUnavailableReason"] = {
 		{ 0, "None" },
 		{ 1, "InsufficientAgency" },
@@ -4317,9 +8126,27 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "TargetTooClose" },
 	};
 
+	(*g_Enums)["ZHUDDataproviderQTEPrompt.EQTEState"] = {
+		{ 0, "Active" },
+		{ 1, "Success" },
+		{ 2, "Fail" },
+	};
+
+	(*g_Enums)["ZHUDDataproviderSegmentProgressBarBaseWidget.ESegmentEdgeType"] = {
+		{ 0, "None" },
+		{ 1, "FitToSegment" },
+		{ 2, "FillSegmentSize" },
+	};
+
 	(*g_Enums)["ZHUDGroupVisibilityReceiverEntity.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "ANY" },
+	};
+
+	(*g_Enums)["ZHUDPingTargetEntity.EScanState"] = {
+		{ 1, "NOT_SCANNED" },
+		{ 2, "SCAN_COMPLETED_WRONG" },
+		{ 3, "SCAN_COMPLETED_RIGHT" },
 	};
 
 	(*g_Enums)["ZHUDTimerInstance.ETimeFormatChoice"] = {
@@ -4343,6 +8170,12 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "LOOK_AT_CAMERAPARENT_POSITION_HORIZ_ONLY" },
 		{ 5, "ALIGN_WITH_VIEW_PLANE" },
 		{ 6, "ALIGN_WITH_VIEW_PLANE_HORIZ_ONLY" },
+	};
+
+	(*g_Enums)["ZHasGameplayTagsEntity.EEvaluationType"] = {
+		{ 0, "ANY" },
+		{ 1, "ALL" },
+		{ 255, "INVALID" },
 	};
 
 	(*g_Enums)["ZHeightStampEntity.ESplineDirection"] = {
@@ -4374,6 +8207,103 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ePATCH" },
 	};
 
+	(*g_Enums)["ZHumanoidCloseCombatEventEntity.ECloseCombatEvent"] = {
+		{ 0, "MeleeAttackStart" },
+		{ 1, "HitReceived" },
+		{ 2, "ParrySuccesful" },
+		{ 3, "CombatRushStart" },
+		{ 4, "CombatRushFinished" },
+		{ 5, "GrabRushStart" },
+		{ 6, "BlockSuccesful" },
+		{ 7, "MeleeHitSuccessful" },
+		{ 8, "MeleeHitBlocked" },
+		{ 9, "MeleeHitBlockedByDefense" },
+		{ 10, "MeleeHitMissed" },
+		{ 11, "MeleeHitMissedByDefense" },
+		{ 12, "MeleeKill" },
+		{ 13, "FinisherStarted" },
+		{ 14, "FinisherFinished" },
+		{ 15, "FinisherKill" },
+		{ 16, "ContextualMeleeAttack_Started" },
+		{ 17, "ContextualMeleeAttack_Finished" },
+		{ 18, "ContextualMeleeAttack_Damage" },
+		{ 19, "ContextualMeleeAttack_Kill" },
+		{ 20, "ContextualThrowAttack_Started" },
+		{ 21, "ContextualThrowAttack_Finished" },
+		{ 22, "ContextualThrowAttack_Damage" },
+		{ 23, "ContextualThrowAttack_Kill" },
+		{ 24, "GrabStarted" },
+		{ 25, "GrabSuccessful" },
+		{ 26, "GrabFailed" },
+		{ 27, "GrabFinished" },
+		{ 28, "GrabRushOffTheLedgeStarted" },
+		{ 29, "GrabRushOffTheLedgeFinished" },
+		{ 30, "GrabRushOffTheLedgeDamage" },
+		{ 31, "GrabRushOffTheLedgeKill" },
+		{ 32, "ThrownOffTheLedgeStarted" },
+		{ 33, "ThrownOffTheLedgeFinished" },
+		{ 34, "SideStepStarted" },
+		{ 35, "SideStepSuccessful" },
+		{ 36, "SideStepFinished" },
+		{ 37, "GrabAttackSuccessful" },
+		{ 38, "GrabThrowStarted" },
+		{ 39, "GrabThrowFinished" },
+		{ 40, "VaultAttack" },
+		{ 41, "VaultDisarm" },
+		{ 42, "BrutalAttackStarted" },
+		{ 43, "BrutalAttackFinished" },
+		{ 44, "BrutalAttackDamaage" },
+		{ 45, "BurtalAttackKill" },
+		{ 46, "SilentTakedownStarted" },
+		{ 47, "SilentTakedownFinished" },
+		{ 48, "SilentTakedownKill" },
+		{ 49, "ParryStarted" },
+		{ 50, "BlockStarted" },
+		{ 51, "PerfectParryWindowOpened" },
+		{ 52, "RailingDeathStarted" },
+		{ 53, "RollOverStarted" },
+		{ 54, "RollOverEnded" },
+		{ 55, "RushApproachStart" },
+		{ 56, "FakeSurrenderStarted" },
+		{ 57, "FakeSurrenderFinished" },
+		{ 58, "FakeSurrenderDamage" },
+		{ 59, "FakeSurrenderKill" },
+	};
+
+	(*g_Enums)["ZHumanoidCloseCombatEventEntity.EListenerRole"] = {
+		{ 0, "Instigator" },
+		{ 1, "Victim" },
+	};
+
+	(*g_Enums)["ZHumanoidControlItem.ESpatialDrivenCapsuleProjectionMode"] = {
+		{ 0, "WhenStanceIsSet" },
+		{ 1, "ProjectAlways" },
+		{ 2, "Disabled" },
+	};
+
+	(*g_Enums)["ZHumanoidRangedCombatEventEntity.ERangeCombatListenerRole"] = {
+		{ 0, "Instigator" },
+		{ 1, "Victim" },
+	};
+
+	(*g_Enums)["ZHumanoidRangedCombatEventEntity.ERangedCombatEvent"] = {
+		{ 0, "FirearmImpactOnHumanoid" },
+		{ 1, "LegShot" },
+		{ 2, "DoubleLegShot" },
+		{ 3, "HeadShot" },
+		{ 4, "ShootArmor" },
+		{ 5, "DestroyArmor" },
+		{ 6, "DisarmShot" },
+		{ 7, "WeaponThrow" },
+		{ 8, "WeaponThrowImpacted" },
+		{ 9, "WeaponSwitch" },
+		{ 10, "MagazineOutOfAmmo" },
+		{ 11, "OutOfAmmo" },
+		{ 12, "ItemThrow" },
+		{ 13, "ItemThrowImpacted" },
+		{ 14, "MissedShot" },
+	};
+
 	(*g_Enums)["ZInputDefinition_Action.EActionType"] = {
 		{ 0, "EDigital" },
 		{ 1, "EAnalog" },
@@ -4390,6 +8320,11 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "LESS" },
 	};
 
+	(*g_Enums)["ZKntCheckpointCompareWithCurrent.ECheckpointCompareEvaluationType"] = {
+		{ 0, "EARLIER_OR_EQUAL_THAN_CURRENT" },
+		{ 1, "LATER_OR_EQUAL_THAN_CURRENT" },
+	};
+
 	(*g_Enums)["ZKntOnlineMission.EMissionStartError"] = {
 		{ 0, "None" },
 		{ 1, "DeserializationError" },
@@ -4403,6 +8338,12 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "OfflineCheckpointNotFound" },
 		{ 10, "Unknown" },
 		{ 11, "CheckpointNotInBoot" },
+	};
+
+	(*g_Enums)["ZKntTransitionToCheckpointEntity.ECheckpointTransitionWait"] = {
+		{ 0, "DoNotWait" },
+		{ 1, "CheckpointIsReady" },
+		{ 2, "CheckpointIsReadyAndSpawnersDone" },
 	};
 
 	(*g_Enums)["ZMasonAssertBaseEntity.EEvaluationState"] = {
@@ -4603,6 +8544,21 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "Epic" },
 	};
 
+	(*g_Enums)["ZPureWaterDeformerEntity.EWaterDeformerFalloff"] = {
+		{ 0, "Linear" },
+		{ 1, "Exponential" },
+	};
+
+	(*g_Enums)["ZPureWaterDeformerEntity.EWaterDeformerShape"] = {
+		{ 0, "Line" },
+		{ 1, "Circle" },
+	};
+
+	(*g_Enums)["ZPureWaterDeformerEntity.EWaterDeformerType"] = {
+		{ 0, "OneShot" },
+		{ 1, "Dynamic" },
+	};
+
 	(*g_Enums)["ZRenderDynamicTexBaseEntity.EBlendMode"] = {
 		{ 0, "NO_BLENDING" },
 		{ 1, "ADDITIVE_ALPHA_BLENDING" },
@@ -4689,6 +8645,35 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "DISABLE" },
 	};
 
+	(*g_Enums)["ZSequenceEntity.ECommand"] = {
+		{ 0, "COMMAND_START" },
+		{ 1, "COMMAND_ENABLE_PREVIEW" },
+		{ 2, "COMMAND_STOP" },
+		{ 3, "COMMAND_DISABLE_PREVIEW" },
+		{ 4, "COMMAND_ABORT" },
+		{ 5, "COMMAND_PAUSE" },
+		{ 6, "COMMAND_UNPAUSE" },
+		{ 7, "COMMAND_SETTIME" },
+		{ 8, "COMMAND_SKIPTOEND" },
+		{ 9, "COMMAND_GAME_PAUSE" },
+		{ 10, "COMMAND_GAME_UNPAUSE" },
+		{ 11, "COMMAND_PREVIEW_PAUSE" },
+		{ 12, "COMMAND_PREVIEW_STOP" },
+		{ 13, "COMMAND_PREVIEW_PLAY" },
+		{ 14, "COMMAND_PREVIEW_LOOPED" },
+		{ 15, "COMMAND_CLEAR" },
+	};
+
+	(*g_Enums)["ZSequenceEntity.ELetterboxAspect"] = {
+		{ 0, "LETTERBOXASPECT_WIDESCREEN" },
+		{ 1, "LETTERBOXASPECT_CINEMASCOPE" },
+	};
+
+	(*g_Enums)["ZSequenceEntity.ESequenceType"] = {
+		{ 0, "CINEMATIC" },
+		{ 1, "GAMEPLAY" },
+	};
+
 	(*g_Enums)["ZSetUIControlDisplayInfoEntity.EProjectionOp"] = {
 		{ 0, "NoOp" },
 		{ 1, "SetPerspective" },
@@ -4735,6 +8720,23 @@ void ZHMEnums::RegisterEnums()
 	(*g_Enums)["ZStorylineRoutine_PerformAnimationActEntity_SpeedModifierAspect.EMultiplierGenerationType"] = {
 		{ 0, "ValueBetweenMinAndMaxThreshold" },
 		{ 1, "FixedMultiplierValue" },
+	};
+
+	(*g_Enums)["ZSubtitleTypeConfig.EDirectionIndicatorType"] = {
+		{ 0, "Disabled" },
+		{ 1, "OnlyShowWhenOffScreen" },
+		{ 2, "AlwaysShow" },
+	};
+
+	(*g_Enums)["ZTrailDecalEntity.ETextureMode"] = {
+		{ 0, "Tile" },
+		{ 1, "Stretch" },
+	};
+
+	(*g_Enums)["ZUIAnimatingEntity.EAnimationMode"] = {
+		{ 1, "Forward" },
+		{ 2, "Backward" },
+		{ 4, "Loop" },
 	};
 
 	(*g_Enums)["ZUIAnimationManager.EDirection"] = {
@@ -4988,6 +8990,12 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "Movement" },
 	};
 
+	(*g_Enums)["ZVirtualCameraBehaviorOrbitLockEntity.EAngleCalculationMode"] = {
+		{ 0, "Auto" },
+		{ 1, "FromAngleProperties" },
+		{ 2, "FromHeadingProperty" },
+	};
+
 	(*g_Enums)["ZVirtualCameraBehaviorStabilizeEntity.EMode"] = {
 		{ 0, "RollRotation" },
 		{ 1, "UpVector" },
@@ -5006,6 +9014,12 @@ void ZHMEnums::RegisterEnums()
 	(*g_Enums)["ZVirtualCameraLensEntity.ELensFlareMethod"] = {
 		{ 0, "SCREENSPACE" },
 		{ 1, "ENTITY" },
+	};
+
+	(*g_Enums)["ZVirtualCameraTransitionEntity.Direction"] = {
+		{ 0, "Unidirectional" },
+		{ 1, "Bidirectional" },
+		{ 2, "Fallback" },
 	};
 
 	(*g_Enums)["ZWaveformGeneratorEntity.ECurveType"] = {
