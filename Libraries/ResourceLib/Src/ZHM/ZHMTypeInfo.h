@@ -1,11 +1,15 @@
 #pragma once
 
+#include <cstddef>
 #include <unordered_map>
 #include <mutex>
 #include "ZString.h"
 #include <External/simdjson.h>
 
 #include "ZHMPrimitives.h"
+
+#define ZHM_OFFSET_CHECK(T, m, off) \
+	static_assert(offsetof(T, m) == (off), "Wrong offset for " #T "::" #m)
 
 class ZHMSerializer;
 

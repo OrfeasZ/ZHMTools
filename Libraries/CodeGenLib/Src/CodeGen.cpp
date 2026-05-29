@@ -443,6 +443,12 @@ std::pair<std::unordered_set<std::string>, bool> CodeGen::CollectDependencies(ST
 	{
 		auto s_ClassType = reinterpret_cast<IClassType*>(p_Type->typeInfo());
 
+		if (s_ClassType->m_nTypeAlignment == 0)
+			s_IsRlType = false;
+
+		if (s_ClassType->m_nTypeSize > 0 && s_ClassType->m_nPropertyCount == 0)
+			s_IsRlType = false;
+
 		for (uint16_t i = 0; i < s_ClassType->m_nPropertyCount; ++i)
 		{
 			auto s_Prop = s_ClassType->m_pProperties[i];
@@ -1266,20 +1272,6 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		}
 	}
 
-	if (s_Type->m_nTypeAlignment == 0)
-	{
-		log("Type %s has zero alignment. Skipping.\n", s_TypeName.c_str());
-		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
-		return;
-	}
-
-	if (s_Type->m_nTypeSize > 0 && s_Type->m_nPropertyCount == 0)
-	{
-		log("Type %s has non-zero size but no fields. Skipping.\n", s_TypeName.c_str());
-		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
-		return;
-	}
-
 	GenerateRlClassSource(p_Node);
 
 	s_HeaderStream << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
@@ -1337,9 +1329,8 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		auto s_Prop = s_Type->m_pProperties[i];
 		std::string s_PropName = s_Prop.m_pName;
 
-		s_HeaderStream << p_Indent << "static_assert(offsetof(" << p_Node->Name << ", " << s_PropName
-			<< ") == 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec
-			<< ", \"Wrong offset for " << p_Node->Name << "::" << s_PropName << "\");" << std::endl;
+		s_HeaderStream << p_Indent << "ZHM_OFFSET_CHECK(" << p_Node->Name << ", " << s_PropName
+			<< ", 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << ");" << std::endl;
 	}
 
 	s_HeaderStream << p_Indent << "static_assert(sizeof(" << p_Node->Name
@@ -1636,80 +1627,79 @@ void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const st
 {
 	auto s_Type = reinterpret_cast<IClassType*>(p_Node->TypeData->typeInfo());
 
-	// Look up RTTI for this type
+	// Look up RTTI for this type. Plain data structs (no virtuals, no base classes) won't have
+	// an entry, in which case we emit the class without inheritance or virtual placeholders.
 	auto s_RttiIt = m_RttiByTypeName.find(s_Type->m_pTypeName);
-
-	if (s_RttiIt == m_RttiByTypeName.end())
-	{
-		log("Could not find RTTI for type %s. Skipping.\n", p_Node->Name.c_str());
-		return;
-	}
-
-	// TODO: Handle structs
-
-	auto s_VTable = s_RttiIt->second;
+	const bool s_HasRtti = s_RttiIt != m_RttiByTypeName.end();
+	VTableMsvc* s_VTable = s_HasRtti ? s_RttiIt->second : nullptr;
 
 	m_SDKHeader << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
-	m_SDKHeader << p_Indent << "class " << p_Node->Name;
+	m_SDKHeader << p_Indent << (s_HasRtti ? "class " : "struct ") << p_Node->Name;
 
-	// Generate inheritance based on RTTI (ignore ZHM base class info)
-	auto s_ClassDesc = s_VTable->Rtti->ClassDescriptor;
-	bool s_HasBases = false;
 	size_t s_InheritedVTableSize = 0;  // Number of inherited vtable entries
 
-	// RTTI BaseClasses contains the full hierarchy:
-	// [0] = self
-	// [1] = first direct base
-	// [1+1..1+NumContainedBases[1]] = ancestors of first direct base
-	// [next] = second direct base (if any)
-	// etc.
-	// We use NumContainedBases to skip over indirect ancestors and only include direct bases.
-	for (size_t i = 1; i < s_ClassDesc->BaseClasses.size(); )
+	if (s_HasRtti)
 	{
-		auto s_Base = s_ClassDesc->BaseClasses[i];
-		if (!s_Base || !s_Base->TypeDescriptor)
-		{
-			i++;
-			continue;
-		}
+		// Generate inheritance based on RTTI (ignore ZHM base class info)
+		auto s_ClassDesc = s_VTable->Rtti->ClassDescriptor;
+		bool s_HasBases = false;
 
-		std::string s_BaseName = DemangleRTTIName(s_Base->TypeDescriptor->Name);
-		if (s_BaseName.empty())
+		// RTTI BaseClasses contains the full hierarchy:
+		// [0] = self
+		// [1] = first direct base
+		// [1+1..1+NumContainedBases[1]] = ancestors of first direct base
+		// [next] = second direct base (if any)
+		// etc.
+		// We use NumContainedBases to skip over indirect ancestors and only include direct bases.
+		for (size_t i = 1; i < s_ClassDesc->BaseClasses.size(); )
 		{
-			i++;
-			continue;
-		}
-
-		// Look up the base class's vtable to get its size (for first direct base only)
-		if (!s_HasBases)
-		{
-			auto s_BaseRttiIt = m_RttiByTypeName.find(s_BaseName);
-			if (s_BaseRttiIt != m_RttiByTypeName.end() && s_BaseRttiIt->second)
+			auto s_Base = s_ClassDesc->BaseClasses[i];
+			if (!s_Base || !s_Base->TypeDescriptor)
 			{
-				s_InheritedVTableSize = s_BaseRttiIt->second->Items.size();
+				i++;
+				continue;
 			}
-		}
 
-		if (!s_HasBases)
-		{
-			m_SDKHeader << " :" << std::endl;
-			s_HasBases = true;
-		}
-		else
-		{
-			m_SDKHeader << "," << std::endl;
-		}
+			std::string s_BaseName = DemangleRTTIName(s_Base->TypeDescriptor->Name);
+			if (s_BaseName.empty())
+			{
+				i++;
+				continue;
+			}
 
-		// Use NormalizeTypeName for base class reference
-		m_SDKHeader << p_Indent << "\tpublic " << s_BaseName;
+			// Look up the base class's vtable to get its size (for first direct base only)
+			if (!s_HasBases)
+			{
+				auto s_BaseRttiIt = m_RttiByTypeName.find(s_BaseName);
+				if (s_BaseRttiIt != m_RttiByTypeName.end() && s_BaseRttiIt->second)
+				{
+					s_InheritedVTableSize = s_BaseRttiIt->second->Items.size();
+				}
+			}
 
-		// Skip over this base's ancestors (they're not direct bases of our class)
-		i += 1 + s_Base->NumContainedBases;
+			if (!s_HasBases)
+			{
+				m_SDKHeader << " :" << std::endl;
+				s_HasBases = true;
+			}
+			else
+			{
+				m_SDKHeader << "," << std::endl;
+			}
+
+			// Use NormalizeTypeName for base class reference
+			m_SDKHeader << p_Indent << "\tpublic " << s_BaseName;
+
+			// Skip over this base's ancestors (they're not direct bases of our class)
+			i += 1 + s_Base->NumContainedBases;
+		}
 	}
 
 	m_SDKHeader << std::endl;
 	m_SDKHeader << p_Indent << "{" << std::endl;
-	m_SDKHeader << p_Indent << "public:" << std::endl;
+
+	if (s_HasRtti)
+		m_SDKHeader << p_Indent << "public:" << std::endl;
 
 	// Write children first.
 	for (auto& s_Child : p_Node->SortedChildren)
@@ -1717,24 +1707,28 @@ void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const st
 		GenerateCode(s_Child, p_Indent + "\t", EOutputTarget::SdkOnly);
 	}
 
-	if (!p_Node->SortedChildren.empty())
+	if (!p_Node->SortedChildren.empty() && s_HasRtti)
 	{
 		m_SDKHeader << std::endl;
 		m_SDKHeader << p_Indent << "public:" << std::endl;
 	}
 
-	// Generate placeholder virtual methods from vtable (only NEW methods, not inherited)
-	for (size_t i = s_InheritedVTableSize; i < s_VTable->Items.size(); ++i)
+	if (s_HasRtti)
 	{
-		size_t s_VTableOffset = i * sizeof(uintptr_t);
-		m_SDKHeader << p_Indent << "\tvirtual void " << p_Node->Name << "_unk0x";
-		m_SDKHeader << std::hex << std::uppercase << s_VTableOffset << std::dec << "() = 0;" << std::endl;
+		// Generate placeholder virtual methods from vtable (only NEW methods, not inherited)
+		for (size_t i = s_InheritedVTableSize; i < s_VTable->Items.size(); ++i)
+		{
+			size_t s_VTableOffset = i * sizeof(uintptr_t);
+			m_SDKHeader << p_Indent << "\tvirtual void " << p_Node->Name << "_unk0x";
+			m_SDKHeader << std::hex << std::uppercase << s_VTableOffset << std::dec << "() = 0;" << std::endl;
+		}
+
+		if (!s_VTable->Items.empty())
+			m_SDKHeader << std::endl;
 	}
 
-	if (!s_VTable->Items.empty())
-		m_SDKHeader << std::endl;
-
-	// Generate properties using ZHM_PROPERTY macro
+	// Generate properties. RTTI-backed classes go through the ZHM_PROPERTY macro; plain data
+	// structs get bare member declarations.
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
 	{
 		auto s_Prop = s_Type->m_pProperties[i];
@@ -1747,15 +1741,26 @@ void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const st
 
 		std::string s_PropTypeName = NormalizeName(s_Prop.m_pType);
 
-		m_SDKHeader << p_Indent << "\tZHM_PROPERTY(" << s_PropTypeName << ", " << s_PropName;
-		m_SDKHeader << ", 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << ");" << std::endl;
+		if (s_HasRtti)
+		{
+			m_SDKHeader << p_Indent << "\tZHM_PROPERTY(" << s_PropTypeName << ", " << s_PropName;
+			m_SDKHeader << ", 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << ");" << std::endl;
+		}
+		else
+		{
+			m_SDKHeader << p_Indent << "\t" << s_PropTypeName << " " << s_PropName << ";";
+			m_SDKHeader << " // 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << std::endl;
+		}
 	}
 
-	// Generate input pins using ZHM_PIN_INPUT macro
-	for (uint16_t i = 0; i < s_Type->m_nInputCount; ++i)
+	if (s_HasRtti)
 	{
-		auto s_Input = s_Type->m_pInputs[i];
-		m_SDKHeader << p_Indent << "\tZHM_PIN_INPUT(0x" << std::hex << std::uppercase << s_Input.m_nPinID << std::dec << ");" << std::endl;
+		// Generate input pins using ZHM_PIN_INPUT macro
+		for (uint16_t i = 0; i < s_Type->m_nInputCount; ++i)
+		{
+			auto s_Input = s_Type->m_pInputs[i];
+			m_SDKHeader << p_Indent << "\tZHM_PIN_INPUT(0x" << std::hex << std::uppercase << s_Input.m_nPinID << std::dec << ");" << std::endl;
+		}
 	}
 
 	m_SDKHeader << p_Indent << "};" << std::endl << std::endl;
