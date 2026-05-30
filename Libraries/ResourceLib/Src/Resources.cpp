@@ -32,11 +32,11 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	REGISTER_RESOURCE(AIRG, SReasoningGrid)
 	REGISTER_RESOURCE(ASVA, TArray<SPackedAnimSetEntry>)
 	REGISTER_RESOURCE(ATMD, ZAMDTake)
+	REGISTER_RESOURCE(UICB, SUIControlBlueprint) // TODO: KNT
+	REGISTER_RESOURCE(RTLV, SLocalizedVideoDataDecrypted) // TODO: KNT
 #endif
 
 	REGISTER_RESOURCE(VIDB, SVideoDatabaseData)
-	REGISTER_RESOURCE(RTLV, SLocalizedVideoDataDecrypted)
-	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
 	REGISTER_RESOURCE(CBLU, SCppEntityBlueprint)
 	REGISTER_RESOURCE(CPPT, SCppEntity)
 	REGISTER_RESOURCE(CRMD, SCrowdMapData)
@@ -57,5 +57,10 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	REGISTER_RESOURCE(KWOR, SSerializedKeyword)
 	REGISTER_RESOURCE(TDAT, STerrainResource)
 	REGISTER_RESOURCE(TDPK, STerrainDataPackage)
+	// TODO: WEMD
+	// TODO: WSWB
+	// TODO: GFXA
+	// TODO: ORES
+	// TODO: CLRP
 #endif
 };
