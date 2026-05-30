@@ -112,7 +112,12 @@ private:
 
 private:
 	std::set<std::string> m_PropertyNames;
-	std::map<std::string, std::map<int, std::string>> m_Enums;
+	struct EnumDef
+	{
+		uint32_t Size;
+		std::map<int, std::string> Values;
+	};
+	std::map<std::string, EnumDef> m_Enums;
 	std::vector<JsonStruct> m_JsonStructs;
 	std::vector<JsonEnumInfo> m_JsonEnums;
 

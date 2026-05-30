@@ -28,38 +28,52 @@ class ZHMEnumTypeInfo : public IZHMTypeInfo
 {
 public:
 	ZHMEnumTypeInfo(const std::string& p_TypeName) :
-		m_TypeName(p_TypeName)
-	{		
+		m_TypeName(p_TypeName),
+		m_Size(ZHMEnums::GetEnumSize(p_TypeName))
+	{
 	}
-	
+
 public:
 	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
-		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
+		int32_t s_Value = 0;
+		switch (m_Size)
+		{
+			case 1: s_Value = *reinterpret_cast<int8_t*>(p_Object); break;
+			case 2: s_Value = *reinterpret_cast<int16_t*>(p_Object); break;
+			default: s_Value = *reinterpret_cast<int32_t*>(p_Object); break;
+		}
+		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, s_Value));
 	}
-	
+
 	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) override
 	{
-		*reinterpret_cast<int32_t*>(p_Target) = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
+		const int32_t s_Value = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
+		switch (m_Size)
+		{
+			case 1: *reinterpret_cast<int8_t*>(p_Target) = static_cast<int8_t>(s_Value); break;
+			case 2: *reinterpret_cast<int16_t*>(p_Target) = static_cast<int16_t>(s_Value); break;
+			default: *reinterpret_cast<int32_t*>(p_Target) = s_Value; break;
+		}
 	}
 
 	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
 	{
 	}
-	
+
 	std::string TypeName() const override
 	{
 		return m_TypeName;
 	}
-	
+
 	size_t Size() const override
 	{
-		return sizeof(int);
+		return m_Size;
 	}
-	
+
 	size_t Alignment() const override
 	{
-		return alignof(int);
+		return m_Size;
 	}
 
 	bool IsDummy() const override
@@ -80,6 +94,7 @@ public:
 
 private:
 	std::string m_TypeName;
+	size_t m_Size;
 };
 
 class ZHMArrayTypeInfo : public IZHMTypeInfo
@@ -87,7 +102,13 @@ class ZHMArrayTypeInfo : public IZHMTypeInfo
 public:
 	ZHMArrayTypeInfo(IZHMTypeInfo* p_ElementType) :
 		m_ElementType(p_ElementType)
-	{		
+	{
+	}
+
+	ZHMArrayTypeInfo(IZHMTypeInfo* p_ElementType, std::string p_OverriddenTypeName) :
+		m_ElementType(p_ElementType),
+		m_OverriddenTypeName(std::move(p_OverriddenTypeName))
+	{
 	}
 	
 public:	

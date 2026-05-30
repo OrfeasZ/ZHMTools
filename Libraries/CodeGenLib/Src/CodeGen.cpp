@@ -959,6 +959,7 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsHeaderFile << "private:" << std::endl;
 	m_EnumsHeaderFile << "\tstruct EnumRegistrar { EnumRegistrar() { RegisterEnums(); } };" << std::endl;
 	m_EnumsHeaderFile << "\tstatic std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>* g_Enums;" << std::endl;
+	m_EnumsHeaderFile << "\tstatic std::unordered_map<std::string, uint32_t>* g_EnumSizes;" << std::endl;
 	m_EnumsHeaderFile << "\tstatic EnumRegistrar g_Registrar;" << std::endl;
 	m_EnumsHeaderFile << "\tstatic void RegisterEnums();" << std::endl;
 	m_EnumsHeaderFile << std::endl;
@@ -966,6 +967,7 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsHeaderFile << "\tstatic std::string GetEnumValueName(const std::string& p_TypeName, int32_t p_Value);" << std::endl;
 	m_EnumsHeaderFile << "\tstatic int32_t GetEnumValueByName(const std::string& p_TypeName, std::string_view p_Name);" << std::endl;
 	m_EnumsHeaderFile << "\tstatic bool IsTypeNameEnum(const std::string& p_TypeName);" << std::endl;
+	m_EnumsHeaderFile << "\tstatic uint32_t GetEnumSize(const std::string& p_TypeName);" << std::endl;
 	m_EnumsHeaderFile << "};" << std::endl;
 
 	WriteFileHeader(m_EnumsSourceFile);
@@ -973,6 +975,7 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsSourceFile << "#include <ZHM/ZHMTypeInfo.h>" << std::endl;
 	m_EnumsSourceFile << std::endl;
 	m_EnumsSourceFile << "std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>* ZHMEnums::g_Enums = nullptr;" << std::endl;
+	m_EnumsSourceFile << "std::unordered_map<std::string, uint32_t>* ZHMEnums::g_EnumSizes = nullptr;" << std::endl;
 	m_EnumsSourceFile << "ZHMEnums::EnumRegistrar ZHMEnums::g_Registrar;" << std::endl;
 	m_EnumsSourceFile << std::endl;
 
@@ -1013,21 +1016,34 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsSourceFile << "}" << std::endl;
 	m_EnumsSourceFile << std::endl;
 
+	m_EnumsSourceFile << "uint32_t ZHMEnums::GetEnumSize(const std::string& p_TypeName)" << std::endl;
+	m_EnumsSourceFile << "{" << std::endl;
+	m_EnumsSourceFile << "\tauto s_It = g_EnumSizes->find(p_TypeName);" << std::endl;
+	m_EnumsSourceFile << std::endl;
+	m_EnumsSourceFile << "\tif (s_It == g_EnumSizes->end())" << std::endl;
+	m_EnumsSourceFile << "\t\treturn 4;" << std::endl;
+	m_EnumsSourceFile << std::endl;
+	m_EnumsSourceFile << "\treturn s_It->second;" << std::endl;
+	m_EnumsSourceFile << "}" << std::endl;
+	m_EnumsSourceFile << std::endl;
+
 	m_EnumsSourceFile << "void ZHMEnums::RegisterEnums()" << std::endl;
 	m_EnumsSourceFile << "{" << std::endl;
 	m_EnumsSourceFile << "\tg_Enums = new std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>();" << std::endl;
+	m_EnumsSourceFile << "\tg_EnumSizes = new std::unordered_map<std::string, uint32_t>();" << std::endl;
 	m_EnumsSourceFile << std::endl;
 
 	for (auto& s_Enum : m_Enums)
 	{
 		m_EnumsSourceFile << "\t(*g_Enums)[\"" << s_Enum.first << "\"] = {" << std::endl;
 
-		for (auto& s_Value : s_Enum.second)
+		for (auto& s_Value : s_Enum.second.Values)
 		{
 			m_EnumsSourceFile << "\t\t{ " << std::to_string(s_Value.first) << ", \"" << s_Value.second << "\" }," << std::endl;
 		}
 
 		m_EnumsSourceFile << "\t};" << std::endl;
+		m_EnumsSourceFile << "\t(*g_EnumSizes)[\"" << s_Enum.first << "\"] = " << s_Enum.second.Size << ";" << std::endl;
 		m_EnumsSourceFile << std::endl;
 	}
 
@@ -1604,8 +1620,6 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	s_Type->m_entries.m_pAllocationEnd = s_Type->m_entries.m_pEnd;
 	for (auto it = s_Type->m_entries.begin(); it != s_Type->m_entries.end(); ++it)
 	{
-		s_Enum[it->m_nValue] = it->m_pName;
-
 		int64_t s_Value = it->m_nValue;
 		switch (s_Type->m_nTypeSize)
 		{
@@ -1614,6 +1628,8 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 			case 4: s_Value = static_cast<int32_t>(s_Value); break;
 			default: break;
 		}
+
+		s_Enum[static_cast<int>(s_Value)] = it->m_pName;
 
 		p_Stream << p_Indent << "\t" << it->m_pName << " = " << std::dec << s_Value << "," << std::endl;
 
@@ -1627,7 +1643,7 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 		log("Enum %s has children. This is unexpected.\n", p_Node->Name.c_str());
 	}
 
-	m_Enums[s_Type->m_pTypeName] = s_Enum;
+	m_Enums[s_Type->m_pTypeName] = { static_cast<uint32_t>(s_Type->m_nTypeSize), std::move(s_Enum) };
 
 	if (s_CaptureJson)
 		m_JsonEnums.push_back(std::move(s_JsonEnum));
@@ -1822,6 +1838,13 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	if (p_Node->ShouldSkip || p_Node->Name == "ZRepositoryID")
 	{
 		log("Skipping code generation for node %s.\n", p_Node->Name.c_str());
+
+		// Still emit nested types (notably enums) so they end up in ZHMEnums.
+		if (p_Node->Type == TreeNode::ENodeType::Type && !p_Node->SortedChildren.empty())
+		{
+			GenerateDummyClass(p_Node, p_Indent, p_Target);
+		}
+
 		return;
 	}
 
