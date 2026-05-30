@@ -371,3 +371,12 @@ FodyWeavers.xsd
 /Tools/NavViewer/Surfaces.js
 /Tools/NavViewer/AIGrids.js
 _build/
+
+# Nix / flake dev shell
+/.direnv/
+/.nix-cargo-home/
+/.nix-rustup-home/
+/result
+/result-*
+.rustc_info.json
+.future-incompat-report.json

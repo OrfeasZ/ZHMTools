@@ -1,0 +1,16 @@
+[package]
+name = "resource_fiddler"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+rpkg-rs = "1.4.0"
+thiserror = "2.0.17"
+rayon = "1.10"
+serde_json = "1.0.149"
+hitman-commons = { git = "https://github.com/atampy25/hitman-commons.git", features = ["hash_list"] }
+reqwest = {  version = "0.13.1", features = [ "blocking" ] }
+parking_lot = "0.12.5"
+paste = "1.0"
+similar = "2.6"
+clap = { version = "4.5", features = ["derive"] }
