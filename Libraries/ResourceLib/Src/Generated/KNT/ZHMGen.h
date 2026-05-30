@@ -28552,6 +28552,31 @@ public:
 
 };
 
+class ZCLAIModifyDistractionStimulus
+{
+public:
+	// Size: 0x4
+	enum class EWhitelistModification : int32_t
+	{
+		None = 0,
+		Disable = 1,
+		Enable = 2,
+	};
+
+};
+
+class ZCLAddOrRemoveVehicleSpatialAttachment
+{
+public:
+	// Size: 0x4
+	enum class ESpatialAttachmentAction : int32_t
+	{
+		Add = 0,
+		Remove = 1,
+	};
+
+};
+
 class ZSplineEntity
 {
 public:
@@ -30967,6 +30992,39 @@ public:
 
 };
 
+class ZHUDDataproviderImageResourceAdapter
+{
+public:
+	// Size: 0x14
+	class alignas(4) SBorderSliceData
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SBorderSliceData& p_Other) const;
+		bool operator!=(const SBorderSliceData& p_Other) const { return !(*this == p_Other); }
+
+		float32 top; // 0x0
+		float32 right; // 0x4
+		float32 bottom; // 0x8
+		float32 left; // 0xC
+		float32 borderScale; // 0x10
+	};
+	ZHM_OFFSET_CHECK(SBorderSliceData, top, 0x0);
+	ZHM_OFFSET_CHECK(SBorderSliceData, right, 0x4);
+	ZHM_OFFSET_CHECK(SBorderSliceData, bottom, 0x8);
+	ZHM_OFFSET_CHECK(SBorderSliceData, left, 0xC);
+	ZHM_OFFSET_CHECK(SBorderSliceData, borderScale, 0x10);
+	static_assert(sizeof(SBorderSliceData) == 0x14, "Wrong size for SBorderSliceData");
+	static_assert(alignof(SBorderSliceData) == 0x4, "Wrong alignment for SBorderSliceData");
+
+};
+
 class ZHUDDataproviderIncomingAttack
 {
 public:
@@ -31909,6 +31967,19 @@ public:
 };
 
 class ZHasGameplayTagsEntity
+{
+public:
+	// Size: 0x1
+	enum class EEvaluationType : int8_t
+	{
+		ANY = 0,
+		ALL = 1,
+		INVALID = -1,
+	};
+
+};
+
+class ZHasTagsEntity
 {
 public:
 	// Size: 0x1

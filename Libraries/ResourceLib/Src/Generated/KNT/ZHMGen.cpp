@@ -64429,6 +64429,86 @@ void ZHUDDataproviderHealth::SData::Destroy(void* p_Object)
 	s_Object->~SData();
 }
 
+ZHMTypeInfo ZHUDDataproviderImageResourceAdapter::SBorderSliceData::TypeInfo = ZHMTypeInfo("ZHUDDataproviderImageResourceAdapter.SBorderSliceData", sizeof(ZHUDDataproviderImageResourceAdapter::SBorderSliceData), alignof(ZHUDDataproviderImageResourceAdapter::SBorderSliceData), ZHUDDataproviderImageResourceAdapter::SBorderSliceData::WriteSimpleJson, ZHUDDataproviderImageResourceAdapter::SBorderSliceData::FromSimpleJson, ZHUDDataproviderImageResourceAdapter::SBorderSliceData::Serialize, ZHUDDataproviderImageResourceAdapter::SBorderSliceData::Equals, ZHUDDataproviderImageResourceAdapter::SBorderSliceData::Destroy);
+
+void ZHUDDataproviderImageResourceAdapter::SBorderSliceData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZHUDDataproviderImageResourceAdapter::SBorderSliceData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("top") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->top);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("right") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->right);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("bottom") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->bottom);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("left") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->left);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("borderScale") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->borderScale);
+
+	p_Stream << "}";
+}
+
+void ZHUDDataproviderImageResourceAdapter::SBorderSliceData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<ZHUDDataproviderImageResourceAdapter::SBorderSliceData*>(p_Target);
+
+	s_Object->top = simdjson::from_json_float32(p_Document["top"]);
+
+	s_Object->right = simdjson::from_json_float32(p_Document["right"]);
+
+	s_Object->bottom = simdjson::from_json_float32(p_Document["bottom"]);
+
+	s_Object->left = simdjson::from_json_float32(p_Document["left"]);
+
+	s_Object->borderScale = simdjson::from_json_float32(p_Document["borderScale"]);
+
+}
+
+void ZHUDDataproviderImageResourceAdapter::SBorderSliceData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZHUDDataproviderImageResourceAdapter::SBorderSliceData*>(p_Object);
+
+}
+
+bool ZHUDDataproviderImageResourceAdapter::SBorderSliceData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZHUDDataproviderImageResourceAdapter::SBorderSliceData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZHUDDataproviderImageResourceAdapter::SBorderSliceData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZHUDDataproviderImageResourceAdapter::SBorderSliceData::operator==(const ZHUDDataproviderImageResourceAdapter::SBorderSliceData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZHUDDataproviderImageResourceAdapter::SBorderSliceData>)
+		return false;
+
+	if (top != p_Other.top) return false;
+	if (right != p_Other.right) return false;
+	if (bottom != p_Other.bottom) return false;
+	if (left != p_Other.left) return false;
+	if (borderScale != p_Other.borderScale) return false;
+
+	return true;
+}
+
+void ZHUDDataproviderImageResourceAdapter::SBorderSliceData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZHUDDataproviderImageResourceAdapter::SBorderSliceData*>(p_Object);
+	s_Object->~SBorderSliceData();
+}
+
 ZHMTypeInfo ZHUDDataproviderIncomingAttack::SData::TypeInfo = ZHMTypeInfo("ZHUDDataproviderIncomingAttack.SData", sizeof(ZHUDDataproviderIncomingAttack::SData), alignof(ZHUDDataproviderIncomingAttack::SData), ZHUDDataproviderIncomingAttack::SData::WriteSimpleJson, ZHUDDataproviderIncomingAttack::SData::FromSimpleJson, ZHUDDataproviderIncomingAttack::SData::Serialize, ZHUDDataproviderIncomingAttack::SData::Equals, ZHUDDataproviderIncomingAttack::SData::Destroy);
 
 void ZHUDDataproviderIncomingAttack::SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
