@@ -1725,7 +1725,7 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 		p_Stream << p_Indent << "\t" << it->m_pName << " = " << std::dec << s_Value << "," << std::endl;
 
 		if (s_CaptureJson)
-			s_JsonEnum.Values.push_back({ std::string(it->m_pName), s_Value });
+			s_JsonEnum.Values[s_Value] = it->m_pName;
 	}
 
 	p_Stream << p_Indent << "};" << std::endl << std::endl;
