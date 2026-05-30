@@ -104,6 +104,9 @@ public:
 	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
 
 	ZString m_sName;
+#if ZHM_TARGET == 2026
+	TArray<ZString> m_aItemLabels;
+#endif
 	TArray<ZString> m_aItemNames;
 	TArray<uint32_t> m_aItemValues;
 };
