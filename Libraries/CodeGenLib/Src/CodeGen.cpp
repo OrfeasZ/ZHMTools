@@ -315,10 +315,12 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 
 	// Remove some known "bad" types from the tree.
 	m_TypeTreeRoot->Children["ZDynamicObject"]->Children.erase("SArrayTypesRegistrar"); // Has circular dependencies.
+	m_TypeTreeRoot->Children["ZInvestigateCautiousSituation"]->Children.erase("SStateData"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children.erase("SCautiousInvestigateSituationSaveData"); // Uses ZInvestigateCautiousSituation::SStateData.
 	m_TypeTreeRoot->Children.erase("SGameKeywordManagerSaveData"); // Has fields that don't exist in type info.
-	m_TypeTreeRoot->Children.erase("SStateData"); // Has fields that don't exist in type info.
 	m_TypeTreeRoot->Children.erase("ZGridFloatField"); // Has fields that don't exist in type info.
 	m_TypeTreeRoot->Children.erase("SEvergreenMenuPromptDesc"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children["ZEvergreenMenuController"]->Children.erase("SPromptsData"); // Uses SEvergreenMenuPromptDesc.
 
 	std::unordered_set<std::shared_ptr<TreeNode>> s_Visited;
 	for (auto& s_Child : m_TypeTreeRoot->Children)
