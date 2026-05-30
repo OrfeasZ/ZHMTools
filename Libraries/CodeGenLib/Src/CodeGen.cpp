@@ -151,7 +151,7 @@ void CodeGen::CollectAllRttiTypes()
 				continue;
 
 			std::string s_DemangledName = DemangleRTTIName(s_BaseClass->TypeDescriptor->Name);
-			
+
 			if (!s_DemangledName.empty())
 			{
 				m_RttiTypes.insert(s_DemangledName);
@@ -179,7 +179,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 		auto s_TypeData = s_Pair.second;
 
 		std::shared_ptr<TreeNode> s_CurrentNode = m_TypeTreeRoot;
-		
+
 		size_t s_Start = 0;
 		size_t s_End = s_TypeName.find('.');
 
@@ -196,7 +196,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 				s_CurrentNode->Children[s_Part] = s_NewNode;
 				m_TypeNodesByName[s_NewNode->TypeName()] = s_NewNode;
 			}
-			
+
 			s_CurrentNode = s_CurrentNode->Children[s_Part];
 			s_Start = s_End + 1;
 			s_End = s_TypeName.find('.', s_Start);
@@ -314,13 +314,19 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 	}
 
 	// Remove some known "bad" types from the tree.
-	m_TypeTreeRoot->Children["ZDynamicObject"]->Children.erase("SArrayTypesRegistrar"); // Has circular dependencies.
-	m_TypeTreeRoot->Children["ZInvestigateCautiousSituation"]->Children.erase("SStateData"); // Has fields that don't exist in type info.
+	auto RemoveChild = [this](const char* p_TypeName, const char* p_ChildName) {
+		if (m_TypeTreeRoot->Children.contains(p_TypeName)) {
+			m_TypeTreeRoot->Children[p_TypeName]->Children.erase(p_ChildName);
+		}
+	};
+
+	RemoveChild("ZDynamicObject", "SArrayTypesRegistrar"); // Has circular dependencies.
+	RemoveChild("ZInvestigateCautiousSituation", "SStateData"); // Has fields that don't exist in type info.
 	m_TypeTreeRoot->Children.erase("SCautiousInvestigateSituationSaveData"); // Uses ZInvestigateCautiousSituation::SStateData.
 	m_TypeTreeRoot->Children.erase("SGameKeywordManagerSaveData"); // Has fields that don't exist in type info.
 	m_TypeTreeRoot->Children.erase("ZGridFloatField"); // Has fields that don't exist in type info.
 	m_TypeTreeRoot->Children.erase("SEvergreenMenuPromptDesc"); // Has fields that don't exist in type info.
-	m_TypeTreeRoot->Children["ZEvergreenMenuController"]->Children.erase("SPromptsData"); // Uses SEvergreenMenuPromptDesc.
+	RemoveChild("ZEvergreenMenuController", "SPromptsData"); // Uses SEvergreenMenuPromptDesc.
 
 	std::unordered_set<std::shared_ptr<TreeNode>> s_Visited;
 	for (auto& s_Child : m_TypeTreeRoot->Children)
@@ -630,7 +636,7 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 void CodeGen::PrintTypeTree(const std::shared_ptr<TreeNode>& p_Node, int p_Depth)
 {
 	std::string s_Indentation(p_Depth * 2, ' ');
-	
+
 	log("%s%s", s_Indentation.c_str(), p_Node->Name.c_str());
 
 	if (p_Node->Type == TreeNode::ENodeType::Type)
@@ -648,7 +654,7 @@ void CodeGen::PrintTypeTree(const std::shared_ptr<TreeNode>& p_Node, int p_Depth
 
 		log(")");
 	}
-	
+
 	log("\n");
 
 	if (p_Node->SortedChildren.empty())
@@ -1132,13 +1138,14 @@ void CodeGen::GenerateTypesJsonFile(const std::filesystem::path& p_OutputPath)
 		s_Stream << "\t\t\t\"size\": " << s_Enum.Size << "," << std::endl;
 		s_Stream << "\t\t\t\"values\": [";
 
-		for (size_t j = 0; j < s_Enum.Values.size(); ++j)
+		for (const auto it = s_Enum.Values.begin(); it != s_Enum.Values.end(); ++it)
 		{
-			const auto& s_Value = s_Enum.Values[j];
+			const auto& s_Value = it->first;
+			const auto& s_Name = EscapeJsonString(it->second);
 
-			if (j > 0) s_Stream << ",";
+			if (it != s_Enum.Values.begin()) s_Stream << ",";
 			s_Stream << std::endl;
-			s_Stream << "\t\t\t\t{ \"name\": \"" << EscapeJsonString(s_Value.Name) << "\", \"value\": " << s_Value.Value << " }";
+			s_Stream << "\t\t\t\t{ \"name\": \"" << s_Name << "\", \"value\": " << s_Value << " }";
 		}
 
 		if (!s_Enum.Values.empty())
