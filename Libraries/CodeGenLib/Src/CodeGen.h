@@ -74,6 +74,8 @@ private:
 	void GenerateDummyClass(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent, EOutputTarget p_Target);
 	void GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent);
 	void GenerateRlClassSource(const std::shared_ptr<TreeNode>& p_Node);
+	static bool ShouldForceJsonEmit(const std::string& p_TypeName);
+	void MaybeEmitForcedJsonStruct(const std::shared_ptr<TreeNode>& p_Node);
 	void GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent, std::ofstream& p_Stream);
 	void GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent);
 	void GeneratePropertyNamesFiles();
@@ -120,6 +122,7 @@ private:
 	std::map<std::string, EnumDef> m_Enums;
 	std::vector<JsonStruct> m_JsonStructs;
 	std::vector<JsonEnumInfo> m_JsonEnums;
+	std::unordered_set<std::string> m_ForcedJsonEmitted;
 
 	std::ofstream m_ReflectiveClassesHeaderFile;
 	std::ofstream m_ReflectiveClassesSourceFile;

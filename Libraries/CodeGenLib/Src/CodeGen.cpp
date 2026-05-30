@@ -316,6 +316,9 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 	// Remove some known "bad" types from the tree.
 	m_TypeTreeRoot->Children["ZDynamicObject"]->Children.erase("SArrayTypesRegistrar"); // Has circular dependencies.
 	m_TypeTreeRoot->Children.erase("SGameKeywordManagerSaveData"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children.erase("SStateData"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children.erase("ZGridFloatField"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children.erase("SEvergreenMenuPromptDesc"); // Has fields that don't exist in type info.
 
 	std::unordered_set<std::shared_ptr<TreeNode>> s_Visited;
 	for (auto& s_Child : m_TypeTreeRoot->Children)
@@ -689,6 +692,29 @@ std::string NormalizeName(STypeID* p_Type)
 	}
 
 	return NormalizeTypeName(s_TypeName);
+}
+
+// Return the original type info name of a type.
+std::string OriginalName(STypeID* p_Type)
+{
+	std::string s_TypeName = p_Type->typeInfo()->m_pTypeName;
+
+	if (s_TypeName == "TArray")
+		return s_TypeName;
+
+	if (p_Type->typeInfo()->isFixedArray())
+	{
+		auto s_ElementType = reinterpret_cast<IArrayType*>(p_Type->typeInfo())->m_pArrayElementType;
+		return "TFixedArray<" + OriginalName(s_ElementType) + ", " + std::to_string(reinterpret_cast<IArrayType*>(p_Type->typeInfo())->fixedArraySize()) + ">";
+	}
+
+	if (p_Type->typeInfo()->isArray())
+	{
+		auto s_ElementType = reinterpret_cast<IArrayType*>(p_Type->typeInfo())->m_pArrayElementType;
+		return "TArray<" + OriginalName(s_ElementType) + ">";
+	}
+
+	return s_TypeName;
 }
 
 std::string GetEnumUnderlyingType(STypeID* p_Type)
@@ -1224,6 +1250,59 @@ std::string CodeGen::DemangleRTTIName(const std::string& p_MangledName)
 	return s_Result;
 }
 
+bool CodeGen::ShouldForceJsonEmit(const std::string& p_TypeName)
+{
+	return p_TypeName == "SConditionBase"
+		|| p_TypeName.starts_with("SBehavior_")
+		|| p_TypeName.starts_with("SCondition_");
+}
+
+void CodeGen::MaybeEmitForcedJsonStruct(const std::shared_ptr<TreeNode>& p_Node)
+{
+	if (!p_Node || !p_Node->TypeData)
+		return;
+
+	auto* s_TypeInfo = p_Node->TypeData->typeInfo();
+	if (!s_TypeInfo || !s_TypeInfo->isClass())
+		return;
+
+	std::string s_TypeName = s_TypeInfo->m_pTypeName;
+
+	if (!ShouldForceJsonEmit(s_TypeName))
+		return;
+
+	if (!m_ForcedJsonEmitted.insert(s_TypeName).second)
+		return;
+
+	auto* s_Type = reinterpret_cast<IClassType*>(s_TypeInfo);
+
+	JsonStruct s_JsonStruct;
+	s_JsonStruct.Name = s_TypeName;
+	s_JsonStruct.Size = static_cast<uint32_t>(s_TypeInfo->m_nTypeSize);
+	s_JsonStruct.Alignment = static_cast<uint32_t>(s_TypeInfo->m_nTypeAlignment);
+
+	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
+	{
+		auto s_Prop = s_Type->m_pProperties[i];
+
+		if (!s_Prop.m_pType || !s_Prop.m_pType->typeInfo())
+		{
+			log("Forced JSON emit: skipping property '%s' in '%s' due to missing typeinfo.\n",
+				s_Prop.m_pName, s_TypeName.c_str());
+			continue;
+		}
+
+		s_JsonStruct.Fields.push_back({
+			s_Prop.m_pName,
+			OriginalName(s_Prop.m_pType),
+			static_cast<uint32_t>(s_Prop.m_nOffset)
+		});
+	}
+
+	log("Forced JSON emit for type '%s'.\n", s_TypeName.c_str());
+	m_JsonStructs.push_back(std::move(s_JsonStruct));
+}
+
 void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent)
 {
 	// If this is not a RL type, just print a dummy instead.
@@ -1258,6 +1337,7 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	if (!s_IsRlType)
 	{
 		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
+		MaybeEmitForcedJsonStruct(p_Node);
 		return;
 	}
 
@@ -1282,12 +1362,14 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		if (!s_Type->m_pProperties[i].m_pType->typeInfo())
 		{
 			log("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			MaybeEmitForcedJsonStruct(p_Node);
 			return;
 		}
 
 		if (s_Type->m_pProperties[i].m_pType->typeInfo()->m_pTypeName == std::string("TArray"))
 		{
 			log("TArray property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			MaybeEmitForcedJsonStruct(p_Node);
 			return;
 		}
 	}
@@ -1340,7 +1422,7 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		s_HeaderStream << p_Indent << "\t" << NormalizeName(s_Prop.m_pType) << " " << s_PropName << ";";
 		s_HeaderStream << " // 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << std::endl;
 
-		s_JsonStruct.Fields.push_back({ s_PropName, NormalizeName(s_Prop.m_pType), static_cast<uint32_t>(s_Prop.m_nOffset) });
+		s_JsonStruct.Fields.push_back({ s_PropName, OriginalName(s_Prop.m_pType), static_cast<uint32_t>(s_Prop.m_nOffset) });
 	}
 
 	m_JsonStructs.push_back(std::move(s_JsonStruct));
@@ -1844,6 +1926,8 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 		{
 			GenerateDummyClass(p_Node, p_Indent, p_Target);
 		}
+
+		MaybeEmitForcedJsonStruct(p_Node);
 
 		return;
 	}
