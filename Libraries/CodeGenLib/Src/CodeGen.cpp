@@ -1138,7 +1138,7 @@ void CodeGen::GenerateTypesJsonFile(const std::filesystem::path& p_OutputPath)
 		s_Stream << "\t\t\t\"size\": " << s_Enum.Size << "," << std::endl;
 		s_Stream << "\t\t\t\"values\": [";
 
-		for (const auto it = s_Enum.Values.begin(); it != s_Enum.Values.end(); ++it)
+		for (auto it = s_Enum.Values.begin(); it != s_Enum.Values.end(); ++it)
 		{
 			const auto& s_Value = it->first;
 			const auto& s_Name = EscapeJsonString(it->second);
