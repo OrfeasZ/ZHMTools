@@ -87,6 +87,8 @@ private:
 
 	static bool ShouldForceJsonEmit(const std::string &p_TypeName);
 
+	void EmitJsonStruct(const std::shared_ptr<TreeNode> &p_Node);
+
 	void MaybeEmitForcedJsonStruct(const std::shared_ptr<TreeNode> &p_Node);
 
 	void GenerateEnum(const std::shared_ptr<TreeNode> &p_Node, const std::string &p_Indent, std::ofstream &p_Stream);
@@ -133,7 +135,7 @@ private:
 	std::map<std::string, EnumDef> m_Enums;
 	std::vector<JsonStruct> m_JsonStructs;
 	std::vector<JsonEnumInfo> m_JsonEnums;
-	std::unordered_set<std::string> m_ForcedJsonEmitted;
+	std::unordered_set<std::string> m_EmittedJsonStructs;
 
 	std::ofstream m_ReflectiveClassesHeaderFile;
 	std::ofstream m_ReflectiveClassesSourceFile;
