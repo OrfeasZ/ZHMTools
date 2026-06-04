@@ -11,423 +11,6 @@
 #include <External/simdjson_helpers.h>
 #include <utility>
 
-ZHMTypeInfo AI::SEventDescription::TypeInfo = ZHMTypeInfo("AI.SEventDescription", sizeof(AI::SEventDescription), alignof(AI::SEventDescription), AI::SEventDescription::WriteSimpleJson, AI::SEventDescription::FromSimpleJson, AI::SEventDescription::Serialize, AI::SEventDescription::Equals, AI::SEventDescription::Destroy);
-
-void AI::SEventDescription::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<AI::SEventDescription*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_eEventType") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAIEventType", static_cast<int>(s_Object->m_eEventType)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bPulsing") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bPulsing);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fRange") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fRange);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fLoudness") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fLoudness);
-
-	p_Stream << "}";
-}
-
-void AI::SEventDescription::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<AI::SEventDescription*>(p_Target);
-
-	s_Object->m_eEventType = static_cast<EAIEventType>(ZHMEnums::GetEnumValueByName("EAIEventType", std::string_view(p_Document["m_eEventType"])));
-
-	s_Object->m_bPulsing = simdjson::from_json_bool(p_Document["m_bPulsing"]);
-
-	s_Object->m_fRange = simdjson::from_json_float32(p_Document["m_fRange"]);
-
-	s_Object->m_fLoudness = simdjson::from_json_float32(p_Document["m_fLoudness"]);
-
-}
-
-void AI::SEventDescription::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<AI::SEventDescription*>(p_Object);
-
-}
-
-bool AI::SEventDescription::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<AI::SEventDescription*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::SEventDescription*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool AI::SEventDescription::operator==(const AI::SEventDescription& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::SEventDescription>)
-		return false;
-
-	if (m_eEventType != p_Other.m_eEventType) return false;
-	if (m_bPulsing != p_Other.m_bPulsing) return false;
-	if (m_fRange != p_Other.m_fRange) return false;
-	if (m_fLoudness != p_Other.m_fLoudness) return false;
-
-	return true;
-}
-
-void AI::SEventDescription::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<AI::SEventDescription*>(p_Object);
-	s_Object->~SEventDescription();
-}
-
-ZHMTypeInfo AI::SSoundEventModifierState::TypeInfo = ZHMTypeInfo("AI.SSoundEventModifierState", sizeof(AI::SSoundEventModifierState), alignof(AI::SSoundEventModifierState), AI::SSoundEventModifierState::WriteSimpleJson, AI::SSoundEventModifierState::FromSimpleJson, AI::SSoundEventModifierState::Serialize, AI::SSoundEventModifierState::Equals, AI::SSoundEventModifierState::Destroy);
-
-void AI::SSoundEventModifierState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_fRangeModifier") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fRangeModifier);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fLoudnessModifier") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fLoudnessModifier);
-
-	p_Stream << "}";
-}
-
-void AI::SSoundEventModifierState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Target);
-
-	s_Object->m_fRangeModifier = simdjson::from_json_float32(p_Document["m_fRangeModifier"]);
-
-	s_Object->m_fLoudnessModifier = simdjson::from_json_float32(p_Document["m_fLoudnessModifier"]);
-
-}
-
-void AI::SSoundEventModifierState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Object);
-
-}
-
-bool AI::SSoundEventModifierState::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<AI::SSoundEventModifierState*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::SSoundEventModifierState*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool AI::SSoundEventModifierState::operator==(const AI::SSoundEventModifierState& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::SSoundEventModifierState>)
-		return false;
-
-	if (m_fRangeModifier != p_Other.m_fRangeModifier) return false;
-	if (m_fLoudnessModifier != p_Other.m_fLoudnessModifier) return false;
-
-	return true;
-}
-
-void AI::SSoundEventModifierState::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Object);
-	s_Object->~SSoundEventModifierState();
-}
-
-ZHMTypeInfo AI::SFirePattern02::TypeInfo = ZHMTypeInfo("AI.SFirePattern02", sizeof(AI::SFirePattern02), alignof(AI::SFirePattern02), AI::SFirePattern02::WriteSimpleJson, AI::SFirePattern02::FromSimpleJson, AI::SFirePattern02::Serialize, AI::SFirePattern02::Equals, AI::SFirePattern02::Destroy);
-
-void AI::SFirePattern02::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_PatternSequenceData") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
-		AI::SFirePattern02::SData::WriteSimpleJson(&s_Item0, p_Stream);
-
-		if (i < s_Object->m_PatternSequenceData.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-
-	p_Stream << "}";
-}
-
-void AI::SFirePattern02::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Target);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_PatternSequenceData"];
-	s_Object->m_PatternSequenceData.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		AI::SFirePattern02::SData::FromSimpleJson(s_Item0, &s_Object->m_PatternSequenceData[s_Index0]);
-		++s_Index0;
-	}
-	}
-
-}
-
-void AI::SFirePattern02::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Object);
-
-	TArray<AI::SFirePattern02::SData>::Serialize(&s_Object->m_PatternSequenceData, p_Serializer, p_OwnOffset + offsetof(AI::SFirePattern02, m_PatternSequenceData));
-}
-
-bool AI::SFirePattern02::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<AI::SFirePattern02*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::SFirePattern02*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool AI::SFirePattern02::operator==(const AI::SFirePattern02& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern02>)
-		return false;
-
-	if (m_PatternSequenceData != p_Other.m_PatternSequenceData) return false;
-
-	return true;
-}
-
-void AI::SFirePattern02::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Object);
-	s_Object->~SFirePattern02();
-}
-
-ZHMTypeInfo AI::SFirePattern02::SData::TypeInfo = ZHMTypeInfo("AI.SFirePattern02.SData", sizeof(AI::SFirePattern02::SData), alignof(AI::SFirePattern02::SData), AI::SFirePattern02::SData::WriteSimpleJson, AI::SFirePattern02::SData::FromSimpleJson, AI::SFirePattern02::SData::Serialize, AI::SFirePattern02::SData::Equals, AI::SFirePattern02::SData::Destroy);
-
-void AI::SFirePattern02::SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_FireMinSeconds") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_FireMinSeconds);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_FireMaxSeconds") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_FireMaxSeconds);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_WaitMinSeconds") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_WaitMinSeconds);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_WaitMaxSeconds") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_WaitMaxSeconds);
-
-	p_Stream << "}";
-}
-
-void AI::SFirePattern02::SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Target);
-
-	s_Object->m_FireMinSeconds = simdjson::from_json_float32(p_Document["m_FireMinSeconds"]);
-
-	s_Object->m_FireMaxSeconds = simdjson::from_json_float32(p_Document["m_FireMaxSeconds"]);
-
-	s_Object->m_WaitMinSeconds = simdjson::from_json_float32(p_Document["m_WaitMinSeconds"]);
-
-	s_Object->m_WaitMaxSeconds = simdjson::from_json_float32(p_Document["m_WaitMaxSeconds"]);
-
-}
-
-void AI::SFirePattern02::SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Object);
-
-}
-
-bool AI::SFirePattern02::SData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<AI::SFirePattern02::SData*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::SFirePattern02::SData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool AI::SFirePattern02::SData::operator==(const AI::SFirePattern02::SData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern02::SData>)
-		return false;
-
-	if (m_FireMinSeconds != p_Other.m_FireMinSeconds) return false;
-	if (m_FireMaxSeconds != p_Other.m_FireMaxSeconds) return false;
-	if (m_WaitMinSeconds != p_Other.m_WaitMinSeconds) return false;
-	if (m_WaitMaxSeconds != p_Other.m_WaitMaxSeconds) return false;
-
-	return true;
-}
-
-void AI::SFirePattern02::SData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Object);
-	s_Object->~SData();
-}
-
-ZHMTypeInfo AI::SFirePattern01::TypeInfo = ZHMTypeInfo("AI.SFirePattern01", sizeof(AI::SFirePattern01), alignof(AI::SFirePattern01), AI::SFirePattern01::WriteSimpleJson, AI::SFirePattern01::FromSimpleJson, AI::SFirePattern01::Serialize, AI::SFirePattern01::Equals, AI::SFirePattern01::Destroy);
-
-void AI::SFirePattern01::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_PatternSequenceData") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
-		AI::SFirePattern01::SData::WriteSimpleJson(&s_Item0, p_Stream);
-
-		if (i < s_Object->m_PatternSequenceData.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-
-	p_Stream << "}";
-}
-
-void AI::SFirePattern01::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Target);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_PatternSequenceData"];
-	s_Object->m_PatternSequenceData.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		AI::SFirePattern01::SData::FromSimpleJson(s_Item0, &s_Object->m_PatternSequenceData[s_Index0]);
-		++s_Index0;
-	}
-	}
-
-}
-
-void AI::SFirePattern01::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Object);
-
-	TArray<AI::SFirePattern01::SData>::Serialize(&s_Object->m_PatternSequenceData, p_Serializer, p_OwnOffset + offsetof(AI::SFirePattern01, m_PatternSequenceData));
-}
-
-bool AI::SFirePattern01::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<AI::SFirePattern01*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::SFirePattern01*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool AI::SFirePattern01::operator==(const AI::SFirePattern01& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern01>)
-		return false;
-
-	if (m_PatternSequenceData != p_Other.m_PatternSequenceData) return false;
-
-	return true;
-}
-
-void AI::SFirePattern01::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Object);
-	s_Object->~SFirePattern01();
-}
-
-ZHMTypeInfo AI::SFirePattern01::SData::TypeInfo = ZHMTypeInfo("AI.SFirePattern01.SData", sizeof(AI::SFirePattern01::SData), alignof(AI::SFirePattern01::SData), AI::SFirePattern01::SData::WriteSimpleJson, AI::SFirePattern01::SData::FromSimpleJson, AI::SFirePattern01::SData::Serialize, AI::SFirePattern01::SData::Equals, AI::SFirePattern01::SData::Destroy);
-
-void AI::SFirePattern01::SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_BulletsToFire") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_BulletsToFire);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_WaitMinSeconds") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_WaitMinSeconds);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_WaitMaxSeconds") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_WaitMaxSeconds);
-
-	p_Stream << "}";
-}
-
-void AI::SFirePattern01::SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Target);
-
-	s_Object->m_BulletsToFire = simdjson::from_json_uint32(p_Document["m_BulletsToFire"]);
-
-	s_Object->m_WaitMinSeconds = simdjson::from_json_float32(p_Document["m_WaitMinSeconds"]);
-
-	s_Object->m_WaitMaxSeconds = simdjson::from_json_float32(p_Document["m_WaitMaxSeconds"]);
-
-}
-
-void AI::SFirePattern01::SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Object);
-
-}
-
-bool AI::SFirePattern01::SData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<AI::SFirePattern01::SData*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::SFirePattern01::SData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool AI::SFirePattern01::SData::operator==(const AI::SFirePattern01::SData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern01::SData>)
-		return false;
-
-	if (m_BulletsToFire != p_Other.m_BulletsToFire) return false;
-	if (m_WaitMinSeconds != p_Other.m_WaitMinSeconds) return false;
-	if (m_WaitMaxSeconds != p_Other.m_WaitMaxSeconds) return false;
-
-	return true;
-}
-
-void AI::SFirePattern01::SData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Object);
-	s_Object->~SData();
-}
-
 ZHMTypeInfo AI::Private::SPoolModificationEvent::TypeInfo = ZHMTypeInfo("AI.Private.SPoolModificationEvent", sizeof(AI::Private::SPoolModificationEvent), alignof(AI::Private::SPoolModificationEvent), AI::Private::SPoolModificationEvent::WriteSimpleJson, AI::Private::SPoolModificationEvent::FromSimpleJson, AI::Private::SPoolModificationEvent::Serialize, AI::Private::SPoolModificationEvent::Equals, AI::Private::SPoolModificationEvent::Destroy);
 
 void AI::Private::SPoolModificationEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -679,164 +262,56 @@ void AI::Private::SPoolSnapshot::Destroy(void* p_Object)
 	s_Object->~SPoolSnapshot();
 }
 
-ZHMTypeInfo AI::Private::SPoolModificationCollectionEvent::TypeInfo = ZHMTypeInfo("AI.Private.SPoolModificationCollectionEvent", sizeof(AI::Private::SPoolModificationCollectionEvent), alignof(AI::Private::SPoolModificationCollectionEvent), AI::Private::SPoolModificationCollectionEvent::WriteSimpleJson, AI::Private::SPoolModificationCollectionEvent::FromSimpleJson, AI::Private::SPoolModificationCollectionEvent::Serialize, AI::Private::SPoolModificationCollectionEvent::Equals, AI::Private::SPoolModificationCollectionEvent::Destroy);
+ZHMTypeInfo AI::Private::Details::SStimulus_AgentData_SaveData::TypeInfo = ZHMTypeInfo("AI.Private.Details.SStimulus_AgentData_SaveData", sizeof(AI::Private::Details::SStimulus_AgentData_SaveData), alignof(AI::Private::Details::SStimulus_AgentData_SaveData), AI::Private::Details::SStimulus_AgentData_SaveData::WriteSimpleJson, AI::Private::Details::SStimulus_AgentData_SaveData::FromSimpleJson, AI::Private::Details::SStimulus_AgentData_SaveData::Serialize, AI::Private::Details::SStimulus_AgentData_SaveData::Equals, AI::Private::Details::SStimulus_AgentData_SaveData::Destroy);
 
-void AI::Private::SPoolModificationCollectionEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+void AI::Private::Details::SStimulus_AgentData_SaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
-	auto* s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Object);
+	auto* s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Object);
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("PoolModificationEvents") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->PoolModificationEvents.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->PoolModificationEvents[i];
-		AI::Private::SPoolModificationEvent::WriteSimpleJson(&s_Item0, p_Stream);
-
-		if (i < s_Object->PoolModificationEvents.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
+	p_Stream << simdjson::as_json_string("m_AgentData") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_AgentData);
 
 	p_Stream << "}";
 }
 
-void AI::Private::SPoolModificationCollectionEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+void AI::Private::Details::SStimulus_AgentData_SaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	auto s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Target);
+	auto s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Target);
 
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["PoolModificationEvents"];
-	s_Object->PoolModificationEvents.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		AI::Private::SPoolModificationEvent::FromSimpleJson(s_Item0, &s_Object->PoolModificationEvents[s_Index0]);
-		++s_Index0;
-	}
-	}
+	s_Object->m_AgentData = simdjson::from_json_uint32(p_Document["m_AgentData"]);
 
 }
 
-void AI::Private::SPoolModificationCollectionEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+void AI::Private::Details::SStimulus_AgentData_SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
-	auto* s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Object);
+	auto* s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Object);
 
-	TArray<AI::Private::SPoolModificationEvent>::Serialize(&s_Object->PoolModificationEvents, p_Serializer, p_OwnOffset + offsetof(AI::Private::SPoolModificationCollectionEvent, PoolModificationEvents));
 }
 
-bool AI::Private::SPoolModificationCollectionEvent::Equals(void* p_Left, void* p_Right)
+bool AI::Private::Details::SStimulus_AgentData_SaveData::Equals(void* p_Left, void* p_Right)
 {
-	auto* s_Left = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Right);
+	auto* s_Left = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Right);
 
 	return *s_Left == *s_Right;
 }
 
-bool AI::Private::SPoolModificationCollectionEvent::operator==(const AI::Private::SPoolModificationCollectionEvent& p_Other) const
+bool AI::Private::Details::SStimulus_AgentData_SaveData::operator==(const AI::Private::Details::SStimulus_AgentData_SaveData& p_Other) const
 {
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::Private::SPoolModificationCollectionEvent>)
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::Private::Details::SStimulus_AgentData_SaveData>)
 		return false;
 
-	if (PoolModificationEvents != p_Other.PoolModificationEvents) return false;
+	if (m_AgentData != p_Other.m_AgentData) return false;
 
 	return true;
 }
 
-void AI::Private::SPoolModificationCollectionEvent::Destroy(void* p_Object)
+void AI::Private::Details::SStimulus_AgentData_SaveData::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Object);
-	s_Object->~SPoolModificationCollectionEvent();
-}
-
-ZHMTypeInfo AI::Private::SFullDataSnapshotEvent::TypeInfo = ZHMTypeInfo("AI.Private.SFullDataSnapshotEvent", sizeof(AI::Private::SFullDataSnapshotEvent), alignof(AI::Private::SFullDataSnapshotEvent), AI::Private::SFullDataSnapshotEvent::WriteSimpleJson, AI::Private::SFullDataSnapshotEvent::FromSimpleJson, AI::Private::SFullDataSnapshotEvent::Serialize, AI::Private::SFullDataSnapshotEvent::Equals, AI::Private::SFullDataSnapshotEvent::Destroy);
-
-void AI::Private::SFullDataSnapshotEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("Timestamp") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->Timestamp);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("EventIndex") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->EventIndex);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("StimulusPools") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->StimulusPools.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->StimulusPools[i];
-		AI::Private::SPoolSnapshot::WriteSimpleJson(&s_Item0, p_Stream);
-
-		if (i < s_Object->StimulusPools.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-
-	p_Stream << "}";
-}
-
-void AI::Private::SFullDataSnapshotEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Target);
-
-	s_Object->Timestamp = simdjson::from_json_uint64(p_Document["Timestamp"]);
-
-	s_Object->EventIndex = simdjson::from_json_uint32(p_Document["EventIndex"]);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["StimulusPools"];
-	s_Object->StimulusPools.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		AI::Private::SPoolSnapshot::FromSimpleJson(s_Item0, &s_Object->StimulusPools[s_Index0]);
-		++s_Index0;
-	}
-	}
-
-}
-
-void AI::Private::SFullDataSnapshotEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Object);
-
-	TArray<AI::Private::SPoolSnapshot>::Serialize(&s_Object->StimulusPools, p_Serializer, p_OwnOffset + offsetof(AI::Private::SFullDataSnapshotEvent, StimulusPools));
-}
-
-bool AI::Private::SFullDataSnapshotEvent::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool AI::Private::SFullDataSnapshotEvent::operator==(const AI::Private::SFullDataSnapshotEvent& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::Private::SFullDataSnapshotEvent>)
-		return false;
-
-	if (Timestamp != p_Other.Timestamp) return false;
-	if (EventIndex != p_Other.EventIndex) return false;
-	if (StimulusPools != p_Other.StimulusPools) return false;
-
-	return true;
-}
-
-void AI::Private::SFullDataSnapshotEvent::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Object);
-	s_Object->~SFullDataSnapshotEvent();
+	auto* s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Object);
+	s_Object->~SStimulus_AgentData_SaveData();
 }
 
 ZHMTypeInfo AI::Private::Details::SBaseStimulus_Pool_SaveData::TypeInfo = ZHMTypeInfo("AI.Private.Details.SBaseStimulus_Pool_SaveData", sizeof(AI::Private::Details::SBaseStimulus_Pool_SaveData), alignof(AI::Private::Details::SBaseStimulus_Pool_SaveData), AI::Private::Details::SBaseStimulus_Pool_SaveData::WriteSimpleJson, AI::Private::Details::SBaseStimulus_Pool_SaveData::FromSimpleJson, AI::Private::Details::SBaseStimulus_Pool_SaveData::Serialize, AI::Private::Details::SBaseStimulus_Pool_SaveData::Equals, AI::Private::Details::SBaseStimulus_Pool_SaveData::Destroy);
@@ -968,56 +443,581 @@ void AI::Private::Details::SBaseStimulus_Pool_SaveData::Destroy(void* p_Object)
 	s_Object->~SBaseStimulus_Pool_SaveData();
 }
 
-ZHMTypeInfo AI::Private::Details::SStimulus_AgentData_SaveData::TypeInfo = ZHMTypeInfo("AI.Private.Details.SStimulus_AgentData_SaveData", sizeof(AI::Private::Details::SStimulus_AgentData_SaveData), alignof(AI::Private::Details::SStimulus_AgentData_SaveData), AI::Private::Details::SStimulus_AgentData_SaveData::WriteSimpleJson, AI::Private::Details::SStimulus_AgentData_SaveData::FromSimpleJson, AI::Private::Details::SStimulus_AgentData_SaveData::Serialize, AI::Private::Details::SStimulus_AgentData_SaveData::Equals, AI::Private::Details::SStimulus_AgentData_SaveData::Destroy);
+ZHMTypeInfo AI::Private::SFullDataSnapshotEvent::TypeInfo = ZHMTypeInfo("AI.Private.SFullDataSnapshotEvent", sizeof(AI::Private::SFullDataSnapshotEvent), alignof(AI::Private::SFullDataSnapshotEvent), AI::Private::SFullDataSnapshotEvent::WriteSimpleJson, AI::Private::SFullDataSnapshotEvent::FromSimpleJson, AI::Private::SFullDataSnapshotEvent::Serialize, AI::Private::SFullDataSnapshotEvent::Equals, AI::Private::SFullDataSnapshotEvent::Destroy);
 
-void AI::Private::Details::SStimulus_AgentData_SaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+void AI::Private::SFullDataSnapshotEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
-	auto* s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Object);
+	auto* s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Object);
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("m_AgentData") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_AgentData);
+	p_Stream << simdjson::as_json_string("Timestamp") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Timestamp);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("EventIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->EventIndex);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("StimulusPools") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->StimulusPools.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->StimulusPools[i];
+		AI::Private::SPoolSnapshot::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->StimulusPools.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
 
 	p_Stream << "}";
 }
 
-void AI::Private::Details::SStimulus_AgentData_SaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+void AI::Private::SFullDataSnapshotEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	auto s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Target);
+	auto s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Target);
 
-	s_Object->m_AgentData = simdjson::from_json_uint32(p_Document["m_AgentData"]);
+	s_Object->Timestamp = simdjson::from_json_uint64(p_Document["Timestamp"]);
+
+	s_Object->EventIndex = simdjson::from_json_uint32(p_Document["EventIndex"]);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["StimulusPools"];
+	s_Object->StimulusPools.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		AI::Private::SPoolSnapshot::FromSimpleJson(s_Item0, &s_Object->StimulusPools[s_Index0]);
+		++s_Index0;
+	}
+	}
 
 }
 
-void AI::Private::Details::SStimulus_AgentData_SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+void AI::Private::SFullDataSnapshotEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
-	auto* s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Object);
+	auto* s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Object);
 
+	TArray<AI::Private::SPoolSnapshot>::Serialize(&s_Object->StimulusPools, p_Serializer, p_OwnOffset + offsetof(AI::Private::SFullDataSnapshotEvent, StimulusPools));
 }
 
-bool AI::Private::Details::SStimulus_AgentData_SaveData::Equals(void* p_Left, void* p_Right)
+bool AI::Private::SFullDataSnapshotEvent::Equals(void* p_Left, void* p_Right)
 {
-	auto* s_Left = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Right);
+	auto* s_Left = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Right);
 
 	return *s_Left == *s_Right;
 }
 
-bool AI::Private::Details::SStimulus_AgentData_SaveData::operator==(const AI::Private::Details::SStimulus_AgentData_SaveData& p_Other) const
+bool AI::Private::SFullDataSnapshotEvent::operator==(const AI::Private::SFullDataSnapshotEvent& p_Other) const
 {
-	if constexpr (!ZHMTypeSupportsEquality_v<AI::Private::Details::SStimulus_AgentData_SaveData>)
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::Private::SFullDataSnapshotEvent>)
 		return false;
 
-	if (m_AgentData != p_Other.m_AgentData) return false;
+	if (Timestamp != p_Other.Timestamp) return false;
+	if (EventIndex != p_Other.EventIndex) return false;
+	if (StimulusPools != p_Other.StimulusPools) return false;
 
 	return true;
 }
 
-void AI::Private::Details::SStimulus_AgentData_SaveData::Destroy(void* p_Object)
+void AI::Private::SFullDataSnapshotEvent::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<AI::Private::Details::SStimulus_AgentData_SaveData*>(p_Object);
-	s_Object->~SStimulus_AgentData_SaveData();
+	auto* s_Object = reinterpret_cast<AI::Private::SFullDataSnapshotEvent*>(p_Object);
+	s_Object->~SFullDataSnapshotEvent();
+}
+
+ZHMTypeInfo AI::Private::SPoolModificationCollectionEvent::TypeInfo = ZHMTypeInfo("AI.Private.SPoolModificationCollectionEvent", sizeof(AI::Private::SPoolModificationCollectionEvent), alignof(AI::Private::SPoolModificationCollectionEvent), AI::Private::SPoolModificationCollectionEvent::WriteSimpleJson, AI::Private::SPoolModificationCollectionEvent::FromSimpleJson, AI::Private::SPoolModificationCollectionEvent::Serialize, AI::Private::SPoolModificationCollectionEvent::Equals, AI::Private::SPoolModificationCollectionEvent::Destroy);
+
+void AI::Private::SPoolModificationCollectionEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("PoolModificationEvents") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->PoolModificationEvents.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->PoolModificationEvents[i];
+		AI::Private::SPoolModificationEvent::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->PoolModificationEvents.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void AI::Private::SPoolModificationCollectionEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Target);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["PoolModificationEvents"];
+	s_Object->PoolModificationEvents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		AI::Private::SPoolModificationEvent::FromSimpleJson(s_Item0, &s_Object->PoolModificationEvents[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void AI::Private::SPoolModificationCollectionEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Object);
+
+	TArray<AI::Private::SPoolModificationEvent>::Serialize(&s_Object->PoolModificationEvents, p_Serializer, p_OwnOffset + offsetof(AI::Private::SPoolModificationCollectionEvent, PoolModificationEvents));
+}
+
+bool AI::Private::SPoolModificationCollectionEvent::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool AI::Private::SPoolModificationCollectionEvent::operator==(const AI::Private::SPoolModificationCollectionEvent& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::Private::SPoolModificationCollectionEvent>)
+		return false;
+
+	if (PoolModificationEvents != p_Other.PoolModificationEvents) return false;
+
+	return true;
+}
+
+void AI::Private::SPoolModificationCollectionEvent::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<AI::Private::SPoolModificationCollectionEvent*>(p_Object);
+	s_Object->~SPoolModificationCollectionEvent();
+}
+
+ZHMTypeInfo AI::SEventDescription::TypeInfo = ZHMTypeInfo("AI.SEventDescription", sizeof(AI::SEventDescription), alignof(AI::SEventDescription), AI::SEventDescription::WriteSimpleJson, AI::SEventDescription::FromSimpleJson, AI::SEventDescription::Serialize, AI::SEventDescription::Equals, AI::SEventDescription::Destroy);
+
+void AI::SEventDescription::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI::SEventDescription*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_eEventType") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAIEventType", static_cast<int>(s_Object->m_eEventType)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bPulsing") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bPulsing);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_fRange") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fRange);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_fLoudness") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fLoudness);
+
+	p_Stream << "}";
+}
+
+void AI::SEventDescription::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<AI::SEventDescription*>(p_Target);
+
+	s_Object->m_eEventType = static_cast<EAIEventType>(ZHMEnums::GetEnumValueByName("EAIEventType", std::string_view(p_Document["m_eEventType"])));
+
+	s_Object->m_bPulsing = simdjson::from_json_bool(p_Document["m_bPulsing"]);
+
+	s_Object->m_fRange = simdjson::from_json_float32(p_Document["m_fRange"]);
+
+	s_Object->m_fLoudness = simdjson::from_json_float32(p_Document["m_fLoudness"]);
+
+}
+
+void AI::SEventDescription::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI::SEventDescription*>(p_Object);
+
+}
+
+bool AI::SEventDescription::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<AI::SEventDescription*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::SEventDescription*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool AI::SEventDescription::operator==(const AI::SEventDescription& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::SEventDescription>)
+		return false;
+
+	if (m_eEventType != p_Other.m_eEventType) return false;
+	if (m_bPulsing != p_Other.m_bPulsing) return false;
+	if (m_fRange != p_Other.m_fRange) return false;
+	if (m_fLoudness != p_Other.m_fLoudness) return false;
+
+	return true;
+}
+
+void AI::SEventDescription::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<AI::SEventDescription*>(p_Object);
+	s_Object->~SEventDescription();
+}
+
+ZHMTypeInfo AI::SFirePattern01::TypeInfo = ZHMTypeInfo("AI.SFirePattern01", sizeof(AI::SFirePattern01), alignof(AI::SFirePattern01), AI::SFirePattern01::WriteSimpleJson, AI::SFirePattern01::FromSimpleJson, AI::SFirePattern01::Serialize, AI::SFirePattern01::Equals, AI::SFirePattern01::Destroy);
+
+void AI::SFirePattern01::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_PatternSequenceData") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
+		AI::SFirePattern01::SData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_PatternSequenceData.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void AI::SFirePattern01::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Target);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_PatternSequenceData"];
+	s_Object->m_PatternSequenceData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		AI::SFirePattern01::SData::FromSimpleJson(s_Item0, &s_Object->m_PatternSequenceData[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void AI::SFirePattern01::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Object);
+
+	TArray<AI::SFirePattern01::SData>::Serialize(&s_Object->m_PatternSequenceData, p_Serializer, p_OwnOffset + offsetof(AI::SFirePattern01, m_PatternSequenceData));
+}
+
+bool AI::SFirePattern01::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<AI::SFirePattern01*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::SFirePattern01*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool AI::SFirePattern01::operator==(const AI::SFirePattern01& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern01>)
+		return false;
+
+	if (m_PatternSequenceData != p_Other.m_PatternSequenceData) return false;
+
+	return true;
+}
+
+void AI::SFirePattern01::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern01*>(p_Object);
+	s_Object->~SFirePattern01();
+}
+
+ZHMTypeInfo AI::SFirePattern01::SData::TypeInfo = ZHMTypeInfo("AI.SFirePattern01.SData", sizeof(AI::SFirePattern01::SData), alignof(AI::SFirePattern01::SData), AI::SFirePattern01::SData::WriteSimpleJson, AI::SFirePattern01::SData::FromSimpleJson, AI::SFirePattern01::SData::Serialize, AI::SFirePattern01::SData::Equals, AI::SFirePattern01::SData::Destroy);
+
+void AI::SFirePattern01::SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_BulletsToFire") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_BulletsToFire);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_WaitMinSeconds") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_WaitMinSeconds);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_WaitMaxSeconds") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_WaitMaxSeconds);
+
+	p_Stream << "}";
+}
+
+void AI::SFirePattern01::SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Target);
+
+	s_Object->m_BulletsToFire = simdjson::from_json_uint32(p_Document["m_BulletsToFire"]);
+
+	s_Object->m_WaitMinSeconds = simdjson::from_json_float32(p_Document["m_WaitMinSeconds"]);
+
+	s_Object->m_WaitMaxSeconds = simdjson::from_json_float32(p_Document["m_WaitMaxSeconds"]);
+
+}
+
+void AI::SFirePattern01::SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Object);
+
+}
+
+bool AI::SFirePattern01::SData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<AI::SFirePattern01::SData*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::SFirePattern01::SData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool AI::SFirePattern01::SData::operator==(const AI::SFirePattern01::SData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern01::SData>)
+		return false;
+
+	if (m_BulletsToFire != p_Other.m_BulletsToFire) return false;
+	if (m_WaitMinSeconds != p_Other.m_WaitMinSeconds) return false;
+	if (m_WaitMaxSeconds != p_Other.m_WaitMaxSeconds) return false;
+
+	return true;
+}
+
+void AI::SFirePattern01::SData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern01::SData*>(p_Object);
+	s_Object->~SData();
+}
+
+ZHMTypeInfo AI::SFirePattern02::TypeInfo = ZHMTypeInfo("AI.SFirePattern02", sizeof(AI::SFirePattern02), alignof(AI::SFirePattern02), AI::SFirePattern02::WriteSimpleJson, AI::SFirePattern02::FromSimpleJson, AI::SFirePattern02::Serialize, AI::SFirePattern02::Equals, AI::SFirePattern02::Destroy);
+
+void AI::SFirePattern02::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_PatternSequenceData") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_PatternSequenceData.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_PatternSequenceData[i];
+		AI::SFirePattern02::SData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_PatternSequenceData.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void AI::SFirePattern02::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Target);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_PatternSequenceData"];
+	s_Object->m_PatternSequenceData.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		AI::SFirePattern02::SData::FromSimpleJson(s_Item0, &s_Object->m_PatternSequenceData[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void AI::SFirePattern02::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Object);
+
+	TArray<AI::SFirePattern02::SData>::Serialize(&s_Object->m_PatternSequenceData, p_Serializer, p_OwnOffset + offsetof(AI::SFirePattern02, m_PatternSequenceData));
+}
+
+bool AI::SFirePattern02::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<AI::SFirePattern02*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::SFirePattern02*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool AI::SFirePattern02::operator==(const AI::SFirePattern02& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern02>)
+		return false;
+
+	if (m_PatternSequenceData != p_Other.m_PatternSequenceData) return false;
+
+	return true;
+}
+
+void AI::SFirePattern02::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern02*>(p_Object);
+	s_Object->~SFirePattern02();
+}
+
+ZHMTypeInfo AI::SFirePattern02::SData::TypeInfo = ZHMTypeInfo("AI.SFirePattern02.SData", sizeof(AI::SFirePattern02::SData), alignof(AI::SFirePattern02::SData), AI::SFirePattern02::SData::WriteSimpleJson, AI::SFirePattern02::SData::FromSimpleJson, AI::SFirePattern02::SData::Serialize, AI::SFirePattern02::SData::Equals, AI::SFirePattern02::SData::Destroy);
+
+void AI::SFirePattern02::SData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_FireMinSeconds") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_FireMinSeconds);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_FireMaxSeconds") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_FireMaxSeconds);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_WaitMinSeconds") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_WaitMinSeconds);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_WaitMaxSeconds") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_WaitMaxSeconds);
+
+	p_Stream << "}";
+}
+
+void AI::SFirePattern02::SData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Target);
+
+	s_Object->m_FireMinSeconds = simdjson::from_json_float32(p_Document["m_FireMinSeconds"]);
+
+	s_Object->m_FireMaxSeconds = simdjson::from_json_float32(p_Document["m_FireMaxSeconds"]);
+
+	s_Object->m_WaitMinSeconds = simdjson::from_json_float32(p_Document["m_WaitMinSeconds"]);
+
+	s_Object->m_WaitMaxSeconds = simdjson::from_json_float32(p_Document["m_WaitMaxSeconds"]);
+
+}
+
+void AI::SFirePattern02::SData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Object);
+
+}
+
+bool AI::SFirePattern02::SData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<AI::SFirePattern02::SData*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::SFirePattern02::SData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool AI::SFirePattern02::SData::operator==(const AI::SFirePattern02::SData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::SFirePattern02::SData>)
+		return false;
+
+	if (m_FireMinSeconds != p_Other.m_FireMinSeconds) return false;
+	if (m_FireMaxSeconds != p_Other.m_FireMaxSeconds) return false;
+	if (m_WaitMinSeconds != p_Other.m_WaitMinSeconds) return false;
+	if (m_WaitMaxSeconds != p_Other.m_WaitMaxSeconds) return false;
+
+	return true;
+}
+
+void AI::SFirePattern02::SData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<AI::SFirePattern02::SData*>(p_Object);
+	s_Object->~SData();
+}
+
+ZHMTypeInfo AI::SSoundEventModifierState::TypeInfo = ZHMTypeInfo("AI.SSoundEventModifierState", sizeof(AI::SSoundEventModifierState), alignof(AI::SSoundEventModifierState), AI::SSoundEventModifierState::WriteSimpleJson, AI::SSoundEventModifierState::FromSimpleJson, AI::SSoundEventModifierState::Serialize, AI::SSoundEventModifierState::Equals, AI::SSoundEventModifierState::Destroy);
+
+void AI::SSoundEventModifierState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_fRangeModifier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fRangeModifier);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_fLoudnessModifier") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fLoudnessModifier);
+
+	p_Stream << "}";
+}
+
+void AI::SSoundEventModifierState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Target);
+
+	s_Object->m_fRangeModifier = simdjson::from_json_float32(p_Document["m_fRangeModifier"]);
+
+	s_Object->m_fLoudnessModifier = simdjson::from_json_float32(p_Document["m_fLoudnessModifier"]);
+
+}
+
+void AI::SSoundEventModifierState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Object);
+
+}
+
+bool AI::SSoundEventModifierState::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<AI::SSoundEventModifierState*>(p_Left);
+	auto* s_Right = reinterpret_cast<AI::SSoundEventModifierState*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool AI::SSoundEventModifierState::operator==(const AI::SSoundEventModifierState& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<AI::SSoundEventModifierState>)
+		return false;
+
+	if (m_fRangeModifier != p_Other.m_fRangeModifier) return false;
+	if (m_fLoudnessModifier != p_Other.m_fLoudnessModifier) return false;
+
+	return true;
+}
+
+void AI::SSoundEventModifierState::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<AI::SSoundEventModifierState*>(p_Object);
+	s_Object->~SSoundEventModifierState();
 }
 
 ZHMTypeInfo AnimationEventDataTypes::SBlend::TypeInfo = ZHMTypeInfo("AnimationEventDataTypes.SBlend", sizeof(AnimationEventDataTypes::SBlend), alignof(AnimationEventDataTypes::SBlend), AnimationEventDataTypes::SBlend::WriteSimpleJson, AnimationEventDataTypes::SBlend::FromSimpleJson, AnimationEventDataTypes::SBlend::Serialize, AnimationEventDataTypes::SBlend::Equals, AnimationEventDataTypes::SBlend::Destroy);
@@ -1244,98 +1244,6 @@ void AnimationTakeDataTypes::SGeneric::Destroy(void* p_Object)
 	s_Object->~SGeneric();
 }
 
-ZHMTypeInfo BoneId::TypeInfo = ZHMTypeInfo("BoneId", sizeof(BoneId), alignof(BoneId), BoneId::WriteSimpleJson, BoneId::FromSimpleJson, BoneId::Serialize, BoneId::Equals, BoneId::Destroy);
-
-void BoneId::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<BoneId*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void BoneId::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<BoneId*>(p_Target);
-
-}
-
-void BoneId::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<BoneId*>(p_Object);
-
-}
-
-bool BoneId::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<BoneId*>(p_Left);
-	auto* s_Right = reinterpret_cast<BoneId*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool BoneId::operator==(const BoneId& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<BoneId>)
-		return false;
-
-
-	return true;
-}
-
-void BoneId::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<BoneId*>(p_Object);
-	s_Object->~BoneId();
-}
-
-ZHMTypeInfo ZResourcePtr::TypeInfo = ZHMTypeInfo("ZResourcePtr", sizeof(ZResourcePtr), alignof(ZResourcePtr), ZResourcePtr::WriteSimpleJson, ZResourcePtr::FromSimpleJson, ZResourcePtr::Serialize, ZResourcePtr::Equals, ZResourcePtr::Destroy);
-
-void ZResourcePtr::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZResourcePtr*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZResourcePtr::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZResourcePtr*>(p_Target);
-
-}
-
-void ZResourcePtr::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZResourcePtr*>(p_Object);
-
-}
-
-bool ZResourcePtr::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZResourcePtr*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZResourcePtr*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZResourcePtr::operator==(const ZResourcePtr& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZResourcePtr>)
-		return false;
-
-
-	return true;
-}
-
-void ZResourcePtr::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZResourcePtr*>(p_Object);
-	s_Object->~ZResourcePtr();
-}
-
 ZHMTypeInfo SVector3::TypeInfo = ZHMTypeInfo("SVector3", sizeof(SVector3), alignof(SVector3), SVector3::WriteSimpleJson, SVector3::FromSimpleJson, SVector3::Serialize, SVector3::Equals, SVector3::Destroy);
 
 void SVector3::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -1400,52 +1308,6 @@ void SVector3::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SVector3*>(p_Object);
 	s_Object->~SVector3();
-}
-
-ZHMTypeInfo IBoneAnimator::TypeInfo = ZHMTypeInfo("IBoneAnimator", sizeof(IBoneAnimator), alignof(IBoneAnimator), IBoneAnimator::WriteSimpleJson, IBoneAnimator::FromSimpleJson, IBoneAnimator::Serialize, IBoneAnimator::Equals, IBoneAnimator::Destroy);
-
-void IBoneAnimator::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IBoneAnimator*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IBoneAnimator::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IBoneAnimator*>(p_Target);
-
-}
-
-void IBoneAnimator::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IBoneAnimator*>(p_Object);
-
-}
-
-bool IBoneAnimator::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IBoneAnimator*>(p_Left);
-	auto* s_Right = reinterpret_cast<IBoneAnimator*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IBoneAnimator::operator==(const IBoneAnimator& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IBoneAnimator>)
-		return false;
-
-
-	return true;
-}
-
-void IBoneAnimator::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IBoneAnimator*>(p_Object);
-	s_Object->~IBoneAnimator();
 }
 
 ZHMTypeInfo SMatrix43::TypeInfo = ZHMTypeInfo("SMatrix43", sizeof(SMatrix43), alignof(SMatrix43), SMatrix43::WriteSimpleJson, SMatrix43::FromSimpleJson, SMatrix43::Serialize, SMatrix43::Equals, SMatrix43::Destroy);
@@ -1523,466 +1385,6 @@ void SMatrix43::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SMatrix43*>(p_Object);
 	s_Object->~SMatrix43();
-}
-
-ZHMTypeInfo IComponentInterface::TypeInfo = ZHMTypeInfo("IComponentInterface", sizeof(IComponentInterface), alignof(IComponentInterface), IComponentInterface::WriteSimpleJson, IComponentInterface::FromSimpleJson, IComponentInterface::Serialize, IComponentInterface::Equals, IComponentInterface::Destroy);
-
-void IComponentInterface::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IComponentInterface*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IComponentInterface::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IComponentInterface*>(p_Target);
-
-}
-
-void IComponentInterface::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IComponentInterface*>(p_Object);
-
-}
-
-bool IComponentInterface::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IComponentInterface*>(p_Left);
-	auto* s_Right = reinterpret_cast<IComponentInterface*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IComponentInterface::operator==(const IComponentInterface& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IComponentInterface>)
-		return false;
-
-
-	return true;
-}
-
-void IComponentInterface::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IComponentInterface*>(p_Object);
-	s_Object->~IComponentInterface();
-}
-
-ZHMTypeInfo IActor::TypeInfo = ZHMTypeInfo("IActor", sizeof(IActor), alignof(IActor), IActor::WriteSimpleJson, IActor::FromSimpleJson, IActor::Serialize, IActor::Equals, IActor::Destroy);
-
-void IActor::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IActor*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IActor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IActor*>(p_Target);
-
-}
-
-void IActor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IActor*>(p_Object);
-
-}
-
-bool IActor::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IActor*>(p_Left);
-	auto* s_Right = reinterpret_cast<IActor*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IActor::operator==(const IActor& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IActor>)
-		return false;
-
-
-	return true;
-}
-
-void IActor::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IActor*>(p_Object);
-	s_Object->~IActor();
-}
-
-ZHMTypeInfo IActorProvider::TypeInfo = ZHMTypeInfo("IActorProvider", sizeof(IActorProvider), alignof(IActorProvider), IActorProvider::WriteSimpleJson, IActorProvider::FromSimpleJson, IActorProvider::Serialize, IActorProvider::Equals, IActorProvider::Destroy);
-
-void IActorProvider::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IActorProvider*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IActorProvider::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IActorProvider*>(p_Target);
-
-}
-
-void IActorProvider::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IActorProvider*>(p_Object);
-
-}
-
-bool IActorProvider::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IActorProvider*>(p_Left);
-	auto* s_Right = reinterpret_cast<IActorProvider*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IActorProvider::operator==(const IActorProvider& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IActorProvider>)
-		return false;
-
-
-	return true;
-}
-
-void IActorProvider::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IActorProvider*>(p_Object);
-	s_Object->~IActorProvider();
-}
-
-ZHMTypeInfo IActorProviderFilter::TypeInfo = ZHMTypeInfo("IActorProviderFilter", sizeof(IActorProviderFilter), alignof(IActorProviderFilter), IActorProviderFilter::WriteSimpleJson, IActorProviderFilter::FromSimpleJson, IActorProviderFilter::Serialize, IActorProviderFilter::Equals, IActorProviderFilter::Destroy);
-
-void IActorProviderFilter::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IActorProviderFilter*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IActorProviderFilter::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IActorProviderFilter*>(p_Target);
-
-}
-
-void IActorProviderFilter::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IActorProviderFilter*>(p_Object);
-
-}
-
-bool IActorProviderFilter::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IActorProviderFilter*>(p_Left);
-	auto* s_Right = reinterpret_cast<IActorProviderFilter*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IActorProviderFilter::operator==(const IActorProviderFilter& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IActorProviderFilter>)
-		return false;
-
-
-	return true;
-}
-
-void IActorProviderFilter::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IActorProviderFilter*>(p_Object);
-	s_Object->~IActorProviderFilter();
-}
-
-ZHMTypeInfo IAnimPlayerEntity::TypeInfo = ZHMTypeInfo("IAnimPlayerEntity", sizeof(IAnimPlayerEntity), alignof(IAnimPlayerEntity), IAnimPlayerEntity::WriteSimpleJson, IAnimPlayerEntity::FromSimpleJson, IAnimPlayerEntity::Serialize, IAnimPlayerEntity::Equals, IAnimPlayerEntity::Destroy);
-
-void IAnimPlayerEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IAnimPlayerEntity*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IAnimPlayerEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IAnimPlayerEntity*>(p_Target);
-
-}
-
-void IAnimPlayerEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IAnimPlayerEntity*>(p_Object);
-
-}
-
-bool IAnimPlayerEntity::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IAnimPlayerEntity*>(p_Left);
-	auto* s_Right = reinterpret_cast<IAnimPlayerEntity*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IAnimPlayerEntity::operator==(const IAnimPlayerEntity& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IAnimPlayerEntity>)
-		return false;
-
-
-	return true;
-}
-
-void IAnimPlayerEntity::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IAnimPlayerEntity*>(p_Object);
-	s_Object->~IAnimPlayerEntity();
-}
-
-ZHMTypeInfo IBodybagEntity::TypeInfo = ZHMTypeInfo("IBodybagEntity", sizeof(IBodybagEntity), alignof(IBodybagEntity), IBodybagEntity::WriteSimpleJson, IBodybagEntity::FromSimpleJson, IBodybagEntity::Serialize, IBodybagEntity::Equals, IBodybagEntity::Destroy);
-
-void IBodybagEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IBodybagEntity*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IBodybagEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IBodybagEntity*>(p_Target);
-
-}
-
-void IBodybagEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IBodybagEntity*>(p_Object);
-
-}
-
-bool IBodybagEntity::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IBodybagEntity*>(p_Left);
-	auto* s_Right = reinterpret_cast<IBodybagEntity*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IBodybagEntity::operator==(const IBodybagEntity& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IBodybagEntity>)
-		return false;
-
-
-	return true;
-}
-
-void IBodybagEntity::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IBodybagEntity*>(p_Object);
-	s_Object->~IBodybagEntity();
-}
-
-ZHMTypeInfo IBoneCollidable::TypeInfo = ZHMTypeInfo("IBoneCollidable", sizeof(IBoneCollidable), alignof(IBoneCollidable), IBoneCollidable::WriteSimpleJson, IBoneCollidable::FromSimpleJson, IBoneCollidable::Serialize, IBoneCollidable::Equals, IBoneCollidable::Destroy);
-
-void IBoneCollidable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IBoneCollidable*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IBoneCollidable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IBoneCollidable*>(p_Target);
-
-}
-
-void IBoneCollidable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IBoneCollidable*>(p_Object);
-
-}
-
-bool IBoneCollidable::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IBoneCollidable*>(p_Left);
-	auto* s_Right = reinterpret_cast<IBoneCollidable*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IBoneCollidable::operator==(const IBoneCollidable& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IBoneCollidable>)
-		return false;
-
-
-	return true;
-}
-
-void IBoneCollidable::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IBoneCollidable*>(p_Object);
-	s_Object->~IBoneCollidable();
-}
-
-ZHMTypeInfo IBulletImpactListener::TypeInfo = ZHMTypeInfo("IBulletImpactListener", sizeof(IBulletImpactListener), alignof(IBulletImpactListener), IBulletImpactListener::WriteSimpleJson, IBulletImpactListener::FromSimpleJson, IBulletImpactListener::Serialize, IBulletImpactListener::Equals, IBulletImpactListener::Destroy);
-
-void IBulletImpactListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IBulletImpactListener*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IBulletImpactListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IBulletImpactListener*>(p_Target);
-
-}
-
-void IBulletImpactListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IBulletImpactListener*>(p_Object);
-
-}
-
-bool IBulletImpactListener::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IBulletImpactListener*>(p_Left);
-	auto* s_Right = reinterpret_cast<IBulletImpactListener*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IBulletImpactListener::operator==(const IBulletImpactListener& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IBulletImpactListener>)
-		return false;
-
-
-	return true;
-}
-
-void IBulletImpactListener::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IBulletImpactListener*>(p_Object);
-	s_Object->~IBulletImpactListener();
-}
-
-ZHMTypeInfo IContractEvaluationContextListener::TypeInfo = ZHMTypeInfo("IContractEvaluationContextListener", sizeof(IContractEvaluationContextListener), alignof(IContractEvaluationContextListener), IContractEvaluationContextListener::WriteSimpleJson, IContractEvaluationContextListener::FromSimpleJson, IContractEvaluationContextListener::Serialize, IContractEvaluationContextListener::Equals, IContractEvaluationContextListener::Destroy);
-
-void IContractEvaluationContextListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IContractEvaluationContextListener*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IContractEvaluationContextListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IContractEvaluationContextListener*>(p_Target);
-
-}
-
-void IContractEvaluationContextListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IContractEvaluationContextListener*>(p_Object);
-
-}
-
-bool IContractEvaluationContextListener::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IContractEvaluationContextListener*>(p_Left);
-	auto* s_Right = reinterpret_cast<IContractEvaluationContextListener*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IContractEvaluationContextListener::operator==(const IContractEvaluationContextListener& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IContractEvaluationContextListener>)
-		return false;
-
-
-	return true;
-}
-
-void IContractEvaluationContextListener::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IContractEvaluationContextListener*>(p_Object);
-	s_Object->~IContractEvaluationContextListener();
-}
-
-ZHMTypeInfo IContractModule::TypeInfo = ZHMTypeInfo("IContractModule", sizeof(IContractModule), alignof(IContractModule), IContractModule::WriteSimpleJson, IContractModule::FromSimpleJson, IContractModule::Serialize, IContractModule::Equals, IContractModule::Destroy);
-
-void IContractModule::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IContractModule*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IContractModule::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IContractModule*>(p_Target);
-
-}
-
-void IContractModule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IContractModule*>(p_Object);
-
-}
-
-bool IContractModule::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IContractModule*>(p_Left);
-	auto* s_Right = reinterpret_cast<IContractModule*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IContractModule::operator==(const IContractModule& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IContractModule>)
-		return false;
-
-
-	return true;
-}
-
-void IContractModule::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IContractModule*>(p_Object);
-	s_Object->~IContractModule();
 }
 
 ZHMTypeInfo ZDynamicObject::TypeInfo = ZHMTypeInfo("ZDynamicObject", sizeof(ZDynamicObject), alignof(ZDynamicObject), ZDynamicObject::WriteSimpleJson, ZDynamicObject::FromSimpleJson, ZDynamicObject::Serialize, ZDynamicObject::Equals, ZDynamicObject::Destroy);
@@ -2160,52 +1562,6 @@ void ZGuid::Destroy(void* p_Object)
 	s_Object->~ZGuid();
 }
 
-ZHMTypeInfo IContractObjective::TypeInfo = ZHMTypeInfo("IContractObjective", sizeof(IContractObjective), alignof(IContractObjective), IContractObjective::WriteSimpleJson, IContractObjective::FromSimpleJson, IContractObjective::Serialize, IContractObjective::Equals, IContractObjective::Destroy);
-
-void IContractObjective::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IContractObjective*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IContractObjective::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IContractObjective*>(p_Target);
-
-}
-
-void IContractObjective::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IContractObjective*>(p_Object);
-
-}
-
-bool IContractObjective::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IContractObjective*>(p_Left);
-	auto* s_Right = reinterpret_cast<IContractObjective*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IContractObjective::operator==(const IContractObjective& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IContractObjective>)
-		return false;
-
-
-	return true;
-}
-
-void IContractObjective::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IContractObjective*>(p_Object);
-	s_Object->~IContractObjective();
-}
-
 ZHMTypeInfo IContractObjective::SCounterData::TypeInfo = ZHMTypeInfo("IContractObjective.SCounterData", sizeof(IContractObjective::SCounterData), alignof(IContractObjective::SCounterData), IContractObjective::SCounterData::WriteSimpleJson, IContractObjective::SCounterData::FromSimpleJson, IContractObjective::SCounterData::Serialize, IContractObjective::SCounterData::Equals, IContractObjective::SCounterData::Destroy);
 
 void IContractObjective::SCounterData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -2286,972 +1642,6 @@ void IContractObjective::SCounterData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<IContractObjective::SCounterData*>(p_Object);
 	s_Object->~SCounterData();
-}
-
-ZHMTypeInfo IEscortOutSituation::TypeInfo = ZHMTypeInfo("IEscortOutSituation", sizeof(IEscortOutSituation), alignof(IEscortOutSituation), IEscortOutSituation::WriteSimpleJson, IEscortOutSituation::FromSimpleJson, IEscortOutSituation::Serialize, IEscortOutSituation::Equals, IEscortOutSituation::Destroy);
-
-void IEscortOutSituation::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IEscortOutSituation*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IEscortOutSituation::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IEscortOutSituation*>(p_Target);
-
-}
-
-void IEscortOutSituation::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IEscortOutSituation*>(p_Object);
-
-}
-
-bool IEscortOutSituation::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IEscortOutSituation*>(p_Left);
-	auto* s_Right = reinterpret_cast<IEscortOutSituation*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IEscortOutSituation::operator==(const IEscortOutSituation& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IEscortOutSituation>)
-		return false;
-
-
-	return true;
-}
-
-void IEscortOutSituation::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IEscortOutSituation*>(p_Object);
-	s_Object->~IEscortOutSituation();
-}
-
-ZHMTypeInfo IEventConsumerCollection::TypeInfo = ZHMTypeInfo("IEventConsumerCollection", sizeof(IEventConsumerCollection), alignof(IEventConsumerCollection), IEventConsumerCollection::WriteSimpleJson, IEventConsumerCollection::FromSimpleJson, IEventConsumerCollection::Serialize, IEventConsumerCollection::Equals, IEventConsumerCollection::Destroy);
-
-void IEventConsumerCollection::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IEventConsumerCollection*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IEventConsumerCollection::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IEventConsumerCollection*>(p_Target);
-
-}
-
-void IEventConsumerCollection::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IEventConsumerCollection*>(p_Object);
-
-}
-
-bool IEventConsumerCollection::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IEventConsumerCollection*>(p_Left);
-	auto* s_Right = reinterpret_cast<IEventConsumerCollection*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IEventConsumerCollection::operator==(const IEventConsumerCollection& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IEventConsumerCollection>)
-		return false;
-
-
-	return true;
-}
-
-void IEventConsumerCollection::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IEventConsumerCollection*>(p_Object);
-	s_Object->~IEventConsumerCollection();
-}
-
-ZHMTypeInfo IFreeCameraControl::TypeInfo = ZHMTypeInfo("IFreeCameraControl", sizeof(IFreeCameraControl), alignof(IFreeCameraControl), IFreeCameraControl::WriteSimpleJson, IFreeCameraControl::FromSimpleJson, IFreeCameraControl::Serialize, IFreeCameraControl::Equals, IFreeCameraControl::Destroy);
-
-void IFreeCameraControl::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IFreeCameraControl*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IFreeCameraControl::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IFreeCameraControl*>(p_Target);
-
-}
-
-void IFreeCameraControl::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IFreeCameraControl*>(p_Object);
-
-}
-
-bool IFreeCameraControl::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IFreeCameraControl*>(p_Left);
-	auto* s_Right = reinterpret_cast<IFreeCameraControl*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IFreeCameraControl::operator==(const IFreeCameraControl& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IFreeCameraControl>)
-		return false;
-
-
-	return true;
-}
-
-void IFreeCameraControl::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IFreeCameraControl*>(p_Object);
-	s_Object->~IFreeCameraControl();
-}
-
-ZHMTypeInfo IHM5WeaponInventory::TypeInfo = ZHMTypeInfo("IHM5WeaponInventory", sizeof(IHM5WeaponInventory), alignof(IHM5WeaponInventory), IHM5WeaponInventory::WriteSimpleJson, IHM5WeaponInventory::FromSimpleJson, IHM5WeaponInventory::Serialize, IHM5WeaponInventory::Equals, IHM5WeaponInventory::Destroy);
-
-void IHM5WeaponInventory::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IHM5WeaponInventory*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IHM5WeaponInventory::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IHM5WeaponInventory*>(p_Target);
-
-}
-
-void IHM5WeaponInventory::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IHM5WeaponInventory*>(p_Object);
-
-}
-
-bool IHM5WeaponInventory::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IHM5WeaponInventory*>(p_Left);
-	auto* s_Right = reinterpret_cast<IHM5WeaponInventory*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IHM5WeaponInventory::operator==(const IHM5WeaponInventory& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IHM5WeaponInventory>)
-		return false;
-
-
-	return true;
-}
-
-void IHM5WeaponInventory::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IHM5WeaponInventory*>(p_Object);
-	s_Object->~IHM5WeaponInventory();
-}
-
-ZHMTypeInfo IHumanBody::TypeInfo = ZHMTypeInfo("IHumanBody", sizeof(IHumanBody), alignof(IHumanBody), IHumanBody::WriteSimpleJson, IHumanBody::FromSimpleJson, IHumanBody::Serialize, IHumanBody::Equals, IHumanBody::Destroy);
-
-void IHumanBody::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IHumanBody*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IHumanBody::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IHumanBody*>(p_Target);
-
-}
-
-void IHumanBody::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IHumanBody*>(p_Object);
-
-}
-
-bool IHumanBody::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IHumanBody*>(p_Left);
-	auto* s_Right = reinterpret_cast<IHumanBody*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IHumanBody::operator==(const IHumanBody& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IHumanBody>)
-		return false;
-
-
-	return true;
-}
-
-void IHumanBody::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IHumanBody*>(p_Object);
-	s_Object->~IHumanBody();
-}
-
-ZHMTypeInfo IMetricValue::TypeInfo = ZHMTypeInfo("IMetricValue", sizeof(IMetricValue), alignof(IMetricValue), IMetricValue::WriteSimpleJson, IMetricValue::FromSimpleJson, IMetricValue::Serialize, IMetricValue::Equals, IMetricValue::Destroy);
-
-void IMetricValue::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IMetricValue*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IMetricValue::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IMetricValue*>(p_Target);
-
-}
-
-void IMetricValue::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IMetricValue*>(p_Object);
-
-}
-
-bool IMetricValue::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IMetricValue*>(p_Left);
-	auto* s_Right = reinterpret_cast<IMetricValue*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IMetricValue::operator==(const IMetricValue& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IMetricValue>)
-		return false;
-
-
-	return true;
-}
-
-void IMetricValue::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IMetricValue*>(p_Object);
-	s_Object->~IMetricValue();
-}
-
-ZHMTypeInfo IMorphemeCutSequenceAnimatable::TypeInfo = ZHMTypeInfo("IMorphemeCutSequenceAnimatable", sizeof(IMorphemeCutSequenceAnimatable), alignof(IMorphemeCutSequenceAnimatable), IMorphemeCutSequenceAnimatable::WriteSimpleJson, IMorphemeCutSequenceAnimatable::FromSimpleJson, IMorphemeCutSequenceAnimatable::Serialize, IMorphemeCutSequenceAnimatable::Equals, IMorphemeCutSequenceAnimatable::Destroy);
-
-void IMorphemeCutSequenceAnimatable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IMorphemeCutSequenceAnimatable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Target);
-
-}
-
-void IMorphemeCutSequenceAnimatable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Object);
-
-}
-
-bool IMorphemeCutSequenceAnimatable::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Left);
-	auto* s_Right = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IMorphemeCutSequenceAnimatable::operator==(const IMorphemeCutSequenceAnimatable& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IMorphemeCutSequenceAnimatable>)
-		return false;
-
-
-	return true;
-}
-
-void IMorphemeCutSequenceAnimatable::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimatable*>(p_Object);
-	s_Object->~IMorphemeCutSequenceAnimatable();
-}
-
-ZHMTypeInfo IMorphemeCutSequenceAnimationEntity::TypeInfo = ZHMTypeInfo("IMorphemeCutSequenceAnimationEntity", sizeof(IMorphemeCutSequenceAnimationEntity), alignof(IMorphemeCutSequenceAnimationEntity), IMorphemeCutSequenceAnimationEntity::WriteSimpleJson, IMorphemeCutSequenceAnimationEntity::FromSimpleJson, IMorphemeCutSequenceAnimationEntity::Serialize, IMorphemeCutSequenceAnimationEntity::Equals, IMorphemeCutSequenceAnimationEntity::Destroy);
-
-void IMorphemeCutSequenceAnimationEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IMorphemeCutSequenceAnimationEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Target);
-
-}
-
-void IMorphemeCutSequenceAnimationEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Object);
-
-}
-
-bool IMorphemeCutSequenceAnimationEntity::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Left);
-	auto* s_Right = reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IMorphemeCutSequenceAnimationEntity::operator==(const IMorphemeCutSequenceAnimationEntity& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IMorphemeCutSequenceAnimationEntity>)
-		return false;
-
-
-	return true;
-}
-
-void IMorphemeCutSequenceAnimationEntity::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeCutSequenceAnimationEntity*>(p_Object);
-	s_Object->~IMorphemeCutSequenceAnimationEntity();
-}
-
-ZHMTypeInfo IMorphemeEventConsumer::TypeInfo = ZHMTypeInfo("IMorphemeEventConsumer", sizeof(IMorphemeEventConsumer), alignof(IMorphemeEventConsumer), IMorphemeEventConsumer::WriteSimpleJson, IMorphemeEventConsumer::FromSimpleJson, IMorphemeEventConsumer::Serialize, IMorphemeEventConsumer::Equals, IMorphemeEventConsumer::Destroy);
-
-void IMorphemeEventConsumer::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeEventConsumer*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IMorphemeEventConsumer::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IMorphemeEventConsumer*>(p_Target);
-
-}
-
-void IMorphemeEventConsumer::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeEventConsumer*>(p_Object);
-
-}
-
-bool IMorphemeEventConsumer::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IMorphemeEventConsumer*>(p_Left);
-	auto* s_Right = reinterpret_cast<IMorphemeEventConsumer*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IMorphemeEventConsumer::operator==(const IMorphemeEventConsumer& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IMorphemeEventConsumer>)
-		return false;
-
-
-	return true;
-}
-
-void IMorphemeEventConsumer::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IMorphemeEventConsumer*>(p_Object);
-	s_Object->~IMorphemeEventConsumer();
-}
-
-ZHMTypeInfo INetRelevancy::TypeInfo = ZHMTypeInfo("INetRelevancy", sizeof(INetRelevancy), alignof(INetRelevancy), INetRelevancy::WriteSimpleJson, INetRelevancy::FromSimpleJson, INetRelevancy::Serialize, INetRelevancy::Equals, INetRelevancy::Destroy);
-
-void INetRelevancy::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<INetRelevancy*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void INetRelevancy::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<INetRelevancy*>(p_Target);
-
-}
-
-void INetRelevancy::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<INetRelevancy*>(p_Object);
-
-}
-
-bool INetRelevancy::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<INetRelevancy*>(p_Left);
-	auto* s_Right = reinterpret_cast<INetRelevancy*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool INetRelevancy::operator==(const INetRelevancy& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<INetRelevancy>)
-		return false;
-
-
-	return true;
-}
-
-void INetRelevancy::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<INetRelevancy*>(p_Object);
-	s_Object->~INetRelevancy();
-}
-
-ZHMTypeInfo IOnlineConfigurationListener::TypeInfo = ZHMTypeInfo("IOnlineConfigurationListener", sizeof(IOnlineConfigurationListener), alignof(IOnlineConfigurationListener), IOnlineConfigurationListener::WriteSimpleJson, IOnlineConfigurationListener::FromSimpleJson, IOnlineConfigurationListener::Serialize, IOnlineConfigurationListener::Equals, IOnlineConfigurationListener::Destroy);
-
-void IOnlineConfigurationListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IOnlineConfigurationListener*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IOnlineConfigurationListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IOnlineConfigurationListener*>(p_Target);
-
-}
-
-void IOnlineConfigurationListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IOnlineConfigurationListener*>(p_Object);
-
-}
-
-bool IOnlineConfigurationListener::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IOnlineConfigurationListener*>(p_Left);
-	auto* s_Right = reinterpret_cast<IOnlineConfigurationListener*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IOnlineConfigurationListener::operator==(const IOnlineConfigurationListener& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IOnlineConfigurationListener>)
-		return false;
-
-
-	return true;
-}
-
-void IOnlineConfigurationListener::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IOnlineConfigurationListener*>(p_Object);
-	s_Object->~IOnlineConfigurationListener();
-}
-
-ZHMTypeInfo IPureWaterReflectable::TypeInfo = ZHMTypeInfo("IPureWaterReflectable", sizeof(IPureWaterReflectable), alignof(IPureWaterReflectable), IPureWaterReflectable::WriteSimpleJson, IPureWaterReflectable::FromSimpleJson, IPureWaterReflectable::Serialize, IPureWaterReflectable::Equals, IPureWaterReflectable::Destroy);
-
-void IPureWaterReflectable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IPureWaterReflectable*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IPureWaterReflectable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IPureWaterReflectable*>(p_Target);
-
-}
-
-void IPureWaterReflectable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IPureWaterReflectable*>(p_Object);
-
-}
-
-bool IPureWaterReflectable::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IPureWaterReflectable*>(p_Left);
-	auto* s_Right = reinterpret_cast<IPureWaterReflectable*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IPureWaterReflectable::operator==(const IPureWaterReflectable& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IPureWaterReflectable>)
-		return false;
-
-
-	return true;
-}
-
-void IPureWaterReflectable::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IPureWaterReflectable*>(p_Object);
-	s_Object->~IPureWaterReflectable();
-}
-
-ZHMTypeInfo IRenderCompositorEntity::TypeInfo = ZHMTypeInfo("IRenderCompositorEntity", sizeof(IRenderCompositorEntity), alignof(IRenderCompositorEntity), IRenderCompositorEntity::WriteSimpleJson, IRenderCompositorEntity::FromSimpleJson, IRenderCompositorEntity::Serialize, IRenderCompositorEntity::Equals, IRenderCompositorEntity::Destroy);
-
-void IRenderCompositorEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IRenderCompositorEntity*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IRenderCompositorEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IRenderCompositorEntity*>(p_Target);
-
-}
-
-void IRenderCompositorEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IRenderCompositorEntity*>(p_Object);
-
-}
-
-bool IRenderCompositorEntity::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IRenderCompositorEntity*>(p_Left);
-	auto* s_Right = reinterpret_cast<IRenderCompositorEntity*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IRenderCompositorEntity::operator==(const IRenderCompositorEntity& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IRenderCompositorEntity>)
-		return false;
-
-
-	return true;
-}
-
-void IRenderCompositorEntity::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IRenderCompositorEntity*>(p_Object);
-	s_Object->~IRenderCompositorEntity();
-}
-
-ZHMTypeInfo ISequenceTarget::TypeInfo = ZHMTypeInfo("ISequenceTarget", sizeof(ISequenceTarget), alignof(ISequenceTarget), ISequenceTarget::WriteSimpleJson, ISequenceTarget::FromSimpleJson, ISequenceTarget::Serialize, ISequenceTarget::Equals, ISequenceTarget::Destroy);
-
-void ISequenceTarget::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ISequenceTarget*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ISequenceTarget::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ISequenceTarget*>(p_Target);
-
-}
-
-void ISequenceTarget::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ISequenceTarget*>(p_Object);
-
-}
-
-bool ISequenceTarget::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ISequenceTarget*>(p_Left);
-	auto* s_Right = reinterpret_cast<ISequenceTarget*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ISequenceTarget::operator==(const ISequenceTarget& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ISequenceTarget>)
-		return false;
-
-
-	return true;
-}
-
-void ISequenceTarget::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ISequenceTarget*>(p_Object);
-	s_Object->~ISequenceTarget();
-}
-
-ZHMTypeInfo ISituation::TypeInfo = ZHMTypeInfo("ISituation", sizeof(ISituation), alignof(ISituation), ISituation::WriteSimpleJson, ISituation::FromSimpleJson, ISituation::Serialize, ISituation::Equals, ISituation::Destroy);
-
-void ISituation::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ISituation*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ISituation::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ISituation*>(p_Target);
-
-}
-
-void ISituation::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ISituation*>(p_Object);
-
-}
-
-bool ISituation::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ISituation*>(p_Left);
-	auto* s_Right = reinterpret_cast<ISituation*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ISituation::operator==(const ISituation& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ISituation>)
-		return false;
-
-
-	return true;
-}
-
-void ISituation::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ISituation*>(p_Object);
-	s_Object->~ISituation();
-}
-
-ZHMTypeInfo ISoundGateController::TypeInfo = ZHMTypeInfo("ISoundGateController", sizeof(ISoundGateController), alignof(ISoundGateController), ISoundGateController::WriteSimpleJson, ISoundGateController::FromSimpleJson, ISoundGateController::Serialize, ISoundGateController::Equals, ISoundGateController::Destroy);
-
-void ISoundGateController::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ISoundGateController*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ISoundGateController::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ISoundGateController*>(p_Target);
-
-}
-
-void ISoundGateController::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ISoundGateController*>(p_Object);
-
-}
-
-bool ISoundGateController::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ISoundGateController*>(p_Left);
-	auto* s_Right = reinterpret_cast<ISoundGateController*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ISoundGateController::operator==(const ISoundGateController& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ISoundGateController>)
-		return false;
-
-
-	return true;
-}
-
-void ISoundGateController::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ISoundGateController*>(p_Object);
-	s_Object->~ISoundGateController();
-}
-
-ZHMTypeInfo ISoundMaterialDescriptor::TypeInfo = ZHMTypeInfo("ISoundMaterialDescriptor", sizeof(ISoundMaterialDescriptor), alignof(ISoundMaterialDescriptor), ISoundMaterialDescriptor::WriteSimpleJson, ISoundMaterialDescriptor::FromSimpleJson, ISoundMaterialDescriptor::Serialize, ISoundMaterialDescriptor::Equals, ISoundMaterialDescriptor::Destroy);
-
-void ISoundMaterialDescriptor::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ISoundMaterialDescriptor*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ISoundMaterialDescriptor::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ISoundMaterialDescriptor*>(p_Target);
-
-}
-
-void ISoundMaterialDescriptor::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ISoundMaterialDescriptor*>(p_Object);
-
-}
-
-bool ISoundMaterialDescriptor::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ISoundMaterialDescriptor*>(p_Left);
-	auto* s_Right = reinterpret_cast<ISoundMaterialDescriptor*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ISoundMaterialDescriptor::operator==(const ISoundMaterialDescriptor& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ISoundMaterialDescriptor>)
-		return false;
-
-
-	return true;
-}
-
-void ISoundMaterialDescriptor::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ISoundMaterialDescriptor*>(p_Object);
-	s_Object->~ISoundMaterialDescriptor();
-}
-
-ZHMTypeInfo ITriggerListener::TypeInfo = ZHMTypeInfo("ITriggerListener", sizeof(ITriggerListener), alignof(ITriggerListener), ITriggerListener::WriteSimpleJson, ITriggerListener::FromSimpleJson, ITriggerListener::Serialize, ITriggerListener::Equals, ITriggerListener::Destroy);
-
-void ITriggerListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ITriggerListener*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ITriggerListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ITriggerListener*>(p_Target);
-
-}
-
-void ITriggerListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ITriggerListener*>(p_Object);
-
-}
-
-bool ITriggerListener::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ITriggerListener*>(p_Left);
-	auto* s_Right = reinterpret_cast<ITriggerListener*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ITriggerListener::operator==(const ITriggerListener& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ITriggerListener>)
-		return false;
-
-
-	return true;
-}
-
-void ITriggerListener::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ITriggerListener*>(p_Object);
-	s_Object->~ITriggerListener();
-}
-
-ZHMTypeInfo IUIDataListener::TypeInfo = ZHMTypeInfo("IUIDataListener", sizeof(IUIDataListener), alignof(IUIDataListener), IUIDataListener::WriteSimpleJson, IUIDataListener::FromSimpleJson, IUIDataListener::Serialize, IUIDataListener::Equals, IUIDataListener::Destroy);
-
-void IUIDataListener::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IUIDataListener*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IUIDataListener::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IUIDataListener*>(p_Target);
-
-}
-
-void IUIDataListener::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IUIDataListener*>(p_Object);
-
-}
-
-bool IUIDataListener::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IUIDataListener*>(p_Left);
-	auto* s_Right = reinterpret_cast<IUIDataListener*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IUIDataListener::operator==(const IUIDataListener& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IUIDataListener>)
-		return false;
-
-
-	return true;
-}
-
-void IUIDataListener::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IUIDataListener*>(p_Object);
-	s_Object->~IUIDataListener();
-}
-
-ZHMTypeInfo IValueEntity::TypeInfo = ZHMTypeInfo("IValueEntity", sizeof(IValueEntity), alignof(IValueEntity), IValueEntity::WriteSimpleJson, IValueEntity::FromSimpleJson, IValueEntity::Serialize, IValueEntity::Equals, IValueEntity::Destroy);
-
-void IValueEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IValueEntity*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IValueEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IValueEntity*>(p_Target);
-
-}
-
-void IValueEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IValueEntity*>(p_Object);
-
-}
-
-bool IValueEntity::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IValueEntity*>(p_Left);
-	auto* s_Right = reinterpret_cast<IValueEntity*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IValueEntity::operator==(const IValueEntity& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IValueEntity>)
-		return false;
-
-
-	return true;
-}
-
-void IValueEntity::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IValueEntity*>(p_Object);
-	s_Object->~IValueEntity();
-}
-
-ZHMTypeInfo IWorldMapMarker::TypeInfo = ZHMTypeInfo("IWorldMapMarker", sizeof(IWorldMapMarker), alignof(IWorldMapMarker), IWorldMapMarker::WriteSimpleJson, IWorldMapMarker::FromSimpleJson, IWorldMapMarker::Serialize, IWorldMapMarker::Equals, IWorldMapMarker::Destroy);
-
-void IWorldMapMarker::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<IWorldMapMarker*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void IWorldMapMarker::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<IWorldMapMarker*>(p_Target);
-
-}
-
-void IWorldMapMarker::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<IWorldMapMarker*>(p_Object);
-
-}
-
-bool IWorldMapMarker::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<IWorldMapMarker*>(p_Left);
-	auto* s_Right = reinterpret_cast<IWorldMapMarker*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool IWorldMapMarker::operator==(const IWorldMapMarker& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<IWorldMapMarker>)
-		return false;
-
-
-	return true;
-}
-
-void IWorldMapMarker::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<IWorldMapMarker*>(p_Object);
-	s_Object->~IWorldMapMarker();
 }
 
 ZHMTypeInfo S25DProjectionSettings::TypeInfo = ZHMTypeInfo("S25DProjectionSettings", sizeof(S25DProjectionSettings), alignof(S25DProjectionSettings), S25DProjectionSettings::WriteSimpleJson, S25DProjectionSettings::FromSimpleJson, S25DProjectionSettings::Serialize, S25DProjectionSettings::Equals, S25DProjectionSettings::Destroy);
@@ -4113,52 +2503,6 @@ void SColorRGB::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SColorRGB*>(p_Object);
 	s_Object->~SColorRGB();
-}
-
-ZHMTypeInfo ZEntityRef::TypeInfo = ZHMTypeInfo("ZEntityRef", sizeof(ZEntityRef), alignof(ZEntityRef), ZEntityRef::WriteSimpleJson, ZEntityRef::FromSimpleJson, ZEntityRef::Serialize, ZEntityRef::Equals, ZEntityRef::Destroy);
-
-void ZEntityRef::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZEntityRef*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZEntityRef::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZEntityRef*>(p_Target);
-
-}
-
-void ZEntityRef::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZEntityRef*>(p_Object);
-
-}
-
-bool ZEntityRef::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZEntityRef*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZEntityRef*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZEntityRef::operator==(const ZEntityRef& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityRef>)
-		return false;
-
-
-	return true;
-}
-
-void ZEntityRef::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZEntityRef*>(p_Object);
-	s_Object->~ZEntityRef();
 }
 
 ZHMTypeInfo SActBehaviorEntitySaveData::TypeInfo = ZHMTypeInfo("SActBehaviorEntitySaveData", sizeof(SActBehaviorEntitySaveData), alignof(SActBehaviorEntitySaveData), SActBehaviorEntitySaveData::WriteSimpleJson, SActBehaviorEntitySaveData::FromSimpleJson, SActBehaviorEntitySaveData::Serialize, SActBehaviorEntitySaveData::Equals, SActBehaviorEntitySaveData::Destroy);
@@ -7572,52 +5916,6 @@ void SActorProxiesSaveData::Destroy(void* p_Object)
 	s_Object->~SActorProxiesSaveData();
 }
 
-ZHMTypeInfo SActorSoundDefs::TypeInfo = ZHMTypeInfo("SActorSoundDefs", sizeof(SActorSoundDefs), alignof(SActorSoundDefs), SActorSoundDefs::WriteSimpleJson, SActorSoundDefs::FromSimpleJson, SActorSoundDefs::Serialize, SActorSoundDefs::Equals, SActorSoundDefs::Destroy);
-
-void SActorSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SActorSoundDefs*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void SActorSoundDefs::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SActorSoundDefs*>(p_Target);
-
-}
-
-void SActorSoundDefs::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SActorSoundDefs*>(p_Object);
-
-}
-
-bool SActorSoundDefs::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SActorSoundDefs*>(p_Left);
-	auto* s_Right = reinterpret_cast<SActorSoundDefs*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SActorSoundDefs::operator==(const SActorSoundDefs& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SActorSoundDefs>)
-		return false;
-
-
-	return true;
-}
-
-void SActorSoundDefs::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SActorSoundDefs*>(p_Object);
-	s_Object->~SActorSoundDefs();
-}
-
 ZHMTypeInfo SActorSpreadControllerCandidateSaveData::TypeInfo = ZHMTypeInfo("SActorSpreadControllerCandidateSaveData", sizeof(SActorSpreadControllerCandidateSaveData), alignof(SActorSpreadControllerCandidateSaveData), SActorSpreadControllerCandidateSaveData::WriteSimpleJson, SActorSpreadControllerCandidateSaveData::FromSimpleJson, SActorSpreadControllerCandidateSaveData::Serialize, SActorSpreadControllerCandidateSaveData::Equals, SActorSpreadControllerCandidateSaveData::Destroy);
 
 void SActorSpreadControllerCandidateSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -10540,52 +8838,6 @@ void SBehaviorTreeInfo::Destroy(void* p_Object)
 	s_Object->~SBehaviorTreeInfo();
 }
 
-ZHMTypeInfo ZBehaviorTreeVariable::TypeInfo = ZHMTypeInfo("ZBehaviorTreeVariable", sizeof(ZBehaviorTreeVariable), alignof(ZBehaviorTreeVariable), ZBehaviorTreeVariable::WriteSimpleJson, ZBehaviorTreeVariable::FromSimpleJson, ZBehaviorTreeVariable::Serialize, ZBehaviorTreeVariable::Equals, ZBehaviorTreeVariable::Destroy);
-
-void ZBehaviorTreeVariable::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZBehaviorTreeVariable*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZBehaviorTreeVariable::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZBehaviorTreeVariable*>(p_Target);
-
-}
-
-void ZBehaviorTreeVariable::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZBehaviorTreeVariable*>(p_Object);
-
-}
-
-bool ZBehaviorTreeVariable::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZBehaviorTreeVariable*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZBehaviorTreeVariable*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZBehaviorTreeVariable::operator==(const ZBehaviorTreeVariable& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZBehaviorTreeVariable>)
-		return false;
-
-
-	return true;
-}
-
-void ZBehaviorTreeVariable::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZBehaviorTreeVariable*>(p_Object);
-	s_Object->~ZBehaviorTreeVariable();
-}
-
 ZHMTypeInfo SBlobsConfigResourceEntry::TypeInfo = ZHMTypeInfo("SBlobsConfigResourceEntry", sizeof(SBlobsConfigResourceEntry), alignof(SBlobsConfigResourceEntry), SBlobsConfigResourceEntry::WriteSimpleJson, SBlobsConfigResourceEntry::FromSimpleJson, SBlobsConfigResourceEntry::Serialize, SBlobsConfigResourceEntry::Equals, SBlobsConfigResourceEntry::Destroy);
 
 void SBlobsConfigResourceEntry::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -10645,52 +8897,6 @@ void SBlobsConfigResourceEntry::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SBlobsConfigResourceEntry*>(p_Object);
 	s_Object->~SBlobsConfigResourceEntry();
-}
-
-ZHMTypeInfo ZRayQueryInput::TypeInfo = ZHMTypeInfo("ZRayQueryInput", sizeof(ZRayQueryInput), alignof(ZRayQueryInput), ZRayQueryInput::WriteSimpleJson, ZRayQueryInput::FromSimpleJson, ZRayQueryInput::Serialize, ZRayQueryInput::Equals, ZRayQueryInput::Destroy);
-
-void ZRayQueryInput::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZRayQueryInput*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZRayQueryInput::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZRayQueryInput*>(p_Target);
-
-}
-
-void ZRayQueryInput::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZRayQueryInput*>(p_Object);
-
-}
-
-bool ZRayQueryInput::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZRayQueryInput*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZRayQueryInput*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZRayQueryInput::operator==(const ZRayQueryInput& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZRayQueryInput>)
-		return false;
-
-
-	return true;
-}
-
-void ZRayQueryInput::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZRayQueryInput*>(p_Object);
-	s_Object->~ZRayQueryInput();
 }
 
 ZHMTypeInfo SBodyContainerSaveData::TypeInfo = ZHMTypeInfo("SBodyContainerSaveData", sizeof(SBodyContainerSaveData), alignof(SBodyContainerSaveData), SBodyContainerSaveData::WriteSimpleJson, SBodyContainerSaveData::FromSimpleJson, SBodyContainerSaveData::Serialize, SBodyContainerSaveData::Equals, SBodyContainerSaveData::Destroy);
@@ -11386,52 +9592,6 @@ void SCamBone::Destroy(void* p_Object)
 	s_Object->~SCamBone();
 }
 
-ZHMTypeInfo ZSituationGroup::TypeInfo = ZHMTypeInfo("ZSituationGroup", sizeof(ZSituationGroup), alignof(ZSituationGroup), ZSituationGroup::WriteSimpleJson, ZSituationGroup::FromSimpleJson, ZSituationGroup::Serialize, ZSituationGroup::Equals, ZSituationGroup::Destroy);
-
-void ZSituationGroup::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZSituationGroup*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZSituationGroup::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZSituationGroup*>(p_Target);
-
-}
-
-void ZSituationGroup::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZSituationGroup*>(p_Object);
-
-}
-
-bool ZSituationGroup::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZSituationGroup*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZSituationGroup*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZSituationGroup::operator==(const ZSituationGroup& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZSituationGroup>)
-		return false;
-
-
-	return true;
-}
-
-void ZSituationGroup::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZSituationGroup*>(p_Object);
-	s_Object->~ZSituationGroup();
-}
-
 ZHMTypeInfo SCautiousBackupGroupSaveData::TypeInfo = ZHMTypeInfo("SCautiousBackupGroupSaveData", sizeof(SCautiousBackupGroupSaveData), alignof(SCautiousBackupGroupSaveData), SCautiousBackupGroupSaveData::WriteSimpleJson, SCautiousBackupGroupSaveData::FromSimpleJson, SCautiousBackupGroupSaveData::Serialize, SCautiousBackupGroupSaveData::Equals, SCautiousBackupGroupSaveData::Destroy);
 
 void SCautiousBackupGroupSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -12034,824 +10194,6 @@ void SCautiousInvestigateGroupSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SCautiousInvestigateGroupSaveData*>(p_Object);
 	s_Object->~SCautiousInvestigateGroupSaveData();
-}
-
-ZHMTypeInfo SCompressedGridFloatField::TypeInfo = ZHMTypeInfo("SCompressedGridFloatField", sizeof(SCompressedGridFloatField), alignof(SCompressedGridFloatField), SCompressedGridFloatField::WriteSimpleJson, SCompressedGridFloatField::FromSimpleJson, SCompressedGridFloatField::Serialize, SCompressedGridFloatField::Equals, SCompressedGridFloatField::Destroy);
-
-void SCompressedGridFloatField::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_bIsSparse") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bIsSparse);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nFieldSize") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nFieldSize);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fInitialValue") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fInitialValue);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nGridCRC") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nGridCRC);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aIndices") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aIndices.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aIndices[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_aIndices.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aValues") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aValues.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aValues[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_aValues.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-
-	p_Stream << "}";
-}
-
-void SCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Target);
-
-	s_Object->m_bIsSparse = simdjson::from_json_bool(p_Document["m_bIsSparse"]);
-
-	s_Object->m_nFieldSize = simdjson::from_json_uint32(p_Document["m_nFieldSize"]);
-
-	s_Object->m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
-
-	s_Object->m_nGridCRC = simdjson::from_json_uint32(p_Document["m_nGridCRC"]);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_aIndices"];
-	s_Object->m_aIndices.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_aIndices[s_Index0] = simdjson::from_json_uint16(s_Item0);
-		++s_Index0;
-	}
-	}
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_aValues"];
-	s_Object->m_aValues.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_aValues[s_Index0] = simdjson::from_json_uint8(s_Item0);
-		++s_Index0;
-	}
-	}
-
-}
-
-void SCompressedGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Object);
-
-	TArray<uint16>::Serialize(&s_Object->m_aIndices, p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aIndices));
-	TArray<uint8>::Serialize(&s_Object->m_aValues, p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aValues));
-}
-
-bool SCompressedGridFloatField::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SCompressedGridFloatField*>(p_Left);
-	auto* s_Right = reinterpret_cast<SCompressedGridFloatField*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SCompressedGridFloatField::operator==(const SCompressedGridFloatField& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SCompressedGridFloatField>)
-		return false;
-
-	if (m_bIsSparse != p_Other.m_bIsSparse) return false;
-	if (m_nFieldSize != p_Other.m_nFieldSize) return false;
-	if (m_fInitialValue != p_Other.m_fInitialValue) return false;
-	if (m_nGridCRC != p_Other.m_nGridCRC) return false;
-	if (m_aIndices != p_Other.m_aIndices) return false;
-	if (m_aValues != p_Other.m_aValues) return false;
-
-	return true;
-}
-
-void SCompressedGridFloatField::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Object);
-	s_Object->~SCompressedGridFloatField();
-}
-
-ZHMTypeInfo ZInvestigateCautiousSituation::SStateData::TypeInfo = ZHMTypeInfo("ZInvestigateCautiousSituation.SStateData", sizeof(ZInvestigateCautiousSituation::SStateData), alignof(ZInvestigateCautiousSituation::SStateData), ZInvestigateCautiousSituation::SStateData::WriteSimpleJson, ZInvestigateCautiousSituation::SStateData::FromSimpleJson, ZInvestigateCautiousSituation::SStateData::Serialize, ZInvestigateCautiousSituation::SStateData::Equals, ZInvestigateCautiousSituation::SStateData::Destroy);
-
-void ZInvestigateCautiousSituation::SStateData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZInvestigateCautiousSituation::SStateData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_state") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ZInvestigateCautiousSituation.ESituationState", static_cast<int>(s_Object->m_state)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eBystanderState") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ZInvestigateCautiousSituation.EBystanderState", static_cast<int>(s_Object->m_eBystanderState)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tLastInvestigationEnded") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tLastInvestigationEnded, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tLastApproachOrder") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tLastApproachOrder, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tLastBackupGroupEnded") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tLastBackupGroupEnded, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tLastHunt") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tLastHunt, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tHuntTargetLastUpdate") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tHuntTargetLastUpdate, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tNewHuntTargetTimer") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tNewHuntTargetTimer, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fCombatAge") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fCombatAge);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLockdownZoneDisturbanceAdded") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLockdownZoneDisturbanceAdded);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLockdownSituation") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLockdownSituation);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLockdownFalseAlarm") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLockdownFalseAlarm);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLockdownGracePeriod") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLockdownGracePeriod);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bHMInGuardDisguise") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bHMInGuardDisguise);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bFrisked") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bFrisked);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bAnnouncedFrisk") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bAnnouncedFrisk);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bReasonToFrisk") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bReasonToFrisk);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bSomeoneHasBeenInCombat") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bSomeoneHasBeenInCombat);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bInvestigationGroupActive") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bInvestigationGroupActive);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bStandDownGuards") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bStandDownGuards);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tStandDownDelay") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tStandDownDelay, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_eMostSevereDisturbance") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EDisturbanceType", static_cast<int>(s_Object->m_eMostSevereDisturbance)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bDiscoveredDeadBody") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bDiscoveredDeadBody);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bDiscoveredPacifiedBody") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bDiscoveredPacifiedBody);
-
-	p_Stream << "}";
-}
-
-void ZInvestigateCautiousSituation::SStateData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZInvestigateCautiousSituation::SStateData*>(p_Target);
-
-	s_Object->m_state = static_cast<ZInvestigateCautiousSituation::ESituationState>(ZHMEnums::GetEnumValueByName("ZInvestigateCautiousSituation.ESituationState", std::string_view(p_Document["m_state"])));
-
-	s_Object->m_eBystanderState = static_cast<ZInvestigateCautiousSituation::EBystanderState>(ZHMEnums::GetEnumValueByName("ZInvestigateCautiousSituation.EBystanderState", std::string_view(p_Document["m_eBystanderState"])));
-
-	ZGameTime::FromSimpleJson(p_Document["m_tLastInvestigationEnded"], &s_Object->m_tLastInvestigationEnded);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tLastApproachOrder"], &s_Object->m_tLastApproachOrder);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tLastBackupGroupEnded"], &s_Object->m_tLastBackupGroupEnded);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tLastHunt"], &s_Object->m_tLastHunt);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tHuntTargetLastUpdate"], &s_Object->m_tHuntTargetLastUpdate);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tNewHuntTargetTimer"], &s_Object->m_tNewHuntTargetTimer);
-
-	s_Object->m_fCombatAge = simdjson::from_json_float32(p_Document["m_fCombatAge"]);
-
-	s_Object->m_bLockdownZoneDisturbanceAdded = simdjson::from_json_bool(p_Document["m_bLockdownZoneDisturbanceAdded"]);
-
-	s_Object->m_bLockdownSituation = simdjson::from_json_bool(p_Document["m_bLockdownSituation"]);
-
-	s_Object->m_bLockdownFalseAlarm = simdjson::from_json_bool(p_Document["m_bLockdownFalseAlarm"]);
-
-	s_Object->m_bLockdownGracePeriod = simdjson::from_json_bool(p_Document["m_bLockdownGracePeriod"]);
-
-	s_Object->m_bHMInGuardDisguise = simdjson::from_json_bool(p_Document["m_bHMInGuardDisguise"]);
-
-	s_Object->m_bFrisked = simdjson::from_json_bool(p_Document["m_bFrisked"]);
-
-	s_Object->m_bAnnouncedFrisk = simdjson::from_json_bool(p_Document["m_bAnnouncedFrisk"]);
-
-	s_Object->m_bReasonToFrisk = simdjson::from_json_bool(p_Document["m_bReasonToFrisk"]);
-
-	s_Object->m_bSomeoneHasBeenInCombat = simdjson::from_json_bool(p_Document["m_bSomeoneHasBeenInCombat"]);
-
-	s_Object->m_bInvestigationGroupActive = simdjson::from_json_bool(p_Document["m_bInvestigationGroupActive"]);
-
-	s_Object->m_bStandDownGuards = simdjson::from_json_bool(p_Document["m_bStandDownGuards"]);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tStandDownDelay"], &s_Object->m_tStandDownDelay);
-
-	s_Object->m_eMostSevereDisturbance = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_eMostSevereDisturbance"])));
-
-	s_Object->m_bDiscoveredDeadBody = simdjson::from_json_bool(p_Document["m_bDiscoveredDeadBody"]);
-
-	s_Object->m_bDiscoveredPacifiedBody = simdjson::from_json_bool(p_Document["m_bDiscoveredPacifiedBody"]);
-
-}
-
-void ZInvestigateCautiousSituation::SStateData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZInvestigateCautiousSituation::SStateData*>(p_Object);
-
-	ZGameTime::Serialize(&s_Object->m_tLastInvestigationEnded, p_Serializer, p_OwnOffset + offsetof(ZInvestigateCautiousSituation::SStateData, m_tLastInvestigationEnded));
-	ZGameTime::Serialize(&s_Object->m_tLastApproachOrder, p_Serializer, p_OwnOffset + offsetof(ZInvestigateCautiousSituation::SStateData, m_tLastApproachOrder));
-	ZGameTime::Serialize(&s_Object->m_tLastBackupGroupEnded, p_Serializer, p_OwnOffset + offsetof(ZInvestigateCautiousSituation::SStateData, m_tLastBackupGroupEnded));
-	ZGameTime::Serialize(&s_Object->m_tLastHunt, p_Serializer, p_OwnOffset + offsetof(ZInvestigateCautiousSituation::SStateData, m_tLastHunt));
-	ZGameTime::Serialize(&s_Object->m_tHuntTargetLastUpdate, p_Serializer, p_OwnOffset + offsetof(ZInvestigateCautiousSituation::SStateData, m_tHuntTargetLastUpdate));
-	ZGameTime::Serialize(&s_Object->m_tNewHuntTargetTimer, p_Serializer, p_OwnOffset + offsetof(ZInvestigateCautiousSituation::SStateData, m_tNewHuntTargetTimer));
-	ZGameTime::Serialize(&s_Object->m_tStandDownDelay, p_Serializer, p_OwnOffset + offsetof(ZInvestigateCautiousSituation::SStateData, m_tStandDownDelay));
-}
-
-bool ZInvestigateCautiousSituation::SStateData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZInvestigateCautiousSituation::SStateData*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZInvestigateCautiousSituation::SStateData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZInvestigateCautiousSituation::SStateData::operator==(const ZInvestigateCautiousSituation::SStateData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZInvestigateCautiousSituation::SStateData>)
-		return false;
-
-	if (m_state != p_Other.m_state) return false;
-	if (m_eBystanderState != p_Other.m_eBystanderState) return false;
-	if (m_tLastInvestigationEnded != p_Other.m_tLastInvestigationEnded) return false;
-	if (m_tLastApproachOrder != p_Other.m_tLastApproachOrder) return false;
-	if (m_tLastBackupGroupEnded != p_Other.m_tLastBackupGroupEnded) return false;
-	if (m_tLastHunt != p_Other.m_tLastHunt) return false;
-	if (m_tHuntTargetLastUpdate != p_Other.m_tHuntTargetLastUpdate) return false;
-	if (m_tNewHuntTargetTimer != p_Other.m_tNewHuntTargetTimer) return false;
-	if (m_fCombatAge != p_Other.m_fCombatAge) return false;
-	if (m_bLockdownZoneDisturbanceAdded != p_Other.m_bLockdownZoneDisturbanceAdded) return false;
-	if (m_bLockdownSituation != p_Other.m_bLockdownSituation) return false;
-	if (m_bLockdownFalseAlarm != p_Other.m_bLockdownFalseAlarm) return false;
-	if (m_bLockdownGracePeriod != p_Other.m_bLockdownGracePeriod) return false;
-	if (m_bHMInGuardDisguise != p_Other.m_bHMInGuardDisguise) return false;
-	if (m_bFrisked != p_Other.m_bFrisked) return false;
-	if (m_bAnnouncedFrisk != p_Other.m_bAnnouncedFrisk) return false;
-	if (m_bReasonToFrisk != p_Other.m_bReasonToFrisk) return false;
-	if (m_bSomeoneHasBeenInCombat != p_Other.m_bSomeoneHasBeenInCombat) return false;
-	if (m_bInvestigationGroupActive != p_Other.m_bInvestigationGroupActive) return false;
-	if (m_bStandDownGuards != p_Other.m_bStandDownGuards) return false;
-	if (m_tStandDownDelay != p_Other.m_tStandDownDelay) return false;
-	if (m_eMostSevereDisturbance != p_Other.m_eMostSevereDisturbance) return false;
-	if (m_bDiscoveredDeadBody != p_Other.m_bDiscoveredDeadBody) return false;
-	if (m_bDiscoveredPacifiedBody != p_Other.m_bDiscoveredPacifiedBody) return false;
-
-	return true;
-}
-
-void ZInvestigateCautiousSituation::SStateData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZInvestigateCautiousSituation::SStateData*>(p_Object);
-	s_Object->~SStateData();
-}
-
-ZHMTypeInfo SDisturbanceSaveData::TypeInfo = ZHMTypeInfo("SDisturbanceSaveData", sizeof(SDisturbanceSaveData), alignof(SDisturbanceSaveData), SDisturbanceSaveData::WriteSimpleJson, SDisturbanceSaveData::FromSimpleJson, SDisturbanceSaveData::Serialize, SDisturbanceSaveData::Equals, SDisturbanceSaveData::Destroy);
-
-void SDisturbanceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_object") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_object);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_type") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EDisturbanceType", static_cast<int>(s_Object->m_type)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_state") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECautiousDisturbanceState", static_cast<int>(s_Object->m_state)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_started") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_started, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_pInvestigateGroup") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_pInvestigateGroup);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bLockOnHitmanPosition") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bLockOnHitmanPosition);
-
-	p_Stream << "}";
-}
-
-void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Target);
-
-	s_Object->m_object = simdjson::from_json_int32(p_Document["m_object"]);
-
-	s_Object->m_type = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_type"])));
-
-	s_Object->m_state = static_cast<ECautiousDisturbanceState>(ZHMEnums::GetEnumValueByName("ECautiousDisturbanceState", std::string_view(p_Document["m_state"])));
-
-	ZGameTime::FromSimpleJson(p_Document["m_started"], &s_Object->m_started);
-
-	s_Object->m_pInvestigateGroup = simdjson::from_json_int32(p_Document["m_pInvestigateGroup"]);
-
-	s_Object->m_bLockOnHitmanPosition = simdjson::from_json_bool(p_Document["m_bLockOnHitmanPosition"]);
-
-}
-
-void SDisturbanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Object);
-
-	ZGameTime::Serialize(&s_Object->m_started, p_Serializer, p_OwnOffset + offsetof(SDisturbanceSaveData, m_started));
-}
-
-bool SDisturbanceSaveData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SDisturbanceSaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<SDisturbanceSaveData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SDisturbanceSaveData::operator==(const SDisturbanceSaveData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SDisturbanceSaveData>)
-		return false;
-
-	if (m_object != p_Other.m_object) return false;
-	if (m_type != p_Other.m_type) return false;
-	if (m_state != p_Other.m_state) return false;
-	if (m_started != p_Other.m_started) return false;
-	if (m_pInvestigateGroup != p_Other.m_pInvestigateGroup) return false;
-	if (m_bLockOnHitmanPosition != p_Other.m_bLockOnHitmanPosition) return false;
-
-	return true;
-}
-
-void SDisturbanceSaveData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Object);
-	s_Object->~SDisturbanceSaveData();
-}
-
-ZHMTypeInfo SCautiousInvestigateSituationSaveData::TypeInfo = ZHMTypeInfo("SCautiousInvestigateSituationSaveData", sizeof(SCautiousInvestigateSituationSaveData), alignof(SCautiousInvestigateSituationSaveData), SCautiousInvestigateSituationSaveData::WriteSimpleJson, SCautiousInvestigateSituationSaveData::FromSimpleJson, SCautiousInvestigateSituationSaveData::Serialize, SCautiousInvestigateSituationSaveData::Equals, SCautiousInvestigateSituationSaveData::Destroy);
-
-void SCautiousInvestigateSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_StateData") << ":";
-	ZInvestigateCautiousSituation::SStateData::WriteSimpleJson(&s_Object->m_StateData, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_pGetHelpGroup") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_pGetHelpGroup);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_pBackupGroup") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_pBackupGroup);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_rTriggerAlarmGroup") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_rTriggerAlarmGroup);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_pInvestigateDisguiseGroup") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_pInvestigateDisguiseGroup);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_cautiousVIPGroups") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_cautiousVIPGroups.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_cautiousVIPGroups[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_cautiousVIPGroups.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_friskGroups") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_friskGroups.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_friskGroups[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_friskGroups.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tFriskCooldown") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tFriskCooldown, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tFriskGroupEnd") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tFriskGroupEnd, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tRecoverUnconsciousGroupEnd") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tRecoverUnconsciousGroupEnd, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_nHuntTarget") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_nHuntTarget);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_rZone") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_rZone);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aGuardMembers") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aGuardMembers.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aGuardMembers[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_aGuardMembers.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_disturbances") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_disturbances.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_disturbances[i];
-		SDisturbanceSaveData::WriteSimpleJson(&s_Item0, p_Stream);
-
-		if (i < s_Object->m_disturbances.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bValidDisturbanceField") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bValidDisturbanceField);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_disturbanceField") << ":";
-	SCompressedGridFloatField::WriteSimpleJson(&s_Object->m_disturbanceField, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_recoverUnconsciousGroup") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_recoverUnconsciousGroup);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bSuspendSearchOnInitialGetHelpGroup") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bSuspendSearchOnInitialGetHelpGroup);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_lastArrestReason") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EDisturbanceType", static_cast<int>(s_Object->m_lastArrestReason)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_lastStaticArrestReason") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EDisturbanceType", static_cast<int>(s_Object->m_lastStaticArrestReason)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_lastStaticCombatReason") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EDisturbanceType", static_cast<int>(s_Object->m_lastStaticCombatReason)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bAnyGunshotDisturbance") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bAnyGunshotDisturbance);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_deadBodyMassiveReported") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_deadBodyMassiveReported);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_deadBodiesDiscovered") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_deadBodiesDiscovered);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_deadCrowdBodiesDiscovered") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_deadCrowdBodiesDiscovered);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aDynamicEnforceEventsForSearchers") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aDynamicEnforceEventsForSearchers.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aDynamicEnforceEventsForSearchers[i];
-		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EAISharedEventType", static_cast<int>(s_Item0)));
-
-		if (i < s_Object->m_aDynamicEnforceEventsForSearchers.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_tLastIdleStanddown") << ":";
-	ZGameTime::WriteSimpleJson(&s_Object->m_tLastIdleStanddown, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aAvoidDangerGroups") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aAvoidDangerGroups.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aAvoidDangerGroups[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_aAvoidDangerGroups.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_cautiousHuntData") << ":";
-	SCautiousHuntSaveData::WriteSimpleJson(&s_Object->m_cautiousHuntData, p_Stream);
-
-	p_Stream << "}";
-}
-
-void SCautiousInvestigateSituationSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Target);
-
-	ZInvestigateCautiousSituation::SStateData::FromSimpleJson(p_Document["m_StateData"], &s_Object->m_StateData);
-
-	s_Object->m_pGetHelpGroup = simdjson::from_json_int32(p_Document["m_pGetHelpGroup"]);
-
-	s_Object->m_pBackupGroup = simdjson::from_json_int32(p_Document["m_pBackupGroup"]);
-
-	s_Object->m_rTriggerAlarmGroup = simdjson::from_json_int32(p_Document["m_rTriggerAlarmGroup"]);
-
-	s_Object->m_pInvestigateDisguiseGroup = simdjson::from_json_int32(p_Document["m_pInvestigateDisguiseGroup"]);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_cautiousVIPGroups"];
-	s_Object->m_cautiousVIPGroups.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_cautiousVIPGroups[s_Index0] = simdjson::from_json_int32(s_Item0);
-		++s_Index0;
-	}
-	}
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_friskGroups"];
-	s_Object->m_friskGroups.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_friskGroups[s_Index0] = simdjson::from_json_int32(s_Item0);
-		++s_Index0;
-	}
-	}
-
-	ZGameTime::FromSimpleJson(p_Document["m_tFriskCooldown"], &s_Object->m_tFriskCooldown);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tFriskGroupEnd"], &s_Object->m_tFriskGroupEnd);
-
-	ZGameTime::FromSimpleJson(p_Document["m_tRecoverUnconsciousGroupEnd"], &s_Object->m_tRecoverUnconsciousGroupEnd);
-
-	s_Object->m_nHuntTarget = simdjson::from_json_int32(p_Document["m_nHuntTarget"]);
-
-	s_Object->m_rZone = simdjson::from_json_uint32(p_Document["m_rZone"]);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_aGuardMembers"];
-	s_Object->m_aGuardMembers.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_aGuardMembers[s_Index0] = simdjson::from_json_uint32(s_Item0);
-		++s_Index0;
-	}
-	}
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_disturbances"];
-	s_Object->m_disturbances.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		SDisturbanceSaveData::FromSimpleJson(s_Item0, &s_Object->m_disturbances[s_Index0]);
-		++s_Index0;
-	}
-	}
-
-	s_Object->m_bValidDisturbanceField = simdjson::from_json_bool(p_Document["m_bValidDisturbanceField"]);
-
-	SCompressedGridFloatField::FromSimpleJson(p_Document["m_disturbanceField"], &s_Object->m_disturbanceField);
-
-	s_Object->m_recoverUnconsciousGroup = simdjson::from_json_int32(p_Document["m_recoverUnconsciousGroup"]);
-
-	s_Object->m_bSuspendSearchOnInitialGetHelpGroup = simdjson::from_json_bool(p_Document["m_bSuspendSearchOnInitialGetHelpGroup"]);
-
-	s_Object->m_lastArrestReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_lastArrestReason"])));
-
-	s_Object->m_lastStaticArrestReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_lastStaticArrestReason"])));
-
-	s_Object->m_lastStaticCombatReason = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_lastStaticCombatReason"])));
-
-	s_Object->m_bAnyGunshotDisturbance = simdjson::from_json_bool(p_Document["m_bAnyGunshotDisturbance"]);
-
-	s_Object->m_deadBodyMassiveReported = simdjson::from_json_bool(p_Document["m_deadBodyMassiveReported"]);
-
-	s_Object->m_deadBodiesDiscovered = simdjson::from_json_int32(p_Document["m_deadBodiesDiscovered"]);
-
-	s_Object->m_deadCrowdBodiesDiscovered = simdjson::from_json_int32(p_Document["m_deadCrowdBodiesDiscovered"]);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_aDynamicEnforceEventsForSearchers"];
-	s_Object->m_aDynamicEnforceEventsForSearchers.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_aDynamicEnforceEventsForSearchers[s_Index0] = static_cast<EAISharedEventType>(ZHMEnums::GetEnumValueByName("EAISharedEventType", std::string_view(s_Item0)));
-		++s_Index0;
-	}
-	}
-
-	ZGameTime::FromSimpleJson(p_Document["m_tLastIdleStanddown"], &s_Object->m_tLastIdleStanddown);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_aAvoidDangerGroups"];
-	s_Object->m_aAvoidDangerGroups.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_aAvoidDangerGroups[s_Index0] = simdjson::from_json_int32(s_Item0);
-		++s_Index0;
-	}
-	}
-
-	SCautiousHuntSaveData::FromSimpleJson(p_Document["m_cautiousHuntData"], &s_Object->m_cautiousHuntData);
-
-}
-
-void SCautiousInvestigateSituationSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Object);
-
-	ZInvestigateCautiousSituation::SStateData::Serialize(&s_Object->m_StateData, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_StateData));
-	TArray<int32>::Serialize(&s_Object->m_cautiousVIPGroups, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_cautiousVIPGroups));
-	TArray<int32>::Serialize(&s_Object->m_friskGroups, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_friskGroups));
-	ZGameTime::Serialize(&s_Object->m_tFriskCooldown, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_tFriskCooldown));
-	ZGameTime::Serialize(&s_Object->m_tFriskGroupEnd, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_tFriskGroupEnd));
-	ZGameTime::Serialize(&s_Object->m_tRecoverUnconsciousGroupEnd, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_tRecoverUnconsciousGroupEnd));
-	TArray<uint32>::Serialize(&s_Object->m_aGuardMembers, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_aGuardMembers));
-	TArray<SDisturbanceSaveData>::Serialize(&s_Object->m_disturbances, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_disturbances));
-	SCompressedGridFloatField::Serialize(&s_Object->m_disturbanceField, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_disturbanceField));
-	TArray<EAISharedEventType>::Serialize(&s_Object->m_aDynamicEnforceEventsForSearchers, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_aDynamicEnforceEventsForSearchers));
-	ZGameTime::Serialize(&s_Object->m_tLastIdleStanddown, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_tLastIdleStanddown));
-	TArray<int32>::Serialize(&s_Object->m_aAvoidDangerGroups, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_aAvoidDangerGroups));
-	SCautiousHuntSaveData::Serialize(&s_Object->m_cautiousHuntData, p_Serializer, p_OwnOffset + offsetof(SCautiousInvestigateSituationSaveData, m_cautiousHuntData));
-}
-
-bool SCautiousInvestigateSituationSaveData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SCautiousInvestigateSituationSaveData::operator==(const SCautiousInvestigateSituationSaveData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SCautiousInvestigateSituationSaveData>)
-		return false;
-
-	if (m_StateData != p_Other.m_StateData) return false;
-	if (m_pGetHelpGroup != p_Other.m_pGetHelpGroup) return false;
-	if (m_pBackupGroup != p_Other.m_pBackupGroup) return false;
-	if (m_rTriggerAlarmGroup != p_Other.m_rTriggerAlarmGroup) return false;
-	if (m_pInvestigateDisguiseGroup != p_Other.m_pInvestigateDisguiseGroup) return false;
-	if (m_cautiousVIPGroups != p_Other.m_cautiousVIPGroups) return false;
-	if (m_friskGroups != p_Other.m_friskGroups) return false;
-	if (m_tFriskCooldown != p_Other.m_tFriskCooldown) return false;
-	if (m_tFriskGroupEnd != p_Other.m_tFriskGroupEnd) return false;
-	if (m_tRecoverUnconsciousGroupEnd != p_Other.m_tRecoverUnconsciousGroupEnd) return false;
-	if (m_nHuntTarget != p_Other.m_nHuntTarget) return false;
-	if (m_rZone != p_Other.m_rZone) return false;
-	if (m_aGuardMembers != p_Other.m_aGuardMembers) return false;
-	if (m_disturbances != p_Other.m_disturbances) return false;
-	if (m_bValidDisturbanceField != p_Other.m_bValidDisturbanceField) return false;
-	if (m_disturbanceField != p_Other.m_disturbanceField) return false;
-	if (m_recoverUnconsciousGroup != p_Other.m_recoverUnconsciousGroup) return false;
-	if (m_bSuspendSearchOnInitialGetHelpGroup != p_Other.m_bSuspendSearchOnInitialGetHelpGroup) return false;
-	if (m_lastArrestReason != p_Other.m_lastArrestReason) return false;
-	if (m_lastStaticArrestReason != p_Other.m_lastStaticArrestReason) return false;
-	if (m_lastStaticCombatReason != p_Other.m_lastStaticCombatReason) return false;
-	if (m_bAnyGunshotDisturbance != p_Other.m_bAnyGunshotDisturbance) return false;
-	if (m_deadBodyMassiveReported != p_Other.m_deadBodyMassiveReported) return false;
-	if (m_deadBodiesDiscovered != p_Other.m_deadBodiesDiscovered) return false;
-	if (m_deadCrowdBodiesDiscovered != p_Other.m_deadCrowdBodiesDiscovered) return false;
-	if (m_aDynamicEnforceEventsForSearchers != p_Other.m_aDynamicEnforceEventsForSearchers) return false;
-	if (m_tLastIdleStanddown != p_Other.m_tLastIdleStanddown) return false;
-	if (m_aAvoidDangerGroups != p_Other.m_aAvoidDangerGroups) return false;
-	if (m_cautiousHuntData != p_Other.m_cautiousHuntData) return false;
-
-	return true;
-}
-
-void SCautiousInvestigateSituationSaveData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SCautiousInvestigateSituationSaveData*>(p_Object);
-	s_Object->~SCautiousInvestigateSituationSaveData();
 }
 
 ZHMTypeInfo SCautiousSearchGroupSaveData::TypeInfo = ZHMTypeInfo("SCautiousSearchGroupSaveData", sizeof(SCautiousSearchGroupSaveData), alignof(SCautiousSearchGroupSaveData), SCautiousSearchGroupSaveData::WriteSimpleJson, SCautiousSearchGroupSaveData::FromSimpleJson, SCautiousSearchGroupSaveData::Serialize, SCautiousSearchGroupSaveData::Equals, SCautiousSearchGroupSaveData::Destroy);
@@ -14437,71 +11779,133 @@ void SCombatZoneEntitySaveData::Destroy(void* p_Object)
 	s_Object->~SCombatZoneEntitySaveData();
 }
 
-ZHMTypeInfo SConditionBase::TypeInfo = ZHMTypeInfo("SConditionBase", sizeof(SConditionBase), alignof(SConditionBase), SConditionBase::WriteSimpleJson, SConditionBase::FromSimpleJson, SConditionBase::Serialize, SConditionBase::Equals, SConditionBase::Destroy);
+ZHMTypeInfo SCompressedGridFloatField::TypeInfo = ZHMTypeInfo("SCompressedGridFloatField", sizeof(SCompressedGridFloatField), alignof(SCompressedGridFloatField), SCompressedGridFloatField::WriteSimpleJson, SCompressedGridFloatField::FromSimpleJson, SCompressedGridFloatField::Serialize, SCompressedGridFloatField::Equals, SCompressedGridFloatField::Destroy);
 
-void SConditionBase::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+void SCompressedGridFloatField::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 {
-	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
+	auto* s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Object);
 
 	p_Stream << "{";
 
-	p_Stream << simdjson::as_json_string("eConditionType") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECompiledConditionType", static_cast<int>(s_Object->eConditionType)));
+	p_Stream << simdjson::as_json_string("m_bIsSparse") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bIsSparse);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("nConditionModifiers") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->nConditionModifiers);
+	p_Stream << simdjson::as_json_string("m_nFieldSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nFieldSize);
 	p_Stream << ",";
 
-	p_Stream << simdjson::as_json_string("assignTo") << ":";
-	ZBehaviorTreeVariable::WriteSimpleJson(&s_Object->assignTo, p_Stream);
+	p_Stream << simdjson::as_json_string("m_fInitialValue") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fInitialValue);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nGridCRC") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nGridCRC);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aIndices") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aIndices.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aIndices[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aIndices.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aValues") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aValues.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aValues[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aValues.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
 
 	p_Stream << "}";
 }
 
-void SConditionBase::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+void SCompressedGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
 {
-	auto s_Object = reinterpret_cast<SConditionBase*>(p_Target);
+	auto s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Target);
 
-	s_Object->eConditionType = static_cast<ECompiledConditionType>(ZHMEnums::GetEnumValueByName("ECompiledConditionType", std::string_view(p_Document["eConditionType"])));
+	s_Object->m_bIsSparse = simdjson::from_json_bool(p_Document["m_bIsSparse"]);
 
-	s_Object->nConditionModifiers = simdjson::from_json_uint32(p_Document["nConditionModifiers"]);
+	s_Object->m_nFieldSize = simdjson::from_json_uint32(p_Document["m_nFieldSize"]);
 
-	ZBehaviorTreeVariable::FromSimpleJson(p_Document["assignTo"], &s_Object->assignTo);
+	s_Object->m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
+
+	s_Object->m_nGridCRC = simdjson::from_json_uint32(p_Document["m_nGridCRC"]);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aIndices"];
+	s_Object->m_aIndices.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object->m_aIndices[s_Index0] = simdjson::from_json_uint16(s_Item0);
+		++s_Index0;
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aValues"];
+	s_Object->m_aValues.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object->m_aValues[s_Index0] = simdjson::from_json_uint8(s_Item0);
+		++s_Index0;
+	}
+	}
 
 }
 
-void SConditionBase::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+void SCompressedGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
 {
-	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
+	auto* s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Object);
 
-	ZBehaviorTreeVariable::Serialize(&s_Object->assignTo, p_Serializer, p_OwnOffset + offsetof(SConditionBase, assignTo));
+	TArray<uint16>::Serialize(&s_Object->m_aIndices, p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aIndices));
+	TArray<uint8>::Serialize(&s_Object->m_aValues, p_Serializer, p_OwnOffset + offsetof(SCompressedGridFloatField, m_aValues));
 }
 
-bool SConditionBase::Equals(void* p_Left, void* p_Right)
+bool SCompressedGridFloatField::Equals(void* p_Left, void* p_Right)
 {
-	auto* s_Left = reinterpret_cast<SConditionBase*>(p_Left);
-	auto* s_Right = reinterpret_cast<SConditionBase*>(p_Right);
+	auto* s_Left = reinterpret_cast<SCompressedGridFloatField*>(p_Left);
+	auto* s_Right = reinterpret_cast<SCompressedGridFloatField*>(p_Right);
 
 	return *s_Left == *s_Right;
 }
 
-bool SConditionBase::operator==(const SConditionBase& p_Other) const
+bool SCompressedGridFloatField::operator==(const SCompressedGridFloatField& p_Other) const
 {
-	if constexpr (!ZHMTypeSupportsEquality_v<SConditionBase>)
+	if constexpr (!ZHMTypeSupportsEquality_v<SCompressedGridFloatField>)
 		return false;
 
-	if (eConditionType != p_Other.eConditionType) return false;
-	if (nConditionModifiers != p_Other.nConditionModifiers) return false;
-	if (assignTo != p_Other.assignTo) return false;
+	if (m_bIsSparse != p_Other.m_bIsSparse) return false;
+	if (m_nFieldSize != p_Other.m_nFieldSize) return false;
+	if (m_fInitialValue != p_Other.m_fInitialValue) return false;
+	if (m_nGridCRC != p_Other.m_nGridCRC) return false;
+	if (m_aIndices != p_Other.m_aIndices) return false;
+	if (m_aValues != p_Other.m_aValues) return false;
 
 	return true;
 }
 
-void SConditionBase::Destroy(void* p_Object)
+void SCompressedGridFloatField::Destroy(void* p_Object)
 {
-	auto* s_Object = reinterpret_cast<SConditionBase*>(p_Object);
-	s_Object->~SConditionBase();
+	auto* s_Object = reinterpret_cast<SCompressedGridFloatField*>(p_Object);
+	s_Object->~SCompressedGridFloatField();
 }
 
 ZHMTypeInfo SConditionalTimerEntitySaveData::TypeInfo = ZHMTypeInfo("SConditionalTimerEntitySaveData", sizeof(SConditionalTimerEntitySaveData), alignof(SConditionalTimerEntitySaveData), SConditionalTimerEntitySaveData::WriteSimpleJson, SConditionalTimerEntitySaveData::FromSimpleJson, SConditionalTimerEntitySaveData::Serialize, SConditionalTimerEntitySaveData::Equals, SConditionalTimerEntitySaveData::Destroy);
@@ -18554,6 +15958,94 @@ void SDisguiseZoneSaveData::Destroy(void* p_Object)
 	s_Object->~SDisguiseZoneSaveData();
 }
 
+ZHMTypeInfo SDisturbanceSaveData::TypeInfo = ZHMTypeInfo("SDisturbanceSaveData", sizeof(SDisturbanceSaveData), alignof(SDisturbanceSaveData), SDisturbanceSaveData::WriteSimpleJson, SDisturbanceSaveData::FromSimpleJson, SDisturbanceSaveData::Serialize, SDisturbanceSaveData::Equals, SDisturbanceSaveData::Destroy);
+
+void SDisturbanceSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_object") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_object);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_type") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EDisturbanceType", static_cast<int>(s_Object->m_type)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_state") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ECautiousDisturbanceState", static_cast<int>(s_Object->m_state)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_started") << ":";
+	ZGameTime::WriteSimpleJson(&s_Object->m_started, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_pInvestigateGroup") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_pInvestigateGroup);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bLockOnHitmanPosition") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bLockOnHitmanPosition);
+
+	p_Stream << "}";
+}
+
+void SDisturbanceSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Target);
+
+	s_Object->m_object = simdjson::from_json_int32(p_Document["m_object"]);
+
+	s_Object->m_type = static_cast<EDisturbanceType>(ZHMEnums::GetEnumValueByName("EDisturbanceType", std::string_view(p_Document["m_type"])));
+
+	s_Object->m_state = static_cast<ECautiousDisturbanceState>(ZHMEnums::GetEnumValueByName("ECautiousDisturbanceState", std::string_view(p_Document["m_state"])));
+
+	ZGameTime::FromSimpleJson(p_Document["m_started"], &s_Object->m_started);
+
+	s_Object->m_pInvestigateGroup = simdjson::from_json_int32(p_Document["m_pInvestigateGroup"]);
+
+	s_Object->m_bLockOnHitmanPosition = simdjson::from_json_bool(p_Document["m_bLockOnHitmanPosition"]);
+
+}
+
+void SDisturbanceSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Object);
+
+	ZGameTime::Serialize(&s_Object->m_started, p_Serializer, p_OwnOffset + offsetof(SDisturbanceSaveData, m_started));
+}
+
+bool SDisturbanceSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SDisturbanceSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SDisturbanceSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SDisturbanceSaveData::operator==(const SDisturbanceSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SDisturbanceSaveData>)
+		return false;
+
+	if (m_object != p_Other.m_object) return false;
+	if (m_type != p_Other.m_type) return false;
+	if (m_state != p_Other.m_state) return false;
+	if (m_started != p_Other.m_started) return false;
+	if (m_pInvestigateGroup != p_Other.m_pInvestigateGroup) return false;
+	if (m_bLockOnHitmanPosition != p_Other.m_bLockOnHitmanPosition) return false;
+
+	return true;
+}
+
+void SDisturbanceSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SDisturbanceSaveData*>(p_Object);
+	s_Object->~SDisturbanceSaveData();
+}
+
 ZHMTypeInfo SDoorSaveData::TypeInfo = ZHMTypeInfo("SDoorSaveData", sizeof(SDoorSaveData), alignof(SDoorSaveData), SDoorSaveData::WriteSimpleJson, SDoorSaveData::FromSimpleJson, SDoorSaveData::Serialize, SDoorSaveData::Equals, SDoorSaveData::Destroy);
 
 void SDoorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -18626,52 +16118,6 @@ void SDoorSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SDoorSaveData*>(p_Object);
 	s_Object->~SDoorSaveData();
-}
-
-ZHMTypeInfo SDoorSoundDefs::TypeInfo = ZHMTypeInfo("SDoorSoundDefs", sizeof(SDoorSoundDefs), alignof(SDoorSoundDefs), SDoorSoundDefs::WriteSimpleJson, SDoorSoundDefs::FromSimpleJson, SDoorSoundDefs::Serialize, SDoorSoundDefs::Equals, SDoorSoundDefs::Destroy);
-
-void SDoorSoundDefs::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SDoorSoundDefs*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void SDoorSoundDefs::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SDoorSoundDefs*>(p_Target);
-
-}
-
-void SDoorSoundDefs::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SDoorSoundDefs*>(p_Object);
-
-}
-
-bool SDoorSoundDefs::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SDoorSoundDefs*>(p_Left);
-	auto* s_Right = reinterpret_cast<SDoorSoundDefs*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SDoorSoundDefs::operator==(const SDoorSoundDefs& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SDoorSoundDefs>)
-		return false;
-
-
-	return true;
-}
-
-void SDoorSoundDefs::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SDoorSoundDefs*>(p_Object);
-	s_Object->~SDoorSoundDefs();
 }
 
 ZHMTypeInfo SDoorsSaveData::TypeInfo = ZHMTypeInfo("SDoorsSaveData", sizeof(SDoorsSaveData), alignof(SDoorsSaveData), SDoorsSaveData::WriteSimpleJson, SDoorsSaveData::FromSimpleJson, SDoorsSaveData::Serialize, SDoorsSaveData::Equals, SDoorsSaveData::Destroy);
@@ -19651,52 +17097,6 @@ void SDramaControllerSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SDramaControllerSaveData*>(p_Object);
 	s_Object->~SDramaControllerSaveData();
-}
-
-ZHMTypeInfo ZUIDataProvider::TypeInfo = ZHMTypeInfo("ZUIDataProvider", sizeof(ZUIDataProvider), alignof(ZUIDataProvider), ZUIDataProvider::WriteSimpleJson, ZUIDataProvider::FromSimpleJson, ZUIDataProvider::Serialize, ZUIDataProvider::Equals, ZUIDataProvider::Destroy);
-
-void ZUIDataProvider::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZUIDataProvider*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZUIDataProvider::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZUIDataProvider*>(p_Target);
-
-}
-
-void ZUIDataProvider::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZUIDataProvider*>(p_Object);
-
-}
-
-bool ZUIDataProvider::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZUIDataProvider*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZUIDataProvider*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZUIDataProvider::operator==(const ZUIDataProvider& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZUIDataProvider>)
-		return false;
-
-
-	return true;
-}
-
-void ZUIDataProvider::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZUIDataProvider*>(p_Object);
-	s_Object->~ZUIDataProvider();
 }
 
 ZHMTypeInfo ZCurve::TypeInfo = ZHMTypeInfo("ZCurve", sizeof(ZCurve), alignof(ZCurve), ZCurve::WriteSimpleJson, ZCurve::FromSimpleJson, ZCurve::Serialize, ZCurve::Equals, ZCurve::Destroy);
@@ -28024,166 +25424,6 @@ void SGameEntitySaveData::Destroy(void* p_Object)
 	s_Object->~SGameEntitySaveData();
 }
 
-ZHMTypeInfo SKeywordSaveData::TypeInfo = ZHMTypeInfo("SKeywordSaveData", sizeof(SKeywordSaveData), alignof(SKeywordSaveData), SKeywordSaveData::WriteSimpleJson, SKeywordSaveData::FromSimpleJson, SKeywordSaveData::Serialize, SKeywordSaveData::Equals, SKeywordSaveData::Destroy);
-
-void SKeywordSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SKeywordSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_HolderSaveableId") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_HolderSaveableId);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_KeywordID") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_KeywordID);
-
-	p_Stream << "}";
-}
-
-void SKeywordSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SKeywordSaveData*>(p_Target);
-
-	s_Object->m_HolderSaveableId = simdjson::from_json_uint32(p_Document["m_HolderSaveableId"]);
-
-	s_Object->m_KeywordID = simdjson::from_json_int32(p_Document["m_KeywordID"]);
-
-}
-
-void SKeywordSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SKeywordSaveData*>(p_Object);
-
-}
-
-bool SKeywordSaveData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SKeywordSaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<SKeywordSaveData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SKeywordSaveData::operator==(const SKeywordSaveData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SKeywordSaveData>)
-		return false;
-
-	if (m_HolderSaveableId != p_Other.m_HolderSaveableId) return false;
-	if (m_KeywordID != p_Other.m_KeywordID) return false;
-
-	return true;
-}
-
-void SKeywordSaveData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SKeywordSaveData*>(p_Object);
-	s_Object->~SKeywordSaveData();
-}
-
-ZHMTypeInfo SGameKeywordManagerSaveData::TypeInfo = ZHMTypeInfo("SGameKeywordManagerSaveData", sizeof(SGameKeywordManagerSaveData), alignof(SGameKeywordManagerSaveData), SGameKeywordManagerSaveData::WriteSimpleJson, SGameKeywordManagerSaveData::FromSimpleJson, SGameKeywordManagerSaveData::Serialize, SGameKeywordManagerSaveData::Equals, SGameKeywordManagerSaveData::Destroy);
-
-void SGameKeywordManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SGameKeywordManagerSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_aKeywordsData") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aKeywordsData.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aKeywordsData[i];
-		SKeywordSaveData::WriteSimpleJson(&s_Item0, p_Stream);
-
-		if (i < s_Object->m_aKeywordsData.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_aKeywordStringData") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_aKeywordStringData.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_aKeywordStringData[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_aKeywordStringData.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-
-	p_Stream << "}";
-}
-
-void SGameKeywordManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SGameKeywordManagerSaveData*>(p_Target);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_aKeywordsData"];
-	s_Object->m_aKeywordsData.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		SKeywordSaveData::FromSimpleJson(s_Item0, &s_Object->m_aKeywordsData[s_Index0]);
-		++s_Index0;
-	}
-	}
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_aKeywordStringData"];
-	s_Object->m_aKeywordStringData.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_aKeywordStringData[s_Index0] = std::string_view(s_Item0);
-		++s_Index0;
-	}
-	}
-
-}
-
-void SGameKeywordManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SGameKeywordManagerSaveData*>(p_Object);
-
-	TArray<SKeywordSaveData>::Serialize(&s_Object->m_aKeywordsData, p_Serializer, p_OwnOffset + offsetof(SGameKeywordManagerSaveData, m_aKeywordsData));
-	TArray<ZString>::Serialize(&s_Object->m_aKeywordStringData, p_Serializer, p_OwnOffset + offsetof(SGameKeywordManagerSaveData, m_aKeywordStringData));
-}
-
-bool SGameKeywordManagerSaveData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SGameKeywordManagerSaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<SGameKeywordManagerSaveData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SGameKeywordManagerSaveData::operator==(const SGameKeywordManagerSaveData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SGameKeywordManagerSaveData>)
-		return false;
-
-	if (m_aKeywordsData != p_Other.m_aKeywordsData) return false;
-	if (m_aKeywordStringData != p_Other.m_aKeywordStringData) return false;
-
-	return true;
-}
-
-void SGameKeywordManagerSaveData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SGameKeywordManagerSaveData*>(p_Object);
-	s_Object->~SGameKeywordManagerSaveData();
-}
-
 ZHMTypeInfo STimerEntityCommandSaveData::TypeInfo = ZHMTypeInfo("STimerEntityCommandSaveData", sizeof(STimerEntityCommandSaveData), alignof(STimerEntityCommandSaveData), STimerEntityCommandSaveData::WriteSimpleJson, STimerEntityCommandSaveData::FromSimpleJson, STimerEntityCommandSaveData::Serialize, STimerEntityCommandSaveData::Equals, STimerEntityCommandSaveData::Destroy);
 
 void STimerEntityCommandSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -32718,52 +29958,6 @@ void ZInvestigateDisguiseGroup::SDialogLines::Destroy(void* p_Object)
 	s_Object->~SDialogLines();
 }
 
-ZHMTypeInfo ZSituationOrder::TypeInfo = ZHMTypeInfo("ZSituationOrder", sizeof(ZSituationOrder), alignof(ZSituationOrder), ZSituationOrder::WriteSimpleJson, ZSituationOrder::FromSimpleJson, ZSituationOrder::Serialize, ZSituationOrder::Equals, ZSituationOrder::Destroy);
-
-void ZSituationOrder::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZSituationOrder*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZSituationOrder::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZSituationOrder*>(p_Target);
-
-}
-
-void ZSituationOrder::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZSituationOrder*>(p_Object);
-
-}
-
-bool ZSituationOrder::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZSituationOrder*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZSituationOrder*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZSituationOrder::operator==(const ZSituationOrder& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZSituationOrder>)
-		return false;
-
-
-	return true;
-}
-
-void ZSituationOrder::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZSituationOrder*>(p_Object);
-	s_Object->~ZSituationOrder();
-}
-
 ZHMTypeInfo ZMoveToOrder::SMoveToOrderSaveData::TypeInfo = ZHMTypeInfo("ZMoveToOrder.SMoveToOrderSaveData", sizeof(ZMoveToOrder::SMoveToOrderSaveData), alignof(ZMoveToOrder::SMoveToOrderSaveData), ZMoveToOrder::SMoveToOrderSaveData::WriteSimpleJson, ZMoveToOrder::SMoveToOrderSaveData::FromSimpleJson, ZMoveToOrder::SMoveToOrderSaveData::Serialize, ZMoveToOrder::SMoveToOrderSaveData::Equals, ZMoveToOrder::SMoveToOrderSaveData::Destroy);
 
 void ZMoveToOrder::SMoveToOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -33624,6 +30818,65 @@ void SItemWeaponSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SItemWeaponSaveData*>(p_Object);
 	s_Object->~SItemWeaponSaveData();
+}
+
+ZHMTypeInfo SKeywordSaveData::TypeInfo = ZHMTypeInfo("SKeywordSaveData", sizeof(SKeywordSaveData), alignof(SKeywordSaveData), SKeywordSaveData::WriteSimpleJson, SKeywordSaveData::FromSimpleJson, SKeywordSaveData::Serialize, SKeywordSaveData::Equals, SKeywordSaveData::Destroy);
+
+void SKeywordSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SKeywordSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_HolderSaveableId") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_HolderSaveableId);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_KeywordID") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_KeywordID);
+
+	p_Stream << "}";
+}
+
+void SKeywordSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SKeywordSaveData*>(p_Target);
+
+	s_Object->m_HolderSaveableId = simdjson::from_json_uint32(p_Document["m_HolderSaveableId"]);
+
+	s_Object->m_KeywordID = simdjson::from_json_int32(p_Document["m_KeywordID"]);
+
+}
+
+void SKeywordSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SKeywordSaveData*>(p_Object);
+
+}
+
+bool SKeywordSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SKeywordSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SKeywordSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SKeywordSaveData::operator==(const SKeywordSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SKeywordSaveData>)
+		return false;
+
+	if (m_HolderSaveableId != p_Other.m_HolderSaveableId) return false;
+	if (m_KeywordID != p_Other.m_KeywordID) return false;
+
+	return true;
+}
+
+void SKeywordSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SKeywordSaveData*>(p_Object);
+	s_Object->~SKeywordSaveData();
 }
 
 ZHMTypeInfo SLayerBehaviorConfiguration::TypeInfo = ZHMTypeInfo("SLayerBehaviorConfiguration", sizeof(SLayerBehaviorConfiguration), alignof(SLayerBehaviorConfiguration), SLayerBehaviorConfiguration::WriteSimpleJson, SLayerBehaviorConfiguration::FromSimpleJson, SLayerBehaviorConfiguration::Serialize, SLayerBehaviorConfiguration::Equals, SLayerBehaviorConfiguration::Destroy);
@@ -36312,52 +33565,6 @@ void SPatrolGroupSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SPatrolGroupSaveData*>(p_Object);
 	s_Object->~SPatrolGroupSaveData();
-}
-
-ZHMTypeInfo SPatrolOrderSaveData::TypeInfo = ZHMTypeInfo("SPatrolOrderSaveData", sizeof(SPatrolOrderSaveData), alignof(SPatrolOrderSaveData), SPatrolOrderSaveData::WriteSimpleJson, SPatrolOrderSaveData::FromSimpleJson, SPatrolOrderSaveData::Serialize, SPatrolOrderSaveData::Equals, SPatrolOrderSaveData::Destroy);
-
-void SPatrolOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SPatrolOrderSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void SPatrolOrderSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SPatrolOrderSaveData*>(p_Target);
-
-}
-
-void SPatrolOrderSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SPatrolOrderSaveData*>(p_Object);
-
-}
-
-bool SPatrolOrderSaveData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SPatrolOrderSaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<SPatrolOrderSaveData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SPatrolOrderSaveData::operator==(const SPatrolOrderSaveData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SPatrolOrderSaveData>)
-		return false;
-
-
-	return true;
-}
-
-void SPatrolOrderSaveData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SPatrolOrderSaveData*>(p_Object);
-	s_Object->~SPatrolOrderSaveData();
 }
 
 ZHMTypeInfo SPerceptibleCrowdBodySaveData::TypeInfo = ZHMTypeInfo("SPerceptibleCrowdBodySaveData", sizeof(SPerceptibleCrowdBodySaveData), alignof(SPerceptibleCrowdBodySaveData), SPerceptibleCrowdBodySaveData::WriteSimpleJson, SPerceptibleCrowdBodySaveData::FromSimpleJson, SPerceptibleCrowdBodySaveData::Serialize, SPerceptibleCrowdBodySaveData::Equals, SPerceptibleCrowdBodySaveData::Destroy);
@@ -39632,52 +36839,6 @@ void SSequenceManagerSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SSequenceManagerSaveData*>(p_Object);
 	s_Object->~SSequenceManagerSaveData();
-}
-
-ZHMTypeInfo SSerializedValue::TypeInfo = ZHMTypeInfo("SSerializedValue", sizeof(SSerializedValue), alignof(SSerializedValue), SSerializedValue::WriteSimpleJson, SSerializedValue::FromSimpleJson, SSerializedValue::Serialize, SSerializedValue::Equals, SSerializedValue::Destroy);
-
-void SSerializedValue::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SSerializedValue*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void SSerializedValue::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SSerializedValue*>(p_Target);
-
-}
-
-void SSerializedValue::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SSerializedValue*>(p_Object);
-
-}
-
-bool SSerializedValue::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SSerializedValue*>(p_Left);
-	auto* s_Right = reinterpret_cast<SSerializedValue*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SSerializedValue::operator==(const SSerializedValue& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SSerializedValue>)
-		return false;
-
-
-	return true;
-}
-
-void SSerializedValue::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SSerializedValue*>(p_Object);
-	s_Object->~SSerializedValue();
 }
 
 ZHMTypeInfo SSituationConversationGroupSaveData::TypeInfo = ZHMTypeInfo("SSituationConversationGroupSaveData", sizeof(SSituationConversationGroupSaveData), alignof(SSituationConversationGroupSaveData), SSituationConversationGroupSaveData::WriteSimpleJson, SSituationConversationGroupSaveData::FromSimpleJson, SSituationConversationGroupSaveData::Serialize, SSituationConversationGroupSaveData::Equals, SSituationConversationGroupSaveData::Destroy);
@@ -44963,6 +42124,65 @@ void ZAMDTake::Destroy(void* p_Object)
 	s_Object->~ZAMDTake();
 }
 
+ZHMTypeInfo ZAT2Controller::SGeneratedFootstepEvent::TypeInfo = ZHMTypeInfo("ZAT2Controller.SGeneratedFootstepEvent", sizeof(ZAT2Controller::SGeneratedFootstepEvent), alignof(ZAT2Controller::SGeneratedFootstepEvent), ZAT2Controller::SGeneratedFootstepEvent::WriteSimpleJson, ZAT2Controller::SGeneratedFootstepEvent::FromSimpleJson, ZAT2Controller::SGeneratedFootstepEvent::Serialize, ZAT2Controller::SGeneratedFootstepEvent::Equals, ZAT2Controller::SGeneratedFootstepEvent::Destroy);
+
+void ZAT2Controller::SGeneratedFootstepEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_eFoot") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ZAT2Controller.EFoot", static_cast<int>(s_Object->m_eFoot)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_fFrame") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_fFrame);
+
+	p_Stream << "}";
+}
+
+void ZAT2Controller::SGeneratedFootstepEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Target);
+
+	s_Object->m_eFoot = static_cast<ZAT2Controller::EFoot>(ZHMEnums::GetEnumValueByName("ZAT2Controller.EFoot", std::string_view(p_Document["m_eFoot"])));
+
+	s_Object->m_fFrame = simdjson::from_json_float32(p_Document["m_fFrame"]);
+
+}
+
+void ZAT2Controller::SGeneratedFootstepEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Object);
+
+}
+
+bool ZAT2Controller::SGeneratedFootstepEvent::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZAT2Controller::SGeneratedFootstepEvent::operator==(const ZAT2Controller::SGeneratedFootstepEvent& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZAT2Controller::SGeneratedFootstepEvent>)
+		return false;
+
+	if (m_eFoot != p_Other.m_eFoot) return false;
+	if (m_fFrame != p_Other.m_fFrame) return false;
+
+	return true;
+}
+
+void ZAT2Controller::SGeneratedFootstepEvent::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Object);
+	s_Object->~SGeneratedFootstepEvent();
+}
+
 ZHMTypeInfo ZAT2Controller::SEventPreviewInfo::TypeInfo = ZHMTypeInfo("ZAT2Controller.SEventPreviewInfo", sizeof(ZAT2Controller::SEventPreviewInfo), alignof(ZAT2Controller::SEventPreviewInfo), ZAT2Controller::SEventPreviewInfo::WriteSimpleJson, ZAT2Controller::SEventPreviewInfo::FromSimpleJson, ZAT2Controller::SEventPreviewInfo::Serialize, ZAT2Controller::SEventPreviewInfo::Equals, ZAT2Controller::SEventPreviewInfo::Destroy);
 
 void ZAT2Controller::SEventPreviewInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -45046,65 +42266,6 @@ void ZAT2Controller::SEventPreviewInfo::Destroy(void* p_Object)
 	s_Object->~SEventPreviewInfo();
 }
 
-ZHMTypeInfo ZAT2Controller::SGeneratedFootstepEvent::TypeInfo = ZHMTypeInfo("ZAT2Controller.SGeneratedFootstepEvent", sizeof(ZAT2Controller::SGeneratedFootstepEvent), alignof(ZAT2Controller::SGeneratedFootstepEvent), ZAT2Controller::SGeneratedFootstepEvent::WriteSimpleJson, ZAT2Controller::SGeneratedFootstepEvent::FromSimpleJson, ZAT2Controller::SGeneratedFootstepEvent::Serialize, ZAT2Controller::SGeneratedFootstepEvent::Equals, ZAT2Controller::SGeneratedFootstepEvent::Destroy);
-
-void ZAT2Controller::SGeneratedFootstepEvent::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_eFoot") << ":";
-	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("ZAT2Controller.EFoot", static_cast<int>(s_Object->m_eFoot)));
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fFrame") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fFrame);
-
-	p_Stream << "}";
-}
-
-void ZAT2Controller::SGeneratedFootstepEvent::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Target);
-
-	s_Object->m_eFoot = static_cast<ZAT2Controller::EFoot>(ZHMEnums::GetEnumValueByName("ZAT2Controller.EFoot", std::string_view(p_Document["m_eFoot"])));
-
-	s_Object->m_fFrame = simdjson::from_json_float32(p_Document["m_fFrame"]);
-
-}
-
-void ZAT2Controller::SGeneratedFootstepEvent::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Object);
-
-}
-
-bool ZAT2Controller::SGeneratedFootstepEvent::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZAT2Controller::SGeneratedFootstepEvent::operator==(const ZAT2Controller::SGeneratedFootstepEvent& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZAT2Controller::SGeneratedFootstepEvent>)
-		return false;
-
-	if (m_eFoot != p_Other.m_eFoot) return false;
-	if (m_fFrame != p_Other.m_fFrame) return false;
-
-	return true;
-}
-
-void ZAT2Controller::SGeneratedFootstepEvent::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZAT2Controller::SGeneratedFootstepEvent*>(p_Object);
-	s_Object->~SGeneratedFootstepEvent();
-}
-
 ZHMTypeInfo ZApproachOrder::SApproachOrderSaveData::TypeInfo = ZHMTypeInfo("ZApproachOrder.SApproachOrderSaveData", sizeof(ZApproachOrder::SApproachOrderSaveData), alignof(ZApproachOrder::SApproachOrderSaveData), ZApproachOrder::SApproachOrderSaveData::WriteSimpleJson, ZApproachOrder::SApproachOrderSaveData::FromSimpleJson, ZApproachOrder::SApproachOrderSaveData::Serialize, ZApproachOrder::SApproachOrderSaveData::Equals, ZApproachOrder::SApproachOrderSaveData::Destroy);
 
 void ZApproachOrder::SApproachOrderSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -45177,52 +42338,6 @@ void ZApproachOrder::SApproachOrderSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZApproachOrder::SApproachOrderSaveData*>(p_Object);
 	s_Object->~SApproachOrderSaveData();
-}
-
-ZHMTypeInfo ZAutoNullEntityRef::TypeInfo = ZHMTypeInfo("ZAutoNullEntityRef", sizeof(ZAutoNullEntityRef), alignof(ZAutoNullEntityRef), ZAutoNullEntityRef::WriteSimpleJson, ZAutoNullEntityRef::FromSimpleJson, ZAutoNullEntityRef::Serialize, ZAutoNullEntityRef::Equals, ZAutoNullEntityRef::Destroy);
-
-void ZAutoNullEntityRef::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZAutoNullEntityRef*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZAutoNullEntityRef::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZAutoNullEntityRef*>(p_Target);
-
-}
-
-void ZAutoNullEntityRef::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZAutoNullEntityRef*>(p_Object);
-
-}
-
-bool ZAutoNullEntityRef::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZAutoNullEntityRef*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZAutoNullEntityRef*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZAutoNullEntityRef::operator==(const ZAutoNullEntityRef& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZAutoNullEntityRef>)
-		return false;
-
-
-	return true;
-}
-
-void ZAutoNullEntityRef::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZAutoNullEntityRef*>(p_Object);
-	s_Object->~ZAutoNullEntityRef();
 }
 
 ZHMTypeInfo ZAvoidDangerousAreaSituation::SSituationSaveData::TypeInfo = ZHMTypeInfo("ZAvoidDangerousAreaSituation.SSituationSaveData", sizeof(ZAvoidDangerousAreaSituation::SSituationSaveData), alignof(ZAvoidDangerousAreaSituation::SSituationSaveData), ZAvoidDangerousAreaSituation::SSituationSaveData::WriteSimpleJson, ZAvoidDangerousAreaSituation::SSituationSaveData::FromSimpleJson, ZAvoidDangerousAreaSituation::SSituationSaveData::Serialize, ZAvoidDangerousAreaSituation::SSituationSaveData::Equals, ZAvoidDangerousAreaSituation::SSituationSaveData::Destroy);
@@ -45379,111 +42494,6 @@ void ZComponentCreator::Destroy(void* p_Object)
 	s_Object->~ZComponentCreator();
 }
 
-ZHMTypeInfo ZContractEvaluationContext::TypeInfo = ZHMTypeInfo("ZContractEvaluationContext", sizeof(ZContractEvaluationContext), alignof(ZContractEvaluationContext), ZContractEvaluationContext::WriteSimpleJson, ZContractEvaluationContext::FromSimpleJson, ZContractEvaluationContext::Serialize, ZContractEvaluationContext::Equals, ZContractEvaluationContext::Destroy);
-
-void ZContractEvaluationContext::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZContractEvaluationContext*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZContractEvaluationContext::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZContractEvaluationContext*>(p_Target);
-
-}
-
-void ZContractEvaluationContext::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZContractEvaluationContext*>(p_Object);
-
-}
-
-bool ZContractEvaluationContext::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZContractEvaluationContext*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZContractEvaluationContext*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZContractEvaluationContext::operator==(const ZContractEvaluationContext& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZContractEvaluationContext>)
-		return false;
-
-
-	return true;
-}
-
-void ZContractEvaluationContext::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZContractEvaluationContext*>(p_Object);
-	s_Object->~ZContractEvaluationContext();
-}
-
-ZHMTypeInfo ZDeadBodySituation::SIncidentSaveData::TypeInfo = ZHMTypeInfo("ZDeadBodySituation.SIncidentSaveData", sizeof(ZDeadBodySituation::SIncidentSaveData), alignof(ZDeadBodySituation::SIncidentSaveData), ZDeadBodySituation::SIncidentSaveData::WriteSimpleJson, ZDeadBodySituation::SIncidentSaveData::FromSimpleJson, ZDeadBodySituation::SIncidentSaveData::Serialize, ZDeadBodySituation::SIncidentSaveData::Equals, ZDeadBodySituation::SIncidentSaveData::Destroy);
-
-void ZDeadBodySituation::SIncidentSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_body") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_body);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_bAccident") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bAccident);
-
-	p_Stream << "}";
-}
-
-void ZDeadBodySituation::SIncidentSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Target);
-
-	s_Object->m_body = simdjson::from_json_uint32(p_Document["m_body"]);
-
-	s_Object->m_bAccident = simdjson::from_json_bool(p_Document["m_bAccident"]);
-
-}
-
-void ZDeadBodySituation::SIncidentSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Object);
-
-}
-
-bool ZDeadBodySituation::SIncidentSaveData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZDeadBodySituation::SIncidentSaveData::operator==(const ZDeadBodySituation::SIncidentSaveData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZDeadBodySituation::SIncidentSaveData>)
-		return false;
-
-	if (m_body != p_Other.m_body) return false;
-	if (m_bAccident != p_Other.m_bAccident) return false;
-
-	return true;
-}
-
-void ZDeadBodySituation::SIncidentSaveData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Object);
-	s_Object->~SIncidentSaveData();
-}
-
 ZHMTypeInfo ZDeadBodySituation::SState::TypeInfo = ZHMTypeInfo("ZDeadBodySituation.SState", sizeof(ZDeadBodySituation::SState), alignof(ZDeadBodySituation::SState), ZDeadBodySituation::SState::WriteSimpleJson, ZDeadBodySituation::SState::FromSimpleJson, ZDeadBodySituation::SState::Serialize, ZDeadBodySituation::SState::Equals, ZDeadBodySituation::SState::Destroy);
 
 void ZDeadBodySituation::SState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -45599,6 +42609,65 @@ void ZDeadBodySituation::SState::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZDeadBodySituation::SState*>(p_Object);
 	s_Object->~SState();
+}
+
+ZHMTypeInfo ZDeadBodySituation::SIncidentSaveData::TypeInfo = ZHMTypeInfo("ZDeadBodySituation.SIncidentSaveData", sizeof(ZDeadBodySituation::SIncidentSaveData), alignof(ZDeadBodySituation::SIncidentSaveData), ZDeadBodySituation::SIncidentSaveData::WriteSimpleJson, ZDeadBodySituation::SIncidentSaveData::FromSimpleJson, ZDeadBodySituation::SIncidentSaveData::Serialize, ZDeadBodySituation::SIncidentSaveData::Equals, ZDeadBodySituation::SIncidentSaveData::Destroy);
+
+void ZDeadBodySituation::SIncidentSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_body") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_body);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bAccident") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bAccident);
+
+	p_Stream << "}";
+}
+
+void ZDeadBodySituation::SIncidentSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Target);
+
+	s_Object->m_body = simdjson::from_json_uint32(p_Document["m_body"]);
+
+	s_Object->m_bAccident = simdjson::from_json_bool(p_Document["m_bAccident"]);
+
+}
+
+void ZDeadBodySituation::SIncidentSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Object);
+
+}
+
+bool ZDeadBodySituation::SIncidentSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZDeadBodySituation::SIncidentSaveData::operator==(const ZDeadBodySituation::SIncidentSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZDeadBodySituation::SIncidentSaveData>)
+		return false;
+
+	if (m_body != p_Other.m_body) return false;
+	if (m_bAccident != p_Other.m_bAccident) return false;
+
+	return true;
+}
+
+void ZDeadBodySituation::SIncidentSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZDeadBodySituation::SIncidentSaveData*>(p_Object);
+	s_Object->~SIncidentSaveData();
 }
 
 ZHMTypeInfo ZDeadBodySituation::SSituationSaveData::TypeInfo = ZHMTypeInfo("ZDeadBodySituation.SSituationSaveData", sizeof(ZDeadBodySituation::SSituationSaveData), alignof(ZDeadBodySituation::SSituationSaveData), ZDeadBodySituation::SSituationSaveData::WriteSimpleJson, ZDeadBodySituation::SSituationSaveData::FromSimpleJson, ZDeadBodySituation::SSituationSaveData::Serialize, ZDeadBodySituation::SSituationSaveData::Equals, ZDeadBodySituation::SSituationSaveData::Destroy);
@@ -45760,52 +42829,6 @@ void ZDetectedInPrivateSituation::SSituationSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZDetectedInPrivateSituation::SSituationSaveData*>(p_Object);
 	s_Object->~SSituationSaveData();
-}
-
-ZHMTypeInfo ZDialogEventItemTypedIndex::TypeInfo = ZHMTypeInfo("ZDialogEventItemTypedIndex", sizeof(ZDialogEventItemTypedIndex), alignof(ZDialogEventItemTypedIndex), ZDialogEventItemTypedIndex::WriteSimpleJson, ZDialogEventItemTypedIndex::FromSimpleJson, ZDialogEventItemTypedIndex::Serialize, ZDialogEventItemTypedIndex::Equals, ZDialogEventItemTypedIndex::Destroy);
-
-void ZDialogEventItemTypedIndex::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZDialogEventItemTypedIndex::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Target);
-
-}
-
-void ZDialogEventItemTypedIndex::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Object);
-
-}
-
-bool ZDialogEventItemTypedIndex::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZDialogEventItemTypedIndex::operator==(const ZDialogEventItemTypedIndex& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZDialogEventItemTypedIndex>)
-		return false;
-
-
-	return true;
-}
-
-void ZDialogEventItemTypedIndex::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZDialogEventItemTypedIndex*>(p_Object);
-	s_Object->~ZDialogEventItemTypedIndex();
 }
 
 ZHMTypeInfo ZSharedSensorDef::SVisibilitySetting::TypeInfo = ZHMTypeInfo("ZSharedSensorDef.SVisibilitySetting", sizeof(ZSharedSensorDef::SVisibilitySetting), alignof(ZSharedSensorDef::SVisibilitySetting), ZSharedSensorDef::SVisibilitySetting::WriteSimpleJson, ZSharedSensorDef::SVisibilitySetting::FromSimpleJson, ZSharedSensorDef::SVisibilitySetting::Serialize, ZSharedSensorDef::SVisibilitySetting::Equals, ZSharedSensorDef::SVisibilitySetting::Destroy);
@@ -46123,52 +43146,6 @@ void ZEntityID::Destroy(void* p_Object)
 	s_Object->~ZEntityID();
 }
 
-ZHMTypeInfo ZEntityPath::TypeInfo = ZHMTypeInfo("ZEntityPath", sizeof(ZEntityPath), alignof(ZEntityPath), ZEntityPath::WriteSimpleJson, ZEntityPath::FromSimpleJson, ZEntityPath::Serialize, ZEntityPath::Equals, ZEntityPath::Destroy);
-
-void ZEntityPath::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZEntityPath*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZEntityPath::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZEntityPath*>(p_Target);
-
-}
-
-void ZEntityPath::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZEntityPath*>(p_Object);
-
-}
-
-bool ZEntityPath::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZEntityPath*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZEntityPath*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZEntityPath::operator==(const ZEntityPath& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZEntityPath>)
-		return false;
-
-
-	return true;
-}
-
-void ZEntityPath::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZEntityPath*>(p_Object);
-	s_Object->~ZEntityPath();
-}
-
 ZHMTypeInfo ZEntityReference::TypeInfo = ZHMTypeInfo("ZEntityReference", sizeof(ZEntityReference), alignof(ZEntityReference), ZEntityReference::WriteSimpleJson, ZEntityReference::FromSimpleJson, ZEntityReference::Serialize, ZEntityReference::Equals, ZEntityReference::Destroy);
 
 void ZEntityReference::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -46476,132 +43453,6 @@ void ZFormationMoveOrder::SFormationMoveOrderSaveData::Destroy(void* p_Object)
 	s_Object->~SFormationMoveOrderSaveData();
 }
 
-ZHMTypeInfo ZGfxValueWrapper::TypeInfo = ZHMTypeInfo("ZGfxValueWrapper", sizeof(ZGfxValueWrapper), alignof(ZGfxValueWrapper), ZGfxValueWrapper::WriteSimpleJson, ZGfxValueWrapper::FromSimpleJson, ZGfxValueWrapper::Serialize, ZGfxValueWrapper::Equals, ZGfxValueWrapper::Destroy);
-
-void ZGfxValueWrapper::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZGfxValueWrapper*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZGfxValueWrapper::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZGfxValueWrapper*>(p_Target);
-
-}
-
-void ZGfxValueWrapper::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZGfxValueWrapper*>(p_Object);
-
-}
-
-bool ZGfxValueWrapper::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZGfxValueWrapper*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZGfxValueWrapper*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZGfxValueWrapper::operator==(const ZGfxValueWrapper& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZGfxValueWrapper>)
-		return false;
-
-
-	return true;
-}
-
-void ZGfxValueWrapper::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZGfxValueWrapper*>(p_Object);
-	s_Object->~ZGfxValueWrapper();
-}
-
-ZHMTypeInfo ZGridFloatField::TypeInfo = ZHMTypeInfo("ZGridFloatField", sizeof(ZGridFloatField), alignof(ZGridFloatField), ZGridFloatField::WriteSimpleJson, ZGridFloatField::FromSimpleJson, ZGridFloatField::Serialize, ZGridFloatField::Equals, ZGridFloatField::Destroy);
-
-void ZGridFloatField::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZGridFloatField*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_fInitialValue") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fInitialValue);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_field") << ":";
-	p_Stream << "[";
-	for (size_t i = 0; i < s_Object->m_field.size(); ++i)
-	{
-		auto& s_Item0 = s_Object->m_field[i];
-		p_Stream << simdjson::as_json_string(s_Item0);
-
-		if (i < s_Object->m_field.size() - 1)
-			p_Stream << ",";
-	}
-
-	p_Stream << "]";
-
-	p_Stream << "}";
-}
-
-void ZGridFloatField::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZGridFloatField*>(p_Target);
-
-	s_Object->m_fInitialValue = simdjson::from_json_float32(p_Document["m_fInitialValue"]);
-
-	{
-	simdjson::ondemand::array s_Array0 = p_Document["m_field"];
-	s_Object->m_field.resize(s_Array0.count_elements());
-	size_t s_Index0 = 0;
-
-	for (simdjson::ondemand::value s_Item0 : s_Array0)
-	{
-		s_Object->m_field[s_Index0] = simdjson::from_json_float32(s_Item0);
-		++s_Index0;
-	}
-	}
-
-}
-
-void ZGridFloatField::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZGridFloatField*>(p_Object);
-
-	TArray<float32>::Serialize(&s_Object->m_field, p_Serializer, p_OwnOffset + offsetof(ZGridFloatField, m_field));
-}
-
-bool ZGridFloatField::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZGridFloatField*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZGridFloatField*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZGridFloatField::operator==(const ZGridFloatField& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZGridFloatField>)
-		return false;
-
-	if (m_fInitialValue != p_Other.m_fInitialValue) return false;
-	if (m_field != p_Other.m_field) return false;
-
-	return true;
-}
-
-void ZGridFloatField::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZGridFloatField*>(p_Object);
-	s_Object->~ZGridFloatField();
-}
-
 ZHMTypeInfo ZHM5AgilityEventConsumer::SAgilityEventData::TypeInfo = ZHMTypeInfo("ZHM5AgilityEventConsumer.SAgilityEventData", sizeof(ZHM5AgilityEventConsumer::SAgilityEventData), alignof(ZHM5AgilityEventConsumer::SAgilityEventData), ZHM5AgilityEventConsumer::SAgilityEventData::WriteSimpleJson, ZHM5AgilityEventConsumer::SAgilityEventData::FromSimpleJson, ZHM5AgilityEventConsumer::SAgilityEventData::Serialize, ZHM5AgilityEventConsumer::SAgilityEventData::Equals, ZHM5AgilityEventConsumer::SAgilityEventData::Destroy);
 
 void ZHM5AgilityEventConsumer::SAgilityEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -46652,73 +43503,6 @@ void ZHM5AgilityEventConsumer::SAgilityEventData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZHM5AgilityEventConsumer::SAgilityEventData*>(p_Object);
 	s_Object->~SAgilityEventData();
-}
-
-ZHMTypeInfo ZHM5AudioEventConsumer::SAudioAnimationEventData::TypeInfo = ZHMTypeInfo("ZHM5AudioEventConsumer.SAudioAnimationEventData", sizeof(ZHM5AudioEventConsumer::SAudioAnimationEventData), alignof(ZHM5AudioEventConsumer::SAudioAnimationEventData), ZHM5AudioEventConsumer::SAudioAnimationEventData::WriteSimpleJson, ZHM5AudioEventConsumer::SAudioAnimationEventData::FromSimpleJson, ZHM5AudioEventConsumer::SAudioAnimationEventData::Serialize, ZHM5AudioEventConsumer::SAudioAnimationEventData::Equals, ZHM5AudioEventConsumer::SAudioAnimationEventData::Destroy);
-
-void ZHM5AudioEventConsumer::SAudioAnimationEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZHM5AudioEventConsumer::SAudioAnimationEventData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_pAudioEventRes") << ":";
-	ZResourcePtr::WriteSimpleJson(&s_Object->m_pAudioEventRes, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fAttenuation") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fAttenuation);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fPitch") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fPitch);
-
-	p_Stream << "}";
-}
-
-void ZHM5AudioEventConsumer::SAudioAnimationEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZHM5AudioEventConsumer::SAudioAnimationEventData*>(p_Target);
-
-	ZResourcePtr::FromSimpleJson(p_Document["m_pAudioEventRes"], &s_Object->m_pAudioEventRes);
-
-	s_Object->m_fAttenuation = simdjson::from_json_float32(p_Document["m_fAttenuation"]);
-
-	s_Object->m_fPitch = simdjson::from_json_float32(p_Document["m_fPitch"]);
-
-}
-
-void ZHM5AudioEventConsumer::SAudioAnimationEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZHM5AudioEventConsumer::SAudioAnimationEventData*>(p_Object);
-
-	ZResourcePtr::Serialize(&s_Object->m_pAudioEventRes, p_Serializer, p_OwnOffset + offsetof(ZHM5AudioEventConsumer::SAudioAnimationEventData, m_pAudioEventRes));
-}
-
-bool ZHM5AudioEventConsumer::SAudioAnimationEventData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZHM5AudioEventConsumer::SAudioAnimationEventData*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZHM5AudioEventConsumer::SAudioAnimationEventData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZHM5AudioEventConsumer::SAudioAnimationEventData::operator==(const ZHM5AudioEventConsumer::SAudioAnimationEventData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5AudioEventConsumer::SAudioAnimationEventData>)
-		return false;
-
-	if (m_pAudioEventRes != p_Other.m_pAudioEventRes) return false;
-	if (m_fAttenuation != p_Other.m_fAttenuation) return false;
-	if (m_fPitch != p_Other.m_fPitch) return false;
-
-	return true;
-}
-
-void ZHM5AudioEventConsumer::SAudioAnimationEventData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZHM5AudioEventConsumer::SAudioAnimationEventData*>(p_Object);
-	s_Object->~SAudioAnimationEventData();
 }
 
 ZHMTypeInfo ZHM5BodySoundEventConsumer::SBodySoundEventData::TypeInfo = ZHMTypeInfo("ZHM5BodySoundEventConsumer.SBodySoundEventData", sizeof(ZHM5BodySoundEventConsumer::SBodySoundEventData), alignof(ZHM5BodySoundEventConsumer::SBodySoundEventData), ZHM5BodySoundEventConsumer::SBodySoundEventData::WriteSimpleJson, ZHM5BodySoundEventConsumer::SBodySoundEventData::FromSimpleJson, ZHM5BodySoundEventConsumer::SBodySoundEventData::Serialize, ZHM5BodySoundEventConsumer::SBodySoundEventData::Equals, ZHM5BodySoundEventConsumer::SBodySoundEventData::Destroy);
@@ -46837,73 +43621,6 @@ void ZHM5CloseCombatEventConsumer::SCloseCombatSoundEventData::Destroy(void* p_O
 {
 	auto* s_Object = reinterpret_cast<ZHM5CloseCombatEventConsumer::SCloseCombatSoundEventData*>(p_Object);
 	s_Object->~SCloseCombatSoundEventData();
-}
-
-ZHMTypeInfo ZHM5CrowdEventConsumer::SCrowdSoundEventData::TypeInfo = ZHMTypeInfo("ZHM5CrowdEventConsumer.SCrowdSoundEventData", sizeof(ZHM5CrowdEventConsumer::SCrowdSoundEventData), alignof(ZHM5CrowdEventConsumer::SCrowdSoundEventData), ZHM5CrowdEventConsumer::SCrowdSoundEventData::WriteSimpleJson, ZHM5CrowdEventConsumer::SCrowdSoundEventData::FromSimpleJson, ZHM5CrowdEventConsumer::SCrowdSoundEventData::Serialize, ZHM5CrowdEventConsumer::SCrowdSoundEventData::Equals, ZHM5CrowdEventConsumer::SCrowdSoundEventData::Destroy);
-
-void ZHM5CrowdEventConsumer::SCrowdSoundEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZHM5CrowdEventConsumer::SCrowdSoundEventData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_pAudioEventRes") << ":";
-	ZResourcePtr::WriteSimpleJson(&s_Object->m_pAudioEventRes, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fAttenuation") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fAttenuation);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_fPitch") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_fPitch);
-
-	p_Stream << "}";
-}
-
-void ZHM5CrowdEventConsumer::SCrowdSoundEventData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZHM5CrowdEventConsumer::SCrowdSoundEventData*>(p_Target);
-
-	ZResourcePtr::FromSimpleJson(p_Document["m_pAudioEventRes"], &s_Object->m_pAudioEventRes);
-
-	s_Object->m_fAttenuation = simdjson::from_json_float32(p_Document["m_fAttenuation"]);
-
-	s_Object->m_fPitch = simdjson::from_json_float32(p_Document["m_fPitch"]);
-
-}
-
-void ZHM5CrowdEventConsumer::SCrowdSoundEventData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZHM5CrowdEventConsumer::SCrowdSoundEventData*>(p_Object);
-
-	ZResourcePtr::Serialize(&s_Object->m_pAudioEventRes, p_Serializer, p_OwnOffset + offsetof(ZHM5CrowdEventConsumer::SCrowdSoundEventData, m_pAudioEventRes));
-}
-
-bool ZHM5CrowdEventConsumer::SCrowdSoundEventData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZHM5CrowdEventConsumer::SCrowdSoundEventData*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZHM5CrowdEventConsumer::SCrowdSoundEventData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZHM5CrowdEventConsumer::SCrowdSoundEventData::operator==(const ZHM5CrowdEventConsumer::SCrowdSoundEventData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZHM5CrowdEventConsumer::SCrowdSoundEventData>)
-		return false;
-
-	if (m_pAudioEventRes != p_Other.m_pAudioEventRes) return false;
-	if (m_fAttenuation != p_Other.m_fAttenuation) return false;
-	if (m_fPitch != p_Other.m_fPitch) return false;
-
-	return true;
-}
-
-void ZHM5CrowdEventConsumer::SCrowdSoundEventData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZHM5CrowdEventConsumer::SCrowdSoundEventData*>(p_Object);
-	s_Object->~SCrowdSoundEventData();
 }
 
 ZHMTypeInfo ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData::TypeInfo = ZHMTypeInfo("ZHM5CrowdGenericEventConsumer.SCrowdSoundGenericEventData", sizeof(ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData), alignof(ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData), ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData::WriteSimpleJson, ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData::FromSimpleJson, ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData::Serialize, ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData::Equals, ZHM5CrowdGenericEventConsumer::SCrowdSoundGenericEventData::Destroy);
@@ -47643,52 +44360,6 @@ void ZHUDUIControllerEntity::SWeaponViewData::Destroy(void* p_Object)
 	s_Object->~SWeaponViewData();
 }
 
-ZHMTypeInfo ZHttpUrl::TypeInfo = ZHMTypeInfo("ZHttpUrl", sizeof(ZHttpUrl), alignof(ZHttpUrl), ZHttpUrl::WriteSimpleJson, ZHttpUrl::FromSimpleJson, ZHttpUrl::Serialize, ZHttpUrl::Equals, ZHttpUrl::Destroy);
-
-void ZHttpUrl::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZHttpUrl*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZHttpUrl::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZHttpUrl*>(p_Target);
-
-}
-
-void ZHttpUrl::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZHttpUrl*>(p_Object);
-
-}
-
-bool ZHttpUrl::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZHttpUrl*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZHttpUrl*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZHttpUrl::operator==(const ZHttpUrl& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZHttpUrl>)
-		return false;
-
-
-	return true;
-}
-
-void ZHttpUrl::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZHttpUrl*>(p_Object);
-	s_Object->~ZHttpUrl();
-}
-
 ZHMTypeInfo ZInfectedSituation::SSituationSaveData::TypeInfo = ZHMTypeInfo("ZInfectedSituation.SSituationSaveData", sizeof(ZInfectedSituation::SSituationSaveData), alignof(ZInfectedSituation::SSituationSaveData), ZInfectedSituation::SSituationSaveData::WriteSimpleJson, ZInfectedSituation::SSituationSaveData::FromSimpleJson, ZInfectedSituation::SSituationSaveData::Serialize, ZInfectedSituation::SSituationSaveData::Equals, ZInfectedSituation::SSituationSaveData::Destroy);
 
 void ZInfectedSituation::SSituationSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -47741,52 +44412,6 @@ void ZInfectedSituation::SSituationSaveData::Destroy(void* p_Object)
 	s_Object->~SSituationSaveData();
 }
 
-ZHMTypeInfo ZInteractionData::TypeInfo = ZHMTypeInfo("ZInteractionData", sizeof(ZInteractionData), alignof(ZInteractionData), ZInteractionData::WriteSimpleJson, ZInteractionData::FromSimpleJson, ZInteractionData::Serialize, ZInteractionData::Equals, ZInteractionData::Destroy);
-
-void ZInteractionData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZInteractionData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZInteractionData*>(p_Target);
-
-}
-
-void ZInteractionData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionData*>(p_Object);
-
-}
-
-bool ZInteractionData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZInteractionData*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZInteractionData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZInteractionData::operator==(const ZInteractionData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZInteractionData>)
-		return false;
-
-
-	return true;
-}
-
-void ZInteractionData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionData*>(p_Object);
-	s_Object->~ZInteractionData();
-}
-
 ZHMTypeInfo ZInteractionEventConsumer::SInteractionEventData::TypeInfo = ZHMTypeInfo("ZInteractionEventConsumer.SInteractionEventData", sizeof(ZInteractionEventConsumer::SInteractionEventData), alignof(ZInteractionEventConsumer::SInteractionEventData), ZInteractionEventConsumer::SInteractionEventData::WriteSimpleJson, ZInteractionEventConsumer::SInteractionEventData::FromSimpleJson, ZInteractionEventConsumer::SInteractionEventData::Serialize, ZInteractionEventConsumer::SInteractionEventData::Equals, ZInteractionEventConsumer::SInteractionEventData::Destroy);
 
 void ZInteractionEventConsumer::SInteractionEventData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -47837,52 +44462,6 @@ void ZInteractionEventConsumer::SInteractionEventData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZInteractionEventConsumer::SInteractionEventData*>(p_Object);
 	s_Object->~SInteractionEventData();
-}
-
-ZHMTypeInfo ZInteractionGuideData::TypeInfo = ZHMTypeInfo("ZInteractionGuideData", sizeof(ZInteractionGuideData), alignof(ZInteractionGuideData), ZInteractionGuideData::WriteSimpleJson, ZInteractionGuideData::FromSimpleJson, ZInteractionGuideData::Serialize, ZInteractionGuideData::Equals, ZInteractionGuideData::Destroy);
-
-void ZInteractionGuideData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionGuideData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZInteractionGuideData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZInteractionGuideData*>(p_Target);
-
-}
-
-void ZInteractionGuideData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionGuideData*>(p_Object);
-
-}
-
-bool ZInteractionGuideData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZInteractionGuideData*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZInteractionGuideData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZInteractionGuideData::operator==(const ZInteractionGuideData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZInteractionGuideData>)
-		return false;
-
-
-	return true;
-}
-
-void ZInteractionGuideData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZInteractionGuideData*>(p_Object);
-	s_Object->~ZInteractionGuideData();
 }
 
 ZHMTypeInfo ZInvestigateWeaponSituation::SSituationSaveData::TypeInfo = ZHMTypeInfo("ZInvestigateWeaponSituation.SSituationSaveData", sizeof(ZInvestigateWeaponSituation::SSituationSaveData), alignof(ZInvestigateWeaponSituation::SSituationSaveData), ZInvestigateWeaponSituation::SSituationSaveData::WriteSimpleJson, ZInvestigateWeaponSituation::SSituationSaveData::FromSimpleJson, ZInvestigateWeaponSituation::SSituationSaveData::Serialize, ZInvestigateWeaponSituation::SSituationSaveData::Equals, ZInvestigateWeaponSituation::SSituationSaveData::Destroy);
@@ -48092,98 +44671,6 @@ void ZKeywordCalculator::SCollection::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZKeywordCalculator::SCollection*>(p_Object);
 	s_Object->~SCollection();
-}
-
-ZHMTypeInfo ZPlanningObjectiveInfoBuilder::TypeInfo = ZHMTypeInfo("ZPlanningObjectiveInfoBuilder", sizeof(ZPlanningObjectiveInfoBuilder), alignof(ZPlanningObjectiveInfoBuilder), ZPlanningObjectiveInfoBuilder::WriteSimpleJson, ZPlanningObjectiveInfoBuilder::FromSimpleJson, ZPlanningObjectiveInfoBuilder::Serialize, ZPlanningObjectiveInfoBuilder::Equals, ZPlanningObjectiveInfoBuilder::Destroy);
-
-void ZPlanningObjectiveInfoBuilder::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZPlanningObjectiveInfoBuilder::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Target);
-
-}
-
-void ZPlanningObjectiveInfoBuilder::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Object);
-
-}
-
-bool ZPlanningObjectiveInfoBuilder::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZPlanningObjectiveInfoBuilder::operator==(const ZPlanningObjectiveInfoBuilder& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZPlanningObjectiveInfoBuilder>)
-		return false;
-
-
-	return true;
-}
-
-void ZPlanningObjectiveInfoBuilder::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZPlanningObjectiveInfoBuilder*>(p_Object);
-	s_Object->~ZPlanningObjectiveInfoBuilder();
-}
-
-ZHMTypeInfo ZPostfilterGraphBaseNode::TypeInfo = ZHMTypeInfo("ZPostfilterGraphBaseNode", sizeof(ZPostfilterGraphBaseNode), alignof(ZPostfilterGraphBaseNode), ZPostfilterGraphBaseNode::WriteSimpleJson, ZPostfilterGraphBaseNode::FromSimpleJson, ZPostfilterGraphBaseNode::Serialize, ZPostfilterGraphBaseNode::Equals, ZPostfilterGraphBaseNode::Destroy);
-
-void ZPostfilterGraphBaseNode::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZPostfilterGraphBaseNode::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Target);
-
-}
-
-void ZPostfilterGraphBaseNode::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Object);
-
-}
-
-bool ZPostfilterGraphBaseNode::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZPostfilterGraphBaseNode::operator==(const ZPostfilterGraphBaseNode& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZPostfilterGraphBaseNode>)
-		return false;
-
-
-	return true;
-}
-
-void ZPostfilterGraphBaseNode::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZPostfilterGraphBaseNode*>(p_Object);
-	s_Object->~ZPostfilterGraphBaseNode();
 }
 
 ZHMTypeInfo ZRecoverUnconsciousSituation::SSituationSaveData::TypeInfo = ZHMTypeInfo("ZRecoverUnconsciousSituation.SSituationSaveData", sizeof(ZRecoverUnconsciousSituation::SSituationSaveData), alignof(ZRecoverUnconsciousSituation::SSituationSaveData), ZRecoverUnconsciousSituation::SSituationSaveData::WriteSimpleJson, ZRecoverUnconsciousSituation::SSituationSaveData::FromSimpleJson, ZRecoverUnconsciousSituation::SSituationSaveData::Serialize, ZRecoverUnconsciousSituation::SSituationSaveData::Equals, ZRecoverUnconsciousSituation::SSituationSaveData::Destroy);
@@ -48508,58 +44995,6 @@ void ZScopedRuntimePinConDesc::Destroy(void* p_Object)
 	s_Object->~ZScopedRuntimePinConDesc();
 }
 
-ZHMTypeInfo ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::TypeInfo = ZHMTypeInfo("ZSecuritySystemCameraConfiguration.SDeadBodyVisibleEscalationRule", sizeof(ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule), alignof(ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule), ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::WriteSimpleJson, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::FromSimpleJson, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Serialize, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Equals, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Destroy);
-
-void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_NrGuardsToSend") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_NrGuardsToSend);
-
-	p_Stream << "}";
-}
-
-void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Target);
-
-	s_Object->m_NrGuardsToSend = simdjson::from_json_int32(p_Document["m_NrGuardsToSend"]);
-
-}
-
-void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Object);
-
-}
-
-bool ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::operator==(const ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule>)
-		return false;
-
-	if (m_NrGuardsToSend != p_Other.m_NrGuardsToSend) return false;
-
-	return true;
-}
-
-void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Object);
-	s_Object->~SDeadBodyVisibleEscalationRule();
-}
-
 ZHMTypeInfo ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::TypeInfo = ZHMTypeInfo("ZSecuritySystemCameraConfiguration.SHitmanVisibleEscalationRule", sizeof(ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule), alignof(ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule), ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::WriteSimpleJson, ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::FromSimpleJson, ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::Serialize, ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::Equals, ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::Destroy);
 
 void ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -48617,6 +45052,58 @@ void ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule::Destroy(v
 {
 	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SHitmanVisibleEscalationRule*>(p_Object);
 	s_Object->~SHitmanVisibleEscalationRule();
+}
+
+ZHMTypeInfo ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::TypeInfo = ZHMTypeInfo("ZSecuritySystemCameraConfiguration.SDeadBodyVisibleEscalationRule", sizeof(ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule), alignof(ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule), ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::WriteSimpleJson, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::FromSimpleJson, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Serialize, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Equals, ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Destroy);
+
+void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_NrGuardsToSend") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_NrGuardsToSend);
+
+	p_Stream << "}";
+}
+
+void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Target);
+
+	s_Object->m_NrGuardsToSend = simdjson::from_json_int32(p_Document["m_NrGuardsToSend"]);
+
+}
+
+void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Object);
+
+}
+
+bool ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::operator==(const ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule>)
+		return false;
+
+	if (m_NrGuardsToSend != p_Other.m_NrGuardsToSend) return false;
+
+	return true;
+}
+
+void ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZSecuritySystemCameraConfiguration::SDeadBodyVisibleEscalationRule*>(p_Object);
+	s_Object->~SDeadBodyVisibleEscalationRule();
 }
 
 ZHMTypeInfo ZSetPieceIconEntity::SIconData::TypeInfo = ZHMTypeInfo("ZSetPieceIconEntity.SIconData", sizeof(ZSetPieceIconEntity::SIconData), alignof(ZSetPieceIconEntity::SIconData), ZSetPieceIconEntity::SIconData::WriteSimpleJson, ZSetPieceIconEntity::SIconData::FromSimpleJson, ZSetPieceIconEntity::SIconData::Serialize, ZSetPieceIconEntity::SIconData::Equals, ZSetPieceIconEntity::SIconData::Destroy);
@@ -49010,52 +45497,6 @@ void ZSniperCombatSituation::SSituationSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZSniperCombatSituation::SSituationSaveData*>(p_Object);
 	s_Object->~SSituationSaveData();
-}
-
-ZHMTypeInfo ZSoundCollisionInfo::TypeInfo = ZHMTypeInfo("ZSoundCollisionInfo", sizeof(ZSoundCollisionInfo), alignof(ZSoundCollisionInfo), ZSoundCollisionInfo::WriteSimpleJson, ZSoundCollisionInfo::FromSimpleJson, ZSoundCollisionInfo::Serialize, ZSoundCollisionInfo::Equals, ZSoundCollisionInfo::Destroy);
-
-void ZSoundCollisionInfo::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZSoundCollisionInfo*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZSoundCollisionInfo::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZSoundCollisionInfo*>(p_Target);
-
-}
-
-void ZSoundCollisionInfo::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZSoundCollisionInfo*>(p_Object);
-
-}
-
-bool ZSoundCollisionInfo::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZSoundCollisionInfo*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZSoundCollisionInfo*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZSoundCollisionInfo::operator==(const ZSoundCollisionInfo& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZSoundCollisionInfo>)
-		return false;
-
-
-	return true;
-}
-
-void ZSoundCollisionInfo::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZSoundCollisionInfo*>(p_Object);
-	s_Object->~ZSoundCollisionInfo();
 }
 
 ZHMTypeInfo ZSpectatorSituation::SSituationSaveData::TypeInfo = ZHMTypeInfo("ZSpectatorSituation.SSituationSaveData", sizeof(ZSpectatorSituation::SSituationSaveData), alignof(ZSpectatorSituation::SSituationSaveData), ZSpectatorSituation::SSituationSaveData::WriteSimpleJson, ZSpectatorSituation::SSituationSaveData::FromSimpleJson, ZSpectatorSituation::SSituationSaveData::Serialize, ZSpectatorSituation::SSituationSaveData::Equals, ZSpectatorSituation::SSituationSaveData::Destroy);
@@ -49787,51 +46228,5 @@ void ZTrespassingSituation::SSituationSaveData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZTrespassingSituation::SSituationSaveData*>(p_Object);
 	s_Object->~SSituationSaveData();
-}
-
-ZHMTypeInfo ZWorldMapMetaData::TypeInfo = ZHMTypeInfo("ZWorldMapMetaData", sizeof(ZWorldMapMetaData), alignof(ZWorldMapMetaData), ZWorldMapMetaData::WriteSimpleJson, ZWorldMapMetaData::FromSimpleJson, ZWorldMapMetaData::Serialize, ZWorldMapMetaData::Equals, ZWorldMapMetaData::Destroy);
-
-void ZWorldMapMetaData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<ZWorldMapMetaData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << "}";
-}
-
-void ZWorldMapMetaData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<ZWorldMapMetaData*>(p_Target);
-
-}
-
-void ZWorldMapMetaData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<ZWorldMapMetaData*>(p_Object);
-
-}
-
-bool ZWorldMapMetaData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<ZWorldMapMetaData*>(p_Left);
-	auto* s_Right = reinterpret_cast<ZWorldMapMetaData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool ZWorldMapMetaData::operator==(const ZWorldMapMetaData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<ZWorldMapMetaData>)
-		return false;
-
-
-	return true;
-}
-
-void ZWorldMapMetaData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<ZWorldMapMetaData*>(p_Object);
-	s_Object->~ZWorldMapMetaData();
 }
 
