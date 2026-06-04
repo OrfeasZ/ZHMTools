@@ -107,7 +107,7 @@ private:
 
 	struct JsonField {
 		std::string Name;
-		std::string Type;
+		std::optional<std::string> Type;
 		uint32_t Offset;
 	};
 

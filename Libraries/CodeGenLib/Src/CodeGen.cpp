@@ -1181,9 +1181,16 @@ void CodeGen::GenerateTypesJsonFile(const std::filesystem::path& p_OutputPath)
 
 			if (j > 0) s_Stream << ",";
 			s_Stream << std::endl;
-			s_Stream << "\t\t\t\t{ \"name\": \"" << EscapeJsonString(s_Field.Name)
-				<< "\", \"type\": \"" << EscapeJsonString(s_Field.Type)
-				<< "\", \"offset\": " << s_Field.Offset << " }";
+			s_Stream << "\t\t\t\t{ \"name\": \"" << EscapeJsonString(s_Field.Name) << "\", ";
+
+			if (s_Field.Type) {
+				s_Stream << "\"type\": \"" << EscapeJsonString(*s_Field.Type) << "\", ";
+			}
+			else {
+				s_Stream << "\"type\": null, ";
+			}
+
+			s_Stream << "\"offset\": " << s_Field.Offset << " }";
 		}
 
 		if (!s_Struct.Fields.empty())
@@ -1292,16 +1299,16 @@ void CodeGen::EmitJsonStruct(const std::shared_ptr<TreeNode>& p_Node)
 	{
 		auto s_Prop = s_Type->m_pProperties[i];
 
-		if (!s_Prop.m_pType || !s_Prop.m_pType->typeInfo())
+		std::optional<std::string> s_PropType {};
+
+		if (s_Prop.m_pType && !s_Prop.m_pType->typeInfo())
 		{
-			log("JSON emit: skipping property '%s' in '%s' due to missing typeinfo.\n",
-				s_Prop.m_pName, s_TypeName.c_str());
-			continue;
+			s_PropType = OriginalName(s_Prop.m_pType);
 		}
 
 		s_JsonStruct.Fields.push_back({
 			s_Prop.m_pName,
-			OriginalName(s_Prop.m_pType),
+			s_PropType,
 			static_cast<uint32_t>(s_Prop.m_nOffset)
 		});
 	}
