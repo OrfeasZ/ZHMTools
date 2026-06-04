@@ -64,8 +64,14 @@ enum Mode {
         hashes: Vec<String>,
     },
 
-    /// Walk all TBLU resources and dump unique input/output pin names per module.
-    Pins,
+    /// Walk all TBLU resources and dump unique input/output pin names per module
+    /// or only dump pin names and their CRC32 when the output flag is set.
+    Pins {
+        /// Dump all unique pin names and their CRC32 to this file as a
+        /// {"<pin name>": <crc32>} key-value JSON map.
+        #[arg(long, short = 'o')]
+        crc_output: Option<PathBuf>,
+    },
 
     /// Convert a single resource to JSON and print it to stdout.
     Extract {
@@ -111,6 +117,8 @@ fn parse_rrid(hash: &str) -> RuntimeResourceID {
 fn main() {
     let cli_args: Vec<String> = env::args().collect();
 
+    let hardcoded_args: Option<&str> = None;
+
     // Hardcoded fallback used when running from an IDE with no extra arguments.
     //let hardcoded_args = [
     //    "resource_fiddler", "-r", "C:/Games/HITMAN3/Retail", "-g", "HM3", "pins",
@@ -125,19 +133,18 @@ fn main() {
     //    "-r", "/home/orfeasz/Games/HITMAN3/Retail",
     //    "-g", "HM3", "paths"
     //];
-    //let hardcoded_args = [
+    //let hardcoded_args = Some([
     //    "resource_fiddler",
     //    "-r", "/home/orfeasz/.local/share/Steam/steamapps/common/007 First Light/Retail",
-    //    "-g", "KNT", "paths", "-o", "knt-paths.log"
-    //];
+    //    "-g", "KNT", "pins", "-o", "pins.json"
+    //]);
 
-    //let cli = if cli_args.len() > 1 {
-    //    Cli::parse()
-    //} else {
-    //    Cli::parse_from(hardcoded_args)
-    //};
-
-    let cli = Cli::parse();
+    let cli =
+        if let Some(args) = hardcoded_args {
+            Cli::parse_from(args)
+        } else {
+            Cli::parse()
+        };
 
     let (game_version, game) = cli.game.to_pair();
 
@@ -151,7 +158,7 @@ fn main() {
             let filter: HashSet<RuntimeResourceID> = hashes.iter().map(|h| parse_rrid(h)).collect();
             test::run(partition_manager, game, filter)
         }
-        Mode::Pins => pins::run(partition_manager, game),
+        Mode::Pins { crc_output } => pins::run(partition_manager, game, crc_output.as_deref()),
         Mode::Extract { hash } => extract::run(partition_manager, game, parse_rrid(&hash)),
         Mode::Scan { needle } => scan::run(&partition_manager, game, &needle),
         Mode::Types => types::run(&partition_manager),

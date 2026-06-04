@@ -3,10 +3,12 @@ use hitman_commons::metadata::RuntimeID;
 use rayon::prelude::*;
 use rpkg_rs::resource::partition_manager::PartitionManager;
 use rpkg_rs::resource::resource_info::ResourceInfo;
+use rpkg_rs::resource::resource_partition::ResourcePartition;
 use rpkg_rs::resource::runtime_resource_id::RuntimeResourceID;
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 use std::hash::Hash;
+use std::path::Path;
 use std::sync::{Arc, Mutex, ReentrantLock};
 
 use crate::resource_lib;
@@ -89,6 +91,7 @@ fn read_sub_entity<F>(
     sub_entity: &serde_json::Value,
     entity_index: usize,
     resource: &ResourceInfo,
+    game: resource_lib::Game,
     try_get_path: &F,
 ) -> Arc<ReentrantLock<RefCell<SubEntity>>>
 where
@@ -97,8 +100,7 @@ where
     let entity_id = sub_entity["entityId"].as_u64().unwrap();
     let entity_type_idx = sub_entity["entityTypeResourceIndex"].as_i64().unwrap();
     let (entity_type_rrid, _) = resource.references().get(entity_type_idx as usize).unwrap();
-    let entity_type_rid = rrid_to_rid(entity_type_rrid);
-    let entity_type_name = try_get_path(&entity_type_rid);
+    let entity_type_name = rrid_to_rid(entity_type_rrid, game).and_then(|rid| try_get_path(&rid));
 
     Arc::new(ReentrantLock::new(RefCell::new(SubEntity {
         entity_id,
@@ -188,7 +190,39 @@ fn has_incoming_input(
         .unwrap_or(false)
 }
 
-pub fn run(partition_manager: PartitionManager, game: resource_lib::Game) {
+pub fn run(
+    partition_manager: PartitionManager,
+    game: resource_lib::Game,
+    crc_output: Option<&Path>,
+) {
+    let work_items: Vec<_> = partition_manager
+        .partitions
+        .iter()
+        .flat_map(|partition| {
+            partition
+                .latest_resources()
+                .into_iter()
+                .filter_map(|(resource, patch_id)| {
+                    let resource_type = resource.data_type();
+                    if resource_type != "TBLU" {
+                        return None;
+                    }
+
+                    Some((partition, resource))
+                })
+                .collect::<Vec<_>>()
+        })
+        .collect();
+
+    let resource_count = work_items.len();
+    print!("Extracting pins from {} resources...\n", resource_count);
+
+    // Skip graph traversal when just outputting pin names.
+    if let Some(crc_output) = crc_output {
+        dump_pin_crcs(&work_items, game, crc_output);
+        return;
+    }
+
     let hash_list_entries = download_hash_list().entries.load_full();
 
     let try_get_path = |rid: &RuntimeID| {
@@ -218,29 +252,6 @@ pub fn run(partition_manager: PartitionManager, game: resource_lib::Game) {
         entities.lock().unwrap().push(entity);
     };
 
-    // Collect all work items first to enable parallel processing.
-    let work_items: Vec<_> = partition_manager
-        .partitions
-        .iter()
-        .flat_map(|partition| {
-            partition
-                .latest_resources()
-                .into_iter()
-                .filter_map(|(resource, patch_id)| {
-                    let resource_type = resource.data_type();
-                    if resource_type != "TBLU" {
-                        return None;
-                    }
-
-                    Some((partition, resource))
-                })
-                .collect::<Vec<_>>()
-        })
-        .collect();
-
-    let resource_count = work_items.len();
-    print!("Extracting pins from {} resources...\n", resource_count);
-
     /*
     pinConnection (event): from.Output -> to.Input
     inputPinForwarding (inputCopying): from.Input -> to.Input
@@ -263,7 +274,7 @@ pub fn run(partition_manager: PartitionManager, game: resource_lib::Game) {
             .unwrap()
             .iter()
             .enumerate()
-            .map(|(i, x)| read_sub_entity(x, i, resource, &try_get_path))
+            .map(|(i, x)| read_sub_entity(x, i, resource, game, &try_get_path))
             .collect();
 
         let pin_connections = json["pinConnections"]
@@ -483,4 +494,54 @@ pub fn run(partition_manager: PartitionManager, game: resource_lib::Game) {
     for (module, pins) in output_pin_map.iter() {
         println!("{}: {:?}", module, pins);
     }
+}
+
+fn dump_pin_crcs(
+    work_items: &[(&ResourcePartition, &ResourceInfo)],
+    game: resource_lib::Game,
+    crc_output: &Path,
+) {
+    let pin_names = Mutex::new(HashSet::<String>::new());
+
+    work_items.par_iter().for_each(|(partition, resource)| {
+        let resource_type = resource.data_type();
+        let resource_data = partition.read_resource(resource.rrid()).unwrap();
+        let converter = resource_lib::Converter::get(game, &resource_type).unwrap();
+        let json_data = converter.memory_to_string(&resource_data).unwrap();
+        let json: serde_json::Value = serde_json::from_str(json_data.as_str().unwrap()).unwrap();
+
+        let mut local = HashSet::new();
+
+        for key in ["pinConnections", "inputPinForwardings", "outputPinForwardings", "pinConnectionOverrides", "pinConnectionOverrideDeletes"] {
+            for pin in json[key].as_array().unwrap() {
+                local.insert(pin["fromPinName"].as_str().unwrap().to_string());
+                local.insert(pin["toPinName"].as_str().unwrap().to_string());
+            }
+        }
+
+        pin_names.lock().unwrap().extend(local);
+    });
+
+    let pin_names = pin_names.into_inner().unwrap();
+    let pin_count = pin_names.len();
+
+    let crc_map: serde_json::Map<String, serde_json::Value> = pin_names
+        .into_iter()
+        .map(|pin| {
+            let crc = crc32fast::hash(pin.as_bytes());
+            (pin, crc.into())
+        })
+        .collect();
+
+    let json = serde_json::to_string_pretty(&serde_json::Value::Object(crc_map)).unwrap();
+    std::fs::write(crc_output, json).unwrap_or_else(|e| {
+        eprintln!("failed to write {}: {}", crc_output.display(), e);
+        std::process::exit(1);
+    });
+
+    println!(
+        "Wrote {} unique pin name CRC32s to {}",
+        pin_count,
+        crc_output.display()
+    );
 }

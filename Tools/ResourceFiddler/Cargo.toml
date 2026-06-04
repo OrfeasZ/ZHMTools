@@ -8,6 +8,7 @@ rpkg-rs = "1.4.0"
 thiserror = "2.0.17"
 rayon = "1.10"
 serde_json = "1.0.149"
+crc32fast = "1.5"
 hitman-commons = { git = "https://github.com/atampy25/hitman-commons.git", features = ["hash_list"] }
 reqwest = {  version = "0.13.1", features = [ "blocking" ] }
 parking_lot = "0.12.5"
