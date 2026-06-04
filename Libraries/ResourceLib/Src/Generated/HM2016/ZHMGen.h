@@ -7660,30 +7660,6 @@ ZHM_OFFSET_CHECK(SAttentionHUDUIElementArray_Dummy, dummy, 0x0);
 static_assert(sizeof(SAttentionHUDUIElementArray_Dummy) == 0x18, "Wrong size for SAttentionHUDUIElementArray_Dummy");
 static_assert(alignof(SAttentionHUDUIElementArray_Dummy) == 0x8, "Wrong alignment for SAttentionHUDUIElementArray_Dummy");
 
-// Size: 0x10
-class alignas(8) SAudioDynamicSequenceItemData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SAudioDynamicSequenceItemData& p_Other) const;
-	bool operator!=(const SAudioDynamicSequenceItemData& p_Other) const { return !(*this == p_Other); }
-
-	uint32 m_AudioNodeID; // 0x0
-	uint32 m_PlayingID; // 0x4
-	void m_pCustomInfo; // 0x8
-};
-ZHM_OFFSET_CHECK(SAudioDynamicSequenceItemData, m_AudioNodeID, 0x0);
-ZHM_OFFSET_CHECK(SAudioDynamicSequenceItemData, m_PlayingID, 0x4);
-ZHM_OFFSET_CHECK(SAudioDynamicSequenceItemData, m_pCustomInfo, 0x8);
-static_assert(sizeof(SAudioDynamicSequenceItemData) == 0x10, "Wrong size for SAudioDynamicSequenceItemData");
-static_assert(alignof(SAudioDynamicSequenceItemData) == 0x8, "Wrong alignment for SAudioDynamicSequenceItemData");
-
 // Size: 0x14
 class alignas(4) SAudioEmitterEventSaveData
 {

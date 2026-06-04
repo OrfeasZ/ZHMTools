@@ -327,6 +327,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 	m_TypeTreeRoot->Children.erase("ZGridFloatField"); // Has fields that don't exist in type info.
 	m_TypeTreeRoot->Children.erase("SEvergreenMenuPromptDesc"); // Has fields that don't exist in type info.
 	RemoveChild("ZEvergreenMenuController", "SPromptsData"); // Uses SEvergreenMenuPromptDesc.
+	m_TypeTreeRoot->Children.erase("SAudioDynamicSequenceItemData"); // Has a void field.
 
 	std::unordered_set<std::shared_ptr<TreeNode>> s_Visited;
 	for (auto& s_Child : m_TypeTreeRoot->Children)
