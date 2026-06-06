@@ -23,6 +23,7 @@ COLLISION_VOLUME_HITMAN_OFF
 COLLISION_VOLUME_HITMAN_ON
 CROWD_RAGDOLL
 Campaign
+Children
 Clients
 ColorCorrectionTextureHDR
 ContractRid
@@ -74,6 +75,7 @@ IsEnabled
 IsShore
 IsVisible
 Item
+Items
 KINEMATIC_COLLIDABLES_ONLY
 KINEMATIC_COLLIDABLES_ONLY_TRANSPARENT
 Keyboard
@@ -95,6 +97,7 @@ NotebookMenu
 OculusVR
 OpenVR
 OperationId
+OrderIndex
 Override
 OverrideInherit
 PC
@@ -135,13 +138,18 @@ Switch2Pro
 SwitchJoycon
 SwitchPro
 Timestamp
+Title
 Tolerance
 TouchAreaActiveSize
 TouchAreaSize
 TouchInput
 Trans
 TutorialMenu
+Type
+TypeName
 UnlockablesDatastoreRid
+Value
+ValueEntries
 VideoId
 VideoRidsPerAudioLanguage
 Videos
@@ -1443,6 +1451,7 @@ m_aContext
 m_aControlPointEntities
 m_aControlPoints
 m_aControls
+m_aCooldowns
 m_aCrowdAiPoolActorsFemale
 m_aCrowdAiPoolActorsMale
 m_aCrowdExclusionBoxes
@@ -1592,6 +1601,7 @@ m_aInputListeners
 m_aInputs
 m_aInsideVolumes
 m_aIntermediateScreenplays
+m_aInvalidDynamicSentries
 m_aInvestigateDisguiseGroups
 m_aIsCurrent
 m_aItemRepositoryIds
@@ -1648,6 +1658,7 @@ m_aOutfitKeys
 m_aOutfitKeywords
 m_aOutfitRepositoryIds
 m_aOutfitVariation
+m_aOutfits
 m_aOutput
 m_aOutputPipes
 m_aOutsideVolumes
@@ -1714,6 +1725,7 @@ m_aResources
 m_aReveals
 m_aRoleEvents
 m_aRoles
+m_aRules
 m_aSavableObjectsData
 m_aScaredTensions
 m_aScopePath
@@ -1787,6 +1799,7 @@ m_aVREventConfigs
 m_aVRMovementConfigs
 m_aVRRHStateConfigs
 m_aValueEntities
+m_aValueEntries
 m_aValueTextEntities
 m_aValueXEntities
 m_aValueYEntities
@@ -2118,6 +2131,7 @@ m_bCastOmniShadows
 m_bCastShadows
 m_bCastShadowsPC
 m_bCenter2DPlane
+m_bChangeVisibility
 m_bCheatSpawnGroup_Everything
 m_bCheatSpawnGroup_Keys
 m_bCheatSpawnGroup_Standard
@@ -2427,6 +2441,7 @@ m_bEscalateUnconscious
 m_bEscortsReactToDistactions
 m_bEventEndedOnStop
 m_bEverOwnedByHitman
+m_bExactType
 m_bExclusive
 m_bExemptFromAttentionHUD
 m_bExemptFromDamage
@@ -2552,6 +2567,7 @@ m_bGlobalShadowMapExcludeDSSObjects
 m_bGlowIsOverridden
 m_bGoIntoCoverAtWaypoint
 m_bGrabAllDrops
+m_bGrabItemsPendingPickup
 m_bGrabNPCEnabled
 m_bGrabOnlyNeededActors
 m_bGrabVictim
@@ -2692,6 +2708,7 @@ m_bInteractions
 m_bInternalEnabled
 m_bInterpolate
 m_bInterpolateOnlyWhileMoving
+m_bInterpolating
 m_bInterrupt
 m_bInterruptibleAction
 m_bInverseHorizontalPolarity
@@ -2709,6 +2726,7 @@ m_bIs2DPlane
 m_bIsActionBlocked
 m_bIsActivated
 m_bIsActive
+m_bIsAllowed
 m_bIsAttached
 m_bIsAwake
 m_bIsCheckedWhenFrisked
@@ -2724,6 +2742,7 @@ m_bIsCrowdAmbient
 m_bIsCurrent
 m_bIsCurrentlyEnabled
 m_bIsCyclable
+m_bIsDeepTrespassing
 m_bIsDisabled
 m_bIsDollyAttached
 m_bIsDone
@@ -2731,6 +2750,7 @@ m_bIsEnableCondValid
 m_bIsEnabled
 m_bIsEnabledCondValid
 m_bIsEntering
+m_bIsEquippingWeapon
 m_bIsEscapeNode
 m_bIsEvergreenMenuSpatial
 m_bIsFadeDown
@@ -2809,6 +2829,7 @@ m_bIsTargetRelevant
 m_bIsTerminated
 m_bIsTimedOut
 m_bIsToggledOn
+m_bIsTrespassing
 m_bIsTurning
 m_bIsTxtDirReversed
 m_bIsUICamera
@@ -3342,6 +3363,7 @@ m_bSignalOnClient
 m_bSignalOnHost
 m_bSignalOnPropertyChange
 m_bSignalOnSelf
+m_bSignalOnce
 m_bSignaling
 m_bSignalsInEditMode
 m_bSilent
@@ -3528,10 +3550,12 @@ m_bUseConeLimits
 m_bUseContentSize
 m_bUseControlPointTime
 m_bUseConversationHelper
+m_bUseCooldown
 m_bUseCrowdCameraProfile
 m_bUseCurve
 m_bUseDeathAnimation
 m_bUseDegrees
+m_bUseDistanceOnPath
 m_bUseDistanceScale
 m_bUseDynamicShadowMap
 m_bUseDynamicWaypoints
@@ -3598,6 +3622,7 @@ m_bVRAllowAlternativeInput
 m_bVREnableLaserBeam
 m_bVRForceSwipeAnimation
 m_bVRHideAnimation
+m_bVRIgnoreLODInfoClamp
 m_bVRInventory
 m_bVRNoAlignment
 m_bVRThrow
@@ -3728,6 +3753,7 @@ m_count
 m_countMode
 m_coverPlane
 m_crimeSectorBlacklist
+m_currentRate
 m_cursorShape
 m_cursorWidget
 m_cursorWorldSpatial
@@ -3741,6 +3767,7 @@ m_curveRed
 m_customData
 m_customIcon
 m_dExtraData
+m_data
 m_deadBodiesDiscovered
 m_deadBodyMassiveReported
 m_deadCrowdBodiesDiscovered
@@ -3902,6 +3929,7 @@ m_eCustomRule
 m_eDamageEvent
 m_eDeathBehavior
 m_eDeathContext
+m_eDeathSpeak
 m_eDeathSpeakBack
 m_eDeathSpeakFront
 m_eDeathType
@@ -4050,6 +4078,7 @@ m_eLeftHandIK
 m_eLeftHandIKAnimationDriven
 m_eLeftHandPosesAllowed
 m_eLetterBoxAspect
+m_eLifetimeEvent
 m_eLightType
 m_eLocation
 m_eLookUpAxis
@@ -4097,6 +4126,7 @@ m_eMovement
 m_eMovementIsMovingRequirement
 m_eMovementType
 m_eNavmeshExportOp
+m_eOnSetBehavior
 m_eOpportunityState
 m_eOption
 m_eOrder
@@ -4570,6 +4600,7 @@ m_fDecalSizeB
 m_fDecay
 m_fDecayTime
 m_fDeceleration
+m_fDecreaseRate
 m_fDefaultActivationAngle
 m_fDefaultActivationArc
 m_fDefaultAlignAngle
@@ -4878,6 +4909,7 @@ m_fImpactTriggerForce
 m_fImpactTriggerVelocity
 m_fInSpreadRangeDistance
 m_fIncreaseDrainPercentage
+m_fIncreaseRate
 m_fInfectionRate
 m_fInitCooldown
 m_fInitInput
@@ -5030,6 +5062,7 @@ m_fMaxPitchDeg
 m_fMaxPlaybackDistance
 m_fMaxRandPower
 m_fMaxRange
+m_fMaxRate
 m_fMaxRollDeg
 m_fMaxRotationDeg
 m_fMaxRotationSpeed
@@ -5326,6 +5359,7 @@ m_fRaycastDistance
 m_fRaycastRadius
 m_fRayleighDepthScale
 m_fRayleighHeightScale
+m_fRecencyPenaltyMultiplier
 m_fRecoilDelay
 m_fRecoilEaseTime
 m_fRecoilHorizontalRange
@@ -5824,6 +5858,8 @@ m_iBulletsPerMagazine
 m_iBulletsPerMagazineBonus
 m_iCurrentFailed
 m_iCurrentSuccess
+m_iDefaultGeomSelection
+m_iDefaultSkinSelection
 m_iFullCircleTurnsRequired
 m_iGridId
 m_iHmdRumbleFrequencey
@@ -6099,6 +6135,7 @@ m_nEmotionLimit
 m_nEmotionRemoveLimit
 m_nEnd
 m_nEndIndex
+m_nEntity
 m_nEntityID
 m_nEpicActorCount
 m_nEscalatedActorCount
@@ -6212,6 +6249,8 @@ m_nLoopAmounts
 m_nLoopCount
 m_nLoopIndex
 m_nMax
+m_nMax22LRAmmo
+m_nMaxAirPelletAmmo
 m_nMaxCrowdRenderDist
 m_nMaxCureAmmo
 m_nMaxDispatchesPerCamera
@@ -6371,6 +6410,7 @@ m_nReactionTimeOut1
 m_nReactionTimeOut2
 m_nReactionTimeOut3
 m_nRearArcDeg
+m_nRecencyPenaltyCount
 m_nRemaining
 m_nRepeat
 m_nRequiredCrowdRadius
@@ -7119,6 +7159,7 @@ m_rDrainPipe
 m_rDrama
 m_rDramaRole
 m_rDropPoint
+m_rDynamicSentry
 m_rEffects
 m_rEmitter
 m_rEmitterProxy
@@ -7546,6 +7587,7 @@ m_rVRBoneAnimator
 m_rVRConfig
 m_rVRMovementConfigDefault
 m_rVROverrideSpatial
+m_rValue
 m_rValue1
 m_rValue2
 m_rValueEntity
@@ -7880,15 +7922,21 @@ m_stickLength
 m_style
 m_subject
 m_sweetAcceptPromptText
+m_sweetActivated
 m_sweetBiography
 m_sweetCancelPromptText
 m_sweetCharacterName
+m_sweetCooldownPrimary
+m_sweetCooldownSecondary
 m_sweetCrimeSector
+m_sweetDeactivated
 m_sweetDescription
 m_sweetHeader
 m_sweetLeaderCodename
 m_sweetMicroMessage
+m_sweetName
 m_sweetPrimary
+m_sweetProgress
 m_sweetPromptText
 m_sweetSecondary
 m_sweetSecondaryPCVR
@@ -8060,6 +8108,7 @@ m_vConeAxis
 m_vConnectorOffset
 m_vCover
 m_vCoverDir
+m_vDecreaseRate
 m_vDefaultAlignOffset
 m_vDestViewportA
 m_vDestViewportB
@@ -8159,6 +8208,7 @@ m_vHighBoundPos
 m_vImpactDirection
 m_vImpactPosition
 m_vImpulse
+m_vIncreaseRate
 m_vItemVelocity
 m_vKnockdownRadii
 m_vLastKnownPosition
@@ -8174,6 +8224,7 @@ m_vLocalSize
 m_vLookAtTarget
 m_vLowBoundPos
 m_vLuminanceMinMax
+m_vMaxRate
 m_vMieColor_LowQuality
 m_vModulation
 m_vNearAttenuation

@@ -2288,6 +2288,52 @@ void IContractObjective::SCounterData::Destroy(void* p_Object)
 	s_Object->~SCounterData();
 }
 
+ZHMTypeInfo IContractProgressionDataEntity::TypeInfo = ZHMTypeInfo("IContractProgressionDataEntity", sizeof(IContractProgressionDataEntity), alignof(IContractProgressionDataEntity), IContractProgressionDataEntity::WriteSimpleJson, IContractProgressionDataEntity::FromSimpleJson, IContractProgressionDataEntity::Serialize, IContractProgressionDataEntity::Equals, IContractProgressionDataEntity::Destroy);
+
+void IContractProgressionDataEntity::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<IContractProgressionDataEntity*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << "}";
+}
+
+void IContractProgressionDataEntity::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<IContractProgressionDataEntity*>(p_Target);
+
+}
+
+void IContractProgressionDataEntity::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<IContractProgressionDataEntity*>(p_Object);
+
+}
+
+bool IContractProgressionDataEntity::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<IContractProgressionDataEntity*>(p_Left);
+	auto* s_Right = reinterpret_cast<IContractProgressionDataEntity*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool IContractProgressionDataEntity::operator==(const IContractProgressionDataEntity& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<IContractProgressionDataEntity>)
+		return false;
+
+
+	return true;
+}
+
+void IContractProgressionDataEntity::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<IContractProgressionDataEntity*>(p_Object);
+	s_Object->~IContractProgressionDataEntity();
+}
+
 ZHMTypeInfo IEscortOutSituation::TypeInfo = ZHMTypeInfo("IEscortOutSituation", sizeof(IEscortOutSituation), alignof(IEscortOutSituation), IEscortOutSituation::WriteSimpleJson, IEscortOutSituation::FromSimpleJson, IEscortOutSituation::Serialize, IEscortOutSituation::Equals, IEscortOutSituation::Destroy);
 
 void IEscortOutSituation::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -2792,6 +2838,52 @@ void IOnlineConfigurationListener::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<IOnlineConfigurationListener*>(p_Object);
 	s_Object->~IOnlineConfigurationListener();
+}
+
+ZHMTypeInfo IPhotoModeMessage::TypeInfo = ZHMTypeInfo("IPhotoModeMessage", sizeof(IPhotoModeMessage), alignof(IPhotoModeMessage), IPhotoModeMessage::WriteSimpleJson, IPhotoModeMessage::FromSimpleJson, IPhotoModeMessage::Serialize, IPhotoModeMessage::Equals, IPhotoModeMessage::Destroy);
+
+void IPhotoModeMessage::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<IPhotoModeMessage*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << "}";
+}
+
+void IPhotoModeMessage::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<IPhotoModeMessage*>(p_Target);
+
+}
+
+void IPhotoModeMessage::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<IPhotoModeMessage*>(p_Object);
+
+}
+
+bool IPhotoModeMessage::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<IPhotoModeMessage*>(p_Left);
+	auto* s_Right = reinterpret_cast<IPhotoModeMessage*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool IPhotoModeMessage::operator==(const IPhotoModeMessage& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<IPhotoModeMessage>)
+		return false;
+
+
+	return true;
+}
+
+void IPhotoModeMessage::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<IPhotoModeMessage*>(p_Object);
+	s_Object->~IPhotoModeMessage();
 }
 
 ZHMTypeInfo IPureWaterReflectable::TypeInfo = ZHMTypeInfo("IPureWaterReflectable", sizeof(IPureWaterReflectable), alignof(IPureWaterReflectable), IPureWaterReflectable::WriteSimpleJson, IPureWaterReflectable::FromSimpleJson, IPureWaterReflectable::Serialize, IPureWaterReflectable::Equals, IPureWaterReflectable::Destroy);
@@ -3344,6 +3436,278 @@ void IWorldMapMarker::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<IWorldMapMarker*>(p_Object);
 	s_Object->~IWorldMapMarker();
+}
+
+ZHMTypeInfo SDebugMenuItemIntEntry::TypeInfo = ZHMTypeInfo("SDebugMenuItemIntEntry", sizeof(SDebugMenuItemIntEntry), alignof(SDebugMenuItemIntEntry), SDebugMenuItemIntEntry::WriteSimpleJson, SDebugMenuItemIntEntry::FromSimpleJson, SDebugMenuItemIntEntry::Serialize, SDebugMenuItemIntEntry::Equals, SDebugMenuItemIntEntry::Destroy);
+
+void SDebugMenuItemIntEntry::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SDebugMenuItemIntEntry*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("Value") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Value);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("Name") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Name);
+
+	p_Stream << "}";
+}
+
+void SDebugMenuItemIntEntry::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SDebugMenuItemIntEntry*>(p_Target);
+
+	s_Object->Value = simdjson::from_json_int32(p_Document["Value"]);
+
+	s_Object->Name = std::string_view(p_Document["Name"]);
+
+}
+
+void SDebugMenuItemIntEntry::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SDebugMenuItemIntEntry*>(p_Object);
+
+	ZString::Serialize(&s_Object->Name, p_Serializer, p_OwnOffset + offsetof(SDebugMenuItemIntEntry, Name));
+}
+
+bool SDebugMenuItemIntEntry::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SDebugMenuItemIntEntry*>(p_Left);
+	auto* s_Right = reinterpret_cast<SDebugMenuItemIntEntry*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SDebugMenuItemIntEntry::operator==(const SDebugMenuItemIntEntry& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SDebugMenuItemIntEntry>)
+		return false;
+
+	if (Value != p_Other.Value) return false;
+	if (Name != p_Other.Name) return false;
+
+	return true;
+}
+
+void SDebugMenuItemIntEntry::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SDebugMenuItemIntEntry*>(p_Object);
+	s_Object->~SDebugMenuItemIntEntry();
+}
+
+ZHMTypeInfo JSONTemplate::SDebugMenuItemsResult::TypeInfo = ZHMTypeInfo("JSONTemplate.SDebugMenuItemsResult", sizeof(JSONTemplate::SDebugMenuItemsResult), alignof(JSONTemplate::SDebugMenuItemsResult), JSONTemplate::SDebugMenuItemsResult::WriteSimpleJson, JSONTemplate::SDebugMenuItemsResult::FromSimpleJson, JSONTemplate::SDebugMenuItemsResult::Serialize, JSONTemplate::SDebugMenuItemsResult::Equals, JSONTemplate::SDebugMenuItemsResult::Destroy);
+
+void JSONTemplate::SDebugMenuItemsResult::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemsResult*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("Items") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->Items.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->Items[i];
+		JSONTemplate::SDebugMenuItemData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->Items.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void JSONTemplate::SDebugMenuItemsResult::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemsResult*>(p_Target);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["Items"];
+	s_Object->Items.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		JSONTemplate::SDebugMenuItemData::FromSimpleJson(s_Item0, &s_Object->Items[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void JSONTemplate::SDebugMenuItemsResult::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemsResult*>(p_Object);
+
+	TArray<JSONTemplate::SDebugMenuItemData>::Serialize(&s_Object->Items, p_Serializer, p_OwnOffset + offsetof(JSONTemplate::SDebugMenuItemsResult, Items));
+}
+
+bool JSONTemplate::SDebugMenuItemsResult::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<JSONTemplate::SDebugMenuItemsResult*>(p_Left);
+	auto* s_Right = reinterpret_cast<JSONTemplate::SDebugMenuItemsResult*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool JSONTemplate::SDebugMenuItemsResult::operator==(const JSONTemplate::SDebugMenuItemsResult& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<JSONTemplate::SDebugMenuItemsResult>)
+		return false;
+
+	if (Items != p_Other.Items) return false;
+
+	return true;
+}
+
+void JSONTemplate::SDebugMenuItemsResult::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemsResult*>(p_Object);
+	s_Object->~SDebugMenuItemsResult();
+}
+
+ZHMTypeInfo JSONTemplate::SDebugMenuItemData::TypeInfo = ZHMTypeInfo("JSONTemplate.SDebugMenuItemData", sizeof(JSONTemplate::SDebugMenuItemData), alignof(JSONTemplate::SDebugMenuItemData), JSONTemplate::SDebugMenuItemData::WriteSimpleJson, JSONTemplate::SDebugMenuItemData::FromSimpleJson, JSONTemplate::SDebugMenuItemData::Serialize, JSONTemplate::SDebugMenuItemData::Equals, JSONTemplate::SDebugMenuItemData::Destroy);
+
+void JSONTemplate::SDebugMenuItemData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("Type") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("JSONTemplate.EDebugMenuItemType", static_cast<int>(s_Object->Type)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("TypeName") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->TypeName);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("Id") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Id);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("Title") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->Title);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("OrderIndex") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->OrderIndex);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("ValueEntries") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->ValueEntries.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->ValueEntries[i];
+		SDebugMenuItemIntEntry::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->ValueEntries.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("Children") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->Children.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->Children[i];
+		JSONTemplate::SDebugMenuItemData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->Children.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void JSONTemplate::SDebugMenuItemData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemData*>(p_Target);
+
+	s_Object->Type = static_cast<JSONTemplate::EDebugMenuItemType>(ZHMEnums::GetEnumValueByName("JSONTemplate.EDebugMenuItemType", std::string_view(p_Document["Type"])));
+
+	s_Object->TypeName = std::string_view(p_Document["TypeName"]);
+
+	s_Object->Id = std::string_view(p_Document["Id"]);
+
+	s_Object->Title = std::string_view(p_Document["Title"]);
+
+	s_Object->OrderIndex = simdjson::from_json_int32(p_Document["OrderIndex"]);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["ValueEntries"];
+	s_Object->ValueEntries.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SDebugMenuItemIntEntry::FromSimpleJson(s_Item0, &s_Object->ValueEntries[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["Children"];
+	s_Object->Children.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		JSONTemplate::SDebugMenuItemData::FromSimpleJson(s_Item0, &s_Object->Children[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void JSONTemplate::SDebugMenuItemData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemData*>(p_Object);
+
+	ZString::Serialize(&s_Object->TypeName, p_Serializer, p_OwnOffset + offsetof(JSONTemplate::SDebugMenuItemData, TypeName));
+	ZString::Serialize(&s_Object->Id, p_Serializer, p_OwnOffset + offsetof(JSONTemplate::SDebugMenuItemData, Id));
+	ZString::Serialize(&s_Object->Title, p_Serializer, p_OwnOffset + offsetof(JSONTemplate::SDebugMenuItemData, Title));
+	TArray<SDebugMenuItemIntEntry>::Serialize(&s_Object->ValueEntries, p_Serializer, p_OwnOffset + offsetof(JSONTemplate::SDebugMenuItemData, ValueEntries));
+	TArray<JSONTemplate::SDebugMenuItemData>::Serialize(&s_Object->Children, p_Serializer, p_OwnOffset + offsetof(JSONTemplate::SDebugMenuItemData, Children));
+}
+
+bool JSONTemplate::SDebugMenuItemData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<JSONTemplate::SDebugMenuItemData*>(p_Left);
+	auto* s_Right = reinterpret_cast<JSONTemplate::SDebugMenuItemData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool JSONTemplate::SDebugMenuItemData::operator==(const JSONTemplate::SDebugMenuItemData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<JSONTemplate::SDebugMenuItemData>)
+		return false;
+
+	if (Type != p_Other.Type) return false;
+	if (TypeName != p_Other.TypeName) return false;
+	if (Id != p_Other.Id) return false;
+	if (Title != p_Other.Title) return false;
+	if (OrderIndex != p_Other.OrderIndex) return false;
+	if (ValueEntries != p_Other.ValueEntries) return false;
+	if (Children != p_Other.Children) return false;
+
+	return true;
+}
+
+void JSONTemplate::SDebugMenuItemData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SDebugMenuItemData*>(p_Object);
+	s_Object->~SDebugMenuItemData();
 }
 
 ZHMTypeInfo SWorldSpaceSettings::TypeInfo = ZHMTypeInfo("SWorldSpaceSettings", sizeof(SWorldSpaceSettings), alignof(SWorldSpaceSettings), SWorldSpaceSettings::WriteSimpleJson, SWorldSpaceSettings::FromSimpleJson, SWorldSpaceSettings::Serialize, SWorldSpaceSettings::Equals, SWorldSpaceSettings::Destroy);
@@ -21607,6 +21971,65 @@ void SDynamicRayCastEntitySaveData::Destroy(void* p_Object)
 	s_Object->~SDynamicRayCastEntitySaveData();
 }
 
+ZHMTypeInfo SEntityEventChannelSaveData::TypeInfo = ZHMTypeInfo("SEntityEventChannelSaveData", sizeof(SEntityEventChannelSaveData), alignof(SEntityEventChannelSaveData), SEntityEventChannelSaveData::WriteSimpleJson, SEntityEventChannelSaveData::FromSimpleJson, SEntityEventChannelSaveData::Serialize, SEntityEventChannelSaveData::Equals, SEntityEventChannelSaveData::Destroy);
+
+void SEntityEventChannelSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SEntityEventChannelSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_bEnabled") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bEnabled);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nEntity") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nEntity);
+
+	p_Stream << "}";
+}
+
+void SEntityEventChannelSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SEntityEventChannelSaveData*>(p_Target);
+
+	s_Object->m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
+
+	s_Object->m_nEntity = simdjson::from_json_uint32(p_Document["m_nEntity"]);
+
+}
+
+void SEntityEventChannelSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SEntityEventChannelSaveData*>(p_Object);
+
+}
+
+bool SEntityEventChannelSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SEntityEventChannelSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SEntityEventChannelSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SEntityEventChannelSaveData::operator==(const SEntityEventChannelSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SEntityEventChannelSaveData>)
+		return false;
+
+	if (m_bEnabled != p_Other.m_bEnabled) return false;
+	if (m_nEntity != p_Other.m_nEntity) return false;
+
+	return true;
+}
+
+void SEntityEventChannelSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SEntityEventChannelSaveData*>(p_Object);
+	s_Object->~SEntityEventChannelSaveData();
+}
+
 ZHMTypeInfo SEntityPath::TypeInfo = ZHMTypeInfo("SEntityPath", sizeof(SEntityPath), alignof(SEntityPath), SEntityPath::WriteSimpleJson, SEntityPath::FromSimpleJson, SEntityPath::Serialize, SEntityPath::Equals, SEntityPath::Destroy);
 
 void SEntityPath::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -39620,6 +40043,134 @@ void SRandomTimerEntitiesSaveData::Destroy(void* p_Object)
 	s_Object->~SRandomTimerEntitiesSaveData();
 }
 
+ZHMTypeInfo SRateBasedValueInterpolatorSaveData::TypeInfo = ZHMTypeInfo("SRateBasedValueInterpolatorSaveData", sizeof(SRateBasedValueInterpolatorSaveData), alignof(SRateBasedValueInterpolatorSaveData), SRateBasedValueInterpolatorSaveData::WriteSimpleJson, SRateBasedValueInterpolatorSaveData::FromSimpleJson, SRateBasedValueInterpolatorSaveData::Serialize, SRateBasedValueInterpolatorSaveData::Equals, SRateBasedValueInterpolatorSaveData::Destroy);
+
+void SRateBasedValueInterpolatorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SRateBasedValueInterpolatorSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_bInterpolating") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bInterpolating);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_target") << ":";
+	ZVariant::WriteSimpleJson(&s_Object->m_target, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_currentRate") << ":";
+	ZVariant::WriteSimpleJson(&s_Object->m_currentRate, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SRateBasedValueInterpolatorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SRateBasedValueInterpolatorSaveData*>(p_Target);
+
+	s_Object->m_bInterpolating = simdjson::from_json_bool(p_Document["m_bInterpolating"]);
+
+	ZVariant::FromSimpleJson(p_Document["m_target"], &s_Object->m_target);
+
+	ZVariant::FromSimpleJson(p_Document["m_currentRate"], &s_Object->m_currentRate);
+
+}
+
+void SRateBasedValueInterpolatorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SRateBasedValueInterpolatorSaveData*>(p_Object);
+
+	ZVariant::Serialize(&s_Object->m_target, p_Serializer, p_OwnOffset + offsetof(SRateBasedValueInterpolatorSaveData, m_target));
+	ZVariant::Serialize(&s_Object->m_currentRate, p_Serializer, p_OwnOffset + offsetof(SRateBasedValueInterpolatorSaveData, m_currentRate));
+}
+
+bool SRateBasedValueInterpolatorSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SRateBasedValueInterpolatorSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SRateBasedValueInterpolatorSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SRateBasedValueInterpolatorSaveData::operator==(const SRateBasedValueInterpolatorSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SRateBasedValueInterpolatorSaveData>)
+		return false;
+
+	if (m_bInterpolating != p_Other.m_bInterpolating) return false;
+	if (m_target != p_Other.m_target) return false;
+	if (m_currentRate != p_Other.m_currentRate) return false;
+
+	return true;
+}
+
+void SRateBasedValueInterpolatorSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SRateBasedValueInterpolatorSaveData*>(p_Object);
+	s_Object->~SRateBasedValueInterpolatorSaveData();
+}
+
+ZHMTypeInfo SRateBasedSpatialInterpolatorSaveData::TypeInfo = ZHMTypeInfo("SRateBasedSpatialInterpolatorSaveData", sizeof(SRateBasedSpatialInterpolatorSaveData), alignof(SRateBasedSpatialInterpolatorSaveData), SRateBasedSpatialInterpolatorSaveData::WriteSimpleJson, SRateBasedSpatialInterpolatorSaveData::FromSimpleJson, SRateBasedSpatialInterpolatorSaveData::Serialize, SRateBasedSpatialInterpolatorSaveData::Equals, SRateBasedSpatialInterpolatorSaveData::Destroy);
+
+void SRateBasedSpatialInterpolatorSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SRateBasedSpatialInterpolatorSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_rSpatial") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_rSpatial);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_data") << ":";
+	SRateBasedValueInterpolatorSaveData::WriteSimpleJson(&s_Object->m_data, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SRateBasedSpatialInterpolatorSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SRateBasedSpatialInterpolatorSaveData*>(p_Target);
+
+	s_Object->m_rSpatial = simdjson::from_json_uint32(p_Document["m_rSpatial"]);
+
+	SRateBasedValueInterpolatorSaveData::FromSimpleJson(p_Document["m_data"], &s_Object->m_data);
+
+}
+
+void SRateBasedSpatialInterpolatorSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SRateBasedSpatialInterpolatorSaveData*>(p_Object);
+
+	SRateBasedValueInterpolatorSaveData::Serialize(&s_Object->m_data, p_Serializer, p_OwnOffset + offsetof(SRateBasedSpatialInterpolatorSaveData, m_data));
+}
+
+bool SRateBasedSpatialInterpolatorSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SRateBasedSpatialInterpolatorSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SRateBasedSpatialInterpolatorSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SRateBasedSpatialInterpolatorSaveData::operator==(const SRateBasedSpatialInterpolatorSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SRateBasedSpatialInterpolatorSaveData>)
+		return false;
+
+	if (m_rSpatial != p_Other.m_rSpatial) return false;
+	if (m_data != p_Other.m_data) return false;
+
+	return true;
+}
+
+void SRateBasedSpatialInterpolatorSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SRateBasedSpatialInterpolatorSaveData*>(p_Object);
+	s_Object->~SRateBasedSpatialInterpolatorSaveData();
+}
+
 ZHMTypeInfo ZBitArray::TypeInfo = ZHMTypeInfo("ZBitArray", sizeof(ZBitArray), alignof(ZBitArray), ZBitArray::WriteSimpleJson, ZBitArray::FromSimpleJson, ZBitArray::Serialize, ZBitArray::Equals, ZBitArray::Destroy);
 
 void ZBitArray::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -41676,6 +42227,10 @@ void SSentryZoneSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream
 	}
 
 	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_rDynamicSentry") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_rDynamicSentry);
 
 	p_Stream << "}";
 }
@@ -41778,6 +42333,8 @@ void SSentryZoneSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, v
 	}
 	}
 
+	s_Object->m_rDynamicSentry = simdjson::from_json_uint32(p_Document["m_rDynamicSentry"]);
+
 }
 
 void SSentryZoneSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -41832,6 +42389,7 @@ bool SSentryZoneSaveData::operator==(const SSentryZoneSaveData& p_Other) const
 	if (m_aDisguisesFriskExemptDisabled != p_Other.m_aDisguisesFriskExemptDisabled) return false;
 	if (m_aDisguisesDontEscalateOnLineCrossingDisabled != p_Other.m_aDisguisesDontEscalateOnLineCrossingDisabled) return false;
 	if (m_ItemsDroppedInZone != p_Other.m_ItemsDroppedInZone) return false;
+	if (m_rDynamicSentry != p_Other.m_rDynamicSentry) return false;
 
 	return true;
 }
