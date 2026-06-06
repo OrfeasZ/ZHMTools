@@ -2524,6 +2524,7 @@ void ZHMEnums::RegisterEnums()
 		{ 586, "eAVV_ET_BAIJ" },
 		{ 587, "eAVV_ET_BELINI" },
 		{ 588, "eAVV_ET_FILUR" },
+		{ 589, "eAVV_ET_POMADA" },
 	};
 	(*g_EnumSizes)["EActorVoiceVariation"] = 4;
 
@@ -6654,6 +6655,12 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["ERagdollPart"] = 1;
 
+	(*g_Enums)["ERateBasedValueInterpolatorState"] = {
+		{ 0, "IDLE" },
+		{ 1, "INTERPOLATING" },
+	};
+	(*g_EnumSizes)["ERateBasedValueInterpolatorState"] = 4;
+
 	(*g_Enums)["ERatingCategory"] = {
 		{ 0, "ERatingCategory_Invalid" },
 		{ 1, "ERatingCategory_Flawless" },
@@ -6887,6 +6894,9 @@ void ZHMEnums::RegisterEnums()
 		{ 68, "EREQUIREMENT_H3_ET_BAIJU" },
 		{ 69, "EREQUIREMENT_H3_ET_BELLINI" },
 		{ 70, "EREQUIREMENT_H3_ET_FILUR" },
+		{ 71, "EREQUIREMENT_H3_VANITY_SPORT" },
+		{ 72, "EREQUIREMENT_H3_ET_POMADA" },
+		{ 73, "EREQUIREMENT_H3_ET_PENICILLIN_ITEMS" },
 	};
 	(*g_EnumSizes)["ERequirementId"] = 4;
 
@@ -8889,6 +8899,16 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["InputControlNamesp.eHM5InputActionType"] = 4;
 
+	(*g_Enums)["JSONTemplate.EDebugMenuItemType"] = {
+		{ 0, "Invalid" },
+		{ 1, "Group" },
+		{ 2, "Trigger" },
+		{ 3, "Bool" },
+		{ 4, "Slider" },
+		{ 5, "ListInt" },
+	};
+	(*g_EnumSizes)["JSONTemplate.EDebugMenuItemType"] = 4;
+
 	(*g_Enums)["JSONTemplate.ETemplateType"] = {
 		{ 0, "ETT_BASE" },
 		{ 1, "ETT_DATA_VALUE" },
@@ -9048,6 +9068,8 @@ void ZHMEnums::RegisterEnums()
 		{ 155, "ETT_NVIDIAHIGHLIGHTSAVAILABLE" },
 		{ 156, "ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS" },
 		{ 157, "ETT_DEBUG_ALLHITMANSUITS" },
+		{ 158, "ETT_DEBUG_MENUITEMS" },
+		{ 159, "ETT_DEBUG_MENUITEMVALUE" },
 	};
 	(*g_EnumSizes)["JSONTemplate.ETemplateType"] = 4;
 
@@ -9606,7 +9628,8 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "eCKT_SNAP_AND_TOSS" },
 		{ 2, "eCKT_PUSH" },
 		{ 3, "eCKT_NO_ANIMATION" },
-		{ 4, "eCKT_END" },
+		{ 4, "eCKT_INTERRUPT_ANIMATION" },
+		{ 5, "eCKT_END" },
 	};
 	(*g_EnumSizes)["ZContextKillGuide.EContextKillType"] = 4;
 
@@ -9796,6 +9819,21 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "RB_RECASTANDCONTINUE" },
 	};
 	(*g_EnumSizes)["ZDramaSituationEntity.EReentryBehavior"] = 4;
+
+	(*g_Enums)["ZDroppedItemMapTrackerAspect.EIconType"] = {
+		{ 0, "Outfit" },
+		{ 1, "MeleeWeapon" },
+		{ 2, "FirearmWeapon" },
+		{ 4, "Special" },
+		{ 1000, "Generic" },
+	};
+	(*g_EnumSizes)["ZDroppedItemMapTrackerAspect.EIconType"] = 4;
+
+	(*g_Enums)["ZEntityLifetimeEmitterEntity.ELifetimeEvent"] = {
+		{ 0, "POST_INIT" },
+		{ 1, "ACTIVATE" },
+	};
+	(*g_EnumSizes)["ZEntityLifetimeEmitterEntity.ELifetimeEvent"] = 1;
 
 	(*g_Enums)["ZEntityPropertyReplica.EReplicationStrategy"] = {
 		{ 0, "REP_ALL_PROPERTIES" },
@@ -11196,6 +11234,20 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["ZSpatialEntity.ERoomBehaviour"] = 4;
 
+	(*g_Enums)["ZSpatialProxyEntity.ETransformBehavior"] = {
+		{ 0, "KEEP_WORLD" },
+		{ 1, "KEEP_LOCAL" },
+		{ 2, "RESET_LOCAL" },
+	};
+	(*g_EnumSizes)["ZSpatialProxyEntity.ETransformBehavior"] = 1;
+
+	(*g_Enums)["ZSpatialReferenceAspect.ETransformBehavior"] = {
+		{ 0, "KEEP_WORLD" },
+		{ 1, "KEEP_LOCAL" },
+		{ 2, "RESET_LOCAL" },
+	};
+	(*g_EnumSizes)["ZSpatialReferenceAspect.ETransformBehavior"] = 1;
+
 	(*g_Enums)["ZStandOffSituation.EDialogState"] = {
 		{ 0, "eDS_ReportTarget" },
 		{ 1, "eDS_ArrestReason" },
@@ -11244,6 +11296,13 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ClosestPrevious" },
 	};
 	(*g_EnumSizes)["ZTrackDollyControllerQueryEntity.ETrackPointQueryType"] = 4;
+
+	(*g_Enums)["ZTrespassingRuleConditionEntity.EEvaluationType"] = {
+		{ 0, "ALL" },
+		{ 1, "NONE" },
+		{ 2, "ANY" },
+	};
+	(*g_EnumSizes)["ZTrespassingRuleConditionEntity.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZTrespassingSituation.ESituationState"] = {
 		{ 1, "SS_Main" },
@@ -11653,6 +11712,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1050, "UI_OPTION_SOUND_MUTE_MICROPHONE" },
 		{ 1060, "UI_OPTION_SOUND_MUTE_OTHER_PLAYER" },
 		{ 1070, "UI_OPTION_SOUND_LICENSED_AUDIO" },
+		{ 1080, "UI_OPTION_SOUND_MAIN_MENU_MUSIC" },
 		{ 1200, "UI_OPTION_SOUND_OUTPUTMODE" },
 		{ 1210, "UI_OPTION_SOUND_SIMULATION_QUALITY" },
 		{ 1220, "UI_OPTION_SOUND_DYNAMIC_RANGE_MODE" },
@@ -11768,7 +11828,9 @@ void ZHMEnums::RegisterEnums()
 		{ 12, "eAmmoDartEmetic" },
 		{ 13, "eAmmoDartCure" },
 		{ 14, "eAmmoShotgunBeanbag" },
-		{ 15, "eUnknownAmmoType" },
+		{ 15, "eAmmo22LR" },
+		{ 16, "eAmmoAirPellet" },
+		{ 17, "eUnknownAmmoType" },
 	};
 	(*g_EnumSizes)["eAmmoType"] = 4;
 
