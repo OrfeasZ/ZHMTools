@@ -2950,6 +2950,7 @@ enum class EActorVoiceVariation : int32_t
 	eAVV_ET_BAIJ = 586,
 	eAVV_ET_BELINI = 587,
 	eAVV_ET_FILUR = 588,
+	eAVV_ET_POMADA = 589,
 };
 
 // Size: 0x4
@@ -7322,6 +7323,13 @@ enum class ERagdollPart : int8_t
 };
 
 // Size: 0x4
+enum class ERateBasedValueInterpolatorState : int32_t
+{
+	IDLE = 0,
+	INTERPOLATING = 1,
+};
+
+// Size: 0x4
 enum class ERatingCategory : int32_t
 {
 	ERatingCategory_Invalid = 0,
@@ -7569,6 +7577,9 @@ enum class ERequirementId : int32_t
 	EREQUIREMENT_H3_ET_BAIJU = 68,
 	EREQUIREMENT_H3_ET_BELLINI = 69,
 	EREQUIREMENT_H3_ET_FILUR = 70,
+	EREQUIREMENT_H3_VANITY_SPORT = 71,
+	EREQUIREMENT_H3_ET_POMADA = 72,
+	EREQUIREMENT_H3_ET_PENICILLIN_ITEMS = 73,
 };
 
 // Size: 0x1
@@ -9909,7 +9920,72 @@ namespace InputControlNamesp {
 
 }
 
+// Size: 0x18
+class alignas(8) SDebugMenuItemIntEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SDebugMenuItemIntEntry& p_Other) const;
+	bool operator!=(const SDebugMenuItemIntEntry& p_Other) const { return !(*this == p_Other); }
+
+	int32 Value; // 0x0
+	ZString Name; // 0x8
+};
+ZHM_OFFSET_CHECK(SDebugMenuItemIntEntry, Value, 0x0);
+ZHM_OFFSET_CHECK(SDebugMenuItemIntEntry, Name, 0x8);
+static_assert(sizeof(SDebugMenuItemIntEntry) == 0x18, "Wrong size for SDebugMenuItemIntEntry");
+static_assert(alignof(SDebugMenuItemIntEntry) == 0x8, "Wrong alignment for SDebugMenuItemIntEntry");
+
 namespace JSONTemplate {
+	// Size: 0x4
+	enum class EDebugMenuItemType : int32_t
+	{
+		Invalid = 0,
+		Group = 1,
+		Trigger = 2,
+		Bool = 3,
+		Slider = 4,
+		ListInt = 5,
+	};
+
+	// Size: 0x70
+	class alignas(8) SDebugMenuItemData
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDebugMenuItemData& p_Other) const;
+		bool operator!=(const SDebugMenuItemData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::EDebugMenuItemType Type; // 0x0
+		ZString TypeName; // 0x8
+		ZString Id; // 0x18
+		ZString Title; // 0x28
+		int32 OrderIndex; // 0x38
+		TArray<SDebugMenuItemIntEntry> ValueEntries; // 0x40
+		TArray<JSONTemplate::SDebugMenuItemData> Children; // 0x58
+	};
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Type, 0x0);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, TypeName, 0x8);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Id, 0x18);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Title, 0x28);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, OrderIndex, 0x38);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, ValueEntries, 0x40);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Children, 0x58);
+	static_assert(sizeof(SDebugMenuItemData) == 0x70, "Wrong size for SDebugMenuItemData");
+	static_assert(alignof(SDebugMenuItemData) == 0x8, "Wrong alignment for SDebugMenuItemData");
+
 	// Size: 0x4
 	enum class ETemplateType : int32_t
 	{
@@ -10072,7 +10148,29 @@ namespace JSONTemplate {
 		ETT_NVIDIAHIGHLIGHTSAVAILABLE = 155,
 		ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 156,
 		ETT_DEBUG_ALLHITMANSUITS = 157,
+		ETT_DEBUG_MENUITEMS = 158,
+		ETT_DEBUG_MENUITEMVALUE = 159,
 	};
+
+	// Size: 0x18
+	class alignas(8) SDebugMenuItemsResult
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDebugMenuItemsResult& p_Other) const;
+		bool operator!=(const SDebugMenuItemsResult& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SDebugMenuItemData> Items; // 0x0
+	};
+	ZHM_OFFSET_CHECK(SDebugMenuItemsResult, Items, 0x0);
+	static_assert(sizeof(SDebugMenuItemsResult) == 0x18, "Wrong size for SDebugMenuItemsResult");
+	static_assert(alignof(SDebugMenuItemsResult) == 0x8, "Wrong alignment for SDebugMenuItemsResult");
 
 }
 
@@ -15648,6 +15746,28 @@ ZHM_OFFSET_CHECK(SDynamicRayCastEntitySaveData, m_bIsCurrentlyEnabled, 0x2);
 static_assert(sizeof(SDynamicRayCastEntitySaveData) == 0x3, "Wrong size for SDynamicRayCastEntitySaveData");
 static_assert(alignof(SDynamicRayCastEntitySaveData) == 0x1, "Wrong alignment for SDynamicRayCastEntitySaveData");
 
+// Size: 0x8
+class alignas(4) SEntityEventChannelSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SEntityEventChannelSaveData& p_Other) const;
+	bool operator!=(const SEntityEventChannelSaveData& p_Other) const { return !(*this == p_Other); }
+
+	bool m_bEnabled; // 0x0
+	uint32 m_nEntity; // 0x4
+};
+ZHM_OFFSET_CHECK(SEntityEventChannelSaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SEntityEventChannelSaveData, m_nEntity, 0x4);
+static_assert(sizeof(SEntityEventChannelSaveData) == 0x8, "Wrong size for SEntityEventChannelSaveData");
+static_assert(alignof(SEntityEventChannelSaveData) == 0x4, "Wrong alignment for SEntityEventChannelSaveData");
+
 // Size: 0x20
 class alignas(8) SEntityPath
 {
@@ -18271,7 +18391,9 @@ enum class eAmmoType : int32_t
 	eAmmoDartEmetic = 12,
 	eAmmoDartCure = 13,
 	eAmmoShotgunBeanbag = 14,
-	eUnknownAmmoType = 15,
+	eAmmo22LR = 15,
+	eAmmoAirPellet = 16,
+	eUnknownAmmoType = 17,
 };
 
 // Size: 0xC
@@ -21377,6 +21499,52 @@ ZHM_OFFSET_CHECK(SRandomTimerEntitiesSaveData, m_aData, 0x18);
 static_assert(sizeof(SRandomTimerEntitiesSaveData) == 0x30, "Wrong size for SRandomTimerEntitiesSaveData");
 static_assert(alignof(SRandomTimerEntitiesSaveData) == 0x8, "Wrong alignment for SRandomTimerEntitiesSaveData");
 
+// Size: 0x28
+class alignas(8) SRateBasedValueInterpolatorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SRateBasedValueInterpolatorSaveData& p_Other) const;
+	bool operator!=(const SRateBasedValueInterpolatorSaveData& p_Other) const { return !(*this == p_Other); }
+
+	bool m_bInterpolating; // 0x0
+	ZVariant m_target; // 0x8
+	ZVariant m_currentRate; // 0x18
+};
+ZHM_OFFSET_CHECK(SRateBasedValueInterpolatorSaveData, m_bInterpolating, 0x0);
+ZHM_OFFSET_CHECK(SRateBasedValueInterpolatorSaveData, m_target, 0x8);
+ZHM_OFFSET_CHECK(SRateBasedValueInterpolatorSaveData, m_currentRate, 0x18);
+static_assert(sizeof(SRateBasedValueInterpolatorSaveData) == 0x28, "Wrong size for SRateBasedValueInterpolatorSaveData");
+static_assert(alignof(SRateBasedValueInterpolatorSaveData) == 0x8, "Wrong alignment for SRateBasedValueInterpolatorSaveData");
+
+// Size: 0x30
+class alignas(8) SRateBasedSpatialInterpolatorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SRateBasedSpatialInterpolatorSaveData& p_Other) const;
+	bool operator!=(const SRateBasedSpatialInterpolatorSaveData& p_Other) const { return !(*this == p_Other); }
+
+	uint32 m_rSpatial; // 0x0
+	SRateBasedValueInterpolatorSaveData m_data; // 0x8
+};
+ZHM_OFFSET_CHECK(SRateBasedSpatialInterpolatorSaveData, m_rSpatial, 0x0);
+ZHM_OFFSET_CHECK(SRateBasedSpatialInterpolatorSaveData, m_data, 0x8);
+static_assert(sizeof(SRateBasedSpatialInterpolatorSaveData) == 0x30, "Wrong size for SRateBasedSpatialInterpolatorSaveData");
+static_assert(alignof(SRateBasedSpatialInterpolatorSaveData) == 0x8, "Wrong alignment for SRateBasedSpatialInterpolatorSaveData");
+
 // Size: 0x20
 class alignas(8) ZBitArray
 {
@@ -21965,7 +22133,7 @@ ZHM_OFFSET_CHECK(SSentryOrderSaveData, m_rSentryZone, 0x0);
 static_assert(sizeof(SSentryOrderSaveData) == 0x4, "Wrong size for SSentryOrderSaveData");
 static_assert(alignof(SSentryOrderSaveData) == 0x4, "Wrong alignment for SSentryOrderSaveData");
 
-// Size: 0x88
+// Size: 0x90
 class alignas(8) SSentryZoneSaveData
 {
 public:
@@ -22006,6 +22174,7 @@ public:
 	TArray<bool> m_aDisguisesFriskExemptDisabled; // 0x40
 	TArray<bool> m_aDisguisesDontEscalateOnLineCrossingDisabled; // 0x58
 	TArray<uint32> m_ItemsDroppedInZone; // 0x70
+	uint32 m_rDynamicSentry; // 0x88
 };
 ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_tGreetingCooldown, 0x0);
 ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_tLoiteringCooldown, 0x8);
@@ -22034,7 +22203,8 @@ ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_aDisguisesAllowedDisabled, 0x28);
 ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_aDisguisesFriskExemptDisabled, 0x40);
 ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_aDisguisesDontEscalateOnLineCrossingDisabled, 0x58);
 ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_ItemsDroppedInZone, 0x70);
-static_assert(sizeof(SSentryZoneSaveData) == 0x88, "Wrong size for SSentryZoneSaveData");
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_rDynamicSentry, 0x88);
+static_assert(sizeof(SSentryZoneSaveData) == 0x90, "Wrong size for SSentryZoneSaveData");
 static_assert(alignof(SSentryZoneSaveData) == 0x8, "Wrong alignment for SSentryZoneSaveData");
 
 // Size: 0x18
@@ -23252,6 +23422,7 @@ enum class _EUIOptionKey : int32_t
 	UI_OPTION_SOUND_MUTE_MICROPHONE = 1050,
 	UI_OPTION_SOUND_MUTE_OTHER_PLAYER = 1060,
 	UI_OPTION_SOUND_LICENSED_AUDIO = 1070,
+	UI_OPTION_SOUND_MAIN_MENU_MUSIC = 1080,
 	UI_OPTION_SOUND_OUTPUTMODE = 1200,
 	UI_OPTION_SOUND_SIMULATION_QUALITY = 1210,
 	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE = 1220,
@@ -24909,7 +25080,8 @@ public:
 		eCKT_SNAP_AND_TOSS = 1,
 		eCKT_PUSH = 2,
 		eCKT_NO_ANIMATION = 3,
-		eCKT_END = 4,
+		eCKT_INTERRUPT_ANIMATION = 4,
+		eCKT_END = 5,
 	};
 
 	// Size: 0x4
@@ -25341,6 +25513,21 @@ public:
 
 };
 
+class ZDroppedItemMapTrackerAspect
+{
+public:
+	// Size: 0x4
+	enum class EIconType : int32_t
+	{
+		Outfit = 0,
+		MeleeWeapon = 1,
+		FirearmWeapon = 2,
+		Special = 4,
+		Generic = 1000,
+	};
+
+};
+
 // Size: 0x18
 class alignas(8) ZER64
 {
@@ -25382,6 +25569,18 @@ public:
 ZHM_OFFSET_CHECK(ZEntityID, m_sStr, 0x0);
 static_assert(sizeof(ZEntityID) == 0x10, "Wrong size for ZEntityID");
 static_assert(alignof(ZEntityID) == 0x8, "Wrong alignment for ZEntityID");
+
+class ZEntityLifetimeEmitterEntity
+{
+public:
+	// Size: 0x1
+	enum class ELifetimeEvent : int8_t
+	{
+		POST_INIT = 0,
+		ACTIVATE = 1,
+	};
+
+};
 
 class ZEntityPropertyReplica
 {
@@ -28523,6 +28722,32 @@ public:
 
 };
 
+class ZSpatialProxyEntity
+{
+public:
+	// Size: 0x1
+	enum class ETransformBehavior : int8_t
+	{
+		KEEP_WORLD = 0,
+		KEEP_LOCAL = 1,
+		RESET_LOCAL = 2,
+	};
+
+};
+
+class ZSpatialReferenceAspect
+{
+public:
+	// Size: 0x1
+	enum class ETransformBehavior : int8_t
+	{
+		KEEP_WORLD = 0,
+		KEEP_LOCAL = 1,
+		RESET_LOCAL = 2,
+	};
+
+};
+
 class ZSpectatorSituation
 {
 public:
@@ -28777,6 +29002,19 @@ public:
 		Closest = 0,
 		ClosestNext = 1,
 		ClosestPrevious = 2,
+	};
+
+};
+
+class ZTrespassingRuleConditionEntity
+{
+public:
+	// Size: 0x4
+	enum class EEvaluationType : int32_t
+	{
+		ALL = 0,
+		NONE = 1,
+		ANY = 2,
 	};
 
 };
