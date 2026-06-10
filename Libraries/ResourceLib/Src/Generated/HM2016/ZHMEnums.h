@@ -16,6 +16,7 @@ class ZHMEnums
 private:
 	struct EnumRegistrar { EnumRegistrar() { RegisterEnums(); } };
 	static std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>* g_Enums;
+	static std::unordered_map<std::string, uint32_t>* g_EnumSizes;
 	static EnumRegistrar g_Registrar;
 	static void RegisterEnums();
 
@@ -23,4 +24,5 @@ public:
 	static std::string GetEnumValueName(const std::string& p_TypeName, int32_t p_Value);
 	static int32_t GetEnumValueByName(const std::string& p_TypeName, std::string_view p_Name);
 	static bool IsTypeNameEnum(const std::string& p_TypeName);
+	static uint32_t GetEnumSize(const std::string& p_TypeName);
 };

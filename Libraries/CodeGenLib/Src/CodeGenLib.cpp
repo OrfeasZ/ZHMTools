@@ -3,6 +3,7 @@
 #include <io.h>
 
 #include "CodeGen.h"
+#include "Log.h"
 #include "Utils.h"
 #include "ZHMReflection.h"
 
@@ -11,6 +12,8 @@ void GenerateCode(const std::filesystem::path& p_OutputDir)
 	// Create output directory if it doesn't exist.
 	std::error_code s_Error;
 	create_directory(p_OutputDir, s_Error);
+
+	Log_Open(p_OutputDir / "codegen.log");
 	
 	HMODULE s_Module = GetModuleHandleA(nullptr);
 
@@ -45,9 +48,9 @@ void GenerateCode(const std::filesystem::path& p_OutputDir)
 
 	auto* s_TypeRegistry = reinterpret_cast<ZTypeRegistry**>(s_FinalAddr);
 	
-	printf(
-		"Successfully located ZTypeRegistry at address %p => %p => %p\n.", 
-		reinterpret_cast<void*>(s_Target), 
+	log(
+		"Successfully located ZTypeRegistry at address %p => %p => %p\n.",
+		reinterpret_cast<void*>(s_Target),
 		reinterpret_cast<void*>(s_TypeRegistry),
 		reinterpret_cast<void*>(*s_TypeRegistry)
 	);
@@ -71,6 +74,8 @@ void GenerateCode(const std::filesystem::path& p_OutputDir)
 
 	CodeGen s_CodeGenerator;
 	s_CodeGenerator.Generate(types, p_OutputDir);
+
+	Log_Close();
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)

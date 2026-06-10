@@ -3,8 +3,6 @@
 #include <type_traits>
 #include <External/simdjson.h>
 
-#pragma pack(push, 1)
-
 template <typename T, typename Z>
 class TPair
 {
@@ -137,15 +135,4 @@ public:
 public:
 	T first;
 	Z second;
-
-	// NOTE: Unfortunately, because of MSVC limitations, we are only padding the second value.
-	// If at some point the game introduces a pair with a type which has an unaligned size as
-	// the first value, this will break. There's a static assertion below to break compilation
-	// if this happens.
-	char _pad1[((sizeof(Z) + 7) & (-8)) - sizeof(Z)] {};
-
-	static_assert((((sizeof(T) + 7) & (-8)) - sizeof(T)) == 0, "First type of TPair has an unaligned size. This is currently not supported.");
 };
-
-
-#pragma pack(pop)

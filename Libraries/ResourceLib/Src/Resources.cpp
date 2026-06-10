@@ -12,6 +12,8 @@
 #include <Generated/HM2/ZHMGen.h>
 #elif ZHM_TARGET == 2016
 #include <Generated/HM2016/ZHMGen.h>
+#elif ZHM_TARGET == 2026
+#include <Generated/KNT/ZHMGen.h>
 #endif
 
 #define REGISTER_RESOURCE(ResourceName, ResourceType) { #ResourceName, Resource(CreateResourceConverter<ResourceType>(), CreateResourceGenerator<ResourceType>()) },
@@ -25,12 +27,16 @@ std::unordered_map<std::string, Resource> g_Resources = {
 #endif
 	
 	REGISTER_RESOURCE(TBLU, STemplateEntityBlueprint)
+
+#if ZHM_TARGET != 2026
 	REGISTER_RESOURCE(AIRG, SReasoningGrid)
 	REGISTER_RESOURCE(ASVA, TArray<SPackedAnimSetEntry>)
 	REGISTER_RESOURCE(ATMD, ZAMDTake)
+	REGISTER_RESOURCE(UICB, SUIControlBlueprint) // TODO: KNT
+	REGISTER_RESOURCE(RTLV, SLocalizedVideoDataDecrypted) // TODO: KNT
+#endif
+
 	REGISTER_RESOURCE(VIDB, SVideoDatabaseData)
-	REGISTER_RESOURCE(RTLV, SLocalizedVideoDataDecrypted)
-	REGISTER_RESOURCE(UICB, SUIControlBlueprint)
 	REGISTER_RESOURCE(CBLU, SCppEntityBlueprint)
 	REGISTER_RESOURCE(CPPT, SCppEntity)
 	REGISTER_RESOURCE(CRMD, SCrowdMapData)
@@ -43,7 +49,18 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	REGISTER_RESOURCE(ECPB, SExtendedCppEntityBlueprint)
 #endif
 
-#if ZHM_TARGET == 3 || ZHM_TARGET == 2
+#if ZHM_TARGET == 3 || ZHM_TARGET == 2 || ZHM_TARGET == 2026
 	REGISTER_RESOURCE(ENUM, SEnumType)
+#endif
+
+#if ZHM_TARGET == 2026
+	REGISTER_RESOURCE(KWOR, SSerializedKeyword)
+	REGISTER_RESOURCE(TDAT, STerrainResource)
+	REGISTER_RESOURCE(TDPK, STerrainDataPackage)
+	// TODO: WEMD
+	// TODO: WSWB
+	// TODO: GFXA
+	// TODO: ORES
+	// TODO: CLRP
 #endif
 };

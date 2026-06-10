@@ -93,6 +93,22 @@ public static class ResourceLib
         [DllImport("ResourceLib_HM2016.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern bool HM2016_IsResourceTypeSupported(string p_ResourceType);
 
+        // KNT (007 First Light)
+        [DllImport("ResourceLib_KNT.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern IntPtr KNT_GetConverterForResource(string p_ResourceType);
+
+        [DllImport("ResourceLib_KNT.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern IntPtr KNT_GetGeneratorForResource(string p_ResourceType);
+
+        [DllImport("ResourceLib_KNT.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr KNT_GetSupportedResourceTypes();
+
+        [DllImport("ResourceLib_KNT.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void KNT_FreeSupportedResourceTypes(IntPtr p_Array);
+
+        [DllImport("ResourceLib_KNT.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern bool KNT_IsResourceTypeSupported(string p_ResourceType);
+
         // ResourceConverter method declarations.
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public delegate bool FromResourceFileToJsonFileDelegate(string p_ResourceFilePath, string p_OutputFilePath);
@@ -173,6 +189,7 @@ public static class ResourceLib
         Hitman2016,
         Hitman2,
         Hitman3,
+        FirstLight007,
     }
 
     public class ResourceConverter
@@ -186,6 +203,7 @@ public static class ResourceLib
                 Game.Hitman2016 => Native.HM2016_GetConverterForResource(p_ResourceType),
                 Game.Hitman2 => Native.HM2_GetConverterForResource(p_ResourceType),
                 Game.Hitman3 => Native.HM3_GetConverterForResource(p_ResourceType),
+                Game.FirstLight007 => Native.KNT_GetConverterForResource(p_ResourceType),
                 _ => throw new ArgumentOutOfRangeException(nameof(p_Game), p_Game, null)
             };
             
@@ -256,6 +274,7 @@ public static class ResourceLib
                 Game.Hitman2016 => Native.HM2016_GetGeneratorForResource(p_ResourceType),
                 Game.Hitman2 => Native.HM2_GetGeneratorForResource(p_ResourceType),
                 Game.Hitman3 => Native.HM3_GetGeneratorForResource(p_ResourceType),
+                Game.FirstLight007 => Native.KNT_GetGeneratorForResource(p_ResourceType),
                 _ => throw new ArgumentOutOfRangeException(nameof(p_Game), p_Game, null)
             };
             
@@ -313,6 +332,7 @@ public static class ResourceLib
             Game.Hitman2016 => Native.HM2016_GetSupportedResourceTypes(),
             Game.Hitman2 => Native.HM2_GetSupportedResourceTypes(),
             Game.Hitman3 => Native.HM3_GetSupportedResourceTypes(),
+            Game.FirstLight007 => Native.KNT_GetSupportedResourceTypes(),
             _ => throw new ArgumentOutOfRangeException(nameof(p_Game), p_Game, null)
         };
         
@@ -337,6 +357,10 @@ public static class ResourceLib
             case Game.Hitman3:
                 Native.HM3_FreeSupportedResourceTypes(s_SupportedResourcesPtr);
                 break;
+
+            case Game.FirstLight007:
+                Native.KNT_FreeSupportedResourceTypes(s_SupportedResourcesPtr);
+                break;
         }
         
         return s_SupportedResources;
@@ -349,6 +373,7 @@ public static class ResourceLib
             Game.Hitman2016 => Native.HM2016_IsResourceTypeSupported(p_ResourceType),
             Game.Hitman2 => Native.HM2_IsResourceTypeSupported(p_ResourceType),
             Game.Hitman3 => Native.HM3_IsResourceTypeSupported(p_ResourceType),
+            Game.FirstLight007 => Native.KNT_IsResourceTypeSupported(p_ResourceType),
             _ => throw new ArgumentOutOfRangeException(nameof(p_Game), p_Game, null)
         };
     }

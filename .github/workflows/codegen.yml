@@ -1,0 +1,59 @@
+name: CodeGen
+
+on:
+  push:
+    branches-ignore:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build_codegen:
+    name: Build CodeGen (Windows)
+    runs-on: [ windows-latest ]
+
+    steps:
+    - name: Get latest CMake and ninja
+      uses: lukka/get-cmake@latest
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Setup VS environment
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x64
+
+    - name: Generate projects
+      run: |
+        mkdir _build
+        cd _build
+        cmake -G Ninja `
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+          -DCMAKE_CXX_COMPILER=cl `
+          -DCMAKE_C_COMPILER=cl `
+          ..
+
+    - name: Build CodeGen and PropertyBundler
+      run: |
+        cmake --build _build --target CodeGen --target PropertyBundler -j2
+
+    - name: Copy CodeGen artifacts
+      run: |
+        cd _build
+        mkdir _codegen
+        Copy-Item CodeGen.exe -Destination _codegen/
+        Copy-Item CodeGen.pdb -Destination _codegen/
+        Copy-Item CodeGenLib.dll -Destination _codegen/
+        Copy-Item CodeGenLib.pdb -Destination _codegen/
+        Copy-Item PropertyBundler.exe -Destination _codegen/
+        Copy-Item PropertyBundler.pdb -Destination _codegen/
+        Copy-Item ../LICENSE -Destination _codegen/
+
+    - name: Archive CodeGen
+      uses: actions/upload-artifact@v4
+      with:
+        name: CodeGen-win-x64
+        path: |
+          _build/_codegen/*

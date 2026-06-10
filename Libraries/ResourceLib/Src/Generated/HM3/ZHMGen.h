@@ -7,12 +7,11 @@
 
 #pragma once
 
+#include <cstddef>
 #include <ZHM/ZHMPrimitives.h>
 #include <ZHM/ZHMTypeInfo.h>
 
 class ZHMTypeInfo;
-
-#pragma pack(push, 1)
 
 // Size: 0x4
 enum class EAIEventType : int32_t
@@ -250,119 +249,10 @@ enum class EAIEventType : int32_t
 };
 
 namespace AI {
-	// Size: 0x10
-	class /*alignas(4)*/ SEventDescription	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SEventDescription& p_Other) const;
-		bool operator!=(const SEventDescription& p_Other) const { return !(*this == p_Other); }
-
-		EAIEventType m_eEventType; // 0x0
-		bool m_bPulsing; // 0x4
-		uint8_t _pad5[3] {};
-		float32 m_fRange; // 0x8
-		float32 m_fLoudness; // 0xC
-	};
-
-	// Size: 0x8
-	class /*alignas(4)*/ SSoundEventModifierState	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SSoundEventModifierState& p_Other) const;
-		bool operator!=(const SSoundEventModifierState& p_Other) const { return !(*this == p_Other); }
-
-		float32 m_fRangeModifier; // 0x0
-		float32 m_fLoudnessModifier; // 0x4
-	};
-
-	// Size: 0x18
-	class /*alignas(8)*/ SFirePattern02	{
-	public:
-		// Size: 0x10
-		class /*alignas(4)*/ SData		{
-		public:
-			static ZHMTypeInfo TypeInfo;
-			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-			static bool Equals(void* p_Left, void* p_Right);
-			static void Destroy(void* p_Object);
-
-			bool operator==(const SData& p_Other) const;
-			bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
-
-			float32 m_FireMinSeconds; // 0x0
-			float32 m_FireMaxSeconds; // 0x4
-			float32 m_WaitMinSeconds; // 0x8
-			float32 m_WaitMaxSeconds; // 0xC
-		};
-
-
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SFirePattern02& p_Other) const;
-		bool operator!=(const SFirePattern02& p_Other) const { return !(*this == p_Other); }
-
-		TArray<AI::SFirePattern02::SData> m_PatternSequenceData; // 0x0
-	};
-
-	// Size: 0x18
-	class /*alignas(8)*/ SFirePattern01	{
-	public:
-		// Size: 0xC
-		class /*alignas(4)*/ SData		{
-		public:
-			static ZHMTypeInfo TypeInfo;
-			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-			static bool Equals(void* p_Left, void* p_Right);
-			static void Destroy(void* p_Object);
-
-			bool operator==(const SData& p_Other) const;
-			bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
-
-			uint32 m_BulletsToFire; // 0x0
-			float32 m_WaitMinSeconds; // 0x4
-			float32 m_WaitMaxSeconds; // 0x8
-		};
-
-
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SFirePattern01& p_Other) const;
-		bool operator!=(const SFirePattern01& p_Other) const { return !(*this == p_Other); }
-
-		TArray<AI::SFirePattern01::SData> m_PatternSequenceData; // 0x0
-	};
-
 	namespace Private {
 		// Size: 0x40
-		class /*alignas(8)*/ SPoolModificationEvent		{
+		class alignas(8) SPoolModificationEvent
+		{
 		public:
 			static ZHMTypeInfo TypeInfo;
 			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -377,16 +267,24 @@ namespace AI {
 			uint32 StimulusTypeId; // 0x0
 			uint32 SlotIndex; // 0x4
 			uint32 OperationId; // 0x8
-			uint8_t _padC[4] {};
 			ZString StimulusData; // 0x10
 			uint64 Timestamp; // 0x20
 			uint32 EventIndex; // 0x28
-			uint8_t _pad2C[4] {};
 			ZString EventMetaData; // 0x30
 		};
+		ZHM_OFFSET_CHECK(SPoolModificationEvent, StimulusTypeId, 0x0);
+		ZHM_OFFSET_CHECK(SPoolModificationEvent, SlotIndex, 0x4);
+		ZHM_OFFSET_CHECK(SPoolModificationEvent, OperationId, 0x8);
+		ZHM_OFFSET_CHECK(SPoolModificationEvent, StimulusData, 0x10);
+		ZHM_OFFSET_CHECK(SPoolModificationEvent, Timestamp, 0x20);
+		ZHM_OFFSET_CHECK(SPoolModificationEvent, EventIndex, 0x28);
+		ZHM_OFFSET_CHECK(SPoolModificationEvent, EventMetaData, 0x30);
+		static_assert(sizeof(SPoolModificationEvent) == 0x40, "Wrong size for SPoolModificationEvent");
+		static_assert(alignof(SPoolModificationEvent) == 0x8, "Wrong alignment for SPoolModificationEvent");
 
 		// Size: 0x18
-		class /*alignas(8)*/ SStimulusSnapshot		{
+		class alignas(8) SStimulusSnapshot
+		{
 		public:
 			static ZHMTypeInfo TypeInfo;
 			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -399,12 +297,16 @@ namespace AI {
 			bool operator!=(const SStimulusSnapshot& p_Other) const { return !(*this == p_Other); }
 
 			uint32 SlotIndex; // 0x0
-			uint8_t _pad4[4] {};
 			ZString StimulusData; // 0x8
 		};
+		ZHM_OFFSET_CHECK(SStimulusSnapshot, SlotIndex, 0x0);
+		ZHM_OFFSET_CHECK(SStimulusSnapshot, StimulusData, 0x8);
+		static_assert(sizeof(SStimulusSnapshot) == 0x18, "Wrong size for SStimulusSnapshot");
+		static_assert(alignof(SStimulusSnapshot) == 0x8, "Wrong alignment for SStimulusSnapshot");
 
 		// Size: 0x30
-		class /*alignas(8)*/ SPoolSnapshot		{
+		class alignas(8) SPoolSnapshot
+		{
 		public:
 			static ZHMTypeInfo TypeInfo;
 			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -421,45 +323,37 @@ namespace AI {
 			uint32 PoolSize; // 0x14
 			TArray<AI::Private::SStimulusSnapshot> Stimuli; // 0x18
 		};
-
-		// Size: 0x18
-		class /*alignas(8)*/ SPoolModificationCollectionEvent		{
-		public:
-			static ZHMTypeInfo TypeInfo;
-			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-			static bool Equals(void* p_Left, void* p_Right);
-			static void Destroy(void* p_Object);
-
-			bool operator==(const SPoolModificationCollectionEvent& p_Other) const;
-			bool operator!=(const SPoolModificationCollectionEvent& p_Other) const { return !(*this == p_Other); }
-
-			TArray<AI::Private::SPoolModificationEvent> PoolModificationEvents; // 0x0
-		};
-
-		// Size: 0x28
-		class /*alignas(8)*/ SFullDataSnapshotEvent		{
-		public:
-			static ZHMTypeInfo TypeInfo;
-			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-			static bool Equals(void* p_Left, void* p_Right);
-			static void Destroy(void* p_Object);
-
-			bool operator==(const SFullDataSnapshotEvent& p_Other) const;
-			bool operator!=(const SFullDataSnapshotEvent& p_Other) const { return !(*this == p_Other); }
-
-			uint64 Timestamp; // 0x0
-			uint32 EventIndex; // 0x8
-			uint8_t _padC[4] {};
-			TArray<AI::Private::SPoolSnapshot> StimulusPools; // 0x10
-		};
+		ZHM_OFFSET_CHECK(SPoolSnapshot, StimulusTypeName, 0x0);
+		ZHM_OFFSET_CHECK(SPoolSnapshot, StimulusTypeId, 0x10);
+		ZHM_OFFSET_CHECK(SPoolSnapshot, PoolSize, 0x14);
+		ZHM_OFFSET_CHECK(SPoolSnapshot, Stimuli, 0x18);
+		static_assert(sizeof(SPoolSnapshot) == 0x30, "Wrong size for SPoolSnapshot");
+		static_assert(alignof(SPoolSnapshot) == 0x8, "Wrong alignment for SPoolSnapshot");
 
 		namespace Details {
+			// Size: 0x4
+			class alignas(4) SStimulus_AgentData_SaveData
+			{
+			public:
+				static ZHMTypeInfo TypeInfo;
+				static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+				static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+				static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+				static bool Equals(void* p_Left, void* p_Right);
+				static void Destroy(void* p_Object);
+
+				bool operator==(const SStimulus_AgentData_SaveData& p_Other) const;
+				bool operator!=(const SStimulus_AgentData_SaveData& p_Other) const { return !(*this == p_Other); }
+
+				uint32 m_AgentData; // 0x0
+			};
+			ZHM_OFFSET_CHECK(SStimulus_AgentData_SaveData, m_AgentData, 0x0);
+			static_assert(sizeof(SStimulus_AgentData_SaveData) == 0x4, "Wrong size for SStimulus_AgentData_SaveData");
+			static_assert(alignof(SStimulus_AgentData_SaveData) == 0x4, "Wrong alignment for SStimulus_AgentData_SaveData");
+
 			// Size: 0x48
-			class /*alignas(8)*/ SBaseStimulus_Pool_SaveData			{
+			class alignas(8) SBaseStimulus_Pool_SaveData
+			{
 			public:
 				static ZHMTypeInfo TypeInfo;
 				static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -475,26 +369,201 @@ namespace AI {
 				TArray<int16> m_UsageRepresentation; // 0x18
 				TArray<uint16> m_FreeIndices; // 0x30
 			};
-
-			// Size: 0x4
-			class /*alignas(4)*/ SStimulus_AgentData_SaveData			{
-			public:
-				static ZHMTypeInfo TypeInfo;
-				static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-				static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-				static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-				static bool Equals(void* p_Left, void* p_Right);
-				static void Destroy(void* p_Object);
-
-				bool operator==(const SStimulus_AgentData_SaveData& p_Other) const;
-				bool operator!=(const SStimulus_AgentData_SaveData& p_Other) const { return !(*this == p_Other); }
-
-				uint32 m_AgentData; // 0x0
-			};
+			ZHM_OFFSET_CHECK(SBaseStimulus_Pool_SaveData, m_SlotDetails, 0x0);
+			ZHM_OFFSET_CHECK(SBaseStimulus_Pool_SaveData, m_UsageRepresentation, 0x18);
+			ZHM_OFFSET_CHECK(SBaseStimulus_Pool_SaveData, m_FreeIndices, 0x30);
+			static_assert(sizeof(SBaseStimulus_Pool_SaveData) == 0x48, "Wrong size for SBaseStimulus_Pool_SaveData");
+			static_assert(alignof(SBaseStimulus_Pool_SaveData) == 0x8, "Wrong alignment for SBaseStimulus_Pool_SaveData");
 
 		}
 
+		// Size: 0x28
+		class alignas(8) SFullDataSnapshotEvent
+		{
+		public:
+			static ZHMTypeInfo TypeInfo;
+			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+			static bool Equals(void* p_Left, void* p_Right);
+			static void Destroy(void* p_Object);
+
+			bool operator==(const SFullDataSnapshotEvent& p_Other) const;
+			bool operator!=(const SFullDataSnapshotEvent& p_Other) const { return !(*this == p_Other); }
+
+			uint64 Timestamp; // 0x0
+			uint32 EventIndex; // 0x8
+			TArray<AI::Private::SPoolSnapshot> StimulusPools; // 0x10
+		};
+		ZHM_OFFSET_CHECK(SFullDataSnapshotEvent, Timestamp, 0x0);
+		ZHM_OFFSET_CHECK(SFullDataSnapshotEvent, EventIndex, 0x8);
+		ZHM_OFFSET_CHECK(SFullDataSnapshotEvent, StimulusPools, 0x10);
+		static_assert(sizeof(SFullDataSnapshotEvent) == 0x28, "Wrong size for SFullDataSnapshotEvent");
+		static_assert(alignof(SFullDataSnapshotEvent) == 0x8, "Wrong alignment for SFullDataSnapshotEvent");
+
+		// Size: 0x18
+		class alignas(8) SPoolModificationCollectionEvent
+		{
+		public:
+			static ZHMTypeInfo TypeInfo;
+			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+			static bool Equals(void* p_Left, void* p_Right);
+			static void Destroy(void* p_Object);
+
+			bool operator==(const SPoolModificationCollectionEvent& p_Other) const;
+			bool operator!=(const SPoolModificationCollectionEvent& p_Other) const { return !(*this == p_Other); }
+
+			TArray<AI::Private::SPoolModificationEvent> PoolModificationEvents; // 0x0
+		};
+		ZHM_OFFSET_CHECK(SPoolModificationCollectionEvent, PoolModificationEvents, 0x0);
+		static_assert(sizeof(SPoolModificationCollectionEvent) == 0x18, "Wrong size for SPoolModificationCollectionEvent");
+		static_assert(alignof(SPoolModificationCollectionEvent) == 0x8, "Wrong alignment for SPoolModificationCollectionEvent");
+
 	}
+
+	// Size: 0x10
+	class alignas(4) SEventDescription
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SEventDescription& p_Other) const;
+		bool operator!=(const SEventDescription& p_Other) const { return !(*this == p_Other); }
+
+		EAIEventType m_eEventType; // 0x0
+		bool m_bPulsing; // 0x4
+		float32 m_fRange; // 0x8
+		float32 m_fLoudness; // 0xC
+	};
+	ZHM_OFFSET_CHECK(SEventDescription, m_eEventType, 0x0);
+	ZHM_OFFSET_CHECK(SEventDescription, m_bPulsing, 0x4);
+	ZHM_OFFSET_CHECK(SEventDescription, m_fRange, 0x8);
+	ZHM_OFFSET_CHECK(SEventDescription, m_fLoudness, 0xC);
+	static_assert(sizeof(SEventDescription) == 0x10, "Wrong size for SEventDescription");
+	static_assert(alignof(SEventDescription) == 0x4, "Wrong alignment for SEventDescription");
+
+	// Size: 0x18
+	class alignas(8) SFirePattern01
+	{
+	public:
+		// Size: 0xC
+		class alignas(4) SData
+		{
+		public:
+			static ZHMTypeInfo TypeInfo;
+			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+			static bool Equals(void* p_Left, void* p_Right);
+			static void Destroy(void* p_Object);
+
+			bool operator==(const SData& p_Other) const;
+			bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+			uint32 m_BulletsToFire; // 0x0
+			float32 m_WaitMinSeconds; // 0x4
+			float32 m_WaitMaxSeconds; // 0x8
+		};
+		ZHM_OFFSET_CHECK(SData, m_BulletsToFire, 0x0);
+		ZHM_OFFSET_CHECK(SData, m_WaitMinSeconds, 0x4);
+		ZHM_OFFSET_CHECK(SData, m_WaitMaxSeconds, 0x8);
+		static_assert(sizeof(SData) == 0xC, "Wrong size for SData");
+		static_assert(alignof(SData) == 0x4, "Wrong alignment for SData");
+
+
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SFirePattern01& p_Other) const;
+		bool operator!=(const SFirePattern01& p_Other) const { return !(*this == p_Other); }
+
+		TArray<AI::SFirePattern01::SData> m_PatternSequenceData; // 0x0
+	};
+	ZHM_OFFSET_CHECK(SFirePattern01, m_PatternSequenceData, 0x0);
+	static_assert(sizeof(SFirePattern01) == 0x18, "Wrong size for SFirePattern01");
+	static_assert(alignof(SFirePattern01) == 0x8, "Wrong alignment for SFirePattern01");
+
+	// Size: 0x18
+	class alignas(8) SFirePattern02
+	{
+	public:
+		// Size: 0x10
+		class alignas(4) SData
+		{
+		public:
+			static ZHMTypeInfo TypeInfo;
+			static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+			static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+			static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+			static bool Equals(void* p_Left, void* p_Right);
+			static void Destroy(void* p_Object);
+
+			bool operator==(const SData& p_Other) const;
+			bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
+
+			float32 m_FireMinSeconds; // 0x0
+			float32 m_FireMaxSeconds; // 0x4
+			float32 m_WaitMinSeconds; // 0x8
+			float32 m_WaitMaxSeconds; // 0xC
+		};
+		ZHM_OFFSET_CHECK(SData, m_FireMinSeconds, 0x0);
+		ZHM_OFFSET_CHECK(SData, m_FireMaxSeconds, 0x4);
+		ZHM_OFFSET_CHECK(SData, m_WaitMinSeconds, 0x8);
+		ZHM_OFFSET_CHECK(SData, m_WaitMaxSeconds, 0xC);
+		static_assert(sizeof(SData) == 0x10, "Wrong size for SData");
+		static_assert(alignof(SData) == 0x4, "Wrong alignment for SData");
+
+
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SFirePattern02& p_Other) const;
+		bool operator!=(const SFirePattern02& p_Other) const { return !(*this == p_Other); }
+
+		TArray<AI::SFirePattern02::SData> m_PatternSequenceData; // 0x0
+	};
+	ZHM_OFFSET_CHECK(SFirePattern02, m_PatternSequenceData, 0x0);
+	static_assert(sizeof(SFirePattern02) == 0x18, "Wrong size for SFirePattern02");
+	static_assert(alignof(SFirePattern02) == 0x8, "Wrong alignment for SFirePattern02");
+
+	// Size: 0x8
+	class alignas(4) SSoundEventModifierState
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SSoundEventModifierState& p_Other) const;
+		bool operator!=(const SSoundEventModifierState& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_fRangeModifier; // 0x0
+		float32 m_fLoudnessModifier; // 0x4
+	};
+	ZHM_OFFSET_CHECK(SSoundEventModifierState, m_fRangeModifier, 0x0);
+	ZHM_OFFSET_CHECK(SSoundEventModifierState, m_fLoudnessModifier, 0x4);
+	static_assert(sizeof(SSoundEventModifierState) == 0x8, "Wrong size for SSoundEventModifierState");
+	static_assert(alignof(SSoundEventModifierState) == 0x4, "Wrong alignment for SSoundEventModifierState");
 
 }
 
@@ -503,7 +572,8 @@ namespace AIFramework {
 
 namespace AnimationEventDataTypes {
 	// Size: 0x4
-	class /*alignas(4)*/ SBlend	{
+	class alignas(4) SBlend
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -517,9 +587,13 @@ namespace AnimationEventDataTypes {
 
 		float32 m_fBlendTime; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SBlend, m_fBlendTime, 0x0);
+	static_assert(sizeof(SBlend) == 0x4, "Wrong size for SBlend");
+	static_assert(alignof(SBlend) == 0x4, "Wrong alignment for SBlend");
 
 	// Size: 0x4
-	class /*alignas(4)*/ SLegacy	{
+	class alignas(4) SLegacy
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -533,11 +607,15 @@ namespace AnimationEventDataTypes {
 
 		int32 m_nEventID; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SLegacy, m_nEventID, 0x0);
+	static_assert(sizeof(SLegacy) == 0x4, "Wrong size for SLegacy");
+	static_assert(alignof(SLegacy) == 0x4, "Wrong alignment for SLegacy");
 
 }
 
 // Size: 0x8
-class /*alignas(4)*/ ZRuntimeResourceID{
+class alignas(4) ZRuntimeResourceID
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -552,10 +630,15 @@ public:
 	uint32 m_IDHigh; // 0x0
 	uint32 m_IDLow; // 0x4
 };
+ZHM_OFFSET_CHECK(ZRuntimeResourceID, m_IDHigh, 0x0);
+ZHM_OFFSET_CHECK(ZRuntimeResourceID, m_IDLow, 0x4);
+static_assert(sizeof(ZRuntimeResourceID) == 0x8, "Wrong size for ZRuntimeResourceID");
+static_assert(alignof(ZRuntimeResourceID) == 0x4, "Wrong alignment for ZRuntimeResourceID");
 
 namespace AnimationTakeDataTypes {
 	// Size: 0xC
-	class /*alignas(4)*/ SGeneric	{
+	class alignas(4) SGeneric
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -570,6 +653,10 @@ namespace AnimationTakeDataTypes {
 		float32 m_fTest; // 0x0
 		ZRuntimeResourceID m_fResourceTest; // 0x4
 	};
+	ZHM_OFFSET_CHECK(SGeneric, m_fTest, 0x0);
+	ZHM_OFFSET_CHECK(SGeneric, m_fResourceTest, 0x4);
+	static_assert(sizeof(SGeneric) == 0xC, "Wrong size for SGeneric");
+	static_assert(alignof(SGeneric) == 0x4, "Wrong alignment for SGeneric");
 
 }
 
@@ -598,8 +685,8 @@ enum class AudioEventCullingBehavior : int8_t
 	NoDistanceCulling = 3,
 };
 
-// Size: 0x1
-class /*alignas(1)*/ BoneId{
+class BoneId
+{
 public:
 	// Size: 0x4
 	enum class Enum : int32_t
@@ -751,19 +838,6 @@ public:
 		BONEID_LAST = 144,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const BoneId& p_Other) const;
-	bool operator!=(const BoneId& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[1] {};
 };
 
 namespace CrowdMapImpl {
@@ -2876,6 +2950,7 @@ enum class EActorVoiceVariation : int32_t
 	eAVV_ET_BAIJ = 586,
 	eAVV_ET_BELINI = 587,
 	eAVV_ET_FILUR = 588,
+	eAVV_ET_POMADA = 589,
 };
 
 // Size: 0x4
@@ -7248,6 +7323,13 @@ enum class ERagdollPart : int8_t
 };
 
 // Size: 0x4
+enum class ERateBasedValueInterpolatorState : int32_t
+{
+	IDLE = 0,
+	INTERPOLATING = 1,
+};
+
+// Size: 0x4
 enum class ERatingCategory : int32_t
 {
 	ERatingCategory_Invalid = 0,
@@ -7495,6 +7577,9 @@ enum class ERequirementId : int32_t
 	EREQUIREMENT_H3_ET_BAIJU = 68,
 	EREQUIREMENT_H3_ET_BELLINI = 69,
 	EREQUIREMENT_H3_ET_FILUR = 70,
+	EREQUIREMENT_H3_VANITY_SPORT = 71,
+	EREQUIREMENT_H3_ET_POMADA = 72,
+	EREQUIREMENT_H3_ET_PENICILLIN_ITEMS = 73,
 };
 
 // Size: 0x1
@@ -9058,24 +9143,9 @@ enum class GameLobbyState : int32_t
 	GLS_InGame = 8,
 };
 
-// Size: 0x8
-class /*alignas(4)*/ ZResourcePtr{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZResourcePtr& p_Other) const;
-	bool operator!=(const ZResourcePtr& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
 // Size: 0xC
-class /*alignas(4)*/ SVector3{
+class alignas(4) SVector3
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -9091,25 +9161,15 @@ public:
 	float32 y; // 0x4
 	float32 z; // 0x8
 };
-
-// Size: 0x8
-class /*alignas(0)*/ IBoneAnimator{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IBoneAnimator& p_Other) const;
-	bool operator!=(const IBoneAnimator& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
+ZHM_OFFSET_CHECK(SVector3, x, 0x0);
+ZHM_OFFSET_CHECK(SVector3, y, 0x4);
+ZHM_OFFSET_CHECK(SVector3, z, 0x8);
+static_assert(sizeof(SVector3) == 0xC, "Wrong size for SVector3");
+static_assert(alignof(SVector3) == 0x4, "Wrong alignment for SVector3");
 
 // Size: 0x30
-class /*alignas(4)*/ SMatrix43{
+class alignas(4) SMatrix43
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -9126,6 +9186,12 @@ public:
 	SVector3 ZAxis; // 0x18
 	SVector3 Trans; // 0x24
 };
+ZHM_OFFSET_CHECK(SMatrix43, XAxis, 0x0);
+ZHM_OFFSET_CHECK(SMatrix43, YAxis, 0xC);
+ZHM_OFFSET_CHECK(SMatrix43, ZAxis, 0x18);
+ZHM_OFFSET_CHECK(SMatrix43, Trans, 0x24);
+static_assert(sizeof(SMatrix43) == 0x30, "Wrong size for SMatrix43");
+static_assert(alignof(SMatrix43) == 0x4, "Wrong alignment for SMatrix43");
 
 class ZSpatialEntity
 {
@@ -9138,134 +9204,6 @@ public:
 		ROOM_STATIC_OUTSIDE_CLIENT = 2,
 	};
 
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IComponentInterface{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IComponentInterface& p_Other) const;
-	bool operator!=(const IComponentInterface& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IActor{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IActor& p_Other) const;
-	bool operator!=(const IActor& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IActorProvider{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IActorProvider& p_Other) const;
-	bool operator!=(const IActorProvider& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IActorProviderFilter{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IActorProviderFilter& p_Other) const;
-	bool operator!=(const IActorProviderFilter& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IAnimPlayerEntity{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IAnimPlayerEntity& p_Other) const;
-	bool operator!=(const IAnimPlayerEntity& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IBodybagEntity{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IBodybagEntity& p_Other) const;
-	bool operator!=(const IBodybagEntity& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IBoneCollidable{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IBoneCollidable& p_Other) const;
-	bool operator!=(const IBoneCollidable& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IBulletImpactListener{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IBulletImpactListener& p_Other) const;
-	bool operator!=(const IBulletImpactListener& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
 };
 
 class ICameraEntity
@@ -9295,8 +9233,8 @@ public:
 
 };
 
-// Size: 0x8
-class /*alignas(0)*/ IContractEvaluationContextListener{
+class IContractEvaluationContextListener
+{
 public:
 	// Size: 0x4
 	enum class EListenerType : int32_t
@@ -9312,39 +9250,11 @@ public:
 		eMATCHARRAYS = 8,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IContractEvaluationContextListener& p_Other) const;
-	bool operator!=(const IContractEvaluationContextListener& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x18
-class /*alignas(0)*/ IContractModule{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IContractModule& p_Other) const;
-	bool operator!=(const IContractModule& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[24] {};
 };
 
 // Size: 0x10
-class /*alignas(8)*/ ZDynamicObject{
+class alignas(8) ZDynamicObject
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -9358,9 +9268,13 @@ public:
 
 	ZVariant m_value; // 0x0
 };
+ZHM_OFFSET_CHECK(ZDynamicObject, m_value, 0x0);
+static_assert(sizeof(ZDynamicObject) == 0x10, "Wrong size for ZDynamicObject");
+static_assert(alignof(ZDynamicObject) == 0x8, "Wrong alignment for ZDynamicObject");
 
 // Size: 0x10
-class /*alignas(8)*/ ZGuid{
+class alignas(8) ZGuid
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -9384,9 +9298,22 @@ public:
 	uint8 _j; // 0xE
 	uint8 _k; // 0xF
 };
+ZHM_OFFSET_CHECK(ZGuid, _a, 0x0);
+ZHM_OFFSET_CHECK(ZGuid, _b, 0x4);
+ZHM_OFFSET_CHECK(ZGuid, _c, 0x6);
+ZHM_OFFSET_CHECK(ZGuid, _d, 0x8);
+ZHM_OFFSET_CHECK(ZGuid, _e, 0x9);
+ZHM_OFFSET_CHECK(ZGuid, _f, 0xA);
+ZHM_OFFSET_CHECK(ZGuid, _g, 0xB);
+ZHM_OFFSET_CHECK(ZGuid, _h, 0xC);
+ZHM_OFFSET_CHECK(ZGuid, _i, 0xD);
+ZHM_OFFSET_CHECK(ZGuid, _j, 0xE);
+ZHM_OFFSET_CHECK(ZGuid, _k, 0xF);
+static_assert(sizeof(ZGuid) == 0x10, "Wrong size for ZGuid");
+static_assert(alignof(ZGuid) == 0x8, "Wrong alignment for ZGuid");
 
-// Size: 0x8
-class /*alignas(0)*/ IContractObjective{
+class IContractObjective
+{
 public:
 	// Size: 0x4
 	enum class Category : int32_t
@@ -9405,23 +9332,9 @@ public:
 		CUSTOM = 3,
 	};
 
-	// Size: 0x4
-	enum class State : int32_t
-	{
-		IN_PROGRESS = 0,
-		COMPLETED = 1,
-		FAILED = 2,
-	};
-
-	// Size: 0x4
-	enum class Type : int32_t
-	{
-		CONTRACT_OBJ_EVENT_BASED = 0,
-		CONTRACT_OBJ_SM_BASED = 1,
-	};
-
 	// Size: 0x30
-	class /*alignas(8)*/ SCounterData	{
+	class alignas(8) SCounterData
+	{
 	public:
 		// Size: 0x4
 		enum class ECounterType : int32_t
@@ -9447,54 +9360,30 @@ public:
 		int32 m_nDeactivate; // 0x14
 		ZDynamicObject m_dExtraData; // 0x18
 		IContractObjective::SCounterData::ECounterType m_eType; // 0x28
-		uint8_t _pad2C[4] {};
+	};
+	ZHM_OFFSET_CHECK(SCounterData, m_sHeader, 0x0);
+	ZHM_OFFSET_CHECK(SCounterData, m_nCount, 0x10);
+	ZHM_OFFSET_CHECK(SCounterData, m_nDeactivate, 0x14);
+	ZHM_OFFSET_CHECK(SCounterData, m_dExtraData, 0x18);
+	ZHM_OFFSET_CHECK(SCounterData, m_eType, 0x28);
+	static_assert(sizeof(SCounterData) == 0x30, "Wrong size for SCounterData");
+	static_assert(alignof(SCounterData) == 0x8, "Wrong alignment for SCounterData");
+
+	// Size: 0x4
+	enum class State : int32_t
+	{
+		IN_PROGRESS = 0,
+		COMPLETED = 1,
+		FAILED = 2,
 	};
 
+	// Size: 0x4
+	enum class Type : int32_t
+	{
+		CONTRACT_OBJ_EVENT_BASED = 0,
+		CONTRACT_OBJ_SM_BASED = 1,
+	};
 
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IContractObjective& p_Other) const;
-	bool operator!=(const IContractObjective& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IEscortOutSituation{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IEscortOutSituation& p_Other) const;
-	bool operator!=(const IEscortOutSituation& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IEventConsumerCollection{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IEventConsumerCollection& p_Other) const;
-	bool operator!=(const IEventConsumerCollection& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
 };
 
 class IEvergreenTerritoryDefinition
@@ -9538,22 +9427,6 @@ public:
 		VisitedAndLost = 2,
 	};
 
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IFreeCameraControl{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IFreeCameraControl& p_Other) const;
-	bool operator!=(const IFreeCameraControl& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
 };
 
 class IHM5Door
@@ -9603,38 +9476,6 @@ public:
 
 };
 
-// Size: 0x8
-class /*alignas(0)*/ IHM5WeaponInventory{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IHM5WeaponInventory& p_Other) const;
-	bool operator!=(const IHM5WeaponInventory& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IHumanBody{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IHumanBody& p_Other) const;
-	bool operator!=(const IHumanBody& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
 class IItemWeapon
 {
 public:
@@ -9680,120 +9521,8 @@ public:
 
 };
 
-// Size: 0x8
-class /*alignas(0)*/ IMetricValue{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IMetricValue& p_Other) const;
-	bool operator!=(const IMetricValue& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IMorphemeCutSequenceAnimatable{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IMorphemeCutSequenceAnimatable& p_Other) const;
-	bool operator!=(const IMorphemeCutSequenceAnimatable& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IMorphemeCutSequenceAnimationEntity{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IMorphemeCutSequenceAnimationEntity& p_Other) const;
-	bool operator!=(const IMorphemeCutSequenceAnimationEntity& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IMorphemeEventConsumer{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IMorphemeEventConsumer& p_Other) const;
-	bool operator!=(const IMorphemeEventConsumer& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(8)*/ INetRelevancy{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const INetRelevancy& p_Other) const;
-	bool operator!=(const INetRelevancy& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IOnlineConfigurationListener{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IOnlineConfigurationListener& p_Other) const;
-	bool operator!=(const IOnlineConfigurationListener& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IPureWaterReflectable{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IPureWaterReflectable& p_Other) const;
-	bool operator!=(const IPureWaterReflectable& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x1
-class /*alignas(1)*/ IRenderCompositorEntity{
+class IRenderCompositorEntity
+{
 public:
 	// Size: 0x4
 	enum class EMode : int32_t
@@ -9814,19 +9543,6 @@ public:
 		eBottomRight = 4,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IRenderCompositorEntity& p_Other) const;
-	bool operator!=(const IRenderCompositorEntity& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[1] {};
 };
 
 class IRenderMaterialEntity
@@ -9900,166 +9616,6 @@ namespace IScatterContainerEntity {
 	};
 
 }
-
-// Size: 0x8
-class /*alignas(0)*/ ISequenceTarget{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ISequenceTarget& p_Other) const;
-	bool operator!=(const ISequenceTarget& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ ISituation{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ISituation& p_Other) const;
-	bool operator!=(const ISituation& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ ISoundGateController{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ISoundGateController& p_Other) const;
-	bool operator!=(const ISoundGateController& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ ISoundMaterialDescriptor{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ISoundMaterialDescriptor& p_Other) const;
-	bool operator!=(const ISoundMaterialDescriptor& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ ITriggerListener{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ITriggerListener& p_Other) const;
-	bool operator!=(const ITriggerListener& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IUIDataListener{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IUIDataListener& p_Other) const;
-	bool operator!=(const IUIDataListener& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(8)*/ IUpdateable{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IUpdateable& p_Other) const;
-	bool operator!=(const IUpdateable& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IValueEntity{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IValueEntity& p_Other) const;
-	bool operator!=(const IValueEntity& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(8)*/ IVrmotionInteractionDataReceiver{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IVrmotionInteractionDataReceiver& p_Other) const;
-	bool operator!=(const IVrmotionInteractionDataReceiver& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x8
-class /*alignas(0)*/ IWorldMapMarker{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const IWorldMapMarker& p_Other) const;
-	bool operator!=(const IWorldMapMarker& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
 
 namespace InputControlNamesp {
 	// Size: 0x4
@@ -10364,7 +9920,72 @@ namespace InputControlNamesp {
 
 }
 
+// Size: 0x18
+class alignas(8) SDebugMenuItemIntEntry
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SDebugMenuItemIntEntry& p_Other) const;
+	bool operator!=(const SDebugMenuItemIntEntry& p_Other) const { return !(*this == p_Other); }
+
+	int32 Value; // 0x0
+	ZString Name; // 0x8
+};
+ZHM_OFFSET_CHECK(SDebugMenuItemIntEntry, Value, 0x0);
+ZHM_OFFSET_CHECK(SDebugMenuItemIntEntry, Name, 0x8);
+static_assert(sizeof(SDebugMenuItemIntEntry) == 0x18, "Wrong size for SDebugMenuItemIntEntry");
+static_assert(alignof(SDebugMenuItemIntEntry) == 0x8, "Wrong alignment for SDebugMenuItemIntEntry");
+
 namespace JSONTemplate {
+	// Size: 0x4
+	enum class EDebugMenuItemType : int32_t
+	{
+		Invalid = 0,
+		Group = 1,
+		Trigger = 2,
+		Bool = 3,
+		Slider = 4,
+		ListInt = 5,
+	};
+
+	// Size: 0x70
+	class alignas(8) SDebugMenuItemData
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDebugMenuItemData& p_Other) const;
+		bool operator!=(const SDebugMenuItemData& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::EDebugMenuItemType Type; // 0x0
+		ZString TypeName; // 0x8
+		ZString Id; // 0x18
+		ZString Title; // 0x28
+		int32 OrderIndex; // 0x38
+		TArray<SDebugMenuItemIntEntry> ValueEntries; // 0x40
+		TArray<JSONTemplate::SDebugMenuItemData> Children; // 0x58
+	};
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Type, 0x0);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, TypeName, 0x8);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Id, 0x18);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Title, 0x28);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, OrderIndex, 0x38);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, ValueEntries, 0x40);
+	ZHM_OFFSET_CHECK(SDebugMenuItemData, Children, 0x58);
+	static_assert(sizeof(SDebugMenuItemData) == 0x70, "Wrong size for SDebugMenuItemData");
+	static_assert(alignof(SDebugMenuItemData) == 0x8, "Wrong alignment for SDebugMenuItemData");
+
 	// Size: 0x4
 	enum class ETemplateType : int32_t
 	{
@@ -10527,7 +10148,29 @@ namespace JSONTemplate {
 		ETT_NVIDIAHIGHLIGHTSAVAILABLE = 155,
 		ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS = 156,
 		ETT_DEBUG_ALLHITMANSUITS = 157,
+		ETT_DEBUG_MENUITEMS = 158,
+		ETT_DEBUG_MENUITEMVALUE = 159,
 	};
+
+	// Size: 0x18
+	class alignas(8) SDebugMenuItemsResult
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDebugMenuItemsResult& p_Other) const;
+		bool operator!=(const SDebugMenuItemsResult& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SDebugMenuItemData> Items; // 0x0
+	};
+	ZHM_OFFSET_CHECK(SDebugMenuItemsResult, Items, 0x0);
+	static_assert(sizeof(SDebugMenuItemsResult) == 0x18, "Wrong size for SDebugMenuItemsResult");
+	static_assert(alignof(SDebugMenuItemsResult) == 0x8, "Wrong alignment for SDebugMenuItemsResult");
 
 }
 
@@ -10603,7 +10246,8 @@ enum class ReverbFidelity : int32_t
 };
 
 // Size: 0x1C
-class /*alignas(4)*/ SWorldSpaceSettings{
+class alignas(4) SWorldSpaceSettings
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10618,15 +10262,24 @@ public:
 	float32 fCloseupDistance; // 0x0
 	float32 fScale; // 0x4
 	bool bDynamicScale; // 0x8
-	uint8_t _pad9[3] {};
 	float32 fDynamicScaleAlpha; // 0xC
 	float32 fDynamicScaleCloseupDistance; // 0x10
 	float32 fDynamicScaleNearDistance; // 0x14
 	float32 fDynamicScaleBlendRange; // 0x18
 };
+ZHM_OFFSET_CHECK(SWorldSpaceSettings, fCloseupDistance, 0x0);
+ZHM_OFFSET_CHECK(SWorldSpaceSettings, fScale, 0x4);
+ZHM_OFFSET_CHECK(SWorldSpaceSettings, bDynamicScale, 0x8);
+ZHM_OFFSET_CHECK(SWorldSpaceSettings, fDynamicScaleAlpha, 0xC);
+ZHM_OFFSET_CHECK(SWorldSpaceSettings, fDynamicScaleCloseupDistance, 0x10);
+ZHM_OFFSET_CHECK(SWorldSpaceSettings, fDynamicScaleNearDistance, 0x14);
+ZHM_OFFSET_CHECK(SWorldSpaceSettings, fDynamicScaleBlendRange, 0x18);
+static_assert(sizeof(SWorldSpaceSettings) == 0x1C, "Wrong size for SWorldSpaceSettings");
+static_assert(alignof(SWorldSpaceSettings) == 0x4, "Wrong alignment for SWorldSpaceSettings");
 
 // Size: 0x8
-class /*alignas(4)*/ S25DProjectionSettingsCurveEntry{
+class alignas(4) S25DProjectionSettingsCurveEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10641,9 +10294,14 @@ public:
 	float32 fDistance; // 0x0
 	float32 fValue; // 0x4
 };
+ZHM_OFFSET_CHECK(S25DProjectionSettingsCurveEntry, fDistance, 0x0);
+ZHM_OFFSET_CHECK(S25DProjectionSettingsCurveEntry, fValue, 0x4);
+static_assert(sizeof(S25DProjectionSettingsCurveEntry) == 0x8, "Wrong size for S25DProjectionSettingsCurveEntry");
+static_assert(alignof(S25DProjectionSettingsCurveEntry) == 0x4, "Wrong alignment for S25DProjectionSettingsCurveEntry");
 
 // Size: 0x98
-class /*alignas(8)*/ S25DProjectionSettings{
+class alignas(8) S25DProjectionSettings
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10664,7 +10322,6 @@ public:
 	float32 fNearScaleFov; // 0x18
 	float32 fFarScaleFov; // 0x1C
 	bool enableWorldSizeScaling; // 0x20
-	uint8_t _pad21[3] {};
 	float32 fWorldSizeScalingBaseDistance; // 0x24
 	float32 fWorldSizeScalingFactorMax; // 0x28
 	float32 fWorldSizeScalingFactorMin; // 0x2C
@@ -10677,11 +10334,34 @@ public:
 	EViewportLock eViewportLock; // 0x70
 	float32 fViewportGutter; // 0x74
 	SWorldSpaceSettings sWorldSpaceSettings; // 0x78
-	uint8_t _pad94[4] {};
 };
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fNearDistance, 0x0);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fFarDistance, 0x4);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fNearScale, 0x8);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fFarScale, 0xC);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fNearFov, 0x10);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fFarFov, 0x14);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fNearScaleFov, 0x18);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fFarScaleFov, 0x1C);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, enableWorldSizeScaling, 0x20);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fWorldSizeScalingBaseDistance, 0x24);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fWorldSizeScalingFactorMax, 0x28);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fWorldSizeScalingFactorMin, 0x2C);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fScaleFactor, 0x30);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fNearAlpha, 0x34);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fFarAlpha, 0x38);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fAlphaFactor, 0x3C);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, aScaleCurve, 0x40);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, aAlphaCurve, 0x58);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, eViewportLock, 0x70);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, fViewportGutter, 0x74);
+ZHM_OFFSET_CHECK(S25DProjectionSettings, sWorldSpaceSettings, 0x78);
+static_assert(sizeof(S25DProjectionSettings) == 0x98, "Wrong size for S25DProjectionSettings");
+static_assert(alignof(S25DProjectionSettings) == 0x8, "Wrong alignment for S25DProjectionSettings");
 
 // Size: 0x8
-class /*alignas(4)*/ S3rdPersonCameraSaveData{
+class alignas(4) S3rdPersonCameraSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10696,9 +10376,14 @@ public:
 	float32 m_fAngleYaw; // 0x0
 	float32 m_fAnglePitch; // 0x4
 };
+ZHM_OFFSET_CHECK(S3rdPersonCameraSaveData, m_fAngleYaw, 0x0);
+ZHM_OFFSET_CHECK(S3rdPersonCameraSaveData, m_fAnglePitch, 0x4);
+static_assert(sizeof(S3rdPersonCameraSaveData) == 0x8, "Wrong size for S3rdPersonCameraSaveData");
+static_assert(alignof(S3rdPersonCameraSaveData) == 0x4, "Wrong alignment for S3rdPersonCameraSaveData");
 
 // Size: 0x8
-class /*alignas(8)*/ ZGameTime{
+class alignas(8) ZGameTime
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10712,9 +10397,13 @@ public:
 
 	int64 m_nTicks; // 0x0
 };
+ZHM_OFFSET_CHECK(ZGameTime, m_nTicks, 0x0);
+static_assert(sizeof(ZGameTime) == 0x8, "Wrong size for ZGameTime");
+static_assert(alignof(ZGameTime) == 0x8, "Wrong alignment for ZGameTime");
 
 // Size: 0x18
-class /*alignas(8)*/ SAIEventSaveData{
+class alignas(8) SAIEventSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10728,13 +10417,19 @@ public:
 
 	EAIEventType m_eType; // 0x0
 	bool m_bHandled; // 0x4
-	uint8_t _pad5[3] {};
 	ZGameTime m_nStart; // 0x8
 	ZGameTime m_nEnd; // 0x10
 };
+ZHM_OFFSET_CHECK(SAIEventSaveData, m_eType, 0x0);
+ZHM_OFFSET_CHECK(SAIEventSaveData, m_bHandled, 0x4);
+ZHM_OFFSET_CHECK(SAIEventSaveData, m_nStart, 0x8);
+ZHM_OFFSET_CHECK(SAIEventSaveData, m_nEnd, 0x10);
+static_assert(sizeof(SAIEventSaveData) == 0x18, "Wrong size for SAIEventSaveData");
+static_assert(alignof(SAIEventSaveData) == 0x8, "Wrong alignment for SAIEventSaveData");
 
 // Size: 0x28
-class /*alignas(4)*/ SAIModifierServiceActorSaveData{
+class alignas(4) SAIModifierServiceActorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10749,7 +10444,6 @@ public:
 	uint32 m_rActorRef; // 0x0
 	bool m_bNeedsVolumeUpdate; // 0x4
 	bool m_bNeedsKnowledgeUpdate; // 0x5
-	uint8_t _pad6[2] {};
 	uint32 m_uiModVolume; // 0x8
 	uint32 m_uiModBehavior; // 0xC
 	uint32 m_uiModRole; // 0x10
@@ -10759,9 +10453,23 @@ public:
 	uint32 m_uiModOverride; // 0x20
 	uint32 m_uiModStatus; // 0x24
 };
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_rActorRef, 0x0);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_bNeedsVolumeUpdate, 0x4);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_bNeedsKnowledgeUpdate, 0x5);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModVolume, 0x8);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModBehavior, 0xC);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModRole, 0x10);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModItem, 0x14);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModSituation, 0x18);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModOutfit, 0x1C);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModOverride, 0x20);
+ZHM_OFFSET_CHECK(SAIModifierServiceActorSaveData, m_uiModStatus, 0x24);
+static_assert(sizeof(SAIModifierServiceActorSaveData) == 0x28, "Wrong size for SAIModifierServiceActorSaveData");
+static_assert(alignof(SAIModifierServiceActorSaveData) == 0x4, "Wrong alignment for SAIModifierServiceActorSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SAIModifierServiceSaveData{
+class alignas(8) SAIModifierServiceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10774,12 +10482,16 @@ public:
 	bool operator!=(const SAIModifierServiceSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bFullVolumeUpdate; // 0x0
-	uint8_t _pad1[7] {};
 	TArray<SAIModifierServiceActorSaveData> m_aActors; // 0x8
 };
+ZHM_OFFSET_CHECK(SAIModifierServiceSaveData, m_bFullVolumeUpdate, 0x0);
+ZHM_OFFSET_CHECK(SAIModifierServiceSaveData, m_aActors, 0x8);
+static_assert(sizeof(SAIModifierServiceSaveData) == 0x20, "Wrong size for SAIModifierServiceSaveData");
+static_assert(alignof(SAIModifierServiceSaveData) == 0x8, "Wrong alignment for SAIModifierServiceSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SAIPerceptibleEntitySaveData{
+class alignas(1) SAIPerceptibleEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10793,9 +10505,13 @@ public:
 
 	bool m_bPerceptibleEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SAIPerceptibleEntitySaveData, m_bPerceptibleEnabled, 0x0);
+static_assert(sizeof(SAIPerceptibleEntitySaveData) == 0x1, "Wrong size for SAIPerceptibleEntitySaveData");
+static_assert(alignof(SAIPerceptibleEntitySaveData) == 0x1, "Wrong alignment for SAIPerceptibleEntitySaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SAIVisionBlockerSaveData{
+class alignas(1) SAIVisionBlockerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10809,9 +10525,13 @@ public:
 
 	bool m_bEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SAIVisionBlockerSaveData, m_bEnabled, 0x0);
+static_assert(sizeof(SAIVisionBlockerSaveData) == 0x1, "Wrong size for SAIVisionBlockerSaveData");
+static_assert(alignof(SAIVisionBlockerSaveData) == 0x1, "Wrong alignment for SAIVisionBlockerSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SAccessoryItemSaveData{
+class alignas(4) SAccessoryItemSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10827,11 +10547,17 @@ public:
 	uint32 m_nBoneId; // 0x4
 	bool m_bAttached; // 0x8
 	bool m_bVisible; // 0x9
-	uint8_t _padA[2] {};
 };
+ZHM_OFFSET_CHECK(SAccessoryItemSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(SAccessoryItemSaveData, m_nBoneId, 0x4);
+ZHM_OFFSET_CHECK(SAccessoryItemSaveData, m_bAttached, 0x8);
+ZHM_OFFSET_CHECK(SAccessoryItemSaveData, m_bVisible, 0x9);
+static_assert(sizeof(SAccessoryItemSaveData) == 0xC, "Wrong size for SAccessoryItemSaveData");
+static_assert(alignof(SAccessoryItemSaveData) == 0x4, "Wrong alignment for SAccessoryItemSaveData");
 
 // Size: 0x28
-class /*alignas(8)*/ SAccidentObserversGroupSaveData{
+class alignas(8) SAccidentObserversGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10844,11 +10570,14 @@ public:
 	bool operator!=(const SAccidentObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_target; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<uint32> m_aWaitingObservers; // 0x8
 	EAccidentScaleContext m_accidentScaleContext; // 0x20
-	uint8_t _pad24[4] {};
 };
+ZHM_OFFSET_CHECK(SAccidentObserversGroupSaveData, m_target, 0x0);
+ZHM_OFFSET_CHECK(SAccidentObserversGroupSaveData, m_aWaitingObservers, 0x8);
+ZHM_OFFSET_CHECK(SAccidentObserversGroupSaveData, m_accidentScaleContext, 0x20);
+static_assert(sizeof(SAccidentObserversGroupSaveData) == 0x28, "Wrong size for SAccidentObserversGroupSaveData");
+static_assert(alignof(SAccidentObserversGroupSaveData) == 0x8, "Wrong alignment for SAccidentObserversGroupSaveData");
 
 class ZBoneAttachEntity
 {
@@ -10863,7 +10592,8 @@ public:
 };
 
 // Size: 0xC
-class /*alignas(4)*/ SColorRGB{
+class alignas(4) SColorRGB
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10879,33 +10609,15 @@ public:
 	float32 g; // 0x4
 	float32 b; // 0x8
 };
-
-// Size: 0x8
-class /*alignas(8)*/ ZEntityRef{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZEntityRef& p_Other) const;
-	bool operator!=(const ZEntityRef& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
+ZHM_OFFSET_CHECK(SColorRGB, r, 0x0);
+ZHM_OFFSET_CHECK(SColorRGB, g, 0x4);
+ZHM_OFFSET_CHECK(SColorRGB, b, 0x8);
+static_assert(sizeof(SColorRGB) == 0xC, "Wrong size for SColorRGB");
+static_assert(alignof(SColorRGB) == 0x4, "Wrong alignment for SColorRGB");
 
 class ZActBehaviorEntity
 {
 public:
-	// Size: 0x4
-	enum class EApproachAlignment : int32_t
-	{
-		AA_STRICT = 0,
-		AA_LOOSE = 1,
-	};
-
 	// Size: 0x4
 	enum class EMovementType : int32_t
 	{
@@ -10921,6 +10633,13 @@ public:
 		RA_NONE = 0,
 		RA_LOOSE = 1,
 		RA_EXACT = 2,
+	};
+
+	// Size: 0x4
+	enum class EApproachAlignment : int32_t
+	{
+		AA_STRICT = 0,
+		AA_LOOSE = 1,
 	};
 
 	// Size: 0x4
@@ -10940,7 +10659,8 @@ public:
 };
 
 // Size: 0x18
-class /*alignas(8)*/ SActBehaviorEntitySaveData{
+class alignas(8) SActBehaviorEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10954,15 +10674,21 @@ public:
 
 	bool m_bStartedSignalSent; // 0x0
 	bool m_bReachedSignalSent; // 0x1
-	uint8_t _pad2[2] {};
 	ZActBehaviorEntity::EState m_nState; // 0x4
 	ZGameTime m_ActStartTime; // 0x8
 	bool m_bForceTimeout; // 0x10
-	uint8_t _pad11[7] {};
 };
+ZHM_OFFSET_CHECK(SActBehaviorEntitySaveData, m_bStartedSignalSent, 0x0);
+ZHM_OFFSET_CHECK(SActBehaviorEntitySaveData, m_bReachedSignalSent, 0x1);
+ZHM_OFFSET_CHECK(SActBehaviorEntitySaveData, m_nState, 0x4);
+ZHM_OFFSET_CHECK(SActBehaviorEntitySaveData, m_ActStartTime, 0x8);
+ZHM_OFFSET_CHECK(SActBehaviorEntitySaveData, m_bForceTimeout, 0x10);
+static_assert(sizeof(SActBehaviorEntitySaveData) == 0x18, "Wrong size for SActBehaviorEntitySaveData");
+static_assert(alignof(SActBehaviorEntitySaveData) == 0x8, "Wrong alignment for SActBehaviorEntitySaveData");
 
 // Size: 0x10
-class /*alignas(16)*/ float4{
+class alignas(16) float4
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10979,9 +10705,16 @@ public:
 	float32 z; // 0x8
 	float32 w; // 0xC
 };
+ZHM_OFFSET_CHECK(float4, x, 0x0);
+ZHM_OFFSET_CHECK(float4, y, 0x4);
+ZHM_OFFSET_CHECK(float4, z, 0x8);
+ZHM_OFFSET_CHECK(float4, w, 0xC);
+static_assert(sizeof(float4) == 0x10, "Wrong size for float4");
+static_assert(alignof(float4) == 0x10, "Wrong alignment for float4");
 
 // Size: 0x40
-class /*alignas(16)*/ SActOrderSaveData{
+class alignas(16) SActOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -10996,16 +10729,24 @@ public:
 	ZString m_sAct; // 0x0
 	float32 m_fDuration; // 0x10
 	uint32 m_rChildNetworkEntity; // 0x14
-	uint8_t _pad18[8] {};
 	float4 m_faceTarget; // 0x20
 	bool m_bBlendOutImmediatelyUponTimeout; // 0x30
 	bool m_bDropCarriedItems; // 0x31
 	bool m_bStopCurrentActFast; // 0x32
-	uint8_t _pad33[13] {};
 };
+ZHM_OFFSET_CHECK(SActOrderSaveData, m_sAct, 0x0);
+ZHM_OFFSET_CHECK(SActOrderSaveData, m_fDuration, 0x10);
+ZHM_OFFSET_CHECK(SActOrderSaveData, m_rChildNetworkEntity, 0x14);
+ZHM_OFFSET_CHECK(SActOrderSaveData, m_faceTarget, 0x20);
+ZHM_OFFSET_CHECK(SActOrderSaveData, m_bBlendOutImmediatelyUponTimeout, 0x30);
+ZHM_OFFSET_CHECK(SActOrderSaveData, m_bDropCarriedItems, 0x31);
+ZHM_OFFSET_CHECK(SActOrderSaveData, m_bStopCurrentActFast, 0x32);
+static_assert(sizeof(SActOrderSaveData) == 0x40, "Wrong size for SActOrderSaveData");
+static_assert(alignof(SActOrderSaveData) == 0x10, "Wrong alignment for SActOrderSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SActionRadialArcDisplayInfo{
+class alignas(8) SActionRadialArcDisplayInfo
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11024,9 +10765,18 @@ public:
 	int32 icon; // 0x4
 	ZString label; // 0x8
 };
+ZHM_OFFSET_CHECK(SActionRadialArcDisplayInfo, hidden, 0x0);
+ZHM_OFFSET_CHECK(SActionRadialArcDisplayInfo, locked, 0x1);
+ZHM_OFFSET_CHECK(SActionRadialArcDisplayInfo, active, 0x2);
+ZHM_OFFSET_CHECK(SActionRadialArcDisplayInfo, illegal, 0x3);
+ZHM_OFFSET_CHECK(SActionRadialArcDisplayInfo, icon, 0x4);
+ZHM_OFFSET_CHECK(SActionRadialArcDisplayInfo, label, 0x8);
+static_assert(sizeof(SActionRadialArcDisplayInfo) == 0x18, "Wrong size for SActionRadialArcDisplayInfo");
+static_assert(alignof(SActionRadialArcDisplayInfo) == 0x8, "Wrong alignment for SActionRadialArcDisplayInfo");
 
 // Size: 0x18
-class /*alignas(8)*/ SActionRadialArcDisplayInfoArray_dummy{
+class alignas(8) SActionRadialArcDisplayInfoArray_dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11040,9 +10790,13 @@ public:
 
 	TArray<SActionRadialArcDisplayInfo> dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(SActionRadialArcDisplayInfoArray_dummy, dummy, 0x0);
+static_assert(sizeof(SActionRadialArcDisplayInfoArray_dummy) == 0x18, "Wrong size for SActionRadialArcDisplayInfoArray_dummy");
+static_assert(alignof(SActionRadialArcDisplayInfoArray_dummy) == 0x8, "Wrong alignment for SActionRadialArcDisplayInfoArray_dummy");
 
 // Size: 0x20
-class /*alignas(8)*/ SActivity{
+class alignas(8) SActivity
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11057,9 +10811,14 @@ public:
 	ZGuid id; // 0x0
 	ZString activityId; // 0x10
 };
+ZHM_OFFSET_CHECK(SActivity, id, 0x0);
+ZHM_OFFSET_CHECK(SActivity, activityId, 0x10);
+static_assert(sizeof(SActivity) == 0x20, "Wrong size for SActivity");
+static_assert(alignof(SActivity) == 0x8, "Wrong alignment for SActivity");
 
 // Size: 0x38
-class /*alignas(8)*/ SActivityObjective{
+class alignas(8) SActivityObjective
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11074,9 +10833,14 @@ public:
 	SActivity activity; // 0x0
 	TArray<SActivity> opportunities; // 0x20
 };
+ZHM_OFFSET_CHECK(SActivityObjective, activity, 0x0);
+ZHM_OFFSET_CHECK(SActivityObjective, opportunities, 0x20);
+static_assert(sizeof(SActivityObjective) == 0x38, "Wrong size for SActivityObjective");
+static_assert(alignof(SActivityObjective) == 0x8, "Wrong alignment for SActivityObjective");
 
 // Size: 0x38
-class /*alignas(8)*/ SActivityExits{
+class alignas(8) SActivityExits
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11091,9 +10855,14 @@ public:
 	SActivity activity; // 0x0
 	TArray<ZString> exits; // 0x20
 };
+ZHM_OFFSET_CHECK(SActivityExits, activity, 0x0);
+ZHM_OFFSET_CHECK(SActivityExits, exits, 0x20);
+static_assert(sizeof(SActivityExits) == 0x38, "Wrong size for SActivityExits");
+static_assert(alignof(SActivityExits) == 0x8, "Wrong alignment for SActivityExits");
 
 // Size: 0x70
-class /*alignas(8)*/ SActivityDefinition{
+class alignas(8) SActivityDefinition
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11109,9 +10878,15 @@ public:
 	TArray<SActivityObjective> objectives; // 0x20
 	SActivityExits exits; // 0x38
 };
+ZHM_OFFSET_CHECK(SActivityDefinition, activity, 0x0);
+ZHM_OFFSET_CHECK(SActivityDefinition, objectives, 0x20);
+ZHM_OFFSET_CHECK(SActivityDefinition, exits, 0x38);
+static_assert(sizeof(SActivityDefinition) == 0x70, "Wrong size for SActivityDefinition");
+static_assert(alignof(SActivityDefinition) == 0x8, "Wrong alignment for SActivityDefinition");
 
 // Size: 0x18
-class /*alignas(8)*/ SActivities{
+class alignas(8) SActivities
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11125,9 +10900,13 @@ public:
 
 	TArray<SActivityDefinition> Activities; // 0x0
 };
+ZHM_OFFSET_CHECK(SActivities, Activities, 0x0);
+static_assert(sizeof(SActivities) == 0x18, "Wrong size for SActivities");
+static_assert(alignof(SActivities) == 0x8, "Wrong alignment for SActivities");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorAccessoryItemActionSaveData{
+class alignas(4) SActorAccessoryItemActionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11141,9 +10920,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorAccessoryItemActionSaveData, m_rActor, 0x0);
+static_assert(sizeof(SActorAccessoryItemActionSaveData) == 0x4, "Wrong size for SActorAccessoryItemActionSaveData");
+static_assert(alignof(SActorAccessoryItemActionSaveData) == 0x4, "Wrong alignment for SActorAccessoryItemActionSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorAliveConditionSaveData{
+class alignas(4) SActorAliveConditionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11157,9 +10940,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorAliveConditionSaveData, m_rActor, 0x0);
+static_assert(sizeof(SActorAliveConditionSaveData) == 0x4, "Wrong size for SActorAliveConditionSaveData");
+static_assert(alignof(SActorAliveConditionSaveData) == 0x4, "Wrong alignment for SActorAliveConditionSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SActorAnimSetVariationIndexSaveData{
+class alignas(4) SActorAnimSetVariationIndexSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11174,9 +10961,14 @@ public:
 	uint32 m_rAnimationSetDefinition; // 0x0
 	int32 m_nIndex; // 0x4
 };
+ZHM_OFFSET_CHECK(SActorAnimSetVariationIndexSaveData, m_rAnimationSetDefinition, 0x0);
+ZHM_OFFSET_CHECK(SActorAnimSetVariationIndexSaveData, m_nIndex, 0x4);
+static_assert(sizeof(SActorAnimSetVariationIndexSaveData) == 0x8, "Wrong size for SActorAnimSetVariationIndexSaveData");
+static_assert(alignof(SActorAnimSetVariationIndexSaveData) == 0x4, "Wrong alignment for SActorAnimSetVariationIndexSaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SActorAnimSetSaveData{
+class alignas(8) SActorAnimSetSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11197,9 +10989,20 @@ public:
 	TArray<SActorAnimSetVariationIndexSaveData> m_aLocoVariationIndecies; // 0x18
 	TArray<SActorAnimSetVariationIndexSaveData> m_aReactVariationIndecies; // 0x30
 };
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_eAnimSet, 0x0);
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_rCustomAnimationSet, 0x4);
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_eVariationResourceMaxTension, 0x8);
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_eVariationResourceMaxEmotionState, 0xC);
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_eAnimSetEmotionState, 0x10);
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_ePreCustomAnimSet, 0x14);
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_aLocoVariationIndecies, 0x18);
+ZHM_OFFSET_CHECK(SActorAnimSetSaveData, m_aReactVariationIndecies, 0x30);
+static_assert(sizeof(SActorAnimSetSaveData) == 0x48, "Wrong size for SActorAnimSetSaveData");
+static_assert(alignof(SActorAnimSetSaveData) == 0x8, "Wrong alignment for SActorAnimSetSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SActorBoneAttachSaveData{
+class alignas(4) SActorBoneAttachSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11213,11 +11016,15 @@ public:
 
 	uint32 m_rAttachmentTarget; // 0x0
 	bool m_bIsAttached; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SActorBoneAttachSaveData, m_rAttachmentTarget, 0x0);
+ZHM_OFFSET_CHECK(SActorBoneAttachSaveData, m_bIsAttached, 0x4);
+static_assert(sizeof(SActorBoneAttachSaveData) == 0x8, "Wrong size for SActorBoneAttachSaveData");
+static_assert(alignof(SActorBoneAttachSaveData) == 0x4, "Wrong alignment for SActorBoneAttachSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SActorBoneAttachmentsSaveData{
+class alignas(8) SActorBoneAttachmentsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11232,9 +11039,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorBoneAttachSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SActorBoneAttachmentsSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SActorBoneAttachmentsSaveData, m_aData, 0x18);
+static_assert(sizeof(SActorBoneAttachmentsSaveData) == 0x30, "Wrong size for SActorBoneAttachmentsSaveData");
+static_assert(alignof(SActorBoneAttachmentsSaveData) == 0x8, "Wrong alignment for SActorBoneAttachmentsSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SVector4{
+class alignas(4) SVector4
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11251,9 +11063,16 @@ public:
 	float32 z; // 0x8
 	float32 w; // 0xC
 };
+ZHM_OFFSET_CHECK(SVector4, x, 0x0);
+ZHM_OFFSET_CHECK(SVector4, y, 0x4);
+ZHM_OFFSET_CHECK(SVector4, z, 0x8);
+ZHM_OFFSET_CHECK(SVector4, w, 0xC);
+static_assert(sizeof(SVector4) == 0x10, "Wrong size for SVector4");
+static_assert(alignof(SVector4) == 0x4, "Wrong alignment for SVector4");
 
 // Size: 0x20
-class /*alignas(4)*/ SActorBoneSaveData{
+class alignas(4) SActorBoneSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11268,9 +11087,14 @@ public:
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
 };
+ZHM_OFFSET_CHECK(SActorBoneSaveData, mQuaterion, 0x0);
+ZHM_OFFSET_CHECK(SActorBoneSaveData, mTranslation, 0x10);
+static_assert(sizeof(SActorBoneSaveData) == 0x20, "Wrong size for SActorBoneSaveData");
+static_assert(alignof(SActorBoneSaveData) == 0x4, "Wrong alignment for SActorBoneSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SActorDynamicTemplateHandlerSaveData{
+class alignas(4) SActorDynamicTemplateHandlerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11286,9 +11110,15 @@ public:
 	uint32 m_rItem; // 0x4
 	uint32 m_rSetpiece; // 0x8
 };
+ZHM_OFFSET_CHECK(SActorDynamicTemplateHandlerSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateHandlerSaveData, m_rItem, 0x4);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateHandlerSaveData, m_rSetpiece, 0x8);
+static_assert(sizeof(SActorDynamicTemplateHandlerSaveData) == 0xC, "Wrong size for SActorDynamicTemplateHandlerSaveData");
+static_assert(alignof(SActorDynamicTemplateHandlerSaveData) == 0x4, "Wrong alignment for SActorDynamicTemplateHandlerSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorDynamicTemplateManipulatorSaveData{
+class alignas(4) SActorDynamicTemplateManipulatorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11302,9 +11132,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorDynamicTemplateManipulatorSaveData, m_rActor, 0x0);
+static_assert(sizeof(SActorDynamicTemplateManipulatorSaveData) == 0x4, "Wrong size for SActorDynamicTemplateManipulatorSaveData");
+static_assert(alignof(SActorDynamicTemplateManipulatorSaveData) == 0x4, "Wrong alignment for SActorDynamicTemplateManipulatorSaveData");
 
 // Size: 0x40
-class /*alignas(8)*/ SActorDynamicTemplateSaveData{
+class alignas(8) SActorDynamicTemplateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11325,11 +11159,22 @@ public:
 	ZGameTime m_nTimeRemoveLimit; // 0x28
 	int64 m_resourceID; // 0x30
 	uint32 m_rInstance; // 0x38
-	uint8_t _pad3C[4] {};
 };
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_sName, 0x0);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_eTensionLimit, 0x10);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_eEmotionLimit, 0x14);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_nTimeLimit, 0x18);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_eTensionRemoveLimit, 0x20);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_eEmotionRemoveLimit, 0x24);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_nTimeRemoveLimit, 0x28);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_resourceID, 0x30);
+ZHM_OFFSET_CHECK(SActorDynamicTemplateSaveData, m_rInstance, 0x38);
+static_assert(sizeof(SActorDynamicTemplateSaveData) == 0x40, "Wrong size for SActorDynamicTemplateSaveData");
+static_assert(alignof(SActorDynamicTemplateSaveData) == 0x8, "Wrong alignment for SActorDynamicTemplateSaveData");
 
 // Size: 0x60
-class /*alignas(8)*/ SActorGoalSaveData{
+class alignas(8) SActorGoalSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11346,9 +11191,16 @@ public:
 	TArray<bool> m_aIsCurrent; // 0x30
 	TArray<float32> m_fExpiredTime; // 0x48
 };
+ZHM_OFFSET_CHECK(SActorGoalSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SActorGoalSaveData, m_aHandled, 0x18);
+ZHM_OFFSET_CHECK(SActorGoalSaveData, m_aIsCurrent, 0x30);
+ZHM_OFFSET_CHECK(SActorGoalSaveData, m_fExpiredTime, 0x48);
+static_assert(sizeof(SActorGoalSaveData) == 0x60, "Wrong size for SActorGoalSaveData");
+static_assert(alignof(SActorGoalSaveData) == 0x8, "Wrong alignment for SActorGoalSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SActorIKControllerSaveData{
+class alignas(4) SActorIKControllerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11365,9 +11217,16 @@ public:
 	float32 m_fRightHandTargetWeight; // 0x8
 	float32 m_fLeftHandTargetWeight; // 0xC
 };
+ZHM_OFFSET_CHECK(SActorIKControllerSaveData, m_fRightHandWeight, 0x0);
+ZHM_OFFSET_CHECK(SActorIKControllerSaveData, m_fLeftHandWeight, 0x4);
+ZHM_OFFSET_CHECK(SActorIKControllerSaveData, m_fRightHandTargetWeight, 0x8);
+ZHM_OFFSET_CHECK(SActorIKControllerSaveData, m_fLeftHandTargetWeight, 0xC);
+static_assert(sizeof(SActorIKControllerSaveData) == 0x10, "Wrong size for SActorIKControllerSaveData");
+static_assert(alignof(SActorIKControllerSaveData) == 0x4, "Wrong alignment for SActorIKControllerSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SActorInventoryItemSaveData{
+class alignas(4) SActorInventoryItemSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11385,11 +11244,19 @@ public:
 	bool m_bLeftHand; // 0xC
 	bool m_bWeapon; // 0xD
 	bool m_bGrenade; // 0xE
-	uint8_t _padF[1] {};
 };
+ZHM_OFFSET_CHECK(SActorInventoryItemSaveData, m_rItem, 0x0);
+ZHM_OFFSET_CHECK(SActorInventoryItemSaveData, m_eAttachLocation, 0x4);
+ZHM_OFFSET_CHECK(SActorInventoryItemSaveData, m_eMaxTension, 0x8);
+ZHM_OFFSET_CHECK(SActorInventoryItemSaveData, m_bLeftHand, 0xC);
+ZHM_OFFSET_CHECK(SActorInventoryItemSaveData, m_bWeapon, 0xD);
+ZHM_OFFSET_CHECK(SActorInventoryItemSaveData, m_bGrenade, 0xE);
+static_assert(sizeof(SActorInventoryItemSaveData) == 0x10, "Wrong size for SActorInventoryItemSaveData");
+static_assert(alignof(SActorInventoryItemSaveData) == 0x4, "Wrong alignment for SActorInventoryItemSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SActorInventorySaveData{
+class alignas(8) SActorInventorySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11403,9 +11270,13 @@ public:
 
 	TArray<SActorInventoryItemSaveData> m_aItems; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorInventorySaveData, m_aItems, 0x0);
+static_assert(sizeof(SActorInventorySaveData) == 0x18, "Wrong size for SActorInventorySaveData");
+static_assert(alignof(SActorInventorySaveData) == 0x8, "Wrong alignment for SActorInventorySaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SActorItemActionSaveData{
+class alignas(4) SActorItemActionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11420,9 +11291,14 @@ public:
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
 };
+ZHM_OFFSET_CHECK(SActorItemActionSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SActorItemActionSaveData, m_rItem, 0x4);
+static_assert(sizeof(SActorItemActionSaveData) == 0x8, "Wrong size for SActorItemActionSaveData");
+static_assert(alignof(SActorItemActionSaveData) == 0x4, "Wrong alignment for SActorItemActionSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorKeywordProxySaveData{
+class alignas(4) SActorKeywordProxySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11436,9 +11312,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorKeywordProxySaveData, m_rActor, 0x0);
+static_assert(sizeof(SActorKeywordProxySaveData) == 0x4, "Wrong size for SActorKeywordProxySaveData");
+static_assert(alignof(SActorKeywordProxySaveData) == 0x4, "Wrong alignment for SActorKeywordProxySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SActorKeywordProxiesSaveData{
+class alignas(8) SActorKeywordProxiesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11453,9 +11333,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorKeywordProxySaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SActorKeywordProxiesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SActorKeywordProxiesSaveData, m_aData, 0x18);
+static_assert(sizeof(SActorKeywordProxiesSaveData) == 0x30, "Wrong size for SActorKeywordProxiesSaveData");
+static_assert(alignof(SActorKeywordProxiesSaveData) == 0x8, "Wrong alignment for SActorKeywordProxiesSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SActorManagerReferencableData{
+class alignas(8) SActorManagerReferencableData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11469,9 +11354,13 @@ public:
 
 	TArray<ESituationType> m_aSituationTypes; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorManagerReferencableData, m_aSituationTypes, 0x0);
+static_assert(sizeof(SActorManagerReferencableData) == 0x18, "Wrong size for SActorManagerReferencableData");
+static_assert(alignof(SActorManagerReferencableData) == 0x8, "Wrong alignment for SActorManagerReferencableData");
 
 // Size: 0x40
-class /*alignas(16)*/ SMatrix{
+class alignas(16) SMatrix
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11488,9 +11377,16 @@ public:
 	float4 ZAxis; // 0x20
 	float4 Trans; // 0x30
 };
+ZHM_OFFSET_CHECK(SMatrix, XAxis, 0x0);
+ZHM_OFFSET_CHECK(SMatrix, YAxis, 0x10);
+ZHM_OFFSET_CHECK(SMatrix, ZAxis, 0x20);
+ZHM_OFFSET_CHECK(SMatrix, Trans, 0x30);
+static_assert(sizeof(SMatrix) == 0x40, "Wrong size for SMatrix");
+static_assert(alignof(SMatrix) == 0x10, "Wrong alignment for SMatrix");
 
 // Size: 0x18
-class /*alignas(8)*/ SEventSaveData{
+class alignas(8) SEventSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11503,13 +11399,18 @@ public:
 	bool operator!=(const SEventSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EAISharedEventType m_nType; // 0x0
-	uint8_t _pad4[4] {};
 	ZGameTime m_nStart; // 0x8
 	ZGameTime m_nEnd; // 0x10
 };
+ZHM_OFFSET_CHECK(SEventSaveData, m_nType, 0x0);
+ZHM_OFFSET_CHECK(SEventSaveData, m_nStart, 0x8);
+ZHM_OFFSET_CHECK(SEventSaveData, m_nEnd, 0x10);
+static_assert(sizeof(SEventSaveData) == 0x18, "Wrong size for SEventSaveData");
+static_assert(alignof(SEventSaveData) == 0x8, "Wrong alignment for SEventSaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SSituationGroupSaveData{
+class alignas(8) SSituationGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11523,15 +11424,21 @@ public:
 
 	ZString m_sClassTypeName; // 0x0
 	uint32 m_nSituation; // 0x10
-	uint8_t _pad14[4] {};
 	TArray<uint32> m_aActors; // 0x18
 	int32 m_nGroupID; // 0x30
-	uint8_t _pad34[4] {};
 	ZVariant m_CustomData; // 0x38
 };
+ZHM_OFFSET_CHECK(SSituationGroupSaveData, m_sClassTypeName, 0x0);
+ZHM_OFFSET_CHECK(SSituationGroupSaveData, m_nSituation, 0x10);
+ZHM_OFFSET_CHECK(SSituationGroupSaveData, m_aActors, 0x18);
+ZHM_OFFSET_CHECK(SSituationGroupSaveData, m_nGroupID, 0x30);
+ZHM_OFFSET_CHECK(SSituationGroupSaveData, m_CustomData, 0x38);
+static_assert(sizeof(SSituationGroupSaveData) == 0x48, "Wrong size for SSituationGroupSaveData");
+static_assert(alignof(SSituationGroupSaveData) == 0x8, "Wrong alignment for SSituationGroupSaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SSituationMemberSaveData{
+class alignas(8) SSituationMemberSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11546,16 +11453,24 @@ public:
 	uint32 m_rActor; // 0x0
 	ESituationJoinReason m_eJoinReason; // 0x4
 	bool m_bIsOrderValid; // 0x8
-	uint8_t _pad9[7] {};
 	ZVariant m_OrderData; // 0x10
 	ZVariant m_PendingOrderData; // 0x20
 	uint32 m_rDramaRole; // 0x30
-	uint8_t _pad34[4] {};
 	ZVariant m_CustomData; // 0x38
 };
+ZHM_OFFSET_CHECK(SSituationMemberSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SSituationMemberSaveData, m_eJoinReason, 0x4);
+ZHM_OFFSET_CHECK(SSituationMemberSaveData, m_bIsOrderValid, 0x8);
+ZHM_OFFSET_CHECK(SSituationMemberSaveData, m_OrderData, 0x10);
+ZHM_OFFSET_CHECK(SSituationMemberSaveData, m_PendingOrderData, 0x20);
+ZHM_OFFSET_CHECK(SSituationMemberSaveData, m_rDramaRole, 0x30);
+ZHM_OFFSET_CHECK(SSituationMemberSaveData, m_CustomData, 0x38);
+static_assert(sizeof(SSituationMemberSaveData) == 0x48, "Wrong size for SSituationMemberSaveData");
+static_assert(alignof(SSituationMemberSaveData) == 0x8, "Wrong alignment for SSituationMemberSaveData");
 
 // Size: 0x68
-class /*alignas(8)*/ SSituationSaveData{
+class alignas(8) SSituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11570,19 +11485,28 @@ public:
 	uint32 m_rSituation; // 0x0
 	ESituationType m_eType; // 0x4
 	int32 m_nTargetSharedEntity; // 0x8
-	uint8_t _padC[4] {};
 	ZVariant m_Data; // 0x10
 	TArray<SSituationMemberSaveData> m_aMemberData; // 0x20
 	TArray<SSituationGroupSaveData> m_aGroupData; // 0x38
 	int32 m_nNextGroupID; // 0x50
-	uint8_t _pad54[4] {};
 	ZGameTime m_situationStartTime; // 0x58
 	bool m_bSituationEnded; // 0x60
-	uint8_t _pad61[7] {};
 };
+ZHM_OFFSET_CHECK(SSituationSaveData, m_rSituation, 0x0);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_eType, 0x4);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_nTargetSharedEntity, 0x8);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_Data, 0x10);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_aMemberData, 0x20);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_aGroupData, 0x38);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_nNextGroupID, 0x50);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_situationStartTime, 0x58);
+ZHM_OFFSET_CHECK(SSituationSaveData, m_bSituationEnded, 0x60);
+static_assert(sizeof(SSituationSaveData) == 0x68, "Wrong size for SSituationSaveData");
+static_assert(alignof(SSituationSaveData) == 0x8, "Wrong alignment for SSituationSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SActorProviderDirectSaveData{
+class alignas(8) SActorProviderDirectSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11596,11 +11520,15 @@ public:
 
 	TArray<uint32> m_aActors; // 0x0
 	bool m_bRunning; // 0x18
-	uint8_t _pad19[7] {};
 };
+ZHM_OFFSET_CHECK(SActorProviderDirectSaveData, m_aActors, 0x0);
+ZHM_OFFSET_CHECK(SActorProviderDirectSaveData, m_bRunning, 0x18);
+static_assert(sizeof(SActorProviderDirectSaveData) == 0x20, "Wrong size for SActorProviderDirectSaveData");
+static_assert(alignof(SActorProviderDirectSaveData) == 0x8, "Wrong alignment for SActorProviderDirectSaveData");
 
 // Size: 0x50
-class /*alignas(16)*/ SActorThrowSaveData{
+class alignas(16) SActorThrowSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11613,16 +11541,22 @@ public:
 	bool operator!=(const SActorThrowSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rItem; // 0x0
-	uint8_t _pad4[12] {};
 	float4 m_vStartPosition; // 0x10
 	float4 m_vEndPosition; // 0x20
 	float4 m_vItemVelocity; // 0x30
 	float32 m_fDistance; // 0x40
-	uint8_t _pad44[12] {};
 };
+ZHM_OFFSET_CHECK(SActorThrowSaveData, m_rItem, 0x0);
+ZHM_OFFSET_CHECK(SActorThrowSaveData, m_vStartPosition, 0x10);
+ZHM_OFFSET_CHECK(SActorThrowSaveData, m_vEndPosition, 0x20);
+ZHM_OFFSET_CHECK(SActorThrowSaveData, m_vItemVelocity, 0x30);
+ZHM_OFFSET_CHECK(SActorThrowSaveData, m_fDistance, 0x40);
+static_assert(sizeof(SActorThrowSaveData) == 0x50, "Wrong size for SActorThrowSaveData");
+static_assert(alignof(SActorThrowSaveData) == 0x10, "Wrong alignment for SActorThrowSaveData");
 
 // Size: 0x80
-class /*alignas(16)*/ SKnownEntitySaveData{
+class alignas(16) SKnownEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11635,19 +11569,26 @@ public:
 	bool operator!=(const SKnownEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_nSharedIndex; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<SAIEventSaveData> m_aEvents; // 0x8
 	uint32 m_nBooleanEvents; // 0x20
 	uint32 m_nBooleanEventsHandled; // 0x24
-	uint8_t _pad28[8] {};
 	SMatrix m_knownWorldMatrix; // 0x30
 	ZGameTime m_tLastWorldMatrixUpdate; // 0x70
 	uint16 m_nGoals; // 0x78
-	uint8_t _pad7A[6] {};
 };
+ZHM_OFFSET_CHECK(SKnownEntitySaveData, m_nSharedIndex, 0x0);
+ZHM_OFFSET_CHECK(SKnownEntitySaveData, m_aEvents, 0x8);
+ZHM_OFFSET_CHECK(SKnownEntitySaveData, m_nBooleanEvents, 0x20);
+ZHM_OFFSET_CHECK(SKnownEntitySaveData, m_nBooleanEventsHandled, 0x24);
+ZHM_OFFSET_CHECK(SKnownEntitySaveData, m_knownWorldMatrix, 0x30);
+ZHM_OFFSET_CHECK(SKnownEntitySaveData, m_tLastWorldMatrixUpdate, 0x70);
+ZHM_OFFSET_CHECK(SKnownEntitySaveData, m_nGoals, 0x78);
+static_assert(sizeof(SKnownEntitySaveData) == 0x80, "Wrong size for SKnownEntitySaveData");
+static_assert(alignof(SKnownEntitySaveData) == 0x10, "Wrong alignment for SKnownEntitySaveData");
 
 // Size: 0x98
-class /*alignas(8)*/ SKnowledgeSaveData{
+class alignas(8) SKnowledgeSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11667,21 +11608,37 @@ public:
 	float32 m_fHMDisguiseAttention; // 0x50
 	float32 m_fHMTrespassingAttention; // 0x54
 	float32 m_fHMLastTrespassingAttentionMax; // 0x58
-	uint8_t _pad5C[4] {};
 	ZGameTime m_tLastTrespassingAttentionGain; // 0x60
 	ZGameTime m_tLastAttentionEvaluate; // 0x68
 	float32 m_fHMWeaponAttention; // 0x70
 	float32 m_fHMWeaponAttentionChange; // 0x74
 	EGameTension m_eGameTension; // 0x78
-	uint8_t _pad7C[4] {};
 	ZGameTime m_tAmbientStartTime; // 0x80
 	ZGameTime m_tExpiredAIModifierSuppressSocialGreeting; // 0x88
 	uint32 m_behaviorModifiers; // 0x90
-	uint8_t _pad94[4] {};
 };
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_aKnownEntities, 0x0);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_aGoalKeys, 0x18);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_aGoals, 0x30);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_fHMAttention, 0x48);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_fHMAttentionLastUpdate, 0x4C);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_fHMDisguiseAttention, 0x50);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_fHMTrespassingAttention, 0x54);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_fHMLastTrespassingAttentionMax, 0x58);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_tLastTrespassingAttentionGain, 0x60);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_tLastAttentionEvaluate, 0x68);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_fHMWeaponAttention, 0x70);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_fHMWeaponAttentionChange, 0x74);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_eGameTension, 0x78);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_tAmbientStartTime, 0x80);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_tExpiredAIModifierSuppressSocialGreeting, 0x88);
+ZHM_OFFSET_CHECK(SKnowledgeSaveData, m_behaviorModifiers, 0x90);
+static_assert(sizeof(SKnowledgeSaveData) == 0x98, "Wrong size for SKnowledgeSaveData");
+static_assert(alignof(SKnowledgeSaveData) == 0x8, "Wrong alignment for SKnowledgeSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SEventHistorySaveData{
+class alignas(8) SEventHistorySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11695,9 +11652,13 @@ public:
 
 	TArray<ZGameTime> m_aOccurences; // 0x0
 };
+ZHM_OFFSET_CHECK(SEventHistorySaveData, m_aOccurences, 0x0);
+static_assert(sizeof(SEventHistorySaveData) == 0x18, "Wrong size for SEventHistorySaveData");
+static_assert(alignof(SEventHistorySaveData) == 0x8, "Wrong alignment for SEventHistorySaveData");
 
 // Size: 0x40
-class /*alignas(8)*/ SActorRagdollPoseSaveData{
+class alignas(8) SActorRagdollPoseSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11710,13 +11671,18 @@ public:
 	bool operator!=(const SActorRagdollPoseSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SVector3 m_vBodyVelocity; // 0x0
-	uint8_t _padC[4] {};
 	TArray<SActorBoneSaveData> m_aBones; // 0x10
 	TArray<uint32> m_aBoneIndices; // 0x28
 };
+ZHM_OFFSET_CHECK(SActorRagdollPoseSaveData, m_vBodyVelocity, 0x0);
+ZHM_OFFSET_CHECK(SActorRagdollPoseSaveData, m_aBones, 0x10);
+ZHM_OFFSET_CHECK(SActorRagdollPoseSaveData, m_aBoneIndices, 0x28);
+static_assert(sizeof(SActorRagdollPoseSaveData) == 0x40, "Wrong size for SActorRagdollPoseSaveData");
+static_assert(alignof(SActorRagdollPoseSaveData) == 0x8, "Wrong alignment for SActorRagdollPoseSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SCombatMetricsSaveData{
+class alignas(8) SCombatMetricsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11729,13 +11695,18 @@ public:
 	bool operator!=(const SCombatMetricsSaveData& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_CombatProgress; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<uint32> m_DeadVIPsOrContractTargets; // 0x8
 	TArray<uint32> m_DiscoveredVIPOrContractTargetBodies; // 0x20
 };
+ZHM_OFFSET_CHECK(SCombatMetricsSaveData, m_CombatProgress, 0x0);
+ZHM_OFFSET_CHECK(SCombatMetricsSaveData, m_DeadVIPsOrContractTargets, 0x8);
+ZHM_OFFSET_CHECK(SCombatMetricsSaveData, m_DiscoveredVIPOrContractTargetBodies, 0x20);
+static_assert(sizeof(SCombatMetricsSaveData) == 0x38, "Wrong size for SCombatMetricsSaveData");
+static_assert(alignof(SCombatMetricsSaveData) == 0x8, "Wrong alignment for SCombatMetricsSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorProviderApproachSaveData{
+class alignas(4) SActorProviderApproachSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11749,9 +11720,13 @@ public:
 
 	uint32 m_rCastActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorProviderApproachSaveData, m_rCastActor, 0x0);
+static_assert(sizeof(SActorProviderApproachSaveData) == 0x4, "Wrong size for SActorProviderApproachSaveData");
+static_assert(alignof(SActorProviderApproachSaveData) == 0x4, "Wrong alignment for SActorProviderApproachSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SActorProviderFilterDirectSaveData{
+class alignas(8) SActorProviderFilterDirectSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11765,9 +11740,13 @@ public:
 
 	TArray<uint32> m_aActors; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorProviderFilterDirectSaveData, m_aActors, 0x0);
+static_assert(sizeof(SActorProviderFilterDirectSaveData) == 0x18, "Wrong size for SActorProviderFilterDirectSaveData");
+static_assert(alignof(SActorProviderFilterDirectSaveData) == 0x8, "Wrong alignment for SActorProviderFilterDirectSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SActorProviderFilterQueueSaveData{
+class alignas(8) SActorProviderFilterQueueSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11781,9 +11760,13 @@ public:
 
 	TArray<uint32> m_aActors; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorProviderFilterQueueSaveData, m_aActors, 0x0);
+static_assert(sizeof(SActorProviderFilterQueueSaveData) == 0x18, "Wrong size for SActorProviderFilterQueueSaveData");
+static_assert(alignof(SActorProviderFilterQueueSaveData) == 0x8, "Wrong alignment for SActorProviderFilterQueueSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorProxySaveData{
+class alignas(4) SActorProxySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11797,9 +11780,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorProxySaveData, m_rActor, 0x0);
+static_assert(sizeof(SActorProxySaveData) == 0x4, "Wrong size for SActorProxySaveData");
+static_assert(alignof(SActorProxySaveData) == 0x4, "Wrong alignment for SActorProxySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SActorProxiesSaveData{
+class alignas(8) SActorProxiesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11814,9 +11801,13 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorProxySaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SActorProxiesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SActorProxiesSaveData, m_aData, 0x18);
+static_assert(sizeof(SActorProxiesSaveData) == 0x30, "Wrong size for SActorProxiesSaveData");
+static_assert(alignof(SActorProxiesSaveData) == 0x8, "Wrong alignment for SActorProxiesSaveData");
 
-// Size: 0x1
-class /*alignas(1)*/ SActorSoundDefs{
+class SActorSoundDefs
+{
 public:
 	// Size: 0x4
 	enum class EDefinition : int32_t
@@ -11824,23 +11815,11 @@ public:
 		_NoSound = 0,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SActorSoundDefs& p_Other) const;
-	bool operator!=(const SActorSoundDefs& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[1] {};
 };
 
 // Size: 0x18
-class /*alignas(8)*/ SActorSpreadControllerCandidateSaveData{
+class alignas(8) SActorSpreadControllerCandidateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11853,14 +11832,18 @@ public:
 	bool operator!=(const SActorSpreadControllerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_CandidateActor; // 0x0
-	uint8_t _pad4[4] {};
 	ZGameTime m_CandidateTime; // 0x8
 	bool m_bValidCandidate; // 0x10
-	uint8_t _pad11[7] {};
 };
+ZHM_OFFSET_CHECK(SActorSpreadControllerCandidateSaveData, m_CandidateActor, 0x0);
+ZHM_OFFSET_CHECK(SActorSpreadControllerCandidateSaveData, m_CandidateTime, 0x8);
+ZHM_OFFSET_CHECK(SActorSpreadControllerCandidateSaveData, m_bValidCandidate, 0x10);
+static_assert(sizeof(SActorSpreadControllerCandidateSaveData) == 0x18, "Wrong size for SActorSpreadControllerCandidateSaveData");
+static_assert(alignof(SActorSpreadControllerCandidateSaveData) == 0x8, "Wrong alignment for SActorSpreadControllerCandidateSaveData");
 
 // Size: 0x90
-class /*alignas(8)*/ SActorSpreadControllerSaveData{
+class alignas(8) SActorSpreadControllerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11883,12 +11866,26 @@ public:
 	bool m_bPlayerSpreading; // 0x81
 	bool m_bPlayerIsValidCandidate; // 0x82
 	bool m_bPlayerIsCandidate; // 0x83
-	uint8_t _pad84[4] {};
 	ZGameTime m_PlayerCandidateTime; // 0x88
 };
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_aSpreadingActors, 0x0);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_aDeadSpreadingActors, 0x18);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_aSpreadingActorsAddedTime, 0x30);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_aNewCandidates, 0x48);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_aCandidates, 0x60);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_rCurrentSpreadingActor, 0x78);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_nCurrentActorIndex, 0x7C);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_bPlayerCheckEnabled, 0x80);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_bPlayerSpreading, 0x81);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_bPlayerIsValidCandidate, 0x82);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_bPlayerIsCandidate, 0x83);
+ZHM_OFFSET_CHECK(SActorSpreadControllerSaveData, m_PlayerCandidateTime, 0x88);
+static_assert(sizeof(SActorSpreadControllerSaveData) == 0x90, "Wrong size for SActorSpreadControllerSaveData");
+static_assert(alignof(SActorSpreadControllerSaveData) == 0x8, "Wrong alignment for SActorSpreadControllerSaveData");
 
 // Size: 0x10
-class /*alignas(8)*/ SActorSpreadTransitionOperatorMaterialActorSaveData{
+class alignas(8) SActorSpreadTransitionOperatorMaterialActorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11904,9 +11901,15 @@ public:
 	float32 m_fOpacity; // 0x4
 	ZGameTime m_tCuredAt; // 0x8
 };
+ZHM_OFFSET_CHECK(SActorSpreadTransitionOperatorMaterialActorSaveData, m_Actor, 0x0);
+ZHM_OFFSET_CHECK(SActorSpreadTransitionOperatorMaterialActorSaveData, m_fOpacity, 0x4);
+ZHM_OFFSET_CHECK(SActorSpreadTransitionOperatorMaterialActorSaveData, m_tCuredAt, 0x8);
+static_assert(sizeof(SActorSpreadTransitionOperatorMaterialActorSaveData) == 0x10, "Wrong size for SActorSpreadTransitionOperatorMaterialActorSaveData");
+static_assert(alignof(SActorSpreadTransitionOperatorMaterialActorSaveData) == 0x8, "Wrong alignment for SActorSpreadTransitionOperatorMaterialActorSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SActorSpreadTransitionOperatorMaterialSaveData{
+class alignas(8) SActorSpreadTransitionOperatorMaterialSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11920,9 +11923,13 @@ public:
 
 	TArray<SActorSpreadTransitionOperatorMaterialActorSaveData> m_aActorMaterialOverrides; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorSpreadTransitionOperatorMaterialSaveData, m_aActorMaterialOverrides, 0x0);
+static_assert(sizeof(SActorSpreadTransitionOperatorMaterialSaveData) == 0x18, "Wrong size for SActorSpreadTransitionOperatorMaterialSaveData");
+static_assert(alignof(SActorSpreadTransitionOperatorMaterialSaveData) == 0x8, "Wrong alignment for SActorSpreadTransitionOperatorMaterialSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorStandInSaveData{
+class alignas(4) SActorStandInSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11936,9 +11943,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorStandInSaveData, m_rActor, 0x0);
+static_assert(sizeof(SActorStandInSaveData) == 0x4, "Wrong size for SActorStandInSaveData");
+static_assert(alignof(SActorStandInSaveData) == 0x4, "Wrong alignment for SActorStandInSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SActorStandInEntitiesSaveData{
+class alignas(8) SActorStandInEntitiesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11953,9 +11964,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SActorStandInSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SActorStandInEntitiesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SActorStandInEntitiesSaveData, m_aData, 0x18);
+static_assert(sizeof(SActorStandInEntitiesSaveData) == 0x30, "Wrong size for SActorStandInEntitiesSaveData");
+static_assert(alignof(SActorStandInEntitiesSaveData) == 0x8, "Wrong alignment for SActorStandInEntitiesSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SActorTagSaveData{
+class alignas(4) SActorTagSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11969,12 +11985,17 @@ public:
 
 	bool m_bSeen; // 0x0
 	bool m_bTagged; // 0x1
-	uint8_t _pad2[2] {};
 	uint32 m_rActorRef; // 0x4
 };
+ZHM_OFFSET_CHECK(SActorTagSaveData, m_bSeen, 0x0);
+ZHM_OFFSET_CHECK(SActorTagSaveData, m_bTagged, 0x1);
+ZHM_OFFSET_CHECK(SActorTagSaveData, m_rActorRef, 0x4);
+static_assert(sizeof(SActorTagSaveData) == 0x8, "Wrong size for SActorTagSaveData");
+static_assert(alignof(SActorTagSaveData) == 0x4, "Wrong alignment for SActorTagSaveData");
 
 // Size: 0x28
-class /*alignas(8)*/ SActorTagManagerSaveData{
+class alignas(8) SActorTagManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -11987,16 +12008,22 @@ public:
 	bool operator!=(const SActorTagManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bContractsCreationMode; // 0x0
-	uint8_t _pad1[3] {};
 	int32 m_nTagCount; // 0x4
 	int32 m_nMaxTagCount; // 0x8
 	bool m_bTaggingEnabled; // 0xC
-	uint8_t _padD[3] {};
 	TArray<SActorTagSaveData> m_aActorTagData; // 0x10
 };
+ZHM_OFFSET_CHECK(SActorTagManagerSaveData, m_bContractsCreationMode, 0x0);
+ZHM_OFFSET_CHECK(SActorTagManagerSaveData, m_nTagCount, 0x4);
+ZHM_OFFSET_CHECK(SActorTagManagerSaveData, m_nMaxTagCount, 0x8);
+ZHM_OFFSET_CHECK(SActorTagManagerSaveData, m_bTaggingEnabled, 0xC);
+ZHM_OFFSET_CHECK(SActorTagManagerSaveData, m_aActorTagData, 0x10);
+static_assert(sizeof(SActorTagManagerSaveData) == 0x28, "Wrong size for SActorTagManagerSaveData");
+static_assert(alignof(SActorTagManagerSaveData) == 0x8, "Wrong alignment for SActorTagManagerSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SActorVisibilityConditionSaveData{
+class alignas(4) SActorVisibilityConditionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12010,9 +12037,13 @@ public:
 
 	uint32 m_pActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SActorVisibilityConditionSaveData, m_pActor, 0x0);
+static_assert(sizeof(SActorVisibilityConditionSaveData) == 0x4, "Wrong size for SActorVisibilityConditionSaveData");
+static_assert(alignof(SActorVisibilityConditionSaveData) == 0x4, "Wrong alignment for SActorVisibilityConditionSaveData");
 
 // Size: 0x30
-class /*alignas(16)*/ SAgitatedBystanderOrderSaveData{
+class alignas(16) SAgitatedBystanderOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12025,13 +12056,18 @@ public:
 	bool operator!=(const SAgitatedBystanderOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rBystanderPoint; // 0x0
-	uint8_t _pad4[12] {};
 	float4 m_vCover; // 0x10
 	float4 m_vCoverDir; // 0x20
 };
+ZHM_OFFSET_CHECK(SAgitatedBystanderOrderSaveData, m_rBystanderPoint, 0x0);
+ZHM_OFFSET_CHECK(SAgitatedBystanderOrderSaveData, m_vCover, 0x10);
+ZHM_OFFSET_CHECK(SAgitatedBystanderOrderSaveData, m_vCoverDir, 0x20);
+static_assert(sizeof(SAgitatedBystanderOrderSaveData) == 0x30, "Wrong size for SAgitatedBystanderOrderSaveData");
+static_assert(alignof(SAgitatedBystanderOrderSaveData) == 0x10, "Wrong alignment for SAgitatedBystanderOrderSaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SAimAssistObjectSaveData{
+class alignas(1) SAimAssistObjectSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12046,9 +12082,14 @@ public:
 	bool m_bHasBeenStarted; // 0x0
 	bool m_bWasAimAssistActivated; // 0x1
 };
+ZHM_OFFSET_CHECK(SAimAssistObjectSaveData, m_bHasBeenStarted, 0x0);
+ZHM_OFFSET_CHECK(SAimAssistObjectSaveData, m_bWasAimAssistActivated, 0x1);
+static_assert(sizeof(SAimAssistObjectSaveData) == 0x2, "Wrong size for SAimAssistObjectSaveData");
+static_assert(alignof(SAimAssistObjectSaveData) == 0x1, "Wrong alignment for SAimAssistObjectSaveData");
 
 // Size: 0x20
-class /*alignas(4)*/ SBoneTransformSaveData{
+class alignas(4) SBoneTransformSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12063,9 +12104,14 @@ public:
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
 };
+ZHM_OFFSET_CHECK(SBoneTransformSaveData, mQuaterion, 0x0);
+ZHM_OFFSET_CHECK(SBoneTransformSaveData, mTranslation, 0x10);
+static_assert(sizeof(SBoneTransformSaveData) == 0x20, "Wrong size for SBoneTransformSaveData");
+static_assert(alignof(SBoneTransformSaveData) == 0x4, "Wrong alignment for SBoneTransformSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SAnimPlayerSaveData{
+class alignas(8) SAnimPlayerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12081,9 +12127,15 @@ public:
 	SVector4 mTrajectoryTranslation; // 0x10
 	TArray<SBoneTransformSaveData> m_aBones; // 0x20
 };
+ZHM_OFFSET_CHECK(SAnimPlayerSaveData, mTrajectoryQuaterion, 0x0);
+ZHM_OFFSET_CHECK(SAnimPlayerSaveData, mTrajectoryTranslation, 0x10);
+ZHM_OFFSET_CHECK(SAnimPlayerSaveData, m_aBones, 0x20);
+static_assert(sizeof(SAnimPlayerSaveData) == 0x38, "Wrong size for SAnimPlayerSaveData");
+static_assert(alignof(SAnimPlayerSaveData) == 0x8, "Wrong alignment for SAnimPlayerSaveData");
 
 // Size: 0x2C
-class /*alignas(4)*/ SAnimatedActorActOrderSaveData{
+class alignas(4) SAnimatedActorActOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12096,16 +12148,24 @@ public:
 	bool operator!=(const SAnimatedActorActOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bOverrideExistingAct; // 0x0
-	uint8_t _pad1[3] {};
 	uint32 m_nForcedAnimationNode; // 0x4
 	uint32 m_rChildNetworkAct; // 0x8
 	uint32 m_rListener; // 0xC
 	SVector3 m_vOriginPosition; // 0x10
 	SVector4 m_vOriginQuaternion; // 0x1C
 };
+ZHM_OFFSET_CHECK(SAnimatedActorActOrderSaveData, m_bOverrideExistingAct, 0x0);
+ZHM_OFFSET_CHECK(SAnimatedActorActOrderSaveData, m_nForcedAnimationNode, 0x4);
+ZHM_OFFSET_CHECK(SAnimatedActorActOrderSaveData, m_rChildNetworkAct, 0x8);
+ZHM_OFFSET_CHECK(SAnimatedActorActOrderSaveData, m_rListener, 0xC);
+ZHM_OFFSET_CHECK(SAnimatedActorActOrderSaveData, m_vOriginPosition, 0x10);
+ZHM_OFFSET_CHECK(SAnimatedActorActOrderSaveData, m_vOriginQuaternion, 0x1C);
+static_assert(sizeof(SAnimatedActorActOrderSaveData) == 0x2C, "Wrong size for SAnimatedActorActOrderSaveData");
+static_assert(alignof(SAnimatedActorActOrderSaveData) == 0x4, "Wrong alignment for SAnimatedActorActOrderSaveData");
 
 // Size: 0x2C
-class /*alignas(4)*/ SAnimatedActorMoveOrderSaveData{
+class alignas(4) SAnimatedActorMoveOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12126,9 +12186,20 @@ public:
 	SVector3 m_vForcedEndpoint; // 0x14
 	SVector3 m_vFacingDirection; // 0x20
 };
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_bPrecisePositioning, 0x0);
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_bPreciseOrientation, 0x1);
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_bIgnoreEndCollision, 0x2);
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_bForcedEnpointSet, 0x3);
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_fStopMoveDistance, 0x4);
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_vWaypoint, 0x8);
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_vForcedEndpoint, 0x14);
+ZHM_OFFSET_CHECK(SAnimatedActorMoveOrderSaveData, m_vFacingDirection, 0x20);
+static_assert(sizeof(SAnimatedActorMoveOrderSaveData) == 0x2C, "Wrong size for SAnimatedActorMoveOrderSaveData");
+static_assert(alignof(SAnimatedActorMoveOrderSaveData) == 0x4, "Wrong alignment for SAnimatedActorMoveOrderSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SAnimatedActorOrderSaveData{
+class alignas(8) SAnimatedActorOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12141,12 +12212,16 @@ public:
 	bool operator!=(const SAnimatedActorOrderSaveData& p_Other) const { return !(*this == p_Other); }
 
 	EActorAnimationOrder m_eOrderType; // 0x0
-	uint8_t _pad4[4] {};
 	ZVariant m_OrderData; // 0x8
 };
+ZHM_OFFSET_CHECK(SAnimatedActorOrderSaveData, m_eOrderType, 0x0);
+ZHM_OFFSET_CHECK(SAnimatedActorOrderSaveData, m_OrderData, 0x8);
+static_assert(sizeof(SAnimatedActorOrderSaveData) == 0x18, "Wrong size for SAnimatedActorOrderSaveData");
+static_assert(alignof(SAnimatedActorOrderSaveData) == 0x8, "Wrong alignment for SAnimatedActorOrderSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SAnimatedActorReactOrderSaveData{
+class alignas(8) SAnimatedActorReactOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12168,12 +12243,25 @@ public:
 	bool m_bDropCarriedItems; // 0x23
 	bool m_bFaceTargetSet; // 0x24
 	bool m_bLookAtTargetSet; // 0x25
-	uint8_t _pad26[2] {};
 	ZString m_sAct; // 0x28
 };
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_vFaceTarget, 0x0);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_vLookAtTarget, 0xC);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_rChildNetworkEntity, 0x18);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_targetEmotionState, 0x1C);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_bDeadbody, 0x20);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_bExplosion, 0x21);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_bTrespassing, 0x22);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_bDropCarriedItems, 0x23);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_bFaceTargetSet, 0x24);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_bLookAtTargetSet, 0x25);
+ZHM_OFFSET_CHECK(SAnimatedActorReactOrderSaveData, m_sAct, 0x28);
+static_assert(sizeof(SAnimatedActorReactOrderSaveData) == 0x38, "Wrong size for SAnimatedActorReactOrderSaveData");
+static_assert(alignof(SAnimatedActorReactOrderSaveData) == 0x8, "Wrong alignment for SAnimatedActorReactOrderSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SAnimatedActorStandOrderSaveData{
+class alignas(4) SAnimatedActorStandOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12187,9 +12275,13 @@ public:
 
 	SVector3 m_vFacingDirection; // 0x0
 };
+ZHM_OFFSET_CHECK(SAnimatedActorStandOrderSaveData, m_vFacingDirection, 0x0);
+static_assert(sizeof(SAnimatedActorStandOrderSaveData) == 0xC, "Wrong size for SAnimatedActorStandOrderSaveData");
+static_assert(alignof(SAnimatedActorStandOrderSaveData) == 0x4, "Wrong alignment for SAnimatedActorStandOrderSaveData");
 
 // Size: 0x14
-class /*alignas(4)*/ SAttentionHUDUIElement{
+class alignas(4) SAttentionHUDUIElement
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12207,9 +12299,17 @@ public:
 	float32 fRadius; // 0xC
 	int32 nColor; // 0x10
 };
+ZHM_OFFSET_CHECK(SAttentionHUDUIElement, fAngle, 0x0);
+ZHM_OFFSET_CHECK(SAttentionHUDUIElement, fAttention, 0x4);
+ZHM_OFFSET_CHECK(SAttentionHUDUIElement, fAlpha, 0x8);
+ZHM_OFFSET_CHECK(SAttentionHUDUIElement, fRadius, 0xC);
+ZHM_OFFSET_CHECK(SAttentionHUDUIElement, nColor, 0x10);
+static_assert(sizeof(SAttentionHUDUIElement) == 0x14, "Wrong size for SAttentionHUDUIElement");
+static_assert(alignof(SAttentionHUDUIElement) == 0x4, "Wrong alignment for SAttentionHUDUIElement");
 
 // Size: 0x18
-class /*alignas(8)*/ SAttentionHUDUIElementArray_Dummy{
+class alignas(8) SAttentionHUDUIElementArray_Dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12223,9 +12323,13 @@ public:
 
 	TArray<SAttentionHUDUIElement> dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(SAttentionHUDUIElementArray_Dummy, dummy, 0x0);
+static_assert(sizeof(SAttentionHUDUIElementArray_Dummy) == 0x18, "Wrong size for SAttentionHUDUIElementArray_Dummy");
+static_assert(alignof(SAttentionHUDUIElementArray_Dummy) == 0x8, "Wrong alignment for SAttentionHUDUIElementArray_Dummy");
 
 // Size: 0x18
-class /*alignas(4)*/ SAudioEmitterEventSaveData{
+class alignas(4) SAudioEmitterEventSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12239,16 +12343,23 @@ public:
 
 	uint32 m_nEventId; // 0x0
 	bool m_bPaused; // 0x4
-	uint8_t _pad5[3] {};
 	uint32 m_nFlags; // 0x8
 	uint32 m_rEventSender; // 0xC
 	int32 m_nSeekPosition; // 0x10
 	uint8 m_nPlayState; // 0x14
-	uint8_t _pad15[3] {};
 };
+ZHM_OFFSET_CHECK(SAudioEmitterEventSaveData, m_nEventId, 0x0);
+ZHM_OFFSET_CHECK(SAudioEmitterEventSaveData, m_bPaused, 0x4);
+ZHM_OFFSET_CHECK(SAudioEmitterEventSaveData, m_nFlags, 0x8);
+ZHM_OFFSET_CHECK(SAudioEmitterEventSaveData, m_rEventSender, 0xC);
+ZHM_OFFSET_CHECK(SAudioEmitterEventSaveData, m_nSeekPosition, 0x10);
+ZHM_OFFSET_CHECK(SAudioEmitterEventSaveData, m_nPlayState, 0x14);
+static_assert(sizeof(SAudioEmitterEventSaveData) == 0x18, "Wrong size for SAudioEmitterEventSaveData");
+static_assert(alignof(SAudioEmitterEventSaveData) == 0x4, "Wrong alignment for SAudioEmitterEventSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SAudioEmitterRTPCSaveData{
+class alignas(4) SAudioEmitterRTPCSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12263,9 +12374,14 @@ public:
 	uint32 m_nParamId; // 0x0
 	float32 m_fValue; // 0x4
 };
+ZHM_OFFSET_CHECK(SAudioEmitterRTPCSaveData, m_nParamId, 0x0);
+ZHM_OFFSET_CHECK(SAudioEmitterRTPCSaveData, m_fValue, 0x4);
+static_assert(sizeof(SAudioEmitterRTPCSaveData) == 0x8, "Wrong size for SAudioEmitterRTPCSaveData");
+static_assert(alignof(SAudioEmitterRTPCSaveData) == 0x4, "Wrong alignment for SAudioEmitterRTPCSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SAudioEmitterSaveData{
+class alignas(4) SAudioEmitterSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12282,9 +12398,16 @@ public:
 	uint32 m_nNumberOfRTPCs; // 0x8
 	uint32 m_nNumberOfSwitches; // 0xC
 };
+ZHM_OFFSET_CHECK(SAudioEmitterSaveData, m_rEmitter, 0x0);
+ZHM_OFFSET_CHECK(SAudioEmitterSaveData, m_nNumberOfEvents, 0x4);
+ZHM_OFFSET_CHECK(SAudioEmitterSaveData, m_nNumberOfRTPCs, 0x8);
+ZHM_OFFSET_CHECK(SAudioEmitterSaveData, m_nNumberOfSwitches, 0xC);
+static_assert(sizeof(SAudioEmitterSaveData) == 0x10, "Wrong size for SAudioEmitterSaveData");
+static_assert(alignof(SAudioEmitterSaveData) == 0x4, "Wrong alignment for SAudioEmitterSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SAudioEmitterStateSaveData{
+class alignas(4) SAudioEmitterStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12299,9 +12422,14 @@ public:
 	uint32 m_nGroupId; // 0x0
 	uint32 m_nStateId; // 0x4
 };
+ZHM_OFFSET_CHECK(SAudioEmitterStateSaveData, m_nGroupId, 0x0);
+ZHM_OFFSET_CHECK(SAudioEmitterStateSaveData, m_nStateId, 0x4);
+static_assert(sizeof(SAudioEmitterStateSaveData) == 0x8, "Wrong size for SAudioEmitterStateSaveData");
+static_assert(alignof(SAudioEmitterStateSaveData) == 0x4, "Wrong alignment for SAudioEmitterStateSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SAudioEmitterSwitchSaveData{
+class alignas(4) SAudioEmitterSwitchSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12316,9 +12444,14 @@ public:
 	uint32 m_nGroupId; // 0x0
 	uint32 m_nStateId; // 0x4
 };
+ZHM_OFFSET_CHECK(SAudioEmitterSwitchSaveData, m_nGroupId, 0x0);
+ZHM_OFFSET_CHECK(SAudioEmitterSwitchSaveData, m_nStateId, 0x4);
+static_assert(sizeof(SAudioEmitterSwitchSaveData) == 0x8, "Wrong size for SAudioEmitterSwitchSaveData");
+static_assert(alignof(SAudioEmitterSwitchSaveData) == 0x4, "Wrong alignment for SAudioEmitterSwitchSaveData");
 
 // Size: 0x10
-class /*alignas(8)*/ ZResourceID{
+class alignas(8) ZResourceID
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12332,9 +12465,13 @@ public:
 
 	ZString m_uri; // 0x0
 };
+ZHM_OFFSET_CHECK(ZResourceID, m_uri, 0x0);
+static_assert(sizeof(ZResourceID) == 0x10, "Wrong size for ZResourceID");
+static_assert(alignof(ZResourceID) == 0x8, "Wrong alignment for ZResourceID");
 
 // Size: 0x20
-class /*alignas(8)*/ SAudioMemoryMonitorEntry{
+class alignas(8) SAudioMemoryMonitorEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12350,9 +12487,15 @@ public:
 	uint32 size; // 0x4
 	TArray<ZResourceID> references; // 0x8
 };
+ZHM_OFFSET_CHECK(SAudioMemoryMonitorEntry, shortId, 0x0);
+ZHM_OFFSET_CHECK(SAudioMemoryMonitorEntry, size, 0x4);
+ZHM_OFFSET_CHECK(SAudioMemoryMonitorEntry, references, 0x8);
+static_assert(sizeof(SAudioMemoryMonitorEntry) == 0x20, "Wrong size for SAudioMemoryMonitorEntry");
+static_assert(alignof(SAudioMemoryMonitorEntry) == 0x8, "Wrong alignment for SAudioMemoryMonitorEntry");
 
 // Size: 0xA8
-class /*alignas(8)*/ SAudioSaveData{
+class alignas(8) SAudioSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12372,9 +12515,19 @@ public:
 	TArray<SAudioEmitterRTPCSaveData> m_aGlobalRTPCs; // 0x78
 	TArray<uint32> m_aEventsEnabledAfterInit; // 0x90
 };
+ZHM_OFFSET_CHECK(SAudioSaveData, m_aEmitters, 0x0);
+ZHM_OFFSET_CHECK(SAudioSaveData, m_aEmitterEvents, 0x18);
+ZHM_OFFSET_CHECK(SAudioSaveData, m_aEmitterRTPCs, 0x30);
+ZHM_OFFSET_CHECK(SAudioSaveData, m_aEmitterSwitches, 0x48);
+ZHM_OFFSET_CHECK(SAudioSaveData, m_aGlobalStates, 0x60);
+ZHM_OFFSET_CHECK(SAudioSaveData, m_aGlobalRTPCs, 0x78);
+ZHM_OFFSET_CHECK(SAudioSaveData, m_aEventsEnabledAfterInit, 0x90);
+static_assert(sizeof(SAudioSaveData) == 0xA8, "Wrong size for SAudioSaveData");
+static_assert(alignof(SAudioSaveData) == 0x8, "Wrong alignment for SAudioSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SFSMSaveData{
+class alignas(8) SFSMSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12389,12 +12542,18 @@ public:
 	EFSMStateStatus m_eStateStatus; // 0x0
 	int32 m_state; // 0x4
 	int32 m_prevState; // 0x8
-	uint8_t _padC[4] {};
 	ZGameTime m_tCurrentStateEnterTime; // 0x10
 };
+ZHM_OFFSET_CHECK(SFSMSaveData, m_eStateStatus, 0x0);
+ZHM_OFFSET_CHECK(SFSMSaveData, m_state, 0x4);
+ZHM_OFFSET_CHECK(SFSMSaveData, m_prevState, 0x8);
+ZHM_OFFSET_CHECK(SFSMSaveData, m_tCurrentStateEnterTime, 0x10);
+static_assert(sizeof(SFSMSaveData) == 0x18, "Wrong size for SFSMSaveData");
+static_assert(alignof(SFSMSaveData) == 0x8, "Wrong alignment for SFSMSaveData");
 
 // Size: 0x40
-class /*alignas(16)*/ SAvoidDangerousAreaGroupSaveData{
+class alignas(16) SAvoidDangerousAreaGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12408,15 +12567,21 @@ public:
 
 	SFSMSaveData m_fsmState; // 0x0
 	uint32 m_rDangerousArea; // 0x18
-	uint8_t _pad1C[4] {};
 	float4 m_vDestinationPoint; // 0x20
 	int32 m_iGridId; // 0x30
 	bool m_bWaitUntilDangerEnds; // 0x34
-	uint8_t _pad35[11] {};
 };
+ZHM_OFFSET_CHECK(SAvoidDangerousAreaGroupSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SAvoidDangerousAreaGroupSaveData, m_rDangerousArea, 0x18);
+ZHM_OFFSET_CHECK(SAvoidDangerousAreaGroupSaveData, m_vDestinationPoint, 0x20);
+ZHM_OFFSET_CHECK(SAvoidDangerousAreaGroupSaveData, m_iGridId, 0x30);
+ZHM_OFFSET_CHECK(SAvoidDangerousAreaGroupSaveData, m_bWaitUntilDangerEnds, 0x34);
+static_assert(sizeof(SAvoidDangerousAreaGroupSaveData) == 0x40, "Wrong size for SAvoidDangerousAreaGroupSaveData");
+static_assert(alignof(SAvoidDangerousAreaGroupSaveData) == 0x10, "Wrong alignment for SAvoidDangerousAreaGroupSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SBehaviorTreeEntityReference{
+class alignas(8) SBehaviorTreeEntityReference
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12429,12 +12594,16 @@ public:
 	bool operator!=(const SBehaviorTreeEntityReference& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bList; // 0x0
-	uint8_t _pad1[7] {};
 	ZString m_sName; // 0x8
 };
+ZHM_OFFSET_CHECK(SBehaviorTreeEntityReference, m_bList, 0x0);
+ZHM_OFFSET_CHECK(SBehaviorTreeEntityReference, m_sName, 0x8);
+static_assert(sizeof(SBehaviorTreeEntityReference) == 0x18, "Wrong size for SBehaviorTreeEntityReference");
+static_assert(alignof(SBehaviorTreeEntityReference) == 0x8, "Wrong alignment for SBehaviorTreeEntityReference");
 
 // Size: 0x18
-class /*alignas(8)*/ SBehaviorTreeEvaluationLogEntry{
+class alignas(8) SBehaviorTreeEvaluationLogEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12447,14 +12616,18 @@ public:
 	bool operator!=(const SBehaviorTreeEvaluationLogEntry& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nBehaviorTreeIndex; // 0x0
-	uint8_t _pad4[4] {};
 	uint64 m_nConditionOffset; // 0x8
 	bool m_bResult; // 0x10
-	uint8_t _pad11[7] {};
 };
+ZHM_OFFSET_CHECK(SBehaviorTreeEvaluationLogEntry, m_nBehaviorTreeIndex, 0x0);
+ZHM_OFFSET_CHECK(SBehaviorTreeEvaluationLogEntry, m_nConditionOffset, 0x8);
+ZHM_OFFSET_CHECK(SBehaviorTreeEvaluationLogEntry, m_bResult, 0x10);
+static_assert(sizeof(SBehaviorTreeEvaluationLogEntry) == 0x18, "Wrong size for SBehaviorTreeEvaluationLogEntry");
+static_assert(alignof(SBehaviorTreeEvaluationLogEntry) == 0x8, "Wrong alignment for SBehaviorTreeEvaluationLogEntry");
 
 // Size: 0x30
-class /*alignas(8)*/ SBehaviorTreeEvaluationLog{
+class alignas(8) SBehaviorTreeEvaluationLog
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12469,9 +12642,14 @@ public:
 	TArray<ZResourceID> m_BehaviorTrees; // 0x0
 	TArray<SBehaviorTreeEvaluationLogEntry> m_Entries; // 0x18
 };
+ZHM_OFFSET_CHECK(SBehaviorTreeEvaluationLog, m_BehaviorTrees, 0x0);
+ZHM_OFFSET_CHECK(SBehaviorTreeEvaluationLog, m_Entries, 0x18);
+static_assert(sizeof(SBehaviorTreeEvaluationLog) == 0x30, "Wrong size for SBehaviorTreeEvaluationLog");
+static_assert(alignof(SBehaviorTreeEvaluationLog) == 0x8, "Wrong alignment for SBehaviorTreeEvaluationLog");
 
 // Size: 0x10
-class /*alignas(8)*/ SBehaviorTreeInputPinCondition{
+class alignas(8) SBehaviorTreeInputPinCondition
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12485,9 +12663,13 @@ public:
 
 	ZString m_sName; // 0x0
 };
+ZHM_OFFSET_CHECK(SBehaviorTreeInputPinCondition, m_sName, 0x0);
+static_assert(sizeof(SBehaviorTreeInputPinCondition) == 0x10, "Wrong size for SBehaviorTreeInputPinCondition");
+static_assert(alignof(SBehaviorTreeInputPinCondition) == 0x8, "Wrong alignment for SBehaviorTreeInputPinCondition");
 
 // Size: 0x30
-class /*alignas(8)*/ SBehaviorTreeInfo{
+class alignas(8) SBehaviorTreeInfo
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12502,22 +12684,10 @@ public:
 	TArray<SBehaviorTreeEntityReference> m_references; // 0x0
 	TArray<SBehaviorTreeInputPinCondition> m_inputPinConditions; // 0x18
 };
-
-// Size: 0x8
-class /*alignas(4)*/ ZBehaviorTreeVariable{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZBehaviorTreeVariable& p_Other) const;
-	bool operator!=(const ZBehaviorTreeVariable& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
+ZHM_OFFSET_CHECK(SBehaviorTreeInfo, m_references, 0x0);
+ZHM_OFFSET_CHECK(SBehaviorTreeInfo, m_inputPinConditions, 0x18);
+static_assert(sizeof(SBehaviorTreeInfo) == 0x30, "Wrong size for SBehaviorTreeInfo");
+static_assert(alignof(SBehaviorTreeInfo) == 0x8, "Wrong alignment for SBehaviorTreeInfo");
 
 class ZWaypointEntity
 {
@@ -12537,13 +12707,6 @@ class ZMoveToPositionBehaviorEntity
 {
 public:
 	// Size: 0x4
-	enum class EApproachAlignment : int32_t
-	{
-		AA_STRICT = 0,
-		AA_LOOSE = 1,
-	};
-
-	// Size: 0x4
 	enum class EMovementType : int32_t
 	{
 		MT_WALK = 0,
@@ -12557,6 +12720,13 @@ public:
 		RA_NONE = 0,
 		RA_LOOSE = 1,
 		RA_EXACT = 2,
+	};
+
+	// Size: 0x4
+	enum class EApproachAlignment : int32_t
+	{
+		AA_STRICT = 0,
+		AA_LOOSE = 1,
 	};
 
 };
@@ -12565,19 +12735,19 @@ class ZPatrolBehaviorEntity
 {
 public:
 	// Size: 0x4
-	enum class EMovementType : int32_t
-	{
-		MT_WALK = 0,
-		MT_SNAP = 1,
-		MT_IGNORE_POSITION = 2,
-	};
-
-	// Size: 0x4
 	enum class ERotationAlignment : int32_t
 	{
 		RA_NONE = 0,
 		RA_LOOSE = 1,
 		RA_EXACT = 2,
+	};
+
+	// Size: 0x4
+	enum class EMovementType : int32_t
+	{
+		MT_WALK = 0,
+		MT_SNAP = 1,
+		MT_IGNORE_POSITION = 2,
 	};
 
 };
@@ -12586,14 +12756,6 @@ class ZCoverPlane
 {
 public:
 	// Size: 0x4
-	enum class ECoverSize : int32_t
-	{
-		eLowCover = 0,
-		eMediumCover = 1,
-		eHighCover = 2,
-	};
-
-	// Size: 0x4
 	enum class ECoverType : int32_t
 	{
 		eCoverOnly = 0,
@@ -12601,10 +12763,19 @@ public:
 		eRailOnly = 2,
 	};
 
+	// Size: 0x4
+	enum class ECoverSize : int32_t
+	{
+		eLowCover = 0,
+		eMediumCover = 1,
+		eHighCover = 2,
+	};
+
 };
 
 // Size: 0x18
-class /*alignas(8)*/ SBlobsConfigResourceEntry{
+class alignas(8) SBlobsConfigResourceEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12619,26 +12790,21 @@ public:
 	ZString Id; // 0x0
 	ZRuntimeResourceID BlobRid; // 0x10
 };
-
-// Size: 0x60
-class /*alignas(16)*/ ZRayQueryInput{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZRayQueryInput& p_Other) const;
-	bool operator!=(const ZRayQueryInput& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[96] {};
-};
+ZHM_OFFSET_CHECK(SBlobsConfigResourceEntry, Id, 0x0);
+ZHM_OFFSET_CHECK(SBlobsConfigResourceEntry, BlobRid, 0x10);
+static_assert(sizeof(SBlobsConfigResourceEntry) == 0x18, "Wrong size for SBlobsConfigResourceEntry");
+static_assert(alignof(SBlobsConfigResourceEntry) == 0x8, "Wrong alignment for SBlobsConfigResourceEntry");
 
 class ZSequenceEntity
 {
 public:
+	// Size: 0x4
+	enum class ELetterBoxAspect : int32_t
+	{
+		LETTERBOXASPECT_WIDESCREEN = 0,
+		LETTERBOXASPECT_CINEMASCOPE = 1,
+	};
+
 	// Size: 0x4
 	enum class ECommand : int32_t
 	{
@@ -12660,18 +12826,27 @@ public:
 		COMMAND_CLEAR = 15,
 	};
 
-	// Size: 0x4
-	enum class ELetterBoxAspect : int32_t
-	{
-		LETTERBOXASPECT_WIDESCREEN = 0,
-		LETTERBOXASPECT_CINEMASCOPE = 1,
-	};
-
 };
 
 class ZHM5BodyContainer
 {
 public:
+	// Size: 0x4
+	enum class EBCBodyMode : int32_t
+	{
+		BC_1_VICTIM = 0,
+		BC_2_VICTIMS = 1,
+		BC_1_VICTIM_FLUSHABLE = 2,
+		BC_1_VICTIM_AUTOFLUSHABLE = 3,
+	};
+
+	// Size: 0x4
+	enum class eBCCloseMode : int32_t
+	{
+		BC_AUTOCLOSE = 0,
+		BC_MANUALCLOSE = 1,
+	};
+
 	// Size: 0x4
 	enum class EBCAnimSet : int32_t
 	{
@@ -12680,15 +12855,6 @@ public:
 		BC_CAR_STANDARD_TRUNK = 2,
 		BC_CONTAINER_CLOSET = 3,
 		BC_CONTAINER_LAUNDRYCHUTE = 4,
-	};
-
-	// Size: 0x4
-	enum class EBCBodyMode : int32_t
-	{
-		BC_1_VICTIM = 0,
-		BC_2_VICTIMS = 1,
-		BC_1_VICTIM_FLUSHABLE = 2,
-		BC_1_VICTIM_AUTOFLUSHABLE = 3,
 	};
 
 	// Size: 0x4
@@ -12702,17 +12868,11 @@ public:
 		BC_FLUSHING = 5,
 	};
 
-	// Size: 0x4
-	enum class eBCCloseMode : int32_t
-	{
-		BC_AUTOCLOSE = 0,
-		BC_MANUALCLOSE = 1,
-	};
-
 };
 
 // Size: 0x10
-class /*alignas(4)*/ SBodyContainerSaveData{
+class alignas(4) SBodyContainerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12728,11 +12888,17 @@ public:
 	float32 m_fLidAutoCloseTime; // 0x4
 	float32 m_fLidOpenFraction; // 0x8
 	bool m_bFrameUpdateActive; // 0xC
-	uint8_t _padD[3] {};
 };
+ZHM_OFFSET_CHECK(SBodyContainerSaveData, m_eBCState, 0x0);
+ZHM_OFFSET_CHECK(SBodyContainerSaveData, m_fLidAutoCloseTime, 0x4);
+ZHM_OFFSET_CHECK(SBodyContainerSaveData, m_fLidOpenFraction, 0x8);
+ZHM_OFFSET_CHECK(SBodyContainerSaveData, m_bFrameUpdateActive, 0xC);
+static_assert(sizeof(SBodyContainerSaveData) == 0x10, "Wrong size for SBodyContainerSaveData");
+static_assert(alignof(SBodyContainerSaveData) == 0x4, "Wrong alignment for SBodyContainerSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SBodyContainersSaveData{
+class alignas(8) SBodyContainersSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12747,9 +12913,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SBodyContainerSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SBodyContainersSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SBodyContainersSaveData, m_aData, 0x18);
+static_assert(sizeof(SBodyContainersSaveData) == 0x30, "Wrong size for SBodyContainersSaveData");
+static_assert(alignof(SBodyContainersSaveData) == 0x8, "Wrong alignment for SBodyContainersSaveData");
 
 // Size: 0x34
-class /*alignas(4)*/ SBodyPartDamageMultipliers{
+class alignas(4) SBodyPartDamageMultipliers
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12774,11 +12945,26 @@ public:
 	float32 m_fRLegDamageScalar; // 0x28
 	float32 m_fTorsoDamageMultiplier; // 0x2C
 	bool m_bApplyLeftRightScalars; // 0x30
-	uint8_t _pad31[3] {};
 };
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fHeadDamageMultiplier, 0x0);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fFaceDamageMultiplier, 0x4);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fArmDamageMultiplier, 0x8);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fLArmDamageScalar, 0xC);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fRArmDamageScalar, 0x10);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fHandDamageMultiplier, 0x14);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fLHandDamageScalar, 0x18);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fRHandDamageScalar, 0x1C);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fLegDamageMultiplier, 0x20);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fLLegDamageScalar, 0x24);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fRLegDamageScalar, 0x28);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_fTorsoDamageMultiplier, 0x2C);
+ZHM_OFFSET_CHECK(SBodyPartDamageMultipliers, m_bApplyLeftRightScalars, 0x30);
+static_assert(sizeof(SBodyPartDamageMultipliers) == 0x34, "Wrong size for SBodyPartDamageMultipliers");
+static_assert(alignof(SBodyPartDamageMultipliers) == 0x4, "Wrong alignment for SBodyPartDamageMultipliers");
 
 // Size: 0x20
-class /*alignas(4)*/ SBodybagBoneSaveData{
+class alignas(4) SBodybagBoneSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12793,9 +12979,14 @@ public:
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
 };
+ZHM_OFFSET_CHECK(SBodybagBoneSaveData, mQuaterion, 0x0);
+ZHM_OFFSET_CHECK(SBodybagBoneSaveData, mTranslation, 0x10);
+static_assert(sizeof(SBodybagBoneSaveData) == 0x20, "Wrong size for SBodybagBoneSaveData");
+static_assert(alignof(SBodybagBoneSaveData) == 0x4, "Wrong alignment for SBodybagBoneSaveData");
 
 // Size: 0x58
-class /*alignas(8)*/ SBodybagSaveData{
+class alignas(8) SBodybagSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12809,16 +13000,23 @@ public:
 
 	SVector3 m_vLinkedPosition; // 0x0
 	SVector4 m_vLinkedQuaternionRotation; // 0xC
-	uint8_t _pad1C[4] {};
 	TArray<SBodybagBoneSaveData> m_aBones; // 0x20
 	TArray<uint32> m_aBoneIndices; // 0x38
 	uint32 m_rDeadActor; // 0x50
 	bool m_IsInMorgue; // 0x54
-	uint8_t _pad55[3] {};
 };
+ZHM_OFFSET_CHECK(SBodybagSaveData, m_vLinkedPosition, 0x0);
+ZHM_OFFSET_CHECK(SBodybagSaveData, m_vLinkedQuaternionRotation, 0xC);
+ZHM_OFFSET_CHECK(SBodybagSaveData, m_aBones, 0x20);
+ZHM_OFFSET_CHECK(SBodybagSaveData, m_aBoneIndices, 0x38);
+ZHM_OFFSET_CHECK(SBodybagSaveData, m_rDeadActor, 0x50);
+ZHM_OFFSET_CHECK(SBodybagSaveData, m_IsInMorgue, 0x54);
+static_assert(sizeof(SBodybagSaveData) == 0x58, "Wrong size for SBodybagSaveData");
+static_assert(alignof(SBodybagSaveData) == 0x8, "Wrong alignment for SBodybagSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SBoneAttachSaveData{
+class alignas(4) SBoneAttachSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12832,11 +13030,15 @@ public:
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsAttached; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SBoneAttachSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(SBoneAttachSaveData, m_bIsAttached, 0x4);
+static_assert(sizeof(SBoneAttachSaveData) == 0x8, "Wrong size for SBoneAttachSaveData");
+static_assert(alignof(SBoneAttachSaveData) == 0x4, "Wrong alignment for SBoneAttachSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SBoneScalesList{
+class alignas(8) SBoneScalesList
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12850,9 +13052,13 @@ public:
 
 	TArray<SVector3> m_aBoneScales; // 0x0
 };
+ZHM_OFFSET_CHECK(SBoneScalesList, m_aBoneScales, 0x0);
+static_assert(sizeof(SBoneScalesList) == 0x18, "Wrong size for SBoneScalesList");
+static_assert(alignof(SBoneScalesList) == 0x8, "Wrong alignment for SBoneScalesList");
 
 // Size: 0x20
-class /*alignas(8)*/ SBonusRequirementData{
+class alignas(8) SBonusRequirementData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12867,9 +13073,14 @@ public:
 	ZString lstrTitle; // 0x0
 	ZString icon; // 0x10
 };
+ZHM_OFFSET_CHECK(SBonusRequirementData, lstrTitle, 0x0);
+ZHM_OFFSET_CHECK(SBonusRequirementData, icon, 0x10);
+static_assert(sizeof(SBonusRequirementData) == 0x20, "Wrong size for SBonusRequirementData");
+static_assert(alignof(SBonusRequirementData) == 0x8, "Wrong alignment for SBonusRequirementData");
 
 // Size: 0x8
-class /*alignas(4)*/ SCCEffectSet{
+class alignas(4) SCCEffectSet
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12884,9 +13095,14 @@ public:
 	ECCDecalEffect m_eDecalEffect; // 0x0
 	ECCEmitterEffect m_eEmitterEffect; // 0x4
 };
+ZHM_OFFSET_CHECK(SCCEffectSet, m_eDecalEffect, 0x0);
+ZHM_OFFSET_CHECK(SCCEffectSet, m_eEmitterEffect, 0x4);
+static_assert(sizeof(SCCEffectSet) == 0x8, "Wrong size for SCCEffectSet");
+static_assert(alignof(SCCEffectSet) == 0x4, "Wrong alignment for SCCEffectSet");
 
 // Size: 0x8
-class /*alignas(4)*/ SCamBone{
+class alignas(4) SCamBone
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12901,22 +13117,10 @@ public:
 	BoneId::Enum m_eBoneId; // 0x0
 	float32 m_fWeight; // 0x4
 };
-
-// Size: 0xD8
-class /*alignas(8)*/ ZSituationGroup{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZSituationGroup& p_Other) const;
-	bool operator!=(const ZSituationGroup& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[216] {};
-};
+ZHM_OFFSET_CHECK(SCamBone, m_eBoneId, 0x0);
+ZHM_OFFSET_CHECK(SCamBone, m_fWeight, 0x4);
+static_assert(sizeof(SCamBone) == 0x8, "Wrong size for SCamBone");
+static_assert(alignof(SCamBone) == 0x4, "Wrong alignment for SCamBone");
 
 class ZCautiousBackupGroup
 {
@@ -12933,7 +13137,8 @@ public:
 };
 
 // Size: 0x50
-class /*alignas(8)*/ SCautiousBackupGroupSaveData{
+class alignas(8) SCautiousBackupGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12948,16 +13153,24 @@ public:
 	ZCautiousBackupGroup::EGroupState m_eGroupState; // 0x0
 	uint32 m_pLeader; // 0x4
 	uint16 m_nTargetNodeIndex; // 0x8
-	uint8_t _padA[6] {};
 	TArray<uint32> m_aCandidates; // 0x10
 	uint32 m_pCandidate; // 0x28
-	uint8_t _pad2C[4] {};
 	TArray<uint16> m_aReservedApproachNodeIndices; // 0x30
 	ZGameTime m_tStart; // 0x48
 };
+ZHM_OFFSET_CHECK(SCautiousBackupGroupSaveData, m_eGroupState, 0x0);
+ZHM_OFFSET_CHECK(SCautiousBackupGroupSaveData, m_pLeader, 0x4);
+ZHM_OFFSET_CHECK(SCautiousBackupGroupSaveData, m_nTargetNodeIndex, 0x8);
+ZHM_OFFSET_CHECK(SCautiousBackupGroupSaveData, m_aCandidates, 0x10);
+ZHM_OFFSET_CHECK(SCautiousBackupGroupSaveData, m_pCandidate, 0x28);
+ZHM_OFFSET_CHECK(SCautiousBackupGroupSaveData, m_aReservedApproachNodeIndices, 0x30);
+ZHM_OFFSET_CHECK(SCautiousBackupGroupSaveData, m_tStart, 0x48);
+static_assert(sizeof(SCautiousBackupGroupSaveData) == 0x50, "Wrong size for SCautiousBackupGroupSaveData");
+static_assert(alignof(SCautiousBackupGroupSaveData) == 0x8, "Wrong alignment for SCautiousBackupGroupSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SCautiousHuntSaveData{
+class alignas(8) SCautiousHuntSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -12980,8 +13193,20 @@ public:
 	bool m_bSharedHuntTarget; // 0x34
 	bool m_bTargetBlamed; // 0x35
 	bool m_bRuleActive; // 0x36
-	uint8_t _pad37[1] {};
 };
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_tAnnounceHuntCoolDown, 0x18);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_tAnnouncedHunt, 0x20);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_tShareHuntTargetCoolDown, 0x28);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_bAnnounceHunt, 0x30);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_bAnnouncedHunt, 0x31);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_bPlayAnnouncementDialog, 0x32);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_bHuntTargetKnownKiller, 0x33);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_bSharedHuntTarget, 0x34);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_bTargetBlamed, 0x35);
+ZHM_OFFSET_CHECK(SCautiousHuntSaveData, m_bRuleActive, 0x36);
+static_assert(sizeof(SCautiousHuntSaveData) == 0x38, "Wrong size for SCautiousHuntSaveData");
+static_assert(alignof(SCautiousHuntSaveData) == 0x8, "Wrong alignment for SCautiousHuntSaveData");
 
 class ZCautiousInvestigateGroup
 {
@@ -13025,7 +13250,8 @@ public:
 };
 
 // Size: 0x40
-class /*alignas(8)*/ SExactCompressedGridFloatField{
+class alignas(8) SExactCompressedGridFloatField
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13040,13 +13266,20 @@ public:
 	float32 m_fInitialValue; // 0x0
 	uint32 m_nFieldSize; // 0x4
 	uint32 m_nGridCRC; // 0x8
-	uint8_t _padC[4] {};
 	TArray<uint16> m_aIndices; // 0x10
 	TArray<float32> m_aValues; // 0x28
 };
+ZHM_OFFSET_CHECK(SExactCompressedGridFloatField, m_fInitialValue, 0x0);
+ZHM_OFFSET_CHECK(SExactCompressedGridFloatField, m_nFieldSize, 0x4);
+ZHM_OFFSET_CHECK(SExactCompressedGridFloatField, m_nGridCRC, 0x8);
+ZHM_OFFSET_CHECK(SExactCompressedGridFloatField, m_aIndices, 0x10);
+ZHM_OFFSET_CHECK(SExactCompressedGridFloatField, m_aValues, 0x28);
+static_assert(sizeof(SExactCompressedGridFloatField) == 0x40, "Wrong size for SExactCompressedGridFloatField");
+static_assert(alignof(SExactCompressedGridFloatField) == 0x8, "Wrong alignment for SExactCompressedGridFloatField");
 
 // Size: 0x100
-class /*alignas(16)*/ SCautiousInvestigateGroupSaveData{
+class alignas(16) SCautiousInvestigateGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13066,7 +13299,6 @@ public:
 	int32 m_nLeaderApproachNode; // 0x18
 	int32 m_nAssistantApproachNode; // 0x1C
 	ZCautiousInvestigateGroup::EApproachOrderState m_eApproachOrderState; // 0x20
-	uint8_t _pad24[4] {};
 	SFSMSaveData m_fsmState; // 0x28
 	SFSMSaveData m_fsmAssistantState; // 0x40
 	bool m_bUsingRecurringDialog; // 0x58
@@ -13083,164 +13315,33 @@ public:
 	bool m_bValidTargetDistanceField; // 0xF0
 	bool m_bValidTargetLOSField; // 0xF1
 	bool m_bForceAcknowledge; // 0xF2
-	uint8_t _padF3[13] {};
 };
-
-// Size: 0x40
-class /*alignas(8)*/ SCompressedGridFloatField{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SCompressedGridFloatField& p_Other) const;
-	bool operator!=(const SCompressedGridFloatField& p_Other) const { return !(*this == p_Other); }
-
-	bool m_bIsSparse; // 0x0
-	uint8_t _pad1[3] {};
-	uint32 m_nFieldSize; // 0x4
-	float32 m_fInitialValue; // 0x8
-	uint32 m_nGridCRC; // 0xC
-	TArray<uint16> m_aIndices; // 0x10
-	TArray<uint8> m_aValues; // 0x28
-};
-
-class ZInvestigateCautiousSituation
-{
-public:
-	// Size: 0x4
-	enum class EBystanderState : int32_t
-	{
-		BS_SelectCandidate = 0,
-		BS_SelectPoint = 1,
-		BS_SearchDangerField = 2,
-	};
-
-	// Size: 0x4
-	enum class ESituationState : int32_t
-	{
-		SS_Main = 0,
-		SS_StandDownPending = 1,
-		SS_StandDown = 2,
-	};
-
-	// Size: 0x78
-	class /*alignas(8)*/ SStateData	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SStateData& p_Other) const;
-		bool operator!=(const SStateData& p_Other) const { return !(*this == p_Other); }
-
-		ZInvestigateCautiousSituation::ESituationState m_state; // 0x0
-		ZInvestigateCautiousSituation::EBystanderState m_eBystanderState; // 0x4
-		ZGameTime m_tLastInvestigationEnded; // 0x8
-		ZGameTime m_tLastApproachOrder; // 0x10
-		ZGameTime m_tLastBackupGroupEnded; // 0x18
-		ZGameTime m_tLastHunt; // 0x20
-		ZGameTime m_tHuntTargetLastUpdate; // 0x28
-		ZGameTime m_tNewHuntTargetTimer; // 0x30
-		ZGameTime m_tLastPropagate; // 0x38
-		float32 m_fCombatAge; // 0x40
-		uint8_t _pad44[20] {};
-		bool m_bLockdownZoneDisturbanceAdded; // 0x58
-		bool m_bLockdownSituation; // 0x59
-		bool m_bLockdownFalseAlarm; // 0x5A
-		bool m_bLockdownGracePeriod; // 0x5B
-		bool m_bHMInGuardDisguise; // 0x5C
-		bool m_bFrisked; // 0x5D
-		bool m_bAnnouncedFrisk; // 0x5E
-		bool m_bReasonToFrisk; // 0x5F
-		bool m_bSomeoneHasBeenInCombat; // 0x60
-		bool m_bInvestigationGroupActive; // 0x61
-		bool m_bStandDownGuards; // 0x62
-		uint8_t _pad63[5] {};
-		ZGameTime m_tStandDownDelay; // 0x68
-		EDisturbanceType m_eMostSevereDisturbance; // 0x70
-		bool m_bDiscoveredDeadBody; // 0x74
-		bool m_bDiscoveredPacifiedBody; // 0x75
-		uint8_t _pad76[2] {};
-	};
-
-};
-
-// Size: 0x20
-class /*alignas(8)*/ SDisturbanceSaveData{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SDisturbanceSaveData& p_Other) const;
-	bool operator!=(const SDisturbanceSaveData& p_Other) const { return !(*this == p_Other); }
-
-	int32 m_object; // 0x0
-	EDisturbanceType m_type; // 0x4
-	ECautiousDisturbanceState m_state; // 0x8
-	uint8_t _padC[4] {};
-	ZGameTime m_started; // 0x10
-	int32 m_pInvestigateGroup; // 0x18
-	bool m_bLockOnHitmanPosition; // 0x1C
-	uint8_t _pad1D[3] {};
-};
-
-// Size: 0x1E0
-class /*alignas(8)*/ SCautiousInvestigateSituationSaveData{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SCautiousInvestigateSituationSaveData& p_Other) const;
-	bool operator!=(const SCautiousInvestigateSituationSaveData& p_Other) const { return !(*this == p_Other); }
-
-	ZInvestigateCautiousSituation::SStateData m_StateData; // 0x0
-	int32 m_pGetHelpGroup; // 0x78
-	int32 m_pBackupGroup; // 0x7C
-	int32 m_rTriggerAlarmGroup; // 0x80
-	int32 m_pInvestigateDisguiseGroup; // 0x84
-	TArray<int32> m_cautiousVIPGroups; // 0x88
-	TArray<int32> m_friskGroups; // 0xA0
-	ZGameTime m_tFriskCooldown; // 0xB8
-	ZGameTime m_tFriskGroupEnd; // 0xC0
-	ZGameTime m_tRecoverUnconsciousGroupEnd; // 0xC8
-	int32 m_nHuntTarget; // 0xD0
-	uint32 m_rZone; // 0xD4
-	TArray<uint32> m_aGuardMembers; // 0xD8
-	TArray<SDisturbanceSaveData> m_disturbances; // 0xF0
-	bool m_bValidDisturbanceField; // 0x108
-	uint8_t _pad109[7] {};
-	SCompressedGridFloatField m_disturbanceField; // 0x110
-	int32 m_recoverUnconsciousGroup; // 0x150
-	bool m_bSuspendSearchOnInitialGetHelpGroup; // 0x154
-	uint8_t _pad155[3] {};
-	EDisturbanceType m_lastArrestReason; // 0x158
-	EDisturbanceType m_lastStaticArrestReason; // 0x15C
-	EDisturbanceType m_lastStaticCombatReason; // 0x160
-	bool m_bAnyGunshotDisturbance; // 0x164
-	bool m_deadBodyMassiveReported; // 0x165
-	uint8_t _pad166[2] {};
-	int32 m_deadBodiesDiscovered; // 0x168
-	int32 m_deadCrowdBodiesDiscovered; // 0x16C
-	TArray<EAISharedEventType> m_aDynamicEnforceEventsForSearchers; // 0x170
-	ZGameTime m_tLastIdleStanddown; // 0x188
-	TArray<int32> m_aAvoidDangerGroups; // 0x190
-	SCautiousHuntSaveData m_cautiousHuntData; // 0x1A8
-};
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_tGroupStarted, 0x0);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_target, 0x8);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_type, 0xC);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_pLeader, 0x10);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_pAssistant, 0x14);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_nLeaderApproachNode, 0x18);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_nAssistantApproachNode, 0x1C);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_eApproachOrderState, 0x20);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_fsmState, 0x28);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_fsmAssistantState, 0x40);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bUsingRecurringDialog, 0x58);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bStartedInvestigateDialog, 0x59);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bDelayInvestigateDialog, 0x5A);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bReservedOccupancy, 0x5B);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bSilentInvestigation, 0x5C);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bInvestigateDeadBody, 0x5D);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bMultipleBodies, 0x5E);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bCheckSuspects, 0x5F);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_investigateArea, 0x60);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_targetDistanceField, 0x70);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_targetLOSField, 0xB0);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bValidTargetDistanceField, 0xF0);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bValidTargetLOSField, 0xF1);
+ZHM_OFFSET_CHECK(SCautiousInvestigateGroupSaveData, m_bForceAcknowledge, 0xF2);
+static_assert(sizeof(SCautiousInvestigateGroupSaveData) == 0x100, "Wrong size for SCautiousInvestigateGroupSaveData");
+static_assert(alignof(SCautiousInvestigateGroupSaveData) == 0x10, "Wrong alignment for SCautiousInvestigateGroupSaveData");
 
 class ZCautiousSearchGroup
 {
@@ -13269,7 +13370,8 @@ public:
 };
 
 // Size: 0x14
-class /*alignas(4)*/ SCautiousSearchGroupSaveData{
+class alignas(4) SCautiousSearchGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13288,9 +13390,18 @@ public:
 	uint32 m_pLeader; // 0xC
 	uint32 m_pAssistant; // 0x10
 };
+ZHM_OFFSET_CHECK(SCautiousSearchGroupSaveData, m_searchNode, 0x0);
+ZHM_OFFSET_CHECK(SCautiousSearchGroupSaveData, m_assistantApproachNode, 0x2);
+ZHM_OFFSET_CHECK(SCautiousSearchGroupSaveData, m_eGroupState, 0x4);
+ZHM_OFFSET_CHECK(SCautiousSearchGroupSaveData, m_eAssistantState, 0x8);
+ZHM_OFFSET_CHECK(SCautiousSearchGroupSaveData, m_pLeader, 0xC);
+ZHM_OFFSET_CHECK(SCautiousSearchGroupSaveData, m_pAssistant, 0x10);
+static_assert(sizeof(SCautiousSearchGroupSaveData) == 0x14, "Wrong size for SCautiousSearchGroupSaveData");
+static_assert(alignof(SCautiousSearchGroupSaveData) == 0x4, "Wrong alignment for SCautiousSearchGroupSaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SCautiousSituationMemberSaveData{
+class alignas(8) SCautiousSituationMemberSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13316,11 +13427,27 @@ public:
 	bool m_bCivOccupant; // 0x41
 	bool m_bRecievingNewHuntTarget; // 0x42
 	bool m_bLockdownEnforcer; // 0x43
-	uint8_t _pad44[4] {};
 };
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_tLastDisturbance, 0x0);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_tLastSearchCalc, 0x8);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_tLastInfluenceCalc, 0x10);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_tLastSearchCompleted, 0x18);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_tLastInvestigationCompleted, 0x20);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_tTimeIdling, 0x28);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_pGuardDutyPoint, 0x30);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_nBulletImpactsHeard, 0x34);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_nPatrolWaypointIndex, 0x38);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_nPatrolWaypointSubIndex, 0x3C);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_bBanterCandidate, 0x40);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_bCivOccupant, 0x41);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_bRecievingNewHuntTarget, 0x42);
+ZHM_OFFSET_CHECK(SCautiousSituationMemberSaveData, m_bLockdownEnforcer, 0x43);
+static_assert(sizeof(SCautiousSituationMemberSaveData) == 0x48, "Wrong size for SCautiousSituationMemberSaveData");
+static_assert(alignof(SCautiousSituationMemberSaveData) == 0x8, "Wrong alignment for SCautiousSituationMemberSaveData");
 
 // Size: 0x8
-class /*alignas(8)*/ SCautiousVIPGroupState{
+class alignas(8) SCautiousVIPGroupState
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13334,9 +13461,13 @@ public:
 
 	ZGameTime m_tMove; // 0x0
 };
+ZHM_OFFSET_CHECK(SCautiousVIPGroupState, m_tMove, 0x0);
+static_assert(sizeof(SCautiousVIPGroupState) == 0x8, "Wrong size for SCautiousVIPGroupState");
+static_assert(alignof(SCautiousVIPGroupState) == 0x8, "Wrong alignment for SCautiousVIPGroupState");
 
 // Size: 0x30
-class /*alignas(8)*/ SCautiousVIPGroupSaveData{
+class alignas(8) SCautiousVIPGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13349,15 +13480,22 @@ public:
 	bool operator!=(const SCautiousVIPGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_vip; // 0x0
-	uint8_t _pad4[4] {};
 	SFSMSaveData m_fsmState; // 0x8
 	SCautiousVIPGroupState m_stateData; // 0x20
 	int32 m_vipTargetNode; // 0x28
 	int32 m_occupancyNode; // 0x2C
 };
+ZHM_OFFSET_CHECK(SCautiousVIPGroupSaveData, m_vip, 0x0);
+ZHM_OFFSET_CHECK(SCautiousVIPGroupSaveData, m_fsmState, 0x8);
+ZHM_OFFSET_CHECK(SCautiousVIPGroupSaveData, m_stateData, 0x20);
+ZHM_OFFSET_CHECK(SCautiousVIPGroupSaveData, m_vipTargetNode, 0x28);
+ZHM_OFFSET_CHECK(SCautiousVIPGroupSaveData, m_occupancyNode, 0x2C);
+static_assert(sizeof(SCautiousVIPGroupSaveData) == 0x30, "Wrong size for SCautiousVIPGroupSaveData");
+static_assert(alignof(SCautiousVIPGroupSaveData) == 0x8, "Wrong alignment for SCautiousVIPGroupSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SChairSaveData{
+class alignas(4) SChairSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13371,11 +13509,15 @@ public:
 
 	uint32 m_rActor; // 0x0
 	bool m_bAttached; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SChairSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SChairSaveData, m_bAttached, 0x4);
+static_assert(sizeof(SChairSaveData) == 0x8, "Wrong size for SChairSaveData");
+static_assert(alignof(SChairSaveData) == 0x4, "Wrong alignment for SChairSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SChallengeSaveData{
+class alignas(8) SChallengeSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13390,9 +13532,14 @@ public:
 	ZString m_sId; // 0x0
 	ZDynamicObject m_State; // 0x10
 };
+ZHM_OFFSET_CHECK(SChallengeSaveData, m_sId, 0x0);
+ZHM_OFFSET_CHECK(SChallengeSaveData, m_State, 0x10);
+static_assert(sizeof(SChallengeSaveData) == 0x20, "Wrong size for SChallengeSaveData");
+static_assert(alignof(SChallengeSaveData) == 0x8, "Wrong alignment for SChallengeSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SChallengesSaveData{
+class alignas(8) SChallengesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13406,9 +13553,13 @@ public:
 
 	TArray<SChallengeSaveData> m_mChallengeStates; // 0x0
 };
+ZHM_OFFSET_CHECK(SChallengesSaveData, m_mChallengeStates, 0x0);
+static_assert(sizeof(SChallengesSaveData) == 0x18, "Wrong size for SChallengesSaveData");
+static_assert(alignof(SChallengesSaveData) == 0x8, "Wrong alignment for SChallengesSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SCharacterSpeakEntitySaveData{
+class alignas(4) SCharacterSpeakEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13423,11 +13574,16 @@ public:
 	float32 m_fSeekPosition; // 0x0
 	uint32 m_nRandomSelectionSeed; // 0x4
 	bool m_bWereSubtitlesSeen; // 0x8
-	uint8_t _pad9[3] {};
 };
+ZHM_OFFSET_CHECK(SCharacterSpeakEntitySaveData, m_fSeekPosition, 0x0);
+ZHM_OFFSET_CHECK(SCharacterSpeakEntitySaveData, m_nRandomSelectionSeed, 0x4);
+ZHM_OFFSET_CHECK(SCharacterSpeakEntitySaveData, m_bWereSubtitlesSeen, 0x8);
+static_assert(sizeof(SCharacterSpeakEntitySaveData) == 0xC, "Wrong size for SCharacterSpeakEntitySaveData");
+static_assert(alignof(SCharacterSpeakEntitySaveData) == 0x4, "Wrong alignment for SCharacterSpeakEntitySaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SCheckLastPositionGroupSaveData{
+class alignas(4) SCheckLastPositionGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13445,11 +13601,19 @@ public:
 	bool m_bLeaderOrderAssigned; // 0xA
 	bool m_bAssistantOrderAssigned; // 0xB
 	bool m_bSearchCompleted; // 0xC
-	uint8_t _padD[3] {};
 };
+ZHM_OFFSET_CHECK(SCheckLastPositionGroupSaveData, m_pLeader, 0x0);
+ZHM_OFFSET_CHECK(SCheckLastPositionGroupSaveData, m_pAssistant, 0x4);
+ZHM_OFFSET_CHECK(SCheckLastPositionGroupSaveData, m_nLeaderTargetNodeIndex, 0x8);
+ZHM_OFFSET_CHECK(SCheckLastPositionGroupSaveData, m_bLeaderOrderAssigned, 0xA);
+ZHM_OFFSET_CHECK(SCheckLastPositionGroupSaveData, m_bAssistantOrderAssigned, 0xB);
+ZHM_OFFSET_CHECK(SCheckLastPositionGroupSaveData, m_bSearchCompleted, 0xC);
+static_assert(sizeof(SCheckLastPositionGroupSaveData) == 0x10, "Wrong size for SCheckLastPositionGroupSaveData");
+static_assert(alignof(SCheckLastPositionGroupSaveData) == 0x4, "Wrong alignment for SCheckLastPositionGroupSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SClothBundleSpawnSaveData{
+class alignas(4) SClothBundleSpawnSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13463,9 +13627,13 @@ public:
 
 	uint32 m_rClothbundle; // 0x0
 };
+ZHM_OFFSET_CHECK(SClothBundleSpawnSaveData, m_rClothbundle, 0x0);
+static_assert(sizeof(SClothBundleSpawnSaveData) == 0x4, "Wrong size for SClothBundleSpawnSaveData");
+static_assert(alignof(SClothBundleSpawnSaveData) == 0x4, "Wrong alignment for SClothBundleSpawnSaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SClothSheetEntitySaveData{
+class alignas(1) SClothSheetEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13480,9 +13648,14 @@ public:
 	bool m_bSimulationEnabled; // 0x0
 	bool m_bVisible; // 0x1
 };
+ZHM_OFFSET_CHECK(SClothSheetEntitySaveData, m_bSimulationEnabled, 0x0);
+ZHM_OFFSET_CHECK(SClothSheetEntitySaveData, m_bVisible, 0x1);
+static_assert(sizeof(SClothSheetEntitySaveData) == 0x2, "Wrong size for SClothSheetEntitySaveData");
+static_assert(alignof(SClothSheetEntitySaveData) == 0x1, "Wrong alignment for SClothSheetEntitySaveData");
 
 // Size: 0x4
-class /*alignas(2)*/ SClothVertex{
+class alignas(2) SClothVertex
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13497,9 +13670,14 @@ public:
 	uint16 m_nColumn; // 0x0
 	uint16 m_nRow; // 0x2
 };
+ZHM_OFFSET_CHECK(SClothVertex, m_nColumn, 0x0);
+ZHM_OFFSET_CHECK(SClothVertex, m_nRow, 0x2);
+static_assert(sizeof(SClothVertex) == 0x4, "Wrong size for SClothVertex");
+static_assert(alignof(SClothVertex) == 0x2, "Wrong alignment for SClothVertex");
 
 // Size: 0x8
-class /*alignas(4)*/ SClothWireEntitySaveData{
+class alignas(4) SClothWireEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13515,11 +13693,17 @@ public:
 	bool m_bAttachToAnchorTransform; // 0x4
 	bool m_bSimulationEnabled; // 0x5
 	bool m_bVisible; // 0x6
-	uint8_t _pad7[1] {};
 };
+ZHM_OFFSET_CHECK(SClothWireEntitySaveData, m_fWireLength, 0x0);
+ZHM_OFFSET_CHECK(SClothWireEntitySaveData, m_bAttachToAnchorTransform, 0x4);
+ZHM_OFFSET_CHECK(SClothWireEntitySaveData, m_bSimulationEnabled, 0x5);
+ZHM_OFFSET_CHECK(SClothWireEntitySaveData, m_bVisible, 0x6);
+static_assert(sizeof(SClothWireEntitySaveData) == 0x8, "Wrong size for SClothWireEntitySaveData");
+static_assert(alignof(SClothWireEntitySaveData) == 0x4, "Wrong alignment for SClothWireEntitySaveData");
 
 // Size: 0x40
-class /*alignas(16)*/ SCollidingParticle{
+class alignas(16) SCollidingParticle
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13536,11 +13720,18 @@ public:
 	float4 m_vNewVelocity; // 0x20
 	uint32 m_nColor; // 0x30
 	float32 m_fSize; // 0x34
-	uint8_t _pad38[8] {};
 };
+ZHM_OFFSET_CHECK(SCollidingParticle, m_vPosition, 0x0);
+ZHM_OFFSET_CHECK(SCollidingParticle, m_vVelocity, 0x10);
+ZHM_OFFSET_CHECK(SCollidingParticle, m_vNewVelocity, 0x20);
+ZHM_OFFSET_CHECK(SCollidingParticle, m_nColor, 0x30);
+ZHM_OFFSET_CHECK(SCollidingParticle, m_fSize, 0x34);
+static_assert(sizeof(SCollidingParticle) == 0x40, "Wrong size for SCollidingParticle");
+static_assert(alignof(SCollidingParticle) == 0x10, "Wrong alignment for SCollidingParticle");
 
 // Size: 0x2
-class /*alignas(1)*/ SCollisionControllerAspectSaveData{
+class alignas(1) SCollisionControllerAspectSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13555,9 +13746,14 @@ public:
 	bool m_bCollideHitman; // 0x0
 	bool m_bCollideCamera; // 0x1
 };
+ZHM_OFFSET_CHECK(SCollisionControllerAspectSaveData, m_bCollideHitman, 0x0);
+ZHM_OFFSET_CHECK(SCollisionControllerAspectSaveData, m_bCollideCamera, 0x1);
+static_assert(sizeof(SCollisionControllerAspectSaveData) == 0x2, "Wrong size for SCollisionControllerAspectSaveData");
+static_assert(alignof(SCollisionControllerAspectSaveData) == 0x1, "Wrong alignment for SCollisionControllerAspectSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SCollisionControllerAspectsSaveData{
+class alignas(8) SCollisionControllerAspectsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13572,9 +13768,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SCollisionControllerAspectSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SCollisionControllerAspectsSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SCollisionControllerAspectsSaveData, m_aData, 0x18);
+static_assert(sizeof(SCollisionControllerAspectsSaveData) == 0x30, "Wrong size for SCollisionControllerAspectsSaveData");
+static_assert(alignof(SCollisionControllerAspectsSaveData) == 0x8, "Wrong alignment for SCollisionControllerAspectsSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SColorRGBA{
+class alignas(4) SColorRGBA
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13591,9 +13792,16 @@ public:
 	float32 b; // 0x8
 	float32 a; // 0xC
 };
+ZHM_OFFSET_CHECK(SColorRGBA, r, 0x0);
+ZHM_OFFSET_CHECK(SColorRGBA, g, 0x4);
+ZHM_OFFSET_CHECK(SColorRGBA, b, 0x8);
+ZHM_OFFSET_CHECK(SColorRGBA, a, 0xC);
+static_assert(sizeof(SColorRGBA) == 0x10, "Wrong size for SColorRGBA");
+static_assert(alignof(SColorRGBA) == 0x4, "Wrong alignment for SColorRGBA");
 
 // Size: 0x30
-class /*alignas(8)*/ SColorRGBSaveData{
+class alignas(8) SColorRGBSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13608,9 +13816,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SColorRGB> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SColorRGBSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SColorRGBSaveData, m_aData, 0x18);
+static_assert(sizeof(SColorRGBSaveData) == 0x30, "Wrong size for SColorRGBSaveData");
+static_assert(alignof(SColorRGBSaveData) == 0x8, "Wrong alignment for SColorRGBSaveData");
 
 // Size: 0x20
-class /*alignas(16)*/ SCombatOrderSaveData{
+class alignas(16) SCombatOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13625,11 +13838,16 @@ public:
 	float4 m_vPos; // 0x0
 	uint32 m_coverPlane; // 0x10
 	uint32 m_rInteraction; // 0x14
-	uint8_t _pad18[8] {};
 };
+ZHM_OFFSET_CHECK(SCombatOrderSaveData, m_vPos, 0x0);
+ZHM_OFFSET_CHECK(SCombatOrderSaveData, m_coverPlane, 0x10);
+ZHM_OFFSET_CHECK(SCombatOrderSaveData, m_rInteraction, 0x14);
+static_assert(sizeof(SCombatOrderSaveData) == 0x20, "Wrong size for SCombatOrderSaveData");
+static_assert(alignof(SCombatOrderSaveData) == 0x10, "Wrong alignment for SCombatOrderSaveData");
 
 // Size: 0x14
-class /*alignas(4)*/ SCombatSituationMemberSaveData{
+class alignas(4) SCombatSituationMemberSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13650,11 +13868,22 @@ public:
 	bool m_bCantFleeNoPath; // 0xF
 	bool m_bReportedToGuard; // 0x10
 	bool m_bStandAndShoot; // 0x11
-	uint8_t _pad12[2] {};
 };
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_fDistanceToTarget, 0x0);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_fDistanceFieldValue, 0x4);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_civilianJoinReason, 0x8);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_bIsPreferredToFire, 0xC);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_bDialogPreventShooting, 0xD);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_bCanFlee, 0xE);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_bCantFleeNoPath, 0xF);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_bReportedToGuard, 0x10);
+ZHM_OFFSET_CHECK(SCombatSituationMemberSaveData, m_bStandAndShoot, 0x11);
+static_assert(sizeof(SCombatSituationMemberSaveData) == 0x14, "Wrong size for SCombatSituationMemberSaveData");
+static_assert(alignof(SCombatSituationMemberSaveData) == 0x4, "Wrong alignment for SCombatSituationMemberSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SCombatZoneEntitySaveData{
+class alignas(8) SCombatZoneEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13668,15 +13897,23 @@ public:
 
 	bool m_bIsInLockdown; // 0x0
 	bool m_bIsFalseAlarm; // 0x1
-	uint8_t _pad2[2] {};
 	ECombatZoneState m_nState; // 0x4
 	ZGameTime m_tLockdownTime; // 0x8
 	ZGameTime m_tTriggerTime; // 0x10
 	ZGameTime m_tEngageTime; // 0x18
 };
+ZHM_OFFSET_CHECK(SCombatZoneEntitySaveData, m_bIsInLockdown, 0x0);
+ZHM_OFFSET_CHECK(SCombatZoneEntitySaveData, m_bIsFalseAlarm, 0x1);
+ZHM_OFFSET_CHECK(SCombatZoneEntitySaveData, m_nState, 0x4);
+ZHM_OFFSET_CHECK(SCombatZoneEntitySaveData, m_tLockdownTime, 0x8);
+ZHM_OFFSET_CHECK(SCombatZoneEntitySaveData, m_tTriggerTime, 0x10);
+ZHM_OFFSET_CHECK(SCombatZoneEntitySaveData, m_tEngageTime, 0x18);
+static_assert(sizeof(SCombatZoneEntitySaveData) == 0x20, "Wrong size for SCombatZoneEntitySaveData");
+static_assert(alignof(SCombatZoneEntitySaveData) == 0x8, "Wrong alignment for SCombatZoneEntitySaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SComboDeviceBinding{
+class alignas(4) SComboDeviceBinding
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13691,9 +13928,14 @@ public:
 	uint32 type; // 0x0
 	uint32 button; // 0x4
 };
+ZHM_OFFSET_CHECK(SComboDeviceBinding, type, 0x0);
+ZHM_OFFSET_CHECK(SComboDeviceBinding, button, 0x4);
+static_assert(sizeof(SComboDeviceBinding) == 0x8, "Wrong size for SComboDeviceBinding");
+static_assert(alignof(SComboDeviceBinding) == 0x4, "Wrong alignment for SComboDeviceBinding");
 
-// Size: 0x10
-class /*alignas(4)*/ SConditionBase{
+// Size: 0x40
+class alignas(8) SCompressedGridFloatField
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13702,16 +13944,28 @@ public:
 	static bool Equals(void* p_Left, void* p_Right);
 	static void Destroy(void* p_Object);
 
-	bool operator==(const SConditionBase& p_Other) const;
-	bool operator!=(const SConditionBase& p_Other) const { return !(*this == p_Other); }
+	bool operator==(const SCompressedGridFloatField& p_Other) const;
+	bool operator!=(const SCompressedGridFloatField& p_Other) const { return !(*this == p_Other); }
 
-	ECompiledConditionType eConditionType; // 0x0
-	uint32 nConditionModifiers; // 0x4
-	ZBehaviorTreeVariable assignTo; // 0x8
+	bool m_bIsSparse; // 0x0
+	uint32 m_nFieldSize; // 0x4
+	float32 m_fInitialValue; // 0x8
+	uint32 m_nGridCRC; // 0xC
+	TArray<uint16> m_aIndices; // 0x10
+	TArray<uint8> m_aValues; // 0x28
 };
+ZHM_OFFSET_CHECK(SCompressedGridFloatField, m_bIsSparse, 0x0);
+ZHM_OFFSET_CHECK(SCompressedGridFloatField, m_nFieldSize, 0x4);
+ZHM_OFFSET_CHECK(SCompressedGridFloatField, m_fInitialValue, 0x8);
+ZHM_OFFSET_CHECK(SCompressedGridFloatField, m_nGridCRC, 0xC);
+ZHM_OFFSET_CHECK(SCompressedGridFloatField, m_aIndices, 0x10);
+ZHM_OFFSET_CHECK(SCompressedGridFloatField, m_aValues, 0x28);
+static_assert(sizeof(SCompressedGridFloatField) == 0x40, "Wrong size for SCompressedGridFloatField");
+static_assert(alignof(SCompressedGridFloatField) == 0x8, "Wrong alignment for SCompressedGridFloatField");
 
 // Size: 0xC
-class /*alignas(4)*/ SConditionalTimerEntitySaveData{
+class alignas(4) SConditionalTimerEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13727,11 +13981,17 @@ public:
 	int32 m_nRemaining; // 0x4
 	bool m_bActive; // 0x8
 	bool m_bValue; // 0x9
-	uint8_t _padA[2] {};
 };
+ZHM_OFFSET_CHECK(SConditionalTimerEntitySaveData, m_nInterval, 0x0);
+ZHM_OFFSET_CHECK(SConditionalTimerEntitySaveData, m_nRemaining, 0x4);
+ZHM_OFFSET_CHECK(SConditionalTimerEntitySaveData, m_bActive, 0x8);
+ZHM_OFFSET_CHECK(SConditionalTimerEntitySaveData, m_bValue, 0x9);
+static_assert(sizeof(SConditionalTimerEntitySaveData) == 0xC, "Wrong size for SConditionalTimerEntitySaveData");
+static_assert(alignof(SConditionalTimerEntitySaveData) == 0x4, "Wrong alignment for SConditionalTimerEntitySaveData");
 
 // Size: 0x3
-class /*alignas(1)*/ SContextActionSaveData{
+class alignas(1) SContextActionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13747,9 +14007,15 @@ public:
 	bool m_bTriggered; // 0x1
 	bool m_bShouldShow; // 0x2
 };
+ZHM_OFFSET_CHECK(SContextActionSaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SContextActionSaveData, m_bTriggered, 0x1);
+ZHM_OFFSET_CHECK(SContextActionSaveData, m_bShouldShow, 0x2);
+static_assert(sizeof(SContextActionSaveData) == 0x3, "Wrong size for SContextActionSaveData");
+static_assert(alignof(SContextActionSaveData) == 0x1, "Wrong alignment for SContextActionSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SContractConfigResourceEntry{
+class alignas(8) SContractConfigResourceEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13764,9 +14030,14 @@ public:
 	ZString Id; // 0x0
 	ZRuntimeResourceID ContractRid; // 0x10
 };
+ZHM_OFFSET_CHECK(SContractConfigResourceEntry, Id, 0x0);
+ZHM_OFFSET_CHECK(SContractConfigResourceEntry, ContractRid, 0x10);
+static_assert(sizeof(SContractConfigResourceEntry) == 0x18, "Wrong size for SContractConfigResourceEntry");
+static_assert(alignof(SContractConfigResourceEntry) == 0x8, "Wrong alignment for SContractConfigResourceEntry");
 
 // Size: 0x1
-class /*alignas(1)*/ SContractObjectiveHudHintEntitySaveData{
+class alignas(1) SContractObjectiveHudHintEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13780,9 +14051,13 @@ public:
 
 	bool m_bVisible; // 0x0
 };
+ZHM_OFFSET_CHECK(SContractObjectiveHudHintEntitySaveData, m_bVisible, 0x0);
+static_assert(sizeof(SContractObjectiveHudHintEntitySaveData) == 0x1, "Wrong size for SContractObjectiveHudHintEntitySaveData");
+static_assert(alignof(SContractObjectiveHudHintEntitySaveData) == 0x1, "Wrong alignment for SContractObjectiveHudHintEntitySaveData");
 
 // Size: 0x148
-class /*alignas(8)*/ SContractObjectiveSaveData{
+class alignas(8) SContractObjectiveSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13800,7 +14075,6 @@ public:
 	bool m_bCompleted; // 0x24
 	bool m_bFailed; // 0x25
 	bool m_bIsHidden; // 0x26
-	uint8_t _pad27[1] {};
 	ZString m_sSuccessEventName; // 0x28
 	ZDynamicObject m_SuccessEventValues; // 0x38
 	ZString m_sFailedEventName; // 0x48
@@ -13821,7 +14095,6 @@ public:
 	bool m_bIgnoreIfInactive; // 0xDB
 	bool m_bShowInHud; // 0xDC
 	bool m_bCombinedDisplayInHud; // 0xDD
-	uint8_t _padDE[2] {};
 	ZDynamicObject m_OnInactive; // 0xE0
 	ZDynamicObject m_OnActive; // 0xF0
 	ZDynamicObject m_aExits; // 0x100
@@ -13829,11 +14102,46 @@ public:
 	ZString m_sObjectiveType; // 0x120
 	ZString m_sBriefingName; // 0x130
 	bool m_bForceShowOnLoadingScreen; // 0x140
-	uint8_t _pad141[7] {};
 };
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_Id, 0x0);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sText, 0x10);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_eCategory, 0x20);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bCompleted, 0x24);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bFailed, 0x25);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bIsHidden, 0x26);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sSuccessEventName, 0x28);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_SuccessEventValues, 0x38);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sFailedEventName, 0x48);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_FailedEventValues, 0x58);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sResetEventName, 0x68);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_ResetEventValues, 0x78);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sBriefingText, 0x88);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sLongBriefingText, 0x98);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sHUDText, 0xA8);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_iRepeatSuccess, 0xB8);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_iRepeatFailed, 0xBC);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_iCurrentSuccess, 0xC0);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_iCurrentFailed, 0xC4);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_ActivationCondition, 0xC8);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_ActivationValue, 0xD8);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bUpdateActivationOnCompleted, 0xD9);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bDisplayAsKill, 0xDA);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bIgnoreIfInactive, 0xDB);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bShowInHud, 0xDC);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bCombinedDisplayInHud, 0xDD);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_OnInactive, 0xE0);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_OnActive, 0xF0);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_aExits, 0x100);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sImage, 0x110);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sObjectiveType, 0x120);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_sBriefingName, 0x130);
+ZHM_OFFSET_CHECK(SContractObjectiveSaveData, m_bForceShowOnLoadingScreen, 0x140);
+static_assert(sizeof(SContractObjectiveSaveData) == 0x148, "Wrong size for SContractObjectiveSaveData");
+static_assert(alignof(SContractObjectiveSaveData) == 0x8, "Wrong alignment for SContractObjectiveSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SConversationEntry{
+class alignas(4) SConversationEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13848,9 +14156,14 @@ public:
 	EConversationRole m_role; // 0x0
 	EActorSoundDefs m_sound; // 0x4
 };
+ZHM_OFFSET_CHECK(SConversationEntry, m_role, 0x0);
+ZHM_OFFSET_CHECK(SConversationEntry, m_sound, 0x4);
+static_assert(sizeof(SConversationEntry) == 0x8, "Wrong size for SConversationEntry");
+static_assert(alignof(SConversationEntry) == 0x4, "Wrong alignment for SConversationEntry");
 
 // Size: 0x20
-class /*alignas(8)*/ SConversationPart{
+class alignas(8) SConversationPart
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13863,12 +14176,16 @@ public:
 	bool operator!=(const SConversationPart& p_Other) const { return !(*this == p_Other); }
 
 	float32 m_chance; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<SConversationEntry> m_entries; // 0x8
 };
+ZHM_OFFSET_CHECK(SConversationPart, m_chance, 0x0);
+ZHM_OFFSET_CHECK(SConversationPart, m_entries, 0x8);
+static_assert(sizeof(SConversationPart) == 0x20, "Wrong size for SConversationPart");
+static_assert(alignof(SConversationPart) == 0x8, "Wrong alignment for SConversationPart");
 
 // Size: 0x18
-class /*alignas(8)*/ SEntityTemplateProperty{
+class alignas(8) SEntityTemplateProperty
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13881,12 +14198,16 @@ public:
 	bool operator!=(const SEntityTemplateProperty& p_Other) const { return !(*this == p_Other); }
 
 	uint32 nPropertyID; // 0x0
-	uint8_t _pad4[4] {};
 	ZVariant value; // 0x8
 };
+ZHM_OFFSET_CHECK(SEntityTemplateProperty, nPropertyID, 0x0);
+ZHM_OFFSET_CHECK(SEntityTemplateProperty, value, 0x8);
+static_assert(sizeof(SEntityTemplateProperty) == 0x18, "Wrong size for SEntityTemplateProperty");
+static_assert(alignof(SEntityTemplateProperty) == 0x8, "Wrong alignment for SEntityTemplateProperty");
 
 // Size: 0x20
-class /*alignas(8)*/ SCppEntity{
+class alignas(8) SCppEntity
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13899,12 +14220,16 @@ public:
 	bool operator!=(const SCppEntity& p_Other) const { return !(*this == p_Other); }
 
 	int32 blueprintIndexInResourceHeader; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<SEntityTemplateProperty> propertyValues; // 0x8
 };
+ZHM_OFFSET_CHECK(SCppEntity, blueprintIndexInResourceHeader, 0x0);
+ZHM_OFFSET_CHECK(SCppEntity, propertyValues, 0x8);
+static_assert(sizeof(SCppEntity) == 0x20, "Wrong size for SCppEntity");
+static_assert(alignof(SCppEntity) == 0x8, "Wrong alignment for SCppEntity");
 
 // Size: 0x18
-class /*alignas(8)*/ SCppEntitySubsetInfo{
+class alignas(8) SCppEntitySubsetInfo
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13918,11 +14243,15 @@ public:
 
 	ZString name; // 0x0
 	uint32 flags; // 0x10
-	uint8_t _pad14[4] {};
 };
+ZHM_OFFSET_CHECK(SCppEntitySubsetInfo, name, 0x0);
+ZHM_OFFSET_CHECK(SCppEntitySubsetInfo, flags, 0x10);
+static_assert(sizeof(SCppEntitySubsetInfo) == 0x18, "Wrong size for SCppEntitySubsetInfo");
+static_assert(alignof(SCppEntitySubsetInfo) == 0x8, "Wrong alignment for SCppEntitySubsetInfo");
 
 // Size: 0x28
-class /*alignas(8)*/ SCppEntityBlueprint{
+class alignas(8) SCppEntityBlueprint
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13936,12 +14265,17 @@ public:
 
 	TypeID typeName; // 0x0
 	uint32 typeFlags; // 0x8
-	uint8_t _padC[4] {};
 	TArray<SCppEntitySubsetInfo> subsets; // 0x10
 };
+ZHM_OFFSET_CHECK(SCppEntityBlueprint, typeName, 0x0);
+ZHM_OFFSET_CHECK(SCppEntityBlueprint, typeFlags, 0x8);
+ZHM_OFFSET_CHECK(SCppEntityBlueprint, subsets, 0x10);
+static_assert(sizeof(SCppEntityBlueprint) == 0x28, "Wrong size for SCppEntityBlueprint");
+static_assert(alignof(SCppEntityBlueprint) == 0x8, "Wrong alignment for SCppEntityBlueprint");
 
 // Size: 0x40
-class /*alignas(16)*/ SRunningCrowdAIEventSaveData{
+class alignas(16) SRunningCrowdAIEventSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13959,14 +14293,23 @@ public:
 	int32 m_CrowdCoreIndex; // 0xC
 	float32 m_TimeLeft; // 0x10
 	float32 m_TimeToPulse; // 0x14
-	uint8_t _pad18[8] {};
 	float4 m_Position; // 0x20
 	bool m_IsInvestigated; // 0x30
-	uint8_t _pad31[15] {};
 };
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_ReactionEntity, 0x0);
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_CrowdEntity, 0x4);
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_HitmanToBlame, 0x8);
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_CrowdCoreIndex, 0xC);
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_TimeLeft, 0x10);
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_TimeToPulse, 0x14);
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_Position, 0x20);
+ZHM_OFFSET_CHECK(SRunningCrowdAIEventSaveData, m_IsInvestigated, 0x30);
+static_assert(sizeof(SRunningCrowdAIEventSaveData) == 0x40, "Wrong size for SRunningCrowdAIEventSaveData");
+static_assert(alignof(SRunningCrowdAIEventSaveData) == 0x10, "Wrong alignment for SRunningCrowdAIEventSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SCrowdAIEventSaveData{
+class alignas(8) SCrowdAIEventSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13980,9 +14323,13 @@ public:
 
 	TArray<SRunningCrowdAIEventSaveData> m_RunningEvents; // 0x0
 };
+ZHM_OFFSET_CHECK(SCrowdAIEventSaveData, m_RunningEvents, 0x0);
+static_assert(sizeof(SCrowdAIEventSaveData) == 0x18, "Wrong size for SCrowdAIEventSaveData");
+static_assert(alignof(SCrowdAIEventSaveData) == 0x8, "Wrong alignment for SCrowdAIEventSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SCrowdActivitySaveData{
+class alignas(4) SCrowdActivitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -13995,14 +14342,20 @@ public:
 	bool operator!=(const SCrowdActivitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3] {};
 	EGait m_eGait; // 0x4
 	float32 m_nMaxEnterDelaySec; // 0x8
 	float32 m_nMaxLeaveDelaySec; // 0xC
 };
+ZHM_OFFSET_CHECK(SCrowdActivitySaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SCrowdActivitySaveData, m_eGait, 0x4);
+ZHM_OFFSET_CHECK(SCrowdActivitySaveData, m_nMaxEnterDelaySec, 0x8);
+ZHM_OFFSET_CHECK(SCrowdActivitySaveData, m_nMaxLeaveDelaySec, 0xC);
+static_assert(sizeof(SCrowdActivitySaveData) == 0x10, "Wrong size for SCrowdActivitySaveData");
+static_assert(alignof(SCrowdActivitySaveData) == 0x4, "Wrong alignment for SCrowdActivitySaveData");
 
 // Size: 0x50
-class /*alignas(16)*/ SCrowdActorSaveData{
+class alignas(16) SCrowdActorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14015,21 +14368,30 @@ public:
 	bool operator!=(const SCrowdActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3] {};
 	ESpeed m_eWantedSpeed; // 0x4
 	EGait m_eWantedGait; // 0x8
 	uint32 m_nAnimSourceID; // 0xC
 	uint32 m_nAnimSourceIndex; // 0x10
-	uint8_t _pad14[12] {};
 	float4 m_vPosition; // 0x20
 	float4 m_vForward; // 0x30
 	float32 m_fSpeed; // 0x40
 	CrowdUtil::ECrowdActorMood m_eMood; // 0x44
-	uint8_t _pad48[8] {};
 };
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_eWantedSpeed, 0x4);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_eWantedGait, 0x8);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_nAnimSourceID, 0xC);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_nAnimSourceIndex, 0x10);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_vPosition, 0x20);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_vForward, 0x30);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_fSpeed, 0x40);
+ZHM_OFFSET_CHECK(SCrowdActorSaveData, m_eMood, 0x44);
+static_assert(sizeof(SCrowdActorSaveData) == 0x50, "Wrong size for SCrowdActorSaveData");
+static_assert(alignof(SCrowdActorSaveData) == 0x10, "Wrong alignment for SCrowdActorSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SCrowdBodySaveData{
+class alignas(8) SCrowdBodySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14044,17 +14406,26 @@ public:
 	uint32 m_pCorpseBodybagEntity; // 0x0
 	uint32 m_rCrowdEntity; // 0x4
 	uint16 m_iActorIndex; // 0x8
-	uint8_t _padA[2] {};
 	uint32 m_rPerceptibleEntity; // 0xC
 	TArray<uint32> m_aKnownBy; // 0x10
 	ZGameTime m_tStart; // 0x28
 	bool m_bManaged; // 0x30
-	uint8_t _pad31[3] {};
 	int32 m_rBagSharedKnowledge; // 0x34
 };
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_pCorpseBodybagEntity, 0x0);
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_rCrowdEntity, 0x4);
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_iActorIndex, 0x8);
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_rPerceptibleEntity, 0xC);
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_aKnownBy, 0x10);
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_tStart, 0x28);
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_bManaged, 0x30);
+ZHM_OFFSET_CHECK(SCrowdBodySaveData, m_rBagSharedKnowledge, 0x34);
+static_assert(sizeof(SCrowdBodySaveData) == 0x38, "Wrong size for SCrowdBodySaveData");
+static_assert(alignof(SCrowdBodySaveData) == 0x8, "Wrong alignment for SCrowdBodySaveData");
 
 // Size: 0x80
-class /*alignas(128)*/ SCrowdCells{
+class alignas(128) SCrowdCells
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14068,9 +14439,13 @@ public:
 
 	TFixedArray<uint8, 128> m_cells; // 0x0
 };
+ZHM_OFFSET_CHECK(SCrowdCells, m_cells, 0x0);
+static_assert(sizeof(SCrowdCells) == 0x80, "Wrong size for SCrowdCells");
+static_assert(alignof(SCrowdCells) == 0x80, "Wrong alignment for SCrowdCells");
 
 // Size: 0x20
-class /*alignas(4)*/ SCrowdPoseBoneSaveData{
+class alignas(4) SCrowdPoseBoneSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14085,9 +14460,14 @@ public:
 	SVector4 mQuaterion; // 0x0
 	SVector4 mTranslation; // 0x10
 };
+ZHM_OFFSET_CHECK(SCrowdPoseBoneSaveData, mQuaterion, 0x0);
+ZHM_OFFSET_CHECK(SCrowdPoseBoneSaveData, mTranslation, 0x10);
+static_assert(sizeof(SCrowdPoseBoneSaveData) == 0x20, "Wrong size for SCrowdPoseBoneSaveData");
+static_assert(alignof(SCrowdPoseBoneSaveData) == 0x4, "Wrong alignment for SCrowdPoseBoneSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SCrowdPoseSaveData{
+class alignas(8) SCrowdPoseSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14101,9 +14481,13 @@ public:
 
 	TArray<SCrowdPoseBoneSaveData> m_aBones; // 0x0
 };
+ZHM_OFFSET_CHECK(SCrowdPoseSaveData, m_aBones, 0x0);
+static_assert(sizeof(SCrowdPoseSaveData) == 0x18, "Wrong size for SCrowdPoseSaveData");
+static_assert(alignof(SCrowdPoseSaveData) == 0x8, "Wrong alignment for SCrowdPoseSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SCrowdPoseCollectionSaveData{
+class alignas(8) SCrowdPoseCollectionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14118,9 +14502,14 @@ public:
 	uint64 m_id; // 0x0
 	TArray<SCrowdPoseSaveData> m_aPoses; // 0x8
 };
+ZHM_OFFSET_CHECK(SCrowdPoseCollectionSaveData, m_id, 0x0);
+ZHM_OFFSET_CHECK(SCrowdPoseCollectionSaveData, m_aPoses, 0x8);
+static_assert(sizeof(SCrowdPoseCollectionSaveData) == 0x20, "Wrong size for SCrowdPoseCollectionSaveData");
+static_assert(alignof(SCrowdPoseCollectionSaveData) == 0x8, "Wrong alignment for SCrowdPoseCollectionSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SCrowdDeadPoseRepositorySaveData{
+class alignas(8) SCrowdDeadPoseRepositorySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14134,9 +14523,13 @@ public:
 
 	TArray<SCrowdPoseCollectionSaveData> m_aPoseCollections; // 0x0
 };
+ZHM_OFFSET_CHECK(SCrowdDeadPoseRepositorySaveData, m_aPoseCollections, 0x0);
+static_assert(sizeof(SCrowdDeadPoseRepositorySaveData) == 0x18, "Wrong size for SCrowdDeadPoseRepositorySaveData");
+static_assert(alignof(SCrowdDeadPoseRepositorySaveData) == 0x8, "Wrong alignment for SCrowdDeadPoseRepositorySaveData");
 
 // Size: 0x40
-class /*alignas(16)*/ SRegionSaveData{
+class alignas(16) SRegionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14150,7 +14543,6 @@ public:
 
 	uint32 m_nIndex; // 0x0
 	CrowdRegionType m_eType; // 0x4
-	uint8_t _pad8[8] {};
 	float4 m_vCenter; // 0x10
 	float32 m_nDirection; // 0x20
 	float32 m_nRadius; // 0x24
@@ -14158,13 +14550,24 @@ public:
 	float32 m_nLifetime; // 0x2C
 	float32 m_nAge; // 0x30
 	uint8 m_nGroupID; // 0x34
-	uint8_t _pad35[1] {};
 	int16 m_nObstacleActorIndex; // 0x36
-	uint8_t _pad38[8] {};
 };
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nIndex, 0x0);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_eType, 0x4);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_vCenter, 0x10);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nDirection, 0x20);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nRadius, 0x24);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nAngle, 0x28);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nLifetime, 0x2C);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nAge, 0x30);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nGroupID, 0x34);
+ZHM_OFFSET_CHECK(SRegionSaveData, m_nObstacleActorIndex, 0x36);
+static_assert(sizeof(SRegionSaveData) == 0x40, "Wrong size for SRegionSaveData");
+static_assert(alignof(SRegionSaveData) == 0x10, "Wrong alignment for SRegionSaveData");
 
 // Size: 0x80
-class /*alignas(8)*/ SCrowdEntitySaveData{
+class alignas(8) SCrowdEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14179,14 +14582,22 @@ public:
 	TArray<SCrowdActorSaveData> m_CrowdActorData; // 0x0
 	TArray<SRegionSaveData> m_RegionData; // 0x18
 	bool m_bIsCrowdAmbient; // 0x30
-	uint8_t _pad31[7] {};
 	SCrowdDeadPoseRepositorySaveData m_DeadPoseRepository; // 0x38
 	TArray<uint32> m_aCrowdAiPoolActorsMale; // 0x50
 	TArray<uint32> m_aCrowdAiPoolActorsFemale; // 0x68
 };
+ZHM_OFFSET_CHECK(SCrowdEntitySaveData, m_CrowdActorData, 0x0);
+ZHM_OFFSET_CHECK(SCrowdEntitySaveData, m_RegionData, 0x18);
+ZHM_OFFSET_CHECK(SCrowdEntitySaveData, m_bIsCrowdAmbient, 0x30);
+ZHM_OFFSET_CHECK(SCrowdEntitySaveData, m_DeadPoseRepository, 0x38);
+ZHM_OFFSET_CHECK(SCrowdEntitySaveData, m_aCrowdAiPoolActorsMale, 0x50);
+ZHM_OFFSET_CHECK(SCrowdEntitySaveData, m_aCrowdAiPoolActorsFemale, 0x68);
+static_assert(sizeof(SCrowdEntitySaveData) == 0x80, "Wrong size for SCrowdEntitySaveData");
+static_assert(alignof(SCrowdEntitySaveData) == 0x8, "Wrong alignment for SCrowdEntitySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SCrowdFlowChannel{
+class alignas(8) SCrowdFlowChannel
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14201,9 +14612,14 @@ public:
 	TArray<uint8> m_aFlowVectorIndex; // 0x0
 	TArray<uint16> m_aFlowCost; // 0x18
 };
+ZHM_OFFSET_CHECK(SCrowdFlowChannel, m_aFlowVectorIndex, 0x0);
+ZHM_OFFSET_CHECK(SCrowdFlowChannel, m_aFlowCost, 0x18);
+static_assert(sizeof(SCrowdFlowChannel) == 0x30, "Wrong size for SCrowdFlowChannel");
+static_assert(alignof(SCrowdFlowChannel) == 0x8, "Wrong alignment for SCrowdFlowChannel");
 
 // Size: 0x4
-class /*alignas(2)*/ ZCrowdGridPoint{
+class alignas(2) ZCrowdGridPoint
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14217,11 +14633,15 @@ public:
 
 	int16 m_nHeightOffset; // 0x0
 	uint8 m_nOnNavGrid; // 0x2
-	uint8_t _pad3[1] {};
 };
+ZHM_OFFSET_CHECK(ZCrowdGridPoint, m_nHeightOffset, 0x0);
+ZHM_OFFSET_CHECK(ZCrowdGridPoint, m_nOnNavGrid, 0x2);
+static_assert(sizeof(ZCrowdGridPoint) == 0x4, "Wrong size for ZCrowdGridPoint");
+static_assert(alignof(ZCrowdGridPoint) == 0x2, "Wrong alignment for ZCrowdGridPoint");
 
 // Size: 0xF0
-class /*alignas(16)*/ SCrowdMapData{
+class alignas(16) SCrowdMapData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14239,24 +14659,41 @@ public:
 	uint32 m_nGridSizeY; // 0x18
 	uint32 m_nCellSizeX; // 0x1C
 	uint32 m_nCellSizeY; // 0x20
-	uint8_t _pad24[4] {};
 	TArray<ZCrowdGridPoint> m_GridMap; // 0x28
 	float32 m_fGridMapHeightOffsetsScale; // 0x40
 	float32 m_fGridMapHeightOffsetsBias; // 0x44
 	TArray<SCrowdCells> m_CellFlags; // 0x48
 	TArray<SCrowdCells> m_CellGroups; // 0x60
 	int32 m_nGroupFlowStartChannel; // 0x78
-	uint8_t _pad7C[4] {};
 	TArray<SCrowdFlowChannel> m_aFlowChannels; // 0x80
 	float32 m_nGridCellSize; // 0x98
-	uint8_t _pad9C[4] {};
 	SMatrix m_mObjectToWorld; // 0xA0
 	SVector3 m_vGlobalSize; // 0xE0
 	float32 m_nGridGeneratorOffset; // 0xEC
 };
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nVersion, 0x0);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_vCellConsts, 0x4);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nGridSizeX, 0x14);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nGridSizeY, 0x18);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nCellSizeX, 0x1C);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nCellSizeY, 0x20);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_GridMap, 0x28);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_fGridMapHeightOffsetsScale, 0x40);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_fGridMapHeightOffsetsBias, 0x44);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_CellFlags, 0x48);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_CellGroups, 0x60);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nGroupFlowStartChannel, 0x78);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_aFlowChannels, 0x80);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nGridCellSize, 0x98);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_mObjectToWorld, 0xA0);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_vGlobalSize, 0xE0);
+ZHM_OFFSET_CHECK(SCrowdMapData, m_nGridGeneratorOffset, 0xEC);
+static_assert(sizeof(SCrowdMapData) == 0xF0, "Wrong size for SCrowdMapData");
+static_assert(alignof(SCrowdMapData) == 0x10, "Wrong alignment for SCrowdMapData");
 
 // Size: 0x14
-class /*alignas(4)*/ SCrowdReactionSaveData{
+class alignas(4) SCrowdReactionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14273,11 +14710,18 @@ public:
 	uint32 m_nNumDeaths; // 0x8
 	uint32 m_nNumScared; // 0xC
 	bool m_bWarzoneSpawned; // 0x10
-	uint8_t _pad11[3] {};
 };
+ZHM_OFFSET_CHECK(SCrowdReactionSaveData, m_nNumPacify, 0x0);
+ZHM_OFFSET_CHECK(SCrowdReactionSaveData, m_nNumShotsFired, 0x4);
+ZHM_OFFSET_CHECK(SCrowdReactionSaveData, m_nNumDeaths, 0x8);
+ZHM_OFFSET_CHECK(SCrowdReactionSaveData, m_nNumScared, 0xC);
+ZHM_OFFSET_CHECK(SCrowdReactionSaveData, m_bWarzoneSpawned, 0x10);
+static_assert(sizeof(SCrowdReactionSaveData) == 0x14, "Wrong size for SCrowdReactionSaveData");
+static_assert(alignof(SCrowdReactionSaveData) == 0x4, "Wrong alignment for SCrowdReactionSaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SCrowdServiceSaveData{
+class alignas(8) SCrowdServiceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14293,9 +14737,15 @@ public:
 	TArray<uint32> m_aPerceptiblePool; // 0x18
 	TArray<uint32> m_aPerceptibleActors; // 0x30
 };
+ZHM_OFFSET_CHECK(SCrowdServiceSaveData, m_aDeadBodies, 0x0);
+ZHM_OFFSET_CHECK(SCrowdServiceSaveData, m_aPerceptiblePool, 0x18);
+ZHM_OFFSET_CHECK(SCrowdServiceSaveData, m_aPerceptibleActors, 0x30);
+static_assert(sizeof(SCrowdServiceSaveData) == 0x48, "Wrong size for SCrowdServiceSaveData");
+static_assert(alignof(SCrowdServiceSaveData) == 0x8, "Wrong alignment for SCrowdServiceSaveData");
 
 // Size: 0x10
-class /*alignas(8)*/ SCuriousEventSaveData{
+class alignas(8) SCuriousEventSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14309,11 +14759,15 @@ public:
 
 	ZGameTime m_tExpiresAt; // 0x0
 	int32 m_nKnowledgeIndex; // 0x8
-	uint8_t _padC[4] {};
 };
+ZHM_OFFSET_CHECK(SCuriousEventSaveData, m_tExpiresAt, 0x0);
+ZHM_OFFSET_CHECK(SCuriousEventSaveData, m_nKnowledgeIndex, 0x8);
+static_assert(sizeof(SCuriousEventSaveData) == 0x10, "Wrong size for SCuriousEventSaveData");
+static_assert(alignof(SCuriousEventSaveData) == 0x8, "Wrong alignment for SCuriousEventSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SCuriousEventServiceSaveData{
+class alignas(8) SCuriousEventServiceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14327,9 +14781,13 @@ public:
 
 	TArray<SCuriousEventSaveData> m_aCuriousEvents; // 0x0
 };
+ZHM_OFFSET_CHECK(SCuriousEventServiceSaveData, m_aCuriousEvents, 0x0);
+static_assert(sizeof(SCuriousEventServiceSaveData) == 0x18, "Wrong size for SCuriousEventServiceSaveData");
+static_assert(alignof(SCuriousEventServiceSaveData) == 0x8, "Wrong alignment for SCuriousEventServiceSaveData");
 
 // Size: 0x14
-class /*alignas(4)*/ SCutSequenceData{
+class alignas(4) SCutSequenceData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14345,11 +14803,17 @@ public:
 	float32 m_fAnimationTime; // 0x8
 	float32 m_fCachedFrameWeight; // 0xC
 	bool m_bEnableAnimationScaling; // 0x10
-	uint8_t _pad11[3] {};
 };
+ZHM_OFFSET_CHECK(SCutSequenceData, m_animResource, 0x0);
+ZHM_OFFSET_CHECK(SCutSequenceData, m_fAnimationTime, 0x8);
+ZHM_OFFSET_CHECK(SCutSequenceData, m_fCachedFrameWeight, 0xC);
+ZHM_OFFSET_CHECK(SCutSequenceData, m_bEnableAnimationScaling, 0x10);
+static_assert(sizeof(SCutSequenceData) == 0x14, "Wrong size for SCutSequenceData");
+static_assert(alignof(SCutSequenceData) == 0x4, "Wrong alignment for SCutSequenceData");
 
 // Size: 0x1
-class /*alignas(1)*/ SDangerousAreaSaveData{
+class alignas(1) SDangerousAreaSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14363,9 +14827,13 @@ public:
 
 	bool m_bDangerous; // 0x0
 };
+ZHM_OFFSET_CHECK(SDangerousAreaSaveData, m_bDangerous, 0x0);
+static_assert(sizeof(SDangerousAreaSaveData) == 0x1, "Wrong size for SDangerousAreaSaveData");
+static_assert(alignof(SDangerousAreaSaveData) == 0x1, "Wrong alignment for SDangerousAreaSaveData");
 
 // Size: 0x30
-class /*alignas(16)*/ SDeadActorSaveData{
+class alignas(16) SDeadActorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14378,16 +14846,20 @@ public:
 	bool operator!=(const SDeadActorSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
-	uint8_t _pad4[12] {};
 	float4 m_vLastPos; // 0x10
 	bool m_bInWaterVolume; // 0x20
-	uint8_t _pad21[3] {};
 	float32 m_fHiddenTimer; // 0x24
-	uint8_t _pad28[8] {};
 };
+ZHM_OFFSET_CHECK(SDeadActorSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SDeadActorSaveData, m_vLastPos, 0x10);
+ZHM_OFFSET_CHECK(SDeadActorSaveData, m_bInWaterVolume, 0x20);
+ZHM_OFFSET_CHECK(SDeadActorSaveData, m_fHiddenTimer, 0x24);
+static_assert(sizeof(SDeadActorSaveData) == 0x30, "Wrong size for SDeadActorSaveData");
+static_assert(alignof(SDeadActorSaveData) == 0x10, "Wrong alignment for SDeadActorSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SDeadBodyInfoSaveData{
+class alignas(8) SDeadBodyInfoSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14413,9 +14885,25 @@ public:
 	bool m_bDeadByExplosion; // 0x36
 	bool m_IsFoundOutsideNavmeshAndIgnored; // 0x37
 };
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_rGuard, 0x4);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_knownByActors, 0x8);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_tKnownSince, 0x20);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_tInvestigatedSince, 0x28);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_bGuarded, 0x30);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_bBodyInvestigated, 0x31);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_bHidden, 0x32);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_bDeadByAccident, 0x33);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_bDeadByUnnoticed, 0x34);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_bHitmanSuspectedInCurrentOutfit, 0x35);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_bDeadByExplosion, 0x36);
+ZHM_OFFSET_CHECK(SDeadBodyInfoSaveData, m_IsFoundOutsideNavmeshAndIgnored, 0x37);
+static_assert(sizeof(SDeadBodyInfoSaveData) == 0x38, "Wrong size for SDeadBodyInfoSaveData");
+static_assert(alignof(SDeadBodyInfoSaveData) == 0x8, "Wrong alignment for SDeadBodyInfoSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SDeadBodySensorSaveData{
+class alignas(8) SDeadBodySensorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14429,11 +14917,15 @@ public:
 
 	TArray<SDeadBodyInfoSaveData> m_aBodies; // 0x0
 	int32 m_nBodyIndex; // 0x18
-	uint8_t _pad1C[4] {};
 };
+ZHM_OFFSET_CHECK(SDeadBodySensorSaveData, m_aBodies, 0x0);
+ZHM_OFFSET_CHECK(SDeadBodySensorSaveData, m_nBodyIndex, 0x18);
+static_assert(sizeof(SDeadBodySensorSaveData) == 0x20, "Wrong size for SDeadBodySensorSaveData");
+static_assert(alignof(SDeadBodySensorSaveData) == 0x8, "Wrong alignment for SDeadBodySensorSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SVector2{
+class alignas(4) SVector2
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14448,9 +14940,14 @@ public:
 	float32 x; // 0x0
 	float32 y; // 0x4
 };
+ZHM_OFFSET_CHECK(SVector2, x, 0x0);
+ZHM_OFFSET_CHECK(SVector2, y, 0x4);
+static_assert(sizeof(SVector2) == 0x8, "Wrong size for SVector2");
+static_assert(alignof(SVector2) == 0x4, "Wrong alignment for SVector2");
 
 // Size: 0x80
-class /*alignas(16)*/ SDecalSpawnSaveData{
+class alignas(16) SDecalSpawnSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14463,7 +14960,6 @@ public:
 	bool operator!=(const SDecalSpawnSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bWasSpawned; // 0x0
-	uint8_t _pad1[15] {};
 	float4 m_vPosition; // 0x10
 	float4 m_vNormal; // 0x20
 	float4 m_vDirection; // 0x30
@@ -14474,11 +14970,24 @@ public:
 	SVector2 m_vUVOffset; // 0x64
 	SVector2 m_vTiling; // 0x6C
 	uint32 m_rBlockingSpatialEntity; // 0x74
-	uint8_t _pad78[8] {};
 };
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_bWasSpawned, 0x0);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_vPosition, 0x10);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_vNormal, 0x20);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_vDirection, 0x30);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_vSize, 0x40);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_Color, 0x50);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_fAlpha, 0x5C);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_fAngle, 0x60);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_vUVOffset, 0x64);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_vTiling, 0x6C);
+ZHM_OFFSET_CHECK(SDecalSpawnSaveData, m_rBlockingSpatialEntity, 0x74);
+static_assert(sizeof(SDecalSpawnSaveData) == 0x80, "Wrong size for SDecalSpawnSaveData");
+static_assert(alignof(SDecalSpawnSaveData) == 0x10, "Wrong alignment for SDecalSpawnSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SDestructibleInteractionHandlerData{
+class alignas(4) SDestructibleInteractionHandlerData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14492,9 +15001,13 @@ public:
 
 	float32 m_fSettleTime; // 0x0
 };
+ZHM_OFFSET_CHECK(SDestructibleInteractionHandlerData, m_fSettleTime, 0x0);
+static_assert(sizeof(SDestructibleInteractionHandlerData) == 0x4, "Wrong size for SDestructibleInteractionHandlerData");
+static_assert(alignof(SDestructibleInteractionHandlerData) == 0x4, "Wrong alignment for SDestructibleInteractionHandlerData");
 
 // Size: 0x90
-class /*alignas(16)*/ SDestructiblePieceSaveData{
+class alignas(16) SDestructiblePieceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14511,13 +15024,22 @@ public:
 	float32 m_fMass; // 0x58
 	EPhysicsObjectType m_ePhysicsType; // 0x5C
 	bool m_bIsAwake; // 0x60
-	uint8_t _pad61[15] {};
 	float4 m_fLinearVelocity; // 0x70
 	float4 m_fAngularVelocity; // 0x80
 };
+ZHM_OFFSET_CHECK(SDestructiblePieceSaveData, m_mTransform, 0x0);
+ZHM_OFFSET_CHECK(SDestructiblePieceSaveData, m_aIndices, 0x40);
+ZHM_OFFSET_CHECK(SDestructiblePieceSaveData, m_fMass, 0x58);
+ZHM_OFFSET_CHECK(SDestructiblePieceSaveData, m_ePhysicsType, 0x5C);
+ZHM_OFFSET_CHECK(SDestructiblePieceSaveData, m_bIsAwake, 0x60);
+ZHM_OFFSET_CHECK(SDestructiblePieceSaveData, m_fLinearVelocity, 0x70);
+ZHM_OFFSET_CHECK(SDestructiblePieceSaveData, m_fAngularVelocity, 0x80);
+static_assert(sizeof(SDestructiblePieceSaveData) == 0x90, "Wrong size for SDestructiblePieceSaveData");
+static_assert(alignof(SDestructiblePieceSaveData) == 0x10, "Wrong alignment for SDestructiblePieceSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SDestructibleRuntimeConnnection{
+class alignas(8) SDestructibleRuntimeConnnection
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14530,12 +15052,16 @@ public:
 	bool operator!=(const SDestructibleRuntimeConnnection& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nPieceIndex; // 0x0
-	uint8_t _pad2[6] {};
 	TArray<uint16> m_aConnections; // 0x8
 };
+ZHM_OFFSET_CHECK(SDestructibleRuntimeConnnection, m_nPieceIndex, 0x0);
+ZHM_OFFSET_CHECK(SDestructibleRuntimeConnnection, m_aConnections, 0x8);
+static_assert(sizeof(SDestructibleRuntimeConnnection) == 0x20, "Wrong size for SDestructibleRuntimeConnnection");
+static_assert(alignof(SDestructibleRuntimeConnnection) == 0x8, "Wrong alignment for SDestructibleRuntimeConnnection");
 
 // Size: 0x8
-class /*alignas(4)*/ SDestructibleRuntimeDamage{
+class alignas(4) SDestructibleRuntimeDamage
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14548,12 +15074,16 @@ public:
 	bool operator!=(const SDestructibleRuntimeDamage& p_Other) const { return !(*this == p_Other); }
 
 	uint16 m_nPieceIndex; // 0x0
-	uint8_t _pad2[2] {};
 	float32 m_fDamage; // 0x4
 };
+ZHM_OFFSET_CHECK(SDestructibleRuntimeDamage, m_nPieceIndex, 0x0);
+ZHM_OFFSET_CHECK(SDestructibleRuntimeDamage, m_fDamage, 0x4);
+static_assert(sizeof(SDestructibleRuntimeDamage) == 0x8, "Wrong size for SDestructibleRuntimeDamage");
+static_assert(alignof(SDestructibleRuntimeDamage) == 0x4, "Wrong alignment for SDestructibleRuntimeDamage");
 
 // Size: 0x60
-class /*alignas(8)*/ SDestructibleObjectSaveData{
+class alignas(8) SDestructibleObjectSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14566,12 +15096,10 @@ public:
 	bool operator!=(const SDestructibleObjectSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SDestructibleInteractionHandlerData m_interactionData; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<SDestructiblePieceSaveData> m_aDestructiblePieces; // 0x8
 	TArray<SDestructibleRuntimeConnnection> m_aConnectionData; // 0x20
 	TArray<SDestructibleRuntimeDamage> m_aDamageData; // 0x38
 	uint16 m_nNumAnchors; // 0x50
-	uint8_t _pad52[2] {};
 	ERuntimeMemoryAllocationState m_eRuntimeMemoryAllocationState; // 0x54
 	EPhysicsObjectType m_eSystemPhysicsType; // 0x58
 	bool m_bHasSystemBeenDetached; // 0x5C
@@ -14579,9 +15107,23 @@ public:
 	bool m_bPhysicsEnabled; // 0x5E
 	bool m_bDestructionEnabled; // 0x5F
 };
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_interactionData, 0x0);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_aDestructiblePieces, 0x8);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_aConnectionData, 0x20);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_aDamageData, 0x38);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_nNumAnchors, 0x50);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_eRuntimeMemoryAllocationState, 0x54);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_eSystemPhysicsType, 0x58);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_bHasSystemBeenDetached, 0x5C);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_bHasSystemBeenFractured, 0x5D);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_bPhysicsEnabled, 0x5E);
+ZHM_OFFSET_CHECK(SDestructibleObjectSaveData, m_bDestructionEnabled, 0x5F);
+static_assert(sizeof(SDestructibleObjectSaveData) == 0x60, "Wrong size for SDestructibleObjectSaveData");
+static_assert(alignof(SDestructibleObjectSaveData) == 0x8, "Wrong alignment for SDestructibleObjectSaveData");
 
 // Size: 0x28
-class /*alignas(8)*/ SDetectedInPrivateGroupSaveData{
+class alignas(8) SDetectedInPrivateGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14598,12 +15140,20 @@ public:
 	uint32 m_rLead; // 0x1C
 	bool m_bDisbanded; // 0x20
 	bool m_bFirstWait; // 0x21
-	uint8_t _pad22[2] {};
 	int32 m_target; // 0x24
 };
+ZHM_OFFSET_CHECK(SDetectedInPrivateGroupSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SDetectedInPrivateGroupSaveData, m_fTimeWaiting, 0x18);
+ZHM_OFFSET_CHECK(SDetectedInPrivateGroupSaveData, m_rLead, 0x1C);
+ZHM_OFFSET_CHECK(SDetectedInPrivateGroupSaveData, m_bDisbanded, 0x20);
+ZHM_OFFSET_CHECK(SDetectedInPrivateGroupSaveData, m_bFirstWait, 0x21);
+ZHM_OFFSET_CHECK(SDetectedInPrivateGroupSaveData, m_target, 0x24);
+static_assert(sizeof(SDetectedInPrivateGroupSaveData) == 0x28, "Wrong size for SDetectedInPrivateGroupSaveData");
+static_assert(alignof(SDetectedInPrivateGroupSaveData) == 0x8, "Wrong alignment for SDetectedInPrivateGroupSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SDisguiseZoneSaveData{
+class alignas(1) SDisguiseZoneSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14617,9 +15167,43 @@ public:
 
 	bool m_bEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SDisguiseZoneSaveData, m_bEnabled, 0x0);
+static_assert(sizeof(SDisguiseZoneSaveData) == 0x1, "Wrong size for SDisguiseZoneSaveData");
+static_assert(alignof(SDisguiseZoneSaveData) == 0x1, "Wrong alignment for SDisguiseZoneSaveData");
+
+// Size: 0x20
+class alignas(8) SDisturbanceSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SDisturbanceSaveData& p_Other) const;
+	bool operator!=(const SDisturbanceSaveData& p_Other) const { return !(*this == p_Other); }
+
+	int32 m_object; // 0x0
+	EDisturbanceType m_type; // 0x4
+	ECautiousDisturbanceState m_state; // 0x8
+	ZGameTime m_started; // 0x10
+	int32 m_pInvestigateGroup; // 0x18
+	bool m_bLockOnHitmanPosition; // 0x1C
+};
+ZHM_OFFSET_CHECK(SDisturbanceSaveData, m_object, 0x0);
+ZHM_OFFSET_CHECK(SDisturbanceSaveData, m_type, 0x4);
+ZHM_OFFSET_CHECK(SDisturbanceSaveData, m_state, 0x8);
+ZHM_OFFSET_CHECK(SDisturbanceSaveData, m_started, 0x10);
+ZHM_OFFSET_CHECK(SDisturbanceSaveData, m_pInvestigateGroup, 0x18);
+ZHM_OFFSET_CHECK(SDisturbanceSaveData, m_bLockOnHitmanPosition, 0x1C);
+static_assert(sizeof(SDisturbanceSaveData) == 0x20, "Wrong size for SDisturbanceSaveData");
+static_assert(alignof(SDisturbanceSaveData) == 0x8, "Wrong alignment for SDisturbanceSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SDoorSaveData{
+class alignas(8) SDoorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14634,12 +15218,17 @@ public:
 	int32 m_nDoorState; // 0x0
 	float32 m_fAnimPercent; // 0x4
 	float32 m_fTargetAnimPercent; // 0x8
-	uint8_t _padC[4] {};
 	ZGameTime m_tOpenTime; // 0x10
 };
+ZHM_OFFSET_CHECK(SDoorSaveData, m_nDoorState, 0x0);
+ZHM_OFFSET_CHECK(SDoorSaveData, m_fAnimPercent, 0x4);
+ZHM_OFFSET_CHECK(SDoorSaveData, m_fTargetAnimPercent, 0x8);
+ZHM_OFFSET_CHECK(SDoorSaveData, m_tOpenTime, 0x10);
+static_assert(sizeof(SDoorSaveData) == 0x18, "Wrong size for SDoorSaveData");
+static_assert(alignof(SDoorSaveData) == 0x8, "Wrong alignment for SDoorSaveData");
 
-// Size: 0x1
-class /*alignas(1)*/ SDoorSoundDefs{
+class SDoorSoundDefs
+{
 public:
 	// Size: 0x4
 	enum class EDefinition : int32_t
@@ -14650,23 +15239,11 @@ public:
 		DoorOpenStop = 3,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SDoorSoundDefs& p_Other) const;
-	bool operator!=(const SDoorSoundDefs& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[1] {};
 };
 
 // Size: 0x30
-class /*alignas(8)*/ SDoorsSaveData{
+class alignas(8) SDoorsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14681,9 +15258,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDoorSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SDoorsSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SDoorsSaveData, m_aData, 0x18);
+static_assert(sizeof(SDoorsSaveData) == 0x30, "Wrong size for SDoorsSaveData");
+static_assert(alignof(SDoorsSaveData) == 0x8, "Wrong alignment for SDoorsSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SDrama2ActorSaveState{
+class alignas(8) SDrama2ActorSaveState
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14700,7 +15282,6 @@ public:
 	uint32 m_rBehavior; // 0x8
 	uint32 m_rCurrentSpeakEntity; // 0xC
 	uint32 m_rScreenplay; // 0x10
-	uint8_t _pad14[4] {};
 	ZString m_sMatchName; // 0x18
 	ZGameTime m_tActorSpeakEnd; // 0x28
 	bool m_bIsDone; // 0x30
@@ -14709,11 +15290,26 @@ public:
 	bool m_bOwnsCurrentBehavior; // 0x33
 	bool m_bActive; // 0x34
 	bool m_bRequired; // 0x35
-	uint8_t _pad36[2] {};
 };
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_rSequence, 0x4);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_rBehavior, 0x8);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_rCurrentSpeakEntity, 0xC);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_rScreenplay, 0x10);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_sMatchName, 0x18);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_tActorSpeakEnd, 0x28);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_bIsDone, 0x30);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_bIsPaused, 0x31);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_bIsSpeaking, 0x32);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_bOwnsCurrentBehavior, 0x33);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_bActive, 0x34);
+ZHM_OFFSET_CHECK(SDrama2ActorSaveState, m_bRequired, 0x35);
+static_assert(sizeof(SDrama2ActorSaveState) == 0x38, "Wrong size for SDrama2ActorSaveState");
+static_assert(alignof(SDrama2ActorSaveState) == 0x8, "Wrong alignment for SDrama2ActorSaveState");
 
 // Size: 0x30
-class /*alignas(8)*/ SDrama2ActorCollectionSaveData{
+class alignas(8) SDrama2ActorCollectionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14728,9 +15324,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2ActorSaveState> m_aStates; // 0x18
 };
+ZHM_OFFSET_CHECK(SDrama2ActorCollectionSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SDrama2ActorCollectionSaveData, m_aStates, 0x18);
+static_assert(sizeof(SDrama2ActorCollectionSaveData) == 0x30, "Wrong size for SDrama2ActorCollectionSaveData");
+static_assert(alignof(SDrama2ActorCollectionSaveData) == 0x8, "Wrong alignment for SDrama2ActorCollectionSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SDrama2SetupSaveData{
+class alignas(4) SDrama2SetupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14743,13 +15344,18 @@ public:
 	bool operator!=(const SDrama2SetupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDoneTriggered; // 0x0
-	uint8_t _pad1[3] {};
 	EScreenPlayState m_eState; // 0x4
 	uint32 m_rSituation; // 0x8
 };
+ZHM_OFFSET_CHECK(SDrama2SetupSaveData, m_bDoneTriggered, 0x0);
+ZHM_OFFSET_CHECK(SDrama2SetupSaveData, m_eState, 0x4);
+ZHM_OFFSET_CHECK(SDrama2SetupSaveData, m_rSituation, 0x8);
+static_assert(sizeof(SDrama2SetupSaveData) == 0xC, "Wrong size for SDrama2SetupSaveData");
+static_assert(alignof(SDrama2SetupSaveData) == 0x4, "Wrong alignment for SDrama2SetupSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SDrama2SetupCollectionSaveData{
+class alignas(8) SDrama2SetupCollectionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14764,9 +15370,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2SetupSaveData> m_aStates; // 0x18
 };
+ZHM_OFFSET_CHECK(SDrama2SetupCollectionSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SDrama2SetupCollectionSaveData, m_aStates, 0x18);
+static_assert(sizeof(SDrama2SetupCollectionSaveData) == 0x30, "Wrong size for SDrama2SetupCollectionSaveData");
+static_assert(alignof(SDrama2SetupCollectionSaveData) == 0x8, "Wrong alignment for SDrama2SetupCollectionSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SDrama2SituationSaveData{
+class alignas(4) SDrama2SituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14786,9 +15397,19 @@ public:
 	bool m_bSituationRunning; // 0xE
 	bool m_bIsTerminated; // 0xF
 };
+ZHM_OFFSET_CHECK(SDrama2SituationSaveData, m_nPriorityModifier, 0x0);
+ZHM_OFFSET_CHECK(SDrama2SituationSaveData, m_nCurrentDrama, 0x4);
+ZHM_OFFSET_CHECK(SDrama2SituationSaveData, m_nDoneTime, 0x8);
+ZHM_OFFSET_CHECK(SDrama2SituationSaveData, m_bIsOnCooldown, 0xC);
+ZHM_OFFSET_CHECK(SDrama2SituationSaveData, m_bProvidersStarted, 0xD);
+ZHM_OFFSET_CHECK(SDrama2SituationSaveData, m_bSituationRunning, 0xE);
+ZHM_OFFSET_CHECK(SDrama2SituationSaveData, m_bIsTerminated, 0xF);
+static_assert(sizeof(SDrama2SituationSaveData) == 0x10, "Wrong size for SDrama2SituationSaveData");
+static_assert(alignof(SDrama2SituationSaveData) == 0x4, "Wrong alignment for SDrama2SituationSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SDrama2SituationCollectionSaveData{
+class alignas(8) SDrama2SituationCollectionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14803,9 +15424,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDrama2SituationSaveData> m_aStates; // 0x18
 };
+ZHM_OFFSET_CHECK(SDrama2SituationCollectionSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SDrama2SituationCollectionSaveData, m_aStates, 0x18);
+static_assert(sizeof(SDrama2SituationCollectionSaveData) == 0x30, "Wrong size for SDrama2SituationCollectionSaveData");
+static_assert(alignof(SDrama2SituationCollectionSaveData) == 0x8, "Wrong alignment for SDrama2SituationCollectionSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SDramaActorSaveState{
+class alignas(8) SDramaActorSaveState
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14822,17 +15448,28 @@ public:
 	uint32 m_rBehavior; // 0x8
 	uint32 m_rCurrentSpeakEntity; // 0xC
 	uint32 m_rScreenplay; // 0x10
-	uint8_t _pad14[4] {};
 	ZString m_sMatchName; // 0x18
 	ZGameTime m_tActorSpeakEnd; // 0x28
 	bool m_bIsDone; // 0x30
 	bool m_bIsPaused; // 0x31
 	bool m_bIsSpeaking; // 0x32
-	uint8_t _pad33[5] {};
 };
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_rSequence, 0x4);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_rBehavior, 0x8);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_rCurrentSpeakEntity, 0xC);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_rScreenplay, 0x10);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_sMatchName, 0x18);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_tActorSpeakEnd, 0x28);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_bIsDone, 0x30);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_bIsPaused, 0x31);
+ZHM_OFFSET_CHECK(SDramaActorSaveState, m_bIsSpeaking, 0x32);
+static_assert(sizeof(SDramaActorSaveState) == 0x38, "Wrong size for SDramaActorSaveState");
+static_assert(alignof(SDramaActorSaveState) == 0x8, "Wrong alignment for SDramaActorSaveState");
 
 // Size: 0x30
-class /*alignas(8)*/ SDramaActorCollectionSaveData{
+class alignas(8) SDramaActorCollectionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14847,9 +15484,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaActorSaveState> m_aStates; // 0x18
 };
+ZHM_OFFSET_CHECK(SDramaActorCollectionSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SDramaActorCollectionSaveData, m_aStates, 0x18);
+static_assert(sizeof(SDramaActorCollectionSaveData) == 0x30, "Wrong size for SDramaActorCollectionSaveData");
+static_assert(alignof(SDramaActorCollectionSaveData) == 0x8, "Wrong alignment for SDramaActorCollectionSaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SDramaControllerSaveData{
+class alignas(1) SDramaControllerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14864,6 +15506,10 @@ public:
 	bool m_bIsStartCondValid; // 0x0
 	bool m_bIsEnableCondValid; // 0x1
 };
+ZHM_OFFSET_CHECK(SDramaControllerSaveData, m_bIsStartCondValid, 0x0);
+ZHM_OFFSET_CHECK(SDramaControllerSaveData, m_bIsEnableCondValid, 0x1);
+static_assert(sizeof(SDramaControllerSaveData) == 0x2, "Wrong size for SDramaControllerSaveData");
+static_assert(alignof(SDramaControllerSaveData) == 0x1, "Wrong alignment for SDramaControllerSaveData");
 
 class ZActorInstanceEntity
 {
@@ -14877,24 +15523,9 @@ public:
 
 };
 
-// Size: 0x40
-class /*alignas(0)*/ ZUIDataProvider{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZUIDataProvider& p_Other) const;
-	bool operator!=(const ZUIDataProvider& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[64] {};
-};
-
 // Size: 0x18
-class /*alignas(8)*/ ZCurve{
+class alignas(8) ZCurve
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14908,6 +15539,9 @@ public:
 
 	TArray<TFixedArray<float32, 8>> data; // 0x0
 };
+ZHM_OFFSET_CHECK(ZCurve, data, 0x0);
+static_assert(sizeof(ZCurve) == 0x18, "Wrong size for ZCurve");
+static_assert(alignof(ZCurve) == 0x8, "Wrong alignment for ZCurve");
 
 class ZScreenplay
 {
@@ -14925,7 +15559,8 @@ public:
 };
 
 // Size: 0xC
-class /*alignas(4)*/ SDramaSetupSaveData{
+class alignas(4) SDramaSetupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14938,13 +15573,18 @@ public:
 	bool operator!=(const SDramaSetupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bDoneTriggered; // 0x0
-	uint8_t _pad1[3] {};
 	ZScreenplay::EState m_eState; // 0x4
 	uint32 m_rSituation; // 0x8
 };
+ZHM_OFFSET_CHECK(SDramaSetupSaveData, m_bDoneTriggered, 0x0);
+ZHM_OFFSET_CHECK(SDramaSetupSaveData, m_eState, 0x4);
+ZHM_OFFSET_CHECK(SDramaSetupSaveData, m_rSituation, 0x8);
+static_assert(sizeof(SDramaSetupSaveData) == 0xC, "Wrong size for SDramaSetupSaveData");
+static_assert(alignof(SDramaSetupSaveData) == 0x4, "Wrong alignment for SDramaSetupSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SDramaSetupCollectionSaveData{
+class alignas(8) SDramaSetupCollectionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14959,9 +15599,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaSetupSaveData> m_aStates; // 0x18
 };
+ZHM_OFFSET_CHECK(SDramaSetupCollectionSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SDramaSetupCollectionSaveData, m_aStates, 0x18);
+static_assert(sizeof(SDramaSetupCollectionSaveData) == 0x30, "Wrong size for SDramaSetupCollectionSaveData");
+static_assert(alignof(SDramaSetupCollectionSaveData) == 0x8, "Wrong alignment for SDramaSetupCollectionSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SDramaSituationSaveData{
+class alignas(4) SDramaSituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14975,15 +15620,21 @@ public:
 
 	bool m_bSituationRunning; // 0x0
 	bool m_bIsTerminated; // 0x1
-	uint8_t _pad2[2] {};
 	float32 m_nPriorityModifier; // 0x4
 	int32 m_nCurrentDrama; // 0x8
 	bool m_bProvidersStarted; // 0xC
-	uint8_t _padD[3] {};
 };
+ZHM_OFFSET_CHECK(SDramaSituationSaveData, m_bSituationRunning, 0x0);
+ZHM_OFFSET_CHECK(SDramaSituationSaveData, m_bIsTerminated, 0x1);
+ZHM_OFFSET_CHECK(SDramaSituationSaveData, m_nPriorityModifier, 0x4);
+ZHM_OFFSET_CHECK(SDramaSituationSaveData, m_nCurrentDrama, 0x8);
+ZHM_OFFSET_CHECK(SDramaSituationSaveData, m_bProvidersStarted, 0xC);
+static_assert(sizeof(SDramaSituationSaveData) == 0x10, "Wrong size for SDramaSituationSaveData");
+static_assert(alignof(SDramaSituationSaveData) == 0x4, "Wrong alignment for SDramaSituationSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SDramaSituationCollectionSaveData{
+class alignas(8) SDramaSituationCollectionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -14998,9 +15649,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SDramaSituationSaveData> m_aStates; // 0x18
 };
+ZHM_OFFSET_CHECK(SDramaSituationCollectionSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SDramaSituationCollectionSaveData, m_aStates, 0x18);
+static_assert(sizeof(SDramaSituationCollectionSaveData) == 0x30, "Wrong size for SDramaSituationCollectionSaveData");
+static_assert(alignof(SDramaSituationCollectionSaveData) == 0x8, "Wrong alignment for SDramaSituationCollectionSaveData");
 
 // Size: 0x30
-class /*alignas(16)*/ SDynamicEnforcerCandidateSaveData{
+class alignas(16) SDynamicEnforcerCandidateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15013,15 +15669,20 @@ public:
 	bool operator!=(const SDynamicEnforcerCandidateSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rActor; // 0x0
-	uint8_t _pad4[12] {};
 	float4 m_vPosition; // 0x10
 	EAISharedEventType m_eType; // 0x20
 	float32 m_fRadius; // 0x24
-	uint8_t _pad28[8] {};
 };
+ZHM_OFFSET_CHECK(SDynamicEnforcerCandidateSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SDynamicEnforcerCandidateSaveData, m_vPosition, 0x10);
+ZHM_OFFSET_CHECK(SDynamicEnforcerCandidateSaveData, m_eType, 0x20);
+ZHM_OFFSET_CHECK(SDynamicEnforcerCandidateSaveData, m_fRadius, 0x24);
+static_assert(sizeof(SDynamicEnforcerCandidateSaveData) == 0x30, "Wrong size for SDynamicEnforcerCandidateSaveData");
+static_assert(alignof(SDynamicEnforcerCandidateSaveData) == 0x10, "Wrong alignment for SDynamicEnforcerCandidateSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SDynamicEnforcerServiceSaveData{
+class alignas(8) SDynamicEnforcerServiceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15035,9 +15696,13 @@ public:
 
 	TArray<SDynamicEnforcerCandidateSaveData> m_aCandidates; // 0x0
 };
+ZHM_OFFSET_CHECK(SDynamicEnforcerServiceSaveData, m_aCandidates, 0x0);
+static_assert(sizeof(SDynamicEnforcerServiceSaveData) == 0x18, "Wrong size for SDynamicEnforcerServiceSaveData");
+static_assert(alignof(SDynamicEnforcerServiceSaveData) == 0x8, "Wrong alignment for SDynamicEnforcerServiceSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SDynamicObjectKeyValuePair{
+class alignas(8) SDynamicObjectKeyValuePair
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15052,9 +15717,14 @@ public:
 	ZString sKey; // 0x0
 	ZDynamicObject value; // 0x10
 };
+ZHM_OFFSET_CHECK(SDynamicObjectKeyValuePair, sKey, 0x0);
+ZHM_OFFSET_CHECK(SDynamicObjectKeyValuePair, value, 0x10);
+static_assert(sizeof(SDynamicObjectKeyValuePair) == 0x20, "Wrong size for SDynamicObjectKeyValuePair");
+static_assert(alignof(SDynamicObjectKeyValuePair) == 0x8, "Wrong alignment for SDynamicObjectKeyValuePair");
 
 // Size: 0x3
-class /*alignas(1)*/ SDynamicRayCastEntitySaveData{
+class alignas(1) SDynamicRayCastEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15070,9 +15740,37 @@ public:
 	bool m_bIsRayIntersecting; // 0x1
 	bool m_bIsCurrentlyEnabled; // 0x2
 };
+ZHM_OFFSET_CHECK(SDynamicRayCastEntitySaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SDynamicRayCastEntitySaveData, m_bIsRayIntersecting, 0x1);
+ZHM_OFFSET_CHECK(SDynamicRayCastEntitySaveData, m_bIsCurrentlyEnabled, 0x2);
+static_assert(sizeof(SDynamicRayCastEntitySaveData) == 0x3, "Wrong size for SDynamicRayCastEntitySaveData");
+static_assert(alignof(SDynamicRayCastEntitySaveData) == 0x1, "Wrong alignment for SDynamicRayCastEntitySaveData");
+
+// Size: 0x8
+class alignas(4) SEntityEventChannelSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SEntityEventChannelSaveData& p_Other) const;
+	bool operator!=(const SEntityEventChannelSaveData& p_Other) const { return !(*this == p_Other); }
+
+	bool m_bEnabled; // 0x0
+	uint32 m_nEntity; // 0x4
+};
+ZHM_OFFSET_CHECK(SEntityEventChannelSaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SEntityEventChannelSaveData, m_nEntity, 0x4);
+static_assert(sizeof(SEntityEventChannelSaveData) == 0x8, "Wrong size for SEntityEventChannelSaveData");
+static_assert(alignof(SEntityEventChannelSaveData) == 0x4, "Wrong alignment for SEntityEventChannelSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SEntityPath{
+class alignas(8) SEntityPath
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15087,9 +15785,14 @@ public:
 	uint64 m_nOwnerID; // 0x0
 	TArray<uint64> m_aEntityPath; // 0x8
 };
+ZHM_OFFSET_CHECK(SEntityPath, m_nOwnerID, 0x0);
+ZHM_OFFSET_CHECK(SEntityPath, m_aEntityPath, 0x8);
+static_assert(sizeof(SEntityPath) == 0x20, "Wrong size for SEntityPath");
+static_assert(alignof(SEntityPath) == 0x8, "Wrong alignment for SEntityPath");
 
 // Size: 0x48
-class /*alignas(8)*/ SEntityPinDescriptor{
+class alignas(8) SEntityPinDescriptor
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15107,11 +15810,19 @@ public:
 	ZString sHelpText; // 0x30
 	bool bIsPlaceholder; // 0x40
 	bool bIsHidden; // 0x41
-	uint8_t _pad42[6] {};
 };
+ZHM_OFFSET_CHECK(SEntityPinDescriptor, sName, 0x0);
+ZHM_OFFSET_CHECK(SEntityPinDescriptor, sDisplayName, 0x10);
+ZHM_OFFSET_CHECK(SEntityPinDescriptor, type, 0x20);
+ZHM_OFFSET_CHECK(SEntityPinDescriptor, sHelpText, 0x30);
+ZHM_OFFSET_CHECK(SEntityPinDescriptor, bIsPlaceholder, 0x40);
+ZHM_OFFSET_CHECK(SEntityPinDescriptor, bIsHidden, 0x41);
+static_assert(sizeof(SEntityPinDescriptor) == 0x48, "Wrong size for SEntityPinDescriptor");
+static_assert(alignof(SEntityPinDescriptor) == 0x8, "Wrong alignment for SEntityPinDescriptor");
 
 // Size: 0x50
-class /*alignas(8)*/ SEntityPropertyDescriptor{
+class alignas(8) SEntityPropertyDescriptor
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15126,12 +15837,18 @@ public:
 	ZString sName; // 0x0
 	ZResourceID type; // 0x10
 	bool bIsHidden; // 0x20
-	uint8_t _pad21[7] {};
 	TMap<ZString,ZString> attributes; // 0x28
 };
+ZHM_OFFSET_CHECK(SEntityPropertyDescriptor, sName, 0x0);
+ZHM_OFFSET_CHECK(SEntityPropertyDescriptor, type, 0x10);
+ZHM_OFFSET_CHECK(SEntityPropertyDescriptor, bIsHidden, 0x20);
+ZHM_OFFSET_CHECK(SEntityPropertyDescriptor, attributes, 0x28);
+static_assert(sizeof(SEntityPropertyDescriptor) == 0x50, "Wrong size for SEntityPropertyDescriptor");
+static_assert(alignof(SEntityPropertyDescriptor) == 0x8, "Wrong alignment for SEntityPropertyDescriptor");
 
 // Size: 0x18
-class /*alignas(8)*/ SEntityTemplateEntitySubset{
+class alignas(8) SEntityTemplateEntitySubset
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15145,9 +15862,13 @@ public:
 
 	TArray<int32> entities; // 0x0
 };
+ZHM_OFFSET_CHECK(SEntityTemplateEntitySubset, entities, 0x0);
+static_assert(sizeof(SEntityTemplateEntitySubset) == 0x18, "Wrong size for SEntityTemplateEntitySubset");
+static_assert(alignof(SEntityTemplateEntitySubset) == 0x8, "Wrong alignment for SEntityTemplateEntitySubset");
 
 // Size: 0x20
-class /*alignas(8)*/ SEntityTemplateReference{
+class alignas(8) SEntityTemplateReference
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15164,9 +15885,16 @@ public:
 	int32 entityIndex; // 0xC
 	ZString exposedEntity; // 0x10
 };
+ZHM_OFFSET_CHECK(SEntityTemplateReference, entityID, 0x0);
+ZHM_OFFSET_CHECK(SEntityTemplateReference, externalSceneIndex, 0x8);
+ZHM_OFFSET_CHECK(SEntityTemplateReference, entityIndex, 0xC);
+ZHM_OFFSET_CHECK(SEntityTemplateReference, exposedEntity, 0x10);
+static_assert(sizeof(SEntityTemplateReference) == 0x20, "Wrong size for SEntityTemplateReference");
+static_assert(alignof(SEntityTemplateReference) == 0x8, "Wrong alignment for SEntityTemplateReference");
 
 // Size: 0x30
-class /*alignas(8)*/ SEntityTemplateExposedEntity{
+class alignas(8) SEntityTemplateExposedEntity
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15180,12 +15908,17 @@ public:
 
 	ZString sName; // 0x0
 	bool bIsArray; // 0x10
-	uint8_t _pad11[7] {};
 	TArray<SEntityTemplateReference> aTargets; // 0x18
 };
+ZHM_OFFSET_CHECK(SEntityTemplateExposedEntity, sName, 0x0);
+ZHM_OFFSET_CHECK(SEntityTemplateExposedEntity, bIsArray, 0x10);
+ZHM_OFFSET_CHECK(SEntityTemplateExposedEntity, aTargets, 0x18);
+static_assert(sizeof(SEntityTemplateExposedEntity) == 0x30, "Wrong size for SEntityTemplateExposedEntity");
+static_assert(alignof(SEntityTemplateExposedEntity) == 0x8, "Wrong alignment for SEntityTemplateExposedEntity");
 
 // Size: 0x38
-class /*alignas(8)*/ SEntityTemplatePinConnection{
+class alignas(8) SEntityTemplatePinConnection
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15203,9 +15936,17 @@ public:
 	ZString toPinName; // 0x18
 	ZVariant constantPinValue; // 0x28
 };
+ZHM_OFFSET_CHECK(SEntityTemplatePinConnection, fromID, 0x0);
+ZHM_OFFSET_CHECK(SEntityTemplatePinConnection, toID, 0x4);
+ZHM_OFFSET_CHECK(SEntityTemplatePinConnection, fromPinName, 0x8);
+ZHM_OFFSET_CHECK(SEntityTemplatePinConnection, toPinName, 0x18);
+ZHM_OFFSET_CHECK(SEntityTemplatePinConnection, constantPinValue, 0x28);
+static_assert(sizeof(SEntityTemplatePinConnection) == 0x38, "Wrong size for SEntityTemplatePinConnection");
+static_assert(alignof(SEntityTemplatePinConnection) == 0x8, "Wrong alignment for SEntityTemplatePinConnection");
 
 // Size: 0x20
-class /*alignas(8)*/ SEntityTemplatePlatformSpecificProperty{
+class alignas(8) SEntityTemplatePlatformSpecificProperty
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15220,11 +15961,16 @@ public:
 	SEntityTemplateProperty propertyValue; // 0x0
 	EVirtualPlatformID platform; // 0x18
 	bool postInit; // 0x1C
-	uint8_t _pad1D[3] {};
 };
+ZHM_OFFSET_CHECK(SEntityTemplatePlatformSpecificProperty, propertyValue, 0x0);
+ZHM_OFFSET_CHECK(SEntityTemplatePlatformSpecificProperty, platform, 0x18);
+ZHM_OFFSET_CHECK(SEntityTemplatePlatformSpecificProperty, postInit, 0x1C);
+static_assert(sizeof(SEntityTemplatePlatformSpecificProperty) == 0x20, "Wrong size for SEntityTemplatePlatformSpecificProperty");
+static_assert(alignof(SEntityTemplatePlatformSpecificProperty) == 0x8, "Wrong alignment for SEntityTemplatePlatformSpecificProperty");
 
 // Size: 0x28
-class /*alignas(8)*/ SEntityTemplatePropertyAlias{
+class alignas(8) SEntityTemplatePropertyAlias
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15238,12 +15984,17 @@ public:
 
 	ZString sAliasName; // 0x0
 	int32 entityID; // 0x10
-	uint8_t _pad14[4] {};
 	ZString sPropertyName; // 0x18
 };
+ZHM_OFFSET_CHECK(SEntityTemplatePropertyAlias, sAliasName, 0x0);
+ZHM_OFFSET_CHECK(SEntityTemplatePropertyAlias, entityID, 0x10);
+ZHM_OFFSET_CHECK(SEntityTemplatePropertyAlias, sPropertyName, 0x18);
+static_assert(sizeof(SEntityTemplatePropertyAlias) == 0x28, "Wrong size for SEntityTemplatePropertyAlias");
+static_assert(alignof(SEntityTemplatePropertyAlias) == 0x8, "Wrong alignment for SEntityTemplatePropertyAlias");
 
 // Size: 0x38
-class /*alignas(8)*/ SEntityTemplatePropertyOverride{
+class alignas(8) SEntityTemplatePropertyOverride
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15258,9 +16009,14 @@ public:
 	SEntityTemplateReference propertyOwner; // 0x0
 	SEntityTemplateProperty propertyValue; // 0x20
 };
+ZHM_OFFSET_CHECK(SEntityTemplatePropertyOverride, propertyOwner, 0x0);
+ZHM_OFFSET_CHECK(SEntityTemplatePropertyOverride, propertyValue, 0x20);
+static_assert(sizeof(SEntityTemplatePropertyOverride) == 0x38, "Wrong size for SEntityTemplatePropertyOverride");
+static_assert(alignof(SEntityTemplatePropertyOverride) == 0x8, "Wrong alignment for SEntityTemplatePropertyOverride");
 
 // Size: 0x38
-class /*alignas(8)*/ SExposedEntityDescriptor{
+class alignas(8) SExposedEntityDescriptor
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15277,11 +16033,18 @@ public:
 	ZString sHelpText; // 0x20
 	bool bIsArray; // 0x30
 	bool bIsHidden; // 0x31
-	uint8_t _pad32[6] {};
 };
+ZHM_OFFSET_CHECK(SExposedEntityDescriptor, sName, 0x0);
+ZHM_OFFSET_CHECK(SExposedEntityDescriptor, sDisplayName, 0x10);
+ZHM_OFFSET_CHECK(SExposedEntityDescriptor, sHelpText, 0x20);
+ZHM_OFFSET_CHECK(SExposedEntityDescriptor, bIsArray, 0x30);
+ZHM_OFFSET_CHECK(SExposedEntityDescriptor, bIsHidden, 0x31);
+static_assert(sizeof(SExposedEntityDescriptor) == 0x38, "Wrong size for SExposedEntityDescriptor");
+static_assert(alignof(SExposedEntityDescriptor) == 0x8, "Wrong alignment for SExposedEntityDescriptor");
 
 // Size: 0x40
-class /*alignas(8)*/ SExposedEntityTypeDescriptor{
+class alignas(8) SExposedEntityTypeDescriptor
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15297,9 +16060,15 @@ public:
 	TArray<ZResourceID> types; // 0x10
 	TArray<ZString> aSupportedTypes; // 0x28
 };
+ZHM_OFFSET_CHECK(SExposedEntityTypeDescriptor, sName, 0x0);
+ZHM_OFFSET_CHECK(SExposedEntityTypeDescriptor, types, 0x10);
+ZHM_OFFSET_CHECK(SExposedEntityTypeDescriptor, aSupportedTypes, 0x28);
+static_assert(sizeof(SExposedEntityTypeDescriptor) == 0x40, "Wrong size for SExposedEntityTypeDescriptor");
+static_assert(alignof(SExposedEntityTypeDescriptor) == 0x8, "Wrong alignment for SExposedEntityTypeDescriptor");
 
 // Size: 0x20
-class /*alignas(8)*/ STypeReference{
+class alignas(8) STypeReference
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15314,9 +16083,14 @@ public:
 	ZString sEntityID; // 0x0
 	ZString sTypeArgName; // 0x10
 };
+ZHM_OFFSET_CHECK(STypeReference, sEntityID, 0x0);
+ZHM_OFFSET_CHECK(STypeReference, sTypeArgName, 0x10);
+static_assert(sizeof(STypeReference) == 0x20, "Wrong size for STypeReference");
+static_assert(alignof(STypeReference) == 0x8, "Wrong alignment for STypeReference");
 
 // Size: 0x50
-class /*alignas(8)*/ SExposedTypeInfo{
+class alignas(8) SExposedTypeInfo
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15333,9 +16107,16 @@ public:
 	ZString sHelpText; // 0x20
 	STypeReference target; // 0x30
 };
+ZHM_OFFSET_CHECK(SExposedTypeInfo, sName, 0x0);
+ZHM_OFFSET_CHECK(SExposedTypeInfo, sDisplayName, 0x10);
+ZHM_OFFSET_CHECK(SExposedTypeInfo, sHelpText, 0x20);
+ZHM_OFFSET_CHECK(SExposedTypeInfo, target, 0x30);
+static_assert(sizeof(SExposedTypeInfo) == 0x50, "Wrong size for SExposedTypeInfo");
+static_assert(alignof(SExposedTypeInfo) == 0x8, "Wrong alignment for SExposedTypeInfo");
 
 // Size: 0x140
-class /*alignas(8)*/ SEntityTypeDescriptor{
+class alignas(8) SEntityTypeDescriptor
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15349,7 +16130,6 @@ public:
 
 	ZString typeName; // 0x0
 	bool anyPlatformSpecificPropertiesRecursive; // 0x10
-	uint8_t _pad11[7] {};
 	TMultiMap<ZString,ZString> attributeOverrides; // 0x18
 	TMultiMap<ZString,SExposedTypeInfo> exposedTypes; // 0x40
 	ZResourceID typeSourceTemplate; // 0x68
@@ -15363,9 +16143,26 @@ public:
 	TArray<ZResourceID> referencedEntityTypes; // 0x110
 	TArray<SExposedEntityTypeDescriptor> exposedEntitiesTypes; // 0x128
 };
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, typeName, 0x0);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, anyPlatformSpecificPropertiesRecursive, 0x10);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, attributeOverrides, 0x18);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, exposedTypes, 0x40);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, typeSourceTemplate, 0x68);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, runtimeType, 0x78);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, runtimeBlueprint, 0x88);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, supportedTypes, 0x98);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, properties, 0xB0);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, inputPins, 0xC8);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, outputPins, 0xE0);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, exposedEntities, 0xF8);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, referencedEntityTypes, 0x110);
+ZHM_OFFSET_CHECK(SEntityTypeDescriptor, exposedEntitiesTypes, 0x128);
+static_assert(sizeof(SEntityTypeDescriptor) == 0x140, "Wrong size for SEntityTypeDescriptor");
+static_assert(alignof(SEntityTypeDescriptor) == 0x8, "Wrong alignment for SEntityTypeDescriptor");
 
 // Size: 0x50
-class /*alignas(8)*/ SEnvironmentConfigResourceEntry{
+class alignas(8) SEnvironmentConfigResourceEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15383,9 +16180,17 @@ public:
 	ZResourceID BlobsDatastoreRid; // 0x30
 	ZResourceID ActivityDatastoreRid; // 0x40
 };
+ZHM_OFFSET_CHECK(SEnvironmentConfigResourceEntry, Name, 0x0);
+ZHM_OFFSET_CHECK(SEnvironmentConfigResourceEntry, ContractsDatastoreRid, 0x10);
+ZHM_OFFSET_CHECK(SEnvironmentConfigResourceEntry, UnlockablesDatastoreRid, 0x20);
+ZHM_OFFSET_CHECK(SEnvironmentConfigResourceEntry, BlobsDatastoreRid, 0x30);
+ZHM_OFFSET_CHECK(SEnvironmentConfigResourceEntry, ActivityDatastoreRid, 0x40);
+static_assert(sizeof(SEnvironmentConfigResourceEntry) == 0x50, "Wrong size for SEnvironmentConfigResourceEntry");
+static_assert(alignof(SEnvironmentConfigResourceEntry) == 0x8, "Wrong alignment for SEnvironmentConfigResourceEntry");
 
 // Size: 0x18
-class /*alignas(8)*/ SEnvironmentConfigResource{
+class alignas(8) SEnvironmentConfigResource
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15399,9 +16204,13 @@ public:
 
 	TArray<SEnvironmentConfigResourceEntry> Environments; // 0x0
 };
+ZHM_OFFSET_CHECK(SEnvironmentConfigResource, Environments, 0x0);
+static_assert(sizeof(SEnvironmentConfigResource) == 0x18, "Wrong size for SEnvironmentConfigResource");
+static_assert(alignof(SEnvironmentConfigResource) == 0x8, "Wrong alignment for SEnvironmentConfigResource");
 
 // Size: 0x70
-class /*alignas(16)*/ SEscortOutBehaviorSaveData{
+class alignas(16) SEscortOutBehaviorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15415,12 +16224,10 @@ public:
 
 	int32 m_nSituation; // 0x0
 	bool m_bConversationHelperPaused; // 0x4
-	uint8_t _pad5[3] {};
 	SFSMSaveData m_fsm; // 0x8
 	float4 m_vExitPosition; // 0x20
 	ZGameTime m_tWarningTime; // 0x30
 	bool m_bHardWarning; // 0x38
-	uint8_t _pad39[3] {};
 	int32 m_nWarningCount; // 0x3C
 	ZGameTime m_tEscortStateSilenceTime; // 0x40
 	ZGameTime m_tWaitHitmanToComplyWarningTime; // 0x48
@@ -15429,11 +16236,27 @@ public:
 	bool m_bReachedExitPosition; // 0x60
 	bool m_bShowExitWarningEnded; // 0x61
 	bool m_bJustShowExit; // 0x62
-	uint8_t _pad63[13] {};
 };
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_nSituation, 0x0);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_bConversationHelperPaused, 0x4);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_fsm, 0x8);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_vExitPosition, 0x20);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_tWarningTime, 0x30);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_bHardWarning, 0x38);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_nWarningCount, 0x3C);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_tEscortStateSilenceTime, 0x40);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_tWaitHitmanToComplyWarningTime, 0x48);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_tWaitHitmanToComplyStateTime, 0x50);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_tLastLookBack, 0x58);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_bReachedExitPosition, 0x60);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_bShowExitWarningEnded, 0x61);
+ZHM_OFFSET_CHECK(SEscortOutBehaviorSaveData, m_bJustShowExit, 0x62);
+static_assert(sizeof(SEscortOutBehaviorSaveData) == 0x70, "Wrong size for SEscortOutBehaviorSaveData");
+static_assert(alignof(SEscortOutBehaviorSaveData) == 0x10, "Wrong alignment for SEscortOutBehaviorSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SEscortOutOrderSaveData{
+class alignas(8) SEscortOutOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15447,6 +16270,9 @@ public:
 
 	TArray<float4> m_aExitPoints; // 0x0
 };
+ZHM_OFFSET_CHECK(SEscortOutOrderSaveData, m_aExitPoints, 0x0);
+static_assert(sizeof(SEscortOutOrderSaveData) == 0x18, "Wrong size for SEscortOutOrderSaveData");
+static_assert(alignof(SEscortOutOrderSaveData) == 0x8, "Wrong alignment for SEscortOutOrderSaveData");
 
 class ZEscortSituation2Entity
 {
@@ -15476,7 +16302,8 @@ public:
 };
 
 // Size: 0x1C
-class /*alignas(4)*/ SEscortSituation2ActorStateSaveData{
+class alignas(4) SEscortSituation2ActorStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15490,16 +16317,25 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3] {};
 	ZEscortSituation2Entity::EEscortState m_eState; // 0x8
 	ZEscortSituation2Entity::EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
 	uint32 m_rCurrentScreenplay; // 0x14
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
+ZHM_OFFSET_CHECK(SEscortSituation2ActorStateSaveData, m_nID, 0x0);
+ZHM_OFFSET_CHECK(SEscortSituation2ActorStateSaveData, m_bAllocatedForSituation, 0x4);
+ZHM_OFFSET_CHECK(SEscortSituation2ActorStateSaveData, m_eState, 0x8);
+ZHM_OFFSET_CHECK(SEscortSituation2ActorStateSaveData, m_eStatePrevious, 0xC);
+ZHM_OFFSET_CHECK(SEscortSituation2ActorStateSaveData, m_fDistanceToTarget, 0x10);
+ZHM_OFFSET_CHECK(SEscortSituation2ActorStateSaveData, m_rCurrentScreenplay, 0x14);
+ZHM_OFFSET_CHECK(SEscortSituation2ActorStateSaveData, m_rPreferredIntermediateScreenplay, 0x18);
+static_assert(sizeof(SEscortSituation2ActorStateSaveData) == 0x1C, "Wrong size for SEscortSituation2ActorStateSaveData");
+static_assert(alignof(SEscortSituation2ActorStateSaveData) == 0x4, "Wrong alignment for SEscortSituation2ActorStateSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SEscortSituation2Actors{
+class alignas(4) SEscortSituation2Actors
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15513,9 +16349,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SEscortSituation2Actors, m_rActor, 0x0);
+static_assert(sizeof(SEscortSituation2Actors) == 0x4, "Wrong size for SEscortSituation2Actors");
+static_assert(alignof(SEscortSituation2Actors) == 0x4, "Wrong alignment for SEscortSituation2Actors");
 
 // Size: 0x98
-class /*alignas(8)*/ SEscortSituation2SaveData{
+class alignas(8) SEscortSituation2SaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15533,13 +16373,10 @@ public:
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
 	bool m_bForceSearch; // 0x5
-	uint8_t _pad6[2] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bFoundDeadTarget; // 0x14
-	uint8_t _pad15[3] {};
 	int64 m_nTargetDeadTime; // 0x18
 	bool m_bTargetIsMoving; // 0x20
-	uint8_t _pad21[3] {};
 	ZEscortSituation2Entity::ETargetState m_eTargetState; // 0x24
 	EActorEmotionState m_eTargetEmotionState; // 0x28
 	ZActBehaviorEntity::EState m_eTargetActState; // 0x2C
@@ -15550,6 +16387,27 @@ public:
 	TArray<uint32> m_aEscortActs; // 0x68
 	TArray<uint32> m_aSearchActs; // 0x80
 };
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bActivated, 0x0);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bMayEscort, 0x1);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bTargetDead, 0x2);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bTargetInRange, 0x3);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bAllEscortsAreDead, 0x4);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bForceSearch, 0x5);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_vLastPosition, 0x8);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bFoundDeadTarget, 0x14);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_nTargetDeadTime, 0x18);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bTargetIsMoving, 0x20);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetState, 0x24);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetEmotionState, 0x28);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetActState, 0x2C);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_fTargetNotMovingTime, 0x30);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_fTargetAgitationCooldownTimer, 0x34);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aAddedActors, 0x38);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aStates, 0x50);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aEscortActs, 0x68);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aSearchActs, 0x80);
+static_assert(sizeof(SEscortSituation2SaveData) == 0x98, "Wrong size for SEscortSituation2SaveData");
+static_assert(alignof(SEscortSituation2SaveData) == 0x8, "Wrong alignment for SEscortSituation2SaveData");
 
 class ZEscortSituationEntity
 {
@@ -15579,7 +16437,8 @@ public:
 };
 
 // Size: 0x1C
-class /*alignas(4)*/ SEscortSituationActorStateSaveData{
+class alignas(4) SEscortSituationActorStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15593,16 +16452,25 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3] {};
 	ZEscortSituationEntity::EEscortState m_eState; // 0x8
 	ZEscortSituationEntity::EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
 	uint32 m_rCurrentScreenplay; // 0x14
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
+ZHM_OFFSET_CHECK(SEscortSituationActorStateSaveData, m_nID, 0x0);
+ZHM_OFFSET_CHECK(SEscortSituationActorStateSaveData, m_bAllocatedForSituation, 0x4);
+ZHM_OFFSET_CHECK(SEscortSituationActorStateSaveData, m_eState, 0x8);
+ZHM_OFFSET_CHECK(SEscortSituationActorStateSaveData, m_eStatePrevious, 0xC);
+ZHM_OFFSET_CHECK(SEscortSituationActorStateSaveData, m_fDistanceToTarget, 0x10);
+ZHM_OFFSET_CHECK(SEscortSituationActorStateSaveData, m_rCurrentScreenplay, 0x14);
+ZHM_OFFSET_CHECK(SEscortSituationActorStateSaveData, m_rPreferredIntermediateScreenplay, 0x18);
+static_assert(sizeof(SEscortSituationActorStateSaveData) == 0x1C, "Wrong size for SEscortSituationActorStateSaveData");
+static_assert(alignof(SEscortSituationActorStateSaveData) == 0x4, "Wrong alignment for SEscortSituationActorStateSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SEscortSituationActors{
+class alignas(4) SEscortSituationActors
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15616,9 +16484,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SEscortSituationActors, m_rActor, 0x0);
+static_assert(sizeof(SEscortSituationActors) == 0x4, "Wrong size for SEscortSituationActors");
+static_assert(alignof(SEscortSituationActors) == 0x4, "Wrong alignment for SEscortSituationActors");
 
 // Size: 0x98
-class /*alignas(8)*/ SEscortSituationSaveData{
+class alignas(8) SEscortSituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15636,13 +16508,10 @@ public:
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
 	bool m_bForceSearch; // 0x5
-	uint8_t _pad6[2] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bFoundDeadTarget; // 0x14
-	uint8_t _pad15[3] {};
 	int64 m_nTargetDeadTime; // 0x18
 	bool m_bTargetIsMoving; // 0x20
-	uint8_t _pad21[3] {};
 	ZEscortSituationEntity::ETargetState m_eTargetState; // 0x24
 	EActorEmotionState m_eTargetEmotionState; // 0x28
 	ZActBehaviorEntity::EState m_eTargetActState; // 0x2C
@@ -15653,9 +16522,31 @@ public:
 	TArray<uint32> m_aEscortActs; // 0x68
 	TArray<uint32> m_aSearchActs; // 0x80
 };
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bActivated, 0x0);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bMayEscort, 0x1);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bTargetDead, 0x2);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bTargetInRange, 0x3);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bAllEscortsAreDead, 0x4);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bForceSearch, 0x5);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_vLastPosition, 0x8);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bFoundDeadTarget, 0x14);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_nTargetDeadTime, 0x18);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_bTargetIsMoving, 0x20);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_eTargetState, 0x24);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_eTargetEmotionState, 0x28);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_eTargetActState, 0x2C);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_fTargetNotMovingTime, 0x30);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_fTargetAgitationCooldownTimer, 0x34);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_aAddedActors, 0x38);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_aStates, 0x50);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_aEscortActs, 0x68);
+ZHM_OFFSET_CHECK(SEscortSituationSaveData, m_aSearchActs, 0x80);
+static_assert(sizeof(SEscortSituationSaveData) == 0x98, "Wrong size for SEscortSituationSaveData");
+static_assert(alignof(SEscortSituationSaveData) == 0x8, "Wrong alignment for SEscortSituationSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SEvacuateSituationMemberSaveData{
+class alignas(4) SEvacuateSituationMemberSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15671,9 +16562,15 @@ public:
 	int32 m_nPatrolWaypointIndex; // 0x4
 	uint32 m_nPatrolWaypointSubIndex; // 0x8
 };
+ZHM_OFFSET_CHECK(SEvacuateSituationMemberSaveData, m_pGuardDutyPoint, 0x0);
+ZHM_OFFSET_CHECK(SEvacuateSituationMemberSaveData, m_nPatrolWaypointIndex, 0x4);
+ZHM_OFFSET_CHECK(SEvacuateSituationMemberSaveData, m_nPatrolWaypointSubIndex, 0x8);
+static_assert(sizeof(SEvacuateSituationMemberSaveData) == 0xC, "Wrong size for SEvacuateSituationMemberSaveData");
+static_assert(alignof(SEvacuateSituationMemberSaveData) == 0x4, "Wrong alignment for SEvacuateSituationMemberSaveData");
 
 // Size: 0x78
-class /*alignas(8)*/ SEvacuateSituationSaveData{
+class alignas(8) SEvacuateSituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15689,14 +16586,23 @@ public:
 	ZGameTime m_tLastSeriousSituation; // 0x18
 	ZGameTime m_tLastThreat; // 0x20
 	int32 m_tresspassGroup; // 0x28
-	uint8_t _pad2C[4] {};
 	TArray<int32> m_evacuateGroups; // 0x30
 	TArray<uint32> m_activeSafeRooms; // 0x48
 	TArray<uint32> m_vipsUnderFire; // 0x60
 };
+ZHM_OFFSET_CHECK(SEvacuateSituationSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SEvacuateSituationSaveData, m_tLastSeriousSituation, 0x18);
+ZHM_OFFSET_CHECK(SEvacuateSituationSaveData, m_tLastThreat, 0x20);
+ZHM_OFFSET_CHECK(SEvacuateSituationSaveData, m_tresspassGroup, 0x28);
+ZHM_OFFSET_CHECK(SEvacuateSituationSaveData, m_evacuateGroups, 0x30);
+ZHM_OFFSET_CHECK(SEvacuateSituationSaveData, m_activeSafeRooms, 0x48);
+ZHM_OFFSET_CHECK(SEvacuateSituationSaveData, m_vipsUnderFire, 0x60);
+static_assert(sizeof(SEvacuateSituationSaveData) == 0x78, "Wrong size for SEvacuateSituationSaveData");
+static_assert(alignof(SEvacuateSituationSaveData) == 0x8, "Wrong alignment for SEvacuateSituationSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SEvacuateTrespassGroupSaveData{
+class alignas(8) SEvacuateTrespassGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15716,12 +16622,23 @@ public:
 	bool m_escalate; // 0x28
 	bool m_completed; // 0x29
 	bool m_standDown; // 0x2A
-	uint8_t _pad2B[1] {};
 	int32 m_warningCount; // 0x2C
 };
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_target, 0x18);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_safeRoomNode, 0x1C);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_leader, 0x20);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_assistant, 0x24);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_escalate, 0x28);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_completed, 0x29);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_standDown, 0x2A);
+ZHM_OFFSET_CHECK(SEvacuateTrespassGroupSaveData, m_warningCount, 0x2C);
+static_assert(sizeof(SEvacuateTrespassGroupSaveData) == 0x30, "Wrong size for SEvacuateTrespassGroupSaveData");
+static_assert(alignof(SEvacuateTrespassGroupSaveData) == 0x8, "Wrong alignment for SEvacuateTrespassGroupSaveData");
 
 // Size: 0x78
-class /*alignas(8)*/ SEvacuateVIPGroupSaveData{
+class alignas(8) SEvacuateVIPGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15739,7 +16656,6 @@ public:
 	uint32 m_rEvacuationNode; // 0x20
 	uint32 m_rSafeRoomNode; // 0x24
 	uint32 m_rCompromisedEvacNode; // 0x28
-	uint8_t _pad2C[4] {};
 	TArray<uint32> m_assignedBodyguards; // 0x30
 	ZGameTime m_tEvacuationStart; // 0x48
 	ZGameTime m_tCornered; // 0x50
@@ -15749,11 +16665,28 @@ public:
 	bool m_bInitialFlee; // 0x70
 	bool m_safeRoomVIPSentActingStarted; // 0x71
 	bool m_isSetupPhaseComplete; // 0x72
-	uint8_t _pad73[5] {};
 };
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_rVIP, 0x18);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_rVIPActor, 0x1C);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_rEvacuationNode, 0x20);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_rSafeRoomNode, 0x24);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_rCompromisedEvacNode, 0x28);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_assignedBodyguards, 0x30);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_tEvacuationStart, 0x48);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_tCornered, 0x50);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_tTacticalPoint, 0x58);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_tSafeRoom, 0x60);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_tSafeRoomStandDown, 0x68);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_bInitialFlee, 0x70);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_safeRoomVIPSentActingStarted, 0x71);
+ZHM_OFFSET_CHECK(SEvacuateVIPGroupSaveData, m_isSetupPhaseComplete, 0x72);
+static_assert(sizeof(SEvacuateVIPGroupSaveData) == 0x78, "Wrong size for SEvacuateVIPGroupSaveData");
+static_assert(alignof(SEvacuateVIPGroupSaveData) == 0x8, "Wrong alignment for SEvacuateVIPGroupSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SEventChannelSaveData{
+class alignas(1) SEventChannelSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15767,9 +16700,13 @@ public:
 
 	bool m_bEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SEventChannelSaveData, m_bEnabled, 0x0);
+static_assert(sizeof(SEventChannelSaveData) == 0x1, "Wrong size for SEventChannelSaveData");
+static_assert(alignof(SEventChannelSaveData) == 0x1, "Wrong alignment for SEventChannelSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SEvergreenMenuCursorDecorationData{
+class alignas(8) SEvergreenMenuCursorDecorationData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15784,11 +16721,16 @@ public:
 	ZString icon; // 0x0
 	bool isIconCutOut; // 0x10
 	bool isIconFramed; // 0x11
-	uint8_t _pad12[6] {};
 };
+ZHM_OFFSET_CHECK(SEvergreenMenuCursorDecorationData, icon, 0x0);
+ZHM_OFFSET_CHECK(SEvergreenMenuCursorDecorationData, isIconCutOut, 0x10);
+ZHM_OFFSET_CHECK(SEvergreenMenuCursorDecorationData, isIconFramed, 0x11);
+static_assert(sizeof(SEvergreenMenuCursorDecorationData) == 0x18, "Wrong size for SEvergreenMenuCursorDecorationData");
+static_assert(alignof(SEvergreenMenuCursorDecorationData) == 0x8, "Wrong alignment for SEvergreenMenuCursorDecorationData");
 
 // Size: 0x18
-class /*alignas(8)*/ SEvergreenMenuLabelData{
+class alignas(8) SEvergreenMenuLabelData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15801,12 +16743,16 @@ public:
 	bool operator!=(const SEvergreenMenuLabelData& p_Other) const { return !(*this == p_Other); }
 
 	EEvergreenMenuLabelPurpose purpose; // 0x0
-	uint8_t _pad4[4] {};
 	ZString lstrTitle; // 0x8
 };
+ZHM_OFFSET_CHECK(SEvergreenMenuLabelData, purpose, 0x0);
+ZHM_OFFSET_CHECK(SEvergreenMenuLabelData, lstrTitle, 0x8);
+static_assert(sizeof(SEvergreenMenuLabelData) == 0x18, "Wrong size for SEvergreenMenuLabelData");
+static_assert(alignof(SEvergreenMenuLabelData) == 0x8, "Wrong alignment for SEvergreenMenuLabelData");
 
 // Size: 0x70
-class /*alignas(8)*/ SEvergreenMenuHeadlineData{
+class alignas(8) SEvergreenMenuHeadlineData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15825,9 +16771,18 @@ public:
 	TArray<ZString> microicons; // 0x40
 	TArray<SEvergreenMenuLabelData> labels; // 0x58
 };
+ZHM_OFFSET_CHECK(SEvergreenMenuHeadlineData, lstrMicroMessage, 0x0);
+ZHM_OFFSET_CHECK(SEvergreenMenuHeadlineData, icon, 0x10);
+ZHM_OFFSET_CHECK(SEvergreenMenuHeadlineData, lstrTitle, 0x20);
+ZHM_OFFSET_CHECK(SEvergreenMenuHeadlineData, lstrHeader, 0x30);
+ZHM_OFFSET_CHECK(SEvergreenMenuHeadlineData, microicons, 0x40);
+ZHM_OFFSET_CHECK(SEvergreenMenuHeadlineData, labels, 0x58);
+static_assert(sizeof(SEvergreenMenuHeadlineData) == 0x70, "Wrong size for SEvergreenMenuHeadlineData");
+static_assert(alignof(SEvergreenMenuHeadlineData) == 0x8, "Wrong alignment for SEvergreenMenuHeadlineData");
 
 // Size: 0x38
-class /*alignas(8)*/ SEvergreenMenuPerkData{
+class alignas(8) SEvergreenMenuPerkData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15843,11 +16798,17 @@ public:
 	ZString lstrTitle; // 0x10
 	ZString lstrDescription; // 0x20
 	EEvergreenMenuLabelPurpose purposeColorTint; // 0x30
-	uint8_t _pad34[4] {};
 };
+ZHM_OFFSET_CHECK(SEvergreenMenuPerkData, icon, 0x0);
+ZHM_OFFSET_CHECK(SEvergreenMenuPerkData, lstrTitle, 0x10);
+ZHM_OFFSET_CHECK(SEvergreenMenuPerkData, lstrDescription, 0x20);
+ZHM_OFFSET_CHECK(SEvergreenMenuPerkData, purposeColorTint, 0x30);
+static_assert(sizeof(SEvergreenMenuPerkData) == 0x38, "Wrong size for SEvergreenMenuPerkData");
+static_assert(alignof(SEvergreenMenuPerkData) == 0x8, "Wrong alignment for SEvergreenMenuPerkData");
 
 // Size: 0x70
-class /*alignas(8)*/ SEvergreenMenuInfoPanelRData{
+class alignas(8) SEvergreenMenuInfoPanelRData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15866,29 +16827,18 @@ public:
 	TArray<SEvergreenMenuPerkData> perks; // 0x40
 	TArray<SEvergreenMenuLabelData> labels; // 0x58
 };
-
-// Size: 0x40
-class /*alignas(8)*/ SEvergreenMenuPromptDesc{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SEvergreenMenuPromptDesc& p_Other) const;
-	bool operator!=(const SEvergreenMenuPromptDesc& p_Other) const { return !(*this == p_Other); }
-
-	ZString actiontype; // 0x0
-	ZString actionlabel; // 0x10
-	ZString actionalticon; // 0x20
-	bool enabled; // 0x30
-	uint8_t _pad31[15] {};
-};
+ZHM_OFFSET_CHECK(SEvergreenMenuInfoPanelRData, icon, 0x0);
+ZHM_OFFSET_CHECK(SEvergreenMenuInfoPanelRData, lstrTitle, 0x10);
+ZHM_OFFSET_CHECK(SEvergreenMenuInfoPanelRData, lstrHeader, 0x20);
+ZHM_OFFSET_CHECK(SEvergreenMenuInfoPanelRData, lstrDescription, 0x30);
+ZHM_OFFSET_CHECK(SEvergreenMenuInfoPanelRData, perks, 0x40);
+ZHM_OFFSET_CHECK(SEvergreenMenuInfoPanelRData, labels, 0x58);
+static_assert(sizeof(SEvergreenMenuInfoPanelRData) == 0x70, "Wrong size for SEvergreenMenuInfoPanelRData");
+static_assert(alignof(SEvergreenMenuInfoPanelRData) == 0x8, "Wrong alignment for SEvergreenMenuInfoPanelRData");
 
 // Size: 0x1
-class /*alignas(1)*/ SExitSaveData{
+class alignas(1) SExitSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15902,9 +16852,13 @@ public:
 
 	bool m_bEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SExitSaveData, m_bEnabled, 0x0);
+static_assert(sizeof(SExitSaveData) == 0x1, "Wrong size for SExitSaveData");
+static_assert(alignof(SExitSaveData) == 0x1, "Wrong alignment for SExitSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SExitsActiveSaveData{
+class alignas(1) SExitsActiveSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15918,9 +16872,13 @@ public:
 
 	bool m_bIsActive; // 0x0
 };
+ZHM_OFFSET_CHECK(SExitsActiveSaveData, m_bIsActive, 0x0);
+static_assert(sizeof(SExitsActiveSaveData) == 0x1, "Wrong size for SExitsActiveSaveData");
+static_assert(alignof(SExitsActiveSaveData) == 0x1, "Wrong alignment for SExitsActiveSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SExtendedCppEntityProperty{
+class alignas(8) SExtendedCppEntityProperty
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15935,12 +16893,18 @@ public:
 	ZString propertyName; // 0x0
 	EExtendedPropertyType propertyType; // 0x10
 	bool rtEditable; // 0x14
-	uint8_t _pad15[3] {};
 	uint64 extraData; // 0x18
 };
+ZHM_OFFSET_CHECK(SExtendedCppEntityProperty, propertyName, 0x0);
+ZHM_OFFSET_CHECK(SExtendedCppEntityProperty, propertyType, 0x10);
+ZHM_OFFSET_CHECK(SExtendedCppEntityProperty, rtEditable, 0x14);
+ZHM_OFFSET_CHECK(SExtendedCppEntityProperty, extraData, 0x18);
+static_assert(sizeof(SExtendedCppEntityProperty) == 0x20, "Wrong size for SExtendedCppEntityProperty");
+static_assert(alignof(SExtendedCppEntityProperty) == 0x8, "Wrong alignment for SExtendedCppEntityProperty");
 
 // Size: 0x18
-class /*alignas(8)*/ SExtendedCppEntityBlueprint{
+class alignas(8) SExtendedCppEntityBlueprint
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15954,9 +16918,13 @@ public:
 
 	TArray<SExtendedCppEntityProperty> properties; // 0x0
 };
+ZHM_OFFSET_CHECK(SExtendedCppEntityBlueprint, properties, 0x0);
+static_assert(sizeof(SExtendedCppEntityBlueprint) == 0x18, "Wrong size for SExtendedCppEntityBlueprint");
+static_assert(alignof(SExtendedCppEntityBlueprint) == 0x8, "Wrong alignment for SExtendedCppEntityBlueprint");
 
 // Size: 0x70
-class /*alignas(8)*/ SExternalEntityTemplatePinConnection{
+class alignas(8) SExternalEntityTemplatePinConnection
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15974,9 +16942,17 @@ public:
 	ZString toPinName; // 0x50
 	ZVariant constantPinValue; // 0x60
 };
+ZHM_OFFSET_CHECK(SExternalEntityTemplatePinConnection, fromEntity, 0x0);
+ZHM_OFFSET_CHECK(SExternalEntityTemplatePinConnection, toEntity, 0x20);
+ZHM_OFFSET_CHECK(SExternalEntityTemplatePinConnection, fromPinName, 0x40);
+ZHM_OFFSET_CHECK(SExternalEntityTemplatePinConnection, toPinName, 0x50);
+ZHM_OFFSET_CHECK(SExternalEntityTemplatePinConnection, constantPinValue, 0x60);
+static_assert(sizeof(SExternalEntityTemplatePinConnection) == 0x70, "Wrong size for SExternalEntityTemplatePinConnection");
+static_assert(alignof(SExternalEntityTemplatePinConnection) == 0x8, "Wrong alignment for SExternalEntityTemplatePinConnection");
 
 // Size: 0xC
-class /*alignas(4)*/ SFaceOrderSaveData{
+class alignas(4) SFaceOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -15995,9 +16971,18 @@ public:
 	float32 m_fDuration; // 0x4
 	float32 m_fDurationVariance; // 0x8
 };
+ZHM_OFFSET_CHECK(SFaceOrderSaveData, m_bLookAt, 0x0);
+ZHM_OFFSET_CHECK(SFaceOrderSaveData, m_bAimAt, 0x1);
+ZHM_OFFSET_CHECK(SFaceOrderSaveData, m_bUpdateKnownPosition, 0x2);
+ZHM_OFFSET_CHECK(SFaceOrderSaveData, m_bStopActFast, 0x3);
+ZHM_OFFSET_CHECK(SFaceOrderSaveData, m_fDuration, 0x4);
+ZHM_OFFSET_CHECK(SFaceOrderSaveData, m_fDurationVariance, 0x8);
+static_assert(sizeof(SFaceOrderSaveData) == 0xC, "Wrong size for SFaceOrderSaveData");
+static_assert(alignof(SFaceOrderSaveData) == 0x4, "Wrong alignment for SFaceOrderSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SFleeOrderSaveData{
+class alignas(4) SFleeOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16012,11 +16997,16 @@ public:
 	EDisturbanceType m_eHelpReason; // 0x0
 	uint16 m_nGridNodeIndex; // 0x4
 	bool m_bFleeForHelp; // 0x6
-	uint8_t _pad7[1] {};
 };
+ZHM_OFFSET_CHECK(SFleeOrderSaveData, m_eHelpReason, 0x0);
+ZHM_OFFSET_CHECK(SFleeOrderSaveData, m_nGridNodeIndex, 0x4);
+ZHM_OFFSET_CHECK(SFleeOrderSaveData, m_bFleeForHelp, 0x6);
+static_assert(sizeof(SFleeOrderSaveData) == 0x8, "Wrong size for SFleeOrderSaveData");
+static_assert(alignof(SFleeOrderSaveData) == 0x4, "Wrong alignment for SFleeOrderSaveData");
 
 // Size: 0x28
-class /*alignas(8)*/ SFontDefinition{
+class alignas(8) SFontDefinition
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16033,9 +17023,16 @@ public:
 	EFontFlags eFontFlags; // 0x20
 	float32 fScaleFactor; // 0x24
 };
+ZHM_OFFSET_CHECK(SFontDefinition, sFontId, 0x0);
+ZHM_OFFSET_CHECK(SFontDefinition, sFontName, 0x10);
+ZHM_OFFSET_CHECK(SFontDefinition, eFontFlags, 0x20);
+ZHM_OFFSET_CHECK(SFontDefinition, fScaleFactor, 0x24);
+static_assert(sizeof(SFontDefinition) == 0x28, "Wrong size for SFontDefinition");
+static_assert(alignof(SFontDefinition) == 0x8, "Wrong alignment for SFontDefinition");
 
 // Size: 0x28
-class /*alignas(8)*/ SFontLibraryDefinition{
+class alignas(8) SFontLibraryDefinition
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16050,9 +17047,14 @@ public:
 	ZString sFontLocaleID; // 0x0
 	TArray<SFontDefinition> m_aFontDefinitions; // 0x10
 };
+ZHM_OFFSET_CHECK(SFontLibraryDefinition, sFontLocaleID, 0x0);
+ZHM_OFFSET_CHECK(SFontLibraryDefinition, m_aFontDefinitions, 0x10);
+static_assert(sizeof(SFontLibraryDefinition) == 0x28, "Wrong size for SFontLibraryDefinition");
+static_assert(alignof(SFontLibraryDefinition) == 0x8, "Wrong alignment for SFontLibraryDefinition");
 
 // Size: 0x18
-class /*alignas(8)*/ SFooStruct{
+class alignas(8) SFooStruct
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16065,12 +17067,16 @@ public:
 	bool operator!=(const SFooStruct& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_eTest; // 0x0
-	uint8_t _pad4[4] {};
 	ZString m_sOther; // 0x8
 };
+ZHM_OFFSET_CHECK(SFooStruct, m_eTest, 0x0);
+ZHM_OFFSET_CHECK(SFooStruct, m_sOther, 0x8);
+static_assert(sizeof(SFooStruct) == 0x18, "Wrong size for SFooStruct");
+static_assert(alignof(SFooStruct) == 0x8, "Wrong alignment for SFooStruct");
 
 // Size: 0x4
-class /*alignas(4)*/ SFootIKEventData{
+class alignas(4) SFootIKEventData
+{
 public:
 	// Size: 0x4
 	enum class EFoot : int32_t
@@ -16094,6 +17100,9 @@ public:
 
 	SFootIKEventData::EFoot m_Foot; // 0x0
 };
+ZHM_OFFSET_CHECK(SFootIKEventData, m_Foot, 0x0);
+static_assert(sizeof(SFootIKEventData) == 0x4, "Wrong size for SFootIKEventData");
+static_assert(alignof(SFootIKEventData) == 0x4, "Wrong alignment for SFootIKEventData");
 
 class ZFriskSuspectGroup
 {
@@ -16118,7 +17127,8 @@ public:
 };
 
 // Size: 0x58
-class /*alignas(8)*/ SFriskSuspectGroupSaveData{
+class alignas(8) SFriskSuspectGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16132,14 +17142,12 @@ public:
 
 	SFSMSaveData m_fsmState; // 0x0
 	bool m_bHitmanIsGuard; // 0x18
-	uint8_t _pad19[3] {};
 	int32 m_target; // 0x1C
 	uint32 m_pLeader; // 0x20
 	uint32 m_pAssistant; // 0x24
 	ZFriskSuspectGroup::EAssistantState m_eAssistantState; // 0x28
 	EDisturbanceType m_eDisturbanceType; // 0x2C
 	ZFriskSuspectGroup::EHitmanGreetState m_eHitmanGreetState; // 0x30
-	uint8_t _pad34[4] {};
 	ZGameTime m_tHitmanGreet; // 0x38
 	float32 m_fMovingTime; // 0x40
 	float32 m_fRunningTime; // 0x44
@@ -16148,11 +17156,29 @@ public:
 	bool m_bWeaponFound; // 0x51
 	bool m_bMoveWarning; // 0x52
 	bool m_bFirskRequestRepeated; // 0x53
-	uint8_t _pad54[4] {};
 };
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_bHitmanIsGuard, 0x18);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_target, 0x1C);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_pLeader, 0x20);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_pAssistant, 0x24);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_eAssistantState, 0x28);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_eDisturbanceType, 0x2C);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_eHitmanGreetState, 0x30);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_tHitmanGreet, 0x38);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_fMovingTime, 0x40);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_fRunningTime, 0x44);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_tWaitToComplyTime, 0x48);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_bWarnOnWeaponFound, 0x50);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_bWeaponFound, 0x51);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_bMoveWarning, 0x52);
+ZHM_OFFSET_CHECK(SFriskSuspectGroupSaveData, m_bFirskRequestRepeated, 0x53);
+static_assert(sizeof(SFriskSuspectGroupSaveData) == 0x58, "Wrong size for SFriskSuspectGroupSaveData");
+static_assert(alignof(SFriskSuspectGroupSaveData) == 0x8, "Wrong alignment for SFriskSuspectGroupSaveData");
 
 // Size: 0x40
-class /*alignas(4)*/ SGBufferSample{
+class alignas(4) SGBufferSample
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16173,9 +17199,20 @@ public:
 	float32 ao; // 0x38
 	uint32 shadingModel; // 0x3C
 };
+ZHM_OFFSET_CHECK(SGBufferSample, normal, 0x0);
+ZHM_OFFSET_CHECK(SGBufferSample, diffuse, 0xC);
+ZHM_OFFSET_CHECK(SGBufferSample, specular, 0x18);
+ZHM_OFFSET_CHECK(SGBufferSample, accumulatedLight, 0x24);
+ZHM_OFFSET_CHECK(SGBufferSample, glossiness, 0x30);
+ZHM_OFFSET_CHECK(SGBufferSample, translucency, 0x34);
+ZHM_OFFSET_CHECK(SGBufferSample, ao, 0x38);
+ZHM_OFFSET_CHECK(SGBufferSample, shadingModel, 0x3C);
+static_assert(sizeof(SGBufferSample) == 0x40, "Wrong size for SGBufferSample");
+static_assert(alignof(SGBufferSample) == 0x4, "Wrong alignment for SGBufferSample");
 
 // Size: 0x30
-class /*alignas(16)*/ SGProperties{
+class alignas(16) SGProperties
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16192,11 +17229,18 @@ public:
 	int32 nGridWidth; // 0x20
 	float32 fGridSpacing; // 0x24
 	int32 nVisibilityRange; // 0x28
-	uint8_t _pad2C[4] {};
 };
+ZHM_OFFSET_CHECK(SGProperties, vMin, 0x0);
+ZHM_OFFSET_CHECK(SGProperties, vMax, 0x10);
+ZHM_OFFSET_CHECK(SGProperties, nGridWidth, 0x20);
+ZHM_OFFSET_CHECK(SGProperties, fGridSpacing, 0x24);
+ZHM_OFFSET_CHECK(SGProperties, nVisibilityRange, 0x28);
+static_assert(sizeof(SGProperties) == 0x30, "Wrong size for SGProperties");
+static_assert(alignof(SGProperties) == 0x10, "Wrong alignment for SGProperties");
 
 // Size: 0x10
-class /*alignas(4)*/ SGUIViewPort{
+class alignas(4) SGUIViewPort
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16213,9 +17257,16 @@ public:
 	uint32 h; // 0x8
 	uint32 w; // 0xC
 };
+ZHM_OFFSET_CHECK(SGUIViewPort, x, 0x0);
+ZHM_OFFSET_CHECK(SGUIViewPort, y, 0x4);
+ZHM_OFFSET_CHECK(SGUIViewPort, h, 0x8);
+ZHM_OFFSET_CHECK(SGUIViewPort, w, 0xC);
+static_assert(sizeof(SGUIViewPort) == 0x10, "Wrong size for SGUIViewPort");
+static_assert(alignof(SGUIViewPort) == 0x4, "Wrong alignment for SGUIViewPort");
 
 // Size: 0x30
-class /*alignas(16)*/ SGWaypoint{
+class alignas(16) SGWaypoint
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16238,11 +17289,24 @@ public:
 	float4 vPos; // 0x10
 	uint32 nVisionDataOffset; // 0x20
 	int16 nLayerIndex; // 0x24
-	uint8_t _pad26[10] {};
 };
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor0, 0x0);
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor1, 0x2);
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor2, 0x4);
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor3, 0x6);
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor4, 0x8);
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor5, 0xA);
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor6, 0xC);
+ZHM_OFFSET_CHECK(SGWaypoint, nNeighbor7, 0xE);
+ZHM_OFFSET_CHECK(SGWaypoint, vPos, 0x10);
+ZHM_OFFSET_CHECK(SGWaypoint, nVisionDataOffset, 0x20);
+ZHM_OFFSET_CHECK(SGWaypoint, nLayerIndex, 0x24);
+static_assert(sizeof(SGWaypoint) == 0x30, "Wrong size for SGWaypoint");
+static_assert(alignof(SGWaypoint) == 0x10, "Wrong alignment for SGWaypoint");
 
 // Size: 0x8
-class /*alignas(4)*/ SGaitTransitionEntry{
+class alignas(4) SGaitTransitionEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16257,9 +17321,14 @@ public:
 	EGait m_gait; // 0x0
 	ESpeed m_speed; // 0x4
 };
+ZHM_OFFSET_CHECK(SGaitTransitionEntry, m_gait, 0x0);
+ZHM_OFFSET_CHECK(SGaitTransitionEntry, m_speed, 0x4);
+static_assert(sizeof(SGaitTransitionEntry) == 0x8, "Wrong size for SGaitTransitionEntry");
+static_assert(alignof(SGaitTransitionEntry) == 0x4, "Wrong alignment for SGaitTransitionEntry");
 
 // Size: 0x8
-class /*alignas(4)*/ SGameCamProfileEntitySaveData{
+class alignas(4) SGameCamProfileEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16272,12 +17341,16 @@ public:
 	bool operator!=(const SGameCamProfileEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsEnabled; // 0x0
-	uint8_t _pad1[3] {};
 	uint32 m_rHero; // 0x4
 };
+ZHM_OFFSET_CHECK(SGameCamProfileEntitySaveData, m_bIsEnabled, 0x0);
+ZHM_OFFSET_CHECK(SGameCamProfileEntitySaveData, m_rHero, 0x4);
+static_assert(sizeof(SGameCamProfileEntitySaveData) == 0x8, "Wrong size for SGameCamProfileEntitySaveData");
+static_assert(alignof(SGameCamProfileEntitySaveData) == 0x4, "Wrong alignment for SGameCamProfileEntitySaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SShotListenerSaveData{
+class alignas(1) SShotListenerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16292,9 +17365,14 @@ public:
 	bool m_bEnabled; // 0x0
 	bool m_bNPCShotProcessed; // 0x1
 };
+ZHM_OFFSET_CHECK(SShotListenerSaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SShotListenerSaveData, m_bNPCShotProcessed, 0x1);
+static_assert(sizeof(SShotListenerSaveData) == 0x2, "Wrong size for SShotListenerSaveData");
+static_assert(alignof(SShotListenerSaveData) == 0x1, "Wrong alignment for SShotListenerSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SShotListenersSaveData{
+class alignas(8) SShotListenersSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16309,9 +17387,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SShotListenerSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SShotListenersSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SShotListenersSaveData, m_aData, 0x18);
+static_assert(sizeof(SShotListenersSaveData) == 0x30, "Wrong size for SShotListenersSaveData");
+static_assert(alignof(SShotListenersSaveData) == 0x8, "Wrong alignment for SShotListenersSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SVIPEvacuationNodeSaveData{
+class alignas(8) SVIPEvacuationNodeSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16328,11 +17411,18 @@ public:
 	ZGameTime m_tPenalty; // 0x8
 	bool m_bIsEnabled; // 0x10
 	bool m_compromisedOnEnter; // 0x11
-	uint8_t _pad12[6] {};
 };
+ZHM_OFFSET_CHECK(SVIPEvacuationNodeSaveData, m_fPenaltyMultiplier, 0x0);
+ZHM_OFFSET_CHECK(SVIPEvacuationNodeSaveData, m_fPenaltyDuration, 0x4);
+ZHM_OFFSET_CHECK(SVIPEvacuationNodeSaveData, m_tPenalty, 0x8);
+ZHM_OFFSET_CHECK(SVIPEvacuationNodeSaveData, m_bIsEnabled, 0x10);
+ZHM_OFFSET_CHECK(SVIPEvacuationNodeSaveData, m_compromisedOnEnter, 0x11);
+static_assert(sizeof(SVIPEvacuationNodeSaveData) == 0x18, "Wrong size for SVIPEvacuationNodeSaveData");
+static_assert(alignof(SVIPEvacuationNodeSaveData) == 0x8, "Wrong alignment for SVIPEvacuationNodeSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SVIPEvacuationNodesSaveData{
+class alignas(8) SVIPEvacuationNodesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16347,9 +17437,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVIPEvacuationNodeSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SVIPEvacuationNodesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SVIPEvacuationNodesSaveData, m_aData, 0x18);
+static_assert(sizeof(SVIPEvacuationNodesSaveData) == 0x30, "Wrong size for SVIPEvacuationNodesSaveData");
+static_assert(alignof(SVIPEvacuationNodesSaveData) == 0x8, "Wrong alignment for SVIPEvacuationNodesSaveData");
 
 // Size: 0x50
-class /*alignas(4)*/ SItemSaveData{
+class alignas(4) SItemSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16369,7 +17464,6 @@ public:
 	bool m_bSleeping; // 0x1F
 	bool m_bIsPerceptible; // 0x20
 	bool m_bDestroyed; // 0x21
-	uint8_t _pad22[2] {};
 	SVector3 m_vVelocity; // 0x24
 	uint32 m_rTransformParent; // 0x30
 	uint32 m_rSpawner; // 0x34
@@ -16384,11 +17478,35 @@ public:
 	ERenderGlowTypes m_eGlowType; // 0x4C
 	ERenderGlowTypes m_eOverriddenGlowType; // 0x4D
 	bool m_bGlowIsOverridden; // 0x4E
-	uint8_t _pad4F[1] {};
 };
+ZHM_OFFSET_CHECK(SItemSaveData, m_vPosition, 0x0);
+ZHM_OFFSET_CHECK(SItemSaveData, m_vRotation, 0xC);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bShowItem, 0x1C);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bEnablePickup, 0x1D);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bKinematic, 0x1E);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bSleeping, 0x1F);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bIsPerceptible, 0x20);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bDestroyed, 0x21);
+ZHM_OFFSET_CHECK(SItemSaveData, m_vVelocity, 0x24);
+ZHM_OFFSET_CHECK(SItemSaveData, m_rTransformParent, 0x30);
+ZHM_OFFSET_CHECK(SItemSaveData, m_rSpawner, 0x34);
+ZHM_OFFSET_CHECK(SItemSaveData, m_rOwner, 0x38);
+ZHM_OFFSET_CHECK(SItemSaveData, m_rHoldingContainer, 0x3C);
+ZHM_OFFSET_CHECK(SItemSaveData, m_pPreviousOwner, 0x40);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bTurnedOn, 0x44);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bEverOwnedByHitman, 0x45);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bWasPlacedAndAttached, 0x46);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bObjectInPhysicsWorld, 0x47);
+ZHM_OFFSET_CHECK(SItemSaveData, m_nQuantity, 0x48);
+ZHM_OFFSET_CHECK(SItemSaveData, m_eGlowType, 0x4C);
+ZHM_OFFSET_CHECK(SItemSaveData, m_eOverriddenGlowType, 0x4D);
+ZHM_OFFSET_CHECK(SItemSaveData, m_bGlowIsOverridden, 0x4E);
+static_assert(sizeof(SItemSaveData) == 0x50, "Wrong size for SItemSaveData");
+static_assert(alignof(SItemSaveData) == 0x4, "Wrong alignment for SItemSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SItemsSaveData{
+class alignas(8) SItemsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16403,9 +17521,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItemSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SItemsSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SItemsSaveData, m_aData, 0x18);
+static_assert(sizeof(SItemsSaveData) == 0x30, "Wrong size for SItemsSaveData");
+static_assert(alignof(SItemsSaveData) == 0x8, "Wrong alignment for SItemsSaveData");
 
 // Size: 0x24
-class /*alignas(4)*/ SMathMultiplyDivideSaveData_SVector4{
+class alignas(4) SMathMultiplyDivideSaveData_SVector4
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16420,11 +17543,16 @@ public:
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
 	bool m_bDivide; // 0x20
-	uint8_t _pad21[3] {};
 };
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector4, m_fA, 0x0);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector4, m_fB, 0x10);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector4, m_bDivide, 0x20);
+static_assert(sizeof(SMathMultiplyDivideSaveData_SVector4) == 0x24, "Wrong size for SMathMultiplyDivideSaveData_SVector4");
+static_assert(alignof(SMathMultiplyDivideSaveData_SVector4) == 0x4, "Wrong alignment for SMathMultiplyDivideSaveData_SVector4");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathMultipliesSaveData_SVector4{
+class alignas(8) SMathMultipliesSaveData_SVector4
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16439,9 +17567,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector4> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_SVector4, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_SVector4, m_aData, 0x18);
+static_assert(sizeof(SMathMultipliesSaveData_SVector4) == 0x30, "Wrong size for SMathMultipliesSaveData_SVector4");
+static_assert(alignof(SMathMultipliesSaveData_SVector4) == 0x8, "Wrong alignment for SMathMultipliesSaveData_SVector4");
 
 // Size: 0x2
-class /*alignas(1)*/ SVolumeTriggerListenerSaveData{
+class alignas(1) SVolumeTriggerListenerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16456,9 +17589,14 @@ public:
 	bool m_bColliding; // 0x0
 	bool m_bInternalEnabled; // 0x1
 };
+ZHM_OFFSET_CHECK(SVolumeTriggerListenerSaveData, m_bColliding, 0x0);
+ZHM_OFFSET_CHECK(SVolumeTriggerListenerSaveData, m_bInternalEnabled, 0x1);
+static_assert(sizeof(SVolumeTriggerListenerSaveData) == 0x2, "Wrong size for SVolumeTriggerListenerSaveData");
+static_assert(alignof(SVolumeTriggerListenerSaveData) == 0x1, "Wrong alignment for SVolumeTriggerListenerSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SVolumeTriggersSaveData{
+class alignas(8) SVolumeTriggersSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16473,9 +17611,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVolumeTriggerListenerSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SVolumeTriggersSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SVolumeTriggersSaveData, m_aData, 0x18);
+static_assert(sizeof(SVolumeTriggersSaveData) == 0x30, "Wrong size for SVolumeTriggersSaveData");
+static_assert(alignof(SVolumeTriggersSaveData) == 0x8, "Wrong alignment for SVolumeTriggersSaveData");
 
 // Size: 0x1C
-class /*alignas(4)*/ SMathMultiplyDivideSaveData_SVector3{
+class alignas(4) SMathMultiplyDivideSaveData_SVector3
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16490,11 +17633,16 @@ public:
 	SVector3 m_fA; // 0x0
 	SVector3 m_fB; // 0xC
 	bool m_bDivide; // 0x18
-	uint8_t _pad19[3] {};
 };
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector3, m_fA, 0x0);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector3, m_fB, 0xC);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector3, m_bDivide, 0x18);
+static_assert(sizeof(SMathMultiplyDivideSaveData_SVector3) == 0x1C, "Wrong size for SMathMultiplyDivideSaveData_SVector3");
+static_assert(alignof(SMathMultiplyDivideSaveData_SVector3) == 0x4, "Wrong alignment for SMathMultiplyDivideSaveData_SVector3");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathMultipliesSaveData_SVector3{
+class alignas(8) SMathMultipliesSaveData_SVector3
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16509,9 +17657,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector3> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_SVector3, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_SVector3, m_aData, 0x18);
+static_assert(sizeof(SMathMultipliesSaveData_SVector3) == 0x30, "Wrong size for SMathMultipliesSaveData_SVector3");
+static_assert(alignof(SMathMultipliesSaveData_SVector3) == 0x8, "Wrong alignment for SMathMultipliesSaveData_SVector3");
 
 // Size: 0xC
-class /*alignas(4)*/ SMathMultiplyDivideSaveData_float32{
+class alignas(4) SMathMultiplyDivideSaveData_float32
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16526,11 +17679,16 @@ public:
 	float32 m_fA; // 0x0
 	float32 m_fB; // 0x4
 	bool m_bDivide; // 0x8
-	uint8_t _pad9[3] {};
 };
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_float32, m_fA, 0x0);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_float32, m_fB, 0x4);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_float32, m_bDivide, 0x8);
+static_assert(sizeof(SMathMultiplyDivideSaveData_float32) == 0xC, "Wrong size for SMathMultiplyDivideSaveData_float32");
+static_assert(alignof(SMathMultiplyDivideSaveData_float32) == 0x4, "Wrong alignment for SMathMultiplyDivideSaveData_float32");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathMultipliesSaveData_float32{
+class alignas(8) SMathMultipliesSaveData_float32
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16545,9 +17703,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_float32> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_float32, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_float32, m_aData, 0x18);
+static_assert(sizeof(SMathMultipliesSaveData_float32) == 0x30, "Wrong size for SMathMultipliesSaveData_float32");
+static_assert(alignof(SMathMultipliesSaveData_float32) == 0x8, "Wrong alignment for SMathMultipliesSaveData_float32");
 
 // Size: 0x4
-class /*alignas(4)*/ SItemKeywordProxySaveData{
+class alignas(4) SItemKeywordProxySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16561,9 +17724,13 @@ public:
 
 	uint32 m_rItem; // 0x0
 };
+ZHM_OFFSET_CHECK(SItemKeywordProxySaveData, m_rItem, 0x0);
+static_assert(sizeof(SItemKeywordProxySaveData) == 0x4, "Wrong size for SItemKeywordProxySaveData");
+static_assert(alignof(SItemKeywordProxySaveData) == 0x4, "Wrong alignment for SItemKeywordProxySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SItemKeywordProxiesSaveData{
+class alignas(8) SItemKeywordProxiesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16578,9 +17745,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItemKeywordProxySaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SItemKeywordProxiesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SItemKeywordProxiesSaveData, m_aData, 0x18);
+static_assert(sizeof(SItemKeywordProxiesSaveData) == 0x30, "Wrong size for SItemKeywordProxiesSaveData");
+static_assert(alignof(SItemKeywordProxiesSaveData) == 0x8, "Wrong alignment for SItemKeywordProxiesSaveData");
 
 // Size: 0x14
-class /*alignas(4)*/ SMathMultiplyDivideSaveData_SVector2{
+class alignas(4) SMathMultiplyDivideSaveData_SVector2
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16595,11 +17767,16 @@ public:
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
 	bool m_bDivide; // 0x10
-	uint8_t _pad11[3] {};
 };
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector2, m_fA, 0x0);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector2, m_fB, 0x8);
+ZHM_OFFSET_CHECK(SMathMultiplyDivideSaveData_SVector2, m_bDivide, 0x10);
+static_assert(sizeof(SMathMultiplyDivideSaveData_SVector2) == 0x14, "Wrong size for SMathMultiplyDivideSaveData_SVector2");
+static_assert(alignof(SMathMultiplyDivideSaveData_SVector2) == 0x4, "Wrong alignment for SMathMultiplyDivideSaveData_SVector2");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathMultipliesSaveData_SVector2{
+class alignas(8) SMathMultipliesSaveData_SVector2
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16614,9 +17791,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathMultiplyDivideSaveData_SVector2> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_SVector2, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathMultipliesSaveData_SVector2, m_aData, 0x18);
+static_assert(sizeof(SMathMultipliesSaveData_SVector2) == 0x30, "Wrong size for SMathMultipliesSaveData_SVector2");
+static_assert(alignof(SMathMultipliesSaveData_SVector2) == 0x8, "Wrong alignment for SMathMultipliesSaveData_SVector2");
 
 // Size: 0x8
-class /*alignas(4)*/ SLampCoreSaveState{
+class alignas(4) SLampCoreSaveState
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16630,11 +17812,15 @@ public:
 
 	float32 m_fDiffusePower; // 0x0
 	bool m_bSwitchState; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SLampCoreSaveState, m_fDiffusePower, 0x0);
+ZHM_OFFSET_CHECK(SLampCoreSaveState, m_bSwitchState, 0x4);
+static_assert(sizeof(SLampCoreSaveState) == 0x8, "Wrong size for SLampCoreSaveState");
+static_assert(alignof(SLampCoreSaveState) == 0x4, "Wrong alignment for SLampCoreSaveState");
 
 // Size: 0x30
-class /*alignas(8)*/ SLampCoreSaveData{
+class alignas(8) SLampCoreSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16649,9 +17835,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SLampCoreSaveState> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SLampCoreSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SLampCoreSaveData, m_aData, 0x18);
+static_assert(sizeof(SLampCoreSaveData) == 0x30, "Wrong size for SLampCoreSaveData");
+static_assert(alignof(SLampCoreSaveData) == 0x8, "Wrong alignment for SLampCoreSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SItsATrapSaveData{
+class alignas(4) SItsATrapSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16664,12 +17855,16 @@ public:
 	bool operator!=(const SItsATrapSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3] {};
 	float32 m_fTimer; // 0x4
 };
+ZHM_OFFSET_CHECK(SItsATrapSaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SItsATrapSaveData, m_fTimer, 0x4);
+static_assert(sizeof(SItsATrapSaveData) == 0x8, "Wrong size for SItsATrapSaveData");
+static_assert(alignof(SItsATrapSaveData) == 0x4, "Wrong alignment for SItsATrapSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ STrapsSaveData{
+class alignas(8) STrapsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16684,9 +17879,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SItsATrapSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(STrapsSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(STrapsSaveData, m_aData, 0x18);
+static_assert(sizeof(STrapsSaveData) == 0x30, "Wrong size for STrapsSaveData");
+static_assert(alignof(STrapsSaveData) == 0x8, "Wrong alignment for STrapsSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SMathLerpSaveData_float32{
+class alignas(4) SMathLerpSaveData_float32
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16702,9 +17902,15 @@ public:
 	float32 m_B; // 0x4
 	float32 m_fT; // 0x8
 };
+ZHM_OFFSET_CHECK(SMathLerpSaveData_float32, m_A, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_float32, m_B, 0x4);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_float32, m_fT, 0x8);
+static_assert(sizeof(SMathLerpSaveData_float32) == 0xC, "Wrong size for SMathLerpSaveData_float32");
+static_assert(alignof(SMathLerpSaveData_float32) == 0x4, "Wrong alignment for SMathLerpSaveData_float32");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathLerpsSaveData_float32{
+class alignas(8) SMathLerpsSaveData_float32
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16719,9 +17925,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_float32> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_float32, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_float32, m_aData, 0x18);
+static_assert(sizeof(SMathLerpsSaveData_float32) == 0x30, "Wrong size for SMathLerpsSaveData_float32");
+static_assert(alignof(SMathLerpsSaveData_float32) == 0x8, "Wrong alignment for SMathLerpsSaveData_float32");
 
 // Size: 0x14
-class /*alignas(4)*/ SMathLerpSaveData_SVector2{
+class alignas(4) SMathLerpSaveData_SVector2
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16737,9 +17948,15 @@ public:
 	SVector2 m_B; // 0x8
 	float32 m_fT; // 0x10
 };
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector2, m_A, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector2, m_B, 0x8);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector2, m_fT, 0x10);
+static_assert(sizeof(SMathLerpSaveData_SVector2) == 0x14, "Wrong size for SMathLerpSaveData_SVector2");
+static_assert(alignof(SMathLerpSaveData_SVector2) == 0x4, "Wrong alignment for SMathLerpSaveData_SVector2");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathLerpsSaveData_SVector2{
+class alignas(8) SMathLerpsSaveData_SVector2
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16754,9 +17971,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector2> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SVector2, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SVector2, m_aData, 0x18);
+static_assert(sizeof(SMathLerpsSaveData_SVector2) == 0x30, "Wrong size for SMathLerpsSaveData_SVector2");
+static_assert(alignof(SMathLerpsSaveData_SVector2) == 0x8, "Wrong alignment for SMathLerpsSaveData_SVector2");
 
 // Size: 0x1C
-class /*alignas(4)*/ SMathLerpSaveData_SVector3{
+class alignas(4) SMathLerpSaveData_SVector3
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16772,9 +17994,15 @@ public:
 	SVector3 m_B; // 0xC
 	float32 m_fT; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector3, m_A, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector3, m_B, 0xC);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector3, m_fT, 0x18);
+static_assert(sizeof(SMathLerpSaveData_SVector3) == 0x1C, "Wrong size for SMathLerpSaveData_SVector3");
+static_assert(alignof(SMathLerpSaveData_SVector3) == 0x4, "Wrong alignment for SMathLerpSaveData_SVector3");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathLerpsSaveData_SVector3{
+class alignas(8) SMathLerpsSaveData_SVector3
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16789,9 +18017,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector3> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SVector3, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SVector3, m_aData, 0x18);
+static_assert(sizeof(SMathLerpsSaveData_SVector3) == 0x30, "Wrong size for SMathLerpsSaveData_SVector3");
+static_assert(alignof(SMathLerpsSaveData_SVector3) == 0x8, "Wrong alignment for SMathLerpsSaveData_SVector3");
 
 // Size: 0x24
-class /*alignas(4)*/ SMathLerpSaveData_SVector4{
+class alignas(4) SMathLerpSaveData_SVector4
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16807,9 +18040,15 @@ public:
 	SVector4 m_B; // 0x10
 	float32 m_fT; // 0x20
 };
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector4, m_A, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector4, m_B, 0x10);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SVector4, m_fT, 0x20);
+static_assert(sizeof(SMathLerpSaveData_SVector4) == 0x24, "Wrong size for SMathLerpSaveData_SVector4");
+static_assert(alignof(SMathLerpSaveData_SVector4) == 0x4, "Wrong alignment for SMathLerpSaveData_SVector4");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathLerpsSaveData_SVector4{
+class alignas(8) SMathLerpsSaveData_SVector4
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16824,9 +18063,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SVector4> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SVector4, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SVector4, m_aData, 0x18);
+static_assert(sizeof(SMathLerpsSaveData_SVector4) == 0x30, "Wrong size for SMathLerpsSaveData_SVector4");
+static_assert(alignof(SMathLerpsSaveData_SVector4) == 0x8, "Wrong alignment for SMathLerpsSaveData_SVector4");
 
 // Size: 0x1C
-class /*alignas(4)*/ SMathLerpSaveData_SColorRGB{
+class alignas(4) SMathLerpSaveData_SColorRGB
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16842,9 +18086,15 @@ public:
 	SColorRGB m_B; // 0xC
 	float32 m_fT; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SColorRGB, m_A, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SColorRGB, m_B, 0xC);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SColorRGB, m_fT, 0x18);
+static_assert(sizeof(SMathLerpSaveData_SColorRGB) == 0x1C, "Wrong size for SMathLerpSaveData_SColorRGB");
+static_assert(alignof(SMathLerpSaveData_SColorRGB) == 0x4, "Wrong alignment for SMathLerpSaveData_SColorRGB");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathLerpsSaveData_SColorRGB{
+class alignas(8) SMathLerpsSaveData_SColorRGB
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16859,9 +18109,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SColorRGB> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SColorRGB, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SColorRGB, m_aData, 0x18);
+static_assert(sizeof(SMathLerpsSaveData_SColorRGB) == 0x30, "Wrong size for SMathLerpsSaveData_SColorRGB");
+static_assert(alignof(SMathLerpsSaveData_SColorRGB) == 0x8, "Wrong alignment for SMathLerpsSaveData_SColorRGB");
 
 // Size: 0x24
-class /*alignas(4)*/ SMathLerpSaveData_SColorRGBA{
+class alignas(4) SMathLerpSaveData_SColorRGBA
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16877,9 +18132,15 @@ public:
 	SColorRGBA m_B; // 0x10
 	float32 m_fT; // 0x20
 };
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SColorRGBA, m_A, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SColorRGBA, m_B, 0x10);
+ZHM_OFFSET_CHECK(SMathLerpSaveData_SColorRGBA, m_fT, 0x20);
+static_assert(sizeof(SMathLerpSaveData_SColorRGBA) == 0x24, "Wrong size for SMathLerpSaveData_SColorRGBA");
+static_assert(alignof(SMathLerpSaveData_SColorRGBA) == 0x4, "Wrong alignment for SMathLerpSaveData_SColorRGBA");
 
 // Size: 0x30
-class /*alignas(8)*/ SMathLerpsSaveData_SColorRGBA{
+class alignas(8) SMathLerpsSaveData_SColorRGBA
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16894,9 +18155,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SMathLerpSaveData_SColorRGBA> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SColorRGBA, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SMathLerpsSaveData_SColorRGBA, m_aData, 0x18);
+static_assert(sizeof(SMathLerpsSaveData_SColorRGBA) == 0x30, "Wrong size for SMathLerpsSaveData_SColorRGBA");
+static_assert(alignof(SMathLerpsSaveData_SColorRGBA) == 0x8, "Wrong alignment for SMathLerpsSaveData_SColorRGBA");
 
 // Size: 0x4
-class /*alignas(4)*/ SVRHolsterAttacherSaveData{
+class alignas(4) SVRHolsterAttacherSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16910,9 +18176,13 @@ public:
 
 	uint32 m_rContainedItem; // 0x0
 };
+ZHM_OFFSET_CHECK(SVRHolsterAttacherSaveData, m_rContainedItem, 0x0);
+static_assert(sizeof(SVRHolsterAttacherSaveData) == 0x4, "Wrong size for SVRHolsterAttacherSaveData");
+static_assert(alignof(SVRHolsterAttacherSaveData) == 0x4, "Wrong alignment for SVRHolsterAttacherSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SVRHolsterAttachersSaveData{
+class alignas(8) SVRHolsterAttachersSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16927,9 +18197,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVRHolsterAttacherSaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SVRHolsterAttachersSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SVRHolsterAttachersSaveData, m_aData, 0x18);
+static_assert(sizeof(SVRHolsterAttachersSaveData) == 0x30, "Wrong size for SVRHolsterAttachersSaveData");
+static_assert(alignof(SVRHolsterAttachersSaveData) == 0x8, "Wrong alignment for SVRHolsterAttachersSaveData");
 
 // Size: 0x4B0
-class /*alignas(8)*/ SGameEntitySaveData{
+class alignas(8) SGameEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -16967,40 +18242,33 @@ public:
 	SMathLerpsSaveData_SColorRGBA m_MathLerpsData_SColorRGBA; // 0x450
 	SVRHolsterAttachersSaveData m_VRHolsterAttachers; // 0x480
 };
-
-// Size: 0x8
-class /*alignas(4)*/ SKeywordSaveData{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SKeywordSaveData& p_Other) const;
-	bool operator!=(const SKeywordSaveData& p_Other) const { return !(*this == p_Other); }
-
-	uint32 m_HolderSaveableId; // 0x0
-	int32 m_KeywordID; // 0x4
-};
-
-// Size: 0x30
-class /*alignas(8)*/ SGameKeywordManagerSaveData{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SGameKeywordManagerSaveData& p_Other) const;
-	bool operator!=(const SGameKeywordManagerSaveData& p_Other) const { return !(*this == p_Other); }
-
-	TArray<SKeywordSaveData> m_aKeywordsData; // 0x0
-	TArray<ZString> m_aKeywordStringData; // 0x18
-};
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_DoorData, 0x0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_ItemsData, 0x30);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_VolumeTriggersData, 0x60);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathMultipliesData_float32, 0x90);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathMultipliesData_Vector2, 0xC0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathMultipliesData_Vector3, 0xF0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathMultipliesData_Vector4, 0x120);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_ShotListenersData, 0x150);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_TrapsData, 0x180);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_ActorProxiesData, 0x1B0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_ActorStandInEntitiesData, 0x1E0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_ActorBoneAttachmentsData, 0x210);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_ActorKeywordProxiesData, 0x240);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_ItemKeywordProxiesData, 0x270);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_LampCoreData, 0x2A0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_VIPEvacuationNodesData, 0x2D0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_CollisionControllerAspectsData, 0x300);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_BodyContainersData, 0x330);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathLerpsData_float32, 0x360);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathLerpsData_SVector2, 0x390);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathLerpsData_SVector3, 0x3C0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathLerpsData_SVector4, 0x3F0);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathLerpsData_SColorRGB, 0x420);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_MathLerpsData_SColorRGBA, 0x450);
+ZHM_OFFSET_CHECK(SGameEntitySaveData, m_VRHolsterAttachers, 0x480);
+static_assert(sizeof(SGameEntitySaveData) == 0x4B0, "Wrong size for SGameEntitySaveData");
+static_assert(alignof(SGameEntitySaveData) == 0x8, "Wrong alignment for SGameEntitySaveData");
 
 // Size: 0x4
 enum class eItemType : int32_t
@@ -17123,11 +18391,14 @@ enum class eAmmoType : int32_t
 	eAmmoDartEmetic = 12,
 	eAmmoDartCure = 13,
 	eAmmoShotgunBeanbag = 14,
-	eUnknownAmmoType = 15,
+	eAmmo22LR = 15,
+	eAmmoAirPellet = 16,
+	eUnknownAmmoType = 17,
 };
 
 // Size: 0xC
-class /*alignas(4)*/ STimerEntityCommandSaveData{
+class alignas(4) STimerEntityCommandSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17143,9 +18414,15 @@ public:
 	uint32 m_rEntity; // 0x4
 	float32 m_fInterval; // 0x8
 };
+ZHM_OFFSET_CHECK(STimerEntityCommandSaveData, m_eType, 0x0);
+ZHM_OFFSET_CHECK(STimerEntityCommandSaveData, m_rEntity, 0x4);
+ZHM_OFFSET_CHECK(STimerEntityCommandSaveData, m_fInterval, 0x8);
+static_assert(sizeof(STimerEntityCommandSaveData) == 0xC, "Wrong size for STimerEntityCommandSaveData");
+static_assert(alignof(STimerEntityCommandSaveData) == 0x4, "Wrong alignment for STimerEntityCommandSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ STimerEntityStateSaveData{
+class alignas(4) STimerEntityStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17160,11 +18437,16 @@ public:
 	uint32 m_rEntity; // 0x0
 	float32 m_fNextEventTime; // 0x4
 	bool m_bPending; // 0x8
-	uint8_t _pad9[3] {};
 };
+ZHM_OFFSET_CHECK(STimerEntityStateSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(STimerEntityStateSaveData, m_fNextEventTime, 0x4);
+ZHM_OFFSET_CHECK(STimerEntityStateSaveData, m_bPending, 0x8);
+static_assert(sizeof(STimerEntityStateSaveData) == 0xC, "Wrong size for STimerEntityStateSaveData");
+static_assert(alignof(STimerEntityStateSaveData) == 0x4, "Wrong alignment for STimerEntityStateSaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SGameTimersSaveData{
+class alignas(8) SGameTimersSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17180,9 +18462,15 @@ public:
 	TArray<STimerEntityStateSaveData> m_aTimerEntityState; // 0x18
 	TArray<uint32> m_aPendingTimers; // 0x30
 };
+ZHM_OFFSET_CHECK(SGameTimersSaveData, m_aTimerEntityCommands, 0x0);
+ZHM_OFFSET_CHECK(SGameTimersSaveData, m_aTimerEntityState, 0x18);
+ZHM_OFFSET_CHECK(SGameTimersSaveData, m_aPendingTimers, 0x30);
+static_assert(sizeof(SGameTimersSaveData) == 0x48, "Wrong size for SGameTimersSaveData");
+static_assert(alignof(SGameTimersSaveData) == 0x8, "Wrong alignment for SGameTimersSaveData");
 
 // Size: 0x1C
-class /*alignas(4)*/ SLightSaveData{
+class alignas(4) SLightSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17199,11 +18487,18 @@ public:
 	float32 m_fDiffusePower; // 0x10
 	float32 m_fAspectXByY_Actual; // 0x14
 	bool m_bVisible; // 0x18
-	uint8_t _pad19[3] {};
 };
+ZHM_OFFSET_CHECK(SLightSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(SLightSaveData, m_DiffuseColor, 0x4);
+ZHM_OFFSET_CHECK(SLightSaveData, m_fDiffusePower, 0x10);
+ZHM_OFFSET_CHECK(SLightSaveData, m_fAspectXByY_Actual, 0x14);
+ZHM_OFFSET_CHECK(SLightSaveData, m_bVisible, 0x18);
+static_assert(sizeof(SLightSaveData) == 0x1C, "Wrong size for SLightSaveData");
+static_assert(alignof(SLightSaveData) == 0x4, "Wrong alignment for SLightSaveData");
 
 // Size: 0x88
-class /*alignas(4)*/ SPostfilterParametersSaveData{
+class alignas(4) SPostfilterParametersSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17217,28 +18512,23 @@ public:
 
 	uint32 m_rEntity; // 0x0
 	bool m_bDepthOfFieldEnabled; // 0x4
-	uint8_t _pad5[3] {};
 	float32 m_fDepthOfFieldBlurriness; // 0x8
 	bool m_bRadialBlurEnabled; // 0xC
-	uint8_t _padD[3] {};
 	float32 m_fRadialBlurriness; // 0x10
 	SVector2 m_vRadialBlurCenter; // 0x14
 	float32 m_fRadialBlurStart; // 0x1C
 	bool m_bSpatialBlurEnabled; // 0x20
-	uint8_t _pad21[3] {};
 	float32 m_fSpatialBlurriness; // 0x24
 	SVector3 m_vSpatialBlurCenter; // 0x28
 	float32 m_fSpatialBlurStart; // 0x34
 	float32 m_fSpatialBlurFade; // 0x38
 	bool m_bDistortionWobbleEnabled; // 0x3C
-	uint8_t _pad3D[3] {};
 	float32 m_fDistortionWobbleScale; // 0x40
 	SVector2 m_vDistortionWobbleWaveLength; // 0x44
 	SVector2 m_vDistortionWobbleSpeed; // 0x4C
 	bool m_bDistortionWobbleUseRealTime; // 0x54
 	bool m_bHDRActive; // 0x55
 	bool m_bHDREnabled; // 0x56
-	uint8_t _pad57[1] {};
 	SVector2 m_vHDRAdaptationSpeed; // 0x58
 	SVector2 m_vHDRAdaptationLuminanceMinMax; // 0x60
 	SVector2 m_vHDRAdaptationMiddleGrayMinMax; // 0x68
@@ -17247,9 +18537,38 @@ public:
 	float32 m_fHDRBrightPassMaxPercentage; // 0x78
 	SColorRGB m_HDRColorTint; // 0x7C
 };
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_bDepthOfFieldEnabled, 0x4);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fDepthOfFieldBlurriness, 0x8);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_bRadialBlurEnabled, 0xC);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fRadialBlurriness, 0x10);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_vRadialBlurCenter, 0x14);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fRadialBlurStart, 0x1C);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_bSpatialBlurEnabled, 0x20);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fSpatialBlurriness, 0x24);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_vSpatialBlurCenter, 0x28);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fSpatialBlurStart, 0x34);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fSpatialBlurFade, 0x38);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_bDistortionWobbleEnabled, 0x3C);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fDistortionWobbleScale, 0x40);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_vDistortionWobbleWaveLength, 0x44);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_vDistortionWobbleSpeed, 0x4C);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_bDistortionWobbleUseRealTime, 0x54);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_bHDRActive, 0x55);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_bHDREnabled, 0x56);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_vHDRAdaptationSpeed, 0x58);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_vHDRAdaptationLuminanceMinMax, 0x60);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_vHDRAdaptationMiddleGrayMinMax, 0x68);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fHDRWhitePoint, 0x70);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fHDRBrightPassThreshold, 0x74);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_fHDRBrightPassMaxPercentage, 0x78);
+ZHM_OFFSET_CHECK(SPostfilterParametersSaveData, m_HDRColorTint, 0x7C);
+static_assert(sizeof(SPostfilterParametersSaveData) == 0x88, "Wrong size for SPostfilterParametersSaveData");
+static_assert(alignof(SPostfilterParametersSaveData) == 0x4, "Wrong alignment for SPostfilterParametersSaveData");
 
 // Size: 0x28
-class /*alignas(8)*/ SRenderMaterialSaveData{
+class alignas(8) SRenderMaterialSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17262,14 +18581,18 @@ public:
 	bool operator!=(const SRenderMaterialSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rEntity; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<uint8> m_aDynamicParametersData; // 0x8
 	bool m_bActive; // 0x20
-	uint8_t _pad21[7] {};
 };
+ZHM_OFFSET_CHECK(SRenderMaterialSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(SRenderMaterialSaveData, m_aDynamicParametersData, 0x8);
+ZHM_OFFSET_CHECK(SRenderMaterialSaveData, m_bActive, 0x20);
+static_assert(sizeof(SRenderMaterialSaveData) == 0x28, "Wrong size for SRenderMaterialSaveData");
+static_assert(alignof(SRenderMaterialSaveData) == 0x8, "Wrong alignment for SRenderMaterialSaveData");
 
 // Size: 0x14
-class /*alignas(4)*/ SParticleEmitterSaveData{
+class alignas(4) SParticleEmitterSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17284,14 +18607,22 @@ public:
 	uint32 m_rEntity; // 0x0
 	bool m_bIsActivated; // 0x4
 	bool m_bIsVisible; // 0x5
-	uint8_t _pad6[2] {};
 	float32 m_fEmissionTimeLeft; // 0x8
 	float32 m_fEmissionTimeFraction; // 0xC
 	float32 m_fEmissionCntLeft; // 0x10
 };
+ZHM_OFFSET_CHECK(SParticleEmitterSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(SParticleEmitterSaveData, m_bIsActivated, 0x4);
+ZHM_OFFSET_CHECK(SParticleEmitterSaveData, m_bIsVisible, 0x5);
+ZHM_OFFSET_CHECK(SParticleEmitterSaveData, m_fEmissionTimeLeft, 0x8);
+ZHM_OFFSET_CHECK(SParticleEmitterSaveData, m_fEmissionTimeFraction, 0xC);
+ZHM_OFFSET_CHECK(SParticleEmitterSaveData, m_fEmissionCntLeft, 0x10);
+static_assert(sizeof(SParticleEmitterSaveData) == 0x14, "Wrong size for SParticleEmitterSaveData");
+static_assert(alignof(SParticleEmitterSaveData) == 0x4, "Wrong alignment for SParticleEmitterSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SGateSaveData{
+class alignas(4) SGateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17305,12 +18636,17 @@ public:
 
 	uint32 m_rEntity; // 0x0
 	bool m_bIsOpen; // 0x4
-	uint8_t _pad5[3] {};
 	float32 m_fOpenFraction; // 0x8
 };
+ZHM_OFFSET_CHECK(SGateSaveData, m_rEntity, 0x0);
+ZHM_OFFSET_CHECK(SGateSaveData, m_bIsOpen, 0x4);
+ZHM_OFFSET_CHECK(SGateSaveData, m_fOpenFraction, 0x8);
+static_assert(sizeof(SGateSaveData) == 0xC, "Wrong size for SGateSaveData");
+static_assert(alignof(SGateSaveData) == 0x4, "Wrong alignment for SGateSaveData");
 
 // Size: 0x90
-class /*alignas(8)*/ SGameplayRenderablesSaveData{
+class alignas(8) SGameplayRenderablesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17329,9 +18665,18 @@ public:
 	TArray<SPostfilterParametersSaveData> m_aPostFilterParametersData; // 0x60
 	TArray<SGateSaveData> m_aGateData; // 0x78
 };
+ZHM_OFFSET_CHECK(SGameplayRenderablesSaveData, m_aLightData, 0x0);
+ZHM_OFFSET_CHECK(SGameplayRenderablesSaveData, m_aMaterialData, 0x18);
+ZHM_OFFSET_CHECK(SGameplayRenderablesSaveData, m_aParticleData, 0x30);
+ZHM_OFFSET_CHECK(SGameplayRenderablesSaveData, m_aBoneAttachData, 0x48);
+ZHM_OFFSET_CHECK(SGameplayRenderablesSaveData, m_aPostFilterParametersData, 0x60);
+ZHM_OFFSET_CHECK(SGameplayRenderablesSaveData, m_aGateData, 0x78);
+static_assert(sizeof(SGameplayRenderablesSaveData) == 0x90, "Wrong size for SGameplayRenderablesSaveData");
+static_assert(alignof(SGameplayRenderablesSaveData) == 0x8, "Wrong alignment for SGameplayRenderablesSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SGeomScaleSaveData{
+class alignas(4) SGeomScaleSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17345,9 +18690,13 @@ public:
 
 	SVector4 m_vPrimitiveScale; // 0x0
 };
+ZHM_OFFSET_CHECK(SGeomScaleSaveData, m_vPrimitiveScale, 0x0);
+static_assert(sizeof(SGeomScaleSaveData) == 0x10, "Wrong size for SGeomScaleSaveData");
+static_assert(alignof(SGeomScaleSaveData) == 0x4, "Wrong alignment for SGeomScaleSaveData");
 
 // Size: 0x90
-class /*alignas(16)*/ SGetHelpGroupSaveData{
+class alignas(16) SGetHelpGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17361,14 +18710,12 @@ public:
 
 	float4 m_vLastKnownTargetPosition; // 0x0
 	uint16 m_rReturnNode; // 0x10
-	uint8_t _pad12[6] {};
 	TArray<uint16> m_blocked; // 0x18
 	bool m_bReportingToHitman; // 0x30
 	bool m_bStartedReportDialog; // 0x31
 	bool m_bMultipleBodies; // 0x32
 	bool m_bGetHelpOrderCompleted; // 0x33
 	bool m_bDoneReporting; // 0x34
-	uint8_t _pad35[3] {};
 	ZGameTime m_tGetHelpCompleted; // 0x38
 	SFSMSaveData m_fsmState; // 0x40
 	EDisturbanceType m_type; // 0x58
@@ -17376,13 +18723,30 @@ public:
 	uint32 m_pReporter; // 0x60
 	uint32 m_pGuard; // 0x64
 	uint32 m_IllegalItem; // 0x68
-	uint8_t _pad6C[4] {};
 	TArray<uint32> m_additionalGuards; // 0x70
-	uint8_t _pad88[8] {};
 };
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_vLastKnownTargetPosition, 0x0);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_rReturnNode, 0x10);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_blocked, 0x18);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_bReportingToHitman, 0x30);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_bStartedReportDialog, 0x31);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_bMultipleBodies, 0x32);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_bGetHelpOrderCompleted, 0x33);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_bDoneReporting, 0x34);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_tGetHelpCompleted, 0x38);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_fsmState, 0x40);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_type, 0x58);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_target, 0x5C);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_pReporter, 0x60);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_pGuard, 0x64);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_IllegalItem, 0x68);
+ZHM_OFFSET_CHECK(SGetHelpGroupSaveData, m_additionalGuards, 0x70);
+static_assert(sizeof(SGetHelpGroupSaveData) == 0x90, "Wrong size for SGetHelpGroupSaveData");
+static_assert(alignof(SGetHelpGroupSaveData) == 0x10, "Wrong alignment for SGetHelpGroupSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SGetHelpOrderSaveData{
+class alignas(4) SGetHelpOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17397,9 +18761,14 @@ public:
 	EAISharedEventType m_helpType; // 0x0
 	uint32 m_rInitialGuard; // 0x4
 };
+ZHM_OFFSET_CHECK(SGetHelpOrderSaveData, m_helpType, 0x0);
+ZHM_OFFSET_CHECK(SGetHelpOrderSaveData, m_rInitialGuard, 0x4);
+static_assert(sizeof(SGetHelpOrderSaveData) == 0x8, "Wrong size for SGetHelpOrderSaveData");
+static_assert(alignof(SGetHelpOrderSaveData) == 0x4, "Wrong alignment for SGetHelpOrderSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SHelpingActorSaveData{
+class alignas(4) SHelpingActorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17414,9 +18783,14 @@ public:
 	int32 m_HelpTargetKnowledgeIndex; // 0x0
 	uint32 m_rActor; // 0x4
 };
+ZHM_OFFSET_CHECK(SHelpingActorSaveData, m_HelpTargetKnowledgeIndex, 0x0);
+ZHM_OFFSET_CHECK(SHelpingActorSaveData, m_rActor, 0x4);
+static_assert(sizeof(SHelpingActorSaveData) == 0x8, "Wrong size for SHelpingActorSaveData");
+static_assert(alignof(SHelpingActorSaveData) == 0x4, "Wrong alignment for SHelpingActorSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SGetHelpServiceSaveData{
+class alignas(8) SGetHelpServiceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17430,9 +18804,13 @@ public:
 
 	TArray<SHelpingActorSaveData> m_aHelpingActors; // 0x0
 };
+ZHM_OFFSET_CHECK(SGetHelpServiceSaveData, m_aHelpingActors, 0x0);
+static_assert(sizeof(SGetHelpServiceSaveData) == 0x18, "Wrong size for SGetHelpServiceSaveData");
+static_assert(alignof(SGetHelpServiceSaveData) == 0x8, "Wrong alignment for SGetHelpServiceSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SGetIActorPositionSaveData{
+class alignas(4) SGetIActorPositionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17446,9 +18824,13 @@ public:
 
 	uint32 m_StoredActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SGetIActorPositionSaveData, m_StoredActor, 0x0);
+static_assert(sizeof(SGetIActorPositionSaveData) == 0x4, "Wrong size for SGetIActorPositionSaveData");
+static_assert(alignof(SGetIActorPositionSaveData) == 0x4, "Wrong alignment for SGetIActorPositionSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SGuardBodySituationMemberSaveData{
+class alignas(4) SGuardBodySituationMemberSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17462,13 +18844,19 @@ public:
 
 	bool m_bSearchingForMorgue; // 0x0
 	bool m_IsExitingSuccessfulBehavior; // 0x1
-	uint8_t _pad2[2] {};
 	uint32 m_rDeadBody; // 0x4
 	uint32 m_rBodybag; // 0x8
 };
+ZHM_OFFSET_CHECK(SGuardBodySituationMemberSaveData, m_bSearchingForMorgue, 0x0);
+ZHM_OFFSET_CHECK(SGuardBodySituationMemberSaveData, m_IsExitingSuccessfulBehavior, 0x1);
+ZHM_OFFSET_CHECK(SGuardBodySituationMemberSaveData, m_rDeadBody, 0x4);
+ZHM_OFFSET_CHECK(SGuardBodySituationMemberSaveData, m_rBodybag, 0x8);
+static_assert(sizeof(SGuardBodySituationMemberSaveData) == 0xC, "Wrong size for SGuardBodySituationMemberSaveData");
+static_assert(alignof(SGuardBodySituationMemberSaveData) == 0x4, "Wrong alignment for SGuardBodySituationMemberSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SGuardBodySituationSaveData{
+class alignas(4) SGuardBodySituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17486,9 +18874,17 @@ public:
 	bool m_bSomeoneHandledBodybag; // 0x3
 	int32 m_pGetHelpGroup; // 0x4
 };
+ZHM_OFFSET_CHECK(SGuardBodySituationSaveData, m_bBystanderFieldsFailed, 0x0);
+ZHM_OFFSET_CHECK(SGuardBodySituationSaveData, m_bLastGetHelpGroupFailed, 0x1);
+ZHM_OFFSET_CHECK(SGuardBodySituationSaveData, m_bSomeoneCanSeeBody, 0x2);
+ZHM_OFFSET_CHECK(SGuardBodySituationSaveData, m_bSomeoneHandledBodybag, 0x3);
+ZHM_OFFSET_CHECK(SGuardBodySituationSaveData, m_pGetHelpGroup, 0x4);
+static_assert(sizeof(SGuardBodySituationSaveData) == 0x8, "Wrong size for SGuardBodySituationSaveData");
+static_assert(alignof(SGuardBodySituationSaveData) == 0x4, "Wrong alignment for SGuardBodySituationSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SGuardPointOrderSaveData{
+class alignas(4) SGuardPointOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17502,11 +18898,15 @@ public:
 
 	uint32 m_guardPoint; // 0x0
 	bool m_walkOnly; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SGuardPointOrderSaveData, m_guardPoint, 0x0);
+ZHM_OFFSET_CHECK(SGuardPointOrderSaveData, m_walkOnly, 0x4);
+static_assert(sizeof(SGuardPointOrderSaveData) == 0x8, "Wrong size for SGuardPointOrderSaveData");
+static_assert(alignof(SGuardPointOrderSaveData) == 0x4, "Wrong alignment for SGuardPointOrderSaveData");
 
 // Size: 0x38
-class /*alignas(1)*/ SHM5CrippleBoxSaveData{
+class alignas(1) SHM5CrippleBoxSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17575,9 +18975,68 @@ public:
 	bool m_bOpenPauseMenu; // 0x36
 	bool m_bActivatedByPinSignal; // 0x37
 };
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bInSequence, 0x0);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bAllowBaseMovements, 0x1);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bSequenceAllowCamera, 0x2);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bLedges, 0x3);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCover, 0x4);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bTakeClothes, 0x5);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bLadder, 0x6);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bPullVictimFromWindow, 0x7);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bFiberWireKill, 0x8);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bClimbWindow, 0x9);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bThrowBodyOverRail, 0xA);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bDumpBody, 0xB);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bOperateCPDoor, 0xC);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bHideInCloset, 0xD);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCloseCombat, 0xE);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bGrabVictim, 0xF);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bPushVictimThroughWindowAndRail, 0x10);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bKickVictimOverLedge, 0x11);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bPickupItem, 0x12);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bDropItem, 0x13);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bDragBody, 0x14);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bThrowItem, 0x15);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bPlaceItem, 0x16);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bUseDeathAnimation, 0x17);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bLimitedAmmo, 0x18);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bRun, 0x19);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bTurn, 0x1A);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bSneak, 0x1B);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bNoSnapSneak, 0x1C);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bStandUp, 0x1D);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bFastWalk, 0x1E);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bMovementAllowed, 0x1F);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bIdleAnimationsAllowed, 0x20);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bItems, 0x21);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCanHolsterItems, 0x22);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bVRInventory, 0x23);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bVRTurn, 0x24);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCoverTakedown, 0x25);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCoverScale, 0x26);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCoverToCover, 0x27);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCloseCombatSnapNeck, 0x28);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCloseCombatChoke, 0x29);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCloseCombatPistolFinish, 0x2A);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCloseCombatProps, 0x2B);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCloseCombatStandart, 0x2C);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCloseCombatFakeSwing, 0x2D);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bGameCameraAutoAlign, 0x2E);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bCameraSide, 0x2F);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bInstinct, 0x30);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bBlindFire, 0x31);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bAim, 0x32);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bHairTrigger, 0x33);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bFire, 0x34);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bOpenLogbook, 0x35);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bOpenPauseMenu, 0x36);
+ZHM_OFFSET_CHECK(SHM5CrippleBoxSaveData, m_bActivatedByPinSignal, 0x37);
+static_assert(sizeof(SHM5CrippleBoxSaveData) == 0x38, "Wrong size for SHM5CrippleBoxSaveData");
+static_assert(alignof(SHM5CrippleBoxSaveData) == 0x1, "Wrong alignment for SHM5CrippleBoxSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SHUDPIPControllerSaveData{
+class alignas(1) SHUDPIPControllerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17591,9 +19050,13 @@ public:
 
 	bool m_bPiPEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SHUDPIPControllerSaveData, m_bPiPEnabled, 0x0);
+static_assert(sizeof(SHUDPIPControllerSaveData) == 0x1, "Wrong size for SHUDPIPControllerSaveData");
+static_assert(alignof(SHUDPIPControllerSaveData) == 0x1, "Wrong alignment for SHUDPIPControllerSaveData");
 
 // Size: 0x70
-class /*alignas(8)*/ SHUDPromptDisplayInfo{
+class alignas(8) SHUDPromptDisplayInfo
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17606,7 +19069,6 @@ public:
 	bool operator!=(const SHUDPromptDisplayInfo& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bActive; // 0x0
-	uint8_t _pad1[3] {};
 	EActionPromptState m_eState; // 0x4
 	int32 m_nIconId; // 0x8
 	int32 m_eTypeId; // 0xC
@@ -17615,7 +19077,6 @@ public:
 	bool m_bShowWarning; // 0x18
 	bool m_bNoActionAvailable; // 0x19
 	bool m_bIsActionBlocked; // 0x1A
-	uint8_t _pad1B[5] {};
 	ZString m_sLabel; // 0x20
 	ZString m_sDescription; // 0x30
 	ZString m_sGlyph; // 0x40
@@ -17624,13 +19085,34 @@ public:
 	bool m_bIllegalItem; // 0x64
 	bool m_bSuspiciousItem; // 0x65
 	bool m_bDropTempHolsterableItems; // 0x66
-	uint8_t _pad67[1] {};
 	int32 m_nFontSize; // 0x68
 	EHM5GameInputFlag m_eGameInputFlag; // 0x6C
 };
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_bActive, 0x0);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_eState, 0x4);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_nIconId, 0x8);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_eTypeId, 0xC);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_fProgress, 0x10);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_fDistance, 0x14);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_bShowWarning, 0x18);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_bNoActionAvailable, 0x19);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_bIsActionBlocked, 0x1A);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_sLabel, 0x20);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_sDescription, 0x30);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_sGlyph, 0x40);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_sCustomIcon, 0x50);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_fOpacity, 0x60);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_bIllegalItem, 0x64);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_bSuspiciousItem, 0x65);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_bDropTempHolsterableItems, 0x66);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_nFontSize, 0x68);
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfo, m_eGameInputFlag, 0x6C);
+static_assert(sizeof(SHUDPromptDisplayInfo) == 0x70, "Wrong size for SHUDPromptDisplayInfo");
+static_assert(alignof(SHUDPromptDisplayInfo) == 0x8, "Wrong alignment for SHUDPromptDisplayInfo");
 
 // Size: 0x18
-class /*alignas(8)*/ SHUDPromptDisplayInfoArray_Dummy{
+class alignas(8) SHUDPromptDisplayInfoArray_Dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17644,9 +19126,13 @@ public:
 
 	TArray<SHUDPromptDisplayInfo> dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(SHUDPromptDisplayInfoArray_Dummy, dummy, 0x0);
+static_assert(sizeof(SHUDPromptDisplayInfoArray_Dummy) == 0x18, "Wrong size for SHUDPromptDisplayInfoArray_Dummy");
+static_assert(alignof(SHUDPromptDisplayInfoArray_Dummy) == 0x8, "Wrong alignment for SHUDPromptDisplayInfoArray_Dummy");
 
 // Size: 0x4
-class /*alignas(4)*/ SHUDTimerControllerSaveData{
+class alignas(4) SHUDTimerControllerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17660,6 +19146,9 @@ public:
 
 	uint32 m_pCurrentInstance; // 0x0
 };
+ZHM_OFFSET_CHECK(SHUDTimerControllerSaveData, m_pCurrentInstance, 0x0);
+static_assert(sizeof(SHUDTimerControllerSaveData) == 0x4, "Wrong size for SHUDTimerControllerSaveData");
+static_assert(alignof(SHUDTimerControllerSaveData) == 0x4, "Wrong alignment for SHUDTimerControllerSaveData");
 
 class ZUIControlEntity
 {
@@ -17711,7 +19200,8 @@ public:
 };
 
 // Size: 0x4
-class /*alignas(4)*/ SHUDVisibilityController2SaveData{
+class alignas(4) SHUDVisibilityController2SaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17725,9 +19215,13 @@ public:
 
 	ZHUDUIRoot::EHUDVisibility m_eCurrentRequest; // 0x0
 };
+ZHM_OFFSET_CHECK(SHUDVisibilityController2SaveData, m_eCurrentRequest, 0x0);
+static_assert(sizeof(SHUDVisibilityController2SaveData) == 0x4, "Wrong size for SHUDVisibilityController2SaveData");
+static_assert(alignof(SHUDVisibilityController2SaveData) == 0x4, "Wrong alignment for SHUDVisibilityController2SaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SHandleDistractionSituationSaveData{
+class alignas(4) SHandleDistractionSituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17743,9 +19237,15 @@ public:
 	uint32 m_pAssistant; // 0x4
 	uint32 m_pPreliminaryLeader; // 0x8
 };
+ZHM_OFFSET_CHECK(SHandleDistractionSituationSaveData, m_pLeader, 0x0);
+ZHM_OFFSET_CHECK(SHandleDistractionSituationSaveData, m_pAssistant, 0x4);
+ZHM_OFFSET_CHECK(SHandleDistractionSituationSaveData, m_pPreliminaryLeader, 0x8);
+static_assert(sizeof(SHandleDistractionSituationSaveData) == 0xC, "Wrong size for SHandleDistractionSituationSaveData");
+static_assert(alignof(SHandleDistractionSituationSaveData) == 0x4, "Wrong alignment for SHandleDistractionSituationSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SHeroCameraStandInSaveState{
+class alignas(4) SHeroCameraStandInSaveState
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17759,8 +19259,11 @@ public:
 
 	uint32 m_rHero; // 0x0
 	bool m_bPaused; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SHeroCameraStandInSaveState, m_rHero, 0x0);
+ZHM_OFFSET_CHECK(SHeroCameraStandInSaveState, m_bPaused, 0x4);
+static_assert(sizeof(SHeroCameraStandInSaveState) == 0x8, "Wrong size for SHeroCameraStandInSaveState");
+static_assert(alignof(SHeroCameraStandInSaveState) == 0x4, "Wrong alignment for SHeroCameraStandInSaveState");
 
 class ZHeroEscortSituation2Entity
 {
@@ -17790,7 +19293,8 @@ public:
 };
 
 // Size: 0x1C
-class /*alignas(4)*/ SHeroEscortSituation2ActorStateSaveData{
+class alignas(4) SHeroEscortSituation2ActorStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17804,16 +19308,25 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3] {};
 	ZHeroEscortSituation2Entity::EEscortState m_eState; // 0x8
 	ZHeroEscortSituation2Entity::EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
 	uint32 m_rCurrentScreenplay; // 0x14
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
+ZHM_OFFSET_CHECK(SHeroEscortSituation2ActorStateSaveData, m_nID, 0x0);
+ZHM_OFFSET_CHECK(SHeroEscortSituation2ActorStateSaveData, m_bAllocatedForSituation, 0x4);
+ZHM_OFFSET_CHECK(SHeroEscortSituation2ActorStateSaveData, m_eState, 0x8);
+ZHM_OFFSET_CHECK(SHeroEscortSituation2ActorStateSaveData, m_eStatePrevious, 0xC);
+ZHM_OFFSET_CHECK(SHeroEscortSituation2ActorStateSaveData, m_fDistanceToTarget, 0x10);
+ZHM_OFFSET_CHECK(SHeroEscortSituation2ActorStateSaveData, m_rCurrentScreenplay, 0x14);
+ZHM_OFFSET_CHECK(SHeroEscortSituation2ActorStateSaveData, m_rPreferredIntermediateScreenplay, 0x18);
+static_assert(sizeof(SHeroEscortSituation2ActorStateSaveData) == 0x1C, "Wrong size for SHeroEscortSituation2ActorStateSaveData");
+static_assert(alignof(SHeroEscortSituation2ActorStateSaveData) == 0x4, "Wrong alignment for SHeroEscortSituation2ActorStateSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SHeroEscortSituation2Actors{
+class alignas(4) SHeroEscortSituation2Actors
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17827,6 +19340,9 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SHeroEscortSituation2Actors, m_rActor, 0x0);
+static_assert(sizeof(SHeroEscortSituation2Actors) == 0x4, "Wrong size for SHeroEscortSituation2Actors");
+static_assert(alignof(SHeroEscortSituation2Actors) == 0x4, "Wrong alignment for SHeroEscortSituation2Actors");
 
 class ZHeroEscortSituationEntity
 {
@@ -17856,7 +19372,8 @@ public:
 };
 
 // Size: 0x1C
-class /*alignas(4)*/ SHeroEscortSituationActorStateSaveData{
+class alignas(4) SHeroEscortSituationActorStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17870,16 +19387,25 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3] {};
 	ZHeroEscortSituationEntity::EEscortState m_eState; // 0x8
 	ZHeroEscortSituationEntity::EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
 	uint32 m_rCurrentScreenplay; // 0x14
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
+ZHM_OFFSET_CHECK(SHeroEscortSituationActorStateSaveData, m_nID, 0x0);
+ZHM_OFFSET_CHECK(SHeroEscortSituationActorStateSaveData, m_bAllocatedForSituation, 0x4);
+ZHM_OFFSET_CHECK(SHeroEscortSituationActorStateSaveData, m_eState, 0x8);
+ZHM_OFFSET_CHECK(SHeroEscortSituationActorStateSaveData, m_eStatePrevious, 0xC);
+ZHM_OFFSET_CHECK(SHeroEscortSituationActorStateSaveData, m_fDistanceToTarget, 0x10);
+ZHM_OFFSET_CHECK(SHeroEscortSituationActorStateSaveData, m_rCurrentScreenplay, 0x14);
+ZHM_OFFSET_CHECK(SHeroEscortSituationActorStateSaveData, m_rPreferredIntermediateScreenplay, 0x18);
+static_assert(sizeof(SHeroEscortSituationActorStateSaveData) == 0x1C, "Wrong size for SHeroEscortSituationActorStateSaveData");
+static_assert(alignof(SHeroEscortSituationActorStateSaveData) == 0x4, "Wrong alignment for SHeroEscortSituationActorStateSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SHeroEscortSituationActors{
+class alignas(4) SHeroEscortSituationActors
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17893,9 +19419,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SHeroEscortSituationActors, m_rActor, 0x0);
+static_assert(sizeof(SHeroEscortSituationActors) == 0x4, "Wrong size for SHeroEscortSituationActors");
+static_assert(alignof(SHeroEscortSituationActors) == 0x4, "Wrong alignment for SHeroEscortSituationActors");
 
 // Size: 0x4
-class /*alignas(4)*/ SHeroItemActionSaveData{
+class alignas(4) SHeroItemActionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17909,9 +19439,13 @@ public:
 
 	uint32 m_rItem; // 0x0
 };
+ZHM_OFFSET_CHECK(SHeroItemActionSaveData, m_rItem, 0x0);
+static_assert(sizeof(SHeroItemActionSaveData) == 0x4, "Wrong size for SHeroItemActionSaveData");
+static_assert(alignof(SHeroItemActionSaveData) == 0x4, "Wrong alignment for SHeroItemActionSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SHeroItemAttachmentSaveData{
+class alignas(4) SHeroItemAttachmentSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17925,9 +19459,13 @@ public:
 
 	uint32 m_rItem; // 0x0
 };
+ZHM_OFFSET_CHECK(SHeroItemAttachmentSaveData, m_rItem, 0x0);
+static_assert(sizeof(SHeroItemAttachmentSaveData) == 0x4, "Wrong size for SHeroItemAttachmentSaveData");
+static_assert(alignof(SHeroItemAttachmentSaveData) == 0x4, "Wrong alignment for SHeroItemAttachmentSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SHeroStandInSaveState{
+class alignas(4) SHeroStandInSaveState
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17942,11 +19480,16 @@ public:
 	uint32 m_rHero; // 0x0
 	uint32 m_rCurrentSpeakEntity; // 0x4
 	bool m_bPaused; // 0x8
-	uint8_t _pad9[3] {};
 };
+ZHM_OFFSET_CHECK(SHeroStandInSaveState, m_rHero, 0x0);
+ZHM_OFFSET_CHECK(SHeroStandInSaveState, m_rCurrentSpeakEntity, 0x4);
+ZHM_OFFSET_CHECK(SHeroStandInSaveState, m_bPaused, 0x8);
+static_assert(sizeof(SHeroStandInSaveState) == 0xC, "Wrong size for SHeroStandInSaveState");
+static_assert(alignof(SHeroStandInSaveState) == 0x4, "Wrong alignment for SHeroStandInSaveState");
 
 // Size: 0xC
-class /*alignas(4)*/ SHintEntrySaveData{
+class alignas(4) SHintEntrySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17959,13 +19502,18 @@ public:
 	bool operator!=(const SHintEntrySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bIsValid; // 0x0
-	uint8_t _pad1[3] {};
 	uint32 m_hint; // 0x4
 	uint32 m_context; // 0x8
 };
+ZHM_OFFSET_CHECK(SHintEntrySaveData, m_bIsValid, 0x0);
+ZHM_OFFSET_CHECK(SHintEntrySaveData, m_hint, 0x4);
+ZHM_OFFSET_CHECK(SHintEntrySaveData, m_context, 0x8);
+static_assert(sizeof(SHintEntrySaveData) == 0xC, "Wrong size for SHintEntrySaveData");
+static_assert(alignof(SHintEntrySaveData) == 0x4, "Wrong alignment for SHintEntrySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SHintManagerSaveData{
+class alignas(8) SHintManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17978,14 +19526,18 @@ public:
 	bool operator!=(const SHintManagerSaveData& p_Other) const { return !(*this == p_Other); }
 
 	SHintEntrySaveData m_activeHint; // 0x0
-	uint8_t _padC[4] {};
 	TArray<SHintEntrySaveData> m_aQueue; // 0x10
 	bool m_bIsRunning; // 0x28
-	uint8_t _pad29[7] {};
 };
+ZHM_OFFSET_CHECK(SHintManagerSaveData, m_activeHint, 0x0);
+ZHM_OFFSET_CHECK(SHintManagerSaveData, m_aQueue, 0x10);
+ZHM_OFFSET_CHECK(SHintManagerSaveData, m_bIsRunning, 0x28);
+static_assert(sizeof(SHintManagerSaveData) == 0x30, "Wrong size for SHintManagerSaveData");
+static_assert(alignof(SHintManagerSaveData) == 0x8, "Wrong alignment for SHintManagerSaveData");
 
 // Size: 0x10
-class /*alignas(8)*/ SHudMissionTimerControllerData{
+class alignas(8) SHudMissionTimerControllerData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -17999,11 +19551,15 @@ public:
 
 	ZGameTime m_fScoreGameTimeStart; // 0x0
 	bool m_bWasIntroCutFired; // 0x8
-	uint8_t _pad9[7] {};
 };
+ZHM_OFFSET_CHECK(SHudMissionTimerControllerData, m_fScoreGameTimeStart, 0x0);
+ZHM_OFFSET_CHECK(SHudMissionTimerControllerData, m_bWasIntroCutFired, 0x8);
+static_assert(sizeof(SHudMissionTimerControllerData) == 0x10, "Wrong size for SHudMissionTimerControllerData");
+static_assert(alignof(SHudMissionTimerControllerData) == 0x8, "Wrong alignment for SHudMissionTimerControllerData");
 
 // Size: 0x40
-class /*alignas(8)*/ SIntelData{
+class alignas(8) SIntelData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18020,9 +19576,16 @@ public:
 	ZString m_sBodytext; // 0x20
 	ZString m_sImage; // 0x30
 };
+ZHM_OFFSET_CHECK(SIntelData, m_sHeadline, 0x0);
+ZHM_OFFSET_CHECK(SIntelData, m_sBodyHeadline, 0x10);
+ZHM_OFFSET_CHECK(SIntelData, m_sBodytext, 0x20);
+ZHM_OFFSET_CHECK(SIntelData, m_sImage, 0x30);
+static_assert(sizeof(SIntelData) == 0x40, "Wrong size for SIntelData");
+static_assert(alignof(SIntelData) == 0x8, "Wrong alignment for SIntelData");
 
 // Size: 0x18
-class /*alignas(8)*/ SIntelDataArray_dummy{
+class alignas(8) SIntelDataArray_dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18036,9 +19599,13 @@ public:
 
 	TArray<SIntelData> dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(SIntelDataArray_dummy, dummy, 0x0);
+static_assert(sizeof(SIntelDataArray_dummy) == 0x18, "Wrong size for SIntelDataArray_dummy");
+static_assert(alignof(SIntelDataArray_dummy) == 0x8, "Wrong alignment for SIntelDataArray_dummy");
 
 // Size: 0x48
-class /*alignas(8)*/ SIntelDisplayInfo{
+class alignas(8) SIntelDisplayInfo
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18053,15 +19620,24 @@ public:
 	int32 index; // 0x0
 	bool selected; // 0x4
 	bool active; // 0x5
-	uint8_t _pad6[2] {};
 	ZString headline; // 0x8
 	ZString bodyheadline; // 0x18
 	ZString text; // 0x28
 	ZString img; // 0x38
 };
+ZHM_OFFSET_CHECK(SIntelDisplayInfo, index, 0x0);
+ZHM_OFFSET_CHECK(SIntelDisplayInfo, selected, 0x4);
+ZHM_OFFSET_CHECK(SIntelDisplayInfo, active, 0x5);
+ZHM_OFFSET_CHECK(SIntelDisplayInfo, headline, 0x8);
+ZHM_OFFSET_CHECK(SIntelDisplayInfo, bodyheadline, 0x18);
+ZHM_OFFSET_CHECK(SIntelDisplayInfo, text, 0x28);
+ZHM_OFFSET_CHECK(SIntelDisplayInfo, img, 0x38);
+static_assert(sizeof(SIntelDisplayInfo) == 0x48, "Wrong size for SIntelDisplayInfo");
+static_assert(alignof(SIntelDisplayInfo) == 0x8, "Wrong alignment for SIntelDisplayInfo");
 
 // Size: 0x18
-class /*alignas(8)*/ SIntelDisplayInfoArray_dummy{
+class alignas(8) SIntelDisplayInfoArray_dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18075,9 +19651,13 @@ public:
 
 	TArray<SIntelDisplayInfo> dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(SIntelDisplayInfoArray_dummy, dummy, 0x0);
+static_assert(sizeof(SIntelDisplayInfoArray_dummy) == 0x18, "Wrong size for SIntelDisplayInfoArray_dummy");
+static_assert(alignof(SIntelDisplayInfoArray_dummy) == 0x8, "Wrong alignment for SIntelDisplayInfoArray_dummy");
 
 // Size: 0x18
-class /*alignas(8)*/ SIntelListDisplayInfo{
+class alignas(8) SIntelListDisplayInfo
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18092,12 +19672,18 @@ public:
 	int32 index; // 0x0
 	bool active; // 0x4
 	bool newInfo; // 0x5
-	uint8_t _pad6[2] {};
 	ZString label; // 0x8
 };
+ZHM_OFFSET_CHECK(SIntelListDisplayInfo, index, 0x0);
+ZHM_OFFSET_CHECK(SIntelListDisplayInfo, active, 0x4);
+ZHM_OFFSET_CHECK(SIntelListDisplayInfo, newInfo, 0x5);
+ZHM_OFFSET_CHECK(SIntelListDisplayInfo, label, 0x8);
+static_assert(sizeof(SIntelListDisplayInfo) == 0x18, "Wrong size for SIntelListDisplayInfo");
+static_assert(alignof(SIntelListDisplayInfo) == 0x8, "Wrong alignment for SIntelListDisplayInfo");
 
 // Size: 0x18
-class /*alignas(8)*/ SIntelListDisplayInfoArray_dummy{
+class alignas(8) SIntelListDisplayInfoArray_dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18111,9 +19697,13 @@ public:
 
 	TArray<SIntelListDisplayInfo> dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(SIntelListDisplayInfoArray_dummy, dummy, 0x0);
+static_assert(sizeof(SIntelListDisplayInfoArray_dummy) == 0x18, "Wrong size for SIntelListDisplayInfoArray_dummy");
+static_assert(alignof(SIntelListDisplayInfoArray_dummy) == 0x8, "Wrong alignment for SIntelListDisplayInfoArray_dummy");
 
 // Size: 0x10
-class /*alignas(4)*/ SIntelSaveData{
+class alignas(4) SIntelSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18132,14 +19722,24 @@ public:
 	bool m_bRegistered; // 0xA
 	bool m_bIsLastTriggered; // 0xB
 	bool m_bIsHandlerAudioPlaying; // 0xC
-	uint8_t _padD[3] {};
 };
+ZHM_OFFSET_CHECK(SIntelSaveData, m_rCurrentStage, 0x0);
+ZHM_OFFSET_CHECK(SIntelSaveData, m_fHandlerAudioPlayPosition, 0x4);
+ZHM_OFFSET_CHECK(SIntelSaveData, m_bTracked, 0x8);
+ZHM_OFFSET_CHECK(SIntelSaveData, m_bUnlocked, 0x9);
+ZHM_OFFSET_CHECK(SIntelSaveData, m_bRegistered, 0xA);
+ZHM_OFFSET_CHECK(SIntelSaveData, m_bIsLastTriggered, 0xB);
+ZHM_OFFSET_CHECK(SIntelSaveData, m_bIsHandlerAudioPlaying, 0xC);
+static_assert(sizeof(SIntelSaveData) == 0x10, "Wrong size for SIntelSaveData");
+static_assert(alignof(SIntelSaveData) == 0x4, "Wrong alignment for SIntelSaveData");
 
 // Size: 0x90
-class /*alignas(8)*/ SInteractionIndicatorInstanceData{
+class alignas(8) SInteractionIndicatorInstanceData
+{
 public:
 	// Size: 0x60
-	class /*alignas(8)*/ SUIControlData	{
+	class alignas(8) SUIControlData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18165,13 +19765,31 @@ public:
 		bool m_bIllegalItem; // 0x53
 		bool m_bSuspiciousItem; // 0x54
 		bool m_bContainsItem; // 0x55
-		uint8_t _pad56[2] {};
 		int32 m_nFontSize; // 0x58
 		bool m_bIsTxtDirReversed; // 0x5C
 		bool m_bHidePrompt; // 0x5D
 		bool m_bIsActionBlocked; // 0x5E
-		uint8_t _pad5F[1] {};
 	};
+	ZHM_OFFSET_CHECK(SUIControlData, m_eState, 0x0);
+	ZHM_OFFSET_CHECK(SUIControlData, m_eTypeId, 0x4);
+	ZHM_OFFSET_CHECK(SUIControlData, m_nIconId, 0x8);
+	ZHM_OFFSET_CHECK(SUIControlData, m_fProgress, 0xC);
+	ZHM_OFFSET_CHECK(SUIControlData, m_sLabel, 0x10);
+	ZHM_OFFSET_CHECK(SUIControlData, m_sDescription, 0x20);
+	ZHM_OFFSET_CHECK(SUIControlData, m_sGlyph, 0x30);
+	ZHM_OFFSET_CHECK(SUIControlData, m_sCustomIcon, 0x40);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bIllegal, 0x50);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bNoActionAvailable, 0x51);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bInRange, 0x52);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bIllegalItem, 0x53);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bSuspiciousItem, 0x54);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bContainsItem, 0x55);
+	ZHM_OFFSET_CHECK(SUIControlData, m_nFontSize, 0x58);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bIsTxtDirReversed, 0x5C);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bHidePrompt, 0x5D);
+	ZHM_OFFSET_CHECK(SUIControlData, m_bIsActionBlocked, 0x5E);
+	static_assert(sizeof(SUIControlData) == 0x60, "Wrong size for SUIControlData");
+	static_assert(alignof(SUIControlData) == 0x8, "Wrong alignment for SUIControlData");
 
 
 public:
@@ -18186,22 +19804,32 @@ public:
 	bool operator!=(const SInteractionIndicatorInstanceData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nStableID; // 0x0
-	uint8_t _pad4[4] {};
 	SInteractionIndicatorInstanceData::SUIControlData m_uicData; // 0x8
 	float32 m_fAnimation; // 0x68
 	bool m_bRotateIndicator; // 0x6C
-	uint8_t _pad6D[3] {};
 	SVector3 m_vPosition; // 0x70
 	SVector3 m_vRotation; // 0x7C
 	bool m_bNeedDataUpdate; // 0x88
 	bool m_bNeedAlphaUpdate; // 0x89
 	bool m_bLimit3DSize; // 0x8A
-	uint8_t _pad8B[1] {};
 	EHM5GameInputFlag m_eGameInputFlag; // 0x8C
 };
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_nStableID, 0x0);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_uicData, 0x8);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_fAnimation, 0x68);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_bRotateIndicator, 0x6C);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_vPosition, 0x70);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_vRotation, 0x7C);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_bNeedDataUpdate, 0x88);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_bNeedAlphaUpdate, 0x89);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_bLimit3DSize, 0x8A);
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceData, m_eGameInputFlag, 0x8C);
+static_assert(sizeof(SInteractionIndicatorInstanceData) == 0x90, "Wrong size for SInteractionIndicatorInstanceData");
+static_assert(alignof(SInteractionIndicatorInstanceData) == 0x8, "Wrong alignment for SInteractionIndicatorInstanceData");
 
 // Size: 0x18
-class /*alignas(8)*/ SInteractionIndicatorInstanceDataArray_Dummy{
+class alignas(8) SInteractionIndicatorInstanceDataArray_Dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18215,9 +19843,13 @@ public:
 
 	TArray<SInteractionIndicatorInstanceData> dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(SInteractionIndicatorInstanceDataArray_Dummy, dummy, 0x0);
+static_assert(sizeof(SInteractionIndicatorInstanceDataArray_Dummy) == 0x18, "Wrong size for SInteractionIndicatorInstanceDataArray_Dummy");
+static_assert(alignof(SInteractionIndicatorInstanceDataArray_Dummy) == 0x8, "Wrong alignment for SInteractionIndicatorInstanceDataArray_Dummy");
 
 // Size: 0x8
-class /*alignas(4)*/ SInventoryControllerItemSaveData{
+class alignas(4) SInventoryControllerItemSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18232,9 +19864,14 @@ public:
 	uint32 m_rItemEntity; // 0x0
 	uint32 m_nAmmo; // 0x4
 };
+ZHM_OFFSET_CHECK(SInventoryControllerItemSaveData, m_rItemEntity, 0x0);
+ZHM_OFFSET_CHECK(SInventoryControllerItemSaveData, m_nAmmo, 0x4);
+static_assert(sizeof(SInventoryControllerItemSaveData) == 0x8, "Wrong size for SInventoryControllerItemSaveData");
+static_assert(alignof(SInventoryControllerItemSaveData) == 0x4, "Wrong alignment for SInventoryControllerItemSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SStoredSlotSaveData{
+class alignas(4) SStoredSlotSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18249,11 +19886,16 @@ public:
 	uint32 m_iStoredInventorySlotIndex; // 0x0
 	uint8 m_iStoreReason; // 0x4
 	bool m_bItemsStored; // 0x5
-	uint8_t _pad6[2] {};
 };
+ZHM_OFFSET_CHECK(SStoredSlotSaveData, m_iStoredInventorySlotIndex, 0x0);
+ZHM_OFFSET_CHECK(SStoredSlotSaveData, m_iStoreReason, 0x4);
+ZHM_OFFSET_CHECK(SStoredSlotSaveData, m_bItemsStored, 0x5);
+static_assert(sizeof(SStoredSlotSaveData) == 0x8, "Wrong size for SStoredSlotSaveData");
+static_assert(alignof(SStoredSlotSaveData) == 0x4, "Wrong alignment for SStoredSlotSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SInventoryControllerSlotSaveData{
+class alignas(8) SInventoryControllerSlotSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18267,11 +19909,15 @@ public:
 
 	TArray<SInventoryControllerItemSaveData> m_aItems; // 0x0
 	EInventoryStorageType m_eStorageType; // 0x18
-	uint8_t _pad1C[4] {};
 };
+ZHM_OFFSET_CHECK(SInventoryControllerSlotSaveData, m_aItems, 0x0);
+ZHM_OFFSET_CHECK(SInventoryControllerSlotSaveData, m_eStorageType, 0x18);
+static_assert(sizeof(SInventoryControllerSlotSaveData) == 0x20, "Wrong size for SInventoryControllerSlotSaveData");
+static_assert(alignof(SInventoryControllerSlotSaveData) == 0x8, "Wrong alignment for SInventoryControllerSlotSaveData");
 
 // Size: 0x30
-class /*alignas(16)*/ SInventoryMovementConfig{
+class alignas(16) SInventoryMovementConfig
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18292,12 +19938,24 @@ public:
 	bool m_bForceInstantInventoryChange; // 0x12
 	bool m_bCancelIfInventoryInUse; // 0x13
 	bool m_bSafeDrop; // 0x14
-	uint8_t _pad15[11] {};
 	float4 m_vSafeDropPosition; // 0x20
 };
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_eItemHandlingRightHand, 0x0);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_eItemHandlingLeftHand, 0x4);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_eFormerEquippedItems, 0x8);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_eCustomRule, 0xC);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_bDropBackHolsteredItem, 0x10);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_bSlowAnimation, 0x11);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_bForceInstantInventoryChange, 0x12);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_bCancelIfInventoryInUse, 0x13);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_bSafeDrop, 0x14);
+ZHM_OFFSET_CHECK(SInventoryMovementConfig, m_vSafeDropPosition, 0x20);
+static_assert(sizeof(SInventoryMovementConfig) == 0x30, "Wrong size for SInventoryMovementConfig");
+static_assert(alignof(SInventoryMovementConfig) == 0x10, "Wrong alignment for SInventoryMovementConfig");
 
 // Size: 0x28
-class /*alignas(8)*/ SInventoryUISlotSlim{
+class alignas(8) SInventoryUISlotSlim
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18312,11 +19970,16 @@ public:
 	ZVariant icon; // 0x0
 	ZVariant containedIcon; // 0x10
 	bool isContainer; // 0x20
-	uint8_t _pad21[7] {};
 };
+ZHM_OFFSET_CHECK(SInventoryUISlotSlim, icon, 0x0);
+ZHM_OFFSET_CHECK(SInventoryUISlotSlim, containedIcon, 0x10);
+ZHM_OFFSET_CHECK(SInventoryUISlotSlim, isContainer, 0x20);
+static_assert(sizeof(SInventoryUISlotSlim) == 0x28, "Wrong size for SInventoryUISlotSlim");
+static_assert(alignof(SInventoryUISlotSlim) == 0x8, "Wrong alignment for SInventoryUISlotSlim");
 
 // Size: 0x28
-class /*alignas(8)*/ SInventoryUI{
+class alignas(8) SInventoryUI
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18332,8 +19995,13 @@ public:
 	int32 otherslotsCount; // 0x18
 	int32 selectedIndex; // 0x1C
 	bool isActionInventory; // 0x20
-	uint8_t _pad21[7] {};
 };
+ZHM_OFFSET_CHECK(SInventoryUI, mainslotsSlim, 0x0);
+ZHM_OFFSET_CHECK(SInventoryUI, otherslotsCount, 0x18);
+ZHM_OFFSET_CHECK(SInventoryUI, selectedIndex, 0x1C);
+ZHM_OFFSET_CHECK(SInventoryUI, isActionInventory, 0x20);
+static_assert(sizeof(SInventoryUI) == 0x28, "Wrong size for SInventoryUI");
+static_assert(alignof(SInventoryUI) == 0x8, "Wrong alignment for SInventoryUI");
 
 // Size: 0x4
 enum class eEvergreenItemRarity : int32_t
@@ -18364,7 +20032,8 @@ public:
 	};
 
 	// Size: 0xC
-	class /*alignas(4)*/ SDialogLines	{
+	class alignas(4) SDialogLines
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18380,23 +20049,12 @@ public:
 		EActorSoundDefs m_eSecondWarning; // 0x4
 		EActorSoundDefs m_eThirdWarning; // 0x8
 	};
+	ZHM_OFFSET_CHECK(SDialogLines, m_eFirstWarning, 0x0);
+	ZHM_OFFSET_CHECK(SDialogLines, m_eSecondWarning, 0x4);
+	ZHM_OFFSET_CHECK(SDialogLines, m_eThirdWarning, 0x8);
+	static_assert(sizeof(SDialogLines) == 0xC, "Wrong size for SDialogLines");
+	static_assert(alignof(SDialogLines) == 0x4, "Wrong alignment for SDialogLines");
 
-};
-
-// Size: 0x50
-class /*alignas(16)*/ ZSituationOrder{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZSituationOrder& p_Other) const;
-	bool operator!=(const ZSituationOrder& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[80] {};
 };
 
 class ZMoveToOrder
@@ -18412,7 +20070,8 @@ public:
 	};
 
 	// Size: 0x30
-	class /*alignas(16)*/ SMoveToOrderSaveData	{
+	class alignas(16) SMoveToOrderSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18437,13 +20096,28 @@ public:
 		bool m_bStopActFast; // 0x25
 		bool m_bStrafe; // 0x26
 		bool m_bEndStanding; // 0x27
-		uint8_t _pad28[8] {};
 	};
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_vStopDirection, 0x0);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_fStopDistance, 0x10);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_fWalkDistance, 0x14);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_nObstacleBlockageFlags, 0x18);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_eMoveSpeed, 0x1C);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bIgnoreEndCollision, 0x20);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bPrecisePositioning, 0x21);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bForceStand, 0x22);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bLookAtTargetMustBeInSight, 0x23);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bUseKnownPosition, 0x24);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bStopActFast, 0x25);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bStrafe, 0x26);
+	ZHM_OFFSET_CHECK(SMoveToOrderSaveData, m_bEndStanding, 0x27);
+	static_assert(sizeof(SMoveToOrderSaveData) == 0x30, "Wrong size for SMoveToOrderSaveData");
+	static_assert(alignof(SMoveToOrderSaveData) == 0x10, "Wrong alignment for SMoveToOrderSaveData");
 
 };
 
 // Size: 0x80
-class /*alignas(16)*/ SInvestigateDisguiseGroupSaveData{
+class alignas(16) SInvestigateDisguiseGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18463,7 +20137,6 @@ public:
 	float32 m_groupAge; // 0x18
 	float32 m_fDisguiseFollowTime; // 0x1C
 	float32 m_fTargetRunningTime; // 0x20
-	uint8_t _pad24[4] {};
 	ZGameTime m_tLastWarning; // 0x28
 	int32 m_iWarningCount; // 0x30
 	ZMoveToOrder::EMoveSpeed m_eLeaderMoveSpeed; // 0x34
@@ -18479,11 +20152,36 @@ public:
 	bool m_bFollow; // 0x70
 	bool m_bMembersFollow; // 0x71
 	bool m_bRunningWarningIssued; // 0x72
-	uint8_t _pad73[13] {};
 };
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_state, 0x0);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_target, 0x4);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_pLeader, 0x8);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_pPendingLeader, 0xC);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_tStart, 0x10);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_groupAge, 0x18);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_fDisguiseFollowTime, 0x1C);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_fTargetRunningTime, 0x20);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_tLastWarning, 0x28);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_iWarningCount, 0x30);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_eLeaderMoveSpeed, 0x34);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_tLastEscalateOrder, 0x38);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_tLastStandDownOrder, 0x40);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_tStartFollow, 0x48);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_vOriginalPositionLeader, 0x50);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_dialogLines, 0x60);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_bLeaderOrderAssigned, 0x6C);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_bSearchCompleted, 0x6D);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_bLeaderMovingBack, 0x6E);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_bWaitingForDistanceStanddown, 0x6F);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_bFollow, 0x70);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_bMembersFollow, 0x71);
+ZHM_OFFSET_CHECK(SInvestigateDisguiseGroupSaveData, m_bRunningWarningIssued, 0x72);
+static_assert(sizeof(SInvestigateDisguiseGroupSaveData) == 0x80, "Wrong size for SInvestigateDisguiseGroupSaveData");
+static_assert(alignof(SInvestigateDisguiseGroupSaveData) == 0x10, "Wrong alignment for SInvestigateDisguiseGroupSaveData");
 
 // Size: 0x50
-class /*alignas(8)*/ SInvestigateWeaponGroupSaveData{
+class alignas(8) SInvestigateWeaponGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18500,14 +20198,24 @@ public:
 	uint32 m_rInvestigator; // 0x8
 	uint32 m_rGuard; // 0xC
 	bool m_ReporterIsVIPWithAmbientEscort; // 0x10
-	uint8_t _pad11[7] {};
 	SFSMSaveData m_fsmState; // 0x18
 	ZGameTime m_tLastGuardSearch; // 0x30
 	TArray<uint32> m_aUnconsciousGuards; // 0x38
 };
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_rTarget, 0x0);
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_rReporter, 0x4);
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_rInvestigator, 0x8);
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_rGuard, 0xC);
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_ReporterIsVIPWithAmbientEscort, 0x10);
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_fsmState, 0x18);
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_tLastGuardSearch, 0x30);
+ZHM_OFFSET_CHECK(SInvestigateWeaponGroupSaveData, m_aUnconsciousGuards, 0x38);
+static_assert(sizeof(SInvestigateWeaponGroupSaveData) == 0x50, "Wrong size for SInvestigateWeaponGroupSaveData");
+static_assert(alignof(SInvestigateWeaponGroupSaveData) == 0x8, "Wrong alignment for SInvestigateWeaponGroupSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SItemActionSaveData{
+class alignas(4) SItemActionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18521,9 +20229,13 @@ public:
 
 	uint32 m_rItem; // 0x0
 };
+ZHM_OFFSET_CHECK(SItemActionSaveData, m_rItem, 0x0);
+static_assert(sizeof(SItemActionSaveData) == 0x4, "Wrong size for SItemActionSaveData");
+static_assert(alignof(SItemActionSaveData) == 0x4, "Wrong alignment for SItemActionSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SItemLeftHandUIData{
+class alignas(4) SItemLeftHandUIData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18540,11 +20252,18 @@ public:
 	bool bHasItemToShow; // 0xC
 	bool bSuspicious; // 0xD
 	bool bIllegal; // 0xE
-	uint8_t _padF[1] {};
 };
+ZHM_OFFSET_CHECK(SItemLeftHandUIData, icon, 0x0);
+ZHM_OFFSET_CHECK(SItemLeftHandUIData, nItemHUDType, 0x8);
+ZHM_OFFSET_CHECK(SItemLeftHandUIData, bHasItemToShow, 0xC);
+ZHM_OFFSET_CHECK(SItemLeftHandUIData, bSuspicious, 0xD);
+ZHM_OFFSET_CHECK(SItemLeftHandUIData, bIllegal, 0xE);
+static_assert(sizeof(SItemLeftHandUIData) == 0x10, "Wrong size for SItemLeftHandUIData");
+static_assert(alignof(SItemLeftHandUIData) == 0x4, "Wrong alignment for SItemLeftHandUIData");
 
 // Size: 0x10
-class /*alignas(4)*/ SItemOnBackUIData{
+class alignas(4) SItemOnBackUIData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18561,11 +20280,18 @@ public:
 	bool bHasItemToShow; // 0xC
 	bool bSuspicious; // 0xD
 	bool bIllegal; // 0xE
-	uint8_t _padF[1] {};
 };
+ZHM_OFFSET_CHECK(SItemOnBackUIData, icon, 0x0);
+ZHM_OFFSET_CHECK(SItemOnBackUIData, nItemHUDType, 0x8);
+ZHM_OFFSET_CHECK(SItemOnBackUIData, bHasItemToShow, 0xC);
+ZHM_OFFSET_CHECK(SItemOnBackUIData, bSuspicious, 0xD);
+ZHM_OFFSET_CHECK(SItemOnBackUIData, bIllegal, 0xE);
+static_assert(sizeof(SItemOnBackUIData) == 0x10, "Wrong size for SItemOnBackUIData");
+static_assert(alignof(SItemOnBackUIData) == 0x4, "Wrong alignment for SItemOnBackUIData");
 
 // Size: 0x1
-class /*alignas(1)*/ SItemSpawnerSaveData{
+class alignas(1) SItemSpawnerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18579,9 +20305,13 @@ public:
 
 	bool m_bItemUpdateTransformChange; // 0x0
 };
+ZHM_OFFSET_CHECK(SItemSpawnerSaveData, m_bItemUpdateTransformChange, 0x0);
+static_assert(sizeof(SItemSpawnerSaveData) == 0x1, "Wrong size for SItemSpawnerSaveData");
+static_assert(alignof(SItemSpawnerSaveData) == 0x1, "Wrong alignment for SItemSpawnerSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SItemStorageSaveData{
+class alignas(8) SItemStorageSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18594,12 +20324,16 @@ public:
 	bool operator!=(const SItemStorageSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_Storage; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<uint32> m_ContainedItems; // 0x8
 };
+ZHM_OFFSET_CHECK(SItemStorageSaveData, m_Storage, 0x0);
+ZHM_OFFSET_CHECK(SItemStorageSaveData, m_ContainedItems, 0x8);
+static_assert(sizeof(SItemStorageSaveData) == 0x20, "Wrong size for SItemStorageSaveData");
+static_assert(alignof(SItemStorageSaveData) == 0x8, "Wrong alignment for SItemStorageSaveData");
 
 // Size: 0x28
-class /*alignas(8)*/ SItemWeaponSaveData{
+class alignas(8) SItemWeaponSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18617,11 +20351,41 @@ public:
 	EDeathContext m_eDeathContext; // 0x20
 	bool m_bLiveBulletInChamber; // 0x24
 	bool m_bSpentBulletInChamber; // 0x25
-	uint8_t _pad26[2] {};
 };
+ZHM_OFFSET_CHECK(SItemWeaponSaveData, m_magazineBulletsByAmmoType, 0x0);
+ZHM_OFFSET_CHECK(SItemWeaponSaveData, m_nExtraMagazineBullets, 0x18);
+ZHM_OFFSET_CHECK(SItemWeaponSaveData, m_ePendingDeathContext, 0x1C);
+ZHM_OFFSET_CHECK(SItemWeaponSaveData, m_eDeathContext, 0x20);
+ZHM_OFFSET_CHECK(SItemWeaponSaveData, m_bLiveBulletInChamber, 0x24);
+ZHM_OFFSET_CHECK(SItemWeaponSaveData, m_bSpentBulletInChamber, 0x25);
+static_assert(sizeof(SItemWeaponSaveData) == 0x28, "Wrong size for SItemWeaponSaveData");
+static_assert(alignof(SItemWeaponSaveData) == 0x8, "Wrong alignment for SItemWeaponSaveData");
+
+// Size: 0x8
+class alignas(4) SKeywordSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SKeywordSaveData& p_Other) const;
+	bool operator!=(const SKeywordSaveData& p_Other) const { return !(*this == p_Other); }
+
+	uint32 m_HolderSaveableId; // 0x0
+	int32 m_KeywordID; // 0x4
+};
+ZHM_OFFSET_CHECK(SKeywordSaveData, m_HolderSaveableId, 0x0);
+ZHM_OFFSET_CHECK(SKeywordSaveData, m_KeywordID, 0x4);
+static_assert(sizeof(SKeywordSaveData) == 0x8, "Wrong size for SKeywordSaveData");
+static_assert(alignof(SKeywordSaveData) == 0x4, "Wrong alignment for SKeywordSaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SLayerBehaviorConfiguration{
+class alignas(1) SLayerBehaviorConfiguration
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18636,6 +20400,10 @@ public:
 	bool m_bTrigger; // 0x0
 	bool m_bCollector; // 0x1
 };
+ZHM_OFFSET_CHECK(SLayerBehaviorConfiguration, m_bTrigger, 0x0);
+ZHM_OFFSET_CHECK(SLayerBehaviorConfiguration, m_bCollector, 0x1);
+static_assert(sizeof(SLayerBehaviorConfiguration) == 0x2, "Wrong size for SLayerBehaviorConfiguration");
+static_assert(alignof(SLayerBehaviorConfiguration) == 0x1, "Wrong alignment for SLayerBehaviorConfiguration");
 
 class ZLeadEscortSituationEntity
 {
@@ -18664,7 +20432,8 @@ public:
 };
 
 // Size: 0x1C
-class /*alignas(4)*/ SLeadEscortSituationActorStateSaveData{
+class alignas(4) SLeadEscortSituationActorStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18678,16 +20447,25 @@ public:
 
 	uint32 m_nID; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3] {};
 	ZLeadEscortSituationEntity::EEscortState m_eState; // 0x8
 	ZLeadEscortSituationEntity::EEscortState m_eStatePrevious; // 0xC
 	float32 m_fDistanceToTarget; // 0x10
 	uint32 m_rCurrentScreenplay; // 0x14
 	uint32 m_rPreferredIntermediateScreenplay; // 0x18
 };
+ZHM_OFFSET_CHECK(SLeadEscortSituationActorStateSaveData, m_nID, 0x0);
+ZHM_OFFSET_CHECK(SLeadEscortSituationActorStateSaveData, m_bAllocatedForSituation, 0x4);
+ZHM_OFFSET_CHECK(SLeadEscortSituationActorStateSaveData, m_eState, 0x8);
+ZHM_OFFSET_CHECK(SLeadEscortSituationActorStateSaveData, m_eStatePrevious, 0xC);
+ZHM_OFFSET_CHECK(SLeadEscortSituationActorStateSaveData, m_fDistanceToTarget, 0x10);
+ZHM_OFFSET_CHECK(SLeadEscortSituationActorStateSaveData, m_rCurrentScreenplay, 0x14);
+ZHM_OFFSET_CHECK(SLeadEscortSituationActorStateSaveData, m_rPreferredIntermediateScreenplay, 0x18);
+static_assert(sizeof(SLeadEscortSituationActorStateSaveData) == 0x1C, "Wrong size for SLeadEscortSituationActorStateSaveData");
+static_assert(alignof(SLeadEscortSituationActorStateSaveData) == 0x4, "Wrong alignment for SLeadEscortSituationActorStateSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SLeadEscortSituationActors{
+class alignas(4) SLeadEscortSituationActors
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18701,9 +20479,13 @@ public:
 
 	uint32 m_rActor; // 0x0
 };
+ZHM_OFFSET_CHECK(SLeadEscortSituationActors, m_rActor, 0x0);
+static_assert(sizeof(SLeadEscortSituationActors) == 0x4, "Wrong size for SLeadEscortSituationActors");
+static_assert(alignof(SLeadEscortSituationActors) == 0x4, "Wrong alignment for SLeadEscortSituationActors");
 
 // Size: 0x78
-class /*alignas(8)*/ SLeadEscortSituationSaveData{
+class alignas(8) SLeadEscortSituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18720,23 +20502,38 @@ public:
 	bool m_bTargetDead; // 0x2
 	bool m_bTargetInRange; // 0x3
 	bool m_bAllEscortsAreDead; // 0x4
-	uint8_t _pad5[3] {};
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bTargetIsMoving; // 0x14
-	uint8_t _pad15[3] {};
 	ZLeadEscortSituationEntity::ETargetState m_eTargetState; // 0x18
 	EActorEmotionState m_eTargetEmotionState; // 0x1C
 	ZActBehaviorEntity::EState m_eTargetActState; // 0x20
 	float32 m_fTargetNotMovingTime; // 0x24
 	float32 m_fTargetAgitationCooldownTimer; // 0x28
-	uint8_t _pad2C[4] {};
 	TArray<SLeadEscortSituationActors> m_aAddedActors; // 0x30
 	TArray<SLeadEscortSituationActorStateSaveData> m_aStates; // 0x48
 	TArray<uint32> m_aEscortActs; // 0x60
 };
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_bActivated, 0x0);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_bMayEscort, 0x1);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_bTargetDead, 0x2);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_bTargetInRange, 0x3);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_bAllEscortsAreDead, 0x4);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_vLastPosition, 0x8);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_bTargetIsMoving, 0x14);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_eTargetState, 0x18);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_eTargetEmotionState, 0x1C);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_eTargetActState, 0x20);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_fTargetNotMovingTime, 0x24);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_fTargetAgitationCooldownTimer, 0x28);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_aAddedActors, 0x30);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_aStates, 0x48);
+ZHM_OFFSET_CHECK(SLeadEscortSituationSaveData, m_aEscortActs, 0x60);
+static_assert(sizeof(SLeadEscortSituationSaveData) == 0x78, "Wrong size for SLeadEscortSituationSaveData");
+static_assert(alignof(SLeadEscortSituationSaveData) == 0x8, "Wrong alignment for SLeadEscortSituationSaveData");
 
 // Size: 0x28
-class /*alignas(8)*/ SLevelReferenceableEntitieSaveData{
+class alignas(8) SLevelReferenceableEntitieSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18751,9 +20548,14 @@ public:
 	ZString m_sSceneResource; // 0x0
 	TArray<ZString> m_aAdditionalBrickResources; // 0x10
 };
+ZHM_OFFSET_CHECK(SLevelReferenceableEntitieSaveData, m_sSceneResource, 0x0);
+ZHM_OFFSET_CHECK(SLevelReferenceableEntitieSaveData, m_aAdditionalBrickResources, 0x10);
+static_assert(sizeof(SLevelReferenceableEntitieSaveData) == 0x28, "Wrong size for SLevelReferenceableEntitieSaveData");
+static_assert(alignof(SLevelReferenceableEntitieSaveData) == 0x8, "Wrong alignment for SLevelReferenceableEntitieSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SObjetiveSaveData{
+class alignas(8) SObjetiveSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18766,12 +20568,16 @@ public:
 	bool operator!=(const SObjetiveSaveData& p_Other) const { return !(*this == p_Other); }
 
 	IContractObjective::Type m_eType; // 0x0
-	uint8_t _pad4[4] {};
 	ZVariant m_SaveData; // 0x8
 };
+ZHM_OFFSET_CHECK(SObjetiveSaveData, m_eType, 0x0);
+ZHM_OFFSET_CHECK(SObjetiveSaveData, m_SaveData, 0x8);
+static_assert(sizeof(SObjetiveSaveData) == 0x18, "Wrong size for SObjetiveSaveData");
+static_assert(alignof(SObjetiveSaveData) == 0x8, "Wrong alignment for SObjetiveSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SSoundAmbienceSaveData{
+class alignas(4) SSoundAmbienceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18788,11 +20594,18 @@ public:
 	float32 m_fTransitionAmount; // 0x8
 	bool m_bEnteredFromSide0; // 0xC
 	bool m_bInTransition; // 0xD
-	uint8_t _padE[2] {};
 };
+ZHM_OFFSET_CHECK(SSoundAmbienceSaveData, m_rCurrentAmbience, 0x0);
+ZHM_OFFSET_CHECK(SSoundAmbienceSaveData, m_rCurrentGate, 0x4);
+ZHM_OFFSET_CHECK(SSoundAmbienceSaveData, m_fTransitionAmount, 0x8);
+ZHM_OFFSET_CHECK(SSoundAmbienceSaveData, m_bEnteredFromSide0, 0xC);
+ZHM_OFFSET_CHECK(SSoundAmbienceSaveData, m_bInTransition, 0xD);
+static_assert(sizeof(SSoundAmbienceSaveData) == 0x10, "Wrong size for SSoundAmbienceSaveData");
+static_assert(alignof(SSoundAmbienceSaveData) == 0x4, "Wrong alignment for SSoundAmbienceSaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SLightFlickerEntitySaveData{
+class alignas(1) SLightFlickerEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18807,9 +20620,14 @@ public:
 	bool m_bLightOn; // 0x0
 	bool m_bFlickerOn; // 0x1
 };
+ZHM_OFFSET_CHECK(SLightFlickerEntitySaveData, m_bLightOn, 0x0);
+ZHM_OFFSET_CHECK(SLightFlickerEntitySaveData, m_bFlickerOn, 0x1);
+static_assert(sizeof(SLightFlickerEntitySaveData) == 0x2, "Wrong size for SLightFlickerEntitySaveData");
+static_assert(alignof(SLightFlickerEntitySaveData) == 0x1, "Wrong alignment for SLightFlickerEntitySaveData");
 
 // Size: 0x10
-class /*alignas(8)*/ SLoadRuntimeResourceResult{
+class alignas(8) SLoadRuntimeResourceResult
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18823,9 +20641,13 @@ public:
 
 	ZString sFilePath; // 0x0
 };
+ZHM_OFFSET_CHECK(SLoadRuntimeResourceResult, sFilePath, 0x0);
+static_assert(sizeof(SLoadRuntimeResourceResult) == 0x10, "Wrong size for SLoadRuntimeResourceResult");
+static_assert(alignof(SLoadRuntimeResourceResult) == 0x8, "Wrong alignment for SLoadRuntimeResourceResult");
 
 // Size: 0x60
-class /*alignas(8)*/ SLocalizedVideoData{
+class alignas(8) SLocalizedVideoData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18842,9 +20664,16 @@ public:
 	TArray<ZString> SubtitleLanguages; // 0x30
 	TArray<ZString> SubtitleMarkupsPerLanguage; // 0x48
 };
+ZHM_OFFSET_CHECK(SLocalizedVideoData, AudioLanguages, 0x0);
+ZHM_OFFSET_CHECK(SLocalizedVideoData, VideoRidsPerAudioLanguage, 0x18);
+ZHM_OFFSET_CHECK(SLocalizedVideoData, SubtitleLanguages, 0x30);
+ZHM_OFFSET_CHECK(SLocalizedVideoData, SubtitleMarkupsPerLanguage, 0x48);
+static_assert(sizeof(SLocalizedVideoData) == 0x60, "Wrong size for SLocalizedVideoData");
+static_assert(alignof(SLocalizedVideoData) == 0x8, "Wrong alignment for SLocalizedVideoData");
 
 // Size: 0x18
-class /*alignas(8)*/ SLockdownManagerAIZoneSaveData{
+class alignas(8) SLockdownManagerAIZoneSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18859,11 +20688,16 @@ public:
 	ZGameTime m_tExpiry; // 0x0
 	ZGameTime m_tExpiryHeroOutside; // 0x8
 	uint32 m_rZone; // 0x10
-	uint8_t _pad14[4] {};
 };
+ZHM_OFFSET_CHECK(SLockdownManagerAIZoneSaveData, m_tExpiry, 0x0);
+ZHM_OFFSET_CHECK(SLockdownManagerAIZoneSaveData, m_tExpiryHeroOutside, 0x8);
+ZHM_OFFSET_CHECK(SLockdownManagerAIZoneSaveData, m_rZone, 0x10);
+static_assert(sizeof(SLockdownManagerAIZoneSaveData) == 0x18, "Wrong size for SLockdownManagerAIZoneSaveData");
+static_assert(alignof(SLockdownManagerAIZoneSaveData) == 0x8, "Wrong alignment for SLockdownManagerAIZoneSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SLockdownManagerSaveData{
+class alignas(8) SLockdownManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18877,9 +20711,13 @@ public:
 
 	TArray<SLockdownManagerAIZoneSaveData> m_aAIZones; // 0x0
 };
+ZHM_OFFSET_CHECK(SLockdownManagerSaveData, m_aAIZones, 0x0);
+static_assert(sizeof(SLockdownManagerSaveData) == 0x18, "Wrong size for SLockdownManagerSaveData");
+static_assert(alignof(SLockdownManagerSaveData) == 0x8, "Wrong alignment for SLockdownManagerSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SManHuntServiceSaveData{
+class alignas(8) SManHuntServiceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18893,12 +20731,17 @@ public:
 
 	TArray<uint16> m_rGuardNodes; // 0x0
 	uint16 m_rInitialNode; // 0x18
-	uint8_t _pad1A[2] {};
 	float32 m_fGuardSightRange; // 0x1C
 };
+ZHM_OFFSET_CHECK(SManHuntServiceSaveData, m_rGuardNodes, 0x0);
+ZHM_OFFSET_CHECK(SManHuntServiceSaveData, m_rInitialNode, 0x18);
+ZHM_OFFSET_CHECK(SManHuntServiceSaveData, m_fGuardSightRange, 0x1C);
+static_assert(sizeof(SManHuntServiceSaveData) == 0x20, "Wrong size for SManHuntServiceSaveData");
+static_assert(alignof(SManHuntServiceSaveData) == 0x8, "Wrong alignment for SManHuntServiceSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SMapMarkerData{
+class alignas(8) SMapMarkerData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18912,9 +20755,13 @@ public:
 
 	TArray<SVector2> pathPoints; // 0x0
 };
+ZHM_OFFSET_CHECK(SMapMarkerData, pathPoints, 0x0);
+static_assert(sizeof(SMapMarkerData) == 0x18, "Wrong size for SMapMarkerData");
+static_assert(alignof(SMapMarkerData) == 0x8, "Wrong alignment for SMapMarkerData");
 
 // Size: 0x10
-class /*alignas(4)*/ SMathDistanceSaveData_SVector2{
+class alignas(4) SMathDistanceSaveData_SVector2
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18929,9 +20776,14 @@ public:
 	SVector2 m_fA; // 0x0
 	SVector2 m_fB; // 0x8
 };
+ZHM_OFFSET_CHECK(SMathDistanceSaveData_SVector2, m_fA, 0x0);
+ZHM_OFFSET_CHECK(SMathDistanceSaveData_SVector2, m_fB, 0x8);
+static_assert(sizeof(SMathDistanceSaveData_SVector2) == 0x10, "Wrong size for SMathDistanceSaveData_SVector2");
+static_assert(alignof(SMathDistanceSaveData_SVector2) == 0x4, "Wrong alignment for SMathDistanceSaveData_SVector2");
 
 // Size: 0x18
-class /*alignas(4)*/ SMathDistanceSaveData_SVector3{
+class alignas(4) SMathDistanceSaveData_SVector3
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18946,9 +20798,14 @@ public:
 	SVector3 m_fA; // 0x0
 	SVector3 m_fB; // 0xC
 };
+ZHM_OFFSET_CHECK(SMathDistanceSaveData_SVector3, m_fA, 0x0);
+ZHM_OFFSET_CHECK(SMathDistanceSaveData_SVector3, m_fB, 0xC);
+static_assert(sizeof(SMathDistanceSaveData_SVector3) == 0x18, "Wrong size for SMathDistanceSaveData_SVector3");
+static_assert(alignof(SMathDistanceSaveData_SVector3) == 0x4, "Wrong alignment for SMathDistanceSaveData_SVector3");
 
 // Size: 0x20
-class /*alignas(4)*/ SMathDistanceSaveData_SVector4{
+class alignas(4) SMathDistanceSaveData_SVector4
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18963,9 +20820,14 @@ public:
 	SVector4 m_fA; // 0x0
 	SVector4 m_fB; // 0x10
 };
+ZHM_OFFSET_CHECK(SMathDistanceSaveData_SVector4, m_fA, 0x0);
+ZHM_OFFSET_CHECK(SMathDistanceSaveData_SVector4, m_fB, 0x10);
+static_assert(sizeof(SMathDistanceSaveData_SVector4) == 0x20, "Wrong size for SMathDistanceSaveData_SVector4");
+static_assert(alignof(SMathDistanceSaveData_SVector4) == 0x4, "Wrong alignment for SMathDistanceSaveData_SVector4");
 
 // Size: 0x24
-class /*alignas(4)*/ SMatrix33{
+class alignas(4) SMatrix33
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -18981,9 +20843,15 @@ public:
 	SVector3 YAxis; // 0xC
 	SVector3 ZAxis; // 0x18
 };
+ZHM_OFFSET_CHECK(SMatrix33, XAxis, 0x0);
+ZHM_OFFSET_CHECK(SMatrix33, YAxis, 0xC);
+ZHM_OFFSET_CHECK(SMatrix33, ZAxis, 0x18);
+static_assert(sizeof(SMatrix33) == 0x24, "Wrong size for SMatrix33");
+static_assert(alignof(SMatrix33) == 0x4, "Wrong alignment for SMatrix33");
 
 // Size: 0x40
-class /*alignas(4)*/ SMatrix44{
+class alignas(4) SMatrix44
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19012,9 +20880,28 @@ public:
 	float32 m43; // 0x38
 	float32 m44; // 0x3C
 };
+ZHM_OFFSET_CHECK(SMatrix44, m11, 0x0);
+ZHM_OFFSET_CHECK(SMatrix44, m12, 0x4);
+ZHM_OFFSET_CHECK(SMatrix44, m13, 0x8);
+ZHM_OFFSET_CHECK(SMatrix44, m14, 0xC);
+ZHM_OFFSET_CHECK(SMatrix44, m21, 0x10);
+ZHM_OFFSET_CHECK(SMatrix44, m22, 0x14);
+ZHM_OFFSET_CHECK(SMatrix44, m23, 0x18);
+ZHM_OFFSET_CHECK(SMatrix44, m24, 0x1C);
+ZHM_OFFSET_CHECK(SMatrix44, m31, 0x20);
+ZHM_OFFSET_CHECK(SMatrix44, m32, 0x24);
+ZHM_OFFSET_CHECK(SMatrix44, m33, 0x28);
+ZHM_OFFSET_CHECK(SMatrix44, m34, 0x2C);
+ZHM_OFFSET_CHECK(SMatrix44, m41, 0x30);
+ZHM_OFFSET_CHECK(SMatrix44, m42, 0x34);
+ZHM_OFFSET_CHECK(SMatrix44, m43, 0x38);
+ZHM_OFFSET_CHECK(SMatrix44, m44, 0x3C);
+static_assert(sizeof(SMatrix44) == 0x40, "Wrong size for SMatrix44");
+static_assert(alignof(SMatrix44) == 0x4, "Wrong alignment for SMatrix44");
 
 // Size: 0x18
-class /*alignas(4)*/ SMovementAgilitySaveData{
+class alignas(4) SMovementAgilitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19033,9 +20920,18 @@ public:
 	uint32 m_nActiveAnimNode; // 0x10
 	ECameraOffset_old m_eCameraOffset; // 0x14
 };
+ZHM_OFFSET_CHECK(SMovementAgilitySaveData, m_rLedgeGuide, 0x0);
+ZHM_OFFSET_CHECK(SMovementAgilitySaveData, m_fFaceLeftRightTarget, 0x4);
+ZHM_OFFSET_CHECK(SMovementAgilitySaveData, m_ePrevAgilityState, 0x8);
+ZHM_OFFSET_CHECK(SMovementAgilitySaveData, m_eAgilityState, 0xC);
+ZHM_OFFSET_CHECK(SMovementAgilitySaveData, m_nActiveAnimNode, 0x10);
+ZHM_OFFSET_CHECK(SMovementAgilitySaveData, m_eCameraOffset, 0x14);
+static_assert(sizeof(SMovementAgilitySaveData) == 0x18, "Wrong size for SMovementAgilitySaveData");
+static_assert(alignof(SMovementAgilitySaveData) == 0x4, "Wrong alignment for SMovementAgilitySaveData");
 
 // Size: 0x50
-class /*alignas(16)*/ SMovementCoverSaveData{
+class alignas(16) SMovementCoverSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19051,12 +20947,19 @@ public:
 	uint32 m_nCoverAnimNodeID; // 0x4
 	bool m_bLeftSideFacing; // 0x8
 	bool m_bCrouched; // 0x9
-	uint8_t _padA[6] {};
 	SMatrix m_mPositionInCover; // 0x10
 };
+ZHM_OFFSET_CHECK(SMovementCoverSaveData, m_rCoverPlane, 0x0);
+ZHM_OFFSET_CHECK(SMovementCoverSaveData, m_nCoverAnimNodeID, 0x4);
+ZHM_OFFSET_CHECK(SMovementCoverSaveData, m_bLeftSideFacing, 0x8);
+ZHM_OFFSET_CHECK(SMovementCoverSaveData, m_bCrouched, 0x9);
+ZHM_OFFSET_CHECK(SMovementCoverSaveData, m_mPositionInCover, 0x10);
+static_assert(sizeof(SMovementCoverSaveData) == 0x50, "Wrong size for SMovementCoverSaveData");
+static_assert(alignof(SMovementCoverSaveData) == 0x10, "Wrong alignment for SMovementCoverSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SMovementDisguiseSafeZoneSaveData{
+class alignas(4) SMovementDisguiseSafeZoneSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19071,9 +20974,14 @@ public:
 	uint32 m_rSafeZone; // 0x0
 	uint32 m_nSafeZoneAnimNode; // 0x4
 };
+ZHM_OFFSET_CHECK(SMovementDisguiseSafeZoneSaveData, m_rSafeZone, 0x0);
+ZHM_OFFSET_CHECK(SMovementDisguiseSafeZoneSaveData, m_nSafeZoneAnimNode, 0x4);
+static_assert(sizeof(SMovementDisguiseSafeZoneSaveData) == 0x8, "Wrong size for SMovementDisguiseSafeZoneSaveData");
+static_assert(alignof(SMovementDisguiseSafeZoneSaveData) == 0x4, "Wrong alignment for SMovementDisguiseSafeZoneSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SMovementDragBodySaveData{
+class alignas(4) SMovementDragBodySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19088,9 +20996,14 @@ public:
 	uint32 m_rDraggedActor; // 0x0
 	uint32 m_nGrabBoneID; // 0x4
 };
+ZHM_OFFSET_CHECK(SMovementDragBodySaveData, m_rDraggedActor, 0x0);
+ZHM_OFFSET_CHECK(SMovementDragBodySaveData, m_nGrabBoneID, 0x4);
+static_assert(sizeof(SMovementDragBodySaveData) == 0x8, "Wrong size for SMovementDragBodySaveData");
+static_assert(alignof(SMovementDragBodySaveData) == 0x4, "Wrong alignment for SMovementDragBodySaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SMovementDrainPipeSaveData{
+class alignas(4) SMovementDrainPipeSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19104,9 +21017,13 @@ public:
 
 	uint32 m_rDrainPipe; // 0x0
 };
+ZHM_OFFSET_CHECK(SMovementDrainPipeSaveData, m_rDrainPipe, 0x0);
+static_assert(sizeof(SMovementDrainPipeSaveData) == 0x4, "Wrong size for SMovementDrainPipeSaveData");
+static_assert(alignof(SMovementDrainPipeSaveData) == 0x4, "Wrong alignment for SMovementDrainPipeSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SMovementHideInClosetSaveData{
+class alignas(4) SMovementHideInClosetSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19121,9 +21038,14 @@ public:
 	ICloset::EClosetType m_eCurrentClosetType; // 0x0
 	uint32 m_rCloset; // 0x4
 };
+ZHM_OFFSET_CHECK(SMovementHideInClosetSaveData, m_eCurrentClosetType, 0x0);
+ZHM_OFFSET_CHECK(SMovementHideInClosetSaveData, m_rCloset, 0x4);
+static_assert(sizeof(SMovementHideInClosetSaveData) == 0x8, "Wrong size for SMovementHideInClosetSaveData");
+static_assert(alignof(SMovementHideInClosetSaveData) == 0x4, "Wrong alignment for SMovementHideInClosetSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SMovementLadderSaveData{
+class alignas(4) SMovementLadderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19137,9 +21059,13 @@ public:
 
 	uint32 m_rLadder; // 0x0
 };
+ZHM_OFFSET_CHECK(SMovementLadderSaveData, m_rLadder, 0x0);
+static_assert(sizeof(SMovementLadderSaveData) == 0x4, "Wrong size for SMovementLadderSaveData");
+static_assert(alignof(SMovementLadderSaveData) == 0x4, "Wrong alignment for SMovementLadderSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SMovementLocomotionSaveData{
+class alignas(1) SMovementLocomotionSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19153,9 +21079,13 @@ public:
 
 	bool m_bIsSneaking; // 0x0
 };
+ZHM_OFFSET_CHECK(SMovementLocomotionSaveData, m_bIsSneaking, 0x0);
+static_assert(sizeof(SMovementLocomotionSaveData) == 0x1, "Wrong size for SMovementLocomotionSaveData");
+static_assert(alignof(SMovementLocomotionSaveData) == 0x1, "Wrong alignment for SMovementLocomotionSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SMusicGridData{
+class alignas(4) SMusicGridData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19170,9 +21100,14 @@ public:
 	float32 m_fGridDurationSec; // 0x0
 	float32 m_fGridOffsetSec; // 0x4
 };
+ZHM_OFFSET_CHECK(SMusicGridData, m_fGridDurationSec, 0x0);
+ZHM_OFFSET_CHECK(SMusicGridData, m_fGridOffsetSec, 0x4);
+static_assert(sizeof(SMusicGridData) == 0x8, "Wrong size for SMusicGridData");
+static_assert(alignof(SMusicGridData) == 0x4, "Wrong alignment for SMusicGridData");
 
 // Size: 0x28
-class /*alignas(8)*/ SObserversGroupSaveData{
+class alignas(8) SObserversGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19185,14 +21120,18 @@ public:
 	bool operator!=(const SObserversGroupSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_target; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<uint32> m_aWaitingObservers; // 0x8
 	float32 m_observerDistanceMax; // 0x20
-	uint8_t _pad24[4] {};
 };
+ZHM_OFFSET_CHECK(SObserversGroupSaveData, m_target, 0x0);
+ZHM_OFFSET_CHECK(SObserversGroupSaveData, m_aWaitingObservers, 0x8);
+ZHM_OFFSET_CHECK(SObserversGroupSaveData, m_observerDistanceMax, 0x20);
+static_assert(sizeof(SObserversGroupSaveData) == 0x28, "Wrong size for SObserversGroupSaveData");
+static_assert(alignof(SObserversGroupSaveData) == 0x8, "Wrong alignment for SObserversGroupSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SOnlineEvent{
+class alignas(8) SOnlineEvent
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19207,9 +21146,14 @@ public:
 	ZString sName; // 0x0
 	ZDynamicObject data; // 0x10
 };
+ZHM_OFFSET_CHECK(SOnlineEvent, sName, 0x0);
+ZHM_OFFSET_CHECK(SOnlineEvent, data, 0x10);
+static_assert(sizeof(SOnlineEvent) == 0x20, "Wrong size for SOnlineEvent");
+static_assert(alignof(SOnlineEvent) == 0x8, "Wrong alignment for SOnlineEvent");
 
 // Size: 0x40
-class /*alignas(8)*/ SOnlineSaveData{
+class alignas(8) SOnlineSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19224,13 +21168,20 @@ public:
 	ZString m_sName; // 0x0
 	int64 m_nTimeStamp; // 0x10
 	bool m_bIsOnline; // 0x18
-	uint8_t _pad19[7] {};
 	ZString m_sContractSessionId; // 0x20
 	ZString m_sLastEventToken; // 0x30
 };
+ZHM_OFFSET_CHECK(SOnlineSaveData, m_sName, 0x0);
+ZHM_OFFSET_CHECK(SOnlineSaveData, m_nTimeStamp, 0x10);
+ZHM_OFFSET_CHECK(SOnlineSaveData, m_bIsOnline, 0x18);
+ZHM_OFFSET_CHECK(SOnlineSaveData, m_sContractSessionId, 0x20);
+ZHM_OFFSET_CHECK(SOnlineSaveData, m_sLastEventToken, 0x30);
+static_assert(sizeof(SOnlineSaveData) == 0x40, "Wrong size for SOnlineSaveData");
+static_assert(alignof(SOnlineSaveData) == 0x8, "Wrong alignment for SOnlineSaveData");
 
 // Size: 0x10
-class /*alignas(8)*/ SOptionValueSaveData{
+class alignas(8) SOptionValueSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19244,9 +21195,13 @@ public:
 
 	ZVariant m_Value; // 0x0
 };
+ZHM_OFFSET_CHECK(SOptionValueSaveData, m_Value, 0x0);
+static_assert(sizeof(SOptionValueSaveData) == 0x10, "Wrong size for SOptionValueSaveData");
+static_assert(alignof(SOptionValueSaveData) == 0x8, "Wrong alignment for SOptionValueSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SPFObstactleSaveData{
+class alignas(1) SPFObstactleSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19260,9 +21215,13 @@ public:
 
 	bool m_bEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SPFObstactleSaveData, m_bEnabled, 0x0);
+static_assert(sizeof(SPFObstactleSaveData) == 0x1, "Wrong size for SPFObstactleSaveData");
+static_assert(alignof(SPFObstactleSaveData) == 0x1, "Wrong alignment for SPFObstactleSaveData");
 
 // Size: 0x1
-class /*alignas(1)*/ SPIPMessageManagerProxySaveData{
+class alignas(1) SPIPMessageManagerProxySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19276,9 +21235,13 @@ public:
 
 	bool m_bEnabled; // 0x0
 };
+ZHM_OFFSET_CHECK(SPIPMessageManagerProxySaveData, m_bEnabled, 0x0);
+static_assert(sizeof(SPIPMessageManagerProxySaveData) == 0x1, "Wrong size for SPIPMessageManagerProxySaveData");
+static_assert(alignof(SPIPMessageManagerProxySaveData) == 0x1, "Wrong alignment for SPIPMessageManagerProxySaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SPackedAnimSetEntry{
+class alignas(8) SPackedAnimSetEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19294,9 +21257,15 @@ public:
 	TResourcePtr m_pAnimation; // 0x10
 	TResourcePtr m_pBoneMask; // 0x18
 };
+ZHM_OFFSET_CHECK(SPackedAnimSetEntry, m_sName, 0x0);
+ZHM_OFFSET_CHECK(SPackedAnimSetEntry, m_pAnimation, 0x10);
+ZHM_OFFSET_CHECK(SPackedAnimSetEntry, m_pBoneMask, 0x18);
+static_assert(sizeof(SPackedAnimSetEntry) == 0x20, "Wrong size for SPackedAnimSetEntry");
+static_assert(alignof(SPackedAnimSetEntry) == 0x8, "Wrong alignment for SPackedAnimSetEntry");
 
 // Size: 0x4
-class /*alignas(4)*/ SPatrolGroupSaveData{
+class alignas(4) SPatrolGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19310,25 +21279,13 @@ public:
 
 	int32 m_nRouteID; // 0x0
 };
-
-// Size: 0x1
-class /*alignas(1)*/ SPatrolOrderSaveData{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SPatrolOrderSaveData& p_Other) const;
-	bool operator!=(const SPatrolOrderSaveData& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[1] {};
-};
+ZHM_OFFSET_CHECK(SPatrolGroupSaveData, m_nRouteID, 0x0);
+static_assert(sizeof(SPatrolGroupSaveData) == 0x4, "Wrong size for SPatrolGroupSaveData");
+static_assert(alignof(SPatrolGroupSaveData) == 0x4, "Wrong alignment for SPatrolGroupSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SPerceptibleCrowdBodySaveData{
+class alignas(4) SPerceptibleCrowdBodySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19343,9 +21300,14 @@ public:
 	uint32 m_rCombatZone; // 0x0
 	int32 m_rSharedKnowledge; // 0x4
 };
+ZHM_OFFSET_CHECK(SPerceptibleCrowdBodySaveData, m_rCombatZone, 0x0);
+ZHM_OFFSET_CHECK(SPerceptibleCrowdBodySaveData, m_rSharedKnowledge, 0x4);
+static_assert(sizeof(SPerceptibleCrowdBodySaveData) == 0x8, "Wrong size for SPerceptibleCrowdBodySaveData");
+static_assert(alignof(SPerceptibleCrowdBodySaveData) == 0x4, "Wrong alignment for SPerceptibleCrowdBodySaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SPersistentEntitySaveData{
+class alignas(8) SPersistentEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19361,9 +21323,15 @@ public:
 	TArray<uint64> m_aEntityIDs; // 0x8
 	TArray<ZString> m_aEntityNames; // 0x20
 };
+ZHM_OFFSET_CHECK(SPersistentEntitySaveData, m_nResourceId, 0x0);
+ZHM_OFFSET_CHECK(SPersistentEntitySaveData, m_aEntityIDs, 0x8);
+ZHM_OFFSET_CHECK(SPersistentEntitySaveData, m_aEntityNames, 0x20);
+static_assert(sizeof(SPersistentEntitySaveData) == 0x38, "Wrong size for SPersistentEntitySaveData");
+static_assert(alignof(SPersistentEntitySaveData) == 0x8, "Wrong alignment for SPersistentEntitySaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SPersistentEntitySaveDataList{
+class alignas(8) SPersistentEntitySaveDataList
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19379,9 +21347,15 @@ public:
 	TArray<uint64> m_mDynamicObjectIDGenerationKeys; // 0x18
 	TArray<uint64> m_mDynamicObjectIDGenerationValues; // 0x30
 };
+ZHM_OFFSET_CHECK(SPersistentEntitySaveDataList, m_aEntityDatas, 0x0);
+ZHM_OFFSET_CHECK(SPersistentEntitySaveDataList, m_mDynamicObjectIDGenerationKeys, 0x18);
+ZHM_OFFSET_CHECK(SPersistentEntitySaveDataList, m_mDynamicObjectIDGenerationValues, 0x30);
+static_assert(sizeof(SPersistentEntitySaveDataList) == 0x48, "Wrong size for SPersistentEntitySaveDataList");
+static_assert(alignof(SPersistentEntitySaveDataList) == 0x8, "Wrong alignment for SPersistentEntitySaveDataList");
 
 // Size: 0x3
-class /*alignas(1)*/ SPhysicsSaveData{
+class alignas(1) SPhysicsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19397,9 +21371,15 @@ public:
 	bool m_bIsKinematicBody; // 0x1
 	bool m_bIsVisible; // 0x2
 };
+ZHM_OFFSET_CHECK(SPhysicsSaveData, m_bIsInPhysicsWorld, 0x0);
+ZHM_OFFSET_CHECK(SPhysicsSaveData, m_bIsKinematicBody, 0x1);
+ZHM_OFFSET_CHECK(SPhysicsSaveData, m_bIsVisible, 0x2);
+static_assert(sizeof(SPhysicsSaveData) == 0x3, "Wrong size for SPhysicsSaveData");
+static_assert(alignof(SPhysicsSaveData) == 0x1, "Wrong alignment for SPhysicsSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SPhysicsListSaveData{
+class alignas(8) SPhysicsListSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19414,9 +21394,14 @@ public:
 	TArray<uint32> m_aEntityRefs; // 0x0
 	TArray<SPhysicsSaveData> m_aEntityDatas; // 0x18
 };
+ZHM_OFFSET_CHECK(SPhysicsListSaveData, m_aEntityRefs, 0x0);
+ZHM_OFFSET_CHECK(SPhysicsListSaveData, m_aEntityDatas, 0x18);
+static_assert(sizeof(SPhysicsListSaveData) == 0x30, "Wrong size for SPhysicsListSaveData");
+static_assert(alignof(SPhysicsListSaveData) == 0x8, "Wrong alignment for SPhysicsListSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SPrivateAreaSaveData{
+class alignas(8) SPrivateAreaSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19430,12 +21415,17 @@ public:
 
 	bool m_bIsInside; // 0x0
 	bool m_bSpotted; // 0x1
-	uint8_t _pad2[6] {};
 	TArray<uint32> m_aActiveActors; // 0x8
 };
+ZHM_OFFSET_CHECK(SPrivateAreaSaveData, m_bIsInside, 0x0);
+ZHM_OFFSET_CHECK(SPrivateAreaSaveData, m_bSpotted, 0x1);
+ZHM_OFFSET_CHECK(SPrivateAreaSaveData, m_aActiveActors, 0x8);
+static_assert(sizeof(SPrivateAreaSaveData) == 0x20, "Wrong size for SPrivateAreaSaveData");
+static_assert(alignof(SPrivateAreaSaveData) == 0x8, "Wrong alignment for SPrivateAreaSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SProgressTimerEntitySaveData{
+class alignas(4) SProgressTimerEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19450,11 +21440,16 @@ public:
 	int32 m_nInterval; // 0x0
 	int32 m_nRemaining; // 0x4
 	bool m_bValue; // 0x8
-	uint8_t _pad9[3] {};
 };
+ZHM_OFFSET_CHECK(SProgressTimerEntitySaveData, m_nInterval, 0x0);
+ZHM_OFFSET_CHECK(SProgressTimerEntitySaveData, m_nRemaining, 0x4);
+ZHM_OFFSET_CHECK(SProgressTimerEntitySaveData, m_bValue, 0x8);
+static_assert(sizeof(SProgressTimerEntitySaveData) == 0xC, "Wrong size for SProgressTimerEntitySaveData");
+static_assert(alignof(SProgressTimerEntitySaveData) == 0x4, "Wrong alignment for SProgressTimerEntitySaveData");
 
 // Size: 0x14
-class /*alignas(4)*/ SRandomTimerEntitySaveData{
+class alignas(4) SRandomTimerEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19468,15 +21463,23 @@ public:
 
 	bool m_bEnabled; // 0x0
 	bool m_bRegistered; // 0x1
-	uint8_t _pad2[2] {};
 	float32 m_fMinTime; // 0x4
 	float32 m_fMaxTime; // 0x8
 	float32 m_fProbability; // 0xC
 	int32 m_nRemaining; // 0x10
 };
+ZHM_OFFSET_CHECK(SRandomTimerEntitySaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SRandomTimerEntitySaveData, m_bRegistered, 0x1);
+ZHM_OFFSET_CHECK(SRandomTimerEntitySaveData, m_fMinTime, 0x4);
+ZHM_OFFSET_CHECK(SRandomTimerEntitySaveData, m_fMaxTime, 0x8);
+ZHM_OFFSET_CHECK(SRandomTimerEntitySaveData, m_fProbability, 0xC);
+ZHM_OFFSET_CHECK(SRandomTimerEntitySaveData, m_nRemaining, 0x10);
+static_assert(sizeof(SRandomTimerEntitySaveData) == 0x14, "Wrong size for SRandomTimerEntitySaveData");
+static_assert(alignof(SRandomTimerEntitySaveData) == 0x4, "Wrong alignment for SRandomTimerEntitySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SRandomTimerEntitiesSaveData{
+class alignas(8) SRandomTimerEntitiesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19491,9 +21494,60 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SRandomTimerEntitySaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SRandomTimerEntitiesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SRandomTimerEntitiesSaveData, m_aData, 0x18);
+static_assert(sizeof(SRandomTimerEntitiesSaveData) == 0x30, "Wrong size for SRandomTimerEntitiesSaveData");
+static_assert(alignof(SRandomTimerEntitiesSaveData) == 0x8, "Wrong alignment for SRandomTimerEntitiesSaveData");
+
+// Size: 0x28
+class alignas(8) SRateBasedValueInterpolatorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SRateBasedValueInterpolatorSaveData& p_Other) const;
+	bool operator!=(const SRateBasedValueInterpolatorSaveData& p_Other) const { return !(*this == p_Other); }
+
+	bool m_bInterpolating; // 0x0
+	ZVariant m_target; // 0x8
+	ZVariant m_currentRate; // 0x18
+};
+ZHM_OFFSET_CHECK(SRateBasedValueInterpolatorSaveData, m_bInterpolating, 0x0);
+ZHM_OFFSET_CHECK(SRateBasedValueInterpolatorSaveData, m_target, 0x8);
+ZHM_OFFSET_CHECK(SRateBasedValueInterpolatorSaveData, m_currentRate, 0x18);
+static_assert(sizeof(SRateBasedValueInterpolatorSaveData) == 0x28, "Wrong size for SRateBasedValueInterpolatorSaveData");
+static_assert(alignof(SRateBasedValueInterpolatorSaveData) == 0x8, "Wrong alignment for SRateBasedValueInterpolatorSaveData");
+
+// Size: 0x30
+class alignas(8) SRateBasedSpatialInterpolatorSaveData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SRateBasedSpatialInterpolatorSaveData& p_Other) const;
+	bool operator!=(const SRateBasedSpatialInterpolatorSaveData& p_Other) const { return !(*this == p_Other); }
+
+	uint32 m_rSpatial; // 0x0
+	SRateBasedValueInterpolatorSaveData m_data; // 0x8
+};
+ZHM_OFFSET_CHECK(SRateBasedSpatialInterpolatorSaveData, m_rSpatial, 0x0);
+ZHM_OFFSET_CHECK(SRateBasedSpatialInterpolatorSaveData, m_data, 0x8);
+static_assert(sizeof(SRateBasedSpatialInterpolatorSaveData) == 0x30, "Wrong size for SRateBasedSpatialInterpolatorSaveData");
+static_assert(alignof(SRateBasedSpatialInterpolatorSaveData) == 0x8, "Wrong alignment for SRateBasedSpatialInterpolatorSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ ZBitArray{
+class alignas(8) ZBitArray
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19507,11 +21561,15 @@ public:
 
 	TArray<uint8> m_aBytes; // 0x0
 	uint32 m_nSize; // 0x18
-	uint8_t _pad1C[4] {};
 };
+ZHM_OFFSET_CHECK(ZBitArray, m_aBytes, 0x0);
+ZHM_OFFSET_CHECK(ZBitArray, m_nSize, 0x18);
+static_assert(sizeof(ZBitArray) == 0x20, "Wrong size for ZBitArray");
+static_assert(alignof(ZBitArray) == 0x8, "Wrong alignment for ZBitArray");
 
 // Size: 0xD0
-class /*alignas(16)*/ SReasoningGrid{
+class alignas(16) SReasoningGrid
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19526,16 +21584,24 @@ public:
 	TArray<SGWaypoint> m_WaypointList; // 0x0
 	ZBitArray m_LowVisibilityBits; // 0x18
 	ZBitArray m_HighVisibilityBits; // 0x38
-	uint8_t _pad58[8] {};
 	SGProperties m_Properties; // 0x60
 	uint32 m_nNodeCount; // 0x90
-	uint8_t _pad94[4] {};
 	TArray<uint8> m_pVisibilityData; // 0x98
 	ZBitArray m_deadEndData; // 0xB0
 };
+ZHM_OFFSET_CHECK(SReasoningGrid, m_WaypointList, 0x0);
+ZHM_OFFSET_CHECK(SReasoningGrid, m_LowVisibilityBits, 0x18);
+ZHM_OFFSET_CHECK(SReasoningGrid, m_HighVisibilityBits, 0x38);
+ZHM_OFFSET_CHECK(SReasoningGrid, m_Properties, 0x60);
+ZHM_OFFSET_CHECK(SReasoningGrid, m_nNodeCount, 0x90);
+ZHM_OFFSET_CHECK(SReasoningGrid, m_pVisibilityData, 0x98);
+ZHM_OFFSET_CHECK(SReasoningGrid, m_deadEndData, 0xB0);
+static_assert(sizeof(SReasoningGrid) == 0xD0, "Wrong size for SReasoningGrid");
+static_assert(alignof(SReasoningGrid) == 0x10, "Wrong alignment for SReasoningGrid");
 
 // Size: 0x28
-class /*alignas(8)*/ SRecoverUnconsciousGroupSaveData{
+class alignas(8) SRecoverUnconsciousGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19554,11 +21620,20 @@ public:
 	bool m_bEscalate; // 0x24
 	bool m_bWokenUpInTheGroup; // 0x25
 	bool m_bFastWakeUp; // 0x26
-	uint8_t _pad27[1] {};
 };
+ZHM_OFFSET_CHECK(SRecoverUnconsciousGroupSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SRecoverUnconsciousGroupSaveData, m_rVictim, 0x18);
+ZHM_OFFSET_CHECK(SRecoverUnconsciousGroupSaveData, m_rWaker, 0x1C);
+ZHM_OFFSET_CHECK(SRecoverUnconsciousGroupSaveData, m_fTimer, 0x20);
+ZHM_OFFSET_CHECK(SRecoverUnconsciousGroupSaveData, m_bEscalate, 0x24);
+ZHM_OFFSET_CHECK(SRecoverUnconsciousGroupSaveData, m_bWokenUpInTheGroup, 0x25);
+ZHM_OFFSET_CHECK(SRecoverUnconsciousGroupSaveData, m_bFastWakeUp, 0x26);
+static_assert(sizeof(SRecoverUnconsciousGroupSaveData) == 0x28, "Wrong size for SRecoverUnconsciousGroupSaveData");
+static_assert(alignof(SRecoverUnconsciousGroupSaveData) == 0x8, "Wrong alignment for SRecoverUnconsciousGroupSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SRememberActorSaveData{
+class alignas(8) SRememberActorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19572,9 +21647,13 @@ public:
 
 	TArray<uint32> m_Actors; // 0x0
 };
+ZHM_OFFSET_CHECK(SRememberActorSaveData, m_Actors, 0x0);
+static_assert(sizeof(SRememberActorSaveData) == 0x18, "Wrong size for SRememberActorSaveData");
+static_assert(alignof(SRememberActorSaveData) == 0x8, "Wrong alignment for SRememberActorSaveData");
 
 // Size: 0x3
-class /*alignas(1)*/ SRemoteControlReceiverSaveData{
+class alignas(1) SRemoteControlReceiverSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19590,9 +21669,15 @@ public:
 	bool m_bReceiverActivated; // 0x1
 	bool m_bDestroyed; // 0x2
 };
+ZHM_OFFSET_CHECK(SRemoteControlReceiverSaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SRemoteControlReceiverSaveData, m_bReceiverActivated, 0x1);
+ZHM_OFFSET_CHECK(SRemoteControlReceiverSaveData, m_bDestroyed, 0x2);
+static_assert(sizeof(SRemoteControlReceiverSaveData) == 0x3, "Wrong size for SRemoteControlReceiverSaveData");
+static_assert(alignof(SRemoteControlReceiverSaveData) == 0x1, "Wrong alignment for SRemoteControlReceiverSaveData");
 
 // Size: 0x20
-class /*alignas(8)*/ SRenderVideoPlayerSaveData{
+class alignas(8) SRenderVideoPlayerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19616,9 +21701,23 @@ public:
 	ZGameTime m_StartTime; // 0x10
 	ZGameTime m_RunTime; // 0x18
 };
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bPlaying, 0x0);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bPaused, 0x1);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bLooping, 0x2);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bUseAlpha, 0x3);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bFirstFrame, 0x4);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bRunning, 0x5);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bVideoError, 0x6);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_bShouldBeStopped, 0x7);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_LastVisible, 0x8);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_StartTime, 0x10);
+ZHM_OFFSET_CHECK(SRenderVideoPlayerSaveData, m_RunTime, 0x18);
+static_assert(sizeof(SRenderVideoPlayerSaveData) == 0x20, "Wrong size for SRenderVideoPlayerSaveData");
+static_assert(alignof(SRenderVideoPlayerSaveData) == 0x8, "Wrong alignment for SRenderVideoPlayerSaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SRepositionOrderSaveData{
+class alignas(1) SRepositionOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19633,9 +21732,14 @@ public:
 	bool m_bStrafe; // 0x0
 	bool m_bAimAtTarget; // 0x1
 };
+ZHM_OFFSET_CHECK(SRepositionOrderSaveData, m_bStrafe, 0x0);
+ZHM_OFFSET_CHECK(SRepositionOrderSaveData, m_bAimAtTarget, 0x1);
+static_assert(sizeof(SRepositionOrderSaveData) == 0x2, "Wrong size for SRepositionOrderSaveData");
+static_assert(alignof(SRepositionOrderSaveData) == 0x1, "Wrong alignment for SRepositionOrderSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SRotateEntitySaveData{
+class alignas(4) SRotateEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19648,14 +21752,20 @@ public:
 	bool operator!=(const SRotateEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bEnabled; // 0x0
-	uint8_t _pad1[3] {};
 	float32 m_fXAxisSpeed; // 0x4
 	float32 m_fYAxisSpeed; // 0x8
 	float32 m_fZAxisSpeed; // 0xC
 };
+ZHM_OFFSET_CHECK(SRotateEntitySaveData, m_bEnabled, 0x0);
+ZHM_OFFSET_CHECK(SRotateEntitySaveData, m_fXAxisSpeed, 0x4);
+ZHM_OFFSET_CHECK(SRotateEntitySaveData, m_fYAxisSpeed, 0x8);
+ZHM_OFFSET_CHECK(SRotateEntitySaveData, m_fZAxisSpeed, 0xC);
+static_assert(sizeof(SRotateEntitySaveData) == 0x10, "Wrong size for SRotateEntitySaveData");
+static_assert(alignof(SRotateEntitySaveData) == 0x4, "Wrong alignment for SRotateEntitySaveData");
 
 // Size: 0x3
-class /*alignas(1)*/ SSCCuriousConfiguration{
+class alignas(1) SSCCuriousConfiguration
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19671,9 +21781,15 @@ public:
 	bool m_CanCiviliansInvestigate; // 0x1
 	bool m_CanVIPsInvestigate; // 0x2
 };
+ZHM_OFFSET_CHECK(SSCCuriousConfiguration, m_CanGuardsInvestigate, 0x0);
+ZHM_OFFSET_CHECK(SSCCuriousConfiguration, m_CanCiviliansInvestigate, 0x1);
+ZHM_OFFSET_CHECK(SSCCuriousConfiguration, m_CanVIPsInvestigate, 0x2);
+static_assert(sizeof(SSCCuriousConfiguration) == 0x3, "Wrong size for SSCCuriousConfiguration");
+static_assert(alignof(SSCCuriousConfiguration) == 0x1, "Wrong alignment for SSCCuriousConfiguration");
 
 // Size: 0x28
-class /*alignas(8)*/ SSavableData{
+class alignas(8) SSavableData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19688,11 +21804,16 @@ public:
 	ZVariant m_EntitiesData; // 0x0
 	ZVariant m_Data; // 0x10
 	uint32 m_nId; // 0x20
-	uint8_t _pad24[4] {};
 };
+ZHM_OFFSET_CHECK(SSavableData, m_EntitiesData, 0x0);
+ZHM_OFFSET_CHECK(SSavableData, m_Data, 0x10);
+ZHM_OFFSET_CHECK(SSavableData, m_nId, 0x20);
+static_assert(sizeof(SSavableData) == 0x28, "Wrong size for SSavableData");
+static_assert(alignof(SSavableData) == 0x8, "Wrong alignment for SSavableData");
 
 // Size: 0x10
-class /*alignas(8)*/ SVariantStruct{
+class alignas(8) SVariantStruct
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19706,9 +21827,13 @@ public:
 
 	ZVariant m_Data; // 0x0
 };
+ZHM_OFFSET_CHECK(SVariantStruct, m_Data, 0x0);
+static_assert(sizeof(SVariantStruct) == 0x10, "Wrong size for SVariantStruct");
+static_assert(alignof(SVariantStruct) == 0x8, "Wrong alignment for SVariantStruct");
 
 // Size: 0x30
-class /*alignas(8)*/ SSavableEntitiesSaveData{
+class alignas(8) SSavableEntitiesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19723,9 +21848,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SVariantStruct> m_aEntityData; // 0x18
 };
+ZHM_OFFSET_CHECK(SSavableEntitiesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SSavableEntitiesSaveData, m_aEntityData, 0x18);
+static_assert(sizeof(SSavableEntitiesSaveData) == 0x30, "Wrong size for SSavableEntitiesSaveData");
+static_assert(alignof(SSavableEntitiesSaveData) == 0x8, "Wrong alignment for SSavableEntitiesSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SSaveGameData{
+class alignas(8) SSaveGameData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19738,13 +21868,18 @@ public:
 	bool operator!=(const SSaveGameData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_nVersion; // 0x0
-	uint8_t _pad4[4] {};
 	TArray<SSavableData> m_aSavableObjectsData; // 0x8
 	TArray<SEntityPath> m_aEntityPaths; // 0x20
 };
+ZHM_OFFSET_CHECK(SSaveGameData, m_nVersion, 0x0);
+ZHM_OFFSET_CHECK(SSaveGameData, m_aSavableObjectsData, 0x8);
+ZHM_OFFSET_CHECK(SSaveGameData, m_aEntityPaths, 0x20);
+static_assert(sizeof(SSaveGameData) == 0x38, "Wrong size for SSaveGameData");
+static_assert(alignof(SSaveGameData) == 0x8, "Wrong alignment for SSaveGameData");
 
 // Size: 0xB8
-class /*alignas(8)*/ SSaveGameMetaData{
+class alignas(8) SSaveGameMetaData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19757,10 +21892,8 @@ public:
 	bool operator!=(const SSaveGameMetaData& p_Other) const { return !(*this == p_Other); }
 
 	uint8 nSlot; // 0x0
-	uint8_t _pad1[3] {};
 	ESaveType eSaveType; // 0x4
 	int32 eDifficultyLevel; // 0x8
-	uint8_t _padC[4] {};
 	ZString sContractId; // 0x10
 	ZString sContractTitle; // 0x20
 	ZString sContractType; // 0x30
@@ -19770,13 +21903,29 @@ public:
 	ZString sProfileId; // 0x70
 	bool bIsOnline; // 0x80
 	bool bIsVR; // 0x81
-	uint8_t _pad82[6] {};
 	TArray<uint32> aScreenShot; // 0x88
 	TArray<ERequirementId> aRequirements; // 0xA0
 };
+ZHM_OFFSET_CHECK(SSaveGameMetaData, nSlot, 0x0);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, eSaveType, 0x4);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, eDifficultyLevel, 0x8);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, sContractId, 0x10);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, sContractTitle, 0x20);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, sContractType, 0x30);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, sLocationId, 0x40);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, sContractSessionId, 0x50);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, sLastEventToken, 0x60);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, sProfileId, 0x70);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, bIsOnline, 0x80);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, bIsVR, 0x81);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, aScreenShot, 0x88);
+ZHM_OFFSET_CHECK(SSaveGameMetaData, aRequirements, 0xA0);
+static_assert(sizeof(SSaveGameMetaData) == 0xB8, "Wrong size for SSaveGameMetaData");
+static_assert(alignof(SSaveGameMetaData) == 0x8, "Wrong alignment for SSaveGameMetaData");
 
 // Size: 0xD0
-class /*alignas(8)*/ SSaveGameHeader{
+class alignas(8) SSaveGameHeader
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19795,9 +21944,18 @@ public:
 	int64 nTimeStamp; // 0x10
 	SSaveGameMetaData MetaData; // 0x18
 };
+ZHM_OFFSET_CHECK(SSaveGameHeader, nFourCC, 0x0);
+ZHM_OFFSET_CHECK(SSaveGameHeader, nVersion, 0x4);
+ZHM_OFFSET_CHECK(SSaveGameHeader, nCrc32, 0x8);
+ZHM_OFFSET_CHECK(SSaveGameHeader, nSize, 0xC);
+ZHM_OFFSET_CHECK(SSaveGameHeader, nTimeStamp, 0x10);
+ZHM_OFFSET_CHECK(SSaveGameHeader, MetaData, 0x18);
+static_assert(sizeof(SSaveGameHeader) == 0xD0, "Wrong size for SSaveGameHeader");
+static_assert(alignof(SSaveGameHeader) == 0x8, "Wrong alignment for SSaveGameHeader");
 
 // Size: 0x120
-class /*alignas(8)*/ SScreenplay2ManagerSaveData{
+class alignas(8) SScreenplay2ManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19816,9 +21974,18 @@ public:
 	SDrama2SituationCollectionSaveData m_Drama2SituationData; // 0xC0
 	SDrama2SetupCollectionSaveData m_Drama2SetupData; // 0xF0
 };
+ZHM_OFFSET_CHECK(SScreenplay2ManagerSaveData, m_DramaActorData, 0x0);
+ZHM_OFFSET_CHECK(SScreenplay2ManagerSaveData, m_DramaSituationData, 0x30);
+ZHM_OFFSET_CHECK(SScreenplay2ManagerSaveData, m_DramaSetupData, 0x60);
+ZHM_OFFSET_CHECK(SScreenplay2ManagerSaveData, m_Drama2ActorData, 0x90);
+ZHM_OFFSET_CHECK(SScreenplay2ManagerSaveData, m_Drama2SituationData, 0xC0);
+ZHM_OFFSET_CHECK(SScreenplay2ManagerSaveData, m_Drama2SetupData, 0xF0);
+static_assert(sizeof(SScreenplay2ManagerSaveData) == 0x120, "Wrong size for SScreenplay2ManagerSaveData");
+static_assert(alignof(SScreenplay2ManagerSaveData) == 0x8, "Wrong alignment for SScreenplay2ManagerSaveData");
 
 // Size: 0x90
-class /*alignas(8)*/ SScreenplayManagerSaveData{
+class alignas(8) SScreenplayManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19834,9 +22001,15 @@ public:
 	SDramaSituationCollectionSaveData m_DramaSituationData; // 0x30
 	SDramaSetupCollectionSaveData m_DramaSetupData; // 0x60
 };
+ZHM_OFFSET_CHECK(SScreenplayManagerSaveData, m_DramaActorData, 0x0);
+ZHM_OFFSET_CHECK(SScreenplayManagerSaveData, m_DramaSituationData, 0x30);
+ZHM_OFFSET_CHECK(SScreenplayManagerSaveData, m_DramaSetupData, 0x60);
+static_assert(sizeof(SScreenplayManagerSaveData) == 0x90, "Wrong size for SScreenplayManagerSaveData");
+static_assert(alignof(SScreenplayManagerSaveData) == 0x8, "Wrong alignment for SScreenplayManagerSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SScreenplayRole2HeroSaveState{
+class alignas(4) SScreenplayRole2HeroSaveState
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19850,11 +22023,15 @@ public:
 
 	uint32 m_rCurrentSpeakEntity; // 0x0
 	bool m_bPaused; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SScreenplayRole2HeroSaveState, m_rCurrentSpeakEntity, 0x0);
+ZHM_OFFSET_CHECK(SScreenplayRole2HeroSaveState, m_bPaused, 0x4);
+static_assert(sizeof(SScreenplayRole2HeroSaveState) == 0x8, "Wrong size for SScreenplayRole2HeroSaveState");
+static_assert(alignof(SScreenplayRole2HeroSaveState) == 0x4, "Wrong alignment for SScreenplayRole2HeroSaveState");
 
 // Size: 0x6
-class /*alignas(2)*/ SSecuritySystemCameraSaveData{
+class alignas(2) SSecuritySystemCameraSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19872,9 +22049,17 @@ public:
 	bool m_bWasInvestigated; // 0x4
 	bool m_bDestroyed; // 0x5
 };
+ZHM_OFFSET_CHECK(SSecuritySystemCameraSaveData, m_nEscalation, 0x0);
+ZHM_OFFSET_CHECK(SSecuritySystemCameraSaveData, m_bIsFunctional, 0x2);
+ZHM_OFFSET_CHECK(SSecuritySystemCameraSaveData, m_bHasEnteredOnce, 0x3);
+ZHM_OFFSET_CHECK(SSecuritySystemCameraSaveData, m_bWasInvestigated, 0x4);
+ZHM_OFFSET_CHECK(SSecuritySystemCameraSaveData, m_bDestroyed, 0x5);
+static_assert(sizeof(SSecuritySystemCameraSaveData) == 0x6, "Wrong size for SSecuritySystemCameraSaveData");
+static_assert(alignof(SSecuritySystemCameraSaveData) == 0x2, "Wrong alignment for SSecuritySystemCameraSaveData");
 
 // Size: 0x2
-class /*alignas(1)*/ SSecuritySystemRecorderSaveData{
+class alignas(1) SSecuritySystemRecorderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19889,9 +22074,14 @@ public:
 	bool m_bHasRecordings; // 0x0
 	bool m_bIsFunctional; // 0x1
 };
+ZHM_OFFSET_CHECK(SSecuritySystemRecorderSaveData, m_bHasRecordings, 0x0);
+ZHM_OFFSET_CHECK(SSecuritySystemRecorderSaveData, m_bIsFunctional, 0x1);
+static_assert(sizeof(SSecuritySystemRecorderSaveData) == 0x2, "Wrong size for SSecuritySystemRecorderSaveData");
+static_assert(alignof(SSecuritySystemRecorderSaveData) == 0x1, "Wrong alignment for SSecuritySystemRecorderSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SSentryGroupSaveData{
+class alignas(8) SSentryGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19906,17 +22096,26 @@ public:
 	uint32 m_rTarget; // 0x0
 	uint32 m_pLeader; // 0x4
 	uint32 m_rSentryZone; // 0x8
-	uint8_t _padC[4] {};
 	ZGameTime m_tLastEscalateOrder; // 0x10
 	SFSMSaveData m_fsmState; // 0x18
 	ESentryActionPrompt m_eActionPrompt; // 0x30
 	bool m_bRequestedAction; // 0x34
 	bool m_bShowingWarning; // 0x35
-	uint8_t _pad36[2] {};
 };
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_rTarget, 0x0);
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_pLeader, 0x4);
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_rSentryZone, 0x8);
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_tLastEscalateOrder, 0x10);
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_fsmState, 0x18);
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_eActionPrompt, 0x30);
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_bRequestedAction, 0x34);
+ZHM_OFFSET_CHECK(SSentryGroupSaveData, m_bShowingWarning, 0x35);
+static_assert(sizeof(SSentryGroupSaveData) == 0x38, "Wrong size for SSentryGroupSaveData");
+static_assert(alignof(SSentryGroupSaveData) == 0x8, "Wrong alignment for SSentryGroupSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SSentryOrderSaveData{
+class alignas(4) SSentryOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19930,9 +22129,13 @@ public:
 
 	uint32 m_rSentryZone; // 0x0
 };
+ZHM_OFFSET_CHECK(SSentryOrderSaveData, m_rSentryZone, 0x0);
+static_assert(sizeof(SSentryOrderSaveData) == 0x4, "Wrong size for SSentryOrderSaveData");
+static_assert(alignof(SSentryOrderSaveData) == 0x4, "Wrong alignment for SSentryOrderSaveData");
 
-// Size: 0x88
-class /*alignas(8)*/ SSentryZoneSaveData{
+// Size: 0x90
+class alignas(8) SSentryZoneSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19971,10 +22174,42 @@ public:
 	TArray<bool> m_aDisguisesFriskExemptDisabled; // 0x40
 	TArray<bool> m_aDisguisesDontEscalateOnLineCrossingDisabled; // 0x58
 	TArray<uint32> m_ItemsDroppedInZone; // 0x70
+	uint32 m_rDynamicSentry; // 0x88
 };
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_tGreetingCooldown, 0x0);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_tLoiteringCooldown, 0x8);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_nWarningCount, 0x10);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bShowingWarning, 0x14);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, bLeftThroughWarningZone, 0x15);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, bEnteredThroughEntranceZone, 0x16);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, bInEntranceZone, 0x17);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, bInWarningZone, 0x18);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, bInGreetingZone, 0x19);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, bInReFriskZone, 0x1A);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bInRequiredDisguise, 0x1B);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bInFriskExemptDisguise, 0x1C);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bHasRequiredItem, 0x1D);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bCanShowActionPrompt, 0x1E);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bTargetInAnyZone, 0x1F);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bSituationActive, 0x20);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bFrisked, 0x21);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bItemChecked, 0x22);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bGreeted, 0x23);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bGreetedInstruction, 0x24);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bGreetedLoitering, 0x25);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bGreetedUnexpected, 0x26);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_bInFriskWarningZone, 0x27);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_aDisguisesAllowedDisabled, 0x28);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_aDisguisesFriskExemptDisabled, 0x40);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_aDisguisesDontEscalateOnLineCrossingDisabled, 0x58);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_ItemsDroppedInZone, 0x70);
+ZHM_OFFSET_CHECK(SSentryZoneSaveData, m_rDynamicSentry, 0x88);
+static_assert(sizeof(SSentryZoneSaveData) == 0x90, "Wrong size for SSentryZoneSaveData");
+static_assert(alignof(SSentryZoneSaveData) == 0x8, "Wrong alignment for SSentryZoneSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SSequenceTrackSaveData{
+class alignas(8) SSequenceTrackSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -19987,12 +22222,16 @@ public:
 	bool operator!=(const SSequenceTrackSaveData& p_Other) const { return !(*this == p_Other); }
 
 	uint32 m_rTrackEntity; // 0x0
-	uint8_t _pad4[4] {};
 	ZVariant m_CustomTrackData; // 0x8
 };
+ZHM_OFFSET_CHECK(SSequenceTrackSaveData, m_rTrackEntity, 0x0);
+ZHM_OFFSET_CHECK(SSequenceTrackSaveData, m_CustomTrackData, 0x8);
+static_assert(sizeof(SSequenceTrackSaveData) == 0x18, "Wrong size for SSequenceTrackSaveData");
+static_assert(alignof(SSequenceTrackSaveData) == 0x8, "Wrong alignment for SSequenceTrackSaveData");
 
 // Size: 0x58
-class /*alignas(8)*/ SSequenceSaveData{
+class alignas(8) SSequenceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20008,7 +22247,6 @@ public:
 	ZGameTime m_sequenceTime; // 0x18
 	uint32 m_sequenceOrigin; // 0x20
 	bool m_bHasRunData; // 0x24
-	uint8_t _pad25[3] {};
 	TArray<SSequenceTrackSaveData> m_aTrackSaveData; // 0x28
 	ZGameTime m_effectiveSequenceTime; // 0x40
 	int32 m_nCurrentLoop; // 0x48
@@ -20017,11 +22255,25 @@ public:
 	bool m_bActivatedByIActivatable; // 0x4F
 	bool m_bGettingDeactivated; // 0x50
 	bool m_bOnGameStopped; // 0x51
-	uint8_t _pad52[6] {};
 };
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_commandQueue, 0x0);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_sequenceTime, 0x18);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_sequenceOrigin, 0x20);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_bHasRunData, 0x24);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_aTrackSaveData, 0x28);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_effectiveSequenceTime, 0x40);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_nCurrentLoop, 0x48);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_eStateFlags, 0x4C);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_bPausedOnStart, 0x4E);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_bActivatedByIActivatable, 0x4F);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_bGettingDeactivated, 0x50);
+ZHM_OFFSET_CHECK(SSequenceSaveData, m_bOnGameStopped, 0x51);
+static_assert(sizeof(SSequenceSaveData) == 0x58, "Wrong size for SSequenceSaveData");
+static_assert(alignof(SSequenceSaveData) == 0x8, "Wrong alignment for SSequenceSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SSequenceManagerSaveData{
+class alignas(8) SSequenceManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20036,25 +22288,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SSequenceSaveData> m_aSequenceSaveData; // 0x18
 };
-
-// Size: 0x1
-class /*alignas(1)*/ SSerializedValue{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SSerializedValue& p_Other) const;
-	bool operator!=(const SSerializedValue& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[1] {};
-};
+ZHM_OFFSET_CHECK(SSequenceManagerSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SSequenceManagerSaveData, m_aSequenceSaveData, 0x18);
+static_assert(sizeof(SSequenceManagerSaveData) == 0x30, "Wrong size for SSequenceManagerSaveData");
+static_assert(alignof(SSequenceManagerSaveData) == 0x8, "Wrong alignment for SSequenceManagerSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SSituationConversationGroupSaveData{
+class alignas(8) SSituationConversationGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20068,9 +22309,13 @@ public:
 
 	TArray<uint32> m_members; // 0x0
 };
+ZHM_OFFSET_CHECK(SSituationConversationGroupSaveData, m_members, 0x0);
+static_assert(sizeof(SSituationConversationGroupSaveData) == 0x18, "Wrong size for SSituationConversationGroupSaveData");
+static_assert(alignof(SSituationConversationGroupSaveData) == 0x8, "Wrong alignment for SSituationConversationGroupSaveData");
 
 // Size: 0x40
-class /*alignas(16)*/ SSituationOrderSaveData{
+class alignas(16) SSituationOrderSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20086,10 +22331,17 @@ public:
 	EAISharedEventType m_eType; // 0x10
 	int32 m_nTarget; // 0x14
 	bool m_bHasPosition; // 0x18
-	uint8_t _pad19[7] {};
 	float4 m_vPosition; // 0x20
 	ZVariant m_CustomData; // 0x30
 };
+ZHM_OFFSET_CHECK(SSituationOrderSaveData, m_sClassTypeName, 0x0);
+ZHM_OFFSET_CHECK(SSituationOrderSaveData, m_eType, 0x10);
+ZHM_OFFSET_CHECK(SSituationOrderSaveData, m_nTarget, 0x14);
+ZHM_OFFSET_CHECK(SSituationOrderSaveData, m_bHasPosition, 0x18);
+ZHM_OFFSET_CHECK(SSituationOrderSaveData, m_vPosition, 0x20);
+ZHM_OFFSET_CHECK(SSituationOrderSaveData, m_CustomData, 0x30);
+static_assert(sizeof(SSituationOrderSaveData) == 0x40, "Wrong size for SSituationOrderSaveData");
+static_assert(alignof(SSituationOrderSaveData) == 0x10, "Wrong alignment for SSituationOrderSaveData");
 
 class ZSmuggleSituationEntity
 {
@@ -20109,7 +22361,8 @@ public:
 };
 
 // Size: 0x1C
-class /*alignas(4)*/ SSmuggleSituationActorStateSaveData{
+class alignas(4) SSmuggleSituationActorStateSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20123,16 +22376,25 @@ public:
 
 	uint32 m_rActor; // 0x0
 	bool m_bAllocatedForSituation; // 0x4
-	uint8_t _pad5[3] {};
 	ZSmuggleSituationEntity::ESmuggleState m_nState; // 0x8
 	ZSmuggleSituationEntity::ESmuggleState m_nStatePrevious; // 0xC
 	float32 m_fStateTimer; // 0x10
 	int32 m_nTargetLocationIndex; // 0x14
 	uint32 m_rScreenplay; // 0x18
 };
+ZHM_OFFSET_CHECK(SSmuggleSituationActorStateSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SSmuggleSituationActorStateSaveData, m_bAllocatedForSituation, 0x4);
+ZHM_OFFSET_CHECK(SSmuggleSituationActorStateSaveData, m_nState, 0x8);
+ZHM_OFFSET_CHECK(SSmuggleSituationActorStateSaveData, m_nStatePrevious, 0xC);
+ZHM_OFFSET_CHECK(SSmuggleSituationActorStateSaveData, m_fStateTimer, 0x10);
+ZHM_OFFSET_CHECK(SSmuggleSituationActorStateSaveData, m_nTargetLocationIndex, 0x14);
+ZHM_OFFSET_CHECK(SSmuggleSituationActorStateSaveData, m_rScreenplay, 0x18);
+static_assert(sizeof(SSmuggleSituationActorStateSaveData) == 0x1C, "Wrong size for SSmuggleSituationActorStateSaveData");
+static_assert(alignof(SSmuggleSituationActorStateSaveData) == 0x4, "Wrong alignment for SSmuggleSituationActorStateSaveData");
 
 // Size: 0x38
-class /*alignas(8)*/ SSmuggleSituationSaveData{
+class alignas(8) SSmuggleSituationSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20146,14 +22408,21 @@ public:
 
 	bool m_bIsEnabled; // 0x0
 	bool m_bIsRunning; // 0x1
-	uint8_t _pad2[2] {};
 	int32 m_nNumberOfPickups; // 0x4
 	TArray<SSmuggleSituationActorStateSaveData> m_aActorsSaveData; // 0x8
 	TArray<uint32> m_aMoveToActs; // 0x20
 };
+ZHM_OFFSET_CHECK(SSmuggleSituationSaveData, m_bIsEnabled, 0x0);
+ZHM_OFFSET_CHECK(SSmuggleSituationSaveData, m_bIsRunning, 0x1);
+ZHM_OFFSET_CHECK(SSmuggleSituationSaveData, m_nNumberOfPickups, 0x4);
+ZHM_OFFSET_CHECK(SSmuggleSituationSaveData, m_aActorsSaveData, 0x8);
+ZHM_OFFSET_CHECK(SSmuggleSituationSaveData, m_aMoveToActs, 0x20);
+static_assert(sizeof(SSmuggleSituationSaveData) == 0x38, "Wrong size for SSmuggleSituationSaveData");
+static_assert(alignof(SSmuggleSituationSaveData) == 0x8, "Wrong alignment for SSmuggleSituationSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SSniperCombatGroupSaveData{
+class alignas(8) SSniperCombatGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20168,13 +22437,20 @@ public:
 	SFSMSaveData m_fsmState; // 0x0
 	int32 m_target; // 0x18
 	bool m_bFailed; // 0x1C
-	uint8_t _pad1D[3] {};
 	ZGameTime m_tEscapeTime; // 0x20
 	ZGameTime m_tLastTauntTime; // 0x28
 };
+ZHM_OFFSET_CHECK(SSniperCombatGroupSaveData, m_fsmState, 0x0);
+ZHM_OFFSET_CHECK(SSniperCombatGroupSaveData, m_target, 0x18);
+ZHM_OFFSET_CHECK(SSniperCombatGroupSaveData, m_bFailed, 0x1C);
+ZHM_OFFSET_CHECK(SSniperCombatGroupSaveData, m_tEscapeTime, 0x20);
+ZHM_OFFSET_CHECK(SSniperCombatGroupSaveData, m_tLastTauntTime, 0x28);
+static_assert(sizeof(SSniperCombatGroupSaveData) == 0x30, "Wrong size for SSniperCombatGroupSaveData");
+static_assert(alignof(SSniperCombatGroupSaveData) == 0x8, "Wrong alignment for SSniperCombatGroupSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SSniperScoringEvent{
+class alignas(8) SSniperScoringEvent
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20192,11 +22468,19 @@ public:
 	ZString m_sText; // 0x18
 	int32 m_iType; // 0x28
 	uint8 m_iScoringMachine; // 0x2C
-	uint8_t _pad2D[3] {};
 };
+ZHM_OFFSET_CHECK(SSniperScoringEvent, m_iPoints, 0x0);
+ZHM_OFFSET_CHECK(SSniperScoringEvent, m_iPlayer, 0x4);
+ZHM_OFFSET_CHECK(SSniperScoringEvent, m_sName, 0x8);
+ZHM_OFFSET_CHECK(SSniperScoringEvent, m_sText, 0x18);
+ZHM_OFFSET_CHECK(SSniperScoringEvent, m_iType, 0x28);
+ZHM_OFFSET_CHECK(SSniperScoringEvent, m_iScoringMachine, 0x2C);
+static_assert(sizeof(SSniperScoringEvent) == 0x30, "Wrong size for SSniperScoringEvent");
+static_assert(alignof(SSniperScoringEvent) == 0x8, "Wrong alignment for SSniperScoringEvent");
 
 // Size: 0x1
-class /*alignas(1)*/ SSpaceCollectionBehaviorConfiguration{
+class alignas(1) SSpaceCollectionBehaviorConfiguration
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20210,9 +22494,13 @@ public:
 
 	bool m_bInclusive; // 0x0
 };
+ZHM_OFFSET_CHECK(SSpaceCollectionBehaviorConfiguration, m_bInclusive, 0x0);
+static_assert(sizeof(SSpaceCollectionBehaviorConfiguration) == 0x1, "Wrong size for SSpaceCollectionBehaviorConfiguration");
+static_assert(alignof(SSpaceCollectionBehaviorConfiguration) == 0x1, "Wrong alignment for SSpaceCollectionBehaviorConfiguration");
 
 // Size: 0x14
-class /*alignas(4)*/ SSpatialMoverEntitySaveData{
+class alignas(4) SSpatialMoverEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20229,11 +22517,18 @@ public:
 	bool m_bEnabled; // 0x10
 	bool m_bBackwards; // 0x11
 	bool m_bIsFrameUpdateRegistered; // 0x12
-	uint8_t _pad13[1] {};
 };
+ZHM_OFFSET_CHECK(SSpatialMoverEntitySaveData, m_fSpeed, 0x0);
+ZHM_OFFSET_CHECK(SSpatialMoverEntitySaveData, m_vPosition, 0x4);
+ZHM_OFFSET_CHECK(SSpatialMoverEntitySaveData, m_bEnabled, 0x10);
+ZHM_OFFSET_CHECK(SSpatialMoverEntitySaveData, m_bBackwards, 0x11);
+ZHM_OFFSET_CHECK(SSpatialMoverEntitySaveData, m_bIsFrameUpdateRegistered, 0x12);
+static_assert(sizeof(SSpatialMoverEntitySaveData) == 0x14, "Wrong size for SSpatialMoverEntitySaveData");
+static_assert(alignof(SSpatialMoverEntitySaveData) == 0x4, "Wrong alignment for SSpatialMoverEntitySaveData");
 
 // Size: 0x20
-class /*alignas(4)*/ SSpatialSaveData{
+class alignas(4) SSpatialSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20246,13 +22541,18 @@ public:
 	bool operator!=(const SSpatialSaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bVisible; // 0x0
-	uint8_t _pad1[3] {};
 	SVector3 m_vPosition; // 0x4
 	SVector4 m_vQuaternionRotation; // 0x10
 };
+ZHM_OFFSET_CHECK(SSpatialSaveData, m_bVisible, 0x0);
+ZHM_OFFSET_CHECK(SSpatialSaveData, m_vPosition, 0x4);
+ZHM_OFFSET_CHECK(SSpatialSaveData, m_vQuaternionRotation, 0x10);
+static_assert(sizeof(SSpatialSaveData) == 0x20, "Wrong size for SSpatialSaveData");
+static_assert(alignof(SSpatialSaveData) == 0x4, "Wrong alignment for SSpatialSaveData");
 
 // Size: 0x4
-class /*alignas(4)*/ SSpeakEntitySaveData{
+class alignas(4) SSpeakEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20266,9 +22566,13 @@ public:
 
 	float32 m_fSeekPosition; // 0x0
 };
+ZHM_OFFSET_CHECK(SSpeakEntitySaveData, m_fSeekPosition, 0x0);
+static_assert(sizeof(SSpeakEntitySaveData) == 0x4, "Wrong size for SSpeakEntitySaveData");
+static_assert(alignof(SSpeakEntitySaveData) == 0x4, "Wrong alignment for SSpeakEntitySaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SStateControllerSaveDataStruct{
+class alignas(4) SStateControllerSaveDataStruct
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20282,11 +22586,15 @@ public:
 
 	int32 m_nIndex; // 0x0
 	bool m_bEnabled; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(SStateControllerSaveDataStruct, m_nIndex, 0x0);
+ZHM_OFFSET_CHECK(SStateControllerSaveDataStruct, m_bEnabled, 0x4);
+static_assert(sizeof(SStateControllerSaveDataStruct) == 0x8, "Wrong size for SStateControllerSaveDataStruct");
+static_assert(alignof(SStateControllerSaveDataStruct) == 0x4, "Wrong alignment for SStateControllerSaveDataStruct");
 
 // Size: 0x30
-class /*alignas(8)*/ SStateControllerSaveData{
+class alignas(8) SStateControllerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20301,9 +22609,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<SStateControllerSaveDataStruct> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SStateControllerSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SStateControllerSaveData, m_aData, 0x18);
+static_assert(sizeof(SStateControllerSaveData) == 0x30, "Wrong size for SStateControllerSaveData");
+static_assert(alignof(SStateControllerSaveData) == 0x8, "Wrong alignment for SStateControllerSaveData");
 
 // Size: 0x18
-class /*alignas(4)*/ SStepCounterEntitySaveData{
+class alignas(4) SStepCounterEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20319,14 +22632,23 @@ public:
 	int32 m_nLoopIndex; // 0x4
 	bool m_bFirst; // 0x8
 	bool m_bEnabled; // 0x9
-	uint8_t _padA[2] {};
 	float32 m_nCountFrom; // 0xC
 	float32 m_nCountTo; // 0x10
 	float32 m_nStepSize; // 0x14
 };
+ZHM_OFFSET_CHECK(SStepCounterEntitySaveData, m_nIndex, 0x0);
+ZHM_OFFSET_CHECK(SStepCounterEntitySaveData, m_nLoopIndex, 0x4);
+ZHM_OFFSET_CHECK(SStepCounterEntitySaveData, m_bFirst, 0x8);
+ZHM_OFFSET_CHECK(SStepCounterEntitySaveData, m_bEnabled, 0x9);
+ZHM_OFFSET_CHECK(SStepCounterEntitySaveData, m_nCountFrom, 0xC);
+ZHM_OFFSET_CHECK(SStepCounterEntitySaveData, m_nCountTo, 0x10);
+ZHM_OFFSET_CHECK(SStepCounterEntitySaveData, m_nStepSize, 0x14);
+static_assert(sizeof(SStepCounterEntitySaveData) == 0x18, "Wrong size for SStepCounterEntitySaveData");
+static_assert(alignof(SStepCounterEntitySaveData) == 0x4, "Wrong alignment for SStepCounterEntitySaveData");
 
 // Size: 0x48
-class /*alignas(8)*/ SStoreItem{
+class alignas(8) SStoreItem
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20343,11 +22665,18 @@ public:
 	ZString Description; // 0x20
 	ZString DisplayPrice; // 0x30
 	float32 Price; // 0x40
-	uint8_t _pad44[4] {};
 };
+ZHM_OFFSET_CHECK(SStoreItem, Id, 0x0);
+ZHM_OFFSET_CHECK(SStoreItem, DisplayName, 0x10);
+ZHM_OFFSET_CHECK(SStoreItem, Description, 0x20);
+ZHM_OFFSET_CHECK(SStoreItem, DisplayPrice, 0x30);
+ZHM_OFFSET_CHECK(SStoreItem, Price, 0x40);
+static_assert(sizeof(SStoreItem) == 0x48, "Wrong size for SStoreItem");
+static_assert(alignof(SStoreItem) == 0x8, "Wrong alignment for SStoreItem");
 
 // Size: 0x48
-class /*alignas(8)*/ STargetInfoObjectiveCondition{
+class alignas(8) STargetInfoObjectiveCondition
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20364,11 +22693,18 @@ public:
 	ZString icon; // 0x20
 	ZString type; // 0x30
 	bool hardCondition; // 0x40
-	uint8_t _pad41[7] {};
 };
+ZHM_OFFSET_CHECK(STargetInfoObjectiveCondition, header, 0x0);
+ZHM_OFFSET_CHECK(STargetInfoObjectiveCondition, title, 0x10);
+ZHM_OFFSET_CHECK(STargetInfoObjectiveCondition, icon, 0x20);
+ZHM_OFFSET_CHECK(STargetInfoObjectiveCondition, type, 0x30);
+ZHM_OFFSET_CHECK(STargetInfoObjectiveCondition, hardCondition, 0x40);
+static_assert(sizeof(STargetInfoObjectiveCondition) == 0x48, "Wrong size for STargetInfoObjectiveCondition");
+static_assert(alignof(STargetInfoObjectiveCondition) == 0x8, "Wrong alignment for STargetInfoObjectiveCondition");
 
 // Size: 0x58
-class /*alignas(8)*/ STargetInfoDisplayData{
+class alignas(8) STargetInfoDisplayData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20388,11 +22724,21 @@ public:
 	int32 fY; // 0x4C
 	float32 fAlpha; // 0x50
 	bool bIsTarget; // 0x54
-	uint8_t _pad55[3] {};
 };
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, npcName, 0x0);
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, disguiseName, 0x10);
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, objectiveType, 0x20);
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, objectiveConditions, 0x30);
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, fX, 0x48);
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, fY, 0x4C);
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, fAlpha, 0x50);
+ZHM_OFFSET_CHECK(STargetInfoDisplayData, bIsTarget, 0x54);
+static_assert(sizeof(STargetInfoDisplayData) == 0x58, "Wrong size for STargetInfoDisplayData");
+static_assert(alignof(STargetInfoDisplayData) == 0x8, "Wrong alignment for STargetInfoDisplayData");
 
 // Size: 0x18
-class /*alignas(8)*/ STargetInfoDisplayData_Dummy{
+class alignas(8) STargetInfoDisplayData_Dummy
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20406,9 +22752,13 @@ public:
 
 	TArray<STargetInfoDisplayData> __dummy; // 0x0
 };
+ZHM_OFFSET_CHECK(STargetInfoDisplayData_Dummy, __dummy, 0x0);
+static_assert(sizeof(STargetInfoDisplayData_Dummy) == 0x18, "Wrong size for STargetInfoDisplayData_Dummy");
+static_assert(alignof(STargetInfoDisplayData_Dummy) == 0x8, "Wrong alignment for STargetInfoDisplayData_Dummy");
 
 // Size: 0x30
-class /*alignas(16)*/ STargetTrackingSaveData{
+class alignas(16) STargetTrackingSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20421,14 +22771,18 @@ public:
 	bool operator!=(const STargetTrackingSaveData& p_Other) const { return !(*this == p_Other); }
 
 	int32 m_sharedTarget; // 0x0
-	uint8_t _pad4[12] {};
 	float4 m_position; // 0x10
 	ZGameTime m_time; // 0x20
-	uint8_t _pad28[8] {};
 };
+ZHM_OFFSET_CHECK(STargetTrackingSaveData, m_sharedTarget, 0x0);
+ZHM_OFFSET_CHECK(STargetTrackingSaveData, m_position, 0x10);
+ZHM_OFFSET_CHECK(STargetTrackingSaveData, m_time, 0x20);
+static_assert(sizeof(STargetTrackingSaveData) == 0x30, "Wrong size for STargetTrackingSaveData");
+static_assert(alignof(STargetTrackingSaveData) == 0x10, "Wrong alignment for STargetTrackingSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ STargetTrackingServiceSaveData{
+class alignas(8) STargetTrackingServiceSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20442,9 +22796,13 @@ public:
 
 	TArray<STargetTrackingSaveData> m_aTrackedTargets; // 0x0
 };
+ZHM_OFFSET_CHECK(STargetTrackingServiceSaveData, m_aTrackedTargets, 0x0);
+static_assert(sizeof(STargetTrackingServiceSaveData) == 0x18, "Wrong size for STargetTrackingServiceSaveData");
+static_assert(alignof(STargetTrackingServiceSaveData) == 0x8, "Wrong alignment for STargetTrackingServiceSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ STargetableBoneConfiguration{
+class alignas(4) STargetableBoneConfiguration
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20459,9 +22817,14 @@ public:
 	BoneId::Enum m_eBone; // 0x0
 	float32 m_fBoneRadiusOverride; // 0x4
 };
+ZHM_OFFSET_CHECK(STargetableBoneConfiguration, m_eBone, 0x0);
+ZHM_OFFSET_CHECK(STargetableBoneConfiguration, m_fBoneRadiusOverride, 0x4);
+static_assert(sizeof(STargetableBoneConfiguration) == 0x8, "Wrong size for STargetableBoneConfiguration");
+static_assert(alignof(STargetableBoneConfiguration) == 0x4, "Wrong alignment for STargetableBoneConfiguration");
 
 // Size: 0xA8
-class /*alignas(8)*/ STemplateBlueprintSubEntity{
+class alignas(8) STemplateBlueprintSubEntity
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20475,19 +22838,29 @@ public:
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
-	uint8_t _pad24[4] {};
 	uint64 entityId; // 0x28
 	bool editorOnly; // 0x30
-	uint8_t _pad31[7] {};
 	ZString entityName; // 0x38
 	TArray<SEntityTemplatePropertyAlias> propertyAliases; // 0x48
 	TArray<SEntityTemplateExposedEntity> exposedEntities; // 0x60
 	TArray<TPair<ZString,int32>> exposedInterfaces; // 0x78
 	TArray<TPair<ZString,SEntityTemplateEntitySubset>> entitySubsets; // 0x90
 };
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, logicalParent, 0x0);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, entityTypeResourceIndex, 0x20);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, entityId, 0x28);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, editorOnly, 0x30);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, entityName, 0x38);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, propertyAliases, 0x48);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, exposedEntities, 0x60);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, exposedInterfaces, 0x78);
+ZHM_OFFSET_CHECK(STemplateBlueprintSubEntity, entitySubsets, 0x90);
+static_assert(sizeof(STemplateBlueprintSubEntity) == 0xA8, "Wrong size for STemplateBlueprintSubEntity");
+static_assert(alignof(STemplateBlueprintSubEntity) == 0x8, "Wrong alignment for STemplateBlueprintSubEntity");
 
 // Size: 0xC8
-class /*alignas(8)*/ STemplateEntityBlueprint{
+class alignas(8) STemplateEntityBlueprint
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20510,9 +22883,22 @@ public:
 	TArray<SExternalEntityTemplatePinConnection> pinConnectionOverrides; // 0x98
 	TArray<SExternalEntityTemplatePinConnection> pinConnectionOverrideDeletes; // 0xB0
 };
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, subType, 0x0);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, rootEntityIndex, 0x4);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, subEntities, 0x8);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, externalSceneTypeIndicesInResourceHeader, 0x20);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, pinConnections, 0x38);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, inputPinForwardings, 0x50);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, outputPinForwardings, 0x68);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, overrideDeletes, 0x80);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, pinConnectionOverrides, 0x98);
+ZHM_OFFSET_CHECK(STemplateEntityBlueprint, pinConnectionOverrideDeletes, 0xB0);
+static_assert(sizeof(STemplateEntityBlueprint) == 0xC8, "Wrong size for STemplateEntityBlueprint");
+static_assert(alignof(STemplateEntityBlueprint) == 0x8, "Wrong alignment for STemplateEntityBlueprint");
 
 // Size: 0x70
-class /*alignas(8)*/ STemplateFactorySubEntity{
+class alignas(8) STemplateFactorySubEntity
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20526,14 +22912,21 @@ public:
 
 	SEntityTemplateReference logicalParent; // 0x0
 	int32 entityTypeResourceIndex; // 0x20
-	uint8_t _pad24[4] {};
 	TArray<SEntityTemplateProperty> propertyValues; // 0x28
 	TArray<SEntityTemplateProperty> postInitPropertyValues; // 0x40
 	TArray<SEntityTemplatePlatformSpecificProperty> platformSpecificPropertyValues; // 0x58
 };
+ZHM_OFFSET_CHECK(STemplateFactorySubEntity, logicalParent, 0x0);
+ZHM_OFFSET_CHECK(STemplateFactorySubEntity, entityTypeResourceIndex, 0x20);
+ZHM_OFFSET_CHECK(STemplateFactorySubEntity, propertyValues, 0x28);
+ZHM_OFFSET_CHECK(STemplateFactorySubEntity, postInitPropertyValues, 0x40);
+ZHM_OFFSET_CHECK(STemplateFactorySubEntity, platformSpecificPropertyValues, 0x58);
+static_assert(sizeof(STemplateFactorySubEntity) == 0x70, "Wrong size for STemplateFactorySubEntity");
+static_assert(alignof(STemplateFactorySubEntity) == 0x8, "Wrong alignment for STemplateFactorySubEntity");
 
 // Size: 0x58
-class /*alignas(8)*/ STemplateEntityFactory{
+class alignas(8) STemplateEntityFactory
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20548,14 +22941,22 @@ public:
 	int32 subType; // 0x0
 	int32 blueprintIndexInResourceHeader; // 0x4
 	int32 rootEntityIndex; // 0x8
-	uint8_t _padC[4] {};
 	TArray<STemplateFactorySubEntity> subEntities; // 0x10
 	TArray<SEntityTemplatePropertyOverride> propertyOverrides; // 0x28
 	TArray<int32> externalSceneTypeIndicesInResourceHeader; // 0x40
 };
+ZHM_OFFSET_CHECK(STemplateEntityFactory, subType, 0x0);
+ZHM_OFFSET_CHECK(STemplateEntityFactory, blueprintIndexInResourceHeader, 0x4);
+ZHM_OFFSET_CHECK(STemplateEntityFactory, rootEntityIndex, 0x8);
+ZHM_OFFSET_CHECK(STemplateEntityFactory, subEntities, 0x10);
+ZHM_OFFSET_CHECK(STemplateEntityFactory, propertyOverrides, 0x28);
+ZHM_OFFSET_CHECK(STemplateEntityFactory, externalSceneTypeIndicesInResourceHeader, 0x40);
+static_assert(sizeof(STemplateEntityFactory) == 0x58, "Wrong size for STemplateEntityFactory");
+static_assert(alignof(STemplateEntityFactory) == 0x8, "Wrong alignment for STemplateEntityFactory");
 
 // Size: 0x20
-class /*alignas(8)*/ STestStruct{
+class alignas(8) STestStruct
+{
 public:
 	// Size: 0x4
 	enum class ETestEnum : int32_t
@@ -20580,11 +22981,17 @@ public:
 	uint32 intField; // 0x10
 	float32 floatField; // 0x14
 	STestStruct::ETestEnum enumField; // 0x18
-	uint8_t _pad1C[4] {};
 };
+ZHM_OFFSET_CHECK(STestStruct, stringField, 0x0);
+ZHM_OFFSET_CHECK(STestStruct, intField, 0x10);
+ZHM_OFFSET_CHECK(STestStruct, floatField, 0x14);
+ZHM_OFFSET_CHECK(STestStruct, enumField, 0x18);
+static_assert(sizeof(STestStruct) == 0x20, "Wrong size for STestStruct");
+static_assert(alignof(STestStruct) == 0x8, "Wrong alignment for STestStruct");
 
 // Size: 0x28
-class /*alignas(8)*/ STestStruct2{
+class alignas(8) STestStruct2
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20599,9 +23006,14 @@ public:
 	TArray<STestStruct> arrayField; // 0x0
 	ZVariant variantField; // 0x18
 };
+ZHM_OFFSET_CHECK(STestStruct2, arrayField, 0x0);
+ZHM_OFFSET_CHECK(STestStruct2, variantField, 0x18);
+static_assert(sizeof(STestStruct2) == 0x28, "Wrong size for STestStruct2");
+static_assert(alignof(STestStruct2) == 0x8, "Wrong alignment for STestStruct2");
 
 // Size: 0xC
-class /*alignas(4)*/ STimerEntitySaveData{
+class alignas(4) STimerEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20615,12 +23027,17 @@ public:
 
 	int32 m_nInterval; // 0x0
 	bool m_bEnabled; // 0x4
-	uint8_t _pad5[3] {};
 	float32 m_fTimeToNextEvent; // 0x8
 };
+ZHM_OFFSET_CHECK(STimerEntitySaveData, m_nInterval, 0x0);
+ZHM_OFFSET_CHECK(STimerEntitySaveData, m_bEnabled, 0x4);
+ZHM_OFFSET_CHECK(STimerEntitySaveData, m_fTimeToNextEvent, 0x8);
+static_assert(sizeof(STimerEntitySaveData) == 0xC, "Wrong size for STimerEntitySaveData");
+static_assert(alignof(STimerEntitySaveData) == 0x4, "Wrong alignment for STimerEntitySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ STimerEntitiesSaveData{
+class alignas(8) STimerEntitiesSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20635,9 +23052,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<STimerEntitySaveData> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(STimerEntitiesSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(STimerEntitiesSaveData, m_aData, 0x18);
+static_assert(sizeof(STimerEntitiesSaveData) == 0x30, "Wrong size for STimerEntitiesSaveData");
+static_assert(alignof(STimerEntitiesSaveData) == 0x8, "Wrong alignment for STimerEntitiesSaveData");
 
 // Size: 0xA8
-class /*alignas(8)*/ STimerManagerSaveData{
+class alignas(8) STimerManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20653,9 +23075,15 @@ public:
 	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
 	SGameTimersSaveData m_GameTimersData; // 0x60
 };
+ZHM_OFFSET_CHECK(STimerManagerSaveData, m_TimersData, 0x0);
+ZHM_OFFSET_CHECK(STimerManagerSaveData, m_RandomTimersData, 0x30);
+ZHM_OFFSET_CHECK(STimerManagerSaveData, m_GameTimersData, 0x60);
+static_assert(sizeof(STimerManagerSaveData) == 0xA8, "Wrong size for STimerManagerSaveData");
+static_assert(alignof(STimerManagerSaveData) == 0x8, "Wrong alignment for STimerManagerSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ STokenID{
+class alignas(4) STokenID
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20669,11 +23097,15 @@ public:
 
 	uint32 m_iValue; // 0x0
 	bool m_bValid; // 0x4
-	uint8_t _pad5[3] {};
 };
+ZHM_OFFSET_CHECK(STokenID, m_iValue, 0x0);
+ZHM_OFFSET_CHECK(STokenID, m_bValid, 0x4);
+static_assert(sizeof(STokenID) == 0x8, "Wrong size for STokenID");
+static_assert(alignof(STokenID) == 0x4, "Wrong alignment for STokenID");
 
 // Size: 0x28
-class /*alignas(4)*/ STrackDollyControllerSaveData{
+class alignas(4) STrackDollyControllerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20688,13 +23120,20 @@ public:
 	uint32 m_rTrackEntity; // 0x0
 	float32 m_fTrackPosition; // 0x4
 	bool m_bIsDollyAttached; // 0x8
-	uint8_t _pad9[3] {};
 	SVector3 m_vDollyPosition; // 0xC
 	SVector4 m_vDollyRotation; // 0x18
 };
+ZHM_OFFSET_CHECK(STrackDollyControllerSaveData, m_rTrackEntity, 0x0);
+ZHM_OFFSET_CHECK(STrackDollyControllerSaveData, m_fTrackPosition, 0x4);
+ZHM_OFFSET_CHECK(STrackDollyControllerSaveData, m_bIsDollyAttached, 0x8);
+ZHM_OFFSET_CHECK(STrackDollyControllerSaveData, m_vDollyPosition, 0xC);
+ZHM_OFFSET_CHECK(STrackDollyControllerSaveData, m_vDollyRotation, 0x18);
+static_assert(sizeof(STrackDollyControllerSaveData) == 0x28, "Wrong size for STrackDollyControllerSaveData");
+static_assert(alignof(STrackDollyControllerSaveData) == 0x4, "Wrong alignment for STrackDollyControllerSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ STrackerEntitySaveData{
+class alignas(4) STrackerEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20710,11 +23149,17 @@ public:
 	bool m_bIsVisible; // 0x4
 	bool m_bIsEnabled; // 0x5
 	bool m_bSpatialVisibility; // 0x6
-	uint8_t _pad7[1] {};
 };
+ZHM_OFFSET_CHECK(STrackerEntitySaveData, m_rTracker, 0x0);
+ZHM_OFFSET_CHECK(STrackerEntitySaveData, m_bIsVisible, 0x4);
+ZHM_OFFSET_CHECK(STrackerEntitySaveData, m_bIsEnabled, 0x5);
+ZHM_OFFSET_CHECK(STrackerEntitySaveData, m_bSpatialVisibility, 0x6);
+static_assert(sizeof(STrackerEntitySaveData) == 0x8, "Wrong size for STrackerEntitySaveData");
+static_assert(alignof(STrackerEntitySaveData) == 0x4, "Wrong alignment for STrackerEntitySaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ STrackerManagerSaveData{
+class alignas(8) STrackerManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20728,9 +23173,13 @@ public:
 
 	TArray<STrackerEntitySaveData> m_aTrackerData; // 0x0
 };
+ZHM_OFFSET_CHECK(STrackerManagerSaveData, m_aTrackerData, 0x0);
+static_assert(sizeof(STrackerManagerSaveData) == 0x18, "Wrong size for STrackerManagerSaveData");
+static_assert(alignof(STrackerManagerSaveData) == 0x8, "Wrong alignment for STrackerManagerSaveData");
 
 // Size: 0x80
-class /*alignas(16)*/ STrajectoryTrackSaveData{
+class alignas(16) STrajectoryTrackSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20745,9 +23194,14 @@ public:
 	SMatrix m_vOriginalEntityTransform; // 0x0
 	SMatrix m_vTargetStartTransform; // 0x40
 };
+ZHM_OFFSET_CHECK(STrajectoryTrackSaveData, m_vOriginalEntityTransform, 0x0);
+ZHM_OFFSET_CHECK(STrajectoryTrackSaveData, m_vTargetStartTransform, 0x40);
+static_assert(sizeof(STrajectoryTrackSaveData) == 0x80, "Wrong size for STrajectoryTrackSaveData");
+static_assert(alignof(STrajectoryTrackSaveData) == 0x10, "Wrong alignment for STrajectoryTrackSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ STrespassingRuleEntitySaveData{
+class alignas(8) STrespassingRuleEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20761,9 +23215,13 @@ public:
 
 	TArray<bool> m_aAllowedProfessionsDisabled; // 0x0
 };
+ZHM_OFFSET_CHECK(STrespassingRuleEntitySaveData, m_aAllowedProfessionsDisabled, 0x0);
+static_assert(sizeof(STrespassingRuleEntitySaveData) == 0x18, "Wrong size for STrespassingRuleEntitySaveData");
+static_assert(alignof(STrespassingRuleEntitySaveData) == 0x8, "Wrong alignment for STrespassingRuleEntitySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ STriggerAlarmGroupSaveData{
+class alignas(8) STriggerAlarmGroupSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20778,14 +23236,20 @@ public:
 	uint32 m_rTarget; // 0x0
 	uint32 m_rAlarm; // 0x4
 	uint32 m_pLeader; // 0x8
-	uint8_t _padC[4] {};
 	SFSMSaveData m_fsmState; // 0x10
 	bool m_bTriggeredAlarm; // 0x28
-	uint8_t _pad29[7] {};
 };
+ZHM_OFFSET_CHECK(STriggerAlarmGroupSaveData, m_rTarget, 0x0);
+ZHM_OFFSET_CHECK(STriggerAlarmGroupSaveData, m_rAlarm, 0x4);
+ZHM_OFFSET_CHECK(STriggerAlarmGroupSaveData, m_pLeader, 0x8);
+ZHM_OFFSET_CHECK(STriggerAlarmGroupSaveData, m_fsmState, 0x10);
+ZHM_OFFSET_CHECK(STriggerAlarmGroupSaveData, m_bTriggeredAlarm, 0x28);
+static_assert(sizeof(STriggerAlarmGroupSaveData) == 0x30, "Wrong size for STriggerAlarmGroupSaveData");
+static_assert(alignof(STriggerAlarmGroupSaveData) == 0x8, "Wrong alignment for STriggerAlarmGroupSaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SUIBreadcrumbDataSaveData{
+class alignas(4) SUIBreadcrumbDataSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20800,9 +23264,14 @@ public:
 	float32 m_fProgress; // 0x0
 	int32 m_nState; // 0x4
 };
+ZHM_OFFSET_CHECK(SUIBreadcrumbDataSaveData, m_fProgress, 0x0);
+ZHM_OFFSET_CHECK(SUIBreadcrumbDataSaveData, m_nState, 0x4);
+static_assert(sizeof(SUIBreadcrumbDataSaveData) == 0x8, "Wrong size for SUIBreadcrumbDataSaveData");
+static_assert(alignof(SUIBreadcrumbDataSaveData) == 0x4, "Wrong alignment for SUIBreadcrumbDataSaveData");
 
 // Size: 0x10
-class /*alignas(4)*/ SUIGridCellPosition{
+class alignas(4) SUIGridCellPosition
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20819,9 +23288,16 @@ public:
 	int32 nColumnSpan; // 0x8
 	int32 nRowSpan; // 0xC
 };
+ZHM_OFFSET_CHECK(SUIGridCellPosition, nColumnIndex, 0x0);
+ZHM_OFFSET_CHECK(SUIGridCellPosition, nRowIndex, 0x4);
+ZHM_OFFSET_CHECK(SUIGridCellPosition, nColumnSpan, 0x8);
+ZHM_OFFSET_CHECK(SUIGridCellPosition, nRowSpan, 0xC);
+static_assert(sizeof(SUIGridCellPosition) == 0x10, "Wrong size for SUIGridCellPosition");
+static_assert(alignof(SUIGridCellPosition) == 0x4, "Wrong alignment for SUIGridCellPosition");
 
 // Size: 0x18
-class /*alignas(8)*/ SUIOpenVRComponent{
+class alignas(8) SUIOpenVRComponent
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20837,9 +23313,15 @@ public:
 	EUIOpenVRPressDirection direction; // 0x4
 	ZString label; // 0x8
 };
+ZHM_OFFSET_CHECK(SUIOpenVRComponent, idArchetype, 0x0);
+ZHM_OFFSET_CHECK(SUIOpenVRComponent, direction, 0x4);
+ZHM_OFFSET_CHECK(SUIOpenVRComponent, label, 0x8);
+static_assert(sizeof(SUIOpenVRComponent) == 0x18, "Wrong size for SUIOpenVRComponent");
+static_assert(alignof(SUIOpenVRComponent) == 0x8, "Wrong alignment for SUIOpenVRComponent");
 
 // Size: 0x20
-class /*alignas(8)*/ SUIOpenVRButtonConversion{
+class alignas(8) SUIOpenVRButtonConversion
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -20852,9 +23334,12 @@ public:
 	bool operator!=(const SUIOpenVRButtonConversion& p_Other) const { return !(*this == p_Other); }
 
 	EUIGamepadButtonID idSource; // 0x0
-	uint8_t _pad4[4] {};
 	SUIOpenVRComponent component; // 0x8
 };
+ZHM_OFFSET_CHECK(SUIOpenVRButtonConversion, idSource, 0x0);
+ZHM_OFFSET_CHECK(SUIOpenVRButtonConversion, component, 0x8);
+static_assert(sizeof(SUIOpenVRButtonConversion) == 0x20, "Wrong size for SUIOpenVRButtonConversion");
+static_assert(alignof(SUIOpenVRButtonConversion) == 0x8, "Wrong alignment for SUIOpenVRButtonConversion");
 
 // Size: 0x4
 enum class _EUIOptionKey : int32_t
@@ -20937,6 +23422,7 @@ enum class _EUIOptionKey : int32_t
 	UI_OPTION_SOUND_MUTE_MICROPHONE = 1050,
 	UI_OPTION_SOUND_MUTE_OTHER_PLAYER = 1060,
 	UI_OPTION_SOUND_LICENSED_AUDIO = 1070,
+	UI_OPTION_SOUND_MAIN_MENU_MUSIC = 1080,
 	UI_OPTION_SOUND_OUTPUTMODE = 1200,
 	UI_OPTION_SOUND_SIMULATION_QUALITY = 1210,
 	UI_OPTION_SOUND_DYNAMIC_RANGE_MODE = 1220,
@@ -21029,7 +23515,8 @@ enum class _EUIOptionKey : int32_t
 };
 
 // Size: 0x78
-class /*alignas(8)*/ SUIOptionsSaveData{
+class alignas(8) SUIOptionsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21047,9 +23534,17 @@ public:
 	TArray<ZString> cbMappingNames; // 0x48
 	TArray<TArray<SComboDeviceBinding>> cbMappings; // 0x60
 };
+ZHM_OFFSET_CHECK(SUIOptionsSaveData, m_aKeys, 0x0);
+ZHM_OFFSET_CHECK(SUIOptionsSaveData, m_aValues, 0x18);
+ZHM_OFFSET_CHECK(SUIOptionsSaveData, mappings, 0x30);
+ZHM_OFFSET_CHECK(SUIOptionsSaveData, cbMappingNames, 0x48);
+ZHM_OFFSET_CHECK(SUIOptionsSaveData, cbMappings, 0x60);
+static_assert(sizeof(SUIOptionsSaveData) == 0x78, "Wrong size for SUIOptionsSaveData");
+static_assert(alignof(SUIOptionsSaveData) == 0x8, "Wrong alignment for SUIOptionsSaveData");
 
 // Size: 0x70
-class /*alignas(8)*/ SUITestData{
+class alignas(8) SUITestData
+{
 public:
 	// Size: 0x4
 	enum class ETestEnum : int32_t
@@ -21060,7 +23555,8 @@ public:
 	};
 
 	// Size: 0x10
-	class /*alignas(8)*/ SSubSubStruct	{
+	class alignas(8) SSubSubStruct
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21074,9 +23570,13 @@ public:
 
 		ZString sDeepString; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SSubSubStruct, sDeepString, 0x0);
+	static_assert(sizeof(SSubSubStruct) == 0x10, "Wrong size for SSubSubStruct");
+	static_assert(alignof(SSubSubStruct) == 0x8, "Wrong alignment for SSubSubStruct");
 
 	// Size: 0x18
-	class /*alignas(8)*/ SSubStruct	{
+	class alignas(8) SSubStruct
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21090,6 +23590,9 @@ public:
 
 		TArray<SUITestData::SSubSubStruct> aSubSubStructs; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SSubStruct, aSubSubStructs, 0x0);
+	static_assert(sizeof(SSubStruct) == 0x18, "Wrong size for SSubStruct");
+	static_assert(alignof(SSubStruct) == 0x8, "Wrong alignment for SSubStruct");
 
 
 public:
@@ -21105,21 +23608,31 @@ public:
 
 	int32 nIntProp; // 0x0
 	int16 fInt16Prop; // 0x4
-	uint8_t _pad6[2] {};
 	uint32 fUInt32Prop; // 0x8
 	float32 fFloatProp; // 0xC
 	ZString sStringProp; // 0x10
 	SUITestData::ETestEnum eEnumProp; // 0x20
 	ZRuntimeResourceID ridProp; // 0x24
-	uint8_t _pad2C[4] {};
 	TArray<ZString> aStringArray; // 0x30
 	TArray<SUITestData::SSubStruct> aSubStructArray; // 0x48
 	TFixedArray<int32, 3> aFixedArray; // 0x60
-	uint8_t _pad6C[4] {};
 };
+ZHM_OFFSET_CHECK(SUITestData, nIntProp, 0x0);
+ZHM_OFFSET_CHECK(SUITestData, fInt16Prop, 0x4);
+ZHM_OFFSET_CHECK(SUITestData, fUInt32Prop, 0x8);
+ZHM_OFFSET_CHECK(SUITestData, fFloatProp, 0xC);
+ZHM_OFFSET_CHECK(SUITestData, sStringProp, 0x10);
+ZHM_OFFSET_CHECK(SUITestData, eEnumProp, 0x20);
+ZHM_OFFSET_CHECK(SUITestData, ridProp, 0x24);
+ZHM_OFFSET_CHECK(SUITestData, aStringArray, 0x30);
+ZHM_OFFSET_CHECK(SUITestData, aSubStructArray, 0x48);
+ZHM_OFFSET_CHECK(SUITestData, aFixedArray, 0x60);
+static_assert(sizeof(SUITestData) == 0x70, "Wrong size for SUITestData");
+static_assert(alignof(SUITestData) == 0x8, "Wrong alignment for SUITestData");
 
 // Size: 0x48
-class /*alignas(8)*/ SWeaponWheelPromptData{
+class alignas(8) SWeaponWheelPromptData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21136,11 +23649,18 @@ public:
 	ZString actionglyph; // 0x20
 	ZString actionalticon; // 0x30
 	int32 actionid; // 0x40
-	uint8_t _pad44[4] {};
 };
+ZHM_OFFSET_CHECK(SWeaponWheelPromptData, actiontype, 0x0);
+ZHM_OFFSET_CHECK(SWeaponWheelPromptData, actionlabel, 0x10);
+ZHM_OFFSET_CHECK(SWeaponWheelPromptData, actionglyph, 0x20);
+ZHM_OFFSET_CHECK(SWeaponWheelPromptData, actionalticon, 0x30);
+ZHM_OFFSET_CHECK(SWeaponWheelPromptData, actionid, 0x40);
+static_assert(sizeof(SWeaponWheelPromptData) == 0x48, "Wrong size for SWeaponWheelPromptData");
+static_assert(alignof(SWeaponWheelPromptData) == 0x8, "Wrong alignment for SWeaponWheelPromptData");
 
 // Size: 0x70
-class /*alignas(16)*/ SVRConfigCameraComponent{
+class alignas(16) SVRConfigCameraComponent
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21156,7 +23676,6 @@ public:
 	uint32 m_uRecenterRequestCounter; // 0x4
 	float32 m_fVRUserInputWeight; // 0x8
 	bool m_fVRZoomAllowed; // 0xC
-	uint8_t _padD[3] {};
 	float32 m_fGridSize; // 0x10
 	float32 m_fCapsuleHeadAttacherOffset; // 0x14
 	float32 m_fCapsuleHeadAttacherOffsetSneaking; // 0x18
@@ -21164,9 +23683,22 @@ public:
 	float4 m_vAnchorPosOffset; // 0x20
 	SMatrix m_mAnchorRotOffset; // 0x30
 };
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_eHeadAnchorMode, 0x0);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_uRecenterRequestCounter, 0x4);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_fVRUserInputWeight, 0x8);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_fVRZoomAllowed, 0xC);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_fGridSize, 0x10);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_fCapsuleHeadAttacherOffset, 0x14);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_fCapsuleHeadAttacherOffsetSneaking, 0x18);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_fHeadBoneAttacherOffset, 0x1C);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_vAnchorPosOffset, 0x20);
+ZHM_OFFSET_CHECK(SVRConfigCameraComponent, m_mAnchorRotOffset, 0x30);
+static_assert(sizeof(SVRConfigCameraComponent) == 0x70, "Wrong size for SVRConfigCameraComponent");
+static_assert(alignof(SVRConfigCameraComponent) == 0x10, "Wrong alignment for SVRConfigCameraComponent");
 
 // Size: 0x8
-class /*alignas(4)*/ SValueBoolDelayedEntitySaveData{
+class alignas(4) SValueBoolDelayedEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21180,12 +23712,17 @@ public:
 
 	bool m_bValue; // 0x0
 	bool m_bWaitingValue; // 0x1
-	uint8_t _pad2[2] {};
 	float32 m_fTimeToNextEvent; // 0x4
 };
+ZHM_OFFSET_CHECK(SValueBoolDelayedEntitySaveData, m_bValue, 0x0);
+ZHM_OFFSET_CHECK(SValueBoolDelayedEntitySaveData, m_bWaitingValue, 0x1);
+ZHM_OFFSET_CHECK(SValueBoolDelayedEntitySaveData, m_fTimeToNextEvent, 0x4);
+static_assert(sizeof(SValueBoolDelayedEntitySaveData) == 0x8, "Wrong size for SValueBoolDelayedEntitySaveData");
+static_assert(alignof(SValueBoolDelayedEntitySaveData) == 0x4, "Wrong alignment for SValueBoolDelayedEntitySaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SValueBoolsSaveData{
+class alignas(8) SValueBoolsSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21200,9 +23737,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<bool> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SValueBoolsSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SValueBoolsSaveData, m_aData, 0x18);
+static_assert(sizeof(SValueBoolsSaveData) == 0x30, "Wrong size for SValueBoolsSaveData");
+static_assert(alignof(SValueBoolsSaveData) == 0x8, "Wrong alignment for SValueBoolsSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SValueFloatSaveData{
+class alignas(8) SValueFloatSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21217,9 +23759,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<float32> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SValueFloatSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SValueFloatSaveData, m_aData, 0x18);
+static_assert(sizeof(SValueFloatSaveData) == 0x30, "Wrong size for SValueFloatSaveData");
+static_assert(alignof(SValueFloatSaveData) == 0x8, "Wrong alignment for SValueFloatSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SValueIntSaveData{
+class alignas(8) SValueIntSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21234,9 +23781,14 @@ public:
 	TArray<uint32> m_aEntities; // 0x0
 	TArray<int32> m_aData; // 0x18
 };
+ZHM_OFFSET_CHECK(SValueIntSaveData, m_aEntities, 0x0);
+ZHM_OFFSET_CHECK(SValueIntSaveData, m_aData, 0x18);
+static_assert(sizeof(SValueIntSaveData) == 0x30, "Wrong size for SValueIntSaveData");
+static_assert(alignof(SValueIntSaveData) == 0x8, "Wrong alignment for SValueIntSaveData");
 
 // Size: 0xF0
-class /*alignas(8)*/ SValueSaveData{
+class alignas(8) SValueSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21254,9 +23806,17 @@ public:
 	SStateControllerSaveData m_StateController; // 0x90
 	SColorRGBSaveData m_ValueColorRGB; // 0xC0
 };
+ZHM_OFFSET_CHECK(SValueSaveData, m_ValueBool, 0x0);
+ZHM_OFFSET_CHECK(SValueSaveData, m_ValueFloat, 0x30);
+ZHM_OFFSET_CHECK(SValueSaveData, m_ValueInt, 0x60);
+ZHM_OFFSET_CHECK(SValueSaveData, m_StateController, 0x90);
+ZHM_OFFSET_CHECK(SValueSaveData, m_ValueColorRGB, 0xC0);
+static_assert(sizeof(SValueSaveData) == 0xF0, "Wrong size for SValueSaveData");
+static_assert(alignof(SValueSaveData) == 0x8, "Wrong alignment for SValueSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SVideoDatabaseEntry{
+class alignas(8) SVideoDatabaseEntry
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21271,9 +23831,14 @@ public:
 	ZString VideoId; // 0x0
 	ZRuntimeResourceID RuntimeLocalizedVideoRid; // 0x10
 };
+ZHM_OFFSET_CHECK(SVideoDatabaseEntry, VideoId, 0x0);
+ZHM_OFFSET_CHECK(SVideoDatabaseEntry, RuntimeLocalizedVideoRid, 0x10);
+static_assert(sizeof(SVideoDatabaseEntry) == 0x18, "Wrong size for SVideoDatabaseEntry");
+static_assert(alignof(SVideoDatabaseEntry) == 0x8, "Wrong alignment for SVideoDatabaseEntry");
 
 // Size: 0x18
-class /*alignas(8)*/ SVideoDatabaseData{
+class alignas(8) SVideoDatabaseData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21287,9 +23852,13 @@ public:
 
 	TArray<SVideoDatabaseEntry> Videos; // 0x0
 };
+ZHM_OFFSET_CHECK(SVideoDatabaseData, Videos, 0x0);
+static_assert(sizeof(SVideoDatabaseData) == 0x18, "Wrong size for SVideoDatabaseData");
+static_assert(alignof(SVideoDatabaseData) == 0x8, "Wrong alignment for SVideoDatabaseData");
 
 // Size: 0x1
-class /*alignas(1)*/ SVisibilitySaveData{
+class alignas(1) SVisibilitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21303,9 +23872,13 @@ public:
 
 	bool m_bIsVisible; // 0x0
 };
+ZHM_OFFSET_CHECK(SVisibilitySaveData, m_bIsVisible, 0x0);
+static_assert(sizeof(SVisibilitySaveData) == 0x1, "Wrong size for SVisibilitySaveData");
+static_assert(alignof(SVisibilitySaveData) == 0x1, "Wrong alignment for SVisibilitySaveData");
 
 // Size: 0x8
-class /*alignas(4)*/ SVoidSignalEntitySaveData{
+class alignas(4) SVoidSignalEntitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21318,12 +23891,16 @@ public:
 	bool operator!=(const SVoidSignalEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 	bool m_bSignaling; // 0x0
-	uint8_t _pad1[3] {};
 	float32 m_fFiredAtTime; // 0x4
 };
+ZHM_OFFSET_CHECK(SVoidSignalEntitySaveData, m_bSignaling, 0x0);
+ZHM_OFFSET_CHECK(SVoidSignalEntitySaveData, m_fFiredAtTime, 0x4);
+static_assert(sizeof(SVoidSignalEntitySaveData) == 0x8, "Wrong size for SVoidSignalEntitySaveData");
+static_assert(alignof(SVoidSignalEntitySaveData) == 0x4, "Wrong alignment for SVoidSignalEntitySaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SVrSingleHandThrowSaveData{
+class alignas(8) SVrSingleHandThrowSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21340,9 +23917,16 @@ public:
 	uint32 m_eLastThrowTypeLeft; // 0x10
 	uint32 m_eLastThrowTypeRight; // 0x14
 };
+ZHM_OFFSET_CHECK(SVrSingleHandThrowSaveData, m_tLastThrowTimeRight, 0x0);
+ZHM_OFFSET_CHECK(SVrSingleHandThrowSaveData, m_tLastThrowTimeLeft, 0x8);
+ZHM_OFFSET_CHECK(SVrSingleHandThrowSaveData, m_eLastThrowTypeLeft, 0x10);
+ZHM_OFFSET_CHECK(SVrSingleHandThrowSaveData, m_eLastThrowTypeRight, 0x14);
+static_assert(sizeof(SVrSingleHandThrowSaveData) == 0x18, "Wrong size for SVrSingleHandThrowSaveData");
+static_assert(alignof(SVrSingleHandThrowSaveData) == 0x8, "Wrong alignment for SVrSingleHandThrowSaveData");
 
 // Size: 0x14
-class /*alignas(4)*/ SVrTakeDisguiseSaveData{
+class alignas(4) SVrTakeDisguiseSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21360,9 +23944,17 @@ public:
 	uint32 outfitRef; // 0xC
 	int32 state; // 0x10
 };
+ZHM_OFFSET_CHECK(SVrTakeDisguiseSaveData, fLastDisguiseTakenTime, 0x0);
+ZHM_OFFSET_CHECK(SVrTakeDisguiseSaveData, fLastDisguiseYankedFromBodyTime, 0x4);
+ZHM_OFFSET_CHECK(SVrTakeDisguiseSaveData, outfitItem, 0x8);
+ZHM_OFFSET_CHECK(SVrTakeDisguiseSaveData, outfitRef, 0xC);
+ZHM_OFFSET_CHECK(SVrTakeDisguiseSaveData, state, 0x10);
+static_assert(sizeof(SVrTakeDisguiseSaveData) == 0x14, "Wrong size for SVrTakeDisguiseSaveData");
+static_assert(alignof(SVrTakeDisguiseSaveData) == 0x4, "Wrong alignment for SVrTakeDisguiseSaveData");
 
 // Size: 0x18
-class /*alignas(8)*/ SWatersplashGeneratorSaveData{
+class alignas(8) SWatersplashGeneratorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21376,9 +23968,13 @@ public:
 
 	TArray<SDeadActorSaveData> m_aDeadActors; // 0x0
 };
+ZHM_OFFSET_CHECK(SWatersplashGeneratorSaveData, m_aDeadActors, 0x0);
+static_assert(sizeof(SWatersplashGeneratorSaveData) == 0x18, "Wrong size for SWatersplashGeneratorSaveData");
+static_assert(alignof(SWatersplashGeneratorSaveData) == 0x8, "Wrong alignment for SWatersplashGeneratorSaveData");
 
 // Size: 0x18
-class /*alignas(4)*/ SWaveformGeneratorSaveData{
+class alignas(4) SWaveformGeneratorSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21397,9 +23993,18 @@ public:
 	float32 m_fStartTime; // 0x10
 	uint32 m_nCount; // 0x14
 };
+ZHM_OFFSET_CHECK(SWaveformGeneratorSaveData, m_fTime, 0x0);
+ZHM_OFFSET_CHECK(SWaveformGeneratorSaveData, m_fFrequency, 0x4);
+ZHM_OFFSET_CHECK(SWaveformGeneratorSaveData, m_fOffset, 0x8);
+ZHM_OFFSET_CHECK(SWaveformGeneratorSaveData, m_fScale, 0xC);
+ZHM_OFFSET_CHECK(SWaveformGeneratorSaveData, m_fStartTime, 0x10);
+ZHM_OFFSET_CHECK(SWaveformGeneratorSaveData, m_nCount, 0x14);
+static_assert(sizeof(SWaveformGeneratorSaveData) == 0x18, "Wrong size for SWaveformGeneratorSaveData");
+static_assert(alignof(SWaveformGeneratorSaveData) == 0x4, "Wrong alignment for SWaveformGeneratorSaveData");
 
 // Size: 0x30
-class /*alignas(8)*/ SWaveformGeneratorManagerSaveData{
+class alignas(8) SWaveformGeneratorManagerSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21414,9 +24019,14 @@ public:
 	TArray<uint32> m_aGenerators; // 0x0
 	TArray<SWaveformGeneratorSaveData> m_aGeneratorData; // 0x18
 };
+ZHM_OFFSET_CHECK(SWaveformGeneratorManagerSaveData, m_aGenerators, 0x0);
+ZHM_OFFSET_CHECK(SWaveformGeneratorManagerSaveData, m_aGeneratorData, 0x18);
+static_assert(sizeof(SWaveformGeneratorManagerSaveData) == 0x30, "Wrong size for SWaveformGeneratorManagerSaveData");
+static_assert(alignof(SWaveformGeneratorManagerSaveData) == 0x8, "Wrong alignment for SWaveformGeneratorManagerSaveData");
 
 // Size: 0xC
-class /*alignas(4)*/ SWeaponCustomControlSaveData{
+class alignas(4) SWeaponCustomControlSaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21431,11 +24041,16 @@ public:
 	uint32 m_rActor; // 0x0
 	uint32 m_rItem; // 0x4
 	bool m_bTargetRegistered; // 0x8
-	uint8_t _pad9[3] {};
 };
+ZHM_OFFSET_CHECK(SWeaponCustomControlSaveData, m_rActor, 0x0);
+ZHM_OFFSET_CHECK(SWeaponCustomControlSaveData, m_rItem, 0x4);
+ZHM_OFFSET_CHECK(SWeaponCustomControlSaveData, m_bTargetRegistered, 0x8);
+static_assert(sizeof(SWeaponCustomControlSaveData) == 0xC, "Wrong size for SWeaponCustomControlSaveData");
+static_assert(alignof(SWeaponCustomControlSaveData) == 0x4, "Wrong alignment for SWeaponCustomControlSaveData");
 
 // Size: 0xA0
-class /*alignas(8)*/ SWeaponStatusUIData{
+class alignas(8) SWeaponStatusUIData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21465,27 +24080,57 @@ public:
 	bool bIllegal; // 0x4A
 	bool bCanReload; // 0x4B
 	bool bIsReloading; // 0x4C
-	uint8_t _pad4D[3] {};
 	float32 fReloadDuration; // 0x50
 	bool bInfiniteAmmo; // 0x54
 	bool bIsContainer; // 0x55
 	bool bContainsItem; // 0x56
-	uint8_t _pad57[1] {};
 	int32 nContainedItemHUDType; // 0x58
 	bool bContainedItemIllegal; // 0x5C
 	bool bContainedItemSuspicious; // 0x5D
 	bool bContainedItemDetectedDuringFrisk; // 0x5E
-	uint8_t _pad5F[1] {};
 	float32 fLastBulletFiredTime; // 0x60
 	float32 fTimeBetweenBullets; // 0x64
 	TArray<ZString> aPerks; // 0x68
 	TArray<ZString> aAmmoTypes; // 0x80
 	uint32 nCurrentAmmoType; // 0x98
-	uint8_t _pad9C[4] {};
 };
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, icon, 0x0);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, containedIcon, 0x8);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, sWeaponName, 0x10);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, sContainedItemName, 0x20);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, nWeaponType, 0x30);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, nItemHUDType, 0x34);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, nAmmoRemaining, 0x38);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, nAmmoTotal, 0x3C);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, nAmmoInClip, 0x40);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bSilenced, 0x44);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bIsFirearm, 0x45);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bHolstered, 0x46);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bCannotBeHolstered, 0x47);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bHasItemToShow, 0x48);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bSuspicious, 0x49);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bIllegal, 0x4A);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bCanReload, 0x4B);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bIsReloading, 0x4C);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, fReloadDuration, 0x50);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bInfiniteAmmo, 0x54);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bIsContainer, 0x55);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bContainsItem, 0x56);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, nContainedItemHUDType, 0x58);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bContainedItemIllegal, 0x5C);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bContainedItemSuspicious, 0x5D);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, bContainedItemDetectedDuringFrisk, 0x5E);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, fLastBulletFiredTime, 0x60);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, fTimeBetweenBullets, 0x64);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, aPerks, 0x68);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, aAmmoTypes, 0x80);
+ZHM_OFFSET_CHECK(SWeaponStatusUIData, nCurrentAmmoType, 0x98);
+static_assert(sizeof(SWeaponStatusUIData) == 0xA0, "Wrong size for SWeaponStatusUIData");
+static_assert(alignof(SWeaponStatusUIData) == 0x8, "Wrong alignment for SWeaponStatusUIData");
 
 // Size: 0x4
-class /*alignas(4)*/ SZHUDIgnoreVisibilitySaveData{
+class alignas(4) SZHUDIgnoreVisibilitySaveData
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21499,6 +24144,9 @@ public:
 
 	float32 alpha; // 0x0
 };
+ZHM_OFFSET_CHECK(SZHUDIgnoreVisibilitySaveData, alpha, 0x0);
+static_assert(sizeof(SZHUDIgnoreVisibilitySaveData) == 0x4, "Wrong size for SZHUDIgnoreVisibilitySaveData");
+static_assert(alignof(SZHUDIgnoreVisibilitySaveData) == 0x4, "Wrong alignment for SZHUDIgnoreVisibilitySaveData");
 
 // Size: 0x4
 enum class SniperControllerConditionType : int32_t
@@ -21634,7 +24282,8 @@ class ZAISetpieceDistractionContextEntity
 {
 public:
 	// Size: 0x18
-	class /*alignas(8)*/ SAIDistractionContextEntitySaveData	{
+	class alignas(8) SAIDistractionContextEntitySaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21647,11 +24296,14 @@ public:
 		bool operator!=(const SAIDistractionContextEntitySaveData& p_Other) const { return !(*this == p_Other); }
 
 		uint32 m_DistractedActor; // 0x0
-		uint8_t _pad4[4] {};
 		ZGameTime m_CooldownExpirationTimestamp; // 0x8
 		bool m_DistractionIsActive; // 0x10
-		uint8_t _pad11[7] {};
 	};
+	ZHM_OFFSET_CHECK(SAIDistractionContextEntitySaveData, m_DistractedActor, 0x0);
+	ZHM_OFFSET_CHECK(SAIDistractionContextEntitySaveData, m_CooldownExpirationTimestamp, 0x8);
+	ZHM_OFFSET_CHECK(SAIDistractionContextEntitySaveData, m_DistractionIsActive, 0x10);
+	static_assert(sizeof(SAIDistractionContextEntitySaveData) == 0x18, "Wrong size for SAIDistractionContextEntitySaveData");
+	static_assert(alignof(SAIDistractionContextEntitySaveData) == 0x8, "Wrong alignment for SAIDistractionContextEntitySaveData");
 
 };
 
@@ -21670,7 +24322,8 @@ namespace ZAISoundEvent {
 }
 
 // Size: 0x20
-class /*alignas(8)*/ ZAMDEvent{
+class alignas(8) ZAMDEvent
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21685,12 +24338,18 @@ public:
 	uint32 m_nEventID; // 0x0
 	float32 m_fStartFraction; // 0x4
 	float32 m_fDuration; // 0x8
-	uint8_t _padC[4] {};
 	ZVariant m_customData; // 0x10
 };
+ZHM_OFFSET_CHECK(ZAMDEvent, m_nEventID, 0x0);
+ZHM_OFFSET_CHECK(ZAMDEvent, m_fStartFraction, 0x4);
+ZHM_OFFSET_CHECK(ZAMDEvent, m_fDuration, 0x8);
+ZHM_OFFSET_CHECK(ZAMDEvent, m_customData, 0x10);
+static_assert(sizeof(ZAMDEvent) == 0x20, "Wrong size for ZAMDEvent");
+static_assert(alignof(ZAMDEvent) == 0x8, "Wrong alignment for ZAMDEvent");
 
 // Size: 0x28
-class /*alignas(8)*/ ZAMDEventTrack{
+class alignas(8) ZAMDEventTrack
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21705,9 +24364,14 @@ public:
 	ZString m_sName; // 0x0
 	TArray<ZAMDEvent> m_events; // 0x10
 };
+ZHM_OFFSET_CHECK(ZAMDEventTrack, m_sName, 0x0);
+ZHM_OFFSET_CHECK(ZAMDEventTrack, m_events, 0x10);
+static_assert(sizeof(ZAMDEventTrack) == 0x28, "Wrong size for ZAMDEventTrack");
+static_assert(alignof(ZAMDEventTrack) == 0x8, "Wrong alignment for ZAMDEventTrack");
 
 // Size: 0x30
-class /*alignas(8)*/ ZAMDTake{
+class alignas(8) ZAMDTake
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21722,8 +24386,12 @@ public:
 	TArray<ZAMDEventTrack> m_eventTracks; // 0x0
 	ZVariant m_customData; // 0x18
 	int32 m_nSyncTrackIndex; // 0x28
-	uint8_t _pad2C[4] {};
 };
+ZHM_OFFSET_CHECK(ZAMDTake, m_eventTracks, 0x0);
+ZHM_OFFSET_CHECK(ZAMDTake, m_customData, 0x18);
+ZHM_OFFSET_CHECK(ZAMDTake, m_nSyncTrackIndex, 0x28);
+static_assert(sizeof(ZAMDTake) == 0x30, "Wrong size for ZAMDTake");
+static_assert(alignof(ZAMDTake) == 0x8, "Wrong alignment for ZAMDTake");
 
 class ZAT2Controller
 {
@@ -21735,39 +24403,9 @@ public:
 		FOOT_RIGHT = 1,
 	};
 
-	// Size: 0x4
-	enum class EFootstepsMovementType : int32_t
-	{
-		MOVEMENT_WALKING = 0,
-		MOVEMENT_WALKING_SLIDING = 1,
-		MOVEMENT_RUNNING = 2,
-		MOVEMENT_STANDING = 3,
-	};
-
-	// Size: 0x58
-	class /*alignas(8)*/ SEventPreviewInfo	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SEventPreviewInfo& p_Other) const;
-		bool operator!=(const SEventPreviewInfo& p_Other) const { return !(*this == p_Other); }
-
-		int32 m_nEventID; // 0x0
-		uint8_t _pad4[4] {};
-		ZString m_sConsumerID; // 0x8
-		float32 m_fDuration; // 0x18
-		uint8_t _pad1C[4] {};
-		ZString m_sExtraDataTypeName; // 0x20
-		TMap<ZString,ZVariant> m_extraDataProperties; // 0x30
-	};
-
 	// Size: 0x8
-	class /*alignas(4)*/ SGeneratedFootstepEvent	{
+	class alignas(4) SGeneratedFootstepEvent
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -21782,6 +24420,47 @@ public:
 		ZAT2Controller::EFoot m_eFoot; // 0x0
 		float32 m_fFrame; // 0x4
 	};
+	ZHM_OFFSET_CHECK(SGeneratedFootstepEvent, m_eFoot, 0x0);
+	ZHM_OFFSET_CHECK(SGeneratedFootstepEvent, m_fFrame, 0x4);
+	static_assert(sizeof(SGeneratedFootstepEvent) == 0x8, "Wrong size for SGeneratedFootstepEvent");
+	static_assert(alignof(SGeneratedFootstepEvent) == 0x4, "Wrong alignment for SGeneratedFootstepEvent");
+
+	// Size: 0x4
+	enum class EFootstepsMovementType : int32_t
+	{
+		MOVEMENT_WALKING = 0,
+		MOVEMENT_WALKING_SLIDING = 1,
+		MOVEMENT_RUNNING = 2,
+		MOVEMENT_STANDING = 3,
+	};
+
+	// Size: 0x58
+	class alignas(8) SEventPreviewInfo
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SEventPreviewInfo& p_Other) const;
+		bool operator!=(const SEventPreviewInfo& p_Other) const { return !(*this == p_Other); }
+
+		int32 m_nEventID; // 0x0
+		ZString m_sConsumerID; // 0x8
+		float32 m_fDuration; // 0x18
+		ZString m_sExtraDataTypeName; // 0x20
+		TMap<ZString,ZVariant> m_extraDataProperties; // 0x30
+	};
+	ZHM_OFFSET_CHECK(SEventPreviewInfo, m_nEventID, 0x0);
+	ZHM_OFFSET_CHECK(SEventPreviewInfo, m_sConsumerID, 0x8);
+	ZHM_OFFSET_CHECK(SEventPreviewInfo, m_fDuration, 0x18);
+	ZHM_OFFSET_CHECK(SEventPreviewInfo, m_sExtraDataTypeName, 0x20);
+	ZHM_OFFSET_CHECK(SEventPreviewInfo, m_extraDataProperties, 0x30);
+	static_assert(sizeof(SEventPreviewInfo) == 0x58, "Wrong size for SEventPreviewInfo");
+	static_assert(alignof(SEventPreviewInfo) == 0x8, "Wrong alignment for SEventPreviewInfo");
 
 };
 
@@ -22050,7 +24729,8 @@ public:
 	};
 
 	// Size: 0x20
-	class /*alignas(16)*/ SApproachOrderSaveData	{
+	class alignas(16) SApproachOrderSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22066,8 +24746,13 @@ public:
 		ZApproachOrder::EApproachStyle m_style; // 0x10
 		bool m_bForceStand; // 0x14
 		bool m_bStopActFast; // 0x15
-		uint8_t _pad16[10] {};
 	};
+	ZHM_OFFSET_CHECK(SApproachOrderSaveData, m_vStopDirection, 0x0);
+	ZHM_OFFSET_CHECK(SApproachOrderSaveData, m_style, 0x10);
+	ZHM_OFFSET_CHECK(SApproachOrderSaveData, m_bForceStand, 0x14);
+	ZHM_OFFSET_CHECK(SApproachOrderSaveData, m_bStopActFast, 0x15);
+	static_assert(sizeof(SApproachOrderSaveData) == 0x20, "Wrong size for SApproachOrderSaveData");
+	static_assert(alignof(SApproachOrderSaveData) == 0x10, "Wrong alignment for SApproachOrderSaveData");
 
 };
 
@@ -22099,22 +24784,6 @@ public:
 
 };
 
-// Size: 0x8
-class /*alignas(8)*/ ZAutoNullEntityRef{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZAutoNullEntityRef& p_Other) const;
-	bool operator!=(const ZAutoNullEntityRef& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
 class ZAvoidDangerousAreaGroup
 {
 public:
@@ -22135,7 +24804,8 @@ class ZAvoidDangerousAreaSituation
 {
 public:
 	// Size: 0x18
-	class /*alignas(8)*/ SSituationSaveData	{
+	class alignas(8) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22149,6 +24819,9 @@ public:
 
 		TArray<int32> m_aAvoidDangerousAreaGroups; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aAvoidDangerousAreaGroups, 0x0);
+	static_assert(sizeof(SSituationSaveData) == 0x18, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x8, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -22328,7 +25001,8 @@ enum class eVRFadeType : int32_t
 };
 
 // Size: 0x28
-class /*alignas(8)*/ ZComponentCreator{
+class alignas(8) ZComponentCreator
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22343,6 +25017,10 @@ public:
 	ZString m_sComponentName; // 0x0
 	TArray<ZVariant> m_aArgs; // 0x10
 };
+ZHM_OFFSET_CHECK(ZComponentCreator, m_sComponentName, 0x0);
+ZHM_OFFSET_CHECK(ZComponentCreator, m_aArgs, 0x10);
+static_assert(sizeof(ZComponentCreator) == 0x28, "Wrong size for ZComponentCreator");
+static_assert(alignof(ZComponentCreator) == 0x8, "Wrong alignment for ZComponentCreator");
 
 class ZConditionListEntity
 {
@@ -22402,7 +25080,8 @@ public:
 		eCKT_SNAP_AND_TOSS = 1,
 		eCKT_PUSH = 2,
 		eCKT_NO_ANIMATION = 3,
-		eCKT_END = 4,
+		eCKT_INTERRUPT_ANIMATION = 4,
+		eCKT_END = 5,
 	};
 
 	// Size: 0x4
@@ -22426,22 +25105,6 @@ public:
 		Reverse = 2,
 	};
 
-};
-
-// Size: 0x48
-class /*alignas(8)*/ ZContractEvaluationContext{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZContractEvaluationContext& p_Other) const;
-	bool operator!=(const ZContractEvaluationContext& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[72] {};
 };
 
 class ZContractObjectiveHudHintEntity
@@ -22498,8 +25161,47 @@ public:
 		SF_Accident = 3,
 	};
 
+	// Size: 0x28
+	class alignas(8) SState
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SState& p_Other) const;
+		bool operator!=(const SState& p_Other) const { return !(*this == p_Other); }
+
+		ZDeadBodySituation::ESituationFlavor m_eFlavor; // 0x0
+		ZGameTime m_tLastEscalateOrder; // 0x8
+		ZGameTime m_tNextStanddownTime; // 0x10
+		int32 m_nSuspiciousDeaths; // 0x18
+		bool m_bAcknowledged; // 0x1C
+		bool m_bInspected; // 0x1D
+		bool m_bAccidentsResolved; // 0x1E
+		bool m_bStanddownComplete; // 0x1F
+		bool m_bStandDownUnconscious; // 0x20
+		bool m_bEscalateUnconscious; // 0x21
+	};
+	ZHM_OFFSET_CHECK(SState, m_eFlavor, 0x0);
+	ZHM_OFFSET_CHECK(SState, m_tLastEscalateOrder, 0x8);
+	ZHM_OFFSET_CHECK(SState, m_tNextStanddownTime, 0x10);
+	ZHM_OFFSET_CHECK(SState, m_nSuspiciousDeaths, 0x18);
+	ZHM_OFFSET_CHECK(SState, m_bAcknowledged, 0x1C);
+	ZHM_OFFSET_CHECK(SState, m_bInspected, 0x1D);
+	ZHM_OFFSET_CHECK(SState, m_bAccidentsResolved, 0x1E);
+	ZHM_OFFSET_CHECK(SState, m_bStanddownComplete, 0x1F);
+	ZHM_OFFSET_CHECK(SState, m_bStandDownUnconscious, 0x20);
+	ZHM_OFFSET_CHECK(SState, m_bEscalateUnconscious, 0x21);
+	static_assert(sizeof(SState) == 0x28, "Wrong size for SState");
+	static_assert(alignof(SState) == 0x8, "Wrong alignment for SState");
+
 	// Size: 0x8
-	class /*alignas(4)*/ SIncidentSaveData	{
+	class alignas(4) SIncidentSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22513,38 +25215,15 @@ public:
 
 		uint32 m_body; // 0x0
 		bool m_bAccident; // 0x4
-		uint8_t _pad5[3] {};
 	};
-
-	// Size: 0x28
-	class /*alignas(8)*/ SState	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SState& p_Other) const;
-		bool operator!=(const SState& p_Other) const { return !(*this == p_Other); }
-
-		ZDeadBodySituation::ESituationFlavor m_eFlavor; // 0x0
-		uint8_t _pad4[4] {};
-		ZGameTime m_tLastEscalateOrder; // 0x8
-		ZGameTime m_tNextStanddownTime; // 0x10
-		int32 m_nSuspiciousDeaths; // 0x18
-		bool m_bAcknowledged; // 0x1C
-		bool m_bInspected; // 0x1D
-		bool m_bAccidentsResolved; // 0x1E
-		bool m_bStanddownComplete; // 0x1F
-		bool m_bStandDownUnconscious; // 0x20
-		bool m_bEscalateUnconscious; // 0x21
-		uint8_t _pad22[6] {};
-	};
+	ZHM_OFFSET_CHECK(SIncidentSaveData, m_body, 0x0);
+	ZHM_OFFSET_CHECK(SIncidentSaveData, m_bAccident, 0x4);
+	static_assert(sizeof(SIncidentSaveData) == 0x8, "Wrong size for SIncidentSaveData");
+	static_assert(alignof(SIncidentSaveData) == 0x4, "Wrong alignment for SIncidentSaveData");
 
 	// Size: 0x58
-	class /*alignas(8)*/ SSituationSaveData	{
+	class alignas(8) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22558,13 +25237,19 @@ public:
 
 		ZDeadBodySituation::SState m_State; // 0x0
 		uint32 m_pLeader; // 0x28
-		uint8_t _pad2C[4] {};
 		TArray<ZDeadBodySituation::SIncidentSaveData> m_aIncidents; // 0x30
 		int32 m_pInvestigateDisguiseGroup; // 0x48
 		int32 m_pObserversGroup; // 0x4C
 		int32 m_pCivilianObserversGroup; // 0x50
-		uint8_t _pad54[4] {};
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_State, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pLeader, 0x28);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aIncidents, 0x30);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pInvestigateDisguiseGroup, 0x48);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pObserversGroup, 0x4C);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pCivilianObserversGroup, 0x50);
+	static_assert(sizeof(SSituationSaveData) == 0x58, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x8, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -22680,7 +25365,8 @@ class ZDetectedInPrivateSituation
 {
 public:
 	// Size: 0x4
-	class /*alignas(4)*/ SSituationSaveData	{
+	class alignas(4) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22694,30 +25380,18 @@ public:
 
 		int32 m_pDetectedInPrivateGroup; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pDetectedInPrivateGroup, 0x0);
+	static_assert(sizeof(SSituationSaveData) == 0x4, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x4, "Wrong alignment for SSituationSaveData");
 
-};
-
-// Size: 0x2
-class /*alignas(2)*/ ZDialogEventItemTypedIndex{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZDialogEventItemTypedIndex& p_Other) const;
-	bool operator!=(const ZDialogEventItemTypedIndex& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[2] {};
 };
 
 class ZSharedSensorDef
 {
 public:
 	// Size: 0x28
-	class /*alignas(4)*/ SVisibilitySetting	{
+	class alignas(4) SVisibilitySetting
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22740,6 +25414,18 @@ public:
 		float32 m_fFocusConeRange; // 0x20
 		float32 m_fFocusConeBackWidth; // 0x24
 	};
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_eSensitivity, 0x0);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fCloseRange, 0x4);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fPeripheralAngle, 0x8);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fPeripheralAngleWhileMoving, 0xC);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fPeripheralHigh, 0x10);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fPeripheralLow, 0x14);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fFocusConeWidthAngle, 0x18);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fFocusConeHeightAngle, 0x1C);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fFocusConeRange, 0x20);
+	ZHM_OFFSET_CHECK(SVisibilitySetting, m_fFocusConeBackWidth, 0x24);
+	static_assert(sizeof(SVisibilitySetting) == 0x28, "Wrong size for SVisibilitySetting");
+	static_assert(alignof(SVisibilitySetting) == 0x4, "Wrong alignment for SVisibilitySetting");
 
 };
 
@@ -22747,7 +25433,8 @@ class ZDisguiseSituation
 {
 public:
 	// Size: 0x28
-	class /*alignas(8)*/ SSituationSaveData	{
+	class alignas(8) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22760,11 +25447,14 @@ public:
 		bool operator!=(const SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 		uint32 m_pLeader; // 0x0
-		uint8_t _pad4[4] {};
 		TArray<int32> m_aInvestigateDisguiseGroups; // 0x8
 		EAISharedEventType m_eEventSetOnEscalation; // 0x20
-		uint8_t _pad24[4] {};
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pLeader, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aInvestigateDisguiseGroups, 0x8);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_eEventSetOnEscalation, 0x20);
+	static_assert(sizeof(SSituationSaveData) == 0x28, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x8, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -22806,14 +25496,6 @@ class ZHM5Item
 {
 public:
 	// Size: 0x4
-	enum class EKeywordEvaluationType : int32_t
-	{
-		ALL = 0,
-		NONE = 1,
-		ANY = 2,
-	};
-
-	// Size: 0x4
 	enum class EUseTypes : int32_t
 	{
 		EUT_CantUse = 0,
@@ -22821,10 +25503,34 @@ public:
 		EUT_TurnOn = 2,
 	};
 
+	// Size: 0x4
+	enum class EKeywordEvaluationType : int32_t
+	{
+		ALL = 0,
+		NONE = 1,
+		ANY = 2,
+	};
+
+};
+
+class ZDroppedItemMapTrackerAspect
+{
+public:
+	// Size: 0x4
+	enum class EIconType : int32_t
+	{
+		Outfit = 0,
+		MeleeWeapon = 1,
+		FirearmWeapon = 2,
+		Special = 4,
+		Generic = 1000,
+	};
+
 };
 
 // Size: 0x18
-class /*alignas(8)*/ ZER64{
+class alignas(8) ZER64
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22839,9 +25545,14 @@ public:
 	uint64 m_nEntityID; // 0x0
 	ZString m_sExposedEntity; // 0x8
 };
+ZHM_OFFSET_CHECK(ZER64, m_nEntityID, 0x0);
+ZHM_OFFSET_CHECK(ZER64, m_sExposedEntity, 0x8);
+static_assert(sizeof(ZER64) == 0x18, "Wrong size for ZER64");
+static_assert(alignof(ZER64) == 0x8, "Wrong alignment for ZER64");
 
 // Size: 0x10
-class /*alignas(8)*/ ZEntityID{
+class alignas(8) ZEntityID
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22855,21 +25566,20 @@ public:
 
 	ZString m_sStr; // 0x0
 };
+ZHM_OFFSET_CHECK(ZEntityID, m_sStr, 0x0);
+static_assert(sizeof(ZEntityID) == 0x10, "Wrong size for ZEntityID");
+static_assert(alignof(ZEntityID) == 0x8, "Wrong alignment for ZEntityID");
 
-// Size: 0x60
-class /*alignas(8)*/ ZEntityPath{
+class ZEntityLifetimeEmitterEntity
+{
 public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
+	// Size: 0x1
+	enum class ELifetimeEvent : int8_t
+	{
+		POST_INIT = 0,
+		ACTIVATE = 1,
+	};
 
-	bool operator==(const ZEntityPath& p_Other) const;
-	bool operator!=(const ZEntityPath& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[96] {};
 };
 
 class ZEntityPropertyReplica
@@ -22886,7 +25596,8 @@ public:
 };
 
 // Size: 0x20
-class /*alignas(8)*/ ZEntityReference{
+class alignas(8) ZEntityReference
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22901,12 +25612,17 @@ public:
 	ZEntityID m_EntityID; // 0x0
 	ZString m_sExposedEntity; // 0x10
 };
+ZHM_OFFSET_CHECK(ZEntityReference, m_EntityID, 0x0);
+ZHM_OFFSET_CHECK(ZEntityReference, m_sExposedEntity, 0x10);
+static_assert(sizeof(ZEntityReference) == 0x20, "Wrong size for ZEntityReference");
+static_assert(alignof(ZEntityReference) == 0x8, "Wrong alignment for ZEntityReference");
 
 class ZEvergreenCampaignActivatorDataProvider
 {
 public:
 	// Size: 0x58
-	class /*alignas(8)*/ STerritoryData	{
+	class alignas(8) STerritoryData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22928,11 +25644,23 @@ public:
 		int32 nTargets; // 0x4C
 		bool isAlerted; // 0x50
 		bool isEntitlementAvailable; // 0x51
-		uint8_t _pad52[6] {};
 	};
+	ZHM_OFFSET_CHECK(STerritoryData, destination, 0x0);
+	ZHM_OFFSET_CHECK(STerritoryData, lstrDestinationCity, 0x10);
+	ZHM_OFFSET_CHECK(STerritoryData, lstrDestinationCountry, 0x20);
+	ZHM_OFFSET_CHECK(STerritoryData, lstrDestinationFullName, 0x30);
+	ZHM_OFFSET_CHECK(STerritoryData, nSuppliers, 0x40);
+	ZHM_OFFSET_CHECK(STerritoryData, nMules, 0x44);
+	ZHM_OFFSET_CHECK(STerritoryData, nSafes, 0x48);
+	ZHM_OFFSET_CHECK(STerritoryData, nTargets, 0x4C);
+	ZHM_OFFSET_CHECK(STerritoryData, isAlerted, 0x50);
+	ZHM_OFFSET_CHECK(STerritoryData, isEntitlementAvailable, 0x51);
+	static_assert(sizeof(STerritoryData) == 0x58, "Wrong size for STerritoryData");
+	static_assert(alignof(STerritoryData) == 0x8, "Wrong alignment for STerritoryData");
 
 	// Size: 0x80
-	class /*alignas(8)*/ SCampaignData	{
+	class alignas(8) SCampaignData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -22951,12 +25679,22 @@ public:
 		int32 nDifficultyRank; // 0x38
 		int32 mercesDeposit; // 0x3C
 		int32 mercesPayoutBase; // 0x40
-		uint8_t _pad44[4] {};
 		TArray<ZEvergreenCampaignActivatorDataProvider::STerritoryData> territories; // 0x48
 		TArray<SBonusRequirementData> bonusRequirements; // 0x60
 		bool hasAllBonusRequirements; // 0x78
-		uint8_t _pad79[7] {};
 	};
+	ZHM_OFFSET_CHECK(SCampaignData, lstrCrimeSector, 0x0);
+	ZHM_OFFSET_CHECK(SCampaignData, lstrFactionLieutenantCodename, 0x10);
+	ZHM_OFFSET_CHECK(SCampaignData, lstrBiography, 0x20);
+	ZHM_OFFSET_CHECK(SCampaignData, ridCampaignIcon, 0x30);
+	ZHM_OFFSET_CHECK(SCampaignData, nDifficultyRank, 0x38);
+	ZHM_OFFSET_CHECK(SCampaignData, mercesDeposit, 0x3C);
+	ZHM_OFFSET_CHECK(SCampaignData, mercesPayoutBase, 0x40);
+	ZHM_OFFSET_CHECK(SCampaignData, territories, 0x48);
+	ZHM_OFFSET_CHECK(SCampaignData, bonusRequirements, 0x60);
+	ZHM_OFFSET_CHECK(SCampaignData, hasAllBonusRequirements, 0x78);
+	static_assert(sizeof(SCampaignData) == 0x80, "Wrong size for SCampaignData");
+	static_assert(alignof(SCampaignData) == 0x8, "Wrong alignment for SCampaignData");
 
 };
 
@@ -22990,7 +25728,8 @@ class ZEvergreenCampaignInfoDataProvider
 {
 public:
 	// Size: 0x8
-	class /*alignas(4)*/ SCampaignInfo	{
+	class alignas(4) SCampaignInfo
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23004,8 +25743,11 @@ public:
 
 		int32 nDifficultyRank; // 0x0
 		bool bHardcore; // 0x4
-		uint8_t _pad5[3] {};
 	};
+	ZHM_OFFSET_CHECK(SCampaignInfo, nDifficultyRank, 0x0);
+	ZHM_OFFSET_CHECK(SCampaignInfo, bHardcore, 0x4);
+	static_assert(sizeof(SCampaignInfo) == 0x8, "Wrong size for SCampaignInfo");
+	static_assert(alignof(SCampaignInfo) == 0x4, "Wrong alignment for SCampaignInfo");
 
 };
 
@@ -23013,7 +25755,8 @@ class ZEvergreenCampaignProgressDataProvider
 {
 public:
 	// Size: 0x38
-	class /*alignas(8)*/ SData	{
+	class alignas(8) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23033,6 +25776,15 @@ public:
 		bool goToExitObjectivesFail; // 0x36
 		bool campaignActivatorInUse; // 0x37
 	};
+	ZHM_OFFSET_CHECK(SData, campaign, 0x0);
+	ZHM_OFFSET_CHECK(SData, completed, 0x18);
+	ZHM_OFFSET_CHECK(SData, step, 0x30);
+	ZHM_OFFSET_CHECK(SData, hardcore, 0x34);
+	ZHM_OFFSET_CHECK(SData, goToExitObjectivesDone, 0x35);
+	ZHM_OFFSET_CHECK(SData, goToExitObjectivesFail, 0x36);
+	ZHM_OFFSET_CHECK(SData, campaignActivatorInUse, 0x37);
+	static_assert(sizeof(SData) == 0x38, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x8, "Wrong alignment for SData");
 
 };
 
@@ -23082,16 +25834,6 @@ class ZEvergreenIntelWallDataProvider
 {
 public:
 	// Size: 0x1
-	enum class EAgenda : int8_t
-	{
-		Unknown = -1,
-		HandoverMeeting = 0,
-		BusinessMeeting = 1,
-		SecretMeeting = 2,
-		NoMeeting = 3,
-	};
-
-	// Size: 0x1
 	enum class ELook : int8_t
 	{
 		Unknown = -1,
@@ -23122,8 +25864,19 @@ public:
 		Foodie = 6,
 	};
 
+	// Size: 0x1
+	enum class EAgenda : int8_t
+	{
+		Unknown = -1,
+		HandoverMeeting = 0,
+		BusinessMeeting = 1,
+		SecretMeeting = 2,
+		NoMeeting = 3,
+	};
+
 	// Size: 0x38
-	class /*alignas(8)*/ SIntelWallData	{
+	class alignas(8) SIntelWallData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23147,8 +25900,21 @@ public:
 		ZEvergreenIntelWallDataProvider::ELook lookB; // 0x34
 		ZEvergreenIntelWallDataProvider::ELook lookC; // 0x35
 		ZEvergreenIntelWallDataProvider::ELook lookD; // 0x36
-		uint8_t _pad37[1] {};
 	};
+	ZHM_OFFSET_CHECK(SIntelWallData, nDifficultyRank, 0x0);
+	ZHM_OFFSET_CHECK(SIntelWallData, idCrimeSector, 0x4);
+	ZHM_OFFSET_CHECK(SIntelWallData, lstrCrimeSector, 0x8);
+	ZHM_OFFSET_CHECK(SIntelWallData, ridCrimeSectorIcon, 0x18);
+	ZHM_OFFSET_CHECK(SIntelWallData, lstrLeaderCodename, 0x20);
+	ZHM_OFFSET_CHECK(SIntelWallData, agenda, 0x30);
+	ZHM_OFFSET_CHECK(SIntelWallData, tellA, 0x31);
+	ZHM_OFFSET_CHECK(SIntelWallData, tellB, 0x32);
+	ZHM_OFFSET_CHECK(SIntelWallData, lookA, 0x33);
+	ZHM_OFFSET_CHECK(SIntelWallData, lookB, 0x34);
+	ZHM_OFFSET_CHECK(SIntelWallData, lookC, 0x35);
+	ZHM_OFFSET_CHECK(SIntelWallData, lookD, 0x36);
+	static_assert(sizeof(SIntelWallData) == 0x38, "Wrong size for SIntelWallData");
+	static_assert(alignof(SIntelWallData) == 0x8, "Wrong alignment for SIntelWallData");
 
 };
 
@@ -23164,7 +25930,8 @@ public:
 	};
 
 	// Size: 0x10
-	class /*alignas(4)*/ SData	{
+	class alignas(4) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23181,6 +25948,12 @@ public:
 		int32 nSafes; // 0x8
 		int32 nTargets; // 0xC
 	};
+	ZHM_OFFSET_CHECK(SData, nSuppliers, 0x0);
+	ZHM_OFFSET_CHECK(SData, nMules, 0x4);
+	ZHM_OFFSET_CHECK(SData, nSafes, 0x8);
+	ZHM_OFFSET_CHECK(SData, nTargets, 0xC);
+	static_assert(sizeof(SData) == 0x10, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x4, "Wrong alignment for SData");
 
 };
 
@@ -23219,27 +25992,6 @@ public:
 
 };
 
-class ZEvergreenMenuController
-{
-public:
-	// Size: 0x18
-	class /*alignas(8)*/ SPromptsData	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SPromptsData& p_Other) const;
-		bool operator!=(const SPromptsData& p_Other) const { return !(*this == p_Other); }
-
-		TArray<SEvergreenMenuPromptDesc> buttonprompts; // 0x0
-	};
-
-};
-
 class ZEvergreenMenuCounterScrollEntity
 {
 public:
@@ -23265,13 +26017,6 @@ public:
 class ZEvergreenMenuEntryEntity
 {
 public:
-	// Size: 0x1
-	enum class EAcceptPromptVisibility : int8_t
-	{
-		ALWAYS_VISIBLE = 0,
-		VISIBLE_IF_ENABLED = 1,
-	};
-
 	// Size: 0x4
 	enum class ECursorShape : int32_t
 	{
@@ -23280,6 +26025,13 @@ public:
 		CYLINDER = 2,
 		SPHERE = 3,
 		NONE = 4,
+	};
+
+	// Size: 0x1
+	enum class EAcceptPromptVisibility : int8_t
+	{
+		ALWAYS_VISIBLE = 0,
+		VISIBLE_IF_ENABLED = 1,
 	};
 
 };
@@ -23365,7 +26117,8 @@ class ZEvergreenPrestigeObjectiveInfoDataProvider
 {
 public:
 	// Size: 0x30
-	class /*alignas(8)*/ SPrestigeInfo	{
+	class alignas(8) SPrestigeInfo
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23381,6 +26134,11 @@ public:
 		ZString description; // 0x10
 		ZString image; // 0x20
 	};
+	ZHM_OFFSET_CHECK(SPrestigeInfo, title, 0x0);
+	ZHM_OFFSET_CHECK(SPrestigeInfo, description, 0x10);
+	ZHM_OFFSET_CHECK(SPrestigeInfo, image, 0x20);
+	static_assert(sizeof(SPrestigeInfo) == 0x30, "Wrong size for SPrestigeInfo");
+	static_assert(alignof(SPrestigeInfo) == 0x8, "Wrong alignment for SPrestigeInfo");
 
 };
 
@@ -23388,7 +26146,8 @@ class ZEvergreenVitalInfoBarDataProvider
 {
 public:
 	// Size: 0x6
-	class /*alignas(1)*/ SVitalInfoData	{
+	class alignas(1) SVitalInfoData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23407,6 +26166,14 @@ public:
 		bool isAllertedTerritory; // 0x4
 		bool isPrestigeObjectiveActive; // 0x5
 	};
+	ZHM_OFFSET_CHECK(SVitalInfoData, isAssassinNearby, 0x0);
+	ZHM_OFFSET_CHECK(SVitalInfoData, isAssassinAlerted, 0x1);
+	ZHM_OFFSET_CHECK(SVitalInfoData, isLookoutNearby, 0x2);
+	ZHM_OFFSET_CHECK(SVitalInfoData, isLookoutAlerted, 0x3);
+	ZHM_OFFSET_CHECK(SVitalInfoData, isAllertedTerritory, 0x4);
+	ZHM_OFFSET_CHECK(SVitalInfoData, isPrestigeObjectiveActive, 0x5);
+	static_assert(sizeof(SVitalInfoData) == 0x6, "Wrong size for SVitalInfoData");
+	static_assert(alignof(SVitalInfoData) == 0x1, "Wrong alignment for SVitalInfoData");
 
 };
 
@@ -23436,7 +26203,8 @@ public:
 	};
 
 	// Size: 0x70
-	class /*alignas(8)*/ SData	{
+	class alignas(8) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23451,7 +26219,6 @@ public:
 		bool isInCampaign; // 0x0
 		bool isSelectedInMenu; // 0x1
 		bool isMenuZoomedIn; // 0x2
-		uint8_t _pad3[5] {};
 		ZString lstrDestinationCity; // 0x8
 		ZString lstrDestinationCountry; // 0x18
 		ZString lstrDestinationFullName; // 0x28
@@ -23461,19 +26228,37 @@ public:
 		int32 nSafes; // 0x44
 		int32 nTargets; // 0x48
 		bool isAlerted; // 0x4C
-		uint8_t _pad4D[3] {};
 		ZEvergreenWorldMapTerritoryDataProvider::EVisited visited; // 0x50
 		bool isHotMission; // 0x54
 		bool isThisSelectedToTravelNext; // 0x55
 		bool isAnotherSelectedToTravelNext; // 0x56
-		uint8_t _pad57[1] {};
 		TArray<SBonusRequirementData> bonusRequirements; // 0x58
 	};
+	ZHM_OFFSET_CHECK(SData, isInCampaign, 0x0);
+	ZHM_OFFSET_CHECK(SData, isSelectedInMenu, 0x1);
+	ZHM_OFFSET_CHECK(SData, isMenuZoomedIn, 0x2);
+	ZHM_OFFSET_CHECK(SData, lstrDestinationCity, 0x8);
+	ZHM_OFFSET_CHECK(SData, lstrDestinationCountry, 0x18);
+	ZHM_OFFSET_CHECK(SData, lstrDestinationFullName, 0x28);
+	ZHM_OFFSET_CHECK(SData, mercesPayout, 0x38);
+	ZHM_OFFSET_CHECK(SData, nSuppliers, 0x3C);
+	ZHM_OFFSET_CHECK(SData, nMules, 0x40);
+	ZHM_OFFSET_CHECK(SData, nSafes, 0x44);
+	ZHM_OFFSET_CHECK(SData, nTargets, 0x48);
+	ZHM_OFFSET_CHECK(SData, isAlerted, 0x4C);
+	ZHM_OFFSET_CHECK(SData, visited, 0x50);
+	ZHM_OFFSET_CHECK(SData, isHotMission, 0x54);
+	ZHM_OFFSET_CHECK(SData, isThisSelectedToTravelNext, 0x55);
+	ZHM_OFFSET_CHECK(SData, isAnotherSelectedToTravelNext, 0x56);
+	ZHM_OFFSET_CHECK(SData, bonusRequirements, 0x58);
+	static_assert(sizeof(SData) == 0x70, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x8, "Wrong alignment for SData");
 
 };
 
 // Size: 0x18
-class /*alignas(8)*/ ZStringBuilder{
+class alignas(8) ZStringBuilder
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23487,9 +26272,13 @@ public:
 
 	TArray<char> m_chars; // 0x0
 };
+ZHM_OFFSET_CHECK(ZStringBuilder, m_chars, 0x0);
+static_assert(sizeof(ZStringBuilder) == 0x18, "Wrong size for ZStringBuilder");
+static_assert(alignof(ZStringBuilder) == 0x8, "Wrong alignment for ZStringBuilder");
 
 // Size: 0x18
-class /*alignas(8)*/ ZPath{
+class alignas(8) ZPath
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23503,9 +26292,13 @@ public:
 
 	ZStringBuilder m_value; // 0x0
 };
+ZHM_OFFSET_CHECK(ZPath, m_value, 0x0);
+static_assert(sizeof(ZPath) == 0x18, "Wrong size for ZPath");
+static_assert(alignof(ZPath) == 0x8, "Wrong alignment for ZPath");
 
 // Size: 0x18
-class /*alignas(8)*/ ZFilePath{
+class alignas(8) ZFilePath
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23519,6 +26312,9 @@ public:
 
 	ZPath m_path; // 0x0
 };
+ZHM_OFFSET_CHECK(ZFilePath, m_path, 0x0);
+static_assert(sizeof(ZFilePath) == 0x18, "Wrong size for ZFilePath");
+static_assert(alignof(ZFilePath) == 0x8, "Wrong alignment for ZFilePath");
 
 // Size: 0x4
 enum class eBurstPatternType : int32_t
@@ -23532,13 +26328,20 @@ class ZHM5WeaponBasicConfigEntity
 {
 public:
 	// Size: 0x4
-	enum class EWeaponBasicConfigAudioClass : int32_t
+	enum class EWeaponBasicConfigAudioImpactType : int32_t
 	{
-		eWBC_AudioClass_AssaultRifle = 0,
-		eWBC_AudioClass_Pistol = 1,
-		eWBC_AudioClass_Shotgun = 2,
-		eWBC_AudioClass_SMG = 3,
-		eWBC_AudioClass_SniperRifle = 4,
+		eWBC_AudioImpactType_Normal = 0,
+		eWBC_AudioImpactType_Sweetener = 1,
+	};
+
+	// Size: 0x4
+	enum class EWeaponBasicConfigAudioFamily : int32_t
+	{
+		eWBC_AudioFamily_Exotics = 0,
+		eWBC_AudioFamily_Heavy = 1,
+		eWBC_AudioFamily_Light = 2,
+		eWBC_AudioFamily_NPC = 3,
+		eWBC_AudioFamily_Standard = 4,
 	};
 
 	// Size: 0x4
@@ -23553,20 +26356,13 @@ public:
 	};
 
 	// Size: 0x4
-	enum class EWeaponBasicConfigAudioFamily : int32_t
+	enum class EWeaponBasicConfigAudioClass : int32_t
 	{
-		eWBC_AudioFamily_Exotics = 0,
-		eWBC_AudioFamily_Heavy = 1,
-		eWBC_AudioFamily_Light = 2,
-		eWBC_AudioFamily_NPC = 3,
-		eWBC_AudioFamily_Standard = 4,
-	};
-
-	// Size: 0x4
-	enum class EWeaponBasicConfigAudioFireType : int32_t
-	{
-		eWBC_AudioFireType_Full_Automatic = 0,
-		eWBC_AudioFireType_Single = 1,
+		eWBC_AudioClass_AssaultRifle = 0,
+		eWBC_AudioClass_Pistol = 1,
+		eWBC_AudioClass_Shotgun = 2,
+		eWBC_AudioClass_SMG = 3,
+		eWBC_AudioClass_SniperRifle = 4,
 	};
 
 	// Size: 0x4
@@ -23580,10 +26376,10 @@ public:
 	};
 
 	// Size: 0x4
-	enum class EWeaponBasicConfigAudioImpactType : int32_t
+	enum class EWeaponBasicConfigAudioFireType : int32_t
 	{
-		eWBC_AudioImpactType_Normal = 0,
-		eWBC_AudioImpactType_Sweetener = 1,
+		eWBC_AudioFireType_Full_Automatic = 0,
+		eWBC_AudioFireType_Single = 1,
 	};
 
 };
@@ -23592,7 +26388,8 @@ class ZFormationMoveOrder
 {
 public:
 	// Size: 0x20
-	class /*alignas(16)*/ SFormationMoveOrderSaveData	{
+	class alignas(16) SFormationMoveOrderSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23607,8 +26404,12 @@ public:
 		float4 m_vStopDirection; // 0x0
 		uint32 m_nObstacleBlockageFlags; // 0x10
 		EMoveSpeed m_eMoveSpeed; // 0x14
-		uint8_t _pad18[8] {};
 	};
+	ZHM_OFFSET_CHECK(SFormationMoveOrderSaveData, m_vStopDirection, 0x0);
+	ZHM_OFFSET_CHECK(SFormationMoveOrderSaveData, m_nObstacleBlockageFlags, 0x10);
+	ZHM_OFFSET_CHECK(SFormationMoveOrderSaveData, m_eMoveSpeed, 0x14);
+	static_assert(sizeof(SFormationMoveOrderSaveData) == 0x20, "Wrong size for SFormationMoveOrderSaveData");
+	static_assert(alignof(SFormationMoveOrderSaveData) == 0x10, "Wrong alignment for SFormationMoveOrderSaveData");
 
 };
 
@@ -23632,55 +26433,6 @@ public:
 
 };
 
-// Size: 0x8
-class /*alignas(8)*/ ZGfxValueWrapper{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZGfxValueWrapper& p_Other) const;
-	bool operator!=(const ZGfxValueWrapper& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
-};
-
-// Size: 0x20
-class /*alignas(8)*/ ZGridFloatField{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZGridFloatField& p_Other) const;
-	bool operator!=(const ZGridFloatField& p_Other) const { return !(*this == p_Other); }
-
-	float32 m_fInitialValue; // 0x4
-	TArray<float32> m_field; // 0x8
-};
-
-// Size: 0x20
-class /*alignas(8)*/ ZGuidString{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZGuidString& p_Other) const;
-	bool operator!=(const ZGuidString& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[32] {};
-};
-
 class ZHM5AgilityEventConsumer
 {
 public:
@@ -23694,7 +26446,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SAgilityEventData	{
+	class alignas(4) SAgilityEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23708,6 +26461,9 @@ public:
 
 		ZHM5AgilityEventConsumer::EEvent m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SAgilityEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SAgilityEventData) == 0x4, "Wrong size for SAgilityEventData");
+	static_assert(alignof(SAgilityEventData) == 0x4, "Wrong alignment for SAgilityEventData");
 
 };
 
@@ -23729,24 +26485,6 @@ public:
 class ZHM5AudioEventConsumer
 {
 public:
-	// Size: 0x10
-	class /*alignas(4)*/ SAudioAnimationEventData	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SAudioAnimationEventData& p_Other) const;
-		bool operator!=(const SAudioAnimationEventData& p_Other) const { return !(*this == p_Other); }
-
-		ZResourcePtr m_pAudioEventRes; // 0x0
-		float32 m_fAttenuation; // 0x8
-		float32 m_fPitch; // 0xC
-	};
-
 };
 
 class ZHM5BodySoundEventConsumer
@@ -23773,7 +26511,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SBodySoundEventData	{
+	class alignas(4) SBodySoundEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23787,6 +26526,9 @@ public:
 
 		ZHM5BodySoundEventConsumer::EAnimSoundBody m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SBodySoundEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SBodySoundEventData) == 0x4, "Wrong size for SBodySoundEventData");
+	static_assert(alignof(SBodySoundEventData) == 0x4, "Wrong alignment for SBodySoundEventData");
 
 };
 
@@ -23794,7 +26536,8 @@ class ZHM5CloseCombatEventConsumer
 {
 public:
 	// Size: 0xC
-	class /*alignas(4)*/ SCloseCombatSoundEventData	{
+	class alignas(4) SCloseCombatSoundEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23810,6 +26553,11 @@ public:
 		float32 m_fAttenuation; // 0x4
 		float32 m_fPitch; // 0x8
 	};
+	ZHM_OFFSET_CHECK(SCloseCombatSoundEventData, m_nEvent, 0x0);
+	ZHM_OFFSET_CHECK(SCloseCombatSoundEventData, m_fAttenuation, 0x4);
+	ZHM_OFFSET_CHECK(SCloseCombatSoundEventData, m_fPitch, 0x8);
+	static_assert(sizeof(SCloseCombatSoundEventData) == 0xC, "Wrong size for SCloseCombatSoundEventData");
+	static_assert(alignof(SCloseCombatSoundEventData) == 0x4, "Wrong alignment for SCloseCombatSoundEventData");
 
 };
 
@@ -23829,24 +26577,6 @@ public:
 class ZHM5CrowdEventConsumer
 {
 public:
-	// Size: 0x10
-	class /*alignas(4)*/ SCrowdSoundEventData	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SCrowdSoundEventData& p_Other) const;
-		bool operator!=(const SCrowdSoundEventData& p_Other) const { return !(*this == p_Other); }
-
-		ZResourcePtr m_pAudioEventRes; // 0x0
-		float32 m_fAttenuation; // 0x8
-		float32 m_fPitch; // 0xC
-	};
-
 };
 
 class ZHM5CrowdGenericEventConsumer
@@ -23866,7 +26596,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SCrowdSoundGenericEventData	{
+	class alignas(4) SCrowdSoundGenericEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23880,6 +26611,9 @@ public:
 
 		ZHM5CrowdGenericEventConsumer::EEvent m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SCrowdSoundGenericEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SCrowdSoundGenericEventData) == 0x4, "Wrong size for SCrowdSoundGenericEventData");
+	static_assert(alignof(SCrowdSoundGenericEventData) == 0x4, "Wrong alignment for SCrowdSoundGenericEventData");
 
 };
 
@@ -23918,7 +26652,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SFaceFXEventData	{
+	class alignas(4) SFaceFXEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23932,6 +26667,9 @@ public:
 
 		ZHM5FaceFXReactionEventConsumer::EEvent m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SFaceFXEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SFaceFXEventData) == 0x4, "Wrong size for SFaceFXEventData");
+	static_assert(alignof(SFaceFXEventData) == 0x4, "Wrong alignment for SFaceFXEventData");
 
 };
 
@@ -23952,7 +26690,8 @@ public:
 	};
 
 	// Size: 0x18
-	class /*alignas(8)*/ SFaceFXEventData	{
+	class alignas(8) SFaceFXEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23965,9 +26704,12 @@ public:
 		bool operator!=(const SFaceFXEventData& p_Other) const { return !(*this == p_Other); }
 
 		ZHM5FaceFXSpecificEventConsumer::EEvent m_nEvent; // 0x0
-		uint8_t _pad4[4] {};
 		ZString m_sFaceExpression; // 0x8
 	};
+	ZHM_OFFSET_CHECK(SFaceFXEventData, m_nEvent, 0x0);
+	ZHM_OFFSET_CHECK(SFaceFXEventData, m_sFaceExpression, 0x8);
+	static_assert(sizeof(SFaceFXEventData) == 0x18, "Wrong size for SFaceFXEventData");
+	static_assert(alignof(SFaceFXEventData) == 0x8, "Wrong alignment for SFaceFXEventData");
 
 };
 
@@ -23975,7 +26717,8 @@ class ZHM5FootstepEventConsumer
 {
 public:
 	// Size: 0x4
-	class /*alignas(4)*/ SFootstepSoundEventData	{
+	class alignas(4) SFootstepSoundEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -23989,6 +26732,9 @@ public:
 
 		EHM5SoundFootstepEvent m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SFootstepSoundEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SFootstepSoundEventData) == 0x4, "Wrong size for SFootstepSoundEventData");
+	static_assert(alignof(SFootstepSoundEventData) == 0x4, "Wrong alignment for SFootstepSoundEventData");
 
 };
 
@@ -24039,7 +26785,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SGenericEventData	{
+	class alignas(4) SGenericEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24053,12 +26800,22 @@ public:
 
 		ZHM5GenericEventConsumer::EEvent m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SGenericEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SGenericEventData) == 0x4, "Wrong size for SGenericEventData");
+	static_assert(alignof(SGenericEventData) == 0x4, "Wrong alignment for SGenericEventData");
 
 };
 
 class ZHM5HIKEventConsumer
 {
 public:
+	// Size: 0x4
+	enum class EEffector : int32_t
+	{
+		eLeftHand = 0,
+		eRightHand = 1,
+	};
+
 	// Size: 0x4
 	enum class EBlend : int32_t
 	{
@@ -24068,15 +26825,9 @@ public:
 		eInstantOff = 3,
 	};
 
-	// Size: 0x4
-	enum class EEffector : int32_t
-	{
-		eLeftHand = 0,
-		eRightHand = 1,
-	};
-
 	// Size: 0x8
-	class /*alignas(4)*/ SZHM5HIKEventData	{
+	class alignas(4) SZHM5HIKEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24091,6 +26842,10 @@ public:
 		ZHM5HIKEventConsumer::EEffector m_nEffector; // 0x0
 		ZHM5HIKEventConsumer::EBlend m_nBlend; // 0x4
 	};
+	ZHM_OFFSET_CHECK(SZHM5HIKEventData, m_nEffector, 0x0);
+	ZHM_OFFSET_CHECK(SZHM5HIKEventData, m_nBlend, 0x4);
+	static_assert(sizeof(SZHM5HIKEventData) == 0x8, "Wrong size for SZHM5HIKEventData");
+	static_assert(alignof(SZHM5HIKEventData) == 0x4, "Wrong alignment for SZHM5HIKEventData");
 
 };
 
@@ -24160,7 +26915,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SItemInteractionEventData	{
+	class alignas(4) SItemInteractionEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24174,6 +26930,9 @@ public:
 
 		ZHM5ItemInteractionEventConsumer::EHM5SoundItemInteractionEvent m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SItemInteractionEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SItemInteractionEventData) == 0x4, "Wrong size for SItemInteractionEventData");
+	static_assert(alignof(SItemInteractionEventData) == 0x4, "Wrong alignment for SItemInteractionEventData");
 
 };
 
@@ -24195,18 +26954,18 @@ class ZHM5LedgeMount
 {
 public:
 	// Size: 0x4
+	enum class ELedgeEndState : int32_t
+	{
+		eHang = 0,
+		eStand = 1,
+	};
+
+	// Size: 0x4
 	enum class EFaceDirection : int32_t
 	{
 		eFaceFront = 0,
 		eFaceLeft = 1,
 		eFaceRight = 2,
-	};
-
-	// Size: 0x4
-	enum class ELedgeEndState : int32_t
-	{
-		eHang = 0,
-		eStand = 1,
 	};
 
 };
@@ -24238,7 +26997,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SWeaponEventData	{
+	class alignas(4) SWeaponEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24252,6 +27012,9 @@ public:
 
 		ZHM5WeaponEventConsumer::EAnimWeapon m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SWeaponEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SWeaponEventData) == 0x4, "Wrong size for SWeaponEventData");
+	static_assert(alignof(SWeaponEventData) == 0x4, "Wrong alignment for SWeaponEventData");
 
 };
 
@@ -24259,7 +27022,8 @@ class ZHUDAIGuide
 {
 public:
 	// Size: 0x8
-	class /*alignas(1)*/ SData	{
+	class alignas(1) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24280,20 +27044,22 @@ public:
 		bool bDeepTrespassing; // 0x6
 		bool bDeepTrespassingNOTUSEDBUTNECESSARYBECAUSEOFREALLYSTRANGEPROPERTYPARSERBUG; // 0x7
 	};
+	ZHM_OFFSET_CHECK(SData, bDisguiseBroken, 0x0);
+	ZHM_OFFSET_CHECK(SData, bTrespassing, 0x1);
+	ZHM_OFFSET_CHECK(SData, bInsideAreaBeingInvestigated, 0x2);
+	ZHM_OFFSET_CHECK(SData, bNearDeadBody, 0x3);
+	ZHM_OFFSET_CHECK(SData, bVisiblyArmed, 0x4);
+	ZHM_OFFSET_CHECK(SData, bDisguiseSuspicious, 0x5);
+	ZHM_OFFSET_CHECK(SData, bDeepTrespassing, 0x6);
+	ZHM_OFFSET_CHECK(SData, bDeepTrespassingNOTUSEDBUTNECESSARYBECAUSEOFREALLYSTRANGEPROPERTYPARSERBUG, 0x7);
+	static_assert(sizeof(SData) == 0x8, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x1, "Wrong alignment for SData");
 
 };
 
 class ZHUDCamera3DControllerEntity
 {
 public:
-	// Size: 0x4
-	enum class EMode : int32_t
-	{
-		Auto = 0,
-		Mode2D = 1,
-		Mode3D = 2,
-	};
-
 	// Size: 0x4
 	enum class ESpace : int32_t
 	{
@@ -24310,8 +27076,17 @@ public:
 		HUD = 1,
 	};
 
+	// Size: 0x4
+	enum class EMode : int32_t
+	{
+		Auto = 0,
+		Mode2D = 1,
+		Mode3D = 2,
+	};
+
 	// Size: 0x30
-	class /*alignas(16)*/ SEyeToPlane	{
+	class alignas(16) SEyeToPlane
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24327,6 +27102,11 @@ public:
 		float4 udirTowardsPlane; // 0x10
 		float4 udirAnchor; // 0x20
 	};
+	ZHM_OFFSET_CHECK(SEyeToPlane, posCharacter, 0x0);
+	ZHM_OFFSET_CHECK(SEyeToPlane, udirTowardsPlane, 0x10);
+	ZHM_OFFSET_CHECK(SEyeToPlane, udirAnchor, 0x20);
+	static_assert(sizeof(SEyeToPlane) == 0x30, "Wrong size for SEyeToPlane");
+	static_assert(alignof(SEyeToPlane) == 0x10, "Wrong alignment for SEyeToPlane");
 
 };
 
@@ -24334,7 +27114,8 @@ class ZHUDHintController
 {
 public:
 	// Size: 0x20
-	class /*alignas(8)*/ SData	{
+	class alignas(8) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24349,6 +27130,10 @@ public:
 		ZString m_sTitleText; // 0x0
 		ZString m_sBodyText; // 0x10
 	};
+	ZHM_OFFSET_CHECK(SData, m_sTitleText, 0x0);
+	ZHM_OFFSET_CHECK(SData, m_sBodyText, 0x10);
+	static_assert(sizeof(SData) == 0x20, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x8, "Wrong alignment for SData");
 
 };
 
@@ -24356,7 +27141,8 @@ class ZHUDInventoryNotificationController
 {
 public:
 	// Size: 0x20
-	class /*alignas(8)*/ SData	{
+	class alignas(8) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24371,30 +27157,19 @@ public:
 		ZString m_sTitleText; // 0x0
 		ZString m_sBodyText; // 0x10
 	};
+	ZHM_OFFSET_CHECK(SData, m_sTitleText, 0x0);
+	ZHM_OFFSET_CHECK(SData, m_sBodyText, 0x10);
+	static_assert(sizeof(SData) == 0x20, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x8, "Wrong alignment for SData");
 
 };
 
 class ZHUDOccluderTriggerEntity
 {
 public:
-	// Size: 0x4
-	enum class EOccluderTestBit : int32_t
-	{
-		PhysX_Far = 1,
-		Crowd_Far = 2,
-		PhysX_Middle = 4,
-		Crowd_Middle = 8,
-		PhysX_LowerLeft = 16,
-		Crowd_LowerLeft = 32,
-		PhysX_LowerRight = 64,
-		Crowd_LowerRight = 128,
-		PhysX_UpperLeft = 256,
-		PhysX_UpperRight = 512,
-		LateralShift = 1024,
-	};
-
 	// Size: 0x14
-	class /*alignas(4)*/ SBoneTestSetup	{
+	class alignas(4) SBoneTestSetup
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24409,6 +27184,27 @@ public:
 		BoneId::Enum boneId; // 0x0
 		SVector3 localOffset; // 0x4
 		float32 radius; // 0x10
+	};
+	ZHM_OFFSET_CHECK(SBoneTestSetup, boneId, 0x0);
+	ZHM_OFFSET_CHECK(SBoneTestSetup, localOffset, 0x4);
+	ZHM_OFFSET_CHECK(SBoneTestSetup, radius, 0x10);
+	static_assert(sizeof(SBoneTestSetup) == 0x14, "Wrong size for SBoneTestSetup");
+	static_assert(alignof(SBoneTestSetup) == 0x4, "Wrong alignment for SBoneTestSetup");
+
+	// Size: 0x4
+	enum class EOccluderTestBit : int32_t
+	{
+		PhysX_Far = 1,
+		Crowd_Far = 2,
+		PhysX_Middle = 4,
+		Crowd_Middle = 8,
+		PhysX_LowerLeft = 16,
+		Crowd_LowerLeft = 32,
+		PhysX_LowerRight = 64,
+		Crowd_LowerRight = 128,
+		PhysX_UpperLeft = 256,
+		PhysX_UpperRight = 512,
+		LateralShift = 1024,
 	};
 
 };
@@ -24442,7 +27238,8 @@ class ZHUDUIControllerEntity
 {
 public:
 	// Size: 0xC8
-	class /*alignas(8)*/ SWeaponViewData	{
+	class alignas(8) SWeaponViewData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24458,9 +27255,15 @@ public:
 		SItemLeftHandUIData itemLeftHandStatus; // 0xA0
 		SItemOnBackUIData itemOnBackStatus; // 0xB0
 		bool bShowHolstered; // 0xC0
-		uint8_t _padC1[3] {};
 		int32 nDisplayMode; // 0xC4
 	};
+	ZHM_OFFSET_CHECK(SWeaponViewData, weaponStatus, 0x0);
+	ZHM_OFFSET_CHECK(SWeaponViewData, itemLeftHandStatus, 0xA0);
+	ZHM_OFFSET_CHECK(SWeaponViewData, itemOnBackStatus, 0xB0);
+	ZHM_OFFSET_CHECK(SWeaponViewData, bShowHolstered, 0xC0);
+	ZHM_OFFSET_CHECK(SWeaponViewData, nDisplayMode, 0xC4);
+	static_assert(sizeof(SWeaponViewData) == 0xC8, "Wrong size for SWeaponViewData");
+	static_assert(alignof(SWeaponViewData) == 0x8, "Wrong alignment for SWeaponViewData");
 
 };
 
@@ -24468,7 +27271,8 @@ class ZHUDWalkSpeedDataProvider
 {
 public:
 	// Size: 0x18
-	class /*alignas(8)*/ SData	{
+	class alignas(8) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24481,9 +27285,12 @@ public:
 		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
 
 		bool isVisible; // 0x0
-		uint8_t _pad1[7] {};
 		ZString speed; // 0x8
 	};
+	ZHM_OFFSET_CHECK(SData, isVisible, 0x0);
+	ZHM_OFFSET_CHECK(SData, speed, 0x8);
+	static_assert(sizeof(SData) == 0x18, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x8, "Wrong alignment for SData");
 
 };
 
@@ -24574,24 +27381,8 @@ public:
 
 };
 
-// Size: 0x4
-class /*alignas(4)*/ ZHm5VrItemGripState{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZHm5VrItemGripState& p_Other) const;
-	bool operator!=(const ZHm5VrItemGripState& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[4] {};
-};
-
-// Size: 0x60
-class /*alignas(8)*/ ZHttpUrl{
+class ZHttpUrl
+{
 public:
 	// Size: 0x4
 	enum class EVerb : int32_t
@@ -24603,26 +27394,14 @@ public:
 		eHEAD = 4,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZHttpUrl& p_Other) const;
-	bool operator!=(const ZHttpUrl& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[96] {};
 };
 
 class ZInfectedSituation
 {
 public:
 	// Size: 0x1
-	class /*alignas(1)*/ SSituationSaveData	{
+	class alignas(1) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24636,6 +27415,9 @@ public:
 
 		bool m_bStandingDown; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bStandingDown, 0x0);
+	static_assert(sizeof(SSituationSaveData) == 0x1, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x1, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -24723,8 +27505,8 @@ public:
 
 };
 
-// Size: 0x150
-class /*alignas(16)*/ ZInteractionData{
+class ZInteractionData
+{
 public:
 	// Size: 0x4
 	enum class EFilterResult : int32_t
@@ -24747,19 +27529,6 @@ public:
 		EFR_REJECTED_PRIORITY = 15,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZInteractionData& p_Other) const;
-	bool operator!=(const ZInteractionData& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[336] {};
 };
 
 class ZInteractionEventConsumer
@@ -24790,7 +27559,8 @@ public:
 	};
 
 	// Size: 0x4
-	class /*alignas(4)*/ SInteractionEventData	{
+	class alignas(4) SInteractionEventData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24804,11 +27574,14 @@ public:
 
 		ZInteractionEventConsumer::EEvent m_nEvent; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SInteractionEventData, m_nEvent, 0x0);
+	static_assert(sizeof(SInteractionEventData) == 0x4, "Wrong size for SInteractionEventData");
+	static_assert(alignof(SInteractionEventData) == 0x4, "Wrong alignment for SInteractionEventData");
 
 };
 
-// Size: 0xA0
-class /*alignas(16)*/ ZInteractionGuideData{
+class ZInteractionGuideData
+{
 public:
 	// Size: 0x4
 	enum class EDirection : int32_t
@@ -24819,26 +27592,35 @@ public:
 		RIGHT = 3,
 	};
 
+};
 
+class ZInvestigateCautiousSituation
+{
 public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
+	// Size: 0x4
+	enum class EBystanderState : int32_t
+	{
+		BS_SelectCandidate = 0,
+		BS_SelectPoint = 1,
+		BS_SearchDangerField = 2,
+	};
 
-	bool operator==(const ZInteractionGuideData& p_Other) const;
-	bool operator!=(const ZInteractionGuideData& p_Other) const { return !(*this == p_Other); }
+	// Size: 0x4
+	enum class ESituationState : int32_t
+	{
+		SS_Main = 0,
+		SS_StandDownPending = 1,
+		SS_StandDown = 2,
+	};
 
-	uint8_t _pad0[160] {};
 };
 
 class ZInvestigateWeaponSituation
 {
 public:
 	// Size: 0x20
-	class /*alignas(8)*/ SSituationSaveData	{
+	class alignas(8) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24851,12 +27633,16 @@ public:
 		bool operator!=(const SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 		int32 m_nCurrentState; // 0x0
-		uint8_t _pad4[4] {};
 		ZGameTime m_mainStateStartTime; // 0x8
 		ZGameTime m_tLastStandDown; // 0x10
 		int32 m_nActiveInvestigationGroup; // 0x18
-		uint8_t _pad1C[4] {};
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_nCurrentState, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_mainStateStartTime, 0x8);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_tLastStandDown, 0x10);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_nActiveInvestigationGroup, 0x18);
+	static_assert(sizeof(SSituationSaveData) == 0x20, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x8, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -24877,7 +27663,8 @@ class ZJumpToOrder
 {
 public:
 	// Size: 0x20
-	class /*alignas(16)*/ SJumpToOrderSaveData	{
+	class alignas(16) SJumpToOrderSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24892,6 +27679,10 @@ public:
 		float4 m_vStopDirection; // 0x0
 		float4 m_vTargetPosition; // 0x10
 	};
+	ZHM_OFFSET_CHECK(SJumpToOrderSaveData, m_vStopDirection, 0x0);
+	ZHM_OFFSET_CHECK(SJumpToOrderSaveData, m_vTargetPosition, 0x10);
+	static_assert(sizeof(SJumpToOrderSaveData) == 0x20, "Wrong size for SJumpToOrderSaveData");
+	static_assert(alignof(SJumpToOrderSaveData) == 0x10, "Wrong alignment for SJumpToOrderSaveData");
 
 };
 
@@ -24899,7 +27690,8 @@ class ZKeywordCalculator
 {
 public:
 	// Size: 0x18
-	class /*alignas(8)*/ SCollection	{
+	class alignas(8) SCollection
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -24913,6 +27705,9 @@ public:
 
 		TArray<int32> aKeywords; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SCollection, aKeywords, 0x0);
+	static_assert(sizeof(SCollection) == 0x18, "Wrong size for SCollection");
+	static_assert(alignof(SCollection) == 0x8, "Wrong alignment for SCollection");
 
 };
 
@@ -24976,6 +27771,13 @@ class ZMinimapDirectionProvider
 {
 public:
 	// Size: 0x4
+	enum class EProviderType : int32_t
+	{
+		NAVIGATION = 0,
+		HERO_MARKER = 1,
+	};
+
+	// Size: 0x4
 	enum class EAxis : int32_t
 	{
 		X_POSITIVE = 0,
@@ -24984,13 +27786,6 @@ public:
 		Y_NEGATIVE = 3,
 		Z_POSITIVE = 4,
 		Z_NEGATIVE = 5,
-	};
-
-	// Size: 0x4
-	enum class EProviderType : int32_t
-	{
-		NAVIGATION = 0,
-		HERO_MARKER = 1,
 	};
 
 };
@@ -25183,6 +27978,40 @@ public:
 		BottomRight = 8,
 	};
 
+	// Size: 0x30
+	class alignas(8) SUIInputData
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUIInputData& p_Other) const;
+		bool operator!=(const SUIInputData& p_Other) const { return !(*this == p_Other); }
+
+		int32 actiontype; // 0x0
+		ZString customicon; // 0x8
+		float32 posX; // 0x18
+		float32 posY; // 0x1C
+		float32 size; // 0x20
+		bool isPressed; // 0x24
+		float32 alpha; // 0x28
+		bool isVisible; // 0x2C
+	};
+	ZHM_OFFSET_CHECK(SUIInputData, actiontype, 0x0);
+	ZHM_OFFSET_CHECK(SUIInputData, customicon, 0x8);
+	ZHM_OFFSET_CHECK(SUIInputData, posX, 0x18);
+	ZHM_OFFSET_CHECK(SUIInputData, posY, 0x1C);
+	ZHM_OFFSET_CHECK(SUIInputData, size, 0x20);
+	ZHM_OFFSET_CHECK(SUIInputData, isPressed, 0x24);
+	ZHM_OFFSET_CHECK(SUIInputData, alpha, 0x28);
+	ZHM_OFFSET_CHECK(SUIInputData, isVisible, 0x2C);
+	static_assert(sizeof(SUIInputData) == 0x30, "Wrong size for SUIInputData");
+	static_assert(alignof(SUIInputData) == 0x8, "Wrong alignment for SUIInputData");
+
 	// Size: 0x4
 	enum class EAnalogInputType : int32_t
 	{
@@ -25207,71 +28036,9 @@ public:
 		DynamicAbsolute = 1,
 	};
 
-	// Size: 0x4
-	class /*alignas(1)*/ SInputState	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SInputState& p_Other) const;
-		bool operator!=(const SInputState& p_Other) const { return !(*this == p_Other); }
-
-		bool IsEnabled; // 0x0
-		bool IsVisible; // 0x1
-		bool IsActionAvailable; // 0x2
-		bool IsActionActive; // 0x3
-	};
-
-	// Size: 0x30
-	class /*alignas(8)*/ SUIInputData	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SUIInputData& p_Other) const;
-		bool operator!=(const SUIInputData& p_Other) const { return !(*this == p_Other); }
-
-		int32 actiontype; // 0x0
-		uint8_t _pad4[4] {};
-		ZString customicon; // 0x8
-		float32 posX; // 0x18
-		float32 posY; // 0x1C
-		float32 size; // 0x20
-		bool isPressed; // 0x24
-		uint8_t _pad25[3] {};
-		float32 alpha; // 0x28
-		bool isVisible; // 0x2C
-		uint8_t _pad2D[3] {};
-	};
-
-	// Size: 0x20
-	class /*alignas(8)*/ SUIData	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SUIData& p_Other) const;
-		bool operator!=(const SUIData& p_Other) const { return !(*this == p_Other); }
-
-		TArray<ZOverlayControllerEntity::SUIInputData> buttonPromptInputs; // 0x0
-		bool isVisible; // 0x18
-		uint8_t _pad19[7] {};
-	};
-
 	// Size: 0x14
-	class /*alignas(4)*/ SInputData	{
+	class alignas(4) SInputData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25288,6 +28055,60 @@ public:
 		float32 TouchAreaActiveSize; // 0xC
 		ZOverlayControllerEntity::EAlignment Alignment; // 0x10
 	};
+	ZHM_OFFSET_CHECK(SInputData, PositionOffset, 0x0);
+	ZHM_OFFSET_CHECK(SInputData, TouchAreaSize, 0x8);
+	ZHM_OFFSET_CHECK(SInputData, TouchAreaActiveSize, 0xC);
+	ZHM_OFFSET_CHECK(SInputData, Alignment, 0x10);
+	static_assert(sizeof(SInputData) == 0x14, "Wrong size for SInputData");
+	static_assert(alignof(SInputData) == 0x4, "Wrong alignment for SInputData");
+
+	// Size: 0x4
+	class alignas(1) SInputState
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SInputState& p_Other) const;
+		bool operator!=(const SInputState& p_Other) const { return !(*this == p_Other); }
+
+		bool IsEnabled; // 0x0
+		bool IsVisible; // 0x1
+		bool IsActionAvailable; // 0x2
+		bool IsActionActive; // 0x3
+	};
+	ZHM_OFFSET_CHECK(SInputState, IsEnabled, 0x0);
+	ZHM_OFFSET_CHECK(SInputState, IsVisible, 0x1);
+	ZHM_OFFSET_CHECK(SInputState, IsActionAvailable, 0x2);
+	ZHM_OFFSET_CHECK(SInputState, IsActionActive, 0x3);
+	static_assert(sizeof(SInputState) == 0x4, "Wrong size for SInputState");
+	static_assert(alignof(SInputState) == 0x1, "Wrong alignment for SInputState");
+
+	// Size: 0x20
+	class alignas(8) SUIData
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUIData& p_Other) const;
+		bool operator!=(const SUIData& p_Other) const { return !(*this == p_Other); }
+
+		TArray<ZOverlayControllerEntity::SUIInputData> buttonPromptInputs; // 0x0
+		bool isVisible; // 0x18
+	};
+	ZHM_OFFSET_CHECK(SUIData, buttonPromptInputs, 0x0);
+	ZHM_OFFSET_CHECK(SUIData, isVisible, 0x18);
+	static_assert(sizeof(SUIData) == 0x20, "Wrong size for SUIData");
+	static_assert(alignof(SUIData) == 0x8, "Wrong alignment for SUIData");
 
 };
 
@@ -25303,8 +28124,8 @@ public:
 
 };
 
-// Size: 0x50
-class /*alignas(8)*/ ZOverlayGameControllerBase{
+class ZOverlayGameControllerBase
+{
 public:
 	// Size: 0x4
 	enum class EAnalogAxis : int32_t
@@ -25340,19 +28161,6 @@ public:
 		COUNT = 16,
 	};
 
-
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZOverlayGameControllerBase& p_Other) const;
-	bool operator!=(const ZOverlayGameControllerBase& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[80] {};
 };
 
 class ZPIPMessageEntity
@@ -25417,27 +28225,9 @@ public:
 		List = 3,
 	};
 
-	// Size: 0x18
-	class /*alignas(8)*/ SMenuEntry	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SMenuEntry& p_Other) const;
-		bool operator!=(const SMenuEntry& p_Other) const { return !(*this == p_Other); }
-
-		ZString sLabel; // 0x0
-		bool bIsEnabled; // 0x10
-		bool bIsHighlighted; // 0x11
-		uint8_t _pad12[6] {};
-	};
-
 	// Size: 0x30
-	class /*alignas(8)*/ SPrompt	{
+	class alignas(8) SPrompt
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25452,11 +28242,16 @@ public:
 		TArray<ZVariant> aIcons; // 0x0
 		ZString sLabel; // 0x18
 		bool bIsEnabled; // 0x28
-		uint8_t _pad29[7] {};
 	};
+	ZHM_OFFSET_CHECK(SPrompt, aIcons, 0x0);
+	ZHM_OFFSET_CHECK(SPrompt, sLabel, 0x18);
+	ZHM_OFFSET_CHECK(SPrompt, bIsEnabled, 0x28);
+	static_assert(sizeof(SPrompt) == 0x30, "Wrong size for SPrompt");
+	static_assert(alignof(SPrompt) == 0x8, "Wrong alignment for SPrompt");
 
 	// Size: 0x48
-	class /*alignas(8)*/ SData	{
+	class alignas(8) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25469,28 +28264,41 @@ public:
 		bool operator!=(const SData& p_Other) const { return !(*this == p_Other); }
 
 		bool bIsVisible; // 0x0
-		uint8_t _pad1[7] {};
 		TArray<ZVariant> aMenuEntries; // 0x8
 		ZString sInputPlatform; // 0x20
 		TArray<ZPhotoModeMenuDataProvider::SPrompt> aPrompts; // 0x30
 	};
+	ZHM_OFFSET_CHECK(SData, bIsVisible, 0x0);
+	ZHM_OFFSET_CHECK(SData, aMenuEntries, 0x8);
+	ZHM_OFFSET_CHECK(SData, sInputPlatform, 0x20);
+	ZHM_OFFSET_CHECK(SData, aPrompts, 0x30);
+	static_assert(sizeof(SData) == 0x48, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x8, "Wrong alignment for SData");
 
-};
+	// Size: 0x18
+	class alignas(8) SMenuEntry
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
 
-// Size: 0x8
-class /*alignas(8)*/ ZPlanningObjectiveInfoBuilder{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
+		bool operator==(const SMenuEntry& p_Other) const;
+		bool operator!=(const SMenuEntry& p_Other) const { return !(*this == p_Other); }
 
-	bool operator==(const ZPlanningObjectiveInfoBuilder& p_Other) const;
-	bool operator!=(const ZPlanningObjectiveInfoBuilder& p_Other) const { return !(*this == p_Other); }
+		ZString sLabel; // 0x0
+		bool bIsEnabled; // 0x10
+		bool bIsHighlighted; // 0x11
+	};
+	ZHM_OFFSET_CHECK(SMenuEntry, sLabel, 0x0);
+	ZHM_OFFSET_CHECK(SMenuEntry, bIsEnabled, 0x10);
+	ZHM_OFFSET_CHECK(SMenuEntry, bIsHighlighted, 0x11);
+	static_assert(sizeof(SMenuEntry) == 0x18, "Wrong size for SMenuEntry");
+	static_assert(alignof(SMenuEntry) == 0x8, "Wrong alignment for SMenuEntry");
 
-	uint8_t _pad0[8] {};
 };
 
 class ZPointOfInterestEntity
@@ -25505,22 +28313,6 @@ public:
 		ePOIT_Stare = 3,
 	};
 
-};
-
-// Size: 0x8
-class /*alignas(0)*/ ZPostfilterGraphBaseNode{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZPostfilterGraphBaseNode& p_Other) const;
-	bool operator!=(const ZPostfilterGraphBaseNode& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[8] {};
 };
 
 class ZPreferenceItemEntity
@@ -25568,7 +28360,8 @@ class ZRecoverUnconsciousSituation
 {
 public:
 	// Size: 0x14
-	class /*alignas(4)*/ SSituationSaveData	{
+	class alignas(4) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25586,8 +28379,15 @@ public:
 		int32 m_pObserversGroup; // 0xC
 		bool m_bEscalate; // 0x10
 		bool m_bVictimPacified; // 0x11
-		uint8_t _pad12[2] {};
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_rVictim, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pInvestigateDisguiseGroup, 0x4);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pRecoverUnconsciousGroup, 0x8);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pObserversGroup, 0xC);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bEscalate, 0x10);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bVictimPacified, 0x11);
+	static_assert(sizeof(SSituationSaveData) == 0x14, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x4, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -25604,10 +28404,11 @@ public:
 	};
 
 	// Size: 0x4
-	enum class EHDRAdaptationType : int32_t
+	enum class EHDRToneMapType : int32_t
 	{
-		eMedian = 0,
-		eGeometricMean = 1,
+		eLinear = 0,
+		eReinhardRGB = 1,
+		eFilmicRGB = 2,
 	};
 
 	// Size: 0x4
@@ -25627,17 +28428,17 @@ public:
 	};
 
 	// Size: 0x4
-	enum class EHDRToneMapType : int32_t
+	enum class EHDRAdaptationType : int32_t
 	{
-		eLinear = 0,
-		eReinhardRGB = 1,
-		eFilmicRGB = 2,
+		eMedian = 0,
+		eGeometricMean = 1,
 	};
 
 };
 
 // Size: 0x18
-class /*alignas(8)*/ ZRuntimePinConDesc{
+class alignas(8) ZRuntimePinConDesc
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25654,9 +28455,16 @@ public:
 	uint32 m_nFromPinID; // 0x10
 	uint32 m_nToPinID; // 0x14
 };
+ZHM_OFFSET_CHECK(ZRuntimePinConDesc, m_nFromEntityID, 0x0);
+ZHM_OFFSET_CHECK(ZRuntimePinConDesc, m_nToEntityID, 0x8);
+ZHM_OFFSET_CHECK(ZRuntimePinConDesc, m_nFromPinID, 0x10);
+ZHM_OFFSET_CHECK(ZRuntimePinConDesc, m_nToPinID, 0x14);
+static_assert(sizeof(ZRuntimePinConDesc) == 0x18, "Wrong size for ZRuntimePinConDesc");
+static_assert(alignof(ZRuntimePinConDesc) == 0x8, "Wrong alignment for ZRuntimePinConDesc");
 
 // Size: 0x30
-class /*alignas(8)*/ ZScopedER64{
+class alignas(8) ZScopedER64
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25671,9 +28479,14 @@ public:
 	ZER64 m_er64; // 0x0
 	TArray<uint64> m_aScopePath; // 0x18
 };
+ZHM_OFFSET_CHECK(ZScopedER64, m_er64, 0x0);
+ZHM_OFFSET_CHECK(ZScopedER64, m_aScopePath, 0x18);
+static_assert(sizeof(ZScopedER64) == 0x30, "Wrong size for ZScopedER64");
+static_assert(alignof(ZScopedER64) == 0x8, "Wrong alignment for ZScopedER64");
 
 // Size: 0x30
-class /*alignas(8)*/ ZScopedRuntimePinConDesc{
+class alignas(8) ZScopedRuntimePinConDesc
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25688,6 +28501,10 @@ public:
 	TArray<uint64> m_aScopePath; // 0x0
 	ZRuntimePinConDesc m_PinConDesc; // 0x18
 };
+ZHM_OFFSET_CHECK(ZScopedRuntimePinConDesc, m_aScopePath, 0x0);
+ZHM_OFFSET_CHECK(ZScopedRuntimePinConDesc, m_PinConDesc, 0x18);
+static_assert(sizeof(ZScopedRuntimePinConDesc) == 0x30, "Wrong size for ZScopedRuntimePinConDesc");
+static_assert(alignof(ZScopedRuntimePinConDesc) == 0x8, "Wrong alignment for ZScopedRuntimePinConDesc");
 
 class ZSecuritySystemCameraConfiguration
 {
@@ -25699,24 +28516,9 @@ public:
 		eCES_Combat = 1,
 	};
 
-	// Size: 0x4
-	class /*alignas(4)*/ SDeadBodyVisibleEscalationRule	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SDeadBodyVisibleEscalationRule& p_Other) const;
-		bool operator!=(const SDeadBodyVisibleEscalationRule& p_Other) const { return !(*this == p_Other); }
-
-		int32 m_NrGuardsToSend; // 0x0
-	};
-
 	// Size: 0x8
-	class /*alignas(4)*/ SHitmanVisibleEscalationRule	{
+	class alignas(4) SHitmanVisibleEscalationRule
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25731,6 +28533,30 @@ public:
 		int32 m_NrGuardsToSend; // 0x0
 		ZSecuritySystemCameraConfiguration::ECameraEscalationSituations m_Situation; // 0x4
 	};
+	ZHM_OFFSET_CHECK(SHitmanVisibleEscalationRule, m_NrGuardsToSend, 0x0);
+	ZHM_OFFSET_CHECK(SHitmanVisibleEscalationRule, m_Situation, 0x4);
+	static_assert(sizeof(SHitmanVisibleEscalationRule) == 0x8, "Wrong size for SHitmanVisibleEscalationRule");
+	static_assert(alignof(SHitmanVisibleEscalationRule) == 0x4, "Wrong alignment for SHitmanVisibleEscalationRule");
+
+	// Size: 0x4
+	class alignas(4) SDeadBodyVisibleEscalationRule
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SDeadBodyVisibleEscalationRule& p_Other) const;
+		bool operator!=(const SDeadBodyVisibleEscalationRule& p_Other) const { return !(*this == p_Other); }
+
+		int32 m_NrGuardsToSend; // 0x0
+	};
+	ZHM_OFFSET_CHECK(SDeadBodyVisibleEscalationRule, m_NrGuardsToSend, 0x0);
+	static_assert(sizeof(SDeadBodyVisibleEscalationRule) == 0x4, "Wrong size for SDeadBodyVisibleEscalationRule");
+	static_assert(alignof(SDeadBodyVisibleEscalationRule) == 0x4, "Wrong alignment for SDeadBodyVisibleEscalationRule");
 
 };
 
@@ -25738,7 +28564,8 @@ class ZSetPieceIconEntity
 {
 public:
 	// Size: 0x58
-	class /*alignas(8)*/ SIconData	{
+	class alignas(8) SIconData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25756,8 +28583,15 @@ public:
 		ZString iInteraction3; // 0x30
 		ZString sMissingToolText; // 0x40
 		bool bShowMissingTool; // 0x50
-		uint8_t _pad51[7] {};
 	};
+	ZHM_OFFSET_CHECK(SIconData, iCategory, 0x0);
+	ZHM_OFFSET_CHECK(SIconData, iInteraction1, 0x10);
+	ZHM_OFFSET_CHECK(SIconData, iInteraction2, 0x20);
+	ZHM_OFFSET_CHECK(SIconData, iInteraction3, 0x30);
+	ZHM_OFFSET_CHECK(SIconData, sMissingToolText, 0x40);
+	ZHM_OFFSET_CHECK(SIconData, bShowMissingTool, 0x50);
+	static_assert(sizeof(SIconData) == 0x58, "Wrong size for SIconData");
+	static_assert(alignof(SIconData) == 0x8, "Wrong alignment for SIconData");
 
 };
 
@@ -25812,16 +28646,9 @@ public:
 class ZSniperCombatSituation
 {
 public:
-	// Size: 0x4
-	enum class ESituationState : int32_t
-	{
-		SS_Main = 0,
-		SS_StandDown = 1,
-		SS_InvalidSituation = 2,
-	};
-
 	// Size: 0x20
-	class /*alignas(16)*/ SSniperSuspiciousArea	{
+	class alignas(16) SSniperSuspiciousArea
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25836,11 +28663,24 @@ public:
 		float4 m_vPosition; // 0x0
 		float32 m_fRange; // 0x10
 		bool m_bIsIslandEntrance; // 0x14
-		uint8_t _pad15[11] {};
+	};
+	ZHM_OFFSET_CHECK(SSniperSuspiciousArea, m_vPosition, 0x0);
+	ZHM_OFFSET_CHECK(SSniperSuspiciousArea, m_fRange, 0x10);
+	ZHM_OFFSET_CHECK(SSniperSuspiciousArea, m_bIsIslandEntrance, 0x14);
+	static_assert(sizeof(SSniperSuspiciousArea) == 0x20, "Wrong size for SSniperSuspiciousArea");
+	static_assert(alignof(SSniperSuspiciousArea) == 0x10, "Wrong alignment for SSniperSuspiciousArea");
+
+	// Size: 0x4
+	enum class ESituationState : int32_t
+	{
+		SS_Main = 0,
+		SS_StandDown = 1,
+		SS_InvalidSituation = 2,
 	};
 
 	// Size: 0x98
-	class /*alignas(8)*/ SSituationSaveData	{
+	class alignas(8) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25853,46 +28693,67 @@ public:
 		bool operator!=(const SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 		uint32 m_rSniperLocation; // 0x0
-		uint8_t _pad4[4] {};
 		TArray<int32> m_aSniperCombatGroups; // 0x8
 		bool m_bAggressive; // 0x20
 		bool m_bKiller; // 0x21
-		uint8_t _pad22[2] {};
 		uint32 m_rIsland; // 0x24
 		TArray<ZSniperCombatSituation::SSniperSuspiciousArea> m_aSuspiciousAreas; // 0x28
 		TArray<uint32> m_aWaitingGuards; // 0x40
 		TArray<uint32> m_aFleeCandidates; // 0x58
 		bool m_bHasFailed; // 0x70
-		uint8_t _pad71[3] {};
 		ZSniperCombatSituation::ESituationState m_eState; // 0x74
 		uint32 m_nGuards; // 0x78
-		uint8_t _pad7C[4] {};
 		TArray<int32> m_aAvoidDangerGroups; // 0x80
+	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_rSniperLocation, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aSniperCombatGroups, 0x8);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bAggressive, 0x20);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bKiller, 0x21);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_rIsland, 0x24);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aSuspiciousAreas, 0x28);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aWaitingGuards, 0x40);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aFleeCandidates, 0x58);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bHasFailed, 0x70);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_eState, 0x74);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_nGuards, 0x78);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aAvoidDangerGroups, 0x80);
+	static_assert(sizeof(SSituationSaveData) == 0x98, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x8, "Wrong alignment for SSituationSaveData");
+
+};
+
+class ZSpatialProxyEntity
+{
+public:
+	// Size: 0x1
+	enum class ETransformBehavior : int8_t
+	{
+		KEEP_WORLD = 0,
+		KEEP_LOCAL = 1,
+		RESET_LOCAL = 2,
 	};
 
 };
 
-// Size: 0x160
-class /*alignas(16)*/ ZSoundCollisionInfo{
+class ZSpatialReferenceAspect
+{
 public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
+	// Size: 0x1
+	enum class ETransformBehavior : int8_t
+	{
+		KEEP_WORLD = 0,
+		KEEP_LOCAL = 1,
+		RESET_LOCAL = 2,
+	};
 
-	bool operator==(const ZSoundCollisionInfo& p_Other) const;
-	bool operator!=(const ZSoundCollisionInfo& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[352] {};
 };
 
 class ZSpectatorSituation
 {
 public:
 	// Size: 0x38
-	class /*alignas(8)*/ SSituationSaveData	{
+	class alignas(8) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25905,10 +28766,14 @@ public:
 		bool operator!=(const SSituationSaveData& p_Other) const { return !(*this == p_Other); }
 
 		bool m_bStandingDown; // 0x0
-		uint8_t _pad1[7] {};
 		TArray<int32> m_aObserverGroupIDs; // 0x8
 		TArray<uint32> m_aNonObserverMembers; // 0x20
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bStandingDown, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aObserverGroupIDs, 0x8);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aNonObserverMembers, 0x20);
+	static_assert(sizeof(SSituationSaveData) == 0x38, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x8, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -25929,6 +28794,18 @@ class ZStandOffSituation
 {
 public:
 	// Size: 0x4
+	enum class ESituationState : int32_t
+	{
+		SS_Uncertain = 0,
+		SS_Main = 1,
+		SS_Arresting = 2,
+		SS_GetHelp = 3,
+		SS_Escalate = 4,
+		SS_Investigate = 5,
+		SS_GetHelpFromFleeingCivilian = 6,
+	};
+
+	// Size: 0x4
 	enum class EDialogState : int32_t
 	{
 		eDS_ReportTarget = 0,
@@ -25942,20 +28819,9 @@ public:
 		eDS_Done = 8,
 	};
 
-	// Size: 0x4
-	enum class ESituationState : int32_t
-	{
-		SS_Uncertain = 0,
-		SS_Main = 1,
-		SS_Arresting = 2,
-		SS_GetHelp = 3,
-		SS_Escalate = 4,
-		SS_Investigate = 5,
-		SS_GetHelpFromFleeingCivilian = 6,
-	};
-
 	// Size: 0x80
-	class /*alignas(16)*/ SState	{
+	class alignas(16) SState
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -25972,7 +28838,6 @@ public:
 		uint32 m_nWarningPriority; // 0x8
 		bool m_TargetHasWeaponEquipped; // 0xC
 		bool m_ImmediateWarningDialog; // 0xD
-		uint8_t _padE[2] {};
 		int32 m_nResetCount; // 0x10
 		bool m_bArrestReasonStated; // 0x14
 		bool m_bTargetOnStairs; // 0x15
@@ -25982,7 +28847,6 @@ public:
 		bool m_bTargetLost; // 0x19
 		bool m_bGetHelpGroupStarted; // 0x1A
 		bool m_bHandlerHasLOS; // 0x1B
-		uint8_t _pad1C[4] {};
 		float4 m_vLastKnownPosition; // 0x20
 		float32 m_fMovingTime; // 0x30
 		float32 m_fRunningTime; // 0x34
@@ -26000,11 +28864,44 @@ public:
 		bool m_reportedTarget; // 0x72
 		bool m_bTriggeredBySecurityCameras; // 0x73
 		bool m_bLOSMemberWantsToKill; // 0x74
-		uint8_t _pad75[11] {};
 	};
+	ZHM_OFFSET_CHECK(SState, m_eSituationState, 0x0);
+	ZHM_OFFSET_CHECK(SState, m_eArrestReason, 0x4);
+	ZHM_OFFSET_CHECK(SState, m_nWarningPriority, 0x8);
+	ZHM_OFFSET_CHECK(SState, m_TargetHasWeaponEquipped, 0xC);
+	ZHM_OFFSET_CHECK(SState, m_ImmediateWarningDialog, 0xD);
+	ZHM_OFFSET_CHECK(SState, m_nResetCount, 0x10);
+	ZHM_OFFSET_CHECK(SState, m_bArrestReasonStated, 0x14);
+	ZHM_OFFSET_CHECK(SState, m_bTargetOnStairs, 0x15);
+	ZHM_OFFSET_CHECK(SState, m_bUpdateApproachPositions, 0x16);
+	ZHM_OFFSET_CHECK(SState, m_bHelpOrderAssigned, 0x17);
+	ZHM_OFFSET_CHECK(SState, m_bCivilianTransferredKnowledge, 0x18);
+	ZHM_OFFSET_CHECK(SState, m_bTargetLost, 0x19);
+	ZHM_OFFSET_CHECK(SState, m_bGetHelpGroupStarted, 0x1A);
+	ZHM_OFFSET_CHECK(SState, m_bHandlerHasLOS, 0x1B);
+	ZHM_OFFSET_CHECK(SState, m_vLastKnownPosition, 0x20);
+	ZHM_OFFSET_CHECK(SState, m_fMovingTime, 0x30);
+	ZHM_OFFSET_CHECK(SState, m_fRunningTime, 0x34);
+	ZHM_OFFSET_CHECK(SState, m_fEquippedWeaponTime, 0x38);
+	ZHM_OFFSET_CHECK(SState, m_fStrangleTime, 0x3C);
+	ZHM_OFFSET_CHECK(SState, m_mainStateStartTime, 0x40);
+	ZHM_OFFSET_CHECK(SState, m_tLastTimeTargetLOS, 0x48);
+	ZHM_OFFSET_CHECK(SState, m_tLastTimeGuardHadLOS, 0x50);
+	ZHM_OFFSET_CHECK(SState, m_tNextCivBark, 0x58);
+	ZHM_OFFSET_CHECK(SState, m_tStartSearchCountdown, 0x60);
+	ZHM_OFFSET_CHECK(SState, m_eDialogState, 0x68);
+	ZHM_OFFSET_CHECK(SState, m_nWarningCount, 0x6C);
+	ZHM_OFFSET_CHECK(SState, m_bWarning3Given, 0x70);
+	ZHM_OFFSET_CHECK(SState, m_bStopWarningGiven, 0x71);
+	ZHM_OFFSET_CHECK(SState, m_reportedTarget, 0x72);
+	ZHM_OFFSET_CHECK(SState, m_bTriggeredBySecurityCameras, 0x73);
+	ZHM_OFFSET_CHECK(SState, m_bLOSMemberWantsToKill, 0x74);
+	static_assert(sizeof(SState) == 0x80, "Wrong size for SState");
+	static_assert(alignof(SState) == 0x10, "Wrong alignment for SState");
 
 	// Size: 0xC0
-	class /*alignas(16)*/ SSituationSaveData	{
+	class alignas(16) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26025,8 +28922,18 @@ public:
 		uint32 m_rIsland; // 0x94
 		ZGameTime m_tLastTimeTargetLOS; // 0x98
 		TArray<int32> m_aAvoidDangerGroups; // 0xA0
-		uint8_t _padB8[8] {};
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_State, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pArrestor, 0x80);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pSpeaker, 0x84);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_TargetWeaponItem, 0x88);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_IllegalWeaponSeen, 0x8C);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_pGetHelpGroup, 0x90);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_rIsland, 0x94);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_tLastTimeTargetLOS, 0x98);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_aAvoidDangerGroups, 0xA0);
+	static_assert(sizeof(SSituationSaveData) == 0xC0, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x10, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -26067,7 +28974,8 @@ public:
 };
 
 // Size: 0x8
-class /*alignas(8)*/ ZTime{
+class alignas(8) ZTime
+{
 public:
 	static ZHMTypeInfo TypeInfo;
 	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26081,6 +28989,9 @@ public:
 
 	uint64 m_nValue; // 0x0
 };
+ZHM_OFFSET_CHECK(ZTime, m_nValue, 0x0);
+static_assert(sizeof(ZTime) == 0x8, "Wrong size for ZTime");
+static_assert(alignof(ZTime) == 0x8, "Wrong alignment for ZTime");
 
 class ZTrackDollyControllerQueryEntity
 {
@@ -26091,6 +29002,19 @@ public:
 		Closest = 0,
 		ClosestNext = 1,
 		ClosestPrevious = 2,
+	};
+
+};
+
+class ZTrespassingRuleConditionEntity
+{
+public:
+	// Size: 0x4
+	enum class EEvaluationType : int32_t
+	{
+		ALL = 0,
+		NONE = 1,
+		ANY = 2,
 	};
 
 };
@@ -26107,7 +29031,8 @@ public:
 	};
 
 	// Size: 0x28
-	class /*alignas(8)*/ SState	{
+	class alignas(8) SState
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26120,16 +29045,22 @@ public:
 		bool operator!=(const SState& p_Other) const { return !(*this == p_Other); }
 
 		ZTrespassingSituation::ESituationState m_eSituationState; // 0x0
-		uint8_t _pad4[4] {};
 		ZGameTime m_tDeepTrespassingTime; // 0x8
 		ZGameTime m_tStartStandDown; // 0x10
 		ZGameTime m_tLastTargetVisible; // 0x18
 		bool m_bStopWarningGiven; // 0x20
-		uint8_t _pad21[7] {};
 	};
+	ZHM_OFFSET_CHECK(SState, m_eSituationState, 0x0);
+	ZHM_OFFSET_CHECK(SState, m_tDeepTrespassingTime, 0x8);
+	ZHM_OFFSET_CHECK(SState, m_tStartStandDown, 0x10);
+	ZHM_OFFSET_CHECK(SState, m_tLastTargetVisible, 0x18);
+	ZHM_OFFSET_CHECK(SState, m_bStopWarningGiven, 0x20);
+	static_assert(sizeof(SState) == 0x28, "Wrong size for SState");
+	static_assert(alignof(SState) == 0x8, "Wrong alignment for SState");
 
 	// Size: 0x50
-	class /*alignas(16)*/ SSituationSaveData	{
+	class alignas(16) SSituationSaveData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26147,8 +29078,15 @@ public:
 		float4 m_vEscortOutExitLocation; // 0x30
 		int32 m_nGetHelpGroup; // 0x40
 		bool m_bPropagationEnabled; // 0x44
-		uint8_t _pad45[11] {};
 	};
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_State, 0x0);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_rEscortingMember, 0x28);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_rHelpingGuardMember, 0x2C);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_vEscortOutExitLocation, 0x30);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_nGetHelpGroup, 0x40);
+	ZHM_OFFSET_CHECK(SSituationSaveData, m_bPropagationEnabled, 0x44);
+	static_assert(sizeof(SSituationSaveData) == 0x50, "Wrong size for SSituationSaveData");
+	static_assert(alignof(SSituationSaveData) == 0x10, "Wrong alignment for SSituationSaveData");
 
 };
 
@@ -26156,7 +29094,8 @@ class ZUIActionSelectorNavigationInventoryEntity
 {
 public:
 	// Size: 0x8
-	class /*alignas(4)*/ SActionSelectorSlotDisplayInfoSlim	{
+	class alignas(4) SActionSelectorSlotDisplayInfoSlim
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26170,9 +29109,13 @@ public:
 
 		ZRuntimeResourceID icon; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SActionSelectorSlotDisplayInfoSlim, icon, 0x0);
+	static_assert(sizeof(SActionSelectorSlotDisplayInfoSlim) == 0x8, "Wrong size for SActionSelectorSlotDisplayInfoSlim");
+	static_assert(alignof(SActionSelectorSlotDisplayInfoSlim) == 0x4, "Wrong alignment for SActionSelectorSlotDisplayInfoSlim");
 
 	// Size: 0x28
-	class /*alignas(8)*/ SActionSelectorInvokeData	{
+	class alignas(8) SActionSelectorInvokeData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26188,8 +29131,13 @@ public:
 		int32 otherslotsCount; // 0x18
 		int32 selectedIndex; // 0x1C
 		bool isActionInventory; // 0x20
-		uint8_t _pad21[7] {};
 	};
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, mainslotsSlim, 0x0);
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, otherslotsCount, 0x18);
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, selectedIndex, 0x1C);
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, isActionInventory, 0x20);
+	static_assert(sizeof(SActionSelectorInvokeData) == 0x28, "Wrong size for SActionSelectorInvokeData");
+	static_assert(alignof(SActionSelectorInvokeData) == 0x8, "Wrong alignment for SActionSelectorInvokeData");
 
 };
 
@@ -26262,14 +29210,6 @@ class ZUIControlSizeLayoutScaleboxAspect
 {
 public:
 	// Size: 0x1
-	enum class EContentSizeMode : int8_t
-	{
-		BiggestChild = 0,
-		ChildBoundingBox = 1,
-		Override = 2,
-	};
-
-	// Size: 0x1
 	enum class EScaleboxMode : int8_t
 	{
 		Fill = 0,
@@ -26278,13 +29218,22 @@ public:
 		FitY = 3,
 	};
 
+	// Size: 0x1
+	enum class EContentSizeMode : int8_t
+	{
+		BiggestChild = 0,
+		ChildBoundingBox = 1,
+		Override = 2,
+	};
+
 };
 
 class ZUIEmoteSelectorNavigationEntity
 {
 public:
 	// Size: 0x8
-	class /*alignas(4)*/ SActionSelectorSlotDisplayInfoSlim	{
+	class alignas(4) SActionSelectorSlotDisplayInfoSlim
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26298,9 +29247,13 @@ public:
 
 		ZRuntimeResourceID icon; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SActionSelectorSlotDisplayInfoSlim, icon, 0x0);
+	static_assert(sizeof(SActionSelectorSlotDisplayInfoSlim) == 0x8, "Wrong size for SActionSelectorSlotDisplayInfoSlim");
+	static_assert(alignof(SActionSelectorSlotDisplayInfoSlim) == 0x4, "Wrong alignment for SActionSelectorSlotDisplayInfoSlim");
 
 	// Size: 0x38
-	class /*alignas(8)*/ SActionSelectorInvokeData	{
+	class alignas(8) SActionSelectorInvokeData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26316,9 +29269,15 @@ public:
 		int32 otherslotsCount; // 0x18
 		int32 selectedIndex; // 0x1C
 		bool isActionInventory; // 0x20
-		uint8_t _pad21[7] {};
 		ZString noItemsMessage; // 0x28
 	};
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, mainslotsSlim, 0x0);
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, otherslotsCount, 0x18);
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, selectedIndex, 0x1C);
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, isActionInventory, 0x20);
+	ZHM_OFFSET_CHECK(SActionSelectorInvokeData, noItemsMessage, 0x28);
+	static_assert(sizeof(SActionSelectorInvokeData) == 0x38, "Wrong size for SActionSelectorInvokeData");
+	static_assert(alignof(SActionSelectorInvokeData) == 0x8, "Wrong alignment for SActionSelectorInvokeData");
 
 };
 
@@ -26366,7 +29325,8 @@ class ZUIMapLegendDataProvider
 {
 public:
 	// Size: 0x10
-	class /*alignas(8)*/ SLegendTracker	{
+	class alignas(8) SLegendTracker
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26380,9 +29340,13 @@ public:
 
 		ZString ControlName; // 0x0
 	};
+	ZHM_OFFSET_CHECK(SLegendTracker, ControlName, 0x0);
+	static_assert(sizeof(SLegendTracker) == 0x10, "Wrong size for SLegendTracker");
+	static_assert(alignof(SLegendTracker) == 0x8, "Wrong alignment for SLegendTracker");
 
 	// Size: 0x38
-	class /*alignas(8)*/ SData	{
+	class alignas(8) SData
+	{
 	public:
 		static ZHMTypeInfo TypeInfo;
 		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
@@ -26398,6 +29362,11 @@ public:
 		ZString lstrLocation; // 0x10
 		TArray<ZUIMapLegendDataProvider::SLegendTracker> LegendTrackers; // 0x20
 	};
+	ZHM_OFFSET_CHECK(SData, Location, 0x0);
+	ZHM_OFFSET_CHECK(SData, lstrLocation, 0x10);
+	ZHM_OFFSET_CHECK(SData, LegendTrackers, 0x20);
+	static_assert(sizeof(SData) == 0x38, "Wrong size for SData");
+	static_assert(alignof(SData) == 0x8, "Wrong alignment for SData");
 
 };
 
@@ -26623,22 +29592,6 @@ public:
 
 };
 
-// Size: 0x4
-class /*alignas(4)*/ ZVrDoorInteraction{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZVrDoorInteraction& p_Other) const;
-	bool operator!=(const ZVrDoorInteraction& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[4] {};
-};
-
 class ZVrDragBody
 {
 public:
@@ -26656,18 +29609,18 @@ class ZVrMotionMoveBetweenBoxes
 {
 public:
 	// Size: 0x4
+	enum class EMotionHandPose : int32_t
+	{
+		None = 0,
+		Typing = 1,
+	};
+
+	// Size: 0x4
 	enum class ECountMode : int32_t
 	{
 		OnlyA = 0,
 		OnlyB = 1,
 		Both = 2,
-	};
-
-	// Size: 0x4
-	enum class EMotionHandPose : int32_t
-	{
-		None = 0,
-		Typing = 1,
 	};
 
 	// Size: 0x4
@@ -26734,22 +29687,6 @@ public:
 
 };
 
-// Size: 0x10
-class /*alignas(8)*/ ZWorldMapMetaData{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const ZWorldMapMetaData& p_Other) const;
-	bool operator!=(const ZWorldMapMetaData& p_Other) const { return !(*this == p_Other); }
-
-	uint8_t _pad0[16] {};
-};
-
 // Size: 0x4
 enum class eContractSessionStartError : int32_t
 {
@@ -26795,4 +29732,3 @@ enum class eWeaponOperation : int32_t
 	WO_FULL_AUTO = 1,
 };
 
-#pragma pack(pop)

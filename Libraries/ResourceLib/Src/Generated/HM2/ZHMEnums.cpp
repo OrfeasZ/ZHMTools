@@ -9,6 +9,7 @@
 #include <ZHM/ZHMTypeInfo.h>
 
 std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>* ZHMEnums::g_Enums = nullptr;
+std::unordered_map<std::string, uint32_t>* ZHMEnums::g_EnumSizes = nullptr;
 ZHMEnums::EnumRegistrar ZHMEnums::g_Registrar;
 
 std::string ZHMEnums::GetEnumValueName(const std::string& p_TypeName, int32_t p_Value)
@@ -45,14 +46,26 @@ bool ZHMEnums::IsTypeNameEnum(const std::string& p_TypeName)
 	return g_Enums->find(p_TypeName) != g_Enums->end();
 }
 
+uint32_t ZHMEnums::GetEnumSize(const std::string& p_TypeName)
+{
+	auto s_It = g_EnumSizes->find(p_TypeName);
+
+	if (s_It == g_EnumSizes->end())
+		return 4;
+
+	return s_It->second;
+}
+
 void ZHMEnums::RegisterEnums()
 {
 	g_Enums = new std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>();
+	g_EnumSizes = new std::unordered_map<std::string, uint32_t>();
 
 	(*g_Enums)["AudioBusFlags"] = {
 		{ 1, "AudioBus_Master" },
 		{ 2, "AudioBus_Primary" },
 	};
+	(*g_EnumSizes)["AudioBusFlags"] = 1;
 
 	(*g_Enums)["AudioCurve"] = {
 		{ 0, "AudioCurve_Log3" },
@@ -67,6 +80,7 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "AudioCurve_LastFadeCurve" },
 		{ 10, "AudioCurve_Constant" },
 	};
+	(*g_EnumSizes)["AudioCurve"] = 1;
 
 	(*g_Enums)["AudioEventCullingBehavior"] = {
 		{ 0, "AutoSendStop" },
@@ -74,6 +88,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "NoAutoSendStop" },
 		{ 3, "NoDistanceCulling" },
 	};
+	(*g_EnumSizes)["AudioEventCullingBehavior"] = 1;
 
 	(*g_Enums)["BoneId.Enum"] = {
 		{ 0, "GROUND" },
@@ -222,6 +237,7 @@ void ZHMEnums::RegisterEnums()
 		{ 143, "PISTOL_HOLSTER_ATTACHER" },
 		{ 144, "BONEID_LAST" },
 	};
+	(*g_EnumSizes)["BoneId.Enum"] = 4;
 
 	(*g_Enums)["CrowdMapImpl.CellFlags"] = {
 		{ 1, "CELLFLAG_RESTRICTED_A" },
@@ -233,6 +249,7 @@ void ZHMEnums::RegisterEnums()
 		{ 64, "CELLFLAG_UNUSED" },
 		{ 128, "CELLFLAG_PANIC_ONLY" },
 	};
+	(*g_EnumSizes)["CrowdMapImpl.CellFlags"] = 4;
 
 	(*g_Enums)["CrowdReactionAIEventType"] = {
 		{ 0, "CROWDAIEVENT_NONE" },
@@ -241,6 +258,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "CROWDAIEVENT_BLAME_FOR_WEAPON" },
 		{ 4, "CROWDAIEVENT_BLAME_FOR_KILL" },
 	};
+	(*g_EnumSizes)["CrowdReactionAIEventType"] = 4;
 
 	(*g_Enums)["CrowdRegionType"] = {
 		{ 0, "CROWDSPHERE_NONE" },
@@ -254,6 +272,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "CROWDSPHERE_GETDOWN" },
 		{ 9, "CROWDSPHERE_DIE" },
 	};
+	(*g_EnumSizes)["CrowdRegionType"] = 4;
 
 	(*g_Enums)["CrowdUtil.ECrowdActorMood"] = {
 		{ 0, "CM_AMBIENT" },
@@ -264,6 +283,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "CM_DISABLED" },
 		{ 6, "NUM_ACTOR_MOOD_TYPES" },
 	};
+	(*g_EnumSizes)["CrowdUtil.ECrowdActorMood"] = 4;
 
 	(*g_Enums)["CrowdUtil.ECrowdDirection"] = {
 		{ 0, "NORTH" },
@@ -271,16 +291,19 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "SOUTH" },
 		{ 3, "WEST" },
 	};
+	(*g_EnumSizes)["CrowdUtil.ECrowdDirection"] = 4;
 
 	(*g_Enums)["CrowdUtil.ECrowdFacing"] = {
 		{ 0, "FRONT" },
 		{ 1, "BACK" },
 	};
+	(*g_EnumSizes)["CrowdUtil.ECrowdFacing"] = 4;
 
 	(*g_Enums)["CrowdUtil.ECrowdSide"] = {
 		{ 0, "LEFT" },
 		{ 1, "RIGHT" },
 	};
+	(*g_EnumSizes)["CrowdUtil.ECrowdSide"] = 4;
 
 	(*g_Enums)["CrowdUtil.ECrowdStandingPush"] = {
 		{ 0, "PUSH_FRONT" },
@@ -292,6 +315,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "PUSH_RIGHT" },
 		{ 7, "PUSH_FRONT_RIGHT" },
 	};
+	(*g_EnumSizes)["CrowdUtil.ECrowdStandingPush"] = 4;
 
 	(*g_Enums)["CrowdUtil.EDefaultStateTypes"] = {
 		{ 0, "STATE_IDLE" },
@@ -307,12 +331,14 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "STATE_PENDINGRELOCATE" },
 		{ 11, "NUM_DEFAULT_STATES" },
 	};
+	(*g_EnumSizes)["CrowdUtil.EDefaultStateTypes"] = 4;
 
 	(*g_Enums)["CrowdUtil.EGenderReq"] = {
 		{ 0, "eGender_Any" },
 		{ 1, "eGender_Male" },
 		{ 2, "eGender_Female" },
 	};
+	(*g_EnumSizes)["CrowdUtil.EGenderReq"] = 4;
 
 	(*g_Enums)["EAIEventType"] = {
 		{ 0, "AIET_None" },
@@ -543,12 +569,14 @@ void ZHMEnums::RegisterEnums()
 		{ 225, "AIET_Debug_ThrowFlashbangHere" },
 		{ 226, "AIET_DEBUG_EVENTS_END" },
 	};
+	(*g_EnumSizes)["EAIEventType"] = 4;
 
 	(*g_Enums)["EAIFormationMemberSpeed"] = {
 		{ 0, "eFMS_Slow" },
 		{ 1, "eFMS_Normal" },
 		{ 2, "eFMS_Fast" },
 	};
+	(*g_EnumSizes)["EAIFormationMemberSpeed"] = 4;
 
 	(*g_Enums)["EAIGoal"] = {
 		{ 0, "AIG_Kill" },
@@ -588,6 +616,7 @@ void ZHMEnums::RegisterEnums()
 		{ 34, "AIG_SC_Alerted" },
 		{ 35, "AIG_None" },
 	};
+	(*g_EnumSizes)["EAIGoal"] = 4;
 
 	(*g_Enums)["EAILegalType"] = {
 		{ 0, "AILT_Weapon" },
@@ -597,6 +626,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "AILT_ChangeOutfit" },
 		{ 5, "AILT_Count" },
 	};
+	(*g_EnumSizes)["EAILegalType"] = 4;
 
 	(*g_Enums)["EAIModifierScope"] = {
 		{ 0, "AIMS_Volume" },
@@ -608,6 +638,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "AIMS_Override" },
 		{ 7, "AIMS_Status" },
 	};
+	(*g_EnumSizes)["EAIModifierScope"] = 4;
 
 	(*g_Enums)["EAIModifiers"] = {
 		{ 0, "AIM_Invalid" },
@@ -640,6 +671,7 @@ void ZHMEnums::RegisterEnums()
 		{ 16777216, "AIM_IgnoreDeadBody" },
 		{ 33554432, "AIM_NeverSpectate" },
 	};
+	(*g_EnumSizes)["EAIModifiers"] = 4;
 
 	(*g_Enums)["EAISharedEventType"] = {
 		{ 0, "AISET_None" },
@@ -1070,6 +1102,7 @@ void ZHMEnums::RegisterEnums()
 		{ 425, "AISET_DynamicEnforcer_ArrestReason_SillyHitman" },
 		{ 426, "AISET_DYNAMIC_ENFORCER_ARREST_REASON_END" },
 	};
+	(*g_EnumSizes)["EAISharedEventType"] = 4;
 
 	(*g_Enums)["EAISituation"] = {
 		{ 0, "AIS_GENERIC" },
@@ -1103,6 +1136,7 @@ void ZHMEnums::RegisterEnums()
 		{ 28, "AIS_RECOVER_UNC" },
 		{ 29, "AIS_SNIPER" },
 	};
+	(*g_EnumSizes)["EAISituation"] = 4;
 
 	(*g_Enums)["EAISituationEvent"] = {
 		{ 0, "AISE_Any" },
@@ -1110,6 +1144,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "AISE_ActorLeft" },
 		{ 3, "AISE_Data" },
 	};
+	(*g_EnumSizes)["EAISituationEvent"] = 4;
 
 	(*g_Enums)["EAccidentDeathContext"] = {
 		{ 0, "eADC_DeathByAccident" },
@@ -1117,18 +1152,21 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eADC_DeathByPoison" },
 		{ 3, "eADC_DeathByShot" },
 	};
+	(*g_EnumSizes)["EAccidentDeathContext"] = 4;
 
 	(*g_Enums)["EAccidentScaleContext"] = {
 		{ 0, "eASC_Standard" },
 		{ 1, "eASC_Unsafe" },
 		{ 2, "eASC_Dangerous" },
 	};
+	(*g_EnumSizes)["EAccidentScaleContext"] = 4;
 
 	(*g_Enums)["EActBodyType"] = {
 		{ 0, "ABT_UpperBodyOnly" },
 		{ 1, "ABT_FullBodyWithLeadIn" },
 		{ 2, "ABT_FullBodyOnly" },
 	};
+	(*g_EnumSizes)["EActBodyType"] = 4;
 
 	(*g_Enums)["EActionPromptState"] = {
 		{ 0, "eActionPromptState_Disabled" },
@@ -1136,6 +1174,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eActionPromptState_Activated" },
 		{ 3, "eActionPromptState_Held" },
 	};
+	(*g_EnumSizes)["EActionPromptState"] = 4;
 
 	(*g_Enums)["EActionRadialArcIconType"] = {
 		{ 0, "EARAIT_NoIcon" },
@@ -1157,6 +1196,7 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "EARAIT_Poison" },
 		{ 17, "EARAIT_Exsplosive" },
 	};
+	(*g_EnumSizes)["EActionRadialArcIconType"] = 4;
 
 	(*g_Enums)["EActionType"] = {
 		{ -2147483648, "AT_ITEM_INTERACTION" },
@@ -1191,6 +1231,7 @@ void ZHMEnums::RegisterEnums()
 		{ 536870912, "AT_ITEMCONTAINER" },
 		{ 1073741824, "AT_USE_QUICK" },
 	};
+	(*g_EnumSizes)["EActionType"] = 4;
 
 	(*g_Enums)["EActivationPriority"] = {
 		{ 0, "eActivatable_First" },
@@ -1233,6 +1274,7 @@ void ZHMEnums::RegisterEnums()
 		{ 37, "eActivatable_GameEventListener" },
 		{ 38, "eLAST_ACTIVATION_PRIORITY" },
 	};
+	(*g_EnumSizes)["EActivationPriority"] = 4;
 
 	(*g_Enums)["EActorAIDot"] = {
 		{ 0, "eAAID_None" },
@@ -1247,6 +1289,7 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "eAAID_Grenade" },
 		{ 100, "eAAID_PotentialThreatDisabled" },
 	};
+	(*g_EnumSizes)["EActorAIDot"] = 4;
 
 	(*g_Enums)["EActorAIState"] = {
 		{ 0, "eAAIS_None" },
@@ -1264,6 +1307,7 @@ void ZHMEnums::RegisterEnums()
 		{ 12, "eAAIS_Disabled" },
 		{ 13, "eAAIS_Max" },
 	};
+	(*g_EnumSizes)["EActorAIState"] = 4;
 
 	(*g_Enums)["EActorAnimationOrder"] = {
 		{ 0, "AAO_None" },
@@ -1279,12 +1323,14 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "AAO_Impact" },
 		{ 11, "AAO_Controlled" },
 	};
+	(*g_EnumSizes)["EActorAnimationOrder"] = 4;
 
 	(*g_Enums)["EActorBumpType"] = {
 		{ 0, "EABT_NONE" },
 		{ 1, "EABT_UPPERBODY" },
 		{ 2, "EABT_HEAD" },
 	};
+	(*g_EnumSizes)["EActorBumpType"] = 4;
 
 	(*g_Enums)["EActorCCPreset"] = {
 		{ 0, "ACCP_CivilianFemale" },
@@ -1295,6 +1341,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ACCP_Ignore" },
 		{ 6, "ACCP_None" },
 	};
+	(*g_EnumSizes)["EActorCCPreset"] = 4;
 
 	(*g_Enums)["EActorEmotionState"] = {
 		{ 0, "AES_Ambient" },
@@ -1304,6 +1351,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "AES_Combat" },
 		{ 268435455, "AES_None" },
 	};
+	(*g_EnumSizes)["EActorEmotionState"] = 4;
 
 	(*g_Enums)["EActorEventTypes"] = {
 		{ 0, "eAET_OnAlive" },
@@ -1320,6 +1368,7 @@ void ZHMEnums::RegisterEnums()
 		{ 11, "eAET_OnBodyDumped" },
 		{ 12, "eAET_OnDelete" },
 	};
+	(*g_EnumSizes)["EActorEventTypes"] = 4;
 
 	(*g_Enums)["EActorFaction"] = {
 		{ 0, "eActorFaction_Default" },
@@ -1331,6 +1380,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eActorFaction_VIP_6" },
 		{ 7, "eActorFaction_VIP_7" },
 	};
+	(*g_EnumSizes)["EActorFaction"] = 4;
 
 	(*g_Enums)["EActorGroup"] = {
 		{ 0, "eAG_Group_A" },
@@ -1339,6 +1389,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eAG_Group_D" },
 		{ 4, "eAG_Count" },
 	};
+	(*g_EnumSizes)["EActorGroup"] = 4;
 
 	(*g_Enums)["EActorLookAtPriority"] = {
 		{ 0, "eALAPriority_Ambient" },
@@ -1350,6 +1401,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eALAPriority_Combat" },
 		{ 7, "eALAPriority_CombatHigh" },
 	};
+	(*g_EnumSizes)["EActorLookAtPriority"] = 4;
 
 	(*g_Enums)["EActorLookAtStopReason"] = {
 		{ 0, "eSR_Unknown" },
@@ -1363,6 +1415,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eSR_HigherPriorityProfile" },
 		{ 9, "eSR_HideInPlainSight" },
 	};
+	(*g_EnumSizes)["EActorLookAtStopReason"] = 4;
 
 	(*g_Enums)["EActorLookAtTargetType"] = {
 		{ 0, "eALAT_Invalid" },
@@ -1373,6 +1426,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "eALAT_Screenplay" },
 		{ 6, "eALAPT_Max" },
 	};
+	(*g_EnumSizes)["EActorLookAtTargetType"] = 4;
 
 	(*g_Enums)["EActorPerceptionSensitivity"] = {
 		{ 0, "APS_AMBIENT_DEAFBLIND" },
@@ -1384,6 +1438,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "APS_COMBAT" },
 		{ 7, "APS_SPIDER_SENSE" },
 	};
+	(*g_EnumSizes)["EActorPerceptionSensitivity"] = 4;
 
 	(*g_Enums)["EActorRank"] = {
 		{ 0, "AR_Default" },
@@ -1391,12 +1446,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "AR_Cop" },
 		{ 3, "AR_Goon" },
 	};
+	(*g_EnumSizes)["EActorRank"] = 4;
 
 	(*g_Enums)["EActorRole"] = {
 		{ 0, "eActorRole_Default" },
 		{ 1, "eActorRole_Bodyguard" },
 		{ 2, "eActorRole_VIP" },
 	};
+	(*g_EnumSizes)["EActorRole"] = 4;
 
 	(*g_Enums)["EActorSecondaryIconState"] = {
 		{ 0, "eSIS_Clear" },
@@ -1405,6 +1462,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eSIS_Infected_Stage2" },
 		{ 4, "eSIS_Infected_Stage3" },
 	};
+	(*g_EnumSizes)["EActorSecondaryIconState"] = 4;
 
 	(*g_Enums)["EActorSoundDefs"] = {
 		{ 0, "_NoSound" },
@@ -1832,6 +1890,7 @@ void ZHMEnums::RegisterEnums()
 		{ 422, "InDedBdy_CivCmntPhonePcfd" },
 		{ 423, "Gen_SocialAck" },
 	};
+	(*g_EnumSizes)["EActorSoundDefs"] = 4;
 
 	(*g_Enums)["EActorState"] = {
 		{ 0, "AS_DEACTIVATED" },
@@ -1840,6 +1899,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "AS_DEAD" },
 		{ 4, "AS_DISABLED" },
 	};
+	(*g_EnumSizes)["EActorState"] = 4;
 
 	(*g_Enums)["EActorType"] = {
 		{ 0, "eAT_Civilian" },
@@ -1847,6 +1907,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eAT_Hitman" },
 		{ 3, "eAT_Last" },
 	};
+	(*g_EnumSizes)["EActorType"] = 4;
 
 	(*g_Enums)["EActorVoiceVariation"] = {
 		{ 0, "eAVV_Undefined" },
@@ -2297,6 +2358,7 @@ void ZHMEnums::RegisterEnums()
 		{ 445, "eAVV_SIERRA_KNOX" },
 		{ 446, "eAVV_ROBERT_KNOX" },
 	};
+	(*g_EnumSizes)["EActorVoiceVariation"] = 4;
 
 	(*g_Enums)["EAgilityState"] = {
 		{ 0, "eAgState_JumpToHangFromLocomotion" },
@@ -2336,6 +2398,7 @@ void ZHMEnums::RegisterEnums()
 		{ 34, "eAgState_Deactivate" },
 		{ 35, "eAgState_Unknown" },
 	};
+	(*g_EnumSizes)["EAgilityState"] = 4;
 
 	(*g_Enums)["EAimAssistActivationState"] = {
 		{ 0, "eAAAS_Activated" },
@@ -2343,12 +2406,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eAAAS_Deactivated" },
 		{ 3, "eAAAS_Deactivating" },
 	};
+	(*g_EnumSizes)["EAimAssistActivationState"] = 4;
 
 	(*g_Enums)["EAmmoBehaviourConfigType"] = {
 		{ 0, "eAB_None" },
 		{ 1, "eAB_Explosive" },
 		{ 2, "eAB_Penetration" },
 	};
+	(*g_EnumSizes)["EAmmoBehaviourConfigType"] = 4;
 
 	(*g_Enums)["EAnimBlendMode"] = {
 		{ 0, "EAnimBlendMode_InterpAttInterpPos" },
@@ -2356,6 +2421,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EAnimBlendMode_AddAttLeavePos" },
 		{ 3, "EAnimBlendMode_AddAttAddPos" },
 	};
+	(*g_EnumSizes)["EAnimBlendMode"] = 4;
 
 	(*g_Enums)["EAnimSetState"] = {
 		{ 0, "EASES_DEFAULT" },
@@ -2367,6 +2433,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "EASES_SICK" },
 		{ 7, "EASES_INFECTED" },
 	};
+	(*g_EnumSizes)["EAnimSetState"] = 4;
 
 	(*g_Enums)["EAnimSetType"] = {
 		{ 0, "EAST_UNDEFINED" },
@@ -2395,6 +2462,7 @@ void ZHMEnums::RegisterEnums()
 		{ 23, "EAST_CARRY_LEAD_PIPES" },
 		{ 24, "EAST_CARRY_TUBE" },
 	};
+	(*g_EnumSizes)["EAnimSetType"] = 4;
 
 	(*g_Enums)["EAnimationPose"] = {
 		{ 0, "AP_Undefined" },
@@ -2406,12 +2474,14 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "AP_SittingBench" },
 		{ 7, "AP_SittingChairTable" },
 	};
+	(*g_EnumSizes)["EAnimationPose"] = 4;
 
 	(*g_Enums)["EAsyncRaycastsGroup"] = {
 		{ 0, "eAsyncRaycasts_Gameplay" },
 		{ 1, "eAsyncRaycasts_ParticlesSoundCloth" },
 		{ 2, "eAsyncRaycasts_UNUSED_LAST" },
 	};
+	(*g_EnumSizes)["EAsyncRaycastsGroup"] = 1;
 
 	(*g_Enums)["EAttachLocation"] = {
 		{ 0, "eALRightHand" },
@@ -2422,16 +2492,19 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "eALAttachCount" },
 		{ 6, "eALUndefined" },
 	};
+	(*g_EnumSizes)["EAttachLocation"] = 4;
 
 	(*g_Enums)["EAudioVolumetricMixingMode"] = {
 		{ 0, "AUDIO_VOLUMETRIC_MIXING_MAX" },
 		{ 1, "AUDIO_VOLUMETRIC_MIXING_ADD" },
 	};
+	(*g_EnumSizes)["EAudioVolumetricMixingMode"] = 4;
 
 	(*g_Enums)["EAutoScanMode"] = {
 		{ 0, "ASM_GEOMETRY" },
 		{ 1, "ASM_VOLUMEBOX" },
 	};
+	(*g_EnumSizes)["EAutoScanMode"] = 4;
 
 	(*g_Enums)["EBIEventTypes"] = {
 		{ 0, "eBIL_HM_HitNPC" },
@@ -2441,6 +2514,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eBIL_NPC_HitHM" },
 		{ 5, "eBIL_Geometry" },
 	};
+	(*g_EnumSizes)["EBIEventTypes"] = 4;
 
 	(*g_Enums)["EBaseMovementType"] = {
 		{ -1, "eMovementNone" },
@@ -2482,6 +2556,7 @@ void ZHMEnums::RegisterEnums()
 		{ 35, "eMovementLast" },
 		{ 36, "eMovementPickupItem" },
 	};
+	(*g_EnumSizes)["EBaseMovementType"] = 4;
 
 	(*g_Enums)["EBehaviorTreeVariableType"] = {
 		{ -1, "BTVT_Invalid" },
@@ -2490,24 +2565,28 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "BTVT_Dynamic" },
 		{ 3, "BTVT_NumTypes" },
 	};
+	(*g_EnumSizes)["EBehaviorTreeVariableType"] = 4;
 
 	(*g_Enums)["EBoolCheckType"] = {
 		{ 0, "eBCT_IGNORE" },
 		{ 1, "eBCT_TRUE" },
 		{ 2, "eBCT_FALSE" },
 	};
+	(*g_EnumSizes)["EBoolCheckType"] = 4;
 
 	(*g_Enums)["EBoolStateRequirement"] = {
 		{ 0, "eBSR_Any" },
 		{ 1, "eBSR_RequireTrue" },
 		{ 2, "eBSR_RequireFalse" },
 	};
+	(*g_EnumSizes)["EBoolStateRequirement"] = 4;
 
 	(*g_Enums)["EBooleanOption"] = {
 		{ 0, "BO_Off" },
 		{ 1, "BO_On" },
 		{ 2, "BO_Default" },
 	};
+	(*g_EnumSizes)["EBooleanOption"] = 4;
 
 	(*g_Enums)["EBulletType"] = {
 		{ 0, "BULLET_TYPE_NONE" },
@@ -2520,6 +2599,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "BULLET_TYPE_SNIPER" },
 		{ 8, "BULLET_TYPE_RPG" },
 	};
+	(*g_EnumSizes)["EBulletType"] = 4;
 
 	(*g_Enums)["EButtonDisplay"] = {
 		{ 0, "BUTTON_DISPLAY_AT_OPENDOOR" },
@@ -2597,6 +2677,7 @@ void ZHMEnums::RegisterEnums()
 		{ 72, "BUTTON_DISPLAY_COMPLY" },
 		{ 73, "BUTTON_DISPLAY_MAX" },
 	};
+	(*g_EnumSizes)["EButtonDisplay"] = 4;
 
 	(*g_Enums)["EButtonPressType"] = {
 		{ 0, "BUTTON_PRESS" },
@@ -2606,6 +2687,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "BUTTON_ROTATE_CCW" },
 		{ 5, "BUTTON_PRESS_TYPE_MAX" },
 	};
+	(*g_EnumSizes)["EButtonPressType"] = 4;
 
 	(*g_Enums)["EButtonState"] = {
 		{ -1, "BUTTON_STATE_DISABLED" },
@@ -2614,17 +2696,20 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "BUTTON_STATE_PRESSED" },
 		{ 3, "BUTTON_STATE_BLINKING" },
 	};
+	(*g_EnumSizes)["EButtonState"] = 4;
 
 	(*g_Enums)["EBystanderPointType"] = {
 		{ 0, "BPT_Scared" },
 		{ 1, "BPT_Alerted" },
 	};
+	(*g_EnumSizes)["EBystanderPointType"] = 4;
 
 	(*g_Enums)["ECCDUsage"] = {
 		{ 0, "ECCDUSAGE_DISABLED" },
 		{ 1, "ECCDUSAGE_AGAINST_STATIC" },
 		{ 2, "ECCDUSAGE_AGAINST_STATIC_DYNAMIC" },
 	};
+	(*g_EnumSizes)["ECCDUsage"] = 1;
 
 	(*g_Enums)["ECCDecalEffect"] = {
 		{ 0, "eCCDecalEffect_None" },
@@ -2640,6 +2725,7 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "eCCDecalEffect_FacePunch" },
 		{ 11, "eCCDecalEffect_Bruise" },
 	};
+	(*g_EnumSizes)["ECCDecalEffect"] = 4;
 
 	(*g_Enums)["ECCEmitterEffect"] = {
 		{ 0, "eCCEmitterEffect_None" },
@@ -2655,6 +2741,7 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "eCCEmitterEffect_FacePunch" },
 		{ 11, "eCCEmitterEffect_Blood" },
 	};
+	(*g_EnumSizes)["ECCEmitterEffect"] = 4;
 
 	(*g_Enums)["ECCNodeSubtype"] = {
 		{ 0, "eCCNodeSubtype_Left" },
@@ -2668,6 +2755,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eCCNodeSubtype_Front_Back" },
 		{ 9, "eCCNodeSubtype_Count" },
 	};
+	(*g_EnumSizes)["ECCNodeSubtype"] = 4;
 
 	(*g_Enums)["ECCNodeType"] = {
 		{ 0, "eCCNodeType_Counter" },
@@ -2702,6 +2790,7 @@ void ZHMEnums::RegisterEnums()
 		{ 29, "eCCNodeType_FailChainPush" },
 		{ 30, "eCCNodeType_Count" },
 	};
+	(*g_EnumSizes)["ECCNodeType"] = 4;
 
 	(*g_Enums)["ECCWeaponAnimSet"] = {
 		{ 0, "AS_SLIT_THROAT_1H" },
@@ -2718,17 +2807,20 @@ void ZHMEnums::RegisterEnums()
 		{ 11, "AS_SWORD_1H" },
 		{ 12, "AS_AXE" },
 	};
+	(*g_EnumSizes)["ECCWeaponAnimSet"] = 4;
 
 	(*g_Enums)["ECOMUsage"] = {
 		{ 0, "ECOMUSAGE_AUTOCOMPUTE" },
 		{ 1, "ECOMUSAGE_PIVOT" },
 	};
+	(*g_EnumSizes)["ECOMUsage"] = 1;
 
 	(*g_Enums)["ECameraAssistanceMode"] = {
 		{ 0, "eCAM_None" },
 		{ 1, "eCAM_TrackAssist" },
 		{ 2, "eCAM_AutoTrackTarget" },
 	};
+	(*g_EnumSizes)["ECameraAssistanceMode"] = 4;
 
 	(*g_Enums)["ECameraCollisionMode"] = {
 		{ 0, "ECAMERACOLLISIONMODE_COLLIDE_ALWAYS" },
@@ -2736,17 +2828,20 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ECAMERACOLLISIONMODE_COLLIDE_NEVER" },
 		{ 3, "ECAMERACOLLISIONMODE_COLLIDE_DEFAULT" },
 	};
+	(*g_EnumSizes)["ECameraCollisionMode"] = 1;
 
 	(*g_Enums)["ECameraControls"] = {
 		{ 0, "eCameraControlsNormal" },
 		{ 1, "eCameraControlsOTS" },
 	};
+	(*g_EnumSizes)["ECameraControls"] = 4;
 
 	(*g_Enums)["ECameraOffset_old"] = {
 		{ 0, "eCameraOffset_Center" },
 		{ 1, "eCameraOffset_Left" },
 		{ 2, "eCameraOffset_Right" },
 	};
+	(*g_EnumSizes)["ECameraOffset_old"] = 4;
 
 	(*g_Enums)["ECameraShakerChannel"] = {
 		{ 0, "eCameraShakerChannel_Default" },
@@ -2756,6 +2851,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eCameraShakerChannel_CloseCombat" },
 		{ 5, "eCameraShakerChannel_Num" },
 	};
+	(*g_EnumSizes)["ECameraShakerChannel"] = 4;
 
 	(*g_Enums)["ECameraState"] = {
 		{ 0, "eCamSneakStand" },
@@ -2819,6 +2915,7 @@ void ZHMEnums::RegisterEnums()
 		{ 58, "eCamNumProfiles" },
 		{ 59, "eCamAll" },
 	};
+	(*g_EnumSizes)["ECameraState"] = 4;
 
 	(*g_Enums)["ECausalGraphTraversal"] = {
 		{ 0, "eCGT_NONE" },
@@ -2826,6 +2923,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eCGT_OUTPUT" },
 		{ 3, "eCGT_BOTH" },
 	};
+	(*g_EnumSizes)["ECausalGraphTraversal"] = 4;
 
 	(*g_Enums)["ECautiousDisturbanceState"] = {
 		{ 0, "eCDS_Pending" },
@@ -2840,12 +2938,14 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "eCDS_ManHunt" },
 		{ 10, "eCDS_CombatSuppressGunshots" },
 	};
+	(*g_EnumSizes)["ECautiousDisturbanceState"] = 4;
 
 	(*g_Enums)["ECharSetCharacterType"] = {
 		{ 0, "ECSCT_Actor" },
 		{ 1, "ECSCT_Nude" },
 		{ 2, "ECSCT_HeroA" },
 	};
+	(*g_EnumSizes)["ECharSetCharacterType"] = 4;
 
 	(*g_Enums)["ECharacterActionRequests"] = {
 		{ 0, "eSM_AR_None" },
@@ -2885,12 +2985,14 @@ void ZHMEnums::RegisterEnums()
 		{ 34, "eSM_AR_Cancel" },
 		{ 35, "eSM_AR_Sprint" },
 	};
+	(*g_EnumSizes)["ECharacterActionRequests"] = 4;
 
 	(*g_Enums)["ECharacterActionSyncRequests"] = {
 		{ 1, "eSM_ASR_Reload" },
 		{ 2, "eSM_ASR_SwapItemHandL" },
 		{ 4, "eSM_ASR_SwapItemHandR" },
 	};
+	(*g_EnumSizes)["ECharacterActionSyncRequests"] = 4;
 
 	(*g_Enums)["ECharacterAnimChildNetworkSlot"] = {
 		{ 0, "eCACNS_None" },
@@ -2900,6 +3002,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eCACNS_Interaction_RH" },
 		{ 5, "eCACNS_Interaction_LH" },
 	};
+	(*g_EnumSizes)["ECharacterAnimChildNetworkSlot"] = 4;
 
 	(*g_Enums)["ECharacterAnimEvent"] = {
 		{ 50, "eCAE_EarlyExit" },
@@ -2941,6 +3044,7 @@ void ZHMEnums::RegisterEnums()
 		{ 10002, "eCAE_HandIKEnableRight" },
 		{ 10003, "eCAE_HandIKDisableRight" },
 	};
+	(*g_EnumSizes)["ECharacterAnimEvent"] = 4;
 
 	(*g_Enums)["ECharacterAnimEventState"] = {
 		{ 0, "eES_None" },
@@ -2948,6 +3052,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eES_Completed" },
 		{ 3, "eES_TimedOut" },
 	};
+	(*g_EnumSizes)["ECharacterAnimEventState"] = 1;
 
 	(*g_Enums)["ECharacterBodyType"] = {
 		{ 0, "eCT_MaleRegular" },
@@ -2955,6 +3060,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eCT_Male47" },
 		{ 3, "eCT_Undefined" },
 	};
+	(*g_EnumSizes)["ECharacterBodyType"] = 4;
 
 	(*g_Enums)["ECharacterCollidableLayer"] = {
 		{ 0, "CCL_DYNAMIC" },
@@ -2963,6 +3069,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "CCL_DYNAMIC_NO_COLLISION_TRANSPARENT" },
 		{ 4, "CCL_UNUSED_LAST" },
 	};
+	(*g_EnumSizes)["ECharacterCollidableLayer"] = 1;
 
 	(*g_Enums)["ECharacterEvent"] = {
 		{ 0, "eCIET_PickUp" },
@@ -2982,6 +3089,7 @@ void ZHMEnums::RegisterEnums()
 		{ 14, "eCIET_Damaged" },
 		{ 34, "eCIET_None" },
 	};
+	(*g_EnumSizes)["ECharacterEvent"] = 4;
 
 	(*g_Enums)["ECharacterFullBodyStateType"] = {
 		{ 0, "eSM_FB_OldMovementPlaceholder" },
@@ -2995,11 +3103,13 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eSM_FB_AssembleRetrieve" },
 		{ 11, "eSM_FB_AssembleStore" },
 	};
+	(*g_EnumSizes)["ECharacterFullBodyStateType"] = 4;
 
 	(*g_Enums)["ECharacterIdleHandlerFullbodyType"] = {
 		{ 0, "ecIHFBT_DisguisedIdle" },
 		{ 1, "ecIHFBT_Event" },
 	};
+	(*g_EnumSizes)["ECharacterIdleHandlerFullbodyType"] = 4;
 
 	(*g_Enums)["ECharacterIdleHandlerUpperBodyType"] = {
 		{ 0, "eCIHUBT_NothingToDoEmptySingleHand" },
@@ -3007,6 +3117,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eCIHUBT_Event" },
 		{ 3, "eCIHUBT_Custom" },
 	};
+	(*g_EnumSizes)["ECharacterIdleHandlerUpperBodyType"] = 4;
 
 	(*g_Enums)["ECharacterIdlePriority"] = {
 		{ 0, "eCIP_Irrelevant" },
@@ -3021,6 +3132,7 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "eCIP_VeryHigh" },
 		{ 10, "eCIP_Urgent" },
 	};
+	(*g_EnumSizes)["ECharacterIdlePriority"] = 4;
 
 	(*g_Enums)["ECharacterResourceType"] = {
 		{ 0, "eSMT_Invalid" },
@@ -3028,6 +3140,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eSMT_RightHand" },
 		{ 3, "eSMT_LeftHand" },
 	};
+	(*g_EnumSizes)["ECharacterResourceType"] = 4;
 
 	(*g_Enums)["ECharacterStateTags"] = {
 		{ 1, "eSM_ST_UsingFullBody" },
@@ -3050,6 +3163,7 @@ void ZHMEnums::RegisterEnums()
 		{ 262144, "eSM_ST_Assemble" },
 		{ 8396800, "eSM_ST_EmptyStateLeftHand" },
 	};
+	(*g_EnumSizes)["ECharacterStateTags"] = 4;
 
 	(*g_Enums)["ECharacterStateTransitionAttempt"] = {
 		{ 0, "eSM_TA_IfDestinationCan" },
@@ -3058,6 +3172,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eSM_TA_IfDestinationCanAndWantsOriginDoesNotWant" },
 		{ 4, "eSM_TA_IfDestinationCanAndOriginCanNot" },
 	};
+	(*g_EnumSizes)["ECharacterStateTransitionAttempt"] = 4;
 
 	(*g_Enums)["ECharacterSubcontrollerType"] = {
 		{ 0, "eSCT_IDGenerator" },
@@ -3083,6 +3198,7 @@ void ZHMEnums::RegisterEnums()
 		{ 20, "eSCT_Grip" },
 		{ 21, "eSCT_Suitcase" },
 	};
+	(*g_EnumSizes)["ECharacterSubcontrollerType"] = 4;
 
 	(*g_Enums)["ECharacterUpperBodyStateType"] = {
 		{ 0, "eSM_UB_EmptyHanded" },
@@ -3102,6 +3218,7 @@ void ZHMEnums::RegisterEnums()
 		{ 14, "eSM_UB_ChangeAmmo" },
 		{ 15, "eSM_UB_Assemble" },
 	};
+	(*g_EnumSizes)["ECharacterUpperBodyStateType"] = 4;
 
 	(*g_Enums)["EChatState"] = {
 		{ 0, "NOT_TALKING" },
@@ -3109,6 +3226,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "MUTED" },
 		{ 3, "RESTRICTED" },
 	};
+	(*g_EnumSizes)["EChatState"] = 4;
 
 	(*g_Enums)["ECheatGroup"] = {
 		{ 0, "eCGNone" },
@@ -3120,6 +3238,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eCGExotics" },
 		{ 7, "eCGDevices" },
 	};
+	(*g_EnumSizes)["ECheatGroup"] = 4;
 
 	(*g_Enums)["EClipSpawnAxis"] = {
 		{ 0, "eCSA_XPos" },
@@ -3129,23 +3248,27 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eCSA_ZPos" },
 		{ 5, "eCSA_ZNeg" },
 	};
+	(*g_EnumSizes)["EClipSpawnAxis"] = 4;
 
 	(*g_Enums)["EClothBendConstrainType"] = {
 		{ 0, "eClothBendConstrainType_Stick" },
 		{ 1, "eClothBendConstrainType_Triangle" },
 	};
+	(*g_EnumSizes)["EClothBendConstrainType"] = 4;
 
 	(*g_Enums)["EClothColliderFilter"] = {
 		{ 0, "EClothColliderFilter_Environment" },
 		{ 1, "EClothColliderFilter_Character" },
 		{ 2, "EClothColliderFilter_Character_Environment" },
 	};
+	(*g_EnumSizes)["EClothColliderFilter"] = 4;
 
 	(*g_Enums)["EClothStretchConstrainType"] = {
 		{ 0, "eClothBendConstrainType_Anchor" },
 		{ 1, "eClothBendConstrainType_LRA" },
 		{ 2, "eClothBendConstrainType_None" },
 	};
+	(*g_EnumSizes)["EClothStretchConstrainType"] = 4;
 
 	(*g_Enums)["ECollidableLayer"] = {
 		{ 0, "eCollLayer_COLLIDE_WITH_ALL" },
@@ -3179,18 +3302,21 @@ void ZHMEnums::RegisterEnums()
 		{ 28, "eCollLayer_AI_VISION_BLOCKER_AMBIENT_ONLY" },
 		{ 29, "eCollayer_UNUSED_LAST" },
 	};
+	(*g_EnumSizes)["ECollidableLayer"] = 4;
 
 	(*g_Enums)["ECollidableShape"] = {
 		{ 0, "ECOLLIDABLESHAPE_SPHERE" },
 		{ 1, "ECOLLIDABLESHAPE_CAPSULE" },
 		{ 2, "ECOLLIDABLESHAPE_BOX" },
 	};
+	(*g_EnumSizes)["ECollidableShape"] = 4;
 
 	(*g_Enums)["ECollidablesType"] = {
 		{ 0, "ECST_STATIC_AND_DYNAMIC" },
 		{ 1, "ECST_STATIC_ONLY" },
 		{ 2, "ECST_DYNAMIC_ONLY" },
 	};
+	(*g_EnumSizes)["ECollidablesType"] = 4;
 
 	(*g_Enums)["ECollisionNotifyGroup"] = {
 		{ 0, "eCollisionNotifyGroup_Default" },
@@ -3199,6 +3325,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eCollisionNotifyGroup_DontNotify" },
 		{ 4, "eCollisionNotifyGroup_ForceNotify" },
 	};
+	(*g_EnumSizes)["ECollisionNotifyGroup"] = 1;
 
 	(*g_Enums)["ECollisionPriority"] = {
 		{ 0, "ECOLLISIONPRIORITY_LOW" },
@@ -3206,6 +3333,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ECOLLISIONPRIORITY_HIGH" },
 		{ 3, "ECOLLISIONPRIORITY_CRITICAL" },
 	};
+	(*g_EnumSizes)["ECollisionPriority"] = 1;
 
 	(*g_Enums)["ECollisionResponse"] = {
 		{ 0, "REFLECT_VELOCITY" },
@@ -3213,12 +3341,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "STAY_AT_COLLISION_POINT" },
 		{ 3, "CUSTOM" },
 	};
+	(*g_EnumSizes)["ECollisionResponse"] = 1;
 
 	(*g_Enums)["ECombatZoneState"] = {
 		{ 0, "CZS_Inactive" },
 		{ 1, "CZS_Triggered" },
 		{ 2, "CZS_Engaged" },
 	};
+	(*g_EnumSizes)["ECombatZoneState"] = 4;
 
 	(*g_Enums)["ECommunicationBarMessage"] = {
 		{ 0, "ECBM_Unknown" },
@@ -3245,6 +3375,7 @@ void ZHMEnums::RegisterEnums()
 		{ 21, "ECBM_SpottedByCamera" },
 		{ 22, "ECBM_UnconsciousWitness" },
 	};
+	(*g_EnumSizes)["ECommunicationBarMessage"] = 4;
 
 	(*g_Enums)["ECommunicationBarState"] = {
 		{ 0, "COMMUNICATION_BAR_NONE" },
@@ -3258,6 +3389,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "COMMUNICATION_BAR_GUARDS_ALERTED" },
 		{ 9, "COMMUNICATION_BAR_BACKUP_ARRIVED" },
 	};
+	(*g_EnumSizes)["ECommunicationBarState"] = 4;
 
 	(*g_Enums)["ECompiledBehaviorType"] = {
 		{ 0, "BT_ConditionScope" },
@@ -3452,6 +3584,7 @@ void ZHMEnums::RegisterEnums()
 		{ 189, "BT_COMMANDS_END" },
 		{ 190, "BT_Invalid" },
 	};
+	(*g_EnumSizes)["ECompiledBehaviorType"] = 4;
 
 	(*g_Enums)["ECompiledConditionType"] = {
 		{ 0, "CT_IsCurrent" },
@@ -3614,12 +3747,14 @@ void ZHMEnums::RegisterEnums()
 		{ 157, "CT_IsAccidentVictimDisposable" },
 		{ 158, "CT_IsAccidentBystandingGuardSearching" },
 	};
+	(*g_EnumSizes)["ECompiledConditionType"] = 4;
 
 	(*g_Enums)["EContinuity"] = {
 		{ 0, "C0" },
 		{ 1, "C1" },
 		{ 2, "C2" },
 	};
+	(*g_EnumSizes)["EContinuity"] = 4;
 
 	(*g_Enums)["EControlButtonName"] = {
 		{ 0, "eCN_ABORT" },
@@ -3663,6 +3798,7 @@ void ZHMEnums::RegisterEnums()
 		{ 38, "eCN_PAUSE" },
 		{ 39, "eCN_NO_ICON" },
 	};
+	(*g_EnumSizes)["EControlButtonName"] = 4;
 
 	(*g_Enums)["EControllerButton"] = {
 		{ 0, "BUTTON_NONE" },
@@ -3692,6 +3828,7 @@ void ZHMEnums::RegisterEnums()
 		{ 24, "BUTTON_KEYBOARD" },
 		{ 25, "BUTTON_ESCAPE" },
 	};
+	(*g_EnumSizes)["EControllerButton"] = 4;
 
 	(*g_Enums)["EConversationID"] = {
 		{ 0, "eCI_GuardCivilian_Distraction_Investigation" },
@@ -3731,11 +3868,13 @@ void ZHMEnums::RegisterEnums()
 		{ 34, "eCI_Suitcase_Distraction_RadioRequestHelp" },
 		{ 35, "eCI_Count" },
 	};
+	(*g_EnumSizes)["EConversationID"] = 4;
 
 	(*g_Enums)["EConversationRole"] = {
 		{ 0, "eCR_Leader" },
 		{ 1, "eCR_Assistant" },
 	};
+	(*g_EnumSizes)["EConversationRole"] = 4;
 
 	(*g_Enums)["ECoordinateSpace"] = {
 		{ 0, "CSPACE_INVALID" },
@@ -3744,6 +3883,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "CSPACE_SEQUENCE_ORIGIN" },
 		{ 4, "CSPACE_CHARACTER_RELATIVE" },
 	};
+	(*g_EnumSizes)["ECoordinateSpace"] = 4;
 
 	(*g_Enums)["ECoverPosition"] = {
 		{ 0, "COVER_POSITION_NONE" },
@@ -3751,6 +3891,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "COVER_POSITION_RIGHT" },
 		{ 3, "COVER_POSITION_MIDDLE" },
 	};
+	(*g_EnumSizes)["ECoverPosition"] = 4;
 
 	(*g_Enums)["ECppTypeFlags"] = {
 		{ 1, "EDITOR_ONLY" },
@@ -3759,6 +3900,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "RESETABLE_COND" },
 		{ 16, "RESETABLE_STATIC" },
 	};
+	(*g_EnumSizes)["ECppTypeFlags"] = 4;
 
 	(*g_Enums)["ECrossHairType"] = {
 		{ 0, "CROSSHAIR_NONE" },
@@ -3776,18 +3918,21 @@ void ZHMEnums::RegisterEnums()
 		{ 12, "CROSSHAIR_RANGEINDICATOR" },
 		{ 13, "CROSSHAIR_DOT" },
 	};
+	(*g_EnumSizes)["ECrossHairType"] = 4;
 
 	(*g_Enums)["ECrowdFlowCandidates"] = {
 		{ 0, "NONE" },
 		{ 1, "EVERYONE" },
 		{ 2, "SPAWNED_ON_FLOW" },
 	};
+	(*g_EnumSizes)["ECrowdFlowCandidates"] = 4;
 
 	(*g_Enums)["ECustomSoundDefType"] = {
 		{ 0, "eCSDT_Distraction_InvestigationAck" },
 		{ 1, "eCSDT_Distraction_InvestigationInvestigate" },
 		{ 2, "eCSDT_Distraction_InvestigationStnd" },
 	};
+	(*g_EnumSizes)["ECustomSoundDefType"] = 4;
 
 	(*g_Enums)["EDamageEvent"] = {
 		{ 0, "eDE_UNDEFINED" },
@@ -3810,6 +3955,7 @@ void ZHMEnums::RegisterEnums()
 		{ 131072, "eDE_Drop" },
 		{ 262144, "eDE_Drown" },
 	};
+	(*g_EnumSizes)["EDamageEvent"] = 4;
 
 	(*g_Enums)["EDamageResponse"] = {
 		{ 0, "eDR_Fractured" },
@@ -3818,6 +3964,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eDR_Collided" },
 		{ 4, "eDR_Count" },
 	};
+	(*g_EnumSizes)["EDamageResponse"] = 4;
 
 	(*g_Enums)["EDeathAnimationType"] = {
 		{ 0, "DAT_None" },
@@ -3826,6 +3973,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "DAT_HeavyShot" },
 		{ 4, "DAT_Unknown" },
 	};
+	(*g_EnumSizes)["EDeathAnimationType"] = 4;
 
 	(*g_Enums)["EDeathBehavior"] = {
 		{ 0, "eDB_IMPACT_ANIM" },
@@ -3833,6 +3981,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eDB_NO_VELOCITY" },
 		{ 3, "eDB_NO_RAGDOLL" },
 	};
+	(*g_EnumSizes)["EDeathBehavior"] = 4;
 
 	(*g_Enums)["EDeathContext"] = {
 		{ 0, "eDC_UNDEFINED" },
@@ -3841,6 +3990,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eDC_ACCIDENT" },
 		{ 4, "eDC_MURDER" },
 	};
+	(*g_EnumSizes)["EDeathContext"] = 4;
 
 	(*g_Enums)["EDeathType"] = {
 		{ 0, "eDT_UNDEFINED" },
@@ -3848,18 +3998,21 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eDT_KILL" },
 		{ 3, "eDT_BLOODY_KILL" },
 	};
+	(*g_EnumSizes)["EDeathType"] = 4;
 
 	(*g_Enums)["EDebugExclusionLayerState"] = {
 		{ 0, "DEBUGELSTATE_UNBLOCKED" },
 		{ 1, "DEBUGELSTATE_BLOCKED" },
 		{ 2, "DEBUGELSTATE_UNKNOWN" },
 	};
+	(*g_EnumSizes)["EDebugExclusionLayerState"] = 4;
 
 	(*g_Enums)["EDebugSpatialInfoVerbosity"] = {
 		{ 0, "EDSIV_Overview" },
 		{ 1, "EDSIV_HierachicalView" },
 		{ 2, "EDSIV_Full" },
 	};
+	(*g_EnumSizes)["EDebugSpatialInfoVerbosity"] = 4;
 
 	(*g_Enums)["EDefaultCollidableLayer"] = {
 		{ 0, "DCL_STATIC" },
@@ -3873,6 +4026,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "DCL_DYNAMIC_NO_CHARACTER" },
 		{ 9, "DCL_UNUSED_LAST" },
 	};
+	(*g_EnumSizes)["EDefaultCollidableLayer"] = 1;
 
 	(*g_Enums)["EDestructibleInteractionType"] = {
 		{ 0, "eDIT_SHOT" },
@@ -3882,12 +4036,14 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eDIT_OUT_OF_WORLD" },
 		{ 5, "eDIT_COUNT" },
 	};
+	(*g_EnumSizes)["EDestructibleInteractionType"] = 1;
 
 	(*g_Enums)["EDetachUsage"] = {
 		{ 0, "EDU_NEVER" },
 		{ 1, "EDU_ALWAYS" },
 		{ 2, "EDU_RAGDOLL_ONLY" },
 	};
+	(*g_EnumSizes)["EDetachUsage"] = 4;
 
 	(*g_Enums)["EDetectedNatType"] = {
 		{ 0, "NAT_UNSET" },
@@ -3895,11 +4051,13 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "NAT_2" },
 		{ 3, "NAT_3" },
 	};
+	(*g_EnumSizes)["EDetectedNatType"] = 4;
 
 	(*g_Enums)["EDialogEventEndReason"] = {
 		{ 0, "EDialogEvent_Completed" },
 		{ 1, "EDialogEvent_Stopped" },
 	};
+	(*g_EnumSizes)["EDialogEventEndReason"] = 4;
 
 	(*g_Enums)["EDialogEventItemType"] = {
 		{ 1, "eDEIT_WavFile" },
@@ -3908,6 +4066,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eDEIT_SequenceContainer" },
 		{ 15, "eDEIT_Invalid" },
 	};
+	(*g_EnumSizes)["EDialogEventItemType"] = 4;
 
 	(*g_Enums)["EDialogueLine"] = {
 		{ 0, "Hello" },
@@ -3933,6 +4092,7 @@ void ZHMEnums::RegisterEnums()
 		{ 20, "DropWeapon_Escalate_Double01" },
 		{ 21, "DropWeapon_Escalate_Multiple01" },
 	};
+	(*g_EnumSizes)["EDialogueLine"] = 4;
 
 	(*g_Enums)["EDifficultyLevel"] = {
 		{ 0, "eDL_NO_FLAGS" },
@@ -3942,6 +4102,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eDL_VERY_HARD" },
 		{ 15, "eDL_ALL_FLAGS" },
 	};
+	(*g_EnumSizes)["EDifficultyLevel"] = 4;
 
 	(*g_Enums)["EDifficultyParameter"] = {
 		{ 0, "EDP_Invalid" },
@@ -4104,12 +4265,14 @@ void ZHMEnums::RegisterEnums()
 		{ 157, "EDP_StrictItemRules" },
 		{ 158, "EDP_COUNT" },
 	};
+	(*g_EnumSizes)["EDifficultyParameter"] = 4;
 
 	(*g_Enums)["EDisconnectReason"] = {
 		{ 0, "eNOTIFICATION" },
 		{ 1, "eCONNECTION_LOST" },
 		{ 2, "eNETWORK_STATE" },
 	};
+	(*g_EnumSizes)["EDisconnectReason"] = 4;
 
 	(*g_Enums)["EDisposalType"] = {
 		{ 0, "DISPOSAL_UNDEFINED" },
@@ -4122,6 +4285,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "DISPOSAL_DESTROY" },
 		{ 8, "DISPOSAL_COUNT" },
 	};
+	(*g_EnumSizes)["EDisposalType"] = 4;
 
 	(*g_Enums)["EDisturbanceType"] = {
 		{ 0, "DT_Generic" },
@@ -4168,6 +4332,7 @@ void ZHMEnums::RegisterEnums()
 		{ 41, "DT_Accident" },
 		{ 42, "DT_MAX" },
 	};
+	(*g_EnumSizes)["EDisturbanceType"] = 4;
 
 	(*g_Enums)["EDramaEventAction"] = {
 		{ 0, "eDEA_NONE" },
@@ -4178,6 +4343,7 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "eDEA_RESET_CASTING" },
 		{ 32, "eDEA_RESET_STATE" },
 	};
+	(*g_EnumSizes)["EDramaEventAction"] = 4;
 
 	(*g_Enums)["EDramaSituationDescriptors"] = {
 		{ 0, "eDSD_NONE" },
@@ -4194,6 +4360,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1024, "eDSD_PREOCCUPIED" },
 		{ 2048, "eDSD_PRIVATE" },
 	};
+	(*g_EnumSizes)["EDramaSituationDescriptors"] = 4;
 
 	(*g_Enums)["EDramaStateFlag"] = {
 		{ 0, "eDSF_DEFAULT" },
@@ -4204,6 +4371,7 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "eDSF_DONE" },
 		{ 32, "eDSF_TERMINATED" },
 	};
+	(*g_EnumSizes)["EDramaStateFlag"] = 4;
 
 	(*g_Enums)["EDynamicVariableType"] = {
 		{ -1, "DV_Invalid" },
@@ -4214,6 +4382,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "DV_Sounds" },
 		{ 5, "DV_NumVariables" },
 	};
+	(*g_EnumSizes)["EDynamicVariableType"] = 4;
 
 	(*g_Enums)["EEngineFrameUpdatePriority"] = {
 		{ 0, "eFUP_AILogger" },
@@ -4340,6 +4509,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1000, "eFrameUpdatePriority_LevelManager" },
 		{ 1001, "eFrameUpdatePriority_OutfitStreamingManager" },
 	};
+	(*g_EnumSizes)["EEngineFrameUpdatePriority"] = 4;
 
 	(*g_Enums)["EEngineModeId"] = {
 		{ -1, "EngineMode_Invalid" },
@@ -4348,23 +4518,27 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EngineMode_Multiplayer" },
 		{ 3, "EngineMode_Max" },
 	};
+	(*g_EnumSizes)["EEngineModeId"] = 4;
 
 	(*g_Enums)["EEntityOrdering"] = {
 		{ 0, "EO_LOW" },
 		{ 1, "EO_NORMAL" },
 		{ 2, "EO_HIGH" },
 	};
+	(*g_EnumSizes)["EEntityOrdering"] = 4;
 
 	(*g_Enums)["EEquipAbility"] = {
 		{ 0, "EA_EQUIP_IN_HANDS" },
 		{ 1, "EA_CANNOT_BE_EQUIPPED" },
 	};
+	(*g_EnumSizes)["EEquipAbility"] = 4;
 
 	(*g_Enums)["EExclusionLayer"] = {
 		{ 0, "EL_NONE" },
 		{ 1, "EL_STORY" },
 		{ 2, "EL_AMBIENT" },
 	};
+	(*g_EnumSizes)["EExclusionLayer"] = 4;
 
 	(*g_Enums)["EExtendedPropertyType"] = {
 		{ 0, "TYPE_RESOURCEPTR" },
@@ -4376,6 +4550,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "TYPE_ENTITYREF" },
 		{ 7, "TYPE_VARIANT" },
 	};
+	(*g_EnumSizes)["EExtendedPropertyType"] = 4;
 
 	(*g_Enums)["EFSMInternalEvent"] = {
 		{ 0, "eFSMEvent_Completed" },
@@ -4383,6 +4558,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eFSMEvent_Choice" },
 		{ 3, "eFSMEvent_Max" },
 	};
+	(*g_EnumSizes)["EFSMInternalEvent"] = 4;
 
 	(*g_Enums)["EFSMStateStatus"] = {
 		{ 0, "eInactive" },
@@ -4391,18 +4567,21 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eFailed" },
 		{ 4, "eInterrupted" },
 	};
+	(*g_EnumSizes)["EFSMStateStatus"] = 4;
 
 	(*g_Enums)["EFilterMaskBit"] = {
 		{ 0, "eFilterMaskBit_ObjectCollision" },
 		{ 1, "eFilterMaskBit_OpaqueCollision" },
 		{ 2, "eFilterMaskBit_UNUSED_LAST" },
 	};
+	(*g_EnumSizes)["EFilterMaskBit"] = 1;
 
 	(*g_Enums)["EFocusBarState"] = {
 		{ 0, "FOCUS_BAR_NORMAL" },
 		{ 1, "FOCUS_BAR_INSTINCT" },
 		{ 2, "FOCUS_BAR_BURNING" },
 	};
+	(*g_EnumSizes)["EFocusBarState"] = 4;
 
 	(*g_Enums)["EFontFlags"] = {
 		{ 0, "FV_Normal" },
@@ -4415,6 +4594,7 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "FV_Original" },
 		{ 32, "FV_NoAutoFit" },
 	};
+	(*g_EnumSizes)["EFontFlags"] = 4;
 
 	(*g_Enums)["EGSBodyPart"] = {
 		{ 0, "GSBODYPART_UNKNOWN" },
@@ -4423,6 +4603,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "GSBODYPART_ARM" },
 		{ 4, "GSBODYPART_LEG" },
 	};
+	(*g_EnumSizes)["EGSBodyPart"] = 4;
 
 	(*g_Enums)["EGSEvent"] = {
 		{ 0, "GSEvent_StrayBullet" },
@@ -4466,6 +4647,7 @@ void ZHMEnums::RegisterEnums()
 		{ 38, "GSEvent_Projectile_Missed" },
 		{ 39, "GSEvent_Projectile_MultiKillTargets" },
 	};
+	(*g_EnumSizes)["EGSEvent"] = 4;
 
 	(*g_Enums)["EGSExplodingPropType"] = {
 		{ 0, "eGSExplodingProp_Unknown" },
@@ -4479,6 +4661,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eGSExplodingProp_FireworksBox" },
 		{ 9, "eGSExplodingProp_Car" },
 	};
+	(*g_EnumSizes)["EGSExplodingPropType"] = 4;
 
 	(*g_Enums)["EGSKillSituation"] = {
 		{ 0, "GSKILLSITUATION_UNKNOWN" },
@@ -4492,6 +4675,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "GSKILLSITUATION_PACIFY" },
 		{ 9, "GSKILLSITUATION_FIBERWIRE" },
 	};
+	(*g_EnumSizes)["EGSKillSituation"] = 4;
 
 	(*g_Enums)["EGSKillVictim"] = {
 		{ 0, "GSKILLVICTIM_UNKNOWN" },
@@ -4499,6 +4683,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "GSKILLVICTIM_GUARD" },
 		{ 3, "GSKILLVICTIM_TARGET" },
 	};
+	(*g_EnumSizes)["EGSKillVictim"] = 4;
 
 	(*g_Enums)["EGait"] = {
 		{ 0, "eGait_Normal" },
@@ -4584,6 +4769,7 @@ void ZHMEnums::RegisterEnums()
 		{ 80, "eGait_Custom8" },
 		{ 81, "eGait_Custom9" },
 	};
+	(*g_EnumSizes)["EGait"] = 4;
 
 	(*g_Enums)["EGameEventArgType"] = {
 		{ 0, "GE_ARGS_KILL" },
@@ -4595,6 +4781,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "GE_ARGS_CHECKPOINTEVENT" },
 		{ 7, "GE_ARGS_AI_SITUATION" },
 	};
+	(*g_EnumSizes)["EGameEventArgType"] = 4;
 
 	(*g_Enums)["EGameEventType"] = {
 		{ 0, "GET_GameplayStart" },
@@ -4606,6 +4793,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "GET_PlayingAfterLoad" },
 		{ 7, "GET_COUNT" },
 	};
+	(*g_EnumSizes)["EGameEventType"] = 4;
 
 	(*g_Enums)["EGameModeId"] = {
 		{ -1, "GameMode_Invalid" },
@@ -4614,6 +4802,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "GameMode_Versus" },
 		{ 3, "GameMode_Max" },
 	};
+	(*g_EnumSizes)["EGameModeId"] = 4;
 
 	(*g_Enums)["EGameTension"] = {
 		{ 0, "EGT_Undefined" },
@@ -4626,6 +4815,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "EGT_Arrest" },
 		{ 8, "EGT_Combat" },
 	};
+	(*g_EnumSizes)["EGameTension"] = 4;
 
 	(*g_Enums)["EGameUIMenu"] = {
 		{ 0, "eUIMenu_IntroMenu" },
@@ -4645,6 +4835,7 @@ void ZHMEnums::RegisterEnums()
 		{ 14, "eUIMenu_EmoteMenu" },
 		{ 15, "eUIMenu_Count" },
 	};
+	(*g_EnumSizes)["EGameUIMenu"] = 4;
 
 	(*g_Enums)["EGestureCategory"] = {
 		{ 0, "EGC_None" },
@@ -4654,6 +4845,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "EGC_TrespassWarn3" },
 		{ 5, "EGC_StopWarn" },
 	};
+	(*g_EnumSizes)["EGestureCategory"] = 4;
 
 	(*g_Enums)["EGuardPointType"] = {
 		{ 0, "GPT_Hold" },
@@ -4661,6 +4853,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "GPT_CombatAndHold" },
 		{ 3, "GPT_VIPSafeRoom" },
 	};
+	(*g_EnumSizes)["EGuardPointType"] = 4;
 
 	(*g_Enums)["EHM5GameInputFlag"] = {
 		{ 0, "eGameInputActionPerform" },
@@ -4729,6 +4922,7 @@ void ZHMEnums::RegisterEnums()
 		{ 63, "eGameInputDefault" },
 		{ 64, "eGameInputActionsNUM" },
 	};
+	(*g_EnumSizes)["EHM5GameInputFlag"] = 4;
 
 	(*g_Enums)["EHM5SoundBulletType"] = {
 		{ 0, "ESBT_SMALL" },
@@ -4737,6 +4931,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "ESBT_GORGEOUS" },
 		{ 4, "ESBT_ANY" },
 	};
+	(*g_EnumSizes)["EHM5SoundBulletType"] = 4;
 
 	(*g_Enums)["EHM5SoundCloseCombatEvent"] = {
 		{ 0, "ECCE_PUNCH_FACE" },
@@ -4756,11 +4951,13 @@ void ZHMEnums::RegisterEnums()
 		{ 14, "ECCE_SKULL_CRACK" },
 		{ 15, "ECCE_ANY" },
 	};
+	(*g_EnumSizes)["EHM5SoundCloseCombatEvent"] = 4;
 
 	(*g_Enums)["EHM5SoundFootstepEmitterTarget"] = {
 		{ 0, "EFSAT_MAIN" },
 		{ 1, "EFSAT_NPC" },
 	};
+	(*g_EnumSizes)["EHM5SoundFootstepEmitterTarget"] = 4;
 
 	(*g_Enums)["EHM5SoundFootstepEvent"] = {
 		{ 0, "EFSE_START" },
@@ -4772,6 +4969,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "EFSE_JUMP" },
 		{ 7, "EFSE_LAND" },
 	};
+	(*g_EnumSizes)["EHM5SoundFootstepEvent"] = 4;
 
 	(*g_Enums)["EHM5SoundFootstepStance"] = {
 		{ 0, "EFSS_SNEAK" },
@@ -4781,6 +4979,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "EFSS_RUN" },
 		{ 5, "EFSS_ANY" },
 	};
+	(*g_EnumSizes)["EHM5SoundFootstepStance"] = 4;
 
 	(*g_Enums)["EHM5SoundFootwearType"] = {
 		{ 0, "EFWT_UNDEFINED" },
@@ -4800,11 +4999,13 @@ void ZHMEnums::RegisterEnums()
 		{ 14, "EFWT_LEATHER_KEYS" },
 		{ 15, "EFWT_SWAT_BOOTS" },
 	};
+	(*g_EnumSizes)["EHM5SoundFootwearType"] = 4;
 
 	(*g_Enums)["EHM5SoundRicochetType"] = {
 		{ 0, "ESRT_VARIATION1" },
 		{ 1, "ESRT_VARIATION2" },
 	};
+	(*g_EnumSizes)["EHM5SoundRicochetType"] = 4;
 
 	(*g_Enums)["EHUDElement"] = {
 		{ 0, "HUD_ELEMENT_NONE" },
@@ -4832,6 +5033,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2097152, "HUD_ELEMENT_OBJECTIVES" },
 		{ 8388607, "HUD_ALL_ELEMENTS" },
 	};
+	(*g_EnumSizes)["EHUDElement"] = 4;
 
 	(*g_Enums)["EHUDIconFlags"] = {
 		{ 1, "HUD_ICON_FLAG_POSITION" },
@@ -4839,6 +5041,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "HUD_ICON_FLAG_SCALE" },
 		{ 8, "HUD_ICON_FLAG_TEXT" },
 	};
+	(*g_EnumSizes)["EHUDIconFlags"] = 4;
 
 	(*g_Enums)["EHUDIconType"] = {
 		{ 0, "HUD_ICON_NONE" },
@@ -4850,6 +5053,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "HUD_ICON_TARGET" },
 		{ 7, "HUD_ICON_TUTORIAL_ARROW" },
 	};
+	(*g_EnumSizes)["EHUDIconType"] = 4;
 
 	(*g_Enums)["EHUDMessageStatus"] = {
 		{ 0, "HUD_MESSAGE_UNUSED" },
@@ -4858,6 +5062,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "HUD_MESSAGE_DISPLAY" },
 		{ 4, "HUD_MESSAGE_FADEOUT" },
 	};
+	(*g_EnumSizes)["EHUDMessageStatus"] = 4;
 
 	(*g_Enums)["EHeroGameState"] = {
 		{ 0, "eHGS_Reserved_QueryALL" },
@@ -4901,6 +5106,7 @@ void ZHMEnums::RegisterEnums()
 		{ 38, "eHGS_MvNewFullBody" },
 		{ 39, "eHGS_NUM" },
 	};
+	(*g_EnumSizes)["EHeroGameState"] = 4;
 
 	(*g_Enums)["EHintMessageSoundType"] = {
 		{ 0, "EHintMessageSound_None" },
@@ -4915,6 +5121,7 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "EHintMessageSound_CanBeTurnedOff" },
 		{ 10, "EHintMessageSound_Agility" },
 	};
+	(*g_EnumSizes)["EHintMessageSoundType"] = 4;
 
 	(*g_Enums)["EHintMessageType"] = {
 		{ 0, "EHintMessageType_Hint" },
@@ -4922,6 +5129,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EHintMessageType_InstinctPrompt" },
 		{ 3, "EHintMessageType_Tutorial" },
 	};
+	(*g_EnumSizes)["EHintMessageType"] = 4;
 
 	(*g_Enums)["EHitmanPermissionFlag"] = {
 		{ 0, "eHPFlag_InventorySelect" },
@@ -4935,6 +5143,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eHPFlag_CanOpenPauseMenu" },
 		{ 9, "eHPFlag_PermissionsNUM" },
 	};
+	(*g_EnumSizes)["EHitmanPermissionFlag"] = 4;
 
 	(*g_Enums)["EImpactEffectsOptions"] = {
 		{ 0, "eIE_None" },
@@ -4944,6 +5153,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eIE_AmmoImpactEffect" },
 		{ 16, "eIE_All" },
 	};
+	(*g_EnumSizes)["EImpactEffectsOptions"] = 4;
 
 	(*g_Enums)["EInformationBarMessage"] = {
 		{ 0, "eIBM_Clear" },
@@ -4959,12 +5169,14 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "eIBM_Trespassing" },
 		{ 11, "eIBM_NUM" },
 	};
+	(*g_EnumSizes)["EInformationBarMessage"] = 4;
 
 	(*g_Enums)["EIntelStage"] = {
 		{ 0, "eIT_MAIN" },
 		{ 1, "eIT_STAGE" },
 		{ 2, "eIT_HINT" },
 	};
+	(*g_EnumSizes)["EIntelStage"] = 4;
 
 	(*g_Enums)["EIntelTensionLevel"] = {
 		{ 0, "eITL_Undefined" },
@@ -4977,6 +5189,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "eITL_Arrest" },
 		{ 8, "eITL_Combat" },
 	};
+	(*g_EnumSizes)["EIntelTensionLevel"] = 4;
 
 	(*g_Enums)["EIntelType"] = {
 		{ 0, "eIT_DATA" },
@@ -4985,6 +5198,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eIT_HANDLER" },
 		{ 4, "eIT_UNDEFINED" },
 	};
+	(*g_EnumSizes)["EIntelType"] = 4;
 
 	(*g_Enums)["EInteractionIndicatorState"] = {
 		{ 0, "EIIS_AVAILABLE" },
@@ -4992,11 +5206,13 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EIIS_ACTIVATING" },
 		{ 3, "EIIS_NOTAVAILABLE" },
 	};
+	(*g_EnumSizes)["EInteractionIndicatorState"] = 4;
 
 	(*g_Enums)["EInteractionIndicatorType"] = {
 		{ 0, "EIITYPE_STANDARD" },
 		{ 1, "EIITYPE_INTERRUPTABLE" },
 	};
+	(*g_EnumSizes)["EInteractionIndicatorType"] = 4;
 
 	(*g_Enums)["EInteractionInputType"] = {
 		{ 0, "EIIT_UNKNOWN" },
@@ -5006,18 +5222,21 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "EIIT_REPEAT" },
 		{ 5, "EIIT_GUIDE" },
 	};
+	(*g_EnumSizes)["EInteractionInputType"] = 4;
 
 	(*g_Enums)["EInventoryConfigCustomRule"] = {
 		{ 0, "EICCR_None" },
 		{ 1, "EICCR_Surrender" },
 		{ 2, "EICCR_TempDropLeftHandItem" },
 	};
+	(*g_EnumSizes)["EInventoryConfigCustomRule"] = 4;
 
 	(*g_Enums)["EInventoryConfigFormerEquippedItems"] = {
 		{ 0, "EICFEI_Equip" },
 		{ 1, "EICFEI_EquipOrPickup" },
 		{ 2, "EICFEI_Forget" },
 	};
+	(*g_EnumSizes)["EInventoryConfigFormerEquippedItems"] = 4;
 
 	(*g_Enums)["EInventoryConfigItemHandling"] = {
 		{ 0, "EICIH_Allow" },
@@ -5028,6 +5247,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "EICIH_DropAndPickup" },
 		{ 6, "EICIH_DoNothing" },
 	};
+	(*g_EnumSizes)["EInventoryConfigItemHandling"] = 4;
 
 	(*g_Enums)["EInventoryStorageType"] = {
 		{ 0, "EIST_None" },
@@ -5040,6 +5260,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "EIST_Temporary" },
 		{ 8, "EIST_Debug" },
 	};
+	(*g_EnumSizes)["EInventoryStorageType"] = 4;
 
 	(*g_Enums)["EItemGripType"] = {
 		{ 0, "IGT_Empty" },
@@ -5084,12 +5305,14 @@ void ZHMEnums::RegisterEnums()
 		{ 39, "IGT_Prop_1h_Phone" },
 		{ 40, "IGT_None" },
 	};
+	(*g_EnumSizes)["EItemGripType"] = 4;
 
 	(*g_Enums)["EItemHUDType"] = {
 		{ 0, "EIHT_None" },
 		{ 1, "EIHT_GhostItem" },
 		{ 2, "EIHT_OutbreakHealingItem" },
 	};
+	(*g_EnumSizes)["EItemHUDType"] = 4;
 
 	(*g_Enums)["EItemLocation"] = {
 		{ 0, "eIL_Anywhere" },
@@ -5099,6 +5322,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eIL_FreeBone" },
 		{ 5, "eIL_Count" },
 	};
+	(*g_EnumSizes)["EItemLocation"] = 4;
 
 	(*g_Enums)["EItemModifierType"] = {
 		{ 0, "MODIFIER_NONE" },
@@ -5127,6 +5351,7 @@ void ZHMEnums::RegisterEnums()
 		{ 23, "MODIFIER_MAGAZINE" },
 		{ 24, "MODIFIER_BURST" },
 	};
+	(*g_EnumSizes)["EItemModifierType"] = 4;
 
 	(*g_Enums)["EItemPoisonType"] = {
 		{ 0, "POISONTYPE_NONE" },
@@ -5134,6 +5359,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "POISONTYPE_SEDATIVE" },
 		{ 3, "POISONTYPE_EMETIC" },
 	};
+	(*g_EnumSizes)["EItemPoisonType"] = 4;
 
 	(*g_Enums)["EItemRequirement"] = {
 		{ 0, "eIR_NoRequirement" },
@@ -5141,6 +5367,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eIR_RequireItem" },
 		{ 3, "eIR_RequireNoBigItem" },
 	};
+	(*g_EnumSizes)["EItemRequirement"] = 4;
 
 	(*g_Enums)["EKeywordSetBehavior"] = {
 		{ 0, "EKWSB_All" },
@@ -5148,6 +5375,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EKWSB_Any" },
 		{ 3, "EKWSB_No" },
 	};
+	(*g_EnumSizes)["EKeywordSetBehavior"] = 4;
 
 	(*g_Enums)["EKillType"] = {
 		{ 0, "EKillType_Undefined" },
@@ -5162,6 +5390,7 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "EKillType_Push" },
 		{ 10, "EKillType_Pull" },
 	};
+	(*g_EnumSizes)["EKillType"] = 4;
 
 	(*g_Enums)["EKnownEntityType"] = {
 		{ 0, "KET_UNKNOWN" },
@@ -5174,6 +5403,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "KET_PERCEPTIBLE" },
 		{ 8, "KET_TEMPCROWDBODY" },
 	};
+	(*g_EnumSizes)["EKnownEntityType"] = 4;
 
 	(*g_Enums)["ELastSoundTension"] = {
 		{ 0, "EST_Unknown" },
@@ -5182,12 +5412,14 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EST_Orange" },
 		{ 4, "EST_Red" },
 	};
+	(*g_EnumSizes)["ELastSoundTension"] = 4;
 
 	(*g_Enums)["ELedgeDismountBehavior"] = {
 		{ 0, "eLDB_DontCare" },
 		{ 1, "eLDB_Stand" },
 		{ 2, "eLDB_Crouch" },
 	};
+	(*g_EnumSizes)["ELedgeDismountBehavior"] = 4;
 
 	(*g_Enums)["ELedgeDismountDirection"] = {
 		{ 0, "eLDD_DontCare" },
@@ -5196,6 +5428,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eLDD_FaceRight" },
 		{ 4, "eLDD_Turn180" },
 	};
+	(*g_EnumSizes)["ELedgeDismountDirection"] = 4;
 
 	(*g_Enums)["ELocale"] = {
 		{ 0, "Locale_En" },
@@ -5211,23 +5444,27 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "Locale_Jp" },
 		{ 11, "Locale_Tc" },
 	};
+	(*g_EnumSizes)["ELocale"] = 4;
 
 	(*g_Enums)["EMapType"] = {
 		{ 0, "E_MAPTYPE_Minimap" },
 		{ 1, "E_MAPTYPE_MainMap" },
 		{ 2, "E_MAPTYPE_MenuMap" },
 	};
+	(*g_EnumSizes)["EMapType"] = 4;
 
 	(*g_Enums)["EMarkerClipAlgorithm"] = {
 		{ 0, "MCA_NONE" },
 		{ 1, "MCA_SIMPLE" },
 		{ 2, "MCA_ADVANCED" },
 	};
+	(*g_EnumSizes)["EMarkerClipAlgorithm"] = 4;
 
 	(*g_Enums)["EMarkerInclusionMode"] = {
 		{ 0, "MIM_DEFAULT" },
 		{ 1, "MIM_IF_FORCE_INCLUDED_ONLY" },
 	};
+	(*g_EnumSizes)["EMarkerInclusionMode"] = 4;
 
 	(*g_Enums)["EMassImpulseType"] = {
 		{ 0, "eMIT_None" },
@@ -5235,12 +5472,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eMIT_ShockWave" },
 		{ 3, "eMIT_ShockWaveNoExplosion" },
 	};
+	(*g_EnumSizes)["EMassImpulseType"] = 4;
 
 	(*g_Enums)["EMatchOverCondition"] = {
 		{ 0, "CompletedNormally" },
 		{ 1, "OpponentsDisconnected" },
 		{ 2, "OpponentsAbandoned" },
 	};
+	(*g_EnumSizes)["EMatchOverCondition"] = 4;
 
 	(*g_Enums)["EMaterialRegistrationState"] = {
 		{ 0, "eMRS_None" },
@@ -5248,6 +5487,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eMRS_Success" },
 		{ 3, "eMRS_Failed" },
 	};
+	(*g_EnumSizes)["EMaterialRegistrationState"] = 1;
 
 	(*g_Enums)["EMeBarState"] = {
 		{ 0, "ME_BAR_NONE" },
@@ -5259,6 +5499,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "ME_BAR_DISGUISE_SUSPICIOUS" },
 		{ 7, "ME_BAR_NEAR_BODY" },
 	};
+	(*g_EnumSizes)["EMeBarState"] = 4;
 
 	(*g_Enums)["EMorphemeEventId"] = {
 		{ 0, "eDE_None" },
@@ -5332,18 +5573,21 @@ void ZHMEnums::RegisterEnums()
 		{ 10053, "eDE_Act_FB_BlendOut_End" },
 		{ 10301, "eDE_Act_LeadIn_Marker" },
 	};
+	(*g_EnumSizes)["EMorphemeEventId"] = 4;
 
 	(*g_Enums)["EMotionType"] = {
 		{ 0, "MOTION_LOCKED" },
 		{ 1, "MOTION_LIMITED" },
 		{ 2, "MOTION_FREE" },
 	};
+	(*g_EnumSizes)["EMotionType"] = 4;
 
 	(*g_Enums)["EMoveEndState"] = {
 		{ 0, "MES_Moving" },
 		{ 1, "MES_Stopping" },
 		{ 2, "MES_Standing" },
 	};
+	(*g_EnumSizes)["EMoveEndState"] = 4;
 
 	(*g_Enums)["EMoveSpeed"] = {
 		{ 0, "MS_Sneaking" },
@@ -5352,6 +5596,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "MS_Sprinting" },
 		{ 4, "MS_Flash" },
 	};
+	(*g_EnumSizes)["EMoveSpeed"] = 4;
 
 	(*g_Enums)["EMultiplayerLobbyRequestType"] = {
 		{ 0, "LOBBY_REQUEST_VOID" },
@@ -5360,6 +5605,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "LOBBY_REQUEST_CREATE_LOCALHOST" },
 		{ 4, "LOBBY_REQUEST_JOIN" },
 	};
+	(*g_EnumSizes)["EMultiplayerLobbyRequestType"] = 4;
 
 	(*g_Enums)["EMultiplayerNetworkState"] = {
 		{ 0, "Base" },
@@ -5372,6 +5618,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "Disconnecting" },
 		{ 8, "Count" },
 	};
+	(*g_EnumSizes)["EMultiplayerNetworkState"] = 4;
 
 	(*g_Enums)["ENamedGameEvents"] = {
 		{ 0, "eEvent_IntroCutStart" },
@@ -5379,18 +5626,21 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eEvent_SetModePlaying" },
 		{ 3, "eNumNamedGameEvents" },
 	};
+	(*g_EnumSizes)["ENamedGameEvents"] = 4;
 
 	(*g_Enums)["ENetPlayerEvent"] = {
 		{ 0, "Login" },
 		{ 1, "Logout" },
 		{ 2, "NewHost" },
 	};
+	(*g_EnumSizes)["ENetPlayerEvent"] = 4;
 
 	(*g_Enums)["ENetRole"] = {
 		{ 0, "None" },
 		{ 1, "Master" },
 		{ 2, "Client" },
 	};
+	(*g_EnumSizes)["ENetRole"] = 1;
 
 	(*g_Enums)["ENetworkSystemID"] = {
 		{ 0, "NSID_UNDEFINED" },
@@ -5467,17 +5717,20 @@ void ZHMEnums::RegisterEnums()
 		{ 71, "NSID_VS_TARGET_PACIFIED_CONFIRMED_RPC" },
 		{ 72, "NSID_MAX" },
 	};
+	(*g_EnumSizes)["ENetworkSystemID"] = 4;
 
 	(*g_Enums)["EObjectiveType"] = {
 		{ 0, "OBJECTIVE_PRIMARY" },
 		{ 1, "OBJECTIVE_SECONDARY" },
 		{ 2, "OBJECTIVE_TERTIARY" },
 	};
+	(*g_EnumSizes)["EObjectiveType"] = 4;
 
 	(*g_Enums)["EOnlinTest"] = {
 		{ 0, "eHELLO" },
 		{ 1, "eWORLD" },
 	};
+	(*g_EnumSizes)["EOnlinTest"] = 4;
 
 	(*g_Enums)["EOnlineEventInvestigationType"] = {
 		{ 0, "OEIT_Generic" },
@@ -5499,6 +5752,7 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "OEIT_CrowdCurious" },
 		{ 17, "OEIT_CameraDefect" },
 	};
+	(*g_EnumSizes)["EOnlineEventInvestigationType"] = 4;
 
 	(*g_Enums)["EOpportunityRevealState"] = {
 		{ 1, "ORS_REVEALING" },
@@ -5509,6 +5763,7 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "ORS_REVEAL_FLAGS" },
 		{ 16, "ORS_BYPASS_MENU" },
 	};
+	(*g_EnumSizes)["EOpportunityRevealState"] = 4;
 
 	(*g_Enums)["EOpportunityState"] = {
 		{ 1, "OS_TRACKED" },
@@ -5516,6 +5771,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "OS_UNLOCKED" },
 		{ 8, "OS_REVEAL_PENDING" },
 	};
+	(*g_EnumSizes)["EOpportunityState"] = 1;
 
 	(*g_Enums)["EOrderCompletionStatus"] = {
 		{ 0, "OCS_Undetermined" },
@@ -5524,12 +5780,14 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "OCS_Blocked" },
 		{ 4, "OCS_Failed" },
 	};
+	(*g_EnumSizes)["EOrderCompletionStatus"] = 1;
 
 	(*g_Enums)["EOutbreakInfectionStage"] = {
 		{ 0, "eOIS_Stage1" },
 		{ 1, "eOIS_Stage2" },
 		{ 2, "eOIS_Stage3" },
 	};
+	(*g_EnumSizes)["EOutbreakInfectionStage"] = 4;
 
 	(*g_Enums)["EOutfitAICategory"] = {
 		{ 0, "OAC_Undefined" },
@@ -5718,6 +5976,7 @@ void ZHMEnums::RegisterEnums()
 		{ 183, "OAC_Bankteller" },
 		{ 184, "OAC_Robber" },
 	};
+	(*g_EnumSizes)["EOutfitAICategory"] = 4;
 
 	(*g_Enums)["EOutfitType"] = {
 		{ 0, "eOT_None" },
@@ -5727,28 +5986,33 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eOT_Waiter" },
 		{ 5, "eOT_LucasGrey" },
 	};
+	(*g_EnumSizes)["EOutfitType"] = 4;
 
 	(*g_Enums)["EParticleColorUsage"] = {
 		{ 0, "REPLACE_PARTICLE_COLOR" },
 		{ 1, "LEAVE_PARTICLE_COLOR" },
 	};
+	(*g_EnumSizes)["EParticleColorUsage"] = 1;
 
 	(*g_Enums)["EParticleDecalSpawnEntity_Constraints"] = {
 		{ 0, "FACTOR_AND_RANDOMIZE" },
 		{ 1, "SIZE_RANGE" },
 	};
+	(*g_EnumSizes)["EParticleDecalSpawnEntity_Constraints"] = 4;
 
 	(*g_Enums)["EParticleModifierImpulseDirections"] = {
 		{ 0, "TARGET_ZAXIS_DIRECTION" },
 		{ 1, "TOWARDS_TARGET_PIVOT" },
 		{ 2, "AWAY_FROM_TARGET_PIVOT" },
 	};
+	(*g_EnumSizes)["EParticleModifierImpulseDirections"] = 4;
 
 	(*g_Enums)["EParticleSpritePivotLocation"] = {
 		{ 0, "CENTER_PIVOT" },
 		{ 1, "BOTTOM_PIVOT" },
 		{ 2, "TOP_PIVOT" },
 	};
+	(*g_EnumSizes)["EParticleSpritePivotLocation"] = 1;
 
 	(*g_Enums)["EPathFinderBoxType"] = {
 		{ 0, "PFBT_INCLUDE_MESH_COLLISION" },
@@ -5759,12 +6023,14 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "PFBT_EXCLUDE_PORTALS" },
 		{ 6, "PFBT_IGNORE" },
 	};
+	(*g_EnumSizes)["EPathFinderBoxType"] = 4;
 
 	(*g_Enums)["EPersistentBoolDataSyncType"] = {
 		{ 0, "ePBDST_None" },
 		{ 1, "ePBDST_ServerAuthoritative" },
 		{ 2, "ePBDST_Full" },
 	};
+	(*g_EnumSizes)["EPersistentBoolDataSyncType"] = 4;
 
 	(*g_Enums)["EPhysicsObjectType"] = {
 		{ 0, "EPHYSICSOBJECTTYPE_UNKNOWN" },
@@ -5772,6 +6038,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EPHYSICSOBJECTTYPE_KINEMATIC" },
 		{ 3, "EPHYSICSOBJECTTYPE_STATIC" },
 	};
+	(*g_EnumSizes)["EPhysicsObjectType"] = 4;
 
 	(*g_Enums)["EPlaceableType"] = {
 		{ 0, "PLACEABLE_NOT" },
@@ -5780,12 +6047,14 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "PLACEABLE_NO_PHYSICS" },
 		{ 4, "PLACEABLE_ATTACH" },
 	};
+	(*g_EnumSizes)["EPlaceableType"] = 4;
 
 	(*g_Enums)["EPlayMode"] = {
 		{ 1, "PLAYMODE_STOPPED" },
 		{ 2, "PLAYMODE_PAUSED" },
 		{ 3, "PLAYMODE_PLAYING" },
 	};
+	(*g_EnumSizes)["EPlayMode"] = 4;
 
 	(*g_Enums)["EPostProcessorComponentType"] = {
 		{ 1, "MRP_LOOKAT" },
@@ -5795,6 +6064,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1024, "MRP_IMPACT" },
 		{ 2048, "MRP_BLINDFIRE" },
 	};
+	(*g_EnumSizes)["EPostProcessorComponentType"] = 4;
 
 	(*g_Enums)["EPushNotificationType"] = {
 		{ 0, "PUSH_NOTIFICATION_OBJECTIVE" },
@@ -5807,17 +6077,20 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "PUSH_NOTIFICATION_TECHNIQUE_UNLOCKED" },
 		{ 8, "PUSH_NOTIFICATION_SCORE_COMPARISON" },
 	};
+	(*g_EnumSizes)["EPushNotificationType"] = 4;
 
 	(*g_Enums)["EQueryMaskType"] = {
 		{ 1, "eQueryMaskType_CameraCollision" },
 		{ 2, "eQueryMaskType_CameraObstacle" },
 		{ 4, "eQueryMaskType_ExplosionRelevant" },
 	};
+	(*g_EnumSizes)["EQueryMaskType"] = 4;
 
 	(*g_Enums)["ERANDOM_DISTRIBUTION"] = {
 		{ 0, "RND_UNIFORM" },
 		{ 1, "RND_SAWTOOTH" },
 	};
+	(*g_EnumSizes)["ERANDOM_DISTRIBUTION"] = 4;
 
 	(*g_Enums)["ERagdollPart"] = {
 		{ 0, "ERAGDOLLPART_NONE" },
@@ -5826,6 +6099,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "ERAGDOLLPART_HAND" },
 		{ 4, "ERAGDOLLPART_FOOT" },
 	};
+	(*g_EnumSizes)["ERagdollPart"] = 1;
 
 	(*g_Enums)["ERatingCategory"] = {
 		{ 0, "ERatingCategory_Invalid" },
@@ -5835,6 +6109,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "ERatingCategory_Noise" },
 		{ 5, "ERatingCategory_COUNT" },
 	};
+	(*g_EnumSizes)["ERatingCategory"] = 4;
 
 	(*g_Enums)["ERatingTitle"] = {
 		{ 0, "ERatingTitle_SilentAssassin" },
@@ -5849,18 +6124,21 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "ERatingTitle_Angel" },
 		{ 10, "ERatingTitle_COUNT" },
 	};
+	(*g_EnumSizes)["ERatingTitle"] = 4;
 
 	(*g_Enums)["ERatingTitleRequirement"] = {
 		{ 0, "ERatingTitleRequirement_Optional" },
 		{ 1, "ERatingTitleRequirement_Required" },
 		{ 2, "ERatingTitleRequirement_Fails" },
 	};
+	(*g_EnumSizes)["ERatingTitleRequirement"] = 4;
 
 	(*g_Enums)["ERayDetailLevel"] = {
 		{ 0, "RAYDETAILS_NONE" },
 		{ 1, "RAYDETAILS_BONES" },
 		{ 2, "RAYDETAILS_MESH" },
 	};
+	(*g_EnumSizes)["ERayDetailLevel"] = 1;
 
 	(*g_Enums)["ERayLayer"] = {
 		{ 0, "eRayLayer_COLLIDE_WITH_ALL" },
@@ -5885,17 +6163,20 @@ void ZHMEnums::RegisterEnums()
 		{ 23, "eRayLayer_PHYSICS_MANIPULATOR" },
 		{ 24, "eRayLayer_UNUSED_LAST" },
 	};
+	(*g_EnumSizes)["ERayLayer"] = 4;
 
 	(*g_Enums)["ERayType"] = {
 		{ 0, "ERAY_CLOSESTHIT_SIMPLE" },
 		{ 1, "ERAY_CLOSESTHIT_DETAILED" },
 	};
+	(*g_EnumSizes)["ERayType"] = 4;
 
 	(*g_Enums)["ERegionId"] = {
 		{ 0, "RegionId_Default" },
 		{ 1, "RegionId_Japan" },
 		{ 2, "RegionId_Asia" },
 	};
+	(*g_EnumSizes)["ERegionId"] = 4;
 
 	(*g_Enums)["ERegionMask"] = {
 		{ 1, "eRM_None" },
@@ -5912,6 +6193,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2048, "eRM_User_7" },
 		{ 4096, "eRM_User_8" },
 	};
+	(*g_EnumSizes)["ERegionMask"] = 4;
 
 	(*g_Enums)["ERegistrationState"] = {
 		{ 0, "eINITIAL" },
@@ -5921,6 +6203,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eCANCELLED_LOCALLY" },
 		{ 5, "eFOUNDMATCH" },
 	};
+	(*g_EnumSizes)["ERegistrationState"] = 4;
 
 	(*g_Enums)["ERenderGlowTypes"] = {
 		{ 0, "ERENDERGLOWTYPE_NONE" },
@@ -5951,16 +6234,19 @@ void ZHMEnums::RegisterEnums()
 		{ 25, "ERENDERGLOWTYPE_EMISSIVE_UI" },
 		{ 26, "ERENDERGLOWTYPE_OPPONENT" },
 	};
+	(*g_EnumSizes)["ERenderGlowTypes"] = 1;
 
 	(*g_Enums)["EReplicaMode"] = {
 		{ 0, "E_RM_STATIC_OBJECT" },
 		{ 1, "E_RM_DYNAMIC" },
 	};
+	(*g_EnumSizes)["EReplicaMode"] = 4;
 
 	(*g_Enums)["EReplicaOperation"] = {
 		{ 0, "E_Created" },
 		{ 1, "E_Destroyed" },
 	};
+	(*g_EnumSizes)["EReplicaOperation"] = 4;
 
 	(*g_Enums)["ERequirementId"] = {
 		{ 0, "EREQUIREMENT_INVALID" },
@@ -5978,6 +6264,7 @@ void ZHMEnums::RegisterEnums()
 		{ 12, "EREQUIREMENT_S2_EXPANSION_VANITY_ITEM1" },
 		{ 13, "EREQUIREMENT_S2_EXPANSION_VANITY_ITEM2" },
 	};
+	(*g_EnumSizes)["ERequirementId"] = 4;
 
 	(*g_Enums)["ERestitutionCombineMode"] = {
 		{ 0, "ERestitutionCombineMode_AVERAGE" },
@@ -5985,6 +6272,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ERestitutionCombineMode_MULTIPLY" },
 		{ 3, "ERestitutionCombineMode_MAX" },
 	};
+	(*g_EnumSizes)["ERestitutionCombineMode"] = 1;
 
 	(*g_Enums)["ERoleEvent"] = {
 		{ 0, "eRE_NONE" },
@@ -5998,12 +6286,14 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eRE_RESUMING" },
 		{ 9, "eRE_RUNNING" },
 	};
+	(*g_EnumSizes)["ERoleEvent"] = 4;
 
 	(*g_Enums)["ERuntimeMemoryAllocationState"] = {
 		{ 0, "eRMAS_NeverAllocated" },
 		{ 1, "eRMAS_Allocated" },
 		{ 2, "eRMAS_Released" },
 	};
+	(*g_EnumSizes)["ERuntimeMemoryAllocationState"] = 4;
 
 	(*g_Enums)["ESaveLoadStatus"] = {
 		{ 0, "ESaveLoadStatus_OK" },
@@ -6020,6 +6310,7 @@ void ZHMEnums::RegisterEnums()
 		{ 11, "ESaveLoadStatus_ERROR_REQUIREMENTCHECK" },
 		{ 12, "ESaveLoadStatus_ERROR_INVALIDATED" },
 	};
+	(*g_EnumSizes)["ESaveLoadStatus"] = 4;
 
 	(*g_Enums)["ESaveType"] = {
 		{ 0, "ESaveType_AutoSave" },
@@ -6027,6 +6318,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ESaveType_SystemData" },
 		{ 3, "ESaveType_LocalProfile" },
 	};
+	(*g_EnumSizes)["ESaveType"] = 4;
 
 	(*g_Enums)["EScreenAnchor"] = {
 		{ 0, "SCREEN_ANCHOR_TOP_LEFT" },
@@ -6039,6 +6331,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "SCREEN_ANCHOR_BOTTOM_CENTER" },
 		{ 8, "SCREEN_ANCHOR_BOTTOM_RIGHT" },
 	};
+	(*g_EnumSizes)["EScreenAnchor"] = 4;
 
 	(*g_Enums)["EScreenPlayState"] = {
 		{ 0, "State_Stopped" },
@@ -6049,6 +6342,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "State_Done" },
 		{ 6, "State_Terminated" },
 	};
+	(*g_EnumSizes)["EScreenPlayState"] = 4;
 
 	(*g_Enums)["EScreenplayStateFlag"] = {
 		{ 0, "eSSF_DEFAULT" },
@@ -6059,12 +6353,14 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "eSSF_DONE" },
 		{ 32, "eSSF_TERMINATED" },
 	};
+	(*g_EnumSizes)["EScreenplayStateFlag"] = 4;
 
 	(*g_Enums)["EScreenplayTriggerEvent"] = {
 		{ 0, "STT_ReportCrime" },
 		{ 1, "STT_ReportCrimeToHitman" },
 		{ 2, "STT_ReportCrimeMoveBack" },
 	};
+	(*g_EnumSizes)["EScreenplayTriggerEvent"] = 4;
 
 	(*g_Enums)["ESeamFixMode"] = {
 		{ 0, "SEAMFIX_NONE" },
@@ -6076,6 +6372,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "SEAMFIX_YZ" },
 		{ 7, "SEAMFIX_XYZ" },
 	};
+	(*g_EnumSizes)["ESeamFixMode"] = 1;
 
 	(*g_Enums)["ESentryActionPrompt"] = {
 		{ 0, "eSAP_None" },
@@ -6083,12 +6380,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eSAP_ShowItem" },
 		{ 3, "eSAP_Max" },
 	};
+	(*g_EnumSizes)["ESentryActionPrompt"] = 4;
 
 	(*g_Enums)["ESequencePreviewState"] = {
 		{ 0, "PREVIEW_STOPPED" },
 		{ 1, "PREVIEW_PLAYING" },
 		{ 2, "PREVIEW_PAUSED" },
 	};
+	(*g_EnumSizes)["ESequencePreviewState"] = 4;
 
 	(*g_Enums)["ESilenceRating"] = {
 		{ 0, "eSR_NotSilenced" },
@@ -6096,6 +6395,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eSR_SuperSilenced" },
 		{ 3, "eSR_CompletelySilenced" },
 	};
+	(*g_EnumSizes)["ESilenceRating"] = 4;
 
 	(*g_Enums)["ESituationAvailability"] = {
 		{ 0, "ESA_AMBIENCE" },
@@ -6107,6 +6407,7 @@ void ZHMEnums::RegisterEnums()
 		{ 60000, "ESA_OVR_COMBAT" },
 		{ 70000, "ESA_OVR_ALL" },
 	};
+	(*g_EnumSizes)["ESituationAvailability"] = 4;
 
 	(*g_Enums)["ESituationJoinReason"] = {
 		{ 0, "AISJR_Default" },
@@ -6130,6 +6431,7 @@ void ZHMEnums::RegisterEnums()
 		{ 18, "AISJR_SC_HeardBulletImpact" },
 		{ 19, "AISJR_SC_HeardSetPiece" },
 	};
+	(*g_EnumSizes)["ESituationJoinReason"] = 4;
 
 	(*g_Enums)["ESituationStateChangeReason"] = {
 		{ 0, "eSSCR_NONE" },
@@ -6152,6 +6454,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1048576, "eSSCR_PAUSED_FROM_PLAYING" },
 		{ 2097152, "eSSCR_PAUSED_FROM_RESUMING" },
 	};
+	(*g_EnumSizes)["ESituationStateChangeReason"] = 4;
 
 	(*g_Enums)["ESituationType"] = {
 		{ 0, "AIST_Any" },
@@ -6181,6 +6484,7 @@ void ZHMEnums::RegisterEnums()
 		{ 24, "AIST_Infected" },
 		{ 25, "ESituationType_Count" },
 	};
+	(*g_EnumSizes)["ESituationType"] = 4;
 
 	(*g_Enums)["ESmartBehaviorOrder"] = {
 		{ 0, "SBO_Stand" },
@@ -6193,6 +6497,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "SBO_Death" },
 		{ 8, "SBO_Teleport" },
 	};
+	(*g_EnumSizes)["ESmartBehaviorOrder"] = 4;
 
 	(*g_Enums)["ESmartWaitCondition"] = {
 		{ 0, "SWC_Time" },
@@ -6200,11 +6505,13 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "SWC_Executing" },
 		{ 3, "SWC_Executed" },
 	};
+	(*g_EnumSizes)["ESmartWaitCondition"] = 4;
 
 	(*g_Enums)["ESmoothingMode"] = {
 		{ 0, "ESM_LINEAR" },
 		{ 1, "ESM_EXPONENTIAL" },
 	};
+	(*g_EnumSizes)["ESmoothingMode"] = 4;
 
 	(*g_Enums)["ESniperScoreMessageType"] = {
 		{ 0, "ESSMT_STYLE_DEFAULT" },
@@ -6213,6 +6520,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "ESSMT_STYLE_STREAK" },
 		{ 4, "ESSMT_STYLE_CIVKILL" },
 	};
+	(*g_EnumSizes)["ESniperScoreMessageType"] = 4;
 
 	(*g_Enums)["ESoundChannelGroup"] = {
 		{ 0, "ESCG_NONE" },
@@ -6290,35 +6598,41 @@ void ZHMEnums::RegisterEnums()
 		{ 72, "SND_Diag_NPC_Oneliner" },
 		{ 73, "SND_Moments" },
 	};
+	(*g_EnumSizes)["ESoundChannelGroup"] = 4;
 
 	(*g_Enums)["ESoundCollisionObjectType"] = {
 		{ 0, "StaticRigidBody" },
 		{ 1, "DynamicRigidBody" },
 		{ 2, "Ragdoll" },
 	};
+	(*g_EnumSizes)["ESoundCollisionObjectType"] = 4;
 
 	(*g_Enums)["ESoundCollisionType"] = {
 		{ 0, "Impact" },
 		{ 1, "Rolling" },
 		{ 2, "Sliding" },
 	};
+	(*g_EnumSizes)["ESoundCollisionType"] = 4;
 
 	(*g_Enums)["ESoundGateFlags"] = {
 		{ 1, "SOUNDGATE_FLAGS_AMBIENCE" },
 		{ 2, "SOUNDGATE_FLAGS_OCCLUSION" },
 		{ 255, "SOUNDGATE_FLAGS_ALL" },
 	};
+	(*g_EnumSizes)["ESoundGateFlags"] = 4;
 
 	(*g_Enums)["ESoundGateType"] = {
 		{ 0, "SOUNDGATE_TYPE_ROUND" },
 		{ 1, "SOUNDGATE_TYPE_SHARPCORNERS" },
 	};
+	(*g_EnumSizes)["ESoundGateType"] = 4;
 
 	(*g_Enums)["ESoundMaterialType"] = {
 		{ 0, "eGeneric" },
 		{ 1, "eFlesh" },
 		{ 2, "eSilent" },
 	};
+	(*g_EnumSizes)["ESoundMaterialType"] = 4;
 
 	(*g_Enums)["ESpeechPriority"] = {
 		{ 0, "SP_AMBIENT" },
@@ -6331,6 +6645,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "SP_MAX" },
 		{ 8, "SP_COUNT__" },
 	};
+	(*g_EnumSizes)["ESpeechPriority"] = 4;
 
 	(*g_Enums)["ESpeed"] = {
 		{ 0, "eSpeed_Idle" },
@@ -6339,11 +6654,13 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eSpeed_Fast" },
 		{ 4, "eSpeed_Sprint" },
 	};
+	(*g_EnumSizes)["ESpeed"] = 4;
 
 	(*g_Enums)["EStandRepositionStrategy"] = {
 		{ 0, "SRS_InPlaceRepositioning" },
 		{ 1, "SRS_NoRepositioning" },
 	};
+	(*g_EnumSizes)["EStandRepositionStrategy"] = 4;
 
 	(*g_Enums)["EStashpointContainedEntityType"] = {
 		{ 0, "PICKUP_NONE" },
@@ -6351,6 +6668,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "PICKUP_OUTFIT" },
 		{ 3, "PICKUP_PICKEDUP" },
 	};
+	(*g_EnumSizes)["EStashpointContainedEntityType"] = 4;
 
 	(*g_Enums)["EStealthSituation"] = {
 		{ 0, "SS_DISGUISE_TAKEN" },
@@ -6403,12 +6721,14 @@ void ZHMEnums::RegisterEnums()
 		{ 47, "SS_TARGET_EVACUATES" },
 		{ 48, "SS_UNKNOWN_BODY_SPOTTED" },
 	};
+	(*g_EnumSizes)["EStealthSituation"] = 4;
 
 	(*g_Enums)["ESubcontrollerInventorySlot"] = {
 		{ 0, "eSIS_Invalid" },
 		{ 1, "eSIS_LeftHand" },
 		{ 2, "eSIS_RightHand" },
 	};
+	(*g_EnumSizes)["ESubcontrollerInventorySlot"] = 4;
 
 	(*g_Enums)["ESyncEvent"] = {
 		{ 0, "eSyncEvent_None" },
@@ -6416,12 +6736,14 @@ void ZHMEnums::RegisterEnums()
 		{ 200, "eSyncEvent_RightFoot" },
 		{ 300, "eSyncEvent_BothFeet" },
 	};
+	(*g_EnumSizes)["ESyncEvent"] = 4;
 
 	(*g_Enums)["ESynchronisedActionState"] = {
 		{ 0, "eSAS_INACTIVE" },
 		{ 1, "eSAS_WAITING_TO_EXECUTE" },
 		{ 2, "eSAS_COOLINGDOWN" },
 	};
+	(*g_EnumSizes)["ESynchronisedActionState"] = 4;
 
 	(*g_Enums)["ETakeDownAnim"] = {
 		{ 0, "eCoverLowOverNarrowCloseFront" },
@@ -6453,6 +6775,7 @@ void ZHMEnums::RegisterEnums()
 		{ 26, "eChokeChairEndRight90" },
 		{ 27, "eTakeDownAnimLast" },
 	};
+	(*g_EnumSizes)["ETakeDownAnim"] = 4;
 
 	(*g_Enums)["ETakeDownState"] = {
 		{ 0, "eTD_Cover" },
@@ -6462,11 +6785,13 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eTD_Deactivating" },
 		{ 5, "eTD_Unknown" },
 	};
+	(*g_EnumSizes)["ETakeDownState"] = 4;
 
 	(*g_Enums)["ETargetPrintDestination"] = {
 		{ 0, "eTPD_Screen" },
 		{ 1, "eTPD_TraceViewer" },
 	};
+	(*g_EnumSizes)["ETargetPrintDestination"] = 4;
 
 	(*g_Enums)["ETargetType"] = {
 		{ 0, "eTDS_None" },
@@ -6474,28 +6799,33 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eTDS_Spatial" },
 		{ 3, "eTDS_Linked" },
 	};
+	(*g_EnumSizes)["ETargetType"] = 4;
 
 	(*g_Enums)["ETeamModeId"] = {
 		{ 0, "TeamMode_Coop" },
 		{ 1, "TeamMode_Versus" },
 	};
+	(*g_EnumSizes)["ETeamModeId"] = 4;
 
 	(*g_Enums)["ETessellationFactorMode"] = {
 		{ 0, "TESSELLATIONFACTORMODE_FIXED" },
 		{ 1, "TESSELLATIONFACTORMODE_OBJECT" },
 		{ 2, "TESSELLATIONFACTORMODE_TRIANGLE" },
 	};
+	(*g_EnumSizes)["ETessellationFactorMode"] = 1;
 
 	(*g_Enums)["ETessellationMode"] = {
 		{ 0, "TESSELLATIONMODE_FLAT" },
 		{ 1, "TESSELLATIONMODE_PHONG" },
 	};
+	(*g_EnumSizes)["ETessellationMode"] = 1;
 
 	(*g_Enums)["ETextAlignment"] = {
 		{ 0, "TEXT_ALIGN_LEFT" },
 		{ 1, "TEXT_ALIGN_CENTER" },
 		{ 2, "TEXT_ALIGN_RIGHT" },
 	};
+	(*g_EnumSizes)["ETextAlignment"] = 4;
 
 	(*g_Enums)["EThrowType"] = {
 		{ 0, "THROW_NONE" },
@@ -6509,6 +6839,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "THROW_DEADLY_LIGHT" },
 		{ 9, "THROW_DEADLY_HEAVY" },
 	};
+	(*g_EnumSizes)["EThrowType"] = 4;
 
 	(*g_Enums)["EThrownCollisionSoundLoudness"] = {
 		{ 0, "eLoudness_Default" },
@@ -6516,12 +6847,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eLoudness_Normal" },
 		{ 3, "eLoudness_Loud" },
 	};
+	(*g_EnumSizes)["EThrownCollisionSoundLoudness"] = 4;
 
 	(*g_Enums)["ETimerEntityCommandType"] = {
 		{ 0, "ETECT_Add" },
 		{ 1, "ETECT_Remove" },
 		{ 2, "ETECT_Reset" },
 	};
+	(*g_EnumSizes)["ETimerEntityCommandType"] = 4;
 
 	(*g_Enums)["EUIActionGroupIcon"] = {
 		{ 0, "EUIAGI_NoIcon" },
@@ -6550,6 +6883,7 @@ void ZHMEnums::RegisterEnums()
 		{ 23, "EUIAGI_SpaghettiCan" },
 		{ 24, "EUIAGI_MAX" },
 	};
+	(*g_EnumSizes)["EUIActionGroupIcon"] = 4;
 
 	(*g_Enums)["EUIBusyOperationId"] = {
 		{ 0, "eOperationId_GameSave" },
@@ -6600,6 +6934,7 @@ void ZHMEnums::RegisterEnums()
 		{ 45, "eOperationId_Custom_End" },
 		{ 46, "eOperationId_None" },
 	};
+	(*g_EnumSizes)["EUIBusyOperationId"] = 4;
 
 	(*g_Enums)["EUIBusyState"] = {
 		{ 0, "eBusyState_Saving" },
@@ -6610,12 +6945,14 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "eBusyState_Fetching" },
 		{ 6, "eBusyState_None" },
 	};
+	(*g_EnumSizes)["EUIBusyState"] = 4;
 
 	(*g_Enums)["EValueUpdateStrategy"] = {
 		{ 0, "UPDATE_STRATEGY_REPLACE" },
 		{ 1, "UPDATE_STRATEGY_ADD_TO" },
 		{ 2, "UPDATE_STRATEGY_MULTIPLY" },
 	};
+	(*g_EnumSizes)["EValueUpdateStrategy"] = 1;
 
 	(*g_Enums)["EVictimMovementType"] = {
 		{ -1, "eVictimMovementNone" },
@@ -6632,12 +6969,14 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "eVictimMovementCloseCombat" },
 		{ 11, "eVictimMovementLast" },
 	};
+	(*g_EnumSizes)["EVictimMovementType"] = 4;
 
 	(*g_Enums)["EViewportLock"] = {
 		{ 0, "VPL_None" },
 		{ 1, "VPL_Rectangular" },
 		{ 2, "VPL_Rectangular_AvoidMinimapOverlap" },
 	};
+	(*g_EnumSizes)["EViewportLock"] = 4;
 
 	(*g_Enums)["EVolumeTriggerEntityTypeFlags"] = {
 		{ 1, "VTET_Hitman" },
@@ -6651,6 +6990,7 @@ void ZHMEnums::RegisterEnums()
 		{ 256, "VTET_Item" },
 		{ 512, "VTET_SpatialVisible" },
 	};
+	(*g_EnumSizes)["EVolumeTriggerEntityTypeFlags"] = 4;
 
 	(*g_Enums)["EVsGenericEvent"] = {
 		{ 0, "eVSGE_MATCH_WON" },
@@ -6675,12 +7015,14 @@ void ZHMEnums::RegisterEnums()
 		{ 19, "eVSGE_OPPONENT_SCOPES_TARGET" },
 		{ 20, "eVSGE_MAX" },
 	};
+	(*g_EnumSizes)["EVsGenericEvent"] = 4;
 
 	(*g_Enums)["EWaypointRotationAlignment"] = {
 		{ 0, "RA_NONE" },
 		{ 1, "RA_LOOSE" },
 		{ 2, "RA_EXACT" },
 	};
+	(*g_EnumSizes)["EWaypointRotationAlignment"] = 4;
 
 	(*g_Enums)["EWeaponAnimationCategory"] = {
 		{ 0, "eWAC_Undefined" },
@@ -6693,6 +7035,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "eWAC_Shotgun_Pump" },
 		{ 8, "eWAC_Shotgun_Semi" },
 	};
+	(*g_EnumSizes)["EWeaponAnimationCategory"] = 4;
 
 	(*g_Enums)["EWeaponSpecialSituation"] = {
 		{ 0, "WSS_NORMAL" },
@@ -6704,6 +7047,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "WSS_ANY_WEAPON" },
 		{ 7, "WSS_INVISIBLE" },
 	};
+	(*g_EnumSizes)["EWeaponSpecialSituation"] = 4;
 
 	(*g_Enums)["EWeaponUpgradeIcon"] = {
 		{ 0, "WEAPON_UPGRADE_ICON_NONE" },
@@ -6722,12 +7066,14 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "WEAPON_UPGRADE_ICON_MAGNUM" },
 		{ 14, "WEAPON_UPGRADE_ICON_STOCK" },
 	};
+	(*g_EnumSizes)["EWeaponUpgradeIcon"] = 4;
 
 	(*g_Enums)["EWeaponUpgradeUse"] = {
 		{ 0, "eWUU_PrimaryOnly" },
 		{ 1, "eWUU_SecondaryOnly" },
 		{ 2, "eWUU_AllFireModes" },
 	};
+	(*g_EnumSizes)["EWeaponUpgradeUse"] = 4;
 
 	(*g_Enums)["GameLobbyState"] = {
 		{ 0, "GLS_None" },
@@ -6740,12 +7086,14 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "GLS_LeavingLobby" },
 		{ 8, "GLS_InGame" },
 	};
+	(*g_EnumSizes)["GameLobbyState"] = 4;
 
 	(*g_Enums)["ICameraEntity.EProjectionType"] = {
 		{ 0, "ePerspectiveRH" },
 		{ 1, "eOrtogonalRH" },
 		{ 2, "eCustom" },
 	};
+	(*g_EnumSizes)["ICameraEntity.EProjectionType"] = 4;
 
 	(*g_Enums)["ICloset.EClosetType"] = {
 		{ 0, "eTypeClosetNormal" },
@@ -6753,6 +7101,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eTypeClosetDumpster" },
 		{ 3, "eTypeClosetLast" },
 	};
+	(*g_EnumSizes)["ICloset.EClosetType"] = 4;
 
 	(*g_Enums)["IContractEvaluationContextListener.EListenerType"] = {
 		{ 0, "eDEFAULT" },
@@ -6764,12 +7113,14 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eTOGGLE" },
 		{ 7, "eMATCHARRAYS" },
 	};
+	(*g_EnumSizes)["IContractEvaluationContextListener.EListenerType"] = 4;
 
 	(*g_Enums)["IContractObjective.Category"] = {
 		{ 0, "PRIMARY" },
 		{ 1, "SECONDARY" },
 		{ 2, "CONDITION" },
 	};
+	(*g_EnumSizes)["IContractObjective.Category"] = 4;
 
 	(*g_Enums)["IContractObjective.ObjectiveType"] = {
 		{ 0, "KILL" },
@@ -6777,27 +7128,32 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "CUSTOMKILL" },
 		{ 3, "CUSTOM" },
 	};
+	(*g_EnumSizes)["IContractObjective.ObjectiveType"] = 4;
 
 	(*g_Enums)["IContractObjective.SCounterData.ECounterType"] = {
 		{ 0, "eDEFAULT" },
 		{ 1, "ePERCENTAGE" },
 	};
+	(*g_EnumSizes)["IContractObjective.SCounterData.ECounterType"] = 4;
 
 	(*g_Enums)["IContractObjective.State"] = {
 		{ 0, "IN_PROGRESS" },
 		{ 1, "COMPLETED" },
 		{ 2, "FAILED" },
 	};
+	(*g_EnumSizes)["IContractObjective.State"] = 4;
 
 	(*g_Enums)["IContractObjective.Type"] = {
 		{ 0, "CONTRACT_OBJ_EVENT_BASED" },
 		{ 1, "CONTRACT_OBJ_SM_BASED" },
 	};
+	(*g_EnumSizes)["IContractObjective.Type"] = 4;
 
 	(*g_Enums)["IHM5Door.ECPDoorLockType"] = {
 		{ 0, "CPDLT_NORMAL_LOCK" },
 		{ 1, "CPDLT_PUSH_BAR_PAD_LOCK" },
 	};
+	(*g_EnumSizes)["IHM5Door.ECPDoorLockType"] = 4;
 
 	(*g_Enums)["IHM5Door.EInitialState"] = {
 		{ 0, "IS_CLOSED" },
@@ -6805,6 +7161,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "IS_OPEN_IN" },
 		{ 3, "IS_OPEN_OUT" },
 	};
+	(*g_EnumSizes)["IHM5Door.EInitialState"] = 4;
 
 	(*g_Enums)["IHM5Door.EOpenDir"] = {
 		{ 0, "OD_AWAY" },
@@ -6812,6 +7169,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "OD_IN" },
 		{ 3, "OD_OUT" },
 	};
+	(*g_EnumSizes)["IHM5Door.EOpenDir"] = 4;
 
 	(*g_Enums)["IHM5Door.EOpenMode"] = {
 		{ 0, "OM_TWO_WAY" },
@@ -6819,18 +7177,21 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "OM_OPEN_NEG_SIDE_ONLY" },
 		{ 3, "OM_DISABLED" },
 	};
+	(*g_EnumSizes)["IHM5Door.EOpenMode"] = 4;
 
 	(*g_Enums)["IHM5Door.eCloseMode"] = {
 		{ 0, "CM_AUTOCLOSE" },
 		{ 1, "CM_MANUALCLOSE" },
 		{ 2, "CM_NEVERCLOSE" },
 	};
+	(*g_EnumSizes)["IHM5Door.eCloseMode"] = 4;
 
 	(*g_Enums)["IItemWeapon.EDeadlyThrowType"] = {
 		{ 0, "DEADLYTHROW_NONE" },
 		{ 1, "DEADLYTHROW_LIGHT" },
 		{ 2, "DEADLYTHROW_HEAVY" },
 	};
+	(*g_EnumSizes)["IItemWeapon.EDeadlyThrowType"] = 4;
 
 	(*g_Enums)["IKEndEffector"] = {
 		{ 0, "BEE_Pelvis" },
@@ -6859,11 +7220,13 @@ void ZHMEnums::RegisterEnums()
 		{ 23, "BEE_RightToe" },
 		{ 24, "BEE_Count" },
 	};
+	(*g_EnumSizes)["IKEndEffector"] = 4;
 
 	(*g_Enums)["ILightEntity.EFrameIndexStrategy"] = {
 		{ 0, "WRAP" },
 		{ 1, "CLAMP" },
 	};
+	(*g_EnumSizes)["ILightEntity.EFrameIndexStrategy"] = 4;
 
 	(*g_Enums)["ILightEntity.ELightType"] = {
 		{ 0, "LT_DIRECTIONAL" },
@@ -6874,12 +7237,14 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "LT_CAPSULE" },
 		{ 6, "LT_AREA_QUAD" },
 	};
+	(*g_EnumSizes)["ILightEntity.ELightType"] = 1;
 
 	(*g_Enums)["ILightEntity.ERoomLightFlow"] = {
 		{ 0, "AUTOMATIC" },
 		{ 1, "LOCAL" },
 		{ 2, "ALLROOMS" },
 	};
+	(*g_EnumSizes)["ILightEntity.ERoomLightFlow"] = 4;
 
 	(*g_Enums)["IRenderCompositorEntity.EMode"] = {
 		{ 0, "eSourceA" },
@@ -6887,6 +7252,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eLayered" },
 		{ 3, "eAlphaLayered" },
 	};
+	(*g_EnumSizes)["IRenderCompositorEntity.EMode"] = 4;
 
 	(*g_Enums)["IRenderCompositorEntity.EViewportAnchor"] = {
 		{ 0, "eFill" },
@@ -6895,6 +7261,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eBottomLeft" },
 		{ 4, "eBottomRight" },
 	};
+	(*g_EnumSizes)["IRenderCompositorEntity.EViewportAnchor"] = 4;
 
 	(*g_Enums)["IRenderMaterialEntity.EModifierOperation"] = {
 		{ 0, "eLeave" },
@@ -6903,6 +7270,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eAdd" },
 		{ 128, "eColor" },
 	};
+	(*g_EnumSizes)["IRenderMaterialEntity.EModifierOperation"] = 4;
 
 	(*g_Enums)["IRoomEntity.EReasoningGridImportance"] = {
 		{ 0, "RGI_NoGrid" },
@@ -6911,11 +7279,13 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "RGI_High" },
 		{ 4, "RGI_Extreme" },
 	};
+	(*g_EnumSizes)["IRoomEntity.EReasoningGridImportance"] = 4;
 
 	(*g_Enums)["IScatterContainerEntity.EBrushType"] = {
 		{ 0, "BRUSH_SQUARE" },
 		{ 1, "BRUSH_CIRCLE" },
 	};
+	(*g_EnumSizes)["IScatterContainerEntity.EBrushType"] = 4;
 
 	(*g_Enums)["IScatterContainerEntity.ECanvasClearMode"] = {
 		{ 0, "CLEAR_ALL" },
@@ -6927,6 +7297,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "CLEAR_SETINTENSITYVALUEANDMATERIAL" },
 		{ 7, "CLEAR_SETMATERIALKEEPINTENSITYVALUE" },
 	};
+	(*g_EnumSizes)["IScatterContainerEntity.ECanvasClearMode"] = 4;
 
 	(*g_Enums)["IScatterContainerEntity.ECanvasSize"] = {
 		{ 0, "SIZE_128" },
@@ -6936,12 +7307,14 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "SIZE_2048" },
 		{ 5, "SIZE_4096" },
 	};
+	(*g_EnumSizes)["IScatterContainerEntity.ECanvasSize"] = 4;
 
 	(*g_Enums)["IScatterContainerEntity.EResizeMode"] = {
 		{ 0, "MODE_CLEAR" },
 		{ 1, "MODE_KEEPASCENTER" },
 		{ 2, "MODE_SCALE" },
 	};
+	(*g_EnumSizes)["IScatterContainerEntity.EResizeMode"] = 4;
 
 	(*g_Enums)["InputControlNamesp.eHM5InputAction"] = {
 		{ 0, "eIAButtonFaceDown_Downedge" },
@@ -7070,6 +7443,7 @@ void ZHMEnums::RegisterEnums()
 		{ 123, "eIAKBMLookVertical" },
 		{ 124, "eIActionsNUM" },
 	};
+	(*g_EnumSizes)["InputControlNamesp.eHM5InputAction"] = 4;
 
 	(*g_Enums)["InputControlNamesp.eHM5InputActionID"] = {
 		{ 0, "eIDButtonFaceDown" },
@@ -7095,6 +7469,7 @@ void ZHMEnums::RegisterEnums()
 		{ 20, "eIDKeyboard" },
 		{ 21, "eID_INVALID" },
 	};
+	(*g_EnumSizes)["InputControlNamesp.eHM5InputActionID"] = 4;
 
 	(*g_Enums)["InputControlNamesp.eHM5InputActionType"] = {
 		{ 0, "eTypeGet" },
@@ -7113,6 +7488,7 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "eTypeRELATIVE" },
 		{ 14, "eTYPE_INVALID" },
 	};
+	(*g_EnumSizes)["InputControlNamesp.eHM5InputActionType"] = 4;
 
 	(*g_Enums)["JSONTemplate.ETemplateType"] = {
 		{ 0, "ETT_BASE" },
@@ -7222,6 +7598,7 @@ void ZHMEnums::RegisterEnums()
 		{ 104, "ETT_NVIDIAHIGHLIGHTSHASHIGHLIGHTS" },
 		{ 105, "ETT_DEBUG_ALLHITMANSUITS" },
 	};
+	(*g_EnumSizes)["JSONTemplate.ETemplateType"] = 4;
 
 	(*g_Enums)["MenuWeaponUpgradeData.EUpgradeAction"] = {
 		{ 0, "EUPGRADE_ACTION_NONE" },
@@ -7233,6 +7610,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "EUPGRADE_ACTION_UNEQUIP_WEAPON" },
 		{ 7, "EUPGRADE_ACTION_CLEAR_LEVELS" },
 	};
+	(*g_EnumSizes)["MenuWeaponUpgradeData.EUpgradeAction"] = 4;
 
 	(*g_Enums)["Network.OrderingChannel"] = {
 		{ 0, "SYSTEM_INTERNAL" },
@@ -7251,6 +7629,7 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "MISC" },
 		{ 16, "MAX_CHANNELS" },
 	};
+	(*g_EnumSizes)["Network.OrderingChannel"] = 4;
 
 	(*g_Enums)["Network.PacketPriority"] = {
 		{ 0, "IMMEDIATE_PRIORITY" },
@@ -7259,6 +7638,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "LOW_PRIORITY" },
 		{ 4, "NUMBER_OF_PRIORITIES" },
 	};
+	(*g_EnumSizes)["Network.PacketPriority"] = 4;
 
 	(*g_Enums)["Network.PacketReliability"] = {
 		{ 0, "UNRELIABLE" },
@@ -7271,16 +7651,19 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "RELIABLE_ORDERED_WITH_ACK_RECEIPT" },
 		{ 8, "NUMBER_OF_RELIABILITIES" },
 	};
+	(*g_EnumSizes)["Network.PacketReliability"] = 4;
 
 	(*g_Enums)["ReverbFidelity"] = {
 		{ 0, "Low" },
 		{ 1, "Medium" },
 		{ 2, "High" },
 	};
+	(*g_EnumSizes)["ReverbFidelity"] = 4;
 
 	(*g_Enums)["SActorSoundDefs.EDefinition"] = {
 		{ 0, "_NoSound" },
 	};
+	(*g_EnumSizes)["SActorSoundDefs.EDefinition"] = 4;
 
 	(*g_Enums)["SDoorSoundDefs.EDefinition"] = {
 		{ 0, "DoorOpen" },
@@ -7288,40 +7671,47 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "DoorSlam" },
 		{ 3, "DoorOpenStop" },
 	};
+	(*g_EnumSizes)["SDoorSoundDefs.EDefinition"] = 4;
 
 	(*g_Enums)["SFootIKEventData.EFoot"] = {
 		{ 0, "eLeft" },
 		{ 1, "eRight" },
 		{ 2, "eBoth" },
 	};
+	(*g_EnumSizes)["SFootIKEventData.EFoot"] = 4;
 
 	(*g_Enums)["STestStruct.ETestEnum"] = {
 		{ 3, "ETomato" },
 		{ 5, "EPotato" },
 	};
+	(*g_EnumSizes)["STestStruct.ETestEnum"] = 4;
 
 	(*g_Enums)["SUITestData.ETestEnum"] = {
 		{ 1, "ETestEnum_Value_One" },
 		{ 2, "ETestEnum_Value_Two" },
 		{ 3, "ETestEnum_Value_Three" },
 	};
+	(*g_EnumSizes)["SUITestData.ETestEnum"] = 4;
 
 	(*g_Enums)["SniperControllerConditionType"] = {
 		{ 0, "SCCT_Enabled" },
 		{ 1, "SCCT_PrecisionAim" },
 	};
+	(*g_EnumSizes)["SniperControllerConditionType"] = 4;
 
 	(*g_Enums)["SoundPlayState"] = {
 		{ 0, "ePlaying" },
 		{ 1, "eLoopBreaking" },
 		{ 2, "eStopping" },
 	};
+	(*g_EnumSizes)["SoundPlayState"] = 1;
 
 	(*g_Enums)["TeleportActionType"] = {
 		{ 0, "STAY" },
 		{ 1, "TELEPORT" },
 		{ 2, "LEAVE_CROWD" },
 	};
+	(*g_EnumSizes)["TeleportActionType"] = 4;
 
 	(*g_Enums)["UIMapLayer.EUIMapLayerID"] = {
 		{ 0, "eUIMLI_UNSPECIFIED" },
@@ -7340,6 +7730,7 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "eUIMLI_OPPONENT" },
 		{ 14, "eUIMLI_HERO" },
 	};
+	(*g_EnumSizes)["UIMapLayer.EUIMapLayerID"] = 4;
 
 	(*g_Enums)["WebSocketUtils.ECloseStatus"] = {
 		{ 1000, "eCS_NORMAL" },
@@ -7356,6 +7747,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1011, "eCS_INTERNALSRVERR" },
 		{ 1015, "eCS_TLSHANDSHAKE" },
 	};
+	(*g_EnumSizes)["WebSocketUtils.ECloseStatus"] = 4;
 
 	(*g_Enums)["WebSocketUtils.EOpCode"] = {
 		{ 0, "eCONTINUATION" },
@@ -7366,12 +7758,14 @@ void ZHMEnums::RegisterEnums()
 		{ 10, "ePONG" },
 		{ 15, "eNONE" },
 	};
+	(*g_EnumSizes)["WebSocketUtils.EOpCode"] = 4;
 
 	(*g_Enums)["ZAIPerceptibleEntity.EReactionBehaviorMode"] = {
 		{ 0, "FullBehavior" },
 		{ 1, "StopOnInvestigate" },
 		{ 2, "StopOnReacted" },
 	};
+	(*g_EnumSizes)["ZAIPerceptibleEntity.EReactionBehaviorMode"] = 4;
 
 	(*g_Enums)["ZAISoundEvent.ELoudness"] = {
 		{ 0, "EAISEL_Default" },
@@ -7381,11 +7775,13 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "EAISEL_Loud" },
 		{ 5, "EAISEL_VeryLoud" },
 	};
+	(*g_EnumSizes)["ZAISoundEvent.ELoudness"] = 4;
 
 	(*g_Enums)["ZAT2Controller.EFoot"] = {
 		{ 0, "FOOT_LEFT" },
 		{ 1, "FOOT_RIGHT" },
 	};
+	(*g_EnumSizes)["ZAT2Controller.EFoot"] = 4;
 
 	(*g_Enums)["ZAT2Controller.EFootstepsMovementType"] = {
 		{ 0, "MOVEMENT_WALKING" },
@@ -7393,23 +7789,27 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "MOVEMENT_RUNNING" },
 		{ 3, "MOVEMENT_STANDING" },
 	};
+	(*g_EnumSizes)["ZAT2Controller.EFootstepsMovementType"] = 4;
 
 	(*g_Enums)["ZActBehaviorEntity.EApproachAlignment"] = {
 		{ 0, "AA_STRICT" },
 		{ 1, "AA_LOOSE" },
 	};
+	(*g_EnumSizes)["ZActBehaviorEntity.EApproachAlignment"] = 4;
 
 	(*g_Enums)["ZActBehaviorEntity.EMovementType"] = {
 		{ 0, "MT_WALK" },
 		{ 1, "MT_SNAP" },
 		{ 2, "MT_IGNORE_POSITION" },
 	};
+	(*g_EnumSizes)["ZActBehaviorEntity.EMovementType"] = 4;
 
 	(*g_Enums)["ZActBehaviorEntity.ERotationAlignment"] = {
 		{ 0, "RA_NONE" },
 		{ 1, "RA_LOOSE" },
 		{ 2, "RA_EXACT" },
 	};
+	(*g_EnumSizes)["ZActBehaviorEntity.ERotationAlignment"] = 4;
 
 	(*g_Enums)["ZActBehaviorEntity.EState"] = {
 		{ 0, "UNDEFINED" },
@@ -7422,6 +7822,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "TIMEDOUT" },
 		{ 8, "COMPLETE" },
 	};
+	(*g_EnumSizes)["ZActBehaviorEntity.EState"] = 4;
 
 	(*g_Enums)["ZActDurationCondition.EState"] = {
 		{ 0, "MOVING" },
@@ -7429,22 +7830,26 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "PLAYING" },
 		{ 3, "STOPPING" },
 	};
+	(*g_EnumSizes)["ZActDurationCondition.EState"] = 4;
 
 	(*g_Enums)["ZActStateCondition.EState"] = {
 		{ 0, "MOVING" },
 		{ 1, "ENTERING" },
 		{ 2, "PLAYING" },
 	};
+	(*g_EnumSizes)["ZActStateCondition.EState"] = 4;
 
 	(*g_Enums)["ZActorAccessoryItemCondition.EConditionTypes"] = {
 		{ 0, "ECT_HasInPool" },
 		{ 1, "ECT_HasAttached" },
 	};
+	(*g_EnumSizes)["ZActorAccessoryItemCondition.EConditionTypes"] = 4;
 
 	(*g_Enums)["ZActorBoneAttachEntity.EResetMode"] = {
 		{ 0, "eAtBoneOrigin" },
 		{ 1, "eKeepOffset" },
 	};
+	(*g_EnumSizes)["ZActorBoneAttachEntity.EResetMode"] = 4;
 
 	(*g_Enums)["ZActorDebugEntity.EActorDebugColor"] = {
 		{ 0, "EDC_BLACK" },
@@ -7458,11 +7863,13 @@ void ZHMEnums::RegisterEnums()
 		{ 16711935, "EDC_PINK" },
 		{ 16777215, "EDC_WHITE" },
 	};
+	(*g_EnumSizes)["ZActorDebugEntity.EActorDebugColor"] = 4;
 
 	(*g_Enums)["ZActorInstanceEntity.EFFXMode"] = {
 		{ 0, "eFFX_MODE_DISABLE" },
 		{ 1, "eFFX_MODE_OVERWRITE" },
 	};
+	(*g_EnumSizes)["ZActorInstanceEntity.EFFXMode"] = 4;
 
 	(*g_Enums)["ZActorKeywordCondition.EEvaluationType"] = {
 		{ 0, "ALL" },
@@ -7470,56 +7877,66 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ANY" },
 		{ 3, "ANY_TRUE_IF_NO_REQS" },
 	};
+	(*g_EnumSizes)["ZActorKeywordCondition.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZActorKnowledgeCondition.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "ANY" },
 	};
+	(*g_EnumSizes)["ZActorKnowledgeCondition.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZActorPicker.EKeywordEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZActorPicker.EKeywordEvaluationType"] = 4;
 
 	(*g_Enums)["ZActorPickerEffectDrama.EEffectPhaseAction"] = {
 		{ 0, "EPA_START" },
 		{ 1, "EPA_LEAVE" },
 	};
+	(*g_EnumSizes)["ZActorPickerEffectDrama.EEffectPhaseAction"] = 4;
 
 	(*g_Enums)["ZActorPickerEffectTemplate.EEffectPhaseAction"] = {
 		{ 0, "EPA_NONE" },
 		{ 1, "EPA_START_TEMPLATE" },
 		{ 2, "EPA_STOP_TEMPLATE" },
 	};
+	(*g_EnumSizes)["ZActorPickerEffectTemplate.EEffectPhaseAction"] = 4;
 
 	(*g_Enums)["ZActorPickerEffectTrack.EEffectPhaseAction"] = {
 		{ 0, "EPA_ATTACH" },
 		{ 1, "EPA_DETACH" },
 	};
+	(*g_EnumSizes)["ZActorPickerEffectTrack.EEffectPhaseAction"] = 4;
 
 	(*g_Enums)["ZActorPickerFilterGroup.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZActorPickerFilterGroup.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZActorPickerFilterKeyword.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZActorPickerFilterKeyword.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZActorProviderFilterKeyword.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZActorProviderFilterKeyword.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZActorTensionEntity.ETensionCheckMode"] = {
 		{ 0, "ETCM_INSIDE_VOLUME_OR_LIST" },
 		{ 1, "ETCM_INSIDE_VOLUME_AND_LIST" },
 	};
+	(*g_EnumSizes)["ZActorTensionEntity.ETensionCheckMode"] = 4;
 
 	(*g_Enums)["ZApproachOrder.EApproachStyle"] = {
 		{ 0, "AS_AUTO" },
@@ -7527,6 +7944,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "AS_JOG" },
 		{ 3, "AS_WALK" },
 	};
+	(*g_EnumSizes)["ZApproachOrder.EApproachStyle"] = 4;
 
 	(*g_Enums)["ZAudioSequenceTrack.EPlaybackTarget"] = {
 		{ 0, "eNone" },
@@ -7534,6 +7952,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eTargetEntityEmitter" },
 		{ 3, "ePreviewEmitter" },
 	};
+	(*g_EnumSizes)["ZAudioSequenceTrack.EPlaybackTarget"] = 4;
 
 	(*g_Enums)["ZAvoidDangerousAreaGroup.EAvoidDangerousAreaGroupState"] = {
 		{ 0, "IGS_SelectDestination" },
@@ -7543,33 +7962,39 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "IGS_Completed" },
 		{ 5, "IGS_Max" },
 	};
+	(*g_EnumSizes)["ZAvoidDangerousAreaGroup.EAvoidDangerousAreaGroupState"] = 4;
 
 	(*g_Enums)["ZBoneAttachEntity.EResetMode"] = {
 		{ 0, "eAtBoneOrigin" },
 		{ 1, "eKeepOffset" },
 	};
+	(*g_EnumSizes)["ZBoneAttachEntity.EResetMode"] = 4;
 
 	(*g_Enums)["ZBoneWeightRotationEntity.eRotationAxises"] = {
 		{ 0, "AXIS_X" },
 		{ 1, "AXIS_Y" },
 		{ 2, "AXIS_Z" },
 	};
+	(*g_EnumSizes)["ZBoneWeightRotationEntity.eRotationAxises"] = 4;
 
 	(*g_Enums)["ZBoxReflectionEntity.EBoundsType"] = {
 		{ 0, "eBox" },
 		{ 1, "eRoom" },
 	};
+	(*g_EnumSizes)["ZBoxReflectionEntity.EBoundsType"] = 4;
 
 	(*g_Enums)["ZBoxReflectionEntity.EType"] = {
 		{ 0, "eLocal" },
 		{ 1, "eFallback" },
 	};
+	(*g_EnumSizes)["ZBoxReflectionEntity.EType"] = 4;
 
 	(*g_Enums)["ZCausalNodeEntity.ECauseEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZCausalNodeEntity.ECauseEvaluationType"] = 4;
 
 	(*g_Enums)["ZCautiousBackupGroup.EGroupState"] = {
 		{ 0, "GS_DistanceField" },
@@ -7577,6 +8002,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "GS_Waiting" },
 		{ 3, "GS_Completed" },
 	};
+	(*g_EnumSizes)["ZCautiousBackupGroup.EGroupState"] = 4;
 
 	(*g_Enums)["ZCautiousInvestigateGroup.EApproachOrderState"] = {
 		{ 0, "AOS_RequestHuntApproachNode" },
@@ -7586,6 +8012,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "AOS_Ready" },
 		{ 5, "AOS_NoApproachNode" },
 	};
+	(*g_EnumSizes)["ZCautiousInvestigateGroup.EApproachOrderState"] = 4;
 
 	(*g_Enums)["ZCautiousInvestigateGroup.EAssistantState"] = {
 		{ 0, "AS_Waiting" },
@@ -7595,6 +8022,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "AS_Investigating" },
 		{ 5, "AS_Max" },
 	};
+	(*g_EnumSizes)["ZCautiousInvestigateGroup.EAssistantState"] = 4;
 
 	(*g_Enums)["ZCautiousInvestigateGroup.EInvestigateGroupState"] = {
 		{ 0, "IGS_FindAssistant" },
@@ -7607,6 +8035,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "IGS_Completed" },
 		{ 8, "IGS_Max" },
 	};
+	(*g_EnumSizes)["ZCautiousInvestigateGroup.EInvestigateGroupState"] = 4;
 
 	(*g_Enums)["ZCautiousSearchGroup.EAssistantState"] = {
 		{ 0, "AS_CalculateFields" },
@@ -7616,6 +8045,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "AS_Act" },
 		{ 5, "AS_Acting" },
 	};
+	(*g_EnumSizes)["ZCautiousSearchGroup.EAssistantState"] = 4;
 
 	(*g_Enums)["ZCautiousSearchGroup.ESearchGroupState"] = {
 		{ 0, "SGS_Acknowledge" },
@@ -7624,6 +8054,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "SGS_Waiting" },
 		{ 4, "SGS_Completed" },
 	};
+	(*g_EnumSizes)["ZCautiousSearchGroup.ESearchGroupState"] = 4;
 
 	(*g_Enums)["ZChannelKeywordCondition.EEvaluationType"] = {
 		{ 0, "ALL" },
@@ -7631,6 +8062,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ANY" },
 		{ 3, "ANY_TRUE_IF_NO_REQS" },
 	};
+	(*g_EnumSizes)["ZChannelKeywordCondition.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZCharacterSpeakCondition.EState"] = {
 		{ 0, "Started" },
@@ -7641,11 +8073,13 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "Failed" },
 		{ 6, "Stopped" },
 	};
+	(*g_EnumSizes)["ZCharacterSpeakCondition.EState"] = 4;
 
 	(*g_Enums)["ZConditionListEntity.EEvaluationType"] = {
 		{ 0, "ALL_TRUE" },
 		{ 1, "ANY_TRUE" },
 	};
+	(*g_EnumSizes)["ZConditionListEntity.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZContextKillGuide.EContextKillType"] = {
 		{ 0, "eCKT_TOILET_DROWN" },
@@ -7654,12 +8088,14 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eCKT_NO_ANIMATION" },
 		{ 4, "eCKT_END" },
 	};
+	(*g_EnumSizes)["ZContextKillGuide.EContextKillType"] = 4;
 
 	(*g_Enums)["ZContextKillGuide.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZContextKillGuide.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZContractObjectiveHudHintEntity.EObjectiveHintIcon"] = {
 		{ 0, "eNone" },
@@ -7681,24 +8117,28 @@ void ZHMEnums::RegisterEnums()
 		{ 17, "eMissionObjective" },
 		{ 18, "eExitMissionIcon" },
 	};
+	(*g_EnumSizes)["ZContractObjectiveHudHintEntity.EObjectiveHintIcon"] = 4;
 
 	(*g_Enums)["ZCoverPlane.ECoverSize"] = {
 		{ 0, "eLowCover" },
 		{ 1, "eMediumCover" },
 		{ 2, "eHighCover" },
 	};
+	(*g_EnumSizes)["ZCoverPlane.ECoverSize"] = 4;
 
 	(*g_Enums)["ZCoverPlane.ECoverType"] = {
 		{ 0, "eCoverOnly" },
 		{ 1, "eCoverAndRail" },
 		{ 2, "eRailOnly" },
 	};
+	(*g_EnumSizes)["ZCoverPlane.ECoverType"] = 4;
 
 	(*g_Enums)["ZCrowdActorEntity.ECharacterSoundType"] = {
 		{ 0, "eSoundType_Male" },
 		{ 1, "eSoundType_Female" },
 		{ 2, "eSoundType_Female_Heels" },
 	};
+	(*g_EnumSizes)["ZCrowdActorEntity.ECharacterSoundType"] = 4;
 
 	(*g_Enums)["ZDeadBodySituation.ESituationFlavor"] = {
 		{ 0, "SF_None" },
@@ -7706,6 +8146,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "SF_DeadBody" },
 		{ 3, "SF_Accident" },
 	};
+	(*g_EnumSizes)["ZDeadBodySituation.ESituationFlavor"] = 4;
 
 	(*g_Enums)["ZDebugGizmoEntity.EDrawLayer"] = {
 		{ 0, "DL_DEFAULT" },
@@ -7730,6 +8171,7 @@ void ZHMEnums::RegisterEnums()
 		{ 19, "DL_SOUND_PARTITIONING" },
 		{ 20, "DL_UI" },
 	};
+	(*g_EnumSizes)["ZDebugGizmoEntity.EDrawLayer"] = 4;
 
 	(*g_Enums)["ZDebugHM5GameTimeMultiplierEnt.eTMLDReason"] = {
 		{ 0, "eTMLDR_HintMessages" },
@@ -7741,6 +8183,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eTMLDR_ActionKillLastEnemyInCheckPoint" },
 		{ 7, "eTMLDR_NOTSET" },
 	};
+	(*g_EnumSizes)["ZDebugHM5GameTimeMultiplierEnt.eTMLDReason"] = 4;
 
 	(*g_Enums)["ZDebugSpatialEntity.EDrawLayer"] = {
 		{ 0, "DL_DEFAULT" },
@@ -7764,30 +8207,35 @@ void ZHMEnums::RegisterEnums()
 		{ 18, "DL_SOUND_PARTITIONING" },
 		{ 19, "DL_UI" },
 	};
+	(*g_EnumSizes)["ZDebugSpatialEntity.EDrawLayer"] = 4;
 
 	(*g_Enums)["ZDebugTextEntity.EHorizontalAlignment"] = {
 		{ 0, "HA_CENTER" },
 		{ 1, "HA_LEFT" },
 		{ 2, "HA_RIGHT" },
 	};
+	(*g_EnumSizes)["ZDebugTextEntity.EHorizontalAlignment"] = 4;
 
 	(*g_Enums)["ZDebugTextEntity.EVerticalAlignment"] = {
 		{ 0, "VA_CENTER" },
 		{ 16, "VA_TOP" },
 		{ 32, "VA_BOTTOM" },
 	};
+	(*g_EnumSizes)["ZDebugTextEntity.EVerticalAlignment"] = 4;
 
 	(*g_Enums)["ZDecalControllerEntity.ERotationType"] = {
 		{ 0, "eRotationDisable" },
 		{ 1, "eRotationAlignRay" },
 		{ 2, "eRotationRandom" },
 	};
+	(*g_EnumSizes)["ZDecalControllerEntity.ERotationType"] = 4;
 
 	(*g_Enums)["ZDecalControllerEntity.EScaleType"] = {
 		{ 0, "eScaleDisable" },
 		{ 1, "eScaleUniform" },
 		{ 2, "eScaleY" },
 	};
+	(*g_EnumSizes)["ZDecalControllerEntity.EScaleType"] = 4;
 
 	(*g_Enums)["ZDetectedInPrivateGroup.EInvestigateGroupState"] = {
 		{ 0, "IGS_Delay" },
@@ -7797,16 +8245,19 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "IGS_Completed" },
 		{ 5, "IGS_Max" },
 	};
+	(*g_EnumSizes)["ZDetectedInPrivateGroup.EInvestigateGroupState"] = 4;
 
 	(*g_Enums)["ZDistanceCondition.ECompareMethod"] = {
 		{ 0, "CM_GreaterOrEqualThan" },
 		{ 1, "CM_LessThan" },
 	};
+	(*g_EnumSizes)["ZDistanceCondition.ECompareMethod"] = 4;
 
 	(*g_Enums)["ZDistanceCondition.EObjectType"] = {
 		{ 0, "DT_ToCam" },
 		{ 1, "DT_ToPlayer" },
 	};
+	(*g_EnumSizes)["ZDistanceCondition.EObjectType"] = 4;
 
 	(*g_Enums)["ZDramaSituationEntity.EReentryBehavior"] = {
 		{ 0, "RB_CONTINUE" },
@@ -7815,12 +8266,14 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "RB_RECASTANDRESTART" },
 		{ 4, "RB_RECASTANDCONTINUE" },
 	};
+	(*g_EnumSizes)["ZDramaSituationEntity.EReentryBehavior"] = 4;
 
 	(*g_Enums)["ZEntityPropertyReplica.EReplicationStrategy"] = {
 		{ 0, "REP_ALL_PROPERTIES" },
 		{ 1, "REP_ALL_EXCEPT" },
 		{ 2, "REP_ONLY_SPECIFIC" },
 	};
+	(*g_EnumSizes)["ZEntityPropertyReplica.EReplicationStrategy"] = 4;
 
 	(*g_Enums)["ZEscortSituation2Entity.EEscortState"] = {
 		{ 0, "EES_Idle" },
@@ -7829,6 +8282,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EES_Searching" },
 		{ 4, "EES_Intermediate" },
 	};
+	(*g_EnumSizes)["ZEscortSituation2Entity.EEscortState"] = 4;
 
 	(*g_Enums)["ZEscortSituation2Entity.ETargetState"] = {
 		{ 0, "ETS_Unknown" },
@@ -7839,6 +8293,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ETS_Dead" },
 		{ 6, "ETS_TargetIsHitman" },
 	};
+	(*g_EnumSizes)["ZEscortSituation2Entity.ETargetState"] = 4;
 
 	(*g_Enums)["ZEscortSituationEntity.EEscortState"] = {
 		{ 0, "EES_Idle" },
@@ -7847,6 +8302,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EES_Searching" },
 		{ 4, "EES_Intermediate" },
 	};
+	(*g_EnumSizes)["ZEscortSituationEntity.EEscortState"] = 4;
 
 	(*g_Enums)["ZEscortSituationEntity.ETargetState"] = {
 		{ 0, "ETS_Unknown" },
@@ -7857,6 +8313,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ETS_Dead" },
 		{ 6, "ETS_TargetIsHitman" },
 	};
+	(*g_EnumSizes)["ZEscortSituationEntity.ETargetState"] = 4;
 
 	(*g_Enums)["ZFriskSuspectGroup.EAssistantState"] = {
 		{ 0, "AS_Waiting" },
@@ -7864,12 +8321,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "AS_Approaching" },
 		{ 3, "AS_Covering" },
 	};
+	(*g_EnumSizes)["ZFriskSuspectGroup.EAssistantState"] = 4;
 
 	(*g_Enums)["ZFriskSuspectGroup.EHitmanGreetState"] = {
 		{ 0, "HGS_NotGreeted" },
 		{ 1, "HGS_Greeted" },
 		{ 2, "HGS_ShrugOff" },
 	};
+	(*g_EnumSizes)["ZFriskSuspectGroup.EHitmanGreetState"] = 4;
 
 	(*g_Enums)["ZGetHelpGroup.EInvestigateGroupState"] = {
 		{ 0, "IGS_Acknowledge" },
@@ -7883,6 +8342,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "IGS_Completed" },
 		{ 9, "IGS_Max" },
 	};
+	(*g_EnumSizes)["ZGetHelpGroup.EInvestigateGroupState"] = 4;
 
 	(*g_Enums)["ZHM5AgilityEventConsumer.EEvent"] = {
 		{ 0, "EAE_LEFTHAND" },
@@ -7890,6 +8350,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EAE_LEFTLEG" },
 		{ 3, "EAE_RIGHTLEG" },
 	};
+	(*g_EnumSizes)["ZHM5AgilityEventConsumer.EEvent"] = 4;
 
 	(*g_Enums)["ZHM5BodyContainer.EBCAnimSet"] = {
 		{ 0, "BC_CONTAINER_STANDARD" },
@@ -7898,6 +8359,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "BC_CONTAINER_CLOSET" },
 		{ 4, "BC_CONTAINER_LAUNDRYCHUTE" },
 	};
+	(*g_EnumSizes)["ZHM5BodyContainer.EBCAnimSet"] = 4;
 
 	(*g_Enums)["ZHM5BodyContainer.EBCBodyMode"] = {
 		{ 0, "BC_1_VICTIM" },
@@ -7905,6 +8367,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "BC_1_VICTIM_FLUSHABLE" },
 		{ 3, "BC_1_VICTIM_AUTOFLUSHABLE" },
 	};
+	(*g_EnumSizes)["ZHM5BodyContainer.EBCBodyMode"] = 4;
 
 	(*g_Enums)["ZHM5BodyContainer.EBCState"] = {
 		{ 0, "BC_CLOSED" },
@@ -7914,11 +8377,13 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "BC_CLOSING" },
 		{ 5, "BC_FLUSHING" },
 	};
+	(*g_EnumSizes)["ZHM5BodyContainer.EBCState"] = 4;
 
 	(*g_Enums)["ZHM5BodyContainer.eBCCloseMode"] = {
 		{ 0, "BC_AUTOCLOSE" },
 		{ 1, "BC_MANUALCLOSE" },
 	};
+	(*g_EnumSizes)["ZHM5BodyContainer.eBCCloseMode"] = 4;
 
 	(*g_Enums)["ZHM5BodySoundEventConsumer.EAnimSoundBody"] = {
 		{ 0, "eHM5AnimSoundBody_Buttocks" },
@@ -7937,12 +8402,14 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "eHM5AnimSoundBody_RollFwd" },
 		{ 14, "eHM5AnimSoundBody_RollSide" },
 	};
+	(*g_EnumSizes)["ZHM5BodySoundEventConsumer.EAnimSoundBody"] = 4;
 
 	(*g_Enums)["ZHM5ContextActionEntity.EInteraction"] = {
 		{ 0, "eIT_RotateLeftStick" },
 		{ 1, "eIT_AutoComplete" },
 		{ 2, "eIT_NoInteraction" },
 	};
+	(*g_EnumSizes)["ZHM5ContextActionEntity.EInteraction"] = 4;
 
 	(*g_Enums)["ZHM5CrowdGenericEventConsumer.EEvent"] = {
 		{ 0, "eFootstep" },
@@ -7954,6 +8421,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eGeneric02" },
 		{ 7, "eGeneric03" },
 	};
+	(*g_EnumSizes)["ZHM5CrowdGenericEventConsumer.EEvent"] = 4;
 
 	(*g_Enums)["ZHM5DynamicRayCastEntity.ECollideType"] = {
 		{ 0, "eAll" },
@@ -7963,6 +8431,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eHitman" },
 		{ 5, "eActor" },
 	};
+	(*g_EnumSizes)["ZHM5DynamicRayCastEntity.ECollideType"] = 4;
 
 	(*g_Enums)["ZHM5FaceFXReactionEventConsumer.EEvent"] = {
 		{ 0, "eHitByBullet" },
@@ -7976,6 +8445,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eCoverDodgebulletRight" },
 		{ 9, "eReactToExplosion" },
 	};
+	(*g_EnumSizes)["ZHM5FaceFXReactionEventConsumer.EEvent"] = 4;
 
 	(*g_Enums)["ZHM5FaceFXSpecificEventConsumer.EEvent"] = {
 		{ 0, "eNone" },
@@ -7987,11 +8457,13 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eCloseCombatStainedGroan" },
 		{ 7, "eCloseCombatSilentKillShush" },
 	};
+	(*g_EnumSizes)["ZHM5FaceFXSpecificEventConsumer.EEvent"] = 4;
 
 	(*g_Enums)["ZHM5ForceCover.EFaceDirection"] = {
 		{ 0, "eFaceLeft" },
 		{ 1, "eFaceRight" },
 	};
+	(*g_EnumSizes)["ZHM5ForceCover.EFaceDirection"] = 4;
 
 	(*g_Enums)["ZHM5GenericEventConsumer.EEvent"] = {
 		{ 0, "eGeneric00" },
@@ -8003,6 +8475,7 @@ void ZHMEnums::RegisterEnums()
 		{ 6, "eGeneric06" },
 		{ 7, "eGeneric07" },
 	};
+	(*g_EnumSizes)["ZHM5GenericEventConsumer.EEvent"] = 4;
 
 	(*g_Enums)["ZHM5HIKEventConsumer.EBlend"] = {
 		{ 0, "eBlendIn" },
@@ -8010,16 +8483,19 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eInstantOn" },
 		{ 3, "eInstantOff" },
 	};
+	(*g_EnumSizes)["ZHM5HIKEventConsumer.EBlend"] = 4;
 
 	(*g_Enums)["ZHM5HIKEventConsumer.EEffector"] = {
 		{ 0, "eLeftHand" },
 		{ 1, "eRightHand" },
 	};
+	(*g_EnumSizes)["ZHM5HIKEventConsumer.EEffector"] = 4;
 
 	(*g_Enums)["ZHM5HitmanHealthModifier.EHealthDrainType"] = {
 		{ 0, "eRemoveHealthInstantly" },
 		{ 1, "eDecreaseHealthToValue" },
 	};
+	(*g_EnumSizes)["ZHM5HitmanHealthModifier.EHealthDrainType"] = 4;
 
 	(*g_Enums)["ZHM5HitmanHealthModifier.EHealthValue"] = {
 		{ 0, "eHealth0" },
@@ -8034,6 +8510,7 @@ void ZHMEnums::RegisterEnums()
 		{ 90, "eHealth90" },
 		{ 100, "eHealth100" },
 	};
+	(*g_EnumSizes)["ZHM5HitmanHealthModifier.EHealthValue"] = 4;
 
 	(*g_Enums)["ZHM5IndicatorManager.EIndicatorType"] = {
 		{ 0, "eActorAmbient" },
@@ -8047,18 +8524,21 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "eContractExit" },
 		{ 9, "eEasterActor" },
 	};
+	(*g_EnumSizes)["ZHM5IndicatorManager.EIndicatorType"] = 4;
 
 	(*g_Enums)["ZHM5Item.EKeywordEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZHM5Item.EKeywordEvaluationType"] = 4;
 
 	(*g_Enums)["ZHM5Item.EUseTypes"] = {
 		{ 0, "EUT_CantUse" },
 		{ 1, "EUT_Toggle" },
 		{ 2, "EUT_TurnOn" },
 	};
+	(*g_EnumSizes)["ZHM5Item.EUseTypes"] = 4;
 
 	(*g_Enums)["ZHM5ItemInteractionEventConsumer.EHM5SoundItemInteractionEvent"] = {
 		{ 0, "EIIE_ItemImpactBack" },
@@ -8071,22 +8551,26 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "EIIE_ItemSoundGeneric02" },
 		{ 8, "EIIE_ItemSoundGeneric03" },
 	};
+	(*g_EnumSizes)["ZHM5ItemInteractionEventConsumer.EHM5SoundItemInteractionEvent"] = 4;
 
 	(*g_Enums)["ZHM5LedgeMount.EFaceDirection"] = {
 		{ 0, "eFaceFront" },
 		{ 1, "eFaceLeft" },
 		{ 2, "eFaceRight" },
 	};
+	(*g_EnumSizes)["ZHM5LedgeMount.EFaceDirection"] = 4;
 
 	(*g_Enums)["ZHM5LedgeMount.ELedgeEndState"] = {
 		{ 0, "eHang" },
 		{ 1, "eStand" },
 	};
+	(*g_EnumSizes)["ZHM5LedgeMount.ELedgeEndState"] = 4;
 
 	(*g_Enums)["ZHM5ValueEntity_bool.EForwardRule"] = {
 		{ 0, "eAlways" },
 		{ 1, "eValueChanged" },
 	};
+	(*g_EnumSizes)["ZHM5ValueEntity_bool.EForwardRule"] = 4;
 
 	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioClass"] = {
 		{ 0, "eWBC_AudioClass_AssaultRifle" },
@@ -8095,6 +8579,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eWBC_AudioClass_SMG" },
 		{ 4, "eWBC_AudioClass_SniperRifle" },
 	};
+	(*g_EnumSizes)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioClass"] = 4;
 
 	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioExoticType"] = {
 		{ 0, "eWBC_AudioExoticType_MiniPistol" },
@@ -8104,6 +8589,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eWBC_AudioExoticType_ShootingRange_NPCAssaultRifle" },
 		{ 32768, "eWBC_AudioExoticType_None" },
 	};
+	(*g_EnumSizes)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioExoticType"] = 4;
 
 	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFamily"] = {
 		{ 0, "eWBC_AudioFamily_Exotics" },
@@ -8112,11 +8598,13 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eWBC_AudioFamily_NPC" },
 		{ 4, "eWBC_AudioFamily_Standard" },
 	};
+	(*g_EnumSizes)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFamily"] = 4;
 
 	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFireType"] = {
 		{ 0, "eWBC_AudioFireType_Full_Automatic" },
 		{ 1, "eWBC_AudioFireType_Single" },
 	};
+	(*g_EnumSizes)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioFireType"] = 4;
 
 	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioHeadTailType"] = {
 		{ 0, "eWBC_AudioHeadTailType_DryFire" },
@@ -8125,11 +8613,13 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "eWBC_AudioHeadTailType_Silenced" },
 		{ 4, "eWBC_AudioHeadTailType_SilencedSweetener" },
 	};
+	(*g_EnumSizes)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioHeadTailType"] = 4;
 
 	(*g_Enums)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioImpactType"] = {
 		{ 0, "eWBC_AudioImpactType_Normal" },
 		{ 1, "eWBC_AudioImpactType_Sweetener" },
 	};
+	(*g_EnumSizes)["ZHM5WeaponBasicConfigEntity.EWeaponBasicConfigAudioImpactType"] = 4;
 
 	(*g_Enums)["ZHM5WeaponEventConsumer.EAnimWeapon"] = {
 		{ 0, "eHM5Weapon_HideClip" },
@@ -8137,12 +8627,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eHM5Weapon_SpawnPhysicsClip" },
 		{ 3, "eHM5Weapon_EjectCartridge" },
 	};
+	(*g_EnumSizes)["ZHM5WeaponEventConsumer.EAnimWeapon"] = 4;
 
 	(*g_Enums)["ZHUDTimerInstance.ETimeFormatChoice"] = {
 		{ 0, "YES" },
 		{ 1, "NO" },
 		{ 2, "AUTO" },
 	};
+	(*g_EnumSizes)["ZHUDTimerInstance.ETimeFormatChoice"] = 4;
 
 	(*g_Enums)["ZHUDUIRoot.EHUDVisibility"] = {
 		{ 0, "eHV_INSTANT_OFF" },
@@ -8150,11 +8642,13 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eHV_FADE_IN" },
 		{ 3, "eHV_INSTANT_ON" },
 	};
+	(*g_EnumSizes)["ZHUDUIRoot.EHUDVisibility"] = 4;
 
 	(*g_Enums)["ZHeroBoneAttachEntity.EResetMode"] = {
 		{ 0, "eAtBoneOrigin" },
 		{ 1, "eKeepOffset" },
 	};
+	(*g_EnumSizes)["ZHeroBoneAttachEntity.EResetMode"] = 4;
 
 	(*g_Enums)["ZHeroEscortSituation2Entity.EEscortState"] = {
 		{ 0, "EES_Idle" },
@@ -8163,6 +8657,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EES_Intermediate" },
 		{ 4, "EES_OutOfRange" },
 	};
+	(*g_EnumSizes)["ZHeroEscortSituation2Entity.EEscortState"] = 4;
 
 	(*g_Enums)["ZHeroEscortSituation2Entity.ETargetState"] = {
 		{ 0, "ETS_Unknown" },
@@ -8173,6 +8668,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ETS_Dead" },
 		{ 6, "ETS_TargetIsHitman" },
 	};
+	(*g_EnumSizes)["ZHeroEscortSituation2Entity.ETargetState"] = 4;
 
 	(*g_Enums)["ZHeroEscortSituationEntity.EEscortState"] = {
 		{ 0, "EES_Idle" },
@@ -8181,6 +8677,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EES_Intermediate" },
 		{ 4, "EES_OutOfRange" },
 	};
+	(*g_EnumSizes)["ZHeroEscortSituationEntity.EEscortState"] = 4;
 
 	(*g_Enums)["ZHeroEscortSituationEntity.ETargetState"] = {
 		{ 0, "ETS_Unknown" },
@@ -8191,12 +8688,14 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ETS_Dead" },
 		{ 6, "ETS_TargetIsHitman" },
 	};
+	(*g_EnumSizes)["ZHeroEscortSituationEntity.ETargetState"] = 4;
 
 	(*g_Enums)["ZHeroInventoryAction.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZHeroInventoryAction.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZHeroKeywordCondition.EEvaluationType"] = {
 		{ 0, "ALL" },
@@ -8204,6 +8703,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ANY" },
 		{ 3, "ANY_TRUE_IF_NO_REQS" },
 	};
+	(*g_EnumSizes)["ZHeroKeywordCondition.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZHttpUrl.EVerb"] = {
 		{ 0, "eNONE" },
@@ -8212,6 +8712,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "ePUT" },
 		{ 4, "eHEAD" },
 	};
+	(*g_EnumSizes)["ZHttpUrl.EVerb"] = 4;
 
 	(*g_Enums)["ZInputListenerActorPool.eInputListenerButtons"] = {
 		{ 0, "EILB_UP" },
@@ -8219,6 +8720,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EILB_DOWN" },
 		{ 3, "EILB_RIGHT" },
 	};
+	(*g_EnumSizes)["ZInputListenerActorPool.eInputListenerButtons"] = 4;
 
 	(*g_Enums)["ZInputListenerAxisEntity.eInputListenerAxes"] = {
 		{ 0, "EILA_HORIZONTAL" },
@@ -8226,6 +8728,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EILA_TRIGGER_1" },
 		{ 3, "EILA_TRIGGER_2" },
 	};
+	(*g_EnumSizes)["ZInputListenerAxisEntity.eInputListenerAxes"] = 4;
 
 	(*g_Enums)["ZInputListenerButtonEntity.eInputListenerButtons"] = {
 		{ 0, "EILB_UP" },
@@ -8233,6 +8736,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EILB_DOWN" },
 		{ 3, "EILB_RIGHT" },
 	};
+	(*g_EnumSizes)["ZInputListenerButtonEntity.eInputListenerButtons"] = 4;
 
 	(*g_Enums)["ZInputListenerDpadEntity.eInputListenerDpad"] = {
 		{ 0, "EILDP_UP" },
@@ -8240,6 +8744,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EILDP_DOWN" },
 		{ 3, "EILDP_RIGHT" },
 	};
+	(*g_EnumSizes)["ZInputListenerDpadEntity.eInputListenerDpad"] = 4;
 
 	(*g_Enums)["ZInteractionData.EFilterResult"] = {
 		{ 0, "EFR_REQUESTED" },
@@ -8258,6 +8763,7 @@ void ZHMEnums::RegisterEnums()
 		{ 13, "EFR_REJECTED_INVALIDDATA" },
 		{ 14, "EFR_REJECTED_PRIORITY" },
 	};
+	(*g_EnumSizes)["ZInteractionData.EFilterResult"] = 4;
 
 	(*g_Enums)["ZInteractionEventConsumer.EEvent"] = {
 		{ 0, "eActivate" },
@@ -8280,18 +8786,21 @@ void ZHMEnums::RegisterEnums()
 		{ 17, "eSoundEvent03" },
 		{ 18, "eSoundEvent04" },
 	};
+	(*g_EnumSizes)["ZInteractionEventConsumer.EEvent"] = 4;
 
 	(*g_Enums)["ZInvestigateCautiousSituation.EBystanderState"] = {
 		{ 0, "BS_SelectCandidate" },
 		{ 1, "BS_SelectPoint" },
 		{ 2, "BS_SearchDangerField" },
 	};
+	(*g_EnumSizes)["ZInvestigateCautiousSituation.EBystanderState"] = 4;
 
 	(*g_Enums)["ZInvestigateCautiousSituation.ESituationState"] = {
 		{ 0, "SS_Main" },
 		{ 1, "SS_StandDownPending" },
 		{ 2, "SS_StandDown" },
 	};
+	(*g_EnumSizes)["ZInvestigateCautiousSituation.ESituationState"] = 4;
 
 	(*g_Enums)["ZInvestigateDisguiseGroup.EState"] = {
 		{ 0, "eInit" },
@@ -8304,6 +8813,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "eEscalate" },
 		{ 8, "eDone" },
 	};
+	(*g_EnumSizes)["ZInvestigateDisguiseGroup.EState"] = 4;
 
 	(*g_Enums)["ZItemSpawner.EPhysicsMode"] = {
 		{ 0, "EPM_DEFINED_BY_ITEM" },
@@ -8311,6 +8821,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EPM_SLEEPING" },
 		{ 3, "EPM_KINEMATIC" },
 	};
+	(*g_EnumSizes)["ZItemSpawner.EPhysicsMode"] = 4;
 
 	(*g_Enums)["ZKeywordCondition.EEvaluationType"] = {
 		{ 0, "ALL" },
@@ -8321,6 +8832,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "GREATER" },
 		{ 6, "LESS" },
 	};
+	(*g_EnumSizes)["ZKeywordCondition.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZLeadEscortSituationEntity.EEscortState"] = {
 		{ 0, "EES_Idle" },
@@ -8328,6 +8840,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "EES_Escorting" },
 		{ 3, "EES_Intermediate" },
 	};
+	(*g_EnumSizes)["ZLeadEscortSituationEntity.EEscortState"] = 4;
 
 	(*g_Enums)["ZLeadEscortSituationEntity.ETargetState"] = {
 		{ 0, "ETS_Unknown" },
@@ -8338,12 +8851,14 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ETS_Dead" },
 		{ 6, "ETS_TargetIsHitman" },
 	};
+	(*g_EnumSizes)["ZLeadEscortSituationEntity.ETargetState"] = 4;
 
 	(*g_Enums)["ZLogicMultipleGate.EGateType"] = {
 		{ 0, "eFireEveryTime" },
 		{ 1, "eFirePortOnce" },
 		{ 2, "eFireOnce" },
 	};
+	(*g_EnumSizes)["ZLogicMultipleGate.EGateType"] = 4;
 
 	(*g_Enums)["ZLookAtLogic.EAxisSelect"] = {
 		{ 0, "eX" },
@@ -8353,11 +8868,13 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eZ" },
 		{ 5, "eZ_NEG" },
 	};
+	(*g_EnumSizes)["ZLookAtLogic.EAxisSelect"] = 4;
 
 	(*g_Enums)["ZMenuSliderNavigationEntity.ESliderInputMode"] = {
 		{ 0, "E_HORIZONTAL" },
 		{ 1, "E_VERTICAL" },
 	};
+	(*g_EnumSizes)["ZMenuSliderNavigationEntity.ESliderInputMode"] = 4;
 
 	(*g_Enums)["ZMirrorEntity.EMirrorQuality"] = {
 		{ 0, "QUALITY_LOW" },
@@ -8365,6 +8882,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "QUALITY_HIGH" },
 		{ 3, "QUALITY_LEAVE" },
 	};
+	(*g_EnumSizes)["ZMirrorEntity.EMirrorQuality"] = 4;
 
 	(*g_Enums)["ZMoveToOrder.EMoveSpeed"] = {
 		{ 0, "MS_AUTO" },
@@ -8372,23 +8890,27 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "MS_JOG" },
 		{ 3, "MS_WALK" },
 	};
+	(*g_EnumSizes)["ZMoveToOrder.EMoveSpeed"] = 4;
 
 	(*g_Enums)["ZMoveToPositionBehaviorEntity.EApproachAlignment"] = {
 		{ 0, "AA_STRICT" },
 		{ 1, "AA_LOOSE" },
 	};
+	(*g_EnumSizes)["ZMoveToPositionBehaviorEntity.EApproachAlignment"] = 4;
 
 	(*g_Enums)["ZMoveToPositionBehaviorEntity.EMovementType"] = {
 		{ 0, "MT_WALK" },
 		{ 1, "MT_SNAP" },
 		{ 2, "MT_IGNORE_POSITION" },
 	};
+	(*g_EnumSizes)["ZMoveToPositionBehaviorEntity.EMovementType"] = 4;
 
 	(*g_Enums)["ZMoveToPositionBehaviorEntity.ERotationAlignment"] = {
 		{ 0, "RA_NONE" },
 		{ 1, "RA_LOOSE" },
 		{ 2, "RA_EXACT" },
 	};
+	(*g_EnumSizes)["ZMoveToPositionBehaviorEntity.ERotationAlignment"] = 4;
 
 	(*g_Enums)["ZOnlineManager.EError"] = {
 		{ 0, "eNONE" },
@@ -8421,6 +8943,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1026, "eCANCELLED" },
 		{ 1027, "eERROR_MAX" },
 	};
+	(*g_EnumSizes)["ZOnlineManager.EError"] = 4;
 
 	(*g_Enums)["ZOnlineManager.EState"] = {
 		{ 1, "eTRIGGER_FLOW" },
@@ -8465,12 +8988,14 @@ void ZHMEnums::RegisterEnums()
 		{ 40, "eREAUTHENTICATE" },
 		{ 41, "eSTATE_MAX" },
 	};
+	(*g_EnumSizes)["ZOnlineManager.EState"] = 4;
 
 	(*g_Enums)["ZOperatorBool.EEvaluationType"] = {
 		{ 0, "ALL" },
 		{ 1, "NONE" },
 		{ 2, "ANY" },
 	};
+	(*g_EnumSizes)["ZOperatorBool.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZPIPMessageEntity.EIcon"] = {
 		{ 0, "IconStart" },
@@ -8483,6 +9008,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "QuestionMark" },
 		{ 8, "IconEnd" },
 	};
+	(*g_EnumSizes)["ZPIPMessageEntity.EIcon"] = 4;
 
 	(*g_Enums)["ZPathfinderDebugEntity.EDebugTestType"] = {
 		{ 0, "PATHFINDER" },
@@ -8490,18 +9016,21 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "MAP_LOCATION" },
 		{ 3, "REGION_MASK_WITHIN_RADIUS" },
 	};
+	(*g_EnumSizes)["ZPathfinderDebugEntity.EDebugTestType"] = 4;
 
 	(*g_Enums)["ZPatrolBehaviorEntity.EMovementType"] = {
 		{ 0, "MT_WALK" },
 		{ 1, "MT_SNAP" },
 		{ 2, "MT_IGNORE_POSITION" },
 	};
+	(*g_EnumSizes)["ZPatrolBehaviorEntity.EMovementType"] = 4;
 
 	(*g_Enums)["ZPatrolBehaviorEntity.ERotationAlignment"] = {
 		{ 0, "RA_NONE" },
 		{ 1, "RA_LOOSE" },
 		{ 2, "RA_EXACT" },
 	};
+	(*g_EnumSizes)["ZPatrolBehaviorEntity.ERotationAlignment"] = 4;
 
 	(*g_Enums)["ZPointOfInterestEntity.EPOIType"] = {
 		{ 0, "ePOIT_Invalid" },
@@ -8509,16 +9038,19 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "ePOIT_Inspect" },
 		{ 3, "ePOIT_Stare" },
 	};
+	(*g_EnumSizes)["ZPointOfInterestEntity.EPOIType"] = 4;
 
 	(*g_Enums)["ZPreferenceItemEntity.EBoolOptions"] = {
 		{ 0, "EBO_INVERTVERTICAL" },
 		{ 1, "EBO_FIXEDMAP" },
 	};
+	(*g_EnumSizes)["ZPreferenceItemEntity.EBoolOptions"] = 4;
 
 	(*g_Enums)["ZRagdollAttacherEntity.EResetMode"] = {
 		{ 0, "eAtBoneOrigin" },
 		{ 1, "eKeepOffset" },
 	};
+	(*g_EnumSizes)["ZRagdollAttacherEntity.EResetMode"] = 4;
 
 	(*g_Enums)["ZRecoverUnconsciousGroup.EInvestigateGroupState"] = {
 		{ 0, "IGS_InitialState" },
@@ -8529,6 +9061,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "IGS_Completed" },
 		{ 6, "IGS_Max" },
 	};
+	(*g_EnumSizes)["ZRecoverUnconsciousGroup.EInvestigateGroupState"] = 4;
 
 	(*g_Enums)["ZRenderPostfilterParametersEntity.EDOFBlurType"] = {
 		{ 0, "eFastest" },
@@ -8536,11 +9069,13 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eLowRezLensBlurSoft" },
 		{ 3, "eHighRezLensBlur" },
 	};
+	(*g_EnumSizes)["ZRenderPostfilterParametersEntity.EDOFBlurType"] = 4;
 
 	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRAdaptationType"] = {
 		{ 0, "eMedian" },
 		{ 1, "eGeometricMean" },
 	};
+	(*g_EnumSizes)["ZRenderPostfilterParametersEntity.EHDRAdaptationType"] = 4;
 
 	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRGlareType"] = {
 		{ 0, "eCamera" },
@@ -8555,12 +9090,14 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "eCinecamVerticalSlits" },
 		{ 10, "eCinecamHorizontalSlits" },
 	};
+	(*g_EnumSizes)["ZRenderPostfilterParametersEntity.EHDRGlareType"] = 4;
 
 	(*g_Enums)["ZRenderPostfilterParametersEntity.EHDRToneMapType"] = {
 		{ 0, "eLinear" },
 		{ 1, "eReinhardRGB" },
 		{ 2, "eFilmicRGB" },
 	};
+	(*g_EnumSizes)["ZRenderPostfilterParametersEntity.EHDRToneMapType"] = 4;
 
 	(*g_Enums)["ZScreenplay.EState"] = {
 		{ 0, "State_Idle" },
@@ -8569,11 +9106,13 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "State_Failed" },
 		{ 4, "State_Done" },
 	};
+	(*g_EnumSizes)["ZScreenplay.EState"] = 4;
 
 	(*g_Enums)["ZSecuritySystemCameraConfiguration.ECameraEscalationSituations"] = {
 		{ 0, "eCES_Arrest" },
 		{ 1, "eCES_Combat" },
 	};
+	(*g_EnumSizes)["ZSecuritySystemCameraConfiguration.ECameraEscalationSituations"] = 4;
 
 	(*g_Enums)["ZSequenceEntity.ECommand"] = {
 		{ 0, "COMMAND_START" },
@@ -8593,17 +9132,20 @@ void ZHMEnums::RegisterEnums()
 		{ 14, "COMMAND_PREVIEW_LOOPED" },
 		{ 15, "COMMAND_CLEAR" },
 	};
+	(*g_EnumSizes)["ZSequenceEntity.ECommand"] = 4;
 
 	(*g_Enums)["ZSequenceEntity.ELetterBoxAspect"] = {
 		{ 0, "LETTERBOXASPECT_WIDESCREEN" },
 		{ 1, "LETTERBOXASPECT_CINEMASCOPE" },
 	};
+	(*g_EnumSizes)["ZSequenceEntity.ELetterBoxAspect"] = 4;
 
 	(*g_Enums)["ZSetVisibleEntity.StartBehavior"] = {
 		{ 0, "SB_Nothing" },
 		{ 1, "SB_MakeVisible" },
 		{ 2, "SB_MakeInvisible" },
 	};
+	(*g_EnumSizes)["ZSetVisibleEntity.StartBehavior"] = 4;
 
 	(*g_Enums)["ZSmuggleSituationEntity.ESmuggleState"] = {
 		{ 0, "ESS_Idle" },
@@ -8614,6 +9156,7 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "ESS_PuttingDown" },
 		{ 6, "ESS_OnABreak" },
 	};
+	(*g_EnumSizes)["ZSmuggleSituationEntity.ESmuggleState"] = 4;
 
 	(*g_Enums)["ZSniperCombatGroup.EGroupState"] = {
 		{ 0, "IGS_WaitingForActors" },
@@ -8622,12 +9165,14 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "IGS_Completed" },
 		{ 4, "IGS_Max" },
 	};
+	(*g_EnumSizes)["ZSniperCombatGroup.EGroupState"] = 4;
 
 	(*g_Enums)["ZSniperCombatSituation.ESituationState"] = {
 		{ 0, "SS_Main" },
 		{ 1, "SS_StandDown" },
 		{ 2, "SS_InvalidSituation" },
 	};
+	(*g_EnumSizes)["ZSniperCombatSituation.ESituationState"] = 4;
 
 	(*g_Enums)["ZSoundAmbienceGroup.ESoundCollisionType"] = {
 		{ 0, "SCT_Box" },
@@ -8635,12 +9180,14 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "SCT_Sphere" },
 		{ 3, "SCT_Volume" },
 	};
+	(*g_EnumSizes)["ZSoundAmbienceGroup.ESoundCollisionType"] = 4;
 
 	(*g_Enums)["ZSpatialEntity.ERoomBehaviour"] = {
 		{ 0, "ROOM_STATIC" },
 		{ 1, "ROOM_DYNAMIC" },
 		{ 2, "ROOM_STATIC_OUTSIDE_CLIENT" },
 	};
+	(*g_EnumSizes)["ZSpatialEntity.ERoomBehaviour"] = 4;
 
 	(*g_Enums)["ZStandOffSituation.EDialogState"] = {
 		{ 0, "eDS_ReportTarget" },
@@ -8653,6 +9200,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "eDS_StopWait" },
 		{ 8, "eDS_Done" },
 	};
+	(*g_EnumSizes)["ZStandOffSituation.EDialogState"] = 4;
 
 	(*g_Enums)["ZStandOffSituation.ESituationState"] = {
 		{ 0, "SS_Uncertain" },
@@ -8663,28 +9211,33 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "SS_Investigate" },
 		{ 6, "SS_GetHelpFromFleeingCivilian" },
 	};
+	(*g_EnumSizes)["ZStandOffSituation.ESituationState"] = 4;
 
 	(*g_Enums)["ZStateControllerEntity.WrapMode"] = {
 		{ 0, "WM_Loop" },
 		{ 1, "WM_Clamp" },
 	};
+	(*g_EnumSizes)["ZStateControllerEntity.WrapMode"] = 4;
 
 	(*g_Enums)["ZTestGroupPath.EModifierType"] = {
 		{ 0, "EMT_PushCorners" },
 		{ 1, "EMT_PushCornersAlt" },
 	};
+	(*g_EnumSizes)["ZTestGroupPath.EModifierType"] = 4;
 
 	(*g_Enums)["ZTrackDollyControllerQueryEntity.ETrackPointQueryType"] = {
 		{ 0, "Closest" },
 		{ 1, "ClosestNext" },
 		{ 2, "ClosestPrevious" },
 	};
+	(*g_EnumSizes)["ZTrackDollyControllerQueryEntity.ETrackPointQueryType"] = 4;
 
 	(*g_Enums)["ZTrespassingSituation.ESituationState"] = {
 		{ 1, "SS_Main" },
 		{ 2, "SS_StandDown" },
 		{ 3, "SS_Escalate" },
 	};
+	(*g_EnumSizes)["ZTrespassingSituation.ESituationState"] = 4;
 
 	(*g_Enums)["ZUIControlEntity.EAlignmentType"] = {
 		{ 0, "E_ALIGNMENT_TYPE_Center" },
@@ -8697,6 +9250,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "E_ALIGNMENT_TYPE_BottomLeft" },
 		{ 8, "E_ALIGNMENT_TYPE_BottomRight" },
 	};
+	(*g_EnumSizes)["ZUIControlEntity.EAlignmentType"] = 4;
 
 	(*g_Enums)["ZUIControlEntity.ELayoutMode"] = {
 		{ 0, "E_LAYOUT_MODE_Absolute" },
@@ -8707,11 +9261,13 @@ void ZHMEnums::RegisterEnums()
 		{ 5, "E_LAYOUT_MODE_Proportional_Scale_MaintainAspect" },
 		{ 6, "E_LAYOUT_MODE_Proportional_Scale_MaintainAspect_Fill" },
 	};
+	(*g_EnumSizes)["ZUIControlEntity.ELayoutMode"] = 4;
 
 	(*g_Enums)["ZUIFlowLayoutEntity.EFlowType"] = {
 		{ 0, "E_FLOW_TYPE_HORIZONTAL" },
 		{ 1, "E_FLOW_TYPE_VERTICAL" },
 	};
+	(*g_EnumSizes)["ZUIFlowLayoutEntity.EFlowType"] = 4;
 
 	(*g_Enums)["ZUIListNavigationEntity.ENavigationInputMode"] = {
 		{ 0, "E_MODE_UP_DOWN" },
@@ -8719,17 +9275,20 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "E_MODE_PGPREV_PGNEXT" },
 		{ 3, "E_MODE_SMART_2D" },
 	};
+	(*g_EnumSizes)["ZUIListNavigationEntity.ENavigationInputMode"] = 4;
 
 	(*g_Enums)["ZUISplashHintDataProviderEntity.ESplashHintType"] = {
 		{ 0, "SHT_GlobalHint" },
 		{ 1, "SHT_TutorialHint" },
 		{ 2, "SHT_ControlHint" },
 	};
+	(*g_EnumSizes)["ZUISplashHintDataProviderEntity.ESplashHintType"] = 4;
 
 	(*g_Enums)["ZUISubtitleDataProvider.EAlignment"] = {
 		{ 0, "ALIGN_BOTTOM" },
 		{ 1, "ALIGN_TOP" },
 	};
+	(*g_EnumSizes)["ZUISubtitleDataProvider.EAlignment"] = 4;
 
 	(*g_Enums)["ZValueBool_Operation.EEvaluationType"] = {
 		{ 0, "ALL" },
@@ -8739,6 +9298,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "ALL_EQUAL" },
 		{ 5, "ONE_TRUE" },
 	};
+	(*g_EnumSizes)["ZValueBool_Operation.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZValueBool_OperationRecalc.EEvaluationType"] = {
 		{ 0, "ALL" },
@@ -8748,6 +9308,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "ALL_EQUAL" },
 		{ 5, "ONE_TRUE" },
 	};
+	(*g_EnumSizes)["ZValueBool_OperationRecalc.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZValueBool_Operation_Signal.EEvaluationType"] = {
 		{ 0, "ALL" },
@@ -8757,6 +9318,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "ALL_EQUAL" },
 		{ 5, "ONE_TRUE" },
 	};
+	(*g_EnumSizes)["ZValueBool_Operation_Signal.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZValueInt_Comparator.EEvaluationType"] = {
 		{ 0, "EQUAL" },
@@ -8766,6 +9328,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "HIGHER" },
 		{ 5, "HIGHER_OR_EQUAL" },
 	};
+	(*g_EnumSizes)["ZValueInt_Comparator.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZValueInt_Comparator_Poll.EEvaluationType"] = {
 		{ 0, "EQUAL" },
@@ -8775,6 +9338,7 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "HIGHER" },
 		{ 5, "HIGHER_OR_EQUAL" },
 	};
+	(*g_EnumSizes)["ZValueInt_Comparator_Poll.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZValueInt_Evaluation.EEvaluationType"] = {
 		{ 0, "EQUAL" },
@@ -8784,12 +9348,14 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "HIGHER" },
 		{ 5, "HIGHER_OR_EQUAL" },
 	};
+	(*g_EnumSizes)["ZValueInt_Evaluation.EEvaluationType"] = 4;
 
 	(*g_Enums)["ZVsTargetPicker.ETargetSelectionType"] = {
 		{ 0, "eTST_Random" },
 		{ 1, "eTST_Fair" },
 		{ 2, "eTST_Max" },
 	};
+	(*g_EnumSizes)["ZVsTargetPicker.ETargetSelectionType"] = 4;
 
 	(*g_Enums)["ZWaveformGeneratorEntity.ECurveType"] = {
 		{ 0, "CURVE_TYPE_SINE" },
@@ -8798,6 +9364,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "CURVE_TYPE_SAWTOOTH" },
 		{ 4, "CURVE_TYPE_REVERSE_SAWTOOTH" },
 	};
+	(*g_EnumSizes)["ZWaveformGeneratorEntity.ECurveType"] = 1;
 
 	(*g_Enums)["ZWaypointEntity.EMovementType"] = {
 		{ 0, "MT_WALK" },
@@ -8805,6 +9372,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "MT_SNAP" },
 		{ 3, "MT_IGNORE_POSITION" },
 	};
+	(*g_EnumSizes)["ZWaypointEntity.EMovementType"] = 4;
 
 	(*g_Enums)["ZWorldUIElementInstanceBase.EVisibility"] = {
 		{ 0, "EVIS_ALWAYS" },
@@ -8813,6 +9381,7 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EVIS_POSX" },
 		{ 4, "EVIS_NEGX" },
 	};
+	(*g_EnumSizes)["ZWorldUIElementInstanceBase.EVisibility"] = 4;
 
 	(*g_Enums)["_EUIOptionKey"] = {
 		{ 100, "UI_OPTION_GAME_VIBRATION" },
@@ -8919,6 +9488,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2772, "UI_OPTION_GRAPHICS_HDR_GAMMA" },
 		{ 2773, "UI_OPTION_GRAPHICS_RENDERING_QUALITY" },
 	};
+	(*g_EnumSizes)["_EUIOptionKey"] = 4;
 
 	(*g_Enums)["eActionRewardType"] = {
 		{ 0, "AR_None" },
@@ -8926,6 +9496,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "AR_Keycard" },
 		{ 3, "AR_Key" },
 	};
+	(*g_EnumSizes)["eActionRewardType"] = 4;
 
 	(*g_Enums)["eAmmoType"] = {
 		{ 0, "eAmmoGun" },
@@ -8942,12 +9513,14 @@ void ZHMEnums::RegisterEnums()
 		{ 11, "eAmmoShotgunBeanbag" },
 		{ 12, "eUnknownAmmoType" },
 	};
+	(*g_EnumSizes)["eAmmoType"] = 4;
 
 	(*g_Enums)["eBurstPatternType"] = {
 		{ 0, "eEBP_None" },
 		{ 1, "eEBP_Circular3Rings" },
 		{ 2, "eEBP_Box" },
 	};
+	(*g_EnumSizes)["eBurstPatternType"] = 4;
 
 	(*g_Enums)["eContractSessionStartError"] = {
 		{ 0, "ERROR_NONE" },
@@ -8960,6 +9533,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "ERROR_ALREADY_STARTING" },
 		{ 8, "ERROR_UNKNOWN" },
 	};
+	(*g_EnumSizes)["eContractSessionStartError"] = 4;
 
 	(*g_Enums)["eHitmanPermissionReason"] = {
 		{ -1, "eHPReason_ALLReasons" },
@@ -8973,6 +9547,7 @@ void ZHMEnums::RegisterEnums()
 		{ 64, "eHPReason_InstinctBlendIn" },
 		{ 128, "eHPReason_FocusInteraction" },
 	};
+	(*g_EnumSizes)["eHitmanPermissionReason"] = 4;
 
 	(*g_Enums)["eHolsterAbility"] = {
 		{ 0, "eUndecided" },
@@ -8982,24 +9557,28 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "eHolsterQuestStorage" },
 		{ 5, "eCanNotBeHolstered" },
 	};
+	(*g_EnumSizes)["eHolsterAbility"] = 4;
 
 	(*g_Enums)["eItemHands"] = {
 		{ 0, "IH_NONE" },
 		{ 1, "IH_ONEHANDED" },
 		{ 2, "IH_TWOHANDED" },
 	};
+	(*g_EnumSizes)["eItemHands"] = 4;
 
 	(*g_Enums)["eItemRarity"] = {
 		{ 0, "ITEMRARITY_COMMON" },
 		{ 1, "ITEMRARITY_UNCOMMON" },
 		{ 2, "ITEMRARITY_RARE" },
 	};
+	(*g_EnumSizes)["eItemRarity"] = 4;
 
 	(*g_Enums)["eItemSize"] = {
 		{ 0, "ITEMSIZE_SMALL" },
 		{ 1, "ITEMSIZE_MEDIUM" },
 		{ 2, "ITEMSIZE_LARGE" },
 	};
+	(*g_EnumSizes)["eItemSize"] = 4;
 
 	(*g_Enums)["eItemType"] = {
 		{ 0, "eCC_FireExtinguisher_01" },
@@ -9099,6 +9678,7 @@ void ZHMEnums::RegisterEnums()
 		{ 934, "eSuitcase" },
 		{ 1337, "eUnknownItemType" },
 	};
+	(*g_EnumSizes)["eItemType"] = 4;
 
 	(*g_Enums)["eParticleEmitterBoxEntity_SpawnModes"] = {
 		{ 0, "BOX_SPAWNMODE_INSIDE" },
@@ -9107,17 +9687,20 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "BOX_SPAWNMODE_ELLIPSOID_INSIDE" },
 		{ 4, "BOX_SPAWNMODE_ELLIPSOID" },
 	};
+	(*g_EnumSizes)["eParticleEmitterBoxEntity_SpawnModes"] = 4;
 
 	(*g_Enums)["eParticleEmitterMeshEntity_SpawnModes"] = {
 		{ 0, "MESH_SPAWNMODE_VERTEX" },
 		{ 1, "MESH_SPAWNMODE_EDGE" },
 		{ 2, "MESH_SPAWNMODE_FACE" },
 	};
+	(*g_EnumSizes)["eParticleEmitterMeshEntity_SpawnModes"] = 4;
 
 	(*g_Enums)["eWeaponOperation"] = {
 		{ 0, "WO_SEMI_AUTO" },
 		{ 1, "WO_FULL_AUTO" },
 	};
+	(*g_EnumSizes)["eWeaponOperation"] = 4;
 
 	(*g_Enums)["eWeaponType"] = {
 		{ 0, "WT_HANDGUN" },
@@ -9130,6 +9713,7 @@ void ZHMEnums::RegisterEnums()
 		{ 7, "WT_SHOTGUN" },
 		{ 8, "WT_SPOTTER" },
 	};
+	(*g_EnumSizes)["eWeaponType"] = 4;
 
 }
 

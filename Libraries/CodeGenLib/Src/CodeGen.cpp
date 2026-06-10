@@ -1,10 +1,12 @@
 #include "CodeGen.h"
 
+#include "Log.h"
 #include "ZHMReflection.h"
 
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <cstdio>
 #include <unordered_set>
 #include <algorithm>
 #include <functional>
@@ -37,7 +39,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 {
 	m_PropertyNames.clear();
 
-	printf("Generating code for types...\n");
+	log("Generating code for types...\n");
 
 	// Open our output files.
 	m_SDKHeader.open(p_OutputPath / "ZHMSdkGen.h", std::ofstream::out);
@@ -62,12 +64,11 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 	WriteFileHeader(m_ReflectiveClassesHeaderFile);
 	m_ReflectiveClassesHeaderFile << "#pragma once" << std::endl;
 	m_ReflectiveClassesHeaderFile << std::endl;
+	m_ReflectiveClassesHeaderFile << "#include <cstddef>" << std::endl;
 	m_ReflectiveClassesHeaderFile << "#include <ZHM/ZHMPrimitives.h>" << std::endl;
 	m_ReflectiveClassesHeaderFile << "#include <ZHM/ZHMTypeInfo.h>" << std::endl;
 	m_ReflectiveClassesHeaderFile << std::endl;
 	m_ReflectiveClassesHeaderFile << "class ZHMTypeInfo;" << std::endl;
-	m_ReflectiveClassesHeaderFile << std::endl;
-	m_ReflectiveClassesHeaderFile << "#pragma pack(push, 1)" << std::endl;
 	m_ReflectiveClassesHeaderFile << std::endl;
 
 	WriteFileHeader(m_ReflectiveClassesSourceFile);
@@ -78,7 +79,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 	m_ReflectiveClassesSourceFile << "#include <utility>" << std::endl;
 	m_ReflectiveClassesSourceFile << std::endl;
 
-	printf("Registry has %zd types.\n", p_Types.size());
+	log("Registry has %zd types.\n", p_Types.size());
 
 	// Look for RTTI information.
 	Image s_Image;
@@ -99,7 +100,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 		}
 	}
 
-	printf("Built RTTI lookup table with %llu entries.\n", m_RttiByTypeName.size());
+	log("Built RTTI lookup table with %llu entries.\n", m_RttiByTypeName.size());
 
 	for (auto& [_, s_Type] : p_Types)
 	{
@@ -119,8 +120,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 
 	GeneratePropertyNamesFiles();
 	GenerateEnumsFiles();
-
-	m_ReflectiveClassesHeaderFile << "#pragma pack(pop)" << std::endl;
+	GenerateTypesJsonFile(p_OutputPath);
 
 	m_ReflectiveClassesHeaderFile.close();
 	m_ReflectiveClassesSourceFile.close();
@@ -134,7 +134,7 @@ void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Type
 
 	m_SDKHeader.close();
 
-	printf("Finished generating code.\n");
+	log("Finished generating code.\n");
 }
 
 void CodeGen::CollectAllRttiTypes()
@@ -151,7 +151,7 @@ void CodeGen::CollectAllRttiTypes()
 				continue;
 
 			std::string s_DemangledName = DemangleRTTIName(s_BaseClass->TypeDescriptor->Name);
-			
+
 			if (!s_DemangledName.empty())
 			{
 				m_RttiTypes.insert(s_DemangledName);
@@ -159,7 +159,7 @@ void CodeGen::CollectAllRttiTypes()
 		}
 	}
 
-	printf("Collected %zd RTTI types.\n", m_RttiTypes.size());
+	log("Collected %zd RTTI types.\n", m_RttiTypes.size());
 }
 
 void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Types)
@@ -179,7 +179,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 		auto s_TypeData = s_Pair.second;
 
 		std::shared_ptr<TreeNode> s_CurrentNode = m_TypeTreeRoot;
-		
+
 		size_t s_Start = 0;
 		size_t s_End = s_TypeName.find('.');
 
@@ -196,7 +196,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 				s_CurrentNode->Children[s_Part] = s_NewNode;
 				m_TypeNodesByName[s_NewNode->TypeName()] = s_NewNode;
 			}
-			
+
 			s_CurrentNode = s_CurrentNode->Children[s_Part];
 			s_Start = s_End + 1;
 			s_End = s_TypeName.find('.', s_Start);
@@ -258,6 +258,17 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 				if (m_TypeNodesByName.contains(s_BaseName))
 					continue;
 
+				if (s_BaseName.find('<') != std::string::npos)
+				{
+					auto s_NewNode = std::make_shared<TreeNode>();
+					s_NewNode->Name = s_BaseName;
+					s_NewNode->Parent = m_TypeTreeRoot;
+					s_NewNode->Type = TreeNode::ENodeType::Type;
+					m_TypeTreeRoot->Children[s_BaseName] = s_NewNode;
+					m_TypeNodesByName[s_NewNode->TypeName()] = s_NewNode;
+					continue;
+				}
+
 				// Split the base name on '.' and create the proper hierarchy.
 				std::shared_ptr<TreeNode> s_CurrentNode = m_TypeTreeRoot;
 				size_t s_Start = 0;
@@ -303,7 +314,20 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 	}
 
 	// Remove some known "bad" types from the tree.
-	m_TypeTreeRoot->Children["ZDynamicObject"]->Children.erase("SArrayTypesRegistrar"); // Has circular dependencies.
+	auto RemoveChild = [this](const char* p_TypeName, const char* p_ChildName) {
+		if (m_TypeTreeRoot->Children.contains(p_TypeName)) {
+			m_TypeTreeRoot->Children[p_TypeName]->Children.erase(p_ChildName);
+		}
+	};
+
+	RemoveChild("ZDynamicObject", "SArrayTypesRegistrar"); // Has circular dependencies.
+	RemoveChild("ZInvestigateCautiousSituation", "SStateData"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children.erase("SCautiousInvestigateSituationSaveData"); // Uses ZInvestigateCautiousSituation::SStateData.
+	m_TypeTreeRoot->Children.erase("SGameKeywordManagerSaveData"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children.erase("ZGridFloatField"); // Has fields that don't exist in type info.
+	m_TypeTreeRoot->Children.erase("SEvergreenMenuPromptDesc"); // Has fields that don't exist in type info.
+	RemoveChild("ZEvergreenMenuController", "SPromptsData"); // Uses SEvergreenMenuPromptDesc.
+	m_TypeTreeRoot->Children.erase("SAudioDynamicSequenceItemData"); // Has a void field.
 
 	std::unordered_set<std::shared_ptr<TreeNode>> s_Visited;
 	for (auto& s_Child : m_TypeTreeRoot->Children)
@@ -311,7 +335,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 		SortTypeTree(s_Child.second, s_Visited);
 	}
 
-	printf("Built Type Tree.\n");
+	log("Built Type Tree.\n");
 }
 
 std::vector<std::string> SplitString(const std::string& p_String, char p_Delimiter)
@@ -396,10 +420,14 @@ MaybeTemplateType ParseTemplateType(std::string p_Type)
 std::unordered_set<std::string> GetDependenciesFromTemplateType(const MaybeTemplateType& p_Type)
 {
 	static const std::vector<std::string> c_TypesToExplode = {
-		"TArray", "TFixedArray", "TPair", "TMap", "TMultiMap", "TEntityRef", "TResourcePtr"
+		"TArray", "TFixedArray", "TPair", "TMap", "TMultiMap", "TEntityRef", "TInterfaceRef"
 	};
 
 	std::unordered_set<std::string> s_Dependencies;
+
+	// We don't care about the type TResourcePtr refers to since we remove it when emitting.
+	if (p_Type.Name == "TResourcePtr")
+		return s_Dependencies;
 
 	if (std::ranges::find(c_TypesToExplode, p_Type.Name) != c_TypesToExplode.end())
 	{
@@ -431,6 +459,9 @@ std::pair<std::unordered_set<std::string>, bool> CodeGen::CollectDependencies(ST
 	if (p_Type->typeInfo()->isClass())
 	{
 		auto s_ClassType = reinterpret_cast<IClassType*>(p_Type->typeInfo());
+
+		if (s_ClassType->m_nTypeSize > 0 && s_ClassType->m_nPropertyCount == 0)
+			s_IsRlType = false;
 
 		for (uint16_t i = 0; i < s_ClassType->m_nPropertyCount; ++i)
 		{
@@ -555,7 +586,7 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 
 					if (s_TopLevelAncestor->ShouldSkip)
 					{
-						printf("Dependency '%s' (via ancestor '%s') for type '%s' should be skipped. Skipping.\n",
+						log("Dependency '%s' (via ancestor '%s') for type '%s' should be skipped. Skipping.\n",
 							s_Dependency.c_str(), s_TopLevelAncestor->Name.c_str(), p_Node->Name.c_str());
 						p_Node->ShouldSkip = true;
 						break;
@@ -568,7 +599,7 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 				// After recursion, check if the dependency should be skipped.
 				if (s_DepNode->ShouldSkip)
 				{
-					printf("Dependency '%s' for type '%s' should be skipped. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
+					log("Dependency '%s' for type '%s' should be skipped. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
 					p_Node->ShouldSkip = true;
 					break;
 				}
@@ -584,48 +615,48 @@ void CodeGen::SortTypeTree(const std::shared_ptr<TreeNode>& p_Node, std::unorder
 			else
 			{
 				// Could not find a dependency for this type. Skip.
-				printf("Could not find dependency '%s' for type '%s'. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
+				log("Could not find dependency '%s' for type '%s'. Skipping.\n", s_Dependency.c_str(), p_Node->Name.c_str());
 				p_Node->ShouldSkip = true;
 				break;
 			}
 		}
 
 		p_Node->Parent->SortedChildren.push_back(p_Node);
+
+		for (auto& s_Child : p_Node->Children)
+		{
+			SortTypeTree(s_Child.second, p_Visited);
+		}
 	}
 	else if (std::ranges::find(p_Node->Parent->SortedChildren, p_Node) == p_Node->Parent->SortedChildren.end())
 	{
 		//printf("Circular dependency for node %s UwU.\n", p_Node->Name.c_str());
-	}
-
-	for (auto& s_Child : p_Node->Children)
-	{
-		SortTypeTree(s_Child.second, p_Visited);
 	}
 }
 
 void CodeGen::PrintTypeTree(const std::shared_ptr<TreeNode>& p_Node, int p_Depth)
 {
 	std::string s_Indentation(p_Depth * 2, ' ');
-	
-	printf("%s%s", s_Indentation.c_str(), p_Node->Name.c_str());
+
+	log("%s%s", s_Indentation.c_str(), p_Node->Name.c_str());
 
 	if (p_Node->Type == TreeNode::ENodeType::Type)
-		printf(" [type]");
+		log(" [type]");
 	else
-		printf(" [ns]");
+		log(" [ns]");
 
 	// Print dependencies
 	if (!p_Node->Dependencies.empty())
 	{
-		printf(" (deps: ");
+		log(" (deps: ");
 
 		for (const auto& s_Dependency : p_Node->Dependencies)
-			printf("%s, ", s_Dependency.c_str());
+			log("%s, ", s_Dependency.c_str());
 
-		printf(")");
+		log(")");
 	}
-	
-	printf("\n");
+
+	log("\n");
 
 	if (p_Node->SortedChildren.empty())
 	{
@@ -652,6 +683,11 @@ std::string NormalizeName(STypeID* p_Type)
 	if (s_TypeName == "TArray")
 		return s_TypeName;
 
+	// Generated code doesn't care about the specific TResourcePtr type.
+	// Simplify from TResourcePtr<> to just TResourcePtr.
+	if (s_TypeName.starts_with("TResourcePtr<"))
+		return "TResourcePtr";
+
 	if (p_Type->typeInfo()->isFixedArray())
 	{
 		auto s_ElementType = reinterpret_cast<IArrayType*>(p_Type->typeInfo())->m_pArrayElementType;
@@ -667,6 +703,29 @@ std::string NormalizeName(STypeID* p_Type)
 	return NormalizeTypeName(s_TypeName);
 }
 
+// Return the original type info name of a type.
+std::string OriginalName(STypeID* p_Type)
+{
+	std::string s_TypeName = p_Type->typeInfo()->m_pTypeName;
+
+	if (s_TypeName == "TArray")
+		return s_TypeName;
+
+	if (p_Type->typeInfo()->isFixedArray())
+	{
+		auto s_ElementType = reinterpret_cast<IArrayType*>(p_Type->typeInfo())->m_pArrayElementType;
+		return "TFixedArray<" + OriginalName(s_ElementType) + ", " + std::to_string(reinterpret_cast<IArrayType*>(p_Type->typeInfo())->fixedArraySize()) + ">";
+	}
+
+	if (p_Type->typeInfo()->isArray())
+	{
+		auto s_ElementType = reinterpret_cast<IArrayType*>(p_Type->typeInfo())->m_pArrayElementType;
+		return "TArray<" + OriginalName(s_ElementType) + ">";
+	}
+
+	return s_TypeName;
+}
+
 std::string GetEnumUnderlyingType(STypeID* p_Type)
 {
 	switch (p_Type->typeInfo()->m_nTypeSize) {
@@ -680,7 +739,7 @@ std::string GetEnumUnderlyingType(STypeID* p_Type)
 			return "int32_t";
 
 		default:
-			printf("Unsupported enum size %d for type %s. Defaulting to int32_t.\n", p_Type->typeInfo()->m_nTypeSize, p_Type->typeInfo()->m_pTypeName);
+			log("Unsupported enum size %d for type %s. Defaulting to int32_t.\n", p_Type->typeInfo()->m_nTypeSize, p_Type->typeInfo()->m_pTypeName);
 			return "int32_t";
 	}
 }
@@ -935,6 +994,7 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsHeaderFile << "private:" << std::endl;
 	m_EnumsHeaderFile << "\tstruct EnumRegistrar { EnumRegistrar() { RegisterEnums(); } };" << std::endl;
 	m_EnumsHeaderFile << "\tstatic std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>* g_Enums;" << std::endl;
+	m_EnumsHeaderFile << "\tstatic std::unordered_map<std::string, uint32_t>* g_EnumSizes;" << std::endl;
 	m_EnumsHeaderFile << "\tstatic EnumRegistrar g_Registrar;" << std::endl;
 	m_EnumsHeaderFile << "\tstatic void RegisterEnums();" << std::endl;
 	m_EnumsHeaderFile << std::endl;
@@ -942,6 +1002,7 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsHeaderFile << "\tstatic std::string GetEnumValueName(const std::string& p_TypeName, int32_t p_Value);" << std::endl;
 	m_EnumsHeaderFile << "\tstatic int32_t GetEnumValueByName(const std::string& p_TypeName, std::string_view p_Name);" << std::endl;
 	m_EnumsHeaderFile << "\tstatic bool IsTypeNameEnum(const std::string& p_TypeName);" << std::endl;
+	m_EnumsHeaderFile << "\tstatic uint32_t GetEnumSize(const std::string& p_TypeName);" << std::endl;
 	m_EnumsHeaderFile << "};" << std::endl;
 
 	WriteFileHeader(m_EnumsSourceFile);
@@ -949,6 +1010,7 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsSourceFile << "#include <ZHM/ZHMTypeInfo.h>" << std::endl;
 	m_EnumsSourceFile << std::endl;
 	m_EnumsSourceFile << "std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>* ZHMEnums::g_Enums = nullptr;" << std::endl;
+	m_EnumsSourceFile << "std::unordered_map<std::string, uint32_t>* ZHMEnums::g_EnumSizes = nullptr;" << std::endl;
 	m_EnumsSourceFile << "ZHMEnums::EnumRegistrar ZHMEnums::g_Registrar;" << std::endl;
 	m_EnumsSourceFile << std::endl;
 
@@ -989,26 +1051,163 @@ void CodeGen::GenerateEnumsFiles()
 	m_EnumsSourceFile << "}" << std::endl;
 	m_EnumsSourceFile << std::endl;
 
+	m_EnumsSourceFile << "uint32_t ZHMEnums::GetEnumSize(const std::string& p_TypeName)" << std::endl;
+	m_EnumsSourceFile << "{" << std::endl;
+	m_EnumsSourceFile << "\tauto s_It = g_EnumSizes->find(p_TypeName);" << std::endl;
+	m_EnumsSourceFile << std::endl;
+	m_EnumsSourceFile << "\tif (s_It == g_EnumSizes->end())" << std::endl;
+	m_EnumsSourceFile << "\t\treturn 4;" << std::endl;
+	m_EnumsSourceFile << std::endl;
+	m_EnumsSourceFile << "\treturn s_It->second;" << std::endl;
+	m_EnumsSourceFile << "}" << std::endl;
+	m_EnumsSourceFile << std::endl;
+
 	m_EnumsSourceFile << "void ZHMEnums::RegisterEnums()" << std::endl;
 	m_EnumsSourceFile << "{" << std::endl;
 	m_EnumsSourceFile << "\tg_Enums = new std::unordered_map<std::string, std::unordered_map<int32_t, std::string>>();" << std::endl;
+	m_EnumsSourceFile << "\tg_EnumSizes = new std::unordered_map<std::string, uint32_t>();" << std::endl;
 	m_EnumsSourceFile << std::endl;
 
 	for (auto& s_Enum : m_Enums)
 	{
 		m_EnumsSourceFile << "\t(*g_Enums)[\"" << s_Enum.first << "\"] = {" << std::endl;
 
-		for (auto& s_Value : s_Enum.second)
+		for (auto& s_Value : s_Enum.second.Values)
 		{
 			m_EnumsSourceFile << "\t\t{ " << std::to_string(s_Value.first) << ", \"" << s_Value.second << "\" }," << std::endl;
 		}
 
 		m_EnumsSourceFile << "\t};" << std::endl;
+		m_EnumsSourceFile << "\t(*g_EnumSizes)[\"" << s_Enum.first << "\"] = " << s_Enum.second.Size << ";" << std::endl;
 		m_EnumsSourceFile << std::endl;
 	}
 
 	m_EnumsSourceFile << "}" << std::endl;
 	m_EnumsSourceFile << std::endl;
+}
+
+static std::string EscapeJsonString(const std::string& p_Input)
+{
+	std::string s_Result;
+	s_Result.reserve(p_Input.size() + 2);
+
+	for (char c : p_Input)
+	{
+		switch (c)
+		{
+			case '"':  s_Result += "\\\""; break;
+			case '\\': s_Result += "\\\\"; break;
+			case '\b': s_Result += "\\b"; break;
+			case '\f': s_Result += "\\f"; break;
+			case '\n': s_Result += "\\n"; break;
+			case '\r': s_Result += "\\r"; break;
+			case '\t': s_Result += "\\t"; break;
+			default:
+				if (static_cast<unsigned char>(c) < 0x20)
+				{
+					char s_Buf[8];
+					snprintf(s_Buf, sizeof(s_Buf), "\\u%04x", static_cast<unsigned char>(c));
+					s_Result += s_Buf;
+				}
+				else
+				{
+					s_Result += c;
+				}
+				break;
+		}
+	}
+
+	return s_Result;
+}
+
+void CodeGen::GenerateTypesJsonFile(const std::filesystem::path& p_OutputPath)
+{
+	std::ofstream s_Stream(p_OutputPath / "ZHMTypes.json", std::ofstream::out);
+
+	s_Stream << "{" << std::endl;
+
+	s_Stream << "\t\"enums\": [";
+
+	for (size_t i = 0; i < m_JsonEnums.size(); ++i)
+	{
+		const auto& s_Enum = m_JsonEnums[i];
+
+		if (i > 0) s_Stream << ",";
+		s_Stream << std::endl;
+		s_Stream << "\t\t{" << std::endl;
+		s_Stream << "\t\t\t\"name\": \"" << EscapeJsonString(s_Enum.Name) << "\"," << std::endl;
+		s_Stream << "\t\t\t\"size\": " << s_Enum.Size << "," << std::endl;
+		s_Stream << "\t\t\t\"values\": [";
+
+		for (auto it = s_Enum.Values.begin(); it != s_Enum.Values.end(); ++it)
+		{
+			const auto& s_Value = it->first;
+			const auto& s_Name = EscapeJsonString(it->second);
+
+			if (it != s_Enum.Values.begin()) s_Stream << ",";
+			s_Stream << std::endl;
+			s_Stream << "\t\t\t\t{ \"name\": \"" << s_Name << "\", \"value\": " << s_Value << " }";
+		}
+
+		if (!s_Enum.Values.empty())
+			s_Stream << std::endl << "\t\t\t";
+
+		s_Stream << "]" << std::endl;
+		s_Stream << "\t\t}";
+	}
+
+	if (!m_JsonEnums.empty())
+		s_Stream << std::endl << "\t";
+
+	s_Stream << "]," << std::endl;
+
+	s_Stream << "\t\"structs\": [";
+
+	for (size_t i = 0; i < m_JsonStructs.size(); ++i)
+	{
+		const auto& s_Struct = m_JsonStructs[i];
+
+		if (i > 0) s_Stream << ",";
+		s_Stream << std::endl;
+		s_Stream << "\t\t{" << std::endl;
+		s_Stream << "\t\t\t\"name\": \"" << EscapeJsonString(s_Struct.Name) << "\"," << std::endl;
+		s_Stream << "\t\t\t\"size\": " << s_Struct.Size << "," << std::endl;
+		s_Stream << "\t\t\t\"alignment\": " << s_Struct.Alignment << "," << std::endl;
+		s_Stream << "\t\t\t\"fields\": [";
+
+		for (size_t j = 0; j < s_Struct.Fields.size(); ++j)
+		{
+			const auto& s_Field = s_Struct.Fields[j];
+
+			if (j > 0) s_Stream << ",";
+			s_Stream << std::endl;
+			s_Stream << "\t\t\t\t{ \"name\": \"" << EscapeJsonString(s_Field.Name) << "\", ";
+
+			if (s_Field.Type) {
+				s_Stream << "\"type\": \"" << EscapeJsonString(*s_Field.Type) << "\", ";
+			}
+			else {
+				s_Stream << "\"type\": null, ";
+			}
+
+			s_Stream << "\"offset\": " << s_Field.Offset << " }";
+		}
+
+		if (!s_Struct.Fields.empty())
+			s_Stream << std::endl << "\t\t\t";
+
+		s_Stream << "]" << std::endl;
+		s_Stream << "\t\t}";
+	}
+
+	if (!m_JsonStructs.empty())
+		s_Stream << std::endl << "\t";
+
+	s_Stream << "]" << std::endl;
+
+	s_Stream << "}" << std::endl;
+
+	s_Stream.close();
 }
 
 std::string CodeGen::DemangleRTTIName(const std::string& p_MangledName)
@@ -1035,6 +1234,28 @@ std::string CodeGen::DemangleRTTIName(const std::string& p_MangledName)
 	else if (s_Result.substr(0, 5) == "enum ")
 		s_Result = s_Result.substr(5);
 
+	// Get rid of prefixes in generic types (e.g. "ITEntityRefValue<class ZFoo>").
+	static const std::pair<std::string, size_t> c_KeywordsToStrip[] = {
+		{ "class ", 6 }, { "struct ", 7 }, { "enum ", 5 }
+	};
+
+	for (const auto& [s_Keyword, s_KeywordLen] : c_KeywordsToStrip)
+	{
+		size_t s_Pos = 0;
+		while ((s_Pos = s_Result.find(s_Keyword, s_Pos)) != std::string::npos)
+		{
+			// Walk back past spaces to find the introducing delimiter.
+			size_t s_Prev = s_Pos;
+			while (s_Prev > 0 && s_Result[s_Prev - 1] == ' ')
+				--s_Prev;
+
+			if (s_Prev > 0 && (s_Result[s_Prev - 1] == '<' || s_Result[s_Prev - 1] == ','))
+				s_Result.erase(s_Pos, s_KeywordLen);
+			else
+				s_Pos += s_KeywordLen;
+		}
+	}
+
 	// Convert C++ namespace separator (::) to ZHM dot separator (.)
 	size_t s_Pos = 0;
 	while ((s_Pos = s_Result.find("::", s_Pos)) != std::string::npos)
@@ -1044,6 +1265,70 @@ std::string CodeGen::DemangleRTTIName(const std::string& p_MangledName)
 	}
 
 	return s_Result;
+}
+
+bool CodeGen::ShouldForceJsonEmit(const std::string& p_TypeName)
+{
+	return p_TypeName == "SConditionBase"
+		|| p_TypeName.starts_with("SBehavior_")
+		|| p_TypeName.starts_with("SCondition_");
+}
+
+void CodeGen::EmitJsonStruct(const std::shared_ptr<TreeNode>& p_Node)
+{
+	if (!p_Node || !p_Node->TypeData)
+		return;
+
+	auto* s_TypeInfo = p_Node->TypeData->typeInfo();
+	if (!s_TypeInfo || !s_TypeInfo->isClass())
+		return;
+
+	std::string s_TypeName = s_TypeInfo->m_pTypeName;
+
+	if (!m_EmittedJsonStructs.insert(s_TypeName).second)
+		return;
+
+	auto* s_Type = reinterpret_cast<IClassType*>(s_TypeInfo);
+
+	JsonStruct s_JsonStruct;
+	s_JsonStruct.Name = s_TypeName;
+	s_JsonStruct.Size = static_cast<uint32_t>(s_TypeInfo->m_nTypeSize);
+	s_JsonStruct.Alignment = static_cast<uint32_t>(s_TypeInfo->m_nTypeAlignment);
+
+	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
+	{
+		auto s_Prop = s_Type->m_pProperties[i];
+
+		std::optional<std::string> s_PropType {};
+
+		if (s_Prop.m_pType && !s_Prop.m_pType->typeInfo())
+		{
+			s_PropType = OriginalName(s_Prop.m_pType);
+		}
+
+		s_JsonStruct.Fields.push_back({
+			s_Prop.m_pName,
+			s_PropType,
+			static_cast<uint32_t>(s_Prop.m_nOffset)
+		});
+	}
+
+	m_JsonStructs.push_back(std::move(s_JsonStruct));
+}
+
+void CodeGen::MaybeEmitForcedJsonStruct(const std::shared_ptr<TreeNode>& p_Node)
+{
+	if (!p_Node || !p_Node->TypeData)
+		return;
+
+	auto* s_TypeInfo = p_Node->TypeData->typeInfo();
+	if (!s_TypeInfo || !s_TypeInfo->isClass())
+		return;
+
+	if (!ShouldForceJsonEmit(s_TypeInfo->m_pTypeName))
+		return;
+
+	EmitJsonStruct(p_Node);
 }
 
 void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent)
@@ -1064,20 +1349,28 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		}
 	}
 
+	auto s_Type = reinterpret_cast<IClassType*>(p_Node->TypeData->typeInfo());
+
+	// Types with interfaces/base classes can't be emitted as RL structs either; we still want to
+	// generate a dummy so any nested types (like enums) are written.
+	if (s_IsRlType && (s_Type->m_nInterfaceCount > 0 || s_Type->m_nBaseClassCount > 0))
+	{
+		s_IsRlType = false;
+	}
+
+	// Persist the final determination so dependents (processed after this node) see it and demote
+	// themselves accordingly.
+	p_Node->ResourceLibType = s_IsRlType;
+
 	if (!s_IsRlType)
 	{
 		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
-		return;
-	}
 
-	auto s_Type = reinterpret_cast<IClassType*>(p_Node->TypeData->typeInfo());
+		if (s_Type->m_nBaseClassCount == 0 && s_Type->m_nInterfaceCount == 0 && s_Type->m_nPropertyCount > 0)
+			EmitJsonStruct(p_Node);
+		else
+			MaybeEmitForcedJsonStruct(p_Node);
 
-	// We only care about struct types basically.
-	// But we still need to generate a dummy class for types with interfaces/base classes
-	// so that nested types (like enums) are still written.
-	if (s_Type->m_nInterfaceCount > 0 || s_Type->m_nBaseClassCount > 0)
-	{
-		GenerateDummyClass(p_Node, p_Indent, EOutputTarget::RlOnly);
 		return;
 	}
 
@@ -1092,7 +1385,7 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 
 	if (s_TypeName.find_first_of('<') != std::string::npos)
 	{
-		printf("Tried generating code for a templated type %s. Skipping.\n", s_TypeName.c_str());
+		log("Tried generating code for a templated type %s. Skipping.\n", s_TypeName.c_str());
 		return;
 	}
 
@@ -1101,13 +1394,15 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	{
 		if (!s_Type->m_pProperties[i].m_pType->typeInfo())
 		{
-			printf("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			log("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			EmitJsonStruct(p_Node);
 			return;
 		}
 
 		if (s_Type->m_pProperties[i].m_pType->typeInfo()->m_pTypeName == std::string("TArray"))
 		{
-			printf("TArray property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			log("TArray property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeName.c_str());
+			EmitJsonStruct(p_Node);
 			return;
 		}
 	}
@@ -1115,7 +1410,10 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	GenerateRlClassSource(p_Node);
 
 	s_HeaderStream << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
-	s_HeaderStream << p_Indent << "class /*alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ")*/ " << p_Node->Name;
+	s_HeaderStream << p_Indent << "class ";
+	if (s_Type->m_nTypeAlignment > 0)
+		s_HeaderStream << "alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ") ";
+	s_HeaderStream << p_Node->Name << std::endl;
 	s_HeaderStream << p_Indent << "{" << std::endl;
 	s_HeaderStream << p_Indent << "public:" << std::endl;
 
@@ -1141,11 +1439,6 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 	s_HeaderStream << p_Indent << "\tbool operator!=(const " << p_Node->Name << "& p_Other) const { return !(*this == p_Other); }" << std::endl;
 	s_HeaderStream << std::endl;
 
-	uintptr_t s_CurrentOffset = 0;
-
-	if (s_Type->m_nPropertyCount > 0)
-		s_CurrentOffset = s_Type->m_pProperties[0].m_nOffset;
-
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
 	{
 		auto s_Prop = s_Type->m_pProperties[i];
@@ -1154,31 +1447,33 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 
 		m_PropertyNames.insert(s_PropName);
 
-		uintptr_t s_ExpectedOffset = s_Prop.m_nOffset;
-
-		if (s_CurrentOffset < s_ExpectedOffset)
-		{
-			// Add padding.
-			uintptr_t s_PaddingBytes = s_ExpectedOffset - s_CurrentOffset;
-			s_HeaderStream << p_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "] {};" << std::endl;
-			s_CurrentOffset = s_ExpectedOffset;
-		}
-
 		s_HeaderStream << p_Indent << "\t" << NormalizeName(s_Prop.m_pType) << " " << s_PropName << ";";
 		s_HeaderStream << " // 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << std::endl;
-
-		s_CurrentOffset += s_Prop.m_pType->typeInfo()->m_nTypeSize;
 	}
 
-	if (s_CurrentOffset < s_Type->m_nTypeSize)
-	{
-		// Add padding.
-		uintptr_t s_PaddingBytes = s_Type->m_nTypeSize - s_CurrentOffset;
-		s_HeaderStream << p_Indent << "\tuint8_t _pad" << std::hex << s_CurrentOffset << std::dec << "[" << s_PaddingBytes << "] {};" << std::endl;
-		s_CurrentOffset = s_Type->m_nTypeSize;
-	}
+	EmitJsonStruct(p_Node);
 
 	s_HeaderStream << p_Indent << "};" << std::endl;
+
+	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
+	{
+		auto s_Prop = s_Type->m_pProperties[i];
+		std::string s_PropName = s_Prop.m_pName;
+
+		s_HeaderStream << p_Indent << "ZHM_OFFSET_CHECK(" << p_Node->Name << ", " << s_PropName
+			<< ", 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << ");" << std::endl;
+	}
+
+	s_HeaderStream << p_Indent << "static_assert(sizeof(" << p_Node->Name
+		<< ") == 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec
+		<< ", \"Wrong size for " << p_Node->Name << "\");" << std::endl;
+
+	if (s_Type->m_nTypeAlignment > 0)
+	{
+		s_HeaderStream << p_Indent << "static_assert(alignof(" << p_Node->Name
+			<< ") == 0x" << std::hex << std::uppercase << static_cast<int>(s_Type->m_nTypeAlignment) << std::dec
+			<< ", \"Wrong alignment for " << p_Node->Name << "\");" << std::endl;
+	}
 
 	s_HeaderStream << std::endl;
 }
@@ -1195,7 +1490,7 @@ void CodeGen::GenerateRlClassSource(const std::shared_ptr<TreeNode>& p_Node)
 	{
 		if (!s_Type->m_pProperties[i].m_pType->typeInfo())
 		{
-			printf("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeInfo->m_pTypeName);
+			log("Could not get typeinfo for property %s in type %s.\n", s_Type->m_pProperties[i].m_pName, s_TypeInfo->m_pTypeName);
 			return;
 		}
 	}
@@ -1416,6 +1711,15 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	auto s_Type = reinterpret_cast<IEnumType*>(p_Node->TypeData->typeInfo());
 	std::map<int, std::string> s_Enum;
 
+	const bool s_CaptureJson = (&p_Stream == &m_ReflectiveClassesHeaderFile);
+
+	JsonEnumInfo s_JsonEnum;
+	if (s_CaptureJson)
+	{
+		s_JsonEnum.Name = s_Type->m_pTypeName;
+		s_JsonEnum.Size = static_cast<uint32_t>(s_Type->m_nTypeSize);
+	}
+
 	p_Stream << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
 	p_Stream << p_Indent << "enum class " << p_Node->Name << " : " << GetEnumUnderlyingType(p_Node->TypeData) << std::endl;
 	p_Stream << p_Indent << "{" << std::endl;
@@ -1424,97 +1728,115 @@ void CodeGen::GenerateEnum(const std::shared_ptr<TreeNode>& p_Node, const std::s
 	s_Type->m_entries.m_pAllocationEnd = s_Type->m_entries.m_pEnd;
 	for (auto it = s_Type->m_entries.begin(); it != s_Type->m_entries.end(); ++it)
 	{
-		s_Enum[it->m_nValue] = it->m_pName;
-		p_Stream << p_Indent << "\t" << it->m_pName << " = " << std::dec << it->m_nValue << "," << std::endl;
+		int64_t s_Value = it->m_nValue;
+		switch (s_Type->m_nTypeSize)
+		{
+			case 1: s_Value = static_cast<int8_t>(s_Value); break;
+			case 2: s_Value = static_cast<int16_t>(s_Value); break;
+			case 4: s_Value = static_cast<int32_t>(s_Value); break;
+			default: break;
+		}
+
+		s_Enum[static_cast<int>(s_Value)] = it->m_pName;
+
+		p_Stream << p_Indent << "\t" << it->m_pName << " = " << std::dec << s_Value << "," << std::endl;
+
+		if (s_CaptureJson)
+			s_JsonEnum.Values[s_Value] = it->m_pName;
 	}
 
 	p_Stream << p_Indent << "};" << std::endl << std::endl;
 
 	if (!p_Node->SortedChildren.empty()) {
-		printf("Enum %s has children. This is unexpected.\n", p_Node->Name.c_str());
+		log("Enum %s has children. This is unexpected.\n", p_Node->Name.c_str());
 	}
 
-	m_Enums[s_Type->m_pTypeName] = s_Enum;
+	m_Enums[s_Type->m_pTypeName] = { static_cast<uint32_t>(s_Type->m_nTypeSize), std::move(s_Enum) };
+
+	if (s_CaptureJson)
+		m_JsonEnums.push_back(std::move(s_JsonEnum));
 }
 
 void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const std::string& p_Indent)
 {
 	auto s_Type = reinterpret_cast<IClassType*>(p_Node->TypeData->typeInfo());
 
-	// Look up RTTI for this type
+	// Look up RTTI for this type. Plain data structs (no virtuals, no base classes) won't have
+	// an entry, in which case we emit the class without inheritance or virtual placeholders.
 	auto s_RttiIt = m_RttiByTypeName.find(s_Type->m_pTypeName);
-
-	if (s_RttiIt == m_RttiByTypeName.end())
-	{
-		printf("Could not find RTTI for type %s. Skipping.\n", p_Node->Name.c_str());
-		return;
-	}
-
-	// TODO: Handle structs
-
-	auto s_VTable = s_RttiIt->second;
+	const bool s_HasRtti = s_RttiIt != m_RttiByTypeName.end();
+	VTableMsvc* s_VTable = s_HasRtti ? s_RttiIt->second : nullptr;
 
 	m_SDKHeader << p_Indent << "// Size: 0x" << std::hex << std::uppercase << s_Type->m_nTypeSize << std::dec << std::endl;
-	m_SDKHeader << p_Indent << "class " << p_Node->Name;
+	m_SDKHeader << p_Indent << (s_HasRtti ? "class " : "struct ");
+	if (s_Type->m_nTypeAlignment > 0)
+		m_SDKHeader << "alignas(" << static_cast<int>(s_Type->m_nTypeAlignment) << ") ";
+	m_SDKHeader << p_Node->Name;
 
-	// Generate inheritance based on RTTI (ignore ZHM base class info)
-	auto s_ClassDesc = s_VTable->Rtti->ClassDescriptor;
-	bool s_HasBases = false;
 	size_t s_InheritedVTableSize = 0;  // Number of inherited vtable entries
 
-	// RTTI BaseClasses contains the full hierarchy:
-	// [0] = self
-	// [1] = first direct base
-	// [1+1..1+NumContainedBases[1]] = ancestors of first direct base
-	// [next] = second direct base (if any)
-	// etc.
-	// We use NumContainedBases to skip over indirect ancestors and only include direct bases.
-	for (size_t i = 1; i < s_ClassDesc->BaseClasses.size(); )
+	if (s_HasRtti)
 	{
-		auto s_Base = s_ClassDesc->BaseClasses[i];
-		if (!s_Base || !s_Base->TypeDescriptor)
-		{
-			i++;
-			continue;
-		}
+		// Generate inheritance based on RTTI (ignore ZHM base class info)
+		auto s_ClassDesc = s_VTable->Rtti->ClassDescriptor;
+		bool s_HasBases = false;
 
-		std::string s_BaseName = DemangleRTTIName(s_Base->TypeDescriptor->Name);
-		if (s_BaseName.empty())
+		// RTTI BaseClasses contains the full hierarchy:
+		// [0] = self
+		// [1] = first direct base
+		// [1+1..1+NumContainedBases[1]] = ancestors of first direct base
+		// [next] = second direct base (if any)
+		// etc.
+		// We use NumContainedBases to skip over indirect ancestors and only include direct bases.
+		for (size_t i = 1; i < s_ClassDesc->BaseClasses.size(); )
 		{
-			i++;
-			continue;
-		}
-
-		// Look up the base class's vtable to get its size (for first direct base only)
-		if (!s_HasBases)
-		{
-			auto s_BaseRttiIt = m_RttiByTypeName.find(s_BaseName);
-			if (s_BaseRttiIt != m_RttiByTypeName.end() && s_BaseRttiIt->second)
+			auto s_Base = s_ClassDesc->BaseClasses[i];
+			if (!s_Base || !s_Base->TypeDescriptor)
 			{
-				s_InheritedVTableSize = s_BaseRttiIt->second->Items.size();
+				i++;
+				continue;
 			}
-		}
 
-		if (!s_HasBases)
-		{
-			m_SDKHeader << " :" << std::endl;
-			s_HasBases = true;
-		}
-		else
-		{
-			m_SDKHeader << "," << std::endl;
-		}
+			std::string s_BaseName = DemangleRTTIName(s_Base->TypeDescriptor->Name);
+			if (s_BaseName.empty())
+			{
+				i++;
+				continue;
+			}
 
-		// Use NormalizeTypeName for base class reference
-		m_SDKHeader << p_Indent << "\tpublic " << s_BaseName;
+			// Look up the base class's vtable to get its size (for first direct base only)
+			if (!s_HasBases)
+			{
+				auto s_BaseRttiIt = m_RttiByTypeName.find(s_BaseName);
+				if (s_BaseRttiIt != m_RttiByTypeName.end() && s_BaseRttiIt->second)
+				{
+					s_InheritedVTableSize = s_BaseRttiIt->second->Items.size();
+				}
+			}
 
-		// Skip over this base's ancestors (they're not direct bases of our class)
-		i += 1 + s_Base->NumContainedBases;
+			if (!s_HasBases)
+			{
+				m_SDKHeader << " :" << std::endl;
+				s_HasBases = true;
+			}
+			else
+			{
+				m_SDKHeader << "," << std::endl;
+			}
+
+			// Use NormalizeTypeName for base class reference
+			m_SDKHeader << p_Indent << "\tpublic " << s_BaseName;
+
+			// Skip over this base's ancestors (they're not direct bases of our class)
+			i += 1 + s_Base->NumContainedBases;
+		}
 	}
 
 	m_SDKHeader << std::endl;
 	m_SDKHeader << p_Indent << "{" << std::endl;
-	m_SDKHeader << p_Indent << "public:" << std::endl;
+
+	if (s_HasRtti)
+		m_SDKHeader << p_Indent << "public:" << std::endl;
 
 	// Write children first.
 	for (auto& s_Child : p_Node->SortedChildren)
@@ -1522,24 +1844,28 @@ void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const st
 		GenerateCode(s_Child, p_Indent + "\t", EOutputTarget::SdkOnly);
 	}
 
-	if (!p_Node->SortedChildren.empty())
+	if (!p_Node->SortedChildren.empty() && s_HasRtti)
 	{
 		m_SDKHeader << std::endl;
 		m_SDKHeader << p_Indent << "public:" << std::endl;
 	}
 
-	// Generate placeholder virtual methods from vtable (only NEW methods, not inherited)
-	for (size_t i = s_InheritedVTableSize; i < s_VTable->Items.size(); ++i)
+	if (s_HasRtti)
 	{
-		size_t s_VTableOffset = i * sizeof(uintptr_t);
-		m_SDKHeader << p_Indent << "\tvirtual void " << p_Node->Name << "_unk0x";
-		m_SDKHeader << std::hex << std::uppercase << s_VTableOffset << std::dec << "() = 0;" << std::endl;
+		// Generate placeholder virtual methods from vtable (only NEW methods, not inherited)
+		for (size_t i = s_InheritedVTableSize; i < s_VTable->Items.size(); ++i)
+		{
+			size_t s_VTableOffset = i * sizeof(uintptr_t);
+			m_SDKHeader << p_Indent << "\tvirtual void " << p_Node->Name << "_unk0x";
+			m_SDKHeader << std::hex << std::uppercase << s_VTableOffset << std::dec << "() = 0;" << std::endl;
+		}
+
+		if (!s_VTable->Items.empty())
+			m_SDKHeader << std::endl;
 	}
 
-	if (!s_VTable->Items.empty())
-		m_SDKHeader << std::endl;
-
-	// Generate properties using ZHM_PROPERTY macro
+	// Generate properties. RTTI-backed classes go through the ZHM_PROPERTY macro; plain data
+	// structs get bare member declarations.
 	for (uint16_t i = 0; i < s_Type->m_nPropertyCount; ++i)
 	{
 		auto s_Prop = s_Type->m_pProperties[i];
@@ -1552,15 +1878,26 @@ void CodeGen::GenerateSdkClass(const std::shared_ptr<TreeNode>& p_Node, const st
 
 		std::string s_PropTypeName = NormalizeName(s_Prop.m_pType);
 
-		m_SDKHeader << p_Indent << "\tZHM_PROPERTY(" << s_PropTypeName << ", " << s_PropName;
-		m_SDKHeader << ", 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << ");" << std::endl;
+		if (s_HasRtti)
+		{
+			m_SDKHeader << p_Indent << "\tZHM_PROPERTY(" << s_PropTypeName << ", " << s_PropName;
+			m_SDKHeader << ", 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << ");" << std::endl;
+		}
+		else
+		{
+			m_SDKHeader << p_Indent << "\t" << s_PropTypeName << " " << s_PropName << ";";
+			m_SDKHeader << " // 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << std::endl;
+		}
 	}
 
-	// Generate input pins using ZHM_PIN_INPUT macro
-	for (uint16_t i = 0; i < s_Type->m_nInputCount; ++i)
+	if (s_HasRtti)
 	{
-		auto s_Input = s_Type->m_pInputs[i];
-		m_SDKHeader << p_Indent << "\tZHM_PIN_INPUT(0x" << std::hex << std::uppercase << s_Input.m_nPinID << std::dec << ");" << std::endl;
+		// Generate input pins using ZHM_PIN_INPUT macro
+		for (uint16_t i = 0; i < s_Type->m_nInputCount; ++i)
+		{
+			auto s_Input = s_Type->m_pInputs[i];
+			m_SDKHeader << p_Indent << "\tZHM_PIN_INPUT(0x" << std::hex << std::uppercase << s_Input.m_nPinID << std::dec << ");" << std::endl;
+		}
 	}
 
 	m_SDKHeader << p_Indent << "};" << std::endl << std::endl;
@@ -1573,16 +1910,18 @@ void CodeGen::GenerateDummyClass(const std::shared_ptr<TreeNode> &p_Node, const 
 	const bool s_WriteSdk = (p_Target == EOutputTarget::Both || p_Target == EOutputTarget::SdkOnly);
 	const bool s_WriteRl = (p_Target == EOutputTarget::Both || p_Target == EOutputTarget::RlOnly) && s_HasChildren;
 
+	const std::string s_DisplayName = NormalizeTypeName(p_Node->Name);
+
 	if (s_WriteSdk)
 	{
-		m_SDKHeader << p_Indent << "class " << p_Node->Name << std::endl;
+		m_SDKHeader << p_Indent << "class " << s_DisplayName << std::endl;
 		m_SDKHeader << p_Indent << "{" << std::endl;
 		m_SDKHeader << p_Indent << "public:" << std::endl;
 	}
 
 	if (s_WriteRl)
 	{
-		m_ReflectiveClassesHeaderFile << p_Indent << "class " << p_Node->Name << std::endl;
+		m_ReflectiveClassesHeaderFile << p_Indent << "class " << s_DisplayName << std::endl;
 		m_ReflectiveClassesHeaderFile << p_Indent << "{" << std::endl;
 		m_ReflectiveClassesHeaderFile << p_Indent << "public:" << std::endl;
 	}
@@ -1606,7 +1945,16 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 {
 	if (p_Node->ShouldSkip || p_Node->Name == "ZRepositoryID")
 	{
-		printf("Skipping code generation for node %s.\n", p_Node->Name.c_str());
+		log("Skipping code generation for node %s.\n", p_Node->Name.c_str());
+
+		// Still emit nested types (notably enums) so they end up in ZHMEnums.
+		if (p_Node->Type == TreeNode::ENodeType::Type && !p_Node->SortedChildren.empty())
+		{
+			GenerateDummyClass(p_Node, p_Indent, p_Target);
+		}
+
+		MaybeEmitForcedJsonStruct(p_Node);
+
 		return;
 	}
 
@@ -1638,7 +1986,7 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 		{
 			if (p_Node->TypeData->typeInfo()->isPrimitive())
 			{
-				printf("Primitive type %s. Skipping generation.\n", p_Node->Name.c_str());
+				log("Primitive type %s. Skipping generation.\n", p_Node->Name.c_str());
 				return;
 			}
 
@@ -1654,7 +2002,7 @@ void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::s
 			}
 
 			if (!p_Node->TypeData->typeInfo()->isClass()) {
-				printf("Type %s is not a class. Skipping generation.\n", p_Node->Name.c_str());
+				log("Type %s is not a class. Skipping generation.\n", p_Node->Name.c_str());
 				return;
 			}
 

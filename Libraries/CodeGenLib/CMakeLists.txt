@@ -8,6 +8,8 @@ add_library(CodeGenLib SHARED
 	Src/ZHMCommon.h
 	Src/CodeGen.h
 	Src/CodeGen.cpp
+	Src/Log.h
+	Src/Log.cpp
 	Src/HMAData.cpp
 	Src/HMAData.h
 	Src/RTTI/Image.h

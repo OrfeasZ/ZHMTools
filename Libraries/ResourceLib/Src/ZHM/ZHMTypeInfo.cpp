@@ -16,6 +16,8 @@
 #include <Generated/HM2/ZHMEnums.h>
 #elif ZHM_TARGET == 2016
 #include <Generated/HM2016/ZHMEnums.h>
+#elif ZHM_TARGET == 2026
+#include <Generated/KNT/ZHMEnums.h>
 #endif
 
 std::recursive_mutex IZHMTypeInfo::g_TypeRegistryMutex;
@@ -26,38 +28,52 @@ class ZHMEnumTypeInfo : public IZHMTypeInfo
 {
 public:
 	ZHMEnumTypeInfo(const std::string& p_TypeName) :
-		m_TypeName(p_TypeName)
-	{		
+		m_TypeName(p_TypeName),
+		m_Size(ZHMEnums::GetEnumSize(p_TypeName))
+	{
 	}
-	
+
 public:
 	void WriteSimpleJson(void* p_Object, std::ostream& p_Stream) override
 	{
-		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, *reinterpret_cast<int32_t*>(p_Object)));
+		int32_t s_Value = 0;
+		switch (m_Size)
+		{
+			case 1: s_Value = *reinterpret_cast<int8_t*>(p_Object); break;
+			case 2: s_Value = *reinterpret_cast<int16_t*>(p_Object); break;
+			default: s_Value = *reinterpret_cast<int32_t*>(p_Object); break;
+		}
+		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, s_Value));
 	}
-	
+
 	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) override
 	{
-		*reinterpret_cast<int32_t*>(p_Target) = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
+		const int32_t s_Value = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
+		switch (m_Size)
+		{
+			case 1: *reinterpret_cast<int8_t*>(p_Target) = static_cast<int8_t>(s_Value); break;
+			case 2: *reinterpret_cast<int16_t*>(p_Target) = static_cast<int16_t>(s_Value); break;
+			default: *reinterpret_cast<int32_t*>(p_Target) = s_Value; break;
+		}
 	}
 
 	void Serialize(void* p_Object, ZHMSerializer& p_Serializer, uintptr_t p_OwnOffset) override
 	{
 	}
-	
+
 	std::string TypeName() const override
 	{
 		return m_TypeName;
 	}
-	
+
 	size_t Size() const override
 	{
-		return sizeof(int);
+		return m_Size;
 	}
-	
+
 	size_t Alignment() const override
 	{
-		return alignof(int);
+		return m_Size;
 	}
 
 	bool IsDummy() const override
@@ -78,6 +94,7 @@ public:
 
 private:
 	std::string m_TypeName;
+	size_t m_Size;
 };
 
 class ZHMArrayTypeInfo : public IZHMTypeInfo
@@ -85,7 +102,13 @@ class ZHMArrayTypeInfo : public IZHMTypeInfo
 public:
 	ZHMArrayTypeInfo(IZHMTypeInfo* p_ElementType) :
 		m_ElementType(p_ElementType)
-	{		
+	{
+	}
+
+	ZHMArrayTypeInfo(IZHMTypeInfo* p_ElementType, std::string p_OverriddenTypeName) :
+		m_ElementType(p_ElementType),
+		m_OverriddenTypeName(std::move(p_OverriddenTypeName))
+	{
 	}
 	
 public:	
@@ -195,6 +218,9 @@ public:
 	
 	std::string TypeName() const override
 	{
+		if (!m_OverriddenTypeName.empty())
+			return m_OverriddenTypeName;
+
 		return "TArray<" + m_ElementType->TypeName() + ">";
 	}
 	
@@ -270,6 +296,7 @@ public:
 
 private:
 	IZHMTypeInfo* m_ElementType;
+	std::string m_OverriddenTypeName;
 };
 
 class ZHMDummyTypeInfo : public IZHMTypeInfo
@@ -340,6 +367,19 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 			auto s_ElementTypeStr = p_Name.substr(7);
 			s_ElementTypeStr = s_ElementTypeStr.substr(0, s_ElementTypeStr.size() - 1);
 
+			std::string s_OverriddenTypeName;
+
+#if ZHM_TARGET == 2026
+			// In 007 First Light/KNT the BIN1 layout for TArray<ZResourceID> stores
+			// 8-byte runtime resource ids rather than 16-byte ZString-backed paths.
+			// Override it here so we can parse it as expected. Thanks IOI!
+			if (s_ElementTypeStr == "ZResourceID")
+			{
+				s_ElementTypeStr = "ZRuntimeResourceID";
+				s_OverriddenTypeName = p_Name;
+			}
+#endif
+
 			auto s_ElementType = GetTypeByName(s_ElementTypeStr);
 
 			if (s_ElementType == nullptr)
@@ -348,11 +388,14 @@ IZHMTypeInfo* IZHMTypeInfo::GetTypeByName(const std::string& p_Name)
 
 				auto s_DummyType = new ZHMDummyTypeInfo(p_Name);
 				(*g_TypeRegistry)[p_Name] = s_DummyType;
-				
+
 				return s_DummyType;
 			}
 
-			auto* s_TypeInfo = new ZHMArrayTypeInfo(s_ElementType);
+			auto* s_TypeInfo = s_OverriddenTypeName.empty()
+				? new ZHMArrayTypeInfo(s_ElementType)
+				: new ZHMArrayTypeInfo(s_ElementType, s_OverriddenTypeName);
+
 			(*g_TypeRegistry)[p_Name] = s_TypeInfo;
 
 			return s_TypeInfo;

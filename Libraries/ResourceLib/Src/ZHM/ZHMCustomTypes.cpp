@@ -11,6 +11,8 @@
 #include <Generated/HM2/ZHMGen.h>
 #elif ZHM_TARGET == 2016
 #include <Generated/HM2016/ZHMGen.h>
+#elif ZHM_TARGET == 2026
+#include <Generated/KNT/ZHMGen.h>
 #endif
 
 ZHMTypeInfo SAudioSwitchBlueprintData::TypeInfo = ZHMTypeInfo("SAudioSwitchBlueprintData", sizeof(SAudioSwitchBlueprintData), alignof(SAudioSwitchBlueprintData), WriteSimpleJson, FromSimpleJson, Serialize);
@@ -550,7 +552,13 @@ void SEnumType::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 		auto s_ItemValue = s_Object->m_aItemValues[i];
 
 		p_Stream << simdjson::as_json_string(s_ItemName) << ":";
+#if ZHM_TARGET == 2026
+		p_Stream << "{\"value\":" << s_ItemValue;
+		p_Stream << ",\"label\":" << simdjson::as_json_string(s_Object->m_aItemLabels[i]);
+		p_Stream << "}";
+#else
 		p_Stream << s_ItemValue;
+#endif
 
 		if (i < s_Object->m_aItemNames.size() - 1)
 			p_Stream << ",";
@@ -569,12 +577,21 @@ void SEnumType::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Tar
 	simdjson::ondemand::object s_Items = p_Document["Items"];
 	s_Object->m_aItemNames.resize(s_Items.count_fields());
 	s_Object->m_aItemValues.resize(s_Items.count_fields());
+#if ZHM_TARGET == 2026
+	s_Object->m_aItemLabels.resize(s_Items.count_fields());
+#endif
 
 	size_t s_Index = 0;
 	for (auto s_Field : s_Items)
 	{
 		s_Object->m_aItemNames[s_Index] = std::string_view(s_Field.unescaped_key());
+#if ZHM_TARGET == 2026
+		simdjson::ondemand::value s_FieldValue = s_Field.value();
+		s_Object->m_aItemValues[s_Index] = simdjson::from_json_uint32(s_FieldValue["value"]);
+		s_Object->m_aItemLabels[s_Index] = std::string_view(s_FieldValue["label"]);
+#else
 		s_Object->m_aItemValues[s_Index] = simdjson::from_json_uint32(s_Field.value());
+#endif
 		s_Index++;
 	}
 }
@@ -584,9 +601,11 @@ void SEnumType::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t 
 	auto* s_Object = static_cast<SEnumType*>(p_Object);
 
 	ZString::Serialize(&s_Object->m_sName, p_Serializer, p_OwnOffset + offsetof(SEnumType, m_sName));
+#if ZHM_TARGET == 2026
+	TArray<ZString>::Serialize(&s_Object->m_aItemLabels, p_Serializer, p_OwnOffset + offsetof(SEnumType, m_aItemLabels));
+#endif
 	TArray<ZString>::Serialize(&s_Object->m_aItemNames, p_Serializer, p_OwnOffset + offsetof(SEnumType, m_aItemNames));
 	TArray<uint32_t>::Serialize(&s_Object->m_aItemValues, p_Serializer, p_OwnOffset + offsetof(SEnumType, m_aItemValues));
-	
 }
 
 ZHMTypeInfo SLocalizedVideoDataDecrypted::TypeInfo = ZHMTypeInfo("SLocalizedVideoDataDecrypted", sizeof(SLocalizedVideoDataDecrypted), alignof(SLocalizedVideoDataDecrypted), SLocalizedVideoDataDecrypted::WriteSimpleJson, SLocalizedVideoDataDecrypted::FromSimpleJson, SLocalizedVideoDataDecrypted::Serialize, SLocalizedVideoDataDecrypted::Equals, SLocalizedVideoDataDecrypted::Destroy);

@@ -6,6 +6,7 @@
 #include <ResourceLib_HM3.h>
 #include <ResourceLib_HM2.h>
 #include <ResourceLib_HM2016.h>
+#include <ResourceLib_KNT.h>
 
 #if _WIN32
 #define EXECUTABLE "ResourceTool.exe"
@@ -23,6 +24,7 @@ enum class HitmanVersion
 	Hitman2016,
 	Hitman2,
 	Hitman3,
+	FirstLight007,
 };
 
 bool ResourceToJson(const std::filesystem::path& p_InputFilePath, const std::filesystem::path& p_OutputFilePath, ResourceConverter* p_Converter)
@@ -53,7 +55,7 @@ void PrintHelp()
 	printf("Usage: " EXECUTABLE " <game> <mode> <resource-type> <input-path> <output-path> [options]\n");
 
 	printf("\n");
-	printf("game can be one of: HM2016, HM2, HM3\n");
+	printf("game can be one of: HM2016, HM2, HM3, KNT\n");
 	printf("mode can be one of: convert, generate\n");
 	printf("resource-type can be one of:\n");
 
@@ -102,6 +104,21 @@ void PrintHelp()
 
 	HM3_FreeSupportedResourceTypes(s_HM3Resources);
 
+	printf("\n");
+	printf("\tFor KNT: ");
+
+	auto* s_KNTResources = KNT_GetSupportedResourceTypes();
+
+	for (size_t i = 0; i < s_KNTResources->TypeCount; ++i)
+	{
+		if (i != 0)
+			printf(", ");
+
+		printf("%s", s_KNTResources->Types[i]);
+	}
+
+	KNT_FreeSupportedResourceTypes(s_KNTResources);
+
 	printf("\n");	
 	printf("\n");
 	printf("\n");
@@ -139,6 +156,8 @@ int TryConvertFile(const std::string& p_FilePath)
 		s_DetectedVersion = HitmanVersion::Hitman3;
 	else if (s_InputPathStr.find("hitman") != std::string::npos || s_InputPathStr.find("hm") != std::string::npos || s_InputPathStr.find("hm2016") != std::string::npos || s_InputPathStr.find("h2016") != std::string::npos)
 		s_DetectedVersion = HitmanVersion::Hitman2016;
+	else if (s_InputPathStr.find("007") != std::string::npos || s_InputPathStr.find("knt") != std::string::npos)
+		s_DetectedVersion = HitmanVersion::FirstLight007;
 
 	if (s_DetectedVersion == HitmanVersion::Unknown)
 	{
@@ -171,11 +190,16 @@ int TryConvertFile(const std::string& p_FilePath)
 	case HitmanVersion::Hitman2:
 		s_ResourceConverter = HM2_GetConverterForResource(s_PossibleResourceType.c_str());
 		s_ResourceGenerator = HM2_GetGeneratorForResource(s_PossibleResourceType.c_str());
-		break;
+			break;
 
 	case HitmanVersion::Hitman3:
 		s_ResourceConverter = HM3_GetConverterForResource(s_PossibleResourceType.c_str());
 		s_ResourceGenerator = HM3_GetGeneratorForResource(s_PossibleResourceType.c_str());
+		break;
+
+	case HitmanVersion::FirstLight007:
+		s_ResourceConverter = KNT_GetConverterForResource(s_PossibleResourceType.c_str());
+		s_ResourceGenerator = KNT_GetGeneratorForResource(s_PossibleResourceType.c_str());
 		break;
 	}
 	
@@ -248,7 +272,7 @@ int main(int argc, char** argv)
 			s_Compatible = true;
 	}
 
-	if (s_GameVersionStr != "HM2016" && s_GameVersionStr != "HM2" && s_GameVersionStr != "HM3")
+	if (s_GameVersionStr != "HM2016" && s_GameVersionStr != "HM2" && s_GameVersionStr != "HM3" && s_GameVersionStr != "KNT")
 	{
 		PrintHelp();
 		return 1;
@@ -268,6 +292,8 @@ int main(int argc, char** argv)
 		s_GameVersion = HitmanVersion::Hitman2;
 	else if (s_GameVersionStr == "HM3")
 		s_GameVersion = HitmanVersion::Hitman3;
+	else if (s_GameVersionStr == "KNT")
+		s_GameVersion = HitmanVersion::FirstLight007;
 	
 	ResourceConverter* s_ResourceConverter = nullptr;
 	ResourceGenerator* s_ResourceGenerator = nullptr;
@@ -287,6 +313,11 @@ int main(int argc, char** argv)
 	case HitmanVersion::Hitman3:
 		s_ResourceConverter = HM3_GetConverterForResource(s_ResourceType.c_str());
 		s_ResourceGenerator = HM3_GetGeneratorForResource(s_ResourceType.c_str());
+		break;
+
+	case HitmanVersion::FirstLight007:
+		s_ResourceConverter = KNT_GetConverterForResource(s_ResourceType.c_str());
+		s_ResourceGenerator = KNT_GetGeneratorForResource(s_ResourceType.c_str());
 		break;
 	}
 

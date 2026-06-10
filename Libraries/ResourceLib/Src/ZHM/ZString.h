@@ -177,5 +177,3 @@ protected:
 	int32_t m_nLength = 0x80000000;
 	const char* m_pChars = "";
 };
-
-#pragma pack(pop)

@@ -1,5 +1,6 @@
 #include "VTableFinder.h"
 #include "Image.h"
+#include "../Log.h"
 
 #include <iostream>
 #include <set>
@@ -95,7 +96,7 @@ void FindMsvcVTables(const Image& p_Image, VTablesMsvc& p_VTables, RttiMsvc& p_R
 		const uintptr_t s_RttiPtrAddr = s_Addr - sizeof(uintptr_t);
 
 		if (s_RttiPtrAddr == 0x0000000141E2CC50) {
-			printf("Found it!\n");
+			log("Found it!\n");
 		}
 
 		if (const auto s_RttiAddr = p_Image.ReadPointer(s_RttiPtrAddr))
