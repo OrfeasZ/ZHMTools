@@ -1301,7 +1301,7 @@ void CodeGen::EmitJsonStruct(const std::shared_ptr<TreeNode>& p_Node)
 
 		std::optional<std::string> s_PropType {};
 
-		if (s_Prop.m_pType && !s_Prop.m_pType->typeInfo())
+		if (s_Prop.m_pType && s_Prop.m_pType->typeInfo())
 		{
 			s_PropType = OriginalName(s_Prop.m_pType);
 		}
