@@ -32,6 +32,7 @@ SOFTWARE.
 #include <fstream>
 #include <functional>
 #include <set>
+#include <limits>
 
 uint32_t RangeCheck(uint32_t val, uint32_t min, uint32_t max)
 {
@@ -531,29 +532,6 @@ namespace NavPower
         }
     }
 
-    BBox Area::CalculateBBox()
-    {
-        float s_minFloat = -300000000000;
-        float s_maxFloat = 300000000000;
-        BBox bbox;
-        bbox.m_min.X = s_maxFloat;
-        bbox.m_min.Y = s_maxFloat;
-        bbox.m_min.Z = s_maxFloat;
-        bbox.m_max.X = s_minFloat;
-        bbox.m_max.Y = s_minFloat;
-        bbox.m_max.Z = s_minFloat;
-        for (auto& edge : m_edges)
-        {
-            bbox.m_max.X = std::max(bbox.m_max.X, edge->m_pos.X);
-            bbox.m_max.Y = std::max(bbox.m_max.Y, edge->m_pos.Y);
-            bbox.m_max.Z = std::max(bbox.m_max.Z, edge->m_pos.Z);
-            bbox.m_min.X = std::min(bbox.m_min.X, edge->m_pos.X);
-            bbox.m_min.Y = std::min(bbox.m_min.Y, edge->m_pos.Y);
-            bbox.m_min.Z = std::min(bbox.m_min.Z, edge->m_pos.Z);
-        }
-        return bbox;
-    }
-
     Vec3 Area::CalculateCentroid()
     {
         Vec3 normal = CalculateNormal();
@@ -639,17 +617,13 @@ namespace NavPower
         }
     }
 
-    BBox generateBbox(std::vector<Area> s_areas)
+    BBox generateBbox(const std::vector<Area>& s_areas)
     {
-        float s_minFloat = -300000000000;
-        float s_maxFloat = 300000000000;
         BBox bbox;
-        bbox.m_min.X = s_maxFloat;
-        bbox.m_min.Y = s_maxFloat;
-        bbox.m_min.Z = s_maxFloat;
-        bbox.m_max.X = s_minFloat;
-        bbox.m_max.Y = s_minFloat;
-        bbox.m_max.Z = s_minFloat;
+        bbox.m_min.X = bbox.m_min.Y = bbox.m_min.Z = std::numeric_limits<float>::max();
+        bbox.m_max.X = bbox.m_max.Y = bbox.m_max.Z = -std::numeric_limits<float>::max();
+
+        if (s_areas.empty()) return bbox;
 
         for (auto& area : s_areas)
         {
@@ -816,7 +790,6 @@ namespace NavPower
         //  3. Completely to the right of the median
         for (int index = 0; index < s_originalAreas.size(); index++)
         {
-            BBox bbox = s_originalAreas[index].CalculateBBox();
             float pos = 0;
             if (nodeSplits.splitAxis == Axis::X)
             {

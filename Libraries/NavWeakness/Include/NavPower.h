@@ -416,7 +416,6 @@ namespace NavPower
             return cross.GetUnitVec();
         }
 
-        BBox CalculateBBox();
         Vec3 CalculateCentroid();
         void updateAdjacentDistances() const;
     };
@@ -430,7 +429,7 @@ namespace NavPower
         uint32_t m_splitAxis;
     };
 
-    BBox generateBbox(std::vector<Area> s_areas);
+    BBox generateBbox(const std::vector<Area>& s_areas);
     bool compareX(Area& a1, Area& a2);
     bool compareY(Area& a1, Area& a2);
     bool compareZ(Area& a1, Area& a2);
