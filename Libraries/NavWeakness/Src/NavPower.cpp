@@ -1,5 +1,5 @@
 /*
-NavPower.cpp - v2.0.0
+NavPower.cpp - v3.0.0
 A header file for use with NavPower's binary navmesh files.
 
 Licensed under the MIT License
@@ -32,6 +32,7 @@ SOFTWARE.
 #include <fstream>
 #include <functional>
 #include <set>
+#include <limits>
 
 uint32_t RangeCheck(uint32_t val, uint32_t min, uint32_t max)
 {
@@ -171,7 +172,7 @@ namespace NavPower
             f.write((char*)&m_numGraphs, sizeof(m_numGraphs));
         }
 
-        void Binary::NavGraphHeader::writeBinary(std::ostream& f)
+        void Binary::NavGraphHeaderHm::writeBinary(std::ostream& f)
         {
             f.write((char*)&m_version, sizeof(m_version));
             f.write((char*)&m_layer, sizeof(m_layer));
@@ -179,6 +180,28 @@ namespace NavPower
             f.write((char*)&m_kdTreeBytes, sizeof(m_kdTreeBytes));
             f.write((char*)&m_linkRecordBytes, sizeof(m_linkRecordBytes));
             f.write((char*)&m_totalBytes, sizeof(m_totalBytes));
+            f.write((char*)&m_buildScale, sizeof(m_buildScale));
+            f.write((char*)&m_voxSize, sizeof(m_voxSize));
+            f.write((char*)&m_radius, sizeof(m_radius));
+            f.write((char*)&m_stepHeight, sizeof(m_stepHeight));
+            f.write((char*)&m_height, sizeof(m_height));
+            m_bbox.writeBinary(f);
+            f.write((char*)&m_buildUpAxis, sizeof(m_buildUpAxis));
+            f.write((char*)&m_pad, sizeof(m_pad));
+        }
+
+        void Binary::NavGraphHeaderKnt::writeBinary(std::ostream& f)
+        {
+            f.write((char*)&m_version, sizeof(m_version));
+            f.write((char*)&m_layer, sizeof(m_layer));
+            f.write((char*)&m_areaBytes, sizeof(m_areaBytes));
+            f.write((char*)&m_kdTreeBytes, sizeof(m_kdTreeBytes));
+            f.write((char*)&m_unknown0, sizeof(m_unknown0));
+            f.write((char*)&m_unknown1, sizeof(m_unknown1));
+            f.write((char*)&m_unknown2, sizeof(m_unknown2));
+            f.write((char*)&m_linkRecordBytes, sizeof(m_linkRecordBytes));
+            f.write((char*)&m_totalBytes, sizeof(m_totalBytes));
+            f.write((char*)&m_unknown3, sizeof(m_unknown3));
             f.write((char*)&m_buildScale, sizeof(m_buildScale));
             f.write((char*)&m_voxSize, sizeof(m_voxSize));
             f.write((char*)&m_radius, sizeof(m_radius));
@@ -428,10 +451,20 @@ namespace NavPower
         }
     }
 
+    bool isKnt(const uint32_t version) {
+        return version == 0x30;
+    }
+
     void FixAreaPointers(uintptr_t data, size_t areaBytes)
     {
         uintptr_t navGraphStart = data;
-        uintptr_t curIndex = data + sizeof(Binary::NavGraphHeader);
+        const uint32_t version = *reinterpret_cast<uint32_t*>(navGraphStart);
+        uintptr_t curIndex;
+        if (isKnt(version)) {
+            curIndex = data + sizeof(Binary::NavGraphHeaderKnt);
+        } else {
+            curIndex = data + sizeof(Binary::NavGraphHeaderHm);
+        }
         size_t areaEndPtr = curIndex + areaBytes;
 
         while (curIndex != areaEndPtr)
@@ -497,29 +530,6 @@ namespace NavPower
         {
             edge->writeBinary(f, s_AreaPointerToOffsetPointerMap);
         }
-    }
-
-    BBox Area::CalculateBBox()
-    {
-        float s_minFloat = -300000000000;
-        float s_maxFloat = 300000000000;
-        BBox bbox;
-        bbox.m_min.X = s_maxFloat;
-        bbox.m_min.Y = s_maxFloat;
-        bbox.m_min.Z = s_maxFloat;
-        bbox.m_max.X = s_minFloat;
-        bbox.m_max.Y = s_minFloat;
-        bbox.m_max.Z = s_minFloat;
-        for (auto& edge : m_edges)
-        {
-            bbox.m_max.X = std::max(bbox.m_max.X, edge->m_pos.X);
-            bbox.m_max.Y = std::max(bbox.m_max.Y, edge->m_pos.Y);
-            bbox.m_max.Z = std::max(bbox.m_max.Z, edge->m_pos.Z);
-            bbox.m_min.X = std::min(bbox.m_min.X, edge->m_pos.X);
-            bbox.m_min.Y = std::min(bbox.m_min.Y, edge->m_pos.Y);
-            bbox.m_min.Z = std::min(bbox.m_min.Z, edge->m_pos.Z);
-        }
-        return bbox;
     }
 
     Vec3 Area::CalculateCentroid()
@@ -607,17 +617,13 @@ namespace NavPower
         }
     }
 
-    BBox generateBbox(std::vector<Area> s_areas)
+    BBox generateBbox(const std::vector<Area>& s_areas)
     {
-        float s_minFloat = -300000000000;
-        float s_maxFloat = 300000000000;
         BBox bbox;
-        bbox.m_min.X = s_maxFloat;
-        bbox.m_min.Y = s_maxFloat;
-        bbox.m_min.Z = s_maxFloat;
-        bbox.m_max.X = s_minFloat;
-        bbox.m_max.Y = s_minFloat;
-        bbox.m_max.Z = s_minFloat;
+        bbox.m_min.X = bbox.m_min.Y = bbox.m_min.Z = std::numeric_limits<float>::max();
+        bbox.m_max.X = bbox.m_max.Y = bbox.m_max.Z = -std::numeric_limits<float>::max();
+
+        if (s_areas.empty()) return bbox;
 
         for (auto& area : s_areas)
         {
@@ -784,7 +790,6 @@ namespace NavPower
         //  3. Completely to the right of the median
         for (int index = 0; index < s_originalAreas.size(); index++)
         {
-            BBox bbox = s_originalAreas[index].CalculateBBox();
             float pos = 0;
             if (nodeSplits.splitAxis == Axis::X)
             {
@@ -889,9 +894,13 @@ namespace NavPower
         readJson(s_NavGraphJson);
     }
 
-    void NavGraph::readJson(auto s_NavGraphJson)
+    void NavGraph::readJson(auto s_NavGraphJson, const bool s_IsKnt)
     {
-        m_hdr = new Binary::NavGraphHeader();
+        if (s_IsKnt) {
+            m_hdrKnt = new Binary::NavGraphHeaderKnt();
+        } else {
+            m_hdr = new Binary::NavGraphHeaderHm();
+        }
         simdjson::ondemand::array s_AreasJson = s_NavGraphJson["Areas"];
 
         for (auto areaJson : s_AreasJson)
@@ -936,7 +945,12 @@ namespace NavPower
 
         // Calculate Bbox Areas and Edges
         BBox bbox = generateBbox(m_areas);
-        m_hdr->m_bbox.copy(bbox);
+
+        if (s_IsKnt) {
+            m_hdrKnt->m_bbox.copy(bbox);
+        } else {
+            m_hdr->m_bbox.copy(bbox);
+        }
         m_kdTreeData->m_bbox.m_min.X = bbox.m_min.X - 0.0002;
         m_kdTreeData->m_bbox.m_min.Y = bbox.m_min.Y - 0.0002;
         m_kdTreeData->m_bbox.m_min.Z = bbox.m_min.Z - 0.0002;
@@ -958,17 +972,30 @@ namespace NavPower
         generateKdTree(reinterpret_cast<uintptr_t>(m_rootKDNode), m_areas, s_AreaPointerToNavGraphOffsetMap);
 
         // Set size fields
-        m_hdr->m_areaBytes = s_areaBytes;
-        m_hdr->m_kdTreeBytes = sizeof(Binary::KDTreeData) + m_kdTreeData->m_size;
-        m_hdr->m_totalBytes = sizeof(Binary::NavGraphHeader) + m_hdr->m_areaBytes + m_hdr->m_kdTreeBytes;
+
+        if (s_IsKnt) {
+            m_hdrKnt->m_areaBytes = s_areaBytes;
+            m_hdrKnt->m_kdTreeBytes = sizeof(Binary::KDTreeData) + m_kdTreeData->m_size;
+            m_hdrKnt->m_totalBytes = sizeof(Binary::NavGraphHeaderKnt) + m_hdrKnt->m_areaBytes + m_hdrKnt->m_kdTreeBytes;
+        } else {
+            m_hdr->m_areaBytes = s_areaBytes;
+            m_hdr->m_kdTreeBytes = sizeof(Binary::KDTreeData) + m_kdTreeData->m_size;
+            m_hdr->m_totalBytes = sizeof(Binary::NavGraphHeaderHm) + m_hdr->m_areaBytes + m_hdr->m_kdTreeBytes;
+        }
     }
 
-    void NavGraph::writeBinary(std::ostream& f)
-    {
-        m_hdr->writeBinary(f);
+    void NavGraph::writeBinary(std::ostream& f) {
         // Build m_areas area pointer to NavGraph offset pointer map so the offsets can be written instead of the memory pointers
         std::map<Binary::Area*, Binary::Area*> s_AreaPointerToOffsetPointerMap;
-        unsigned char* s_AreaOffset = reinterpret_cast<unsigned char*>(sizeof(Binary::NavGraphHeader));
+        unsigned char* s_AreaOffset;
+        uint32_t s_version = *reinterpret_cast<uint32_t*>(this);
+        if (isKnt(s_version)) {
+            m_hdrKnt->writeBinary(f);
+            s_AreaOffset = reinterpret_cast<unsigned char*>(sizeof(Binary::NavGraphHeaderKnt));
+        } else {
+            m_hdr->writeBinary(f);
+            s_AreaOffset = reinterpret_cast<unsigned char*>(sizeof(Binary::NavGraphHeaderHm));
+        }
 
         for (auto area : m_areas)
         {
@@ -987,17 +1014,26 @@ namespace NavPower
         m_rootKDNode->writeBinary(f, p_KdTreeEnd);
     }
 
-    void NavGraph::read(uintptr_t& p_data)
+    void NavGraph::read(uintptr_t& p_data, bool& p_isKnt)
     {
         uintptr_t s_startPointer = p_data;
         uintptr_t s_endPointer{};
 
-        m_hdr = (Binary::NavGraphHeader*)p_data;
-        p_data += sizeof(Binary::NavGraphHeader);
+        const uint32_t s_version = *reinterpret_cast<uint32_t*>(p_data);
+        if (isKnt(s_version)) {
+            m_hdrKnt = reinterpret_cast<Binary::NavGraphHeaderKnt*>(p_data);
+            p_data += sizeof(Binary::NavGraphHeaderKnt);
+            FixAreaPointers(p_data - sizeof(Binary::NavGraphHeaderKnt), m_hdrKnt->m_areaBytes);
+            s_endPointer = p_data + m_hdrKnt->m_areaBytes;
+            p_isKnt = true;
+        } else {
+            m_hdr = reinterpret_cast<Binary::NavGraphHeaderHm*>(p_data);
+            p_data += sizeof(Binary::NavGraphHeaderHm);
+            FixAreaPointers(p_data - sizeof(Binary::NavGraphHeaderHm), m_hdr->m_areaBytes);
+            s_endPointer = p_data + m_hdr->m_areaBytes;
+            p_isKnt = false;
+        }
 
-        FixAreaPointers(p_data - sizeof(Binary::NavGraphHeader), m_hdr->m_areaBytes);
-
-        s_endPointer = p_data + m_hdr->m_areaBytes;
         while (p_data < s_endPointer)
         {
             Area s_area{};
@@ -1029,7 +1065,7 @@ namespace NavPower
                 p_data += sizeof(Binary::KDNode);
         }
 
-        if ((p_data - s_startPointer) != m_hdr->m_totalBytes)
+        if ((p_data - s_startPointer) != (isKnt(s_version) ? m_hdrKnt->m_totalBytes : m_hdr->m_totalBytes))
         {
             printf("[WARNING] NavGraph - What we read does not match the total bytes!\n");
         }
@@ -1063,7 +1099,7 @@ namespace NavPower
         return s_Checksum;
     }
     
-    void Section::read(uintptr_t& p_data)
+    void Section::read(uintptr_t& p_data, bool& p_isKnt)
     {
         m_hdr = (Binary::SectionHeader*)p_data;
         p_data += sizeof(Binary::SectionHeader);
@@ -1079,7 +1115,7 @@ namespace NavPower
 
         for (uint32_t i = 0; i < m_setHdr->m_numGraphs; ++i) {
             NavGraph s_Graph;
-            s_Graph.read(p_data);
+            s_Graph.read(p_data, p_isKnt);
             m_aNavGraphs.push_back(s_Graph);
         }
 
@@ -1113,14 +1149,14 @@ namespace NavPower
         }
     }
 
-    void Section::readJson(auto p_SectionJson)
+    void Section::readJson(auto p_SectionJson, bool s_IsKnt)
     {
         m_hdr = new Binary::SectionHeader();
         m_setHdr = new Binary::NavSetHeader();
         m_hdr->m_size = sizeof(Binary::NavSetHeader);
         for (const auto& navGraphJson : p_SectionJson["NavGraphs"]) {
             NavGraph s_NavGraph;
-            s_NavGraph.readJson(navGraphJson);
+            s_NavGraph.readJson(navGraphJson, s_IsKnt);
             m_hdr->m_size += s_NavGraph.m_hdr->m_totalBytes;
             m_aNavGraphs.push_back(s_NavGraph);
         }
@@ -1141,7 +1177,7 @@ namespace NavPower
         // Read Sections
         while ((p_data - s_startPointer) < p_filesize) {
             Section s_Section;
-            s_Section.read(p_data);
+            s_Section.read(p_data, m_isKnt);
             m_aSections.push_back(s_Section);
         }
     }
@@ -1151,18 +1187,21 @@ namespace NavPower
         simdjson::ondemand::parser s_Parser;
         simdjson::padded_string s_Json = simdjson::padded_string::load(p_NavGraphJsonPath);
         simdjson::ondemand::document s_NavMeshDocument = s_Parser.iterate(s_Json);
-        std::string navpJsonVersion = std::string{ std::string_view(s_NavMeshDocument["NavpJsonVersion"]) };
-        if (navpJsonVersion != "0.2")
+        auto s_NavpJsonVersion = std::string{ std::string_view(s_NavMeshDocument["NavpJsonVersion"]) };
+        if (s_NavpJsonVersion != "0.3")
         {
-            std::cerr << "This version of NavWeakness only supports version 0.2. NavpJsonVersion " << navpJsonVersion << std::endl;
-            throw std::runtime_error("This version of NavWeakness only supports version 0.2");
+            std::cerr << "This version of NavWeakness only supports version 0.3. NavpJsonVersion " << s_NavpJsonVersion << std::endl;
+            throw std::runtime_error("This version of NavWeakness only supports version 0.3");
         }
         m_hdr = new Binary::Header();
         m_hdr->m_imageSize = 0;
+        auto s_Game = std::string{ std::string_view(s_NavMeshDocument["Game"]) };
+		m_isKnt = s_Game == "Knt";
+
         auto s_SectionsJson = s_NavMeshDocument["Sections"];
         for (auto s_SectionJson : s_SectionsJson) {
             Section s_Section;
-            s_Section.readJson(s_SectionJson);
+            s_Section.readJson(s_SectionJson, m_isKnt);
             m_aSections.push_back(s_Section);
             // Set size fields
             m_hdr->m_imageSize += sizeof(Binary::SectionHeader) + s_Section.m_hdr->m_size;
@@ -1194,7 +1233,9 @@ namespace NavPower
     }
 
     void NavMesh::writeJson(std::ofstream& f) {
-        f << "{\"NavpJsonVersion\":\"0.2\",\"Sections\":[";
+        f << "{\"NavpJsonVersion\":\"0.3\",\"Game\":\"";
+        f << (m_isKnt ? "Knt" : "HM");
+        f << "\",\"Sections\":[";
         bool first = true;
         for (auto s_Section : m_aSections) {
             if (!first) {
