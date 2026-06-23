@@ -1222,10 +1222,8 @@ namespace NavPower
         }
         m_hdr = new Binary::Header();
         m_hdr->m_imageSize = 0;
-        if (auto s_Game = std::string{ std::string_view(s_NavMeshDocument["Game"]) }; s_Game == "Knt")
-        {
-            m_isKnt = true;
-        }
+        auto s_Game = std::string{ std::string_view(s_NavMeshDocument["Game"]) };
+		m_isKnt = s_Game == "Knt";
 
         auto s_SectionsJson = s_NavMeshDocument["Sections"];
         for (auto s_SectionJson : s_SectionsJson) {
