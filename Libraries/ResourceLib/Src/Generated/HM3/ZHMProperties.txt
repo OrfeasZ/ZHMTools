@@ -120,6 +120,7 @@ PoolSize
 PositionOffset
 Price
 Primitive
+ProviderEnabled
 RecenterHintAngle
 Recievers
 RemoveAgentData_BehaviorsDisabled_Pool_SaveData
@@ -128,6 +129,7 @@ RemoveAgentData_GuardHeadDomain_Pool_SaveData
 RemoveAgentData_HumanoidNPC_Pool_SaveData
 RemoveAgentData_HumanoidWorldState_Pool_SaveData
 RemoveAgentData_NPC_Pool_SaveData
+RolePoolID
 RuntimeLocalizedVideoRid
 SHOT_ONLY_COLLISION
 STAIRS
@@ -158,6 +160,7 @@ TouchAreaActiveSize
 TouchAreaSize
 TouchInput
 Trans
+TurnRate
 TutorialMenu
 Type
 TypeName
@@ -204,6 +207,7 @@ aPerks
 aPrompts
 aRepositoryAssetIds
 aRequirements
+aReserved
 aScaleCurve
 aScreenShot
 aStringArray
@@ -387,12 +391,15 @@ externalSceneIndex
 externalSceneTypeIndicesInResourceHeader
 extraData
 fAgilityElementUncosciousTime
+fAlongTrack
 fAlpha
 fAlphaFactor
 fAngle
 fAttention
 fCloseupDistance
 fConeWidth
+fControl
+fControlRate
 fDistance
 fDynamicScaleAlpha
 fDynamicScaleBlendRange
@@ -419,6 +426,7 @@ fNearDistance
 fNearFov
 fNearScale
 fNearScaleFov
+fNeighbourDist
 fPacifyDamage
 fPreferredDistance
 fRadius
@@ -431,7 +439,9 @@ fTimeBetweenBullets
 fTotalDamage
 fUInt32Prop
 fValue
+fVelocity
 fViewportGutter
+fVoxelSize
 fWorldSizeScalingBaseDistance
 fWorldSizeScalingFactorMax
 fWorldSizeScalingFactorMin
@@ -646,6 +656,7 @@ m_B
 m_BCCloseMode
 m_BRInputs
 m_Back1Attacher
+m_BackgroundColor
 m_BankResourceHQID
 m_BaseEventConsumers
 m_BaseId
@@ -892,6 +903,7 @@ m_FooArray
 m_FooThing
 m_Foot
 m_ForceAlignmentWithCharacterDirection
+m_ForwardNullReferences
 m_ForwardOnVariant
 m_FreeIndices
 m_From
@@ -1453,6 +1465,7 @@ m_Territories
 m_TestData
 m_TestHelpData
 m_Text
+m_TextColor
 m_TextLine
 m_TextLineHasPrimaryUser
 m_TextLineNoPrimaryUser
@@ -1588,6 +1601,7 @@ m_aActs
 m_aAddedActors
 m_aAdditionalBrickResources
 m_aAdditionalMapSegments
+m_aAgents
 m_aAlertedTensions
 m_aAlignPoses
 m_aAllSuspects
@@ -1600,6 +1614,7 @@ m_aAmmoCounts
 m_aAmmoIds
 m_aAnimationSets
 m_aApproachPath
+m_aApproachPoints
 m_aAreaVolumes
 m_aArgs
 m_aAvailableLoopPoints
@@ -1628,6 +1643,7 @@ m_aCachedAvailableSaves
 m_aCameraPositions
 m_aCameras
 m_aCandidates
+m_aCascadeDelays
 m_aCastList
 m_aCellsPositions
 m_aCharSets
@@ -1640,6 +1656,7 @@ m_aChildrenProbes
 m_aClearActions
 m_aCollections
 m_aCollidedEffect
+m_aColumns
 m_aCombatPosition
 m_aConditionIdentifiers
 m_aConditionalTextLines
@@ -1820,6 +1837,7 @@ m_aKnownEntities
 m_aLayerOverrides
 m_aLayers
 m_aLeaveEffects
+m_aLeaves
 m_aLegalKeywords
 m_aLightData
 m_aLinkedIslands
@@ -1850,12 +1868,15 @@ m_aMultiSource
 m_aMurderEvents
 m_aNavigationNodes
 m_aNearHeroEnableConditionListeners
+m_aNeighbourBits
+m_aNeighbourClearance
 m_aNewCandidates
 m_aNodeList
 m_aNonObserverMembers
 m_aObjectives
 m_aObjectsToFollowDirectionOfMotion
 m_aObserverGroupIDs
+m_aObstacles
 m_aOcclusionRooms
 m_aOccurences
 m_aOpportunities
@@ -1935,6 +1956,7 @@ m_aReveals
 m_aRoleEvents
 m_aRoles
 m_aRules
+m_aSVONodes
 m_aSavableObjectsData
 m_aScaredTensions
 m_aScopePath
@@ -1963,6 +1985,7 @@ m_aSources
 m_aSpaceProviders
 m_aSpaces
 m_aSpatials
+m_aSpawnPoints
 m_aSplineFlows
 m_aSpreadingActors
 m_aSpreadingActorsAddedTime
@@ -2028,6 +2051,7 @@ m_aViewportLockedStates
 m_aViewportRatios
 m_aVoiceVariations
 m_aVolumes
+m_aVoxels
 m_aWaitingGuards
 m_aWaitingObservers
 m_aWarningZones
@@ -2140,6 +2164,7 @@ m_bAlignBeforeTargetInterpolation
 m_bAlignFreeAttacherToContextObject
 m_bAlignFreeAttacherToInteractionPoint
 m_bAlignOnly
+m_bAlignOrientation
 m_bAlignPitchAngle
 m_bAlignPosition
 m_bAlignToBaseAngles
@@ -2182,6 +2207,7 @@ m_bAllowLockdown
 m_bAllowMouseCursor
 m_bAllowMoving
 m_bAllowMultipleInclusionVolumes
+m_bAllowNullReferences
 m_bAllowOwnedItems
 m_bAllowPausedDramesToBeActive
 m_bAllowPossession
@@ -2312,6 +2338,7 @@ m_bBubbleCancelAction
 m_bBubblePressAction
 m_bByPathfinder
 m_bBypass
+m_bBypassORCA
 m_bBystanderFieldsFailed
 m_bCLPDisabled
 m_bCSMRoom
@@ -2664,6 +2691,7 @@ m_bEscalateUnconscious
 m_bEscortsReactToDistactions
 m_bEventEndedOnStop
 m_bEverOwnedByHitman
+m_bExactPosition
 m_bExactType
 m_bExclusive
 m_bExemptFromAttentionHUD
@@ -2731,7 +2759,7 @@ m_bFlipSurfaceNormal
 m_bFocusParentOnCancel
 m_bFogEnabled
 m_bFogGlobal
-m_bFogUseQuarterRes
+m_bFogUseHalfRes
 m_bFollow
 m_bFollowListenerOrientation
 m_bFootstepsLooping
@@ -2935,6 +2963,8 @@ m_bInterpolate
 m_bInterpolateOnlyWhileMoving
 m_bInterpolating
 m_bInterrupt
+m_bInterruptTalkGestures
+m_bInterruptible
 m_bInterruptibleAction
 m_bInverseHorizontalPolarity
 m_bInverseVerticalPolarity
@@ -3325,6 +3355,7 @@ m_bPassthroughOnClient
 m_bPassthroughOnHost
 m_bPauseGame
 m_bPauseMenuEnabled
+m_bPauseOnInterrupt
 m_bPaused
 m_bPausedOnStart
 m_bPausedUpdate
@@ -3901,6 +3932,7 @@ m_bWakeUpOnPlace
 m_bWalkable
 m_bWallPiercing
 m_bWantsPrivacy
+m_bWantsToPlay
 m_bWarZone
 m_bWarnOnWeaponFound
 m_bWarning3Given
@@ -3995,6 +4027,7 @@ m_contractData
 m_contractId
 m_contractsBosySpottedEntity
 m_control
+m_costWeights
 m_count
 m_countMode
 m_coverPlane
@@ -4016,6 +4049,7 @@ m_dExtraData
 m_dObjectivesCounterExtraData
 m_data
 m_deadEndData
+m_debug
 m_defaultClip
 m_degAnchorLookResetAperture
 m_degFovY
@@ -4115,6 +4149,8 @@ m_eAxis
 m_eBCAnimSet
 m_eBCState
 m_eBallJointOverride
+m_eBehaviour
+m_eBehaviourStatus
 m_eBendConstrainType
 m_eBlendMode
 m_eBlurQuality
@@ -4289,6 +4325,7 @@ m_eInputNavigateLeft
 m_eInputNavigateRight
 m_eInputNavigateUp
 m_eInputValueCheck
+m_eInsertBehavior
 m_eInstinctGlow
 m_eIntelStage
 m_eIntelType
@@ -4322,6 +4359,7 @@ m_eLeftHandIK
 m_eLeftHandIKAnimationDriven
 m_eLeftHandPosesAllowed
 m_eLetterBoxAspect
+m_eLifetime
 m_eLifetimeEvent
 m_eLightType
 m_eLocation
@@ -4492,6 +4530,7 @@ m_eTraversalDir
 m_eType
 m_eTypeId
 m_eUpdateStrategy
+m_eUpdateType
 m_eUsableConditionKeywordsBehaviorA
 m_eUsableConditionKeywordsBehaviorB
 m_eUseType
@@ -4548,6 +4587,7 @@ m_fActDuration
 m_fActTimeout
 m_fActionCooldownTime
 m_fActivationRadius
+m_fActorLethalDistance
 m_fAddShooterCooldown
 m_fAdditionalAlignRadius
 m_fAgilityAttentionDistanceModifier
@@ -4624,6 +4664,7 @@ m_fAttentionGainRate
 m_fAttenuation
 m_fAttenuationScaling
 m_fAttenuationSpreadDistance
+m_fAttitudeSlewRate
 m_fAttractDistance
 m_fAutoFadeMaxTime
 m_fAutoFadeMinTime
@@ -4728,6 +4769,7 @@ m_fClampRadiusBlendSpeedIn
 m_fClampRadiusBlendSpeedOut
 m_fClampRadiusIn
 m_fClampRadiusOut
+m_fClearanceMargin
 m_fClipDistance
 m_fCloseCombatCooldown
 m_fCloseCombatTriggerDistance
@@ -4781,8 +4823,11 @@ m_fCooldownForThis
 m_fCooldownForThisRand
 m_fCornerAngleElevatingThreshold
 m_fCornerAngleThreshold
+m_fCornerBrakeFrac
+m_fCornerCutFrac
 m_fCornerDistanceModify
 m_fCornerElevatingDistanceModify
+m_fCornerSpeedFrac
 m_fCorridorWidth
 m_fCost
 m_fCounterRotationFactor
@@ -4917,8 +4962,10 @@ m_fDoubleVisionSpeed1
 m_fDoubleVisionSpeed2
 m_fDoubleVisionStrength
 m_fDoubleVisionTrailStrength
+m_fDownOffset
 m_fDownsteamGain
 m_fDrag
+m_fDragCoefficient
 m_fDragConstant
 m_fDragCorrectionFraction
 m_fDragCorrectionTime
@@ -4964,6 +5011,7 @@ m_fExitVolumeSizeFactor
 m_fExpirationFadeTime
 m_fExpireInterval
 m_fExpiredTime
+m_fExpiry
 m_fExplosionLiftBias
 m_fExplosionLiftMultiplier
 m_fExplosionPushBorder
@@ -5028,6 +5076,7 @@ m_fFrustumFarDistanceProperty
 m_fFudge
 m_fGC_Distance
 m_fGameTimeMultiplier
+m_fGapImpassibleDistance
 m_fGateAngleThreshold
 m_fGateDistanceExpansion
 m_fGateDistanceThreshold
@@ -5119,6 +5168,7 @@ m_fHeadAnchorOffsetLeft
 m_fHeadAnchorOffsetUp
 m_fHeadBoneAttacherOffset
 m_fHeadDamageMultiplier
+m_fHeadingSmoothing
 m_fHealth
 m_fHealthPerc
 m_fHealthPercentTimeout
@@ -5311,11 +5361,13 @@ m_fMaxDistanceWorldSpace
 m_fMaxDuration
 m_fMaxEventDistance
 m_fMaxFollowTime
+m_fMaxHorizontalSpeed
 m_fMaxIdleTime
 m_fMaxInteractionRange
 m_fMaxLinearVelocity
 m_fMaxMirrorDistance
 m_fMaxOcclusion
+m_fMaxPathDeviation
 m_fMaxPitch
 m_fMaxPitchAngle
 m_fMaxPitchDeg
@@ -5333,6 +5385,8 @@ m_fMaxSpeed
 m_fMaxStrength
 m_fMaxTargetDistance
 m_fMaxTetherRange
+m_fMaxThrustAcceleration
+m_fMaxTiltAngle
 m_fMaxTime
 m_fMaxTranslationAlongGravity
 m_fMaxTranslationPerpGravity
@@ -5340,6 +5394,7 @@ m_fMaxTriggerToRayDistance
 m_fMaxValue
 m_fMaxVelocity
 m_fMaxVerticalDistanceToIntermediates
+m_fMaxVerticalSpeed
 m_fMaxWarnDelay
 m_fMaxYawAngle
 m_fMaxYawDeg
@@ -5401,6 +5456,7 @@ m_fMoveCameraSeekStrength
 m_fMoveCameraSeekStrengthAlternative
 m_fMoveCameraTargetVelocityH
 m_fMoveCameraTargetVelocityV
+m_fMoveDistance
 m_fMoveOrderFuturePosition
 m_fMoveOrderSphereSize
 m_fMoveStrength
@@ -5472,6 +5528,7 @@ m_fParticlesPerSecond
 m_fParticlesPerSecondMax
 m_fPathOffset
 m_fPathWidth
+m_fPathfinderAcceptance
 m_fPeekFOV
 m_fPeekZoomVelocity
 m_fPenaltyDuration
@@ -5987,6 +6044,7 @@ m_fTwistSpringDamping
 m_fTwistTime
 m_fUniformScaleFactor
 m_fUnlockedBottomAlpha
+m_fUpOffset
 m_fVRCloseCombatDamage
 m_fVRMovementTargetExpiration
 m_fVROverrideSpatialInteractRange
@@ -6040,6 +6098,7 @@ m_fWaterReflectionAndRefractionCullDistance
 m_fWaterTessellationFactor
 m_fWaterTessellationFar
 m_fWaterTessellationNear
+m_fWaypointRadius
 m_fWeaponDamageModifier
 m_fWeight
 m_fWeight1
@@ -6117,6 +6176,7 @@ m_handInHolster
 m_handPose
 m_handPositionOffset
 m_handedness
+m_hdr
 m_helpType
 m_hideInPhotoMode
 m_hint
@@ -6228,6 +6288,7 @@ m_loadoutData
 m_localOnly
 m_localValueArray
 m_locale
+m_locomotionData
 m_lookToDirection
 m_mAnchorRotOffset
 m_mChallengeStates
@@ -6287,6 +6348,7 @@ m_nActiveAnimNode
 m_nActiveInvestigationGroup
 m_nActorTemplateIndex
 m_nAge
+m_nAgentRef
 m_nAimReactionDelay
 m_nAllowRunRadius
 m_nAmmo
@@ -6315,6 +6377,7 @@ m_nAnimlayerTime
 m_nApplyInterval
 m_nArmorRating
 m_nAssistantApproachNode
+m_nAttachedTo
 m_nAttacksForTakeDown
 m_nAudioEmitterID
 m_nAudioExoticType
@@ -6323,7 +6386,6 @@ m_nAudioHeadType
 m_nAudioHighPassFilter
 m_nAudioImpactType
 m_nAudioLowPassFilter
-m_nAudioNodeId
 m_nAudioTailType
 m_nAudioWeaponClass
 m_nAudioWeaponFamily
@@ -6332,6 +6394,7 @@ m_nBackTurnedCrowdAttentionRangeMod
 m_nBasePay
 m_nBasePriority
 m_nBehaviorTreeIndex
+m_nBehaviour
 m_nBlend
 m_nBlurLevels
 m_nBodyContainerSlot
@@ -6349,6 +6412,7 @@ m_nBulletDecalNumVariationsX
 m_nBulletDecalNumVariationsY
 m_nBulletImpactsHeard
 m_nCSMMode
+m_nCastProvider
 m_nCastShadowCSMMask
 m_nCellSizeX
 m_nCellSizeY
@@ -6385,6 +6449,7 @@ m_nCurrentFrame
 m_nCurrentHitman
 m_nCurrentIndex
 m_nCurrentLoop
+m_nCurrentObstacle
 m_nCurrentState
 m_nDbgConcept
 m_nDbgParentConcept
@@ -6514,6 +6579,7 @@ m_nHideCoverValue
 m_nHideTime
 m_nHighDensityMinZones
 m_nHighlightSegmentIndex
+m_nHintIcon
 m_nHitBoneIndex
 m_nID
 m_nIconId
@@ -6611,6 +6677,8 @@ m_nMultiTrackCount
 m_nMultiTrackLength
 m_nMuzzleBrakeSelection
 m_nMuzzleBrakeSkinSelection
+m_nNeighbourBits
+m_nNeighbourCount
 m_nNewDelaySec
 m_nNextGroupID
 m_nNodeCount
@@ -6670,6 +6738,7 @@ m_nPieceIndex
 m_nPixelsPerMeter
 m_nPlayState
 m_nPlayerId
+m_nPoolID
 m_nPoolSize
 m_nPos
 m_nPrimaryZoneCoverPercent
@@ -6713,6 +6782,7 @@ m_nReactionTimeOut2
 m_nReactionTimeOut3
 m_nRearArcDeg
 m_nRecencyPenaltyCount
+m_nRef
 m_nRefCount
 m_nRemaining
 m_nRepeat
@@ -6756,11 +6826,14 @@ m_nShotsThreshold
 m_nShowAmount
 m_nSimulateOnNthFrame
 m_nSituation
+m_nSituationRef
 m_nSize
 m_nSkinSelection
 m_nSkipCollisionsPerDecal
 m_nSkipRequestsPerDecal
+m_nSolveBudget
 m_nSomeInts
+m_nSpawner
 m_nSplatDecalNumVariationsX
 m_nSplatDecalNumVariationsX2
 m_nSplatDecalNumVariationsY
@@ -6847,6 +6920,7 @@ m_observerDistanceMax
 m_occupancyNode
 m_opportunities
 m_optionKey
+m_orcaOptions
 m_order
 m_outfitId
 m_overriddenItemSize
@@ -6872,6 +6946,7 @@ m_pActorList
 m_pActorModel
 m_pActorResource
 m_pActorTagController
+m_pAgentResource
 m_pAimAt
 m_pAlignGizmo
 m_pAmbienceElement
@@ -6957,7 +7032,6 @@ m_pCrowdReaction
 m_pCurrentInstance
 m_pCursorView
 m_pCustomDeathTemplate
-m_pCustomInfo
 m_pCustomNetworkEntity
 m_pCustomPosition
 m_pCustomPositionProvider
@@ -7021,6 +7095,7 @@ m_pGeneric00Sound
 m_pGeneric01Sound
 m_pGeneric02Sound
 m_pGeneric03Sound
+m_pGeomResource
 m_pGetHelpGroup
 m_pGizmo
 m_pGlobalTextList
@@ -7253,6 +7328,7 @@ m_pViewFactory
 m_pVisibilityData
 m_pVisibleWeaponReaction
 m_pVolume
+m_pVoxelDataResource
 m_pWavebank
 m_pWaypoint
 m_pWaypointLocked
@@ -7287,10 +7363,12 @@ m_progressPerSecond
 m_projOp
 m_providerType
 m_pxMargin
+m_qAttitude
 m_query
 m_rAbortCondition
 m_rAccessoryItem
 m_rAccessoryItemKeyword
+m_rAccidentContext
 m_rAct
 m_rActAmbient
 m_rActArmed
@@ -7308,6 +7386,7 @@ m_rActorRef
 m_rActorSpecification
 m_rActors
 m_rAddKeywords
+m_rAgent
 m_rAgilityConfigs
 m_rAimAssistConfiguration
 m_rAimTarget
@@ -7359,6 +7438,8 @@ m_rBodyPartSelector
 m_rBodybag
 m_rBoneAnimator
 m_rBoneAttacher
+m_rBounds
+m_rBoxGeometry
 m_rBoxVolume
 m_rBruise
 m_rBulletInChamber
@@ -7409,10 +7490,12 @@ m_rConnectorBeginning
 m_rConnectorEnd
 m_rConnectorSpatial
 m_rContainedItem
+m_rContainedSpatial
 m_rContainer
 m_rContainerGeom
 m_rContainerItem
 m_rContainerItemKey
+m_rContainerSpatial
 m_rContainerSpawner
 m_rContainsItem
 m_rContextKeywords
@@ -7570,6 +7653,7 @@ m_rIntel
 m_rIntelGroupData
 m_rInteraction
 m_rInteractionPoint
+m_rInterpolator
 m_rInventoryItems
 m_rInvestigator
 m_rIsActionAvailable
@@ -7673,6 +7757,7 @@ m_rObjectProxy
 m_rObstructionPositionEntity
 m_rOcclusionPositionEntity
 m_rOcclusionRoom
+m_rOpenColumn
 m_rOpenHasMotion
 m_rOperateSequence
 m_rOpportunity
@@ -7744,6 +7829,7 @@ m_rReactionNetwork
 m_rReadyCondition
 m_rReceiver
 m_rRefencingEntity
+m_rRelativeToRole
 m_rRelocateTarget1
 m_rRemoveKeywords
 m_rReporter
@@ -7765,6 +7851,7 @@ m_rRightHandEnabled
 m_rRightHandStatesEnterConfigs
 m_rRightHandStatesExitConfigs
 m_rRightHandVolumeRestriction
+m_rRole
 m_rRoom
 m_rRootSpatial
 m_rSBCamProfiles
@@ -7831,9 +7918,11 @@ m_rSoundEvent_Warning
 m_rSource
 m_rSourceA
 m_rSourceB
+m_rSpace
 m_rSpatial
 m_rSpatial1
 m_rSpatial2
+m_rSpatialContainer
 m_rSpatialEntity
 m_rSpatialTarget
 m_rSpawner
@@ -8007,6 +8096,7 @@ m_sAnimName
 m_sAnimationEvent
 m_sAuxBusName
 m_sBaconShotText
+m_sBakeOptions
 m_sBaseSceneResID
 m_sBlockPacifiedDescriptionID
 m_sBodyHeadline
@@ -8399,6 +8489,7 @@ m_userInputWeight
 m_vAAScreenSize
 m_vASSAOFadeInRange
 m_vASSAOFadeOutRange
+m_vAccel
 m_vAlignment
 m_vAlphaAttenuationAngles
 m_vAnchorPointA
@@ -8562,6 +8653,7 @@ m_vLuminanceMinMax
 m_vMaxRate
 m_vMieColor_LowQuality
 m_vModulation
+m_vMoveToPos
 m_vNearAttenuation
 m_vNewVelocity
 m_vNormal
@@ -8690,15 +8782,25 @@ nAmmoInClip
 nAmmoRemaining
 nAmmoTotal
 nAndUnhandled
+nBackgroundColor
+nCellSizePow2
+nClearanceDir
+nClearanceVoxels
 nColor
 nColumnIndex
 nColumnSpan
 nConditionModifiers
 nContainedItemHUDType
+nCoordX
+nCoordY
+nCoordZ
 nCrc32
 nCurrentAmmoType
+nData
 nDifficultyRank
 nDisplayMode
+nExtraDir
+nFirstNeighbour
 nFourCC
 nGridWidth
 nImpactBodyPart
@@ -8714,6 +8816,7 @@ nNeighbor4
 nNeighbor5
 nNeighbor6
 nNeighbor7
+nNeighbourCount
 nPropertyID
 nRowIndex
 nRowSpan
@@ -8722,10 +8825,12 @@ nSize
 nSlot
 nSuppliers
 nTargets
+nTextColor
 nTimeStamp
 nUserData
 nValue
 nVersion
+nVersionType
 nVisibilityRange
 nVisionDataOffset
 nWeaponType
@@ -8827,6 +8932,7 @@ sKillMethod
 sLabel
 sLastEventToken
 sLocationId
+sMessage
 sMissingToolText
 sName
 sParamName
@@ -8836,6 +8942,7 @@ sPropertyName
 sStringProp
 sSymbolName
 sTypeArgName
+sUniqueId
 sUnlockableId
 sWeaponName
 sWorldSpaceSettings
@@ -8896,9 +9003,14 @@ typeSourceTemplate
 types
 udirAnchor
 udirTowardsPlane
+vCrossTrack
 vMax
 vMin
 vPos
+vReciprocity
+vSVOCellSize
+vSize
+vTimeHorizon
 value
 variantField
 visited

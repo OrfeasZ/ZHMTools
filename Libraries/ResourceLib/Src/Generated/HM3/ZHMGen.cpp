@@ -6189,6 +6189,10 @@ void SKnowledgeSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
 	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EGameTension", static_cast<int>(s_Object->m_eGameTension)));
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("m_ePerceptionSensitivity") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EActorPerceptionSensitivity", static_cast<int>(s_Object->m_ePerceptionSensitivity)));
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("m_tAmbientStartTime") << ":";
 	ZGameTime::WriteSimpleJson(&s_Object->m_tAmbientStartTime, p_Stream);
 	p_Stream << ",";
@@ -6263,6 +6267,8 @@ void SKnowledgeSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, vo
 
 	s_Object->m_eGameTension = static_cast<EGameTension>(ZHMEnums::GetEnumValueByName("EGameTension", std::string_view(p_Document["m_eGameTension"])));
 
+	s_Object->m_ePerceptionSensitivity = static_cast<EActorPerceptionSensitivity>(ZHMEnums::GetEnumValueByName("EActorPerceptionSensitivity", std::string_view(p_Document["m_ePerceptionSensitivity"])));
+
 	ZGameTime::FromSimpleJson(p_Document["m_tAmbientStartTime"], &s_Object->m_tAmbientStartTime);
 
 	ZGameTime::FromSimpleJson(p_Document["m_tExpiredAIModifierSuppressSocialGreeting"], &s_Object->m_tExpiredAIModifierSuppressSocialGreeting);
@@ -6310,6 +6316,7 @@ bool SKnowledgeSaveData::operator==(const SKnowledgeSaveData& p_Other) const
 	if (m_fHMWeaponAttention != p_Other.m_fHMWeaponAttention) return false;
 	if (m_fHMWeaponAttentionChange != p_Other.m_fHMWeaponAttentionChange) return false;
 	if (m_eGameTension != p_Other.m_eGameTension) return false;
+	if (m_ePerceptionSensitivity != p_Other.m_ePerceptionSensitivity) return false;
 	if (m_tAmbientStartTime != p_Other.m_tAmbientStartTime) return false;
 	if (m_tExpiredAIModifierSuppressSocialGreeting != p_Other.m_tExpiredAIModifierSuppressSocialGreeting) return false;
 	if (m_behaviorModifiers != p_Other.m_behaviorModifiers) return false;
@@ -13412,6 +13419,10 @@ void SContractObjectiveHudHintEntitySaveData::WriteSimpleJson(void* p_Object, st
 
 	p_Stream << simdjson::as_json_string("m_bVisible") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_bVisible);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nHintIcon") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nHintIcon);
 
 	p_Stream << "}";
 }
@@ -13421,6 +13432,8 @@ void SContractObjectiveHudHintEntitySaveData::FromSimpleJson(simdjson::ondemand:
 	auto s_Object = reinterpret_cast<SContractObjectiveHudHintEntitySaveData*>(p_Target);
 
 	s_Object->m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
+
+	s_Object->m_nHintIcon = simdjson::from_json_uint32(p_Document["m_nHintIcon"]);
 
 }
 
@@ -13444,6 +13457,7 @@ bool SContractObjectiveHudHintEntitySaveData::operator==(const SContractObjectiv
 		return false;
 
 	if (m_bVisible != p_Other.m_bVisible) return false;
+	if (m_nHintIcon != p_Other.m_nHintIcon) return false;
 
 	return true;
 }
@@ -21274,6 +21288,10 @@ void SEscortSituation2SaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 	}
 
 	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_rEscortTarget") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_rEscortTarget);
 
 	p_Stream << "}";
 }
@@ -21360,6 +21378,8 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 	}
 	}
 
+	s_Object->m_rEscortTarget = simdjson::from_json_uint32(p_Document["m_rEscortTarget"]);
+
 }
 
 void SEscortSituation2SaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -21405,6 +21425,7 @@ bool SEscortSituation2SaveData::operator==(const SEscortSituation2SaveData& p_Ot
 	if (m_aStates != p_Other.m_aStates) return false;
 	if (m_aEscortActs != p_Other.m_aEscortActs) return false;
 	if (m_aSearchActs != p_Other.m_aSearchActs) return false;
+	if (m_rEscortTarget != p_Other.m_rEscortTarget) return false;
 
 	return true;
 }
@@ -23106,6 +23127,134 @@ void SExtendedCppEntityBlueprint::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<SExtendedCppEntityBlueprint*>(p_Object);
 	s_Object->~SExtendedCppEntityBlueprint();
+}
+
+ZHMTypeInfo SSpatialSaveData::TypeInfo = ZHMTypeInfo("SSpatialSaveData", sizeof(SSpatialSaveData), alignof(SSpatialSaveData), SSpatialSaveData::WriteSimpleJson, SSpatialSaveData::FromSimpleJson, SSpatialSaveData::Serialize, SSpatialSaveData::Equals, SSpatialSaveData::Destroy);
+
+void SSpatialSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SSpatialSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_bVisible") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bVisible);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_vPosition") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vPosition, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_vQuaternionRotation") << ":";
+	SVector4::WriteSimpleJson(&s_Object->m_vQuaternionRotation, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SSpatialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SSpatialSaveData*>(p_Target);
+
+	s_Object->m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
+
+	SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Object->m_vPosition);
+
+	SVector4::FromSimpleJson(p_Document["m_vQuaternionRotation"], &s_Object->m_vQuaternionRotation);
+
+}
+
+void SSpatialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SSpatialSaveData*>(p_Object);
+
+	SVector3::Serialize(&s_Object->m_vPosition, p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vPosition));
+	SVector4::Serialize(&s_Object->m_vQuaternionRotation, p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vQuaternionRotation));
+}
+
+bool SSpatialSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SSpatialSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SSpatialSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SSpatialSaveData::operator==(const SSpatialSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SSpatialSaveData>)
+		return false;
+
+	if (m_bVisible != p_Other.m_bVisible) return false;
+	if (m_vPosition != p_Other.m_vPosition) return false;
+	if (m_vQuaternionRotation != p_Other.m_vQuaternionRotation) return false;
+
+	return true;
+}
+
+void SSpatialSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SSpatialSaveData*>(p_Object);
+	s_Object->~SSpatialSaveData();
+}
+
+ZHMTypeInfo SExtendedSpatialSaveData::TypeInfo = ZHMTypeInfo("SExtendedSpatialSaveData", sizeof(SExtendedSpatialSaveData), alignof(SExtendedSpatialSaveData), SExtendedSpatialSaveData::WriteSimpleJson, SExtendedSpatialSaveData::FromSimpleJson, SExtendedSpatialSaveData::Serialize, SExtendedSpatialSaveData::Equals, SExtendedSpatialSaveData::Destroy);
+
+void SExtendedSpatialSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SExtendedSpatialSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_nRef") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nRef);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_data") << ":";
+	SSpatialSaveData::WriteSimpleJson(&s_Object->m_data, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SExtendedSpatialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SExtendedSpatialSaveData*>(p_Target);
+
+	s_Object->m_nRef = simdjson::from_json_uint32(p_Document["m_nRef"]);
+
+	SSpatialSaveData::FromSimpleJson(p_Document["m_data"], &s_Object->m_data);
+
+}
+
+void SExtendedSpatialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SExtendedSpatialSaveData*>(p_Object);
+
+	SSpatialSaveData::Serialize(&s_Object->m_data, p_Serializer, p_OwnOffset + offsetof(SExtendedSpatialSaveData, m_data));
+}
+
+bool SExtendedSpatialSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SExtendedSpatialSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SExtendedSpatialSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SExtendedSpatialSaveData::operator==(const SExtendedSpatialSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SExtendedSpatialSaveData>)
+		return false;
+
+	if (m_nRef != p_Other.m_nRef) return false;
+	if (m_data != p_Other.m_data) return false;
+
+	return true;
+}
+
+void SExtendedSpatialSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SExtendedSpatialSaveData*>(p_Object);
+	s_Object->~SExtendedSpatialSaveData();
 }
 
 ZHMTypeInfo SExternalEntityTemplatePinConnection::TypeInfo = ZHMTypeInfo("SExternalEntityTemplatePinConnection", sizeof(SExternalEntityTemplatePinConnection), alignof(SExternalEntityTemplatePinConnection), SExternalEntityTemplatePinConnection::WriteSimpleJson, SExternalEntityTemplatePinConnection::FromSimpleJson, SExternalEntityTemplatePinConnection::Serialize, SExternalEntityTemplatePinConnection::Equals, SExternalEntityTemplatePinConnection::Destroy);
@@ -40357,74 +40506,6 @@ void SSpatialMoverEntitySaveData::Destroy(void* p_Object)
 	s_Object->~SSpatialMoverEntitySaveData();
 }
 
-ZHMTypeInfo SSpatialSaveData::TypeInfo = ZHMTypeInfo("SSpatialSaveData", sizeof(SSpatialSaveData), alignof(SSpatialSaveData), SSpatialSaveData::WriteSimpleJson, SSpatialSaveData::FromSimpleJson, SSpatialSaveData::Serialize, SSpatialSaveData::Equals, SSpatialSaveData::Destroy);
-
-void SSpatialSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
-{
-	auto* s_Object = reinterpret_cast<SSpatialSaveData*>(p_Object);
-
-	p_Stream << "{";
-
-	p_Stream << simdjson::as_json_string("m_bVisible") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->m_bVisible);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_vPosition") << ":";
-	SVector3::WriteSimpleJson(&s_Object->m_vPosition, p_Stream);
-	p_Stream << ",";
-
-	p_Stream << simdjson::as_json_string("m_vQuaternionRotation") << ":";
-	SVector4::WriteSimpleJson(&s_Object->m_vQuaternionRotation, p_Stream);
-
-	p_Stream << "}";
-}
-
-void SSpatialSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
-{
-	auto s_Object = reinterpret_cast<SSpatialSaveData*>(p_Target);
-
-	s_Object->m_bVisible = simdjson::from_json_bool(p_Document["m_bVisible"]);
-
-	SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Object->m_vPosition);
-
-	SVector4::FromSimpleJson(p_Document["m_vQuaternionRotation"], &s_Object->m_vQuaternionRotation);
-
-}
-
-void SSpatialSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
-{
-	auto* s_Object = reinterpret_cast<SSpatialSaveData*>(p_Object);
-
-	SVector3::Serialize(&s_Object->m_vPosition, p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vPosition));
-	SVector4::Serialize(&s_Object->m_vQuaternionRotation, p_Serializer, p_OwnOffset + offsetof(SSpatialSaveData, m_vQuaternionRotation));
-}
-
-bool SSpatialSaveData::Equals(void* p_Left, void* p_Right)
-{
-	auto* s_Left = reinterpret_cast<SSpatialSaveData*>(p_Left);
-	auto* s_Right = reinterpret_cast<SSpatialSaveData*>(p_Right);
-
-	return *s_Left == *s_Right;
-}
-
-bool SSpatialSaveData::operator==(const SSpatialSaveData& p_Other) const
-{
-	if constexpr (!ZHMTypeSupportsEquality_v<SSpatialSaveData>)
-		return false;
-
-	if (m_bVisible != p_Other.m_bVisible) return false;
-	if (m_vPosition != p_Other.m_vPosition) return false;
-	if (m_vQuaternionRotation != p_Other.m_vQuaternionRotation) return false;
-
-	return true;
-}
-
-void SSpatialSaveData::Destroy(void* p_Object)
-{
-	auto* s_Object = reinterpret_cast<SSpatialSaveData*>(p_Object);
-	s_Object->~SSpatialSaveData();
-}
-
 ZHMTypeInfo SSpeakEntitySaveData::TypeInfo = ZHMTypeInfo("SSpeakEntitySaveData", sizeof(SSpeakEntitySaveData), alignof(SSpeakEntitySaveData), SSpeakEntitySaveData::WriteSimpleJson, SSpeakEntitySaveData::FromSimpleJson, SSpeakEntitySaveData::Serialize, SSpeakEntitySaveData::Equals, SSpeakEntitySaveData::Destroy);
 
 void SSpeakEntitySaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -44628,6 +44709,1183 @@ void SVoidSignalEntitySaveData::Destroy(void* p_Object)
 	s_Object->~SVoidSignalEntitySaveData();
 }
 
+ZHMTypeInfo SVoxelSVONavLeaf::TypeInfo = ZHMTypeInfo("SVoxelSVONavLeaf", sizeof(SVoxelSVONavLeaf), alignof(SVoxelSVONavLeaf), SVoxelSVONavLeaf::WriteSimpleJson, SVoxelSVONavLeaf::FromSimpleJson, SVoxelSVONavLeaf::Serialize, SVoxelSVONavLeaf::Equals, SVoxelSVONavLeaf::Destroy);
+
+void SVoxelSVONavLeaf::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSVONavLeaf*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("nCoordX") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nCoordX);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nCoordY") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nCoordY);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nCoordZ") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nCoordZ);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nCellSizePow2") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nCellSizePow2);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nClearanceVoxels") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nClearanceVoxels);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nNeighbourCount") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nNeighbourCount);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nClearanceDir") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nClearanceDir);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nFirstNeighbour") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nFirstNeighbour);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nExtraDir") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nExtraDir);
+
+	p_Stream << "}";
+}
+
+void SVoxelSVONavLeaf::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSVONavLeaf*>(p_Target);
+
+	s_Object->nCoordX = simdjson::from_json_uint16(p_Document["nCoordX"]);
+
+	s_Object->nCoordY = simdjson::from_json_uint16(p_Document["nCoordY"]);
+
+	s_Object->nCoordZ = simdjson::from_json_uint16(p_Document["nCoordZ"]);
+
+	s_Object->nCellSizePow2 = simdjson::from_json_uint8(p_Document["nCellSizePow2"]);
+
+	s_Object->nClearanceVoxels = simdjson::from_json_uint8(p_Document["nClearanceVoxels"]);
+
+	s_Object->nNeighbourCount = simdjson::from_json_uint16(p_Document["nNeighbourCount"]);
+
+	s_Object->nClearanceDir = simdjson::from_json_uint16(p_Document["nClearanceDir"]);
+
+	s_Object->nFirstNeighbour = simdjson::from_json_uint32(p_Document["nFirstNeighbour"]);
+
+	s_Object->nExtraDir = simdjson::from_json_uint16(p_Document["nExtraDir"]);
+
+}
+
+void SVoxelSVONavLeaf::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSVONavLeaf*>(p_Object);
+
+}
+
+bool SVoxelSVONavLeaf::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSVONavLeaf*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSVONavLeaf*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSVONavLeaf::operator==(const SVoxelSVONavLeaf& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSVONavLeaf>)
+		return false;
+
+	if (nCoordX != p_Other.nCoordX) return false;
+	if (nCoordY != p_Other.nCoordY) return false;
+	if (nCoordZ != p_Other.nCoordZ) return false;
+	if (nCellSizePow2 != p_Other.nCellSizePow2) return false;
+	if (nClearanceVoxels != p_Other.nClearanceVoxels) return false;
+	if (nNeighbourCount != p_Other.nNeighbourCount) return false;
+	if (nClearanceDir != p_Other.nClearanceDir) return false;
+	if (nFirstNeighbour != p_Other.nFirstNeighbour) return false;
+	if (nExtraDir != p_Other.nExtraDir) return false;
+
+	return true;
+}
+
+void SVoxelSVONavLeaf::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSVONavLeaf*>(p_Object);
+	s_Object->~SVoxelSVONavLeaf();
+}
+
+ZHMTypeInfo SVoxelSVONode::TypeInfo = ZHMTypeInfo("SVoxelSVONode", sizeof(SVoxelSVONode), alignof(SVoxelSVONode), SVoxelSVONode::WriteSimpleJson, SVoxelSVONode::FromSimpleJson, SVoxelSVONode::Serialize, SVoxelSVONode::Equals, SVoxelSVONode::Destroy);
+
+void SVoxelSVONode::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSVONode*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("nData") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nData);
+
+	p_Stream << "}";
+}
+
+void SVoxelSVONode::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSVONode*>(p_Target);
+
+	s_Object->nData = simdjson::from_json_uint32(p_Document["nData"]);
+
+}
+
+void SVoxelSVONode::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSVONode*>(p_Object);
+
+}
+
+bool SVoxelSVONode::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSVONode*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSVONode*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSVONode::operator==(const SVoxelSVONode& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSVONode>)
+		return false;
+
+	if (nData != p_Other.nData) return false;
+
+	return true;
+}
+
+void SVoxelSVONode::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSVONode*>(p_Object);
+	s_Object->~SVoxelSVONode();
+}
+
+ZHMTypeInfo SVoxelSpaceAgentSaveData::TypeInfo = ZHMTypeInfo("SVoxelSpaceAgentSaveData", sizeof(SVoxelSpaceAgentSaveData), alignof(SVoxelSpaceAgentSaveData), SVoxelSpaceAgentSaveData::WriteSimpleJson, SVoxelSpaceAgentSaveData::FromSimpleJson, SVoxelSpaceAgentSaveData::Serialize, SVoxelSpaceAgentSaveData::Equals, SVoxelSpaceAgentSaveData::Destroy);
+
+void SVoxelSpaceAgentSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceAgentSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_nAgentRef") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nAgentRef);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eLifetime") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EVoxelSpaceAgentLifetimeState", static_cast<int>(s_Object->m_eLifetime)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nSpawner") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nSpawner);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nAttachedTo") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nAttachedTo);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_locomotionData") << ":";
+	ZVariant::WriteSimpleJson(&s_Object->m_locomotionData, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nPoolID") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nPoolID);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceAgentSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceAgentSaveData*>(p_Target);
+
+	s_Object->m_nAgentRef = simdjson::from_json_uint32(p_Document["m_nAgentRef"]);
+
+	s_Object->m_eLifetime = static_cast<EVoxelSpaceAgentLifetimeState>(ZHMEnums::GetEnumValueByName("EVoxelSpaceAgentLifetimeState", std::string_view(p_Document["m_eLifetime"])));
+
+	s_Object->m_nSpawner = simdjson::from_json_uint32(p_Document["m_nSpawner"]);
+
+	s_Object->m_nAttachedTo = simdjson::from_json_uint32(p_Document["m_nAttachedTo"]);
+
+	ZVariant::FromSimpleJson(p_Document["m_locomotionData"], &s_Object->m_locomotionData);
+
+	s_Object->m_nPoolID = simdjson::from_json_uint32(p_Document["m_nPoolID"]);
+
+}
+
+void SVoxelSpaceAgentSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceAgentSaveData*>(p_Object);
+
+	ZVariant::Serialize(&s_Object->m_locomotionData, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceAgentSaveData, m_locomotionData));
+}
+
+bool SVoxelSpaceAgentSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceAgentSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceAgentSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceAgentSaveData::operator==(const SVoxelSpaceAgentSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceAgentSaveData>)
+		return false;
+
+	if (m_nAgentRef != p_Other.m_nAgentRef) return false;
+	if (m_eLifetime != p_Other.m_eLifetime) return false;
+	if (m_nSpawner != p_Other.m_nSpawner) return false;
+	if (m_nAttachedTo != p_Other.m_nAttachedTo) return false;
+	if (m_locomotionData != p_Other.m_locomotionData) return false;
+	if (m_nPoolID != p_Other.m_nPoolID) return false;
+
+	return true;
+}
+
+void SVoxelSpaceAgentSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceAgentSaveData*>(p_Object);
+	s_Object->~SVoxelSpaceAgentSaveData();
+}
+
+ZHMTypeInfo SVoxelSpaceBakeOptions::TypeInfo = ZHMTypeInfo("SVoxelSpaceBakeOptions", sizeof(SVoxelSpaceBakeOptions), alignof(SVoxelSpaceBakeOptions), SVoxelSpaceBakeOptions::WriteSimpleJson, SVoxelSpaceBakeOptions::FromSimpleJson, SVoxelSpaceBakeOptions::Serialize, SVoxelSpaceBakeOptions::Equals, SVoxelSpaceBakeOptions::Destroy);
+
+void SVoxelSpaceBakeOptions::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceBakeOptions*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("fVoxelSize") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fVoxelSize);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("vSVOCellSize") << ":";
+	SVector2::WriteSimpleJson(&s_Object->vSVOCellSize, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceBakeOptions::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceBakeOptions*>(p_Target);
+
+	s_Object->fVoxelSize = simdjson::from_json_float32(p_Document["fVoxelSize"]);
+
+	SVector2::FromSimpleJson(p_Document["vSVOCellSize"], &s_Object->vSVOCellSize);
+
+}
+
+void SVoxelSpaceBakeOptions::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceBakeOptions*>(p_Object);
+
+	SVector2::Serialize(&s_Object->vSVOCellSize, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceBakeOptions, vSVOCellSize));
+}
+
+bool SVoxelSpaceBakeOptions::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceBakeOptions*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceBakeOptions*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceBakeOptions::operator==(const SVoxelSpaceBakeOptions& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceBakeOptions>)
+		return false;
+
+	if (fVoxelSize != p_Other.fVoxelSize) return false;
+	if (vSVOCellSize != p_Other.vSVOCellSize) return false;
+
+	return true;
+}
+
+void SVoxelSpaceBakeOptions::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceBakeOptions*>(p_Object);
+	s_Object->~SVoxelSpaceBakeOptions();
+}
+
+ZHMTypeInfo SVoxelSpaceDataHeader::TypeInfo = ZHMTypeInfo("SVoxelSpaceDataHeader", sizeof(SVoxelSpaceDataHeader), alignof(SVoxelSpaceDataHeader), SVoxelSpaceDataHeader::WriteSimpleJson, SVoxelSpaceDataHeader::FromSimpleJson, SVoxelSpaceDataHeader::Serialize, SVoxelSpaceDataHeader::Equals, SVoxelSpaceDataHeader::Destroy);
+
+void SVoxelSpaceDataHeader::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceDataHeader*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("nVersionType") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nVersionType);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("aReserved") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->aReserved);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceDataHeader::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceDataHeader*>(p_Target);
+
+	s_Object->nVersionType = simdjson::from_json_uint32(p_Document["nVersionType"]);
+
+	s_Object->aReserved = simdjson::from_json_uint8(p_Document["aReserved"]);
+
+}
+
+void SVoxelSpaceDataHeader::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceDataHeader*>(p_Object);
+
+}
+
+bool SVoxelSpaceDataHeader::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceDataHeader*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceDataHeader*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceDataHeader::operator==(const SVoxelSpaceDataHeader& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceDataHeader>)
+		return false;
+
+	if (nVersionType != p_Other.nVersionType) return false;
+	if (aReserved != p_Other.aReserved) return false;
+
+	return true;
+}
+
+void SVoxelSpaceDataHeader::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceDataHeader*>(p_Object);
+	s_Object->~SVoxelSpaceDataHeader();
+}
+
+ZHMTypeInfo SVoxelSpaceData::TypeInfo = ZHMTypeInfo("SVoxelSpaceData", sizeof(SVoxelSpaceData), alignof(SVoxelSpaceData), SVoxelSpaceData::WriteSimpleJson, SVoxelSpaceData::FromSimpleJson, SVoxelSpaceData::Serialize, SVoxelSpaceData::Equals, SVoxelSpaceData::Destroy);
+
+void SVoxelSpaceData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_hdr") << ":";
+	SVoxelSpaceDataHeader::WriteSimpleJson(&s_Object->m_hdr, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aSVONodes") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aSVONodes.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aSVONodes[i];
+		SVoxelSVONode::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_aSVONodes.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aLeaves") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aLeaves.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aLeaves[i];
+		SVoxelSVONavLeaf::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_aLeaves.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aNeighbourBits") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aNeighbourBits.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aNeighbourBits[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aNeighbourBits.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nNeighbourBits") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nNeighbourBits);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nNeighbourCount") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nNeighbourCount);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aNeighbourClearance") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aNeighbourClearance.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aNeighbourClearance[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aNeighbourClearance.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceData*>(p_Target);
+
+	SVoxelSpaceDataHeader::FromSimpleJson(p_Document["m_hdr"], &s_Object->m_hdr);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSVONodes"];
+	s_Object->m_aSVONodes.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SVoxelSVONode::FromSimpleJson(s_Item0, &s_Object->m_aSVONodes[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aLeaves"];
+	s_Object->m_aLeaves.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SVoxelSVONavLeaf::FromSimpleJson(s_Item0, &s_Object->m_aLeaves[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aNeighbourBits"];
+	s_Object->m_aNeighbourBits.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object->m_aNeighbourBits[s_Index0] = simdjson::from_json_uint64(s_Item0);
+		++s_Index0;
+	}
+	}
+
+	s_Object->m_nNeighbourBits = simdjson::from_json_uint32(p_Document["m_nNeighbourBits"]);
+
+	s_Object->m_nNeighbourCount = simdjson::from_json_uint32(p_Document["m_nNeighbourCount"]);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aNeighbourClearance"];
+	s_Object->m_aNeighbourClearance.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object->m_aNeighbourClearance[s_Index0] = simdjson::from_json_uint16(s_Item0);
+		++s_Index0;
+	}
+	}
+
+}
+
+void SVoxelSpaceData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceData*>(p_Object);
+
+	SVoxelSpaceDataHeader::Serialize(&s_Object->m_hdr, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceData, m_hdr));
+	TArray<SVoxelSVONode>::Serialize(&s_Object->m_aSVONodes, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceData, m_aSVONodes));
+	TArray<SVoxelSVONavLeaf>::Serialize(&s_Object->m_aLeaves, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceData, m_aLeaves));
+	TArray<uint64>::Serialize(&s_Object->m_aNeighbourBits, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceData, m_aNeighbourBits));
+	TArray<uint16>::Serialize(&s_Object->m_aNeighbourClearance, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceData, m_aNeighbourClearance));
+}
+
+bool SVoxelSpaceData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceData::operator==(const SVoxelSpaceData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceData>)
+		return false;
+
+	if (m_hdr != p_Other.m_hdr) return false;
+	if (m_aSVONodes != p_Other.m_aSVONodes) return false;
+	if (m_aLeaves != p_Other.m_aLeaves) return false;
+	if (m_aNeighbourBits != p_Other.m_aNeighbourBits) return false;
+	if (m_nNeighbourBits != p_Other.m_nNeighbourBits) return false;
+	if (m_nNeighbourCount != p_Other.m_nNeighbourCount) return false;
+	if (m_aNeighbourClearance != p_Other.m_aNeighbourClearance) return false;
+
+	return true;
+}
+
+void SVoxelSpaceData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceData*>(p_Object);
+	s_Object->~SVoxelSpaceData();
+}
+
+ZHMTypeInfo SVoxelSpaceDebugData::TypeInfo = ZHMTypeInfo("SVoxelSpaceDebugData", sizeof(SVoxelSpaceDebugData), alignof(SVoxelSpaceDebugData), SVoxelSpaceDebugData::WriteSimpleJson, SVoxelSpaceDebugData::FromSimpleJson, SVoxelSpaceDebugData::Serialize, SVoxelSpaceDebugData::Equals, SVoxelSpaceDebugData::Destroy);
+
+void SVoxelSpaceDebugData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceDebugData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_hdr") << ":";
+	SVoxelSpaceDataHeader::WriteSimpleJson(&s_Object->m_hdr, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aVoxels") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aVoxels.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aVoxels[i];
+		p_Stream << simdjson::as_json_string(s_Item0);
+
+		if (i < s_Object->m_aVoxels.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceDebugData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceDebugData*>(p_Target);
+
+	SVoxelSpaceDataHeader::FromSimpleJson(p_Document["m_hdr"], &s_Object->m_hdr);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aVoxels"];
+	s_Object->m_aVoxels.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		s_Object->m_aVoxels[s_Index0] = simdjson::from_json_uint64(s_Item0);
+		++s_Index0;
+	}
+	}
+
+}
+
+void SVoxelSpaceDebugData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceDebugData*>(p_Object);
+
+	SVoxelSpaceDataHeader::Serialize(&s_Object->m_hdr, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceDebugData, m_hdr));
+	TArray<uint64>::Serialize(&s_Object->m_aVoxels, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceDebugData, m_aVoxels));
+}
+
+bool SVoxelSpaceDebugData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceDebugData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceDebugData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceDebugData::operator==(const SVoxelSpaceDebugData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceDebugData>)
+		return false;
+
+	if (m_hdr != p_Other.m_hdr) return false;
+	if (m_aVoxels != p_Other.m_aVoxels) return false;
+
+	return true;
+}
+
+void SVoxelSpaceDebugData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceDebugData*>(p_Object);
+	s_Object->~SVoxelSpaceDebugData();
+}
+
+ZHMTypeInfo SVoxelSpaceRoleSaveState::TypeInfo = ZHMTypeInfo("SVoxelSpaceRoleSaveState", sizeof(SVoxelSpaceRoleSaveState), alignof(SVoxelSpaceRoleSaveState), SVoxelSpaceRoleSaveState::WriteSimpleJson, SVoxelSpaceRoleSaveState::FromSimpleJson, SVoxelSpaceRoleSaveState::Serialize, SVoxelSpaceRoleSaveState::Equals, SVoxelSpaceRoleSaveState::Destroy);
+
+void SVoxelSpaceRoleSaveState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceRoleSaveState*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_nCastProvider") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nCastProvider);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_nBehaviour") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nBehaviour);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eBehaviourStatus") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EVoxelSpaceBehaviourStatus", static_cast<int>(s_Object->m_eBehaviourStatus)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bEnabled") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bEnabled);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_bRequired") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_bRequired);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceRoleSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceRoleSaveState*>(p_Target);
+
+	s_Object->m_nCastProvider = simdjson::from_json_uint32(p_Document["m_nCastProvider"]);
+
+	s_Object->m_nBehaviour = simdjson::from_json_uint32(p_Document["m_nBehaviour"]);
+
+	s_Object->m_eBehaviourStatus = static_cast<EVoxelSpaceBehaviourStatus>(ZHMEnums::GetEnumValueByName("EVoxelSpaceBehaviourStatus", std::string_view(p_Document["m_eBehaviourStatus"])));
+
+	s_Object->m_bEnabled = simdjson::from_json_bool(p_Document["m_bEnabled"]);
+
+	s_Object->m_bRequired = simdjson::from_json_bool(p_Document["m_bRequired"]);
+
+}
+
+void SVoxelSpaceRoleSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceRoleSaveState*>(p_Object);
+
+}
+
+bool SVoxelSpaceRoleSaveState::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceRoleSaveState*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceRoleSaveState*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceRoleSaveState::operator==(const SVoxelSpaceRoleSaveState& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceRoleSaveState>)
+		return false;
+
+	if (m_nCastProvider != p_Other.m_nCastProvider) return false;
+	if (m_nBehaviour != p_Other.m_nBehaviour) return false;
+	if (m_eBehaviourStatus != p_Other.m_eBehaviourStatus) return false;
+	if (m_bEnabled != p_Other.m_bEnabled) return false;
+	if (m_bRequired != p_Other.m_bRequired) return false;
+
+	return true;
+}
+
+void SVoxelSpaceRoleSaveState::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceRoleSaveState*>(p_Object);
+	s_Object->~SVoxelSpaceRoleSaveState();
+}
+
+ZHMTypeInfo SVoxelSpaceSituationSaveState::TypeInfo = ZHMTypeInfo("SVoxelSpaceSituationSaveState", sizeof(SVoxelSpaceSituationSaveState), alignof(SVoxelSpaceSituationSaveState), SVoxelSpaceSituationSaveState::WriteSimpleJson, SVoxelSpaceSituationSaveState::FromSimpleJson, SVoxelSpaceSituationSaveState::Serialize, SVoxelSpaceSituationSaveState::Equals, SVoxelSpaceSituationSaveState::Destroy);
+
+void SVoxelSpaceSituationSaveState::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceSituationSaveState*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_nSituationRef") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nSituationRef);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_eState") << ":";
+	p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName("EVoxelSpaceSituationState", static_cast<int>(s_Object->m_eState)));
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_tCooldown") << ":";
+	ZGameTime::WriteSimpleJson(&s_Object->m_tCooldown, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aRoles") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aRoles.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aRoles[i];
+		SVoxelSpaceRoleSaveState::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_aRoles.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceSituationSaveState::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceSituationSaveState*>(p_Target);
+
+	s_Object->m_nSituationRef = simdjson::from_json_uint32(p_Document["m_nSituationRef"]);
+
+	s_Object->m_eState = static_cast<EVoxelSpaceSituationState>(ZHMEnums::GetEnumValueByName("EVoxelSpaceSituationState", std::string_view(p_Document["m_eState"])));
+
+	ZGameTime::FromSimpleJson(p_Document["m_tCooldown"], &s_Object->m_tCooldown);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aRoles"];
+	s_Object->m_aRoles.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SVoxelSpaceRoleSaveState::FromSimpleJson(s_Item0, &s_Object->m_aRoles[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void SVoxelSpaceSituationSaveState::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceSituationSaveState*>(p_Object);
+
+	ZGameTime::Serialize(&s_Object->m_tCooldown, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceSituationSaveState, m_tCooldown));
+	TArray<SVoxelSpaceRoleSaveState>::Serialize(&s_Object->m_aRoles, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceSituationSaveState, m_aRoles));
+}
+
+bool SVoxelSpaceSituationSaveState::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceSituationSaveState*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceSituationSaveState*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceSituationSaveState::operator==(const SVoxelSpaceSituationSaveState& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceSituationSaveState>)
+		return false;
+
+	if (m_nSituationRef != p_Other.m_nSituationRef) return false;
+	if (m_eState != p_Other.m_eState) return false;
+	if (m_tCooldown != p_Other.m_tCooldown) return false;
+	if (m_aRoles != p_Other.m_aRoles) return false;
+
+	return true;
+}
+
+void SVoxelSpaceSituationSaveState::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceSituationSaveState*>(p_Object);
+	s_Object->~SVoxelSpaceSituationSaveState();
+}
+
+ZHMTypeInfo SVoxelSpaceManagerSaveData::TypeInfo = ZHMTypeInfo("SVoxelSpaceManagerSaveData", sizeof(SVoxelSpaceManagerSaveData), alignof(SVoxelSpaceManagerSaveData), SVoxelSpaceManagerSaveData::WriteSimpleJson, SVoxelSpaceManagerSaveData::FromSimpleJson, SVoxelSpaceManagerSaveData::Serialize, SVoxelSpaceManagerSaveData::Equals, SVoxelSpaceManagerSaveData::Destroy);
+
+void SVoxelSpaceManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceManagerSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_aAgents") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aAgents.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aAgents[i];
+		SVoxelSpaceAgentSaveData::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_aAgents.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_aSituations") << ":";
+	p_Stream << "[";
+	for (size_t i = 0; i < s_Object->m_aSituations.size(); ++i)
+	{
+		auto& s_Item0 = s_Object->m_aSituations[i];
+		SVoxelSpaceSituationSaveState::WriteSimpleJson(&s_Item0, p_Stream);
+
+		if (i < s_Object->m_aSituations.size() - 1)
+			p_Stream << ",";
+	}
+
+	p_Stream << "]";
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceManagerSaveData*>(p_Target);
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aAgents"];
+	s_Object->m_aAgents.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SVoxelSpaceAgentSaveData::FromSimpleJson(s_Item0, &s_Object->m_aAgents[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+	{
+	simdjson::ondemand::array s_Array0 = p_Document["m_aSituations"];
+	s_Object->m_aSituations.resize(s_Array0.count_elements());
+	size_t s_Index0 = 0;
+
+	for (simdjson::ondemand::value s_Item0 : s_Array0)
+	{
+		SVoxelSpaceSituationSaveState::FromSimpleJson(s_Item0, &s_Object->m_aSituations[s_Index0]);
+		++s_Index0;
+	}
+	}
+
+}
+
+void SVoxelSpaceManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceManagerSaveData*>(p_Object);
+
+	TArray<SVoxelSpaceAgentSaveData>::Serialize(&s_Object->m_aAgents, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceManagerSaveData, m_aAgents));
+	TArray<SVoxelSpaceSituationSaveState>::Serialize(&s_Object->m_aSituations, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceManagerSaveData, m_aSituations));
+}
+
+bool SVoxelSpaceManagerSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceManagerSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceManagerSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceManagerSaveData::operator==(const SVoxelSpaceManagerSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceManagerSaveData>)
+		return false;
+
+	if (m_aAgents != p_Other.m_aAgents) return false;
+	if (m_aSituations != p_Other.m_aSituations) return false;
+
+	return true;
+}
+
+void SVoxelSpaceManagerSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceManagerSaveData*>(p_Object);
+	s_Object->~SVoxelSpaceManagerSaveData();
+}
+
+ZHMTypeInfo SVoxelSpaceORCAOptions::TypeInfo = ZHMTypeInfo("SVoxelSpaceORCAOptions", sizeof(SVoxelSpaceORCAOptions), alignof(SVoxelSpaceORCAOptions), SVoxelSpaceORCAOptions::WriteSimpleJson, SVoxelSpaceORCAOptions::FromSimpleJson, SVoxelSpaceORCAOptions::Serialize, SVoxelSpaceORCAOptions::Equals, SVoxelSpaceORCAOptions::Destroy);
+
+void SVoxelSpaceORCAOptions::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceORCAOptions*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("vSize") << ":";
+	SVector2::WriteSimpleJson(&s_Object->vSize, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("vReciprocity") << ":";
+	SVector2::WriteSimpleJson(&s_Object->vReciprocity, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fNeighbourDist") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fNeighbourDist);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("vTimeHorizon") << ":";
+	SVector2::WriteSimpleJson(&s_Object->vTimeHorizon, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceORCAOptions::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceORCAOptions*>(p_Target);
+
+	SVector2::FromSimpleJson(p_Document["vSize"], &s_Object->vSize);
+
+	SVector2::FromSimpleJson(p_Document["vReciprocity"], &s_Object->vReciprocity);
+
+	s_Object->fNeighbourDist = simdjson::from_json_float32(p_Document["fNeighbourDist"]);
+
+	SVector2::FromSimpleJson(p_Document["vTimeHorizon"], &s_Object->vTimeHorizon);
+
+}
+
+void SVoxelSpaceORCAOptions::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceORCAOptions*>(p_Object);
+
+	SVector2::Serialize(&s_Object->vSize, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceORCAOptions, vSize));
+	SVector2::Serialize(&s_Object->vReciprocity, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceORCAOptions, vReciprocity));
+	SVector2::Serialize(&s_Object->vTimeHorizon, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceORCAOptions, vTimeHorizon));
+}
+
+bool SVoxelSpaceORCAOptions::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceORCAOptions*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceORCAOptions*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceORCAOptions::operator==(const SVoxelSpaceORCAOptions& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceORCAOptions>)
+		return false;
+
+	if (vSize != p_Other.vSize) return false;
+	if (vReciprocity != p_Other.vReciprocity) return false;
+	if (fNeighbourDist != p_Other.fNeighbourDist) return false;
+	if (vTimeHorizon != p_Other.vTimeHorizon) return false;
+
+	return true;
+}
+
+void SVoxelSpaceORCAOptions::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceORCAOptions*>(p_Object);
+	s_Object->~SVoxelSpaceORCAOptions();
+}
+
+ZHMTypeInfo SVoxelSpaceObstacleClusterColumnSaveData::TypeInfo = ZHMTypeInfo("SVoxelSpaceObstacleClusterColumnSaveData", sizeof(SVoxelSpaceObstacleClusterColumnSaveData), alignof(SVoxelSpaceObstacleClusterColumnSaveData), SVoxelSpaceObstacleClusterColumnSaveData::WriteSimpleJson, SVoxelSpaceObstacleClusterColumnSaveData::FromSimpleJson, SVoxelSpaceObstacleClusterColumnSaveData::Serialize, SVoxelSpaceObstacleClusterColumnSaveData::Equals, SVoxelSpaceObstacleClusterColumnSaveData::Destroy);
+
+void SVoxelSpaceObstacleClusterColumnSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceObstacleClusterColumnSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_nCurrentObstacle") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nCurrentObstacle);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_vMoveToPos") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vMoveToPos, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceObstacleClusterColumnSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceObstacleClusterColumnSaveData*>(p_Target);
+
+	s_Object->m_nCurrentObstacle = simdjson::from_json_uint32(p_Document["m_nCurrentObstacle"]);
+
+	SVector3::FromSimpleJson(p_Document["m_vMoveToPos"], &s_Object->m_vMoveToPos);
+
+}
+
+void SVoxelSpaceObstacleClusterColumnSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceObstacleClusterColumnSaveData*>(p_Object);
+
+	SVector3::Serialize(&s_Object->m_vMoveToPos, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceObstacleClusterColumnSaveData, m_vMoveToPos));
+}
+
+bool SVoxelSpaceObstacleClusterColumnSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceObstacleClusterColumnSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceObstacleClusterColumnSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceObstacleClusterColumnSaveData::operator==(const SVoxelSpaceObstacleClusterColumnSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceObstacleClusterColumnSaveData>)
+		return false;
+
+	if (m_nCurrentObstacle != p_Other.m_nCurrentObstacle) return false;
+	if (m_vMoveToPos != p_Other.m_vMoveToPos) return false;
+
+	return true;
+}
+
+void SVoxelSpaceObstacleClusterColumnSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceObstacleClusterColumnSaveData*>(p_Object);
+	s_Object->~SVoxelSpaceObstacleClusterColumnSaveData();
+}
+
+ZHMTypeInfo SVoxelSpaceQuadcopterLocomotionSaveData::TypeInfo = ZHMTypeInfo("SVoxelSpaceQuadcopterLocomotionSaveData", sizeof(SVoxelSpaceQuadcopterLocomotionSaveData), alignof(SVoxelSpaceQuadcopterLocomotionSaveData), SVoxelSpaceQuadcopterLocomotionSaveData::WriteSimpleJson, SVoxelSpaceQuadcopterLocomotionSaveData::FromSimpleJson, SVoxelSpaceQuadcopterLocomotionSaveData::Serialize, SVoxelSpaceQuadcopterLocomotionSaveData::Equals, SVoxelSpaceQuadcopterLocomotionSaveData::Destroy);
+
+void SVoxelSpaceQuadcopterLocomotionSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceQuadcopterLocomotionSaveData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_vPosition") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vPosition, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_qAttitude") << ":";
+	SVector4::WriteSimpleJson(&s_Object->m_qAttitude, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_vVelocity") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vVelocity, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_vAccel") << ":";
+	SVector3::WriteSimpleJson(&s_Object->m_vAccel, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceQuadcopterLocomotionSaveData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceQuadcopterLocomotionSaveData*>(p_Target);
+
+	SVector3::FromSimpleJson(p_Document["m_vPosition"], &s_Object->m_vPosition);
+
+	SVector4::FromSimpleJson(p_Document["m_qAttitude"], &s_Object->m_qAttitude);
+
+	SVector3::FromSimpleJson(p_Document["m_vVelocity"], &s_Object->m_vVelocity);
+
+	SVector3::FromSimpleJson(p_Document["m_vAccel"], &s_Object->m_vAccel);
+
+}
+
+void SVoxelSpaceQuadcopterLocomotionSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceQuadcopterLocomotionSaveData*>(p_Object);
+
+	SVector3::Serialize(&s_Object->m_vPosition, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceQuadcopterLocomotionSaveData, m_vPosition));
+	SVector4::Serialize(&s_Object->m_qAttitude, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceQuadcopterLocomotionSaveData, m_qAttitude));
+	SVector3::Serialize(&s_Object->m_vVelocity, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceQuadcopterLocomotionSaveData, m_vVelocity));
+	SVector3::Serialize(&s_Object->m_vAccel, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceQuadcopterLocomotionSaveData, m_vAccel));
+}
+
+bool SVoxelSpaceQuadcopterLocomotionSaveData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceQuadcopterLocomotionSaveData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceQuadcopterLocomotionSaveData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceQuadcopterLocomotionSaveData::operator==(const SVoxelSpaceQuadcopterLocomotionSaveData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceQuadcopterLocomotionSaveData>)
+		return false;
+
+	if (m_vPosition != p_Other.m_vPosition) return false;
+	if (m_qAttitude != p_Other.m_qAttitude) return false;
+	if (m_vVelocity != p_Other.m_vVelocity) return false;
+	if (m_vAccel != p_Other.m_vAccel) return false;
+
+	return true;
+}
+
+void SVoxelSpaceQuadcopterLocomotionSaveData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceQuadcopterLocomotionSaveData*>(p_Object);
+	s_Object->~SVoxelSpaceQuadcopterLocomotionSaveData();
+}
+
+ZHMTypeInfo SVoxelSpaceSourceData::TypeInfo = ZHMTypeInfo("SVoxelSpaceSourceData", sizeof(SVoxelSpaceSourceData), alignof(SVoxelSpaceSourceData), SVoxelSpaceSourceData::WriteSimpleJson, SVoxelSpaceSourceData::FromSimpleJson, SVoxelSpaceSourceData::Serialize, SVoxelSpaceSourceData::Equals, SVoxelSpaceSourceData::Destroy);
+
+void SVoxelSpaceSourceData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceSourceData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("m_data") << ":";
+	SVoxelSpaceData::WriteSimpleJson(&s_Object->m_data, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_debug") << ":";
+	SVoxelSpaceDebugData::WriteSimpleJson(&s_Object->m_debug, p_Stream);
+
+	p_Stream << "}";
+}
+
+void SVoxelSpaceSourceData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<SVoxelSpaceSourceData*>(p_Target);
+
+	SVoxelSpaceData::FromSimpleJson(p_Document["m_data"], &s_Object->m_data);
+
+	SVoxelSpaceDebugData::FromSimpleJson(p_Document["m_debug"], &s_Object->m_debug);
+
+}
+
+void SVoxelSpaceSourceData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceSourceData*>(p_Object);
+
+	SVoxelSpaceData::Serialize(&s_Object->m_data, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceSourceData, m_data));
+	SVoxelSpaceDebugData::Serialize(&s_Object->m_debug, p_Serializer, p_OwnOffset + offsetof(SVoxelSpaceSourceData, m_debug));
+}
+
+bool SVoxelSpaceSourceData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<SVoxelSpaceSourceData*>(p_Left);
+	auto* s_Right = reinterpret_cast<SVoxelSpaceSourceData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool SVoxelSpaceSourceData::operator==(const SVoxelSpaceSourceData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<SVoxelSpaceSourceData>)
+		return false;
+
+	if (m_data != p_Other.m_data) return false;
+	if (m_debug != p_Other.m_debug) return false;
+
+	return true;
+}
+
+void SVoxelSpaceSourceData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<SVoxelSpaceSourceData*>(p_Object);
+	s_Object->~SVoxelSpaceSourceData();
+}
+
 ZHMTypeInfo SVrSingleHandThrowSaveData::TypeInfo = ZHMTypeInfo("SVrSingleHandThrowSaveData", sizeof(SVrSingleHandThrowSaveData), alignof(SVrSingleHandThrowSaveData), SVrSingleHandThrowSaveData::WriteSimpleJson, SVrSingleHandThrowSaveData::FromSimpleJson, SVrSingleHandThrowSaveData::Serialize, SVrSingleHandThrowSaveData::Equals, SVrSingleHandThrowSaveData::Destroy);
 
 void SVrSingleHandThrowSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
@@ -47336,6 +48594,81 @@ void ZEvergreenCampaignProgressDataProvider::SData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZEvergreenCampaignProgressDataProvider::SData*>(p_Object);
 	s_Object->~SData();
+}
+
+ZHMTypeInfo ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::TypeInfo = ZHMTypeInfo("ZEvergreenCustomInfoBarDataProvider.SCustomInfoBarMessage", sizeof(ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage), alignof(ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage), ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::WriteSimpleJson, ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::FromSimpleJson, ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::Serialize, ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::Equals, ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::Destroy);
+
+void ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("sUniqueId") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sUniqueId);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("sMessage") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->sMessage);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nBackgroundColor") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nBackgroundColor);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("nTextColor") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->nTextColor);
+
+	p_Stream << "}";
+}
+
+void ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage*>(p_Target);
+
+	s_Object->sUniqueId = std::string_view(p_Document["sUniqueId"]);
+
+	s_Object->sMessage = std::string_view(p_Document["sMessage"]);
+
+	s_Object->nBackgroundColor = simdjson::from_json_uint32(p_Document["nBackgroundColor"]);
+
+	s_Object->nTextColor = simdjson::from_json_uint32(p_Document["nTextColor"]);
+
+}
+
+void ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage*>(p_Object);
+
+	ZString::Serialize(&s_Object->sUniqueId, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage, sUniqueId));
+	ZString::Serialize(&s_Object->sMessage, p_Serializer, p_OwnOffset + offsetof(ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage, sMessage));
+}
+
+bool ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::operator==(const ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage>)
+		return false;
+
+	if (sUniqueId != p_Other.sUniqueId) return false;
+	if (sMessage != p_Other.sMessage) return false;
+	if (nBackgroundColor != p_Other.nBackgroundColor) return false;
+	if (nTextColor != p_Other.nTextColor) return false;
+
+	return true;
+}
+
+void ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZEvergreenCustomInfoBarDataProvider::SCustomInfoBarMessage*>(p_Object);
+	s_Object->~SCustomInfoBarMessage();
 }
 
 ZHMTypeInfo ZEvergreenIntelWallDataProvider::SIntelWallData::TypeInfo = ZHMTypeInfo("ZEvergreenIntelWallDataProvider.SIntelWallData", sizeof(ZEvergreenIntelWallDataProvider::SIntelWallData), alignof(ZEvergreenIntelWallDataProvider::SIntelWallData), ZEvergreenIntelWallDataProvider::SIntelWallData::WriteSimpleJson, ZEvergreenIntelWallDataProvider::SIntelWallData::FromSimpleJson, ZEvergreenIntelWallDataProvider::SIntelWallData::Serialize, ZEvergreenIntelWallDataProvider::SIntelWallData::Equals, ZEvergreenIntelWallDataProvider::SIntelWallData::Destroy);
@@ -52148,5 +53481,86 @@ void ZUIMapLegendDataProvider::SData::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<ZUIMapLegendDataProvider::SData*>(p_Object);
 	s_Object->~SData();
+}
+
+ZHMTypeInfo ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::TypeInfo = ZHMTypeInfo("ZVoxelSpaceQuadcopterMPCLocomotion.SCostWeights", sizeof(ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights), alignof(ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights), ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::WriteSimpleJson, ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::FromSimpleJson, ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::Serialize, ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::Equals, ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::Destroy);
+
+void ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("vCrossTrack") << ":";
+	SVector2::WriteSimpleJson(&s_Object->vCrossTrack, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fAlongTrack") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fAlongTrack);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fVelocity") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fVelocity);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fControl") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fControl);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("fControlRate") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->fControlRate);
+
+	p_Stream << "}";
+}
+
+void ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights*>(p_Target);
+
+	SVector2::FromSimpleJson(p_Document["vCrossTrack"], &s_Object->vCrossTrack);
+
+	s_Object->fAlongTrack = simdjson::from_json_float32(p_Document["fAlongTrack"]);
+
+	s_Object->fVelocity = simdjson::from_json_float32(p_Document["fVelocity"]);
+
+	s_Object->fControl = simdjson::from_json_float32(p_Document["fControl"]);
+
+	s_Object->fControlRate = simdjson::from_json_float32(p_Document["fControlRate"]);
+
+}
+
+void ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights*>(p_Object);
+
+	SVector2::Serialize(&s_Object->vCrossTrack, p_Serializer, p_OwnOffset + offsetof(ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights, vCrossTrack));
+}
+
+bool ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights*>(p_Left);
+	auto* s_Right = reinterpret_cast<ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::operator==(const ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights>)
+		return false;
+
+	if (vCrossTrack != p_Other.vCrossTrack) return false;
+	if (fAlongTrack != p_Other.fAlongTrack) return false;
+	if (fVelocity != p_Other.fVelocity) return false;
+	if (fControl != p_Other.fControl) return false;
+	if (fControlRate != p_Other.fControlRate) return false;
+
+	return true;
+}
+
+void ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<ZVoxelSpaceQuadcopterMPCLocomotion::SCostWeights*>(p_Object);
+	s_Object->~SCostWeights();
 }
 
