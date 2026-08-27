@@ -13,12 +13,12 @@ A collection of libraries that allow converting various game resources to JSON a
 
 Currently supported games and resource types:
 
-| Game            | Supported Resources                                                                                                                     |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| Hitman 3        | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
-| Hitman 2        | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA` |
-| Hitman 2016     | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `RTLV`, `UICB`, `ASVA`                 |
-| 007 First Light | `TDPK`, `KWOR`, `ENUM`, `ECPB`, `GIDX`, `WSGB`, `CBLU`, `GFXF`, `DSWB`, `CPPT`, `CRMD`, `UICB`, `RTLV`, `TBLU`, `VIDB`, `TDAT`, `TEMP`  |
+| Game            | Supported Resources                                                                                                                             |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| Hitman 3        | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA`, `VOXL` |
+| Hitman 2        | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `ECPB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `ENUM`, `RTLV`, `UICB`, `ASVA`         |
+| Hitman 2016     | `TEMP`, `TBLU`, `AIRG`, `ATMD`*, `CBLU`, `CPPT`, `CRMD`, `DSWB`, `GFXF`, `GIDX`, `VIDB`, `WSGB`, `RTLV`, `UICB`, `ASVA`                         |
+| 007 First Light | `TDPK`, `KWOR`, `ENUM`, `ECPB`, `GIDX`, `WSGB`, `CBLU`, `GFXF`, `DSWB`, `CPPT`, `CRMD`, `UICB`, `RTLV`, `TBLU`, `VIDB`, `TDAT`, `TEMP`          |
 
 *`*` Experimental*
 
