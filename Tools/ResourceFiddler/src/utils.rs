@@ -1,5 +1,5 @@
 use crate::resource_lib::Game;
-use hitman_commons::metadata::RuntimeID;
+use glacier_commons::metadata::RuntimeID;
 use rpkg_rs::GlacierGame;
 use rpkg_rs::resource::partition_manager::PartitionManager;
 use rpkg_rs::resource::pdefs::bond_parser::BondParser;
@@ -53,7 +53,7 @@ pub fn print_json_diff(before: &str, after: &str) {
     }
 }
 
-/// Convert a rpkg-rs RuntimeResourceID to a hitman_commons RuntimeID.
+/// Convert a rpkg-rs RuntimeResourceID to a glacier_commons RuntimeID.
 pub fn rrid_to_rid(rrid: &RuntimeResourceID, game: Game) -> Option<RuntimeID> {
     let mask = match game {
         Game::FirstLight007 => 0x01FFFFFFFFFFFFFF,

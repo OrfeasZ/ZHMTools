@@ -1,5 +1,5 @@
-use hitman_commons::hash_list::HashList;
-use hitman_commons::metadata::RuntimeID;
+use glacier_commons::hash_list::HashList;
+use glacier_commons::metadata::RuntimeID;
 use rayon::prelude::*;
 use rpkg_rs::resource::partition_manager::PartitionManager;
 use rpkg_rs::resource::resource_info::ResourceInfo;
