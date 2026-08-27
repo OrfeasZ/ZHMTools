@@ -4,6 +4,7 @@ mod dump;
 mod extract;
 mod paths;
 mod pins;
+mod propertyaliases;
 mod resource_lib;
 mod scan;
 mod test;
@@ -73,6 +74,20 @@ enum Mode {
         crc_output: Option<PathBuf>,
     },
 
+    /// Walk all TBLU resources and dump unique property names found using property aliases.
+    PropertyAliases {
+        properties_path: PathBuf,
+        custom_properties_path: PathBuf,
+        /// The file to output the new custom properties txt to, defaults to the path
+        /// supplied previously if not specified.
+        #[arg(long, short = 'o')]
+        output: Option<PathBuf>,
+
+        /// Comma separated property names to also include in the output (if they're not already in the properties file).
+        #[arg(long, short = 'p', value_delimiter = ',')]
+        properties: Vec<String>,
+    },
+
     /// Convert a single resource to JSON and print it to stdout.
     Extract {
         /// Resource hash (hex).
@@ -117,23 +132,23 @@ fn parse_rrid(hash: &str) -> RuntimeResourceID {
 fn main() {
     let cli_args: Vec<String> = env::args().collect();
 
-    let hardcoded_args: Option<&str> = None;
+    let hardcoded_args: Option<&[&str]> = None;
 
     // Hardcoded fallback used when running from an IDE with no extra arguments.
-    //let hardcoded_args = [
+    //let hardcoded_args = Some(&[
     //    "resource_fiddler", "-r", "C:/Games/HITMAN3/Retail", "-g", "HM3", "pins",
-    //];
-    //let hardcoded_args = [
+    //]);
+    //let hardcoded_args = Some(&[
     //    "resource_fiddler",
     //    "-r", "/home/orfeasz/.local/share/Steam/steamapps/common/007 First Light/Retail",
     //    "-g", "KNT", "extract", "0193ED6078F99215",
-    //];
-    //let hardcoded_args = [
+    //]);
+    //let hardcoded_args = Some(&[
     //    "resource_fiddler",
     //    "-r", "/home/orfeasz/Games/HITMAN3/Retail",
     //    "-g", "HM3", "paths"
-    //];
-    //let hardcoded_args = Some([
+    //]);
+    //let hardcoded_args = Some(&[
     //    "resource_fiddler",
     //    "-r", "/home/orfeasz/.local/share/Steam/steamapps/common/007 First Light/Retail",
     //    "-g", "KNT", "pins", "-o", "pins.json"
@@ -159,6 +174,19 @@ fn main() {
             test::run(partition_manager, game, filter)
         }
         Mode::Pins { crc_output } => pins::run(partition_manager, game, crc_output.as_deref()),
+        Mode::PropertyAliases {
+            properties_path,
+            custom_properties_path,
+            output,
+            properties,
+        } => propertyaliases::run(
+            partition_manager,
+            game,
+            &properties_path,
+            &custom_properties_path.clone(),
+            &output.unwrap_or(custom_properties_path),
+            &properties,
+        ),
         Mode::Extract { hash } => extract::run(partition_manager, game, parse_rrid(&hash)),
         Mode::Scan { needle } => scan::run(&partition_manager, game, &needle),
         Mode::Types => types::run(&partition_manager),
