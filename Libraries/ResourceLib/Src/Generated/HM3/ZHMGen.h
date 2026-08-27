@@ -26270,32 +26270,6 @@ public:
 class ZEvergreenCustomInfoBarDataProvider
 {
 public:
-	// Size: 0x38
-	class alignas(8) SCustomInfoBarMessage
-	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SCustomInfoBarMessage& p_Other) const;
-		bool operator!=(const SCustomInfoBarMessage& p_Other) const { return !(*this == p_Other); }
-
-		ZString sUniqueId; // 0x0
-		ZString sMessage; // 0x10
-		uint32 nBackgroundColor; // 0x20
-		uint32 nTextColor; // 0x24
-	};
-	ZHM_OFFSET_CHECK(SCustomInfoBarMessage, sUniqueId, 0x0);
-	ZHM_OFFSET_CHECK(SCustomInfoBarMessage, sMessage, 0x10);
-	ZHM_OFFSET_CHECK(SCustomInfoBarMessage, nBackgroundColor, 0x20);
-	ZHM_OFFSET_CHECK(SCustomInfoBarMessage, nTextColor, 0x24);
-	static_assert(sizeof(SCustomInfoBarMessage) == 0x38, "Wrong size for SCustomInfoBarMessage");
-	static_assert(alignof(SCustomInfoBarMessage) == 0x8, "Wrong alignment for SCustomInfoBarMessage");
-
 };
 
 class ZEvergreenGearWallMenuEntryAddOn

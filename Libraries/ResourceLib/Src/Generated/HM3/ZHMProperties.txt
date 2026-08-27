@@ -8782,7 +8782,6 @@ nAmmoInClip
 nAmmoRemaining
 nAmmoTotal
 nAndUnhandled
-nBackgroundColor
 nCellSizePow2
 nClearanceDir
 nClearanceVoxels
@@ -8825,7 +8824,6 @@ nSize
 nSlot
 nSuppliers
 nTargets
-nTextColor
 nTimeStamp
 nUserData
 nValue
@@ -8932,7 +8930,6 @@ sKillMethod
 sLabel
 sLastEventToken
 sLocationId
-sMessage
 sMissingToolText
 sName
 sParamName
@@ -8942,7 +8939,6 @@ sPropertyName
 sStringProp
 sSymbolName
 sTypeArgName
-sUniqueId
 sUnlockableId
 sWeaponName
 sWorldSpaceSettings

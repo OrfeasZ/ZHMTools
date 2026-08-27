@@ -1943,7 +1943,7 @@ void CodeGen::GenerateDummyClass(const std::shared_ptr<TreeNode> &p_Node, const 
 
 void CodeGen::GenerateCode(const std::shared_ptr<TreeNode>& p_Node, const std::string &p_Indent, EOutputTarget p_Target)
 {
-	if (p_Node->ShouldSkip || p_Node->Name == "ZRepositoryID")
+	if (p_Node->ShouldSkip || p_Node->Name == "ZRepositoryID" || p_Node->Name == "SCustomInfoBarMessage")
 	{
 		log("Skipping code generation for node %s.\n", p_Node->Name.c_str());
 
