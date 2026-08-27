@@ -45030,7 +45030,10 @@ void SVoxelSpaceDataHeader::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 	p_Stream << ",";
 
 	p_Stream << simdjson::as_json_string("aReserved") << ":";
-	p_Stream << simdjson::as_json_string(s_Object->aReserved);
+	// HACK: see comment in header
+	uint64 s_nReserved = 0;
+	std::memcpy(&s_nReserved, s_Object->aReserved, 8);
+	p_Stream << simdjson::as_json_string(s_nReserved);
 
 	p_Stream << "}";
 }
@@ -45041,7 +45044,9 @@ void SVoxelSpaceDataHeader::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	s_Object->nVersionType = simdjson::from_json_uint32(p_Document["nVersionType"]);
 
-	s_Object->aReserved = simdjson::from_json_uint8(p_Document["aReserved"]);
+	// HACK: see comment in header
+	const uint64 s_nReserved = simdjson::from_json_uint64(p_Document["aReserved"]);
+	std::memcpy(s_Object->aReserved, &s_nReserved, 8);
 
 }
 
@@ -45065,7 +45070,8 @@ bool SVoxelSpaceDataHeader::operator==(const SVoxelSpaceDataHeader& p_Other) con
 		return false;
 
 	if (nVersionType != p_Other.nVersionType) return false;
-	if (aReserved != p_Other.aReserved) return false;
+	// HACK: see comment in header
+	if (std::memcmp(aReserved, p_Other.aReserved, 8) != 0) return false;
 
 	return true;
 }

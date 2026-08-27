@@ -24114,12 +24114,14 @@ public:
 	bool operator!=(const SVoxelSpaceDataHeader& p_Other) const { return !(*this == p_Other); }
 
 	uint32 nVersionType; // 0x0
-	uint8 aReserved; // 0x4
+	uint8 aReserved[8]; // 0x4
 };
 ZHM_OFFSET_CHECK(SVoxelSpaceDataHeader, nVersionType, 0x0);
 ZHM_OFFSET_CHECK(SVoxelSpaceDataHeader, aReserved, 0x4);
 static_assert(sizeof(SVoxelSpaceDataHeader) == 0xC, "Wrong size for SVoxelSpaceDataHeader");
 static_assert(alignof(SVoxelSpaceDataHeader) == 0x4, "Wrong alignment for SVoxelSpaceDataHeader");
+// HACK: aReserved is a C-style array of size 8, so we handle it as a uint64
+static_assert(sizeof(SVoxelSpaceDataHeader::aReserved) == sizeof(uint64), "Unexpected size for SVoxelSpaceDataHeader::aReserved");
 
 // Size: 0x78
 class alignas(8) SVoxelSpaceData
