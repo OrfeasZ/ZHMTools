@@ -53,6 +53,10 @@ std::unordered_map<std::string, Resource> g_Resources = {
 	REGISTER_RESOURCE(ENUM, SEnumType)
 #endif
 
+#if ZHM_TARGET == 3
+	REGISTER_RESOURCE(VOXL, SVoxelSpaceData)
+#endif
+
 #if ZHM_TARGET == 2026
 	REGISTER_RESOURCE(KWOR, SSerializedKeyword)
 	REGISTER_RESOURCE(TDAT, STerrainResource)
