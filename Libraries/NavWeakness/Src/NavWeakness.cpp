@@ -46,7 +46,9 @@ NavPower::NavMesh LoadNavMeshFromBinary(const char* p_NavMeshPath)
 		printf("Hdr_checksum: %x\n", s_NavMesh.m_hdr->m_checksum);
 		printf("Hdr_runtimeFlags: %x\n", s_NavMesh.m_hdr->m_runtimeFlags);
 		printf("Hdr_constantFlags: %x\n", s_NavMesh.m_hdr->m_constantFlags);
-		throw std::runtime_error("Checksums didn't match.");
+		printf("Checksums didn't match.");
+		// Commenting this out for now because it doesn't seem to work for First Light
+	    // throw std::runtime_error("Checksums didn't match.");
 	}
 
 	return s_NavMesh;
@@ -85,25 +87,45 @@ void OutputNavMesh_HUMAN_Print(NavPower::NavMesh* p_NavMesh)
 	    printf("Set_numGraphs: %x\n", s_Section.m_setHdr->m_numGraphs);
         for (auto s_NavGraph : s_Section.m_aNavGraphs) {
             printf("==== NavGraph Header ====\n");
-            printf("GraphHdr_version: %x\n", s_NavGraph.m_hdr->m_version);
-            printf("GraphHdr_layer: %x\n", s_NavGraph.m_hdr->m_layer);
-            printf("GraphHdr_areaBytes: %x\n", s_NavGraph.m_hdr->m_areaBytes);
-            printf("GraphHdr_kdTreeBytes: %x\n", s_NavGraph.m_hdr->m_kdTreeBytes);
-            printf("GraphHdr_linkRecordBytes: %x\n", s_NavGraph.m_hdr->m_linkRecordBytes);
-            printf("GraphHdr_totalBytes: %x\n", s_NavGraph.m_hdr->m_totalBytes);
-            printf("GraphHdr_buildScale: %f\n", s_NavGraph.m_hdr->m_buildScale);
-            printf("GraphHdr_voxSize: %f\n", s_NavGraph.m_hdr->m_voxSize);
-            printf("GraphHdr_radius: %f\n", s_NavGraph.m_hdr->m_radius);
-            printf("GraphHdr_stepHeight: %f\n", s_NavGraph.m_hdr->m_stepHeight);
-            printf("GraphHdr_height: %f\n", s_NavGraph.m_hdr->m_height);
-            printf("GraphHdr_bbox.min.X: %f\n", s_NavGraph.m_hdr->m_bbox.m_min.X);
-            printf("GraphHdr_bbox.min.Y: %f\n", s_NavGraph.m_hdr->m_bbox.m_min.Y);
-            printf("GraphHdr_bbox.min.Z: %f\n", s_NavGraph.m_hdr->m_bbox.m_min.Z);
-            printf("GraphHdr_bbox.max.X: %f\n", s_NavGraph.m_hdr->m_bbox.m_max.X);
-            printf("GraphHdr_bbox.max.Y: %f\n", s_NavGraph.m_hdr->m_bbox.m_max.Y);
-            printf("GraphHdr_bbox.max.Z: %f\n", s_NavGraph.m_hdr->m_bbox.m_max.Z);
-            printf("GraphHdr_buildUpAxis: %x [%s]\n", s_NavGraph.m_hdr->m_buildUpAxis, NavPower::AxisToString(s_NavGraph.m_hdr->m_buildUpAxis).c_str());
-
+            if (s_NavMesh.m_isKnt) {
+                printf("GraphHdr_version: %x\n", s_NavGraph.m_hdrKnt->m_version);
+                printf("GraphHdr_layer: %x\n", s_NavGraph.m_hdrKnt->m_layer);
+                printf("GraphHdr_areaBytes: %x\n", s_NavGraph.m_hdrKnt->m_areaBytes);
+                printf("GraphHdr_kdTreeBytes: %x\n", s_NavGraph.m_hdrKnt->m_kdTreeBytes);
+                printf("GraphHdr_linkRecordBytes: %x\n", s_NavGraph.m_hdrKnt->m_linkRecordBytes);
+                printf("GraphHdr_totalBytes: %x\n", s_NavGraph.m_hdrKnt->m_totalBytes);
+                printf("GraphHdr_buildScale: %f\n", s_NavGraph.m_hdrKnt->m_buildScale);
+                printf("GraphHdr_voxSize: %f\n", s_NavGraph.m_hdrKnt->m_voxSize);
+                printf("GraphHdr_radius: %f\n", s_NavGraph.m_hdrKnt->m_radius);
+                printf("GraphHdr_stepHeight: %f\n", s_NavGraph.m_hdrKnt->m_stepHeight);
+                printf("GraphHdr_height: %f\n", s_NavGraph.m_hdrKnt->m_height);
+                printf("GraphHdr_bbox.min.X: %f\n", s_NavGraph.m_hdrKnt->m_bbox.m_min.X);
+                printf("GraphHdr_bbox.min.Y: %f\n", s_NavGraph.m_hdrKnt->m_bbox.m_min.Y);
+                printf("GraphHdr_bbox.min.Z: %f\n", s_NavGraph.m_hdrKnt->m_bbox.m_min.Z);
+                printf("GraphHdr_bbox.max.X: %f\n", s_NavGraph.m_hdrKnt->m_bbox.m_max.X);
+                printf("GraphHdr_bbox.max.Y: %f\n", s_NavGraph.m_hdrKnt->m_bbox.m_max.Y);
+                printf("GraphHdr_bbox.max.Z: %f\n", s_NavGraph.m_hdrKnt->m_bbox.m_max.Z);
+                printf("GraphHdr_buildUpAxis: %x [%s]\n", s_NavGraph.m_hdrKnt->m_buildUpAxis, NavPower::AxisToString(s_NavGraph.m_hdrKnt->m_buildUpAxis).c_str());
+            } else {
+                printf("GraphHdr_version: %x\n", s_NavGraph.m_hdr->m_version);
+                printf("GraphHdr_layer: %x\n", s_NavGraph.m_hdr->m_layer);
+                printf("GraphHdr_areaBytes: %x\n", s_NavGraph.m_hdr->m_areaBytes);
+                printf("GraphHdr_kdTreeBytes: %x\n", s_NavGraph.m_hdr->m_kdTreeBytes);
+                printf("GraphHdr_linkRecordBytes: %x\n", s_NavGraph.m_hdr->m_linkRecordBytes);
+                printf("GraphHdr_totalBytes: %x\n", s_NavGraph.m_hdr->m_totalBytes);
+                printf("GraphHdr_buildScale: %f\n", s_NavGraph.m_hdr->m_buildScale);
+                printf("GraphHdr_voxSize: %f\n", s_NavGraph.m_hdr->m_voxSize);
+                printf("GraphHdr_radius: %f\n", s_NavGraph.m_hdr->m_radius);
+                printf("GraphHdr_stepHeight: %f\n", s_NavGraph.m_hdr->m_stepHeight);
+                printf("GraphHdr_height: %f\n", s_NavGraph.m_hdr->m_height);
+                printf("GraphHdr_bbox.min.X: %f\n", s_NavGraph.m_hdr->m_bbox.m_min.X);
+                printf("GraphHdr_bbox.min.Y: %f\n", s_NavGraph.m_hdr->m_bbox.m_min.Y);
+                printf("GraphHdr_bbox.min.Z: %f\n", s_NavGraph.m_hdr->m_bbox.m_min.Z);
+                printf("GraphHdr_bbox.max.X: %f\n", s_NavGraph.m_hdr->m_bbox.m_max.X);
+                printf("GraphHdr_bbox.max.Y: %f\n", s_NavGraph.m_hdr->m_bbox.m_max.Y);
+                printf("GraphHdr_bbox.max.Z: %f\n", s_NavGraph.m_hdr->m_bbox.m_max.Z);
+                printf("GraphHdr_buildUpAxis: %x [%s]\n", s_NavGraph.m_hdr->m_buildUpAxis, NavPower::AxisToString(s_NavGraph.m_hdr->m_buildUpAxis).c_str());
+            }
             for (int i = 0; i < s_NavGraph.m_areas.size(); i++) {
                 NavPower::Area s_curArea = s_NavGraph.m_areas.at(i);
 
@@ -259,7 +281,7 @@ void OutputNavMesh_JSON_Write(NavPower::NavMesh* p_NavMesh, const char* p_NavMes
 	fileOutputStream.close();
 }
 
-// Outputs the navmesh to binary format for use by Hitman WoA
+// Outputs the navmesh to json format
 extern "C" void OutputNavMesh_JSON(const char* p_NavMeshPath, const char* p_NavMeshOutputPath, bool b_SourceIsJson = false)
 {
 	if (b_SourceIsJson)

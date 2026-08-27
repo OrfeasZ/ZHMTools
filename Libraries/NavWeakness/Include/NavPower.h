@@ -1,5 +1,5 @@
 /*
-NavPower.h - v2.0.0
+NavPower.h - v3.0.0
 A header file for use with NavPower's binary navmesh files.
 
 Licensed under the MIT License
@@ -140,7 +140,7 @@ namespace NavPower
             void writeBinary(std::ostream& f);
         };
 
-        class NavGraphHeader
+        class NavGraphHeaderHm
         {
         public:
             uint32_t m_version = 0x28;
@@ -157,6 +157,33 @@ namespace NavPower
             BBox m_bbox;
             Axis m_buildUpAxis = Axis::Z;
             // In NAVPs from Hitman WoA the padding isn't just 0x00
+            // It is however identical in all files, changing it to all 0x00 makes NPCs disappear completely
+            uint8_t m_pad[252] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,20,214,126,45,220,142,102,131,239,87,73,97,255,105,143,97,205,209,30,157,156,22,114,114,230,29,240,132,79,74,119,2,215,232,57,44,83,203,201,18,30,51,116,158,12,244,213,212,159,212,164,89,126,53,207,50,34,244,204,207,211,144,45,72,211,143,117,230,217,29,42,229,192,247,43,120,129,135,68,14,95,80,0,212,97,141,190,123,5,21,7,59,51,130,31,24,112,146,218,100,84,206,177,133,62,105,21,248,70,106,4,150,115,14,217,22,47,103,104,212,247,74,74,208,87,104,118 };
+
+            void writeBinary(std::ostream& f);
+        };
+
+        class NavGraphHeaderKnt
+        {
+        public:
+            uint32_t m_version = 0x30;
+            uint32_t m_layer = 0;
+            uint32_t m_areaBytes;
+            uint32_t m_kdTreeBytes;
+            uint32_t m_unknown0 = 0;
+            uint32_t m_unknown1 = 0;
+            uint32_t m_unknown2 = 56;
+            uint32_t m_linkRecordBytes = 0;
+            uint32_t m_totalBytes;
+            uint32_t m_unknown3 = 0;
+            float m_buildScale = 2.0f;
+            float m_voxSize = 0.1f;
+            float m_radius = 0.2f;
+            float m_stepHeight = 0.3f;
+            float m_height = 1.8f; // Human Height
+            BBox m_bbox;
+            Axis m_buildUpAxis = Axis::Z;
+            // In NAVPs from 007 First Light the padding isn't just 0x00
             // It is however identical in all files, changing it to all 0x00 makes NPCs disappear completely
             uint8_t m_pad[252] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,20,214,126,45,220,142,102,131,239,87,73,97,255,105,143,97,205,209,30,157,156,22,114,114,230,29,240,132,79,74,119,2,215,232,57,44,83,203,201,18,30,51,116,158,12,244,213,212,159,212,164,89,126,53,207,50,34,244,204,207,211,144,45,72,211,143,117,230,217,29,42,229,192,247,43,120,129,135,68,14,95,80,0,212,97,141,190,123,5,21,7,59,51,130,31,24,112,146,218,100,84,206,177,133,62,105,21,248,70,106,4,150,115,14,217,22,47,103,104,212,247,74,74,208,87,104,118 };
 
@@ -308,7 +335,7 @@ namespace NavPower
             bool IsLeaf() { return m_data & 0x80000000 ? true : false; }
             void SetIsLeaf(int p_isLeaf) { m_data = (m_data & ~0x80000000) | (p_isLeaf & 0x80000000); }
             Axis GetSplitAxis() { return (Axis)((m_data >> 28) & 7); }
-            void SetSplitAxis(Axis p_axis) { m_data = (m_data & ~0x70000000) >> 28 | ((p_axis << 28) & 0x70000000); }
+            void SetSplitAxis(Axis p_axis) { m_data = (m_data & ~0x70000000) | ((static_cast<uint32_t>(p_axis) << 28) & 0x70000000); }
             uint32_t GetRightOffset() { return m_data & 0xFFFFFFF; }
             void SetRightOffset(uint32_t p_rightOffset) { m_data = (m_data & ~0xFFFFFFF) | (p_rightOffset & 0xFFFFFFF); }
             KDNode* GetLeft() { return this + 1; }
@@ -389,7 +416,6 @@ namespace NavPower
             return cross.GetUnitVec();
         }
 
-        BBox CalculateBBox();
         Vec3 CalculateCentroid();
         void updateAdjacentDistances() const;
     };
@@ -403,7 +429,7 @@ namespace NavPower
         uint32_t m_splitAxis;
     };
 
-    BBox generateBbox(std::vector<Area> s_areas);
+    BBox generateBbox(const std::vector<Area>& s_areas);
     bool compareX(Area& a1, Area& a2);
     bool compareY(Area& a1, Area& a2);
     bool compareZ(Area& a1, Area& a2);
@@ -411,16 +437,16 @@ namespace NavPower
     class NavGraph
     {
     public:
-        Binary::NavGraphHeader* m_hdr;
+        union {
+            Binary::NavGraphHeaderHm* m_hdr;
+            Binary::NavGraphHeaderKnt* m_hdrKnt;
+        };
         std::vector<Area> m_areas;
         Binary::KDTreeData* m_kdTreeData;
         Binary::KDNode* m_rootKDNode;
 
         NavGraph() {};
         NavGraph(auto s_NavGraphJson);
-        
-
-        NavGraph(uintptr_t p_data) { read(p_data); };
 
         // Build m_areas pointer to index map so the pointers can be replaced with indices (+1) in the JSON file
         std::map<Binary::Area*, uint32_t> AreaPointerToIndexMap();
@@ -448,10 +474,10 @@ namespace NavPower
         uint32_t generateKdTree(uintptr_t s_nodePtr, std::vector<Area>& s_areas, std::map<Binary::Area*, uint32_t>& p_AreaPointerToNavGraphOffsetMap);
 
         void writeJson(std::ostream& f);
-        void readJson(auto s_NavGraphJson);
+        void readJson(auto s_NavGraphJson, bool s_IsKnt);
         void writeBinary(std::ostream& f);
 
-        void read(uintptr_t& p_data);
+        void read(uintptr_t& p_data, bool& p_isKnt);
 
         // This parses the k-d tree and outputs it as a vector of bounding boxes
         std::map<uint32_t, std::vector<std::pair<uint32_t, BBox>>> ParseKDTree()
@@ -512,11 +538,10 @@ namespace NavPower
         std::vector<NavGraph> m_aNavGraphs;
 
         Section(){};
-        Section(uintptr_t& p_data) { read(p_data); };
 
-        void read(uintptr_t& p_data);
+        void read(uintptr_t& p_data, bool& p_isKnt);
 
-        void readJson(auto p_SectionJson);
+        void readJson(auto p_SectionJson, bool s_IsKnt);
 
         void writeJson(std::ofstream& f);
 
@@ -528,6 +553,7 @@ namespace NavPower
     public:
         Binary::Header* m_hdr;
         std::vector<Section> m_aSections;
+        bool m_isKnt;
 
         NavMesh() {};
         NavMesh(const char* p_NavGraphJsonPath);
