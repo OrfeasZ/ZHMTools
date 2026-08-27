@@ -33,11 +33,23 @@
           pkgs.pkg-config
           pkgs.git
           rustToolchain
+          pkgs.xwin
+          llvm.clang-unwrapped
+          pkgs.lld
+          llvm.llvm
+          pkgs.glibc.static
+          pkgs.curl
+          pkgs.zip
+          pkgs.unzip
+          pkgs.gnutar
+          pkgs.zstd
+          pkgs.gdb
         ];
 
         mkShellHook = stdenv: ''
           export CC="${stdenv.cc}/bin/${stdenv.cc.targetPrefix}cc"
           export CXX="${stdenv.cc}/bin/${stdenv.cc.targetPrefix}c++"
+          export XWIN_SPLAT_DIR="$PWD/.xwin/splat"
         '';
       in
       {

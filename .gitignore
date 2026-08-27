@@ -380,3 +380,5 @@ _build/
 /result-*
 .rustc_info.json
 .future-incompat-report.json
+
+/.xwin

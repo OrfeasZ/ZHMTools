@@ -16,7 +16,6 @@ set(CMAKE_CXX_STANDARD 23)
 option(ZHM_BUILD_TOOLS "Whether or not tools should be built" ON)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-	set(VCPKG_CRT_LINKAGE "static")
 	set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 	string(REPLACE "/INCREMENTAL" "" CMAKE_SHARED_LINKER_FLAGS_RELEASE ${CMAKE_SHARED_LINKER_FLAGS_RELEASE})
@@ -49,7 +48,7 @@ if(NOT EMSCRIPTEN)
 	add_subdirectory("Libraries/NavWeakness")
 endif()
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+if(WIN32)
 	if(ZHM_BUILD_TOOLS)
 		add_subdirectory("Tools/CodeGen")
 	endif()
