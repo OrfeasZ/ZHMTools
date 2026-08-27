@@ -34,7 +34,6 @@ void CodeGen::WriteFileHeader(std::ostream& p_Stream)
 	p_Stream << std::endl;
 }
 
-
 void CodeGen::Generate(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p_Types, const std::filesystem::path& p_OutputPath)
 {
 	m_PropertyNames.clear();
@@ -328,6 +327,7 @@ void CodeGen::BuildTypeTree(THashMap<ZString, STypeID*, TypeMapHashingPolicy>& p
 	m_TypeTreeRoot->Children.erase("SEvergreenMenuPromptDesc"); // Has fields that don't exist in type info.
 	RemoveChild("ZEvergreenMenuController", "SPromptsData"); // Uses SEvergreenMenuPromptDesc.
 	m_TypeTreeRoot->Children.erase("SAudioDynamicSequenceItemData"); // Has a void field.
+	RemoveChild("ZEvergreenCustomInfoBarDataProvider", "SCustomInfoBarMessage"); // Has fields that don't exist in type info.
 
 	std::unordered_set<std::shared_ptr<TreeNode>> s_Visited;
 	for (auto& s_Child : m_TypeTreeRoot->Children)
@@ -1449,6 +1449,11 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 
 		s_HeaderStream << p_Indent << "\t" << NormalizeName(s_Prop.m_pType) << " " << s_PropName << ";";
 		s_HeaderStream << " // 0x" << std::hex << std::uppercase << s_Prop.m_nOffset << std::dec << std::endl;
+	}
+
+	// HACKHACK: Add padding to SVoxelSpaceDataHeader because engine typeinfo doesn't properly encode C-style arrays.
+	if (s_TypeName == "SVoxelSpaceDataHeader") {
+		s_HeaderStream << p_Indent << "\tuint8 _pad[7];" << std::endl;
 	}
 
 	EmitJsonStruct(p_Node);
