@@ -10623,6 +10623,10 @@ void JSONTemplate::SDlssSupportData::WriteSimpleJson(void* p_Object, std::ostrea
 	p_Stream << simdjson::as_json_string(s_Object->IsFrameGenDynamicAvailable);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("IsFrameGenVSyncSupportAvailable") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsFrameGenVSyncSupportAvailable);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("MaxFrameGenCount") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->MaxFrameGenCount);
 
@@ -10638,6 +10642,8 @@ void JSONTemplate::SDlssSupportData::FromSimpleJson(simdjson::ondemand::value p_
 	s_Object->IsFrameGenAvailable = simdjson::from_json_bool(p_Document["IsFrameGenAvailable"]);
 
 	s_Object->IsFrameGenDynamicAvailable = simdjson::from_json_bool(p_Document["IsFrameGenDynamicAvailable"]);
+
+	s_Object->IsFrameGenVSyncSupportAvailable = simdjson::from_json_bool(p_Document["IsFrameGenVSyncSupportAvailable"]);
 
 	s_Object->MaxFrameGenCount = simdjson::from_json_int32(p_Document["MaxFrameGenCount"]);
 
@@ -10665,6 +10671,7 @@ bool JSONTemplate::SDlssSupportData::operator==(const JSONTemplate::SDlssSupport
 	if (IsAvailable != p_Other.IsAvailable) return false;
 	if (IsFrameGenAvailable != p_Other.IsFrameGenAvailable) return false;
 	if (IsFrameGenDynamicAvailable != p_Other.IsFrameGenDynamicAvailable) return false;
+	if (IsFrameGenVSyncSupportAvailable != p_Other.IsFrameGenVSyncSupportAvailable) return false;
 	if (MaxFrameGenCount != p_Other.MaxFrameGenCount) return false;
 
 	return true;
@@ -10750,6 +10757,72 @@ void JSONTemplate::SEditTextDialogRegExpValidator::Destroy(void* p_Object)
 {
 	auto* s_Object = reinterpret_cast<JSONTemplate::SEditTextDialogRegExpValidator*>(p_Object);
 	s_Object->~SEditTextDialogRegExpValidator();
+}
+
+ZHMTypeInfo JSONTemplate::SFSRSupportData::TypeInfo = ZHMTypeInfo("JSONTemplate.SFSRSupportData", sizeof(JSONTemplate::SFSRSupportData), alignof(JSONTemplate::SFSRSupportData), JSONTemplate::SFSRSupportData::WriteSimpleJson, JSONTemplate::SFSRSupportData::FromSimpleJson, JSONTemplate::SFSRSupportData::Serialize, JSONTemplate::SFSRSupportData::Equals, JSONTemplate::SFSRSupportData::Destroy);
+
+void JSONTemplate::SFSRSupportData::WriteSimpleJson(void* p_Object, std::ostream& p_Stream)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SFSRSupportData*>(p_Object);
+
+	p_Stream << "{";
+
+	p_Stream << simdjson::as_json_string("IsAvailable") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsAvailable);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("IsAPIUpscalingAvailable") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsAPIUpscalingAvailable);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("IsAPIFrameGenAvailable") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->IsAPIFrameGenAvailable);
+
+	p_Stream << "}";
+}
+
+void JSONTemplate::SFSRSupportData::FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target)
+{
+	auto s_Object = reinterpret_cast<JSONTemplate::SFSRSupportData*>(p_Target);
+
+	s_Object->IsAvailable = simdjson::from_json_bool(p_Document["IsAvailable"]);
+
+	s_Object->IsAPIUpscalingAvailable = simdjson::from_json_bool(p_Document["IsAPIUpscalingAvailable"]);
+
+	s_Object->IsAPIFrameGenAvailable = simdjson::from_json_bool(p_Document["IsAPIFrameGenAvailable"]);
+
+}
+
+void JSONTemplate::SFSRSupportData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SFSRSupportData*>(p_Object);
+
+}
+
+bool JSONTemplate::SFSRSupportData::Equals(void* p_Left, void* p_Right)
+{
+	auto* s_Left = reinterpret_cast<JSONTemplate::SFSRSupportData*>(p_Left);
+	auto* s_Right = reinterpret_cast<JSONTemplate::SFSRSupportData*>(p_Right);
+
+	return *s_Left == *s_Right;
+}
+
+bool JSONTemplate::SFSRSupportData::operator==(const JSONTemplate::SFSRSupportData& p_Other) const
+{
+	if constexpr (!ZHMTypeSupportsEquality_v<JSONTemplate::SFSRSupportData>)
+		return false;
+
+	if (IsAvailable != p_Other.IsAvailable) return false;
+	if (IsAPIUpscalingAvailable != p_Other.IsAPIUpscalingAvailable) return false;
+	if (IsAPIFrameGenAvailable != p_Other.IsAPIFrameGenAvailable) return false;
+
+	return true;
+}
+
+void JSONTemplate::SFSRSupportData::Destroy(void* p_Object)
+{
+	auto* s_Object = reinterpret_cast<JSONTemplate::SFSRSupportData*>(p_Object);
+	s_Object->~SFSRSupportData();
 }
 
 ZHMTypeInfo JSONTemplate::SFirearmCategoryData::TypeInfo = ZHMTypeInfo("JSONTemplate.SFirearmCategoryData", sizeof(JSONTemplate::SFirearmCategoryData), alignof(JSONTemplate::SFirearmCategoryData), JSONTemplate::SFirearmCategoryData::WriteSimpleJson, JSONTemplate::SFirearmCategoryData::FromSimpleJson, JSONTemplate::SFirearmCategoryData::Serialize, JSONTemplate::SFirearmCategoryData::Equals, JSONTemplate::SFirearmCategoryData::Destroy);

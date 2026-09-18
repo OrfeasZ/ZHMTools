@@ -8342,6 +8342,7 @@ namespace Gameplay {
 		Skill_DoorKick = 47,
 		Skill_DoorRush = 48,
 		TakedownAmmoReward = 49,
+		Skill_PickupAmmo = 50,
 	};
 
 	// Size: 0x1
@@ -10246,6 +10247,7 @@ enum class _EUIOptionKey : int32_t
 	UI_OPTION_DISPLAY_STEREO_STRENGTH = 2330,
 	UI_OPTION_GRAPHICS_FSR_RESOLUTION = 2400,
 	UI_OPTION_GRAPHICS_FSR_IMAGE_SHARPEN = 2401,
+	UI_OPTION_GRAPHICS_FSR_FRAME_GEN = 2402,
 	UI_OPTION_GRAPHICS_DLSS_RESOLUTION = 2410,
 	UI_OPTION_GRAPHICS_DLSS_RAY_RECONSTRUCTION = 2411,
 	UI_OPTION_GRAPHICS_DLSS_FRAME_GEN = 2412,
@@ -12486,11 +12488,13 @@ namespace JSONTemplate {
 		bool IsAvailable; // 0x0
 		bool IsFrameGenAvailable; // 0x1
 		bool IsFrameGenDynamicAvailable; // 0x2
+		bool IsFrameGenVSyncSupportAvailable; // 0x3
 		int32 MaxFrameGenCount; // 0x4
 	};
 	ZHM_OFFSET_CHECK(SDlssSupportData, IsAvailable, 0x0);
 	ZHM_OFFSET_CHECK(SDlssSupportData, IsFrameGenAvailable, 0x1);
 	ZHM_OFFSET_CHECK(SDlssSupportData, IsFrameGenDynamicAvailable, 0x2);
+	ZHM_OFFSET_CHECK(SDlssSupportData, IsFrameGenVSyncSupportAvailable, 0x3);
 	ZHM_OFFSET_CHECK(SDlssSupportData, MaxFrameGenCount, 0x4);
 	static_assert(sizeof(SDlssSupportData) == 0x8, "Wrong size for SDlssSupportData");
 	static_assert(alignof(SDlssSupportData) == 0x4, "Wrong alignment for SDlssSupportData");
@@ -12520,6 +12524,30 @@ namespace JSONTemplate {
 	ZHM_OFFSET_CHECK(SEditTextDialogRegExpValidator, level, 0x30);
 	static_assert(sizeof(SEditTextDialogRegExpValidator) == 0x38, "Wrong size for SEditTextDialogRegExpValidator");
 	static_assert(alignof(SEditTextDialogRegExpValidator) == 0x8, "Wrong alignment for SEditTextDialogRegExpValidator");
+
+	// Size: 0x3
+	class alignas(1) SFSRSupportData
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SFSRSupportData& p_Other) const;
+		bool operator!=(const SFSRSupportData& p_Other) const { return !(*this == p_Other); }
+
+		bool IsAvailable; // 0x0
+		bool IsAPIUpscalingAvailable; // 0x1
+		bool IsAPIFrameGenAvailable; // 0x2
+	};
+	ZHM_OFFSET_CHECK(SFSRSupportData, IsAvailable, 0x0);
+	ZHM_OFFSET_CHECK(SFSRSupportData, IsAPIUpscalingAvailable, 0x1);
+	ZHM_OFFSET_CHECK(SFSRSupportData, IsAPIFrameGenAvailable, 0x2);
+	static_assert(sizeof(SFSRSupportData) == 0x3, "Wrong size for SFSRSupportData");
+	static_assert(alignof(SFSRSupportData) == 0x1, "Wrong alignment for SFSRSupportData");
 
 	// Size: 0x40
 	class alignas(8) SFirearmCategoryData

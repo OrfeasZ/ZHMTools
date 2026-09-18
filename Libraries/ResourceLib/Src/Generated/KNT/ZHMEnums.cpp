@@ -6722,6 +6722,7 @@ void ZHMEnums::RegisterEnums()
 		{ 47, "Skill_DoorKick" },
 		{ 48, "Skill_DoorRush" },
 		{ 49, "TakedownAmmoReward" },
+		{ 50, "Skill_PickupAmmo" },
 	};
 	(*g_EnumSizes)["Gameplay.EPlayerGameplaySystem"] = 4;
 
@@ -10081,6 +10082,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2330, "UI_OPTION_DISPLAY_STEREO_STRENGTH" },
 		{ 2400, "UI_OPTION_GRAPHICS_FSR_RESOLUTION" },
 		{ 2401, "UI_OPTION_GRAPHICS_FSR_IMAGE_SHARPEN" },
+		{ 2402, "UI_OPTION_GRAPHICS_FSR_FRAME_GEN" },
 		{ 2410, "UI_OPTION_GRAPHICS_DLSS_RESOLUTION" },
 		{ 2411, "UI_OPTION_GRAPHICS_DLSS_RAY_RECONSTRUCTION" },
 		{ 2412, "UI_OPTION_GRAPHICS_DLSS_FRAME_GEN" },
