@@ -1,12 +1,13 @@
 #pragma once
 
 #include <string>
+#include <cstdio>
 #include <cstdlib>
 #include "ZString.h"
 
 #if !defined(_MSC_VER)
 #	define sscanf_s sscanf
-#	define sprintf_s(dst, sz, fmt, ...) sprintf(dst, fmt, __VA_ARGS__)
+#	define sprintf_s(dst, sz, fmt, ...) snprintf(dst, sz, fmt, __VA_ARGS__)
 #endif
 
 class ZRepositoryID
