@@ -891,8 +891,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "eDC_Rumble" },
 		{ 4, "eDC_XInput" },
 		{ 8, "eDC_Durango" },
-		{ 14, "COUNT" },
-		{ 16, "eDC_Mouse" },
+		{ 16, "COUNT" },
 		{ 32, "eDC_Keyboard" },
 		{ 64, "eDC_Gamepad" },
 		{ 128, "eDC_Dualshock" },
@@ -902,6 +901,8 @@ void ZHMEnums::RegisterEnums()
 		{ 2048, "eDC_AdaptiveTriggers" },
 		{ 4096, "eDC_HapticRumble" },
 		{ 8192, "eDC_SwitchPro" },
+		{ 16384, "eDC_SteamDeckController" },
+		{ 32768, "eDC_Gyro" },
 	};
 	(*g_EnumSizes)["EDeviceCapability"] = 4;
 
@@ -1185,6 +1186,13 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["EDynamicBrickActivationState"] = 4;
 
+	(*g_Enums)["EDynamicBrickAssetState"] = {
+		{ 0, "Empty" },
+		{ 1, "PreloadStarted" },
+		{ 2, "PreloadEnded" },
+	};
+	(*g_EnumSizes)["EDynamicBrickAssetState"] = 4;
+
 	(*g_Enums)["EDynamicBrickLoadState"] = {
 		{ 0, "Unloaded" },
 		{ 1, "Loaded" },
@@ -1418,13 +1426,14 @@ void ZHMEnums::RegisterEnums()
 		{ 0, "MagazineOut" },
 		{ 1, "MagazineIn" },
 		{ 2, "PullChamber" },
-		{ 3, "Holster" },
-		{ 4, "Unholster" },
-		{ 5, "Pickup" },
-		{ 6, "Aim" },
-		{ 7, "Attach" },
-		{ 8, "Detach" },
-		{ 9, "Count" },
+		{ 3, "PushChamber" },
+		{ 4, "Holster" },
+		{ 5, "Unholster" },
+		{ 6, "Pickup" },
+		{ 7, "Aim" },
+		{ 8, "Attach" },
+		{ 9, "Detach" },
+		{ 10, "Count" },
 	};
 	(*g_EnumSizes)["EFirearmAnimationEvent"] = 4;
 
@@ -2260,7 +2269,8 @@ void ZHMEnums::RegisterEnums()
 		{ 11, "Locale_Tc" },
 		{ 12, "Locale_Ko" },
 		{ 13, "Locale_Tr" },
-		{ 14, "Locale_Placeholder" },
+		{ 14, "Locale_Uk" },
+		{ 15, "Locale_Placeholder" },
 	};
 	(*g_EnumSizes)["ELocale"] = 4;
 
@@ -2478,9 +2488,10 @@ void ZHMEnums::RegisterEnums()
 		{ 19, "CostumeOneMore" },
 		{ 20, "CostumeCasinoSuit" },
 		{ 21, "CostumeDiamondintheRough" },
-		{ 22, "WeaponAgentsMark" },
-		{ 23, "WeaponGoldenGun" },
-		{ 24, "COUNT" },
+		{ 22, "CostumeGoldenEyeSuit" },
+		{ 23, "WeaponAgentsMark" },
+		{ 24, "WeaponGoldenGun" },
+		{ 25, "COUNT" },
 	};
 	(*g_EnumSizes)["EPackage"] = 4;
 
@@ -2878,6 +2889,21 @@ void ZHMEnums::RegisterEnums()
 		{ 1005, "InspectItemZoom" },
 		{ 1006, "ItemRotateLeft" },
 		{ 1007, "ItemRotateRight" },
+		{ 1008, "PhotoMode_Open" },
+		{ 1009, "PhotoMode_ActivateCameraMode" },
+		{ 1010, "PhotoMode_ChangeCameraSpeed" },
+		{ 1011, "PhotoMode_ChangeGridVisibility" },
+		{ 1012, "PhotoMode_ResetCamera" },
+		{ 1013, "PhotoMode_MoveCameraUp" },
+		{ 1014, "PhotoMode_MoveCameraDown" },
+		{ 1015, "PhotoMode_MoveCameraLeft" },
+		{ 1016, "PhotoMode_MoveCameraRight" },
+		{ 1017, "PhotoMode_MoveCameraForward" },
+		{ 1018, "PhotoMode_MoveCameraBackward" },
+		{ 1019, "PhotoMode_LookCameraLeft" },
+		{ 1020, "PhotoMode_LookCameraRight" },
+		{ 1021, "PhotoMode_LookCameraUp" },
+		{ 1022, "PhotoMode_LookCameraDown" },
 	};
 	(*g_EnumSizes)["EScheme_GameUI"] = 4;
 
@@ -2955,6 +2981,10 @@ void ZHMEnums::RegisterEnums()
 		{ 70, "ES_CombatRushGrab" },
 		{ 71, "ES_GrabThrow" },
 		{ 72, "ES_SpecialFirearmAbility" },
+		{ 73, "ES_AimGyroLeft" },
+		{ 74, "ES_AimGyroRight" },
+		{ 75, "ES_AimGyroUp" },
+		{ 76, "ES_AimGyroDown" },
 	};
 	(*g_EnumSizes)["EScheme_Humanoid"] = 4;
 
@@ -3606,6 +3636,13 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["EUbitusRequest"] = 4;
 
+	(*g_Enums)["EUpdateMode"] = {
+		{ 0, "eUpdatePlayMode" },
+		{ 1, "eUpdatePaused" },
+		{ 2, "eUpdateAlways" },
+	};
+	(*g_EnumSizes)["EUpdateMode"] = 1;
+
 	(*g_Enums)["EVRRenderDeviceType"] = {
 		{ 0, "RENDER_VR_DEVICE_TYPE_DUMMY" },
 		{ 1, "RENDER_VR_DEVICE_TYPE_OCULUS" },
@@ -3890,6 +3927,12 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["EVirtualCameraStabilizeApplicationMode"] = 4;
 
+	(*g_Enums)["EVirtualCameraTimeDomain"] = {
+		{ 0, "GameTime" },
+		{ 1, "RealTime" },
+	};
+	(*g_EnumSizes)["EVirtualCameraTimeDomain"] = 1;
+
 	(*g_Enums)["EVirtualCameraTransitionType"] = {
 		{ 0, "AbsoluteDuration" },
 		{ 1, "ScaledDuration" },
@@ -4092,6 +4135,7 @@ void ZHMEnums::RegisterEnums()
 		{ 8, "AllowWhileInConfrontation" },
 		{ 16, "AllowWhileGrounded" },
 		{ 32, "AllowWhilePerformingSelf" },
+		{ 64, "AllowWhileInteracting" },
 	};
 	(*g_EnumSizes)["Gameplay.EAgilityActionAllowance"] = 4;
 
@@ -4691,6 +4735,7 @@ void ZHMEnums::RegisterEnums()
 		{ 0, "None" },
 		{ 1, "Jump" },
 		{ 2, "Impact" },
+		{ 3, "DeepImpact" },
 	};
 	(*g_EnumSizes)["Gameplay.EAttackFromAboveState"] = 4;
 
@@ -5571,6 +5616,7 @@ void ZHMEnums::RegisterEnums()
 		{ 26, "Block" },
 		{ 27, "CoverTakedown" },
 		{ 28, "AttackFromAbove" },
+		{ 29, "EquipItem" },
 	};
 	(*g_EnumSizes)["Gameplay.EEarlyOutCapabilityIssuer"] = 1;
 
@@ -5806,14 +5852,6 @@ void ZHMEnums::RegisterEnums()
 		{ 58, "COUNT" },
 	};
 	(*g_EnumSizes)["Gameplay.EGoalPriorities"] = 4;
-
-	(*g_Enums)["Gameplay.EGrabRushOffTheLedgeGroundPositionResult"] = {
-		{ 0, "Invalid_NoGround" },
-		{ 1, "Invalid_OutOfReach" },
-		{ 2, "Invalid_NoNavMeshPoint" },
-		{ 3, "Valid" },
-	};
-	(*g_EnumSizes)["Gameplay.EGrabRushOffTheLedgeGroundPositionResult"] = 4;
 
 	(*g_Enums)["Gameplay.EGrabRushOffTheLedgeType"] = {
 		{ 0, "Throw" },
@@ -6239,6 +6277,13 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["Gameplay.EKntCheckpointLoadState"] = 1;
 
+	(*g_Enums)["Gameplay.EKntMissionTimerModificationType"] = {
+		{ 0, "AddTime" },
+		{ 1, "SubstractTime" },
+		{ 2, "SetTime" },
+	};
+	(*g_EnumSizes)["Gameplay.EKntMissionTimerModificationType"] = 1;
+
 	(*g_Enums)["Gameplay.EKntMissionTimerType"] = {
 		{ 0, "Timer" },
 		{ 1, "Stopwatch" },
@@ -6496,6 +6541,14 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["Gameplay.EObjectiveUIType"] = 4;
 
+	(*g_Enums)["Gameplay.EOffTheLedgeGroundPositionResult"] = {
+		{ 0, "Invalid_NoGround" },
+		{ 1, "Invalid_OutOfReach" },
+		{ 2, "Invalid_NoNavMeshPoint" },
+		{ 3, "Valid" },
+	};
+	(*g_EnumSizes)["Gameplay.EOffTheLedgeGroundPositionResult"] = 4;
+
 	(*g_Enums)["Gameplay.EParryVariationType"] = {
 		{ 0, "None" },
 		{ 1, "Left" },
@@ -6523,6 +6576,12 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "Trespass_Bluffed" },
 	};
 	(*g_EnumSizes)["Gameplay.EPickpocketMode"] = 1;
+
+	(*g_Enums)["Gameplay.EPlayerApproachGoalCancelMode"] = {
+		{ 0, "CancelAllCoreLogicApproaches" },
+		{ 1, "CancelOnlyApproachesStartedByThisEntity" },
+	};
+	(*g_EnumSizes)["Gameplay.EPlayerApproachGoalCancelMode"] = 4;
 
 	(*g_Enums)["Gameplay.EPlayerApproachingGoalCompletionMode"] = {
 		{ 0, "BasedOnDistanceToTarget" },
@@ -6965,6 +7024,13 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["Gameplay.ESimulatedPlayerActiveSkill"] = 1;
 
+	(*g_Enums)["Gameplay.EStaggerOverlapSource"] = {
+		{ 0, "PairedAction" },
+		{ 1, "Grab" },
+		{ 2, "CombatRush" },
+	};
+	(*g_EnumSizes)["Gameplay.EStaggerOverlapSource"] = 1;
+
 	(*g_Enums)["Gameplay.EStaggerSource"] = {
 		{ 0, "ThrowableImpact" },
 		{ 1, "MeleeImpact" },
@@ -6973,7 +7039,6 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "GrabThrow" },
 		{ 5, "Taser" },
 		{ 6, "Flashbang" },
-		{ 7, "CoreLogic" },
 		{ 8, "Parry" },
 		{ 9, "DoorImpact" },
 		{ 10, "Firearm" },
@@ -7235,6 +7300,13 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["Gameplay.EVaultType"] = 1;
 
+	(*g_Enums)["Gameplay.EVehicleAerodynamicsAirControls"] = {
+		{ 0, "Disabled" },
+		{ 1, "AutoAirStabilization" },
+		{ 2, "InputBasedAirControl" },
+	};
+	(*g_EnumSizes)["Gameplay.EVehicleAerodynamicsAirControls"] = 1;
+
 	(*g_Enums)["Gameplay.EVehicleAerodynamicsDownforceMode"] = {
 		{ 0, "Always" },
 		{ 1, "OnlyOnGround" },
@@ -7361,6 +7433,7 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "CollisionHandling" },
 		{ 2, "Aerodynamics" },
 		{ 3, "CameraController" },
+		{ 4, "MotorbikeConfig" },
 	};
 	(*g_EnumSizes)["Gameplay.EVehicleCarComponentType"] = 1;
 
@@ -7449,6 +7522,19 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["Gameplay.EVehicleHumanoidVisibility"] = 1;
 
+	(*g_Enums)["Gameplay.EVehicleMotorbikePhysicalPartType"] = {
+		{ 0, "WheelFront" },
+		{ 1, "WheelRear" },
+		{ 2, "Chassis" },
+	};
+	(*g_EnumSizes)["Gameplay.EVehicleMotorbikePhysicalPartType"] = 1;
+
+	(*g_Enums)["Gameplay.EVehicleMotorbikeWheelIndex"] = {
+		{ 0, "Front" },
+		{ 1, "Rear" },
+	};
+	(*g_EnumSizes)["Gameplay.EVehicleMotorbikeWheelIndex"] = 1;
+
 	(*g_Enums)["Gameplay.EVehiclePhysicalPartType"] = {
 		{ 0, "WheelFrontLeft" },
 		{ 1, "WheelFrontRight" },
@@ -7494,7 +7580,6 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "WorldPositionSpeedBasedWheelRotation" },
 		{ 5, "SkeletonBoneTransformFromPhysicalPart" },
 		{ 6, "SkeletonBoneTransformCustom" },
-		{ 7, "CustomVehicleSpatialPositionSpeedBasedWheelRotation" },
 	};
 	(*g_EnumSizes)["Gameplay.EVehicleSpatialAttachmentMode"] = 4;
 
@@ -7975,7 +8060,10 @@ void ZHMEnums::RegisterEnums()
 		{ 3, "EJoystickRightVertical" },
 		{ 4, "ETriggerLeft" },
 		{ 5, "ETriggerRight" },
-		{ 6, "eMAX" },
+		{ 6, "EGyroDeltaYaw" },
+		{ 7, "EGyroDeltaPitch" },
+		{ 8, "EGyroDeltaRoll" },
+		{ 9, "eMAX" },
 	};
 	(*g_EnumSizes)["SGamepadState.EGamepadAxis"] = 4;
 
@@ -8486,6 +8574,9 @@ void ZHMEnums::RegisterEnums()
 		{ 43, "PerformingPrivateSpaceReaction" },
 		{ 44, "AffectedBySmoke" },
 		{ 45, "PerformingFakeSurrenderFinisher" },
+		{ 46, "RollingOverCover" },
+		{ 47, "Vaulting" },
+		{ 48, "InCombat" },
 	};
 	(*g_EnumSizes)["ZCLHumanoidStateListenerEntity.EState"] = 1;
 
@@ -8545,6 +8636,13 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "Disconnected" },
 	};
 	(*g_EnumSizes)["ZCLPlayerConnectionEvent.EPlayerConnectionEventType"] = 4;
+
+	(*g_Enums)["ZCLPlayerStateListenerEntity.ESequenceType"] = {
+		{ 0, "Cinematic" },
+		{ 1, "Gameplay" },
+		{ 2, "Any" },
+	};
+	(*g_EnumSizes)["ZCLPlayerStateListenerEntity.ESequenceType"] = 4;
 
 	(*g_Enums)["ZCLPlayerStateListenerEntity.EState"] = {
 		{ 0, "Dashing" },
@@ -8606,6 +8704,7 @@ void ZHMEnums::RegisterEnums()
 		{ 56, "Falling" },
 		{ 57, "InterruptedFinisherCamera" },
 		{ 58, "HasRubberCameraControls" },
+		{ 59, "IsAnyAnimatedCameraActive" },
 	};
 	(*g_EnumSizes)["ZCLPlayerStateListenerEntity.EState"] = 1;
 
@@ -8911,6 +9010,14 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["ZGameObjectivesUIManagerEntity.EStateType"] = 4;
 
+	(*g_Enums)["ZGetVirtualCameraTransformEntity.EMode"] = {
+		{ 0, "Full" },
+		{ 1, "WithoutShakes" },
+		{ 2, "WithoutOffset" },
+		{ 3, "WithoutAnyOffset" },
+	};
+	(*g_EnumSizes)["ZGetVirtualCameraTransformEntity.EMode"] = 4;
+
 	(*g_Enums)["ZHUDCamera3DControllerEntity.EMode"] = {
 		{ 0, "Auto" },
 		{ 1, "Mode2D" },
@@ -9189,17 +9296,18 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "LegShot" },
 		{ 2, "DoubleLegShot" },
 		{ 3, "HeadShot" },
-		{ 4, "ShootArmor" },
-		{ 5, "DestroyArmor" },
-		{ 6, "DisarmShot" },
-		{ 7, "WeaponThrow" },
-		{ 8, "WeaponThrowImpacted" },
-		{ 9, "WeaponSwitch" },
-		{ 10, "MagazineOutOfAmmo" },
-		{ 11, "OutOfAmmo" },
-		{ 12, "ItemThrow" },
-		{ 13, "ItemThrowImpacted" },
-		{ 14, "MissedShot" },
+		{ 4, "LethalShot" },
+		{ 5, "ShootArmor" },
+		{ 6, "DestroyArmor" },
+		{ 7, "DisarmShot" },
+		{ 8, "WeaponThrow" },
+		{ 9, "WeaponThrowImpacted" },
+		{ 10, "WeaponSwitch" },
+		{ 11, "MagazineOutOfAmmo" },
+		{ 12, "OutOfAmmo" },
+		{ 13, "ItemThrow" },
+		{ 14, "ItemThrowImpacted" },
+		{ 15, "MissedShot" },
 	};
 	(*g_EnumSizes)["ZHumanoidRangedCombatEventEntity.ERangedCombatEvent"] = 1;
 
@@ -9240,6 +9348,7 @@ void ZHMEnums::RegisterEnums()
 		{ 9, "OfflineCheckpointNotFound" },
 		{ 10, "Unknown" },
 		{ 11, "CheckpointNotInBoot" },
+		{ 12, "NotOwned" },
 	};
 	(*g_EnumSizes)["ZKntOnlineMission.EMissionStartError"] = 4;
 
