@@ -10180,6 +10180,7 @@ namespace Gameplay {
 		SVector3 m_frontWheelTargetLocalPos; // 0x48
 		SVector3 m_rearWheelLocalPos; // 0x54
 		SVector3 m_rearWheelTargetLocalPos; // 0x60
+		uint8 _pad[116];
 	};
 	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_maxSteeringAngle, 0x0);
 	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_steerLerpDecayRate, 0x4);
