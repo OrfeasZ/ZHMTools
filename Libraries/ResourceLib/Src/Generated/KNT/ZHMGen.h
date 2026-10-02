@@ -1193,7 +1193,9 @@ enum class EDeviceCapability : int32_t
 	eDC_AdaptiveTriggers = 2048,
 	eDC_HapticRumble = 4096,
 	eDC_SwitchPro = 8192,
-	COUNT = 14,
+	eDC_SteamDeckController = 16384,
+	eDC_Gyro = 32768,
+	COUNT = 16,
 };
 
 // Size: 0x4
@@ -1491,6 +1493,14 @@ enum class EDynamicBrickActivationState : int32_t
 };
 
 // Size: 0x4
+enum class EDynamicBrickAssetState : int32_t
+{
+	Empty = 0,
+	PreloadStarted = 1,
+	PreloadEnded = 2,
+};
+
+// Size: 0x4
 enum class EDynamicBrickLoadState : int32_t
 {
 	Unloaded = 0,
@@ -1735,13 +1745,14 @@ enum class EFirearmAnimationEvent : int32_t
 	MagazineOut = 0,
 	MagazineIn = 1,
 	PullChamber = 2,
-	Holster = 3,
-	Unholster = 4,
-	Pickup = 5,
-	Aim = 6,
-	Attach = 7,
-	Detach = 8,
-	Count = 9,
+	PushChamber = 3,
+	Holster = 4,
+	Unholster = 5,
+	Pickup = 6,
+	Aim = 7,
+	Attach = 8,
+	Detach = 9,
+	Count = 10,
 };
 
 // Size: 0x4
@@ -2654,7 +2665,8 @@ enum class ELocale : int32_t
 	Locale_Tc = 11,
 	Locale_Ko = 12,
 	Locale_Tr = 13,
-	Locale_Placeholder = 14,
+	Locale_Uk = 14,
+	Locale_Placeholder = 15,
 };
 
 // Size: 0x4
@@ -2894,9 +2906,10 @@ enum class EPackage : int32_t
 	CostumeOneMore = 19,
 	CostumeCasinoSuit = 20,
 	CostumeDiamondintheRough = 21,
-	WeaponAgentsMark = 22,
-	WeaponGoldenGun = 23,
-	COUNT = 24,
+	CostumeGoldenEyeSuit = 22,
+	WeaponAgentsMark = 23,
+	WeaponGoldenGun = 24,
+	COUNT = 25,
 };
 
 // Size: 0x1
@@ -3332,6 +3345,21 @@ enum class EScheme_GameUI : int32_t
 	InspectItemZoom = 1005,
 	ItemRotateLeft = 1006,
 	ItemRotateRight = 1007,
+	PhotoMode_Open = 1008,
+	PhotoMode_ActivateCameraMode = 1009,
+	PhotoMode_ChangeCameraSpeed = 1010,
+	PhotoMode_ChangeGridVisibility = 1011,
+	PhotoMode_ResetCamera = 1012,
+	PhotoMode_MoveCameraUp = 1013,
+	PhotoMode_MoveCameraDown = 1014,
+	PhotoMode_MoveCameraLeft = 1015,
+	PhotoMode_MoveCameraRight = 1016,
+	PhotoMode_MoveCameraForward = 1017,
+	PhotoMode_MoveCameraBackward = 1018,
+	PhotoMode_LookCameraLeft = 1019,
+	PhotoMode_LookCameraRight = 1020,
+	PhotoMode_LookCameraUp = 1021,
+	PhotoMode_LookCameraDown = 1022,
 };
 
 // Size: 0x4
@@ -3410,6 +3438,10 @@ enum class EScheme_Humanoid : int32_t
 	ES_CombatRushGrab = 70,
 	ES_GrabThrow = 71,
 	ES_SpecialFirearmAbility = 72,
+	ES_AimGyroLeft = 73,
+	ES_AimGyroRight = 74,
+	ES_AimGyroUp = 75,
+	ES_AimGyroDown = 76,
 };
 
 // Size: 0x1
@@ -4123,6 +4155,14 @@ enum class EUbitusRequest : int32_t
 	EUR_ESHOP_CLOSED = 1226,
 };
 
+// Size: 0x1
+enum class EUpdateMode : int8_t
+{
+	eUpdatePlayMode = 0,
+	eUpdatePaused = 1,
+	eUpdateAlways = 2,
+};
+
 // Size: 0x4
 enum class EVRRenderDeviceType : int32_t
 {
@@ -4440,6 +4480,13 @@ enum class EVirtualCameraStabilizeApplicationMode : int32_t
 {
 	Transform = 0,
 	Offset = 1,
+};
+
+// Size: 0x1
+enum class EVirtualCameraTimeDomain : int8_t
+{
+	GameTime = 0,
+	RealTime = 1,
 };
 
 // Size: 0x4
@@ -5593,6 +5640,7 @@ namespace Gameplay {
 		AllowWhileInConfrontation = 8,
 		AllowWhileGrounded = 16,
 		AllowWhilePerformingSelf = 32,
+		AllowWhileInteracting = 64,
 	};
 
 	// Size: 0x1
@@ -6194,6 +6242,7 @@ namespace Gameplay {
 		None = 0,
 		Jump = 1,
 		Impact = 2,
+		DeepImpact = 3,
 	};
 
 	// Size: 0x4
@@ -7117,6 +7166,7 @@ namespace Gameplay {
 		Block = 26,
 		CoverTakedown = 27,
 		AttackFromAbove = 28,
+		EquipItem = 29,
 	};
 
 	// Size: 0x1
@@ -7370,15 +7420,6 @@ namespace Gameplay {
 		AGENCY_FOCUS = 56,
 		LOWEST = 57,
 		COUNT = 58,
-	};
-
-	// Size: 0x4
-	enum class EGrabRushOffTheLedgeGroundPositionResult : int32_t
-	{
-		Invalid_NoGround = 0,
-		Invalid_OutOfReach = 1,
-		Invalid_NoNavMeshPoint = 2,
-		Valid = 3,
 	};
 
 	// Size: 0x4
@@ -7809,6 +7850,14 @@ namespace Gameplay {
 		Finalize = 5,
 	};
 
+	// Size: 0x1
+	enum class EKntMissionTimerModificationType : int8_t
+	{
+		AddTime = 0,
+		SubstractTime = 1,
+		SetTime = 2,
+	};
+
 	// Size: 0x4
 	enum class EKntMissionTimerType : int32_t
 	{
@@ -8094,6 +8143,15 @@ namespace Gameplay {
 		OpportunityStep = 5,
 	};
 
+	// Size: 0x4
+	enum class EOffTheLedgeGroundPositionResult : int32_t
+	{
+		Invalid_NoGround = 0,
+		Invalid_OutOfReach = 1,
+		Invalid_NoNavMeshPoint = 2,
+		Valid = 3,
+	};
+
 	// Size: 0x1
 	enum class EParryVariationType : int8_t
 	{
@@ -8124,6 +8182,13 @@ namespace Gameplay {
 		Social = 0,
 		Trespass = 1,
 		Trespass_Bluffed = 2,
+	};
+
+	// Size: 0x4
+	enum class EPlayerApproachGoalCancelMode : int32_t
+	{
+		CancelAllCoreLogicApproaches = 0,
+		CancelOnlyApproachesStartedByThisEntity = 1,
 	};
 
 	// Size: 0x4
@@ -8613,6 +8678,14 @@ namespace Gameplay {
 		SimulatedSkill_FakeSurrender = 1,
 	};
 
+	// Size: 0x1
+	enum class EStaggerOverlapSource : int8_t
+	{
+		PairedAction = 0,
+		Grab = 1,
+		CombatRush = 2,
+	};
+
 	// Size: 0x4
 	enum class EStaggerSource : int32_t
 	{
@@ -8623,7 +8696,6 @@ namespace Gameplay {
 		GrabThrow = 4,
 		Taser = 5,
 		Flashbang = 6,
-		CoreLogic = 7,
 		Parry = 8,
 		DoorImpact = 9,
 		Firearm = 10,
@@ -8907,6 +8979,14 @@ namespace Gameplay {
 	};
 
 	// Size: 0x1
+	enum class EVehicleAerodynamicsAirControls : int8_t
+	{
+		Disabled = 0,
+		AutoAirStabilization = 1,
+		InputBasedAirControl = 2,
+	};
+
+	// Size: 0x1
 	enum class EVehicleAerodynamicsDownforceMode : int8_t
 	{
 		Always = 0,
@@ -9050,6 +9130,7 @@ namespace Gameplay {
 		CollisionHandling = 1,
 		Aerodynamics = 2,
 		CameraController = 3,
+		MotorbikeConfig = 4,
 	};
 
 	// Size: 0x4
@@ -9133,6 +9214,21 @@ namespace Gameplay {
 		Invisible = 1,
 	};
 
+	// Size: 0x1
+	enum class EVehicleMotorbikePhysicalPartType : int8_t
+	{
+		WheelFront = 0,
+		WheelRear = 1,
+		Chassis = 2,
+	};
+
+	// Size: 0x1
+	enum class EVehicleMotorbikeWheelIndex : int8_t
+	{
+		Front = 0,
+		Rear = 1,
+	};
+
 	// Size: 0x4
 	enum class EVehiclePhysicalPartType : int32_t
 	{
@@ -9185,7 +9281,6 @@ namespace Gameplay {
 		WorldPositionSpeedBasedWheelRotation = 4,
 		SkeletonBoneTransformFromPhysicalPart = 5,
 		SkeletonBoneTransformCustom = 6,
-		CustomVehicleSpatialPositionSpeedBasedWheelRotation = 7,
 	};
 
 	// Size: 0x4
@@ -10060,6 +10155,91 @@ namespace Gameplay {
 	static_assert(sizeof(SVehicleDriftingDeactivationConditionSet) == 0x18, "Wrong size for SVehicleDriftingDeactivationConditionSet");
 	static_assert(alignof(SVehicleDriftingDeactivationConditionSet) == 0x8, "Wrong alignment for SVehicleDriftingDeactivationConditionSet");
 
+	// Size: 0xE0
+	class alignas(16) SVehicleMotorbikeGeometryConfig
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleMotorbikeGeometryConfig& p_Other) const;
+		bool operator!=(const SVehicleMotorbikeGeometryConfig& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_maxSteeringAngle; // 0x0
+		float32 m_steerLerpDecayRate; // 0x4
+		float32 m_wheelRadius; // 0x8
+		SVector3 m_chassisLocalPos; // 0xC
+		SVector3 m_handlebarsLocalPos; // 0x18
+		SVector3 m_leftHandleverLocalPos; // 0x24
+		SVector3 m_rightHandleverLocalPos; // 0x30
+		SVector3 m_frontWheelLocalPos; // 0x3C
+		SVector3 m_frontWheelTargetLocalPos; // 0x48
+		SVector3 m_rearWheelLocalPos; // 0x54
+		SVector3 m_rearWheelTargetLocalPos; // 0x60
+		uint8 _pad[116];
+	};
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_maxSteeringAngle, 0x0);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_steerLerpDecayRate, 0x4);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_wheelRadius, 0x8);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_chassisLocalPos, 0xC);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_handlebarsLocalPos, 0x18);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_leftHandleverLocalPos, 0x24);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_rightHandleverLocalPos, 0x30);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_frontWheelLocalPos, 0x3C);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_frontWheelTargetLocalPos, 0x48);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_rearWheelLocalPos, 0x54);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeGeometryConfig, m_rearWheelTargetLocalPos, 0x60);
+	static_assert(sizeof(SVehicleMotorbikeGeometryConfig) == 0xE0, "Wrong size for SVehicleMotorbikeGeometryConfig");
+	static_assert(alignof(SVehicleMotorbikeGeometryConfig) == 0x10, "Wrong alignment for SVehicleMotorbikeGeometryConfig");
+
+	// Size: 0x34
+	class alignas(4) SVehicleMotorbikeLeanConfig
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SVehicleMotorbikeLeanConfig& p_Other) const;
+		bool operator!=(const SVehicleMotorbikeLeanConfig& p_Other) const { return !(*this == p_Other); }
+
+		float32 m_physicsLeanMultiplier; // 0x0
+		float32 m_leanInSpeedThresholdMps; // 0x4
+		float32 m_fullPhysicsLeanSpeedMps; // 0x8
+		float32 m_steeringLeanGainDeg; // 0xC
+		float32 m_driftLeanMultiplier; // 0x10
+		float32 m_maxLeanAngleDeg; // 0x14
+		float32 m_leanInSmoothTime; // 0x18
+		float32 m_leanOutSmoothTime; // 0x1C
+		float32 m_steeringActivationThreshold; // 0x20
+		float32 m_airborneReturnSmoothTime; // 0x24
+		float32 m_landingTransitionDuration; // 0x28
+		float32 m_centripetalFilterSmoothTime; // 0x2C
+		float32 m_leanAngVelReleaseDecayRate; // 0x30
+	};
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_physicsLeanMultiplier, 0x0);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_leanInSpeedThresholdMps, 0x4);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_fullPhysicsLeanSpeedMps, 0x8);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_steeringLeanGainDeg, 0xC);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_driftLeanMultiplier, 0x10);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_maxLeanAngleDeg, 0x14);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_leanInSmoothTime, 0x18);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_leanOutSmoothTime, 0x1C);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_steeringActivationThreshold, 0x20);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_airborneReturnSmoothTime, 0x24);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_landingTransitionDuration, 0x28);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_centripetalFilterSmoothTime, 0x2C);
+	ZHM_OFFSET_CHECK(SVehicleMotorbikeLeanConfig, m_leanAngVelReleaseDecayRate, 0x30);
+	static_assert(sizeof(SVehicleMotorbikeLeanConfig) == 0x34, "Wrong size for SVehicleMotorbikeLeanConfig");
+	static_assert(alignof(SVehicleMotorbikeLeanConfig) == 0x4, "Wrong alignment for SVehicleMotorbikeLeanConfig");
+
 }
 
 namespace Geppetto {
@@ -10412,6 +10592,40 @@ namespace InputOverride {
 
 }
 
+// Size: 0x30
+class alignas(8) SColorPickerData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SColorPickerData& p_Other) const;
+	bool operator!=(const SColorPickerData& p_Other) const { return !(*this == p_Other); }
+
+	float32 H; // 0x0
+	float32 S; // 0x4
+	float32 L; // 0x8
+	uint32 R; // 0xC
+	uint32 G; // 0x10
+	uint32 B; // 0x14
+	int32 ColorInt; // 0x18
+	ZString ColorStr; // 0x20
+};
+ZHM_OFFSET_CHECK(SColorPickerData, H, 0x0);
+ZHM_OFFSET_CHECK(SColorPickerData, S, 0x4);
+ZHM_OFFSET_CHECK(SColorPickerData, L, 0x8);
+ZHM_OFFSET_CHECK(SColorPickerData, R, 0xC);
+ZHM_OFFSET_CHECK(SColorPickerData, G, 0x10);
+ZHM_OFFSET_CHECK(SColorPickerData, B, 0x14);
+ZHM_OFFSET_CHECK(SColorPickerData, ColorInt, 0x18);
+ZHM_OFFSET_CHECK(SColorPickerData, ColorStr, 0x20);
+static_assert(sizeof(SColorPickerData) == 0x30, "Wrong size for SColorPickerData");
+static_assert(alignof(SColorPickerData) == 0x8, "Wrong alignment for SColorPickerData");
+
 // Size: 0xC
 class alignas(4) SKeyHandle
 {
@@ -10453,40 +10667,6 @@ ZHM_OFFSET_CHECK(SKeyHandle, eDeviceType, 0x4);
 ZHM_OFFSET_CHECK(SKeyHandle, eInputType, 0x8);
 static_assert(sizeof(SKeyHandle) == 0xC, "Wrong size for SKeyHandle");
 static_assert(alignof(SKeyHandle) == 0x4, "Wrong alignment for SKeyHandle");
-
-// Size: 0x30
-class alignas(8) SColorPickerData
-{
-public:
-	static ZHMTypeInfo TypeInfo;
-	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-	static bool Equals(void* p_Left, void* p_Right);
-	static void Destroy(void* p_Object);
-
-	bool operator==(const SColorPickerData& p_Other) const;
-	bool operator!=(const SColorPickerData& p_Other) const { return !(*this == p_Other); }
-
-	float32 H; // 0x0
-	float32 S; // 0x4
-	float32 L; // 0x8
-	uint32 R; // 0xC
-	uint32 G; // 0x10
-	uint32 B; // 0x14
-	int32 ColorInt; // 0x18
-	ZString ColorStr; // 0x20
-};
-ZHM_OFFSET_CHECK(SColorPickerData, H, 0x0);
-ZHM_OFFSET_CHECK(SColorPickerData, S, 0x4);
-ZHM_OFFSET_CHECK(SColorPickerData, L, 0x8);
-ZHM_OFFSET_CHECK(SColorPickerData, R, 0xC);
-ZHM_OFFSET_CHECK(SColorPickerData, G, 0x10);
-ZHM_OFFSET_CHECK(SColorPickerData, B, 0x14);
-ZHM_OFFSET_CHECK(SColorPickerData, ColorInt, 0x18);
-ZHM_OFFSET_CHECK(SColorPickerData, ColorStr, 0x20);
-static_assert(sizeof(SColorPickerData) == 0x30, "Wrong size for SColorPickerData");
-static_assert(alignof(SColorPickerData) == 0x8, "Wrong alignment for SColorPickerData");
 
 class ZAvailabilityUtil
 {
@@ -10960,6 +11140,19 @@ ZHM_OFFSET_CHECK(SInputOverrideRequest, m_inputData, 0x14);
 static_assert(sizeof(SInputOverrideRequest) == 0x20, "Wrong size for SInputOverrideRequest");
 static_assert(alignof(SInputOverrideRequest) == 0x4, "Wrong alignment for SInputOverrideRequest");
 
+class ZSubtitleTypeConfig
+{
+public:
+	// Size: 0x4
+	enum class EDirectionIndicatorType : int32_t
+	{
+		Disabled = 0,
+		OnlyShowWhenOffScreen = 1,
+		AlwaysShow = 2,
+	};
+
+};
+
 // Size: 0x10
 class alignas(8) ZDynamicObject
 {
@@ -10980,20 +11173,35 @@ ZHM_OFFSET_CHECK(ZDynamicObject, m_value, 0x0);
 static_assert(sizeof(ZDynamicObject) == 0x10, "Wrong size for ZDynamicObject");
 static_assert(alignof(ZDynamicObject) == 0x8, "Wrong alignment for ZDynamicObject");
 
-class ZSubtitleTypeConfig
-{
-public:
-	// Size: 0x4
-	enum class EDirectionIndicatorType : int32_t
-	{
-		Disabled = 0,
-		OnlyShowWhenOffScreen = 1,
-		AlwaysShow = 2,
-	};
-
-};
-
 namespace JSONTemplate {
+	// Size: 0xA
+	class alignas(2) SShotMaskDateTime
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SShotMaskDateTime& p_Other) const;
+		bool operator!=(const SShotMaskDateTime& p_Other) const { return !(*this == p_Other); }
+
+		int16 m_nYear; // 0x0
+		int16 m_nMonth; // 0x2
+		int16 m_nDay; // 0x4
+		int16 m_nHour; // 0x6
+		int16 m_nMinute; // 0x8
+	};
+	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nYear, 0x0);
+	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nMonth, 0x2);
+	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nDay, 0x4);
+	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nHour, 0x6);
+	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nMinute, 0x8);
+	static_assert(sizeof(SShotMaskDateTime) == 0xA, "Wrong size for SShotMaskDateTime");
+	static_assert(alignof(SShotMaskDateTime) == 0x2, "Wrong alignment for SShotMaskDateTime");
+
 	// Size: 0x8
 	class alignas(4) SUIInputActionGestureConfigData
 	{
@@ -11015,6 +11223,30 @@ namespace JSONTemplate {
 	ZHM_OFFSET_CHECK(SUIInputActionGestureConfigData, GestureTypeData, 0x4);
 	static_assert(sizeof(SUIInputActionGestureConfigData) == 0x8, "Wrong size for SUIInputActionGestureConfigData");
 	static_assert(alignof(SUIInputActionGestureConfigData) == 0x4, "Wrong alignment for SUIInputActionGestureConfigData");
+
+	// Size: 0x20
+	class alignas(8) SArrayTestDataItem
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SArrayTestDataItem& p_Other) const;
+		bool operator!=(const SArrayTestDataItem& p_Other) const { return !(*this == p_Other); }
+
+		int32 Id; // 0x0
+		ZString Name; // 0x8
+		int32 Count; // 0x18
+	};
+	ZHM_OFFSET_CHECK(SArrayTestDataItem, Id, 0x0);
+	ZHM_OFFSET_CHECK(SArrayTestDataItem, Name, 0x8);
+	ZHM_OFFSET_CHECK(SArrayTestDataItem, Count, 0x18);
+	static_assert(sizeof(SArrayTestDataItem) == 0x20, "Wrong size for SArrayTestDataItem");
+	static_assert(alignof(SArrayTestDataItem) == 0x8, "Wrong alignment for SArrayTestDataItem");
 
 	// Size: 0x40
 	class alignas(8) SUIInputActionPromptData
@@ -11049,80 +11281,6 @@ namespace JSONTemplate {
 	ZHM_OFFSET_CHECK(SUIInputActionPromptData, KeyHandle, 0x34);
 	static_assert(sizeof(SUIInputActionPromptData) == 0x40, "Wrong size for SUIInputActionPromptData");
 	static_assert(alignof(SUIInputActionPromptData) == 0x8, "Wrong alignment for SUIInputActionPromptData");
-
-	// Size: 0x20
-	class alignas(8) SUIInputActionCombinationData
-	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SUIInputActionCombinationData& p_Other) const;
-		bool operator!=(const SUIInputActionCombinationData& p_Other) const { return !(*this == p_Other); }
-
-		TArray<JSONTemplate::SUIInputActionPromptData> Prompts; // 0x0
-		ECombinationMethod Method; // 0x18
-	};
-	ZHM_OFFSET_CHECK(SUIInputActionCombinationData, Prompts, 0x0);
-	ZHM_OFFSET_CHECK(SUIInputActionCombinationData, Method, 0x18);
-	static_assert(sizeof(SUIInputActionCombinationData) == 0x20, "Wrong size for SUIInputActionCombinationData");
-	static_assert(alignof(SUIInputActionCombinationData) == 0x8, "Wrong alignment for SUIInputActionCombinationData");
-
-	// Size: 0xA
-	class alignas(2) SShotMaskDateTime
-	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SShotMaskDateTime& p_Other) const;
-		bool operator!=(const SShotMaskDateTime& p_Other) const { return !(*this == p_Other); }
-
-		int16 m_nYear; // 0x0
-		int16 m_nMonth; // 0x2
-		int16 m_nDay; // 0x4
-		int16 m_nHour; // 0x6
-		int16 m_nMinute; // 0x8
-	};
-	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nYear, 0x0);
-	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nMonth, 0x2);
-	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nDay, 0x4);
-	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nHour, 0x6);
-	ZHM_OFFSET_CHECK(SShotMaskDateTime, m_nMinute, 0x8);
-	static_assert(sizeof(SShotMaskDateTime) == 0xA, "Wrong size for SShotMaskDateTime");
-	static_assert(alignof(SShotMaskDateTime) == 0x2, "Wrong alignment for SShotMaskDateTime");
-
-	// Size: 0x20
-	class alignas(8) SArrayTestDataItem
-	{
-	public:
-		static ZHMTypeInfo TypeInfo;
-		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
-		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
-		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
-		static bool Equals(void* p_Left, void* p_Right);
-		static void Destroy(void* p_Object);
-
-		bool operator==(const SArrayTestDataItem& p_Other) const;
-		bool operator!=(const SArrayTestDataItem& p_Other) const { return !(*this == p_Other); }
-
-		int32 Id; // 0x0
-		ZString Name; // 0x8
-		int32 Count; // 0x18
-	};
-	ZHM_OFFSET_CHECK(SArrayTestDataItem, Id, 0x0);
-	ZHM_OFFSET_CHECK(SArrayTestDataItem, Name, 0x8);
-	ZHM_OFFSET_CHECK(SArrayTestDataItem, Count, 0x18);
-	static_assert(sizeof(SArrayTestDataItem) == 0x20, "Wrong size for SArrayTestDataItem");
-	static_assert(alignof(SArrayTestDataItem) == 0x8, "Wrong alignment for SArrayTestDataItem");
 
 	// Size: 0x20
 	class alignas(8) SAudioProfileOptionUIData
@@ -11465,6 +11623,28 @@ namespace JSONTemplate {
 	static_assert(sizeof(SGameObjectiveOpportunityData) == 0xA8, "Wrong size for SGameObjectiveOpportunityData");
 	static_assert(alignof(SGameObjectiveOpportunityData) == 0x8, "Wrong alignment for SGameObjectiveOpportunityData");
 
+	// Size: 0x20
+	class alignas(8) SUIInputActionCombinationData
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SUIInputActionCombinationData& p_Other) const;
+		bool operator!=(const SUIInputActionCombinationData& p_Other) const { return !(*this == p_Other); }
+
+		TArray<JSONTemplate::SUIInputActionPromptData> Prompts; // 0x0
+		ECombinationMethod Method; // 0x18
+	};
+	ZHM_OFFSET_CHECK(SUIInputActionCombinationData, Prompts, 0x0);
+	ZHM_OFFSET_CHECK(SUIInputActionCombinationData, Method, 0x18);
+	static_assert(sizeof(SUIInputActionCombinationData) == 0x20, "Wrong size for SUIInputActionCombinationData");
+	static_assert(alignof(SUIInputActionCombinationData) == 0x8, "Wrong alignment for SUIInputActionCombinationData");
+
 	// Size: 0x78
 	class alignas(8) SUIInputActionData
 	{
@@ -11486,7 +11666,8 @@ namespace JSONTemplate {
 		ZString ActionLabel; // 0x50
 		ZString ActionAltIcon; // 0x60
 		bool IsEnabled; // 0x70
-		bool IsPressed; // 0x71
+		bool ArePromptsClickable; // 0x71
+		bool IsPressed; // 0x72
 		float32 PressedAnalog; // 0x74
 	};
 	ZHM_OFFSET_CHECK(SUIInputActionData, InputGroupName, 0x0);
@@ -11496,7 +11677,8 @@ namespace JSONTemplate {
 	ZHM_OFFSET_CHECK(SUIInputActionData, ActionLabel, 0x50);
 	ZHM_OFFSET_CHECK(SUIInputActionData, ActionAltIcon, 0x60);
 	ZHM_OFFSET_CHECK(SUIInputActionData, IsEnabled, 0x70);
-	ZHM_OFFSET_CHECK(SUIInputActionData, IsPressed, 0x71);
+	ZHM_OFFSET_CHECK(SUIInputActionData, ArePromptsClickable, 0x71);
+	ZHM_OFFSET_CHECK(SUIInputActionData, IsPressed, 0x72);
 	ZHM_OFFSET_CHECK(SUIInputActionData, PressedAnalog, 0x74);
 	static_assert(sizeof(SUIInputActionData) == 0x78, "Wrong size for SUIInputActionData");
 	static_assert(alignof(SUIInputActionData) == 0x8, "Wrong alignment for SUIInputActionData");
@@ -11742,17 +11924,19 @@ namespace JSONTemplate {
 		int32 Score; // 0x4
 		int32 Percentile; // 0x8
 		ZGuid ProfileId; // 0x10
-		int32 Time; // 0x20
-		int32 Precision; // 0x24
-		int32 Flair; // 0x28
+		float32 GameTime; // 0x20
+		int32 Time; // 0x24
+		int32 Precision; // 0x28
+		int32 Flair; // 0x2C
 	};
 	ZHM_OFFSET_CHECK(SUILeaderboardRank, Rank, 0x0);
 	ZHM_OFFSET_CHECK(SUILeaderboardRank, Score, 0x4);
 	ZHM_OFFSET_CHECK(SUILeaderboardRank, Percentile, 0x8);
 	ZHM_OFFSET_CHECK(SUILeaderboardRank, ProfileId, 0x10);
-	ZHM_OFFSET_CHECK(SUILeaderboardRank, Time, 0x20);
-	ZHM_OFFSET_CHECK(SUILeaderboardRank, Precision, 0x24);
-	ZHM_OFFSET_CHECK(SUILeaderboardRank, Flair, 0x28);
+	ZHM_OFFSET_CHECK(SUILeaderboardRank, GameTime, 0x20);
+	ZHM_OFFSET_CHECK(SUILeaderboardRank, Time, 0x24);
+	ZHM_OFFSET_CHECK(SUILeaderboardRank, Precision, 0x28);
+	ZHM_OFFSET_CHECK(SUILeaderboardRank, Flair, 0x2C);
 	static_assert(sizeof(SUILeaderboardRank) == 0x30, "Wrong size for SUILeaderboardRank");
 	static_assert(alignof(SUILeaderboardRank) == 0x8, "Wrong alignment for SUILeaderboardRank");
 
@@ -12113,7 +12297,7 @@ namespace JSONTemplate {
 	static_assert(sizeof(SAvailabilityResourceData) == 0x30, "Wrong size for SAvailabilityResourceData");
 	static_assert(alignof(SAvailabilityResourceData) == 0x8, "Wrong alignment for SAvailabilityResourceData");
 
-	// Size: 0x60
+	// Size: 0x68
 	class alignas(8) SCampaignData
 	{
 	public:
@@ -12128,22 +12312,26 @@ namespace JSONTemplate {
 		bool operator!=(const SCampaignData& p_Other) const { return !(*this == p_Other); }
 
 		ZString ID; // 0x0
-		ZString Title; // 0x10
-		ZString Image; // 0x20
-		TArray<ZString> Missions; // 0x30
-		ZString FistCheckpointName; // 0x48
-		bool IsAnyMissionUnlocked; // 0x58
+		uint32 CampaignID; // 0x10
+		ZString Title; // 0x18
+		ZString Image; // 0x28
+		TArray<ZString> Missions; // 0x38
+		ZString FistCheckpointName; // 0x50
+		bool IsAnyMissionUnlocked; // 0x60
+		bool IsCampaignCompleted; // 0x61
 	};
 	ZHM_OFFSET_CHECK(SCampaignData, ID, 0x0);
-	ZHM_OFFSET_CHECK(SCampaignData, Title, 0x10);
-	ZHM_OFFSET_CHECK(SCampaignData, Image, 0x20);
-	ZHM_OFFSET_CHECK(SCampaignData, Missions, 0x30);
-	ZHM_OFFSET_CHECK(SCampaignData, FistCheckpointName, 0x48);
-	ZHM_OFFSET_CHECK(SCampaignData, IsAnyMissionUnlocked, 0x58);
-	static_assert(sizeof(SCampaignData) == 0x60, "Wrong size for SCampaignData");
+	ZHM_OFFSET_CHECK(SCampaignData, CampaignID, 0x10);
+	ZHM_OFFSET_CHECK(SCampaignData, Title, 0x18);
+	ZHM_OFFSET_CHECK(SCampaignData, Image, 0x28);
+	ZHM_OFFSET_CHECK(SCampaignData, Missions, 0x38);
+	ZHM_OFFSET_CHECK(SCampaignData, FistCheckpointName, 0x50);
+	ZHM_OFFSET_CHECK(SCampaignData, IsAnyMissionUnlocked, 0x60);
+	ZHM_OFFSET_CHECK(SCampaignData, IsCampaignCompleted, 0x61);
+	static_assert(sizeof(SCampaignData) == 0x68, "Wrong size for SCampaignData");
 	static_assert(alignof(SCampaignData) == 0x8, "Wrong alignment for SCampaignData");
 
-	// Size: 0xF0
+	// Size: 0x100
 	class alignas(8) SCampaignMissionData
 	{
 	public:
@@ -12166,13 +12354,14 @@ namespace JSONTemplate {
 		ZString HighResImage; // 0x60
 		ZString PortraitImage; // 0x70
 		ZString LandscapeImage; // 0x80
-		ZString Video; // 0x90
-		TArray<ZString> CheckpointIds; // 0xA0
-		ZString CodeName; // 0xB8
-		TArray<ZString> NeededRootResources; // 0xC8
-		bool IsUnlocked; // 0xE0
-		int32 Progress; // 0xE4
-		bool IsInterludeMission; // 0xE8
+		ZString HeroImage; // 0x90
+		ZString Video; // 0xA0
+		TArray<ZString> CheckpointIds; // 0xB0
+		ZString CodeName; // 0xC8
+		TArray<ZString> NeededRootResources; // 0xD8
+		bool IsUnlocked; // 0xF0
+		int32 Progress; // 0xF4
+		bool IsInterludeMission; // 0xF8
 	};
 	ZHM_OFFSET_CHECK(SCampaignMissionData, ID, 0x0);
 	ZHM_OFFSET_CHECK(SCampaignMissionData, MissionId, 0x10);
@@ -12183,14 +12372,15 @@ namespace JSONTemplate {
 	ZHM_OFFSET_CHECK(SCampaignMissionData, HighResImage, 0x60);
 	ZHM_OFFSET_CHECK(SCampaignMissionData, PortraitImage, 0x70);
 	ZHM_OFFSET_CHECK(SCampaignMissionData, LandscapeImage, 0x80);
-	ZHM_OFFSET_CHECK(SCampaignMissionData, Video, 0x90);
-	ZHM_OFFSET_CHECK(SCampaignMissionData, CheckpointIds, 0xA0);
-	ZHM_OFFSET_CHECK(SCampaignMissionData, CodeName, 0xB8);
-	ZHM_OFFSET_CHECK(SCampaignMissionData, NeededRootResources, 0xC8);
-	ZHM_OFFSET_CHECK(SCampaignMissionData, IsUnlocked, 0xE0);
-	ZHM_OFFSET_CHECK(SCampaignMissionData, Progress, 0xE4);
-	ZHM_OFFSET_CHECK(SCampaignMissionData, IsInterludeMission, 0xE8);
-	static_assert(sizeof(SCampaignMissionData) == 0xF0, "Wrong size for SCampaignMissionData");
+	ZHM_OFFSET_CHECK(SCampaignMissionData, HeroImage, 0x90);
+	ZHM_OFFSET_CHECK(SCampaignMissionData, Video, 0xA0);
+	ZHM_OFFSET_CHECK(SCampaignMissionData, CheckpointIds, 0xB0);
+	ZHM_OFFSET_CHECK(SCampaignMissionData, CodeName, 0xC8);
+	ZHM_OFFSET_CHECK(SCampaignMissionData, NeededRootResources, 0xD8);
+	ZHM_OFFSET_CHECK(SCampaignMissionData, IsUnlocked, 0xF0);
+	ZHM_OFFSET_CHECK(SCampaignMissionData, Progress, 0xF4);
+	ZHM_OFFSET_CHECK(SCampaignMissionData, IsInterludeMission, 0xF8);
+	static_assert(sizeof(SCampaignMissionData) == 0x100, "Wrong size for SCampaignMissionData");
 	static_assert(alignof(SCampaignMissionData) == 0x8, "Wrong alignment for SCampaignMissionData");
 
 	// Size: 0x28
@@ -12993,7 +13183,7 @@ namespace JSONTemplate {
 	static_assert(sizeof(SInspectableObjectData) == 0x48, "Wrong size for SInspectableObjectData");
 	static_assert(alignof(SInspectableObjectData) == 0x8, "Wrong alignment for SInspectableObjectData");
 
-	// Size: 0x18
+	// Size: 0x28
 	class alignas(8) SKntIOIAccountStatusData
 	{
 	public:
@@ -13009,10 +13199,12 @@ namespace JSONTemplate {
 
 		EKntIoiAccountLinkState LinkState; // 0x0
 		ZString LinkedEmail; // 0x8
+		ZString BaseUrl; // 0x18
 	};
 	ZHM_OFFSET_CHECK(SKntIOIAccountStatusData, LinkState, 0x0);
 	ZHM_OFFSET_CHECK(SKntIOIAccountStatusData, LinkedEmail, 0x8);
-	static_assert(sizeof(SKntIOIAccountStatusData) == 0x18, "Wrong size for SKntIOIAccountStatusData");
+	ZHM_OFFSET_CHECK(SKntIOIAccountStatusData, BaseUrl, 0x18);
+	static_assert(sizeof(SKntIOIAccountStatusData) == 0x28, "Wrong size for SKntIOIAccountStatusData");
 	static_assert(alignof(SKntIOIAccountStatusData) == 0x8, "Wrong alignment for SKntIOIAccountStatusData");
 
 	// Size: 0x8
@@ -13299,7 +13491,7 @@ namespace JSONTemplate {
 	static_assert(sizeof(SObjectiveTimerData) == 0x1C, "Wrong size for SObjectiveTimerData");
 	static_assert(alignof(SObjectiveTimerData) == 0x4, "Wrong alignment for SObjectiveTimerData");
 
-	// Size: 0x160
+	// Size: 0x170
 	class alignas(8) SOnlineMissionData
 	{
 	public:
@@ -13326,15 +13518,17 @@ namespace JSONTemplate {
 		TArray<ZString> Objectives; // 0x98
 		TArray<ZString> Requirements; // 0xB0
 		ZString RequiredCheckpoint; // 0xC8
-		TArray<JSONTemplate::SGameChangerData> GameChangers; // 0xD8
-		JSONTemplate::SOnlineCompletionRewards Rewards; // 0xF0
-		TArray<ZString> Tags; // 0x110
-		ZGuid ParentMissionId; // 0x128
-		TArray<ZGuid> Children; // 0x138
-		int32 TierCount; // 0x150
-		int32 CurrentTier; // 0x154
-		bool Completed; // 0x158
-		float32 CompletionTime; // 0x15C
+		bool ShowGameTime; // 0xD8
+		TArray<JSONTemplate::SGameChangerData> GameChangers; // 0xE0
+		JSONTemplate::SOnlineCompletionRewards Rewards; // 0xF8
+		TArray<ZString> Tags; // 0x118
+		ZGuid ParentMissionId; // 0x130
+		TArray<ZGuid> Children; // 0x140
+		int32 TierCount; // 0x158
+		int32 CurrentTier; // 0x15C
+		bool Completed; // 0x160
+		float32 CompletionTime; // 0x164
+		float32 BestCompletionTime; // 0x168
 	};
 	ZHM_OFFSET_CHECK(SOnlineMissionData, MissionId, 0x0);
 	ZHM_OFFSET_CHECK(SOnlineMissionData, Type, 0x10);
@@ -13349,16 +13543,18 @@ namespace JSONTemplate {
 	ZHM_OFFSET_CHECK(SOnlineMissionData, Objectives, 0x98);
 	ZHM_OFFSET_CHECK(SOnlineMissionData, Requirements, 0xB0);
 	ZHM_OFFSET_CHECK(SOnlineMissionData, RequiredCheckpoint, 0xC8);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, GameChangers, 0xD8);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, Rewards, 0xF0);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, Tags, 0x110);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, ParentMissionId, 0x128);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, Children, 0x138);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, TierCount, 0x150);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, CurrentTier, 0x154);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, Completed, 0x158);
-	ZHM_OFFSET_CHECK(SOnlineMissionData, CompletionTime, 0x15C);
-	static_assert(sizeof(SOnlineMissionData) == 0x160, "Wrong size for SOnlineMissionData");
+	ZHM_OFFSET_CHECK(SOnlineMissionData, ShowGameTime, 0xD8);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, GameChangers, 0xE0);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, Rewards, 0xF8);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, Tags, 0x118);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, ParentMissionId, 0x130);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, Children, 0x140);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, TierCount, 0x158);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, CurrentTier, 0x15C);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, Completed, 0x160);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, CompletionTime, 0x164);
+	ZHM_OFFSET_CHECK(SOnlineMissionData, BestCompletionTime, 0x168);
+	static_assert(sizeof(SOnlineMissionData) == 0x170, "Wrong size for SOnlineMissionData");
 	static_assert(alignof(SOnlineMissionData) == 0x8, "Wrong alignment for SOnlineMissionData");
 
 	// Size: 0x20
@@ -13433,7 +13629,8 @@ namespace JSONTemplate {
 		ZString CategoryId; // 0x70
 		ZString CategoryTitle; // 0x80
 		bool Locked; // 0x90
-		bool IsEquipped; // 0x91
+		bool IsEquippedInCampaign; // 0x91
+		bool IsEquippedInTacSim; // 0x92
 	};
 	ZHM_OFFSET_CHECK(SOutfitData, Id, 0x0);
 	ZHM_OFFSET_CHECK(SOutfitData, Title, 0x10);
@@ -13445,9 +13642,34 @@ namespace JSONTemplate {
 	ZHM_OFFSET_CHECK(SOutfitData, CategoryId, 0x70);
 	ZHM_OFFSET_CHECK(SOutfitData, CategoryTitle, 0x80);
 	ZHM_OFFSET_CHECK(SOutfitData, Locked, 0x90);
-	ZHM_OFFSET_CHECK(SOutfitData, IsEquipped, 0x91);
+	ZHM_OFFSET_CHECK(SOutfitData, IsEquippedInCampaign, 0x91);
+	ZHM_OFFSET_CHECK(SOutfitData, IsEquippedInTacSim, 0x92);
 	static_assert(sizeof(SOutfitData) == 0x98, "Wrong size for SOutfitData");
 	static_assert(alignof(SOutfitData) == 0x8, "Wrong alignment for SOutfitData");
+
+	// Size: 0x90
+	class alignas(8) SPhotoModeOptionListActionItemConfig
+	{
+	public:
+		static ZHMTypeInfo TypeInfo;
+		static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+		static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+		static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+		static bool Equals(void* p_Left, void* p_Right);
+		static void Destroy(void* p_Object);
+
+		bool operator==(const SPhotoModeOptionListActionItemConfig& p_Other) const;
+		bool operator!=(const SPhotoModeOptionListActionItemConfig& p_Other) const { return !(*this == p_Other); }
+
+		JSONTemplate::SUIInputActionData ActionData; // 0x0
+		SKeyHandle::EInputType PriorityDeviceForAction; // 0x78
+		ZString Description; // 0x80
+	};
+	ZHM_OFFSET_CHECK(SPhotoModeOptionListActionItemConfig, ActionData, 0x0);
+	ZHM_OFFSET_CHECK(SPhotoModeOptionListActionItemConfig, PriorityDeviceForAction, 0x78);
+	ZHM_OFFSET_CHECK(SPhotoModeOptionListActionItemConfig, Description, 0x80);
+	static_assert(sizeof(SPhotoModeOptionListActionItemConfig) == 0x90, "Wrong size for SPhotoModeOptionListActionItemConfig");
+	static_assert(alignof(SPhotoModeOptionListActionItemConfig) == 0x8, "Wrong alignment for SPhotoModeOptionListActionItemConfig");
 
 	// Size: 0x18
 	class alignas(4) SPlayerAgencyCosts
@@ -14907,7 +15129,7 @@ ZHM_OFFSET_CHECK(SPlayerProgressContext, m_unlocks, 0x10);
 static_assert(sizeof(SPlayerProgressContext) == 0x28, "Wrong size for SPlayerProgressContext");
 static_assert(alignof(SPlayerProgressContext) == 0x8, "Wrong alignment for SPlayerProgressContext");
 
-// Size: 0x20
+// Size: 0x30
 class alignas(8) SMissionContext
 {
 public:
@@ -14923,10 +15145,12 @@ public:
 
 	ZString m_missionId; // 0x0
 	ZString m_missionType; // 0x10
+	ZString m_difficulty; // 0x20
 };
 ZHM_OFFSET_CHECK(SMissionContext, m_missionId, 0x0);
 ZHM_OFFSET_CHECK(SMissionContext, m_missionType, 0x10);
-static_assert(sizeof(SMissionContext) == 0x20, "Wrong size for SMissionContext");
+ZHM_OFFSET_CHECK(SMissionContext, m_difficulty, 0x20);
+static_assert(sizeof(SMissionContext) == 0x30, "Wrong size for SMissionContext");
 static_assert(alignof(SMissionContext) == 0x8, "Wrong alignment for SMissionContext");
 
 // Size: 0x10
@@ -14949,7 +15173,7 @@ ZHM_OFFSET_CHECK(SCheckpointContext, m_checkpointId, 0x0);
 static_assert(sizeof(SCheckpointContext) == 0x10, "Wrong size for SCheckpointContext");
 static_assert(alignof(SCheckpointContext) == 0x8, "Wrong alignment for SCheckpointContext");
 
-// Size: 0x30
+// Size: 0x38
 class alignas(8) SPlayerIdentityContext
 {
 public:
@@ -14966,14 +15190,18 @@ public:
 	ZGuid m_playerId; // 0x0
 	ZString m_playerPlatformId; // 0x10
 	ZString m_playerSessionId; // 0x20
+	bool m_isDemo; // 0x30
+	bool m_ioiAccountLinked; // 0x31
 };
 ZHM_OFFSET_CHECK(SPlayerIdentityContext, m_playerId, 0x0);
 ZHM_OFFSET_CHECK(SPlayerIdentityContext, m_playerPlatformId, 0x10);
 ZHM_OFFSET_CHECK(SPlayerIdentityContext, m_playerSessionId, 0x20);
-static_assert(sizeof(SPlayerIdentityContext) == 0x30, "Wrong size for SPlayerIdentityContext");
+ZHM_OFFSET_CHECK(SPlayerIdentityContext, m_isDemo, 0x30);
+ZHM_OFFSET_CHECK(SPlayerIdentityContext, m_ioiAccountLinked, 0x31);
+static_assert(sizeof(SPlayerIdentityContext) == 0x38, "Wrong size for SPlayerIdentityContext");
 static_assert(alignof(SPlayerIdentityContext) == 0x8, "Wrong alignment for SPlayerIdentityContext");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SAccelerateFailedMetricsContext
 {
 public:
@@ -14989,16 +15217,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SAccelerateFailedMetricsContext) == 0xD0, "Wrong size for SAccelerateFailedMetricsContext");
+ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SAccelerateFailedMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SAccelerateFailedMetricsContext) == 0xE8, "Wrong size for SAccelerateFailedMetricsContext");
 static_assert(alignof(SAccelerateFailedMetricsContext) == 0x8, "Wrong alignment for SAccelerateFailedMetricsContext");
 
 // Size: 0x18
@@ -15209,7 +15437,7 @@ ZHM_OFFSET_CHECK(SAgilityFailed, m_situation, 0x10);
 static_assert(sizeof(SAgilityFailed) == 0x20, "Wrong size for SAgilityFailed");
 static_assert(alignof(SAgilityFailed) == 0x8, "Wrong alignment for SAgilityFailed");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SAgilityFailedMetricsContext
 {
 public:
@@ -15225,16 +15453,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SAgilityFailedMetricsContext) == 0xD0, "Wrong size for SAgilityFailedMetricsContext");
+ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SAgilityFailedMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SAgilityFailedMetricsContext) == 0xE8, "Wrong size for SAgilityFailedMetricsContext");
 static_assert(alignof(SAgilityFailedMetricsContext) == 0x8, "Wrong alignment for SAgilityFailedMetricsContext");
 
 // Size: 0x18
@@ -15881,7 +16109,7 @@ ZHM_OFFSET_CHECK(SSituationContext, m_gameplayArea, 0x0);
 static_assert(sizeof(SSituationContext) == 0x10, "Wrong size for SSituationContext");
 static_assert(alignof(SSituationContext) == 0x8, "Wrong alignment for SSituationContext");
 
-// Size: 0xE0
+// Size: 0xF8
 class alignas(8) SCameraOverrideMetricsContext
 {
 public:
@@ -15897,18 +16125,18 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
 };
 ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_situationContext, 0xD0);
-static_assert(sizeof(SCameraOverrideMetricsContext) == 0xE0, "Wrong size for SCameraOverrideMetricsContext");
+ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SCameraOverrideMetricsContext, m_situationContext, 0xE8);
+static_assert(sizeof(SCameraOverrideMetricsContext) == 0xF8, "Wrong size for SCameraOverrideMetricsContext");
 static_assert(alignof(SCameraOverrideMetricsContext) == 0x8, "Wrong alignment for SCameraOverrideMetricsContext");
 
 // Size: 0x10
@@ -15963,7 +16191,7 @@ ZHM_OFFSET_CHECK(SCarCrash, m_crashObjectEditorId, 0x18);
 static_assert(sizeof(SCarCrash) == 0x20, "Wrong size for SCarCrash");
 static_assert(alignof(SCarCrash) == 0x8, "Wrong alignment for SCarCrash");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SCarCrashMetricsContext
 {
 public:
@@ -15979,16 +16207,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SCarCrashMetricsContext) == 0xD0, "Wrong size for SCarCrashMetricsContext");
+ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SCarCrashMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SCarCrashMetricsContext) == 0xE8, "Wrong size for SCarCrashMetricsContext");
 static_assert(alignof(SCarCrashMetricsContext) == 0x8, "Wrong alignment for SCarCrashMetricsContext");
 
 // Size: 0x8
@@ -16163,7 +16391,7 @@ ZHM_OFFSET_CHECK(SPlayerLoadoutContext, m_costume, 0x48);
 static_assert(sizeof(SPlayerLoadoutContext) == 0x58, "Wrong size for SPlayerLoadoutContext");
 static_assert(alignof(SPlayerLoadoutContext) == 0x8, "Wrong alignment for SPlayerLoadoutContext");
 
-// Size: 0x160
+// Size: 0x178
 class alignas(8) SCheckpointReachedMetricsContext
 {
 public:
@@ -16179,20 +16407,20 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xD0
-	SPlayerResourcesContext m_playerResourcesContext; // 0x128
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xE8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x140
 };
 ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_playerLoadoutContext, 0xD0);
-ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_playerResourcesContext, 0x128);
-static_assert(sizeof(SCheckpointReachedMetricsContext) == 0x160, "Wrong size for SCheckpointReachedMetricsContext");
+ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_playerLoadoutContext, 0xE8);
+ZHM_OFFSET_CHECK(SCheckpointReachedMetricsContext, m_playerResourcesContext, 0x140);
+static_assert(sizeof(SCheckpointReachedMetricsContext) == 0x178, "Wrong size for SCheckpointReachedMetricsContext");
 static_assert(alignof(SCheckpointReachedMetricsContext) == 0x8, "Wrong alignment for SCheckpointReachedMetricsContext");
 
 // Size: 0x10
@@ -16217,7 +16445,7 @@ ZHM_OFFSET_CHECK(SCinematicSkipped, m_cinematicEditorId, 0x8);
 static_assert(sizeof(SCinematicSkipped) == 0x10, "Wrong size for SCinematicSkipped");
 static_assert(alignof(SCinematicSkipped) == 0x8, "Wrong alignment for SCinematicSkipped");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SCinematicSkippedMetricsContext
 {
 public:
@@ -16233,16 +16461,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SCinematicSkippedMetricsContext) == 0xD0, "Wrong size for SCinematicSkippedMetricsContext");
+ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SCinematicSkippedMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SCinematicSkippedMetricsContext) == 0xE8, "Wrong size for SCinematicSkippedMetricsContext");
 static_assert(alignof(SCinematicSkippedMetricsContext) == 0x8, "Wrong alignment for SCinematicSkippedMetricsContext");
 
 // Size: 0x8
@@ -16293,11 +16521,12 @@ public:
 	uint32 m_attacksBlockedByNpc; // 0x24
 	uint32 m_attacksParried; // 0x28
 	uint32 m_attacksSidestepped; // 0x2C
-	uint32 m_attacksMissed; // 0x30
-	uint32 m_finishers; // 0x34
-	uint32 m_nPCKilled; // 0x38
-	uint32 m_quickDraws; // 0x3C
-	float32 m_lowestHealth; // 0x40
+	uint32 m_sidesteppedFailed; // 0x30
+	uint32 m_attacksMissed; // 0x34
+	uint32 m_finishers; // 0x38
+	uint32 m_nPCKilled; // 0x3C
+	uint32 m_quickDraws; // 0x40
+	float32 m_lowestHealth; // 0x44
 	ZString m_triggerCondition; // 0x48
 };
 ZHM_OFFSET_CHECK(SCloseCombatStats, m_closeCombats, 0x0);
@@ -16312,16 +16541,17 @@ ZHM_OFFSET_CHECK(SCloseCombatStats, m_attacksBlockedByPlayer, 0x20);
 ZHM_OFFSET_CHECK(SCloseCombatStats, m_attacksBlockedByNpc, 0x24);
 ZHM_OFFSET_CHECK(SCloseCombatStats, m_attacksParried, 0x28);
 ZHM_OFFSET_CHECK(SCloseCombatStats, m_attacksSidestepped, 0x2C);
-ZHM_OFFSET_CHECK(SCloseCombatStats, m_attacksMissed, 0x30);
-ZHM_OFFSET_CHECK(SCloseCombatStats, m_finishers, 0x34);
-ZHM_OFFSET_CHECK(SCloseCombatStats, m_nPCKilled, 0x38);
-ZHM_OFFSET_CHECK(SCloseCombatStats, m_quickDraws, 0x3C);
-ZHM_OFFSET_CHECK(SCloseCombatStats, m_lowestHealth, 0x40);
+ZHM_OFFSET_CHECK(SCloseCombatStats, m_sidesteppedFailed, 0x30);
+ZHM_OFFSET_CHECK(SCloseCombatStats, m_attacksMissed, 0x34);
+ZHM_OFFSET_CHECK(SCloseCombatStats, m_finishers, 0x38);
+ZHM_OFFSET_CHECK(SCloseCombatStats, m_nPCKilled, 0x3C);
+ZHM_OFFSET_CHECK(SCloseCombatStats, m_quickDraws, 0x40);
+ZHM_OFFSET_CHECK(SCloseCombatStats, m_lowestHealth, 0x44);
 ZHM_OFFSET_CHECK(SCloseCombatStats, m_triggerCondition, 0x48);
 static_assert(sizeof(SCloseCombatStats) == 0x58, "Wrong size for SCloseCombatStats");
 static_assert(alignof(SCloseCombatStats) == 0x8, "Wrong alignment for SCloseCombatStats");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SCloseCombatStatsMetricsContext
 {
 public:
@@ -16337,16 +16567,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SCloseCombatStatsMetricsContext) == 0xD0, "Wrong size for SCloseCombatStatsMetricsContext");
+ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SCloseCombatStatsMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SCloseCombatStatsMetricsContext) == 0xE8, "Wrong size for SCloseCombatStatsMetricsContext");
 static_assert(alignof(SCloseCombatStatsMetricsContext) == 0x8, "Wrong alignment for SCloseCombatStatsMetricsContext");
 
 // Size: 0x4
@@ -16419,7 +16649,7 @@ ZHM_OFFSET_CHECK(SCollectibleGot, m_totalCollectibles, 0x10);
 static_assert(sizeof(SCollectibleGot) == 0x18, "Wrong size for SCollectibleGot");
 static_assert(alignof(SCollectibleGot) == 0x8, "Wrong alignment for SCollectibleGot");
 
-// Size: 0xC0
+// Size: 0xD8
 class alignas(8) SCollectibleGotMetricsContext
 {
 public:
@@ -16435,14 +16665,14 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
 };
 ZHM_OFFSET_CHECK(SCollectibleGotMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SCollectibleGotMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SCollectibleGotMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SCollectibleGotMetricsContext, m_missionContext, 0xA0);
-static_assert(sizeof(SCollectibleGotMetricsContext) == 0xC0, "Wrong size for SCollectibleGotMetricsContext");
+ZHM_OFFSET_CHECK(SCollectibleGotMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SCollectibleGotMetricsContext, m_missionContext, 0xA8);
+static_assert(sizeof(SCollectibleGotMetricsContext) == 0xD8, "Wrong size for SCollectibleGotMetricsContext");
 static_assert(alignof(SCollectibleGotMetricsContext) == 0x8, "Wrong alignment for SCollectibleGotMetricsContext");
 
 // Size: 0x40
@@ -17065,6 +17295,60 @@ ZHM_OFFSET_CHECK(SCrowdMapData, m_nGridGeneratorOffset, 0xEC);
 static_assert(sizeof(SCrowdMapData) == 0xF0, "Wrong size for SCrowdMapData");
 static_assert(alignof(SCrowdMapData) == 0x10, "Wrong alignment for SCrowdMapData");
 
+// Size: 0xC
+class alignas(4) SDashToCover
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SDashToCover& p_Other) const;
+	bool operator!=(const SDashToCover& p_Other) const { return !(*this == p_Other); }
+
+	SVector3 m_playerLocation; // 0x0
+};
+ZHM_OFFSET_CHECK(SDashToCover, m_playerLocation, 0x0);
+static_assert(sizeof(SDashToCover) == 0xC, "Wrong size for SDashToCover");
+static_assert(alignof(SDashToCover) == 0x4, "Wrong alignment for SDashToCover");
+
+// Size: 0x188
+class alignas(8) SDashToCoverMetricsContext
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SDashToCoverMetricsContext& p_Other) const;
+	bool operator!=(const SDashToCoverMetricsContext& p_Other) const { return !(*this == p_Other); }
+
+	SApplicationSessionContext m_applicationSessionContext; // 0x0
+	SPlayerIdentityContext m_playerIdentityContext; // 0x48
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xF8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x150
+};
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_applicationSessionContext, 0x0);
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_playerIdentityContext, 0x48);
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_situationContext, 0xE8);
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_playerLoadoutContext, 0xF8);
+ZHM_OFFSET_CHECK(SDashToCoverMetricsContext, m_playerResourcesContext, 0x150);
+static_assert(sizeof(SDashToCoverMetricsContext) == 0x188, "Wrong size for SDashToCoverMetricsContext");
+static_assert(alignof(SDashToCoverMetricsContext) == 0x8, "Wrong alignment for SDashToCoverMetricsContext");
+
 // Size: 0x80
 class alignas(16) SDecalSpawnSaveData
 {
@@ -17337,7 +17621,7 @@ ZHM_OFFSET_CHECK(SEavesdrop, m_playerLocation, 0x18);
 static_assert(sizeof(SEavesdrop) == 0x28, "Wrong size for SEavesdrop");
 static_assert(alignof(SEavesdrop) == 0x8, "Wrong alignment for SEavesdrop");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SEavesdropMetricsContext
 {
 public:
@@ -17353,16 +17637,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SEavesdropMetricsContext) == 0xD0, "Wrong size for SEavesdropMetricsContext");
+ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SEavesdropMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SEavesdropMetricsContext) == 0xE8, "Wrong size for SEavesdropMetricsContext");
 static_assert(alignof(SEavesdropMetricsContext) == 0x8, "Wrong alignment for SEavesdropMetricsContext");
 
 // Size: 0x28
@@ -18086,7 +18370,7 @@ ZHM_OFFSET_CHECK(SEscortedOut, m_playerLocation, 0x0);
 static_assert(sizeof(SEscortedOut) == 0xC, "Wrong size for SEscortedOut");
 static_assert(alignof(SEscortedOut) == 0x4, "Wrong alignment for SEscortedOut");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SEscortedOutMetricsContext
 {
 public:
@@ -18102,16 +18386,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SEscortedOutMetricsContext) == 0xD0, "Wrong size for SEscortedOutMetricsContext");
+ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SEscortedOutMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SEscortedOutMetricsContext) == 0xE8, "Wrong size for SEscortedOutMetricsContext");
 static_assert(alignof(SEscortedOutMetricsContext) == 0x8, "Wrong alignment for SEscortedOutMetricsContext");
 
 // Size: 0x1
@@ -18562,6 +18846,56 @@ ZHM_OFFSET_CHECK(SFirearmBodyPartWeakpoint, m_delayBeforeRegisteringDamageToNonW
 static_assert(sizeof(SFirearmBodyPartWeakpoint) == 0x14, "Wrong size for SFirearmBodyPartWeakpoint");
 static_assert(alignof(SFirearmBodyPartWeakpoint) == 0x4, "Wrong alignment for SFirearmBodyPartWeakpoint");
 
+// Size: 0x40
+class alignas(8) SFirstPartyStoreOpen
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SFirstPartyStoreOpen& p_Other) const;
+	bool operator!=(const SFirstPartyStoreOpen& p_Other) const { return !(*this == p_Other); }
+
+	TArray<ZString> m_entitlements; // 0x0
+	bool m_isDemo; // 0x18
+	ZString m_target; // 0x20
+	ZString m_location; // 0x30
+};
+ZHM_OFFSET_CHECK(SFirstPartyStoreOpen, m_entitlements, 0x0);
+ZHM_OFFSET_CHECK(SFirstPartyStoreOpen, m_isDemo, 0x18);
+ZHM_OFFSET_CHECK(SFirstPartyStoreOpen, m_target, 0x20);
+ZHM_OFFSET_CHECK(SFirstPartyStoreOpen, m_location, 0x30);
+static_assert(sizeof(SFirstPartyStoreOpen) == 0x40, "Wrong size for SFirstPartyStoreOpen");
+static_assert(alignof(SFirstPartyStoreOpen) == 0x8, "Wrong alignment for SFirstPartyStoreOpen");
+
+// Size: 0xA8
+class alignas(8) SFirstPartyStoreOpenMetricsContext
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SFirstPartyStoreOpenMetricsContext& p_Other) const;
+	bool operator!=(const SFirstPartyStoreOpenMetricsContext& p_Other) const { return !(*this == p_Other); }
+
+	SApplicationSessionContext m_applicationSessionContext; // 0x0
+	SPlayerIdentityContext m_playerIdentityContext; // 0x48
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+};
+ZHM_OFFSET_CHECK(SFirstPartyStoreOpenMetricsContext, m_applicationSessionContext, 0x0);
+ZHM_OFFSET_CHECK(SFirstPartyStoreOpenMetricsContext, m_playerIdentityContext, 0x48);
+ZHM_OFFSET_CHECK(SFirstPartyStoreOpenMetricsContext, m_playerProgressContext, 0x80);
+static_assert(sizeof(SFirstPartyStoreOpenMetricsContext) == 0xA8, "Wrong size for SFirstPartyStoreOpenMetricsContext");
+static_assert(alignof(SFirstPartyStoreOpenMetricsContext) == 0x8, "Wrong alignment for SFirstPartyStoreOpenMetricsContext");
+
 // Size: 0x10
 class alignas(4) SFloat2x2
 {
@@ -18998,7 +19332,7 @@ ZHM_OFFSET_CHECK(SGadgetStats, m_resource, 0x50);
 static_assert(sizeof(SGadgetStats) == 0x68, "Wrong size for SGadgetStats");
 static_assert(alignof(SGadgetStats) == 0x8, "Wrong alignment for SGadgetStats");
 
-// Size: 0x170
+// Size: 0x188
 class alignas(8) SGadgetStatsMetricsContext
 {
 public:
@@ -19014,22 +19348,22 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xE0
-	SPlayerResourcesContext m_playerResourcesContext; // 0x138
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xF8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x150
 };
 ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_situationContext, 0xD0);
-ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_playerLoadoutContext, 0xE0);
-ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_playerResourcesContext, 0x138);
-static_assert(sizeof(SGadgetStatsMetricsContext) == 0x170, "Wrong size for SGadgetStatsMetricsContext");
+ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_situationContext, 0xE8);
+ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_playerLoadoutContext, 0xF8);
+ZHM_OFFSET_CHECK(SGadgetStatsMetricsContext, m_playerResourcesContext, 0x150);
+static_assert(sizeof(SGadgetStatsMetricsContext) == 0x188, "Wrong size for SGadgetStatsMetricsContext");
 static_assert(alignof(SGadgetStatsMetricsContext) == 0x8, "Wrong alignment for SGadgetStatsMetricsContext");
 
 // Size: 0x8
@@ -19296,6 +19630,7 @@ public:
 	SSystemConfiguration m_system; // 0x60
 	ZString m_hardwareSpecs; // 0x80
 	bool m_isDisc; // 0x90
+	bool m_isDemo; // 0x91
 };
 ZHM_OFFSET_CHECK(SGameStart, m_entitlements, 0x0);
 ZHM_OFFSET_CHECK(SGameStart, m_availableLocalEntitlements, 0x18);
@@ -19303,6 +19638,7 @@ ZHM_OFFSET_CHECK(SGameStart, m_locale, 0x30);
 ZHM_OFFSET_CHECK(SGameStart, m_system, 0x60);
 ZHM_OFFSET_CHECK(SGameStart, m_hardwareSpecs, 0x80);
 ZHM_OFFSET_CHECK(SGameStart, m_isDisc, 0x90);
+ZHM_OFFSET_CHECK(SGameStart, m_isDemo, 0x91);
 static_assert(sizeof(SGameStart) == 0x98, "Wrong size for SGameStart");
 static_assert(alignof(SGameStart) == 0x8, "Wrong alignment for SGameStart");
 
@@ -19352,7 +19688,7 @@ ZHM_OFFSET_CHECK(SGameStateChange, m_playtimeSinceLast, 0x20);
 static_assert(sizeof(SGameStateChange) == 0x28, "Wrong size for SGameStateChange");
 static_assert(alignof(SGameStateChange) == 0x8, "Wrong alignment for SGameStateChange");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SGameStateChangeMetricsContext
 {
 public:
@@ -19368,16 +19704,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SGameStateChangeMetricsContext) == 0xD0, "Wrong size for SGameStateChangeMetricsContext");
+ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SGameStateChangeMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SGameStateChangeMetricsContext) == 0xE8, "Wrong size for SGameStateChangeMetricsContext");
 static_assert(alignof(SGameStateChangeMetricsContext) == 0x8, "Wrong alignment for SGameStateChangeMetricsContext");
 
 // Size: 0xC
@@ -19464,7 +19800,10 @@ public:
 		EJoystickRightVertical = 3,
 		ETriggerLeft = 4,
 		ETriggerRight = 5,
-		eMAX = 6,
+		EGyroDeltaYaw = 6,
+		EGyroDeltaPitch = 7,
+		EGyroDeltaRoll = 8,
+		eMAX = 9,
 	};
 
 	// Size: 0x4
@@ -20841,7 +21180,7 @@ ZHM_OFFSET_CHECK(SItemThrown, m_item, 0x10);
 static_assert(sizeof(SItemThrown) == 0x20, "Wrong size for SItemThrown");
 static_assert(alignof(SItemThrown) == 0x8, "Wrong alignment for SItemThrown");
 
-// Size: 0xE0
+// Size: 0xF8
 class alignas(8) SItemThrownMetricsContext
 {
 public:
@@ -20857,18 +21196,18 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
 };
 ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_situationContext, 0xD0);
-static_assert(sizeof(SItemThrownMetricsContext) == 0xE0, "Wrong size for SItemThrownMetricsContext");
+ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SItemThrownMetricsContext, m_situationContext, 0xE8);
+static_assert(sizeof(SItemThrownMetricsContext) == 0xF8, "Wrong size for SItemThrownMetricsContext");
 static_assert(alignof(SItemThrownMetricsContext) == 0x8, "Wrong alignment for SItemThrownMetricsContext");
 
 // Size: 0x68
@@ -20899,7 +21238,7 @@ ZHM_OFFSET_CHECK(SJournalOpen, m_hints, 0x50);
 static_assert(sizeof(SJournalOpen) == 0x68, "Wrong size for SJournalOpen");
 static_assert(alignof(SJournalOpen) == 0x8, "Wrong alignment for SJournalOpen");
 
-// Size: 0xE0
+// Size: 0xF8
 class alignas(8) SJournalOpenMetricsContext
 {
 public:
@@ -20915,18 +21254,18 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
 };
 ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_situationContext, 0xD0);
-static_assert(sizeof(SJournalOpenMetricsContext) == 0xE0, "Wrong size for SJournalOpenMetricsContext");
+ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SJournalOpenMetricsContext, m_situationContext, 0xE8);
+static_assert(sizeof(SJournalOpenMetricsContext) == 0xF8, "Wrong size for SJournalOpenMetricsContext");
 static_assert(alignof(SJournalOpenMetricsContext) == 0x8, "Wrong alignment for SJournalOpenMetricsContext");
 
 // Size: 0x10
@@ -21101,7 +21440,7 @@ ZHM_OFFSET_CHECK(SKntChallengeMosaic, m_missionId, 0x18);
 static_assert(sizeof(SKntChallengeMosaic) == 0x28, "Wrong size for SKntChallengeMosaic");
 static_assert(alignof(SKntChallengeMosaic) == 0x8, "Wrong alignment for SKntChallengeMosaic");
 
-// Size: 0x10
+// Size: 0x18
 class alignas(8) SKntCommonProgression
 {
 public:
@@ -21117,10 +21456,12 @@ public:
 
 	bool m_completed; // 0x0
 	ZTime m_completionTime; // 0x8
+	float64 m_gameTime; // 0x10
 };
 ZHM_OFFSET_CHECK(SKntCommonProgression, m_completed, 0x0);
 ZHM_OFFSET_CHECK(SKntCommonProgression, m_completionTime, 0x8);
-static_assert(sizeof(SKntCommonProgression) == 0x10, "Wrong size for SKntCommonProgression");
+ZHM_OFFSET_CHECK(SKntCommonProgression, m_gameTime, 0x10);
+static_assert(sizeof(SKntCommonProgression) == 0x18, "Wrong size for SKntCommonProgression");
 static_assert(alignof(SKntCommonProgression) == 0x8, "Wrong alignment for SKntCommonProgression");
 
 // Size: 0x30
@@ -21279,7 +21620,7 @@ ZHM_OFFSET_CHECK(SKntEntitlements, m_ioiEntitlements, 0x18);
 static_assert(sizeof(SKntEntitlements) == 0x30, "Wrong size for SKntEntitlements");
 static_assert(alignof(SKntEntitlements) == 0x8, "Wrong alignment for SKntEntitlements");
 
-// Size: 0x88
+// Size: 0x90
 class alignas(8) SKntGameplay
 {
 public:
@@ -21300,6 +21641,7 @@ public:
 	ZString m_requirementTags; // 0x50
 	ZString m_requiredCheckpoint; // 0x60
 	TArray<ZString> m_entitlements; // 0x70
+	bool m_hasCheckpointTimes; // 0x88
 };
 ZHM_OFFSET_CHECK(SKntGameplay, m_checkpoint, 0x0);
 ZHM_OFFSET_CHECK(SKntGameplay, m_tags, 0x10);
@@ -21308,7 +21650,8 @@ ZHM_OFFSET_CHECK(SKntGameplay, m_rewards, 0x30);
 ZHM_OFFSET_CHECK(SKntGameplay, m_requirementTags, 0x50);
 ZHM_OFFSET_CHECK(SKntGameplay, m_requiredCheckpoint, 0x60);
 ZHM_OFFSET_CHECK(SKntGameplay, m_entitlements, 0x70);
-static_assert(sizeof(SKntGameplay) == 0x88, "Wrong size for SKntGameplay");
+ZHM_OFFSET_CHECK(SKntGameplay, m_hasCheckpointTimes, 0x88);
+static_assert(sizeof(SKntGameplay) == 0x90, "Wrong size for SKntGameplay");
 static_assert(alignof(SKntGameplay) == 0x8, "Wrong alignment for SKntGameplay");
 
 // Size: 0x10
@@ -21383,7 +21726,7 @@ ZHM_OFFSET_CHECK(SKntScoreDetails, m_flair, 0x8);
 static_assert(sizeof(SKntScoreDetails) == 0xC, "Wrong size for SKntScoreDetails");
 static_assert(alignof(SKntScoreDetails) == 0x4, "Wrong alignment for SKntScoreDetails");
 
-// Size: 0x28
+// Size: 0x30
 class alignas(8) SKntLeaderboardRank
 {
 public:
@@ -21402,16 +21745,18 @@ public:
 	ZGuid m_profileId; // 0x8
 	int32 m_percentileIndex; // 0x18
 	SKntScoreDetails m_scoreDetails; // 0x1C
+	float64 m_gameTime; // 0x28
 };
 ZHM_OFFSET_CHECK(SKntLeaderboardRank, m_rank, 0x0);
 ZHM_OFFSET_CHECK(SKntLeaderboardRank, m_score, 0x4);
 ZHM_OFFSET_CHECK(SKntLeaderboardRank, m_profileId, 0x8);
 ZHM_OFFSET_CHECK(SKntLeaderboardRank, m_percentileIndex, 0x18);
 ZHM_OFFSET_CHECK(SKntLeaderboardRank, m_scoreDetails, 0x1C);
-static_assert(sizeof(SKntLeaderboardRank) == 0x28, "Wrong size for SKntLeaderboardRank");
+ZHM_OFFSET_CHECK(SKntLeaderboardRank, m_gameTime, 0x28);
+static_assert(sizeof(SKntLeaderboardRank) == 0x30, "Wrong size for SKntLeaderboardRank");
 static_assert(alignof(SKntLeaderboardRank) == 0x8, "Wrong alignment for SKntLeaderboardRank");
 
-// Size: 0x60
+// Size: 0x68
 class alignas(8) SKntLeaderboardPage
 {
 public:
@@ -21427,14 +21772,14 @@ public:
 
 	TArray<SKntLeaderboardRank> m_entries; // 0x0
 	SKntLeaderboardRank m_currentPlayer; // 0x18
-	bool m_hasMore; // 0x40
-	TArray<float32> m_percentileSpread; // 0x48
+	bool m_hasMore; // 0x48
+	TArray<float32> m_percentileSpread; // 0x50
 };
 ZHM_OFFSET_CHECK(SKntLeaderboardPage, m_entries, 0x0);
 ZHM_OFFSET_CHECK(SKntLeaderboardPage, m_currentPlayer, 0x18);
-ZHM_OFFSET_CHECK(SKntLeaderboardPage, m_hasMore, 0x40);
-ZHM_OFFSET_CHECK(SKntLeaderboardPage, m_percentileSpread, 0x48);
-static_assert(sizeof(SKntLeaderboardPage) == 0x60, "Wrong size for SKntLeaderboardPage");
+ZHM_OFFSET_CHECK(SKntLeaderboardPage, m_hasMore, 0x48);
+ZHM_OFFSET_CHECK(SKntLeaderboardPage, m_percentileSpread, 0x50);
+static_assert(sizeof(SKntLeaderboardPage) == 0x68, "Wrong size for SKntLeaderboardPage");
 static_assert(alignof(SKntLeaderboardPage) == 0x8, "Wrong alignment for SKntLeaderboardPage");
 
 // Size: 0x28
@@ -21459,7 +21804,7 @@ ZHM_OFFSET_CHECK(SKntMissionListDefinition, m_missions, 0x10);
 static_assert(sizeof(SKntMissionListDefinition) == 0x28, "Wrong size for SKntMissionListDefinition");
 static_assert(alignof(SKntMissionListDefinition) == 0x8, "Wrong alignment for SKntMissionListDefinition");
 
-// Size: 0xA0
+// Size: 0xA8
 class alignas(8) SKntUi
 {
 public:
@@ -21482,6 +21827,7 @@ public:
 	TArray<ZString> m_objectives; // 0x60
 	TArray<ZString> m_requirements; // 0x78
 	ZString m_shortDescription; // 0x90
+	bool m_showGameTime; // 0xA0
 };
 ZHM_OFFSET_CHECK(SKntUi, m_title, 0x0);
 ZHM_OFFSET_CHECK(SKntUi, m_image, 0x10);
@@ -21492,7 +21838,8 @@ ZHM_OFFSET_CHECK(SKntUi, m_goal, 0x50);
 ZHM_OFFSET_CHECK(SKntUi, m_objectives, 0x60);
 ZHM_OFFSET_CHECK(SKntUi, m_requirements, 0x78);
 ZHM_OFFSET_CHECK(SKntUi, m_shortDescription, 0x90);
-static_assert(sizeof(SKntUi) == 0xA0, "Wrong size for SKntUi");
+ZHM_OFFSET_CHECK(SKntUi, m_showGameTime, 0xA0);
+static_assert(sizeof(SKntUi) == 0xA8, "Wrong size for SKntUi");
 static_assert(alignof(SKntUi) == 0x8, "Wrong alignment for SKntUi");
 
 // Size: 0x18
@@ -21599,6 +21946,26 @@ ZHM_OFFSET_CHECK(SKntPlayerProgressionResponse, m_playerProgression, 0x0);
 static_assert(sizeof(SKntPlayerProgressionResponse) == 0x8, "Wrong size for SKntPlayerProgressionResponse");
 static_assert(alignof(SKntPlayerProgressionResponse) == 0x4, "Wrong alignment for SKntPlayerProgressionResponse");
 
+// Size: 0x18
+class alignas(8) SKntRaceProgression
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SKntRaceProgression& p_Other) const;
+	bool operator!=(const SKntRaceProgression& p_Other) const { return !(*this == p_Other); }
+
+	TArray<float32> m_checkpointTimes; // 0x0
+};
+ZHM_OFFSET_CHECK(SKntRaceProgression, m_checkpointTimes, 0x0);
+static_assert(sizeof(SKntRaceProgression) == 0x18, "Wrong size for SKntRaceProgression");
+static_assert(alignof(SKntRaceProgression) == 0x8, "Wrong alignment for SKntRaceProgression");
+
 // Size: 0xC
 class alignas(4) SKntScoreDetailsDiff
 {
@@ -21622,6 +21989,26 @@ ZHM_OFFSET_CHECK(SKntScoreDetailsDiff, m_precision, 0x4);
 ZHM_OFFSET_CHECK(SKntScoreDetailsDiff, m_flair, 0x8);
 static_assert(sizeof(SKntScoreDetailsDiff) == 0xC, "Wrong size for SKntScoreDetailsDiff");
 static_assert(alignof(SKntScoreDetailsDiff) == 0x4, "Wrong alignment for SKntScoreDetailsDiff");
+
+// Size: 0x18
+class alignas(8) SKntSessionDetails
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SKntSessionDetails& p_Other) const;
+	bool operator!=(const SKntSessionDetails& p_Other) const { return !(*this == p_Other); }
+
+	TArray<float32> m_checkpointTimes; // 0x0
+};
+ZHM_OFFSET_CHECK(SKntSessionDetails, m_checkpointTimes, 0x0);
+static_assert(sizeof(SKntSessionDetails) == 0x18, "Wrong size for SKntSessionDetails");
+static_assert(alignof(SKntSessionDetails) == 0x8, "Wrong alignment for SKntSessionDetails");
 
 // Size: 0xC
 class alignas(4) SKntSessionProgressionGroup
@@ -21784,7 +22171,7 @@ ZHM_OFFSET_CHECK(SLayoutValue, m_unit, 0x4);
 static_assert(sizeof(SLayoutValue) == 0x8, "Wrong size for SLayoutValue");
 static_assert(alignof(SLayoutValue) == 0x4, "Wrong alignment for SLayoutValue");
 
-// Size: 0x80
+// Size: 0x88
 class alignas(8) SLeaderboardPageResult
 {
 public:
@@ -21811,7 +22198,7 @@ ZHM_OFFSET_CHECK(SLeaderboardPageResult, m_pageSize, 0x14);
 ZHM_OFFSET_CHECK(SLeaderboardPageResult, m_isPending, 0x18);
 ZHM_OFFSET_CHECK(SLeaderboardPageResult, m_awaitingSessionEvaluation, 0x19);
 ZHM_OFFSET_CHECK(SLeaderboardPageResult, m_leaderboardData, 0x20);
-static_assert(sizeof(SLeaderboardPageResult) == 0x80, "Wrong size for SLeaderboardPageResult");
+static_assert(sizeof(SLeaderboardPageResult) == 0x88, "Wrong size for SLeaderboardPageResult");
 static_assert(alignof(SLeaderboardPageResult) == 0x8, "Wrong alignment for SLeaderboardPageResult");
 
 // Size: 0x2
@@ -22136,7 +22523,7 @@ ZHM_OFFSET_CHECK(SLowHealthEnd, m_playtimeInStatus, 0x20);
 static_assert(sizeof(SLowHealthEnd) == 0x28, "Wrong size for SLowHealthEnd");
 static_assert(alignof(SLowHealthEnd) == 0x8, "Wrong alignment for SLowHealthEnd");
 
-// Size: 0x170
+// Size: 0x188
 class alignas(8) SLowHealthEndMetricsContext
 {
 public:
@@ -22152,22 +22539,22 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xE0
-	SPlayerResourcesContext m_playerResourcesContext; // 0x138
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xF8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x150
 };
 ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_situationContext, 0xD0);
-ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_playerLoadoutContext, 0xE0);
-ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_playerResourcesContext, 0x138);
-static_assert(sizeof(SLowHealthEndMetricsContext) == 0x170, "Wrong size for SLowHealthEndMetricsContext");
+ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_situationContext, 0xE8);
+ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_playerLoadoutContext, 0xF8);
+ZHM_OFFSET_CHECK(SLowHealthEndMetricsContext, m_playerResourcesContext, 0x150);
+static_assert(sizeof(SLowHealthEndMetricsContext) == 0x188, "Wrong size for SLowHealthEndMetricsContext");
 static_assert(alignof(SLowHealthEndMetricsContext) == 0x8, "Wrong alignment for SLowHealthEndMetricsContext");
 
 // Size: 0x18
@@ -22386,7 +22773,7 @@ ZHM_OFFSET_CHECK(SMissionEnd, m_completionTime, 0x28);
 static_assert(sizeof(SMissionEnd) == 0x30, "Wrong size for SMissionEnd");
 static_assert(alignof(SMissionEnd) == 0x8, "Wrong alignment for SMissionEnd");
 
-// Size: 0x118
+// Size: 0x130
 class alignas(8) SMissionEndMetricsContext
 {
 public:
@@ -22402,16 +22789,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_playerLoadoutContext, 0xC0);
-static_assert(sizeof(SMissionEndMetricsContext) == 0x118, "Wrong size for SMissionEndMetricsContext");
+ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SMissionEndMetricsContext, m_playerLoadoutContext, 0xD8);
+static_assert(sizeof(SMissionEndMetricsContext) == 0x130, "Wrong size for SMissionEndMetricsContext");
 static_assert(alignof(SMissionEndMetricsContext) == 0x8, "Wrong alignment for SMissionEndMetricsContext");
 
 // Size: 0x28
@@ -22436,7 +22823,7 @@ ZHM_OFFSET_CHECK(SMissionStart, m_missionObjectives, 0x10);
 static_assert(sizeof(SMissionStart) == 0x28, "Wrong size for SMissionStart");
 static_assert(alignof(SMissionStart) == 0x8, "Wrong alignment for SMissionStart");
 
-// Size: 0x150
+// Size: 0x168
 class alignas(8) SMissionStartMetricsContext
 {
 public:
@@ -22452,18 +22839,18 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xC0
-	SPlayerResourcesContext m_playerResourcesContext; // 0x118
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xD8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x130
 };
 ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_playerLoadoutContext, 0xC0);
-ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_playerResourcesContext, 0x118);
-static_assert(sizeof(SMissionStartMetricsContext) == 0x150, "Wrong size for SMissionStartMetricsContext");
+ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_playerLoadoutContext, 0xD8);
+ZHM_OFFSET_CHECK(SMissionStartMetricsContext, m_playerResourcesContext, 0x130);
+static_assert(sizeof(SMissionStartMetricsContext) == 0x168, "Wrong size for SMissionStartMetricsContext");
 static_assert(alignof(SMissionStartMetricsContext) == 0x8, "Wrong alignment for SMissionStartMetricsContext");
 
 class SMouseState
@@ -23629,7 +24016,7 @@ ZHM_OFFSET_CHECK(SNPCInteraction, m_playerChoice, 0x28);
 static_assert(sizeof(SNPCInteraction) == 0x38, "Wrong size for SNPCInteraction");
 static_assert(alignof(SNPCInteraction) == 0x8, "Wrong alignment for SNPCInteraction");
 
-// Size: 0xE0
+// Size: 0xF8
 class alignas(8) SNPCInteractionMetricsContext
 {
 public:
@@ -23645,18 +24032,18 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
 };
 ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_situationContext, 0xD0);
-static_assert(sizeof(SNPCInteractionMetricsContext) == 0xE0, "Wrong size for SNPCInteractionMetricsContext");
+ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SNPCInteractionMetricsContext, m_situationContext, 0xE8);
+static_assert(sizeof(SNPCInteractionMetricsContext) == 0xF8, "Wrong size for SNPCInteractionMetricsContext");
 static_assert(alignof(SNPCInteractionMetricsContext) == 0x8, "Wrong alignment for SNPCInteractionMetricsContext");
 
 // Size: 0x58
@@ -23689,7 +24076,7 @@ ZHM_OFFSET_CHECK(SNPCKilled, m_knockDown, 0x50);
 static_assert(sizeof(SNPCKilled) == 0x58, "Wrong size for SNPCKilled");
 static_assert(alignof(SNPCKilled) == 0x8, "Wrong alignment for SNPCKilled");
 
-// Size: 0x170
+// Size: 0x188
 class alignas(8) SNPCKilledMetricsContext
 {
 public:
@@ -23705,22 +24092,22 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xE0
-	SPlayerResourcesContext m_playerResourcesContext; // 0x138
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xF8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x150
 };
 ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_situationContext, 0xD0);
-ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_playerLoadoutContext, 0xE0);
-ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_playerResourcesContext, 0x138);
-static_assert(sizeof(SNPCKilledMetricsContext) == 0x170, "Wrong size for SNPCKilledMetricsContext");
+ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_situationContext, 0xE8);
+ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_playerLoadoutContext, 0xF8);
+ZHM_OFFSET_CHECK(SNPCKilledMetricsContext, m_playerResourcesContext, 0x150);
+static_assert(sizeof(SNPCKilledMetricsContext) == 0x188, "Wrong size for SNPCKilledMetricsContext");
 static_assert(alignof(SNPCKilledMetricsContext) == 0x8, "Wrong alignment for SNPCKilledMetricsContext");
 
 // Size: 0x28
@@ -23907,7 +24294,7 @@ ZHM_OFFSET_CHECK(SOpportunityCompleted, m_trackedOpportunity, 0x20);
 static_assert(sizeof(SOpportunityCompleted) == 0x30, "Wrong size for SOpportunityCompleted");
 static_assert(alignof(SOpportunityCompleted) == 0x8, "Wrong alignment for SOpportunityCompleted");
 
-// Size: 0xC0
+// Size: 0xD8
 class alignas(8) SOpportunityCompletedMetricsContext
 {
 public:
@@ -23923,14 +24310,14 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
 };
 ZHM_OFFSET_CHECK(SOpportunityCompletedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SOpportunityCompletedMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SOpportunityCompletedMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SOpportunityCompletedMetricsContext, m_missionContext, 0xA0);
-static_assert(sizeof(SOpportunityCompletedMetricsContext) == 0xC0, "Wrong size for SOpportunityCompletedMetricsContext");
+ZHM_OFFSET_CHECK(SOpportunityCompletedMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SOpportunityCompletedMetricsContext, m_missionContext, 0xA8);
+static_assert(sizeof(SOpportunityCompletedMetricsContext) == 0xD8, "Wrong size for SOpportunityCompletedMetricsContext");
 static_assert(alignof(SOpportunityCompletedMetricsContext) == 0x8, "Wrong alignment for SOpportunityCompletedMetricsContext");
 
 // Size: 0x10
@@ -24363,6 +24750,80 @@ ZHM_OFFSET_CHECK(SPersistentEntitySaveDataList, m_mDynamicObjectIDGenerationValu
 static_assert(sizeof(SPersistentEntitySaveDataList) == 0x48, "Wrong size for SPersistentEntitySaveDataList");
 static_assert(alignof(SPersistentEntitySaveDataList) == 0x8, "Wrong alignment for SPersistentEntitySaveDataList");
 
+// Size: 0x20
+class alignas(8) SPhotoModeChangedSetting
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SPhotoModeChangedSetting& p_Other) const;
+	bool operator!=(const SPhotoModeChangedSetting& p_Other) const { return !(*this == p_Other); }
+
+	ZString m_name; // 0x0
+	ZString m_value; // 0x10
+};
+ZHM_OFFSET_CHECK(SPhotoModeChangedSetting, m_name, 0x0);
+ZHM_OFFSET_CHECK(SPhotoModeChangedSetting, m_value, 0x10);
+static_assert(sizeof(SPhotoModeChangedSetting) == 0x20, "Wrong size for SPhotoModeChangedSetting");
+static_assert(alignof(SPhotoModeChangedSetting) == 0x8, "Wrong alignment for SPhotoModeChangedSetting");
+
+// Size: 0x28
+class alignas(8) SPhotoModeExit
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SPhotoModeExit& p_Other) const;
+	bool operator!=(const SPhotoModeExit& p_Other) const { return !(*this == p_Other); }
+
+	SVector3 m_playerLocation; // 0x0
+	TArray<SPhotoModeChangedSetting> m_changedSettings; // 0x10
+};
+ZHM_OFFSET_CHECK(SPhotoModeExit, m_playerLocation, 0x0);
+ZHM_OFFSET_CHECK(SPhotoModeExit, m_changedSettings, 0x10);
+static_assert(sizeof(SPhotoModeExit) == 0x28, "Wrong size for SPhotoModeExit");
+static_assert(alignof(SPhotoModeExit) == 0x8, "Wrong alignment for SPhotoModeExit");
+
+// Size: 0xF8
+class alignas(8) SPhotoModeExitMetricsContext
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SPhotoModeExitMetricsContext& p_Other) const;
+	bool operator!=(const SPhotoModeExitMetricsContext& p_Other) const { return !(*this == p_Other); }
+
+	SApplicationSessionContext m_applicationSessionContext; // 0x0
+	SPlayerIdentityContext m_playerIdentityContext; // 0x48
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
+};
+ZHM_OFFSET_CHECK(SPhotoModeExitMetricsContext, m_applicationSessionContext, 0x0);
+ZHM_OFFSET_CHECK(SPhotoModeExitMetricsContext, m_playerIdentityContext, 0x48);
+ZHM_OFFSET_CHECK(SPhotoModeExitMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SPhotoModeExitMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SPhotoModeExitMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SPhotoModeExitMetricsContext, m_situationContext, 0xE8);
+static_assert(sizeof(SPhotoModeExitMetricsContext) == 0xF8, "Wrong size for SPhotoModeExitMetricsContext");
+static_assert(alignof(SPhotoModeExitMetricsContext) == 0x8, "Wrong alignment for SPhotoModeExitMetricsContext");
+
 // Size: 0x3
 class alignas(1) SPhysicsSaveData
 {
@@ -24525,7 +24986,7 @@ ZHM_OFFSET_CHECK(SPlayerKilled, m_gameplayState, 0x10);
 static_assert(sizeof(SPlayerKilled) == 0x20, "Wrong size for SPlayerKilled");
 static_assert(alignof(SPlayerKilled) == 0x8, "Wrong alignment for SPlayerKilled");
 
-// Size: 0x170
+// Size: 0x188
 class alignas(8) SPlayerKilledMetricsContext
 {
 public:
@@ -24541,22 +25002,22 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xE0
-	SPlayerResourcesContext m_playerResourcesContext; // 0x138
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xF8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x150
 };
 ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_situationContext, 0xD0);
-ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_playerLoadoutContext, 0xE0);
-ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_playerResourcesContext, 0x138);
-static_assert(sizeof(SPlayerKilledMetricsContext) == 0x170, "Wrong size for SPlayerKilledMetricsContext");
+ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_situationContext, 0xE8);
+ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_playerLoadoutContext, 0xF8);
+ZHM_OFFSET_CHECK(SPlayerKilledMetricsContext, m_playerResourcesContext, 0x150);
+static_assert(sizeof(SPlayerKilledMetricsContext) == 0x188, "Wrong size for SPlayerKilledMetricsContext");
 static_assert(alignof(SPlayerKilledMetricsContext) == 0x8, "Wrong alignment for SPlayerKilledMetricsContext");
 
 // Size: 0x20
@@ -24601,7 +25062,7 @@ ZHM_OFFSET_CHECK(SPlayerSettingsChanged, m_settings, 0x0);
 static_assert(sizeof(SPlayerSettingsChanged) == 0x18, "Wrong size for SPlayerSettingsChanged");
 static_assert(alignof(SPlayerSettingsChanged) == 0x8, "Wrong alignment for SPlayerSettingsChanged");
 
-// Size: 0x78
+// Size: 0x80
 class alignas(8) SPlayerSettingsChangedMetricsContext
 {
 public:
@@ -24620,7 +25081,7 @@ public:
 };
 ZHM_OFFSET_CHECK(SPlayerSettingsChangedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SPlayerSettingsChangedMetricsContext, m_playerIdentityContext, 0x48);
-static_assert(sizeof(SPlayerSettingsChangedMetricsContext) == 0x78, "Wrong size for SPlayerSettingsChangedMetricsContext");
+static_assert(sizeof(SPlayerSettingsChangedMetricsContext) == 0x80, "Wrong size for SPlayerSettingsChangedMetricsContext");
 static_assert(alignof(SPlayerSettingsChangedMetricsContext) == 0x8, "Wrong alignment for SPlayerSettingsChangedMetricsContext");
 
 // Size: 0x10
@@ -24645,7 +25106,7 @@ ZHM_OFFSET_CHECK(SPlayerSpotted, m_playtimeSinceCheckpointStart, 0xC);
 static_assert(sizeof(SPlayerSpotted) == 0x10, "Wrong size for SPlayerSpotted");
 static_assert(alignof(SPlayerSpotted) == 0x4, "Wrong alignment for SPlayerSpotted");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SPlayerSpottedMetricsContext
 {
 public:
@@ -24661,16 +25122,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SPlayerSpottedMetricsContext) == 0xD0, "Wrong size for SPlayerSpottedMetricsContext");
+ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SPlayerSpottedMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SPlayerSpottedMetricsContext) == 0xE8, "Wrong size for SPlayerSpottedMetricsContext");
 static_assert(alignof(SPlayerSpottedMetricsContext) == 0x8, "Wrong alignment for SPlayerSpottedMetricsContext");
 
 // Size: 0x20
@@ -24951,7 +25412,7 @@ ZHM_OFFSET_CHECK(SReinforcementsCalled, m_playerLocation, 0x0);
 static_assert(sizeof(SReinforcementsCalled) == 0xC, "Wrong size for SReinforcementsCalled");
 static_assert(alignof(SReinforcementsCalled) == 0x4, "Wrong alignment for SReinforcementsCalled");
 
-// Size: 0x170
+// Size: 0x188
 class alignas(8) SReinforcementsCalledMetricsContext
 {
 public:
@@ -24967,22 +25428,22 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
-	SSituationContext m_situationContext; // 0xD0
-	SPlayerLoadoutContext m_playerLoadoutContext; // 0xE0
-	SPlayerResourcesContext m_playerResourcesContext; // 0x138
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
+	SSituationContext m_situationContext; // 0xE8
+	SPlayerLoadoutContext m_playerLoadoutContext; // 0xF8
+	SPlayerResourcesContext m_playerResourcesContext; // 0x150
 };
 ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_checkpointContext, 0xC0);
-ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_situationContext, 0xD0);
-ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_playerLoadoutContext, 0xE0);
-ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_playerResourcesContext, 0x138);
-static_assert(sizeof(SReinforcementsCalledMetricsContext) == 0x170, "Wrong size for SReinforcementsCalledMetricsContext");
+ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_checkpointContext, 0xD8);
+ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_situationContext, 0xE8);
+ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_playerLoadoutContext, 0xF8);
+ZHM_OFFSET_CHECK(SReinforcementsCalledMetricsContext, m_playerResourcesContext, 0x150);
+static_assert(sizeof(SReinforcementsCalledMetricsContext) == 0x188, "Wrong size for SReinforcementsCalledMetricsContext");
 static_assert(alignof(SReinforcementsCalledMetricsContext) == 0x8, "Wrong alignment for SReinforcementsCalledMetricsContext");
 
 // Size: 0x20
@@ -25831,7 +26292,7 @@ ZHM_OFFSET_CHECK(STacSimStoreItemDetailsViewed, m_status, 0x30);
 static_assert(sizeof(STacSimStoreItemDetailsViewed) == 0x40, "Wrong size for STacSimStoreItemDetailsViewed");
 static_assert(alignof(STacSimStoreItemDetailsViewed) == 0x8, "Wrong alignment for STacSimStoreItemDetailsViewed");
 
-// Size: 0xA0
+// Size: 0xA8
 class alignas(8) STacSimStoreItemDetailsViewedMetricsContext
 {
 public:
@@ -25847,12 +26308,12 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
+	SPlayerProgressContext m_playerProgressContext; // 0x80
 };
 ZHM_OFFSET_CHECK(STacSimStoreItemDetailsViewedMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(STacSimStoreItemDetailsViewedMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(STacSimStoreItemDetailsViewedMetricsContext, m_playerProgressContext, 0x78);
-static_assert(sizeof(STacSimStoreItemDetailsViewedMetricsContext) == 0xA0, "Wrong size for STacSimStoreItemDetailsViewedMetricsContext");
+ZHM_OFFSET_CHECK(STacSimStoreItemDetailsViewedMetricsContext, m_playerProgressContext, 0x80);
+static_assert(sizeof(STacSimStoreItemDetailsViewedMetricsContext) == 0xA8, "Wrong size for STacSimStoreItemDetailsViewedMetricsContext");
 static_assert(alignof(STacSimStoreItemDetailsViewedMetricsContext) == 0x8, "Wrong alignment for STacSimStoreItemDetailsViewedMetricsContext");
 
 // Size: 0xB0
@@ -26588,7 +27049,7 @@ ZHM_OFFSET_CHECK(STrophyGot, m_totalTrophies, 0x10);
 static_assert(sizeof(STrophyGot) == 0x18, "Wrong size for STrophyGot");
 static_assert(alignof(STrophyGot) == 0x8, "Wrong alignment for STrophyGot");
 
-// Size: 0xA0
+// Size: 0xA8
 class alignas(8) STrophyGotMetricsContext
 {
 public:
@@ -26604,12 +27065,12 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
+	SPlayerProgressContext m_playerProgressContext; // 0x80
 };
 ZHM_OFFSET_CHECK(STrophyGotMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(STrophyGotMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(STrophyGotMetricsContext, m_playerProgressContext, 0x78);
-static_assert(sizeof(STrophyGotMetricsContext) == 0xA0, "Wrong size for STrophyGotMetricsContext");
+ZHM_OFFSET_CHECK(STrophyGotMetricsContext, m_playerProgressContext, 0x80);
+static_assert(sizeof(STrophyGotMetricsContext) == 0xA8, "Wrong size for STrophyGotMetricsContext");
 static_assert(alignof(STrophyGotMetricsContext) == 0x8, "Wrong alignment for STrophyGotMetricsContext");
 
 // Size: 0x40
@@ -27038,7 +27499,7 @@ ZHM_OFFSET_CHECK(SUIOptionsSavegameData, m_inputOverrideData, 0x110);
 static_assert(sizeof(SUIOptionsSavegameData) == 0x138, "Wrong size for SUIOptionsSavegameData");
 static_assert(alignof(SUIOptionsSavegameData) == 0x8, "Wrong alignment for SUIOptionsSavegameData");
 
-// Size: 0xA8
+// Size: 0xA0
 class alignas(8) SUISelectableGadgetData
 {
 public:
@@ -27054,38 +27515,40 @@ public:
 
 	ZString name; // 0x0
 	ZString type; // 0x10
-	float32 ammoCount; // 0x20
-	float32 ammoMax; // 0x24
-	float32 activationCost; // 0x28
-	uint32 resourceType; // 0x2C
-	bool isRecharging; // 0x30
-	float32 rechargingProgress; // 0x34
-	bool isEnabled; // 0x38
-	TArray<Gameplay::EGadgetDisabledFlag> gadgetDisabledFlags; // 0x40
-	ZHUDDataproviderButtonPromptBaseWidget::SPromptData promptData; // 0x58
-	float32 cooldownDuration; // 0x98
-	float32 cooldownRemainingTime; // 0x9C
-	bool isInCooldown; // 0xA0
-	bool isPrimaryGadgetForSelectedTarget; // 0xA1
-	bool gadgetActionDigital; // 0xA2
+	TArray<Gameplay::EGadgetDisabledFlag> gadgetDisabledFlags; // 0x20
+	ZHUDDataproviderButtonPromptBaseWidget::SPromptData promptData; // 0x38
+	float32 ammoCount; // 0x78
+	float32 ammoMax; // 0x7C
+	float32 activationCost; // 0x80
+	float32 rechargingProgress; // 0x84
+	float32 cooldownDuration; // 0x88
+	float32 cooldownRemainingTime; // 0x8C
+	uint32 resourceType; // 0x90
+	uint32 disabledFlagsValue; // 0x94
+	bool isRecharging; // 0x98
+	bool isEnabled; // 0x99
+	bool isInCooldown; // 0x9A
+	bool isPrimaryGadgetForSelectedTarget; // 0x9B
+	bool gadgetActionDigital; // 0x9C
 };
 ZHM_OFFSET_CHECK(SUISelectableGadgetData, name, 0x0);
 ZHM_OFFSET_CHECK(SUISelectableGadgetData, type, 0x10);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, ammoCount, 0x20);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, ammoMax, 0x24);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, activationCost, 0x28);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, resourceType, 0x2C);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, isRecharging, 0x30);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, rechargingProgress, 0x34);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, isEnabled, 0x38);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, gadgetDisabledFlags, 0x40);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, promptData, 0x58);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, cooldownDuration, 0x98);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, cooldownRemainingTime, 0x9C);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, isInCooldown, 0xA0);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, isPrimaryGadgetForSelectedTarget, 0xA1);
-ZHM_OFFSET_CHECK(SUISelectableGadgetData, gadgetActionDigital, 0xA2);
-static_assert(sizeof(SUISelectableGadgetData) == 0xA8, "Wrong size for SUISelectableGadgetData");
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, gadgetDisabledFlags, 0x20);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, promptData, 0x38);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, ammoCount, 0x78);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, ammoMax, 0x7C);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, activationCost, 0x80);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, rechargingProgress, 0x84);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, cooldownDuration, 0x88);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, cooldownRemainingTime, 0x8C);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, resourceType, 0x90);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, disabledFlagsValue, 0x94);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, isRecharging, 0x98);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, isEnabled, 0x99);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, isInCooldown, 0x9A);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, isPrimaryGadgetForSelectedTarget, 0x9B);
+ZHM_OFFSET_CHECK(SUISelectableGadgetData, gadgetActionDigital, 0x9C);
+static_assert(sizeof(SUISelectableGadgetData) == 0xA0, "Wrong size for SUISelectableGadgetData");
 static_assert(alignof(SUISelectableGadgetData) == 0x8, "Wrong alignment for SUISelectableGadgetData");
 
 // Size: 0x70
@@ -27196,7 +27659,7 @@ ZHM_OFFSET_CHECK(SUnlockableGot, m_unlockableId, 0x0);
 static_assert(sizeof(SUnlockableGot) == 0x10, "Wrong size for SUnlockableGot");
 static_assert(alignof(SUnlockableGot) == 0x8, "Wrong alignment for SUnlockableGot");
 
-// Size: 0xA0
+// Size: 0xA8
 class alignas(8) SUnlockableGotMetricsContext
 {
 public:
@@ -27212,12 +27675,12 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
+	SPlayerProgressContext m_playerProgressContext; // 0x80
 };
 ZHM_OFFSET_CHECK(SUnlockableGotMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SUnlockableGotMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SUnlockableGotMetricsContext, m_playerProgressContext, 0x78);
-static_assert(sizeof(SUnlockableGotMetricsContext) == 0xA0, "Wrong size for SUnlockableGotMetricsContext");
+ZHM_OFFSET_CHECK(SUnlockableGotMetricsContext, m_playerProgressContext, 0x80);
+static_assert(sizeof(SUnlockableGotMetricsContext) == 0xA8, "Wrong size for SUnlockableGotMetricsContext");
 static_assert(alignof(SUnlockableGotMetricsContext) == 0x8, "Wrong alignment for SUnlockableGotMetricsContext");
 
 // Size: 0x8
@@ -27736,6 +28199,30 @@ ZHM_OFFSET_CHECK(SVideoDatabaseData, Videos, 0x0);
 static_assert(sizeof(SVideoDatabaseData) == 0x18, "Wrong size for SVideoDatabaseData");
 static_assert(alignof(SVideoDatabaseData) == 0x8, "Wrong alignment for SVideoDatabaseData");
 
+// Size: 0x30
+class alignas(16) SVirtualCameraBehaviorBoxConstraintData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SVirtualCameraBehaviorBoxConstraintData& p_Other) const;
+	bool operator!=(const SVirtualCameraBehaviorBoxConstraintData& p_Other) const { return !(*this == p_Other); }
+
+	float4 m_center; // 0x0
+	SQuaternion m_orientation; // 0x10
+	float4 m_halfExtents; // 0x20
+};
+ZHM_OFFSET_CHECK(SVirtualCameraBehaviorBoxConstraintData, m_center, 0x0);
+ZHM_OFFSET_CHECK(SVirtualCameraBehaviorBoxConstraintData, m_orientation, 0x10);
+ZHM_OFFSET_CHECK(SVirtualCameraBehaviorBoxConstraintData, m_halfExtents, 0x20);
+static_assert(sizeof(SVirtualCameraBehaviorBoxConstraintData) == 0x30, "Wrong size for SVirtualCameraBehaviorBoxConstraintData");
+static_assert(alignof(SVirtualCameraBehaviorBoxConstraintData) == 0x10, "Wrong alignment for SVirtualCameraBehaviorBoxConstraintData");
+
 // Size: 0x20
 class alignas(16) SVirtualCameraBehaviorLookAtConstraintData
 {
@@ -27872,6 +28359,28 @@ public:
 	static_assert(alignof(SMapping) == 0x4, "Wrong alignment for SMapping");
 
 };
+
+// Size: 0x20
+class alignas(16) SVirtualCameraBehaviorSphereConstraintData
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const SVirtualCameraBehaviorSphereConstraintData& p_Other) const;
+	bool operator!=(const SVirtualCameraBehaviorSphereConstraintData& p_Other) const { return !(*this == p_Other); }
+
+	float4 m_center; // 0x0
+	float32 m_radius; // 0x10
+};
+ZHM_OFFSET_CHECK(SVirtualCameraBehaviorSphereConstraintData, m_center, 0x0);
+ZHM_OFFSET_CHECK(SVirtualCameraBehaviorSphereConstraintData, m_radius, 0x10);
+static_assert(sizeof(SVirtualCameraBehaviorSphereConstraintData) == 0x20, "Wrong size for SVirtualCameraBehaviorSphereConstraintData");
+static_assert(alignof(SVirtualCameraBehaviorSphereConstraintData) == 0x10, "Wrong alignment for SVirtualCameraBehaviorSphereConstraintData");
 
 // Size: 0xA0
 class alignas(16) SVirtualCameraBehaviorSpringData
@@ -28197,7 +28706,7 @@ ZHM_OFFSET_CHECK(SWeaponStats, m_triggerCondition, 0x40);
 static_assert(sizeof(SWeaponStats) == 0x50, "Wrong size for SWeaponStats");
 static_assert(alignof(SWeaponStats) == 0x8, "Wrong alignment for SWeaponStats");
 
-// Size: 0xD0
+// Size: 0xE8
 class alignas(8) SWeaponStatsMetricsContext
 {
 public:
@@ -28213,16 +28722,16 @@ public:
 
 	SApplicationSessionContext m_applicationSessionContext; // 0x0
 	SPlayerIdentityContext m_playerIdentityContext; // 0x48
-	SPlayerProgressContext m_playerProgressContext; // 0x78
-	SMissionContext m_missionContext; // 0xA0
-	SCheckpointContext m_checkpointContext; // 0xC0
+	SPlayerProgressContext m_playerProgressContext; // 0x80
+	SMissionContext m_missionContext; // 0xA8
+	SCheckpointContext m_checkpointContext; // 0xD8
 };
 ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_applicationSessionContext, 0x0);
 ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_playerIdentityContext, 0x48);
-ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_playerProgressContext, 0x78);
-ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_missionContext, 0xA0);
-ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_checkpointContext, 0xC0);
-static_assert(sizeof(SWeaponStatsMetricsContext) == 0xD0, "Wrong size for SWeaponStatsMetricsContext");
+ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_playerProgressContext, 0x80);
+ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_missionContext, 0xA8);
+ZHM_OFFSET_CHECK(SWeaponStatsMetricsContext, m_checkpointContext, 0xD8);
+static_assert(sizeof(SWeaponStatsMetricsContext) == 0xE8, "Wrong size for SWeaponStatsMetricsContext");
 static_assert(alignof(SWeaponStatsMetricsContext) == 0x8, "Wrong alignment for SWeaponStatsMetricsContext");
 
 // Size: 0x4
@@ -28966,6 +29475,9 @@ public:
 		PerformingPrivateSpaceReaction = 43,
 		AffectedBySmoke = 44,
 		PerformingFakeSurrenderFinisher = 45,
+		RollingOverCover = 46,
+		Vaulting = 47,
+		InCombat = 48,
 	};
 
 };
@@ -29210,6 +29722,15 @@ public:
 		Falling = 56,
 		InterruptedFinisherCamera = 57,
 		HasRubberCameraControls = 58,
+		IsAnyAnimatedCameraActive = 59,
+	};
+
+	// Size: 0x4
+	enum class ESequenceType : int32_t
+	{
+		Cinematic = 0,
+		Gameplay = 1,
+		Any = 2,
 	};
 
 };
@@ -29862,6 +30383,20 @@ public:
 		Instant = 1,
 		Notification = 2,
 		PostNotification = 3,
+	};
+
+};
+
+class ZGetVirtualCameraTransformEntity
+{
+public:
+	// Size: 0x4
+	enum class EMode : int32_t
+	{
+		Full = 0,
+		WithoutShakes = 1,
+		WithoutOffset = 2,
+		WithoutAnyOffset = 3,
 	};
 
 };
@@ -32292,17 +32827,18 @@ public:
 		LegShot = 1,
 		DoubleLegShot = 2,
 		HeadShot = 3,
-		ShootArmor = 4,
-		DestroyArmor = 5,
-		DisarmShot = 6,
-		WeaponThrow = 7,
-		WeaponThrowImpacted = 8,
-		WeaponSwitch = 9,
-		MagazineOutOfAmmo = 10,
-		OutOfAmmo = 11,
-		ItemThrow = 12,
-		ItemThrowImpacted = 13,
-		MissedShot = 14,
+		LethalShot = 4,
+		ShootArmor = 5,
+		DestroyArmor = 6,
+		DisarmShot = 7,
+		WeaponThrow = 8,
+		WeaponThrowImpacted = 9,
+		WeaponSwitch = 10,
+		MagazineOutOfAmmo = 11,
+		OutOfAmmo = 12,
+		ItemThrow = 13,
+		ItemThrowImpacted = 14,
+		MissedShot = 15,
 	};
 
 	// Size: 0x1
@@ -32496,6 +33032,7 @@ public:
 		OfflineCheckpointNotFound = 9,
 		Unknown = 10,
 		CheckpointNotInBoot = 11,
+		NotOwned = 12,
 	};
 
 };
@@ -33312,6 +33849,28 @@ public:
 	};
 
 };
+
+// Size: 0x58
+class alignas(8) ZUIAnimationCurve
+{
+public:
+	static ZHMTypeInfo TypeInfo;
+	static void WriteSimpleJson(void* p_Object, std::ostream& p_Stream);
+	static void FromSimpleJson(simdjson::ondemand::value p_Document, void* p_Target);
+	static void Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset);
+	static bool Equals(void* p_Left, void* p_Right);
+	static void Destroy(void* p_Object);
+
+	bool operator==(const ZUIAnimationCurve& p_Other) const;
+	bool operator!=(const ZUIAnimationCurve& p_Other) const { return !(*this == p_Other); }
+
+	ZString m_name; // 0x0
+	ZCurve m_curve; // 0x10
+};
+ZHM_OFFSET_CHECK(ZUIAnimationCurve, m_name, 0x0);
+ZHM_OFFSET_CHECK(ZUIAnimationCurve, m_curve, 0x10);
+static_assert(sizeof(ZUIAnimationCurve) == 0x58, "Wrong size for ZUIAnimationCurve");
+static_assert(alignof(ZUIAnimationCurve) == 0x8, "Wrong alignment for ZUIAnimationCurve");
 
 class ZUIControlLayoutLegacyAspect
 {

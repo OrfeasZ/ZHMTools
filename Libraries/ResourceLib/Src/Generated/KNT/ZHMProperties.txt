@@ -1,5 +1,6 @@
 Acceleration
 ActionAltIcon
+ActionData
 ActionGlyph
 ActionID
 ActionLabel
@@ -17,6 +18,7 @@ AffectsCloseCombat
 AffectsExplosions
 AffectsProjectiles
 AffectsScripts
+AffectsThrowItems
 AgencyCostChunks
 AgencyData
 AgencyFocusPromptData
@@ -25,6 +27,7 @@ AgilityActionImpactStaggerSourceKeywords
 AgilityActionKeywords
 AgilityActionRestrictionReloadPrioritizedDuringCombatNearbySqDistanceThreshold
 AimFirearmActionKeywords
+AllowedStaggerOverlapSources
 AllowsContextualAttackStumbleImpactFlagKeywords
 Ammo
 Amount
@@ -32,6 +35,7 @@ AnalogValue
 Angle
 AngularAcceleration
 AngularSpeed
+AngularVelocity
 AnimDrivenActionType
 AnimationActActionKeywords
 AnyChallengesCompleted
@@ -41,7 +45,12 @@ ApplyToInput
 ApplyToRotation
 AreAllCollectiblesUnlocked
 AreAllVisible
+AreCameraControlsEnabled
 AreDevicesDisabled
+AreGamepadCameraControlsBlocked
+AreKeyboardCameraControlsBlocked
+AreMouseCameraControlsBlocked
+ArePromptsClickable
 AreWeaponsEnabled
 ArmorHealth
 Ascent
@@ -61,6 +70,8 @@ AwaitingSessionEvaluation
 B
 BackgroundColor
 BackgroundOpacity
+BaseUrl
+BestCompletionTime
 BillboardTexture
 BitmapReady
 BlendCurve
@@ -86,6 +97,7 @@ Branch
 BuildID
 BuildName
 Calculate
+CampaignID
 CanAddInput
 CanBeActivated
 CanBeCustomized
@@ -104,6 +116,7 @@ CastPosition
 CategoryId
 CategoryTitle
 CausesRollOverStumbleImpactFlagKeywords
+Center
 ChallengeActive
 ChallengeCompleted
 ChallengeInactive
@@ -180,6 +193,7 @@ CurrentStepIndex
 CurrentStepTitle
 CurrentTier
 CurrentTime
+CurrentValue
 CurrentlyActivated
 DOFAperture
 DamageType
@@ -196,6 +210,7 @@ DefaultEnabledType
 DefaultItemSpecificData
 DefaultOrderNumber
 DefaultStrength
+DefaultValue
 DefenseTypesToDisable
 DefenseTypesToEnable
 DensityPercentage
@@ -308,6 +323,7 @@ GadgetWallEntityID
 GadgetWatchLabModeTags
 GameChangers
 GameModeAvailability
+GameTime
 GamepadControlSchemePreset
 GamepadInputID
 Gender
@@ -334,6 +350,7 @@ Group
 GroupName
 H
 HackProgress
+HandledAnalog
 HandlesGamepadDevice
 HandlesKeyboardDevice
 HandlesMouseDevice
@@ -357,6 +374,7 @@ HasGadgetAssigned
 HasGadgetAttached
 HasHit
 HasInfiniteGadgetResources
+HasLockedValue
 HasMore
 HasSelectedInteraction
 HasSelectedTarget
@@ -435,6 +453,7 @@ IsBeingKickedOpen
 IsBrakeForced
 IsBroken
 IsBurstFireMode
+IsCampaignCompleted
 IsChargeFireMode
 IsCinematicActive
 IsClosed
@@ -452,6 +471,8 @@ IsDoorStumbleImpactFlagKeywords
 IsElevationDifferenceEnabled
 IsEnabled
 IsEquipped
+IsEquippedInCampaign
+IsEquippedInTacSim
 IsEstimatedDialogueDurationAvailable
 IsExitEnabled
 IsFeatured
@@ -495,6 +516,7 @@ IsPressed
 IsReady
 IsRecommended
 IsReinforced
+IsRestrictedModeActive
 IsRevealed
 IsRunning
 IsSabotaged
@@ -509,6 +531,8 @@ IsShown
 IsSourceOnScreen
 IsSpawning
 IsSpoiler
+IsSupported
+IsTabEnabled
 IsTargetActive
 IsTargetSelected
 IsTerminated
@@ -547,8 +571,10 @@ LensPreset
 LerpRatio
 LinkState
 LinkedEmail
+ListItemEntity
 Location
 Locked
+LockedValue
 LocomotionActionKeywords
 LocomotionApproachActionKeywords
 LowCoverRollStumbleImpactTypeKeywords
@@ -568,6 +594,7 @@ MaxRegenChunks
 MaxReverbBlendDistance
 MaxSpringLength
 MaxSubtitleSize
+MaxValue
 MaximumAgency
 MaximumChunks
 MeleeAttackActionKeywords
@@ -585,6 +612,7 @@ MinLuminance
 MinPositionBlendDistance
 MinReverbBlendDistance
 MinSubtitleSize
+MinValue
 Mirror
 MissingEntitlements
 MissionId
@@ -614,6 +642,13 @@ ObjectiveState
 Objectives
 ObtainedNumberOfCollectibles
 OcclusionOpenBlendDistance
+OffsetBScale
+OffsetDirectionB
+OffsetDirectionG
+OffsetDirectionR
+OffsetGScale
+OffsetGlobalScale
+OffsetRScale
 OnEquipAnimationPayload
 OnFirearmHitReactionAnimationPayload
 OpenClosePrompt
@@ -631,7 +666,9 @@ OptionsDescription
 OptionsTitle
 OrderIndex
 OrderNumber
+Orientation
 OutdatedDLC_Id
+OutfitIndex
 OutsideFilter
 OverlappingPrompts
 Overlaps
@@ -681,6 +718,7 @@ PriceCurrency
 PriceValue
 PrimResourceId
 Primitive
+PriorityDeviceForAction
 PrivateSpacePushStaggerSourceKeywords
 ProfileId
 Progress
@@ -694,6 +732,7 @@ PromptIndex
 Prompts
 Property
 R
+Radius
 RailingDeathStumbleImpactTypeKeywords
 RangeMax
 RangeMin
@@ -750,6 +789,7 @@ ShortDescription
 Shot
 ShotCurrentDurationFrame
 ShotCurrentFrame
+ShowGameTime
 ShowGlitches
 ShowHolsteredReticle
 ShowInputPrompt
@@ -784,6 +824,7 @@ StateText
 Static
 Status
 Step
+StepAmount
 StopAcceleratingActionKeywords
 StopOnElementDeactivated
 StopStrafingActionKeywords
@@ -794,6 +835,7 @@ StumbleImpactStaggerSourceKeywords
 StunsInstigatorStumbleImpactFlagKeywords
 SubIds
 SubObjectives
+SubOptions
 SubtitleID
 SubtitleLanguages
 SubtitleMarkupsPerLanguage
@@ -802,6 +844,9 @@ SuccessfulHeavyImpactEffectDefinition
 SuccessfulLightImpactEffectDefinition
 SuccessfulRedirectStrikeImpactEffectDefinition
 SunDiscTexture
+TabIcon
+TabName
+Tabs
 Tags
 TangentIn
 TangentOut
@@ -883,6 +928,9 @@ Video
 VideoId
 VideoRidsPerAudioLanguage
 Videos
+VignetteMinMax
+VignettePower
+VignetteStrength
 WaterVolume
 WaveFunction
 WheelBrakeTorque
@@ -899,6 +947,9 @@ WheelSuspensionSpringForce
 WheelTireFriction
 Width
 WillDestroyObjectStumbleImpactFlagKeywords
+WobbleLength
+WobbleScale
+WobbleSpeed
 XAxis
 XP
 Xp
@@ -1037,6 +1088,7 @@ depthPrepass
 description
 deviceId
 direction
+disabledFlagsValue
 dischargeSpecialFirearmPromptData
 displayName
 distance
@@ -2309,6 +2361,7 @@ m_actionMultiply
 m_actionName
 m_actionNameRef
 m_actionOverrides
+m_actionRef
 m_actionSelector
 m_actionToOverride
 m_actionType
@@ -2369,7 +2422,6 @@ m_addNoise
 m_addRandomDelayToReaction
 m_additionalDefenderRequestDelay
 m_additionalKeywords
-m_additionalLateralSpeedBasedRotationConfig
 m_additionalOffsetInGadgetViewInCoverFacing
 m_additionalOffsetInGadgetViewInCoverUp
 m_additionalPorts
@@ -2420,6 +2472,10 @@ m_aimFrictionHazardPercentage
 m_aimFrictionPercentageAtMaxInput
 m_aimFrictionReductionTowardsTargetMovementPercentage
 m_aimFrictionTimeForReductionAtMaxInput
+m_aimGyroDown
+m_aimGyroLeft
+m_aimGyroRight
+m_aimGyroUp
 m_aimSnapMaxDistance
 m_aimTargetCharacter
 m_aimTargetEntity
@@ -2434,13 +2490,24 @@ m_aimingWithThrowableBehindLowCover
 m_aimingWithThrowableWhileCrouching
 m_airAccelerationMultiplier
 m_airAngularDrag
+m_airControlInvertPitch
+m_airControlMaxPitchTorque
+m_airControlMaxYawTorque
+m_airControlPitchDamping
+m_airControlPitchFadeAngleDeg
+m_airControlRollCorrectionDamping
+m_airControlRollCorrectionTorque
+m_airControlRollFadeAngleDeg
+m_airControlValidPitchAngleRange
+m_airControlValidRollAngleRange
+m_airControlYawDamping
+m_airControlsMode
 m_airCustomDecelerationCurve
 m_airCustomTimeToZeroSpeed
 m_airDrag
 m_airLinearDrag
 m_airSpeedMultiplierMax
 m_airSpeedMultiplierMin
-m_airStabilizationEnabled
 m_airStabilizationPitchAngularVelocitySmoothing
 m_airStabilizationPitchDamping
 m_airStabilizationPitchRecoverAngularVelocity
@@ -2451,6 +2518,7 @@ m_airStabilizationValidPitchAngleRange
 m_airStabilizationValidRollAngleRange
 m_airThrustFactor
 m_airboneDriveMode
+m_airborneReturnSmoothTime
 m_alertState
 m_alertedAreas
 m_alertedInitialReaction
@@ -2653,7 +2721,6 @@ m_applyPreBlend
 m_applyQuickFire
 m_applyRecoilDecayToCamera
 m_applySpeedMultipliersOnlyWithAccelInput
-m_applyStaggerOnOverlappingHumanoidsDuringPairedActions
 m_applyToInput
 m_applyToRotation
 m_applyVehiclePitchRotationToOffset
@@ -2667,6 +2734,7 @@ m_approachingDuration
 m_approachingMovementDefinition
 m_approachingToleranceAngleInDegrees
 m_arcadeSimConfig
+m_areCameraControlsEnabled
 m_areDevicesDisabled
 m_areLockedTargetsSelectable
 m_areValuesEqual
@@ -3091,6 +3159,7 @@ m_bGlobalCollider
 m_bGlobalCollidersEnabled
 m_bGlobalLightOverrideEnable
 m_bGlobalLightPTOverrideEnable
+m_bGlowEnabled
 m_bHDREnabled
 m_bHDRHistogramLumEnabled
 m_bHDRLocalExposureEnabled
@@ -3102,6 +3171,7 @@ m_bHasSystemBeenDetached
 m_bHasSystemBeenFractured
 m_bHorizontalSurfaceCollisionsOnly
 m_bIgnoreDepth
+m_bIgnoreGlobalDisable
 m_bIgnoreInAccessibility
 m_bIgnoreInAccessibilityRef
 m_bIgnoreOrder
@@ -3670,6 +3740,7 @@ m_brakingStateConfig
 m_branch
 m_breaksBlock
 m_brickResource
+m_broadPhaseDistance
 m_buildContext
 m_buildID
 m_buildId
@@ -3723,6 +3794,7 @@ m_cameraHierarchy
 m_cameraLookAtFramingOffset
 m_cameraLookAtFramingOffsetModifier
 m_cameraLookAtFramingOffsetModifierMethod
+m_cameraPosition
 m_cameraPositionFramingOffset
 m_cameraPositionFramingOffsetModifier
 m_cameraPositionFramingOffsetModifierMethod
@@ -3774,6 +3846,7 @@ m_canStart
 m_canThrowItems
 m_canUseCovers
 m_canUseCoversInAlertedState
+m_cancelMode
 m_cancelOnPlayerInput
 m_candidateBetweenPlayerAndCameraScoreWeightExp
 m_candidates
@@ -3803,8 +3876,10 @@ m_center
 m_centerOfMass
 m_centerOfMassDefaultMaterialHemisphereTraceRadius
 m_centerOfMassOffset
+m_centerOffset
 m_centreBias
 m_centreWhisker
+m_centripetalFilterSmoothTime
 m_challengeId
 m_challengeState
 m_challenges
@@ -3817,6 +3892,7 @@ m_changeListAssets
 m_changeListCode
 m_changeScale
 m_changeType
+m_changedSettings
 m_channel
 m_channelEntity
 m_channelID
@@ -3835,6 +3911,7 @@ m_chargeDelayDuration
 m_chargeSidestepWindowDuration
 m_chargeStart
 m_chargeStop
+m_chassisLocalPos
 m_chatMessage
 m_checkContentDrivenTags
 m_checkForGlobalFont
@@ -3857,6 +3934,7 @@ m_checkpointActive
 m_checkpointContext
 m_checkpointId
 m_checkpointName
+m_checkpointTimes
 m_checkpointTransitionWait
 m_checkpoints
 m_chemicalPlayerResourceType
@@ -3908,6 +3986,7 @@ m_closeDynamicInterpolationDistance
 m_closeQuartersLineOfFireColliderRadius
 m_clothImpulse
 m_clothSimulationReference
+m_clothWarmUpMaxDistance
 m_clutchStrength
 m_cobblestonesFrictionMultiplier
 m_cobblestonesPhysicsMaterialconfig
@@ -4008,6 +4087,7 @@ m_completionCondition
 m_completionMode
 m_completionState
 m_completionTime
+m_completitionCheckpoint
 m_complyCameraAimingOffset
 m_complyInjectedNetworkResource
 m_complyMaxWaitTimeToStartFade
@@ -4072,6 +4152,7 @@ m_connectionLedgeAndRailing
 m_connectionLinkDefinitions
 m_connectionRequirementDefinitions
 m_considerFlowMatchRate
+m_constrainOnInvalidRooms
 m_constrainRotation
 m_constraintData
 m_constraintToMoveOnlyForward
@@ -4215,6 +4296,7 @@ m_currentState
 m_currentStructureIndex
 m_currentSubmergedVolume
 m_currentTier
+m_currentTriggerHumanoidCharacter
 m_currentValue
 m_curve
 m_curve0
@@ -4223,6 +4305,7 @@ m_curve2
 m_curveBlue
 m_curveGreen
 m_curveRed
+m_curves
 m_customAdhesionPercentageValue
 m_customAnimationStyle
 m_customBoundingBoxLocalCenter
@@ -4270,6 +4353,8 @@ m_damageToVictim
 m_damageType
 m_damageUntilDazed
 m_damageUntilKilled
+m_damageUntilKilledIfNearDeath
+m_damageUntilNearDeath
 m_damping
 m_dampingRateFullThrottle
 m_dampingRateZeroThrottleClutchDisengaged
@@ -4513,6 +4598,7 @@ m_dialogueInterruptionDistance
 m_dialogueLines
 m_dialogueScenes
 m_dialogueScenesConfiguration
+m_difficulty
 m_difficultyLevel
 m_diffractionCurve
 m_diffuseColor
@@ -4648,6 +4734,7 @@ m_drawSize
 m_drawTime
 m_drawWidgetEdge
 m_drawWidgetEdgeRef
+m_driftLeanMultiplier
 m_driftType
 m_driftingConfigs
 m_driveAutoMaxSplineAngle
@@ -4895,6 +4982,7 @@ m_enableGroundNormalSmoothing
 m_enableGuidance
 m_enableHazardsGlowOnPlayerAim
 m_enableHoldFireDuringCC
+m_enableInitialCollisionCheck
 m_enableLoadingScreen
 m_enableNpcCentricUI
 m_enablePositionSmoothing
@@ -5055,7 +5143,6 @@ m_exportVersion
 m_exposureMapSystemEnabled
 m_expression
 m_extensions
-m_extraCapsuleRadiusOnOverlapDetection
 m_extraSize
 m_eyeIKEnableConditions
 m_eyedartOffset
@@ -5540,6 +5627,7 @@ m_fOrbitYaw
 m_fOuterConeAngle
 m_fOutlineColorAlpha
 m_fOutlineWidth
+m_fOutlineWidthFar
 m_fOutputScale
 m_fPCFShadowBlurBoost
 m_fPTLODOffset
@@ -5987,6 +6075,7 @@ m_firearmFoleyMagazineIn
 m_firearmFoleyMagazineOut
 m_firearmFoleyPickup
 m_firearmFoleyPullChamber
+m_firearmFoleyPushChamber
 m_firearmFoleyTypeSwitchGroupName
 m_firearmFoleyUnholster
 m_firearmHeadType
@@ -6001,6 +6090,7 @@ m_firearmItemType
 m_firearmItemTypeSwitchGroup
 m_firearmPosture
 m_firearmProjectileDamageMultiplier
+m_firearmSubclass
 m_firearms
 m_firearmsCategories
 m_firingPatternOverride
@@ -6192,6 +6282,8 @@ m_frontLeftWheelAudioEmitter
 m_frontRearSplit
 m_frontRightWheelAudioEmitter
 m_frontToRearBiasEnabled
+m_frontWheelLocalPos
+m_frontWheelTargetLocalPos
 m_frontWheelsBrakeTorque
 m_frontWheelsCamberStiffnessPerUnitGravity
 m_frontWheelsForceAppHeightRatio
@@ -6206,6 +6298,7 @@ m_frontWheelsSuspensionData
 m_frontWheelsTireType
 m_frontalGrabThrowThresholdAngle
 m_fullDataProvider
+m_fullPhysicsLeanSpeedMps
 m_fullPowerDuration
 m_funcname
 m_futureProjectionScale
@@ -6220,6 +6313,7 @@ m_gadgetItem
 m_gadgetItemDefinition
 m_gadgetKeyword
 m_gadgetName
+m_gadgetOutcomeModifiers
 m_gadgetOutcomes
 m_gadgetQuickActivation
 m_gadgetSlot
@@ -6285,6 +6379,7 @@ m_gearRatio
 m_gearSwitchTime
 m_generalMinDistanceToStopRunning
 m_generation
+m_geometryConfig
 m_geotag
 m_gestureTemplate
 m_gestureType
@@ -6321,6 +6416,7 @@ m_grabAttackThrowDamage
 m_grabBreakingFreeDuration
 m_grabCompletedCooldown
 m_grabDefenseConfig
+m_grabDefenseWhileGrabbingConfig
 m_grabDodgeWindowDuration
 m_grabFailedDuration
 m_grabHistoryLookupTime
@@ -6401,6 +6497,7 @@ m_guideWidthMinimum
 m_guideWidthRange
 m_guidedTargetParticipant
 m_gunShotMaximumVerticalHearingDistance
+m_halfExtents
 m_halfSize
 m_handGunAmmoOnCloseCombatFinisher
 m_handGunAmmoOnSilentTakedown
@@ -6412,12 +6509,14 @@ m_handgun_readyToAim
 m_handgun_shooting
 m_handleConflictOnInputGestureMatch
 m_handleIfAnyMenuOpen
+m_handleIfSpecificMenuOpenAndFocused
 m_handleInsideLeft
 m_handleInsideRight
 m_handleOutsideLeft
 m_handleOutsideRight
 m_handleOverlapOnInputGestureMatch
 m_handleOverlapOnInputMatch
+m_handlebarsLocalPos
 m_hang
 m_hangConfiguration
 m_hanging
@@ -6425,6 +6524,7 @@ m_hangingOverheadOffset
 m_hardCoverAngleForInputTowardsCoverOnSpline
 m_hardwareSpecs
 m_hasBothTapAndHold
+m_hasCheckpointTimes
 m_hasCollision
 m_hasDrivingControls
 m_hasFailed
@@ -6556,6 +6656,7 @@ m_hub
 m_hudGroupDebugFactory
 m_hudGroupLabelProperty
 m_hudGroupProperty
+m_hudIcon
 m_hudItemName
 m_hudMinimumSpread
 m_hudOffsetZ
@@ -6591,6 +6692,7 @@ m_iceMinSpeed
 m_iceMinSpeedCatchupRate
 m_icePhysicsMaterialConfig
 m_iceTag
+m_icon
 m_iconData
 m_iconEnum
 m_iconID
@@ -6712,6 +6814,7 @@ m_initialDelay
 m_initialDisorientedByConcreteBag
 m_initialDisorientedBySmoke
 m_initialHoldDelay
+m_initialPosition
 m_initialValue
 m_initiallyActive
 m_initiator
@@ -6843,6 +6946,7 @@ m_invisible
 m_invulnerable
 m_ioiAccountBaseUrl
 m_ioiAccountId
+m_ioiAccountLinked
 m_ioiEntitlements
 m_is4K
 m_isActive
@@ -6871,6 +6975,7 @@ m_isCoverUsageAllowed
 m_isDartgunGadgetEnabled
 m_isDashing
 m_isDefaultMapping
+m_isDemo
 m_isDevCheckpoint
 m_isDisc
 m_isDiscrete
@@ -6915,6 +7020,7 @@ m_isLethalDamage
 m_isLinkedToAccessibilityGlow
 m_isListActive
 m_isLocalOwner
+m_isLocked
 m_isMinAttenutationOverrideEnabled
 m_isNPCCentricUIEnabled
 m_isNew
@@ -6928,6 +7034,7 @@ m_isOverrideEnabled
 m_isOverwatchActive
 m_isPauseMenuActionEnabled
 m_isPending
+m_isPhotoModeEnabled
 m_isPlayFab
 m_isPossiblyDistracted
 m_isPreConfrontation
@@ -6944,6 +7051,7 @@ m_isRecursive
 m_isRegistered
 m_isReinforced
 m_isReplicated
+m_isRestrictedModeActive
 m_isScaleboxActive
 m_isSecret
 m_isShown
@@ -6996,6 +7104,7 @@ m_itemNotWatchedDelayDuration
 m_itemOrderTabText
 m_itemPadding
 m_itemPickupCooldown
+m_itemRefs
 m_itemResource
 m_itemSizeMode
 m_itemSpatial
@@ -7007,6 +7116,7 @@ m_itemTypeConfigs
 m_itemTypeID
 m_itemVideo
 m_itemWatchedDelayDuration
+m_items
 m_jiraID
 m_joinInformation
 m_joinedUserId
@@ -7066,6 +7176,7 @@ m_killItem
 m_kills
 m_knockDown
 m_kntDefinition
+m_kntMissionTimerRef
 m_kntState
 m_label
 m_ladderCapsuleConfig
@@ -7077,6 +7188,7 @@ m_landingBuoyancyDampingScale
 m_landingImpactScale
 m_landingPointDefinition
 m_landingSurfaceType
+m_landingTransitionDuration
 m_largeImage
 m_largeSpaceBus
 m_largeSpaceEvent
@@ -7139,6 +7251,11 @@ m_leadMaxAngleBeforeFacingTargetWhileWaiting
 m_leadMaxDistanceToDestinationToIgnoreWaitingForTarget
 m_leaderSpatialGoal
 m_leaderboardData
+m_leanAngVelReleaseDecayRate
+m_leanConfig
+m_leanInSmoothTime
+m_leanInSpeedThresholdMps
+m_leanOutSmoothTime
 m_leaveContextDuration
 m_leaving
 m_ledegGravityDistanceLimitOverLedge
@@ -7161,6 +7278,7 @@ m_leftGadget
 m_leftHand
 m_leftHandDefaultMaterialHemisphereTraceRadius
 m_leftHandItemOffset
+m_leftHandleverLocalPos
 m_leftMidRightFactor
 m_leftSideJumpingZone
 m_leftTriggerEffectConfig
@@ -7295,6 +7413,7 @@ m_lockVerticalMotion
 m_lockedDoorRaw
 m_lockedDoorSweet
 m_lockedFramesRemaining
+m_lockedValueRef
 m_locomotionContext
 m_locomotionInterruptionDistance
 m_locomotionSpeed
@@ -7517,6 +7636,7 @@ m_maxItemGroundOffset
 m_maxLODForFractionalSampling
 m_maxLateralAccel
 m_maxLateralVictimDisplacementFromTargetNormal
+m_maxLeanAngleDeg
 m_maxLeftOffset
 m_maxLength
 m_maxLifetime
@@ -7566,6 +7686,7 @@ m_maxSecondsToWaitAfterFiring
 m_maxSituationDuration
 m_maxSize
 m_maxSkips
+m_maxSlideIterations
 m_maxSpeed
 m_maxSpreadMultiplier
 m_maxStanceTransitionDuration
@@ -7574,6 +7695,7 @@ m_maxSteerInputRemapCurveTopSpeed
 m_maxSteerInputRemapCurveZeroSpeed
 m_maxSteerLookAhead
 m_maxSteerRemapCurve
+m_maxSteeringAngle
 m_maxStepForDefense
 m_maxSubtitleSize
 m_maxTargetDistance
@@ -7594,6 +7716,7 @@ m_maxValueFloat
 m_maxValueInt
 m_maxValueObstruction
 m_maxValueRTPC
+m_maxValueRef
 m_maxVehicleSpeed
 m_maxVelocity
 m_maxVerticalAngle
@@ -7690,6 +7813,7 @@ m_meleeBlockingDefenseValue
 m_meleeDazedDefenseValue
 m_meleeDefenseConfig
 m_meleeDefenseWhileGrabbing
+m_meleeDefenseWhileGrabbingConfig
 m_meleeDisarmFinisherAgencySource
 m_meleeFightAwareness
 m_meleeFightSpectate
@@ -7821,6 +7945,7 @@ m_minTurnAngle
 m_minValue
 m_minValueFloat
 m_minValueInt
+m_minValueRef
 m_minVerticalAngle
 m_minimumAcceptedScore
 m_minimumActingDuration
@@ -7856,6 +7981,7 @@ m_mirrorSabotageAlignment
 m_mission
 m_missionContext
 m_missionId
+m_missionIdEntity
 m_missionLists
 m_missionObjectives
 m_missionProgressions
@@ -7884,6 +8010,7 @@ m_moiMultiplier
 m_momentOfInertia
 m_month
 m_motionModelDefinitions
+m_motorbikeAttachmentPart
 m_mountFromAbove
 m_mountFromAbovePolicy
 m_mountFromBelow
@@ -7990,6 +8117,7 @@ m_nCrowdLODRemap2
 m_nCrowdLODRemap3
 m_nCrowdLODRemap4
 m_nCrowdNearCullDist
+m_nCulledAnimFrameSplit
 m_nCurrentIndex
 m_nCurrentLoop
 m_nCurrentStateIndex
@@ -8146,6 +8274,7 @@ m_nMinNumber
 m_nMinOffsetX
 m_nMinOffsetY
 m_nMinOffsetZ
+m_nMinRegionsForFrameSplit
 m_nMinRotX
 m_nMinRotY
 m_nMinRotZ
@@ -8247,6 +8376,7 @@ m_nReactionTimeOut1
 m_nReactionTimeOut2
 m_nReactionTimeOut3
 m_nRearArcDeg
+m_nRegionUpdateFrameSplit
 m_nRemaining
 m_nRenderDistance
 m_nResourceId
@@ -8486,6 +8616,7 @@ m_objectA
 m_objectB
 m_objectEntity
 m_objectiveDataType
+m_objectiveToCheck
 m_objectives
 m_objectsToIgnoreCollisionsWithVehicle
 m_obstacleAvoidanceThreshold
@@ -8528,6 +8659,7 @@ m_onStairsInstigatorAvailability
 m_onStairsVictimAvailability
 m_onStartedAnimationPayloadEntries
 m_oneHandWeapon
+m_onlineIOIAccountMenu
 m_onlineId
 m_onlineSessionContext
 m_onlyCharacteristicName
@@ -8589,6 +8721,7 @@ m_optionTextPlaceholder
 m_optionTextSweet
 m_optionalGadgets
 m_optionalVolumeTarget
+m_options
 m_optionsDescriptionLocalized
 m_optionsDescriptionRaw
 m_optionsTitleLocalized
@@ -8605,6 +8738,7 @@ m_orgValue
 m_orientShakeToCamera
 m_orientShakeToSource
 m_orientTowardsTarget
+m_orientation
 m_orientationTime
 m_origin
 m_originOffset
@@ -8648,6 +8782,7 @@ m_overrideAttachOffset
 m_overrideAttachmentSlot
 m_overrideDashConfig
 m_overrideDefinition
+m_overrideDeltaTime
 m_overrideDistanceToRadiusConfig
 m_overrideGlobalLensSetup
 m_overrideHitreactionAnimationID
@@ -8657,6 +8792,7 @@ m_overrideLockedDescriptionSweet
 m_overrideNodes
 m_overrideRelocationDistance
 m_overrideReverb
+m_overrideSteps
 m_overrideType
 m_overrideValue
 m_overrideValues
@@ -8696,6 +8832,7 @@ m_pBluffPromptLabel
 m_pBluffPromptTitle
 m_pBodybagResource
 m_pBodypartMaterial
+m_pBoneDataOverride
 m_pBonesAndCollisionResource
 m_pBootMovieOther
 m_pBoundingVolume
@@ -8745,6 +8882,7 @@ m_pDecalMesh
 m_pDefaultImageRID
 m_pDefaultIntroMovie
 m_pDefaultLoopingMovie
+m_pDefaultUnavailableText
 m_pDescription
 m_pDescriptionForAI
 m_pDescriptionResource
@@ -9080,6 +9218,7 @@ m_party
 m_partyError
 m_path
 m_pathEnd
+m_pathPositions
 m_pathStart
 m_pathToDirectory
 m_pathToSubTarget
@@ -9110,9 +9249,12 @@ m_performSphericalVelocityBlending
 m_performanceFlags
 m_persistentContext
 m_phootingPromptTitle
+m_photoModeMenuType
 m_physicObjects
+m_physicObstacleHeight
 m_physicsImpactSwitchValue
 m_physicsImpulse
+m_physicsLeanMultiplier
 m_physicsPitchBaselineRad
 m_physicsPitchOnAccelFactor
 m_physicsPitchReturnDamping
@@ -9227,6 +9369,7 @@ m_playerThrowOverLedgeAnimActionCategory
 m_playerThrowOverLedgeAnimActionId
 m_playerThrowOverLedgeEnabled
 m_playerThrowOverLedgeJumpDistance
+m_playerThrownOverLedgeDamage
 m_playerToAffectedDistanceCurve
 m_playerToAffectedMaxDistance
 m_playerToAffectedMaxMultiplier
@@ -9337,6 +9480,7 @@ m_priority
 m_priority1
 m_priority2
 m_priority3
+m_priorityDeviceForAction
 m_privacyPolicyMenu
 m_privateSpaceReaction
 m_privateSpaceReturningTime
@@ -9725,6 +9869,7 @@ m_randSeed
 m_rangeLower
 m_rangeUpper
 m_rangedCombatAccuracyConfig
+m_rangedCombatAccuracyConfigDifficultyOverride
 m_rangedCombatBehaviorConfiguration
 m_rangedCombatEvent
 m_rangedHitAgencySource
@@ -9801,6 +9946,8 @@ m_rearLeftWheelAudioEmitter
 m_rearLeftWhisker
 m_rearRightWheelAudioEmitter
 m_rearRightWhisker
+m_rearWheelLocalPos
+m_rearWheelTargetLocalPos
 m_rearWheelsBrakeTorque
 m_rearWheelsCamberStiffnessPerUnitGravity
 m_rearWheelsForceAppHeightRatio
@@ -9886,6 +10033,7 @@ m_requests
 m_requireFullyOccludedPaths
 m_requireLineOfSight
 m_requireToBeEquipped
+m_requireToBeHolstered
 m_requiredCheckpoint
 m_requiredContentHints
 m_requiredForCompletition
@@ -9906,12 +10054,15 @@ m_requiresLOS
 m_requiresSafeState
 m_resPtr
 m_resPtrArray
+m_reset
 m_resetAcelerationOnDirectionChange
 m_resetHorizontalSpringOnDeactivation
+m_resetMatrix
 m_resetPlayerInvisibilityToNPCs
 m_resetPlayerSkillsState
 m_resetTime
 m_resetToMaxHealth
+m_resetTransform
 m_resetVerticalSpringOnDeactivation
 m_resetWhenConditionsAreFalse
 m_resolution
@@ -9968,6 +10119,7 @@ m_rightGadget
 m_rightHand
 m_rightHandDefaultMaterialHemisphereTraceRadius
 m_rightHandItemOffset
+m_rightHandleverLocalPos
 m_rightSideJumpingZone
 m_rightSideLimits
 m_rightTriggerEffectConfig
@@ -10044,6 +10196,7 @@ m_sDataSourceOnlinePath
 m_sDataTag
 m_sDebugChannel
 m_sDebugVariableName
+m_sDefaultUnavailableText
 m_sDescription
 m_sDisplayName
 m_sEmissiveColorPropertyName
@@ -10130,6 +10283,7 @@ m_sabotageDoorFailSafeDurations
 m_sabotageDoorRaw
 m_sabotageDoorSweet
 m_safeDistance
+m_safePosition
 m_safePositionFramingOffset
 m_safePositionTarget
 m_safeToTraverseThrough
@@ -10307,6 +10461,8 @@ m_sequenceDebugStart
 m_sequenceEnterState
 m_sequenceOrigin
 m_sequenceTime
+m_sequenceType
+m_serialNumber
 m_serverAddress
 m_serverCertificate
 m_serverContext
@@ -10379,6 +10535,8 @@ m_shouldStartLocked
 m_shouldUpdateFacingDirection
 m_showAllPromptsOnFailedCombine
 m_showElevationMarkers
+m_showGameTime
+m_showLabel
 m_showNotificationForOpportunitySteps
 m_showOnInvisibleObjective
 m_showPreview
@@ -10404,6 +10562,7 @@ m_sidestepTargetCharacterSource
 m_sidestepType
 m_sidestepWindowDuration
 m_sidestepable
+m_sidesteppedFailed
 m_sidesteppingCharacterSource
 m_sidle
 m_sidleConfiguration
@@ -10434,6 +10593,7 @@ m_skeletonSpatialSynchronizationMode
 m_skill
 m_skinResource
 m_skinShadingPresets
+m_skinWidth
 m_skins
 m_skipManhuntStorylineAfterT4Distraction
 m_skipPickupAnimations
@@ -10528,6 +10688,8 @@ m_spawnTransform
 m_speaker
 m_speakers
 m_specialFirearmAbility
+m_specialWeapon
+m_specificMenu
 m_specifyTypeOfDrift
 m_speed
 m_speedAdjustRate
@@ -10544,7 +10706,6 @@ m_speedSource
 m_speedToleranceForFullStop
 m_speedToleranceForNoSteering
 m_speedType
-m_speedVsAdditionalRotation
 m_speedVsAmplitude
 m_speedVsAngularSpeedMultiplier
 m_speedVsAngularSpeedMultiplierAir
@@ -10678,6 +10839,7 @@ m_steerDecayRate
 m_steerForcePointLocalOffset
 m_steerInputRemapCurveTopSpeed
 m_steerInputRemapCurveZeroSpeed
+m_steerLerpDecayRate
 m_steerMode
 m_steerRaiseRate
 m_steerReturnSpeedVsSpeed
@@ -10686,9 +10848,13 @@ m_steerSwitchRate
 m_steerVsRearShift
 m_steerVsThrottleReduction
 m_steerVsThrottleReductionOverride
+m_steeringActivationThreshold
 m_steeringBias
+m_steeringLeanGainDeg
 m_steeringLinearity
 m_step
+m_stepAmount
+m_stepAmountRef
 m_stepAwayFromCoverCornerDistance
 m_stepAwayFromCoverDistance
 m_stepOffset
@@ -10750,6 +10916,7 @@ m_styleOverride
 m_styleType
 m_subMachineGunAmmunition
 m_subObjectives
+m_subOptions
 m_subTreeSlot
 m_subTypeConfigs
 m_submachineGun_aiming
@@ -10810,8 +10977,13 @@ m_systemReminderTipGroup
 m_systemReminderTipType
 m_systems
 m_tCooldown
+m_tabIcon
 m_tabNameItemTypeID
+m_tabNameLocalized
+m_tabNameRaw
 m_tabOrderItemTypeID
+m_tabs
+m_tacSimDefaultOutfitDefinition
 m_tacticalEspionageArea
 m_tacticalEspionageAreaEntity
 m_tactileWorldInteractionConfig
@@ -10869,6 +11041,7 @@ m_targetCorner
 m_targetCount
 m_targetDashPosition
 m_targetDifficultyLevel
+m_targetDifficultyLevelForConfiguration
 m_targetDifficultyParameter
 m_targetEmitters
 m_targetEntities
@@ -10949,6 +11122,7 @@ m_tessellation
 m_testCases
 m_testData
 m_testSuites
+m_testedRooms
 m_tests
 m_texCoordU
 m_texCoordV
@@ -10958,6 +11132,7 @@ m_textAlignmentRef
 m_textColor
 m_textLinesConfig
 m_textLocale
+m_textLocalized
 m_textRaw
 m_textRef
 m_textSizeModeAuto
@@ -11019,6 +11194,7 @@ m_time
 m_timeAfterLastInputToRecenter
 m_timeAfterLastInputToRecenterMouse
 m_timeBetweenHoldFireDueToCCBehavior
+m_timeDomain
 m_timeLimit
 m_timeModifier
 m_timeMultiplier
@@ -11037,6 +11213,7 @@ m_timeToSuccessCheck
 m_timeToTopRevSpeed
 m_timeToTopSpeed
 m_timeToZeroSpeed
+m_timeValue
 m_timeZone
 m_timedEventEndTime
 m_timedEventStartTime
@@ -11153,6 +11330,7 @@ m_trapAwarenessAreaVolumesShapes
 m_traversalCameraBlendPerInputMagnitude
 m_traversalLandingValidationIterationCount
 m_traversalLandingValidationStepDistanceScale
+m_trespassingAreaOverrideUpgradeKeyword
 m_trespassingStance
 m_triIdx
 m_triangulationRange
@@ -11208,6 +11386,7 @@ m_ugc
 m_ui
 m_uiControl
 m_uiInputAction
+m_uiManagerState
 m_uiOption
 m_uiPositionMaxOffset
 m_uiPrompt
@@ -11243,6 +11422,7 @@ m_upGadget
 m_upOverride
 m_updateInMenu
 m_updateInMenus
+m_updateMode
 m_updateWarpOrientation
 m_updateWarpTranslation
 m_updatedChallengeStates
@@ -11489,6 +11669,7 @@ m_val2
 m_val3
 m_validCharacterGizmoResource
 m_validGroupsEnumToCheck
+m_validRooms
 m_value
 m_valueDisplayNames
 m_valueFloat
@@ -11534,7 +11715,6 @@ m_vehicleEnterSmoothingFactor
 m_vehicleFireWeapon1
 m_vehicleFireWeapon2
 m_vehicleLateralAcceleration
-m_vehicleSpatialForPosition
 m_vehicleWheelSurfaceSoundEventSwitchValue
 m_vehicleWhiskerConfig
 m_vehicles
@@ -11643,6 +11823,8 @@ m_wakeUpSystems
 m_wallet
 m_wantedYaw
 m_warmStartCloth
+m_warmStartStepDeltaTime
+m_warmStartStepsOverride
 m_warnAboutLethalCombatEscalation
 m_warpIndex
 m_warpPoint

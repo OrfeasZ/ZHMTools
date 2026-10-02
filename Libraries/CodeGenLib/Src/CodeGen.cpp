@@ -1456,6 +1456,11 @@ void CodeGen::GenerateRlClassHeader(const std::shared_ptr<TreeNode>& p_Node, con
 		s_HeaderStream << p_Indent << "\tuint8 _pad[7];" << std::endl;
 	}
 
+	// HACKHACK: Add padding to SVehicleMotorbikeGeometryConfig because the engine's type info is missing some fields, and we can't remove it as it is a dependency of ZVehicleMotorbikeAsCarConfigEntity
+	if (s_TypeName == "Gameplay.SVehicleMotorbikeGeometryConfig") {
+		s_HeaderStream << p_Indent << "\tuint8 _pad[116];" << std::endl;
+	}
+
 	EmitJsonStruct(p_Node);
 
 	s_HeaderStream << p_Indent << "};" << std::endl;
