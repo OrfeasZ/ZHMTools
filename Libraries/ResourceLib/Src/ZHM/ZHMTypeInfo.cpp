@@ -43,12 +43,28 @@ public:
 			case 2: s_Value = *reinterpret_cast<int16_t*>(p_Object); break;
 			default: s_Value = *reinterpret_cast<int32_t*>(p_Object); break;
 		}
-		p_Stream << simdjson::as_json_string(ZHMEnums::GetEnumValueName(m_TypeName, s_Value));
+
+		const std::string s_Name = ZHMEnums::GetEnumValueName(m_TypeName, s_Value);
+
+		if (s_Name.empty())
+			p_Stream << s_Value;
+		else
+			p_Stream << simdjson::as_json_string(s_Name);
 	}
 
 	void CreateFromJson(simdjson::ondemand::value p_Document, void* p_Target) override
 	{
-		const int32_t s_Value = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
+		int32_t s_Value = 0;
+
+		if (p_Document.type() == simdjson::ondemand::json_type::number)
+		{
+			s_Value = simdjson::from_json_int32(p_Document);
+		}
+		else
+		{
+			s_Value = ZHMEnums::GetEnumValueByName(m_TypeName, std::string_view(p_Document));
+		}
+
 		switch (m_Size)
 		{
 			case 1: *reinterpret_cast<int8_t*>(p_Target) = static_cast<int8_t>(s_Value); break;
