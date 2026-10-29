@@ -29,6 +29,7 @@ COLLIDE_WITH_STATIC_ONLY
 COLLISION_VOLUME_HITMAN_OFF
 COLLISION_VOLUME_HITMAN_ON
 CROWD_RAGDOLL
+CalculateOnChange
 Campaign
 Children
 Clients
@@ -660,6 +661,7 @@ m_BackgroundColor
 m_BankResourceHQID
 m_BaseEventConsumers
 m_BaseId
+m_BasicTimersData
 m_BehaviorSelectDisabled
 m_BehaviorTrees
 m_BillboardRenderDestinationTexture
@@ -2818,6 +2820,7 @@ m_bGlobalLightOverrideDisableSpec
 m_bGlobalLightOverrideEnable
 m_bGlobalShadowMapExcludeDSSObjects
 m_bGlowIsOverridden
+m_bGlowOverrideEnabled
 m_bGoIntoCoverAtWaypoint
 m_bGrabAllDrops
 m_bGrabItemsPendingPickup
@@ -3473,6 +3476,7 @@ m_bRemoveNeverFlee3
 m_bRemovePhysics
 m_bRemoveWhenDone
 m_bRepeatWhileTrue
+m_bRepeating
 m_bReplacePhoneAct
 m_bReplicate
 m_bReplicateTransform
@@ -3759,6 +3763,7 @@ m_bTimerHasJustStopped
 m_bTimerHasStopped
 m_bToggle
 m_bTopEnabled
+m_bTouchPanRequiresBoundaryHit
 m_bTraceLines
 m_bTracked
 m_bTrajectoryEnabled
@@ -3895,6 +3900,7 @@ m_bVRAllowAlternativeInput
 m_bVREnableLaserBeam
 m_bVRForceSwipeAnimation
 m_bVRHideAnimation
+m_bVRHideIndicator
 m_bVRIgnoreLODInfoClamp
 m_bVRInventory
 m_bVRNoAlignment
@@ -4153,6 +4159,7 @@ m_eBehaviour
 m_eBehaviourStatus
 m_eBendConstrainType
 m_eBlendMode
+m_eBloodSeepMode
 m_eBlurQuality
 m_eBodyMode
 m_eBone
@@ -4471,6 +4478,7 @@ m_eRuntimeMemoryAllocationState
 m_eScaleMode
 m_eScaleType
 m_eScreenplayTriggerType
+m_eScrollAxis
 m_eSeamFix
 m_eSecondWarning
 m_eSenderEvent
@@ -4710,6 +4718,12 @@ m_fBreakableForce
 m_fBreakableTorque
 m_fBrushFalloffRange
 m_fBrushRadius
+m_fBuildFadeTime
+m_fBuildRateMax
+m_fBuildRateMin
+m_fBuildSettleTime
+m_fBuildSpeedMax
+m_fBuildSpeedMin
 m_fBulletDecalSizeVariation
 m_fBulletProof
 m_fBurstAngleH
@@ -4812,8 +4826,10 @@ m_fConeAngleY
 m_fConeAngleZ
 m_fConeDistance
 m_fConeDistanceFadeRange
+m_fConeGentle
 m_fConeSpringDamper
 m_fConeSpringForce
+m_fConeSteep
 m_fContactForce
 m_fCoolDown
 m_fCooldown
@@ -5041,6 +5057,8 @@ m_fFarRadius
 m_fFarZ
 m_fFastSpeedBlendInTime
 m_fFastSpeedDelay
+m_fFellInRadius
+m_fFellInRestSpeed
 m_fFieldOfView
 m_fFill
 m_fFiredAtTime
@@ -5076,6 +5094,7 @@ m_fFrustumFarDistanceProperty
 m_fFudge
 m_fGC_Distance
 m_fGameTimeMultiplier
+m_fGamepadStickScrollRate
 m_fGapImpassibleDistance
 m_fGateAngleThreshold
 m_fGateDistanceExpansion
@@ -5450,6 +5469,7 @@ m_fMotionStretchFactor
 m_fMotorForce
 m_fMouseCursorLockSpeed
 m_fMouseRange
+m_fMouseScrollRate
 m_fMouseSensitivityX
 m_fMouseSensitivityY
 m_fMoveCameraSeekStrength
@@ -5540,6 +5560,12 @@ m_fPeripheralHigh
 m_fPeripheralLow
 m_fPickBufferDuration
 m_fPierceExpansion
+m_fPillForceGentle
+m_fPillForceSteep
+m_fPillLifeTime
+m_fPillSpeedGentle
+m_fPillSpeedSteep
+m_fPillSpin
 m_fPitch
 m_fPitchAngle
 m_fPitchAngle0
@@ -5673,6 +5699,8 @@ m_fRangeNear
 m_fRangeNearBonus
 m_fRangeRoll
 m_fRangeV
+m_fRateGentle
+m_fRateSteep
 m_fRaycastDistance
 m_fRaycastRadius
 m_fRayleighDepthScale
@@ -5808,6 +5836,9 @@ m_fShadowedInscatterIntensity
 m_fShadowedMieDepthScale
 m_fShadowedRange
 m_fShadowedRayleighDepthScale
+m_fShakeAccel
+m_fShakeCooldown
+m_fShakePillSpeed
 m_fSharpeningStrength
 m_fShearStiffness
 m_fShockAbsorption
@@ -5865,10 +5896,12 @@ m_fSpatialBlurFade
 m_fSpatialBlurStart
 m_fSpatialBlurriness
 m_fSpeed
+m_fSpeedGentle
 m_fSpeedMax
 m_fSpeedMin
 m_fSpeedMultiplier
 m_fSpeedSmoothingDuration
+m_fSpeedSteep
 m_fSpeedTreeStrength
 m_fSpeedUpDistance
 m_fSphereRadius
@@ -5908,6 +5941,7 @@ m_fStatsAccuracyDelta
 m_fStatsDamageDelta
 m_fStatsFireRateDelta
 m_fStatsRangeDelta
+m_fSteepTickFlow
 m_fStep
 m_fStepSize
 m_fStepsFraction
@@ -5979,6 +6013,8 @@ m_fTickFrequencyHigh
 m_fTickFrequencyHighThreshold
 m_fTickFrequencyLow
 m_fTickFrequencyLowThreshold
+m_fTickIntervalGentle
+m_fTickIntervalSteep
 m_fTime
 m_fTimeMultiplier
 m_fTimeOfDay
@@ -5998,6 +6034,7 @@ m_fTop
 m_fTorsoDamageMultiplier
 m_fTossHeight
 m_fTouchPanSpeed
+m_fTouchScrollRate
 m_fTracerEveryNthBullet
 m_fTrackAngleFraction
 m_fTrackPosition
@@ -6735,6 +6772,7 @@ m_nPatrolWaypointIndex
 m_nPatrolWaypointSubIndex
 m_nPeriodSkip
 m_nPieceIndex
+m_nPillPoolSize
 m_nPixelsPerMeter
 m_nPlayState
 m_nPlayerId
@@ -6820,6 +6858,7 @@ m_nSelectedSource
 m_nSeparationMaxLOD
 m_nSetId
 m_nShadowMapMaxLOD
+m_nShakePills
 m_nSharedIndex
 m_nShieldHighlightPower
 m_nShotsThreshold
@@ -7223,6 +7262,7 @@ m_pPerfDebugViewDropShadow
 m_pPhysics
 m_pPhysicsSystem
 m_pPhysicsSystemSecondary
+m_pPillFactory
 m_pPlayLegacyRumble
 m_pPlaystation4ImageRID
 m_pPreferredActor
@@ -7442,6 +7482,7 @@ m_rBounds
 m_rBoxGeometry
 m_rBoxVolume
 m_rBruise
+m_rBuildPoint
 m_rBulletInChamber
 m_rBundlePosition
 m_rBypassMenuCondition
@@ -7498,6 +7539,7 @@ m_rContainerItemKey
 m_rContainerSpatial
 m_rContainerSpawner
 m_rContainsItem
+m_rContentBounds
 m_rContextKeywords
 m_rContextLocation
 m_rContextObjectSpatial
@@ -7599,6 +7641,7 @@ m_rFaceTarget
 m_rFadeConfig
 m_rFallbackEffect
 m_rFallbackMuzzleEffect
+m_rFellInSoundPoint
 m_rFemaleSequences
 m_rFilter
 m_rFirstValueInt
@@ -7668,6 +7711,8 @@ m_rItemEntity
 m_rItemHandAttacher
 m_rItemHandAttacherLeft
 m_rItemInPhysicsWorld
+m_rItemKey
+m_rItemKeys
 m_rItemOwned
 m_rItemPickupEnabled
 m_rItemSpawner
@@ -7742,6 +7787,7 @@ m_rMovementExitedConfigs
 m_rMuzzleExtensionCollection
 m_rName
 m_rNameTextResource
+m_rNeckSmokePoint
 m_rNode
 m_rNonExecutableDescriptionResource
 m_rNotificationBodyResource
@@ -7794,9 +7840,11 @@ m_rPhysicsEntity
 m_rPicker
 m_rPickupAction
 m_rPickupBehavior
+m_rPillSpawnPoint
 m_rPinForward
 m_rPivot
 m_rPlacementLinked
+m_rPlacementOverrideGeometry
 m_rPlacementPrim
 m_rPlaybackEmitter
 m_rPlayerCandidateForSpreading
@@ -7944,6 +7992,8 @@ m_rState
 m_rStateMachineCoordinator
 m_rStone
 m_rStorage
+m_rStreamEndPlane
+m_rStreamOrigin
 m_rSubaction
 m_rSubcontrollerContainer
 m_rSuperSpecialTriggerEffect
@@ -7994,6 +8044,8 @@ m_rVIP
 m_rVIPActor
 m_rVIPController
 m_rVRAgilityConfigDefault
+m_rVRAimGeometryLeft
+m_rVRAimGeometryRight
 m_rVRBoneAnimator
 m_rVRConfig
 m_rVRMovementConfigDefault

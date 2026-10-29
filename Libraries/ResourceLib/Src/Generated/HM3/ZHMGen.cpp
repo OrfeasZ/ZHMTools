@@ -42489,6 +42489,10 @@ void STimerManagerSaveData::WriteSimpleJson(void* p_Object, std::ostream& p_Stre
 
 	p_Stream << simdjson::as_json_string("m_GameTimersData") << ":";
 	SGameTimersSaveData::WriteSimpleJson(&s_Object->m_GameTimersData, p_Stream);
+	p_Stream << ",";
+
+	p_Stream << simdjson::as_json_string("m_BasicTimersData") << ":";
+	STimerEntitiesSaveData::WriteSimpleJson(&s_Object->m_BasicTimersData, p_Stream);
 
 	p_Stream << "}";
 }
@@ -42503,6 +42507,8 @@ void STimerManagerSaveData::FromSimpleJson(simdjson::ondemand::value p_Document,
 
 	SGameTimersSaveData::FromSimpleJson(p_Document["m_GameTimersData"], &s_Object->m_GameTimersData);
 
+	STimerEntitiesSaveData::FromSimpleJson(p_Document["m_BasicTimersData"], &s_Object->m_BasicTimersData);
+
 }
 
 void STimerManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serializer, zhmptr_t p_OwnOffset)
@@ -42512,6 +42518,7 @@ void STimerManagerSaveData::Serialize(void* p_Object, ZHMSerializer& p_Serialize
 	STimerEntitiesSaveData::Serialize(&s_Object->m_TimersData, p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_TimersData));
 	SRandomTimerEntitiesSaveData::Serialize(&s_Object->m_RandomTimersData, p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_RandomTimersData));
 	SGameTimersSaveData::Serialize(&s_Object->m_GameTimersData, p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_GameTimersData));
+	STimerEntitiesSaveData::Serialize(&s_Object->m_BasicTimersData, p_Serializer, p_OwnOffset + offsetof(STimerManagerSaveData, m_BasicTimersData));
 }
 
 bool STimerManagerSaveData::Equals(void* p_Left, void* p_Right)
@@ -42530,6 +42537,7 @@ bool STimerManagerSaveData::operator==(const STimerManagerSaveData& p_Other) con
 	if (m_TimersData != p_Other.m_TimersData) return false;
 	if (m_RandomTimersData != p_Other.m_RandomTimersData) return false;
 	if (m_GameTimersData != p_Other.m_GameTimersData) return false;
+	if (m_BasicTimersData != p_Other.m_BasicTimersData) return false;
 
 	return true;
 }

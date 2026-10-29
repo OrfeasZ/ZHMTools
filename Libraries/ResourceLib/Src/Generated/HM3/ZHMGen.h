@@ -242,10 +242,13 @@ enum class EAIEventType : int32_t
 	AIET_ArrestReason_DragBody = 223,
 	AIET_ArrestReason_KnockDown = 224,
 	AIET_ARREST_REASONS_END = 225,
-	AIET_END_NORMAL_EVENTS = 226,
-	AIET_DEBUG_EVENTS_START = 227,
-	AIET_Debug_ThrowFlashbangHere = 228,
-	AIET_DEBUG_EVENTS_END = 229,
+	AIET_SeenPlayerWeapon = 226,
+	AIET_SeenPlayerPour = 227,
+	AIET_UnseenIllegalAction = 228,
+	AIET_END_NORMAL_EVENTS = 229,
+	AIET_DEBUG_EVENTS_START = 230,
+	AIET_Debug_ThrowFlashbangHere = 231,
+	AIET_DEBUG_EVENTS_END = 232,
 };
 
 namespace AI {
@@ -2958,7 +2961,8 @@ enum class EActorVoiceVariation : int32_t
 	eAVV_ET_GREENTINI = 591,
 	eAVV_ET_GREENTINY = 592,
 	eAVV_ET_SHAMROCK = 593,
-	eAVV_ET_GROG = 594,
+	eAVV_BRAYDEN = 594,
+	eAVV_CHASE = 595,
 };
 
 // Size: 0x4
@@ -5966,6 +5970,7 @@ enum class EHandAlignPoseType : int32_t
 	HAPT_Slide = 2,
 	HAPT_WeaponAimAndSupport = 3,
 	HAPT_WeaponSupport = 4,
+	HAPT_GrenadePin = 5,
 };
 
 // Size: 0x4
@@ -7600,6 +7605,8 @@ enum class ERequirementId : int32_t
 	EREQUIREMENT_H3_ET_PENICILLIN_ITEMS = 73,
 	EREQUIREMENT_H3_ET_GREENTINI = 74,
 	EREQUIREMENT_H3_VANITY_EG04 = 75,
+	EREQUIREMENT_H3_ET_SHAMROCK = 76,
+	EREQUIREMENT_H3_VANITY_EG05 = 77,
 };
 
 // Size: 0x1
@@ -8762,6 +8769,8 @@ enum class EUIOpenVRComponentArchetypeID : int32_t
 	TriggerR = 16,
 	BumperL = 17,
 	BumperR = 18,
+	Dpad = 19,
+	DpadPressDirections = 20,
 };
 
 // Size: 0x4
@@ -12898,6 +12907,14 @@ public:
 class ZHM5BodyContainer
 {
 public:
+	// Size: 0x4
+	enum class EBCBloodSeepMode : int32_t
+	{
+		BC_SEEP_AUTO = 0,
+		BC_SEEP_UNDERNEATH = 1,
+		BC_SEEP_AT_FRONT_EDGE = 2,
+	};
+
 	// Size: 0x4
 	enum class EBCBodyMode : int32_t
 	{
@@ -23150,7 +23167,7 @@ ZHM_OFFSET_CHECK(STimerEntitiesSaveData, m_aData, 0x18);
 static_assert(sizeof(STimerEntitiesSaveData) == 0x30, "Wrong size for STimerEntitiesSaveData");
 static_assert(alignof(STimerEntitiesSaveData) == 0x8, "Wrong alignment for STimerEntitiesSaveData");
 
-// Size: 0xA8
+// Size: 0xD8
 class alignas(8) STimerManagerSaveData
 {
 public:
@@ -23167,11 +23184,13 @@ public:
 	STimerEntitiesSaveData m_TimersData; // 0x0
 	SRandomTimerEntitiesSaveData m_RandomTimersData; // 0x30
 	SGameTimersSaveData m_GameTimersData; // 0x60
+	STimerEntitiesSaveData m_BasicTimersData; // 0xA8
 };
 ZHM_OFFSET_CHECK(STimerManagerSaveData, m_TimersData, 0x0);
 ZHM_OFFSET_CHECK(STimerManagerSaveData, m_RandomTimersData, 0x30);
 ZHM_OFFSET_CHECK(STimerManagerSaveData, m_GameTimersData, 0x60);
-static_assert(sizeof(STimerManagerSaveData) == 0xA8, "Wrong size for STimerManagerSaveData");
+ZHM_OFFSET_CHECK(STimerManagerSaveData, m_BasicTimersData, 0xA8);
+static_assert(sizeof(STimerManagerSaveData) == 0xD8, "Wrong size for STimerManagerSaveData");
 static_assert(alignof(STimerManagerSaveData) == 0x8, "Wrong alignment for STimerManagerSaveData");
 
 // Size: 0x8
@@ -26527,6 +26546,18 @@ public:
 		COMBINED = 0,
 		PREVIOUS = 1,
 		NEXT = 2,
+	};
+
+};
+
+class ZEvergreenMenuEntryPromptScrollAction
+{
+public:
+	// Size: 0x1
+	enum class EScrollAxis : int8_t
+	{
+		X_AXIS = 0,
+		Y_AXIS = 1,
 	};
 
 };
@@ -30241,7 +30272,8 @@ enum class eHitmanPermissionReason : int32_t
 	eHPReason_InstinctBlendIn = 64,
 	eHPReason_FocusInteraction = 128,
 	eHPReason_VrDropInteraction = 256,
-	eHPReason_NUM = 8,
+	eHPReason_VrFiberwireKill = 512,
+	eHPReason_NUM = 9,
 	eHPReason_ALLReasons = -1,
 };
 
