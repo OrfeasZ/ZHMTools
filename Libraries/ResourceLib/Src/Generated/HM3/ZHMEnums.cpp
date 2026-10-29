@@ -561,10 +561,13 @@ void ZHMEnums::RegisterEnums()
 		{ 223, "AIET_ArrestReason_DragBody" },
 		{ 224, "AIET_ArrestReason_KnockDown" },
 		{ 225, "AIET_ARREST_REASONS_END" },
-		{ 226, "AIET_END_NORMAL_EVENTS" },
-		{ 227, "AIET_DEBUG_EVENTS_START" },
-		{ 228, "AIET_Debug_ThrowFlashbangHere" },
-		{ 229, "AIET_DEBUG_EVENTS_END" },
+		{ 226, "AIET_SeenPlayerWeapon" },
+		{ 227, "AIET_SeenPlayerPour" },
+		{ 228, "AIET_UnseenIllegalAction" },
+		{ 229, "AIET_END_NORMAL_EVENTS" },
+		{ 230, "AIET_DEBUG_EVENTS_START" },
+		{ 231, "AIET_Debug_ThrowFlashbangHere" },
+		{ 232, "AIET_DEBUG_EVENTS_END" },
 	};
 	(*g_EnumSizes)["EAIEventType"] = 4;
 
@@ -2532,7 +2535,8 @@ void ZHMEnums::RegisterEnums()
 		{ 591, "eAVV_ET_GREENTINI" },
 		{ 592, "eAVV_ET_GREENTINY" },
 		{ 593, "eAVV_ET_SHAMROCK" },
-		{ 594, "eAVV_ET_GROG" },
+		{ 594, "eAVV_BRAYDEN" },
+		{ 595, "eAVV_CHASE" },
 	};
 	(*g_EnumSizes)["EActorVoiceVariation"] = 4;
 
@@ -5387,6 +5391,7 @@ void ZHMEnums::RegisterEnums()
 		{ 2, "HAPT_Slide" },
 		{ 3, "HAPT_WeaponAimAndSupport" },
 		{ 4, "HAPT_WeaponSupport" },
+		{ 5, "HAPT_GrenadePin" },
 	};
 	(*g_EnumSizes)["EHandAlignPoseType"] = 4;
 
@@ -6916,6 +6921,8 @@ void ZHMEnums::RegisterEnums()
 		{ 73, "EREQUIREMENT_H3_ET_PENICILLIN_ITEMS" },
 		{ 74, "EREQUIREMENT_H3_ET_GREENTINI" },
 		{ 75, "EREQUIREMENT_H3_VANITY_EG04" },
+		{ 76, "EREQUIREMENT_H3_ET_SHAMROCK" },
+		{ 77, "EREQUIREMENT_H3_VANITY_EG05" },
 	};
 	(*g_EnumSizes)["ERequirementId"] = 4;
 
@@ -8019,6 +8026,8 @@ void ZHMEnums::RegisterEnums()
 		{ 16, "TriggerR" },
 		{ 17, "BumperL" },
 		{ 18, "BumperR" },
+		{ 19, "Dpad" },
+		{ 20, "DpadPressDirections" },
 	};
 	(*g_EnumSizes)["EUIOpenVRComponentArchetypeID"] = 4;
 
@@ -10093,6 +10102,12 @@ void ZHMEnums::RegisterEnums()
 	};
 	(*g_EnumSizes)["ZEvergreenMenuEntryPromptPaginationAction.EType"] = 1;
 
+	(*g_Enums)["ZEvergreenMenuEntryPromptScrollAction.EScrollAxis"] = {
+		{ 0, "X_AXIS" },
+		{ 1, "Y_AXIS" },
+	};
+	(*g_EnumSizes)["ZEvergreenMenuEntryPromptScrollAction.EScrollAxis"] = 1;
+
 	(*g_Enums)["ZEvergreenMenuGlobalCondition.EQuery"] = {
 		{ 0, "IS_ANY_MENU_OPEN" },
 		{ 1, "IS_ANY_MENU_PROCESSING_INPUT" },
@@ -10180,6 +10195,13 @@ void ZHMEnums::RegisterEnums()
 		{ 4, "BC_CONTAINER_LAUNDRYCHUTE" },
 	};
 	(*g_EnumSizes)["ZHM5BodyContainer.EBCAnimSet"] = 4;
+
+	(*g_Enums)["ZHM5BodyContainer.EBCBloodSeepMode"] = {
+		{ 0, "BC_SEEP_AUTO" },
+		{ 1, "BC_SEEP_UNDERNEATH" },
+		{ 2, "BC_SEEP_AT_FRONT_EDGE" },
+	};
+	(*g_EnumSizes)["ZHM5BodyContainer.EBCBloodSeepMode"] = 4;
 
 	(*g_Enums)["ZHM5BodyContainer.EBCBodyMode"] = {
 		{ 0, "BC_1_VICTIM" },
@@ -11955,12 +11977,14 @@ void ZHMEnums::RegisterEnums()
 		{ 1, "eHPReason_MovementContext" },
 		{ 2, "eHPReason_ItemHandlingInProcess" },
 		{ 4, "eHPReason_SniperMode" },
-		{ 8, "eHPReason_NUM" },
+		{ 8, "eHPReason_CrippleBox" },
+		{ 9, "eHPReason_NUM" },
 		{ 16, "eHPReason_LevelDesign" },
 		{ 32, "eHPReason_PlayerInput" },
 		{ 64, "eHPReason_InstinctBlendIn" },
 		{ 128, "eHPReason_FocusInteraction" },
 		{ 256, "eHPReason_VrDropInteraction" },
+		{ 512, "eHPReason_VrFiberwireKill" },
 	};
 	(*g_EnumSizes)["eHitmanPermissionReason"] = 4;
 
