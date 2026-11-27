@@ -1625,6 +1625,7 @@ m_aAvoidDangerousAreaGroups
 m_aBehaviorEntities
 m_aBlockPacifiedKeywords
 m_aBodies
+m_aBodyHeadlineArgs
 m_aBodyPartCollections
 m_aBodyPartSetups
 m_aBodyParts
@@ -1767,6 +1768,7 @@ m_aFilterProcedures
 m_aFilterTypes
 m_aFilters
 m_aFinishedStages
+m_aFlavorArgs
 m_aFleeCandidates
 m_aFlotationPoints
 m_aFlowBoxes
@@ -1800,6 +1802,7 @@ m_aHandAlignPoses
 m_aHandColliders
 m_aHandled
 m_aHandlers
+m_aHeadlineArgs
 m_aHelpingActors
 m_aHiddenBodyVolumes
 m_aHigherPriority
@@ -2018,6 +2021,7 @@ m_aTargetTraits
 m_aTargetableBones
 m_aTargets
 m_aTensions
+m_aTextArgs
 m_aTimerEntityCommands
 m_aTimerEntityState
 m_aTipsConfigsForTypes
@@ -2589,6 +2593,7 @@ m_bDoHighLODSeparation
 m_bDone
 m_bDoneReporting
 m_bDoneTriggered
+m_bDontDrawInMainCamera
 m_bDontEscalateOnLineCrossing
 m_bDoubleVisionEnabled
 m_bDragBody
@@ -3320,6 +3325,7 @@ m_bOnlyLocalImpacts
 m_bOnlyOnSniperZoom
 m_bOnlyOnce
 m_bOnlyRepositioning
+m_bOnlySetValueOnChange
 m_bOnlyUnscaled
 m_bOpenLogbook
 m_bOpenPauseMenu
@@ -3327,6 +3333,7 @@ m_bOperateCPDoor
 m_bOpponent
 m_bOrientationCheck
 m_bOriginalCameraDisabled
+m_bOutfit
 m_bOutfitRelevant
 m_bOutside
 m_bOutsideMaster
@@ -3830,6 +3837,7 @@ m_bUseConversationHelper
 m_bUseCooldown
 m_bUseCrowdCameraProfile
 m_bUseCurve
+m_bUseDeactivateTimeout
 m_bUseDeathAnimation
 m_bUseDegrees
 m_bUseDistanceOnPath

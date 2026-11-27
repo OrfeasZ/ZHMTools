@@ -2537,6 +2537,7 @@ void ZHMEnums::RegisterEnums()
 		{ 593, "eAVV_ET_SHAMROCK" },
 		{ 594, "eAVV_BRAYDEN" },
 		{ 595, "eAVV_CHASE" },
+		{ 596, "eAVV_ET_GROG" },
 	};
 	(*g_EnumSizes)["EActorVoiceVariation"] = 4;
 
@@ -6923,6 +6924,7 @@ void ZHMEnums::RegisterEnums()
 		{ 75, "EREQUIREMENT_H3_VANITY_EG04" },
 		{ 76, "EREQUIREMENT_H3_ET_SHAMROCK" },
 		{ 77, "EREQUIREMENT_H3_VANITY_EG05" },
+		{ 78, "EREQUIREMENT_H3_VANITY_EG06" },
 	};
 	(*g_EnumSizes)["ERequirementId"] = 4;
 

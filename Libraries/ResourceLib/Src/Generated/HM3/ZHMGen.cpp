@@ -21210,6 +21210,10 @@ void SEscortSituation2SaveData::WriteSimpleJson(void* p_Object, std::ostream& p_
 	p_Stream << simdjson::as_json_string(s_Object->m_nTargetDeadTime);
 	p_Stream << ",";
 
+	p_Stream << simdjson::as_json_string("m_nBasePriority") << ":";
+	p_Stream << simdjson::as_json_string(s_Object->m_nBasePriority);
+	p_Stream << ",";
+
 	p_Stream << simdjson::as_json_string("m_bTargetIsMoving") << ":";
 	p_Stream << simdjson::as_json_string(s_Object->m_bTargetIsMoving);
 	p_Stream << ",";
@@ -21318,6 +21322,8 @@ void SEscortSituation2SaveData::FromSimpleJson(simdjson::ondemand::value p_Docum
 
 	s_Object->m_nTargetDeadTime = simdjson::from_json_int64(p_Document["m_nTargetDeadTime"]);
 
+	s_Object->m_nBasePriority = simdjson::from_json_int32(p_Document["m_nBasePriority"]);
+
 	s_Object->m_bTargetIsMoving = simdjson::from_json_bool(p_Document["m_bTargetIsMoving"]);
 
 	s_Object->m_eTargetState = static_cast<ZEscortSituation2Entity::ETargetState>(ZHMEnums::GetEnumValueByName("ZEscortSituation2Entity.ETargetState", std::string_view(p_Document["m_eTargetState"])));
@@ -21415,6 +21421,7 @@ bool SEscortSituation2SaveData::operator==(const SEscortSituation2SaveData& p_Ot
 	if (m_vLastPosition != p_Other.m_vLastPosition) return false;
 	if (m_bFoundDeadTarget != p_Other.m_bFoundDeadTarget) return false;
 	if (m_nTargetDeadTime != p_Other.m_nTargetDeadTime) return false;
+	if (m_nBasePriority != p_Other.m_nBasePriority) return false;
 	if (m_bTargetIsMoving != p_Other.m_bTargetIsMoving) return false;
 	if (m_eTargetState != p_Other.m_eTargetState) return false;
 	if (m_eTargetEmotionState != p_Other.m_eTargetEmotionState) return false;
