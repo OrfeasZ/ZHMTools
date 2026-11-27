@@ -2963,6 +2963,7 @@ enum class EActorVoiceVariation : int32_t
 	eAVV_ET_SHAMROCK = 593,
 	eAVV_BRAYDEN = 594,
 	eAVV_CHASE = 595,
+	eAVV_ET_GROG = 596,
 };
 
 // Size: 0x4
@@ -7607,6 +7608,7 @@ enum class ERequirementId : int32_t
 	EREQUIREMENT_H3_VANITY_EG04 = 75,
 	EREQUIREMENT_H3_ET_SHAMROCK = 76,
 	EREQUIREMENT_H3_VANITY_EG05 = 77,
+	EREQUIREMENT_H3_VANITY_EG06 = 78,
 };
 
 // Size: 0x1
@@ -16439,7 +16441,7 @@ ZHM_OFFSET_CHECK(SEscortSituation2Actors, m_rActor, 0x0);
 static_assert(sizeof(SEscortSituation2Actors) == 0x4, "Wrong size for SEscortSituation2Actors");
 static_assert(alignof(SEscortSituation2Actors) == 0x4, "Wrong alignment for SEscortSituation2Actors");
 
-// Size: 0xA0
+// Size: 0xA8
 class alignas(8) SEscortSituation2SaveData
 {
 public:
@@ -16462,17 +16464,18 @@ public:
 	SVector3 m_vLastPosition; // 0x8
 	bool m_bFoundDeadTarget; // 0x14
 	int64 m_nTargetDeadTime; // 0x18
-	bool m_bTargetIsMoving; // 0x20
-	ZEscortSituation2Entity::ETargetState m_eTargetState; // 0x24
-	EActorEmotionState m_eTargetEmotionState; // 0x28
-	ZActBehaviorEntity::EState m_eTargetActState; // 0x2C
-	float32 m_fTargetNotMovingTime; // 0x30
-	float32 m_fTargetAgitationCooldownTimer; // 0x34
-	TArray<SEscortSituation2Actors> m_aAddedActors; // 0x38
-	TArray<SEscortSituation2ActorStateSaveData> m_aStates; // 0x50
-	TArray<uint32> m_aEscortActs; // 0x68
-	TArray<uint32> m_aSearchActs; // 0x80
-	uint32 m_rEscortTarget; // 0x98
+	int32 m_nBasePriority; // 0x20
+	bool m_bTargetIsMoving; // 0x24
+	ZEscortSituation2Entity::ETargetState m_eTargetState; // 0x28
+	EActorEmotionState m_eTargetEmotionState; // 0x2C
+	ZActBehaviorEntity::EState m_eTargetActState; // 0x30
+	float32 m_fTargetNotMovingTime; // 0x34
+	float32 m_fTargetAgitationCooldownTimer; // 0x38
+	TArray<SEscortSituation2Actors> m_aAddedActors; // 0x40
+	TArray<SEscortSituation2ActorStateSaveData> m_aStates; // 0x58
+	TArray<uint32> m_aEscortActs; // 0x70
+	TArray<uint32> m_aSearchActs; // 0x88
+	uint32 m_rEscortTarget; // 0xA0
 };
 ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bActivated, 0x0);
 ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bMayEscort, 0x1);
@@ -16483,18 +16486,19 @@ ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bForceSearch, 0x5);
 ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_vLastPosition, 0x8);
 ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bFoundDeadTarget, 0x14);
 ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_nTargetDeadTime, 0x18);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bTargetIsMoving, 0x20);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetState, 0x24);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetEmotionState, 0x28);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetActState, 0x2C);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_fTargetNotMovingTime, 0x30);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_fTargetAgitationCooldownTimer, 0x34);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aAddedActors, 0x38);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aStates, 0x50);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aEscortActs, 0x68);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aSearchActs, 0x80);
-ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_rEscortTarget, 0x98);
-static_assert(sizeof(SEscortSituation2SaveData) == 0xA0, "Wrong size for SEscortSituation2SaveData");
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_nBasePriority, 0x20);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_bTargetIsMoving, 0x24);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetState, 0x28);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetEmotionState, 0x2C);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_eTargetActState, 0x30);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_fTargetNotMovingTime, 0x34);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_fTargetAgitationCooldownTimer, 0x38);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aAddedActors, 0x40);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aStates, 0x58);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aEscortActs, 0x70);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_aSearchActs, 0x88);
+ZHM_OFFSET_CHECK(SEscortSituation2SaveData, m_rEscortTarget, 0xA0);
+static_assert(sizeof(SEscortSituation2SaveData) == 0xA8, "Wrong size for SEscortSituation2SaveData");
 static_assert(alignof(SEscortSituation2SaveData) == 0x8, "Wrong alignment for SEscortSituation2SaveData");
 
 class ZEscortSituationEntity
